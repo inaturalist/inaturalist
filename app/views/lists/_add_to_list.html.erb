@@ -1,0 +1,82 @@
+<% list ||= object ||= @list -%>
+    <% lt = ListedTaxon.new(:list => list) %>
+    <% remote_form_for(lt, 
+      :url => listed_taxon_path(lt, :format => 'json'), 
+      :loading => "$('#listed_taxon_submit').hide(); $('#listed_taxon_loading').show()",
+      :complete => "$('#listed_taxon_submit').show(); $('#listed_taxon_loading').hide()",
+      :success => "afterTaxonAdded(request)",
+      :failure => "afterTaxonAddedFailure(request)") do |f| %>
+      <div>          
+        <%= text_field_tag :species_guess, '', :size => '' %>
+        <%= f.hidden_field :taxon_id %>
+      </div>
+      <%= f.hidden_field :list_id %>
+      <%= hidden_field_tag 'success_msg', 'Life list updated!' %>
+      <%= f.submit "Add", :class => 'default button' %>
+      <%= image_tag('spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none') %>
+    <% end %>
+    
+    <script type="text/javascript" charset="utf-8">
+      function afterTaxonAdded(request) {
+        try {
+          var json = eval("(" + request + ")");
+        } catch (e) {};
+
+        $.fn.simpleTaxonSelector.unSelectTaxon($('.simpleTaxonSelector').get(0));
+        $('#listed_taxon_submit').addClass('disabled').attr('disabled', 'disabled');
+        $.fn.simpleTaxonSelector.setStatus(
+          $('.simpleTaxonSelector').get(0),
+          'matched',
+          $('<span>Added!</span>')
+        );
+        
+        if ($('#add').length > 0) $('#add').effect('highlight', {}, 1000);
+
+        // Append html to the list
+        $('#justadded').fadeIn();
+        $('#justadded .listed_taxa').append(
+          $('<li class="clear"></li>').append(json.html)
+        );
+        $('#listed_taxon_'+json.instance.id).effect('highlight', {}, 1000);
+      }
+
+      function afterTaxonAddedFailure(request) {
+        try {
+          var json = eval("(" + request.responseText + ")");
+        } catch (e) {
+          console.log("ERROR: ", e);
+        };
+
+        switch (request.status) {
+          case 422:
+            var errorStr = $.map(json.errors, function(error, i) {
+              if (error[0] == 'taxon_id') {
+                error[0] = 'That taxon';
+              };
+              return error.join(' ');
+            }).join(', ');
+            $.fn.simpleTaxonSelector.setStatus(
+              $('.simpleTaxonSelector').get(0), 
+              'error', 
+              errorStr
+            );
+            break;
+          default:
+            $.fn.simpleTaxonSelector.setStatus($('.simpleTaxonSelector').get(0), 
+              'error', 'Something went wrong updating your list!');
+            break;
+        }
+      }
+      
+      
+      $('#species_guess').simpleTaxonSelector({
+        buttonText: 'Find',
+        afterSelect: function() {
+          $('#listed_taxon_submit').removeClass('disabled').attr('disabled', null);
+        }
+      });
+
+      // Disable the submit button by default
+      $('#listed_taxon_submit').addClass('disabled').attr('disabled', 'disabled');
+    </script>
+    

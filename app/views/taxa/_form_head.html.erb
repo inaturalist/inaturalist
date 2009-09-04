@@ -1,0 +1,26 @@
+<% content_for(:extracss) do %>
+  <%= stylesheet_link_tag 'taxa/form' %>
+<% end %>
+
+<% content_for(:extrajs) do %>
+<%= javascript_include_tag 'jquery',
+                           'jquery/plugins/jquery.string.1.0', 
+                           "jquery/plugins/inat/photo_selectors.js",
+                           "jquery/plugins/inat/taxon_selectors.js" %>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#taxon_photos').photoSelector({
+      defaultQuery: '<%= @taxon.name %>',
+      urlParams: {
+        authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+        limit: 16
+      }
+    });
+    
+    $('#parent_name').simpleTaxonSelector({
+      taxonIDField: $('#taxon_parent_id')
+    });
+  });
+</script>
+<% end %>

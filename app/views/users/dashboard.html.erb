@@ -1,0 +1,117 @@
+<% content_for(:title) do -%>
+  Your Home
+<% end -%>
+<% content_for(:extracss) do -%>
+  <%= stylesheet_link_tag 'observations' %>
+  <%= stylesheet_link_tag 'account/index' %>
+  <style type="text/css" media="screen">
+    .comment {
+      margin: 0;
+      padding: 0.5em 1em;
+    }
+    .comment p:last-child {
+      margin-bottom: 0;
+    }
+    .comment .meta {
+      float: none;
+      width: auto;
+      margin: 0;
+    }
+    
+    .comment .body {
+      padding: 0;
+    }
+    
+    .item {
+      margin-top: 1em;
+    }
+  </style>
+<% end -%>
+
+<h2>Welcome, <%= @user.login %>!</h2>
+
+<div class="column span-16">
+	<h3>Recent Updates</h3>
+  <p>
+    There's not much to show here yet, but soon this space will be filled up with recent activity.
+  </p>
+  <ul class="readable leafylist">
+    <% unless @user.flickr_identity %>
+    <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
+    <% end %>
+    <li>
+      <%= link_to "Browse your observations", observations_by_login_path(@user.login) %>
+    </li>
+    <li>
+      <%= link_to "Add new observations", :controller => 'observations', :action => 'new' %>
+    </li>
+    <li>
+      <%= link_to "Explore everyone's observations", observations_path %>
+    </li>
+    <li>
+      <%= link_to "Check out your Life List", lists_by_login_path(@user.login) %>
+    </li>
+  </ul>
+</div>
+<div class="last column span-8">
+	<h3>
+    Recent Comments on Your Stuff<br/>
+    <span class="description">in the past week</span>
+  </h3>
+  
+  <% if @recently_commented.empty? %>
+  <div class="centered description">
+    No activity in the past week.  Time to <%= link_to "post some new stuff", new_observation_path %>!
+  </div>
+  <% end %>
+  
+  <% for item in @recently_commented %>
+  <div class="item">
+    <% if item.is_a? Observation %>
+      <%= render :partial => 'observations/mini',
+                 :locals => { :observation => item, :include_description => false } %>
+    <% else %>
+      <%= item %>
+    <% end %>
+  </div>
+    <% for comment in item.comments.all.sort_by { |c| c.created_at } %>
+      <div class="<% if comment.user == @user %>yours<% end %>">
+        <%= render :partial => "comments/comment", 
+                   :locals => { :comment => comment }%>
+      </div>
+    <% end %>
+  <% end %>
+
+	<br/>
+	<hr/>
+	
+  <h3>
+    Comments You've Made (w/ Others)<br/>
+    <span class="description">in the past week</span>
+  </h3>
+  
+  <% if @commented_on.empty? %>
+  <div class="centered description">
+    You haven't left any comments recently.  Go leave someone a note!
+  </div>
+  <% end %>
+  
+  <% for item in @commented_on %>
+  <div class="item">
+    <% if item.is_a? Observation %>
+      <%= render :partial => 'observations/mini',
+                 :locals => { :observation => item, :include_description => false } %>
+    <% else %>
+      <%= item %>
+    <% end %>
+  </div>
+    <% sorted_comments = item.comments.all.sort_by { |c| c.created_at } %>
+    <% your_first = sorted_comments.select {|c| c.user == @user }.first %>
+    <% for comment in sorted_comments[sorted_comments.index(your_first)..-1] %>
+      <div class="<% if comment.user == @user %>yours<% end %>">
+        <%= render :partial => "comments/comment", 
+                   :locals => { :comment => comment }%>
+      </div>
+    <% end %>
+  <% end %>
+</div>

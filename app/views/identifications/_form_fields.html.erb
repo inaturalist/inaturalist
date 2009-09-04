@@ -1,0 +1,20 @@
+<%- show_body ||= false -%>
+<%- body_label ||= 'Remarks <span class="small description">(optional)</span>' -%>
+  <div class="field species_guess_field">
+    <label for="identification_species_guess-<%= identification.observation_id %>">Species</label>
+    <%= text_field_tag(:species_guess, '', 
+      :size => '', 
+      :class => 'text species_guess',
+      :id => "identification_species_guess-#{identification.observation_id}") %>
+    <%= f.hidden_field :taxon_id, 
+                       :id => "identification_taxon_id-#{identification.observation_id}" -%>
+  </div>
+  <% if show_body -%>
+    <div class="field body_field">
+      <%= f.label :body, body_label %>
+      <%= f.text_area :body %>
+    </div>
+  <% end -%>
+
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :observation_id %>

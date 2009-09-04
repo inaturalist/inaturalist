@@ -1,0 +1,75 @@
+.post .title {
+  margin-bottom: 0;
+}
+
+.post .meta {
+  margin-bottom: 0.5em;
+}
+
+.post .meta .count,
+.grouped_date {
+  color: #74AC00;
+}
+
+.grouped_date {
+  margin-bottom: 0.5em;
+}
+
+form.post_form input.text, 
+form.post_form textarea {
+  width: 100%;
+}
+
+form.post_form textarea {
+  height: 400px;
+}
+
+form.post_form .observations.table .observation .attribute.icon,
+form.post_form .observations.table .observation .attribute.user,
+form.post_form .observations.table .observation .attribute.actions {
+  display: none;
+}
+
+form.post_form .field label {
+  display: block;
+}
+
+form.post_form .button.next {
+  float: right;
+}
+
+form.post_form .observationSelectorObservations {
+  margin-bottom: 1em;
+  overflow: auto;
+  height: 480px;
+}
+
+
+#noposts .button {
+  display: inline;
+  float: none;
+  margin-left: 1em;
+  font-size: 100%;
+}
+
+.pagination {
+  margin: 1em 0;
+}
+
+#archives ul {
+  list-style: none;
+  margin: 0;
+}
+
+#archives a, #archives .label {
+  float: left;
+}
+#archives .count {
+  display: block;
+  float: right;
+}
+
+#archives .label,
+#archives .count {
+  color: #888;
+}

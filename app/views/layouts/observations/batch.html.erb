@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>iNat: Add a Batch of Observations</title>
+
+  <%= render :partial => 'shared/common_stylesheets' %>
+  <%= stylesheet_link_tag 'observations', 'observations/batch', 
+                          'observations/new', 'jquery-datepicker' %>
+
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag 'jquery',
+                             "jquery/jquery.ui.all.packed.js",
+                             "jquery/plugins/jquery.string.1.0.js",
+                             "jquery/plugins/inat/datepicker.js",
+                             "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/jquery.latLonSelector.js",
+                             "jquery/plugins/inat/taxon_selectors.js",
+                             "observations/new_batch.js",
+                             "observations/edit_batch.js" %>
+</head>
+
+<body>
+  <%= render :partial => 'shared/header' %>
+  <% if flash[:notice] %>
+  <p id="flash"><%= flash[:notice] %></p> 
+  <% end %>
+  <div id="wrapper" class="container">
+  <%= @content_for_layout %>
+  </div>
+  <%= render :partial => 'shared/footer' %>
+</body>
+</html>

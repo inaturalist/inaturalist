@@ -1,0 +1,168 @@
+<% content_for(:title) do %>
+  A Community for Naturalists
+<% end %>
+
+<% content_for(:extracss) do %>
+  <%= stylesheet_link_tag 'observations' %>
+  <%= stylesheet_link_tag 'welcome' %>
+  <!--[if lt IE 8]>
+    <style type="text/css" media="screen">
+      .observations .observation .user .label,
+      .observations .observation .observed_on .label {
+        display: inline;
+      }
+    </style>
+  <![endif]-->
+<% end %>
+
+<% content_for(:extrajs) do %>
+  <!--[if lt IE 8]>
+  <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
+  <![endif]-->
+  <%= gmap_include_tag %>
+
+  <%= javascript_include_tag 'jquery', 'inaturalist',
+                             'inaturalist/map2' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+      
+     // show some created_at dates
+     $('div.created_at h4.label').text('Added');
+     $('div.observed_on h4.label').text('Observed');
+     $('div.created_at').show();
+
+     var map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
+     
+     map.addControl(new GOverviewMapControl());
+
+     // Load in some observations
+      var observations = [];
+      <% for obs in @observations %>
+      observations.push(<%= obs.to_json(:include => [:user, :taxon]) %>);
+      <% end %>
+
+      // build a simple sidebar for the map
+      var obsList = $('#last-five');
+
+      // Make the map markers
+      var letter_counter = 0;
+      var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var bounds = new GLatLngBounds();
+      $.each(observations, function() {
+        var o = this;
+        if (typeof(o.latitude) != 'undefined' && typeof(o.longitude) != 'undefined') {
+          // Add the obs to the map
+          map.addObservation(o, {
+            icon: iNaturalist.Map.createObservationIcon({
+              color: "HotPink",
+              character: letters[letter_counter]
+            })
+          });
+          letter_counter++;
+          
+          
+          // Expand the map bounds
+          bounds.extend(new GLatLng(o.latitude, o.longitude));
+          
+          // Create infowindows and behavior
+          var icon_div = $('#observation-'+o.id+' .icon');
+          if (typeof(map.observations[o.id]) != 'undefined') {
+            var marker = map.observations[o.id];
+        
+            // add the marker image to the list
+            var icon_img = $('<img class="marker"/>').attr(
+              'src', marker.getIcon().image);
+        
+            // bind the observation's marker as the context to operate in when
+            // the obsNode is clicked in the list.
+            $(icon_img).click(function() {
+              map.openInfoWindow.apply(marker);
+            });
+          }
+          else {
+            var icon_img = $('<img/>').attr(
+              'src', '/images/mapMarkers/questionmarker.png');
+          }
+          icon_div.empty().append(icon_img);
+        }
+      });
+       
+      map.setZoom(map.getBoundsZoomLevel(bounds));
+      map.setCenter(bounds.getCenter());
+    });
+    $(window).unload(GUnload);
+  </script>
+<% end %>
+
+
+<div id="welcomecol" class="clear last column prepend-2 span-21 append-1">
+  <div id="explore" class="column span-5">
+    <center>
+      <%= link_to image_tag("/images/map-icon-155px.jpg"),observations_path %>
+      <h1><%= link_to "Explore!", observations_path %></h1>
+      <p>Your <%= link_to "World!", observations_path %></p>
+    </center>
+  </div>
+  <div id="learn" class="column span-5">
+    <center>
+      <%= link_to image_tag("/images/animals.jpg", :height => 155), taxa_path %>
+      <h1><%= link_to "Learn!", taxa_path %></h1>
+      <p>About <%= link_to "Life!", taxa_path %></p>
+    </center>
+  </div>
+  <div id="record" class="column span-5 border">
+    <center>
+      <%= link_to image_tag("/images/notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path %>
+      <h1><%= link_to "Record!", new_observation_path %></h1>
+      <p>
+        <%= link_to 'Sign Up', {:controller => :account, :action => :signup} %>
+        and
+        <%= link_to "Add Observations!", new_observation_path %>
+      </p>
+    </center>
+  </div>
+  <div class="last column span-6">
+    <div id="more">
+      <h2>Welcome!</h2>
+      <p>
+        to <img src="/images/logo-small.gif">,
+        where you can <strong>record</strong> what you see in nature,
+        <strong>meet</strong> other nature lovers, and
+        <strong>learn</strong> about the natural world.
+      </p>
+
+      <a href="/about" id="learnmore" class="button">
+        Learn More &raquo;
+      </a>
+      <% if logged_in? %>
+      <%= link_to 'Add Observations!', new_observation_path, :id => 'addobs', :class => 'button default' %>
+      <% else %>
+      <%= link_to 'Sign Up!', signup_url, :id => 'signup', :class => 'button default' %>
+      <% end %>
+    </div>
+  </div>
+</div><!-- end welcome col -->
+
+<!-- <div id="goalcol" class="last column prepend-2 span-21 append-1" class="clear">
+  <div class="clear box">
+    <div class="column span-6">
+      <h2 style="margin: 0; color: DeepPink">1000 Observations!</h2>
+    </div>
+    <div class="last column span-14">
+      <strong>Thanks to <a href="/people">everyone</a> who helped us reach 1000 observations!</strong>  We're at <strong><%= @first_goal_total %> observations </strong> and counting.  <a href="/observations">Check out</a> what everyone's been observing, or <%= link_to('add some observations', new_observation_path) %> yourself!
+    </div>
+  </div>
+</div> -->
+
+<div class="column prepend-2 span-7">
+  <h3 class="description">Recent additions</h3>
+  <div id="observations" class="compact mini observations date-added">
+    <%= render(:partial => 'observations/cached_component', 
+               :collection => @observations) %>
+  </div>
+  <p><%= link_to("More", observations_path(:order_by => 'created_at', :order => 'desc'), :class => 'readmore') %></p>
+</div>
+<div class="last column span-14 append-1">
+  <div id="map"></div>
+</div>
+</div>

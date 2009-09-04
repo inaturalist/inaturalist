@@ -1,0 +1,8 @@
+<%- observations ||= @observations -%>
+<%- check_box_checked ||= false -%>
+<%= render(:partial => 'observations/observation_component', 
+  :collection => observations, 
+  :locals => {
+    :check_box_name => 'observations[]',
+    :check_box_checked => check_box_checked
+  }) %>

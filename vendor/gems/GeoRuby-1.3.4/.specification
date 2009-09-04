@@ -1,0 +1,130 @@
+--- !ruby/object:Gem::Specification 
+name: GeoRuby
+version: !ruby/object:Gem::Version 
+  version: 1.3.4
+platform: ruby
+authors: 
+- Guilhem Vellut
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-03-19 00:00:00 -07:00
+default_executable: 
+dependencies: []
+
+description: GeoRuby is intended as a holder for data returned from PostGIS and MySQL Spatial queries. The data model roughly follows the OGC "Simple Features for SQL" specification (see www.opengis.org/docs/99-049.pdf), although without any kind of advanced functionalities (such as geometric operators or reprojections)
+email: guilhem.vellut@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+files: 
+- lib/geo_ruby/shp4r/dbf.rb
+- lib/geo_ruby/shp4r/shp.rb
+- lib/geo_ruby/simple_features/envelope.rb
+- lib/geo_ruby/simple_features/ewkb_parser.rb
+- lib/geo_ruby/simple_features/ewkt_parser.rb
+- lib/geo_ruby/simple_features/geometry.rb
+- lib/geo_ruby/simple_features/geometry_collection.rb
+- lib/geo_ruby/simple_features/geometry_factory.rb
+- lib/geo_ruby/simple_features/georss_parser.rb
+- lib/geo_ruby/simple_features/helper.rb
+- lib/geo_ruby/simple_features/line_string.rb
+- lib/geo_ruby/simple_features/linear_ring.rb
+- lib/geo_ruby/simple_features/multi_line_string.rb
+- lib/geo_ruby/simple_features/multi_point.rb
+- lib/geo_ruby/simple_features/multi_polygon.rb
+- lib/geo_ruby/simple_features/point.rb
+- lib/geo_ruby/simple_features/polygon.rb
+- lib/geo_ruby.rb
+- test/test_ewkb_parser.rb
+- test/test_ewkt_parser.rb
+- test/test_georss_kml.rb
+- test/test_shp.rb
+- test/test_shp_write.rb
+- test/test_simple_features.rb
+- README
+- MIT-LICENSE
+- rakefile.rb
+- test/data/multipoint.shp
+- test/data/point.shp
+- test/data/polygon.shp
+- test/data/polyline.shp
+- test/data/multipoint.dbf
+- test/data/point.dbf
+- test/data/polygon.dbf
+- test/data/polyline.dbf
+- test/data/multipoint.shx
+- test/data/point.shx
+- test/data/polygon.shx
+- test/data/polyline.shx
+- tools/db.yml
+- tools/lib/spatial_adapter/test/db/database_mysql.yml
+- tools/lib/spatial_adapter/test/db/database_postgis.yml
+- tools/lib/spatial_adapter/init.rb
+- tools/lib/spatial_adapter/lib/common_spatial_adapter.rb
+- tools/lib/spatial_adapter/lib/mysql_spatial_adapter.rb
+- tools/lib/spatial_adapter/lib/post_gis_adapter.rb
+- tools/lib/spatial_adapter/rakefile.rb
+- tools/lib/spatial_adapter/test/access_mysql_test.rb
+- tools/lib/spatial_adapter/test/access_postgis_test.rb
+- tools/lib/spatial_adapter/test/common/common_mysql.rb
+- tools/lib/spatial_adapter/test/common/common_postgis.rb
+- tools/lib/spatial_adapter/test/find_mysql_test.rb
+- tools/lib/spatial_adapter/test/find_postgis_test.rb
+- tools/lib/spatial_adapter/test/fixture_mysql_test.rb
+- tools/lib/spatial_adapter/test/fixture_postgis_test.rb
+- tools/lib/spatial_adapter/test/migration_mysql_test.rb
+- tools/lib/spatial_adapter/test/migration_postgis_test.rb
+- tools/lib/spatial_adapter/test/models/models_mysql.rb
+- tools/lib/spatial_adapter/test/models/models_postgis.rb
+- tools/lib/spatial_adapter/test/schema/schema_mysql.rb
+- tools/lib/spatial_adapter/test/schema/schema_postgis.rb
+- tools/shp2sql.rb
+- tools/lib/spatial_adapter
+- tools/lib/spatial_adapter/lib
+- tools/lib/spatial_adapter/MIT-LICENSE
+- tools/lib/spatial_adapter/README
+- tools/lib/spatial_adapter/test
+- tools/lib/spatial_adapter/test/common
+- tools/lib/spatial_adapter/test/db
+- tools/lib/spatial_adapter/test/models
+- tools/lib/spatial_adapter/test/schema
+has_rdoc: true
+homepage: http://thepochisuperstarmegashow.com/projects/
+post_install_message: 
+rdoc_options: 
+- --main
+- README
+require_paths: 
+- bin
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: 
+- none
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: Ruby data holder for OGC Simple Features
+test_files: 
+- test/test_ewkb_parser.rb
+- test/test_ewkt_parser.rb
+- test/test_georss_kml.rb
+- test/test_shp.rb
+- test/test_shp_write.rb
+- test/test_simple_features.rb

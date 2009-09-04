@@ -1,0 +1,58 @@
+usa: 
+  name: United States of America
+  created_at: 2009-05-26 20:31:16 Z
+  code: USA
+  updated_at: 2009-05-26 20:31:16 Z
+  place_type: 10
+california: 
+  name: California
+  created_at: 2009-05-26 20:31:16 Z
+  code: ca
+  updated_at: 2009-05-26 20:31:16 Z
+  parent: usa
+  place_type: 20
+berkeley: 
+  name: Berkeley
+  created_at: 2009-05-26 20:31:16 Z
+  updated_at: 2009-05-26 20:31:16 Z
+  parent: california
+  place_type: 7
+  woeid: "2362930"
+  latitude: "37.8695"
+  longitude: "-122.271"
+  nelat: "37.907"
+  nelng: "-122.216"
+  swlat: "37.8371"
+  swlng: "-122.373"
+  bbox_area: "0.0109772"
+  check_list: berkeley_check_list
+  display_name: "Berkeley, CA, US"
+oakland:
+  name: Oakland
+  created_at: 2009-06-30 05:24:47
+  updated_at: 2009-06-30 06:45:21
+  parent: california
+  place_type: 7
+  woeid: "2463583"
+  latitude: "37.805"
+  longitude: "-122.273"
+  nelat: "37.9031"
+  nelng: "-122.105"
+  swlat: "37.6992"
+  swlng: "-122.361"
+  bbox_area: "0.0521354"
+  check_list: oakland_check_list
+  display_name: "Oakland, CA, US"
+connecticut: 
+  name: Connecticut
+  created_at: 2009-05-26 20:31:16 Z
+  code: ct
+  updated_at: 2009-05-26 20:31:16 Z
+  parent: usa
+  place_type: 20
+clinton: 
+  name: Clinton
+  created_at: 2009-05-26 20:31:16 Z
+  updated_at: 2009-05-26 20:31:16 Z
+  parent: connecticut
+  place_type: 7

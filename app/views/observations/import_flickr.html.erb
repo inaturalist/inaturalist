@@ -1,0 +1,59 @@
+<% content_for(:title) do %>Import Observations from Flickr<% end -%>
+<% content_for(:extracss) do -%>
+  <%= stylesheet_link_tag 'observations', 'observations/new', 'jquery-datepicker' %>
+  <style type="text/css" media="screen">
+    #flickr_photos {
+      margin-bottom: 1em;
+    }
+  </style>
+<% end -%>
+<% content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery',
+                             "jquery/jquery.ui.all.packed.js",
+                             "jquery/plugins/inat/photo_selectors.js" %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+  
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#flickr_photos').photoSelector({
+        baseURL: '/flickr/photo_fields?context=user',
+        urlParams: {
+          authenticity_token: encodeURIComponent(AUTH_TOKEN),
+          limit: 24
+        }
+      });
+    });
+  </script>
+<% end -%>
+
+<div id="pageheader" class="column span-24">
+  <div class="column span-12">
+    <h2>Import Observations from Flickr <span class="description">(Larva!)</span></h2>
+  </div>
+  <div class="last column span-12">
+    <%= render :partial => 'new_nav' %>
+  </div>
+  <div class="column span-24">
+    <p class="description">
+      Select photos from your Flickr stream to convert to iNat observations.  This feature is under development (so is CSV import!).
+    </p>
+  </div>
+</div>
+
+<div class="column span-24">
+  <div id="step1">
+    <% if current_user.flickr_identity %>      
+      <!-- <h3>Step 1: Choose some photos</h3> -->
+      <% form_tag({:action => 'import_flickr'}) do %>
+        <div id="flickr_photos" class="clear">
+
+        </div>
+        <%= submit_tag("Import photos", :class => 'default button') %>
+      <% end %>
+    <% else %>
+      <div class="notice">
+        You'll need to <%= link_to('link your Flickr account', :controller => 'flickr', :action => 'link') %> before importing from Flickr.
+      </div>
+    <% end %>
+  </div>
+</div>

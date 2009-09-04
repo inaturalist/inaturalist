@@ -1,0 +1,95 @@
+/* Custom styles for the JQueryUI datepicker plugin */
+
+#ui-datepicker-div {
+  background-color: white !important;
+  border: 1px solid #ccc !important;
+  min-width: 200px;
+}
+
+#ui-datepicker-div a {
+  cursor: pointer;
+}
+
+.ui-datepicker-control {
+  text-align: right;
+  width: auto;
+  float: right;
+}
+
+.ui-datepicker-control div {
+  display: inline;
+}
+
+.ui-datepicker-close a {
+  margin-left: 1em;
+  padding: 0.2em 0.5em;
+  background-color: #ccc;
+  font-weight: bold;
+}
+
+.ui-datepicker-close a:hover {
+  color: white;
+  background-color: #aaa;
+}
+
+.ui-datepicker-links div {
+  display: inline;
+  margin-right: 1em;
+}
+
+.ui-datepicker-one-month select {
+  width: auto;
+}
+
+.ui-datepicker {
+  width: 100%;
+  margin-bottom: 0;
+  color: #888;
+}
+
+.ui-datepicker-header {
+  margin: 0.2em 0;
+}
+
+.ui-datepicker-header select {
+  border: 0;
+  margin-right: 1em;
+}
+
+.ui-datepicker-title-row td,
+.ui-datepicker-days-cell {
+  padding: 0;
+  border: none;
+}
+
+.ui-datepicker-title-row td a,
+.ui-datepicker-days-cell a {
+  display: block;
+}
+
+.ui-datepicker-title-row td,
+.ui-datepicker-days-cell a,
+.ui-datepicker-unselectable {
+  padding: 2px 5px;
+  text-align: center;
+}
+
+.ui-datepicker-today {
+  border: 1px dashed #eee;
+}
+
+.ui-datepicker-title-row td a {
+  color: #aaa;
+}
+
+.ui-datepicker-days-cell {
+  font-size: 120%;
+}
+
+.ui-datepicker-days-cell a:hover {
+  background-color: #FFFEE6;
+}
+
+.ui-datepicker-current-day {
+  border: 1px dotted #eee;
+}

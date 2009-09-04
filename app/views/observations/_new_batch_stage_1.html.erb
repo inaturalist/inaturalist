@@ -1,0 +1,55 @@
+<div class="column prepend-3 span-16 append-7">
+  <% form_tag(new_observation_batch_path, :id => 'new_batch_form', :class => 'observationform') do %>
+  <div class="column span-16 field">
+    <div class="column span-6">
+      <h3><label for="taxa"><em>What</em> did you see?</label></h3>
+      <div class="description">
+        Type one species name per line.
+      </div>
+    </div>
+    <div class="last column span-10">
+      <%= text_area_tag 'batch[taxa]', '', :id => 'taxa' %>
+    </div>
+  </div>
+  <div class="column span-16 field">
+    <div class="column span-6">
+      <h3><label for="observed_on_string"><em>When</em> did you see them?</label></h3>
+    </div>
+    <div class="last column span-10">
+      <%= text_field_tag 'batch[observed_on_string]', '', 
+                         :id => 'observed_on_string', 
+                         :class => 'text observed_on_string' %>
+    </div>
+  </div>
+  <div class="column span-16 field">
+    <div class="column span-6">
+      <h3><label for="place_guess"><em>Where</em> were they?</label></h3>
+    </div>
+    <div class="last column span-10">
+      <%= text_field_tag 'batch[place_guess]', '', 
+                         :id => 'place_guess',
+                         :class => 'text place_guess' %>
+      <div id="coordinates" class="latlonfields status">
+        <%= label('batch[latitude]', 'Lat') %>
+        <%= text_field_tag('batch[latitude]', '', :class => 'latitude') %>
+            
+        <%= label('batch[longitude]', 'Lon') %>
+        <%= text_field_tag('batch[longitude]', '', :class => 'longitude') %>
+
+        <span class="button">
+          <%= link_to_function("edit", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
+          <%= link_to_function("hide", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
+        </span>
+      </div>
+      <%= hidden_field_tag('batch[map_scale]', :class => 'map_scale') %>
+      <%= hidden_field_tag('batch[location_is_exact]', :class => 'location_is_exact') %>
+    </div>
+  </div>
+
+  <div class="column span-16">
+    <div id="observation_form_links" class="buttonrow">
+      <%= submit_tag "Next &raquo;", :class => 'default button' -%>
+    </div>
+  </div>
+  <% end %>
+</div>

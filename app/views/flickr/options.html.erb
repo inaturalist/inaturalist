@@ -1,0 +1,46 @@
+<h2>Your Flickr Account Information</h2>
+
+<!-- options info -->
+<div class="column span-13">
+<% if @user.flickr_identity -%>
+  <% if @photos %>
+    <p>
+      <% @photos.each do |photo| -%>
+      <img src="<%= photo.source_url(:square) -%>" />
+      <% end -%>
+    </p>
+  <% end %>
+<p>
+  Your iNaturalist account is currently linked to your Flickr account.
+</p>
+<p>
+Keeping your iNaturalist account linked to your Flickr account allows you to add multiple photos to your obeservations, and also allows you to setup auto-importing of observations from Flickr.
+Of course, if you ever want iNaturalist and Flickr to break up, we won't stop you, you just won't be able to add photos.  Sometimes this might be for the best, like if you create a new Flickr account that you want to link iNaturalist to.
+</p>
+<% else -%>
+<h3>Your iNaturalist account is not linked to your Flickr account :(</h3>
+<p>In order to authorize your Flickr account to work with iNaturalist, you need to click on the link to the right and sign into Flickr.com.  Flickr will ask you if you want to give iNaturalist permission to read from your Flickr account and will then redirect you back to us.</p>
+<p>We will never ask you for your Flickr password (but Flickr might, check the url that the button sends you and make sure it's Flickr.com).  We will also never store your photos or change your Flickr data without your express permission.  We're the good guys!</p>
+<% end -%>
+
+<hr/>
+
+<p><!-- auto import from flickr into your queue -->
+<% if @user.flickr_identity && @user.flickr_identity.auto_import %>
+<!-- You currently have your iNaturalist account setup to import from your Flickr account automatically. -->
+<% elsif @user.flickr_identity && !@user.flickr_identity.auto_import %>
+<!-- You currently do not have your iNaturalist account setup to import from your Flickr account. -->
+<% end %>
+</p>
+</div>
+
+<!-- options actions-->
+<div class="column span-7 last">
+<p>
+<% if @user.flickr_identity %>
+<%= button_to 'Unlink your Flickr and iNaturalist Accounts', {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'button' %>
+<% else %>
+<%= render :partial => 'link_to_flickr', :locals => {:flickr_url => @flickr_url} -%>
+<% end %>
+</p>
+</div>

@@ -1,0 +1,53 @@
+<% seenit ||= @seenit ||= false -%>
+<% if logged_in? %>
+  <% if seenit -%>
+    <% lead_text = "You've seen it! Want to" -%>
+    <% button_text = "Add an observation?" -%>
+    <% loading_text = "Adding observation..." -%>
+    <% success_text = "Observation added." -%>
+  <% else -%>
+    <% lead_text = "Seen it?" -%>
+    <% button_text = "Add to your life list!" -%>
+    <% loading_text = "Adding to your life list..." -%>
+    <% success_text = "Life list updated! We also saved a blank observation of this taxon." -%>
+  <% end -%>
+  <div id="seenit_link_<%= taxon.id %>" class="seenit description">
+    <%= lead_text %>
+    <%= link_to_function button_text, 
+                         "newRemoteObservation({taxon_id: #{taxon.id}});",
+                         :class => 'button' %>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    if (typeof newRemoteObservation == 'undefined') {
+      function newRemoteObservation(obsParams) {
+        var obsParams = $.extend({}, obsParams);
+        var params = {
+          'observations[0][taxon_id]': obsParams.taxon_id,
+          authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>)
+        };
+
+        // Set loading status
+        $('#seenit_link_'+obsParams.taxon_id).addClass(
+          'loading status').html("<%= loading_text %>");
+
+        jQuery.post('/observations.json', params, function(data, stat) {
+          $('#seenit_link_'+obsParams.taxon_id).removeClass('pale loading');
+          if (stat == 'success') {
+            $('#seenit_link_'+obsParams.taxon_id).addClass('success status');
+            $('#seenit_link_'+obsParams.taxon_id).empty();
+            $('#seenit_link_'+obsParams.taxon_id).append(
+              "<%= success_text %> Want to ",
+              $('<a href="/observations/'+data[0].id+'/edit">edit it?</a>')
+            );
+          } else {
+            $('#seenit_link_'+obsParams.taxon_id).addClass(
+              'error status').html("D'oh, something went wrong.");
+          }
+        }, 'json');
+        return false;
+      }
+    };
+  </script>
+<% else %>
+  &nbsp;
+<% end %>

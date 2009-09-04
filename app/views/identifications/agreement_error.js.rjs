@@ -1,0 +1,4 @@
+if @identification.errors
+  errors = @identification.errors.full_messages.join("\n")
+  page.alert "Darn!  There were some problems saving your identification:\n\n#{errors}"
+end

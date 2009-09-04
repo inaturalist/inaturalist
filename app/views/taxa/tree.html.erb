@@ -1,0 +1,117 @@
+<%- content_for(:title) do -%>
+  Taxonomic Tree Browser
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    /* visualization style container */
+    #treevis {
+        background-color:white;
+        border: 1px solid #eee;
+        position:relative;
+        width:900px;
+        height:500px;
+    }
+
+    /* spacetree nodes CSS class */
+    .node {
+        background-color:transparent;
+        font-weight:bold;
+        overflow:hidden;
+        text-decoration:none;
+        position:absolute;
+        text-align:center;
+    }
+
+    .node:hover {
+      color: #003399;
+    }
+
+    .hidden{
+        display:none;
+    }
+    
+    .taxon .image img {
+      max-width: 40px;
+    }
+    
+    .taxon .image {
+      float: left;
+      margin-right: 5px;
+    }
+    
+    .taxon .info {
+      float: left;
+      width: 145px;
+    }
+    
+    .taxon.noimg .name {
+      width: 165px;
+    }
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <!--[if IE]>  
+  <script type="text/javascript" src="/javascripts/jit/Extras/excanvas.js"></script>  
+  <![endif]-->
+  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag "jit/jit" %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      var json = <%= jit_taxon_node(@life, :depth => 2).to_json %>;
+      var canvas = new Canvas('taxonTree', {
+        injectInto: 'treevis',
+        width: 800,
+        height: 500,
+        backgroundColor: '#eee'
+      });
+      
+      var st = new ST(canvas, {
+        Node: {
+          color: '#eee',
+          overridable: true,
+          width: 200,
+          height: 50
+        },
+        Edge: {
+          color: '#aaa',
+          overridable: true
+        },
+        duration: 200,
+        onCreateLabel: function(label, node) {
+          label.id = node.id;
+          $(label).css({
+            display: 'block',
+            'text-align': 'left',
+            width: '200px',
+            height: '50px',
+            padding: '5px'
+          })
+          label.innerHTML = node.data.html;
+          label.onclick = function() {
+            st.onClick(node.id);
+          };
+        },
+        request: function(nodeId, level, onComplete) {
+          $.getJSON('/taxa/'+nodeId+'.node', function(json) {
+            onComplete.onComplete(nodeId, json);
+          });  
+        }
+      });
+      
+      st.loadJSON(json);
+      
+      st.compute();
+      
+      // Tree.Geometry.translate(st.tree, new Complex(-200, 0), 'startPos');
+      
+      st.onClick(st.root);
+    });
+  </script>
+<%- end -%>
+
+<h2>
+  Tree Browser
+</h2>
+<div id="treevis">
+  
+</div>

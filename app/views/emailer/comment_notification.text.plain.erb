@@ -1,0 +1,7 @@
+<%= @commenter.login %> commented on your <%= @comment.parent.class.to_s.underscore.humanize.downcase %> <%= "\"#{@comment.parent.to_plain_s(:no_user => true)}\"" if @comment.parent.respond_to?(:to_plain_s) %>,
+
+"<%= strip_tags(@comment.body.chomp) %>"
+
+View the <%= @comment.parent.class.to_s.underscore.humanize.downcase %>: <%= @parent_url %>
+
+<%= render :partial => 'footer' %>

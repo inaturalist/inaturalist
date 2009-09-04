@@ -1,0 +1,3 @@
+page.replace_html "flickr_photos_#{@i}",
+                  :partial => 'photo_list_form',
+                  :locals => {:photos => @photos}

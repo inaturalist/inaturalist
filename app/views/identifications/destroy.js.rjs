@@ -1,0 +1,3 @@
+# Fade out the old id and destroy it, Fade in the form
+page << "$('#identification-#{@identification.id}').fadeOut(500, function() { $(this).remove(); $('#identification_form_wrapper-#{@identification.observation_id}').fadeIn(); })"
+page << "$('#owners-identification').remove()" if @identification.observation.user_id == current_user.id

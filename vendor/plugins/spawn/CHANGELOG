@@ -1,0 +1,51 @@
+v0.1 - 2007/09/13
+
+initial version
+
+--------------------------------------------------
+v0.2 - 2007/09/28
+
+* return PID of the child process
+* added ":detach => false" option
+
+--------------------------------------------------
+v0.3 - 2007/10/15
+
+* added ':method => :thread' for threaded spawns
+* removed ':detach => false' option in favor of more generic implementation
+* added ability to set configuration of the form 'Spawn::method :thread'
+* added patch to ActiveRecord::Base to allow for more efficient reconnect in child processes
+* added monkey patch for http://dev.rubyonrails.org/ticket/7579
+* added wait() method to wait for spawned code blocks
+* don't allow threading if allow_concurrency=false
+
+--------------------------------------------------
+v0.4 - 2008/1/26
+
+* default to :thread on windows, still :fork on all other platforms
+* raise exception when used with :method=>:true and allow_concurrency != true
+
+--------------------------------------------------
+v0.5 - 2008/3/1
+* also default to :thread on JRuby (java)
+* added new :method => :yield which doesn't fork or thread, this is useful for testing
+* fixed problem with connections piling up on PostgreSQL
+
+--------------------------------------------------
+v0.6 - 2008/04/21
+* only apply clear_reloadable_connections patch on Rails 1.x (7579 fixed in Rails 2.x)
+* made it more responsive in more environments by disconnecting from the listener socket in the forked process
+
+--------------------------------------------------
+v0.7 - 2008/04/24
+* more generic mechanism for closing resources after fork
+* check for existence of Mongrel before patching it
+
+--------------------------------------------------
+v0.8 - 2008/05/02
+* call exit! within the ensure block so that at_exit handlers aren't called on exceptions
+* set logger from RAILS_DEFAULT_LOGGER if available, else STDERR
+
+--------------------------------------------------
+v0.9 - 2008/05/11
+* added ability to set nice level for child process

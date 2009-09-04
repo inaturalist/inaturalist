@@ -1,0 +1,20 @@
+# Ted is friends with Jill and watches Adam
+# Jill is friends with Ted
+
+ted_jill:
+  user_id: 32
+  friend_id: 33
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+
+ted_adam:
+  user_id: 32
+  friend_id: 34
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>
+
+jill_ted:
+  user_id: 33
+  friend_id: 32
+  created_at: <%= 1.days.ago.to_s :db %>
+  updated_at: <%= 1.days.ago.to_s :db %>

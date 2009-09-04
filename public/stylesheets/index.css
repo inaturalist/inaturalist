@@ -1,0 +1,747 @@
+@import 'header.css';
+@import 'buttons.css';
+@import 'jquery/plugins/inat/photo_selectors.css';
+@import 'statuses.css';
+@import 'prevnext.css';
+@import 'flickr_photos.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: #333;
+}
+
+p, .p, h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, serif;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  line-height: 1.3;
+}
+
+em {
+  background: none; /* hard to believe BluePrint does this... */
+}
+
+img,
+p img {
+  margin: 0;
+  float: none;
+}
+
+.small {
+  margin-bottom: 0;
+}
+
+/* Container Types */
+.wide.container {
+  width: 98%;
+  margin: 1em;
+}
+
+/* Link Styles */
+a {
+  color: #36C;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #039;
+}
+
+
+/* Tabs List Skeleton */
+.tabs ul {
+  list-style: none;
+}
+
+.tabs ul li {
+  float: left;
+}
+
+/* UI Elements -- Labels, button text, that kind of thing */
+.ui {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 100%;
+}
+
+.tinyui {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 8pt;
+}
+
+/* Readable Elements -- anything that is meant to be read */
+.readable, p {
+  font-family: Georgia, serif;
+  font-size: 125%;
+}
+
+.readable p {
+  font-size: 100%;
+}
+
+/* In-text floats */
+.left {
+  float: left;
+  clear: left;
+  margin-right: 1em;
+}
+
+.right {
+  float: right;
+  clear: right;
+  margin-left: 1em;
+}
+
+/* Default Form Styles */
+textarea,
+input.text,
+input.file,
+input[type="text"],
+input[type="file"],
+.select {
+  padding: 0.4em;
+  border: 1px solid #ccc;
+  font-size: 125%;
+  width: auto;
+  background-color: #f6f6f6;
+}
+
+textarea:focus,
+input.text:focus,
+input.file:focus,
+input[type="text"]:focus,
+input[type="file"]:focus {
+  background-color: white;
+  border-color: #ccc;
+}
+
+input, select, textarea {
+  font-family: "Trebuchet MS", Arial, sans-serif;;
+}
+
+input.checkbox, input[type="checkbox"],
+input.radio, input[type="radio"] {
+  vertical-align: middle;
+}
+
+form .field {
+  margin-bottom: 10px;
+}
+
+form .field .label {
+  display: block;
+}
+
+.required {
+  color: deeppink;
+}
+
+.label .fieldWithErrors {
+  display: inline;
+}
+
+/* Page Headers */
+#pageheader {
+  margin-bottom: 1em;
+}
+
+#pageheader h2 {
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+
+#pageheader a .usericon {
+  float: left;
+  margin-right: 10px;
+  border: 2px solid white;
+}
+
+#pageheader .usericon:hover {
+  border-color: #ddd;
+}
+
+img.mini.usericon {
+  vertical-align: middle;
+}
+
+#subnav {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5em 0;
+}
+
+#subnav li {
+  width: auto;
+  float: left;
+}
+#subnav li a,
+#subnav li span.active {
+  display: block;
+  width: auto;
+  min-height: 15px;
+  padding: 0 1em 0 18px;
+  background: url('/images/logo-eee-15px.png') 0% 50% no-repeat;
+}
+
+#subnav #observations_link {
+  background: url('/images/notebook-icon-eee-15px.png') 0% 40% no-repeat;
+}
+
+#subnav #observations_link:hover,
+#subnav #observations_link.active {
+  background: url('/images/notebook-icon-color-15px.png') 0% 45% no-repeat;
+}
+
+#subnav #lists_link {
+  padding-left: 22px;
+  background: url('/images/checklist-icon-eee-15px.png') 0% 50% no-repeat;
+}
+
+#subnav #lists_link:hover,
+#subnav #lists_link.active {
+  background: url('/images/checklist-icon-color-15px.png') 0% 50% no-repeat;
+}
+
+#subnav #profile_link {
+  padding-left: 22px;
+  background: url(/attachment_defaults/users/icons/defaults/mini.png) 0% 50% no-repeat;
+}
+
+#subnav #profile_link:hover,
+#subnav #profile_link.active {
+  background: url(/attachment_defaults/users/icons/defaults/mini-color.png) 0% 50% no-repeat;
+}
+
+#subnav #journal_link {
+  padding-left: 20px;
+  background: url(/images/silk/book-gray.png) 0% 50% no-repeat;
+}
+
+#subnav #journal_link:hover,
+#subnav #journal_link.active {
+  background: url(/images/silk/book-light.png) 0% 50% no-repeat;
+}
+
+#subnav #identifications_link {
+  padding-left: 20px;
+  background: url(/images/silk/help-gray.png) 0% 50% no-repeat;
+}
+
+#subnav #identifications_link:hover,
+#subnav #identifications_link.active {
+  background: url(/images/silk/help.png) 0% 50% no-repeat;
+}
+
+#subnav #follow_button {
+	padding-left: 18px;
+	padding-top: 1px;
+	background: url(/images/follow-icon-eee-15px.png) 0% 50% no-repeat;
+}
+
+#subnav #follow_button:hover,
+#subnav #follow_button.active {
+	padding-left: 18px;
+	padding-top: 1px;
+	background: url(/images/follow-icon-nm-15px.png) 0% 50% no-repeat;
+}
+
+#breadcrumbs {
+  color: #999;
+  margin: 0;
+  font-family: Georgia, serif;
+}
+
+#breadcrumbs ul {
+  margin-left: 0;
+  padding-left: 0;
+  display: inline;
+  border: none;
+}
+
+#breadcrumbs ul li {
+  margin-left: 0;
+  padding-left: 2px;
+  border: none;
+  list-style: none;
+  display: inline;
+}
+
+#breadcrumbs ul li:after {
+  content: "\0020 \203A"; /* space and a single right-pointing angle quotation mark */
+  color: #999;
+}
+
+.back.crumb {
+  font-weight: bold;
+}
+
+.back.crumb:before {
+  content: "\00AB \0020";
+}
+
+/* Autocomplete fields */
+
+.auto_complete {
+  z-index: 1000;
+  background-color: white;
+}
+
+.auto_complete ul {
+  list-style: none;
+  margin: 0;
+  position: relative;
+  top: -1px;
+  padding-top: 0.4em;
+  background-color: white;
+  border-left: 1px solid #666;
+  border-right: 1px inset #666;
+  border-bottom: 1px inset #666;
+  border-top: 1px dashed #999;
+}
+
+.auto_complete li {
+  min-height: none;
+  padding: 0 0 0 0.6em;
+}
+
+.auto_complete .selected {
+  background-color: #ffc;
+}
+
+.auto_complete .description {
+/*  display: block;*/
+/*  margin-left: 1em;*/
+  font-size: 80%;
+}
+
+/* Button Styles */
+span.button {
+  color: blue;
+  text-decoration: underline;
+  font-size: smaller;
+  margin: 0 0.5em;
+  cursor: pointer;
+}
+
+/* Notices, Flashes, Attention Grabbers */
+#flash, .flash {
+/*    background-color: #ffc;*/
+    padding: 0.2em 0.5em;
+    width: 40%;
+    margin: 0.5em auto;
+    text-align: center;
+    background-color: #ffc;
+    border: none;
+}
+
+#flash.notice {
+  background-color: #ffc;
+}
+
+.notice a {
+  color: #36C;
+  text-decoration: none;
+}
+
+.notice a:hover {
+  color: #039;
+}
+
+.description {
+    font-style: italic;
+    color: #888;
+}
+
+.description em {
+  font-style: normal;
+  color: #333;
+}
+
+.meta {
+  color: #888;
+}
+
+.status .success {
+  color: green;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.errorExplanation {
+  background-color: #ffc;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 1em 1em;
+  margin-bottom: 0.5em;
+}
+
+.errorExplanation, 
+.errorExplanation p, 
+.errorExplanation h2, 
+.errorExplanation li {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.errorExplanation h2 {
+  font-size: 180%;
+}
+
+.errorExplanation li,
+.formError {
+  color: DeepPink;
+}
+
+a .taxon:hover {
+  color: #36c;
+  text-decoration: underline;
+}
+
+.sciname,
+.taxon.genus .sciname,
+.sciname.genus,
+.sciname.species,
+.sciname.infraspecies {
+  font-style: italic;
+}
+
+.taxon .othernames {
+  font-size: 80%;
+  color: #888;
+  line-height: 1.1;
+}
+
+ul.leafylist {
+  padding: 0 0 0 0.6em;
+}
+
+ul.leafylist li {
+  list-style-image: url('/images/logo-15px.png');
+  margin-bottom: 0.4em;
+  line-height: 120%;
+}
+
+ul.leafylist li li:first-child {
+  margin-top: 0.4em;
+}
+
+.column-separator {
+  position: relative;
+  width: 90%;
+  height: 1px;
+  border-top: 1px solid #eee;
+  margin: 2em auto;
+  overflow: visible;
+}
+
+.column-separator img {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  top: -6px;
+  width: 15px;
+  height: 11px;
+  background-color: white;
+}
+
+/* Boxes */
+.box {
+  background-color: #FFFEE6;
+  padding: 1em;
+}
+
+.quiet.box {
+  background-color: #eee;
+}
+
+/* Navigation */
+.pagination a,
+.pagination span {
+  border: 1px solid #ccc;
+  padding: 0.2em 0.4em;
+  margin-right: 0.2em;
+}
+
+.pagination .disabled {
+  color: #888;
+  border: 0 none;
+}
+
+.pagination .gap {
+  border: 0 none;
+}
+
+.pagination .current {
+  background-color: #FFC;
+/*  border-color: #888;*/
+  border: 1px solid #FF9;
+}
+
+.pagination {
+  font-size: 120%;
+  text-align: center;
+}
+
+.readmore {
+  font-weight: bold;
+  white-space: nowrap;
+  color: #039;
+}
+
+.readmore:after {
+  content: '\0020 \00BB';
+}
+
+.next, .prev {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.next:after {
+  content: '\0020 \00BB';
+}
+
+.prev:before {
+  content: '\00AB \0020';
+}
+
+#version_info {
+  margin-left: 1em;
+  margin-bottom: 1em;
+}
+
+/* Footer (give it its own stylesheet if this gets too big) */
+#footer {
+  border-top: 1px dotted #ccc;
+  margin: 2em auto;
+  padding: 0.5em;
+  text-align: center;
+  width: 80%;
+}
+
+
+.compactfield {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.compactfieldlink,
+.togglelink {
+  font-weight: bold;
+  background: url(/images/toggle_arrow_right.png) no-repeat 5px 50%;
+  padding-left: 15px;
+  outline: none;
+}
+
+.compactfieldlink {
+  display: block;
+}
+
+.compactfield.open .compactfieldlink,
+.togglelink.open {
+  background: url(/images/toggle_arrow_down.png) no-repeat 0 50%;
+}
+
+.modalbox {
+    display: none;
+    
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    
+    margin-left: -300px;
+    width: 600px;
+    max-height: 600px;
+    overflow: auto;
+    
+    background-color: white;
+    border: 2px solid #ccc;
+    padding: 10px;
+}
+
+.modalbox .close.corner {
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: bold;
+  background-color: #ccc;
+  color: #333;
+  text-align: center;
+}
+.modalbox .close:hover {
+  color: white;
+  cursor: pointer;
+}
+.modalbox .header {
+  margin: 0;
+}
+.modalbox p {
+  margin-bottom: 1em;
+}
+
+.jqmOverlay { background-color: #000; }
+
+/* Fixed posistioning emulation for IE6
+     Star selector used to hide definition from browsers other than IE6
+     For valid CSS, use a conditional include instead */
+* html .modalbox {
+     position: absolute;
+     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+
+
+/* Comments */
+#new_comment #comment_body {
+  width: 100%;
+  height: 150px;
+}
+
+.comment {
+  padding: 1em;
+}
+
+#new-comment {
+  position: relative;
+}
+
+#new-comment textarea {
+  margin-top: 0;
+}
+
+#new-comment .meta {
+  position: absolute;
+  left: 0;
+}
+
+.comment .meta {
+  float: left;
+  width: 110px;
+  margin-right: 10px;
+}
+
+.comment .body {
+  padding-left: 120px;
+}
+
+.comment.preview .body {
+  padding-left: 0;
+}
+
+.comment .body ul {
+  font-family: Georgia, serif;
+  font-size: 125%;
+}
+
+.comment .body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.comment .comment_actions {
+  font-size: 90%;
+}
+
+#pageheader #tools {
+  margin-top: 0.5em;
+}
+
+.count {
+  color: #74AC00;
+}
+
+.feeds a {
+  background: url(/images/silk/feed.png) no-repeat 0 50%;
+  padding: 2px 0px 2px 20px;
+  margin-right: 0.25em;
+  vertical-align: middle;
+}
+
+
+/* Modal Links */
+.modal_link {
+  padding: 6px 0.75em;
+  border-top: 1px solid white;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid white;
+  background-position: 5px 50%;
+  background-repeat: no-repeat;
+  background-color: white;
+  color: #888;
+}
+
+.modal_link:active,
+.selected.modal_link {
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  border-left: 1px solid #ccc;
+  background-color: #eee;
+  color: #36C;
+}
+
+
+/* Taxon Selectors */
+.simpleTaxonSelector .matches {
+  margin: 0;
+  list-style: none;
+}
+
+.simpleTaxonSelector .taxon {
+  display: block;
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-position: 0px 3px;
+  margin-bottom: 2px;
+  background-image: url('/images/logo-15px.png');
+}
+
+.simpleTaxonSelector .taxon.Unknown          { color: inherit;  background-image: url('/images/iconic_taxa/unknown-15px.png'); }
+.simpleTaxonSelector .taxon.Protozoa         { color: #691776;  background-image: url('/images/iconic_taxa/protozoa-15px.png'); }
+.simpleTaxonSelector .taxon.Plantae          { color: #73AC13;  background-image: url('/images/iconic_taxa/plantae-15px.png'); }
+.simpleTaxonSelector .taxon.Fungi            { color: DeepPink; background-image: url('/images/iconic_taxa/fungi-15px.png'); }
+.simpleTaxonSelector .taxon.Animalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/animalia-15px.png'); }
+.simpleTaxonSelector .taxon.Mollusca         { color: #FF4500;  background-image: url('/images/iconic_taxa/mollusca-15px.png'); }
+.simpleTaxonSelector .taxon.Arachnida        { color: #FF4500;  background-image: url('/images/iconic_taxa/arachnida-15px.png'); }
+.simpleTaxonSelector .taxon.Insecta          { color: #FF4500;  background-image: url('/images/iconic_taxa/insecta-15px.png'); }
+.simpleTaxonSelector .taxon.Amphibia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/amphibia-15px.png'); }
+.simpleTaxonSelector .taxon.Reptilia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/reptilia-15px.png'); }
+.simpleTaxonSelector .taxon.Aves             { color: #1E90FF;  background-image: url('/images/iconic_taxa/aves-15px.png'); }
+.simpleTaxonSelector .taxon.Mammalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-15px.png'); }
+.simpleTaxonSelector .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
+
+.taxon_links .taxon {
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-position: 0px 3px;
+  background-image: url('/images/logo-15px.png');
+}
+
+.taxon_links .taxon.Unknown          { color: inherit;  background-image: url('/images/iconic_taxa/unknown-15px.png'); }
+.taxon_links .taxon.Protozoa         { color: #691776;  background-image: url('/images/iconic_taxa/protozoa-15px.png'); }
+.taxon_links .taxon.Plantae          { color: #73AC13;  background-image: url('/images/iconic_taxa/plantae-15px.png'); }
+.taxon_links .taxon.Fungi            { color: DeepPink; background-image: url('/images/iconic_taxa/fungi-15px.png'); }
+.taxon_links .taxon.Animalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/animalia-15px.png'); }
+.taxon_links .taxon.Mollusca         { color: #FF4500;  background-image: url('/images/iconic_taxa/mollusca-15px.png'); }
+.taxon_links .taxon.Arachnida        { color: #FF4500;  background-image: url('/images/iconic_taxa/arachnida-15px.png'); }
+.taxon_links .taxon.Insecta          { color: #FF4500;  background-image: url('/images/iconic_taxa/insecta-15px.png'); }
+.taxon_links .taxon.Amphibia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/amphibia-15px.png'); }
+.taxon_links .taxon.Reptilia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/reptilia-15px.png'); }
+.taxon_links .taxon.Aves             { color: #1E90FF;  background-image: url('/images/iconic_taxa/aves-15px.png'); }
+.taxon_links .taxon.Mammalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-15px.png'); }
+.taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
+
+/* Users table */
+/*table.user-table {
+  margin: 0 auto;
+}*/
+
+table.user-table td {
+  vertical-align: top;
+  padding: 4px 20px;
+}

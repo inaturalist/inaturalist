@@ -1,0 +1,61 @@
+<% 
+taxon ||= @taxon
+include_article ||= false
+singular ||= false
+comname ||= taxon.common_name.name rescue nil
+no_common ||= false
+if taxon.species_or_lower?
+  sciname = '<span class="sciname"><i>%s</i></span>' % taxon.name
+else
+  rank = taxon.rank ? taxon.rank.capitalize : '(Unknown Rank)'
+  rank = content_tag(:span, rank, :class => 'rank')
+  sciname = '%s <span class="sciname">%s</span>' % [rank, 
+                                                    taxon.name]
+end
+
+include_parens ||= true unless include_parens == false
+link_url ||= nil
+singular ||= false
+
+taxon_class = "taxon taxon-#{taxon.id} lft-#{taxon.lft} rgt-#{taxon.rgt}"
+taxon_class += " #{taxon.rank.downcase}" if taxon.rank
+taxon_class += " #{taxon.iconic_taxon.name}" if taxon.iconic_taxon
+-%>
+<% if comname.nil? or no_common == true %>
+  <% if include_article %>
+    <% if taxon.rank != 'species' && taxon.rank != 'infraspecies' %>
+      in
+    <% end %>
+  <% end -%>
+  <span class="<%= taxon_class %>">
+    <% if link_url %>
+      <%= link_to sciname, link_url %>
+    <% else %>
+      <%= sciname %>
+    <% end %>
+  </span>
+<% else %>
+  <% if include_article %>
+    <% if 'aeiou'.include? comname.first.downcase %>
+      an
+    <% else %>
+      a
+    <% end %>
+  <% end -%>
+<span class="<%= taxon_class %>">
+  <span class="comname">
+    <% if link_url %>
+      <%= link_to(singular ? comname.singularize : comname, link_url) %>
+    <% else %>
+      <%= singular ? comname.singularize : comname %>
+    <% end %>
+  </span>
+  <span class="othernames">
+    <% if include_parens %>
+      (<%= sciname %>)
+    <% else %>
+      <%= sciname %>
+    <% end %>
+  </span>
+</span>
+<% end -%>

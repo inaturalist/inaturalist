@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>iNat: <%= h @login %>'s Profile</title>
+
+  <%= stylesheet_link_tag 'blueprint/screen' %>
+  <%= stylesheet_link_tag 'blueprint/plugins/buttons/buttons' %>
+  <%= stylesheet_link_tag 'index' %>
+  
+  <!-- Show the Blueprint grid and baseline -->
+  <!-- <style type="text/css">
+          .container { background: url('/stylesheets/blueprint/lib/grid.png'); }
+  </style> -->
+</head>
+
+<body>
+                                         
+  <%= render :partial => 'shared/header' %>
+  
+  <div id="debug"></div>
+
+  <% if flash[:notice] %>
+  <p id="flash"><%= flash[:notice] %></p> 
+  <% end %>
+
+  <div id="wrapper" class="container clear">
+    <%= @content_for_layout %>
+  </div><!-- end wrapper -->  
+  
+  <%= render :partial => 'shared/footer' %>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+Version 1.5 - June 12, 2008
+  * bugfix - newer versions of restful_authentication return nil if no user, 
+    rather than :false (hurray!).  Updated generator to work accordingly
+  * Add an error message if not enough arguments passed to generator, avoiding
+    a common pitfall
+  * Updated documentation
+
+Version 1.4 - March 4, 2008
+  * Integrated role and roles generators to simplify codebase
+
+Version 1.3.2 - November 20, 2007
+  * Brought back test cases (now auto-evals the erb template to test to make sure the template for the generator is valid)
+  * Increased test coverage
+  * Automatically added :for and :for_all_except aliases, for more natural expressions
+  
+Version 1.3.1 - November 14, 2007
+  * Extends "access_denied" to render a 401 error if they are logged in but not authorized
+  
+Version 1.3 - November 13, 2007
+  * Rails 2.0 ready - Both generators tested against Rails 1.99.0
+  * Generators now generate RoleRequirementSystem and RoleRequirementTestHelper.  Automatically places RoleRequirementTestHelper include in test_helper.rb
+  * Bugfix - Hard coded current_user was breaking when the User model was actually Author (and expecting current_author)
+  * Refactoring/Cleanup in attempt to make the code easier to understand.
+
+Version 1.2.1 - August 22, 2007
+  * Bugfix - script/generate roles was not generating role.rb, though the template was there.
+
+Version 1.2 - August 15, 2007
+  * Bugfix - the way RoleRequirement was auto-including dependencies was causing issues in some instances with ActiveSupport
+  * New code generator for role-enum column approach (one role per user)
+  * Code generators automatically insert your include dependencies into ApplicationController
+  * role requirements are now inheritable (putting require_role in a parent controller will cause all children to require the role)
+
+Version 1.1 - July 26, 2007
+  * Code generator for roles has_and_belongs_to_many added.
+    * generates fixtures
+    * generates models
+    * modifies user.rb and adds the needed code for you.
+
+Version 1.0 - July 24, 2007
+  * Initial release.

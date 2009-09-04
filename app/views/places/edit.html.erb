@@ -1,0 +1,88 @@
+<%- content_for(:title) do -%>
+  Editing <%=h @place.name %>
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    #drawingMap {
+      width: 400px;
+      height: 400px;
+    }
+    
+    form.edit_place input.text,
+    form.edit_place textarea {
+      width: 100%
+    }
+    
+    input.ac_loading {
+      background: white url('/images/spinner-small.gif') 420px 5px no-repeat;
+    }
+  </style>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <%= render :partial => 'form_js' %>
+  
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      <% if @place.swlat %>
+        var bounds = new GLatLngBounds(
+          new GLatLng(<%= @place.swlat %>, <%= @place.swlng %>),
+          new GLatLng(<%= @place.nelat %>, <%= @place.nelng %>)
+        );
+        drawingMap.setZoom(drawingMap.getBoundsZoomLevel(bounds));
+        drawingMap.setCenter(bounds.getCenter());
+      <% else %>
+        drawingMap.setCenter(new GLatLng(<%= @place.latitude %>, <%= @place.longitude %>));
+      <% end %>
+    });
+  </script>
+<%- end -%>
+
+<div id="pageheader">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo; Back to #{@place.name}", @place, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  <h2>Editing <%=h @place.name %></h2>
+</div>
+
+<div class="column span-11 append-1">
+  <% form_for @place, :builder => DefaultFormBuilder do |f| %>
+    <%= f.text_field :name, :required => true, :class => 'text' %>
+    <%= f.text_field :display_name, :class => 'text' %>
+    <%= f.select :place_type, Place::PLACE_TYPE_CODES, :class => 'select' %>
+    
+    <div class="last column span-11">
+      <div class="column span-5 append-1">
+        <%= f.text_field :latitude, :required => true, :class => 'text' %>
+      </div>
+      <div class="last column span-5">
+        <%= f.text_field :longitude, :required => true, :class => 'text' %>
+      </div>
+    </div>
+    
+    <%= f.hidden_field :parent_id %>
+    <%= render :partial => 'place_parent_field' %>
+    
+    <input type="hidden" id="place_geometry" name="kml"/>
+    
+    <div class="clear buttonrow">
+      <%= f.submit 'Save', :class => 'default button' %>
+      <%= link_to "Cancel", @place, :class => 'button' %>
+      <%= link_to "Delete", @place, :method => :delete, 
+        :confirm => "Are you sure you want to delete this place?", 
+        :class => 'minor delete button' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="last column span-12">
+  <div id="drawingMap"></div>
+</div>
+
+<div class="column span-24">
+  <div class="small description">
+    Is this place a duplicate?  
+    <%= link_to "Merge it with another place", {:action => 'merge', :id => @place}, :class => 'readmore' %>
+  </div>
+</div>

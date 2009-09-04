@@ -1,0 +1,38 @@
+<%- place ||= @place -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
+  <style type="text/css" media="screen">
+    .placeAutocompleteStatus {
+      padding: 0.4em;
+      width: 100%;
+    }
+    
+    .ac_loading {
+      background: white url('/images/spinner-small.gif') 300px 5px no-repeat;
+    }
+    
+    .placeAutocompleteClear {
+      float: right;
+      margin-left: 5px;
+    }
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery/plugins/jquery.autocomplete.min.js',
+                             'jquery/plugins/inat/place_autocomplete.js' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#place_parent_name').placeAutocomplete('<%= url_for(:action => "autocomplete") %>', {
+        placeIdField: $('#place_parent_id')
+      });
+      
+      <% if place.parent %>
+      $.fn.placeAutocomplete.choosePlace($('#place_parent_name'), <%= place.parent.to_json(:methods => [:place_type_name]) %>);
+      <% end %>
+    });
+  </script>
+<%- end -%>
+      <div class="field">
+        <div class="label"><label>Parent</label></div>
+        <input class="text" id="place_parent_name" name="parent_name" />
+      </div>

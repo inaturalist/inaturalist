@@ -1,0 +1,388 @@
+<%- content_for(:title) do -%>
+  Places
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    #searchform {
+      float: right;
+    }
+    
+    #searchform .button {
+      margin-right: 0;
+    }
+    
+    #searchform .button,
+    #searchform label,
+    #searchform .text,
+    #controls .button,
+    #controls label,
+    #controls .text,
+    #controls .select,
+    #controls .loading {
+      margin-bottom: 0;
+    }
+    
+    #controls {
+      background-color: #eee;
+      padding: 5px 10px;
+    }
+    
+    #mapcol,
+    #placescol {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    #placescol {
+      overflow: hidden;
+    }
+    
+    #places {
+      width: 4000px;
+    }
+    
+    .place,
+    .spacer {
+      background-color: #eee;
+    }
+    .place {
+      min-height: 373px;
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      filter:alpha(opacity=60);
+    }
+    
+    .spacer {
+      height: 373px;
+    }
+    
+    .place:hover {
+      opacity: 0.8;
+      -moz-opacity: 0.8;
+      filter:alpha(opaity=80);
+    }
+    
+    .place.selected,
+    .place.selected:hover {
+      opacity: 1;
+      -moz-opacity: 1;
+      filter:alpha(opacity=1);
+    }
+    
+    .place .placeinfo {
+      padding: 10px 10px 0 10px;
+    }
+    
+    .place .map {
+      margin-bottom: 10px;
+      float: left;
+    }
+    
+    .place h3 {
+      margin-bottom: 0;
+      line-height: 1.2;
+    }
+    
+    .place .taxa {
+      margin-top: 10px;
+    }
+    
+    .taxon {
+      margin-bottom: 10px;
+      float: left;
+      margin-right: 10px;
+    }
+    .taxa .last .taxon {
+      margin-right: 0;
+    }
+    .taxon,
+    .taxon img {
+      width: 63px;
+    }
+    .taxon .info {
+      display: none;
+    }
+    .taxon .name {
+      font-size: 120%;
+      font-family: Georgia, serif;
+    }
+    
+    .taxon .infolink {
+      color: #777;
+    }
+    
+    .taxon .infolink:hover {
+      text-decoration: underline;
+    }
+    
+    #map {
+      width: 950px;
+      height: 200px;
+      background-color: #eee;
+    }
+    
+    #aboutcol .box .button {
+      width: 266px;
+      margin-right: 0;
+      text-align: center;
+    }
+    
+    #selected_arrow {
+      position: absolute;
+      bottom: 0px;
+      z-index: 9999;
+    }
+    
+    #no_places_shades {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 950px;
+      height: 200px;
+      background-color: #333;
+      opacity: 0.8;
+      -moz-opacity: 0.8;
+      filter:alpha(opacity=80);
+      z-index: 500;
+    }
+    
+    #no_places {
+      display: none;
+      text-align: center;
+      padding: 10px;
+      background-color: #000;
+      color: white;
+      font-size: 120%;
+      font-weight: bold;
+      width: 500px;
+      position: absolute;
+      margin-left: -250px;
+      margin-top: -25px;
+      left: 50%;
+      top: 50%;
+      z-index: 1000;
+    }
+    
+    #no_places .close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #ccc;
+      background-color: #222;
+      padding: 10px;
+    }
+    
+    #no_places .close:hover {
+      color: white;
+      background-color: #666;
+    }
+    
+    #new_place_button {
+      float: right;
+      background-color: #ccc;
+      border-color: #ccc;
+      color: #eee;
+      margin: 0;
+    }
+    
+    #new_place_button:hover {
+      background-color: #777;
+      border-color: #777;
+      color: white;
+    }
+    
+    #nextplacescol .spacer, 
+    #prevplacescol .spacer {
+      display: block;
+      position: relative;
+      background-color: #eee;
+      outline: 0;
+    }
+    
+    #nextplacescol .spacer:hover,
+    #prevplacescol .spacer:hover {
+      background-color: #ccc;
+    }
+    
+    #nextplacescol .spacer img,
+    #prevplacescol .spacer img {
+      position: absolute;
+      top: 172px;
+      right: 0;
+    }
+    
+    #nextplacescol .spacer img {
+      left: 0;
+    }
+  </style>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag 'jquery', 
+                             "jquery/jquery.ui.all.packed",
+                             'jquery/plugins/jqModal',
+                             'modal_image',
+                             'inaturalist/map2', 
+                             'jquery/plugins/jquery.url.packed',
+                             'jquery/plugins/jquery.scrollTo-min' %>
+
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      window.map = iNaturalist.Map.createMap({controls: 'small', type: G_HYBRID_MAP});
+      <% @places.each_with_index do |place, i| %>
+        addPlace(<%= place.to_json %>, <%= i+1 %>, '<%= dom_id(place) %>');
+      <% end %>
+
+      map.zoomToPlaces();
+      bindPlaceClicks();
+      selectPlace('<%= dom_id(@places[2] || @places.first) %>');
+      
+      $('#no_places_shades').click(function() {
+        hideNoPlaces();
+      });
+    });
+    
+    function addPlace(place, character, domID) {
+      if (typeof(window.placeMarkers) == 'undefined') window.placeMarkers = {};
+      var addedPlace = map.addPlace(place, {
+        icon: iNaturalist.Map.createPlaceIcon({color: 'DodgerBlue', character: character})
+      });
+      
+      // Bind clicks to pan the places window
+      GEvent.addListener(addedPlace.marker, 'click', function(latLng) {
+        selectPlace(domID);
+      });
+      
+      window.placeMarkers[domID] = place.marker;
+    }
+    
+    function selectPlace(domId) {
+      var marker = placeMarkers[domId];
+      var latLng = marker.getLatLng();
+      if (!map.getBounds().contains(latLng)) {
+        map.panTo(latLng);
+        var point = new GPoint($('#map').width() / 2, $('#map').height() / 2);
+      } else {
+        var point = map.fromLatLngToContainerPixel(latLng);
+      }
+      $('#placescol').scrollTo('#'+domId, 800, {axis:'x', offset: -1 * point.x + 155});
+      $('#selected_arrow').animate({'left': point.x - 16 + 'px'});
+      $('.place').removeClass('selected');
+      $('#'+domId).addClass('selected');
+    }
+    
+    function bindPlaceClicks() {
+      $('.place').click(function() {
+        if (!$(this).hasClass('selected')) {
+          selectPlace(this.id);
+          return false;
+        };
+      });
+    }
+    
+    function showNoPlaces() {
+      $('#no_places_shades').fadeIn();
+      $('#no_places').fadeIn();
+    }
+    
+    function hideNoPlaces() {
+      $('#no_places_shades').fadeOut();
+      $('#no_places').fadeOut();
+    }
+  </script>
+<%- end -%>
+
+<div id="pageheader" class="column span-24">
+  <div id="searchform" class="clear right buttonrow">
+    <%= render :partial => 'places/search_form', :locals => {:q => ''} %>
+  </div>
+  <h2>
+    Places&nbsp;
+    <span class="small description">
+      Find a new place to explore!
+    </span>
+  </h2>
+</div>
+
+<div id="controlscol" class="column span-24">
+  <div id="controls" class="clear buttonrow">
+    <% form_remote_tag(:method => :get, 
+        :loading => "$('#controls .loading').show()", 
+        :complete => "$('#controls .loading').hide()") do %>
+      <%= label :q, 'Places near' %>
+      <%= text_field_tag :q, @q, :class => 'text' %>
+      <%= submit_tag 'Go!', :class => 'default button' %>
+      <%= select_tag :place_type, options_for_select([['All Place Types', nil]] + Place::PLACE_TYPE_CODES.sort_by(&:first)), :class => 'select' %>
+    <% end %>
+    <div class="inter eee loading status" style="display:none">
+      Loading...
+    </div>
+    <%= link_to "Add a Place", new_place_path, :id => "new_place_button", :class => 'button' %>
+  </div>
+</div>
+
+<div id="mapcol" class="column span-24">
+  <div id="map"></div>
+  <div id="selected_arrow">
+    <%= image_tag 'arrow_white_top.png', :id => 'selected_arrow' %>
+  </div>
+  <div id="no_places_shades">
+    &nbsp;
+  </div>
+  <div id="no_places">
+    No matching places found.  Would you like to <%= link_to "create one?", new_place_path %>
+    <%= link_to_function "&times;", "hideNoPlaces()", :class => 'close corner' %>
+  </div>
+</div>
+
+<div id="placeswrappercol" class="column span-24">
+  <div id="prevplacescol" class="column span-1">
+    <%= link_to_function image_tag('arrow_white_left.png', :id => 'selected_arrow'),
+      "$('.place.selected:first').parent().prev('.column').find('.place').click()",
+      :class => 'spacer' %>
+    <%=  %>
+  </div>
+  <div id="placescol" class="column column span-22">
+    <div id="places" class="clear">
+      <%= render :partial => 'index_columns' %>
+    </div>
+  </div>
+  <div id="nextplacescol" class="last column span-1">
+    <%= link_to_function image_tag('arrow_white_right.png', :id => 'selected_arrow'),
+      "$('.place.selected:first').parent().next('.column').find('.place').click()",
+      :class => 'spacer' %>
+  </div>
+</div>
+
+
+
+<div id="aboutcol" class="column span-24">
+  <div class="column span-16">
+    <h3>About Places</h3>
+    <p>
+      The world is full of interesting places, each filled with weird and
+      wonderful life forms. Some are on the other side of the world, while
+      others are just down the street!
+    </p>
+
+    <p>
+      iNaturalist Places are a way to record what lives where. If you're
+      looking for a particular species, you'll know where to search. Each
+      place has a check list to record all the species that occur there, so
+      they can also be useful for looking up things you've found at particular
+      spots.
+    </p>
+  </div>
+  <div class="last column span-8">
+    <div class="clear box">
+      <%= link_to "Add a New Place", new_place_path, :class => 'button readmore' %>
+      <div class="description">
+        You can help out by <%= link_to "adding new places", new_place_path %>
+        and filling in check lists for the places you know!
+      </div>
+    </div>
+  </div>
+</div>

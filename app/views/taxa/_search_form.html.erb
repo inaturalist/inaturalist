@@ -1,0 +1,5 @@
+<% form_tag({:action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
+  <label for="q">Search</label>
+  <%= text_field_tag 'q', params[:q], :class => 'text' %>
+  <input type="submit" class="default button" value="Find Species" />
+<% end %>

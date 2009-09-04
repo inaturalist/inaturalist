@@ -1,0 +1,52 @@
+<%
+#
+# Taxonomic Tree Partial
+#
+# This partial takes an array of taxa and displays them in a set of nested 
+# lists according to their taxonomic relationships.  Optionally, you can pass 
+# in an array called "last_observations", which should be a list of all the 
+# most recent observations of each taxon, keyed by taxon id.
+#
+
+last_observations ||= nil
+-%>
+<ul class="taxonomic_tree">
+<% if taxa.is_a? Taxon %>
+  <li>
+    <%= link_to render(:partial => 'shared/taxon', 
+                                :locals => {:taxon => taxa}), 
+                taxa %>
+  </li>
+<% end %>
+<% if taxa.is_a? Array # of Taxa... %>
+  <% for taxon in taxa %>
+  <li>
+    <%= link_to render(:partial => 'shared/taxon', 
+                                 :locals => {:taxon => taxon}), taxon %>
+    <%= render :partial => 'shared/taxonomic_tree', 
+               :locals => { :taxa => taxon.children,
+                            :last_observations => last_observations } %>
+  </li>
+  <% end %>
+<% elsif taxa.is_a? Hash # of Taxon => Hash pairs %>
+  <% for taxon, subtaxa in taxa %>
+  <li>
+    <% if subtaxa.empty? %>
+    <div class="terminal node">
+    </div>
+    <% else %>
+    <div class="node">
+      <!-- <span class="count">####</span> -->
+      <%= link_to render(:partial => 'shared/taxon', 
+                                   :locals => {:taxon => taxon}), taxon %>
+      <span class="count"><%= h subtaxa.size %></span> of 
+      <%= h taxon.children.size %> <%= h taxon.children[0].rank.pluralize %>
+    </div>
+    <%= render :partial => 'shared/taxonomic_tree', 
+               :locals => { :taxa => subtaxa,
+                            :last_observations => last_observations } %>
+    <% end %>
+  </li>
+  <% end %>
+<% end %>
+</ul>

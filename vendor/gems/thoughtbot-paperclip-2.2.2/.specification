@@ -1,0 +1,122 @@
+--- !ruby/object:Gem::Specification 
+name: thoughtbot-paperclip
+version: !ruby/object:Gem::Version 
+  version: 2.2.2
+platform: ruby
+authors: 
+- Jon Yurek
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2008-12-30 00:00:00 -08:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: right_aws
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "0"
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: thoughtbot-shoulda
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "0"
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: mocha
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "0"
+    version: 
+description: 
+email: jyurek@thoughtbot.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.rdoc
+files: 
+- README.rdoc
+- LICENSE
+- Rakefile
+- init.rb
+- generators/paperclip
+- generators/paperclip/paperclip_generator.rb
+- generators/paperclip/templates
+- generators/paperclip/templates/paperclip_migration.rb.erb
+- generators/paperclip/USAGE
+- lib/paperclip
+- lib/paperclip/attachment.rb
+- lib/paperclip/callback_compatability.rb
+- lib/paperclip/geometry.rb
+- lib/paperclip/iostream.rb
+- lib/paperclip/processor.rb
+- lib/paperclip/storage.rb
+- lib/paperclip/thumbnail.rb
+- lib/paperclip/upfile.rb
+- lib/paperclip.rb
+- tasks/paperclip_tasks.rake
+- test/attachment_test.rb
+- test/database.yml
+- test/debug.log
+- test/fixtures
+- test/fixtures/12k.png
+- test/fixtures/50x50.png
+- test/fixtures/5k.png
+- test/fixtures/bad.png
+- test/fixtures/text.txt
+- test/geometry_test.rb
+- test/helper.rb
+- test/integration_test.rb
+- test/iostream_test.rb
+- test/paperclip_test.rb
+- test/processor_test.rb
+- test/s3.yml
+- test/storage_test.rb
+- test/thumbnail_test.rb
+- shoulda_macros/paperclip.rb
+has_rdoc: true
+homepage: http://www.thoughtbot.com/projects/paperclip
+post_install_message: 
+rdoc_options: 
+- --line-numbers
+- --inline-source
+require_paths: 
+- bin
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: 
+- ImageMagick
+rubyforge_project: paperclip
+rubygems_version: 1.2.0
+signing_key: 
+specification_version: 2
+summary: File attachments as attributes for ActiveRecord
+test_files: []
+

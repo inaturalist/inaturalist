@@ -1,0 +1,33 @@
+<%- index ||= @i -%>
+<%- checked ||= false -%>
+<div id="flickr_photos_list">
+  <% if photos.size > 0 %>
+    <% photos.each do |photo| %>
+      <%- flickr_native_photo_id = photo.is_a?(FlickrPhoto) ? photo.flickr_native_photo_id : photo.id -%>
+      <%- square_url = photo.is_a?(FlickrPhoto) ? photo.square_url : photo.source_url(:square) -%>
+      <div class="flickr_photo">
+        <% if index %>
+          <%= check_box_tag "flickr_photos[#{index}][]", 
+            flickr_native_photo_id, 
+            checked, 
+            {:id => "flickr_photo_#{index}_#{flickr_native_photo_id}", :class => "checkbox"} %>
+          <label for="flickr_photo_<%= index %>_<%= flickr_native_photo_id %>">
+            <%= image_tag(square_url) %>
+          </label>
+        <% else %>
+          <%= check_box_tag "flickr_photos[]", 
+            flickr_native_photo_id, 
+            checked, 
+            {:id => "flickr_photo_#{flickr_native_photo_id}", :class => "checkbox"} %>
+          <label for="flickr_photo_<%= flickr_native_photo_id %>">
+            <%= image_tag(square_url) %>
+          </label>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="notice" style="clear: both">
+      We didn't find any photos using the search terms you provided.
+    </div>
+  <% end %>
+</div>

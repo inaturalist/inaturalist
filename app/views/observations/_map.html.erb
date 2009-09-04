@@ -1,0 +1,225 @@
+<% content_for(:extrajs) do %>
+  <!-- Note: The parent view should include the GMaps libs! -->
+  <%= javascript_include_tag 'inaturalist/map2', 
+                             'jquery/plugins/jquery.url.packed.js' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      // Setup the Map
+      var map = iNaturalist.Map.createMap();
+      window.map = map;
+      
+      // Add some fancy-pants controls
+      map.addControl(new GOverviewMapControl());
+      map.enableGoogleBar();
+      
+      // Add the observations
+      var observations = <%= observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+      window.observations = observations;
+      $.each(observations, function() {
+        // Add the obs
+        var obs = map.addObservation(this);
+        
+        // Bind the clicks on the obs icon to popup the infowindow
+        if (obs.marker) {
+          $('#observation-'+this.id).click(function() {
+            if ($(this).parents('.observations').hasClass('mini')) {
+              map.openInfoWindow.apply(obs.marker);
+            };
+          });
+        };
+      });
+      
+      // Zoom the map to contain the observation markers or the selected 
+      // bounding box. If it's hidden, GMaps will have trouble calculating a 
+      // zoom, so just center correctly
+      // and zoom to 2
+      if ($('#map:visible').length > 0) {
+        <%- if !@swlat.blank? && !@swlng.blank? && !@nelat.blank? && !@nelng.blank? -%>
+          var bounds = new GLatLngBounds(
+            new GLatLng(<%= @swlat %>, <%= @swlng %>),
+            new GLatLng(<%= @nelat %>, <%= @nelng %>)
+          );
+          map.setZoom(map.getBoundsZoomLevel(bounds));
+          map.setCenter(bounds.getCenter());
+        <%- else -%>
+          map.zoomToObservations();
+        <%- end -%>
+      } else {
+        map.setZoom(2);
+      }
+      
+      // Bind the divider toggle
+      $('#mapdivider').click(function(){
+        $(this).toggleClass('closed');
+        $('#mapobservations').toggle();
+        if ($(this).hasClass('closed')) {
+          $('#map').css({
+            width: '940px'
+          });
+        } else {
+          $('#map').css({
+            width: '640px'
+          });
+        };
+        map.checkResize();
+      });
+    });
+    
+    function showMapView() {
+      $('.observations.map').show();
+      $('.observations .headerrow').hide();
+      $('#mapobservations').css({width: '300px', height: '500px'});
+      $('#mapobservations').removeClass('table');
+      $('#mapobservations').addClass('mini');
+      $('#mapdivider').show();
+      $('#mapcontrols').show();
+      if ($('#mapdivider').hasClass('closed')) {
+        $('#mapobservations').hide();
+      };
+      if (window.map) {
+        window.map.checkResize();
+        window.map.zoomToObservations();
+      }
+      alterLinkParams({view: 'map'});
+      $('#view_input').val('map');
+    }
+    
+    function showTableView() {
+      $('.observations.map').hide();
+      $('#mapdivider').hide();
+      $('#mapcontrols').hide();
+      $('.observations .headerrow').show();
+      $('#mapobservations').show();
+      $('#mapobservations').css({width: '950px', height: 'auto'});
+      $('#mapobservations').removeClass('mini');
+      $('#mapobservations').addClass('table');
+      alterLinkParams({view: 'table'});
+      $('#view_input').val('table');
+    }
+    
+    // Alters the href of all links using the passed in params. So if you have
+    // a link to '/observations?view=map' and you 
+    // alterLinkParams({map: 'table'}), the link will become
+    // '/observations?view=table'
+    // Yes, this is a lame hack.
+    function alterLinkParams(params) {
+      $('#wrapper a[href^=/observations?]').each(function() {
+        var href = $(this).attr('href');
+        var path = jQuery.url.setUrl(href).attr('path');
+        var queryString = jQuery.url.setUrl(href).attr('query');
+        queryObj = $.extend({}, queryString2Obj(queryString), params);
+        $(this).attr('href', path + '?' + obj2QueryString(queryObj));
+      });
+    }
+    
+    // Convert a URL query string to an object literal
+    function queryString2Obj(str) {
+      var pieces = str.split('&');
+      var obj = {};
+      jQuery.each(pieces, function() {
+        var bits = this.split('=');
+        obj[bits[0]] = bits[1];
+      });
+      return obj;
+    }
+    
+    function obj2QueryString(obj) {
+      var pieces = [];
+      jQuery.each(obj, function(k,v) {
+        pieces.push(k+'='+v); 
+      });
+      return pieces.join('&');
+    }
+    
+    function redoSearchInMapArea() {
+      $('#redo_search_in_map_area_button').hide();
+      $('#redo_search_in_map_area_loading').show();
+      var bounds = map.getBounds();
+      $('#filters input[name=swlat]').val(bounds.getSouthWest().lat());
+      $('#filters input[name=swlng]').val(bounds.getSouthWest().lng());
+      $('#filters input[name=nelat]').val(bounds.getNorthEast().lat());
+      $('#filters input[name=nelng]').val(bounds.getNorthEast().lng());
+      $('#submit_filters_button').click();
+    }
+  </script>
+<% end %>
+<% content_for(:extracss) do %>
+  <style type="text/css" media="screen">
+    .observations.map {
+      float: left;
+      width: 640px;
+      height: 500px;
+    }
+    
+    #map {
+      width: 640px;
+      height: 500px;
+    }
+    
+    #mapcontrols {
+      width: 640px;
+      float: left;
+      clear: left;
+      margin-top: 0.2em;
+    }
+    
+    #mapdivider {
+      float: left;
+      width: 10px;
+      height: 500px;
+      background: 50% 50% url(/images/toggle_arrow_right.png) no-repeat;
+    }
+    
+    #mapdivider.closed {
+      background: 50% 50% url(/images/toggle_arrow_left.png) no-repeat;
+    }
+    
+    #mapdivider:hover {
+      background-color: #FFC;
+      cursor: pointer;
+    }
+    
+    #mapobservations {
+      position: relative;
+    }
+    
+    #mapobservations.mini {
+      float: left;
+      width: 300px;
+      height: 500px;
+      overflow: auto;
+    }
+    
+    #redo_search_in_map_area_button {
+      background: 0% 50% url(/images/silk/arrow_refresh.png) no-repeat;
+      padding-left: 20px;
+    }
+  </style>
+<% end %>
+
+<div class="observations map"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
+  <div id="map">
+    
+  </div>
+  <div id="mapcontrols"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
+    <%= link_to_function "Redo search in map area", "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
+    <span id="redo_search_in_map_area_loading" class="loading status" style="display: none">Loading...</span>
+  </div>
+</div>
+<div id="mapdivider"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
+  &nbsp;
+</div>
+<div id="mapobservations" class="observations <%= (@view && @view == 'map') ? 'mini' : 'table' %>">
+  <% if @view && @view == 'map' %>
+    <%= render :partial => 'observations_table_header', :locals => {:display => 'none'} %>
+  <% else %>
+    <%= render :partial => 'observations_table_header' %>
+  <% end %>
+  <%= render(:partial => 'observations/cached_component', 
+             :collection => @observations) %>
+  <% if @observations.empty? %>
+    <p id="noresults" class="readable description">
+      No matching observations!
+    </p>
+  <% end %>
+</div>

@@ -1,0 +1,30 @@
+<% if logged_in? %>
+  <%- identification ||= Identification.new(:user => current_user, 
+                                           :observation => observation) -%>
+  <% remote_form_for(identification,
+    :loading => 
+      "$('#new_identification-#{observation.id} .default.button').hide(); " +
+      "$('#new_identification-#{observation.id}-loading').show()",
+    :complete => 
+      "$('#new_identification-#{observation.id} .default.button').show(); " + 
+      "$('#new_identification-#{observation.id}-loading').hide()",
+    :html => {
+     :id => "new_identification-#{observation.id}"
+    }) do |f| %>
+    
+    <%= render :partial => 'identifications/form_fields', :locals => {
+      :identification => identification,
+      :f => f
+    } %>
+
+    <%= image_tag('spinner.gif', 
+      :id => "new_identification-#{observation.id}-loading", 
+      :class => 'loading', 
+      :style => 'display: none') %>
+    <%= f.submit('Save', :class => 'default button', :tabindex => observation.id+1) %>
+  <% end %>
+<% else %>
+  <%= link_to "Sign in", login_path %>
+  or <%= link_to "sign up", signup_path %>
+  to add IDs.
+<% end %>

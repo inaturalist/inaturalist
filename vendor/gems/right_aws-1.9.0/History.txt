@@ -1,0 +1,221 @@
+== 1.1.0 2007-08-10
+Initial release.
+
+== 1.2.0 2007-09-12
+
+* r1718, todd, 2007-09-12 15:34:37
+  * # 458, Extensive documentation review, rework, and expansion.  Also added 
+    coverage analysis to the test suite using RCov.
+
+* r1690, todd, 2007-09-07 15:23:11
+  * # 447, Add support.rb to manifest
+
+* r1688, todd, 2007-09-07 13:57:39
+  * # 447, Use Active Support if available, but don't require it.  Load our own
+    extensions if it's not present.  This keeps us from overloading ActiveSupport if
+    a user's already using it.
+
+* r1687, todd, 2007-09-07 11:36:43
+  * # 447, Removed dependency on activesupport
+
+* r1676, konstantin, 2007-09-06 01:27:09
+  * paid AMIs, small fix
+
+* r1667, konstantin, 2007-09-05 12:58:10
+  * # 427, paid AMI support for ec2_instances
+
+* r1658, konstantin, 2007-09-05 01:02:25
+  * params improvements for ec2.describe_xxx, now ones can use a String as well as an Array.
+
+* r1653, konstantin, 2007-09-04 12:31:19
+  * libxml and paid AMI support added
+
+* r1581, tve, 2007-08-24 16:21:45
+  * Improved RightAws documentation
+
+== 1.3.0 2007-09-26
+
+* r1754, todd, 2007-09-19 13:48:34
+  * # 487, # 488, Consolidate a lot of code that was repeated in three places.
+    Fix error handling path when using streaming GET interfaces with S3.
+    Also add a stub for RightHttpConnection which allows more control over the
+    unit tests.  Expand the unit tests and coverage tests. 
+
+* r1755, todd, 2007-09-19 14:29:19
+  * # 487, RDoc fixes after code consolidation
+
+* r1866, konstantin, 2007-10-05 06:17:36
+  * # 220, close connection on HTTP 5xx/4xx errors
+
+== 1.4.0 2007-10-10
+
+* r1868, konstantin, 2007-10-05 06:38:37
+  * # 220, inst_type branch merge into 1.3.0 release
+
+* r1869, konstantin, 2007-10-05 07:32:34
+  * right_http_connection 1.1.1 requirements fixed
+
+* r1879, konstantin, 2007-10-07 02:11:24
+  * # 524, blocks added to ec2_describe_xxx to support aws_cache
+
+* r1924, konstantin, 2007-10-12 11:35:06
+  * # 536, user_data bug fix 
+
+* r1929, tve,  2007-10-15 00:00:11
+  * Fix libxml/rexml selection bug
+
+* r1938, konstantin, 2007-10-16 10:53:56
+  * instance type support is set to default 
+
+== 1.4.3 2007-10-25
+
+* r1983, konstantin, 2007-10-25 22:33:00 +0400
+  * Fixed ActiveSupport requirement bug (thanks to Toby)
+  * Fixed HttpConnection logging to stdout bug (thanks to Toby)
+
+== 1.4.4
+
+* r1999, tve, 2007-11-01 00:07:00 -0700
+  * Fixed escaping issue affecting key names in S3 gem
+  * Fixed duplicate marker in S3 incremental bucket listing
+
+* r2001, konstantin, 2007-11-01 12:03:13  +0300
+  * Fixed multiple permissions assignment on Grantee#grant/revoke
+  * Fixed new grantee permissions set ingnore (Grantee#apply)
+  * S3::Grantee#exists? method added 
+
+* r2109, konstantin, 2007-11-12 21:49:36  +0300
+  * RightAwsBaseInterface: caching implemented.
+    (The Ec2 functions are being cached: describe_images, describe_instances, 
+    describe_security_groups and describe_key_pairs)
+
+== 1.4.5 - 1.4.6
+* r 2619, konstantin, 01-17-08 16:18:36  +0300
+  * S3 Location constraints support added.
+  * Fixed bug with trailing '/' in the bucket name for 'EU' located buckets
+  * Added: S3Interface#bucket_location, S3::Bucket#location
+
+== 1.4.7
+* r 2622, konstantin, 01-18-08 13:52:20  +0300
+  * Virtual domains doc added
+  * S3 Query API fixed to support virtual domains.
+
+== 1.4.8
+* r 2650, konstantin, 01-24-08 11:12:00  +0300
+  * net_fix.rb moved to right_http_connection
+
+== 1.5.0
+* r 2688, konstantin, 02-30-08 15:42:00  +0300
+  * SDB support added.
+  * RightAws::S3::bucket and RightAws::S3::Bucket.create methods behaviour 
+    changed: param +create+ is set to +false+ by default.
+
+== 1.6.0
+
+* r2780, todd, 2008-02-11 11:41:07 -0800 (Mon, 11 Feb 2008), 4 lines
+  * Some doc updates & tweaks: we now support ultra-large PUTs to S3, small SDB
+    cleanups, add SDB to the list of interfaces in RightAws, update some copyrights,
+    warn about loading attachment_fu AFTER right_aws (big no-no).
+
+* r2784, todd, 2008-02-11 13:46:47 -0800 (Mon, 11 Feb 2008), 2 lines
+  * One final clarification: you may get a Net::HTTP bad monkey patch exception
+
+* r2880, todd, 2008-02-25 18:06:22 -0800 (Mon, 25 Feb 2008), 2 lines
+  * Add SQS 'Gen 2' interface implementation
+
+* r2913, todd, 2008-02-29 16:57:07 -0800 (Fri, 29 Feb 2008), 3 lines
+  * SqsGen2 (object interface), unit tests for both interfaces, documentation updates.
+
+* r2922, todd, 2008-03-03 15:26:42 -0800 (Mon, 03 Mar 2008), 2 lines
+  * couple of documentation tweaks in prep for 1.6.0
+
+== 1.6.1
+
+* r2963, todd, 2008-03-06 19:10:23 -0800 (Thu, 06 Mar 2008), 3 lines
+  * (#950) Many minor fixes in incrementally_list_bucket to prevent a death loop
+    in certain rare conditions
+
+== 1.7.0
+
+* r3051, konstantin, 2008-03-14 21:26:12 +0300 (Fri, 14 Mar 2008), 1 line
+  * #897, ActiveSdb alpha release
+
+== 1.7.1
+
+  Do not autoload right_sdb with the rest of the modules; it requires uuidtools.
+    We want the user to explicly request ActiveSdb, at least as long as it is
+    alpha/beta.
+
+  Fix escaping problem in SqsGen2Interface: POST bodies did not properly escape the '&' character
+
+== 1.7.2
+
+  Release Notes:
+  
+  RightAws includes some new features, including:
+  - Support in RightAws::S3 and RightAws::S3Interface for S3 key copy, move, and rename
+  - Support for signature version 0 request authentication to EC2, SQS, and SDB
+  - Enhanced S3 object meta-header read and update
+  - Interoperability with clouds running Eucalyptus (http://eucalyptus.cs.ucsb.edu)
+    [ Contributed by the Eucalyptus group ]
+  - Support for c1.medium and c1.xlarge instance types
+
+  Bug fixes include:
+  - Corrected the failure, under certain conditions, of retries of streaming PUTs to S3.
+    We now reset the seek pointer of the streaming IO object to its initial position.
+  - Removal of an accidental dependency on ActiveSupport in RightAws::S3Interface.get_link().
+  - Monkey-patch of the Ruby File class on Windows platforms to correct a problem in lstat.
+    The lstat bug was causing failure of very large file uploads on Windows [ Contributed by Benjamin Allfree ] 
+  - Fixed parsing of the ETag field for S3 objects
+
+== 1.7.3
+
+  Release Notes:
+
+  - Removed the 1.7.2 monkey-patch of the Ruby File class on Windows.  This patch broke Rails 2.0.
+    The patch is now included in the README for anyone to use at their own risk.
+ 
+== 1.8.0
+
+  Release Notes:
+
+  This release adds major new features to RightAws to support Amazon's new
+  Elastic Block Store (EBS).  Via the RightAws::Ec2 module, users can create
+  and delete EBS volumes, attach and detach them from instances, snapshot
+  volumes, and list the available volumes and snapshots.
+
+  Bug fixes include correction of RightAws::S3 copy's failure to url-encode
+the source key.
+ 
+== 1.8.1
+
+  Release Notes:
+
+  RightScale::SdbInterface & ::ActiveSdb have several enhancements, including:
+  - RightAws::SdbInterface#last_query_expression added for debug puposes
+  - RightAws::ActiveSdb::Base#query :order and :auto_load options added to support query
+    result sorting and attributes auto loading
+  - RightAws::ActiveSdb::Base#find_all_by_ and find_by_ helpers improved to support
+    :order, :auto_load, :limit and :next_token options
+  - RightAws::SdbInterface#delete_attributes bug fixed 
+  - SdbInterface allows specification of a string value to use for
+    representing Ruby nil in SDB.
+  - Sdb tests fixed and improved
+
+  The ::S3 interface now has support for S3's server access logging.
+  Amazon considers server access logging to be a beta or provisional feature.
+
+=== 1.9.0
+
+  Release Notes:
+  - RightAws::Ec2 now supports Windows instances. Added:
+   - Ec2::get_initial_password
+   - Ec2::bundle_instance
+   - Ec2::describe_bundle_tasks
+   - Ec::cancel_bundle_task
+
+  - Full Amazon CloudFront support added with RightAws::AcfInterface
+  - Bug fixes to S3Interface::store_object_and_verify and 
+    S3Interface::retrieve_object_and_verify (thanks to numerous user reports)
+  - Updates to caching for Ec2::describe_images_by methods
+  - Ec2 now has Ec2::last_request_id

@@ -1,0 +1,193 @@
+<%- content_for(:title) do -%>
+  <%= @list.title %>
+<%- end -%>
+
+<% content_for(:extracss) do %>
+  <%= render :partial => 'lists/show_css' %>
+  <style type="text/css" media="screen">
+    #otherlistslink {
+      background: url(/images/toggle_arrow_right.png) no-repeat 5px 5px;
+    }
+    
+    #otherlistslink.open {
+      background: url(/images/toggle_arrow_down.png) no-repeat 0px 10px;
+    }
+    
+    #other_check_lists_wrapper {
+      border: 2px solid #ddd;
+      border-top: 0 none;
+      padding: 10px;
+    }
+    
+    #other_check_lists {
+      padding-left: 15px;
+    }
+    
+    .toolset {
+      color: #888;
+    }
+  </style>
+<% end -%>
+
+<% content_for(:extrajs) do %>
+  <%= render :partial => 'lists/show_js' %>
+<% end %>
+
+<div id="pageheader" class="column span-24 last">
+  <%- if logged_in? && @list.user_id != current_user.id %>
+    <div class="toolset" style="float: right">
+      <% if @list.editable_by?(current_user) && !@list.is_default? -%>
+        <%= link_to "edit list", edit_check_list_path(@list) %> |
+      <% end -%>
+      <%= link_to('Compare with your life list', compare_lists_path(@list), :class => 'inter readmore') %>
+    </div>
+  <%- end -%>
+  
+  <span class="breadcrumbs">    
+    <%= link_to "Back to #{@list.place.name}", 
+                place_path(@list.place),
+                :class => 'back crumb' %>
+  </span>
+  <div id="view_controls" class="toolset clear">
+    <label class="description">View</label>
+    <% for view in ListsController::LIST_VIEWS %>
+      <%= link_to(view.capitalize, url_for(params.merge(:view => view)), 
+        :id => "#{view}_view_link", 
+        :class => "modal_link#{' selected' if @view == view}") %>
+    <% end %>
+  </div>
+  <h2>
+    <%= @list.title %>
+  </h2>
+</div>
+
+<div class="column span-17">
+  <% unless @list.is_default? -%>
+    <div id="description" class="readable description">
+      <%= auto_link(markdown(@list.description)) %>
+    </div>
+
+    <% if !@list.rules.empty? && @list.rules.first.operand.is_a?(Taxon) -%>
+      <div id="life_list_taxon" class="life_list_taxon description">
+        <%= taxon_image(@list.rules.first.operand) %>
+        This is a check list of
+        <%= render :partial => 'shared/taxon', 
+                   :locals => { :taxon => @list.rules.first.operand,
+                                :link_url => url_for(@list.rules.first.operand) } %>
+      </div>
+    <% end -%>
+
+    <div class="column-separator">
+      <img src="/images/logo-eee-15px.png">
+    </div>
+  <% end -%>
+  
+  <div id="justadded" style="display: none">
+    <h2 class="title">Just Added!</h2>
+    <ul class="listed_taxa">
+      <li style="display: none">Stuff you've just added...</li>
+    </ul>
+    
+    <div class="column-separator">
+      <img src="/images/logo-eee-15px.png">
+    </div>
+  </div>
+  
+  <div id="toppagination">
+    <%= will_paginate @listed_taxa %>
+  </div>
+  
+  <%= render :partial => "lists/show_#{@view}" %>
+  
+  <% if @listed_taxa.empty? %>
+    <div id="empty" class="readable description">
+      This list is empty!
+      <% if logged_in? %>Try adding some species using the form on this page.<% end %>
+    </div>
+  <% end %>
+  
+  <div id="pagination">
+    <%= will_paginate @listed_taxa %>
+  </div>
+</div>
+
+<div class="last column span-7">
+  <div id="sidebar">
+    <% if logged_in? %>
+      <div id="add" class="clear">
+        <%= link_to_function "Add Batch", "$('#add_batch_dialog').jqmShow()", 
+          :class => "right small", :style => 'padding-top: 3px' %>
+        <h3>
+          <%= link_to_function(
+            'Add to List', 
+            "$('#new_listed_taxon').slideToggle();",
+            :id => 'addlink') %>
+        </h3>
+        <%= render :partial => 'lists/add_to_list' %>
+      </div><!-- /add -->
+    <% end %>
+    
+    <div id="stats" class="clear">
+      <h3><%= link_to_toggle "Stats", "#innerstats", :class => 'open' %></h3>
+      <div id="innerstats">
+        <a href="<%= url_for(params.merge(:page => 1, :taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
+          <div class="readable title">&nbsp;</div>
+          <div class="barchart">
+            <%= render :partial => "shared/barchart_datum", :locals => { 
+              :value => @total_observed_taxa, 
+              :max => @total_listed_taxa, 
+              :label_text => "of #{@total_listed_taxa} observed",
+              :min_value_label_width => 28,
+              :min_remainder_label_width => 28 } %>
+          </div>
+        </a>
+        <% for grouper, count in @iconic_taxon_counts -%>
+          <% next unless count %>
+          <% if grouper.respond_to?(:common_name) && grouper.common_name %>
+            <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
+          <% elsif grouper.respond_to?(:name) %>
+            <% grouper_name = grouper.name -%>
+          <% else %>
+            <% grouper_name = 'Unclassified' -%>
+          <% end -%>
+          <%- grouper_name = 'Other Animals' if grouper_name == 'Animals' -%>
+          <%- grouper_class = grouper.name rescue 'Unknown' -%>
+          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for(params.merge(:taxon => grouper.id, :page => nil)) %>">
+            <div class="readable title">
+              &nbsp;
+            </div>
+
+            <div class="barchart">
+              <%= render :partial => "shared/barchart_datum", :locals => {
+                :value => count, 
+                :max => @total_listed_taxa, 
+                :label_text => grouper_name } %>
+            </div>
+          </a>
+        <% end %>
+      </div><!-- / innerstats -->
+    </div><!-- /stats -->
+    
+    <div id="other_check_lists_wrapper">
+      <h3>
+        <%= link_to_toggle "Other Check Lists for #{h(@place.name)}", '#other_check_lists', 
+          :id => 'otherlistslink', :class => 'open' %>
+      </h3>
+      <div id="other_check_lists">
+        <p class="ui description">
+          Check lists for individual taxa that live here, e.g. "Birds of <%= h(@place.name) %>".
+        </p>
+        <ul>
+          <% for list in @other_check_lists %>
+            <li><%= link_to h(list.title), list %></li>
+          <% end %>
+        </ul>
+
+        <%= link_to "Create a new check list for #{h(@place.name)} &raquo;", new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
+      </div>
+    </div>
+  </div><!-- /sidebar -->
+</div>
+
+<%= render :partial => 'lists/add_batch_dialog' %>
+

@@ -1,0 +1,29 @@
+#taxon_photos {
+  border: 1px solid #eee;
+  padding: 1em;
+}
+.flickr_photo {
+  text-align: center;
+  width: 75px;
+  margin-right: 10px;
+  float: left
+}
+
+#parent_name {
+  margin-top: 0;
+  margin-left: 0;
+  width: 300px;
+}
+
+textarea {
+  margin: 0;
+}
+
+fieldset.column {
+  margin-bottom: 1em;
+}
+
+.taxon_name_fields {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1em;
+}

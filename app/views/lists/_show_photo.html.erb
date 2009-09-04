@@ -1,0 +1,101 @@
+<%- listed_taxa ||= @listed_taxa -%>
+<%- photo_size ||= 'small' -%>
+<% content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    ul.photo_view {
+      list-style: none;
+      margin: 0;
+    }
+    .photo_view li {
+      float: left;
+      width: 216px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .photo_view li.first {
+      clear: left;
+    }
+    
+    .photo_view li.last {
+      margin-right: 0px;
+    }
+    
+    .photo_view li .image {
+      max-width: 216px;
+      max-height: 216px;
+      margin: 0 auto;
+    }
+    
+    .photo_view li .modal_image_link {
+      margin-bottom: 10px;
+    }
+    
+    .listed_taxon .image,
+    .listed_taxon .actions .seenit {
+      display: none;
+    }
+    
+    .listed_taxon .actions {
+      float: right;
+      display: inline;
+      width: auto;
+      margin: 0;
+    }
+    
+    .listed_taxon .details {
+      float: none;
+      margin: 0;
+    }
+    
+    .photo_view .nophoto {
+      border: 1px dashed #eee;
+      padding: 10px;
+      text-align: center;
+      width: 196px;
+      height: 140px;
+    }
+    
+    .photo_view .nophoto img {
+      margin-bottom: 1em;
+    }
+    
+    .column-separator {
+      clear: both;
+    }
+  </style>
+<% end -%>
+<ul class="clear photo_view listed_taxa">
+  <% for listed_taxon in listed_taxa %>
+    <%- cycle_class = cycle('first', '', 'last') -%>
+    <% if cycle_class == 'first' && listed_taxon != listed_taxa.first -%>
+      <div class="column-separator">
+        <img src="/images/logo-eee-15px.png">
+      </div>
+    <% end -%>
+    <li class="clear <%= cycle_class %>">
+      <%- prepend = capture do -%>
+        <% if listed_taxon.taxon.flickr_photos.empty? -%>
+          <div class="nophoto">
+            <%= link_to(taxon_image(listed_taxon.taxon, :size => 32), taxon_path(listed_taxon.taxon)) %>
+            <div class="description">
+              <%= render :partial => "shared/taxon", :locals => { 
+                :taxon => listed_taxon.taxon,
+                :link_url => taxon_path(listed_taxon.taxon) } %>
+              doesn't have a default photo yet.
+              <%= link_to "Want to add one?", taxon_path(listed_taxon.taxon) %>
+            </div>
+          </div>
+        <%- else -%>
+          <%= modal_image listed_taxon.taxon.flickr_photos.first, :size => photo_size %>
+        <% end -%>
+        <div class="clear"></div>
+      <%- end -%>
+      <%= render :partial => "lists/show_listed_taxon", :locals => { 
+        :listed_taxon => listed_taxon, 
+        :list => @list,
+        :prepend => prepend
+      } %>
+    </li>
+  <% end %>
+</ul>

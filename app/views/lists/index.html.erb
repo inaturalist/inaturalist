@@ -1,0 +1,27 @@
+<h1>Listing lists</h1>
+
+<table>
+  <tr>
+  <% for column in List.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+    <th>Owner</th>
+    <th>Taxa</th>
+  </tr>
+
+<% for list in @lists %>
+  <tr>
+  <% for column in List.content_columns %>
+    <td><%=h list.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to list.user.login, "/people/#{list.user.login}" %></td>
+    <td>
+    </td>
+    <td><%= link_to 'Show', :controller => :lists, :action => :show, :id => list %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New list', new_list_path %>

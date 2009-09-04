@@ -1,0 +1,178 @@
+<%- content_for(:title) do -%>
+  Your Flickr photos have been tagged!
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag 'observations' %>
+  <style type="text/css" media="screen">
+    .toolset a {
+      display: block;
+      width: auto;
+      float: right;
+      clear: right;
+    }
+    table {
+      width: 100%;
+    }
+    td {
+      vertical-align: top;
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+    
+    td.photo img {
+      display: block;
+      margin: 0 auto;
+    }
+    
+    td.photo, td.actions {
+      text-align: center;
+    }
+    
+    td.tags {
+      width: 50%;
+    }
+    .tags ul {
+      float: left;
+      width: 40%;
+    }
+    
+    td.actions .button {
+      margin: 0.5em auto;
+      float: none ;
+    }
+    
+    .tag .controls {
+      font-weight: bold;
+    }
+    
+    .duplicate {
+      color: red;
+    }
+    
+    .kingdom     { color: #691776; }
+    .phylum      { color: brown; }
+    .class       { color: DeepPink }
+    .superorder  { color: #1E90FF; }
+    .order       { color: #FF4500; }
+    .superfamily { color: #F3CA3E; }
+    .family      { color: #C0852B; }
+    .genus       { color: #73AC13; }
+    .species     { color: #B190CD; }
+    .binomial    { color: #1E90FF; }
+    .trinomial   { color: lightblue; }
+    .common      { color: #CF6; }
+  </style>
+<%- end -%>
+<% content_for(:extrajs) do %>
+
+<%= javascript_include_tag 'jquery',
+                           "jquery/jquery.ui.all.packed.js" %>
+<%- end -%>
+
+<div id="pageheader">
+  <div class="toolset" style="float: right">
+    <%= link_to "Tag more photos", flickr_tagger_path, :class => 'readmore' %>
+  </div>
+  <h2>Your Flickr photos have been tagged!</h2>
+  <p class="description">The following photos have been tagged:</p>
+</div>
+
+<table>
+  <tr>
+    <th>Flickr Photo</th>
+    <th>Flickr Tags</th>
+    <th>&nbsp;</th>
+  </tr>
+  <% for flickr_photo in @flickr_photos %>
+    <tr>
+      <td class="photo">
+        <%= link_to image_tag(flickr_photo.small_url), flickr_photo.flickr_page_url %>
+        <% if flickr_photo.flickr_response -%>
+          <strong><%= link_to flickr_photo.flickr_response.title, flickr_photo.flickr_page_url %></strong>
+        <% end -%>
+      </td>
+      <td class="tags description">
+        <% if flickr_photo.flickr_response -%>
+          <%- tags = flickr_photo.flickr_response.tags -%>
+          <%- taxonomy_machine_tags = tags.map(&:raw).select{|tag| tag =~ /^taxonomy\:/} -%>
+          <%- predicates = taxonomy_machine_tags.map {|tag| tag.split('=').first if tag.split('=').size > 1}.compact -%>
+          <%- duplicate_predicates = predicates.select{|p| predicates.grep(p).size > 1} -%>
+          <%- duplicate_predicates.delete('taxonomy:common') -%>
+          <%- mid = (tags.size / 2.0).ceil -%>
+          <%- halves = [tags[0..mid], tags[mid+1..-1]] -%>
+          <% unless duplicate_predicates.empty? -%>
+            <div class="notice">
+              Heads up: You have multiple taxonomic machine tags for
+              identicical ranks. They're color-coded below by rank.
+            </div>
+          <% end -%>
+          <% for tag_group in halves %>
+            <ul>
+              <% for tag in tag_group.compact %>
+                <%- dup_class = '' %>
+                <% if tag.raw.split('=').size > 1 && tag_predicate = tag.raw.split('=').first -%>
+                  <% if duplicate_predicates.include?(tag_predicate) %>
+                    <%- dup_class = "duplicate #{tag_predicate.split(':').last}" %>
+                  <% end %>
+                <% end -%>
+                <li id="tag_<%= tag.id %>" class="tag <%= dup_class %>">
+                  <span class="raw"><%= tag.raw %></span>
+                  <span class="controls">
+                    <%= link_to_remote "&times;", 
+                      :url => {:controller => 'flickr', :action => 'remove_tag', 
+                        :id => tag.id, :format => 'json'},
+                      :script => false,
+                      :loading => 
+                        "$('#remove_tag_link_#{tag.id}').hide();" +
+                        "$('#tag_#{tag.id} .loading').show();",
+                      :success => 
+                        "$('#tag_#{tag.id}').fadeOut('normal', function() {$(this).remove()});",
+                      :failure => 
+                        "$('#remove_tag_link_#{tag.id}').show();" +
+                        "alert('There was a problem removing that tag.');" +
+                        "$('#tag_#{tag.id} .loading').hide();",
+                      :html => {
+                        :id => "remove_tag_link_#{tag.id}",
+                        :title => 'Remove tag'
+                      }
+                    %>
+                    <%= image_tag 'spinner-small.gif', :class => 'loading', :style => 'display: none' %>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end -%>
+      </td>
+      <td class="actions">
+        <%= link_to "View on Flickr", flickr_photo.flickr_page_url, :class => 'readmore' %>
+        <% if @imported_flickr_native_photo_id[flickr_photo.flickr_native_photo_id] -%>
+        
+          <div class="description">
+            This photo is already associated with one of your observations.
+          </div>
+          
+          <%= link_to "Import as another observation?", 
+            {:controller => "observations", :action => 'import_flickr', 
+              :flickr_photos => [flickr_photo.flickr_native_photo_id]}, 
+            :method => :post, :class => 'readmore' %>
+        <% else -%>
+          <div class="description">
+            or
+          </div>
+          <%= link_to "Import as an observation", 
+            {:controller => "observations", :action => 'import_flickr', 
+              :flickr_photos => [flickr_photo.flickr_native_photo_id]}, 
+            :method => :post, :class => 'button' %>
+        <% end -%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="toolset" style="float: right">
+  <%= link_to "Import all photos as observations", 
+    {:controller => "observations", :action => 'import_flickr', 
+      :flickr_photos => @flickr_photos.map(&:flickr_native_photo_id)}, 
+    :method => :post, :class => 'inter readmore' %>
+</div>

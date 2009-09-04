@@ -1,0 +1,13 @@
+Thanks for using forgot_password!
+
+In attempt to be flexible enough to work with multiple login systems (mainly restful-authentication and its ancestors), this plugin will generate a new controller to handle forgotten passwords.  Your user model must have accessors for password and password_confirmation, and handle its own password encryption.  I assume most people are using technoweenie's excellent restful-authentication plugin, so if you are you probably won't have any problems.
+
+Usage:
+
+ruby script/generate forgot_password <password-model-name> <user-model-name>
+
+In most cases, that's probably:
+
+ruby script/generate forgot_password password user
+
+then run rake db:migrate and enjoy :)

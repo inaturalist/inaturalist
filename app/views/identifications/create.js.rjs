@@ -1,0 +1,4 @@
+page["identification_form_wrapper-#{@identification.observation_id}"].fadeOut
+page.insert_html :bottom, "identifications-list-#{@identification.observation_id}",
+                 :partial => 'identification',
+                 :locals => { :identification => @identification }

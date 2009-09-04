@@ -1,0 +1,10 @@
+if @old_identification
+  page.replace "identification-#{@old_identification.id}",
+                :partial => 'identification',
+                :locals => { :identification => @identification }
+else
+  page.insert_html :bottom, "identifications-list-#{@identification.observation_id}",
+                   :partial => 'identification',
+                   :locals => { :identification => @identification }
+end
+page["identification_form_wrapper-#{@identification.observation_id}"].fadeOut

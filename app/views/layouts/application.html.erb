@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>iNaturalist.org &middot; <%= yield :title %></title>
+    <link rel="icon" type="image/png" href="/images/favicon.png"/>
+    <%= render :partial => 'shared/common_stylesheets'%>
+    <%= javascript_include_tag 'application', 'inaturalist' %>
+    <%= yield :extracss %>
+    <%= yield :extrajs %>
+    <%= yield :extrahead %>
+  </head>
+<body>
+  <%= render :partial => 'shared/header' %>
+  
+  <div id="debug"></div>
+
+  <% if flash[:notice] %>
+  <p id="flash" class="notice"><%= flash[:notice] %></p> 
+  <% end %>
+  
+  <% if flash[:error] %>
+  <p id="flash" class="error"><%= flash[:error] %></p> 
+  <% end %>
+
+  <div id="wrapper" class="container clear">
+    <%= yield %>
+  </div><!-- end wrapper -->
+  
+  <div id="modal_image_box" class="modalbox" style="display:none"></div>
+  <div id="comment_preview" class="modalbox" style="display: none"></div>
+
+  <%= render :partial => 'shared/footer' %>
+</body>
+</html>

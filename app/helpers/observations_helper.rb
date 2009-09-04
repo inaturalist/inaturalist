@@ -1,0 +1,2 @@
+module ObservationsHelper
+end

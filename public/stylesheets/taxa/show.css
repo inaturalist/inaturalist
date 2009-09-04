@@ -1,0 +1,203 @@
+#search_taxa {
+  width: 345px;
+  float: right;
+}
+
+#search_taxa label,
+#search_taxa input,
+#search_taxa .button {
+  margin-bottom: 0;
+}
+
+.aka .taxon_name {
+  display: block;
+}
+
+.aka .lexicon {
+  display: block;
+  margin-left: 1em;
+}
+
+#photoscol {
+  width: 500px;
+}
+
+#obscol {
+  width: 280px;
+}
+
+#seenit {
+  text-align: center;
+  margin: 1em 0;
+}
+
+#seenit a.button {
+  display: inline;
+  float: none;
+  margin-left: 0.25em;
+}
+
+#seenit .status {
+  padding: 0.25em;
+}
+
+#taxon_observations {
+  margin-bottom: 1em;
+}
+
+#taxon_observations .observations {
+  margin-bottom: 0.5em;
+}
+
+#taxon_observations .observation .icon,
+#taxon_observations .observation .place,
+#taxon_observations .observation .actions {
+  display: none;
+  
+}
+
+#taxon_observations h3 {
+  margin-bottom: 0.2em;
+}
+
+h3 .description {
+  font-size: 80%;
+}
+
+.column {
+  margin-bottom: 10px;
+}
+
+ul.taxonomic_tree li.protozoa          { list-style-image: url('/images/iconic_taxa/protozoa-15px.png'); }
+ul.taxonomic_tree li.plantae          { list-style-image: url('/images/iconic_taxa/plantae-15px.png'); }
+ul.taxonomic_tree li.fungi            { list-style-image: url('/images/iconic_taxa/fungi-15px.png'); }
+ul.taxonomic_tree li.animalia         { list-style-image: url('/images/iconic_taxa/animalia-15px.png'); }
+ul.taxonomic_tree li.mollusca         { list-style-image: url('/images/iconic_taxa/mollusca-15px.png'); }
+ul.taxonomic_tree li.arachnida        { list-style-image: url('/images/iconic_taxa/arachnida-15px.png'); }
+ul.taxonomic_tree li.insecta          { list-style-image: url('/images/iconic_taxa/insecta-15px.png'); }
+ul.taxonomic_tree li.actinopterygii   { list-style-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
+ul.taxonomic_tree li.amphibia         { list-style-image: url('/images/iconic_taxa/amphibia-15px.png'); }
+ul.taxonomic_tree li.reptilia         { list-style-image: url('/images/iconic_taxa/reptilia-15px.png'); }
+ul.taxonomic_tree li.aves             { list-style-image: url('/images/iconic_taxa/aves-15px.png'); }
+ul.taxonomic_tree li.mammalia         { list-style-image: url('/images/iconic_taxa/mammalia-15px.png'); }
+ul.taxonomic_tree li.unknown          { list-style-image: url('/images/iconic_taxa/unknown-15px.png'); }
+ul.taxonomic_tree .taxon .othernames {
+  display: block;
+}
+
+.column-separator {
+  clear: both;
+}
+
+.loading {
+  background: url('/images/spinner-small.gif') 0 50% no-repeat;
+  padding-left: 20px;
+}
+
+.loading.on_eeeeee {
+  background: url('/images/spinner-small-on_eeeeee.gif') 0 50% no-repeat;
+}
+
+/* Flaggings */
+#flag_this,
+#flaggings_heads_up {
+  padding-left: 18px;
+  margin-left: 0.2em;
+}
+
+#flag_this {
+  background: url('/images/silk/flag_grey.png') 0 50% no-repeat;
+}
+
+#flaggings_heads_up,
+#flag_this:hover {
+  background: url('/images/silk/flag_yellow.png') 0 50% no-repeat;;
+}
+
+/* Wikipedia Styles */
+
+#wikipedia_description {
+  overflow: hidden;
+}
+
+.infobox, 
+table.infobox, 
+.thumb, 
+.tright {
+  float: right;
+  clear: right;
+  margin-left: 20px;
+  margin-bottom: 1em;
+  background-color: #eee;
+  padding: 1em;
+}
+
+.gallerybox .thumb {
+  float: none;
+  margin: 0;
+  margin-bottom: 0.6em;
+  padding: 0;
+}
+
+.sisterproject {
+  width: 200px;
+}
+
+.sisterproject .floatleft {
+  width: auto;
+  float: left;
+}
+
+#wikipedia_description h1,
+#wikipedia_description h2,
+#wikipedia_description h3,
+#wikipedia_description h4 {
+  border-bottom: 1px solid #eee;
+}
+
+#wikipedia_description h3 {
+  line-height: 1.5;
+}
+
+#wikipedia_description .dablink {
+  margin: 1em;
+  font-style: italic;
+}
+
+#wikipedia_description .toc {
+  width: 100%;
+}
+
+#wikipedia_description .editsection {
+  float: right;
+  color: #888;
+}
+
+#wikipedia_description .thumbimage {
+  margin-bottom: 0.6em;
+}
+
+#wikipedia_description .thumbcaption {
+  font-style: italic;
+}
+
+#wikipedia_description .thumbcaption,
+#wikipedia_description .noprint {
+  color: #888;
+}
+
+#wikipedia_description .magnify {
+  width: auto;
+  float: right;
+  margin-left: 1em;
+}
+
+#wikipedia_description table,
+#wikipedia_description tr,
+#wikipedia_description td,
+#wikipedia_description th {
+  border: 0 none;
+}
+
+#wikipedia_description th {
+  padding: 0.4em;

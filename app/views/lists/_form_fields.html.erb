@@ -1,0 +1,49 @@
+<%- optionscol ||= nil -%>
+<%- list ||= object ||= @list -%>
+    <div class="column span-12">
+      <div class="field">
+        <label for="title">Title</label><br />
+        <%= f.text_field :title, :class => 'text' %>
+      </div>
+      <div class="field">
+        <label for="description">Description</label><br />
+        <%= f.text_area :description %>
+      </div>
+    </div>
+    <div class="column span-12 last">
+      <% if optionscol -%>
+        <%= optionscol %>
+      <% elsif list.new_record? -%>
+        <div id="typescol" class="column span-12 last">
+          <div class="last column span-6">
+            <%= f.check_box :type, {}, 'LifeList', nil %>
+            <label for="list_type">
+              Make it a life list?<br/>
+              <span class="description">
+                Life lists automatically fill up with new taxa as you observe them,
+                and they can be restricted to higher level parent taxa, e.g. a life
+                list of birds in the crow family (Corvidae).
+              </span>
+            </label>
+          </div>
+        </div>
+    
+        <div id="optionscol" class="column span-12 last">
+          <div id="lifelist_fields" class="type_fields">
+            <h3>What do you want to list?</h3>
+            <p class="ui description">
+              Choose a high-level taxon you'd like to show in this life list, like
+              "Aves" for birds, or "Amphibia" for amphibians.
+            </p>
+
+            <div class="field">
+              <label for="taxon_input_1">Add a taxon (e.g. "birds")</label>
+              <input type="text" name="taxon_name" id="taxon_input_1" class="text" />
+              <input type="hidden" name="taxa[][taxon_id]" value="" id="taxa_1"/>
+            </div>
+          </div><!-- /lifelist_fields -->
+        </div>
+      <% else -%>
+        &nbsp;
+      <% end -%>
+    </div>

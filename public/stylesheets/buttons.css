@@ -1,0 +1,157 @@
+/* Overrides to the Blueprint button plugin */
+a.button,
+.button, 
+input[type='button'],
+button {
+/*  Lifted from Blueprint plugin, which doesn't support <input type="button">*/
+  display:block;
+  float:left;
+  margin:0 0.583em 0.667em 0;
+  
+/*  Blueprint overrides*/
+  padding: 7px 10px 7px 7px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 110%;
+  
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border:1px solid #dedede;
+  text-decoration:none;
+  font-weight:bold;
+  cursor:pointer;
+  color: #36C;
+  background-color: white;
+}
+
+input[type='button']:hover,
+input[type='submit']:hover,
+input.button:hover {
+  background-color:#dff4ff;
+  border:1px solid #c2e1ef;
+  color:#336699;
+}
+
+input[type='button']:active,
+input[type='submit']:active,
+input.button:active {
+  background-color:#6299c5;
+  border:1px solid #6299c5;
+  color:#fff;
+}
+
+
+.buttonrow label,
+.buttonrow .inter,
+.buttonrow input.text {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 6px 0;
+  margin: 0pt 0.583em 0.667em 0pt;
+}
+
+.buttonrow .select {
+  float: left;
+  margin: 0pt 0.583em 0.667em 0pt;
+}
+
+
+.buttonrow input.text {
+ padding: 6px 0.4em; 
+}
+
+.buttonrow label,
+.buttonrow .inter {
+  font-size: 100%;
+}
+
+.centered.buttonrow {
+  text-align: center;
+}
+
+.centered.buttonrow .button,
+.centered.buttonrow .button .inter,
+.centered.buttonrow .button input.text {
+  float: none;
+  display: inline;
+}
+
+button {
+  padding: 2px 10px 1px 7px;   /* IE6 */
+}
+
+button[type] {
+  line-height:15px;           /* Safari */
+}
+
+*:first-child+html button[type] {
+  padding:2px 10px 1px 7px;   /* IE7 */
+}
+
+.button.default, 
+input[type='button'].default,
+input.button.default,
+button.default {
+  color: white;
+  background-color: #36C;
+  border-color: #36C;
+}
+
+.button.default.disabled,
+.button.default[disabled=disabled] {
+  background-color: #999;
+  color: #eee;
+  border-color: #999;
+}
+
+
+.okcancel.buttons {
+  clear: both;
+}
+
+.minor.button {
+  padding-top: 7px;
+  padding-bottom: 6px;
+  font-size: 100%;
+  border: 1px solid transparent; 
+  font-weight: normal;
+}
+
+.button.delete {
+  color: #999;
+}
+
+.inline.button {
+  display: inline;
+  float: none;
+}
+
+span.button {
+  display: inline;
+  padding: 0;
+  border: 0;
+  float: none;
+  background-color: transparent;
+}
+
+.link {
+  color: #3366CC;
+  border: 0;
+  background-color: transparent;
+  display: inline;
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+input[type='submit'].link:hover {
+  color: #003399;
+  border: 0;
+  background-color: transparent;
+  display: inline;
+  font-size: 1em;
+  cursor: hand;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,57 @@
+<% form_for @taxon_name do |n| %>
+  <%= error_messages_for :taxon_name %>
+  
+  <%= n.hidden_field :taxon_id %>
+  
+  <p class="ui">
+    <%= n.label :name %><br/>
+    <%= n.text_field :name %>
+  </p>
+  <p class="ui">
+    <%= n.label :lexicon %><br/>
+    <%= n.text_field :lexicon %>
+  </p>
+  <p class="ui">
+    <%= label_tag 'Valid?' %><br/>
+    <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, 'True' %>
+    <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, 'False' %>
+  </p>
+
+  <% unless @taxon_name.source_identifier.blank? -%>
+    <div class="column span-8">
+      <div class="description">
+        This taxon name was originally imported from an external name provider:
+      </div>
+      <p class="ui">
+        <%= n.label :name_provider %><br/>
+        <%= n.text_field :name_provider, :disabled => true %>
+      </p>
+
+      <p class="ui">
+        <%= n.label :source_url %><br/>
+        <%= n.text_field :source_url, :disabled => true %>
+      </p>
+      <p class="ui">
+        <%= n.label :source_identifier %><br/>
+        <%= n.text_field :source_identifier, :disabled => true %>
+      </p>
+    </div>
+  <%- end -%>
+
+  <%- unless @taxon_name.new_record? -%>
+    <div class="last column span-8">
+      <%= link_to "Edit more attributes for this taxon name", 
+        edit_taxon_name_path(@taxon, @taxon_name), 
+        :class => 'minor button readmore' %>
+    </div>
+  <%- end -%>
+
+  <%- unless @taxon_name.new_record? -%>
+    <%= link_to 'Delete this name', taxon_name_path(@taxon, @taxon_name),
+                :method => :delete,
+                :confirm => "Are you sure you want to delete this name?",
+                :class => 'minor delete button' %>
+  <%- end -%>
+  
+  <%= n.submit "Save", :class => 'default button' %>
+<% end %>

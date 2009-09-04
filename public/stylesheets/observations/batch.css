@@ -1,0 +1,71 @@
+#batchlink {
+  text-align: right;
+  font-size: 140%;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+h3 label {
+  font-weight: normal;
+  color: #666;
+}
+
+h3 label em {
+  font-style: normal;
+  color: black;
+}
+
+#taxa {
+/*  width: 100%;*/
+  height: 200px;
+}
+
+#new_batch_form input.text,
+#new_batch_form textarea {
+  width: 376px;
+  margin: 0;
+}
+
+.observation {
+  padding: 1em 0;
+  border-bottom: 1px solid #aaa;
+  background-color: #F9F9F9;
+}
+
+.headers {
+  border-bottom: 1px solid #aaa;
+}
+
+.observation:hover {
+  background-color: white;
+}
+
+#batchactions {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 1em 0;
+}
+
+#observation_form_links {
+  margin: 1em 0;
+}
+
+.compactfieldcontent textarea {
+  height: 200px;
+}
+
+.simpleTaxonSelector .status {
+  width: 155px;
+  float: left;
+}
+
+.simpleTaxonSelector .status.matched {
+  width: 175px;
+}
+
+.id_please_field {
+  width: 85px;
+  float: right;
+}

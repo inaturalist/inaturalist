@@ -1,0 +1,88 @@
+<%
+  if identification.is_agreement? && identification.user_id != identification.observation.user_id
+    verb = 'agrees'
+  else
+    verb = 'thinks'
+  end
+  
+  identification_classes = ''
+  if logged_in? and identification.user == current_user
+    identification_classes += ' yours'
+  end
+  if identification.user == identification.observation.user
+    identification_classes += ' owners'
+  end
+-%>
+<%- hide_actions ||= false -%>
+<%- extra ||= nil -%>
+<%- remote_actions ||= false -%>
+<div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>">
+  <div class="identification_image">
+    <%- if identification.taxon.flickr_photos.empty? -%>
+      <%= link_to(iconic_taxon_image(identification.taxon, :size => 32), 
+        identification.taxon) %>
+    <% else -%>
+      <% photo = identification.taxon.flickr_photos.first -%>
+      <%= link_to(
+        image_tag(
+          photo.square_url,
+          :title => "Photo: #{photo.flickr_username}"),
+        identification.taxon) %>
+    <% end -%>
+  </div>
+  <div class="identification_body">
+    <% if identification.user == current_user %>
+      <%= link_to("<strong>You</strong>", person_path(identification.user)) %>
+      <%= verb.chomp('s') %> this is
+    <% else %>
+      <%= link_to(identification.user.login, person_path(identification.user)) %>
+      <%= verb %> this is
+    <% end %>
+    <%= render :partial => 'shared/taxon', 
+               :locals => { :taxon => identification.taxon, 
+                            :singular => true,
+                            :include_article => true,
+                            :link_url => url_for(identification.taxon) } %>
+    <% unless hide_actions -%>
+      <% if logged_in? && identification.user != current_user %>
+        <span class="agree button">
+          <% if remote_actions -%>
+            <%= link_to_remote "Agree?", 
+               :url => {
+                 :controller => 'identifications',
+                 :action => 'agree',
+                 :observation_id => identification.observation_id,
+                 :taxon_id => identification.taxon_id },
+               :method => :post,
+               :loading => "$('##{id_for(identification)} .agree').text('').addClass('small pale inline loading status').removeClass('button').append('Loading...')",
+               :success => "$('##{id_for(identification)} .agree').remove()" %>
+          <%- else -%>
+            <%= link_to "Agree?", {
+                 :controller => 'identifications',
+                 :action => 'agree',
+                 :observation_id => identification.observation_id,
+                 :taxon_id => identification.taxon_id },
+               :method => :post %>
+          <% end -%>
+        </span>
+      <% end %>
+      <% if identification.user == current_user %>
+        <span class="button">
+          <% if remote_actions -%>
+            <%= link_to_remote "Remove", 
+               :url => identification_path(identification), 
+               :method => :delete,
+               :loading => "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" %>
+          <%- else -%>
+            <%= link_to "Remove", identification_path(identification), 
+              :method => :delete,
+              :onclick => 
+                "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" %>
+          <% end -%>
+        </span>
+      <% end %>
+    <% end -%>
+    
+    <%= extra if extra %>
+  </div>
+</div>

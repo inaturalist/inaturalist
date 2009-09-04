@@ -1,0 +1,164 @@
+<% content_for(:title) do %><%=h @user.login %>'s Profile<% end %>
+
+<% content_for(:extracss) do %>
+<style type="text/css" media="screen">
+  #profilecol .usericon {
+    margin: 0 1em 1em 1em;
+    border: 2px solid #ddd;
+  }
+  
+  .mini_user {
+    width: 300px;
+    float: left;
+  }
+  
+  .mini_user img {
+    float: left;
+  }
+</style>
+<!--[if lt IE 7]>
+  <%= stylesheet_link_tag 'blueprint/ie' %>
+<![endif]-->
+<% end -%>
+
+<% content_for(:extrajs) do %>
+  <!--[if lt IE 8]>
+  <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
+  <![endif]-->
+<% end %>
+
+<div id="pageheader" class="column span-24">
+  <%= link_to(
+    image_tag(@user.icon.url(:thumb), :class => 'usericon'),
+    person_path(@user)) %>
+  <h2>
+    <% if logged_in? && current_user.login == @user.login %>
+      Your
+    <% else %>
+      <%= @user.login %>'s
+    <% end %>
+    Profile
+  </h2>
+  <%= render :partial => 'users/subnav', 
+             :locals => { :user => @user } %>
+  
+  <% if logged_in? && current_user.login == @login %>
+  <div id="tools buttonrow">
+    <%= link_to "Edit your profile", edit_person_path(current_user), 
+                :class => "default button"%>
+  </div>
+  <% elsif logged_in? && current_user.has_role?(:admin) %>
+  <% if @user.active? %>
+  <div id="tools buttonrow">
+    <%= link_to "Suspend User", suspend_user_path(@user), 
+                :class => "default button"%>
+  </div>
+  <% else %>
+  <div id="tools buttonrow">
+    <%= link_to "Unsuspend User", unsuspend_user_path(@user), 
+                :class => "default button"%>
+  </div>
+  <% end %>
+
+  <% end %>
+</div>
+
+<div id="profilecol" class="column span-16">
+  <div class="readable description">
+    <% if @user.description.blank? %>
+      <%= @user.login %> is a naturalist!
+    <% else %>
+      <%= auto_link(markdown(@user.description)) %>
+    <% end %>
+  </div>
+
+  <hr/>
+  
+  <h3>Some people <% if is_me?(@user) %>you're following<% else %><%=h @user.login %> follows<% end %> (<%= link_to('view all', following_by_login_path(@user.login)) %>):</h3>
+  
+  <% if @user.friends.count > 0 %>
+    <% @user.friends.each_with_index do |friend, idx| %>
+      <div class="mini_user">
+        <%= link_to(
+              image_tag(friend.icon.url(:thumb), :class => 'usericon'),
+              person_by_login_path(friend.login)) %>
+        <p>
+          <%= link_to friend.login, person_by_login_path(friend.login) %>
+          <br/>
+          <%= link_to("#{friend.observations.count} Observations", observations_by_login_path(friend.login)) %>
+        </p>
+      </div>
+      <% if idx == 9; break; end;%>
+    <% end %>
+  <% else %>
+    <% if is_me?(@user) %>
+      <p>You're not following anyone. Following other naturalists will allow you to easily track their latest observations. Go find out what people are <%= link_to "observing", observations_path %> and make some new <%= link_to "acquaintances", people_path %>.</p>
+    <% else %>
+      <p><%= @user.login %> is not following anyone.</p>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="last column span-8">
+  <ul class="readable leafylist">
+  <% if is_me?(@user) %>
+    <li><%= link_to "Edit your profile", edit_person_path(current_user) -%></li>
+  <% end %>
+  </ul>
+
+  <h3><%= "#{@user.login}" %> at a glance:</h3>
+  <ul class="readable leafylist">
+    <li>
+      <%= link_to "#{@user.login}'s observations", 
+                  observations_by_login_path(@user.login) %>
+      <span class="description">
+        (<%= number_with_delimiter(@user.observations_count) %>,
+        <%= number_with_delimiter(@user.life_list_taxa_count) %> species)
+      </span>
+    </li>
+    <li>
+      <%= link_to "#{@user.login}'s lists", 
+                  lists_by_login_path(@user.login) %>
+      <span class="description">
+        (<%= number_with_delimiter(@user.lists.count) %>)
+      </span>
+    </li>
+    <li>
+      <%= link_to "#{@user.login}'s journal", 
+                  journal_by_login_path(@user.login) %>
+      <span class="description">
+        (<%= number_with_delimiter(@user.journal_posts_count) %>)
+      </span>
+    </li>
+    <li>
+      <%= link_to "#{@user.login}'s identifications", 
+                  identifications_by_login_path(@user.login) %>
+      <span class="description">
+        (<%= number_with_delimiter(@user.identifications_count) %>)
+      </span>
+    </li>
+    <li>
+      <% if @user.friendships.count > 0%>
+      <%= link_to "#{@user.login}'s following",
+          following_by_login_path(@user.login) %>
+      <% else %>
+        <%= "#{@user.login}'s following" %>
+      <% end %>
+      <span class="description">
+        (<%= number_with_delimiter(@user.friendships.count) %>)
+      </span>
+    </li>
+    <li>
+      <% if @user.followers.count > 0%>
+      <%= link_to "#{@user.login}'s followers",
+          followers_by_login_path(@user.login) %>
+      <% else %>
+        <%= "#{@user.login}'s followers" %>
+      <% end %>
+      <span class="description">
+        (<%= number_with_delimiter(@user.stalkerships.count) %>)
+      </span>
+    </li>
+  </ul>  
+</div>
+

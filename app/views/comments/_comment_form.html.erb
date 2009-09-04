@@ -1,0 +1,34 @@
+<%- remote ||= false -%>
+<%- session[:return_to] = request.request_uri -%>
+<%- unique_id ||= "new_comment_form-#{comment.parent.id}" -%>
+<div class="clear">
+  <% if logged_in? %>
+    <% if remote -%>
+      <div id="<%= unique_id %>-loading" class="loading status" style="display:none">Saving...</div>
+      <% remote_form_for(comment, 
+        :loading => "$('##{unique_id}-loading').show(); $('##{unique_id}').hide()",
+        :success => "$('##{unique_id}-loading').hide(); $('##{unique_id}').show(); $('##{unique_id} textarea').val('')",
+        :html => {
+          :id => "#{unique_id}"
+        }) do |f| %>
+        <%= render :partial => 'comments/comment_form_fields', :locals => {
+          :f => f, 
+          :comment => comment,
+          :unique_id => unique_id
+        } %>
+      <% end %>
+    <% else -%>
+      <% form_for(comment) do |f| %>
+        <%= render :partial => 'comments/comment_form_fields', :locals => {
+          :f => f, 
+          :comment => comment,
+          :unique_id => unique_id
+        } %>
+      <% end %>
+    <% end -%>
+  <% else %>
+    <%= link_to "Sign in", login_path %>
+    or <%= link_to "sign up", signup_path %>
+    to add comments.
+  <% end %>
+</div>

@@ -1,0 +1,72 @@
+<div id="header">
+  <div id="header_logo">
+    <a href="/" title="iNaturalist.org">
+      <img src="/images/logo-small.gif" alt="iNaturalist logo" />
+    </a>
+  </div>
+  
+  <div id="header_explore" class="tabs">
+    <ul>
+      <li class="tab<% if controller.class == ObservationsController and controller.action_name == 'index' %> active<% end %>">
+        <%= link_to "Observations", observations_path %>
+        <% if controller.class == ObservationsController and controller.action_name == 'index' %>
+          <img src="/images/active_tab_bottom.gif">
+        <% end %>
+      </li>
+      <li class="tab<% if controller.class == TaxaController %> active<% end %>">
+        <%= link_to "Species", taxa_path %>
+        <% if controller.class == TaxaController %>
+          <img src="/images/active_tab_bottom.gif">
+        <% end %>
+      </li>
+      <li class="tab<% if current_page?(:controller => :users, :action => :index) %> active<% end %>">
+        <%= link_to "People", people_path %>
+        <% if current_page?(:controller => :users, :action => :index) %>
+          <img src="/images/active_tab_bottom.gif">
+        <% end %>
+      </li>
+      <li class="tab<% if current_page?(:controller => :observations, :action => :id_please) %> active<% end %>">
+        <%= link_to "ID Please!", { :controller => :observations, :action => :id_please } %>
+        <% if current_page?(:controller => :observations, :action => :id_please) %>
+          <img src="/images/active_tab_bottom.gif">
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  
+  <div id="header_text" class="tabs">
+    <ul>
+      <% unless logged_in? %>
+      <li>
+        <%= link_to "Sign In", login_url %>
+        or <%= link_to "Sign Up!", signup_url %>
+      </li>
+      <% else %>
+        <li>
+          Welcome, 
+          <%= link_to current_user.login, user_path(:id => current_user.login) %>!
+          (<%= link_to "Sign Out", logout_path %>)
+        </li>
+        <li class="tab<% if current_page?(:controller => 'users', :action => 'dashboard') %> active<% end %>">
+          <%= link_to("Your Home", home_path) %>
+          <% if current_page?(:controller => 'users', :action => 'dashboard') %><img src="/images/active_tab_bottom.gif"><% end %>
+        </li>
+        <li class="tab<% if current_page?(:controller => :observations, :action => :by_login, :login => current_user.login) %> active<% end %>">
+          <%= link_to("Your Obs.", { :controller => :observations, :action => current_user.login}) %>
+          <% if current_page?(:controller => :observations, :action => :by_login, :login => current_user.login) %>
+          <img src="/images/active_tab_bottom.gif"/>
+          <% end %>
+          <span class="meta">(<%= link_to('add', new_observation_path) %>)</span>
+        </li>
+        <li class="tab<% if current_page?(:controller => :lists, :action => :by_login, :login => current_user.login) %> active<% end %>">
+          <%= link_to("Your Lists", { :controller => :lists, :action => current_user.login}) %>
+          <% if current_page?(:controller => :lists, :action => :by_login, :login => current_user.login) %><img src="/images/active_tab_bottom.gif"/><% end %>
+        </li>
+        <li class="tab<% if current_page?(:controller => :posts, :login => current_user.login) %> active<% end %>">
+          <%= link_to("Your Journal", journal_by_login_path(current_user.login)) %>
+          <% if current_page?(:controller => :posts, :login => current_user.login) %><img src="/images/active_tab_bottom.gif"/><% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

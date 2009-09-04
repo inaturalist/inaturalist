@@ -1,0 +1,15 @@
+<h1>Forgot Your Password?</h1>
+
+<%% form_for(@<%= file_name %>) do |f| %>
+  <%%= f.error_messages %>
+
+  <p>That's okay!  We forget ours too.  Give us your email address and we'll send you a link to reset your password.</p>
+
+  <p>
+    <%%= f.label :email %><br />
+    <%%= f.text_field :email %>
+  </p>
+  <p>
+    <%%= f.submit "Submit" %>
+  </p>
+<%% end %>

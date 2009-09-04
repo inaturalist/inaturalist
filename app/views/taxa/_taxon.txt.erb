@@ -1,0 +1,9 @@
+<%- 
+comname = taxon.common_name
+no_common ||= false
+if taxon.rank == 'species' or taxon.rank == 'infraspecies'
+  sciname = '%s' % taxon.name
+else
+  sciname = '%s %s' % [taxon.rank.capitalize, taxon.name]
+end
+-%><%= (comname.nil? || no_common) ? sciname : "#{comname.name} (#{sciname})" -%>

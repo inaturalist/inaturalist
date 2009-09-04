@@ -1,0 +1,26 @@
+.observations.table {
+  margin-bottom: 2em;
+}
+
+.observation.mini {
+  width: 200px;
+}
+
+.observations.table .observation .icon img.marker {
+  cursor: pointer;
+}
+
+#mapsizectrl {
+  display: none; /* Temporary, for testing */
+  text-align: right;
+  margin-bottom: 0.4em;
+}
+
+#mapcol {
+  min-height: 500px;
+}
+#map {
+  width: 310px;
+  height: 500px;
+  overflow: hidden;
+}

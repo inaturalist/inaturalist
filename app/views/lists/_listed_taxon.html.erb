@@ -1,0 +1,68 @@
+<%#
+  # Shows a single listed taxon. 
+  #   * listed_taxon - the listed taxon, defaults to the instance var 
+  #       @listed_taxon
+  #   * current_user_life_list_taxon_ids - array of all the taxon ids in the 
+  #       life list of the current_user, defaults to  @current_user_life_list_taxon_ids
+  #   * seenit - whether or not the current user has seen the taxon in the 
+  #       listed_taxon.  Defaults to false.
+%>
+<%- listed_taxon ||= @listed_taxon -%>
+<%- list ||= @list ||= @listed_taxon.list %>
+<%- current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids -%>
+<%- seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) -%>
+<%- seenit ||= false -%>
+<%- rendered_taxon_name = capture do -%>
+  <%= render(:partial => 'shared/taxon.html.erb', 
+             :locals => {:taxon => listed_taxon.taxon}) -%>
+<%- end -%>
+<div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unkown' %> taxon-<%= listed_taxon.taxon.id %>">
+  <div class="column image">
+    <%- if listed_taxon.taxon.flickr_photos.empty? -%>
+      <%= link_to '', listed_taxon.taxon %>
+    <% else -%>
+      <%= modal_image(listed_taxon.taxon.flickr_photos.first) %>
+    <% end -%>
+  </div>
+  <div class="actions">
+    <% if logged_in? && list.editable_by?(current_user) -%>
+      <%= link_to_remote("&times;", 
+        :url => formatted_listed_taxon_path(listed_taxon, :json), 
+        :method => :delete,
+        :datatype => 'text',
+        :confirm => "Are you sure you want to remove #{default_taxon_name(listed_taxon.taxon)} from this list?", 
+        :loading => "$('#listed_taxon_#{listed_taxon.id}').fadeOut()",
+        :html => {
+          :title => "Remove from list",
+          :class => "description removelink"
+        }) %>
+    <% end -%>
+    <div class="seenit">
+      <%= link_to("Add an observation", 
+        new_observation_path(:taxon_id => listed_taxon.taxon), 
+        :title => "Add an observation of #{default_taxon_name(listed_taxon.taxon)}",
+        :class => '') %>
+    </div>
+  </div>
+  <div class="column details">
+    <%= link_to(rendered_taxon_name,
+                listed_taxon.taxon) %>
+    <% if listed_taxon.last_observation %>
+      <div class="observation description">
+        Last seen
+        <a href="<%= observation_url(listed_taxon.last_observation) %>">
+        <%- if listed_taxon.last_observation.observed_on -%>
+          on <%= listed_taxon.last_observation.observed_on.to_s(:long) -%>
+        <%- else -%>
+          on a past date
+        <%- end -%>
+        <%- if listed_taxon.last_observation.place_guess -%>
+          in <%= listed_taxon.last_observation.place_guess -%>
+        <%- else -%>
+          in the Universe
+        <%- end -%>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>

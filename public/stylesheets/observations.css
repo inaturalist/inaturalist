@@ -1,0 +1,569 @@
+/*
+ * Observation Styles
+ * Styles for visualizing individual observations.  Most assume a container of 
+ * the class .observations and children of the class .observation.
+ */
+
+.observations h4 {
+  display: none;
+  margin: 0;
+}
+
+.observations .details h4 {
+  display: block;
+}
+
+.observation .description.attribute {
+  color: #333;
+}
+
+.observation div.description p {
+  font-style: italic;
+}
+
+.observation .description.attribute img,
+.observation .details.attribute img {
+  max-width: 400px;
+  height: auto;
+}
+
+.observation .actions ul {
+  display: inline;
+  list-style: none;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.observation .actions ul li {
+  display: inline;
+}
+
+.observation .actions ul li:after {
+  content: ' | ';
+  color: #888;
+}
+
+.observation .actions ul li.last:after {
+  content: '';
+}
+
+/* Table */
+.observations.table {
+  display: table;
+  width: 100%;
+}
+
+.observations.table .headerrow {
+  display: table-header-group;
+}
+
+.observations.table .observation {
+  display: table-row;
+}
+
+.observations.table .observation:hover {
+  background-color: #F7F7F7;
+}
+
+.observations.table .observation .attribute,
+.observations.table .header {
+  display: table-cell;
+  border-bottom: 1px solid #eee;
+  padding: 0.5em;
+  vertical-align: top;
+}
+
+.observations.table .header {
+  border-color: #ccc;
+  color: #888;
+  padding: 0em 0.5em 0.25em;
+}
+
+.observations.table .header a {
+  color: #888;
+  white-space: nowrap;
+  display: block;
+}
+
+.observations.table .header a:after {
+  content: '\00A0';
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+.observations.table .header.order_by a:after,
+.observations.table .header:hover a:after {
+  background: right center url(/images/toggle_arrow_up.png) no-repeat;
+  visibility: visible;
+}
+
+.observations.table .header.order_by.desc a:after {
+  background: right center url(/images/toggle_arrow_down.png) no-repeat;
+  visibility: visible;
+}
+
+.observations.table .header.order_by a:after,
+.observations.table .header.order_by.desc a:after {
+  color: #aaa;
+}
+
+.observations.table .icon.header,
+.observations.table .header.actions {
+  color: transparent;
+}
+
+.observations.table .photos.attribute {
+  max-width: 120px;
+}
+
+.observations.table .photos .nophoto {
+  border: 1px dashed #eee;
+  line-height: 1;
+  padding: 0.5em;
+}
+
+.observations.table .observation .species_guess {
+  width: 25%;
+  line-height: 1.2;
+}
+
+.observations.table .taxon .othernames {
+  display: block;
+}
+
+.observations.table .observed_on,
+.observations.table .created_at {
+  color: #888;
+  font-style: italic;
+}
+
+.observations.table .actions ul,
+.observations.table .identifications_count {
+  display: block;
+}
+
+.observations.table .observation .actions ul.counts li:after {
+  content: '';
+}
+
+/* Mini */
+
+.observations.mini .observation {
+  position: relative;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  padding: 5px 0;
+}
+
+.observations.mini .observation:after {
+  content: '.';
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  display: block;
+}
+
+.observations.mini .observed_on,
+.observations.mini .created_at,
+.observations.mini .species_guess,
+.observations.mini .place,
+.observations.mini .user,
+.observations.mini .actions,
+.observations.mini .details {
+  padding-left: 30px;
+}
+
+.observations.mini .icon {
+  position: absolute;
+}
+
+.observations.mini .photos.attribute {
+  max-width: 80px;
+}
+
+.observations.mini .photos .photolist .photo.nophoto {
+  border: 1px dashed #eee;
+  line-height: 1;
+  padding: 0.5em;
+}
+
+
+.observations.mini .user,
+.observations.mini .observed_on,
+.observations.mini .created_at,
+.observations.mini .place {
+  font-size: 100%;
+  position: relative;
+  padding-left: 85px;
+}
+
+.observations.mini .user .label,
+.observations.mini .observed_on .label,
+.observations.mini .created_at .label,
+.observations.mini .place .label {
+  display: block;
+  width: 50px;
+  position: absolute;
+  left: 30px;
+  color: #888;
+  font-style: italic;
+  font-size: 100%;
+  font-family: "Trebuchet MS",Arial,sans-serif;
+  line-height: 1.5;
+}
+
+
+
+.observations.mini .species_guess {
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.observations.mini .photos {
+  float: right;
+  margin-left: 4px;
+}
+
+.observations.mini .details {
+  margin: 0;
+}
+
+.observations.mini .actions {
+  clear: both;
+}
+
+/* Compact Mini */
+.observations.mini.compact .observation .othernames,
+.observations.mini.compact .observation .photo,
+.observations.mini.compact .observation .time,
+.observations.mini.compact .observation .place {
+  display: none !important;
+}
+
+.observations.mini.compact .observation .user,
+.observations.mini.compact .observation .observed_on,
+.observations.mini.compact .observation .created_at {
+  padding-left: 30px;
+}
+
+.observations.mini.compact .observation .user .label,
+.observations.mini.compact .observation .observed_on .label,
+.observations.mini.compact .observation .created_at .label {
+  display: inline;
+  position: static;
+}
+
+.observations.mini.compact .observation .label:after {
+  content: ': ';
+}
+
+.observations.mini.compact .observation .photo:first-child {
+  display: block !important;
+}
+
+/* Infowindow */
+.observations.infowindow {
+  margin: 0;
+}
+
+.observations.infowindow .observation {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+  width: 400px;
+  max-height: 300px;
+}
+
+.observations.infowindow .observation.longdesc {
+  overflow: auto;
+}
+
+.observations.infowindow .details {
+  display: block;
+  margin-top: 5px;
+}
+
+.observations.infowindow .observation .details.attribute img {
+  max-width: 300px;
+  max-height: 200px;
+  height: auto;
+}
+
+.observations.infowindow .observation .attribute.icon {
+  display: inherit !important;
+}
+
+.observations.infowindow .observation .attribute.control {
+  display: none !important;
+}
+
+/* New Observation */
+.observation.new .icon,
+.observation.new .observed_on,
+.observation.new .species_guess,
+.observation.new .place,
+.observation.new .photos,
+.observation.new .user {
+  display: block;
+  float: none;
+  width: auto;
+  padding: 0;
+}
+
+.observation.new, 
+.observations.table .observation.new,
+.observations.mini .observation.new {
+  position: relative;
+  padding: 1em 1em 0 1em;
+  margin-bottom: 1em;
+}
+
+.observation.new .attribute {
+  margin-bottom: 1em;
+}
+
+.observation.new label.left {
+  position: absolute;
+  left: 1em;
+  width: 75px;
+  text-align: right;
+}
+
+.observation.new input[type='text'],
+.observation.new input.text, 
+.observation.new select, 
+.observation.new textarea {
+  background-color: #fff;
+  margin: 0;
+  padding: 0.2em;
+  font-size: 120%;
+  width: auto;
+}
+
+.observation.new .date select {
+  width: auto;
+}
+
+.observation.new .place input.text,
+.observation.new .observed_on input.text {
+  margin: 0pt 0.583em 0.667em 0pt;
+  padding: 6px 0.2em 6px 0.2em;
+}
+.observation.new .place .description em {
+  color: HotPink;
+}
+
+.observation.new .species_guess input.text {
+  width: 100%;
+}
+
+.observation.new .place input.text {
+  width: 50%;
+}
+
+.observation.new .status {
+  display: inline;
+  text-align: left;
+}
+
+.observation.new #id_please_fields {
+  display:inline;
+  width: auto;
+  float: right;
+}
+
+.observation.new .details {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 1em;
+}
+
+.observation.new #observation_description {
+  width: 100%;
+  height: 6em;
+}
+
+.observation.new .okcancel.buttons {
+  float: right;
+}
+
+.observation.new #id_please_wrapper {
+  width: auto; 
+  float: right; 
+  line-height: 100%;
+  margin: 5px 0 0 0.4em;
+}
+
+.observation.new #id_please_wrapper input {
+  margin: 0;
+}
+
+.observation.new .status {
+  display: block;
+  padding: 0;
+  border: none;
+  text-align: left;
+  margin: 3px auto;
+}
+
+.observation.new .status,
+.observation.new .status .taxon {
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 100%;
+}
+
+.observation.new .status.loading {
+  color: #888;
+  padding-left: 20px;
+  background: url('/images/spinner-small-999999_on_ffff99.gif') transparent 0px 1px no-repeat;
+}
+
+.observation.new .status.success {
+  color: green;
+  padding-left: 20px;
+  background: url('/images/silk/accept.png') 0 0 no-repeat;
+}
+
+.observation.new .status.unmatched {
+  color: #888;
+  padding-left: 20px;
+  background: url('/images/silk/help.png') 0 0 no-repeat;
+}
+
+.observation.new .attribute.error {
+  padding: 1em;
+}
+
+.observation.new .status ul.matches {
+  margin-bottom: 0;
+}
+
+#no_obs_message {
+  font-size: 180%;
+  margin: 2em;
+  text-align: center;
+}
+
+#no_obs_message .inline.button {
+  font-size: 90%;
+}
+
+#feeds {
+  text-align: right;
+}
+
+/* Obs form styles */
+
+.observationform .field {
+  position: relative;
+}
+
+.observationform .field .id_please {
+  position: absolute;
+  top: 0;
+  right: 0;
+  vertical-align: middle;
+}
+
+.observationform .field .id_please input {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.observationform .field .id_please label {
+  display: inline;
+  font-weight: normal;
+  color: #888;
+}
+
+.observationform .latlonfields input {
+  display: block;
+}
+
+.observationform .latlonfields.status label,
+.observationform .latlonfields.status input {
+  display: inline;
+  color: #888;
+  font-size: 0.8em;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+  background-color: transparent;
+  width: 7.8em;
+}
+
+.observationform .latlonfields.status label:after {
+  content: ':';
+}
+
+.observationform select {
+  width: auto;
+}
+
+.observationform .observed_on_string {
+  margin-bottom: 0.2em;
+}
+
+.observationform .time_zone {
+  color: #888;
+}
+
+a#kmllink {
+  background-image: url(/images/google_earth.png);
+}
+
+a#csvlink {
+  background-image: url(/images/silk/table.png);
+}
+
+#batchformcol {
+  margin-bottom: 1em;
+}
+
+#batchformcol h3 a {
+  color: black;
+  padding-left: 13px;
+  background: left center url(/images/toggle_arrow_down.png) no-repeat;
+}
+
+#batchformcol h3 a:hover {
+  color: #039;
+}
+
+#batchform.closed h3 a {
+  padding-left: 13px;
+  background: left center url(/images/toggle_arrow_right.png) no-repeat;
+}
+
+#batchform,
+#batchformcol .observation,
+#batchformcol .observation:hover {
+  border: 0 none;
+  background-color: #ffc;
+  margin-bottom: 0;
+}
+
+.batchcontrols {
+  clear: both;
+  text-align: center;
+  margin: 0 auto;
+  padding: 1.5em 0 1em;
+}
+
+.batchcontrols .button {
+  float: none;
+  display: inline;
+}
+
+#detailscol .span-14 {
+  width: 540px;
+}
+
+#detailscol textarea {
+  width: 520px;
+}
+
+.observation .error ul {
+  margin-bottom: 0;
+}

@@ -1,0 +1,12 @@
+<% content_for(:title) do -%>
+  New Taxon Name for <%= default_taxon_name @taxon %>
+<% end -%>
+<h1>
+  New Taxon Name for
+  <%= render :partial => "shared/taxon", :locals => { 
+    :taxon => @taxon, :link_url => url_for(@taxon) } %>
+</h1>
+
+<%= render :partial => 'form' %>
+
+  

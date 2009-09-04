@@ -1,0 +1,20 @@
+# Example of a local database setup.
+login: &login
+    adapter: mysql
+    username: root
+    host: localhost
+    # password: password
+    socket: /opt/local/var/run/mysql5/mysqld.sock # Apple OSX
+    # socket: /var/run/mysqld/mysqld.sock # Ubuntu
+
+development:
+  <<: *login
+  database: inaturalist_development
+
+test:
+  <<: *login
+  database: inaturalist_test
+
+production:
+  <<: *login
+  database: inaturalist_production

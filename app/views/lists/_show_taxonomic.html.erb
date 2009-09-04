@@ -1,0 +1,43 @@
+<ul class="listed_taxa taxonomic_view first">
+  <% if @unclassified && !@unclassified.empty? -%>
+    <li>
+      Unclassified
+      <ul class="listed_taxa taxonomic_view">
+        <% for lt in @unclassified %>
+          <li class="clear">
+            <%= render :partial => 'lists/show_listed_taxon', :locals => {
+              :listed_taxon => lt
+            } %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end -%>
+  <%- containers = [] %>
+  <% @listed_taxa.each_with_index do |lt, i| %>
+    <%# if previous DOES NOT contain current %>
+    <% unless lt == @listed_taxa.first -%>
+      <% while !containers.empty? && !lt.taxon.in_taxon?(containers.last.taxon) %>
+        <%- containers.pop -%>
+        </ul></li>
+      <% end %>
+    <% end -%>
+    
+    <li class="clear">
+      <% if lt.new_record? -%>
+        <%= render :partial => "shared/taxon", :locals => { 
+          :taxon => lt.taxon,
+          :link_url => url_for(lt.taxon)
+         } %>
+      <% else -%>
+        <%= render :partial => 'lists/show_listed_taxon', :locals => {
+          :listed_taxon => lt
+        } %>
+      <% end -%>
+      <% if @listed_taxa[i+1] && @listed_taxa[i+1].taxon.in_taxon?(lt.taxon) -%>
+        <%- containers.push(lt) %>
+        <ul class="listed_taxa taxonomic_view">
+      <% end -%>
+  <% end %>
+</ul>
+

@@ -1,0 +1,10 @@
+    <div id="newobsnav" class="readable">
+      <% links = [
+        ['new', link_to("Add Single Observation", new_observation_path)],
+        ['new_batch', link_to("Add a Batch", new_observation_batch_path)],
+        ['import', link_to("Import", import_observations_path)]
+      ].reject {|action, link| controller.action_name == action} -%>
+      <% for piece in links.map(&:last).join(' | ') %>
+        <%= piece %>
+      <% end %>
+    </div>

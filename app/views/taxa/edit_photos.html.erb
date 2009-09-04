@@ -1,0 +1,22 @@
+<div id="edit_taxon_photos_<%= @taxon.id %>" class="edit_taxon_photos">
+  <span class="close corner">&times;</span>
+  <h2 style="margin: 0">Choose photos for this taxon</h2>
+  <div class="readable description" style="margin-bottom: 1em">
+    Choose <a href="http://creativecommons.org/">CC</a>-licensed photos on 
+    Flickr. Try to choose ones that <em>show diagnostic features</em> and 
+    <em>look good as icons</em>.  The <em>first is the default</em>.  If 
+    you're feeling nice, leave the photographer a "thank-you" comment with a 
+    link back here!
+  </div>
+  <% form_tag({:action => 'update_photos'}) do %>
+    <div class="taxon_photos clear">
+      <%= render :partial => "flickr/photo_list_form", :locals => { 
+        :photos => @taxon.flickr_photos,
+        :checked => true } %>
+    </div>
+    <div class="buttonrow">
+      <%= submit_tag 'Save photos', :class => 'default button' %>
+      <%= link_to_function 'Cancel', 'return false;', :class => 'button close' %>
+    </div>
+  <% end %>
+</div>

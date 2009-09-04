@@ -1,0 +1,49 @@
+<% 
+=begin
+= Mini Observation Partial
+
+Markup for an observation to be viewed as a mini component of another view, 
+e.g. in GMaps infowindow.  
+    
+Requirements:
+ * pass in a local variable called 'observation'
+ 
+Note:
+  * see observations.css for styles
+=end
+-%>
+<% cache("observations/_mini/#{observation.id}") do %>
+<div id="mini-observation-<%= observation.id %>" class="readable mini observation">
+  <% unless observation.flickr_photos.empty? %>
+  <a href="<%= observation_path(observation) %>">
+    <%= image_tag observation.flickr_photos[0].square_url, :class => "left photo" %>
+  </a>
+  <% end %>
+  <div class="title">
+    <% unless observation.species_guess.nil? or observation.species_guess.empty? %>
+    <%= link_to observation.species_guess, observation_path(observation) %>,
+    <% else %>
+    <%= link_to '<i>Something...</i>', observation_path(observation) %>,
+    <% end %>
+    observed by <%= link_to observation.user.login, 
+                            observations_by_login_path(observation.user.login) %>
+  </div>
+  <div class="meta">
+    <% if observation.observed_on %>
+      on <span class="date"><%=h observation.observed_on.to_s(:long) %></span>
+    <% end %>
+    <% unless observation.place_guess.blank? %>
+      in
+      <%=h observation.place_guess %>
+    <% end %>
+  </div>
+  
+  <% if defined? include_description and include_description %>
+  <div class="readable description attribute">
+    <% description_length ||= 140 %>
+    <%= truncate(strip_links(observation.description), description_length) %>
+    <%= link_to("View full observation", observation, :class => "readmore")%>
+  </div>
+  <% end %>
+</div>
+<% end %>

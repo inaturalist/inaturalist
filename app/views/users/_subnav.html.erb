@@ -1,0 +1,42 @@
+<ul id="subnav" class="clear">
+  <li>
+    <% if current_page?(:controller => :observations, :action => :by_login) %>
+      <span id="observations_link" class="active">Observations</span> 
+    <% else %>
+      <%= link_to 'Observations', observations_by_login_path(user.login), :id => "observations_link" %>
+    <% end %>
+  </li>
+  <li>
+    <% if current_page?(:controller => :lists, :action => :by_login) %>
+      <span id="lists_link" class="active">Lists</span>
+    <% else %>
+      <%= link_to 'Lists', lists_by_login_path(user.login), :id => "lists_link" %>
+    <% end %>
+  </li>
+  <li>
+    <% if @controller.request.request_uri =~ /\/journal\// %>
+      <span id="journal_link" class="active">Journal</span>
+    <% else %>
+      <%= link_to 'Journal', journal_by_login_path(:login => user.login), :id => "journal_link" %>
+    <% end %>
+  </li>
+  <li>
+    <% if current_page?(:controller => :identifications, :action => :by_login) %>
+      <span id="identifications_link" class="active">Identifications</span>
+    <% else %>
+      <%= link_to 'Identifications', identifications_by_login_path(:login => user.login), :id => "identifications_link" %>
+    <% end %>
+  </li>
+  <li>
+    <% if current_page?(:controller => :users, :action => :show) %>
+      <span id="profile_link" class="active">Profile</span>
+    <% else %>
+      <%= link_to 'Profile', person_by_login_path(:login => user.login), :id => "profile_link" %>
+    <% end %>
+  </li>
+  <li>
+  	<% if is_not_me?(user) %>
+      <%= friend_button current_user, user, {:id => 'follow_button'} %>
+  	<% end %>
+  </li>
+</ul>

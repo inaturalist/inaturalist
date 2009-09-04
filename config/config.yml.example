@@ -1,0 +1,58 @@
+# Example services and site config. Keys in all caps are globally scoped
+# You must replace these values with ones tailored to your own site.
+# For external services, follow the link in the note to go to the signup
+# page for the service.
+# 
+# The keys are all set to the length of a valid key, and the range of
+# acceptable characters. 
+base: &base
+    general:
+        SITE_NAME: yoursite.org
+    rest_auth:
+        # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
+        REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
+        REST_AUTH_DIGEST_STRETCHES: 10
+    rails:
+        #Issue {rake secret} to get a new one
+        session_key: _yoursite_session
+        secret: 09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af
+    google_analytics:
+        #http://www.google.com/analytics/sign_up.html
+        tracker_id: UA-090909-9
+        domain_name: yoursite.org
+    re_captcha:
+        #https://admin.recaptcha.net/accounts/login/?next=/recaptcha/createsite/
+        RCC_PUB: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az
+        RCC_PRIV: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az
+    ubio:
+        #http://www.ubio.org/index.php?pagename=form
+        UBIO_KEY: 09af09af09af09af09af09af09af09af09af09af   
+    yahoo_dev_network:
+        #first need Yahoo account: https://edit.yahoo.com/registration
+        #then need to sign up for Yahoo Developers Network app interface:
+        #https://developer.apps.yahoo.com/wsregapp/
+        YDN_APP_ID: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
+    hoptoad:
+      # http://www.hoptoadapp.com/
+      api_key: '09azAZ09azAZ09azAZ09azAZ09azA'
+
+development:
+    <<: *base
+    flickr:
+        #http://www.flickr.com/services/api/keys/apply/
+        FLICKR_API_KEY: 09af09af09af09af09af09af09af09af
+        FLICKR_SHARED_SECRET: 09af09af09af09af
+
+test:
+    <<: *base
+    flickr:
+        #http://www.flickr.com/services/api/keys/apply/
+        FLICKR_API_KEY: 09af09af09af09af09af09af09af09af
+        FLICKR_SHARED_SECRET: 09af09af09af09af
+
+production:
+    <<: *base
+    flickr:
+        #http://www.flickr.com/services/api/keys/apply/
+        FLICKR_API_KEY: 09af09af09af09af09af09af09af09af
+        FLICKR_SHARED_SECRET: 09af09af09af09af

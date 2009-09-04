@@ -1,0 +1,91 @@
+CommunityEndedADayAgoNotComplete:
+  id: 1
+  description: "This goal is incomplete and ended a day ago."
+  number_of_contributions_required: 10
+  goal_type: "community"
+  completed: 0
+  ends_at: <%= 1.day.ago.to_s :db %>
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+# incomplete
+CommunityNotCompletedNotEnded:
+  id: 2
+  description: "This goal is not completed and ends a day in the future."
+  number_of_contributions_required: 10
+  goal_type: "community"
+  completed: 0
+  ends_at: <%= 1.day.from_now.to_s :db %>
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+CommunityCompletedNotEnded:
+  id: 3
+  description: "This goal is completed and ends a day in the future."
+  number_of_contributions_required: 10
+  goal_type: "community"
+  completed: 1
+  ends_at: <%= 1.day.from_now.to_s :db %>
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+CommunityCompletedEnded:
+  id: 4
+  description: "This goal is completed and ended a day ago."
+  number_of_contributions_required: 10
+  goal_type: "community"
+  completed: 1
+  ends_at: <%= 1.day.ago.to_s :db %>
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+CommunityIncompleteDoesntEnd:
+  id: 5
+  description: "This goal is incomplete and does not end."
+  number_of_contributions_required: 10
+  goal_type: "community"
+  completed: 0
+  ends_at:
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+CommunityCompleteDoesntEnd:
+  id: 6
+  description: "This goal is completed and does not end."
+  number_of_contributions_required: 10
+  goal_type: "community"
+  completed: 1
+  ends_at:
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+IndividualGoalEndedADayAgo:
+  id: 7
+  description: "This goal is an individual goal that ended a day ago."
+  number_of_contributions_required: 10
+  goal_type: "individual"
+  completed: 0
+  ends_at: <%= 1.day.ago.to_s :db %>
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+# incomplete
+IndividualGoalNotEnded:
+  id: 8
+  description: "This goal is an individual goal that ends a day in the future."
+  number_of_contributions_required: 10
+  goal_type: "individual"
+  completed: 0
+  ends_at: <%= 1.day.from_now.to_s :db %>
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+
+IndividualGoalDoesntEnd:
+  id: 9
+  description: "This goal is an individual goal that does not end. It can be used to test an individual's goal completion."
+  number_of_contributions_required: 10
+  goal_type: "individual"
+  completed: 0
+  ends_at:
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>

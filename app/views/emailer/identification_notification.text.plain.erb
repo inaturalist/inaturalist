@@ -1,0 +1,10 @@
+<%= @identifier.login %> <%= @identification.is_agreement? ? 'agrees' : 'thinks' %> your observation "<%= @observation.to_plain_s(:no_user => true) %>" is 
+
+<%= render :partial => "taxa/taxon.txt.erb", :locals => { :taxon => @identification.taxon } %>
+(<%= taxon_url(@identification.taxon) %>)
+
+<% unless @identification.body.blank? %>"<%= @identification.body %>"<% end %>
+
+View the observation: <%= observation_url(@observation) %>
+
+<%= render :partial => 'footer' %>

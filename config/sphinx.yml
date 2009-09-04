@@ -1,0 +1,11 @@
+all: &all
+  morphology: stem_en
+
+development:
+  <<: *all
+
+test:
+  <<: *all
+
+production:
+  <<: *all

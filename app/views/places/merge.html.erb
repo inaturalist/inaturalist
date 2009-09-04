@@ -1,0 +1,143 @@
+<%- content_for(:title) do -%>
+  Merging <%=h @place.name %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
+  <style type="text/css" media="screen">
+    .ac_loading {
+      background: white url('/images/spinner-small.gif') 340px 5px no-repeat;
+    }
+    
+    td.target, td.merge_target {
+      width: 40%;
+    }
+    
+    td.attr_name {
+      font-weight: bold;
+    }
+    
+    #merge_target_name {
+      width: 350px;
+    }
+    
+    thead th {
+      vertical-align: middle;
+    }
+    
+    tr.fake td {
+      padding-top: 0;
+      padding-bottom: 0;
+      border: 0 none;
+    }
+    
+    .map {
+      width: 370px;
+      height: 120px;
+    }
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag 'jquery', 
+                             "jquery/jquery.ui.all.packed.js", 
+                             'inaturalist/map2', 
+                             'jquery/plugins/jquery.url.packed.js',
+                             'jquery/plugins/jquery.autocomplete.min.js',
+                             'jquery/plugins/inat/place_autocomplete.js' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#merge_target_name').placeAutocomplete('<%= url_for(:action => "autocomplete") %>', {
+        placeIdField: $('#merge_target_id'),
+        afterChoosePlace: function(input, placeJSON) {
+          $.each(placeJSON, function(i, val) {
+            $('#keepers .merge_target.' + i).html(val);
+          });
+          window.mergeTargetMap.removePlaces();
+          window.mergeTargetMap.addPlace(placeJSON);
+          window.mergeTargetMap.zoomToPlaces();
+        },
+        afterClearPlace: function(input) {
+          $('#keepers .merge_target').html('');
+          window.mergeTargetMap.removePlaces();
+        }
+      });
+      
+      <% if @merge_target %>
+      $.fn.placeAutocomplete.choosePlace($('#merge_target_name'), <%= @merge_target.to_json(:methods => [:place_type_name]) %>);
+      <% end %>
+      
+      window.placeMap = iNaturalist.Map.createMap({
+        div: 'place_map', controls: 'small', type: G_NORMAL_MAP});
+      window.placeMap.addPlace(<%= @place.to_json %>);
+      window.placeMap.zoomToPlaces();
+      
+      window.mergeTargetMap = iNaturalist.Map.createMap({
+        div: 'merge_target_map', controls: 'small', type: G_NORMAL_MAP});
+      <% if @merge_target %>
+        window.mergeTargetMap.addPlace(<%= @merge_target.to_json %>);
+        window.mergeTargetMap.zoomToPlaces();
+      <% end %>
+    });
+  </script>
+<%- end -%>
+
+<div id="pageheader">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo; Back to #{@place.name}", @place, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  <h2>Merging Places</h2>
+  <p class="description">
+    Merge two places together. All species on the checklists will be merged,
+    as well as any geographic data.
+  </p>
+</div>
+
+<% form_tag do %>
+<table width="100%">
+  <thead>
+    <tr class="fake">
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><label for="merge_target_name">Find a Place</label></td>
+    </tr>
+    <tr>
+      <th>&nbsp;</th>
+      <th><%= link_to h(@place.name), @place %></th>
+      <th>What to keep</th>
+      <th>
+        <input type="hidden" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id">
+        <input type="text" name="merge_target_name" value="<%= @merge_target.name if @merge_target %>" id="merge_target_name">
+      </th>
+    </tr>
+  </thead>
+  <tbody id="maps">
+    <tr>
+      <td>&nbsp;</td>
+      <td><div id="place_map" class="map"></div></td>
+      <td>&nbsp;</td>
+      <td><div id="merge_target_map" class="map"></div></td>
+    </tr>
+  </tbody>
+  <tbody id="keepers">
+    <% for attr_name in %w"name place_type_name" %>
+      <tr>
+        <td class="attr_name"><%= attr_name.humanize %></td>
+        <td class="target <%= attr_name %>"><%= @place.send(attr_name) %></td>
+        <td>
+          <label for="<%= "keep_#{attr_name}_left" %>">&larr;</label>
+          <%= radio_button_tag "keep_#{attr_name}", 'left', false %>
+          <%= radio_button_tag "keep_#{attr_name}", 'right', true %>
+          <label for="<%= "keep_#{attr_name}_right" %>">&rarr;</label>
+        </td>
+        <td class="merge_target <%= attr_name %>"><%= @merge_target.send(attr_name) if @merge_target %>&nbsp;</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="buttonrow">
+  <%= submit_tag 'Merge', :class => 'default button', :confirm => "Are you sure you want to merge these places?  This cannot be undone." %>
+  <%= link_to "Cancel", @place, :class => 'button' %>
+</div>
+<% end %>

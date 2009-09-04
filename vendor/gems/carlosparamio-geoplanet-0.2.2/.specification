@@ -1,0 +1,79 @@
+--- !ruby/object:Gem::Specification 
+name: carlosparamio-geoplanet
+version: !ruby/object:Gem::Version 
+  version: 0.2.2
+platform: ruby
+authors: 
+- Carlos Paramio
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-04-01 00:00:00 -07:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: rest-client
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "0.9"
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: json
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.1.3
+    version: 
+description: A Ruby wrapper for the Yahoo! GeoPlanet API. It uses JSON format by default to minimize bandwidth usage. See http://developer.yahoo.com/geo/ for more information about the API.
+email: carlosparamio@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- README.rdoc
+- geoplanet.gemspec
+- lib/geoplanet.rb
+- lib/geoplanet/base.rb
+- lib/geoplanet/place.rb
+- lib/geoplanet/version.rb
+has_rdoc: false
+homepage: http://github.com/carlosparamio/geoplanet/
+post_install_message: 
+rdoc_options: 
+- --main
+- README.rdoc
+require_paths: 
+- bin
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: A Ruby wrapper for the Yahoo! GeoPlanet API.
+test_files: []
+

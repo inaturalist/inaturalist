@@ -1,0 +1,7 @@
+<%- place ||= object ||= @place -%>
+<li class="clear">
+  <%= link_to h(place.display_name), place, :class => 'namelink' %>
+  <span class="small description">
+    <%= place.place_type_name %>
+  </span>
+</li>

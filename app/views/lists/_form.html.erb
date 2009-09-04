@@ -1,0 +1,12 @@
+<%- list ||= object ||= @list -%>
+<%- optionscol ||= nil -%>
+  <%= error_messages_for :list %>
+  <% form_for(list) do |f| -%>
+    <%= render :partial => 'form_fields', :locals => {:f => f} %>
+
+    <div class="column span-24">
+      <div class="tools">
+        <%= f.submit "Save", :class => 'default button' %>
+      </div>
+    </div>
+  <%- end -%>

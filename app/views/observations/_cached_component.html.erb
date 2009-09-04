@@ -1,0 +1,14 @@
+<% observation ||= cached_component -%>
+<% if logged_in? && current_user.id == observation.user_id -%>
+  <% cache(:controller => 'observations', :action => 'component', 
+           :id => observation.id, :for_owner => true) do %>
+    <%= render :partial => 'observations/observation_component', 
+               :locals => {:observation => observation} %>
+  <% end %>
+<% else %>
+  <% cache(:controller => 'observations', :action => 'component', 
+           :id => observation.id) do %>
+    <%= render :partial => 'observations/observation_component', 
+               :locals => {:observation => observation} %>
+  <% end %>
+<% end %>

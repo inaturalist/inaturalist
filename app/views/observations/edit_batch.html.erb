@@ -1,0 +1,68 @@
+<% content_for(:title) do %>Edit a Batch of Observations<% end %>
+<% content_for(:extracss) do %>
+  <%= stylesheet_link_tag 'observations', 'observations/batch', 'jquery-datepicker' %>
+  <style type="text/css" media="screen">
+    #pageheader p.description {
+      margin-bottom: 0;
+    }
+  </style>
+<% end -%>
+<% content_for(:extrajs) do %>
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag 'jquery',
+                             "jquery/jquery.ui.all.packed.js",
+                             "jquery/plugins/jquery.string.1.0.js",
+                             "jquery/plugins/inat/datepicker.js",
+                             "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/jquery.latLonSelector.js",
+                             "jquery/plugins/inat/taxon_selectors.js",
+                             "observations/new_batch.js",
+                             "observations/edit_batch.js" %>
+<% end %>
+<div id="pageheader" class="column span-24">
+  <div class="breadcrumbs">
+    <%= link_to 'Back to your observations', 
+                observations_by_login_path(:login => current_user.login),
+                :class => 'back crumb' %>
+  </div><!-- /#breadcrumbs -->
+  <div class="column span-24">
+    <h2>
+      Edit a Batch of Observations
+    </h2>
+  </div>
+</div>
+
+<div id="batchformcol" class="column span-24">
+  <%= render :partial => 'batch_form_row' %>
+</div>
+
+<div id="batchcol" class="column span-24">
+  <% form_tag(
+    {:controller => 'observations', :action => 'update'}, 
+    :class => 'observationform') do %>
+    <div class="column span-24 headers">
+      <div class="column span-1">
+        &nbsp;
+      </div>
+      <div class="column span-7">
+        <label>What</label>
+      </div>
+      <div class="column span-7">
+        <label>When</label>
+      </div>
+      <div class="last column span-7">
+        <label>Where</label>
+      </div>
+    </div>
+    <%= render :partial => 'observations/observation_form_field_rows' %>
+    <div class="column span-24">
+      <div id="observation_form_links" class="buttonrow">
+        <%= submit_tag "Save All", :class => 'default button' -%>
+        <%= link_to 'Cancel', 
+                    observations_by_login_path(:login => current_user.login),
+                    :class => 'button' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,15 @@
+<h1>Forgot Your Password?</h1>
+
+<% form_for(@password) do |f| %>
+  <%= f.error_messages %>
+
+  <p class="ui">That's okay!  We forget ours too.  Give us the email address you used to create your account and we'll email you a link to reset your password.</p>
+
+  <p>
+    <%= f.label(:email) %><br />
+    <%= f.text_field :email, :options => {:size => 50, :class => 'text'} %>
+  </p>
+  <p>
+    <%= f.submit 'Request Password', :options => {:class => 'default button', :style => 'float: none;'} %>
+  </p>
+<% end %>

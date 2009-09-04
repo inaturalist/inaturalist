@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+first_five_thousand:
+  goal_id: 8
+  operator: 'within_the_first_n_contributions?'
+  operator_class: 'Observation'
+  arguments: '5000'
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>

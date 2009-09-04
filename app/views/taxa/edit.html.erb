@@ -1,0 +1,15 @@
+<% content_for(:title) do %>
+Editing <%= @taxon.name %>
+<% end %>
+
+<%= render :partial => 'form_head' %>
+
+<div id="pageheader" class="last column span-24">
+  <span class="breadcrumbs">
+    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>", 
+                taxon_path(@taxon), :class => 'back crumb' %>
+  </span>
+  <h2>Editing <i><%= @taxon.name %></i></h2>
+</div>
+
+<%= render :partial => "form" %>

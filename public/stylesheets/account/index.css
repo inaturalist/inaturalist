@@ -1,0 +1,28 @@
+.comment {
+  margin-left: 2em;
+}
+
+.item {
+/*  font-size: smaller;*/
+  background-color: #eee;
+  padding: 1em;
+}
+
+.item .title, 
+.item .meta {
+  display: inline;
+}
+
+.comment_actions {
+  display: inline;
+  font-size: smaller;
+}
+
+.yours .comment {
+  color: #666;
+  font-style: italic;
+}
+
+.centered.description {
+  margin: 0 1em;
+}

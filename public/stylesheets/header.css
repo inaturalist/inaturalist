@@ -1,0 +1,79 @@
+#header {
+  margin: 0 10px 1em;
+  height: 2.5em;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  line-height: 1.25em;
+  border-bottom: 1px dotted #ccc;
+}
+
+#header:after {
+  content: ".";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  clear: both;
+  visibility: hidden;
+}
+
+#header a img {
+  border: none;
+  margin: 0;
+}
+
+#header_logo {
+  float: left;
+  padding: 5px 0 0;
+  margin-right: 1em;
+}
+
+#version_info {
+  z-index: -10000;
+}
+#version_info img {
+  vertical-align: middle;
+}
+
+#header_explore li {
+  border-right: 1px dotted #ccc;
+}
+
+#header_explore .tab {
+  font-weight: bold;
+  font-size: 120%;
+}
+
+#header_text {
+  float: right;
+}
+
+.tabs ul {
+  margin: 0;
+  padding: 0;
+}
+
+.tabs ul li {
+  position: relative;
+  margin: 0;
+  padding: 0 1em;
+  padding-top: 7px;
+  padding-bottom: 8px;
+}
+
+#header_text.tabs ul li {
+  padding: 7px 0.5em 8px 0.5em;
+}
+
+.tabs ul li.active,
+.tabs ul li.tab:hover {
+  background-color: #ffc;
+}
+.tabs ul li.active {
+  border-bottom: 1px solid #bbb;
+}
+.tabs ul li.active img {
+  position: absolute;
+  left: 45%; /* Not real centering, but it will do for now */
+  bottom: -6px;
+  margin: 0;
+  z-index: 1000;
+}

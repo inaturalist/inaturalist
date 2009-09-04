@@ -1,0 +1,6 @@
+if params[:preview]
+  page.replace_html :comment_preview, :partial => "comments/comment"
+  page << "$('#comment_preview').jqm().jqmShow();"
+else
+  page << "$('##{id_for(@comment)}').replace('#{escape_javascript(render(:partial => 'comments/comment'))}')"
+end

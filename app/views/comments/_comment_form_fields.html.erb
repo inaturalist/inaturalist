@@ -1,0 +1,27 @@
+<%- unique_id ||= "new_comment_form-#{comment.parent.id}" -%>
+      <%= f.hidden_field :parent_id %>
+      <%= f.hidden_field :parent_type %>
+      <%= f.hidden_field :user_id %>
+      <%= f.text_area :body %>
+      <div class="buttonrow">
+        <%= submit_tag 'Save Comment', :class => 'default button' %>
+        <%= link_to_remote "Preview", 
+          :url => comment.new_record? ? comments_path : comment_path(comment), 
+          :loading => 
+            "$('##{unique_id}-preview').hide();" +
+            "$('##{unique_id}-preview_loading').show();",
+          :complete => 
+            "$('##{unique_id}-preview').show();" + 
+            "$('##{unique_id}-preview_loading').hide();",
+          :with => "$(this).parents('form').serialize() + '&preview=true'", 
+          :html => {
+            :id => "#{unique_id}-preview",
+            :class => 'button'
+          } %>
+        <div id="<%= unique_id %>-preview_loading" class="loading status inter" style="display:none">Previewing...</div>
+        <%- unless comment.new_record? -%>
+          <span class="inter description">or</span>
+          <%- cancel_url = comment.parent.is_a?(Post) ? post_path(comment.parent.user.login, comment.parent) : url_for(comment.parent) %>
+          <%= link_to 'Cancel', "#{cancel_url}#comment-#{comment.id}", :class => 'button' %>
+        <%- end -%>
+      </div>

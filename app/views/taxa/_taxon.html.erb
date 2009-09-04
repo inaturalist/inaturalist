@@ -1,0 +1,51 @@
+<%- taxon ||= object ||= @taxon -%>
+<%- hard_link ||= true -%>
+<%- js_link ||= !hard_link -%>
+<%- no_ids ||= false -%>
+<%- image_options ||= {} -%>
+<%- include_image_attribution ||= false -%>
+<%- hide_child_count ||= true -%>
+<%- link_name ||= false -%>
+<%- link_image ||= false -%>
+<%- link_url ||= url_for(taxon) -%>
+<%- name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname' -%>
+<div id="<%= dom_id(taxon) unless no_ids %>" class="clear taxon <%= taxon.rank %> <%= taxon.iconic_taxon.name if taxon.iconic_taxon %> <%= 'noimg' if taxon.flickr_photos.empty? %>">
+  <div class="image">
+    <% if link_image -%>
+      <% if hard_link -%>
+        <%= link_to taxon_image(taxon, image_options), link_url %>
+      <% else %>
+        <%= link_to_function taxon_image(taxon, image_options), "showTaxonInfo(#{taxon.to_json})" %>
+      <% end -%>
+    <% else %>
+      <%= taxon_image(taxon, image_options) %>
+    <% end -%>
+  </div>
+  <div class="info">
+    <% if link_name -%>
+      <% if hard_link -%>
+        <%= link_to taxon.default_name.name, link_url, :class => "name #{name_class}" %>
+      <% else %>
+        <%= link_to_function taxon.default_name.name, "showTaxonInfo(#{taxon.to_json})", :class => "name #{name_class}" %>
+      <% end -%>
+    <% else %>
+        <span class="name <%= name_class %>"><%= taxon.default_name.name %></span>
+    <% end -%>
+    <% if hard_link -%>
+      <%= link_to "info", taxon, :class => 'small infolink' %>
+    <% else %>
+      <%= link_to_function "info", "showTaxonInfo(#{taxon.to_json})", :class => 'small infolink' %>
+    <% end -%>
+
+    <% if !hide_child_count && taxon.children.size > 0 -%>
+      <div class="small meta description">
+        <span class="count"><%= taxon.children.size %></span> <%= taxon.children.size == 1 ? "child" : 'children' %>
+      </div>
+    <% end -%>
+  </div>
+  <% if include_image_attribution && (flickr_photo = taxon.flickr_photos.first) -%>
+    <div class="meta attribution">
+      Photo <%= link_to flickr_photo.attribution, flickr_photo.flickr_page_url %>
+    </div>
+  <% end -%>
+</div>

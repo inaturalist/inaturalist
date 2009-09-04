@@ -1,0 +1,171 @@
+// This is a simple, perhaps even stupidly simple, way of selecting Flickr
+// photos in a form.
+// Options:
+//   baseURL:       Endpoint to query for photos.  Should accept query string as
+//                  a param called 'q'
+//   urlParams:     Query param hash
+//   queryOnLoad:   Whether or not to query with an empty string on page load. 
+//                  Default is true.
+//   defaultQuery:  Default query to run on load
+(function($){
+  $.fn.photoSelector = function(options) {
+    var options = $.extend({}, $.fn.photoSelector.defaults, options);
+    
+    // Setup each wrapper
+    $(this).each(function() {
+      setup(this, options);
+    });
+  };
+  
+  // Setup an individual photoSelector
+  function setup(wrapper, options) {
+    // Grab all the existing content
+    var existing = $(wrapper).contents();
+    
+    // Insert a search field and button.  No forms, please
+    var controls = $('<div class="photoSelectorControls"></div>').css(
+      $.fn.photoSelector.defaults.controlsCSS
+    );
+    var input = $('<input type="text" class="text"/>').css(
+      $.fn.photoSelector.defaults.formInputCSS
+    );
+    $(input).attr('id', 'photoSelectorSearchField');
+    $(input).attr('name', 'photoSelectorSearchField');
+    if (typeof(options.defaultQuery) != 'undefined') {
+      $(input).val(options.defaultQuery);
+    };
+    var button = $('<a href="#" class="button">Find Photos</a>').css(
+      $.fn.photoSelector.defaults.formInputCSS
+    );
+    
+    // Append next & prev links
+    var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
+    var prev = $('<a href="#" class="prevlink button">&laquo; Prev</a>').click(function(e) {
+      var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
+      pagenum -= 1;
+      if (pagenum < 1) pagenum = 1;
+      var prevOpts = $.extend({}, options);
+      prevOpts.urlParams = $.extend({}, prevOpts.urlParams, {page: pagenum});
+      $.fn.photoSelector.queryPhotos(
+        options.baseURL, 
+        $(input).val(), 
+        wrapper, 
+        prevOpts);
+      $(wrapper).find('.photoSelectorPage').val(pagenum);
+      return false;
+    });
+    var next = $('<a href="#" class="nextlink button">Next &raquo;</a>').click(function(e) {
+      var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
+      pagenum += 1;
+      var nextOpts = $.extend({}, options);
+      nextOpts.urlParams = $.extend({}, nextOpts.urlParams, {page: pagenum});
+      $.fn.photoSelector.queryPhotos(
+        options.baseURL, 
+        $(input).val(), 
+        wrapper, 
+        nextOpts);
+      $(wrapper).find('.photoSelectorPage').val(pagenum);
+      return false;
+    });
+    $(controls).append(input, button, page, prev, next, $('<div></div>').css({
+      height: 0, 
+      visibility: 'hidden', 
+      clear: 'both'})
+    );
+    $(wrapper).append(controls);
+    
+    // Insert a container to hold the photos
+    var container = $('<div class="photoSelectorPhotos"></div>').css(
+      $.fn.photoSelector.defaults.containerCSS
+    );
+    container.addClass('clear');
+    $(wrapper).append(container);
+    
+    // Insert all existing content into the container
+    $(container).append(existing);
+    
+    // Bind button clicks to search photos
+    $(button).click(function(e) {
+      $(wrapper).find('.photoSelectorPage').val(1);
+      $.fn.photoSelector.queryPhotos(options.baseURL, $(input).val(), wrapper, options);
+      return false;
+    });
+    
+    // Bind ENTER in search field to search photos
+    $(input).keypress(function(e) {
+      if (e.which == 13) {
+        // Catch exceptions to ensure false return and precent form submission
+        try {
+          $(wrapper).find('.photoSelectorPage').val(1);
+          $.fn.photoSelector.queryPhotos(options.baseURL, $(input).val(), wrapper, options);
+        }
+        catch (e) {
+          alert(e);
+        }
+        return false;
+      };
+    });
+    
+    // Fill with photos
+    if (options.queryOnLoad) {
+      $(document).ready(function() {
+        var q = '';
+        if (typeof(options.defaultQuery) == 'string') {
+          q = options.defaultQuery;
+        };
+        $.fn.photoSelector.queryPhotos(options.baseURL, q, wrapper, options);
+      });
+    };
+  };
+  
+  // Hit the server for photos
+  $.fn.photoSelector.queryPhotos = function(baseURL, q, wrapper, options) {
+    var options = options || {};
+    var params = $.extend({}, options.urlParams, {'q': q});
+    
+    // Pull out parents of existing checked inputs
+    var existing = $(wrapper).find(
+      '.photoSelectorPhotos input:checked').parent().clone();
+    
+    // Set loading status
+    $(wrapper).find('.photoSelectorPhotos').prepend(
+      $('<div class="loading status">Loading...</div>')
+    );
+    
+    // Fetch new fields
+    $(wrapper).find('.photoSelectorPhotos').load(
+      baseURL, 
+      params, 
+      function(responseText, textStatus, XMLHttpRequest) {
+        // Remove fields with identical values to the extracted checkboxes
+        var existingValues = $(existing).find('input').map(function() {
+          return $(this).val();
+        });
+        $(this).find('input').each(function() {
+          if ($.inArray($(this).val(), existingValues) != -1) {
+            $(this).parent().remove();
+          };
+        });
+        
+        // Re-insert the checkbox parents
+        $(wrapper).find('.photoSelectorPhotos').prepend(existing)
+        
+        // Unset loading status
+        $(wrapper).find('.photoSelectorPhotos').removeClass('loading status');
+      }
+    );
+    
+    return false;
+  };
+  
+  $.fn.photoSelector.defaults = {
+    baseURL: '/flickr/photo_fields',
+    queryOnLoad: true,
+    formInputCSS: {
+      float: 'left',
+      'margin-top': 0
+    },
+    controlsCSS: {},
+    containerCSS: {}
+  };
+})(jQuery);

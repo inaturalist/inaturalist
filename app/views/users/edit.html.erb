@@ -1,0 +1,126 @@
+<% content_for(:title) do %>Edit Your Account &amp; Profile<% end %>
+<% content_for(:extracss) do %>
+<style type="text/css" media="screen">
+  label {
+    display: block;
+    clear: right;
+    margin-bottom: 0.5em;
+  }
+  
+  textarea, input.text {
+    margin-top: 0;
+  }
+  
+  textarea {
+    width: 330px;
+  }
+  
+  .field {
+    margin-bottom: 1em;
+  }
+  
+  .usericon {
+    float: left;
+    margin-right: 1em;
+    border: 2px solid #ddd;
+  }
+  
+  #preferencescol .field label {
+    display: inline;
+  }
+</style>
+<!--[if lt IE 7]>
+  <%= stylesheet_link_tag 'blueprint/ie' %>
+<![endif]-->
+<% end -%>
+
+<% content_for(:extrajs) do %>
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag('jquery') %>
+  
+  <!--[if lt IE 8]>
+  <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
+  <![endif]-->
+<% end %>
+<div id="pageheader">
+  <div id="nav" class="clear">
+    <div class="breadcrumbs">
+      <%= link_to 'Back to your profile', 
+                  person_by_login_path(:login => current_user.login),
+                  :class => 'back crumb' %>
+    </div><!-- /#breadcrumbs -->
+  </div>
+  
+  <h2>Edit Your Account &amp; Profile</h2>  
+</div>
+
+<div class="column span-18">
+  <% form_for(@user, :url => person_path(@user), 
+              :html => {:multipart => true}) do |f| %>
+    <%= error_messages_for :user %>
+    <div class="column span-18 field">
+      <%= image_tag(@user.icon.url(:thumb), :class => 'usericon') %>
+      <%= f.label(:icon, 'Icon/Photo') %>
+      <%= link_to_function('change', "$('#user_icon').show(); $(this).hide()", :class => 'button') %>
+      <%= f.file_field(:icon, :class => 'text', :style => 'display: none') %>
+    </div>
+    <div class="column span-9">
+      <div class="field">
+        <%= f.label(:login) %>
+        <%= f.text_field(:login) %>
+      </div>
+      <div class="field">
+        <%= f.label(:email) %>
+        <%= f.text_field(:email) %>
+      </div>
+    </div>
+    <div class="last column span-9 field">
+      <%= f.label(:time_zone, 'Your default time zone')%>
+      <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'select'}) %>
+      <div class="description">
+        All your observations will default to this time zone unless you
+        specify otherwise.
+      </div>
+    </div>
+    <div class="column span-9 field">
+      <%= f.label(:description, "Tell everyone a little about yourself") %>
+      <%= f.text_area(:description) %>
+    </div>
+    <div id="preferencescol" class="last column span-9 field">
+      <label>Receive email notifications when people leave you</label>
+      <% f.fields_for @user.preferences do |p| %>
+        <% for attr_name in Preferences::NOTIFICATION_ATTRIBUTES %>
+          <div class="field">
+            <%= p.check_box attr_name %>
+            <%= p.label attr_name, attr_name.to_s.split('_').first.pluralize.capitalize %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div id="flickrcol" class="last column span-9 field">
+      <%= link_to "Link or unlink your Flickr account", {:controller => "flickr", :action => 'options'}, :class => 'readmore' %>
+    </div>
+    <div class="column span-18 field">
+      <%= f.submit("Save", :class => 'default button') %>
+    </div>
+  <% end %>
+  
+</div><!-- end first col -->
+
+<div class="column last span-6">
+  <div class="clear box">
+    <h2>Change Your Password</h2>
+    <% form_for(@user) do %>
+      <%= label(:current_password, 'Current Password') %>
+      <%= password_field_tag(:current_password, '', :class => 'text') %>
+
+      <%= label(:password, 'New Password') %>
+      <%= password_field_tag(:password, '', :class => 'text') %>
+
+      <%= label(:password_confirmation, 'Confirm New Password') %>
+      <%= password_field_tag(:password_confirmation, '', :class => 'text') %>
+
+      <%= submit_tag("Change Password", :class => 'button') %>
+    <% end %>
+  </div>
+</div><!-- end side col -->

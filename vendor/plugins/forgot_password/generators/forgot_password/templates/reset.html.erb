@@ -1,0 +1,22 @@
+<h1>Reset your password</h1>
+
+<%% form_for(:<%= user_model_name %>, :url => { :action => 'update_after_forgetting' }) do |f| %>
+  <%%= f.error_messages %>
+
+  <p>Please enter a new password and confirm it.</p>
+
+  <p>
+    <%%= f.label :password %><br />
+    <%%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%%= f.label :password_confirmation %><br />
+    <%%= f.password_field :password_confirmation %>
+  </p>
+
+  <p>
+    <%%= hidden_field_tag :reset_code, params[:reset_code] %>
+    <%%= f.submit "Submit" %>
+  </p>
+<%% end %>

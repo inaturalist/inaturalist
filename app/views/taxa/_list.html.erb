@@ -1,0 +1,49 @@
+<table class="taxa">
+  <tr>
+    <th>&nbsp;</th>
+    <th class="name">Name</th>
+    <th class="aka">aka</th>
+    <th class="observations">Observations</th>
+    <th class="source">Source</th>
+  </tr>
+  <% for taxon in @taxa %>
+  <tr>
+    <td>
+      <a href="<%= url_for(taxon.class == Taxon ? taxon : taxon.taxon) %>">
+        <%- unless taxon.flickr_photos.empty? -%>
+          <% photo = taxon.flickr_photos.first -%>
+          <%= image_tag(photo.square_url, :title => "Photo: #{photo.flickr_username}") -%>
+        <% else -%>
+          <%= iconic_taxon_image(taxon) %>
+        <% end -%>
+      </a>
+    </td>
+    <td class="name">
+      <a href="<%= taxon_path(taxon) %>" class="readable">
+      <%= render :partial => 'shared/taxon', :locals => { :taxon => taxon } %>
+      </a>
+    </td>
+    <td class="aka">
+      <% for taxon_name in taxon.taxon_names %>
+        <% unless taxon_name.name.strip == taxon.name.strip %>
+          <%= render :partial => 'shared/taxon_name', 
+                     :locals => { :taxon_name => taxon_name } -%>
+        <% end %>
+      <% end %>
+    </td>
+    <td class="observations">
+      <%= link_to taxon.observations_count_with_descendents, 
+                  observations_path(:taxon_id => taxon.id) %>
+    </td>
+    <td class="source">
+      <%= link_to(Taxon::NAME_PROVIDER_TITLES[taxon.name_provider], taxon.source_url) %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<% if taxa.respond_to?(:total_pages) %>
+<div id="pagination" class="pagination">
+  <%= will_paginate taxa %>
+</div>
+<% end %>

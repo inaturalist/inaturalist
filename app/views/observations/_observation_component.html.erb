@@ -1,0 +1,160 @@
+<% 
+=begin
+= Observation Component Partial
+
+Markup for an observation to be viewed as a component of another view.  
+
+Some assumptions:
+
+ * a page view for a single observation has different markup needs, and should 
+   have its own view
+ * this partial will render inside a div with the class ".observations"
+ * visual type of the component observations is specified in the container, 
+   like
+    <div class="observations mini">
+      <div id="obs-1" ...>
+      ...
+    </div>
+  * a local variable named "observation" was passed to this partial containing 
+    an Observation object
+    
+Some notes:
+  * see observations.css for styles
+  * elements with style="display: none" are set that way to enable fancy 
+    schmancy Javascript effects, like blinddowns
+  * some such effects will require some DOM finagling in Javascript to get 
+    them to work right.  Since the interactive requirements for an 
+    observations are likely to change based on the context, I'm leaving that 
+    to the view developer.  If you find yourself repeating yourself, feel free 
+    to make a observations.js library.
+=end
+-%>
+<%- observation ||= observation_component -%>
+<%- check_box_name ||= false -%>
+<%- check_box_checked ||= false -%>
+<div id="observation-<%= observation.id rescue rand(999) %>" class="observation <%= cycle('odd', 'even') %><% if !observation.description.blank? && observation.description.size > 200 %> longdesc<% end %>">
+  <% if check_box_name -%>
+    <div class="check_box attribute">
+      <%= check_box_tag check_box_name, observation.id, check_box_checked %>
+    </div>
+  <% end -%>
+  <div class="icon attribute">
+    <%= iconic_taxon_image(observation.taxon, :size => 15) %>
+  </div>
+  <div class="photos attribute">
+    <h4 class="label">Photos</h4>
+    <% if observation.flickr_photos %>
+    <div class="photolist clear">
+      <% if observation.flickr_photos.empty? %>
+        <div class="photo nophoto description">
+          No photos
+        </div>
+      <% else %>
+        <%= link_to(
+          image_tag(observation.flickr_photos.first.square_url), 
+          observation, 
+          :class => 'flickr photo') %>
+        <% if observation.flickr_photos.size > 1 -%>
+          <%= link_to "#{observation.flickr_photos.size} photos", observation, :class => 'readmore' %>
+        <% end -%>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <div class="readable species_guess attribute">
+    <h4 class="label">What</h4>
+    <% if observation.taxon %>
+      <%= render :partial => 'shared/taxon', 
+                 :locals => {
+                   :taxon => observation.taxon,
+                   :link_url => url_for(observation),
+                   :include_parens => false} %>
+    <% elsif !observation.species_guess.blank? %>
+      <span class="taxon">
+        <%= link_to observation.species_guess, observation %>
+      </span>
+    <% else %>
+      <span class="taxon">
+        <%= link_to "(Something&hellip;)", observation %>
+      </span>
+    <% end %>
+    <!-- <span class="button detailsctrl">Show Details</span> -->
+  </div>
+  <div class="user attribute">
+    <h4 class="label">Observer</h4>
+    <%= link_to(observation.user.login, observations_by_login_path(observation.user.login)) %>
+  </div>
+  <div class="observed_on attribute">
+    <h4 class="label">Date</h4>
+    <span class="date">
+      <%= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
+    </span>
+    <% if observation.time_observed_at %>
+    <span class="time">
+      <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z") %>
+    </span>
+    <% end %>
+  </div>
+  <div class="place attribute">
+    <h4 class="label">Place</h4>
+    <% unless observation.place_guess.blank? %>
+      <%= observation.place_guess %>
+    <% else %>
+      <span class="description">(Somewhere...)</span>
+    <% end %>
+  </div>
+  <% unless observation.new_record? -%>
+    <div class="created_at attribute" style="display:none">
+      <h4 class="label">Date added</h4>
+      <span class="date">
+        <%= observation.created_at.in_time_zone(observation.time_zone || 'UTC').strftime("%b. %e, %Y") %>
+      </span>
+      <span class="time">
+        <%= observation.created_at.in_time_zone(observation.time_zone || 'UTC').strftime("%I:%M %p %Z") %>
+      </span>
+    </div>
+  <% end -%>
+  <div id="obs-<%= observation.id %>-details" class="details attribute" style="display: none">
+    <% unless observation.description.blank? %>
+      <h4 class="label">Description</h4>
+      <div class="description">
+        <%= auto_link(simple_format(observation.description)) %>
+      </div>
+    <% end %>
+    
+    <% unless observation.tags.empty? %>
+      <h4 class="label">Tags</h4>
+      <div class="description">
+        <%= observation.tags.join(', ') %>
+      </div>
+    <% end %>
+  </div>
+  <div class="actions attribute">
+    <ul class="counts">
+      <% if observation.comments.count > 0 -%>
+        <li class="comments_count">
+          <a href="<%= url_for(observation) %>">
+            <span class="count"><%= observation.comments.count %></span>
+            comment<%= 's' if observation.comments.count != 1 %>
+          </a>
+        </li>
+      <% end -%>
+      <% if observation.identifications.count > 1 -%>
+        <li class="identifications_count">
+          <a href="<%= url_for(observation) %>">
+            <span class="count"><%= observation.identifications.count - 1 %></span>
+            ID<%= 's' if observation.identifications.count - 1 != 1 %>
+          </a>
+        </li>
+      <% end -%>
+    </ul>
+    <ul>
+      <% if logged_in? && current_user.id == observation.user_id -%>
+        <li class="editlink"><%= link_to "Edit", edit_observation_path(observation) %></li>
+      <% end -%>
+      <li class="last viewlink">
+        <%= link_to "View", observation, :class => 'readmore' %>
+      </li>
+    </ul>
+  </div>
+</div>

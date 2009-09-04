@@ -1,0 +1,9 @@
+# You can get the GeoLite City database from http://www.maxmind.com/app/geolitecity
+development:
+  city: /Users/kueda/projects/inaturalist/trunk/GeoLiteCity.dat
+
+test:
+  city: /Users/kueda/projects/inaturalist/trunk/GeoLiteCity.dat
+
+production:
+  city: /path/to/GeoLiteCity.dat

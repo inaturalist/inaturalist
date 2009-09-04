@@ -1,0 +1,64 @@
+<% content_for(:title) do %>
+Taxa &middot; All Species
+<% end -%>
+
+<% content_for(:extrajs) do %>
+  <!--[if lt IE 8]>
+  <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
+  <![endif]-->
+<% end %>
+
+<%- content_for(:extracss) do %>
+<%= stylesheet_link_tag 'taxa/index' %>
+<% end -%>
+
+<h2>Species <span class="description">&amp; Other Taxa</span></h2>
+
+<%= render :partial => 'search_form' %>
+
+<div id="iconic_taxa" class="column span-19">
+  <% for iconic_taxon in @iconic_taxa %>
+  <div id="<%= iconic_taxon.name %>" class="iconic_taxon clear column span-6 <%= cycle('first', '', 'last', :name => 'rowpos') %>">
+    <div class="photos clear">
+      <% for photo in iconic_taxon.flickr_photos[0..5] %>
+        <% if photo.is_a? FlickrPhoto %>
+          <a href="<%= taxon_path(iconic_taxon) %>" class="<%= cycle '', '', 'last' %>">
+            <%= image_tag(photo.square_url, :width => 75, :height => 75, 
+                          :title => "Photo: #{photo.flickr_username}") %>
+          </a>
+        <% else %>
+          <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
+          <a href="<%= taxon_path(iconic_taxon) %>" class="<%= cycle '', '', 'last' %>">
+            <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "Photo: #{photo.photo_xml['ownername']}") %>
+          </a>
+        <% end %>
+      <% end %>
+    </div>
+    <h3>
+      <a href="<%= taxon_path(iconic_taxon) %>">
+        <%= render :partial => 'shared/taxon', 
+                   :locals => { :taxon => iconic_taxon } %>
+      </a>
+    </h3>
+  </div>
+  <% end %>
+</div>
+
+<div id="recently_observed" class="last column span-5">
+  <div class="box clear">
+    <h3>Recently Observed</h3>
+    <% for taxon in @recent %>
+    <!-- <div class="column span-4<% if @recent.last == taxon %> last<% end %>"> -->
+    <p>
+      <a href="<%= taxon_path(taxon) %>">
+        <%= render :partial => 'shared/taxon', :locals => { :taxon => taxon } %>
+      </a>
+      <% if taxon.observations[0] and taxon.observations[0].observed_on %>
+      <span class="description date">
+        on <%= taxon.observations[0].observed_on.to_s(:long) %>
+      </span>
+      <% end %>
+    </p>
+    <% end %>
+  </div>
+</div>

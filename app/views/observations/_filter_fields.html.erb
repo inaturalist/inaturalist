@@ -1,0 +1,99 @@
+<% selected_taxa ||= [] %>
+    <div id="submit_filters" class="buttonrow">
+      <input id="submit_filters_button" type="submit" value="Search" class="default button" />
+    </div>
+    
+    <div id="search_filter">
+      <label for="q">Search</label>
+      <input type="text" name="q" value="<%= @q %>" id="q" />
+      <select name="search_on" id="search_on">
+        option
+        <option value="" class="description">search all fields</option>
+        <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names">species names</option>
+        <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags">tags</option>
+        <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description">description</option>
+        <option <% if @search_on == 'place_guess' %>selected="selected"<% end %> value="place_guess">place name</option>
+      </select>
+    </div>
+    <div id="attribute_filters">
+      <strong id="attributes_filters_label">Filter by</strong>
+      <fieldset>
+        <input type="checkbox" name="has[]" id="with_photos_checkbox" 
+               value="photos" <% if @with_photos %>checked="checked"<% end %>/>
+        <label for="with_photos_checkbox">w/ photos only</label>
+        <input type="checkbox" name="has[]" id="id_please_checkbox" 
+               value="id_please" <% if @id_please %>checked="checked"<% end %>/>
+        <label for="id_please_checkbox">ID Please</label>
+      </fieldset>
+      <fieldset>
+        <strong>Identifications</strong>
+        <% for state in %w"any most_agree some_agree most_disagree" %>
+          <% if @identifications == state %>
+            <%= radio_button_tag :identifications, state, :checked => 'checked' %>
+          <% else %>
+            <%= radio_button_tag :identifications, state %>
+          <% end %>
+          <%= label :identifications, state %>
+        <% end %>
+      </fieldset>
+    </div>
+    <div id="iconic_taxon_filters">
+      <div id="iconic_taxon_filters_label">
+        <strong>Show only</strong>
+      </div>
+      <%-
+        all_iconic_taxa = Taxon.iconic_taxa.all(
+          :include => [:flickr_photos, :taxon_names], :order => "lft DESC")
+      -%>
+      <% for iconic_taxon in all_iconic_taxa -%>
+        <div id="iconic_taxon_<%= iconic_taxon.name.downcase %>" class="iconic_taxon_filter">
+          <input type="checkbox" name="iconic_taxa[]" 
+                 value="<%= iconic_taxon.name %>" 
+                 id="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'checked="checked"' if selected_taxa.include?(iconic_taxon) %>/>
+          <label for="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'class="selected"' if selected_taxa.include?(iconic_taxon) %>>
+            <%- if iconic_taxon.name == 'Animalia' -%>
+            <span>Other Animals</span>
+            <%- else -%>
+            <span><%= iconic_taxon.common_name.name rescue iconic_taxon.name %></span><!-- This should really be a common name -->
+            <%- end -%>
+          </label>
+        </div>
+      <% end -%>
+      <% if selected_taxa.include? nil %>
+      <div id="iconic_taxon_unknown" class="iconic_taxon_filter">
+        <input type="checkbox" name="iconic_taxa[]" 
+               value="unknown" checked="checked"
+               id="iconic_taxon_unknown_checkbox" />
+        <label for="iconic_taxon_unknown_checkbox" class="selected">
+          <span>Unknown</span>
+        </label>
+      </div>
+      <% else %>
+      <div id="iconic_taxon_unknown" class="iconic_taxon_filter">
+        <input type="checkbox" name="iconic_taxa[]" 
+               value="unknown" 
+               id="iconic_taxon_unknown_checkbox" />
+        <label for="iconic_taxon_unknown_checkbox">
+          <span>Unknown</span>
+        </label>
+      </div>
+      <% end %>
+
+      <small>
+        Select
+        <%= link_to_function "All", 'selectAllIconicTaxa()' %>,
+        <%= link_to_function "None", 'deSelectAllIconicTaxa()' %>
+      </small>
+    </div>
+    <!-- <input type="hidden" name="lat" id="lat"/>
+    <input type="hidden" name="lon" id="lon"/>
+    <input type="hidden" name="z" id="zoom"/> -->
+    
+    <input type="hidden" name="swlat" id="swlat" value="<%= @swlat %>"/>
+    <input type="hidden" name="swlng" id="swlng" value="<%= @swlng %>"/>
+    <input type="hidden" name="nelat" id="nelat" value="<%= @nelat %>"/>
+    <input type="hidden" name="nelng" id="nelng" value="<%= @nelng %>"/>
+    
+    <input type="hidden" name="tdate" id="tdate"/>
+    <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
+    <input type="hidden" name="view" id="view_input" value="<%= @view %>"/> <!-- Temporary! Inputs not specific to the filtering don't really belong here... -->

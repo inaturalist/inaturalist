@@ -1,0 +1,18 @@
+Hi,
+
+<% if @personal_message and @personal_message != "" -%>
+<%= @personal_message %>
+
+<% end -%>
+I'd like you to join me on iNaturalist.org, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!
+
+You can sign up for a free iNaturalist account at
+
+<%= signup_url %>
+
+If you want, you can check out my observations at <%= observations_by_login_url(@current_user.login) -%>.
+
+- <%= @sending_user %>
+
+============
+iNaturalist will not allow its users to send you additional invitations via our inviter. Please report invitation abuse to info@inaturalist.org.

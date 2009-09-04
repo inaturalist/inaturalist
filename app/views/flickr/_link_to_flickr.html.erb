@@ -1,0 +1,11 @@
+<%= link_to 'Yes, take me to Flickr!', flickr_url, 
+            :id => 'flickr-link-a', :class => 'default button' %>
+<div id="flickr-waiting-alert" style="display:none;">
+  <%= image_tag 'spinner-small.gif' -%> Connecting to Flickr...
+</div>
+<script type="text/javascript" charset="utf-8">
+  $('flickr-link-a').observe('click', function(event){
+    $(this).hide();
+    $('flickr-waiting-alert').show();
+  })
+</script>

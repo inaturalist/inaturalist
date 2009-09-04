@@ -1,0 +1,109 @@
+<% content_for(:title)  do %>
+Identifications by <%= h @login %>
+<% end %>
+<% content_for(:extracss) do %>
+<%= stylesheet_link_tag 'observations', 'identifications' %>
+<style type="text/css" media="screen">
+  .identification {
+    padding: 1em;
+    background-color: #eee;
+  }
+  
+  .observations.mini .observation {
+    padding: 1em 0;
+    margin-bottom: 0;
+    border: 0;
+  }
+  
+  .identification .identification_body {
+    float: left;
+    width: 280px;
+  }
+  
+  .row {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .count {
+    font-weight: bold;
+  }
+</style>
+<!--[if lte IE 7]>
+  <%= stylesheet_link_tag 'blueprint/ie', 'observations-ie' %>
+<![endif]-->
+<% end %>
+
+<div id="pageheader" class="column span-24">
+  <%= link_to(
+    image_tag(@selected_user.icon.url(:thumb), :class => 'usericon'),
+    person_path(@selected_user)) %>
+  
+  <h2>
+    <% if @user and @user.login == @login %>
+      Your
+    <% else %>
+      <%= @login %>'s
+    <% end %>
+    Identifications
+  </h2>
+  <%= render :partial => 'users/subnav', 
+             :locals => { :user => @selected_user } %>
+</div>
+
+<div id="identifications" class="column span-18">
+  <% if @identifications.empty? -%>
+    <div id="no_content" class="readable description">
+      <%= (logged_in? && @selected_user.id == current_user.id) ? "You haven't" : "#{@login} hasn't" %>
+      added identifications to anyone's observations.
+    </div>
+  <% end -%>
+  <% for identification in @identifications %>
+    <div class="row column span-18">
+      <div class="mini observations observationcol column span-8">
+        <%= render :partial => "observations/cached_component", :locals => { 
+          :observation => identification.observation } %>
+      </div>
+      <div class="identificationcol last column span-10">
+        <%- extra = capture do -%>
+          <div class="small description">
+            Added on <%= identification.created_at.to_date.to_s(:long) %>.
+            
+            <% if @other_id_stats[identification.observation_id] -%>
+              <a href="<%= url_for(identification.observation) %>">
+                <span class="count"><%= pluralize @other_id_stats[identification.observation_id][:num_agreements], 'person' %></span> agree<%= 's' if @other_id_stats[identification.observation_id][:num_agreements] == 1 %>,
+                <span class="count"><%= @other_id_stats[identification.observation_id][:num_disagreements] %></span> disagree<%= 's' if @other_id_stats[identification.observation_id][:num_disagreements] == 1 %>
+              </a>
+            <% end -%>
+          </div>
+        <%- end -%>
+        <%= render :partial => "identification", :locals => { 
+          :identification => identification,
+          :extra => extra
+        } %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= will_paginate @identifications %>
+</div>
+
+<div class="last column span-6">
+  <div class="box">
+    <h3>Stats</h3>
+    <ul>
+      <li>
+        <span class="count"><%= @identifications.total_entries %></span>
+        <label>IDs made for others</label>
+      </li>
+      <% if @helpful_id_count -%>
+        <li>
+          <span class="count">
+            <%= number_to_percentage(@helpful_id_count * 1.0 / @identifications.total_entries, :precision => 0) %>
+          </span>
+          <label>helped the observer make their final ID (i.e. they were made before the final ID and they match it)</label>
+        </li>
+      <% end -%>
+    </ul>
+  </div>
+</div>

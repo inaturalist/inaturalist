@@ -1,0 +1,22 @@
+# Use these to test if the goal remains incompleted after adding a new
+# contribution. 
+<% (1..5).each do |i| %>
+EndedADayAgoNotComplete_<%= i %>:
+  contribution_id: <%= i %>
+  contribution_type: 'Observation'
+  goal_id: 1
+  goal_participant_id: 1
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+<% end %>
+
+# Use these to test to see if adding a goal triggers the goal to complete
+<% (6..11).each do |i| %>
+NotCompletedNotEnded_<%= i %>:
+  contribution_id: <%= i %>
+  contribution_type: 'Observation'
+  goal_id: 8
+  goal_participant_id: 8
+  created_at: <%= Time.now.to_s :db %>
+  updated_at: <%= Time.now.to_s :db %>
+<% end %>

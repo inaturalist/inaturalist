@@ -1,0 +1,314 @@
+#filters {
+  clear: both;
+  color: #888;
+  font-size: 95%;
+  margin-bottom: 5px;
+  padding: 1em;
+  border: 1px solid #eee;
+}
+
+#search_filter label {
+  padding: 0.7em 0;
+}
+
+#search_filter input {
+  width: 575px;
+}
+
+#search_filter label,
+#attributes_filters_label,
+#iconic_taxon_filters_label {
+  width: 55px;
+  display: block;
+  float: left;
+}
+
+#search_filter label {
+  width: 59px;
+}
+
+.iconic_taxon_filter,
+#iconic_taxon_filters_label {
+  float: left;
+}
+
+#search_on {
+  font-size:125%;
+  padding: 0.3em;
+}
+
+.iconic_taxon_filter {
+  margin-right: 5px;
+}
+
+.iconic_taxon_filter input {
+  display: block;
+  float: left;
+  position: relative;
+  top: 2px;
+}
+
+#filters fieldset {
+  display: inline;
+  border: none;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  line-height: 1;
+  margin-right: 1em;
+}
+
+#search_filter,
+#attribute_filters {
+  margin-bottom: 5px;
+}
+
+#iconic_taxon_filters input.checkbox,
+#iconic_taxon_filters input[type=checkbox] {
+  margin-top: 0;
+}
+
+#iconic_taxon_filters label {
+  position: relative;
+  display: block;
+  float: left;
+  width: 0;
+  background: url('/images/logo-cccccc-20px.png') 5px 2px no-repeat;
+  padding-left: 30px;
+  height: 20px;
+  color: #ccc;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+#iconic_taxon_filters label.selected {
+  background: url('/images/logo-20px.png') 5px 2px no-repeat;
+}
+
+#iconic_taxon_filters label:hover,
+#iconic_taxon_filters label.selected {
+  color: #73AC13;
+}
+
+#iconic_taxon_filters label span {
+  display: none;
+  font-weight: normal;
+}
+
+#iconic_taxon_filters label:hover span {
+  display: block;
+  position: absolute;
+  top: 20px;
+  width: 60px;
+  left: -20px;
+  background-color: white;
+  padding: 5px;
+  z-index: 10000;
+  text-align: center;
+}
+
+#iconic_taxon_animalia label {
+  background-image: url('/images/iconic_taxa/animalia-cccccc-20px.png');
+}
+
+#iconic_taxon_animalia label.selected {
+  background-image: url('/images/iconic_taxa/animalia-1e90ff-20px.png');
+}
+
+#iconic_taxon_animalia label.selected,
+#iconic_taxon_animalia label:hover {
+  color: #1e90ff;
+}
+
+#iconic_taxon_plantae label {
+  background-image: url('/images/iconic_taxa/plantae-cccccc-20px.png');
+}
+
+#iconic_taxon_plantae label.selected {
+  background-image: url('/images/iconic_taxa/plantae-74ac00-20px.png');
+}
+
+#iconic_taxon_fungi label {
+  background: url('/images/iconic_taxa/fungi-cccccc-20px.png') 5px 0 no-repeat;
+  
+}
+
+#iconic_taxon_fungi label.selected {
+  background: url('/images/iconic_taxa/fungi-ff0066-20px.png') 5px 0 no-repeat;
+  color: #f06;
+}
+
+#iconic_taxon_fungi label.selected,
+#iconic_taxon_fungi label:hover {
+  color: #f06;
+}
+
+#iconic_taxon_aves label {
+  background: url('/images/iconic_taxa/aves-cccccc-20px.png') 0 0 no-repeat;
+  padding-left: 30px;
+}
+
+#iconic_taxon_aves label.selected {
+  background: url('/images/iconic_taxa/aves-1e90ff-20px.png') 0 0 no-repeat;
+}
+
+#iconic_taxon_aves label.selected,
+#iconic_taxon_aves label:hover {
+  color: #1e90ff;
+}
+
+#iconic_taxon_mollusca label {
+  background: url('/images/iconic_taxa/mollusca-cccccc-20px.png') 0 0 no-repeat;
+}
+
+#iconic_taxon_mollusca label.selected {
+  background: url('/images/iconic_taxa/mollusca-ff4500-20px.png') 0 0 no-repeat;
+}
+
+#iconic_taxon_mollusca label.selected,
+#iconic_taxon_mollusca label:hover {
+  color: #ff4500;
+}
+
+#iconic_taxon_arachnida label {
+  background: url('/images/iconic_taxa/arachnida-cccccc-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_arachnida label.selected {
+  background: url('/images/iconic_taxa/arachnida-ff4500-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_arachnida label.selected,
+#iconic_taxon_arachnida label:hover {
+  color: #ff4500;
+}
+
+#iconic_taxon_amphibia label {
+  background: url('/images/iconic_taxa/amphibia-cccccc-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_amphibia label.selected {
+  background: url('/images/iconic_taxa/amphibia-1e90ff-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_amphibia label.selected,
+#iconic_taxon_amphibia label:hover {
+  color: #1e90ff;
+}
+
+#iconic_taxon_reptilia label {
+  background: url('/images/iconic_taxa/reptilia-cccccc-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_reptilia label.selected {
+  background: url('/images/iconic_taxa/reptilia-1e90ff-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_reptilia label.selected,
+#iconic_taxon_reptilia label:hover {
+  color: #1e90ff;
+}
+
+#iconic_taxon_insecta label {
+  background: url('/images/iconic_taxa/insecta-cccccc-20px.png') 2px 3px no-repeat;
+}
+
+#iconic_taxon_insecta label.selected {
+  background: url('/images/iconic_taxa/insecta-ff4500-20px.png') 2px 3px no-repeat;
+}
+
+#iconic_taxon_insecta label.selected,
+#iconic_taxon_insecta label:hover {
+  color: #ff4500;
+}
+
+#iconic_taxon_mammalia label {
+  background: url('/images/iconic_taxa/mammalia-cccccc-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_mammalia label.selected {
+  background: url('/images/iconic_taxa/mammalia-1e90ff-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_mammalia label.selected,
+#iconic_taxon_mammalia label:hover {
+  color: #1e90ff;
+}
+
+#iconic_taxon_actinopterygii label {
+  background: url('/images/iconic_taxa/actinopterygii-cccccc-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_actinopterygii label.selected {
+  background: url('/images/iconic_taxa/actinopterygii-1e90ff-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_actinopterygii label.selected,
+#iconic_taxon_actinopterygii label:hover {
+  color: #1e90ff;
+}
+
+#iconic_taxon_protozoa label {
+  background: url('/images/iconic_taxa/protozoa-cccccc-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_protozoa label.selected {
+  background: url('/images/iconic_taxa/protozoa-20px.png') 2px 0 no-repeat;
+}
+
+#iconic_taxon_protozoa label.selected,
+#iconic_taxon_protozoa label:hover {
+  color: #691776;
+}
+
+#iconic_taxon_unknown label {
+  background-image: url('/images/iconic_taxa/unknown-cccccc-20px.png');
+}
+
+#iconic_taxon_unknown label.selected {
+  background-image: url('/images/iconic_taxa/unknown-000000-20px.png');
+}
+
+#iconic_taxon_unknown label.selected,
+#iconic_taxon_unknown label:hover {
+  color: black;
+}
+
+#iconic_taxon_filters {
+  float: left;
+}
+
+#submit_filters {
+  margin: 0;
+  width: auto;
+  font-size: 90%;
+  float: right;
+}
+
+#submit_filters_button {
+  float: none;
+  display: inline;
+  margin-right: 0;
+}
+
+#submit_filters_button:hover {
+  border-top: none;
+  border-left: none;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+#submit_filters_button:active {
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: none;
+  border-bottom: none;
+}
+
+#attribute_filters {
+  clear: left;
+}
+
+#attribute_filters label {
+  font-weight: normal;
+}

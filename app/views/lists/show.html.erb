@@ -1,0 +1,160 @@
+<% content_for(:title) do %>
+  <%= @list.title %>, by <%= @list.user.login %>
+<% end %>
+
+<% content_for(:extracss) do %>
+  <%= render :partial => 'show_css' %>
+<% end -%>
+
+<% content_for(:extrajs) do %>
+  <%= render :partial => 'show_js' %>
+<% end %>
+
+<div id="pageheader" class="column span-24 last">
+  <%- if logged_in? && @list.user_id != current_user.id %>
+    <div class="toolset" style="float: right">
+      <%= link_to('Compare with your life list', compare_lists_path(@list), :class => 'inter readmore') %>
+    </div>
+  <%- end -%>
+  
+  <span class="breadcrumbs">    
+    <%= link_to "Back to #{possessive(@list.user)} lists", 
+                lists_by_login_path(:login => @list.user.login),
+                :class => 'back crumb' %>
+  </span>
+  <div id="view_controls" class="toolset clear">
+    <label class="description">View</label>
+    <% for view in ListsController::LIST_VIEWS %>
+      <%= link_to(view.capitalize, url_for(params.merge(:view => view)), 
+        :id => "#{view}_view_link", 
+        :class => "modal_link#{' selected' if @view == view}") %>
+    <% end %>
+  </div>
+  <h2>
+    <%= @list.title %>, by <%= link_to(@list.user.login, lists_by_login_path(@list.user.login)) %>
+  </h2>
+  <div id="tools" class="buttonrow">
+    <% if logged_in? && current_user == @list.user && @list.id != @user.life_list_id %>
+    <%= link_to "Edit", edit_list_url, :id => "edit_list_button", :class => "button" %>
+    <%= link_to "Delete", list_path(@list), 
+                :confirm => "Are you sure you want to delete this list?", 
+                :method => :delete, 
+                :id => "delete_list_button", 
+                :class => "delete button" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="column span-17">
+  <div id="description" class="readable description">
+    <%= auto_link(markdown(@list.description)) %>
+  </div>
+  
+  <% if @list.is_a?(LifeList) && !@list.rules.empty? && @list.rules.first.operand.is_a?(Taxon) -%>
+    <div id="life_list_taxon" class="life_list_taxon description">
+      <%= taxon_image(@list.rules.first.operand) %>
+      This is a life list of
+      <%= render :partial => 'shared/taxon', 
+                 :locals => { :taxon => @list.rules.first.operand,
+                              :link_url => url_for(@list.rules.first.operand) } %>
+    </div>
+  <% end -%>
+  
+  <div class="column-separator">
+    <img src="/images/logo-eee-15px.png">
+  </div>
+  
+  <div id="justadded" style="display: none">
+    <h2 class="title">Just Added!</h2>
+    <ul class="listed_taxa">
+      <li style="display: none">Stuff you've just added...</li>
+    </ul>
+    
+    <div class="column-separator">
+      <img src="/images/logo-eee-15px.png">
+    </div>
+  </div>
+  
+  <div id="toppagination">
+    <%= will_paginate @listed_taxa %>
+  </div>
+  
+  <%= render :partial => "show_#{@view}" %>
+  
+  <% if @listed_taxa.empty? %>
+    <div id="empty" class="readable description">
+      <% if logged_in? && current_user.id == @list.user_id %>
+        You haven't observed any species to list yet! Try 
+        <%= link_to "adding some observations", new_observation_path %>
+        or just adding species using the form on this page.
+      <% else %>
+        <%= @list.user.login %> hasn't observed any species to list yet!
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div id="pagination">
+    <%= will_paginate @listed_taxa %>
+  </div>
+</div>
+
+<div class="last column span-7">
+  <div id="sidebar">
+    <% if @user && @user.login == @list.user.login %>
+    <div id="add" class="clear">
+      <%= link_to_function "Add Batch", "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
+      <h3>
+        <%= link_to_function(
+          'Add to Your List', 
+          "$('#new_listed_taxon').slideToggle();",
+          :id => 'addlink') %>
+      </h3>
+      <%= render :partial => 'add_to_list' %>
+    </div>
+    <% end %>
+    
+    <% unless @list.listed_taxa.empty? -%>
+      <div id="stats" class="clear">
+        <a href="<%= url_for(params.merge(:page => 1, :taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
+          <div class="readable title">
+            &nbsp;
+          </div>
+
+          <div class="barchart">
+            <%= render :partial => "shared/barchart_datum", :locals => { 
+              :value => @total_observed_taxa, 
+              :max => @total_listed_taxa, 
+              :label_text => "of #{@total_listed_taxa} taxa observed",
+              :min_value_label_width => 30 } %>
+          </div>
+        </a>
+        <% for grouper, count in @iconic_taxon_counts -%>
+          <% next unless count %>
+          <% if grouper.respond_to?(:common_name) && grouper.common_name %>
+            <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
+          <% elsif grouper.respond_to?(:name) %>
+            <% grouper_name = grouper.name -%>
+          <% else %>
+            <% grouper_name = 'Unclassified' -%>
+          <% end -%>
+          <%- grouper_name = 'Other Animals' if grouper_name == 'Animals' -%>
+          <%- grouper_class = grouper.name rescue 'Unknown' -%>
+          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for(params.merge(:taxon => grouper.id, :page => 1)) %>">
+            <div class="readable title">
+              &nbsp;
+            </div>
+
+            <div class="barchart">
+              <%= render :partial => "shared/barchart_datum", :locals => {
+                :value => count, 
+                :max => @total_listed_taxa, 
+                :label_text => grouper_name } %>
+            </div>
+          </a>
+        <% end %>
+      </div><!-- /stats -->
+    <% end -%>
+  </div><!-- /sidebar -->
+</div>
+
+<%= render :partial => 'lists/add_batch_dialog' %>

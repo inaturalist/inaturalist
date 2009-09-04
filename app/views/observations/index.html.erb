@@ -1,0 +1,134 @@
+<% content_for(:title) do %>
+Observations by Everyone
+<% end %>
+
+<% content_for(:extracss) do %>
+<%= stylesheet_link_tag 'observations', 'observations/filters', 'observations/index' %>
+<!--[if lte IE 7]>
+  <%= stylesheet_link_tag 'observations-ie', 'observations/index-ie' %>
+<![endif]-->
+<% end %>
+
+<% content_for(:extrajs) do %>
+
+<%= gmap_include_tag %>
+<%= javascript_include_tag 'jquery', "jquery/jquery.ui.all.packed.js", "observations/filters" %>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {        
+    // View behavior
+    $('#tablelink').click(function() {
+      $('#controls .modal_link').removeClass('selected');
+      $(this).addClass('selected');
+      showTableView();
+      if (!(jQuery.browser.msie && parseInt(jQuery.browser.version.substr(0,1)) < 7)) {
+        return false;
+      }
+    });
+    $('#maplink').click(function() {
+      $('#controls .modal_link').removeClass('selected');
+      $(this).addClass('selected');
+      showMapView();
+      if (!(jQuery.browser.msie && parseInt(jQuery.browser.version.substr(0,1)) < 7)) {
+        return false;
+      }
+    });
+    
+    // Filter behavior
+    $('#filterslink').click(function() {
+      $("#filters").toggle();
+      $(this).parent().toggleClass("open");
+      if ($(this).parent().hasClass('open')) {
+        $('#filters_open').val(true);
+        alterLinkParams({filters_open: 'true'});
+      } else {
+        $('#filters_open').val(false);
+        alterLinkParams({filters_open: 'false'});
+      }
+      return false;
+    });
+  });
+</script>
+<% end %>
+
+<div id="pageheader" class="column span-24">
+  <div class="title column span-12">
+    <h2>Observations by Everyone</h2>
+    <span class="readable description">
+      Showing <%= @observations.offset + 1 %>&ndash;<%= @observations.offset + @observations.size %>
+      of <%= @observations.total_entries %>
+    </span>
+  </div>
+  <div class="last column span-12">
+    <div id="controls">
+      <ul>
+        <!-- <li>
+          <span>
+            <label>Search</label>
+            <input type="text" name="some_name" value="" id="some_name" style="width: 7em; float: none; padding: 0; margin: 0">
+          </span>
+        </li>
+        <li class="description">
+          <span>&middot;</span>
+        </li> -->
+        <li class="filters tab<%= ' open' if @filters_open %>">
+          <a href="#" id="filterslink" class="toggle">Search</a>
+        </li>
+        <li class="description">
+          <span>&middot;</span>
+        </li>
+        <li class="description"><span>Views</span></li>
+        <li class="tab" style="padding: 0">
+          <%= link_to(
+            'Map', 
+            params.merge(:view => 'map'),
+            :id => 'maplink', 
+            :class => "modal_link maplink#{(@view && @view == 'map' ? ' selected' : '')}") %>
+        </li>
+        <li class="last tab">
+          <%= link_to(
+            'Table', 
+            params.merge(:view => 'table'), 
+            :id => 'tablelink',
+            :class => "modal_link tablelink#{(@view && @view == 'table' ? ' selected' : '')}") %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="last column span-24">
+    <div id="filters" class="clear" style="<% unless @filters_open %>display: none<% end %>">
+      <% form_tag observations_path, :method => :get do -%>
+        <%= render :partial => 'filter_fields', :locals => {
+          :selected_taxa => @iconic_taxa
+        } %>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<div class="last column span-24">
+  <%= render :partial => 'map',
+             :locals => {:observations => @observations} %>
+</div>
+
+<div class="last column span-24">
+  <div id="feeds" class="small ui description feeds">
+    Feeds for Current Filters:
+    <%- 
+      feed_params = params.reject do |key,value|
+        ObservationsController::REJECTED_FEED_PARAMS.include?(key)
+      end
+      kml_feed_params = params.reject do |key,value|
+        ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
+      end
+    -%>
+    <%= link_to("Atom", formatted_observations_path(:format => 'atom', :params => feed_params), :id => 'atomlink') %>
+    <%= link_to("KML",  formatted_observations_path(:format => 'kml', :params => kml_feed_params), :id => 'kmllink') %>
+    <%= link_to("CSV",  formatted_observations_path(:format => 'csv', :params => feed_params), :id => 'csvlink') %>
+  </div>
+</div>
+
+<div id="pagination" class="last column span-24">
+  <%= will_paginate @observations %>
+</div>

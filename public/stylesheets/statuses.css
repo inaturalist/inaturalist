@@ -1,0 +1,39 @@
+.status {
+  display: block;
+  padding: 0;
+  color: #888;
+  border: none;
+  text-align: left;
+  margin: 2px auto;
+}
+
+.status.inline {
+  display: inline;
+}
+
+.status.loading {
+  padding-left: 20px !important;
+  background: url('/images/spinner-small.gif') transparent 0px 50% no-repeat;
+}
+
+.status.pale.loading {
+  background-image: url(/images/spinner-small-999999_on_ffff99.gif);
+}
+
+.status.eee.loading {
+  background-image: url(/images/spinner-small-on_eeeeee.gif);
+}
+
+.status.error,
+.error {
+  color: DeepPink;
+}
+
+.status.error a,
+.error a {
+  color: #36c;
+}
+
+.status.success {
+  color: green; 
+}

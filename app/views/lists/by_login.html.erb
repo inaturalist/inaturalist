@@ -1,0 +1,102 @@
+<% content_for(:title) do -%>
+  <%= @title = "#{possessive(@login_user, :capitalize => @login_user == current_user)} Lists" %>
+<% end -%>
+<% content_for(:extracss) do %>
+  <%= stylesheet_link_tag 'barchart', 'lists' %>
+  <style type="text/css" media="screen">
+    .owners_life_list {
+      background-color: lightyellow;
+    }
+    
+    #lists .list {
+      padding: 0.5em;
+      margin-bottom: 1em;
+    }
+    
+    .list .attr.description {
+      margin-bottom: 0.5em;
+    }
+    
+    .list .attr.title {
+      font-size: 140%;
+    }
+    
+    .remainder .label {
+      color: #666;
+    }
+    
+    .photos img {
+      width: 32px;
+    }
+    
+    .barchart {
+      width: 310px;
+      float: none;
+    }
+    
+    .life_list_taxon {
+      margin-top: 0.5em;
+    }
+  </style>
+<% end -%>
+<div id="pageheader" class="column span-24 last">
+  <%= link_to(
+    image_tag(@login_user.icon.url(:thumb), :class => 'usericon'),
+    person_path(@login_user)) %>
+  
+  <h2><%= @title %></h2>
+  
+  <%= render :partial => 'users/subnav', 
+             :locals => { :user => @login_user } %>
+
+  <% if logged_in? && current_user == @login_user %>
+  <div id="tools" class="buttonrow">
+    <%= link_to 'New List', new_list_path, :id => 'newlistbutton', :class => 'default button'%>
+  </div>
+  <% end %>
+</div>
+
+<div class="column span-24">
+  <div id="lists">
+    <% for list in @lists %>
+      <div class="column span-12 <%= cycle('', 'last') %>">
+        <div id="list-<%= list.id %>" class="clear list <%= 'owners_life_list' if @life_list.id == list.id %>">
+          <a href="<%= list_path(list) %>" class="attr photos column span-3">
+            <% for taxon in @iconic_taxa_for[list.id] %>
+              <%= taxon.flickr_photos.empty? ? iconic_taxon_image(taxon, :size => '32') : taxon_image(taxon) %>
+            <% end %>
+            <% if @iconic_taxa_for[list.id].blank? %>&nbsp;<% end %>
+          </a>
+          <div class="last column span-8">
+            <div class="readable title attr"><%= link_to h(list.title), list_path(list) %></div>
+
+            <div class="attr readable description">
+              <%= truncate(strip_tags(list.description), 75) %>
+              <%= link_to "View &raquo;", list_path(list) %>
+            </div>
+
+            <div class="barchart">
+              <%= render :partial => "shared/barchart_datum", :locals => { 
+                :value => list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL"), 
+                :max => list.listed_taxa.count, 
+                :label_text => "of #{list.listed_taxa.count} observed",
+                :min_value_label_width => 30 } %>
+            </div>
+            
+            <% if list.is_a?(LifeList) && !list.rules.empty? && list.rules.first.operand.is_a?(Taxon) -%>
+              <div class="life_list_taxon description">
+                <%= taxon_image(list.rules.first.operand) %>
+                Life list of
+                <%= render :partial => 'shared/taxon', 
+                           :locals => { :taxon => list.rules.first.operand,
+                                        :link_url => url_for(list.rules.first.operand) } %>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <%= will_paginate @lists %>
+</div>

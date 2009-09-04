@@ -1,0 +1,50 @@
+<% content_for(:title) do %>Flag for <%= @object.to_plain_s %><% end %>
+<% content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    #tools {
+      float: right;
+    }
+    
+    .status {
+      display: inline;
+      padding: 2px;
+    }
+  </style>
+<% end -%>
+<% content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery' %>
+<% end -%>
+
+<h2>Flag for <%= @object.to_plain_s %></h2>
+
+<table>
+  <tr>
+    <th>Created</th>
+    <th>Object</th>
+    <th>Reason</th>
+    <th>Flagger</th>
+    <th>Resolved By</th>
+    <th>Resolve Comment</th>
+  </tr>
+  <tr>
+    <td><%= @flag.created_at %></td>
+    <td><%= link_to @object.to_plain_s, @object %></td>
+    <td><%= h @flag.flag %></td>
+    <td><%= link_to h(@flag.user.login), person_path(:id=>@flag.user_id) %></td>
+    <td><%= 
+      unless @flag.resolver.nil? 
+        link_to h(@flag.resolver.login), person_path(:id=>@flag.resolver_id)
+      else
+        "Not Resolved"
+      end
+      %></td>
+    <td class="buttonrow">
+      <% form_for(@flag, :action=>"update") do |f| %>
+        <%= f.text_field :comment, :class => 'text' %>
+        <%= f.hidden_field :resolver_id, :value => @user.id %>
+        <%= f.hidden_field :resolved, :value => true %>
+        <%= f.submit 'Resolve with comment', :class => 'button' %>
+      <% end # form_for %>
+    </td>
+  </tr>
+</table>

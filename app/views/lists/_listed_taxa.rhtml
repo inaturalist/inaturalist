@@ -1,0 +1,9 @@
+<% listed_taxa ||= @listed_taxa ||= @list.listed_taxa %>
+<ul class="listed_taxa">
+  <% for listed_taxon in listed_taxa %>
+    <li class="clear">
+      <%= render :partial => 'lists/listed_taxon',
+                 :locals => {:listed_taxon => listed_taxon} %>
+    </li>
+  <% end %>
+</ul>

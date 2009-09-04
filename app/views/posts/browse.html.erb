@@ -1,0 +1,73 @@
+<% content_for(:title) do -%>
+  Everyone's Journal Posts
+<%- end -%>
+<% content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "posts" %>
+  <style type="text/css" media="screen">
+    .post {
+      margin-bottom: 1em;
+    }
+    
+    .iconcol {
+      width: 48px;
+    }
+    
+    .namecol {
+      width: 100px;
+    }
+    
+    .bodycol {
+      width: 650px;
+    }
+    
+    .bodycol p:first-child:before {
+      content: '\201C \0020';
+      font-size: 160%;
+      color: #ddd;
+    }
+    
+    .morecol {
+      width: 100px;
+    }
+    
+    .morecol p:first-child:before {
+      content: '\201C \0020';
+      font-size: 160%;
+      visibility: hidden;
+    }
+  </style>
+<% end -%>
+
+<div id="pageheader" class="column span-24">
+  <h2>Everyone's Journal Posts</h2>
+</div>
+
+<div class="column span-24">
+  <% if !@posts.blank? %>
+    <% for post in @posts %>
+      <div id="<%= post.id %>" class="column span-24 clear post">
+        <div class="column iconcol">
+          <%= link_to(
+            image_tag(post.user.icon.url(:thumb), :class => 'usericon'),
+            journal_by_login_path(post.user.login)) %>
+        </div>
+        <div class="column namecol readable">
+          <%= link_to h(post.user.login), journal_by_login_path(post.user.login) %>
+          <div class="meta date">
+            <%= post.published_at.to_date.to_s(:rfc822) %>
+          </div>
+        </div>
+        <div class="bodycol column readable description">
+          <%= markdown(truncate(strip_tags(post.body), 200)) %>
+        </div>
+        <div class="morecol column readable">
+          <p><%= link_to "More &raquo;", post_path(post.user.login, post) %></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div id="noposts" class="description">No one's posted anything yet!</div>
+  <% end %>
+  
+  <%= will_paginate @posts %>
+</div>

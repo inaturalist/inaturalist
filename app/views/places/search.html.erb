@@ -1,0 +1,50 @@
+<%- content_for(:title) do -%>
+  Find Places
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    #tools {
+      float: right;
+    }
+    
+    #searchform {
+      
+    }
+    #searchform form {
+      float: left;
+    }
+  </style>
+<%- end -%>
+<div id="pageheader">
+  <% if logged_in? -%>
+    <div id="tools" class="description">
+      Not finding what you want?
+      <%= link_to "Add a New Place", new_place_path, :class => 'readmore' %>
+    </div>
+  <% end -%>
+  <div class="breadcrumbs">
+    <strong><%= link_to "Places", places_path, :class => 'crumb' %></strong>
+    <span class="description">&gt;</span>
+  </div><!-- /#breadcrumbs -->
+  <h2>Find Places</h2>
+</div>
+
+<div id="searchform" class="clear buttonrow">
+  <%= render :partial => 'places/search_form' %>
+</div>
+
+<ul>
+  <% if @places.blank? -%>
+    <div id="nodata" class=" readable description">
+      No matching places
+    </div>
+  <% end -%>
+  <% for place in @places %>
+    <li>
+      <%= link_to place.display_name, place %>
+      <span class="small description"><%= place.place_type_name %></span>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate @places %>

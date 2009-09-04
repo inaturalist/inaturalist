@@ -1,0 +1,19 @@
+GoogleAnalytics
+===============
+
+This is a quick 'n' dirty module to easily enable Google Analytics support
+in your application.  By default it'll output the analytics code for every
+single page automatically, if it's configured correctly.  This is done by
+adding:
+
+    Rubaidh::GoogleAnalytics.tracker_id = 'UA-12345-67'
+
+to your `config/environment.rb`, inserting your own tracker id. This can be
+discovered by looking at the value assigned to +_uacct+ in the Javascript
+code.
+
+If you want to disable the code insertion for particular pages, add the following to controllers that don't want it:
+
+    skip_after_filter :add_google_analytics_code
+
+Simple. :-)

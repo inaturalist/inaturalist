@@ -1,0 +1,120 @@
+<%- content_for(:title) do -%>
+  Create a New Place
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "jquery/ui.tabs.css" %>
+  <style type="text/css" media="screen">
+    #places {
+      min-height: 100px;
+      max-height: 380px;
+      overflow: auto;
+    }
+    #importMap,
+    #drawingMap {
+      width: 590px;
+      height: 475px;
+    }
+    
+    .external_place_link {
+      padding: 0.25em 0; 
+      border-bottom: 1px solid #eee;
+    }
+    
+    .external_place_link .button {
+      background-color: #dedede;
+      color: white;
+      text-align: center;
+      padding: 5px;
+      float: right;
+      margin-left: 10px;
+    }
+    
+    .external_place_link .button:hover {
+      background-color: #aaa;
+      border-color: #aaa;
+      color: white;
+    }
+    
+    .external_place_link .description {
+      display: block;
+    }
+    
+    .external_place_link .namelink {
+      font-weight: bold;
+    }
+    
+    #new_place input.text {
+      width: 100%;
+    }
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= render :partial => 'form_js' %>
+  
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#tabs > ul').tabs();
+      
+      var importMap = iNaturalist.Map.createMap({div: 'importMap'});
+      window.importMap = importMap;
+    });
+  </script>
+<%- end -%>
+<div id="pageheader">
+  <div class="breadcrumbs">
+    <%= link_to "Back to Places", places_path, :class => 'back crumb' %>
+  </div><!-- /#breadcrumbs -->
+  <h2>Create a New Place</h2>
+</div>
+
+<div id="tabs" class="ui-tabs">
+  <ul>
+    <li><a href="#import">Import from Yahoo</a></li>
+    <li><a href="#manual">Manually Create a New Place</a></li>
+  </ul>
+  
+  <div id="import">
+    <div class="column span-8">
+      <h3>Find a Place</h3>
+      <p class="description">
+        Search for a place to import from Yahoo.
+      </p>
+
+      <div id="place_selector">
+        <% form_remote_tag :url => {:action => :find_external} do %>
+          <div class="clear buttonrow">
+            <%= text_field_tag :q, '', :class => 'inter text' %>
+            <%= submit_tag 'Search', :class => 'button' %>
+          </div>
+        <% end %>
+
+        <ul id="places" style="margin: 0"></ul>
+      </div>
+    </div>
+
+    <div class="last column span-15">
+      <div id="importMap"></div>
+    </div>
+  </div>
+
+  <div id="manual">
+    <div class="column span-15">
+      <h3>Click on the map to draw a shape around the place</h3>
+      <div id="drawingMap">
+        
+      </div>
+    </div>
+    <div class="last column span-8">
+      <h3>Give it some detail!</h3>
+      <% form_for @place, :builder => DefaultFormBuilder do |f| %>
+        <%= f.text_field :name, :class => 'text', :required => true %>
+        <%= f.hidden_field :parent_id %>
+        <%= render :partial => 'place_parent_field' %>
+        <%= f.text_field :latitude, :class => 'text', :required => true %>
+        <%= f.text_field :longitude, :class => 'text', :required => true %>
+        <input type="hidden" id="place_geometry" name="kml"/>
+        <%= f.submit 'Save Place', :class => 'default button' %>
+      <% end %>
+    </div>
+  </div>
+</div>

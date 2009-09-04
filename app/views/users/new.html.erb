@@ -1,0 +1,71 @@
+<%- content_for(:title) do -%>
+  Sign up!
+<%- end -%>
+<% content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    #signup_form .formError {
+      display: inline;
+    }
+    
+    #signup_form fieldset {
+      border: none;
+      padding: 0;
+      margin: 0 0 1em 0;
+    }
+    
+    input.text {
+      margin-top: 0;
+    }
+  </style>
+<% end -%>
+<div class="column prepend-4 span-8">
+  <img src="/images/logo-bird-300px.png" width="300" height="237" />
+</div>
+<div class="column span-10 append-2 last">
+  <h1>Become an iNaturalist!</h1>
+  <p>You're only a few form fields away from being the newest iNaturalist!</p>
+  
+  <%= error_messages_for :user, 
+        :header_message => "Oops.",
+        :message => "There were some problems with the following fields:" %>
+
+  <% form_for :user, :url => users_path, :html => { :id => 'signup_form' } do |f| -%>
+  <fieldset class="ui">
+    <label for="login">Login</label>
+    <%= error_message_on :user, :login %><br/>
+    <%= f.text_field :login, :class => 'text' %>
+  </fieldset>
+
+  <fieldset class="ui">
+    <label for="email">Email</label>
+    <%= error_message_on :user, :email %><br/>
+    <%= f.text_field :email, :class => 'text' %>
+  </fieldset>
+
+  <fieldset class="ui">
+    <label for="password">Password</label>
+    <%= error_message_on :user, :password %><br/>
+    <%= f.password_field :password, :class => 'text' %>
+  </fieldset>
+
+  <fieldset class="ui">
+    <label for="password_confirmation">Confirm Password</label>
+    <%= error_message_on :user, :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, :class => 'text' %>
+  </fieldset>
+  
+  <fieldset class="ui">
+    <%= f.label(:time_zone, 'Your default time zone')%>
+    <%= error_message_on :user, :time_zone %><br/>
+    <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'select'}) %>
+    <div class="description">
+      All your observations will default to this time zone unless you
+      specify otherwise.
+    </div>
+  </fieldset>
+
+  <p>
+    <%= submit_tag 'Sign up', :class => "default button" %>
+  </p>
+  <% end -%>
+</div>

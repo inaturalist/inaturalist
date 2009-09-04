@@ -1,0 +1,77 @@
+#prevnext.column {
+  float: right;
+  margin-right: 0;
+}
+
+#prevlink,
+#nextlink {
+  display: block;
+  position:relative;
+  background: #f2f2f2;
+}
+
+#prevlink.edge,
+#nextlink.edge {
+  color: #aaa;
+  font-style: italic;
+  padding: 0 0.4em;
+  background-color: #fafafa;
+}
+
+#prevlink .arrow,
+#nextlink .arrow {
+  display: block;
+  float: left;
+  font-family: Verdana;
+  padding: 0 0.4em;
+  margin-right: 0.4em;
+  color: white;
+  background-color: #ddd;
+}
+
+#prevlink:hover,
+#nextlink:hover {
+  background-color: #eee;
+}
+
+#prevlink:hover .arrow,
+#nextlink:hover .arrow {
+  background-color: #ccc;
+}
+
+#nextlink {
+  text-align: right;
+}
+
+#nextlink .arrow {
+  float: right;
+  margin-left: 0.4em;
+  margin-right: 0;
+}
+
+#prevlink .title,
+#nextlink .title {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  color: whitesmoke;
+  background-color: #ccc;
+  z-index: 100;
+}
+
+#prevlink .title div,
+#nextlink .title div {
+  padding: 0 0.4em;
+}
+
+#nextlink .title {
+  left: none;
+  right: 0;
+}
+
+#prevlink:hover .title,
+#nextlink:hover .title {
+  display: block;
+}

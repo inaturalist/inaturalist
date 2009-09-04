@@ -1,0 +1,56 @@
+    <% 2.times do %>
+      <div class="column span-6">
+        <div class="spacer">&nbsp;</div>
+      </div>
+    <% end %>
+    <% @places.each_with_index do |place, i| %>
+      <div class="column span-6">
+        <div id="<%= dom_id(place) %>" class="clear place">
+          <%= link_to(
+            google_static_map_for_place(
+              place, 
+              {:size => '230x120', :maptype => 'satellite', :markers => "#{place.latitude},#{place.longitude},blue#{i+1}"}, 
+              :class => 'map'
+            ), place) %>
+          <div class="placeinfo">
+            <h3>
+              <%= link_to place.name, place %>
+            </h3>
+            <div class="small description">
+              <%= place.place_type_name %>
+              <% if place.parent -%>
+                in <%= link_to place.parent.display_name, place.parent %>
+              <% end -%>
+            </div>
+            <div class="clear taxa">
+              <h4>What Lives Here?</h4>
+              <%- reset_cycle 'taxon_cycle' -%>
+              <% for taxon in @taxa_by_place_id[place.id] %>
+                <span class="<%= cycle '', '', 'last', :name => 'taxon_cycle' %>">
+                  <%= render :partial => "taxa/taxon", 
+                    :object => taxon, 
+                    :locals => {
+                      :no_ids => true, 
+                      :link_url => place_path(place),
+                      :link_name => true,
+                      :link_image => true } %>
+                </span>
+              <% end %>
+
+              <% if @taxa_by_place_id[place.id].blank? -%>
+                <div class="notice">
+                  We don't know what species live here!  You can help by
+                  <%= link_to "adding species to its check list!", place.check_list %>
+                </div>
+              <% end -%>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    
+    <% 2.times do %>
+      <div class="column span-6">
+        <div class="spacer">&nbsp;</div>
+      </div>
+    <% end %>
