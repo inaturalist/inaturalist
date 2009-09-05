@@ -1,79 +1,209 @@
 #header {
-  margin: 0 10px 1em;
-  height: 2.5em;
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  margin: 0px 10px 1em;
+  height: 29px;
   line-height: 1.25em;
   border-bottom: 1px dotted #ccc;
+  min-width: 900px;
 }
 
-#header:after {
-  content: ".";
-  display: block;
-  height: 0;
-  overflow: hidden;
-  clear: both;
-  visibility: hidden;
-}
-
-#header a img {
-  border: none;
+#header .navtabs {
+  list-style: none;
+  display: inline;
+  padding: 0;
   margin: 0;
 }
 
-#header_logo {
+#header .navtabs li {
+  position: relative;
+  background-color: white;
+}
+
+#header .navtabs li,
+#header .navtabs .inter {
+  display: block;
   float: left;
-  padding: 5px 0 0;
-  margin-right: 1em;
 }
 
-#version_info {
-  z-index: -10000;
-}
-#version_info img {
-  vertical-align: middle;
-}
-
-#header_explore li {
-  border-right: 1px dotted #ccc;
+#header .navtabs a,
+#header .navtabs .inter {
+  display: block;
+  padding: 7px 10px;
 }
 
-#header_explore .tab {
+#header .navtabs .inter {
+  padding: 7px 0px;
+  color: #777;
+}
+
+#header .navtabs .inter a {
+  float: none;
+  padding: 0;
+  display: inline;
+}
+
+#mainnav a:hover {
+  background-color: lightyellow;
+}
+
+#mainnav a.subnavlink:hover {
+  background-color: transparent;
+}
+
+#mainnav .logolink {
+  margin-right: 10px;
+}
+
+#mainnav .logolink:hover {
+  background-color: transparent;
+}
+
+#header .navtabs a.logolink {
+  padding: 3px 0 4px;
+}
+
+#header .subnav {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  margin: 0;
+/*  border-top: 1px solid white;*/
+  border-right: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  border-left: 1px solid #ccc;
+  z-index: 1000;
+}
+
+#header .navtabs .subnav li,
+#header .navtabs .subnav a {
+  float: none;
+}
+
+#header .navtabs .subnav li {
+  border-top: 1px solid #eee;
+}
+
+#header .navtabs .subnav li:first-child {
+  border-top: 0 none;
+}
+
+#header .subnav ul {
+  margin: 0 0 0 20px;
+}
+
+#header .navtabs .subnav ul a {
+  padding: 2px 10px;
+}
+
+#mainnav a {
   font-weight: bold;
-  font-size: 120%;
+  font-size: 14px;
 }
 
-#header_text {
+#usernav {
   float: right;
 }
 
-.tabs ul {
-  margin: 0;
-  padding: 0;
+#header .navtabs a.togglelink {
+  background-position: right 50%;
+  padding-right: 15px;
 }
 
-.tabs ul li {
-  position: relative;
-  margin: 0;
-  padding: 0 1em;
-  padding-top: 7px;
-  padding-bottom: 8px;
+#header .navtabs .subnavtab {
+  border-right: 2px solid transparent;
+  border-left: 1px solid transparent;
 }
 
-#header_text.tabs ul li {
-  padding: 7px 0.5em 8px 0.5em;
+#header .navtabs .subnavtab.open {
+  border-right: 2px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-bottom:1px solid white;
 }
 
-.tabs ul li.active,
-.tabs ul li.tab:hover {
-  background-color: #ffc;
+#header .navtabs .subnavtab a {
+  float: left;
 }
-.tabs ul li.active {
-  border-bottom: 1px solid #bbb;
+
+#header .navtabs .subnavtab a:first-child {
+  padding-right: 5px;
 }
-.tabs ul li.active img {
-  position: absolute;
-  left: 45%; /* Not real centering, but it will do for now */
-  bottom: -6px;
-  margin: 0;
-  z-index: 1000;
+
+#header .navtabs .subnavtab .subnavlink {
+  padding-left: 5px;
+  padding-right: 5px;
+  outline: 0;
+}
+
+#usersubnav li a {
+  display: block;
+  width: auto;
+  min-height: 15px;
+  background: url('/images/logo-eee-15px.png') 5px 50% no-repeat;
+}
+
+#usersubnav li a:hover {
+  background: url('/images/logo-15px.png') 5px 50% no-repeat;
+}
+
+#header .navtabs #usersubnav a {
+  padding-left: 28px;
+}
+
+#usersubnav .observations_link {
+  background-image: url('/images/notebook-icon-eee-15px.png');
+  background-position: 7px 40%;
+  background-attachment: no-repeat;
+}
+
+#header .navtabs .observations_link:hover {
+  background: url('/images/notebook-icon-color-15px.png') 7px 45% no-repeat;
+}
+
+#header .navtabs .lists_link {
+  background: url('/images/checklist-icon-eee-15px.png') 5px 50% no-repeat;
+}
+
+#header .navtabs .lists_link:hover {
+  background: url('/images/checklist-icon-color-15px.png') 5px 50% no-repeat;
+}
+
+#header .navtabs .profile_link {
+  padding-left: 22px;
+  background: url(/attachment_defaults/users/icons/defaults/mini.png) 10px 50% no-repeat;
+}
+
+#header .navtabs .profile_link:hover {
+  background: url(/attachment_defaults/users/icons/defaults/mini-color.png) 10px 50% no-repeat;
+}
+
+#header .navtabs .journal_link {
+  padding-left: 20px;
+  background: url(/images/silk/book-gray.png) 7px 50% no-repeat;
+}
+
+#header .navtabs .journal_link:hover {
+  background: url(/images/silk/book-light.png) 7px 50% no-repeat;
+}
+
+#header .formwrapper {
+  padding: 10px;
+}
+
+#header form {
+  min-width: 193px;
+}
+
+#header form .button,
+#header form label,
+#header form input {
+  margin-bottom: 0;
+}
+
+#header form input.text {
+  width: 100px;
+}
+
+#header form .button {
+  margin-right: 0;
+  background: url(/images/silk/magnifier.png) 50% 50% no-repeat;
+  width: 25px;
 }

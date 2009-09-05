@@ -1,72 +1,99 @@
-<div id="header">
-  <div id="header_logo">
-    <a href="/" title="iNaturalist.org">
-      <img src="/images/logo-small.gif" alt="iNaturalist logo" />
-    </a>
-  </div>
-  
-  <div id="header_explore" class="tabs">
-    <ul>
-      <li class="tab<% if controller.class == ObservationsController and controller.action_name == 'index' %> active<% end %>">
+<div id="header" class="clear">  
+  <ul id="mainnav" class="navtabs">
+    <li>
+      <a href="/" title="iNaturalist.org" class="logolink">
+        <img src="/images/logo-small.gif" alt="iNaturalist logo" />
+      </a>
+    </li>
+    <li class="subnavwrapper">
+      <div class="clear subnavtab">
         <%= link_to "Observations", observations_path %>
-        <% if controller.class == ObservationsController and controller.action_name == 'index' %>
-          <img src="/images/active_tab_bottom.gif">
-        <% end %>
-      </li>
-      <li class="tab<% if controller.class == TaxaController %> active<% end %>">
-        <%= link_to "Species", taxa_path %>
-        <% if controller.class == TaxaController %>
-          <img src="/images/active_tab_bottom.gif">
-        <% end %>
-      </li>
-      <li class="tab<% if current_page?(:controller => :users, :action => :index) %> active<% end %>">
-        <%= link_to "People", people_path %>
-        <% if current_page?(:controller => :users, :action => :index) %>
-          <img src="/images/active_tab_bottom.gif">
-        <% end %>
-      </li>
-      <li class="tab<% if current_page?(:controller => :observations, :action => :id_please) %> active<% end %>">
-        <%= link_to "ID Please!", { :controller => :observations, :action => :id_please } %>
-        <% if current_page?(:controller => :observations, :action => :id_please) %>
-          <img src="/images/active_tab_bottom.gif">
-        <% end %>
-      </li>
-    </ul>
-  </div>
-  
-  <div id="header_text" class="tabs">
-    <ul>
-      <% unless logged_in? %>
-      <li>
-        <%= link_to "Sign In", login_url %>
-        or <%= link_to "Sign Up!", signup_url %>
-      </li>
-      <% else %>
-        <li>
-          Welcome, 
-          <%= link_to current_user.login, user_path(:id => current_user.login) %>!
-          (<%= link_to "Sign Out", logout_path %>)
-        </li>
-        <li class="tab<% if current_page?(:controller => 'users', :action => 'dashboard') %> active<% end %>">
-          <%= link_to("Your Home", home_path) %>
-          <% if current_page?(:controller => 'users', :action => 'dashboard') %><img src="/images/active_tab_bottom.gif"><% end %>
-        </li>
-        <li class="tab<% if current_page?(:controller => :observations, :action => :by_login, :login => current_user.login) %> active<% end %>">
-          <%= link_to("Your Obs.", { :controller => :observations, :action => current_user.login}) %>
-          <% if current_page?(:controller => :observations, :action => :by_login, :login => current_user.login) %>
-          <img src="/images/active_tab_bottom.gif"/>
+        <%= link_to_function image_tag('toggle_arrow_down.png') + '&nbsp;', 
+          "toggleHeaderSubnav(this)",
+          :class => 'subnavlink' %>
+      </div>
+      <ul class="subnav" style="display: none">
+        <li><%= link_to "ID Please", id_please_path %></li>
+        <li class="formwrapper">
+          <% form_tag(observations_path, :method => :get, :class => 'clear buttonrow') do %>
+            <label for="q">Search</label>
+            <%= text_field_tag 'q', params[:q], :class => 'text', :value => '' %>
+            <input type="submit" class="button" value="&nbsp;" />
           <% end %>
-          <span class="meta">(<%= link_to('add', new_observation_path) %>)</span>
         </li>
-        <li class="tab<% if current_page?(:controller => :lists, :action => :by_login, :login => current_user.login) %> active<% end %>">
-          <%= link_to("Your Lists", { :controller => :lists, :action => current_user.login}) %>
-          <% if current_page?(:controller => :lists, :action => :by_login, :login => current_user.login) %><img src="/images/active_tab_bottom.gif"/><% end %>
+      </ul>
+    </li>
+    <li class="subnavwrapper taxatab">
+      <div class="clear subnavtab">
+        <%= link_to "Species", taxa_path %>
+        <%= link_to_function image_tag('toggle_arrow_down.png') + '&nbsp;', 
+          "toggleHeaderSubnav(this)",
+          :class => 'subnavlink' %>
+      </div>
+      <ul class="subnav" style="display: none">
+        <li class="formwrapper">
+          <% form_tag({:controller => 'taxa', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
+            <label for="q">Search</label>
+            <%= text_field_tag 'q', params[:q], :class => 'text', :value => '' %>
+            <input type="submit" class="button" value="&nbsp;" />
+          <% end %>
         </li>
-        <li class="tab<% if current_page?(:controller => :posts, :login => current_user.login) %> active<% end %>">
-          <%= link_to("Your Journal", journal_by_login_path(current_user.login)) %>
-          <% if current_page?(:controller => :posts, :login => current_user.login) %><img src="/images/active_tab_bottom.gif"/><% end %>
+      </ul>
+    </li>
+    
+    <li><%= link_to "People", people_path %></li>
+    
+    <li class="subnavwrapper placestab">
+      <div class="clear subnavtab">
+        <%= link_to "Places", places_path %>
+        <%= link_to_function image_tag('toggle_arrow_down.png') + '&nbsp;', 
+          "toggleHeaderSubnav(this)",
+          :class => 'subnavlink' %>
+      </div>
+      <ul class="subnav" style="display: none">
+        <li class="formwrapper">
+          <% form_tag({:controller => 'places', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
+            <label for="q">Search</label>
+            <%= text_field_tag 'q', params[:q], :class => 'text', :value => '' %>
+            <input type="submit" class="button" value="&nbsp;" />
+          <% end %>
         </li>
-      <% end %>
-    </ul>
-  </div>
+      </ul>
+    </li>
+  </ul>
+  
+  <ul id="usernav" class="navtabs">
+    <% unless logged_in? %>
+    <li><%= link_to "Sign In", login_url %></li>
+    <li><span class="inter">or</span></li>
+    <li><%= link_to "Sign Up!", signup_url %></li>
+    <% else %>
+    <li style="margin-right: 10px">
+      <span class="inter">
+        Welcome, 
+        <%= link_to current_user.login, user_path(:id => current_user.login) %>!
+        (<%= link_to "Sign Out", logout_path %>)
+      </span>
+    </li>
+    <li class="subnavwrapper">
+      <div class="clear subnavtab">
+        <%= link_to "Your Stuff", home_path %>
+        <%= link_to_function image_tag('toggle_arrow_down.png') + '&nbsp;', 
+          "toggleHeaderSubnav(this)",
+          :class => 'subnavlink' %>
+      </div>
+      <ul id="usersubnav" class="subnav" style="display: none">
+        <li><%= link_to "Home", home_path %></li>
+        <li>
+          <%= link_to "Observations", observations_by_login_path(current_user.login), :class => 'observations_link' %>
+          <ul>
+            <li><%= link_to "Add", new_observation_path, :class => 'subnavaction' %></li>
+          </ul>
+        </li>
+        <li><%= link_to "Lists", lists_by_login_path(current_user.login), :class => 'lists_link' %></li>
+        <li><%= link_to "Journal", journal_by_login_path(current_user.login), :class => 'journal_link' %></li>
+      </ul>
+    </li>
+    <%- end -%>
+  </ul>
 </div>

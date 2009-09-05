@@ -21,3 +21,34 @@ function blurTip(obj, txt) {
   obj.className = "formInputTip";
   obj.value = txt;
 }
+
+function toggleHeaderSubnav(link) {
+  if ($(link).parents('.subnavtab').hasClass('open')) {
+    closeHeaderSubnav(link);
+  } else {
+    openHeaderSubnav(link);
+  }
+}
+
+function openHeaderSubnav(link) {
+  $('.subnav').hide();
+  $('.subnavtab').removeClass('open');
+  $(link).parents('.subnavtab').addClass('open');
+  $(link).parents('li').find('.subnav').show();
+  $(document).click(subnavClickOff);
+}
+
+function closeHeaderSubnav(link) {
+  $(link).parents('.subnavtab').removeClass('open');
+  $(link).parents('li').find('.subnav').hide();
+  $(document).unbind(subnavClickOff);
+}
+
+function subnavClickOff(e) {
+  console.log("e: ", e);
+  console.log("e.srcElement: ", e.srcElement);
+  if ($(e.target).parents('.subnavwrapper').length == 0) {
+    $('.subnav').hide();
+    $('.subnavtab').removeClass('open');
+  };
+}

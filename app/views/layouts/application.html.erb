@@ -7,13 +7,15 @@
     <title>iNaturalist.org &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= render :partial => 'shared/common_stylesheets'%>
-    <%= javascript_include_tag 'application', 'inaturalist' %>
+    <%= javascript_include_tag 'application', 'inaturalist', 'jquery' %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
     <%= yield :extrahead %>
   </head>
 <body>
+  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil) do %>
   <%= render :partial => 'shared/header' %>
+  <% end %>
   
   <div id="debug"></div>
 
