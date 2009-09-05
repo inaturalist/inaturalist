@@ -146,8 +146,7 @@ Observation <%= @observation.id %>:
 <% end %>
 <% content_for(:extrajs) do %>
   <%= gmap_include_tag %>
-  <%= javascript_include_tag('jquery/jquery-1.2.6',
-                             'jquery/jquery.ui.all.packed',
+  <%= javascript_include_tag('jquery/jquery.ui.all.packed',
                              'jquery/plugins/jqModal',
                              'modal_image',
                              'jquery/plugins/inat/taxon_selectors', 

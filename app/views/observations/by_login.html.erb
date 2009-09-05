@@ -54,8 +54,7 @@ Observations by <%= h @login %>
 
 <% content_for(:extrajs) do %>
 <%= gmap_include_tag %>
-<%= javascript_include_tag 'jquery',
-                           'inaturalist',
+<%= javascript_include_tag 'inaturalist',
                            'inaturalist/map2',
                            "observations/filters",
                            'jquery/plugins/jquery.labelize',

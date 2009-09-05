@@ -8,8 +8,7 @@
   </style>
 <% end -%>
 <% content_for(:extrajs) do -%>
-  <%= javascript_include_tag 'jquery',
-                             "jquery/jquery.ui.all.packed.js",
+  <%= javascript_include_tag "jquery/jquery.ui.all.packed.js",
                              "jquery/plugins/inat/photo_selectors.js" %>
   <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
   

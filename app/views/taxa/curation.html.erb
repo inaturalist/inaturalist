@@ -11,9 +11,6 @@
     }
   </style>
 <% end -%>
-<% content_for(:extrajs) do -%>
-  <%= javascript_include_tag 'jquery' %>
-<% end -%>
 
 <div id="tools" class="buttonrow">
   <%= link_to "New Taxon", new_taxon_path, :class => 'button' %>
