@@ -45,10 +45,8 @@ function closeHeaderSubnav(link) {
 }
 
 function subnavClickOff(e) {
-  console.log("e: ", e);
-  console.log("e.srcElement: ", e.srcElement);
   if ($(e.target).parents('.subnavwrapper').length == 0) {
     $('.subnav').hide();
     $('.subnavtab').removeClass('open');
-  };
+  }
 }
