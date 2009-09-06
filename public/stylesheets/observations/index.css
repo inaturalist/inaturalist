@@ -36,7 +36,7 @@ input.radio, input[type="radio"] {
   padding: 7px 0.75em 9px;
   position: relative;
   bottom: -1px;
-  z-index: 1000;
+  z-index: 999;
   outline: none;
 }
 
