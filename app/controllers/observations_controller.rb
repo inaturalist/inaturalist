@@ -858,7 +858,7 @@ class ObservationsController < ApplicationController
   end
   
   def search_observations(search_params, find_options)
-    sphinx_options = find_options
+    sphinx_options = find_options.dup
     sphinx_options[:conditions] = {}
     
     if search_params[:has]
