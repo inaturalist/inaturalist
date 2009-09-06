@@ -469,7 +469,8 @@ Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb",
         <% if logged_in? -%>
           <%= link_to_toggle "Add to list", '#add_to_list' %> |
         <% end -%>
-        <%= link_to("Add an observation", new_observation_path(:taxon_id => @taxon), :class => 'readmore') %>
+        <%= link_to("Add an observation", new_observation_path(:taxon_id => @taxon), 
+          :class => 'readmore', :rel => 'nofollow') %>
       </div>
       
       <% if logged_in? -%>

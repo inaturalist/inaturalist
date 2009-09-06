@@ -114,9 +114,11 @@
       <%= link_to image_tag("/images/notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path %>
       <h1><%= link_to "Record!", new_observation_path %></h1>
       <p>
-        <%= link_to 'Sign Up', {:controller => :account, :action => :signup} %>
-        and
-        <%= link_to "Add Observations!", new_observation_path %>
+        <% unless logged_in? -%>
+          <%= link_to 'Sign Up', {:controller => :account, :action => :signup} %>
+          and
+        <% end -%>
+        <%= link_to "Add Observations!", new_observation_path, :rel => 'nofollow' %>
       </p>
     </center>
   </div>

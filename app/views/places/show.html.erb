@@ -454,7 +454,10 @@
         <%= render :partial => "observations/cached_component", :collection => @observations %>
         <% if @observations.blank? -%>
           <div class="nodata description">
-            No nearby observations.  Want to <%= link_to "add one?", new_observation_path(:latitude => @place.latitude, :longitude => @place.longitude, :place_guess => @place.display_name, :location_is_exact => false) %>
+            No nearby observations.  Want to 
+            <%= link_to "add one?", 
+              new_observation_path(:latitude => @place.latitude, :longitude => @place.longitude, :place_guess => @place.display_name, :location_is_exact => false),
+              :rel => 'nofollow' %>
           </div>
         <% end -%>
       </div>

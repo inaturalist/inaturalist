@@ -191,7 +191,8 @@
   <div class="column span-24">
     <div class="buttonrow">
       <%= link_to "Add a New Observation to ID Please!",
-                  new_observation_path(:id_please => true), :class => "default button" %>
+        new_observation_path(:id_please => true), :class => "default button", 
+        :rel => 'nofollow' %>
       <%= link_to_function("Filters", 
         "$('#filters').toggle(); $(this).toggleClass('open'); $('#filters:visible input[name=filters_open]').val(true); $('#filters:hidden input[name=filters_open]').val(false);", 
         :id => 'filters_button', 
