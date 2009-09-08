@@ -125,3 +125,4 @@ Rubaidh::GoogleAnalytics.environments = ['production']
 
 # General settings
 SITE_NAME = configuration_bindings['base']['general']['SITE_NAME']
+OBSERVATIONS_TILE_SERVER = configuration_bindings[Rails.env]['tile_servers']['observations']

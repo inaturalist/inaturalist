@@ -33,8 +33,13 @@ base: &base
         #https://developer.apps.yahoo.com/wsregapp/
         YDN_APP_ID: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
     hoptoad:
-      # http://www.hoptoadapp.com/
-      api_key: '09azAZ09azAZ09azAZ09azAZ09azA'
+        # http://www.hoptoadapp.com/
+        api_key: '09azAZ09azAZ09azAZ09azAZ09azA'
+    tile_servers:
+        # EXPERIMENTAL: These endpoints should return map tiles when hit with 
+        # requests like /{Z}/{X}/{Y}.png.  
+        # See http://bitbucket.org/springmeyer/tilelite/
+        observations: 'http://localhost:8000'
 
 development:
     <<: *base
