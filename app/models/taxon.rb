@@ -120,9 +120,25 @@ class Taxon < ActiveRecord::Base
     'variety'
   ]
   
-  ICONIC_TAXON_DISPLAY_NAMES = {
-    'Animalia' => 'Other Animals'
+  # In case you don't feel like looking up TaxonNames
+  ICONIC_TAXON_NAMES = {
+    'Animalia' => 'Animals',
+    'Actinopterygii' => 'Ray-finned Fishes',
+    'Aves' => 'Birds',
+    'Reptilia' => 'Reptiles',
+    'Amphibia' => 'Amphibians',
+    'Mammalia' => 'Mammals',
+    'Arachnida' => 'Arachnids',
+    'Insecta' => 'Insects',
+    'Plantae' => 'Plants',
+    'Fungi' => 'Fungi',
+    'Protozoa' => 'Protozoans',
+    'Mollusca' => 'Mollusks'
   }
+  
+  ICONIC_TAXON_DISPLAY_NAMES = ICONIC_TAXON_NAMES.merge(
+    'Animalia' => 'Other Animals'
+  )
   
   # see the end for the validate method
   def to_s
