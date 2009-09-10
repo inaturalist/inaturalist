@@ -107,13 +107,13 @@ Observations by Everyone
   </div>
 </div>
 
-<div class="last column span-24">
+<div class="last clear column span-24">
   <%= render :partial => 'map',
              :locals => {:observations => @observations} %>
 </div>
 
-<div class="last column span-24">
-  <div id="feeds" class="small ui description feeds">
+<!-- <div class="last column span-24"> -->
+  <div id="feeds" class="clear right small ui description feeds">
     Feeds for Current Filters:
     <%- 
       feed_params = params.reject do |key,value|
@@ -127,7 +127,7 @@ Observations by Everyone
     <%= link_to("KML",  formatted_observations_path(:format => 'kml', :params => kml_feed_params), :id => 'kmllink') %>
     <%= link_to("CSV",  formatted_observations_path(:format => 'csv', :params => feed_params), :id => 'csvlink') %>
   </div>
-</div>
+<!-- </div> -->
 
 <div id="pagination" class="last column span-24">
   <%= will_paginate @observations %>

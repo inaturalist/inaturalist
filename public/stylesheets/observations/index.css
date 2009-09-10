@@ -86,7 +86,7 @@ input.radio, input[type="radio"] {
 }
 
 .observations {
-  margin-bottom: 1em;
+  margin-bottom: 5px;
 }
 
 .observation .actions .editlink {
@@ -109,4 +109,8 @@ input.radio, input[type="radio"] {
 
 #map td {
   border-bottom: 0 none;
+}
+
+#pagination {
+  margin-top: 10px;
 }
