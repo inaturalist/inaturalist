@@ -23,43 +23,28 @@ class PlacesController < ApplicationController
     @places = []
     @q = params[:q] || session[:places_index_q]
     if @q
-      session[:places_index_q] = @q
-      
-      @place = Place.first(:conditions => ["display_name LIKE ?", "#{@q}%"])
-      if logged_in? && @place.blank?
-        @ydn_places = GeoPlanet::Place.search(@q, :count => 2)
-        if @ydn_places && @ydn_places.size == 1
-          @place = Place.import_by_woeid(@ydn_places.first.woeid)
-        end
-      end
-      
-      begin
-        if @place
-          latrads = @place.latitude.to_f * (Math::PI / 180)
-          lonrads = @place.longitude.to_f * (Math::PI / 180)
-          @places = Place.search(options.merge(
-            :geo => [latrads,lonrads], 
-            :order => "@geodist asc"))
-          @places.delete_if{|p| p.id == @place.id}
-        else
-          @places = Place.search(@q, options.clone)
-        end
-      rescue ThinkingSphinx::ConnectionError
-        @places = []
-      end
+      search_places_for_index(options)
     elsif GEOIP && (@geoip_result = GeoipTools.city(ip)) && 
         !@geoip_result[:latitude].blank? && @geoip_result[:latitude] <= 180
       lat = @geoip_result[:latitude]
       lon = @geoip_result[:longitude]
       @q = "#{@geoip_result[:city]}, #{@geoip_result[:state_code]}"
+      @place = Place.first(:conditions => ["display_name LIKE ?", "#{@q}%"])
       latrads = lat.to_f * (Math::PI / 180)
       lonrads = lon.to_f * (Math::PI / 180)
       @places = Place.search(options.merge(:geo => [latrads,lonrads], 
         :order => "@geodist asc", :limit => limit)) rescue []
     end
     
+    @places = if @place && @places.size > 2
+      @places.insert(2, @place)
+    else
+      @places.insert(0, @place)
+    end.compact
+    
     # If the IP geocoding failed for some reason...
-    if @places.size < limit
+    logger.debug "[DEBUG] @places.size: #{@places.size}"
+    if @places.size < limit && @places.size > 0
       if @place
         # Backfill with child places
         @places += Place.all(:limit => (limit - @places.size), 
@@ -78,11 +63,7 @@ class PlacesController < ApplicationController
       end
     end
     
-    @places = if @place && @places.size > 2
-      @places.insert(2, @place)
-    else
-      @places.insert(0, @place)
-    end.compact
+    @places.compact!
     
     @taxa_by_place_id = {}
     @places.each do |place|
@@ -351,5 +332,39 @@ class PlacesController < ApplicationController
       geometry << GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
     end
     geometry.empty? ? nil : geometry
+  end
+  
+  def search_places_for_index(options)
+    session[:places_index_q] = @q
+    
+    conditions = if options[:conditions] && options[:conditions][:place_type]
+      conditions = update_conditions(
+        ["place_type = ?", options[:conditions][:place_type]], 
+        ["AND display_name LIKE ?", "#{@q}%"])
+    else
+      ["display_name LIKE ?", "#{@q}%"]
+    end
+    @place = Place.first(:conditions => conditions)
+    if logged_in? && @place.blank?
+      @ydn_places = GeoPlanet::Place.search(@q, :count => 2)
+      if @ydn_places && @ydn_places.size == 1
+        @place = Place.import_by_woeid(@ydn_places.first.woeid)
+      end
+    end
+    
+    begin
+      if @place
+        latrads = @place.latitude.to_f * (Math::PI / 180)
+        lonrads = @place.longitude.to_f * (Math::PI / 180)
+        @places = Place.search(options.merge(
+          :geo => [latrads,lonrads], 
+          :order => "@geodist asc"))
+        @places.delete_if {|p| p.id == @place.id}
+      else
+        @places = Place.search(@q, options.clone)
+      end
+    rescue ThinkingSphinx::ConnectionError
+      @places = []
+    end
   end
 end
