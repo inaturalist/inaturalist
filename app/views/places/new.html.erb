@@ -81,13 +81,15 @@
       </p>
 
       <div id="place_selector">
-        <% form_remote_tag :url => {:action => :find_external} do %>
+        <% form_remote_tag :url => {:action => :find_external}, 
+            :loading => "$('#loading_status').show()",
+            :complete => "$('#loading_status').hide()" do %>
           <div class="clear buttonrow">
             <%= text_field_tag :q, '', :class => 'inter text' %>
             <%= submit_tag 'Search', :class => 'button' %>
           </div>
         <% end %>
-
+        <div id="loading_status" class="loading status" style="display: none">Searching...</div>
         <ul id="places" style="margin: 0"></ul>
       </div>
     </div>

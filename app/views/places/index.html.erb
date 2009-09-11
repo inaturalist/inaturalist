@@ -237,7 +237,9 @@
 
       map.zoomToPlaces();
       bindPlaceClicks();
-      selectPlace('<%= dom_id(@places[2] || @places.first) %>');
+      <% if @places[2] || @places.first %>
+        selectPlace('<%= dom_id(@places[2] || @places.first) %>');
+      <% end %>
       
       $('#no_places_shades').click(function() {
         hideNoPlaces();
