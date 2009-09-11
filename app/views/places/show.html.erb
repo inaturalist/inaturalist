@@ -329,10 +329,10 @@
       $.get('<%= place_children_path(@place) %>', {page: currentChildrenPage}, function(html) {
         $('#other_places ul').append(html);
         
-        // Hide the link if this is the last page
-        if (currentChildrenPage == <%= @children.total_pages %>) {
-          $('#morechildrenlink').hide();
-        };
+        // Show the link unless this is the last page
+        if (currentChildrenPage < <%= @children.total_pages %>) {
+          $('#morechildrenlink').show();
+        }
         $('#other_places .loading').hide();
       });
     }
