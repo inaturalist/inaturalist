@@ -142,24 +142,6 @@
       $('#submit_filters_button').click();
     }
     
-    function showAllObsOverlay() {
-      if (typeof(window.allObsOverlay) == 'undefined') {
-        var myCopyright = new GCopyrightCollection();
-        var allObsLyr = new GTileLayer(myCopyright, 0, 12, {
-          isPNG: true,
-          tileUrlTemplate: '<%= OBSERVATIONS_TILE_SERVER %>/{Z}/{X}/{Y}.png'
-        });
-        window.allObsOverlay = new GTileLayerOverlay(allObsLyr);
-      };
-      
-      map.addOverlay(window.allObsOverlay);
-    }
-    
-    function hideAllObsOverlay() {
-      if (typeof(window.allObsOverlay) != 'undefined') {
-        map.removeOverlay(window.allObsOverlay);
-      };
-    }
   </script>
 <% end %>
 <% content_for(:extracss) do %>
@@ -167,7 +149,6 @@
     .observations.map {
       float: left;
       width: 640px;
-/*      height: 500px;*/
     }
     
     #map {
@@ -228,10 +209,10 @@
     <%= link_to_function "Redo search in map area", "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
     <span id="redo_search_in_map_area_loading" class="loading status" style="display: none">Loading...</span>
     | <%= link_to_function "Show all observations", 
-      "showAllObsOverlay(); $(this).hide(); $('#hide_all_obs_button').show()", 
+      "map.showAllObsOverlay(); $(this).hide(); $('#hide_all_obs_button').show()", 
       :id => 'show_all_obs_button' %>
     <%= link_to_function "Hide all observations", 
-      "hideAllObsOverlay(); $(this).hide(); $('#show_all_obs_button').show()", 
+      "map.hideAllObsOverlay(); $(this).hide(); $('#show_all_obs_button').show()", 
       :id => 'hide_all_obs_button', :style => 'display: none' %>
     <span class="description">(experimental)</span>
   </div>

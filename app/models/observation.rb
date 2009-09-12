@@ -119,8 +119,8 @@ class Observation < ActiveRecord::Base
       {:conditions => ['latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)',
                         swlat, nelat, swlng, nelng]}
     else
-      {:conditions => ['latitude > ? AND longitude > ? AND latitude < ? AND longitude < ?',
-                        swlat, swlng, nelat, nelng]}
+      {:conditions => ['latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?',
+                        swlat, nelat, swlng, nelng]}
     end
   } do
     def distinct_taxon
@@ -695,5 +695,17 @@ class Observation < ActiveRecord::Base
     })
     ao.save
   end
-
+  
+  # I'm not psyched about having this stuff here, but it makes generating 
+  # more compact JSON a lot easier.
+  include ObservationsHelper
+  include ActionView::Helpers::SanitizeHelper
+  include ActionView::Helpers::TextHelper
+  def image_url
+    observation_image_url(self)
+  end
+  
+  def short_description
+    short_observation_description(self)
+  end
 end

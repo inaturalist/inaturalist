@@ -5,7 +5,8 @@ class ObservationsController < ApplicationController
                             :index,
                             :show,
                             :by_login,
-                            :id_please]
+                            :id_please,
+                            :tile_points]
   before_filter :flickr_required, :only => [:import_flickr]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please]
@@ -14,6 +15,8 @@ class ObservationsController < ApplicationController
   before_filter :curator_required, 
                   :only => [:curation]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
+  
+  caches_page :tile_points
   
   ORDER_BY_FIELDS = %w"place user created_at observed_on species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
@@ -689,6 +692,29 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { render :layout => false, :partial => 'selector'}
       # format.js
+    end
+  end
+  
+  def tile_points
+    # Project tile coordinates into lat/lon using a Spherical Merc projection
+    merc = SphericalMercator.new
+    tile_size = 256
+    x, y, zoom = params[:x].to_i, params[:y].to_i, params[:zoom].to_i
+    swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
+    nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
+    @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
+      :select => "id, species_guess, latitude, longitude, user_id, description",
+      :include => [:user, :flickr_photos], :limit => 500, :order => "id DESC")
+    
+    respond_to do |format|
+      format.json do
+        render :json => @observations.to_json(
+          :only => [:id, :species_guess, :latitude, :longitude],
+          :include => {
+            :user => {:only => :login}
+          },
+          :methods => [:image_url, :short_description])
+      end
     end
   end
 
