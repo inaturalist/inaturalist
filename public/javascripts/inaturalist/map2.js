@@ -280,7 +280,7 @@ GMap2.prototype.showAllObsOverlay = function() {
     var myCopyright = new GCopyrightCollection();
       var allObsLyr = new ObservationsTileLayer(myCopyright, 0, 18, {
       isPNG: true,
-      tileUrlTemplate: this._observations_tile_server + '/{Z}/{X}/{Y}.png'
+      tileUrlTemplate: this._observationsTileServer + '/{Z}/{X}/{Y}.png'
     });
     this._allObsOverlay = new GTileLayerOverlay(allObsLyr);
     
@@ -354,30 +354,15 @@ if (typeof iNaturalist.Map === 'undefined') {
 // static functions
 iNaturalist.Map.createMap = function(options) {
   if (typeof(GBrowserIsCompatible) == 'function' && GBrowserIsCompatible()){
-    // Reverse compat w/ Prototype
-    if (typeof Prototype != 'undefined') {
-      options = $H({
-        div: 'map',
-        lat: 37.9,
-        lng: -122.4,
-        zoom: 10,
-        type: G_PHYSICAL_MAP,
-        controls: 'big'
-      }).merge(options).toObject();
-    } else {
-      options = $.extend(
-        {},
-        {
-          div: 'map',
-          lat: 0,
-          lng: 0,
-          zoom: 1,
-          type: G_PHYSICAL_MAP,
-          controls: 'big'
-        },
-        options
-      );
-    }
+    options = $.extend({}, {
+      div: 'map',
+      lat: 0,
+      lng: 0,
+      zoom: 1,
+      type: G_PHYSICAL_MAP,
+      controls: 'big',
+      observationsTileServer: 'http://localhost:8000'
+    }, options);
     
     var map;
     
@@ -405,6 +390,8 @@ iNaturalist.Map.createMap = function(options) {
     
     map.addMapType(G_PHYSICAL_MAP);
     map.setMapType(options['type']);
+    
+    map._observationsTileServer = options.observationsTileServer;
     
     return map;
   }
@@ -463,7 +450,12 @@ iNaturalist.Map.createObservationIcon = function(options) {
 
 // Create a custom TileLayer class that will lookup observations json for 
 // each tile
-ObservationsTileLayer = function() {};
+ObservationsTileLayer = function(copyrights, minResolution, maxResolution, options) {
+  if (typeof(options) != 'undefined' && typeof(options.tileUrlTemplate) != 'undefined') {
+    this.tileUrlTemplate = options.tileUrlTemplate;
+  }
+  return true;
+};
 ObservationsTileLayer.prototype = new GTileLayer();
 ObservationsTileLayer.prototype.getTileUrl = function(tilePoint, zoom) {
   var jsonURL = iNaturalist.Map.obsTilePointsURL(tilePoint.x, tilePoint.y, zoom);

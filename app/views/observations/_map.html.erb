@@ -5,7 +5,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // Setup the Map
-      var map = iNaturalist.Map.createMap();
+      var map = iNaturalist.Map.createMap({observationsTileServer: '<%= OBSERVATIONS_TILE_SERVER %>'});
       window.map = map;
       
       // Add some fancy-pants controls
