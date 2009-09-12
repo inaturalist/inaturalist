@@ -56,7 +56,7 @@ vrt_xml = <<XML
 <OGRVRTDataSource>
     <OGRVRTLayer name="observations">
         <SrcDataSource>#{db_connection_string}</SrcDataSource> 
-        <SrcSQL>SELECT id, latitude, longitude, iconic_taxon_id FROM #{Observation.table_name}</SrcSQL> 
+        <SrcSQL>SELECT id, latitude, longitude, iconic_taxon_id FROM #{Observation.table_name} ORDER BY id DESC</SrcSQL> 
         <GeometryType>wkbPoint</GeometryType>
         <GeometryField encoding="PointFromColumns" x="longitude" y="latitude"/> 
     </OGRVRTLayer>
