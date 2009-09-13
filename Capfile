@@ -78,11 +78,13 @@ namespace :deploy do
   desc "Symlink to the common cache dir"
   task :symlink_cache, :hosts => "#{domain}" do
     run "ln -s #{shared_path}/system/cache #{latest_release}/cache"
+    run "ln -s #{shared_path}/system/page_cache/observations #{latest_release}/public/observations"
   end
   
-  desc "Clear the cache directory"
+  desc "Clear the cache directories"
   task :clear_cache, :hosts => "#{domain}" do
     run "rm -rf #{shared_path}/system/cache/*"
+    run "rm -rf #{shared_path}/system/page_cache/observations/*"
   end
   
   desc "Change group on all files and grant group read & write permissions."
@@ -187,6 +189,8 @@ namespace :deploy do
   desc "Create the common cache dir"
   task :create_cache, :hosts => "#{domain}" do
     run "test -d #{shared_path}/system/cache || mkdir #{shared_path}/system/cache"
+    run "test -d #{shared_path}/system/page_cache || mkdir #{shared_path}/system/page_cache"
+    run "test -d #{shared_path}/system/page_cache/observations || mkdir #{shared_path}/system/page_cache/observations"
   end
   
   desc "copy dir for Sphinx indexes"

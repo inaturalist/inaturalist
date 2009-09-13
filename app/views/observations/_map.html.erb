@@ -53,11 +53,11 @@
         $(this).toggleClass('closed');
         $('#mapobservations').toggle();
         if ($(this).hasClass('closed')) {
-          $('#map').css({
+          $('#map, .map').css({
             width: '940px'
           });
         } else {
-          $('#map').css({
+          $('#map, .map').css({
             width: '640px'
           });
         };
@@ -73,13 +73,8 @@
       $('#mapobservations').addClass('mini');
       $('#mapdivider').show();
       $('#mapcontrols').show();
-      if ($('#mapdivider').hasClass('closed')) {
-        $('#mapobservations').hide();
-      };
-      if (window.map) {
-        window.map.checkResize();
-        window.map.zoomToObservations();
-      }
+      if ($('#mapdivider').hasClass('closed')) $('#mapobservations').hide();
+      if (window.map) window.map.checkResize();
       alterLinkParams({view: 'map'});
       $('#view_input').val('map');
     }

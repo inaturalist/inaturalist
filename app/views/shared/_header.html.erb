@@ -88,6 +88,7 @@
           <%= link_to "Observations", observations_by_login_path(current_user.login), :class => 'observations_link' %>
           <ul>
             <li><%= link_to "Add", new_observation_path, :class => 'subnavaction' %></li>
+            <li><%= link_to "Import", {:controller => 'observations', :action => 'import'}, :class => 'subnavaction' %></li>
           </ul>
         </li>
         <li><%= link_to "Lists", lists_by_login_path(current_user.login), :class => 'lists_link' %></li>

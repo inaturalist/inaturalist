@@ -107,7 +107,7 @@ ActionController::Routing::Routes.draw do |map|
                                  :action => 'by_login',
                                  :requirements => { :login => simplified_login_regex },
                                  :conditions => {:method => :get}
-  map.observation_tile_points 'observations/tile_points/:zoom/:x/:y',
+  map.observation_tile_points 'observations/tile_points/:zoom/:x/:y.:format',
     :controller => 'observations',
     :action => 'tile_points',
     :requirements => { :zoom => /\d+/, :x => /\d+/, :y => /\d+/ },

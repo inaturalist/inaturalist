@@ -196,6 +196,11 @@ class ObservationsController < ApplicationController
           @identifications).sort_by(&:created_at)
         
         @marking_types = MarkingType.find(:all)
+        
+        if params[:partial]
+          return render(:partial => params[:partial], :object => @observation,
+            :layout => false)
+        end
       end
        
       format.xml { render :xml => @observation }
@@ -697,7 +702,7 @@ class ObservationsController < ApplicationController
   
   def tile_points
     # Project tile coordinates into lat/lon using a Spherical Merc projection
-    merc = SphericalMercator.new
+    merc = SPHERICAL_MERCATOR
     tile_size = 256
     x, y, zoom = params[:x].to_i, params[:y].to_i, params[:zoom].to_i
     swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)

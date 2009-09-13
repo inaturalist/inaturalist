@@ -32,6 +32,8 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 class SphericalMercator
+  attr_accessor :levels, :tilesize
+  
   def initialize(levels = 18, tilesize = 256)
     @Bc = []
     @Cc = []
@@ -39,6 +41,8 @@ class SphericalMercator
     @Ac = []
     @DEG_TO_RAD = Math::PI / 180
     @RAD_TO_DEG = 180 / Math::PI
+    @levels = levels
+    @tilesize = tilesize
     c = tilesize
     (0..levels).each do |d|
       e = c / 2
@@ -57,5 +61,13 @@ class SphericalMercator
     g = (px[1] - e[1]) / -@Cc[zoom]
     h = @RAD_TO_DEG * (2 * Math.atan(Math.exp(g)) - 0.5 * Math::PI)
     return f, h
+  end
+  
+  def from_ll_to_pixel(lonlat, zoom)
+    e = @zc[zoom]
+    x = lonlat[0] * @Bc[zoom] + e[0]
+    g = Math.log(Math.tan((lonlat[1] / (2*@RAD_TO_DEG)) + (Math::PI / 4)))
+    y = e[1] - (g * @Cc[zoom])
+    return x.round, y.round
   end
 end

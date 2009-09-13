@@ -293,9 +293,21 @@ GMap2.prototype.showAllObsOverlay = function() {
     this._allObsMarker = new GMarker(new GLatLng(35,-90), {icon:baseIcon});
     this._allObsMarker.hide();
     GEvent.addListener(this._allObsMarker, 'click', function() {
+      var observation = this._observation;
+      var maxContentDiv = $('<div class="observations mini"></div>').append(
+        $('<div class="loading status">Loading...</div>')
+      ).get(0);
       this.openInfoWindowHtml(
-        map.buildObservationInfoWindow(this._observation)
+        map.buildObservationInfoWindow(observation),
+        {maxContent: maxContentDiv, maxTitle: 'More about this observation'}
       );
+      var infoWindow = map.getInfoWindow();
+      GEvent.addListener(infoWindow, "maximizeclick", function() {
+        GDownloadUrl("/observations/"+observation.id+"?partial=cached_component", function(data) {
+          maxContentDiv.innerHTML = data;
+          $(maxContentDiv).find('.details').show();
+        });
+      });
     });
     map.addOverlay(this._allObsMarker) ;
   };
@@ -475,7 +487,7 @@ ObservationsTileLayer.prototype.getTileUrl = function(tilePoint, zoom) {
 }
 
 iNaturalist.Map.obsTilePointsURL = function(x, y, zoom) {
-  return '/observations/tile_points/' + zoom + '/' + x + '/' + y;
+  return '/observations/tile_points/' + zoom + '/' + x + '/' + y + '.json';
 }
 
 // Static constants
