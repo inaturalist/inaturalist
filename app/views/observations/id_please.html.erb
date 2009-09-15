@@ -257,20 +257,7 @@
     </div>
     <% unless observation.flickr_photos.empty? -%>
       <div class="photos column span-6">
-        <%= modal_image(observation.flickr_photos.first, :size => 'small') %>
-        <div class="other_photos">
-          <% for photo in observation.flickr_photos[1..3] %>
-            <%= modal_image(photo, :class => cycle('', '', 'last')) %>
-          <%- end -%>
-          <% if observation.flickr_photos.size > 4 -%>
-            <%= link_to_toggle "View all #{observation.flickr_photos.size} photos", "#morephotos" %>
-            <div id="morephotos" style="display: none">
-              <% for photo in observation.flickr_photos[4..-1] -%>
-                <%= modal_image(photo, :class => cycle('', '', 'last')) %>
-              <% end -%>
-            </div>
-          <% end -%>
-        </div>
+        <%= render :partial => 'observations/photos', :object => observation %>
       </div>
     <% end -%>
     <div class="column span-6 where">

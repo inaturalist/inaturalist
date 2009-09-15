@@ -1,0 +1,34 @@
+<%- observation ||= object ||= @observation -%>
+<%- no_js ||= false -%>
+<%- if no_js -%>
+  <%= link_to image_tag(observation.flickr_photos.first.small_url), observation, :class => 'main' %>
+<%- else %>
+  <%= modal_image(observation.flickr_photos.first, :size => 'small', :class => 'main') %>
+<%- end -%>
+<div class="other_photos" style="float: left">
+  <% if no_js -%>
+    <% for photo in observation.flickr_photos[1..3] %>
+      <%= link_to image_tag(photo.square_url), observation, :class => cycle('', '', 'last') %>
+    <%- end -%>
+  <% else -%>
+    <% for photo in observation.flickr_photos[1..3] %>
+      <%= modal_image(photo, :class => cycle('', '', 'last')) %>
+    <%- end -%>
+  <% end -%>
+  <% if observation.flickr_photos.size > 4 -%>
+    <% if no_js -%>
+      <div class="clear"><%= link_to "View all #{observation.flickr_photos.size} photos", observation, :class => 'readmore' %></div>
+    <% else %>
+      <div class="clear"><%= link_to_toggle "View all #{observation.flickr_photos.size} photos", "#morephotos" %></div>
+      <div id="morephotos" style="display: none">
+        <% for photo in observation.flickr_photos[4..-1] -%>
+          <%- if no_js -%>
+            <%= link_to image_tag(observation.flickr_photos.first.square_url), observation, :class => cycle('', '', 'last') %>
+          <%- else -%>
+            <%= modal_image(photo, :class => cycle('', '', 'last')) %>
+          <%- end -%>
+        <% end -%>
+      </div>
+    <% end -%>
+  <% end -%>
+</div>

@@ -1,4 +1,5 @@
 <%- hide_form ||= false -%>
+<%- remote ||= nil %>
     <h3>Comments</h3>
     <% if parent.comments.empty? %>
       <p class="description">No comments yet.</p>
@@ -16,8 +17,8 @@
         </div>
         <div class="body">
           <%= render :partial => 'comments/comment_form', :locals => { 
-            :comment => Comment.new(:parent => parent, 
-                                    :user => logged_in? ? current_user : nil)
+            :comment => Comment.new(:parent => parent, :user => logged_in? ? current_user : nil),
+            :remote => remote
           } %>
         </div>
       </div><!-- end new comment -->

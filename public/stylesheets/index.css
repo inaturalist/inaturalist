@@ -58,7 +58,8 @@ a:hover {
 }
 
 .tabs ul li {
-  float: left;
+  display: inline;
+  padding: 5px;
 }
 
 /* UI Elements -- Labels, button text, that kind of thing */

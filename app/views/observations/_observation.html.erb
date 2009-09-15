@@ -1,0 +1,13 @@
+<%- observation ||= object ||= @observation -%>
+<%- top = capture do %>
+<% unless observation.flickr_photos.empty? -%>
+  <div class="bigphotos">
+    <%= render :partial => 'observations/photos', :object => observation %>
+  </div>
+<% end -%>
+<%- end -%>
+<%= render :partial => "observations/observation_component", :object => observation, :locals => {
+  :top => top
+} %>
+
+<%= render :partial => "comments/comments", :locals => { :parent => @observation } %>

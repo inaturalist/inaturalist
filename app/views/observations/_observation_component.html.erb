@@ -32,7 +32,9 @@ Some notes:
 <%- observation ||= observation_component -%>
 <%- check_box_name ||= false -%>
 <%- check_box_checked ||= false -%>
+<%- top ||= false -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="observation <%= cycle('odd', 'even') %><% if !observation.description.blank? && observation.description.size > 200 %> longdesc<% end %>">
+  <%= top if top %>
   <% if check_box_name -%>
     <div class="check_box attribute">
       <%= check_box_tag check_box_name, observation.id, check_box_checked %>
@@ -43,7 +45,6 @@ Some notes:
   </div>
   <div class="photos attribute">
     <h4 class="label">Photos</h4>
-    <% if observation.flickr_photos %>
     <div class="photolist clear">
       <% if observation.flickr_photos.empty? %>
         <div class="photo nophoto description">
@@ -59,7 +60,6 @@ Some notes:
         <% end -%>
       <% end %>
     </div>
-    <% end %>
   </div>
   <div class="readable species_guess attribute">
     <h4 class="label">What</h4>

@@ -294,7 +294,7 @@ GMap2.prototype.showAllObsOverlay = function() {
     this._allObsMarker.hide();
     GEvent.addListener(this._allObsMarker, 'click', function() {
       var observation = this._observation;
-      var maxContentDiv = $('<div class="observations mini"></div>').append(
+      var maxContentDiv = $('<div class="observations mini maxinfowindow"></div>').append(
         $('<div class="loading status">Loading...</div>')
       ).get(0);
       this.openInfoWindowHtml(
@@ -303,9 +303,12 @@ GMap2.prototype.showAllObsOverlay = function() {
       );
       var infoWindow = map.getInfoWindow();
       GEvent.addListener(infoWindow, "maximizeclick", function() {
-        GDownloadUrl("/observations/"+observation.id+"?partial=cached_component", function(data) {
+        GDownloadUrl("/observations/"+observation.id+"?partial=observation", function(data) {
           maxContentDiv.innerHTML = data;
           $(maxContentDiv).find('.details').show();
+          if (typeof($.jqm) != 'undefined') {
+            $('#modal_image_box').jqmAddTrigger('.maxinfowindow a.modal_image_link');
+          }
         });
       });
     });

@@ -297,6 +297,43 @@
   display: none !important;
 }
 
+/* Max Infowindow */
+.observations.maxinfowindow {
+  padding: 10px 10px 0 0;
+}
+.observations.maxinfowindow .attribute.photos {
+  display: none;
+}
+
+.observations.maxinfowindow .bigphotos {
+  float: right;
+  margin: 0 0 10px 10px;
+  width: 230px;
+}
+
+.observations.maxinfowindow .description img {
+  max-width: 500px;
+}
+
+.observations.maxinfowindow .bigphotos img {
+  max-width: 230px;
+  margin-bottom: 10px;
+}
+
+.observations.maxinfowindow .bigphotos .other_photos img {
+  margin: 0 10px 10px 0;
+  max-width: 70px;
+}
+
+.observations.maxinfowindow .bigphotos .other_photos .last img {
+  margin-right: 0px;
+}
+
+.observations.maxinfowindow .bigphotos .main img {
+  display: block;
+  margin: 0 auto 10px;
+}
+
 /* New Observation */
 .observation.new .icon,
 .observation.new .observed_on,

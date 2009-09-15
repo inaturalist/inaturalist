@@ -1,5 +1,5 @@
 <%- remote ||= false -%>
-<%- session[:return_to] = request.request_uri -%>
+<%#- session[:return_to] = request.request_uri -%>
 <%- unique_id ||= "new_comment_form-#{comment.parent.id}" -%>
 <div class="clear">
   <% if logged_in? %>

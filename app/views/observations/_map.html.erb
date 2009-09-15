@@ -1,7 +1,9 @@
 <% content_for(:extrajs) do %>
   <!-- Note: The parent view should include the GMaps libs! -->
   <%= javascript_include_tag 'inaturalist/map2', 
-                             'jquery/plugins/jquery.url.packed.js' %>
+                             'jquery/plugins/jquery.url.packed.js',
+                             'jquery/plugins/jqModal',
+                             'modal_image' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // Setup the Map
