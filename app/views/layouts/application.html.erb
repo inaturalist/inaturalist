@@ -13,7 +13,7 @@
     <%= yield :extrahead %>
   </head>
 <body>
-  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil) do %>
+  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 1) do %>
   <%= render :partial => 'shared/header' %>
   <% end %>
   

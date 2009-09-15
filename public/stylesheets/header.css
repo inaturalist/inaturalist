@@ -83,7 +83,8 @@
   border-top: 1px solid #eee;
 }
 
-#header .navtabs .subnav li:first-child {
+#header .navtabs .subnav li:first-child,
+#header .navtabs .subnav li li {
   border-top: 0 none;
 }
 
