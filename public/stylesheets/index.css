@@ -55,11 +55,17 @@ a:hover {
 /* Tabs List Skeleton */
 .tabs ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .tabs ul li {
-  display: inline;
-  padding: 5px;
+  float: left;
+  position: relative;
+  margin: 0;
+  padding: 0 1em;
+  padding-top: 7px;
+  padding-bottom: 8px;
 }
 
 /* UI Elements -- Labels, button text, that kind of thing */
