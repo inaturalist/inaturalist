@@ -1,34 +1,35 @@
 module Spec
   module Matchers
     
-    class Has #:nodoc:
-      def initialize(sym, *args)
-        @sym = sym
-        @args = args
+    class Has
+      
+      def initialize(expected, *args)
+        @expected, @args = expected, args
       end
       
-      def matches?(target)
-        target.__send__(predicate, *@args)
+      def matches?(actual)
+        actual.__send__(predicate(@expected), *@args)
       end
       
-      def failure_message
-        "expected ##{predicate}(#{@args[0].inspect}) to return true, got false"
+      def failure_message_for_should
+        "expected ##{predicate(@expected)}(#{@args[0].inspect}) to return true, got false"
       end
       
-      def negative_failure_message
-        "expected ##{predicate}(#{@args[0].inspect}) to return false, got true"
+      def failure_message_for_should_not
+        "expected ##{predicate(@expected)}(#{@args[0].inspect}) to return false, got true"
       end
       
       def description
         "have key #{@args[0].inspect}"
       end
+    
+    private
+    
+      def predicate(sym)
+        "#{sym.to_s.sub("have_","has_")}?".to_sym
+      end
       
-      private
-        def predicate
-          "#{@sym.to_s.sub("have_","has_")}?".to_sym
-        end
-        
     end
- 
+    
   end
 end

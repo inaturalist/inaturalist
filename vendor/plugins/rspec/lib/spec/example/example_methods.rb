@@ -1,60 +1,80 @@
 module Spec
   module Example
     module ExampleMethods
-      extend ExampleGroupMethods
-      extend ModuleReopeningFix
-      include ModuleInclusionWarnings
-      
 
-      PENDING_EXAMPLE_BLOCK = lambda {
-        raise Spec::Example::ExamplePendingError.new("Not Yet Implemented")
-      }
-
-      def execute(options, instance_variables)
-        options.reporter.example_started(self)
-        set_instance_variables_from_hash(instance_variables)
-        
-        execution_error = nil
-        Timeout.timeout(options.timeout) do
-          begin
-            before_example
-            eval_block
-          rescue Exception => e
-            execution_error ||= e
-          end
-          begin
-            after_example
-          rescue Exception => e
-            execution_error ||= e
-          end
-        end
-
-        options.reporter.example_finished(self, execution_error)
-        success = execution_error.nil? || ExamplePendingError === execution_error
-      end
-
-      def instance_variable_hash
-        instance_variables.inject({}) do |variable_hash, variable_name|
-          variable_hash[variable_name] = instance_variable_get(variable_name)
-          variable_hash
-        end
-      end
+      extend  Spec::Example::ModuleReopeningFix
+      include Spec::Example::Subject::ExampleMethods
 
       def violated(message="")
         raise Spec::Expectations::ExpectationNotMetError.new(message)
       end
 
-      def eval_each_fail_fast(procs) #:nodoc:
-        procs.each do |proc|
-          instance_eval(&proc)
+      # Declared description for this example:
+      #
+      #   describe Account do
+      #     it "should start with a balance of 0" do
+      #     ...
+      #
+      #   description
+      #   => "should start with a balance of 0"
+      def description
+        if description = @_proxy.description || ::Spec::Matchers.generated_description
+          description
+        else
+          Spec.warn Spec::Example::NoDescriptionError.message("example", @_proxy.location)
         end
       end
 
-      def eval_each_fail_slow(procs) #:nodoc:
-        first_exception = nil
-        procs.each do |proc|
+      def options # :nodoc:
+        @_proxy.options
+      end
+
+      def execute(run_options, instance_variables) # :nodoc:
+        run_options.reporter.example_started(@_proxy)
+        set_instance_variables_from_hash(instance_variables)
+
+        execution_error = nil
+        Timeout.timeout(run_options.timeout) do
           begin
-            instance_eval(&proc)
+            before_each_example
+            instance_eval(&@_implementation)
+          rescue Exception => e
+            execution_error ||= e
+          end
+          begin
+            after_each_example
+          rescue Exception => e
+            execution_error ||= e
+          end
+        end
+
+        run_options.reporter.example_finished(@_proxy.update(description), execution_error)
+        success = execution_error.nil? || ExamplePendingError === execution_error
+      end
+
+      module BlockAliases
+        alias_method :to,     :should
+        alias_method :to_not, :should_not
+      end
+
+      # Extends the submitted block with aliases to and to_not
+      # for should and should_not. Allows expectations like this:
+      #
+      #   expect { this_block }.to change{this.expression}.from(old_value).to(new_value)
+      #   expect { this_block }.to raise_error
+      def expect(&block)
+        block.extend BlockAliases
+      end
+
+      def eval_each_fail_fast(blocks) # :nodoc:
+        blocks.each {|block| instance_eval(&block)}
+      end
+
+      def eval_each_fail_slow(blocks) # :nodoc:
+        first_exception = nil
+        blocks.each do |block|
+          begin
+            instance_eval(&block)
           rescue Exception => e
             first_exception ||= e
           end
@@ -62,46 +82,67 @@ module Spec
         raise first_exception if first_exception
       end
 
-      def description
-        @_defined_description || ::Spec::Matchers.generated_description || "NO NAME"
+      def instance_variable_hash # :nodoc:
+        instance_variables.inject({}) do |variable_hash, variable_name|
+          variable_hash[variable_name] = instance_variable_get(variable_name)
+          variable_hash
+        end
       end
 
-      def __full_description
-        "#{self.class.description} #{self.description}"
-      end
-      
-      def set_instance_variables_from_hash(ivars)
+      def set_instance_variables_from_hash(ivars) # :nodoc:
         ivars.each do |variable_name, value|
           # Ruby 1.9 requires variable.to_s on the next line
-          unless ['@_implementation', '@_defined_description', '@_matcher_description', '@method_name'].include?(variable_name.to_s)
+          unless ['@_proxy', '@_implementation', '@method_name'].include?(variable_name.to_s)
             instance_variable_set variable_name, value
           end
         end
       end
 
-      def eval_block
-        return instance_eval(&(@_implementation || PENDING_EXAMPLE_BLOCK))
+      # Run all the before(:each) blocks for this example
+      def run_before_each
+        example_group_hierarchy.run_before_each(self)
       end
 
-      def implementation_backtrace
-        eval("caller", @_implementation)
+      # Run all the after(:each) blocks for this example
+      def run_after_each
+        example_group_hierarchy.run_after_each(self)
       end
-      
-      protected
+
+      def initialize(example_proxy, &implementation)
+        @_proxy = example_proxy
+        @_implementation = implementation
+        @_backtrace = caller
+      end
+
+    private
+
       include Matchers
       include Pending
-      
-      def before_example
+
+      def before_each_example
         setup_mocks_for_rspec
-        self.class.run_before_each(self)
+        run_before_each
       end
 
-      def after_example
-        self.class.run_after_each(self)
+      def after_each_example
+        run_after_each
         verify_mocks_for_rspec
       ensure
         teardown_mocks_for_rspec
       end
+
+      def described_class
+        self.class.described_class
+      end
+
+      def description_args
+        self.class.description_args
+      end
+
+      def example_group_hierarchy
+        self.class.example_group_hierarchy
+      end
+
     end
   end
 end

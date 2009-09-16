@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe CheckList do
-  fixtures :places, :users, :taxa
+  fixtures :places, :users, :taxa, :lists
   
   before(:each) do
     @check_list = CheckList.new(:place => places(:berkeley), 

@@ -7,7 +7,7 @@ describe "should be_predicate" do
   end
 
   it "should pass when actual returns true for :predicates? (present tense)" do
-    actual = stub("actual", :exists? => true)
+    actual = stub("actual", :exists? => true, :exist? => true)
     actual.should be_exist
   end
 
@@ -21,7 +21,23 @@ describe "should be_predicate" do
   it "should fail when actual does not respond to :predicate?" do
     lambda {
       Object.new.should be_happy
-    }.should raise_error(NameError)
+    }.should raise_error(NameError, /happy\?/)
+  end
+  
+  it "should fail on error other than NameError" do
+    actual = stub("actual")
+    actual.should_receive(:foo?).and_raise("aaaah")
+    lambda {
+      actual.should be_foo
+    }.should raise_error(/aaaah/)
+  end
+  
+  it "should fail on error other than NameError (with the present tense predicate)" do
+    actual = Object.new
+    actual.should_receive(:foos?).and_raise("aaaah")
+    lambda {
+      actual.should be_foo
+    }.should raise_error(/aaaah/)
   end
 end
 
@@ -121,7 +137,7 @@ describe "should be_nil" do
   it "should fail when actual is not nil" do
     lambda {
       :not_nil.should be_nil
-    }.should fail_with("expected nil, got :not_nil")
+    }.should fail_with("expected nil? to return true, got false")
   end
 end
 
@@ -133,7 +149,7 @@ describe "should_not be_nil" do
   it "should fail when actual is nil" do
     lambda {
       nil.should_not be_nil
-    }.should fail_with("expected not nil, got nil")
+    }.should fail_with("expected nil? to return false, got true")
   end
 end
 
@@ -195,7 +211,15 @@ describe "should be ===" do
   end
 
   it "should fail when === operator returns false" do
-    lambda { Hash.should be === "not a hash" }.should fail_with(%[expected === "not a hash", got Hash])
+    lambda { Hash.should be === "not a hash" }.should fail_with(%[expected === not a hash, got Hash])
+  end
+end
+
+describe "should_not with operators" do
+  it "should coach user to stop using operators with should_not" do
+    lambda {
+      5.should_not be < 6
+    }.should raise_error(/not only FAILED,\nit is a bit confusing./m)
   end
 end
 
@@ -206,11 +230,11 @@ describe "should be" do
   end
 
   it "should fail if actual is false" do
-    lambda {false.should be}.should fail_with("expected if to be satisfied, got false")
+    lambda {false.should be}.should fail_with("expected true, got false")
   end
 
   it "should fail if actual is nil" do
-    lambda {nil.should be}.should fail_with("expected if to be satisfied, got nil")
+    lambda {nil.should be}.should fail_with("expected true, got nil")
   end
 end
 
@@ -223,13 +247,18 @@ describe "should be(value)" do
   end
 end
 
+describe "'should be' with operator" do
+  it "should include 'be' in the description" do
+    (be > 6).description.should =~ /be > 6/
+    (be >= 6).description.should =~ /be >= 6/
+    (be <= 6).description.should =~ /be <= 6/
+    (be < 6).description.should =~ /be < 6/
+  end
+end
+
 
 describe "arbitrary predicate with DelegateClass" do
   it "should access methods defined in the delegating class (LH[#48])" do
-    pending(%{
-      Looks like DelegateClass is delegating #should to the
-      delegate. Not sure how to fix this one. Or if we even should."
-    })
     require 'delegate'
     class ArrayDelegate < DelegateClass(Array)
       def initialize(array)
@@ -244,5 +273,27 @@ describe "arbitrary predicate with DelegateClass" do
 
     delegate = ArrayDelegate.new([1,2,3,4,5,6])
     delegate.should be_large
+  end
+end
+
+describe "be_a, be_an" do
+  it "should pass when class matches" do
+    "foobar".should be_a(String)
+    [1,2,3].should be_an(Array)
+  end
+
+  it "should fail when class does not match" do
+    "foobar".should_not be_a(Hash)
+    [1,2,3].should_not be_an(Integer)
+  end
+end
+
+describe "be_an_instance_of" do
+  it "passes when direct class matches" do
+    5.should be_an_instance_of(Fixnum)
+  end
+  
+  it "fails when class is higher up hierarchy" do
+    5.should_not be_an_instance_of(Numeric)
   end
 end

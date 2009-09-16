@@ -30,6 +30,7 @@ class Taxon < ActiveRecord::Base
                             :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
+  belongs_to :parent, :class_name => 'Taxon'
   has_and_belongs_to_many :flickr_photos, :uniq => true
   has_and_belongs_to_many :colors
   

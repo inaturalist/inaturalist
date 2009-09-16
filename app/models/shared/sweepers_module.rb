@@ -12,11 +12,13 @@ module Shared::SweepersModule
       :for_owner => true)
     
     # Expire page-cached tile_points JSON
-    SPHERICAL_MERCATOR.levels.times do |zoom|
-      x, y = SPHERICAL_MERCATOR.from_ll_to_pixel(
-        [observation.longitude, observation.latitude], zoom)
-      expire_page :controller => 'observations', :action => 'tile_points', 
-        :zoom => zoom, :x => x, :y => y
+    if observation.latitude? && observation.longitude?
+      SPHERICAL_MERCATOR.levels.times do |zoom|
+        x, y = SPHERICAL_MERCATOR.from_ll_to_pixel(
+          [observation.longitude, observation.latitude], zoom)
+        expire_page :controller => 'observations', :action => 'tile_points', 
+          :zoom => zoom, :x => x, :y => y
+      end
     end
   end
   

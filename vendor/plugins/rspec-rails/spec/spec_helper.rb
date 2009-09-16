@@ -1,18 +1,25 @@
 dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift(File.expand_path("#{dir}/../rspec/lib"))
-$LOAD_PATH.unshift(File.expand_path("#{dir}/../spec_resources/controllers"))
-$LOAD_PATH.unshift(File.expand_path("#{dir}/../spec_resources/helpers"))
+$LOAD_PATH.unshift(File.expand_path("#{dir}/resources/controllers"))
+$LOAD_PATH.unshift(File.expand_path("#{dir}/resources/helpers"))
 require File.expand_path("#{dir}/../../../../spec/spec_helper")
-require File.expand_path("#{dir}/../spec_resources/controllers/render_spec_controller")
-require File.expand_path("#{dir}/../spec_resources/controllers/rjs_spec_controller")
-require File.expand_path("#{dir}/../spec_resources/controllers/redirect_spec_controller")
-require File.expand_path("#{dir}/../spec_resources/controllers/action_view_base_spec_controller")
-require File.expand_path("#{dir}/../spec_resources/helpers/explicit_helper")
-require File.expand_path("#{dir}/../spec_resources/helpers/more_explicit_helper")
-require File.expand_path("#{dir}/../spec_resources/helpers/view_spec_helper")
-require File.expand_path("#{dir}/../spec_resources/helpers/plugin_application_helper")
+require File.expand_path("#{dir}/resources/controllers/application")
+require File.expand_path("#{dir}/resources/controllers/render_spec_controller")
+require File.expand_path("#{dir}/resources/controllers/controller_spec_controller")
+require File.expand_path("#{dir}/resources/controllers/rjs_spec_controller")
+require File.expand_path("#{dir}/resources/controllers/redirect_spec_controller")
+require File.expand_path("#{dir}/resources/controllers/action_view_base_spec_controller")
+require File.expand_path("#{dir}/resources/helpers/addition_helper")
+require File.expand_path("#{dir}/resources/helpers/explicit_helper")
+require File.expand_path("#{dir}/resources/helpers/more_explicit_helper")
+require File.expand_path("#{dir}/resources/helpers/view_spec_helper")
+require File.expand_path("#{dir}/resources/helpers/plugin_application_helper")
 
-extra_controller_paths = File.expand_path("#{dir}/../spec_resources/controllers")
+require File.expand_path("#{dir}/resources/models/animal")
+require File.expand_path("#{dir}/resources/models/person")
+require File.expand_path("#{dir}/resources/models/thing")
+
+extra_controller_paths = File.expand_path("#{dir}/resources/controllers")
 
 unless ActionController::Routing.controller_paths.include?(extra_controller_paths)
   ActionController::Routing.instance_eval {@possible_controllers = nil}
@@ -23,7 +30,7 @@ module Spec
   module Rails
     module Example
       class ViewExampleGroupController
-        set_view_path File.join(File.dirname(__FILE__), "..", "spec_resources", "views")
+        prepend_view_path File.join(File.dirname(__FILE__), "..", "spec", "resources", "views")
       end
     end
   end
@@ -43,15 +50,30 @@ class Proc
   end
 end
 
-Spec::Runner.configure do |config|
-  config.before(:each, :type => :controller) do
+ActionController::Routing::Routes.draw do |map|
+  map.connect 'action_with_method_restriction', :controller => 'redirect_spec', :action => 'action_with_method_restriction', :conditions => { :method => :get }
+  map.connect 'action_to_redirect_to_action_with_method_restriction', :controller => 'redirect_spec', :action => 'action_to_redirect_to_action_with_method_restriction'
+
+  map.resources :rspec_on_rails_specs
+  map.custom_route 'custom_route', :controller => 'custom_route_spec', :action => 'custom_route'
+  map.connect ":controller/:action/:id"
+end
+
+module HelperMethods
+  def method_in_module_included_in_configuration
   end
 end
 
+module HelperMacros
+  def accesses_configured_helper_methods
+    it "has access to methods in modules included in configuration" do
+      method_in_module_included_in_configuration
+    end
+  end
+end
 
-ActionController::Routing::Routes.draw do |map|
-  map.resources :rspec_on_rails_specs
-  map.connect 'custom_route', :controller => 'custom_route_spec', :action => 'custom_route'
-  map.connect ":controller/:action/:id"
+Spec::Runner.configure do |config|
+  config.include HelperMethods
+  config.extend HelperMacros
 end
 

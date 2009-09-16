@@ -1,23 +1,24 @@
 module Spec
   module Matchers
     class RaiseError #:nodoc:
-      def initialize(error_or_message=Exception, message=nil, &block)
+      def initialize(expected_error_or_message=Exception, expected_message=nil, &block)
         @block = block
-        case error_or_message
+        @actual_error = nil
+        case expected_error_or_message
         when String, Regexp
-          @expected_error, @expected_message = Exception, error_or_message
+          @expected_error, @expected_message = Exception, expected_error_or_message
         else
-          @expected_error, @expected_message = error_or_message, message
+          @expected_error, @expected_message = expected_error_or_message, expected_message
         end
       end
 
-      def matches?(proc)
+      def matches?(given_proc)
         @raised_expected_error = false
         @with_expected_message = false
         @eval_block = false
         @eval_block_passed = false
         begin
-          proc.call
+          given_proc.call
         rescue @expected_error => @actual_error
           @raised_expected_error = true
           @with_expected_message = verify_message
@@ -31,7 +32,7 @@ module Spec
           eval_block if @raised_expected_error && @with_expected_message && @block
         end
       ensure
-        return (@raised_expected_error && @with_expected_message) ? (@eval_block ? @eval_block_passed : true) : false
+        return (@raised_expected_error & @with_expected_message) ? (@eval_block ? @eval_block_passed : true) : false
       end
       
       def eval_block
@@ -47,24 +48,20 @@ module Spec
       def verify_message
         case @expected_message
         when nil
-          return true
+          true
         when Regexp
-          return @expected_message =~ @actual_error.message
+          @expected_message =~ @actual_error.message
         else
-          return @expected_message == @actual_error.message
+          @expected_message == @actual_error.message
         end
       end
       
-      def failure_message
-        if @eval_block
-          return @actual_error.message
-        else
-          return "expected #{expected_error}#{actual_error}"
-        end
+      def failure_message_for_should
+        @eval_block ? @actual_error.message : "expected #{expected_error}#{given_error}"
       end
 
-      def negative_failure_message
-        "expected no #{expected_error}#{actual_error}"
+      def failure_message_for_should_not
+        "expected no #{expected_error}#{given_error}"
       end
       
       def description
@@ -83,7 +80,7 @@ module Spec
           end
         end
 
-        def actual_error
+        def given_error
           @actual_error.nil? ? " but nothing was raised" : ", got #{@actual_error.inspect}"
         end
         

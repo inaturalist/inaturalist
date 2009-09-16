@@ -11,7 +11,14 @@ module Spec
         @object.should_receive(:foo)
         lambda do
           @object.rspec_verify
-        end.should raise_error(Spec::Mocks::MockExpectationError, /Object/)
+        end.should raise_error(Spec::Mocks::MockExpectationError, /<Object:.*> expected/)
+      end
+    
+      it "should name the class in the failure message when expectation is on class" do
+        Object.should_receive(:foo)
+        lambda do
+          Object.rspec_verify
+        end.should raise_error(Spec::Mocks::MockExpectationError, /<Object \(class\)>/)
       end
     
       it "should not conflict with @options in the object" do
@@ -21,11 +28,10 @@ module Spec
       end
             
       it "should_not_receive should mock out the method" do
-        pending("example raises the expected error, yet fails")
         @object.should_not_receive(:fuhbar)
         lambda do
           @object.fuhbar
-        end.should raise_error(MockExpectationError, "Mock 'Object' expected :fuhbar with (no args) 0 times, but received it once")
+        end.should raise_error(MockExpectationError, /<Object:.*> expected :fuhbar with \(no args\) 0 times/)
       end
     
       it "should_not_receive should return a negative message expectation" do
@@ -66,7 +72,6 @@ module Spec
       end
       
       it "should_not_receive should also take a String argument" do
-        pending("example raises the expected error, yet fails")
         @object.should_not_receive('foobar')
         lambda do
           @object.foobar   
@@ -74,10 +79,12 @@ module Spec
       end
       
       it "should use report nil in the error message" do
+        allow_message_expectations_on_nil
+        
         @this_will_resolve_to_nil.should_receive(:foobar)
         lambda do
           @this_will_resolve_to_nil.rspec_verify
-        end.should raise_error(Spec::Mocks::MockExpectationError, /NilClass.*expected :foobar with/)
+        end.should raise_error(Spec::Mocks::MockExpectationError, /nil expected :foobar with/)
       end
     end
     
@@ -121,19 +128,34 @@ module Spec
 
       it 'should keep public methods public' do
         @object.should_receive(:public_method)
-        @object.public_methods.should include('public_method')
+        with_ruby('1.9') do
+          @object.public_methods.should include(:public_method)
+        end
+        with_ruby('1.8') do
+          @object.public_methods.should include('public_method')
+        end
         @object.public_method
       end
 
       it 'should keep private methods private' do
         @object.should_receive(:private_method)
-        @object.private_methods.should include('private_method')
+        with_ruby('1.9') do
+          @object.private_methods.should include(:private_method)
+        end
+        with_ruby('1.8') do
+          @object.private_methods.should include('private_method')
+        end
         @object.public_method
       end
 
       it 'should keep protected methods protected' do
         @object.should_receive(:protected_method)
-        @object.protected_methods.should include('protected_method')
+        with_ruby('1.9') do
+          @object.protected_methods.should include(:protected_method)
+        end
+        with_ruby('1.8') do
+          @object.protected_methods.should include('protected_method')
+        end
         @object.public_method
       end
 

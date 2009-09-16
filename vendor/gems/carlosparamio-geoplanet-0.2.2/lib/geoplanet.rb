@@ -1,16 +1,16 @@
 %w{rubygems rest_client}.each { |x| require x }
 
-if defined?(ActiveSupport::JSON)
-  JSON = ActiveSupport::JSON
-  module JSON
-    def self.parse(json)
-      decode(json)
-    end
-  end
-else
-  require 'json'
-end
-
+# if defined?(ActiveSupport::JSON)
+#   JSON = ActiveSupport::JSON
+#   module JSON
+#     def self.parse(json)
+#       decode(json)
+#     end
+#   end
+# else
+#   require 'json'
+# end
+require 'json'
 require 'geoplanet/version'
 require 'geoplanet/base'
 require 'geoplanet/place'

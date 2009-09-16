@@ -80,7 +80,7 @@ Pseudacris_regilla:
   is_iconic: false
   source_id: 5
   rgt: 27
-  parent_id: 315
+  parent: Pseudacris
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:42 -07:00
@@ -97,7 +97,7 @@ Pseudacris:
   is_iconic: false
   source_id: 5
   rgt: 28
-  parent_id: 316
+  parent: Hylidae
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:43 -07:00
@@ -131,7 +131,7 @@ Aves:
   is_iconic: true
   source_id: 5
   rgt: 43
-  parent_id: 306
+  parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Aves
   created_at: 2008-09-02 16:23:34 -07:00
@@ -148,7 +148,7 @@ Hylidae:
   is_iconic: false
   source_id: 5
   rgt: 29
-  parent_id: 317
+  parent: Anura
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:43 -07:00
@@ -165,7 +165,7 @@ Anura:
   is_iconic: false
   source_id: 5
   rgt: 30
-  parent_id: 308
+  parent: Amphibia
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:43 -07:00
@@ -182,7 +182,7 @@ Chordata:
   is_iconic: false
   source_id: 5
   rgt: 44
-  parent_id: 304
+  parent: Animalia
   name_provider: ColNameProvider
   iconic_taxon: Animalia
   created_at: 2008-09-02 16:23:35 -07:00
@@ -199,7 +199,7 @@ Reptilia:
   is_iconic: true
   source_id: 5
   rgt: 33
-  parent_id: 306
+  parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Reptilia
   created_at: 2008-09-02 16:23:36 -07:00
@@ -216,7 +216,7 @@ Ensatina_eschscholtzii:
   is_iconic: false
   source_id: 5
   rgt: 19
-  parent_id: 319
+  parent: Ensatina
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:44 -07:00
@@ -233,7 +233,7 @@ Ensatina:
   is_iconic: false
   source_id: 5
   rgt: 20
-  parent_id: 320
+  parent: Plethodontidae
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:45 -07:00
@@ -250,7 +250,7 @@ Amphibia:
   is_iconic: true
   source_id: 5
   rgt: 31
-  parent_id: 306
+  parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:37 -07:00
@@ -267,7 +267,7 @@ Plethodontidae:
   is_iconic: false
   source_id: 5
   rgt: 21
-  parent_id: 321
+  parent: Caudata
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:45 -07:00
@@ -284,7 +284,7 @@ Caudata:
   is_iconic: false
   source_id: 5
   rgt: 22
-  parent_id: 308
+  parent: Amphibia
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:45 -07:00
@@ -301,7 +301,7 @@ Mammalia:
   is_iconic: true
   source_id: 5
   rgt: 13
-  parent_id: 306
+  parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Mammalia
   created_at: 2008-09-02 16:23:38 -07:00
@@ -318,7 +318,7 @@ Arachnida:
   is_iconic: true
   source_id: 5
   rgt: 9
-  parent_id: 311
+  parent: Arthropoda
   name_provider: ColNameProvider
   iconic_taxon: Arachnida
   created_at: 2008-09-02 16:23:39 -07:00
@@ -335,7 +335,7 @@ Arthropoda:
   is_iconic: false
   source_id: 5
   rgt: 10
-  parent_id: 304
+  parent: Animalia
   name_provider: ColNameProvider
   iconic_taxon: Animalia
   created_at: 2008-09-02 16:23:39 -07:00
@@ -352,7 +352,7 @@ Calypte_anna:
   is_iconic: false
   source_id: 5
   rgt: 39
-  parent_id: 323
+  parent: Calypte
   name_provider: ColNameProvider
   iconic_taxon: Aves
   created_at: 2008-09-02 16:23:46 -07:00
@@ -386,7 +386,7 @@ Insecta:
   is_iconic: true
   source_id: 5
   rgt: 7
-  parent_id: 311
+  parent: Arthropoda
   name_provider: ColNameProvider
   iconic_taxon: Insecta
   created_at: 2008-09-02 16:23:40 -07:00

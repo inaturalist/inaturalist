@@ -4,7 +4,7 @@ describe Identification, "creation" do
   fixtures :users, :taxa, :observations, :lists, :listed_taxa
   before(:each) do
     obs = Observation.create(:species_guess => "Pacific Chorus Frog", 
-                          :taxon => Taxon.find_by_name("Pseudacris regilla"),
+                          :taxon => taxa(:Pseudacris_regilla),
                           :user => users(:adam))
     @identification = Identification.new(
       :user => users(:quentin),

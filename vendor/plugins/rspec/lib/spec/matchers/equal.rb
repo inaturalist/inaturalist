@@ -1,29 +1,6 @@
 module Spec
   module Matchers
-  
-    class Equal #:nodoc:
-      def initialize(expected)
-        @expected = expected
-      end
-  
-      def matches?(actual)
-        @actual = actual
-        @actual.equal?(@expected)
-      end
 
-      def failure_message
-        return "expected #{@expected.inspect}, got #{@actual.inspect} (using .equal?)", @expected, @actual
-      end
-
-      def negative_failure_message
-        return "expected #{@actual.inspect} not to equal #{@expected.inspect} (using .equal?)", @expected, @actual
-      end
-      
-      def description
-        "equal #{@expected.inspect}"
-      end
-    end
-    
     # :call-seq:
     #   should equal(expected)
     #   should_not equal(expected)
@@ -37,7 +14,40 @@ module Spec
     #   5.should equal(5) #Fixnums are equal
     #   "5".should_not equal("5") #Strings that look the same are not the same object
     def equal(expected)
-      Matchers::Equal.new(expected)
+      Matcher.new :equal, expected do |_expected_|
+        match do |actual|
+          actual.equal?(_expected_)
+        end
+        
+        def inspect_object(o)
+          "#<#{o.class}:#{o.object_id}> => #{o.inspect}"
+        end
+        
+        failure_message_for_should do |actual|
+          <<-MESSAGE
+
+expected #{inspect_object(_expected_)}
+     got #{inspect_object(actual)}
+
+Compared using equal?, which compares object identity,
+but expected and actual are not the same object. Use
+'actual.should == expected' if you don't care about
+object identity in this example.
+
+MESSAGE
+        end
+
+        failure_message_for_should_not do |actual|
+          <<-MESSAGE
+
+expected not #{inspect_object(actual)}
+         got #{inspect_object(_expected_)}
+
+Compared using equal?, which compares object identity.
+
+MESSAGE
+        end
+      end
     end
   end
 end

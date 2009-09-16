@@ -1,11 +1,14 @@
 require 'spec/runner/formatter/base_text_formatter'
+require 'spec/runner/formatter/no_op_method_missing'
 
 module Spec
   module Runner
     module Formatter
       class ProgressBarFormatter < BaseTextFormatter
+        include NOOPMethodMissing
+
         def example_failed(example, counter, failure)
-          @output.print colourise('F', failure)
+          @output.print colorize_failure('F', failure)
           @output.flush
         end
 
@@ -14,19 +17,15 @@ module Spec
           @output.flush
         end
       
-        def example_pending(example, message)
+        def example_pending(example, message, deprecated_pending_location=nil)
           super
-          @output.print yellow('P')
+          @output.print yellow('*')
           @output.flush
         end
         
         def start_dump
           @output.puts
           @output.flush
-        end
-        
-        def method_missing(sym, *args)
-          # ignore
         end
       end
     end

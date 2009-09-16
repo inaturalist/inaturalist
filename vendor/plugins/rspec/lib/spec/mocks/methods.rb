@@ -9,11 +9,23 @@ module Spec
         __mock_proxy.add_negative_message_expectation(caller(1)[0], sym.to_sym, &block)
       end
       
-      def stub!(sym_or_hash, opts={})
+      def stub!(sym_or_hash, opts={}, &block)
         if Hash === sym_or_hash
           sym_or_hash.each {|method, value| stub!(method).and_return value }
         else
-          __mock_proxy.add_stub(caller(1)[0], sym_or_hash.to_sym, opts)
+          __mock_proxy.add_stub(caller(1)[0], sym_or_hash.to_sym, opts, &block)
+        end
+      end
+      
+      alias_method :stub, :stub!
+
+      def stub_chain(*methods)
+        if methods.length > 1
+          next_in_chain = Object.new
+          stub!(methods.shift) {next_in_chain}
+          next_in_chain.stub_chain(*methods)
+        else
+          stub!(methods.shift)
         end
       end
       
@@ -30,7 +42,7 @@ module Spec
       end
       
       def as_null_object
-        __mock_proxy.act_as_null_object
+        __mock_proxy.as_null_object
       end
       
       def null_object?
@@ -43,7 +55,7 @@ module Spec
         if Mock === self
           @mock_proxy ||= Proxy.new(self, @name, @options)
         else
-          @mock_proxy ||= Proxy.new(self, self.class.name)
+          @mock_proxy ||= Proxy.new(self)
         end
       end
     end

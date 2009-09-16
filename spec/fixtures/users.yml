@@ -11,7 +11,7 @@ quentin:
   activated_at:              <%= 5.days.ago.to_s :db %>
   state:                     active
   time_zone:                 "Pacific Time (US & Canada)"
-  life_list_id:              29
+  life_list:                 quentin_life_list
   preferences: |
     --- !ruby/object:Preferences 
     comment_email_notification: true
