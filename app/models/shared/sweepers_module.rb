@@ -12,7 +12,7 @@ module Shared::SweepersModule
       :for_owner => true)
     
     # Expire page-cached tile_points JSON
-    if observation.latitude? && environment.longitude?
+    if observation.latitude? && observation.longitude?
       SPHERICAL_MERCATOR.levels.times do |zoom|
         x, y = SPHERICAL_MERCATOR.from_ll_to_pixel(
           [observation.longitude, observation.latitude], zoom)
