@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= @title = "#{possessive(@login_user, :capitalize => @login_user == current_user)} Lists" %>
+  <%= @title = "#{possessive(@selected_user, :capitalize => @selected_user == current_user)} Lists" %>
 <% end -%>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'barchart', 'lists' %>
@@ -41,15 +41,15 @@
 <% end -%>
 <div id="pageheader" class="column span-24 last">
   <%= link_to(
-    image_tag(@login_user.icon.url(:thumb), :class => 'usericon'),
-    person_path(@login_user)) %>
+    image_tag(@selected_user.icon.url(:thumb), :class => 'usericon'),
+    person_path(@selected_user)) %>
   
   <h2><%= @title %></h2>
   
   <%= render :partial => 'users/subnav', 
-             :locals => { :user => @login_user } %>
+             :locals => { :user => @selected_user } %>
 
-  <% if logged_in? && current_user == @login_user %>
+  <% if logged_in? && current_user == @selected_user %>
   <div id="tools" class="buttonrow">
     <%= link_to 'New List', new_list_path, :id => 'newlistbutton', :class => 'default button'%>
   </div>

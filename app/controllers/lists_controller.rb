@@ -7,15 +7,14 @@ class ListsController < ApplicationController
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon]
   before_filter :load_find_options, :only => [:show]
+  before_filter :load_user_by_login, :only => :by_login
   
   ## Custom actions ############################################################
 
   # gets lists by user login
   def by_login
-    @login = params[:login]
-    @login_user = User.find_by_login(@login)
-    @life_list = @login_user.life_list
-    @lists = @login_user.lists.paginate(:page => params[:page], :order => 'id')
+    @life_list = @selected_user.life_list
+    @lists = @selected_user.lists.paginate(:page => params[:page], :order => 'id')
     
     # This is terribly inefficient. Might have to be smarter if there are
     # lots of lists.
