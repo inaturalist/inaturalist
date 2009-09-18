@@ -451,7 +451,7 @@ class Taxon < ActiveRecord::Base
   def self.remove_rank_from_name(name)
     pieces = name.split
     return name if pieces.size == 1
-    pieces.map! {|p| p.gsub(/[^\w]/, '')}
+    pieces.map! {|p| p.gsub('.', '')}
     pieces.reject! {|p| (RANKS + RANK_EQUIVALENTS.keys).include?(p.downcase)}
     pieces.join(' ')
   end

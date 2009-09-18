@@ -58,4 +58,10 @@ describe TaxonName, 'creation' do
     @taxon_name.save
     @taxon_name.name.should == 'Quercus agrifolia agrifolia'
   end
+  
+  it "should not remove hyphens" do
+    @taxon_name.name = "Oxalis pes-caprae"
+    @taxon_name.save
+    @taxon_name.name.should == 'Oxalis pes-caprae'
+  end
 end
