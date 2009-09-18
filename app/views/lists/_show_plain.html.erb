@@ -25,7 +25,7 @@
           <% end %>
         </ul>
       </div>
-      <% unless grouper == @grouped_listed_taxa.last.first %>
+      <% unless grouper == @grouped_listed_taxa.to_a.last.first %>
         <div class="column-separator">
           <img src="/images/logo-eee-15px.png">
         </div>
