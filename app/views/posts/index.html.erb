@@ -76,7 +76,7 @@
 
 <div id="footercol" class="column span-24">
   <div class="feeds">
-    <%= link_to("Atom", formatted_posts_path(:login => @display_user.login, :format => 'atom'), :class => 'atomlink') %>
+    <%= link_to("Atom", posts_path(:login => @display_user.login, :format => 'atom'), :class => 'atomlink') %>
   </div>
 </div>
 

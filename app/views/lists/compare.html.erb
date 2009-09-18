@@ -175,7 +175,7 @@
             <div id="seenit_<%= taxon.id %>" class="seenit">
               <%- lt = ListedTaxon.new(:list => list, :taxon => taxon) -%>
               <% remote_form_for(lt, 
-                :url => listed_taxon_path(lt, :format => 'json'), 
+                :url => listed_taxa_path(lt, :format => 'json'),
                 :loading  => "$('#listed_taxon_submit_#{lt.taxon_id}').hide(); $('#listed_taxon_loading_#{lt.taxon_id}').show();",
                 :complete => "$('#listed_taxon_submit_#{lt.taxon_id}').show(); $('#listed_taxon_loading_#{lt.taxon_id}').hide();",
                 :success  => "afterTaxonAdded(request);",

@@ -1,7 +1,7 @@
 <% list ||= object ||= @list -%>
     <% lt = ListedTaxon.new(:list => list) %>
     <% remote_form_for(lt, 
-      :url => listed_taxon_path(lt, :format => 'json'), 
+      :url => listed_taxa_path(lt, :format => 'json', :method => :post),
       :loading => "$('#listed_taxon_submit').hide(); $('#listed_taxon_loading').show()",
       :complete => "$('#listed_taxon_submit').show(); $('#listed_taxon_loading').hide()",
       :success => "afterTaxonAdded(request)",

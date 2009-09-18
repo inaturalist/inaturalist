@@ -23,11 +23,7 @@
               <%= o.text_field(:observed_on_string, 
                                :class => 'observed_on_string') %>
               <%= o.error_message_on(:observed_on) %>
-              <%# A bug in select prevents us from relying on the fields_for index until the bug fix is pushed in 2.2.  See http://rails.lighthouseapp.com/projects/8994/tickets/518 and http://rails.lighthouseapp.com/projects/8994/tickets/518 %>
-              <%= time_zone_select("observations[#{i}]", :time_zone, 
-                                    TimeZone.us_zones, 
-                                    {:include_blank => true, :object => observation}, 
-                                    {:class => 'time_zone'}) %>
+              <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
             </div>
             
             <div class="field">

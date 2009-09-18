@@ -240,7 +240,7 @@ ActionController::Routing::Routes.draw do |map|
     places.find_external '/places/find_external', :action => 'find_external'
     places.place_search '/places/search', :action => 'search', :conditions => {:method => :get}
     places.place_children '/places/:id/children', :action => 'children', :conditions => {:method => :get}
-    places.formatted_place_taxa 'places/:id/taxa.:format', :action => 'taxa', :conditions => {:method => :get}
+    places.place_taxa 'places/:id/taxa.:format', :action => 'taxa', :conditions => {:method => :get}
   end
   
   map.resources :flags, :requirements => { :id => %r(\d+) }

@@ -17,7 +17,7 @@
       $('#flickr_photos').photoSelector({
         baseURL: '/flickr/photo_fields?context=user',
         urlParams: {
-          authenticity_token: encodeURIComponent(AUTH_TOKEN),
+          authenticity_token: AUTH_TOKEN,
           limit: 24
         }
       });

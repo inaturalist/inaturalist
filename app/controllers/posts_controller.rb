@@ -133,7 +133,7 @@ class PostsController < ApplicationController
   def get_archives
     @archives = @display_user.posts.published.count(
       :group => "DATE_FORMAT(published_at, '%Y %m %M')")
-    @archives = @archives.reverse.map do |month_str, count|
+    @archives = @archives.to_a.reverse.map do |month_str, count|
       [month_str.split, count].flatten
     end
   end

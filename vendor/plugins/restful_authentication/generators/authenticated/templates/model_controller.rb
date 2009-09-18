@@ -1,6 +1,6 @@
 class <%= model_controller_class_name %>Controller < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
+  # include AuthenticatedSystem
   <% if options[:stateful] %>
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]

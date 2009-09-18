@@ -23,7 +23,7 @@
     }
   </style>
 <% end -%>
-<% form_for(post, :url => post_path(post.user.login, post), 
+<% form_for(post, :url => post.new_record? ? posts_path(post.user.login) : post_path(post.user.login, post), 
             :html => {:class => 'post_form'}) do |f| %>
   <div class="column span-13 append-1">
     <%= error_messages_for :post %>

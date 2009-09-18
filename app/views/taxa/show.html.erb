@@ -202,19 +202,12 @@ Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb",
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('#photos').load('<%= taxon_photos_path(@taxon) %>', {
-        authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>)
-      }, function() {
+      $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
         $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link');
       });
       $.ajax({
-        url: '<%= formatted_observations_path(:html) %>',
+        url: '<%= observations_path(:format => "html", :partial => "cached_component", :taxon_id => @taxon, :per_page => 3) %>',
         method: 'get',
-        data: {
-          partial: 'cached_component',
-          taxon_id: <%= @taxon.id %>,
-          per_page: 3
-        },
         success: function(data, status) {
           $('#observations').html(data);
         },
@@ -243,6 +236,7 @@ Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb",
       $('#edit_photos_dialog').jqm({
         closeClass: 'close', 
         ajax: '<%= taxon_path(@taxon) %>/edit_photos',
+        method: 'get',
         onShow: function(h) {
           h.w.append($('<div class="loading description">Loading...</div>'));
           h.w.fadeIn(500);
@@ -478,7 +472,7 @@ Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb",
           <% for list in @current_user_lists %>
             <% if @lists_rejecting_taxon.include?(list) -%>
               <li class="clear description">
-                "<%= link_to truncate(h(list.title), 35), list %>"
+                "<%= link_to truncate(h(list.title), :size => 35), list %>"
                 only accepts taxa
                 <%= list.rules.map(&:terms).join(', ') %>
               </li>

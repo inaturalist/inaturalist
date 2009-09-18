@@ -123,9 +123,9 @@ Observations by Everyone
         ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
       end
     -%>
-    <%= link_to("Atom", formatted_observations_path(:format => 'atom', :params => feed_params), :id => 'atomlink') %>
-    <%= link_to("KML",  formatted_observations_path(:format => 'kml', :params => kml_feed_params), :id => 'kmllink') %>
-    <%= link_to("CSV",  formatted_observations_path(:format => 'csv', :params => feed_params), :id => 'csvlink') %>
+    <%= link_to("Atom", observations_path(:format => 'atom', :params => feed_params), :id => 'atomlink') %>
+    <%= link_to("KML",  observations_path(:format => 'kml', :params => kml_feed_params), :id => 'kmllink') %>
+    <%= link_to("CSV",  observations_path(:format => 'csv', :params => feed_params), :id => 'csvlink') %>
   </div>
 <!-- </div> -->
 

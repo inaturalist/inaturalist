@@ -156,7 +156,7 @@
             if (carousel.has(current)) return;
             carousel._page += 1;
 
-            $.get('<%= formatted_place_taxa_path(@place, "json") %>', {
+            $.get('<%= place_taxa_path(@place, :format => "json") %>', {
               page: carousel._page,
               per_page: <%= @listed_taxa.per_page %>,
               photos_only: 1

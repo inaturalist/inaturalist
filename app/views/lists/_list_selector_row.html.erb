@@ -5,7 +5,7 @@
   <li class="list_selector_row clear<%= ' added' if listed_taxon %><%= ' last' if last %>">
     <span class="controls">
       <%= link_to_remote "Add", 
-        :url => formatted_listed_taxa_path(:json), 
+        :url => listed_taxa_path(:format => :json), 
         :with => "'listed_taxon[list_id]=#{list.id}&listed_taxon[taxon_id]=#{taxon_id}}'",
         :datatype => 'text',
         :loading => 
@@ -51,5 +51,5 @@
           :style => "#{'display: none' unless listed_taxon}" } %>
       <span class="loading on_eeeeee" style="display: none">&nbsp;</span>
     </span>
-    "<%= link_to truncate(h(list.title), 35), list %>"
+    "<%= link_to truncate(h(list.title), :size => 35), list %>"
   </li>
