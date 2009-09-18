@@ -5,7 +5,7 @@
     <strong>Comment Preview</strong>
   <% else %>
     <div class="meta">
-      <%= link_to(truncate(comment.user.login, 20), person_path(comment.user)) %> said
+      <%= link_to(truncate(comment.user.login, :length => 20), person_path(comment.user)) %> said
       <% unless comment.new_record? -%>
         <span class="when">
           <span class="date"><%= time_ago_in_words(comment.created_at) %></span> ago,

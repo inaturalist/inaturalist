@@ -6,6 +6,6 @@ module ObservationsHelper
   end
   
   def short_observation_description(observation)
-    truncate(sanitize(observation.description), 150)
+    truncate(sanitize(observation.description), :length => 150)
   end
 end

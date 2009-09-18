@@ -41,7 +41,7 @@ Note:
   <% if defined? include_description and include_description %>
   <div class="readable description attribute">
     <% description_length ||= 140 %>
-    <%= truncate(strip_links(observation.description), description_length) %>
+    <%= truncate(strip_links(observation.description), :length => description_length) %>
     <%= link_to("View full observation", observation, :class => "readmore")%>
   </div>
   <% end %>

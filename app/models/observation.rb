@@ -708,4 +708,12 @@ class Observation < ActiveRecord::Base
   def short_description
     short_observation_description(self)
   end
+  
+  private
+  
+  # Required for use of the sanitize method in
+  # ObservationsHelper#short_observation_description
+  def self.white_list_sanitizer
+    @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
+  end
 end

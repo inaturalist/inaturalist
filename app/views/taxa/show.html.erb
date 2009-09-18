@@ -472,7 +472,7 @@ Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb",
           <% for list in @current_user_lists %>
             <% if @lists_rejecting_taxon.include?(list) -%>
               <li class="clear description">
-                "<%= link_to truncate(h(list.title), :size => 35), list %>"
+                "<%= link_to truncate(h(list.title), :length => 35), list %>"
                 only accepts taxa
                 <%= list.rules.map(&:terms).join(', ') %>
               </li>

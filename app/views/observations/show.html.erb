@@ -366,7 +366,7 @@ Observation <%= @observation.id %>:
           <% end -%>
           
           <div class="meta">
-            Posted by <%= link_to(truncate(item.user.login, 20), person_path(item.user)) %>
+            Posted by <%= link_to(truncate(item.user.login, :length => 20), person_path(item.user)) %>
             <span class="when">
               <span class="date"><%= time_ago_in_words(item.created_at) %></span> ago
             </span>

@@ -51,5 +51,5 @@
           :style => "#{'display: none' unless listed_taxon}" } %>
       <span class="loading on_eeeeee" style="display: none">&nbsp;</span>
     </span>
-    "<%= link_to truncate(h(list.title), :size => 35), list %>"
+    "<%= link_to truncate(h(list.title), :length => 35), list %>"
   </li>
