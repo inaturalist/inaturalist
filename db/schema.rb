@@ -9,24 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090823212416) do
-
-  create_table "activity_streams", :force => true do |t|
-    t.column "user_id", :integer
-    t.column "subscriber_id", :integer
-    t.column "activity_update_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-  end
-
-  create_table "activity_updates", :force => true do |t|
-    t.column "snippet", :text
-    t.column "user_id", :integer
-    t.column "activity_object_id", :integer
-    t.column "activity_object_type", :string
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-  end
+ActiveRecord::Schema.define(:version => 20090820033338) do
 
   create_table "colors", :force => true do |t|
     t.column "value", :string
@@ -37,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20090823212416) do
     t.column "taxon_id", :integer
   end
 
-  add_index "colors_taxa", ["taxon_id"], :name => "index_colors_taxa_on_taxon_id"
   add_index "colors_taxa", ["taxon_id", "color_id"], :name => "index_colors_taxa_on_taxon_id_and_color_id"
 
   create_table "comments", :options=>'ENGINE=MyISAM', :force => true do |t|
@@ -113,7 +95,6 @@ ActiveRecord::Schema.define(:version => 20090823212416) do
     t.column "friend_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "is_friend", :boolean, :default => false
   end
 
   create_table "goal_contributions", :options=>'ENGINE=MyISAM', :force => true do |t|
@@ -197,10 +178,10 @@ ActiveRecord::Schema.define(:version => 20090823212416) do
 
   add_index "listed_taxa", ["lft"], :name => "index_listed_taxa_on_lft"
   add_index "listed_taxa", ["list_id", "lft"], :name => "index_listed_taxa_on_list_id_and_lft"
-  add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
-  add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["list_id", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_id"
   add_index "listed_taxa", ["taxon_id"], :name => "index_listed_taxa_on_taxon_id"
+  add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
+  add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
 
   create_table "lists", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "title", :string
@@ -209,14 +190,14 @@ ActiveRecord::Schema.define(:version => 20090823212416) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "type", :string
-    t.column "place_id", :integer
     t.column "comprehensive", :boolean, :default => false
     t.column "taxon_id", :integer
     t.column "last_synced_at", :datetime
+    t.column "place_id", :integer
   end
 
-  add_index "lists", ["place_id"], :name => "index_lists_on_place_id"
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
+  add_index "lists", ["place_id"], :name => "index_lists_on_place_id"
 
   create_table "marking_types", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "name", :string
@@ -328,10 +309,10 @@ ActiveRecord::Schema.define(:version => 20090823212416) do
 
   create_table "posts", :force => true do |t|
     t.column "parent_id", :integer, :null => false
-    t.column "parent_type", :string, :null => false
+    t.column "parent_type", :string, :default => "", :null => false
     t.column "user_id", :integer, :null => false
     t.column "published_at", :datetime
-    t.column "title", :string, :null => false
+    t.column "title", :string, :default => "", :null => false
     t.column "body", :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
@@ -410,7 +391,7 @@ ActiveRecord::Schema.define(:version => 20090823212416) do
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
 
   create_table "taxon_links", :force => true do |t|
-    t.column "url", :string, :null => false
+    t.column "url", :string, :default => "", :null => false
     t.column "site_title", :string
     t.column "taxon_id", :integer, :null => false
     t.column "show_for_descendent_taxa", :boolean, :default => false
@@ -490,7 +471,7 @@ ActiveRecord::Schema.define(:version => 20090823212416) do
     t.column "state", :string, :default => "passive"
     t.column "deleted_at", :datetime
     t.column "time_zone", :string
-    t.column "description", :text
+    t.column "description", :string
     t.column "icon_file_name", :string
     t.column "icon_content_type", :string
     t.column "icon_file_size", :integer
