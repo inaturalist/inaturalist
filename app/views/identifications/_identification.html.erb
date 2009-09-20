@@ -19,8 +19,7 @@
 <div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>">
   <div class="identification_image">
     <%- if identification.taxon.flickr_photos.empty? -%>
-      <%= link_to(iconic_taxon_image(identification.taxon, :size => 32), 
-        identification.taxon) %>
+      <%= link_to(iconic_taxon_image(identification.taxon, :size => 32), identification.taxon) %>
     <% else -%>
       <% photo = identification.taxon.flickr_photos.first -%>
       <%= link_to(
@@ -42,7 +41,7 @@
                :locals => { :taxon => identification.taxon, 
                             :singular => true,
                             :include_article => true,
-                            :link_url => url_for(identification.taxon) } %>
+                            :link_url => identification.taxon } %>
     <% unless hide_actions -%>
       <% if logged_in? && identification.user != current_user %>
         <span class="agree button">

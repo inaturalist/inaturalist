@@ -274,9 +274,12 @@ class PlacesController < ApplicationController
     listed_taxa = @place.listed_taxa.paginate(
       :page => params[:page], 
       :per_page => per_page,
-      :include => {:taxon => [:iconic_taxon, :flickr_photos, :taxon_names]}, 
+      :include => {:taxon => [:iconic_taxon, :flickr_photos]}, 
+      # :include => {:taxon => [:iconic_taxon, :flickr_photos, :taxon_names]}, 
       :conditions => conditions, 
       :group => 'listed_taxa.taxon_id',
+      # :group => 'listed_taxa.taxon_id, taxon_names.id',
+      # :select => "DISTINCT(taxon_id), listed_taxa.*, flickr_photos.*, taxon_names.*",
       :order => "listed_taxa.id DESC")
     @taxa = listed_taxa.map(&:taxon)
     

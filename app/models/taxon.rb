@@ -252,9 +252,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def scientific_name
-    taxon_names.all.select do |tn|
-      tn.is_valid? && tn.is_scientific_names?
-    end.first
+    taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
   end
   
   #
@@ -263,9 +261,7 @@ class Taxon < ActiveRecord::Base
   # common name of any language failing that
   #
   def common_name
-    common_names = taxon_names.all.select do |tn| 
-      !tn.is_scientific_names?
-    end
+    common_names = taxon_names.select { |tn| !tn.is_scientific_names? }
     return nil if common_names.blank?
     
     engnames = common_names.select do |n| 

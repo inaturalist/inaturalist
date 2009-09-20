@@ -384,7 +384,7 @@
             $('#<%= dom_id(listed_taxon.taxon, "image") %>').data('json', 
               <%= listed_taxon.taxon.to_json(:include => :flickr_photos, 
                 :methods => [:image_url, :default_name, :common_name, 
-                :scientific_name, :html]) %>
+                  :scientific_name, :html]) %>
             );
           </script>
         <% end %>
