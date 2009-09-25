@@ -180,3 +180,41 @@ describe Taxon, "normalize_rank" do
     Taxon.normalize_rank('super-order').should == 'superorder'
   end
 end
+
+describe Taxon, "unique name" do
+  fixtures :taxa, :taxon_names
+  it "should be the default_name by default" do
+    taxa(:Calypte_anna).update_unique_name(:force => true)
+    taxa(:Calypte_anna).reload
+    taxa(:Calypte_anna).unique_name.should == taxa(:Calypte_anna).default_name.name
+  end
+  
+  it "should be the scientific name if the common name is already another taxon's unique name" do
+    new_taxon = Taxon.create(:name => taxa(:Calypte_anna).name, 
+      :rank => 'species', 
+      :iconic_taxon => taxa(:Aves))
+    new_taxon.taxon_names << TaxonName.new(
+      :name => taxa(:Calypte_anna).common_name.name, 
+      :lexicon => TaxonName::LEXICONS[:ENGLISH]
+    )
+    new_taxon.reload
+    new_taxon.unique_name.should == new_taxon.name
+  end
+  
+  it "should be nil if all else fails" do
+    new_taxon = Taxon.create(:name => taxa(:Calypte_anna).name, 
+      :rank => 'species', 
+      :iconic_taxon => taxa(:Aves))
+    new_taxon.taxon_names << TaxonName.new(
+      :name => taxa(:Calypte_anna).common_name.name, 
+      :lexicon => TaxonName::LEXICONS[:ENGLISH]
+    )
+    new_taxon.reload
+    new_taxon.taxon_names.each do |tn|
+      puts "#{tn} was invalid: " + tn.errors.full_messages.join(', ') unless tn.valid?
+    end
+    puts "new_taxon was invalid: " + new_taxon.errors.full_messages.join(', ') unless new_taxon.valid?
+    puts "new_taxon.unique_name: #{new_taxon.unique_name}"
+    new_taxon.unique_name.should be_nil
+  end
+end
