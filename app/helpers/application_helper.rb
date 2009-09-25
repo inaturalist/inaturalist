@@ -116,4 +116,19 @@ module ApplicationHelper
     
     new_params
   end
+  
+  def link_to(*args)
+    if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name?
+      return super(args.first, url_for_taxon(args[1]), *args[2..-1])
+    end
+    super
+  end
+  
+  def url_for_taxon(taxon)
+    if taxon.unique_name?
+      url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
+    else
+      url_for(taxon)
+    end
+  end
 end

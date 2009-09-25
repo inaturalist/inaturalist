@@ -77,13 +77,13 @@
       <%- prepend = capture do -%>
         <% if listed_taxon.taxon.flickr_photos.empty? -%>
           <div class="nophoto">
-            <%= link_to(taxon_image(listed_taxon.taxon, :size => 32), taxon_path(listed_taxon.taxon)) %>
+            <%= link_to(taxon_image(listed_taxon.taxon, :size => 32), listed_taxon.taxon) %>
             <div class="description">
               <%= render :partial => "shared/taxon", :locals => { 
                 :taxon => listed_taxon.taxon,
-                :link_url => taxon_path(listed_taxon.taxon) } %>
+                :link_url => listed_taxon.taxon } %>
               doesn't have a default photo yet.
-              <%= link_to "Want to add one?", taxon_path(listed_taxon.taxon) %>
+              <%= link_to "Want to add one?", listed_taxon.taxon %>
             </div>
           </div>
         <%- else -%>

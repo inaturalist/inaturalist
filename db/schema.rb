@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090820033338) do
+ActiveRecord::Schema.define(:version => 20090920043428) do
 
   create_table "colors", :force => true do |t|
     t.column "value", :string
@@ -378,8 +378,10 @@ ActiveRecord::Schema.define(:version => 20090820033338) do
     t.column "observations_count", :integer, :default => 0
     t.column "listed_taxa_count", :integer, :default => 0
     t.column "rank_level", :integer
+    t.column "unique_name", :string
   end
 
+  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
   add_index "taxa", ["name"], :name => "index_taxa_on_name"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["is_iconic"], :name => "index_taxa_on_is_iconic"

@@ -1,6 +1,5 @@
 <% content_for(:title) do %>
-Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb", 
-                     :locals => { :taxon => @taxon } %>
+<%= render :partial => "taxa/taxon.txt.erb", :locals => { :taxon => @taxon } %>
 <% end -%>
 
 <%- content_for(:extracss) do %>
@@ -324,11 +323,11 @@ Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb",
     <%- else -%>
     <% for ancestor in @taxon.ancestors[1..-1] %>
     <li class="<%= ancestor.iconic_taxon.name.downcase if ancestor.iconic_taxon %>">
-      <a href="<%= taxon_path(ancestor) %>">
+      <% link_to(ancestor) do %>
         <%= render :partial => 'shared/taxon', 
-                   :locals => { 
-                     :taxon => ancestor, :include_parens => false } %>
-      </a>
+                   :object => ancestor,
+                   :locals => { :include_parens => false } %>
+      <% end %>
     </li>
     <% end %>
     <%- end -%>
@@ -338,11 +337,11 @@ Taxa &middot; <%= render :partial => "taxa/taxon.txt.erb",
       <ul>
         <% for child in @taxon.children %>
         <li class="<%= child.iconic_taxon.name.downcase if child.iconic_taxon %>">
-          <a href="<%= taxon_path(child) %>">
+          <% link_to(child) do %>
             <%= render :partial => 'shared/taxon', 
-                       :locals => {
-                         :taxon => child, :include_parens => false } %>
-          </a>
+                       :object => child,
+                       :locals => { :include_parens => false } %>
+          <% end %>
         </li>
         <% end %>
       </ul>

@@ -7,7 +7,7 @@
 <%- hide_child_count ||= true -%>
 <%- link_name ||= false -%>
 <%- link_image ||= false -%>
-<%- link_url ||= url_for(taxon) -%>
+<%- link_url ||= url_for_taxon(taxon) -%>
 <%- name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname' -%>
 <div id="<%= dom_id(taxon) unless no_ids %>" class="clear taxon <%= taxon.rank %> <%= taxon.iconic_taxon.name if taxon.iconic_taxon %> <%= 'noimg' if taxon.flickr_photos.empty? %>">
   <div class="image">

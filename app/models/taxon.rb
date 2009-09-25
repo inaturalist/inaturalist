@@ -16,7 +16,7 @@ class Taxon < ActiveRecord::Base
                                     :is_iconic, :auto_photos, 
                                     :auto_description, :name_provider]
   self.non_versioned_columns += 
-    %w"observations_count listed_taxa_count lft rgt delta"
+    %w"observations_count listed_taxa_count lft rgt delta unique_name"
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :observations
@@ -50,7 +50,11 @@ class Taxon < ActiveRecord::Base
   before_save :set_iconic_taxon # if after, it would require an extra save
   before_save {|taxon| taxon.name = taxon.name.capitalize}
   after_move :update_listed_taxa, :set_iconic_taxon_and_save
-  after_create :create_matching_taxon_name
+  after_save :create_matching_taxon_name
+  
+  attr_accessor :name_changed
+  before_save {|taxon| taxon.name_changed = true if taxon.name_changed?}
+  after_save :update_unique_name
   
   validates_associated :flickr_photos
   validates_presence_of :name, :rank
@@ -252,9 +256,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def scientific_name
-    taxon_names.all.select do |tn|
-      tn.is_valid? && tn.is_scientific_names?
-    end.first
+    taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
   end
   
   #
@@ -263,9 +265,7 @@ class Taxon < ActiveRecord::Base
   # common name of any language failing that
   #
   def common_name
-    common_names = taxon_names.all.select do |tn| 
-      !tn.is_scientific_names?
-    end
+    common_names = taxon_names.select { |tn| !tn.is_scientific_names? }
     return nil if common_names.blank?
     
     engnames = common_names.select do |n| 
@@ -468,7 +468,23 @@ class Taxon < ActiveRecord::Base
   # Flagged method is called after every add_flag.  This callback method
   # is totally optional and does not have to be included in the model
   def flagged(flag, flag_count)
-      true
+    true
+  end
+  
+  def update_unique_name(options = {})
+    return true unless @name_changed || options[:force]
+    [default_name.name, name].each do |candidate|
+      next if TaxonName.count(:select => "distinct(taxon_id)", 
+        :conditions => {:name => candidate}) > 1
+      begin
+        logger.info "Updating unique_name for #{self} to #{candidate}"
+        Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
+      rescue ActiveRecord::StatementInvalid => e
+        next if e.message =~ /Duplicate entry/
+        raise e
+      end
+      break
+    end
   end
   
   include TaxaHelper

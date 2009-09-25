@@ -1,5 +1,4 @@
 <% content_for(:title) do %>
-Observation <%= @observation.id %>:
 <%- if @observation.species_guess and @observation.species_guess != '' -%>
   <%= h @observation.species_guess -%>
 <%- else -%>

@@ -13,8 +13,7 @@
 <%- seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) -%>
 <%- seenit ||= false -%>
 <%- rendered_taxon_name = capture do -%>
-  <%= render(:partial => 'shared/taxon.html.erb', 
-             :locals => {:taxon => listed_taxon.taxon}) -%>
+  <%= render(:partial => 'shared/taxon.html.erb', :object => listed_taxon.taxon) -%>
 <%- end -%>
 <div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unkown' %> taxon-<%= listed_taxon.taxon.id %>">
   <div class="column image">

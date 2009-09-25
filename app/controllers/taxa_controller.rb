@@ -29,7 +29,8 @@ class TaxaController < ApplicationController
   #
   def index
     find_options = {
-      :order => "#{Taxon.table_name}.name ASC"
+      :order => "#{Taxon.table_name}.name ASC",
+      :include => :taxon_names
     }
     
     @qparams = {}
@@ -139,7 +140,7 @@ class TaxaController < ApplicationController
           @recent = Observation.latest.all(
             :limit => 5, 
             :include => {:taxon => [:taxon_names]},
-            :conditions => 'taxon_id IS NOT NULL').map(&:taxon)
+            :conditions => 'taxon_id IS NOT NULL')
         end
       end
       format.xml  do
@@ -670,11 +671,16 @@ class TaxaController < ApplicationController
   # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
   def try_show(exception)
     raise exception if params[:action].blank?
-
     name = params[:action].split('_').join(' ')
-    @taxon ||= Taxon.find_by_name(name)
-    @taxon ||= Taxon.find_by_name(name)
-    @taxon ||= (tn = TaxonName.find_by_name(name)) ? tn.taxon : nil
+    taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon
+    @taxon ||= taxa.first if taxa.size == 1
+    unless @taxon
+      taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2) # (tn = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)) ? tn.taxon : nil
+      @taxon = taxon_names.first.taxon if taxon_names.size == 1
+    end
+    
+    # Redirect to a canonical form
+    return redirect_to :action => name.split.join('_') if @taxon && params[:action].split.size > 1
     
     # TODO: if multiple exact matches, render a disambig page with status 300 (Mulitple choices)
     unless @taxon
