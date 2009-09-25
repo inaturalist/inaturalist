@@ -189,6 +189,7 @@ describe Taxon, "unique name" do
     taxa(:Calypte_anna).unique_name.should == taxa(:Calypte_anna).default_name.name
   end
   
+  # This seems to break unless we use transactional fixtures.  Grr...
   it "should be the scientific name if the common name is already another taxon's unique name" do
     new_taxon = Taxon.create(:name => taxa(:Calypte_anna).name, 
       :rank => 'species', 
