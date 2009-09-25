@@ -474,6 +474,8 @@ class Taxon < ActiveRecord::Base
   def update_unique_name(options = {})
     return true unless @name_changed || options[:force]
     [default_name.name, name].each do |candidate|
+      next if TaxonName.count(:select => "distinct(taxon_id)", 
+        :conditions => {:name => candidate}) > 1
       begin
         logger.info "Updating unique_name for #{self} to #{candidate}"
         Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])

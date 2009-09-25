@@ -112,7 +112,7 @@ class PlacesController < ApplicationController
     @listed_taxa = @place.listed_taxa.paginate(
       :page => 1, 
       :per_page => 11,
-      :include => {:taxon => [:taxon_names, :flickr_photos, :iconic_taxon]},
+      :include => {:taxon => [:flickr_photos, :iconic_taxon]},
       :conditions => "flickr_photos.id > 0",
       :group => 'listed_taxa.taxon_id',
       :order => "listed_taxa.id DESC"

@@ -9,18 +9,12 @@
   <% for taxon in @taxa %>
   <tr>
     <td>
-      <a href="<%= url_for(taxon.class == Taxon ? taxon : taxon.taxon) %>">
-        <%- unless taxon.flickr_photos.empty? -%>
-          <% photo = taxon.flickr_photos.first -%>
-          <%= image_tag(photo.square_url, :title => "Photo: #{photo.flickr_username}") -%>
-        <% else -%>
-          <%= iconic_taxon_image(taxon) %>
-        <% end -%>
-      </a>
+      <%= link_to taxon_image(taxon), taxon %>
     </td>
     <td class="name">
-      <a href="<%= taxon_path(taxon) %>" class="readable">
-      <%= render :partial => 'shared/taxon', :locals => { :taxon => taxon } %>
+      <% link_to taxon, :class => 'readable' do %>
+        <%= render :partial => 'shared/taxon', :locals => { :taxon => taxon } %>
+      <% end %>
       </a>
     </td>
     <td class="aka">

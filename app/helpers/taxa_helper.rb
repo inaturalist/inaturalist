@@ -136,12 +136,12 @@ module TaxaHelper
         jit_taxon_node(c, options[:depth] - 1)
       end
     end
-    if self.is_a?(ActionController::Base)
-      node[:data][:html] = render_to_string(
+    node[:data][:html] = if self.is_a?(ActionController::Base)
+      render_to_string(
         :partial => 'taxa/taxon.html.erb', 
         :locals => { :taxon => taxon })
     else
-      node[:data][:html] = render(
+      render(
         :partial => 'taxa/taxon.html.erb', 
         :locals => { :taxon => taxon })
     end
