@@ -119,18 +119,16 @@ module ApplicationHelper
   
   def link_to(*args)
     if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name?
-      return super(args.first, 
-        # {:controller => 'taxa', :action => args[1].default_name.name.split.join('_')}, 
-        # TODO: add unique_name column and a unique index for it.  Set it to
-        # the ID before save.  Update it on create and whenever its name or
-        # its taxon names change.  Updating should try the default name, and
-        # rescue from the MySQL duplicate key.  Repeat, witht the following
-        # priority: default > scientific > scientific + iconic > scientific +
-        # parent > ID
-        {:controller => 'taxa', :action => args[1].unique_name.split.join('_')}, 
-        *args[2..-1]
-      )
+      return super(args.first, url_for_taxon(args[1]), *args[2..-1])
     end
     super
+  end
+  
+  def url_for_taxon(taxon)
+    if taxon.unique_name?
+      url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
+    else
+      url_for(taxon)
+    end
   end
 end
