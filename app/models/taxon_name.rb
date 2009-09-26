@@ -13,6 +13,8 @@ class TaxonName < ActiveRecord::Base
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
+  after_create {|name| name.taxon.update_unique_name}
+  after_destroy {|name| name.taxon.update_unique_name}
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'scientific names',

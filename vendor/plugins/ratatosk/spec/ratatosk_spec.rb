@@ -111,6 +111,14 @@ describe Ratatosk, "searching" do
     tn = @ratatosk.find('horseshoe crab')
     tn.should have_at_least(1).taxon_name_adapter
   end
+  
+  it "should return a taxon with a unique name for Holodiscus discolor" do
+    tn = @ratatosk.find('Holodiscus discolor').first
+    tn.save
+    taxon = tn.taxon
+    taxon.reload
+    taxon.unique_name.should_not be_nil
+  end
 end
 
 describe Ratatosk, "grafting" do

@@ -51,9 +51,6 @@ class Taxon < ActiveRecord::Base
   before_save {|taxon| taxon.name = taxon.name.capitalize}
   after_move :update_listed_taxa, :set_iconic_taxon_and_save
   after_save :create_matching_taxon_name
-  
-  attr_accessor :name_changed
-  before_save {|taxon| taxon.name_changed = true if taxon.name_changed?}
   after_save :update_unique_name
   
   validates_associated :flickr_photos
@@ -324,13 +321,12 @@ class Taxon < ActiveRecord::Base
   # already exist.
   #
   def set_scientific_taxon_name
-    unless self.taxon_names.find(:first, 
-      :conditions => ["name = ?", self.name])
+    unless taxon_names.exists?(["name = ?", name])
       self.taxon_names << TaxonName.create(
-        :name => self.name,
-        :source => self.source,
-        :source_identifier => self.source_identifier,
-        :source_url => self.source_url,
+        :name => name,
+        :source => source,
+        :source_identifier => source_identifier,
+        :source_url => source_url,
         :lexicon => 'scientific names',
         :is_valid => true
       )
@@ -417,9 +413,7 @@ class Taxon < ActiveRecord::Base
   
   # Create a taxon name with the same name as this taxon
   def create_matching_taxon_name
-    if @skip_new_taxon_name
-      return
-    end
+    return if @skip_new_taxon_name
     
     taxon_attributes = self.attributes
     taxon_attributes.delete('id')
@@ -472,11 +466,10 @@ class Taxon < ActiveRecord::Base
   end
   
   def update_unique_name(options = {})
-    return true unless @name_changed || options[:force]
-    return true if @skip_new_taxon_name
+    reload # there's a chance taxon names have been created since load
+    return true unless default_name
     [default_name.name, name].each do |candidate|
-      next if TaxonName.count(:select => "distinct(taxon_id)", 
-        :conditions => {:name => candidate}) > 1
+      next if TaxonName.count(:select => "distinct(taxon_id)", :conditions => {:name => candidate}) > 1
       begin
         logger.info "Updating unique_name for #{self} to #{candidate}"
         Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])

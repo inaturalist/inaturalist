@@ -124,6 +124,12 @@ describe "a Taxon adapter", :shared => true do
     @adapter.reload
     @adapter.taxon_names.select{|n| n.name == @adapter.name}.size.should be(1)
   end
+  
+  it "should have a unique name after saving" do
+    @adapter.save
+    @adapter.reload
+    @adapter.unique_name.should_not be_nil
+  end
 end
 
 describe "a TaxonName adapter", :shared => true do

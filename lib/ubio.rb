@@ -63,7 +63,7 @@ class UBioService < MetaService
       end
     rescue Timeout::Error
       raise Timeout::Error, "uBio didn't respond within #{timeout} seconds."
-    rescue EOFError
+    rescue EOFError, Errno::ECONNRESET
       raise UBioConnectionError, "uBio did not respond."
     end
     Hpricot.XML(response.body)
@@ -85,7 +85,7 @@ class UBioService < MetaService
         # puts "DEBUG: requesting " + uri # test
         response  = Net::HTTP.get_response(URI.parse(uri))
       end
-    rescue Timeout::Error
+    rescue Timeout::Error, Errno::ECONNRESET
       raise Timeout::Error, "uBio didn't respond within #{timeout} seconds."
     end
     Hpricot(response.body)

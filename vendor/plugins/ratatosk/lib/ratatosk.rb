@@ -109,12 +109,11 @@ module Ratatosk
             # taxon made a TaxonName from its own scientific name already,
             # just use that scientific name
             if name.taxon.valid?
-              name = name.taxon.taxon_names.find(:first, 
-                :conditions => {:name => name.name})
+              name = name.taxon.taxon_names.first(:conditions => {:name => name.name})
             
             # If the taxon was invalid, try to see if something similar has 
             # already been saved
-            elsif existing = Taxon.find(:first, :conditions => [
+            elsif existing = Taxon.first(:conditions => [
                 "source_identifier = ? AND name_provider = ?",
                 name.taxon.source_identifier,
                 name.taxon.name_provider
