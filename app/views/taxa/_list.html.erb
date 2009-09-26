@@ -9,13 +9,12 @@
   <% for taxon in @taxa %>
   <tr>
     <td>
-      <%= link_to taxon_image(taxon), taxon %>
+      <%= link_to taxon_image(taxon), url_for(taxon) %>
     </td>
     <td class="name">
-      <% link_to taxon, :class => 'readable' do %>
+      <% link_to url_for(taxon), :class => 'readable' do %>
         <%= render :partial => 'shared/taxon', :locals => { :taxon => taxon } %>
       <% end %>
-      </a>
     </td>
     <td class="aka">
       <% for taxon_name in taxon.taxon_names %>
