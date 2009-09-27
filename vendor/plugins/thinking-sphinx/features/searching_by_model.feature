@@ -60,6 +60,18 @@ Feature: Searching on a single model
     And I filter by both 11 and 12 on dimensions
     Then I should get 1 result
   
+  Scenario: Searching by NULL/0 values in MVAs
+    Given Sphinx is running
+    And I am searching on boxes
+    When I filter by 0 on dimensions
+    Then I should get 1 result
+    
+    Given Sphinx is running
+    And I am searching on developers
+    When I clear existing filters
+    And I filter by 0 on tag_ids
+    Then I should get 1 result
+  
   Scenario: Searching on a MVA configured as ranged_query
     Given Sphinx is running
     And I am searching on posts
@@ -143,4 +155,15 @@ Feature: Searching on a single model
     And I am searching on people
     When I am retrieving the result count
     Then I should get a value of 1000
-    
+  
+  Scenario: Searching with Unicode Characters
+    Given Sphinx is running
+    And I am searching on people
+    When I search for "José* "
+    Then I should get 1 result
+
+  Scenario: Searching by fields from HABTM joins
+    Given Sphinx is running
+    And I am searching on posts
+    When I search for "Shakespeare"
+    Then I should get 1 result

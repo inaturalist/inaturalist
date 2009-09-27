@@ -211,11 +211,13 @@ class TaxaController < ApplicationController
   #
   def search
     @qparams = params
-    @page = params[:page] || 1
+    @page = params[:page] ? params[:page].to_i : 1
+    per_page = params[:per_page] ? params[:per_page].to_i : 20
+    per_page = 100 if per_page > 100
     if params[:q]
       @taxa = Taxon.search(params[:q], 
         :include => [:taxon_names, :flickr_photos, :iconic_taxon],
-        :page => @page, :per_page => params[:per_page])
+        :page => @page, :per_page => per_page)
     end
     
     do_external_lookups
@@ -261,9 +263,10 @@ class TaxaController < ApplicationController
     @facets = if drill_params.blank?
       Taxon.facets(@q)
     else
-      per_page = params[:per_page] || 24
+      page = params[:page] ? params[:page].to_i : 1
+      per_page = params[:per_page] ? params[:per_page].to_i : 24
       per_page = 100 if per_page > 100
-      Taxon.facets(@q, :page => params[:page], :per_page => per_page,
+      Taxon.facets(@q, :page => page, :per_page => per_page,
         :conditions => drill_params, 
         :include => [:taxon_names, :flickr_photos])
     end

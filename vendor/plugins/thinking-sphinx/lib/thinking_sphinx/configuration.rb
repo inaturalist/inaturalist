@@ -157,7 +157,9 @@ module ThinkingSphinx
     # messy dependencies issues).
     # 
     def load_models
-      return if defined?(Rails) && Rails.configuration.cache_classes
+      return if defined?(Rails) &&
+        Rails.configuration.cache_classes &&
+        Rails::VERSION::STRING.to_f > 2.1
       
       self.model_directories.each do |base|
         Dir["#{base}**/*.rb"].each do |file|
@@ -219,6 +221,24 @@ module ThinkingSphinx
     
     def query_log_file=(file)
       @configuration.searchd.query_log = file
+    end
+    
+    def client
+      client = Riddle::Client.new address, port
+      client.max_matches = configuration.searchd.max_matches || 1000
+      client
+    end
+    
+    def models_by_crc
+      @models_by_crc ||= begin
+        ThinkingSphinx.indexed_models.inject({}) do |hash, model|
+          hash[model.constantize.to_crc32] = model
+          Object.subclasses_of(model.constantize).each { |subclass|
+            hash[subclass.to_crc32] = subclass.name
+          }
+          hash
+        end
+      end
     end
     
     private

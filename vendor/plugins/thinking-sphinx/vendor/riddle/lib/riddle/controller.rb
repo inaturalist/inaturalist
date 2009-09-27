@@ -4,18 +4,23 @@ module Riddle
       @configuration  = configuration
       @path           = path
     end
-    
+
     def index
       cmd = "indexer --config #{@path} --all"
       cmd << " --rotate" if running?
       `#{cmd}`
     end
-    
+
     def start
       return if running?
 
       cmd = "searchd --pidfile --config #{@path}"
-      `#{cmd}`    
+
+      if RUBY_PLATFORM =~ /mswin/
+        system("start /B #{cmd} 1> NUL 2>&1")
+      else
+        `#{cmd}`
+      end
 
       sleep(1)
 
@@ -26,19 +31,24 @@ module Riddle
 
     def stop
       return unless running?
-      `kill #{pid}`
+      Process.kill('SIGTERM', pid.to_i)
+    rescue Errno::EINVAL
+      Process.kill('SIGKILL', pid.to_i)
     end
 
     def pid
-      if File.exists?("#{@configuration.searchd.pid_file}")
-        `cat #{@configuration.searchd.pid_file}`[/\d+/]
+      if File.exists?(@configuration.searchd.pid_file)
+        File.read(@configuration.searchd.pid_file)[/\d+/]
       else
         nil
       end
     end
 
     def running?
-      pid && `ps #{pid} | wc -l`.to_i > 1
+      !!pid && !!Process.kill(0, pid.to_i)
+    rescue
+      false
     end
+
   end
 end

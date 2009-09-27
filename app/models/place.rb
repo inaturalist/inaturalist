@@ -156,7 +156,12 @@ class Place < ActiveRecord::Base
       return existing
     end
     
-    ydn_place = GeoPlanet::Place.new(woeid.to_i)
+    begin
+      ydn_place = GeoPlanet::Place.new(woeid.to_i)
+    rescue GeoPlanet::NotFound => e
+      logger.error "[ERROR] #{e.class}: #{e.message}"
+      return nil
+    end
     place = Place.new_from_geo_planet(ydn_place)
     place.parent = options[:parent]
     

@@ -10,6 +10,7 @@ Before do
   @without    = {}
   @with_all   = {}
   @options    = {}
+  @results    = nil
 end
 
 Given /^I am searching on (.+)$/ do |model|
@@ -35,7 +36,7 @@ When /^I search for (\w+)$/ do |query|
   @query = query
 end
 
-When /^I search for "([^\"]+)"$/ do |query|
+When /^I search for "([^\"]*)"$/ do |query|
   @results = nil
   @query = query
 end
@@ -120,6 +121,11 @@ When /^I set retry stale to (\w+)$/ do |retry_stale|
   end
 end
 
+When /^I destroy (\w+) (\w+)$/ do |model, name|
+  model.gsub(/\s/, '_').camelize.
+    constantize.find_by_name(name).destroy
+end
+
 Then /^the (\w+) of each result should indicate order$/ do |attribute|
   results.inject(nil) do |prev, current|
     unless prev.nil?
@@ -149,8 +155,13 @@ Then /^I should not get (\d+) results?$/ do |count|
   results.length.should_not == count.to_i
 end
 
+Then /^I should get as many results as there are (.+)$/ do |model|
+  results.length.should == model.gsub(/\s/, '_').singularize.camelize.
+    constantize.count
+end
+
 def results
-  @results ||= (@model || ThinkingSphinx::Search).send(
+  @results ||= (@model || ThinkingSphinx).send(
     @method,
     @query,
     @options.merge(

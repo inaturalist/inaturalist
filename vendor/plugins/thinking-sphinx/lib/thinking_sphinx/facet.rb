@@ -72,7 +72,7 @@ module ThinkingSphinx
     end
     
     def value(object, attribute_value)
-      return translate(object, attribute_value) if translate?
+      return translate(object, attribute_value) if translate? || float?
       
       case @property.type
       when :datetime
@@ -91,18 +91,35 @@ module ThinkingSphinx
     private
     
     def translate(object, attribute_value)
-      column.__stack.each { |method|
-        return nil unless object = object.send(method)
-      }
-      if object.is_a?(Array)
-        object.collect { |item| item.send(column.__name) }
+      objects = source_objects(object)
+      return nil if objects.nil? || objects.empty?
+      
+      if objects.length > 1
+        objects.collect { |item| item.send(column.__name) }.detect { |item|
+          item.to_crc32 == attribute_value
+        }
       else
-        object.send(column.__name)
+        objects.first.send(column.__name)
       end
+    end
+    
+    def source_objects(object)
+      column.__stack.each { |method|
+        object = Array(object).collect { |item|
+          item.send(method)
+        }.flatten.compact
+        
+        return nil if object.empty?
+      }
+      Array(object)
     end
     
     def column
       @property.columns.first
+    end
+    
+    def float?
+      @property.type == :float
     end
   end
 end
