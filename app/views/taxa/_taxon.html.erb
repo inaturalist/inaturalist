@@ -9,7 +9,15 @@
 <%- link_image ||= false -%>
 <%- link_url ||= url_for_taxon(taxon) -%>
 <%- name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname' -%>
-<div id="<%= dom_id(taxon) unless no_ids %>" class="clear taxon <%= taxon.rank %> <%= taxon.iconic_taxon.name if taxon.iconic_taxon %> <%= 'noimg' if taxon.flickr_photos.empty? %>">
+<%- extra_class ||= nil -%>
+<%- taxon_class = "clear taxon #{taxon.rank}" -%>
+<%- taxon_class += " #{taxon.iconic_taxon.name}" if taxon.iconic_taxon -%>
+<%- taxon_class += ' noimg' if taxon.flickr_photos.empty? -%>
+<%- taxon_class += " #{extra_class}" if extra_class -%>
+<%- taxon_name_str ||= taxon.default_name.name -%>
+<%- include_full_name ||= false -%>
+<%- taxon_name_str = render('shared/taxon', :object => taxon) if include_full_name -%>
+<div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
   <div class="image">
     <% if link_image -%>
       <% if hard_link -%>
@@ -24,12 +32,12 @@
   <div class="info">
     <% if link_name -%>
       <% if hard_link -%>
-        <%= link_to taxon.default_name.name, link_url, :class => "name #{name_class}" %>
+        <%= link_to taxon_name_str, link_url, :class => "name #{name_class}" %>
       <% else %>
-        <%= link_to_function taxon.default_name.name, "showTaxonInfo(#{taxon.to_json})", :class => "name #{name_class}" %>
+        <%= link_to_function taxon_name_str, "showTaxonInfo(#{taxon.to_json})", :class => "name #{name_class}" %>
       <% end -%>
     <% else %>
-        <span class="name <%= name_class %>"><%= taxon.default_name.name %></span>
+        <span class="name <%= name_class %>"><%= taxon_name_str %></span>
     <% end -%>
     <% if hard_link -%>
       <%= link_to "info", taxon, :class => 'small infolink' %>

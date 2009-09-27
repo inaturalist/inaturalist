@@ -39,6 +39,15 @@ Taxa &middot; All Species
 </div>
 
 <div id="recently_observed" class="last column span-5">
+  <div class="clear quiet box">
+    <h3>
+      <%= link_to "Species Browser", :controller => "taxa", :action => 'browse' %>
+      <span class="small description">(experiemntal)</span>
+    </h3>
+    
+    Try this new way to browse species.  Hopefully this will soon replace the default search.
+  </div>
+  
   <div class="box clear">
     <h3>Recently Observed</h3>
     <% for observation in @recent %>

@@ -16,8 +16,8 @@
         <li><%= link_to "ID Please", id_please_path %></li>
         <li class="formwrapper">
           <% form_tag(observations_path, :method => :get, :class => 'clear buttonrow') do %>
-            <label for="q">Search</label>
-            <%= text_field_tag 'q', params[:q], :class => 'text', :value => '' %>
+            <label for="header_observations_q">Search</label>
+            <%= text_field_tag 'q', params[:q], :id => 'header_observations_q', :class => 'text', :value => '' %>
             <input type="submit" class="button" value="&nbsp;" />
           <% end %>
         </li>
@@ -33,8 +33,8 @@
       <ul class="subnav" style="display: none">
         <li class="formwrapper">
           <% form_tag({:controller => 'taxa', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
-            <label for="q">Search</label>
-            <%= text_field_tag 'q', params[:q], :class => 'text', :value => '' %>
+            <label for="header_taxa_q">Search</label>
+            <%= text_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '' %>
             <input type="submit" class="button" value="&nbsp;" />
           <% end %>
         </li>
@@ -53,8 +53,8 @@
       <ul class="subnav" style="display: none">
         <li class="formwrapper">
           <% form_tag({:controller => 'places', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
-            <label for="q">Search</label>
-            <%= text_field_tag 'q', params[:q], :class => 'text', :value => '' %>
+            <label for="header_places_q">Search</label>
+            <%= text_field_tag 'q', params[:q], :id => 'header_places_q', :class => 'text', :value => '' %>
             <input type="submit" class="button" value="&nbsp;" />
           <% end %>
         </li>

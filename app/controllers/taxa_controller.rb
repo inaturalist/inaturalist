@@ -69,69 +69,11 @@ class TaxaController < ApplicationController
     logger.info(find_options)
     @taxa = Taxon.paginate(:all, find_options)
     
-    if params[:force_external] or (params[:include_external] and @taxa.empty?)
-      @external_taxa = []
-      logger.info("DEBUG: Making an external lookup...")
-      if params[:external_src]
-        fe_params = { :src => params[:external_src] }
-      else
-        fe_params = {}
-      end
-      ext_names = []
-      begin
-        case params[:external_src]
-        when 'ubio'
-          ratatosk = Ratatosk::Ratatosk.new(
-            :name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
-        when 'col'
-          ratatosk = Ratatosk::Ratatosk.new(
-            :name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
-        else
-          ratatosk = Ratatosk
-        end
-        
-        # fetch names and save them
-        ratatosk.find(params[:q]).each do |ext_name|
-          unless ext_name.valid?
-            if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
-              ext_name.taxon = existing_taxon
-            end
-          end
-          ext_name.save
-          ext_names << ext_name if ext_name.valid?
-        end
-      rescue Timeout::Error => e
-        if @external_taxa.empty?
-          @status = e.message
-        end
-      rescue NameProviderError => e
-        if @external_taxa.empty?
-          @status = e.message
-        end
-      end
-      
-      @external_taxa = Taxon.all(:conditions => ["id in (?)", ext_names.map(&:taxon_id)])
-      
-      # graft in the background at a lower priority than this process
-      unless @external_taxa.empty?
-        spawn(:nice => 7) do
-          @external_taxa.each do |external_taxon|
-            unless external_taxon.grafted?
-              logger.debug "[DEBUG] Grafting #{external_taxon}..."
-              Ratatosk.graft(external_taxon)
-            end
-          end
-        end
-      end
-      
-      @taxa = @external_taxa unless @external_taxa.empty?
-    end
+    do_external_lookups
     
     respond_to do |format|
       format.html do # index.html.erb
-        if @status and not @status.empty?
-          flash[:notice] = @status
-        end
+        flash[:notice] = @status unless @status.blank?
         if params[:q]
           render :action => :search
         else
@@ -154,64 +96,6 @@ class TaxaController < ApplicationController
             :methods => [:common_name] ) )
       end
     end
-  end
-  
-  # /taxa/browse?q=bird
-  # /taxa/browse?q=bird&places=1,2&colors=4,5
-  # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
-  def browse
-    @q = params[:q]
-    drill_params = {}
-    
-    if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')
-      @iconic_taxa_ids.map!(&:to_i)
-      @iconic_taxa = Taxon.find(@iconic_taxa_ids)
-      drill_params[:iconic_taxon_id] = @iconic_taxa_ids
-    end
-    if params[:places] && @place_ids = params[:places].split(',')
-      @place_ids.map!(&:to_i)
-      @places = Place.find(@place_ids)
-      drill_params[:places] = @place_ids
-    end
-    if params[:colors] && @color_ids = params[:colors].split(',')
-      @color_ids.map!(&:to_i)
-      @colors = Color.find(@color_ids)
-      drill_params[:colors] = @color_ids
-    end
-    
-    @facets = Taxon.facets(@q, :page => params[:page], 
-      :conditions => drill_params, 
-      :include => [:taxon_names, :flickr_photos])
-    
-    if @facets[:iconic_taxon_id]
-      @faceted_iconic_taxa = Taxon.all(
-        :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
-        :include => [:taxon_names, :flickr_photos]
-      )
-      @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
-    end
-    
-    if @facets[:colors]
-      @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
-      @faceted_colors_by_id = @faceted_colors.index_by(&:id)
-    end
-    
-    if @facets[:places]
-      @faceted_places = if @places.blank?
-        Place.paginate(:page => 1, :conditions => [
-          "id in (?) && place_type = ?", 
-          @facets[:places].keys, Place::PLACE_TYPE_CODES['Country']
-        ])
-      else
-        Place.all(:conditions => [
-          "id in (?) AND parent_id IN (?)", 
-          @facets[:places].keys, @places.map(&:id)
-        ])
-      end
-      @faceted_places_by_id = @faceted_places.index_by(&:id)
-    end
-    
-    @taxa = @facets.for(drill_params)
   end
 
   def show
@@ -334,41 +218,84 @@ class TaxaController < ApplicationController
         :page => @page, :per_page => params[:per_page])
     end
     
-    # Do external lookups
-    if params[:include_external] && logged_in?
-      logger.info("DEBUG: Making an external lookup...")
-      begin
-        @external_taxa = []
-        # I'm not really sure what's better memory-wise, instatiating a new
-        # Ratatosk with each request and letting it get garbage collected, or
-        # keeping one in memory and run the risk of it accumulating all kinds
-        # of cruft.
-        ratatosk = Ratatosk::Ratatosk.new
-        ratatosk.find(params[:q]).each do |ext_name|
-          existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
-          ext_name.taxon = existing_taxon if existing_taxon
-          if ext_name.save
-            @external_taxa << ext_name.taxon
-          end
-        end
-        @taxa += @external_taxa
-        
-        # graft in the background at a lower priority than the parent proc
-        unless @external_taxa.empty?
-          spawn(:nice => 7) do
-            @external_taxa.each do |taxon|
-              ratatosk.graft(taxon) unless taxon.grafted?
-            end
-          end
-        end
-      rescue Timeout::Error => e
-        # No love
-      end
-    end
+    do_external_lookups
     
     respond_to do |format|
       format.html
       format.xml  { render :xml => @taxa.to_xml(:include => :taxon_names) }
+      format.json do
+        render :json => @taxa.to_json(
+          :include => [:iconic_taxon, :taxon_names, :flickr_photos],
+          :methods => [:common_name, :image_url, :default_name])
+      end
+    end
+  end
+  
+  # /taxa/browse?q=bird
+  # /taxa/browse?q=bird&places=1,2&colors=4,5
+  # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
+  def browse
+    @q = params[:q]
+    drill_params = {}
+    
+    if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')
+      @iconic_taxa_ids.map!(&:to_i)
+      @iconic_taxa = Taxon.find(@iconic_taxa_ids)
+      drill_params[:iconic_taxon_id] = @iconic_taxa_ids
+    end
+    if params[:places] && @place_ids = params[:places].split(',')
+      @place_ids.map!(&:to_i)
+      @places = Place.find(@place_ids)
+      drill_params[:places] = @place_ids
+    end
+    if params[:colors] && @color_ids = params[:colors].split(',')
+      @color_ids.map!(&:to_i)
+      @colors = Color.find(@color_ids)
+      drill_params[:colors] = @color_ids
+    end
+    
+    per_page = params[:per_page] || 24
+    per_page = 100 if per_page > 100
+    @facets = Taxon.facets(@q, :page => params[:page], :per_page => per_page,
+      :conditions => drill_params, 
+      :include => [:taxon_names, :flickr_photos])
+    
+    if @facets[:iconic_taxon_id]
+      @faceted_iconic_taxa = Taxon.all(
+        :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
+        :include => [:taxon_names, :flickr_photos]
+      )
+      @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
+    end
+    
+    if @facets[:colors]
+      @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
+      @faceted_colors_by_id = @faceted_colors.index_by(&:id)
+    end
+    
+    if @facets[:places]
+      @faceted_places = if @places.blank?
+        Place.paginate(:page => 1, :conditions => [
+          "id in (?) && place_type = ?", 
+          @facets[:places].keys, Place::PLACE_TYPE_CODES['Country']
+        ])
+      else
+        Place.all(:conditions => [
+          "id in (?) AND parent_id IN (?)", 
+          @facets[:places].keys, @places.map(&:id)
+        ])
+      end
+      @faceted_places_by_id = @faceted_places.index_by(&:id)
+    end
+    
+    @taxa = @facets.for(drill_params)
+    
+    do_external_lookups
+    
+    respond_to do |format|
+      format.html do
+        flash[:notice] = @status unless @status.blank?
+      end
       format.json do
         render :json => @taxa.to_json(
           :include => [:iconic_taxon, :taxon_names, :flickr_photos],
@@ -688,6 +615,61 @@ class TaxaController < ApplicationController
       return redirect_to :action => 'search', :q => name
     else
       show
+    end
+  end
+  
+  def do_external_lookups
+    return unless logged_in? && 
+    return unless params[:force_external] || (params[:include_external] && @taxa.empty?)
+    @external_taxa = []
+    logger.info("DEBUG: Making an external lookup...")
+    fe_params = params[:external_src] ? { :src => params[:external_src] } : {}
+    ext_names = []
+    begin
+      ratatosk = case params[:external_src]
+      when 'ubio'
+        Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
+      when 'col'
+        Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
+      else
+        Ratatosk
+      end
+      
+      # fetch names and save them
+      ratatosk.find(params[:q]).each do |ext_name|
+        unless ext_name.valid?
+          if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
+            ext_name.taxon = existing_taxon
+          end
+        end
+        ext_name.save
+        ext_names << ext_name if ext_name.valid?
+      end
+    rescue Timeout::Error => e
+      @status = e.message if @external_taxa.empty?
+    rescue NameProviderError => e
+      @status = e.message if @external_taxa.empty?
+    end
+    
+    @external_taxa = Taxon.find(ext_names.map(&:taxon_id))
+    
+    # graft in the background at a lower priority than this process
+    unless @external_taxa.empty?
+      spawn(:nice => 7) do
+        @external_taxa.each do |external_taxon|
+          unless external_taxon.grafted?
+            logger.debug "[DEBUG] Grafting #{external_taxon}..."
+            Ratatosk.graft(external_taxon)
+          end
+        end
+      end
+    end
+    
+    unless @external_taxa.empty?
+      @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|
+        pager.replace(@external_taxa)
+        pager.total_entries = @external_taxa.size
+      end
     end
   end
 end

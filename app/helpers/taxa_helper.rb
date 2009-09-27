@@ -51,6 +51,7 @@ module TaxaHelper
   # otherwise the iconic taxon icon.
   #
   def taxon_image(taxon, params = {})
+    return iconic_taxon_image(taxon, params) if taxon.flickr_photos.empty?
     image_params = {}
     [:id, :class, :alt, :title].each do |attr_name|
       image_params[attr_name] = params.delete(attr_name)
@@ -72,6 +73,7 @@ module TaxaHelper
     path = iconic_taxon_image_url(taxon, params)
     params.delete(:color)
     params.delete(:size)
+    params[:class] = params[:class] ? "#{params[:class]} iconic" : 'iconic'
     image_tag(path, params)
   end
   
@@ -93,6 +95,7 @@ module TaxaHelper
   #  => "/images/iconic_taxa/aves-ffaa00-20px.png"
   # 
   def iconic_taxon_image_url(taxon, params = {})
+    params[:size] = nil unless params[:size].is_a? Fixnum
     params[:size] ||= 32
     iconic_taxon = if taxon
       taxon.is_iconic? ? taxon : taxon.iconic_taxon

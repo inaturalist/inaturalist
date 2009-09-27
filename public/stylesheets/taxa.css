@@ -9,3 +9,33 @@ table.taxa .taxon_name {
 #pagination {
   margin-bottom: 1em;
 }
+
+.taxa.grid .taxon {
+  float: left;
+  margin: 0 10px 10px 0;
+  width: 100px;
+}
+
+.taxa.grid .taxon .image,
+.taxa.grid .taxon .image a {
+  display: block;
+  text-align: center;
+  background-color: #f1f1f1;
+  min-height: 100px;
+}
+
+.taxa.grid .taxon .image .iconic {
+  margin: 30px;
+}
+
+.taxa.grid .first {
+  clear: left;
+}
+
+.taxa.grid .last {
+  margin-right: 0;
+}
+
+.taxa.grid .infolink {
+  display: none;
+}
