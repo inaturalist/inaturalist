@@ -254,11 +254,19 @@ class TaxaController < ApplicationController
       drill_params[:colors] = @color_ids
     end
     
-    per_page = params[:per_page] || 24
-    per_page = 100 if per_page > 100
-    @facets = Taxon.facets(@q, :page => params[:page], :per_page => per_page,
-      :conditions => drill_params, 
-      :include => [:taxon_names, :flickr_photos])
+    # TS seems to not return all the place facets if you specify per_page
+    # without conditions, not really sure why.  This makes pagination a little
+    # weird (pp = 20 if no facets selected, pp = 24 if they are), but I think
+    # we can live with that for now
+    @facets = if drill_params.blank?
+      Taxon.facets(@q)
+    else
+      per_page = params[:per_page] || 24
+      per_page = 100 if per_page > 100
+      Taxon.facets(@q, :page => params[:page], :per_page => per_page,
+        :conditions => drill_params, 
+        :include => [:taxon_names, :flickr_photos])
+    end
     
     if @facets[:iconic_taxon_id]
       @faceted_iconic_taxa = Taxon.all(
