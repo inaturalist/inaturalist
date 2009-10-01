@@ -261,7 +261,7 @@ class TaxaController < ApplicationController
     # weird (pp = 20 if no facets selected, pp = 24 if they are), but I think
     # we can live with that for now
     @facets = if drill_params.blank?
-      Taxon.facets(@q)
+      Taxon.facets(@q, :page => params[:page])
     else
       page = params[:page] ? params[:page].to_i : 1
       per_page = params[:per_page] ? params[:per_page].to_i : 24
