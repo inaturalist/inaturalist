@@ -62,7 +62,7 @@ class CheckList < List
     conditions = "listed_taxa.place_id > 0 AND listed_taxa.created_at"
     unless options[:force]
       time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
-      conditions = update_conditions(conditions, 
+      conditions = CheckList.merge_conditions(conditions, 
         ["listed_taxa.created_at > ?", time_since_last_sync])
     end
     return unless self.place.parent_id
@@ -71,8 +71,7 @@ class CheckList < List
       :include => [:taxon, {:place => {:parent => :check_list}}], 
       :conditions => conditions
     ).each do |listed_taxon|
-      next if parent_check_list.listed_taxa.exists?(
-        :taxon_id => listed_taxon.taxon_id)
+      next if parent_check_list.listed_taxa.exists?(:taxon_id => listed_taxon.taxon_id)
       parent_check_list.add_taxon(listed_taxon.taxon)
     end
     parent_check_list.update_attribute(:last_synced_at, Time.now)
@@ -92,11 +91,10 @@ class CheckList < List
     ).each do |listed_taxon|
       next unless listed_taxon.place.parent_id
       parent_check_list = listed_taxon.place.parent.check_list
-      next if parent_check_list.listed_taxa.exists?(
-        :taxon_id => listed_taxon.taxon_id)
+      next if parent_check_list.listed_taxa.exists?(:taxon_id => listed_taxon.taxon_id)
       parent_check_list.add_taxon(listed_taxon.taxon)
-      parent_check_list.update_attribute(:last_synced_at, Time.now)
     end
+    parent_check_list.update_attribute(:last_synced_at, Time.now)
 
     logger.info "[INFO] Finished CheckList.sync_check_lists_with_parents " + 
       "at #{Time.now} (#{Time.now - start_time}s)"
