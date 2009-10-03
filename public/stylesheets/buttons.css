@@ -155,3 +155,34 @@ input[type='submit'].link:hover {
   margin: 0;
   padding: 0;
 }
+
+.button.pale {
+  background-color: #dedede;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  float: right;
+  margin-left: 10px;
+}
+
+.button.pale:hover {
+  background-color: #aaa;
+  border-color: #aaa;
+  color: white;
+}
+
+.button.delete.pale {
+  background-color: #eee;
+  border-color: #eee;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  float: right;
+  margin-left: 10px;
+}
+
+.button.delete.pale:hover {
+  background-color: #ddd;
+  border-color: #ddd;
+  color: white;
+}

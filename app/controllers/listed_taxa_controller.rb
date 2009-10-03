@@ -11,15 +11,23 @@ class ListedTaxaController < ApplicationController
   end
   
   def create
-    @list = List.find_by_id(params[:listed_taxon][:list_id])
+    if params[:listed_taxon]
+      @list = List.find_by_id(params[:listed_taxon][:list_id])
+      @place = Place.find_by_id(params[:listed_taxon][:place_id]) if params[:listed_taxon][:place_id]
+      @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id])
+    else
+      @list = List.find_by_id(params[:list_id])
+      @place = Place.find_by_id(params[:place_id])
+      @taxon = Taxon.find_by_id(params[:taxon_id])
+    end
+    @list ||= @place.check_list if @place
     
     unless @list && @list.editable_by?(current_user)
       flash[:notice] = "Sorry, you don't have permission to add to this list."
-      redirect_to lists_path
+      return redirect_to lists_path
     end
     
-    @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id])
-    @listed_taxon = @list.add_taxon(@taxon)
+    @listed_taxon = @list.add_taxon(@taxon) if @taxon
     
     respond_to do |format|
       format.html do
@@ -39,7 +47,8 @@ class ListedTaxaController < ApplicationController
             :instance => @listed_taxon,
             :extra => {
               :taxon => @listed_taxon.taxon,
-              :iconic_taxon => @listed_taxon.taxon.iconic_taxon
+              :iconic_taxon => @listed_taxon.taxon.iconic_taxon,
+              :place => @listed_taxon.place
             },
             :html => render_to_string(
               :partial => partial, 
@@ -52,7 +61,8 @@ class ListedTaxaController < ApplicationController
               :object => @listed_taxon,
               :errors => @listed_taxon.errors
             },
-            :status => :unprocessable_entity
+            :status => :unprocessable_entity,
+            :status_text => @listed_taxon.errors.full_messages.join(', ')
           )
         end
       end

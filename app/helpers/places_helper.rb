@@ -20,17 +20,31 @@ module PlacesHelper
   def google_static_map_for_place(place, options = {}, tag_options = {})
     url_for_options = {
       :host => 'maps.google.com',
-      :controller => 'staticmap',
+      :controller => 'maps/api/staticmap',
       :center => "#{place.latitude},#{place.longitude}",
       :zoom => 15,
       :size => '200x200',
-      :sensor => false,
+      :sensor => 'false',
       :key => Ym4r::GmPlugin::ApiKey.get
     }.merge(options)
+    
+    tag_options[:alt] ||= "Google Map for #{place.display_name}"
+    tag_options[:width] ||= url_for_options[:size].split('x').first
+    tag_options[:height] ||= url_for_options[:size].split('x').last
     
     image_tag(
       url_for(url_for_options),
       tag_options
     )
+  end
+  
+  # Returns GMaps zoom level for a place given map dimensions in pixels
+  def map_zoom_for_place(place, width, height)
+    return 0 if [place.nelat, place.nelng, place.swlat, place.swlng].include?(nil)
+    (1..SPHERICAL_MERCATOR.levels).reverse_each do |zoom_level|
+      minx, miny = SPHERICAL_MERCATOR.from_ll_to_pixel([place.swlng, place.swlat], zoom_level)
+      maxx, maxy = SPHERICAL_MERCATOR.from_ll_to_pixel([place.nelng, place.nelat], zoom_level)
+      return zoom_level if (maxx - minx < width) && (maxy - miny < height)
+    end
   end
 end

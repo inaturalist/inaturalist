@@ -1,0 +1,52 @@
+<%- place ||= @place || object -%>
+<%- taxon ||= @taxon -%>
+<%- listed_taxon = @listed_taxa_by_place_id ? @listed_taxa_by_place_id[place.id] : nil -%>
+<li class="clear add_to_place_link">
+  <%= google_static_map_for_place(place, {
+    :zoom => place.place_type == Place::PLACE_TYPE_CODES['Country'] ? 0 : 2,
+    :size => '75x75',
+    :markers => "size:mid|color:blue|#{place.latitude},#{place.longitude}"
+  }, {:class => 'left'}) %>
+  <% if listed_taxon -%>
+    <%= link_to_remote 'remove', :url => listed_taxon_path(listed_taxon), 
+      :method => :delete,
+      :datatype => 'json',
+      :confirm => "Are you sure you want to remove this taxon from #{place.name}'s checklist?",
+      :loading => 
+        "$('##{dom_id place, 'remove_status'}').show();" +
+        "$('##{dom_id(place, 'remove_link')}').hide();",
+      :failure => 
+        "$('##{dom_id(place, 'remove_link')}').hide();" +
+        "console.log('request: ', request)",
+      :success => "$('##{dom_id place, 'remove_status'}').html('Removed!').removeClass('loading')",
+      :html => {
+        :id => dom_id(place, 'remove_link'),
+        :class => "last button delete pale",
+        :style => 'float: right; margin: 0'
+      } %>
+    <span id="<%= dom_id place, 'remove_status' %>" class="inter status loading right" style="display:none">Removing...</span>
+  <% else %>
+    <%= link_to_remote 'add to checklist', :url => listed_taxa_path, 
+      :datatype => 'json',
+      :with => "'#{{ :taxon_id => taxon.id, :place_id => place.id }.to_query}'", 
+      :loading => 
+        "$('##{dom_id place, 'add_status'}').show();" +
+        "$('##{dom_id(place, 'add_link')}').hide();",
+      :failure => 
+        "$('##{dom_id(place, 'add_link')}').hide();" +
+        "console.log('request: ', request);",
+      :success => "$('##{dom_id place, 'add_status'}').html('Added!').removeClass('loading').addClass('success');",
+      :html => {
+        :id => dom_id(place, 'add_link'),
+        :class => "last button pale right",
+        :style => 'float: right; margin: 0'
+      } %>
+    <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none">Adding...</span>
+  <% end -%>
+
+  <strong><%= link_to place.name, place %></strong>
+  <div class="small description">
+    <%= place.place_type_name %>
+    <% if place.parent %>in <%= place.parent.display_name %><% end %>
+  </div>
+</li>

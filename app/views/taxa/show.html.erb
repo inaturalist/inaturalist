@@ -145,6 +145,10 @@
   .aka h3 {
     margin-bottom: 0.5em;
   }
+
+  #colors {
+    margin-bottom: 10px;
+  }
   
   #colors .color {
     float: left; margin: 0 5px 5px 0; width: 16px; height: 16px;
@@ -178,6 +182,14 @@
   #edit_colors .brown  { color: peru;       background-color: saddlebrown;}
   #edit_colors .pink   { color: deeppink;   background-color: pink;}
   
+  #places .status {
+    margin-top: 0px;
+    padding: 5px;
+  }
+  
+  .add_to_place_link {
+    margin-bottom: 10px;
+  }
 </style>
 
 <!--[if lte IE 7]>
@@ -197,7 +209,9 @@
   
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
-                             "jquery/plugins/inat/photo_selectors.js" %>
+                             "jquery/plugins/inat/photo_selectors.js",
+                             'jquery/plugins/jquery.autocomplete.min.js',
+                             'jquery/plugins/inat/place_autocomplete.js' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -253,6 +267,21 @@
           });
         }
       });
+      
+      <% if @taxon.species_or_lower? -%>
+        $('#add_to_place_dialog').jqm({
+          closeClass: 'close',
+          ajax: '<%= taxon_path(@taxon) %>/add_places',
+          method: 'get',
+          onShow: function(h) {
+            h.w.append($('<div class="loading description">Loading...</div>'));
+            h.w.fadeIn(500);
+          },
+          onHide: function(h) {
+            h.w.fadeOut(500,function(){ h.o.remove(); })
+          }
+        });
+      <% end %>
       <% end %>
     });
   </script>
@@ -380,7 +409,7 @@
       </div>
       <% if logged_in? -%>
         <div id="edit_colors">
-          <%= link_to_toggle "edit colors", "#edit_colors_dialog" %>
+          <%= link_to_toggle "Edit colors", "#edit_colors_dialog" %>
           <div id="edit_colors_dialog" style="display: none">
             <% remote_form_for @taxon, 
                 :url => {:action => 'update_colors', :id => @taxon, :format => 'js'},
@@ -430,7 +459,28 @@
     </div>
   <% end -%>
   
+  <div id="places" class="clear">
+    <h3>
+      Range
+      <% if @places.total_entries > @places.size -%>
+        <span class="small description"><%= @places.size %> of <%= @places.total_entries %></span>
+      <% end -%>
+    </h3>
+    
+    <ul id="places_list">
+      <% for place in @places %>
+        <li><%= link_to place.display_name, @place %></li>
+      <% end %>
+    </ul>
+    
+    <% if logged_in? && @taxon.species_or_lower? -%>
+      <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+      <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
+    <% end -%>
+  </div>
+  
   <div id="extras">
+    <h3>Extras</h3>
     <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
       flickr_tagger_path(:taxon_id => @taxon.id) %>
   </div>

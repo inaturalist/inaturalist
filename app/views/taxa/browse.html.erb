@@ -162,7 +162,8 @@
         <% else %>
           <% if @places.first.parent -%>
             <li>
-              <%= link_to place_name_and_type(@places.first.parent, :display => true), url_for_params(:places => @places.first.parent_id, :without => :page) %>
+              <%= link_to place_name_and_type(@places.first.parent, :display => true), 
+                url_for_params(:places => @places.first.parent_id, :without => :page) %>
               <ul>
           <% end -%>
 

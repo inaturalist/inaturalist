@@ -9,7 +9,11 @@
           <%= link_to(
             google_static_map_for_place(
               place, 
-              {:size => '230x120', :maptype => 'satellite', :markers => "#{place.latitude},#{place.longitude},blue#{i+1}"}, 
+              {
+                :zoom => map_zoom_for_place(place, 230, 120),
+                :size => '230x120', 
+                :maptype => 'satellite', 
+                :markers => "color:blue|label:#{i+1}|#{place.latitude},#{place.longitude}"}, 
               :class => 'map'
             ), place) %>
           <div class="placeinfo">

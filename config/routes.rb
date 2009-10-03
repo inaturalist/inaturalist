@@ -174,6 +174,8 @@ ActionController::Routing::Routes.draw do |map|
                    :controller => 'taxa', :action => 'update_photos'
   map.update_taxon_colors 'taxa/:id/update_colors',
                    :controller => 'taxa', :action => 'update_colors'
+  map.edit_taxon_photos 'taxa/:id/add_places',
+                   :controller => 'taxa', :action => 'add_places'
   map.flickr_tagger 'taxa/flickr_tagger', :controller => 'taxa', 
     :action => 'flickr_tagger'
   map.formatted_flickr_tagger 'taxa/flickr_tagger.:format', 

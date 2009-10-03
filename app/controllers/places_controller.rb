@@ -98,14 +98,7 @@ class PlacesController < ApplicationController
   end
   
   def search
-    @q = params[:q]
-    @places = Place.search(@q, :page => params[:page])
-    if logged_in? && @places.blank?
-      if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
-        new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}
-        @places = Place.paginate(new_places.map(&:id).compact, :page => 1)
-      end
-    end
+    search_for_places
   end
   
   def show

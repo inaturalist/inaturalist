@@ -4,12 +4,12 @@ class TaxaController < ApplicationController
   
   before_filter :return_here, :only => [:index, :show, :flickr_tagger]
   before_filter :login_required, :only => [:edit_photos, :update_photos, 
-    :update_colors, :tag_flickr_photos, :flickr_photos_tagged]
+    :update_colors, :tag_flickr_photos, :flickr_photos_tagged, :add_places]
   before_filter :curator_required, 
                 :only => [:new, :create, :edit, :update, :destroy, :curation]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
-    :update_colors]
+    :update_colors, :add_places]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
@@ -104,6 +104,12 @@ class TaxaController < ApplicationController
     
     @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
     @taxon_links.sort! {|a,b| a.taxon.rgt <=> b.taxon.rgt}
+    
+    @places = Place.paginate(:page => 1,
+      :include => :listed_taxa,
+      :conditions => ["listed_taxa.taxon_id = ?", @taxon],
+      :order => "places.id DESC, places.name ASC"
+    )
     
     if logged_in?
       @current_user_lists = current_user.lists.all
@@ -274,7 +280,8 @@ class TaxaController < ApplicationController
     if @facets[:iconic_taxon_id]
       @faceted_iconic_taxa = Taxon.all(
         :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
-        :include => [:taxon_names, :flickr_photos]
+        :include => [:taxon_names, :flickr_photos],
+        :order => 'lft'
       )
       @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
     end
@@ -286,12 +293,12 @@ class TaxaController < ApplicationController
     
     if @facets[:places]
       @faceted_places = if @places.blank?
-        Place.paginate(:page => 1, :conditions => [
+        Place.paginate(:page => 1, :order => "name", :conditions => [
           "id in (?) && place_type = ?", 
           @facets[:places].keys, Place::PLACE_TYPE_CODES['Country']
         ])
       else
-        Place.all(:conditions => [
+        Place.all(:order => "name", :conditions => [
           "id in (?) AND parent_id IN (?)", 
           @facets[:places].keys, @places.map(&:id)
         ])
@@ -355,6 +362,20 @@ class TaxaController < ApplicationController
   end
   
   def edit_photos
+    render :layout => false
+  end
+  
+  def add_places
+    if request.post?
+      search_for_places
+      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
+      @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
+      render :update do |page|
+        page[dom_id(@taxon, 'place_selector_places')].replace_html(
+          :partial => 'add_to_place_link', :collection => @places)
+      end
+      return
+    end
     render :layout => false
   end
   

@@ -11,12 +11,18 @@
     var options = $.extend({}, options);
     var choosePlaceOptions = {};
     var clearPlaceOptions = {};
-    if (typeof(options.afterChoosePlace) == 'function') {
-      choosePlaceOptions.after = options.afterChoosePlace;
-    };
-    if (typeof(options.afterClearPlace) == 'function') {
-      clearPlaceOptions.after = options.afterClearPlace;
-    };
+    if (typeof(options.afterChoosePlace) == 'function') choosePlaceOptions.after = options.afterChoosePlace;
+    if (typeof(options.afterClearPlace) == 'function') clearPlaceOptions.after = options.afterClearPlace;
+    var autocompleteOptions = $.extend({
+      formatItem: function(data, i, total) {
+        var placeJSON = eval('(' + data[0] + ')');
+        return $.fn.placeAutocomplete.formattedAutocompletePlace(placeJSON);
+      },
+      formatResult: function(data, i, total) {
+        var placeJSON = eval('(' + data[0] + ')');
+        return placeJSON.name;
+      }
+    }, options.autocompleteOptions || {});
     var url = typeof(url) == 'undefined' ? '/places/autocomplete' : url;
     
     // Add the status
@@ -42,16 +48,7 @@
     $(input).data('statusField', status);
     
     // Setup the autocompleter
-    $(input).autocomplete(url, {
-      formatItem: function(data, i, total) {
-        var placeJSON = eval('(' + data[0] + ')');
-        return $.fn.placeAutocomplete.formattedAutocompletePlace(placeJSON);
-      },
-      formatResult: function(data, i, total) {
-        var placeJSON = eval('(' + data[0] + ')');
-        return placeJSON.name;
-      }
-    }).result(function(event, data, formatted) {
+    $(input).autocomplete(url, autocompleteOptions).result(function(event, data, formatted) {
       var placeJSON = eval('(' + data[0] + ')');
       $.fn.placeAutocomplete.choosePlace(input, placeJSON, choosePlaceOptions);
       return false;
