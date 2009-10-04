@@ -469,15 +469,15 @@
     
     <% if @us_states -%>
       <span class="description">US states:</span>
-      <%= google_charts_map_for_places(@us_states, {:chs => '150x80'}) %>
+      <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
     <% elsif !@countries.blank? %>
     <span class="description">Countries:</span>
-      <%= google_charts_map_for_places(@countries, {:chs => '150x80'}) %>
+      <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
     <% end -%>
     
     <ul id="places_list">
       <% for place in @places %>
-        <li><%= link_to place.display_name, @place %></li>
+        <li><%= link_to place.display_name, place %></li>
       <% end %>
     </ul>
     
