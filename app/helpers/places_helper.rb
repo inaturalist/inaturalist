@@ -41,7 +41,7 @@ module PlacesHelper
   # Returns GMaps zoom level for a place given map dimensions in pixels
   def map_zoom_for_place(place, width, height)
     return 0 if [place.nelat, place.nelng, place.swlat, place.swlng].include?(nil)
-    (1..SPHERICAL_MERCATOR.levels).reverse_each do |zoom_level|
+    (1..SPHERICAL_MERCATOR.levels).to_a.reverse_each do |zoom_level|
       minx, miny = SPHERICAL_MERCATOR.from_ll_to_pixel([place.swlng, place.swlat], zoom_level)
       maxx, maxy = SPHERICAL_MERCATOR.from_ll_to_pixel([place.nelng, place.nelat], zoom_level)
       return zoom_level if (maxx - minx < width) && (maxy - miny < height)
@@ -70,6 +70,8 @@ module PlacesHelper
     }.merge(options)
     
     tag_options[:alt] = "Map of #{geographical_area == 'usa' ? 'US states' : 'countries'}: #{labels.join(', ')}"
+    tag_options[:width] ||= url_for_options[:chs].split('x').first
+    tag_options[:height] ||= url_for_options[:chs].split('x').last
     
     image_tag(
       url_for(url_for_options),
