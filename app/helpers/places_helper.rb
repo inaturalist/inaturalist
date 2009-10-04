@@ -47,4 +47,35 @@ module PlacesHelper
       return zoom_level if (maxx - minx < width) && (maxy - miny < height)
     end
   end
+  
+  def google_charts_map_for_places(places, options = {}, tag_options = {})
+    countries = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['Country']}
+    geographical_area = 'world'
+    labels = countries.map(&:code)
+    if countries.empty? || (countries.size == 1 && countries.first.code == 'US')
+      states = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['State'] && p.parent_id == countries.first.id}
+      if states.size > 0
+        labels = states.map {|s| s.code.gsub('US-', '')}
+        geographical_area = 'usa'
+      end
+    end
+    data = "t:#{(['100'] * labels.size).join(',')}"
+    url_for_options = {
+      :host => 'chart.apis.google.com',
+      :controller => 'chart',
+      :chs => '440x220',
+      :chco => 'EEEEEE,1E90FF,1E90FF',
+      :chld => labels.join,
+      :chd => labels.empty? ? 's:_' : data,
+      :cht => 't',
+      :chtm => geographical_area
+    }.merge(options)
+    
+    tag_options[:alt] = "Map of #{geographical_area == 'usa' ? 'US states' : 'countries'}: #{labels.join(', ')}"
+    
+    image_tag(
+      url_for(url_for_options),
+      tag_options
+    )
+  end
 end

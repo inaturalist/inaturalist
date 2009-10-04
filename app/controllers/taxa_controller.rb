@@ -110,6 +110,15 @@ class TaxaController < ApplicationController
       :conditions => ["listed_taxa.taxon_id = ?", @taxon],
       :order => "places.id DESC, places.name ASC"
     )
+    @countries = @taxon.places.all(
+      :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
+    )
+    if @countries.size == 1 && @countries.first.code == 'US'
+      @us_states = @taxon.places.all(:conditions => [
+        "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
+        @countries.first.id
+      ])
+    end
     
     if logged_in?
       @current_user_lists = current_user.lists.all
