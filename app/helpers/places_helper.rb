@@ -50,14 +50,12 @@ module PlacesHelper
   
   def google_charts_map_for_places(places, options = {}, tag_options = {})
     countries = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['Country']}
+    states = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['State'] && p.parent.code == 'US'}
     geographical_area = 'world'
     labels = countries.map(&:code)
-    if countries.empty? || (countries.size == 1 && countries.first.code == 'US')
-      states = places.select {|p| p.place_type == Place::PLACE_TYPE_CODES['State'] && p.parent_id == countries.first.id}
-      if states.size > 0
-        labels = states.map {|s| s.code.gsub('US-', '')}
-        geographical_area = 'usa'
-      end
+    if states.size > 0 && (countries.empty? || (countries.size == 1 && countries.first.code = 'US'))
+      labels = states.map {|s| s.code.gsub('US-', '')}
+      geographical_area = 'usa'
     end
     data = "t:#{(['100'] * labels.size).join(',')}"
     url_for_options = {
