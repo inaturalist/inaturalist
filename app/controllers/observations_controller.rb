@@ -108,7 +108,6 @@ class ObservationsController < ApplicationController
     @observation = Observation.find(params[:id], 
       :include => [
         :flickr_photos, 
-        :markings, 
         {:taxon => [:taxon_names]},
         :identifications
       ]
@@ -195,7 +194,7 @@ class ObservationsController < ApplicationController
         @comments_and_identifications = (@observation.comments.all + 
           @identifications).sort_by(&:created_at)
         
-        @marking_types = MarkingType.find(:all)
+        # @marking_types = MarkingType.find(:all)
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
@@ -633,57 +632,6 @@ class ObservationsController < ApplicationController
     
     @top_identifiers = User.all(:order => "identifications_count DESC", 
       :limit => 5)
-  end
-
-  #
-  # Add markings.  Note that this is a function which adds social markings not
-  # map based markings. It should redirect or return a JSON response on
-  # successful completetion.
-  #
-  def add_marking
-    @observation = Observation.find(params[:id])
-    respond_to do |format|
-      if @observation.mark(@user.id, params[:marking_type_id])
-        format.html { redirect_to @observation }
-        format.json { render :json => @observation.markings.pop.to_json }
-      else
-        # something went wrong
-        marking_with_error = @observation.markings.pop
-        format.html {
-          if marking_with_error.errors.on(:marking_type_id)
-            flash[:notice] = marking_with_error.errors.on(:marking_type_id)
-          else
-            flash[:notice] = "Your marking could not be accepted, try again later."
-          end
-          redirect_to @observation
-        }
-        format.json   { render :json => marking_with_error.errors, 
-                               :status => :unprocessable_entity }
-      end
-    end
-  end
-  
-  def remove_marking
-    @observation = Observation.find(params[:id])
-    
-    # Returns the destroyed marking or false if no marking could be found
-    marking = @observation.unmark(@user.id, params[:marking_type_id])
-    
-    respond_to do |format|
-      if marking
-        format.html { redirect_to @observation }
-        format.json { render :json => marking.to_json }
-      else
-        # something went wrong
-        format.html {
-          flash[:notice] = "We could not unset a marking that doesn't exist!"
-          redirect_to @observation
-        }
-        format.json   { render :json => [['marking_type_id',
-                                           'Could not be found.']], 
-                               :status => :unprocessable_entity }
-      end
-    end
   end
   
   # Renders observation components as form fields for inclusion in 

@@ -21,9 +21,6 @@ class Observation < ActiveRecord::Base
            :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
-  has_many :markings, :dependent => :destroy
-  has_many :marking_types,
-           :through => :markings
                
   has_and_belongs_to_many :flickr_photos, :uniq => true
   
@@ -521,16 +518,6 @@ class Observation < ActiveRecord::Base
   end
   
   #
-  # Add a marking to the observation
-  #
-  def mark(user_id, marking_type_id)
-    self.markings << Marking.new({
-      :user_id => user_id,
-      :marking_type_id => marking_type_id
-    })
-  end
-  
-  #
   # Set the time_zone of this observation if not already set
   #
   def set_time_zone
@@ -571,38 +558,7 @@ class Observation < ActiveRecord::Base
     
     self.time_observed_at = Time.parse(time_s)
   end
-  
-  #
-  # Unmark the observation
-  #
-  def unmark(user_id, marking_type_id)
-    marking = self.markings.find(:first,
-                :conditions => ["user_id = ? AND marking_type_id = ?",
-                user_id, marking_type_id])
-    # no marking
-    return false if marking.nil?
-    marking.destroy
-  end
-  
-  #
-  # See if the observation is marked a certain type, regardless of user
-  #
-  def marked?(marking_type)
-    marking_types.include?(marking_type)
-  end
-  
-  #
-  # See if the observation is marked something by a user
-  #
-  def marked_by_user?(marking_type, user)
-    !markings.find(:first,
-                   :conditions => ["user_id = ? AND marking_type_id = ?",
-                                   user.id, marking_type.id]).nil?
-  end
-  
-  def marking_counts_for(marking_type)
-    markings.count(:conditions => ["marking_type_id = ?", marking_type.id])
-  end
+
   
   ##### Rules ###############################################################
   #

@@ -73,17 +73,7 @@ ActionController::Routing::Routes.draw do |map|
   map.import_observations 'observations/import',
                  :controller => 'observations',
                  :action => 'import'
-  
-  map.add_marking   'observations/:id/add_marking',
-                    :controller => 'observations',
-                    :action => 'add_marking',
-                    :conditions => {:method => :get}
-                
-  map.remove_marking   'observations/:id/remove_marking',
-                       :controller => 'observations',
-                       :action => 'remove_marking',
-                       :conditions => {:method => :get}
- 
+   
   map.id_please 'observations/id_please',
                 :controller => 'observations',
                 :action => 'id_please',
