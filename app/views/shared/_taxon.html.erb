@@ -19,7 +19,7 @@ singular ||= false
 
 taxon_class = "taxon taxon-#{taxon.id} lft-#{taxon.lft} rgt-#{taxon.rgt}"
 taxon_class += " #{taxon.rank.downcase}" if taxon.rank
-if @iconic_taxa && iconic_taxon = @iconic_taxa.find {|it| it.id == taxon.iconic_taxon_id}
+if @iconic_taxa && (iconic_taxon = @iconic_taxa.select {|it| it.id == taxon.iconic_taxon_id}.first)
   taxon_class += " #{iconic_taxon.name}"
 elsif taxon.iconic_taxon
   taxon_class += " #{taxon.iconic_taxon.name}"
