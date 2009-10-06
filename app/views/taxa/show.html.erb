@@ -459,33 +459,42 @@
     </div>
   <% end -%>
   
-  <div id="places" class="clear">
-    <h3>
-      Range
-      <% if @places.total_entries > @places.size -%>
-        <span class="small description"><%= @places.size %> of <%= @places.total_entries %></span>
+  <% if @taxon.species_or_lower? -%>
+    <div id="places" class="clear">
+      <h3>
+        Range
+        <% if @places.total_entries > @places.size -%>
+          <span class="small description"><%= @places.size %> of <%= @places.total_entries %></span>
+        <% end -%>
+      </h3>
+    
+      <% if @us_states -%>
+        <span class="description">US states:</span>
+        <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
+      <% elsif !@countries.blank? %>
+        <span class="description">Countries:</span>
+        <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
       <% end -%>
-    </h3>
     
-    <% if @us_states -%>
-      <span class="description">US states:</span>
-      <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
-    <% elsif !@countries.blank? %>
-    <span class="description">Countries:</span>
-      <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
-    <% end -%>
+      <ul id="places_list">
+        <% for place in @places %>
+          <li><%= link_to place.display_name, place %></li>
+        <% end %>
+      </ul>
     
-    <ul id="places_list">
-      <% for place in @places %>
-        <li><%= link_to place.display_name, place %></li>
-      <% end %>
-    </ul>
-    
-    <% if logged_in? && @taxon.species_or_lower? -%>
-      <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
-      <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
-    <% end -%>
-  </div>
+      <% if logged_in? -%>
+        <% if @places.blank? -%>
+          <div class="notice">
+            Do you know where this species lives?
+            <strong><%= link_to_function "Add it to a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+          </div>
+        <% else %>
+          <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+        <% end -%>
+        <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
+      <% end -%>
+    </div>
+  <% end %>
   
   <div id="extras">
     <h3>Extras</h3>

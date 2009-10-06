@@ -16,7 +16,7 @@
         :complete => "$('##{dom_id @taxon, 'place_selector_loading'}').hide()" do %>
       <div class="clear buttonrow">
         <%= text_field_tag :q, '', :class => 'text', :id => dom_id(@taxon, 'place_selector_q') %>
-        <%= submit_tag 'Search', :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
+        <%= submit_tag 'Find Places', :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
       </div>
     <% end %>
     <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none">Searching...</div>
