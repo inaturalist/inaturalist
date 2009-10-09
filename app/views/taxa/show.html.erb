@@ -190,6 +190,15 @@
   .add_to_place_link {
     margin-bottom: 10px;
   }
+  
+  #search_taxa form {
+    float: right;
+    margin-top: 5px;
+  }
+  
+  #search_taxa .button {
+    margin-right: 0;
+  }
 </style>
 
 <!--[if lte IE 7]>
@@ -288,19 +297,12 @@
 <% end -%>
 
 <div id="pageheader" class="last column span-24">
-  <div id="search_taxa">
-    <span class="breadcrumbs">&nbsp;</span>
-    <%= render :partial => 'search_form' %>
-  </div>
   <span class="breadcrumbs">
     <%= link_to 'Back to All Species', 
                 taxa_path,
                 :class => 'back crumb' %>
   </span>
-  <h2>
-    <%= render :partial => 'shared/taxon', :locals => { :taxon => @taxon } %>
-  </h2>
-  <span class="description">
+  <div id="meta" class="right description">
     <% if @taxon.source_url %>
       Source: <%= link_to @taxon.source.title, @taxon.source_url %>
     <% elsif @taxon.source %>
@@ -308,29 +310,35 @@
     <% else %>
       Source: unknown
     <% end %>
-  </span>
-  <% if logged_in? and @user.is_curator? %>
-  |
-  <span class="description">
-    <%= link_to "Edit this taxon", edit_taxon_path(@taxon) %>
-  </span>
-  <% end %>
-  <% if @taxon.flagged? %>
-  |
-  <span id="flaggings_heads_up" class="description">
-    HEADS UP: this taxon has been flagged for curation.
-    <%= link_to "View flags", taxon_flags_path(@taxon) %>
-  </span>
-  <% else %>
-    <% if logged_in? %>
-    |
-    <span class="description">
-      See something wrong?  
-      <%= link_to "Flag this for curation", new_taxon_flag_path(@taxon),
-                  :id => "flag_this" %>
-    </span>
+    
+    | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
+    <% if logged_in? and @user.is_curator? %>
+    
+    | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
     <% end %>
-  <% end %>
+    <% if @taxon.flagged? %>
+    
+    | <span id="flaggings_heads_up" class="description">
+      Flagged for curation.
+      <%= link_to "View flags", taxon_flags_path(@taxon), :class => 'readmore', 
+        :title => "See something wrong with this taxon?  Let the curators know." %>
+    </span>
+    <% else %>
+      <% if logged_in? %>
+      | <%= link_to "Flag for curation", new_taxon_flag_path(@taxon), :id => "flag_this" %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div class="clear">
+    <span id="search_taxa" class="smallbuttons">
+      <%= render :partial => 'search_form' %>
+    </span>
+
+    <h2>
+      <%= render :partial => 'shared/taxon', :locals => { :taxon => @taxon } %>
+    </h2>
+  </div>
 </div>
 
 <div class="column span-4 aka">

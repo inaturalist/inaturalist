@@ -186,3 +186,17 @@ input[type='submit'].link:hover {
   border-color: #ddd;
   color: white;
 }
+
+.smallbuttons .button,
+.smallbuttons input.text,
+.smallbuttons label {
+  padding: 2px 3px;
+  font-size: 100%;
+  margin-bottom: 0;
+}
+
+.smallbuttons .button {
+  border: 0 transparent;
+  font-weight: normal;
+/*  padding: 3px 6px;*/
+}

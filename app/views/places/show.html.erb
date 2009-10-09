@@ -28,20 +28,12 @@
       overflow: auto;
     }
     
-    #searchform {
+    .smallbuttons {
       float: right;
     }
     
-    #searchform .button {
+    .smallbuttons .button {
       margin-right: 0;
-    }
-    
-    #searchform .button,
-    #searchform .text,
-    #searchform label {
-      padding: 2px 3px;
-      font-size: 100%;
-      margin-bottom: 0;
     }
     
     #pageheader h2 {
@@ -339,7 +331,7 @@
   </script>
 <%- end -%>
 <div id="pageheader">
-  <div id="searchform" class="clear right buttonrow">
+  <div id="searchform" class="clear right buttonrow smallbuttons">
     <%= render :partial => 'places/search_form', :locals => {:q => ''} %>
   </div>
   <div class="breadcrumbs">
