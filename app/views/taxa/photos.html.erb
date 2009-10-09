@@ -1,5 +1,5 @@
 <% unless @photos.size == 0 %>
-  <% if @taxon.rank == 'species' or @taxon.rank == 'infraspecies' %>
+  <% if @taxon.species_or_lower? %>
     <% if @photos[0].is_a? FlickrPhoto %>
       <%= modal_image(@photos.first, :size => :medium) %>
       <div class="clear description" style="clear: both">
@@ -47,8 +47,7 @@
   (not just Creative Commons-licensed)
 </div>
 <% end %>
-<% if @photos.size > 0 and 
-      (@taxon.rank == 'species' or @taxon.rank == 'infraspecies') %>
+<% if @photos.size > 0 && @taxon.species_or_lower? %>
 <div>
   <br/>
   <% unless @photos[1..-1].size == 0 %>

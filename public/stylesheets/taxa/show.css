@@ -9,13 +9,21 @@
   margin-bottom: 0;
 }
 
-.aka .taxon_name {
+.taxonomic_tree .taxon_name {
   display: block;
 }
 
-.aka .lexicon {
-  display: block;
-  margin-left: 1em;
+#all_names ul {
+  list-style: none;
+  margin: 0;
+}
+
+#all_names li {
+  margin-bottom: 5px;
+}
+
+#all_names ul ul {
+  margin-left: 10px;
 }
 
 #photoscol {
@@ -68,18 +76,18 @@ h3 .description {
   margin-bottom: 10px;
 }
 
-ul.taxonomic_tree li.protozoa          { list-style-image: url('/images/iconic_taxa/protozoa-15px.png'); }
-ul.taxonomic_tree li.plantae          { list-style-image: url('/images/iconic_taxa/plantae-15px.png'); }
-ul.taxonomic_tree li.fungi            { list-style-image: url('/images/iconic_taxa/fungi-15px.png'); }
-ul.taxonomic_tree li.animalia         { list-style-image: url('/images/iconic_taxa/animalia-15px.png'); }
-ul.taxonomic_tree li.mollusca         { list-style-image: url('/images/iconic_taxa/mollusca-15px.png'); }
-ul.taxonomic_tree li.arachnida        { list-style-image: url('/images/iconic_taxa/arachnida-15px.png'); }
-ul.taxonomic_tree li.insecta          { list-style-image: url('/images/iconic_taxa/insecta-15px.png'); }
-ul.taxonomic_tree li.actinopterygii   { list-style-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
-ul.taxonomic_tree li.amphibia         { list-style-image: url('/images/iconic_taxa/amphibia-15px.png'); }
-ul.taxonomic_tree li.reptilia         { list-style-image: url('/images/iconic_taxa/reptilia-15px.png'); }
-ul.taxonomic_tree li.aves             { list-style-image: url('/images/iconic_taxa/aves-15px.png'); }
-ul.taxonomic_tree li.mammalia         { list-style-image: url('/images/iconic_taxa/mammalia-15px.png'); }
+ul.taxonomic_tree li.Protozoa          { list-style-image: url('/images/iconic_taxa/protozoa-15px.png'); }
+ul.taxonomic_tree li.Plantae          { list-style-image: url('/images/iconic_taxa/plantae-15px.png'); }
+ul.taxonomic_tree li.Fungi            { list-style-image: url('/images/iconic_taxa/fungi-15px.png'); }
+ul.taxonomic_tree li.Animalia         { list-style-image: url('/images/iconic_taxa/animalia-15px.png'); }
+ul.taxonomic_tree li.Mollusca         { list-style-image: url('/images/iconic_taxa/mollusca-15px.png'); }
+ul.taxonomic_tree li.Arachnida        { list-style-image: url('/images/iconic_taxa/arachnida-15px.png'); }
+ul.taxonomic_tree li.Insecta          { list-style-image: url('/images/iconic_taxa/insecta-15px.png'); }
+ul.taxonomic_tree li.Actinopterygii   { list-style-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
+ul.taxonomic_tree li.Amphibia         { list-style-image: url('/images/iconic_taxa/amphibia-15px.png'); }
+ul.taxonomic_tree li.Reptilia         { list-style-image: url('/images/iconic_taxa/reptilia-15px.png'); }
+ul.taxonomic_tree li.Aves             { list-style-image: url('/images/iconic_taxa/aves-15px.png'); }
+ul.taxonomic_tree li.Mammalia         { list-style-image: url('/images/iconic_taxa/mammalia-15px.png'); }
 ul.taxonomic_tree li.unknown          { list-style-image: url('/images/iconic_taxa/unknown-15px.png'); }
 ul.taxonomic_tree .taxon .othernames {
   display: block;

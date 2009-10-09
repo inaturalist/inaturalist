@@ -1,0 +1,16 @@
+<%- 
+taxon ||= object || @taxon 
+taxon_class = ''
+taxon_class = if @iconic_taxa && (iconic_taxon = @iconic_taxa.select {|it| it.id == taxon.iconic_taxon_id}.first)
+  iconic_taxon.name
+elsif taxon.iconic_taxon
+  taxon.iconic_taxon.name
+end
+-%>
+<li class="<%= taxon_class %>">
+  <% link_to(taxon) do %>
+    <%= render :partial => 'shared/taxon', 
+               :object => taxon,
+               :locals => { :include_parens => false } %>
+  <% end %>
+</li>

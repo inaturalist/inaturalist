@@ -187,7 +187,8 @@ ActionController::Routing::Routes.draw do |map|
   map.formatted_search_taxa 'taxa/search.:format', :controller => 'taxa', 
     :action => 'search'
   map.resources :taxa, :requirements => { :id => %r(\d+) } do |taxon|
-    taxon.resources :names, :controller => :taxon_names
+    # taxon.resources :names, :controller => :taxon_names
+    taxon.resources :taxon_names, :controller => :taxon_names, :shallow => true
     taxon.resources :flags
   end
   

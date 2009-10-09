@@ -5,6 +5,7 @@ class TaxonName < ActiveRecord::Base
   belongs_to :updater, :class_name => 'User'
   validates_presence_of :taxon
   validates_associated :taxon
+  validates_length_of :name, :within => 1..256
   validates_uniqueness_of :name, 
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon"
@@ -49,6 +50,11 @@ class TaxonName < ActiveRecord::Base
     :TURKISH             =>  'turkish',
     :WARAY_WARAY         =>  'waray-waray'
   }
+  
+  DEFAULT_LEXICONS = [
+    LEXICONS[:SCIENTIFIC_NAMES],
+    LEXICONS[:ENGLISH]
+  ]
   
   LEXICONS.keys.each do |language|
     class_eval <<-EOT

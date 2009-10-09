@@ -752,3 +752,11 @@ table.user-table td {
   vertical-align: top;
   padding: 4px 20px;
 }
+
+.taxon_names .scientific_names {
+  font-style: italic;
+}
+
+.taxon_names .invalid {
+  text-decoration: line-through;
+}

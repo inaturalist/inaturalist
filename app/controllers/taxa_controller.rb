@@ -99,8 +99,12 @@ class TaxaController < ApplicationController
   end
 
   def show
-    @taxon ||= Taxon.find_by_id(params[:id]) if params[:id]    
+    @taxon ||= Taxon.find_by_id(params[:id], :include => :taxon_names) if params[:id]
     return render_404 unless @taxon
+    
+    @children = @taxon.children.all(:include => :taxon_names, :order => "name")
+    @ancestors = @taxon.ancestors.all(:include => :taxon_names)
+    @iconic_taxa = Taxon.iconic_taxa.all(:include => :taxon_names)
     
     @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
     @taxon_links.sort! {|a,b| a.taxon.rgt <=> b.taxon.rgt}
@@ -633,18 +637,29 @@ class TaxaController < ApplicationController
   end
   
   def load_taxon
-    render_404 unless @taxon = Taxon.find_by_id(params[:id])
+    render_404 unless @taxon = Taxon.find_by_id(params[:id], :include => :taxon_names)
   end
   
   # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
   def try_show(exception)
     raise exception if params[:action].blank?
     name = params[:action].split('_').join(' ')
+    
+    # Try to look by its current scientifc name
     taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon
     @taxon ||= taxa.first if taxa.size == 1
+    
+    # Try to find a unique TaxonName
     unless @taxon
-      taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2) # (tn = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)) ? tn.taxon : nil
-      @taxon = taxon_names.first.taxon if taxon_names.size == 1
+      taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)
+      if taxon_names.size == 1
+        @taxon = taxon_names.first.taxon
+        
+        # Redirect to the currently accepted sciname if this isn't an accepted sciname
+        unless taxon_names.first.is_valid?
+          return redirect_to :action => @taxon.name.split.join('_')
+        end
+      end
     end
     
     # Redirect to a canonical form
