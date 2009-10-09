@@ -175,6 +175,7 @@
         afterSelect: function(wrapper) {
           var button = $(wrapper).parents('.identification_form_wrapper').find('.default.button');
           $(button).removeClass('disabled').attr('disabled', null);
+          $(button).focus();
         },
         afterUnselect: function(wrapper) {
           var button = $(wrapper).parents('.identification_form_wrapper').find('.default.button');
