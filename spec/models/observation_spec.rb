@@ -5,7 +5,7 @@ describe Observation, "creation" do
   before(:each) do
     @observation = Observation.new(
       :user => users(:quentin),
-      :taxon => Taxon.find_by_name('Calypte anna'),
+      :taxon => taxa(:Calypte_anna),
       :observed_on_string => 'yesterday at 1pm'
     )
   end
@@ -158,6 +158,13 @@ describe Observation, "creation" do
     @observation.save
     @observation.reload
     @observation.user.observations_count.should == old_count + 1
+  end
+  
+  it "should automatically set a taxon if the guess corresponds to a unique taxon" do
+    @observation.taxon = nil
+    @observation.species_guess = "Anna's Hummingbird"
+    @observation.save
+    @observation.taxon_id.should == taxa(:Calypte_anna).id
   end
 end
 

@@ -1,6 +1,6 @@
 %w{rubygems rest_client}.each { |x| require x }
 
-if defined?(ActiveSupport::JSON)
+if !defined?(JSON) && defined?(ActiveSupport::JSON)
   JSON = ActiveSupport::JSON
   module JSON
     def self.parse(json)
