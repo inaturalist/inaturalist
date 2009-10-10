@@ -149,9 +149,7 @@
       be able to add other names here (common names, outdated scientific
       names, etc.).
     <% else -%>
-      <%#= render :partial => "taxon_names/nested_form_fields", :locals => { 
-        :taxon_name => TaxonName.new(:taxon => @taxon) }%>
-      <%= link_to "add a new taxon name", new_taxon_name_path(taxon), :class => 'readmore' %>
+      <%= link_to "add a new taxon name", new_taxon_taxon_name_path(taxon), :class => 'readmore' %>
     <% end -%>
   </fieldset>
   
