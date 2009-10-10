@@ -10,6 +10,11 @@ module Shared::ListsModule
   end
   
   def show
+    # Make sure request is being handled by the right controller
+    if @list.is_a?(CheckList) && params[:controller] != CheckList.to_s.underscore.pluralize
+      return redirect_to @list
+    end
+    
     @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
     @total_listed_taxa ||= @list.listed_taxa.count
