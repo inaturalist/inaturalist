@@ -236,7 +236,7 @@ class TaxaController < ApplicationController
     if params[:q]
       @taxa = Taxon.search(params[:q], 
         :include => [:taxon_names, :flickr_photos, :iconic_taxon],
-        :page => @page, :per_page => per_page)
+        :page => @page, :per_page => per_page).compact
     end
     
     do_external_lookups
