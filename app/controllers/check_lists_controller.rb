@@ -23,7 +23,10 @@ class CheckListsController < ApplicationController
     if @list.is_default?
       @find_options[:conditions] = update_conditions(
         @find_options[:conditions], ["AND place_id = ?", @list.place_id])
+      
+      # Make sure we don't get duplicate taxa from check lists other than the default
       @find_options[:group] = "listed_taxa.taxon_id"
+      
       @listed_taxa = ListedTaxon.paginate(@find_options)
       @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
         :conditions => ["place_id = ?", @list.place_id])
