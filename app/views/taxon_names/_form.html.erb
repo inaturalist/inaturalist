@@ -43,11 +43,12 @@
       options_for_select(TaxonName::DEFAULT_LEXICONS, 
         :selected => @taxon_name.new_record? ? TaxonName::LEXICONS[:ENGLISH] : nil) +
       options_for_select(['---------------------------'], :disabled => '---------------------------') +
-      options_for_select(TaxonName::LEXICONS.values.sort)
+      options_for_select(TaxonName::LEXICONS.values.sort, 
+        :selected => @taxon_name.new_record? ? nil : @taxon_name.lexicon)
     %>
   </p>
   <p class="ui" style="margin: 20px 0">
-    <%= label_tag 'If this is a scientific name, is it still currently accepted?' %><br/>
+    <%= label_tag 'If this is a scientific name, is it currently accepted?' %><br/>
     <%= n.radio_button :is_valid, true.to_s %> <%= n.label :is_valid_true, 'True' %>
     <%= n.radio_button :is_valid, false %>  <%= n.label :is_valid_false, 'False' %>
   </p>
