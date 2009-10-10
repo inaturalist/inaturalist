@@ -57,7 +57,7 @@
     <%= n.submit "Save", :class => 'default button' %>
     <%= link_to "Cancel", @taxon || @taxon_name.taxon, :class => 'button' %>
     <%- unless @taxon_name.new_record? -%>
-      <%= link_to 'Delete', taxon_name_path(@taxon, @taxon_name),
+      <%= link_to 'Delete', @taxon_name,
                   :method => :delete,
                   :confirm => "Are you sure you want to delete this name?",
                   :class => 'minor delete button' %>
