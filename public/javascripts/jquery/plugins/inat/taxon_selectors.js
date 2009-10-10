@@ -376,7 +376,7 @@
       formatted.addClass('Unknown');
     }
     var formattedSciName = $.fn.simpleTaxonSelector.taxonToS(taxon);
-    if (name.lexicon == 'scientific names') {
+    if (name.lexicon == 'Scientific Names') {
       if (name.is_valid) {
         $(formatted).append(formattedSciName);
       } else {

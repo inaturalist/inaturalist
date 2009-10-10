@@ -327,7 +327,7 @@ class Taxon < ActiveRecord::Base
         :source => source,
         :source_identifier => source_identifier,
         :source_url => source_url,
-        :lexicon => 'scientific names',
+        :lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES],
         :is_valid => true
       )
     end
@@ -470,6 +470,7 @@ class Taxon < ActiveRecord::Base
     reload # there's a chance taxon names have been created since load
     return true unless default_name
     [default_name.name, name].each do |candidate|
+      # Skip if this name isn't unique
       next if TaxonName.count(:select => "distinct(taxon_id)", :conditions => {:name => candidate}) > 1
       begin
         logger.info "Updating unique_name for #{self} to #{candidate}"
