@@ -19,7 +19,10 @@ class UserMailer < ActionMailer::Base
   protected
     def setup_email(user)
       @recipients = "#{user.email}"
-      @from = "iNaturalist.org <#{APP_CONFIG[:admin_email]}>"
+      # TODO: restore the display name after they fix this bug: https://rails.lighthouseapp.com/projects/8994/tickets/2340
+      # @from = "iNaturalist.org <#{APP_CONFIG[:noreply_email]}>"
+      from APP_CONFIG[:noreply_email]
+      reply_to APP_CONFIG[:noreply_email]
       @subject = "[#{APP_CONFIG[:site_name]}] "
       @sent_on = Time.now
       @body[:user] = user
