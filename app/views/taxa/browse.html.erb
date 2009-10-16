@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-  <%= @title = "Species Browser (experimental)" %>
+  <%= @title = "Species Search" %>
 <% end -%>
 
 <% content_for(:extrajs) do %>
@@ -94,12 +94,17 @@
   #external_search {
     margin-top: 20px;
   }
+  
+  .facet .togglelink {
+    position: relative;
+    left: -5px;
+  }
 </style>
 <% end -%>
 
-<h2>Species Browser <span class="small description">(experimental)</span></h2>
+<h2>Species Search</h2>
 
-<% form_tag({:action => 'browse'}, :method => :get, :class => 'clear buttonrow') do %>
+<% form_tag({}, :method => :get, :class => 'clear buttonrow') do %>
   <label for="q">Search</label>
   <%= text_field_tag 'q', params[:q], :class => 'text' %>
   <input type="submit" class="default button" value="Go" />
@@ -137,19 +142,77 @@
 <% end %>
 
 <div class="column span-6">
+  <% unless @faceted_iconic_taxa.blank? && @iconic_taxa.blank? -%>
+    <div id="iconic_taxa_facet" class="facet taxon_links">
+      <strong>
+        <% if @iconic_taxa.blank? -%>
+          <%= link_to_toggle "All Taxonomic Groups", "#iconic_taxa", :class => 'open' %>
+        <% else %>
+          <%= link_to '&laquo; All Taxonomic Groups', url_for_params(:without => [:iconic_taxa, :page]) %>
+        <% end -%>
+      </strong>
+      <div id="iconic_taxa">
+        <% for iconic_taxon in @faceted_iconic_taxa %>
+          <%- selected = @iconic_taxa_ids && @iconic_taxa_ids.include?(iconic_taxon.id) -%>
+          <div class="facet_value<%= ' selected' if selected %>">
+            <%= link_to('&times;', url_for_params(:without => [:iconic_taxa, :page]), :class => 'right description') if selected %>
+            <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
+              url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page),
+              :class => "taxon #{iconic_taxon.name}" %>
+            (<span class="count"><%= number_with_delimiter @facets[:iconic_taxon_id][iconic_taxon.id] %></span>)
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <% unless @faceted_colors.blank? && @colors.blank? -%>
+    <div id="colors_facet" class="facet">
+      <strong>
+        <% if @colors.blank? -%>
+          <%= link_to_toggle "All Colors", "#colors", :class => 'open' %>
+        <% else %>
+          <%= link_to '&laquo; All Colors', url_for_params(:without => [:colors, :page]) %>
+        <% end -%>
+      </strong>
+      <div id="colors">
+        <% for color in @faceted_colors %>
+          <%- selected = @color_ids && @color_ids.include?(color.id) -%>
+          <div class="<%= color.value %> facet_value<%= ' selected' if selected %>">
+            <% if selected %>
+              <% if @color_ids.size > 1 -%>
+                <%= link_to('&times;', 
+                  url_for_params(
+                    :colors => @color_ids.reject {|cid| cid == color.id}.join(','),
+                    :without => :page
+                  ), 
+                  :class => 'right description') %>
+              <% else %>
+                <%= link_to('&times;', url_for_params(:without => [:colors, :page]), :class => 'right description') %>
+              <% end -%>
+            <% elsif @color_ids %>
+              <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :class => 'right' %>
+            <% end %>
+            <%= link_to "&nbsp;", url_for_params(:colors => color.id, :without => :page), :class => 'icon' %>
+            <%= link_to color.value, url_for_params(:colors => color.id, :without => :page) %>
+            (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end -%>
   
   <% unless @faceted_places.blank? && @places.blank? -%>
     <div id="places_facet" class="facet">
       <strong>
         <% if @places.blank? -%>
-          All Places
+          <%= link_to_toggle "All Places", "#places", :class => 'open' %>
         <% else %>
           <%= link_to '&laquo; All Places', url_for_params(:without => [:page, :places]) %>
         <% end -%>
       </strong>
 
-      <ul>
-
+      <ul id="places">
         <% if @places.blank? -%>
           <% for place in @faceted_places %>
             <%- selected = @place_ids && @place_ids.include?(place.id) -%>
@@ -193,62 +256,6 @@
         <% end -%>
 
       </ul>
-    </div>
-  <% end -%>
-  
-  <% unless @faceted_iconic_taxa.blank? && @iconic_taxa.blank? -%>
-    <div id="iconic_taxa_facet" class="facet taxon_links">
-      <strong>
-        <% if @iconic_taxa.blank? -%>
-          All Taxonomic Groups
-        <% else %>
-          <%= link_to '&laquo; All Taxonomic Groups', url_for_params(:without => [:iconic_taxa, :page]) %>
-        <% end -%>
-      </strong>
-      <% for iconic_taxon in @faceted_iconic_taxa %>
-        <%- selected = @iconic_taxa_ids && @iconic_taxa_ids.include?(iconic_taxon.id) -%>
-        <div class="facet_value<%= ' selected' if selected %>">
-          <%= link_to('&times;', url_for_params(:without => [:iconic_taxa, :page]), :class => 'right description') if selected %>
-          <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
-            url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page),
-            :class => "taxon #{iconic_taxon.name}" %>
-          (<span class="count"><%= number_with_delimiter @facets[:iconic_taxon_id][iconic_taxon.id] %></span>)
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-  
-  <% unless @faceted_colors.blank? && @colors.blank? -%>
-    <div id="colors_facet" class="facet">
-      <strong>
-        <% if @colors.blank? -%>
-          All Colors
-        <% else %>
-          <%= link_to '&laquo; All Colors', url_for_params(:without => [:colors, :page]) %>
-        <% end -%>
-      </strong>
-      <% for color in @faceted_colors %>
-        <%- selected = @color_ids && @color_ids.include?(color.id) -%>
-        <div class="<%= color.value %> facet_value<%= ' selected' if selected %>">
-          <% if selected %>
-            <% if @color_ids.size > 1 -%>
-              <%= link_to('&times;', 
-                url_for_params(
-                  :colors => @color_ids.reject {|cid| cid == color.id}.join(','),
-                  :without => :page
-                ), 
-                :class => 'right description') %>
-            <% else %>
-              <%= link_to('&times;', url_for_params(:without => [:colors, :page]), :class => 'right description') %>
-            <% end -%>
-          <% elsif @color_ids %>
-            <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :class => 'right' %>
-          <% end %>
-          <%= link_to "&nbsp;", url_for_params(:colors => color.id, :without => :page), :class => 'icon' %>
-          <%= link_to color.value, url_for_params(:colors => color.id, :without => :page) %>
-          (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
-        </div>
-      <% end %>
     </div>
   <% end -%>
 </div>

@@ -225,37 +225,37 @@ class TaxaController < ApplicationController
 
 ## Custom actions ############################################################
 
-  #
-  # Search for taxa using full-text indexed search
-  #
-  def search
-    @qparams = params
-    @page = params[:page] ? params[:page].to_i : 1
-    per_page = params[:per_page] ? params[:per_page].to_i : 20
-    per_page = 100 if per_page > 100
-    if params[:q]
-      @taxa = Taxon.search(params[:q], 
-        :include => [:taxon_names, :flickr_photos, :iconic_taxon],
-        :page => @page, :per_page => per_page).compact
-    end
-    
-    do_external_lookups
-    
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @taxa.to_xml(:include => :taxon_names) }
-      format.json do
-        render :json => @taxa.to_json(
-          :include => [:iconic_taxon, :taxon_names, :flickr_photos],
-          :methods => [:common_name, :image_url, :default_name])
-      end
-    end
-  end
+  # #
+  # # Search for taxa using full-text indexed search
+  # #
+  # def search
+  #   @qparams = params
+  #   @page = params[:page] ? params[:page].to_i : 1
+  #   per_page = params[:per_page] ? params[:per_page].to_i : 20
+  #   per_page = 100 if per_page > 100
+  #   if params[:q]
+  #     @taxa = Taxon.search(params[:q], 
+  #       :include => [:taxon_names, :flickr_photos, :iconic_taxon],
+  #       :page => @page, :per_page => per_page).compact
+  #   end
+  #   
+  #   do_external_lookups
+  #   
+  #   respond_to do |format|
+  #     format.html
+  #     format.xml  { render :xml => @taxa.to_xml(:include => :taxon_names) }
+  #     format.json do
+  #       render :json => @taxa.to_json(
+  #         :include => [:iconic_taxon, :taxon_names, :flickr_photos],
+  #         :methods => [:common_name, :image_url, :default_name])
+  #     end
+  #   end
+  # end
   
   # /taxa/browse?q=bird
   # /taxa/browse?q=bird&places=1,2&colors=4,5
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
-  def browse
+  def search
     @q = params[:q]
     drill_params = {}
     
@@ -275,16 +275,12 @@ class TaxaController < ApplicationController
       drill_params[:colors] = @color_ids
     end
     
-    # TS seems to not return all the place facets if you specify per_page
-    # without conditions, not really sure why.  This makes pagination a little
-    # weird (pp = 20 if no facets selected, pp = 24 if they are), but I think
-    # we can live with that for now
+    per_page = params[:per_page] ? params[:per_page].to_i : 24
+    per_page = 100 if per_page > 100
     @facets = if drill_params.blank?
-      Taxon.facets(@q, :page => params[:page])
+      Taxon.facets(@q, :page => params[:page], :per_page => per_page)
     else
       page = params[:page] ? params[:page].to_i : 1
-      per_page = params[:per_page] ? params[:per_page].to_i : 24
-      per_page = 100 if per_page > 100
       Taxon.facets(@q, :page => page, :per_page => per_page,
         :conditions => drill_params, 
         :include => [:taxon_names, :flickr_photos])
@@ -306,9 +302,8 @@ class TaxaController < ApplicationController
     
     if @facets[:places]
       @faceted_places = if @places.blank?
-        Place.paginate(:page => 1, :order => "name", :conditions => [
-          "id in (?) && place_type = ?", 
-          @facets[:places].keys, Place::PLACE_TYPE_CODES['Country']
+        Place.all(:order => "name", :conditions => [
+          "id in (?) && place_type = ?", @facets[:places].keys, Place::PLACE_TYPE_CODES['Country']
         ])
       else
         Place.all(:order => "name", :conditions => [
@@ -326,6 +321,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do
         flash[:notice] = @status unless @status.blank?
+        render :browse
       end
       format.json do
         render :json => @taxa.to_json(
@@ -675,7 +671,7 @@ class TaxaController < ApplicationController
   end
   
   def do_external_lookups
-    return unless logged_in? && 
+    return unless logged_in?
     return unless params[:force_external] || (params[:include_external] && @taxa.empty?)
     @external_taxa = []
     logger.info("DEBUG: Making an external lookup...")
