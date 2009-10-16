@@ -380,12 +380,13 @@
     <h3>All Names</h3>
     <ul>
       <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
+        <%- lexicon = lexicon.blank? ? 'Unknown' : lexicon.capitalize %>
         <li>
-          <span class="description"><%= lexicon.blank? ? 'Unknown' : lexicon.capitalize %></span>
+          <span class="description"><%= lexicon %></span>
           <ul class="taxon_names">
             <% for taxon_name in taxon_names %>
               <li>
-                <span class="taxon_name <%= taxon_name.lexicon.split.join('_') %><%= ' invalid' unless taxon_name.is_valid? %>">
+                <span class="taxon_name <%= lexicon.split.join('_') %><%= ' invalid' unless taxon_name.is_valid? %>">
                   <%= taxon_name.name %></span>
                 <% if logged_in? && (taxon_name.name != @taxon.name || current_user.is_curator?) -%>
                   <%= link_to "edit", edit_taxon_name_path(taxon_name), :class => 'small description' %>

@@ -9,7 +9,6 @@ class Taxon < ActiveRecord::Base
   acts_as_flaggable
   
   acts_as_nested_set
-  # memoize :ancestors TODO in rails 2.3
   acts_as_versioned :if_changed => [:name, :rank, :iconid_taxon_id, 
                                     :parent_id, :source_id, 
                                     :source_identifier, :source_url, 
