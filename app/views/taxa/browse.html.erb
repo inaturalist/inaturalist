@@ -7,9 +7,36 @@
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
   
+  <%= javascript_include_tag "jquery/plugins/jquery.qtip.min" %>
+  
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       <% if @q.blank? %>$('#q').focus();<% end %>
+      
+      $('.taxa > .taxon').each(function() {
+        $(this).qtip({
+          content: {text: this.innerHTML},
+          hide: {
+            fixed: true
+          },
+          style: { 
+            name: 'green',
+            tip: 'leftMiddle',
+            border: {
+              radius: 5
+            },
+            width: {
+              max: 500
+            }
+          },
+          position: {
+            corner: {
+              target: 'rightMiddle',
+              tooltip: 'leftMiddle'
+            }
+          }
+        });
+      });
     });
   </script>
 <% end %>
@@ -98,6 +125,32 @@
   .facet .togglelink {
     position: relative;
     left: -5px;
+  }
+  
+  .taxon .wikipedia_summary {
+    display: none;
+  }
+  
+  .qtip-content {
+/*    width: 285px;*/
+  }
+  
+  .qtip-content .name {
+    font-family: Georgia, serif;
+    font-size: 140%;
+  }
+  
+  .qtip-content .wikipedia_summary {
+    display: block;
+  }
+  
+  .qtip-content .image {
+    display: none;
+  }
+  
+  .qtip-content .info {
+    float: left;
+    width: 300px;
   }
 </style>
 <% end -%>

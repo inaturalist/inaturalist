@@ -30,22 +30,51 @@
         display:none;
     }
     
-    .taxon .image img {
+    #treevis .taxon .image img {
       max-width: 40px;
     }
     
-    .taxon .image {
+    #treevis .taxon .image {
       float: left;
       margin-right: 5px;
     }
     
-    .taxon .info {
+    #treevis .taxon .info {
       float: left;
       width: 145px;
     }
     
-    .taxon.noimg .name {
+    #treevis .taxon.noimg .name {
       width: 165px;
+    }
+    
+    #treevis .taxon .wikipedia_summary {
+      display: none;
+    }
+    
+    .qtip-content .taxon {
+      width: 285px;
+    }
+    
+    .qtip-content .taxon .name {
+      font-family: Georgia, serif;
+      font-size: 140%;
+    }
+    
+    .qtip-content .taxon .wikipedia_summary {
+      display: block;
+    }
+    
+    .qtip-content .taxon .image {
+      float: left;
+      margin-right: 10px;
+      width: 75px;
+      text-align: center;
+    }
+    
+    .qtip-content .taxon .info {
+      float: left;
+      width: 200px;
     }
   </style>
 <%- end -%>
@@ -53,7 +82,7 @@
   <!--[if IE]>  
   <script type="text/javascript" src="/javascripts/jit/Extras/excanvas.js"></script>  
   <![endif]-->
-  <%= javascript_include_tag "jit/jit" %>
+  <%= javascript_include_tag "jit/jit", "jquery/plugins/jquery.qtip.min" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       var json = <%= jit_taxon_node(@life, :depth => 2).to_json %>;
@@ -89,6 +118,29 @@
           label.onclick = function() {
             st.onClick(node.id);
           };
+          
+          $(label).find('.infolink').qtip({
+            content: {text: label.innerHTML},
+            hide: {
+              fixed: true
+            },
+            style: { 
+              name: 'green',
+              tip: 'leftMiddle',
+              border: {
+                radius: 5
+              },
+              width: {
+                max: 500
+              }
+            },
+            position: {
+              corner: {
+                target: 'rightMiddle',
+                tooltip: 'leftMiddle'
+              }
+            }
+          });
         },
         request: function(nodeId, level, onComplete) {
           $.getJSON('/taxa/'+nodeId+'.node', function(json) {

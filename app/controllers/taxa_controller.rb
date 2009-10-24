@@ -5,11 +5,11 @@ class TaxaController < ApplicationController
   before_filter :return_here, :only => [:index, :show, :flickr_tagger]
   before_filter :login_required, :only => [:edit_photos, :update_photos, 
     :update_colors, :tag_flickr_photos, :flickr_photos_tagged, :add_places]
-  before_filter :curator_required, 
-                :only => [:new, :create, :edit, :update, :destroy, :curation]
+  before_filter :curator_required, :only => [:new, :create, :edit, :update,
+    :destroy, :curation, :refresh_wikipedia_summary]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
-    :update_colors, :add_places]
+    :update_colors, :add_places, :refresh_wikipedia_summary]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
@@ -399,8 +399,24 @@ class TaxaController < ApplicationController
   end
   
   def describe
-    @title = @taxon.name
+    @title = @taxon.wikipedia_title || @taxon.name
     wikipedia
+  end
+  
+  def refresh_wikipedia_summary
+    begin
+      summary = @taxon.set_wikipedia_summary
+    rescue Timeout::Error => e
+      error_text = e.message
+    end
+    unless summary.blank?
+      render :text => summary
+    else
+      error_text ||= "Could't retrieve the Wikipedia " + 
+        "summary for #{@taxon.name}.  Make sure there is actually a " + 
+        "corresponding article on Wikipedia."
+      render :status => 404, :text => error_text
+    end
   end
   
   def update_colors

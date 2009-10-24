@@ -296,6 +296,12 @@
   </script>
 <% end -%>
 
+<%- content_for(:extrahead) do -%>
+  <% unless @taxon.wikipedia_summary.blank? -%>
+    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary) %>"/>
+  <% end -%>
+<%- end -%>
+
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">
     <%= link_to 'Back to All Species', 
@@ -664,7 +670,8 @@
     </h3>
     <% else %>
       <div id="wikipedia_description">
-        <div class="loading status">Loading description...</div>
+        <%= @taxon.wikipedia_summary %>
+        <span class="loading status">Loading full description...</span>
       </div>
       <div id="nodescription" style="display: none">
         <h3 class='description'>There isn't a Wikipedia article or 

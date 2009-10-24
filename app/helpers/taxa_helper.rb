@@ -52,9 +52,14 @@ module TaxaHelper
   #
   def taxon_image(taxon, params = {})
     return iconic_taxon_image(taxon, params) if taxon.flickr_photos.empty?
-    image_params = {}
+    image_params = {:alt => default_taxon_name(taxon)}
+    unless taxon.flickr_photos.empty?
+      image_params[:alt] += " - Photo #{taxon.flickr_photos.first.attribution}"
+    end
+    image_params[:title] = image_params[:alt]
+    
     [:id, :class, :alt, :title].each do |attr_name|
-      image_params[attr_name] = params.delete(attr_name)
+      image_params[attr_name] = params.delete(attr_name) if params[attr_name]
     end
     image_tag(taxon_image_url(taxon, params), image_params)
   end
@@ -140,13 +145,9 @@ module TaxaHelper
       end
     end
     node[:data][:html] = if self.is_a?(ActionController::Base)
-      render_to_string(
-        :partial => 'taxa/taxon.html.erb', 
-        :locals => { :taxon => taxon })
+      render_to_string(:partial => 'taxa/taxon.html.erb', :object => taxon)
     else
-      render(
-        :partial => 'taxa/taxon.html.erb', 
-        :locals => { :taxon => taxon })
+      render(:partial => 'taxa/taxon.html.erb', :object => taxon)
     end
 
     node

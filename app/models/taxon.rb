@@ -484,6 +484,59 @@ class Taxon < ActiveRecord::Base
     end
   end
   
+
+  def wikipedia_summary(options = {})
+    if super && super.match(/\d\d\d\d-\d\d-\d\d/)
+      last_try_date = DateTime.parse(super)
+      return nil if last_try_date > 1.week.ago
+    end
+    return super unless super.blank? || options[:reload]
+    
+    send_later(:set_wikipedia_summary)
+    nil
+  end
+  
+  def set_wikipedia_summary
+    w = WikipediaService.new
+    summary = ""
+    begin
+      query_results = w.query(
+        :titles => wikipedia_title || name,
+        :redirects => '', 
+        :prop => 'revisions', 
+        :rvprop => 'content')
+    rescue Timeout::Error => e
+      logger.info "[INFO] Wikipedia API call failed: #{e.message}"
+    end
+    unless query_results.at('page')['missing']
+      raw = query_results.at('page')
+      parsed = w.parse(:page => raw['title']).at('text').inner_text
+      
+      coder = HTMLEntities.new
+      summary = coder.decode(parsed)
+      
+      hxml = Hpricot(summary)
+      hxml.search('table').remove
+      hxml.search('div').remove
+      summary = hxml.at('p').inner_html.to_s
+      
+      sanitizer = HTML::WhiteListSanitizer.new
+      summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
+      summary.gsub! /\[.*?\]/, ''
+      pre_trunc = summary
+      summary = summary.split[0..75].join(' ')
+      summary += '...' if pre_trunc > summary
+    end
+    
+    if summary.blank?
+      Taxon.update_all(["wikipedia_summary = ?", Date.today], ["id = ?", self])
+      return nil
+    end
+
+    Taxon.update_all(["wikipedia_summary = ?", summary], ["id = ?", self])
+    summary
+  end
+  
   include TaxaHelper
   def image_url
     taxon_image_url(self)

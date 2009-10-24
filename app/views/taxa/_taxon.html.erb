@@ -1,6 +1,5 @@
 <%- taxon ||= object ||= @taxon -%>
-<%- hard_link ||= true -%>
-<%- js_link ||= !hard_link -%>
+<%- js_link ||= false -%>
 <%- no_ids ||= false -%>
 <%- image_options ||= {} -%>
 <%- include_image_attribution ||= false -%>
@@ -20,10 +19,10 @@
 <div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
   <div class="image">
     <% if link_image -%>
-      <% if hard_link -%>
-        <%= link_to taxon_image(taxon, image_options), link_url %>
-      <% else %>
+      <% if js_link -%>
         <%= link_to_function taxon_image(taxon, image_options), "showTaxonInfo(#{taxon.to_json})" %>
+      <% else %>
+        <%= link_to taxon_image(taxon, image_options), link_url %>
       <% end -%>
     <% else %>
       <%= taxon_image(taxon, image_options) %>
@@ -31,18 +30,18 @@
   </div>
   <div class="info">
     <% if link_name -%>
-      <% if hard_link -%>
-        <%= link_to taxon_name_str, link_url, :class => "name #{name_class}" %>
-      <% else %>
+      <% if js_link -%>
         <%= link_to_function taxon_name_str, "showTaxonInfo(#{taxon.to_json})", :class => "name #{name_class}" %>
+      <% else %>
+        <%= link_to taxon_name_str, link_url, :class => "name #{name_class}" %>
       <% end -%>
     <% else %>
         <span class="name <%= name_class %>"><%= taxon_name_str %></span>
     <% end -%>
-    <% if hard_link -%>
-      <%= link_to "info", taxon, :class => 'small infolink' %>
-    <% else %>
+    <% if js_link -%>
       <%= link_to_function "info", "showTaxonInfo(#{taxon.to_json})", :class => 'small infolink' %>
+    <% else %>
+      <%= link_to "info", taxon, :class => 'small infolink' %>
     <% end -%>
 
     <% if !hide_child_count && taxon.children.size > 0 -%>
@@ -50,6 +49,17 @@
         <span class="count"><%= taxon.children.size %></span> <%= taxon.children.size == 1 ? "child" : 'children' %>
       </div>
     <% end -%>
+    
+    <div class="wikipedia_summary">
+      <% if summary = taxon.wikipedia_summary -%>
+        <%= summary %>
+        <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
+      <% else %>
+        <span class="description">
+          No Wikipedia page for this taxon. <%= link_to "Start one now!", "http://wikipedia.org/wiki/#{taxon.name}" %>
+        </span>
+      <% end -%>
+    </div>
   </div>
   <% if include_image_attribution && (flickr_photo = taxon.flickr_photos.first) -%>
     <div class="meta attribution">
