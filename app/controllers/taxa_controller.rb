@@ -399,7 +399,7 @@ class TaxaController < ApplicationController
   end
   
   def describe
-    @title = @taxon.wikipedia_title || @taxon.name
+    @title = @taxon.wikipedia_title.blank? ? @taxon.name : @taxon.wikipedia_title
     wikipedia
   end
   

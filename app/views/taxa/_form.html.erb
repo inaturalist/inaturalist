@@ -127,7 +127,8 @@
       </blockquote>
       <span class="description">
         This is a cached summary of this taxon based on its
-        <%= link_to "Wikipedia entry", "http://wikipedia.org/wiki/#{taxon.wikipedia_title || taxon.name}" %>.
+        <%= link_to "Wikipedia entry", 
+          "http://wikipedia.org/wiki/#{taxon.wikipedia_title.blank? ? taxon.name : taxon.wikipedia_title}" %>.
       </span>
     </p>
   </fieldset>
