@@ -152,4 +152,9 @@ module TaxaHelper
 
     node
   end
+  
+  # Abbreviate a binomal / trinomail name string.  Homo sapiens => H. sapiens
+  def abbreviate_binomial(name)
+    (name.split[0..-2].map{|s| s.first.upcase} + [name.split.last]).join('. ')
+  end
 end

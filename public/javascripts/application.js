@@ -50,3 +50,25 @@ function subnavClickOff(e) {
     $('.subnavtab').removeClass('open');
   }
 }
+
+QTIP_DEFAULTS = {
+  hide: {
+    fixed: true
+  },
+  style: { 
+    name: 'green',
+    tip: 'leftMiddle',
+    border: {
+      radius: 5
+    },
+    width: {
+      max: 500
+    }
+  },
+  position: {
+    corner: {
+      target: 'rightMiddle',
+      tooltip: 'leftMiddle'
+    }
+  }
+}

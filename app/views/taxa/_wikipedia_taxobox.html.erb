@@ -1,0 +1,38 @@
+<%- 
+  taxon ||= object ||= @taxon
+  
+  taxobox_ranks = {
+    'kingdom'     => 'regnum',
+    'phylum'      => 'phylum',
+    'class'       => 'classis',
+    'order'       => 'ordo',
+    'superfamily' => 'supfamilia',
+    'family'      => 'familia',
+    'genus'       => 'genus',
+    'species'     => 'species',
+    'subspecies'  => 'subspecies',
+    'variety'     => 'subspecies'
+  }
+-%>
+{{Taxobox
+<%- if taxon.species_or_lower? && taxon.default_name.is_scientific_names? -%>
+| name = ''<%= taxon.default_name.name %>''
+  <%- else -%>
+| name = <%= taxon.default_name.name %>
+<%- end -%>
+<%- for ancestor in taxon.ancestors -%>
+  <%- next if ancestor.root? -%>
+  <%- if ancestor.species_or_lower? -%>
+| <%= taxobox_ranks[ancestor.rank] %> = '''''[[<%= ancestor.name %>|<%= abbreviate_binomial(ancestor.name) %>]]'''''
+  <%- elsif ancestor.rank == 'genus' -%>
+| <%= taxobox_ranks[ancestor.rank] %> = ''[[<%= ancestor.name %>]]''
+  <%- else -%>
+| <%= taxobox_ranks[ancestor.rank] %> = [[<%= ancestor.name %>]]
+  <%- end -%>
+<%- end -%>
+<%- if taxon.name.split.size == 2 -%>
+| binomial = ''<%= taxon.name %>''
+<%- elsif taxon.name.split.size == 3 -%>
+| trinomial = ''<%= taxon.name %>''
+<%- end -%>
+}}

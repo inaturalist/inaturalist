@@ -220,7 +220,8 @@
                              'modal_image',
                              "jquery/plugins/inat/photo_selectors.js",
                              'jquery/plugins/jquery.autocomplete.min.js',
-                             'jquery/plugins/inat/place_autocomplete.js' %>
+                             'jquery/plugins/inat/place_autocomplete.js',
+                             "jquery/plugins/jquery.qtip.min" %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -526,8 +527,23 @@
   
   <div id="extras">
     <h3>Extras</h3>
-    <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
-      flickr_tagger_path(:taxon_id => @taxon.id) %>
+    
+    <p class="ui">
+      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
+        flickr_tagger_path(:taxon_id => @taxon.id) %>
+    </p>
+    
+    <p class="ui">
+      <%= link_to_function "Wikipedia taxobox &raquo;", "return false;", :id => "taxoboxlink" %>
+      <script type="text/javascript" charset="utf-8">
+        $('#taxoboxlink').qtip($.extend(QTIP_DEFAULTS, {
+          show: {when: 'click'},
+          hide: {when: 'unfocus'},
+          content: "<pre><%= escape_javascript(render(:partial => 'wikipedia_taxobox', :object => @taxon).strip) %></pre>",
+        }));
+      </script>
+    </p>
+    
   </div>
 </div>
 

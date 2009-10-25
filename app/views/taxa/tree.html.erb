@@ -119,28 +119,9 @@
             st.onClick(node.id);
           };
           
-          $(label).find('.infolink').qtip({
-            content: {text: label.innerHTML},
-            hide: {
-              fixed: true
-            },
-            style: { 
-              name: 'green',
-              tip: 'leftMiddle',
-              border: {
-                radius: 5
-              },
-              width: {
-                max: 500
-              }
-            },
-            position: {
-              corner: {
-                target: 'rightMiddle',
-                tooltip: 'leftMiddle'
-              }
-            }
-          });
+          $(label).find('.infolink').qtip($.extend(QTIP_DEFAULTS, {
+            content: {text: label.innerHTML}
+          }));
         },
         request: function(nodeId, level, onComplete) {
           $.getJSON('/taxa/'+nodeId+'.node', function(json) {

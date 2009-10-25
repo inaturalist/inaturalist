@@ -14,28 +14,9 @@
       <% if @q.blank? %>$('#q').focus();<% end %>
       
       $('.taxa > .taxon').each(function() {
-        $(this).qtip({
-          content: {text: this.innerHTML},
-          hide: {
-            fixed: true
-          },
-          style: { 
-            name: 'green',
-            tip: 'leftMiddle',
-            border: {
-              radius: 5
-            },
-            width: {
-              max: 500
-            }
-          },
-          position: {
-            corner: {
-              target: 'rightMiddle',
-              tooltip: 'leftMiddle'
-            }
-          }
-        });
+        $(this).qtip($.extend(QTIP_DEFAULTS, {
+          content: {text: this.innerHTML}
+        }));
       });
     });
   </script>
