@@ -331,6 +331,10 @@ class TaxaController < ApplicationController
     end
   end
   
+  def browse
+    redirect_to :action => "search"
+  end
+  
   def occur_in
     @taxa = Taxon.occurs_in(params[:swlng], params[:swlat], params[:nelng], 
                             params[:nelat], params[:startDate], params[:endDate])
