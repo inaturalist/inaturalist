@@ -239,6 +239,10 @@ class Taxon < ActiveRecord::Base
     self.lft > taxon.lft && self.rgt < taxon.rgt
   end
   
+  def graft
+    Ratatosk.graft(self)
+  end
+  
   def grafted?
     return false if new_record? # New records haven't been grafted
     return false if self.name != 'Life' && self.root?

@@ -725,15 +725,10 @@ class TaxaController < ApplicationController
     
     @external_taxa = Taxon.find(ext_names.map(&:taxon_id))
     
-    # graft in the background at a lower priority than this process
+    # graft in the background
     unless @external_taxa.empty?
-      spawn(:nice => 7) do
-        @external_taxa.each do |external_taxon|
-          unless external_taxon.grafted?
-            logger.debug "[DEBUG] Grafting #{external_taxon}..."
-            Ratatosk.graft(external_taxon)
-          end
-        end
+      @external_taxa.each do |external_taxon|
+        external_taxon.send_later(:graft) unless external_taxon.grafted?
       end
     end
     
