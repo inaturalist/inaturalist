@@ -14,7 +14,7 @@ class TaxonName < ActiveRecord::Base
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
-  after_create {|name| name.taxon.update_unique_name}
+  after_save :update_unique_names
   after_destroy {|name| name.taxon.update_unique_name}
   
   LEXICONS = {
@@ -75,5 +75,13 @@ class TaxonName < ActiveRecord::Base
   def remove_rank_from_name
     return unless self.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
     self.name = Taxon.remove_rank_from_name(self.name)
+  end
+  
+  def update_unique_names
+    return true unless name_changed?
+    non_unique_names = TaxonName.all(:include => :taxon, 
+      :conditions => {:name => name}, :group => :taxon_id)
+    non_unique_names.each {|taxon_name| taxon_name.taxon.update_unique_name}
+    true
   end
 end

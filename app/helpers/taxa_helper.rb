@@ -137,8 +137,7 @@ module TaxaHelper
       :id => taxon.id,
       :name => taxon.name,
       :data => {
-        :wikipedia_summary => taxon.wikipedia_summary,
-        :loaded => options[:depth] > 0
+        :wikipedia_summary => taxon.wikipedia_summary
       }
     }
     node[:children] = []

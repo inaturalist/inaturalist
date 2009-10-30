@@ -148,9 +148,10 @@
           }));
         },
         request: function(nodeId, level, onComplete) {
-          // Still not sure how to prevent loading of ALL nodes that have already been loaded...
-          // if (window.loadedNodeIds[nodeId]) {
           var node = window.st.graph.getNode(nodeId);
+          setHashParam('taxon_id', nodeId);
+          
+          // Try to prevent load if this node has already been loaded
           if (window.loadedNodeIds[nodeId] && node && node.visited) {
             onComplete.onComplete(nodeId, window.st.graph.getNode(nodeId));
           } else {
@@ -170,16 +171,37 @@
       
       // Tree.Geometry.translate(st.tree, new Complex(-200, 0), 'startPos');
       window.st = st;
-      st.onClick(<%= @taxon.id %>);
       
-      var taxonNode = st.graph.getNode(<%= @taxon.id %>);
-      var parents = Graph.Util.getParents(taxonNode)
-      while (parents.length > 0) {
-        var parent = parents[0];
-        window.loadedNodeIds[parent.id] = true;
-        parents = Graph.Util.getParents(parent);
+      var hashparams = getHashParams();
+      if (hashparams.taxon_id && st.graph.getNode(hashparams.taxon_id)) {
+        st.onClick(hashparams.taxon_id);
+      } else {
+        st.onClick(<%= @taxon.id %>);
       }
     });
+    
+    function getHashParams() {
+      var hashparams = {};
+      $.each(window.location.hash.replace('#', '').split('&'), function() {
+        var parts = this.split('=');
+        if (parts.length > 1) hashparams[parts[0]] = parts[1];
+      });
+      return hashparams;
+    }
+    
+    function getHashParam(key) {
+      getHashParams()[key];
+    }
+    
+    function setHashParam(key, value) {
+      var hashparams = getHashParams();
+      hashparams[key] = value;
+      var pairs = [];
+      $.each(hashparams, function(i, val) {
+        pairs.push(i + '=' + val);
+      });
+      window.location.hash = pairs.join('&');
+    }
   </script>
 <%- end -%>
 
