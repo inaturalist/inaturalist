@@ -545,7 +545,8 @@
     </p>
     
     <p class="ui">
-      <%= link_to "Tree Browser &raquo;", :controller => "taxa", :action => "tree", :taxon_id => @taxon %>
+      <%= link_to "Tree Browser &raquo;", {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
+        :rel => "nofollow" %>
     </p>
     
   </div>
