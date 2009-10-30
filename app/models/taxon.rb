@@ -68,7 +68,7 @@ class Taxon < ActiveRecord::Base
   RANK_LEVELS = {
     'root'         => 100,
     'kingdom'      => 70,
-    'phylum '      => 60,
+    'phylum'       => 60,
     'subphylum'    => 57,
     'superclass'   => 53,
     'class'        => 50,
