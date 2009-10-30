@@ -535,11 +535,15 @@
     
     <p class="ui">
       <%= link_to_function "Wikipedia taxobox &raquo;", "return false;", :id => "taxoboxlink" %>
+      <%- taxobox_content = capture do -%>
+        <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>
+        <%= link_to "About the taxobox &raquo;", "http://en.wikipedia.org/wiki/Template:Taxobox" %>
+      <%- end -%>
       <script type="text/javascript" charset="utf-8">
         $('#taxoboxlink').qtip($.extend(QTIP_DEFAULTS, {
           show: {when: 'click'},
           hide: {when: 'unfocus'},
-          content: "<pre><%= escape_javascript(render(:partial => 'wikipedia_taxobox', :object => @taxon).strip) %></pre>",
+          content: "<%= escape_javascript(taxobox_content) %>",
         }));
       </script>
     </p>

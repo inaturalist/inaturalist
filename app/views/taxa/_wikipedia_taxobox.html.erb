@@ -15,20 +15,28 @@
   }
 -%>
 {{Taxobox
-<%- if taxon.species_or_lower? && taxon.default_name.is_scientific_names? -%>
+<%- if taxon.rank_level <= Taxon::RANK_LEVELS['genus'] && taxon.default_name.is_scientific_names? -%>
 | name = ''<%= taxon.default_name.name %>''
   <%- else -%>
 | name = <%= taxon.default_name.name %>
 <%- end -%>
-<%- for ancestor in taxon.ancestors -%>
-  <%- next if ancestor.root? -%>
-  <%- if ancestor.species_or_lower? -%>
-| <%= taxobox_ranks[ancestor.rank] %> = '''''[[<%= ancestor.name %>|<%= abbreviate_binomial(ancestor.name) %>]]'''''
-  <%- elsif ancestor.rank == 'genus' -%>
-| <%= taxobox_ranks[ancestor.rank] %> = ''[[<%= ancestor.name %>]]''
-  <%- else -%>
-| <%= taxobox_ranks[ancestor.rank] %> = [[<%= ancestor.name %>]]
-  <%- end -%>
+<%- for ancestor in taxon.self_and_ancestors -%>
+  <%- 
+    next if ancestor.root?
+    linked = ancestor != taxon
+    wikiname = if ancestor.species_or_lower?
+      if linked
+        "'''''[[#{ancestor.name}|#{abbreviate_binomial(ancestor.name)}]]'''''"
+      else
+        "'''''#{abbreviate_binomial(ancestor.name)}'''''"
+      end
+    elsif ancestor.rank == 'genus'
+      "''#{'[[' if linked}#{ancestor.name}#{']]' if linked}''"
+    else
+      "#{'[[' if linked}#{ancestor.name}#{']]' if linked}"
+    end
+  -%>
+| <%= taxobox_ranks[ancestor.rank] %> = <%= wikiname %>
 <%- end -%>
 <%- if taxon.name.split.size == 2 -%>
 | binomial = ''<%= taxon.name %>''
