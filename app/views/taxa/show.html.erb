@@ -544,6 +544,10 @@
       </script>
     </p>
     
+    <p class="ui">
+      <%= link_to "Tree Browser &raquo;", :controller => "taxa", :action => "tree", :taxon_id => @taxon %>
+    </p>
+    
   </div>
 </div>
 
@@ -686,8 +690,7 @@
     </h3>
     <% else %>
       <div id="wikipedia_description">
-        <%= @taxon.wikipedia_summary %>
-        <span class="loading status">Loading full description...</span>
+        <p><%= @taxon.wikipedia_summary %> <span class="loading status">Loading full description...</span></p>
       </div>
       <div id="nodescription" style="display: none">
         <h3 class='description'>There isn't a Wikipedia article or 

@@ -177,6 +177,10 @@ class Taxon < ActiveRecord::Base
   named_scope :iconic_taxa, :conditions => "is_iconic = true",
     :include => [:taxon_names]
   
+  named_scope :of_rank, lambda {|rank|
+    {:conditions => ["rank = ?", rank]}
+  }
+  
   def observations_count_with_descendents
     Observation.of(self).count
   end

@@ -136,7 +136,10 @@ module TaxaHelper
     node = {
       :id => taxon.id,
       :name => taxon.name,
-      :data => taxon.attributes
+      :data => {
+        :wikipedia_summary => taxon.wikipedia_summary,
+        :loaded => options[:depth] > 0
+      }
     }
     node[:children] = []
     unless options[:depth] == 0
@@ -151,6 +154,24 @@ module TaxaHelper
     end
 
     node
+  end
+  
+  def jit_taxon_tree_with_taxon(taxon)
+    ancestors = taxon.self_and_ancestors
+    root = jit_taxon_node(ancestors.first)
+    previous_node = root
+    ancestors[1..-1].each do |ancestor|
+      logger.debug "[DEBUG] Trying to place #{ancestor} among the children of #{previous_node[:name]}..."
+      ancestor_node = jit_taxon_node(ancestor)
+      # Replace the child with a child with its own children
+      previous_node[:children].each_with_index do |child, i|
+        next unless child[:id] == ancestor.id
+        previous_node[:children][i] = ancestor_node
+        break
+      end
+      previous_node = ancestor_node
+    end
+    root
   end
   
   # Abbreviate a binomal / trinomail name string.  Homo sapiens => H. sapiens

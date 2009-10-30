@@ -625,8 +625,13 @@ class TaxaController < ApplicationController
   end
   
   def tree
-    @life = Taxon.find_by_name('Life')
-    @life = Taxon.iconic_taxa.first.parent unless @life
+    @taxon = Taxon.find_by_id(params[:id], :include => [:taxon_names, :flickr_photos])
+    @taxon ||= Taxon.find_by_id(params[:taxon_id], :include => [:taxon_names, :flickr_photos])
+    unless @taxon
+      @taxon = Taxon.find_by_name('Life')
+      @taxon ||= Taxon.iconic_taxa.first.parent
+    end
+    @iconic_taxa = Taxon.iconic_taxa.all(:order => "lft")
   end
   
 ## Protected / private actions ###############################################
