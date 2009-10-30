@@ -379,6 +379,11 @@ class TaxaController < ApplicationController
   end
   
   def add_places
+    @countries = Place.all(:order => "name",
+      :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES["Country"]]).compact
+    if @us = Place.find_by_name("United States")
+      @us_states = @us.children.all(:order => "name").compact
+    end
     if request.post?
       search_for_places
       @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
