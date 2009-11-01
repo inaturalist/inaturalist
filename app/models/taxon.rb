@@ -507,19 +507,21 @@ class Taxon < ActiveRecord::Base
   def set_wikipedia_summary
     w = WikipediaService.new
     summary = ""
+    query_results = nil
     begin
       query_results = w.query(
         :titles => wikipedia_title || name,
         :redirects => '', 
         :prop => 'revisions', 
         :rvprop => 'content')
-    rescue Timeout::Error => e
-      logger.info "[INFO] Wikipedia API call failed: #{e.message}"
-    end
-    unless query_results.at('page')['missing']
       raw = query_results.at('page')
       parsed = w.parse(:page => raw['title']).at('text').inner_text
-      
+    rescue Timeout::Error => e
+      logger.info "[INFO] Wikipedia API call failed while setting taxon " +
+        "summary: #{e.message}"
+    end
+    
+    if query_results && !query_results.at('page')['missing']
       coder = HTMLEntities.new
       summary = coder.decode(parsed)
       
