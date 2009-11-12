@@ -1,62 +1,7 @@
 <% content_for(:title) do %>Add an Observation<% end -%>
 <% content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations', 'observations/new', 'jquery-datepicker' %>
-  <style type="text/css" media="screen">
-    
-    textarea {
-      width: 239px;
-      margin: 0;
-    }
-    
-    .field label {
-      display: block;
-      margin-bottom: 0.2em;
-    }
-    
-    input.place_guess {
-      width: 336px;
-    }
-    
-    #mapcontainer {
-      height: 433px;
-      border: 1px solid #ccc;
-    }
-    
-    .latlonfields {
-      position: relative;
-    }
-    
-    .observationform .latlonfields.status input {
-      width: 134px;
-    }
-    
-    .latlonfields .button {
-      position: absolute;
-      top: 0.2em;
-      right: 0;
-    }
-    
-    .photoSelectorControls input.text {
-      width: 189px;
-    }
-    .photoSelectorControls .prevlink {
-      float: left;
-      clear: left;
-    }
-    .photoSelectorControls .nextlink {
-      float: right;
-    }
-    
-    .photoSelectorPhotos {
-      width: 285px;
-      margin: 0 auto;
-    }
-    
-    .flickr_photo input {
-      display: block;
-      clear: both;
-    }
-  </style>
+  <%= stylesheet_link_tag 'observations', 'observations/new', 
+    'jquery-datepicker', 'taxa', 'taxon_browser', "observations/edit" %>
 <% end %>
 <% content_for(:extrajs) do %>
   <%= gmap_include_tag %>
@@ -66,34 +11,11 @@
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
-                             "jquery/plugins/inat/taxon_selectors.js" %>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('.species_guess').simpleTaxonSelector();
-      $('.observed_on_string').iNatDatepicker();
-      $('.place_guess').latLonSelector({
-        mapDiv: $('#mapcontainer').get(0),
-        map: iNaturalist.Map.createMap({div: $('#mapcontainer').get(0)})
-      });
-      $('.observation_photos').each(function() {
-        // The photo_fields endpoint needs to know the auth token and the index
-        // for the field
-        var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
-        var index = $.string(index_str).gsub(/[^\d]*/, '').str;
-        var authenticity_token = $(this).parents('form').find(
-          'input[name=authenticity_token]').val();
-        $(this).photoSelector({
-          baseURL: '/flickr/photo_fields?context=user',
-          urlParams: {
-            authenticity_token: authenticity_token,
-            index: index,
-            limit: 12
-          }
-        });
-      });
-    });
-    
-  </script>
+                             "jquery/plugins/inat/taxon_selectors.js",
+                             "jquery/plugins/jqModal",
+                             "jquery/plugins/jquery.qtip.min",
+                             "taxon_browser",
+                             "observations/edit" %>
 <% end %>
 <div id="pageheader" class="column span-24">
   <div class="column span-12">

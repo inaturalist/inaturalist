@@ -1,156 +1,57 @@
-/* @group General Page Elements */
-
-#wrapper{
-  width: 68em;
-  margin: auto;
-}
-/* @end */
-
-/* @group New Observation Form Elements */
-a.button {
-  padding: 5px 10px 5px 7px;
-}
-
-label {
-  display: block;
-}
-
-input[type="text"], textarea {
-  background-color: #fff;
-}
-
-input[type="text"] {
-  width: inherit;
-}
-
-input[type="button"] {
+textarea {
+  width: 239px;
   margin: 0;
 }
 
-div.observation_form_element_wrapper{
-  float: left;
-  width: 18em;
-  margin-right: -16em;
-  height: 100%;
+.field label {
+  display: block;
+  margin-bottom: 0.2em;
 }
 
-div.observation_map_wrapper {
-  float: left;
-  width: auto;
-  margin-right: 18em;
-  margin-left: 18em;
-  display: inline;
+input.place_guess {
+  width: 336px;
 }
 
-div.observation_map_search input {
-  display: inline;
-  float: none;
-}
-
-div.observation_map {
-  width: auto;
-  height: 300px;
+#mapcontainer {
+  height: 433px;
   border: 1px solid #ccc;
 }
 
-div.buttonrow {
-  width: auto; 
-  float: right;
+.latlonfields {
+  position: relative;
 }
 
-a.remove_new_observation {
-  float: right;
-  font-size: 120%;
-  font-weight: bold;
-  color: #777;
-  border: 2px solid #ccc;
-  padding: 0 4px;
+.observationform .latlonfields.status input {
+  width: 134px;
 }
 
-a.remove_new_observation:hover {
-  cursor: pointer;
-}
-/* @end */
-
-/* @group What Field */
-
-img.taxa_search_form_indicator {
-  width: 16px;
-  height: 16px;
-  margin-left: 17.6em;
-  margin-top: 0.5em;
+.latlonfields .button {
   position: absolute;
+  top: 0.2em;
+  right: 0;
+}
+
+.photoSelectorControls input.text {
+  width: 189px;
+}
+.photoSelectorControls .prevlink {
+  float: left;
+  clear: left;
+}
+.photoSelectorControls .nextlink {
   float: right;
 }
 
-label.taxa_search_form_taxon_name_label {
-  display: none;
+.photoSelectorPhotos {
+  width: 285px;
+  margin: 0 auto;
 }
 
-input.taxa_search_form_taxon_name {
-  margin-top: 2px;
-}
-
-.observation.new .status {
+.flickr_photo input {
   display: block;
-  padding: 0;
-  border: none;
-  text-align: left;
-  margin: 3px auto;
+  clear: both;
 }
 
-.observation.new .status,
-.observation.new .status .taxon {
-  font-family: "Trebuchet MS", Verdana, sans-serif;
-  font-size: 100%;
+form .species_guess_field {
+  margin-bottom: 0px;
 }
-
-.observation.new .status.loading {
-  color: #888;
-  padding-left: 20px;
-  background: url('/images/spinner-small.gif') transparent 0px 1px no-repeat;
-}
-
-.observation.new .status.success {
-  color: green;
-  padding-left: 20px;
-  background: url('/images/silk/accept.png') 0 0 no-repeat;
-}
-
-.observation.new .status.unmatched {
-  color: #888;
-  padding-left: 20px;
-  background: url('/images/silk/help.png') 0 0 no-repeat;
-}
-
-/* @end */
-
-/* @group ID Please */
-
-div.id_please_wrapper {
-  float: right;
-}
-
-div.id_please_wrapper label {
-  display: inline;
-}
-
-/* @end */
-
-/* @group Description */
-
-textarea {
-  width: 92%;
-}
-
-/* @end */
-
-/* @group Photos */
-
-div.photos {
-  float: right;
-  margin-left: -16em;
-  width: 17em;
-}
-
-/* @end */

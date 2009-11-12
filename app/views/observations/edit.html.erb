@@ -1,6 +1,7 @@
 <% content_for(:title) do %>Editing Observation <%= @observation.id %><% end -%>
 <% content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations', 'jquery-datepicker' %>
+  <%= stylesheet_link_tag 'observations', 'jquery-datepicker', 'taxa', 
+    'taxon_browser', "observations/edit" %>
   <style type="text/css" media="screen">
     #batchlink {
       text-align: right;
@@ -75,34 +76,11 @@
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
-                             "jquery/plugins/inat/taxon_selectors.js" %>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('.species_guess').simpleTaxonSelector();
-      $('.observed_on_string').iNatDatepicker();
-      $('.place_guess').latLonSelector({
-        mapDiv: $('#mapcontainer').get(0),
-        map: iNaturalist.Map.createMap({div: $('#mapcontainer').get(0)})
-      });
-      $('.observation_photos').each(function() {
-        // The photo_fields endpoint needs to know the auth token and the index
-        // for the field
-        var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
-        var index = $.string(index_str).gsub(/[^\d]*/, '').str;
-        var authenticity_token = $(this).parents('form').find(
-          'input[name=authenticity_token]').val();
-        $(this).photoSelector({
-          baseURL: '/flickr/photo_fields?context=user',
-          urlParams: {
-            authenticity_token: authenticity_token,
-            index: index,
-            limit: 12
-          }
-        });
-      });
-    });
-    
-  </script>
+                             "jquery/plugins/inat/taxon_selectors.js",
+                             "jquery/plugins/jqModal",
+                             "jquery/plugins/jquery.qtip.min",
+                             "taxon_browser",
+                             "observations/edit" %>
 <% end %>
 <div id="pageheader" class="column span-24">
   <div class="column span-12">

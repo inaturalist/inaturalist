@@ -224,33 +224,6 @@ class TaxaController < ApplicationController
   
 
 ## Custom actions ############################################################
-
-  # #
-  # # Search for taxa using full-text indexed search
-  # #
-  # def search
-  #   @qparams = params
-  #   @page = params[:page] ? params[:page].to_i : 1
-  #   per_page = params[:per_page] ? params[:per_page].to_i : 20
-  #   per_page = 100 if per_page > 100
-  #   if params[:q]
-  #     @taxa = Taxon.search(params[:q], 
-  #       :include => [:taxon_names, :flickr_photos, :iconic_taxon],
-  #       :page => @page, :per_page => per_page).compact
-  #   end
-  #   
-  #   do_external_lookups
-  #   
-  #   respond_to do |format|
-  #     format.html
-  #     format.xml  { render :xml => @taxa.to_xml(:include => :taxon_names) }
-  #     format.json do
-  #       render :json => @taxa.to_json(
-  #         :include => [:iconic_taxon, :taxon_names, :flickr_photos],
-  #         :methods => [:common_name, :image_url, :default_name])
-  #     end
-  #   end
-  # end
   
   # /taxa/browse?q=bird
   # /taxa/browse?q=bird&places=1,2&colors=4,5
@@ -321,7 +294,14 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do
         flash[:notice] = @status unless @status.blank?
-        render :browse
+        
+        if params[:partial]
+          render :partial => "taxa/#{params[:partial]}.html.erb", :locals => {
+            :js_link => params[:js_link]
+          }
+        else
+          render :browse
+        end
       end
       format.json do
         render :json => @taxa.to_json(

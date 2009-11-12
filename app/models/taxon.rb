@@ -506,8 +506,7 @@ class Taxon < ActiveRecord::Base
   
   def set_wikipedia_summary
     w = WikipediaService.new
-    summary = ""
-    query_results = nil
+    summary = query_results = parsed = nil
     begin
       query_results = w.query(
         :titles => wikipedia_title || name,
@@ -520,15 +519,15 @@ class Taxon < ActiveRecord::Base
       logger.info "[INFO] Wikipedia API call failed while setting taxon " +
         "summary: #{e.message}"
     end
-    
-    if query_results && !query_results.at('page')['missing']
+
+    if query_results && parsed && !query_results.at('page')['missing']
       coder = HTMLEntities.new
       summary = coder.decode(parsed)
       
       hxml = Hpricot(summary)
       hxml.search('table').remove
       hxml.search('div').remove
-      summary = hxml.at('p').inner_html.to_s
+      summary = (hxml.at('p') || hxml.at('//')).inner_html.to_s
       
       sanitizer = HTML::WhiteListSanitizer.new
       summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
