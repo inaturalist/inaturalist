@@ -1,9 +1,13 @@
 var TaxonBrowser = {
   ajaxify: function() {
     $('#taxon_browser a[href^=/taxa/search]').click(TaxonBrowser.handleSearchClicks);
-    $('#taxon_browser .taxa > .taxon').each(TaxonBrowser.handleTaxonQtip);
     $('#taxon_browser form').submit(TaxonBrowser.handleFormSubmits);
+    TaxonBrowser.addTips();
     $('#taxon_browser .loading').hide();
+  },
+  
+  addTips: function() {
+    $('#taxon_browser .taxa > .taxon').each(TaxonBrowser.handleTaxonQtip);
   },
 
   handleFormSubmits: function(e) {
