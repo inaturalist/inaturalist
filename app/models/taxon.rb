@@ -366,7 +366,8 @@ class Taxon < ActiveRecord::Base
           :tags => self.name.gsub(' ', '').strip,
           :per_page => params[:limit] - photos.size,
           :license => '1,2,3,4,5,6', # CC licenses
-          :extras => 'date_upload,owner_name'
+          :extras => 'date_upload,owner_name',
+          :sort => 'relevance'
         }).to_a
       rescue Net::Flickr::APIError => e
         logger.error "EXCEPTION RESCUE: #{e}"
