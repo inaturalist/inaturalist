@@ -408,8 +408,8 @@ a .taxon:hover {
   text-decoration: underline;
 }
 
-.sciname,
-.taxon.genus .sciname,
+.species .sciname,
+.genus .sciname,
 .sciname.genus,
 .sciname.species,
 .sciname.infraspecies {
