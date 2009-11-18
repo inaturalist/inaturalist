@@ -141,6 +141,7 @@ class ApplicationController < ActionController::Base
         @places = Place.paginate(new_places.map(&:id).compact, :page => 1)
       end
     end
+    @places.compact!
   end
 end
 
