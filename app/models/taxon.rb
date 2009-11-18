@@ -72,7 +72,7 @@ class Taxon < ActiveRecord::Base
     'subphylum'    => 57,
     'superclass'   => 53,
     'class'        => 50,
-    'sublcass'     => 47,
+    'subclass'     => 47,
     'superorder'   => 43,
     'order'        => 40,
     'suborder'     => 37,
@@ -85,12 +85,14 @@ class Taxon < ActiveRecord::Base
     'genus'        => 20,
     'species'      => 10,
     'subspecies'   => 5,
-    'variety'      => 5
+    'variety'      => 5,
+    'form'         => 5
   }
   
   RANKS = RANK_LEVELS.keys
   
   RANK_EQUIVALENTS = {
+    'division'        => 'phylum',
     'sub-class'       => 'subclass',
     'super-order'     => 'superorder',
     'infraorder'      => 'suborder',
