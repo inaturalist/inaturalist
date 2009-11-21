@@ -1,9 +1,21 @@
 class CommentsController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => :index
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
   def index
-    @comments = Comment.find(:all, { :size => 10, :current => params[:page] })
+    find_options = {
+      :page => params[:page], :order => "id DESC",
+      :include => :user,
+      :group => "parent_id"
+    }
+    @comments = Comment.scoped({})
+    @comments = @comments.by(current_user) if logged_in? && params[:mine]
+    @comments = @comments.paginate(find_options)
+    @extra_comments = Comment.all(:conditions => [
+      "parent_id IN (?) AND created_at >= ?", 
+      @comments.map(&:parent_id), @comments.last.created_at
+    ]).sort_by(&:id)
+    @comments_by_parent_id = @extra_comments.group_by(&:parent_id)
   end
   
   def show

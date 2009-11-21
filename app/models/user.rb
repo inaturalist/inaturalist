@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   has_many :journal_posts, :class_name => Post.to_s, :as => :parent
   has_many :taxon_links, :dependent => :nullify
+  has_many :comments, :dependent => :destroy
   
   
   has_attached_file :icon, 

@@ -64,7 +64,7 @@ class PasswordsController < ApplicationController
       flash[:notice] = 'Your password was successfully updated. You can login now with it if you like.'
       redirect_to login_path
     else
-      flash[:notice] = 'EPIC FAIL!'
+      flash[:notice] = 'Something went wrong updating your password!'
       redirect_to :action => :reset, :reset_code => params[:reset_code]
     end
   end
