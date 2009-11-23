@@ -32,26 +32,33 @@
 
 <div class="column span-16">
 	<h3>Recent Updates</h3>
-  <p>
-    There's not much to show here yet, but soon this space will be filled up with recent activity.
-  </p>
-  <ul class="readable leafylist">
-    <% unless @user.flickr_identity %>
-    <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
-    <% end %>
-    <li>
-      <%= link_to "Browse your observations", observations_by_login_path(@user.login) %>
-    </li>
-    <li>
-      <%= link_to "Add new observations", :controller => 'observations', :action => 'new' %>
-    </li>
-    <li>
-      <%= link_to "Explore everyone's observations", observations_path %>
-    </li>
-    <li>
-      <%= link_to "Check out your Life List", lists_by_login_path(@user.login) %>
-    </li>
-  </ul>
+	
+	<% if @updates.length > 0 %>
+  	<% @updates.each do |update| %>
+  	  <%= render update.activity_object %>
+  	<% end %>
+	<% else %>
+    <p>
+      There's not much to show here yet, but soon this space will be filled up with recent activity.
+    </p>
+    <ul class="readable leafylist">
+      <% unless @user.flickr_identity %>
+      <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
+      <% end %>
+      <li>
+        <%= link_to "Browse your observations", observations_by_login_path(@user.login) %>
+      </li>
+      <li>
+        <%= link_to "Add new observations", :controller => 'observations', :action => 'new' %>
+      </li>
+      <li>
+        <%= link_to "Explore everyone's observations", observations_path %>
+      </li>
+      <li>
+        <%= link_to "Check out your Life List", lists_by_login_path(@user.login) %>
+      </li>
+    </ul>
+  <% end %>
 </div>
 <div class="last column span-8">
 	<h3>

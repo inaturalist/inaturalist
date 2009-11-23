@@ -10,4 +10,6 @@
   :top => top
 } %>
 
+<% if @observaiton %>
 <%= render :partial => "comments/comments", :locals => { :parent => @observation } %>
+<% end %>

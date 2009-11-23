@@ -22,9 +22,8 @@ class User < ActiveRecord::Base
   has_many :stalkerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
   has_many :followers, :through => :stalkerships,  :source => 'user'
   
-  # has_many :activity_stream_updates, :class_name => 'ActivityStream', :dependent => :destroy
-  # has_many :activity_streams, :foreign_key => 'subscriber_id', :include => [:activity_update]
-  # has_many :activity_updates, :through => :activity_streams
+  has_many :activity_stream_updates, :class_name => 'ActivityStream', :dependent => :destroy
+  has_many :activity_streams, :foreign_key => 'subscriber_id', :include => [:activity_object]
   
   has_many :lists, :dependent => :destroy
   has_many :identifications, :dependent => :destroy
