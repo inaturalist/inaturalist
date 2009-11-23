@@ -24,7 +24,7 @@ config.action_view.cache_template_loading            = false
 # config.action_view.cache_template_loading            = true
 
 # Don't care if the mailer can't send
-config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = true
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 smtp_config_path = File.open("#{RAILS_ROOT}/config/smtp.yml")
 ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)

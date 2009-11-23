@@ -16,6 +16,7 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_lft
   before_create :update_last_observation
   after_create :update_user_life_list_taxa_count
+  after_create :sync_parent_check_list
   after_destroy :update_user_life_list_taxa_count
   
   validates_presence_of :list, :taxon
@@ -81,6 +82,11 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_place_id
     self.place_id = self.list.place_id
+  end
+  
+  def sync_parent_check_list
+    return unless list.is_a?(CheckList)
+    list.send_later(:sync_with_parent)
   end
   
   # Update the lft and taxon_ancestors of ALL listed_taxa. Note this will be

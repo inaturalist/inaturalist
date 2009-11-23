@@ -408,8 +408,8 @@ a .taxon:hover {
   text-decoration: underline;
 }
 
-.sciname,
-.taxon.genus .sciname,
+.species .sciname,
+.genus .sciname,
 .sciname.genus,
 .sciname.species,
 .sciname.infraspecies {
@@ -751,4 +751,12 @@ ul.leafylist li li:first-child {
 table.user-table td {
   vertical-align: top;
   padding: 4px 20px;
+}
+
+.taxon_names .scientific_names {
+  font-style: italic;
+}
+
+.taxon_names .invalid {
+  text-decoration: line-through;
 }

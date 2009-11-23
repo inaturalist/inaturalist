@@ -135,12 +135,13 @@ class ApplicationController < ActionController::Base
   def search_for_places
     @q = params[:q]
     @places = Place.search(@q, :page => params[:page])
-    if logged_in? && (@places.blank? || @places.map(&:display_name).join(' ').downcase !~ /#{@q}/)
+    if logged_in? && (@places.blank? || @places.compact.map(&:display_name).join(' ').downcase !~ /#{@q}/)
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}
         @places = Place.paginate(new_places.map(&:id).compact, :page => 1)
       end
     end
+    @places.compact!
   end
 end
 

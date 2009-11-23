@@ -33,18 +33,19 @@
   <%= render :partial => 'places/search_form' %>
 </div>
 
-<ul>
-  <% if @places.blank? -%>
-    <div id="nodata" class=" readable description">
-      No matching places
-    </div>
-  <% end -%>
-  <% for place in @places %>
-    <li>
-      <%= link_to place.display_name, place %>
-      <span class="small description"><%= place.place_type_name %></span>
-    </li>
-  <% end %>
-</ul>
-
-<%= will_paginate @places %>
+<% if @places.blank? -%>
+  <div id="nodata" class=" readable description">
+    No matching places
+  </div>
+<% else %>
+  <ul>
+    <% for place in @places %>
+      <li>
+        <%= link_to place.display_name, place %>
+        <span class="small description"><%= place.place_type_name %></span>
+      </li>
+    <% end %>
+  </ul>
+  
+  <%= will_paginate @places %>
+<% end -%>

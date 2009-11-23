@@ -3,7 +3,7 @@
 <% end -%>
 
 <%- content_for(:extracss) do %>
-<%= stylesheet_link_tag 'taxa/show', 'observations' %>
+<%= stylesheet_link_tag 'taxa/show', 'observations', "jquery/ui.tabs.css" %>
 <style type="text/css" media="screen">
   #noobservations .readable.description {
     margin-bottom: 0.5em;
@@ -188,7 +188,28 @@
   }
   
   .add_to_place_link {
+    padding: 5px;
+  }
+  
+  .add_to_place_link:hover {
+    background-color: #fafafa;
+  }
+  
+  #place_selector.ui-tabs .ui-tabs-nav {
     margin-bottom: 10px;
+  }
+  
+  #place_selector.ui-tabs .ui-tabs-panel {
+    padding: 0;
+  }
+  
+  #search_taxa form {
+    float: right;
+    margin-top: 5px;
+  }
+  
+  #search_taxa .button {
+    margin-right: 0;
   }
 </style>
 
@@ -211,7 +232,9 @@
                              'modal_image',
                              "jquery/plugins/inat/photo_selectors.js",
                              'jquery/plugins/jquery.autocomplete.min.js',
-                             'jquery/plugins/inat/place_autocomplete.js' %>
+                             'jquery/plugins/inat/place_autocomplete.js',
+                             "jquery/plugins/jquery.qtip.min",
+                             'jquery/jquery.ui.all.packed' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -271,10 +294,14 @@
       <% if @taxon.species_or_lower? -%>
         $('#add_to_place_dialog').jqm({
           closeClass: 'close',
-          ajax: '<%= taxon_path(@taxon) %>/add_places',
           method: 'get',
           onShow: function(h) {
-            h.w.append($('<div class="loading description">Loading...</div>'));
+            if (h.w.html() == '') {
+              h.w.append($('<div class="loading description">Loading...</div>'));
+              h.w.load('<%= taxon_path(@taxon) %>/add_places', null, function() {
+                $('#place_selector > ul').tabs();
+              });
+            }
             h.w.fadeIn(500);
           },
           onHide: function(h) {
@@ -287,20 +314,19 @@
   </script>
 <% end -%>
 
+<%- content_for(:extrahead) do -%>
+  <% unless @taxon.wikipedia_summary.blank? -%>
+    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary) %>"/>
+  <% end -%>
+<%- end -%>
+
 <div id="pageheader" class="last column span-24">
-  <div id="search_taxa">
-    <span class="breadcrumbs">&nbsp;</span>
-    <%= render :partial => 'search_form' %>
-  </div>
   <span class="breadcrumbs">
     <%= link_to 'Back to All Species', 
                 taxa_path,
                 :class => 'back crumb' %>
   </span>
-  <h2>
-    <%= render :partial => 'shared/taxon', :locals => { :taxon => @taxon } %>
-  </h2>
-  <span class="description">
+  <div id="meta" class="right description">
     <% if @taxon.source_url %>
       Source: <%= link_to @taxon.source.title, @taxon.source_url %>
     <% elsif @taxon.source %>
@@ -308,29 +334,35 @@
     <% else %>
       Source: unknown
     <% end %>
-  </span>
-  <% if logged_in? and @user.is_curator? %>
-  |
-  <span class="description">
-    <%= link_to "Edit this taxon", edit_taxon_path(@taxon) %>
-  </span>
-  <% end %>
-  <% if @taxon.flagged? %>
-  |
-  <span id="flaggings_heads_up" class="description">
-    HEADS UP: this taxon has been flagged for curation.
-    <%= link_to "View flags", taxon_flags_path(@taxon) %>
-  </span>
-  <% else %>
-    <% if logged_in? %>
-    |
-    <span class="description">
-      See something wrong?  
-      <%= link_to "Flag this for curation", new_taxon_flag_path(@taxon),
-                  :id => "flag_this" %>
-    </span>
+    
+    | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
+    <% if logged_in? and @user.is_curator? %>
+    
+    | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
     <% end %>
-  <% end %>
+    <% if @taxon.flagged? %>
+    
+    | <span id="flaggings_heads_up" class="description">
+      Flagged for curation.
+      <%= link_to "View flags", taxon_flags_path(@taxon), :class => 'readmore', 
+        :title => "See something wrong with this taxon?  Let the curators know." %>
+    </span>
+    <% else %>
+      <% if logged_in? %>
+      | <%= link_to "Flag for curation", new_taxon_flag_path(@taxon), :id => "flag_this" %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <div class="clear">
+    <span id="search_taxa" class="smallbuttons">
+      <%= render :partial => 'search_form' %>
+    </span>
+
+    <h2>
+      <%= render :partial => 'shared/taxon', :locals => { :taxon => @taxon } %>
+    </h2>
+  </div>
 </div>
 
 <div class="column span-4 aka">
@@ -350,39 +382,49 @@
       </span>
     </li>
     <%- else -%>
-    <% for ancestor in @taxon.ancestors[1..-1] %>
-    <li class="<%= ancestor.iconic_taxon.name.downcase if ancestor.iconic_taxon %>">
-      <% link_to(ancestor) do %>
-        <%= render :partial => 'shared/taxon', 
-                   :object => ancestor,
-                   :locals => { :include_parens => false } %>
-      <% end %>
-    </li>
-    <% end %>
+      <%= render :partial => 'classification_li', :collection => @ancestors[1..-1] %>
     <%- end -%>
-    <li class="<%= @taxon.iconic_taxon.name.downcase if @taxon.iconic_taxon %>">
+    <li class="<%= @taxon.iconic_taxon.name if @taxon.iconic_taxon %>">
       <%= render :partial => 'shared/taxon', 
                  :locals => { :taxon => @taxon, :include_parens => false } %>
       <ul>
-        <% for child in @taxon.children %>
-        <li class="<%= child.iconic_taxon.name.downcase if child.iconic_taxon %>">
-          <% link_to(child) do %>
-            <%= render :partial => 'shared/taxon', 
-                       :object => child,
-                       :locals => { :include_parens => false } %>
-          <% end %>
-        </li>
-        <% end %>
+        <%= render :partial => 'classification_li', :collection => @children[0..9] %>
       </ul>
+            
+      <% if @children.size > 10 -%>
+        <%= link_to_toggle "More...", "#more_children" %>
+        <ul id="more_children" style="display:none">
+          <%= render :partial => 'classification_li', :collection => @children[10..-1] %>
+        </ul>
+      <% end -%>
     </li>
   </ul>
   
   <div id="all_names">
     <h3>All Names</h3>
-    <% for taxon_name in @taxon.taxon_names %>
-    <%= render :partial => 'shared/taxon_name', 
-               :locals => { :taxon_name => taxon_name } %>
-    <% end %>
+    <ul>
+      <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
+        <%- lexicon = lexicon.blank? ? 'Unknown' : lexicon.capitalize %>
+        <li>
+          <span class="description"><%= lexicon %></span>
+          <ul class="taxon_names">
+            <% for taxon_name in taxon_names %>
+              <li>
+                <span class="taxon_name <%= lexicon.split.join('_') %><%= ' invalid' unless taxon_name.is_valid? %>">
+                  <%= taxon_name.name %></span>
+                <% if logged_in? && (taxon_name.name != @taxon.name || current_user.is_curator?) -%>
+                  <%= link_to "edit", edit_taxon_name_path(taxon_name), :class => 'small description' %>
+                <% end -%>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if logged_in? -%>
+      <%= link_to "Add a name", new_taxon_taxon_name_path(@taxon), :class => 'readmore' %>
+    <% end -%>
   </div>
   
   <% if @taxon.species_or_lower? -%>
@@ -459,38 +501,75 @@
     </div>
   <% end -%>
   
-  <div id="places" class="clear">
-    <h3>
-      Range
-      <% if @places.total_entries > @places.size -%>
-        <span class="small description"><%= @places.size %> of <%= @places.total_entries %></span>
+  <% if @taxon.species_or_lower? -%>
+    <div id="places" class="clear">
+      <h3>
+        Range
+        <% if @places.total_entries > @places.size -%>
+          <span class="small description"><%= @places.size %> of <%= @places.total_entries %></span>
+        <% end -%>
+      </h3>
+    
+      <% if @us_states -%>
+        <span class="description">US states:</span>
+        <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
+      <% elsif !@countries.blank? %>
+        <span class="description">Countries:</span>
+        <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
       <% end -%>
-    </h3>
     
-    <% if @us_states -%>
-      <span class="description">US states:</span>
-      <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
-    <% elsif !@countries.blank? %>
-    <span class="description">Countries:</span>
-      <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
-    <% end -%>
+      <% if @places.blank? -%>
+        <% unless logged_in? %><div class="description">No places selected.</div><% end %>
+      <% else %>
+        <ul id="places_list">
+          <% for place in @places %>
+            <li><%= link_to place.display_name, place %></li>
+          <% end %>
+        </ul>
+      <% end -%>
     
-    <ul id="places_list">
-      <% for place in @places %>
-        <li><%= link_to place.display_name, place %></li>
-      <% end %>
-    </ul>
-    
-    <% if logged_in? && @taxon.species_or_lower? -%>
-      <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
-      <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
-    <% end -%>
-  </div>
+      <% if logged_in? -%>
+        <% if @places.blank? -%>
+          <div class="notice">
+            Do you know where this species lives?
+            <strong><%= link_to_function "Add it to a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+          </div>
+        <% else %>
+          <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+        <% end -%>
+        <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
+      <% end -%>
+    </div>
+  <% end %>
   
   <div id="extras">
     <h3>Extras</h3>
-    <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
-      flickr_tagger_path(:taxon_id => @taxon.id) %>
+    
+    <p class="ui">
+      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
+        flickr_tagger_path(:taxon_id => @taxon.id) %>
+    </p>
+    
+    <p class="ui">
+      <%= link_to_function "Wikipedia taxobox &raquo;", "return false;", :id => "taxoboxlink" %>
+      <%- taxobox_content = capture do -%>
+        <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>
+        <%= link_to "About the taxobox &raquo;", "http://en.wikipedia.org/wiki/Template:Taxobox" %>
+      <%- end -%>
+      <script type="text/javascript" charset="utf-8">
+        $('#taxoboxlink').qtip($.extend(QTIP_DEFAULTS, {
+          show: {when: 'click'},
+          hide: {when: 'unfocus'},
+          content: "<%= escape_javascript(taxobox_content) %>",
+        }));
+      </script>
+    </p>
+    
+    <p class="ui">
+      <%= link_to "Tree Browser &raquo;", {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
+        :rel => "nofollow" %>
+    </p>
+    
   </div>
 </div>
 
@@ -633,7 +712,7 @@
     </h3>
     <% else %>
       <div id="wikipedia_description">
-        <div class="loading status">Loading description...</div>
+        <p><%= @taxon.wikipedia_summary %> <span class="loading status">Loading full description...</span></p>
       </div>
       <div id="nodescription" style="display: none">
         <h3 class='description'>There isn't a Wikipedia article or 

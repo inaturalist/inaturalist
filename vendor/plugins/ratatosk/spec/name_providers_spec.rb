@@ -223,8 +223,8 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
   before(:each) do    
     # make absolutely sure the db is empty
     [TaxonName.find_by_name('Western Bluebird')].flatten.compact.each do |tn|
-      tn.taxon.destroy if tn.taxon
       tn.destroy
+      tn.taxon.destroy if tn.taxon
     end
     
     @adapter = Ratatosk::NameProviders::ColTaxonNameAdapter.new(@hxml)
@@ -280,8 +280,8 @@ describe Ratatosk::NameProviders::UBioTaxonNameAdapter do
   before(:each) do
     # make absolutely sure the db is empty
     [TaxonName.find_by_name('Western Bluebird')].flatten.compact.each do |tn|
-      tn.taxon.destroy if tn.taxon
       tn.destroy
+      tn.taxon.destroy if tn.taxon
     end
     
     [Taxon.find(:all, :conditions => "name like 'Western Bluebird%'")].flatten.compact.each do |t|
@@ -306,8 +306,8 @@ describe Ratatosk::NameProviders::UBioTaxonAdapter do
   before(:each) do
     # make absolutely sure the db is empty
     [TaxonName.find(:all, :conditions => "name like 'Homo sapiens%'")].flatten.compact.each do |tn|
-      tn.taxon.destroy if tn.taxon
       tn.destroy
+      tn.taxon.destroy if tn.taxon
     end
     
     [Taxon.find(:all, :conditions => "name like 'Homo sapiens%'")].flatten.compact.each do |t|

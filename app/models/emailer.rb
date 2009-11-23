@@ -46,10 +46,6 @@ class Emailer < ActionMailer::Base
       :no_time => true, :no_place_guess => true)
     @subject << "#{identification.user.login} added an ID to your " + 
       "observation \"#{obs_str})\""
-    
-    # I wish the parent_url thing wasn't necessary, but I can't seem to figure
-    # out how to mix ActionController::PolymorphicRoutes into whatever version
-    # of ActionView::Base ActionMailer seems to use.
     @body = {
       :identification => identification,
       :observation => identification.observation,
@@ -60,7 +56,9 @@ class Emailer < ActionMailer::Base
   
   protected
     def setup_email
-      from    "iNaturalist.org <#{APP_CONFIG[:noreply_email]}>"
+      # TODO: restore the display name after they fix this bug: https://rails.lighthouseapp.com/projects/8994/tickets/2340
+      # from    "iNaturalist.org <#{APP_CONFIG[:noreply_email]}>"
+      from    APP_CONFIG[:noreply_email]
       subject "[#{APP_CONFIG[:site_name]}] "
       sent_on Time.now
     end

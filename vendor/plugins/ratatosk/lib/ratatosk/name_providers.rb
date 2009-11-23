@@ -94,7 +94,7 @@ module Ratatosk
 
       def get_lexicon
         if @hxml.at('/rank')
-          'scientific names'
+          TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
         elsif @hxml.at('language')
           hxml.at('language').inner_text.downcase
         else
@@ -454,7 +454,7 @@ module Ratatosk
       end
 
       def get_lexicon
-        @hxml.at('dc:language').inner_text.downcase rescue 'scientific names'
+        @hxml.at('dc:language').inner_text.downcase rescue TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
       end
 
       def get_is_valid

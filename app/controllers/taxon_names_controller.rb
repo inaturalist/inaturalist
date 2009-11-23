@@ -1,8 +1,8 @@
 class TaxonNamesController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
-  before_filter :curator_required, :except => [:index]
+  before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
   before_filter :load_taxon, :except => [:index]
-  before_filter :load_taxon_name, :only => [:show, :edit, :destroy]
+  before_filter :curator_required_for_sciname, :only => [:edit, :update, :destroy]
     
   def index
     find_options = {
@@ -61,11 +61,6 @@ class TaxonNamesController < ApplicationController
           if @taxon_names.empty? and 
              not @taxon_names.map {|tn| tn.taxon}.include? nil
             @status = e.message
-            # @status = <<-EOT
-            #   Alas, we don't know that name and the other databases we check
-            #   didn't return our call. Try again later when they might be more
-            #   responsive
-            # EOT
           end
         end
       end
@@ -79,13 +74,15 @@ class TaxonNamesController < ApplicationController
     # end
     
     respond_to do |format|
-      format.html {
+      format.html do
         if params[:autocomplete] # for use by shared/_select_taxa_search partial
           render :layout => false,
                  :partial => 'autocomplete_unordered_list',
                  :locals => {:names => @taxon_names}
+          return
         end
-      }# index.html.erb
+        return redirect_to @taxon || @taxon_names.first.taxon
+      end
       format.xml  { render :xml => @taxon_names.to_xml(:include => :taxon) }
       format.json do
         if @status
@@ -100,7 +97,7 @@ class TaxonNamesController < ApplicationController
   
   def show
     respond_to do |format|
-       format.html # show.html.erb
+       format.html { redirect_to @taxon }
        format.xml  { render :xml => @taxon_name }
        format.json do
          render :json => @taxon_name.to_json(:include => {:taxon => {
@@ -165,6 +162,7 @@ class TaxonNamesController < ApplicationController
   
   def load_taxon
     @taxon = Taxon.find_by_id(params[:taxon_id])
+    @taxon ||= @taxon_name.taxon if @taxon_name
     render_404 and return unless @taxon
     true
   end
@@ -173,5 +171,11 @@ class TaxonNamesController < ApplicationController
     @taxon_name = TaxonName.find_by_id(params[:id])
     render_404 and return unless @taxon_name
     true
+  end
+  
+  def curator_required_for_sciname
+    return true unless @taxon.scientific_name == @taxon_name
+    session[:return_to] = url_for(@taxon)
+    curator_required
   end
 end

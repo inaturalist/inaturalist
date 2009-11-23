@@ -9,14 +9,13 @@ class Taxon < ActiveRecord::Base
   acts_as_flaggable
   
   acts_as_nested_set
-  # memoize :ancestors TODO in rails 2.3
   acts_as_versioned :if_changed => [:name, :rank, :iconid_taxon_id, 
                                     :parent_id, :source_id, 
                                     :source_identifier, :source_url, 
                                     :is_iconic, :auto_photos, 
                                     :auto_description, :name_provider]
-  self.non_versioned_columns += 
-    %w"observations_count listed_taxa_count lft rgt delta unique_name"
+  self.non_versioned_columns += %w(observations_count listed_taxa_count lft
+    rgt delta unique_name wikipedia_summary wikipedia_title)
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :observations
@@ -69,11 +68,11 @@ class Taxon < ActiveRecord::Base
   RANK_LEVELS = {
     'root'         => 100,
     'kingdom'      => 70,
-    'phylum '      => 60,
+    'phylum'       => 60,
     'subphylum'    => 57,
     'superclass'   => 53,
     'class'        => 50,
-    'sublcass'     => 47,
+    'subclass'     => 47,
     'superorder'   => 43,
     'order'        => 40,
     'suborder'     => 37,
@@ -86,12 +85,14 @@ class Taxon < ActiveRecord::Base
     'genus'        => 20,
     'species'      => 10,
     'subspecies'   => 5,
-    'variety'      => 5
+    'variety'      => 5,
+    'form'         => 5
   }
   
   RANKS = RANK_LEVELS.keys
   
   RANK_EQUIVALENTS = {
+    'division'        => 'phylum',
     'sub-class'       => 'subclass',
     'super-order'     => 'superorder',
     'infraorder'      => 'suborder',
@@ -178,6 +179,10 @@ class Taxon < ActiveRecord::Base
   named_scope :iconic_taxa, :conditions => "is_iconic = true",
     :include => [:taxon_names]
   
+  named_scope :of_rank, lambda {|rank|
+    {:conditions => ["rank = ?", rank]}
+  }
+  
   def observations_count_with_descendents
     Observation.of(self).count
   end
@@ -240,6 +245,10 @@ class Taxon < ActiveRecord::Base
     self.lft > taxon.lft && self.rgt < taxon.rgt
   end
   
+  def graft
+    Ratatosk.graft(self)
+  end
+  
   def grafted?
     return false if new_record? # New records haven't been grafted
     return false if self.name != 'Life' && self.root?
@@ -253,6 +262,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def scientific_name
+    self.taxon_names.reload unless taxon_names.loaded?
     taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
   end
   
@@ -262,7 +272,8 @@ class Taxon < ActiveRecord::Base
   # common name of any language failing that
   #
   def common_name
-    common_names = taxon_names.select { |tn| !tn.is_scientific_names? }
+    self.taxon_names.reload unless taxon_names.loaded?
+    common_names = taxon_names.reject { |tn| tn.is_scientific_names? }
     return nil if common_names.blank?
     
     engnames = common_names.select do |n| 
@@ -327,7 +338,7 @@ class Taxon < ActiveRecord::Base
         :source => source,
         :source_identifier => source_identifier,
         :source_url => source_url,
-        :lexicon => 'scientific names',
+        :lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES],
         :is_valid => true
       )
     end
@@ -357,7 +368,8 @@ class Taxon < ActiveRecord::Base
           :tags => self.name.gsub(' ', '').strip,
           :per_page => params[:limit] - photos.size,
           :license => '1,2,3,4,5,6', # CC licenses
-          :extras => 'date_upload,owner_name'
+          :extras => 'date_upload,owner_name',
+          :sort => 'relevance'
         }).to_a
       rescue Net::Flickr::APIError => e
         logger.error "EXCEPTION RESCUE: #{e}"
@@ -470,6 +482,7 @@ class Taxon < ActiveRecord::Base
     reload # there's a chance taxon names have been created since load
     return true unless default_name
     [default_name.name, name].each do |candidate|
+      # Skip if this name isn't unique
       next if TaxonName.count(:select => "distinct(taxon_id)", :conditions => {:name => candidate}) > 1
       begin
         logger.info "Updating unique_name for #{self} to #{candidate}"
@@ -480,6 +493,60 @@ class Taxon < ActiveRecord::Base
       end
       break
     end
+  end
+  
+
+  def wikipedia_summary(options = {})
+    if super && super.match(/\d\d\d\d-\d\d-\d\d/)
+      last_try_date = DateTime.parse(super)
+      return nil if last_try_date > 1.week.ago
+    end
+    return super unless super.blank? || options[:reload]
+    
+    send_later(:set_wikipedia_summary)
+    nil
+  end
+  
+  def set_wikipedia_summary
+    w = WikipediaService.new
+    summary = query_results = parsed = nil
+    begin
+      query_results = w.query(
+        :titles => wikipedia_title || name,
+        :redirects => '', 
+        :prop => 'revisions', 
+        :rvprop => 'content')
+      raw = query_results.at('page')
+      parsed = w.parse(:page => raw['title']).at('text').inner_text
+    rescue Timeout::Error => e
+      logger.info "[INFO] Wikipedia API call failed while setting taxon " +
+        "summary: #{e.message}"
+    end
+
+    if query_results && parsed && !query_results.at('page')['missing']
+      coder = HTMLEntities.new
+      summary = coder.decode(parsed)
+      
+      hxml = Hpricot(summary)
+      hxml.search('table').remove
+      hxml.search('div').remove
+      summary = (hxml.at('p') || hxml.at('//')).inner_html.to_s
+      
+      sanitizer = HTML::WhiteListSanitizer.new
+      summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
+      summary.gsub! /\[.*?\]/, ''
+      pre_trunc = summary
+      summary = summary.split[0..75].join(' ')
+      summary += '...' if pre_trunc > summary
+    end
+    
+    if summary.blank?
+      Taxon.update_all(["wikipedia_summary = ?", Date.today], ["id = ?", self])
+      return nil
+    end
+
+    Taxon.update_all(["wikipedia_summary = ?", summary], ["id = ?", self])
+    summary
   end
   
   include TaxaHelper

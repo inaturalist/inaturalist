@@ -103,7 +103,10 @@
     });
     
     $('#taxon_name').simpleTaxonSelector({
-      includeSearchExternal: <%= logged_in? ? 'true' : 'false' %>
+      includeSearchExternal: <%= logged_in? ? 'true' : 'false' %>,
+      afterSelect: function(wrapper, taxon, options) {
+        $('#choose_taxon_button').focus();
+      }
     });
     
     

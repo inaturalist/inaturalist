@@ -28,20 +28,12 @@
       overflow: auto;
     }
     
-    #searchform {
+    .smallbuttons {
       float: right;
     }
     
-    #searchform .button {
+    .smallbuttons .button {
       margin-right: 0;
-    }
-    
-    #searchform .button,
-    #searchform .text,
-    #searchform label {
-      padding: 2px 3px;
-      font-size: 100%;
-      margin-bottom: 0;
     }
     
     #pageheader h2 {
@@ -126,6 +118,15 @@
     }
     .attribution {
       font-size: smaller;
+    }
+    
+    .wikipedia_summary {
+      color: #333;
+      max-width: 240px;
+    }
+    
+    .qtip-content .taxon .image {
+      text-align: center;
     }
   </style>
 <%- end -%>
@@ -339,7 +340,7 @@
   </script>
 <%- end -%>
 <div id="pageheader">
-  <div id="searchform" class="clear right buttonrow">
+  <div id="searchform" class="clear right buttonrow smallbuttons">
     <%= render :partial => 'places/search_form', :locals => {:q => ''} %>
   </div>
   <div class="breadcrumbs">
@@ -412,7 +413,12 @@
     </div>
     
     <div class="last column span-16">
-      <h3>About</h3>
+      <h3>
+        Description
+        <span class="small description">(from
+          <a href="http://en.wikipedia.org/wiki/<%= @place.wikipedia_name %>">Wikipedia</a>)
+        </span>
+      </h3>
 
       <div id="wikipedia_description">
         <div class="loading status">Loading description...</div>

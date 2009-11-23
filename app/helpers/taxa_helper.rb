@@ -52,9 +52,14 @@ module TaxaHelper
   #
   def taxon_image(taxon, params = {})
     return iconic_taxon_image(taxon, params) if taxon.flickr_photos.empty?
-    image_params = {}
+    image_params = {:alt => default_taxon_name(taxon)}
+    unless taxon.flickr_photos.empty?
+      image_params[:alt] += " - Photo #{taxon.flickr_photos.first.attribution}"
+    end
+    image_params[:title] = image_params[:alt]
+    
     [:id, :class, :alt, :title].each do |attr_name|
-      image_params[attr_name] = params.delete(attr_name)
+      image_params[attr_name] = params.delete(attr_name) if params[attr_name]
     end
     image_tag(taxon_image_url(taxon, params), image_params)
   end
@@ -131,7 +136,9 @@ module TaxaHelper
     node = {
       :id => taxon.id,
       :name => taxon.name,
-      :data => taxon.attributes
+      :data => {
+        :wikipedia_summary => taxon.wikipedia_summary
+      }
     }
     node[:children] = []
     unless options[:depth] == 0
@@ -140,15 +147,34 @@ module TaxaHelper
       end
     end
     node[:data][:html] = if self.is_a?(ActionController::Base)
-      render_to_string(
-        :partial => 'taxa/taxon.html.erb', 
-        :locals => { :taxon => taxon })
+      render_to_string(:partial => 'taxa/taxon.html.erb', :object => taxon)
     else
-      render(
-        :partial => 'taxa/taxon.html.erb', 
-        :locals => { :taxon => taxon })
+      render(:partial => 'taxa/taxon.html.erb', :object => taxon)
     end
 
     node
+  end
+  
+  def jit_taxon_tree_with_taxon(taxon)
+    ancestors = taxon.self_and_ancestors
+    root = jit_taxon_node(ancestors.first)
+    previous_node = root
+    ancestors[1..-1].each do |ancestor|
+      logger.debug "[DEBUG] Trying to place #{ancestor} among the children of #{previous_node[:name]}..."
+      ancestor_node = jit_taxon_node(ancestor)
+      # Replace the child with a child with its own children
+      previous_node[:children].each_with_index do |child, i|
+        next unless child[:id] == ancestor.id
+        previous_node[:children][i] = ancestor_node
+        break
+      end
+      previous_node = ancestor_node
+    end
+    root
+  end
+  
+  # Abbreviate a binomal / trinomail name string.  Homo sapiens => H. sapiens
+  def abbreviate_binomial(name)
+    (name.split[0..-2].map{|s| s.first.upcase} + [name.split.last]).join('. ')
   end
 end

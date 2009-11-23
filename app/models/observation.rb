@@ -89,13 +89,12 @@ class Observation < ActiveRecord::Base
                     :cast_lat_lon
   
   before_save :strip_species_guess,
-              # :scrub_instructions_before_save,
               :set_iconic_taxon,
-              :keep_old_taxon_id
+              :keep_old_taxon_id,
+              :set_taxon_from_species_guess
                  
   after_save :refresh_lists,
              :update_identifications_after_save
-             # :update_goal_contributions,
              
   
   before_destroy :keep_old_taxon_id
@@ -634,6 +633,13 @@ class Observation < ActiveRecord::Base
   
   def lsid
     "lsid:inaturalist.org:observations:#{id}"
+  end
+  
+  def set_taxon_from_species_guess
+    return true unless species_guess_changed? && taxon_id.blank?
+    taxon_names = TaxonName.all(:conditions => ["name = ?", species_guess.strip], :limit => 2)
+    self.taxon_id = taxon_names.first.taxon_id if taxon_names.size == 1
+    true
   end
   
   # I'm not psyched about having this stuff here, but it makes generating 

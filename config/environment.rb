@@ -81,6 +81,7 @@ Rails::Initializer.run do |config|
   config.gem 'rest-client', :lib => 'rest_client'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
   config.gem 'geoip'
+  config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
 
   # Can't do this until Rails starts including the rake tasks of plugin gems
   # config.gem "freelancing-god-thinking-sphinx", :lib => 'thinking_sphinx', 

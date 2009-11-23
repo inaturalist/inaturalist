@@ -10,6 +10,11 @@ module Shared::ListsModule
   end
   
   def show
+    # Make sure request is being handled by the right controller
+    if @list.is_a?(CheckList) && params[:controller] != CheckList.to_s.underscore.pluralize
+      return redirect_to @list
+    end
+    
     @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
     @total_listed_taxa ||= @list.listed_taxa.count
@@ -272,6 +277,14 @@ module Shared::ListsModule
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])
       @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon]
+      
+      # The above condition on a joined table will trigger an eager load, 
+      # which won't load all 2nd order associations (e.g. taxon names), so 
+      # they'll have to loaded when needed
+      @find_options[:include] = [
+        :last_observation, 
+        {:taxon => [:iconic_taxon, :flickr_photos]}
+      ]
     end
   end
   

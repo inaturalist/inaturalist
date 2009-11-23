@@ -114,6 +114,13 @@ describe Taxon, "updating" do
   end
 end
 
+describe Taxon, "destruction" do
+  fixtures :taxa
+  it "should work" do
+    taxa(:Calypte_anna).destroy
+  end
+end
+
 describe "Changing the iconic taxon of a", Taxon do
   fixtures :taxa, :observations, :users
   
@@ -191,7 +198,11 @@ describe Taxon, "unique name" do
   
   # This seems to break unless we use transactional fixtures.  Grr...
   it "should be the scientific name if the common name is already another taxon's unique name" do
-    new_taxon = Taxon.create(:name => taxa(:Calypte_anna).name, 
+    Taxon.find_by_unique_name(taxa(:Calypte_anna).common_name.name).should_not be_nil
+    Taxon.find_by_unique_name(taxa(:Calypte_anna).name).should be_nil
+    taxa(:Calypte_anna).unique_name.should == taxa(:Calypte_anna).common_name.name
+    
+    new_taxon = Taxon.create(:name => "Ballywickia purhiensis", 
       :rank => 'species', 
       :iconic_taxon => taxa(:Aves))
     new_taxon.taxon_names << TaxonName.new(

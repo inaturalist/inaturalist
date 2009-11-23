@@ -4,10 +4,10 @@
           <%= error_messages_for('observation', :object => observation) %>
           <% end %>
           <div class="column span-7">
-            <div class="field">
+            <div class="field species_guess_field">
               <%= o.label :species_guess, "What did you see?" %>
               <%= o.text_field(:species_guess, :class => 'species_guess') %>
-              <%= o.hidden_field(:taxon_id) %>
+              <%= o.hidden_field(:taxon_id, :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
               
               <div class="id_please">
                 <%= o.check_box(:id_please) %>
@@ -15,15 +15,19 @@
               </div>
             </div>
             
+            <div class="field">
+              <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
+            </div>
+            
             <div class="field<%= ' error' if observation.errors.on(:observed_on) && !observation.errors.on(:observed_on).empty? %>">
               <%= o.label :observed_on_string, "When did you see it?" %>
-              <span class="small description">
-                e.g. "<%= Date.today.to_s(:long) %>" or "yesterday"
-              </span>
               <%= o.text_field(:observed_on_string, 
                                :class => 'observed_on_string') %>
               <%= o.error_message_on(:observed_on) %>
               <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+              <div class="small description">
+                e.g. "<%= Date.today.to_s(:long) %>" or "yesterday"
+              </div>
             </div>
             
             <div class="field">

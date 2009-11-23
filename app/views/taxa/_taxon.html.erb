@@ -1,29 +1,38 @@
-<%- taxon ||= object ||= @taxon -%>
-<%- hard_link ||= true -%>
-<%- js_link ||= !hard_link -%>
-<%- no_ids ||= false -%>
-<%- image_options ||= {} -%>
-<%- include_image_attribution ||= false -%>
-<%- hide_child_count ||= true -%>
-<%- link_name ||= false -%>
-<%- link_image ||= false -%>
-<%- link_url ||= url_for_taxon(taxon) -%>
-<%- name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname' -%>
-<%- extra_class ||= nil -%>
-<%- taxon_class = "clear taxon #{taxon.rank}" -%>
-<%- taxon_class += " #{taxon.iconic_taxon.name}" if taxon.iconic_taxon -%>
-<%- taxon_class += ' noimg' if taxon.flickr_photos.empty? -%>
-<%- taxon_class += " #{extra_class}" if extra_class -%>
-<%- taxon_name_str ||= taxon.default_name.name -%>
-<%- include_full_name ||= false -%>
-<%- taxon_name_str = render('shared/taxon', :object => taxon) if include_full_name -%>
+<%- 
+  taxon ||= object ||= @taxon
+  js_link ||= false
+  no_ids ||= false
+  image_options ||= {}
+  include_image_attribution ||= false
+  hide_child_count ||= true
+  link_name ||= false
+  link_image ||= false
+  link_url ||= url_for_taxon(taxon)
+  name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname'
+  extra_class ||= nil
+  taxon_class = "clear taxon #{taxon.rank}"
+  taxon_class += " #{taxon.iconic_taxon.name}" if taxon.iconic_taxon
+  taxon_class += ' noimg' if taxon.flickr_photos.empty?
+  taxon_class += " #{extra_class}" if extra_class
+  taxon_name_str ||= taxon.default_name.name
+  include_full_name ||= false
+  taxon_name_str = render('shared/taxon', :object => taxon) if include_full_name
+  
+  if js_link
+    taxon_json = taxon.to_json(
+      :include => [:iconic_taxon, :taxon_names, :flickr_photos],
+      :methods => [:common_name, :image_url, :default_name]
+    )
+  end
+-%>
+
 <div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
   <div class="image">
     <% if link_image -%>
-      <% if hard_link -%>
-        <%= link_to taxon_image(taxon, image_options), link_url %>
+      <% if js_link -%>
+        <%= link_to_function taxon_image(taxon, image_options), "handleTaxonClick(event, #{taxon_json})" %>
       <% else %>
-        <%= link_to_function taxon_image(taxon, image_options), "showTaxonInfo(#{taxon.to_json})" %>
+        <%= link_to taxon_image(taxon, image_options), link_url %>
       <% end -%>
     <% else %>
       <%= taxon_image(taxon, image_options) %>
@@ -31,18 +40,18 @@
   </div>
   <div class="info">
     <% if link_name -%>
-      <% if hard_link -%>
-        <%= link_to taxon_name_str, link_url, :class => "name #{name_class}" %>
+      <% if js_link -%>
+        <%= link_to_function taxon_name_str, "handleTaxonClick(event, #{taxon_json})", :class => "name #{name_class}" %>
       <% else %>
-        <%= link_to_function taxon_name_str, "showTaxonInfo(#{taxon.to_json})", :class => "name #{name_class}" %>
+        <%= link_to taxon_name_str, link_url, :class => "name #{name_class}" %>
       <% end -%>
     <% else %>
         <span class="name <%= name_class %>"><%= taxon_name_str %></span>
     <% end -%>
-    <% if hard_link -%>
-      <%= link_to "info", taxon, :class => 'small infolink' %>
+    <% if js_link -%>
+      <%= link_to_function "info", "handleTaxonClick(event, #{taxon_json})", :class => 'small infolink' %>
     <% else %>
-      <%= link_to_function "info", "showTaxonInfo(#{taxon.to_json})", :class => 'small infolink' %>
+      <%= link_to "info", taxon, :class => 'small infolink' %>
     <% end -%>
 
     <% if !hide_child_count && taxon.children.size > 0 -%>
@@ -50,6 +59,17 @@
         <span class="count"><%= taxon.children.size %></span> <%= taxon.children.size == 1 ? "child" : 'children' %>
       </div>
     <% end -%>
+    
+    <div class="wikipedia_summary">
+      <% if summary = taxon.wikipedia_summary -%>
+        <%= summary %>
+        <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
+      <% else %>
+        <span class="description">
+          No Wikipedia page for this taxon. <%= link_to "Start one now!", "http://wikipedia.org/wiki/#{taxon.name}" %>
+        </span>
+      <% end -%>
+    </div>
   </div>
   <% if include_image_attribution && (flickr_photo = taxon.flickr_photos.first) -%>
     <div class="meta attribution">

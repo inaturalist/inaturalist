@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(:version => 20091123044434) do
     t.column "updated_at", :datetime
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.column "priority", :integer, :default => 0
+    t.column "attempts", :integer, :default => 0
+    t.column "handler", :text
+    t.column "last_error", :text
+    t.column "run_at", :datetime
+    t.column "locked_at", :datetime
+    t.column "failed_at", :datetime
+    t.column "locked_by", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
   create_table "flags", :force => true do |t|
     t.column "flag", :string, :default => ""
     t.column "comment", :string, :default => ""
@@ -374,6 +387,8 @@ ActiveRecord::Schema.define(:version => 20091123044434) do
     t.column "listed_taxa_count", :integer, :default => 0
     t.column "rank_level", :integer
     t.column "unique_name", :string
+    t.column "wikipedia_summary", :text
+    t.column "wikipedia_title", :string
   end
 
   add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
@@ -420,13 +435,13 @@ ActiveRecord::Schema.define(:version => 20091123044434) do
 
   create_table "taxon_ranges", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "taxon_id", :integer
-    t.column "range_type", :string
     t.column "source", :string
     t.column "start_month", :integer
     t.column "end_month", :integer
     t.column "geom", :multi_polygon, :null => false
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "range_type", :string
   end
 
   create_table "taxon_versions", :options=>'ENGINE=MyISAM', :force => true do |t|

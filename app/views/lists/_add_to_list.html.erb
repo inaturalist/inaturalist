@@ -38,6 +38,8 @@
           $('<li class="clear"></li>').append(json.html)
         );
         $('#listed_taxon_'+json.instance.id).effect('highlight', {}, 1000);
+        
+        $('#species_guess').focus();
       }
 
       function afterTaxonAddedFailure(request) {
@@ -73,6 +75,7 @@
         buttonText: 'Find',
         afterSelect: function() {
           $('#listed_taxon_submit').removeClass('disabled').attr('disabled', null);
+          $('#listed_taxon_submit').focus();
         }
       });
 

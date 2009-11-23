@@ -31,7 +31,7 @@
     </div>
     <% unless taxon.new_record? -%>
       <div class="column span-5">
-        <label>Graft</label>
+        <label>Graft</label><br/>
         <%= link_to "Graft <i>#{taxon.name}</i>", graft_taxon_path(taxon), :class => "button" %>
       </div>
       <div class="last column span-6 description">
@@ -42,9 +42,6 @@
       </div>
     <% end -%>
   </fieldset>
-
-
-
   
   <fieldset class="column span-24">
     <legend>Photos</legend>
@@ -67,8 +64,8 @@
     
     <p class="ui">
       or <label>Add new photos by their Flickr IDs (must be Creative Commons!)</label><br/>
-      <input type="text" name="flickr_photos[]" /><br/>
-      <input type="text" name="flickr_photos[]" /><br/>
+      <input type="text" name="flickr_photos[]" />&nbsp;
+      <input type="text" name="flickr_photos[]" />&nbsp;
       <input type="text" name="flickr_photos[]" />
     </p>
     
@@ -84,7 +81,59 @@
     
   </fieldset>
   
-  <fieldset class="column span-24">
+  <fieldset class="column span-11">
+    <legend>Description</legend>
+    
+    <p class="ui">
+      <%= f.check_box :auto_description %>
+      <%= f.label :auto_description %><br/>
+      <span class="description">
+        Check here to auto-load the description from Wikipedia. You might want
+        to uncheck it when a taxon's scientific name is also a non-scientific
+        word or common mispelling, like "Parus".
+      </span>
+    </p>
+    
+    <p class="ui">
+      <%= f.label :wikipedia_title %><br/>
+      <%= f.text_field :wikipedia_title %><br/>
+      <span class="description">
+        The title of the Wikipedia article that we use for the description. If
+        the Wikipedia URL is <code>http://en.wikipedia.org/wiki/Bird</code>,
+        then this value should be <code>Bird</code>. If left blank the
+        scientific name of this taxon is used (that usually works).
+      </span>
+    </p>
+    
+    <p class="ui">
+      <%= f.label :wikipedia_summary %>:
+      <blockquote class="quiet box">
+        <% if taxon.wikipedia_summary -%>
+          <span id="wikipedia_summary"><%= taxon.wikipedia_summary %></span>
+        <% else %>
+          <span id="wikipedia_summary" class="description">No summary has been set.</span>
+        <% end -%>
+        <strong><%= link_to_remote "refresh", 
+          :url => {:action => 'refresh_wikipedia_summary', :id => taxon},
+          :loading => "$('#summary_refresh').hide(); $('#summary_refresh_loading').show()",
+          :complete => 
+            "$('#summary_refresh').show(); " + 
+            "$('#summary_refresh_loading').hide();",
+          :success => "$('#wikipedia_summary').html(request)",
+          :error => "alert(request.responseText)",
+          :datatype => :html,
+          :html => { :id => 'summary_refresh'} %></strong>
+        <span id="summary_refresh_loading" class="eee loading status" style="display: none">Loading...</span>
+      </blockquote>
+      <span class="description">
+        This is a cached summary of this taxon based on its
+        <%= link_to "Wikipedia entry", 
+          "http://wikipedia.org/wiki/#{taxon.wikipedia_title.blank? ? taxon.name : taxon.wikipedia_title}" %>.
+      </span>
+    </p>
+  </fieldset>
+  
+  <fieldset class="last column span-11">
     <legend>Source</legend>
     <!-- <div class="description">
       Please cite the published source of this taxon.
@@ -149,9 +198,7 @@
       be able to add other names here (common names, outdated scientific
       names, etc.).
     <% else -%>
-      <%#= render :partial => "taxon_names/nested_form_fields", :locals => { 
-        :taxon_name => TaxonName.new(:taxon => @taxon) }%>
-      <%= link_to "add a new taxon name", new_taxon_name_path(taxon), :class => 'readmore' %>
+      <%= link_to "add a new taxon name", new_taxon_taxon_name_path(taxon), :class => 'readmore' %>
     <% end -%>
   </fieldset>
   

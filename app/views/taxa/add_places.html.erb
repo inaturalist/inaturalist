@@ -10,22 +10,37 @@
     <% end %>
     live?
   </h3>
-  <div id="place_selector">
-    <% form_remote_tag :url => {:controller => 'taxa', :action => 'add_places'},
-        :loading => "$('##{dom_id @taxon, 'place_selector_loading'}').show()",
-        :complete => "$('##{dom_id @taxon, 'place_selector_loading'}').hide()" do %>
-      <div class="clear buttonrow">
-        <%= text_field_tag :q, '', :class => 'text', :id => dom_id(@taxon, 'place_selector_q') %>
-        <%= submit_tag 'Search', :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
-      </div>
-    <% end %>
-    <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none">Searching...</div>
-    <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0"></ul>
+  <div id="place_selector" class="ui-tabs">
+    
+    <ul>
+      <% for tab in ["Search", "Countries", "US States"] %>
+        <li><a href="#place_selector_<%= tab.split.join('_').downcase %>"><span><%= tab %></span></a></li>
+      <% end %>
+    </ul>
+    
+    <div id="place_selector_search">
+      <% form_remote_tag :url => {:controller => 'taxa', :action => 'add_places'},
+          :loading => "$('##{dom_id @taxon, 'place_selector_loading'}').show()",
+          :complete => "$('##{dom_id @taxon, 'place_selector_loading'}').hide()" do %>
+        <div class="clear buttonrow">
+          <%= text_field_tag :q, '', :class => 'text', :id => dom_id(@taxon, 'place_selector_q') %>
+          <%= submit_tag 'Find Places', :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
+        </div>
+      <% end %>
+      <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none">Searching...</div>
+      <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0"></ul>
+    </div>
+    
+    <!-- <div id="place_selector_map">
+      map
+    </div> -->
+    
+    <div id="place_selector_countries">
+      <%= render :partial => 'add_to_place_link', :collection => @countries %>
+    </div>
+    
+    <div id="place_selector_us_states">
+      <%= render :partial => 'add_to_place_link', :collection => @us_states %>
+    </div>
   </div>
 </div>
-
-<script type="text/javascript" charset="utf-8">
-  function addPlaces(placesJSON) {
-    console.log("placesJSON: ", placesJSON);
-  }
-</script>

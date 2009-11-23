@@ -1,0 +1,223 @@
+<%- js_link ||= nil -%>
+<% form_tag({}, :method => :get, :class => 'clear buttonrow') do %>
+  <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
+  <label for="q">Search</label>
+  <%= text_field_tag 'q', params[:q], :class => 'text' %>
+  <input type="submit" class="default button" value="Go" />
+  <%= link_to "Clear", url_for_params(:without => :q), :class => 'delete button' %>
+  <div class="inter">
+    <span class="description">
+      <% if @taxa.total_entries > 0 -%>
+        <%= @taxa.offset == 0 ? 1 : @taxa.offset %> &ndash; 
+        <%= @taxa.offset + @taxa.per_page %> of
+      <% end -%>
+      <span class="count"><%= number_with_delimiter @taxa.total_entries %></span>
+      results
+    </span>
+    <% unless @q.blank? -%>
+       <span class="description">for</span> <em>&ldquo;<%= @q %>&rdquo;</em>
+    <% end -%>
+    
+    <% unless @places.blank? %>
+      <span class="description">| </span>
+      <%= @places.map {|p| link_to(p.display_name, p)}.join(', ') %>
+    <% end %>
+    
+    <% unless @iconic_taxa.blank? %>
+      <span class="description">| </span>
+      <%= @iconic_taxa.map do |it|
+        link_to(default_taxon_name(it, :use_iconic_taxon_display_name => true), it, :class => "taxon #{it.name}")
+      end.join(', ') %>
+    <% end %>
+    
+    <% unless @colors.blank? %>
+      <span class="description">| </span>
+      <%= @colors.map{|c| content_tag(:span, c.value, :class => "color #{c.value}")}.join(', ') %>
+    <% end %>
+  </div>
+  
+  <div class="inter loading status" style="float: right; display: none">
+    Loading...
+  </div>
+<% end %>
+
+<div class="column span-6">
+  <% unless @faceted_iconic_taxa.blank? && @iconic_taxa.blank? -%>
+    <div id="iconic_taxa_facet" class="facet taxon_links">
+      <strong>
+        <% if @iconic_taxa.blank? -%>
+          <%= link_to_toggle "All Taxonomic Groups", "#iconic_taxa", :class => 'open' %>
+        <% else %>
+          <%= link_to '&laquo; All Taxonomic Groups', url_for_params(:without => [:iconic_taxa, :page]) %>
+        <% end -%>
+      </strong>
+      <div id="iconic_taxa">
+        <% for iconic_taxon in @faceted_iconic_taxa %>
+          <%- selected = @iconic_taxa_ids && @iconic_taxa_ids.include?(iconic_taxon.id) -%>
+          <div class="facet_value<%= ' selected' if selected %>">
+            <%= link_to('&times;', url_for_params(:without => [:iconic_taxa, :page]), :class => 'right description') if selected %>
+            <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
+              url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page),
+              :class => "taxon #{iconic_taxon.name}" %>
+            (<span class="count"><%= number_with_delimiter @facets[:iconic_taxon_id][iconic_taxon.id] %></span>)
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <% unless @faceted_colors.blank? && @colors.blank? -%>
+    <div id="colors_facet" class="facet">
+      <strong>
+        <% if @colors.blank? -%>
+          <%= link_to_toggle "All Colors", "#colors", :class => 'open' %>
+        <% else %>
+          <%= link_to '&laquo; All Colors', url_for_params(:without => [:colors, :page]) %>
+        <% end -%>
+      </strong>
+      <div id="colors">
+        <% for color in @faceted_colors %>
+          <%- selected = @color_ids && @color_ids.include?(color.id) -%>
+          <div class="<%= color.value %> facet_value<%= ' selected' if selected %>">
+            <% if selected %>
+              <% if @color_ids.size > 1 -%>
+                <%= link_to('&times;', 
+                  url_for_params(
+                    :colors => @color_ids.reject {|cid| cid == color.id}.join(','),
+                    :without => :page
+                  ), 
+                  :class => 'right description') %>
+              <% else %>
+                <%= link_to('&times;', url_for_params(:without => [:colors, :page]), :class => 'right description') %>
+              <% end -%>
+            <% elsif @color_ids %>
+              <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :class => 'right' %>
+            <% end %>
+            <%= link_to "&nbsp;", url_for_params(:colors => color.id, :without => :page), :class => 'icon' %>
+            <%= link_to color.value, url_for_params(:colors => color.id, :without => :page) %>
+            (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end -%>
+  
+  <% unless @faceted_places.blank? && @places.blank? -%>
+    <div id="places_facet" class="facet">
+      <strong>
+        <% if @places.blank? -%>
+          <%= link_to_toggle "All Places", "#places", :class => 'open' %>
+        <% else %>
+          <%= link_to '&laquo; All Places', url_for_params(:without => [:page, :places]) %>
+        <% end -%>
+      </strong>
+
+      <ul id="places">
+        <% if @places.blank? -%>
+          <% for place in @faceted_places %>
+            <%- selected = @place_ids && @place_ids.include?(place.id) -%>
+            <li class="facet_value<%= ' selected' if selected %>">
+              <%= link_to('&times;', url_for_params(:without => [:page, :places]), :class => 'right description') if selected %>
+              <%= link_to place_name_and_type(place), url_for_params(:places => place.id, :without => [:page, :places]) %>
+              (<span class="count"><%= number_with_delimiter @facets[:places][place.id] %></span>)
+            </li>
+          <% end %>
+        <% else %>
+          <% if @places.first.parent -%>
+            <li>
+              <%= link_to place_name_and_type(@places.first.parent, :display => true), 
+                url_for_params(:places => @places.first.parent_id, :without => :page) %>
+              <ul>
+          <% end -%>
+
+          <% for place in @places %>
+            <li>
+              <div class="facet_value selected">
+                <%= link_to('&times;', url_for_params(:without => [:page, :places]), :class => 'right description') %>
+                <%= place_name_and_type place %>
+                (<span class="count"><%= number_with_delimiter @facets[:places][place.id] %></span>)
+              </div>
+
+              <ul>
+                <% for child_place in @faceted_places.select{|cp| cp.parent_id == place.id} %>
+                  <li class="facet_value<%= ' selected' if @place_ids && @place_ids.include?(child_place.id) %>">
+                    <%= link_to place_name_and_type(child_place), url_for_params(:places => child_place.id, :without => :page) %>
+                    (<span class="count"><%= number_with_delimiter @facets[:places][child_place.id] %></span>)
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+
+          <% if @places.first.parent -%>
+              </ul>
+            </li>
+          <% end -%>
+        <% end -%>
+
+      </ul>
+    </div>
+  <% end -%>
+</div>
+
+<div id="taxon_list" class="last column span-18">
+  <% if @taxa.empty? %>
+    <div class="readable description">
+      No results found.
+    </div>
+  <% else %>
+    <div class="taxa grid">
+      <% for taxon in @taxa %>
+        <%= render :partial => "taxa/taxon", :object => taxon , :locals => {
+          :link_name => true,
+          :link_image => true,
+          :js_link => js_link,
+          :image_options => {:size => 'thumb'},
+          :include_full_name => true,
+          :extra_class => cycle('first', '', '', '', '', 'last')
+        } %>
+      <% end %>
+    </div>
+  <% end %>
+  
+  <div class="last column span-18">
+    <%= will_paginate(@taxa) %>
+  </div>
+</div>
+
+<% if logged_in? -%>
+  <div id="external_search" class="last column span-24">
+    <div class="quiet clear box">
+      <h3>Not Seeing What You're Looking For?</h3>
+      <p>
+        Sorry! How about we try and repeat your search in some other databases of
+        species names? If we find something, we'll save it so you can find it next
+        time.
+      </p>
+      <div class="column span-6">
+        <% form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
+          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
+          <label for="q">
+            Search <a href="http://www.catalogueoflife.org">Catalogue of Life</a>
+          </label>
+          <%= text_field_tag 'q', params[:q], :class => 'text' %>
+          <input type="hidden" name="all_names" value="true"/>
+          <input type="hidden" name="include_external" value="true"/>
+          <input type="hidden" name="external_src" value="col"/>
+          <input type="submit" class="button" value="Search Catalogue of Life &raquo;">
+        <% end %>
+      </div>
+      <div class="column span-6">
+        <% form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
+          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
+          <label for="q">Search <a href="http://www.ubio.org">uBio</a></label>
+          <%= text_field_tag 'q', params[:q], :class => 'text' %>
+          <input type="hidden" name="all_names" value="true"/>
+          <input type="hidden" name="force_external" value="true"/>
+          <input type="hidden" name="external_src" value="ubio"/>
+          <input type="submit" class="button" value="Search uBio &raquo;"/>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end -%>

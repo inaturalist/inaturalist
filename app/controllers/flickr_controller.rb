@@ -175,6 +175,7 @@ class FlickrController < ApplicationController
       search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
       search_params['extras'] = 'date_upload,owner_name'
+      search_params['sort'] = 'relevance'
       @photos = @flickr.photos.search(search_params)
     end
     

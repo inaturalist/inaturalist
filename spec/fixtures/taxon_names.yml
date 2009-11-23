@@ -1,9 +1,8 @@
---- 
 taxon_name_00353: 
   name: Apodiformes
   updated_at: 2008-09-02 16:23:48 -07:00
   source_identifier: "8060"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=8060
   taxon: Apodiformes
   id: 353
@@ -15,7 +14,7 @@ taxon_name_00331:
   name: Aves
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "696"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=696
   taxon: Aves
   id: 331
@@ -27,7 +26,7 @@ taxon_name_00342:
   name: Pseudacris
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "55222"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=55222
   taxon: Pseudacris
   id: 342
@@ -39,7 +38,7 @@ taxon_name_00343:
   name: Hylidae
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "1566"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=1566
   taxon: Hylidae
   id: 343
@@ -51,7 +50,7 @@ taxon_name_00332:
   name: Chordata
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "695"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=695
   taxon: Chordata
   id: 332
@@ -63,7 +62,7 @@ taxon_name_00333:
   name: Reptilia
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "1707"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=1707
   taxon: Reptilia
   id: 333
@@ -75,7 +74,7 @@ taxon_name_00344:
   name: Anura
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "1557"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=1557
   taxon: Anura
   id: 344
@@ -87,7 +86,7 @@ taxon_name_00345:
   name: Ensatina eschscholtzii
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "585547"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/show_species_details.php?record_id=585547
   taxon: Ensatina_eschscholtzii
   id: 345
@@ -99,7 +98,7 @@ taxon_name_00334:
   name: Amphibia
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "1556"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=1556
   taxon: Amphibia
   id: 334
@@ -111,7 +110,7 @@ taxon_name_00335:
   name: Mammalia
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "1646"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=1646
   taxon: Mammalia
   id: 335
@@ -123,7 +122,7 @@ taxon_name_00346:
   name: Ensatina
   updated_at: 2008-09-02 16:23:48 -07:00
   source_identifier: "63564"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=63564
   taxon: Ensatina
   id: 346
@@ -135,7 +134,7 @@ taxon_name_00347:
   name: Plethodontidae
   updated_at: 2008-09-02 16:23:48 -07:00
   source_identifier: "7563"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=7563
   taxon: Plethodontidae
   id: 347
@@ -147,7 +146,7 @@ taxon_name_00336:
   name: Arachnida
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "165"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=165
   taxon: Arachnida
   id: 336
@@ -159,7 +158,7 @@ taxon_name_00337:
   name: Arthropoda
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "164"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=164
   taxon: Arthropoda
   id: 337
@@ -171,7 +170,7 @@ taxon_name_00348:
   name: Caudata
   updated_at: 2008-09-02 16:23:48 -07:00
   source_identifier: "7557"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=7557
   taxon: Caudata
   id: 348
@@ -183,7 +182,7 @@ taxon_name_00349:
   name: Calypte anna
   updated_at: 2008-09-02 16:23:48 -07:00
   source_identifier: "1405796"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/show_species_details.php?record_id=1405796
   taxon: Calypte_anna
   id: 349
@@ -195,7 +194,7 @@ taxon_name_00338:
   name: Insecta
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "344"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=344
   taxon: Insecta
   id: 338
@@ -207,7 +206,7 @@ taxon_name_00339:
   name: Mollusca
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "2200"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=2200
   taxon: Mollusca
   id: 339
@@ -231,7 +230,7 @@ taxon_name_00351:
   name: Calypte
   updated_at: 2008-09-02 16:23:48 -07:00
   source_identifier: "131628"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=131628
   taxon: Calypte
   id: 351
@@ -243,7 +242,7 @@ taxon_name_00329:
   name: Life
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: 
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: 
   taxon: Life
   id: 329
@@ -255,7 +254,7 @@ taxon_name_00340:
   name: Pseudacris regilla
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "582054"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/show_species_details.php?record_id=582054
   taxon: Pseudacris_regilla
   id: 340
@@ -279,7 +278,7 @@ taxon_name_00330:
   name: Animalia
   updated_at: 2008-09-02 16:23:47 -07:00
   source_identifier: "1"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=1
   taxon: Animalia
   id: 330
@@ -291,7 +290,7 @@ taxon_name_00352:
   name: Trochilidae
   updated_at: 2008-09-02 16:23:48 -07:00
   source_identifier: "8061"
-  lexicon: scientific names
+  lexicon: <%= TaxonName::LEXICONS[:SCIENTIFIC_NAMES] %>
   source_url: http://www.catalogueoflife.org/browse_taxa.php?selected_taxon=8061
   taxon: Trochilidae
   id: 352
