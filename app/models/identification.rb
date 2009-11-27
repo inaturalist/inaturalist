@@ -1,4 +1,6 @@
 class Identification < ActiveRecord::Base
+  include Shared::ActivityStreamable
+  
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon

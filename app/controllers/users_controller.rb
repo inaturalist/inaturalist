@@ -164,6 +164,8 @@ class UsersController < ApplicationController
         :order => "comments.created_at DESC"
       ).uniq
     end
+    
+    @updates = current_user.activity_streams.find(:all, :limit => 15, :order => "updated_at DESC")
   end
   
   def edit

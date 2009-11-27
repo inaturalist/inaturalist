@@ -9,7 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091024022010) do
+ActiveRecord::Schema.define(:version => 20091123044434) do
+
+  create_table "activity_streams", :force => true do |t|
+    t.column "user_id", :integer
+    t.column "subscriber_id", :integer
+    t.column "activity_object_id", :integer
+    t.column "activity_object_type", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
 
   create_table "colors", :force => true do |t|
     t.column "value", :string
@@ -211,20 +220,6 @@ ActiveRecord::Schema.define(:version => 20091024022010) do
 
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
   add_index "lists", ["place_id"], :name => "index_lists_on_place_id"
-
-  create_table "marking_types", :options=>'ENGINE=MyISAM', :force => true do |t|
-    t.column "name", :string
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-  end
-
-  create_table "markings", :options=>'ENGINE=MyISAM', :force => true do |t|
-    t.column "user_id", :integer
-    t.column "observation_id", :integer
-    t.column "marking_type_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-  end
 
   create_table "observations", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "observed_on", :date

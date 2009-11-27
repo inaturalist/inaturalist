@@ -1,4 +1,6 @@
 class Observation < ActiveRecord::Base
+  include Shared::ActivityStreamable
+  
   acts_as_taggable
   acts_as_flaggable
   
@@ -11,9 +13,7 @@ class Observation < ActiveRecord::Base
   belongs_to :taxon, :counter_cache => true
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
-  
-  # has_one  :activity_update, :as => :activity_object
-  
+    
   has_many :photos
   has_many :listed_taxa, :foreign_key => 'last_observation_id'
   has_many :goal_contributions,
@@ -21,10 +21,7 @@ class Observation < ActiveRecord::Base
            :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
-  has_many :markings, :dependent => :destroy
-  has_many :marking_types,
-           :through => :markings
-               
+  
   has_and_belongs_to_many :flickr_photos, :uniq => true
   
   define_index do
@@ -104,7 +101,6 @@ class Observation < ActiveRecord::Base
   after_destroy :refresh_lists_after_destroy
   
   # Activity updates
-  # after_create :create_activity_update
   # after_save :update_activity_update
   # before_destroy :delete_activity_update
   
@@ -520,16 +516,6 @@ class Observation < ActiveRecord::Base
   end
   
   #
-  # Add a marking to the observation
-  #
-  def mark(user_id, marking_type_id)
-    self.markings << Marking.new({
-      :user_id => user_id,
-      :marking_type_id => marking_type_id
-    })
-  end
-  
-  #
   # Set the time_zone of this observation if not already set
   #
   def set_time_zone
@@ -570,38 +556,7 @@ class Observation < ActiveRecord::Base
     
     self.time_observed_at = Time.parse(time_s)
   end
-  
-  #
-  # Unmark the observation
-  #
-  def unmark(user_id, marking_type_id)
-    marking = self.markings.find(:first,
-                :conditions => ["user_id = ? AND marking_type_id = ?",
-                user_id, marking_type_id])
-    # no marking
-    return false if marking.nil?
-    marking.destroy
-  end
-  
-  #
-  # See if the observation is marked a certain type, regardless of user
-  #
-  def marked?(marking_type)
-    marking_types.include?(marking_type)
-  end
-  
-  #
-  # See if the observation is marked something by a user
-  #
-  def marked_by_user?(marking_type, user)
-    !markings.find(:first,
-                   :conditions => ["user_id = ? AND marking_type_id = ?",
-                                   user.id, marking_type.id]).nil?
-  end
-  
-  def marking_counts_for(marking_type)
-    markings.count(:conditions => ["marking_type_id = ?", marking_type.id])
-  end
+
   
   ##### Rules ###############################################################
   #
@@ -678,21 +633,6 @@ class Observation < ActiveRecord::Base
   
   def lsid
     "lsid:inaturalist.org:observations:#{id}"
-  end
-  
-  def create_activity_update
-    require 'app/helpers/taxa_helper'
-    view = ActionView::Base.new(Rails::Configuration.new.view_path, {})
-    class << view
-      include TaxaHelper, ApplicationHelper
-    end
-    snippet = view.render(:partial => 'observations/dashboard_component', :locals => {:observation => self})
-    ao = ActivityUpdate.new({
-      :user_id => self.user_id,
-      :activity_object => self,
-      :snippet => snippet
-    })
-    ao.save
   end
   
   def set_taxon_from_species_guess

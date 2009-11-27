@@ -477,46 +477,6 @@
     <% end %>
   </div><!-- end identifications -->
   
-  <div id="markings">
-    <h3>Markings</h3>
-    <% @marking_types.each do |marking_type| %>
-      <% counts = @observation.marking_counts_for(marking_type) %>
-      <div id="<%= marking_type %>_marking" class="clear marking">  
-      <% if logged_in? %>
-        <% unless @observation.marked_by_user?(marking_type, @user) %>
-          <%= link_to h(marking_type.name),
-                          add_marking_path({
-                            :id => @observation.id,
-                            :marking_type_id => marking_type.id}),
-                            {:class => 'button'} %>
-            <% if counts == 1 %>
-              <%= counts %> person has marked this <%= marking_type.name %>
-            <% elsif counts > 1 %>
-              <%= counts %> people have marked this <%= marking_type.name %>
-            <% end %>
-        <% else %>
-          <%= button_to h(marking_type.name),
-                          remove_marking_path({
-                            :id => @observation.id,
-                            :marking_type_id => marking_type.id}),
-                            {:class => 'button default'} %>
-          <% if counts == 1 %>
-            You marked this <%= marking_type.name %>
-          <% elsif counts > 1 %>
-            You and <%= counts - 1 %> others have marked this <%= marking_type.name %>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= marking_type.name %>
-        <% if counts == 1 %>
-          <%= counts %> person has marked this <%= marking_type.name %>
-        <% elsif counts > 1 %>
-          <%= counts %> people have marked this <%= marking_type.name %>
-        <% end %>
-      <% end %>     
-      </div>
-    <% end %>
-  </div>
   
   <% if @observation.flagged? %>
   <span id="flaggings_heads_up" class="description">
