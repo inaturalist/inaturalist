@@ -33,6 +33,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'gilia', 'gilia'
   inflect.irregular 'clarkia', 'clarkia'
   inflect.irregular 'fuschia', 'fuschia'
+  inflect.irregular 'nutria', 'nutria'
   
   inflect.singular /^(.*)grass$/i, '\1grass'
 
