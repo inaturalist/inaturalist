@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :browse]
-  before_filter :load_display_user_by_login, :except => [:browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
+  before_filter :load_display_user_by_login, :except => [:browse]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
@@ -140,6 +140,7 @@ class PostsController < ApplicationController
   
   def load_display_user_by_login
     @display_user = User.find_by_login(params[:login])
+    @display_user ||= @post.user if @post
     render_404 and return unless @display_user
     true
   end

@@ -4,6 +4,7 @@
 # just lists of taxa that interest them for some reason.
 #
 class List < ActiveRecord::Base
+  include Shared::ActivityStreamable
   belongs_to :user
   has_many :rules, :class_name => 'ListRule', :dependent => :destroy
   has_many :listed_taxa, :dependent => :destroy

@@ -66,10 +66,11 @@ module ApplicationHelper
     case !user.friends.include?(potential_friend)
     when true
       if user != potential_friend
-        button_to("Follow #{potential_friend.login}.", options.merge({ :friend_id => potential_friend.id }), html_options)
+        button_to("Follow #{potential_friend.login}", options.merge({ :friend_id => potential_friend.id }), html_options)
       end
     when false # user is already a contact
-        button_to("Stop following #{potential_friend.login}.", options.merge({ :remove_friend_id => potential_friend.id }), html_options)
+        button_to("Stop following #{potential_friend.login}", 
+          options.merge({ :remove_friend_id => potential_friend.id }), html_options)
     end
   end
   
@@ -95,8 +96,9 @@ module ApplicationHelper
   def link_to_toggle(link_text, target_selector, options = {})
     options[:class] ||= ''
     options[:class] += ' togglelink'
+    options[:rel] ||= target_selector
     link_to_function link_text, 
-      "$('#{target_selector}').toggle(); $(this).toggleClass('open');", 
+      "$('#{target_selector}').toggle(); $(this).toggleClass('open')", 
       options
   end
   

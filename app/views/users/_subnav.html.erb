@@ -35,8 +35,8 @@
     <% end %>
   </li>
   <li>
-  	<% if is_not_me?(user) %>
+    <% if is_not_me?(user) %>
       <%= friend_button current_user, user, {:id => 'follow_button'} %>
-  	<% end %>
+    <% end %>
   </li>
 </ul>

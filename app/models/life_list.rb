@@ -28,19 +28,17 @@ class LifeList < List
   # observed.
   #
   def refresh(params = {})
-    add_new_taxa = params.delete(:add_new_taxa)
     if taxa = params[:taxa]
       # Find existing listed_taxa of these taxa to update
-      collection = ListedTaxon.find(:all,
-        :conditions => ["list_id = ? AND taxon_id IN (?)", self, taxa])
+      collection = ListedTaxon.all(:conditions => [
+        "list_id = ? AND taxon_id IN (?)", self, taxa])
       
       # Add new listed taxa for taxa not already on this list
-      if add_new_taxa
+      if add_new_taxa = params.delete(:add_new_taxa)
         (collection.map(&:taxon_id) | taxa.map(&:id)).each do |taxon_id|
-          collection << ListedTaxon.new(
-            :list => self,
-            :taxon_id => taxon_id
-          )
+          listed_taxon = ListedTaxon.new(:list => self, :taxon_id => taxon_id)
+          listed_taxon.skip_update = true
+          collection << listed_taxon
         end
       end
     else

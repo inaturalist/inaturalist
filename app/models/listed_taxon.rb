@@ -4,6 +4,7 @@
 # sure a taxon passes all of a list's ListRules.
 #
 class ListedTaxon < ActiveRecord::Base
+  include Shared::ActivityStreamable
   belongs_to :list
   belongs_to :taxon, :counter_cache => true
   belongs_to :last_observation,
@@ -27,6 +28,14 @@ class ListedTaxon < ActiveRecord::Base
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
     "list_id: #{self.list_id}>"
+  end
+  
+  def user
+    list.user
+  end
+  
+  def user_id
+    list.user_id
   end
   
   def validate

@@ -2,8 +2,7 @@
   Your Home
 <% end -%>
 <% content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations' %>
-  <%= stylesheet_link_tag 'account/index' %>
+  <%= stylesheet_link_tag 'observations', 'identifications', "lists", 'account/index' %>
   <style type="text/css" media="screen">
     .comment {
       margin: 0;
@@ -25,19 +24,192 @@
     .item {
       margin-top: 1em;
     }
+    
+    h4 .togglelink{
+      margin-left: -16px;
+    }
+    
+    .update {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+      padding-left: 30px;
+    }
+    
+    .update_body {
+      margin-bottom: 10px;
+    }
+    
+    .update .observations.mini .observation {
+      border: 0 transparent;
+    }
+    
+    .update h5 {
+      font-weight: normal;
+      margin-left: -30px;
+      font-size: 120%;
+      color: #999;
+    }
+    
+    .update h5 .usericon {
+      width: 25px;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+    
+    #updates h4.date {
+      border-bottom: 1px dotted #aaa;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .observationcol { width: 260px; }
+    .identificationcol { width: 290px; }
+    .identification .identification_body {
+      float: left;
+      width: 180px;
+    }
+    .identification {
+      padding: 1em;
+      background-color: #eee;
+    }
+    
+    .listed_taxon .actions {
+      display: none;
+    }
+    
+    .update .comment,
+    .update .listed_taxon {
+      padding-left: 0;
+    }
+    
+    .update .update_toggle {
+      visibility: hidden;
+      color: #999;
+/*      padding: 2px 5px;*/
+    }
+    
+    .update .update_toggle:hover {
+      color: #333;
+/*      background-color: #eee;*/
+    }
+    
+    .update:hover .update_toggle {
+      visibility: visible;
+    }
   </style>
 <% end -%>
 
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery/plugins/jqModal', 'modal_image' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#modal_image_box').jqmAddTrigger('a.modal_image_link');
+    });
+  </script>
+<%- end -%>
+
 <h2>Welcome, <%= @user.login %>!</h2>
 
-<div class="column span-16">
-	<h3>Recent Updates</h3>
-	
-	<% if @updates.length > 0 %>
-  	<% @updates.each do |update| %>
-  	  <%= render update.activity_object %>
-  	<% end %>
-	<% else %>
+<div id="updates" class="column span-15 append-1">
+  <% unless @updates.blank? -%>
+    <span class="small ui right description">
+      <%= link_to_function "collapse days", 
+        "$('#updates .datetoggle').removeClass('open');" +
+        "$($('#updates .datetoggle').attr('rel')).hide();" +
+        "$(this).hide();" +
+        "$(this).next().show()" %>
+      <%= link_to_function "expand days", 
+        "$('#updates .datetoggle').addClass('open');" +
+        "$($('#updates .datetoggle').attr('rel')).show();" +
+        "$(this).hide();" +
+        "$(this).prev().show()",
+        :style => "display: none" %> |
+      <%= link_to_function "collapse updates", 
+        "$('#updates .update_body').hide();" +
+        "$(this).hide();" +
+        "$(this).next().show();" +
+        "$('.collapselink').hide();" +
+        "$('.expandlink').show()" %>
+      <%= link_to_function "expand updates", 
+        "$('#updates .update_body').show();" +
+        "$(this).hide();" +
+        "$(this).prev().show();" +
+        "$('.collapselink').show();" +
+        "$('.expandlink').hide()",
+        :style => "display: none" %>
+    </span>
+  <% end -%>
+  <h3>Recent Updates</h3>
+  
+  <% if @updates.length > 0 %>
+    <% for day, updates in @updates.group_by{|u| u.created_at.to_date} %>
+      <h4 class="date description">
+        <%= link_to_toggle (day.today? ? "Today" : day.to_s(:long)), "#updates_#{day.to_time.to_i}",
+          :class => "open datetoggle" %>
+        <small>(<span class="count"><%= updates.size %></span> <%= updates.size == 1 ? "update" : "updates" %>)</small>
+      </h4>
+      <div id="updates_<%= day.to_time.to_i %>">
+        <% updates.each do |update| %>
+          <div id="<%= dom_id update %>" class="update clear">
+            <%= link_to_function "collapse",
+              "$('##{dom_id update, 'body'}').hide(); $(this).hide(); $(this).next().show()",
+              :class => "right update_toggle collapselink" %>
+            <%= link_to_function "expand",
+              "$('##{dom_id update, 'body'}').show(); $(this).hide(); $(this).prev().show()",
+              :style => "display: none",
+              :class => "right update_toggle expandlink" %>
+            <h5>
+              <%= link_to image_tag(update.user.icon.url(:thumb), :class => 'usericon'),
+                person_path(update.user) %>
+              <%= link_to update.user.login, person_path(update.user) %> added
+              <%- case update.activity_object_type -%>
+              <%- when "Post" -%>
+                a <%= link_to "journal post", post_path(update.user, update.activity_object) %>
+              <%- when "Comment" %>
+                a <%= link_to "comment", update.activity_object %>
+                on
+                <%= update.activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
+                <%= update.activity_object.parent_type.humanize.downcase %>
+                by
+                <%= link_to image_tag(update.activity_object.parent.user.icon.url(:thumb), :class => 'usericon'),
+                  person_path(update.activity_object.parent.user) %>
+                <%= link_to update.activity_object.parent.user.login, update.activity_object.parent.user %>
+              <%- when "ListedTaxon" -%>
+                a taxon to
+                <%= link_to update.activity_object.list.title, update.activity_object %>
+              <%- when "List" -%>
+                a new list called
+                <%= link_to update.activity_object.title, update.activity_object %>
+              <%- else -%>
+                <%= update.activity_object_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
+                <%= link_to update.activity_object_type.underscore.humanize.downcase, update.activity_object %>
+              <%- end -%>
+              at <%= update.created_at.strftime("%I:%S %p").downcase.gsub(/^0/, '') %>
+            </h5>
+            
+            <div id="<%= dom_id update, 'body' %>" class="clear update_body">
+              <%- case update.activity_object_type -%>
+              <%- when "Observation" -%>
+                <div class="mini observations">
+                  <%= render :partial => "observations/cached_component", :object => update.activity_object %>
+                </div>
+              <%- when "Identification" -%>
+                <%= render :partial => "identifications/identification_with_observation", :object => update.activity_object %>
+              <%- when "ListedTaxon" -%>
+                <%= render :partial => "lists/listed_taxon", :object => update.activity_object %>
+              <%- when "Post" %>
+                <%= render :partial => "posts/post", :object => update.activity_object, 
+                  :locals => { :truncate_length => 200 } %>
+              <%- when "List" %>
+              <%- else -%>
+                <%= render update.activity_object %>
+              <%- end -%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
     <p>
       There's not much to show here yet, but soon this space will be filled up with recent activity.
     </p>
@@ -73,7 +245,7 @@
   <% end %>
   
   <% for item in @recently_commented %>
-  <div class="item">
+  <div class="item clear">
     <% if item.is_a? Observation %>
       <%= render :partial => 'observations/mini',
                  :locals => { :observation => item, :include_description => false } %>

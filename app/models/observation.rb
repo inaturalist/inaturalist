@@ -405,10 +405,12 @@ class Observation < ActiveRecord::Base
     if self.taxon
       # If the owner doesn't have an identification for this obs, make one
       unless owners_ident
-        owners_ident = Identification.create(
+        owners_ident = Identification.new(
           :user => self.user, 
           :taxon => self.taxon,
           :observation => self)
+        owners_ident.skip_update = true
+        owners_ident.save
       end
       
       # If the obs taxon and the owner's ident don't agree, make them
@@ -442,7 +444,7 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    List.refresh_for_user(self.user, :taxa => target_taxa)
+    List.refresh_for_user(self.user, :taxa => target_taxa, :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil

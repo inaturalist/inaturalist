@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  include Shared::ActivityStreamable
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   

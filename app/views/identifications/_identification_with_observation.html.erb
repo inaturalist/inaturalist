@@ -1,0 +1,24 @@
+<%- identification ||= object || @identification -%>
+      <div class="mini observations observationcol column span-8">
+        <%= render :partial => "observations/cached_component", :locals => { 
+          :observation => identification.observation } %>
+      </div>
+      <div class="identificationcol last column span-10">
+        <%- extra = capture do -%>
+          <div class="small description">
+            Added on <%= identification.created_at.to_date.to_s(:long) %>.
+            
+            <%- if @other_id_stats && @other_id_stats[identification.observation_id] -%>
+              <a href="<%= url_for(identification.observation) %>">
+                <span class="count"><%= pluralize @other_id_stats[identification.observation_id][:num_agreements], 'person' %></span> agree<%= 's' if @other_id_stats[identification.observation_id][:num_agreements] == 1 %>,
+                <span class="count"><%= @other_id_stats[identification.observation_id][:num_disagreements] %></span> disagree<%= 's' if @other_id_stats[identification.observation_id][:num_disagreements] == 1 %>
+              </a>
+            <%- end -%>
+          </div>
+        <%- end -%>
+        <%= render :partial => "identifications/identification", :locals => { 
+          :identification => identification,
+          :extra => extra
+        } %>
+      </div>
+      

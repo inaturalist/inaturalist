@@ -7,8 +7,8 @@
   #   * seenit - whether or not the current user has seen the taxon in the 
   #       listed_taxon.  Defaults to false.
 %>
-<%- listed_taxon ||= @listed_taxon -%>
-<%- list ||= @list ||= @listed_taxon.list %>
+<%- listed_taxon ||= object || @listed_taxon -%>
+<%- list ||= @list ||= listed_taxon.list %>
 <%- current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids -%>
 <%- seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) -%>
 <%- seenit ||= false -%>
