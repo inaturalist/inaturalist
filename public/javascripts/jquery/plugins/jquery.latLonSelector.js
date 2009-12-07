@@ -58,6 +58,7 @@
       map.setCenter(new GLatLng(37.8, -122.2), 13);
       map.addControl(new GSmallMapControl());
       map.addControl(new GMenuMapTypeControl());
+      map.addMapType(G_PHYSICAL_MAP);
     } else {
       throw "Google Maps doesn't work with this browser."
     }
