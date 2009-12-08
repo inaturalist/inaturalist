@@ -3,7 +3,7 @@ module Shared
     attr_accessor :skip_update
     
     def self.included(ar)
-      ar.has_many :activity_streams
+      ar.has_many :activity_streams, :dependent => :destroy
       ar.after_create :create_activity_update
     end
     
