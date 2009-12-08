@@ -14,7 +14,7 @@
   link_to_function("Yes, find them!", nil, :id => "find_photos_link_#{i}", :class => 'button') do |page|
     page["find_photos_link_#{i}".to_sym].hide
     page.visual_effect(:appear, "flickr_photos_field_#{i}")
-    page << "queryPhotos('', #{i}, $('flickr_photos_status_#{i}'));"
+    page << "queryPhotos('', #{i}, $('#flickr_photos_status_#{i}').get(0));"
   end
 %>
 <div id="flickr_photos_field_<%= i %>" style="display: none">

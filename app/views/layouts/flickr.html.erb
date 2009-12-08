@@ -1,8 +1,7 @@
 <html>
 <head>
   <title>iNaturalist: Flickr Integration</title>
-  <%= stylesheet_link_tag 'blueprint/screen' %>
-  <%= stylesheet_link_tag 'index' %>
+  <%= render :partial => 'shared/common_stylesheets'%>
   <style type="text/css" media="screen">
     #flickr-link {
       margin-top: 60px;
@@ -20,7 +19,7 @@
       text-align: center;
     }
   </style>
-  <%= javascript_include_tag 'prototype' -%>
+  <%= javascript_include_tag 'application', 'inaturalist', 'jquery/jquery-1.3.2.min' %>
 </head>
 <body>
   <%= render :partial => 'shared/header' %>  
