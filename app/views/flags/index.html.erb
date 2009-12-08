@@ -23,7 +23,7 @@
   <% end %>
 
   <%# Username flagged user's model model_string because  %>
-  <% if current_user.is_curator? %>
+  <% if logged_in? && current_user.is_curator? %>
     <% for flag in @flags %>
       <li>
         <%= link_to flag.user.login, :controller=>"users", :action=>"show", :id=>flag.user_id %>
