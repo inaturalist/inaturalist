@@ -38,7 +38,6 @@
   </p>
   <p class="ui">
     <%= n.label :lexicon %><br/>
-    <%#= n.text_field :lexicon %>
     <%= n.select :lexicon, 
       options_for_select(TaxonName::DEFAULT_LEXICONS, 
         :selected => @taxon_name.new_record? ? TaxonName::LEXICONS[:ENGLISH] : nil) +
@@ -46,8 +45,25 @@
       "<option value='' #{'selected="selected"' if @taxon_name.lexicon.blank?}>Unknown</option>" +
       options_for_select(TaxonName::LEXICONS.values.sort,
         :include_blank => "Unknown",
-        :selected => @taxon_name.new_record? ? nil : @taxon_name.lexicon)
+        :selected => @taxon_name.new_record? ? nil : @taxon_name.lexicon),
+      {}, {:id => "taxon_name_lexicon_select"}
     %>
+  </p>
+  <p class="ui">
+    <%= link_to_function "Add new lexicon", 
+      "$('#new_lexicon_field').show(); " +
+      "$('#new_lexicon_field input').attr('name', 'taxon_name[lexicon]');" +
+      "$('#taxon_name_lexicon_select').attr('name', 'lexicon_select');" +
+      "$(this).hide();",
+      :id => "new_lexicon_link" %>
+    <div id="new_lexicon_field" style="display: none">
+      <%= n.text_field :lexicon, :name => "lexicon_text" %>
+      <%= link_to_function "Cancel", 
+        "$('#new_lexicon_field').hide(); " +
+        "$('#new_lexicon_field input').attr('name', 'lexicon_text');" +
+        "$('#taxon_name_lexicon_select').attr('name', 'taxon_name[lexicon]');" +
+        "$('#new_lexicon_link').show();" %>
+    </div>
   </p>
   <p class="ui" style="margin: 20px 0">
     <%= label_tag 'If this is a scientific name, is it currently accepted?' %><br/>

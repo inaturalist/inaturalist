@@ -37,6 +37,7 @@ class TaxonName < ActiveRecord::Base
     :ITALIAN             =>  'Italian',
     :KOREAN              =>  'Korean',
     :MALTESE             =>  'Maltese',
+    :MAORI               =>  'Maori',
     :MISIMA_PANEATI      =>  'Misima-paneati',
     :NORWEGIAN           =>  'Norwegian',
     :PANGASINAN          =>  'Pangasinan',
