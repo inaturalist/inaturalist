@@ -115,12 +115,16 @@
     <span class="small ui right description">
       <%= link_to_function "collapse days", 
         "$('#updates .datetoggle').removeClass('open');" +
-        "$($('#updates .datetoggle').attr('rel')).hide();" +
+        "$('#updates .datetoggle').each(function() {" +
+          "$($(this).attr('rel')).hide()" +
+        "});" +
         "$(this).hide();" +
         "$(this).next().show()" %>
       <%= link_to_function "expand days", 
         "$('#updates .datetoggle').addClass('open');" +
-        "$($('#updates .datetoggle').attr('rel')).show();" +
+        "$('#updates .datetoggle').each(function() {" +
+          "$($(this).attr('rel')).show()" +
+        "});" +
         "$(this).hide();" +
         "$(this).prev().show()",
         :style => "display: none" %> |
