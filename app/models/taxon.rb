@@ -512,7 +512,7 @@ class Taxon < ActiveRecord::Base
     summary = query_results = parsed = nil
     begin
       query_results = w.query(
-        :titles => wikipedia_title || name,
+        :titles => (wikipedia_title.blank? ? name : wikipedia_title),
         :redirects => '', 
         :prop => 'revisions', 
         :rvprop => 'content')
