@@ -11,13 +11,15 @@
         <% end %>
       </td>
       <td class="inat-observation-body" valign="top">
-        <%= link_to observation.species_guess, observation %>
+        <%= link_to (observation.species_guess.blank? ? "Something" : observation.species_guess), observation %>
         <div class="inat-meta">
           <% unless observation.observed_on.blank? -%>
-            <span class="inat-label">Date:</span> <span class="inat-value"><%= observation.observed_on.to_s(:short) %></span><br/>
+            <span class="inat-label">Date:</span>
+            <span class="inat-value"><%= observation.observed_on.to_s(:short) %> <%= observation.observed_on.year %></span><br/>
           <% end -%>
           <% unless observation.place_guess.blank? %>
-            <span class="inat-label">Place:</span> <span class="inat-value"><%= observation.place_guess %></span>
+            <span class="inat-label">Place:</span>
+            <span class="inat-value"><%= observation.place_guess %></span>
           <% end %>
         </div>
       </td>

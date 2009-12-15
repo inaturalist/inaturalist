@@ -1,5 +1,4 @@
 class WelcomeController < ApplicationController
-  
   def index
     @observations = Observation.find(:all, 
       :include => :flickr_photos,
