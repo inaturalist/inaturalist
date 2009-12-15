@@ -2,7 +2,7 @@
   <% for observation in @observations %>
     <tr class="inat-observation">
       <td class="inat-observation-image" valign="top" align="center">
-        <% link_to observation do %>
+        <% link_to observation_url(observation) do %>
           <% if obs_img_url = observation_image_url(observation) -%>
             <%= image_tag obs_img_url, :border => 0 %>
           <% else %>
@@ -11,7 +11,7 @@
         <% end %>
       </td>
       <td class="inat-observation-body" valign="top">
-        <%= link_to (observation.species_guess.blank? ? "Something" : observation.species_guess), observation %>
+        <%= link_to (observation.species_guess.blank? ? "Something" : observation.species_guess), observation_url(observation) %>
         <div class="inat-meta">
           <% unless observation.observed_on.blank? -%>
             <span class="inat-label">Date:</span>
