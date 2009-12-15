@@ -193,6 +193,11 @@ img.mini.usericon {
   background: url('/images/logo-eee-15px.png') 0% 50% no-repeat;
 }
 
+#subnav li a:hover,
+#subnav li a.active {
+  background: url('/images/logo-15px.png') 0% 50% no-repeat;
+}
+
 #subnav #observations_link {
   background: url('/images/notebook-icon-eee-15px.png') 0% 40% no-repeat;
 }

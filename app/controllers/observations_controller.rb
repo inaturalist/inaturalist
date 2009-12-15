@@ -604,6 +604,11 @@ class ObservationsController < ApplicationController
 
       format.atom
       format.csv
+      format.widget do
+        render :update do |page|
+          page << "document.write('#{escape_javascript(render(:partial => 'widget.html'))}')"
+        end
+      end
     end
   end
   
@@ -667,6 +672,27 @@ class ObservationsController < ApplicationController
             :user => {:only => :login}
           },
           :methods => [:image_url, :short_description])
+      end
+    end
+  end
+  
+  def widget
+    @order_by = params[:order_by] || "observed_on"
+    @order = params[:order] || "desc"
+    @limit = params[:limit] || 5
+    @limit = @limit.to_i
+    @logo = params[:logo] != "false"
+    @widget_url = observations_by_login_feed_url(current_user.login, 
+      :format => "widget", 
+      :limit => @limit, 
+      :order => @order, 
+      :order_by => @order_by)
+    respond_to do |format|
+      format.html
+      format.js do
+        render :update do |page|
+          page.replace_html "widget_preview_and_code", :partial => "widget_preview_and_code"
+        end
       end
     end
   end

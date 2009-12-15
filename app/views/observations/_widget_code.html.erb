@@ -1,0 +1,32 @@
+<%- widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5) -%>
+<style type="text/css" media="screen">
+.inat-widget { font-family: Georgia, serif; background-color: white; padding: 10px; line-height: 1;}
+.inat-widget-header {margin-bottom: 10px;}
+.inat-widget td {vertical-align: top; padding-bottom: 10px;}
+.inat-label { color: #888; }
+.inat-meta { font-size: smaller; margin-top: 3px; }
+.inat-observation-body, .inat-user-body { padding-left: 10px; }
+.inat-observation-image {text-align: center;}
+.inat-observation-image, .inat-user-image { width: 48px; }
+.inat-observation-image img, .inat-user-image img { max-width: 48px; }
+.inat-label, .inat-value, .inat-user { font-family: "Trebuchet MS", Arial, sans-serif; }
+.inat-user-body {vertical-align: middle;}
+.inat-widget td.inat-user-body {vertical-align: middle;}
+</style>
+<div class="inat-widget">
+  <% if @logo -%><div class="inat-widget-header"><img src="http://inaturalist.org/images/logo-small.gif" alt="iNaturalist logo" /></div><% end -%>
+  <script type="text/javascript" charset="utf-8" src="<%= widget_url %>"></script>
+  <table>
+    <tr class="inat-user">
+      <td class="inat-user-image">
+        <%- img_url = (Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000") + current_user.icon.url(:thumb) -%>
+        <%= link_to image_tag(img_url, :class => 'usericon'), 
+          observations_by_login_url(current_user.login), :border => 0 %>
+      </td>
+      <td class="inat-user-body">
+        <strong><%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>", 
+          observations_by_login_url(current_user.login) %></strong>
+      </td>
+    </tr>
+  </table>
+</div>

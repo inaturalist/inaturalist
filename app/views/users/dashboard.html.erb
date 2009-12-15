@@ -108,7 +108,10 @@
   </script>
 <%- end -%>
 
-<h2>Welcome, <%= @user.login %>!</h2>
+<div id="pageheader">
+  <h2>Welcome, <%= @user.login %>!</h2>
+  <%= render :partial => 'users/subnav', :locals => { :user => current_user } %>
+</div>
 
 <div id="updates" class="column span-15 append-1">
   <% unless @updates.blank? -%>
@@ -297,4 +300,15 @@
       </div>
     <% end %>
   <% end %>
+  
+  <br/>
+  <hr/>
+  
+  <h3>Extras</h3>
+  
+  <h4><%= link_to "Observations Widget", :controller => "observations", :action => "widget" %></h4>
+  <p class="description">
+    Show off your recent observations on your own website!
+    <%= link_to "Get started &raquo;", :controller => "observations", :action => "widget" %>
+  </p>
 </div>

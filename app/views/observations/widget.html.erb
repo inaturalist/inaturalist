@@ -1,0 +1,90 @@
+<%- content_for(:title) do -%>
+  Observations Widget
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    textarea { width: 100%; }
+    iframe { height: 600px; }
+    
+    /* re-reset blueprint stuff */
+    table   { margin: 0; }
+    th      { border: 0 transparent; font-weight: inherit; }
+    td      { border: 0 transparent; vertical-align: top; }
+    th,td   { padding: 0; }
+    tfoot   { font-style: normal; }
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    // var widget_url = '<%= @widget_url %>';
+    // $(document).ready(function() {
+    //   $('#order').change(function() {
+    //     widget_url.replace(/order=\w+/, 'order='+$(this).val());
+    //     var code = $('#code').val().replace(/order=\w+/, 'order='+$(this).val());
+    //     $('#code').val(code).change();
+    //   });
+    //   $('#order_by').change(function() {
+    //     widget_url.replace(/order_by=[\w_]+/, 'order_by='+$(this).val());
+    //     var code = $('#code').val().replace(/order_by=[\w_]+/, 'order_by='+$(this).val());
+    //     $('#code').val(code).change();
+    //   });
+    //   $('#limit').change(function() {
+    //     widget_url.replace(/limit=\d+/, 'limit='+$(this).val());
+    //     var code = $('#code').val().replace(/limit=\d+/, 'limit='+$(this).val());
+    //     $('#code').val(code).change();
+    //   });
+    // });
+  </script>
+<%- end -%>
+<div id="pageheader">
+  <h2>Observations Widget</h2>
+  <p class="description">
+    Configure a widget of your observations to include on your website or
+    blog. You may have to include the embedded CSS in the
+    <code>&lt;head&gt;</code> of your HTML.  Feel free to re-write the CSS.
+  </p>
+</div>
+
+<div class="column span-8">
+  <h3>Settings</h3>
+  <%# form_remote_tag :loading => "$('#loading').show()", :complete => "$('#loading').hide()" do %>
+  <form method="get">
+    <div class="field">
+      <label>Logo</label>
+      <input type="radio" name="logo" value="true" id="logo_show" <%= 'checked="checked"' if @logo %>> <label for="logo_show">Show</label>
+      <input type="radio" name="logo" value="false" id="logo_hide" <%= 'checked="checked"' unless @logo %>> <label for="logo_hide">Hide</label>
+    </div>
+    <div class="field">
+      <label for="limit">Number of observations</label><br/>
+      <select name="limit" id="limit">
+        <% 20.times do |n| %>
+        <option value="<%= n + 1 %>"<%= ' selected="selected"' if n+1 == @limit %>><%= n + 1 %></option>
+        <% end %>
+      </select>
+    </div>
+    
+    <div class="field">
+      <label for="order_by">Order by</label><br/>
+      <select name="order_by" id="order_by">
+        <option <%= 'selected="selected"' if @order_by == 'observed_on' %> value="observed_on">date observed on</option>
+        <option <%= 'selected="selected"' if @order_by == 'created_at' %> value="created_at">date added</option>
+      </select>
+    </div>
+    
+    <div class="field">
+      <label for="order">Order</label><br/>
+      <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc">Descending</label>
+      <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc">Ascending</label>
+    </div>
+    
+    <%= submit_tag "Configure &raquo;", :class => "button" %>
+  </form>
+</div>
+
+<div class="last column span-16">
+  <div id="loading" class="loading status" style="display: none">Loading preview and code...</div>
+  <span id="widget_preview_and_code">
+    <%= render :partial => 'widget_preview_and_code' %>
+  </span>
+</div>
+

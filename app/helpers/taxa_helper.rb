@@ -51,7 +51,9 @@ module TaxaHelper
   # otherwise the iconic taxon icon.
   #
   def taxon_image(taxon, params = {})
-    return iconic_taxon_image(taxon, params) if taxon.flickr_photos.empty?
+    if taxon.blank? || taxon.flickr_photos.empty?
+      return iconic_taxon_image(taxon, params)
+    end
     image_params = {:alt => default_taxon_name(taxon)}
     unless taxon.flickr_photos.empty?
       image_params[:alt] += " - Photo #{taxon.flickr_photos.first.attribution}"
@@ -67,7 +69,11 @@ module TaxaHelper
   def taxon_image_url(taxon, params = {})
     return iconic_taxon_image_url(taxon, params) if taxon.flickr_photos.empty?
     size = params[:size] ? "#{params[:size]}_url" : 'square_url'
-    taxon.flickr_photos.first.send(size)
+    if taxon.flickr_photos.first.respond_to?(size)
+      taxon.flickr_photos.first.send(size)
+    else
+      taxon.flickr_photos.first.square_url
+    end
   end
   
   #
@@ -107,7 +113,8 @@ module TaxaHelper
     else
       nil
     end
-    path = 'iconic_taxa/'
+    path = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
+    path += '/images/iconic_taxa/'
     if iconic_taxon
       path += iconic_taxon.name.downcase
     else

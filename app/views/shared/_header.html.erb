@@ -93,6 +93,7 @@
         </li>
         <li><%= link_to "Lists", lists_by_login_path(current_user.login), :class => 'lists_link' %></li>
         <li><%= link_to "Journal", journal_by_login_path(current_user.login), :class => 'journal_link' %></li>
+        <li><%= link_to "Profile", person_path(current_user), :class => 'profile_link' %></li>
       </ul>
     </li>
     <%- end -%>

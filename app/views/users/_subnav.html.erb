@@ -1,4 +1,9 @@
 <ul id="subnav" class="clear">
+  <% if logged_in? && current_user.id == user.id -%>
+    <li>
+      <%= link_to "Home", home_path, :class => "#{'active' if current_page?(:controller => "users", :action => "dashboard")}" %>
+    </li>
+  <% end -%>
   <li>
     <% if current_page?(:controller => :observations, :action => :by_login) %>
       <span id="observations_link" class="active">Observations</span> 

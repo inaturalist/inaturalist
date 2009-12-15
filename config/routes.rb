@@ -84,7 +84,8 @@ ActionController::Routing::Routes.draw do |map|
                 :action => 'selector',
                 :conditions => {:method => :get}
   
-  map.curate_observations '/observations/curation', :controller=>'observations', :action=>'curation'
+  map.curate_observations '/observations/curation', :controller => 'observations', :action => 'curation'
+  map.observations_widget '/observations/widget', :controller => 'observations', :action => 'widget'
                                         
   map.observations_by_login 'observations/:login', 
                             :controller => 'observations', 
