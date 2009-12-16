@@ -3,18 +3,217 @@ Taxa &middot; All Species
 <% end -%>
 
 <% content_for(:extrajs) do %>
+  <%= javascript_include_tag "jquery/plugins/jquery.scrollTo-min.js" %>
   <!--[if lt IE 8]>
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
+  <script type="text/javascript" charset="utf-8">
+    // Animation might be cool if I can get it working right...
+    // $(document).ready(function() {
+    //   $('#featured .taxonimage').animate({
+    //     top: "-" + (1024 - 390 - 40) + "px",
+    //     right: "-" + (1024 - 950) + "px"
+    //   }, 45000);
+    // });
+  </script>
 <% end %>
 
 <%- content_for(:extracss) do %>
 <%= stylesheet_link_tag 'taxa/index' %>
+<style type="text/css" media="screen">
+  #featured {
+    margin-bottom: 20px;
+    overflow: hidden;
+    height: 390px;
+    position: relative;
+  }
+  .featured_taxon {
+    top: 0;
+    position: absolute;
+    width: 950px;
+    overflow: hidden;
+    height: 390px;
+    color: white;
+  }
+  
+  #featured .taxonimage {
+    width: 1024px;
+    position: absolute;
+    top: -40px;
+    right: 0;
+    z-index: 0;
+  }
+  
+  #featured .taxon, 
+  #desccol, 
+  #featured .taxon_observations,
+  #photocredit {
+    z-index: 10;
+  }
+  
+  #desccol {
+    width: 300px;
+    position: absolute;
+    right: 0;
+    padding: 10px 20px;
+    height: 280px;
+  }
+  
+  #desccol .readable {
+    font-size: 115%;
+  }
+  
+  #featured .taxon {
+    position: relative;
+    left: 0;
+    font-family: Georgia, serif;
+    font-size: 140%;
+    position: absolute;
+    padding: 10px;
+  }
+  
+  #desccol a,
+  #featured .taxon_observations a {
+    color: #73AC13;
+  }
+  #desccol a:hover,
+  #featured .taxon_observations a:hover {
+    color: #A7D741;
+  }
+  #featured .taxon a,
+  #featured .taxon a:hover {
+    color: white;
+  }
+  
+  #featured .taxon a:hover {
+    border-bottom: 1px dotted white;
+  }
+  
+  
+  #desccol, 
+  #featured .taxon {
+    background-color: #222;
+  }
+  
+  #featured .taxon_observations,
+  #photocredit {
+    background-color: black;
+  }
+  
+  #desccol, 
+  #featured .taxon,
+  #featured .taxon_observations,
+  #photocredit {
+    opacity: 0.9;
+  }
+  
+  #featured .othernames {
+    font-size: 90%;
+  }
+  
+  #featured .taxon_observations {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    height: 60px;
+    padding: 20px 20px 10px;
+    line-height: 1.3;
+  }
+  
+  #photocredit {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 5px 10px;
+  }
+  
+  #recently_observed img {
+    max-width: 164px;
+    vertical-align: middle;
+  }
+  
+  #recently_observed p .date {
+    font-size: 80%;
+  }
+  #recently_observed p {
+    margin-bottom: 10px;
+  }
+  
+  .navdot {
+    opacity: 0.5;
+    font-size: 150%;
+  }
+  
+  .navdot.selected {
+    opacity: 1;
+  }
+</style>
 <% end -%>
 
-<h2>Species <span class="description">&amp; Other Taxa</span></h2>
+<div class="pageheader">
+  <div class="right">
+    <%= render :partial => 'search_form' %>
+  </div>
+  <h2>Species <span class="description">&amp; Other Taxa</span></h2>
+</div>
 
-<%= render :partial => 'search_form' %>
+<div id="featured" class="column span-24">
+  <% @featured_taxa.each_with_index do |taxon, i| %>
+    <div id="featured_taxon_<%= i %>" class="featured_taxon" style="left: <%= i * 950 %>px">
+      <%= render :partial => "shared/taxon", :object => taxon, :locals => {
+        :link_url => taxon_url(taxon)
+      } %>
+      <div id="desccol">
+        <center>
+          <% @featured_taxa.size.times do |n| %>
+            <%= link_to_function "&middot", 
+              "$('.navdot').removeClass('selected');" +
+              "$('.navdot_#{n}').addClass('selected');" +
+              "$('#featured').scrollTo('#featured_taxon_#{n}', {axis: 'x'})",
+              :class => "navdot_#{n} navdot #{'selected' if n == i}" %>
+          <% end %>
+        </center>
+        <div class="readable">
+          <%= taxon.wikipedia_summary %>
+          <%= link_to "Learn more &raquo;", taxon %>
+        </div>
+      </div>
+
+      <div class="taxon_observations">
+        <% if taxon.observations_count > 0 -%>
+          <%- observation = taxon.observations.first(:order => "id DESC", :include => :user) -%>
+          <%= link_to(
+            image_tag(observation.user.icon.url(:thumb), :class => 'usericon left'),
+            person_by_login_path(observation.user.login)) %>
+          <%= link_to observation.user.login, person_path(observation.user) %>
+          observed one
+          <%= observation.observed_on? ? "at #{observation.observed_on.to_s(:long)}" : "in the past" -%>
+          <%= observation.place_guess.blank? ? "somewhere on Earth" : " in #{observation.place_guess}" %>.
+
+          <div>
+            <%= link_to "View", observation %>
+            <% if taxon.observations_count > 1 %>
+              |
+              <%= link_to "View all #{pluralize(taxon.observations_count, 'observation')} &raquo;", 
+                observations_path(:taxon_id => taxon) %>
+            <% end %>
+          </div>
+        <% else %>
+          <br/>
+          <p>
+            Seen one?
+            <%= link_to "Add an observation &raquo;", new_observation_path(:taxon_id => taxon) %>
+          </p>
+        <% end -%>
+      </div>
+      <div id="photocredit">
+        Photo: <%= link_to taxon.flickr_photos.first.attribution, taxon.flickr_photos.first.flickr_page_url %>
+      </div>
+      <%= link_to taxon_image(taxon, :size => "large", :class => "taxonimage"), taxon %>
+    </div>
+  <% end %>
+</div>
 
 <div id="iconic_taxa" class="column span-19">
   <% for iconic_taxon in @iconic_taxa %>
@@ -43,6 +242,7 @@ Taxa &middot; All Species
     <h3>Recently Observed</h3>
     <% for observation in @recent %>
     <p>
+      <%= link_to taxon_image(observation.taxon, :size => "small"), observation.taxon %>
       <% link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>

@@ -13,6 +13,11 @@
       <%= f.label 'Rank <span class="required">*</span>' %><br/>
       <%= f.text_field :rank %>
     </div>
+    
+    <div class="last column span-8">
+      <%= f.label 'Featured?' %><br/>
+      <%= f.check_box :featured_at %> <%= f.label :featured_at, "Yes, feature this taxon on /taxa" %>
+    </div>
   </div>
   
   <fieldset class="last column span-24">

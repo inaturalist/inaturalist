@@ -73,6 +73,17 @@ class TaxaController < ApplicationController
     
     respond_to do |format|
       format.html do # index.html.erb
+        @featured_taxa = Taxon.all(:conditions => "featured_at > 0", 
+          :order => "featured_at DESC", :limit => 10,
+          :include => [:iconic_taxon, :flickr_photos, :taxon_names])
+        if @featured_taxa.blank?
+          @featured_taxa = Taxon.all(:limit => 10, :conditions => [
+            "taxa.wikipedia_summary > 0 AND " +
+            "flickr_photos.id > 0 AND " +
+            "taxa.observations_count > 1"
+          ], :include => [:iconic_taxon, :flickr_photos, :taxon_names],
+          :order => "taxa.id DESC")
+        end
         flash[:notice] = @status unless @status.blank?
         if params[:q]
           render :action => :search
@@ -207,6 +218,12 @@ class TaxaController < ApplicationController
     
     # Set the last editor
     params[:taxon].update(:updater_id => current_user.id)
+    
+    if params[:taxon][:featured_at] && params[:taxon][:featured_at] == "1"
+      params[:taxon][:featured_at] = Time.now
+    else
+      params[:taxon][:featured_at] = ""
+    end
     
     if @taxon.update_attributes(params[:taxon]) && !parent_error
       flash[:notice] = 'Taxon was successfully updated.'
