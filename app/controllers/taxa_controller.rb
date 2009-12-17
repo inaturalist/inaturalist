@@ -84,6 +84,10 @@ class TaxaController < ApplicationController
           ], :include => [:iconic_taxon, :flickr_photos, :taxon_names],
           :order => "taxa.id DESC")
         end
+        
+        # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
+        @featured_taxa = @featured_taxa.sort_by {rand}
+        
         flash[:notice] = @status unless @status.blank?
         if params[:q]
           render :action => :search

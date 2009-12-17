@@ -36,6 +36,9 @@ Taxa &middot; All Species
     color: white;
   }
   
+  #featured a {
+    text-shadow: 0 1px 1px black;
+  }
   #featured .taxonimage {
     width: 1024px;
     position: absolute;
@@ -141,9 +144,17 @@ Taxa &middot; All Species
   }
   
   .navdot {
-    opacity: 0.5;
     font-size: 150%;
   }
+  .navdot,
+  .navarr {
+    opacity: 0.5;
+    vertical-align: middle;
+    color: #666;
+  }
+  
+  .navarr { visibility: hidden; }
+  center:hover .navarr { visibility: visible; }
   
   .navdot.selected {
     opacity: 1;
@@ -166,6 +177,15 @@ Taxa &middot; All Species
       } %>
       <div id="desccol">
         <center>
+          <% if i > 0 -%>
+            <%= link_to_function "&larr;", 
+              "$('.navdot').removeClass('selected');" +
+              "$('.navdot_#{i-1}').addClass('selected');" +
+              "$('#featured').scrollTo('#featured_taxon_#{i-1}', {axis: 'x'})",
+              :class => "navarr" %>
+          <% else %>
+            <span class="navarr">&larr;</span>
+          <% end -%>
           <% @featured_taxa.size.times do |n| %>
             <%= link_to_function "&middot", 
               "$('.navdot').removeClass('selected');" +
@@ -173,6 +193,15 @@ Taxa &middot; All Species
               "$('#featured').scrollTo('#featured_taxon_#{n}', {axis: 'x'})",
               :class => "navdot_#{n} navdot #{'selected' if n == i}" %>
           <% end %>
+          <% if i < @featured_taxa.size - 1 -%>
+            <%= link_to_function "&rarr;", 
+              "$('.navdot').removeClass('selected');" +
+              "$('.navdot_#{i+1}').addClass('selected');" +
+              "$('#featured').scrollTo('#featured_taxon_#{i+1}', {axis: 'x'})",
+              :class => "navarr" %>
+          <% else %>
+            <span class="navarr">&rarr;</span>
+          <% end -%>
         </center>
         <div class="readable">
           <%= taxon.wikipedia_summary %>
