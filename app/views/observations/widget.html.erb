@@ -5,6 +5,14 @@
   <style type="text/css" media="screen">
     textarea { width: 100%; }
     iframe { height: 600px; }
+    #background_color_wrapper {
+      float: right;
+    }
+    #background_color_wrapper,
+    #background_color_wrapper input {
+      font-size: 9pt;
+    }
+    #background_color_wrapper input { padding: 2px; }
     
     /* re-reset blueprint stuff */
     table   { margin: 0; }
@@ -34,6 +42,12 @@
     //     $('#code').val(code).change();
     //   });
     // });
+    
+    $(document).ready(function() {
+      $('#background_color').change(function() {
+        $('#preview').css('background-color', $(this).val());
+      });
+    });
   </script>
 <%- end -%>
 <div id="pageheader">
@@ -50,9 +64,19 @@
   <%# form_remote_tag :loading => "$('#loading').show()", :complete => "$('#loading').hide()" do %>
   <form method="get">
     <div class="field">
-      <label>Logo</label>
-      <input type="radio" name="logo" value="true" id="logo_show" <%= 'checked="checked"' if @logo %>> <label for="logo_show">Show</label>
-      <input type="radio" name="logo" value="false" id="logo_hide" <%= 'checked="checked"' unless @logo %>> <label for="logo_hide">Hide</label>
+      <label>Logo</label><br/>
+      
+      <input type="radio" name="logo" value="logo-small.gif" id="logo_small_gif" <%= 'checked="checked"' if @logo == "logo-small.gif" %>>
+      <label for="logo_small_gif">White BG GIF</label><br/>
+      
+      <input type="radio" name="logo" value="logo-small.png" id="logo_small_png" <%= 'checked="checked"' if @logo == "logo-small.png" %>>
+      <label for="logo_small_png">Transparent PNG</label><br/>
+      
+      <input type="radio" name="logo" value="logo-small-white.png" id="logo_small_white_gif" <%= 'checked="checked"' if @logo  == "logo-small-white.png" %>>
+      <label for="logo_small_white_gif">White Text Transparent PNG</label><br/>
+      
+      <input type="radio" name="logo" value="none" id="logo_none" <%= 'checked="checked"' if @logo == "none" %>>
+      <label for="logo_none">none</label>
     </div>
     <div class="field">
       <label for="limit">Number of observations</label><br/>

@@ -681,7 +681,10 @@ class ObservationsController < ApplicationController
     @order = params[:order] || "desc"
     @limit = params[:limit] || 5
     @limit = @limit.to_i
-    @logo = params[:logo] != "false"
+    if %w"logo-small.gif logo-small.png logo-small-white.png none".include?(params[:logo])
+      @logo = params[:logo] 
+    end
+    @logo ||= "logo-small.gif"
     @widget_url = observations_by_login_feed_url(current_user.login, 
       :format => "widget", 
       :limit => @limit, 
