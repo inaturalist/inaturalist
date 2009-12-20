@@ -1,12 +1,15 @@
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'taxa/form' %>
+  <%= stylesheet_link_tag 'taxa', 'taxa/form', 'taxon_browser' %>
 <% end %>
 
 <% content_for(:extrajs) do %>
 <%= javascript_include_tag 'jquery',
                            'jquery/plugins/jquery.string.1.0', 
                            "jquery/plugins/inat/photo_selectors.js",
-                           "jquery/plugins/inat/taxon_selectors.js" %>
+                           "jquery/plugins/inat/taxon_selectors.js",
+                           "jquery/plugins/jquery.qtip.min",
+                           "jquery/plugins/jqModal",
+                           "taxon_browser" %>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
@@ -21,6 +24,31 @@
     $('#parent_name').simpleTaxonSelector({
       taxonIDField: $('#taxon_parent_id')
     });
+    
+    // Setup taxon browser
+    $('body').append(
+      $('<div id="taxonchooser" class="modalbox dialog"></div>').append(
+        $('<div id="taxon_browser"></div>').append(
+          $('<div class="loading status">Loading...</div>')
+        )
+      ).hide()
+    );
+
+    $('#taxonchooser').jqm({
+      onShow: function(h) {
+        h.w.fadeIn(500);
+        if (h.w.find('#taxon_browser > .loading').length == 1) {
+          h.w.find('#taxon_browser').load(
+            '/taxa/search?partial=browse&js_link=true',
+            {}, TaxonBrowser.ajaxify);
+        }
+      }
+    });
   });
+  
+  function handleTaxonClick(e, taxon) {
+    $.fn.simpleTaxonSelector.selectTaxon($('.simpleTaxonSelector:first'), taxon);
+    $('#taxonchooser').jqmHide();
+  }
 </script>
 <% end %>

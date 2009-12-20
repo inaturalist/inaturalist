@@ -28,6 +28,7 @@
       
       <%= label_tag :parent_name %><br/>
       <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : '', :id => 'parent_name', :class => 'text' %>
+      <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
       <div class="description">
         This is a more convenient way to find a parent ID. It's the parent ID
         that actually gets saved.
