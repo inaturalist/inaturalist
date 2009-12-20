@@ -171,7 +171,7 @@
               <%= link_to update.user.login, person_path(update.user) %> added
               <%- case update.activity_object_type -%>
               <%- when "Post" -%>
-                a <%= link_to "journal post", post_path(update.user, update.activity_object) %>
+                a <%= link_to "journal post", post_path(update.user.login, update.activity_object) %>
               <%- when "Comment" %>
                 a <%= link_to "comment", update.activity_object %>
                 on
