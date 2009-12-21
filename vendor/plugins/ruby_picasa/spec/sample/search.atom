@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns='http://www.w3.org/2005/atom'
+xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/'
+xmlns:exif='http://schemas.google.com/photos/exif/2007'
+xmlns:geo='http://www.w3.org/2003/01/geo/wgs84_pos#'
+xmlns:gml='http://www.opengis.net/gml'
+xmlns:georss='http://www.georss.org/georss'
+xmlns:photo='http://www.pheed.com/pheed/'
+xmlns:media='http://search.yahoo.com/mrss/'
+xmlns:gphoto='http://schemas.google.com/photos/2007'>
+  <id>http://picasaweb.google.com/data/feed/api/all</id>
+  <title type='text'>Search Results</title>
+  <link rel='http://schemas.google.com/g/2005#feed'
+  type='application/atom+xml'
+  href='http://picasaweb.google.com/data/feed/api/all' />
+  <link rel='self' type='application/atom+xml'
+  href='http://picasaweb.google.com/data/feed/api/all?q=puppy&amp;start-index=2&amp;max-results=1' />
+  <link rel='previous' type='application/atom+xml'
+  href='http://picasaweb.google.com/data/feed/api/all?q=puppy&amp;start-index=1&amp;max-results=1' />
+  <link rel='next' type='application/atom+xml'
+  href='http://picasaweb.google.com/data/feed/api/all?q=puppy&amp;start-index=3&amp;max-results=1' />
+  <generator version='1.00' uri='http://picasaweb.google.com/'>
+  Picasaweb</generator>
+  <openSearch:totalResults>625082</openSearch:totalResults>
+  <openSearch:startIndex>1</openSearch:startIndex>
+  <openSearch:itemsPerPage>1</openSearch:itemsPerPage>
+  <gphoto:crowded_length>10</gphoto:crowded_length>
+  <entry>
+    <id>
+    http://picasaweb.google.com/data/entry/api/user/captaincool/albumid/5149978741790672209/photoid/5150621887373445842</id>
+    <published>2008-01-01T21:23:28.000Z</published>
+    <category scheme='http://schemas.google.com/g/2005#kind'
+    term='http://schemas.google.com/photos/2007#photo' />
+    <title type='text'>Nash2.jpg</title>
+    <summary type='text'></summary>
+    <content type='image/jpeg'
+    src='http://lh3.ggpht.com/captaincool/R3qvUUE_CtI/AAAAAAAAAUI/6OfFN8oPdVs/Nash2.jpg' />
+    <link rel='http://schemas.google.com/g/2005#feed'
+    type='application/atom+xml'
+    href='http://picasaweb.google.com/data/feed/api/user/captaincool/albumid/5149978741790672209/photoid/5150621887373445842' />
+    <link rel='alternate' type='text/html'
+    href='http://picasaweb.google.com/lh/photo/rWtmnLrEZ2RRHvtL6dFKKw' />
+    <link rel='self' type='application/atom+xml'
+    href='http://picasaweb.google.com/data/entry/api/user/captaincool/albumid/5149978741790672209/photoid/5150621887373445842' />
+    <link rel='http://schemas.google.com/photos/2007#report'
+    type='text/html'
+    href='http://picasaweb.google.com/lh/reportAbuse?uname=captaincool&amp;aid=5149978741790672209&amp;iid=5150621887373445842' />
+    <author>
+      <name>Chuck G</name>
+      <uri>http://picasaweb.google.com/captaincool</uri>
+      <email>captaincool</email>
+      <gphoto:user>captaincool</gphoto:user>
+      <gphoto:nickname>Chuck G</gphoto:nickname>
+      <gphoto:thumbnail>
+      http://lh4.ggpht.com/captaincool/AAAAUbIDjgE/AAAAAAAAAAA/U8PdSmOpLUY/s48-c/captaincool.jpg</gphoto:thumbnail>
+    </author>
+    <gphoto:albumtitle>Monctondog.com Blog</gphoto:albumtitle>
+    <gphoto:albumctitle>MonctondogComBlog</gphoto:albumctitle>
+    <gphoto:albumdesc>Pictures of Dogs from the Monctondog.com
+    Blog</gphoto:albumdesc>
+    <gphoto:location>Moncton NB</gphoto:location>
+    <gphoto:access>public</gphoto:access>
+    <gphoto:id>5150621887373445842</gphoto:id>
+    <gphoto:albumid>5149978741790672209</gphoto:albumid>
+    <gphoto:width>1024</gphoto:width>
+    <gphoto:height>768</gphoto:height>
+    <gphoto:timestamp>1196770081000</gphoto:timestamp>
+    <exif:tags>
+      <exif:fstop>2.8</exif:fstop>
+      <exif:make>SONY</exif:make>
+      <exif:model>DSC-W1</exif:model>
+      <exif:exposure>0.025</exif:exposure>
+      <exif:flash>true</exif:flash>
+      <exif:focallength>7.9</exif:focallength>
+      <exif:iso>100</exif:iso>
+      <exif:time>1196770081000</exif:time>
+    </exif:tags>
+    <media:group>
+      <media:title type='plain'>Nash2.jpg</media:title>
+      <media:description type='plain'></media:description>
+      <media:keywords>doindogs, doindogs nash, lab, labrador,
+      labrador retriever, nash, puppies, puppy,
+      retriever</media:keywords>
+      <media:content url='http://lh3.ggpht.com/captaincool/R3qvUUE_CtI/AAAAAAAAAUI/6OfFN8oPdVs/Nash2.jpg'
+      height='768' width='1024' type='image/jpeg' medium='image' />
+      <media:thumbnail url='http://lh3.ggpht.com/captaincool/R3qvUUE_CtI/AAAAAAAAAUI/6OfFN8oPdVs/s72/Nash2.jpg'
+      height='54' width='72' />
+      <media:thumbnail url='http://lh3.ggpht.com/captaincool/R3qvUUE_CtI/AAAAAAAAAUI/6OfFN8oPdVs/s144/Nash2.jpg'
+      height='108' width='144' />
+      <media:thumbnail url='http://lh3.ggpht.com/captaincool/R3qvUUE_CtI/AAAAAAAAAUI/6OfFN8oPdVs/s288/Nash2.jpg'
+      height='216' width='288' />
+      <media:credit>Chuck G</media:credit>
+    </media:group>
+    <gphoto:snippet>... nash, <b>puppies</b>
+    ...</gphoto:snippet>
+    <gphoto:snippettype>PHOTO_TAGS</gphoto:snippettype>
+    <gphoto:truncated>0</gphoto:truncated>
+  </entry>
+</feed>

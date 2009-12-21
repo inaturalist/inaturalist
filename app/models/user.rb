@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   
   belongs_to :life_list, :dependent => :destroy
   has_one  :flickr_identity, :dependent => :destroy
+  has_one  :picasa_identity, :dependent => :destroy
   has_many :observations, :dependent => :destroy
   
   # Some interesting ways to map self-referential relationships in rails

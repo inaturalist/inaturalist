@@ -5,6 +5,6 @@ class AddFeaturedAtToTaxa < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :taxa, :featured_at, :timestamp
+    remove_column :taxa, :featured_at
   end
 end

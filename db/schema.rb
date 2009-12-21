@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091216052325) do
+ActiveRecord::Schema.define(:version => 20091221195909) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -276,6 +276,17 @@ ActiveRecord::Schema.define(:version => 20091216052325) do
     t.column "width", :integer
     t.column "height", :integer
   end
+
+  create_table "picasa_identities", :force => true do |t|
+    t.column "user_id", :integer
+    t.column "token", :string
+    t.column "token_created_at", :datetime
+    t.column "picasa_user_id", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "picasa_identities", ["user_id"], :name => "index_picasa_identities_on_user_id"
 
   create_table "place_geometries", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "place_id", :integer

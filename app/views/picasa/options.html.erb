@@ -1,0 +1,31 @@
+<%- content_for(:title) do -%>
+  Your Picasa Account
+<%- end -%>
+<h2>Your Picasa Account Information</h2>
+
+<div class="column span-13">
+  <% if @picasa_identity -%>
+    <div class="clear photos">
+      <% for photo in @picasa_photos %>
+        <%= image_tag photo.url('72c') %>
+      <% end %>
+    </div>
+
+    <p>
+      You've linked your iNaturalist account and your Picasa account. This
+      will allow you to associate your Picasa photos with your iNat
+      observations.
+    </p>
+  <% else %>
+    <p>You haven't linked your iNaturalist account and your Picasa account yet.</p>
+  <% end -%>
+</div>
+
+<div class="last column span-11">
+  <% if @picasa_identity -%>
+    <%= link_to "Unlink Your Picasa Account", {:action => "unlink"}, :class => "delete button", 
+      :method => :delete, :confirm => "Are you sure you want to unlink your Picasa account?" %>
+  <% else %>
+    <%= link_to "Link Your Picasa Account", @auth_url, :class => "button" %>
+  <% end -%>
+</div>

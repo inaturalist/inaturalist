@@ -38,7 +38,8 @@ Of course, if you ever want iNaturalist and Flickr to break up, we won't stop yo
 <div class="column span-7 last">
 <p>
 <% if @user.flickr_identity %>
-<%= button_to 'Unlink your Flickr and iNaturalist Accounts', {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'button' %>
+<%= button_to 'Unlink your Flickr and iNaturalist Accounts', 
+  {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'delete button' %>
 <% else %>
 <%= render :partial => 'link_to_flickr', :locals => {:flickr_url => @flickr_url} -%>
 <% end %>
