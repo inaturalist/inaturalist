@@ -61,11 +61,6 @@
     .flickr_photo {
       margin: 0;
     }
-    
-    .flickr_photo input {
-      display: block;
-      clear: both;
-    }
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -81,6 +76,27 @@
                              "jquery/plugins/jquery.qtip.min",
                              "taxon_browser",
                              "observations/edit" %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('.observation_photos').each(function() {
+        // The photo_fields endpoint needs to know the auth token and the index
+        // for the field
+        var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
+        var index = $.string(index_str).gsub(/[^\d]*/, '').str;
+        var authenticity_token = $(this).parents('form').find(
+          'input[name=authenticity_token]').val();
+        $(this).photoSelector({
+          baseURL: '/flickr/photo_fields?context=user',
+          urlParams: {
+            authenticity_token: authenticity_token,
+            index: index,
+            limit: 12,
+            synclink_base: "/observations/"+index+"/edit"
+          }
+        });
+      });
+    });
+  </script>
 <% end %>
 <div id="pageheader" class="column span-24">
   <div class="column span-12">

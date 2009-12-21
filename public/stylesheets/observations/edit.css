@@ -47,11 +47,10 @@ input.place_guess {
   margin: 0 auto;
 }
 
-.flickr_photo input {
-  display: block;
-  clear: both;
-}
-
 form .species_guess_field {
   margin-bottom: 0px;
+}
+
+.flickr_photo .synclink {
+  float: right;
 }

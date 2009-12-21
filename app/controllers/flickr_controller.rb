@@ -179,6 +179,9 @@ class FlickrController < ApplicationController
       @photos = @flickr.photos.search(search_params)
     end
     
+    # Determine whether we should include synclinks
+    @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
+    
     # TODO: Lookup matching flickr_photo objects
     # @matching_flickr_photos = case params[:context]
     #   when 'user'
@@ -192,7 +195,11 @@ class FlickrController < ApplicationController
     respond_to do |format|
       format.html do
         render :partial => 'photo_list_form', 
-               :locals => {:photos => @photos, :index => params[:index]}
+               :locals => {
+                 :photos => @photos, 
+                 :index => params[:index],
+                 :synclink_base => @synclink_base
+               }
       end
     end
   end

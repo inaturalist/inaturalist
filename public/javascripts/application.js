@@ -62,7 +62,7 @@ QTIP_DEFAULTS = {
       radius: 5
     },
     width: {
-      max: 500
+      max: 300
     }
   },
   position: {

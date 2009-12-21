@@ -5,22 +5,6 @@ $(document).ready(function() {
     mapDiv: $('#mapcontainer').get(0),
     map: iNaturalist.Map.createMap({div: $('#mapcontainer').get(0)})
   });
-  $('.observation_photos').each(function() {
-    // The photo_fields endpoint needs to know the auth token and the index
-    // for the field
-    var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
-    var index = $.string(index_str).gsub(/[^\d]*/, '').str;
-    var authenticity_token = $(this).parents('form').find(
-      'input[name=authenticity_token]').val();
-    $(this).photoSelector({
-      baseURL: '/flickr/photo_fields?context=user',
-      urlParams: {
-        authenticity_token: authenticity_token,
-        index: index,
-        limit: 12
-      }
-    });
-  });
   
   // Setup taxon browser
   $('body').append(

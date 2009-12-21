@@ -7,6 +7,7 @@
 //   queryOnLoad:   Whether or not to query with an empty string on page load. 
 //                  Default is true.
 //   defaultQuery:  Default query to run on load
+//   afterQueryPhotos(q, wrapper, options) : called after photos queried
 (function($){
   $.fn.photoSelector = function(options) {
     var options = $.extend({}, $.fn.photoSelector.defaults, options);
@@ -152,6 +153,7 @@
         
         // Unset loading status
         $(wrapper).find('.photoSelectorPhotos').removeClass('loading status');
+        if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
       }
     );
     

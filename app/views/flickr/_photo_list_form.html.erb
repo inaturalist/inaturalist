@@ -1,5 +1,6 @@
 <%- index ||= @i -%>
 <%- checked ||= false -%>
+<%- synclink_base ||= nil -%>
 <div id="flickr_photos_list">
   <% if photos.size > 0 %>
     <% photos.each do |photo| %>
@@ -11,6 +12,25 @@
             flickr_native_photo_id, 
             checked, 
             {:id => "flickr_photo_#{index}_#{flickr_native_photo_id}", :class => "checkbox"} %>
+            
+          <% if synclink_base && synclink_uri = URI.parse(synclink_base) %>
+            <% 
+              if synclink_uri.query.blank?
+                synclink_uri.query = "flickr_photo_id=#{flickr_native_photo_id}"
+              else
+                synclink_uri.query += "&flickr_photo_id=#{flickr_native_photo_id}"
+              end 
+              synclink_url = synclink_uri.to_s
+            -%>
+            <%= link_to "Sync?", synclink_url, :class => "small synclink", 
+              :id => dom_id(photo, "synclink"),
+              :title => "Import date, time, location, description, and taxonomic information from this photo.",
+              :confirm => "Are you sure you want to sync this " + 
+                "observation's data with this Flickr photo?  You will lose " +
+                "changes you've made to this form, but you will be able to " +
+                "revert to your saved copy." %>
+          <% end %>
+          
           <label for="flickr_photo_<%= index %>_<%= flickr_native_photo_id %>">
             <%= image_tag(square_url) %>
           </label>

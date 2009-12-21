@@ -72,18 +72,11 @@
               </label>
               <% if logged_in? && current_user.flickr_identity %>
                 <div id="photos_<%= i %>" class="observation_photos">
-                  <% for photo in observation.flickr_photos %>
-                    <div class="flickr_photo">
-                      <%= check_box_tag("flickr_photos[#{i}][]", 
-                          photo.flickr_native_photo_id, 
-                          true,
-                          :id => "flickr_photo_#{i}_#{photo.flickr_native_photo_id}", 
-                          :class => 'checkbox') %>
-                      <label for="flickr_photo_<%= i %>_<%= photo.flickr_native_photo_id %>">
-                        <%= image_tag(photo.square_url) %>
-                      </label>
-                    </div>
-                  <% end %>
+                  <%= render :partial => "flickr/photo_list_form", :locals => { 
+                    :photos => observation.flickr_photos, 
+                    :index => i,
+                    :checked => true,
+                    :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation) } %>
                 </div>
               <% else %>
                 <span>We currently support Flickr for image hosting.</span>

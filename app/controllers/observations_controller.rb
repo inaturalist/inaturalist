@@ -235,6 +235,8 @@ class ObservationsController < ApplicationController
     end
     @observation = Observation.new(options)
     
+    sync_flickr_photo if params[:flickr_photo_id]
+    
     respond_to do |format|
       format.html do
         @observations = [@observation]
@@ -279,7 +281,10 @@ class ObservationsController < ApplicationController
     # Only the owner should be able to see this.  
     unless current_user.id == @observation.user_id or current_user.is_admin?
       redirect_to observation_path(@observation)
+      return
     end
+    
+    sync_flickr_photo if params[:flickr_photo_id]
   end
 
   # POST /observations
@@ -978,6 +983,36 @@ class ObservationsController < ApplicationController
     return true if taxa.blank?
     spawn(:nice => 7) do
       List.refresh_for_user(current_user, :taxa => taxa)
+    end
+  end
+  
+  # Tries to create a new observation from the specified Flickr photo ID and
+  # update the existing @observation with the new properties, without saving
+  def sync_flickr_photo
+    begin
+      fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id], 
+        :auth_token => current_user.flickr_identity.token)
+      @flickr_photo = FlickrPhoto.new_from_flickraw(fp, :user => current_user)
+    rescue FlickRaw::FailedResponse => e
+      logger.debug "[DEBUG] FlickRaw failed to find photo " +
+        "#{params[:flickr_photo_id]}: #{e}\n#{e.backtrace.join("\n")}"
+      @flickr_photo = nil
+    end
+    if fp && @flickr_photo && @flickr_photo.valid?
+      @flickr_observation = @flickr_photo.to_observation
+      sync_attrs = [:description, :species_guess, :taxon_id, :observed_on, 
+        :latitude, :longitude, :place_guess]
+      unless params[:flickr_sync_attrs].blank?
+        sync_attrs = sync_attrs & params[:flickr_sync_attrs]
+      end
+      sync_attrs.each do |sync_attr|
+        @observation.send("#{sync_attr}=", @flickr_observation.send(sync_attr))
+      end
+      @observation.flickr_photos.build(@flickr_photo.attributes)
+      flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
+        "<a href=\"#{url_for}\">Undo?</a>"
+    else
+      flash.now[:error] = "Sorry, we didn't find that photo."
     end
   end
 end
