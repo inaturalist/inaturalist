@@ -989,6 +989,7 @@ class ObservationsController < ApplicationController
   # Tries to create a new observation from the specified Flickr photo ID and
   # update the existing @observation with the new properties, without saving
   def sync_flickr_photo
+    flickr = get_flickraw
     begin
       fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id], 
         :auth_token => current_user.flickr_identity.token)
