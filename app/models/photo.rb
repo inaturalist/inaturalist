@@ -1,7 +1,10 @@
 class Photo < ActiveRecord::Base
   belongs_to :user
-  has_and_belongs_to_many :observations
-  has_and_belongs_to_many :taxa
+  has_many :observation_photos, :dependent => :destroy
+  has_many :taxon_photos, :dependent => :destroy
+  has_many :observations, :through => :observation_photos
+  has_many :taxa, :through => :taxon_photos
+  
   validates_presence_of :native_photo_id
   
   attr_accessor :api_response

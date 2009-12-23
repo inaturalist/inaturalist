@@ -3,7 +3,7 @@ feed.entry(observation) do |entry|
   entry.author do |author|
     author.name(observation.user.login)
   end
-  content = observation.flickr_photos.map do |p|
+  content = observation.photos.map do |p|
     image_tag(p.thumb_url, :align => 'left')
   end.join(' ')
   content += observation.description if observation.description

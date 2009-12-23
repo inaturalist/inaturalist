@@ -71,7 +71,7 @@
       <% end -%>
     </div>
   </div>
-  <% if include_image_attribution && (photo = taxon.photo.first) -%>
+  <% if include_image_attribution && (photo = taxon.photos.first) -%>
     <div class="meta attribution">
       Photo <%= link_to photo.attribution, photo.native_page_url %>
     </div>
