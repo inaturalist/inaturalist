@@ -5,8 +5,7 @@ class Photo < ActiveRecord::Base
   validates_presence_of :native_photo_id
   
   attr_accessor :api_response
-  
-  DESCENDENT_CLASSES = [FlickrPhoto, PicasaPhoto]
+  cattr_accessor :descendent_classes
   
   def validate
     if user.blank? && self.license == 0

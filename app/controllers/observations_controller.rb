@@ -299,7 +299,7 @@ class ObservationsController < ApplicationController
       o.user = current_user
       
       # Get photos
-      Photo::DESCENDENT_CLASSES.each do |klass|
+      Photo.descendent_classes.each do |klass|
         klass_key = klass.to_s.underscore.pluralize.to_sym
         if params[klass_key] && params[klass_key][fieldset_index]
           o.photos << retrieve_photos(params[klass_key][fieldset_index], 
@@ -375,7 +375,7 @@ class ObservationsController < ApplicationController
           # observation.photos = retrieve_photos(params[:flickr_photos][observation.id.to_s], 
           #   :user => observation_user)
           updated_photos = []
-          Photo::DESCENDENT_CLASSES.each do |klass|
+          Photo.descendent_classes.each do |klass|
             klass_key = klass.to_s.underscore.pluralize.to_sym
             if params[klass_key] && params[klass_key][observation.id.to_s]
               updated_photos += retrieve_photos(params[klass_key][observation.id.to_s], 

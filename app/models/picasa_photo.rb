@@ -1,4 +1,8 @@
 class PicasaPhoto < Photo
+  
+  Photo.descendent_classes ||= []
+  Photo.descendent_classes << self
+  
   def validate
     if user.blank? && self.license == 0
       errors.add(

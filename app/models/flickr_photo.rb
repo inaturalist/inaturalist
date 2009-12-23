@@ -1,4 +1,7 @@
 class FlickrPhoto < Photo
+  
+  Photo.descendent_classes ||= []
+  Photo.descendent_classes << self
     
   def validate
     # Check to make sure the user owns the flickr photo
