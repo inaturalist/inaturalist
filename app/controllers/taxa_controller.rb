@@ -75,13 +75,13 @@ class TaxaController < ApplicationController
       format.html do # index.html.erb
         @featured_taxa = Taxon.all(:conditions => "featured_at > 0", 
           :order => "featured_at DESC", :limit => 10,
-          :include => [:iconic_taxon, :flickr_photos, :taxon_names])
+          :include => [:iconic_taxon, :photos, :taxon_names])
         if @featured_taxa.blank?
           @featured_taxa = Taxon.all(:limit => 10, :conditions => [
             "taxa.wikipedia_summary > 0 AND " +
-            "flickr_photos.id > 0 AND " +
+            "photos.id > 0 AND " +
             "taxa.observations_count > 1"
-          ], :include => [:iconic_taxon, :flickr_photos, :taxon_names],
+          ], :include => [:iconic_taxon, :photos, :taxon_names],
           :order => "taxa.id DESC")
         end
         
@@ -93,7 +93,7 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon.iconic_taxa.all(
-            :include => [:flickr_photos, :taxon_names], :order => :lft)
+            :include => [:photos, :taxon_names], :order => :lft)
           @recent = Observation.latest.all(
             :limit => 5, 
             :include => {:taxon => [:taxon_names]},
@@ -199,7 +199,7 @@ class TaxaController < ApplicationController
   end
 
   def update
-    @taxon.flickr_photos = retreive_flickr_photos
+    @taxon.photos = retreive_flickr_photos
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end
@@ -277,13 +277,13 @@ class TaxaController < ApplicationController
       page = params[:page] ? params[:page].to_i : 1
       Taxon.facets(@q, :page => page, :per_page => per_page,
         :conditions => drill_params, 
-        :include => [:taxon_names, :flickr_photos])
+        :include => [:taxon_names, :photos])
     end
     
     if @facets[:iconic_taxon_id]
       @faceted_iconic_taxa = Taxon.all(
         :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
-        :include => [:taxon_names, :flickr_photos],
+        :include => [:taxon_names, :photos],
         :order => 'lft'
       )
       @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
@@ -326,7 +326,7 @@ class TaxaController < ApplicationController
       end
       format.json do
         render :json => @taxa.to_json(
-          :include => [:iconic_taxon, :taxon_names, :flickr_photos],
+          :include => [:iconic_taxon, :taxon_names, :photos],
           :methods => [:common_name, :image_url, :default_name])
       end
     end
@@ -371,7 +371,7 @@ class TaxaController < ApplicationController
   end
   
   def photos
-    @photos = @taxon.photos(:limit => 24)
+    @photos = @taxon.photos_with_backfill(:limit => 24)
     render :layout => false
   end
   
@@ -399,7 +399,7 @@ class TaxaController < ApplicationController
   end
   
   def update_photos
-    @taxon.flickr_photos = retreive_flickr_photos
+    @taxon.photos = retreive_flickr_photos
     if @taxon.save
       flash[:notice] = "Taxon photos updated!"
     else
@@ -616,23 +616,23 @@ class TaxaController < ApplicationController
 
     
     @observations = current_user.observations.all(
-      :include => :flickr_photos,
+      :include => :photos,
       :conditions => [
-        "flickr_photos.flickr_native_photo_id IN (?)", 
-        @flickr_photos.map(&:flickr_native_photo_id)
+        "photos.native_photo_id IN (?) AND photos.type = ?", 
+        @flickr_photos.map(&:native_photo_id), FlickrPhoto.to_s
       ]
     )
-    @imported_flickr_native_photo_id = {}
+    @imported_native_photo_id = {}
     @observations.each do |observation|
-      observation.flickr_photos.each do |flickr_photo|
-        @imported_flickr_native_photo_id[flickr_photo.flickr_native_photo_id] = true
+      observation.photos.each do |flickr_photo|
+        @imported_native_photo_id[flickr_photo.native_photo_id] = true
       end
     end
   end
   
   def tree
-    @taxon = Taxon.find_by_id(params[:id], :include => [:taxon_names, :flickr_photos])
-    @taxon ||= Taxon.find_by_id(params[:taxon_id], :include => [:taxon_names, :flickr_photos])
+    @taxon = Taxon.find_by_id(params[:id], :include => [:taxon_names, :photos])
+    @taxon ||= Taxon.find_by_id(params[:taxon_id], :include => [:taxon_names, :photos])
     unless @taxon
       @taxon = Taxon.find_by_name('Life')
       @taxon ||= Taxon.iconic_taxa.first.parent
@@ -653,7 +653,7 @@ class TaxaController < ApplicationController
     flickr = get_net_flickr
     photos = []
     params[:flickr_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
-      if fp = FlickrPhoto.find_by_flickr_native_photo_id(photo_id)
+      if fp = FlickrPhoto.find_by_native_photo_id(photo_id)
         photos << fp 
       else
         fp = flickr.photos.get_info(photo_id)

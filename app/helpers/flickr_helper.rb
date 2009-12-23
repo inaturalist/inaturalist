@@ -12,7 +12,7 @@ module FlickrHelper
         :id => "flickr_photo_#{flickr_photo.id}",
         :class => 'image') + 
       image_tag('silk/magnifier.png', :class => 'zoom_icon'),
-      flickr_photo.flickr_page_url,
+      flickr_photo.native_page_url,
       link_options
     )
   end

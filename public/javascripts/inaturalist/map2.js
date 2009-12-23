@@ -244,9 +244,9 @@ GMap2.prototype.buildObservationInfoWindow = function(observation) {
     wrapper.append(
       $('<img width="75" height="75"></img>').attr('src', observation.image_url).addClass('left')
     );
-  } else if (typeof(observation.flickr_photos) != 'undefined' && observation.flickr_photos.length > 0) {
+  } else if (typeof(observation.photos) != 'undefined' && observation.photos.length > 0) {
     wrapper.append(
-      $('<img width="75" height="75"></img>').attr('src', observation.flickr_photos[0].square_url).addClass('left')
+      $('<img width="75" height="75"></img>').attr('src', observation.photos[0].square_url).addClass('left')
     );
   };
   

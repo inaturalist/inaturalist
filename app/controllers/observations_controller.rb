@@ -107,7 +107,7 @@ class ObservationsController < ApplicationController
   def show
     @observation = Observation.find(params[:id], 
       :include => [
-        :flickr_photos, 
+        :photos, 
         {:taxon => [:taxon_names]},
         :identifications
       ]
@@ -298,10 +298,13 @@ class ObservationsController < ApplicationController
       o = Observation.new(observation)
       o.user = current_user
       
-      # Get Flickr photos
-      if params[:flickr_photos] && params[:flickr_photos][fieldset_index]
-        o.flickr_photos << retreive_flickr_photos(
-          params[:flickr_photos][fieldset_index], {:user => current_user})
+      # Get photos
+      Photo::DESCENDENT_CLASSES.each do |klass|
+        klass_key = klass.to_s.underscore.pluralize.to_sym
+        if params[klass_key] && params[klass_key][fieldset_index]
+          o.photos << retrieve_photos(params[klass_key][fieldset_index], 
+            :user => current_user, :photo_class => klass)
+        end
       end
       
       # Skip list updates (to be performed in an after_filter)
@@ -369,11 +372,19 @@ class ObservationsController < ApplicationController
       # fields, e.g. when removing something from ID please
       unless params[:ignore_photos]
         if params[:flickr_photos] && params[:flickr_photos][observation.id.to_s]
-          observation.flickr_photos = retreive_flickr_photos(
-            params[:flickr_photos][observation.id.to_s], 
-            {:user => observation_user})
+          # observation.photos = retrieve_photos(params[:flickr_photos][observation.id.to_s], 
+          #   :user => observation_user)
+          updated_photos = []
+          Photo::DESCENDENT_CLASSES.each do |klass|
+            klass_key = klass.to_s.underscore.pluralize.to_sym
+            if params[klass_key] && params[klass_key][observation.id.to_s]
+              updated_photos += retrieve_photos(params[klass_key][observation.id.to_s], 
+                :user => observation_user, :photo_class => klass)
+            end
+          end
+          observation.photos = updated_photos.flatten
         else
-          observation.flickr_photos.clear
+          observation.photos.clear
         end
       end
       
@@ -548,8 +559,8 @@ class ObservationsController < ApplicationController
   end
   
   def import_flickr
-    photos = retreive_flickr_photos(
-      params[:flickr_photos], {:user => current_user})
+    photos = retrieve_photos(params[:flickr_photos], :user => current_user, 
+      :photo_class => FlickrPhoto)
     @observations = photos.map do |photo|
       photo.to_observation
     end
@@ -627,7 +638,7 @@ class ObservationsController < ApplicationController
         :user, 
         {:taxon => [:taxon_names]}, 
         :tags, 
-        :flickr_photos, 
+        :photos, 
         {:identifications => [{:taxon => [:taxon_names]}, :user]}, 
         {:comments => [:user]}
       ]
@@ -667,7 +678,7 @@ class ObservationsController < ApplicationController
     nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
     @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
       :select => "id, species_guess, latitude, longitude, user_id, description",
-      :include => [:user, :flickr_photos], :limit => 500, :order => "id DESC")
+      :include => [:user, :photos], :limit => 500, :order => "id DESC")
     
     respond_to do |format|
       format.json do
@@ -708,53 +719,51 @@ class ObservationsController < ApplicationController
 ## Protected / private actions ###############################################
   private
   
-  def retreive_flickr_photos(photo_list=nil, options = {})
+  def retrieve_photos(photo_list = nil, options = {})
     return [] if photo_list.blank?
     photo_list = [photo_list] unless photo_list.is_a? Array
+    photo_class = options[:photo_class] || Photo
     
     # simple algorithm,
     # 1. create an array to be passed back to the observation obj
-    # 2. check to see if that flickr photo's data has already been stored
+    # 2. check to see if that photo's data has already been stored
     # 3. if yes
-    #      retreive flickrPhoto obj and put in array
+    #      retrieve Photo obj and put in array
     #    if no
-    #      create flickrPhoto obj and put in array
+    #      create Photo obj and put in array
     # 4. return array
-    flickr = get_net_flickr
-    flickr.auth.token = @user.flickr_identity.token
     photos = []
-    existing = FlickrPhoto.all(
+    existing = photo_class.all(
       :include => :user,
-      :conditions => ["flickr_native_photo_id IN (?)", photo_list.uniq]
-    ).index_by(&:flickr_native_photo_id)
+      :conditions => ["native_photo_id IN (?)", photo_list.uniq]
+    ).index_by(&:native_photo_id)
     
     photo_list.uniq.each do |photo_id|
-      flickr_photo = existing[photo_id]
-      
-      if options[:sync] || flickr_photo.nil?
-        fp = flickr.photos.get_info(photo_id)
+      if photo = existing[photo_id] || options[:sync]
+        # fp = flickr.photos.get_info(photo_id)
+        api_response = photo_class.get_api_response(photo_id)
       end
       
       # Sync existing if called for
-      if options[:sync] && flickr_photo
+      if options[:sync] && photo
         # sync the photo URLs b/c they change when photos become private
-        flickr_photo.user ||= options[:user]
-        flickr_photo.flickr_response = fp # set to make sure user validation works
-        flickr_photo.sync
-        flickr_photo.save if flickr_photo.changed?
+        photo.user ||= options[:user]
+        photo.api_response = api_response # set to make sure user validation works
+        photo.sync
+        photo.save if photo.changed?
       end
       
       # Create a new one if one doesn't already exist
-      unless flickr_photo
-        flickr_photo = FlickrPhoto.new_from_net_flickr(fp, 
-          :user => current_user)
+      unless photo
+        api_response ||= photo_class.get_api_response(photo_id)
+        photo = photo_class.new_from_api_response(api_response, :user => current_user)
       end
       
-      if flickr_photo.valid?
-        photos << flickr_photo 
+      if photo.valid?
+        photos << photo
       else
         logger.info "[INFO] #{current_user} tried to save an observation " +
-          "with a flickr photo (#{flickr_photo}) that wasn't their own."
+          "with a photo (#{photo}) that wasn't their own."
       end
     end
     photos
@@ -778,7 +787,7 @@ class ObservationsController < ApplicationController
     @search_on = search_params[:search_on] unless search_params[:search_on].blank?
     
     find_options = {
-      :include => [:user, {:taxon => [:taxon_names]}, :tags, :flickr_photos],
+      :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
       :page => search_params[:page] || 1
     }
     
@@ -1009,7 +1018,13 @@ class ObservationsController < ApplicationController
       sync_attrs.each do |sync_attr|
         @observation.send("#{sync_attr}=", @flickr_observation.send(sync_attr))
       end
-      @observation.flickr_photos.build(@flickr_photo.attributes)
+      
+      # Note: the following is sort of a hacky alternative to build().  We
+      # need to append a new photo object without saving it, but build() won't
+      # work here b/c Photo and its descedents use STI, and type is a
+      # protected attributes that can't be mass-assigned.
+      @observation.photos[@observation.photos.size] = @flickr_photo
+      
       flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
         "<a href=\"#{url_for}\">Undo?</a>"
     else

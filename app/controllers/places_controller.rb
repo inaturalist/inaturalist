@@ -70,8 +70,8 @@ class PlacesController < ApplicationController
       @taxa_by_place_id[place.id] = place.taxa.paginate(
         :page => 1, 
         :per_page => 6, 
-        :include => [:flickr_photos, :taxon_names, :iconic_taxon], 
-        :order => "flickr_photos.id DESC")
+        :include => [:photos, :taxon_names, :iconic_taxon], 
+        :order => "photos.id DESC")
     end
     
     respond_to do |format|
@@ -105,8 +105,8 @@ class PlacesController < ApplicationController
     @listed_taxa = @place.listed_taxa.paginate(
       :page => 1, 
       :per_page => 11,
-      :include => {:taxon => [:flickr_photos, :iconic_taxon]},
-      :conditions => "flickr_photos.id > 0",
+      :include => {:taxon => [:photos, :iconic_taxon]},
+      :conditions => "photos.id > 0",
       :group => 'listed_taxa.taxon_id',
       :order => "listed_taxa.id DESC"
     )
@@ -126,7 +126,7 @@ class PlacesController < ApplicationController
     @children = @place.children.paginate(:page => 1, :order => 'name')
     observation_params = {
       :page => params[:page],
-      :include => [:user, :taxon, :flickr_photos, :iconic_taxon]
+      :include => [:user, :taxon, :photos, :iconic_taxon]
     }
     if @place.swlat
       @observations = Observation.in_bounding_box(
@@ -263,16 +263,13 @@ class PlacesController < ApplicationController
   def taxa
     per_page = params[:per_page]
     per_page = 100 if per_page && per_page.to_i > 100
-    conditions = params[:photos_only] ? "flickr_photos.id > 0" : nil
+    conditions = params[:photos_only] ? "photos.id > 0" : nil
     listed_taxa = @place.listed_taxa.paginate(
       :page => params[:page], 
       :per_page => per_page,
-      :include => {:taxon => [:iconic_taxon, :flickr_photos]}, 
-      # :include => {:taxon => [:iconic_taxon, :flickr_photos, :taxon_names]}, 
+      :include => {:taxon => [:iconic_taxon, :photos]}, 
       :conditions => conditions, 
       :group => 'listed_taxa.taxon_id',
-      # :group => 'listed_taxa.taxon_id, taxon_names.id',
-      # :select => "DISTINCT(taxon_id), listed_taxa.*, flickr_photos.*, taxon_names.*",
       :order => "listed_taxa.id DESC")
     @taxa = listed_taxa.map(&:taxon)
     
@@ -290,7 +287,7 @@ class PlacesController < ApplicationController
           taxon
         end
         render :json => @taxa.to_json(
-          :include => :flickr_photos, 
+          :include => :photos, 
           :methods => [:image_url, :default_name, :common_name, 
             :scientific_name, :html])
       end

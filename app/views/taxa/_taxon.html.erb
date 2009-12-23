@@ -12,7 +12,7 @@
   extra_class ||= nil
   taxon_class = "clear taxon #{taxon.rank}"
   taxon_class += " #{taxon.iconic_taxon.name}" if taxon.iconic_taxon
-  taxon_class += ' noimg' if taxon.flickr_photos.empty?
+  taxon_class += ' noimg' if taxon.photos.empty?
   taxon_class += " #{extra_class}" if extra_class
   taxon_name_str ||= taxon.default_name.name
   include_full_name ||= false
@@ -20,7 +20,7 @@
   
   if js_link
     taxon_json = taxon.to_json(
-      :include => [:iconic_taxon, :taxon_names, :flickr_photos],
+      :include => [:iconic_taxon, :taxon_names, :photos],
       :methods => [:common_name, :image_url, :default_name]
     )
   end
@@ -71,9 +71,9 @@
       <% end -%>
     </div>
   </div>
-  <% if include_image_attribution && (flickr_photo = taxon.flickr_photos.first) -%>
+  <% if include_image_attribution && (photo = taxon.photo.first) -%>
     <div class="meta attribution">
-      Photo <%= link_to flickr_photo.attribution, flickr_photo.flickr_page_url %>
+      Photo <%= link_to photo.attribution, photo.native_page_url %>
     </div>
   <% end -%>
 </div>

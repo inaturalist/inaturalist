@@ -238,7 +238,7 @@
   <% end %>
   <% for observation in @observations %>
   <div id="observation-<%= observation.id %>" class="observation row column span-24 last">
-    <div class="column span-<%= observation.flickr_photos.empty? ? 12 : 6 %> guess_and_description">
+    <div class="column span-<%= observation.photos.empty? ? 12 : 6 %> guess_and_description">
       <div class="mini observations">
         <% if logged_in? && current_user == observation.user -%>
           <% cache(:controller => 'observations', :action => 'component', 
@@ -255,7 +255,7 @@
         <% end %>
       </div>
     </div>
-    <% unless observation.flickr_photos.empty? -%>
+    <% unless observation.photos.empty? -%>
       <div class="photos column span-6">
         <%= render :partial => 'observations/photos', :object => observation %>
       </div>

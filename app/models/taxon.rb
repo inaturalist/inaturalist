@@ -30,7 +30,8 @@ class Taxon < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :parent, :class_name => 'Taxon'
-  has_and_belongs_to_many :flickr_photos, :uniq => true
+  has_many :taxon_photos, :dependent => :destroy
+  has_many :photos, :through => :taxon_photos
   has_and_belongs_to_many :colors
   
   define_index do
@@ -52,7 +53,7 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name
   after_save :update_unique_name
   
-  validates_associated :flickr_photos
+  # validates_associated :flickr_photos
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
                           :scope => [:parent_id],
@@ -357,16 +358,16 @@ class Taxon < ActiveRecord::Base
   # taxon's scientific name from Flickr.  So this will return a heterogeneous
   # array: part FlickrPhotos, part net::flickr Photos
   #
-  def photos(params = {})
+  def photos_with_backfill(params = {})
     params[:limit] ||= 9
-    photos = self.flickr_photos[0..params[:limit]-1]
-    flickr_photos = []
-    if photos.size < params[:limit] and self.auto_photos
+    chosen_photos = photos.all(:limit => params[:limit])
+    flickr_chosen_photos = []
+    if chosen_photos.size < params[:limit] && self.auto_photos
       begin
         netflickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-        flickr_photos = netflickr.photos.search({
+        flickr_chosen_photos = netflickr.photos.search({
           :tags => self.name.gsub(' ', '').strip,
-          :per_page => params[:limit] - photos.size,
+          :per_page => params[:limit] - chosen_photos.size,
           :license => '1,2,3,4,5,6', # CC licenses
           :extras => 'date_upload,owner_name',
           :sort => 'relevance'
@@ -376,11 +377,11 @@ class Taxon < ActiveRecord::Base
         logger.error e.backtrace.join("\n\t")
       end
     end
-    flickr_ids = photos.map(&:flickr_native_photo_id)
-    photos += flickr_photos.reject do |fp|
+    flickr_ids = chosen_photos.map(&:native_photo_id)
+    chosen_photos += flickr_chosen_photos.reject do |fp|
       flickr_ids.include?(fp.id)
     end
-    photos
+    chosen_photos
   end
   
   def phylum

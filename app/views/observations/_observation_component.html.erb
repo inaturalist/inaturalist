@@ -46,17 +46,17 @@ Some notes:
   <div class="photos attribute">
     <h4 class="label">Photos</h4>
     <div class="photolist clear">
-      <% if observation.flickr_photos.empty? %>
+      <% if observation.photos.empty? %>
         <div class="photo nophoto description">
           No photos
         </div>
       <% else %>
         <%= link_to(
-          image_tag(observation.flickr_photos.first.square_url), 
+          image_tag(observation.photos.first.square_url), 
           observation, 
           :class => 'flickr photo') %>
-        <% if observation.flickr_photos.size > 1 -%>
-          <%= link_to "#{observation.flickr_photos.size} photos", observation, :class => 'readmore' %>
+        <% if observation.photos.size > 1 -%>
+          <%= link_to "#{observation.photos.size} photos", observation, :class => 'readmore' %>
         <% end -%>
       <% end %>
     </div>

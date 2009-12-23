@@ -9,13 +9,16 @@
         <%- next if flickr_photo.send("#{photo_size}_url").blank? %>
         <li class="<%= photo_size %>_link <%= 'selected' if photo_size == size %>">
           <%= link_to_function photo_size, 
-            "$('#flickr_photo_wrapper_#{flickr_photo.id} img').hide(); $('#flickr_photo_#{flickr_photo.id}_#{photo_size}').css('display', 'block').attr('src', '#{flickr_photo.send("#{photo_size}_url")}'); $(this).parents('li').addClass('selected').siblings('li').removeClass('selected')" %>
+            "$('#flickr_photo_wrapper_#{flickr_photo.id} img').hide(); " +
+            "$('#flickr_photo_#{flickr_photo.id}_#{photo_size}').css('display', 'block').attr(" +
+              "'src', '#{flickr_photo.send("#{photo_size}_url")}'); " +
+            "$(this).parents('li').addClass('selected').siblings('li').removeClass('selected')" %>
         </li>
       <% end %>
-      <li class="flickr_page_url">
-        <%- photographer_name = (flickr_photo.flickr_realname || flickr_photo.flickr_username) -%>
+      <li class="native_page_url">
+        <%- photographer_name = (flickr_photo.native_realname || flickr_photo.native_username) -%>
         <%= link_to "View original #{'by '+photographer_name if !photographer_name.blank?} on Flickr", 
-          flickr_photo.flickr_page_url %>
+          flickr_photo.native_page_url %>
       </li>
     </ul>
   </div>

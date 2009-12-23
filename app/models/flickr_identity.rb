@@ -24,8 +24,8 @@ class FlickrIdentity < ActiveRecord::Base
           obs = Observation.new({:user_id       => flickr_user.user_id,
                                  :species_guess => photo.title,
                                  :description   => photo.description})
-          obs.flickr_photos << FlickrPhoto.new({:flickr_native_photo_id => photo.id,
-                                                :square_url => photo.source_url(:square)})
+          obs.photos << FlickrPhoto.new(:native_photo_id => photo.id,
+            :square_url => photo.source_url(:square))
           obs.save
         end
       end

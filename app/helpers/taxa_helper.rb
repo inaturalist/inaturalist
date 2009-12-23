@@ -51,12 +51,12 @@ module TaxaHelper
   # otherwise the iconic taxon icon.
   #
   def taxon_image(taxon, params = {})
-    if taxon.blank? || taxon.flickr_photos.empty?
+    if taxon.blank? || taxon.photos.blank?
       return iconic_taxon_image(taxon, params)
     end
     image_params = {:alt => default_taxon_name(taxon)}
-    unless taxon.flickr_photos.empty?
-      image_params[:alt] += " - Photo #{taxon.flickr_photos.first.attribution}"
+    unless taxon.photos.blank?
+      image_params[:alt] += " - Photo #{taxon.photos.first.attribution}"
     end
     image_params[:title] = image_params[:alt]
     
@@ -67,12 +67,12 @@ module TaxaHelper
   end
   
   def taxon_image_url(taxon, params = {})
-    return iconic_taxon_image_url(taxon, params) if taxon.flickr_photos.empty?
+    return iconic_taxon_image_url(taxon, params) if taxon.photos.blank?
     size = params[:size] ? "#{params[:size]}_url" : 'square_url'
-    if taxon.flickr_photos.first.respond_to?(size)
-      taxon.flickr_photos.first.send(size)
+    if taxon.photos.first.respond_to?(size)
+      taxon.photos.first.send(size)
     else
-      taxon.flickr_photos.first.square_url
+      taxon.photos.first.square_url
     end
   end
   

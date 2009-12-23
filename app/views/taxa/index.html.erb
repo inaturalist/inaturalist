@@ -237,7 +237,7 @@ Taxa &middot; All Species
         <% end -%>
       </div>
       <div id="photocredit">
-        Photo: <%= link_to taxon.flickr_photos.first.attribution, taxon.flickr_photos.first.flickr_page_url %>
+        Photo: <%= link_to taxon.photos.first.attribution, taxon.photos.first.native_page_url %>
       </div>
       <%= link_to taxon_image(taxon, :size => "large", :class => "taxonimage"), taxon %>
     </div>
@@ -248,11 +248,11 @@ Taxa &middot; All Species
   <% for iconic_taxon in @iconic_taxa %>
   <div id="<%= iconic_taxon.name %>" class="iconic_taxon clear column span-6 <%= cycle('first', '', 'last', :name => 'rowpos') %>">
     <div class="photos clear">
-      <% for photo in iconic_taxon.flickr_photos[0..5] %>
+      <% for photo in iconic_taxon.photos[0..5] %>
         <%- photo_tag = image_tag(
-          photo.is_a?(FlickrPhoto) ? photo.square_url : "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}",
+          photo.is_a?(Photo) ? photo.square_url : "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}",
           :width => 75, :height => 75, 
-          :title => photo.is_a?(FlickrPhoto) ? "Photo: #{photo.flickr_username}" : "Photo: #{photo.photo_xml['ownername']}"
+          :title => photo.is_a?(Photo) ? "Photo: #{photo.native_username}" : "Photo: #{photo.photo_xml['ownername']}"
         ) -%>
         <%= link_to(photo_tag, iconic_taxon, :class => cycle('', '', 'last')) %>
       <% end %>

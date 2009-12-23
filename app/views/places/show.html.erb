@@ -265,7 +265,7 @@
     function taxonToCarouselItem(taxon) {
       var carouselItem = $('<img></img>').attr('src', taxon.image_url);
       if (typeof(taxon.html) == 'undefined') {
-        var toolTipContent = $('<img></img>').attr('src', taxon.flickr_photos[0].small_url);
+        var toolTipContent = $('<img></img>').attr('src', taxon.photos[0].small_url);
       } else {
         var toolTipContent = taxon.html;
       }
@@ -383,7 +383,7 @@
           <li><%= taxon_image(listed_taxon.taxon, :id => dom_id(listed_taxon.taxon, 'image')) %></li>
           <script type="text/javascript" charset="utf-8">
             $('#<%= dom_id(listed_taxon.taxon, "image") %>').data('json', 
-              <%= listed_taxon.taxon.to_json(:include => :flickr_photos, 
+              <%= listed_taxon.taxon.to_json(:include => :photos, 
                 :methods => [:image_url, :default_name, :common_name, 
                   :scientific_name, :html]) %>
             );

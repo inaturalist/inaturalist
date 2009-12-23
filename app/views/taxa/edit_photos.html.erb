@@ -11,7 +11,7 @@
   <% form_tag({:action => 'update_photos'}) do %>
     <div class="taxon_photos clear">
       <%= render :partial => "flickr/photo_list_form", :locals => { 
-        :photos => @taxon.flickr_photos,
+        :photos => @taxon.photos,
         :checked => true } %>
     </div>
     <div class="buttonrow">

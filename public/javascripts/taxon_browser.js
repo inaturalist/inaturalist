@@ -1,6 +1,5 @@
 var TaxonBrowser = {
   ajaxify: function() {
-    console.log("ajaxifying");
     $('#taxon_browser a[href^=/taxa/search]').click(TaxonBrowser.handleSearchClicks);
     $('#taxon_browser form').submit(TaxonBrowser.handleFormSubmits);
     TaxonBrowser.addTips();
@@ -12,7 +11,6 @@ var TaxonBrowser = {
   },
 
   handleFormSubmits: function(e) {
-    console.log("handling form submit");
     $('#taxon_browser .loading').show();
     var params = $(this).serialize()+'&partial=browse';
     $.get($(this).attr('action'), params, function(data, status) {

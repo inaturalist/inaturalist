@@ -114,7 +114,7 @@
       baseURL: '/flickr/photo_fields?context=user',
       <% if @flickr_photo %>
       queryOnLoad: true,
-      defaultQuery: '<%= @flickr_photo.flickr_native_photo_id %>',
+      defaultQuery: '<%= @flickr_photo.native_photo_id %>',
       <% elsif @taxon %>
       queryOnLoad: true,
       defaultQuery: '<%= escape_javascript(default_taxon_name(@taxon)) %>',

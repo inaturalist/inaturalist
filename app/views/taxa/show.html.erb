@@ -575,7 +575,7 @@
 
 <div id="rightcol" class="last column span-20">
   <div id="photoscol" class="column span-13">
-    <% if logged_in? && @taxon.species_or_lower? && @taxon.flickr_photos.empty? %>
+    <% if logged_in? && @taxon.species_or_lower? && @taxon.photos.empty? %>
       <div class="notice">
         This taxon has no default photo!
         <%= link_to_function("Add one", "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>

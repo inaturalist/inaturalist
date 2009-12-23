@@ -375,7 +375,7 @@ describe Observation, "named scopes" do
   end
   
   it "should find observations with photos" do
-    @pos.flickr_photos << FlickrPhoto.new(:flickr_native_photo_id => 1)
+    @pos.photos << FlickrPhoto.new(:native_photo_id => 1)
     obs = Observation.has_photos
     obs.should include(@pos)
     obs.should_not include(@neg)

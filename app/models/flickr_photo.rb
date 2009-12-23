@@ -1,25 +1,12 @@
-class FlickrPhoto < ActiveRecord::Base
-  belongs_to :user
-  has_and_belongs_to_many :observations
-  has_and_belongs_to_many :taxa
-  validates_presence_of :flickr_native_photo_id
-  
-  attr_accessor :flickr_response
-  
-  def validate
-    if self.user.nil? and self.flickr_license == 0
-      errors.add(
-        :flickr_license, 
-        "must be a Creative Commons license if the photo wasn't added by " +
-        "an iNaturalist user using their linked Flickr account.")
-    end
+class FlickrPhoto < Photo
     
+  def validate
     # Check to make sure the user owns the flickr photo
-    if self.user && self.flickr_response
-      if self.flickr_response.is_a?(Net::Flickr::Photo)
-        fp_flickr_user_id = self.flickr_response.owner
+    if self.user && self.api_response
+      if self.api_response.is_a?(Net::Flickr::Photo)
+        fp_flickr_user_id = self.api_response.owner
       else
-        fp_flickr_user_id = self.flickr_response.owner.nsid
+        fp_flickr_user_id = self.api_response.owner.nsid
       end
       
       unless fp_flickr_user_id == self.user.flickr_identity.flickr_user_id
@@ -28,22 +15,39 @@ class FlickrPhoto < ActiveRecord::Base
     end
   end
   
+  def self.get_api_response(native_photo_id, options = {})
+    flickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
+    if options[:user] && options[:user].flickr_identity
+      flickr.auth.token = options[:user].flickr_identity.token
+    end
+    flickr.photos.get_info(native_photo_id)
+  end
+  
+  def self.new_from_api_response(api_response, options = {})
+    logger.debug "[DEBUG] api_response.class: #{api_response.class}"
+    if api_response.is_a? Net::Flickr::Photo
+      new_from_net_flickr(api_response, options)
+    else
+      new_from_flickraw(api_response, options)
+    end
+  end
+  
   def self.new_from_net_flickr(fp, options = {})
     options.update(
-      :flickr_native_photo_id => fp.id,
+      :native_photo_id => fp.id,
       :square_url => fp.source_url(:square),
       :thumb_url => fp.source_url(:thumb),
       :small_url => fp.source_url(:small),
       :medium_url => fp.source_url(:medium),
       :large_url => fp.source_url(:large),
       :original_url => fp.source_url(:original),
-      :flickr_page_url => fp.page_url,
-      :flickr_username => (fp.photo_xml.at('owner')[:username] rescue nil),
-      :flickr_realname => (fp.photo_xml.at('owner')[:realname] rescue nil),
-      :flickr_license => fp.photo_xml['license']
+      :native_page_url => fp.page_url,
+      :native_username => (fp.photo_xml.at('owner')[:username] rescue nil),
+      :native_realname => (fp.photo_xml.at('owner')[:realname] rescue nil),
+      :license => fp.photo_xml['license']
     )
     flickr_photo = FlickrPhoto.new(options)
-    flickr_photo.flickr_response = fp
+    flickr_photo.api_response = fp
     flickr_photo
   end
   
@@ -53,11 +57,11 @@ class FlickrPhoto < ActiveRecord::Base
     urls = fp.urls.index_by(&:type)
     photopage_url = urls['photopage']._content rescue nil
     options.update(
-      :flickr_native_photo_id => fp.id,
-      :flickr_page_url        => photopage_url,
-      :flickr_username        => fp.owner.username,
-      :flickr_realname        => fp.owner.realname,
-      :flickr_license         => fp.license
+      :native_photo_id => fp.id,
+      :native_page_url => photopage_url,
+      :native_username => fp.owner.username,
+      :native_realname => fp.owner.realname,
+      :license         => fp.license
     )
     
     # Set sizes
@@ -78,34 +82,8 @@ class FlickrPhoto < ActiveRecord::Base
     options[:original_url] ||= sizes['Original'].source rescue nil
     
     flickr_photo = new(options)
-    flickr_photo.flickr_response = fp
+    flickr_photo.api_response = fp
     flickr_photo
-  end
-  
-  # Return a string with attribution info about this photo
-  def attribution
-    case self.flickr_license
-    when 0
-      rights = '(c)'
-    when nil
-      rights = '(c)'
-    when 7
-      rights = '(o)'
-    else
-      rights = '(cc)'
-    end
-    
-    if !self.flickr_realname.blank?
-      name = self.flickr_realname
-    elsif !self.flickr_username.blank?
-      name = self.flickr_username
-    elsif !self.observations.empty?
-      name = self.observations.first.user.login
-    else
-      name = "anonymous Flickr user"
-    end
-
-    "#{rights} #{name}"
   end
   
   #
@@ -113,10 +91,10 @@ class FlickrPhoto < ActiveRecord::Base
   # the URLs.
   #
   def sync
-    unless fp = self.flickr_response
+    unless fp = self.api_response
       flickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
       flickr.auth.token = self.user.flickr_identity.token
-      fp = flickr.photos.get_info(self.flickr_native_photo_id)
+      fp = flickr.photos.get_info(self.native_photo_id)
     end
     old_urls = [self.square_url, self.thumb_url, self.small_url, 
                 self.medium_url, self.large_url, self.original_url]
@@ -140,12 +118,12 @@ class FlickrPhoto < ActiveRecord::Base
     if self.user && self.user.flickr_identity
       flickr.auth.token = self.user.flickr_identity.token
     end
-    fp = flickr.photos.get_info(self.flickr_native_photo_id)
+    fp = flickr.photos.get_info(self.native_photo_id)
     
     # Setup the observation
     observation = Observation.new
     observation.user = self.user if self.user
-    observation.flickr_photos << self
+    observation.photos << self
     observation.description = fp.description
     observation.observed_on_string = fp.taken.to_s(:long)
     observation.munge_observed_on_with_chronic
@@ -184,7 +162,7 @@ class FlickrPhoto < ActiveRecord::Base
     flickr = options.delete(:flickr)
     fp = options.delete(:fp)
     flickr ||= Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-    fp ||= flickr.photos.get_info(self.flickr_native_photo_id)
+    fp ||= flickr.photos.get_info(self.native_photo_id)
     FlickrPhoto.flickr_photo_to_taxa(fp)
   end
   

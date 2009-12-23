@@ -19,8 +19,7 @@
         "$('##{dom_id place, 'remove_status'}').show();" +
         "$('##{dom_id(place, 'remove_link')}').hide();",
       :failure => 
-        "$('##{dom_id(place, 'remove_link')}').hide();" +
-        "console.log('request: ', request)",
+        "$('##{dom_id(place, 'remove_link')}').hide();",
       :success => "$('##{dom_id place, 'remove_status'}').html('Removed!').removeClass('loading')",
       :html => {
         :id => dom_id(place, 'remove_link'),
@@ -36,8 +35,7 @@
         "$('##{dom_id place, 'add_status'}').show();" +
         "$('##{dom_id(place, 'add_link')}').hide();",
       :failure => 
-        "$('##{dom_id(place, 'add_link')}').hide();" +
-        "console.log('request: ', request);",
+        "$('##{dom_id(place, 'add_link')}').hide();",
       :success => "$('##{dom_id place, 'add_status'}').html('Added!').removeClass('loading').addClass('success');",
       :html => {
         :id => dom_id(place, 'add_link'),

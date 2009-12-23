@@ -63,7 +63,7 @@
         <div id="list-<%= list.id %>" class="clear list <%= 'owners_life_list' if @life_list.id == list.id %>">
           <a href="<%= list_path(list) %>" class="attr photos column span-3">
             <% for taxon in @iconic_taxa_for[list.id] %>
-              <%= taxon.flickr_photos.empty? ? iconic_taxon_image(taxon, :size => '32') : taxon_image(taxon) %>
+              <%= taxon.photos.empty? ? iconic_taxon_image(taxon, :size => '32') : taxon_image(taxon) %>
             <% end %>
             <% if @iconic_taxa_for[list.id].blank? %>&nbsp;<% end %>
           </a>

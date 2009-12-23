@@ -43,7 +43,7 @@
       </div>
       <%-
         all_iconic_taxa = Taxon.iconic_taxa.all(
-          :include => [:flickr_photos, :taxon_names], :order => "lft DESC")
+          :include => [:photos, :taxon_names], :order => "lft DESC")
       -%>
       <% for iconic_taxon in all_iconic_taxa -%>
         <div id="iconic_taxon_<%= iconic_taxon.name.downcase %>" class="iconic_taxon_filter">

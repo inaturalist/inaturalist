@@ -20,8 +20,8 @@ class ListsController < ApplicationController
     # lots of lists.
     @iconic_taxa_for = {}
     @lists.each do |list|
-      @iconic_taxa_for[list.id] = list.taxa.all(:include => :flickr_photos, 
-        :limit => 9, :order => "flickr_photos.id DESC")
+      @iconic_taxa_for[list.id] = list.taxa.all(:include => :photos, 
+        :limit => 9, :order => "photos.id DESC")
     end
     
     respond_to do |format|

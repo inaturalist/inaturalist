@@ -13,16 +13,14 @@ class Observation < ActiveRecord::Base
   belongs_to :taxon, :counter_cache => true
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
-    
-  has_many :photos
+  has_many :observation_photos, :dependent => :destroy
+  has_many :photos, :through => :observation_photos
   has_many :listed_taxa, :foreign_key => 'last_observation_id'
   has_many :goal_contributions,
            :as => :contribution,
            :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
-  
-  has_and_belongs_to_many :flickr_photos, :uniq => true
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -152,9 +150,9 @@ class Observation < ActiveRecord::Base
   named_scope :has_geo, :conditions => ["latitude IS NOT NULL AND longitude IS NOT NULL"]
   named_scope :has_id_please, :conditions => ["id_please IS TRUE"]
   named_scope :has_photos, 
-              :include => :flickr_photos,
+              :include => :photos,
               :group => 'observations.id',
-              :conditions => ['flickr_photos.id IS NOT NULL']
+              :conditions => ['photos.id IS NOT NULL']
   
   
   # Find observations by a taxon object

@@ -13,9 +13,9 @@ Note:
 =end
 -%>
   
-  <% unless observation.flickr_photos.empty? %>
+  <% unless observation.photos.empty? %>
     <a href="<%= observation_url(observation) %>">
-      <%= image_tag observation.flickr_photos[0].medium_url, :class => "left photo" %>
+      <%= image_tag observation.photos[0].medium_url, :class => "left photo" %>
     </a>
     <br />
   <% end %>

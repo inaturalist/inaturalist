@@ -1,6 +1,6 @@
 <%- observation ||= object ||= @observation -%>
 <%- top = capture do %>
-<% unless observation.flickr_photos.empty? -%>
+<% unless observation.photos.empty? -%>
   <div class="bigphotos">
     <%= render :partial => 'observations/photos', :object => observation %>
   </div>

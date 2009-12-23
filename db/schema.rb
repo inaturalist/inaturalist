@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091221195909) do
+ActiveRecord::Schema.define(:version => 20091223030137) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -78,39 +78,6 @@ ActiveRecord::Schema.define(:version => 20091221195909) do
     t.column "updated_at", :datetime
     t.column "flickr_user_id", :string
   end
-
-  create_table "flickr_photos", :options=>'ENGINE=MyISAM', :force => true do |t|
-    t.column "user_id", :integer
-    t.column "flickr_native_photo_id", :string
-    t.column "square_url", :string
-    t.column "thumb_url", :string
-    t.column "small_url", :string
-    t.column "medium_url", :string
-    t.column "large_url", :string
-    t.column "original_url", :string
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "flickr_page_url", :string
-    t.column "flickr_username", :string
-    t.column "flickr_realname", :string
-    t.column "flickr_license", :integer
-  end
-
-  add_index "flickr_photos", ["flickr_native_photo_id"], :name => "index_flickr_photos_on_flickr_native_photo_id"
-
-  create_table "flickr_photos_observations", :id => false, :options=>'ENGINE=MyISAM', :force => true do |t|
-    t.column "observation_id", :integer
-    t.column "flickr_photo_id", :integer
-  end
-
-  add_index "flickr_photos_observations", ["observation_id", "flickr_photo_id"], :name => "flickr_photos_observations_oid_fpid"
-
-  create_table "flickr_photos_taxa", :id => false, :options=>'ENGINE=MyISAM', :force => true do |t|
-    t.column "flickr_photo_id", :integer
-    t.column "taxon_id", :integer
-  end
-
-  add_index "flickr_photos_taxa", ["taxon_id", "flickr_photo_id"], :name => "index_flickr_photos_taxa_on_taxon_id_and_flickr_photo_id"
 
   create_table "friendships", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "user_id", :integer
@@ -221,6 +188,12 @@ ActiveRecord::Schema.define(:version => 20091221195909) do
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
   add_index "lists", ["place_id"], :name => "index_lists_on_place_id"
 
+  create_table "observation_photos", :force => true do |t|
+    t.column "observation_id", :integer, :null => false
+    t.column "photo_id", :integer, :null => false
+    t.column "position", :integer
+  end
+
   create_table "observations", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "observed_on", :date
     t.column "description", :text
@@ -266,16 +239,24 @@ ActiveRecord::Schema.define(:version => 20091221195909) do
   end
 
   create_table "photos", :options=>'ENGINE=MyISAM', :force => true do |t|
-    t.column "title", :text
-    t.column "observation_id", :integer
-    t.column "parent_id", :integer
-    t.column "content_type", :string
-    t.column "filename", :string
-    t.column "thumbnail", :string
-    t.column "size", :integer
-    t.column "width", :integer
-    t.column "height", :integer
+    t.column "user_id", :integer
+    t.column "native_photo_id", :string
+    t.column "square_url", :string
+    t.column "thumb_url", :string
+    t.column "small_url", :string
+    t.column "medium_url", :string
+    t.column "large_url", :string
+    t.column "original_url", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+    t.column "native_page_url", :string
+    t.column "native_username", :string
+    t.column "native_realname", :string
+    t.column "license", :integer
+    t.column "type", :string
   end
+
+  add_index "photos", ["native_photo_id"], :name => "index_flickr_photos_on_flickr_native_photo_id"
 
   create_table "picasa_identities", :force => true do |t|
     t.column "user_id", :integer
@@ -445,6 +426,12 @@ ActiveRecord::Schema.define(:version => 20091221195909) do
 
   add_index "taxon_names", ["name"], :name => "index_taxon_names_on_name"
   add_index "taxon_names", ["taxon_id"], :name => "index_taxon_names_on_taxon_id"
+
+  create_table "taxon_photos", :force => true do |t|
+    t.column "taxon_id", :integer, :null => false
+    t.column "photo_id", :integer, :null => false
+    t.column "position", :integer
+  end
 
   create_table "taxon_ranges", :options=>'ENGINE=MyISAM', :force => true do |t|
     t.column "taxon_id", :integer

@@ -4,21 +4,21 @@
 <div id="flickr_photos_list">
   <% if photos.size > 0 %>
     <% photos.each do |photo| %>
-      <%- flickr_native_photo_id = photo.is_a?(FlickrPhoto) ? photo.flickr_native_photo_id : photo.id -%>
-      <%- square_url = photo.is_a?(FlickrPhoto) ? photo.square_url : photo.source_url(:square) -%>
+      <%- native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id -%>
+      <%- square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square) -%>
       <div class="flickr_photo">
         <% if index %>
           <%= check_box_tag "flickr_photos[#{index}][]", 
-            flickr_native_photo_id, 
+            native_photo_id, 
             checked, 
-            {:id => "flickr_photo_#{index}_#{flickr_native_photo_id}", :class => "checkbox"} %>
+            {:id => "flickr_photo_#{index}_#{native_photo_id}", :class => "checkbox"} %>
             
           <% if synclink_base && synclink_uri = URI.parse(synclink_base) %>
             <% 
               if synclink_uri.query.blank?
-                synclink_uri.query = "flickr_photo_id=#{flickr_native_photo_id}"
+                synclink_uri.query = "flickr_photo_id=#{native_photo_id}"
               else
-                synclink_uri.query += "&flickr_photo_id=#{flickr_native_photo_id}"
+                synclink_uri.query += "&flickr_photo_id=#{native_photo_id}"
               end 
               synclink_url = synclink_uri.to_s
             -%>
@@ -31,15 +31,15 @@
                 "revert to your saved copy." %>
           <% end %>
           
-          <label for="flickr_photo_<%= index %>_<%= flickr_native_photo_id %>">
+          <label for="flickr_photo_<%= index %>_<%= native_photo_id %>">
             <%= image_tag(square_url) %>
           </label>
         <% else %>
           <%= check_box_tag "flickr_photos[]", 
-            flickr_native_photo_id, 
+            native_photo_id, 
             checked, 
-            {:id => "flickr_photo_#{flickr_native_photo_id}", :class => "checkbox"} %>
-          <label for="flickr_photo_<%= flickr_native_photo_id %>">
+            {:id => "flickr_photo_#{native_photo_id}", :class => "checkbox"} %>
+          <label for="flickr_photo_<%= native_photo_id %>">
             <%= image_tag(square_url) %>
           </label>
         <% end %>

@@ -17,10 +17,10 @@
 <%- end -%>
 <div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unkown' %> taxon-<%= listed_taxon.taxon.id %>">
   <div class="column image">
-    <%- if listed_taxon.taxon.flickr_photos.empty? -%>
+    <%- if listed_taxon.taxon.photos.empty? -%>
       <%= link_to '', listed_taxon.taxon %>
     <% else -%>
-      <%= modal_image(listed_taxon.taxon.flickr_photos.first) %>
+      <%= modal_image(listed_taxon.taxon.photos.first) %>
     <% end -%>
   </div>
   <div class="actions">

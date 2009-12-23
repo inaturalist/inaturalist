@@ -198,9 +198,9 @@ module Shared::ListsModule
   def taxa
     per_page = params[:per_page]
     per_page = 100 if per_page && per_page.to_i > 100
-    conditions = params[:photos_only] ? "flickr_photos.id > 0" : nil
+    conditions = params[:photos_only] ? "photos.id > 0" : nil
     @taxa = @list.taxa.paginate(:page => params[:page], :per_page => per_page,
-      :include => [:iconic_taxon, :flickr_photos, :taxon_names], 
+      :include => [:iconic_taxon, :photos, :taxon_names], 
       :conditions => conditions)
     
     respond_to do |format|
@@ -217,7 +217,7 @@ module Shared::ListsModule
           taxon
         end
         render :json => @taxa.to_json(
-          :include => :flickr_photos, 
+          :include => :photos, 
           :methods => [:image_url, :default_name, :common_name, 
             :scientific_name, :html])
       end
@@ -268,7 +268,7 @@ module Shared::ListsModule
       :per_page => 45,
       :include => [
         :last_observation,
-        {:taxon => [:iconic_taxon, :flickr_photos, :taxon_names]}
+        {:taxon => [:iconic_taxon, :photos, :taxon_names]}
       ],
       
       # TODO: somehow make the following not cause a filesort...
@@ -283,7 +283,7 @@ module Shared::ListsModule
       # they'll have to loaded when needed
       @find_options[:include] = [
         :last_observation, 
-        {:taxon => [:iconic_taxon, :flickr_photos]}
+        {:taxon => [:iconic_taxon, :photos]}
       ]
     end
   end

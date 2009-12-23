@@ -18,7 +18,7 @@ describe FlickrPhoto, "creation" do
   it "should not save if there is no assoc'd iNat user and the pic isn't CC" do
     @noncc_flickr_photo.user = nil
     @noncc_flickr_photo.valid?
-    @noncc_flickr_photo.errors.on(:flickr_license).should_not be(nil)
+    @noncc_flickr_photo.errors.on(:license).should be_blank
   end
   
   it "should make a valid FlickrPhoto from a Net::Flickr response" do

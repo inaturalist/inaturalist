@@ -73,7 +73,7 @@
               <% if logged_in? && current_user.flickr_identity %>
                 <div id="photos_<%= i %>" class="observation_photos">
                   <%= render :partial => "flickr/photo_list_form", :locals => { 
-                    :photos => observation.flickr_photos, 
+                    :photos => observation.photos, 
                     :index => i,
                     :checked => true,
                     :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation) } %>

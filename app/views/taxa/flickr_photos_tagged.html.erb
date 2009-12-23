@@ -85,14 +85,14 @@
   <% for flickr_photo in @flickr_photos %>
     <tr>
       <td class="photo">
-        <%= link_to image_tag(flickr_photo.small_url), flickr_photo.flickr_page_url %>
-        <% if flickr_photo.flickr_response -%>
-          <strong><%= link_to flickr_photo.flickr_response.title, flickr_photo.flickr_page_url %></strong>
+        <%= link_to image_tag(flickr_photo.small_url), flickr_photo.native_page_url %>
+        <% if flickr_photo.api_response -%>
+          <strong><%= link_to flickr_photo.api_response.title, flickr_photo.native_page_url %></strong>
         <% end -%>
       </td>
       <td class="tags description">
-        <% if flickr_photo.flickr_response -%>
-          <%- tags = flickr_photo.flickr_response.tags -%>
+        <% if flickr_photo.api_response -%>
+          <%- tags = flickr_photo.api_response.tags -%>
           <%- taxonomy_machine_tags = tags.map(&:raw).select{|tag| tag =~ /^taxonomy\:/} -%>
           <%- predicates = taxonomy_machine_tags.map {|tag| tag.split('=').first if tag.split('=').size > 1}.compact -%>
           <%- duplicate_predicates = predicates.select{|p| predicates.grep(p).size > 1} -%>
@@ -144,8 +144,8 @@
         <% end -%>
       </td>
       <td class="actions">
-        <%= link_to "View on Flickr", flickr_photo.flickr_page_url, :class => 'readmore' %>
-        <% if @imported_flickr_native_photo_id[flickr_photo.flickr_native_photo_id] -%>
+        <%= link_to "View on Flickr", flickr_photo.native_page_url, :class => 'readmore' %>
+        <% if @imported_native_photo_id[flickr_photo.native_photo_id] -%>
         
           <div class="description">
             This photo is already associated with one of your observations.
@@ -153,7 +153,7 @@
           
           <%= link_to "Import as another observation?", 
             {:controller => "observations", :action => 'import_flickr', 
-              :flickr_photos => [flickr_photo.flickr_native_photo_id]}, 
+              :flickr_photos => [flickr_photo.native_photo_id]}, 
             :method => :post, :class => 'readmore' %>
         <% else -%>
           <div class="description">
@@ -161,7 +161,7 @@
           </div>
           <%= link_to "Import as an observation", 
             {:controller => "observations", :action => 'import_flickr', 
-              :flickr_photos => [flickr_photo.flickr_native_photo_id]}, 
+              :flickr_photos => [flickr_photo.native_photo_id]}, 
             :method => :post, :class => 'button' %>
         <% end -%>
       </td>
@@ -172,6 +172,6 @@
 <div class="toolset" style="float: right">
   <%= link_to "Import all photos as observations", 
     {:controller => "observations", :action => 'import_flickr', 
-      :flickr_photos => @flickr_photos.map(&:flickr_native_photo_id)}, 
+      :flickr_photos => @flickr_photos.map(&:native_photo_id)}, 
     :method => :post, :class => 'inter readmore' %>
 </div>

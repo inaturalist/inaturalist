@@ -75,7 +75,7 @@
     <% end -%>
     <li class="clear <%= cycle_class %>">
       <%- prepend = capture do -%>
-        <% if listed_taxon.taxon.flickr_photos.empty? -%>
+        <% if listed_taxon.taxon.photos.empty? -%>
           <div class="nophoto">
             <%= link_to(taxon_image(listed_taxon.taxon, :size => 32), listed_taxon.taxon) %>
             <div class="description">
@@ -87,7 +87,7 @@
             </div>
           </div>
         <%- else -%>
-          <%= modal_image listed_taxon.taxon.flickr_photos.first, :size => photo_size %>
+          <%= modal_image listed_taxon.taxon.photos.first, :size => photo_size %>
         <% end -%>
         <div class="clear"></div>
       <%- end -%>

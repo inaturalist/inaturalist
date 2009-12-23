@@ -42,7 +42,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new(:parent => current_user, :user => current_user)
     @recent_observations = current_user.observations.latest.all(
-      :limit => 10, :include => [:taxon, :flickr_photos])
+      :limit => 10, :include => [:taxon, :photos])
   end
   
   def create
@@ -66,7 +66,7 @@ class PostsController < ApplicationController
   end
     
   def edit
-    @observations = @post.observations.all(:include => [:taxon, :flickr_photos])
+    @observations = @post.observations.all(:include => [:taxon, :photos])
   end
   
   def update
@@ -81,7 +81,7 @@ class PostsController < ApplicationController
     if params[:commit] == 'Preview'
       @post.attributes = params[:post]
       @preview = @post
-      @observations ||= @post.observations.all(:include => [:taxon, :flickr_photos])
+      @observations ||= @post.observations.all(:include => [:taxon, :photos])
       return render(:action => 'edit')
     end
     

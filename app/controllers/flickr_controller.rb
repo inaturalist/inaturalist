@@ -188,7 +188,7 @@ class FlickrController < ApplicationController
     #     FlickrPhoto.all(:include => :observations, 
     #       :conditions => ["observations.user_id = ?", current_user.id])
     #   else
-    #     FlickrPhoto.all(:conditions => ["flickr_native_photo_id IN (?)", 
+    #     FlickrPhoto.all(:conditions => ["native_photo_id IN (?)", 
     #       @photos.map(&:id)])
     #   end
     
