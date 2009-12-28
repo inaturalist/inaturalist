@@ -165,6 +165,10 @@ class User < ActiveRecord::Base
   def to_s
     "<User #{self.id}: #{self.login}>"
   end
+  
+  def friends_with?(user)
+    friends.exists?(user)
+  end
 
   protected
   def make_activation_code

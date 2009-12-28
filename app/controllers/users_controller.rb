@@ -177,19 +177,23 @@ class UsersController < ApplicationController
     @original_user = @user
     
     # Add a friend
-    unless(params[:friend_id].nil?)
-      current_user.friends << User.find(params[:friend_id])
-      return redirect_back_or_default(person_by_login_path({:login => current_user.login}))
+    unless params[:friend_id].blank?
+      if friend_user = User.find_by_id(params[:friend_id]) && !current_user.friends_with?(friend_user)
+        current_user.friends << friend_user
+      end
+      return redirect_back_or_default(person_by_login_path(:login => current_user.login))
     end
     
     # Remove a friend
-    unless(params[:remove_friend_id].nil?)
-      current_user.friendships.find_by_friend_id(params[:remove_friend_id]).destroy
-      return redirect_back_or_default(person_by_login_path({:login => current_user.login}))
+    unless params[:remove_friend_id].blank?
+      if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
+        friendship.destroy
+      end
+      return redirect_back_or_default(person_by_login_path(:login => current_user.login))
     end
     
     # Update passwords
-    unless(params[:password].nil?)
+    unless params[:password].blank?
       if current_user.authenticated?(params[:current_password])
         current_user.password = params[:password]
         current_user.password_confirmation = params[:password_confirmation]
