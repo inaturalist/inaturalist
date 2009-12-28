@@ -43,23 +43,10 @@
              :locals => { :user => @user } %>
   
   <% if logged_in? && current_user.login == @login %>
-  <div id="tools buttonrow">
-    <%= link_to "Edit your profile", edit_person_path(current_user), 
-                :class => "default button"%>
-  </div>
-  <% elsif logged_in? && current_user.has_role?(:admin) %>
-  <% if @user.active? %>
-  <div id="tools buttonrow">
-    <%= link_to "Suspend User", suspend_user_path(@user), 
-                :class => "default button"%>
-  </div>
-  <% else %>
-  <div id="tools buttonrow">
-    <%= link_to "Unsuspend User", unsuspend_user_path(@user), 
-                :class => "default button"%>
-  </div>
-  <% end %>
-
+    <div id="tools buttonrow">
+      <%= link_to "Edit your profile", edit_person_path(current_user), 
+                  :class => "default button"%>
+    </div>
   <% end %>
 </div>
 
@@ -162,3 +149,12 @@
   </ul>  
 </div>
 
+<% if logged_in? && current_user.has_role?(:admin) %>
+  <div class="right clear">
+    <% if @user.active? %>
+      <%= link_to "Suspend User?", suspend_user_path(@user), :class => "ui description" %>
+    <% else %>
+      <%= link_to "Unsuspend User", unsuspend_user_path(@user), :class => "ui description" %>
+    <% end %>
+  </div>
+<% end %>

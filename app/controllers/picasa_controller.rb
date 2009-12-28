@@ -42,4 +42,49 @@ class PicasaController < ApplicationController
       redirect_to :action => 'options'
     end
   end
+  
+  def photo_fields
+    token = if logged_in? && current_user.picasa_identity
+      current_user.picasa_identity.token
+    else
+      nil
+    end
+    picasa = Picasa.new(token)
+    search_params = {}
+    
+    # If this is for a user, set the auth token
+    case params[:context]
+    when 'user'
+      search_params[:user_id] = current_user.picasa_identity.picasa_user_id
+      
+    # Otherwise, make sure we're only searching CC'd photos
+    else
+      # search_params['license'] = '1,2,3,4,5,6'
+      # Picasa doesn't allow CC filtering through its API yet...
+      return
+    end
+    
+    per_page = params[:limit].to_i || 10
+    search_params[:max_results] = per_page
+    search_params[:start_index] = (params[:page] || 1).to_i * per_page - per_page + 1
+    search_params[:thumbsize] = RubyPicasa::Photo::VALID.join(',')
+    
+    results = picasa.search(params[:q], search_params)
+    @photos = results.photos.map do |api_response|
+      logger.debug "[DEBUG] api_response: #{api_response}"
+      next unless api_response.is_a?(RubyPicasa::Photo)
+      PicasaPhoto.new_from_api_response(api_response, :user => current_user)
+    end.compact
+    
+    respond_to do |format|
+      format.html do
+        render :partial => 'flickr/photo_list_form', 
+               :locals => {
+                 :photos => @photos, 
+                 :index => params[:index],
+                 :synclink_base => @synclink_base
+               }
+      end
+    end
+  end
 end

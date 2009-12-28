@@ -68,9 +68,31 @@
           <div class="last column span-8">
             <div class="field">
               <label>
-                Did you post any photos on Flickr?
+                Did you post any photos<% if @photo_identities.blank? %>?
+                <% else -%>
+                  <%- 
+                    photo_endpoints = @photo_identities.map do |ident|
+                      name = ident.class.to_s.underscore.humanize.split.first
+                      {:title => name, :url => "/#{name.downcase}/photo_fields?context=user"}
+                    end
+                  -%>
+                  <% if @photo_identities.size == 1 -%>
+                    on <%= photo_endpoints.first[:title] %>?
+                  <% else %>
+                    on <select id="<%= dom_id(observation, "photo_source_selector") %>">
+                      <% for endpoint in photo_endpoints %>
+                        <option value="<%= endpoint[:url] %>"><%= endpoint[:title] %></option>
+                      <% end %>
+                    </select> ?
+                    <script type="text/javascript" charset="utf-8">
+                      $('#<%= dom_id(observation, "photo_source_selector") %>').change(function() {
+                        $.fn.photoSelector.changeBaseUrl($('#photos_<%= i %>'), $(this).val());
+                      });
+                    </script>
+                  <% end -%>
+                <% end -%>
               </label>
-              <% if logged_in? && current_user.flickr_identity %>
+              <% unless @photo_identities.blank? %>
                 <div id="photos_<%= i %>" class="observation_photos">
                   <%= render :partial => "flickr/photo_list_form", :locals => { 
                     :photos => observation.photos, 
@@ -79,11 +101,14 @@
                     :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation) } %>
                 </div>
               <% else %>
-                <span>We currently support Flickr for image hosting.</span>
-                <%= link_to "You can activate your Flickr account with " + 
-                            "iNaturalist to add photos by clicking on this link.",
-                            :controller => 'flickr',
-                            :action => 'link' %>
+                <p class="description">
+                  We currently support <a href="http://flickr.com">Flickr</a> and 
+                  <a href="http://picasaweb.google.com">Picasa</a> for image hosting.
+                </p>
+                <%= link_to "Link your Flickr account",
+                  {:controller => 'flickr', :action => 'link'}, :class => "button" %>
+                <%= link_to "Link your Picasa account",
+                  {:controller => 'picasa', :action => 'options'}, :class => "button" %>
               <% end %>
             </div>
           </div>

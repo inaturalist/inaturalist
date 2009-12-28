@@ -1,6 +1,6 @@
-class FlickrPhotosController < ApplicationController
+class PhotosController < ApplicationController
   def show
-    @flickr_photo = FlickrPhoto.find_by_id(params[:id])
+    @photo = Photo.find_by_id(params[:id])
     respond_to do |format|
       format.js do
         partial = params[:partial] || 'photo'

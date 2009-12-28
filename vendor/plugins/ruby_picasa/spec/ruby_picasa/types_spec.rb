@@ -81,6 +81,10 @@ describe User do
   it 'should have a user' do
     @user.user.should_not be_blank
   end
+  
+  it 'should have a nickname' do
+    @user.nickname.should_not be_blank
+  end
 end
 
 describe RecentPhotos do
@@ -192,6 +196,12 @@ describe Album do
 
     it 'should have a content' do
       @photo.content.should be_an_instance_of(PhotoUrl)
+    end
+    
+    it 'should have a license' do
+      @photo.license.should be_an_instance_of(Photo::License)
+      @photo.license.id.should == 0
+      @photo.license.name.should == "All Rights Reserved"
     end
 
     it 'should have 3 thumbnails' do

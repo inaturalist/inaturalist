@@ -237,6 +237,8 @@ class ObservationsController < ApplicationController
     
     sync_flickr_photo if params[:flickr_photo_id]
     
+    @photo_identities = [current_user.flickr_identity, current_user.picasa_identity].compact
+    
     respond_to do |format|
       format.html do
         @observations = [@observation]
@@ -277,6 +279,7 @@ class ObservationsController < ApplicationController
   # GET /observations/1/edit
   def edit
     @observation = Observation.find(params[:id])
+    @photo_identities = [current_user.flickr_identity, current_user.picasa_identity].compact
     
     # Only the owner should be able to see this.  
     unless current_user.id == @observation.user_id or current_user.is_admin?
@@ -371,20 +374,19 @@ class ObservationsController < ApplicationController
       # included if you are updating observations but aren't including flickr
       # fields, e.g. when removing something from ID please
       unless params[:ignore_photos]
-        if params[:flickr_photos] && params[:flickr_photos][observation.id.to_s]
-          # observation.photos = retrieve_photos(params[:flickr_photos][observation.id.to_s], 
-          #   :user => observation_user)
-          updated_photos = []
-          Photo.descendent_classes.each do |klass|
-            klass_key = klass.to_s.underscore.pluralize.to_sym
-            if params[klass_key] && params[klass_key][observation.id.to_s]
-              updated_photos += retrieve_photos(params[klass_key][observation.id.to_s], 
-                :user => observation_user, :photo_class => klass)
-            end
+        # Get photos
+        updated_photos = []
+        Photo.descendent_classes.each do |klass|
+          klass_key = klass.to_s.underscore.pluralize.to_sym
+          if params[klass_key] && params[klass_key][observation.id.to_s]
+            updated_photos += retrieve_photos(params[klass_key][observation.id.to_s], 
+              :user => current_user, :photo_class => klass)
           end
-          observation.photos = updated_photos.flatten
-        else
+        end
+        if updated_photos.empty?
           observation.photos.clear
+        else
+          observation.photos = updated_photos
         end
       end
       
@@ -741,7 +743,7 @@ class ObservationsController < ApplicationController
     photo_list.uniq.each do |photo_id|
       if photo = existing[photo_id] || options[:sync]
         # fp = flickr.photos.get_info(photo_id)
-        api_response = photo_class.get_api_response(photo_id)
+        api_response = photo_class.get_api_response(photo_id, :user => current_user)
       end
       
       # Sync existing if called for
@@ -755,7 +757,7 @@ class ObservationsController < ApplicationController
       
       # Create a new one if one doesn't already exist
       unless photo
-        api_response ||= photo_class.get_api_response(photo_id)
+        api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
         photo = photo_class.new_from_api_response(api_response, :user => current_user)
       end
       

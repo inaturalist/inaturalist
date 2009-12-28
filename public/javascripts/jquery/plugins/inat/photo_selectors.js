@@ -20,6 +20,9 @@
   
   // Setup an individual photoSelector
   function setup(wrapper, options) {
+    // Store the options
+    $(wrapper).data('photoSelectorOptions', options);
+    
     // Grab all the existing content
     var existing = $(wrapper).contents();
     
@@ -39,16 +42,37 @@
       $.fn.photoSelector.defaults.formInputCSS
     );
     
+    if (options.urls) {
+      var urlSelect = $('<select class="urlselect select" style="margin: 0 auto"></select>');
+      $.each(options.urls, function() {
+        if (this.url) {
+          var title = this.title;
+          var url = this.url;
+        } else {
+          var title = this;
+          var url = this;
+        }
+        var option = $('<option value="'+url+'">'+title+'</option>');
+        if (url == options.baseURL) $(option).attr('selected', 'selected');
+        $(urlSelect).append(option);
+      });
+      
+      $(urlSelect).change(function() {
+        $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
+      });
+      
+      $(wrapper).append(urlSelect);
+    }
+    
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
     var prev = $('<a href="#" class="prevlink button">&laquo; Prev</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum -= 1;
       if (pagenum < 1) pagenum = 1;
-      var prevOpts = $.extend({}, options);
+      var prevOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       prevOpts.urlParams = $.extend({}, prevOpts.urlParams, {page: pagenum});
       $.fn.photoSelector.queryPhotos(
-        options.baseURL, 
         $(input).val(), 
         wrapper, 
         prevOpts);
@@ -58,17 +82,19 @@
     var next = $('<a href="#" class="nextlink button">Next &raquo;</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum += 1;
-      var nextOpts = $.extend({}, options);
+      var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       nextOpts.urlParams = $.extend({}, nextOpts.urlParams, {page: pagenum});
       $.fn.photoSelector.queryPhotos(
-        options.baseURL, 
         $(input).val(), 
         wrapper, 
         nextOpts);
       $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
     });
-    $(controls).append(input, button, page, prev, next, $('<div></div>').css({
+    
+    $(controls).append(input, button, page, prev, next);
+    if (urlSelect) $(controls).append(urlSelect);
+    $(controls).append($('<div></div>').css({
       height: 0, 
       visibility: 'hidden', 
       clear: 'both'})
@@ -88,7 +114,7 @@
     // Bind button clicks to search photos
     $(button).click(function(e) {
       $(wrapper).find('.photoSelectorPage').val(1);
-      $.fn.photoSelector.queryPhotos(options.baseURL, $(input).val(), wrapper, options);
+      $.fn.photoSelector.queryPhotos($(input).val(), wrapper);
       return false;
     });
     
@@ -98,7 +124,7 @@
         // Catch exceptions to ensure false return and precent form submission
         try {
           $(wrapper).find('.photoSelectorPage').val(1);
-          $.fn.photoSelector.queryPhotos(options.baseURL, $(input).val(), wrapper, options);
+          $.fn.photoSelector.queryPhotos($(input).val(), wrapper);
         }
         catch (e) {
           alert(e);
@@ -114,15 +140,27 @@
         if (typeof(options.defaultQuery) == 'string') {
           q = options.defaultQuery;
         };
-        $.fn.photoSelector.queryPhotos(options.baseURL, q, wrapper, options);
+        $.fn.photoSelector.queryPhotos(q, wrapper);
       });
     };
   };
   
+  $.fn.photoSelector.changeBaseUrl = function(wrapper, url) {
+    var options = $(wrapper).data('photoSelectorOptions');
+    options.baseURL = url;
+    $(wrapper).data('photoSelectorOptions', options);
+    $.fn.photoSelector.queryPhotos($(wrapper).find('.photoSelectorSearchField').val(), wrapper);
+  };
+  
   // Hit the server for photos
-  $.fn.photoSelector.queryPhotos = function(baseURL, q, wrapper, options) {
-    var options = options || {};
+  $.fn.photoSelector.queryPhotos = function(q, wrapper, options) {
+    var options = $.extend({}, 
+      $.fn.photoSelector.defaults, 
+      $(wrapper).data('photoSelectorOptions'), 
+      options
+    );
     var params = $.extend({}, options.urlParams, {'q': q});
+    var baseURL = options.baseURL;
     
     // Pull out parents of existing checked inputs
     var existing = $(wrapper).find(

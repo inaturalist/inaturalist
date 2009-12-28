@@ -26,7 +26,11 @@
         var authenticity_token = $(this).parents('form').find(
           'input[name=authenticity_token]').val();
         $(this).photoSelector({
-          baseURL: '/flickr/photo_fields?context=user',
+          <%- if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+            baseURL: '/flickr/photo_fields?context=user',
+          <%- else -%>
+            baseURL: '/picasa/photo_fields?context=user',
+          <%- end -%>
           urlParams: {
             authenticity_token: authenticity_token,
             index: index,

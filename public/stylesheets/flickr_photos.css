@@ -1,22 +1,22 @@
-.modal_flickr_photo .native_page_url {
+.modal_photo .native_page_url {
   float: right;
   font-weight: bold;
 }
 
-.modal_flickr_photo .flickr_photo_wrapper {
+.modal_photo .photo_wrapper {
   overflow: auto; 
   clear: both; 
   height: 520px;
   margin-bottom: 5px;
 }
 
-.modal_flickr_photo .flickr_photo_wrapper img {
+.modal_photo .photo_wrapper img {
   float: none;
   display: block;
   margin: 0 auto;
 }
 
-.modal_flickr_photo .tabs .selected a {
+.modal_photo .tabs .selected a {
   font-weight: bold;
   border-bottom: 1px dotted;
   outline: none;
