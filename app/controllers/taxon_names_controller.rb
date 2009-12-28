@@ -3,6 +3,8 @@ class TaxonNamesController < ApplicationController
   before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
   before_filter :load_taxon, :except => [:index]
   before_filter :curator_required_for_sciname, :only => [:edit, :update, :destroy]
+  
+  cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
     
   def index
     find_options = {

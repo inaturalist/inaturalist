@@ -23,9 +23,13 @@ module Shared::SweepersModule
   end
   
   def expire_listed_taxon(listed_taxon)
-    expire_fragment(
-      :controller => 'listed_taxa', 
-      :action => 'show', 
-      :id => listed_taxon.id)
+    expire_fragment(:controller => 'listed_taxa', :action => 'show', :id => listed_taxon)
+    expire_fragment(:controller => 'listed_taxa', :action => 'show', :id => listed_taxon, :for_owner => true)
+  end
+  
+  def expire_listed_taxa(taxon)
+    ListedTaxon.find_each(:conditions => ["taxon_id = ?", taxon]) do |lt|
+      expire_listed_taxon(lt)
+    end
   end
 end
