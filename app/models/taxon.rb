@@ -53,7 +53,6 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name
   after_save :update_unique_name
   
-  # validates_associated :flickr_photos
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
                           :scope => [:parent_id],

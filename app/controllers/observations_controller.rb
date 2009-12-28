@@ -55,7 +55,7 @@ class ObservationsController < ApplicationController
         render :json => @observations.to_json({
           :include => {
             :user => {:only => :login},
-            :flickr_photos => {}
+            :photos => {}
           }
         })
       end

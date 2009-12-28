@@ -78,7 +78,7 @@ class ListsController < ApplicationController
     )
     find_options[:include] = [
       :last_observation,
-      {:taxon => [:iconic_taxon, :flickr_photos, :taxon_names]}
+      {:taxon => [:iconic_taxon, :photos, :taxon_names]}
     ]
     @listed_taxa = ListedTaxon.find(:all, find_options)
     

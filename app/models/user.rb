@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   
   has_many :lists, :dependent => :destroy
   has_many :identifications, :dependent => :destroy
-  has_many :flickr_photos
+  has_many :photos
   has_many :goal_participants, :dependent => :destroy
   has_many :goals, :through => :goal_participants
   has_many :incomplete_goals,
