@@ -1,8 +1,8 @@
-.flickr_photos_list {
+.photo_list {
   clear: both;
 }
 
-.flickr_photo {
+.photo {
   width: auto;
   float: left;
   margin: 0 0.5em 0 0;
@@ -10,14 +10,14 @@
   padding: 0.5em;
 }
 
-.flickr_photo:hover {
+.photo:hover {
   border: 1px solid #ddd;
 }
 
-.flickr_photo .checkbox {
+.photo .checkbox {
   margin: 0 auto 0.2em;
 }
 
-.flickr_photo img {
+.photo img {
   vertical-align: middle;
 }

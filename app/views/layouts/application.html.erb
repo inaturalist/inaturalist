@@ -16,8 +16,6 @@
   <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 2) do %>
   <%= render :partial => 'shared/header' %>
   <% end %>
-  
-  <div id="debug"></div>
 
   <% if flash[:notice] %>
   <p id="flash" class="notice"><%= flash[:notice] %></p> 

@@ -272,8 +272,10 @@ module RubyPicasa
   #   has_one :author, Objectify::Atom::Author, 'author'
   class Photo < Base
     CROPPED = %w[ 32c 48c 64c 72c 104c 144c 150c 160c ]
-    UNCROPPED = %w[ 104 110 128 144 150 160 200 220 288 320 32 400 48 512 576 640 64 720 72 800 912 94 1024 1152 1280 1440 1600 ]
-    UNCROPPED += UNCROPPED.map {|s| "#{s}u"}
+    UNCROPPED = %w[
+      104 110 128 144 150 160 200 220 288 320 32 400 48 512 576 640 64 720 72 800 912 94 1024 1152 1280 1440 1600
+      104u 110u 128u 144u 150u 160u 200u 220u 288u 320u 32u 400u 48u 512u 576u 640u 64u 720u 72u 800u 912u 94u 1024u 1152u 1280u 1440u 1600u
+    ]
     MEDIUM = %w[ 200 288 320 400 512 576 640 720 800 ]
     LARGE = %w[ 912 1024 1152 1280 1440 1600 ]
     VALID = CROPPED + UNCROPPED + MEDIUM + LARGE
@@ -325,6 +327,8 @@ module RubyPicasa
     
     attribute :user, 'gphoto:user'
     attribute :nickname, 'gphoto:nickname'
+    attribute :location, 'gphoto:location'
+    attribute :timestamp, 'gphoto:timestamp'
 
     flatten 'georss:where'
     

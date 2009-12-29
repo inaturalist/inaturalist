@@ -24,6 +24,63 @@ class PicasaPhoto < Photo
     nil
   end
   
+  def to_observation  
+    self.api_response ||= PicasaPhoto.get_api_response(self.native_photo_id, :user => self.user)
+    
+    # Setup the observation
+    observation = Observation.new
+    observation.user = self.user if self.user
+    observation.photos << self
+    observation.description = api_response.description
+    if timestamp = api_response.exif_time || api_response.timestamp
+      observation.observed_on_string = Time.at(timestamp / 1000).to_s(:long)
+    end
+    observation.munge_observed_on_with_chronic
+    observation.time_zone = observation.user.time_zone if observation.user
+    
+    # Get the geo fields
+    if api_response.point
+      observation.latitude = api_response.point.lat
+      observation.longitude = api_response.point.lng
+    end
+    observation.place_guess = api_response.location
+    if observation.place_guess.blank? && api_response.point
+      latrads = observation.latitude.to_f * (Math::PI / 180)
+      lonrads = observation.longitude.to_f * (Math::PI / 180)
+      places = Place.search(:geo => [latrads,lonrads], :order => "@geodist asc", :limit => 5) rescue []
+      places = places.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
+      places = places.sort_by(&:bbox_area)
+      # if place = Place.containing_lat_lng(observation.latitude, observation.longitude).first(:order => "bbox_area ASC")
+      #   observation.place_guess = place.display_name
+      # end
+      if place = places.first
+        observation.place_guess = place.display_name
+      end
+    end
+    
+    # Try to get a taxon
+    photo_taxa = to_taxa
+    unless photo_taxa.blank?
+      observation.taxon = photo_taxa.detect(&:species_or_lower?)
+      observation.taxon ||= photo_taxa.first
+      
+      if observation.taxon
+        begin
+          observation.species_guess = observation.taxon.common_name.name
+        rescue
+          observation.species_guess = observation.taxon.name
+        end
+      end
+    end
+
+    observation
+  end
+  
+  def to_taxa
+    self.api_response ||= PicasaPhoto.get_api_response(self.native_photo_id, :user => self.user)
+    Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip)) unless api_response.keywords.blank?
+  end
+  
   # TODO Retrieve info about a photo from its native source given its native id.  
   def self.get_api_response(native_photo_id, options = {})
     # Picasa API calls only work with a user's token, so first we try to get 

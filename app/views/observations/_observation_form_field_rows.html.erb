@@ -112,19 +112,12 @@
               Photos
             </a>
             <% if observation.user && observation.user.flickr_identity %>
-              <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos">
-                <% for photo in observation.photos %>
-                  <div class="flickr_photo">
-                    <%= check_box_tag("flickr_photos[#{i}][]", 
-                        photo.native_photo_id, 
-                        true,
-                        :id => "flickr_photo_#{i}_#{photo.native_photo_id}", 
-                        :class => 'checkbox') %>
-                    <label for="flickr_photo_<%= i %>_<%= photo.native_photo_id %>">
-                      <%= image_tag(photo.square_url) %>
-                    </label>
-                  </div>
-                <% end %>
+              <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
+                <%= render :partial => "flickr/photo_list_form", :locals => { 
+                  :photos => observation.photos,
+                  :index => i,
+                  :checked => true
+                } %>
               </div>
             <% else %>
               <div class="compactfieldcontent" style="display: none">

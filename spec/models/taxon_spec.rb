@@ -230,3 +230,18 @@ describe Taxon, "unique name" do
     new_taxon.unique_name.should be_nil
   end
 end
+
+describe Taxon, "tags_to_taxa" do
+  fixtures :taxa
+  it "should find Animalia and Mollusca" do
+    taxa = Taxon.tags_to_taxa(['Animalia', 'Mollusca'])
+    taxa.should include(taxa(:Animalia))
+    taxa.should include(taxa(:Mollusca))
+  end
+  
+  it "should work on taxonomic machine tags" do
+    taxa = Taxon.tags_to_taxa(['taxonomy:kingdom=Animalia', 'taxonomy:phylum=Mollusca'])
+    taxa.should include(taxa(:Animalia))
+    taxa.should include(taxa(:Mollusca))
+  end
+end

@@ -12,8 +12,9 @@ class ObservationsController < ApplicationController
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :by_login]
-  before_filter :curator_required, 
-                  :only => [:curation]
+  before_filter :curator_required, :only => [:curation]
+  before_filter :load_photo_identities, :only => [:new, :edit, :import, 
+    :import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
   caches_page :tile_points
@@ -236,8 +237,7 @@ class ObservationsController < ApplicationController
     @observation = Observation.new(options)
     
     sync_flickr_photo if params[:flickr_photo_id]
-    
-    @photo_identities = [current_user.flickr_identity, current_user.picasa_identity].compact
+    sync_picasa_photo if params[:picasa_photo_id]
     
     respond_to do |format|
       format.html do
@@ -279,7 +279,6 @@ class ObservationsController < ApplicationController
   # GET /observations/1/edit
   def edit
     @observation = Observation.find(params[:id])
-    @photo_identities = [current_user.flickr_identity, current_user.picasa_identity].compact
     
     # Only the owner should be able to see this.  
     unless current_user.id == @observation.user_id or current_user.is_admin?
@@ -288,6 +287,7 @@ class ObservationsController < ApplicationController
     end
     
     sync_flickr_photo if params[:flickr_photo_id]
+    sync_picasa_photo if params[:picasa_photo_id]
   end
 
   # POST /observations
@@ -475,7 +475,6 @@ class ObservationsController < ApplicationController
       end
       @step = 2
     end
-    render :layout => 'observations/batch'
   end
 
 
@@ -529,7 +528,6 @@ class ObservationsController < ApplicationController
         return
       end
     end
-    render :layout => 'observations/batch'
   end
 
   # Edit a batch of observations
@@ -560,14 +558,14 @@ class ObservationsController < ApplicationController
   def import
   end
   
-  def import_flickr
-    photos = retrieve_photos(params[:flickr_photos], :user => current_user, 
-      :photo_class => FlickrPhoto)
-    @observations = photos.map do |photo|
-      photo.to_observation
-    end
+  def import_photos
+    photos = Photo.descendent_classes.map do |klass|
+      retrieve_photos(params[klass.to_s.underscore.pluralize.to_sym], 
+        :user => current_user, :photo_class => klass)
+    end.flatten.compact
+    @observations = photos.map(&:to_observation)
     @step = 2
-    render :layout => 'observations/batch', :template => 'observations/new_batch'
+    render :template => 'observations/new_batch'
   end
 
   # gets observations by user login
@@ -1032,5 +1030,40 @@ class ObservationsController < ApplicationController
     else
       flash.now[:error] = "Sorry, we didn't find that photo."
     end
+  end
+  
+  def sync_picasa_photo
+    api_response = PicasaPhoto.get_api_response(params[:picasa_photo_id], :user => current_user)
+    unless api_response
+      logger.debug "[DEBUG] Failed to find Picasa photo for #{params[:picasa_photo_id]}"
+      return
+    end
+    @picasa_photo = PicasaPhoto.new_from_api_response(api_response, :user => current_user)
+    
+    if @picasa_photo && @picasa_photo.valid?
+      @picasa_observation = @picasa_photo.to_observation
+      sync_attrs = [:description, :species_guess, :taxon_id, :observed_on, 
+        :latitude, :longitude, :place_guess]
+      unless params[:picasa_sync_attrs].blank?
+        sync_attrs = sync_attrs & params[:picasa_sync_attrs]
+      end
+      sync_attrs.each do |sync_attr|
+        @observation.send("#{sync_attr}=", @picasa_observation.send(sync_attr))
+      end
+      
+      @observation.photos[@observation.photos.size] = @picasa_photo
+      
+      flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
+        "<a href=\"#{url_for}\">Undo?</a>"
+    else
+      flash.now[:error] = "Sorry, we didn't find that photo."
+    end
+  end
+  
+  def load_photo_identities
+    @photo_identities = Photo.descendent_classes.map do |klass|
+      klass_name = klass.to_s.underscore.split('_').first + "_identity"
+      current_user.send(klass_name)
+    end.compact
   end
 end

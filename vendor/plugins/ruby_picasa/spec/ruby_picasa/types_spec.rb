@@ -270,6 +270,10 @@ describe Album do
                                       {:thumbsize => '32c'}).returns(nil)
       @photo.thumbnail('32c').should be_nil
     end
+    
+    it 'should have a timestamp' do
+      @photo.timestamp.should_not be_blank
+    end
   end
 end
 
@@ -351,6 +355,7 @@ describe "Search by bounding box" do
     @search.entries.first.point.lat.should_not eql(0)
     @search.entries.first.point.lng.should be_an_instance_of Float
     @search.entries.first.point.lng.should_not eql(0)
+    @search.entries.first.location.should_not be_blank
   end
 end
 

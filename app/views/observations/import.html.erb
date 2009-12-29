@@ -53,8 +53,18 @@
     $(document).ready(function() {
       $('#tabs > ul').tabs();
       
-      $('#flickr_photos').photoSelector({
-        baseURL: '/flickr/photo_fields?context=user',
+      $('#photos').photoSelector({
+        <%- if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+          baseURL: '/flickr/photo_fields?context=user',
+        <%- else -%>
+          baseURL: '/picasa/photo_fields?context=user',
+        <%- end -%>
+        <%- if @photo_identities.size > 1 %>
+        urls: [
+          {title: 'Flickr', url: '/flickr/photo_fields?context=user'},
+          {title: 'Picasa', url: '/picasa/photo_fields?context=user'}
+        ],
+        <% end -%>
         urlParams: {
           authenticity_token: AUTH_TOKEN,
           limit: 24
@@ -80,25 +90,28 @@
 <div class="column span-24">
   <div id="tabs" class="ui-tabs">
     <ul>
-      <li><a href="#flickr_import"><span>Import from Flickr</span></a></li>
+      <li><a href="#photo_import"><span>Import from Photos</span></a></li>
       <li><a href="#csv_import"><span>Import from CSV</span></a></li>
     </ul>
     
-    <div id="flickr_import">
-      <% if current_user.flickr_identity %>      
-        <% form_tag({:action => 'import_flickr'}) do %>
+    <div id="photo_import">
+      <% if current_user.flickr_identity || current_user.picasa_identity %>      
+        <% form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
             Select photos from your photo stream to convert into iNaturalist
             observations. We'll fill in the date, time, and location from a
             photo's metadata, and try to look up species names from the tags.
           </div>
-          <div id="flickr_photos" class="clear"></div>
+          <div id="photos" class="clear"></div>
           <%= submit_tag("Import photos", :class => 'default button') %>
         <% end %>
       <% else %>
         <div class="notice">
-          You'll need to <%= link_to('link your Flickr account', :controller => 'flickr', :action => 'link') %> before importing from Flickr.
+          You'll need to link
+          <%= link_to('your Flickr account', :controller => 'flickr', :action => 'link') %> or
+          <%= link_to('your Picasa account', :controller => 'picasa', :action => 'options') %>
+          before importing photos.
         </div>
       <% end %>
     </div>

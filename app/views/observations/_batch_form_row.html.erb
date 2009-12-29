@@ -5,7 +5,12 @@
       <div class="column span-24 observation">
         <div class="column prepend-1 span-23" style="margin-bottom: 0.25em">
           <h3 style="display: inline">
-            <%= link_to_function('Batch Operations', "$('#batch_form_fields').slideToggle(); $('#batchform').toggleClass('closed')") %>
+            <%#= link_to_function('Batch Operations', 
+              "$('#batch_form_fields').slideToggle(); $('#batchform').toggleClass('closed')") %>
+            <%= link_to_function 'Batch Operations', 
+              "if ($('#batch_form_fields:visible').length == 0) { $('#batch_form_fields').slideDown(); }" +
+              "else { $('#batch_form_fields').hide(); }" + "$('#batchform').toggleClass('closed')" 
+            %>
           </h3>
           <span class="description">Apply these settings to all the observations below.</span>
         </div>
@@ -24,11 +29,6 @@
           <div class="column span-7">
             <%= o.text_field(:observed_on_string, 
                              :class => 'observed_on_string') %>
-            <%# A bug in select prevents us from relying on the fields_for index until the bug fix is pushed in 2.2.  See http://rails.lighthouseapp.com/projects/8994/tickets/518 and http://rails.lighthouseapp.com/projects/8994/tickets/518 %>
-            <%#= time_zone_select("observation", :time_zone, 
-                                  TimeZone.us_zones, 
-                                  {:include_blank => true, :object => new_obs}, 
-                                  {:class => 'time_zone'}) %>
             <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
 
             <div class="clear batchcontrols">

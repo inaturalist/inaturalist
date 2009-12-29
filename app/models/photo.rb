@@ -74,4 +74,5 @@ class Photo < ActiveRecord::Base
   def self.new_from_api_response(api_response, options = {})
     nil
   end
+  
 end

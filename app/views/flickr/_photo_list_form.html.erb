@@ -1,54 +1,53 @@
 <%- index ||= @i -%>
 <%- checked ||= false -%>
 <%- synclink_base ||= nil -%>
-<div id="flickr_photos_list">
-  <% if photos.size > 0 %>
-    <% photos.each do |photo| %>
-      <%- native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id -%>
-      <%- square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square) -%>
-      <%- prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo' %>
-      <div class="flickr_photo">
-        <% if index %>
-          <%= check_box_tag "#{prefix.pluralize}[#{index}][]", 
-            native_photo_id, 
-            checked, 
-            {:id => "#{prefix}_#{index}_#{native_photo_id}", :class => "checkbox"} %>
-            
-          <% if synclink_base && synclink_uri = URI.parse(synclink_base) %>
-            <% 
-              if synclink_uri.query.blank?
-                synclink_uri.query = "#{prefix}_id=#{native_photo_id}"
-              else
-                synclink_uri.query += "&#{prefix}_id=#{native_photo_id}"
-              end 
-              synclink_url = synclink_uri.to_s
-            -%>
-            <%= link_to "Sync?", synclink_url, :class => "small synclink", 
-              :id => dom_id(photo, "synclink"),
-              :title => "Import date, time, location, description, and taxonomic information from this photo.",
-              :confirm => "Are you sure you want to sync this " + 
-                "observation's data with this Flickr photo?  You will lose " +
-                "changes you've made to this form, but you will be able to " +
-                "revert to your saved copy." %>
-          <% end %>
+
+<% if photos.size > 0 %>
+  <% photos.each do |photo| %>
+    <%- native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id -%>
+    <%- square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square) -%>
+    <%- prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo' %>
+    <div class="photo">
+      <% if index %>
+        <%= check_box_tag "#{prefix.pluralize}[#{index}][]", 
+          native_photo_id, 
+          checked, 
+          {:id => "#{prefix}_#{index}_#{native_photo_id}", :class => "checkbox"} %>
           
-          <label for="<%= prefix %>_<%= index %>_<%= native_photo_id %>">
-            <%= image_tag(square_url) %>
-          </label>
-        <% else %>
-          <%= check_box_tag "#{prefix.pluralize}[]", 
-            native_photo_id, 
-            checked, 
-            {:id => "#{prefix}_#{native_photo_id}", :class => "checkbox"} %>
-          <label for="<%= prefix %>_<%= native_photo_id %>">
-            <%= image_tag(square_url) %>
-          </label>
+        <% if synclink_base && synclink_uri = URI.parse(synclink_base) %>
+          <% 
+            if synclink_uri.query.blank?
+              synclink_uri.query = "#{prefix}_id=#{native_photo_id}"
+            else
+              synclink_uri.query += "&#{prefix}_id=#{native_photo_id}"
+            end 
+            synclink_url = synclink_uri.to_s
+          -%>
+          <%= link_to "Sync?", synclink_url, :class => "small synclink", 
+            :id => dom_id(photo, "synclink"),
+            :title => "Import date, time, location, description, and taxonomic information from this photo.",
+            :confirm => "Are you sure you want to sync this " + 
+              "observation's data with this Flickr photo?  You will lose " +
+              "changes you've made to this form, but you will be able to " +
+              "revert to your saved copy." %>
         <% end %>
-      </div>
-    <% end %>
-  <% else %>
-    <div class="notice" style="clear: both">
-      We didn't find any photos using the search terms you provided.
+        
+        <label for="<%= prefix %>_<%= index %>_<%= native_photo_id %>">
+          <%= image_tag(square_url) %>
+        </label>
+      <% else %>
+        <%= check_box_tag "#{prefix.pluralize}[]", 
+          native_photo_id, 
+          checked, 
+          {:id => "#{prefix}_#{native_photo_id}", :class => "checkbox"} %>
+        <label for="<%= prefix %>_<%= native_photo_id %>">
+          <%= image_tag(square_url) %>
+        </label>
+      <% end %>
     </div>
   <% end %>
-</div>
+<% else %>
+  <div class="notice" style="clear: both">
+    We didn't find any photos using the search terms you provided.
+  </div>
+<% end %>

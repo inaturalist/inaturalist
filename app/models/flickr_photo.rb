@@ -94,11 +94,7 @@ class FlickrPhoto < Photo
   # the URLs.
   #
   def sync
-    unless fp = self.api_response
-      flickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-      flickr.auth.token = self.user.flickr_identity.token
-      fp = flickr.photos.get_info(self.native_photo_id)
-    end
+    fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
     old_urls = [self.square_url, self.thumb_url, self.small_url, 
                 self.medium_url, self.large_url, self.original_url]
     new_urls = [fp.source_url(:square), fp.source_url(:thumb), 
@@ -117,11 +113,7 @@ class FlickrPhoto < Photo
   
   def to_observation  
     # Get the Flickr data
-    flickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-    if self.user && self.user.flickr_identity
-      flickr.auth.token = self.user.flickr_identity.token
-    end
-    fp = flickr.photos.get_info(self.native_photo_id)
+    fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
     
     # Setup the observation
     observation = Observation.new
@@ -143,10 +135,10 @@ class FlickrPhoto < Photo
     end
     
     # Try to get a taxon
-    taxa = to_taxa(:flickr => flickr, :fp => fp)
-    unless taxa.empty?
-      observation.taxon = taxa.find(&:species_or_lower?)
-      observation.taxon ||= taxa.first
+    photo_taxa = to_taxa(:flickr => flickr, :fp => fp)
+    unless photo_taxa.empty?
+      observation.taxon = photo_taxa.detect(&:species_or_lower?)
+      observation.taxon ||= photo_taxa.first
       
       if observation.taxon
         begin
@@ -162,21 +154,8 @@ class FlickrPhoto < Photo
   
   # Try to extract known taxa from the tags of a flickr photo
   def to_taxa(options = {})
-    flickr = options.delete(:flickr)
-    fp = options.delete(:fp)
-    flickr ||= Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-    fp ||= flickr.photos.get_info(self.native_photo_id)
-    FlickrPhoto.flickr_photo_to_taxa(fp)
-  end
-  
-  def self.flickr_photo_to_taxa(fp)
-    taxon_names = fp.tags.values.map do |tag|
-      if matches = tag.raw.match(/^taxonomy:\w+=(.*)/)
-        TaxonName.find_by_name(matches[0])
-      else
-        TaxonName.find_by_name(tag.raw)
-      end
-    end.compact
-    taxon_names.map(&:taxon).compact
+    self.api_response ||= FlickrPhoto.get_api_response(
+      self.native_photo_id, :user => options[:user] || self.user)
+    Taxon.tags_to_taxa(api_response.tags.values.map(&:raw)) unless api_response.tags.blank?
   end
 end

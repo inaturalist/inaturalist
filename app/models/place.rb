@@ -150,6 +150,10 @@ class Place < ActiveRecord::Base
     self.swlng > 0 && self.nelng < 0
   end
   
+  def contains_lat_lng?(lat, lng)
+    swlat <= lat && nelat >= lat && swlng <= lng && nelng >= lng
+  end
+  
   # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)
   def self.import_by_woeid(woeid, options = {})
     if existing = Place.find_by_woeid(woeid)

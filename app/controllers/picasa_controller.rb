@@ -71,10 +71,11 @@ class PicasaController < ApplicationController
     
     results = picasa.search(params[:q], search_params)
     @photos = results.photos.map do |api_response|
-      logger.debug "[DEBUG] api_response: #{api_response}"
       next unless api_response.is_a?(RubyPicasa::Photo)
       PicasaPhoto.new_from_api_response(api_response, :user => current_user)
     end.compact
+    
+    @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     
     respond_to do |format|
       format.html do

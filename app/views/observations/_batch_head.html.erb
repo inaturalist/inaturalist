@@ -1,0 +1,45 @@
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag 'observations', 'observations/batch', 
+                          'observations/new', 'jquery-datepicker' %>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag "jquery/jquery.ui.all.packed.js",
+                             "jquery/plugins/jquery.string.1.0.js",
+                             "jquery/plugins/inat/datepicker.js",
+                             "jquery/plugins/inat/photo_selectors.js",
+                             "jquery/plugins/jquery.latLonSelector.js",
+                             "jquery/plugins/inat/taxon_selectors.js",
+                             "observations/new_batch.js",
+                             "observations/edit_batch.js" %>
+   <script type="text/javascript" charset="utf-8">
+     $(document).ready(function() {
+       $('.observation_photos').each(function() {
+         // The photo_fields endpoint needs to know the auth token and the index
+         // for the field
+         var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
+         var index = $.string(index_str).gsub(/[^\d]*/, '').str;
+         var authenticity_token = $(this).parents('form').find(
+           'input[name=authenticity_token]').val();
+         $(this).photoSelector({
+           <%- if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+             baseURL: '/flickr/photo_fields?context=user',
+           <%- else -%>
+             baseURL: '/picasa/photo_fields?context=user',
+           <%- end -%>
+           <%- if @photo_identities.size > 1 %>
+           urls: [
+             {title: 'Flickr', url: '/flickr/photo_fields?context=user'},
+             {title: 'Picasa', url: '/picasa/photo_fields?context=user'}
+           ],
+           <% end -%>
+           urlParams: {
+             authenticity_token: authenticity_token,
+             index: index,
+             limit: 16
+           }
+         });
+       });
+     });
+   </script>
+<%- end -%>

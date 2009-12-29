@@ -27,7 +27,7 @@
     var existing = $(wrapper).contents();
     
     // Insert a search field and button.  No forms, please
-    var controls = $('<div class="photoSelectorControls"></div>').css(
+    var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
       $.fn.photoSelector.defaults.controlsCSS
     );
     var input = $('<input type="text" class="text"/>').css(
@@ -38,12 +38,13 @@
     if (typeof(options.defaultQuery) != 'undefined') {
       $(input).val(options.defaultQuery);
     };
-    var button = $('<a href="#" class="button">Find Photos</a>').css(
+    var button = $('<a href="#" class="button findbutton">Find Photos</a>').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
     
     if (options.urls) {
-      var urlSelect = $('<select class="urlselect select" style="margin: 0 auto"></select>');
+      var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
+      var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
       $.each(options.urls, function() {
         if (this.url) {
           var title = this.title;
@@ -61,7 +62,7 @@
         $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
       });
       
-      $(wrapper).append(urlSelect);
+      $(urlSelectWrapper).append(urlSelect)
     }
     
     // Append next & prev links
@@ -93,7 +94,7 @@
     });
     
     $(controls).append(input, button, page, prev, next);
-    if (urlSelect) $(controls).append(urlSelect);
+    if (urlSelect) $(controls).append(urlSelectWrapper);
     $(controls).append($('<div></div>').css({
       height: 0, 
       visibility: 'hidden', 

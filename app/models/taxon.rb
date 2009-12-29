@@ -553,4 +553,16 @@ class Taxon < ActiveRecord::Base
   def image_url
     taxon_image_url(self)
   end
+  
+  # Convert an array of strings to taxa
+  def self.tags_to_taxa(tags)
+    taxon_names = tags.map do |tag|
+      if matches = tag.match(/^taxonomy:\w+=(.*)/)
+        TaxonName.find_by_name(matches[1])
+      else
+        TaxonName.find_by_name(tag)
+      end
+    end.compact
+    taxon_names.map(&:taxon).compact
+  end
 end
