@@ -351,19 +351,16 @@ class Picasa
           RubyPicasa::User.new(xml, self)
         when /#photo$/
           RubyPicasa::RecentPhotos.new(xml, self)
-        when nil
+        else
           RubyPicasa::Search.new(xml, self)
         end
       when /#album$/
-        case entry_scheme
-        when nil, /#photo$/
-          RubyPicasa::Album.new(xml, self)
-        end
+        RubyPicasa::Album.new(xml, self)
       when /#photo$/
         case entry_scheme
         when /#photo$/
           RubyPicasa::Search.new(xml, self)
-        when nil
+        else
           if feed_href && (feed_href.starts_with? 'http://picasaweb.google.com/data/feed/api/all')
               RubyPicasa::Search.new(xml, self)
           else
