@@ -6,7 +6,7 @@ class TaxonNameSweeper < ActionController::Caching::Sweeper
     expire_listed_taxa(taxon_name.taxon_id)
   end
   
-  def after_destroy(taxon)
+  def after_destroy(taxon_name)
     expire_listed_taxa(taxon_name.taxon_id)
   end
 end
