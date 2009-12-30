@@ -136,7 +136,7 @@ class FlickrPhoto < Photo
     
     # Try to get a taxon
     photo_taxa = to_taxa(:flickr => flickr, :fp => fp)
-    unless photo_taxa.empty?
+    unless photo_taxa.blank?
       observation.taxon = photo_taxa.detect(&:species_or_lower?)
       observation.taxon ||= photo_taxa.first
       
