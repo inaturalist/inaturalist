@@ -114,6 +114,10 @@ class FlickrPhoto < Photo
   def to_observation  
     # Get the Flickr data
     fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
+    unless fp.is_a?(Net::Flickr::Photo)
+      fp = FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
+      self.api_response = fp
+    end
     
     # Setup the observation
     observation = Observation.new
