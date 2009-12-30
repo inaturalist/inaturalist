@@ -178,7 +178,7 @@ class UsersController < ApplicationController
     
     # Add a friend
     unless params[:friend_id].blank?
-      if friend_user = User.find_by_id(params[:friend_id]) && !current_user.friends_with?(friend_user)
+      if (friend_user = User.find_by_id(params[:friend_id])) && !current_user.friends_with?(friend_user)
         current_user.friends << friend_user
       end
       return redirect_back_or_default(person_by_login_path(:login => current_user.login))
