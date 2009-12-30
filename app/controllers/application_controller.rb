@@ -66,6 +66,11 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def photo_identities_required
+    return true if logged_in? && !@photo_identities.blank?
+    redirect_to(:controller => 'flickr', :action => 'link')
+  end
+  
   #
   # Filter method to require a curator for certain actions.
   #

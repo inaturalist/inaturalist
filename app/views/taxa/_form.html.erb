@@ -59,10 +59,10 @@
     <div class="clear">
       <div id="taxon_photos" class="clear">
         <% for photo in taxon.photos %>
-          <div class="flickr_photo">
-            <%= check_box_tag 'flickr_photos[]', 
-                photo.native_photo_id, :checked => 'checked' %>
-            <label for="flickr_photos[]"><%= image_tag(photo.square_url) %></label>
+          <div class="photo">
+            <%= check_box_tag "flickr_photos[]", 
+                photo.native_photo_id, :checked => 'checked', :id => dom_id(photo) %>
+            <label for="<%= dom_id(photo) %>"><%= image_tag(photo.square_url) %></label>
           </div>
         <% end %>
       </div>

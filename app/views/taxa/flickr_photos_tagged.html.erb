@@ -152,7 +152,7 @@
           </div>
           
           <%= link_to "Import as another observation?", 
-            {:controller => "observations", :action => 'import_flickr', 
+            {:controller => "observations", :action => 'import_photos', 
               :flickr_photos => [flickr_photo.native_photo_id]}, 
             :method => :post, :class => 'readmore' %>
         <% else -%>
@@ -160,7 +160,7 @@
             or
           </div>
           <%= link_to "Import as an observation", 
-            {:controller => "observations", :action => 'import_flickr', 
+            {:controller => "observations", :action => 'import_photos', 
               :flickr_photos => [flickr_photo.native_photo_id]}, 
             :method => :post, :class => 'button' %>
         <% end -%>
@@ -171,7 +171,7 @@
 
 <div class="toolset" style="float: right">
   <%= link_to "Import all photos as observations", 
-    {:controller => "observations", :action => 'import_flickr', 
+    {:controller => "observations", :action => 'import_photos', 
       :flickr_photos => @flickr_photos.map(&:native_photo_id)}, 
     :method => :post, :class => 'inter readmore' %>
 </div>

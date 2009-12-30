@@ -19,7 +19,8 @@
     #controls label,
     #controls .text,
     #controls .select,
-    #controls .loading {
+    #controls .loading,
+    #controls .inter {
       margin-bottom: 0;
     }
     
@@ -316,7 +317,11 @@
       <%= label :q, 'Places near' %>
       <%= text_field_tag :q, @q, :class => 'text' %>
       <%= submit_tag 'Go!', :class => 'default button' %>
-      <%= select_tag :place_type, options_for_select([['All Place Types', nil]] + Place::PLACE_TYPE_CODES.sort_by(&:first)), :class => 'select' %>
+      <span class="inter">
+        <%= select_tag :place_type, 
+          options_for_select([['All Place Types', nil]] + Place::PLACE_TYPE_CODES.sort_by(&:first)), 
+          :class => 'select' %>
+      </span>
     <% end %>
     <div class="inter eee loading status" style="display:none">
       Loading...

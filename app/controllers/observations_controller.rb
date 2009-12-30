@@ -7,7 +7,6 @@ class ObservationsController < ApplicationController
                             :by_login,
                             :id_please,
                             :tile_points]
-  before_filter :flickr_required, :only => [:import_flickr]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
@@ -15,6 +14,7 @@ class ObservationsController < ApplicationController
   before_filter :curator_required, :only => [:curation]
   before_filter :load_photo_identities, :only => [:new, :edit, :import, 
     :import_photos]
+  before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
   caches_page :tile_points
