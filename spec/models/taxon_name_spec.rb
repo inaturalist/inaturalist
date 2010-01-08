@@ -64,4 +64,10 @@ describe TaxonName, 'creation' do
     @taxon_name.save
     @taxon_name.name.should == 'Oxalis pes-caprae'
   end
+  
+  it "should normalize the lexicon (e.g. capitalize it)" do
+    @taxon_name.lexicon = "english"
+    @taxon_name.save
+    @taxon_name.lexicon.should == TaxonName::LEXICONS[:ENGLISH]
+  end
 end
