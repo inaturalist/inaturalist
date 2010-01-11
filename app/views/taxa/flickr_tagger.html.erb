@@ -62,7 +62,7 @@
       margin-bottom: 5px;
     }
     
-    #tagform .boxheader .title {
+    .boxheader .title {
       float: left;
       font-weight: bold;
       margin-right: 10px;
@@ -140,8 +140,7 @@
     });
     
     $('input[name=tagstyle]').each(function() {
-      var tagstyle = $(this).attr('value');
-      $(this).click(function() { updateTagInput({tagstyle: tagstyle}) });
+      $(this).click(updateTagInput);
     });
   });
   
@@ -166,10 +165,8 @@
     });
     $('#tagform .checkboxes').append(column);
     
-    // Bing checkbox clicks to update tag field
-    $('#tagform input[type=checkbox]').click(function() {
-      updateTagInput();
-    });
+    // Bind checkbox clicks to update tag field
+    $('#tagform input[type=checkbox]').click(updateTagInput);
   }
   
   function makeTagField(tag) {
@@ -183,10 +180,12 @@
   
   function updateTagInput(options) {
     var options = $.extend({}, options);
+    var tagstyle = options.tagstyle || $('input[name=tagstyle]:checked').val();
+    console.log("tagstyle: ", tagstyle);
     var newTagString = '';
     $('#tagform .checkboxes input[type=checkbox]:checked').each(function(i) {
       var tag = $(this).val();
-      if (options.tagstyle == "csv") {
+      if (tagstyle == "csv") {
         if (i > 0) newTagString += ", ";
         newTagString += tag;
       } else {
@@ -211,8 +210,8 @@
     <% form_remote_tag :url => url_for(:format => 'json'),
       :loading => "$('#tag_loading_status').show(); $('#tagform .checkboxes .tagcol').remove(); $('#tags').val('')",
       :complete => "updateTagCheckboxes(request); updateTagInput(); $('#tag_loading_status').hide()" do %>
-      <div class="boxheader">
-        <span for="title">Choose a taxon</span>
+      <div class="clear boxheader">
+        <span class="title">Choose a taxon</span>
       </div>
       <input type="text" name="taxon_name" value="<%= default_taxon_name(@taxon) %>" id="taxon_name"/>
       <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>" id="taxon_id" />
