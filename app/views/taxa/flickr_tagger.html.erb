@@ -181,7 +181,6 @@
   function updateTagInput(options) {
     var options = $.extend({}, options);
     var tagstyle = options.tagstyle || $('input[name=tagstyle]:checked').val();
-    console.log("tagstyle: ", tagstyle);
     var newTagString = '';
     $('#tagform .checkboxes input[type=checkbox]:checked').each(function(i) {
       var tag = $(this).val();
