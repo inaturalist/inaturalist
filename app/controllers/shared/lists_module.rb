@@ -6,7 +6,11 @@ module Shared::ListsModule
   
   ## RESTful actions ###########################################################
   def index
-    redirect_to :controller => 'welcome'
+    if logged_in?
+      redirect_to lists_by_login_path(current_user.login)
+    else
+      redirect_to :controller => 'welcome'
+    end
   end
   
   def show

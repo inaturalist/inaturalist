@@ -53,10 +53,8 @@ class TaxonNamesController < ApplicationController
           
           # graft in the background at a lower priority than the parent proc
           unless @external_taxon_names.empty?
-            spawn(:nice => 7) do
-              @external_taxon_names.map(&:taxon).each do |taxon|
-                Ratatosk.graft(taxon) unless taxon.grafted?
-              end
+            @external_taxon_names.map(&:taxon).each do |taxon|
+              taxon.send_later(:graft) unless taxon.grafted?
             end
           end
         rescue Timeout::Error => e

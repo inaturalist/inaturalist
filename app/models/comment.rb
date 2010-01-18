@@ -18,11 +18,8 @@ class Comment < ActiveRecord::Base
   end
   
   def deliver_notification
-    if self.parent.user_id != self.user_id &&
-        self.parent.user.preferences.comment_email_notification
-      spawn(:nice => 7) do
-        Emailer.deliver_comment_notification(self)
-      end
+    if self.parent.user_id != self.user_id && self.parent.user.preferences.comment_email_notification
+      Emailer.send_later(:deliver_comment_notification, self)
     end
   end
 end

@@ -68,11 +68,8 @@ class Identification < ActiveRecord::Base
   end
   
   def notify_observer
-    if self.observation.user_id != self.user_id &&
-        self.observation.user.preferences.identification_email_notification
-      spawn(:nice => 7) do
-        Emailer.deliver_identification_notification(self)
-      end
+    if self.observation.user_id != self.user_id && self.observation.user.preferences.identification_email_notification
+      Emailer.send_later(:deliver_identification_notification, self)
     end
   end
   
