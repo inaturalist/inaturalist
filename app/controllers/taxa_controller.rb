@@ -501,19 +501,23 @@ class TaxaController < ApplicationController
       net_flickr.auth.token = current_user.flickr_identity.token
     end
     
-    if !params[:flickr_photo_id].blank?
+    @flickr_photo_ids = [params[:flickr_photo_id], params[:flickr_photos]].flatten.compact
+    @flickr_photos = @flickr_photo_ids.map do |flickr_photo_id|
       begin
-        original = net_flickr.photos.get_info(params[:flickr_photo_id])
-        if @flickr_photo = FlickrPhoto.new_from_net_flickr(original)
-          if @taxa = @flickr_photo.to_taxa(:flickr => flickr, :fp => original)
+        original = net_flickr.photos.get_info(flickr_photo_id)
+        flickr_photo = FlickrPhoto.new_from_net_flickr(original)
+        if flickr_photo && @taxon.blank?
+          if @taxa = flickr_photo.to_taxa(:flickr => flickr, :fp => original)
             @taxon = @taxa.sort_by(&:lft).last
           end
         end
+        flickr_photo
       rescue Net::Flickr::APIError
-        flash[:notice] = "Sorry, that Flickr photo either doesn't exist or " +
+        flash[:notice] = "Sorry, one of those Flickr photos either doesn't exist or " +
           "you don't have permission to view it."
+        nil
       end
-    end
+    end.compact
     
     @taxon ||= Taxon.find_by_id(params[:id]) if params[:id]
     @taxon ||= Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
@@ -564,7 +568,7 @@ class TaxaController < ApplicationController
   
   def tag_flickr_photos
     # Post tags to flickr
-    unless params[:flickr_photos] && !params[:flickr_photos].blank?
+    unless params[:flickr_photos].blank?
       flash[:notice] = "You didn't select any photos to tag!"
       redirect_to :action => 'flickr_tagger' and return
     end

@@ -114,10 +114,7 @@
     
     $('#photo_selector').photoSelector({
       baseURL: '/flickr/photo_fields?context=user',
-      <% if @flickr_photo %>
-      queryOnLoad: true,
-      defaultQuery: '<%= @flickr_photo.native_photo_id %>',
-      <% elsif @taxon %>
+      <% if @taxon %>
       queryOnLoad: true,
       defaultQuery: '<%= escape_javascript(default_taxon_name(@taxon)) %>',
       <% end %>
@@ -285,7 +282,13 @@
       </div>
       <% if logged_in? -%>
         <% if current_user.flickr_identity %>
-          <div id="photo_selector" class="clear"></div>
+          <div id="photo_selector" class="clear">
+            <% unless @flickr_photos.blank? %>
+              <%= render :partial => "flickr/photo_list_form", :locals => { 
+                :photos => @flickr_photos, 
+                :checked => true } %>
+            <% end %>
+          </div>
           <div class="clear buttonrow">
             <input type="submit" name="tag_photos_button" value="Tag these photos" id="tag_photos_button" class="default button"/>
           </div>

@@ -100,6 +100,13 @@
                     :checked => true,
                     :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation) } %>
                 </div>
+                <br/>
+                <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;",
+                  "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
+                    "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
+                  ").join('&');" +
+                  "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
+                    "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
               <% else %>
                 <p class="description">
                   We currently support <a href="http://flickr.com">Flickr</a> and 
