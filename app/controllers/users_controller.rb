@@ -139,7 +139,7 @@ class UsersController < ApplicationController
   # These are protected by login_required
   def dashboard
     @user = current_user
-    @recently_commented = Observation.find(:all,
+    @recently_commented = Observation.all(
       :include => :comments,
       :conditions => [
         "observations.user_id = ? AND comments.created_at > ?", 
@@ -165,7 +165,10 @@ class UsersController < ApplicationController
       ).uniq
     end
     
-    @updates = current_user.activity_streams.find(:all, :limit => 15, :order => "updated_at DESC")
+    per_page = params[:per_page] || 20
+    per_page = 100 if per_page.to_i > 100
+    @updates = current_user.activity_streams.paginate(:page => params[:page], 
+      :per_page => per_page, :order => "updated_at DESC")
   end
   
   def edit
