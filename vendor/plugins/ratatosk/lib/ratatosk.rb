@@ -96,7 +96,6 @@ module Ratatosk
         end
         names = unique_names.values
         
-        
         # puts "[DEBUG] Unique names: #{names.map(&:name).join(', ')}"
         
         names = names.map do |name|

@@ -15,7 +15,7 @@ class TaxonName < ActiveRecord::Base
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
-  after_destroy {|name| name.taxon.update_unique_name}
+  after_destroy {|name| name.taxon.update_unique_name if name.taxon}
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
@@ -87,7 +87,9 @@ class TaxonName < ActiveRecord::Base
     return true unless name_changed?
     non_unique_names = TaxonName.all(:include => :taxon, 
       :conditions => {:name => name}, :group => :taxon_id)
-    non_unique_names.each {|taxon_name| taxon_name.taxon.update_unique_name}
+    non_unique_names.each do |taxon_name|
+      taxon_name.taxon.update_unique_name if taxon_name.taxon
+    end
     true
   end
 end

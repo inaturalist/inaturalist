@@ -254,23 +254,29 @@ describe Ratatosk::NameProviders::ColTaxonAdapter do
 end
 
 describe Ratatosk::NameProviders::UBioNameProvider do
-  it_should_behave_like "a name provider"
+  # it_should_behave_like "a name provider"
   
   before(:all) do
     @np = Ratatosk::NameProviders::UBioNameProvider.new
   end
   
-  # This test may start to fail if uBio decides to start showing acceptable
-  # classifications for Medusagyne through their API (they do on the site...)
-  it "should not get a lineage from a rejected classification" do
-    @np.REJECTED_CLASSIFICATIONS.should include('PreUnion')
-    medusagyne = @np.find('Medusagyne').first
-    lambda {@np.get_lineage_for(medusagyne)}.should raise_error(NameProviderError)
-  end
+  # # This test may start to fail if uBio decides to start showing acceptable
+  # # classifications for Medusagyne through their API (they do on the site...)
+  # it "should not get a lineage from a rejected classification" do
+  #   @np.REJECTED_CLASSIFICATIONS.should include('PreUnion')
+  #   medusagyne = @np.find('Medusagyne').first
+  #   lambda {@np.get_lineage_for(medusagyne)}.should raise_error(NameProviderError)
+  # end
   
-  it "should find 'Asterias forbesii'" do
-    tn = @np.find('Asterias forbesii')
-    tn.should have_at_least(1).taxon_name_adapter
+  # it "should find 'Asterias forbesii'" do
+  #   tn = @np.find('Asterias forbesii')
+  #   tn.should have_at_least(1).taxon_name_adapter
+  # end
+  
+  it "should not fetch duplicates within the same taxonomicGroup" do
+    name = 'Anomaloninae'
+    results = @np.find(name)
+    results.select {|tn| tn.name == name}.size.should_not > 1
   end
 end
 

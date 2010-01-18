@@ -203,7 +203,8 @@ module Ratatosk
         rescue UBioConnectionError => e
           raise NameProviderError, e.message
         end
-        rdfs.map do |rdf|
+        
+        taxon_names = rdfs.map do |rdf|
           begin
             UBioTaxonNameAdapter.new(rdf, :np => self)
           rescue TaxonNameAdapterError => e
@@ -212,6 +213,38 @@ module Ratatosk
             nil
           end
         end.compact
+        
+        # For synonyms in the same taxonomic group, only keep one (canonical 
+        # if possible)
+        taxon_names_by_tgroup = taxon_names.group_by do |tn|
+          tgroup = tn.hxml.at('ubio:taxonomicGroup').innerHTML.strip rescue nil
+          tgroup
+        end
+        keepers = taxon_names_by_tgroup.delete(nil) || []
+        taxon_names_by_tgroup.each do |tgroup, tnames|
+          tnames.group_by(&:name).each do |tname, synonyms|
+            keeper = synonyms.detect do |s| 
+              (s.hxml.at('ubio:lexicalStatus').innerHTML rescue nil) == 'Canonical form'
+            end
+            keeper ||= synonyms.first
+            keepers << keeper
+          end
+        end
+        
+        # Try to sort the names so canonicals are first
+        keepers = keepers.sort do |a,b|
+          a_canonical = (a.hxml.at('ubio:lexicalStatus').innerHTML rescue nil) == 'Canonical form'
+          b_canonical = (b.hxml.at('ubio:lexicalStatus').innerHTML rescue nil) == 'Canonical form'
+          if a_canonical && !b_canonical
+            -1
+          elsif b_canonical && !a_canonical
+            1
+          else
+            0
+          end
+        end
+        
+        keepers
       end
 
       def get_lineage_for(taxon)
@@ -258,7 +291,7 @@ module Ratatosk
       def get_phylum_for(taxon, lineage = nil)
         # Try to avoid calling uBio a billion times using their 
         # taxonomicGroup element
-        if taxon.class != Taxon && taxaonomic_group = taxon.hxml.at('taxonomicGroup')
+        if taxon.class != Taxon && taxaonomic_group = taxon.hxml.at('ubio:taxonomicGroup')
           if taxonomic_group_taxon = Taxon.find_by_name(taxaonomic_group.innerHTML)
             return taxonomic_group_taxon if taxonomic_group_taxon.rank == 'phylum'
             return taxonomic_group_taxon.phylum
@@ -325,8 +358,8 @@ module Ratatosk
       #
       def get_keepers(name, results)
         keepers = results[0..9]
-        if exact_match = results.select {|r| r[:name] == name}.first
-          unless keepers.map {|k| k[:name]}.include? name
+        if exact_match = results.detect {|r| r[:name] == name}
+          unless keepers.map {|k| k[:name]}.include?(name)
             keepers.unshift(exact_match)
             keepers.pop
           end
