@@ -712,7 +712,7 @@
     </h3>
     <% else %>
       <div id="wikipedia_description">
-        <p><%= @taxon.wikipedia_summary %> <span class="loading status">Loading full description...</span></p>
+        <p><%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %> <span class="loading status">Loading full description...</span></p>
       </div>
       <div id="nodescription" style="display: none">
         <h3 class='description'>There isn't a Wikipedia article or 

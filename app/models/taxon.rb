@@ -52,6 +52,7 @@ class Taxon < ActiveRecord::Base
   after_move :update_listed_taxa, :set_iconic_taxon_and_save
   after_save :create_matching_taxon_name
   after_save :update_unique_name
+  after_save {|taxon| taxon.send_later(:set_wkipedia_summary) if taxon.wikipedia_title_changed? }
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
@@ -497,7 +498,7 @@ class Taxon < ActiveRecord::Base
   
 
   def wikipedia_summary(options = {})
-    if super && super.match(/\d\d\d\d-\d\d-\d\d/)
+    if super && super.match(/^\d\d\d\d-\d\d-\d\d$/)
       last_try_date = DateTime.parse(super)
       return nil if last_try_date > 1.week.ago
     end
