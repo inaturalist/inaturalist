@@ -147,9 +147,11 @@
         <%= link_to "View on Flickr", flickr_photo.native_page_url, :class => 'readmore' %>
         <% if @imported_native_photo_id[flickr_photo.native_photo_id] -%>
         
-          <div class="description">
+          <div class="description" style="margin-top: 10px">
             This photo is already associated with one of your observations.
           </div>
+          
+          <%= link_to "View observation", flickr_photo.observations.first, :class => 'readmore' %> <br/>
           
           <%= link_to "Import as another observation?", 
             {:controller => "observations", :action => 'import_photos', 
