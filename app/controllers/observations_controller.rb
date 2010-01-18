@@ -1011,7 +1011,7 @@ class ObservationsController < ApplicationController
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
       sync_attrs = [:description, :species_guess, :taxon_id, :observed_on, 
-        :latitude, :longitude, :place_guess]
+        :observed_on_string, :latitude, :longitude, :place_guess]
       unless params[:flickr_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:flickr_sync_attrs]
       end
@@ -1023,7 +1023,9 @@ class ObservationsController < ApplicationController
       # need to append a new photo object without saving it, but build() won't
       # work here b/c Photo and its descedents use STI, and type is a
       # protected attributes that can't be mass-assigned.
-      @observation.photos[@observation.photos.size] = @flickr_photo
+      unless @observation.photos.detect {|p| p.native_photo_id == @flickr_photo.native_photo_id}
+        @observation.photos[@observation.photos.size] = @flickr_photo
+      end
       
       flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
         "<a href=\"#{url_for}\">Undo?</a>"
@@ -1042,8 +1044,8 @@ class ObservationsController < ApplicationController
     
     if @picasa_photo && @picasa_photo.valid?
       @picasa_observation = @picasa_photo.to_observation
-      sync_attrs = [:description, :species_guess, :taxon_id, :observed_on, 
-        :latitude, :longitude, :place_guess]
+      sync_attrs = [:description, :species_guess, :taxon_id, :observed_on,
+        :observed_on_string, :latitude, :longitude, :place_guess]
       unless params[:picasa_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:picasa_sync_attrs]
       end
@@ -1051,7 +1053,9 @@ class ObservationsController < ApplicationController
         @observation.send("#{sync_attr}=", @picasa_observation.send(sync_attr))
       end
       
-      @observation.photos[@observation.photos.size] = @picasa_photo
+      unless @observation.photos.detect {|p| p.native_photo_id == @picasa_photo.native_photo_id}
+        @observation.photos[@observation.photos.size] = @picasa_photo
+      end
       
       flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
         "<a href=\"#{url_for}\">Undo?</a>"
