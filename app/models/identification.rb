@@ -79,7 +79,7 @@ class Identification < ActiveRecord::Base
   # Update the identification stats in the observation.
   #
   def update_obs_stats
-    return unless self.observation.taxon_id
+    return unless self.observation && self.observation.taxon_id
     
     idents = Identification.all(
       :conditions => ["observation_id = ?", self.observation_id]
