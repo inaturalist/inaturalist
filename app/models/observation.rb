@@ -442,7 +442,8 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    List.send_later(:refresh_for_user, self.user, :taxa => target_taxa, :skip_update => true)
+    List.send_later(:refresh_for_user, self.user, 
+      :taxa => target_taxa.map(&:id), :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil

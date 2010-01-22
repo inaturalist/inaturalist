@@ -991,7 +991,7 @@ class ObservationsController < ApplicationController
   def refresh_lists_for_batch
     taxa = @observations.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
-    List.send_later(:refresh_for_user, current_user, :taxa => taxa)
+    List.send_later(:refresh_for_user, current_user, :taxa => taxa.map(&:id))
   end
   
   # Tries to create a new observation from the specified Flickr photo ID and

@@ -35,7 +35,16 @@ class LifeList < List
       
       # Add new listed taxa for taxa not already on this list
       if add_new_taxa = params.delete(:add_new_taxa)
-        (collection.map(&:taxon_id) | taxa.map(&:id)).each do |taxon_id|
+        taxa_ids = taxa.map do |taxon|
+          if taxon.is_a?(Taxon)
+            taoxn.id
+          elsif taxon.is_a?(Fixnum)
+            taxon
+          else
+            nil
+          end
+        end.compact
+        (collection.map(&:taxon_id) | taxa_ids).each do |taxon_id|
           listed_taxon = ListedTaxon.new(:list => self, :taxon_id => taxon_id)
           listed_taxon.skip_update = true
           collection << listed_taxon
