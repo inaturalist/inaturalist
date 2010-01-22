@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  include Shared::ActivityStreamable
+  acts_as_activity_streamable
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy

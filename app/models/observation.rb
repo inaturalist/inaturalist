@@ -1,6 +1,6 @@
 class Observation < ActiveRecord::Base
-  include Shared::ActivityStreamable
-  
+  acts_as_activity_streamable :batch_window => 30.minutes, 
+    :batch_partial => "observations/activity_stream_batch"
   acts_as_taggable
   acts_as_flaggable
   
@@ -42,7 +42,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has flickr_photos(:id), :as => :has_photos, :type => :boolean
+    has photos(:id), :as => :has_photos, :type => :boolean
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -442,7 +442,7 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    List.refresh_for_user(self.user, :taxa => target_taxa, :skip_update => true)
+    List.send_later(:refresh_for_user, self.user, :taxa => target_taxa, :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -457,7 +457,7 @@ class Observation < ActiveRecord::Base
     return if @skip_refresh_lists
     return unless self.taxon
 
-    List.refresh_for_user(self.user, :taxa => [self.taxon], 
+    List.send_later(:refresh_for_user, self.user, :taxa => [self.taxon], 
       :add_new_taxa => false)
   end
   

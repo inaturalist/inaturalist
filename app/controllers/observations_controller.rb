@@ -781,10 +781,11 @@ class ObservationsController < ApplicationController
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
     
-    @filters_open = search_params[:filters_open] == 'true'
-    
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on] unless search_params[:search_on].blank?
+    
+    @filters_open = !@q.nil?
+    @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     find_options = {
       :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],

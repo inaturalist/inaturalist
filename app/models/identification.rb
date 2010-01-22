@@ -1,5 +1,5 @@
 class Identification < ActiveRecord::Base
-  include Shared::ActivityStreamable
+  acts_as_activity_streamable
   
   belongs_to :observation
   belongs_to :user

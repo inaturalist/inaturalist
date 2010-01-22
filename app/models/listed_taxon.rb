@@ -4,7 +4,7 @@
 # sure a taxon passes all of a list's ListRules.
 #
 class ListedTaxon < ActiveRecord::Base
-  include Shared::ActivityStreamable
+  acts_as_activity_streamable
   belongs_to :list
   belongs_to :taxon, :counter_cache => true
   belongs_to :last_observation,

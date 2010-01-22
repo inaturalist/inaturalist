@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091223030137) do
+ActiveRecord::Schema.define(:version => 20100119024356) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -18,7 +18,11 @@ ActiveRecord::Schema.define(:version => 20091223030137) do
     t.column "activity_object_type", :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "batch_ids", :string
   end
+
+  add_index "activity_streams", ["user_id", "activity_object_type"], :name => "index_activity_streams_on_user_id_and_activity_object_type"
+  add_index "activity_streams", ["subscriber_id"], :name => "index_activity_streams_on_subscriber_id"
 
   create_table "colors", :force => true do |t|
     t.column "value", :string
