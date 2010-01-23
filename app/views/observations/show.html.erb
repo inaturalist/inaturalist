@@ -337,7 +337,9 @@
         <li class="description">none</li>
       <% else %>
         <% @observation.tags.each do |tag| %>
-        <li><%=h tag.name %></li>
+        <li>
+          <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
+        </li>
         <% end %>
       <% end %>
     </ul>
