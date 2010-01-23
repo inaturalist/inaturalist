@@ -4,7 +4,9 @@
 # sure a taxon passes all of a list's ListRules.
 #
 class ListedTaxon < ActiveRecord::Base
-  acts_as_activity_streamable
+  acts_as_activity_streamable :batch_window => 30.minutes, 
+    :batch_partial => "lists/listed_taxa_activity_stream_batch",
+    :user_scope => :by_user
   belongs_to :list
   belongs_to :taxon, :counter_cache => true
   belongs_to :last_observation,
@@ -24,6 +26,10 @@ class ListedTaxon < ActiveRecord::Base
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
                           :message => "is already in this list"
+  
+  named_scope :by_user, lambda {|user| 
+    {:include => :list, :conditions => ["lists.user_id = ?", user]}
+  }
   
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 

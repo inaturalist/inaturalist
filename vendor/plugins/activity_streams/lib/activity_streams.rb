@@ -26,7 +26,6 @@ module ActivityStreams
       
       module SingletonMethods
         def create_activity_update
-          logger.debug "[DEBUG] called create_activity_update for #{self}"
           return if @skip_update
           return unless self.respond_to?(:user) && self.user
           
@@ -40,10 +39,18 @@ module ActivityStreams
               existing_stream = ActivityStream.last(:conditions => [
                 "activity_object_type = ? AND user_id = ? AND created_at >= ?", 
                 self.class.to_s, user, batch_point])
-            logger.debug "[DEBUG] Found #{existing_stream}, updating batch ids"
-            existing_records = self.class.all(:conditions => [
-              "user_id = ? AND created_at >= ?", user, batch_point
-            ])
+            
+            existing_records = if activity_stream_options[:user_scope]
+              self.class.
+                send(activity_stream_options[:user_scope], existing_stream.user).
+                all(:conditions => ["#{self.class.table_name}.created_at >= ?", batch_point])
+            elsif self.class.column_names.include?("user_id")
+              self.class.all(:conditions => [
+                "user_id = ? AND created_at >= ?", user, batch_point
+              ])
+            else
+              raise "Models with activity streams must belong to a user or specificy a user_scope."
+            end
             
             ActivityStream.update_all(
               ["batch_ids = ?, updated_at = ?", existing_records.map(&:id).join(','), Time.now], 
@@ -54,7 +61,6 @@ module ActivityStreams
           # Handle single updates
           else
             self.user.followers.each do |follower|
-              logger.debug "[DEBUG] Creating single activity stream with #{self} for #{follower}"
               ActivityStream.create(
                 :user_id => self.user_id,
                 :subscriber_id => follower.id,
