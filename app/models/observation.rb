@@ -87,9 +87,9 @@ class Observation < ActiveRecord::Base
                     :cast_lat_lon
   
   before_save :strip_species_guess,
+              :set_taxon_from_species_guess,
               :set_iconic_taxon,
-              :keep_old_taxon_id,
-              :set_taxon_from_species_guess
+              :keep_old_taxon_id
                  
   after_save :refresh_lists,
              :update_identifications_after_save
