@@ -568,7 +568,7 @@ class TaxaController < ApplicationController
   
   def tag_flickr_photos
     # Post tags to flickr
-    unless params[:flickr_photos].blank?
+    if params[:flickr_photos].blank?
       flash[:notice] = "You didn't select any photos to tag!"
       redirect_to :action => 'flickr_tagger' and return
     end
