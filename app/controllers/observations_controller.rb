@@ -13,7 +13,7 @@ class ObservationsController < ApplicationController
     :by_login]
   before_filter :curator_required, :only => [:curation]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :edit,
-    :edit_batch, :import, :import_photos]
+    :edit_batch, :import, :import_photos, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
@@ -566,6 +566,34 @@ class ObservationsController < ApplicationController
     @observations = photos.map(&:to_observation)
     @step = 2
     render :template => 'observations/new_batch'
+  end
+  
+  def add_from_list
+    @order = params[:order] || "alphabetical"
+    if @list = List.find_by_id(params[:id])
+      @cache_key = {:controller => "observations", :action => "add_from_list", :id => @list.id, :order => @order}
+      unless fragment_exist?(@cache_key)
+        @listed_taxa = @list.listed_taxa.order_by(@order).all(:include => {:taxon => [:photos, :taxon_names]})
+        if params[:order] == "alphabetical"
+          @listed_taxa.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
+        end
+      end
+    end
+    @user_lists = current_user.lists.all(:limit => 100)
+  end
+  
+  def new_from_list
+    @taxa = Taxon.all(:conditions => ["id in (?)", params[:taxa]], :include => :taxon_names)
+    if @taxa.blank?
+      flash[:error] = "No taxa selected!"
+      return redirect_to :add_from_list
+    end
+    @observations = @taxa.map do |taxon|
+      current_user.observations.build(:taxon => taxon, 
+        :species_guess => taxon.default_name.name)
+    end
+    @step = 2
+    render :new_batch
   end
 
   # gets observations by user login

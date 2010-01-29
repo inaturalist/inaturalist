@@ -31,6 +31,19 @@ class ListedTaxon < ActiveRecord::Base
     {:include => :list, :conditions => ["lists.user_id = ?", user]}
   }
   
+  named_scope :order_by, lambda {|order_by|
+    case order_by
+    when "alphabetical"
+      {:include => [:taxon], :order => "taxa.name ASC"}
+    when "taxonomic"
+      {:include => [:taxon], :order => "taxa.lft ASC"}
+    else
+      {} # default to id asc ordering
+    end
+  }
+  
+  ORDERS = %w"alphabetical taxonomic"
+  
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
     "list_id: #{self.list_id}>"

@@ -52,57 +52,34 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :observations, :requirements => { :id => %r(\d+) } do |observation|
     observation.resources :flags
   end
-          
-  map.new_observation_batch_csv 'observations/new/batch_csv',
-	        :controller => 'observations',
-	        :action => 'new_batch_csv'
-	        
-  map.new_observation_batch 'observations/new/batch',
-                :controller => 'observations',
-                :action => 'new_batch'
-                
-  map.edit_observation_batch 'observations/edit/batch',
-                 :controller => 'observations',
-                 :action => 'edit_batch'
-                 
-  map.delete_observation_batch 'observations/delete_batch',
-                 :controller => 'observations',
-                 :action => 'delete_batch',
-                 :conditions => {:method => :delete}
-                 
-  map.import_observations 'observations/import',
-                 :controller => 'observations',
-                 :action => 'import'
-   
-  map.id_please 'observations/id_please',
-                :controller => 'observations',
-                :action => 'id_please',
-                :conditions => {:method => :get}
-                
-  map.observation_selector 'observations/selector',
-                :controller => 'observations',
-                :action => 'selector',
-                :conditions => {:method => :get}
   
-  map.curate_observations '/observations/curation', :controller => 'observations', :action => 'curation'
-  map.observations_widget '/observations/widget', :controller => 'observations', :action => 'widget'
-                                        
-  map.observations_by_login 'observations/:login', 
-                            :controller => 'observations', 
-                            :action => 'by_login',
-                            :requirements => { :login => simplified_login_regex },
-                            :conditions => {:method => :get}
-  
-  map.observations_by_login_feed 'observations/:login.:format',
-                                 :controller => 'observations',
-                                 :action => 'by_login',
-                                 :requirements => { :login => simplified_login_regex },
-                                 :conditions => {:method => :get}
-  map.observation_tile_points 'observations/tile_points/:zoom/:x/:y.:format',
-    :controller => 'observations',
-    :action => 'tile_points',
-    :requirements => { :zoom => /\d+/, :x => /\d+/, :y => /\d+/ },
-    :conditions => {:method => :get}
+  map.with_options :controller => "observations" do |o|
+    o.new_observation_batch_csv 'observations/new/batch_csv', :action => 'new_batch_csv'
+    o.new_observation_batch 'observations/new/batch', :action => 'new_batch'
+    o.edit_observation_batch 'observations/edit/batch', :action => 'edit_batch'
+    o.delete_observation_batch 'observations/delete_batch', :action => 'delete_batch',
+      :conditions => {:method => :delete}
+    o.import_observations 'observations/import', :action => 'import'
+    o.id_please 'observations/id_please', :action => 'id_please',
+      :conditions => {:method => :get}
+    o.observation_selector 'observations/selector', :action => 'selector',
+      :conditions => {:method => :get}
+    o.curate_observations '/observations/curation', :action => 'curation'
+    o.observations_widget '/observations/widget', :action => 'widget'
+    o.add_observations_from_list "observations/add_from_list", :action => "add_from_list"
+    o.new_observations_from_list "observations/new_from_list", :action => "new_from_list"
+    
+    # by_login paths must come after all others
+    o.observations_by_login 'observations/:login', :action => 'by_login',
+      :requirements => { :login => simplified_login_regex },
+      :conditions => {:method => :get}
+    o.observations_by_login_feed 'observations/:login.:format', :action => 'by_login',
+      :requirements => { :login => simplified_login_regex },
+      :conditions => {:method => :get}
+    o.observation_tile_points 'observations/tile_points/:zoom/:x/:y.:format', :action => 'tile_points',
+      :requirements => { :zoom => /\d+/, :x => /\d+/, :y => /\d+/ },
+      :conditions => {:method => :get}
+  end
 
   map.person_by_login 'people/:login', 
                       :controller => 'users',

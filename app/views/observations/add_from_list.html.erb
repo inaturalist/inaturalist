@@ -1,0 +1,61 @@
+<%- content_for(:title) do -%>
+  <% @pagetitle = if @list
+    "Add Observations from list: #{link_to @list.title, @list}"
+  else
+    "Add Observations from a List"
+  end %>
+  <%= strip_tags(@pagetitle) %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .photolabel {
+      display: inline-block;
+      width: 24px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .photolabel img {
+      max-width: 24px;
+    }
+    
+    .listed_taxa {
+      list-style: none;
+      margin-left: 0;
+    }
+    .listed_taxa li {
+      margin-bottom: 5px;
+    }
+  </style>
+<%- end -%>
+<div id="pageheader">
+  <div class="right">
+    <%= render :partial => "observations/new_nav" %>
+  </div>
+  
+  <h2><%= @pagetitle %></h2>
+  <p class="description">Add observations of taxa you've added to a list.  Under development, still working out the bugs...</p>
+  <% form_tag url_for, :method => :get do %>
+    <%= label_tag :id, "Choose from your lists" %>
+    <%= select_tag :id, options_for_select(@user_lists.map{|l| [l.title, l.id]}, @list ? @list.id : nil) %>
+    
+    &nbsp;
+    <label>Order</label>
+    <% for order in ListedTaxon::ORDERS %>
+      <%= radio_button_tag :order, order, order == @order %>
+      <%= label_tag "order_#{order}", order.humanize %>
+    <% end %>
+    
+    <%= submit_tag "Load" %>
+  <% end %>
+</div>
+
+<% if @list.blank? -%>
+  <div class="description nodata">Choose a list above.</div>
+<% else %>
+  <% form_tag new_observations_from_list_path do %>
+    <% cache(@cache_key) do %>
+      <%= render :partial => 'add_from_list' %>
+    <% end %>
+    <%= submit_tag "Creation observations", :class => "default button" %>
+  <% end %>
+<% end %>

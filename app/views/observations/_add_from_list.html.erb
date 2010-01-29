@@ -1,0 +1,11 @@
+<ul class="listed_taxa">
+  <% for listed_taxon in @listed_taxa %>
+  <li class="clear">
+    <label for="<%= dom_id(listed_taxon.taxon, "checkbox") %>" class="photolabel">
+      <%= taxon_image listed_taxon.taxon %>
+    </label>
+    <%= check_box_tag "taxa[]", listed_taxon.taxon_id, false, :id => dom_id(listed_taxon.taxon, "checkbox") %>
+    <%= label_tag dom_id(listed_taxon.taxon, "checkbox"), render(:partial => "shared/taxon", :object => listed_taxon.taxon) %>
+  </li>
+  <% end %>
+</ul>
