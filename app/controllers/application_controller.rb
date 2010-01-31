@@ -148,6 +148,28 @@ class ApplicationController < ActionController::Base
     end
     @places.compact!
   end
+  
+  def catch_missing_mobile_templates
+    begin
+      yield
+    rescue ActionView::MissingTemplate => e
+      if in_mobile_view?
+        flash[:notice] = "No mobilized version of that view."
+        session[:mobile_view] = false
+        return redirect_to request.path
+      end
+      raise e
+    end
+  end
+  
+  def mobilized
+    @mobilized = true
+  end
+  
+  def unmobilized
+    @mobilized = false
+    request.format = :html if in_mobile_view?
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

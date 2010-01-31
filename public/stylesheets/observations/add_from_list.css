@@ -1,0 +1,23 @@
+.photolabel {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  vertical-align: middle;
+}
+.photolabel img {
+  max-width: 24px;
+}
+
+.listed_taxa {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.listed_taxa li {
+  margin-bottom: 5px;
+}
+
+#newobsnav {
+  float: right;
+  margin-left: 10px;
+}

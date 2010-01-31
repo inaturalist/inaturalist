@@ -10,3 +10,8 @@
     <a href="http://www.facebook.com/pages/iNaturalistorg/63336575498">Facebook</a> &nbsp;
 	</div>
 </div>
+<% if logged_in? && current_user.is_admin? && @mobilized -%>
+  <div class="flash notice">
+    <%= link_to "Mobile view available", toggle_mobile_path %>
+  </div>
+<% end -%>

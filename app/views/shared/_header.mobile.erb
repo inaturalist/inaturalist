@@ -1,0 +1,6 @@
+<div id="header">
+  <%= link_to("Welcome, #{current_user.login}", dashboard_path, :class => "right") if logged_in? %>
+  <a href="/" title="iNaturalist.org" class="logolink">
+    <img src="/images/logo-small.gif" alt="iNaturalist logo" />
+  </a>
+</div>

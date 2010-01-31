@@ -1,0 +1,43 @@
+body.mobile,
+p, .p, h1, h2, h3, h4, h5, h6, .readable {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-weight: bold;
+}
+
+p, .p, .readable {
+  font-size: 100%;
+}
+
+body.mobile #wrapper,
+body.mobile #header, 
+body.mobile #footer {
+  width: 310px;
+  min-width: 310px;
+  padding: 5px;
+}
+
+body.mobile select {
+  max-width: 310px;
+}
+
+body.mobile #header {
+  margin: 0;
+  height: auto;
+  line-height: 1.4;
+}
+
+input.button {
+  padding: 0;
+}
+
+/* Cribbed from blueprint */
+.clear { display: inline-block; }   
+.clear:after, .container:after {
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;
+}
+* html .clear { height: 1%; }
+.clear { display: block; }

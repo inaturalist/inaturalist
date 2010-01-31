@@ -6,3 +6,4 @@
 Mime::Type.register "application/vnd.google-earth.kml+xml", :kml
 Mime::Type.register "text/json", :node
 Mime::Type.register_alias "text/html", :widget
+Mime::Type.register_alias "text/html", :mobile

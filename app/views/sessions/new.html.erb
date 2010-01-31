@@ -9,7 +9,7 @@
 
     <p class="ui">
       <%= label_tag 'login', 'Username or email' %><br/>
-      <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1} %>
+      <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
     </p>
 
     <p class="ui">

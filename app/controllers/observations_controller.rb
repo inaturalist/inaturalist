@@ -1,4 +1,5 @@
 class ObservationsController < ApplicationController
+  has_mobile_fu
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :login_required, 
                 :except => [:explore,
@@ -8,7 +9,8 @@ class ObservationsController < ApplicationController
                             :id_please,
                             :tile_points]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
-  before_filter :return_here, :only => [:index, :by_login, :show, :id_please]
+  before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
+    :import, :add_from_list]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :by_login]
   before_filter :curator_required, :only => [:curation]
@@ -16,6 +18,9 @@ class ObservationsController < ApplicationController
     :edit_batch, :import, :import_photos, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
+  around_filter :catch_missing_mobile_templates
+  before_filter :unmobilized, :except => [:add_from_list]
+  before_filter :mobilized, :only => [:add_from_list]
   
   caches_page :tile_points
   
@@ -580,6 +585,11 @@ class ObservationsController < ApplicationController
       end
     end
     @user_lists = current_user.lists.all(:limit => 100)
+    
+    respond_to do |format|
+      format.html
+      format.mobile { render "add_from_list.html.erb" }
+    end
   end
   
   def new_from_list
@@ -612,13 +622,13 @@ class ObservationsController < ApplicationController
       
       format.kml do
         user = @login.to_s
-        if request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth") and params[:kml_type] == "network_link"
+        if request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth") && params[:kml_type] == "network_link"
 
           if params[:kml_type] == "network_link"
             @net_hash = {
-              :snippet=>"iNaturalist Feed for User:"<<user, 
-              :description=>"iNaturalist Feed for User:"<<user, 
-              :name=>"iNaturalist Feed for User:"<<user
+              :snippet=>"iNaturalist Feed for User:" << user,
+              :description=>"iNaturalist Feed for User:" << user,
+              :name=>"iNaturalist Feed for User:" << user
             }
 
           else

@@ -13,6 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'users', :action => 'activate', :activation_code => nil
   map.forgot_password '/forgot_password', :controller => 'passwords', :action => 'new'
   map.change_password '/change_password/:reset_code', :controller => 'passwords', :action => 'reset'
+  map.toggle_mobile "/toggle_mobile", :controller => 'welcome', :action => 'toggle_mobile'
   
   # Special controller routes
   
