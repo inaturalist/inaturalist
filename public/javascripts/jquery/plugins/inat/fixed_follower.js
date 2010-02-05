@@ -6,10 +6,12 @@
     // Make a closure and restyle the follower
     var follower = this;
     var originalOffset = follower.offset();
+    var originalWidth = follower.width();
     $(follower).css({
       position: 'absolute',
       top: originalOffset.top,
-      left: originalOffset.left
+      left: originalOffset.left,
+      width: originalWidth
     });
     
     // Bind scrolling to move the follower

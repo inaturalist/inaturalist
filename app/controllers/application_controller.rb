@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
   
+  has_mobile_fu
+  around_filter :catch_missing_mobile_templates
+  
   helper :all # include all helpers, all the time
   protect_from_forgery
   filter_parameter_logging :password, :password_confirmation

@@ -42,7 +42,9 @@ class ListedTaxon < ActiveRecord::Base
     end
   }
   
-  ORDERS = %w"alphabetical taxonomic"
+  ALPHABETICAL_ORDER = "alphabetical"
+  TAXONOMIC_ORDER = "taxonomic"
+  ORDERS = [ALPHABETICAL_ORDER, TAXONOMIC_ORDER]
   
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 

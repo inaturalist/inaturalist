@@ -1,5 +1,4 @@
 class ObservationsController < ApplicationController
-  has_mobile_fu
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :login_required, 
                 :except => [:explore,
@@ -18,7 +17,6 @@ class ObservationsController < ApplicationController
     :edit_batch, :import, :import_photos, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
-  around_filter :catch_missing_mobile_templates
   before_filter :unmobilized, :except => [:add_from_list]
   before_filter :mobilized, :only => [:add_from_list]
   
@@ -582,6 +580,10 @@ class ObservationsController < ApplicationController
         if params[:order] == "alphabetical"
           @listed_taxa.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
         end
+        @taxon_ids_by_name = {}
+        @listed_taxa.map {|lt| lt.taxon.taxon_names}.flatten.each do |tn|
+          @taxon_ids_by_name[tn.name] = tn.taxon_id
+        end
       end
     end
     @user_lists = current_user.lists.all(:limit => 100)
@@ -589,6 +591,13 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html
       format.mobile { render "add_from_list.html.erb" }
+      format.js do
+        if fragment_exists?(@cache_key)
+          render read_fragment(@cache_key)
+        else
+          render :partial => 'add_from_list.html.erb'
+        end
+      end
     end
   end
   
@@ -596,7 +605,7 @@ class ObservationsController < ApplicationController
     @taxa = Taxon.all(:conditions => ["id in (?)", params[:taxa]], :include => :taxon_names)
     if @taxa.blank?
       flash[:error] = "No taxa selected!"
-      return redirect_to :add_from_list
+      return redirect_to :action => :add_from_list
     end
     @observations = @taxa.map do |taxon|
       current_user.observations.build(:taxon => taxon, 

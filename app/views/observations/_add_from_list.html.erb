@@ -1,11 +1,26 @@
 <ul class="listed_taxa">
   <% for listed_taxon in @listed_taxa %>
-  <li class="clear">
+  <li id="<%= dom_id(listed_taxon.taxon) %>" class="listed_taxon clear">
+    <%- 
+      rendered_taxon_name = render(:partial => "shared/taxon.html.erb", :object => listed_taxon.taxon) 
+      stripped_taxon_name = strip_tags(rendered_taxon_name).strip
+      prevletter ||= nil
+      letter = stripped_taxon_name.first.upcase
+    -%>
+    <% if letter != prevletter -%>
+      <a name="anchor_<%= letter %>"></a>
+    <% end -%>
+    <%- prevletter = letter -%>
     <label for="<%= dom_id(listed_taxon.taxon, "checkbox") %>" class="photolabel">
       <%= taxon_image listed_taxon.taxon %>
     </label>
     <%= check_box_tag "taxa[]", listed_taxon.taxon_id, false, :id => dom_id(listed_taxon.taxon, "checkbox") %>
-    <%= label_tag dom_id(listed_taxon.taxon, "checkbox"), render(:partial => "shared/taxon.html.erb", :object => listed_taxon.taxon) %>
+    <%= label_tag dom_id(listed_taxon.taxon, "checkbox"), rendered_taxon_name %>
   </li>
   <% end %>
 </ul>
+
+<script type="text/javascript" charset="utf-8">
+  var taxonIdsByName = <%= @taxon_ids_by_name.to_json %>;
+  var taxonNames = <%= @taxon_ids_by_name.keys.to_json %>;
+</script>

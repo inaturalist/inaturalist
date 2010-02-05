@@ -26,8 +26,11 @@ body.mobile #header {
   line-height: 1.4;
 }
 
-input.button {
+input.button,
+input[type=text] {
   padding: 0;
+  float: none;
+  display: inline-block;
 }
 
 /* Cribbed from blueprint */
