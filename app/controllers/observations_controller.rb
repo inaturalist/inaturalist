@@ -577,13 +577,12 @@ class ObservationsController < ApplicationController
       @cache_key = {:controller => "observations", :action => "add_from_list", :id => @list.id, :order => @order}
       unless fragment_exist?(@cache_key)
         @listed_taxa = @list.listed_taxa.order_by(@order).all(:include => {:taxon => [:photos, :taxon_names]})
-        if params[:order] == "alphabetical"
-          @listed_taxa.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
-        end
+        @listed_taxa_alphabetical = @listed_taxa.sort! {|a,b| a.taxon.default_name.name <=> b.taxon.default_name.name}
+        @listed_taxa = @listed_taxa_alphabetical if @order == ListedTaxon::ALPHABETICAL_ORDER
         @taxon_ids_by_name = {}
-        @listed_taxa.map {|lt| lt.taxon.taxon_names}.flatten.each do |tn|
-          @taxon_ids_by_name[tn.name] = tn.taxon_id
-        end
+        ancestor_ids = @listed_taxa.map{|lt| lt.taxon_ancestor_ids.split(',')}.flatten.uniq
+        @orders = Taxon.all(:conditions => ["rank = 'order' AND id IN (?)", ancestor_ids], :order => "lft ASC")
+        @families = Taxon.all(:conditions => ["rank = 'family' AND id IN (?)", ancestor_ids], :order => "lft ASC")
       end
     end
     @user_lists = current_user.lists.all(:limit => 100)

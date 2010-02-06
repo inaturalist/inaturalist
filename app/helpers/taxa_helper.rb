@@ -54,7 +54,7 @@ module TaxaHelper
     if taxon.blank? || taxon.photos.blank?
       return iconic_taxon_image(taxon, params)
     end
-    image_params = {:alt => default_taxon_name(taxon)}
+    image_params = params.merge(:alt => default_taxon_name(taxon))
     unless taxon.photos.blank?
       image_params[:alt] += " - Photo #{taxon.photos.first.attribution}"
     end

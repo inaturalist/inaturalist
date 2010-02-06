@@ -19,8 +19,16 @@
   width: 300px
 }
 
-#taxaform {
-  margin-top: 65px;
+#taxa {
+  margin-top: 80px;
+}
+
+#taxa.alphabetical {
+  margin-top: 130px;
+}
+
+#mobilenav {
+  float: none;
 }
 
 #taxaform .buttonrow {
@@ -32,46 +40,16 @@
   float: none;
 }
 
-#mobilenav {
-/*  position: relative;
-  text-align: right;*/
-  width: 300px;
-}
-
 #show_mobile_nav_link,
 #mobilenav.open {
-  text-align: left;
-  background-color: #eee;
-  padding: 5px;
-/*  -webkit-border-radius: 5px;
-  -webkit-border-top-left-radius
-  -webkit-border-top-right-radius*/
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  -webkit-box-shadow: 0px 2px 5px #aaa;
-}
-
-#show_mobile_nav_link {
-  display: inline-block;
-}
-
-#hide_mobile_nav_link,
-#goto_nav_link {
-  display: inline-block;
-  float: right;
   padding: 5px;
 }
 
-#alphanav_letters a {
-  text-align: center;
-  display: inline-block;
-  width: 10px;
-  padding: 4px;
-  margin-bottom: 5px;
-  background-color: #ccc;
-  -webkit-border-radius: 5px;
+
+h2 .othernames {
+  display: block;
 }
 
-#taxasearch {
-  background-color: #eee;
-}
+h3, h4 { color: #aaa; margin: 0.2em 0;}
+ul { margin: 0.5em 0; }
+h4 { font-style: italic; }

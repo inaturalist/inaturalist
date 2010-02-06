@@ -67,6 +67,10 @@ module AuthenticatedSystem
           store_location
           redirect_to new_session_path
         end
+        format.mobile do
+          store_location
+          redirect_to new_session_path
+        end
         # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
         # Add any other API formats here.  (Some browsers, notably IE6, send Accept: */* and trigger 
         # the 'format.any' block incorrectly. See http://bit.ly/ie6_borken or http://bit.ly/ie6_borken2

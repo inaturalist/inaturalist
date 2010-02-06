@@ -11,52 +11,36 @@
   <%= stylesheet_link_tag "observations/add_from_list" %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <% if in_mobile_view? && js_enabled_mobile_device? -%>
-    <%= javascript_include_tag "jquery/jquery.ui.all.packed.js",
-                               "jquery/plugins/jquery.scrollTo-min.js",
-                               "jquery/plugins/inat/fixed_follower.js" %>
-    <script type="text/javascript" charset="utf-8">
-      $(document).ready(function() {
-        <% if @list %>
-          $(window).scrollTo($('a[name=taxa]').offset().top);
-        <% end %>
-        
-        $('#mobilenav').fixedFollower({top: 0, duration: 500});
-        $('#searchlistform input[type=text]').keyup(function() {
-          var q = $('#searchlistform input[type=text]').val();
-          if (q == '') {
-            $('li.listed_taxon:hidden').show();
-            return true;
-          } else {
-            $('li.listed_taxon:visible').hide();
-          }
-          for (var i = taxonNames.length - 1; i >= 0; i--){
-            var pattern = new RegExp('^'+q, 'i');
-            if (taxonNames[i].match(pattern)) {
-              var taxonId = taxonIdsByName[taxonNames[i]];
-              $('#taxon_'+taxonId).show();
-            }
-          };
-        });
+  <%= javascript_include_tag "jquery/jquery.ui.all.packed.js",
+                             "jquery/plugins/jquery.scrollTo-min.js",
+                             "jquery/plugins/inat/fixed_follower.js" %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#mobilenav').fixedFollower({
+        <% if in_mobile_view? %>top: 0, <% end %>
+        duration: 500
       });
-      
-      function showMobileNav() {
-        $('#searchlistform').show();
-        $('#alphanav').show();
-        $('#show_mobile_nav_link').hide();
-        $('#hide_mobile_nav_link').show();
-        $('#mobilenav').toggleClass('open');
-      }
-      
-      function hideMobileNav() {
-        $('#searchlistform').hide();
-        $('#alphanav').hide();
-        $('#show_mobile_nav_link').show();
-        $('#hide_mobile_nav_link').hide();
-        $('#mobilenav').toggleClass('open');
-      }
-    </script>
-  <% end -%>
+      <% if @list %>
+        $(window).scrollTo($('#taxaform').offset().top);
+      <% end %>
+    });
+    
+    function showMobileNav() {
+      $('#searchlistform').show();
+      $('#mobilenav .gotonav').show();
+      $('#show_mobile_nav_link').hide();
+      $('#hide_mobile_nav_link').show();
+      $('#mobilenav').toggleClass('open');
+    }
+    
+    function hideMobileNav() {
+      $('#searchlistform').hide();
+      $('#mobilenav .gotonav').hide();
+      $('#show_mobile_nav_link').show();
+      $('#hide_mobile_nav_link').hide();
+      $('#mobilenav').toggleClass('open');
+    }
+  </script>
 <%- end -%>
 
 <div id="pageheader">
@@ -85,27 +69,6 @@
   <div class="description nodata">Choose a list above.</div>
 <% else %>
   <a name="taxa"></a>
-  <% if in_mobile_view? && js_enabled_mobile_device? -%>
-    <div id="mobilenav" class="open">
-      <%= link_to_function "&laquo; Nav", "showMobileNav()", :id => "show_mobile_nav_link", :style => "display: none" %>
-      <%= link_to_function "&darr;", "$('.gotonav').toggle()", :id => "goto_nav_link" %>
-      <%#= link_to_function "&times;", "hideMobileNav()", :id => "hide_mobile_nav_link" %>
-
-      <form id="searchlistform">
-        <input type="text" name="find" value="" id="find">
-      </form>
-
-      <% if @order == ListedTaxon::ALPHABETICAL_ORDER -%>
-        <div id="alphanav" class="gotonav" style="display: none">
-          <div id="alphanav_letters">
-            <% "ABCDEFGHIJKLMNOPQRSTUVWXYZ".each_char do |letter| %>
-              <a href="#anchor_<%= letter %>" id="link_<%= letter %>" class="letter" onclick="$('#alphanav').toggle()"><%= letter %></a>
-            <% end %>
-          </div>
-        </div>
-      <% end -%>
-    </div>
-  <% end -%>
   <% form_tag new_observations_from_list_path, :id => "taxaform" do %>
     <% cache(@cache_key) do %>
       <%= render :partial => 'add_from_list.html.erb' %>
