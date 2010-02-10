@@ -444,9 +444,8 @@
       <% end -%>
       <div id="colorboxen">
         <% for color in @taxon.colors %>
-          <div class="color" style="background-color: <%= color.value %>;" title="<%= color.value %>">
-            &nbsp;
-          </div>
+          <%= link_to "&nbsp;", {:controller => "taxa", :action => "search", :colors => color.id},
+            :class => "color", :style => "background-color: #{color.value}", :title => color.value %>
         <% end %>
       </div>
       <% if logged_in? -%>
