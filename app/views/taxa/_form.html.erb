@@ -214,9 +214,9 @@
     <%= link_to 'Delete', taxon,
                 :method => :delete,
                 :confirm => "Are you sure you want to delete this taxon?  " + 
-                            "It has #{taxon.descendants.count} " + 
-                            "descendents, and there are " +
-                            "#{Observation.of(taxon).count} observations " + 
+                            "It has #{taxon.descendants.count} descendents, " +
+                            "#{ListedTaxon.count(:conditions => {:taxon_id => taxon.id})} listed taxa, " + 
+                            "and #{Observation.of(taxon).count} observations " + 
                             "of it and its descendants..." ,
                 :class => 'minor delete button' %>
   </div>

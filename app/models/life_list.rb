@@ -71,7 +71,7 @@ class LifeList < List
   
   # Add all the taxa the list's owner has observed.  This will be slow...
   def add_taxa_from_observations
-    self.user.observations.all(:select => 'taxon_id', 
+    self.user.observations.find_each(:select => 'taxon_id', 
       :group => 'taxon_id', 
       :conditions => 'taxon_id IS NOT NULL').each do |observation|
       self.add_taxon(observation.taxon_id)
