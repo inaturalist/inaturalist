@@ -57,7 +57,7 @@
 </div>
 
 <div class="column span-24">
-  <div id="lists">
+  <div id="lists" class="clear">
     <% for list in @lists %>
       <div class="column span-12 <%= cycle('', 'last') %>">
         <div id="list-<%= list.id %>" class="clear list <%= 'owners_life_list' if @life_list.id == list.id %>">
@@ -72,7 +72,7 @@
 
             <div class="attr readable description">
               <%= truncate(strip_tags(list.description), :length => 75) %>
-              <%= link_to "View &raquo;", list_path(list) %>
+              <%= link_to "View &raquo;", list_path(list), :style => "white-space: nowrap" %>
             </div>
 
             <div class="barchart">
@@ -81,6 +81,7 @@
                 :max => list.listed_taxa.count, 
                 :label_text => "of #{list.listed_taxa.count} observed",
                 :min_value_label_width => 30 } %>
+              <div class="clear"></div>
             </div>
             
             <% if list.is_a?(LifeList) && !list.rules.empty? && list.rules.first.operand.is_a?(Taxon) -%>
