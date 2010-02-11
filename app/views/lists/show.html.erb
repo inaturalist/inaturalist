@@ -47,7 +47,7 @@
 
 <div class="column span-17">
   <div id="description" class="readable description">
-    <%= auto_link(markdown(@list.description)) %>
+    <%= formatted_user_text(@list.description) %>
   </div>
   
   <% if @list.is_a?(LifeList) && !@list.rules.empty? && @list.rules.first.operand.is_a?(Taxon) -%>

@@ -315,17 +315,11 @@
     </div><!-- end where -->
   </div><!-- end where-and-photos -->
   
-  <% if @observation.description and not @observation.description.empty? %>
+  <% if @observation.description && !@observation.description.empty? %>
   <div id="observation-description">
     <h3>Description</h3>
     <div class="clear readable description">
-      <%= 
-        begin
-          auto_link(markdown(sanitize(@observation.description))) 
-        rescue BlueCloth::FormatError
-          sanitize(@observation.description)
-        end          
-      %> 
+      <%= formatted_user_text(@observation.description) %>
     </div>
   </div>
   <% end %>
@@ -364,7 +358,7 @@
           <%- end -%>
           
           <% unless item.body.blank? -%>
-            <div class="body"><%= markdown(auto_link(sanitize(item.body))) %></div>
+            <div class="body"><%= formatted_user_text(item.body) %></div>
           <% end -%>
           
           <div class="meta">

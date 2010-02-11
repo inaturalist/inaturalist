@@ -64,7 +64,7 @@
 <div class="column span-17">
   <% unless @list.is_default? -%>
     <div id="description" class="readable description">
-      <%= auto_link(markdown(@list.description)) %>
+      <%= formatted_user_text(@list.description) %>
     </div>
 
     <% if !@list.rules.empty? && @list.rules.first.operand.is_a?(Taxon) -%>

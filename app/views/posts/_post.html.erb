@@ -3,9 +3,9 @@
         <h3 class="title"><%= link_to h(post.title), post_path(post.user.login, post) %></h3>
         <div class="body">
           <% if truncate_length -%>
-            <%= truncate markdown(auto_link(post.body)), :length => truncate_length %>
+            <%= truncate formatted_user_text(post.body), :length => truncate_length %>
           <%- else -%>
-            <%= markdown auto_link(post.body) %>
+            <%= formatted_user_text(post.body) %>
           <% end -%>
         </div>
         <div class="meta">

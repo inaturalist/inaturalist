@@ -152,4 +152,10 @@ module ApplicationHelper
       link_options
     )
   end
+  
+  def formatted_user_text(text)
+    auto_link(markdown(simple_format(sanitize(text))))
+  rescue BlueCloth::FormatError
+    auto_link(simple_format(sanitize(text)))
+  end
 end

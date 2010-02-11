@@ -55,7 +55,7 @@
     <% if @user.description.blank? %>
       <%= @user.login %> is a naturalist!
     <% else %>
-      <%= auto_link(markdown(@user.description)) %>
+      <%= formatted_user_text(@user.description) %>
     <% end %>
   </div>
 
