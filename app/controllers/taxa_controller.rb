@@ -639,6 +639,11 @@ class TaxaController < ApplicationController
     
     @tags = params[:tags]
     
+    if params[:flickr_photos].blank?
+      flash[:error] = "No Flickr photos tagged!"
+      return redirect_to :action => "flickr_tagger"
+    end
+    
     @flickr_photos = params[:flickr_photos].map do |flickr_photo_id|
       fp = flickr.photos.getInfo(:photo_id => flickr_photo_id, 
         :auth_token => current_user.flickr_identity.token)
