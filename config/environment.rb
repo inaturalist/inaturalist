@@ -83,6 +83,7 @@ Rails::Initializer.run do |config|
   config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
   config.gem 'nokogiri'
   config.gem 'objectify-xml', :lib => 'objectify_xml'
+  config.gem 'hoptoad_notifier'
 
   # Can't do this until Rails starts including the rake tasks of plugin gems
   # config.gem "freelancing-god-thinking-sphinx", :lib => 'thinking_sphinx', 
