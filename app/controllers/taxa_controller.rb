@@ -381,21 +381,47 @@ class TaxaController < ApplicationController
   end
   
   def add_places
-    @countries = Place.all(:order => "name",
-      :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES["Country"]]).compact
-    if @us = Place.find_by_name("United States")
-      @us_states = @us.children.all(:order => "name").compact
+    unless params[:tab].blank?
+      @places = case params[:tab]
+      when 'countries'
+        @countries = Place.all(:order => "name",
+          :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES["Country"]]).compact
+      when 'us_states'
+        if @us = Place.find_by_name("United States")
+          @us.children.all(:order => "name", :include => :parent).compact
+        else
+          []
+        end
+      else
+        []
+      end
+      
+      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
+      @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
+      
+      render :partial => 'taxa/add_to_place_link', :collection => @places, :locals => {
+        :skip_map => true
+      }
+      return
     end
+    
     if request.post?
       search_for_places
       @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
       @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
       render :update do |page|
-        page[dom_id(@taxon, 'place_selector_places')].replace_html(
-          :partial => 'add_to_place_link', :collection => @places)
+        if @places.blank?
+          page[dom_id(@taxon, 'place_selector_places')].replace_html(
+            content_tag(:p, "No places matching \"#{@q}\"", :class => "description")
+          )
+        else
+          page[dom_id(@taxon, 'place_selector_places')].replace_html(
+            :partial => 'add_to_place_link', :collection => @places)
+        end
       end
       return
     end
+    
     render :layout => false
   end
   

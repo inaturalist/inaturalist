@@ -13,9 +13,9 @@
   <div id="place_selector" class="ui-tabs">
     
     <ul>
-      <% for tab in ["Search", "Countries", "US States"] %>
-        <li><a href="#place_selector_<%= tab.split.join('_').downcase %>"><span><%= tab %></span></a></li>
-      <% end %>
+      <li><a href="#place_selector_search"><span>Search</span></a></li>
+      <li><%= link_to "<span>Countries</span>", edit_taxon_places_path(@taxon, :tab => "countries") %></li>
+      <li><%= link_to "<span>US States</span>", edit_taxon_places_path(@taxon, :tab => "us_states") %></li>
     </ul>
     
     <div id="place_selector_search">
@@ -34,13 +34,5 @@
     <!-- <div id="place_selector_map">
       map
     </div> -->
-    
-    <div id="place_selector_countries">
-      <%= render :partial => 'add_to_place_link', :collection => @countries %>
-    </div>
-    
-    <div id="place_selector_us_states">
-      <%= render :partial => 'add_to_place_link', :collection => @us_states %>
-    </div>
   </div>
 </div>
