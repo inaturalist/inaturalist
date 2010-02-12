@@ -60,9 +60,10 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def validate
-    self.list.rules.each do |rule|
-      unless rule.validates?(self.taxon)
-        errors.add(taxon.to_plain_s, "is not #{rule.terms}")
+    # don't bother if validates_presence_of(:taxon) has already failed
+    if errors.on(:taxon).blank?
+      self.list.rules.each do |rule|
+        errors.add(taxon.to_plain_s, "is not #{rule.terms}") unless rule.validates?(self.taxon)
       end
     end
     

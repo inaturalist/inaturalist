@@ -86,5 +86,6 @@ class List < ActiveRecord::Base
     target_lists.each do |list|
       list.refresh(options)
     end
+    true
   end
 end

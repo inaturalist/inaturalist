@@ -163,6 +163,7 @@ class ApplicationController < ActionController::Base
       end
       raise e
     end
+    true
   end
   
   def mobilized

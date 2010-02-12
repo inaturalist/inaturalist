@@ -68,6 +68,7 @@ module ActivityStreams
               )
             end
           end
+          true
         end
         
         # Destroy associated activity objects OR if they are batch updates, 
@@ -89,6 +90,7 @@ module ActivityStreams
               )
             end
           end
+          true
         end
       end
     end

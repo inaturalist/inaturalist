@@ -12,12 +12,10 @@ class LifeList < List
   #
   def add_taxon(taxon)
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon
-    listed_taxon = listed_taxa.find_by_taxon_id(taxon_id)
-    if listed_taxon
-      return listed_taxon.clone
-    else
-      ListedTaxon.create(:list => self, :taxon_id => taxon_id)
+    if listed_taxon = listed_taxa.find_by_taxon_id(taxon_id)
+      return listed_taxon
     end
+    ListedTaxon.create(:list => self, :taxon_id => taxon_id)
   end
   
   #
@@ -71,16 +69,19 @@ class LifeList < List
   
   # Add all the taxa the list's owner has observed.  This will be slow...
   def add_taxa_from_observations
+    # TODO make this a delayed_job
     self.user.observations.find_each(:select => 'taxon_id', 
-      :group => 'taxon_id', 
-      :conditions => 'taxon_id IS NOT NULL').each do |observation|
+        :group => 'taxon_id', 
+        :conditions => 'taxon_id IS NOT NULL') do |observation|
       self.add_taxon(observation.taxon_id)
     end
+    true
   end
   
   private
   def set_defaults
     self.title ||= "%s's Life List" % self.user.login
     self.description ||= "Every species %s has ever seen." % self.user.login
+    true
   end
 end
