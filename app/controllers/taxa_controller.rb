@@ -272,7 +272,8 @@ class TaxaController < ApplicationController
     per_page = params[:per_page] ? params[:per_page].to_i : 24
     per_page = 100 if per_page > 100
     @facets = if drill_params.blank?
-      Taxon.facets(@q, :page => params[:page], :per_page => per_page)
+      Taxon.facets(@q, :page => params[:page], :per_page => per_page, 
+        :include => [:taxon_names, :photos])
     else
       page = params[:page] ? params[:page].to_i : 1
       Taxon.facets(@q, :page => page, :per_page => per_page,
@@ -701,6 +702,7 @@ class TaxaController < ApplicationController
       # TODO: render custom 404 page with search & import options
       return redirect_to :action => 'search', :q => name
     else
+      return_here
       show
     end
   end
