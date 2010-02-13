@@ -562,7 +562,9 @@ class TaxaController < ApplicationController
       end
       
       @keeper.merge(@taxon)
-      flash[:notice] = "#{@taxon.name} merged into #{@keeper.name}.  #{@taxon.name} has been deleted."
+      flash[:notice] = "#{@taxon.name} (#{@taxon.id}) merged into " + 
+        "#{@keeper.name} (#{@keeper.id}).  #{@taxon.name} (#{@taxon.id}) " + 
+        "has been deleted."
       redirect_to @keeper
       return
     end

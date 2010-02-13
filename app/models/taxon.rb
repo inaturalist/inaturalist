@@ -49,7 +49,7 @@ class Taxon < ActiveRecord::Base
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon # if after, it would require an extra save
   before_save {|taxon| taxon.name = taxon.name.capitalize}
-  after_move :update_listed_taxa, :set_iconic_taxon_and_save
+  after_move :update_listed_taxa, :set_iconic_taxon_and_save #, :update_life_lists not 100% sure this is working yet
   after_save :create_matching_taxon_name
   after_save :update_unique_name
   after_save {|taxon| taxon.send_later(:set_wkipedia_summary) if taxon.wikipedia_title_changed? }
@@ -297,14 +297,14 @@ class Taxon < ActiveRecord::Base
   #
   # Set the iconic taxon if it hasn't been set
   #
-  def set_iconic_taxon
+  def set_iconic_taxon(options = {})
     if self.is_iconic?
       self.iconic_taxon = self
     else
       self.iconic_taxon = ancestors.reverse.select {|a| a.is_iconic?}.first
     end
     
-    if iconic_taxon_id_changed?
+    if iconic_taxon_id_changed? || options[:force]
       logger.debug "[DEBUG] \t iconic taxon changed, updating descendants and their observations..."
       # Update the iconic taxon of all descendants that currently have an iconic
       # taxon that is an ancestor (i.e. don't touch descendant iconic taxa)
@@ -421,6 +421,11 @@ class Taxon < ActiveRecord::Base
     ListedTaxon.update_all(
       "lft = #{self.lft}, taxon_ancestor_ids = '#{ancestor_ids}'", 
       "taxon_id = #{self.id}")
+  end
+  
+  def update_life_lists
+    logger.debug "[DEBUG] Fired update_lfe_lists for #{self}"
+    LifeList.send_later(:update_life_lists_for_taxon, self)
   end
   
   # Create a taxon name with the same name as this taxon
@@ -585,6 +590,8 @@ class Taxon < ActiveRecord::Base
         taxon_name.update_attributes(:is_valid => false)
       end
     end
+    
+    LifeList.send_later(:update_life_lists_for_taxon, self)
     
     reject.reload
     logger.info "[INFO] Merged #{reject} into #{self}"

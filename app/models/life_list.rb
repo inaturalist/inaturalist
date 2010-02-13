@@ -78,6 +78,16 @@ class LifeList < List
     true
   end
   
+  def self.update_life_lists_for_taxon(taxon)
+    ListRule.find_each(:include => :list, :conditions => [
+      "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
+      Taxon.to_s, taxon.self_and_ancestors.map(&:id)
+    ]) do |list_rule|
+      next unless list_rule.list.is_a?(LifeList)
+      list_rule.list.refresh(:taxa => [taxon])
+    end
+  end
+  
   private
   def set_defaults
     self.title ||= "%s's Life List" % self.user.login
