@@ -1,0 +1,96 @@
+<table width="100%" border="0" cellspacing="5" cellpadding="5">
+  <tr>
+    <th>&nbsp;</th>
+    <th>Taxon to keep</th>
+    <th>Taxon to delete</th>
+  </tr>
+  
+  <tr>
+    <th>ID</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <%= taxon.id %>
+        <span class="meta">(created at <%= taxon.created_at %>)</span>
+      </td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th>Name</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <%= taxon_image taxon %>
+        <%= render :partial => "shared/taxon", :object => taxon %>
+      </td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th>Associations</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <ul>
+          <li><%= pluralize taxon.observations_count, "observation" %></li>
+          <li><%= pluralize taxon.listed_taxa_count, "listed taxon" %></li>
+          <li><%= pluralize taxon.identifications.count, "identification" %></li>
+          <li><%= pluralize taxon.taxon_links.count, "taxon_link" %></li>
+        </ul>
+      </td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th>Photos</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <% for photo in taxon.photos %>
+          <%= image_tag photo.thumb_url %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th>Places</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <ul>
+          <% for place in taxon.places %>
+            <li><%= link_to place.display_name, place %></li>
+          <% end %>
+        </ul>
+      </td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th>All Names</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <ul>
+          <% for taxon_name in taxon.taxon_names %>
+            <li><%= render :partial => "shared/taxon_name", :object => taxon_name %></li>
+          <% end %>
+        </ul>
+      </td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th>Classification</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <%= render :partial => 'classification_list', :object => taxon %>
+      </td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th>Colors</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <%= taxon.colors.blank? ? "&nbsp;" : taxon.colors.map(&:value).join(', ') %>
+      </td>
+    <% end %>
+  </tr>
+</table>

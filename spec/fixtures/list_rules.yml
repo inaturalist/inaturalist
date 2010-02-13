@@ -1,8 +1,4 @@
-TedsBirdsListRule: 
-  updated_at: 2008-02-16 15:07:35
+BerkeleyAmphibiansRule:
+  list: berkeley_amphibians
   operator: in_taxon?
-  id: "1"
-  list_id: "1"
-  operand_type: Taxon
-  created_at: 2008-02-16 15:07:23
-  operand_id: "1854"
+  operand: Amphibia (Taxon)

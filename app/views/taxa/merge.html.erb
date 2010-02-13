@@ -1,0 +1,59 @@
+<%- content_for(:title) do -%>
+  Merging <%=h @taxon.name %>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery/plugins/jquery.string.1.0', 
+                             "jquery/plugins/inat/taxon_selectors.js",
+                             "jquery/plugins/jquery.qtip.min",
+                             "jquery/plugins/jqModal",
+                             "taxon_browser" %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#keeper_name').simpleTaxonSelector({
+        afterSelect: function() {
+          $('#confirm').load('<%= url_for(:format => :js) %>', {taxon_id: $('#taxon_id').val()});
+          $('#submitbutton').attr('disabled', false).removeClass('disabled');
+        },
+        afterUnselect: function() {
+          $('#submitbutton').attr('disabled', true).addClass('disabled');
+        }
+      });
+    });
+  </script>
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .simpleTaxonSelector {
+      float: left;
+      margin-right: 10px;
+    }
+    #keeper_name {
+      width: 400px;
+    }
+  </style>
+<%- end -%>
+
+<div class="pageheader">
+  <span class="breadcrumbs">
+    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>", 
+                taxon_path(@taxon), :class => 'back crumb' %>
+  </span>
+  <h2>Merge <em><%= @taxon.name %></em></h2>
+  <p class="description">
+    Delete <i><%= @taxon.name %></i> and merge most of its data into another
+    taxon. Use this tool for removing duplicate taxa and outdated synonymous
+    taxa. <strong>BE CAREFUL!</strong> Deleting taxa can be highly destructive.
+  </p>
+</div>
+
+<% form_tag url_for(), :class => "clear buttons" do %>
+  <%= text_field_tag :keeper_name %>
+  <%= hidden_field_tag :taxon_id %>
+  <%= submit_tag "Merge", :disabled => true, :class => "default button", 
+    :id => "submitbutton",
+    :confirm => "Are you sure you want to delete #{@taxon.name} (#{@taxon.id}) and move all its associates?" %>
+<% end %>
+
+<div id="confirm" class="clear"></div>

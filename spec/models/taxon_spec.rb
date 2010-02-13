@@ -245,3 +245,136 @@ describe Taxon, "tags_to_taxa" do
     taxa.should include(taxa(:Mollusca))
   end
 end
+
+describe Taxon, "merging" do
+  fixtures :taxa, :taxon_names, :observations, :listed_taxa, :list_rules,
+    :lists, :identifications, :taxon_links, :taxon_photos, :colors
+  
+  before(:each) do
+    @keeper = Taxon.create(
+      :name => 'Calypte imaginarius',
+      :rank => 'species'
+    )
+    puts "keeper wasn't valid: " + @keeper.errors.full_messages.join(', ') unless @keeper.valid?
+    @reject = taxa(:Calypte_anna)
+    @keeper.move_to_child_of(@reject.parent)
+    @has_many_assocs = Taxon.reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k}
+    @has_many_assocs.each {|assoc| @reject.send(assoc, :force_reload => true)}
+  end
+    
+  it "should move the reject's children to the keeper" do
+    keeper = Taxon.create(
+      :name => 'Pseudacrisplus',
+      :rank => 'genus'
+    )
+    puts "keeper wasn't valid: " + @keeper.errors.full_messages.join(', ') unless @keeper.valid?
+    reject = taxa(:Pseudacris)
+    keeper.move_to_child_of(reject.parent)
+    
+    rejected_children = reject.children
+    rejected_children.should_not be_empty
+    keeper.merge(reject)
+    rejected_children.each do |child|
+      child.reload
+      child.parent_id.should be(keeper.parent_id)
+    end
+  end
+  
+  it "should move the reject's taxon_names to the keeper" do
+    rejected_taxon_names = @reject.taxon_names
+    rejected_taxon_names.should_not be_empty
+    @keeper.merge(@reject)
+    rejected_taxon_names.each do |taxon_name|
+      taxon_name.reload
+      taxon_name.taxon_id.should be(@keeper.id)
+    end
+  end
+  
+  it "should move the reject's observations to the keeper" do
+    rejected_observations = @reject.observations
+    rejected_observations.should_not be_empty
+    @keeper.merge(@reject)
+    rejected_observations.each do |observation|
+      observation.reload
+      observation.taxon_id.should be(@keeper.id)
+    end
+  end
+  
+  it "should move the reject's listed_taxa to the keeper" do
+    rejected_listed_taxa = @reject.listed_taxa
+    rejected_listed_taxa.should_not be_empty
+    @keeper.merge(@reject)
+    rejected_listed_taxa.each do |listed_taxon|
+      listed_taxon.reload
+      listed_taxon.taxon_id.should be(@keeper.id)
+    end
+  end
+  
+  it "should move the reject's list_rules to the keeper" do
+    rule = list_rules(:BerkeleyAmphibiansRule)
+    reject = rule.operand(:force_reload => true)
+    keeper = reject.clone
+    keeper.name = "Amphibia2"
+    keeper.unique_name = "Amphibia2"
+    keeper.save
+    keeper.move_to_child_of(reject.parent)
+    
+    keeper.merge(reject)
+    rule.reload
+    rule.operand_id.should be(keeper.id)
+  end
+  
+  it "should move the reject's identifications to the keeper" do
+    rejected_identifications = @reject.identifications
+    rejected_identifications.should_not be_empty
+    @keeper.merge(@reject)
+    rejected_identifications.each do |identification|
+      identification.reload
+      identification.taxon_id.should be(@keeper.id)
+    end
+  end
+  
+  it "should move the reject's taxon_links to the keeper" do
+    rejected_taxon_links = @reject.taxon_links
+    rejected_taxon_links.should_not be_empty
+    @keeper.merge(@reject)
+    rejected_taxon_links.each do |taxon_link|
+      taxon_link.reload
+      taxon_link.taxon_id.should be(@keeper.id)
+    end
+  end
+  
+  it "should move the reject's taxon_photos to the keeper" do
+    rejected_taxon_photos = @reject.taxon_photos
+    rejected_taxon_photos.should_not be_empty
+    @keeper.merge(@reject)
+    rejected_taxon_photos.each do |taxon_photo|
+      taxon_photo.reload
+      taxon_photo.taxon_id.should be(@keeper.id)
+    end
+  end
+  
+  it "should move the reject's colors to the keeper"
+  
+  it "should mark scinames not matching the keeper as invalid" do
+    old_sciname = @reject.scientific_name
+    old_sciname.should be_is_valid
+    @keeper.merge(@reject)
+    old_sciname.reload
+    old_sciname.should_not be_is_valid
+  end
+  
+  it "should delete duplicate taxon_names from the reject" do
+    old_sciname = @reject.scientific_name
+    @keeper.taxon_names << old_sciname.clone
+    @keeper.merge(@reject)
+    TaxonName.find_by_id(old_sciname.id).should be_nil
+  end
+  
+  it "should delete listed_taxa from the reject that are invalid"
+  
+  it "should destroy the reject" do
+    @keeper.merge(@reject)
+    TaxonName.find_by_id(@reject.id).should be_nil
+  end
+end

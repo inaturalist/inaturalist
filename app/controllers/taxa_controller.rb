@@ -6,10 +6,10 @@ class TaxaController < ApplicationController
   before_filter :login_required, :only => [:edit_photos, :update_photos, 
     :update_colors, :tag_flickr_photos, :flickr_photos_tagged, :add_places]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
-    :destroy, :curation, :refresh_wikipedia_summary]
+    :destroy, :curation, :refresh_wikipedia_summary, :merge]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
-    :update_colors, :add_places, :refresh_wikipedia_summary]
+    :update_colors, :add_places, :refresh_wikipedia_summary, :merge]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
@@ -196,6 +196,10 @@ class TaxaController < ApplicationController
   end
 
   def edit
+    @observations_count = Observation.count(:include => :taxon, :conditions => ["taxa.lft >= ? AND taxa.rgt <= ?", @taxon.lft, @taxon.rgt])
+    @listed_taxa_count = ListedTaxon.count(:include => :taxon, :conditions => ["taxa.lft >= ? AND taxa.rgt <= ?", @taxon.lft, @taxon.rgt])
+    @identifications_count = Identification.count(:include => :taxon, :conditions => ["taxa.lft >= ? AND taxa.rgt <= ?", @taxon.lft, @taxon.rgt])
+    @descendants_count = @taxon.descendants.count
   end
 
   def update
@@ -539,6 +543,34 @@ class TaxaController < ApplicationController
         else
           render :text => "Taxon grafted to #{@taxon.parent.name}"
         end
+      end
+    end
+  end
+  
+  def merge
+    @keeper = Taxon.find_by_id(params[:taxon_id])
+    
+    if request.post? && params[:commit] == "Merge"
+      unless @keeper
+        flash[:error] = "You must select a taxon to merge with."
+        return redirect_to :action => "merge", :id => @taxon
+      end
+      
+      if @taxon.id == @keeper_id
+        flash[:error] = "Can't merge a taxon with itself."
+        return redirect_to :action => "merge", :id => @taxon
+      end
+      
+      @keeper.merge(@taxon)
+      flash[:notice] = "#{@taxon.name} merged into #{@keeper.name}.  #{@taxon.name} has been deleted."
+      redirect_to @keeper
+      return
+    end
+    
+    respond_to do |format|
+      format.html
+      format.js do
+        render :partial => "taxa/merge"
       end
     end
   end

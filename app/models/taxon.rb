@@ -298,7 +298,6 @@ class Taxon < ActiveRecord::Base
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon
-    logger.debug("[DEBUG] Setting iconic taxon for #{self.name}...")
     if self.is_iconic?
       self.iconic_taxon = self
     else
@@ -550,6 +549,48 @@ class Taxon < ActiveRecord::Base
     summary
   end
   
+  def merge(reject)
+    raise "Can't merge a taxon with itself" if reject.id == self.id
+    
+    reject_taxon_names = reject.taxon_names.all
+    
+    # Merge has_many associations
+    has_many_reflections = Taxon.reflections.select{|k,v| v.macro == :has_many}
+    has_many_reflections.each do |k, reflection|
+      # Avoid those pesky :through relats
+      next unless reflection.klass.column_names.include?(reflection.primary_key_name)
+      reflection.klass.update_all(
+        ["#{reflection.primary_key_name} = ?", id], 
+        ["#{reflection.primary_key_name} = ?", reject.id]
+      )
+    end
+    
+    # Merge ListRules and other polymorphic assocs
+    ListRule.update_all(["operand_id = ?", id], ["operand_id = ? AND operand_type = ?", reject.id, Taxon.to_s])
+    
+    # Keep reject colors if keeper has none
+    self.colors << reject.colors if colors.blank?
+    
+    # Move reject child taxa to the keeper
+    reject.children.each {|child| child.move_to_child_of(self)}
+    
+    # Update or destroy merged taxon_names
+    reject_taxon_names.each do |taxon_name|
+      taxon_name.reload
+      unless taxon_name.valid?
+        taxon_name.destroy 
+        next
+      end
+      if taxon_name.is_scientific_names? && taxon_name.is_valid?
+        taxon_name.update_attributes(:is_valid => false)
+      end
+    end
+    
+    reject.reload
+    logger.info "[INFO] Merged #{reject} into #{self}"
+    reject.destroy
+  end
+  
   include TaxaHelper
   def image_url
     taxon_image_url(self)
@@ -565,5 +606,26 @@ class Taxon < ActiveRecord::Base
       end
     end.compact
     taxon_names.map(&:taxon).compact
+  end
+  
+  def self.find_duplicates
+    duplicate_counts = Taxon.count(:group => "name", :having => "count_all > 1")
+    num_keepers = 0
+    num_rejects = 0
+    for name in duplicate_counts.keys
+      taxa = Taxon.all(:conditions => ["name = ?", name])
+      logger.info "[INFO] Found #{taxa.size} duplicates for #{name}: #{taxa.map(&:id).join(', ')}"
+      taxa.group_by(&:parent_id).each do |parent_id, child_taxa|
+        logger.info "[INFO] Found #{child_taxa.size} duplicates within #{parent_id}: #{child_taxa.map(&:id).join(', ')}"
+        next unless child_taxa.size > 1
+        child_taxa = child_taxa.sort_by(&:id)
+        keeper = child_taxa.shift
+        child_taxa.each {|t| keeper.merge(t)}
+        num_keepers += 1
+        num_rejects += child_taxa.size
+      end
+    end
+    
+    logger.info "[INFO] Finished Taxon.find_duplicates.  Kept #{num_keepers}, removed #{num_rejects}."
   end
 end
