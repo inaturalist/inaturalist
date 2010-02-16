@@ -22,6 +22,8 @@ require 'hpricot'
 class MetaService
   attr_reader :timeout, :method_param, :service_name
   
+  VERSION = 1
+  
   def initialize
     @service_name = 'Web Service'
     @timeout ||= 5
@@ -37,16 +39,18 @@ class MetaService
   #
   def request(method, args = {})
     # params = args.merge({@@method_param => method, 'keyCode' => @api_key})
-    params = args.merge({@method_param => method})
-    params = params.merge(@default_params)
-    url    = @endpoint + params.map {|k,v| "#{k}=#{v}"}.join('&')
-    uri    = URI.encode(url)
-    # uri    = CGI.escape(url)
+    params      = args.merge({@method_param => method})
+    params      = params.merge(@default_params)
+    url         = @endpoint + params.map {|k,v| "#{k}=#{v}"}.join('&')
+    uri         = URI.encode(url)
+    request_uri = URI.parse(uri)
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
-        # puts "DEBUG: WEB SERVICE CALL: #{self.class.name} requesting " + uri # test
-        response  = Net::HTTP.get_response(URI.parse(uri))
+        response = Net::HTTP.start(request_uri.host) do |http|
+          http.get("#{request_uri.path}?#{request_uri.query}", 
+            'User-Agent' => "#{self.class}/#{VERSION}")
+        end
       end
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."

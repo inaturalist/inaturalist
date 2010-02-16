@@ -10,8 +10,8 @@ module Shared::WikipediaModule
         :redirects => '', 
         :prop => 'revisions', 
         :rvprop => 'content')
-      unless query_results.at('page')['missing']
-        raw = query_results.at('page')
+      raw = query_results.at('page')
+      unless raw.blank? || raw['missing']
         parsed = w.parse(:page => raw['title']).at('text').inner_text
         @decoded = coder.decode(parsed)
         @decoded.gsub!('href="/', 'href="http://en.wikipedia.org/')
