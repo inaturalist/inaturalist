@@ -38,10 +38,7 @@ class List < ActiveRecord::Base
       collection = self.listed_taxa
     end
     
-    collection.each do |listed_taxon|      
-      # update it
-      listed_taxon = listed_taxon.update_last_observation
-      
+    collection.each do |listed_taxon|
       # re-apply list rules to the listed taxa
       listed_taxon.save
       unless listed_taxon.valid?

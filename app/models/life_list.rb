@@ -56,8 +56,6 @@ class LifeList < List
     end
 
     collection.each do |listed_taxon|
-      listed_taxon = listed_taxon.update_last_observation
-      
       # re-apply list rules to the listed taxa
       unless listed_taxon.save
         logger.debug "[DEBUG] #{listed_taxon} wasn't valid in #{self}, so " + 
@@ -76,10 +74,15 @@ class LifeList < List
     true
   end
   
-  def self.add_taxa_from_observations(list)
+  def self.add_taxa_from_observations(list, options = {})
+    conditions = if options[:taxa]
+      ["taxon_id IN (?)", options[:taxa]]
+    else
+      'taxon_id > 0'
+    end
     list.user.observations.find_each(:select => 'id, taxon_id', 
         :group => 'taxon_id', 
-        :conditions => 'taxon_id IS NOT NULL') do |observation|
+        :conditions => conditions) do |observation|
       list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
     end
   end
@@ -90,7 +93,8 @@ class LifeList < List
       Taxon.to_s, taxon.self_and_ancestors.map(&:id)
     ]) do |list_rule|
       next unless list_rule.list.is_a?(LifeList)
-      list_rule.list.refresh(:taxa => [taxon])
+      LifeList.send_later(:add_taxa_from_observations, list_rule.list, 
+        :taxa => [taxon.id])
     end
   end
   

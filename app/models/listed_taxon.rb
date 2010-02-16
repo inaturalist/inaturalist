@@ -17,7 +17,7 @@ class ListedTaxon < ActiveRecord::Base
   before_create :set_ancestor_taxon_ids
   before_create :set_place_id
   before_save :set_lft
-  before_create :update_last_observation
+  before_save :update_last_observation
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_destroy :update_user_life_list_taxa_count
@@ -81,17 +81,18 @@ class ListedTaxon < ActiveRecord::Base
   #
   def update_last_observation(latest_observation = nil)
     return if self.place_id || self.list.is_a?(CheckList)
+    return unless self.list.user
     
     latest_observation ||= Observation.latest.by(
-      self.list.user).find(:first, :conditions => ["taxon_id = ?", self.taxon])
-    if self.last_observation != latest_observation
-      self.last_observation = latest_observation
-    end
-    self
+      self.list.user).first(:conditions => ["taxon_id = ?", self.taxon])
+    
+    self.last_observation = latest_observation if latest_observation
+    true
   end
   
   def set_lft
     self.lft = self.taxon.lft
+    true
   end
   
   def set_ancestor_taxon_ids
@@ -101,6 +102,7 @@ class ListedTaxon < ActiveRecord::Base
     else
       self.taxon_ancestor_ids = '' # this should probably be in the db...
     end
+    true
   end
   
   # Update the counter cache in users.
@@ -109,15 +111,18 @@ class ListedTaxon < ActiveRecord::Base
       User.update_all("life_list_taxa_count = #{self.list.listed_taxa.count}", 
         "id = #{self.list.user_id}")
     end
+    true
   end
   
   def set_place_id
     self.place_id = self.list.place_id
+    true
   end
   
   def sync_parent_check_list
     return unless list.is_a?(CheckList)
     list.send_later(:sync_with_parent)
+    true
   end
   
   # Update the lft and taxon_ancestors of ALL listed_taxa. Note this will be
