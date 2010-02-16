@@ -313,9 +313,6 @@ class ObservationsController < ApplicationController
         end
       end
       
-      # Skip list updates (to be performed in an after_filter)
-      o.skip_refresh_lists = true
-      
       o
     end
     
@@ -392,9 +389,6 @@ class ObservationsController < ApplicationController
           observation.photos = updated_photos
         end
       end
-      
-      # Skip list updates (to be performed in an after_filter)
-      observation.skip_refresh_lists = true
       
       unless observation.update_attributes(hashed_params[observation.id.to_s])
         errors = true

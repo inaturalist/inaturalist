@@ -28,37 +28,38 @@ class LifeList < List
   def refresh(params = {})
     if taxa = params[:taxa]
       # Find existing listed_taxa of these taxa to update
-      collection = ListedTaxon.all(:conditions => [
+      existing = ListedTaxon.all(:conditions => [
         "list_id = ? AND taxon_id IN (?)", self, taxa])
       
       # Add new listed taxa for taxa not already on this list
-      if add_new_taxa = params.delete(:add_new_taxa)
+      if params[:add_new_taxa]
         taxa_ids = taxa.map do |taxon|
           if taxon.is_a?(Taxon)
-            taoxn.id
+            taxon.id
           elsif taxon.is_a?(Fixnum)
             taxon
           else
             nil
           end
         end.compact
-        (collection.map(&:taxon_id) | taxa_ids).each do |taxon_id|
+        
+        # Create new ListedTaxa for the taxa that aren't already in the list
+        collection = (taxa_ids - existing.map(&:taxon_id)).map do |taxon_id|
           listed_taxon = ListedTaxon.new(:list => self, :taxon_id => taxon_id)
           listed_taxon.skip_update = true
-          collection << listed_taxon
+          listed_taxon
         end
+        collection += existing
       end
     else
       collection = self.listed_taxa
     end
 
-    collection.each do |listed_taxon|      
-      # update it
+    collection.each do |listed_taxon|
       listed_taxon = listed_taxon.update_last_observation
       
       # re-apply list rules to the listed taxa
-      listed_taxon.save
-      unless listed_taxon.valid?
+      unless listed_taxon.save
         logger.debug "[DEBUG] #{listed_taxon} wasn't valid in #{self}, so " + 
           "it's being destroyed: " + 
           listed_taxon.errors.full_messages.join(', ')

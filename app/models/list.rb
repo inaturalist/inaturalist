@@ -82,8 +82,8 @@ class List < ActiveRecord::Base
       user.lists.all
     end
     
-    logger.debug "[DEBUG] Updating lists.  options: #{options}"
     target_lists.each do |list|
+      logger.debug "[DEBUG] refreshing #{list}..."
       list.refresh(options)
     end
     true

@@ -522,7 +522,11 @@ class Taxon < ActiveRecord::Base
         :prop => 'revisions', 
         :rvprop => 'content')
       raw = query_results.at('page')
-      parsed = w.parse(:page => raw['title']).at('text').inner_text
+      parsed = if raw.blank?
+        nil
+      else
+        w.parse(:page => raw['title']).at('text').inner_text
+      end
     rescue Timeout::Error => e
       logger.info "[INFO] Wikipedia API call failed while setting taxon " +
         "summary: #{e.message}"
