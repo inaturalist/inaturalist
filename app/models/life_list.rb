@@ -10,12 +10,12 @@ class LifeList < List
   # and relying on the callbacks in observation.  In theory, this should never
   # bonk on an invalid listed taxon...
   #
-  def add_taxon(taxon)
+  def add_taxon(taxon, options = {})
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon
     if listed_taxon = listed_taxa.find_by_taxon_id(taxon_id)
       return listed_taxon
     end
-    ListedTaxon.create(:list => self, :taxon_id => taxon_id)
+    ListedTaxon.create(options.merge(:list => self, :taxon_id => taxon_id))
   end
   
   #
@@ -68,15 +68,20 @@ class LifeList < List
     end
   end
   
-  # Add all the taxa the list's owner has observed.  This will be slow...
+  # Add all the taxa the list's owner has observed.  Cache the job ID so we 
+  # can display a loading notification on lists/show.
   def add_taxa_from_observations
-    # TODO make this a delayed_job
-    self.user.observations.find_each(:select => 'taxon_id', 
+    job = LifeList.send_later(:add_taxa_from_observations, self)
+    Rails.cache.write("add_taxa_from_observations_job_#{id}", job.id)
+    true
+  end
+  
+  def self.add_taxa_from_observations(list)
+    list.user.observations.find_each(:select => 'id, taxon_id', 
         :group => 'taxon_id', 
         :conditions => 'taxon_id IS NOT NULL') do |observation|
-      self.add_taxon(observation.taxon_id)
+      list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
     end
-    true
   end
   
   def self.update_life_lists_for_taxon(taxon)

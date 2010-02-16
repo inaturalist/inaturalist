@@ -72,6 +72,10 @@ module Shared::ListsModule
       end
     end
     
+    if job_id = Rails.cache.read("add_taxa_from_observations_job_#{@list.id}")
+      @add_taxa_from_observations_job = Delayed::Job.find_by_id(job_id)
+    end
+    
     respond_to do |format|
       format.html
       format.xml do

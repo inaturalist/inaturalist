@@ -83,7 +83,12 @@
   
   <% if @listed_taxa.empty? %>
     <div id="empty" class="readable description">
-      <% if logged_in? && current_user.id == @list.user_id %>
+      <% if @add_taxa_from_observations_job && @add_taxa_from_observations_job.last_error.blank? -%>
+        <div class="loading status">Loading taxa from your observations...</div>
+        <script type="text/javascript" charset="utf-8">
+          setTimeout("window.location.reload()", 5000);
+        </script>
+      <% elsif logged_in? && current_user.id == @list.user_id %>
         You haven't observed any species to list yet! Try 
         <%= link_to "adding some observations", new_observation_path %>
         or just adding species using the form on this page.
