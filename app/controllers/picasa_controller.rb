@@ -69,11 +69,12 @@ class PicasaController < ApplicationController
     search_params[:start_index] = (params[:page] || 1).to_i * per_page - per_page + 1
     search_params[:thumbsize] = RubyPicasa::Photo::VALID.join(',')
     
-    results = picasa.search(params[:q], search_params)
-    @photos = results.photos.map do |api_response|
-      next unless api_response.is_a?(RubyPicasa::Photo)
-      PicasaPhoto.new_from_api_response(api_response, :user => current_user)
-    end.compact
+    if results = picasa.search(params[:q], search_params)
+      @photos = results.photos.map do |api_response|
+        next unless api_response.is_a?(RubyPicasa::Photo)
+        PicasaPhoto.new_from_api_response(api_response, :user => current_user)
+      end.compact
+    end
     
     @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     

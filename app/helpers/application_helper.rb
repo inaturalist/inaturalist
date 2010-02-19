@@ -128,7 +128,7 @@ module ApplicationHelper
   end
   
   def url_for_taxon(taxon)
-    if taxon.unique_name?
+    if taxon && taxon.unique_name?
       url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
     else
       url_for(taxon)
