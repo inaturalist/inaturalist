@@ -73,11 +73,11 @@ class UBioService < MetaService
   # Wraps the method uBio uses for their autocomplete, which actually seems
   # more robust than their web service.  uBio uses this endpoint for their
   # autocomplete searches, so it just returns an HTML fragment containing a
-  # link to a namebank entry.  This wrapper doesn't go any farther tnan making
-  # a n Hpricot object out of that response.
+  # link to a namebank entry.  This wrapper doesn't go any further than making
+  # an Hpricot object out of that response.
   #
   def search_help(q)
-    url   = @search_help_endpoint + 'q=' + q
+    url   = "#{@search_help_endpoint}q=#{q}"
     uri   = URI.encode(url)
     response = nil
     begin
