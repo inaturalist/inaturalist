@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   before_filter :login_from_cookie, :get_user, :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
+  
+  PER_PAGES = [10,30,50,100]
 
   #
   # Update an ActiveRecord conditions array with new conditions
@@ -173,6 +175,31 @@ class ApplicationController < ActionController::Base
   def unmobilized
     @mobilized = false
     request.format = :html if in_mobile_view?
+  end
+  
+  # Get current_user's preferences, prefs in the session, or stash new prefs in the session
+  def current_preferences(update_params = nil)
+    update_params ||= params[:preferences]
+    prefs = if logged_in?
+      current_user.preferences
+    else
+      session[:preferences] ||= Preferences.new
+      session[:preferences]
+    end
+    
+    update_params = update_params.reject{|k,v| v.nil?} if update_params
+    if update_params.is_a?(Hash) && !update_params.empty?
+      prefs.update_attributes(update_params)
+    end
+    
+    if logged_in?
+      current_user.preferences = prefs
+      current_user.save
+    else
+      session[:preferences] = prefs
+    end
+    
+    prefs
   end
 end
 

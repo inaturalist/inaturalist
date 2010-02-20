@@ -90,6 +90,7 @@
       <% f.fields_for @user.preferences do |p| %>
         <% for attr_name in Preferences::NOTIFICATION_ATTRIBUTES %>
           <div class="field">
+            <% logger.debug "[DEBUG] @user.preferences.send(attr_name): #{@user.preferences.send(attr_name)}" %>
             <%= p.check_box attr_name %>
             <%= p.label attr_name, attr_name.to_s.split('_').first.pluralize.capitalize %>
           </div>

@@ -37,6 +37,14 @@
     .life_list_taxon {
       margin-top: 0.5em;
     }
+    
+    .list .photos.empty {
+      display: block;
+      background-color: #eee;
+      color: #aaa;
+      text-align: center;
+      padding: 50px 0px;
+    }
   </style>
 <% end -%>
 <div id="pageheader" class="column span-24 last">
@@ -61,11 +69,17 @@
     <% for list in @lists %>
       <div class="column span-12 <%= cycle('', 'last') %>">
         <div id="list-<%= list.id %>" class="clear list <%= 'owners_life_list' if @life_list.id == list.id %>">
-          <a href="<%= list_path(list) %>" class="attr photos column span-3">
+          <a href="<%= list_path(list) %>" class="attr photos column span-3 <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
             <% for taxon in @iconic_taxa_for[list.id] %>
-              <%= taxon.photos.empty? ? iconic_taxon_image(taxon, :size => '32') : taxon_image(taxon) %>
+              <% if taxon.photos.empty? -%>
+                <%= iconic_taxon_image(taxon, :size => '32') %>
+              <% else %>
+                <%= taxon_image(taxon, :width => 32, :height => 32) %>
+              <% end -%>
             <% end %>
-            <% if @iconic_taxa_for[list.id].blank? %>&nbsp;<% end %>
+            <% if @iconic_taxa_for[list.id].blank? %>
+              No taxa listed
+            <% end %>
           </a>
           <div class="last column span-8">
             <div class="readable title attr"><%= link_to h(list.title), list_path(list) %></div>
@@ -98,6 +112,24 @@
       </div>
     <% end %>
   </div>
+  
+  <% if logged_in? -%>
+    <% form_for @prefs, :url => url_for do |f| %>
+      <%= f.label :per_page %>
+      <%= f.select :per_page, ApplicationController::PER_PAGES, {}, 
+        :onchange => "$(this).parents('form:first').submit()" %>
+      <span class="meta">&middot;</span>
+      <%= f.label :lists_by_login_sort, "Order" %>
+      <%= f.select :lists_by_login_sort, 
+        [['date created', 'id'], 'title'],
+        {},
+        :onchange => "$(this).parents('form:first').submit()" %>
+      <%= f.radio_button :lists_by_login_order, "asc", :onchange => "$(this).parents('form:first').submit()" %>
+      <%= f.label :lists_by_login_order_asc, "asc" %>
+      <%= f.radio_button :lists_by_login_order, "desc", :onchange => "$(this).parents('form:first').submit()" %>
+      <%= f.label :lists_by_login_order_desc, "desc" %>
+    <% end %>
+  <% end -%>
   
   <%= will_paginate @lists %>
 </div>

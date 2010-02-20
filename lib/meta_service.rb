@@ -22,7 +22,7 @@ require 'hpricot'
 class MetaService
   attr_reader :timeout, :method_param, :service_name
   
-  VERSION = 1
+  SERVICE_VERSION = 1
   
   def initialize
     @service_name = 'Web Service'
@@ -49,7 +49,7 @@ class MetaService
       timed_out = Timeout::timeout(@timeout) do
         response = Net::HTTP.start(request_uri.host) do |http|
           http.get("#{request_uri.path}?#{request_uri.query}", 
-            'User-Agent' => "#{self.class}/#{VERSION}")
+            'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
         end
       end
     rescue Timeout::Error

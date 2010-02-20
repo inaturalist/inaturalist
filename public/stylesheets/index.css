@@ -784,3 +784,10 @@ ul.taxonomic_tree li.unknown          { list-style-image: url('/images/iconic_ta
 ul.taxonomic_tree .taxon .othernames {
   display: block;
 }
+
+form.edit_preferences .field {
+  margin-bottom: 5px;
+}
+.edit_preferences select {
+  width: auto;
+}

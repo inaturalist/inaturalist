@@ -9,12 +9,19 @@ class ListsController < ApplicationController
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
+  LIST_SORTS = %w"id title"
+  LIST_ORDERS = %w"asc desc"
+  
   ## Custom actions ############################################################
 
   # gets lists by user login
   def by_login
+    @prefs = current_preferences
+    
     @life_list = @selected_user.life_list
-    @lists = @selected_user.lists.paginate(:page => params[:page], :order => 'id')
+    @lists = @selected_user.lists.paginate(:page => params[:page], 
+      :per_page => @prefs.per_page, 
+      :order => "#{@prefs.lists_by_login_sort} #{@prefs.lists_by_login_order}")
     
     # This is terribly inefficient. Might have to be smarter if there are
     # lots of lists.

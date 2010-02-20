@@ -610,9 +610,9 @@ class ObservationsController < ApplicationController
 
   # gets observations by user login
   def by_login
+    @prefs = current_preferences
     search_params, find_options = get_search_params(params)
     search_params.update(:user_id => @selected_user.id)
-    find_options[:per_page] = 10 if request.format == :html
     if search_params[:q]
       search_observations(search_params, find_options)
     else
@@ -831,6 +831,7 @@ class ObservationsController < ApplicationController
       :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
       :page => search_params[:page] || 1
     }
+    find_options[:per_page] = @prefs.per_page if @prefs
     
     # Set format-based page sizes
     if request.format == :csv
@@ -842,8 +843,6 @@ class ObservationsController < ApplicationController
       find_options.update(:per_page => search_params[:per_page])
     elsif !search_params[:limit].blank?
       find_options.update(:per_page => search_params[:limit])
-    else
-      find_options.update(:per_page => 30)
     end
     
     # iconic_taxa
@@ -874,14 +873,12 @@ class ObservationsController < ApplicationController
     
     @identifications = search_params[:identifications]
     
-    if search_params[:order_by] && 
-       ORDER_BY_FIELDS.include?(search_params[:order_by])
+    if search_params[:order_by] && ORDER_BY_FIELDS.include?(search_params[:order_by])
       @order_by = search_params[:order_by]
-      if search_params[:order] && 
-         %w"asc desc".include?(search_params[:order].downcase)
-        @order = search_params[:order]
+      @order = if search_params[:order] && %w"asc desc".include?(search_params[:order].downcase)
+        search_params[:order]
       else
-        @order = 'desc'
+        'desc'
       end
       search_params[:order_by] = "#{@order_by} #{@order}"
     else

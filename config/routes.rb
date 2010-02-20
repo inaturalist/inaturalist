@@ -72,8 +72,7 @@ ActionController::Routing::Routes.draw do |map|
     
     # by_login paths must come after all others
     o.observations_by_login 'observations/:login', :action => 'by_login',
-      :requirements => { :login => simplified_login_regex },
-      :conditions => {:method => :get}
+      :requirements => { :login => simplified_login_regex }
     o.observations_by_login_feed 'observations/:login.:format', :action => 'by_login',
       :requirements => { :login => simplified_login_regex },
       :conditions => {:method => :get}
