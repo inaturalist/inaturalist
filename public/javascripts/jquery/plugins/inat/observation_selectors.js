@@ -142,10 +142,11 @@
     ).prepend('Loading...');
     
     // Fetch new fields
-    $(wrapper).find('.observationSelectorObservations').load(
+    $.get(  
       baseURL, 
       params, 
       function(responseText, textStatus, XMLHttpRequest) {
+        $(wrapper).find('.observationSelectorObservations').html(responseText);
         // Remove fields with identical values to the extracted checkboxes
         var existingValues = $(existing).find('input').map(function() {
           return $(this).val();

@@ -55,12 +55,14 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.with_options :controller => "observations" do |o|
+    o.update_observations 'observations/update', :action => 'update'
     o.new_observation_batch_csv 'observations/new/batch_csv', :action => 'new_batch_csv'
     o.new_observation_batch 'observations/new/batch', :action => 'new_batch'
     o.edit_observation_batch 'observations/edit/batch', :action => 'edit_batch'
     o.delete_observation_batch 'observations/delete_batch', :action => 'delete_batch',
       :conditions => {:method => :delete}
     o.import_observations 'observations/import', :action => 'import'
+    o.import_photos 'observations/import_photos', :action => 'import_photos'
     o.id_please 'observations/id_please', :action => 'id_please',
       :conditions => {:method => :get}
     o.observation_selector 'observations/selector', :action => 'selector',

@@ -477,53 +477,56 @@ class ObservationsController < ApplicationController
 
   def new_batch_csv
     require "csv"
+    
+    if params[:upload].blank? || params[:upload] && params[:upload][:datafile].blank?
+      flash[:error] = "You must select a CSV file to upload."
+      return redirect_to :action => "import"
+    end
 
-    if params[:upload] && params[:upload][:datafile]
-      @observations = []
-      @hasInvalid = false
-      csv = params[:upload][:datafile].to_tempfile
-      max_rows = 100
-      row_num = 0
-      
-      begin
-        CSV::Reader.parse(csv) do |row|
-          if row[0] or row[1] or row[2] or row[3] or row[4] or row[5]
-            obsHash = {:user => current_user,
-            :species_guess => row[0],
-            :taxon => Taxon.find(
-              :first, 
-              :include => :taxon_names, 
-              :conditions => ["taxon_names.name = ?", row[0]]),
-            :observed_on_string => row[1],
-            :description => row[2],
-            :place_guess => row[3],
-            :time_zone => current_user.time_zone}
-            if(row[4] && row[5]) 
-              obsHash.update(:latitude=>row[4], :longitude=>row[5], :location_is_exact=>true)
-            elsif row[3]
-              places = Ym4r::GmPlugin::Geocoding.get(row[3])
-              unless places.empty?
-                latitude = places.first.latitude
-                longitude = places.first.longitude
-                obsHash.update(:latitude=>latitude, :longitude=>longitude, :location_is_exact=>false)
-              end
+    @observations = []
+    @hasInvalid = false
+    csv = params[:upload][:datafile].to_tempfile
+    max_rows = 100
+    row_num = 0
+    
+    begin
+      CSV::Reader.parse(csv) do |row|
+        if row[0] or row[1] or row[2] or row[3] or row[4] or row[5]
+          obsHash = {:user => current_user,
+          :species_guess => row[0],
+          :taxon => Taxon.find(
+            :first, 
+            :include => :taxon_names, 
+            :conditions => ["taxon_names.name = ?", row[0]]),
+          :observed_on_string => row[1],
+          :description => row[2],
+          :place_guess => row[3],
+          :time_zone => current_user.time_zone}
+          if(row[4] && row[5]) 
+            obsHash.update(:latitude=>row[4], :longitude=>row[5], :location_is_exact=>true)
+          elsif row[3]
+            places = Ym4r::GmPlugin::Geocoding.get(row[3])
+            unless places.empty?
+              latitude = places.first.latitude
+              longitude = places.first.longitude
+              obsHash.update(:latitude=>latitude, :longitude=>longitude, :location_is_exact=>false)
             end
-            obs = Observation.new(obsHash)
-            obs.tag_list = row[6]
-           @hasInvalid ||= !obs.valid?
-           @observations << obs
-           row_num += 1
           end
-          if row_num >= max_rows
-            flash[:notice] = "You have a beehive of observations!<br /> We can only take your first #{max_rows} observations in every CSV"
-            break
-          end
+          obs = Observation.new(obsHash)
+          obs.tag_list = row[6]
+         @hasInvalid ||= !obs.valid?
+         @observations << obs
+         row_num += 1
         end
-      rescue CSV::IllegalFormatError
-        flash[:error] = "Your CSV returned an illegal format exception. If the problem persists after you remove any strange characters, please email us the file and we'll figure out the problem"
-        render :contoller => 'observations', :action => 'import'
-        return
+        if row_num >= max_rows
+          flash[:notice] = "You have a beehive of observations!<br /> We can only take your first #{max_rows} observations in every CSV"
+          break
+        end
       end
+    rescue CSV::IllegalFormatError
+      flash[:error] = "Your CSV returned an illegal format exception. If the problem persists after you remove any strange characters, please email us the file and we'll figure out the problem"
+      render :contoller => 'observations', :action => 'import'
+      return
     end
   end
 
