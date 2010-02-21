@@ -67,6 +67,7 @@
             <li><a href="#observations4">What does it mean to link iNaturalist to my Flickr account?</a></li>
             <li><a href="#observations5">Can I add photos without a Flickr account?</a></li>
             <li><a href="#observations6">What are tags?</a></li>
+            <li><a href="#observations7">Can I include my iNat observations on my own website of blog?</a></li>
           </ol>
 
           <h2>
@@ -99,10 +100,11 @@
           <li>
             <h3><a name="general2">Who is behind iNaturalist?</a></h3>
             <p>
-              iNaturalist is the Master&#39;s Final Project of Nathan Agrin,
-              Jessica Kline, and Ken-ichi Ueda at UC Berkeley&#39;s <a
-              href="http://www.ischool.berkeley.edu">School of
-              Information</a>.
+              iNaturalist was originally the Master'ss Final Project of Nathan Agrin,
+              Jessica Kline, and Ken-ichi Ueda at UC Berkeley's 
+              <a href="http://www.ischool.berkeley.edu">School of Information</a>.
+              Currently Ken-ichi maintains the project, with occasional help
+              and guidance from Nate.
             </p>
           </li>
           <li>
@@ -111,13 +113,11 @@
               iNaturalist is built using <a
               href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a
               href="http://mysql.com/">MySQL</a>, <a
-              href="http://prototypejs.org/">Prototype</a> and <a
-              href="http://script.aculo.us/">Script.aculo.us</a>, <a
-              href="http://script.aculo.us/">Google Maps</a>, and <a
+              href="http://jquery.com/">jQuery</a> and <a
+              href="http://code.google.com/apis/maps//">Google Maps</a>, and <a
               href="http://flickr.com/">Flickr</a>. It also utilizes the <a
               href="http://www.catalogueoflife.org">Catalogue of Life</a> and
-              <a href="http://www.census.gov/geo/www/maps/">U.S. Census
-              2000</a> data sources for taxonomic and location data.
+              <a href="http://ubio.org/">uBio</a> data sources for taxonomic data.
             </p>
           </li>
           <li>
@@ -128,7 +128,9 @@
               group</a> to sign up for usability studies, report bugs, and
               request new features. You can also help iNaturalist by adding
               your observations and helping other community members identify
-              their unidentified observations.
+              their unidentified observations. If you know how to code and
+              want to help work on some features,
+              <a href="http://github.com/inaturalist/inaturalist" title="inaturalist's inaturalist at master - GitHub">fork us on GitHub</a>!
             </p>
           </li>
           <li>
@@ -150,23 +152,54 @@
           </li>
           <li>
             <h3><a name="observations2">Why doesn't iNaturalist recognize the name I've entered?</a></h3>
-            <p>iNaturalist has name information for mammals, birds, reptiles, and amphibians, and continues to add new species names into our database. If we do not recognize a particular name, try alternative names that we might recognize and add the original name to the tags or description fields.</p>
+            <p>
+              iNaturalist has name information for mammals, birds, reptiles,
+              and amphibians, and continues to add new species names into our
+              database. If we do not recognize a particular name, try
+              alternative names that we might recognize and add the original
+              name to the tags or description fields.
+            </p>
           </li>
           <li>
             <h3><a name="observations3">How can I get help identifying what I saw?</a></h3>
-            <p>iNaturalist is currently implementing a feature to help you identify your unidentified observations. Check back soon for more details.</p>
+            <p>
+              Check the "ID Please" checkbox when adding / editing your
+              observation and your observation will appear in
+              <a href="http://inaturalist.org/observations/id_please" title="iNaturalist.org &middot; ID Please!">ID Please</a>.
+            </p>
           </li>
           <li>
             <h3><a name="observations4">What does it mean to link iNaturalist to my Flickr account?</a></h3>
-            <p>iNaturalist can link directly to the Flickr photo service so that you can add your Flickr photos to your observations. When you agree to link your Flickr account, you are simply linking two accounts; we do not have access to your Flickr password and you are not forsaking your copyright nor giving us the ability to use any of your photos in ways that you do not want.</p>
+            <p>
+              iNaturalist can link directly to the Flickr photo service so
+              that you can add your Flickr photos to your observations. When
+              you agree to link your Flickr account, you are simply linking
+              two accounts; we do not have access to your Flickr password and
+              you are not forsaking your copyright nor giving us the ability
+              to use any of your photos in ways that you do not want.
+            </p>
           </li>
           <li>
             <h3><a name="observations5">Can I add photos without a Flickr account?</a></h3>
-            <p>While iNaturalist only links directly to the Flickr photo service, you can still add photos to your observation without a Flickr account. First identify the url of your photo and then paste the following image html into the description field: &lt;img src=&quot;url&quot;&gt;.</p>
+            <p>
+              We also support Picasa: <a href="http://inaturalist.org/picasa/options">Configure your Picasa account &raquo;</a>
+            </p>
+            <p>
+              You can still add photos to your observation without a
+              photo provider account: First identify the url of your photo and then
+              paste the following image html into the description field:
+              &lt;img src=&quot;url&quot;&gt;.
+            </p>
           </li>
           <li>
             <h3><a name="observations6">What are tags?</a></h3>
             <p>Tags are keywords you can add to an observation to make them easier to find. For example, if a barracuda followed you on a scuba diving trip in Turks and Caicos, you might tag the observation &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot;.</p>
+          </li>
+          <li>
+            <h3><a name="observations7">Can I include my iNat observations on my own website of blog?</a></h3>
+            <p>
+              Sure, check out our <a href="http://inaturalist.org/observations/widget" title="Observations Widget">Observations Widget</a>.
+            </p>
           </li>
         </ol>
         
@@ -181,7 +214,12 @@
           </li>
           <li>
             <h3><a name="lists2">I observed a species, why isn't it showing up in my life list?</a></h3>
-            <p>While the life list is automatically populated from added observations, the species will not be added to this list if iNaturalist does not recognize the name you used. We recommend trying alternative names that we might recognize.</p>
+            <p>
+              While the life list is automatically populated from added
+              observations, the species will not be added to this list if
+              iNaturalist does not recognize the name you used. We recommend
+              trying alternative names that we might recognize.
+            </p>
           </li>
         </ol>
         </div>
