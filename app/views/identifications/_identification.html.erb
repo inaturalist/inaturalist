@@ -1,10 +1,4 @@
 <%
-  if identification.is_agreement? && identification.user_id != identification.observation.user_id
-    verb = 'agrees'
-  else
-    verb = 'thinks'
-  end
-  
   identification_classes = ''
   if logged_in? and identification.user == current_user
     identification_classes += ' yours'
@@ -31,16 +25,13 @@
   </div>
   <div class="identification_body">
     <% if identification.user == current_user %>
-      <%= link_to("<strong>You</strong>", person_path(identification.user)) %>
-      <%= verb.chomp('s') %> this is
+      <strong>Your</strong>
     <% else %>
-      <%= link_to(identification.user.login, person_path(identification.user)) %>
-      <%= verb %> this is
+      <%= link_to("#{identification.user.login}'s", person_path(identification.user)) %>
     <% end %>
+    ID:
     <%= render :partial => 'shared/taxon', 
-               :locals => { :taxon => identification.taxon, 
-                            :singular => true,
-                            :include_article => true,
+               :locals => { :taxon => identification.taxon,
                             :link_url => identification.taxon } %>
     <% unless hide_actions -%>
       <% if logged_in? && identification.user != current_user %>

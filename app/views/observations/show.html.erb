@@ -437,11 +437,11 @@
           <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
           <% if identifications.size == 2 %>
             <div class="agreers description">
-              and <%= link_to you_or_login(identifications.last.user), identifications.last.user %> agrees
+              <%= link_to you_or_login(identifications.last.user), identifications.last.user %> agrees
             </div>
           <% elsif identifications.size > 2 -%>
             <div class="agreers description">
-              and <%= identifications.size - 1 %> people agree
+              <%= identifications.size - 1 %> people agree
               <span class="button"><%= link_to_function "Show", "$(this).parent().next('ul').slideToggle()" %></span>
               <ul style="display: none">
                 <% for agreement in identifications[1..-1] %>
