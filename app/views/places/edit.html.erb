@@ -64,7 +64,13 @@
     <%= f.hidden_field :parent_id %>
     <%= render :partial => 'place_parent_field' %>
     
-    <input type="hidden" id="place_geometry" name="kml"/>
+    <div class="field">
+      <%= link_to_function "Show KML", "$('#kmlfield').show(); $('#kmlfieldlink').hide();", :id => "kmlfieldlink" %>
+      <div id="kmlfield" style="display: none">
+        <label for="place_geometry">KML <%= link_to_function "(hide)", "$('#kmlfield').hide(); $('#kmlfieldlink').show();" %></label>
+        <textarea id="place_geometry" name="kml" rows="8" cols="40"></textarea>
+      </div>
+    </div>
     
     <div class="clear buttonrow">
       <%= f.submit 'Save', :class => 'default button' %>

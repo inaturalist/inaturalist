@@ -111,7 +111,7 @@
         // not ideal, but the Goog is stupid fast, so it should be ok
         $('#place_geometry').val('');
         $.each(map._shapes, function() {
-          this.getKmlAsync(function(kml) {
+            this.getKml(function(kml) {
             $('#place_geometry').val($('#place_geometry').val() + kml);
           });
         });
