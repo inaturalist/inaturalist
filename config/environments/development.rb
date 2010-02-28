@@ -1,7 +1,5 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
-configuration_bindings = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))
-
 # In the development environment your application's code is reloaded on
 # every request.  This slows down response time but is perfect for development
 # since you don't have to restart the webserver when you make code changes.
@@ -31,7 +29,3 @@ ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
 config.action_mailer.delivery_method = :test
 
 require 'ruby-debug'
-
-# flickr api keys
-FLICKR_API_KEY = configuration_bindings['development']['flickr']['FLICKR_API_KEY']
-FLICKR_SHARED_SECRET = configuration_bindings['development']['flickr']['FLICKR_SHARED_SECRET']

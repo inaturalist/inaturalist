@@ -1,3 +1,8 @@
+<% if INAT_CONFIG['google_webmaster'] && !INAT_CONFIG['google_webmaster']['verification'].blank? -%>
+  <%- content_for(:extrahead) do -%>
+    <meta name="google-site-verification" content="<%= INAT_CONFIG['google_webmaster']['verification'] %>" />
+  <%- end -%>
+<% end -%>
 <% content_for(:title) do %>
   A Community for Naturalists
 <% end %>

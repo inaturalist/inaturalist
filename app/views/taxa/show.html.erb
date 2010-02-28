@@ -340,7 +340,7 @@
 
 <%- content_for(:extrahead) do -%>
   <% unless @taxon.wikipedia_summary.blank? -%>
-    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary) %>"/>
+    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
   <% end -%>
 <%- end -%>
 

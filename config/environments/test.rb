@@ -1,7 +1,5 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
-configuration_bindings = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))
-
 # The test environment is used exclusively to run your application's
 # test suite.  You never need to work with it otherwise.  Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -22,7 +20,3 @@ config.action_mailer.delivery_method = :test
 
 # Disable request forgery protection in test environment
 config.action_controller.allow_forgery_protection = false
-
-# flickr api keys
-FLICKR_API_KEY = configuration_bindings['test']['flickr']['FLICKR_API_KEY']
-FLICKR_SHARED_SECRET = configuration_bindings['test']['flickr']['FLICKR_SHARED_SECRET']

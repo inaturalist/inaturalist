@@ -1,7 +1,5 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
-configuration_bindings = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))
-
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true
@@ -21,10 +19,6 @@ config.action_mailer.raise_delivery_errors = false
 config.action_mailer.default_url_options = { :host => 'inaturalist.org' }
 smtp_config_path = File.open("#{RAILS_ROOT}/config/smtp.yml")
 ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
-
-# flickr api keys
-FLICKR_API_KEY = configuration_bindings['production']['flickr']['FLICKR_API_KEY']
-FLICKR_SHARED_SECRET = configuration_bindings['production']['flickr']['FLICKR_SHARED_SECRET']
 
 # Set the logger to roll over monthly
 config.logger = Logger.new("#{RAILS_ROOT}/log/#{ENV['RAILS_ENV']}.log", 20, 1048576)

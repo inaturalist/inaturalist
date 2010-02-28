@@ -40,6 +40,9 @@ base: &base
         # requests like /{Z}/{X}/{Y}.png.  
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
+    noreply_email: 'no-reply@yoursite.org'
+    google_webmaster:
+      verification: abiglongkey
 
 development:
     <<: *base

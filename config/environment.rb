@@ -11,7 +11,7 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 require 'yaml'
-configuration_bindings = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))
+INAT_CONFIG = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))[ENV['RAILS_ENV']]
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -40,8 +40,8 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => configuration_bindings['base']['rails']['secret'],
-    :secret      => configuration_bindings['base']['rails']['secret']
+    :session_key => INAT_CONFIG['rails']['secret'],
+    :secret      => INAT_CONFIG['rails']['secret']
   }
 
   # Use the database for sessions instead of the cookie-based default,
@@ -113,20 +113,24 @@ GEOIP = GeoIP.new(geoip_config[RAILS_ENV]['city'])
 
 
 ### API KEYS ###
-UBIO_KEY = configuration_bindings['base']['ubio']['UBIO_KEY']
+UBIO_KEY = INAT_CONFIG['ubio']['UBIO_KEY']
 
 # Yahoo Developer Network
-YDN_APP_ID = configuration_bindings['base']['yahoo_dev_network']['YDN_APP_ID']
+YDN_APP_ID = INAT_CONFIG['yahoo_dev_network']['YDN_APP_ID']
 GeoPlanet.appid = YDN_APP_ID
 
 
 # Google Analytics configs
 # See http://www.rubaidh.com/projects/google-analytics-plugin/
-Rubaidh::GoogleAnalytics.tracker_id   = configuration_bindings['base']['google_analytics']['tracker_id']
-Rubaidh::GoogleAnalytics.domain_name  = configuration_bindings['base']['google_analytics']['domain_name']
+Rubaidh::GoogleAnalytics.tracker_id   = INAT_CONFIG['google_analytics']['tracker_id']
+Rubaidh::GoogleAnalytics.domain_name  = INAT_CONFIG['google_analytics']['domain_name']
 Rubaidh::GoogleAnalytics.environments = ['production']
 
 # General settings
-SITE_NAME = configuration_bindings['base']['general']['SITE_NAME']
-OBSERVATIONS_TILE_SERVER = configuration_bindings[Rails.env]['tile_servers']['observations']
+SITE_NAME = INAT_CONFIG['general']['SITE_NAME']
+OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
 SPHERICAL_MERCATOR = SphericalMercator.new
+
+# flickr api keys
+FLICKR_API_KEY = INAT_CONFIG['flickr']['FLICKR_API_KEY']
+FLICKR_SHARED_SECRET = INAT_CONFIG['flickr']['FLICKR_SHARED_SECRET']
