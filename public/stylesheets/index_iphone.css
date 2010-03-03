@@ -27,7 +27,8 @@ body.mobile #header {
 }
 
 input.button,
-input[type=text] {
+input[type=text],
+input[type=password] {
   padding: 0;
   float: none;
   display: inline-block;
@@ -44,3 +45,14 @@ input[type=text] {
 }
 * html .clear { height: 1%; }
 .clear { display: block; }
+
+#flash { width: 80%; }
+
+.pagination {
+  line-height: 200%;
+}
+
+.pagination .prev_page,
+.pagination .next_page {
+  white-space: nowrap;
+}

@@ -161,6 +161,7 @@ class ApplicationController < ActionController::Base
       if in_mobile_view?
         flash[:notice] = "No mobilized version of that view."
         session[:mobile_view] = false
+        logger.debug "[DEBUG] Caught missing mobile template: #{e}: \n#{e.backtrace.join("\n")}"
         return redirect_to request.path
       end
       raise e

@@ -1,9 +1,9 @@
 <%- @user_scalable = "0" if in_mobile_view? -%>
 <%- content_for(:title) do -%>
   <% @pagetitle = if @list
-    "Add Observations from list: #{link_to @list.title, @list}"
+    "Add Obs from list: #{link_to @list.title, @list}"
   else
-    "Add Observations from a List"
+    "Add Obs from a List"
   end %>
   <%= strip_tags(@pagetitle) %>
 <%- end -%>

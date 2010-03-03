@@ -6,7 +6,8 @@ class ObservationsController < ApplicationController
                             :show,
                             :by_login,
                             :id_please,
-                            :tile_points]
+                            :tile_points,
+                            :nearby]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
@@ -17,8 +18,11 @@ class ObservationsController < ApplicationController
     :edit_batch, :import, :import_photos, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
-  before_filter :unmobilized, :except => [:add_from_list]
-  before_filter :mobilized, :only => [:add_from_list]
+  
+  MOBILIZED = [:add_from_list, :nearby]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
+  
   
   caches_page :tile_points
   
@@ -70,7 +74,6 @@ class ObservationsController < ApplicationController
 
       format.csv
       
-      
       format.kml do
         if  params[:kml_type] == "network_link"
           if request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth")
@@ -103,6 +106,7 @@ class ObservationsController < ApplicationController
         end
       end
       
+      format.mobile
     end
   end
   
@@ -756,6 +760,30 @@ class ObservationsController < ApplicationController
           page.replace_html "widget_preview_and_code", :partial => "widget_preview_and_code"
         end
       end
+    end
+  end
+  
+  def nearby
+    # Geocoding IP until I figure out getting loc from iphone
+    ip = request.remote_ip
+    # ip = '66.117.138.26' # Emeryville IP, for testing
+    if GEOIP && (@geoip_result = GeoipTools.city(ip)) && 
+        !@geoip_result[:latitude].blank? && @geoip_result[:latitude] <= 180
+      lat = @geoip_result[:latitude]
+      lon = @geoip_result[:longitude]
+      @city = "#{@geoip_result[:city]}, #{@geoip_result[:state_code]}"
+      latrads = lat.to_f * (Math::PI / 180)
+      lonrads = lon.to_f * (Math::PI / 180)
+      @observations = Observation.search(:geo => [latrads,lonrads], 
+        :page => params[:page],
+        :without => {:observed_on => 0},
+        :order => "@geodist asc, observed_on desc") rescue []
+    end
+    
+    @observations ||= Observation.latest.paginate(:page => params[:page])
+    
+    respond_to do |format|
+      format.mobile
     end
   end
 

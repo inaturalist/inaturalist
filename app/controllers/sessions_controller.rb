@@ -2,9 +2,17 @@
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
+  
+  MOBILIZED = [:new]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
 
   # render new.rhtml
   def new
+    respond_to do |format|
+      format.html
+      format.mobile
+    end
   end
 
   def create

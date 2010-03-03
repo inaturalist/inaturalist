@@ -1,5 +1,9 @@
 <div id="header" class="clear">
-  <%= link_to("Welcome, #{current_user.login}", dashboard_path, :class => "right") if logged_in? %>
+  <% if logged_in? -%>
+    <%= link_to("Welcome, #{current_user.login}", dashboard_path, :class => "right") %>
+  <% else %>
+    <%= link_to("Log in", new_session_path, :class => "right") %>
+  <% end -%>
   <a href="/" title="iNaturalist.org" class="logolink">
     <img src="/images/logo-small.gif" alt="iNaturalist logo" />
   </a>

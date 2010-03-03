@@ -1,0 +1,35 @@
+<%- content_for(:title) do -%>
+  <% if @city -%>
+    <%= @pagetitle = "Observations Near #{@city}" %>
+  <% else %>
+    <%= @pagetitle = "Nearby Observations" %>
+  <% end -%>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "observations" %>
+  <style type="text/css" media="screen">
+    .observations { list-style: none; padding: 0;}
+    .observations.mini .user .label,
+    .observations.mini .observed_on .label,
+    .observations.mini .created_at .label,
+    .observations.mini .place .label {
+      font-size: 75%;
+    }
+  </style>
+<%- end -%>
+
+<h2><%= @pagetitle %></h2>
+
+<ul class="mini observations">
+  <% if @observations.blank? -%>
+    <li class="meta">No observations <%= "near #{@city}" if @city %></li>
+  <% else %>
+    <% for observation in @observations %>
+      <li>
+        <%= render_in_format :html, :partial => "observations/cached_component", :object => observation %>
+      </li>
+    <% end %>
+  <% end -%>
+</ul>
+
+<%= will_paginate @observations, :previous_label => "Prev", :inner_window => 1, :outer_window => 0 %>

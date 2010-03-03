@@ -1,0 +1,23 @@
+<% form_tag session_path do %>
+  <p class="ui">
+    <%= label_tag 'login', 'Username or email' %><br/>
+    <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
+  </p>
+
+  <p class="ui">
+    <%= label_tag 'password', 'Password' %><br/>
+    <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
+  </p>
+
+  <p class="ui">
+    <%= check_box_tag 'remember_me', '1', 'Remember me' %>
+    <%= label_tag 'remember_me', 'Remember me' %>
+  </p>
+
+  <p><%= submit_tag 'Sign in!', :class => "default button", :style => "float: none;" %></p>
+
+<% end -%>
+
+<p class="ui">
+  <%= link_to 'Forgot your password?', forgot_password_path %>
+</p>

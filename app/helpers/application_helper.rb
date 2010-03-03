@@ -158,4 +158,12 @@ module ApplicationHelper
   rescue BlueCloth::FormatError
     auto_link(simple_format(sanitize(text)))
   end
+  
+  def render_in_format(format, *args)
+    old_format = @template.template_format
+    @template.template_format = format
+    html = render(*args)
+    @template.template_format = old_format
+    html
+  end
 end

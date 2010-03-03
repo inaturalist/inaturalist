@@ -1,4 +1,8 @@
 class WelcomeController < ApplicationController
+  MOBILIZED = [:index]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
+  
   def index
     @observations = Observation.find(:all, 
       :include => :photos,
@@ -7,6 +11,11 @@ class WelcomeController < ApplicationController
       :conditions => "latitude IS NOT NULL AND longitude IS NOT NULL " + 
                      "AND photos.id IS NOT NULL")
     @first_goal_total = Observation.count
+    
+    respond_to do |format|
+      format.html
+      format.mobile
+    end
   end
   
   def toggle_mobile

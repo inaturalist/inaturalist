@@ -71,6 +71,7 @@ ActionController::Routing::Routes.draw do |map|
     o.observations_widget '/observations/widget', :action => 'widget'
     o.add_observations_from_list "observations/add_from_list", :action => "add_from_list"
     o.new_observations_from_list "observations/new_from_list", :action => "new_from_list"
+    o.nearby_observations "observations/nearby", :action => "nearby"
     
     # by_login paths must come after all others
     o.observations_by_login 'observations/:login', :action => 'by_login',
