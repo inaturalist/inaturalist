@@ -1,3 +1,4 @@
+<%- @user_scalable = 0 -%>
 <%- content_for(:title) do -%>
   <%= @pagetitle = "Nearby Observations" %>
 <%- end -%>
@@ -65,28 +66,29 @@
     function getCurrentPositionSuccess(location) {
       window.scrollTo(0, $('#pageheader').offset().top - 5);
       getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "") %>'+
-        '&lat='+location.coords.latitude+'&lng='+location.coords.longitude);
-      window.map.setCenter(new GLatLng(location.coords.latitude, location.coords.longitude));
-      var marker = window.map.createMarker(location.coords.latitude, location.coords.longitude, {
-        icon: iNaturalist.Map.createPlaceIcon()
-      });
-      window.map.addOverlay(marker);
+        '&lat='+location.coords.latitude+'&lng='+location.coords.longitude, {
+          lat: location.coords.latitude,
+          lon: location.coords.longitude
+        });
     }
     
     function getCurrentPositionFailure() {
       <% if @lat && @lon %>
-        getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "", :lat => @lat, :lng => @lon) %>');
-        window.map.setCenter(new GLatLng(<%= @lat %>, <%= @lon %>));
-        var marker = window.map.createMarker(<%= @lat %>, <%= @lon %>, {
-          icon: iNaturalist.Map.createPlaceIcon()
+        getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "", :lat => @lat, :lng => @lon) %>', {
+          lat: <%= @lat %>, lon: <%= @lon %>
         });
-        window.map.addOverlay(marker);
       <% else %>
         getObs('<%= observations_path(:format => "json", :partial => "cached_component") %>');
       <% end %>
     }
     
-    function getObs(url) {
+    
+    
+    function getObs(url, options) {
+      var options = $.extend({}, options);
+      
+      window.map.removeObservations();
+      
       $.ajax({
         url: url,
         method: 'get',
@@ -99,13 +101,28 @@
             this.instance.taxon = this.extra.taxon;
             this.instance.iconic_taxon = this.extra.iconic_taxon;
             this.instance.user = this.extra.user;
-            // var obs = window.map.addObservation(this.instance);
-            observations.push(this.instance)
+            observations.push(this.instance);
           });
           $('#observations').html(html);
           $('#observations .details').show();
           window.map.addObservations(observations);
-          window.map.zoomToObservations()
+          window.map.zoomToObservations();
+          
+          if (options.lat && options.lon) {
+            var centerPt = new GLatLng(options.lat, options.lon);
+            var bounds = map.getObservationBounds();
+            bounds.extend(centerPt);
+            map.setZoom(map.getBoundsZoomLevel(bounds));
+            window.map.setCenter(centerPt);
+            if (window.centerMarker) {
+              window.centerMarker.setLatLng(centerPt);
+            } else {
+              window.centerMarker = window.map.createMarker(options.lat, options.lon, {
+                icon: iNaturalist.Map.createPlaceIcon()
+              });
+              window.map.addOverlay(window.centerMarker);
+            }
+          };
         },
         error: function(request, status, error) {
           $('#noobservations').show();
@@ -160,7 +177,15 @@
         $(terrain).show();
         $(this).hide();
       });
-      var panel = $('<div></div>').append(terrain, satellite);
+      var refresh = $('<a class="button">refresh</a>').css(buttonStyle).click(function() {
+        var center = window.map.getCenter();
+        getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "") %>'+
+            '&lat='+center.lat()+'&lng='+center.lng(), {
+          lat: center.lat(),
+          lon: center.lng()
+        });
+      });
+      var panel = $('<div></div>').append(refresh, terrain, satellite);
       var panelElt = $(panel).get(0);
       map.getContainer().appendChild(panelElt);
       return panelElt;

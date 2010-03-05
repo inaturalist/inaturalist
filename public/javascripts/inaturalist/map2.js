@@ -127,12 +127,20 @@ GMap2.prototype.addObservations = function(observations, options) {
   });
 };
   
-  // remove many observations from a list of observations
+// remove many observations from a list of observations
 GMap2.prototype.removeObservations = function(observations) {
   var map = this;
-  $.each(observations, function() {
-    map.removeObservation(this);
-  });
+  if (typeof(observations) == "undefined") {
+    $.each(map.observations, function(k,v) {
+      map.removeMarker(v);
+      delete map.observations[k];
+      delete map.observationBounds;
+    });
+  } else {
+    $.each(observations, function() {
+      map.removeObservation(this);
+    });
+  }
 };
 
 GMap2.prototype.getObservationBounds = function() {

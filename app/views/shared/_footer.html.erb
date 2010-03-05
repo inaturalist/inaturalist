@@ -13,6 +13,6 @@
 <%# if logged_in? && is_mobile_device? && @mobilized && current_user.is_admin? -%>
 <%- if is_mobile_device? && @mobilized -%>
   <div class="flash notice">
-    <%= link_to "Mobile view available", toggle_mobile_path %>
+    <%= link_to "Mobile view available", toggle_mobile_path, :id => "mobiletogglelink" %>
   </div>
 <% end -%>
