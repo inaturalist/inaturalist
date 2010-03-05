@@ -182,7 +182,10 @@ class UsersController < ApplicationController
     # Add a friend
     unless params[:friend_id].blank?
       if (friend_user = User.find_by_id(params[:friend_id])) && !current_user.friends_with?(friend_user)
+        flash[:notice] = "You are now following #{friend_user.login}."
         current_user.friends << friend_user
+      else
+        flash[:error] = "Either that user doesn't exist or you are already following them."
       end
       return redirect_back_or_default(person_by_login_path(:login => current_user.login))
     end
@@ -190,7 +193,10 @@ class UsersController < ApplicationController
     # Remove a friend
     unless params[:remove_friend_id].blank?
       if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
+        flash[:notice] = "You are no longer following #{friendship.friend.login}."
         friendship.destroy
+      else
+        flash[:error] = "You aren't following that person."
       end
       return redirect_back_or_default(person_by_login_path(:login => current_user.login))
     end

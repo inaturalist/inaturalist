@@ -250,16 +250,13 @@ img.mini.usericon {
 }
 
 #subnav #follow_button {
-	padding-left: 18px;
-	padding-top: 1px;
-	background: url(/images/follow-icon-eee-15px.png) 0% 50% no-repeat;
+  padding-left: 20px;
+  background: url(/images/follow-icon-eee-15px.png) 0% 50% no-repeat;
 }
 
 #subnav #follow_button:hover,
 #subnav #follow_button.active {
-	padding-left: 18px;
-	padding-top: 1px;
-	background: url(/images/follow-icon-nm-15px.png) 0% 50% no-repeat;
+  background: url(/images/follow-icon-nm-15px.png) 0% 50% no-repeat;
 }
 
 #breadcrumbs {

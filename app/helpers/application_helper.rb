@@ -69,7 +69,7 @@ module ApplicationHelper
         button_to("Follow #{potential_friend.login}", options.merge({ :friend_id => potential_friend.id }), html_options)
       end
     when false # user is already a contact
-        button_to("Stop following #{potential_friend.login}", 
+        link_to("Stop following #{potential_friend.login}", 
           options.merge({ :remove_friend_id => potential_friend.id }), html_options)
     end
   end
