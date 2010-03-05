@@ -240,9 +240,7 @@
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'observations-ie' %>
   <style type="text/css" media="screen">
-    #search_taxa {
-      width: 365px;
-    }
+    #search_taxa { width: 365px; }
   </style>
 <![endif]-->
 <% end -%>
@@ -556,7 +554,7 @@
         $('#taxoboxlink').qtip($.extend(QTIP_DEFAULTS, {
           show: {when: 'click'},
           hide: {when: 'unfocus'},
-          content: "<%= escape_javascript(taxobox_content) %>",
+          content: "<%= escape_javascript(taxobox_content) %>"
         }));
       </script>
     </p>

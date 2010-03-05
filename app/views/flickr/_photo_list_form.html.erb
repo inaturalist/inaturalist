@@ -13,7 +13,7 @@
           native_photo_id, 
           checked, 
           {:id => "#{prefix}_#{index}_#{native_photo_id}", :class => "checkbox"} %>
-          
+        
         <% if synclink_base && synclink_uri = URI.parse(synclink_base) %>
           <% 
             if synclink_uri.query.blank?

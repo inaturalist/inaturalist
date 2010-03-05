@@ -160,6 +160,15 @@ Taxa &middot; All Species
     opacity: 1;
   }
 </style>
+<!--[if lt IE 20]>
+<style type="text/css" media="screen">
+  #featured .extra,
+  #featurednav {
+    display: none;
+  }
+  #featured .featured_taxon { position: relative; }
+</style>
+<![endif]-->
 <% end -%>
 
 <div class="pageheader">
@@ -171,12 +180,12 @@ Taxa &middot; All Species
 
 <div id="featured" class="column span-24">
   <% @featured_taxa.each_with_index do |taxon, i| %>
-    <div id="featured_taxon_<%= i %>" class="featured_taxon" style="left: <%= i * 950 %>px">
+    <div id="featured_taxon_<%= i %>" class="featured_taxon <%= 'extra' if i > 0 %>" style="left: <%= i * 950 %>px">
       <%= render :partial => "shared/taxon", :object => taxon, :locals => {
         :link_url => taxon_url(taxon)
       } %>
       <div id="desccol">
-        <center>
+        <center id="featurednav">
           <% if i > 0 -%>
             <%= link_to_function "&larr;", 
               "$('.navdot').removeClass('selected');" +
