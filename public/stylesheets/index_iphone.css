@@ -24,9 +24,11 @@ body.mobile #header {
   margin: 0;
   height: auto;
   line-height: 1.4;
+  height: 22px;
 }
 
 input.button,
+input[type=button],
 input[type=text],
 input[type=password] {
   padding: 0;

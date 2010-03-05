@@ -2,7 +2,7 @@
   clear: both;
 }
 
-.photo {
+.photoSelectorPhotos .photo {
   width: auto;
   float: left;
   margin: 0 0.5em 0 0;
@@ -10,14 +10,14 @@
   padding: 0.5em;
 }
 
-.photo:hover {
+.photoSelectorPhotos .photo:hover {
   border: 1px solid #ddd;
 }
 
-.photo .checkbox {
+.photoSelectorPhotos .photo .checkbox {
   margin: 0 auto 0.2em;
 }
 
-.photo img {
+.photoSelectorPhotos .photo img {
   vertical-align: middle;
 }

@@ -1,9 +1,5 @@
 <%- content_for(:title) do -%>
-  <% if @city -%>
-    <%= @pagetitle = "Observations Near #{@city}" %>
-  <% else %>
-    <%= @pagetitle = "Nearby Observations" %>
-  <% end -%>
+  <%= @pagetitle = "Nearby Observations" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "observations" %>
@@ -15,21 +11,184 @@
     .observations.mini .place .label {
       font-size: 75%;
     }
+    
+    #pageheader {
+      margin: 0 0 5px 0;
+      padding-bottom: 3px;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    #pageheader strong {
+      display: inline-block;
+      margin-top: 5px;
+    }
+    
+    #map {
+      height: 325px;
+    }
+    
+    #controls .button {
+      font-size: 80%;
+      padding: 5px;
+      margin: 0 0 0 5px;
+      border-bottom: 1px solid #ccc; 
+      -webkit-border-bottom-right-radius: 0;
+      -webkit-border-bottom-left-radius: 0;
+      background-color: #f6f6f6;;
+    }
+    
+    #controls .button.open {
+      background-color: white;
+      border-bottom: 1px solid white; 
+    }
   </style>
 <%- end -%>
 
-<h2><%= @pagetitle %></h2>
+<%- content_for(:extrajs) do -%>
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag 'inaturalist/map2' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      // Setup gmap
+      window.map = iNaturalist.Map.createMap({controls: false, observationsTileServer: '<%= OBSERVATIONS_TILE_SERVER %>'});
+      map.addControl(new MobileZoomControl());
+      map.addControl(new MobileMapTypeControl());
+      
+      // Get location from device
+      if (typeof(navigator.geolocation) != "undefined") {
+        navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure);
+      } else {
+        getCurrentPositionFailure();
+      }
+    });
+    
+    function getCurrentPositionSuccess(location) {
+      window.scrollTo(0, $('#pageheader').offset().top - 5);
+      getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "") %>'+
+        '&lat='+location.coords.latitude+'&lng='+location.coords.longitude);
+      window.map.setCenter(new GLatLng(location.coords.latitude, location.coords.longitude));
+      var marker = window.map.createMarker(location.coords.latitude, location.coords.longitude, {
+        icon: iNaturalist.Map.createPlaceIcon()
+      });
+      window.map.addOverlay(marker);
+    }
+    
+    function getCurrentPositionFailure() {
+      <% if @lat && @lon %>
+        getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "", :lat => @lat, :lng => @lon) %>');
+        window.map.setCenter(new GLatLng(<%= @lat %>, <%= @lon %>));
+        var marker = window.map.createMarker(<%= @lat %>, <%= @lon %>, {
+          icon: iNaturalist.Map.createPlaceIcon()
+        });
+        window.map.addOverlay(marker);
+      <% else %>
+        getObs('<%= observations_path(:format => "json", :partial => "cached_component") %>');
+      <% end %>
+    }
+    
+    function getObs(url) {
+      $.ajax({
+        url: url,
+        method: 'get',
+        dataType: 'json',
+        success: function(data, status) {
+          var html = "";
+          var observations = []
+          $.each(data, function() {
+            html += this.html;
+            this.instance.taxon = this.extra.taxon;
+            this.instance.iconic_taxon = this.extra.iconic_taxon;
+            this.instance.user = this.extra.user;
+            // var obs = window.map.addObservation(this.instance);
+            observations.push(this.instance)
+          });
+          $('#observations').html(html);
+          $('#observations .details').show();
+          window.map.addObservations(observations);
+          window.map.zoomToObservations()
+        },
+        error: function(request, status, error) {
+          $('#noobservations').show();
+          $('#observations .loading').hide();
+        }
+      });
+    }
+    
+    function MobileZoomControl() {};
+    MobileZoomControl.prototype = new GControl();
+    MobileZoomControl.prototype.initialize = function(map) {
+      var buttonStyle = {
+        width: '40px',
+        height: '40px',
+        display: 'block',
+        'font-size': '40px',
+        'line-height': 0.9,
+        'text-align': 'center',
+        'margin': '0 0 5px 0',
+        'clear': 'left',
+        '-webkit-box-shadow': '0px 2px 5px #666',
+        'padding': '0'
+      }
+      var zoomIn = $('<a class="button">+</a>').css(buttonStyle).click(function() {map.zoomIn()});
+      var zoomOut = $('<a class="button">-</a>').css(buttonStyle).click(function() {map.zoomOut()});
+      var panel = $('<div></div>').append(zoomIn, zoomOut);
+      var panelElt = $(panel).get(0);
+      map.getContainer().appendChild(panelElt);
+      return panelElt;
+    }
+    MobileZoomControl.prototype.getDefaultPosition = function() {
+      return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(5, 5));
+    }
+    
+    function MobileMapTypeControl() {};
+    MobileMapTypeControl.prototype = new GControl();
+    MobileMapTypeControl.prototype.initialize = function(map) {
+      var buttonStyle = {
+        'font-size': "10px",
+        padding: '5px',
+        '-webkit-box-shadow': '0px 2px 5px #666',
+      }
+      var satellite = $('<a class="button">Satellite</a>').css(buttonStyle);
+      var terrain = $('<a class="button">Terrain</a>').css(buttonStyle).hide();
+      $(terrain).click(function() {
+        map.setMapType(G_PHYSICAL_MAP);
+        $(satellite).show();
+        $(this).hide();
+      });
+      $(satellite).click(function() {
+        map.setMapType(G_HYBRID_MAP);
+        $(terrain).show();
+        $(this).hide();
+      });
+      var panel = $('<div></div>').append(terrain, satellite);
+      var panelElt = $(panel).get(0);
+      map.getContainer().appendChild(panelElt);
+      return panelElt;
+    }
+    MobileMapTypeControl.prototype.getDefaultPosition = function() {
+      return new GControlPosition(G_ANCHOR_TOP_RIGHT, new GSize(5, 5));
+    };
+    
+    
+  </script>
+<%- end -%>
 
-<ul class="mini observations">
-  <% if @observations.blank? -%>
-    <li class="meta">No observations <%= "near #{@city}" if @city %></li>
-  <% else %>
-    <% for observation in @observations %>
-      <li>
-        <%= render_in_format :html, :partial => "observations/cached_component", :object => observation %>
-      </li>
-    <% end %>
-  <% end -%>
-</ul>
+<div id="pageheader">
+  <span id="controls" class="right">
+    <%= link_to_function "Map", "$('#map').show(); $('#observations').hide(); $('#controls .button').toggleClass('open')", :class => "button open" %>
+    <%= link_to_function "List", "$('#map').hide(); $('#observations').show(); $('#controls .button').toggleClass('open')", :class => "button" %>
+  </span>
+  <strong><%= @pagetitle %></strong>
+</div>
 
-<%= will_paginate @observations, :previous_label => "Prev", :inner_window => 1, :outer_window => 0 %>
+<div id="map"></div>
+
+<div id="observations" class="compact mini observations" style="display: none">
+  <div class="loading status">
+    Loading...
+  </div>
+</div>
+
+<div id="noobservations" class="meta" style="display: none">No nearby observations.</div>
+
+<%#= will_paginate @observations, :previous_label => "Prev", :inner_window => 1, :outer_window => 0 %>

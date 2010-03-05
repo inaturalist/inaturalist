@@ -241,7 +241,7 @@ class Observation < ActiveRecord::Base
      if (!params[:swlat].blank? && !params[:swlng].blank? && 
          !params[:nelat].blank? && !params[:nelng].blank?)
       scope = scope.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng])
-    elsif (params[:lat] and params[:lng])
+    elsif params[:lat] && params[:lng]
       scope = scope.near_point(params[:lat], params[:lng], params[:radius])
     end
     

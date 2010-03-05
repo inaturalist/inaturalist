@@ -59,13 +59,31 @@ class ObservationsController < ApplicationController
       end
 
       format.json do
-        cache
-        render :json => @observations.to_json({
-          :include => {
-            :user => {:only => :login},
-            :photos => {}
-          }
-        })
+        unless params[:partial].blank?
+          data = @observations.map do |observation|
+            item = {
+              :instance => observation,
+              :extra => {
+                :taxon => observation.taxon,
+                :iconic_taxon => observation.iconic_taxon,
+                :user => {:login => observation.user.login}
+              }
+            }
+
+            @template.template_format = :html
+            item[:html] = render_to_string(:partial => params[:partial], :object => observation)
+            @template.template_format = :json
+            item
+          end
+          render :json => data
+        else
+          render :json => @observations.to_json({
+            :include => {
+              :user => {:only => :login},
+              :photos => {}
+            }
+          })
+        end
       end
       
       format.atom do
@@ -105,8 +123,6 @@ class ObservationsController < ApplicationController
           render :action => 'network_link' and return
         end
       end
-      
-      format.mobile
     end
   end
   
@@ -769,11 +785,13 @@ class ObservationsController < ApplicationController
     # ip = '66.117.138.26' # Emeryville IP, for testing
     if GEOIP && (@geoip_result = GeoipTools.city(ip)) && 
         !@geoip_result[:latitude].blank? && @geoip_result[:latitude] <= 180
-      lat = @geoip_result[:latitude]
-      lon = @geoip_result[:longitude]
-      @city = "#{@geoip_result[:city]}, #{@geoip_result[:state_code]}"
-      latrads = lat.to_f * (Math::PI / 180)
-      lonrads = lon.to_f * (Math::PI / 180)
+      @lat = @geoip_result[:latitude]
+      @lon = @geoip_result[:longitude]
+      @city = @geoip_result[:city]
+      @state_code = @geoip_result[:state_code]
+      @place_name = "#{@city}, #{@state_code}" unless @city.blank? || @state_code.blank?
+      @latrads = @lat.to_f * (Math::PI / 180)
+      @lonrads = @lon.to_f * (Math::PI / 180)
       @observations = Observation.search(:geo => [latrads,lonrads], 
         :page => params[:page],
         :without => {:observed_on => 0},
@@ -992,7 +1010,7 @@ class ObservationsController < ApplicationController
         sphinx_options[:conditions][:longitude] = swlngrads..nelngrads
       end
       sphinx_options[:conditions][:latitude] = swlatrads..nelatrads
-    elsif (search_params[:lat] and search_params[:lng])
+    elsif search_params[:lat] && search_params[:lng]
       latrads = search_params[:lat].to_f * (Math::PI / 180)
       lngrads = search_params[:lng].to_f * (Math::PI / 180)
       sphinx_options[:geo] = [latrads, lngrads]

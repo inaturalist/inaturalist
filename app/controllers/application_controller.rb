@@ -175,7 +175,7 @@ class ApplicationController < ActionController::Base
   
   def unmobilized
     @mobilized = false
-    request.format = :html if in_mobile_view?
+    request.format = :html if in_mobile_view? && request.format == :mobile
   end
   
   # Get current_user's preferences, prefs in the session, or stash new prefs in the session

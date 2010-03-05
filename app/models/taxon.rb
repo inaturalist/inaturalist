@@ -421,6 +421,7 @@ class Taxon < ActiveRecord::Base
     ListedTaxon.update_all(
       "lft = #{self.lft}, taxon_ancestor_ids = '#{ancestor_ids}'", 
       "taxon_id = #{self.id}")
+    true
   end
   
   def update_life_lists

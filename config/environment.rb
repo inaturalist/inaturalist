@@ -11,7 +11,7 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 require 'yaml'
-INAT_CONFIG = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))[ENV['RAILS_ENV']]
+INAT_CONFIG = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))[RAILS_ENV]
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
