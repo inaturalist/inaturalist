@@ -194,7 +194,7 @@
         $(terrain).show();
         $(this).hide();
       });
-      var refresh = $('<a class="button">refresh</a>').css(buttonStyle).click(function() {
+      var refresh = $('<a class="button">search map</a>').css(buttonStyle).click(function() {
         var center = window.map.getCenter();
         getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "") %>'+
             '&lat='+center.lat()+'&lng='+center.lng(), {
@@ -202,7 +202,7 @@
           lon: center.lng()
         });
       });
-      var current = $('<a class="button">nearby</a>').css(buttonStyle).click(function() {
+      var current = $('<a class="button">near me</a>').css(buttonStyle).click(function() {
         navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure)
       });
       
@@ -235,7 +235,7 @@
   <div id="maploading"><span class="loading status eee">Loading observations...</span></div>
 </div>
 
-<div id="observations" class="compact mini observations" style="display: none">
+<div id="observations" class="mini observations" style="display: none">
   <div class="loading status">
     Loading...
   </div>
