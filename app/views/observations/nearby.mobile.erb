@@ -42,6 +42,20 @@
       background-color: white;
       border-bottom: 1px solid white; 
     }
+    
+    #mapcontainer { position: relative; }
+    #maploading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -10px;
+      margin-left: -100px;
+      width: 200px;
+      background-color: #eee;
+      padding: 5px;
+      -webkit-border-radius: 5px;
+      -webkit-box-shadow: 0px 2px 5px #666;
+    }
   </style>
 <%- end -%>
 
@@ -87,6 +101,7 @@
     function getObs(url, options) {
       var options = $.extend({}, options);
       
+      $('#maploading').show();
       window.map.removeObservations();
       
       $.ajax({
@@ -122,7 +137,9 @@
               });
               window.map.addOverlay(window.centerMarker);
             }
-          };
+          }
+          
+          $('#maploading').hide();
         },
         error: function(request, status, error) {
           $('#noobservations').show();
@@ -165,8 +182,8 @@
         padding: '5px',
         '-webkit-box-shadow': '0px 2px 5px #666',
       }
-      var satellite = $('<a class="button">Satellite</a>').css(buttonStyle);
-      var terrain = $('<a class="button">Terrain</a>').css(buttonStyle).hide();
+      var satellite = $('<a class="button">satellite</a>').css(buttonStyle);
+      var terrain = $('<a class="button">terrain</a>').css(buttonStyle).hide();
       $(terrain).click(function() {
         map.setMapType(G_PHYSICAL_MAP);
         $(satellite).show();
@@ -185,7 +202,14 @@
           lon: center.lng()
         });
       });
-      var panel = $('<div></div>').append(refresh, terrain, satellite);
+      var current = $('<a class="button">nearby</a>').css(buttonStyle).click(function() {
+        navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure)
+      });
+      
+      var panel = $('<div></div>');
+      if (navigator.geolocation) panel.append(current);
+      panel.append(refresh, terrain, satellite);
+      
       var panelElt = $(panel).get(0);
       map.getContainer().appendChild(panelElt);
       return panelElt;
@@ -206,7 +230,10 @@
   <strong><%= @pagetitle %></strong>
 </div>
 
-<div id="map"></div>
+<div id="mapcontainer">
+  <div id="map"></div>
+  <div id="maploading"><span class="loading status eee">Loading observations...</span></div>
+</div>
 
 <div id="observations" class="compact mini observations" style="display: none">
   <div class="loading status">
