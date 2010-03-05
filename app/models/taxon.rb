@@ -49,7 +49,8 @@ class Taxon < ActiveRecord::Base
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon # if after, it would require an extra save
   before_save {|taxon| taxon.name = taxon.name.capitalize}
-  after_move :update_listed_taxa, :set_iconic_taxon_and_save, :update_life_lists
+  after_move :update_listed_taxa, :set_iconic_taxon_and_save,
+    :update_life_lists, :update_obs_iconic_taxa
   after_save :create_matching_taxon_name
   after_save :update_unique_name
   after_save {|taxon| taxon.send_later(:set_wkipedia_summary) if taxon.wikipedia_title_changed? }
@@ -325,6 +326,7 @@ class Taxon < ActiveRecord::Base
   def set_iconic_taxon_and_save
     set_iconic_taxon
     save
+    true
   end
   
   #
@@ -427,6 +429,11 @@ class Taxon < ActiveRecord::Base
   def update_life_lists
     logger.debug "[DEBUG] Fired update_lfe_lists for #{self}"
     LifeList.send_later(:update_life_lists_for_taxon, self)
+    true
+  end
+  
+  def update_obs_iconic_taxa
+    Observation.update_all(["iconic_taxon_id = ?", iconic_taxon_id], ["taxon_id = ?", id])
     true
   end
   

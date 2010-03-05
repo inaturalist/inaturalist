@@ -378,3 +378,27 @@ describe Taxon, "merging" do
     TaxonName.find_by_id(@reject.id).should be_nil
   end
 end
+
+describe Taxon, "moving" do
+  fixtures :taxa, :observations
+  
+  it "should update the iconic taxon of observations" do
+    obs = observations(:quentin_saw_annas)
+    old_iconic_id = obs.iconic_taxon_id
+    taxon = obs.taxon
+    taxon.move_to_child_of(taxa(:Amphibia))
+    taxon.reload
+    obs.reload
+    obs.iconic_taxon_id.should be(taxon.iconic_taxon_id)
+  end
+  
+  it "should update the iconic taxon of observations of descendants" do
+    obs = observations(:quentin_saw_annas)
+    old_iconic_id = obs.iconic_taxon_id
+    taxon = obs.taxon
+    taxon.parent.move_to_child_of(taxa(:Amphibia))
+    taxon.reload
+    obs.reload
+    obs.iconic_taxon_id.should be(taxon.iconic_taxon_id)
+  end
+end
