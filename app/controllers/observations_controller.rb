@@ -9,6 +9,10 @@ class ObservationsController < ApplicationController
                             :tile_points,
                             :nearby]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
+  before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
+    :update_photos]
+  before_filter :require_owner, :only => [:edit, :edit_photos, 
+    :update_photos]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
@@ -129,13 +133,6 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-    @observation = Observation.find(params[:id], 
-      :include => [
-        :photos, 
-        {:taxon => [:taxon_names]},
-        :identifications
-      ]
-    )
 
     if @observation.observed_on
       concurrent_observations = Observation.by(@observation.user).all(
@@ -301,8 +298,6 @@ class ObservationsController < ApplicationController
   
   # GET /observations/1/edit
   def edit
-    @observation = Observation.find(params[:id])
-    
     # Only the owner should be able to see this.  
     unless current_user.id == @observation.user_id or current_user.is_admin?
       redirect_to observation_path(@observation)
@@ -370,7 +365,7 @@ class ObservationsController < ApplicationController
     
     observation_user = current_user
     
-    unless params[:admin_action].nil? or !current_user.is_admin?
+    unless params[:admin_action].nil? || !current_user.is_admin?
       observation_user = Observation.find(params[:id]).user
     end
     
@@ -384,6 +379,13 @@ class ObservationsController < ApplicationController
         observation_user
       ]
     )
+    
+    # Make sure there's no evil going on
+    unique_user_ids = @observations.map(&:user_id).uniq
+    if unique_user_ids.size > 1 || unique_user_ids.first != observation_user.id
+      flash[:error] = "You don't have permission to edit that observation."
+      return redirect_to @observation
+    end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
     hashed_params = Hash[*params[:observations].to_a.flatten]
@@ -441,10 +443,29 @@ class ObservationsController < ApplicationController
     end
   end
   
+  def edit_photos
+    @observation_photos = @observation.observation_photos
+    if @observation_photos.blank?
+      flash[:error] = "That observation doesn't have any photos."
+      return redirect_to edit_observation_path(@observation)
+    end
+  end
+  
+  def update_photos
+    @observation_photos = ObservationPhoto.all(:conditions => [
+      "id IN (?)", params[:observation_photos].map{|k,v| k}])
+    @observation_photos.each do |op|
+      next unless @observation.observation_photo_ids.include?(op.id)
+      op.update_attributes(params[:observation_photos][op.id.to_s])
+    end
+    
+    flash[:notice] = "Photos updated."
+    redirect_to edit_observation_path(@observation)
+  end
+  
   # DELETE /observations/1
   # DELETE /observations/1.xml
   def destroy
-    @observation = Observation.find(params[:id])
     @observation.destroy
     respond_to do |format|
       flash[:notice] = "Observation was deleted."
@@ -552,13 +573,13 @@ class ObservationsController < ApplicationController
 
   # Edit a batch of observations
   def edit_batch
-    @observations = Observation.find(:all, 
+    @observations = Observation.all(
       :conditions => [
         "id in (?) AND user_id = ?", params[:o].split(','), current_user])
   end
   
   def delete_batch
-    @observations = Observation.find(:all, 
+    @observations = Observation.all(
       :conditions => [
         "id in (?) AND user_id = ?", params[:o].split(','), current_user])
     @observations.each do |observation|
@@ -1154,5 +1175,22 @@ class ObservationsController < ApplicationController
       klass_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(klass_name)
     end.compact
+  end
+  
+  def load_observation
+    render_404 unless @observation = Observation.find_by_id(params[:id], 
+      :include => [
+        :photos, 
+        {:taxon => [:taxon_names]},
+        :identifications
+      ]
+    )
+  end
+  
+  def require_owner
+    unless logged_in? && current_user.id == @observation.user_id
+      flash[:error] = "You don't have permission to edit that observation."
+      return redirect_to @observation
+    end
   end
 end

@@ -107,6 +107,10 @@
                   ").join('&');" +
                   "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
                     "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
+                <% unless observation.photos.empty? || observation.new_record? -%>
+                  <br/>
+                  <%= link_to "Re-order photos &raquo;", edit_observation_photos_path(observation) %>
+                <% end -%>
               <% else %>
                 <p class="description">
                   We currently support <a href="http://flickr.com">Flickr</a> and 

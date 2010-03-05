@@ -13,7 +13,7 @@ class Observation < ActiveRecord::Base
   belongs_to :taxon, :counter_cache => true
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
-  has_many :observation_photos, :dependent => :destroy
+  has_many :observation_photos, :dependent => :destroy, :order => "position"
   has_many :photos, :through => :observation_photos
   has_many :listed_taxa, :foreign_key => 'last_observation_id'
   has_many :goal_contributions,
