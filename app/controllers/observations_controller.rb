@@ -10,7 +10,7 @@ class ObservationsController < ApplicationController
                             :nearby]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
-    :update_photos]
+    :update_photos, :destroy]
   before_filter :require_owner, :only => [:edit, :edit_photos, 
     :update_photos]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
