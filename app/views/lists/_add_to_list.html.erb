@@ -1,4 +1,5 @@
-<% list ||= object ||= @list -%>
+<%- list ||= object || @list -%>
+<%- species_guess ||= '' -%>
     <% lt = ListedTaxon.new(:list => list) %>
     <% remote_form_for(lt, 
       :url => listed_taxa_path(lt, :format => 'json', :method => :post),
@@ -7,7 +8,7 @@
       :success => "afterTaxonAdded(request)",
       :failure => "afterTaxonAddedFailure(request)") do |f| %>
       <div>          
-        <%= text_field_tag :species_guess, '', :size => '' %>
+        <%= text_field_tag :species_guess, species_guess, :size => '' %>
         <%= f.hidden_field :taxon_id %>
       </div>
       <%= f.hidden_field :list_id %>

@@ -168,39 +168,57 @@ module Shared::ListsModule
   def add_taxon_batch
     return redirect_to(@list) unless params[:names]
     @added_taxa = []
-    lines = params[:names].split("\n").to_a.map(&:strip)
-    if lines.size > 50
-      flash[:notice] = "Sorry, you can only add 50 at a time."
+    @lines = params[:names].split("\n").to_a.map{|n| n.strip.gsub(/\s+/, " ")}.delete_if(&:blank?)
+    
+    if @lines.size > 1000
+      flash[:notice] = "Sorry, you can only add 1000 at a time."
       return redirect_to(@list)
     end
     
     @errors = []
-    
-    lines.each do |name|
-      names = TaxonName.paginate(:page => 1, :conditions => {:name => name}, 
-        :include => :taxon)
-      case names.size
+    @lines_taxa = []
+    @lines.each_with_index do |name, i|
+      
+      # If we're past 50, just add nil and assume we'll deal with it later
+      if i > 50
+        @lines_taxa << [name, nil]
+        next
+      end
+      
+      taxon_names = TaxonName.paginate(:page => 1, :conditions => {:name => name}, :include => :taxon)
+      case taxon_names.size
       when 0
-        @errors << "#{name}: wasn't found"
+        @lines_taxa << [name, "not found"]
       when 1
-        listed_taxon = @list.add_taxon(names.first.taxon)
+        listed_taxon = @list.add_taxon(taxon_names.first.taxon)
         if listed_taxon.valid?
-          @added_taxa << names.first.taxon
+          @lines_taxa << [name, listed_taxon]
         else
-          @errors << "#{name}: " + listed_taxon.errors.full_messages.join(', ')
+          @lines_taxa << [name, listed_taxon.errors.full_messages.to_sentence]
         end
       else
-        @errors << "#{name}: matched several different taxa"
+        # @errors << "#{name}: matched several different taxa"
+        @lines_taxa << [name, "matched several different taxa"]
       end
     end
-    @added_taxa.compact!
     
-    flash[:notice] = "Added #{@added_taxa.size} of #{lines.size} names to this list."
-    if @errors.size > 0
-      flash[:error] = "There were problems with #{@errors.size} of the " +
-        "names:<br/> #{@errors.join('<br/>')}."
+    respond_to do |format|
+      format.html
+      format.js do
+        render :update do |page|
+          @lines_taxa.each do |line, other|
+            break if other.nil?
+            if page[line.parameterize]
+              page.replace line.parameterize, 
+                :partial => "lists/add_taxon_batch_line", 
+                :object => [line, other]
+            else
+              page.alert("Added #{line}")
+            end
+          end
+        end
+      end
     end
-    redirect_to @list
   end
   
   def taxa
