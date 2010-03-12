@@ -25,6 +25,7 @@ module Shared::SweepersModule
   def expire_listed_taxon(listed_taxon)
     expire_fragment(:controller => 'listed_taxa', :action => 'show', :id => listed_taxon)
     expire_fragment(:controller => 'listed_taxa', :action => 'show', :id => listed_taxon, :for_owner => true)
+    expire_fragment(List.icon_preview_cache_key(listed_taxon.list_id))
     ListedTaxon::ORDERS.each do |order|
       expire_fragment(:controller => 'observations', :action => 'add_from_list', :id => listed_taxon.list_id, :order => order)
     end

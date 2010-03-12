@@ -1,5 +1,6 @@
 class ListedTaxaController < ApplicationController
   before_filter :login_required
+  cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
 
   def index
     redirect_to lists_path

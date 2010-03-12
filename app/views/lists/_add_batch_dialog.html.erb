@@ -2,7 +2,7 @@
   <span class="close corner">&times;</span>
   <h2 class="header">Add a Batch of Taxa</h2>
   <p class="description">Paste in up to 50 names, 1 / line, and hit the button!</p>
-  <% form_tag :controller => 'lists', :action => 'add_taxon_batch' do %>
+  <% form_tag :action => 'add_taxon_batch', :id => @list do %>
     <label for="names">Names</label>
     <%= text_area_tag :names, '', :style => 'width: 580px' %>
     <%= submit_tag 'Add taxa', :class => 'default button' %>

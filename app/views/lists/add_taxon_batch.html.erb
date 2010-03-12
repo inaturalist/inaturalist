@@ -2,7 +2,7 @@
   <%= strip_tags(@pagetitle = "Add Taxon Batch to #{link_to(@list.title, @list)}") %>
 <%- end -%>
 <% content_for(:extracss) do %>
-  <%= render :partial => 'show_css' %>
+  <%= render :partial => 'lists/show_css' %>
   <style type="text/css" media="screen">
     td, th {
       padding-left: 10px;
@@ -41,7 +41,7 @@
 <% end -%>
 
 <% content_for(:extrajs) do %>
-  <%= render :partial => 'show_js' %>
+  <%= render :partial => 'lists/show_js' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#new_listed_taxon').show();
@@ -80,7 +80,7 @@
     <th class="statuscol">Status</th>
     <th class="actionscol">Actions</th>
   </tr>
-  <%= render :partial => 'add_taxon_batch_line', :collection => @lines_taxa %>
+  <%= render :partial => 'lists/add_taxon_batch_line', :collection => @lines_taxa %>
 </table>
 
 <%= link_to "Back to #{@list.title}", @list, :class => "back crumb" %>

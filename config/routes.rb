@@ -124,6 +124,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'lists', 
     :action => 'add_taxon_batch',
     :conditions => {:method => :post}
+  map.check_list_add_taxon_batch 'check_lists/:id/add_taxon_batch', 
+    :controller => 'check_lists', 
+    :action => 'add_taxon_batch',
+    :conditions => {:method => :post}
   
   map.resources :comments
   

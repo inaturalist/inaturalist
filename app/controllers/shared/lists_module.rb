@@ -203,7 +203,7 @@ module Shared::ListsModule
     end
     
     respond_to do |format|
-      format.html
+      format.html { render :template => "lists/add_taxon_batch" }
       format.js do
         render :update do |page|
           @lines_taxa.each do |line, other|
