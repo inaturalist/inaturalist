@@ -596,6 +596,8 @@ class Taxon < ActiveRecord::Base
     reject_taxon_names.each do |taxon_name|
       taxon_name.reload
       unless taxon_name.valid?
+        logger.info "[INFO] Destroying #{taxon_name} while merging taxon " + 
+          "#{reject.id} into taxon #{id}: #{taxon_name.errors.full_messages.to_sentence}"
         taxon_name.destroy 
         next
       end

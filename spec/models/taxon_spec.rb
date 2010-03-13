@@ -290,6 +290,18 @@ describe Taxon, "merging" do
     end
   end
   
+  it "should move the reject's taxon_names to the keeper even if they don't have a lexicon" do
+    @reject.taxon_names << TaxonName.new(:name => "something")
+    rejected_taxon_names = @reject.taxon_names
+    rejected_taxon_names.should_not be_empty
+    @keeper.merge(@reject)
+    rejected_taxon_names.each do |taxon_name|
+      taxon_name.reload
+      puts taxon_name
+      taxon_name.taxon_id.should be(@keeper.id)
+    end
+  end
+  
   it "should move the reject's observations to the keeper" do
     rejected_observations = @reject.observations
     rejected_observations.should_not be_empty
