@@ -1,0 +1,86 @@
+<%- content_for(:title) do -%>
+  <%= strip_tags(@pagetitle = "Add Taxon Batch to #{link_to(@list.title, @list)}") %>
+<%- end -%>
+<% content_for(:extracss) do %>
+  <%= render :partial => 'lists/show_css' %>
+  <style type="text/css" media="screen">
+    td, th {
+      padding-left: 10px;
+      vertical-align: middle;
+    }
+    th.statuscol { min-width: 150px; }
+    .buttonrow input.species_guess {
+      width: 350px;
+    }
+    
+    .buttonrow { min-width: 400px;}
+    .buttonrow .inter {padding: 0;}
+    .buttonrow label,
+    .buttonrow .inter,
+    .buttonrow input.text,
+    .buttonrow .button,
+    a.button {
+      margin-bottom: 0;
+    }
+    
+    .added { background-color: #E6EFC2; }
+    .already { background-color: #eee; }
+    table { width: 100%; }
+    td.actions { min-width: 550px; }
+    .actions form {
+      display: inline;
+      margin: 0;
+    }
+    
+    .listed_taxon,
+    .listed_taxon:hover {
+      background: none;
+      border-color: transparent;
+    }
+  </style>
+<% end -%>
+
+<% content_for(:extrajs) do %>
+  <%= render :partial => 'lists/show_js' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#new_listed_taxon').show();
+      window.todo = <%= @lines_taxa.map{|l,o| l if o.blank?}.compact.in_groups_of(50).reverse.to_json %>;
+      loadNextBatch();
+    });
+    
+    function loadNextBatch() {
+      var batch = todo.pop();
+      if (batch != null) {
+        $.ajax({
+          type: "post",
+          url: '<%= url_for %>',
+          data: {names: batch.join("\n")},
+          dataType: "script",
+          success: function(data, textStatus, XMLHttpRequest) {
+            loadNextBatch();
+          }
+        });
+      };
+    }
+    
+  </script>
+<% end %>
+
+<div id="pagheader">
+  <div class="breadcrumbs">
+    <%= link_to "Back to #{@list.title}", @list, :class => "back crumb" %>
+  </div>
+  <h2><%= @pagetitle %></h2>
+</div>
+
+<table border="0">
+  <tr>
+    <th class="linecol">Name entered</th>
+    <th class="statuscol">Status</th>
+    <th class="actionscol">Actions</th>
+  </tr>
+  <%= render :partial => 'lists/add_taxon_batch_line', :collection => @lines_taxa %>
+</table>
+
+<%= link_to "Back to #{@list.title}", @list, :class => "back crumb" %>

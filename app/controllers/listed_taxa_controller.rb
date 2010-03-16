@@ -1,5 +1,6 @@
 class ListedTaxaController < ApplicationController
   before_filter :login_required
+  cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
 
   def index
     redirect_to lists_path
@@ -52,6 +53,7 @@ class ListedTaxaController < ApplicationController
             },
             :html => render_to_string(
               :partial => partial, 
+              :object => @listed_taxon,
               :locals => {:listed_taxon => @listed_taxon, :seenit => true}
             )
           })
@@ -59,7 +61,8 @@ class ListedTaxaController < ApplicationController
           render(
             :json => {
               :object => @listed_taxon,
-              :errors => @listed_taxon.errors
+              :errors => @listed_taxon.errors,
+              :full_messages => @listed_taxon.errors.full_messages.to_sentence
             },
             :status => :unprocessable_entity,
             :status_text => @listed_taxon.errors.full_messages.join(', ')

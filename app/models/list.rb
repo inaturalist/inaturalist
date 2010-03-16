@@ -59,6 +59,10 @@ class List < ActiveRecord::Base
     self.user ? self.user.login : 'Unknown'
   end
   
+  def self.icon_preview_cache_key(list)
+    {:controller => "lists", :action => "icon_preview", :list_id => list}
+  end
+  
   def self.refresh_for_user(user, options = {})
     options = {:add_new_taxa => true}.merge(options)
     

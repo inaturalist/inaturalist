@@ -4,7 +4,9 @@
 (function($){
   $.fn.simpleTaxonSelector = function(options) {
     var options = $.extend({}, $.fn.simpleTaxonSelector.defaults, options);
-    options.inputWidth = $(this).outerWidth();
+    if (typeof(options.inputWidth) == "undefined") {
+      options.inputWidth = $(this).outerWidth();
+    };
     options.inputHeight = $(this).outerHeight();
     
     var instances = [];
@@ -203,6 +205,9 @@
               $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
               return false;
             })
+            // TODO
+            // "&nbsp;",
+            // $('<a href="/taxa/'+taxon.id+'" target="_blank" class="small">(view)</a>').css({'float': 'right'})
           )
         );
       });

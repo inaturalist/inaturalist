@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   before_filter :load_list, :only => [:show, :edit, :update, :destroy, 
     :compare, :remove_taxon, :add_taxon_batch, :taxa]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon]
+    :remove_taxon, :add_taxon_batch]
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
@@ -27,8 +27,10 @@ class ListsController < ApplicationController
     # lots of lists.
     @iconic_taxa_for = {}
     @lists.each do |list|
-      @iconic_taxa_for[list.id] = list.taxa.all(:include => :photos, 
-        :limit => 9, :order => "photos.id DESC")
+      unless fragment_exist?(List.icon_preview_cache_key(list))
+        @iconic_taxa_for[list.id] = list.taxa.all(:include => :photos, 
+          :limit => 9, :order => "photos.id DESC")
+      end
     end
     
     respond_to do |format|

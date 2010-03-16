@@ -629,7 +629,7 @@ class ObservationsController < ApplicationController
       format.html
       format.mobile { render "add_from_list.html.erb" }
       format.js do
-        if fragment_exists?(@cache_key)
+        if fragment_exist?(@cache_key)
           render read_fragment(@cache_key)
         else
           render :partial => 'add_from_list.html.erb'
