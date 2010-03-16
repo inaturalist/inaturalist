@@ -14,7 +14,7 @@
 
 <ul style="width: 100%">
   <li><%= link_to "Nearby observations", nearby_observations_path, :id => "nearbylink", :class => "button" %></li>
-  <li><%= link_to "Add an observation", new_observation_path, :id => "addobslink", :class => "button" %></li>
+  <li><%= link_to "Add an observation", add_nearby_observations_path, :id => "addobslink", :class => "button" %></li>
   <% if logged_in? -%>
     <li><%= link_to "Add observations from a list", add_observations_from_list_path, :id => "addfromlistlink", :class => "button" %></li>
   <% end -%>
