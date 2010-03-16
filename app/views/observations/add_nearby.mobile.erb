@@ -1,0 +1,24 @@
+
+<%form_for @observation do |o| %>
+<%= o.label :species_guess, "What did you see?" %>
+<%= o.text_field(:species_guess, :class => 'species_guess') %>
+<br/>
+<%= o.label(:id_please, "ID Please!") %>
+<%= o.check_box(:id_please) %>
+
+<%= o.hidden_field(:latitude) %>
+<%= o.hidden_field(:longitude) %>
+<br/>
+<br/>
+<%= submit_tag("Save observation") %>
+<% end %>
+
+<script type="text/javascript" charset="utf-8">
+
+function update_location(loc) {
+  $('#observation_latitude').val(loc.coords.latitude);
+  $('#observation_longitude').val(loc.coords.longitude);
+}
+navigator.geolocation.getCurrentPosition(update_location);
+
+</script>

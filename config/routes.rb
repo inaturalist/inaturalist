@@ -72,6 +72,7 @@ ActionController::Routing::Routes.draw do |map|
     o.add_observations_from_list "observations/add_from_list", :action => "add_from_list"
     o.new_observations_from_list "observations/new_from_list", :action => "new_from_list"
     o.nearby_observations "observations/nearby", :action => "nearby"
+    o.add_nearby_observations "observations/add_nearby", :action => "add_nearby"
     o.edit_observation_photos "observations/:id/edit_photos", :action => "edit_photos"
     o.update_observation_photos "observations/:id/update_photos", :action => "update_photos"
     

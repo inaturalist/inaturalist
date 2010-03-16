@@ -23,7 +23,7 @@ class ObservationsController < ApplicationController
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
-  MOBILIZED = [:add_from_list, :nearby]
+  MOBILIZED = [:add_from_list, :nearby, :add_nearby]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
@@ -821,6 +821,13 @@ class ObservationsController < ApplicationController
     
     @observations ||= Observation.latest.paginate(:page => params[:page])
     
+    respond_to do |format|
+      format.mobile
+    end
+  end
+  
+  def add_nearby
+    @observation = Observation.new
     respond_to do |format|
       format.mobile
     end
