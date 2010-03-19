@@ -195,6 +195,15 @@ describe "a TaxonName adapter", :shared => true do
     taxon_name.is_valid.should be(false)
   end
   
+  it "should always set is_valid to true for single sci names" do
+    # lookup an outdated sci. name for Sticky Monkey Flower
+    name = "Raspberry gall midge"
+    a = @np.find(name)
+    taxon_name = a.select {|n| n.name == name}.first
+    taxon_name.name.should == name
+    taxon_name.is_valid.should be(true)
+  end
+  
   it "should have a working #to_json method" do
     lambda { @adapter.to_json }.should_not raise_error
   end

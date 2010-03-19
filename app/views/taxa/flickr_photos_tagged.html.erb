@@ -125,7 +125,7 @@
                         "$('#remove_tag_link_#{tag.id}').hide();" +
                         "$('#tag_#{tag.id} .loading').show();",
                       :success => 
-                        "$('#tag_#{tag.id}').fadeOut('normal', function() {$(this).remove()});",
+                        "$('#tag_#{tag.id}').fadeOut('normal', function() { $(this).remove(); });",
                       :failure => 
                         "$('#remove_tag_link_#{tag.id}').show();" +
                         "alert('There was a problem removing that tag.');" +

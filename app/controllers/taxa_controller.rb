@@ -4,7 +4,8 @@ class TaxaController < ApplicationController
   
   before_filter :return_here, :only => [:index, :show, :flickr_tagger]
   before_filter :login_required, :only => [:edit_photos, :update_photos, 
-    :update_colors, :tag_flickr_photos, :flickr_photos_tagged, :add_places]
+    :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
+    :flickr_photos_tagged, :add_places]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
@@ -13,7 +14,7 @@ class TaxaController < ApplicationController
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
-      :tag_flickr_photos ],
+      :tag_flickr_photos, :tag_flickr_photos_from_observations],
     :redirect_to => { :action => :index }
   verify :method => :put, :only => [ :update, :update_colors ],
     :redirect_to => { :action => :index }
@@ -612,43 +613,7 @@ class TaxaController < ApplicationController
     @taxon ||= Taxon.find_by_id(params[:id]) if params[:id]
     @taxon ||= Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
     
-    @tags = []
-    if @taxon
-      if @taxon.grafted?
-        @tags += @taxon.self_and_ancestors.map do |taxon|
-          unless taxon.root?
-            name_pieces = taxon.name.split
-            name_pieces.delete('subsp.')
-            if name_pieces.size == 3
-              ["taxonomy:species=#{name_pieces[1]}", "taxonomy:trinomial=#{name_pieces.join(' ')}"]
-            elsif name_pieces.size == 2
-              ["taxonomy:species=#{name_pieces[1]}", "taxonomy:binomial=#{taxon.name.strip}"]
-            else
-              ["taxonomy:#{taxon.rank}=#{taxon.name.strip}", taxon.name.strip]
-            end
-          end
-        end.flatten.compact
-      else
-        name_pieces = @taxon.name.split
-        name_pieces.delete('subsp.')
-        if name_pieces.size == 3
-          @tags << "taxonomy:trinomial=#{name_pieces.join(' ')}"
-          @tags << "taxonomy:binomial=#{name_pieces[0]} #{name_pieces[1]}"
-        elsif name_pieces.size == 2
-          @tags << "taxonomy:binomial=#{@taxon.name.strip}"
-        else
-          @tags << "taxonomy:#{@taxon.rank}=#{@taxon.name.strip}"
-        end
-      end
-      @tags += @taxon.taxon_names.map{|tn| tn.name.strip if tn.is_valid?}.compact
-      @tags += @taxon.taxon_names.map do |taxon_name|
-        unless taxon_name.lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
-          "taxonomy:common=#{taxon_name.name.strip}"
-        end
-      end.compact.flatten
-      
-      @tags = @tags.compact.flatten.uniq
-    end
+    @tags = @taxon ? @taxon.to_tags : []
     
     respond_to do |format|
       format.html
@@ -672,29 +637,49 @@ class TaxaController < ApplicationController
     get_flickraw
     
     params[:flickr_photos].each do |flickr_photo_id|
-      begin
-        flickr.photos.addTags(:photo_id => flickr_photo_id, 
-          :tags => params[:tags], 
-          :auth_token => current_user.flickr_identity.token)
-      rescue FlickRaw::FailedResponse => e
-        if e.message =~ /Insufficient permissions/
-          auth_url = FlickRaw.auth_url :perms => 'write'
-          flash[:notice] = "iNat can't add tags to your photos until " + 
-            "Flickr knows you've given us permission.  " + 
-            "<a href=\"#{auth_url}\">Click here to authorize iNat to add tags</a>."
-        else
-          flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
-        end
-        redirect_to :action => 'flickr_tagger' and return
-      rescue Exception => e
-        flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
-        redirect_to :action => 'flickr_tagger' and return
-      end
+      tag_flickr_photo(flickr_photo_id, params[:tags])
+      return redirect_to :action => "flickr_tagger" unless flash[:error].blank?
     end
     
     flash[:notice] = "Your photos have been tagged!"
     redirect_to :action => 'flickr_photos_tagged', 
       :flickr_photos => params[:flickr_photos], :tags => params[:tags]
+  end
+  
+  def tag_flickr_photos_from_observations
+    if params[:o].blank?
+      flash[:error] = "You didn't select any observations."
+      return redirect_to :back
+    end
+    
+    @observations = current_user.observations.all(
+      :conditions => ["id IN (?)", params[:o].split(',')],
+      :include => [:photos, {:taxon => :taxon_names}]
+    )
+    
+    if @observations.blank?
+      flash[:error] = "No observations matching those IDs."
+      return redirect_to :back
+    end
+    
+    if @observations.map(&:user_id).uniq.size > 1 || @observations.first.user_id != current_user.id
+      flash[:error] = "You don't have permission to edit those photos."
+      return redirect_to :back
+    end
+    
+    flickr_photo_ids = []
+    @observations.each do |observation|
+      observation.photos.each do |photo|
+        next unless photo.is_a?(FlickrPhoto)
+        tag_flickr_photo(photo.native_photo_id, observation.taxon.to_tags)
+        unless flash[:error].blank?
+          return redirect_to :back
+        end
+        flickr_photo_ids << photo.native_photo_id
+      end
+    end
+    
+    redirect_to :action => 'flickr_photos_tagged', :flickr_photos => flickr_photo_ids
   end
   
   def flickr_photos_tagged
@@ -848,6 +833,32 @@ class TaxaController < ApplicationController
         pager.replace(@external_taxa)
         pager.total_entries = @external_taxa.size
       end
+    end
+  end
+  
+  def tag_flickr_photo(flickr_photo_id, tags)
+    # Strip and enclose multiword tags in quotes
+    if tags.is_a?(Array)
+      tags = tags.map do |t|
+        t.strip.match(/\s+/) ? "\"#{t.strip}\"" : t.strip
+      end.join(' ')
+    end
+    
+    begin
+      flickr.photos.addTags(:photo_id => flickr_photo_id, 
+        :tags => tags, 
+        :auth_token => current_user.flickr_identity.token)
+    rescue FlickRaw::FailedResponse => e
+      if e.message =~ /Insufficient permissions/
+        auth_url = FlickRaw.auth_url :perms => 'write'
+        flash[:error] = "iNat can't add tags to your photos until " + 
+          "Flickr knows you've given us permission.  " + 
+          "<a href=\"#{auth_url}\">Click here to authorize iNat to add tags</a>."
+      else
+        flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
+      end
+    rescue Exception => e
+      flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
     end
   end
 end

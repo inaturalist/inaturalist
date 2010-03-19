@@ -19,7 +19,7 @@ Observations by <%= h @login %>
   }
   
   #delete_selected_button {
-    color: DeepPink;
+    color: #777;
   }
   
   .buttonrow .status.loading {
@@ -37,13 +37,18 @@ Observations by <%= h @login %>
     border: 1px solid transparent;
     background-color: white;
     outline: none;
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    
   }
 
   #filters_button.open {
     background: 5px 12px url('/images/toggle_arrow_down.png') no-repeat;
     border: 1px solid #eee;
     border-bottom: 1px solid white;
-    padding-bottom: 17px;
+    padding-bottom: 18px;
     margin-bottom: -1px;
   }
 </style>
@@ -171,14 +176,33 @@ Observations by <%= h @login %>
       actOnSelected("<%= url_for(:action => 'edit_batch') %>");
     }
     
-    function actOnSelected(baseURL) {
+    function actOnSelected(baseURL, options) {
+      var options = $.extend({}, options);
       var obs_inputs = $.makeArray($('.observation .control input:checkbox:checked'));
       var obs_ids = $.map(obs_inputs, function(input) { return $(input).val(); });
       if (obs_ids.length > 0) {
-        window.location = baseURL + "?o=" + obs_ids.join(',');
+        if (options.method == "post") {
+          var form = $('<form method="post" style="display:none"></form>').attr('action', baseURL).append(
+            $('<input type="hidden" name="o">').val(obs_ids.join(',')),
+            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token %>')
+          );
+          $('body').append(form);
+          $(form).submit();
+        } else {
+          window.location = baseURL + "?o=" + obs_ids.join(',');
+        }
       } else {
         alert('You need to select some observations first.');
       }
+    }
+    
+    function flickrTagger() {
+      if (!confirm("This will try to add tags to your Flickr photos.  Continue?")) return;
+      
+      actOnSelected(
+        '<%= url_for :controller => "taxa", :action => "tag_flickr_photos_from_observations" %>',
+        {method: "post"}
+      );
     }
     
     function deleteSelected() {
@@ -243,13 +267,15 @@ Observations by <%= h @login %>
         <%= link_to_function("Edit Selected", "editSelected()", :id => "edit_selected_button", :class => 'button') %>
         <%= link_to_function("Select all", "$('.observation .control input:checkbox').check()", :id => "select_all_button", :class => 'minor button') %>
         <%= link_to_function("Select none", "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button", :class => 'minor button') %>
+        <%= link_to_function "Flickr Tagger", "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button",
+          :title => "Add taxonomic tags to the Fickr photos associated with the selected observations." %>
         <%= link_to_function("Delete Selected", "deleteSelected()", :id => "delete_selected_button", :class => 'minor button') %>
       </div>
     <% end -%>
     <%= link_to_function("Search", 
       "$('#filters').toggle(); $(this).toggleClass('open'); $('#filters:visible input[name=filters_open]').val(true); $('#filters:hidden input[name=filters_open]').val(false);", 
       :id => 'filters_button', 
-      :class => "inter#{' open' if @filters_open}") %>
+      :class => "inter#{' open' if @filters_open} minor button") %>
   </div>
   <div id="filters" class="clear"<% unless @filters_open %> style="display: none"<% end %>>
     <% form_tag observations_by_login_path(@login), :method => :get do -%>

@@ -613,6 +613,44 @@ class Taxon < ActiveRecord::Base
     reject.destroy
   end
   
+  def to_tags
+    tags = []
+    if grafted?
+      tags += self_and_ancestors.map do |taxon|
+        unless taxon.root?
+          name_pieces = taxon.name.split
+          name_pieces.delete('subsp.')
+          if name_pieces.size == 3
+            ["taxonomy:species=#{name_pieces[1]}", "taxonomy:trinomial=#{name_pieces.join(' ')}"]
+          elsif name_pieces.size == 2
+            ["taxonomy:species=#{name_pieces[1]}", "taxonomy:binomial=#{taxon.name.strip}"]
+          else
+            ["taxonomy:#{taxon.rank}=#{taxon.name.strip}", taxon.name.strip]
+          end
+        end
+      end.flatten.compact
+    else
+      name_pieces = name.split
+      name_pieces.delete('subsp.')
+      if name_pieces.size == 3
+        tags << "taxonomy:trinomial=#{name_pieces.join(' ')}"
+        tags << "taxonomy:binomial=#{name_pieces[0]} #{name_pieces[1]}"
+      elsif name_pieces.size == 2
+        tags << "taxonomy:binomial=#{name.strip}"
+      else
+        tags << "taxonomy:#{rank}=#{name.strip}"
+      end
+    end
+    tags += taxon_names.map{|tn| tn.name.strip if tn.is_valid?}.compact
+    tags += taxon_names.map do |taxon_name|
+      unless taxon_name.lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+        "taxonomy:common=#{taxon_name.name.strip}"
+      end
+    end.compact.flatten
+    
+    tags.compact.flatten.uniq
+  end
+  
   include TaxaHelper
   def image_url
     taxon_image_url(self)
