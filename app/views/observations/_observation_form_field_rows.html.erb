@@ -15,6 +15,18 @@
         </div>
       </div>
       <% end %>
+      <% if @observation_photos -%>
+        <% existing_observation_photo = @observation_photos.detect do |op|
+          observation.photos.map(&:native_photo_id).include?(op.photo.native_photo_id)
+        end %>
+        <% if existing_observation_photo -%>
+          <div class="clear notice existing_obs_notice">
+            <%= image_tag existing_observation_photo.photo.thumb_url %>
+            <strong>Heads up:</strong> this photo is already associated with an
+            <%= link_to "existing observation", existing_observation_photo.observation, :class => "readmore" %>
+          </div>
+        <% end -%>
+      <% end -%>
       <div class="column span-24 field">
         <div class="column span-1">
           <%#= check_box_tag("selected")%>

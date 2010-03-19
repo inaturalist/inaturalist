@@ -605,6 +605,10 @@ class ObservationsController < ApplicationController
         :user => current_user, :photo_class => klass)
     end.flatten.compact
     @observations = photos.map(&:to_observation)
+    @observation_photos = ObservationPhoto.all(
+      :conditions => ["photos.native_photo_id IN (?)", photos.map(&:native_photo_id)],
+      :include => [:photo, :observation]
+    )
     @step = 2
     render :template => 'observations/new_batch'
   end
