@@ -106,7 +106,7 @@ module Ratatosk
         if is_comname?
           true
         else
-          @hxml.at('/name_status').inner_text == 'accepted name'
+          ["accepted name", "provisionally accepted name"].include?(@hxml.at('/name_status').inner_text)
         end
       end
 

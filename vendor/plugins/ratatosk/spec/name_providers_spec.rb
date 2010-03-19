@@ -196,8 +196,7 @@ describe "a TaxonName adapter", :shared => true do
   end
   
   it "should always set is_valid to true for single sci names" do
-    # lookup an outdated sci. name for Sticky Monkey Flower
-    name = "Raspberry gall midge"
+    name = "Geum triflorum"
     a = @np.find(name)
     taxon_name = a.select {|n| n.name == name}.first
     taxon_name.name.should == name
