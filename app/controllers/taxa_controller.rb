@@ -667,6 +667,8 @@ class TaxaController < ApplicationController
       return redirect_to :back
     end
     
+    get_flickraw
+    
     flickr_photo_ids = []
     @observations.each do |observation|
       observation.photos.each do |photo|
