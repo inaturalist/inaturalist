@@ -224,8 +224,8 @@
 
 <div id="pageheader">
   <span id="controls" class="right">
-    <%= link_to_function "Map", "$('#map').show(); $('#observations').hide(); $('#controls .button').toggleClass('open')", :class => "button open" %>
-    <%= link_to_function "List", "$('#map').hide(); $('#observations').show(); $('#controls .button').toggleClass('open')", :class => "button" %>
+    <%= link_to_function "Map", "$('#mapcontainer').show(); $('#observations').hide(); $('#controls .button').toggleClass('open')", :class => "button open" %>
+    <%= link_to_function "List", "$('#mapcontainer').hide(); $('#observations').show(); $('#controls .button').toggleClass('open')", :class => "button" %>
   </span>
   <strong><%= @pagetitle %></strong>
 </div>

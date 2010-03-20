@@ -108,7 +108,7 @@ class PlacesController < ApplicationController
       :include => {:taxon => [:photos, :iconic_taxon]},
       :conditions => "photos.id > 0",
       :group => 'listed_taxa.taxon_id',
-      :order => "listed_taxa.id DESC"
+      :order => "taxa.observations_count DESC, listed_taxa.id DESC"
     )
     
     # Load tips HTML
@@ -270,6 +270,7 @@ class PlacesController < ApplicationController
       :include => {:taxon => [:iconic_taxon, :photos]}, 
       :conditions => conditions, 
       :group => 'listed_taxa.taxon_id',
+      # :order => "taxa.observations_count DESC, listed_taxa.id DESC")
       :order => "listed_taxa.id DESC")
     @taxa = listed_taxa.map(&:taxon)
     
