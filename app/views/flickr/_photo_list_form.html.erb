@@ -2,7 +2,11 @@
 <%- checked ||= false -%>
 <%- synclink_base ||= nil -%>
 
-<% if photos.size > 0 %>
+<% if photos.blank? %>
+  <div class="notice" style="clear: both">
+    We didn't find any photos using the search terms you provided.
+  </div>
+<% else %>
   <% photos.each do |photo| %>
     <%- native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id -%>
     <%- square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square) -%>
@@ -46,8 +50,4 @@
       <% end %>
     </div>
   <% end %>
-<% else %>
-  <div class="notice" style="clear: both">
-    We didn't find any photos using the search terms you provided.
-  </div>
 <% end %>
