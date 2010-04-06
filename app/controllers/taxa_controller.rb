@@ -592,6 +592,9 @@ class TaxaController < ApplicationController
       net_flickr.auth.token = current_user.flickr_identity.token
     end
     
+    @taxon ||= Taxon.find_by_id(params[:id]) if params[:id]
+    @taxon ||= Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
+    
     @flickr_photo_ids = [params[:flickr_photo_id], params[:flickr_photos]].flatten.compact
     @flickr_photos = @flickr_photo_ids.map do |flickr_photo_id|
       begin
@@ -609,9 +612,6 @@ class TaxaController < ApplicationController
         nil
       end
     end.compact
-    
-    @taxon ||= Taxon.find_by_id(params[:id]) if params[:id]
-    @taxon ||= Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
     
     @tags = @taxon ? @taxon.to_tags : []
     
