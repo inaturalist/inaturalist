@@ -162,9 +162,8 @@
             or
           </div>
           <%= link_to "Import as an observation", 
-            {:controller => "observations", :action => 'import_photos', 
-              :flickr_photos => [flickr_photo.native_photo_id]}, 
-            :method => :post, :class => 'button' %>
+            new_observation_path(:flickr_photo_id => flickr_photo.native_photo_id),
+            :class => "button" %>
         <% end -%>
       </td>
     </tr>
