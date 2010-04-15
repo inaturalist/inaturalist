@@ -141,6 +141,9 @@ class FlickrPhoto < Photo
     # Try to get a taxon
     photo_taxa = to_taxa(:flickr => flickr, :fp => fp)
     unless photo_taxa.blank?
+      unless photo_taxa.detect{|t| t.rank_level.blank?}
+        photo_taxa = photo_taxa.sort_by(&:rank_level)
+      end
       observation.taxon = photo_taxa.detect(&:species_or_lower?)
       observation.taxon ||= photo_taxa.first
       
@@ -160,6 +163,17 @@ class FlickrPhoto < Photo
   def to_taxa(options = {})
     self.api_response ||= FlickrPhoto.get_api_response(
       self.native_photo_id, :user => options[:user] || self.user)
-    Taxon.tags_to_taxa(api_response.tags.values.map(&:raw)) unless api_response.tags.blank?
+    taxa = if api_response.tags.blank?
+      []
+    else
+      # First try to find taxa matching taxonomic machine tags, then default 
+      # to all tags
+      tags = api_response.tags.values.map(&:raw)
+      machine_tags = tags.select{|t| t =~ /taxonomy\:/}
+      taxa = Taxon.tags_to_taxa(machine_tags) unless machine_tags.blank?
+      taxa ||= Taxon.tags_to_taxa(tags)
+      taxa
+    end
+    taxa.compact
   end
 end

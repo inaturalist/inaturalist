@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe FlickrPhoto, "creation" do
   fixtures :users, :flickr_identities
+  
   before(:each) do
     @flickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
     # grab Ken-ichi's photo of a Black Widow
