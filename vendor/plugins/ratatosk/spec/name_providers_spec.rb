@@ -189,9 +189,10 @@ describe "a TaxonName adapter", :shared => true do
   # crucifer would NOT pass this test from uBio as of 2008-06-26
   it "should correctly fill in the is_valid field" do
     # lookup an outdated sci. name for Sticky Monkey Flower
-    a = @np.find('Mimulus aurantiacus')
-    taxon_name = a.select {|n| n.name == 'Mimulus aurantiacus'}.first
-    taxon_name.name.should == 'Mimulus aurantiacus'
+    bad_name = 'Zigadenus fremontii'
+    a = @np.find(bad_name)
+    taxon_name = a.select {|n| n.name == bad_name}.first
+    taxon_name.name.should == bad_name
     taxon_name.is_valid.should be(false)
   end
   
