@@ -97,6 +97,8 @@ class FlickrController < ApplicationController
         redirect_to :controller => :observations, :action => @user.login
       end
     rescue Net::Flickr::APIError => e
+      logger.error "[Error #{Time.now}] FlickrController#success failed (#{e}): #{e.message}"
+      HoptoadNotifier.notify(e) # testing
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
                        "squid ate your Flickr info.  You can contact us at " + 
                        "help@inaturalist.org if you still can't get this " + 
@@ -217,6 +219,8 @@ class FlickrController < ApplicationController
         @photos = @person.photos({'per_page' => 5})
       end
     rescue Net::Flickr::APIError => e
+      logger.error "[Error #{Time.now}] FlickrController#options failed (#{e}): #{e.message}"
+      HoptoadNotifier.notify(e) # testing
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
                        "squid ate your Flickr info.  You can contact us at " +
                        "help@inaturalist.org if you still can't get this " + 
