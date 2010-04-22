@@ -21,7 +21,7 @@ smtp_config_path = File.open("#{RAILS_ROOT}/config/smtp.yml")
 ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
 
 # Set the logger to roll over monthly
-config.logger = Logger.new("#{RAILS_ROOT}/log/#{ENV['RAILS_ENV']}.log", 20, 1048576)
+config.logger = Logger.new("#{RAILS_ROOT}/log/#{ENV['RAILS_ENV']}.log", 10, 10485760)
 
 # Only log events at the info level
 config.logger.level = Logger::Severity::INFO
