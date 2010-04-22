@@ -1,0 +1,12 @@
+all: &all
+  morphology: stem_en
+  port: 9999
+
+development:
+  <<: *all
+
+test:
+  <<: *all
+
+production:
+  <<: *all
