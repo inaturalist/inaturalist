@@ -1,6 +1,0 @@
-require 'rubygems'
-require 'cucumber'
-require 'spec'
-require 'fileutils'
-require 'ginger'
-require 'will_paginate'

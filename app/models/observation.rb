@@ -57,7 +57,7 @@ class Observation < ActiveRecord::Base
       :as => :identifications_some_agree, :type => :boolean
     has "num_identification_agreements < num_identification_disagreements",
       :as => :identifications_most_disagree, :type => :boolean
-    set_property :delta => true
+    set_property :delta => :delayed
   end
 
   ##

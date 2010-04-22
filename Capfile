@@ -13,6 +13,7 @@ namespace :deploy do
     copy_db_config
     copy_gmap_api_key
     copy_smtp_config
+    copy_sphinx_config
     create_attachments
     create_cache
     copy_sphinx
@@ -24,6 +25,7 @@ namespace :deploy do
     symlink_db_config
     symlink_gmap_api_key
     symlink_smtp_config
+    symlink_sphinx_config
     symlink_geoip_config
     symlink_attachments
     symlink_cache
@@ -63,6 +65,11 @@ namespace :deploy do
   desc "Create a symlink to a copy of smtp.yml that is outside the repos."
   task :symlink_smtp_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/smtp.yml #{latest_release}/config/smtp.yml"
+  end
+  
+  desc "Create a symlink to a copy of sphinx.yml that is outside the repos."
+  task :symlink_sphinx_config, :hosts => "#{domain}" do
+    run "ln -s #{inat_config_shared_path}/sphinx.yml #{latest_release}/config/sphinx.yml"
   end
   
   desc "Create a symlink to a copy of geoip.yml that is outside the repos."
@@ -179,6 +186,11 @@ namespace :deploy do
   desc "Copy smtp.yml.example if not exists"
   task :copy_smtp_config, :hosts => "#{domain}" do
     run "test -e #{inat_config_shared_path}/smtp.yml || cp #{latest_release}/config/smtp.yml.example #{inat_config_shared_path}/smtp.yml"
+  end
+  
+  desc "Copy sphinx.yml.example if not exists"
+  task :copy_sphinx_config, :hosts => "#{domain}" do
+    run "test -e #{inat_config_shared_path}/sphinx.yml || cp #{latest_release}/config/sphinx.yml.example #{inat_config_shared_path}/sphinx.yml"
   end
   
   desc "Create to the common attachments dir"

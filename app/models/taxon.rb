@@ -43,7 +43,7 @@ class Taxon < ActiveRecord::Base
     has colors(:id), :as => :colors, :facet => true, :type => :multi
     has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
     has created_at
-    set_property :delta => true
+    set_property :delta => :delayed
   end
   
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name

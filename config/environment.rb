@@ -84,10 +84,16 @@ Rails::Initializer.run do |config|
   config.gem 'nokogiri'
   config.gem 'objectify-xml', :lib => 'objectify_xml'
   config.gem 'hoptoad_notifier'
-
-  # Can't do this until Rails starts including the rake tasks of plugin gems
-  # config.gem "freelancing-god-thinking-sphinx", :lib => 'thinking_sphinx', 
-  #   :source => 'http://gems.github.com'
+  # As of 2010-04-21, TS doesn't work with DJ >= 2.0
+  config.gem 'delayed_job', :version => '<= 1.8.5'
+  config.gem 'thinking-sphinx',
+    :lib     => 'thinking_sphinx',
+    :version => '>= 1.3.11',
+    :source  => 'http://gemcutter.org'
+  config.gem 'ts-delayed-delta',
+    :lib     => 'thinking_sphinx/deltas/delayed_delta',
+    :version => '>= 1.0.0',
+    :source  => 'http://gemcutter.org'
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'
