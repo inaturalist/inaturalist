@@ -20,6 +20,7 @@ class ListedTaxon < ActiveRecord::Base
   before_save :update_last_observation
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
+  after_create :delta_index_taxon
   after_destroy :update_user_life_list_taxa_count
   
   validates_presence_of :list, :taxon
@@ -122,6 +123,12 @@ class ListedTaxon < ActiveRecord::Base
   def sync_parent_check_list
     return unless list.is_a?(CheckList)
     list.send_later(:sync_with_parent)
+    true
+  end
+  
+  def delta_index_taxon
+    taxon.delta = true
+    taxon.save
     true
   end
   
