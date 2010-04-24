@@ -77,6 +77,17 @@ describe Identification, "creation" do
     @unknown_obs.species_guess.should == anna.to_plain_s
   end
   
+  it "should add an iconic_taxon_id to its observation if it's the observer's identification" do
+    @unknown_obs.taxon_id.should be(nil)
+    identification = Identification.create(
+      :user => @unknown_obs.user,
+      :observation => @unknown_obs,
+      :taxon => Taxon.find_by_name('Calypte anna')
+    )
+    @unknown_obs.reload
+    @unknown_obs.iconic_taxon_id.should == identification.taxon.iconic_taxon_id
+  end
+  
   it "should increment the observations num_identification_agreements if this is an agreement" do
     # ted = User.find_by_login('ted')
     jill = users(:jill) # User.find_by_login('ted')

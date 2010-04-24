@@ -35,13 +35,13 @@ class Identification < ActiveRecord::Base
     return unless self.user_id == self.observation.user_id
 
     # update the species_guess
-    species_guess = self.observation.species_guess
-    unless self.taxon.taxon_names.exists?(:name => species_guess)
-      species_guess = self.taxon.to_plain_s
+    species_guess = observation.species_guess
+    unless taxon.taxon_names.exists?(:name => species_guess)
+      species_guess = taxon.to_plain_s
     end
     Observation.update_all(
-      ["taxon_id = ?, species_guess = ?", self.taxon_id, species_guess],
-      "id = #{self.observation_id}"
+      ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", taxon_id, species_guess, taxon.iconic_taxon_id],
+      "id = #{observation_id}"
     )
   end
   
