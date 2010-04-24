@@ -67,7 +67,7 @@ module TaxaHelper
   end
   
   def taxon_image_url(taxon, params = {})
-    return iconic_taxon_image_url(taxon, params) if taxon.photos.blank?
+    return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.photos.blank?
     size = params[:size] ? "#{params[:size]}_url" : 'square_url'
     if taxon.photos.first.respond_to?(size)
       taxon.photos.first.send(size)

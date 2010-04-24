@@ -296,11 +296,7 @@
       <% end %>
       <div class="description">
         Location: 
-        <% if @observation.place_guess and @observation.place_guess != 'Type the name of a place' %>
-          <%=h @observation.place_guess %>
-        <% else %>
-          the Universe
-        <% end %>
+        <%= render :partial => 'place_guess', :object => @observation %>
         <% if @observation.latitude and @observation.longitude %>
         <div>
           <span class="latitude">
@@ -362,7 +358,7 @@
           <% end -%>
           
           <div class="meta">
-            Posted by <%= link_to(truncate(item.user.login, :length => 20), person_path(item.user)) %>
+            Posted by <%= link_to(truncate(you_or_login(item.user), :length => 20), person_path(item.user)) %>
             <span class="when">
               <span class="date"><%= time_ago_in_words(item.created_at) %></span> ago
             </span>
@@ -425,6 +421,7 @@
 
   <div id="identifications" class="clear">
     <h3>Identification Summary</h3>
+    
     <% if @owners_identification %>
       <div id="owners-identification" class="box">
         <%= render :partial => 'identifications/identification',
@@ -453,13 +450,52 @@
         </div>
       <% end %>
     </div>
+    
+    <% if is_me?(@observation.user) -%>
+      <div id="idplease" class="clear inline buttonrow">
+        <div id="added_to_id_please" class="box" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
+          <span class="inter">
+            Added to <%= link_to "ID Please", id_please_path %>
+          </span>
+          <%= link_to_remote "remove",
+            :url => @observation,
+            :with => "'ignore_photos=true&observation[id_please]=false'",
+            :method => :put,
+            :loading => 
+              "$('#added_to_id_please').fadeOut(function() {$('#need_id_help').fadeIn()});",
+            :html => {
+              :class => "pale button",
+              :style => "float: right; margin: 0"
+            } %>
+        </div>
+        
+        <div id="need_id_help" class="quiet box" style="display: <%= @observation.id_please? ? 'none' : 'block' %>">
+          <span class="inter">Need ID help?</span>
+          
+          <%= link_to_remote "add to ID Please",
+            :url => @observation,
+            :with => "'ignore_photos=true&observation[id_please]=true'",
+            :method => :put,
+            :loading => 
+              "$('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()});",
+            :html => {
+              :class => "glaucous button",
+              :style => "float: right; margin: 0;"
+            } %>
+        </div>
+      </div>
+    <% elsif @observation.id_please? %>
+      <div id="idplease" class="box">
+        <%= link_to @observation.user.login, @observation.user %> would like some help identifying this.
+      </div>
+    <% end -%>
+    
     <% user_identified = false %>
     <% if logged_in? %>
       <% identifying_user_ids =  @observation.identifications.map { |ident| ident.user_id } -%>
       <% user_identified = identifying_user_ids.include?(@user.id) -%>
     <% end %>
-    <div id="identification_form_wrapper-<%= @observation.id %>" 
-         class="identification_form_wrapper">
+    <div id="identification_form_wrapper-<%= @observation.id %>" class="identification_form_wrapper">
       <h4>Suggest an ID</h4>
       <%= render :partial => 'identifications/identification_form',
                  :locals => { :observation => @observation }%>

@@ -74,10 +74,19 @@ input.button:active {
 }
 
 .centered.buttonrow .button,
-.centered.buttonrow .button .inter,
-.centered.buttonrow .button input.text {
+.centered.buttonrow .inter,
+.centered.buttonrow input.text {
   float: none;
   display: inline;
+}
+
+.buttonrow.inline .button,
+.buttonrow.inline .inter,
+.buttonrow.inline input.text {
+  display: inline-block;
+  float: none;
+  margin-bottom: 0;
+  padding: 5px;
 }
 
 button {
@@ -173,6 +182,22 @@ input[type='submit'].link:hover {
 .button.pale:hover {
   background-color: #aaa;
   border-color: #aaa;
+  color: white;
+}
+
+.button.glaucous {
+  background-color: #aaa;
+  border-color: #aaa;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  float: right;
+  margin-left: 10px;
+}
+
+.button.glaucous:hover {
+  background-color: #777;
+  border-color: #777;
   color: white;
 }
 

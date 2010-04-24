@@ -6,7 +6,7 @@
   <style type="text/css" media="screen">
     .comment {
       margin: 0;
-      padding: 0.5em 1em;
+      padding: 5px 10px;
     }
     .comment p:last-child {
       margin-bottom: 0;
@@ -22,7 +22,7 @@
     }
     
     .item {
-      margin-top: 1em;
+      margin-top: 10px;
     }
     
     h4 .togglelink{
@@ -69,7 +69,7 @@
       width: 180px;
     }
     .identification {
-      padding: 1em;
+      padding: 10px;
       background-color: #eee;
     }
     
@@ -112,6 +112,10 @@
       margin: 0 0 5px 5px;
       display: inline-block;
     }
+    
+    #recent_comments .mini.observation .place_guess { display: none; }
+    #rightcol .mini.observation img { max-width: 40px;}
+    #id_please .mini.observation { margin-bottom: 10px; }
   </style>
 <% end -%>
 
@@ -275,67 +279,89 @@
     </ul>
   <% end %>
 </div>
-<div class="last column span-8">
-	<h3>
-    Recent Comments on Your Stuff<br/>
-    <span class="description">in the past week</span>
-  </h3>
+<div id="rightcol" class="last column span-8">
+  <% unless @id_please_observations.blank? -%>
+    <div id="id_please" class="box">
+      <h3>ID Please</h3>
+      <p class="description">Can you help your friends ID these?</p>
+      
+      <%= render :partial => "observations/mini", :collection => @id_please_observations[0..2] %>
+      
+      <% if @id_please_observations.size > 3 -%>
+        <%= link_to_toggle "More..", "#more_id_please" %>
+        <div id="more_id_please" style="display: none">
+          <%= render :partial => "observations/mini", :collection => @id_please_observations[3..-1] %>
+          <%= link_to "ID more in ID Please", id_please_path, :class => "readmore" %>
+        </div>
+      <% else %>
+        <%= link_to "ID more in ID Please", id_please_path, :class => "readmore" %>
+      <% end -%>
+    </div>
+  <% end -%>
   
-  <% if @recently_commented.empty? %>
-  <div class="centered description">
-    No activity in the past week.  Time to <%= link_to "post some new stuff", new_observation_path %>!
-  </div>
-  <% end %>
-  
-  <% for item in @recently_commented %>
-  <div class="item clear">
-    <% if item.is_a? Observation %>
-      <%= render :partial => 'observations/mini',
-                 :locals => { :observation => item, :include_description => false } %>
-    <% else %>
-      <%= item %>
-    <% end %>
-  </div>
-    <% for comment in item.comments.all.sort_by { |c| c.created_at } %>
-      <div class="<% if comment.user == @user %>yours<% end %>">
-        <%= render :partial => "comments/comment", 
-                   :locals => { :comment => comment }%>
-      </div>
-    <% end %>
-  <% end %>
+  <div id="recent_comments">
+    <h3>
+      Recent Comments on Your Stuff<br/>
+      <span class="description">in the past week</span>
+    </h3>
 
-	<br/>
-	<hr/>
-	
-  <h3>
-    Comments You've Made (w/ Others)<br/>
-    <span class="description">in the past week</span>
-  </h3>
-  
-  <% if @commented_on.empty? %>
-  <div class="centered description">
-    You haven't left any comments recently.  Go leave someone a note!
-  </div>
-  <% end %>
-  
-  <% for item in @commented_on %>
-  <div class="item">
-    <% if item.is_a? Observation %>
-      <%= render :partial => 'observations/mini',
-                 :locals => { :observation => item, :include_description => false } %>
-    <% else %>
-      <%= item %>
+    <% if @recently_commented.empty? %>
+    <div class="centered description">
+      No activity in the past week.  Time to <%= link_to "post some new stuff", new_observation_path %>!
+    </div>
     <% end %>
-  </div>
-    <% sorted_comments = item.comments.all.sort_by { |c| c.created_at } %>
-    <% your_first = sorted_comments.select {|c| c.user == @user }.first %>
-    <% for comment in sorted_comments[sorted_comments.index(your_first)..-1] %>
-      <div class="<% if comment.user == @user %>yours<% end %>">
-        <%= render :partial => "comments/comment", 
-                   :locals => { :comment => comment }%>
-      </div>
+
+    <% for item in @recently_commented %>
+    <div class="item clear">
+      <% if item.is_a? Observation %>
+        <%= render :partial => 'observations/mini',
+                   :locals => { :observation => item, :include_description => false } %>
+      <% else %>
+        <%= item %>
+      <% end %>
+    </div>
+      <% for comment in item.comments.all.sort_by { |c| c.created_at } %>
+        <div class="<% if comment.user == @user %>yours<% end %>">
+          <%= render :partial => "comments/comment", 
+                     :locals => { :comment => comment }%>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+
+  	<br/>
+  	<hr/>
+
+    <h3>
+      Comments You've Made (w/ Others)<br/>
+      <span class="description">in the past week</span>
+    </h3>
+
+    <% if @commented_on.empty? %>
+    <div class="centered description">
+      You haven't left any comments recently.  Go leave someone a note!
+    </div>
+    <% end %>
+
+    <% for item in @commented_on %>
+    <div class="item">
+      <% if item.is_a? Observation %>
+        <%= render :partial => 'observations/mini',
+                   :locals => { :observation => item, :include_description => false } %>
+      <% else %>
+        <%= item %>
+      <% end %>
+    </div>
+      <% sorted_comments = item.comments.all.sort_by { |c| c.created_at } %>
+      <% your_first = sorted_comments.select {|c| c.user == @user }.first %>
+      <% for comment in sorted_comments[sorted_comments.index(your_first)..-1] %>
+        <div class="<% if comment.user == @user %>yours<% end %>">
+          <%= render :partial => "comments/comment", 
+                     :locals => { :comment => comment }%>
+        </div>
+      <% end %>
+    <% end %>
+  	
+  </div>
   
   <br/>
   <hr/>

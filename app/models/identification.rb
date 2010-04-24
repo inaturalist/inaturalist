@@ -43,6 +43,7 @@ class Identification < ActiveRecord::Base
       ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", taxon_id, species_guess, taxon.iconic_taxon_id],
       "id = #{observation_id}"
     )
+    true
   end
   
   #
@@ -71,6 +72,7 @@ class Identification < ActiveRecord::Base
     if self.observation.user_id != self.user_id && self.observation.user.preferences.identification_email_notification
       Emailer.send_later(:deliver_identification_notification, self)
     end
+    true
   end
   
   protected
@@ -91,6 +93,7 @@ class Identification < ActiveRecord::Base
       "num_identification_agreements = #{num_agreements}, " +
       "num_identification_disagreements = #{num_disagreements}", 
       "id = #{self.observation_id}")
+    true
   end
   
   # Update the counter cache in users.  That cache ONLY tracks observations 
@@ -99,11 +102,13 @@ class Identification < ActiveRecord::Base
     if self.user_id != self.observation.user_id
       self.user.increment!(:identifications_count)
     end
+    true
   end
   def decrement_user_counter_cache
     if self.user_id != self.observation.user_id
       self.user.decrement!(:identifications_count)
     end
+    true
   end
   
   def update_observation_after_destroy
@@ -115,8 +120,9 @@ class Identification < ActiveRecord::Base
       species_guess = nil
     end
     Observation.update_all(
-      ["taxon_id = ?, species_guess = ?", nil, species_guess],
+      ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", nil, species_guess, nil],
       "id = #{self.observation_id}"
     )
+    true
   end
 end

@@ -11,14 +11,15 @@ Requirements:
 Note:
   * see observations.css for styles
 =end
+
+observation ||= object || @observation
 -%>
 <% cache("observations/_mini/#{observation.id}") do %>
-<div id="mini-observation-<%= observation.id %>" class="readable mini observation">
-  <% unless observation.photos.empty? %>
+<div id="mini-observation-<%= observation.id %>" class="clear mini observation">
   <a href="<%= observation_path(observation) %>">
-    <%= image_tag observation.photos[0].square_url, :class => "left" %>
+    <%#= image_tag observation.photos[0].square_url, :class => "left" %>
+    <%= image_tag observation_image_url(observation) || iconic_taxon_image_url(observation.iconic_taxon), :class => "left" %>
   </a>
-  <% end %>
   <div class="title">
     <% unless observation.species_guess.nil? or observation.species_guess.empty? %>
     <%= link_to observation.species_guess, observation_path(observation) %>,
@@ -30,11 +31,10 @@ Note:
   </div>
   <div class="meta">
     <% if observation.observed_on %>
-      on <span class="date"><%=h observation.observed_on.to_s(:long) %></span>
+      <span class="observed_on">on <span class="date"><%= observation.observed_on.strftime('%b %d %Y') %></span></span>
     <% end %>
     <% unless observation.place_guess.blank? %>
-      in
-      <%=h observation.place_guess %>
+      <span class="place_guess">in <%=h observation.place_guess %></span>
     <% end %>
   </div>
   

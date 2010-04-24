@@ -169,6 +169,11 @@ class UsersController < ApplicationController
     per_page = 100 if per_page.to_i > 100
     @updates = current_user.activity_streams.paginate(:page => params[:page], 
       :per_page => per_page, :order => "updated_at DESC")
+      
+    @id_please_observations = @updates.map {|u| u.activity_object if u.activity_object.is_a?(Observation)}.compact
+    @id_please_observations += @commented_on
+    @id_please_observations = @id_please_observations.select(&:id_please?)
+    @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
   end
   
   def edit

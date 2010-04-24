@@ -462,7 +462,8 @@ ul.leafylist li li:first-child {
 /* Boxes */
 .box {
   background-color: #FFFEE6;
-  padding: 1em;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .quiet.box {
@@ -488,7 +489,6 @@ ul.leafylist li li:first-child {
 
 .pagination .current {
   background-color: #FFC;
-/*  border-color: #888;*/
   border: 1px solid #FF9;
 }
 

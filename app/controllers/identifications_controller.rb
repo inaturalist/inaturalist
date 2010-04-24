@@ -141,7 +141,7 @@ class IdentificationsController < ApplicationController
   private
   
   def load_identification
-    @identification = Identification.find(params[:id])
+    render_404 unless @identification = Identification.find_by_id(params[:id])
   end
   
   def require_owner
