@@ -109,7 +109,7 @@ module TaxaHelper
     params[:size] = nil unless params[:size].is_a? Fixnum
     params[:size] ||= 32
     iconic_taxon = if taxon
-      taxon.is_iconic? ? taxon : taxon.iconic_taxon
+      taxon.is_iconic? ? taxon : Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
     else
       nil
     end

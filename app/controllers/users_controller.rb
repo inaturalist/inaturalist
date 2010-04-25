@@ -140,7 +140,7 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @recently_commented = Observation.all(
-      :include => :comments,
+      :include => [:comments, :user, :photos],
       :conditions => [
         "observations.user_id = ? AND comments.created_at > ?", 
         @user, 1.week.ago],
@@ -148,16 +148,16 @@ class UsersController < ApplicationController
     )
     
     if @recently_commented.empty?
-      @commented_on = Observation.find(:all,
-        :include => [:comments],
+      @commented_on = Observation.all(
+        :include => [:comments, :user, :photos],
         :conditions => [
           "comments.user_id = ? AND comments.created_at > ?", 
           @user, 1.week.ago],
         :order => "comments.created_at DESC"
       ).uniq
     else
-      @commented_on = Observation.find(:all,
-        :include => [:comments],
+      @commented_on = Observation.all(
+        :include => [:comments, :user, :photos],
         :conditions => [
           "comments.user_id = ? AND comments.created_at > ? AND observations.id NOT IN (?)", 
           @user, 1.week.ago, @recently_commented],
@@ -167,13 +167,29 @@ class UsersController < ApplicationController
     
     per_page = params[:per_page] || 20
     per_page = 100 if per_page.to_i > 100
-    @updates = current_user.activity_streams.paginate(:page => params[:page], 
-      :per_page => per_page, :order => "updated_at DESC")
+    @updates = current_user.activity_streams.paginate(
+      :page => params[:page], 
+      :per_page => per_page, 
+      :order => "updated_at DESC", 
+      :include => [:user, :subscriber])
       
-    @id_please_observations = @updates.map {|u| u.activity_object if u.activity_object.is_a?(Observation)}.compact
+    # Eager loading
+    @activity_objects_by_update_id, @associates = 
+      ActivityStream.eager_load_associates(@updates, 
+        :batch_limit => 18,
+        :includes => {
+          "Observation" => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
+          "Identification" => [:user, {:taxon => :taxon_names}, {:observation => :user}],
+          "Comment" => [:user, :parent],
+          "ListedTaxon" => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
+        })
+      
+    @id_please_observations = @associates[:observations]
     @id_please_observations += @commented_on
-    @id_please_observations = @id_please_observations.select(&:id_please?)
-    @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
+    unless @id_please_observations.blank?
+      @id_please_observations = @id_please_observations.select(&:id_please?)
+      @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
+    end
   end
   
   def edit

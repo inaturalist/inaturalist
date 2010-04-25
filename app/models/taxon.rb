@@ -185,6 +185,9 @@ class Taxon < ActiveRecord::Base
     {:conditions => ["rank = ?", rank]}
   }
   
+  ICONIC_TAXA = self.iconic_taxa.all
+  ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
+  
   def observations_count_with_descendents
     Observation.of(self).count
   end
@@ -306,7 +309,6 @@ class Taxon < ActiveRecord::Base
     end
     
     if iconic_taxon_id_changed? || options[:force]
-      logger.debug "[DEBUG] \t iconic taxon changed, updating descendants and their observations..."
       # Update the iconic taxon of all descendants that currently have an iconic
       # taxon that is an ancestor (i.e. don't touch descendant iconic taxa)
       self.descendants.update_all(
@@ -391,13 +393,10 @@ class Taxon < ActiveRecord::Base
   
 
   def validate
-    # logger.info("DEBUG: Validating non-circularity for #{self.name}...")
     if self.parent == self
-      # logger.info("DEBUG: Gah, #{self.name} can't be its own parent!")
       errors.add(self.name, "can't be its own parent")
     end
     if self.ancestors and self.ancestors.include? self
-      # logger.info("DEBUG: Gah, #{self.name} can't be one of its own ancestors!")
       errors.add(self.name, "can't be its own ancestor")
     end
   end
@@ -427,7 +426,6 @@ class Taxon < ActiveRecord::Base
   end
   
   def update_life_lists
-    logger.debug "[DEBUG] Fired update_lfe_lists for #{self}"
     LifeList.send_later(:update_life_lists_for_taxon, self)
     true
   end

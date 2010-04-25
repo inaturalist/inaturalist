@@ -114,7 +114,16 @@
     }
     
     #recent_comments .mini.observation .place_guess { display: none; }
-    #rightcol .mini.observation img { max-width: 40px;}
+    #rightcol .mini.observation {
+      position: relative;
+      padding-left: 50px;
+    }
+    #rightcol .mini.observation img { 
+      position: absolute;
+      left: 0;
+      top: 0;
+      max-width: 40px;
+    }
     #id_please .mini.observation { margin-bottom: 10px; }
   </style>
 <% end -%>
@@ -177,6 +186,7 @@
       </h4>
       <div id="updates_<%= day.to_time.to_i %>">
         <% updates.each do |update| %>
+          <%- activity_object = @activity_objects_by_update_id[update.id].first || update.activity_object -%>
           <div id="<%= dom_id update %>" class="update clear">
             <%= link_to_function "collapse",
               "$('##{dom_id update, 'body'}').hide(); $(this).hide(); $(this).next().show()",
@@ -192,25 +202,25 @@
                 <% if update.batch_ids.blank? -%>
                   <%- case update.activity_object_type -%>
                   <%- when "Post" -%>
-                    a <%= link_to "journal post", post_path(update.user.login, update.activity_object) %>
+                    a <%= link_to "journal post", post_path(update.user.login, activity_object) %>
                   <%- when "Comment" %>
-                    a <%= link_to "comment", update.activity_object %>
+                    a <%= link_to "comment", activity_object %>
                     on
-                    <%= update.activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
-                    <%= update.activity_object.parent_type.humanize.downcase %>
+                    <%= activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
+                    <%= activity_object.parent_type.humanize.downcase %>
                     by
-                    <%= link_to image_tag(update.activity_object.parent.user.icon.url(:thumb), :class => 'usericon'),
-                      person_path(update.activity_object.parent.user) %>
-                    <%= link_to update.activity_object.parent.user.login, update.activity_object.parent.user %>
+                    <%= link_to image_tag(activity_object.parent.user.icon.url(:thumb), :class => 'usericon'),
+                      person_path(activity_object.parent.user) %>
+                    <%= link_to activity_object.parent.user.login, activity_object.parent.user %>
                   <%- when "ListedTaxon" -%>
                     a taxon to
-                    <%= link_to update.activity_object.list.title, update.activity_object %>
+                    <%= link_to activity_object.list.title, activity_object %>
                   <%- when "List" -%>
                     a new list called
-                    <%= link_to update.activity_object.title, update.activity_object %>
+                    <%= link_to activity_object.title, activity_object %>
                   <%- else -%>
                     <%= update.activity_object_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
-                    <%= link_to update.activity_object_type.underscore.humanize.downcase, update.activity_object %>
+                    <%= link_to update.activity_object_type.underscore.humanize.downcase, activity_object %>
                   <%- end -%>
                 <% else %>
                   <%= pluralize update.batch_ids.split(',').size, update.activity_object_type.underscore.humanize.downcase %>
@@ -223,14 +233,14 @@
                 <%- case update.activity_object_type -%>
                 <%- when "Observation" -%>
                   <div class="mini observations">
-                    <%= render :partial => "observations/cached_component", :object => update.activity_object %>
+                    <%= render :partial => "observations/cached_component", :object => activity_object %>
                   </div>
                 <%- when "Identification" -%>
-                  <%= render :partial => "identifications/identification_with_observation", :object => update.activity_object %>
+                  <%= render :partial => "identifications/identification_with_observation", :object => activity_object %>
                 <%- when "ListedTaxon" -%>
-                  <%= render :partial => "lists/listed_taxon", :object => update.activity_object %>
+                  <%= render :partial => "lists/listed_taxon", :object => activity_object %>
                 <%- when "Post" %>
-                  <%= render :partial => "posts/post", :object => update.activity_object, 
+                  <%= render :partial => "posts/post", :object => activity_object, 
                     :locals => { :truncate_length => 200 } %>
                 <%- when "List" %>
                 <%- else -%>
@@ -239,8 +249,7 @@
               <% elsif batch_partial = update.activity_object.class.activity_stream_options[:batch_partial] %>
                 <%= render :partial => batch_partial, :locals => { 
                   update.activity_object.class.to_s.underscore.pluralize.to_sym => 
-                    update.activity_object.class.paginate(
-                      :conditions => ["id IN (?)", update.batch_ids.split(',')], :page => 1, :per_page => 18)
+                    @activity_objects_by_update_id[update.id]
                 } %>
               <% end -%>
             </div>
@@ -320,7 +329,8 @@
         <%= item %>
       <% end %>
     </div>
-      <% for comment in item.comments.all.sort_by { |c| c.created_at } %>
+      <%# for comment in item.comments.all.sort_by { |c| c.created_at } %>
+      <% for comment in item.comments %>
         <div class="<% if comment.user == @user %>yours<% end %>">
           <%= render :partial => "comments/comment", 
                      :locals => { :comment => comment }%>
@@ -328,9 +338,9 @@
       <% end %>
     <% end %>
 
-  	<br/>
-  	<hr/>
-
+    <br/>
+    <hr/>
+    
     <h3>
       Comments You've Made (w/ Others)<br/>
       <span class="description">in the past week</span>
@@ -351,7 +361,8 @@
         <%= item %>
       <% end %>
     </div>
-      <% sorted_comments = item.comments.all.sort_by { |c| c.created_at } %>
+      <%# sorted_comments = item.comments.all.sort_by { |c| c.created_at } %>
+      <% sorted_comments = item.comments %>
       <% your_first = sorted_comments.select {|c| c.user == @user }.first %>
       <% for comment in sorted_comments[sorted_comments.index(your_first)..-1] %>
         <div class="<% if comment.user == @user %>yours<% end %>">

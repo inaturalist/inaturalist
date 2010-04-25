@@ -1,11 +1,15 @@
-<%- lists = listed_taxa.map(&:list).uniq -%>
-<%- login = lists.first.user.login -%>
-<%- unique_taxa = listed_taxa.map(&:taxon).uniq -%>
+<%-
+  lists = listed_taxa.map(&:list).uniq
+  login = lists.first.user.login
+  unique_taxa = listed_taxa.map(&:taxon).uniq
+-%>
+
 <div class="activitybatch clear">
   <% for taxon in unique_taxa %>
     <%- default_name = default_taxon_name(taxon) -%>
-    <% if taxon.photos.empty? %>
-      <% link_to taxon, :class => "icon #{taxon.iconic_taxon.name if taxon.iconic_taxon}" do %>
+    <%- iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] %>
+    <% if taxon.photos.blank? %>
+      <% link_to taxon, :class => "icon #{iconic_taxon.name if iconic_taxon}" do %>
         <%= taxon_image(taxon, :title => default_name, :alt => default_name) %>
         <div class="small"><%= default_name %></div>
       <% end %>
@@ -14,6 +18,7 @@
     <% end -%>
   <% end %>
 </div>
+
 <div class="description">
   to
   <% if lists.size == 1 && list = lists.first -%>
@@ -25,4 +30,3 @@
     <% end %>
   <% end -%>
 </div>
-
