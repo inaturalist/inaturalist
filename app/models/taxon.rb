@@ -42,6 +42,7 @@ class Taxon < ActiveRecord::Base
     # has colors, :as => :color, :type => :multi, :facet => true # if colors were a column of CSV integers
     has colors(:id), :as => :colors, :facet => true, :type => :multi
     has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
+    # has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at
     set_property :delta => :delayed
   end

@@ -48,13 +48,24 @@
                 place_path(@list.place),
                 :class => 'back crumb' %>
   </span>
+  
   <div id="view_controls" class="toolset clear">
+    
     <label class="description">View</label>
     <% for view in ListsController::LIST_VIEWS %>
       <%= link_to(view.capitalize, url_for(params.merge(:view => view)), 
         :id => "#{view}_view_link", 
         :class => "modal_link#{' selected' if @view == view}") %>
     <% end %>
+    
+    <form action="<%= search_taxa_path %>" method="get" class="inline buttonrow smallbuttons" style="display: inline-block; margin-left: 10px">
+      <input type="hidden" name="places" value="<%= @list.place_id %>">
+      <% if @list.taxon && @list.taxon.is_iconic? -%>
+        <input type="hidden" name="iconic_taxa" value="<%= @list.taxon_id %>">
+      <% end -%>
+      <input type="text" name="q" value="" class="text" />
+      <input type="submit" value="Search" class="default button" style="margin-right: 0"/>
+    </form>
   </div>
   <h2>
     <%= @list.title %>
