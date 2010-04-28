@@ -116,7 +116,7 @@ module ApplicationHelper
     
     new_params.merge!(options) unless options.empty?
     
-    new_params
+    url_for(new_params)
   end
   
   def link_to(*args)

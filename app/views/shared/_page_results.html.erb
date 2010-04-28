@@ -1,0 +1,9 @@
+<%- paginator ||= object -%>
+<span class="description">
+  <% if paginator.total_entries > 0 -%>
+    <%= paginator.offset == 0 ? 1 : paginator.offset %> &ndash; 
+    <%= paginator.offset + paginator.per_page %> of
+  <% end -%>
+  <span class="count"><%= number_with_delimiter paginator.total_entries %></span>
+  results
+</span>

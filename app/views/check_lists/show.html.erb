@@ -58,13 +58,9 @@
         :class => "modal_link#{' selected' if @view == view}") %>
     <% end %>
     
-    <form action="<%= search_taxa_path %>" method="get" class="inline buttonrow smallbuttons" style="display: inline-block; margin-left: 10px">
-      <input type="hidden" name="places" value="<%= @list.place_id %>">
-      <% if @list.taxon && @list.taxon.is_iconic? -%>
-        <input type="hidden" name="iconic_taxa" value="<%= @list.taxon_id %>">
-      <% end -%>
-      <input type="text" name="q" value="" class="text" />
-      <input type="submit" value="Search" class="default button" style="margin-right: 0"/>
+    <form action="<%= url_for %>" method="get" class="inline buttonrow smallbuttons" style="display: inline-block; margin-left: 10px">
+      <input type="text" name="q" value="<%= @q %>" class="text" />
+      <input type="submit" value="Search List" class="default button" style="margin-right: 0"/>
     </form>
   </div>
   <h2>
@@ -90,6 +86,14 @@
 
     <div class="column-separator">
       <img src="/images/logo-eee-15px.png">
+    </div>
+  <% end -%>
+  
+  <% if @q -%>
+    <div id="searchresults" class="description quiet box">
+      <%= render :partial => "shared/page_results", :object => @taxa %>
+      for <strong>"<%= @q %>"</strong>
+      <%= link_to "clear", url_for_params(:without => [:page, :q]) %>
     </div>
   <% end -%>
   
@@ -163,7 +167,7 @@
           <% end -%>
           <%- grouper_name = 'Other Animals' if grouper_name == 'Animals' -%>
           <%- grouper_class = grouper.name rescue 'Unknown' -%>
-          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for(params.merge(:taxon => grouper.id, :page => nil)) %>">
+          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:taxon => grouper.id, :without => [:page, :q]) %>">
             <div class="readable title">
               &nbsp;
             </div>

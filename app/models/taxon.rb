@@ -37,12 +37,11 @@ class Taxon < ActiveRecord::Base
   define_index do
     indexes taxon_names.name, :as => :names
     indexes colors.value, :as => :color_values
-    indexes iconic_taxon.taxon_names.name, :as => :iconic_taxon_names
     has iconic_taxon_id, :facet => true, :type => :integer
     # has colors, :as => :color, :type => :multi, :facet => true # if colors were a column of CSV integers
     has colors(:id), :as => :colors, :facet => true, :type => :multi
     has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
-    # has listed_taxa(:list_id), :as => :lists, :type => :multi
+    has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at
     set_property :delta => :delayed
   end

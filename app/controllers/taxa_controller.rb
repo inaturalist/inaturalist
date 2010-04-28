@@ -286,32 +286,34 @@ class TaxaController < ApplicationController
         :include => [:taxon_names, :photos])
     end
     
-    if @facets[:iconic_taxon_id]
-      @faceted_iconic_taxa = Taxon.all(
-        :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
-        :include => [:taxon_names, :photos],
-        :order => 'lft'
-      )
-      @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
-    end
-    
-    if @facets[:colors]
-      @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
-      @faceted_colors_by_id = @faceted_colors.index_by(&:id)
-    end
-    
-    if @facets[:places]
-      @faceted_places = if @places.blank?
-        Place.all(:order => "name", :conditions => [
-          "id in (?) && place_type = ?", @facets[:places].keys, Place::PLACE_TYPE_CODES['Country']
-        ])
-      else
-        Place.all(:order => "name", :conditions => [
-          "id in (?) AND parent_id IN (?)", 
-          @facets[:places].keys, @places.map(&:id)
-        ])
+    unless @q.blank?
+      if @facets[:iconic_taxon_id]
+        @faceted_iconic_taxa = Taxon.all(
+          :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
+          :include => [:taxon_names, :photos],
+          :order => 'lft'
+        )
+        @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
       end
-      @faceted_places_by_id = @faceted_places.index_by(&:id)
+    
+      if @facets[:colors]
+        @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
+        @faceted_colors_by_id = @faceted_colors.index_by(&:id)
+      end
+    
+      if @facets[:places]
+        @faceted_places = if @places.blank?
+          Place.all(:order => "name", :conditions => [
+            "id in (?) && place_type = ?", @facets[:places].keys, Place::PLACE_TYPE_CODES['Country']
+          ])
+        else
+          Place.all(:order => "name", :conditions => [
+            "id in (?) AND parent_id IN (?)", 
+            @facets[:places].keys, @places.map(&:id)
+          ])
+        end
+        @faceted_places_by_id = @faceted_places.index_by(&:id)
+      end
     end
     
     @taxa = @facets.for(drill_params)

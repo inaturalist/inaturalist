@@ -29,6 +29,11 @@
         :id => "#{view}_view_link", 
         :class => "modal_link#{' selected' if @view == view}") %>
     <% end %>
+    
+    <form action="<%= url_for %>" method="get" class="inline buttonrow smallbuttons" style="display: inline-block; margin-left: 10px">
+      <input type="text" name="q" value="<%= @q %>" class="text" />
+      <input type="submit" value="Search List" class="default button" style="margin-right: 0"/>
+    </form>
   </div>
   <h2>
     <%= @list.title %>, by <%= link_to(@list.user.login, lists_by_login_path(@list.user.login)) %>
@@ -45,7 +50,7 @@
   </div>
 </div>
 
-<div class="column span-17">
+<div id="maincol" class="column span-17">
   <div id="description" class="readable description">
     <%= formatted_user_text(@list.description) %>
   </div>
@@ -63,6 +68,14 @@
   <div class="column-separator">
     <img src="/images/logo-eee-15px.png">
   </div>
+  
+  <% if @q -%>
+    <div id="searchresults" class="description quiet box">
+      <%= render :partial => "shared/page_results", :object => @taxa %>
+      for <strong>"<%= @q %>"</strong>
+      <%= link_to "clear", url_for_params(:without => [:page, :q]) %>
+    </div>
+  <% end -%>
   
   <div id="justadded" style="display: none">
     <h2 class="title">Just Added!</h2>
@@ -92,6 +105,8 @@
         You haven't observed any species to list yet! Try 
         <%= link_to "adding some observations", new_observation_path %>
         or just adding species using the form on this page.
+      <% elsif @q %>
+        No results matching "<%= @q %>"
       <% else %>
         <%= @list.user.login %> hasn't observed any species to list yet!
       <% end %>
@@ -144,7 +159,7 @@
           <% end -%>
           <%- grouper_name = 'Other Animals' if grouper_name == 'Animals' -%>
           <%- grouper_class = grouper.name rescue 'Unknown' -%>
-          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for(params.merge(:taxon => grouper.id, :page => 1)) %>">
+          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:taxon => grouper.id, :without => [:page, :q]) %>">
             <div class="readable title">
               &nbsp;
             </div>

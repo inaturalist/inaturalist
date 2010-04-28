@@ -11,18 +11,27 @@
   name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname'
   extra_class ||= nil
   taxon_class = "clear taxon #{taxon.rank}"
-  taxon_class += " #{taxon.iconic_taxon.name}" if taxon.iconic_taxon
-  taxon_class += ' noimg' if taxon.photos.empty?
-  taxon_class += " #{extra_class}" if extra_class
+  iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
+  taxon_class << " #{iconic_taxon.name}" if iconic_taxon
+  taxon_class << ' noimg' if taxon.photos.empty?
+  taxon_class << " #{extra_class}" if extra_class
   taxon_name_str ||= taxon.default_name.name
   include_full_name ||= false
   taxon_name_str = render('shared/taxon', :object => taxon) if include_full_name
   
   if js_link
-    taxon_json = taxon.to_json(
-      :include => [:iconic_taxon, :taxon_names, :photos],
-      :methods => [:common_name, :image_url, :default_name]
-    )
+    taxon_json = {
+      :id => taxon.id,
+      :name => taxon.name,
+      :rank => taxon.rank,
+      :rank_level => taxon.rank_level,
+      :iconic_taxon => iconic_taxon,
+      :taxon_names => taxon.taxon_names,
+      :photos => taxon.photos,
+      :common_name => taxon.common_name,
+      :image_url => taxon.image_url,
+      :default_name => taxon.default_name
+    }.to_json
   end
 -%>
 

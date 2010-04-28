@@ -6,14 +6,8 @@
   <input type="submit" class="default button" value="Go" />
   <%= link_to "Clear", url_for_params(:without => :q), :class => 'delete button' %>
   <div class="inter">
-    <span class="description">
-      <% if @taxa.total_entries > 0 -%>
-        <%= @taxa.offset == 0 ? 1 : @taxa.offset %> &ndash; 
-        <%= @taxa.offset + @taxa.per_page %> of
-      <% end -%>
-      <span class="count"><%= number_with_delimiter @taxa.total_entries %></span>
-      results
-    </span>
+    <%= render :partial => "shared/page_results", :object => @taxa %>
+
     <% unless @q.blank? -%>
        <span class="description">for</span> <em>&ldquo;<%= @q %>&rdquo;</em>
     <% end -%>
@@ -42,6 +36,12 @@
 <% end %>
 
 <div class="column span-6">
+  <% if @faceted_iconic_taxa.blank? -%>
+    <div class="facet description">
+      Start searching to get filter options &uarr; 
+    </div>
+  <% end -%>
+  
   <% unless @faceted_iconic_taxa.blank? && @iconic_taxa.blank? -%>
     <div id="iconic_taxa_facet" class="facet taxon_links">
       <strong>
