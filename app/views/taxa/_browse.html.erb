@@ -36,11 +36,6 @@
 <% end %>
 
 <div class="column span-6">
-  <% if @faceted_iconic_taxa.blank? -%>
-    <div class="facet description">
-      Start searching to get filter options &uarr; 
-    </div>
-  <% end -%>
   
   <% unless @faceted_iconic_taxa.blank? && @iconic_taxa.blank? -%>
     <div id="iconic_taxa_facet" class="facet taxon_links">
