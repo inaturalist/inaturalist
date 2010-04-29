@@ -173,22 +173,24 @@ class UsersController < ApplicationController
       :order => "updated_at DESC", 
       :include => [:user, :subscriber])
       
-    # Eager loading
-    @activity_objects_by_update_id, @associates = 
-      ActivityStream.eager_load_associates(@updates, 
-        :batch_limit => 18,
-        :includes => {
-          "Observation" => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
-          "Identification" => [:user, {:taxon => :taxon_names}, {:observation => :user}],
-          "Comment" => [:user, :parent],
-          "ListedTaxon" => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
-        })
+    unless @updates.blank?
+      # Eager loading
+      @activity_objects_by_update_id, @associates = 
+        ActivityStream.eager_load_associates(@updates, 
+          :batch_limit => 18,
+          :includes => {
+            "Observation" => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
+            "Identification" => [:user, {:taxon => :taxon_names}, {:observation => :user}],
+            "Comment" => [:user, :parent],
+            "ListedTaxon" => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
+          })
       
-    @id_please_observations = @associates[:observations]
-    @id_please_observations += @commented_on
-    unless @id_please_observations.blank?
-      @id_please_observations = @id_please_observations.select(&:id_please?)
-      @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
+      @id_please_observations = @associates[:observations]
+      @id_please_observations += @commented_on
+      unless @id_please_observations.blank?
+        @id_please_observations = @id_please_observations.select(&:id_please?)
+        @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
+      end
     end
   end
   

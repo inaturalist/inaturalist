@@ -177,7 +177,29 @@
   <% end -%>
   <h3>Recent Updates</h3>
   
-  <% if @updates.length > 0 || !params[:page].blank? %>
+  <% if @updates.blank? -%>
+    <% if params[:page].blank? -%>
+      <p>
+        There's not much to show here yet, but soon this space will be filled up
+        with recent activity.
+      </p>
+      <ul class="readable leafylist">
+        <% unless @user.flickr_identity %>
+          <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
+        <% end %>
+        <li><%= link_to "Browse your observations", observations_by_login_path(@user.login) %></li>
+        <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
+        <li><%= link_to "Explore everyone's observations", observations_path %></li>
+        <li><%= link_to "Check out your Life List", lists_by_login_path(@user.login) %></li>
+      </ul>
+    <% else %>
+      <p class="description">
+        No more updates!
+      </p>
+    <% end -%>
+  
+  <% else %>
+  
     <% for day, updates in @updates.group_by{|u| u.created_at.to_date} %>
       <h4 class="date description">
         <%= link_to_toggle (day.today? ? "Today" : day.to_s(:long)), "#updates_#{day.to_time.to_i}",
@@ -258,34 +280,7 @@
       </div>
     <% end %>
     
-    <% if @updates.blank? -%>
-      <p class="description">
-        No more updates!
-      </p>
-    <% end -%>
-    
     <%= will_paginate @updates %>
-  <% else %>
-    <p>
-      There's not much to show here yet, but soon this space will be filled up with recent activity.
-    </p>
-    <ul class="readable leafylist">
-      <% unless @user.flickr_identity %>
-      <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
-      <% end %>
-      <li>
-        <%= link_to "Browse your observations", observations_by_login_path(@user.login) %>
-      </li>
-      <li>
-        <%= link_to "Add new observations", :controller => 'observations', :action => 'new' %>
-      </li>
-      <li>
-        <%= link_to "Explore everyone's observations", observations_path %>
-      </li>
-      <li>
-        <%= link_to "Check out your Life List", lists_by_login_path(@user.login) %>
-      </li>
-    </ul>
   <% end %>
 </div>
 <div id="rightcol" class="last column span-8">
