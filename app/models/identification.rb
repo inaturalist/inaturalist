@@ -81,7 +81,7 @@ class Identification < ActiveRecord::Base
   # Update the identification stats in the observation.
   #
   def update_obs_stats
-    return unless self.observation && self.observation.taxon_id
+    return true unless self.observation && self.observation.taxon_id
     
     idents = Identification.all(
       :conditions => ["observation_id = ?", self.observation_id]
@@ -112,7 +112,7 @@ class Identification < ActiveRecord::Base
   end
   
   def update_observation_after_destroy
-    return unless self.observation.user_id = self.user_id
+    return true unless self.observation.user_id == self.user_id
     
     # update the species_guess
     species_guess = self.observation.species_guess

@@ -26,8 +26,8 @@ module ActivityStreams
       
       module SingletonMethods
         def create_activity_update
-          return if @skip_update
-          return unless self.respond_to?(:user) && self.user
+          return true if @skip_update
+          return true unless self.respond_to?(:user) && self.user
           
           # Handle batch updates
           batch_point = if activity_stream_options[:batch_window]
@@ -78,20 +78,28 @@ module ActivityStreams
             return true
           end
           if as.batch_ids.blank?
-            ActivityStream.delete_all(["activity_object_id = ?", self])
+            ActivityStream.delete_all([
+              "activity_object_type = ? AND activity_object_id = ?", 
+              self.class.to_s, self
+            ])
           else
             batch = self.class.all(:conditions => ["id IN (?)", as.batch_ids.split(',')], :limit => 200)
             if batch.blank?
-              ActivityStream.delete_all(["activity_object_id = ?", self])
+              ActivityStream.delete_all([
+                "activity_object_type = ? AND activity_object_id = ?", 
+                self.class.to_s, self
+              ])
             else
               ActivityStream.update_all(
-                ["activity_object_id = ?", batch.first.id], 
+                ["activity_object_type = ? AND activity_object_id = ?", 
+                  batch.first.class.to_s, batch.first.id], 
                 ["activity_object_id = ?", self]
               )
             end
           end
           true
         end
+        
       end
     end
   end
