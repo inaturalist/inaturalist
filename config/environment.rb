@@ -18,8 +18,7 @@ FLICKR_API_KEY = INAT_CONFIG['flickr']['FLICKR_API_KEY']
 FLICKR_SHARED_SECRET = INAT_CONFIG['flickr']['FLICKR_SHARED_SECRET']
 FlickRawOptions = {
   'api_key' => FLICKR_API_KEY,
-  'shared_secret' => FLICKR_SHARED_SECRET,
-  'lazyload' => true
+  'shared_secret' => FLICKR_SHARED_SECRET
 }
 
 Rails::Initializer.run do |config|
