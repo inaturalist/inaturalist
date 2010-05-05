@@ -92,20 +92,22 @@
       </td>
       <td class="tags description">
         <% if flickr_photo.api_response -%>
-          <%- tags = flickr_photo.api_response.tags -%>
-          <%- taxonomy_machine_tags = tags.map(&:raw).select{|tag| tag =~ /^taxonomy\:/} -%>
-          <%- predicates = taxonomy_machine_tags.map {|tag| tag.split('=').first if tag.split('=').size > 1}.compact -%>
-          <%- duplicate_predicates = predicates.select{|p| predicates.grep(p).size > 1} -%>
-          <%- duplicate_predicates.delete('taxonomy:common') -%>
-          <%- mid = (tags.size / 2.0).ceil -%>
-          <%- halves = [tags[0..mid], tags[mid+1..-1]] -%>
+          <%- 
+            tags = flickr_photo.api_response.tags.to_a
+            taxonomy_machine_tags = tags.map(&:raw).select{|tag| tag =~ /^taxonomy\:/}
+            predicates = taxonomy_machine_tags.map {|tag| tag.split('=').first if tag.split('=').size > 1}.compact
+            duplicate_predicates = predicates.select{|p| predicates.grep(p).size > 1}
+            duplicate_predicates.delete('taxonomy:common')
+            mid = (tags.size / 2.0).ceil
+            halves = [tags[0..mid], tags[mid+1..-1]]
+          -%>
           <% unless duplicate_predicates.empty? -%>
             <div class="notice">
               Heads up: You have multiple taxonomic machine tags for
               identicical ranks. They're color-coded below by rank.
             </div>
           <% end -%>
-          <% for tag_group in halves %>
+          <% for tag_group in halves.compact %>
             <ul>
               <% for tag in tag_group.compact %>
                 <%- dup_class = '' %>
