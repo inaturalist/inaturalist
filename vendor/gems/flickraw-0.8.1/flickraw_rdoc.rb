@@ -1,13 +1,12 @@
-require "rdoc/parsers/parserfactory"
-require "rdoc/parsers/parse_rb"
+require "rdoc/parser/ruby"
+require "cgi"
 
 FLICKR_API_URL='http://www.flickr.com/services/api'
 
 FakedToken = Struct.new :text
 
 module RDoc
-  class FlickrawParser < RubyParser
-    extend ParserFactory
+  class FlickrawParser < Parser::Ruby
     parse_files_matching(/flickraw\.rb$/)
 
     def scan
@@ -16,7 +15,7 @@ module RDoc
       fr = @top_level.find_module_named 'FlickRaw'
       k = fr.add_class NormalClass, 'Flickr', 'FlickRaw::Request'
       k.record_location @top_level
-      @stats.num_classes += 1
+      @stats.add_class 'Flickr'
 
       add_flickr_methods(FlickRaw::Flickr, k)
       @top_level
@@ -30,16 +29,14 @@ module RDoc
           name = const.name.sub(/.*::/, '')
           k = doc.add_class NormalClass, name, 'FlickRaw::Request'
           k.record_location @top_level
-          @stats.num_classes += 1
+          @stats.add_class name
 
           m = AnyMethod.new nil, name.downcase
           m.comment = "Returns a #{name} object."
           m.params = ''
           m.singleton = false
           doc.add_method m
-
-          progress("c")
-          @stats.num_methods += 1
+          @stats.add_method m
 
           add_flickr_methods(const, k)
         end
@@ -62,13 +59,12 @@ module RDoc
   end
 } )
         doc.add_method m
-        progress(".")
-        @stats.num_methods += 1
+         @stats.add_method m
       }
     end
 
     def flickr_method_comment(info)
-      description = unescapeHTML(info.method.description.to_s)
+      description = CGI.unescapeHTML(info.method.description.to_s)
 #       description.gsub!( /<\/?(\w+)>/ ) {|b|
 #         return b if ['em', 'b', 'tt'].include? $1
 #         return ''
@@ -83,7 +79,7 @@ module RDoc
             arguments << "[#{arg.name} "
             arguments << "<em>(required)</em> " if arg.optional == '0'
             arguments << "] "
-            arguments << "#{unescapeHTML(arg.to_s)}\n"
+            arguments << "#{CGI.unescapeHTML(arg.to_s)}\n"
           }
         end
       end
@@ -92,14 +88,14 @@ module RDoc
         errors = "<b>Error codes</b>\n"
         info.errors.each {|e|
           errors << "* #{e.code}: <em>#{e.message}</em>\n\n"
-          errors << "  #{unescapeHTML e.to_s}\n"
+          errors << "  #{CGI.unescapeHTML e.to_s}\n"
         }
       end
 
       if info.method.respond_to? :response
         response = "<b>Returns</b>\n"
-        raw = unescapeHTML(info.method.response.to_s)
-        response << raw.collect { |line| line.insert(0, ' ') }.join
+        raw = CGI.unescapeHTML(info.method.response.to_s)
+        response << raw.lines.collect { |line| line.insert(0, ' ') }.join
       else
         response = ''
       end
@@ -129,19 +125,5 @@ module RDoc
       str
     end
 
-    def unescapeHTML(string)
-      string.gsub!('\/', '/')
-      string.gsub(/&(.*?);/n) do
-        match = $1.dup
-        case match
-        when /\Aamp\z/ni   then '&'
-        when /\Aquot\z/ni  then '"'
-        when /\Agt\z/ni    then '>'
-        when /\Alt\z/ni    then '<'
-        when /\Anbsp\z/ni  then ' '
-        else                    "&#{match};"
-        end
-      end
-    end
   end
 end

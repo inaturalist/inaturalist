@@ -4,7 +4,7 @@ require 'rake/gempackagetask'
 require 'rake/testtask'
 
 require 'lib/flickraw'
-require 'flickraw_rdoc'
+require 'flickraw_rdoc' if RUBY_VERSION >= "1.9"
 
 PKG_FILES = FileList["lib/flickraw.rb", "flickraw_rdoc.rb", "LICENSE", "README.rdoc", "rakefile", "examples/*.rb", "test/*.rb"].to_a
 
@@ -18,7 +18,7 @@ spec = Gem::Specification.new do |s|
   s.version = FlickRaw::VERSION
   s.files = PKG_FILES
   s.test_files = FileList["test/*.rb"].to_a
-  s.add_dependency 'json'
+  s.add_dependency 'json', '>= 1.1.1'
 end
 
 Rake::RDocTask.new do |rd|
@@ -32,6 +32,7 @@ end
 
 Rake::TestTask.new
 
+desc "Create a gemspec file"
 task :spec do
   spec_clone = spec.clone
   spec_clone.test_files = nil

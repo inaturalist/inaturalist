@@ -13,6 +13,15 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'yaml'
 INAT_CONFIG = YAML.load(File.open("#{RAILS_ROOT}/config/config.yml"))[RAILS_ENV]
 
+# flickr api keys - these need to be set before Flickraw gets included
+FLICKR_API_KEY = INAT_CONFIG['flickr']['FLICKR_API_KEY']
+FLICKR_SHARED_SECRET = INAT_CONFIG['flickr']['FLICKR_SHARED_SECRET']
+FlickRawOptions = {
+  'api_key' => FLICKR_API_KEY,
+  'shared_secret' => FLICKR_SHARED_SECRET,
+  'lazyload' => true
+}
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -66,7 +75,6 @@ Rails::Initializer.run do |config|
   # Gems
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
-  # config.gem "ruby-debug" # Apparently this doesn't work with passenger...
   config.gem "GeoRuby", :lib => 'geo_ruby'
   config.gem "mojombo-chronic", :lib => 'chronic', :source => 'http://gems.github.com'
   config.gem 'bluecloth'
@@ -76,7 +84,7 @@ Rails::Initializer.run do |config|
   config.gem "mocha"
   config.gem "thoughtbot-paperclip", :lib => 'paperclip', :source => 'http://gems.github.com'
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
-  config.gem "kueda-flickraw", :lib => "flickraw", :source => "http://gems.github.com/"
+  config.gem "flickraw"
   config.gem 'rest-client', :lib => 'rest_client'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
   config.gem 'geoip'
@@ -136,7 +144,3 @@ Rubaidh::GoogleAnalytics.environments = ['production']
 SITE_NAME = INAT_CONFIG['general']['SITE_NAME']
 OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
 SPHERICAL_MERCATOR = SphericalMercator.new
-
-# flickr api keys
-FLICKR_API_KEY = INAT_CONFIG['flickr']['FLICKR_API_KEY']
-FLICKR_SHARED_SECRET = INAT_CONFIG['flickr']['FLICKR_SHARED_SECRET']

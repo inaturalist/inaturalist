@@ -1,0 +1,125 @@
+= Flickraw
+
+Flickraw is a library to access flickr[http://flickr.com] api in a simple way.
+It maps exactly the methods described in {the official api documentation}[http://www.flickr.com/services/api].
+It also tries to present the data returned in a simple and intuitive way.
+The methods are fetched from flickr when loading the library by using introspection capabilities. So it is always up-to-date with regards to new methods added by flickr.
+
+The rubyforge project : http://rubyforge.org/projects/flickraw
+
+The github repository: http://github.com/hanklords/flickraw/tree/master
+
+= Installation
+Type this in a console (you might need to be superuser)
+ gem install flickraw
+
+This will recreate the documentation by fetching the methods descriptions from flickr and then virtually plugging them in standard rdoc documentation.
+ rake rdoc
+
+= Features
+
+* Small single file: flickraw.rb is less than 300 lines
+* Complete support of flickr API. This doesn't require an update of the library
+* Ruby syntax similar to the flickr api
+* Flickr authentication
+* Photo upload
+* Proxy support
+* Delayed library loading (for rails users)
+
+= Usage
+
+== Simple
+
+ require 'flickraw'
+
+ list   = flickr.photos.getRecent
+
+ id     = list[0].id
+ secret = list[0].secret
+ info = flickr.photos.getInfo :photo_id => id, :secret => secret
+
+ info.title           # => "PICT986"
+ info.dates.taken     # => "2006-07-06 15:16:18"
+
+
+ sizes = flickr.photos.getSizes :photo_id => id
+
+ original = sizes.find {|s| s.label == 'Original' }
+ original.width       # => "800"
+
+== Authentication
+
+  require 'flickraw'
+
+  FlickRaw.api_key="... Your API key ..."
+  FlickRaw.shared_secret="... Your shared secret ..."
+
+  frob = flickr.auth.getFrob
+  auth_url = FlickRaw.auth_url :frob => frob, :perms => 'read'
+
+  puts "Open this url in your process to complete the authication process : #{auth_url}"
+  puts "Press Enter when you are finished."
+  STDIN.getc
+
+  begin
+    auth = flickr.auth.getToken :frob => frob
+    login = flickr.test.login
+    puts "You are now authenticated as #{login.username} with token #{auth.token}"
+  rescue FlickRaw::FailedResponse => e
+    puts "Authentication failed : #{e.msg}"
+  end
+
+You don't need to do that each time, you can reuse your token:
+
+  require 'flickraw'
+
+  FlickRaw.api_key="... Your API key ..."
+  FlickRaw.shared_secret="... Your shared secret ..."
+
+  auth = flickr.auth.checkToken :auth_token => "... Your saved token ..."
+
+  # From here you are logged:
+  puts auth.user.username
+
+== Upload
+
+  require 'flickraw'
+
+  FlickRaw.api_key="... Your API key ..."
+  FlickRaw.shared_secret="... Your shared secret ..."
+
+  PHOTO_PATH='photo.jpg'
+
+  # You need to be authentified to do that, see the previous examples.
+  flickr.upload_photo PHOTO_PATH, :title => "Title", :description => "This is the description"
+
+== Flickraw Options
+
+You can pass some options to modify flickraw behavior:
+
+  FlickRawOptions = {
+    "api_key" => "... Your API key ...",
+    "shared_secret" => "... Your shared secret ...",
+    "auth_token" => "... Your saved token..."  # if you set this you will be automatically loggued
+    "lazyload" => true,     # This delay the loading of the library until the first call
+
+    # Proxy support. alternatively, you can use the http_proxy environment variable
+    "proxy_host" => "proxy_host",
+    "proxy_port" => "proxy_port",
+    "proxy_user" => "proxy_user",
+    "proxy_password" => "proxy_password",
+
+    "timeout" => 5,                # Set the request timeout
+    "auth_token" => "SAVED_TOKEN"  # Set the initial token
+  }
+
+  require 'flickraw'
+
+
+See the _examples_ directory to find more examples.
+
+= Notes
+If you want to use the api authenticated with several user at the same time, you must pass the authentication token explicitely each time.
+This is because it is keeping the authentication token internally.
+As an alternative, you can create new Flickr objects besides Kernel.flickr which is created for you. Use Flickr.new to this effect.
+
