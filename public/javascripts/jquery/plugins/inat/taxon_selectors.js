@@ -170,6 +170,7 @@
     // options
     if (taxa.length == 0) {
       var status = $('<span>No results for "' + q + '".<br/></span>');
+      $(input).focus();
       if (options.includeSearchExternal) {
         $(status).append(
           $('<a href="#">Search external name providers &raquo;</a>').css({
