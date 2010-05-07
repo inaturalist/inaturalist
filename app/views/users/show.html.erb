@@ -117,7 +117,7 @@
     <% end -%>
     <% if @user.followers.count > 0 -%>
       <li>
-        <%= link_to pluralize(@user.followers.count, "person"), followers_by_login_path(@user.login) %>
+        <%= link_to pluralize(@user.followers.count, "follower"), followers_by_login_path(@user.login) %>
       </li>
     <% end -%>
     <% if @user.friendships.count > 0 %>
