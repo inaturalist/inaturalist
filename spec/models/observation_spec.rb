@@ -67,13 +67,14 @@ describe Observation, "creation" do
     @observation.identifications.first.taxon.should == @observation.taxon
   end
   
-  it "should add a newly observed taxon to the user's life list" do
-    @observation.taxon = Taxon.find_by_name("Ensatina eschscholtzii")
-    @observation.user.life_list.taxa.should_not include(@observation.taxon)
-    @observation.save
-    @observation.reload
-    @observation.user.life_list.taxa.should include(@observation.taxon)
-  end
+  # # Handled by DJ
+  # it "should add a newly observed taxon to the user's life list" do
+  #   @observation.taxon = Taxon.find_by_name("Ensatina eschscholtzii")
+  #   @observation.user.life_list.taxa.should_not include(@observation.taxon)
+  #   @observation.save
+  #   @observation.reload
+  #   @observation.user.life_list.taxa.should include(@observation.taxon)
+  # end
   
   it "should only update the life list for an already observed taxon" do
     user = @observation.user
@@ -214,18 +215,19 @@ describe Observation, "updating" do
     end.first
     owners_ident.taxon.should == psre
   end
-  
-  it "should add the taxon to the user's life list if not there already" do
-    psre = Taxon.find_by_name("Pseudacris regilla")
-    @observation.taxon = psre
-    @observation.user.life_list.taxa.map(&:id).should include(@observation.taxon_id_was)
-    @observation.user.life_list.taxa.should_not include(@observation.taxon)
-    
-    @observation.save
-    @observation.reload
 
-    @observation.user.life_list.taxa.should include(@observation.taxon)
-  end
+  # # Handled by DJ
+  # it "should add the taxon to the user's life list if not there already" do
+  #   psre = Taxon.find_by_name("Pseudacris regilla")
+  #   @observation.taxon = psre
+  #   @observation.user.life_list.taxa.map(&:id).should include(@observation.taxon_id_was)
+  #   @observation.user.life_list.taxa.should_not include(@observation.taxon)
+  #   
+  #   @observation.save
+  #   @observation.reload
+  # 
+  #   @observation.user.life_list.taxa.should include(@observation.taxon)
+  # end
   
   it "should properly set date and time" do
     @observation.save
@@ -277,8 +279,9 @@ describe Observation, "destruction" do
   end
   
   it "should decrement the counter cache in users" do
-    old_count = @observation.user.observations_count
     user = @observation.user
+    user.reload
+    old_count = user.observations_count
     @observation.destroy
     user.reload
     user.observations_count.should == old_count - 1
@@ -303,8 +306,8 @@ describe Observation, "named scopes" do
       :taxon => Taxon.find_by_name('Ensatina eschscholtzii'),
       :observed_on_string => '14 months ago',
       :id_please => true,
-      :latitude => 25,
-      :longitude => 25,
+      :latitude => 20.01,
+      :longitude => 20.01,
       :created_at => 14.months.ago,
       :time_zone => 'UTC'
     )
@@ -357,7 +360,7 @@ describe Observation, "named scopes" do
   end
   
   it "should find observations using the shorter box method" do
-    obs = Observation.near_point(20, 20)
+    obs = Observation.near_point(20, 20).all
     obs.should include(@pos)
     obs.should_not include(@neg)
   end

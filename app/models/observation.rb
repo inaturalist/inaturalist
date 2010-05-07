@@ -121,11 +121,20 @@ class Observation < ActiveRecord::Base
     end
   end
   
-  # inneficient radius in kilometers, needs testing
+  # inneficient radius in kilometers
+  # See http://www.movable-type.co.uk/scripts/latlong-db.html for the math
   named_scope :near_point, Proc.new { |lat, lng, radius|
     radius ||= 10.0
-    {:conditions => ['6378.7 * acos(sin(?/57.2958) * sin(latitude/57.2958) + cos(?/57.2958) * cos(latitude/57.2958) *  cos(longitude/57.2958 -?/57.2958)) < ?',
-                     lat.to_f, lat.to_f, lng.to_f, radius]}
+    planetary_radius = 6371 # km
+    deg_per_rad = 57.2958
+    latrads = lat.to_f / deg_per_rad
+    lngrads = lng.to_f / deg_per_rad
+
+    {:conditions => [
+      "#{planetary_radius} * acos(sin(?) * sin(latitude/57.2958) + "  + 
+      'cos(?) * cos(latitude/57.2958) *  cos(longitude/57.2958 - ?)) < ?',
+      latrads, latrads, lngrads, radius
+    ]}    
   }
   
   # Has_property scopes
