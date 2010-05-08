@@ -27,7 +27,18 @@ class CheckListsController < ApplicationController
       # Make sure we don't get duplicate taxa from check lists other than the default
       @find_options[:group] = "listed_taxa.taxon_id"
       
+      # Searches must use place_id instead of list_id for default checklists 
+      # so we can search items in other checklists for this place
+      if @q = params[:q]
+        @taxa = Taxon.search(@q, 
+          :with => {:places => @list.place_id},
+          :page => @find_options[:page], 
+          :per_page => @find_options[:per_page])
+        @find_options[:conditions] = List.merge_conditions(
+          @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
+      end
       @listed_taxa = ListedTaxon.paginate(@find_options)
+      
       @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
         :conditions => ["place_id = ?", @list.place_id])
       

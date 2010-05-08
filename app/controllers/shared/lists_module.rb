@@ -21,14 +21,12 @@ module Shared::ListsModule
     
     if @q = params[:q]
       @taxa = Taxon.search(@q, 
-        :with => {:lists => @list.id}, 
+        :with => {:lists => @list.id},
         :page => @find_options[:page], 
         :per_page => @find_options[:per_page])
       @find_options[:conditions] = List.merge_conditions(@find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
-      @listed_taxa = @list.listed_taxa.paginate(@find_options)
-    else
-      @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     end
+    @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     
     @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
     @total_listed_taxa ||= @list.listed_taxa.count
