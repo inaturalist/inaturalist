@@ -421,7 +421,7 @@ class TaxaController < ApplicationController
         @places ||= []
         (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
           ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
-          next if ydn_places.empty?
+          next if ydn_places.blank?
           @places << Place.import_by_woeid(ydn_places.first.woeid)
         end
         
