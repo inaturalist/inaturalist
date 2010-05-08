@@ -287,6 +287,7 @@ describe Ratatosk::NameProviders::UBioNameProvider do
     results = @np.find(name)
     results.select {|tn| tn.name == name}.size.should_not > 1
   end
+  
 end
 
 describe Ratatosk::NameProviders::UBioTaxonNameAdapter do

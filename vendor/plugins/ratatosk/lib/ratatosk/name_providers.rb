@@ -179,6 +179,8 @@ module Ratatosk
         # List of classifications from uBio we like. To fetch an updated list
         # of all available classifications, try this:
         @PREFERRED_CLASSIFICATIONS = [
+          'Species2000 & ITIS Catalogue of Life: 2010',
+          'Species2000 & ITIS Catalogue of Life: 2009',
           'Species2000 & ITIS Catalogue of Life: 2008',
           'Species2000 & ITIS Catalogue of Life: 2007',
           'Species 2000',
@@ -291,7 +293,7 @@ module Ratatosk
       def get_phylum_for(taxon, lineage = nil)
         # Try to avoid calling uBio a billion times using their 
         # taxonomicGroup element
-        if taxon.class != Taxon && taxaonomic_group = taxon.hxml.at('ubio:taxonomicGroup')
+        if taxon.class != Taxon && (taxaonomic_group = taxon.hxml.at('ubio:taxonomicGroup'))
           if taxonomic_group_taxon = Taxon.find_by_name(taxaonomic_group.innerHTML)
             return taxonomic_group_taxon if taxonomic_group_taxon.rank == 'phylum'
             return taxonomic_group_taxon.phylum

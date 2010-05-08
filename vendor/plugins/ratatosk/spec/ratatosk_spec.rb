@@ -162,11 +162,11 @@ describe Ratatosk, "grafting" do
   
   it "should graft everything to 'Life'" do
     life = Taxon.find_by_name('Life')
-    giardia = @ratatosk.find('giardia').first
-    giardia.save
-    @ratatosk.graft(giardia.taxon)
-    giardia.reload
-    giardia.taxon.ancestors.should include(life)
+    tn = @ratatosk.find('Hexamitidae').first
+    tn.save
+    @ratatosk.graft(tn.taxon)
+    tn.reload
+    tn.taxon.ancestors.should include(life)
   end
   
   it "should set the parent of a kingdom to 'Life'" do
@@ -223,7 +223,7 @@ describe Ratatosk, "grafting" do
   end
 end
 
-describe Ratatosk, "get_grant_point_for" do
+describe Ratatosk, "get_graft_point_for" do
   fixtures :taxa, :taxon_names
   before(:each) do
     @ratatosk = Ratatosk::Ratatosk.new
@@ -239,6 +239,17 @@ describe Ratatosk, "get_grant_point_for" do
     graft_point, lineage = @ratatosk.get_graft_point_for(lineage)
     lineage.first.name.should == gbh.taxon.name
     graft_point.should == aves
+  end
+  
+  it "should work for Boloria bellona" do
+    bobes = @ratatosk.find('Boloria bellona')
+    tn = bobes.first
+    name_provider = Ratatosk::NameProviders.const_get(tn.taxon.name_provider).new
+    lineage = name_provider.get_lineage_for(tn.taxon)
+    graft_point, lineage = @ratatosk.get_graft_point_for(lineage)
+    graft_point.name.should == "Insecta"
+    # puts "graft_point: #{graft_point}"
+    # puts "lineage: #{lineage.map(&:name).inspect}"
   end
 end
 

@@ -202,6 +202,16 @@ module Ratatosk
       name_provider = NameProviders.const_get(lineage.last.name_provider).new
       new_lineage = []
       graft_point = nil
+      
+      # Exclude non-preferred ranks from lineage
+      # Note: this coupling to the iNat Taxon class isn't ideal, and should
+      # be refactored if this plugin ever needs to be separated.
+      lineage = lineage.select do |tn|
+        taxon = tn.is_a?(Taxon) ? tn : tn.taxon
+        rank = Taxon::RANK_EQUIVALENTS[taxon.rank] || taxon.rank
+        Taxon::PREFERRED_RANKS.include?(rank)
+      end
+      
       ancestor_phylum = name_provider.get_phylum_for(lineage.first, lineage)
       lineage.each do |ancestor|
         # puts "\t[DEBUG] Inspecting ancestor: #{ancestor}"
