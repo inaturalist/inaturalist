@@ -77,26 +77,33 @@ module ActivityStreams
           unless as = activity_streams.first
             return true
           end
+          
+          # Destroy single AS's with single activity objects
           if as.batch_ids.blank?
             ActivityStream.delete_all([
               "activity_object_type = ? AND activity_object_id = ?", 
               self.class.to_s, self
             ])
-          else
-            batch = self.class.all(:conditions => ["id IN (?)", as.batch_ids.split(',')], :limit => 200)
-            if batch.blank?
-              ActivityStream.delete_all([
-                "activity_object_type = ? AND activity_object_id = ?", 
-                self.class.to_s, self
-              ])
-            else
-              ActivityStream.update_all(
-                ["activity_object_type = ? AND activity_object_id = ?", 
-                  batch.first.class.to_s, batch.first.id], 
-                ["activity_object_id = ?", self]
-              )
-            end
+            return true
           end
+          
+          
+          batch = self.class.all(:conditions => ["id IN (?)", as.batch_ids.split(',')], :limit => 200)
+          
+          # Nothing left in the batch, destroy them all
+          if batch.blank?
+            ActivityStream.delete_all([
+              "activity_object_type = ? AND activity_object_id = ?", 
+              self.class.to_s, self
+            ])
+            return true
+          end
+          
+          # Update activity streams so their act. obj. is the next in the batch
+          ActivityStream.update_all(
+            ["activity_object_id = ?", batch.first.id], 
+            ["activity_object_type = ? AND activity_object_id = ?", self.class.to_s, self]
+          )
           true
         end
         
