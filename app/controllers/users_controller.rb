@@ -186,7 +186,9 @@ class UsersController < ApplicationController
           })
       
       @id_please_observations = @associates[:observations]
-      @id_please_observations += @commented_on
+      if @id_please_observations && @commented_on
+        @id_please_observations += @commented_on
+      end
       unless @id_please_observations.blank?
         @id_please_observations = @id_please_observations.select(&:id_please?)
         @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
