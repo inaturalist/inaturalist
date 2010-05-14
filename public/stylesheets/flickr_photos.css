@@ -24,8 +24,8 @@
 
 .modal_image_link {
   position: relative;
-  display: block;
-  float: left;
+  display: inline-block;
+/*  float: left;*/
 }
 
 .modal_image_link .zoom_icon {

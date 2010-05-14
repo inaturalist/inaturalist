@@ -144,7 +144,11 @@ class ApplicationController < ActionController::Base
   
   def search_for_places
     @q = params[:q]
-    @places = Place.search(@q, :page => params[:page])
+    if params[:limit]
+      @limit ||= params[:limit].to_i
+      @limit = 50 if @limit > 50
+    end
+    @places = Place.search(@q, :page => params[:page], :limit => @limit)
     if logged_in? && (@places.blank? || @places.compact.map(&:display_name).join(' ').downcase !~ /#{@q}/)
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}

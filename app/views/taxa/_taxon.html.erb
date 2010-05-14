@@ -18,6 +18,7 @@
   taxon_name_str ||= taxon.default_name.name
   include_full_name ||= false
   taxon_name_str = render('shared/taxon', :object => taxon) if include_full_name
+  more_images ||= false
   
   if js_link
     taxon_json = {
@@ -36,7 +37,7 @@
 -%>
 
 <div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
-  <div class="image">
+  <div class="image taxonimage <%= 'nophoto' if taxon.photos.blank? %>">
     <% if link_image -%>
       <% if js_link -%>
         <%= link_to_function taxon_image(taxon, image_options), "handleTaxonClick(event, #{taxon_json})" %>
@@ -47,6 +48,11 @@
       <%= taxon_image(taxon, image_options) %>
     <% end -%>
   </div>
+  <% if more_images -%>
+    <div class="moreimages">
+      <%= remote_taxon_images(taxon, :limit => 15) %>
+    </div>
+  <% end -%>
   <div class="info">
     <% if link_name -%>
       <% if js_link -%>

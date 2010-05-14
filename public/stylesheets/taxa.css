@@ -24,18 +24,26 @@ table.taxa .taxon_name {
   min-height: 100px;
 }
 
-.taxa.grid .taxon .image .iconic {
-  margin: 30px;
-}
+.taxa.grid .taxon .image .iconic { margin: 30px; }
+.taxa.grid .first { clear: left; }
+.taxa.grid .last { margin-right: 0; }
+.taxa.grid .infolink { display: none; }
 
-.taxa.grid .first {
-  clear: left;
+.taxa.list .taxon_list_taxon { margin-bottom: 10px; }
+.taxa.list .taxonimage {
+  float: left;
+  margin: 0 10px 10px 0;
+  width: 240px;
+  text-align: center;
 }
-
-.taxa.grid .last {
-  margin-right: 0;
+.taxa.list .nophoto {
+  background-color: #eee;
+  width: 220px;
+  height: 32px;
+  padding: 10px;
 }
-
-.taxa.grid .infolink {
-  display: none;
+.taxa.list .moreimages { 
+  float: left;
+  width: 400px;
 }
+.taxa.list .info { display: none; }

@@ -2,11 +2,12 @@
 <% form_tag({}, :method => :get, :class => 'clear buttonrow') do %>
   <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
   <label for="q">Search</label>
+  <%= hidden_field_tag :view, @view %>
   <%= text_field_tag 'q', params[:q], :class => 'text' %>
   <input type="submit" class="default button" value="Go" />
   <%= link_to "Clear", url_for_params(:without => :q), :class => 'delete button' %>
   <div class="inter">
-    <%= render :partial => "shared/page_results", :object => @taxa %>
+    <%= render(:partial => "shared/page_results", :object => @taxa) unless @taxa.nil? %>
 
     <% unless @q.blank? -%>
        <span class="description">for</span> <em>&ldquo;<%= @q %>&rdquo;</em>
@@ -33,15 +34,32 @@
   <div class="inter loading status" style="float: right; display: none">
     Loading...
   </div>
+  
+  <div class="meta inter" style="float: right; margin-right: 0">
+    View &nbsp;
+    <%= link_to "grid", url_for_params(:without => "view"), :class => "modal_link #{'selected' if @view == TaxaController::GRID_VIEW}" %>
+    <%= link_to "list", url_for_params(:view => TaxaController::LIST_VIEW), :class => "modal_link #{'selected' if @view == TaxaController::LIST_VIEW}" %>
+  </div>
 <% end %>
 
 <div class="column span-6">
+  
+  <% if @taxon -%>
+    <div class="facet">
+      <strong><%= link_to_toggle "Selected Taxon", "#classification", :class => "open" %></strong>
+      <div id="classification">
+        <%= render :partial => 'classification_list', :locals => {
+          :link_method => lambda {|t| url_for_params(:taxon_id => t.id)}
+        } %>
+      </div>
+    </div>
+  <% end -%>
   
   <% unless @faceted_iconic_taxa.blank? && @iconic_taxa.blank? -%>
     <div id="iconic_taxa_facet" class="facet taxon_links">
       <strong>
         <% if @iconic_taxa.blank? -%>
-          <%= link_to_toggle "All Taxonomic Groups", "#iconic_taxa", :class => 'open' %>
+          <%= link_to_toggle "Taxonomic Groups", "#iconic_taxa", :class => 'open' %>
         <% else %>
           <%= link_to '&laquo; All Taxonomic Groups', url_for_params(:without => [:iconic_taxa, :page]) %>
         <% end -%>
@@ -65,7 +83,7 @@
     <div id="colors_facet" class="facet">
       <strong>
         <% if @colors.blank? -%>
-          <%= link_to_toggle "All Colors", "#colors", :class => 'open' %>
+          <%= link_to_toggle "Colors", "#colors", :class => 'open' %>
         <% else %>
           <%= link_to '&laquo; All Colors', url_for_params(:without => [:colors, :page]) %>
         <% end -%>
@@ -101,7 +119,7 @@
     <div id="places_facet" class="facet">
       <strong>
         <% if @places.blank? -%>
-          <%= link_to_toggle "All Places", "#places", :class => 'open' %>
+          <%= link_to_toggle "Places", "#places", :class => 'open' %>
         <% else %>
           <%= link_to '&laquo; All Places', url_for_params(:without => [:page, :places]) %>
         <% end -%>
@@ -155,28 +173,83 @@
   <% end -%>
 </div>
 
-<div id="taxon_list" class="last column span-18">
-  <% if @taxa.empty? %>
-    <div class="readable description">
-      No results found.
+<div id="taxon_list" class="last column span-18 <%= 'empty' if @taxa.blank? %>">
+  <% if @taxa.blank? %>
+    <% if !@taxa.nil? && @taxa.size == 0 -%>
+      <div class="readable description noresults">
+        No results found.
+      </div>
+    <% end -%>
+    <div class="column span-5">
+      <div class="facet">
+        <h3>What did you see?</h3>
+        <ul class="taxon_links">
+          <% for iconic_taxon in @all_iconic_taxa %>
+            <li>
+              <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
+                url_for_params(:taxon_id => iconic_taxon.id),
+                :class => "taxon #{iconic_taxon.name}" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="column span-8">
+      <div class="facet">
+        <h3>Where did you see it?</h3>
+        <% form_remote_tag :url => {:action => "find_places"}, 
+            :update => "find_places", 
+            :loading => 
+              "$('#place_q_submit').hide();" +
+              "$('#place_q_loading').show();",
+            :complete => 
+              "$('#place_q_submit').show();" +
+              "$('#place_q_loading').hide();",
+            :html => {:class => "clear buttonrow"} do %>
+          <input type="text" name="q" value="" id="place_q" class="text" />
+          <input type="submit" value="Search" class="button" id="place_q_submit" />
+          <div id="place_q_loading" class="loading status inter" style="display:none">&nbsp;</div>
+        <% end %>
+        <div id="find_places"></div>
+      </div>
+    </div>
+    <div class="last column span-5">
+      <div class="facet">
+        <h3>What color was it?</h3>
+        <ul id="colors_facet">
+          <% for color in @all_colors %>
+            <li class="facet_value <%= color.value %>">
+              <%= link_to "&nbsp;", url_for_params(:colors => color.id), :class => 'icon' %>
+              <%= link_to color.value, url_for_params(:colors => color.id) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% else %>
-    <div class="taxa grid">
+    <div class="taxa <%= @view %>">
       <% for taxon in @taxa %>
-        <%= render :partial => "taxa/taxon", :object => taxon , :locals => {
-          :link_name => true,
-          :link_image => true,
-          :js_link => js_link,
-          :image_options => {:size => 'thumb'},
-          :include_full_name => true,
-          :extra_class => cycle('first', '', '', '', '', 'last')
-        } %>
+        <div class="taxon_list_taxon">
+          <% if @view == TaxaController::LIST_VIEW -%>
+            <%= link_to "search this taxon", url_for_params(:taxon_id => taxon.id), :class => "right" %>
+            <h3><%= render('shared/taxon', :object => taxon, :link_url => taxon_path(taxon)) %></h3>
+          <% end -%>
+          <%= render :partial => "taxa/taxon", :object => taxon , :locals => {
+            :link_name => true,
+            :link_image => true,
+            :js_link => js_link,
+            :image_options => {:size => (@view == TaxaController::LIST_VIEW ? 'small' : 'thumb')},
+            :include_full_name => true,
+            :extra_class => cycle('first', '', '', '', '', 'last'),
+            :more_images => (@view == TaxaController::LIST_VIEW)
+          } %>
+        </div>
       <% end %>
     </div>
   <% end %>
   
   <div class="last column span-18">
-    <%= will_paginate(@taxa) %>
+    <%= will_paginate(@taxa) unless @taxa.blank? %>
   </div>
 </div>
 

@@ -1,9 +1,12 @@
-<%- taxon ||= object || @taxon -%>
-<%- ancestors ||= @ancestors || taxon.ancestors -%>
-<%- children ||= @children || taxon.children -%>
+<%- 
+  taxon ||= object || @taxon
+  ancestors ||= @ancestors || taxon.ancestors
+  children ||= @children || taxon.children
+  link_method ||= lambda {|t| t.name == "Life" ? taxa_path : taxon_path(t)}
+-%>
   <ul class="taxonomic_tree leafylist">
     <li>
-      <%= link_to "Life", taxa_path %>
+      <%= link_to "Life", link_method.call(taxon) %>
     </li>
     <% unless taxon.grafted? -%>
     <li class="unknown">
@@ -13,19 +16,26 @@
       </span>
     </li>
     <%- else -%>
-      <%= render :partial => 'classification_li', :collection => ancestors[1..-1] %>
+      <%= render :partial => 'classification_li', :collection => ancestors[1..-1], 
+        :locals => { :link_method => link_method } %>
     <%- end -%>
     <li class="<%= taxon.iconic_taxon.name if taxon.iconic_taxon %>">
-      <%= render :partial => 'shared/taxon', 
-                 :locals => { :taxon => taxon, :include_parens => false } %>
+      <strong>
+        <%= render :partial => 'shared/taxon', 
+                   :locals => { :taxon => taxon, :include_parens => false, :link_url => link_method.call(taxon) } %>
+      </strong>
       <ul>
-        <%= render :partial => 'classification_li', :collection => children[0..9] %>
+        <%= render :partial => 'classification_li', :collection => children[0..9], :locals => {
+          :link_method => link_method
+        } %>
       </ul>
             
       <% if children.size > 10 -%>
         <%= link_to_toggle "More...", "#more_children" %>
         <ul id="more_children" style="display:none">
-          <%= render :partial => 'classification_li', :collection => children[10..-1] %>
+          <%= render :partial => 'classification_li', :collection => children[10..-1], :locals => {
+            :link_method => link_method
+          } %>
         </ul>
       <% end -%>
     </li>

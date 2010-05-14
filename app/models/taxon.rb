@@ -42,7 +42,7 @@ class Taxon < ActiveRecord::Base
     has colors(:id), :as => :colors, :facet => true, :type => :multi
     has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
     has listed_taxa(:list_id), :as => :lists, :type => :multi
-    has created_at
+    has created_at, lft, rgt
     set_property :delta => :delayed
   end
   
@@ -364,6 +364,12 @@ class Taxon < ActiveRecord::Base
   def photos_with_backfill(params = {})
     params[:limit] ||= 9
     chosen_photos = photos.all(:limit => params[:limit])
+    if chosen_photos.size < params[:limit]
+      chosen_photos += Photo.all(
+        :include => :taxa, 
+        :conditions => ["taxa.lft > ? AND taxa.rgt < ?", lft, rgt], 
+        :limit => params[:limit] - chosen_photos.size)
+    end
     flickr_chosen_photos = []
     if chosen_photos.size < params[:limit] && self.auto_photos
       begin

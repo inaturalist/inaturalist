@@ -184,4 +184,22 @@ module TaxaHelper
   def abbreviate_binomial(name)
     (name.split[0..-2].map{|s| s.first.upcase} + [name.split.last]).join('. ')
   end
+  
+  def remote_taxon_images(taxon, options = {})
+    limit = options.delete(:limit)
+    element_id = dom_id(taxon, "images")
+    key = {:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo"}
+    if controller.fragment_exist?(key)
+      return content_tag(:div, controller.read_fragment(key), :id => element_id)
+    end
+    html = content_tag(:div, "Loading images...", :id => element_id, :class => "loading status")
+    js = <<-JS
+      $('##{element_id}').load('#{taxon_photos_path(taxon, :partial => "photo", :limit => limit)}', function() {
+        $('#modal_image_box').jqmAddTrigger('##{element_id} a.modal_image_link');
+        $('##{element_id}').removeClass('loading status');
+      });
+    JS
+    html += content_tag(:script, js, :type => "text/javascript")
+    html
+  end
 end

@@ -21,6 +21,10 @@ class TaxaController < ApplicationController
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
   rescue_from ActionController::UnknownAction, :with => :try_show
   
+  GRID_VIEW = "grid"
+  LIST_VIEW = "list"
+  BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
+  
   #
   # GET /observations
   # GET /observations.xml
@@ -259,6 +263,10 @@ class TaxaController < ApplicationController
     @q = params[:q]
     drill_params = {}
     
+    if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id]))
+      drill_params[:lft] = @taxon.lft..@taxon.rgt
+    end
+    
     if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')
       @iconic_taxa_ids = @iconic_taxa_ids.map(&:to_i)
       @iconic_taxa = Taxon.find(@iconic_taxa_ids)
@@ -277,51 +285,56 @@ class TaxaController < ApplicationController
     
     per_page = params[:per_page] ? params[:per_page].to_i : 24
     per_page = 100 if per_page > 100
-    @facets = if drill_params.blank?
-      Taxon.facets(@q, :page => params[:page], :per_page => per_page, 
-        :include => [:taxon_names, :photos])
-    else
+    
+    unless @q.blank? && drill_params.blank?
       page = params[:page] ? params[:page].to_i : 1
-      Taxon.facets(@q, :page => page, :per_page => per_page,
-        :conditions => drill_params, 
-        :include => [:taxon_names, :photos])
-    end
-    
-    if @facets[:iconic_taxon_id]
-      @faceted_iconic_taxa = Taxon.all(
-        :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
+      @facets = Taxon.facets(@q, :page => page, :per_page => per_page,
+        :with => drill_params, 
         :include => [:taxon_names, :photos],
-        :order => 'lft'
-      )
-      @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
-    end
-  
-    if @facets[:colors]
-      @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
-      @faceted_colors_by_id = @faceted_colors.index_by(&:id)
-    end
-  
-    if @facets[:places]
-      @faceted_places = if @places.blank?
-        Place.all(:order => "name", :conditions => [
-          "id in (?) && place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
-        ])
-      else
-        Place.all(:order => "name", :conditions => [
-          "id in (?) AND parent_id IN (?)", 
-          @facets[:places].keys, @places.map(&:id)
-        ])
+        :order => :lft)
+
+      if @facets[:iconic_taxon_id]
+        @faceted_iconic_taxa = Taxon.all(
+          :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
+          :include => [:taxon_names, :photos],
+          :order => 'lft'
+        )
+        @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
       end
-      @faceted_places_by_id = @faceted_places.index_by(&:id)
+
+      if @facets[:colors]
+        @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
+        @faceted_colors_by_id = @faceted_colors.index_by(&:id)
+      end
+
+      if @facets[:places]
+        @faceted_places = if @places.blank?
+          Place.all(:order => "name", :conditions => [
+            "id in (?) && place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
+          ])
+        else
+          Place.all(:order => "name", :conditions => [
+            "id in (?) AND parent_id IN (?)", 
+            @facets[:places].keys, @places.map(&:id)
+          ])
+        end
+        @faceted_places_by_id = @faceted_places.index_by(&:id)
+      end
+
+      @taxa = @facets.for(drill_params)
     end
-    
-    @taxa = @facets.for(drill_params)
     
     do_external_lookups
     
     respond_to do |format|
       format.html do
+        @view = BROWSE_VIEWS.include?(params[:view]) ? params[:view] : GRID_VIEW
         flash[:notice] = @status unless @status.blank?
+        
+        if @taxa.blank?
+          @all_iconic_taxa = Taxon::ICONIC_TAXA.sort_by(&:lft)
+          @all_colors = Color.all
+        end
         
         if params[:partial]
           render :partial => "taxa/#{params[:partial]}.html.erb", :locals => {
@@ -378,8 +391,26 @@ class TaxaController < ApplicationController
   end
   
   def photos
-    @photos = @taxon.photos_with_backfill(:limit => 24)
-    render :layout => false
+    limit = params[:limit].to_i
+    limit = 24 if limit.blank? || limit == 0
+    limit = 50 if limit > 50
+    @photos = @taxon.photos_with_backfill(:limit => limit)
+    if params[:partial]
+      key = {:controller => 'taxa', :action => 'photos', :id => @taxon.id, :partial => params[:partial]}
+      if fragment_exist?(key)
+        content = read_fragment(key)
+      else
+        content = if @photos.blank?
+          '<div class="description">No matching photos.</div>'
+        else
+          render_to_string :partial => "taxa/#{params[:partial]}", :collection => @photos
+        end
+        write_fragment(key, content)
+      end
+      render :layout => false, :text => content
+    else
+      render :layout => false
+    end
   end
   
   def edit_photos
@@ -457,6 +488,12 @@ class TaxaController < ApplicationController
       return
     end
     
+    render :layout => false
+  end
+  
+  def find_places
+    @limit = 5
+    search_for_places
     render :layout => false
   end
   

@@ -6,9 +6,11 @@ taxon_class = if @iconic_taxa && (iconic_taxon = @iconic_taxa.select {|it| it.id
 elsif taxon.iconic_taxon
   taxon.iconic_taxon.name
 end
+link_method ||= lambda {|taxon| taxon.name == "Life" ? taxa_path : taxon_path(taxon)}
+url ||= link_method.call(taxon)
 -%>
 <li class="<%= taxon_class %>">
-  <% link_to(taxon) do %>
+  <% link_to(url) do %>
     <%= render :partial => 'shared/taxon', 
                :object => taxon,
                :locals => { :include_parens => false } %>

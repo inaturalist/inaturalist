@@ -1,0 +1,8 @@
+<% if photo.is_a? FlickrPhoto %>
+  <%= modal_image(photo, :size => :square) %>
+<% else %>
+  <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
+  <a href="<%= photo_url %>">
+    <%= image_tag(photo.source_url(:square), :width => 75, :height => 75, :title => "Photo: #{photo.photo_xml['ownername']}") %>
+  </a>
+<% end %>
