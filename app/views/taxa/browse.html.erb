@@ -17,7 +17,7 @@
       <% if @q.blank? %>$('#q').focus();<% end %>
       
       // TaxonBrowser.ajaxify();
-      <% unless @view == TaxaController::LIST_VIEW %>
+      <% if @view == TaxaController::GRID_VIEW %>
         TaxonBrowser.addTips();
       <% end %>
     });

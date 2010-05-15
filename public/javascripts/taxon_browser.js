@@ -7,7 +7,7 @@ var TaxonBrowser = {
   },
   
   addTips: function() {
-    $('#taxon_browser .taxa > .taxon').each(TaxonBrowser.handleTaxonQtip);
+    $('#taxon_browser .taxon_list_taxon > .taxon').each(TaxonBrowser.handleTaxonQtip);
   },
 
   handleFormSubmits: function(e) {

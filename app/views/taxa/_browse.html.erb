@@ -49,7 +49,7 @@
       <strong><%= link_to_toggle "Selected Taxon", "#classification", :class => "open" %></strong>
       <div id="classification">
         <%= render :partial => 'classification_list', :locals => {
-          :link_method => lambda {|t| url_for_params(:taxon_id => t.id)}
+          :link_method => lambda {|t| url_for_params(:taxon_id => t.id, :without => :page)}
         } %>
       </div>
     </div>
@@ -231,7 +231,7 @@
       <% for taxon in @taxa %>
         <div class="taxon_list_taxon">
           <% if @view == TaxaController::LIST_VIEW -%>
-            <%= link_to "search this taxon", url_for_params(:taxon_id => taxon.id), :class => "right" %>
+            <%= link_to "search this taxon", url_for_params(:taxon_id => taxon.id, :without => :q), :class => "right" %>
             <h3><%= render('shared/taxon', :object => taxon, :link_url => taxon_path(taxon)) %></h3>
           <% end -%>
           <%= render :partial => "taxa/taxon", :object => taxon , :locals => {
