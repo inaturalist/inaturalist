@@ -39,6 +39,14 @@ module Ratatosk
       @ratatosk ||= Ratatosk.new
       @ratatosk.graft(taxon)
     end
+    
+    #
+    # Alias for Ratatosk::Ratatosk#find_existing_taxon
+    #
+    def find_existing_taxon(taxon)
+      @ratatosk ||= Ratatosk.new
+      @ratatosk.find_existing_taxon(taxon)
+    end
   end
   
   class Ratatosk
