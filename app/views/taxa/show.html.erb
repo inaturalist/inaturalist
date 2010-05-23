@@ -564,6 +564,12 @@
         :rel => "nofollow" %>
     </p>
     
+    <p class="ui">
+      <%= link_to "Search descendant taxa &raquo;", 
+        {:controller => "taxa", :action => "search", :taxon_id => @taxon, :view => TaxaController::LIST_VIEW},
+        :rel => "nofollow" %>
+    </p>
+    
   </div>
   
   <% if logged_in? && current_user.is_curator? -%>

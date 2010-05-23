@@ -49,8 +49,8 @@ class Taxon < ActiveRecord::Base
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon # if after, it would require an extra save
   before_save {|taxon| taxon.name = taxon.name.capitalize}
-  after_move :update_listed_taxa, :set_iconic_taxon_and_save,
-    :update_life_lists, :update_obs_iconic_taxa
+  after_move :update_listed_taxa, :handle_after_move, :update_life_lists,
+    :update_obs_iconic_taxa
   after_save :create_matching_taxon_name
   after_save :update_unique_name
   after_save {|taxon| taxon.send_later(:set_wkipedia_summary) if taxon.wikipedia_title_changed? }
@@ -325,8 +325,12 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  def set_iconic_taxon_and_save
+  def handle_after_move
     set_iconic_taxon
+    
+    # This is necessary because we index lft and rgt
+    self.delta = true
+    
     save
     true
   end
@@ -367,7 +371,7 @@ class Taxon < ActiveRecord::Base
     if chosen_photos.size < params[:limit]
       chosen_photos += Photo.all(
         :include => :taxa, 
-        :conditions => ["taxa.lft > ? AND taxa.rgt < ?", lft, rgt], 
+        :conditions => ["taxa.lft > ? AND taxa.rgt < ? AND photos.id NOT IN (?)", lft, rgt, chosen_photos], 
         :limit => params[:limit] - chosen_photos.size)
     end
     flickr_chosen_photos = []
