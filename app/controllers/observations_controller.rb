@@ -544,13 +544,13 @@ class ObservationsController < ApplicationController
           :place_guess => row[3],
           :time_zone => current_user.time_zone}
           if(row[4] && row[5]) 
-            obsHash.update(:latitude=>row[4], :longitude=>row[5], :location_is_exact=>true)
+            obsHash.update(:latitude => row[4], :longitude => row[5], :location_is_exact => true)
           elsif row[3]
             places = Ym4r::GmPlugin::Geocoding.get(row[3])
             unless places.empty?
               latitude = places.first.latitude
               longitude = places.first.longitude
-              obsHash.update(:latitude=>latitude, :longitude=>longitude, :location_is_exact=>false)
+              obsHash.update(:latitude => latitude, :longitude => longitude, :location_is_exact => false)
             end
           end
           obs = Observation.new(obsHash)
@@ -565,8 +565,13 @@ class ObservationsController < ApplicationController
         end
       end
     rescue CSV::IllegalFormatError
-      flash[:error] = "Your CSV returned an illegal format exception. If the problem persists after you remove any strange characters, please email us the file and we'll figure out the problem"
-      render :contoller => 'observations', :action => 'import'
+      flash[:error] = <<-EOT
+        Your CSV had a formatting problem. Try removing any strange
+        characters, and if the problem persists, please
+        <a href="mailto:help@inaturalist.org">email us</a> the file and we'll
+        figure out the problem.
+      EOT
+      redirect_to :action => 'import'
       return
     end
   end
