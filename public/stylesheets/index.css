@@ -793,3 +793,6 @@ form.edit_preferences .field {
   width: 80%;
   text-align: center;
 }
+
+#map, .map, #mapcontainer { overflow: hidden; }
+#map input[type=text], .map .input[type=text] { padding: 2px; }

@@ -19,7 +19,7 @@
   <% if logged_in? -%>
     <div id="tools" class="description">
       Not finding what you want?
-      <%= link_to "Add a New Place", new_place_path, :class => 'readmore' %>
+      <%= link_to "Add a New Place", new_place_path, :class => 'readmore', :rel => "nofollow" %>
     </div>
   <% end -%>
   <div class="breadcrumbs">

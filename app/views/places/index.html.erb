@@ -326,7 +326,7 @@
     <div class="inter eee loading status" style="display:none">
       Loading...
     </div>
-    <%= link_to "Add a Place", new_place_path, :id => "new_place_button", :class => 'button' %>
+    <%= link_to "Add a Place", new_place_path, :id => "new_place_button", :class => 'button', :rel => "nofollow" %>
   </div>
 </div>
 
@@ -339,7 +339,7 @@
     &nbsp;
   </div>
   <div id="no_places">
-    No matching places found.  Would you like to <%= link_to "create one?", new_place_path %>
+    No matching places found.  Would you like to <%= link_to "create one?", new_place_path, :rel => "nofollow" %>
     <%= link_to_function "&times;", "hideNoPlaces()", :class => 'close corner' %>
   </div>
 </div>
@@ -384,9 +384,9 @@
   </div>
   <div class="last column span-8">
     <div class="clear box">
-      <%= link_to "Add a New Place", new_place_path, :class => 'button readmore' %>
+      <%= link_to "Add a New Place", new_place_path, :class => 'button readmore', :rel => "nofollow" %>
       <div class="description">
-        You can help out by <%= link_to "adding new places", new_place_path %>
+        You can help out by <%= link_to "adding new places", new_place_path, :rel => "nofollow" %>
         and filling in check lists for the places you know!
       </div>
     </div>

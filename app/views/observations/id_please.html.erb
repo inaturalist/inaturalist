@@ -267,11 +267,7 @@
       <%- end -%>
       <div class="description">
         Location: 
-        <% if observation.place_guess and observation.place_guess != 'Type the name of a place' %>
-          <%=h observation.place_guess %>
-        <% else %>
-          the Universe
-        <% end %>
+        <%= render :partial => 'place_guess', :object => observation %>
         <% if observation.latitude and observation.longitude %>
           <div>
             <span class="latitude">
