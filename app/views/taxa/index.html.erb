@@ -241,7 +241,7 @@ Taxa &middot; All Species
           <br/>
           <p>
             Seen one?
-            <%= link_to "Add an observation &raquo;", new_observation_path(:taxon_id => taxon) %>
+            <%= link_to "Add an observation &raquo;", new_observation_path(:taxon_id => taxon), :rel => "nofollow" %>
           </p>
         <% end -%>
       </div>

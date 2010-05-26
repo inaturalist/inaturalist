@@ -116,8 +116,8 @@
   </div>
   <div id="record" class="column span-5 border">
     <center>
-      <%= link_to image_tag("/images/notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path %>
-      <h1><%= link_to "Record!", new_observation_path %></h1>
+      <%= link_to image_tag("/images/notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path, :rel => "nofollow" %>
+      <h1><%= link_to "Record!", new_observation_path, :rel => "nofollow" %></h1>
       <p>
         <% unless logged_in? -%>
           <%= link_to 'Sign Up', {:controller => :account, :action => :signup} %>
@@ -141,24 +141,13 @@
         Learn More &raquo;
       </a>
       <% if logged_in? %>
-      <%= link_to 'Add Observations!', new_observation_path, :id => 'addobs', :class => 'button default' %>
+      <%= link_to 'Add Observations!', new_observation_path, :id => 'addobs', :class => 'button default', :rel => "nofollow" %>
       <% else %>
       <%= link_to 'Sign Up!', signup_url, :id => 'signup', :class => 'button default' %>
       <% end %>
     </div>
   </div>
 </div><!-- end welcome col -->
-
-<!-- <div id="goalcol" class="last column prepend-2 span-21 append-1" class="clear">
-  <div class="clear box">
-    <div class="column span-6">
-      <h2 style="margin: 0; color: DeepPink">1000 Observations!</h2>
-    </div>
-    <div class="last column span-14">
-      <strong>Thanks to <a href="/people">everyone</a> who helped us reach 1000 observations!</strong>  We're at <strong><%= @first_goal_total %> observations </strong> and counting.  <a href="/observations">Check out</a> what everyone's been observing, or <%= link_to('add some observations', new_observation_path) %> yourself!
-    </div>
-  </div>
-</div> -->
 
 <div class="column prepend-2 span-7">
   <h3 class="description">Recent additions</h3>

@@ -165,7 +165,7 @@
           </div>
           <%= link_to "Import as an observation", 
             new_observation_path(:flickr_photo_id => flickr_photo.native_photo_id),
-            :class => "button" %>
+            :class => "button", :rel => "nofollow" %>
         <% end -%>
       </td>
     </tr>
