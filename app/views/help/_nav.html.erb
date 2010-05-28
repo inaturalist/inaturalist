@@ -1,0 +1,14 @@
+<div id="helpnav" class="column span-4">
+  <div class="quiet box">
+    <ul>
+      <% for action_name in %w(index getting_started) %>
+        <li class="<%= 'current' if current_page?(:action => action_name) %>">
+          <%= link_to (action_name == "index" ? "FAQ" : action_name.humanize), :action => action_name %>
+        </li>
+      <% end %>
+      <li>
+        <a href="http://groups.google.com/group/inaturalist" title="iNaturalist | Google Groups">Feedback Group</a>
+      </li>
+    </ul>
+  </div>
+</div>

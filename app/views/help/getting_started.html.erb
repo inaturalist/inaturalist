@@ -1,0 +1,112 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Getting Started" %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "help" %>
+<%- end -%>
+<div id="pagheader">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo; Back to Help", help_path %></strong>
+  </div>
+  <h2><%= @title %></h2>
+</div>
+
+<%= render :partial => 'nav' %>
+
+<div class="last column span-20">
+  <p>
+    Hi and welcome to iNat! This guide will walk you through some of the main
+    features of the site.
+  </p>
+  
+  <h3>Observations</h3>
+  <p>
+    Observations lie at the core of iNaturalist. An observation is basically a
+    species you observed, a time, and a place.
+  </p>
+  
+  <div class="clear">
+    <%= image_tag "help/add_obs.jpg", :alt => "drop-down menu", :class => "right" %>
+    <h4>Adding Observations</h4>
+    <p>
+      You can always add new observations by clicking the little arrow on the
+      upper right of the page and using the drop down menu.
+    </p>
+  </div>
+  
+  <p>
+    The observation form looks like this:
+  </p>
+    
+  <%= image_tag "help/add_obs_form.jpg", :alt => "observation form" %>
+  
+  <p>
+    It's important that you click
+    <a class="button" style="display: inline-block; float: none; margin: 0 5px">Lookup</a>
+    and choose a matching taxon from the list.  If you don't end up with something like
+    <%= image_tag "help/matched_taxon.jpg", :alt => "matched taxon", :style => "vertical-align: middle" %>, your
+    observation won't get associated with other observations of this species,
+    and your life list won't get updated.
+  </p>
+  
+  <p>
+    If iNat can't find taxon matching the name you provided in its database, you'll see something like
+  </p>
+  
+  <%= image_tag "help/unmatched_taxon.jpg" %>
+  
+  <p>
+    If you really don't know what
+    you saw, that's fine! If you do know, you should click
+    <strong class="ui">Search external name providers</strong>. This will ask iNat to
+    search some external taxonomic databases for the name and try to import
+    anything it finds.
+  </p>
+  
+  <p>
+    Those are the basics of adding observations! There are plent of other
+    things you can do, like searching and filtering your observations or
+    editing them as a batch, but they should be pretty self-explanatory.
+  </p>
+  
+  <h3>Lists</h3>
+  
+  <p>
+    Lists are lists of species (or other taxa), like a life list of all the
+    birds you've seen or a list of your favorite salamanders.  They are 
+    <em>not</em> lists of observations.
+  </p>
+  
+  <p>Lists come in three varieties:</p>
+  <dl>
+    <dt>Lists</dt>
+    <dd>
+      Ordinary lists are just arbitrary lists of taxa you can create. Maybe
+      you'd like to keep a list of species you'd like to see, or birds you've
+      seen at your bird feeder.
+    </dd>
+    
+    <dt>Life Lists</dt>
+    <dd>
+      Life lists are automatically filled in based on your observations and a
+      set of rules, and they can also be added to manually. At the moment, the only rule we support is whether or not
+      a species in some higher level taxon. So you could make a life list of
+      all the mammals you've seen by associating with the taxon 
+      <a href="/taxa/Mammalia">Mammalia</a>. Everyone on iNat has one life
+      list by default which records all the taxa they've seen.
+    </dd>
+    
+    <dt>Check Lists</dt>
+    <dd>
+      Check lists represent all the taxa that occur within a particular
+      <%= link_to "place", :controller => "places" %>. Unlike ordinary lists
+      and life lists, check lists can be edited by anyone on iNat. Since
+      places can contain other places (e.g. Connecticut is a state in the
+      USA), check lists automatically get updated by changes to contained
+      places. So if I add "Northern Cardinal" to the checklist for
+      Connecticut, it will get added to the USA checklist as well. Places can
+      also have multiple checklists for different taxa (e.g. "Plants of
+      Australia") that use taxonomic rules like life lists.
+    </dd>
+  </dl>
+</div>

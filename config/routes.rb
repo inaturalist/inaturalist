@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.change_password '/change_password/:reset_code', :controller => 'passwords', :action => 'reset'
   map.toggle_mobile "/toggle_mobile", :controller => 'welcome', :action => 'toggle_mobile'
   
+  map.help '/help', :controller => 'help'
+  
   # Special controller routes
   
   # Users routes

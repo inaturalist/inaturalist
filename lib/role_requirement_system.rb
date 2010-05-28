@@ -108,6 +108,7 @@ module RoleRequirementSystem
       raise "Because role_requirement extends acts_as_authenticated, You must include AuthenticatedSystem first before including RoleRequirementSystem!" unless klass.included_modules.include?(AuthenticatedSystem)
     end
     
+  protected
     def access_denied
       if logged_in?
         render :nothing => true, :status => 401
@@ -118,12 +119,10 @@ module RoleRequirementSystem
     end
     
     def check_roles       
-      return access_denied unless self.class.user_authorized_for?(current_user, params, binding)
-      
+      return access_denied unless self.class.user_authorized_for?(current_user, params, binding)      
       true
     end
     
-  protected
     # receives a :controller, :action, and :params.  Finds the given controller and runs user_authorized_for? on it.
     # This can be called in your views, and is for advanced users only.  If you are using :if / :unless eval expressions, 
     #   then this may or may not work (eval strings use the current binding to execute, not the binding of the target 

@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
   before_filter :return_here, :only => [:index, :show, :by_login]
   
   PER_PAGES = [10,30,50,100]
-
+  
+  private
+  
   #
   # Update an ActiveRecord conditions array with new conditions
   #

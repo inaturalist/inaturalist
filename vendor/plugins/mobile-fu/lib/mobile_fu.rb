@@ -32,7 +32,7 @@ module ActionController
         
       def has_mobile_fu(test_mode = false)
         include ActionController::MobileFu::InstanceMethods
-
+        
         if test_mode 
           before_filter :force_mobile_format
         else
@@ -58,7 +58,7 @@ module ActionController
     end
     
     module InstanceMethods
-      
+      private
       # Forces the request format to be :mobile
       
       def force_mobile_format
