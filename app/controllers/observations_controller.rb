@@ -402,7 +402,7 @@ class ObservationsController < ApplicationController
           klass_key = klass.to_s.underscore.pluralize.to_sym
           if params[klass_key] && params[klass_key][observation.id.to_s]
             updated_photos += retrieve_photos(params[klass_key][observation.id.to_s], 
-              :user => current_user, :photo_class => klass)
+              :user => current_user, :photo_class => klass, :sync => true)
           end
         end
         if updated_photos.empty?

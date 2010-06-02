@@ -82,7 +82,7 @@ class TaxaController < ApplicationController
           :order => "featured_at DESC", :limit => 10,
           :include => [:iconic_taxon, :photos, :taxon_names])
         if @featured_taxa.blank?
-          @featured_taxa = Taxon.all(:limit => 10, :conditions => [
+          @featured_taxa = Taxon.all(:limit => 100, :conditions => [
             "taxa.wikipedia_summary > 0 AND " +
             "photos.id > 0 AND " +
             "taxa.observations_count > 1"
@@ -91,7 +91,7 @@ class TaxaController < ApplicationController
         end
         
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
-        @featured_taxa = @featured_taxa.sort_by {rand}
+        @featured_taxa = @featured_taxa.sort_by {rand}[0..10]
         
         flash[:notice] = @status unless @status.blank?
         if params[:q]
@@ -123,47 +123,48 @@ class TaxaController < ApplicationController
     @taxon ||= Taxon.find_by_id(params[:id], :include => :taxon_names) if params[:id]
     return render_404 unless @taxon
     
-    @children = @taxon.children.all(:include => :taxon_names, :order => "name")
-    @ancestors = @taxon.ancestors.all(:include => :taxon_names)
-    @iconic_taxa = Taxon.iconic_taxa.all(:include => :taxon_names)
-    
-    @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
-    @taxon_links.sort! {|a,b| a.taxon.rgt <=> b.taxon.rgt}
-    
-    @places = Place.paginate(:page => 1,
-      :include => :listed_taxa,
-      :conditions => ["listed_taxa.taxon_id = ?", @taxon],
-      :order => "places.id DESC, places.name ASC"
-    )
-    @countries = @taxon.places.all(
-      :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
-    )
-    if @countries.size == 1 && @countries.first.code == 'US'
-      @us_states = @taxon.places.all(:conditions => [
-        "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
-        @countries.first.id
-      ])
-    end
-    
-    if logged_in?
-      @current_user_lists = current_user.lists.all
-      @listed_taxa = ListedTaxon.all(
-        :include => :list,
-        :conditions => [
-          "lists.user_id = ? AND listed_taxa.taxon_id = ?", 
-          current_user, @taxon
-      ])
-      @listed_taxa_by_list_id = @listed_taxa.index_by(&:list_id)
-      @lists_rejecting_taxon = @current_user_lists.select do |list|
-        if list.is_a?(LifeList)
-          list.rules.map {|rule| rule.validates?(@taxon)}.include?(false)
-        else
-          false
-        end
-      end
-    end
     respond_to do |format|
       format.html do
+        @children = @taxon.children.all(:include => :taxon_names, :order => "name")
+        @ancestors = @taxon.ancestors.all(:include => :taxon_names)
+        @iconic_taxa = Taxon.iconic_taxa.all(:include => :taxon_names)
+
+        @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
+        @taxon_links.sort! {|a,b| a.taxon.rgt <=> b.taxon.rgt}
+
+        @places = Place.paginate(:page => 1,
+          :include => :listed_taxa,
+          :conditions => ["listed_taxa.taxon_id = ?", @taxon],
+          :order => "places.id DESC, places.name ASC"
+        )
+        @countries = @taxon.places.all(
+          :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
+        )
+        if @countries.size == 1 && @countries.first.code == 'US'
+          @us_states = @taxon.places.all(:conditions => [
+            "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
+            @countries.first.id
+          ])
+        end
+
+        if logged_in?
+          @current_user_lists = current_user.lists.all
+          @listed_taxa = ListedTaxon.all(
+            :include => :list,
+            :conditions => [
+              "lists.user_id = ? AND listed_taxa.taxon_id = ?", 
+              current_user, @taxon
+          ])
+          @listed_taxa_by_list_id = @listed_taxa.index_by(&:list_id)
+          @lists_rejecting_taxon = @current_user_lists.select do |list|
+            if list.is_a?(LifeList)
+              list.rules.map {|rule| rule.validates?(@taxon)}.include?(false)
+            else
+              false
+            end
+          end
+        end
+        
         if @taxon.name == 'Life' && !@taxon.parent_id
           return redirect_to(:action => 'index')
         end
