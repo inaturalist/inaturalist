@@ -79,7 +79,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do # index.html.erb
         @featured_taxa = Taxon.all(:conditions => "featured_at > 0", 
-          :order => "featured_at DESC", :limit => 10,
+          :order => "featured_at DESC", :limit => 100,
           :include => [:iconic_taxon, :photos, :taxon_names])
         if @featured_taxa.blank?
           @featured_taxa = Taxon.all(:limit => 100, :conditions => [
@@ -91,7 +91,7 @@ class TaxaController < ApplicationController
         end
         
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
-        @featured_taxa = @featured_taxa.sort_by {rand}[0..10]
+        @featured_taxa = @featured_taxa.sort_by{rand}[0..10]
         
         flash[:notice] = @status unless @status.blank?
         if params[:q]
