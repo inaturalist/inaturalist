@@ -865,8 +865,7 @@ class ObservationsController < ApplicationController
     ).index_by(&:native_photo_id)
     
     photo_list.uniq.each do |photo_id|
-      if photo = existing[photo_id] || options[:sync]
-        # fp = flickr.photos.get_info(photo_id)
+      if (photo = existing[photo_id]) || options[:sync]
         api_response = photo_class.get_api_response(photo_id, :user => current_user)
       end
       
