@@ -64,8 +64,7 @@ describe User do
   end
 
   describe 'allows legitimate logins:' do
-    ['123', '1234567890_234567890_234567890_234567890',
-     'hello-_therefunnycharcom'].each do |login_str|
+    ['whatisthewhat', 'zoooooolander', 'hello-_therefunnycharcom'].each do |login_str|
       it "'#{login_str}'" do
         lambda do
           u = create_user(:login => login_str)
@@ -75,9 +74,9 @@ describe User do
     end
   end
   describe 'disallows illegitimate logins:' do
-    ['12', '1234567890_234567890_234567890_234567890_', "tab\t", "newline\n",
+    ['12', '123', '1234567890_234567890_234567890_234567890_', "tab\t", "newline\n",
      "Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet",
-     'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 'space '].each do |login_str|
+     'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 'space ', 'period.'].each do |login_str|
       it "'#{login_str}'" do
         lambda do
           u = create_user(:login => login_str)
