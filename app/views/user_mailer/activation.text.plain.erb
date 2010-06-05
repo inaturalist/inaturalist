@@ -1,0 +1,19 @@
+Welcome, <%= @user.login %>!
+
+Your iNaturalist account has been activated. Thanks for signing up!
+
+Wondering what to do next?  Why not
+
+* read our Getting Started guide: <%= url_for(:controller => "help", :action => "getting_started", :only_path => false) %>
+* add an observation: <%= new_observation_url %>
+* fill out your profile: <%= edit_user_url(@user) %>
+* find some people to follow: <%= people_url %>
+* or invite your friends: <%= emailer_invite_url %>
+
+If you have any trouble with the site, please check out our help section:
+
+  <%= help_url %>
+  
+or post a message to our Google Group:
+  
+  http://groups.google.com/group/inaturalist

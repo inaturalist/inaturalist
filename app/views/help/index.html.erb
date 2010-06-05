@@ -5,19 +5,20 @@
   <%= stylesheet_link_tag "help" %>
 <%- end -%>
 
+<div id="pagheader">
+  <h2><%= @title %></h2>
+</div>
+
 <%= render :partial => 'nav' %>
 
 <div class="last column span-20">
-  <div id="pagheader">
-    <h2><%= @title %></h2>
-    <p>
-      Howdy. If you're just getting started with iNat, check out
-      <%= link_to "Getting Started", :action => "getting_started" %> guide to tour some of the site's features. If you have a
-      question about the site, please peruse the FAQ below. If you're still
-      looking for answers, please 
-      <a href="http://groups.google.com/group/inaturalist" title="iNaturalist | Google Groups">post your question to our Google Group</a>.
-    </p>
-  </div>
+  <p>
+    Howdy. If you're just getting started with iNat, check out
+    <%= link_to "Getting Started", :action => "getting_started" %> guide to tour some of the site's features. If you have a
+    question about the site, please peruse the FAQ below. If you're still
+    looking for answers, please 
+    <a href="http://groups.google.com/group/inaturalist" title="iNaturalist | Google Groups">post your question to our Google Group</a>.
+  </p>
   
   <h3>Frequently Asked Questions</h3>
   

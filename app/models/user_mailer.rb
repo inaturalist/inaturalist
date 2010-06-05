@@ -8,7 +8,6 @@ class UserMailer < ActionMailer::Base
   def activation(user)
     setup_email(user)
     @subject << 'Your account has been activated!'
-    @body[:url] = APP_CONFIG[:site_url]
   end
   
   def admin_password_change(user)

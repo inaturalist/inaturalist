@@ -1,0 +1,26 @@
+<%= link_to image_tag("http://inaturalist.org/images/logo-bird-200px.png", :align => "right", :border => 0), root_url %>
+<p>Welcome, <%= @user.login %>!</p>
+
+<p>
+  Your <%= link_to "iNaturalist", root_url %> account has been activated.
+  Thanks for signing up!
+</p>
+
+<p>Wondering what to do next?  Why not</p>
+
+<ul>
+  <li><%= link_to "read our Getting Started guide", url_for(:controller => "help", :action => "getting_started", :only_path => false) %></li>
+  <li><%= link_to "add an observation", new_observation_url %></li>
+  <li><%= link_to "fill out your profile", edit_user_url(@user) %></li>
+  <li>
+    <%= link_to "find some people to follow", people_url %>
+    or
+    <%= link_to "invite your friends", emailer_invite_url %>
+  </li>
+</ul>
+
+<p>
+  If you have any trouble with the site, please check out our
+  <%= link_to "help section", help_url %> or post a message to our
+  <a href="http://groups.google.com/group/inaturalist">Google Group</a>.
+</p>
