@@ -696,4 +696,17 @@ class Taxon < ActiveRecord::Base
     
     logger.info "[INFO] Finished Taxon.find_duplicates.  Kept #{num_keepers}, removed #{num_rejects}."
   end
+  
+  def self.rebuild_without_callbacks
+    ThinkingSphinx.deltas_enabled = false
+    before_validation.clear
+    before_save.clear
+    after_move.clear
+    after_save.clear
+    validates_associated.clear
+    validates_presence_of.clear
+    validates_uniqueness_of.clear
+    rebuild!
+    ThinkingSphinx.deltas_enabled = true
+  end
 end

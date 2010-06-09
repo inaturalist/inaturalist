@@ -10,7 +10,7 @@
 ruby script/runner "ThinkingSphinx.deltas_enabled = false; Taxon.find_duplicates"
 ruby script/runner "ThinkingSphinx.deltas_enabled = false; Taxon.find_duplicates"
 
-ruby script/runner 'ThinkingSphinx.deltas_enabled = false; Taxon.rebuild!'
+ruby script/runner 'ThinkingSphinx.deltas_enabled = false; Taxon.rebuild_without_callbacks'
 ruby script/runner 'ListedTaxon.update_all_taxon_attributes'
 
 rake ts:in
