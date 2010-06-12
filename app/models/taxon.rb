@@ -15,7 +15,8 @@ class Taxon < ActiveRecord::Base
                                     :is_iconic, :auto_photos, 
                                     :auto_description, :name_provider]
   self.non_versioned_columns += %w(observations_count listed_taxa_count lft
-    rgt delta unique_name wikipedia_summary wikipedia_title featured_at)
+    rgt delta unique_name wikipedia_summary wikipedia_title featured_at 
+    ancestry)
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :observations
