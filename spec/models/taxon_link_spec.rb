@@ -1,14 +1,16 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonLink, "creation" do
-  fixtures :taxa
+
   before(:each) do
-    @taxon_link_for_tol =  TaxonLink.new(
-      :taxon => taxa(:Anura),
+    @taxon_link_for_tol = TaxonLink.make(
       :show_for_descendent_taxa => true,
       :url => "http://tolweb.org/[GENUS]_[SPECIES]",
       :site_title => "Tree of Life"
     )
+    @taxon = @taxon_link_for_tol.taxon
+    @child_taxon = Taxon.make
+    @child_taxon.update_attributes(:parent => @taxon)
   end
   
   it "should be valid" do
@@ -17,7 +19,7 @@ describe TaxonLink, "creation" do
   
   it "should apply to descendent taxa" do
     @taxon_link_for_tol.save
-    TaxonLink.for_taxon(taxa(:Pseudacris_regilla)).should include(@taxon_link_for_tol)
+    TaxonLink.for_taxon(@child_taxon).should include(@taxon_link_for_tol)
   end
   
   it "should not allow both [GENUS]/[SPECIES] and [NAME] in the url" do
@@ -64,17 +66,15 @@ describe TaxonLink, "creation" do
 end
 
 describe TaxonLink, "url_for_taxon" do
-  fixtures :taxa
+  
   before(:each) do
-    @taxon_link_with_genus_species =  TaxonLink.new(
-      :taxon => taxa(:Anura),
+    @taxon_link_with_genus_species = TaxonLink.make(
       :show_for_descendent_taxa => true,
       :url => "http://tolweb.org/[GENUS]_[SPECIES]",
       :site_title => "Tree of Life"
     )
     
-    @taxon_link_with_name =  TaxonLink.new(
-      :taxon => taxa(:Anura),
+    @taxon_link_with_name = TaxonLink.make(
       :show_for_descendent_taxa => true,
       :url => "http://tolweb.org/[NAME]",
       :site_title => "Tree of Life"
@@ -82,39 +82,35 @@ describe TaxonLink, "url_for_taxon" do
   end
   
   it "should fill in [GENUS]" do
-    @taxon_link_with_genus_species.url_for_taxon(
-      taxa(:Pseudacris_regilla)).should =~ /Pseudacris/
+    taxon = Taxon.make(:name => "Pseudacris regilla", :rank => "species", :rank_level => Taxon::RANK_LEVELS["species"])
+    @taxon_link_with_genus_species.url_for_taxon(taxon).should =~ /Pseudacris/
   end
   
   it "should fill in [SPECIES]" do
-    @taxon_link_with_genus_species.url_for_taxon(
-      taxa(:Pseudacris_regilla)).should =~ /regilla/
+    taxon = Taxon.make(:name => "Pseudacris regilla", :rank => "species", :rank_level => Taxon::RANK_LEVELS["species"])
+    @taxon_link_with_genus_species.url_for_taxon(taxon).should =~ /regilla/
   end
 
   it "should fill in [GENUS] and [SPECIES]" do
-    @taxon_link_with_genus_species.url_for_taxon(
-      taxa(:Pseudacris_regilla)
-    ).should == "http://tolweb.org/Pseudacris_regilla"
+    taxon = Taxon.make(:name => "Pseudacris regilla", :rank => "species", :rank_level => Taxon::RANK_LEVELS["species"])
+    @taxon_link_with_genus_species.url_for_taxon(taxon).should == "http://tolweb.org/Pseudacris_regilla"
   end
   
   it "should fill in [NAME]" do
-    @taxon_link_with_name.url_for_taxon(
-      taxa(:Pseudacris)
-    ).should == "http://tolweb.org/Pseudacris"
+    taxon = Taxon.make(:name => "Pseudacris", :rank => "genus", :rank_level => Taxon::RANK_LEVELS["genus"])
+    @taxon_link_with_name.url_for_taxon(taxon).should == "http://tolweb.org/Pseudacris"
   end
   
   it "should fill in the taxon name when only [GENUS] and [SPECIES]" do
-    @taxon_link_with_genus_species.url_for_taxon(
-      taxa(:Pseudacris)).should == "http://tolweb.org/Pseudacris"
+    taxon = Taxon.make(:name => "Pseudacris", :rank => "genus", :rank_level => Taxon::RANK_LEVELS["genus"])
+    @taxon_link_with_genus_species.url_for_taxon(taxon).should == "http://tolweb.org/Pseudacris"
   end
   
   it "should not alter a URL without template variables" do
-    @taxon_link_without_template = TaxonLink.new(
-      :taxon => taxa(:Amphibia),
+    @taxon_link_without_template = TaxonLink.make(
       :url => "http://amphibiaweb.org",
       :site_title => "AmphibiaWeb"
     )
-    @taxon_link_without_template.url_for_taxon(
-      taxa(:Pseudacris)).should == @taxon_link_without_template.url
+    @taxon_link_without_template.url_for_taxon(Taxon.make).should == @taxon_link_without_template.url
   end
 end

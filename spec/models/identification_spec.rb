@@ -129,22 +129,24 @@ describe Identification, "creation" do
   
   it "should consider an identification with a taxon that is a child of " + 
      "the observation's taxon to be in agreement" do
-    @identification.user.should_not be(@identification.observation.user)
-    @identification.observation.taxon = @identification.observation.taxon.parent
-    @identification.observation.save
-    @identification.taxon = @identification.observation.taxon.children.first
-    @identification.save
-    @identification.reload
-    @identification.is_agreement?.should be_true
+    taxon = Taxon.make
+    parent = Taxon.make
+    taxon.update_attributes(:parent => parent)
+    observation = Observation.make(:taxon => parent)
+    identification = Identification.make(:observation => observation, :taxon => taxon)
+    identification.user.should_not be(identification.observation.user)
+    identification.is_agreement?.should be_true
   end
   
   it "should not consider an identification with a taxon that is a parent " +
      "of the observation's taxon to be in agreement" do
-    @identification.user.should_not be(@identification.observation.user)
-    @identification.taxon = @identification.observation.taxon.parent
-    @identification.save
-    @identification.reload
-    @identification.is_agreement?.should be_false
+    taxon = Taxon.make
+    parent = Taxon.make
+    taxon.update_attributes(:parent => parent)
+    observation = Observation.make(:taxon => taxon)
+    identification = Identification.make(:observation => observation, :taxon => parent)
+    identification.user.should_not be(identification.observation.user)
+    identification.is_agreement?.should be_false
   end
   
   it "should not consider itdentifications of different taxa in the " + 

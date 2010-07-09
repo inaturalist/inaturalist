@@ -7,18 +7,11 @@ class Taxon < ActiveRecord::Base
   attr_accessor :html
   
   acts_as_flaggable
+  has_ancestry
   
-  acts_as_nested_set
-  acts_as_versioned :if_changed => [:name, :rank, :iconid_taxon_id, 
-                                    :parent_id, :source_id, 
-                                    :source_identifier, :source_url, 
-                                    :is_iconic, :auto_photos, 
-                                    :auto_description, :name_provider]
-  self.non_versioned_columns += %w(observations_count listed_taxa_count lft
-    rgt delta unique_name wikipedia_summary wikipedia_title featured_at)
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
-  has_many :observations
+  has_many :observations, :dependent => :nullify
   has_many :listed_taxa, :dependent => :destroy
   has_many :lists, :through => :listed_taxa
   has_many :places, :through => :listed_taxa
@@ -29,7 +22,6 @@ class Taxon < ActiveRecord::Base
                             :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
-  belongs_to :parent, :class_name => 'Taxon'
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   has_and_belongs_to_many :colors
@@ -49,11 +41,16 @@ class Taxon < ActiveRecord::Base
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon # if after, it would require an extra save
   before_save {|taxon| taxon.name = taxon.name.capitalize}
-  after_move :update_listed_taxa, :handle_after_move, :update_life_lists,
-    :update_obs_iconic_taxa
   after_save :create_matching_taxon_name
-  after_save :update_unique_name
   after_save {|taxon| taxon.send_later(:set_wkipedia_summary) if taxon.wikipedia_title_changed? }
+  after_save {|taxon|
+    if taxon.ancestry_changed?
+      taxon.update_listed_taxa
+      taxon.handle_after_move
+      taxon.update_life_lists
+      taxon.update_obs_iconic_taxa
+    end
+  }
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
@@ -247,7 +244,8 @@ class Taxon < ActiveRecord::Base
   # Class Aves)
   #
   def in_taxon?(taxon)
-    self.lft > taxon.lft && self.rgt < taxon.rgt
+    # self.lft > taxon.lft && self.rgt < taxon.rgt
+    ancestor_ids.include?(taxon.id)
   end
   
   def graft
@@ -256,8 +254,20 @@ class Taxon < ActiveRecord::Base
   
   def grafted?
     return false if new_record? # New records haven't been grafted
-    return false if self.name != 'Life' && self.root?
+    return false if self.name != 'Life' && parent.blank?
     true
+  end
+  
+  def self_and_ancestors
+    [ancestors, self].flatten
+  end
+  
+  def root?
+    parent_id.nil?
+  end
+  
+  def move_to_child_of(taxon)
+    self.update_attributes(:parent => taxon)
   end
   
   def default_name
@@ -327,11 +337,6 @@ class Taxon < ActiveRecord::Base
   
   def handle_after_move
     set_iconic_taxon
-    
-    # This is necessary because we index lft and rgt
-    self.delta = true
-    
-    save
     true
   end
   
@@ -341,7 +346,7 @@ class Taxon < ActiveRecord::Base
   #
   def set_scientific_taxon_name
     unless taxon_names.exists?(["name = ?", name])
-      self.taxon_names << TaxonName.create(
+      self.taxon_names << TaxonName.new(
         :name => name,
         :source => source,
         :source_identifier => source_identifier,
@@ -428,9 +433,9 @@ class Taxon < ActiveRecord::Base
   
   # Updated the "cached" lft values in all listed taxa with this taxon
   def update_listed_taxa
-    ancestor_ids = self.ancestors.all(:select => 'id').map(&:id).join(',')
     ListedTaxon.update_all(
-      "lft = #{self.lft}, taxon_ancestor_ids = '#{ancestor_ids}'", 
+      # "lft = #{self.lft}, taxon_ancestor_ids = '#{ancestor_ids}'", 
+      "taxon_ancestor_ids = '#{ancestor_ids.join(',')}'", 
       "taxon_id = #{self.id}")
     true
   end
@@ -503,9 +508,11 @@ class Taxon < ActiveRecord::Base
   def update_unique_name(options = {})
     reload # there's a chance taxon names have been created since load
     return true unless default_name
-    [default_name.name, name].each do |candidate|
+    [default_name.name, name].uniq.each do |candidate|
       # Skip if this name isn't unique
-      next if TaxonName.count(:select => "distinct(taxon_id)", :conditions => {:name => candidate}) > 1
+      if TaxonName.count(:select => "distinct(taxon_id)", :conditions => {:name => candidate}) > 1  
+        next
+      end
       begin
         logger.info "Updating unique_name for #{self} to #{candidate}"
         Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
@@ -708,5 +715,19 @@ class Taxon < ActiveRecord::Base
     validates_uniqueness_of.clear
     rebuild!
     ThinkingSphinx.deltas_enabled = true
+  end
+  
+  # Do something without all the callbacks.  This disables all callbacks and
+  # validations and doesn't restore them, so IT SHOULD NEVER BE CALLED BY THE
+  # APP!  The process should end after this is done.
+  def self.without_callbacks(&block)
+    ThinkingSphinx.deltas_enabled = false
+    before_validation.clear
+    before_save.clear
+    after_save.clear
+    validates_associated.clear
+    validates_presence_of.clear
+    validates_uniqueness_of.clear
+    yield
   end
 end

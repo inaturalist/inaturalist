@@ -83,7 +83,7 @@ Rails::Initializer.run do |config|
   config.gem "mocha"
   config.gem "thoughtbot-paperclip", :lib => 'paperclip', :source => 'http://gems.github.com'
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
-  config.gem "flickraw"
+  # config.gem "flickraw"
   config.gem 'rest-client', :lib => 'rest_client'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
   config.gem 'geoip'
@@ -101,6 +101,9 @@ Rails::Initializer.run do |config|
     :lib     => 'thinking_sphinx/deltas/delayed_delta',
     :version => '>= 1.0.0',
     :source  => 'http://gemcutter.org'
+  config.gem 'ancestry', :version => '>= 1.2.1.beta'
+  config.gem 'machinist'
+  config.gem 'faker'
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

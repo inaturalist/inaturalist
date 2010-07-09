@@ -99,12 +99,15 @@ class Identification < ActiveRecord::Base
   # Update the counter cache in users.  That cache ONLY tracks observations 
   # made for others.
   def increment_user_counter_cache
+    return true unless self.user && self.observation
     if self.user_id != self.observation.user_id
       self.user.increment!(:identifications_count)
     end
     true
   end
+  
   def decrement_user_counter_cache
+    return true unless self.user && self.observation
     if self.user_id != self.observation.user_id
       self.user.decrement!(:identifications_count)
     end
@@ -112,6 +115,7 @@ class Identification < ActiveRecord::Base
   end
   
   def update_observation_after_destroy
+    return true unless self.observation
     return true unless self.observation.user_id == self.user_id
     
     # update the species_guess

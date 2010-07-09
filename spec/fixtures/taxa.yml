@@ -12,7 +12,7 @@ Mollusca:
   is_iconic: true
   source_id: 5
   rgt: 4
-  parent_id: 304
+  # parent: Animalia
   name_provider: ColNameProvider
   iconic_taxon: Mollusca
   created_at: 2008-09-02 16:23:41 -07:00
@@ -29,7 +29,7 @@ Trochilidae:
   is_iconic: false
   source_id: 5
   rgt: 41
-  parent_id: 325
+  # parent: Apodiformes
   name_provider: ColNameProvider
   iconic_taxon: Aves
   created_at: 2008-09-02 16:23:46 -07:00
@@ -46,7 +46,7 @@ Apodiformes:
   is_iconic: false
   source_id: 5
   rgt: 42
-  parent_id: 305
+  # parent: Aves
   name_provider: ColNameProvider
   iconic_taxon: Aves
   created_at: 2008-09-02 16:23:46 -07:00
@@ -80,7 +80,7 @@ Pseudacris_regilla:
   is_iconic: false
   source_id: 5
   rgt: 27
-  parent: Pseudacris
+  # parent: Pseudacris
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:42 -07:00
@@ -97,7 +97,7 @@ Pseudacris:
   is_iconic: false
   source_id: 5
   rgt: 28
-  parent: Hylidae
+  # parent: Hylidae
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:43 -07:00
@@ -114,7 +114,7 @@ Animalia:
   is_iconic: true
   source_id: 5
   rgt: 45
-  parent_id: 303
+  # parent: Life
   name_provider: ColNameProvider
   iconic_taxon: Animalia
   created_at: 2008-09-02 16:23:33 -07:00
@@ -131,7 +131,7 @@ Aves:
   is_iconic: true
   source_id: 5
   rgt: 43
-  parent: Chordata
+  # parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Aves
   created_at: 2008-09-02 16:23:34 -07:00
@@ -148,7 +148,7 @@ Hylidae:
   is_iconic: false
   source_id: 5
   rgt: 29
-  parent: Anura
+  # parent: Anura
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:43 -07:00
@@ -165,7 +165,7 @@ Anura:
   is_iconic: false
   source_id: 5
   rgt: 30
-  parent: Amphibia
+  # parent: Amphibia
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:43 -07:00
@@ -182,7 +182,7 @@ Chordata:
   is_iconic: false
   source_id: 5
   rgt: 44
-  parent: Animalia
+  # parent: Animalia
   name_provider: ColNameProvider
   iconic_taxon: Animalia
   created_at: 2008-09-02 16:23:35 -07:00
@@ -199,7 +199,7 @@ Reptilia:
   is_iconic: true
   source_id: 5
   rgt: 33
-  parent: Chordata
+  # parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Reptilia
   created_at: 2008-09-02 16:23:36 -07:00
@@ -216,7 +216,7 @@ Ensatina_eschscholtzii:
   is_iconic: false
   source_id: 5
   rgt: 19
-  parent: Ensatina
+  # parent: Ensatina
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:44 -07:00
@@ -233,7 +233,7 @@ Ensatina:
   is_iconic: false
   source_id: 5
   rgt: 20
-  parent: Plethodontidae
+  # parent: Plethodontidae
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:45 -07:00
@@ -250,7 +250,7 @@ Amphibia:
   is_iconic: true
   source_id: 5
   rgt: 31
-  parent: Chordata
+  # parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:37 -07:00
@@ -267,7 +267,7 @@ Plethodontidae:
   is_iconic: false
   source_id: 5
   rgt: 21
-  parent: Caudata
+  # parent: Caudata
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:45 -07:00
@@ -284,7 +284,7 @@ Caudata:
   is_iconic: false
   source_id: 5
   rgt: 22
-  parent: Amphibia
+  # parent: Amphibia
   name_provider: ColNameProvider
   iconic_taxon: Amphibia
   created_at: 2008-09-02 16:23:45 -07:00
@@ -301,7 +301,7 @@ Mammalia:
   is_iconic: true
   source_id: 5
   rgt: 13
-  parent: Chordata
+  # parent: Chordata
   name_provider: ColNameProvider
   iconic_taxon: Mammalia
   created_at: 2008-09-02 16:23:38 -07:00
@@ -318,7 +318,7 @@ Arachnida:
   is_iconic: true
   source_id: 5
   rgt: 9
-  parent: Arthropoda
+  # parent: Arthropoda
   name_provider: ColNameProvider
   iconic_taxon: Arachnida
   created_at: 2008-09-02 16:23:39 -07:00
@@ -335,7 +335,7 @@ Arthropoda:
   is_iconic: false
   source_id: 5
   rgt: 10
-  parent: Animalia
+  # parent: Animalia
   name_provider: ColNameProvider
   iconic_taxon: Animalia
   created_at: 2008-09-02 16:23:39 -07:00
@@ -353,7 +353,7 @@ Calypte_anna:
   is_iconic: false
   source_id: 5
   rgt: 39
-  parent: Calypte
+  # parent: Calypte
   name_provider: ColNameProvider
   iconic_taxon: Aves
   created_at: 2008-09-02 16:23:46 -07:00
@@ -370,7 +370,7 @@ Calypte:
   is_iconic: false
   source_id: 5
   rgt: 40
-  parent_id: 324
+  # parent: Trochilidae
   name_provider: ColNameProvider
   iconic_taxon: Aves
   created_at: 2008-09-02 16:23:46 -07:00
@@ -387,7 +387,7 @@ Insecta:
   is_iconic: true
   source_id: 5
   rgt: 7
-  parent: Arthropoda
+  # parent: Arthropoda
   name_provider: ColNameProvider
   iconic_taxon: Insecta
   created_at: 2008-09-02 16:23:40 -07:00
