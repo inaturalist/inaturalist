@@ -434,7 +434,6 @@ class Taxon < ActiveRecord::Base
   # Updated the "cached" lft values in all listed taxa with this taxon
   def update_listed_taxa
     ListedTaxon.update_all(
-      # "lft = #{self.lft}, taxon_ancestor_ids = '#{ancestor_ids}'", 
       "taxon_ancestor_ids = '#{ancestor_ids.join(',')}'", 
       "taxon_id = #{self.id}")
     true
@@ -730,4 +729,5 @@ class Taxon < ActiveRecord::Base
     validates_uniqueness_of.clear
     yield
   end
+  
 end

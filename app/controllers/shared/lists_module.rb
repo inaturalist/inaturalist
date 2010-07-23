@@ -38,40 +38,13 @@ module Shared::ListsModule
     
     case @view
     when TAXONOMIC_VIEW
-      ancestor_ids = @listed_taxa.map do |lt|
-        # If for some reason taxon_ancestor_ids wasn't set, set it now
-        unless lt.taxon_ancestor_ids
-          logger.info "[INFO] Updating listed taxa for #{lt.taxon} from lists/#{@list.id}"
-          lt.taxon.update_listed_taxa
-          lt.reload
-        end
-        lt.taxon_ancestor_ids.split(',')
-      end
-      ancestor_ids = ancestor_ids.uniq.compact
-      unless ancestor_ids.empty?
-        @ancestor_taxa = Taxon.find(ancestor_ids, :include => :taxon_names)
-        @ancestor_taxa = @ancestor_taxa.select {|at| at.name != 'Life'}
-        @ancestor_taxa.each do |at|
-          @listed_taxa << ListedTaxon.new(:list => @list, :taxon => at)
-        end
-      end
-
-      @listed_taxa = @listed_taxa.sort do |a,b|
-        if a.taxon.lft < b.taxon.lft
-          -1
-        elsif a.taxon.lft > b.taxon.lft
-          1
-        elsif a.new_record? && !b.new_record?
-          -1
-        elsif !a.new_record? && b.new_record?
-          1
-        else
-          0
-        end
-      end
-      
       @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
       @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
+      taxon_ids = @listed_taxa.map do |lt| 
+        [lt.taxon.ancestor_ids[1..-1], lt.taxon_id]
+      end.flatten.uniq
+      @arranged_taxa = Taxon.arrange(:include => :taxon_names, :conditions => ["id IN (?)", taxon_ids])
+      @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
       
     # Default to plain view
     else
@@ -306,7 +279,7 @@ module Shared::ListsModule
       ],
       
       # TODO: somehow make the following not cause a filesort...
-      :order => 'listed_taxa.lft'
+      :order => 'taxa.ancestry'
     }
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])

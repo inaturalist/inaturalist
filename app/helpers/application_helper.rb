@@ -166,4 +166,17 @@ module ApplicationHelper
     @template.template_format = old_format
     html
   end
+  
+  def taxonomic_taxon_list(taxa, options = {}, &block)
+    taxa.each do |taxon, children|
+      concat "<li class='#{options[:class]}'>"
+      yield taxon
+      unless children.blank?
+        concat "<ul>"
+        taxonomic_taxon_list(children, options, &block)
+        concat "</ul>"
+      end
+      concat "</li>"
+    end
+  end
 end

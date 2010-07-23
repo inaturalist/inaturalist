@@ -36,7 +36,14 @@ module Ancestry
           self.base_class.ordered_by_ancestry_and options.delete(:order)
         end
       # Get all nodes ordered by ancestry and start sorting them into an empty hash
-      scope.all(options).inject({}) do |arranged_nodes, node|
+      arrange_nodes scope.all(options)
+    end
+    
+    # Arrange array of nodes into a nested hash of the form 
+    # {node => children}, where children = {} if the node has no children
+    def arrange_nodes(nodes)
+      # Get all nodes ordered by ancestry and start sorting them into an empty hash
+      nodes.inject({}) do |arranged_nodes, node|
         # Find the insertion point for that node by going through its ancestors
         node.ancestor_ids.inject(arranged_nodes) do |insertion_point, ancestor_id|
           insertion_point.each do |parent, children|
