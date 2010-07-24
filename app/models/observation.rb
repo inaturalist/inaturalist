@@ -169,7 +169,7 @@ class Observation < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a? Taxon
     return {:conditions => "1 = 2"} unless taxon
     {:include => :taxon,
-     :conditions => ['taxa.lft >= ? AND taxa.rgt <= ?', taxon.lft, taxon.rgt]}
+     :conditions => "taxa.ancestry LIKE '#{taxon.ancestry}%'"}
   }
   
   # Find observations by user

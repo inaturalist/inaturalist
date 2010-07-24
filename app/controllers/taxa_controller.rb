@@ -265,7 +265,7 @@ class TaxaController < ApplicationController
     drill_params = {}
     
     if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id]))
-      drill_params[:lft] = @taxon.lft..@taxon.rgt
+      drill_params[:ancestors] = @taxon.id
     end
     
     if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')
@@ -292,14 +292,14 @@ class TaxaController < ApplicationController
       @facets = Taxon.facets(@q, :page => page, :per_page => per_page,
         :with => drill_params, 
         :include => [:taxon_names, :photos],
-        :order => :lft)
+        :order => :ancestry)
 
       if @facets[:iconic_taxon_id]
         @faceted_iconic_taxa = Taxon.all(
           :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
-          :include => [:taxon_names, :photos],
-          :order => 'lft'
+          :include => [:taxon_names, :photos]
         )
+        @faceted_iconic_taxa = Taxon.sort_by_ancestry(@faceted_iconic_taxa)
         @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
       end
 
@@ -321,7 +321,7 @@ class TaxaController < ApplicationController
         end
         @faceted_places_by_id = @faceted_places.index_by(&:id)
       end
-
+      
       @taxa = @facets.for(drill_params)
     end
     
@@ -333,7 +333,7 @@ class TaxaController < ApplicationController
         flash[:notice] = @status unless @status.blank?
         
         if @taxa.blank?
-          @all_iconic_taxa = Taxon::ICONIC_TAXA.sort_by(&:lft)
+          @all_iconic_taxa = Taxon::ICONIC_TAXA
           @all_colors = Color.all
         end
         
@@ -762,7 +762,7 @@ class TaxaController < ApplicationController
       @taxon = Taxon.find_by_name('Life')
       @taxon ||= Taxon.iconic_taxa.first.parent
     end
-    @iconic_taxa = Taxon.iconic_taxa.all(:order => "lft")
+    @iconic_taxa = Taxon::ICONIC_TAXA
   end
   
 ## Protected / private actions ###############################################

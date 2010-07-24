@@ -53,7 +53,17 @@ module Ancestry
         end[node] = {}; arranged_nodes
       end
     end
-
+    
+    def sort_by_ancestry(nodes)
+      arranged = nodes.is_a?(Hash) ? nodes : arrange_nodes(nodes)
+      arranged.inject([]) do |sorted_nodes, pair|
+        node, children = pair
+        sorted_nodes << node
+        sorted_nodes += sort_by_ancestry(children) unless children.blank?
+        sorted_nodes
+      end
+    end
+    
     # Integrity checking
     def check_ancestry_integrity!
       parents = {}

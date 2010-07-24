@@ -30,11 +30,11 @@ class Taxon < ActiveRecord::Base
     indexes taxon_names.name, :as => :names
     indexes colors.value, :as => :color_values
     has iconic_taxon_id, :facet => true, :type => :integer
-    # has colors, :as => :color, :type => :multi, :facet => true # if colors were a column of CSV integers
     has colors(:id), :as => :colors, :facet => true, :type => :multi
     has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
     has listed_taxa(:list_id), :as => :lists, :type => :multi
-    has created_at, lft, rgt
+    has created_at, ancestry
+    has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
     set_property :delta => :delayed
   end
   
@@ -182,7 +182,7 @@ class Taxon < ActiveRecord::Base
     {:conditions => ["rank = ?", rank]}
   }
   
-  ICONIC_TAXA = self.iconic_taxa.all
+  ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   
   def observations_count_with_descendents
