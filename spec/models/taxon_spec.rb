@@ -200,15 +200,7 @@ describe Taxon, "normalize_rank" do
 end
 
 describe Taxon, "unique name" do
-  # fixtures :taxa, :taxon_names
-  # before(:each) do
-  #   load_test_taxa
-  # end
-  # 
-  # after(:each) do
-  #   unload_test_taxa
-  # end
-  
+
   it "should be the default_name by default" do
     taxon = Taxon.make
     taxon.unique_name.should == taxon.default_name.name
@@ -255,7 +247,6 @@ describe Taxon, "unique name" do
 end
 
 describe Taxon, "tags_to_taxa" do
-  # fixtures :taxa
   
   before(:each) do
     load_test_taxa
@@ -275,8 +266,6 @@ describe Taxon, "tags_to_taxa" do
 end
 
 describe Taxon, "merging" do
-  # fixtures :taxa, :taxon_names, :observations, :listed_taxa, :list_rules,
-  #   :lists, :identifications, :taxon_links, :taxon_photos, :colors
   
   before(:each) do
     load_test_taxa
