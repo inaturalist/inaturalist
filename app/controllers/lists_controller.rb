@@ -53,7 +53,7 @@ class ListsController < ApplicationController
     find_options = {
       :conditions => ["list_id in (?)", [@list, @with].compact],
       :include => [:taxon],
-      :order => "listed_taxa.lft"
+      :order => "taxa.ancestry"
     }
     
     # TODO: pull out check list logic

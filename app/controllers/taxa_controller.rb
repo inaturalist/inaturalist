@@ -48,7 +48,7 @@ class TaxaController < ApplicationController
       find_options[:conditions] = [ "name = ?", params[:name] ]
     else
       find_options[:conditions] = ["is_iconic = ?", true]
-      find_options[:order] = :lft
+      find_options[:order] = :ancestry
     end
     if params[:limit]
       @qparams[:limit] = params[:limit]
@@ -97,8 +97,7 @@ class TaxaController < ApplicationController
         if params[:q]
           render :action => :search
         else
-          @iconic_taxa = Taxon.iconic_taxa.all(
-            :include => [:photos, :taxon_names], :order => :lft)
+          @iconic_taxa = Taxon::ICONIC_TAXA
           @recent = Observation.latest.all(
             :limit => 5, 
             :include => {:taxon => [:taxon_names]},
@@ -203,9 +202,9 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    @observations_count = Observation.count(:include => :taxon, :conditions => ["taxa.lft >= ? AND taxa.rgt <= ?", @taxon.lft, @taxon.rgt])
-    @listed_taxa_count = ListedTaxon.count(:include => :taxon, :conditions => ["taxa.lft >= ? AND taxa.rgt <= ?", @taxon.lft, @taxon.rgt])
-    @identifications_count = Identification.count(:include => :taxon, :conditions => ["taxa.lft >= ? AND taxa.rgt <= ?", @taxon.lft, @taxon.rgt])
+    @observations_count = Observation.count(:include => :taxon, :conditions => "taxa.ancestry LIKE '#{@taxon.ancestry}%'")
+    @listed_taxa_count = ListedTaxon.count(:include => :taxon, :conditions => "taxa.ancestry LIKE '#{@taxon.ancestry}%'")
+    @identifications_count = Identification.count(:include => :taxon, :conditions => "taxa.ancestry LIKE '#{@taxon.ancestry}%'")
     @descendants_count = @taxon.descendants.count
   end
 
@@ -640,8 +639,8 @@ class TaxaController < ApplicationController
         original = net_flickr.photos.get_info(flickr_photo_id)
         flickr_photo = FlickrPhoto.new_from_net_flickr(original)
         if flickr_photo && @taxon.blank?
-          if @taxa = flickr_photo.to_taxa(:flickr => flickr, :fp => original)
-            @taxon = @taxa.sort_by(&:lft).last
+          if @taxa = flickr_photo.to_taxa
+            @taxon = @taxa.sort_by(&:ancestry).last
           end
         end
         flickr_photo

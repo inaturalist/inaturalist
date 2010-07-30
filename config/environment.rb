@@ -83,7 +83,7 @@ Rails::Initializer.run do |config|
   config.gem "mocha"
   config.gem "thoughtbot-paperclip", :lib => 'paperclip', :source => 'http://gems.github.com'
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
-  # config.gem "flickraw"
+  config.gem "flickraw"
   config.gem 'rest-client', :lib => 'rest_client'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
   config.gem 'geoip'

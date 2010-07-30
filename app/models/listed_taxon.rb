@@ -91,7 +91,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_ancestor_taxon_ids
-    unless ancestors.blank?
+    unless taxon.ancestry.blank?
       self.taxon_ancestor_ids = taxon.ancestor_ids.join(',') 
     else
       self.taxon_ancestor_ids = '' # this should probably be in the db...
@@ -125,7 +125,7 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   
-  # Update the lft and taxon_ancestors of ALL listed_taxa. Note this will be
+  # Update the taxon_ancestors of ALL listed_taxa. Note this will be
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes
     start_time = Time.now

@@ -164,12 +164,18 @@ class Observation < ActiveRecord::Base
               :conditions => ['photos.id IS NOT NULL']
   
   
-  # Find observations by a taxon object
+  # Find observations by a taxon object.  Querying on taxa columns forces 
+  # massive joins, it's a bit sluggish
   named_scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a? Taxon
     return {:conditions => "1 = 2"} unless taxon
-    {:include => :taxon,
-     :conditions => "taxa.ancestry LIKE '#{taxon.ancestry}%'"}
+    {
+      :include => :taxon,
+      :conditions => [
+        "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
+        taxon
+      ]
+    }
   }
   
   # Find observations by user
@@ -258,12 +264,11 @@ class Observation < ActiveRecord::Base
     if (params[:has])
       params[:has] = params[:has].split(',') if params[:has].is_a? String
       params[:has].each do |prop|
-        case prop
-          when 'geo' then scope = scope.has_geo
-          when 'id_please' then scope = scope.has_id_please
-          when 'photos' then scope = scope.has_photos
-          # hmmm... this seems less than ideal
-          else scope = scope.conditions "? IS NOT NULL OR ? != ''", prop, prop
+        scope = case prop
+          when 'geo' then scope.has_geo
+          when 'id_please' then scope.has_id_please
+          when 'photos' then scope.has_photos
+          else scope.conditions "? IS NOT NULL OR ? != ''", prop, prop # hmmm... this seems less than ideal
         end
       end
     end

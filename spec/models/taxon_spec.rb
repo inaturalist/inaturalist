@@ -1,16 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Taxon do
-  # fixtures :taxa
-  
-  # before(:all) do
-  #   @Calypte_anna
-  #   puts "doing it"
-  #   Taxon.build_ancestry_from_parent_ids!
-  #   puts "done it"
-  # end
-  
-  # before(:all) { load_test_taxa }
   before(:each) do
     load_test_taxa
     @taxon = @Calypte_anna
