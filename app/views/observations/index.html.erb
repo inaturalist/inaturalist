@@ -125,7 +125,7 @@ Observations by Everyone
     -%>
     <%= link_to("Atom", observations_path(:format => 'atom', :params => feed_params), :id => 'atomlink') %>
     <%= link_to("KML",  observations_path(:format => 'kml', :params => kml_feed_params), :id => 'kmllink') %>
-    <%= link_to("CSV",  observations_path(:format => 'csv', :params => feed_params), :id => 'csvlink') %>
+    <%= link_to("CSV",  observations_path(:format => 'csv', :params => feed_params), :id => 'csvlink', :rel => "nofollow") %>
   </div>
 <!-- </div> -->
 

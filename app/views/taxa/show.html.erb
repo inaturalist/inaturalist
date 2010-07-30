@@ -440,7 +440,8 @@
       <div id="colorboxen">
         <% for color in @taxon.colors %>
           <%= link_to "&nbsp;", {:controller => "taxa", :action => "search", :colors => color.id},
-            :class => "color", :style => "background-color: #{color.value}", :title => color.value %>
+            :class => "color", :style => "background-color: #{color.value}", :title => color.value, 
+            :rel => "nofollow" %>
         <% end %>
       </div>
       <% if logged_in? -%>

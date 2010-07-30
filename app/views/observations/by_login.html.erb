@@ -336,7 +336,7 @@ Observations by <%= h @login %>
       -%>
       <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params), :id => 'atomlink') %>
       <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params), :id => 'kmllink') %>
-      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params), :id => 'csvlink') %>
+      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params), :id => 'csvlink', :rel => "nofollow") %>
       
     </span>
   </div>

@@ -919,15 +919,21 @@ class ObservationsController < ApplicationController
     find_options[:per_page] = @prefs.per_page if @prefs
     
     # Set format-based page sizes
-    if request.format == :csv
-      find_options.update(:per_page => 2000)
-    elsif request.format == :kml
+    if request.format == :kml
       find_options.update(:limit => 100) if search_params[:limit].blank?
       find_options.update(:per_page => 100)
     elsif !search_params[:per_page].blank?
       find_options.update(:per_page => search_params[:per_page])
     elsif !search_params[:limit].blank?
       find_options.update(:per_page => search_params[:limit])
+    end
+    
+    if find_options[:per_page] && find_options[:per_page].to_i > 200
+      find_options[:per_page] = 200
+    end
+    
+    if find_options[:limit] && find_options[:limit].to_i > 200
+      find_options[:limit] = 200
     end
     
     # iconic_taxa
