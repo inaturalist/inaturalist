@@ -32,21 +32,19 @@ describe List, "refreshing" do
 end
 
 describe List, "taxon adding" do
-  fixtures :lists, :taxa, :listed_taxa, :users
-  before(:each) do
-    @new_list = List.new(:user => users(:aaron))
-  end
   
   it "should return a ListedTaxon" do
-    anna = Taxon.find_by_name('Calypte anna')
-    @new_list.add_taxon(anna).should be_a(ListedTaxon)
+    list = List.make
+    taxon = Taxon.make
+    list.add_taxon(taxon).should be_a(ListedTaxon)
   end
   
   it "should not create a new ListedTaxon if the taxon is already in the list" do
-    quentin_life_list = lists(:quentin_life_list)
-    quentin_life_list.taxa.should include(taxa(:Calypte_anna))
-    lt = quentin_life_list.add_taxon(taxa(:Calypte_anna))
-    # lt.should be_nil
-    lt.should_not be_valid
+    listed_taxon = ListedTaxon.make
+    list = listed_taxon.list
+    taxon = listed_taxon.taxon
+    new_listed_taxon = list.add_taxon(taxon)
+    new_listed_taxon.should_not be_valid
   end
+  
 end

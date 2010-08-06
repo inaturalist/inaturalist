@@ -628,8 +628,8 @@ class ObservationsController < ApplicationController
         @listed_taxa = @listed_taxa_alphabetical if @order == ListedTaxon::ALPHABETICAL_ORDER
         @taxon_ids_by_name = {}
         ancestor_ids = @listed_taxa.map{|lt| lt.taxon_ancestor_ids.split(',')}.flatten.uniq
-        @orders = Taxon.all(:conditions => ["rank = 'order' AND id IN (?)", ancestor_ids], :order => "lft ASC")
-        @families = Taxon.all(:conditions => ["rank = 'family' AND id IN (?)", ancestor_ids], :order => "lft ASC")
+        @orders = Taxon.all(:conditions => ["rank = 'order' AND id IN (?)", ancestor_ids], :order => "ancestry")
+        @families = Taxon.all(:conditions => ["rank = 'family' AND id IN (?)", ancestor_ids], :order => "ancestry")
       end
     end
     @user_lists = current_user.lists.all(:limit => 100)
@@ -983,19 +983,16 @@ class ObservationsController < ApplicationController
   # a Sphinx call if there were query terms specified.
   def get_paginated_observations(search_params, find_options)
     if @q
-      if @search_on
+      @observations = if @search_on
         find_options[:conditions] = update_conditions(
           find_options[:conditions], @search_on.to_sym => @q
         )
-        @observations = Observation.query(search_params).search(
-          find_options).compact
+        Observation.query(search_params).search(find_options).compact
       else
-        @observations = Observation.query(search_params).search(
-          @q, find_options).compact
+        Observation.query(search_params).search(@q, find_options).compact
       end
-    else
-      @observations = Observation.query(search_params).paginate(find_options)
     end
+    @observations ||= Observation.query(search_params).paginate(find_options)
   rescue ThinkingSphinx::ConnectionError
     find_options.delete(:class)
     find_options.delete(:classes)

@@ -16,7 +16,6 @@ class ListedTaxon < ActiveRecord::Base
   
   before_create :set_ancestor_taxon_ids
   before_create :set_place_id
-  before_save :set_lft
   before_save :update_last_observation
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
@@ -91,15 +90,9 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   
-  def set_lft
-    self.lft = self.taxon.lft
-    true
-  end
-  
   def set_ancestor_taxon_ids
-    ancestors = self.taxon.ancestors.all(:select => 'id')
-    unless ancestors.blank?
-      self.taxon_ancestor_ids = ancestors.map(&:id).join(',') 
+    unless taxon.ancestry.blank?
+      self.taxon_ancestor_ids = taxon.ancestor_ids.join(',') 
     else
       self.taxon_ancestor_ids = '' # this should probably be in the db...
     end
@@ -132,7 +125,7 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   
-  # Update the lft and taxon_ancestors of ALL listed_taxa. Note this will be
+  # Update the taxon_ancestors of ALL listed_taxa. Note this will be
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes
     start_time = Time.now

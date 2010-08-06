@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
+require File.expand_path(File.dirname(__FILE__) + "/../spec/blueprints")
 
 class ActiveSupport::TestCase
   # RoleRequirementTestHelper must be included to test RoleRequirement
@@ -29,6 +30,8 @@ class ActiveSupport::TestCase
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
   self.use_instantiated_fixtures  = false
+  
+  setup { Sham.reset }
 
   # Add more helper methods to be used by all tests here...
 end

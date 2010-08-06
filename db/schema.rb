@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100119024356) do
+ActiveRecord::Schema.define(:version => 20100709225557) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
 
   add_index "colors_taxa", ["taxon_id", "color_id"], :name => "index_colors_taxa_on_taxon_id_and_color_id"
 
-  create_table "comments", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "comments", :force => true do |t|
     t.column "user_id", :integer
     t.column "parent_id", :integer
     t.column "parent_type", :string
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
 
   add_index "flags", ["user_id"], :name => "fk_flags_user"
 
-  create_table "flickr_identities", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "flickr_identities", :force => true do |t|
     t.column "flickr_username", :string
     t.column "frob", :string
     t.column "token", :string
@@ -83,14 +83,14 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "flickr_user_id", :string
   end
 
-  create_table "friendships", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "friendships", :force => true do |t|
     t.column "user_id", :integer
     t.column "friend_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
 
-  create_table "goal_contributions", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "goal_contributions", :force => true do |t|
     t.column "contribution_id", :integer
     t.column "contribution_type", :string
     t.column "goal_id", :integer
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "goal_participant_id", :integer
   end
 
-  create_table "goal_participants", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "goal_participants", :force => true do |t|
     t.column "goal_id", :integer
     t.column "user_id", :integer
     t.column "goal_completed", :integer, :default => 0
@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "updated_at", :datetime
   end
 
-  create_table "goal_rules", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "goal_rules", :force => true do |t|
     t.column "goal_id", :integer
     t.column "operator", :string
     t.column "operator_class", :string
@@ -116,7 +116,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "updated_at", :datetime
   end
 
-  create_table "goals", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "goals", :force => true do |t|
     t.column "description", :text
     t.column "number_of_contributions_required", :integer
     t.column "goal_type", :string
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "completed", :boolean, :default => false
   end
 
-  create_table "identifications", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "identifications", :force => true do |t|
     t.column "observation_id", :integer
     t.column "taxon_id", :integer
     t.column "user_id", :integer
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "updated_at", :datetime
   end
 
-  create_table "list_rules", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "list_rules", :force => true do |t|
     t.column "list_id", :integer
     t.column "operator", :string
     t.column "operand_id", :integer
@@ -158,25 +158,23 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
   add_index "list_rules", ["operand_type", "operand_id"], :name => "index_list_rules_on_operand_type_and_operand_id"
   add_index "list_rules", ["list_id"], :name => "index_list_rules_on_list_id"
 
-  create_table "listed_taxa", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "listed_taxa", :force => true do |t|
     t.column "taxon_id", :integer
     t.column "list_id", :integer
     t.column "last_observation_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "lft", :integer
     t.column "taxon_ancestor_ids", :string
     t.column "place_id", :integer
   end
 
-  add_index "listed_taxa", ["lft"], :name => "index_listed_taxa_on_lft"
-  add_index "listed_taxa", ["list_id", "lft"], :name => "index_listed_taxa_on_list_id_and_lft"
+  add_index "listed_taxa", ["list_id"], :name => "index_listed_taxa_on_list_id_and_lft"
   add_index "listed_taxa", ["list_id", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_id"
   add_index "listed_taxa", ["taxon_id"], :name => "index_listed_taxa_on_taxon_id"
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
   add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
 
-  create_table "lists", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "lists", :force => true do |t|
     t.column "title", :string
     t.column "description", :text
     t.column "user_id", :integer
@@ -198,7 +196,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "position", :integer
   end
 
-  create_table "observations", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "observations", :force => true do |t|
     t.column "observed_on", :date
     t.column "description", :text
     t.column "latitude", :float
@@ -242,7 +240,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "updated_at", :datetime
   end
 
-  create_table "photos", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "photos", :force => true do |t|
     t.column "user_id", :integer
     t.column "native_photo_id", :string
     t.column "square_url", :string
@@ -313,10 +311,10 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
 
   create_table "posts", :force => true do |t|
     t.column "parent_id", :integer, :null => false
-    t.column "parent_type", :string, :default => "", :null => false
+    t.column "parent_type", :string, :null => false
     t.column "user_id", :integer, :null => false
     t.column "published_at", :datetime
-    t.column "title", :string, :default => "", :null => false
+    t.column "title", :string, :null => false
     t.column "body", :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
@@ -336,7 +334,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
 
-  create_table "sources", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "sources", :force => true do |t|
     t.column "in_text", :string
     t.column "citation", :text
     t.column "url", :string
@@ -345,7 +343,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "title", :string
   end
 
-  create_table "taggings", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "taggings", :force => true do |t|
     t.column "tag_id", :integer
     t.column "taggable_id", :integer
     t.column "taggable_type", :string
@@ -355,11 +353,11 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
   add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
 
-  create_table "tags", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "tags", :force => true do |t|
     t.column "name", :string
   end
 
-  create_table "taxa", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "taxa", :force => true do |t|
     t.column "name", :string
     t.column "rank", :string
     t.column "source_identifier", :string
@@ -386,13 +384,14 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "wikipedia_summary", :text
     t.column "wikipedia_title", :string
     t.column "featured_at", :datetime
+    t.column "ancestry", :string
   end
 
-  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
+  add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
+  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name"
   add_index "taxa", ["name"], :name => "index_taxa_on_name"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["is_iconic"], :name => "index_taxa_on_is_iconic"
-  add_index "taxa", ["lft"], :name => "index_taxa_on_lft"
   add_index "taxa", ["rgt"], :name => "index_taxa_on_rgt"
   add_index "taxa", ["lft", "rgt"], :name => "index_taxa_on_lft_and_rgt"
   add_index "taxa", ["observations_count"], :name => "index_taxa_on_observations_count"
@@ -401,7 +400,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
   add_index "taxa", ["featured_at"], :name => "index_taxa_on_featured_at"
 
   create_table "taxon_links", :force => true do |t|
-    t.column "url", :string, :default => "", :null => false
+    t.column "url", :string, :null => false
     t.column "site_title", :string
     t.column "taxon_id", :integer, :null => false
     t.column "show_for_descendent_taxa", :boolean, :default => false
@@ -413,7 +412,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
   add_index "taxon_links", ["taxon_id", "show_for_descendent_taxa"], :name => "index_taxon_links_on_taxon_id_and_show_for_descendent_taxa"
   add_index "taxon_links", ["user_id"], :name => "index_taxon_links_on_user_id"
 
-  create_table "taxon_names", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "taxon_names", :force => true do |t|
     t.column "name", :string
     t.column "is_valid", :boolean
     t.column "lexicon", :string
@@ -437,7 +436,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "position", :integer
   end
 
-  create_table "taxon_ranges", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "taxon_ranges", :force => true do |t|
     t.column "taxon_id", :integer
     t.column "source", :string
     t.column "start_month", :integer
@@ -448,7 +447,7 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
     t.column "range_type", :string
   end
 
-  create_table "taxon_versions", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "taxon_versions", :force => true do |t|
     t.column "taxon_id", :integer
     t.column "version", :integer
     t.column "name", :string
@@ -504,25 +503,5 @@ ActiveRecord::Schema.define(:version => 20100119024356) do
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"
   add_index "users", ["journal_posts_count"], :name => "index_users_on_journal_posts_count"
   add_index "users", ["life_list_taxa_count"], :name => "index_users_on_life_list_taxa_count"
-
-  create_table "users_old", :options=>'ENGINE=MyISAM', :force => true do |t|
-    t.column "login", :string
-    t.column "email", :string
-    t.column "crypted_password", :string, :limit => 40
-    t.column "salt", :string, :limit => 40
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "remember_token", :string
-    t.column "remember_token_expires_at", :datetime
-    t.column "password_reset_code", :string, :limit => 40
-    t.column "description", :text
-    t.column "favorite_thing_1", :string, :default => ""
-    t.column "favorite_thing_2", :string, :default => ""
-    t.column "favorite_thing_3", :string, :default => ""
-    t.column "time_zone", :string, :default => "UTC"
-    t.column "icon_file_name", :string
-    t.column "icon_content_type", :string
-    t.column "icon_file_size", :integer
-  end
 
 end

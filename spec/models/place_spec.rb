@@ -1,19 +1,17 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Place do
-  fixtures :places, :lists, :taxa, :taxon_names
-  
   it "should have taxa" do
-    places(:berkeley).check_list.add_taxon(taxa(:Pseudacris_regilla))
-    places(:berkeley).listed_taxa.should_not be_empty
-    taxa(:Pseudacris_regilla).places.should_not be_empty
+    place = Place.make
+    taxon = Taxon.make
+    place.check_list.add_taxon(taxon)
+    taxon.places.should_not be_empty
   end
 end
 
 describe Place, "creation" do
   before(:each) do
-    @place = Place.create(:name => "Xanadu", :latitude => 30.134977, 
-      :longitude => -85.562811)
+    @place = Place.make
   end
   
   it "should create a default check_list" do
@@ -32,6 +30,8 @@ describe Place, "import by WOEID" do
   end
 end
 
+# These pass individually but fail as a group, probably due to some 
+# transaction weirdness.
 describe Place, "merging" do
   fixtures :places, :place_geometries, :lists, :listed_taxa, :taxa
   before(:each) do

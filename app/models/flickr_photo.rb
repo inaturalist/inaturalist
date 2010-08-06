@@ -139,7 +139,7 @@ class FlickrPhoto < Photo
     end
     
     # Try to get a taxon
-    photo_taxa = to_taxa(:flickr => flickr, :fp => fp)
+    photo_taxa = to_taxa
     unless photo_taxa.blank?
       unless photo_taxa.detect{|t| t.rank_level.blank?}
         photo_taxa = photo_taxa.sort_by(&:rank_level)
@@ -161,8 +161,7 @@ class FlickrPhoto < Photo
   
   # Try to extract known taxa from the tags of a flickr photo
   def to_taxa(options = {})
-    self.api_response ||= FlickrPhoto.get_api_response(
-      self.native_photo_id, :user => options[:user] || self.user)
+    self.api_response ||= FlickrPhoto.get_api_response(self.native_photo_id, :user => options[:user] || self.user)
     taxa = if api_response.tags.blank?
       []
     else
