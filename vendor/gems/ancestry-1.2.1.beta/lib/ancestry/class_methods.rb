@@ -126,7 +126,7 @@ module Ancestry
     # Build ancestry from parent id's for migration purposes
     def build_ancestry_from_parent_ids! parent_id = nil, ancestry = nil
       self.base_class.update_all(["#{ancestry_column} = ?", ancestry], ["parent_id = ?", parent_id])
-      self.base_class.all(:conditions => {:parent_id => parent_id}).each do |node|
+      self.base_class.clone.find_each(:conditions => {:parent_id => parent_id}) do |node|
         build_ancestry_from_parent_ids! node.id, if ancestry.nil? then "#{node.id}" else "#{ancestry}/#{node.id}" end
       end
     end
