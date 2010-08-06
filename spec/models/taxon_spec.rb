@@ -347,9 +347,8 @@ describe Taxon, "merging" do
   end
   
   it "should move the reject's list_rules to the keeper" do
-    # rule = list_rules(:BerkeleyAmphibiansRule)
     rule = ListRule.make(:operand => @Amphibia, :operator => "in_taxon?")
-    reject = rule.operand(:force_reload => true)
+    reject = rule.operand
     keeper = reject.clone
     keeper.name = "Amphibia2"
     keeper.unique_name = "Amphibia2"
