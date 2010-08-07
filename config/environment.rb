@@ -85,12 +85,12 @@ Rails::Initializer.run do |config|
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem "flickraw"
   config.gem 'rest-client', :lib => 'rest_client'
+  config.gem 'hoptoad_notifier'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
   config.gem 'geoip'
   config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
   config.gem 'nokogiri'
   config.gem 'objectify-xml', :lib => 'objectify_xml'
-  config.gem 'hoptoad_notifier'
   # As of 2010-04-21, TS doesn't work with DJ >= 2.0
   config.gem 'delayed_job', :version => '<= 1.8.5'
   config.gem 'thinking-sphinx',
