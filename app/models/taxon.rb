@@ -42,7 +42,7 @@ class Taxon < ActiveRecord::Base
   before_save :set_iconic_taxon # if after, it would require an extra save
   before_save {|taxon| taxon.name = taxon.name.capitalize}
   after_save :create_matching_taxon_name
-  after_save {|taxon| taxon.send_later(:set_wkipedia_summary) if taxon.wikipedia_title_changed? }
+  after_save {|taxon| taxon.send_later(:set_wikipedia_summary) if taxon.wikipedia_title_changed? }
   after_save {|taxon|
     if taxon.ancestry_changed?
       taxon.update_listed_taxa
