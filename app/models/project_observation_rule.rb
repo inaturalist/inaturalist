@@ -1,0 +1,2 @@
+class ProjectObservationRule < Rule
+end

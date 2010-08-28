@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   simplified_login_regex = /\w[\w\-_]+/
   
   map.root :controller => 'welcome', :action => 'index'
@@ -87,8 +88,19 @@ ActionController::Routing::Routes.draw do |map|
     o.observation_tile_points 'observations/tile_points/:zoom/:x/:y.:format', :action => 'tile_points',
       :requirements => { :zoom => /\d+/, :x => /\d+/, :y => /\d+/ },
       :conditions => {:method => :get}
+    o.project_observations 'observations/project/:id.:format', :action => "project"
   end
-
+  
+  map.resources :projects
+  map.with_options :controller => "projects" do |p|
+    p.join_project "projects/:id/join", :action => "join"
+    p.leave_project "projects/:id/leave", :action => "leave"
+    p.add_project_observation "projects/:id/add", :action => "add",
+      :conditions => {:method => :post}
+    p.remove_project_observation "projects/:id/remove", :action => "remove",
+      :conditions => {:method => [:post, :delete]}
+  end
+  
   map.person_by_login 'people/:login', 
                       :controller => 'users',
                       :action => 'show',

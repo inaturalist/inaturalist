@@ -107,35 +107,13 @@
     right: 0;
   }
   
-  #taxon_links.tabs li#more_taxon_links_wrapper {
-    position: relative;
-    padding: 0;
-    border: 0 none;
-  }
-  
-  #more_taxon_links_button {
-    display: block;
+  .toggle_menu .togglelink {
     border: 1px solid transparent;
     padding: 4px 10px 4px 16px;
   }
-    
-  #more_taxon_links_button.open {
-    position: relative;
-    z-index: 10;
-    border-color: #ccc;
-    border-bottom: 1px solid white;
-    background-position: 3px 50%;
-  }
   
-  #more_taxon_links {
-    position: absolute;
-    z-index: 1;
-    top: 27px;
+  .toggle_menu .menu {
     right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 0.5em;
-    -webkit-box-shadow: 3px 3px 5px #999;
   }
   
   #all_names {
@@ -683,25 +661,21 @@
           </li>
         <% end %>
         <% if @taxon_links.size > 4 -%>
-          <li id="more_taxon_links_wrapper">
-            <%= link_to_function "More", 
-              "$('#more_taxon_links').toggle(); " + 
-              "$(this).toggleClass('open'); " + 
-              "$('#more_taxon_links_wrapper').toggleClass('open')",
-              :id => 'more_taxon_links_button',
-              :class => 'togglelink' %>
-            <ul id="more_taxon_links" style="display: none">
-              <%- @taxon_links[4..-1].each do |taxon_link| -%>
-                <li class="taxon_link">
-                  <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
-                  <%- if logged_in? -%>
-                    <span class="controls">
-                      <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
-                    </span>
-                  <%- end -%>
-                </li>
-              <%- end -%>
-            </ul>
+          <li style="padding: 0; border: 0;">
+            <% link_to_toggle_menu "More" do %>
+              <ul>
+                <%- @taxon_links[4..-1].each do |taxon_link| -%>
+                  <li class="taxon_link">
+                    <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
+                    <%- if logged_in? -%>
+                      <span class="controls">
+                        <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
+                      </span>
+                    <%- end -%>
+                  </li>
+                <%- end -%>
+              </ul>
+            <% end %>
           </li>
         <% end %>
         <% if logged_in? -%>

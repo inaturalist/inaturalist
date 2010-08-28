@@ -1,4 +1,7 @@
-<% observation ||= cached_component -%>
+<%- 
+  observation ||= cached_component
+  observation = observation.observation unless observation.is_a?(Observation)
+-%>
 <% if logged_in? && current_user.id == observation.user_id -%>
   <% cache(:controller => 'observations', :action => 'component', 
            :id => observation.id, :for_owner => true) do %>

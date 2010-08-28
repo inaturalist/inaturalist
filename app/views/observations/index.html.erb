@@ -114,18 +114,7 @@ Observations by Everyone
 
 <!-- <div class="last column span-24"> -->
   <div id="feeds" class="clear right small ui description feeds">
-    Feeds for Current Filters:
-    <%- 
-      feed_params = params.reject do |key,value|
-        ObservationsController::REJECTED_FEED_PARAMS.include?(key)
-      end
-      kml_feed_params = params.reject do |key,value|
-        ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
-      end
-    -%>
-    <%= link_to("Atom", observations_path(:format => 'atom', :params => feed_params), :id => 'atomlink') %>
-    <%= link_to("KML",  observations_path(:format => 'kml', :params => kml_feed_params), :id => 'kmllink') %>
-    <%= link_to("CSV",  observations_path(:format => 'csv', :params => feed_params), :id => 'csvlink', :rel => "nofollow") %>
+    <%= render :partial => 'feed_links' %>
   </div>
 <!-- </div> -->
 

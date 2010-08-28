@@ -131,11 +131,6 @@ input, select, textarea {
   font-family: "Trebuchet MS", Arial, sans-serif;;
 }
 
-/*input.checkbox, input[type="checkbox"],
-input.radio, input[type="radio"] {
-  vertical-align: middle;
-}*/
-
 form .field {
   margin-bottom: 10px;
 }
@@ -339,7 +334,6 @@ span.button {
 
 /* Notices, Flashes, Attention Grabbers */
 #flash, .flash {
-/*    background-color: #ffc;*/
     padding: 0.2em 0.5em;
     width: 40%;
     margin: 0.5em auto;
@@ -554,6 +548,40 @@ ul.leafylist li li:first-child {
 .compactfield.open .compactfieldlink,
 .togglelink.open {
   background: url(/images/toggle_arrow_down.png) no-repeat 0 50%;
+}
+
+.toggle_menu {
+  position: relative;
+  padding: 0;
+  border: 0 none;
+}
+
+.toggle_menu .togglelink {
+  display: block;
+  padding-left: 16px;
+}
+  
+.toggle_menu .togglelink.open {
+  position: relative;
+  z-index: 10;
+  border-color: #ccc;
+  border-bottom: 1px solid white;
+  background-position: 3px 50%;
+}
+
+.toggle_menu .menu {
+  position: absolute;
+  z-index: 1;
+  top: 27px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  -webkit-box-shadow: 0px 3px 3px #666;
+  -moz-box-shadow: 0px 3px 3px #666;
+}
+
+.button_toggle_menu .menu {
+  top: 31px;
 }
 
 .modalbox {

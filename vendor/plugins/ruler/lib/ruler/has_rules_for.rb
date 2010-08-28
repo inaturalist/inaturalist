@@ -4,11 +4,15 @@ module Ruler
   end
   
   module ClassMethods
-    def has_rules_for(association)
-      has_many "#{association.to_s.singularize}_rules", :class_name => "Rule", :as => :ruler
+    def has_rules_for(association, options = {})
+      rule_class = options[:rule_class] || Rule
+      association_name = "#{association.to_s.singularize}_rules".to_sym
+      has_many association_name, :class_name => rule_class.to_s, :as => :ruler
+      accepts_nested_attributes_for association_name, :allow_destroy => true, 
+        :reject_if => :all_blank
     end
     
-    def validates_rules_from(association)
+    def validates_rules_from(association, options = {})
       validation_method_name = "validate_rules_from_#{association.to_s}"
       define_method(validation_method_name) do
         rules = send(association).send("#{self.class.to_s.underscore.singularize}_rules")
@@ -17,6 +21,8 @@ module Ruler
         end
       end
       validate validation_method_name
+      
+      const_set "RULE_METHODS", options[:rule_methods] || []
     end
   end
 end

@@ -2,6 +2,7 @@ class RulerMigrationGenerator < Rails::Generator::Base
   
   def manifest
     rule_attributes = [
+        %w"type string", 
         %w"ruler_type string", 
         %w"ruler_id integer", 
         %w"operand_type string", 

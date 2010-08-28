@@ -83,3 +83,19 @@ TaxonLink.blueprint do
   url { Sham.url }
   site_title { Sham.title }
 end
+
+Project.blueprint do
+  user
+  title { Sham.title }
+end
+
+ProjectUser.blueprint do
+  user
+  project
+end
+
+ProjectObservation.blueprint do
+  observation
+  project
+end
+

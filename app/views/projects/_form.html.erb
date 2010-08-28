@@ -1,0 +1,57 @@
+<%- project ||= @project -%>
+<% form_for project, :builder => DefaultFormBuilder do |f| %>
+  <%= f.error_messages %>
+  
+  <%= f.text_field :title, :required => true %>
+  <%= f.text_area :description %>
+  <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
+  
+  <fieldset>
+    <legend>New User Rules</legend>
+    
+    <% f.fields_for :project_user_rules do |pu| %>
+      <div>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <%= pu.hidden_field :_destroy, :class => "destroyer" %>
+        <%= link_to_function "remove", "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
+      </div>
+    <% end %>
+    <% f.fields_for :project_user_rules, [Rule.new] do |pu| %>
+      <div>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
+      </div>
+    <% end %>
+  </fieldset>
+  
+  <fieldset>
+    <legend>New Observation Rules</legend>
+    <% f.fields_for :project_observation_rules do |pu| %>
+      <div>
+        <%= pu.select :operator, ProjectObservation::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <% if pu.object %>
+          <%= pu.hidden_field :_destroy, :class => "destroyer" %>
+          <%= link_to_function "remove", 
+            "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
+        <% end %>
+        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
+      </div>
+    <% end %>
+    <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
+      <div>
+        <%= pu.select :operator, ProjectObservation::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <div class="buttons">
+    <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button" %>
+    <%= link_to "cancel", projects_path, :class => "button" %>
+    <% unless project.new_record? -%>
+      <%= link_to "delete this project", project, :method => :delete, 
+        :confirm => "Are you sure you want to delete this project?",
+        :class => "delete button" %>
+    <% end -%>
+  </div>
+<% end %>
