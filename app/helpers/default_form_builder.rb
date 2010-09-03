@@ -21,7 +21,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       
       content += super
       
-      @template.content_tag(:div, content, :class => 'field')
+      @template.content_tag(:div, content, :class => "field #{field}_field")
     end
   end
 end

@@ -1,12 +1,29 @@
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .description_field { margin-right: 20px; }
+    .description_field,
+    .terms_field {
+      float: left;
+      width: 465px;
+    }
+    
+    .title_field input,
+    .description_field textarea,
+    .terms_field textarea {
+      width: 450px;
+    }
+    
+  </style>
+<%- end -%>
 <%- project ||= @project -%>
 <% form_for project, :builder => DefaultFormBuilder do |f| %>
   <%= f.error_messages %>
   
   <%= f.text_field :title, :required => true %>
-  <%= f.text_area :description %>
+  <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
   
-  <fieldset>
+  <fieldset class="userrules">
     <legend>New User Rules</legend>
     
     <% f.fields_for :project_user_rules do |pu| %>
@@ -24,7 +41,7 @@
     <% end %>
   </fieldset>
   
-  <fieldset>
+  <fieldset class="observationrules">
     <legend>New Observation Rules</legend>
     <% f.fields_for :project_observation_rules do |pu| %>
       <div>
