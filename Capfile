@@ -20,7 +20,7 @@ namespace :deploy do
     copy_geoip_config
   end
 
-  task :after_update do
+  after "deploy:update" do
     symlink_config
     symlink_db_config
     symlink_gmap_api_key
@@ -33,7 +33,7 @@ namespace :deploy do
     sphinx_configure
   end
   
-  task :after_restart do
+  after "deploy:restart" do
     cleanup
     sphinx_restart
     chgrp_to_user
