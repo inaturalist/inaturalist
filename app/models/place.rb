@@ -445,4 +445,17 @@ class Place < ActiveRecord::Base
     self.save
     self
   end
+  
+  def contains_lat_lng?(lat, lng)
+    bbox_contains_lat_lng?(lat, lng) # TODO implement true containment
+  end
+  
+  def bbox_contains_lat_lng?(lat, lng)
+    return nil unless swlng && swlat && nelat && nelng
+    if swlng.to_f > 0 && nelng.to_f < 0
+      lat > swlat && lat < nelat && (lng > swlng || lng < nelng)
+    else
+      lat > swlat && lat < nelat && lng > swlng && lng < nelng
+    end
+  end
 end

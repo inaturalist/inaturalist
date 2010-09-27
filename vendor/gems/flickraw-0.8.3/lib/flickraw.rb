@@ -26,14 +26,13 @@ require 'digest/md5'
 require 'json'
 
 FlickRawOptions = {} if not Object.const_defined? :FlickRawOptions # :nodoc:
-FlickRawOptions['api_key'] ||= '7b124df89b638e545e3165293883ef62'
 if ENV['http_proxy'] and not FlickRawOptions['proxy_host']
   proxy = URI.parse ENV['http_proxy']
   FlickRawOptions.update('proxy_host' => proxy.host, 'proxy_port' => proxy.port, 'proxy_user' => proxy.user, 'proxy_password' => proxy.password)
 end
 
 module FlickRaw
-  VERSION='0.8.1'
+  VERSION='0.8.3'
 
   FLICKR_HOST='api.flickr.com'.freeze
   REST_PATH='/services/rest/?'.freeze
@@ -44,7 +43,7 @@ module FlickRaw
   PHOTO_SOURCE_URL='http://farm%s.static.flickr.com/%s/%s_%s%s.%s'.freeze
   URL_PROFILE='http://www.flickr.com/people/'.freeze
   URL_PHOTOSTREAM='http://www.flickr.com/photos/'.freeze
-  URL_SHORT="http://flic.kr/p/".freeze
+  URL_SHORT='http://flic.kr/p/'.freeze
 
   class Response
     def self.build(h, type) # :nodoc:
@@ -157,6 +156,7 @@ module FlickRaw
     #
     # Raises FailedResponse if the response status is _failed_.
     def call(req, args={})
+      @token = nil if req == "flickr.auth.getFrob"
       http_response = open_flickr do |http|
         request = Net::HTTP::Post.new(REST_PATH, 'User-Agent' => "Flickraw/#{VERSION}")
         request.set_form_data(build_args(args, req))
@@ -207,7 +207,7 @@ module FlickRaw
     end
 
     def upload_flickr(method, file, args={})
-      photo = File.open(file, 'rb') { |f| f.read }
+      photo = open(file, 'rb') { |f| f.read }
       boundary = Digest::MD5.hexdigest(photo)
 
       header = {'Content-type' => "multipart/form-data, boundary=#{boundary} ", 'User-Agent' => "Flickraw/#{VERSION}"}
@@ -286,12 +286,16 @@ module FlickRaw
     def url_s(r); PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.secret, "_s", "jpg"] end
     def url_t(r); PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.secret, "_t", "jpg"] end
     def url_b(r); PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.secret, "_b", "jpg"] end
+    def url_z(r); PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.secret, "_z", "jpg"] end
     def url_o(r); PHOTO_SOURCE_URL % [r.farm, r.server, r.id, r.originalsecret, "_o", r.originalformat] end
     def url_profile(r); URL_PROFILE + (r.owner.respond_to?(:nsid) ? r.owner.nsid : r.owner) + "/" end
     def url_photopage(r); url_photostream(r) + r.id end
     def url_photosets(r); url_photostream(r) + "sets/" end
     def url_photoset(r); url_photosets(r) + r.id end
     def url_short(r); URL_SHORT + base58(r.id) end
+    def url_short_m(r); URL_SHORT + "img/" + base58(r.id) + "_m.jpg" end
+    def url_short_s(r); URL_SHORT + "img/" + base58(r.id) + ".jpg" end
+    def url_short_t(r); URL_SHORT + "img/" + base58(r.id) + "_t.jpg" end
     def url_photostream(r)
       URL_PHOTOSTREAM +
         if r.respond_to?(:pathalias) and r.pathalias
@@ -313,4 +317,7 @@ end
 def flickr; $flickraw ||= FlickRaw::Flickr.new end
 
 # Load the methods if the option lazyload is not specified
-flickr if not FlickRawOptions['lazyload']
+begin
+flickr
+rescue
+end if not FlickRawOptions['lazyload']

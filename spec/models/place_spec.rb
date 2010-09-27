@@ -101,3 +101,20 @@ describe Place, "merging" do
     @place.place_geometry.geom.geometries.size.should > @place_geom.geometries.size
   end
 end
+
+describe Place, "contains_lat_lng?" do
+  it "should work" do
+    place = Place.make(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
+    place.contains_lat_lng?(0, 0).should be_true
+    place.contains_lat_lng?(0.5, 0.5).should be_true
+    place.contains_lat_lng?(2, 2).should be_false
+  end
+  
+  it "should work across the date line" do
+    place = Place.make(:latitude => 0, :longitude => 180, :swlat => -1, :swlng => 179, :nelat => 1, :nelng => -179)
+    place.contains_lat_lng?(0, 180).should be_true
+    place.contains_lat_lng?(0.5, -179.5).should be_true
+    place.contains_lat_lng?(0, 0).should be_false
+  end
+end
+

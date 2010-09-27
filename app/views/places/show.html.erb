@@ -499,19 +499,3 @@
     <ul class="listed_taxa batchAdderTaxa"></ul>
   </div>
 </div>
-
-<div class="column span-18">
-  <div class="observations table">
-    <% if @observations.blank? -%>
-      no obs
-    <% else %>
-      <%= render :partial => "observations/cached_component", :collection => @observations %>
-    <% end -%>
-  </div>
-</div>
-
-<div class="last column span-6">
-  <% for project_user in @project_users %>
-    <%= link_to_user project_user.user %>
-  <% end %>
-</div>

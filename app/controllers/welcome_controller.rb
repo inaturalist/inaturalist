@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   
   def index
-    @observations = Observation.find(:all, 
+    @observations = Observation.all( 
       :include => :photos,
       :limit => 4,
       :order => "observations.created_at DESC",

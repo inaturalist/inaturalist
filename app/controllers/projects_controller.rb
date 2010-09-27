@@ -88,9 +88,10 @@ class ProjectsController < ApplicationController
       redirect_to :back and return
     end
     
-    unless @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
+    @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
+    unless @project_observation.valid?
       flash[:error] = "There were problems adding your observation to this project: " + 
-        @project_observations.errors.full_messages.to_sentence
+        @project_observation.errors.full_messages.to_sentence
       redirect_to :back and return
     end
     

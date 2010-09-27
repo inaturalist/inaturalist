@@ -119,7 +119,7 @@ class Observation < ActiveRecord::Base
     end
   } do
     def distinct_taxon
-      find(:all, :group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
+      all(:group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
     end
   end
   

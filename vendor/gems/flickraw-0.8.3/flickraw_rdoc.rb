@@ -23,6 +23,7 @@ module RDoc
 
     private
     def add_flickr_methods(obj, doc)
+      flickr # Force loading of methods if lazyloaded
       obj.constants.each { |const_name|
         const = obj.const_get const_name
         if const.is_a?(Class) && const < FlickRaw::Request

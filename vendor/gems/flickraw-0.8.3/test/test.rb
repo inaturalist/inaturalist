@@ -7,7 +7,7 @@ class Basic < Test::Unit::TestCase
   def test_request
     flickr_objects = %w{activity auth blogs collections commons contacts
        favorites galleries groups interestingness machinetags panda
-       people photos photosets places prefs reflection tags
+       people photos photosets places prefs reflection stats tags
        test urls
     }
     assert_equal FlickRaw::Flickr.flickr_objects, flickr_objects
@@ -39,8 +39,14 @@ class Basic < Test::Unit::TestCase
       flickr.favorites.getPublicList
       flickr.favorites.remove
       flickr.galleries.addPhoto
+      flickr.galleries.create
+      flickr.galleries.editMeta
+      flickr.galleries.editPhoto
+      flickr.galleries.editPhotos
+      flickr.galleries.getInfo
       flickr.galleries.getList
       flickr.galleries.getListForPhoto
+      flickr.galleries.getPhotos
       flickr.groups.browse
       flickr.groups.getInfo
       flickr.groups.members.getList
@@ -61,6 +67,8 @@ class Basic < Test::Unit::TestCase
       flickr.people.findByEmail
       flickr.people.findByUsername
       flickr.people.getInfo
+      flickr.people.getPhotos
+      flickr.people.getPhotosOf
       flickr.people.getPublicGroups
       flickr.people.getPublicPhotos
       flickr.people.getUploadStatus
@@ -100,6 +108,11 @@ class Basic < Test::Unit::TestCase
       flickr.photos.notes.add
       flickr.photos.notes.delete
       flickr.photos.notes.edit
+      flickr.photos.people.add
+      flickr.photos.people.delete
+      flickr.photos.people.deleteCoords
+      flickr.photos.people.editCoords
+      flickr.photos.people.getList
       flickr.photos.recentlyUpdated
       flickr.photos.removeTag
       flickr.photos.search
@@ -126,6 +139,9 @@ class Basic < Test::Unit::TestCase
       flickr.photosets.getPhotos
       flickr.photosets.orderSets
       flickr.photosets.removePhoto
+      flickr.photosets.removePhotos
+      flickr.photosets.reorderPhotos
+      flickr.photosets.setPrimaryPhoto
       flickr.places.find
       flickr.places.findByLatLon
       flickr.places.getChildrenWithPhotosPublic
@@ -148,6 +164,21 @@ class Basic < Test::Unit::TestCase
       flickr.prefs.getSafetyLevel
       flickr.reflection.getMethodInfo
       flickr.reflection.getMethods
+      flickr.stats.getCollectionDomains
+      flickr.stats.getCollectionReferrers
+      flickr.stats.getCollectionStats
+      flickr.stats.getCSVFiles
+      flickr.stats.getPhotoDomains
+      flickr.stats.getPhotoReferrers
+      flickr.stats.getPhotosetDomains
+      flickr.stats.getPhotosetReferrers
+      flickr.stats.getPhotosetStats
+      flickr.stats.getPhotoStats
+      flickr.stats.getPhotostreamDomains
+      flickr.stats.getPhotostreamReferrers
+      flickr.stats.getPhotostreamStats
+      flickr.stats.getPopularPhotos
+      flickr.stats.getTotalViews
       flickr.tags.getClusterPhotos
       flickr.tags.getClusters
       flickr.tags.getHotList
@@ -162,6 +193,7 @@ class Basic < Test::Unit::TestCase
       flickr.urls.getGroup
       flickr.urls.getUserPhotos
       flickr.urls.getUserProfile
+      flickr.urls.lookupGallery
       flickr.urls.lookupGroup
       flickr.urls.lookupUser
     }

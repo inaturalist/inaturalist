@@ -1,4 +1,5 @@
 <%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
     .description_field { margin-right: 20px; }
     .description_field,
@@ -14,6 +15,23 @@
     }
     
   </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery/plugins/jquery.autocomplete.min.js',
+                             'jquery/plugins/inat/place_autocomplete.js' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#place_q').placeAutocomplete('<%= url_for(:controller => "places", :action => "autocomplete") %>', {
+        placeIdField: $('#new_project_observation_rule .operand_id_field input'),
+        afterChoosePlace: function(input, json) {
+          $('#new_project_observation_rule .operand_type_field input').val("Place")
+        },
+        afterClearPlace: function(input, json) {
+          $('#new_project_observation_rule .operand_type_field input').val('')
+        }
+      });
+    })
+  </script>
 <%- end -%>
 <%- project ||= @project -%>
 <% form_for project, :builder => DefaultFormBuilder do |f| %>
@@ -43,23 +61,30 @@
   
   <fieldset class="observationrules">
     <legend>New Observation Rules</legend>
-    <% f.fields_for :project_observation_rules do |pu| %>
-      <div>
-        <%= pu.select :operator, ProjectObservation::RULE_METHODS, :include_blank => "Choose a rule" %>
-        <% if pu.object %>
+    <ul>
+      <% f.fields_for :project_observation_rules do |pu| %>
+        <li>
+          <%= pu.object.terms %>
           <%= pu.hidden_field :_destroy, :class => "destroyer" %>
           <%= link_to_function "remove", 
             "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
+        </li>
+      <% end %>
+    </ul>
+    
+    <div id="new_project_observation_rule">
+      <label><em>Add a new rule</em></label>
+      <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
+        <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize, m]}, 
+          :include_blank => "Choose a rule" %>
+        <% pu.form_field :place do %>
+          <%= pu.text_field :operand_type %>
+          <%= pu.text_field :operand_id %>
+          <input type="text" name="place_q" value="" id="place_q">
         <% end %>
         <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
-      </div>
-    <% end %>
-    <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
-      <div>
-        <%= pu.select :operator, ProjectObservation::RULE_METHODS, :include_blank => "Choose a rule" %>
-        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </fieldset>
 
   <div class="buttons">

@@ -8,9 +8,9 @@
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Projects", places_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
     <span class="right">
-      <% if current_user.id == @project.user_id -%>
+      <% if logged_in? && current_user.id == @project.user_id -%>
         <%= link_to "Edit project", edit_project_path(@project), :class => "ui description" %> |
       <% end -%>
       <% if @project_user -%>
@@ -33,22 +33,34 @@
 <div class="column span-17 append-1">
   <div id="observations">
     <h3>Observations</h3>
-    <div class="mini observations">
-      <%= render :partial => "observations/cached_component", :collection => @project_observations %>
-    </div>
-    <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},
-      :class => "readmore" %>
+    <% if @project_observations.blank? -%>
+      <div class="noresults">
+        No observations have been added to this project yet.
+      </div>
+    <% else %>
+      <div class="mini observations">
+        <%= render :partial => "observations/cached_component", :collection => @project_observations %>
+      </div>
+      <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},
+        :class => "readmore" %>
+    <% end -%>
   </div>
 </div>
 
 <div class="last column span-6">
   <div id="members">
     <h3>Members</h3>
-    <% for project_user in @project_users %>
-      <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-        observations_by_login_path(project_user.user.login),
-        :alt => h(project_user.user.login),
-        :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
-    <% end %>
+    <% if @project_users.blank? -%>
+      <div class="noresults">
+        No members yet.
+      </div>
+    <% else %>
+      <% for project_user in @project_users %>
+        <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+          observations_by_login_path(project_user.user.login),
+          :alt => h(project_user.user.login),
+          :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
+      <% end %>
+    <% end -%>
   </div>
 </div>
