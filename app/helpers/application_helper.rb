@@ -76,7 +76,7 @@ module ApplicationHelper
   
   def char_wrap(text, len)
     return text if text.size < len
-    text[0..len-1] + '<br/>' + char_wrap(text[len..-1], len)
+    "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}"
   end
   
   # Generate an id for an object for us in views, e.g. an observation with id 
