@@ -14,6 +14,10 @@
       width: 450px;
     }
     
+    #place_q {
+      width: 300px;
+    }
+    
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
@@ -22,14 +26,22 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#place_q').placeAutocomplete('<%= url_for(:controller => "places", :action => "autocomplete") %>', {
-        placeIdField: $('#new_project_observation_rule .operand_id_field input'),
+        placeIdField: $('#new_operand_id'),
         afterChoosePlace: function(input, json) {
-          $('#new_project_observation_rule .operand_type_field input').val("Place")
+          $('#new_operand_type').val("Place")
         },
         afterClearPlace: function(input, json) {
-          $('#new_project_observation_rule .operand_type_field input').val('')
+          $('#new_operand_type').val('')
         }
-      });
+      })
+      
+      $('.operator_field select').change(function() {
+        if ($(this).val() == 'observed_in_place?') {
+          $('#place_selector').show()
+        } else {
+          $('#place_selector').hide()
+        }
+      })
     })
   </script>
 <%- end -%>
@@ -41,7 +53,7 @@
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
   
-  <fieldset class="userrules">
+  <!-- <fieldset class="userrules">
     <legend>New User Rules</legend>
     
     <% f.fields_for :project_user_rules do |pu| %>
@@ -57,10 +69,17 @@
         <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
       </div>
     <% end %>
-  </fieldset>
+  </fieldset> -->
   
   <fieldset class="observationrules">
     <legend>New Observation Rules</legend>
+    <p class="description">
+      You can choose rules to determine what observations can be added to this
+      project, like limiting observations to a certain place. Note: limiting
+      to places currently relies on iNat Places, and can only limit
+      observations to the smallest rectangle that surrounds a place.
+    </p>
+    
     <ul>
       <% f.fields_for :project_observation_rules do |pu| %>
         <li>
@@ -72,17 +91,18 @@
       <% end %>
     </ul>
     
-    <div id="new_project_observation_rule">
-      <label><em>Add a new rule</em></label>
+    <%= link_to_toggle "add a new rule", "#new_project_observation_rule" %>
+    <div id="new_project_observation_rule" style="display:none">
       <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
         <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize, m]}, 
-          :include_blank => "Choose a rule" %>
-        <% pu.form_field :place do %>
-          <%= pu.text_field :operand_type %>
-          <%= pu.text_field :operand_id %>
+          :include_blank => "Choose a rule",
+          :label => "Rule" %>
+        <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
+        <%= pu.hidden_field :operand_id, :id => "new_operand_id" %>
+        <div id="place_selector" style="display:none">
+          <label for="place_q">Choose a place</label><br/>
           <input type="text" name="place_q" value="" id="place_q">
-        <% end %>
-        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
+        </div>
       <% end %>
     </div>
   </fieldset>

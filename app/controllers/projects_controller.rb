@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_filter :admin_required
   before_filter :login_required, :except => [:index, :show]
   before_filter :load_project, :only => [:show, :edit, :update, :destroy, :join, :leave, :add, :remove]
   before_filter :load_project_user, :only => [:show, :edit, :update, :destroy, :join, :leave, :add, :remove]
