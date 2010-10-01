@@ -44,13 +44,6 @@
       float: left;
     }
     
-    #tools .toggle_menu .button.open {
-      -webkit-border-bottom-right-radius: 0;
-      -moz-border-radius-bottomright: 0;
-      -webkit-border-bottom-left-radius: 0;
-      -moz-border-radius-bottomleft: 0;
-    }
-    
     #comments_and_identifications .item {
       margin-bottom: 1.5em;
     }
@@ -152,18 +145,7 @@
     .identification_group {
       margin-bottom: 10px;
     }
-    
-    .toggle_menu .menu ul {
-      list-style: none;
-      margin: 0;
-    }
-    .toggle_menu .menu li {
-      white-space: nowrap;
-    }
-    #project_menu li { margin-bottom: 5px; }
-    #project_menu .button {
-      min-width: 45px;
-    }
+    .button_toggle_menu .menu { top: 32px; }
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -273,7 +255,8 @@
 
       <% if @user.is_admin? -%>
         <% unless @project_users.blank? %>
-          <% link_to_toggle_menu "add to project", :class => "button", :wrapper => {:id => "project_menu"} do %>
+          <% link_to_toggle_menu "add to project", :class => "button", 
+              :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
             <ul>
               <% for project_user in @project_users %>
                 <li class="inline buttonrow">

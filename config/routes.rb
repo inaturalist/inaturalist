@@ -99,6 +99,10 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => :post}
     p.remove_project_observation "projects/:id/remove", :action => "remove",
       :conditions => {:method => [:post, :delete]}
+    p.add_project_observation_batch "projects/:id/add_batch", :action => "add_batch",
+      :conditions => {:method => :post}
+    p.remove_project_observation_batch "projects/:id/remove_batch", :action => "remove_batch",
+      :conditions => {:method => [:post, :delete]}
   end
   
   map.person_by_login 'people/:login', 

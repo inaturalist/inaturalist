@@ -564,9 +564,14 @@ ul.leafylist li li:first-child {
 .toggle_menu .togglelink.open {
   position: relative;
   z-index: 10;
+  background-color: white;
   border-color: #ccc;
   border-bottom: 1px solid white;
-  background-position: 3px 50%;
+  background-position: 3px 50%;  
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
 }
 
 .toggle_menu .menu {
@@ -580,8 +585,18 @@ ul.leafylist li li:first-child {
   -moz-box-shadow: 0px 3px 3px #666;
 }
 
-.button_toggle_menu .menu {
-  top: 31px;
+.button_toggle_menu .menu { top: 31px; }
+
+.toggle_menu_list .menu ul {
+  list-style: none;
+  margin: 0;
+}
+.toggle_menu_list .menu li {
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+.toggle_menu_list .button {
+  min-width: 45px;
 }
 
 .modalbox {

@@ -1,8 +1,11 @@
 class ProjectsController < ApplicationController
   before_filter :admin_required
   before_filter :login_required, :except => [:index, :show]
-  before_filter :load_project, :only => [:show, :edit, :update, :destroy, :join, :leave, :add, :remove]
-  before_filter :load_project_user, :only => [:show, :edit, :update, :destroy, :join, :leave, :add, :remove]
+  before_filter :load_project, :only => [:show, :edit, :update, :destroy,
+    :join, :leave, :add, :remove, :add_batch, :remove_batch]
+  before_filter :load_project_user, :only => [:show, :edit, :update, :destroy,
+    :join, :leave, :add, :remove]
+  
   # GET /projects
   # GET /projects.xml
   def index
@@ -96,7 +99,7 @@ class ProjectsController < ApplicationController
       redirect_to :back and return
     end
     
-    flash[:notice] = "Observation added!"
+    flash[:notice] = "Observation added to the project \"#{@project.title}\""
     redirect_to :back
   end
   
@@ -112,7 +115,62 @@ class ProjectsController < ApplicationController
     end
     
     @project_observation.destroy
-    flash[:notice] = "Observation removed!"
+    flash[:notice] = "Observation removed from the project \"#{@project.title}\""
+    redirect_to :back
+  end
+  
+  def add_batch
+    observation_ids = observation_ids_batch_from_params
+    
+    @observations = Observation.all(
+      :conditions => [
+        "id IN (?) AND user_id = ?", 
+        observation_ids,
+        current_user.id
+      ]
+    )
+    
+    @errors = {}
+    @project_observations = []
+    @observations.each do |observation|
+      project_observation = ProjectObservation.create(:project => @project, :observation => observation)
+      if project_observation.valid?
+        @project_observations << project_observation
+      else
+        @errors[observation.id] = project_observation.errors
+      end
+    end
+    
+    @unique_errors = @errors.values.map {|errors| errors.full_messages}.uniq.to_sentence
+    
+    if @observations.empty?
+      flash[:error] = "You must specify at least one observation to add the project \"#{@project.title}\""
+    elsif @project_observations.empty?
+      flash[:error] = "None of those observations could be added to the project \"#{@project.title}\""
+      flash[:error] += ": #{@unique_errors}" unless @unique_errors.blank?
+    else
+      flash[:notice] = "#{@project_observations.size} of #{@observations.size} added to the project \"#{@project.title}\""
+      if @project_observations.size < @observations.size
+        flash[:notice] += ". Some observations failed to add for the following reasons: #{@unique_errors}"
+      end
+    end
+    
+    redirect_to :back
+  end
+  
+  def remove_batch
+    observation_ids = observation_ids_batch_from_params
+    @project_observations = @project.project_observations.all(
+      :include => :observation,
+      :conditions => ["observation_id IN (?)", observation_ids]
+    )
+    
+    @project_observations.each do |project_observation|
+      next unless project_observation.observation.user_id == current_user.id
+      project_observation.destroy
+    end
+    
+    flash[:notice] = "Observations removed from the project \"#{@project.title}\""
     redirect_to :back
   end
   
@@ -125,6 +183,16 @@ class ProjectsController < ApplicationController
   def load_project_user
     if logged_in? && @project
       @project_user = @project.project_users.find_by_user_id(current_user.id)
+    end
+  end
+  
+  def observation_ids_batch_from_params
+    if params[:observations].is_a? Array
+      params[:observations].map(&:first)
+    elsif params[:o].is_a? String
+      params[:o].split(',')
+    else
+      []
     end
   end
 end

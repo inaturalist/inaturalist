@@ -677,7 +677,11 @@ class ObservationsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html
+      format.html do
+        if logged_in? && @selected_user.id == current_user.id
+          @project_users = current_user.project_users.all(:include => :project)
+        end
+      end
       
       format.kml do
         user = @login.to_s

@@ -51,6 +51,8 @@ Observations by <%= h @login %>
     padding-bottom: 18px;
     margin-bottom: -1px;
   }
+  
+  .button_toggle_menu .menu { top: 30px; }
 </style>
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie', 'observations-ie' %>
@@ -269,6 +271,24 @@ Observations by <%= h @login %>
         <%= link_to_function("Select none", "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button", :class => 'minor button') %>
         <%= link_to_function "Flickr Tagger", "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button",
           :title => "Add taxonomic tags to the Fickr photos associated with the selected observations." %>
+        <% if current_user.is_admin? -%>
+          <% link_to_toggle_menu "Add to project", :id => "add_to_project_button", :class => "minor button",
+              :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
+            <ul>
+              <% for project_user in @project_users %>
+                <li class="inline buttonrow">
+                    <%= link_to_function "add", 
+                      "actOnSelected('#{add_project_observation_batch_path(project_user.project)}', {method: 'post'})",
+                      :class => "glaucous button" %>
+                    <%= link_to_function "remove", 
+                      "actOnSelected('#{remove_project_observation_batch_path(project_user.project)}', {method: 'post'})",
+                      :class => "pale button" %>
+                  <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end -%>
         <%= link_to_function("Delete Selected", "deleteSelected()", :id => "delete_selected_button", :class => 'minor button') %>
       </div>
     <% end -%>

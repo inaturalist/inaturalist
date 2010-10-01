@@ -26,8 +26,9 @@
 <div class="observations table">
   <%= render :partial => "observations/observations_table_header" %>
   <%= render :partial => "observations/cached_component", :collection => @observations %>
-  <%= will_paginate @observations %>
 </div>
+
+<%= will_paginate @observations %>
 
 <div id="feeds" class="clear right small ui description feeds">
   <%= render :partial => 'feed_links' %>
