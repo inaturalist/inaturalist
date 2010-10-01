@@ -13,4 +13,13 @@ class Project < ActiveRecord::Base
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
   
   validates_length_of :title, :within => 1..300
+  validates_presence_of :user_id
+  
+  def after_create
+    Rails.logger.debug "[DEBUG] creating first project user"
+    first_user = self.project_users.create(:user => user)
+    Rails.logger.debug "[DEBUG] first_user: #{first_user}"
+    true
+  end
+  
 end

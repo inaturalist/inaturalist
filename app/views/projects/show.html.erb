@@ -10,15 +10,20 @@
   <div class="breadcrumbs">
     <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
     <span class="right">
-      <% if logged_in? && current_user.id == @project.user_id -%>
-        <%= link_to "Edit project", edit_project_path(@project), :class => "ui description" %> |
-      <% end -%>
-      <% if @project_user -%>
-        <%= link_to "Leave this project", leave_project_path(@project), :method => :post, :class => "ui description",
-          :confirm => "Are you sure you want to leave this project?" %>
-      <% else %>
-        <%= link_to "Join this project", join_project_path(@project), :class => "ui" %>
-      <% end %>
+      <%-
+        links = []
+        if logged_in? && current_user.id == @project.user_id
+          links << link_to("Edit project", edit_project_path(@project), :class => "ui description")
+        end
+        if @project_user && @project_user.user_id != @project.user_id
+          links << link_to("Leave this project", leave_project_path(@project), :method => :post, :class => "ui description",
+            :confirm => "Are you sure you want to leave this project?")
+        end
+        if @project_user.blank?
+          links << link_to("Join this project", join_project_path(@project), :class => "ui")
+        end
+      -%>
+      <%= links.join(" | ") unless links.blank? %>
     </span>
   </div><!-- /#breadcrumbs -->
   <h2>
