@@ -16,11 +16,16 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   def form_field(field, field_content = nil, options = {}, &block)
     options = field_content if block_given?
     options ||= {}
-    label_tag = label(field, options[:label], :class => options[:label_class])
-    if options[:required]
-      label_tag += content_tag(:span, " *", :class => 'required')
+    wrapper_options = options.delete(:wrapper) || {}
+    wrapper_options[:class] = "#{wrapper_options[:class]} field #{field}_field".strip
+    
+    if options[:label] != false
+      label_tag = label(field, options[:label], :class => options[:label_class])
+      if options[:required]
+        label_tag += content_tag(:span, " *", :class => 'required')
+      end
+      content = content_tag(:div, label_tag, :class => 'label')
     end
-    content = content_tag(:div, label_tag, :class => 'label')
     
     if options[:description]
       content += content_tag(:div, options[:description], :class => "description")
@@ -29,9 +34,9 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     content = "#{content}#{block_given? ? @template.capture(&block) : field_content}"
     
     if block_given?
-      @template.concat @template.content_tag(:div, content, :class => "field #{field}_field")
+      @template.concat @template.content_tag(:div, content, wrapper_options)
     else
-      @template.content_tag(:div, content, :class => "field #{field}_field")
+      @template.content_tag(:div, content, wrapper_options)
     end
   end
   

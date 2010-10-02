@@ -1,9 +1,13 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
+    .title_field,
     .description_field { margin-right: 20px; }
+    
     .description_field,
-    .terms_field {
+    .terms_field,
+    .title_field,
+    .project_icon_field {
       float: left;
       width: 465px;
     }
@@ -46,10 +50,27 @@
   </script>
 <%- end -%>
 <%- project ||= @project -%>
-<% form_for project, :builder => DefaultFormBuilder do |f| %>
+<% form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
   
   <%= f.text_field :title, :required => true %>
+  
+  <% f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
+    <% if project.icon.file? -%>
+      <%= image_tag(project.icon.url(:thumb), :class => "left") %>
+      <div>
+        <%= check_box_tag :icon_delete %>
+        <label for="icon_delete">Delete icon?</label>
+      </div>
+      <%= link_to_toggle "Change icon", "#iconfield" %>
+      <div id="iconfield" style="display: none">
+        <%= f.file_field :icon, :label => false %>
+      </div>
+    <% else %>
+      <%= f.file_field :icon, :label => false %>
+    <% end -%>
+  <% end %>
+  
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
   
@@ -113,7 +134,7 @@
     <% unless project.new_record? -%>
       <%= link_to "delete this project", project, :method => :delete, 
         :confirm => "Are you sure you want to delete this project?",
-        :class => "delete button" %>
+        :class => "minor delete button" %>
     <% end -%>
   </div>
 <% end %>

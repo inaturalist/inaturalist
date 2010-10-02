@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100815222147) do
+ActiveRecord::Schema.define(:version => 20101002052112) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -343,6 +343,10 @@ ActiveRecord::Schema.define(:version => 20100815222147) do
     t.column "terms", :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "icon_file_name", :string
+    t.column "icon_content_type", :string
+    t.column "icon_file_size", :integer
+    t.column "icon_updated_at", :datetime
   end
 
   create_table "roles", :force => true do |t|

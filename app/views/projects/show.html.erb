@@ -26,16 +26,21 @@
       <%= links.join(" | ") unless links.blank? %>
     </span>
   </div><!-- /#breadcrumbs -->
+  
   <h2>
+    <% if @project.icon.file? -%>
+      <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+    <% end -%>
     <%=h @project.title %>
   </h2>
-  
-  <div class="description">
-    <%= simple_format @project.description %>
-  </div>
+
 </div>
 
 <div class="column span-17 append-1">
+  <div class="description">
+    <%= simple_format @project.description %>
+  </div>
+  
   <div id="observations">
     <h3>Observations</h3>
     <% if @project_observations.blank? -%>
