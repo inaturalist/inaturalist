@@ -871,6 +871,14 @@ class ObservationsController < ApplicationController
         render :action => "index"
       end
       format.csv { render :action => "index" }
+      format.kml do
+        @net_hash = {
+          :snippet => "#{@project.title.html_safe} Observations", 
+          :description => "Observations feed for the iNaturalist project '#{@project.title.html_safe}'", 
+          :name => "#{@project.title.html_safe} Observations"
+        }
+        render :action => "index"
+      end
     end
   end
 
