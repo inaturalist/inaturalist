@@ -31,7 +31,7 @@
     <% if @project.icon.file? -%>
       <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
     <% end -%>
-    <%=h @project.title %>
+    <%=h truncate @project.title, :length => 85 %>
   </h2>
 
 </div>
