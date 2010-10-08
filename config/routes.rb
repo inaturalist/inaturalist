@@ -91,7 +91,7 @@ ActionController::Routing::Routes.draw do |map|
     o.project_observations 'observations/project/:id.:format', :action => "project"
   end
   
-  map.resources :projects
+  map.resources :projects, :requirements => { :id => %r(\d+) }
   map.with_options :controller => "projects" do |p|
     p.join_project "projects/:id/join", :action => "join"
     p.leave_project "projects/:id/leave", :action => "leave"
@@ -103,6 +103,7 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => :post}
     p.remove_project_observation_batch "projects/:id/remove_batch", :action => "remove_batch",
       :conditions => {:method => [:post, :delete]}
+    p.project_search 'projects/search', :action => "search"
   end
   
   map.person_by_login 'people/:login', 

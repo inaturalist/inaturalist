@@ -38,13 +38,13 @@
 
 <div class="column span-17 append-1">
   <div class="description">
-    <%= simple_format @project.description %>
+    <%= simple_format h(@project.description) %>
   </div>
   
   <div id="observations">
     <h3>Observations</h3>
     <% if @project_observations.blank? -%>
-      <div class="noresults">
+      <div class="description noresults">
         No observations have been added to this project yet.
       </div>
     <% else %>

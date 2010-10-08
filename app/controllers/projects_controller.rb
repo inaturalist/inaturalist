@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
-  before_filter :admin_required
+  # before_filter :admin_required
   before_filter :load_project, :only => [:show, :edit, :update, :destroy,
     :join, :leave, :add, :remove, :add_batch, :remove_batch]
   before_filter :load_project_user, :only => [:show, :edit, :update, :destroy,
@@ -9,7 +9,13 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.paginate(:page => params[:page])
+    @project_observations = ProjectObservation.all(:include => :project, 
+      :order => "project_observations.id desc", :limit => 9, :group => "project_id")
+    @projects = @project_observations.map(&:project)
+    if logged_in?
+      @started = current_user.projects.all(:order => "id desc")
+      @joined = current_user.project_users.all(:include => :project, :order => "id desc").map(&:project)
+    end
   end
   
   def show
@@ -173,6 +179,12 @@ class ProjectsController < ApplicationController
     
     flash[:notice] = "Observations removed from the project \"#{@project.title}\""
     redirect_to :back
+  end
+  
+  def search
+    if @q = params[:q]
+      @projects = Project.paginate(:page => params[:page], :conditions => ["title LIKE ?", "%#{params[:q]}%"])
+    end
   end
   
   private

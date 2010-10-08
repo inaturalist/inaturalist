@@ -1,0 +1,15 @@
+<%-
+  project ||= object || @project
+  last ||= false
+-%>
+      <div class="column span-8 project<%= ' last' if last %>">
+        <div class="column span-2 iconcol">
+          <%= image_tag project.icon.url(:span2), :alt => "#{h(project.title)} icon" %>
+        </div>
+        <div class="last column span-6">
+          <h4><%= link_to h(project.title), project %></h4>
+          <% unless project.description.blank? %>
+            <p><%= simple_format h(truncate(project.description, :length => 80)) %></p>
+          <% end %>
+        </div>  
+      </div>

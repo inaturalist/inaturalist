@@ -16,15 +16,13 @@ class Project < ActiveRecord::Base
   validates_presence_of :user_id
   
   has_attached_file :icon, 
-    :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
+    :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
+    :default_url => "/attachment_defaults/general/:style.png"
   
   def after_create
-    Rails.logger.debug "[DEBUG] creating first project user"
     first_user = self.project_users.create(:user => user)
-    Rails.logger.debug "[DEBUG] first_user: #{first_user}"
     true
   end
   
