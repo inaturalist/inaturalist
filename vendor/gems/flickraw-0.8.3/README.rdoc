@@ -25,6 +25,7 @@ This will recreate the documentation by fetching the methods descriptions from f
 * Photo upload
 * Proxy support
 * Delayed library loading (for rails users)
+* Flickr URLs helpers
 
 = Usage
 
@@ -115,8 +116,55 @@ You can pass some options to modify flickraw behavior:
 
   require 'flickraw'
 
+== Flickr URL Helpers
+
+There are some helpers to build flickr urls :
+
+=== url, url_m, url_s, url_t, url_b, url_z, url_o
+
+  info = flickr.photos.getInfo(:photo_id => "3839885270")
+  FlickRaw.url_b(info) # => "http://farm3.static.flickr.com/2485/3839885270_6fb8b54e06_b.jpg"
+
+=== url_profile
+
+  info = flickr.photos.getInfo(:photo_id => "3839885270")
+  FlickRaw.url_profile(info) # => "http://www.flickr.com/people/41650587@N02/"
+
+=== url_photopage
+
+  info = flickr.photos.getInfo(:photo_id => "3839885270")
+  FlickRaw.url_photopage(photo) # => "http://www.flickr.com/photos/41650587@N02/3839885270"
+
+=== url_photoset, url_photosets
+
+  info = flickr.photos.getInfo(:photo_id => "3839885270")
+  FlickRaw.url_photosets(photo) # => "http://www.flickr.com/photos/41650587@N02/sets/"
+
+=== url_short
+
+  info = flickr.photos.getInfo(:photo_id => "3839885270")
+  FlickRaw.url_short(photo) # => "http://flic.kr/p/6Rjq7s"
+
+=== url_photostream
+
+  info = flickr.photos.getInfo(:photo_id => "3839885270")
+  FlickRaw.url_photostream(photo) # => "http://flic.kr/p/6Rjq7s"
+
 
 See the _examples_ directory to find more examples.
+
+== Cached version
+
+You can use
+
+  require 'flickraw-cached'
+
+instead of
+
+   require 'flickraw'
+
+This way it it doesn't fetch available flickr methods each time it is loaded.
+The flickraw-cached gem is on rubyforge and should be up-to-date with regard to flickr api most of the time.
 
 = Notes
 If you want to use the api authenticated with several user at the same time, you must pass the authentication token explicitely each time.

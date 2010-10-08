@@ -1,0 +1,44 @@
+<%- content_for(:title) do -%>
+  Confirm membership
+<%- end -%>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  <h2>Are you sure you want to join <%= h @project.title %>?</h2>
+</div>
+
+<h3>About this Project</h3>
+<div class="description">
+  <%= simple_format @project.description %>
+</div>
+
+<% unless @project.terms.blank? -%>
+  <h3>Terms</h3>
+  <div class="description">
+    <%= simple_format @project.terms %>
+  </div>
+<% end -%>
+
+<% unless @project.project_user_rules.blank? -%>
+  <h3>Rules for Becoming a Member</h3>
+  <ul>
+    <% for rule in @project.project_user_rules %>
+      <li><%= rule.terms %></li>
+    <% end %>
+  </ul>
+<% end -%>
+
+<% unless @project.project_observation_rules.blank? -%>
+  <h3>Rules for Adding Observations</h3>
+  <ul>
+    <% for rule in @project.project_observation_rules %>
+      <li><%= rule.terms %></li>
+    <% end %>
+  </ul>
+<% end -%>
+
+<div class="buttonrow">
+  <%= link_to "Yes, I want to join", join_project_path(@project), :method => :post, :class => "default button" %>
+  <%= link_to "Cancel", @project, :class => "button" %>
+</div>

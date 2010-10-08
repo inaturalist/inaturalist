@@ -23,13 +23,4 @@ class AdminController < ApplicationController
   def index
   end
   
-  private
-  
-  def admin_required
-    unless current_user.has_role? :admin
-      flash[:notice] = "Only Administrators may access that page"
-      redirect_to observations_path
-    end
-  end
-  
 end

@@ -21,6 +21,7 @@ class Observation < ActiveRecord::Base
            :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
+  has_many :project_observations, :dependent => :destroy
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -57,6 +58,7 @@ class Observation < ActiveRecord::Base
       :as => :identifications_some_agree, :type => :boolean
     has "num_identification_agreements < num_identification_disagreements",
       :as => :identifications_most_disagree, :type => :boolean
+    has project_observations(:project_id), :as => :projects, :type => :multi
     set_property :delta => :delayed
   end
 
@@ -117,7 +119,7 @@ class Observation < ActiveRecord::Base
     end
   } do
     def distinct_taxon
-      find(:all, :group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
+      all(:group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
     end
   end
   
@@ -245,6 +247,14 @@ class Observation < ActiveRecord::Base
     {:conditions => ['time_observed_at <= ?', time]}
   }
   
+  named_scope :in_projects, lambda { |projects|
+    projects = projects.split(',') if projects.is_a?(String)
+    {
+      :include => :project_observations,
+      :conditions => ["project_observations.project_id IN (?)", projects]
+    }
+  }
+  
   #
   # Uses scopes to perform a conditional search.
   # May be worth looking into squirrel or some other rails friendly search add on
@@ -278,6 +288,7 @@ class Observation < ActiveRecord::Base
     scope = scope.order_by(params[:order_by]) if params[:order_by]
     scope = scope.of(params[:taxon_id]) if params[:taxon_id]
     scope = scope.by(params[:user_id]) if params[:user_id]
+    scope = scope.in_projects(params[:projects]) if params[:projects]
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

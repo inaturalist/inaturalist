@@ -1,0 +1,139 @@
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
+  <style type="text/css" media="screen">
+    .title_field,
+    .description_field { margin-right: 20px; }
+    
+    .description_field,
+    .terms_field,
+    .title_field,
+    .project_icon_field {
+      float: left;
+      width: 465px;
+    }
+    
+    .title_field input,
+    .description_field textarea,
+    .terms_field textarea {
+      width: 450px;
+    }
+    
+    #place_q { width: 300px; }
+    .observationrules { clear: left; }
+    
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery/plugins/jquery.autocomplete.min.js',
+                             'jquery/plugins/inat/place_autocomplete.js' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#place_q').placeAutocomplete('<%= url_for(:controller => "places", :action => "autocomplete") %>', {
+        placeIdField: $('#new_operand_id'),
+        afterChoosePlace: function(input, json) {
+          $('#new_operand_type').val("Place")
+        },
+        afterClearPlace: function(input, json) {
+          $('#new_operand_type').val('')
+        }
+      })
+      
+      $('.operator_field select').change(function() {
+        if ($(this).val() == 'observed_in_place?') {
+          $('#place_selector').show()
+        } else {
+          $('#place_selector').hide()
+        }
+      })
+    })
+  </script>
+<%- end -%>
+<%- project ||= @project -%>
+<% form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
+  <%= f.error_messages %>
+  
+  <%= f.text_field :title, :required => true %>
+  
+  <% f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
+    <% if project.icon.file? -%>
+      <%= image_tag(project.icon.url(:thumb), :class => "left") %>
+      <div>
+        <%= check_box_tag :icon_delete %>
+        <label for="icon_delete">Delete icon?</label>
+      </div>
+      <%= link_to_toggle "Change icon", "#iconfield" %>
+      <div id="iconfield" style="display: none">
+        <%= f.file_field :icon, :label => false %>
+      </div>
+    <% else %>
+      <%= f.file_field :icon, :label => false %>
+    <% end -%>
+  <% end %>
+  
+  <%= f.text_area :description, :description => "Describe the purpose of this project." %>
+  <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
+  
+  <!-- <fieldset class="userrules">
+    <legend>New User Rules</legend>
+    
+    <% f.fields_for :project_user_rules do |pu| %>
+      <div>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <%= pu.hidden_field :_destroy, :class => "destroyer" %>
+        <%= link_to_function "remove", "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
+      </div>
+    <% end %>
+    <% f.fields_for :project_user_rules, [Rule.new] do |pu| %>
+      <div>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
+      </div>
+    <% end %>
+  </fieldset> -->
+  
+  <fieldset class="observationrules">
+    <legend>New Observation Rules</legend>
+    <p class="description">
+      You can choose rules to determine what observations can be added to this
+      project, like limiting observations to a certain place. Note: limiting
+      to places currently relies on iNat Places, and can only limit
+      observations to the smallest rectangle that surrounds a place.
+    </p>
+    
+    <ul>
+      <% f.fields_for :project_observation_rules do |pu| %>
+        <li>
+          <%= pu.object.terms %>
+          <%= pu.hidden_field :_destroy, :class => "destroyer" %>
+          <%= link_to_function "remove", 
+            "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
+        </li>
+      <% end %>
+    </ul>
+    
+    <%= link_to_toggle "add a new rule", "#new_project_observation_rule" %>
+    <div id="new_project_observation_rule" style="display:none">
+      <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
+        <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize, m]}, 
+          :include_blank => "Choose a rule",
+          :label => "Rule" %>
+        <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
+        <%= pu.hidden_field :operand_id, :id => "new_operand_id" %>
+        <div id="place_selector" style="display:none">
+          <label for="place_q">Choose a place</label><br/>
+          <input type="text" name="place_q" value="" id="place_q">
+        </div>
+      <% end %>
+    </div>
+  </fieldset>
+
+  <div class="buttons">
+    <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button" %>
+    <%= link_to "cancel", projects_path, :class => "button" %>
+    <% unless project.new_record? -%>
+      <%= link_to "delete this project", project, :method => :delete, 
+        :confirm => "Are you sure you want to delete this project?",
+        :class => "minor delete button" %>
+    <% end -%>
+  </div>
+<% end %>

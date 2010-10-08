@@ -1,0 +1,6 @@
+<%- content_for(:title) do -%>
+  <%= @title = "New Project" %>
+<%- end -%>
+<h2><%= @title %></h2>
+
+<%= render :partial => 'form' %>

@@ -210,6 +210,10 @@ class ObservationsController < ApplicationController
               @identifications_by_taxon[i] = [pair.first, identifications]
             end
           end
+          
+          @project_users = current_user.project_users.all(:include => :project)
+          @project_observations = @observation.project_observations.all
+          @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         end
         
         @comments_and_identifications = (@observation.comments.all + 
@@ -673,7 +677,11 @@ class ObservationsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html
+      format.html do
+        if logged_in? && @selected_user.id == current_user.id
+          @project_users = current_user.project_users.all(:include => :project)
+        end
+      end
       
       format.kml do
         user = @login.to_s
@@ -839,6 +847,30 @@ class ObservationsController < ApplicationController
     @observation = Observation.new
     respond_to do |format|
       format.mobile
+    end
+  end
+  
+  def project
+    unless @project = Project.find_by_id(params[:id])
+      flash[:error] = "That project doesn't exist."
+      redirect_to :back and return
+    end
+    
+    search_params, find_options = get_search_params(params)
+    search_params[:projects] = @project.id
+    if search_params[:q]
+      search_observations(search_params, find_options)
+    else
+      get_paginated_observations(search_params, find_options)
+    end
+    
+    respond_to do |format|
+      format.html
+      format.atom do
+        @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
+        render :action => "index"
+      end
+      format.csv { render :action => "index" }
     end
   end
 
@@ -1096,6 +1128,10 @@ class ObservationsController < ApplicationController
       else
         sphinx_options[:order] = search_params[:order_by]
       end
+    end
+    
+    if search_params[:projects]
+      sphinx_options[:conditions][:projects] = search_params[:projects].split(',')
     end
     
     # Field-specific searches

@@ -1,0 +1,76 @@
+<%- content_for(:title) do -%>
+  <%=h @project.title %>
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
+<%- end -%>
+
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
+    <span class="right">
+      <%-
+        links = []
+        if logged_in? && current_user.id == @project.user_id
+          links << link_to("Edit project", edit_project_path(@project), :class => "ui description")
+        end
+        if @project_user && @project_user.user_id != @project.user_id
+          links << link_to("Leave this project", leave_project_path(@project), :method => :post, :class => "ui description",
+            :confirm => "Are you sure you want to leave this project?")
+        end
+        if @project_user.blank?
+          links << link_to("Join this project", join_project_path(@project), :class => "ui")
+        end
+      -%>
+      <%= links.join(" | ") unless links.blank? %>
+    </span>
+  </div><!-- /#breadcrumbs -->
+  
+  <h2>
+    <% if @project.icon.file? -%>
+      <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+    <% end -%>
+    <%=h truncate @project.title, :length => 85 %>
+  </h2>
+
+</div>
+
+<div class="column span-17 append-1">
+  <div class="description">
+    <%= simple_format h(@project.description) %>
+  </div>
+  
+  <div id="observations">
+    <h3>Observations</h3>
+    <% if @project_observations.blank? -%>
+      <div class="description noresults">
+        No observations have been added to this project yet.
+      </div>
+    <% else %>
+      <div class="mini observations">
+        <%= render :partial => "observations/cached_component", :collection => @project_observations %>
+      </div>
+      <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},
+        :class => "readmore" %>
+    <% end -%>
+  </div>
+</div>
+
+<div class="last column span-6">
+  <div id="members">
+    <h3>Members</h3>
+    <% if @project_users.blank? -%>
+      <div class="noresults">
+        No members yet.
+      </div>
+    <% else %>
+      <% for project_user in @project_users %>
+        <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+          observations_by_login_path(project_user.user.login),
+          :alt => h(project_user.user.login),
+          :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
+      <% end %>
+    <% end -%>
+  </div>
+</div>

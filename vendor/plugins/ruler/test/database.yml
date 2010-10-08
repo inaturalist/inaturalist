@@ -1,0 +1,21 @@
+sqlite:
+  :adapter: sqlite
+  :dbfile: vendor/plugins/ruler/test/ruler_plugin.sqlite.db
+
+sqlite3:
+  :adapter: sqlite3
+  :dbfile: vendor/plugins/ruler/test/ruler_plugin.sqlite3.db
+
+postgresql:
+  :adapter: postgresql
+  :username: postgres
+  :password: postgres
+  :database: ruler_plugin_test
+  :min_messages: ERROR
+
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: root
+  :password: password
+  :database: ruler_plugin_test

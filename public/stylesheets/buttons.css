@@ -55,7 +55,6 @@ input.button:active {
 }
 
 .buttonrow .select {
-/*  float: left;*/
   margin: 0pt 0.583em 0.667em 0pt;
 }
 
@@ -82,10 +81,16 @@ input.button:active {
 
 .buttonrow.inline .button,
 .buttonrow.inline .inter,
+.buttonrow.inline form,
 .buttonrow.inline input.text {
   display: inline-block;
   float: none;
-  margin-bottom: 0;
+  margin: 0;
+}
+
+.buttonrow.inline .button,
+.buttonrow.inline .inter,
+.buttonrow.inline input.text {
   padding: 5px;
 }
 
@@ -203,8 +208,6 @@ input[type='submit'].link:hover {
   color: white;
   text-align: center;
   padding: 5px;
-  float: right;
-  margin-left: 10px;
 }
 
 .button.delete.pale:hover {

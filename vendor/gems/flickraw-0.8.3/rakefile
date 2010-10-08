@@ -1,0 +1,106 @@
+require 'rake/clean'
+require 'rake/rdoctask'
+require 'rake/packagetask'
+require 'rake/gempackagetask'
+require 'rake/testtask'
+
+FlickRawOptions = {'lazyload' => true}
+require 'lib/flickraw'
+require 'flickraw_rdoc' if RUBY_VERSION >= "1.9"
+
+PKG_FILES = FileList["lib/flickraw.rb", "flickraw_rdoc.rb", "LICENSE", "README.rdoc", "rakefile", "examples/*.rb", "test/*.rb"].to_a
+
+spec = Gem::Specification.new do |s|
+  s.summary = "Flickr library with a syntax close to the syntax described on http://www.flickr.com/services/api"
+  s.name = "flickraw"
+  s.author = "Mael Clerambault"
+  s.email =  "maelclerambault@yahoo.fr"
+  s.homepage = "http://hanklords.github.com/flickraw/"
+  s.version = FlickRaw::VERSION
+  s.files = PKG_FILES
+  s.add_dependency 'json', '>= 1.1.1'
+end
+
+Rake::GemPackageTask.new(spec).define
+
+desc "Create default gemspec file"
+file "flickraw.gemspec" do
+  open("flickraw.gemspec", "w") {|g| g.puts spec.to_ruby }
+end
+task :gem => ["flickraw.gemspec"]
+CLOBBER.add "flickraw.gemspec"
+
+Rake::RDocTask.new do |rd|
+  rd.rdoc_files.include "README.rdoc", "lib/flickraw.rb"
+  rd.options << "--inline-source"
+end
+
+Rake::TestTask.new
+
+
+# Freezed version tasks
+file "flickraw-cached.rb" do |t|
+  open(t.name, "w") {|f|
+    f.puts %{FlickRawOptions = {'lazyload' => true}}
+    f.puts %{require 'flickraw'}
+    f.puts %{FlickRaw::VERSION << '.#{Time.now.strftime("%Y%m%d")}-cached'} 
+    f.puts 'ms = %w{' + flickr.reflection.getMethods.to_a.join(' ') + '}'
+    f.puts %{FlickRaw::Flickr.build(ms)}
+  }
+end
+CLOBBER.add "flickraw-cached.rb"
+
+spec_cached = Gem::Specification.new do |s|
+  s.name = 'flickraw-cached'
+  s.summary = "Cached version of Flickraw"
+  s.author = "Mael Clerambault"
+  s.email =  "maelclerambault@yahoo.fr"
+  s.homepage = "http://hanklords.github.com/flickraw/"
+  s.version = Time.now.strftime("%Y%m%d")
+  s.files = ["flickraw-cached.rb"]
+  s.require_path = '.'
+  s.add_dependency 'flickraw'
+end
+Rake::GemPackageTask.new(spec_cached).define
+task :gem => ["flickraw-cached.rb"]
+
+desc "Create cached gemspec file"
+file "flickraw-cached.gemspec" do
+  open("flickraw-cached.gemspec", "w") {|g| g.puts spec_cached.to_ruby }
+end
+task :gem => ["flickraw-cached.gemspec"]
+CLOBBER.add "flickraw-cached.gemspec"
+
+FREEZED_CACHE_FILE = ENV['HOME'] + '/.flickraw_cached'
+task :sync_cached do
+  require 'mail'
+  Mail.defaults {delivery_method :sendmail}
+
+  local_list = File.read(FREEZED_CACHE_FILE).split.sort
+  remote_list = flickr.reflection.getMethods.to_a.sort
+
+  if remote_list != local_list
+    # Flickr API has been updated
+    Mail.deliver do
+      from 'flickraw-cached-updater'
+      to ENV['MAILTO'] || ENV['LOGNAME']
+      subject "[flickraw-cached-updater'] flickraw-cached.gem updated"
+      body %|
+flickraw-cached.gem has been updated.
+
+New Flickr API methods :
+- #{(remote_list-local_list).join("\n- ")}
+|
+    end
+
+    # Build gem
+    Rake.application[:gem].invoke
+
+    # Upload gem
+    sh "gem push pkg/flickraw-cached-*.gem"
+
+    # Update cache and clean gem files
+    open(FREEZED_CACHE_FILE, 'w') {|f| remote_list.each {|m| f.puts m} }
+    Rake.application[:clobber].invoke
+  end
+end

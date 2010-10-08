@@ -1,0 +1,64 @@
+<%- content_for(:title) do -%>
+  <%= @title = 'Projects' %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .project .iconcol img { max-width: 70px; }
+    #pageheader .buttonrow .button,
+    #pageheader .buttonrow form {
+      margin-left: 10px;
+    }
+    #pageheader .buttonrow form .button { margin-left: 5px; }
+  </style>
+<%- end -%>
+
+<div id="pageheader" class="column span-24">
+  <div class="clear right inline buttonrow">
+    <%= link_to 'Start a new project', new_project_path, :class => "button" %>
+    <%= render :partial => 'projects/search_form', :locals => {:q => ''} %>
+  </div>
+  <h2><%= @title %></h2>
+</div>
+
+<p class="description">
+  Projects are a way to pool your observations with other people on iNat.
+  Whether you're interested in starting a citizen science project or just
+  keeping tabs on the birds in a nearby park with your local birding club,
+  Projects are the way to go.
+</p>
+
+<% unless @started.blank? -%>
+  <div id="started" class="projects clear">
+    <h3>Projects You Admin</h3>
+    <% @started.each_with_index do |project, i| %>
+      <%= render :partial => 'project', :object => project, :locals => {:last => i % 3 == 2} %>
+      <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
+    <% end %>
+  </div>
+  <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+<% end -%>
+
+<% unless @joined.blank? -%>
+  <div id="joined" class="projects clear">
+    <h3>Projects You've Joined</h3>
+    <% @joined.each_with_index do |project, i| %>
+      <%= render :partial => 'project', :object => project, :locals => {:last => i % 3 == 2} %>
+      <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
+    <% end %>
+  </div>
+  <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+<% end -%>
+
+<div id="recent" class="projects clear">
+  <h3>Recently Active Projects</h3>
+  <% if @projects.blank? -%>
+    <div class="noresults">
+      No recently active projects yet.
+    </div>
+  <% else %>
+    <% @projects.each_with_index do |project, i| %>
+      <%= render :partial => 'project', :object => project, :locals => {:last => i % 3 == 2} %>
+      <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
+    <% end %>
+  <% end -%>
+</div>

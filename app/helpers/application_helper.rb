@@ -102,6 +102,20 @@ module ApplicationHelper
       options
   end
   
+  def link_to_toggle_menu(link_text, options = {}, &block)
+    menu_id = options[:menu_id]
+    menu_id ||= options[:id].parameterize if options[:id]
+    menu_id ||= link_text.parameterize
+    menu_id += rand(100).to_s
+    wrapper_options = options.delete(:wrapper) || {}
+    wrapper_options[:class] ||= ""
+    wrapper_options[:class] += " toggle_menu"
+    wrapper_options[:class] += " button_toggle_menu" if options[:class] && options[:class].split.include?("button")
+    html = link_to_toggle(link_text, "##{menu_id}", options)
+    html += content_tag(:div, capture(&block), :id => menu_id, :class => "menu", :style => "display: none")
+    concat content_tag(:div, html, wrapper_options)
+  end
+  
   # Generate a URL based on the current params hash, overriding existing values
   # withthe hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]

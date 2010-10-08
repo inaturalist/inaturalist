@@ -208,6 +208,15 @@ class ApplicationController < ActionController::Base
     
     prefs
   end
+  
+  private
+  
+  def admin_required
+    unless logged_in? && current_user.has_role?(:admin)
+      flash[:notice] = "Only Administrators may access that page"
+      redirect_to observations_path
+    end
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

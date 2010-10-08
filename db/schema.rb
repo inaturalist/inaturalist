@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100709225557) do
+ActiveRecord::Schema.define(:version => 20101002052112) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -322,6 +322,33 @@ ActiveRecord::Schema.define(:version => 20100709225557) do
 
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
 
+  create_table "project_observations", :force => true do |t|
+    t.column "project_id", :integer
+    t.column "observation_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "project_users", :force => true do |t|
+    t.column "project_id", :integer
+    t.column "user_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "projects", :force => true do |t|
+    t.column "user_id", :integer
+    t.column "title", :string
+    t.column "description", :text
+    t.column "terms", :text
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+    t.column "icon_file_name", :string
+    t.column "icon_content_type", :string
+    t.column "icon_file_size", :integer
+    t.column "icon_updated_at", :datetime
+  end
+
   create_table "roles", :force => true do |t|
     t.column "name", :string
   end
@@ -333,6 +360,17 @@ ActiveRecord::Schema.define(:version => 20100709225557) do
 
   add_index "roles_users", ["role_id"], :name => "index_roles_users_on_role_id"
   add_index "roles_users", ["user_id"], :name => "index_roles_users_on_user_id"
+
+  create_table "rules", :force => true do |t|
+    t.column "type", :string
+    t.column "ruler_type", :string
+    t.column "ruler_id", :integer
+    t.column "operand_type", :string
+    t.column "operand_id", :integer
+    t.column "operator", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
 
   create_table "sources", :force => true do |t|
     t.column "in_text", :string
