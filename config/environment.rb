@@ -104,6 +104,7 @@ Rails::Initializer.run do |config|
   config.gem 'ancestry', :version => '>= 1.2.1.beta'
   config.gem 'machinist'
   config.gem 'faker'
+  config.gem 'fastercsv'
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

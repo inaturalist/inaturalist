@@ -673,12 +673,30 @@ class Observation < ActiveRecord::Base
   include ObservationsHelper
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
+  include ActionController::UrlWriter
+  
   def image_url
     observation_image_url(self)
   end
   
   def short_description
     short_observation_description(self)
+  end
+  
+  def scientific_name
+    taxon.scientific_name.name if taxon && taxon.scientific_name
+  end
+  
+  def common_name
+    taxon.common_name.name if taxon && taxon.common_name
+  end
+  
+  def url
+    observation_url(self, ActionMailer::Base.default_url_options)
+  end
+  
+  def user_login
+    user.login
   end
   
   private

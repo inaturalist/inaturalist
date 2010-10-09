@@ -94,7 +94,9 @@ class ObservationsController < ApplicationController
         @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
       end
 
-      format.csv
+      format.csv do
+        render_observations_to_csv
+      end
       
       format.kml do
         if  params[:kml_type] == "network_link"
@@ -720,7 +722,7 @@ class ObservationsController < ApplicationController
       end
 
       format.atom
-      format.csv
+      format.csv { render_observations_to_csv }
       format.widget do
         render :update do |page|
           page << "document.write('#{escape_javascript(render(:partial => 'widget.html'))}')"
@@ -870,7 +872,7 @@ class ObservationsController < ApplicationController
         @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
         render :action => "index"
       end
-      format.csv { render :action => "index" }
+      format.csv { render_observations_to_csv }
       format.kml do
         @net_hash = {
           :snippet => "#{@project.title.html_safe} Observations", 
@@ -1256,5 +1258,12 @@ class ObservationsController < ApplicationController
       flash[:error] = "You don't have permission to edit that observation."
       return redirect_to @observation
     end
+  end
+  
+  def render_observations_to_csv
+    render :text => @observations.to_csv(
+      :methods => [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login],
+      :except => [:map_scale, :timeframe, :iconic_taxon_id, :delta]
+    )
   end
 end
