@@ -27,6 +27,7 @@ class Taxon < ActiveRecord::Base
   has_and_belongs_to_many :colors
   
   define_index do
+    indexes :name
     indexes taxon_names.name, :as => :names
     indexes colors.value, :as => :color_values
     has iconic_taxon_id, :facet => true, :type => :integer

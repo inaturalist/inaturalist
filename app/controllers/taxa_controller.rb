@@ -298,7 +298,7 @@ class TaxaController < ApplicationController
       @facets = Taxon.facets(@q, :page => page, :per_page => per_page,
         :with => drill_params, 
         :include => [:taxon_names, :photos],
-        :order => :ancestry)
+        :field_weights => {:name => 2})
 
       if @facets[:iconic_taxon_id]
         @faceted_iconic_taxa = Taxon.all(
