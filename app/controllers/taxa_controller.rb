@@ -145,7 +145,6 @@ class TaxaController < ApplicationController
             @countries.first.id
           ])
         end
-        @observations = @taxon.observations.recently_added(:limit => 3)
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
         @photos = @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
 
