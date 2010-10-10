@@ -146,7 +146,8 @@ class TaxaController < ApplicationController
           ])
         end
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
-        @photos = @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
+        @photos = @taxon.photos.all(:limit => 24)
+        @photos = @taxon.photos_with_backfill(:skip_external => true, :limit => 24) if @photos.blank?
 
         if logged_in?
           @current_user_lists = current_user.lists.all
