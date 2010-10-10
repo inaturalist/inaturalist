@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101002052112) do
+ActiveRecord::Schema.define(:version => 20101010224648) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -195,6 +195,9 @@ ActiveRecord::Schema.define(:version => 20101002052112) do
     t.column "photo_id", :integer, :null => false
     t.column "position", :integer
   end
+
+  add_index "observation_photos", ["observation_id"], :name => "index_observation_photos_on_observation_id"
+  add_index "observation_photos", ["photo_id"], :name => "index_observation_photos_on_photo_id"
 
   create_table "observations", :force => true do |t|
     t.column "observed_on", :date
@@ -473,6 +476,9 @@ ActiveRecord::Schema.define(:version => 20101002052112) do
     t.column "photo_id", :integer, :null => false
     t.column "position", :integer
   end
+
+  add_index "taxon_photos", ["taxon_id"], :name => "index_taxon_photos_on_taxon_id"
+  add_index "taxon_photos", ["photo_id"], :name => "index_taxon_photos_on_photo_id"
 
   create_table "taxon_ranges", :force => true do |t|
     t.column "taxon_id", :integer

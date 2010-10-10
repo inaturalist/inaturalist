@@ -375,12 +375,12 @@ class Taxon < ActiveRecord::Base
     options[:limit] ||= 9
     chosen_photos = photos.all(:limit => options[:limit])
     if chosen_photos.size < options[:limit]
-      conditions = ["taxon_photos.taxon_id = ? OR taxa.ancestry LIKE '#{ancestry}/#{id}%'", self]
+      conditions = ["(taxon_photos.taxon_id = ? OR taxa.ancestry LIKE '#{ancestry}/#{id}%')", self]
       if chosen_photos.size > 0
         conditions = Taxon.merge_conditions(conditions, ["photos.id NOT IN (?)", chosen_photos])
       end
       chosen_photos += Photo.all(
-        :include => :taxa, 
+        :include => [{:taxon_photos => :taxon}], 
         :conditions => conditions,
         :limit => options[:limit] - chosen_photos.size)
     end
