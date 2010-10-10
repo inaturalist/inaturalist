@@ -566,7 +566,7 @@
       </div>
     <% end %>
     <div id="photos">
-      <%= render :partial => "photos" %>
+      <%= render :partial => "photos", :locals => { :photos => @photos } %>
       <div id="photos_loading_status" class="loading status" style="display:none">Loading more photos...</div>
     </div>
     
@@ -624,9 +624,6 @@
           </div>
         <% else %>
           <div id="observations" class="table observations">
-            <!-- <div id="observations_status" class="loading status">
-              Loading recent observations...
-            </div> -->
             <%= render :partial => "observations/cached_component", :collection => @observations %>
           </div>
         <% end -%>
