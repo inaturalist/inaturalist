@@ -238,25 +238,20 @@
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
-        $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link');
-      });
-      $.ajax({
-        url: '<%= observations_path(:format => "html", :partial => "cached_component", :taxon_id => @taxon, :per_page => 3) %>',
-        method: 'get',
-        success: function(data, status) {
-          $('#observations').html(data);
-        },
-        error: function(request, status, error) {
-          $('#noobservations').show();
-          $('#observations .loading').hide();
-        }
-      });
+      <% if (@taxon.species_or_lower? && @photos.size < 7) || @photos.size < 24 %>
+        $('#photos_loading_status').show()
+        $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
+          $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link');
+        });
+      <% end %>
       
       <% if @taxon.auto_description? %>
         $.ajax({
           url: '<%= describe_taxon_path(@taxon) %>',
           method: 'get',
+          beforeSend: function() {
+            $('#wikipedia_loading_status').show()
+          },
           success: function(data, status) {
             $('#wikipedia_description').html(data);
           },
@@ -564,14 +559,15 @@
 
 <div id="rightcol" class="last column span-20">
   <div id="photoscol" class="column span-13">
-    <% if logged_in? && @taxon.species_or_lower? && @taxon.photos.empty? %>
+    <% if logged_in? && @taxon.species_or_lower? && @photos.empty? %>
       <div class="notice">
         This taxon has no default photo!
         <%= link_to_function("Add one", "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
       </div>
     <% end %>
     <div id="photos">
-      <div id="photos_status" class="loading status">Loading photos...</div>
+      <%= render :partial => "photos" %>
+      <div id="photos_loading_status" class="loading status" style="display:none">Loading more photos...</div>
     </div>
     
     <% if logged_in? %>
@@ -616,26 +612,32 @@
     
     <div id="taxon_observations">
       <h3>Recent Observations</h3>
-      <div id="observations" class="table observations">
-        <div id="observations_status" class="loading status">
-          Loading recent observations...
-        </div>
-      </div>
-      <div id="noobservations" class="clear" style="display: none">
-        <div class="readable description">
-          No one's observed
-          <%= render(:partial => 'shared/taxon', :locals => {
-            :taxon => @taxon,
-            :include_article => true
-          }) -%>.
-        </div>
-      </div>
+        <% if @observations.blank? -%>
+          <div id="noobservations" class="clear">
+            <div class="readable description">
+              No one's observed
+              <%= render(:partial => 'shared/taxon', :locals => {
+                :taxon => @taxon,
+                :include_article => true
+              }) -%>.
+            </div>
+          </div>
+        <% else %>
+          <div id="observations" class="table observations">
+            <!-- <div id="observations_status" class="loading status">
+              Loading recent observations...
+            </div> -->
+            <%= render :partial => "observations/cached_component", :collection => @observations %>
+          </div>
+        <% end -%>
 
-      <a href="<%= observations_path(:taxon_id => @taxon.id) %>" style="font-weight: bold">
+      <a href="<%= observations_path(:taxon_id => @taxon.id) %>" style="font-weight: bold;">
         View all observations of
-        <%= render :partial => 'shared/taxon', 
-                   :locals => { :taxon => @taxon } -%>
-        &raquo;
+        <nobr>
+          <%= render :partial => 'shared/taxon', 
+                     :locals => { :taxon => @taxon } -%>
+          &raquo;
+        </nobr>
       </a>
     </div>
   </div>
@@ -692,14 +694,15 @@
       </span>
     </h3>
     <% unless @taxon.auto_description? %>
-    <h3 class="description">
-      Automatic descriptions have been disabled for this taxon.
-    </h3>
+      <h3 class="description">
+        Automatic descriptions have been disabled for this taxon.
+      </h3>
     <% else %>
       <div id="wikipedia_description">
         <p>
-          <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || !@taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
-          <span class="loading status">Loading full description...</span>
+          <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
+          <%#= @taxon.wikipedia_summary %>
+          <span id="wikipedia_loading_status" class="loading status" style="display:none">Loading full description...</span>
         </p>
       </div>
       <div id="nodescription" style="display: none">

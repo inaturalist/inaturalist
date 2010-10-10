@@ -119,7 +119,7 @@ class TaxaController < ApplicationController
   end
 
   def show
-    @taxon ||= Taxon.find_by_id(params[:id], :include => :taxon_names) if params[:id]
+    @taxon ||= Taxon.find_by_id(params[:id], :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
     
     respond_to do |format|
@@ -145,6 +145,9 @@ class TaxaController < ApplicationController
             @countries.first.id
           ])
         end
+        @observations = @taxon.observations.recently_added(:limit => 3)
+        @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
+        @photos = @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
 
         if logged_in?
           @current_user_lists = current_user.lists.all
@@ -413,7 +416,9 @@ class TaxaController < ApplicationController
       end
       render :layout => false, :text => content
     else
-      render :layout => false
+      render :layout => false, :partial => "photos", :locals => {
+        :photos => @photos
+      }
     end
   end
   

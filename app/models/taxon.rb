@@ -370,22 +370,26 @@ class Taxon < ActiveRecord::Base
   # taxon's scientific name from Flickr.  So this will return a heterogeneous
   # array: part FlickrPhotos, part net::flickr Photos
   #
-  def photos_with_backfill(params = {})
-    params[:limit] ||= 9
-    chosen_photos = photos.all(:limit => params[:limit])
-    if chosen_photos.size < params[:limit]
+  def photos_with_backfill(options = {})
+    options[:limit] ||= 9
+    chosen_photos = photos.all(:limit => options[:limit])
+    if chosen_photos.size < options[:limit]
+      conditions = ["taxon_photos.taxon_id = ? OR taxa.ancestry LIKE '#{ancestry}/#{id}%'", self]
+      if chosen_photos.size > 0
+        conditions = Taxon.merge_conditions(conditions, ["photos.id NOT IN (?)", chosen_photos])
+      end
       chosen_photos += Photo.all(
         :include => :taxa, 
-        :conditions => ["taxa.lft > ? AND taxa.rgt < ? AND photos.id NOT IN (?)", lft, rgt, chosen_photos], 
-        :limit => params[:limit] - chosen_photos.size)
+        :conditions => conditions,
+        :limit => options[:limit] - chosen_photos.size)
     end
     flickr_chosen_photos = []
-    if chosen_photos.size < params[:limit] && self.auto_photos
+    if !options[:skip_external] && chosen_photos.size < options[:limit] && self.auto_photos
       begin
         netflickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
         flickr_chosen_photos = netflickr.photos.search({
           :tags => self.name.gsub(' ', '').strip,
-          :per_page => params[:limit] - chosen_photos.size,
+          :per_page => options[:limit] - chosen_photos.size,
           :license => '1,2,3,4,5,6', # CC licenses
           :extras => 'date_upload,owner_name',
           :sort => 'relevance'

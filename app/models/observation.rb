@@ -187,6 +187,7 @@ class Observation < ActiveRecord::Base
   
   # Order observations by date and time observed
   named_scope :latest, :order => "observed_on DESC, time_observed_at DESC"
+  named_scope :recently_added, :order => "observations.id DESC"
   
   # TODO: Make this work for any SQL order statement, including multiple cols
   named_scope :order_by, lambda { |order|

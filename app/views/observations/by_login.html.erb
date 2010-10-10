@@ -354,8 +354,8 @@ Observations by <%= h @login %>
           ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
         end
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params), :id => 'atomlink') %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params), :id => 'kmllink') %>
+      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params), :id => 'atomlink', :rel => "nofollow") %>
+      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params), :id => 'kmllink', :rel => "nofollow") %>
       <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params), :id => 'csvlink', :rel => "nofollow") %>
       
     </span>

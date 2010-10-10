@@ -145,13 +145,8 @@ table.infobox,
   font-style: italic;
 }
 
-#wikipedia_description .toc {
-  width: 100%;
-}
-
 #wikipedia_description .editsection {
-  float: right;
-  color: #888;
+  display: none;
 }
 
 #wikipedia_description .thumbimage {
