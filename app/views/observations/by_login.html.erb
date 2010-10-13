@@ -243,22 +243,7 @@ Observations by <%= h @login %>
 <link rel="alternate" type="application/atom+xml" title="Recent Observations by <%= h @login %> (Atom)" href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
 <% end %>
 
-<div id="pageheader" class="column span-24">
-  <%= link_to(
-    image_tag(@selected_user.icon.url(:thumb), :class => 'usericon'),
-    person_by_login_path(@selected_user.login)) %>
-  
-  <h2>
-    <% if @user and @user.login == @login %>
-      Your
-    <% else %>
-      <%= @login %>'s
-    <% end %>
-    Observations
-  </h2>
-  <%= render :partial => 'users/subnav', 
-             :locals => { :user => @selected_user } %>
-  
+<%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if @user && @user.login == @login -%>
       <%= link_to "Add Observations", new_observation_path, 
@@ -304,7 +289,10 @@ Observations by <%= h @login %>
       } %>
     <% end -%>
   </div>
-</div>
+<% end %>
+<%= render :partial => 'shared/by_login_header', :locals => {
+  :after => tools
+} %>
 
 <div id="listcol" class="column span-16">
   <div class="observations table">

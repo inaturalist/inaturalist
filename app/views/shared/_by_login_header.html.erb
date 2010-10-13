@@ -1,0 +1,17 @@
+<%-
+  model_name ||= controller.class.to_s.underscore.humanize.split.first
+  title ||= (is_me?(@selected_user) ? "Your " : "#{@login}'s ") + model_name
+  before ||= nil
+  after ||= nil
+-%>
+<div id="pageheader" class="column span-24">
+  <%= before %>
+  <%= link_to(
+    image_tag(@selected_user.icon.url(:thumb), :class => 'usericon'),
+    person_by_login_path(@selected_user.login)) %>
+  
+  <h2><%= title %></h2>
+  <%= render :partial => 'users/subnav', 
+             :locals => { :user => @selected_user } %>
+  <%= after %>
+</div>

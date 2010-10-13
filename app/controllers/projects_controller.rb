@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search]
-  before_filter :load_project, :except => [:index, :search, :new]
-  before_filter :load_project_user, :except => [:index, :search, :new, :join]
+  before_filter :load_project, :except => [:index, :search, :new, :by_login]
+  before_filter :load_project_user, :except => [:index, :search, :new, :join, :by_login]
+  before_filter :load_user_by_login, :only => [:by_login]
   
   # GET /projects
   # GET /projects.xml
@@ -10,8 +11,8 @@ class ProjectsController < ApplicationController
       :order => "project_observations.id desc", :limit => 9, :group => "project_id")
     @projects = @project_observations.map(&:project)
     if logged_in?
-      @started = current_user.projects.all(:order => "id desc")
-      @joined = current_user.project_users.all(:include => :project, :order => "id desc").map(&:project)
+      @started = current_user.projects.all(:order => "id desc", :limit => 9)
+      @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
     end
   end
   
@@ -68,6 +69,14 @@ class ProjectsController < ApplicationController
   end
   
   def terms
+  end
+  
+  def by_login
+    @started = @selected_user.projects.all(:order => "id desc", :limit => 100)
+    @projects = Project.paginate(:page => params[:page],
+      :include => :project_users,
+      :conditions => ["project_users.user_id = ?", @selected_user],
+      :order => "projects.title")
   end
   
   def join

@@ -85,11 +85,11 @@ module ApplicationHelper
     "#{obj.class.name.underscore}-#{obj.id}"
   end
 
-  def is_me?(user)
+  def is_me?(user = @selected_user)
     logged_in? && (user == current_user)
   end
   
-  def is_not_me?(user)
+  def is_not_me?(user = @selected_user)
     logged_in? && (user != current_user)
   end
   

@@ -142,6 +142,8 @@ class PostsController < ApplicationController
     @display_user = User.find_by_login(params[:login])
     @display_user ||= @post.user if @post
     render_404 and return unless @display_user
+    @selected_user = @display_user
+    @login = @selected_user.login
     true
   end
   

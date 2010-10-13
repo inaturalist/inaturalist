@@ -35,6 +35,9 @@
       <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
     <% end %>
   </div>
+  <% if logged_in? -%>
+    <%= link_to "View all your projects", projects_by_login_path(current_user.login), :class => "readmore" %>
+  <% end -%>
   <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
 <% end -%>
 
@@ -46,6 +49,9 @@
       <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
     <% end %>
   </div>
+  <% if logged_in? -%>
+    <%= link_to "View all your projects", projects_by_login_path(current_user.login), :class => "readmore" %>
+  <% end -%>
   <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
 <% end -%>
 

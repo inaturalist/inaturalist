@@ -34,22 +34,7 @@ Identifications by <%= h @login %>
 <![endif]-->
 <% end %>
 
-<div id="pageheader" class="column span-24">
-  <%= link_to(
-    image_tag(@selected_user.icon.url(:thumb), :class => 'usericon'),
-    person_path(@selected_user)) %>
-  
-  <h2>
-    <% if @user and @user.login == @login %>
-      Your
-    <% else %>
-      <%= @login %>'s
-    <% end %>
-    Identifications
-  </h2>
-  <%= render :partial => 'users/subnav', 
-             :locals => { :user => @selected_user } %>
-</div>
+<%= render :partial => "shared/by_login_header" %>
 
 <div id="identifications" class="column span-18">
   <% if @identifications.empty? -%>

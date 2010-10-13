@@ -10,29 +10,15 @@
   </style>
 <% end -%>
 
-<div id="pageheader" class="column span-24">
-  <%= link_to(
-    image_tag(@display_user.icon.url(:thumb), :class => 'usericon'),
-    person_path(@display_user)) %>
-  
-  <h2>
-    <% if current_user and current_user.login == @display_user.login %>
-      Your
-    <% else %>
-      <%= @display_user.login %>'s
-    <% end %>
-    Journal
-  </h2>
-  <%= render :partial => 'users/subnav', 
-             :locals => { :user => @display_user } %>
-  
+<%- tools = capture do -%>
   <% if logged_in? && current_user.login == @display_user.login -%>
     <div id="tools" class="buttonrow">
       <%= link_to "New Post", new_post_path(@display_user.login), 
                   :id => "newpostbutton", :class => "default button"%>
     </div>
   <% end -%>
-</div>
+<% end %>
+<%= render :partial => "shared/by_login_header", :locals => { :after => tools, :model_name => "Journal" } %>
 
 <div id="postscol" class="column span-16 append-1">
   <div id="postdates" class="posts_by_date">

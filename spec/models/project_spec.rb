@@ -8,3 +8,13 @@ describe Project, "creation" do
     @project.project_users.first.user_id.should == user.id
   end
 end
+
+describe Project, "destruction" do
+  it "should work despite rule against owner leaving the project" do
+    project = Project.make
+    puts "project.icon_file_name: #{project.icon_file_name}"
+    assert_nothing_raised do
+      project.destroy
+    end
+  end
+end

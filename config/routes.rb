@@ -105,6 +105,8 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => [:post, :delete]}
     p.project_search 'projects/search', :action => "search"
     p.project_terms "project/:id/terms", :action => "terms"
+    p.projects_by_login 'projects/:login', :action => 'by_login',
+      :requirements => { :login => simplified_login_regex }
   end
   
   map.person_by_login 'people/:login', 

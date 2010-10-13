@@ -96,7 +96,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    # All the magic is done in the before_filter
+    @selected_user = @user
+    @login = @selected_user.login
   end
   
   def relationships

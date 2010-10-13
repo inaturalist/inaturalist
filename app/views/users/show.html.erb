@@ -27,28 +27,15 @@
   <![endif]-->
 <% end %>
 
-<div id="pageheader" class="column span-24">
-  <%= link_to(
-    image_tag(@user.icon.url(:thumb), :class => 'usericon'),
-    person_path(@user)) %>
-  <h2>
-    <% if logged_in? && current_user.login == @user.login %>
-      Your
-    <% else %>
-      <%= @user.login %>'s
-    <% end %>
-    Profile
-  </h2>
-  <%= render :partial => 'users/subnav', 
-             :locals => { :user => @user } %>
-  
+<%- tools = capture do -%>
   <% if logged_in? && current_user.login == @login %>
     <div id="tools buttonrow">
       <%= link_to "Edit your profile", edit_person_path(current_user), 
                   :class => "default button"%>
     </div>
   <% end %>
-</div>
+<%- end -%>
+<%= render :partial => "shared/by_login_header", :locals => { :after => tools, :model_name => "Profile" } %>
 
 <div id="profilecol" class="column span-16">
   <div class="readable description">

@@ -1,0 +1,43 @@
+<%- content_for(:title) do -%>
+  <%= is_me?(@selected_user) ? "Your " : "#{@login}'s " %> Projects
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .box .project .span-6 { width: 210px; }
+  </style>
+<%- end -%>
+<%- before = capture do %>
+  <div class="right inline clear buttonrow">
+    <%= link_to 'All Projects', projects_path, :class => "inter readmore" %>
+  </div>
+<% end %>
+<%= render :partial => 'shared/by_login_header', :locals => { :before => before } %>
+
+<div class="column span-16">
+  <div id="started" class="projects clear">
+    <% if @projects.blank? -%>
+      <p class="noresults"><%= is_me? ? "You haven't" : "#{@login} hasn't" %> joined any projects.</p>
+    <% else %>
+      <% @projects.each_with_index do |project, i| %>
+        <%= render :partial => 'project', :object => project, :locals => {:last => i % 2 == 1} %>
+        <% if i % 2 == 1 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
+      <% end %>
+    <% end -%>
+  </div>
+  <%= will_paginate @projects %>
+</div>
+
+<div class="last column span-8">
+  <div id="started" class="projects clear box">
+    <h3>Projects <%= is_me? ? "You Admin" : "#{@login} Admins" %></h3>
+    <% if @started.blank? -%>
+      <p class="noresults"><%= is_me? ? "You don't" : "#{@login} doesn't" %> admin any projects.</p>
+    <% else %>
+      <% @started.each_with_index do |project, i| %>
+        <%= render :partial => 'project', :object => project, :locals => {:last => true} %>
+      <% end %>
+    <% end -%>
+    
+    <%= link_to "Start a project", new_project_path, :class => "default button" %>
+  </div>
+</div>

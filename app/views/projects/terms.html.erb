@@ -1,0 +1,27 @@
+<%- content_for(:title) do -%>
+  <%= @title = "#{h truncate(@project.title, :length => 85)} Terms" %>
+<%- end -%>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  
+  <h2>
+    <% if @project.icon.file? -%>
+      <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+    <% end -%>
+    <%= @title %>
+  </h2>
+
+</div>
+
+<% if @project.terms.blank? -%>
+  <p class="noresults">
+    This project has no terms!
+  </p>
+<% else %>
+  <%= simple_format h(@project.terms) %>
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+<% end -%>
