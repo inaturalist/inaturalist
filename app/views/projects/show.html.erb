@@ -12,6 +12,7 @@
     <span class="right">
       <%-
         links = []
+        links << link_to("Terms", project_terms_path(@project), :class => "ui") unless @project.terms.blank?
         if logged_in? && current_user.id == @project.user_id
           links << link_to("Edit project", edit_project_path(@project), :class => "ui description")
         end

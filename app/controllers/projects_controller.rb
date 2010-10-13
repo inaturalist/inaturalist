@@ -1,10 +1,7 @@
 class ProjectsController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
-  # before_filter :admin_required
-  before_filter :load_project, :only => [:show, :edit, :update, :destroy,
-    :join, :leave, :add, :remove, :add_batch, :remove_batch]
-  before_filter :load_project_user, :only => [:show, :edit, :update, :destroy,
-    :join, :leave, :add, :remove]
+  before_filter :login_required, :except => [:index, :show, :search]
+  before_filter :load_project, :except => [:index, :search, :new]
+  before_filter :load_project_user, :except => [:index, :search, :new, :join]
   
   # GET /projects
   # GET /projects.xml
@@ -70,6 +67,8 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def terms
+  end
   
   def join
     return unless @project_user.blank? && request.post?
