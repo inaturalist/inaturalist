@@ -33,6 +33,13 @@
     <% end %>
   </li>
   <li>
+    <% if current_page?(:controller => :projects, :action => :by_login) %>
+      <span id="projects_link" class="active">Projects</span>
+    <% else %>
+      <%= link_to 'Projects', projects_by_login_path(:login => user.login), :id => "projects_link" %>
+    <% end %>
+  </li>
+  <li>
     <% if current_page?(:controller => :users, :action => :show) %>
       <span id="profile_link" class="active">Profile</span>
     <% else %>

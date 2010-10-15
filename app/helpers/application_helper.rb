@@ -53,7 +53,7 @@ module ApplicationHelper
     end 
   end
   
-  def friend_button(user, potential_friend, html_options={})
+  def friend_button(user, potential_friend, html_options = {})
     options = {
       :controller => 'users',
       :action => 'update',
@@ -63,14 +63,19 @@ module ApplicationHelper
       :class => 'link',
       :method => :put
     }.merge(html_options)
-    case !user.friends.include?(potential_friend)
-    when true
-      if user != potential_friend
-        button_to("Follow #{potential_friend.login}", options.merge({ :friend_id => potential_friend.id }), html_options)
-      end
-    when false # user is already a contact
-        link_to("Stop following #{potential_friend.login}", 
-          options.merge({ :remove_friend_id => potential_friend.id }), html_options)
+    
+    already_friends = if user.friends.loaded?
+      user.friends.include?(potential_friend)
+    else
+      already_friends = user.friendships.find_by_friend_id(potential_friend.id)
+    end
+    
+    if already_friends
+      link_to "Stop following #{potential_friend.login}", 
+        options.merge(:remove_friend_id => potential_friend.id), html_options
+    elsif user != potential_friend
+      link_to "Follow #{potential_friend.login}", 
+        options.merge(:friend_id => potential_friend.id), html_options
     end
   end
   
