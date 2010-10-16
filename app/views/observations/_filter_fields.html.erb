@@ -3,8 +3,8 @@
       <input id="submit_filters_button" type="submit" value="Search" class="default button" />
     </div>
     
-    <div id="search_filter">
-      <label for="q">Search</label>
+    <div id="search_filter" class="row">
+      <label class="label" for="q">Search</label>
       <input type="text" name="q" value="<%= @q %>" id="q" />
       <select name="search_on" id="search_on">
         option
@@ -15,8 +15,8 @@
         <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place">place name</option>
       </select>
     </div>
-    <div id="attribute_filters">
-      <strong id="attributes_filters_label">Filter by</strong>
+    <div id="attribute_filters" class="row">
+      <strong id="attributes_filters_label" class="label">Filter by</strong>
       <fieldset>
         <input type="checkbox" name="has[]" id="with_photos_checkbox" 
                value="photos" <% if @with_photos %>checked="checked"<% end %>/>
@@ -37,8 +37,8 @@
         <% end %>
       </fieldset>
     </div>
-    <div id="iconic_taxon_filters">
-      <div id="iconic_taxon_filters_label">
+    <div id="iconic_taxon_filters" class="row">
+      <div id="iconic_taxon_filters_label" class="label">
         <strong>Show only</strong>
       </div>
       <%-
@@ -85,9 +85,18 @@
         <%= link_to_function "None", 'deSelectAllIconicTaxa()' %>
       </small>
     </div>
-    <!-- <input type="hidden" name="lat" id="lat"/>
-    <input type="hidden" name="lon" id="lon"/>
-    <input type="hidden" name="z" id="zoom"/> -->
+    
+    
+    <div id="order_filters" class="row">
+      <div id="order_filters_label" class="label">
+        <strong>Order</strong>
+      </div>
+      <div class="left">
+        <%= select_tag :order_by, 
+          options_for_select(ObservationsController::ORDER_BY_FIELDS.map{|f| [f.humanize, f]}, @order_by) %>
+        <%= select_tag :order, options_for_select(%w(asc desc), @order) %>
+      </div>
+    </div>
     
     <input type="hidden" name="swlat" id="swlat" value="<%= @swlat %>"/>
     <input type="hidden" name="swlng" id="swlng" value="<%= @swlng %>"/>

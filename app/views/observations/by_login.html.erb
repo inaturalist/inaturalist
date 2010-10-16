@@ -52,7 +52,7 @@ Observations by <%= h @login %>
     margin-bottom: -1px;
   }
   
-  .button_toggle_menu .menu { top: 30px; }
+  .button_toggle_menu .menu { top: 29px; }
 </style>
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie', 'observations-ie' %>
@@ -256,7 +256,7 @@ Observations by <%= h @login %>
         <%= link_to_function("Select none", "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button", :class => 'minor button') %>
         <%= link_to_function "Flickr Tagger", "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button",
           :title => "Add taxonomic tags to the Fickr photos associated with the selected observations." %>
-        <% if current_user.is_admin? -%>
+        <% unless @project_users.blank? -%>
           <% link_to_toggle_menu "Add to project", :id => "add_to_project_button", :class => "minor button",
               :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
             <ul>

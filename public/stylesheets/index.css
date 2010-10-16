@@ -839,3 +839,21 @@ form.edit_preferences .field {
 
 #map, .map, #mapcontainer { overflow: hidden; }
 #map input[type=text], .map .input[type=text] { padding: 2px; }
+
+.fadednowrap { 
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.fadednowrap:before {
+  content: '\0020';
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 0;
+  top: 0;
+  background-color: white;
+  background: -webkit-gradient(linear, 0% 50%, 100% 50%, from(rgba(255, 255, 255, 0)), to(white));
+}

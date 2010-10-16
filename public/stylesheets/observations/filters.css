@@ -18,13 +18,8 @@
 #search_filter label,
 #attributes_filters_label,
 #iconic_taxon_filters_label {
-  width: 55px;
   display: block;
   float: left;
-}
-
-#search_filter label {
-  width: 59px;
 }
 
 .iconic_taxon_filter,
@@ -274,9 +269,7 @@
   color: black;
 }
 
-#iconic_taxon_filters {
-  float: left;
-}
+#order_filters select { width: auto; }
 
 #submit_filters {
   margin: 0;
@@ -312,3 +305,8 @@
 #attribute_filters label {
   font-weight: normal;
 }
+
+
+#filters .row { clear: left; }
+#filters .row .label { float: left; width: 55px; }
+#filters .row .left { clear: none; }

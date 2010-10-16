@@ -253,31 +253,29 @@
       <%= link_to "Edit", edit_observation_url, 
         :id => "edit_list_button", :class => "button" %>
 
-      <% if @user.is_admin? -%>
-        <% unless @project_users.blank? %>
-          <% link_to_toggle_menu "add to project", :class => "button", 
-              :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-            <ul>
-              <% for project_user in @project_users %>
-                <li class="inline buttonrow">
-                  <% if @project_observations_by_project_id[project_user.project_id] -%>
-                    <%= link_to "remove", 
-                      remove_project_observation_path(project_user.project, :observation_id => @observation.id),
-                      :method => :delete,
-                      :class => "pale button" %>
-                  <% else %>
-                    <%= link_to "add", 
-                      add_project_observation_path(project_user.project, :observation_id => @observation.id),
-                      :method => :post,
-                      :class => "glaucous button" %>
-                  <% end -%>
-                  <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
+      <% unless @project_users.blank? %>
+        <% link_to_toggle_menu "add to project", :class => "button", 
+            :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
+          <ul>
+            <% for project_user in @project_users %>
+              <li class="inline buttonrow">
+                <% if @project_observations_by_project_id[project_user.project_id] -%>
+                  <%= link_to "remove", 
+                    remove_project_observation_path(project_user.project, :observation_id => @observation.id),
+                    :method => :delete,
+                    :class => "pale button" %>
+                <% else %>
+                  <%= link_to "add", 
+                    add_project_observation_path(project_user.project, :observation_id => @observation.id),
+                    :method => :post,
+                    :class => "glaucous button" %>
+                <% end -%>
+                <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
+              </li>
+            <% end %>
+          </ul>
         <% end %>
-      <% end -%>
+      <% end %>
 
       <%= link_to "Delete", @observation, 
                   :confirm => "Are you sure you want to delete this observation?", 

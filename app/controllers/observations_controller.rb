@@ -40,10 +40,10 @@ class ObservationsController < ApplicationController
     @update = params[:update] # this is ONLY for RJS calls.  Lame.  Sorry.
     
     search_params, find_options = get_search_params(params)
-    if search_params[:q]
-      search_observations(search_params, find_options)
-    else
+    if search_params[:q].blank?
       get_paginated_observations(search_params, find_options)
+    else
+      search_observations(search_params, find_options)
     end
 
     respond_to do |format|
@@ -672,10 +672,10 @@ class ObservationsController < ApplicationController
     @prefs = current_preferences
     search_params, find_options = get_search_params(params)
     search_params.update(:user_id => @selected_user.id)
-    if search_params[:q]
-      search_observations(search_params, find_options)
-    else
+    if search_params[:q].blank?
       get_paginated_observations(search_params, find_options)
+    else
+      search_observations(search_params, find_options)
     end
     
     respond_to do |format|
@@ -860,10 +860,10 @@ class ObservationsController < ApplicationController
     
     search_params, find_options = get_search_params(params)
     search_params[:projects] = @project.id
-    if search_params[:q]
-      search_observations(search_params, find_options)
-    else
+    if search_params[:q].blank?
       get_paginated_observations(search_params, find_options)
+    else
+      search_observations(search_params, find_options)
     end
     
     respond_to do |format|
@@ -1015,8 +1015,10 @@ class ObservationsController < ApplicationController
       end
       search_params[:order_by] = "#{@order_by} #{@order}"
     else
-      search_params[:order_by] = 'observed_on DESC'
+      @order_by = "observed_on"
+      @order = "desc"
     end
+    search_params[:order_by] = "#{@order_by} #{@order}"
     
     [search_params, find_options]
   end
@@ -1049,22 +1051,22 @@ class ObservationsController < ApplicationController
   
   def search_observations(search_params, find_options)
     sphinx_options = find_options.dup
-    sphinx_options[:conditions] = {}
+    sphinx_options[:with] = {}
     
     if search_params[:has]
       # id please
       if search_params[:has].include?('id_please')
-        sphinx_options[:conditions][:has_id_please] = true
+        sphinx_options[:with][:has_id_please] = true
       end
       
       # has photos
       if search_params[:has].include?('photos')
-        sphinx_options[:conditions][:has_photos] = true
+        sphinx_options[:with][:has_photos] = true
       end
       
       # geo
       if search_params[:has].include?('geo')
-        sphinx_options[:conditions][:has_geo] = true 
+        sphinx_options[:with][:has_geo] = true 
       end
     end
     
@@ -1084,13 +1086,13 @@ class ObservationsController < ApplicationController
       # 2009-04-10
       if swlngrads > 0 && nelngrads < 0
         lngrange = swlngrads.abs > nelngrads ? swlngrads..Math::PI : -Math::PI..nelngrads
-        sphinx_options[:conditions][:longitude] = lngrange
-        # sphinx_options[:conditions][:longitude] = swlngrads..Math::PI
+        sphinx_options[:with][:longitude] = lngrange
+        # sphinx_options[:with][:longitude] = swlngrads..Math::PI
         # sphinx_options[:with] = {:longitude => -Math::PI..nelngrads}
       else
-        sphinx_options[:conditions][:longitude] = swlngrads..nelngrads
+        sphinx_options[:with][:longitude] = swlngrads..nelngrads
       end
-      sphinx_options[:conditions][:latitude] = swlatrads..nelatrads
+      sphinx_options[:with][:latitude] = swlatrads..nelatrads
     elsif search_params[:lat] && search_params[:lng]
       latrads = search_params[:lat].to_f * (Math::PI / 180)
       lngrads = search_params[:lng].to_f * (Math::PI / 180)
@@ -1101,21 +1103,21 @@ class ObservationsController < ApplicationController
     # identifications
     case search_params[:identifications]
     when 'most_agree'
-      sphinx_options[:conditions][:identifications_most_agree] = true
+      sphinx_options[:with][:identifications_most_agree] = true
     when 'some_agree'
-      sphinx_options[:conditions][:identifications_some_agree] = true
+      sphinx_options[:with][:identifications_some_agree] = true
     when 'most_disagree'
-      sphinx_options[:conditions][:identifications_most_disagree] = true
+      sphinx_options[:with][:identifications_most_disagree] = true
     end
     
     # Taxon ID
     if search_params[:taxon_id]
-      sphinx_options[:conditions][:taxon_id] = search_params[:taxon_id]
+      sphinx_options[:with][:taxon_id] = search_params[:taxon_id]
     end
     
     # Iconic taxa
     if search_params[:iconic_taxa]
-      sphinx_options[:conditions][:iconic_taxon_id] = \
+      sphinx_options[:with][:iconic_taxon_id] = \
           search_params[:iconic_taxa].map do |iconic_taxon|
         iconic_taxon.nil? ? nil : iconic_taxon.id
       end
@@ -1123,34 +1125,41 @@ class ObservationsController < ApplicationController
     
     # User ID
     if search_params[:user_id]
-      sphinx_options[:conditions][:user_id] = search_params[:user_id]
+      sphinx_options[:with][:user_id] = search_params[:user_id]
     end
     
     # User login
     if search_params[:user]
-      sphinx_options[:conditions][:user] = search_params[:user]
+      sphinx_options[:with][:user] = search_params[:user]
     end
     
     # Ordering
     if search_params[:order_by]
       if sphinx_options[:order]
         sphinx_options[:order] += ", #{search_params[:order_by]}"
+        sphinx_options[:sort_mode] = :extended
+      elsif search_params[:order_by] =~ /\sdesc|asc/i
+        sphinx_options[:order] = search_params[:order_by].split.first.to_sym
+        sphinx_options[:sort_mode] = search_params[:order_by].split.last.downcase.to_sym
       else
-        sphinx_options[:order] = search_params[:order_by]
+        sphinx_options[:order] = search_params[:order_by].to_sym
       end
     end
     
     if search_params[:projects]
-      sphinx_options[:conditions][:projects] = search_params[:projects].split(',')
+      sphinx_options[:with][:projects] = if search_params[:projects].is_a?(String) && search_params[:projects].index(',')
+        search_params[:projects].split(',')
+      else
+        [search_params[:projects]].flatten
+      end
     end
     
     # Field-specific searches
     if @search_on
-      sphinx_options[:conditions][@search_on.to_sym] = @q
+      sphinx_options[:with][@search_on.to_sym] = @q
       @observations = Observation.search(find_options.merge(sphinx_options))
     else
-      @observations = Observation.search(@q, 
-        find_options.merge(sphinx_options))
+      @observations = Observation.search(@q, find_options.merge(sphinx_options))
     end
   rescue ThinkingSphinx::ConnectionError
     get_paginated_observations(search_params, find_options)

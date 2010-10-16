@@ -43,7 +43,10 @@
   </div>
   
   <div id="observations">
-    <h3>Observations</h3>
+    <h3>
+      Observations
+      <%= link_to "View map", project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+    </h3>
     <% if @project_observations.blank? -%>
       <div class="description noresults">
         No observations have been added to this project yet.
@@ -59,6 +62,15 @@
 </div>
 
 <div class="last column span-6">
+  <h3>Data</h3>
+  <ul>
+    <li><%= link_to "Observations / Map", project_observations_path(@project) %></li>
+    <li class="feeds">
+      <%= link_to("Atom", project_observations_path(:format => 'atom'), :id => 'atomlink', :rel => "nofollow") %> /
+      <%= link_to("KML",  project_observations_path(:format => 'kml'), :id => 'kmllink', :rel => "nofollow") %> /
+      <%= link_to("CSV",  project_observations_path(:format => 'csv'), :id => 'csvlink', :rel => "nofollow") %>
+    </li>
+  </ul>
   <div id="members">
     <h3>Members</h3>
     <% if @project_users.blank? -%>

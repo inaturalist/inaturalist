@@ -283,7 +283,6 @@ class Observation < ActiveRecord::Base
         end
       end
     end
-    
     scope = scope.identifications(params[:identifications]) if (params[:identifications])
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
     scope = scope.order_by(params[:order_by]) if params[:order_by]
@@ -668,7 +667,7 @@ class Observation < ActiveRecord::Base
     self.taxon_id = taxon_names.first.taxon_id if taxon_names.size == 1
     true
   end
-  
+    
   # I'm not psyched about having this stuff here, but it makes generating 
   # more compact JSON a lot easier.
   include ObservationsHelper

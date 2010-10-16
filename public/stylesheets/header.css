@@ -29,7 +29,7 @@
 #header .navtabs a,
 #header .navtabs .inter {
   display: block;
-  padding: 7px 10px;
+  padding: 7px 5px;
 }
 
 #header .navtabs .inter {
@@ -130,8 +130,9 @@
 }
 
 #header .navtabs .subnavtab .subnavlink {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+  text-align: center;
   outline: 0;
 }
 

@@ -59,8 +59,7 @@ class LifeList < List
       # re-apply list rules to the listed taxa
       unless listed_taxon.save
         logger.debug "[DEBUG] #{listed_taxon} wasn't valid in #{self}, so " + 
-          "it's being destroyed: " + 
-          listed_taxon.errors.full_messages.join(', ')
+          "it's being destroyed: #{listed_taxon.errors.full_messages.to_sentence}"
         listed_taxon.destroy
       end
     end

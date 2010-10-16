@@ -6,14 +6,9 @@
   margin-bottom: 5px;
 }
 
-#pageheader h2 {
-  display: inline;
-}
-
 input.checkbox, input[type="checkbox"],
 input.radio, input[type="radio"] {
   position: relative;
-/*  top: -2px;*/
 }
 
 #controls {
@@ -32,7 +27,7 @@ input.radio, input[type="radio"] {
 }
 
 #controls ul li a,
-#controls ul li span {
+#controls ul li > span {
   padding: 7px 0.75em 9px;
   position: relative;
   bottom: -1px;

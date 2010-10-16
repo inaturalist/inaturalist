@@ -1,34 +1,31 @@
 <%- content_for(:title) do -%>
   Observations for <%= h @project.title %>
 <%- end -%>
-<%= javascript_include_tag 'inaturalist',
-                           "observations/filters" %>
+
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
+  <%= stylesheet_link_tag 'observations', 'observations/index', 'observations/filters' %>
 <%- end -%>
-<div id="pageheader" class="clear">
+
+<%- content_for(:extrajs) do -%>
+  <%= gmap_include_tag %>
+  <%= javascript_include_tag "jquery/jquery.ui.all.packed.js", "inaturalist", "observations/filters", "observations/map" %>
+<%- end -%>
+
+<%- before = capture do -%>
   <div class="breadcrumbs">
     <strong><%= link_to "&laquo Back to #{h @project.title}", @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
-  <h2>
-    Observations for <%=h @project.title %>
-  </h2>
-</div>
+  <div class="column span-1" style="text-align: center">
+    <%= image_tag @project.icon.url(:span1) %>
+  </div>
+<%- end -%>
+<%= render :partial => 'map_header', :locals => {
+  :title => "Observations for #{h @project.title}",
+  :before => before,
+  :control_span => 11
+} %>
 
-<div id="filters" class="clear">
-  <% form_tag url_for, :method => :get do -%>
-    <%= render :partial => 'filter_fields', :locals => {
-      :selected_taxa => @iconic_taxa
-    } %>
-  <% end -%>
-</div>
-
-<div class="observations table">
-  <%= render :partial => "observations/observations_table_header" %>
-  <%= render :partial => "observations/cached_component", :collection => @observations %>
-</div>
-
-<%= will_paginate @observations %>
+<%= render :partial => 'map' %>
 
 <div id="feeds" class="clear right small ui description feeds">
   <%= render :partial => 'feed_links' %>
