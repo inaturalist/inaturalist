@@ -1,5 +1,11 @@
 <% content_for(:title) do %>
-  <%= @list.title %>, by <%= @list.user.login %>
+  <%- 
+    @title = @list.title
+    unless @title.index(@list.owner_name)
+      @title += ", #{link_to(@list.owner_name, @list.user ? lists_by_login_path(@list.user.login) : @list.owner)}"
+    end
+  -%>
+  <%= strip_tags(@title) %>
 <% end %>
 
 <% content_for(:extracss) do %>
@@ -17,10 +23,14 @@
     </div>
   <%- end -%>
   
-  <span class="breadcrumbs">    
-    <%= link_to "Back to #{possessive(@list.user)} lists", 
-                lists_by_login_path(:login => @list.user.login),
-                :class => 'back crumb' %>
+  <span class="breadcrumbs">
+    <% if @list.user -%>
+      <%= link_to "Back to #{possessive(@list.user)} lists", 
+                  lists_by_login_path(:login => @list.user.login),
+                  :class => 'back crumb' %>
+    <% else %>
+      <%= link_to "Back to #{@list.owner_name}", @list.owner, :class => "back crumb" %>
+    <% end -%>
   </span>
   <div id="view_controls" class="toolset clear">
     <label class="description">View</label>
@@ -36,7 +46,7 @@
     </form>
   </div>
   <h2>
-    <%= @list.title %>, by <%= link_to(@list.user.login, lists_by_login_path(@list.user.login)) %>
+    <%= @title %>
   </h2>
   <div id="tools" class="buttonrow">
     <% if logged_in? && current_user == @list.user && @list.id != @user.life_list_id %>
@@ -108,7 +118,7 @@
       <% elsif @q %>
         No results matching "<%= @q %>"
       <% else %>
-        <%= @list.user.login %> hasn't observed any species to list yet!
+        No species on this list yet!
       <% end %>
     </div>
   <% end %>
@@ -120,7 +130,7 @@
 
 <div class="last column span-7">
   <div id="sidebar">
-    <% if @user && @user.login == @list.user.login %>
+    <% if @list.editable_by?(current_user) %>
     <div id="add" class="clear">
       <%= link_to_function "Add Batch", "$('#add_batch_dialog').jqmShow()", :class => "right small", :style => 'padding-top: 3px' %>
       <h3>

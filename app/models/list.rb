@@ -59,6 +59,11 @@ class List < ActiveRecord::Base
     self.user ? self.user.login : 'Unknown'
   end
   
+  # Returns an associate that has observations
+  def owner
+    user
+  end
+  
   def self.icon_preview_cache_key(list)
     {:controller => "lists", :action => "icon_preview", :list_id => list}
   end

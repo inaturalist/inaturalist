@@ -62,28 +62,41 @@
 </div>
 
 <div class="last column span-6">
-  <h3>Data</h3>
-  <ul>
-    <li><%= link_to "Observations / Map", project_observations_path(@project) %></li>
-    <li class="feeds">
-      <%= link_to("Atom", project_observations_path(:format => 'atom'), :id => 'atomlink', :rel => "nofollow") %> /
-      <%= link_to("KML",  project_observations_path(:format => 'kml'), :id => 'kmllink', :rel => "nofollow") %> /
-      <%= link_to("CSV",  project_observations_path(:format => 'csv'), :id => 'csvlink', :rel => "nofollow") %>
-    </li>
-  </ul>
-  <div id="members">
-    <h3>Members</h3>
-    <% if @project_users.blank? -%>
-      <div class="noresults">
-        No members yet.
-      </div>
-    <% else %>
-      <% for project_user in @project_users %>
-        <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-          observations_by_login_path(project_user.user.login),
-          :alt => h(project_user.user.login),
-          :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
-      <% end %>
-    <% end -%>
+  <div class="quiet box">
+    <h3>Data</h3>
+    <ul>
+      <li><%= link_to "Observations / Map", project_observations_path(@project) %></li>
+      <li class="feeds">
+        <%= link_to("Atom", project_observations_path(:format => 'atom'), :id => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to("KML",  project_observations_path(:format => 'kml'), :id => 'kmllink', :rel => "nofollow") %> /
+        <%= link_to("CSV",  project_observations_path(:format => 'csv'), :id => 'csvlink', :rel => "nofollow") %>
+      </li>
+      <li><%= link_to "Checklist", list_path(@project.project_list) %></li>
+    </ul>
+
+    <div id="members" style="margin-bottom: 10px">
+      <h3>Members</h3>
+      <% if @project_users.blank? -%>
+        <div class="noresults">
+          No members yet.
+        </div>
+      <% else %>
+        <% for project_user in @project_users %>
+          <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+            observations_by_login_path(project_user.user.login),
+            :alt => h(project_user.user.login),
+            :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+        <% end %>
+      <% end -%>
+    </div>
+
+    <h3>Admin</h3>
+    <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
+      observations_by_login_path(@project.user.login),
+      :alt => h(@project.user.login),
+      :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
+    <%= link_to h(@project.user.login), @project.user %>
+    <span class="description">created this project on <%= @project.created_at.to_date.to_s(:long) %></span>
   </div>
+
 </div>

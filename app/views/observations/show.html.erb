@@ -537,6 +537,26 @@
     <% end %>
   </div><!-- end identifications -->
   
+  <% unless @project_observations.blank? -%>
+    <div id="projects">
+      <h3>Projects</h3>
+      <p class="description">
+        Added to the following projects:
+      </p>
+      <% for po in @project_observations %>
+        <div class="quiet box clear inline buttonrow">
+          <span class="inter">
+            <%= image_tag po.project.icon.url(:mini), :style => "vertical-align: middle" %>
+            <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) ? 30 : 35)), po.project %>
+          </span>
+          <% if is_me?(@observation.user) -%>
+            <%= link_to "remove", remove_project_observation_path(po), :method => :delete, :class => "pale button", :style => "float: right; margin: 0" %>
+          <% end -%>
+        </div>
+      <% end %>
+    </div>
+  <% end -%>
+  
   
   <% if @observation.flagged? %>
   <span id="flaggings_heads_up" class="description">

@@ -79,9 +79,13 @@ class LifeList < List
     else
       'taxon_id > 0'
     end
-    list.user.observations.find_each(:select => 'id, taxon_id', 
-        :group => 'taxon_id', 
-        :conditions => conditions) do |observation|
+    # Note: this should use find_each, but due to a bug in rails < 3,
+    # conditions in find_each get applied to scopes utilized by anything
+    # further up the call stack, causing bugs.
+    list.owner.observations.all(
+        :select => 'observations.id, observations.taxon_id', 
+        :group => 'observations.taxon_id', 
+        :conditions => conditions).each do |observation|
       list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
     end
   end
@@ -99,8 +103,8 @@ class LifeList < List
   
   private
   def set_defaults
-    self.title ||= "%s's Life List" % self.user.login
-    self.description ||= "Every species %s has ever seen." % self.user.login
+    self.title ||= "%s's Life List" % owner_name
+    self.description ||= "Every species seen by #{owner_name}"
     true
   end
 end
