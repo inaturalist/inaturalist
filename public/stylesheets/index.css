@@ -71,7 +71,7 @@ a:hover {
 /* UI Elements -- Labels, button text, that kind of thing */
 .ui {
   font-family: "Trebuchet MS", Arial, sans-serif;
-  font-size: 100%;
+/*  font-size: 100%;*/
 }
 
 .tinyui {
@@ -857,3 +857,7 @@ form.edit_preferences .field {
   background-color: white;
   background: -webkit-gradient(linear, 0% 50%, 100% 50%, from(rgba(255, 255, 255, 0)), to(white));
 }
+
+/* oh google */
+.gmnoprint .gels { border: 1px solid #eee; }
+.gmnoprint input { padding: 1px 0; }

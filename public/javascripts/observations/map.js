@@ -41,12 +41,23 @@ function showMapView() {
   $('#mapdivider').show();
   $('#mapcontrols').show();
   if ($('#mapdivider').hasClass('closed')) $('#mapobservations').hide();
-  if (window.map) window.map.checkResize();
+  if (window.map) {
+    window.map.checkResize();
+    if (window.map._oldCenter) {
+      window.map.setCenter(window.map._oldCenter)
+      window.map._oldCenter = null
+    } else {
+      window.map.zoomToObservations()
+    }
+  }
   alterLinkParams({view: 'map'});
   $('#view_input').val('map');
 }
 
 function showTableView() {
+  if (window.map) {
+    window.map._oldCenter = window.map.getCenter()
+  }
   $('.observations.map').hide();
   $('#mapdivider').hide();
   $('#mapcontrols').hide();

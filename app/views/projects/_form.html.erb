@@ -122,6 +122,10 @@
         <div id="place_selector" style="display:none">
           <label for="place_q">Choose a place</label><br/>
           <input type="text" name="place_q" value="" id="place_q">
+          <span class="description">
+            Not finding the place you want?
+            <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
+          </span>
         </div>
       <% end %>
     </div>
