@@ -36,4 +36,16 @@ class Project < ActiveRecord::Base
     true
   end
   
+  def self.refresh_project_list(project, options = {})
+    unless project.is_a?(Project)
+      project = Project.find_by_id(project, :include => :project_list)
+    end
+    
+    if project.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list for " + 
+        "project #{project} because it doesn't exist."
+    end
+    
+    project.project_list.refresh(options)
+  end
 end

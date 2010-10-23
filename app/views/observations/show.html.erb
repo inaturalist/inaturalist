@@ -263,6 +263,7 @@
                   <%= link_to "remove", 
                     remove_project_observation_path(project_user.project, :observation_id => @observation.id),
                     :method => :delete,
+                    :confirm => "Are you sure you want to remove this observation from #{h project_user.project.title}?",
                     :class => "pale button" %>
                 <% else %>
                   <%= link_to "add", 
@@ -547,10 +548,16 @@
         <div class="quiet box clear inline buttonrow">
           <span class="inter">
             <%= image_tag po.project.icon.url(:mini), :style => "vertical-align: middle" %>
-            <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) ? 30 : 35)), po.project %>
+            <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) ? 25 : 35)), po.project %>
           </span>
           <% if is_me?(@observation.user) -%>
-            <%= link_to "remove", remove_project_observation_path(po), :method => :delete, :class => "pale button", :style => "float: right; margin: 0" %>
+            <%#= link_to "remove", remove_project_observation_path(po), :method => :delete, :class => "pale button", :style => "float: right; margin: 0" %>
+            <%= link_to "remove", 
+              remove_project_observation_path(po.project_id, :observation_id => @observation.id),
+              :method => :delete,
+              :confirm => "Are you sure you want to remove this observation?",
+              :class => "pale button",
+              :style => "float: right; margin: 0" %>
           <% end -%>
         </div>
       <% end %>

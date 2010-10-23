@@ -369,8 +369,8 @@ class Observation < ActiveRecord::Base
   def munge_observed_on_with_chronic
     # Set the time zone appropriately
     old_time_zone = Time.zone
-    Time.zone = self.user.time_zone unless self.user.nil? || self.user.time_zone.blank?
-    Time.zone = self.time_zone unless self.time_zone.blank?    
+    Time.zone = user.time_zone unless self.user.nil? || self.user.time_zone.blank?
+    Time.zone = time_zone unless time_zone.blank?    
     Chronic.time_class = Time.zone
     
     begin
@@ -379,7 +379,7 @@ class Observation < ActiveRecord::Base
     
       # Re-interpret future dates as being in the past
       if t > Time.now
-        t = Chronic.parse(self.observed_on_string, :context => :past)  
+        t = Chronic.parse(observed_on_string, :context => :past)  
       end
     
       self.observed_on = t.to_date
@@ -421,25 +421,20 @@ class Observation < ActiveRecord::Base
   # the user selected.
   #
   def update_identifications_after_save
-    owners_ident = self.identifications.first(
-      :conditions => {:user_id => self.user_id})
+    owners_ident = identifications.first(:conditions => {:user_id => self.user_id})
     
     # If there's a taxon we need to make ure the owner's ident agrees
-    if self.taxon
+    if taxon
       # If the owner doesn't have an identification for this obs, make one
       unless owners_ident
-        owners_ident = Identification.new(
-          :user => self.user, 
-          :taxon => self.taxon,
-          :observation => self)
+        owners_ident = identifications.build(:user => user, :taxon => taxon)
         owners_ident.skip_update = true
         owners_ident.save
       end
       
       # If the obs taxon and the owner's ident don't agree, make them
-      if owners_ident.taxon_id != self.taxon_id
-        owners_ident.taxon_id = self.taxon_id
-        owners_ident.save
+      if owners_ident.taxon_id != taxon_id
+        owners_ident.update_attributes(:taxon_id => taxon_id)
       end
     
     # If there's no taxon, we should destroy the owner's ident
@@ -460,15 +455,14 @@ class Observation < ActiveRecord::Base
     # Update the observation's current taxon and/or a previous one that was
     # just removed/changed
     target_taxa = [
-      self.taxon, 
+      taxon, 
       Taxon.find_by_id(@old_observation_taxon_id)
     ].compact.uniq
     
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    List.send_later(:refresh_for_user, self.user, 
-      :taxa => target_taxa.map(&:id), :skip_update => true)
+    List.send_later(:refresh_for_user, self.user, :taxa => target_taxa.map(&:id), :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -481,10 +475,9 @@ class Observation < ActiveRecord::Base
   #
   def refresh_lists_after_destroy
     return if @skip_refresh_lists
-    return unless self.taxon
+    return unless taxon
 
-    List.send_later(:refresh_for_user, self.user, :taxa => [self.taxon], 
-      :add_new_taxa => false)
+    List.send_later(:refresh_for_user, self.user, :taxa => [taxon], :add_new_taxa => false)
   end
   
   #
@@ -492,7 +485,7 @@ class Observation < ActiveRecord::Base
   # that taxon in the user's lists after_save
   #
   def keep_old_taxon_id
-    @old_observation_taxon_id = self.taxon_id_was if self.taxon_id_changed?
+    @old_observation_taxon_id = taxon_id_was if taxon_id_changed?
   end
   
   #
@@ -503,10 +496,10 @@ class Observation < ActiveRecord::Base
   # goal is recorded as a contribution in the goal_contributions table.
   #
   def update_goal_contributions
-    self.user.goal_participants_for_incomplete_goals.each do |participant|
+    user.goal_participants_for_incomplete_goals.each do |participant|
       participant.goal.validate_and_add_contribution(self, participant)
     end
-    return true
+    true
   end
   
   
@@ -527,8 +520,8 @@ class Observation < ActiveRecord::Base
   #
   def set_iconic_taxon
     return unless self.taxon_id_changed?
-    if self.taxon
-      self.iconic_taxon_id ||= self.taxon.iconic_taxon_id
+    if taxon
+      self.iconic_taxon_id ||= taxon.iconic_taxon_id
     else
       self.iconic_taxon_id = nil
     end
@@ -538,17 +531,14 @@ class Observation < ActiveRecord::Base
   # Trim whitespace around species guess
   #
   def strip_species_guess
-    self.species_guess.strip! unless self.species_guess.nil?
+    self.species_guess.strip! unless species_guess.nil?
   end
   
   #
   # Set the time_zone of this observation if not already set
   #
   def set_time_zone
-    user = User.find_by_id(self.user_id)
-    if user && self.time_zone.blank?
-      self.time_zone = self.user.time_zone
-    end
+    self.time_zone = user.time_zone if user && time_zone.blank?
     self.time_zone ||= Time.zone
   end
 
@@ -556,28 +546,24 @@ class Observation < ActiveRecord::Base
   # Cast lat and lon so they will (hopefully) pass the numericallity test
   #
   def cast_lat_lon
-    if self.latitude
-      self.latitude = self.latitude.to_f
-    end
-    if self.longitude
-      self.longitude = self.longitude.to_f
-    end
+    self.latitude = latitude.to_f unless latitude.blank?
+    self.longitude = longitude.to_f unless longitude.blank?
   end  
 
   #
   # Force time_observed_at into the time zone
   #
   def set_time_in_time_zone
-    return unless self.time_observed_at && self.time_zone && (self.time_observed_at_changed? || self.time_zone_changed?)
+    return unless time_observed_at && time_zone && (time_observed_at_changed? || time_zone_changed?)
     
     # Render the time as a string
-    time_s = self.time_observed_at_before_type_cast
+    time_s = time_observed_at_before_type_cast
     unless time_s.is_a? String
-      time_s = self.time_observed_at_before_type_cast.strftime("%Y-%m-%d %H:%M:%S")
+      time_s = time_observed_at_before_type_cast.strftime("%Y-%m-%d %H:%M:%S")
     end
     
     # Get the time zone offset as a string and append it
-    offset_s = Time.parse(time_s).in_time_zone(self.time_zone).formatted_offset(false)
+    offset_s = Time.parse(time_s).in_time_zone(time_zone).formatted_offset(false)
     time_s += " #{offset_s}"
     
     self.time_observed_at = Time.parse(time_s)
@@ -618,7 +604,7 @@ class Observation < ActiveRecord::Base
   # Make sure the observation is not in the future.
   #
   def must_be_in_the_past
-    unless self.observed_on.nil? or self.observed_on <= Date.today
+    unless observed_on.nil? || observed_on <= Date.today
       errors.add(:observed_on, "can't be in the future")
     end
   end
@@ -628,12 +614,11 @@ class Observation < ActiveRecord::Base
   # store ambiguity...
   #
   def must_not_be_a_range
-    return unless self.observed_on_string
+    return if observed_on_string.blank?
     
     is_a_range = false
     begin  
-      if tspan = Chronic.parse(self.observed_on_string, 
-                             :context => :past, :guess => false)
+      if tspan = Chronic.parse(observed_on_string, :context => :past, :guess => false)
         is_a_range = true if tspan.width.seconds > 1.day.seconds
       end
     rescue RuntimeError
@@ -647,7 +632,7 @@ class Observation < ActiveRecord::Base
     
     # Special case: dates like '2004', which ordinarily resolve to today at 
     # 8:04pm
-    observed_on_int = self.observed_on_string.gsub(/[^\d]/, '').to_i
+    observed_on_int = observed_on_string.gsub(/[^\d]/, '').to_i
     if observed_on_int > 1900 && observed_on_int <= Date.today.year
       is_a_range = true
     end

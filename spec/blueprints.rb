@@ -31,6 +31,7 @@ User.blueprint do
   created_at 5.days.ago.to_s(:db)
   activated_at { 1.day.ago }
   state "active"
+  time_zone "Pacific Time (US & Canada)"
 end
 
 ListedTaxon.blueprint do
