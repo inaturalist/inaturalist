@@ -43,7 +43,6 @@ class PlacesController < ApplicationController
     end.compact
     
     # If the IP geocoding failed for some reason...
-    logger.debug "[DEBUG] @places.size: #{@places.size}"
     if @places.size < limit && @places.size > 0
       if @place
         # Backfill with child places

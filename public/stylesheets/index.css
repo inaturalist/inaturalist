@@ -69,10 +69,8 @@ a:hover {
 }
 
 /* UI Elements -- Labels, button text, that kind of thing */
-.ui {
-  font-family: "Trebuchet MS", Arial, sans-serif;
-/*  font-size: 100%;*/
-}
+.ui { font-family: "Trebuchet MS", Arial, sans-serif; }
+p.ui { font-size: 100%; }
 
 .tinyui {
   font-family: "Trebuchet MS", Arial, sans-serif;
