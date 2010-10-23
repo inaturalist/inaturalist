@@ -1,5 +1,26 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe ProjectObservation, "creation" do
+  it "should queue a DJ job for the list" do
+    stamp = Time.now
+    ProjectObservation.make(:observation => Observation.make(:taxon => Taxon.make))
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # jobs.each {|j| puts j.handler}
+    jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+  end
+end
+
+describe ProjectObservation, "destruction" do
+  it "should queue a DJ job for the list" do
+    stamp = Time.now
+    project_observation = ProjectObservation.make(:observation => Observation.make(:taxon => Taxon.make))
+    jobs = Delayed::Job.destroy_all
+    project_observation.destroy
+    Delayed::Job.last.should_not be_blank
+    Delayed::Job.last.handler.should match(/\:refresh_project_list\n/)
+  end
+end
+
 describe ProjectObservation, "observed_by_project_member?" do
   
   before(:each) do 

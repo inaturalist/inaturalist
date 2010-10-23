@@ -4,6 +4,11 @@ class Project < ActiveRecord::Base
   has_many :project_observations, :dependent => :destroy
   has_many :users, :through => :project_users
   has_many :observations, :through => :project_observations
+  has_one :project_list, :dependent => :destroy
+  has_many :listed_taxa, :through => :project_list
+  has_many :taxa, :through => :listed_taxa
+  
+  after_create :add_owner_as_project_user, :create_the_project_list
   
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
@@ -21,9 +26,26 @@ class Project < ActiveRecord::Base
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
   
-  def after_create
+  def add_owner_as_project_user
     first_user = self.project_users.create(:user => user)
     true
   end
   
+  def create_the_project_list
+    create_project_list
+    true
+  end
+  
+  def self.refresh_project_list(project, options = {})
+    unless project.is_a?(Project)
+      project = Project.find_by_id(project, :include => :project_list)
+    end
+    
+    if project.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list for " + 
+        "project #{project} because it doesn't exist."
+    end
+    
+    project.project_list.refresh(options)
+  end
 end

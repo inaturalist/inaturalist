@@ -1,30 +1,33 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Observation, "creation" do
-  fixtures :taxa, :taxon_names, :users, :lists, :listed_taxa, :observations
+  # fixtures :taxa, :taxon_names, :users, :lists, :listed_taxa, :observations
   before(:each) do
-    @observation = Observation.new(
-      :user => users(:quentin),
-      :taxon => taxa(:Calypte_anna),
-      :observed_on_string => 'yesterday at 1pm'
-    )
+    # @observation = Observation.new(
+    #   :user => users(:quentin),
+    #   :taxon => taxa(:Calypte_anna),
+    #   :observed_on_string => 'yesterday at 1pm'
+    # )
+    @taxon = Taxon.make
+    @observation = Observation.make(:taxon => @taxon, :observed_on_string => 'yesterday at 1pm')
   end
   
   it "should be in the past" do
-    @observation.save
     @observation.observed_on.should <= Date.today
   end
   
   it "should not be in the future" do
-    future_observation = Observation.new(
-      :observed_on_string => '2 weeks from now'
-    )
-    future_observation.valid?
-    future_observation.errors.on(:observed_on).should_not be(nil)
+    # future_observation = Observation.make(
+    #   :observed_on_string => '2 weeks from now'
+    # )
+    lambda {
+      Observation.make(:observed_on_string => '2 weeks from now')
+    }.should raise_error(ActiveRecord::RecordInvalid)
+    # future_observation.valid?
+    # future_observation.errors.on(:observed_on).should_not be(nil)
   end
   
   it "should properly set date and time" do
-    @observation.save
     Time.use_zone(@observation.time_zone) do
       @observation.observed_on.should == (1.day.ago.to_date)
       @observation.time_observed_at.hour.should be(13)
@@ -62,29 +65,15 @@ describe Observation, "creation" do
   end
   
   it "should have an identification that maches the taxon" do
-    @observation.save
     @observation.reload
     @observation.identifications.first.taxon.should == @observation.taxon
   end
   
-  # # Handled by DJ
-  # it "should add a newly observed taxon to the user's life list" do
-  #   @observation.taxon = Taxon.find_by_name("Ensatina eschscholtzii")
-  #   @observation.user.life_list.taxa.should_not include(@observation.taxon)
-  #   @observation.save
-  #   @observation.reload
-  #   @observation.user.life_list.taxa.should include(@observation.taxon)
-  # end
-  
-  it "should only update the life list for an already observed taxon" do
-    user = @observation.user
-    taxon = @observation.taxon
-    @observation.save
-    user.life_list.taxa.select {|t| t == taxon}.size.should == 1
-    
-    more_of_the_same = @observation.clone
-    more_of_the_same.save
-    user.life_list.taxa.select {|t| t == taxon}.size.should == 1
+  it "should queue a DJ job for the life list" do
+    stamp = Time.now
+    Observation.make(:taxon => Taxon.make)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /refresh_for_user/}.should_not be_blank
   end
   
   it "should properly parse relative datetimes like '2 days ago'" do
@@ -96,7 +85,6 @@ describe Observation, "creation" do
   end
   
   it "should not save relative dates/times like 'yesterday'" do
-    @observation.save
     @observation.observed_on_string.split.include?('yesterday').should be(false)
   end
   
@@ -128,7 +116,6 @@ describe Observation, "creation" do
   end
   
   it "should default to the user's time zone" do
-    @observation.save
     @observation.time_zone.should == @observation.user.time_zone
   end
   
@@ -156,16 +143,17 @@ describe Observation, "creation" do
   
   it "should increment the counter cache in users" do
     old_count = @observation.user.observations_count
-    @observation.save
+    Observation.make(:user => @observation.user)
     @observation.reload
     @observation.user.observations_count.should == old_count + 1
   end
   
   it "should automatically set a taxon if the guess corresponds to a unique taxon" do
+    taxon = Taxon.make
     @observation.taxon = nil
-    @observation.species_guess = "Anna's Hummingbird"
+    @observation.species_guess = taxon.name
     @observation.save
-    @observation.taxon_id.should == taxa(:Calypte_anna).id
+    @observation.taxon_id.should == taxon.id
   end
 end
 

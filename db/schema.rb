@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101010224648) do
+ActiveRecord::Schema.define(:version => 20101017010641) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -185,10 +185,12 @@ ActiveRecord::Schema.define(:version => 20101010224648) do
     t.column "taxon_id", :integer
     t.column "last_synced_at", :datetime
     t.column "place_id", :integer
+    t.column "project_id", :integer
   end
 
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
   add_index "lists", ["place_id"], :name => "index_lists_on_place_id"
+  add_index "lists", ["project_id"], :name => "index_lists_on_project_id"
 
   create_table "observation_photos", :force => true do |t|
     t.column "observation_id", :integer, :null => false

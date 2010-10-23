@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @project_users = @project.project_users.paginate(:page => 1, :include => :user)
+    @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
     @project_observations = @project.project_observations.paginate(:page => 1, :include => :observation)
     @observations = @project_observations.map(&:observation)
   end

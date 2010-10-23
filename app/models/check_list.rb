@@ -77,6 +77,10 @@ class CheckList < List
     parent_check_list.update_attribute(:last_synced_at, Time.now)
   end
   
+  def last_observation_of(taxon)
+    nil
+  end
+  
   def self.sync_check_lists_with_parents(options = {})
     time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
     start_time = Time.now

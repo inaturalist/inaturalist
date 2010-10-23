@@ -80,13 +80,14 @@ class ListedTaxon < ActiveRecord::Base
   # calling scope to save a query.
   #
   def update_last_observation(latest_observation = nil)
-    return if self.place_id || self.list.is_a?(CheckList)
-    return unless self.list.user
-    
-    latest_observation ||= Observation.latest.by(
-      self.list.user).first(:conditions => ["taxon_id = ?", self.taxon])
-    
-    self.last_observation = latest_observation if latest_observation
+    # return if self.place_id || self.list.is_a?(CheckList)
+    # return unless self.list.user
+    # 
+    # latest_observation ||= Observation.latest.by(
+    #   self.list.user).first(:conditions => ["taxon_id = ?", self.taxon])
+    # 
+    # self.last_observation = latest_observation if latest_observation
+    self.last_observation = list.last_observation_of(taxon_id)
     true
   end
   

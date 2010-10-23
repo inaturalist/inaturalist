@@ -13,8 +13,6 @@
   current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids 
   seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) 
   seenit ||= false
-  Rails.logger.debug "[DEBUG] listed_taxon: #{listed_taxon}"
-  Rails.logger.debug "[DEBUG] listed_taxon.taxon: #{listed_taxon.taxon}"
 -%>
 <%- rendered_taxon_name = capture do -%>
   <%= render(:partial => 'shared/taxon.html.erb', :object => listed_taxon.taxon) -%>

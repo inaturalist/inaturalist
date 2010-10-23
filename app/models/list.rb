@@ -30,12 +30,11 @@ class List < ActiveRecord::Base
   # were selected that were not in the list, they will be added if they've
   # been observed.
   #
-  def refresh(params = {})
-    if taxa = params[:taxa]
-      collection = ListedTaxon.find(:all,
-        :conditions => ["list_id = ? AND taxon_id IN (?)", self, taxa])
+  def refresh(options = {})
+    if taxa = options[:taxa]
+      collection = listed_taxa.all(:conditions => ["taxon_id IN (?)", self, taxa])
     else
-      collection = self.listed_taxa
+      collection = listed_taxa.all
     end
     
     collection.each do |listed_taxon|
@@ -57,6 +56,16 @@ class List < ActiveRecord::Base
   
   def owner_name
     self.user ? self.user.login : 'Unknown'
+  end
+  
+  # Returns an associate that has observations
+  def owner
+    user
+  end
+  
+  def last_observation_of(taxon)
+    return nil unless taxon || user
+    Observation.latest.by(user).first(:conditions => ["taxon_id = ?", taxon])
   end
   
   def self.icon_preview_cache_key(list)
@@ -88,5 +97,14 @@ class List < ActiveRecord::Base
       list.refresh(options)
     end
     true
+  end
+  
+  def self.refresh(list, options = {})
+    list = List.find_by_id(list) unless list.is_a?(List)
+    if list.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list #{list} because it doesn't exist."
+    else
+      list.refresh(options)
+    end
   end
 end
