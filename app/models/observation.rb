@@ -652,6 +652,7 @@ class Observation < ActiveRecord::Base
     self.taxon_id = taxon_names.first.taxon_id if taxon_names.size == 1
     true
   end
+  
     
   # I'm not psyched about having this stuff here, but it makes generating 
   # more compact JSON a lot easier.

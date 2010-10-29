@@ -114,9 +114,9 @@
     <%= link_to_toggle "add a new rule", "#new_project_observation_rule" %>
     <div id="new_project_observation_rule" style="display:none">
       <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
-        <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize, m]}, 
+        <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
           :include_blank => "Choose a rule",
-          :label => "Rule" %>
+          :label => "Rule: must be..." %>
         <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
         <%= pu.hidden_field :operand_id, :id => "new_operand_id" %>
         <div id="place_selector" style="display:none">

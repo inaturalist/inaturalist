@@ -51,3 +51,25 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
   end
   
 end
+
+describe ProjectObservation, "georeferenced?" do
+  
+  it "should work" do
+    observation = Observation.make(:latitude => 0.5, :longitude => 0.5)
+    project_observation = ProjectObservation.make(:observation => observation)
+    project_observation.should be_georeferenced
+  end
+  
+end
+
+describe ProjectObservation, "identified?" do
+  
+  it "should work" do
+    project_observation = ProjectObservation.make
+    observation = project_observation.observation
+    project_observation.should_not be_identified
+    observation.update_attributes(:taxon => Taxon.make)
+    project_observation.should be_identified
+  end
+  
+end
