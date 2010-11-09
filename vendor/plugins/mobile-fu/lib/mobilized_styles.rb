@@ -37,6 +37,8 @@ module MobilizedStyles
         'blackberry'
       elsif ua.index('iphone') || ua.index('ipod')
         'iphone'
+      elsif ua.index('ipad')
+        'ipad'
       elsif ua.index('android')
         'android'
       elsif ua.index('nokia') 
@@ -57,8 +59,8 @@ module MobilizedStyles
       mobilized_sources << source
 
       for possible_source in possible_sources
-        path = File.join(ActionView::Helpers::AssetTagHelper::STYLESHEETS_DIR,"#{possible_source}.css")
-        sass_path = File.join(ActionView::Helpers::AssetTagHelper::STYLESHEETS_DIR,"sass","#{possible_source}.sass")
+        path = File.join(config.stylesheets_dir,"#{possible_source}.css")
+        sass_path = File.join(config.stylesheets_dir,"sass","#{possible_source}.sass")
         mobilized_sources << possible_source if File.exist?(path) || File.exist?(sass_path)
       end
     end

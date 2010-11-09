@@ -8,7 +8,7 @@
     <li class="subnavwrapper observationstab">
       <div class="clear subnavtab">
         <%= link_to "Observations", observations_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
@@ -30,7 +30,7 @@
     <li class="subnavwrapper taxatab">
       <div class="clear subnavtab">
         <%= link_to "Species", taxa_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
@@ -53,7 +53,7 @@
     <li class="subnavwrapper projectstab">
       <div class="clear subnavtab">
         <%= link_to "Projects", projects_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
@@ -82,7 +82,7 @@
     <li class="subnavwrapper placestab">
       <div class="clear subnavtab">
         <%= link_to "Places", places_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
@@ -126,7 +126,7 @@
     <li class="subnavwrapper">
       <div class="clear subnavtab">
         <%= link_to "Dashboard", home_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>

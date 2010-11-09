@@ -696,8 +696,9 @@ class Taxon < ActiveRecord::Base
   end
   
   def wikipedia_summary(options = {})
-    if super && super.match(/^\d\d\d\d-\d\d-\d\d$/)
-      last_try_date = DateTime.parse(super)
+    summary = super()
+    if summary && summary.match(/^\d\d\d\d-\d\d-\d\d$/)
+      last_try_date = DateTime.parse(summary)
       return nil if last_try_date > 1.week.ago
       options[:reload] = true
     end

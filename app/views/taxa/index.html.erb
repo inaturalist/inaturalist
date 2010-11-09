@@ -186,7 +186,7 @@ Taxa &middot; All Species
       <div id="desccol">
         <center id="featurednav">
           <% if i > 0 -%>
-            <%= link_to_function "&larr;", 
+            <%= link_to_function "&larr;".html_safe, 
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{i-1}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{i-1}', {axis: 'x'})",
@@ -195,14 +195,14 @@ Taxa &middot; All Species
             <span class="navarr">&larr;</span>
           <% end -%>
           <% @featured_taxa.size.times do |n| %>
-            <%= link_to_function "&middot", 
+            <%= link_to_function "&middot;".html_safe, 
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{n}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{n}', {axis: 'x'})",
               :class => "navdot_#{n} navdot #{'selected' if n == i}" %>
           <% end %>
           <% if i < @featured_taxa.size - 1 -%>
-            <%= link_to_function "&rarr;", 
+            <%= link_to_function "&rarr;".html_safe, 
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{i+1}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{i+1}', {axis: 'x'})",
@@ -212,8 +212,8 @@ Taxa &middot; All Species
           <% end -%>
         </center>
         <div class="readable">
-          <%= taxon.wikipedia_summary %>
-          <%= link_to "Learn more &raquo;", taxon, :class => "nobr" %>
+          <%= sanitize(taxon.wikipedia_summary.html_safe) %>
+          <%= link_to "Learn more &raquo;".html_safe, taxon, :class => "nobr" %>
         </div>
       </div>
 

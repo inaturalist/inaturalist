@@ -138,7 +138,7 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
-    return render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404)
+    return render(:file => "#{Rails.root}/public/404.html", :status => 404)
   end
   
   #
@@ -315,7 +315,7 @@ module Rubaidh # :nodoc:
     def add_google_analytics_code
       return if logged_in? && current_user.has_role?(User::JEDI_MASTER_ROLE)
       
-      code = google_analytics_code(request)
+      code = google_analytics_code
       return if code.blank?
       response.body.gsub! '</body>', code + '</body>' if response.body.respond_to?(:gsub!)
     end

@@ -1,6 +1,6 @@
 ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
+require File.expand_path('../../config/environment', __FILE__)
+require 'rails/test_help'
 require File.expand_path(File.dirname(__FILE__) + "/../spec/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/../spec/helpers/make_helpers")
 
@@ -35,6 +35,4 @@ class ActiveSupport::TestCase
   self.use_instantiated_fixtures  = false
   
   setup { Sham.reset }
-
-  # Add more helper methods to be used by all tests here...
 end
