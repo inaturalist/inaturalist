@@ -7,7 +7,7 @@
     $(document).ready(function() {
       $('#observation_selector').observationSelector({
         urlParams: { 
-          authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+          authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
           include: "<%= @post.observation_ids.join(',') %>",
           user_id: <%= current_user.id %>
         }

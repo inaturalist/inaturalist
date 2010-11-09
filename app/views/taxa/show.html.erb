@@ -328,7 +328,7 @@
             $(h.w).find('#flickr_taxon_photos .taxon_photos').photoSelector({
               defaultQuery: '<%= @taxon.name %>',
               urlParams: {
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -339,7 +339,7 @@
             $(h.w).find('#inat_obs_taxon_photos .taxon_photos').photoSelector({
               baseURL: '<%= taxon_observation_photos_url(@taxon) %>',
               urlParams: {
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -351,7 +351,7 @@
               baseURL: '<%= eol_photo_fields_url %>',
               urlParams: {
                 taxon_id: '<%= @taxon.id %>',
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
                 limit: 15
               },
               afterQueryPhotos: function() {

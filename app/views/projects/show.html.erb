@@ -56,9 +56,9 @@
           links << link_to("Join this project", join_project_path(@project), :class => "ui")
         end
       -%>
-      <%= links.join(" | ") unless links.blank? %>
+      <%= links.join(" | ").html_safe unless links.blank? %>
     </span>
-    <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo Projects".html_safe, projects_path, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <% if @custom_project && !@custom_project.head.blank? -%>

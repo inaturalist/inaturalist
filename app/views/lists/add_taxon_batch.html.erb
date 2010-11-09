@@ -45,7 +45,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#new_listed_taxon').show();
-      window.todo = <%= @lines_taxa.map{|l,o| l if o.blank?}.compact.in_groups_of(50).reverse.to_json %>;
+      window.todo = <%= @lines_taxa.map{|l,o| l if o.blank?}.compact.in_groups_of(50).reverse.to_json.html_safe %>;
       loadNextBatch();
     });
     

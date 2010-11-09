@@ -190,7 +190,7 @@ Observations by <%= h @login %>
         if (options.method == "post") {
           var form = $('<form method="post" style="display:none"></form>').attr('action', baseURL).append(
             $('<input type="hidden" name="o">').val(obs_ids.join(',')),
-            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token %>')
+            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token.html_safe %>')
           );
           $('body').append(form);
           $(form).submit();
