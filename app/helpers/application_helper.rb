@@ -1,16 +1,9 @@
 # Methods added to this helper will be available to all templates in the application.
 # require 'recaptcha'
-module ApplicationHelper
-  include Ambidextrous
-  
-  def gmap_include_tag(key = false)
-    unless key
-      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
-      (Ym4r::GmPlugin::ApiKey.get)  + '" type="text/javascript"></script>'
-    else 
-      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
-      (key) + '" type="text/javascript"></script>'
-    end
+module ApplicationHelper  
+  def gmap_include_tag(key = nil)
+    key ||= Ym4r::GmPlugin::ApiKey.get
+    "<script src=\"http://maps.google.com/maps?file=api&v=2&key=#{Ym4r::GmPlugin::ApiKey.get}\" type=\"text/javascript\"></script>".html_safe
   end
   
   def num2letterID(num)
@@ -103,12 +96,7 @@ module ApplicationHelper
   
   def char_wrap(text, len)
     return text if text.size < len
-    bits = text.split
-    if bits.size == 1
-      "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}"
-    else
-      bits.map{|b| char_wrap(b, len)}.join(' ')
-    end
+    "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}".html_safe
   end
   
   # Generate an id for an object for us in views, e.g. an observation with id 
@@ -254,6 +242,10 @@ module ApplicationHelper
     Nokogiri::HTML::DocumentFragment.parse(text).to_s
   end
   
+  def markdown(text)
+    BlueCloth::new(text).to_html
+  end
+  
   def render_in_format(format, *args)
     old_format = @template.template_format
     @template.template_format = format
@@ -271,14 +263,14 @@ module ApplicationHelper
   
   def taxonomic_taxon_list(taxa, options = {}, &block)
     taxa.each do |taxon, children|
-      concat "<li class='#{options[:class]}'>"
+      concat "<li class='#{options[:class]}'>".html_safe
       yield taxon
       unless children.blank?
-        concat "<ul>"
+        concat "<ul>".html_safe
         taxonomic_taxon_list(children, options, &block)
-        concat "</ul>"
+        concat "</ul>".html_safe
       end
-      concat "</li>"
+      concat "</li>".html_safe
     end
   end
   

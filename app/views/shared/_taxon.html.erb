@@ -36,9 +36,9 @@
   <% end -%>
   <span class="<%= taxon_class %>">
     <% if link_url %>
-      <%= link_to sciname, link_url %>
+      <%= link_to sciname.html_safe, link_url %>
     <% else %>
-      <%= sciname %>
+      <%= sciname.html_safe %>
     <% end %>
   </span>
 <% else %>
@@ -59,9 +59,9 @@
   </span>
   <span class="othernames">
     <% if include_parens %>
-      (<%= sciname %>)
+      (<%= sciname.html_safe %>)
     <% else %>
-      <%= sciname %>
+      <%= sciname.html_safe %>
     <% end %>
   </span>
 </span>
