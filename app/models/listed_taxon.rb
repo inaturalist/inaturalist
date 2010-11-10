@@ -44,16 +44,14 @@ class ListedTaxon < ActiveRecord::Base
                           :scope => :list_id, 
                           :message => "is already in this list"
   
-  named_scope :by_user, lambda {|user| 
-    {:include => :list, :conditions => ["lists.user_id = ?", user]}
-  }
+  scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
   
-  named_scope :order_by, lambda {|order_by|
+  scope :order_by, lambda {|order_by|
     case order_by
     when "alphabetical"
-      {:include => [:taxon], :order => "taxa.name ASC"}
+      includes(:taxon).order("taxa.name ASC")
     when "taxonomic"
-      {:include => [:taxon], :order => "taxa.ancestry ASC, taxa.id ASC"}
+      includes(:taxon).order("taxa.ancestry ASC, taxa.id ASC")
     else
       {} # default to id asc ordering
     end

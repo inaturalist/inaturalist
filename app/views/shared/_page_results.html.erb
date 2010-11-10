@@ -1,4 +1,4 @@
-<%- paginator ||= object -%>
+<%- paginator ||= page_results -%>
 <span class="description">
   <% if paginator.total_entries > 0 -%>
     <%= paginator.offset == 0 ? 1 : paginator.offset %> &ndash; 

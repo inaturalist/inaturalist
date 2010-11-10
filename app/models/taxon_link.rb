@@ -7,10 +7,11 @@ class TaxonLink < ActiveRecord::Base
   
   before_save :set_site_title
   
-  named_scope :for_taxon, lambda {|taxon|
-    {:conditions => [
+  scope :for_taxon, lambda {|taxon|
+    where(
       "taxon_id = ? OR (show_for_descendent_taxa = TRUE and taxon_id IN (?))", 
-      taxon, taxon.ancestors.map(&:id)]}
+      taxon, taxon.ancestors.map(&:id)
+    )
   }
   
   TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES]"

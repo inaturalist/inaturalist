@@ -15,16 +15,13 @@ class Goal < ActiveRecord::Base
   after_create :create_community_goal_participants
 
   # finder to allow Goal.for('community').find queries
-  named_scope :for, lambda {|type|
-    {:conditions => ['goal_type = ?', type]}
-  }
+  scope :for, lambda {|type| where('goal_type = ?', type)}
   
   # This finder is really only applicable to community goals.
   # Individual goals are 'completed' by the number of individual
   # contributions the person puts into a goal, so this is pretty meaningless
   # because those queries come from the perspective of the user, not the goal.
-  named_scope :incomplete, :conditions => [
-    'completed = ? AND (ends_at IS NULL OR ends_at > ?)', false, Time.now]
+  scope :incomplete, where('completed = 0 AND (ends_at IS NULL OR ends_at > ?)', Time.now)
 
   
   # Most goals will be individual goals, however some, like our initial
