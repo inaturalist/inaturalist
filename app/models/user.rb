@@ -133,9 +133,9 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url
   
-  named_scope :order, Proc.new { |sort_by, sort_dir|
+  scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
-    {:order => ("%s %s" % [sort_by, sort_dir])}
+    order("? ?", sort_by, sort_dir)
   }
   named_scope :curators, :include => [:roles], :conditions => "roles.name = 'curator'"
   
