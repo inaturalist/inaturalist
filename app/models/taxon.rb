@@ -208,8 +208,8 @@ class Taxon < ActiveRecord::Base
   
   PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect']
   
-  named_scope :observed_by, lambda {|user|
-    { :joins => """
+  scope :observed_by, lambda {|user|
+    sql = <<-SQL
       JOIN (
         SELECT
           taxon_id
@@ -220,67 +220,54 @@ class Taxon < ActiveRecord::Base
         GROUP BY taxon_id
       ) o
       ON o.taxon_id=#{Taxon.table_name}.#{Taxon.primary_key}
-      """ }}
-  
-  named_scope :iconic_taxa, :conditions => "taxa.is_iconic = true",
-    :include => [:taxon_names]
-  
-  named_scope :of_rank, lambda {|rank|
-    {:conditions => ["taxa.rank = ?", rank]}
+    SQL
+    joins(sql)
   }
   
-  named_scope :locked, :conditions => {:locked => true}
-  
-  named_scope :containing_lat_lng, lambda {|lat, lng|
-    # {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", lat, lat, lng, lng]}
-    {:joins => :taxon_ranges, :conditions => ["ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat]}
+  scope :iconic_taxa, where("taxa.is_iconic = true").includes(:taxon_names)
+  scope :of_rank, lambda {|rank| where("taxa.rank = ?", rank)}
+  scope :locked, where(:locked => true)
+  scope :containing_lat_lng, lambda {|lat, lng|
+    joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
   }
   
   # Like it's counterpart in Place, this is potentially VERY expensive/slow
-  named_scope :intersecting_place, lambda {|place|
+  scope :intersecting_place, lambda {|place|
     place_id = place.is_a?(Place) ? place.id : place.to_i
-    {
-      :joins => 
-        "JOIN place_geometries ON place_geometries.place_id = #{place_id} " + 
-        "JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id",
-      :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
-    }
+    joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
+    joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id").
+    where("ST_Intersects(place_geometries.geom, taxon_ranges.geom)")
   }
   
   # this is potentially VERY expensive/slow
-  named_scope :contained_in_place, lambda {|place|
+  scope :contained_in_place, lambda {|place|
     place_id = place.is_a?(Place) ? place.id : place.to_i
-    {
-      :joins => 
-        "JOIN place_geometries ON place_geometries.place_id = #{place_id} " + 
-        "JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id",
-      :conditions => "ST_Contains(place_geometries.geom, taxon_ranges.geom)"
-    }
+    joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
+    joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id").
+    where("ST_Contains(place_geometries.geom, taxon_ranges.geom)")
   }
   
-  named_scope :colored, lambda {|colors|
+  scope :colored, lambda {|colors|
     colors = [colors] unless colors.is_a?(Array)
     if colors.first.to_i == 0
-      {:include => [:colors], :conditions => ["colors.value IN (?)", colors]}
+      includes(:colors).where("colors.value IN (?)", colors)
     else
-      {:include => [:colors], :conditions => ["colors.id IN (?)", colors]}
+      includes(:colors).where("colors.id IN (?)", colors)
     end
   }
   
-  named_scope :has_photos, :include => [:photos], :conditions => ["photos.id IS NOT NULL"]
-  named_scope :among, lambda {|ids|
-    {:conditions => ["taxa.id IN (?)", ids]}
-  }
+  scope :has_photos, includes(:photos).where("photos.id IS NOT NULL")
+  scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
-  named_scope :self_and_descendants_of, lambda{|taxon|
+  scope :self_and_descendants_of, lambda{|taxon|
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     conditions = taxon.descendant_conditions
     conditions[0] += " OR taxa.id = ?"
     conditions << taxon
-    {:conditions => conditions}
+    where(conditions)
   }
   
-  named_scope :has_conservation_status, lambda {|status|
+  scope :has_conservation_status, lambda {|status|
     if status.is_a?(String)
       status = if status.size == 2
         IUCN_STATUS_VALUES[IUCN_STATUS_CODES.invert[status]]
@@ -288,17 +275,17 @@ class Taxon < ActiveRecord::Base
         IUCN_STATUS_VALUES[status]
       end
     end
-    {:conditions => ["conservation_status = ?", status.to_i]}
+    where("conservation_status = ?", status.to_i)
   }
     
-  named_scope :threatened, {:conditions => ["conservation_status >= ?", IUCN_NEAR_THREATENED]}
-  named_scope :from_place, lambda {|place|
-    {:include => [:listed_taxa], :conditions => ["listed_taxa.place_id = ?", place]}
+  scope :threatened, where("conservation_status >= ?", IUCN_NEAR_THREATENED)
+  scope :from_place, lambda {|place|
+    includes(:listed_taxa).where("listed_taxa.place_id = ?", place)
   }
-  named_scope :on_list, lambda {|list|
-    {:include => [:listed_taxa], :conditions => ["listed_taxa.list_id = ?", list]}
+  scope :on_list, lambda {|list|
+    includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
-  named_scope :active, {:conditions => {:is_active => true}}
+  scope :active, where(:is_active => true)
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)

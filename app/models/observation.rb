@@ -215,44 +215,40 @@ class Observation < ActiveRecord::Base
   # 
   
   # Area scopes
-  named_scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
+  scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
     if swlng.to_f > 0 && nelng.to_f < 0
-      {:conditions => ['latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)',
-                        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f]}
+      where('latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)', 
+        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
     else
-      {:conditions => ['latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?',
-                        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f]}
+      where('latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?', 
+        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
     end
   } do
     def distinct_taxon
-      all(:group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
+      group("taxon_id").where("taxon_id IS NOT NULL").includes(:taxon)
     end
   end
   
-  named_scope :in_place, lambda {|place|
+  scope :in_place, lambda {|place|
     place_id = place.is_a?(Place) ? place.id : place.to_i
-    {
-      :joins => "JOIN place_geometries ON place_geometries.place_id = #{place_id}",
-      :conditions => [
-        "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
-      ]
-    }
+    joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
+    where(
+      "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+      "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+    )
   }
   
-  named_scope :in_taxons_range, lambda {|taxon|
+  scope :in_taxons_range, lambda {|taxon|
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
-    {
-      :joins => "JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}",
-      :conditions => [
-        "(observations.private_latitude IS NULL AND ST_Intersects(taxon_ranges.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(taxon_ranges.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
-      ]
-    }
+    joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
+    where(
+      "(observations.private_latitude IS NULL AND ST_Intersects(taxon_ranges.geom, observations.geom)) OR " +
+      "(observations.private_latitude IS NOT NULL AND ST_Intersects(taxon_ranges.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+    )
   }
   
   # possibly radius in kilometers
-  named_scope :near_point, Proc.new { |lat, lng, radius|
+  scope :near_point, Proc.new { |lat, lng, radius|
     lat = lat.to_f
     lng = lng.to_f
     radius = radius.to_f
@@ -260,88 +256,65 @@ class Observation < ActiveRecord::Base
     planetary_radius = PLANETARY_RADIUS / 1000 # km
     radius_degrees = radius / (2*Math::PI*planetary_radius) * 360.0
     
-    {:conditions => ["ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees]}
-    
-    # # The following attempts to utilize the spatial index by restricting to a 
-    # # bounding box.  It doesn't seem to be a speed improvement given the 
-    # # current number of obs, but maybe later...  Note that it's messed up 
-    # # around the poles
-    # box_xmin = lng - radius_degrees
-    # box_ymin = lat - radius_degrees
-    # box_xmax = lng + radius_degrees
-    # box_ymax = lat + radius_degrees
-    # box_xmin = 180 - (box_xmin * -1 - 180) if box_xmin < -180
-    # box_ymin = -90 if box_ymin < -90
-    # box_xmax = -180 + box_max - 180 if box_xmax > 180
-    # box_ymax = 90 if box_ymin > 90
-    # 
-    # {:conditions => [
-    #   "geom && 'BOX3D(? ?, ? ?)'::box3d AND ST_Distance(ST_Point(?,?), geom) <= ?", 
-    #   box_xmin, box_ymin, box_xmax, box_ymax,
-    #   lng.to_f, lat.to_f, radius_degrees]}
+    where("ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees)
   }
   
   # Has_property scopes
-  named_scope :has_taxon, lambda { |taxon_id|
+  scope :has_taxon, lambda { |taxon_id|
     if taxon_id.nil?
-    then return {:conditions => "taxon_id IS NOT NULL"}
-    else {:conditions => ["taxon_id IN (?)", taxon_id]}
+      where("taxon_id IS NOT NULL")
+    else
+      where("taxon_id IN (?)", taxon_id)
     end
   }
-  named_scope :has_iconic_taxa, lambda { |iconic_taxon_ids|
+  scope :has_iconic_taxa, lambda { |iconic_taxon_ids|
     iconic_taxon_ids = [iconic_taxon_ids].flatten # make array if single
     if iconic_taxon_ids.include?(nil)
-      {:conditions => [
+      where(
         "observations.iconic_taxon_id IS NULL OR observations.iconic_taxon_id IN (?)", 
-        iconic_taxon_ids]}
+        iconic_taxon_ids
+      )
     elsif !iconic_taxon_ids.empty?
-      {:conditions => [
-        "observations.iconic_taxon_id IN (?)", iconic_taxon_ids]}
+      where("observations.iconic_taxon_id IN (?)", iconic_taxon_ids)
     end
   }
   
-  named_scope :has_geo, :conditions => ["latitude IS NOT NULL AND longitude IS NOT NULL"]
-  named_scope :has_id_please, :conditions => ["id_please IS TRUE"]
-  named_scope :has_photos, 
-              :select => "DISTINCT observations.*",
-              :joins => "JOIN observation_photos AS _op ON _op.observation_id = observations.id ",
-              :conditions => ['_op.id IS NOT NULL']
-  named_scope :has_quality_grade, lambda {|quality_grade|
+  scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
+  scope :has_id_please, where("id_please IS TRUE")
+  scope :has_photos, 
+    select("DISTINCT observations.*").
+    joins("JOIN observation_photos AS _op ON _op.observation_id = observations.id").
+    where('_op.id IS NOT NULL')
+  scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
-    {:conditions => ["quality_grade = ?", quality_grade]}
+    where("quality_grade = ?", quality_grade)
   }
   
   # Find observations by a taxon object.  Querying on taxa columns forces 
   # massive joins, it's a bit sluggish
-  named_scope :of, lambda { |taxon|
+  scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
-    return {:conditions => "1 = 2"} unless taxon
-    {
-      :joins => :taxon,
-      :conditions => [
-        "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
-        taxon
-      ]
-    }
-  }
+    return where("1 = 2") unless taxon
+    joins(:taxon).where(
+      "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
+      taxon
+    )
   
-  named_scope :at_or_below_rank, lambda {|rank| 
+  scope :at_or_below_rank, lambda {|rank| 
     rank_level = Taxon::RANK_LEVELS[rank]
-    {:joins => [:taxon], :conditions => ["taxa.rank_level <= ?", rank_level]}
+    joins(:taxon).where("taxa.rank_level <= ?", rank_level)
   }
   
   # Find observations by user
-  named_scope :by, lambda { |user| 
-    {:conditions => ["observations.user_id = ?", user]}
-  }
+  scope :by, lambda { |user| where("observations.user_id = ?", user)}
   
   # Order observations by date and time observed
-  named_scope :latest, :order => "observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST"
-  named_scope :recently_added, :order => "observations.id DESC"
+  scope :latest, order("observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST")
+  scope :recently_added, order("observations.id DESC")
   
   # TODO: Make this work for any SQL order statement, including multiple cols
-  named_scope :order_by, lambda { |order|
-    pieces = order.split
+  scope :order_by, lambda { |order_by|
+    pieces = order_by.split
     order_by = pieces[0]
     order = pieces[1] || 'ASC'
     extra = [pieces[2..-1]].flatten.join(' ')
@@ -349,100 +322,70 @@ class Observation < ActiveRecord::Base
     options = {}
     case order_by
     when 'observed_on'
-      options[:order] = "observed_on #{order} #{extra}, " + 
-                        "time_observed_at #{order} #{extra}"
+      order "observed_on #{order} #{extra}, time_observed_at #{order} #{extra}"
     when 'created_at'
-      options[:order] = "observations.created_at #{order} #{extra}"
+      order "observations.created_at #{order} #{extra}"
     else
-      options[:order] = "#{order_by} #{order} #{extra}"
+      order "#{order_by} #{order} #{extra}"
     end
-    options
   }
   
-  named_scope :identifications, lambda { |agreement|
-    limited_scope = {:include => :identifications}
+  def self.identifications(agreement)
+    scope = Observation.scoped({})
+    scope = scope.includes(:identifications)
     case agreement
     when 'most_agree'
-      limited_scope[:conditions] = "num_identification_agreements > num_identification_disagreements"
+      scope.where("num_identification_agreements > num_identification_disagreements")
     when 'some_agree'
-      limited_scope[:conditions] = "num_identification_agreements > 0"
+      scope.where("num_identification_agreements > 0")
     when 'most_disagree'
-      limited_scope[:conditions] = "num_identification_agreements < num_identification_disagreements"
+      scope.where("num_identification_agreements < num_identification_disagreements")
     end
-    limited_scope
-  }
+  end
   
   # Time based named scopes
-  named_scope :created_after, lambda { |time|
-    {:conditions => ['created_at >= ?', time]}
-  }
+  scope :created_after, lambda { |time| where('created_at >= ?', time)}
+  scope :created_before, lambda { |time| where('created_at <= ?', time)}
+  scope :updated_after, lambda { |time| where('updated_at >= ?', time)}
+  scope :updated_before, lambda { |time| where('updated_at <= ?', time)}
+  scope :observed_after, lambda { |time| where('time_observed_at >= ?', time)}
+  scope :observed_before, lambda { |time| where('time_observed_at <= ?', time)}
+  scope :in_month, lambda {|month| where("EXTRACT(MONTH FROM observed_on) = ?", month)}
   
-  named_scope :created_before, lambda { |time|
-    {:conditions => ['created_at <= ?', time]}
-  }
-  
-  named_scope :updated_after, lambda { |time|
-    {:conditions => ['updated_at >= ?', time]}
-  }
-  
-  named_scope :updated_before, lambda { |time|
-    {:conditions => ['updated_at <= ?', time]}
-  }
-  
-  named_scope :observed_after, lambda { |time|
-    {:conditions => ['time_observed_at >= ?', time]}
-  }
-  
-  named_scope :observed_before, lambda { |time|
-    {:conditions => ['time_observed_at <= ?', time]}
-  }
-  
-  named_scope :in_month, lambda {|month|
-    {:conditions => ["EXTRACT(MONTH FROM observed_on) = ?", month]}
-  }
-  
-  named_scope :in_projects, lambda { |projects|
+  scope :in_projects, lambda { |projects|
     projects = projects.split(',') if projects.is_a?(String)
     # NOTE using :include seems to trigger an erroneous eager load of 
     # observations that screws up sorting kueda 2011-07-22
-    {
-      :joins => [:project_observations],
-      :conditions => ["project_observations.project_id IN (?)", projects]
-    }
+    joins(:project_observations).where("project_observations.project_id IN (?)", projects)
   }
   
-  named_scope :on, lambda {|date|
-    {:conditions => Observation.conditions_for_date(:observed_on, date)}
-  }
+  scope :on, lambda {|date| where(Observation.conditions_for_date(:observed_on, date))}
   
-  named_scope :created_on, lambda {|date|
-    {:conditions => Observation.conditions_for_date("observations.created_at", date)}
-  }
+  scope :created_on, lambda {|date| where(Observation.conditions_for_date("observations.created_at", date))}
   
-  named_scope :out_of_range, :conditions => {:out_of_range => true}
-  named_scope :in_range, :conditions => {:out_of_range => false}
-  named_scope :license, lambda {|license|
+  scope :out_of_range, where(:out_of_range => true)
+  scope :in_range, where(:out_of_range => false)
+  scope :license, lambda {|license|
     if license == 'none'
-      {:conditions => "observations.license IS NULL"}
+      where "observations.license IS NULL"
     elsif LICENSE_CODES.include?(license)
-      {:conditions => {:license => license}}
+      where :license => license
     else
-      {:conditions => "observations.license IS NOT NULL"}
+      where "observations.license IS NOT NULL"
     end
   }
   
-  named_scope :photo_license, lambda {|license|
+  scope :photo_license, lambda {|license|
     license = license.to_s
-    opts = {:joins => :photos}
+    scope = joins(:photos).scoped
     license_number = Photo.license_number_for_code(license)
-    opts[:conditions] = if license == 'none'
-      "photos.license = 0"
+    if license == 'none'
+      scope.where("photos.license = 0")
     elsif LICENSE_CODES.include?(license)
-      ["photos.license = ?", license_number]
+      scope.where("photos.license = ?", license_number)
     else
-      "photos.license > 0"
+      scope.where("photos.license > 0")
     end
-    opts
   }
   
   def self.conditions_for_date(column, date)

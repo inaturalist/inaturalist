@@ -11,11 +11,8 @@ class Comment < ActiveRecord::Base
   notifies_subscribers_of :parent, :notification => "activity", :include_owner => true
   auto_subscribes :user, :to => :parent
   
-  named_scope :by, lambda {|user| 
-    {:conditions => ["comments.user_id = ?", user]}}
-  
-  named_scope :since, lambda {|datetime|
-    {:conditions => ["comments.created_at > DATE(?)", datetime]}}
+  scope :by, lambda {|user| where("comments.user_id = ?", user)}
+  scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
   
   def formatted_body
     BlueCloth::new(self.body).to_html

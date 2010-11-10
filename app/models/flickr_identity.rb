@@ -1,9 +1,9 @@
 class FlickrIdentity < ActiveRecord::Base
   belongs_to :user
     
-  named_scope :auto_import_is_on, :conditions => { :auto_import => true }
-  named_scope :not_yet_imported, :conditions => ["auto_imported_at IS ?", nil]
-  named_scope :last_import_more_than_one_hour_ago, :conditions => ["auto_imported_at > ?", 1.hour.ago]
+  scope :auto_import_is_on, where(:auto_import => true)
+  scope :not_yet_imported, where("auto_imported_at IS ?", nil)
+  scope :last_import_more_than_one_hour_ago, where("auto_imported_at > ?", 1.hour.ago)
   
   # This method is to be run by a cron job via script/runner
   # it is not intended to be called by the app in any other context!!!!

@@ -29,18 +29,13 @@ class Identification < ActiveRecord::Base
     ident.user_id != observation.user_id
   }
   
-  named_scope :for, lambda {|user|
-    {:include => :observation,
-    :conditions => ["observation.user_id = ?", user]}
+  scope :for, lambda {|user|
+    includes(:observation).where("observation.user_id = ?", user)
   }
   
-  named_scope :for_others,
-    :include => :observation,
-    :conditions => "observations.user_id != identifications.user_id"
+  scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
   
-  named_scope :by, lambda {|user|
-    {:conditions => ["identifications.user_id = ?", user]}
-  }
+  scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   
   def to_s
     "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"

@@ -11,8 +11,8 @@ class Post < ActiveRecord::Base
   after_create :increment_user_counter_cache
   after_destroy :decrement_user_counter_cache
   
-  named_scope :published, :conditions => "published_at IS NOT NULL"
-  named_scope :unpublished, :conditions => "published_at IS NULL"
+  scope :published, where("published_at IS NOT NULL")
+  scope :unpublished, where("published_at IS NULL")
   
   def skip_update_for_draft
     @skip_update = true if draft?

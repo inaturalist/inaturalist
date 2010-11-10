@@ -18,14 +18,12 @@ class GoalContribution < ActiveRecord::Base
   #
   # Example:
   # GoalContribution.contributed_to(1).find(:all)
-  named_scope :contributed_to, lambda {|goal_id|
-    {:conditions => ['goal_id = ?', goal_id]}
-  }
+  scope :contributed_to, lambda {|goal_id| where('goal_id = ?', goal_id)}
   
   # Simple group by date, using the MySQL DATE function
   #
   # This doesn't seem to work in self.count calls, and so may be useless.
-  named_scope :grouped_by_date, :group => "DATE(created_at)"
+  scope :grouped_by_date, group("DATE(created_at)")
   
   # Accepts a start time and optional end time.  If no end time is provided,
   # assumes Time.now.  Note: this also works with Rails' additional Date
@@ -39,7 +37,7 @@ class GoalContribution < ActiveRecord::Base
   # Using the Date methods:
   # GoalContribution.contributed_to(1).within(Date.today).find(:all)
   # GoalContribution.contributed_to(1).within(Date.yesterday).find(:all)
-  named_scope :within, lambda {|*args|
+  scope :within, lambda {|*args|
     args[1] ||= Time.now
     {:conditions => ['created_at >= ? AND created_at <= ?', args[0], args[1]]}
   }
