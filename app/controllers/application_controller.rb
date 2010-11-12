@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery
-  filter_parameter_logging :password, :password_confirmation
   before_filter :login_from_cookie, :get_user, :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
