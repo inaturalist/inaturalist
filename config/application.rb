@@ -47,15 +47,6 @@ module Inaturalist
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
     
-    # Your secret key for verifying cookie session data integrity.
-    # If you change this key, all old sessions will become invalid!
-    # Make sure the secret is at least 30 characters and all random, 
-    # no regular words or you'll be exposed to dictionary attacks.
-    config.action_controller.session = {
-      :session_key => INAT_CONFIG['rails']['secret'],
-      :secret      => INAT_CONFIG['rails']['secret']
-    }
-    
     config.active_record.observers = :user_observer, :listed_taxon_sweeper
     
     config.time_zone = 'UTC'
@@ -64,7 +55,7 @@ module Inaturalist
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
   end
   
   # require 'geoplanet'
