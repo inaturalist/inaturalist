@@ -34,12 +34,12 @@
 <% end %>
 
 <div id="pageheader" class="column span-24 last">
-  <%- if logged_in? && @list.user_id != current_user.id %>
+  <%- if logged_in? %>
     <div class="toolset" style="float: right">
       <% if @list.editable_by?(current_user) && !@list.is_default? -%>
         <%= link_to "edit list", edit_check_list_path(@list) %> |
       <% end -%>
-      <%= link_to('Compare with your life list', compare_lists_path(@list), :class => 'inter readmore') %>
+      <%= render :partial => 'lists/compare_form' %>
     </div>
   <%- end -%>
   

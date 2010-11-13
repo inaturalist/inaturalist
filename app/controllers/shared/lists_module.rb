@@ -58,7 +58,11 @@ module Shared::ListsModule
     end
     
     respond_to do |format|
-      format.html
+      format.html do
+        if logged_in?
+          @current_user_lists = current_user.lists.all(:limit => 100)
+        end
+      end
       format.xml do
         render(
           :xml => @list.to_xml(

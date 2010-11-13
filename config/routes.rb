@@ -133,6 +133,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :life_lists, :controller => 'lists'
   map.resources :check_lists
+  map.resources :project_lists, :controller => 'lists'
   map.resources :listed_taxa
   
   map.lists_by_login 'lists/:login', :controller => 'lists', 

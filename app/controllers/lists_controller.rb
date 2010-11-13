@@ -51,28 +51,42 @@ class ListsController < ApplicationController
     end
     
     find_options = {
-      :conditions => ["list_id in (?)", [@list, @with].compact],
       :include => [:taxon],
       :order => "taxa.ancestry"
     }
-    
-    # TODO: pull out check list logic
-    if @list.is_a?(CheckList) && @list.is_default?
-      find_options[:conditions] = ["(place_id = ? OR list_id = ?)", @list.place_id, @with]
-    end
-    
-    # Handle iconic taxon filtering
-    if params[:taxon]
-      @filter_taxon = Taxon.find_by_id(params[:taxon])
-      find_options[:conditions] = update_conditions(find_options[:conditions], 
-        ["AND taxa.iconic_taxon_id = ?", @filter_taxon])
-    end
     
     # Load listed taxa for pagination
     paginating_find_options = find_options.merge(
       :group => 'listed_taxa.taxon_id', 
       :page => params[:page], 
       :per_page => 26)
+      
+    left_condition = ["list_id = ?", @list]
+    right_condition = ["list_id = ?", @with]
+    both_condition = ["list_id in (?)", [@list, @with].compact]
+
+    # TODO: pull out check list logic
+    if @list.is_a?(CheckList) && @list.is_default?
+      left_condition = ["place_id = ?", @list.place_id]
+      both_condition = ["(place_id = ? OR list_id = ?)", @list.place_id, @with]
+    end
+    
+    @show_list = params[:show] if %w(left right).include?(params[:show])
+    list_conditions = case @show_list
+    when "left"   then  left_condition
+    when "right"  then  right_condition
+    else                both_condition
+    end
+    
+    paginating_find_options[:conditions] = list_conditions
+    
+    # Handle iconic taxon filtering
+    if params[:taxon]
+      @filter_taxon = Taxon.find_by_id(params[:taxon])
+      paginating_find_options[:conditions] = update_conditions(paginating_find_options[:conditions], 
+        ["AND taxa.iconic_taxon_id = ?", @filter_taxon])
+    end
+    
     @paginating_listed_taxa = ListedTaxon.paginate(paginating_find_options)
     
     # Load the listed taxa for display.  The reason we do diplay and paginating
@@ -81,15 +95,13 @@ class ListsController < ApplicationController
     # list1 was a Snowy Egret, but since list2 actually had more taxa than list1
     # on this page, the page didn't include list2's snowy egret, b/c it would be
     # on the next page.  I know, I'm confused even writing it.  KMU 2009-02-08
-    find_options[:conditions] = update_conditions(find_options[:conditions], 
-      ["AND listed_taxa.taxon_id IN (?)", 
-        @paginating_listed_taxa.map(&:taxon_id)]
-    )
+    find_options[:conditions] = update_conditions(both_condition, 
+      ["AND listed_taxa.taxon_id IN (?)", @paginating_listed_taxa.map(&:taxon_id)])
     find_options[:include] = [
       :last_observation,
       {:taxon => [:iconic_taxon, :photos, :taxon_names]}
     ]
-    @listed_taxa = ListedTaxon.find(:all, find_options)
+    @listed_taxa = ListedTaxon.all(find_options)
     
     
     # Group listed_taxa into owner / other pairs

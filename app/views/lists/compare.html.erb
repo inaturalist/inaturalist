@@ -4,6 +4,9 @@
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'lists', 'barchart', 'lists/show' %>
   <style type="text/css" media="screen">
+    #listed_taxa .span-8 {
+      width: 325px;
+    }
     .owners {
       clear: left
     }
@@ -18,7 +21,7 @@
     
     .header {
       border-bottom: 1px solid #eee;
-      padding: 0.5em;
+      padding: 5px 0;
     }
     
     .listed_taxon {
@@ -44,7 +47,7 @@
     }
     
     .pair {
-      padding: 1em;
+      padding: 10px 0;
       border-bottom: 1px solid #eee;
     }
 
@@ -82,6 +85,10 @@
     .barchart.owners .label,
     h3.stat .owners {
       text-align: right;
+    }
+    
+    .listcontrols {
+      font-size: smaller;
     }
   </style>
   <!--[if lt IE 7]>
@@ -149,13 +156,30 @@
   </h2>
 </div>
 
-<div class="column span-17">
+<div id="listed_taxa" class="column span-17">
   <div class="clear header description">
     <div class="column span-8">
       <%= @list.title %>
+      <div class="listcontrols">
+        <% if @show_list == "left" -%>
+          <strong>only showing taxa from this list</strong>
+          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show]) %>
+        <% else %>
+          <%= link_to "only show taxa from this list", url_for_params(:show => "left") %>
+        <% end -%>
+      </div>
+      
     </div>
     <div class="column span-8">
       <%= @with.title %>
+      <div class="listcontrols">
+        <% if @show_list == "right" -%>
+          <strong>only showing taxa from this list</strong>
+          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show]) %>
+        <% else %>
+          <%= link_to "only show taxa from this list", url_for_params(:show => "right") %>
+        <% end -%>
+      </div>
     </div>
   </div>
   <% for owners, others in @pairs %>
@@ -164,7 +188,7 @@
     <div class="clear pair<%= ' match' if owners && others %>">
       <% for listed_taxon in pair %>
         <%- list = listed_taxon == pair.first ? @list : @with %>
-        <div class="last column span-8">
+        <div class="column span-8">
           <% if listed_taxon %>
             <% cache(:controller => 'listed_taxa', :action => 'show', 
                      :id => listed_taxon.id) do %>
@@ -209,16 +233,16 @@
   <div id="sidebar">
     <div id="stats" class="clear">
       <h3 class="clear stat">
-        <div class="owners barchart">
-          <%= @list.owner_name %>
+        <div class="owners barchart fadednowrap fadednowrap_ddd">
+          <%= h(@list.title) %>
         </div>
 
         <div class="readable title">
           &nbsp;
         </div>
 
-        <div class="barchart">
-          <%= @with.owner_name %>
+        <div class="barchart fadednowrap fadednowrap_ddd">
+          <%= h(@with.title) %>
         </div>
       </h3>
       

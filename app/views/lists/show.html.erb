@@ -17,9 +17,9 @@
 <% end %>
 
 <div id="pageheader" class="column span-24 last">
-  <%- if logged_in? && @list.user_id != current_user.id %>
+  <%- if logged_in? %>
     <div class="toolset" style="float: right">
-      <%= link_to('Compare with your life list', compare_lists_path(@list), :class => 'inter readmore') %>
+      <%= render :partial => 'lists/compare_form' %>
     </div>
   <%- end -%>
   

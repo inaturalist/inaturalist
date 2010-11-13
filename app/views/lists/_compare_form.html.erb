@@ -1,0 +1,11 @@
+<%- 
+  lists ||= @current_user_lists || current_user.lists.all
+  if @list
+    lists.delete_if{|l| l.id == @list.id}
+  end
+  options = [['one of your lists...', 0]] + lists.map{|l| [l.title, l.id]}
+-%>
+<% form_tag compare_lists_path(@list), :method => :get, :onchange => "$(this).submit()" do %>
+  <label for="with">Compare with</label>
+  <%= select_tag :with, options_for_select(options, :disabled  => 0, :selected => 0) %>
+<% end %>

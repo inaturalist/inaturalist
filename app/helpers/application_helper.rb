@@ -81,7 +81,12 @@ module ApplicationHelper
   
   def char_wrap(text, len)
     return text if text.size < len
-    "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}"
+    bits = text.split
+    if bits.size == 1
+      "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}"
+    else
+      bits.map{|b| char_wrap(b, len)}.join(' ')
+    end
   end
   
   # Generate an id for an object for us in views, e.g. an observation with id 

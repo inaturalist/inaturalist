@@ -92,7 +92,8 @@ Rails::Initializer.run do |config|
   config.gem 'nokogiri'
   config.gem 'objectify-xml', :lib => 'objectify_xml'
   # As of 2010-04-21, TS doesn't work with DJ >= 2.0
-  config.gem 'delayed_job', :version => '<= 1.8.5'
+  # config.gem 'delayed_job', :version => '<= 1.8.5'
+  config.gem 'delayed_job'
   config.gem 'thinking-sphinx',
     :lib     => 'thinking_sphinx',
     :version => '>= 1.3.11',
