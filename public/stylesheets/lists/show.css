@@ -149,7 +149,8 @@
   margin: 1em 0;
 }
 
-.modal_link {
+.modal_link,
+.buttonrow .modal_link {
   padding-left: 28px;
   margin-left: 5px;
 }
@@ -200,3 +201,15 @@
 .taxonomic_view ul {
   margin-bottom: 0;
 }
+
+.toolset form { vertical-align: top; }
+.toolset.buttonrow select,
+.toolset.buttonrow input.text,
+.toolset.buttonrow input.button,
+.toolset.buttonrow label {
+  margin-top: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+#pageheader h2 { margin-bottom: 5px; }

@@ -1,0 +1,16 @@
+<%-
+  list ||= @list
+-%>
+<div id="tools" class="clear buttonrow">
+  <% if list.editable_by?(current_user) %>
+    <%= link_to "Edit", list.is_a?(CheckList) ? edit_check_list_path(list) : edit_list_url(list), :id => "edit_list_button", :class => "button" %>
+  <% end %>
+  <span class="toolset">
+    <label class="description">View</label>
+    <% for view in ListsController::LIST_VIEWS %>
+      <%= link_to(view.capitalize, url_for(params.merge(:view => view)), 
+        :id => "#{view}_view_link", 
+        :class => "inter modal_link#{' selected' if @view == view}") %>
+    <% end %>
+  </span>
+</div>

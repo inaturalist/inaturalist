@@ -714,7 +714,8 @@ ul.leafylist li li:first-child {
 
 
 /* Modal Links */
-.modal_link {
+.modal_link,
+.buttonrow .modal_link {
   padding: 6px 0.75em;
   border-top: 1px solid white;
   border-right: 1px solid #ccc;
@@ -727,7 +728,9 @@ ul.leafylist li li:first-child {
 }
 
 .modal_link:active,
-.selected.modal_link {
+.selected.modal_link,
+.buttonrow .modal_link:active,
+.buttonrow .selected.modal_link {
   border-top: 1px solid #ccc;
   border-right: 1px solid #eee;
   border-bottom: 1px solid #eee;

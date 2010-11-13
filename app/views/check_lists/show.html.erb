@@ -34,41 +34,39 @@
 <% end %>
 
 <div id="pageheader" class="column span-24 last">
-  <%- if logged_in? %>
-    <div class="toolset" style="float: right">
-      <% if @list.editable_by?(current_user) && !@list.is_default? -%>
-        <%= link_to "edit list", edit_check_list_path(@list) %> |
-      <% end -%>
-      <%= render :partial => 'lists/compare_form' %>
-    </div>
-  <%- end -%>
   
-  <span class="breadcrumbs">    
-    <%= link_to "Back to #{@list.place.name}", 
-                place_path(@list.place),
-                :class => 'back crumb' %>
-  </span>
-  
-  <div id="view_controls" class="toolset clear">
+  <div class="clear">
+    <%- if logged_in? %>
+      <div class="toolset inline buttonrow smallbuttons" style="float: right">
+        <%= render :partial => 'lists/compare_form' %>
+
+        <form action="<%= url_for %>" method="get" style="display: inline-block; margin-left: 10px">
+          <input type="text" name="q" value="<%= @q %>" class="text" />
+          <input type="submit" value="Search List" class="default button" style="margin-right: 0"/>
+        </form>
+      </div>
+    <%- end -%>
     
-    <label class="description">View</label>
-    <% for view in ListsController::LIST_VIEWS %>
-      <%= link_to(view.capitalize, url_for(params.merge(:view => view)), 
-        :id => "#{view}_view_link", 
-        :class => "modal_link#{' selected' if @view == view}") %>
-    <% end %>
-    
-    <form action="<%= url_for %>" method="get" class="inline buttonrow smallbuttons" style="display: inline-block; margin-left: 10px">
-      <input type="text" name="q" value="<%= @q %>" class="text" />
-      <input type="submit" value="Search List" class="default button" style="margin-right: 0"/>
-    </form>
+    <span class="breadcrumbs">    
+      <%= link_to "Back to #{@list.place.name}", 
+                  place_path(@list.place),
+                  :class => 'back crumb' %>
+    </span>
   </div>
+  
   <h2>
     <%= @list.title %>
   </h2>
 </div>
 
 <div class="column span-17">
+  <%= render :partial => 'lists/tools' %>
+  
+  <div id="description" class="readable description">
+    <%= formatted_user_text(@list.description) %>
+  </div>
+  
+  
   <% unless @list.is_default? -%>
     <div id="description" class="readable description">
       <%= formatted_user_text(@list.description) %>
