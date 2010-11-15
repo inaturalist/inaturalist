@@ -21,7 +21,7 @@ class CheckList < List
   
   # CheckLists can be edited by any logged in user.
   def editable_by?(user)
-    user.is_a?(User) && !is_default?
+    user.is_a?(User)
   end
   
   def owner_name
