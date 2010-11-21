@@ -27,10 +27,6 @@
       margin: 0 auto;
     }
     
-    .photo_view li .modal_image_link {
-      margin-bottom: 10px;
-    }
-    
     .listed_taxon .image,
     .listed_taxon .actions .seenit {
       display: none;
@@ -46,18 +42,6 @@
     .listed_taxon .details {
       float: none;
       margin: 0;
-    }
-    
-    .photo_view .nophoto {
-      border: 1px dashed #eee;
-      padding: 10px;
-      text-align: center;
-      width: 196px;
-      height: 140px;
-    }
-    
-    .photo_view .nophoto img {
-      margin-bottom: 1em;
     }
     
     .column-separator {
@@ -76,16 +60,7 @@
     <li class="clear <%= cycle_class %>">
       <%- prepend = capture do -%>
         <% if listed_taxon.taxon.photos.empty? -%>
-          <div class="nophoto">
-            <%= link_to(taxon_image(listed_taxon.taxon, :size => 32), listed_taxon.taxon) %>
-            <div class="description">
-              <%= render :partial => "shared/taxon", :locals => { 
-                :taxon => listed_taxon.taxon,
-                :link_url => listed_taxon.taxon } %>
-              doesn't have a default photo yet.
-              <%= link_to "Want to add one?", listed_taxon.taxon %>
-            </div>
-          </div>
+          <%= render :partial => 'taxa/nophoto', :object => listed_taxon.taxon %>
         <%- else -%>
           <%= modal_image listed_taxon.taxon.photos.first, :size => photo_size %>
         <% end -%>

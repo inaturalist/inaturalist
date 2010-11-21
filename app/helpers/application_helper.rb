@@ -203,4 +203,48 @@ module ApplicationHelper
       concat "</li>"
     end
   end
+  
+  def user_image(user, options = {})
+    size = options.delete(:size)
+    style = "vertical-align:middle; #{options[:style]}"
+    image_tag(user.icon.url(size || :mini), options.merge(:style => style))
+  end
+  
+  def color_pluralize(num, singular)
+    html = content_tag(:span, num, :class => "count")
+    html += num == 1 ? " #{singular}" : " #{singular.pluralize}"
+    html
+  end
+  
+  def one_line_observation(o, options = {})
+    skip = (options.delete(:skip) || []).map(&:to_sym)
+    txt = ""
+    txt += "#{o.user.login} observed " unless skip.include?(:user)
+    unless skip.include?(:taxon)
+      txt += if o.taxon
+        render(:partial => 'shared/taxon', :locals => {
+          :taxon => o.taxon,
+          :include_article => true
+        })
+      else
+        "something "
+      end
+      txt += " "
+    end
+    unless skip.include?(:observed_on)
+      txt += if o.observed_on.blank?
+        "in the past "
+      else
+        "on #{o.observed_on.to_s(:long)} "
+      end
+    end
+    unless skip.include?(:place_guess)
+      txt += if o.place_guess.blank?
+        "somewhere in the Universe"
+      else
+        "in #{o.place_guess}"
+      end
+    end
+    txt
+  end
 end

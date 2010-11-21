@@ -1,5 +1,8 @@
-<%- hide_form ||= false -%>
-<%- remote ||= nil %>
+<%- 
+  parent ||= object || comments
+  hide_form ||= false
+  remote ||= nil 
+-%>
     <h3>Comments</h3>
     <% if parent.comments.empty? %>
       <p class="description">No comments yet.</p>

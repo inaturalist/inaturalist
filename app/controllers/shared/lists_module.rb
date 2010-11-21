@@ -57,6 +57,8 @@ module Shared::ListsModule
       @add_taxa_from_observations_job = Delayed::Job.find_by_id(job_id)
     end
     
+    @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
+    
     respond_to do |format|
       format.html do
         if logged_in?

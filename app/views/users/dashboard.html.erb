@@ -223,11 +223,13 @@
                     a <%= link_to "comment", activity_object %>
                     on
                     <%= activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
-                    <%= activity_object.parent_type.humanize.downcase %>
-                    by
-                    <%= link_to image_tag(activity_object.parent.user.icon.url(:thumb), :class => 'usericon'),
-                      person_path(activity_object.parent.user) %>
-                    <%= link_to activity_object.parent.user.login, activity_object.parent.user %>
+                    <%= link_to activity_object.parent_type.underscore.humanize.downcase, activity_object %>
+                    <% if activity_object.parent.user -%>
+                      by
+                      <%= link_to image_tag(activity_object.parent.user.icon.url(:thumb), :class => 'usericon'),
+                        person_path(activity_object.parent.user) %>
+                      <%= link_to activity_object.parent.user.login, activity_object.parent.user %>
+                    <% end -%>
                   <%- when "ListedTaxon" -%>
                     a taxon to
                     <%= link_to activity_object.list.title, activity_object %>

@@ -1,5 +1,6 @@
 class ListedTaxaController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => [:show]
+  before_filter :load_listed_taxon, :except => [:index, :create]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
 
   def index
@@ -7,8 +8,6 @@ class ListedTaxaController < ApplicationController
   end
   
   def show
-    @listed_taxon = ListedTaxon.find_by_id(params[:id])
-    redirect_to list_path(@listed_taxon.list)
   end
   
   def create
@@ -28,7 +27,7 @@ class ListedTaxaController < ApplicationController
       return redirect_to lists_path
     end
     
-    @listed_taxon = @list.add_taxon(@taxon) if @taxon
+    @listed_taxon = @list.add_taxon(@taxon, :user_id => current_user.id) if @taxon
     
     respond_to do |format|
       format.html do
@@ -71,6 +70,23 @@ class ListedTaxaController < ApplicationController
       end
     end
   end
+  
+  def update
+    unless @list.listed_taxa_editable_by?(current_user)
+      flash[:error] = "You don't have permission to edit listed taxa on this list"
+      redirect_to :back
+      return
+    end
+    
+    listed_taxon = params[:listed_taxon] || {}
+    if @listed_taxon.update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+      flash[:notice] = "Listed taxon updated"
+      redirect_to :back
+    else
+      flash[:errors] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
+      render :action => :show
+    end
+  end
 
   def destroy
     @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => :list)
@@ -104,5 +120,17 @@ class ListedTaxaController < ApplicationController
         end
       end
     end
+  end
+  
+  private
+  
+  def load_listed_taxon
+    unless @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => [:list, :taxon, :user])
+      flash[:notice] = "That listed taxon doesn't exist."
+      redirect_to :back
+      return
+    end
+    @list = @listed_taxon.list
+    @taxon = @listed_taxon.taxon
   end
 end

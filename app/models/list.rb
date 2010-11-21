@@ -20,8 +20,8 @@ class List < ActiveRecord::Base
   # Adds a taxon to this list and returns the listed_taxon (valid or not). 
   # Note that subclasses like LifeList may override this.
   #
-  def add_taxon(taxon)
-    ListedTaxon.create(:list => self, :taxon => taxon)
+  def add_taxon(taxon, options = {})
+    ListedTaxon.create(options.merge(:list => self, :taxon => taxon))
   end
   
   #
@@ -52,6 +52,10 @@ class List < ActiveRecord::Base
   # permission is for the owner only. Override for subclasses.
   def editable_by?(user)
     user && self.user_id == user.id
+  end
+  
+  def listed_taxa_editable_by?(user)
+    editable_by?(user)
   end
   
   def owner_name

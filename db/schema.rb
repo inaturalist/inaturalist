@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101017010641) do
+ActiveRecord::Schema.define(:version => 20101120231112) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -166,6 +166,10 @@ ActiveRecord::Schema.define(:version => 20101017010641) do
     t.column "updated_at", :datetime
     t.column "taxon_ancestor_ids", :string
     t.column "place_id", :integer
+    t.column "description", :text
+    t.column "comments_count", :integer, :default => 0
+    t.column "user_id", :integer
+    t.column "updater_id", :integer
   end
 
   add_index "listed_taxa", ["list_id"], :name => "index_listed_taxa_on_list_id_and_lft"
@@ -173,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20101017010641) do
   add_index "listed_taxa", ["taxon_id"], :name => "index_listed_taxa_on_taxon_id"
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
   add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
+  add_index "listed_taxa", ["user_id"], :name => "index_listed_taxa_on_user_id"
 
   create_table "lists", :force => true do |t|
     t.column "title", :string

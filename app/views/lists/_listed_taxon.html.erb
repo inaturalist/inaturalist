@@ -13,6 +13,8 @@
   current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids 
   seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) 
   seenit ||= false
+  editable ||= @listed_taxa_editble_by_current_user
+  editable = list.listed_taxa_editable_by?(current_user) if editable.nil?
 -%>
 <%- rendered_taxon_name = capture do -%>
   <%= render(:partial => 'shared/taxon.html.erb', :object => listed_taxon.taxon) -%>
@@ -46,24 +48,40 @@
     </div>
   </div>
   <div class="column details">
-    <%= link_to(rendered_taxon_name,
-                listed_taxon.taxon) %>
-    <% if listed_taxon.last_observation %>
-      <div class="observation description">
-        Last seen
-        <a href="<%= observation_url(listed_taxon.last_observation) %>">
-        <%- if listed_taxon.last_observation.observed_on -%>
-          on <%= listed_taxon.last_observation.observed_on.to_s(:long) -%>
-        <%- else -%>
-          on a past date
-        <%- end -%>
-        <%- if listed_taxon.last_observation.place_guess -%>
-          in <%= listed_taxon.last_observation.place_guess -%>
-        <%- else -%>
-          in the Universe
-        <%- end -%>
-        </a>
-      </div>
-    <% end %>
+    <p class="ui">
+      <%= link_to rendered_taxon_name, listed_taxon.taxon %>
+    </p>
+    
+    <% unless listed_taxon.description.blank? -%>
+      <%- txt = strip_tags(h(listed_taxon.description)) -%>
+      <p class="ui clear description">
+        <%= truncate txt, :length => 200 %>
+        <% if txt.size > 200 -%>
+          <%= link_to "More", listed_taxon, :class => "readmore" %>
+        <% elsif editable -%>
+          <%= link_to "Edit", listed_taxon, :class => "readmore" %>
+        <% end -%>
+      </p>
+    <% end -%>
+    
+    <div class="description">
+      <% if listed_taxon.last_observation %>
+        <span class="observation">
+          Last seen
+          <a href="<%= observation_url(listed_taxon.last_observation) %>">
+            <%= one_line_observation listed_taxon.last_observation, :skip => %w(user taxon) %>
+          </a>
+        </span>
+        |
+      <% end %>
+
+      <nobr class="counts">
+        <%= link_to color_pluralize(listed_taxon.comments_count, "comment"), listed_taxon %>
+      </nobr>
+      
+      <% if listed_taxon.description.blank? && editable -%>
+        | <%= link_to "Add description", listed_taxon %>
+      <% end -%>
+    </div>
   </div>
 </div>

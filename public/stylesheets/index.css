@@ -69,8 +69,8 @@ a:hover {
 }
 
 /* UI Elements -- Labels, button text, that kind of thing */
-.ui { font-family: "Trebuchet MS", Arial, sans-serif; }
-p.ui { font-size: 100%; }
+.ui, .ui p { font-family: "Trebuchet MS", Arial, sans-serif; }
+p.ui, .ui p { font-size: 100%; }
 
 .tinyui {
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -875,3 +875,15 @@ form.edit_preferences .field {
 /* oh google */
 .gmnoprint .gels { border: 1px solid #eee; }
 .gmnoprint input { padding: 1px 0; }
+
+.inplaceedit:hover { background-color: #FFFEE6; }
+
+.photo_view .nophoto {
+  border: 1px dashed #eee;
+  padding: 10px;
+  text-align: center;
+}
+
+.photo_view .nophoto img {
+  margin-bottom: 1em;
+}

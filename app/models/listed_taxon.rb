@@ -13,6 +13,9 @@ class ListedTaxon < ActiveRecord::Base
              :class_name => 'Observation', 
              :foreign_key => 'last_observation_id'
   belongs_to :place
+  belongs_to :user
+  belongs_to :updater, :class_name => 'User'
+  has_many :comments, :as => :parent, :dependent => :destroy
   
   before_create :set_ancestor_taxon_ids
   before_create :set_place_id

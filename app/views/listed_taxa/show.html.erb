@@ -1,0 +1,102 @@
+<%- content_for(:title) do -%>
+  <%- @title = capture do %>
+    <%= iconic_taxon_image @taxon, :style => "vertical-align: middle" %>
+    <% link_to @taxon do %>
+      <%= render :partial => "shared/taxon" %>
+    <% end %>
+    on
+    <%= link_to truncate(h(@list.title), :length => 85), @list %>
+  <% end -%>
+  <%= strip_tags @title %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "lists" %>
+  <style type="text/css" media="screen">
+    #taxonimage { margin-bottom: 10px; }
+    #taxonimage .iconic {
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag('jquery/jquery.ui.all.packed',
+                             'jquery/plugins/jqModal') %>
+<%- end -%>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{@list.title}", @list, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  
+  <h2><%= @title %></h2>
+</div>
+
+<div class="column span-7">
+  <div id="taxonimage" class="photo_view">
+    <% if @taxon.photos.blank? -%>
+      <%= render :partial => 'taxa/nophoto', :object => @taxon %>
+    <% else %>
+      <%= link_to taxon_image(@taxon, :size => :small), @taxon %>
+      <p class="ui attribution description">
+        Photo: 
+        <%= link_to @taxon.photos.first.attribution, @taxon.photos.first.native_page_url %>
+      </p>
+    <% end -%>
+  </div>
+  
+  <% if @listed_taxon.last_observation -%>
+    <p class="ui description">
+      Last observation
+      <%= link_to one_line_observation(@listed_taxon.last_observation, :skip => %w(user taxon)), @listed_taxon.last_observation %>
+    </p>
+  <% end -%>
+  
+  <p class="ui description">
+    Added 
+    <% if @listed_taxon.user %>
+      by 
+      <%= link_to user_image(@listed_taxon.user), @listed_taxon.user %>
+      <%= link_to you_or_login(@listed_taxon.user), @listed_taxon.user %>
+    <% end %>
+    on <%= @listed_taxon.created_at.to_s(:long) %>
+  </p>
+  
+  <p class="ui description">
+    Updated
+    <% if @listed_taxon.updater %>
+      by 
+      <%= link_to user_image(@listed_taxon.updater), @listed_taxon.updater %>
+      <%= link_to you_or_login(@listed_taxon.updater), @listed_taxon.updater %>
+    <% end %>
+    on <%= @listed_taxon.updated_at.to_s(:long) %>
+  </p>
+  
+</div>
+
+<div class="last column span-17">  
+  <div id="description" class="description">
+    <% if @listed_taxon.description.blank? && @list.listed_taxa_editable_by?(current_user) -%>
+      <p class="ui description inplaceedit">
+        <%= link_to_function "Add a description", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit")}').show()" %>
+      </p>
+    <% else %>
+      <div class="clear readable">
+        <%= formatted_user_text(@listed_taxon.description) %>
+      </div>
+      <% if @list.listed_taxa_editable_by?(current_user) -%>
+        <p class="ui"><%= link_to_function "edit description", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit")}').show()" %></p>
+      <% end -%>
+    <% end -%>
+  </div>
+  
+  <% if @list.listed_taxa_editable_by?(current_user) -%>
+    <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {:class => "clear box", :style => "display: none"} do |f| %>
+      <%= f.text_area :description, :style => "width: 636px; height: 100px; margin-right: 0" %>
+      <%= f.submit "Save", :class => "default button" %>
+      <%= link_to_function "Cancel", "$('#description').show(); $('##{dom_id(@listed_taxon, "edit")}').hide()", 
+        :class => "minor button" %>
+    <% end %>
+  <% end -%>
+  
+  <%= render :partial => "comments/comments", :object => @listed_taxon %>
+</div>

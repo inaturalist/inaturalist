@@ -10,6 +10,11 @@ class ProjectList < LifeList
     project.title
   end
   
+  def listed_taxa_editable_by?(user)
+    return false if user.blank?
+    project.project_users.exists?(:user_id => user)
+  end
+  
   def refresh(options = {})
     # ProjectLists listed taxa *must* be observed
     super(options.merge(:destroy_unobserved => true))

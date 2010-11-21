@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   has_many :projects, :dependent => :destroy
   has_many :project_users, :dependent => :destroy
+  has_many :listed_taxa, :dependent => :nullify
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
