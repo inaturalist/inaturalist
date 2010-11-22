@@ -5,8 +5,10 @@
     <%= render :partial => 'form_fields', :locals => {:f => f} %>
 
     <div class="column span-24">
-      <div class="tools">
+      <div class="tools buttons">
         <%= f.submit "Save", :class => 'default button' %>
+        <%= link_to "Delete", @list, :method => :delete, :confirm => "Are you sure you want to delete this list?", 
+          :class => "minor delete button" %>
       </div>
     </div>
   <%- end -%>
