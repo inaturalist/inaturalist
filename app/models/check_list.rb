@@ -77,6 +77,7 @@ class CheckList < List
     parent_check_list.update_attribute(:last_synced_at, Time.now)
   end
   
+  # TODO when we have real spatial queries, and maybe data quality grades
   def last_observation_of(taxon)
     nil
   end

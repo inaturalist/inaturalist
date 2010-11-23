@@ -465,7 +465,9 @@ class TaxaController < ApplicationController
           @places << Place.import_by_woeid(ydn_places.first.woeid)
         end
         
-        @listed_taxa = @places.map {|place| place.check_list.add_taxon(@taxon)}.select(&:valid?)
+        @listed_taxa = @places.map do |place| 
+          place.check_list.add_taxon(@taxon, :user_id => current_user.id)
+        end.select(&:valid?)
         @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
         
         render :update do |page|

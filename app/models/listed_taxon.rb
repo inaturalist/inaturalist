@@ -19,7 +19,9 @@ class ListedTaxon < ActiveRecord::Base
   
   before_create :set_ancestor_taxon_ids
   before_create :set_place_id
+  before_create :set_updater_id
   before_save :update_last_observation
+  before_save :set_user_id
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
@@ -54,14 +56,6 @@ class ListedTaxon < ActiveRecord::Base
     "list_id: #{self.list_id}>"
   end
   
-  def user
-    list.user
-  end
-  
-  def user_id
-    list.user_id
-  end
-  
   def validate
     # don't bother if validates_presence_of(:taxon) has already failed
     if errors.on(:taxon).blank?
@@ -83,13 +77,6 @@ class ListedTaxon < ActiveRecord::Base
   # calling scope to save a query.
   #
   def update_last_observation(latest_observation = nil)
-    # return if self.place_id || self.list.is_a?(CheckList)
-    # return unless self.list.user
-    # 
-    # latest_observation ||= Observation.latest.by(
-    #   self.list.user).first(:conditions => ["taxon_id = ?", self.taxon])
-    # 
-    # self.last_observation = latest_observation if latest_observation
     self.last_observation = list.last_observation_of(taxon_id)
     true
   end
@@ -110,6 +97,14 @@ class ListedTaxon < ActiveRecord::Base
         "id = #{self.list.user_id}")
     end
     true
+  end
+  
+  def set_user_id
+    self.user_id ||= list.user_id
+  end
+  
+  def set_updater_id
+    self.updater_id ||= user_id
   end
   
   def set_place_id
