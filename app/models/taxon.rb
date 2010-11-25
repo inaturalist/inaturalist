@@ -433,7 +433,8 @@ class Taxon < ActiveRecord::Base
   # Determine whether this taxon is at or below the rank of species
   #
   def species_or_lower?
-    %w"species subspecies variety infraspecies".include?(self.rank.downcase)
+    return false if rank.blank?
+    %w"species subspecies variety infraspecies".include?(rank.downcase)
   end
   
   # Updated the "cached" lft values in all listed taxa with this taxon

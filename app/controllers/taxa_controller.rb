@@ -629,10 +629,11 @@ class TaxaController < ApplicationController
   
   def curation
     @flags = Flag.paginate(:page => params[:page], 
+      :include => :user,
       :conditions => "resolved = false AND flaggable_type = 'Taxon'")
     life = Taxon.find_by_name('Life')
-    ungrafted_roots = Taxon.roots.all(:conditions => ["id != ?", life])
-    @ungrafted =  ungrafted_roots.map{|ur| ur.self_and_descendants}.flatten
+    @ungrafted_roots = Taxon.roots.paginate(:conditions => ["id != ?", life], :page => 1, :per_page => 100)
+    @ungrafted =  (@ungrafted_roots + @ungrafted_roots.map{|ur| ur.descendants}).flatten
   end
   
   def flickr_tagger    
