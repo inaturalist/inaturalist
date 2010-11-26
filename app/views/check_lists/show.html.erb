@@ -53,7 +53,7 @@
                   :class => 'back crumb' %>
     </span>
   </div>
-  
+    
   <h2>
     <%= @list.title %>
   </h2>
@@ -61,11 +61,6 @@
 
 <div class="column span-17">
   <%= render :partial => 'lists/tools' %>
-  
-  <div id="description" class="readable description">
-    <%= formatted_user_text(@list.description) %>
-  </div>
-  
   
   <% unless @list.is_default? -%>
     <div id="description" class="readable description">
