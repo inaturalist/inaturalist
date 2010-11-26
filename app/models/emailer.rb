@@ -15,6 +15,7 @@ class Emailer < ActionMailer::Base
   
   def comment_notification(comment)
     return unless comment.parent.respond_to?(:user)
+    return unless comment.parent.user
     setup_email
     recipients comment.parent.user.email
     parent_str = comment.parent.to_plain_s(:no_user => true, :no_time => true, 

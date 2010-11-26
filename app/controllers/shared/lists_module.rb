@@ -28,6 +28,10 @@ module Shared::ListsModule
     end
     @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     
+    @taxon_names_by_taxon_id = TaxonName.all(:conditions => [
+      "taxon_id IN (?)", [@listed_taxa.map(&:taxon), @taxa, @iconic_taxa].flatten.compact
+    ]).group_by(&:taxon_id)
+    
     @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
     @total_listed_taxa ||= @list.listed_taxa.count
     

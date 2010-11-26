@@ -2,15 +2,14 @@
   taxon ||= object || @taxon
   include_article ||= false
   singular ||= false
-  comname ||= taxon.common_name.name rescue nil
+  comname ||= common_taxon_name(taxon).try(:name)
   no_common ||= false
   if taxon.species_or_lower?
     sciname = '<span class="sciname"><i>%s</i></span>' % taxon.name
   else
     rank = taxon.rank ? taxon.rank.capitalize : '(Unknown Rank)'
     rank = content_tag(:span, rank, :class => 'rank')
-    sciname = '%s <span class="sciname">%s</span>' % [rank, 
-                                                      taxon.name]
+    sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
   end
 
   include_parens ||= true unless include_parens == false

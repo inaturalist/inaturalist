@@ -92,4 +92,31 @@ class TaxonName < ActiveRecord::Base
     end
     true
   end
+  
+  def self.choose_common_name(taxon_names)
+    common_names = taxon_names.reject { |tn| tn.is_scientific_names? }
+    return nil if common_names.blank?
+    
+    engnames = common_names.select {|n| n.is_english?}
+    unknames = common_names.select {|n| n.lexicon == 'unspecified'}
+    
+    if engnames.length > 0
+      engnames.first
+    elsif unknames.length > 0
+      unknames.first
+    else
+      common_names.first
+    end
+  end
+  
+  def self.choose_scientific_name(taxon_names)
+    taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
+  end
+  
+  def self.choose_default_name(taxon_names)
+    name = choose_common_name(taxon_names)
+    name ||= choose_scientific_name(taxon_names)
+    name ||= taxon_names.first
+    name
+  end
 end

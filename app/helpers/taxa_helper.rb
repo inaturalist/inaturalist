@@ -135,7 +135,15 @@ module TaxaHelper
         Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.name]
       return Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.name]
     end
-    taxon.default_name.name
+    TaxonName.choose_default_name(
+      @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names
+    ).try(:name) || ""
+  end
+  
+  def common_taxon_name(taxon)
+    TaxonName.choose_common_name(
+      @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names
+    )
   end
   
   def jit_taxon_node(taxon, options = {})

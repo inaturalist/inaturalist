@@ -76,8 +76,7 @@ class UsersController < ApplicationController
       :page => params[:page] || 1, :order => 'login'
     }
     if @letter = params[:letter]
-      find_options.update(:conditions => [
-        "login LIKE ?", "#{params[:letter].first}%"])
+      find_options.update(:conditions => ["login LIKE ?", "#{params[:letter].first}%"])
     end
     @users = User.paginate(find_options)
     
@@ -85,13 +84,6 @@ class UsersController < ApplicationController
     alphabet = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z"
     @users_by_letter = alphabet.map do |letter|
       [letter, @users_by_letter[letter] || 0]
-    end
-    
-    respond_to do |format|
-      format.html
-      # These currently display all of the users' private info.  I'll work on filtering them out later.
-      # format.xml   {render :xml => @users}
-      # format.json  {render :json => @users.to_json}
     end
   end
   

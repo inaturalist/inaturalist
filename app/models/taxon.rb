@@ -272,14 +272,11 @@ class Taxon < ActiveRecord::Base
   end
   
   def default_name
-    return common_name if common_name
-    return scientific_name if scientific_name
-    taxon_names.first
+    TaxonName.choose_default_name(taxon_names)
   end
   
   def scientific_name
-    self.taxon_names.reload unless taxon_names.loaded?
-    taxon_names.select { |tn| tn.is_valid? && tn.is_scientific_names? }.first
+    TaxonName.choose_scientific_name(taxon_names)
   end
   
   #
@@ -288,24 +285,7 @@ class Taxon < ActiveRecord::Base
   # common name of any language failing that
   #
   def common_name
-    self.taxon_names.reload unless taxon_names.loaded?
-    common_names = taxon_names.reject { |tn| tn.is_scientific_names? }
-    return nil if common_names.blank?
-    
-    engnames = common_names.select do |n| 
-      n.is_english?
-    end
-    unknames = common_names.select do |n| 
-      n.name if n.lexicon == 'unspecified'
-    end
-    
-    if engnames.length > 0
-      engnames.first
-    elsif unknames.length > 0
-      unknames.first
-    else
-      common_names.first
-    end
+    TaxonName.choose_common_name(taxon_names)
   end
   
   
