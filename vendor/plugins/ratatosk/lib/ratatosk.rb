@@ -150,36 +150,9 @@ module Ratatosk
       # object. It will smooth the way with nested_set...
       taxon = taxon.taxon unless taxon.is_a? Taxon
             
-      raise RatatoskGraftError, 
-        "Can't graft unsaved taxa" if taxon.new_record?
+      raise RatatoskGraftError, "Can't graft unsaved taxa" if taxon.new_record?
 
-      # retrieve the Name Provider used to find this taxon
-      name_provider = @name_providers.select do |name_provider|
-        name_provider.class.name == taxon.name_provider or
-          name_provider.class.name.split('::').last == taxon.name_provider
-      end.first
-      name_provider ||= NameProviders.const_get(taxon.name_provider).new
-
-      if name_provider.nil?
-        raise RatatoskGraftError, 
-          "Can't graft a taxon without a name provider"
-      end
-
-      # get the lineage of this taxon's ancestors
-      if parent = polynom_parent(taxon.name)
-        # lineage = [taxon, parent]
-        lineage = [taxon]
-        graft_point = parent
-      else
-        begin
-          lineage = name_provider.get_lineage_for(taxon)
-        rescue NameProviderError => e
-          raise RatatoskGraftError, e.message
-        end
-        
-        # Set the point on the tree to which we will graft, default is root
-        graft_point, lineage = get_graft_point_for(lineage)
-      end
+      graft_point, lineage = graft_point_and_lineage(taxon)
 
       # Return an empty lineage if this has already been grafted
       return [] if lineage.first.parent == lineage.last
@@ -206,6 +179,36 @@ module Ratatosk
       lineage
     end
     
+    def graft_point_and_lineage(taxon)
+      # Try a simple polynom lookup first
+      if parent = polynom_parent(taxon.name)
+        return [parent, [taxon]]
+      end
+      
+      # retrieve the Name Provider used to find this taxon
+      name_provider = @name_providers.first if taxon.name_provider.blank?
+      name_provider ||= @name_providers.detect do |np|
+        np.class.name == taxon.name_provider || np.class.name.split('::').last == taxon.name_provider
+      end
+      name_provider ||= NameProviders.const_get(taxon.name_provider).new
+
+      if name_provider.nil?
+        raise RatatoskGraftError, "Couldn't graft that taxon without a name provider"
+      end
+      
+      begin
+        lineage = name_provider.get_lineage_for(taxon)
+      rescue NameProviderError => e
+        raise RatatoskGraftError, e.message
+      end
+      
+      # This basically means the name provider wasn't able to find a lineage
+      return [lineage.first, lineage] if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
+      
+      # Set the point on the tree to which we will graft, default is root
+      get_graft_point_for(lineage)
+    end
+    
     def get_graft_point_for(lineage)
       name_provider = NameProviders.const_get(lineage.last.name_provider).new
       new_lineage = []
@@ -224,10 +227,10 @@ module Ratatosk
       lineage.each do |ancestor|
         # puts "\t[DEBUG] Inspecting ancestor: #{ancestor}"
         
-        if ancestor.new_record?
-          existing_homonyms = Taxon.all(:conditions => ["name = ?", ancestor.name])
+        existing_homonyms = if ancestor.new_record?
+          Taxon.all(:conditions => ["name = ?", ancestor.name])
         else
-          existing_homonyms = Taxon.all(:conditions => ["id != ? AND name = ?", ancestor.id, ancestor.name])
+          Taxon.all(:conditions => ["id != ? AND name = ?", ancestor.id, ancestor.name])
         end
         
         # puts "\t\t[DEBUG] Found homonyms: #{existing_homonyms.join(', ')}"
@@ -291,13 +294,9 @@ module Ratatosk
     # Returns nil if none found or if not a polynom.
     #
     def polynom_parent(name)
-      parent = nil
-      parts = name.split
-      while parts.size > 1
-        parts.pop
-        break if parent = Taxon.find_by_name(parts.join(' '))
-      end
-      parent
+      parent_name = name.split[0..-2].join(' ')
+      return nil if parent_name.blank?
+      Taxon.find_by_name(parent_name)
     end
   end # class Ratatosk
 end # module Ratatosk
