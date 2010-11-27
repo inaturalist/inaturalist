@@ -33,13 +33,12 @@ module Ratatosk
         if taxon.class != Taxon && taxon.hxml && taxon.hxml.at('classification')
           hxml = taxon.hxml
         else
-          hxml = @service.search( :id => taxon.source_identifier, 
-                                  :response => 'full' )
+          hxml = @service.search(:id => taxon.source_identifier, :response => 'full' )
         end
         lineage = [taxon]
 
         # walk UP the CoL lineage creating new taxa
-        hxml.search('//classification/taxon').reverse_each do |ancestor_hxml|
+        hxml.search('classification/taxon').reverse_each do |ancestor_hxml|
           lineage << ColTaxonAdapter.new(ancestor_hxml)
         end
         lineage.compact
@@ -65,12 +64,12 @@ module Ratatosk
       def initialize(hxml, params = {})
         @adaptee = TaxonName.new(params)
         @hxml = hxml
-        taxon_name.name = @hxml.at('name').inner_text
+        taxon_name.name = @hxml.at('//name').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
         taxon_name.source = Source.find_by_title('Catalogue of Life')
-        taxon_name.source_identifier = @hxml.at('id').inner_text
-        taxon_name.source_url = @hxml.at('url').inner_text
+        taxon_name.source_identifier = @hxml.at('//id').inner_text
+        taxon_name.source_url = @hxml.at('//url').inner_text
         taxon_name.taxon = taxon
         taxon_name.name_provider = "ColNameProvider"
       end
@@ -95,7 +94,7 @@ module Ratatosk
       def get_lexicon
         if @hxml.at('/rank')
           TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
-        elsif @hxml.at('language')
+        elsif @hxml.at('//language')
           hxml.at('language').inner_text.downcase
         else
           nil
@@ -103,18 +102,15 @@ module Ratatosk
       end
 
       def get_is_valid
-        if is_comname?
-          true
-        else
-          ["accepted name", "provisionally accepted name"].include?(@hxml.at('/name_status').inner_text)
-        end
+        return true if is_comname?
+        ["accepted name", "provisionally accepted name"].include?(@hxml.at_xpath('name_status').inner_text)
       end
 
       #
       # Test if this is a common / vernacular name
       #
       def is_comname?
-        @hxml.at('/rank').nil?
+        @hxml.at_xpath('rank').nil?
       end
 
       def get_taxon
@@ -143,7 +139,7 @@ module Ratatosk
       end
 
       def accepted_name_hxml
-        @accepted_name_hxml ||= @hxml.at('accepted_name')
+        @accepted_name_hxml ||= @hxml.at('//accepted_name')
       end
     end
 
@@ -158,12 +154,12 @@ module Ratatosk
       def initialize(hxml, params = {})
         @adaptee = Taxon.new(params)
         @hxml = hxml
-        taxon.name               = @hxml.at('name').inner_text
-        taxon.rank               = @hxml.at('rank').inner_text.downcase        
-        taxon.source             = Source.find_by_title('Catalogue of Life')
-        taxon.source_identifier  = @hxml.at('id').inner_text
-        taxon.source_url         = @hxml.at('url').inner_text
-        taxon.name_provider      = "ColNameProvider"
+        @adaptee.name               = @hxml.at('name').inner_text
+        @adaptee.rank               = @hxml.at('rank').inner_text.downcase
+        @adaptee.source             = Source.find_by_title('Catalogue of Life')
+        @adaptee.source_identifier  = @hxml.at('id').inner_text
+        @adaptee.source_url         = @hxml.at('url').inner_text
+        @adaptee.name_provider      = "ColNameProvider"
       end
     end
 
@@ -179,6 +175,7 @@ module Ratatosk
         # List of classifications from uBio we like. To fetch an updated list
         # of all available classifications, try this:
         @PREFERRED_CLASSIFICATIONS = [
+          'Species2000 & ITIS Catalogue of Life: 2011',
           'Species2000 & ITIS Catalogue of Life: 2010',
           'Species2000 & ITIS Catalogue of Life: 2009',
           'Species2000 & ITIS Catalogue of Life: 2008',
@@ -219,14 +216,14 @@ module Ratatosk
         # For synonyms in the same taxonomic group, only keep one (canonical 
         # if possible)
         taxon_names_by_tgroup = taxon_names.group_by do |tn|
-          tgroup = tn.hxml.at('ubio:taxonomicGroup').innerHTML.strip rescue nil
+          tgroup = tn.hxml.at('//ubio:taxonomicGroup').inner_text.strip rescue nil
           tgroup
         end
         keepers = taxon_names_by_tgroup.delete(nil) || []
         taxon_names_by_tgroup.each do |tgroup, tnames|
           tnames.group_by(&:name).each do |tname, synonyms|
             keeper = synonyms.detect do |s| 
-              (s.hxml.at('ubio:lexicalStatus').innerHTML rescue nil) == 'Canonical form'
+              (s.hxml.at('//ubio:lexicalStatus').inner_text rescue nil) == 'Canonical form'
             end
             keeper ||= synonyms.first
             keepers << keeper
@@ -235,8 +232,8 @@ module Ratatosk
         
         # Try to sort the names so canonicals are first
         keepers = keepers.sort do |a,b|
-          a_canonical = (a.hxml.at('ubio:lexicalStatus').innerHTML rescue nil) == 'Canonical form'
-          b_canonical = (b.hxml.at('ubio:lexicalStatus').innerHTML rescue nil) == 'Canonical form'
+          a_canonical = (a.hxml.at('//ubio:lexicalStatus').inner_text rescue nil) == 'Canonical form'
+          b_canonical = (b.hxml.at('//ubio:lexicalStatus').inner_text rescue nil) == 'Canonical form'
           if a_canonical && !b_canonical
             -1
           elsif b_canonical && !a_canonical
@@ -294,7 +291,7 @@ module Ratatosk
         # Try to avoid calling uBio a billion times using their 
         # taxonomicGroup element
         if taxon.class != Taxon && (taxaonomic_group = taxon.hxml.at('ubio:taxonomicGroup'))
-          if taxonomic_group_taxon = Taxon.find_by_name(taxaonomic_group.innerHTML)
+          if taxonomic_group_taxon = Taxon.find_by_name(taxaonomic_group.inner_text)
             return taxonomic_group_taxon if taxonomic_group_taxon.rank == 'phylum'
             return taxonomic_group_taxon.phylum
           end
@@ -379,7 +376,7 @@ module Ratatosk
         @adaptee = Taxon.new(params)
         @hxml = hxml
         taxon.name = get_name
-        taxon.rank = @hxml.at('gla:rank').inner_text.downcase rescue nil
+        taxon.rank = @hxml.at('//gla:rank').inner_text.downcase rescue nil
         taxon.source = Source.find_by_title('uBio')
         taxon.source_identifier = get_namebank_id
         taxon.source_url = 'http://www.ubio.org/browser/details.php?' +
@@ -392,10 +389,10 @@ module Ratatosk
 
       def get_name
         begin
-          name = @hxml.at('ubio:canonicalName').inner_text
+          name = @hxml.at('//ubio:canonicalName').inner_text
         rescue NoMethodError
           begin
-            name = @hxml.at('dc:title').inner_text
+            name = @hxml.at('//dc:title').inner_text
           rescue NoMethodError
             # without any kind of name in the RDF response, we can't make a taxon
             raise TaxonAdapterError, "Couldn't find a name in a uBio RDF response"
@@ -406,10 +403,10 @@ module Ratatosk
 
       def get_namebank_id
         # CBank and NBank store the namebank LSID in different places
-        if @hxml.at('rdf:Description')['rdf:about'] =~ /classificationbank/
-          lsid = @hxml.at('ubio:namebankIdentifier')['rdf:resource']
+        if @hxml.at('//rdf:Description')['about'] =~ /classificationbank/
+          lsid = @hxml.at('//ubio:namebankIdentifier')['resource']
         else
-          lsid = @hxml.at('dc:identifier').inner_text
+          lsid = @hxml.at('//dc:identifier').inner_text
         end
 
         namebank_id = lsid.split(':')[4] # 4th term should be the identifier
@@ -475,10 +472,10 @@ module Ratatosk
 
       def get_name
         begin
-          name = @hxml.at('ubio:canonicalName').inner_text
+          name = @hxml.at('//ubio:canonicalName').inner_text
         rescue NoMethodError
           begin
-            name = @hxml.at('dc:title').inner_text
+            name = @hxml.at('//dc:title').inner_text
           rescue NoMethodError
             # without any kind of name in the RDF response, we can't make a taxon
             raise TaxonNameAdapterError, "Couldn't find a name in a uBio RDF " +
@@ -489,20 +486,20 @@ module Ratatosk
       end
 
       def get_lexicon
-        @hxml.at('dc:language').inner_text.downcase rescue TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+        @hxml.at('//dc:language').inner_text.downcase rescue TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
       end
 
       def get_is_valid
         if is_comname?
           true
         else
-          @hxml.at('ubio:hasSYNConcept') ? false : true
+          @hxml.at('//ubio:hasSYNConcept') ? false : true
         end
       end
 
       def get_namebank_id
         begin
-          lsid = @hxml.at('dc:identifier').inner_text
+          lsid = @hxml.at('//dc:identifier').inner_text
         rescue NoMethodError
           raise TaxonNameAdapterError, "uBio returned a taxon without an " + 
                                        "identifier"
@@ -532,7 +529,7 @@ module Ratatosk
       end
 
       def is_sciname?
-        @hxml.at('dc:language').nil?
+        @hxml.at('//dc:language').nil?
       end
       
       #
@@ -540,11 +537,11 @@ module Ratatosk
       #
       def comname_taxon
         begin
-          taxon_namebank_lsid = @hxml.at('gla:parent')['rdf:resource']
+          taxon_namebank_lsid = @hxml.at('//gla:parent')['resource']
         rescue
           # this is a phenomenally brittle workaround for what seems like an
           # Hpricot bug with selecting certaing empty elements...
-          taxon_namebank_lsid = @hxml.at('dc:language').next_sibling['rdf:resource']
+          taxon_namebank_lsid = @hxml.at('//dc:language').next_sibling['resource']
         end
         begin
           UBioTaxonAdapter.new(@service.lsid(taxon_namebank_lsid)).taxon
@@ -567,7 +564,7 @@ module Ratatosk
         @hxml.search('ubio:hasSYNConcept').each do |syn|
           # Fetch the RDF for this ClassificationBank object
           begin
-            cbank_lsid_rdf = @service.lsid(syn['rdf:resource'])
+            cbank_lsid_rdf = @service.lsid(syn['resource'])
           rescue UBioConnectionError => e
             # If uBio isn't responding to requests for ClassificationBank info
             # (which seems to happen occasionally), use the NameBank RDF
@@ -575,7 +572,7 @@ module Ratatosk
             # we'll have a taxon
             logger.error("[Ratatosk] Error in " + 
               "UBioTaxonNameAdapter#sciname_taxon while running " + 
-              "@service.lsid(#{syn['rdf:resource']}).  Attempting to " + 
+              "@service.lsid(#{syn['resource']}).  Attempting to " + 
               "continue using the Namebank RDF.  Error: #{e}")
             cbank_lsid_rdf = @hxml
           end

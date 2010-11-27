@@ -16,7 +16,7 @@ require 'uri'
 require 'timeout'
 
 require 'rubygems'
-require 'hpricot'
+require 'nokogiri'
 
 
 class MetaService
@@ -38,7 +38,6 @@ class MetaService
   # TODO: handle bad responses!
   #
   def request(method, args = {})
-    # params = args.merge({@@method_param => method, 'keyCode' => @api_key})
     params      = args.merge({@method_param => method})
     params      = params.merge(@default_params)
     url         = @endpoint + params.map {|k,v| "#{k}=#{v}"}.join('&')
@@ -48,14 +47,14 @@ class MetaService
     begin
       timed_out = Timeout::timeout(@timeout) do
         response = Net::HTTP.start(request_uri.host) do |http|
-          http.get("#{request_uri.path}?#{request_uri.query}", 
-            'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
+          # puts "MetaService getting #{request_uri.path}?#{request_uri.query}"
+          http.get("#{request_uri.path}?#{request_uri.query}", 'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
         end
       end
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
-    Hpricot::XML(response.body)
+    Nokogiri::XML(response.body)
   end
 
   def method_missing(method, *args)

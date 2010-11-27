@@ -188,10 +188,9 @@ describe "a TaxonName adapter", :shared => true do
   # Note that this can depend on the name provider. For instance, Hyla
   # crucifer would NOT pass this test from uBio as of 2008-06-26
   it "should correctly fill in the is_valid field" do
-    # lookup an outdated sci. name for Sticky Monkey Flower
     bad_name = 'Zigadenus fremontii'
     a = @np.find(bad_name)
-    taxon_name = a.select {|n| n.name == bad_name}.first
+    taxon_name = a.detect {|n| n.name == bad_name}
     taxon_name.name.should == bad_name
     taxon_name.is_valid.should be(false)
   end
@@ -225,8 +224,7 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
   
   before(:all) do
     @np = Ratatosk::NameProviders::ColNameProvider.new
-    @hxml = CatalogueOfLife.new.search(:name => 'Western Bluebird', 
-      :response => 'full')
+    @hxml = CatalogueOfLife.new.search(:name => 'Western Bluebird', :response => 'full')
   end
   
   before(:each) do    
@@ -350,11 +348,8 @@ describe Ratatosk::NameProviders::UBioTaxonAdapter do
     taxon.rank.should eql("species")
   end
   
-  it "should set the source_identifier of a Taxon created from a LSID " + 
-     "classificationbank RDF to the nambank ID, not the classificationbank " +
-     "ID" do 
-    rdf = @np.service.lsid(:namespace => 'classificationbank', 
-      :object => 1079025)
+  it "should set the source_identifier of a Taxon created from a LSID classificationbank RDF to the nambank ID, not the classificationbank ID" do 
+    rdf = @np.service.lsid(:namespace => 'classificationbank', :object => 1079025)
     taxon = Ratatosk::NameProviders::UBioTaxonAdapter.new(rdf)
     taxon.source_identifier.should_not be_nil
     taxon.source_identifier.should_not == '1079025'

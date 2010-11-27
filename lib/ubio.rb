@@ -1,6 +1,6 @@
 #
 # Wrapper class for the uBio ReSTish web service methods.  This class doesn't 
-# do much more than pass along requests to uBio and return Hpricot objects.  
+# do much more than pass along requests to uBio and return Nokogiri objects.  
 # You have been warned.
 #
 # Note that uBio base64-encodes many of its names, so you will probably want
@@ -58,7 +58,6 @@ class UBioService < MetaService
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
-        # puts "DEBUG: requesting " + uri # test
         response  = Net::HTTP.get_response(URI.parse(uri))
       end
     rescue Timeout::Error
@@ -66,7 +65,7 @@ class UBioService < MetaService
     rescue EOFError, Errno::ECONNRESET
       raise UBioConnectionError, "uBio did not respond."
     end
-    Hpricot.XML(response.body)
+    Nokogiri::XML(response.body)
   end
   
   #
@@ -74,7 +73,7 @@ class UBioService < MetaService
   # more robust than their web service.  uBio uses this endpoint for their
   # autocomplete searches, so it just returns an HTML fragment containing a
   # link to a namebank entry.  This wrapper doesn't go any further than making
-  # an Hpricot object out of that response.
+  # an Nokogiri object out of that response.
   #
   def search_help(q)
     url   = "#{@search_help_endpoint}q=#{q}"
@@ -82,13 +81,12 @@ class UBioService < MetaService
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
-        # puts "DEBUG: requesting " + uri # test
         response  = Net::HTTP.get_response(URI.parse(uri))
       end
     rescue Timeout::Error, Errno::ECONNRESET
       raise Timeout::Error, "uBio didn't respond within #{timeout} seconds."
     end
-    Hpricot(response.body)
+    Nokogiri::HTML(response.body)
   end
   
   #

@@ -4,7 +4,7 @@
 # You have been warned.
 #
 class CatalogueOfLife
-  ENDPOINT = 'http://webservice.catalogueoflife.org/annual-checklist/2010/'.freeze
+  ENDPOINT = 'http://www.catalogueoflife.org/col/webservice/annual-checklist/2010/'.freeze
 
   attr_reader :timeout
 
@@ -27,13 +27,13 @@ class CatalogueOfLife
       timed_out = Timeout::timeout(@timeout) do
         # puts "DEBUG: requesting " + uri # test
         response  = Net::HTTP.get_response(URI.parse(uri))
+        # puts response.body
       end
     rescue Timeout::Error
       raise Timeout::Error, 
             "Catalogue of Life didn't respond within #{timeout} seconds."
     end
-    xml = Hpricot::XML(response.body)
-    xml
+    Nokogiri::XML(response.body)
   end
 
   def method_missing(method, *args)

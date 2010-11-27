@@ -23,7 +23,7 @@ class RatatoskGraftError < StandardError; end
 
 module Ratatosk
   
-  class <<self
+  class << self
     #
     # Alias for Ratatosk::Ratatosk#find
     #
