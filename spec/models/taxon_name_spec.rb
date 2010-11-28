@@ -70,4 +70,11 @@ describe TaxonName, 'creation' do
     @taxon_name.save
     @taxon_name.lexicon.should == TaxonName::LEXICONS[:ENGLISH]
   end
+  
+  it "should not allow synonyms within a lexicon" do
+    taxon = Taxon.make
+    name1 = TaxonName.make(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    name2.should_not be_valid
+  end
 end

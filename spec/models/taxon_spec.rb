@@ -244,6 +244,16 @@ describe Taxon, "unique name" do
     puts "new_taxon was invalid: " + new_taxon.errors.full_messages.join(', ') unless new_taxon.valid?
     new_taxon.unique_name.should be_nil
   end
+  
+  it "should work if there are synonyms in different lexicons" do
+    taxon = Taxon.make
+    name1 = TaxonName.make(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    name2 = TaxonName.make(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    puts name2
+    taxon.reload
+    taxon.unique_name.should_not be_blank
+    taxon.unique_name.should == "foo"
+  end
 end
 
 describe Taxon, "tags_to_taxa" do
