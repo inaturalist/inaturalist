@@ -38,7 +38,7 @@ module Ratatosk
         lineage = [taxon]
 
         # walk UP the CoL lineage creating new taxa
-        hxml.search('classification/taxon').reverse_each do |ancestor_hxml|
+        [hxml.search('classification/taxon')].flatten.reverse_each do |ancestor_hxml|
           lineage << ColTaxonAdapter.new(ancestor_hxml)
         end
         lineage.compact
@@ -92,10 +92,10 @@ module Ratatosk
       protected
 
       def get_lexicon
-        if @hxml.at('/rank')
+        if @hxml.at_xpath('rank')
           TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
         elsif @hxml.at('//language')
-          hxml.at('language').inner_text.downcase
+          hxml.at('//language').inner_text.downcase
         else
           nil
         end

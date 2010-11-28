@@ -147,6 +147,11 @@ describe "a TaxonName adapter", :shared => true do
     @adapter.lexicon.should == 'english'
   end
   
+  it "should set the lexicon for a scientific name" do
+    name = @np.find('Arabis holboellii').first
+    name.lexicon.should == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+  end
+  
   it "should have a source" do
     @adapter.source.should_not be(nil)
   end
@@ -224,7 +229,7 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
   
   before(:all) do
     @np = Ratatosk::NameProviders::ColNameProvider.new
-    @hxml = CatalogueOfLife.new.search(:name => 'Western Bluebird', :response => 'full')
+    @hxml = CatalogueOfLife.new.search(:name => 'Western Bluebird', :response => 'full').at('result')
   end
   
   before(:each) do    
