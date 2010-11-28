@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101120231112) do
+ActiveRecord::Schema.define(:version => 20101128052201) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -554,5 +554,6 @@ ActiveRecord::Schema.define(:version => 20101120231112) do
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"
   add_index "users", ["journal_posts_count"], :name => "index_users_on_journal_posts_count"
   add_index "users", ["life_list_taxa_count"], :name => "index_users_on_life_list_taxa_count"
+  add_index "users", ["state"], :name => "index_users_on_state"
 
 end
