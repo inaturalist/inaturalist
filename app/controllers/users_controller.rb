@@ -1,6 +1,7 @@
 class UsersController < ApplicationController  
   before_filter :login_required, :only => [:dashboard, :edit, :update]
-  before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, :show, :edit, :update, :relationships]
+  before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
+    :show, :edit, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update]
   before_filter :ensure_user_is_admin, :only => [:suspend, :unsuspend]
   
@@ -50,6 +51,41 @@ class UsersController < ApplicationController
     @user.unsuspend! 
     flash[:notice] = "The user #{@user.login} has been unsuspended"
     redirect_to users_path
+  end
+  
+  def add_role
+    unless @role = Role.find_by_name(params[:role])
+      flash[:error] = "That role doesn't exist"
+      return redirect_to :back
+    end
+    
+    if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
+      flash[:error] = "Sorry, you don't have permission to do that"
+      return redirect_to :back
+    end
+    
+    @user.roles << @role
+    flash[:notice] = "Made #{@user.login} a(n) #{@role.name}"
+    redirect_to :back
+  end
+  
+  def remove_role
+    unless @role = Role.find_by_name(params[:role])
+      flash[:error] = "That role doesn't exist"
+      return redirect_to :back
+    end
+    
+    unless current_user.has_role?(@role.name)
+      flash[:error] = "Sorry, you don't have permission to do that"
+      return redirect_to :back
+    end
+    
+    if @user.roles.delete(@role)
+      flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
+    else
+      flash[:error] = "#{@user.login} doesn't have #{@role.name} status"
+    end
+    redirect_to :back
   end
   
   # There's no page here to update or destroy a user.  If you add those, be

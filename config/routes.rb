@@ -33,10 +33,12 @@ ActionController::Routing::Routes.draw do |map|
   # I vote for getting rid of this, in favor of just having 'users'
   map.resources :people, :controller => 'users'
   
-  map.suspend_user '/users/:id/suspend', :controller => 'users', 
-    :action => 'suspend', :requirements => { :id => %r(\d+) }
-  map.unsuspend_user  '/users/:id/unsuspend', :controller => 'users', 
-    :action => 'unsuspend', :requirements => { :id => %r(\d+) }
+  map.with_options :controller => "users", :requirements => { :id => %r(\d+) } do |u|
+    u.suspend_user '/users/:id/suspend', :action => 'suspend'
+    u.unsuspend_user '/users/:id/unsuspend', :action => 'unsuspend'
+    u.add_role 'users/:id/add_role', :action => 'add_role', :method => :post
+    u.remove_role 'users/:id/remove_role', :action => 'remove_role', :method => :delete
+  end
   
   #
   # Everything below here needs to be cleaned up in subsequent releases

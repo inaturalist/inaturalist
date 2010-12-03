@@ -82,7 +82,7 @@
   <% end %>
 
   <h3><%= "#{@user.login}" %> at a glance:</h3>
-  <ul class="readable leafylist">
+  <ul class="readable description leafylist">
     <li>
       <%= link_to pluralize(@user.observations_count, "observation"), observations_by_login_path(@user.login) %>
     </li>
@@ -109,19 +109,36 @@
     <% end -%>
     <% if @user.friendships.count > 0 %>
       <li>
-        <span class="description">following</span>
+        following
         <%= link_to pluralize(@user.friendships.count, "person"), following_by_login_path(@user.login) %>
       </li>
     <% end %>
+    
+    <% if @user.is_admin? -%>
+      <li><%= @user.login %> is an <%= link_to "admin", help_path(:anchor => "curators") %></li>
+    <% elsif @user.is_curator? %>
+      <li><%= @user.login %> is a <%= link_to "curator", help_path(:anchor => "curators") %></li>
+    <% end -%>
   </ul>  
 </div>
 
-<% if logged_in? && current_user.has_role?(:admin) %>
-  <div class="right clear">
-    <% if @user.active? %>
-      <%= link_to "Suspend User?", suspend_user_path(@user), :class => "ui description" %>
-    <% else %>
-      <%= link_to "Unsuspend User", unsuspend_user_path(@user), :class => "ui description" %>
-    <% end %>
+<% if logged_in? && @user.id != current_user.id && (current_user.is_admin? || current_user.is_curator?) %>
+  <div class="right clear ui description">
+    <% if current_user.is_admin? -%>
+      <% if @user.active? %>
+        <%= link_to "Suspend user", suspend_user_path(@user) %>
+      <% else %>
+        <%= link_to "Unsuspend user", unsuspend_user_path(@user) %>
+      <% end %>
+      |
+    <% end -%>
+    
+    <% if current_user.is_curator? && !@user.is_admin? -%>
+      <% if @user.is_curator? %>
+        <%= link_to "Remove curator status", remove_role_path(@user, :role => "curator"), :method => :delete %>
+      <% else %>
+        <%= link_to "Make curator", add_role_path(@user, :role => "curator"), :method => :post %>
+      <% end %>
+    <% end -%>
   </div>
 <% end %>

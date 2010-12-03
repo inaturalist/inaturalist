@@ -10,6 +10,12 @@ Editing <%= @taxon.name %>
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
   <h2>Editing <i><%= @taxon.name %></i></h2>
+  <div class="description">
+    Please be careful, particularly when deleting taxa. If a taxon has
+    associated observations, ids, listed taxa, etc, please 
+    <%= link_to "merge", :controller => "taxa", :action => "merge", :id => @taxon %>
+    it instead.
+  </div>
 </div>
 
 <%= render :partial => "form" %>

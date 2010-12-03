@@ -134,8 +134,8 @@ class User < ActiveRecord::Base
   # Checks if a user has a role; returns true if they don't but
   # are admin.  Admins are supreme beings
   def has_role?(role)
-    list ||= self.roles.map(&:name)
-    list.include?(role.to_s) || list.include?(User::JEDI_MASTER_ROLE)
+    role_list ||= roles.map(&:name)
+    role_list.include?(role.to_s) || role_list.include?(User::JEDI_MASTER_ROLE)
   end
 
   # Everything below here was added for iNaturalist
