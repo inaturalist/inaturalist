@@ -1156,7 +1156,8 @@ class ObservationsController < ApplicationController
     
     # Field-specific searches
     if @search_on
-      sphinx_options[:with][@search_on.to_sym] = @q
+      sphinx_options[:conditions] ||= {}
+      sphinx_options[:conditions][@search_on.to_sym] = @q
       @observations = Observation.search(find_options.merge(sphinx_options))
     else
       @observations = Observation.search(@q, find_options.merge(sphinx_options))
