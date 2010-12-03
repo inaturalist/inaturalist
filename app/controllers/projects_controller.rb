@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   
   def show
     @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
-    @project_observations = @project.project_observations.paginate(:page => 1, :include => :observation)
+    @project_observations = @project.project_observations.paginate(:page => 1, :include => :observation, :order => "id DESC")
     @observations = @project_observations.map(&:observation)
   end
 
@@ -69,6 +69,8 @@ class ProjectsController < ApplicationController
   end
   
   def terms
+    @project_observation_rules = @project.project_observation_rules.all(:limit => 100)
+    @project_user_rules = @project.project_user_rules.all(:limit => 100)
   end
   
   def by_login

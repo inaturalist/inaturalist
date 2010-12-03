@@ -15,13 +15,33 @@
 
 </div>
 
-<% if @project.terms.blank? -%>
-  <p class="noresults">
+<% if !@project.terms.blank? -%>
+  <%= simple_format h(@project.terms) %>
+<% elsif !@project_user_rules.blank? || !@project_observation_rules.blank? %>
+  <% unless @project_user_rules.blank? -%>
+    <h3>New members...</h3>
+    <ul>
+      <% for rule in @project_user_rules %>
+        <li>...<%= rule.terms %></li>
+      <% end %>
+    </ul>
+  <% end -%>
+
+  <% unless @project_observation_rules.blank? -%>
+    <h3>New observations...</h3>
+    <ul>
+      <% for rule in @project_observation_rules %>
+        <li>...<%= rule.terms %></li>
+      <% end %>
+    </ul>
+  <% end -%>
+  
+<% else %>
+  <p class="noresults description">
     This project has no terms!
   </p>
-<% else %>
-  <%= simple_format h(@project.terms) %>
-  <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
-  </div><!-- /#breadcrumbs -->
 <% end -%>
+
+<div class="breadcrumbs">
+  <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+</div><!-- /#breadcrumbs -->
