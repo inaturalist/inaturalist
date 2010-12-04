@@ -17,6 +17,7 @@ class ListedTaxon < ActiveRecord::Base
   belongs_to :updater, :class_name => 'User'
   has_many :comments, :as => :parent, :dependent => :destroy
   
+  before_validation :nilify_blanks
   before_create :set_ancestor_taxon_ids
   before_create :set_place_id
   before_create :set_updater_id
@@ -50,6 +51,35 @@ class ListedTaxon < ActiveRecord::Base
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
   ORDERS = [ALPHABETICAL_ORDER, TAXONOMIC_ORDER]
+  OCCURRENCE_STATUS_LEVELS = {
+    60 => "present",
+    50 => "common",
+    40 => "uncommon",
+    30 => "irregular",
+    20 => "doubtful",
+    10 => "absent"
+  }
+  OCCURRENCE_STATUSES = OCCURRENCE_STATUS_LEVELS.values
+  OCCURRENCE_STATUS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
+  OCCURRENCE_STATUS_DESCRIPTIONS["present" ] =  "occurs in the area"
+  OCCURRENCE_STATUS_DESCRIPTIONS["common" ] =  "occurs frequently"
+  OCCURRENCE_STATUS_DESCRIPTIONS["uncommon" ] =  "occurs regularly, but in small numbers; requires careful searching of proper habitat" 
+  OCCURRENCE_STATUS_DESCRIPTIONS["irregular" ] =  "presence unpredictable, including vagrants; may be common in some years and absent others"
+  OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
+  OCCURRENCE_STATUS_DESCRIPTIONS["absent" ] =  "does not occur in the area"
+  
+  ESTABLISHMENT_MEANS = %w(native introduced naturalised invasive managed)
+  ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenicmeans"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["naturalised"] = "reproduces naturally and forms part of the local ecology"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["invasive"] = "has a deleterious impact on another organism, multiple organisms, or the ecosystem as a whole"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["managed"] = "maintains presence through intentional cultivation or husbandry"
+  
+  validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
+  validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
+  
+  CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
@@ -67,6 +97,12 @@ class ListedTaxon < ActiveRecord::Base
     if self.last_observation && self.taxon != self.last_observation.taxon
       errors.add(self.taxon.name, "must be the same as the last observed " + 
                                   "taxon, #{self.last_observation.taxon}")
+    end
+    
+    unless list.is_a?(CheckList)
+      CHECK_LIST_FIELDS.each do |field|
+        errors.add(field, "can only be set for check lists") unless send(field).blank?
+      end
     end
   end
   
@@ -101,10 +137,12 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_user_id
     self.user_id ||= list.user_id
+    true
   end
   
   def set_updater_id
     self.updater_id ||= user_id
+    true
   end
   
   def set_place_id
@@ -122,6 +160,17 @@ class ListedTaxon < ActiveRecord::Base
     taxon.delta = true
     taxon.save
     true
+  end
+  
+  def nilify_blanks
+    %w(establishment_means occurrence_status_level).each do |col|
+      send("#{col}=", nil) if send(col).blank?
+    end
+    true
+  end
+  
+  def occurrence_status
+    OCCURRENCE_STATUS_LEVELS[occurrence_status_level]
   end
   
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be

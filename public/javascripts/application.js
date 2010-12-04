@@ -69,6 +69,7 @@ QTIP_DEFAULTS = {
     corner: {
       target: 'rightMiddle',
       tooltip: 'leftMiddle'
-    }
+    },
+    adjust: {screen: true}
   }
 }

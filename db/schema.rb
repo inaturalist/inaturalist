@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101128052201) do
+ActiveRecord::Schema.define(:version => 20101203223538) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -170,6 +170,8 @@ ActiveRecord::Schema.define(:version => 20101128052201) do
     t.column "comments_count", :integer, :default => 0
     t.column "user_id", :integer
     t.column "updater_id", :integer
+    t.column "occurrence_status_level", :integer
+    t.column "establishment_means", :string, :limit => 32
   end
 
   add_index "listed_taxa", ["list_id"], :name => "index_listed_taxa_on_list_id_and_lft"

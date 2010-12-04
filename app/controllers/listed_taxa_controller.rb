@@ -83,7 +83,7 @@ class ListedTaxaController < ApplicationController
       flash[:notice] = "Listed taxon updated"
       redirect_to :back
     else
-      flash[:errors] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
+      flash[:error] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
       render :action => :show
     end
   end

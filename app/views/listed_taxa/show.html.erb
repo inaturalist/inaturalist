@@ -17,11 +17,40 @@
       display: block;
       margin: 10px auto;
     }
+    .listed_taxon_form textarea {
+      width: 636px; 
+      height: 100px; 
+      margin-right: 0;
+    }
+    form.inline { margin-bottom: 10px;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag('jquery/jquery.ui.all.packed',
-                             'jquery/plugins/jqModal') %>
+                             'jquery/plugins/jqModal',
+                             "jquery/plugins/jquery.qtip.min" ) %>
+  <% if @list.is_a?(CheckList) -%>
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        var qtipDefaults = $.extend(QTIP_DEFAULTS, {
+          content: $('#occurrence_tip').get(0).innerHTML,
+          show: {when: 'click'},
+          hide: {when: 'unfocus'},
+          position: {
+            corner: {
+              target: 'rightMiddle',
+              tooltip: 'leftTop'
+            }
+          }
+        })
+        qtipDefaults.style.tip = 'leftTop'
+        $('.occurrence_tip_target').qtip(qtipDefaults)
+        qtipDefaults.content = $('#establishment_tip').get(0).innerHTML
+        $('.establishment_tip_target').qtip(qtipDefaults)
+      })
+    </script>
+  <% end %>
+
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
@@ -77,25 +106,98 @@
   <div id="description" class="description">
     <% if @listed_taxon.description.blank? && @list.listed_taxa_editable_by?(current_user) -%>
       <p class="ui description inplaceedit">
-        <%= link_to_function "Add a description", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit")}').show()" %>
+        <%= link_to_function "Add a description", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %>
       </p>
     <% else %>
       <div class="clear readable">
         <%= formatted_user_text(@listed_taxon.description) %>
       </div>
       <% if @list.listed_taxa_editable_by?(current_user) -%>
-        <p class="ui"><%= link_to_function "edit description", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit")}').show()" %></p>
+        <p class="ui"><%= link_to_function "edit description", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %></p>
       <% end -%>
     <% end -%>
   </div>
   
   <% if @list.listed_taxa_editable_by?(current_user) -%>
-    <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {:class => "clear box", :style => "display: none"} do |f| %>
-      <%= f.text_area :description, :style => "width: 636px; height: 100px; margin-right: 0" %>
+    <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
+        :id => dom_id(@listed_taxon, "edit_description"), :class => "clear box listed_taxon_form", :style => "display: none"} do |f| %>
+      <%= f.text_area :description %>
       <%= f.submit "Save", :class => "default button" %>
-      <%= link_to_function "Cancel", "$('#description').show(); $('##{dom_id(@listed_taxon, "edit")}').hide()", 
+      <%= link_to_function "Cancel", "$('#description').show(); $('##{dom_id(@listed_taxon, "edit_description")}').hide()", 
         :class => "minor button" %>
     <% end %>
+  <% end -%>
+  
+  <% if @list.is_a?(CheckList) -%>
+    <div id="occurrence">
+      <label>Occurrence status:</label>
+      <%= @listed_taxon.occurrence_status || "unknown" %>
+      <% if @list.listed_taxa_editable_by?(current_user) -%>
+        <%= link_to_function "edit", "$('#occurrence').hide(); $('##{dom_id(@listed_taxon, "edit_occurrence")}').show()",
+          :class => "small" %>
+      <% end -%>
+      <span class="occurrence_tip_target description helptip"></span>
+    </div>
+    <% if @list.listed_taxa_editable_by?(current_user) -%>
+      <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
+          :id => dom_id(@listed_taxon, "edit_occurrence"), 
+          :class => "clear box listed_taxon_form smallbuttons inline buttonrow", 
+          :style => "display: none"} do |f| %>
+        <%= f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse, :include_blank => "unknown" %>
+        <span class="occurrence_tip_target description helptip"></span>
+        <%= f.submit "Save", :class => "default button" %>
+        <%= link_to_function "Cancel", "$('#occurrence').show(); $('##{dom_id(@listed_taxon, "edit_occurrence")}').hide()", 
+          :class => "minor button" %>
+      <% end %>
+    <% end -%>
+    <div id="occurrence_tip" style="display:none">
+      <p class="ui">
+        Occurence status describes how common or rare a taxon is in a given area.
+        See DarwinCore for 
+        <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
+      </p>
+      <dl>
+        <% for identifier, description in ListedTaxon::OCCURRENCE_STATUS_DESCRIPTIONS %>
+          <dt><%= identifier %></dt>
+          <dd><%= description %></dd>
+        <% end %>
+      </dl>
+    </div>
+
+    <div id="establishment">
+      <label>Establishment means:</label>
+      <%= @listed_taxon.establishment_means || "unknown" %>
+      <% if @list.listed_taxa_editable_by?(current_user) -%>
+        <%= link_to_function "edit", "$('#establishment').hide(); $('##{dom_id(@listed_taxon, "edit_establishment")}').show()",
+          :class => "small" %>
+      <% end -%>
+      <span class="establishment_tip_target description helptip"></span>
+    </div>
+    <% if @list.listed_taxa_editable_by?(current_user) -%>
+      <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
+          :id => dom_id(@listed_taxon, "edit_establishment"), 
+          :class => "clear box listed_taxon_form inline buttonrow smallbuttons", 
+          :style => "display: none"} do |f| %>
+        <%= f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS, :include_blank => "unknown" %>
+        <span class="establishment_tip_target description helptip"></span>
+        <%= f.submit "Save", :class => "default button" %>
+        <%= link_to_function "Cancel", "$('#establishment').show(); $('##{dom_id(@listed_taxon, "edit_establishment")}').hide()", 
+          :class => "minor button" %>
+      <% end %>
+    <% end -%>
+    <div id="establishment_tip" style="display:none">
+      <p class="ui">
+        Establishment means describes how the taxon came to be established in an area.
+        See DarwinCore for 
+        <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+      </p>
+      <dl>
+        <% for identifier, description in ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS %>
+          <dt><%= identifier %></dt>
+          <dd><%= description %></dd>
+        <% end %>
+      </dl>
+    </div>
   <% end -%>
   
   <%= render :partial => "comments/comments", :object => @listed_taxon %>

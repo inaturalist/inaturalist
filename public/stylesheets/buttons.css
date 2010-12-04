@@ -82,10 +82,12 @@ input.button:active {
 .buttonrow.inline .button,
 .buttonrow.inline .inter,
 .buttonrow.inline form,
-.buttonrow.inline input.text {
+.buttonrow.inline input.text,
+.buttonrow.inline label {
   display: inline-block;
   float: none;
-  margin: 0;
+  margin-right: 5px;
+  margin-bottom: 0;
 }
 
 .buttonrow.inline .button,

@@ -52,6 +52,13 @@
       <%= link_to rendered_taxon_name, listed_taxon.taxon %>
     </p>
     
+    <% if listed_taxon.occurrence_status || listed_taxon.establishment_means -%>
+      <div class="occurrence description">
+        <label>Occurrence: </label>
+        <%= [listed_taxon.occurrence_status, listed_taxon.establishment_means].compact.join(' / ') %>
+      </div>
+    <% end -%>
+    
     <% unless listed_taxon.description.blank? -%>
       <%- txt = strip_tags(h(listed_taxon.description)) -%>
       <p class="ui clear description">
@@ -79,8 +86,8 @@
         <%= link_to color_pluralize(listed_taxon.comments_count, "comment"), listed_taxon %>
       </nobr>
       
-      <% if listed_taxon.description.blank? && editable -%>
-        | <%= link_to "Add description", listed_taxon %>
+      <% if editable -%>
+        | <%= link_to "Edit", listed_taxon %>
       <% end -%>
     </div>
   </div>

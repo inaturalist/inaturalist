@@ -887,3 +887,22 @@ form.edit_preferences .field {
 .photo_view .nophoto img {
   margin-bottom: 1em;
 }
+
+form.inline, 
+form.inline .field,
+form.inline .label {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.helptip {
+  display:inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(/images/silk/help-gray.png) no-repeat;
+  vertical-align: middle;
+}
+.helptip:hover {
+  background: url(/images/silk/help.png) no-repeat;
+}
+
