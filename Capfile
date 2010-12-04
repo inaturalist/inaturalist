@@ -20,7 +20,7 @@ namespace :deploy do
     copy_geoip_config
   end
 
-  after "deploy:update" do
+  after "deploy:update_code" do
     symlink_config
     symlink_db_config
     symlink_gmap_api_key
