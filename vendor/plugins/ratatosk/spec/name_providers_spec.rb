@@ -169,8 +169,7 @@ describe "a TaxonName adapter", :shared => true do
     @adapter.taxon.name.should == 'Sialia mexicana'
   end
   
-  it "should have a name_provider set to " + 
-     "'#{@np.class.name.split('::').last}" do
+  it "should have a name_provider set to '#{@np.class.name.split('::').last}" do
     @adapter.name_provider.should == @np.class.name.split('::').last
   end
   
@@ -211,6 +210,7 @@ describe "a TaxonName adapter", :shared => true do
   it "should have a working #to_json method" do
     lambda { @adapter.to_json }.should_not raise_error
   end
+  
 end
 
 
@@ -240,6 +240,14 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
     end
     
     @adapter = Ratatosk::NameProviders::ColTaxonNameAdapter.new(@hxml)
+  end
+  
+  it "should set the taxon of a valid sciname to have the same name" do
+    name = "Gerres"
+    a = @np.find(name).detect{|n| n.lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES] && n.name == name}
+    return unless a
+    a.is_valid.should be(true)
+    a.taxon.name.should == name
   end
 end
 

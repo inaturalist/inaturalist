@@ -94,8 +94,8 @@ module Ratatosk
       def get_lexicon
         if @hxml.at_xpath('rank')
           TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
-        elsif @hxml.at('//language')
-          hxml.at('//language').inner_text.downcase
+        elsif hxml.at('//language')
+          @hxml.at('//language').inner_text.downcase
         else
           nil
         end
@@ -135,11 +135,11 @@ module Ratatosk
       end
 
       def accepted_name
-        accepted_name_hxml.at('name').inner_text rescue nil
+        accepted_name_hxml.at_xpath('name').inner_text rescue nil
       end
 
       def accepted_name_hxml
-        @accepted_name_hxml ||= @hxml.at('//accepted_name')
+        @accepted_name_hxml ||= @hxml.at_xpath('accepted_name')
       end
     end
 
@@ -303,7 +303,7 @@ module Ratatosk
           return nil
         end
         # puts "[DEBUG] lineage for #{taxon}: #{lineage.map(&:name).join(', ')}"
-        phylum = lineage.select{|t| t.rank && t.rank.downcase == 'phylum'}.first
+        phylum = lineage.detect{|t| t.rank && t.rank.downcase == 'phylum'}
         phylum ||= lineage.last.phylum
         phylum
       end

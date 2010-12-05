@@ -44,6 +44,7 @@ class TaxonName < ActiveRecord::Base
     :PANGASINAN          =>  'Pangasinan',
     :PORTUGUESE          =>  'Portuguese',
     :RUMANIAN            =>  'Rumanian',
+    :RUSSIAN             =>  'Russian',
     :SPANISH             =>  'Spanish',
     :SWEDISH             =>  'Swedish',
     :TAGALOG             =>  'Tagalog',
