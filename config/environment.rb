@@ -106,6 +106,7 @@ Rails::Initializer.run do |config|
   config.gem 'machinist'
   config.gem 'faker'
   config.gem 'fastercsv'
+  config.gem 'newrelic_rpm'
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'
