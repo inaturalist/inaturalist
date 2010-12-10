@@ -173,6 +173,10 @@ class ListedTaxon < ActiveRecord::Base
     OCCURRENCE_STATUS_LEVELS[occurrence_status_level]
   end
   
+  def editable_by?(user)
+    list.editable_by?(user)
+  end
+  
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes

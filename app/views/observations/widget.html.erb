@@ -24,25 +24,6 @@
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
-    // var widget_url = '<%= @widget_url %>';
-    // $(document).ready(function() {
-    //   $('#order').change(function() {
-    //     widget_url.replace(/order=\w+/, 'order='+$(this).val());
-    //     var code = $('#code').val().replace(/order=\w+/, 'order='+$(this).val());
-    //     $('#code').val(code).change();
-    //   });
-    //   $('#order_by').change(function() {
-    //     widget_url.replace(/order_by=[\w_]+/, 'order_by='+$(this).val());
-    //     var code = $('#code').val().replace(/order_by=[\w_]+/, 'order_by='+$(this).val());
-    //     $('#code').val(code).change();
-    //   });
-    //   $('#limit').change(function() {
-    //     widget_url.replace(/limit=\d+/, 'limit='+$(this).val());
-    //     var code = $('#code').val().replace(/limit=\d+/, 'limit='+$(this).val());
-    //     $('#code').val(code).change();
-    //   });
-    // });
-    
     $(document).ready(function() {
       $('#background_color').change(function() {
         $('#preview').css('background-color', $(this).val());
@@ -61,7 +42,6 @@
 
 <div class="column span-8">
   <h3>Settings</h3>
-  <%# form_remote_tag :loading => "$('#loading').show()", :complete => "$('#loading').hide()" do %>
   <form method="get">
     <div class="field">
       <label>Logo</label><br/>

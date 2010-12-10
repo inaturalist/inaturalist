@@ -1,18 +1,17 @@
-  <div class="column span-8">
-    <h3>
-      Preview
-      
-      <span id="background_color_wrapper" class="ui">
-        <label for="background_color">BG Color</label><input type="text" name="background_color" value="white" id="background_color">
-      </span>
-      
-    </h3>
-    <div id="preview"><%= render :partial => "widget_code" %></div>
-  </div>
+<div class="column span-8">
+  <h3>
+    Preview
+    
+    <span id="background_color_wrapper" class="ui">
+      <label for="background_color">BG Color</label><input type="text" name="background_color" value="white" id="background_color">
+    </span>
+    
+  </h3>
+  <div id="preview"><%= render :partial => "widget_code" %></div>
+</div>
 
-  <div class="last column span-8">
-    <h3>Widget Code</h3>
-    <p class="description">Copy and paste this into your own HTML.</p>
-    <textarea id="code"><%= render :partial => "widget_code" %></textarea>
-  </div>
-  
+<div class="last column span-8">
+  <h3>Widget Code</h3>
+  <p class="description">Copy and paste this into your own HTML.</p>
+  <textarea id="code" onclick="$(this).select()"><%= render :partial => "widget_code" %></textarea>
+</div>

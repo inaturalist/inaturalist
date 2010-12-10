@@ -473,8 +473,8 @@
     <div id="places" class="clear">
       <h3>
         Range
-        <% if @places.total_entries > @places.size -%>
-          <span class="small description"><%= @places.size %> of <%= @places.total_entries %></span>
+        <% if @check_listed_taxa.total_entries > @check_listed_taxa.size -%>
+          <span class="small description"><%= @check_listed_taxa.size %> of <%= @check_listed_taxa.total_entries %></span>
         <% end -%>
       </h3>
     
@@ -486,12 +486,17 @@
         <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
       <% end -%>
     
-      <% if @places.blank? -%>
+      <% if @check_listed_taxa.blank? -%>
         <% unless logged_in? %><div class="description">No places selected.</div><% end %>
       <% else %>
         <ul id="places_list">
-          <% for place in @places %>
-            <li><%= link_to place.display_name, place %></li>
+          <% for lt in @check_listed_taxa %>
+            <li>
+              <%= link_to lt.place.display_name, lt.place %>
+              <% if logged_in? && lt.editable_by?(current_user) -%>
+                <%= link_to("edit", lt, :class => "small description editlink") %>
+              <% end -%>
+            </li>
           <% end %>
         </ul>
       <% end -%>

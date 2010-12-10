@@ -100,6 +100,14 @@
     on <%= @listed_taxon.updated_at.to_s(:long) %>
   </p>
   
+  <% if @list.editable_by?(current_user) -%>
+    <p class="ui description" style="margin-top: 10px">
+      <%= link_to "Remove from #{h(@list.title)}", @listed_taxon, :method => :delete, 
+        :confirm => "Are you sure you want to remove this taxon from #{h(@list.title)}?",
+        :class => "small description" %>
+    </p>
+  <% end -%>
+  
 </div>
 
 <div class="last column span-17">  

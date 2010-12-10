@@ -127,15 +127,15 @@ class TaxaController < ApplicationController
         @children = @taxon.children.all(:include => :taxon_names, :order => "name")
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
         @iconic_taxa = Taxon.iconic_taxa.all(:include => :taxon_names)
-
+        
         @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
         @taxon_links.sort! {|a,b| a.taxon.rgt <=> b.taxon.rgt}
-
-        @places = Place.paginate(:page => 1,
-          :include => :listed_taxa,
-          :conditions => ["listed_taxa.taxon_id = ?", @taxon],
-          :order => "places.id DESC, places.name ASC"
-        )
+        
+        @check_listed_taxa = ListedTaxon.paginate(:page => 1,
+          :include => :place,
+          :conditions => ["place_id > 0 && taxon_id = ?", @taxon],
+          :order => "listed_taxa.id DESC")
+        @places = @check_listed_taxa.map(&:place)
         @countries = @taxon.places.all(
           :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
         )

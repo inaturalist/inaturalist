@@ -177,3 +177,7 @@ table.infobox,
 
 #wikipedia_description th {
   padding: 0.4em;
+}
+
+#places_list .editlink { display: none; }
+#places_list li:hover .editlink { display: inline; }
