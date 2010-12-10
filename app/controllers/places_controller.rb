@@ -201,15 +201,22 @@ class PlacesController < ApplicationController
   end
   
   def find_external
-    @ydn_places = GeoPlanet::Place.search(params[:q], :count => 10)
-    @places = @ydn_places.map {|ydnp| Place.new_from_geo_planet(ydnp)}
+    @places = if @ydn_places = GeoPlanet::Place.search(params[:q], :count => 10)
+      @ydn_places.map {|ydnp| Place.new_from_geo_planet(ydnp)}
+    else
+      []
+    end
     
     respond_to do |format|
       format.json { render :json => @ydn_places }
       format.js do
         render :update do |page|
-          page << "addPlaces(#{@places.to_json})"
-          page['places'].replace_html :partial => 'create_external_place_links'
+          if @places.blank?
+            page.alert "No matching places found."
+          else
+            page << "addPlaces(#{@places.to_json})"
+            page['places'].replace_html :partial => 'create_external_place_links'
+          end
         end
       end
     end
