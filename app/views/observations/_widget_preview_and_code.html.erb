@@ -1,4 +1,5 @@
-<div class="column span-8">
+<%- place ||= @place -%>
+<div class="column span-9">
   <h3>
     Preview
     
@@ -10,8 +11,8 @@
   <div id="preview"><%= render :partial => "widget_code" %></div>
 </div>
 
-<div class="last column span-8">
+<div class="last column span-9">
   <h3>Widget Code</h3>
   <p class="description">Copy and paste this into your own HTML.</p>
-  <textarea id="code" onclick="$(this).select()"><%= render :partial => "widget_code" %></textarea>
+  <textarea id="code" onclick="$(this).select()"><%= render :partial => "widget_code", :locals => {:place => place} %></textarea>
 </div>

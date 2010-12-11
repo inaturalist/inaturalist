@@ -215,21 +215,21 @@ input[type='submit'].link:hover {
   color: white;
 }
 
-.smallbuttons .button,
-.smallbuttons input.text,
-.smallbuttons label {
+.buttonrow.smallbuttons .button,
+.buttonrow.smallbuttons input.text,
+.buttonrow.smallbuttons label {
   padding: 2px 3px;
   font-size: 100%;
   margin-bottom: 0;
 }
 
-.smallbuttons .button,
-.smallbuttons a.button:hover,
-.smallbuttons input.button:hover
-.smallbuttons input[type='button']:hover,
-.smallbuttons input[type='submit']:hover,
-.smallbuttons input[type='button']:active,
-.smallbuttons input[type='submit']:active {
+.buttonrow.smallbuttons .button,
+.buttonrow.smallbuttons a.button:hover,
+.buttonrow.smallbuttons input.button:hover
+.buttonrow.smallbuttons input[type='button']:hover,
+.buttonrow.smallbuttons input[type='submit']:hover,
+.buttonrow.smallbuttons input[type='button']:active,
+.buttonrow.smallbuttons input[type='submit']:active {
   border: 0 transparent;
   font-weight: normal;
 }

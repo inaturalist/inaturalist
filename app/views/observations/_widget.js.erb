@@ -1,0 +1,4 @@
+<%- show_user ||= false -%>
+try {
+  document.write('<%= escape_javascript(render(:partial => "widget.html", :locals => {:show_user => show_user}).gsub(/\n\s*/, '')) %>')
+} catch (e) {}

@@ -82,10 +82,27 @@
               by <%= link_to comment.parent.user.login, comment.parent.user %>:
             </div>
             <h3><%= link_to comment.parent.title, post_path(comment.parent.user.login, comment.parent) %></h3>
+          <%- when "ListedTaxon" %>
+            <div class="commenttype">
+              <%= link_to image_tag("checklist-icon-color-15px.png"), comment.parent %>
+              <%= link_to "Listed taxon", comment.parent %>
+              <% if comment.parent.user -%>
+                by <%= link_to comment.parent.user.login, comment.parent.user %>
+              <% end -%>
+              on
+              <%= link_to truncate(h(comment.parent.list.title), :length => 85), comment.parent.list %>
+            </div>
+            <%= iconic_taxon_image comment.parent.taxon, :style => "vertical-align: middle" %>
+            <% link_to comment.parent.taxon do %>
+              <%= render :partial => "shared/taxon", :object => comment.parent.taxon %>
+            <% end %>
+            <%= link_to comment.parent.taxon, comment.parent %> 
           <%- else %>
             <div class="commenttype">
-              <%= link_to comment.parent.class.to_s, comment.parent %> 
-              by <%= link_to comment.parent.user.login, comment.parent.user %>
+              <%= link_to comment.parent.class.to_s.underscore.humanize, comment.parent %> 
+              <% if comment.parent.user -%>
+                by <%= link_to comment.parent.user.login, comment.parent.user %>
+              <% end -%>
             </div>
           <%- end -%>
         </div>

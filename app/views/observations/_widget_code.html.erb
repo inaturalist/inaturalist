@@ -1,11 +1,14 @@
-<%- widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5) -%>
-<%- base_url = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000" -%>
+<%- 
+  widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5)
+  base_url = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
+  place ||= @place
+-%>
 <style type="text/css" media="screen">
 .inat-widget { font-family: Georgia, serif; padding: 10px; line-height: 1;}
 .inat-widget-header {margin-bottom: 10px;}
 .inat-widget td {vertical-align: top; padding-bottom: 10px;}
 .inat-label { color: #888; }
-.inat-meta { font-size: smaller; margin-top: 3px; }
+.inat-meta { font-size: smaller; margin-top: 3px; line-height: 1.2;}
 .inat-observation-body, .inat-user-body { padding-left: 10px; }
 .inat-observation-image {text-align: center;}
 .inat-observation-image, .inat-user-image { width: 48px; }
@@ -15,18 +18,28 @@
 .inat-widget td.inat-user-body {vertical-align: middle;}
 </style>
 <div class="inat-widget">
-  <% if @logo != "none" -%><div class="inat-widget-header"><%= image_tag("#{base_url}/images/#{@logo}") %></div><% end -%>
+  <% if @logo != "none" -%>
+    <div class="inat-widget-header"><%= link_to image_tag("#{base_url}/images/#{@logo}"), root_url %></div>
+  <% end -%>
   <script type="text/javascript" charset="utf-8" src="<%= widget_url %>"></script>
   <table>
     <tr class="inat-user">
-      <td class="inat-user-image">
-        <%- img_url = base_url + current_user.icon.url(:thumb) -%>
-        <%= link_to image_tag(img_url, :class => 'usericon'), 
-          observations_by_login_url(current_user.login), :border => 0 %>
-      </td>
-      <td class="inat-user-body">
-        <strong><%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>", 
-          observations_by_login_url(current_user.login) %></strong>
+      <% unless place %>
+        <td class="inat-user-image">
+          <%- img_url = base_url + current_user.icon.url(:thumb) -%>
+          <%= link_to image_tag(img_url, :class => 'usericon'), 
+            observations_by_login_url(current_user.login), :border => 0 %>
+        </td>
+      <% end %>
+      <td class="inat-user-body"<%= ' colspan="2"' if place %>>
+        <strong>
+          <% if place -%>
+            <%= link_to "View more observations near #{place.name} on <nobr>iNaturalist &raquo;</nobr>", place_url(place) %>
+          <% else %>
+            <%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>", 
+              observations_by_login_url(current_user.login) %>
+          <% end -%>
+        </strong>
       </td>
     </tr>
   </table>

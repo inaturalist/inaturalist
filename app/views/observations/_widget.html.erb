@@ -1,3 +1,4 @@
+<%- show_user ||= @place -%>
 <table>
   <% for observation in @observations %>
     <tr class="inat-observation">
@@ -13,12 +14,16 @@
       <td class="inat-observation-body" valign="top">
         <%= link_to (observation.species_guess.blank? ? "Something" : observation.species_guess), observation_url(observation) %>
         <div class="inat-meta">
+          <% if show_user -%>
+            <span class="inat-label">Observer: </span>
+            <span class="inat-value"><%= link_to observation.user.login, observations_by_login_url(observation.user.login) %></span><br/>
+          <% end -%>
           <% unless observation.observed_on.blank? -%>
-            <span class="inat-label">Date:</span>
+            <span class="inat-label">Date: </span>
             <span class="inat-value"><%= observation.observed_on.to_s(:short) %> <%= observation.observed_on.year %></span><br/>
           <% end -%>
           <% unless observation.place_guess.blank? %>
-            <span class="inat-label">Place:</span>
+            <span class="inat-label">Place: </span>
             <span class="inat-value"><%= observation.place_guess %></span>
           <% end %>
         </div>

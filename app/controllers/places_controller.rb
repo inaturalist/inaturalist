@@ -123,25 +123,10 @@ class PlacesController < ApplicationController
     end
     
     @children = @place.children.paginate(:page => 1, :order => 'name')
-    observation_params = {
+    @observations = Observation.near_place(@place).order_by("observed_on DESC").paginate(
       :page => params[:page],
       :include => [:user, :taxon, :photos, :iconic_taxon]
-    }
-    if @place.swlat
-      @observations = Observation.in_bounding_box(
-        @place.swlat, @place.swlng, @place.nelat, @place.nelng).order_by(
-        "observed_on DESC").paginate(observation_params)
-    else
-      @observations = Observation.near_point(
-        @place.latitude, @place.longitude).order_by(
-        "observed_on DESC").paginate(observation_params)
-      # sphinx_options = {}
-      # latrads = @place.latitude * (Math::PI / 180)
-      # lngrads = @place.longitude * (Math::PI / 180)
-      # sphinx_options[:geo] = [latrads, lngrads]
-      # sphinx_options[:order] = "@geodist asc"
-      # @observations = Observation.search('', sphinx_options)
-    end
+    )
     
     # Get directions info
     ip = request.remote_ip

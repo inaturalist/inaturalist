@@ -256,6 +256,15 @@ class Observation < ActiveRecord::Base
     }
   }
   
+  def self.near_place(place)
+    place = Place.find_by_id(place) unless place.is_a?(Place)
+    if place.swlat
+      Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped({})
+    else
+      Observation.near_point(place.latitude, place.longitude).scoped({})
+    end
+  end
+  
   #
   # Uses scopes to perform a conditional search.
   # May be worth looking into squirrel or some other rails friendly search add on
@@ -289,6 +298,7 @@ class Observation < ActiveRecord::Base
     scope = scope.of(params[:taxon_id]) if params[:taxon_id]
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
+    scope = scope.near_place(params[:place_id]) if params[:place_id]
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

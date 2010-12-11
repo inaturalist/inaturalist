@@ -2,6 +2,7 @@
   Observations Widget
 <%- end -%>
 <%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
     textarea { width: 100%; }
     iframe { height: 600px; }
@@ -12,7 +13,15 @@
     #background_color_wrapper input {
       font-size: 9pt;
     }
-    #background_color_wrapper input { padding: 2px; }
+    #background_color_wrapper input { padding: 2px; margin-left: 5px; }
+    .placeAutocompleteStatus { width: auto; }
+    #placechooser .placeAutocompleteStatus { 
+      display: inline-block;
+      margin: 0 auto;
+      padding: 2px 5px;
+    }
+    
+    #widgetnav .selected { font-weight: bold; }
     
     /* re-reset blueprint stuff */
     table   { margin: 0; }
@@ -23,8 +32,23 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag "jquery/plugins/jquery.autocomplete.min",
+                             "jquery/plugins/inat/place_autocomplete" %>
+  
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
+      $('#placechooser input[type=text]').placeAutocomplete('/places/autocomplete', {
+        afterChoosePlace: function() {
+          $('#placechooser .default.button').attr('disabled', false).removeClass('disabled').focus()
+        },
+        afterClearPlace: function() {
+          $('#placechooser .default.button').attr('disabled', true).addClass('disabled')
+        }
+      })
+      $('.placefield input[type=text]').placeAutocomplete()
+      <% if @place %>
+      $.fn.placeAutocomplete.choosePlace($('.placefield input[type=text]').get(0), <%= @place.to_json(:methods => [:place_type_name]) %>)
+      <% end %>
       $('#background_color').change(function() {
         $('#preview').css('background-color', $(this).val());
       });
@@ -32,17 +56,41 @@
   </script>
 <%- end -%>
 <div id="pageheader">
+  <div id="widgetnav" class="right">
+    <span class="meta">Observations</span>
+    <%= link_to "by you", url_for(), :class => "#{'selected' unless @place}" %>
+    <span class="meta">&middot;</span>
+    <%= link_to_function "from a place", "$('#placechooser').show(); $(this).hide()",
+      :id => "placechooserlink",
+      :class => "#{'selected' if @place}" %>
+    <form method="get" id="placechooser" class="buttonrow smallbuttons inline" style="display: none">
+      <label for="place_name">Place name</label>
+      <input type="text" name="place_name" id="place_name" class="text">
+      <input type="hidden" name="place_id" value="" id="place_id">
+      <input type="submit" value="Generate Widget" disabled="true" class="disabled default button"/>
+      <%= link_to_function "cancel", "$('#placechooser').hide(); $('#placechooserlink').show()" %>
+    </form>
+  </div>
+  
   <h2>Observations Widget</h2>
   <p class="description">
-    Configure a widget of your observations to include on your website or
+    Configure a widget to show iNaturalist observations on your website or
     blog. You may have to include the embedded CSS in the
     <code>&lt;head&gt;</code> of your HTML.  Feel free to re-write the CSS.
   </p>
 </div>
 
-<div class="column span-8">
+<div class="column span-6">
   <h3>Settings</h3>
   <form method="get">
+    <% if @place -%>
+      <div class="field placefield">
+        <label>Place</label><br/>
+        <input type="text" name="place_name" value="<%= @place.name if @place %>"/>
+        <input type="hidden" name="place_id" value="<%= @place.id if @place %>"/>
+      </div>
+    <% end -%>
+    
     <div class="field">
       <label>Logo</label><br/>
       
@@ -85,10 +133,9 @@
   </form>
 </div>
 
-<div class="last column span-16">
+<div class="last column span-18">
   <div id="loading" class="loading status" style="display: none">Loading preview and code...</div>
-  <span id="widget_preview_and_code">
-    <%= render :partial => 'widget_preview_and_code' %>
-  </span>
+  <div id="widget_preview_and_code">
+    <%= render :partial => 'widget_preview_and_code', :locals => {:place => @place} %>
+  </div>
 </div>
-

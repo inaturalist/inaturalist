@@ -129,6 +129,12 @@ class ObservationsController < ApplicationController
           render :action => 'network_link' and return
         end
       end
+      
+      format.widget do
+        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
+          :show_user => true
+        })
+      end
     end
   end
   
@@ -724,9 +730,7 @@ class ObservationsController < ApplicationController
       format.atom
       format.csv { render_observations_to_csv }
       format.widget do
-        render :update do |page|
-          page << "document.write('#{escape_javascript(render(:partial => 'widget.html'))}')"
-        end
+        render :js => render_to_string(:partial => "widget.js.erb")
       end
     end
   end
@@ -796,6 +800,7 @@ class ObservationsController < ApplicationController
   end
   
   def widget
+    @place = Place.find_by_id(params[:place_id]) if params[:place_id]
     @order_by = params[:order_by] || "observed_on"
     @order = params[:order] || "desc"
     @limit = params[:limit] || 5
@@ -804,11 +809,17 @@ class ObservationsController < ApplicationController
       @logo = params[:logo] 
     end
     @logo ||= "logo-small.gif"
-    @widget_url = observations_by_login_feed_url(current_user.login, 
+    url_params = {
       :format => "widget", 
       :limit => @limit, 
       :order => @order, 
-      :order_by => @order_by)
+      :order_by => @order_by
+    }
+    @widget_url = if @place
+      observations_url(url_params.merge(:place_id => @place.id))
+    else
+      observations_by_login_feed_url(current_user.login, url_params)
+    end
     respond_to do |format|
       format.html
       format.js do
