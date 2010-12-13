@@ -483,8 +483,12 @@
   </div>
 </div>
 
-<div class="column span-24">
-  <%= link_to "edit this place", edit_place_path(@place), :class => 'small right' %>
+<div class="column span-24 meta">
+  <div class="small meta right">
+    <%= link_to "embed a widget for this place on your website", observations_widget_path(:place_id => @place) %>
+    |
+    <%= link_to "edit this place", edit_place_path(@place) %>
+  </div>
 </div>
 
 <div id="batchadder">

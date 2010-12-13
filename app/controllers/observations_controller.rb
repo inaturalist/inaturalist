@@ -7,7 +7,8 @@ class ObservationsController < ApplicationController
                             :by_login,
                             :id_please,
                             :tile_points,
-                            :nearby]
+                            :nearby,
+                            :widget]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
     :update_photos, :destroy]
@@ -817,7 +818,7 @@ class ObservationsController < ApplicationController
     }
     @widget_url = if @place
       observations_url(url_params.merge(:place_id => @place.id))
-    else
+    elsif logged_in?
       observations_by_login_feed_url(current_user.login, url_params)
     end
     respond_to do |format|

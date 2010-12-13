@@ -80,62 +80,84 @@
   </p>
 </div>
 
-<div class="column span-6">
-  <h3>Settings</h3>
-  <form method="get">
-    <% if @place -%>
-      <div class="field placefield">
-        <label>Place</label><br/>
-        <input type="text" name="place_name" value="<%= @place.name if @place %>"/>
-        <input type="hidden" name="place_id" value="<%= @place.id if @place %>"/>
-      </div>
-    <% end -%>
-    
-    <div class="field">
-      <label>Logo</label><br/>
-      
-      <input type="radio" name="logo" value="logo-small.gif" id="logo_small_gif" <%= 'checked="checked"' if @logo == "logo-small.gif" %>>
-      <label for="logo_small_gif">White BG GIF</label><br/>
-      
-      <input type="radio" name="logo" value="logo-small.png" id="logo_small_png" <%= 'checked="checked"' if @logo == "logo-small.png" %>>
-      <label for="logo_small_png">Transparent PNG</label><br/>
-      
-      <input type="radio" name="logo" value="logo-small-white.png" id="logo_small_white_gif" <%= 'checked="checked"' if @logo  == "logo-small-white.png" %>>
-      <label for="logo_small_white_gif">White Text Transparent PNG</label><br/>
-      
-      <input type="radio" name="logo" value="none" id="logo_none" <%= 'checked="checked"' if @logo == "none" %>>
-      <label for="logo_none">none</label>
-    </div>
-    <div class="field">
-      <label for="limit">Number of observations</label><br/>
-      <select name="limit" id="limit">
-        <% 20.times do |n| %>
-        <option value="<%= n + 1 %>"<%= ' selected="selected"' if n+1 == @limit %>><%= n + 1 %></option>
-        <% end %>
-      </select>
-    </div>
-    
-    <div class="field">
-      <label for="order_by">Order by</label><br/>
-      <select name="order_by" id="order_by">
-        <option <%= 'selected="selected"' if @order_by == 'observed_on' %> value="observed_on">date observed on</option>
-        <option <%= 'selected="selected"' if @order_by == 'created_at' %> value="created_at">date added</option>
-      </select>
-    </div>
-    
-    <div class="field">
-      <label for="order">Order</label><br/>
-      <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc">Descending</label>
-      <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc">Ascending</label>
-    </div>
-    
-    <%= submit_tag "Configure &raquo;", :class => "button" %>
-  </form>
-</div>
+<% if logged_in? || @place -%>
+  <div class="column span-6">
+    <h3>Settings</h3>
+    <form method="get">
+      <% if @place -%>
+        <div class="field placefield">
+          <label>Place</label><br/>
+          <input type="text" name="place_name" value="<%= @place.name if @place %>"/>
+          <input type="hidden" name="place_id" value="<%= @place.id if @place %>"/>
+          <div>
+            <%= link_to "View #{h(truncate(@place.name, :length => 30))}", @place, :class => "readmore" %>
+          </div>
+        </div>
+      <% end -%>
 
-<div class="last column span-18">
-  <div id="loading" class="loading status" style="display: none">Loading preview and code...</div>
-  <div id="widget_preview_and_code">
-    <%= render :partial => 'widget_preview_and_code', :locals => {:place => @place} %>
+      <div class="field">
+        <label>Logo</label><br/>
+
+        <input type="radio" name="logo" value="logo-small.gif" id="logo_small_gif" <%= 'checked="checked"' if @logo == "logo-small.gif" %>>
+        <label for="logo_small_gif">White BG GIF</label><br/>
+
+        <input type="radio" name="logo" value="logo-small.png" id="logo_small_png" <%= 'checked="checked"' if @logo == "logo-small.png" %>>
+        <label for="logo_small_png">Transparent PNG</label><br/>
+
+        <input type="radio" name="logo" value="logo-small-white.png" id="logo_small_white_gif" <%= 'checked="checked"' if @logo  == "logo-small-white.png" %>>
+        <label for="logo_small_white_gif">White Text Transparent PNG</label><br/>
+
+        <input type="radio" name="logo" value="none" id="logo_none" <%= 'checked="checked"' if @logo == "none" %>>
+        <label for="logo_none">none</label>
+      </div>
+      <div class="field">
+        <label for="limit">Number of observations</label><br/>
+        <select name="limit" id="limit">
+          <% 20.times do |n| %>
+          <option value="<%= n + 1 %>"<%= ' selected="selected"' if n+1 == @limit %>><%= n + 1 %></option>
+          <% end %>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="order_by">Order by</label><br/>
+        <select name="order_by" id="order_by">
+          <option <%= 'selected="selected"' if @order_by == 'observed_on' %> value="observed_on">date observed on</option>
+          <option <%= 'selected="selected"' if @order_by == 'created_at' %> value="created_at">date added</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="order">Order</label><br/>
+        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc">Descending</label>
+        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc">Ascending</label>
+      </div>
+
+      <%= submit_tag "Configure &raquo;", :class => "button" %>
+    </form>
   </div>
-</div>
+
+  <div class="last column span-18">
+    <div id="loading" class="loading status" style="display: none">Loading preview and code...</div>
+    <div id="widget_preview_and_code">
+      <%= render :partial => 'widget_preview_and_code', :locals => {:place => @place} %>
+    </div>
+  </div>
+  
+  <% if @place -%>
+    <div class="last column span-24 meta">
+      Note: observations "near" a place are within a rectangle drawn around
+      the place's boundary, which may result in some inaccurate results for
+      places that don't resemble rectangles. This is due to a limitation with
+      our database that we're working to resolve.
+    </div>
+  <% end -%>
+
+<% else %>
+  <p>
+    <%= link_to "Sign in", login_path %>
+    or <%= link_to "sign up", signup_path %>
+    to configure your widget.
+  </p>
+<% end -%>
+

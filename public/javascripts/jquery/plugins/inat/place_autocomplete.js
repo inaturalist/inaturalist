@@ -58,6 +58,11 @@
         $(placeIdField).val('');
       };
     });
+    
+    // Prevent ENTER
+    $(input).keypress(function(e) {
+      if (e.which == 13) return false
+    })
   }
   
   $.fn.placeAutocomplete.formattedAutocompletePlace = function(placeJSON) {

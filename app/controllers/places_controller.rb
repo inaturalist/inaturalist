@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :login_required, :except => [:index, :show, :search, 
-    :wikipedia, :taxa, :children]
+    :wikipedia, :taxa, :children, :autocomplete]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa]
