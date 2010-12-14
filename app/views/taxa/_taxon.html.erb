@@ -17,22 +17,11 @@
   taxon_class << " #{extra_class}" if extra_class
   taxon_name_str ||= taxon.default_name.name
   include_full_name ||= false
-  taxon_name_str = render('shared/taxon', :object => taxon) if include_full_name
+  taxon_name_str ||= render('shared/taxon', :object => taxon) if include_full_name
   more_images ||= false
   
   if js_link
-    taxon_json = {
-      :id => taxon.id,
-      :name => taxon.name,
-      :rank => taxon.rank,
-      :rank_level => taxon.rank_level,
-      :iconic_taxon => iconic_taxon,
-      :taxon_names => taxon.taxon_names,
-      :photos => taxon.photos,
-      :common_name => taxon.common_name,
-      :image_url => taxon.image_url,
-      :default_name => taxon.default_name
-    }.to_json
+    taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon)
   end
 -%>
 

@@ -210,4 +210,20 @@ module TaxaHelper
     html += content_tag(:script, js, :type => "text/javascript")
     html
   end
+  
+  # Lame but simple way to jsonify a taxon
+  def taxon_to_json(taxon, options = {})
+    {
+      :id => taxon.id,
+      :name => taxon.name,
+      :rank => taxon.rank,
+      :rank_level => taxon.rank_level,
+      :iconic_taxon => options[:iconic_taxon] || taxon.iconic_taxon,
+      :taxon_names => taxon.taxon_names,
+      :photos => taxon.photos,
+      :common_name => taxon.common_name,
+      :image_url => taxon.image_url,
+      :default_name => taxon.default_name
+    }.to_json
+  end
 end

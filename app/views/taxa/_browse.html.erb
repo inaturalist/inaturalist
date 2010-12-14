@@ -1,5 +1,5 @@
 <%- js_link ||= nil -%>
-<% form_tag({}, :method => :get, :class => 'clear buttonrow') do %>
+<% form_tag({}, :method => :get, :class => 'clear buttonrow taxon_search_form') do %>
   <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
   <label for="q">Search</label>
   <%= hidden_field_tag :view, @view %>
@@ -31,7 +31,7 @@
     <% end %>
   </div>
   
-  <div class="inter loading status" style="float: right; display: none">
+  <div class="inter loading status" style="float: right; display: none; margin-left: 10px">
     Loading...
   </div>
   
@@ -204,8 +204,10 @@
               "$('#place_q_loading').show();",
             :complete => 
               "$('#place_q_submit').show();" +
-              "$('#place_q_loading').hide();",
+              "$('#place_q_loading').hide();" + 
+              "if (typeof(afterFindPlaces) == 'function') afterFindPlaces();",
             :html => {:class => "clear buttonrow"} do %>
+          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
           <input type="text" name="q" value="" id="place_q" class="text" />
           <input type="submit" value="Search" class="button" id="place_q_submit" />
           <div id="place_q_loading" class="loading status inter" style="display:none">&nbsp;</div>
@@ -232,9 +234,22 @@
         <div class="taxon_list_taxon">
           <% if @view == TaxaController::LIST_VIEW -%>
             <%= link_to "search this taxon", url_for_params(:taxon_id => taxon.id, :without => :q), :class => "right", :rel => "nofollow" %>
-            <h3><%= render('shared/taxon', :object => taxon, :link_url => taxon_path(taxon)) %></h3>
+            <h3>
+              <%- 
+                link_txt = render('shared/taxon', :object => taxon)
+                taxon_json = nil
+              -%>
+              <% if js_link -%>
+                <%- taxon_json = taxon_to_json(taxon, :iconic_taxon => Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] || taxon.iconic_taxon) -%>
+                <%= link_to_function link_txt, "handleTaxonClick(event, #{taxon_json})" %>
+              <% else %>
+                <%= link_to link_txt, taxon %>
+              <% end -%>
+            </h3>
           <% end -%>
           <%= render :partial => "taxa/taxon", :object => taxon , :locals => {
+            :taxon_name_str => link_txt,
+            :taxon_json => taxon_json,
             :link_name => true,
             :link_image => true,
             :js_link => js_link,

@@ -21,7 +21,7 @@ $(document).ready(function() {
       if (h.w.find('#taxon_browser > .loading').length == 1) {
         h.w.find('#taxon_browser').load(
           '/taxa/search?partial=browse&js_link=true',
-          {}, TaxonBrowser.ajaxify);
+          {}, function() {TaxonBrowser.ajaxify()});
       }
     }
   });
@@ -30,4 +30,8 @@ $(document).ready(function() {
 function handleTaxonClick(e, taxon) {
   $.fn.simpleTaxonSelector.selectTaxon($('.simpleTaxonSelector:first'), taxon);
   $('#taxonchooser').jqmHide();
+}
+
+function afterFindPlaces() {
+  TaxonBrowser.ajaxify('#find_places')
 }

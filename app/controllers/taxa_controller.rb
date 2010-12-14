@@ -504,6 +504,8 @@ class TaxaController < ApplicationController
   
   def find_places
     @limit = 5
+    @js_link = params[:js_link]
+    @partial = params[:partial]
     search_for_places
     render :layout => false
   end

@@ -254,7 +254,7 @@
         :id => "edit_list_button", :class => "button" %>
 
       <% unless @project_users.blank? %>
-        <% link_to_toggle_menu "add to project", :class => "button", 
+        <% link_to_toggle_menu "Add to project", :class => "button", 
             :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
           <ul>
             <% for project_user in @project_users %>

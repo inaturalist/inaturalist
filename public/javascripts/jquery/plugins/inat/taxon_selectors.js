@@ -29,6 +29,8 @@
       'margin-bottom': $(input).css('margin-bottom')
     });
     
+    $(wrapper).data('simpleTaxonSelectorOptions', options);
+    
     var taxon_id = getTaxonID(wrapper, options);
     
     // Insert the taxon image
@@ -118,15 +120,12 @@
         } else {
           $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', 'Loading...');
           jQuery.getJSON('/taxa/'+$(taxon_id).val()+'.json', function(taxon) {
-            // console.log("taxon: ", taxon);
             if (typeof(taxon.common_name) != 'undefined' && taxon.common_name != null) {
               taxon.common_name.taxon = taxon;
-              // console.log("formating the common name: ", taxon.common_name);
               var formattedName = $.fn.simpleTaxonSelector.taxonNameToS(taxon.common_name, {taxon: taxon});
             } else {
               for (var i = taxon.taxon_names.length - 1; i >= 0; i--){
                 if (taxon.taxon_names[i].name == taxon.name) {
-                  // console.log("formatting a taxon name: ", taxon.taxon_names[i]);
                   taxon.taxon_names[i].taxon = taxon
                   var formattedName = $.fn.simpleTaxonSelector.taxonNameToS(
                     taxon.taxon_names[i], {taxon: taxon});
@@ -136,10 +135,8 @@
             }
             if (typeof(formattedName) == 'undefined') {
               if (taxon.taxon_names.length == 0) {
-                // console.log("just making formatting the taxon");
                 var formattedName = $.fn.simpleTaxonSelector.taxonToS(taxon);
               } else {
-                // console.log("formatting the first taxon name");
                 taxon.taxon_names[0].taxon = taxon
                 var formattedName = $.fn.simpleTaxonSelector.taxonNameToS(
                   taxon.taxon_names[0], {taxon: taxon});
@@ -269,7 +266,7 @@
   };
   
   $.fn.simpleTaxonSelector.lookup = function(wrapper, options) {
-    var options = $.extend({}, options);
+    var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options);
     var input = $(wrapper).find('input[type=text]:first');
     var q = $(input).attr('value');
     var url = '/taxa/search.json?per_page=10&q='+q;
@@ -307,6 +304,7 @@
   };
   
   $.fn.simpleTaxonSelector.unSelectTaxon = function(wrapper, options) {
+    var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options);
     var input = $(wrapper).find('input[type=text]:first');
     var taxon_id = getTaxonID(wrapper, options);
     var image = $(wrapper).find('.simpleTaxonSelectorImage:first');
@@ -323,13 +321,13 @@
     $(image).attr('src', '/images/iconic_taxa/unknown-32px.png')
     
     // Fire afterUnselect callback
-    if (typeof(options) != 'undefined' && typeof(options.afterUnselect) == 'function') {
+    if (typeof(options.afterUnselect) == 'function') {
       options.afterUnselect(wrapper, name, options);
     };
   };
   
   $.fn.simpleTaxonSelector.selectTaxon = function(wrapper, taxon, options) {
-    var options = $.extend({}, options);
+    var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options);
     
     // Fire beforeSelect callback
     if (typeof(options.beforeSelect) == 'function') {
@@ -376,7 +374,7 @@
     var options = $.extend({}, options);
     var taxon = typeof(name.taxon) == 'undefined' ? options.taxon : name.taxon
     var formatted = $('<span class="taxon"></span>');
-    if (typeof(taxon.iconic_taxon) != 'undefined') {
+    if (taxon.iconic_taxon && typeof(taxon.iconic_taxon) != 'undefined') {
       formatted.addClass(taxon.iconic_taxon.name);
     } else {
       formatted.addClass('Unknown');
