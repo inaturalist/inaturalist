@@ -60,7 +60,7 @@
     <% end -%>
     
     <% unless listed_taxon.description.blank? -%>
-      <%- txt = strip_tags(h(listed_taxon.description)) -%>
+      <%- txt = h(strip_tags(listed_taxon.description)) -%>
       <p class="ui clear description">
         <%= truncate txt, :length => 200 %>
         <% if txt.size > 200 -%>
