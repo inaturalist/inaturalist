@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101203223538) do
+ActiveRecord::Schema.define(:version => 20101218044932) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -211,8 +211,8 @@ ActiveRecord::Schema.define(:version => 20101203223538) do
   create_table "observations", :force => true do |t|
     t.column "observed_on", :date
     t.column "description", :text
-    t.column "latitude", :float
-    t.column "longitude", :float
+    t.column "latitude", :decimal, :precision => 15, :scale => 10
+    t.column "longitude", :decimal, :precision => 15, :scale => 10
     t.column "map_scale", :integer
     t.column "timeframe", :text
     t.column "species_guess", :string
@@ -299,12 +299,12 @@ ActiveRecord::Schema.define(:version => 20101203223538) do
     t.column "name", :string
     t.column "display_name", :string
     t.column "code", :string
-    t.column "latitude", :float
-    t.column "longitude", :float
-    t.column "swlat", :float
-    t.column "swlng", :float
-    t.column "nelat", :float
-    t.column "nelng", :float
+    t.column "latitude", :decimal, :precision => 15, :scale => 10
+    t.column "longitude", :decimal, :precision => 15, :scale => 10
+    t.column "swlat", :decimal, :precision => 15, :scale => 10
+    t.column "swlng", :decimal, :precision => 15, :scale => 10
+    t.column "nelat", :decimal, :precision => 15, :scale => 10
+    t.column "nelng", :decimal, :precision => 15, :scale => 10
     t.column "woeid", :integer
     t.column "parent_id", :integer
     t.column "check_list_id", :integer

@@ -155,6 +155,17 @@ describe Observation, "creation" do
     @observation.save
     @observation.taxon_id.should == taxon.id
   end
+  
+  it "should allow lots of sigfigs" do
+    lat =  37.91143999
+    lon = -122.2687819
+    @observation.latitude = lat
+    @observation.longitude = lon
+    @observation.save
+    @observation.reload
+    @observation.latitude.should == lat
+    @observation.longitude.should == lon
+  end
 end
 
 describe Observation, "updating" do
