@@ -401,7 +401,14 @@ class TaxaController < ApplicationController
     limit = params[:limit].to_i
     limit = 24 if limit.blank? || limit == 0
     limit = 50 if limit > 50
-    @photos = @taxon.photos_with_backfill(:limit => limit)
+    
+    begin
+      @photos = @taxon.photos_with_backfill(:limit => limit)
+    rescue Timeout::Error => e
+      Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
+      HoptoadNotifier.notify(e, :request => request, :session => session)
+      @photos = @taxon.photos
+    end
     if params[:partial]
       key = {:controller => 'taxa', :action => 'photos', :id => @taxon.id, :partial => params[:partial]}
       if fragment_exist?(key)

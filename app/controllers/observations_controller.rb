@@ -1199,6 +1199,11 @@ class ObservationsController < ApplicationController
       logger.debug "[DEBUG] FlickRaw failed to find photo " +
         "#{params[:flickr_photo_id]}: #{e}\n#{e.backtrace.join("\n")}"
       @flickr_photo = nil
+    rescue Timeout::Error => e
+      flash.now[:error] = "Sorry, Flickr isn't responding at the moment."
+      Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
+      HoptoadNotifier.notify(e, :request => request, :session => session)
+      return
     end
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
@@ -1229,7 +1234,14 @@ class ObservationsController < ApplicationController
   end
   
   def sync_picasa_photo
-    api_response = PicasaPhoto.get_api_response(params[:picasa_photo_id], :user => current_user)
+    begin
+      api_response = PicasaPhoto.get_api_response(params[:picasa_photo_id], :user => current_user)
+    rescue Timeout::Error => e
+      flash.now[:error] = "Sorry, Picasa isn't responding at the moment."
+      Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
+      HoptoadNotifier.notify(e, :request => request, :session => session)
+      return
+    end
     unless api_response
       logger.debug "[DEBUG] Failed to find Picasa photo for #{params[:picasa_photo_id]}"
       return
