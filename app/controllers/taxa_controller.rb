@@ -129,7 +129,7 @@ class TaxaController < ApplicationController
         @iconic_taxa = Taxon.iconic_taxa.all(:include => :taxon_names)
         
         @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
-        @taxon_links.sort! {|a,b| a.taxon.rgt <=> b.taxon.rgt}
+        @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
         
         @check_listed_taxa = ListedTaxon.paginate(:page => 1,
           :include => :place,
