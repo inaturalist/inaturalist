@@ -102,7 +102,7 @@ Rails::Initializer.run do |config|
     :lib     => 'thinking_sphinx/deltas/delayed_delta',
     :version => '>= 1.0.0',
     :source  => 'http://gemcutter.org'
-  config.gem 'ancestry', :version => '>= 1.2.1.beta'
+  config.gem 'ancestry'
   config.gem 'machinist'
   config.gem 'faker'
   config.gem 'fastercsv'
