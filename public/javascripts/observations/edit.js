@@ -8,8 +8,8 @@ $(document).ready(function() {
   
   // Setup taxon browser
   $('body').append(
-    $('<div id="taxonchooser" class="modalbox dialog"></div>').append(
-      $('<div id="taxon_browser"></div>').append(
+    $('<div id="taxonchooser" class="clear modalbox dialog"></div>').append(
+      $('<div id="taxon_browser" class="clear"></div>').append(
         $('<div class="loading status">Loading...</div>')
       )
     ).hide()

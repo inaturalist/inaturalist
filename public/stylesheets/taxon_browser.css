@@ -108,3 +108,16 @@
   margin-left: -483px;
 }
 #taxon_list.empty { margin: 0 auto; }
+
+#taxon_browser .taxon_search_form .loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-left: 2px solid #CCC;
+  border-bottom: 2px solid #CCC;
+  padding: 5px;
+  padding-left: 25px;
+  background-color: white;
+  margin: 0 0 0 10px;
+  background-position: 5px 50%;
+}

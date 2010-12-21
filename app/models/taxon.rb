@@ -693,12 +693,11 @@ class Taxon < ActiveRecord::Base
     ThinkingSphinx.deltas_enabled = false
     before_validation.clear
     before_save.clear
-    after_move.clear
     after_save.clear
     validates_associated.clear
     validates_presence_of.clear
     validates_uniqueness_of.clear
-    rebuild!
+    restore_ancestry_integrity!
     ThinkingSphinx.deltas_enabled = true
   end
   

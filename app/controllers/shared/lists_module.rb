@@ -44,10 +44,21 @@ module Shared::ListsModule
     when TAXONOMIC_VIEW
       @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
       @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
-      taxon_ids = @listed_taxa.map do |lt| 
-        [lt.taxon.ancestor_ids[1..-1], lt.taxon_id]
-      end.flatten.uniq
-      @arranged_taxa = Taxon.arrange(:include => :taxon_names, :conditions => ["id IN (?)", taxon_ids])
+
+      ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
+      ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
+      taxa_by_id = (ancestors + @listed_taxa.map(&:taxon)).index_by(&:id)
+      taxa_to_arrange = []
+      @listed_taxa.each do |lt|
+        lt.taxon.ancestor_ids[1..-1].each do |ancestor_id|
+          taxa_to_arrange << taxa_by_id[ancestor_id]
+          taxa_by_id[ancestor_id] = nil
+        end
+        taxa_to_arrange << lt.taxon
+      end
+      taxa_to_arrange = taxa_to_arrange.compact
+      @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
+      
       @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
       
     # Default to plain view

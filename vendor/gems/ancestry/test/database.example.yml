@@ -1,0 +1,17 @@
+sqlite: 
+  adapter: sqlite 
+  database: ":memory:"
+sqlite3: 
+  adapter: sqlite3 
+  database: ":memory:"
+postgresql: 
+  adapter: postgresql
+  database: ancestry_test
+  username: ancestry
+  password: ancestry
+mysql: 
+  adapter: mysql 
+  host: localhost 
+  database: ancestry_test
+  username: ancestry 
+  password: ancestry 

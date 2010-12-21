@@ -43,19 +43,24 @@ module Ancestry
     # {node => children}, where children = {} if the node has no children
     def arrange_nodes(nodes)
       # Get all nodes ordered by ancestry and start sorting them into an empty hash
-      nodes.inject({}) do |arranged_nodes, node|
+      nodes.inject(ActiveSupport::OrderedHash.new) do |arranged_nodes, node|
         # Find the insertion point for that node by going through its ancestors
         node.ancestor_ids.inject(arranged_nodes) do |insertion_point, ancestor_id|
           insertion_point.each do |parent, children|
             # Change the insertion point to children if node is a descendant of this parent
             insertion_point = children if ancestor_id == parent.id
-          end; insertion_point
-        end[node] = {}; arranged_nodes
+          end
+          insertion_point
+        end[node] = ActiveSupport::OrderedHash.new
+        arranged_nodes
       end
     end
     
+    # Pseudo-preordered array of nodes.  Children will always follow parents, 
+    # but the ordering of nodes within a rank depends on their order in the 
+    # array that gets passed in
     def sort_by_ancestry(nodes)
-      arranged = nodes.is_a?(Hash) ? nodes : arrange_nodes(nodes)
+      arranged = nodes.is_a?(Hash) ? nodes : arrange_nodes(nodes.sort_by{|n| n.ancestry || '0'})
       arranged.inject([]) do |sorted_nodes, pair|
         node, children = pair
         sorted_nodes << node
@@ -63,41 +68,51 @@ module Ancestry
         sorted_nodes
       end
     end
-    
+
     # Integrity checking
-    def check_ancestry_integrity!
+    def check_ancestry_integrity! options = {}
       parents = {}
+      exceptions = [] if options[:report] == :list
       # For each node ...
-      self.base_class.clone.find_each do |node|
-        # ... check validity of ancestry column
-        if !node.valid? and node.errors.invalid?(node.class.ancestry_column)
-          raise Ancestry::AncestryIntegrityException.new("Invalid format for ancestry column of node #{node.id}: #{node.read_attribute node.ancestry_column}.")
-        end
-        # ... check that all ancestors exist
-        node.ancestor_ids.each do |ancestor_id|
-          unless exists? ancestor_id
-            raise Ancestry::AncestryIntegrityException.new("Reference to non-existent node in node #{node.id}: #{ancestor_id}.")
+      self.base_class.find_each do |node|
+        begin
+          # ... check validity of ancestry column
+          if !node.valid? and !node.errors[node.class.ancestry_column].blank?
+            raise Ancestry::AncestryIntegrityException.new "Invalid format for ancestry column of node #{node.id}: #{node.read_attribute node.ancestry_column}."
           end
-        end
-        # ... check that all node parents are consistent with values observed earlier
-        node.path_ids.zip([nil] + node.path_ids).each do |node_id, parent_id|
-          parents[node_id] = parent_id unless parents.has_key? node_id
-          unless parents[node_id] == parent_id
-            raise Ancestry::AncestryIntegrityException.new("Conflicting parent id in node #{node.id}: #{parent_id || 'nil'} for node #{node_id}, expecting #{parents[node_id] || 'nil'}")
+          # ... check that all ancestors exist
+          node.ancestor_ids.each do |ancestor_id|
+            unless exists? ancestor_id
+              raise Ancestry::AncestryIntegrityException.new "Reference to non-existent node in node #{node.id}: #{ancestor_id}."
+            end
+          end
+          # ... check that all node parents are consistent with values observed earlier
+          node.path_ids.zip([nil] + node.path_ids).each do |node_id, parent_id|
+            parents[node_id] = parent_id unless parents.has_key? node_id
+            unless parents[node_id] == parent_id
+              raise Ancestry::AncestryIntegrityException.new "Conflicting parent id found in node #{node.id}: #{parent_id || 'nil'} for node #{node_id} while expecting #{parents[node_id] || 'nil'}"
+            end
+          end
+        rescue Ancestry::AncestryIntegrityException => integrity_exception
+          case options[:report]
+            when :list then exceptions << integrity_exception
+            when :echo then puts integrity_exception
+            else raise integrity_exception
           end
         end
       end
+      exceptions if options[:report] == :list
     end
 
     # Integrity restoration
     def restore_ancestry_integrity!
       parents = {}
       # For each node ...
-      self.base_class.clone.find_each do |node|
+      self.base_class.find_each do |node|
         # ... set its ancestry to nil if invalid
-        if node.errors.invalid? node.class.ancestry_column
+        if node.errors[node.class.ancestry_column].blank?
           node.without_ancestry_callbacks do
-            node.update_attributes :ancestry => nil
+            node.update_attribute node.ancestry_column, nil
           end
         end
         # ... save parent of this node in parents array if it exists
@@ -111,22 +126,24 @@ module Ancestry
         parents[node.id] = nil if parent == node.id 
       end
       # For each node ...
-      self.base_class.clone.find_each do |node|
+      self.base_class.find_each do |node|
         # ... rebuild ancestry from parents array
         ancestry, parent = nil, parents[node.id]
         until parent.nil?
           ancestry, parent = if ancestry.nil? then parent else "#{parent}/#{ancestry}" end, parents[parent]
         end
         node.without_ancestry_callbacks do
-          node.update_attributes node.ancestry_column => ancestry
+          node.update_attribute node.ancestry_column, ancestry
         end
       end
     end
     
     # Build ancestry from parent id's for migration purposes
     def build_ancestry_from_parent_ids! parent_id = nil, ancestry = nil
-      self.base_class.update_all(["#{ancestry_column} = ?", ancestry], ["parent_id = ?", parent_id])
-      self.base_class.clone.find_each(:conditions => {:parent_id => parent_id}) do |node|
+      self.base_class.find_each(:conditions => {:parent_id => parent_id}) do |node|
+        node.without_ancestry_callbacks do
+          node.update_attribute ancestry_column, ancestry
+        end
         build_ancestry_from_parent_ids! node.id, if ancestry.nil? then "#{node.id}" else "#{ancestry}/#{node.id}" end
       end
     end
@@ -134,7 +151,7 @@ module Ancestry
     # Rebuild depth cache if it got corrupted or if depth caching was just turned on
     def rebuild_depth_cache!
       raise Ancestry::AncestryException.new("Cannot rebuild depth cache for model without depth caching.") unless respond_to? :depth_cache_column
-      self.base_class.clone.find_each do |node|
+      self.base_class.find_each do |node|
         node.update_attribute depth_cache_column, node.depth
       end
     end
