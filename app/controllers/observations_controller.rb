@@ -276,9 +276,7 @@ class ObservationsController < ApplicationController
       format.html do
         @observations = [@observation]
       end
-
-      # for a resource request, return a single observation
-      format.xml  { render :xml => @observation }
+      format.json  { render :json => @observation }
     end
   end
   

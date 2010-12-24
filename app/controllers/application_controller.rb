@@ -209,6 +209,14 @@ class ApplicationController < ActionController::Base
     prefs
   end
   
+  def log_timer
+    starttime = Time.now
+    Rails.logger.debug "\n\n[DEBUG] LOG TIMER START #{starttime}"
+    yield
+    endtime = Time.now
+    Rails.logger.debug "\n\n[DEBUG] LOG TIMER END #{endtime} (#{endtime - starttime} s)\n\n"
+  end
+  
   private
   
   def admin_required

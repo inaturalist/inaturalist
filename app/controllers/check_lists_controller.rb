@@ -120,7 +120,7 @@ class CheckListsController < ApplicationController
   end
   
   def get_iconic_taxon_counts(list, iconic_taxa = nil)
-    iconic_taxa ||= Taxon.iconic_taxa
+    iconic_taxa ||= Taxon::ICONIC_TAXA
     iconic_taxon_counts_by_id_hash = if list.is_default?
       ListedTaxon.count('DISTINCT(taxon_id)', :group => "taxa.iconic_taxon_id",
         :joins => "JOIN taxa ON taxa.id = listed_taxa.taxon_id",

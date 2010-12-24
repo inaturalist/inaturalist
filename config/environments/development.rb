@@ -20,6 +20,7 @@ config.action_view.cache_template_loading            = false
 # ActionController::Base.cache_store = :file_store, RAILS_ROOT + "/tmp/cache"
 # config.action_controller.perform_caching             = true
 # config.action_view.cache_template_loading            = true
+# config.cache_classes = true
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = true

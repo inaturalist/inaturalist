@@ -44,21 +44,10 @@ module Shared::ListsModule
     when TAXONOMIC_VIEW
       @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
       @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
-
       ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
       ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
-      taxa_by_id = (ancestors + @listed_taxa.map(&:taxon)).index_by(&:id)
-      taxa_to_arrange = []
-      @listed_taxa.each do |lt|
-        lt.taxon.ancestor_ids[1..-1].each do |ancestor_id|
-          taxa_to_arrange << taxa_by_id[ancestor_id]
-          taxa_by_id[ancestor_id] = nil
-        end
-        taxa_to_arrange << lt.taxon
-      end
-      taxa_to_arrange = taxa_to_arrange.compact
+      taxa_to_arrange = (ancestors + @listed_taxa.map(&:taxon)).sort_by{|t| "#{t.ancestry}/#{t.id}"}
       @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
-      
       @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
       
     # Default to plain view
@@ -289,7 +278,7 @@ module Shared::ListsModule
   end
   
   def load_find_options
-    @iconic_taxa = Taxon.iconic_taxa.all(:order => 'rgt')
+    @iconic_taxa = Taxon.iconic_taxa.all(:order => 'ancestry')
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
     @find_options = {
       :page => params[:page],
@@ -300,7 +289,7 @@ module Shared::ListsModule
       ],
       
       # TODO: somehow make the following not cause a filesort...
-      :order => 'taxa.ancestry'
+      :order => 'CONCAT(taxa.ancestry, "/", taxa.id)'
     }
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])
