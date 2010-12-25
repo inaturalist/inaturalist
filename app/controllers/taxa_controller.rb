@@ -193,9 +193,10 @@ class TaxaController < ApplicationController
   end
 
   def create
-    @taxon = Taxon.new(params[:taxon])
+    @taxon = Taxon.new
+    presave
+    @taxon.attributes = params[:taxon]
     @taxon.creator = current_user
-    @taxon.updater = current_user
     if @taxon.save
       flash[:notice] = 'Taxon was successfully created.'
       redirect_to :action => 'show', :id => @taxon
@@ -216,31 +217,7 @@ class TaxaController < ApplicationController
   end
 
   def update
-    @taxon.photos = retreive_flickr_photos
-    if params[:taxon_names]
-      TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
-    end
-    if params[:taxon][:colors]
-      @taxon.colors = Color.find(params[:taxon].delete(:colors))
-    end
-    
-    unless params[:taxon][:parent_id].blank?
-      unless Taxon.exists?(params[:taxon][:parent_id])
-        flash[:error] = "That parent taxon doesn't exist (try a different ID)"
-        render :action => 'edit'
-        return
-      end
-    end
-    
-    # Set the last editor
-    params[:taxon].update(:updater_id => current_user.id)
-    
-    if params[:taxon][:featured_at] && params[:taxon][:featured_at] == "1"
-      params[:taxon][:featured_at] = Time.now
-    else
-      params[:taxon][:featured_at] = ""
-    end
-    
+    presave
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = 'Taxon was successfully updated.'
       redirect_to taxon_path(@taxon)
@@ -915,6 +892,33 @@ class TaxaController < ApplicationController
       end
     rescue Exception => e
       flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
+    end
+  end
+  
+  def presave
+    @taxon.photos = retreive_flickr_photos
+    if params[:taxon_names]
+      TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
+    end
+    if params[:taxon][:colors]
+      @taxon.colors = Color.find(params[:taxon].delete(:colors))
+    end
+    
+    unless params[:taxon][:parent_id].blank?
+      unless Taxon.exists?(params[:taxon][:parent_id])
+        flash[:error] = "That parent taxon doesn't exist (try a different ID)"
+        render :action => 'edit'
+        return
+      end
+    end
+    
+    # Set the last editor
+    params[:taxon].update(:updater_id => current_user.id)
+    
+    if params[:taxon][:featured_at] && params[:taxon][:featured_at] == "1"
+      params[:taxon][:featured_at] = Time.now
+    else
+      params[:taxon][:featured_at] = ""
     end
   end
 end

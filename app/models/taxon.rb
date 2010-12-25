@@ -299,7 +299,7 @@ class Taxon < ActiveRecord::Base
       self.iconic_taxon = ancestors.reverse.select {|a| a.is_iconic?}.first
     end
     
-    if iconic_taxon_id_changed? || options[:force]
+    if !new_record? && (iconic_taxon_id_changed? || options[:force])
       # Update the iconic taxon of all descendants that currently have an iconic
       # taxon that is an ancestor (i.e. don't touch descendant iconic taxa)
       self.descendants.update_all(

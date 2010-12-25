@@ -326,6 +326,8 @@
       Source: <%= link_to @taxon.source.title, @taxon.source_url %>
     <% elsif @taxon.source %>
       Source: <%= @taxon.source.title %>
+    <% elsif @taxon.creator %>
+      Added by <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>
       Source: unknown
     <% end %>
