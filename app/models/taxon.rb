@@ -651,6 +651,11 @@ class Taxon < ActiveRecord::Base
     tags.compact.flatten.uniq
   end
   
+  def parent_id=(parent_id)
+    return unless !parent_id.blank? && Taxon.find_by_id(parent_id)
+    super
+  end
+  
   include TaxaHelper
   def image_url
     taxon_image_url(self)

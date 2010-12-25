@@ -100,7 +100,6 @@ describe Taxon, "creation" do
 end
 
 describe Taxon, "updating" do
-  # fixtures :taxa, :listed_taxa
   
   before(:each) do
     load_test_taxa
@@ -460,6 +459,14 @@ describe Taxon, "moving" do
     taxon.reload
     obs.reload
     obs.iconic_taxon_id.should be(taxon.iconic_taxon_id)
+  end
+  
+  it "should not raise an exception if the new parent doesn't exist" do
+    taxon = Taxon.make
+    bad_id = Taxon.last.id + 1
+    lambda {
+      taxon.parent_id = bad_id
+    }.should_not raise_error
   end
 end
 

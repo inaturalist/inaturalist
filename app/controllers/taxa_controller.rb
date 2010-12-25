@@ -224,16 +224,11 @@ class TaxaController < ApplicationController
       @taxon.colors = Color.find(params[:taxon].delete(:colors))
     end
     
-    parent_error = false
-    if params[:taxon][:parent_id]
-      begin
-        if parent = Taxon.find_by_id(params[:taxon][:parent_id])
-          @taxon.move_to_child_of(parent)
-        end
-      rescue StandardError => e
-        flash[:error] = "A problem occurred while setting the parent: " + 
-                        e.message
-        parent_error = true
+    unless params[:taxon][:parent_id].blank?
+      unless Taxon.exists?(params[:taxon][:parent_id])
+        flash[:error] = "That parent taxon doesn't exist (try a different ID)"
+        render :action => 'edit'
+        return
       end
     end
     
@@ -246,7 +241,7 @@ class TaxaController < ApplicationController
       params[:taxon][:featured_at] = ""
     end
     
-    if @taxon.update_attributes(params[:taxon]) && !parent_error
+    if @taxon.update_attributes(params[:taxon])
       flash[:notice] = 'Taxon was successfully updated.'
       redirect_to taxon_path(@taxon)
     else
