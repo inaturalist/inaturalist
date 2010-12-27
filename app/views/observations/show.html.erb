@@ -300,11 +300,7 @@
   <div id="where-and-photos" class="last column span-16">
     <% if @observation.photos.size > 0 -%>
       <div id="photos">
-        <% if @observation.photos.first.native_page_url -%>
-          <%= modal_image(@observation.photos.first, :size => :small, :class => 'first') -%>
-        <% else -%>
-          <%= image_tag @observation.photos.first.small_url, :class => 'first' -%>
-        <% end -%>
+        <%= modal_image(@observation.photos.first, :size => :small, :class => 'first') -%>
         <% for photo in @observation.photos[1..3] -%>
           <%= modal_image(photo, :size => :square) -%>
         <% end -%>

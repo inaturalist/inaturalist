@@ -135,9 +135,10 @@ class FlickrController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js   { 
+      format.js do
         @i = params[:i] || 1
-        render }
+        render
+      end
       format.json { render :json => @photos.to_json }
     end
   end
@@ -198,7 +199,7 @@ class FlickrController < ApplicationController
     
     respond_to do |format|
       format.html do
-        render :partial => 'photo_list_form', 
+        render :partial => 'photos/photo_list_form', 
                :locals => {
                  :photos => @photos, 
                  :index => params[:index],

@@ -2,6 +2,8 @@ class FlickrPhoto < Photo
   
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self
+  
+  validates_presence_of :native_photo_id
     
   def validate
     # Check to make sure the user owns the flickr photo

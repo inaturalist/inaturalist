@@ -1,16 +1,22 @@
-<%- index ||= @i -%>
-<%- checked ||= false -%>
-<%- synclink_base ||= nil -%>
+<%- 
+  index ||= @i
+  checked ||= false
+  synclink_base ||= nil
+  photo_identity ||= nil
+  local_photos = photo_identity.blank? unless local_photos == false
+-%>
 
-<% if photos.blank? %>
-  <div class="notice" style="clear: both">
+<% if photos.blank? && !local_photos %>
+  <div class="description" style="clear: both">
     We didn't find any photos using the search terms you provided.
   </div>
 <% else %>
   <% photos.each do |photo| %>
-    <%- native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id -%>
-    <%- square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square) -%>
-    <%- prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo' %>
+    <%- 
+      native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
+      square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square)
+      prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
+    -%>
     <div class="photo">
       <% if index %>
         <%= check_box_tag "#{prefix.pluralize}[#{index}][]", 
@@ -51,3 +57,16 @@
     </div>
   <% end %>
 <% end %>
+
+<% if local_photos -%>
+  <div class="local_photos clear quiet box" style="clear:both">
+    <% photo_file_field = capture do %>
+      <div class="photo_file_field">
+        <%= file_field_tag("local_photos[#{index}][]", :class => 'text') %>
+        <%= link_to_function "&uarr; remove", "$(this).parents('.photo_file_field').remove()", :class => "right" %>
+      </div>
+    <% end %>
+    <%= photo_file_field %>
+    <%= link_to_function "Add another photo", "$(this).before('#{escape_javascript(photo_file_field)}')" %>
+  </div>
+<% end -%>

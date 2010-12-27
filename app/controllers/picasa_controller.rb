@@ -80,7 +80,7 @@ class PicasaController < ApplicationController
     
     respond_to do |format|
       format.html do
-        render :partial => 'flickr/photo_list_form', 
+        render :partial => 'photos/photo_list_form', 
                :locals => {
                  :photos => @photos, 
                  :index => params[:index],

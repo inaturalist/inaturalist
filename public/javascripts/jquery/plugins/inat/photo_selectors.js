@@ -100,6 +100,9 @@
       visibility: 'hidden', 
       clear: 'both'})
     );
+    if (options.baseURL.match(/local_photo/)) {
+      controls.hide()
+    }
     $(wrapper).append(controls);
     
     // Insert a container to hold the photos
@@ -164,8 +167,7 @@
     var baseURL = options.baseURL;
     
     // Pull out parents of existing checked inputs
-    var existing = $(wrapper).find(
-      '.photoSelectorPhotos input:checked').parent().clone();
+    var existing = $(wrapper).find('.photoSelectorPhotos input:checked').parent().clone();
     
     // Set loading status
     $(wrapper).find('.photoSelectorPhotos').prepend(
@@ -189,6 +191,14 @@
         
         // Re-insert the checkbox parents
         $(wrapper).find('.photoSelectorPhotos').prepend(existing)
+        
+        if (options.baseURL.match(/local_photo/)) {
+          $(wrapper).find('.photoSelectorControls').hide();
+          $(wrapper).find('.local_photos').show();
+        } else {
+          $(wrapper).find('.photoSelectorControls').show();
+          $(wrapper).find('.local_photos').hide();
+        }
         
         // Unset loading status
         $(wrapper).find('.photoSelectorPhotos').removeClass('loading status');

@@ -52,7 +52,6 @@
     }
     
     .photoSelectorPhotos {
-      width: 285px;
       height: 412px;
       margin: 0 auto;
       overflow: auto;
@@ -86,10 +85,12 @@
         var authenticity_token = $(this).parents('form').find(
           'input[name=authenticity_token]').val();
         $(this).photoSelector({
-          <%- if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+          <%- if @default_photo_identity && @default_photo_identity.is_a?(FlickrIdentity) -%>
             baseURL: '/flickr/photo_fields?context=user',
-          <%- else -%>
+          <%- elsif @default_photo_identity && @default_photo_identity.is_a?(PicasaIdentity) -%>
             baseURL: '/picasa/photo_fields?context=user',
+          <% else %>
+            baseURL: '/photos/local_photo_fields?context=user',
           <%- end -%>
           urlParams: {
             authenticity_token: authenticity_token,
@@ -110,7 +111,7 @@
 </div>
 
 <div class="column span-24">
-  <% form_for(@observation, :html => {:class => 'observationform'}) do %>
+  <% form_for(@observation, :html => {:class => 'observationform', :multipart => true}) do %>
     <%= render(:partial => 'form_fields', :locals => {
       :observation => @observation,
       :i => @observation.id

@@ -60,6 +60,7 @@ module ActivityStreams
             
           # Handle single updates
           else
+            # TODO this should be in DJ
             self.user.followers.each do |follower|
               ActivityStream.create(
                 :user_id => self.user_id,

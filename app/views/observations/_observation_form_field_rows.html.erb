@@ -125,7 +125,7 @@
             </a>
             <% unless @photo_identities.blank? %>
               <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
-                <%= render :partial => "flickr/photo_list_form", :locals => { 
+                <%= render :partial => "photos/photo_list_form", :locals => { 
                   :photos => observation.photos,
                   :index => i,
                   :checked => true

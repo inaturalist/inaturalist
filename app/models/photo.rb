@@ -5,10 +5,11 @@ class Photo < ActiveRecord::Base
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
-  validates_presence_of :native_photo_id
-  
   attr_accessor :api_response
   cattr_accessor :descendent_classes
+  
+  COPYRIGHT = 0
+  NO_COPYRIGHT = 8
   
   def validate
     if user.blank? && self.license == 0
@@ -34,25 +35,23 @@ class Photo < ActiveRecord::Base
   
   # Return a string with attribution info about this photo
   def attribution
-    case self.license
-    when 0
-      rights = '(c)'
-    when nil
-      rights = '(c)'
-    when 7
-      rights = '(o)'
+    rights = case self.license
+    when COPYRIGHT, nil
+      '(c)'
+    when NO_COPYRIGHT
+      '(o)'
     else
-      rights = '(cc)'
+      '(cc)'
     end
     
-    if !self.native_realname.blank?
-      name = self.native_realname
+    name = if !self.native_realname.blank?
+      self.native_realname
     elsif !self.native_username.blank?
-      name = self.native_username
+      self.native_username
     elsif !self.observations.empty?
-      name = self.observations.first.user.login
+      self.observations.first.user.login
     else
-      name = "anonymous Flickr user"
+      "anonymous Flickr user"
     end
 
     "#{rights} #{name}"
@@ -65,7 +64,7 @@ class Photo < ActiveRecord::Base
   
   # Retrieve info about a photo from its native source given its native id.  
   # Should be implemented by descendents
-  def self.get_api_response(native_photo_id)
+  def self.get_api_response(native_photo_id, options = {})
     nil
   end
   

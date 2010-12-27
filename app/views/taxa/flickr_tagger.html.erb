@@ -284,7 +284,7 @@
         <% if current_user.flickr_identity %>
           <div id="photo_selector" class="clear">
             <% unless @flickr_photos.blank? %>
-              <%= render :partial => "flickr/photo_list_form", :locals => { 
+              <%= render :partial => "photos/photo_list_form", :locals => { 
                 :photos => @flickr_photos, 
                 :checked => true } %>
             <% end %>

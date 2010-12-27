@@ -3,6 +3,8 @@ class PicasaPhoto < Photo
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self
   
+  validates_presence_of :native_photo_id
+  
   def validate
     if user.blank? && self.license == 0
       errors.add(

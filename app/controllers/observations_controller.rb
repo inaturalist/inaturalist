@@ -255,7 +255,7 @@ class ObservationsController < ApplicationController
   def new
     options = {}
     options[:id_please] ||= params[:id_please]
-    if params[:taxon_id] && taxon = Taxon.find_by_id(params[:taxon_id])
+    if !params[:taxon_id].blank? && (taxon = Taxon.find_by_id(params[:taxon_id]))
       options[:taxon] = taxon
       if common_name = taxon.common_name
         options[:species_guess] = taxon.common_name.name
@@ -933,14 +933,17 @@ class ObservationsController < ApplicationController
       # Create a new one if one doesn't already exist
       unless photo
         api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
-        photo = photo_class.new_from_api_response(api_response, :user => current_user)
+        unless photo = photo_class.new_from_api_response(api_response, :user => current_user)
+          photo = LocalPhoto.new(:file => photo_id, :user => current_user)
+          photo.url_host = root_url
+        end
       end
       
       if photo.valid?
         photos << photo
       else
         logger.info "[INFO] #{current_user} tried to save an observation " +
-          "with a photo (#{photo}) that wasn't their own."
+          "with an invalid photo (#{photo}): " + photo.errors.full_messages.to_sentence
       end
     end
     photos
@@ -1271,8 +1274,18 @@ class ObservationsController < ApplicationController
   def load_photo_identities
     @photo_identities = Photo.descendent_classes.map do |klass|
       klass_name = klass.to_s.underscore.split('_').first + "_identity"
-      current_user.send(klass_name)
+      current_user.send(klass_name) if current_user.respond_to?(klass_name)
     end.compact
+    if @observation && first = @observation.photos.first
+      @default_photo_identity = case first.class
+      when FlickrPhoto
+        @photo_identities.detect{|pi| pi.is_a?(FlickrIdentity)}
+      when PicasaPhoto
+        @photo_identities.detect{|pi| pi.is_a?(PicasaIdentity)}
+      end
+    else
+      @default_photo_identity = @photo_identities.first
+    end
   end
   
   def load_observation

@@ -658,6 +658,7 @@ class Observation < ActiveRecord::Base
   
   def set_taxon_from_species_guess
     return true unless species_guess_changed? && taxon_id.blank?
+    return true if species_guess.blank?
     taxon_names = TaxonName.all(:conditions => ["name = ?", species_guess.strip], :limit => 2)
     self.taxon_id = taxon_names.first.taxon_id if taxon_names.size == 1
     true

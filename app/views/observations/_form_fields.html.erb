@@ -68,59 +68,75 @@
           <div class="last column span-8">
             <div class="field">
               <label>
-                Did you post any photos<% if @photo_identities.blank? %>?
-                <% else -%>
-                  <%- 
-                    photo_endpoints = @photo_identities.map do |ident|
-                      name = ident.class.to_s.underscore.humanize.split.first
-                      {:title => name, :url => "/#{name.downcase}/photo_fields?context=user"}
-                    end
-                  -%>
-                  <% if @photo_identities.size == 1 -%>
-                    on <%= photo_endpoints.first[:title] %>?
-                  <% else %>
-                    on <select id="<%= dom_id(observation, "photo_source_selector") %>">
-                      <% for endpoint in photo_endpoints %>
-                        <option value="<%= endpoint[:url] %>"><%= endpoint[:title] %></option>
-                      <% end %>
-                    </select> ?
-                    <script type="text/javascript" charset="utf-8">
-                      $('#<%= dom_id(observation, "photo_source_selector") %>').change(function() {
-                        $.fn.photoSelector.changeBaseUrl($('#photos_<%= i %>'), $(this).val());
-                      });
-                    </script>
-                  <% end -%>
+                Add photos
+                <%- 
+                  photo_endpoints = @photo_identities.map do |ident|
+                    name = ident.class.to_s.underscore.humanize.split.first
+                    {:title => name, :url => "/#{name.downcase}/photo_fields?context=user", :type => ident.class.to_s}
+                  end
+                  photo_endpoints << {:title => "your hard drive", :url => "/photos/local_photo_fields?context=user", :type => "LocalPhoto"}
+                  first = observation.photos.first
+                -%>
+                <% if photo_endpoints.size == 1 -%>
+                  from <%= photo_endpoints.first[:title] %>
+                <% else %>
+                  from <select id="<%= dom_id(observation, "photo_source_selector") %>">
+                    <% for endpoint in photo_endpoints %>
+                      <option value="<%= endpoint[:url] %>" <%= 'selected="selected"' if first && first.type.downcase =~ /#{endpoint[:type].downcase}/ %>><%= endpoint[:title] %></option>
+                    <% end %>
+                  </select>
+                  <script type="text/javascript" charset="utf-8">
+                    $('#<%= dom_id(observation, "photo_source_selector") %>').change(function() {
+                      $.fn.photoSelector.changeBaseUrl($('#photos_<%= i %>'), $(this).val());
+                    });
+                  </script>
                 <% end -%>
               </label>
-              <% unless @photo_identities.blank? %>
-                <div id="photos_<%= i %>" class="observation_photos">
-                  <%= render :partial => "flickr/photo_list_form", :locals => { 
-                    :photos => observation.photos, 
-                    :index => i,
-                    :checked => true,
-                    :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation) } %>
+              
+              <div id="photos_<%= i %>" class="observation_photos">
+                <%= render :partial => "photos/photo_list_form", :locals => { 
+                  :photos => observation.photos, 
+                  :index => i,
+                  :checked => true,
+                  :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
+                  :photo_identity => @photo_identities.first,
+                  :local_photos => observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
+                } %>
+              </div>
+              
+              <% if @photo_identities.blank? %>
+              
+                <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+                
+                <p class="ui description">
+                  We also support <a href="http://flickr.com">Flickr</a> and 
+                  <a href="http://picasaweb.google.com">Picasa</a> for image hosting.
+                </p>
+                
+                <div class="clear buttons">
+                  <%= link_to "Link your Flickr account",
+                    {:controller => 'flickr', :action => 'link'}, :class => "button" %>
+                  <%= link_to "Link your Picasa account",
+                    {:controller => 'picasa', :action => 'options'}, :class => "button" %>
                 </div>
-                <br/>
-                <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;",
-                  "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
-                    "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
-                  ").join('&');" +
-                  "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
-                    "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
+
+              <% end %>
+              
+              <div>
+                <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+                  <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;",
+                    "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
+                      "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
+                    ").join('&');" +
+                    "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
+                      "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
+                <% end -%>
+
                 <% unless observation.photos.empty? || observation.new_record? -%>
                   <br/>
                   <%= link_to "Re-order photos &raquo;", edit_observation_photos_path(observation) %>
                 <% end -%>
-              <% else %>
-                <p class="description">
-                  We currently support <a href="http://flickr.com">Flickr</a> and 
-                  <a href="http://picasaweb.google.com">Picasa</a> for image hosting.
-                </p>
-                <%= link_to "Link your Flickr account",
-                  {:controller => 'flickr', :action => 'link'}, :class => "button" %>
-                <%= link_to "Link your Picasa account",
-                  {:controller => 'picasa', :action => 'options'}, :class => "button" %>
-              <% end %>
+              </div>
             </div>
           </div>
         </div>

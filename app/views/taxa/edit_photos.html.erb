@@ -10,7 +10,7 @@
   </div>
   <% form_tag({:action => 'update_photos'}) do %>
     <div class="taxon_photos clear">
-      <%= render :partial => "flickr/photo_list_form", :locals => { 
+      <%= render :partial => "photos/photo_list_form", :locals => { 
         :photos => @taxon.photos,
         :checked => true } %>
     </div>
