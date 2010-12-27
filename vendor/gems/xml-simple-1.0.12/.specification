@@ -1,0 +1,67 @@
+--- !ruby/object:Gem::Specification 
+name: xml-simple
+version: !ruby/object:Gem::Version 
+  hash: 15
+  prerelease: false
+  segments: 
+  - 1
+  - 0
+  - 12
+  version: 1.0.12
+platform: ruby
+authors: 
+- Maik Schmidt
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-02-26 00:00:00 -05:00
+default_executable: 
+dependencies: []
+
+description: 
+email: contact@maik-schmidt.de
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: 
+- lib/xmlsimple.rb
+has_rdoc: true
+homepage: http://xml-simple.rubyforge.org
+licenses: []
+
+post_install_message: 
+rdoc_options: []
+
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: xml-simple
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 2
+summary: A simple API for XML processing.
+test_files: []
+

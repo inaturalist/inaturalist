@@ -1,0 +1,263 @@
+--- !ruby/object:Gem::Specification 
+name: paperclip
+version: !ruby/object:Gem::Version 
+  hash: 19
+  prerelease: false
+  segments: 
+  - 2
+  - 3
+  - 8
+  version: 2.3.8
+platform: ruby
+authors: 
+- Jon Yurek
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-12-15 00:00:00 -05:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: activerecord
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: activesupport
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: shoulda
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id003
+- !ruby/object:Gem::Dependency 
+  name: appraisal
+  prerelease: false
+  requirement: &id004 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id004
+- !ruby/object:Gem::Dependency 
+  name: mocha
+  prerelease: false
+  requirement: &id005 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id005
+- !ruby/object:Gem::Dependency 
+  name: aws-s3
+  prerelease: false
+  requirement: &id006 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id006
+- !ruby/object:Gem::Dependency 
+  name: sqlite3-ruby
+  prerelease: false
+  requirement: &id007 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id007
+description: Easy upload management for ActiveRecord
+email: jyurek@thoughtbot.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.rdoc
+files: 
+- README.rdoc
+- LICENSE
+- Rakefile
+- init.rb
+- lib/generators/paperclip/paperclip_generator.rb
+- lib/generators/paperclip/templates/paperclip_migration.rb.erb
+- lib/generators/paperclip/USAGE
+- lib/paperclip/attachment.rb
+- lib/paperclip/attachment.rbc
+- lib/paperclip/callback_compatability.rb
+- lib/paperclip/callback_compatability.rbc
+- lib/paperclip/command_line.rb
+- lib/paperclip/command_line.rbc
+- lib/paperclip/geometry.rb
+- lib/paperclip/geometry.rbc
+- lib/paperclip/glue.rbc
+- lib/paperclip/interpolations.rb
+- lib/paperclip/interpolations.rbc
+- lib/paperclip/iostream.rb
+- lib/paperclip/iostream.rbc
+- lib/paperclip/matchers/have_attached_file_matcher.rb
+- lib/paperclip/matchers/have_attached_file_matcher.rbc
+- lib/paperclip/matchers/validate_attachment_content_type_matcher.rb
+- lib/paperclip/matchers/validate_attachment_content_type_matcher.rbc
+- lib/paperclip/matchers/validate_attachment_presence_matcher.rb
+- lib/paperclip/matchers/validate_attachment_presence_matcher.rbc
+- lib/paperclip/matchers/validate_attachment_size_matcher.rb
+- lib/paperclip/matchers/validate_attachment_size_matcher.rbc
+- lib/paperclip/matchers.rb
+- lib/paperclip/matchers.rbc
+- lib/paperclip/processor.rb
+- lib/paperclip/processor.rbc
+- lib/paperclip/railtie.rb
+- lib/paperclip/railtie.rbc
+- lib/paperclip/storage/filesystem.rb
+- lib/paperclip/storage/filesystem.rbc
+- lib/paperclip/storage/s3.rb
+- lib/paperclip/storage/s3.rbc
+- lib/paperclip/storage.rb
+- lib/paperclip/storage.rbc
+- lib/paperclip/style.rb
+- lib/paperclip/style.rbc
+- lib/paperclip/thumbnail.rb
+- lib/paperclip/thumbnail.rbc
+- lib/paperclip/upfile.rb
+- lib/paperclip/upfile.rbc
+- lib/paperclip/version.rb
+- lib/paperclip/version.rbc
+- lib/paperclip.rb
+- lib/paperclip.rbc
+- lib/tasks/paperclip.rake
+- test/attachment_test.rb
+- test/attachment_test.rbc
+- test/command_line_test.rb
+- test/command_line_test.rbc
+- test/database.yml
+- test/fixtures/12k.png
+- test/fixtures/50x50.png
+- test/fixtures/5k.png
+- test/fixtures/bad.png
+- test/fixtures/s3.yml
+- test/fixtures/text.txt
+- test/fixtures/twopage.pdf
+- test/geometry_test.rb
+- test/geometry_test.rbc
+- test/helper.rb
+- test/helper.rbc
+- test/integration_test.rb
+- test/integration_test.rbc
+- test/interpolations_test.rb
+- test/interpolations_test.rbc
+- test/iostream_test.rb
+- test/iostream_test.rbc
+- test/matchers/have_attached_file_matcher_test.rb
+- test/matchers/have_attached_file_matcher_test.rbc
+- test/matchers/validate_attachment_content_type_matcher_test.rb
+- test/matchers/validate_attachment_content_type_matcher_test.rbc
+- test/matchers/validate_attachment_presence_matcher_test.rb
+- test/matchers/validate_attachment_presence_matcher_test.rbc
+- test/matchers/validate_attachment_size_matcher_test.rb
+- test/matchers/validate_attachment_size_matcher_test.rbc
+- test/paperclip_test.rb
+- test/paperclip_test.rbc
+- test/processor_test.rb
+- test/processor_test.rbc
+- test/storage_test.rb
+- test/storage_test.rbc
+- test/style_test.rb
+- test/style_test.rbc
+- test/thumbnail_test.rb
+- test/thumbnail_test.rbc
+- test/upfile_test.rb
+- test/upfile_test.rbc
+- rails/init.rb
+- generators/paperclip/paperclip_generator.rb
+- generators/paperclip/templates/paperclip_migration.rb.erb
+- generators/paperclip/USAGE
+- shoulda_macros/paperclip.rb
+- shoulda_macros/paperclip.rbc
+has_rdoc: true
+homepage: http://www.thoughtbot.com/projects/paperclip
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --line-numbers
+- --inline-source
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: 
+- ImageMagick
+rubyforge_project: paperclip
+rubygems_version: 1.3.7
+signing_key: 
+specification_version: 3
+summary: File attachments as attributes for ActiveRecord
+test_files: []
+

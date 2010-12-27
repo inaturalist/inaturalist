@@ -78,10 +78,11 @@ Rails::Initializer.run do |config|
   config.gem "mojombo-chronic", :lib => 'chronic', :source => 'http://gems.github.com'
   config.gem 'bluecloth'
   config.gem "htmlentities"
-  config.gem "right_http_connection"
-  config.gem "right_aws"
+  config.gem "aws-s3", :lib => 'aws/s3'
+  config.gem "xml-simple", :lib => 'xmlsimple'
+  config.gem "mime-types", :lib => 'mime/types'
   config.gem "mocha"
-  config.gem "thoughtbot-paperclip", :lib => 'paperclip', :source => 'http://gems.github.com'
+  config.gem "paperclip"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
   config.gem "flickraw"
   config.gem 'rest-client', :lib => 'rest_client'

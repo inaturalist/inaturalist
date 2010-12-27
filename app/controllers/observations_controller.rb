@@ -935,7 +935,6 @@ class ObservationsController < ApplicationController
         api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
         unless photo = photo_class.new_from_api_response(api_response, :user => current_user)
           photo = LocalPhoto.new(:file => photo_id, :user => current_user)
-          photo.url_host = root_url
         end
       end
       

@@ -32,7 +32,7 @@ class List < ActiveRecord::Base
   #
   def refresh(options = {})
     if taxa = options[:taxa]
-      collection = listed_taxa.all(:conditions => ["taxon_id IN (?)", self, taxa])
+      collection = listed_taxa.all(:conditions => ["taxon_id IN (?)", taxa])
     else
       collection = listed_taxa.all
     end

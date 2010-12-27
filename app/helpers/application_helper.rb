@@ -162,7 +162,6 @@ module ApplicationHelper
   def modal_image(flickr_photo, params = {})
     size = params.delete(:size)
     size_method = size ? "#{size}_url" : 'square_url'
-    # link_options = params.merge(:rel => flickr_photo_path(flickr_photo, :partial => 'photo'))
     link_options = params.merge(:rel => photo_path(flickr_photo, :partial => 'photo'))
     link_options[:class] ||= ''
     link_options[:class] += ' modal_image_link'

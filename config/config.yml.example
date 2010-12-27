@@ -43,6 +43,7 @@ base: &base
     noreply_email: 'no-reply@yoursite.org'
     google_webmaster:
       verification: abiglongkey
+    s3_bucket: 'yourbucketname'
 
 development:
     <<: *base

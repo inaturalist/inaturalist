@@ -1,5 +1,5 @@
 <%- 
-  photo ||= object || @photo 
+  photo ||= object 
   size ||= 'medium' 
   size_method ||= "#{size}_url" 
   photo_source = photo.class.to_s.underscore.humanize.split.first

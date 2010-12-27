@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.js do
         partial = params[:partial] || 'photo'
-        render :layout => false, :partial => partial
+        render :layout => false, :partial => partial, :object => @photo
       end
     end
   end

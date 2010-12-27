@@ -27,6 +27,7 @@ namespace :deploy do
     symlink_smtp_config
     symlink_sphinx_config
     symlink_geoip_config
+    symlink_s3_config
     symlink_newrelic_config # temp
     symlink_attachments
     symlink_cache
@@ -76,6 +77,11 @@ namespace :deploy do
   desc "Create a symlink to a copy of geoip.yml that is outside the repos."
   task :symlink_geoip_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/geoip.yml #{latest_release}/config/geoip.yml"
+  end
+  
+  desc "Create a symlink to a copy of s3.yml that is outside the repos."
+  task :symlink_s3_config, :hosts => "#{domain}" do
+    run "ln -s #{inat_config_shared_path}/s3.yml #{latest_release}/config/s3.yml"
   end
   
   # temp

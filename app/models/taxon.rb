@@ -40,18 +40,11 @@ class Taxon < ActiveRecord::Base
   end
   
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
-  before_save :set_iconic_taxon # if after, it would require an extra save
-  before_save {|taxon| taxon.name = taxon.name.capitalize}
-  after_save :create_matching_taxon_name
-  after_save {|taxon| taxon.send_later(:set_wikipedia_summary) if taxon.wikipedia_title_changed? }
-  after_save {|taxon|
-    if taxon.ancestry_changed?
-      taxon.update_listed_taxa
-      taxon.handle_after_move
-      taxon.update_life_lists
-      taxon.update_obs_iconic_taxa
-    end
-  }
+  before_save :set_iconic_taxon, # if after, it would require an extra save
+              :capitalize_name
+  after_save :create_matching_taxon_name,
+             :set_wikipedia_summary_later,
+             :handle_after_move
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
@@ -143,25 +136,6 @@ class Taxon < ActiveRecord::Base
     'Animalia' => 'Other Animals'
   )
   
-  # see the end for the validate method
-  def to_s
-    "<Taxon #{self.id}: #{self.to_plain_s}>"
-  end
-  
-  def to_plain_s
-    comname = self.common_name
-    if self.rank == 'species' or self.rank == 'infraspecies'
-      sciname = self.name
-    else
-      sciname = '%s %s' % [self.rank.capitalize, self.name]
-    end
-    if comname.nil?
-      return sciname
-    else
-      return '%s (%s)' % [comname.name, sciname]
-    end
-  end
-  
   named_scope :observed_by, lambda {|user|
     { :joins => """
       JOIN (
@@ -185,6 +159,113 @@ class Taxon < ActiveRecord::Base
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
+  
+  
+  # Callbacks ###############################################################
+  
+  def handle_after_move
+    if ancestry_changed?
+      update_listed_taxa
+      handle_after_move
+      update_life_lists
+      update_obs_iconic_taxa
+      set_iconic_taxon
+    end
+    true
+  end
+  
+  def normalize_rank
+    self.rank = Taxon.normalize_rank(self.rank)
+    true
+  end
+  
+  def set_rank_level
+    self.rank_level = RANK_LEVELS[self.rank]
+    true
+  end
+  
+  def remove_rank_from_name
+    self.name = Taxon.remove_rank_from_name(self.name)
+    true
+  end
+  
+  #
+  # Set the iconic taxon if it hasn't been set
+  #
+  def set_iconic_taxon(options = {})
+    if self.is_iconic?
+      self.iconic_taxon = self
+    else
+      self.iconic_taxon = ancestors.reverse.select {|a| a.is_iconic?}.first
+    end
+    
+    if !new_record? && (iconic_taxon_id_changed? || options[:force])
+      # Update the iconic taxon of all descendants that currently have an iconic
+      # taxon that is an ancestor (i.e. don't touch descendant iconic taxa)
+      self.descendants.update_all(
+        "iconic_taxon_id = #{iconic_taxon_id || 'NULL'}", 
+        ["iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL", 
+          self.ancestors.all])
+
+      # Do the same for observations
+      Observation.update_all(
+        "iconic_taxon_id = #{iconic_taxon_id || 'NULL'}", 
+        ["id IN (?) AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)", 
+          Observation.of(self), 
+          self.ancestors.all])
+    end
+    true
+  end
+  
+  def set_wikipedia_summary_later
+    send_later(:set_wikipedia_summary) if wikipedia_title_changed?
+    true
+  end
+  
+  def capitalize_name
+    self.name = name.capitalize
+    true
+  end
+  
+  # Create a taxon name with the same name as this taxon
+  def create_matching_taxon_name
+    return if @skip_new_taxon_name
+    return if scientific_name
+    
+    taxon_attributes = self.attributes
+    taxon_attributes.delete('id')
+    tn = TaxonName.new
+    taxon_attributes.each do |k,v|
+      tn[k] = v if TaxonName.column_names.include?(k)
+    end
+    tn.lexicon = TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    tn.is_valid = true
+    
+    self.taxon_names << tn
+    true
+  end
+  
+  # /Callbacks ##############################################################
+  
+  
+  # see the end for the validate method
+  def to_s
+    "<Taxon #{self.id}: #{self.to_plain_s}>"
+  end
+  
+  def to_plain_s
+    comname = self.common_name
+    if self.rank == 'species' or self.rank == 'infraspecies'
+      sciname = self.name
+    else
+      sciname = '%s %s' % [self.rank.capitalize, self.name]
+    end
+    if comname.nil?
+      return sciname
+    else
+      return '%s (%s)' % [comname.name, sciname]
+    end
+  end
   
   def observations_count_with_descendents
     Observation.of(self).count
@@ -215,19 +296,6 @@ class Taxon < ActiveRecord::Base
             ON o.taxon_id=t.record_id
     """
     Taxon.find_by_sql(sql)
-  end
-  
-  #
-  # Count the number of taxa in the given rank.
-  #
-  # I don't like hard-coding it like this, so if you know an abstract way of 
-  # getting at the column name associated with an attribute, or an aliased 
-  # attribute like 'rank', please tell me.
-  #
-  def self.count_taxa_in_rank(rank)
-    Taxon.count_by_sql(
-      "SELECT COUNT(*) from #{Taxon.table_name} WHERE (rank = '#{rank.downcase}')"
-    )
   end
   
   #
@@ -286,39 +354,6 @@ class Taxon < ActiveRecord::Base
   #
   def common_name
     TaxonName.choose_common_name(taxon_names)
-  end
-  
-  
-  #
-  # Set the iconic taxon if it hasn't been set
-  #
-  def set_iconic_taxon(options = {})
-    if self.is_iconic?
-      self.iconic_taxon = self
-    else
-      self.iconic_taxon = ancestors.reverse.select {|a| a.is_iconic?}.first
-    end
-    
-    if !new_record? && (iconic_taxon_id_changed? || options[:force])
-      # Update the iconic taxon of all descendants that currently have an iconic
-      # taxon that is an ancestor (i.e. don't touch descendant iconic taxa)
-      self.descendants.update_all(
-        "iconic_taxon_id = #{iconic_taxon_id || 'NULL'}", 
-        ["iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL", 
-          self.ancestors.all])
-
-      # Do the same for observations
-      Observation.update_all(
-        "iconic_taxon_id = #{iconic_taxon_id || 'NULL'}", 
-        ["id IN (?) AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)", 
-          Observation.of(self), 
-          self.ancestors.all])
-    end
-  end
-  
-  def handle_after_move
-    set_iconic_taxon
-    true
   end
   
   #
@@ -433,51 +468,6 @@ class Taxon < ActiveRecord::Base
   def update_obs_iconic_taxa
     Observation.update_all(["iconic_taxon_id = ?", iconic_taxon_id], ["taxon_id = ?", id])
     true
-  end
-  
-  # Create a taxon name with the same name as this taxon
-  def create_matching_taxon_name
-    return if @skip_new_taxon_name
-    return if scientific_name
-    
-    taxon_attributes = self.attributes
-    taxon_attributes.delete('id')
-    tn = TaxonName.new
-    taxon_attributes.each do |k,v|
-      tn[k] = v if TaxonName.column_names.include?(k)
-    end
-    tn.lexicon = TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
-    tn.is_valid = true
-    
-    self.taxon_names << tn
-  end
-  
-  def self.normalize_rank(rank)
-    return rank if rank.nil?
-    rank = rank.gsub(/[^\w]/, '').downcase
-    return rank if RANKS.include?(rank)
-    return RANK_EQUIVALENTS[rank] if RANK_EQUIVALENTS[rank]
-    rank
-  end
-  
-  def normalize_rank
-    self.rank = Taxon.normalize_rank(self.rank)
-  end
-  
-  def set_rank_level
-    self.rank_level = RANK_LEVELS[self.rank]
-  end
-  
-  def self.remove_rank_from_name(name)
-    pieces = name.split
-    return name if pieces.size == 1
-    pieces.map! {|p| p.gsub('.', '')}
-    pieces.reject! {|p| (RANKS + RANK_EQUIVALENTS.keys).include?(p.downcase)}
-    pieces.join(' ')
-  end
-  
-  def remove_rank_from_name
-    self.name = Taxon.remove_rank_from_name(self.name)
   end
   
   def lsid
@@ -661,6 +651,37 @@ class Taxon < ActiveRecord::Base
     taxon_image_url(self)
   end
   
+  # Static ##################################################################
+  
+  #
+  # Count the number of taxa in the given rank.
+  #
+  # I don't like hard-coding it like this, so if you know an abstract way of 
+  # getting at the column name associated with an attribute, or an aliased 
+  # attribute like 'rank', please tell me.
+  #
+  def self.count_taxa_in_rank(rank)
+    Taxon.count_by_sql(
+      "SELECT COUNT(*) from #{Taxon.table_name} WHERE (rank = '#{rank.downcase}')"
+    )
+  end
+  
+  def self.normalize_rank(rank)
+    return rank if rank.nil?
+    rank = rank.gsub(/[^\w]/, '').downcase
+    return rank if RANKS.include?(rank)
+    return RANK_EQUIVALENTS[rank] if RANK_EQUIVALENTS[rank]
+    rank
+  end
+  
+  def self.remove_rank_from_name(name)
+    pieces = name.split
+    return name if pieces.size == 1
+    pieces.map! {|p| p.gsub('.', '')}
+    pieces.reject! {|p| (RANKS + RANK_EQUIVALENTS.keys).include?(p.downcase)}
+    pieces.join(' ')
+  end
+  
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags)
     taxon_names = tags.map do |tag|
@@ -719,5 +740,7 @@ class Taxon < ActiveRecord::Base
     validates_uniqueness_of.clear
     yield
   end
+  
+  # /Static #################################################################
   
 end
