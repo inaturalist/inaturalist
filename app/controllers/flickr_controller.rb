@@ -203,7 +203,8 @@ class FlickrController < ApplicationController
                :locals => {
                  :photos => @photos, 
                  :index => params[:index],
-                 :synclink_base => @synclink_base
+                 :synclink_base => @synclink_base,
+                 :local_photos => false
                }
       end
     end

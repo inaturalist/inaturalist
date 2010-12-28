@@ -43,24 +43,26 @@
     );
     
     var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
-    var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
-    var urls = options.urls || [];
-    urls.push({
-      title: "your hard drive",
-      url: '/photos/local_photo_fields'
-    });
-    $.each(urls, function() {
-      if (this.url) {
-        var title = this.title;
-        var url = this.url;
-      } else {
-        var title = this;
-        var url = this;
-      }
-      var option = $('<option value="'+url+'">'+title+'</option>');
-      if (url == options.baseURL) $(option).attr('selected', 'selected');
-      $(urlSelect).append(option);
-    });
+    if (options.baseURL.match(/context=user/)) {
+      var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
+      var urls = options.urls || [];
+      urls.push({
+        title: "your hard drive",
+        url: '/photos/local_photo_fields'
+      });
+      $.each(urls, function() {
+        if (this.url) {
+          var title = this.title;
+          var url = this.url;
+        } else {
+          var title = this;
+          var url = this;
+        }
+        var option = $('<option value="'+url+'">'+title+'</option>');
+        if (url == options.baseURL) $(option).attr('selected', 'selected');
+        $(urlSelect).append(option);
+      });
+    }
     
     $(urlSelect).change(function() {
       $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
