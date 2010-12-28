@@ -13,7 +13,7 @@ module ActivityStreams
           include ActivityStreams::Acts::ActivityStreamable::SingletonMethods
           
           has_many :activity_streams, :as => :activity_object
-          after_create :create_activity_update
+          after_create :create_activity_update_after_create
           after_destroy :destroy_or_shift_activity_streams
           
           # Manually skip updates for this record by setting @skip_update
@@ -22,12 +22,10 @@ module ActivityStreams
           write_inheritable_attribute :activity_stream_options, options
           class_inheritable_reader :activity_stream_options
         end
-      end
-      
-      module SingletonMethods
-        def create_activity_update
-          return true if @skip_update
-          return true unless self.respond_to?(:user) && self.user
+        
+        def create_activity_update(id)
+          activity_object = id.is_a?(self) ? id : find_by_id(id)
+          return unless activity_object
           
           # Handle batch updates
           batch_point = if activity_stream_options[:batch_window]
@@ -38,15 +36,14 @@ module ActivityStreams
           if batch_point && 
               existing_stream = ActivityStream.last(:conditions => [
                 "activity_object_type = ? AND user_id = ? AND created_at >= ?", 
-                self.class.to_s, user, batch_point])
+                self.to_s, activity_object.user, batch_point])
             
             existing_records = if activity_stream_options[:user_scope]
-              self.class.
-                send(activity_stream_options[:user_scope], existing_stream.user).
-                all(:conditions => ["#{self.class.table_name}.created_at >= ?", batch_point])
-            elsif self.class.column_names.include?("user_id")
-              self.class.all(:conditions => [
-                "user_id = ? AND created_at >= ?", user, batch_point
+              send(activity_stream_options[:user_scope], existing_stream.user).
+              all(:conditions => ["#{table_name}.created_at >= ?", batch_point])
+            elsif column_names.include?("user_id")
+              all(:conditions => [
+                "user_id = ? AND created_at >= ?", activity_object.user, batch_point
               ])
             else
               raise "Models with activity streams must belong to a user or specificy a user_scope."
@@ -60,14 +57,27 @@ module ActivityStreams
             
           # Handle single updates
           else
-            # TODO this should be in DJ
-            self.user.followers.each do |follower|
+            activity_object.user.followers.find_each do |follower|
               ActivityStream.create(
-                :user_id => self.user_id,
+                :user_id => activity_object.user_id,
                 :subscriber_id => follower.id,
-                :activity_object => self
+                :activity_object => activity_object
               )
             end
+          end
+          true
+        end
+      end
+      
+      module SingletonMethods
+        def create_activity_update_after_create
+          return true if @skip_update
+          return true unless self.respond_to?(:user) && self.user
+          
+          if Object.const_get('Delayed')
+            self.class.send_later(:create_activity_update, id)
+          else
+            self.class.create_activity_update(self)
           end
           true
         end
