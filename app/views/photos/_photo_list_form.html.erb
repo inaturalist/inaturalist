@@ -4,7 +4,6 @@
   synclink_base ||= nil
   photo_identity ||= nil
   local_photos ||= false
-  local_photos = true if photo_identity.blank?
   local_photos = false unless logged_in?
 -%>
 

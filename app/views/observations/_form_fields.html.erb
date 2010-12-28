@@ -78,7 +78,7 @@
                   :checked => true,
                   :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
                   :photo_identity => @photo_identities.first,
-                  :local_photos => observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
+                  :local_photos => @photo_identities.blank? || observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
                 } %>
               </div>
               

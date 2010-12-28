@@ -91,6 +91,7 @@
             baseURL: '/picasa/photo_fields?context=user',
           <% else %>
             baseURL: '/photos/local_photo_fields?context=user',
+            queryOnLoad: false,
           <%- end -%>
           urlParams: {
             authenticity_token: authenticity_token,
