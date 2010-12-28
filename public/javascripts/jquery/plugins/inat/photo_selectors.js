@@ -42,28 +42,31 @@
       $.fn.photoSelector.defaults.formInputCSS
     );
     
-    if (options.urls) {
-      var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
-      var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
-      $.each(options.urls, function() {
-        if (this.url) {
-          var title = this.title;
-          var url = this.url;
-        } else {
-          var title = this;
-          var url = this;
-        }
-        var option = $('<option value="'+url+'">'+title+'</option>');
-        if (url == options.baseURL) $(option).attr('selected', 'selected');
-        $(urlSelect).append(option);
-      });
-      
-      $(urlSelect).change(function() {
-        $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
-      });
-      
-      $(urlSelectWrapper).append(urlSelect)
-    }
+    var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
+    var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
+    var urls = options.urls || [];
+    urls.push({
+      title: "your hard drive",
+      url: '/photos/local_photo_fields'
+    });
+    $.each(urls, function() {
+      if (this.url) {
+        var title = this.title;
+        var url = this.url;
+      } else {
+        var title = this;
+        var url = this;
+      }
+      var option = $('<option value="'+url+'">'+title+'</option>');
+      if (url == options.baseURL) $(option).attr('selected', 'selected');
+      $(urlSelect).append(option);
+    });
+    
+    $(urlSelect).change(function() {
+      $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
+    });
+    
+    $(urlSelectWrapper).append(urlSelect)
     
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
@@ -193,10 +196,10 @@
         $(wrapper).find('.photoSelectorPhotos').prepend(existing)
         
         if (options.baseURL.match(/local_photo/)) {
-          $(wrapper).find('.photoSelectorControls').hide();
+          $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
           $(wrapper).find('.local_photos').show();
         } else {
-          $(wrapper).find('.photoSelectorControls').show();
+          $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').show();
           $(wrapper).find('.local_photos').hide();
         }
         

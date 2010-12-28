@@ -69,28 +69,6 @@
             <div class="field">
               <label>
                 Add photos
-                <%- 
-                  photo_endpoints = @photo_identities.map do |ident|
-                    name = ident.class.to_s.underscore.humanize.split.first
-                    {:title => name, :url => "/#{name.downcase}/photo_fields?context=user", :type => ident.class.to_s}
-                  end
-                  photo_endpoints << {:title => "your hard drive", :url => "/photos/local_photo_fields?context=user", :type => "LocalPhoto"}
-                  first = observation.photos.first
-                -%>
-                <% if photo_endpoints.size == 1 -%>
-                  from <%= photo_endpoints.first[:title] %>
-                <% else %>
-                  from <select id="<%= dom_id(observation, "photo_source_selector") %>">
-                    <% for endpoint in photo_endpoints %>
-                      <option value="<%= endpoint[:url] %>" <%= 'selected="selected"' if first && first.type.downcase =~ /#{endpoint[:type].downcase}/ %>><%= endpoint[:title] %></option>
-                    <% end %>
-                  </select>
-                  <script type="text/javascript" charset="utf-8">
-                    $('#<%= dom_id(observation, "photo_source_selector") %>').change(function() {
-                      $.fn.photoSelector.changeBaseUrl($('#photos_<%= i %>'), $(this).val());
-                    });
-                  </script>
-                <% end -%>
               </label>
               
               <div id="photos_<%= i %>" class="observation_photos">

@@ -4,6 +4,7 @@
 
 <% form_tag(
   {:controller => 'observations', :action => 'create'}, 
+  :multipart => true,
   :class => 'observationform') do %>
   <div class="column span-24 headers">
     <div class="column span-1">

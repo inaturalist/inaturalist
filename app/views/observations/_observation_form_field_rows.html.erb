@@ -123,23 +123,21 @@
             <a href="#" onclick="$(this).next().slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
               Photos
             </a>
-            <% unless @photo_identities.blank? %>
-              <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
-                <%= render :partial => "photos/photo_list_form", :locals => { 
-                  :photos => observation.photos,
-                  :index => i,
-                  :checked => true
-                } %>
-              </div>
-            <% else %>
-              <div class="compactfieldcontent" style="display: none">
-                <span>We currently support Flickr for image hosting.</span>
-                <%= link_to "You can activate your Flickr account with " + 
-                            "iNaturalist to add photos by clicking on this link.",
-                            :controller => 'flickr',
-                            :action => 'link' %>
-              </div>
-            <% end %>
+            <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
+              <%= render :partial => "photos/photo_list_form", :locals => { 
+                :photos => observation.photos,
+                :index => i,
+                :checked => true,
+                :local_photos => @default_photo_identity.blank?
+              } %>
+            </div>
+            <div class="compactfieldcontent" style="display: none">
+              <span>We currently support Flickr for image hosting.</span>
+              <%= link_to "You can activate your Flickr account with " + 
+                          "iNaturalist to add photos by clicking on this link.",
+                          :controller => 'flickr',
+                          :action => 'link' %>
+            </div>
           </div>
         </div>
         <div class="last column span-2">

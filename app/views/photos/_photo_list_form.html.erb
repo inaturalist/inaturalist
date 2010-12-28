@@ -59,11 +59,11 @@
 <% end %>
 
 <% if local_photos -%>
-  <div class="local_photos clear quiet box" style="clear:both">
+  <div class="clear local_photos">
     <% photo_file_field = capture do %>
-      <div class="photo_file_field">
+      <div class="photo_file_field clear quiet box">
         <%= file_field_tag("local_photos[#{index}][]", :class => 'text') %>
-        <%= link_to_function "&uarr; remove", "$(this).parents('.photo_file_field').remove()", :class => "right" %>
+        <%= link_to_function "remove", "$(this).parents('.photo_file_field').remove()" %>
       </div>
     <% end %>
     <%= photo_file_field %>

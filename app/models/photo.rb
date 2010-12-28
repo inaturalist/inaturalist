@@ -75,10 +75,13 @@ class Photo < ActiveRecord::Base
   end
   
   # Destroy a photo if it no longer belongs to any observations or taxa
-  def self.destroy_orphan(id)
-    return unless photo = Photo.find_by_id(id)
-    if !photo.observation_photos.exists? && !photo.taxon_photos.exists?
-      photo.destroy
+  def self.destroy_orphans(ids)
+    photos = Photo.all(:conditions => ["id IN (?)", [ids].flatten])
+    return if photos.blank?
+    photos.each do |photo|
+      if !photo.observation_photos.exists? && !photo.taxon_photos.exists?
+        photo.destroy
+      end
     end
   end
   

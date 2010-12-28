@@ -4,10 +4,10 @@
 
 .photoSelectorPhotos .photo {
   width: auto;
-  float: left;
+  display: inline-block;
 /*  margin: 0 0.5em 0 0;*/
   border: 1px solid transparent;
-  padding: 0.5em;
+  padding: 5px;
 }
 
 .photoSelectorPhotos .photo:hover {
@@ -15,7 +15,7 @@
 }
 
 .photoSelectorPhotos .photo .checkbox {
-  margin: 0 auto 0.2em;
+  margin: 0 auto 2px
 }
 
 .photoSelectorPhotos .photo img {

@@ -33,6 +33,15 @@
             baseURL: '/photos/local_photo_fields?context=user',
             queryOnLoad: false,
           <%- end -%>
+          <%- unless @photo_identities.blank? %>
+            <%- 
+              urls = @photo_identities.map do |identity|
+              service = identity.class.to_s.underscore.split('_').first.capitalize
+                "{title: '#{service}', url: '/#{service.downcase}/photo_fields?context=user'}"
+              end
+            -%>
+            urls: [<%= urls.join(', ') %>],
+          <% end -%>
           urlParams: {
             authenticity_token: authenticity_token,
             index: index,

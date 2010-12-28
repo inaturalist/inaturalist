@@ -8,22 +8,16 @@ textarea {
   margin-bottom: 0.2em;
 }
 
-input.place_guess {
-  width: 336px;
-}
+input.place_guess { width: 336px; }
 
 #mapcontainer {
   height: 433px;
   border: 1px solid #ccc;
 }
 
-.latlonfields {
-  position: relative;
-}
+.latlonfields { position: relative; }
 
-.observationform .latlonfields.status input {
-  width: 134px;
-}
+.observationform .latlonfields.status input { width: 134px; }
 
 .latlonfields .button {
   position: absolute;
@@ -31,29 +25,15 @@ input.place_guess {
   right: 0;
 }
 
-.photoSelectorControls input.text {
-  width: 189px;
-}
+.photoSelectorControls input.text { width: 189px; }
+.photoSelectorControls .button { padding: 5px; }
 .photoSelectorControls .prevlink {
   float: left;
   clear: left;
 }
-.photoSelectorControls .nextlink {
-  float: right;
-}
+.photoSelectorControls select { font-size: 90%; }
+.photoSelectorPhotos { margin: 0 auto; }
 
-.photoSelectorPhotos {
-  margin: 0 auto;
-}
-
-form .species_guess_field {
-  margin-bottom: 0px;
-}
-
-.photo .synclink {
-  float: right;
-}
-
-.photoSelectorControls .findbutton {
-  margin-right: 0;
-}
+form .species_guess_field { margin-bottom: 0px; }
+.photo .synclink { float: right; }
+.photoSelectorControls .findbutton { margin-right: 0; }
