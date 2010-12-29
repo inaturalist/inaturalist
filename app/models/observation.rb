@@ -377,29 +377,35 @@ class Observation < ActiveRecord::Base
   # Set all the time fields based on the contents of observed_on_string
   #
   def munge_observed_on_with_chronic
+    return true if observed_on_string.blank?
+    date_string = observed_on_string.strip
+    if parsed_time_zone = ActiveSupport::TimeZone::CODES[date_string[/\s([A-Z]{3,})$/, 1]]
+      date_string = observed_on_string.sub(/\s([A-Z]{3,})$/, '')
+      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+    end
+    
     # Set the time zone appropriately
     old_time_zone = Time.zone
-    Time.zone = user.time_zone unless self.user.nil? || self.user.time_zone.blank?
-    Time.zone = time_zone unless time_zone.blank?    
+    Time.zone = time_zone || user.time_zone
     Chronic.time_class = Time.zone
     
     begin
       # Start parsing...
-      return unless t = Chronic.parse(self.observed_on_string)
+      return true unless t = Chronic.parse(date_string)
     
       # Re-interpret future dates as being in the past
       if t > Time.now
-        t = Chronic.parse(observed_on_string, :context => :past)  
+        t = Chronic.parse(date_string, :context => :past)  
       end
     
       self.observed_on = t.to_date
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
-      if tspan = Chronic.parse(self.observed_on_string, :context => :past, 
+      if tspan = Chronic.parse(date_string, :context => :past, 
                                                       :guess => false)
         # If tspan is less than a day and the string wasn't 'today', set time
-        if tspan.width < 86400 && self.observed_on_string.strip.downcase != 'today'
+        if tspan.width < 86400 && date_string.strip.downcase != 'today'
           self.time_observed_at = t
         else
           self.time_observed_at = nil
@@ -415,7 +421,7 @@ class Observation < ActiveRecord::Base
     
     # don't store relative observed_on_strings, or they will change
     # every time you save an observation!
-    if self.observed_on_string =~ /today|yesterday|ago|last|this|now|monday|tuesday|wednesday|thursday|friday|saturday|sunday/i
+    if date_string =~ /today|yesterday|ago|last|this|now|monday|tuesday|wednesday|thursday|friday|saturday|sunday/i
       self.observed_on_string = self.observed_on.to_s
       if self.time_observed_at
         self.observed_on_string = self.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
@@ -424,6 +430,7 @@ class Observation < ActiveRecord::Base
     
     # Set the time zone back the way it was
     Time.zone = old_time_zone
+    true
   end
   
   #
@@ -542,14 +549,16 @@ class Observation < ActiveRecord::Base
   #
   def strip_species_guess
     self.species_guess.strip! unless species_guess.nil?
+    true
   end
   
   #
   # Set the time_zone of this observation if not already set
   #
   def set_time_zone
-    self.time_zone = user.time_zone if user && time_zone.blank?
+    self.time_zone ||= user.time_zone if user
     self.time_zone ||= Time.zone
+    true
   end
 
   #
@@ -558,6 +567,7 @@ class Observation < ActiveRecord::Base
   def cast_lat_lon
     self.latitude = latitude.to_f unless latitude.blank?
     self.longitude = longitude.to_f unless longitude.blank?
+    true
   end  
 
   #
@@ -614,9 +624,11 @@ class Observation < ActiveRecord::Base
   # Make sure the observation is not in the future.
   #
   def must_be_in_the_past
+
     unless observed_on.nil? || observed_on <= Date.today
       errors.add(:observed_on, "can't be in the future")
     end
+    true
   end
 
   #

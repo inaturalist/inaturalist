@@ -40,6 +40,12 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(22)
   end
   
+  it "should parse a time zone from a code" do
+    @observation.observed_on_string = 'October 30, 2008 10:31PM EST'
+    @observation.save
+    @observation.time_zone.should == ActiveSupport::TimeZone['Eastern Time (US & Canada)'].name
+  end
+  
   it "should not save a time if one wasn't specified" do
     @observation.observed_on_string = "April 2 2008"
     @observation.save
