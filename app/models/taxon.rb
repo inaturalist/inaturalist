@@ -166,7 +166,6 @@ class Taxon < ActiveRecord::Base
   def handle_after_move
     if ancestry_changed?
       update_listed_taxa
-      handle_after_move
       update_life_lists
       update_obs_iconic_taxa
       set_iconic_taxon
