@@ -62,13 +62,13 @@
         if (url == options.baseURL) $(option).attr('selected', 'selected');
         $(urlSelect).append(option);
       });
+      
+      $(urlSelect).change(function() {
+        $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
+      });
+
+      $(urlSelectWrapper).append(urlSelect);
     }
-    
-    $(urlSelect).change(function() {
-      $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
-    });
-    
-    $(urlSelectWrapper).append(urlSelect)
     
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
