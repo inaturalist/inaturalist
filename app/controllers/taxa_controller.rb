@@ -824,28 +824,8 @@ class TaxaController < ApplicationController
     return unless params[:force_external] || (params[:include_external] && @taxa.empty?)
     @external_taxa = []
     logger.info("DEBUG: Making an external lookup...")
-    fe_params = params[:external_src] ? { :src => params[:external_src] } : {}
-    ext_names = []
     begin
-      ratatosk = case params[:external_src]
-      when 'ubio'
-        Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
-      when 'col'
-        Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
-      else
-        Ratatosk
-      end
-      
-      # fetch names and save them
-      ratatosk.find(params[:q]).each do |ext_name|
-        unless ext_name.valid?
-          if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
-            ext_name.taxon = existing_taxon
-          end
-        end
-        ext_name.save
-        ext_names << ext_name if ext_name.valid?
-      end
+      ext_names = TaxonName.find_external(params[:q], :src => params[:external_src])
     rescue Timeout::Error => e
       @status = e.message if @external_taxa.empty?
     rescue NameProviderError => e

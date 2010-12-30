@@ -124,4 +124,25 @@ class TaxonName < ActiveRecord::Base
     name ||= taxon_names.first
     name
   end
+  
+  def self.find_external(q, options = {})
+    ratatosk = case options[:src]
+    when 'ubio'
+      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
+    when 'col'
+      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
+    else
+      Ratatosk
+    end
+    
+    # fetch names and save them
+    ratatosk.find(q).map do |ext_name|
+      unless ext_name.valid?
+        if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
+          ext_name.taxon = existing_taxon
+        end
+      end
+      ext_name.save ? ext_name : nil
+    end.compact
+  end
 end
