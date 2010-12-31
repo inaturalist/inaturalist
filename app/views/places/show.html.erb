@@ -201,15 +201,20 @@
       <% else %>
         map.setCenter(new GLatLng(<%= @place.latitude %>, <%= @place.longitude %>));
       <% end %>
-      map.addOverlay(
-        map.createMarker(<%= @place.latitude %>, <%= @place.longitude %>, {
-          icon: iNaturalist.Map.createPlaceIcon()
-        })
-      );
       
-      <% if @place.place_geometry %>
-        <% for geom in @place.place_geometry.geom %>
-          map.addOverlay(<%= Ym4r::GmPlugin::GPolygonEncoded.from_georuby(geom, "#FF1493", 2 ,0.6,"#FF1493",0.2).to_javascript %>);
+      <% if logged_in? && current_user.is_curator? %>
+        var kmlOverlay = new GGeoXml('<%= place_geometry_url(@place, :format => "kml") %>');
+        map.addOverlay(kmlOverlay);
+      <% else %>
+        map.addOverlay(
+          map.createMarker(<%= @place.latitude %>, <%= @place.longitude %>, {
+            icon: iNaturalist.Map.createPlaceIcon()
+          })
+        );
+        <% if @place.place_geometry %>
+          <% for geom in @place.place_geometry.geom %>
+            map.addOverlay(<%= Ym4r::GmPlugin::GPolygonEncoded.from_georuby(geom, "#FF1493", 2 ,0.6,"#FF1493",0.2).to_javascript %>);
+          <% end %>
         <% end %>
       <% end %>
       

@@ -5,9 +5,11 @@ class PlacesController < ApplicationController
     :wikipedia, :taxa, :children, :autocomplete]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
-    :children, :taxa]
+    :children, :taxa, :geometry]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :search]
+  
+  caches_page :geometry
   
   def index
     ip = request.remote_ip
@@ -104,12 +106,12 @@ class PlacesController < ApplicationController
     @listed_taxa = @place.listed_taxa.paginate(
       :page => 1, 
       :per_page => 11,
-      :include => {:taxon => [:photos, :iconic_taxon]},
+      :include => {:taxon => [:taxon_names, :photos, :iconic_taxon]},
       :conditions => "photos.id > 0",
       :group => 'listed_taxa.taxon_id',
-      :order => "taxa.observations_count DESC, listed_taxa.id DESC"
+      :order => "taxa.observations_count DESC"
     )
-    
+
     # Load tips HTML
     @listed_taxa.map! do |listed_taxon|
       listed_taxon.taxon.html = render_to_string(:partial => 'taxa/taxon.html.erb', 
@@ -121,13 +123,13 @@ class PlacesController < ApplicationController
       })
       listed_taxon
     end
-    
+
     @children = @place.children.paginate(:page => 1, :order => 'name')
     @observations = Observation.near_place(@place).order_by("observed_on DESC").paginate(
       :page => params[:page],
-      :include => [:user, :taxon, :photos, :iconic_taxon]
+      :include => [:user, :taxon, :photos]
     )
-    
+
     # Get directions info
     ip = request.remote_ip
     # ip = '66.117.138.26' # Emeryville IP, for testing
@@ -135,6 +137,12 @@ class PlacesController < ApplicationController
       @directions_from = "#{geoip_result[:city]}, #{geoip_result[:state_code]}"
     end
     @directions_to = "#{@place.latitude}, #{@place.longitude}"
+  end
+  
+  def geometry
+    respond_to do |format|
+      format.kml
+    end
   end
   
   def new
@@ -172,6 +180,7 @@ class PlacesController < ApplicationController
         @geometry = geometry_from_messy_kml(params[:kml])
         @place.save_geom(@geometry) if @geometry
       end
+      expire_page :action => "geometry", :id => @place.id
       flash[:notice] = "Place updated!"
       redirect_to @place
     else
