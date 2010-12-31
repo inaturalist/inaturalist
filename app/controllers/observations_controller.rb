@@ -116,7 +116,7 @@ class ObservationsController < ApplicationController
               :name => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
               :href => ""
             }
-            render :action => 'network_link' and return
+            render :layout => false, :action => 'network_link' and return
           end
         else #return the root network link
           @net_hash = {
@@ -127,8 +127,9 @@ class ObservationsController < ApplicationController
             :name => "iNaturalist Feed for Everyone", 
             :href => (url_for(:controller => '/', :only_path => false) << request.request_uri.from(1))
           }
-          render :action => 'network_link' and return
+          render :layout => false, :action => 'network_link' and return
         end
+        render :layout => false
       end
       
       format.widget do
@@ -717,7 +718,7 @@ class ObservationsController < ApplicationController
               :name => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
               :href => ""
             }
-            render :action => 'network_link' and return
+            render :layout => false, :action => 'network_link' and return
           end
 
         else #return the root network link
@@ -729,7 +730,7 @@ class ObservationsController < ApplicationController
             :name => "iNaturalist Feed for User:" << user, 
             :href => (url_for(:controller => '/', :only_path => false) << request.request_uri.from(1))
           }
-          render :action => 'network_link' and return
+          render :layout => false, :action => 'network_link' and return
         end
       end
 
@@ -896,7 +897,7 @@ class ObservationsController < ApplicationController
           :description => "Observations feed for the iNaturalist project '#{@project.title.html_safe}'", 
           :name => "#{@project.title.html_safe} Observations"
         }
-        render :action => "index"
+        render :layout => false, :action => "index"
       end
     end
   end
