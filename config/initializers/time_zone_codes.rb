@@ -27,7 +27,7 @@ class ActiveSupport::TimeZone
     'FJST' => ActiveSupport::TimeZone['Fiji'],
     'FJT' => ActiveSupport::TimeZone['Fiji'],
     'GMT' => ActiveSupport::TimeZone['UTC'],
-    'GYT' => ActiveSupport::TimeZone['America/Guyana'],
+    # 'GYT' => ActiveSupport::TimeZone['America/Guyana'],
     'HADT' => ActiveSupport::TimeZone['Hawaii'],
     'HAST' => ActiveSupport::TimeZone['Hawaii'],
     'HKT' => ActiveSupport::TimeZone['Hong Kong'],
