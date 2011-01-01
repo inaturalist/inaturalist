@@ -1293,10 +1293,10 @@ class ObservationsController < ApplicationController
     end
     
     if first
-      @default_photo_identity = case first.class
-      when FlickrPhoto
+      @default_photo_identity = case first.class.to_s
+      when 'FlickrPhoto'
         @photo_identities.detect{|pi| pi.is_a?(FlickrIdentity)}
-      when PicasaPhoto
+      when 'PicasaPhoto'
         @photo_identities.detect{|pi| pi.is_a?(PicasaIdentity)}
       end
     else

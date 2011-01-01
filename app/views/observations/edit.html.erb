@@ -82,8 +82,7 @@
         // for the field
         var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
         var index = $.string(index_str).gsub(/[^\d]*/, '').str;
-        var authenticity_token = $(this).parents('form').find(
-          'input[name=authenticity_token]').val();
+        var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val();
         $(this).photoSelector({
           <%- if @default_photo_identity && @default_photo_identity.is_a?(FlickrIdentity) -%>
             baseURL: '/flickr/photo_fields?context=user',
@@ -93,6 +92,15 @@
             baseURL: '/photos/local_photo_fields?context=user',
             queryOnLoad: false,
           <%- end -%>
+          <%- unless @photo_identities.blank? %>
+            <%- 
+              urls = @photo_identities.map do |identity|
+                service = identity.class.to_s.underscore.split('_').first.capitalize
+                "{title: '#{service}', url: '/#{service.downcase}/photo_fields?context=user'}"
+              end
+            -%>
+            urls: [<%= urls.join(', ') %>],
+          <% end -%>
           urlParams: {
             authenticity_token: authenticity_token,
             index: index,

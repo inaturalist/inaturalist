@@ -36,7 +36,7 @@
           <%- unless @photo_identities.blank? %>
             <%- 
               urls = @photo_identities.map do |identity|
-              service = identity.class.to_s.underscore.split('_').first.capitalize
+                service = identity.class.to_s.underscore.split('_').first.capitalize
                 "{title: '#{service}', url: '/#{service.downcase}/photo_fields?context=user'}"
               end
             -%>
