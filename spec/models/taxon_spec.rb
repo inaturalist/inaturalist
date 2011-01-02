@@ -126,63 +126,91 @@ describe Taxon, "destruction" do
   end
 end
 
-describe "Changing the iconic taxon of a", Taxon do
-  # fixtures :taxa, :observations, :users
-  
+describe "Making a", Taxon, "iconic" do
   before(:each) do
     load_test_taxa
   end
   
-  it "should make a it iconic" do
-    @Chordata.is_iconic.should be_false
-    @Chordata.is_iconic = true
-    @Chordata.save
-    @Chordata.is_iconic.should be_true
+  it "should set the iconic taxa of descendant taxa to this taxon" do
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    @Apodiformes.update_attributes(:is_iconic => true)
+    @Calypte_anna.reload
+    @Calypte_anna.iconic_taxon_id.should be(@Apodiformes.id)
   end
   
-  it "should set the iconic taxa of descendant taxa to this taxon" do
-    @Apodiformes.logger.info "\n\n\n[INFO] Starting test..."
-    @Apodiformes.descendants.count(
-      :conditions => ["iconic_taxon_id = ?", @Apodiformes]
-    ).should == 0
-    @Apodiformes.is_iconic = true
-    @Apodiformes.save
-    @Apodiformes.descendants.count(
-      :conditions => ["iconic_taxon_id != ?", @Apodiformes]
-    ).should == 0
-  end
-
-  # This test WOULD pass if rspec would goddamn rollback after the previous test correctly
-  it "should set the iconic taxa of observations of descendant taxa to this taxon" do
-    @Apodiformes.is_iconic.should be_false
-    Observation.of(@Apodiformes).count(
-      :conditions => ["observations.iconic_taxon_id = ?", @Apodiformes]
-    ).should == 0
-    @Apodiformes.is_iconic = true
-    @Apodiformes.save
-    Observation.of(@Apodiformes).count(
-      :conditions => ["observations.iconic_taxon_id != ?", @Apodiformes]
-    ).should == 0
+  it "should queue a job to change the iconic taxon of descendent observations" do
+    expect {
+      @Apodiformes.update_attributes(:is_iconic => true)
+    }.to change(Delayed::Job, :count).by_at_least(1)
   end
   
   it "should NOT set the iconic taxa of descendant taxa if they descend from a lower iconic taxon" do
-    @Chordata.is_iconic.should be_false
-    @Calypte_anna.iconic_taxon.should_not eql(@Chordata)
-    @Calypte_anna.iconic_taxon.should eql(@Aves)
-    @Chordata.is_iconic = true
-    @Chordata.save
-    @Chordata.is_iconic.should be_true
-    @Calypte_anna.iconic_taxon.should_not eql(@Chordata)
-    @Calypte_anna.iconic_taxon.should eql(@Aves)
+    @Aves.should be_is_iconic
+    @Chordata.should_not be_is_iconic
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    @Chordata.update_attributes(:is_iconic => true)
+    @Calypte_anna.reload
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+  end
+end
+
+describe "Updating iconic taxon" do
+  before(:each) do
+    load_test_taxa
+  end
+  
+  it "should set the iconic taxa of descendant taxa" do
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    @Calypte.update_attributes(:iconic_taxon => @Apodiformes)
+    @Calypte_anna.reload
+    @Calypte_anna.iconic_taxon_id.should be(@Apodiformes.id)
+  end
+  
+  it "should queue a job to change the iconic taxon of descendent observations" do
+    expect {
+      @Calypte.update_attributes(:iconic_taxon => @Apodiformes)
+    }.to change(Delayed::Job, :count).by_at_least(1)
+  end
+  
+  it "should NOT set the iconic taxa of descendant taxa if they descend from a lower iconic taxon" do
+    @Aves.should be_is_iconic
+    @Chordata.should_not be_is_iconic
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    @Chordata.update_attributes(:iconic_taxon => @Plantae)
+    @Calypte_anna.reload
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+  end
+end
+
+describe Taxon, "set_iconic_taxon_for_observations_of" do
+  before(:each) do
+    load_test_taxa
+  end
+  
+  it "should set the iconic taxon for observations of descendant taxa" do
+    obs = Observation.make(:taxon => @Calypte_anna)
+    @Calypte_anna.iconic_taxon.name.should == @Aves.name
+    obs.iconic_taxon.name.should == @Calypte_anna.iconic_taxon.name
+    @Calypte.update_attributes(:iconic_taxon => @Amphibia)
+    @Calypte.iconic_taxon.name.should == @Amphibia.name
+    @Calypte_anna.reload
+    @Calypte_anna.iconic_taxon.name.should == @Amphibia.name
+    Taxon.set_iconic_taxon_for_observations_of(@Calypte)
+    obs.reload
+    obs.iconic_taxon.name.should == @Amphibia.name
   end
   
   it "should NOT set the iconic taxa of observations of descendant taxa if they descend from a lower iconic taxon" do
-    observation = Observation.make(:taxon => @Calypte_anna)
-    @Chordata.is_iconic.should be_false
-    observation.iconic_taxon.should_not eql(@Chordata)
-    @Chordata.is_iconic = true
-    @Chordata.save
-    observation.iconic_taxon.should_not eql(@Chordata)
+    @Aves.should be_is_iconic
+    @Chordata.should_not be_is_iconic
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    obs = Observation.make(:taxon => @Calypte_anna)
+    obs.iconic_taxon_id.should be(@Aves.id)
+    @Chordata.update_attributes(:iconic_taxon => @Plantae)
+    Taxon.set_iconic_taxon_for_observations_of(@Chordata)
+    @Calypte_anna.reload
+    @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
+    obs.iconic_taxon_id.should be(@Aves.id)
   end
 end
 

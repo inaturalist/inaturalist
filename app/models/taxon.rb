@@ -192,26 +192,19 @@ class Taxon < ActiveRecord::Base
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon(options = {})
-    if self.is_iconic?
-      self.iconic_taxon = self
-    else
-      self.iconic_taxon = ancestors.reverse.select {|a| a.is_iconic?}.first
+    unless iconic_taxon_id_changed?
+      self.iconic_taxon = if is_iconic?
+        self
+      else
+        ancestors.reverse.select {|a| a.is_iconic?}.first
+      end
     end
     
     if !new_record? && (iconic_taxon_id_changed? || options[:force])
-      # Update the iconic taxon of all descendants that currently have an iconic
-      # taxon that is an ancestor (i.e. don't touch descendant iconic taxa)
-      self.descendants.update_all(
+      descendants.update_all(
         "iconic_taxon_id = #{iconic_taxon_id || 'NULL'}", 
-        ["iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL", 
-          self.ancestors.all])
-
-      # Do the same for observations
-      Observation.update_all(
-        "iconic_taxon_id = #{iconic_taxon_id || 'NULL'}", 
-        ["id IN (?) AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)", 
-          Observation.of(self), 
-          self.ancestors.all])
+        ["iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL", ancestor_ids])
+      Taxon.send_later(:set_iconic_taxon_for_observations_of, id)
     end
     true
   end
@@ -268,33 +261,6 @@ class Taxon < ActiveRecord::Base
   
   def observations_count_with_descendents
     Observation.of(self).count
-  end
-  
-  def self.occurs_in(minx, miny, maxx, maxy, startdate=nil, enddate=nil)
-    startdate = startdate.nil? ? 100.years.ago.to_date : Date.parse(startdate) # wtf, only 100 years?!
-    enddate = enddate.nil? ? Time.now.to_date : Date.parse(enddate)
-    startdate = startdate.to_param
-    enddate = enddate.to_param
-    sql = """
-      SELECT 
-        t.*,
-        o.count as count
-      FROM
-        col_taxa t
-          JOIN 
-            (SELECT 
-                taxon_id, count(*) as count
-              FROM observations 
-              WHERE 
-                observed_on > '#{startdate}' AND observed_on < '#{enddate}' AND
-                latitude > '#{miny}' AND 
-                longitude > '#{minx}' AND 
-                latitude < '#{maxy}' AND 
-                longitude < '#{maxx}'
-              GROUP BY taxon_id) o
-            ON o.taxon_id=t.record_id
-    """
-    Taxon.find_by_sql(sql)
   end
   
   #
@@ -526,8 +492,7 @@ class Taxon < ActiveRecord::Base
         w.parse(:page => raw['title']).at('text').inner_text
       end
     rescue Timeout::Error => e
-      logger.info "[INFO] Wikipedia API call failed while setting taxon " +
-        "summary: #{e.message}"
+      logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
     end
 
     if query_results && parsed && !query_results.at('page')['missing']
@@ -738,6 +703,49 @@ class Taxon < ActiveRecord::Base
     validates_presence_of.clear
     validates_uniqueness_of.clear
     yield
+  end
+  
+  def self.set_iconic_taxon_for_observations_of(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    Observation.update_all(
+      "iconic_taxon_id = #{taxon.iconic_taxon_id || 'NULL'}",
+      ["taxon_id = ?", taxon.id]
+    )
+    
+    taxon.descendants.find_each(:conditions => "observations_count > 0") do |descendant|
+      Observation.update_all(
+        "iconic_taxon_id = #{taxon.iconic_taxon_id || 'NULL'}",
+        ["taxon_id = ?", descendant.id]
+      )
+    end
+  end
+  
+  def self.occurs_in(minx, miny, maxx, maxy, startdate=nil, enddate=nil)
+    startdate = startdate.nil? ? 100.years.ago.to_date : Date.parse(startdate) # wtf, only 100 years?!
+    enddate = enddate.nil? ? Time.now.to_date : Date.parse(enddate)
+    startdate = startdate.to_param
+    enddate = enddate.to_param
+    sql = """
+      SELECT 
+        t.*,
+        o.count as count
+      FROM
+        col_taxa t
+          JOIN 
+            (SELECT 
+                taxon_id, count(*) as count
+              FROM observations 
+              WHERE 
+                observed_on > '#{startdate}' AND observed_on < '#{enddate}' AND
+                latitude > '#{miny}' AND 
+                longitude > '#{minx}' AND 
+                latitude < '#{maxy}' AND 
+                longitude < '#{maxx}'
+              GROUP BY taxon_id) o
+            ON o.taxon_id=t.record_id
+    """
+    Taxon.find_by_sql(sql)
   end
   
   # /Static #################################################################
