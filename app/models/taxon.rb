@@ -165,9 +165,11 @@ class Taxon < ActiveRecord::Base
   
   def handle_after_move
     if ancestry_changed?
-      update_listed_taxa
-      update_life_lists
-      update_obs_iconic_taxa
+      unless new_record?
+        update_listed_taxa
+        update_life_lists
+        update_obs_iconic_taxa
+      end
       set_iconic_taxon
     end
     true
@@ -242,21 +244,18 @@ class Taxon < ActiveRecord::Base
   
   # see the end for the validate method
   def to_s
-    "<Taxon #{self.id}: #{self.to_plain_s}>"
+    "<Taxon #{id}: #{to_plain_s(:skip_common => true)}>"
   end
   
-  def to_plain_s
-    comname = self.common_name
-    if self.rank == 'species' or self.rank == 'infraspecies'
-      sciname = self.name
+  def to_plain_s(options = {})
+    comname = common_name unless options[:skip_common]
+    sciname = if %w(species infraspecies).include?(rank)
+      name
     else
-      sciname = '%s %s' % [self.rank.capitalize, self.name]
+      "#{rank.capitalize} #{name}"
     end
-    if comname.nil?
-      return sciname
-    else
-      return '%s (%s)' % [comname.name, sciname]
-    end
+    return sciname if comname.blank?
+    "#{comname.name} (#{sciname})"
   end
   
   def observations_count_with_descendents
