@@ -2,7 +2,7 @@
   Your Home
 <% end -%>
 <% content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations', 'identifications', "lists", 'account/index' %>
+  <%= stylesheet_link_tag 'observations', 'identifications', "lists", 'lists/show_listed_taxa', 'account/index' %>
   <style type="text/css" media="screen">
     .comment {
       margin: 0;
@@ -256,7 +256,9 @@
                 <%- when "Identification" -%>
                   <%= render :partial => "identifications/identification_with_observation", :object => activity_object %>
                 <%- when "ListedTaxon" -%>
-                  <%= render :partial => "lists/listed_taxon", :object => activity_object %>
+                  <div class="listed_taxa plain_view">
+                    <%= render :partial => "lists/listed_taxon", :object => activity_object %>
+                  </div>
                 <%- when "Post" %>
                   <%= render :partial => "posts/post", :object => activity_object, 
                     :locals => { :truncate_length => 200 } %>
