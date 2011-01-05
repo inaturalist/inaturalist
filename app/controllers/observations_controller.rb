@@ -324,7 +324,7 @@ class ObservationsController < ApplicationController
   # POST /observations.xml
   def create
     # Handle the case of a single obs
-    params[:observations] = [[0, params[:observation]]] if params[:observation]
+    params[:observations] = [['0', params[:observation]]] if params[:observation]
     
     @observations = params[:observations].map do |fieldset_index, observation|
       observation.delete('fieldset_index') if observation[:fieldset_index]
@@ -907,7 +907,8 @@ class ObservationsController < ApplicationController
   
   def retrieve_photos(photo_list = nil, options = {})
     return [] if photo_list.blank?
-    photo_list = [photo_list] unless photo_list.is_a? Array
+    photo_list = photo_list.values if photo_list.is_a?(Hash)
+    photo_list = [photo_list] unless photo_list.is_a?(Array)
     photo_class = options[:photo_class] || Photo
     
     # simple algorithm,

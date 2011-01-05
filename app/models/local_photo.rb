@@ -17,6 +17,12 @@ class LocalPhoto < Photo
     :path => "photos/:id/:style.:extension",
     :bucket => INAT_CONFIG['s3_bucket']
     
+    # Uncomment this to switch to local storage.  Sometimes useful for 
+    # testing w/o ntwk
+    # :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
+    # :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
+    # :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
+    
   validates_presence_of :user
   validates_attachment_presence :file
   validates_attachment_size :file, :less_than => 3.megabytes
