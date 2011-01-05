@@ -14,27 +14,28 @@ class Emailer < ActionMailer::Base
   end
   
   def comment_notification(comment)
-    return unless comment.parent.respond_to?(:user)
-    return unless comment.parent.user
+    parent = comment.parent
+    return unless parent && parent.respond_to?(:user)
+    return unless parent.user
     setup_email
-    recipients comment.parent.user.email
-    parent_str = comment.parent.to_plain_s(:no_user => true, :no_time => true, 
+    recipients parent.user.email
+    parent_str = parent.to_plain_s(:no_user => true, :no_time => true, 
       :no_place_guess => true)
     @subject << "#{comment.user.login} commented on your " + 
-      comment.parent.class.to_s.underscore.humanize.downcase + 
+      parent.class.to_s.underscore.humanize.downcase + 
       " \"#{parent_str})\""
     
     # I wish the parent_url thing wasn't necessary, but I can't seem to figure
     # out how to mix ActionController::PolymorphicRoutes into whatever version
     # of ActionView::Base ActionMailer seems to use.
-    if comment.parent.is_a?(Post)
-      parent_url = post_url(comment.parent.user.login, comment.parent)
+    if parent.is_a?(Post)
+      parent_url = post_url(parent.user.login, parent)
     else
-      parent_url = polymorphic_url(comment.parent)
+      parent_url = polymorphic_url(parent)
     end
     @body = {
       :comment => comment,
-      :user => comment.parent.user,
+      :user => parent.user,
       :commenter => comment.user,
       :parent_url => parent_url
     }

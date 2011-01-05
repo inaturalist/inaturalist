@@ -3,8 +3,7 @@ class IdentificationsController < ApplicationController
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :load_identification, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
-  cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, 
-    :agree]
+  cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
     
   def show
     redirect_to @identification.observation
