@@ -950,8 +950,7 @@ class ObservationsController < ApplicationController
       if photo.valid?
         photos << photo
       else
-        logger.info "[INFO] #{current_user} tried to save an observation " +
-          "with an invalid photo (#{photo}): " + photo.errors.full_messages.to_sentence
+        logger.info "[INFO] #{current_user} tried to save an observation with an invalid photo (#{photo}): #{photo.errors.full_messages.to_sentence}"
       end
     end
     photos

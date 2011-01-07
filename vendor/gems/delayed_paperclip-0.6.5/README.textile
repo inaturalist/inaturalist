@@ -1,0 +1,91 @@
+h1. Delayed::Paperclip
+
+Delayed_paperclip lets you process your "Paperclip":http://github.com/thoughtbot/paperclip attachments in a background task with "delayed_job":http://github.com/tobi/delayed_job or "Resque":http://github.com/defunkt/resque.
+
+h2. Why?
+
+The most common use case for Paperclip is to easily attach image files to ActiveRecord models. Most of the time these image files will have multiple styles and will need to be resized when they are created. This is usually a pretty "slow operation":http://www.jstorimer.com/ruby/2010/01/05/speep-up-your-paperclip-tests.html and should be handled in a background task.
+
+I'm sure that everyone knows this, this gem just makes it easy to do.
+
+h2. Installation
+
+Install the gem:
+
+<pre><code>sudo gem install delayed_paperclip</code></pre>
+
+Add it to your environment.rb:
+
+<pre><code>config.gem 'delayed_paperclip'</code></pre>
+
+Or, even better, to your Gemfile:
+
+<pre><code>source "http://gemcutter.org"
+gem 'delayed_paperclip'
+</code></pre>
+
+Or install as a rails plugin:
+
+<pre><code>script/plugin install git://github.com/jstorimer/delayed_paperclip.git</code></pre>
+
+Dependencies:
+* Paperclip
+* DJ or Resque
+
+h2. Usage
+
+In your model:
+
+<pre><code>
+  class User < ActiveRecord::Base
+    has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+
+    process_in_background :avatar
+  end
+</code></pre>
+
+Use your Paperclip attachment just like always in controllers and views.
+
+To select between using Resque or Delayed::Job, just install and configure your choice properly within your application, and delayed_paperclip will do the rest.  It will detect which library is loaded and make a decision about which sort of job to enqueue at that time.
+
+h3. Resque
+
+Make sure that you have "Resque":http://github.com/defunkt/resque up and running.  The jobs will be dispatched to the <code>:paperclip</code> queue, so you can correctly dispatch your worker.  Configure resque and your workers exactly as you would otherwise.
+
+h3. DJ
+
+Just make sure that you have DJ up and running.
+
+h3. Displaying images during processing
+
+In the default setup, when you upload an image for the first time and try to display it before the job has been completed, Paperclip will be none the wiser and output the url of the image which is yet to be processed, which will result in a broken image link being displayed on the page.
+
+To have the missing image url be outputted by paperclip while the image is being processed, all you need to do is add a #{attachment_name}_processing column to the specific model you want to enable this feature for. This feature gracefully degrades and will not affect models which do not have the column added to them.
+
+<pre><code>
+  class AddAvatarProessingToUser < ActiveRecord::Migration
+    def self.up
+      add_column :users, :avatar_processing, :boolean
+    end
+    
+    def self.down
+      remove_column :users, :avatar_processing
+    end
+  end
+  
+  @user = User.new(:avatar => File.new(...))
+  @user.save
+  @user.avatar.url #=> "/images/original/missing.png"
+  Delayed::Job.work_off
+
+  @user.reload
+  @user.avatar.url #=> "/system/images/3/original/IMG_2772.JPG?1267562148"
+</code></pre>
+
+h2. What if I'm not using images?
+
+AFAIK this library should work no matter what kind of post-processing you are doing with Paperclip.
+
+h2. Does it work with s3?
+
+Yes.

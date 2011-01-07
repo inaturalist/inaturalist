@@ -16,16 +16,19 @@ class LocalPhoto < Photo
     :s3_host_alias => INAT_CONFIG['s3_bucket'],
     :path => "photos/:id/:style.:extension",
     :bucket => INAT_CONFIG['s3_bucket']
-    
-    # Uncomment this to switch to local storage.  Sometimes useful for 
-    # testing w/o ntwk
+    # # Uncomment this to switch to local storage.  Sometimes useful for 
+    # # testing w/o ntwk
     # :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
     # :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     # :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
+  
+  process_in_background :file
     
   validates_presence_of :user
-  validates_attachment_presence :file
-  validates_attachment_size :file, :less_than => 3.megabytes
+  
+  # I think this may be impossible using delayed_paperclip
+  # validates_attachment_presence :file
+  # validates_attachment_size :file, :less_than => 5.megabytes
   
   def set_defaults
     self.native_page_url = url_for(observations.first) unless observations.blank?
