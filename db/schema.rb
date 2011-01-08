@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101226171854) do
+ActiveRecord::Schema.define(:version => 20110107064406) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -271,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20101226171854) do
     t.column "file_content_type", :string
     t.column "file_file_name", :string
     t.column "file_file_size", :integer
+    t.column "file_processing", :boolean
   end
 
   add_index "photos", ["native_photo_id"], :name => "index_flickr_photos_on_flickr_native_photo_id"

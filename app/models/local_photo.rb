@@ -9,13 +9,14 @@ class LocalPhoto < Photo
     :styles => {
       :original => "2048x2048>",
       :large => "1024x1024>", :medium => "500x500>", :small => "240x240>", 
-      :thumb => "100x100#", :square => "75x75#" },
+      :thumb => "100x100>", :square => "75x75#" },
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :url => ":s3_alias_url",
     :s3_host_alias => INAT_CONFIG['s3_bucket'],
+    :bucket => INAT_CONFIG['s3_bucket'],
     :path => "photos/:id/:style.:extension",
-    :bucket => INAT_CONFIG['s3_bucket']
+    :url => ":s3_alias_url",
+    :default_url => "/attachment_defaults/:class/:style.png"
     # # Uncomment this to switch to local storage.  Sometimes useful for 
     # # testing w/o ntwk
     # :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
@@ -23,6 +24,8 @@ class LocalPhoto < Photo
     # :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
   
   process_in_background :file
+  
+  after_post_process :set_urls
     
   validates_presence_of :user
   
