@@ -174,9 +174,17 @@
   <% if @updates.blank? -%>
     <% if params[:page].blank? -%>
       <p>
-        There's not much to show here yet, but soon this space will be filled up
-        with recent activity.
+        <% if current_user.friendships.count == 0 -%>
+          Your dashboard helps you keep track of what people are doing on iNat.
+          To follow someone's updates, click the <strong>"Follow [name]"</strong>
+          link in the header when viewing their observations or profile.
+          <%= link_to "Find some people to follow", people_path, :class => "readmore" %>
+        <% else %>
+          None of the people you follow have made any updates yet!
+        <% end -%>
       </p>
+      
+      <p>Here are some things you can do in the meantime:</p>
       <ul class="readable leafylist">
         <% unless @user.flickr_identity %>
           <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
@@ -266,10 +274,9 @@
                 <%- else -%>
                   <%= render update.activity_object %>
                 <%- end -%>
-              <% elsif batch_partial = update.activity_object.class.activity_stream_options[:batch_partial] %>
+              <% elsif batch_partial = activity_object.class.activity_stream_options[:batch_partial] %>
                 <%= render :partial => batch_partial, :locals => { 
-                  update.activity_object.class.to_s.underscore.pluralize.to_sym => 
-                    @activity_objects_by_update_id[update.id]
+                  activity_object.class.to_s.underscore.pluralize.to_sym => @activity_objects_by_update_id[update.id]
                 } %>
               <% end -%>
             </div>

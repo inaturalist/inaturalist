@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20110107064406) do
     t.column "batch_ids", :string
   end
 
-  add_index "activity_streams", ["user_id", "activity_object_type"], :name => "index_activity_streams_on_user_id_and_activity_object_type"
   add_index "activity_streams", ["subscriber_id"], :name => "index_activity_streams_on_subscriber_id"
+  add_index "activity_streams", ["user_id", "activity_object_type"], :name => "index_activity_streams_on_user_id_and_activity_object_type"
 
   create_table "colors", :force => true do |t|
     t.column "value", :string

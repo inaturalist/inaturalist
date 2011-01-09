@@ -199,29 +199,29 @@ class UsersController < ApplicationController
     @updates = current_user.activity_streams.paginate(
       :page => params[:page], 
       :per_page => per_page, 
-      :order => "updated_at DESC", 
+      :order => "id DESC", 
       :include => [:user, :subscriber])
-      
-    unless @updates.blank?
-      # Eager loading
-      @activity_objects_by_update_id, @associates = 
-        ActivityStream.eager_load_associates(@updates, 
-          :batch_limit => 18,
-          :includes => {
-            "Observation" => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
-            "Identification" => [:user, {:taxon => :taxon_names}, {:observation => :user}],
-            "Comment" => [:user, :parent],
-            "ListedTaxon" => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
-          })
-      
-      @id_please_observations = @associates[:observations]
-      if @id_please_observations && @commented_on
-        @id_please_observations += @commented_on
-      end
-      unless @id_please_observations.blank?
-        @id_please_observations = @id_please_observations.select(&:id_please?)
-        @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
-      end
+    
+    return if @updates.blank?
+    
+    # Eager loading
+    @activity_objects_by_update_id, @associates = 
+      ActivityStream.eager_load_associates(@updates, 
+        :batch_limit => 18,
+        :includes => {
+          "Observation" => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
+          "Identification" => [:user, {:taxon => :taxon_names}, {:observation => :user}],
+          "Comment" => [:user, :parent],
+          "ListedTaxon" => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
+        })
+    
+    @id_please_observations = @associates[:observations]
+    if @id_please_observations && @commented_on
+      @id_please_observations += @commented_on
+    end
+    unless @id_please_observations.blank?
+      @id_please_observations = @id_please_observations.select(&:id_please?)
+      @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
     end
   end
   
