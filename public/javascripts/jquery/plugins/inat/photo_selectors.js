@@ -48,7 +48,7 @@
       var urls = options.urls || [];
       urls.push({
         title: "your hard drive",
-        url: '/photos/local_photo_fields'
+        url: '/photos/local_photo_fields?context=user'
       });
       $.each(urls, function() {
         if (this.url) {
@@ -59,7 +59,7 @@
           var url = this;
         }
         var option = $('<option value="'+url+'">'+title+'</option>');
-        if (url == options.baseURL) $(option).attr('selected', 'selected');
+        if (url === options.baseURL) $(option).attr('selected', 'selected');
         $(urlSelect).append(option);
       });
       
@@ -105,10 +105,12 @@
       visibility: 'hidden', 
       clear: 'both'})
     );
-    if (options.baseURL.match(/local_photo/)) {
-      controls.hide()
-    }
+    
     $(wrapper).append(controls);
+    
+    if (options.baseURL.match(/local_photo/)) {
+      $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
+    }
     
     // Insert a container to hold the photos
     var container = $('<div class="photoSelectorPhotos"></div>').css(
