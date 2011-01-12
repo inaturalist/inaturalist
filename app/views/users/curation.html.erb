@@ -1,0 +1,32 @@
+<form method="get" class="clear buttonrow">
+  <input type="text" name="id" value="<%= @user.try(:login) %>" id="id" class="text">
+  <input type="submit" value="Lookup user &rarr;" class="button">
+</form>
+<% if @user -%>
+  <div class="column span-16">
+    <table width="100%">
+      <% for user_attr in User.column_names %>
+        <tr>
+          <th><%= user_attr %></th>
+          <td><%= @user.send(user_attr) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  
+  <div class="last column span-8">
+    <div class="box">
+      <ul>
+        <% if @user.is_curator? %>
+          <li><%= link_to "Remove curator status", remove_role_path(@user, :role => "curator"), :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Make curator", add_role_path(@user, :role => "curator"), :method => :post %></li>
+        <% end %>
+        <li>
+          <%= link_to "Delete user", @user, :method => :delete, :confirm => "Are you really, really sure you want to delete this user and all of their content?" %>
+        </li>
+      </ul>
+    </div>
+    <%= render :partial => 'glance' %>
+  </div>
+<% end -%>

@@ -274,6 +274,18 @@ describe User do
     users(:quentin).deleted_at.should_not be_nil
     users(:quentin).should be_deleted
   end
+  
+  describe "deletion" do
+    it "should create a deleted user" do
+      user = User.make
+      user.destroy
+      deleted_user = DeletedUser.last
+      deleted_user.should_not be_blank
+      deleted_user.user_id.should == user.id
+      deleted_user.login.should == user.login
+      deleted_user.email.should == user.email
+    end
+  end
 
   describe "being unsuspended" do
     fixtures :users

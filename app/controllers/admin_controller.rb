@@ -7,17 +7,26 @@ class AdminController < ApplicationController
   before_filter :admin_required
   
   def stats
-    observations = Observation.find(:all,
-           :select => "user_id, COUNT('id') AS weekly_count, WEEK(created_at) AS week",
-           :conditions => ["YEAR(created_at) = ?", Time.now.year],
-           :group => 'user_id, week',
-           :order => 'user_id ASC, week ASC')
+    @observation_weeks = Observation.count(
+      :conditions => ["YEAR(created_at) = ?", Time.now.year],
+      :group => "WEEK(created_at)"
+    )
+    @observation_weeks_last_year = Observation.count(
+      :conditions => ["YEAR(created_at) = ?", Time.now.year - 1],
+      :group => "WEEK(created_at)"
+    )
+    @observations_max = (@observation_weeks.values + @observation_weeks_last_year.values).sort.last
+    
+    @user_weeks = User.count(
+      :conditions => ["YEAR(created_at) = ?", Time.now.year],
+      :group => "WEEK(created_at)"
+    )
+    @user_weeks_last_year = User.count(
+      :conditions => ["YEAR(created_at) = ?", Time.now.year - 1],
+      :group => "WEEK(created_at)"
+    )
+    @users_max = (@user_weeks.values + @user_weeks_last_year.values).sort.last
 
-    @obs = {}
-    observations.each do |observation|
-      @obs[observation.user_id] = {:login => observation.user.login, :weeks => Array.new(52, 0)} unless @obs.has_key?(observation.user_id)
-      @obs[observation.user_id][:weeks][observation.week.to_i] = observation.weekly_count
-    end
   end
   
   def index

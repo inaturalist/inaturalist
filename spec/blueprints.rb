@@ -100,3 +100,11 @@ ProjectObservation.blueprint do
   project
 end
 
+Role.blueprint do
+  name { Sham.title }
+end
+
+Role.blueprint(:admin) do
+  name User::JEDI_MASTER_ROLE
+end
+

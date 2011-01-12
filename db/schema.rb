@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110107064406) do
+ActiveRecord::Schema.define(:version => 20110112061527) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -56,6 +56,20 @@ ActiveRecord::Schema.define(:version => 20110107064406) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
+
+  create_table "deleted_users", :force => true do |t|
+    t.column "user_id", :integer
+    t.column "login", :string
+    t.column "email", :string
+    t.column "user_created_at", :datetime
+    t.column "user_updated_at", :datetime
+    t.column "observations_count", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "deleted_users", ["user_id"], :name => "index_deleted_users_on_user_id"
+  add_index "deleted_users", ["login"], :name => "index_deleted_users_on_login"
 
   create_table "flags", :force => true do |t|
     t.column "flag", :string, :default => ""

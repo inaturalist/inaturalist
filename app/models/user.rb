@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   
   has_many :lists, :dependent => :destroy
   has_many :identifications, :dependent => :destroy
-  has_many :photos
+  has_many :photos, :dependent => :destroy
   has_many :goal_participants, :dependent => :destroy
   has_many :goals, :through => :goal_participants
   has_many :incomplete_goals,
@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
 
   before_create :create_preferences
   after_create :create_life_list, :signup_for_incomplete_community_goals
+  after_destroy :create_deleted_user
               
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -191,5 +192,17 @@ class User < ActiveRecord::Base
   
   def create_preferences
     self.preferences ||= Preferences.new
+  end
+  
+  def create_deleted_user
+    DeletedUser.create(
+      :user_id => id,
+      :login => login,
+      :email => email,
+      :user_created_at => created_at,
+      :user_updated_at => updated_at,
+      :observations_count => observations_count
+    )
+    true
   end
 end

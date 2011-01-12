@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :login_required, :only => [:dashboard, :edit, :update]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :edit, :update, :relationships, :add_role, :remove_role]
-  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update]
+  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
   before_filter :ensure_user_is_admin, :only => [:suspend, :unsuspend]
   
   def new
@@ -91,6 +91,12 @@ class UsersController < ApplicationController
   # There's no page here to update or destroy a user.  If you add those, be
   # smart -- make sure you check that the visitor is authorized to do so, that they
   # supply their old password along with a new one to update it, etc.
+  
+  def destroy
+    @user.destroy
+    flash[:notice] = "#{@user.login} removed from iNaturalist"
+    redirect_to users_path
+  end
   
   # Methods below here are added by iNaturalist
   
@@ -285,6 +291,14 @@ class UsersController < ApplicationController
       redirect_to(person_by_login_path(:login => @user.login))
     else
       render :action => 'edit', :login => @original_user.login
+    end
+  end
+  
+  def curation
+    @user = User.find_by_id(params[:id])
+    @user ||= User.find_by_login(params[:id])
+    if @user.blank? && !params[:id].blank?
+      flash[:error] = "Couldn't find a user matching #{params[:id]}"
     end
   end
 

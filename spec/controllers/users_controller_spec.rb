@@ -92,6 +92,32 @@ describe UsersController do
   end
 end
 
+describe UsersController, "delete" do
+  it "should be possible for the user" do
+    user = User.make
+    login_as user
+    delete :destroy, :id => user.id
+    User.find_by_id(user.id).should be_blank
+  end
+  
+  it "should be possible for an admin" do
+    user = User.make
+    admin = User.make
+    admin.roles << Role.make(:admin)
+    login_as admin
+    delete :destroy, :id => user.id
+    User.find_by_id(user.id).should be_blank
+  end
+  
+  it "should be impossible for everyone else" do
+    user = User.make
+    nogoodnik = User.make
+    login_as nogoodnik
+    delete :destroy, :id => user.id
+    User.find_by_id(user.id).should_not be_blank
+  end
+end
+
 describe UsersController do
   describe "route generation" do
     it "should route users's 'index' action correctly" do

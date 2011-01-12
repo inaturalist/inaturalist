@@ -21,7 +21,10 @@ ActionController::Routing::Routes.draw do |map|
   # Special controller routes
   
   # Users routes
-  map.dashboard '/users/dashboard', :controller => 'users', :action => 'dashboard'
+  map.with_options(:controller => 'users') do |users|
+    users.dashboard '/users/dashboard', :action => 'dashboard'
+    users.curate_users '/users/curation', :action => 'curation'
+  end
   
   # Resources
   # Must come after custom routes or they'll overwrite everything
