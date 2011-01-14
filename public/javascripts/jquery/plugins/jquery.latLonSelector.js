@@ -360,8 +360,7 @@
     var isExact = isExact || $('#latLonSelector').find(
                               '#latLonSelectorExactFlag:checked').length == 1;
     var locExactField = findFormField(input, 'location_is_exact');
-    // console.log("DEBUG: input: ", input);
-    // console.log("DEBUG: locExactField: ", locExactField);
+    $(locExactField).val(isExact);
     $(locExactField).get(0).checked = isExact;
   };
   

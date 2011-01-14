@@ -32,7 +32,7 @@ class Identification < ActiveRecord::Base
 
   # Update the observation if you're adding an ID to your own obs
   def update_observation
-    return unless self.user_id == self.observation.user_id
+    return true unless self.user_id == self.observation.user_id
 
     # update the species_guess
     species_guess = observation.species_guess

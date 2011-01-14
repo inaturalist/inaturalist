@@ -265,7 +265,8 @@ class ObservationsController < ApplicationController
       end
     end
     options[:time_zone] = current_user.time_zone
-    [:latitude, :longitude, :place_guess, :location_is_exact].each do |obs_attr|
+    [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
+      :observed_on_string].each do |obs_attr|
       options[obs_attr] ||= params[obs_attr]
     end
     @observation = Observation.new(options)
@@ -352,7 +353,14 @@ class ObservationsController < ApplicationController
         unless errors
           flash[:notice] = params[:success_msg] || "Observation(s) saved!"
           if params[:commit] == "Save and add another"
-            redirect_to :action => 'new'
+            o = @observations.first
+            redirect_to :action => 'new', 
+              :latitude => o.latitude, 
+              :longitude => o.longitude, 
+              :place_guess => o.place_guess, 
+              :observed_on_string => o.observed_on_string,
+              :location_is_exact => o.location_is_exact,
+              :map_scale => o.map_scale
           elsif @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
