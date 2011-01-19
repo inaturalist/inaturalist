@@ -218,7 +218,8 @@
   <% end -%>
   <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
   <meta property="og:site_name" content="iNaturalist"/> 
-  <meta property="fb:admins" content="611249211,800415373"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027">
   <% unless @observation.description.blank? %>
     <meta property="og:description" content="<%= escape_javascript @observation.description %>"/> 
   <% end %>
@@ -575,24 +576,26 @@
     </div>
   <% end -%>
   
-  <br/>
+  
   <div id="fblike" class="stacked">
-    <iframe src="http://www.facebook.com/plugins/like.php?href=<%= url_for(:only_path => false) %>&amp;layout=standard&amp;show_faces=true&amp;width=270&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:80px;" allowTransparency="true"></iframe>
+    <!-- <iframe src="http://www.facebook.com/plugins/like.php?href=<%= url_for(:only_path => false) %>&amp;layout=standard&amp;show_faces=true&amp;width=270&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:80px;" allowTransparency="true"></iframe> -->
+    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
   </div>
+  <br/>
   
   <% if @observation.flagged? %>
-  <span id="flaggings_heads_up" class="description">
+  <div id="flaggings_heads_up" class="description">
     HEADS UP: this observation has been flagged for curation.
     <%= link_to "Add another flag", new_observation_flag_path(@observation),
                 :id => "flag_this" %>
-  </span>
+  </div>
   <% else %>
     <% if logged_in? %>
-    <span class="description">
+    <div class="description">
       See something innapropriate?  
       <%= link_to "Flag this for curation", new_observation_flag_path(@observation),
                   :id => "flag_this" %>
-    </span>
+    </div>
     <% end %>
   <% end %>
   
