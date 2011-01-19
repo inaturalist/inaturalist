@@ -208,6 +208,21 @@
     });
   </script>
 <% end %>
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @observation.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <meta property="og:type" content="observation"/> 
+  <% if !@observation.photos.blank? -%>
+    <meta property="og:image" content="<%= @observation.photos.first.small_url %>"/> 
+  <% elsif @observation.taxon %>
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
+  <% end -%>
+  <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/> 
+  <% unless @observation.description.blank? %>
+    <meta property="og:description" content="<%= escape_javascript @observation.description %>"/> 
+  <% end %>
+<%- end -%>
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
@@ -535,7 +550,7 @@
   </div><!-- end identifications -->
   
   <% unless @project_observations.blank? -%>
-    <div id="projects">
+    <div id="projects" class="stacked">
       <h3>Projects</h3>
       <p class="description">
         Added to the following projects:
@@ -560,6 +575,10 @@
     </div>
   <% end -%>
   
+  <br/>
+  <div id="fblike" class="stacked">
+    <iframe src="http://www.facebook.com/plugins/like.php?href=<%= url_for(:only_path => false) %>&amp;layout=standard&amp;show_faces=true&amp;width=270&amp;action=like&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:270px; height:80px;" allowTransparency="true"></iframe>
+  </div>
   
   <% if @observation.flagged? %>
   <span id="flaggings_heads_up" class="description">
@@ -576,4 +595,5 @@
     </span>
     <% end %>
   <% end %>
+  
 </div><!-- end right col -->
