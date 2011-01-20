@@ -210,7 +210,10 @@
       </h4>
       <div id="updates_<%= day.to_time.to_i %>">
         <% updates.each do |update| %>
-          <%- activity_object = @activity_objects_by_update_id[update.id].first || update.activity_object -%>
+          <%- 
+            activity_object = @activity_objects_by_update_id[update.id].first || update.activity_object
+            next unless activity_object
+          -%>
           <div id="<%= dom_id update %>" class="update clear">
             <%= link_to_function "collapse",
               "$('##{dom_id update, 'body'}').hide(); $(this).hide(); $(this).next().show()",
