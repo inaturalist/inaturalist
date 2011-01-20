@@ -238,7 +238,7 @@
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      <% if (@taxon.species_or_lower? && @photos.size < 7) || @photos.size < 24 %>
+      <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()
         $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
           $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link');
