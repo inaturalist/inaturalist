@@ -46,6 +46,7 @@ class List < ActiveRecord::Base
         listed_taxon.destroy
       end
     end
+    true
   end
   
   # Determine whether this list can be edited or added to by a user. Default

@@ -67,6 +67,7 @@ class LifeList < List
         listed_taxon.destroy
       end
     end
+    true
   end
   
   # Add all the taxa the list's owner has observed.  Cache the job ID so we 

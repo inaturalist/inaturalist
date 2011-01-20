@@ -44,6 +44,7 @@ class Project < ActiveRecord::Base
     if project.blank?
       Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list for " + 
         "project #{project} because it doesn't exist."
+      return
     end
     
     project.project_list.refresh(options)

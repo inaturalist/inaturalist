@@ -34,6 +34,11 @@ User.blueprint do
   time_zone "Pacific Time (US & Canada)"
 end
 
+Friendship.blueprint do
+  user
+  friend
+end
+
 ListedTaxon.blueprint do
   list
   taxon
