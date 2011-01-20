@@ -126,7 +126,9 @@ module Shared::ListsModule
       update_rules(@list, params)
     end
     
-    if @list.update_attributes(params[:list])
+    list_attributes = params[:list] || params[:life_list] || params[:check_list]
+    
+    if @list.update_attributes(list_attributes)
       flash[:notice] = "List saved."
       redirect_to @list
     else
