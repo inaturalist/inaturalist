@@ -248,6 +248,6 @@ module ApplicationHelper
   end
   
   def html_attributize(txt)
-    strip_tags(txt).gsub('"', "'")
+    strip_tags(txt).gsub('"', "'").gsub("\n", " ")
   end
 end
