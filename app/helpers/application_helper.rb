@@ -246,4 +246,8 @@ module ApplicationHelper
     end
     txt
   end
+  
+  def html_attributize(txt)
+    strip_tags(txt).gsub('"', "'")
+  end
 end
