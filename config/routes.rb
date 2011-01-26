@@ -48,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   #
   
   map.resources :photos, :only => :show
+  map.resources :observation_photos, :only => :create
   map.connect   'flickr/photos.:format',
                 :controller => 'flickr',
                 :action => 'photos',

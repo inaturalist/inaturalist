@@ -381,7 +381,6 @@ class ObservationsController < ApplicationController
   # PUT /observations/1
   # PUT /observations/1.xml
   def update
-    
     observation_user = current_user
     
     unless params[:admin_action].nil? || !current_user.is_admin?

@@ -10,6 +10,13 @@ class LocalPhoto < Photo
       :original => "2048x2048>",
       :large => "1024x1024>", :medium => "500x500>", :small => "240x240>", 
       :thumb => "100x100>", :square => "75x75#" },
+    :convert_options => {
+      :large => "-auto-orient",
+      :medium => "-auto-orient",
+      :small => "-auto-orient",
+      :thumb => "-auto-orient",
+      :square => "-auto-orient"
+    },
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :s3_host_alias => INAT_CONFIG['s3_bucket'],

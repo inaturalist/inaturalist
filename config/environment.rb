@@ -97,7 +97,8 @@ Rails::Initializer.run do |config|
   config.gem 'delayed_job'
   config.gem 'thinking-sphinx',
     :lib     => 'thinking_sphinx',
-    :version => '>= 1.3.11',
+    # :version => '>= 1.3.11',
+    :version => '<= 1.3.20',
     :source  => 'http://gemcutter.org'
   config.gem 'ts-delayed-delta',
     :lib     => 'thinking_sphinx/deltas/delayed_delta',
