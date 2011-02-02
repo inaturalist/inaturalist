@@ -5,7 +5,14 @@ class ObservationPhotosController < ApplicationController
     @observation_photo = ObservationPhoto.new(params[:observation_photo])
     unless @observation_photo.observation
       respond_to do |format|
-        format.json { render :json => "No observation specified", :status => :unprocessable_entity }
+        format.json do
+          if params[:observation_photo] && params[:observation_photo][:observation_id]
+            render :json => "Observation hasn't been added to iNaturalist", 
+              :status => :unprocessable_entity
+          else
+            render :json => "No observation specified", :status => :unprocessable_entity
+          end
+        end
       end
       return
     end

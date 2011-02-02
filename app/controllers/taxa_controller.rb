@@ -787,7 +787,8 @@ class TaxaController < ApplicationController
   # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
   def try_show(exception)
     raise exception if params[:action].blank?
-    name = params[:action].split('_').join(' ')
+    name, format = params[:action].split('_').join(' ').split('.')
+    request.format = format unless format.blank?
     
     # Try to look by its current scientifc name
     taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon

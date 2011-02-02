@@ -765,7 +765,7 @@ class ObservationsController < ApplicationController
       ]
     )
     if search_params[:has]
-      search_params[:has] = (search_params[:has].split(',') + 'id_please').uniq
+      search_params[:has] = (search_params[:has].split(',') + ['id_please']).uniq
     else
       search_params[:has] = 'id_please'
     end
