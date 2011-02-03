@@ -72,8 +72,18 @@
               </label>
               
               <div id="photos_<%= i %>" class="observation_photos">
+                <%-
+                  # if the photo was invalid, we can't show new local_photos
+                  photos = if observation.new_record? && !observation.valid?
+                    observation.photos.reject do |p|
+                      p.is_a?(LocalPhoto)
+                    end
+                  else
+                    observation.photos
+                  end
+                -%>
                 <%= render :partial => "photos/photo_list_form", :locals => { 
-                  :photos => observation.photos, 
+                  :photos => photos, 
                   :index => i,
                   :checked => true,
                   :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
