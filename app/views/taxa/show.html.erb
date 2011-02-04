@@ -323,7 +323,7 @@
   <meta property="fb:app_id" content="26558815027"> 
   <% unless @taxon.wikipedia_summary.blank? -%>
     <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
-    <meta property="og:description" content="<%= html_attributize strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
+    <meta property="og:description" content="<%= html_attributize @taxon.wikipedia_summary %>"/>
   <% end -%>
 <%- end -%>
 
