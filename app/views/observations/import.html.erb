@@ -10,11 +10,7 @@
     }
     
     #tabs div .description.readable {
-      margin-bottom: 1em;
-    }
-    
-    #upload_datafile {
-      margin-top: 4px;
+      margin-bottom: 10px;
     }
     
     .buttonrow label {
@@ -124,9 +120,9 @@
       
       <div class="box">
         <% form_tag(new_observation_batch_csv_path, 
-          :id => 'new_batch_form', 
-          :class => 'clear observationform', 
-          :multipart => true) do %>
+            :id => 'new_batch_form', 
+            :class => 'clear observationform', 
+            :multipart => true) do %>
           <div class="buttonrow">
             <label for="upload_file">Upload CSV file</label>
             <%= file_field 'upload', 'datafile', :class => 'text' %>
