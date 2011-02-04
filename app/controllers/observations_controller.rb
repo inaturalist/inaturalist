@@ -708,14 +708,12 @@ class ObservationsController < ApplicationController
       format.kml do
         user = @login.to_s
         if request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth") && params[:kml_type] == "network_link"
-
           if params[:kml_type] == "network_link"
             @net_hash = {
-              :snippet=>"iNaturalist Feed for User:" << user,
-              :description=>"iNaturalist Feed for User:" << user,
-              :name=>"iNaturalist Feed for User:" << user
+              :snippet => "iNaturalist Feed for User:" << user,
+              :description => "iNaturalist Feed for User:" << user,
+              :name => "iNaturalist Feed for User:" << user
             }
-
           else
             @net_hash = {
               :id => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
@@ -727,7 +725,6 @@ class ObservationsController < ApplicationController
             }
             render :layout => false, :action => 'network_link' and return
           end
-
         else #return the root network link
           @net_hash = {
             :id => "User" << user, 
@@ -739,6 +736,7 @@ class ObservationsController < ApplicationController
           }
           render :layout => false, :action => 'network_link' and return
         end
+        render :layout => false, :action => "index"
       end
 
       format.atom
