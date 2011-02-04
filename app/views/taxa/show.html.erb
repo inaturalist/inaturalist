@@ -327,7 +327,7 @@
       og_description = if @photos.blank?
         html_attributize(@taxon.wikipedia_summary)
       else
-        "#{html_attributize @taxon.wikipedia_summary} (Photo: #{@photos.first.attribution})"
+        "(Photo: #{@photos.first.attribution}) #{html_attributize @taxon.wikipedia_summary}"
       end
     -%>
     <meta property="og:description" content="<%= og_description %>"/>
