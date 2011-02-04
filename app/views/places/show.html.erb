@@ -202,7 +202,7 @@
         map.setCenter(new GLatLng(<%= @place.latitude %>, <%= @place.longitude %>));
       <% end %>
       
-      <% if logged_in? && current_user.is_curator? %>
+      <% if params[:test] == "kml" %>
         var kmlOverlay = new GGeoXml('<%= place_geometry_url(@place, :format => "kml") %>');
         map.addOverlay(kmlOverlay);
       <% else %>
