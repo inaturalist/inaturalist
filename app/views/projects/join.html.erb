@@ -10,19 +10,19 @@
 
 <h3>About this Project</h3>
 <div class="description">
-  <%= simple_format @project.description %>
+  <%= formatted_user_text @project.description %>
 </div>
 
 <% unless @project.terms.blank? -%>
   <h3>Terms</h3>
-  <div class="description">
-    <%= simple_format @project.terms %>
+  <div class="stacked description">
+    <%= formatted_user_text @project.terms %>
   </div>
 <% end -%>
 
 <% unless @project.project_user_rules.blank? -%>
   <h3>Rules for Becoming a Member</h3>
-  <ul>
+  <ul class="stacked">
     <% for rule in @project.project_user_rules %>
       <li><%= rule.terms %></li>
     <% end %>
@@ -31,14 +31,14 @@
 
 <% unless @project.project_observation_rules.blank? -%>
   <h3>Rules for Adding Observations</h3>
-  <ul>
+  <ul class="stacked">
     <% for rule in @project.project_observation_rules %>
       <li><%= rule.terms %></li>
     <% end %>
   </ul>
 <% end -%>
 
-<div class="buttonrow">
+<div class="clear buttonrow">
   <%= link_to "Yes, I want to join", join_project_path(@project), :method => :post, :class => "default button" %>
   <%= link_to "Cancel", @project, :class => "button" %>
 </div>

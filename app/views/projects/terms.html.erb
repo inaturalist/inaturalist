@@ -16,7 +16,7 @@
 </div>
 
 <% if !@project.terms.blank? -%>
-  <%= simple_format h(@project.terms) %>
+  <%= formatted_user_text(@project.terms) %>
 <% elsif !@project_user_rules.blank? || !@project_observation_rules.blank? %>
   <% unless @project_user_rules.blank? -%>
     <h3>New members...</h3>
