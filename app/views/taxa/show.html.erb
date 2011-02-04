@@ -310,8 +310,20 @@
 <% end -%>
 
 <%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <meta property="og:type" content="taxon"/> 
+  <% if !@taxon.photos.blank? -%>
+    <meta property="og:image" content="<%= @taxon.photos.first.small_url %>"/> 
+  <% elsif @taxon.photos.blank? %>
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 
+  <% end -%>
+  <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027"> 
   <% unless @taxon.wikipedia_summary.blank? -%>
     <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
+    <meta property="og:description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
   <% end -%>
 <%- end -%>
 
@@ -644,7 +656,12 @@
         </nobr>
       </a>
     </div>
+
+  <div id="fblike" class="stacked">
+    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
   </div>
+  <br/>
+</div>
 
   <div class="last column span-20">
     <div class="column-separator">
