@@ -30,3 +30,7 @@
 <div id="feeds" class="clear right small ui description feeds">
   <%= render :partial => 'feed_links' %>
 </div>
+
+<div id="pagination" class="last column span-24">
+  <%= will_paginate @observations %>
+</div>

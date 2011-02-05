@@ -3,7 +3,7 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :observation
   validates_presence_of :project_id, :observation_id
   validate_on_create :observed_by_project_member?
-  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georefereced?, :identified?]
+  validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?]
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
   after_save :refresh_project_list
