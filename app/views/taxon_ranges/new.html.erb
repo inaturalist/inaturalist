@@ -1,0 +1,16 @@
+<h2>
+  New Taxon Range 
+  <% if @taxon_range.taxon -%>
+    for <%= link_to @taxon_range.taxon.name, @taxon_range.taxon %>
+  <% end -%>
+</h2>
+
+<% form_for(@taxon_range, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+  
+  <%= render :partial => 'form_fields', :locals => {:f => f} %>
+
+  <%= f.submit 'Create', :class => "default button" %>
+<% end %>
+
+<%= link_to 'Back', @taxon_range.taxon || taxa_path, :class => "button" %>

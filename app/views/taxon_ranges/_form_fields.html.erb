@@ -1,0 +1,12 @@
+  <%= f.text_field :taxon_id %>
+  <% if f.object.range.file? -%>
+    <% f.form_field :range do %>
+      <%= link_to f.object.range.url, f.object.range.url %>
+      <%= link_to_function "(replace)", 
+        "$(this).parents('.field').after('#{f.file_field(:range)}'); " + 
+        "$(this).parents('.field').hide()", :class => "small" %>
+    <% end %>
+  <% else %>
+    <%= f.file_field :range %>
+  <% end -%>
+  <%= f.text_area :description %>

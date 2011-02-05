@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   simplified_login_regex = /\w[\w\-_]+/
   
   map.root :controller => 'welcome', :action => 'index'
@@ -166,37 +165,26 @@ ActionController::Routing::Routes.draw do |map|
   #
   map.connect 'taxa/names', :controller => 'taxon_names'
   map.connect 'taxa/names.:format', :controller => 'taxon_names'
-  map.describe_taxon 'taxa/:id/description', 
-                     :controller => 'taxa', :action => 'describe'
-  map.graft_taxon 'taxa/:id/graft', :controller => 'taxa', :action => 'graft'
-  map.taxon_children 'taxa/:id/children',
-                     :controller => 'taxa', :action => 'children'
-  map.formatted_taxon_children 'taxa/:id/children.:format',
-                     :controller => 'taxa', :action => 'children'
-  map.taxon_photos 'taxa/:id/photos',
-                   :controller => 'taxa', :action => 'photos'
-  map.edit_taxon_photos 'taxa/:id/edit_photos',
-                   :controller => 'taxa', :action => 'edit_photos'
-  map.update_taxon_photos 'taxa/:id/update_photos',
-                   :controller => 'taxa', :action => 'update_photos'
-  map.update_taxon_colors 'taxa/:id/update_colors',
-                   :controller => 'taxa', :action => 'update_colors'
-  map.add_taxon_places 'taxa/:id/add_places',
-                   :controller => 'taxa', :action => 'add_places'
-  map.flickr_tagger 'taxa/flickr_tagger', :controller => 'taxa', 
-    :action => 'flickr_tagger'
-  map.formatted_flickr_tagger 'taxa/flickr_tagger.:format', 
-    :controller => 'taxa', 
-    :action => 'flickr_tagger'
-  # map.taxon_photos 'taxa/:id/photos.:format', 
-  #                  :controller => 'taxa', :action => 'photos'
-  map.search_taxa 'taxa/search', :controller => 'taxa', :action => 'search'
-  map.formatted_search_taxa 'taxa/search.:format', :controller => 'taxa', 
-    :action => 'search'
   map.resources :taxa, :requirements => { :id => %r(\d+) } do |taxon|
     # taxon.resources :names, :controller => :taxon_names
     taxon.resources :taxon_names, :controller => :taxon_names, :shallow => true
     taxon.resources :flags
+  end
+  map.with_options :controller => 'taxa' do |taxa|
+    taxa.describe_taxon 'taxa/:id/description', :action => 'describe'
+    taxa.graft_taxon 'taxa/:id/graft', :action => 'graft'
+    taxa.taxon_children 'taxa/:id/children', :action => 'children'
+    taxa.formatted_taxon_children 'taxa/:id/children.:format', :action => 'children'
+    taxa.taxon_photos 'taxa/:id/photos', :action => 'photos'
+    taxa.edit_taxon_photos 'taxa/:id/edit_photos', :action => 'edit_photos'
+    taxa.update_taxon_photos 'taxa/:id/update_photos', :action => 'update_photos'
+    taxa.update_taxon_colors 'taxa/:id/update_colors', :action => 'update_colors'
+    taxa.add_taxon_places 'taxa/:id/add_places', :action => 'add_places'
+    taxa.flickr_tagger 'taxa/flickr_tagger', :action => 'flickr_tagger'
+    taxa.formatted_flickr_tagger 'taxa/flickr_tagger.:format', :action => 'flickr_tagger'
+    taxa.search_taxa 'taxa/search', :action => 'search'
+    taxa.formatted_search_taxa 'taxa/search.:format', :action => 'search'
+    taxa.formatted_taxa_action 'taxa/:action.:format'
   end
   
   map.connect 'taxa/auto_complete_name', :controller => 'taxa',
@@ -256,6 +244,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :flags, :requirements => { :id => %r(\d+) }
   map.admin '/admin', :controller=>'admin', :action => 'index'
+  map.resources :taxon_ranges, :except => [:index, :show]
 
   # Default route
   map.connect ':controller/:action/:id'

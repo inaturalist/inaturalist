@@ -213,6 +213,12 @@
     float: left;
     width: 250px;
   }
+  
+  .ui-tabs .ui-tabs-panel { padding: 10px 0; }
+  #taxon_links { 
+    position: relative;
+    z-index: 1000;
+  }
 </style>
 
 <!--[if lte IE 7]>
@@ -234,10 +240,37 @@
                              'jquery/plugins/jquery.autocomplete.min.js',
                              'jquery/plugins/inat/place_autocomplete.js',
                              "jquery/plugins/jquery.qtip.min",
-                             'jquery/jquery.ui.all.packed' %>
+                             'jquery/jquery-ui-1.7.2.min' %>
+
+  <% if params[:test] == 'range' && @taxon_range %>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <% end -%>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
+      
+      $('#tabs').tabs()
+      
+      <% if params[:test] == 'range' && @taxon_range %>
+        window.map = new google.maps.Map(document.getElementById("taxon_range_map"), {
+          mapTypeId: google.maps.MapTypeId.TERRAIN,
+          zoom: 8,
+          center: new google.maps.LatLng(-34.397, 150.644)
+        });
+        window.ctaLayer = new google.maps.KmlLayer('<%= @taxon_range.range.url %>');
+        window.ctaLayer.setMap(map);
+        <% if Rails.env.development? %>
+          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.atom?q=<%= URI.escape(@taxon.name) %>');
+        <% else %>
+          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :atom, :taxon_id => @taxon.id) %>');
+        <% end %>
+        iNatLyr.setMap(map);
+        $('#tabs').bind('tabsshow', function(event, ui) {
+          google.maps.event.trigger(window.map, 'resize')
+          window.map.fitBounds(window.ctaLayer.getDefaultViewport())
+        })
+      <% end %>
+      
       <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()
         $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
@@ -597,9 +630,7 @@
     </div>
     
     <% if logged_in? %>
-      <div>
-        <%= link_to_function("Edit photos", "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
-      </div>
+      <%= link_to_function("Edit photos", "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
       <div id="edit_photos_dialog" class="modalbox dialog" style="display: none"></div>
     <% end %>
   </div>
@@ -663,82 +694,90 @@
         </nobr>
       </a>
     </div>
-
-  <div id="fblike" class="stacked">
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
-  </div>
-
-</div>
-
-  <div class="last column span-20">
-    <div class="column-separator">
-      <img src="/images/logo-eee-15px.png">
+  
+    <div id="fblike" class="stacked">
+      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
     </div>
   </div>
   
-  <div id="description" class="last column span-20">
-    <div id="taxon_links" class="right tabs">
+  <div class="last column span-20">
+    <div id="tabs" class="ui-tabs">
+      <div id="taxon_links" class="right tabs">
+        <ul>
+          <li class="description">More info:</li>
+          <% for taxon_link in @taxon_links[0..3] %>
+            <li class="taxon_link">
+              <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
+              <%- if logged_in? -%>
+                <span class="controls">
+                  <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
+                </span>
+              <%- end -%>
+            </li>
+          <% end %>
+          <% if @taxon_links.size > 4 -%>
+            <li style="padding: 0; border: 0;">
+              <% link_to_toggle_menu "More" do %>
+                <ul>
+                  <%- @taxon_links[4..-1].each do |taxon_link| -%>
+                    <li class="taxon_link">
+                      <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
+                      <%- if logged_in? -%>
+                        <span class="controls">
+                          <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
+                        </span>
+                      <%- end -%>
+                    </li>
+                  <%- end -%>
+                </ul>
+              <% end %>
+            </li>
+          <% end %>
+          <% if logged_in? -%>
+            <li class="description" style="padding-right: 0">
+              <%= link_to "Add a link &raquo;", new_taxon_link_path(:taxon_id => @taxon.id) %>
+            </li>
+          <% end -%>
+        </ul>
+      </div>
       <ul>
-        <li class="description">More info:</li>
-        <% for taxon_link in @taxon_links[0..3] %>
-          <li class="taxon_link">
-            <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
-            <%- if logged_in? -%>
-              <span class="controls">
-                <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
-              </span>
-            <%- end -%>
-          </li>
-        <% end %>
-        <% if @taxon_links.size > 4 -%>
-          <li style="padding: 0; border: 0;">
-            <% link_to_toggle_menu "More" do %>
-              <ul>
-                <%- @taxon_links[4..-1].each do |taxon_link| -%>
-                  <li class="taxon_link">
-                    <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
-                    <%- if logged_in? -%>
-                      <span class="controls">
-                        <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
-                      </span>
-                    <%- end -%>
-                  </li>
-                <%- end -%>
-              </ul>
-            <% end %>
-          </li>
-        <% end %>
-        <% if logged_in? -%>
-          <li class="description" style="padding-right: 0">
-            <%= link_to "Add a link &raquo;", new_taxon_link_path(:taxon_id => @taxon.id) %>
-          </li>
+        <li><a href="#description"><span>Description</span></a></li>
+        <% if params[:test] && @taxon_range %>
+          <li><a href="#taxon_range"><span>Range Map</span></a></li>
         <% end -%>
       </ul>
+
+      <div id="description" class="last column span-20">
+        <h3>
+          Description from <a href="http://en.wikipedia.org/wiki/<%= @taxon.name %>">Wikipedia</a>
+        </h3>
+        <% unless @taxon.auto_description? %>
+          <h3 class="description">
+            Automatic descriptions have been disabled for this taxon.
+          </h3>
+        <% else %>
+          <div id="wikipedia_description">
+            <p>
+              <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
+              <%#= @taxon.wikipedia_summary %>
+              <span id="wikipedia_loading_status" class="loading status" style="display:none">Loading full description...</span>
+            </p>
+          </div>
+          <div id="nodescription" style="display: none">
+            <h3 class='description'>There isn't a Wikipedia article or 
+            redirect titled '<i><%= @taxon.name %></i>'.  Perhaps you'd like to
+            <a href='http://en.wikipedia.org/wiki/<%= @taxon.name %>'>
+            make one</a>?</h3>
+          </div>
+        <% end %>
+      </div>
+
+      <% if params[:test] == 'range' && !@taxon_range.blank? -%>
+        <div id="taxon_range">
+          <div id="taxon_range_map" style="width: 790px; height: 488px"></div>
+        </div>
+      <% end -%>
     </div>
-    <h3>
-      Description
-      <span class="description">(from
-        <a href="http://en.wikipedia.org/wiki/<%= @taxon.name %>">Wikipedia</a>)
-      </span>
-    </h3>
-    <% unless @taxon.auto_description? %>
-      <h3 class="description">
-        Automatic descriptions have been disabled for this taxon.
-      </h3>
-    <% else %>
-      <div id="wikipedia_description">
-        <p>
-          <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
-          <%#= @taxon.wikipedia_summary %>
-          <span id="wikipedia_loading_status" class="loading status" style="display:none">Loading full description...</span>
-        </p>
-      </div>
-      <div id="nodescription" style="display: none">
-        <h3 class='description'>There isn't a Wikipedia article or 
-        redirect titled '<i><%= @taxon.name %></i>'.  Perhaps you'd like to
-        <a href='http://en.wikipedia.org/wiki/<%= @taxon.name %>'>
-        make one</a>?</h3>
-      </div>
-    <% end %>
   </div>
+
 </div><!-- end #rightcol -->

@@ -223,5 +223,11 @@
                             "and #{@observations_count} observations " + 
                             "of it and its descendants..." ,
                 :class => 'minor delete button' %>
+    
+    <% if taxon.taxon_ranges.blank? %>
+      <%= link_to "Add taxon range", new_taxon_range_path(:taxon_id => taxon), :class => "right minor button" %>
+    <% else %>
+      <%= link_to "Edit taxon range", edit_taxon_range_path(taxon.taxon_ranges.first), :class => "right minor button" %>
+    <% end -%>
   </div>
 <% end %>

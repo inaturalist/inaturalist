@@ -170,6 +170,9 @@ class TaxaController < ApplicationController
         if @taxon.name == 'Life' && !@taxon.parent_id
           return redirect_to(:action => 'index')
         end
+        
+        @taxon_range = @taxon.taxon_ranges.first
+        
         render :action => 'show'
       end
       format.xml do

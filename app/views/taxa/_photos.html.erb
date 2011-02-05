@@ -52,10 +52,8 @@
 </div>
 <% end %>
 <% if photos.size > 0 && taxon.species_or_lower? %>
-<div>
-  <br/>
+<div style="margin-top: 10px">
   <% unless photos[1..-1].size == 0 %>
-    <h4>More Creative Commons Flickr Photos Tagged "<%= taxon.name %>"</h4>
     <div class="clear photos_wrapper">
       <% for photo in photos[1..6] %>
         <%- photo_pos_class = cycle('first', '', '', '', '', 'last') -%>

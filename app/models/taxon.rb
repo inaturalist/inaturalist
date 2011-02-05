@@ -17,13 +17,13 @@ class Taxon < ActiveRecord::Base
   has_many :places, :through => :listed_taxa
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :destroy 
-  belongs_to :source
-  belongs_to :iconic_taxon, :class_name => 'Taxon', 
-                            :foreign_key => 'iconic_taxon_id'
-  belongs_to :creator, :class_name => 'User'
-  belongs_to :updater, :class_name => 'User'
+  has_many :taxon_ranges, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
+  belongs_to :source
+  belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
+  belongs_to :creator, :class_name => 'User'
+  belongs_to :updater, :class_name => 'User'
   has_and_belongs_to_many :colors
   
   define_index do
