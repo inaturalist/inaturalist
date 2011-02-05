@@ -327,7 +327,7 @@
             if (h.w.html() == '') {
               h.w.append($('<div class="loading description">Loading...</div>'));
               h.w.load('<%= taxon_path(@taxon) %>/add_places', null, function() {
-                $('#place_selector > ul').tabs();
+                $('#place_selector').tabs();
               });
             }
             h.w.fadeIn(500);
