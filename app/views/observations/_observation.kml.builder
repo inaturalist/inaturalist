@@ -10,11 +10,9 @@ xml.Placemark(:id => "ID#{observation.id}") do
   
   xml.description do
     xml.cdata!(
-      render(
-        :layout => 'mini', 
-        :locals => { :observation => observation, 
-                     :description_length => 80 }
-      )
+      render_in_format :html, :partial => "mini", :object => observation, :locals => {
+        :image_size => "medium"
+      }
     )
   end
   

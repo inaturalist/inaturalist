@@ -250,4 +250,8 @@ module ApplicationHelper
   def html_attributize(txt)
     strip_tags(txt).gsub('"', "'").gsub("\n", " ")
   end
+  
+  def separator
+    content_tag :div, image_tag('logo-eee-15px.png'), :class => "column-separator"
+  end
 end

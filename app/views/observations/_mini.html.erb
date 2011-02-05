@@ -13,21 +13,22 @@ Note:
 =end
 
 observation ||= object || @observation
+image_size ||= nil
 -%>
 <% cache("observations/_mini/#{observation.id}") do %>
 <div id="mini-observation-<%= observation.id %>" class="clear mini observation">
-  <a href="<%= observation_path(observation) %>">
-    <%#= image_tag observation.photos[0].square_url, :class => "left" %>
-    <%= image_tag observation_image_url(observation) || iconic_taxon_image_url(observation.iconic_taxon), :class => "left" %>
+  <a href="<%= observation_url(observation) %>">
+    <%= image_tag observation_image_url(observation, :size => image_size) || 
+      iconic_taxon_image_url(observation.iconic_taxon, :size => image_size), :class => "left" %>
   </a>
   <div class="title">
     <% unless observation.species_guess.nil? or observation.species_guess.empty? %>
-    <%= link_to observation.species_guess, observation_path(observation) %>,
+    <%= link_to observation.species_guess, observation_url(observation) %>,
     <% else %>
-    <%= link_to '<i>Something...</i>', observation_path(observation) %>,
+    <%= link_to '<i>Something...</i>', observation_url(observation) %>,
     <% end %>
     observed by <%= link_to observation.user.login, 
-                            observations_by_login_path(observation.user.login) %>
+                            observations_by_login_url(observation.user.login) %>
   </div>
   <div class="meta">
     <% if observation.observed_on %>

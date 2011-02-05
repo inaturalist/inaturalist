@@ -8,7 +8,8 @@ class ObservationsController < ApplicationController
                             :id_please,
                             :tile_points,
                             :nearby,
-                            :widget]
+                            :widget,
+                            :project]
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
     :update_photos, :destroy]
@@ -100,36 +101,11 @@ class ObservationsController < ApplicationController
       end
       
       format.kml do
-        if  params[:kml_type] == "network_link"
-          if request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth")
-            @net_hash = {
-              :snippet => "iNaturalist Feed for Everyone", 
-              :description => "iNaturalist Feed for Everyone", 
-              :name => "iNaturalist Feed for Everyone"
-            }
-          else
-            @net_hash = {
-              :id => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :link_id => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :snippet => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :description => "The link grabed was: " << (url_for(:controller => '/', :only_path=>false)),
-              :name => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :href => ""
-            }
-            render :layout => false, :action => 'network_link' and return
-          end
-        else #return the root network link
-          @net_hash = {
-            :id => "AllObs", 
-            :link_id =>"AllObs", 
-            :snippet => "iNaturalist Feed for Everyone", 
-            :description => "iNaturalist Feed for Everyone", 
-            :name => "iNaturalist Feed for Everyone", 
-            :href => (url_for(:controller => '/', :only_path => false) << request.request_uri.from(1))
-          }
-          render :layout => false, :action => 'network_link' and return
-        end
-        render :layout => false
+        render_observations_to_kml(
+          :snippet => "iNaturalist Feed for Everyone", 
+          :description => "iNaturalist Feed for Everyone", 
+          :name => "iNaturalist Feed for Everyone"
+        )
       end
       
       format.widget do
@@ -222,9 +198,9 @@ class ObservationsController < ApplicationController
           end
           
           @project_users = current_user.project_users.all(:include => :project)
-          @project_observations = @observation.project_observations.all
-          @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         end
+        @project_observations = @observation.project_observations.all(:limit => 100)
+        @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         
         @comments_and_identifications = (@observation.comments.all + 
           @identifications).sort_by(&:created_at)
@@ -706,37 +682,11 @@ class ObservationsController < ApplicationController
       end
       
       format.kml do
-        user = @login.to_s
-        if request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth") && params[:kml_type] == "network_link"
-          if params[:kml_type] == "network_link"
-            @net_hash = {
-              :snippet => "iNaturalist Feed for User:" << user,
-              :description => "iNaturalist Feed for User:" << user,
-              :name => "iNaturalist Feed for User:" << user
-            }
-          else
-            @net_hash = {
-              :id => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :link_id => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :snippet => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :description => "The link grabed was: "<<(url_for(:controller => '/', :only_path=>false)), 
-              :name => "BADLY FORMED LINK, Inform smcgregor08@cmc.edu if unexpected", 
-              :href => ""
-            }
-            render :layout => false, :action => 'network_link' and return
-          end
-        else #return the root network link
-          @net_hash = {
-            :id => "User" << user, 
-            :link_id => "UserLink" << user, 
-            :snippet => "iNaturalist Feed for User:" << user, 
-            :description => "iNaturalist Feed for User:" << user, 
-            :name => "iNaturalist Feed for User:" << user, 
-            :href => (url_for(:controller => '/', :only_path => false) << request.request_uri.from(1))
-          }
-          render :layout => false, :action => 'network_link' and return
-        end
-        render :layout => false, :action => "index"
+        render_observations_to_kml(
+          :snippet => "iNaturalist Feed for User: #{@selected_user.login}",
+          :description => "iNaturalist Feed for User: #{@selected_user.login}",
+          :name => "iNaturalist Feed for User: #{@selected_user.login}"
+        )
       end
 
       format.atom
@@ -897,12 +847,11 @@ class ObservationsController < ApplicationController
       end
       format.csv { render_observations_to_csv }
       format.kml do
-        @net_hash = {
+        render_observations_to_kml(
           :snippet => "#{@project.title.html_safe} Observations", 
           :description => "Observations feed for the iNaturalist project '#{@project.title.html_safe}'", 
           :name => "#{@project.title.html_safe} Observations"
-        }
-        render :layout => false, :action => "index"
+        )
       end
     end
   end
@@ -1331,5 +1280,34 @@ class ObservationsController < ApplicationController
       :methods => [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login],
       :except => [:map_scale, :timeframe, :iconic_taxon_id, :delta]
     )
+  end
+  
+  def render_observations_to_kml(options = {})
+    @net_hash = options
+    if params[:kml_type] != "network_link"
+      @net_hash = {
+        :id => "AllObs", 
+        :link_id =>"AllObs", 
+        :snippet => "iNaturalist Feed for Everyone", 
+        :description => "iNaturalist Feed for Everyone", 
+        :name => "iNaturalist Feed for Everyone", 
+        :href => (url_for(:controller => '/', :only_path => false) << request.request_uri.from(1))
+      }
+      render :layout => false, :action => 'network_link'
+      return
+    end
+    
+    unless request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth")
+      @net_hash = {
+        :id => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+        :link_id => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+        :snippet => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+        :description => "The link grabed was: " << (url_for(:controller => '/', :only_path=>false)),
+        :name => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+        :href => ""
+      }
+      render :layout => false, :action => 'network_link' and return
+    end
+    render :layout => false, :action => "index"
   end
 end

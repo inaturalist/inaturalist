@@ -146,6 +146,7 @@
       margin-bottom: 10px;
     }
     .button_toggle_menu .menu { top: 32px; }
+    #projects .box { padding: 5px; }
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -378,7 +379,7 @@
     </ul>
   </div>
   
-  <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+  <%= separator %>
   
   <div id="comments_and_identifications" class="column span-15">
     <h3>Comments &amp; Identifications</h3>
@@ -551,6 +552,7 @@
   </div><!-- end identifications -->
   
   <% unless @project_observations.blank? -%>
+    <%= separator %>
     <div id="projects" class="stacked">
       <h3>Projects</h3>
       <p class="description">
@@ -563,7 +565,6 @@
             <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) ? 25 : 35)), po.project %>
           </span>
           <% if is_me?(@observation.user) -%>
-            <%#= link_to "remove", remove_project_observation_path(po), :method => :delete, :class => "pale button", :style => "float: right; margin: 0" %>
             <%= link_to "remove", 
               remove_project_observation_path(po.project_id, :observation_id => @observation.id),
               :method => :delete,
@@ -575,6 +576,8 @@
       <% end %>
     </div>
   <% end -%>
+  
+  <%= separator %>
   
   <div id="fblike" class="stacked">
     <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>

@@ -13,6 +13,6 @@ xml.kml "xmlns" => "http://www.opengis.net/kml/2.2" do
   end
 
   xml.Document do
-    render :partial => "observation", :collection => @observations
+    xml << render(:partial => "observation", :collection => @observations)
   end
 end
