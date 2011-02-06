@@ -431,6 +431,7 @@ class ObservationsController < ApplicationController
         end
         format.xml  { head :ok }
         format.js { render :json => @observations }
+        format.json { render :json => @observations.to_json }
       else
         format.html do
           if @observations.size == 1
@@ -440,7 +441,8 @@ class ObservationsController < ApplicationController
             render :action => 'edit_batch'
           end
         end
-        format.xml  { render :xml => @observation.errors, :status => :unprocessable_entity }
+        format.xml  { render :xml => @observations.collect(&:errors), :status => :unprocessable_entity }
+        format.json { render :json => @observations.collect(&:errors), :status => :unprocessable_entity }
       end
     end
   end
