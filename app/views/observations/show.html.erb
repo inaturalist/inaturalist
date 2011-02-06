@@ -586,17 +586,19 @@
   
   <% if @observation.flagged? %>
   <div id="flaggings_heads_up" class="description">
-    HEADS UP: this observation has been flagged for curation.
+    HEADS UP: this observation has been flagged.
     <%= link_to "Add another flag", new_observation_flag_path(@observation),
                 :id => "flag_this" %>
   </div>
   <% else %>
     <% if logged_in? %>
-    <div class="description">
-      See something innapropriate?  
-      <%= link_to "Flag this for curation", new_observation_flag_path(@observation),
-                  :id => "flag_this" %>
-    </div>
+    <p class="description ui">
+      Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?
+      <%= link_to "Flag this observation", new_observation_flag_path(@observation), :id => "flag_this" %>
+    </p>
+    <p class="description ui">
+      If you think this observation is inaccurate, please add an ID or describe the inaccuracy in a comment.
+    </p>
     <% end %>
   <% end %>
   
