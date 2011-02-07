@@ -5,6 +5,8 @@ Disallow: /observations?
 Disallow: /observations/?
 Disallow: /observations.csv
 Disallow: /observations.csv?
+Disallow: /taxa/search
+Disallow: /taxa/search?
 
 User-agent: Googlebot
 Disallow: /taxa/*/description$
