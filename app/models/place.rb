@@ -451,6 +451,7 @@ class Place < ActiveRecord::Base
   end
   
   def bbox_contains_lat_lng?(lat, lng)
+    return false if lat.blank? || lng.blank?
     return nil unless swlng && swlat && nelat && nelng
     if swlng.to_f > 0 && nelng.to_f < 0
       lat > swlat && lat < nelat && (lng > swlng || lng < nelng)

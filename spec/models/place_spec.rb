@@ -108,6 +108,9 @@ describe Place, "contains_lat_lng?" do
     place.contains_lat_lng?(0, 0).should be_true
     place.contains_lat_lng?(0.5, 0.5).should be_true
     place.contains_lat_lng?(2, 2).should be_false
+    place.contains_lat_lng?(2, nil).should be_false
+    place.contains_lat_lng?(nil, nil).should be_false
+    place.contains_lat_lng?('', '').should be_false
   end
   
   it "should work across the date line" do
@@ -116,5 +119,6 @@ describe Place, "contains_lat_lng?" do
     place.contains_lat_lng?(0.5, -179.5).should be_true
     place.contains_lat_lng?(0, 0).should be_false
   end
+  
 end
 
