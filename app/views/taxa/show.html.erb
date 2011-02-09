@@ -610,7 +610,7 @@
       <h3>Curation</h3>
       <ul>
         <li><%= link_to "Edit", edit_taxon_path(@taxon) %></li>
-        <li><%= link_to "Merge", :controller => "taxa", :action => "merge", :id => @taxon %></li>
+        <li><%= link_to "Merge", merge_taxon_path(@taxon) %></li>
       </ul>
     </div>
   <% end -%>

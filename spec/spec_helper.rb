@@ -5,8 +5,10 @@ require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_
 require 'spec/autorun'
 require 'spec/rails'
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
+require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 
 include AuthenticatedTestHelper
+include MakeHelpers
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.

@@ -185,6 +185,8 @@ ActionController::Routing::Routes.draw do |map|
     taxa.search_taxa 'taxa/search', :action => 'search'
     taxa.formatted_search_taxa 'taxa/search.:format', :action => 'search'
     taxa.formatted_taxa_action 'taxa/:action.:format'
+    taxa.merge_taxon 'taxa/:id/merge', :action => 'merge'
+    taxa.formatted_merge_taxon 'taxa/:id/merge.:format', :action => 'merge'
   end
   
   map.connect 'taxa/auto_complete_name', :controller => 'taxa',

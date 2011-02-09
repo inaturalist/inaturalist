@@ -12,7 +12,7 @@
     $(document).ready(function() {
       $('#keeper_name').simpleTaxonSelector({
         afterSelect: function() {
-          $('#confirm').load('<%= url_for(:format => :js) %>', {taxon_id: $('#taxon_id').val()});
+          $('#confirm').load('<%= url_for(:id => @taxon, :format => "js") %>', "taxon_id="+$('#taxon_id').val());
           $('#submitbutton').attr('disabled', false).removeClass('disabled');
         },
         afterUnselect: function() {
@@ -48,7 +48,7 @@
   </p>
 </div>
 
-<% form_tag url_for(), :class => "clear buttons" do %>
+<% form_tag merge_taxon_path(@taxon), :class => "clear buttons" do %>
   <%= text_field_tag :keeper_name %>
   <%= hidden_field_tag :taxon_id %>
   <%= submit_tag "Merge", :disabled => true, :class => "default button", 
