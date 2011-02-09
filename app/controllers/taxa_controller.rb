@@ -224,6 +224,7 @@ class TaxaController < ApplicationController
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = 'Taxon was successfully updated.'
       redirect_to taxon_path(@taxon)
+      return
     else
       render :action => 'edit'
     end
@@ -784,7 +785,10 @@ class TaxaController < ApplicationController
   end
   
   def load_taxon
-    render_404 unless @taxon = Taxon.find_by_id(params[:id], :include => :taxon_names)
+    unless @taxon = Taxon.find_by_id(params[:id], :include => :taxon_names)
+      render_404
+      return
+    end
   end
   
   # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
