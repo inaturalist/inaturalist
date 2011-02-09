@@ -17,8 +17,10 @@
 {{Taxobox
 <%- if taxon.rank_level && taxon.rank_level <= Taxon::RANK_LEVELS['genus'] && taxon.default_name.is_scientific_names? -%>
 | name = ''<%= taxon.default_name.name %>''
-  <%- else -%>
+<%- elsif taxon.default_name -%>
 | name = <%= taxon.default_name.name %>
+<%- else -%>
+| name = <%= taxon.name %>
 <%- end -%>
 <%- for ancestor in taxon.self_and_ancestors -%>
   <%- 
