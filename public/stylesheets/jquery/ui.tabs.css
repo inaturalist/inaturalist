@@ -8,12 +8,10 @@
 .ui-tabs .ui-tabs-hide { display: none !important; }
 
 /* Custom Visual Tab styles */
-.ui-tabs ul {
-  margin: 0;
-}
 
 .ui-tabs .ui-tabs-nav {
   border-bottom: 1px solid #ccc;
+  margin: 0;
 }
 
 .ui-tabs .ui-tabs-nav:after {

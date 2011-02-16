@@ -504,6 +504,17 @@ class TaxaController < ApplicationController
   end
   
   def describe
+    if params[:test] =~ /amphibiaweb/ && @taxon.species_or_lower? &&
+        @taxon.ancestor_ids.include?(Taxon::ICONIC_TAXA_BY_NAME['Amphibia'].id)
+      taxon_names = @taxon.taxon_names.all(
+        :conditions => {:lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 
+        :order => "is_valid")
+      if @xml = get_amphibiaweb(taxon_names)
+        render :partial => "amphibiaweb"
+        return
+      end
+    end
+    
     @title = @taxon.wikipedia_title.blank? ? @taxon.name : @taxon.wikipedia_title
     wikipedia
   end
@@ -907,6 +918,20 @@ class TaxaController < ApplicationController
       params[:taxon][:featured_at] = Time.now
     else
       params[:taxon][:featured_at] = ""
+    end
+  end
+  
+  # Temp method for fetching amphibiaweb desc.  Will probably implement this 
+  # through TaxonLinks eventually
+  def get_amphibiaweb(taxon_names)
+    taxon_name = taxon_names.pop
+    return unless taxon_name
+    @genus_name, @species_name = @taxon.name.split
+    xml = Nokogiri::XML(open("http://amphibiaweb.org/cgi/amphib_ws?where-genus=#{@genus_name}&where-species=#{@species_name}&src=eol"))
+    if xml.at(:error)
+      get_amphibiaweb(taxon_names)
+    else
+      xml
     end
   end
 end

@@ -1,0 +1,39 @@
+<div class="column span-14">
+  <% for section in %w(description distribution life_history trends_and_threats relation_to_humans comments) %>
+    <%- next if (section_content = @xml.at(section).try(:inner_text)).blank? %>
+    <h3><%= section.humanize.capitalize %></h3>
+    <%= section_content.strip.split('<p>').compact.map{|para| "<p>#{para}</p>"} %>
+  <% end %>
+  
+  <% for section in %w(lannoo refs) %>
+    <%- next if (section_content = @xml.at(section).try(:inner_text)).blank? %>
+    <h3><%= section.humanize.capitalize %></h3>
+    <%= section_content.strip.split('<p>').compact.map{|para| "<p class=\"ui\">#{para}</p>"} %>
+  <% end %>
+</div>
+
+<div class="last column span-6">
+  <div class="quiet box">
+    <p class="ui">
+      <a href="http://amphibiaweb.org/cgi-bin/amphib_query?genus_name=<%= @genus_name %>&species_name=<%= @species_name %>" class="readmore">
+        View on AmphibiaWeb
+      </a>
+    </p>
+    
+    <h4>AmphibiaWeb Taxonomy</h4>
+    <ul class="stacked">
+      <li class="sciname"><%= @xml.at(:ordr).try(:inner_text) %></li>
+      <li class="sciname"><%= @xml.at(:family).try(:inner_text) %></li>
+      <li class="sciname genus"><%= @xml.at(:genus).try(:inner_text) %></li>
+      <li class="sciname species">
+        <%= @xml.at(:genus).try(:inner_text) %> <%= @xml.at("species species").try(:inner_text) %>
+      </li>
+    </ul>
+
+    <% for section in %w(submittedby submit_date editedby edit_date) %>
+      <%- next if (section_content = @xml.at(section).try(:inner_text)).blank? %>
+      <h4><%= section.humanize.capitalize %></h4>
+      <%= section_content.strip.split('<p>').compact.map{|para| "<p class=\"ui\">#{para}</p>"} %>
+    <% end %>
+  </div>
+</div>
