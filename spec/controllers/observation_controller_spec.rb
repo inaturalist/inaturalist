@@ -23,4 +23,13 @@ describe ObservationsController do
       response.should be_redirect
     end
   end
+  
+  describe :index do
+    it "should find observations by taxon_name" do
+      taxon = Taxon.make
+      observation = Observation.make(:taxon => taxon)
+      get :index, :format => 'json', :taxon_name => taxon.name
+      response.body.should match /#{observation.species_guess}/
+    end
+  end
 end

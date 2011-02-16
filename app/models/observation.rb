@@ -295,7 +295,19 @@ class Observation < ActiveRecord::Base
     scope = scope.identifications(params[:identifications]) if (params[:identifications])
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
     scope = scope.order_by(params[:order_by]) if params[:order_by]
-    scope = scope.of(params[:taxon_id]) if params[:taxon_id]
+    if params[:taxon_id]
+      scope = scope.of(params[:taxon_id])
+    elsif params[:taxon_name]
+      name = params[:taxon_name].split('_').join(' ')
+      taxon_names = TaxonName.all(
+        :conditions => {:name => name, :lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 
+        :limit => 10, :include => :taxon)
+      unless params[:iconic_taxa].blank?
+        taxon_names.reject {|tn| params[:iconic_taxa].include?(tn.taxon.iconic_taxon_id)}
+      end
+      taxon_name = taxon_names.detect{|tn| tn.is_valid?} || taxon_names.first
+      scope = scope.of(taxon_name.try(:taxon) || false)
+    end
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
     scope = scope.near_place(params[:place_id]) if params[:place_id]
