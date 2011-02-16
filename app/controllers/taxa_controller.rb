@@ -508,7 +508,7 @@ class TaxaController < ApplicationController
         @taxon.ancestor_ids.include?(Taxon::ICONIC_TAXA_BY_NAME['Amphibia'].id)
       taxon_names = @taxon.taxon_names.all(
         :conditions => {:lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 
-        :order => "is_valid")
+        :order => "is_valid, id desc")
       if @xml = get_amphibiaweb(taxon_names)
         render :partial => "amphibiaweb"
         return
@@ -926,9 +926,10 @@ class TaxaController < ApplicationController
   def get_amphibiaweb(taxon_names)
     taxon_name = taxon_names.pop
     return unless taxon_name
-    @genus_name, @species_name = @taxon.name.split
-    xml = Nokogiri::XML(open("http://amphibiaweb.org/cgi/amphib_ws?where-genus=#{@genus_name}&where-species=#{@species_name}&src=eol"))
-    if xml.at(:error)
+    @genus_name, @species_name = taxon_name.name.split
+    url = "http://amphibiaweb.org/cgi/amphib_ws?where-genus=#{@genus_name}&where-species=#{@species_name}&src=eol"
+    xml = Nokogiri::XML(open(url))
+    if xml.blank? || xml.at(:error)
       get_amphibiaweb(taxon_names)
     else
       xml
