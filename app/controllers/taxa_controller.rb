@@ -809,6 +809,10 @@ class TaxaController < ApplicationController
     request.format = format unless format.blank?
     
     # Try to look by its current scientifc name
+    taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
+    @taxon ||= taxa.first if taxa.size == 1
+    
+    # Try to look by its current scientifc name
     taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon
     @taxon ||= taxa.first if taxa.size == 1
     
