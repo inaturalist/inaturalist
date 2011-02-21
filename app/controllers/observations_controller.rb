@@ -887,12 +887,14 @@ class ObservationsController < ApplicationController
       end
       
       # Sync existing if called for
-      if options[:sync] && photo
-        # sync the photo URLs b/c they change when photos become private
+      if photo
         photo.user ||= options[:user]
-        photo.api_response = api_response # set to make sure user validation works
-        photo.sync
-        photo.save if photo.changed?
+        if options[:sync]
+          # sync the photo URLs b/c they change when photos become private
+          photo.api_response = api_response # set to make sure user validation works
+          photo.sync
+          photo.save if photo.changed?
+        end
       end
       
       # Create a new one if one doesn't already exist
