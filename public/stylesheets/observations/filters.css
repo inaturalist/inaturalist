@@ -1,7 +1,6 @@
 #filters {
   clear: both;
   color: #888;
-  font-size: 95%;
   margin-bottom: 5px;
   padding: 1em;
   border: 1px solid #eee;
@@ -29,7 +28,7 @@
 
 #search_on {
   font-size:125%;
-  padding: 0.3em;
+  padding: 5px;
 }
 
 .iconic_taxon_filter {
@@ -48,7 +47,6 @@
   border: none;
   padding: 0;
   margin: 0;
-  vertical-align: middle;
   line-height: 1;
   margin-right: 1em;
 }
@@ -308,5 +306,13 @@
 
 
 #filters .row { clear: left; }
-#filters .row .label { float: left; width: 55px; }
+#filters .row .label { 
+  float: left; 
+  width: 55px;
+  font-size: 95%;
+}
 #filters .row .left { clear: none; }
+
+#taxon_filter { margin-top: 5px; }
+#obs_filter_taxon_name { width: 400px; }
+#taxon_filter_label { margin-top: 8px; }

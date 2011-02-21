@@ -19,13 +19,11 @@ $(document).ready(function() {
   
   // Filter behavior
   $('#filterslink').click(function() {
-    $("#filters").toggle()
+    toggleFilters(this, {skipClass: true})
     $(this).parent().toggleClass("open")
     if ($(this).parent().hasClass('open')) {
-      $('#filters_open').val(true)
       alterLinkParams({filters_open: 'true'})
     } else {
-      $('#filters_open').val(false)
       alterLinkParams({filters_open: 'false'})
     }
     return false

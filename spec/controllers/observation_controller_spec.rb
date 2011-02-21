@@ -32,4 +32,9 @@ describe ObservationsController do
       response.body.should match /#{observation.species_guess}/
     end
   end
+  
+  describe :import_photos do
+    # to test this we need to mock a flickr response
+    it "should import photos that are already entered as taxon photos"
+  end
 end

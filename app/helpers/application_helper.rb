@@ -254,4 +254,9 @@ module ApplicationHelper
   def separator
     content_tag :div, image_tag('logo-eee-15px.png'), :class => "column-separator"
   end
+  
+  def serial_id
+    @__serial_id = @__serial_id.to_i + 1
+    @__serial_id
+  end
 end

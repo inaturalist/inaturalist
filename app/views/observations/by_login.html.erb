@@ -65,7 +65,8 @@ Observations by <%= h @login %>
                            'inaturalist/map2',
                            "observations/filters",
                            'jquery/plugins/jquery.labelize',
-                           'jquery/plugins/inat/checkboxes' %>
+                           'jquery/plugins/inat/checkboxes',
+                           'jquery/plugins/inat/taxon_selectors' %>
 
  <script type="text/javascript" charset="utf-8">
     // define a function to be run after the window is fully loaded
@@ -277,8 +278,7 @@ Observations by <%= h @login %>
         <%= link_to_function("Delete Selected", "deleteSelected()", :id => "delete_selected_button", :class => 'minor button') %>
       </div>
     <% end -%>
-    <%= link_to_function("Search", 
-      "$('#filters').toggle(); $(this).toggleClass('open'); $('#filters:visible input[name=filters_open]').val(true); $('#filters:hidden input[name=filters_open]').val(false);", 
+    <%= link_to_function("Search", 'toggleFilters(this)', 
       :id => 'filters_button', 
       :class => "inter#{' open' if @filters_open} minor button") %>
   </div>
@@ -290,6 +290,7 @@ Observations by <%= h @login %>
     <% end -%>
   </div>
 <% end %>
+
 <%= render :partial => 'shared/by_login_header', :locals => {
   :after => tools
 } %>

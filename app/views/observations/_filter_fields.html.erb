@@ -86,6 +86,22 @@
       </small>
     </div>
     
+    <div id="taxon_filter" class="clear row">
+      <div id="taxon_filter_label" class="label">
+        <strong>Taxon</strong>
+      </div>
+      <div class="left" style="width: 500px">
+        <div class="buttons">
+          <%= text_field_tag :taxon_name, @observations_taxon_name, :id => "obs_filter_taxon_name" %>
+          <%= hidden_field_tag :taxon_id, @observations_taxon_id %>
+        </div>
+      </div>
+    </div>
+    <% if @filters_open -%>
+      <script type="text/javascript" charset="utf-8">
+        $('#filters input[name=taxon_name]').simpleTaxonSelector()
+      </script>
+    <% end -%>
     
     <div id="order_filters" class="row">
       <div id="order_filters_label" class="label">

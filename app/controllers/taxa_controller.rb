@@ -184,7 +184,7 @@ class TaxaController < ApplicationController
       format.json do
         render(:json => @taxon.to_json(
           :include => [:taxon_names, :iconic_taxon], 
-          :methods => [:common_name])
+          :methods => [:common_name, :image_url])
         )
       end
       format.node { render :json => jit_taxon_node(@taxon) }

@@ -927,9 +927,6 @@ class ObservationsController < ApplicationController
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on] unless search_params[:search_on].blank?
     
-    @filters_open = !@q.nil?
-    @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
-    
     find_options = {
       :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
       :page => search_params[:page] || 1
@@ -953,6 +950,10 @@ class ObservationsController < ApplicationController
     if find_options[:limit] && find_options[:limit].to_i > 200
       find_options[:limit] = 200
     end
+    
+    # taxon
+    @observations_taxon_id = search_params[:taxon_id] if search_params[:taxon_id]
+    @observations_taxon_name = search_params[:taxon_name] if search_params[:taxon_name]
     
     # iconic_taxa
     if search_params[:iconic_taxa]
@@ -995,6 +996,16 @@ class ObservationsController < ApplicationController
       @order = "desc"
     end
     search_params[:order_by] = "#{@order_by} #{@order}"
+    
+    @filters_open = 
+      !@q.nil? ||
+      !@observations_taxon_id.blank? ||
+      !@observations_taxon_name.blank? ||
+      !@iconic_taxa.blank? ||
+      @id_please == true ||
+      !@with_photos.blank? ||
+      !@identifications.blank?
+    @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]
   end

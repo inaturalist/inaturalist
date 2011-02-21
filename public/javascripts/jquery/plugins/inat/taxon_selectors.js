@@ -120,33 +120,7 @@
         } else {
           $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', 'Loading...');
           jQuery.getJSON('/taxa/'+$(taxon_id).val()+'.json', function(taxon) {
-            if (typeof(taxon.common_name) != 'undefined' && taxon.common_name != null) {
-              taxon.common_name.taxon = taxon;
-              var formattedName = $.fn.simpleTaxonSelector.taxonNameToS(taxon.common_name, {taxon: taxon});
-            } else {
-              for (var i = taxon.taxon_names.length - 1; i >= 0; i--){
-                if (taxon.taxon_names[i].name == taxon.name) {
-                  taxon.taxon_names[i].taxon = taxon
-                  var formattedName = $.fn.simpleTaxonSelector.taxonNameToS(
-                    taxon.taxon_names[i], {taxon: taxon});
-                  break;
-                };
-              };
-            }
-            if (typeof(formattedName) == 'undefined') {
-              if (taxon.taxon_names.length == 0) {
-                var formattedName = $.fn.simpleTaxonSelector.taxonToS(taxon);
-              } else {
-                taxon.taxon_names[0].taxon = taxon
-                var formattedName = $.fn.simpleTaxonSelector.taxonNameToS(
-                  taxon.taxon_names[0], {taxon: taxon});
-              }
-            };
-            $.fn.simpleTaxonSelector.setStatus(wrapper, 'matched', 
-              formattedName);
-            if ($(input).val() == '') {
-              $(input).val(taxon.name);
-            };
+            $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
           }); 
         }
       } else { // if only the guess is set, look that up
@@ -350,9 +324,9 @@
     }
 
     // Set the status
-    if (typeof(taxon.common_name) != 'undefined' && taxon.common_name != null) {
+    if (taxon.common_name) {
       var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.common_name, {taxon: taxon});
-    } else if (typeof(taxon.default_name) != 'undefined' && taxon.default_name != null) {
+    } else if (taxon.default_name) {
       var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, {taxon: taxon});
     } else {
       var message = $.fn.simpleTaxonSelector.taxonToS(taxon);
@@ -379,7 +353,7 @@
     } else {
       formatted.addClass('Unknown');
     }
-    var formattedSciName = $.fn.simpleTaxonSelector.taxonToS(taxon);
+    var formattedSciName = $.fn.simpleTaxonSelector.taxonToS(taxon, {skipClasses: true});
     if (name.lexicon == 'Scientific Names') {
       if (name.is_valid) {
         $(formatted).append(formattedSciName);
@@ -397,7 +371,8 @@
     return $(formatted).get(0);
   };
   
-  $.fn.simpleTaxonSelector.taxonToS = function(taxon) {
+  $.fn.simpleTaxonSelector.taxonToS = function(taxon, options) {
+    var options = $.extend({}, options);
     var formatted = $('<span></span>').append(taxon.name);
     if (taxon.rank == 'species' || 
         taxon.rank == 'infraspecies' || 
@@ -411,6 +386,15 @@
         $(formatted).prepend(taxon.rank + ' ');
       }
     }
+    if (!options.skipClasses) {
+      formatted.addClass('taxon');
+      if (taxon.iconic_taxon) {
+        formatted.addClass(taxon.iconic_taxon.name);
+      } else {
+        formatted.addClass('Unknown');
+      }
+    }
+    
     return $(formatted).get(0);
   };
   
