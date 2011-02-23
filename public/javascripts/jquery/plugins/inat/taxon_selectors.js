@@ -39,12 +39,6 @@
       imageURL = $(taxon_id).attr('rel');
     }
     var image = $('<img src="'+imageURL+'" class="simpleTaxonSelectorImage"/>');
-    $(image).css({
-      width: '32px',
-      float: 'left',
-      'margin-right': '10px',
-      'margin-top': '3px'
-    });
     $(wrapper).prepend(image);
 
     // Insert the lookup button

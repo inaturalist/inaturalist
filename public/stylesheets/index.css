@@ -757,6 +757,13 @@ ul.leafylist li li:first-child {
   background-image: url('/images/logo-15px.png');
 }
 
+.simpleTaxonSelectorImage {
+  width: 32px;
+  float: left;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
 .simpleTaxonSelector .taxon.Unknown          { color: inherit;  background-image: url('/images/iconic_taxa/unknown-15px.png'); }
 .simpleTaxonSelector .taxon.Protozoa         { color: #691776;  background-image: url('/images/iconic_taxa/protozoa-15px.png'); }
 .simpleTaxonSelector .taxon.Plantae          { color: #73AC13;  background-image: url('/images/iconic_taxa/plantae-15px.png'); }
