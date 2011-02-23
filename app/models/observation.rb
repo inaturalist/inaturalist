@@ -295,9 +295,9 @@ class Observation < ActiveRecord::Base
     scope = scope.identifications(params[:identifications]) if (params[:identifications])
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
     scope = scope.order_by(params[:order_by]) if params[:order_by]
-    if params[:taxon_id]
+    if !params[:taxon_id].blank?
       scope = scope.of(params[:taxon_id])
-    elsif params[:taxon_name]
+    elsif !params[:taxon_name].blank?
       name = params[:taxon_name].split('_').join(' ')
       taxon_names = TaxonName.all(
         :conditions => {:name => name, :lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 

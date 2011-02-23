@@ -954,8 +954,8 @@ class ObservationsController < ApplicationController
     end
     
     # taxon
-    @observations_taxon_id = search_params[:taxon_id] if search_params[:taxon_id]
-    @observations_taxon_name = search_params[:taxon_name] if search_params[:taxon_name]
+    @observations_taxon_id = search_params[:taxon_id] unless search_params[:taxon_id].blank?
+    @observations_taxon_name = search_params[:taxon_name] unless search_params[:taxon_name].blank?
     
     # iconic_taxa
     if search_params[:iconic_taxa]
