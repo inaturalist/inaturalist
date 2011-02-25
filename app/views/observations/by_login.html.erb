@@ -233,6 +233,16 @@ Observations by <%= h @login %>
         alert('You need to select some observations first.');
       }
     }
+    
+    function selectToday() {
+      var d = new Date()
+      var m = d.getMonth()+1
+      if (m < 10) { m = '0'+m }
+      var dateString = [d.getFullYear(), m, d.getDate()].join('-')
+      $('.observed_on .date[title='+dateString+']').each(function() {
+        $(this).parents('.observation').find('.control input').check()
+      })
+    }
  </script>
  
  <!--[if lt IE 8]>
@@ -253,8 +263,15 @@ Observations by <%= h @login %>
       <div id="batchcontrols" style="display: none">
         <%= link_to_function("Stop Editing", "batchEdit()", :id => "stop_batch_edit_button", :class => 'button') %>
         <%= link_to_function("Edit Selected", "editSelected()", :id => "edit_selected_button", :class => 'button') %>
-        <%= link_to_function("Select all", "$('.observation .control input:checkbox').check()", :id => "select_all_button", :class => 'minor button') %>
-        <%= link_to_function("Select none", "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button", :class => 'minor button') %>
+        <span class="inter">
+          Select
+          <%= link_to_function("All", "$('.observation .control input:checkbox').check()", :id => "select_all_button") %>
+          |
+          <%= link_to_function("Today", "selectToday()", :id => "select_today_button") %>
+          |
+          <%= link_to_function("None", "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button") %>
+        </span>
+        
         <%= link_to_function "Flickr Tagger", "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button",
           :title => "Add taxonomic tags to the Fickr photos associated with the selected observations." %>
         <% unless @project_users.blank? -%>

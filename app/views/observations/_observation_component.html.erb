@@ -29,10 +29,12 @@ Some notes:
     to make a observations.js library.
 =end
 -%>
-<%- observation ||= observation_component -%>
-<%- check_box_name ||= false -%>
-<%- check_box_checked ||= false -%>
-<%- top ||= false -%>
+<%- 
+  observation ||= observation_component
+  check_box_name ||= false
+  check_box_checked ||= false
+  top ||= false
+-%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="observation <%= cycle('odd', 'even') %><% if !observation.description.blank? && observation.description.size > 200 %> longdesc<% end %>">
   <%= top if top %>
   <% if check_box_name -%>
@@ -86,7 +88,7 @@ Some notes:
   </div>
   <div class="observed_on attribute">
     <h4 class="label">Date</h4>
-    <span class="date">
+    <span class="date" title="<%= observation.observed_on ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
       <%= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
     </span>
     <% if observation.time_observed_at %>
