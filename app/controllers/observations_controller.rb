@@ -303,6 +303,17 @@ class ObservationsController < ApplicationController
     # Handle the case of a single obs
     params[:observations] = [['0', params[:observation]]] if params[:observation]
     
+    if params[:observations].blank? && params[:observation].blank?
+      respond_to do |format|
+        format.html do
+          flash[:error] = "No observations submitted!"
+          redirect_to new_observation_path
+        end
+        format.json { render :status => :unprocessable_entity, :json => "No observations submitted!" }
+      end
+      return
+    end
+    
     @observations = params[:observations].map do |fieldset_index, observation|
       observation.delete('fieldset_index') if observation[:fieldset_index]
       o = Observation.new(observation)
@@ -365,6 +376,17 @@ class ObservationsController < ApplicationController
     
     # Handle the case of a single obs
     params[:observations] = [[params[:id], params[:observation]]] if params[:observation]
+    
+    if params[:observations].blank? && params[:observation].blank?
+      respond_to do |format|
+        format.html do
+          flash[:error] = "No observations submitted!"
+          redirect_to new_observation_path
+        end
+        format.json { render :status => :unprocessable_entity, :json => "No observations submitted!" }
+      end
+      return
+    end
     
     @observations = Observation.all(
       :conditions => [
@@ -1159,9 +1181,11 @@ class ObservationsController < ApplicationController
   # observations.  Note that if you don't set @skip_refresh_lists on the records
   # in @observations before this is called, this won't do anything
   def refresh_lists_for_batch
+    return true if @observations.blank?
     taxa = @observations.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
     List.send_later(:refresh_for_user, current_user, :taxa => taxa.map(&:id))
+    true
   end
   
   # Tries to create a new observation from the specified Flickr photo ID and

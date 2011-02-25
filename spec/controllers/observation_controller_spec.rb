@@ -3,6 +3,26 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ObservationsController do
   describe :create do
     it "should not raise an exception if the obs was invalid and an image was submitted"
+    
+    it "should not raise an exception if no observations passed" do
+      user = User.make
+      login_as user
+      
+      # lambda {
+        post :create
+      # }.should_not raise_error
+    end
+  end
+  
+  describe :update do
+    it "should not raise an exception if no observations passed" do
+      user = User.make
+      login_as user
+      
+      # lambda {
+        post :update
+      # }.should_not raise_error
+    end
   end
   
   describe :new_batch_csv do
