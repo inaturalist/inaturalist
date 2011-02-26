@@ -8,9 +8,9 @@ describe ObservationsController do
       user = User.make
       login_as user
       
-      # lambda {
+      lambda {
         post :create
-      # }.should_not raise_error
+      }.should_not raise_error
     end
   end
   
@@ -19,9 +19,9 @@ describe ObservationsController do
       user = User.make
       login_as user
       
-      # lambda {
+      lambda {
         post :update
-      # }.should_not raise_error
+      }.should_not raise_error
     end
   end
   

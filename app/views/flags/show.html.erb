@@ -27,10 +27,10 @@
     <td><%= @flag.created_at %></td>
     <td><%= link_to @object.to_plain_s, @object %></td>
     <td><%= h @flag.flag %></td>
-    <td><%= link_to h(@flag.user.login), person_path(:id=>@flag.user_id) %></td>
+    <td><%= link_to h(@flag.user.login), @flag.user %></td>
     <td><%= 
       unless @flag.resolver.nil? 
-        link_to h(@flag.resolver.login), person_path(:id=>@flag.resolver_id)
+        link_to h(@flag.resolver.login), @flag.resolver
       else
         "Not Resolved"
       end
@@ -41,7 +41,7 @@
         <%= f.hidden_field :resolver_id, :value => @user.id %>
         <%= f.hidden_field :resolved, :value => true %>
         <%= f.submit 'Resolve with comment', :class => 'button' %>
-      <% end # form_for %>
+      <% end %>
     </td>
   </tr>
 </table>

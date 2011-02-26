@@ -24,26 +24,7 @@
 
   <%# Username flagged user's model model_string because  %>
   <% if logged_in? && current_user.is_curator? %>
-    <% for flag in @flags %>
-      <li>
-        <%= link_to flag.user.login, :controller=>"users", :action=>"show", :id=>flag.user_id %>
-        <%= link_to "flagged", flag, :action=>"show" %>
-        <%= 
-          if @object.methods.include?("user")
-            link_to "#{@object.user.login}'s'", :controller=>"users", :action=>"show", :id=>@object.user_id 
-          else
-            "the"
-          end
-        %>
-        <%= @model.name %>
-        <%= link_to @object.to_plain_s, @object %> 
-        because 
-        "<%= flag.flag %>"
-        ---<%= link_to "Delete Flag", flag, 
-                :confirm => "Are you sure you want to delete this flag?", 
-                :method => :delete %>
-      </li>
-    <% end %>
+    <%= render :partial => "flag_list", :locals => { :flags => @flags } %>
   <% else %>
         <% for flag in @flags %>
           <li>

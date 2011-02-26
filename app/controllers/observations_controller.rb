@@ -504,6 +504,7 @@ class ObservationsController < ApplicationController
 
   def curation
     @flags = Flag.paginate(:page => params[:page], 
+      :include => :user,
       :conditions => "resolved = false AND flaggable_type = 'Observation'")
   end
 
