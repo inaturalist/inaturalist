@@ -101,7 +101,7 @@ class TaxaController < ApplicationController
           @recent = Observation.latest.all(
             :limit => 5, 
             :include => {:taxon => [:taxon_names]},
-            :conditions => 'taxon_id IS NOT NULL',
+            :conditions => 'taxon_id > 0',
             :group => :taxon_id)
         end
       end

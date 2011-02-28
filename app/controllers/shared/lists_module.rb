@@ -24,7 +24,8 @@ module Shared::ListsModule
         :with => {:lists => @list.id},
         :page => @find_options[:page], 
         :per_page => @find_options[:per_page])
-      @find_options[:conditions] = List.merge_conditions(@find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
+      @find_options[:conditions] = List.merge_conditions(
+        @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
     end
     @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     
@@ -280,7 +281,7 @@ module Shared::ListsModule
   end
   
   def load_find_options
-    @iconic_taxa = Taxon.iconic_taxa.all(:order => 'ancestry')
+    @iconic_taxa = Taxon::ICONIC_TAXA
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
     @find_options = {
       :page => params[:page],
@@ -291,11 +292,12 @@ module Shared::ListsModule
       ],
       
       # TODO: somehow make the following not cause a filesort...
-      :order => 'CONCAT(taxa.ancestry, "/", taxa.id)'
+      :order => 'taxon_ancestor_ids, listed_taxa.taxon_id'
     }
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])
-      @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon]
+      self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join(',')
+      @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids},%"]
       
       # The above condition on a joined table will trigger an eager load, 
       # which won't load all 2nd order associations (e.g. taxon names), so 

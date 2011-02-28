@@ -469,6 +469,7 @@ class Taxon < ActiveRecord::Base
     if super && super.match(/^\d\d\d\d-\d\d-\d\d$/)
       last_try_date = DateTime.parse(super)
       return nil if last_try_date > 1.week.ago
+      options[:reload] = true
     end
     return super unless super.blank? || options[:reload]
     
@@ -489,7 +490,7 @@ class Taxon < ActiveRecord::Base
       parsed = if raw.blank?
         nil
       else
-        w.parse(:page => raw['title']).at('text').inner_text
+        w.parse(:page => raw['title']).at('text').try(:inner_text)
       end
     rescue Timeout::Error => e
       logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"

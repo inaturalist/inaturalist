@@ -28,8 +28,14 @@ class ListsController < ApplicationController
     @iconic_taxa_for = {}
     @lists.each do |list|
       unless fragment_exist?(List.icon_preview_cache_key(list))
-        @iconic_taxa_for[list.id] = list.taxa.all(:include => :photos, 
-          :limit => 9, :order => "photos.id DESC")
+        taxon_ids = list.listed_taxa.all(
+          :select => "taxon_id", 
+          :order => "id desc", :limit => 50).map(&:taxon_id)
+        unless taxon_ids.blank?
+          phototaxa = Taxon.all(:include => :photos,
+            :conditions => ["taxa.id IN (?)", taxon_ids])
+          @iconic_taxa_for[list.id] = phototaxa[0...9]
+        end
       end
     end
     
@@ -43,7 +49,7 @@ class ListsController < ApplicationController
   def compare
     @with = List.find_by_id(params[:with])
     @with ||= current_user.life_list if logged_in?
-    @iconic_taxa = Taxon.iconic_taxa.all(:order => 'rgt')
+    @iconic_taxa = Taxon::ICONIC_TAXA
     
     unless @with
       flash[:notice] = "You can't compare a list with nothing!"

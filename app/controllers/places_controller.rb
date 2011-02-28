@@ -71,8 +71,8 @@ class PlacesController < ApplicationController
       @taxa_by_place_id[place.id] = place.taxa.paginate(
         :page => 1, 
         :per_page => 6, 
-        :include => [:photos, :taxon_names, :iconic_taxon], 
-        :order => "photos.id DESC")
+        :include => [:photos, :taxon_names, :iconic_taxon],
+        :order => "listed_taxa.id desc")
     end
     
     respond_to do |format|
@@ -103,6 +103,7 @@ class PlacesController < ApplicationController
   end
   
   def show
+    # TODO this causes a temporary table sort, which == badness
     @listed_taxa = @place.listed_taxa.paginate(
       :page => 1, 
       :per_page => 11,

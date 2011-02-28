@@ -152,7 +152,7 @@ class ObservationsController < ApplicationController
     # dated one
     unless @observation.observed_on
       @next ||= Observation.by(@observation.user).find(:first,
-        :conditions => "observed_on IS NOT NULL",
+        :conditions => "observed_on > 0",
         :order => "observed_on ASC, time_observed_at ASC"
       )
     else
@@ -205,7 +205,9 @@ class ObservationsController < ApplicationController
         @comments_and_identifications = (@observation.comments.all + 
           @identifications).sort_by(&:created_at)
         
-        # @marking_types = MarkingType.find(:all)
+        @photos = @observation.observation_photos.sort_by do |op| 
+          op.position || @observation.photos.size
+        end.map(&:photo)
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,

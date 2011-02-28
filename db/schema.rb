@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110202063613) do
+ActiveRecord::Schema.define(:version => 20110228043741) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -43,6 +43,9 @@ ActiveRecord::Schema.define(:version => 20110202063613) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
+
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+  add_index "comments", ["parent_type", "parent_id"], :name => "index_comments_on_parent_type_and_parent_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.column "priority", :integer, :default => 0
@@ -194,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20110202063613) do
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
   add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["user_id"], :name => "index_listed_taxa_on_user_id"
+  add_index "listed_taxa", ["list_id", "taxon_ancestor_ids", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_id"
 
   create_table "lists", :force => true do |t|
     t.column "title", :string
@@ -246,9 +250,10 @@ ActiveRecord::Schema.define(:version => 20110202063613) do
     t.column "delta", :boolean, :default => false
   end
 
-  add_index "observations", ["user_id"], :name => "index_observations_on_user_id"
-  add_index "observations", ["observed_on", "created_at"], :name => "index_observations_on_created_at_observed_on"
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
+  add_index "observations", ["user_id"], :name => "index_observations_on_user_id"
+  add_index "observations", ["observed_on", "time_observed_at"], :name => "index_observations_on_observed_on_and_time_observed_at"
+  add_index "observations", ["user_id", "observed_on", "time_observed_at"], :name => "index_observations_user_datetime"
 
   create_table "observations_posts", :id => false, :force => true do |t|
     t.column "observation_id", :integer, :null => false
@@ -460,8 +465,6 @@ ActiveRecord::Schema.define(:version => 20110202063613) do
   add_index "taxa", ["name"], :name => "index_taxa_on_name"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["is_iconic"], :name => "index_taxa_on_is_iconic"
-  add_index "taxa", ["rgt"], :name => "index_taxa_on_rgt"
-  add_index "taxa", ["lft", "rgt"], :name => "index_taxa_on_lft_and_rgt"
   add_index "taxa", ["observations_count"], :name => "index_taxa_on_observations_count"
   add_index "taxa", ["listed_taxa_count"], :name => "index_taxa_on_listed_taxa_count"
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"

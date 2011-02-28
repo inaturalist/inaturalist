@@ -174,12 +174,12 @@ class UsersController < ApplicationController
   # These are protected by login_required
   def dashboard
     @user = current_user
+    @recent_comments = @user.comments.all(:limit => 10, 
+      :conditions => "parent_type = 'Observation'", :order => "id desc")
+    @recent_comments = @recent_comments.select{|c| c.created_at > 1.week.ago}
     @recently_commented = Observation.all(
       :include => [:comments, :user, :photos],
-      :conditions => [
-        "observations.user_id = ? AND comments.created_at > ?", 
-        @user, 1.week.ago],
-      :order => "comments.created_at DESC"
+      :conditions => ["id IN (?)", @recent_comments.map(&:parent_id)]
     )
     
     if @recently_commented.empty?

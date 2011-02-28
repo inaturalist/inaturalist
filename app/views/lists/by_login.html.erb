@@ -64,15 +64,12 @@
         <div id="list-<%= list.id %>" class="clear list <%= 'owners_life_list' if @life_list.id == list.id %>">
           <% cache List.icon_preview_cache_key(list) do %>
             <a href="<%= list_path(list) %>" class="attr photos column span-3 <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
-              <% for taxon in @iconic_taxa_for[list.id] %>
-                <% if taxon.photos.empty? -%>
-                  <%= iconic_taxon_image(taxon, :size => '32') %>
-                <% else %>
-                  <%= taxon_image(taxon, :width => 32, :height => 32) %>
-                <% end -%>
-              <% end %>
               <% if @iconic_taxa_for[list.id].blank? %>
                 No taxa listed
+              <% else %>
+                <% for taxon in @iconic_taxa_for[list.id] %>
+                  <%= taxon_image(taxon, :width => 32) %>
+                <% end %>
               <% end %>
             </a>
           <% end %>
@@ -86,7 +83,7 @@
 
             <div class="barchart">
               <%= render :partial => "shared/barchart_datum", :locals => { 
-                :value => list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL"), 
+                :value => list.listed_taxa.count(:conditions => "last_observation_id > 0"), 
                 :max => list.listed_taxa.count, 
                 :label_text => "of #{list.listed_taxa.count} observed",
                 :min_value_label_width => 30 } %>

@@ -13,7 +13,7 @@ class Observation < ActiveRecord::Base
   belongs_to :taxon, :counter_cache => true
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
-  has_many :observation_photos, :dependent => :destroy, :order => "position, id"
+  has_many :observation_photos, :dependent => :destroy
   has_many :photos, :through => :observation_photos
   has_many :listed_taxa, :foreign_key => 'last_observation_id'
   has_many :goal_contributions,
@@ -119,7 +119,7 @@ class Observation < ActiveRecord::Base
     end
   } do
     def distinct_taxon
-      all(:group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
+      all(:group => "taxon_id", :conditions => "taxon_id > 0", :include => :taxon)
     end
   end
   
@@ -142,7 +142,7 @@ class Observation < ActiveRecord::Base
   # Has_property scopes
   named_scope :has_taxon, lambda { |taxon_id|
     if taxon_id.nil?
-    then return {:conditions => "taxon_id IS NOT NULL"}
+    then return {:conditions => "taxon_id > 0"}
     else {:conditions => ["taxon_id IN (?)", taxon_id]}
     end
   }
@@ -163,7 +163,7 @@ class Observation < ActiveRecord::Base
   named_scope :has_photos, 
               :include => :photos,
               :group => 'observations.id',
-              :conditions => ['photos.id IS NOT NULL']
+              :conditions => ['photos.id > 0']
   
   
   # Find observations by a taxon object.  Querying on taxa columns forces 

@@ -10,7 +10,7 @@ class Post < ActiveRecord::Base
   after_create :increment_user_counter_cache
   after_destroy :decrement_user_counter_cache
   
-  named_scope :published, :conditions => "published_at IS NOT NULL"
+  named_scope :published, :conditions => "published_at > 0"
   named_scope :unpublished, :conditions => "published_at IS NULL"
   
   # Update the counter cache in users.
