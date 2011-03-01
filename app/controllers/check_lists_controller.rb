@@ -92,7 +92,7 @@ class CheckListsController < ApplicationController
   end
   
   def edit
-    @iconic_taxa = Taxon.iconic_taxa
+    @iconic_taxa = Taxon::ICONIC_TAXA || Taxon.iconic_taxa.all
   end
   
   def update
@@ -100,6 +100,7 @@ class CheckListsController < ApplicationController
       flash[:notice] = "Check list updated!"
       return redirect_to @list
     else
+      @iconic_taxa = Taxon::ICONIC_TAXA || Taxon.iconic_taxa.all
       render :action => 'edit'
     end
   end
