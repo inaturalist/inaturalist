@@ -91,7 +91,8 @@ class Observation < ActiveRecord::Base
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
               :set_iconic_taxon,
-              :keep_old_taxon_id
+              :keep_old_taxon_id,
+              :set_latlon_from_place_guess
                  
   after_save :refresh_lists,
              :update_identifications_after_save
@@ -691,7 +692,15 @@ class Observation < ActiveRecord::Base
     true
   end
   
-    
+  def set_latlon_from_place_guess
+    return true unless latitude.blank? && longitude.blank?
+    return true if place_guess.blank?
+    if matches = place_guess.strip.match(/(-?\d+(?:\.\d+)?),\s?(-?\d+(?:\.\d+)?)/)
+      self.latitude, self.longitude = matches[1..2]
+    end
+    true
+  end
+  
   # I'm not psyched about having this stuff here, but it makes generating 
   # more compact JSON a lot easier.
   include ObservationsHelper

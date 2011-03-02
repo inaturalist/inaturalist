@@ -172,6 +172,16 @@ describe Observation, "creation" do
     @observation.latitude.should == lat
     @observation.longitude.should == lon
   end
+  
+  it "should set lat/lon if entered in place_guess" do
+    lat =  37.91143999
+    lon = -122.2687819
+    @observation.latitude.should be_blank
+    @observation.place_guess = "#{lat}, #{lon}"
+    @observation.save
+    @observation.latitude.should == lat
+    @observation.longitude.should == lon
+  end
 end
 
 describe Observation, "updating" do
