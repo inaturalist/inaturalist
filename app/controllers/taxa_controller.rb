@@ -719,6 +719,7 @@ class TaxaController < ApplicationController
     @observations.each do |observation|
       observation.photos.each do |photo|
         next unless photo.is_a?(FlickrPhoto)
+        next unless observation.taxon
         tag_flickr_photo(photo.native_photo_id, observation.taxon.to_tags)
         unless flash[:error].blank?
           return redirect_to :back
