@@ -196,6 +196,7 @@ describe "a TaxonName adapter", :shared => true do
     a = @np.find(bad_name)
     taxon_name = a.detect {|n| n.name == bad_name}
     taxon_name.name.should == bad_name
+    puts "taxon_name.hxml: #{taxon_name.hxml}"
     taxon_name.is_valid.should be(false)
   end
   
@@ -249,6 +250,15 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
     a.is_valid.should be(true)
     a.taxon.name.should == name
   end
+  
+  it "should set the lexicon correctly for 'i'iwi" do
+    name = "'i'iwi"
+    results = @np.find(name)
+    results.select{|tn| tn.name.downcase == name.downcase}.each do |tn|
+      tn.lexicon.should_not == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    end
+  end
+  
 end
 
 describe Ratatosk::NameProviders::ColTaxonAdapter do

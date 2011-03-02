@@ -850,26 +850,23 @@ class TaxaController < ApplicationController
     logger.info("DEBUG: Making an external lookup...")
     begin
       ext_names = TaxonName.find_external(params[:q], :src => params[:external_src])
-    rescue Timeout::Error => e
-      @status = e.message if @external_taxa.empty?
-    rescue NameProviderError => e
-      @status = e.message if @external_taxa.empty?
+    rescue Timeout::Error, NameProviderError => e
+      @status = e.message
+      return
     end
     
-    @external_taxa = Taxon.find(ext_names.map(&:taxon_id))
+    @external_taxa = Taxon.find(ext_names.map(&:taxon_id)) unless ext_names.blank?
+    
+    return if @external_taxa.blank?
     
     # graft in the background
-    unless @external_taxa.empty?
-      @external_taxa.each do |external_taxon|
-        external_taxon.send_later(:graft) unless external_taxon.grafted?
-      end
+    @external_taxa.each do |external_taxon|
+      external_taxon.send_later(:graft) unless external_taxon.grafted?
     end
     
-    unless @external_taxa.empty?
-      @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|
-        pager.replace(@external_taxa)
-        pager.total_entries = @external_taxa.size
-      end
+    @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|
+      pager.replace(@external_taxa)
+      pager.total_entries = @external_taxa.size
     end
   end
   

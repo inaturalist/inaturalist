@@ -64,12 +64,12 @@ module Ratatosk
       def initialize(hxml, params = {})
         @adaptee = TaxonName.new(params)
         @hxml = hxml
-        taxon_name.name = @hxml.at('//name').inner_text
+        taxon_name.name = @hxml.at('name').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
         taxon_name.source = Source.find_by_title('Catalogue of Life')
         taxon_name.source_identifier = @hxml.at('//id').inner_text
-        taxon_name.source_url = @hxml.at('//url').inner_text
+        taxon_name.source_url = @hxml.at('url').inner_text
         taxon_name.taxon = taxon
         taxon_name.name_provider = "ColNameProvider"
       end
@@ -92,13 +92,14 @@ module Ratatosk
       protected
 
       def get_lexicon
-        if @hxml.at_xpath('rank')
+        lex = if @hxml.at_xpath('rank')
           TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
         elsif hxml.at('//language')
           @hxml.at('//language').inner_text.downcase
         else
           nil
         end
+        lex == 'unspecified' ? nil : lex
       end
 
       def get_is_valid
@@ -373,6 +374,8 @@ module Ratatosk
       alias :taxon :adaptee
 
       def initialize(hxml, params = {})
+        @np = params.delete(:np)
+        @service = @np.service rescue UBioService.new(UBIO_KEY)
         @adaptee = Taxon.new(params)
         @hxml = hxml
         taxon.name = get_name
@@ -427,16 +430,14 @@ module Ratatosk
       alias :taxon_name :adaptee
 
       def initialize(hxml, params = {})
-        @hxml = hxml
         @np = params.delete(:np)
         @service = @np.service rescue UBioService.new(UBIO_KEY)
-        
+        @hxml = hxml
         @adaptee = TaxonName.new(params)
         
         taxon_name.source = Source.find_by_title('uBio')
         taxon_name.source_identifier = get_namebank_id
-        taxon_name.source_url = 'http://www.ubio.org/browser/details.php?' +
-                                 'namebankID=' + get_namebank_id
+        taxon_name.source_url = 'http://www.ubio.org/browser/details.php?namebankID=' + get_namebank_id
         taxon_name.name = get_name
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
@@ -501,8 +502,7 @@ module Ratatosk
         begin
           lsid = @hxml.at('//dc:identifier').inner_text
         rescue NoMethodError
-          raise TaxonNameAdapterError, "uBio returned a taxon without an " + 
-                                       "identifier"
+          raise TaxonNameAdapterError, "uBio returned a taxon without an identifier"
         end
         lsid.split(':')[4] # 4th term should be identifier
       end
