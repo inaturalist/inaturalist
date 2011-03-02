@@ -1,3 +1,4 @@
+require 'active_support/inflector'
 require 'objectify_xml'
 require 'objectify_xml/atom'
 require 'cgi'
@@ -201,7 +202,7 @@ class Picasa
   def authorize_token!
     http = Net::HTTP.new("www.google.com", 443)
     http.use_ssl = true
-    response = http.get('/accounts/accounts/AuthSubSessionToken', auth_header)
+    response = http.get('/accounts/AuthSubSessionToken', auth_header)
     token = response.body.scan(/Token=(.*)/).flatten.compact.first
     if token
       @token = token
@@ -324,19 +325,18 @@ class Picasa
   # element in the document, used to determine which RubyPicasa object should
   # be initialized to handle the data.
   def xml_data(xml)
-    if xml = Objectify::Xml.first_element(xml)
-      # There is something wrong with Nokogiri xpath/css search with
-      # namespaces. If you are searching a document that has namespaces,
-      # it's impossible to match any elements in the root xmlns namespace.
-      # Matching just on attributes works though.
-      feed, entry = xml.search('//*[@term][@scheme]', xml.namespaces)
-      feed_self, entry_self = xml.search('//*[@rel="self"][@type="application/atom+xml"]', xml.namespaces)
-      feed_scheme = feed['term'] if feed
-      entry_scheme = entry['term'] if entry
-      feed_href = feed_self['href']  if feed_self
-      entry_href = entry_self['href'] if entry_self
-      [xml, feed_scheme, entry_scheme, feed_href, entry_href]
-    end
+    return unless xml = Objectify::Xml.first_element(xml)
+    # There is something wrong with Nokogiri xpath/css search with
+    # namespaces. If you are searching a document that has namespaces,
+    # it's impossible to match any elements in the root xmlns namespace.
+    # Matching just on attributes works though.
+    feed, entry = xml.search('//*[@term][@scheme]', xml.namespaces)
+    feed_self, entry_self = xml.search('//*[@rel="self"][@type="application/atom+xml"]', xml.namespaces)
+    feed_scheme = feed['term'] if feed
+    entry_scheme = entry['term'] if entry
+    feed_href = feed_self['href']  if feed_self
+    entry_href = entry_self['href'] if entry_self
+    [xml, feed_scheme, entry_scheme, feed_href, entry_href]
   end
 
   # Initialize the correct RubyPicasa object depending on the type of feed and

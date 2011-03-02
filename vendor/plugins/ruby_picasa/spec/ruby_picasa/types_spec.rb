@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), '../spec_helper')
 
 include RubyPicasa
 
-describe 'a RubyPicasa document', :shared => true do
+shared_examples_for 'a RubyPicasa document' do
   it 'should have a feed_id' do
     @object.feed_id.should_not be_nil
   end

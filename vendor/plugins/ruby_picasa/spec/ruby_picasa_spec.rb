@@ -155,7 +155,7 @@ describe Picasa do
     before do
       @p.expects(:auth_header).returns('Authorization' => 'etc')
       @http.expects(:use_ssl=).with true
-      @http.expects(:get).with('/accounts/accounts/AuthSubSessionToken', 
+      @http.expects(:get).with('/accounts/AuthSubSessionToken', 
         'Authorization' => 'etc').returns(@response)
     end
 
@@ -333,11 +333,10 @@ describe Picasa do
       it('photo photo') { to_create RubyPicasa::Search, @photo, @photo }
     end
     
-    # I broke this test, though I'm not sure how to fix it (or why it ever 
-    # worked to begin with).  Shouldn't it always break when you pass in a 
-    # symbol instead of actual xml?  -- kueda 2009-12-29
     it 'should raise an error for invalid feed category types' do
-      @p.expects(:xml_data).with(:xml).returns([:xml, @album, @user])
+      @p.expects(:xml_data).with(:xml).returns([:xml, 
+        'http://schemas.google.com/photos/2007#foo', 
+        'http://schemas.google.com/photos/2007#bar'])
       lambda do
         @p.class_from_xml(:xml)
       end.should raise_error(RubyPicasa::PicasaError)

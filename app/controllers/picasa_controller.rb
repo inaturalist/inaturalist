@@ -16,9 +16,10 @@ class PicasaController < ApplicationController
   def authorize
     begin
       @picasa = Picasa.authorize_request(self.request)
-    rescue RubyPicasa::PicasaTokenError
+    rescue RubyPicasa::PicasaTokenError => e
       flash[:error] = "Picasa authorization failed!"
-      return redirect_to :action => "link"
+      Rails.logger.error "[ERROR] Picasa authorization failed: #{e}"
+      return redirect_to :action => "options"
     end
     
     @picasa_identity = PicasaIdentity.find_or_create_by_user_id(current_user.id)
