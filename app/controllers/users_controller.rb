@@ -111,7 +111,7 @@ class UsersController < ApplicationController
     @updates = [
       Observation.all(update_find_options),
       Identification.all(update_find_options),
-      Post.published(update_find_options),
+      Post.published.all(update_find_options),
       Comment.all(update_find_options)
     ].flatten.sort{|a,b| b.created_at <=> a.created_at}.group_by(&:user)
 
