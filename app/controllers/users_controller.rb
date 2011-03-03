@@ -103,30 +103,26 @@ class UsersController < ApplicationController
   def index
     update_find_options = {
       :limit => 10, 
-      :order => "created_at DESC"
+      :order => "id DESC",
+      :conditions => ["created_at > ?", 1.week.ago],
+      :include => :user
     }
     
     @updates = [
-      Observation.find(:all, update_find_options),
-      Identification.find(:all, update_find_options),
-      Post.find(:all, update_find_options),
-      Comment.find(:all, update_find_options)
+      Observation.all(update_find_options),
+      Identification.all(update_find_options),
+      Post.published(update_find_options),
+      Comment.all(update_find_options)
     ].flatten.sort{|a,b| b.created_at <=> a.created_at}.group_by(&:user)
-
 
     find_options = {
       :page => params[:page] || 1, :order => 'login'
     }
-    if @letter = params[:letter]
+    @alphabet = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z"
+    if (@letter = params[:letter]) && @alphabet.include?(@letter.downcase)
       find_options.update(:conditions => ["login LIKE ?", "#{params[:letter].first}%"])
     end
     @users = User.active.paginate(find_options)
-    
-    @users_by_letter = User.count(:group => "LOWER(LEFT(login, 1))")
-    alphabet = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    @users_by_letter = alphabet.map do |letter|
-      [letter, @users_by_letter[letter] || 0]
-    end
   end
   
   def show

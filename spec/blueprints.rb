@@ -113,3 +113,14 @@ Role.blueprint(:admin) do
   name User::JEDI_MASTER_ROLE
 end
 
+Post.blueprint do
+  user
+  parent { user }
+  title { Sham.title }
+  body { Sham.body }
+  published_at { Time.now }
+end
+
+Post.blueprint(:draft) do
+  published_at { nil }
+end

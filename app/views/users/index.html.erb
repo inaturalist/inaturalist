@@ -87,12 +87,18 @@ People
     <% if controller.action_name == 'index' %>
     <div id="letter_nav" class="pagination">
       <%= link_to "All", url_for(), :class => "#{'current' unless @letter}" %>
-      <%- for letter, count in @users_by_letter -%>
-        <%- css_class = "#{'current' if letter == @letter} #{'disabled' if count == 0}" -%>
+      <%- for letter in @alphabet -%>
+        <%- css_class = "#{'current' if letter == @letter}" -%>
         <%= link_to letter.upcase, url_for(:letter => letter), :class => css_class -%>
       <%- end -%>
     </div>
     <% end %>
+    
+    <% if @users.blank? -%>
+      <div class="noresults description" style="margin: 50px auto">
+        No matching users.
+      </div>
+    <% end -%>
     
     <table class="readable">
       <% for person in @users %>
