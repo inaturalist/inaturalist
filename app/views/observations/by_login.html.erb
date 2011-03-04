@@ -237,8 +237,10 @@ Observations by <%= h @login %>
     function selectToday() {
       var d = new Date()
       var m = d.getMonth()+1
+      var day = d.getDate()
+      if (day < 10) { day = '0'+day}
       if (m < 10) { m = '0'+m }
-      var dateString = [d.getFullYear(), m, d.getDate()].join('-')
+      var dateString = [d.getFullYear(), m, day].join('-')
       $('.observed_on .date[title='+dateString+']').each(function() {
         $(this).parents('.observation').find('.control input').check()
       })

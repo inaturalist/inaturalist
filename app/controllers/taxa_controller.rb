@@ -197,7 +197,7 @@ class TaxaController < ApplicationController
 
   def create
     @taxon = Taxon.new
-    presave
+    return unless presave
     @taxon.attributes = params[:taxon]
     @taxon.creator = current_user
     if @taxon.save
@@ -220,7 +220,7 @@ class TaxaController < ApplicationController
   end
 
   def update
-    presave
+    return unless presave
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = 'Taxon was successfully updated.'
       redirect_to taxon_path(@taxon)
@@ -909,7 +909,7 @@ class TaxaController < ApplicationController
       unless Taxon.exists?(params[:taxon][:parent_id])
         flash[:error] = "That parent taxon doesn't exist (try a different ID)"
         render :action => 'edit'
-        return
+        return false
       end
     end
     
@@ -921,6 +921,7 @@ class TaxaController < ApplicationController
     else
       params[:taxon][:featured_at] = ""
     end
+    true
   end
   
   # Temp method for fetching amphibiaweb desc.  Will probably implement this 

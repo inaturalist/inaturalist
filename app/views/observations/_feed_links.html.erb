@@ -8,5 +8,5 @@
       end
     -%>
     <%= link_to("Atom", url_for(feed_params.merge(:format => 'atom')), :id => 'atomlink') %>
-    <%= link_to("KML",  url_for(kml_feed_params.merge(:format => 'kml')), :id => 'kmllink') %>
+    <%= link_to("KML",  url_for(kml_feed_params.merge(:format => 'kml')), :id => 'kmllink', :rel => "nofollow") %>
     <%= link_to("CSV",  url_for(feed_params.merge(:format => 'csv')), :id => 'csvlink', :rel => "nofollow") %>
