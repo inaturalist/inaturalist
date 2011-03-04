@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(:version => 20110610193807) do
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
   add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["user_id"], :name => "index_listed_taxa_on_user_id"
-  add_index "listed_taxa", ["list_id", "taxon_ancestor_ids", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_id"
+  add_index "listed_taxa", ["list_id", "taxon_ancestor_ids", "taxon_id"], :name => "index_listed_taxa_list_id_ancestor_ids_taxon_id"
 
   create_table "lists", :force => true do |t|
     t.column "title", :string
@@ -331,7 +331,7 @@ ActiveRecord::Schema.define(:version => 20110610193807) do
 
   add_index "picasa_identities", ["user_id"], :name => "index_picasa_identities_on_user_id"
 
-  create_table "place_geometries", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "place_geometries" do |t|
     t.column "place_id", :integer
     t.column "source_name", :string
     t.column "source_identifier", :string

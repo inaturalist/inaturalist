@@ -305,30 +305,22 @@ describe Observation, "updating" do
   end
   
   it "should not save a time if one wasn't specified" do
-    @observation.save
-    @observation.time_observed_at.should_not be(nil)
-    @observation.observed_on_string = "April 2 2008"
-    @observation.save
+    observation = Observation.make(:observed_on_string => "April 2 2008")
     @observation.time_observed_at.should be(nil)
   end
   
   it "should set an iconic taxon if the taxon was set" do
-    obs = Observation.make
-    obs.iconic_taxon.should be_blank
-    taxon = Taxon.make(:iconic_taxon => Taxon.make(:is_iconic => true))
-    taxon.iconic_taxon.should_not be_blank
-    obs.taxon = taxon
-    obs.save!
-    obs.iconic_taxon.name.should == taxon.iconic_taxon.name
+    iconic = Taxon.make(:iconic)
+    obs = Observation.make(:taxon => Taxon.make(:iconic_taxon => iconic))
+    obs.iconic_taxon.name.should == iconic.name
   end
   
   it "should remove an iconic taxon if the taxon was removed" do
-    taxon = Taxon.make(:iconic_taxon => Taxon.make(:is_iconic => true))
-    taxon.iconic_taxon.should_not be_blank
+    iconic = Taxon.make(:iconic)
+    taxon = Taxon.make(:iconic_taxon => iconic)
     obs = Observation.make(:taxon => taxon)
     obs.iconic_taxon.should_not be_blank
-    obs.taxon = nil
-    obs.save!
+    obs.update_attributes(:taxon => nil)
     obs.reload
     obs.iconic_taxon.should be_blank
   end
@@ -482,7 +474,7 @@ describe Observation, "named scopes" do
   
   it "should find observations with photos" do
     @pos.photos << FlickrPhoto.new(:native_photo_id => 1)
-    obs = Observation.has_photos
+    obs = Observation.has_photos.all
     obs.should include(@pos)
     obs.should_not include(@neg)
   end

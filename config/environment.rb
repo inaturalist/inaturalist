@@ -76,6 +76,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
   config.gem "GeoRuby", :lib => 'geo_ruby'
+  config.gem "spatial_adapter"
   config.gem "mojombo-chronic", :lib => 'chronic', :source => 'http://gems.github.com'
   config.gem 'bluecloth'
   config.gem "htmlentities"
