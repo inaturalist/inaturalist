@@ -279,6 +279,7 @@
                 <%- end -%>
               <% elsif batch_partial = activity_object.class.activity_stream_options[:batch_partial] %>
                 <%= render :partial => batch_partial, :locals => { 
+                  :update => update,
                   activity_object.class.to_s.underscore.pluralize.to_sym => @activity_objects_by_update_id[update.id]
                 } %>
               <% end -%>
