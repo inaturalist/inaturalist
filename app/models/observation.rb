@@ -7,7 +7,7 @@ class Observation < ActiveRecord::Base
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
-  attr_accessor :skip_refresh_lists
+  attr_accessor :skip_refresh_lists, :skip_identifications
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -454,13 +454,16 @@ class Observation < ActiveRecord::Base
   # the user selected.
   #
   def update_identifications_after_save
+    return true if @skip_identifications
     owners_ident = identifications.first(:conditions => {:user_id => self.user_id})
+    owners_ident.skip_observation = true if owners_ident
     
     # If there's a taxon we need to make ure the owner's ident agrees
     if taxon
       # If the owner doesn't have an identification for this obs, make one
       unless owners_ident
         owners_ident = identifications.build(:user => user, :taxon => taxon)
+        owners_ident.skip_observation = true
         owners_ident.skip_update = true
         owners_ident.save
       end
@@ -474,6 +477,8 @@ class Observation < ActiveRecord::Base
     elsif owners_ident
       owners_ident.destroy
     end
+    
+    true
   end
   
   #
@@ -499,6 +504,7 @@ class Observation < ActiveRecord::Base
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
+    true
   end
   
   # Because it has to be slightly different, in that the taxon of a destroyed

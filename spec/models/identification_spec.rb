@@ -1,130 +1,109 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Identification, "creation" do
-  fixtures :users, :taxa, :observations, :lists, :listed_taxa
-  before(:each) do
-    obs = Observation.create(:species_guess => "Pacific Chorus Frog", 
-                          :taxon => taxa(:Pseudacris_regilla),
-                          :user => users(:adam))
-    @identification = Identification.new(
-      :user => users(:quentin),
-      :observation => obs,
-      :taxon => obs.taxon
-    )
-    @empty_identification = Identification.new
-    @unknown_obs = Observation.create(:species_guess => "You got me!",
-                          :user => users(:adam))
-  end
   
-  it "should return a new instance" do
-    @identification.save!
-    @identification.should_not be(nil)
-    @identification.new_record?.should be(false)
-  end
+  # before(:each) do
+  #   @taxon = Taxon.make
+  #   @user = User.make
+  #   @obs = Observation.make(:species_guess => "Pacific Chorus Frog", 
+  #                         :taxon => @taxon,
+  #                         :user => @user)
+  #   @identification = Identification.new(
+  #     :user => users(:quentin),
+  #     :observation => obs,
+  #     :taxon => obs.taxon
+  #   )
+  #   @empty_identification = Identification.new
+  #   @unknown_obs = Observation.create(:species_guess => "You got me!",
+  #                         :user => users(:adam))
+  # end
   
   it "should have a taxon" do 
-    @empty_identification = Identification.new
-    @empty_identification.valid?
-    @empty_identification.errors.on(:taxon_id).should_not be(nil)
+    @id = Identification.make
+    @id.taxon = nil
+    @id.valid?
+    @id.errors.on(:taxon_id).should_not be_blank
   end
   
   it "should have a user" do 
-    @empty_identification = Identification.new
-    @empty_identification.valid?
-    @empty_identification.errors.on(:user_id).should_not be(nil)
+    @id = Identification.make
+    @id.user = nil
+    @id.valid?
+    @id.errors.on(:user_id).should_not be_blank
   end
   
   it "should have an observation" do 
-    @empty_identification = Identification.new
-    @empty_identification.valid?
-    @empty_identification.errors.on(:observation_id).should_not be(nil)
+    @id = Identification.make
+    @id.observation = nil
+    @id.valid?
+    @id.errors.on(:observation_id).should_not be_blank
   end
   
   it "should not let you identify the same observation twice" do
-    @identification.save
+    @id = Identification.make
     bad_identification = Identification.new(
-      :user => users(:quentin),
-      :observation => @identification.observation,
-      :taxon => Taxon.find_by_name('Calypte anna')
+      :user => @id.user,
+      :observation => @id.observation,
+      :taxon => Taxon.make
     )
     bad_identification.valid?
     bad_identification.errors.on(:user_id).should_not be(nil)
   end
   
-  it "should add a taxon to its observation if it's the observer's "+
-     "identification" do
-    @unknown_obs.taxon_id.should be(nil)
-    identification = Identification.create(
-      :user => @unknown_obs.user,
-      :observation => @unknown_obs,
-      :taxon => Taxon.find_by_name('Calypte anna')
-    )
-    @unknown_obs.reload
-    @unknown_obs.taxon_id.should == identification.taxon.id
+  it "should add a taxon to its observation if it's the observer's identification" do
+    obs = Observation.make
+    obs.taxon_id.should be_blank
+    identification = Identification.make(:user => obs.user, :observation => obs, :taxon => Taxon.make)
+    obs.reload
+    obs.taxon_id.should == identification.taxon.id
   end
   
-  it "should add a species_guess to a newly identified observation if the "+
-     "owner identified it and the species_guess was nil" do
-    @unknown_obs.species_guess = nil
-    @unknown_obs.taxon_id.should be(nil)
-    anna = Taxon.find_by_name('Calypte anna')
-    identification = Identification.create(
-      :user => @unknown_obs.user,
-      :observation => @unknown_obs,
-      :taxon => anna
+  it "should add a species_guess to a newly identified observation if the owner identified it and the species_guess was nil" do
+    obs = Observation.make
+    taxon = Taxon.make
+    identification = Identification.make(
+      :user => obs.user,
+      :observation => obs,
+      :taxon => taxon
     )
-    @unknown_obs.reload
-    @unknown_obs.species_guess.should == anna.to_plain_s
+    obs.reload
+    obs.species_guess.should == taxon.to_plain_s
   end
   
   it "should add an iconic_taxon_id to its observation if it's the observer's identification" do
-    @unknown_obs.taxon_id.should be(nil)
-    identification = Identification.create(
-      :user => @unknown_obs.user,
-      :observation => @unknown_obs,
-      :taxon => Taxon.find_by_name('Calypte anna')
+    obs = Observation.make
+    identification = Identification.make(
+      :user => obs.user,
+      :observation => obs
     )
-    @unknown_obs.reload
-    @unknown_obs.iconic_taxon_id.should == identification.taxon.iconic_taxon_id
+    obs.reload
+    obs.iconic_taxon_id.should == identification.taxon.iconic_taxon_id
   end
   
   it "should increment the observations num_identification_agreements if this is an agreement" do
-    # ted = User.find_by_login('ted')
-    jill = users(:jill) # User.find_by_login('ted')
-    @identification.observation.user.should_not be(jill)
-    @identification.user = jill
-    @identification.observation.num_identification_agreements.should == 0
-    @identification.save
-    @identification.reload
-    @identification.is_agreement?.should be(true)
-    @identification.observation.num_identification_agreements.should == 1
+    taxon = Taxon.make
+    obs = Observation.make(:taxon => taxon)
+    expect {
+      Identification.make(:observation => obs, :taxon => taxon)
+      obs.reload
+    }.to change(obs, :num_identification_agreements).by(1)
   end
   
   it "should increment the observations num_identification_disagreements if this is an disagreement" do
-    taxon = Taxon.find(:first, :conditions => ["id != ? && rank = 'species'", @identification.observation.taxon])
-    user = users(:ted) # User.find_by_login('ted')
-    @identification.observation.identifications.select {|i| i.user == user}.each(&:destroy)
-    @identification.user = user
-    @identification.taxon = taxon
-    @identification.user.should_not == @identification.observation.user
-    @identification.observation.num_identification_disagreements.should == 0
-    @identification.save
-    @identification.reload
-    @identification.is_agreement?.should be(false)
-    @identification.observation.num_identification_disagreements.should == 1
+    taxon = Taxon.make
+    obs = Observation.make(:taxon => taxon)
+    expect {
+      Identification.make(:observation => obs)
+      obs.reload
+    }.to change(obs, :num_identification_disagreements).by(1)
   end
   
   it "should NOT increment the observations num_identification_disagreements if the obs has no taxon" do
-    # @identification.observation = Observation.find(:first, 
-    #                                       :conditions => {:taxon_id => nil})
-    @identification.observation = @unknown_obs
-    @identification.user = users(:quentin)
-    @identification.taxon = Taxon.find_by_name('Calypte anna')
-    @identification.observation.num_identification_disagreements.should == 0
-    @identification.save
-    @identification.reload
-    @identification.is_agreement?.should be(false)
-    @identification.observation.num_identification_disagreements.should == 0
+    obs = Observation.make
+    expect {
+      Identification.make(:observation => obs)
+      obs.reload
+    }.to_not change(obs, :num_identification_agreements)
   end
   
   it "should consider an identification with a taxon that is a child of " + 
@@ -149,32 +128,31 @@ describe Identification, "creation" do
     identification.is_agreement?.should be_false
   end
   
-  it "should not consider itdentifications of different taxa in the " + 
-     "different lineages to be in agreement" do
-    @identification.user.should_not be(@identification.observation.user)
-    @identification.taxon = Taxon.find_by_name('Aves')
-    @identification.save
-    @identification.reload
-    @identification.is_agreement?.should be_false
+  it "should not consider itdentifications of different taxa in the different lineages to be in agreement" do
+    taxon = Taxon.make
+    child = Taxon.make(:parent => taxon)
+    ident = Identification.make(:taxon => child)
+    disagreement = Identification.make(:observation => ident.observation, :taxon => taxon)
+    disagreement.is_agreement?.should be_false
   end
   
   it "should incremement the counter cache in users for an ident on someone else's observation" do
-    @identification.user.should_not be(@identification.observation.user)
-    old_count = @identification.user.identifications_count
-    @identification.save
-    @identification.user.identifications_count.should == old_count + 1
+    user = User.make
+    expect {
+      Identification.make(:user => user)
+    }.to change(user, :identifications_count).by(1)
   end
   
   it "should NOT incremement the counter cache in users for an ident on one's OWN observation" do
-    identification = Identification.new(
-      :user => @unknown_obs.user, 
-      :observation => @unknown_obs, 
-      :taxon => Taxon.find_by_name('Calypte anna')
-    )
-    old_count = identification.user.identifications_count
-    identification.save
-    identification.user.identifications_count.should == old_count
+    user = User.make
+    obs = Observation.make(:user => user)
+    expect {
+      Identification.make(:user => user, :observation => obs)
+    }.to_not change(user, :identifications_count)
   end
+  
+  # Not sure how to do this with Delayed Job
+  it "should update the user's life lists"
 end
 
 describe Identification, "deletion" do

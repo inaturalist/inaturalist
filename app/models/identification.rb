@@ -10,12 +10,12 @@ class Identification < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :observation_id, 
                           :message => "can only identify an observation once"
   
-  after_create :update_observation, :increment_user_counter_cache, 
-    :notify_observer
+  after_create :update_observation, :increment_user_counter_cache, :notify_observer
   after_save :update_obs_stats
   after_destroy :update_obs_stats, :decrement_user_counter_cache, 
     :update_observation_after_destroy
   
+  attr_accessor :skip_observation
   
   named_scope :for, lambda {|user|
     {:include => :observation,
@@ -33,16 +33,15 @@ class Identification < ActiveRecord::Base
   # Update the observation if you're adding an ID to your own obs
   def update_observation
     return true unless self.user_id == self.observation.user_id
+    return true if @skip_observation
 
     # update the species_guess
     species_guess = observation.species_guess
     unless taxon.taxon_names.exists?(:name => species_guess)
       species_guess = taxon.to_plain_s
     end
-    Observation.update_all(
-      ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", taxon_id, species_guess, taxon.iconic_taxon_id],
-      "id = #{observation_id}"
-    )
+    observation.skip_identifications = true
+    observation.update_attributes(:species_guess => species_guess, :taxon => taxon, :iconic_taxon_id => taxon.iconic_taxon_id)
     true
   end
   
