@@ -73,6 +73,10 @@ class List < ActiveRecord::Base
     Observation.latest.by(user).first(:conditions => ["taxon_id = ?", taxon])
   end
   
+  def refresh_key
+    "refresh_list_#{id}"
+  end
+  
   def self.icon_preview_cache_key(list)
     {:controller => "lists", :action => "icon_preview", :list_id => list}
   end

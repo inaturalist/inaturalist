@@ -157,6 +157,7 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'check_lists', 
     :action => 'add_taxon_batch',
     :conditions => {:method => :post}
+  map.refresh_list 'lists/:id/refresh', :controller => 'lists', :action => 'refresh'
   
   map.resources :comments
   

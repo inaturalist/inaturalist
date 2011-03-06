@@ -3,9 +3,9 @@ class ListsController < ApplicationController
 
   before_filter :login_required, :except => [:index, :show, :by_login, :taxa]  
   before_filter :load_list, :only => [:show, :edit, :update, :destroy, 
-    :compare, :remove_taxon, :add_taxon_batch, :taxa]
+    :compare, :remove_taxon, :add_taxon_batch, :taxa, :refresh]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon, :add_taxon_batch]
+    :remove_taxon, :add_taxon_batch, :refresh]
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
@@ -186,12 +186,44 @@ class ListsController < ApplicationController
     end
   end
   
+  def refresh
+    if job_id = Rails.cache.read(@list.refresh_key)
+      Rails.logger.debug "[DEBUG] cached job id: #{job_id}"
+      @job = Delayed::Job.find_by_id(job_id)
+    else
+      @job = LifeList.send_later(:refresh, @list.id)
+      Rails.cache.write(@list.refresh_key, @job.id)
+    end
+    Rails.logger.debug "[DEBUG] @job: #{@job}"
+    if @job.blank? || @job.failed_at
+      Rails.cache.delete(@list.refresh_key)
+    end
+    respond_to do |format|
+      format.js do
+        render :update do |page|
+          if @job.blank?
+            page.replace_html :refresher, "Success!"
+            page << "$('#refresher').addClass('success status box')"
+            flash[:notice] = "List refreshed"
+            page.reload
+          elsif @job.failed_at
+            page.replace_html :refresher, "Something went wrong refreshing your list: #{@job.last_error}"
+            page << "$('#refresher').addClass('error status box')"
+          else
+            page << "setTimeout('refreshList()', 5000)"
+          end
+        end
+      end
+    end
+  end
+  
   private
   
   def owner_required
     unless logged_in? && @list.user.id == current_user.id
       flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
       redirect_to lists_by_login_path(@list.user.login)
+      return false
     end
   end
 end
