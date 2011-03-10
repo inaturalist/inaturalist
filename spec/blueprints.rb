@@ -48,6 +48,10 @@ List.blueprint do
   title { Sham.title }
 end
 
+LifeList.blueprint do
+  user
+end
+
 ListRule.blueprint do
   list
 end

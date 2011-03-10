@@ -5,6 +5,7 @@
   <% if list.editable_by?(current_user) %>
     <%= link_to "Edit", list.is_a?(CheckList) ? edit_check_list_path(list) : edit_list_url(list), :id => "edit_list_button", :class => "button" %>
   <% end %>
+  
   <span class="toolset">
     <label class="description">View</label>
     <% for view in ListsController::LIST_VIEWS %>
@@ -13,4 +14,41 @@
         :class => "inter modal_link#{' selected' if @view == view}") %>
     <% end %>
   </span>
+  
+  <% if list.is_a?(LifeList) && list.editable_by?(current_user) && logged_in? && current_user.is_admin? -%>
+    <% link_to_toggle_menu "Tools", :id => "tools_button", :class => "minor button",
+        :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
+      <ul>
+        <li class="inline buttonrow">
+          <div id="refresher" class="clear">
+            <%= link_to_function "Reload from observations", 
+              "if (confirm('This will update all last observations and add new taxa from your observations.  It may take a few minutes.')) { " +
+                "reloadFromObservations()" +
+              "}; ", :id => "refreshlink" %>
+            <div id="refreshloading" class="loading status" style="display:none">Reloading...</div>
+            <script type="text/javascript" charset="utf-8">
+              var refreshTries = 0
+              function reloadFromObservations() {
+                $('#refreshlink').hide()
+                $('#refreshloading').show()
+                if (refreshTries > <%= LifeList::MAX_RELOAD_TRIES %>) {
+                  alert('Reload timed out.  Please try again later.')
+                  $('#refreshlink').show()
+                  $('#refreshloading').hide()
+                } else {
+                  $.ajax({
+                    data:'tries='+refreshTries+'&authenticity_token=' + encodeURIComponent(<%= form_authenticity_token.inspect %>), 
+                    dataType:'script', 
+                    type:'post', 
+                    url:'<%= list_reload_from_observations_path(@list.id) %>'
+                  });
+                  refreshTries += 1
+                }
+              }
+            </script>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  <% end -%>
 </div>

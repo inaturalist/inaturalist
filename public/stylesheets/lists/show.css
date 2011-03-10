@@ -214,3 +214,8 @@
 }
 
 #pageheader h2 { margin-bottom: 5px; }
+
+#refresher.error.status,
+#refresher.success.status {
+  padding: 5px 10px;
+}

@@ -3,9 +3,9 @@ class ListsController < ApplicationController
 
   before_filter :login_required, :except => [:index, :show, :by_login, :taxa]  
   before_filter :load_list, :only => [:show, :edit, :update, :destroy, 
-    :compare, :remove_taxon, :add_taxon_batch, :taxa, :refresh]
+    :compare, :remove_taxon, :add_taxon_batch, :taxa, :reload_from_observations]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon, :add_taxon_batch, :refresh]
+    :remove_taxon, :add_taxon_batch, :reload_from_observations]
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
@@ -186,31 +186,37 @@ class ListsController < ApplicationController
     end
   end
   
-  def refresh
-    if job_id = Rails.cache.read(@list.refresh_key)
-      Rails.logger.debug "[DEBUG] cached job id: #{job_id}"
-      @job = Delayed::Job.find_by_id(job_id)
-    else
-      @job = LifeList.send_later(:refresh, @list.id)
-      Rails.cache.write(@list.refresh_key, @job.id)
+  def reload_from_observations
+    job_id = Rails.cache.read(@list.reload_from_observations_cache_key)
+    @job = Delayed::Job.find_by_id(job_id) if job_id && job_id.is_a?(Fixnum)
+    tries = params[:tries].to_i
+    start = tries == 0 && @job.blank?
+    done = tries > 0 && @job.blank?
+    error = @job && !@job.failed_at.blank?
+    timeout = tries > LifeList::MAX_RELOAD_TRIES
+    
+    if start
+      @job = @list.reload_from_observations
+    elsif done || error || timeout
+      Rails.cache.delete(@list.reload_from_observations_cache_key)
     end
-    Rails.logger.debug "[DEBUG] @job: #{@job}"
-    if @job.blank? || @job.failed_at
-      Rails.cache.delete(@list.refresh_key)
-    end
+    
     respond_to do |format|
       format.js do
         render :update do |page|
-          if @job.blank?
+          if done
             page.replace_html :refresher, "Success!"
-            page << "$('#refresher').addClass('success status box')"
-            flash[:notice] = "List refreshed"
+            page << "$('#refresher').addClass('success status')"
+            flash[:notice] = "List reloaded"
             page.reload
-          elsif @job.failed_at
+          elsif error
             page.replace_html :refresher, "Something went wrong refreshing your list: #{@job.last_error}"
-            page << "$('#refresher').addClass('error status box')"
+            page << "$('#refresher').addClass('error status')"
+          elsif timeout
+            page.replace_html :refresher, "Reload timed out, please try again later."
+            page << "$('#refresher').addClass('error status')"
           else
-            page << "setTimeout('refreshList()', 5000)"
+            page << "setTimeout('reloadFromObservations()', 5000)"
           end
         end
       end

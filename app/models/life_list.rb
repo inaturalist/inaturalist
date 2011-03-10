@@ -5,6 +5,8 @@ class LifeList < List
   before_create :set_defaults
   after_create :add_taxa_from_observations
   
+  MAX_RELOAD_TRIES = 15
+  
   #
   # Adds a taxon to this life list by creating a new blank obs of the taxon
   # and relying on the callbacks in observation.  In theory, this should never
@@ -74,8 +76,12 @@ class LifeList < List
   # can display a loading notification on lists/show.
   def add_taxa_from_observations
     job = LifeList.send_later(:add_taxa_from_observations, self)
-    Rails.cache.write("add_taxa_from_observations_job_#{id}", job.id)
+    Rails.cache.write(add_taxa_from_observations_key, job.id)
     true
+  end
+  
+  def add_taxa_from_observations_key
+    "add_taxa_from_observations_job_#{id}"
   end
   
   def self.add_taxa_from_observations(list, options = {})
@@ -91,9 +97,19 @@ class LifeList < List
         :select => 'observations.id, observations.taxon_id', 
         :group => 'observations.taxon_id', 
         :conditions => conditions).each do |observation|
-      list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
+      list.add_taxon(observation.taxon_id, 
+        :last_observation_id => observation.id,
+        :skip_update => true)
     end
   end
+  
+  # def self.remove_unobserved(list, options = {})
+  #   list.listed_taxa.find_each(:include => :last_observation) do |listed_taxon|
+  #     if listed_taxon.last_observation.blank? || listed_taxon.taxon_id != listed_taxon.last_observation.taxon_id
+  #       listed_taxon.destroy
+  #     end
+  #   end
+  # end
   
   def self.update_life_lists_for_taxon(taxon)
     ListRule.find_each(:include => :list, :conditions => [
@@ -103,6 +119,28 @@ class LifeList < List
       next unless list_rule.list.is_a?(LifeList)
       LifeList.send_later(:add_taxa_from_observations, list_rule.list, 
         :taxa => [taxon.id])
+    end
+  end
+  
+  def reload_from_observations
+    job = LifeList.send_later(:reload_from_observations, self)
+    Rails.cache.write(reload_from_observations_cache_key, job.id)
+    job
+  end
+  
+  def reload_from_observations_cache_key
+    "reload_list_from_obs_#{id}"
+  end
+  
+  def self.reload_from_observations(list)
+    repair_observed(list)
+    add_taxa_from_observations(list)
+  end
+  
+  def self.repair_observed(list)
+    list.listed_taxa.find_each(:include => :last_observation, 
+        :conditions => "observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id") do |lt|
+      lt.destroy
     end
   end
   
