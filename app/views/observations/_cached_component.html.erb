@@ -3,14 +3,12 @@
   observation = observation.observation unless observation.is_a?(Observation)
 -%>
 <% if logged_in? && current_user.id == observation.user_id -%>
-  <% cache(:controller => 'observations', :action => 'component', 
-           :id => observation.id, :for_owner => true) do %>
+  <% cache(observation.component_cache_key(:for_owner => true)) do %>
     <%= render :partial => 'observations/observation_component', 
                :locals => {:observation => observation} %>
   <% end %>
 <% else %>
-  <% cache(:controller => 'observations', :action => 'component', 
-           :id => observation.id) do %>
+  <% cache(observation.component_cache_key) do %>
     <%= render :partial => 'observations/observation_component', 
                :locals => {:observation => observation} %>
   <% end %>

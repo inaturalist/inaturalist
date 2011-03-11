@@ -240,19 +240,7 @@
   <div id="observation-<%= observation.id %>" class="observation row column span-24 last">
     <div class="column span-<%= observation.photos.empty? ? 12 : 6 %> guess_and_description">
       <div class="mini observations">
-        <% if logged_in? && current_user == observation.user -%>
-          <% cache(:controller => 'observations', :action => 'component', 
-                   :id => observation.id, :for_owner => true) do %>
-            <%= render :partial => 'observation_component', 
-                       :locals => {:observation => observation} %>
-          <% end %>
-        <% else %>
-          <% cache(:controller => 'observations', :action => 'component', 
-                   :id => observation.id) do %>
-            <%= render :partial => 'observation_component', 
-                       :locals => {:observation => observation} %>
-          <% end %>
-        <% end %>
+        <%= render :partial => "observations/cached_component", :object => observation %>
       </div>
     </div>
     <% unless observation.photos.empty? -%>

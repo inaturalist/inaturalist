@@ -32,7 +32,7 @@ class LocalPhoto < Photo
   
   process_in_background :file
   
-  after_post_process :set_urls
+  after_post_process :set_urls, :expire_observation_caches
     
   validates_presence_of :user
   
@@ -44,6 +44,7 @@ class LocalPhoto < Photo
     self.native_page_url = url_for(observations.first) unless observations.blank?
     self.native_username = user.login
     self.license = Photo::COPYRIGHT
+    true
   end
   
   def set_urls
@@ -54,8 +55,22 @@ class LocalPhoto < Photo
     true
   end
   
+  def expire_observation_caches
+    ctrl = ActionController::Base.new
+    observation_photos.all.each do |op|
+      ctrl.expire_fragment(Observation.component_cache_key(op.observation_id, :for_owner => true))
+      ctrl.expire_fragment(Observation.component_cache_key(op.observation_id))
+    end
+    true
+  rescue => e
+    puts "[DEBUG] Failed to expire obs caches for #{self}: #{e}"
+    puts e.backtrace.join("\n")
+    true
+  end
+  
   def set_native_photo_id
     update_attribute(:native_photo_id, id)
+    true
   end
   
 end

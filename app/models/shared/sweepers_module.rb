@@ -51,15 +51,8 @@ module Shared::SweepersModule
   # include ExpireHelpers
   
   def expire_observation_components(observation)
-    expire_fragment(
-      :controller => 'observations', 
-      :action => 'component', 
-      :id => observation.id)
-    expire_fragment(
-      :controller => 'observations', 
-      :action => 'component', 
-      :id => observation.id,
-      :for_owner => true)
+    expire_fragment(observation.component_cache_key)
+    expire_fragment(observation.component_cache_key(:for_owner => true))
 
     # Expire page-cached tile_points JSON
     if observation.latitude? && observation.longitude?

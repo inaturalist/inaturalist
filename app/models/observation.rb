@@ -610,7 +610,21 @@ class Observation < ActiveRecord::Base
     
     self.time_observed_at = Time.parse(time_s)
   end
-
+  
+  
+  def lsid
+    "lsid:inaturalist.org:observations:#{id}"
+  end
+  
+  def component_cache_key(options = {})
+    Observation.component_cache_key(id, options)
+  end
+  
+  def self.component_cache_key(id, options = {})
+    key = "obs_comp_#{id}"
+    key += "_"+options.map{|k,v| "#{k}-#{v}"}.join('_') unless options.blank?
+    key
+  end
   
   ##### Rules ###############################################################
   #
@@ -684,10 +698,6 @@ class Observation < ActiveRecord::Base
     if is_a_range
       errors.add(:observed_on, "must be a single day, not a range")
     end
-  end
-  
-  def lsid
-    "lsid:inaturalist.org:observations:#{id}"
   end
   
   def set_taxon_from_species_guess
