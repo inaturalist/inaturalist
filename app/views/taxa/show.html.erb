@@ -369,9 +369,11 @@
 
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">
-    <%= link_to 'Back to All Species', 
-                taxa_path,
-                :class => 'back crumb' %>
+    <%= link_to 'All Species', taxa_path, :class => 'back crumb' %>
+    <% for iconic_taxon in Taxon::ICONIC_TAXA %>
+      <%= link_to "&nbsp;", iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
+        :title => Taxon::ICONIC_TAXON_NAMES[iconic_taxon.name] %>
+    <% end %>
   </span>
   <div id="meta" class="right description">
     <% if @taxon.source_url %>

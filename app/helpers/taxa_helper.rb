@@ -85,6 +85,8 @@ module TaxaHelper
     params.delete(:color)
     params.delete(:size)
     params[:class] = params[:class] ? "#{params[:class]} iconic" : 'iconic'
+    params[:title] ||= Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.try(:name)]
+    params[:alt] ||= Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.try(:name)]
     image_tag(path, params)
   end
   

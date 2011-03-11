@@ -926,3 +926,27 @@ form.inline .label {
 .flag.resolved {
   text-decoration: line-through;
 }
+
+.iconic_taxon_sprite {
+  background: url(/images/iconic_taxa/unknown-sprite.png) no-repeat;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-position: -16px 0px;
+}
+.iconic_taxon_sprite:hover,
+.iconic_taxon_sprite.selected {
+  background-position: 0 0;
+}
+.iconic_taxon_sprite.animalia { background-image: url(/images/iconic_taxa/animalia-sprite.png); }
+.iconic_taxon_sprite.actinopterygii { background-image: url(/images/iconic_taxa/actinopterygii-sprite.png); }
+.iconic_taxon_sprite.amphibia { background-image: url(/images/iconic_taxa/amphibia-sprite.png); }
+.iconic_taxon_sprite.reptilia { background-image: url(/images/iconic_taxa/reptilia-sprite.png); }
+.iconic_taxon_sprite.aves { background-image: url(/images/iconic_taxa/aves-sprite.png); }
+.iconic_taxon_sprite.mammalia { background-image: url(/images/iconic_taxa/mammalia-sprite.png); }
+.iconic_taxon_sprite.mollusca { background-image: url(/images/iconic_taxa/mollusca-sprite.png); }
+.iconic_taxon_sprite.arachnida { background-image: url(/images/iconic_taxa/arachnida-sprite.png); }
+.iconic_taxon_sprite.insecta { background-image: url(/images/iconic_taxa/insecta-sprite.png); }
+.iconic_taxon_sprite.fungi { background-image: url(/images/iconic_taxa/fungi-sprite.png); }
+.iconic_taxon_sprite.protozoa { background-image: url(/images/iconic_taxa/protozoa-sprite.png); }
+.iconic_taxon_sprite.plantae { background-image: url(/images/iconic_taxa/plantae-sprite.png); }

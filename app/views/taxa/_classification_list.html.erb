@@ -4,10 +4,12 @@
   children ||= @children || taxon.children
   link_method ||= lambda {|t| t.name == "Life" ? taxa_path : taxon_path(t)}
 -%>
+  
   <ul class="taxonomic_tree leafylist">
     <li>
-      <%= link_to "Life", link_method.call(taxon) %>
+      <%= link_to "Life", taxa_path %>
     </li>
+    
     <% unless taxon.grafted? -%>
     <li class="unknown">
       <span class="description">
