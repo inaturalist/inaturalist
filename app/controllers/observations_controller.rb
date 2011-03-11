@@ -1019,7 +1019,7 @@ class ObservationsController < ApplicationController
       end
       search_params[:order_by] = "#{@order_by} #{@order}"
     else
-      @order_by = "observed_on"
+      @order_by = "observations.id"
       @order = "desc"
     end
     search_params[:order_by] = "#{@order_by} #{@order}"

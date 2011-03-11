@@ -22,9 +22,9 @@
         <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'place' %>
         <%= link_to 'Place', url %>
       </div>
-      <div class="header created_at <%= "order_by #{@order}" if @order_by == 'created_at' %>" style="display: none">
+      <div class="header created_at <%= "order_by #{@order}" if %w(id observations.id created_at).include?(@order_by) %>" style="display: none">
         <% url = params.merge(:order_by => 'created_at') %>
-        <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'created_at' %>
+        <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if %w(id observations.id created_at).include?(@order_by) %>
         <%= link_to 'Date added', url %>
       </div>
       <div class="header details" style="display: none">
