@@ -135,11 +135,11 @@ Some notes:
           </a>
         </li>
       <% end -%>
-      <% if observation.identifications.count > 1 -%>
+      <% if observation.num_identifications_by_others > 0 -%>
         <li class="identifications_count">
           <a href="<%= url_for(observation) %>">
-            <span class="count"><%= observation.identifications.count - 1 %></span>
-            ID<%= 's' if observation.identifications.count - 1 != 1 %>
+            <span class="count"><%= observation.num_identifications_by_others %></span>
+            ID<%= 's' if observation.num_identifications_by_others != 1 %>
           </a>
         </li>
       <% end -%>

@@ -10,10 +10,11 @@ class Identification < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :observation_id, 
                           :message => "can only identify an observation once"
   
-  after_create :update_observation, :increment_user_counter_cache, :notify_observer
+  after_create :update_observation, :increment_user_counter_cache, 
+    :notify_observer, :expire_caches
   after_save :update_obs_stats
   after_destroy :update_obs_stats, :decrement_user_counter_cache, 
-    :update_observation_after_destroy
+    :update_observation_after_destroy, :expire_caches
   
   attr_accessor :skip_observation
   
@@ -72,6 +73,22 @@ class Identification < ActiveRecord::Base
       Emailer.send_later(:deliver_identification_notification, self)
     end
     true
+  end
+  
+  def expire_caches
+    Identification.send_later(:expire_caches, self.id)
+    true
+  end
+  
+  def self.expire_caches(ident)
+    ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
+    return unless ident
+    ctrl = ActionController::Base.new
+    ctrl.expire_fragment(ident.observation.component_cache_key(:for_owner => true))
+    ctrl.expire_fragment(ident.observation.component_cache_key)
+  rescue => e
+    puts "[DEBUG] Failed to expire obs caches for #{self}: #{e}"
+    puts e.backtrace.join("\n")
   end
   
   protected

@@ -626,6 +626,10 @@ class Observation < ActiveRecord::Base
     key
   end
   
+  def num_identifications_by_others
+    identifications.select{|i| i.user_id != user_id}.size
+  end
+  
   ##### Rules ###############################################################
   #
   # This section contains all of the rules that can be used for list creation
