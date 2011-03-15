@@ -15,9 +15,12 @@
   taxon_class << " #{iconic_taxon.name}" if iconic_taxon
   taxon_class << ' noimg' if taxon.photos.empty?
   taxon_class << " #{extra_class}" if extra_class
-  taxon_name_str ||= taxon.default_name.name
   include_full_name ||= false
-  taxon_name_str ||= render('shared/taxon', :object => taxon) if include_full_name
+  taxon_name_str = if include_full_name
+    taxon_name_str ||= render('shared/taxon', :object => taxon) 
+  else
+    taxon.default_name.name
+  end
   more_images ||= false
   
   if js_link

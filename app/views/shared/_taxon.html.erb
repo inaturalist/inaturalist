@@ -24,7 +24,7 @@
     taxon_class << " #{iconic_taxon.name}"
   end
 -%>
-<% if comname.nil? or no_common == true %>
+<% if comname.nil? || no_common == true %>
   <% if include_article %>
     <% if taxon.rank != 'species' && taxon.rank != 'infraspecies' %>
       in
