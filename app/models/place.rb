@@ -23,6 +23,7 @@ class Place < ActiveRecord::Base
     has place_type
     has 'RADIANS(latitude)', :as => :latitude,  :type => :float
     has 'RADIANS(longitude)', :as => :longitude,  :type => :float
+    set_property :delta => :delayed
   end
   
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new

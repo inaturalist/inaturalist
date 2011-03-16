@@ -17,6 +17,10 @@ describe Place, "creation" do
   it "should create a default check_list" do
     @place.check_list.should_not be_nil
   end
+  
+  it "should have no default type" do
+    @place.place_type_name.should be_blank
+  end
 end
 
 describe Place, "import by WOEID" do

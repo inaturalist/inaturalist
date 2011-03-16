@@ -50,7 +50,7 @@
   <% form_for @place, :builder => DefaultFormBuilder do |f| %>
     <%= f.text_field :name, :required => true, :class => 'text' %>
     <%= f.text_field :display_name, :class => 'text' %>
-    <%= f.select :place_type, Place::PLACE_TYPE_CODES.sort, :class => 'select' %>
+    <%= f.select :place_type, Place::PLACE_TYPE_CODES.sort, :include_blank => "Unknown", :class => 'select' %>
     
     <div class="last column span-11">
       <div class="column span-5 append-1">

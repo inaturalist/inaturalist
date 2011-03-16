@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110228043741) do
+ActiveRecord::Schema.define(:version => 20110316040303) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -337,6 +337,7 @@ ActiveRecord::Schema.define(:version => 20110228043741) do
     t.column "source_identifier", :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "delta", :boolean, :default => false
   end
 
   add_index "places", ["latitude", "longitude"], :name => "index_places_on_latitude_and_longitude"
