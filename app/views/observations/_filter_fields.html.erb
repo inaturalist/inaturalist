@@ -108,8 +108,6 @@
         <strong>Order</strong>
       </div>
       <div class="left">
-        <%#= select_tag :order_by, 
-          options_for_select(ObservationsController::ORDER_BY_FIELDS.map{|f| [f.humanize, f]}, @order_by) %>
         <%= select_tag :order_by, observations_order_by_options %>
         <%= select_tag :order, options_for_select(%w(asc desc), @order) %>
       </div>

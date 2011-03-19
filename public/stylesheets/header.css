@@ -83,6 +83,16 @@
   border-top: 1px solid #eee;
 }
 
+#mainnav.navtabs .subnav a {
+  padding-right: 23px;
+}
+
+#header .navtabs .observationstab .subnav a {
+  background-image: url('/images/logo-eee-15px.png');
+  background-position: 148px center;
+  background-repeat: no-repeat;
+}
+
 #header .navtabs .subnav li:first-child,
 #header .navtabs .subnav li li {
   border-top: 0 none;
@@ -100,6 +110,8 @@
   font-weight: bold;
   font-size: 14px;
 }
+
+#mainnav .subnav li { text-align: right; }
 
 #usernav {
   float: right;
@@ -182,18 +194,9 @@
   padding-left: 20px;
   background: url(/images/silk/book-gray.png) 7px 50% no-repeat;
 }
-
-#header .navtabs .journal_link:hover {
-  background: url(/images/silk/book-light.png) 7px 50% no-repeat;
-}
-
-#header .formwrapper {
-  padding: 10px;
-}
-
-#header form {
-  min-width: 193px;
-}
+#header .navtabs .journal_link:hover { background: url(/images/silk/book-light.png) 7px 50% no-repeat; }
+#header .formwrapper { padding: 10px; }
+#header form { min-width: 148px; }
 
 #header form .button,
 #header form label,
@@ -209,4 +212,10 @@
   margin-right: 0;
   background: url(/images/silk/magnifier.png) 50% 50% no-repeat;
   width: 25px;
+}
+
+#header .navtabs .subnav.taxon_links li a.taxon {
+  padding-right: 30px;
+  background-repeat: no-repeat;
+  background-position: 145px center;
 }
