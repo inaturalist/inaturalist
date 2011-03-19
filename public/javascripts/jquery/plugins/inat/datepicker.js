@@ -16,21 +16,18 @@
       showOn: 'both',
       buttonImage: "/images/silk/date.png",
       buttonImageOnly: true,
-      closeText: '&times;',
+      showButtonPanel: true,
       showAnim: 'fadeIn',
-      beforeShow: customShow,
       maxDate: '+0d',
       constrainInput: false,
       firstDay: 0,
       changeFirstDay: false,
+      changeMonth: true,
+      changeYear: true,
       dateFormat: 'yy-mm-dd'
     });
     $(this).next('.ui-datepicker-trigger').css({
       'vertical-align': 'middle'
     });
-    
-    function customShow(input, picker) {
-      $('#ui-datepicker-div').width($(input).outerWidth());
-    }
   };
 })(jQuery);
