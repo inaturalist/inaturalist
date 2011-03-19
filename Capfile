@@ -31,6 +31,7 @@ namespace :deploy do
     symlink_newrelic_config # temp
     symlink_attachments
     symlink_cache
+    symlink_observation_tiles
     symlink_sphinx
     sphinx_configure
   end
@@ -99,6 +100,11 @@ namespace :deploy do
   task :symlink_cache, :hosts => "#{domain}" do
     run "ln -s #{shared_path}/system/cache #{latest_release}/cache"
     run "ln -s #{shared_path}/system/page_cache/observations #{latest_release}/public/observations"
+  end
+  
+  desc "Symlink the path to tilelite"
+  task :symlink_observation_tiles, :hosts => "#{domain}" do
+    run "ln -s #{inat_config_shared_path}/tilelite/public #{latest_release}/public/observations/tiles""
   end
   
   desc "Clear the cache directories"
