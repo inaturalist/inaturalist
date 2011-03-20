@@ -104,7 +104,7 @@ namespace :deploy do
   
   desc "Symlink the path to tilelite"
   task :symlink_observation_tiles, :hosts => "#{domain}" do
-    run "ln -s #{inat_config_shared_path}/tilelite/public #{latest_release}/public/observations/tiles"
+    run "ln -s #{inat_config_shared_path}/tilelite/public #{shared_path}/system/page_cache/observations/tiles"
   end
   
   desc "Clear the cache directories"

@@ -30,7 +30,7 @@ else
   set :port_num, 9000  
 end
 
-set :inat_config_shared_path, "#{deploy_to}/.."
+set :inat_config_shared_path, "#{deploy_to}.."
 
 set :num_listeners, 1
 
