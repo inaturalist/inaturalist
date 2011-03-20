@@ -41,7 +41,10 @@
 <% end -%>
 
 <% content_for(:extrajs) do %>
-  <%= render :partial => 'lists/show_js' %>
+  <%= javascript_include_tag "jquery/jquery-ui-1.8.11.min.js",
+                             "jquery/plugins/jquery.scrollTo-min.js",
+                             'jquery/plugins/jquery.string.1.0', 
+                             "jquery/plugins/inat/taxon_selectors.js" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#new_listed_taxon').show();

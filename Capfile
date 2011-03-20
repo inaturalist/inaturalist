@@ -31,7 +31,7 @@ namespace :deploy do
     symlink_newrelic_config # temp
     symlink_attachments
     symlink_cache
-    symlink_observation_tiles
+    # symlink_observation_tiles
     symlink_sphinx
     sphinx_configure
   end
