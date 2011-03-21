@@ -1158,6 +1158,9 @@ class ObservationsController < ApplicationController
     
     # Ordering
     if search_params[:order_by]
+      # observations.id is a more efficient sql clause, but it's not the name of a field in sphinx
+      search_params[:order_by].gsub!(/observations\.id/, 'created_at')
+      
       if sphinx_options[:order]
         sphinx_options[:order] += ", #{search_params[:order_by]}"
         sphinx_options[:sort_mode] = :extended
