@@ -125,6 +125,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do
         @amphibiaweb = amphibiaweb_description?
+        @try_amphibiaweb = try_amphibiaweb?
         
         @children = @taxon.children.all(:include => :taxon_names, :order => "name")
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
@@ -930,8 +931,11 @@ class TaxaController < ApplicationController
   end
   
   def amphibiaweb_description?
-    params[:description] != 'wikipedia' &&
-      @taxon.species_or_lower? && 
+    params[:description] != 'wikipedia' && try_amphibiaweb?
+  end
+  
+  def try_amphibiaweb?
+    @taxon.species_or_lower? && 
       @taxon.ancestor_ids.include?(Taxon::ICONIC_TAXA_BY_NAME['Amphibia'].id)
   end
   
