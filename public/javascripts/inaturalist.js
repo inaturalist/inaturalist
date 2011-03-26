@@ -56,6 +56,24 @@ var iNaturalist = window.iNaturalist = new function(){
       return false;
     }
   };
+  
+  this.modalShow = function(o) {
+    iNaturalist.modalCenter(o.w)
+    o.w.show()
+  }
+  
+  this.modalCenter = function(elt) {
+    elt.height('auto')
+    var height = $(window).height()*0.9
+    if (elt.height() < height ) { height = elt.height() }
+    if (height = elt.height()) {
+      elt.height('auto')
+    } else {
+      elt.height(height)
+    }
+    var top = $(window).scrollTop() + $(window).height()/2 - elt.height()/2-20
+    elt.css('top', top + 'px')
+  }
 
 }; // end of the iNaturalist singleton
 

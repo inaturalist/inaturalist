@@ -4,6 +4,7 @@ $(document).ready(function() {
   
   // Set up the add batch dialog
   $('#add_batch_dialog').jqm({
+    onShow: iNaturalist.modalShow,
     closeClass: 'close'
   });
 });

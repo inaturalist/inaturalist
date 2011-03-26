@@ -642,9 +642,7 @@ ul.leafylist li li:first-child {
 .modalbox .header {
   margin: 0;
 }
-.modalbox p {
-  margin-bottom: 1em;
-}
+.modalbox p:last-child { margin-bottom: 0; }
 
 .jqmOverlay { background-color: #000; }
 

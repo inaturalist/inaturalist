@@ -304,16 +304,21 @@
         onShow: function(h) {
           h.w.append($('<div class="loading description">Loading...</div>'));
           h.w.fadeIn(500);
+          iNaturalist.modalCenter(h.w)
         },
         onHide: function(h) {
           h.w.fadeOut(500,function(){ h.o.remove(); })
         },
         onLoad: function(h) {
+          iNaturalist.modalCenter(h.w)
           $(h.w).find('.taxon_photos').photoSelector({
             defaultQuery: '<%= @taxon.name %>',
             urlParams: {
               authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
               limit: 15
+            },
+            afterQueryPhotos: function() {
+              iNaturalist.modalCenter(h.w)
             }
           });
         }
@@ -326,9 +331,11 @@
           ajax: '<%= taxon_path(@taxon) %>/add_places',
           onShow: function(h) {
             h.w.append($('<div class="loading description">Loading...</div>'));
+            iNaturalist.modalCenter(h.w)
             h.w.fadeIn(500);
           },
           onLoad: function(h) {
+            iNaturalist.modalCenter(h.w)
             $('#place_selector').tabs();
           },
           onHide: function(h) {
