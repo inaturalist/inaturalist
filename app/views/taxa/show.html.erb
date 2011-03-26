@@ -259,11 +259,11 @@
         });
         window.ctaLayer = new google.maps.KmlLayer('<%= @taxon_range.range.url %>');
         window.ctaLayer.setMap(map);
-        <% if Rails.env.development? %>
-          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.atom?q=<%= URI.escape(@taxon.name) %>');
-        <% else %>
-          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :atom, :taxon_id => @taxon.id) %>');
-        <% end %>
+        <%- if Rails.env.development? -%>
+          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.kml?taxon_name=<%= URI.escape(@taxon.name) %>');
+        <%- else -%>
+          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>');
+        <%- end -%>
         iNatLyr.setMap(map);
         $('#tabs').bind('tabsshow', function(event, ui) {
           google.maps.event.trigger(window.map, 'resize')
