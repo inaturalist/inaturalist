@@ -248,23 +248,75 @@
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      
       $('#tabs').tabs()
       
+      //Toggle Gbif button, adapted from http://www.mappingsupport.com/forum_post/toggleGbif_good.html
+      function HomeControl(controlDiv) {
+        // Set CSS styles for the DIV containing the control
+        // Setting padding to 5 px will offset the control
+        // from the edge of the map
+        controlDiv.style.padding = '5px';
+
+        // Set CSS for the control border
+        var controlUI = document.createElement('DIV');
+        controlUI.style.backgroundColor = 'white';
+        controlUI.style.borderStyle = 'solid';
+        controlUI.style.borderWidth = '2px';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to toggle KML off/on';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior
+        var controlText = document.createElement('DIV');
+        controlText.style.fontFamily = 'Arial,sans-serif';
+        controlText.style.fontSize = '12px';
+        controlText.style.paddingLeft = '4px';
+        controlText.style.paddingRight = '4px';
+        controlText.innerHTML = '<b>Toggle Museum Records</b>';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listener: 
+        google.maps.event.addDomListener(controlUI, 'click', function() {
+          toggleGbif()
+        });
+      }
+      
+      var showGbif = false
+      function toggleGbif() {
+        if (showGbif) {
+          showGbif = false;
+          gbifLayer.setMap(null);  
+        } else {
+          showGbif = true; 
+          gbifLayer.setMap(window.map);
+        }
+      }
+
       <% if @show_range %>
         window.map = new google.maps.Map(document.getElementById("taxon_range_map"), {
           mapTypeId: google.maps.MapTypeId.TERRAIN,
           zoom: 8,
           center: new google.maps.LatLng(-34.397, 150.644)
         });
+
         window.ctaLayer = new google.maps.KmlLayer('<%= @taxon_range.range.url %>');
         window.ctaLayer.setMap(map);
-        <%- if Rails.env.development? -%>
-          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.kml?taxon_name=<%= URI.escape(@taxon.name) %>');
-        <%- else -%>
-          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>');
-        <%- end -%>
+    
+        gbifLayer = new google.maps.KmlLayer('http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml', {preserveViewport:true});
+      
+        var homeControlDiv = document.createElement('DIV');
+        var homeControl = new HomeControl(homeControlDiv);
+        homeControlDiv.index = 1;
+        window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+
+        <% if Rails.env.development? %>
+          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.atom?q=<%= URI.escape(@taxon.name) %>');
+        <% else %>
+          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :atom, :taxon_id => @taxon.id) %>');
+        <% end %>
         iNatLyr.setMap(map);
+
         $('#tabs').bind('tabsshow', function(event, ui) {
           google.maps.event.trigger(window.map, 'resize')
           window.map.fitBounds(window.ctaLayer.getDefaultViewport())
@@ -297,52 +349,52 @@
       
       // Set up photo modal dialog
       <% if logged_in? %>
-      $('#edit_photos_dialog').jqm({
-        closeClass: 'close', 
-        ajax: '<%= taxon_path(@taxon) %>/edit_photos',
-        method: 'get',
-        onShow: function(h) {
-          h.w.append($('<div class="loading description">Loading...</div>'));
-          h.w.fadeIn(500);
-          iNaturalist.modalCenter(h.w)
-        },
-        onHide: function(h) {
-          h.w.fadeOut(500,function(){ h.o.remove(); })
-        },
-        onLoad: function(h) {
-          iNaturalist.modalCenter(h.w)
-          $(h.w).find('.taxon_photos').photoSelector({
-            defaultQuery: '<%= @taxon.name %>',
-            urlParams: {
-              authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
-              limit: 15
-            },
-            afterQueryPhotos: function() {
-              iNaturalist.modalCenter(h.w)
-            }
-          });
-        }
-      });
-      
-      <% if @taxon.species_or_lower? -%>
-        $('#add_to_place_dialog').jqm({
-          closeClass: 'close',
+        $('#edit_photos_dialog').jqm({
+          closeClass: 'close', 
+          ajax: '<%= taxon_path(@taxon) %>/edit_photos',
           method: 'get',
-          ajax: '<%= taxon_path(@taxon) %>/add_places',
           onShow: function(h) {
             h.w.append($('<div class="loading description">Loading...</div>'));
-            iNaturalist.modalCenter(h.w)
             h.w.fadeIn(500);
-          },
-          onLoad: function(h) {
             iNaturalist.modalCenter(h.w)
-            $('#place_selector').tabs();
           },
           onHide: function(h) {
             h.w.fadeOut(500,function(){ h.o.remove(); })
+          },
+          onLoad: function(h) {
+            iNaturalist.modalCenter(h.w)
+            $(h.w).find('.taxon_photos').photoSelector({
+              defaultQuery: '<%= @taxon.name %>',
+              urlParams: {
+                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                limit: 15
+              },
+              afterQueryPhotos: function() {
+                iNaturalist.modalCenter(h.w)
+              }
+            });
           }
         });
-      <% end %>
+      
+        <% if @taxon.species_or_lower? -%>
+          $('#add_to_place_dialog').jqm({
+            closeClass: 'close',
+            method: 'get',
+            ajax: '<%= taxon_path(@taxon) %>/add_places',
+            onShow: function(h) {
+              h.w.append($('<div class="loading description">Loading...</div>'));
+              iNaturalist.modalCenter(h.w)
+              h.w.fadeIn(500);
+            },
+            onLoad: function(h) {
+              iNaturalist.modalCenter(h.w)
+              $('#place_selector').tabs();
+            },
+            onHide: function(h) {
+              h.w.fadeOut(500,function(){ h.o.remove(); })
+            }
+          });
+        <% end %>
       <% end %>
     });
   </script>
@@ -705,7 +757,7 @@
     <div id="fblike" class="stacked">
       <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
     </div>
-	<div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
+  <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
   </div>
   
   <div class="last column span-20">
