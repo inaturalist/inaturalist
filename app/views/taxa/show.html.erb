@@ -251,20 +251,76 @@
       
       $('#tabs').tabs()
       
+    //Toggle Gbif button, adapted from http://www.mappingsupport.com/forum_post/toggle_kml_good.html
+	function HomeControl(controlDiv) {
+	  // Set CSS styles for the DIV containing the control
+	  // Setting padding to 5 px will offset the control
+	  // from the edge of the map
+	  controlDiv.style.padding = '5px';
+
+	  // Set CSS for the control border
+	  var controlUI = document.createElement('DIV');
+	  controlUI.style.backgroundColor = 'white';
+	  controlUI.style.borderStyle = 'solid';
+	  controlUI.style.borderWidth = '2px';
+	  controlUI.style.cursor = 'pointer';
+	  controlUI.style.textAlign = 'center';
+	  controlUI.title = 'Click to toggle KML off/on';
+	  controlDiv.appendChild(controlUI);
+
+	  // Set CSS for the control interior
+	  var controlText = document.createElement('DIV');
+	  controlText.style.fontFamily = 'Arial,sans-serif';
+	  controlText.style.fontSize = '12px';
+	  controlText.style.paddingLeft = '4px';
+	  controlText.style.paddingRight = '4px';
+	  controlText.innerHTML = '<b>Toggle GBIF</b>';
+	  controlUI.appendChild(controlText);
+
+	  // Setup the click event listener: 
+	  google.maps.event.addDomListener(controlUI, 'click', function() {
+	    toggle_kml()
+	  });
+	}
+
+	function toggle_kml() {
+	  if (show_kml == 1)
+	  {
+	    show_kml = 0;
+	    gbifLayer.setMap(null);  
+	  }
+	  else
+	  {
+	    show_kml = 1; 
+	    gbifLayer.setMap(window.map);
+		  
+	  }
+	}
+
       <% if params[:test] =~ /range/ && @taxon_range %>
         window.map = new google.maps.Map(document.getElementById("taxon_range_map"), {
           mapTypeId: google.maps.MapTypeId.TERRAIN,
           zoom: 8,
           center: new google.maps.LatLng(-34.397, 150.644)
         });
+
         window.ctaLayer = new google.maps.KmlLayer('<%= @taxon_range.range.url %>');
         window.ctaLayer.setMap(map);
+		
+		gbifLayer = new google.maps.KmlLayer('http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml', {preserveViewport:true});
+		  
+		  var homeControlDiv = document.createElement('DIV');
+		  var homeControl = new HomeControl(homeControlDiv);
+		  homeControlDiv.index = 1;
+		  window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+
         <% if Rails.env.development? %>
           var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.atom?q=<%= URI.escape(@taxon.name) %>');
         <% else %>
           var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :atom, :taxon_id => @taxon.id) %>');
         <% end %>
         iNatLyr.setMap(map);
+
         $('#tabs').bind('tabsshow', function(event, ui) {
           google.maps.event.trigger(window.map, 'resize')
           window.map.fitBounds(window.ctaLayer.getDefaultViewport())
@@ -782,9 +838,15 @@
         <% end %>
       </div>
 
-      <% if params[:test] =~ /range/ && !@taxon_range.blank? -%>
+      <% if params[:test] =~ /range/ && !@taxon_range.blank? %>
         <div id="taxon_range">
           <div id="taxon_range_map" style="width: 790px; height: 488px"></div>
+		<script type="text/javascript">
+		  //<![CDATA[
+		    var window = new Object();
+		    show_kml = 0;
+		  //]]>   
+		  </script>
         </div>
       <% end -%>
     </div>
