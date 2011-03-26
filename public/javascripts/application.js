@@ -78,6 +78,11 @@ $('a[data-loading-click]').live('click', function() {
   var loading = $('<span>Loading...</span>').addClass('loading').addClass($(this).attr('class'))
   $(this).hide().before(loading)
 })
+
 $('input[data-loading-click]').live('click', function() {
-  $(this).attr('disabled', true).addClass('disabled description').val('Saving...')
+  $(this).addClass('disabled description').val('Saving...')
+  var link = this
+  $(this).parents('form').submit(function() {
+    $(link).attr('disabled', true)
+  })
 })
