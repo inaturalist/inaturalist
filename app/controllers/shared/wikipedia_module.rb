@@ -25,10 +25,9 @@ module Shared::WikipediaModule
     respond_to do |format|
       format.html do
         if @decoded.empty?
-          render(:text => "Wikipedia doesn't have a page for #{@title}", 
-            :status => 404)
+          render(:text => "#{@before_wikipedia} Wikipedia doesn't have a page for #{@title}", :status => 404)
         else
-          render(:text => @decoded)
+          render(:text => "#{@before_wikipedia} #{@decoded}")
         end
       end
     end

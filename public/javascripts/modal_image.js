@@ -6,6 +6,10 @@ $(document).ready(function() {
     onShow: function(h) {
       h.w.append($('<div class="loading status">Loading...</div>'));
       h.w.fadeIn(500);
+      iNaturalist.modalCenter(h.w);
+    },
+    onLoad: function(h) {
+      iNaturalist.modalCenter(h.w);
     },
     onHide: function(h) {
       h.w.fadeOut(500,function(){ h.o.remove(); })

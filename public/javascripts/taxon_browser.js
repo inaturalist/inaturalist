@@ -1,7 +1,7 @@
 var TaxonBrowser = {
   ajaxify: function(context) {
     var context = context || $('#taxon_browser')
-    $('a[href^=/taxa/search]', context).click(TaxonBrowser.handleSearchClicks);
+    $('a[href^="/taxa/search"]', context).click(TaxonBrowser.handleSearchClicks);
     $('form.taxon_search_form', context).submit(TaxonBrowser.handleFormSubmits);
     TaxonBrowser.addTips();
     $('.loading:first', context).hide();

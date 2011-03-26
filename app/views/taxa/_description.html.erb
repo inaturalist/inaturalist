@@ -1,0 +1,35 @@
+<div class="taxon_description <%= @amphibiaweb ? 'amphibiaweb' : 'wikipedia' %>">
+  <h3>
+    Description from
+    <% if @try_amphibiaweb -%>
+      <form method="get" style="display: inline">
+        <select name="description" onchange="$(this).parents('form').submit()">
+          <option value="amphibiaweb" <%= 'selected' if @amphibiaweb %>>AmphibiaWeb</option>
+          <option value="wikipedia" <%= 'selected' if !@amphibiaweb %>>Wikipedia</option>
+        </select>
+      </form>
+      <a href="http://en.wikipedia.org/wiki/<%= @taxon.name %>" class="ui wikipedia externallink">View on Wikipedia &rarr;</a>
+      <a href="http://amphibiaweb.org/cgi-bin/amphib_query?where-scientific_name=<%= @taxon.name.split[0] %>+<%= @taxon.name.split[1] %>" class="ui amphibiaweb externallink">View on AmphibiaWeb &rarr;</a>
+    <% else %>
+      <a href="http://en.wikipedia.org/wiki/<%= @taxon.name %>">Wikipedia</a>
+    <% end -%>
+  </h3>
+  <% unless @taxon.auto_description? %>
+    <h3 class="description">
+      Automatic descriptions have been disabled for this taxon.
+    </h3>
+  <% else %>
+    <div id="wikipedia_description">
+      <p>
+        <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
+        <span id="description_loading_status" class="loading status" style="display:none">Loading full description...</span>
+      </p>
+    </div>
+    <div id="nodescription" style="display: none">
+      <h3 class='description noresults'>There isn't a Wikipedia article or 
+      redirect titled '<i><%= @taxon.name %></i>'.  Perhaps you'd like to
+      <a href='http://en.wikipedia.org/wiki/<%= @taxon.name %>'>
+      make one</a>?</h3>
+    </div>
+  <% end %>
+</div>
