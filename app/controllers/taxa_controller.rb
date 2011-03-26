@@ -175,6 +175,7 @@ class TaxaController < ApplicationController
         end
         
         @taxon_range = @taxon.taxon_ranges.first
+        @show_range = @taxon_range # && params[:test] =~ /range/
         
         render :action => 'show'
       end

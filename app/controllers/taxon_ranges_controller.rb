@@ -38,7 +38,7 @@ class TaxonRangesController < ApplicationController
     @taxon_range.destroy
 
     respond_to do |format|
-      format.html { redirect_to(taxon_ranges_url) }
+      format.html { redirect_to(@taxon_range.taxon) }
     end
   end
 end

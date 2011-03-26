@@ -242,7 +242,7 @@
                              "jquery/plugins/jquery.qtip.min",
                              'jquery/jquery-ui-1.8.11.min' %>
 
-  <% if params[:test] =~ /range/ && @taxon_range %>
+  <% if @show_range %>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <% end -%>
   
@@ -251,7 +251,7 @@
       
       $('#tabs').tabs()
       
-      <% if params[:test] =~ /range/ && @taxon_range %>
+      <% if @show_range %>
         window.map = new google.maps.Map(document.getElementById("taxon_range_map"), {
           mapTypeId: google.maps.MapTypeId.TERRAIN,
           zoom: 8,
@@ -750,7 +750,7 @@
     <div id="tabs" class="ui-tabs">
       <ul>
         <li><a href="#description"><span>Description</span></a></li>
-        <% if params[:test] =~ /range/ && @taxon_range %>
+        <% if @show_range %>
           <li><a href="#taxon_range"><span>Range Map</span></a></li>
         <% end -%>
       </ul>
@@ -759,9 +759,26 @@
         <%= render :partial => 'taxa/description' %>
       </div>
 
-      <% if params[:test] =~ /range/ && !@taxon_range.blank? -%>
+      <% if @show_range -%>
         <div id="taxon_range">
           <div id="taxon_range_map" style="width: 790px; height: 488px"></div>
+          <div class="ui description">
+            <% if @taxon_range.source -%>
+              <div>
+                <strong>Source:</strong>
+                <%= auto_link(@taxon_range.source.citation) || @taxon_range.source.url || @taxon_range.source.title %>
+              </div>
+            <% end -%>
+            <% unless @taxon_range.description.blank? -%>
+              <div>
+                <strong>Description:</strong>
+                <%= @taxon_range.description %>
+              </div>
+            <% end -%>
+            <% if logged_in? && current_user.is_curator? -%>
+              <%= link_to "Edit range &raquo;", edit_taxon_range_path(@taxon_range) %>
+            <% end -%>
+          </div>
         </div>
       <% end -%>
     </div>

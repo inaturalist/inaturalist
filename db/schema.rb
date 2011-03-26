@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316040303) do
+ActiveRecord::Schema.define(:version => 20110326195224) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -524,6 +524,7 @@ ActiveRecord::Schema.define(:version => 20110316040303) do
     t.column "range_file_name", :string
     t.column "range_file_size", :integer
     t.column "description", :text
+    t.column "source_id", :integer
   end
 
   create_table "taxon_versions", :force => true do |t|

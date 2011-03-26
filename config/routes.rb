@@ -247,7 +247,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :flags, :requirements => { :id => %r(\d+) }
-  map.admin '/admin', :controller=>'admin', :action => 'index'
+  map.admin '/admin', :controller => 'admin', :action => 'index'
   map.resources :taxon_ranges, :except => [:index, :show]
 
   # Default route
