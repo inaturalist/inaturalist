@@ -181,3 +181,12 @@ table.infobox,
 
 #places_list .editlink { display: none; }
 #places_list li:hover .editlink { display: inline; }
+
+.externallink { 
+  display: none;
+  margin: 0 0 0 10px;
+  line-height: 0;
+}
+h3 .externallink { font-size: 70%; }
+.taxon_description.wikipedia h3:hover .wikipedia.externallink { display: inline; }
+.taxon_description.amphibiaweb h3:hover .amphibiaweb.externallink { display: inline; }

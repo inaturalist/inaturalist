@@ -280,7 +280,7 @@
       
       <% if @taxon.auto_description? %>
         $.ajax({
-          url: '<%= describe_taxon_path(@taxon, :test => params[:test]) %>',
+          url: '<%= describe_taxon_path(@taxon, :description => params[:description]) %>',
           method: 'get',
           beforeSend: function() {
             $('#description_loading_status').show()
@@ -748,37 +748,7 @@
       </ul>
 
       <div id="description" class="last column span-20">
-        <h3>
-          Description from
-          <% if params[:test] =~ /amphibiaweb/ -%>
-            <form method="get" style="display: inline">
-              <select name="test" onchange="$(this).parents('form').submit()">
-                <option value="aw">AmphibiaWeb</option>
-                <option value="">Wikipedia</option>
-              </select>
-            </form>
-          <% else %>
-            <a href="http://en.wikipedia.org/wiki/<%= @taxon.name %>">Wikipedia</a>
-          <% end -%>
-        </h3>
-        <% unless @taxon.auto_description? %>
-          <h3 class="description">
-            Automatic descriptions have been disabled for this taxon.
-          </h3>
-        <% else %>
-          <div id="wikipedia_description">
-            <p>
-              <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
-              <span id="description_loading_status" class="loading status" style="display:none">Loading full description...</span>
-            </p>
-          </div>
-          <div id="nodescription" style="display: none">
-            <h3 class='description'>There isn't a Wikipedia article or 
-            redirect titled '<i><%= @taxon.name %></i>'.  Perhaps you'd like to
-            <a href='http://en.wikipedia.org/wiki/<%= @taxon.name %>'>
-            make one</a>?</h3>
-          </div>
-        <% end %>
+        <%= render :partial => 'taxa/description' %>
       </div>
 
       <% if params[:test] =~ /range/ && !@taxon_range.blank? -%>

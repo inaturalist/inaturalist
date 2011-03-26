@@ -47,3 +47,7 @@ table.taxa .taxon_name {
   width: 400px;
 }
 .taxa.list .info { display: none; }
+
+.amphibiaweb table,
+.amphibiaweb tr,
+.amphibiaweb td { vertical-align: top; }

@@ -124,6 +124,8 @@ class TaxaController < ApplicationController
     
     respond_to do |format|
       format.html do
+        @amphibiaweb = amphibiaweb_description?
+        
         @children = @taxon.children.all(:include => :taxon_names, :order => "name")
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
         @iconic_taxa = Taxon.iconic_taxa.all(:include => :taxon_names)
@@ -504,16 +506,19 @@ class TaxaController < ApplicationController
   end
   
   def describe
-    if params[:test] =~ /amphibiaweb/ && @taxon.species_or_lower? &&
-        @taxon.ancestor_ids.include?(Taxon::ICONIC_TAXA_BY_NAME['Amphibia'].id)
+    @amphibiaweb = amphibiaweb_description?
+    if @amphibiaweb
       taxon_names = @taxon.taxon_names.all(
         :conditions => {:lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 
         :order => "is_valid, id desc")
       if @xml = get_amphibiaweb(taxon_names)
         render :partial => "amphibiaweb"
         return
+      else
+        @before_wikipedia = '<div class="notice status">AmphibiaWeb didn\'t have info on this taxon, showing Wikipedia instead.</div>' 
       end
     end
+    
     
     @title = @taxon.wikipedia_title.blank? ? @taxon.name : @taxon.wikipedia_title
     wikipedia
@@ -924,6 +929,12 @@ class TaxaController < ApplicationController
     true
   end
   
+  def amphibiaweb_description?
+    params[:description] != 'wikipedia' &&
+      @taxon.species_or_lower? && 
+      @taxon.ancestor_ids.include?(Taxon::ICONIC_TAXA_BY_NAME['Amphibia'].id)
+  end
+  
   # Temp method for fetching amphibiaweb desc.  Will probably implement this 
   # through TaxonLinks eventually
   def get_amphibiaweb(taxon_names)
@@ -931,6 +942,7 @@ class TaxaController < ApplicationController
     return unless taxon_name
     @genus_name, @species_name = taxon_name.name.split
     url = "http://amphibiaweb.org/cgi/amphib_ws?where-genus=#{@genus_name}&where-species=#{@species_name}&src=eol"
+    Rails.logger.info "[INFO #{Time.now}] AmphibiaWeb request: #{url}"
     xml = Nokogiri::XML(open(url))
     if xml.blank? || xml.at(:error)
       get_amphibiaweb(taxon_names)
