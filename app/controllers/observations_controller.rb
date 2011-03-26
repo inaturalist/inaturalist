@@ -1338,29 +1338,41 @@ class ObservationsController < ApplicationController
   
   def render_observations_to_kml(options = {})
     @net_hash = options
-    if params[:kml_type] != "network_link"
+    # if params[:kml_type] != "network_link"
+    #   @net_hash = {
+    #     :id => "AllObs", 
+    #     :link_id =>"AllObs", 
+    #     :snippet => "iNaturalist Feed for Everyone", 
+    #     :description => "iNaturalist Feed for Everyone", 
+    #     :name => "iNaturalist Feed for Everyone", 
+    #     :href => (url_for(:controller => '/', :only_path => false) << request.request_uri.from(1))
+    #   }
+    #   render :layout => false, :action => 'network_link'
+    #   return
+    # end
+    # 
+    # unless request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth")
+    #   @net_hash = {
+    #     :id => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+    #     :link_id => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+    #     :snippet => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+    #     :description => "The link grabed was: " << (url_for(:controller => '/', :only_path=>false)),
+    #     :name => "BADLY FORMED LINK, Email help@inaturalist.org.", 
+    #     :href => ""
+    #   }
+    #   render :layout => false, :action => 'network_link' and return
+    # end
+    if params[:kml_type] == "network_link"
       @net_hash = {
         :id => "AllObs", 
         :link_id =>"AllObs", 
         :snippet => "iNaturalist Feed for Everyone", 
         :description => "iNaturalist Feed for Everyone", 
         :name => "iNaturalist Feed for Everyone", 
-        :href => (url_for(:controller => '/', :only_path => false) << request.request_uri.from(1))
+        :href => "#{root_url}#{request.request_uri}".gsub(/kml_type=network_link/, '')
       }
       render :layout => false, :action => 'network_link'
       return
-    end
-    
-    unless request.env['HTTP_USER_AGENT'].starts_with?("GoogleEarth")
-      @net_hash = {
-        :id => "BADLY FORMED LINK, Email help@inaturalist.org.", 
-        :link_id => "BADLY FORMED LINK, Email help@inaturalist.org.", 
-        :snippet => "BADLY FORMED LINK, Email help@inaturalist.org.", 
-        :description => "The link grabed was: " << (url_for(:controller => '/', :only_path=>false)),
-        :name => "BADLY FORMED LINK, Email help@inaturalist.org.", 
-        :href => ""
-      }
-      render :layout => false, :action => 'network_link' and return
     end
     render :layout => false, :action => "index"
   end

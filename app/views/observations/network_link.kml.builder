@@ -12,9 +12,9 @@ xml.kml "xmlns" => "http://www.opengis.net/kml/2.2" do
       xml.Link(:id=>(@net_hash[:link_id]+"obs")) do
         xml.href{
           if @net_hash[:href].include? '?'
-            xml.cdata!(@net_hash[:href]+"&kml_type=network_link")
+            xml.cdata!(@net_hash[:href])
           else
-            xml.cdata!(@net_hash[:href]+"?kml_type=network_link")
+            xml.cdata!(@net_hash[:href])
           end
         }
         #refresh options, type 1
