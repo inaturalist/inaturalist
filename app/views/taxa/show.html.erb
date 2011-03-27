@@ -256,41 +256,35 @@
         // Setting padding to 5 px will offset the control
         // from the edge of the map
         controlDiv.style.padding = '5px';
-
-        // Set CSS for the control border
-        var controlUI = document.createElement('DIV');
-        controlUI.style.backgroundColor = 'white';
-        controlUI.style.borderStyle = 'solid';
-        controlUI.style.borderWidth = '2px';
-        controlUI.style.cursor = 'pointer';
-        controlUI.style.textAlign = 'center';
-        controlUI.title = 'Click to toggle KML off/on';
-        controlDiv.appendChild(controlUI);
-
-        // Set CSS for the control interior
-        var controlText = document.createElement('DIV');
-        controlText.style.fontFamily = 'Arial,sans-serif';
-        controlText.style.fontSize = '12px';
-        controlText.style.paddingLeft = '4px';
-        controlText.style.paddingRight = '4px';
-        controlText.innerHTML = '<b>Toggle Museum Records</b>';
-        controlUI.appendChild(controlText);
-
-        // Setup the click event listener: 
-        google.maps.event.addDomListener(controlUI, 'click', function() {
-          toggleGbif()
-        });
+        
+        var controlUI = $('<div>Show museum records</div>').addClass('gmapv3control')
+        controlDiv.appendChild(controlUI.get(0))
+        
+        controlUI.toggle(function() {
+          controlUI.html('Hide museum records')
+          gbifLayer.setMap(window.map);
+        }, function() {
+          controlUI.html('Show museum records')
+          gbifLayer.setMap(null)
+        })
       }
       
-      var showGbif = false
-      function toggleGbif() {
-        if (showGbif) {
-          showGbif = false;
-          gbifLayer.setMap(null);  
-        } else {
-          showGbif = true; 
-          gbifLayer.setMap(window.map);
-        }
+      function FullScreenControl() {
+        var controlDiv = document.createElement('DIV')
+        controlDiv.style.padding = '5px';
+        var controlUI = $('<div>Full screen</div>').addClass('gmapv3control')
+        controlDiv.appendChild(controlUI.get(0))
+        
+        controlUI.toggle(function() {
+          $(this).html('Exit Full screen')
+          $('#taxon_range_map').addClass('fullscreen')
+          google.maps.event.trigger(window.map, 'resize')
+        }, function() {
+          $(this).html('Full screen')
+          $('#taxon_range_map').removeClass('fullscreen')
+          google.maps.event.trigger(window.map, 'resize')
+        })
+        return controlDiv;
       }
 
       <% if @show_range %>
@@ -309,11 +303,12 @@
         var homeControl = new HomeControl(homeControlDiv);
         homeControlDiv.index = 1;
         window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+        window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new FullScreenControl());
 
         <% if Rails.env.development? %>
-          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.atom?q=<%= URI.escape(@taxon.name) %>');
+          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.kml?q=<%= URI.escape(@taxon.name) %>');
         <% else %>
-          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :atom, :taxon_id => @taxon.id) %>');
+          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>');
         <% end %>
         iNatLyr.setMap(map);
 

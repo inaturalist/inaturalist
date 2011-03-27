@@ -175,7 +175,7 @@ class TaxaController < ApplicationController
         end
         
         @taxon_range = @taxon.taxon_ranges.first
-        @taxon_gbif = @taxon.name.gsub!(' ','+')
+        @taxon_gbif = @taxon.name.gsub(' ','+')
         @show_range = @taxon_range # && params[:test] =~ /range/
         
         render :action => 'show'
