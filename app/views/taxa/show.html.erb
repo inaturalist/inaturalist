@@ -294,7 +294,7 @@
           center: new google.maps.LatLng(-34.397, 150.644)
         });
 
-        window.ctaLayer = new google.maps.KmlLayer('<%= @taxon_range.range.url %>');
+        window.ctaLayer = new google.maps.KmlLayer('<%= (root_url + @taxon_range.range.url).gsub(/\/\//, "/") %>');
         window.ctaLayer.setMap(map);
     
         gbifLayer = new google.maps.KmlLayer('http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml', {preserveViewport:true});
