@@ -799,6 +799,7 @@ class ObservationsController < ApplicationController
   
   def widget
     @place = Place.find_by_id(params[:place_id]) if params[:place_id]
+    @taxon = Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
     @order_by = params[:order_by] || "observed_on"
     @order = params[:order] || "desc"
     @limit = params[:limit] || 5
@@ -815,6 +816,8 @@ class ObservationsController < ApplicationController
     }
     @widget_url = if @place
       observations_url(url_params.merge(:place_id => @place.id))
+    elsif @taxon
+      observations_url(url_params.merge(:taxon_id => @taxon.id))
     elsif logged_in?
       observations_by_login_feed_url(current_user.login, url_params)
     end

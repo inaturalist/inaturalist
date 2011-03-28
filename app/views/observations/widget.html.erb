@@ -58,7 +58,7 @@
 <div id="pageheader">
   <div id="widgetnav" class="right">
     <span class="meta">Observations</span>
-    <%= link_to "by you", url_for(), :class => "#{'selected' unless @place}" %>
+    <%= link_to "by you", url_for(), :class => "#{'selected' unless @place || @taxon}" %>
     <span class="meta">&middot;</span>
     <%= link_to_function "from a place", "$('#placechooser').show(); $(this).hide()",
       :id => "placechooserlink",
@@ -70,6 +70,9 @@
       <input type="submit" value="Generate Widget" disabled="true" class="disabled default button"/>
       <%= link_to_function "cancel", "$('#placechooser').hide(); $('#placechooserlink').show()" %>
     </form>
+    <span class="meta">&middot;</span>
+    <%= link_to "for a taxon", url_for(), :class => "#{'selected' if @taxon}" %>
+    <!-- I'm having trouble inserting a taxon chooser here-->
   </div>
   
   <h2>Observations Widget</h2>
@@ -80,7 +83,7 @@
   </p>
 </div>
 
-<% if logged_in? || @place -%>
+<% if logged_in? || @place || @taxon -%>
   <div class="column span-6">
     <h3>Settings</h3>
     <form method="get">
@@ -94,6 +97,12 @@
           </div>
         </div>
       <% end -%>
+      <% if @taxon -%>
+        <label>Taxon</label><br/>
+        <input type="text" name="taxon_name" value="<%= @taxon.name if @taxon %>"/>
+        <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
+        <!-- I'm having trouble inserting a taxon chooser here-->
+      <%end -%>
 
       <div class="field">
         <label>Logo</label><br/>
@@ -140,7 +149,7 @@
   <div class="last column span-18">
     <div id="loading" class="loading status" style="display: none">Loading preview and code...</div>
     <div id="widget_preview_and_code">
-      <%= render :partial => 'widget_preview_and_code', :locals => {:place => @place} %>
+      <%= render :partial => 'widget_preview_and_code', :locals => {:place => @place, :taxon => @taxon} %>
     </div>
   </div>
   
