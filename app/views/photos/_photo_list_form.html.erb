@@ -16,6 +16,7 @@
     <%- 
       native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
       square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square)
+      thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.source_url(:thumb)
       prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
     -%>
     <div class="photo">
@@ -44,7 +45,7 @@
         <% end %>
         
         <label for="<%= prefix %>_<%= index %>_<%= native_photo_id %>">
-          <%= image_tag(square_url) %>
+          <%= image_tag(thumb_url) %>
         </label>
       <% else %>
         <%= check_box_tag "#{prefix.pluralize}[]", 
@@ -52,7 +53,7 @@
           checked, 
           {:id => "#{prefix}_#{native_photo_id}", :class => "checkbox"} %>
         <label for="<%= prefix %>_<%= native_photo_id %>">
-          <%= image_tag(square_url) %>
+          <%= image_tag(thumb_url) %>
         </label>
       <% end %>
     </div>

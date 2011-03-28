@@ -286,6 +286,26 @@
         })
         return controlDiv;
       }
+      
+      function addKmlLayer(url) {
+        var lyr = new google.maps.KmlLayer(url, {suppressInfoWindows: true, preserveViewport: true})
+        google.maps.event.addListener(lyr, 'click', function(e) {
+          if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
+          for (var k in window['kmlInfoWindows']) {
+            window['kmlInfoWindows'][k].close()
+          }
+          var win = window['kmlInfoWindows'][e.featureData.id]
+          if (!win) {
+            win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
+              content: e.featureData.description, 
+              position: e.latLng,
+              pixelOffset: e.pixelOffset
+            });
+          }
+          win.open(window.map);
+        });
+        return lyr;
+      }
 
       <% if @show_range %>
         window.map = new google.maps.Map(document.getElementById("taxon_range_map"), {
@@ -294,10 +314,10 @@
           center: new google.maps.LatLng(-34.397, 150.644)
         });
 
-        window.ctaLayer = new google.maps.KmlLayer('<%= (root_url + @taxon_range.range.url).gsub(/\/\//, "/") %>');
+        window.ctaLayer = new google.maps.KmlLayer('<%= root_url.gsub(/\/$/, "") + @taxon_range.range.url %>');
         window.ctaLayer.setMap(map);
     
-        gbifLayer = new google.maps.KmlLayer('http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml', {preserveViewport:true});
+        var gbifLayer = window.gbifLayer = addKmlLayer('http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml')
       
         var homeControlDiv = document.createElement('DIV');
         var homeControl = new HomeControl(homeControlDiv);
@@ -306,11 +326,11 @@
         window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new FullScreenControl());
 
         <% if Rails.env.development? %>
-          var iNatLyr = new google.maps.KmlLayer('http://inaturalist.org/observations.kml?q=<%= URI.escape(@taxon.name) %>');
+          var iNatLyr = addKmlLayer('http://inaturalist.org/observations.kml?taxon_name=<%= URI.escape(@taxon.name) %>')
         <% else %>
-          var iNatLyr = new google.maps.KmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>');
+          var iNatLyr = addKmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>')
         <% end %>
-        iNatLyr.setMap(map);
+        iNatLyr.setMap(window.map);
 
         $('#tabs').bind('tabsshow', function(event, ui) {
           google.maps.event.trigger(window.map, 'resize')
