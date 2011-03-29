@@ -624,6 +624,12 @@
               <% if logged_in? && lt.editable_by?(current_user) -%>
                 <%= link_to("edit", lt, :class => "small description editlink") %>
               <% end -%>
+              
+              <% if %w(introduced naturalised managed).include?(lt.establishment_means) -%>
+                <div class="small description">non-native</div>
+              <% elsif lt.establishment_means == 'invasive' %>
+                <div class="small description" style="color: deeppink">invasive</div>
+              <% end -%>
             </li>
           <% end %>
         </ul>
