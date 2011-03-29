@@ -49,6 +49,9 @@
       <% if @place %>
       $.fn.placeAutocomplete.choosePlace($('.placefield input[type=text]').get(0), <%= @place.to_json(:methods => [:place_type_name]) %>)
       <% end %>
+      <% if @taxon %>
+      $('#taxonchooser').simpleTaxonSelector();
+       <% end %>
       $('#background_color').change(function() {
         $('#preview').css('background-color', $(this).val());
       });
@@ -99,7 +102,7 @@
       <% end -%>
       <% if @taxon -%>
         <label>Taxon</label><br/>
-        <input type="text" name="taxon_name" value="<%= @taxon.name if @taxon %>"/>
+        <input type="text" id="taxonchooser" value="<%= @taxon.name if @taxon %>"/>
         <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
         <!-- I'm having trouble inserting a taxon chooser here-->
       <%end -%>
