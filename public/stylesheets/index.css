@@ -71,6 +71,7 @@ a:hover {
 /* UI Elements -- Labels, button text, that kind of thing */
 .ui, .ui p { font-family: "Trebuchet MS", Arial, sans-serif; }
 p.ui, .ui p { font-size: 100%; }
+p.ui { margin-bottom: 10px; }
 
 .tinyui {
   font-family: "Trebuchet MS", Arial, sans-serif;

@@ -683,6 +683,10 @@
         :rel => "nofollow" %>
     </p>
     
+    <p class="ui">
+      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon) %>
+    </p>
+    
   </div>
   
   <% if logged_in? && current_user.is_curator? -%>
@@ -773,11 +777,7 @@
         <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
       <% end -%>
     </div>
-    <div class="last column span-20">
-      <div class="small meta">
-        <%= link_to "embed a widget for this taxon on your website", observations_widget_path(:taxon_id => @taxon) %>
-      </div>
-    </div>
+    
     <div id="fblike" class="stacked">
       <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
     </div>
