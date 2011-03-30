@@ -1,0 +1,15 @@
+<table>
+  <tr class="inat-observation">
+  <% for observation in @observations %>
+      <td class="inat-observation-image" valign="top" align="center">
+        <% link_to observation_url(observation) do %>
+          <% if obs_img_url = observation_image_url(observation) -%>
+            <%= image_tag obs_img_url, :border => 0 %>
+          <% else %>
+            <%= iconic_taxon_image(observation.iconic_taxon, :border => 0) %>
+          <% end -%>
+        <% end %>
+      </td>
+  <% end %>
+  </tr>
+</table>

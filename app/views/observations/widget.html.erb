@@ -33,7 +33,8 @@
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag "jquery/plugins/jquery.autocomplete.min",
-                             "jquery/plugins/inat/place_autocomplete" %>
+                             "jquery/plugins/inat/place_autocomplete",
+                             "jquery/plugins/inat/taxon_selectors.js" %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -47,11 +48,11 @@
       })
       $('.placefield input[type=text]').placeAutocomplete()
       <% if @place %>
-      $.fn.placeAutocomplete.choosePlace($('.placefield input[type=text]').get(0), <%= @place.to_json(:methods => [:place_type_name]) %>)
+        $.fn.placeAutocomplete.choosePlace($('.placefield input[type=text]').get(0), <%= @place.to_json(:methods => [:place_type_name]) %>)
       <% end %>
       <% if @taxon %>
-      $('#taxonchooser').simpleTaxonSelector();
-       <% end %>
+        $('#species_guess').simpleTaxonSelector();
+      <% end %>
       $('#background_color').change(function() {
         $('#preview').css('background-color', $(this).val());
       });
@@ -74,8 +75,7 @@
       <%= link_to_function "cancel", "$('#placechooser').hide(); $('#placechooserlink').show()" %>
     </form>
     <span class="meta">&middot;</span>
-    <%= link_to "for a taxon", url_for(), :class => "#{'selected' if @taxon}" %>
-    <!-- I'm having trouble inserting a taxon chooser here-->
+    <%= link_to "for a taxon", url_for(:taxon_id => '1'), :class => "#{'selected' if @taxon}" %>
   </div>
   
   <h2>Observations Widget</h2>
@@ -101,10 +101,8 @@
         </div>
       <% end -%>
       <% if @taxon -%>
-        <label>Taxon</label><br/>
-        <input type="text" id="taxonchooser" value="<%= @taxon.name if @taxon %>"/>
+        <input type="text" id="species_guess" value="<%= @taxon.name if @taxon %>"/>
         <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
-        <!-- I'm having trouble inserting a taxon chooser here-->
       <%end -%>
 
       <div class="field">
@@ -143,6 +141,12 @@
         <label for="order">Order</label><br/>
         <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc">Descending</label>
         <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc">Ascending</label>
+      </div>
+
+      <div class="field">
+        <label for="layout">Layout</label><br/>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'large' %> value="large" id="layout_large"> <label for="layout_large">Large</label>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small">Small</label>
       </div>
 
       <%= submit_tag "Configure &raquo;", :class => "button" %>
