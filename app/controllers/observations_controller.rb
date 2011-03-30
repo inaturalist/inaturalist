@@ -119,7 +119,8 @@ class ObservationsController < ApplicationController
       
       format.widget do
         render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-          :show_user => true
+          :show_user => true,
+          :thelayout => params[:layout]
         })
       end
     end
@@ -728,8 +729,11 @@ class ObservationsController < ApplicationController
       format.atom
       format.csv { render_observations_to_csv }
       format.widget do
-        render :js => render_to_string(:partial => "widget.js.erb")
+        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
+          :thelayout => params[:layout]
+        })
       end
+      
     end
   end
   
@@ -808,11 +812,13 @@ class ObservationsController < ApplicationController
       @logo = params[:logo] 
     end
     @logo ||= "logo-small.gif"
+    @layout = params[:layout] || "large"
     url_params = {
       :format => "widget", 
       :limit => @limit, 
       :order => @order, 
-      :order_by => @order_by
+      :order_by => @order_by,
+      :layout => @layout
     }
     @widget_url = if @place
       observations_url(url_params.merge(:place_id => @place.id))
