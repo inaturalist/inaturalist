@@ -119,8 +119,7 @@ class ObservationsController < ApplicationController
       
       format.widget do
         render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-          :show_user => true,
-          :thelayout => params[:layout]
+          :show_user => true
         })
       end
     end
@@ -730,9 +729,7 @@ class ObservationsController < ApplicationController
       format.atom
       format.csv { render_observations_to_csv }
       format.widget do
-        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-          :thelayout => params[:layout]
-        })
+        render :js => render_to_string(:partial => "widget.js.erb")
       end
       
     end

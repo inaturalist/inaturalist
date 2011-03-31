@@ -1,5 +1,4 @@
-<%- show_user ||= false
-  thelayout ||= :large -%>
+<%- show_user ||= false -%>
 try {
   var msg = document.getElementById('inatwidgetmsg');
   <% if @observations.size >= 1 -%>
@@ -11,9 +10,10 @@ try {
       msg.style.visibility = 'hidden';
     }
   <% end %>
-  <% if( thelayout == 'large' ) %>  
-    document.write('<%= escape_javascript(render(:partial => "widget.html", :locals => {:show_user => show_user}).gsub(/\n\s*/, '')) %>')
-  <% else %>
+  
+  <% if params[:layout] == 'small' %>
     document.write('<%= escape_javascript(render(:partial => "widget_small.html", :locals => {:show_user => show_user}).gsub(/\n\s*/, '')) %>')
+  <% else %>
+    document.write('<%= escape_javascript(render(:partial => "widget.html", :locals => {:show_user => show_user}).gsub(/\n\s*/, '')) %>')
   <% end %>
 } catch (e) {}
