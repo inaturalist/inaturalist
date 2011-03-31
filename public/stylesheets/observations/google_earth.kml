@@ -1,287 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns:atom="http://www.w3.org/2005/Atom" xmlns="http://www.opengis.net/kml/2.2">
-	<Document>
-		<Style id="Amphibia">
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/amphibia-32px.png</href>
-				</Icon>
-			</IconStyle>
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-		</Style>
-		<Style id="Animalia">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/animalia-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Arachnida">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/arachnida-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Aves">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/aves-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Chordata">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/unknown-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Fungi">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/fungi-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Protozoa">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/protozoa-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Actinopterygii">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/actinopterygii-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Insecta">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/insecta-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Mammalia">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/mammalia-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Mollusca">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>  
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/mollusca-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Plantae">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>  
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/plantae-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Reptilia">
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/reptilia-32px.png</href>
-				</Icon>
-			</IconStyle>
-		</Style>
-		<Style id="Unknown">
-			<IconStyle>
-				<Icon>
-					<href>http://inaturalist.org/images/iconic_taxa/unknown-32px.png</href>
-				</Icon>
-			</IconStyle>
-
-			<BalloonStyle>
-				<!-- a background color for the balloon -->
-				<bgColor>ffffffff</bgColor>
-				<!-- styling of the balloon text -->
-				<text><![CDATA[
-					<b><font size="+3">$[name]</font></b>
-					<br/><br/>
-					<font size="+2">$[description]</font>
-					<br/>$[geDirections]
-
-					]]>
-				</text>
-			</BalloonStyle>
-
-		</Style>
-	</Document>
+  <Document>
+    <Style id="Amphibia">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DodgerBlue.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Animalia">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DodgerBlue.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Arachnida">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_OrangeRed.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Aves">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DodgerBlue.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Chordata">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DodgerBlue.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Fungi">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DeepPink.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Protozoa">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DarkMagenta.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Actinopterygii">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DodgerBlue.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Insecta">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_OrangeRed.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Mammalia">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DodgerBlue.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Mollusca">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_OrangeRed.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Plantae">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_iNatGreen.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Reptilia">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_DodgerBlue.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="Unknown">
+      <IconStyle>
+        <Icon>
+          <href>http://inaturalist.org/images/mapMarkers/mm_34_unknown.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+  </Document>
 </kml>

@@ -1,6 +1,7 @@
 xml.Placemark(:id => "ID#{observation.id}") do
   xml.name observation.species_guess
   xml.visibility "1"
+  xml.atom(:link, observation_url(observation))
   
   if observation.observed_on
     xml.TimeStamp do
@@ -16,20 +17,10 @@ xml.Placemark(:id => "ID#{observation.id}") do
     )
   end
   
-  # if observation.taxon && observation.taxon.iconic_taxon
-  if observation.iconic_taxon
-    xml.styleUrl(
-      url_for(:controller => '/', :only_path=>false) +
-      "stylesheets/observations/google_earth.kml" +
-      @prevent_cache + "#" +observation.iconic_taxon.name
-    )
-  else
-    xml.styleUrl(
-      url_for(:controller => '/', :only_path=>false) +
-      "stylesheets/observations/google_earth.kml" +
-      @prevent_cache +"#Unknown"
-    )
-  end
+  xml.styleUrl(
+    "#{root_url}stylesheets/observations/google_earth.kml#{@prevent_cache}" +
+      "##{observation.iconic_taxon.try(:name) || 'Unknown'}"
+  )
 
   if observation.latitude && observation.longitude
     xml.Point do
