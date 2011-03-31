@@ -15,10 +15,12 @@ xml.kml "xmlns" => "http://www.opengis.net/kml/2.2",
 
   xml.Document do
     unless @observations.blank?
-      sorted = @observations.reject{|o| o.observed_on.blank?}.sort_by(&:observed_on)
-      xml.TimeSpan do
-        xml.begin sorted.first.observed_on.to_s
-        xml.end sorted.last.observed_on.to_s
+      sorted = @observations.compact.reject{|o| o.observed_on.blank?}.sort_by(&:observed_on)
+      unless sorted.blank?
+        xml.TimeSpan do
+          xml.begin sorted.first.observed_on.to_s
+          xml.end sorted.last.observed_on.to_s
+        end
       end
       
       xml << render(:partial => "observation", :collection => @observations)
