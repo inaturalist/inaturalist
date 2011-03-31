@@ -25,7 +25,7 @@ class ObservationsController < ApplicationController
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
-  MOBILIZED = [:add_from_list, :nearby, :add_nearby]
+  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
@@ -877,12 +877,14 @@ class ObservationsController < ApplicationController
       redirect_to :back and return
     end
     
-    search_params, find_options = get_search_params(params)
-    search_params[:projects] = @project.id
-    if search_params[:q].blank?
-      get_paginated_observations(search_params, find_options)
-    else
-      search_observations(search_params, find_options)
+    unless request.format.mobile?
+      search_params, find_options = get_search_params(params)
+      search_params[:projects] = @project.id
+      if search_params[:q].blank?
+        get_paginated_observations(search_params, find_options)
+      else
+        search_observations(search_params, find_options)
+      end
     end
     
     respond_to do |format|
@@ -899,6 +901,7 @@ class ObservationsController < ApplicationController
           :name => "#{@project.title.html_safe} Observations"
         )
       end
+      format.mobile
     end
   end
 

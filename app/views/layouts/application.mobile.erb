@@ -7,19 +7,15 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=<%= @user_scalable.blank? ? '1' : @user_scalable %>" />
     <title>iNaturalist.org &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
-    <%#= render :partial => 'shared/common_stylesheets'%>
     <%= stylesheet_link_tag 'blueprint/plugins/buttons/buttons' %>
     <%= stylesheet_link_tag 'index' %>
-    
-    <%= javascript_include_tag 'application', 'inaturalist', 'jquery/jquery-1.3.2.min' %>
+    <%= javascript_include_tag 'jquery/jquery-1.5.1.min', 'application', 'inaturalist' %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
     <%= yield :extrahead %>
   </head>
 <body class="mobile">
-  <%# cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 2) do %>
-  <%= render :partial => 'shared/header' %>
-  <%# end %>
+  <%= render :partial => 'shared/header' unless @headless %>
 
   <% if flash[:notice] %>
   <p id="flash" class="notice"><%= flash[:notice] %></p> 
@@ -36,6 +32,6 @@
   <div id="modal_image_box" class="modalbox" style="display:none"></div>
   <div id="comment_preview" class="modalbox" style="display: none"></div>
 
-  <%= render :partial => 'shared/footer' %>
+  <%= render :partial => 'shared/footer' unless @footless %>
 </body>
 </html>

@@ -112,6 +112,7 @@ ActionController::Routing::Routes.draw do |map|
     p.project_terms "project/:id/terms", :action => "terms"
     p.projects_by_login 'projects/:login', :action => 'by_login',
       :requirements => { :login => simplified_login_regex }
+    p.project_map 'projects/:id/map', :action => 'map'
   end
   
   map.person_by_login 'people/:login', 
