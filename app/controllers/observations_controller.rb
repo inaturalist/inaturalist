@@ -887,6 +887,9 @@ class ObservationsController < ApplicationController
       end
     end
     
+    @kml_assets = @project.project_assets.all(:conditions => {
+      :asset_content_type => "application/vnd.google-earth.kml+xml"})
+    
     respond_to do |format|
       format.html
       format.atom do

@@ -19,13 +19,16 @@
         center: new google.maps.LatLng(38, -122),
         zoom: 8
       });
-      // var lyr = new google.maps.KmlLayer('http://inaturalist.org/attachments/taxon_ranges/15.kml')
-      // lyr.setMap(window.map)
+      var lyr;
+      <%- for kml_asset in @kml_assets %>
+      lyr = new google.maps.KmlLayer('<%= root_url.gsub(/\/$/, "") + kml_asset.asset.url %>');
+      lyr.setMap(window.map);
+      <% end %>
       
-      var obsLyr = new google.maps.KmlLayer('<%= project_observations_url(@project, :format => "kml", :per_page => 100) %>', {
-        // preserveViewport: true
-      })
-      obsLyr.setMap(window.map)
+      var obsLyr = new google.maps.KmlLayer('<%= project_observations_url(@project, :format => "kml") %>', {
+        preserveViewport: true
+      });
+      obsLyr.setMap(window.map);
     })
   </script>
 <%- end -%>

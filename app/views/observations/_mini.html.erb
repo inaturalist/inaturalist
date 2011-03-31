@@ -14,12 +14,13 @@ Note:
 
 observation ||= object || @observation
 image_size ||= nil
+image_style ||= nil
 -%>
 <% cache("observations/_mini/#{observation.id}") do %>
 <div id="mini-observation-<%= observation.id %>" class="clear mini observation">
   <a href="<%= observation_url(observation) %>">
-    <%= image_tag observation_image_url(observation, :size => image_size) || 
-      iconic_taxon_image_url(observation.iconic_taxon, :size => image_size), :class => "left" %>
+    <%= image_tag observation_image_url(observation, :size => image_size) || iconic_taxon_image_url(observation.iconic_taxon, :size => image_size), 
+      :class => "left", :style => "#{image_style}" %>
   </a>
   <div class="title">
     <% unless observation.species_guess.nil? or observation.species_guess.empty? %>

@@ -130,12 +130,33 @@
       <% end %>
     </div>
   </fieldset>
+  
+  <% if current_user.is_admin? -%>
+    <fieldset id="project_assets" class="">
+      <legend>Project Assets</legend>
+      
+      <ul>
+        <% for project_asset in @project.project_assets %>
+        <li>
+          <%= link_to project_asset.asset.url, project_asset.asset.url %>
+          <small style="margin-left: 10px">
+            <%= link_to "edit", edit_project_asset_path(project_asset) %>
+            <%= link_to "delete", project_asset, :method => :delete, :confirm => "Are you sure you want to delete this asset?", 
+              :class => 'description' %>
+          </small>
+        </li>
+        <% end %>
+      </ul>
+      
+      <%= link_to "Add asset", new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
+    </fieldset>
+  <% end -%>
 
   <div class="buttons">
     <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button" %>
-    <%= link_to "cancel", projects_path, :class => "button" %>
+    <%= link_to "Cancel", projects_path, :class => "button" %>
     <% unless project.new_record? -%>
-      <%= link_to "delete this project", project, :method => :delete, 
+      <%= link_to "Delete this project", project, :method => :delete, 
         :confirm => "Are you sure you want to delete this project?",
         :class => "minor delete button" %>
     <% end -%>

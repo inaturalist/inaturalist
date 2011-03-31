@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330050657) do
+ActiveRecord::Schema.define(:version => 20110331174611) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -250,8 +250,8 @@ ActiveRecord::Schema.define(:version => 20110330050657) do
     t.column "delta", :boolean, :default => false
   end
 
-  add_index "observations", ["user_id"], :name => "index_observations_on_user_id"
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
+  add_index "observations", ["user_id"], :name => "index_observations_on_user_id"
   add_index "observations", ["observed_on", "time_observed_at"], :name => "index_observations_on_observed_on_and_time_observed_at"
   add_index "observations", ["user_id", "observed_on", "time_observed_at"], :name => "index_observations_user_datetime"
 
@@ -358,6 +358,19 @@ ActiveRecord::Schema.define(:version => 20110330050657) do
 
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
 
+  create_table "project_assets", :force => true do |t|
+    t.column "project_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+    t.column "asset_file_name", :string
+    t.column "asset_content_type", :string
+    t.column "asset_file_size", :integer
+    t.column "asset_updated_at", :datetime
+  end
+
+  add_index "project_assets", ["project_id"], :name => "index_project_assets_on_project_id"
+  add_index "project_assets", ["asset_content_type"], :name => "index_project_assets_on_asset_content_type"
+
   create_table "project_observations", :force => true do |t|
     t.column "project_id", :integer
     t.column "observation_id", :integer
@@ -462,16 +475,15 @@ ActiveRecord::Schema.define(:version => 20110330050657) do
     t.column "ancestry", :string
   end
 
-  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
+  add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
+  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name"
   add_index "taxa", ["name"], :name => "index_taxa_on_name"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["is_iconic"], :name => "index_taxa_on_is_iconic"
-  add_index "taxa", ["lft"], :name => "index_taxa_on_lft"
   add_index "taxa", ["observations_count"], :name => "index_taxa_on_observations_count"
   add_index "taxa", ["listed_taxa_count"], :name => "index_taxa_on_listed_taxa_count"
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
   add_index "taxa", ["featured_at"], :name => "index_taxa_on_featured_at"
-  add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
 
   create_table "taxon_links", :force => true do |t|
     t.column "url", :string, :null => false

@@ -1,0 +1,20 @@
+<% form_for(@project_asset, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+  <%= f.text_field :project_id, :class => "text" %>
+  <% if f.object.asset.file? -%>
+    <% f.form_field :asset do %>
+      <%= link_to f.object.asset.url, f.object.asset.url %>
+      <%= link_to_function "(replace)", 
+        "$(this).parents('.field').after('#{f.file_field(:asset)}'); " + 
+        "$(this).parents('.field').hide()", :class => "small" %>
+    <% end %>
+  <% else %>
+    <%= f.file_field :asset %>
+  <% end -%>
+  <%= f.submit @project_asset.new_record? ? 'Create' : "Update", :class => "default button" %>
+  <%= link_to "Cancel", :back, :class => "button" %>
+  <% unless @project_asset.new_record? -%>
+    <%= link_to "Delete", @project_asset, :method => :delete, :confirm => "Are you sure you want to delete this asset?", 
+      :class => "minor delete button" %>
+  <% end -%>
+<% end %>

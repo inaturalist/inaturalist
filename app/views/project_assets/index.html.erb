@@ -1,0 +1,20 @@
+<h1>Listing project_assets</h1>
+
+<table>
+  <tr>
+    <th>Project</th>
+  </tr>
+
+<% @project_assets.each do |project_asset| %>
+  <tr>
+    <td><%=h project_asset.project_id %></td>
+    <td><%= link_to 'Show', project_asset %></td>
+    <td><%= link_to 'Edit', edit_project_asset_path(project_asset) %></td>
+    <td><%= link_to 'Destroy', project_asset, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New project_asset', new_project_asset_path %>
