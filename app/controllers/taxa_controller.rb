@@ -119,6 +119,9 @@ class TaxaController < ApplicationController
   end
 
   def show
+    if params[:entry]=='widget'
+      flash[:notice] = "Welcome to iNat! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
+    end
     @taxon ||= Taxon.find_by_id(params[:id], :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
     
