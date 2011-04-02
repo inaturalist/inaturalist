@@ -562,7 +562,7 @@
         <div class="quiet box clear inline buttonrow">
           <span class="inter">
             <%= image_tag po.project.icon.url(:mini), :style => "vertical-align: middle" %>
-            <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) ? 25 : 35)), po.project %>
+            <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) || curator_of?(po.project) ? 21 : 31)), po.project %>
           </span>
           <% if is_me?(@observation.user) || curator_of?(po.project) -%>
             <%= link_to "remove", 
