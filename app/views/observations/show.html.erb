@@ -294,7 +294,7 @@
           </ul>
         <% end %>
       <% end %>
-
+      
       <%= link_to "Delete", @observation, 
                   :confirm => "Are you sure you want to delete this observation?", 
                   :method => :delete, 
@@ -565,6 +565,13 @@
             <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) ? 25 : 35)), po.project %>
           </span>
           <% if is_me?(@observation.user) -%>
+            <%= link_to "remove", 
+              remove_project_observation_path(po.project_id, :observation_id => @observation.id),
+              :method => :delete,
+              :confirm => "Are you sure you want to remove this observation?",
+              :class => "pale button",
+              :style => "float: right; margin: 0" %>
+          <% elsif curator_of?(po.project) -%>
             <%= link_to "remove", 
               remove_project_observation_path(po.project_id, :observation_id => @observation.id),
               :method => :delete,
