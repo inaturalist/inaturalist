@@ -166,7 +166,7 @@ class ProjectsController < ApplicationController
       redirect_to :back and return
     end
     
-    unless @project_observation.observation.user_id == current_user.id || current_user.project_users.find_by_project_id(@project_observation.project.id).role=='curator'
+    unless @project_observation.observation.user_id == current_user.id || current_user.project_users.first(:conditions => {:project_id => @project_observation.project.id, :role => 'curator'})
       flash[:error] = "You can't remove other people's observations."
       redirect_to :back and return
     end
