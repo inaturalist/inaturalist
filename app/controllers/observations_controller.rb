@@ -1370,11 +1370,8 @@ class ObservationsController < ApplicationController
   # auto-joining
   def create_project_observations
     return unless params[:project_id] && @project = Project.find_by_id(params[:project_id])
-    @project_user = current_user.project_users.find_by_project_id(@project.id)
-    if !@project_user && @project.auto_join?
-      @project_user = @project.project_users.create(:user => current_user)
-    end
-    return unless @project_user
+    @project_user = current_user.project_users.find_or_create_by_project_id(@project.id)
+    return unless @project_user && @project_user.valid?
     @project.observations << @observations
   end
 end
