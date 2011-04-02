@@ -1,4 +1,5 @@
 class ProjectUser < ActiveRecord::Base
+  
   belongs_to :project
   belongs_to :user
   before_destroy :prevent_owner_from_leaving
@@ -11,6 +12,10 @@ class ProjectUser < ActiveRecord::Base
   
   def has_time_zone?
     user.time_zone?
+  end
+  
+  def is_curator?
+    role == 'curator'
   end
   
 end

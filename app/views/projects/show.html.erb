@@ -89,6 +89,7 @@
             :alt => h(project_user.user.login),
             :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
         <% end %>
+        <br /><%= link_to "View all members", project_members_path(@project) %>
       <% end -%>
     </div>
 

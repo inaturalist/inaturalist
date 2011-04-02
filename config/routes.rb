@@ -113,7 +113,10 @@ ActionController::Routing::Routes.draw do |map|
     p.project_terms "project/:id/terms", :action => "terms"
     p.projects_by_login 'projects/:login', :action => 'by_login',
       :requirements => { :login => simplified_login_regex }
+    p.project_members "projects/:id/members", :action => "members"
     p.project_map 'projects/:id/map', :action => 'map'
+    p.make_curator 'projects/:id/make_curator/:project_user_id', :action => 'make_curator'
+    p.remove_curator 'projects/:id/remove_curator/:project_user_id', :action => 'remove_curator'
   end
   
   map.resources :project_assets, :except => [:index, :show]

@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
     :default_url => "/attachment_defaults/general/:style.png"
   
   def add_owner_as_project_user
-    first_user = self.project_users.create(:user => user)
+    first_user = self.project_users.create(:user => user, :role => "curator")
     true
   end
   

@@ -81,6 +81,46 @@ class ProjectsController < ApplicationController
       :order => "projects.title")
   end
   
+  def members
+      @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
+  end
+  
+  def make_curator
+    @project_user = @project.project_users.find_by_id(params[:project_user_id])
+    if @project_user.blank?
+      flash[:error] = "Project user cannot be found"
+      redirect_to project_members_path(@project)
+      return
+    end
+    @project_user.role = 'curator'
+    if @project_user.save
+      flash[:notice] = "Added curator role"
+      redirect_to project_members_path(@project)
+    else
+      flash[:error] = "Project user was invalid: #{@project_user.errors.full_messages.to_sentence}"
+      redirect_to project_members_path(@project)
+      return
+    end
+  end
+  
+  def remove_curator
+    @project_user = @project.project_users.find_by_id(params[:project_user_id])
+    if @project_user.blank?
+      flash[:error] = "Project user cannot be found"
+      redirect_to project_members_path(@project)
+      return
+    end
+    @project_user.role = nil
+    if @project_user.save
+      flash[:notice] = "Removed curator role"
+      redirect_to project_members_path(@project)
+    else
+      flash[:error] = "Project user was invalid: #{@project_user.errors.full_messages.to_sentence}"
+      redirect_to project_members_path(@project)
+      return
+    end
+  end
+  
   def join
     return unless @project_user.blank? && request.post?
     @project_user = @project.project_users.create(:user => current_user)
