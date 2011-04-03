@@ -1377,16 +1377,16 @@ class ObservationsController < ApplicationController
     @project_user = current_user.project_users.find_or_create_by_project_id(@project.id)
     return unless @project_user && @project_user.valid?
     errors = []
-       @observations.each do |observation|
-         po = @project.project_observations.build(:observation => observation)
-         unless po.save
-           errors = (errors + po.errors.full_messages).uniq
-         end
+     @observations.each do |observation|
+       po = @project.project_observations.build(:observation => observation)
+       unless po.save
+         errors = (errors + po.errors.full_messages).uniq
        end
-
-       unless errors.blank?
-         flash[:error] = "Your observations couldn't be added to that " + 
-           "project: #{errors.to_sentence}"
-       end
-    end
+     end
+     
+     unless errors.blank?
+       flash[:error] = "Your observations couldn't be added to that " + 
+         "project: #{errors.to_sentence}"
+     end
+  end
 end
