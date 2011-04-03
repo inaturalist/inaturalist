@@ -108,6 +108,11 @@ module ApplicationHelper
    current_user.project_users.first(:conditions => {:project_id => project.id, :role => 'curator'})
   end
   
+  def member_of?(project)
+   return false unless logged_in?
+   current_user.project_users.first(:conditions => {:project_id => project.id})
+  end
+  
   def link_to_toggle(link_text, target_selector, options = {})
     options[:class] ||= ''
     options[:class] += ' togglelink'

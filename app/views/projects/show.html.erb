@@ -4,6 +4,13 @@
 
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
+  <style type="text/css" media="screen">
+    h2 {
+      line-height: 1;
+      margin: 0;
+      float: left;
+    }
+  </style>
 <%- end -%>
 
 <div id="pageheader" class="clear">
@@ -34,9 +41,15 @@
     <% if @project.icon.file? -%>
       <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
     <% end -%>
-    <%=h truncate @project.title, :length => 85 %>
+    <%=h truncate @project.title, :length => 55 %>
   </h2>
-
+  <span class="right">
+    <% if logged_in? %>
+    <%= link_to 'Add Observations to This Project!', new_observation_path(:project_id => @project.id), :id => 'addobs', :class => 'button default', :rel => "nofollow" %>
+    <% else %>
+    <%= link_to 'Sign Up to Add to This Project!', signup_url, :id => 'signup', :class => 'button default' %>
+    <% end %>
+  </span>
 </div>
 
 <div class="column span-17 append-1">

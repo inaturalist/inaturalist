@@ -251,6 +251,9 @@ class ObservationsController < ApplicationController
         options[:species_guess] = taxon.name
       end
     end
+    if !params[:project_id].blank? && (project = Project.find_by_id(params[:project_id]))
+      @project = Project.find_by_id(params[:project_id])
+    end
     options[:time_zone] = current_user.time_zone
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
       :observed_on_string].each do |obs_attr|
@@ -1371,7 +1374,7 @@ class ObservationsController < ApplicationController
   def create_project_observations
     return unless params[:project_id] && @project = Project.find_by_id(params[:project_id])
     @project_user = current_user.project_users.find_by_project_id(@project.id)
-    if !@project_user && @project.auto_join?
+    if !@project_user# && @project.auto_join?
       @project_user = @project.project_users.create(:user => current_user)
     end
     return unless @project_user
