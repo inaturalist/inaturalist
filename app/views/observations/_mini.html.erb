@@ -11,25 +11,28 @@ Requirements:
 Note:
   * see observations.css for styles
 =end
-
 observation ||= object || @observation
 image_size ||= nil
 image_style ||= nil
+description_length ||= 140
+include_description ||= false
+image_url ||= observation_image_url(observation, :size => image_size) || 
+  iconic_taxon_image_url(observation.iconic_taxon, :size => image_size)
 -%>
-<% cache("observations/_mini/#{observation.id}") do %>
 <div id="mini-observation-<%= observation.id %>" class="clear mini observation">
   <a href="<%= observation_url(observation) %>">
-    <%= image_tag observation_image_url(observation, :size => image_size) || iconic_taxon_image_url(observation.iconic_taxon, :size => image_size), 
+    <%= image_tag image_url, 
+      :width => image_size == "square" ? 75 : nil,
+      :height => image_size == "square" ? 75 : nil,
       :class => "left", :style => "#{image_style}" %>
   </a>
   <div class="title">
-    <% unless observation.species_guess.nil? or observation.species_guess.empty? %>
-    <%= link_to observation.species_guess, observation_url(observation) %>,
-    <% else %>
+    <% if observation.species_guess.blank? %>
     <%= link_to '<i>Something...</i>', observation_url(observation) %>,
+    <% else %>
+    <%= link_to observation.species_guess, observation_url(observation) %>,
     <% end %>
-    observed by <%= link_to observation.user.login, 
-                            observations_by_login_url(observation.user.login) %>
+    observed by <%= link_to observation.user.login, observations_by_login_url(observation.user.login) %>
   </div>
   <div class="meta">
     <% if observation.observed_on %>
@@ -40,9 +43,8 @@ image_style ||= nil
     <% end %>
   </div>
   
-  <% if defined? include_description and include_description %>
+  <% if include_description %>
   <div class="readable description attribute">
-    <% description_length ||= 140 %>
     <%= truncate(strip_links(observation.description), :length => description_length) %>
   </div>
   <% end %>
@@ -51,4 +53,3 @@ image_style ||= nil
     <%= link_to("View full observation", observation, :class => "readmore") %>
   </div>
 </div>
-<% end %>
