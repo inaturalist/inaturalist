@@ -105,7 +105,7 @@ module ApplicationHelper
   
   def curator_of?(project)
    return false unless logged_in?
-   current_user.project_users.find_by_project_id(project.id).role=="curator"
+   current_user.project_users.first(:conditions => {:project_id => project.id, :role => 'curator'})
   end
   
   def link_to_toggle(link_text, target_selector, options = {})
