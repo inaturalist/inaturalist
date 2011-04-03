@@ -697,7 +697,8 @@ class ObservationsController < ApplicationController
     end
     @observations = @taxa.map do |taxon|
       current_user.observations.build(:taxon => taxon, 
-        :species_guess => taxon.default_name.name)
+        :species_guess => taxon.default_name.name,
+        :time_zone => current_user.time_zone)
     end
     @step = 2
     render :new_batch
