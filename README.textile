@@ -1,24 +1,18 @@
-h1. "iNaturalist":http://github.com/inaturalist/inaturalist/tree/master powers "iNaturalist.org":http://inaturalist.org/
+Open source Rails app behind "iNaturalist.org":http://inaturalist.org/
 
-This application provides:
-* A taxonomy system geared toward species
-* A journal system
-* Flickr linking
-* Species explorer (uses the wikimedia api)
-* ID help system
-* Places support
-* Observation endpoints for:
-** Google Maps, Google Earth, CSV, and Atom
-
-"Development Setup Guide (under development)":http://wiki.github.com/inaturalist/inaturalist/development-setup-guide
+Want to help out?  Fork the project and check out the "Development Setup Guide":http://wiki.github.com/inaturalist/inaturalist/development-setup-guide (might be a bit out of date, contact "kueda":http://github.com/kueda if you hit problems getting set up).
 
 Please submit any bugs or annoyances to "Github":http://github.com/inaturalist/inaturalist/issues
 
 Active iNaturalist Developers are:
 * "kueda":http://github.com/kueda
+* "loarie":http://github.com/loarie
+
+
+With Prior work from:
 * "n8agrin":http://github.com/n8agrin
+* "smcgregor":http://github.com/smcgregor
+* Jessica Kline
+* Andrew McDiarmid
 
-Prior work by:
-Jessica Kline, Andrew McDiarmid, and "smcgregor":http://github.com/smcgregor
-
-This project is under a MIT license (See: MIT-LICENSE)
+This project is available under the MIT license (See: MIT-LICENSE)

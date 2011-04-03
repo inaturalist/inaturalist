@@ -12,6 +12,17 @@ describe ObservationsController do
         post :create
       }.should_not raise_error
     end
+    
+    it "should add project observations if auto join project specified" do
+      project = Project.make
+      user = User.make
+      login_as user
+      
+      project.users.find_by_id(user.id).should be_blank
+      post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id
+      project.users.find_by_id(user.id).should_not be_blank
+      project.observations.last.id.should == Observation.last.id
+    end
   end
   
   describe :update do

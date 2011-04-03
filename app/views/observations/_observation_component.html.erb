@@ -99,7 +99,7 @@ Some notes:
     <h4 class="label">Place</h4>
     <%= render :partial => 'observations/place_guess', :object => observation %>
   </div>
-  <% unless observation.new_record? -%>
+  <% unless observation.created_at.blank? -%>
     <div class="created_at attribute" style="display:none">
       <h4 class="label">Date added</h4>
       <span class="date">
