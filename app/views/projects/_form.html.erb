@@ -4,15 +4,33 @@
     .title_field,
     .description_field { margin-right: 20px; }
     
+    .project_icon_field { margin-right: 100px; }
+    
+    .project_type_field { margin-right: 50px; }
+    
     .description_field,
-    .terms_field,
-    .title_field,
-    .project_icon_field {
+    .terms_field{
       float: left;
       width: 465px;
     }
     
-    .title_field input,
+    .title_field {
+      float: left;
+      width: 400px;
+    }
+    
+    .project_type_field {
+      float: right;
+      width: 10px;
+    }
+    .project_icon_field {
+      float: left;
+      width: 250px;
+    }
+    
+    .title_field input {
+      width: 390px;
+    }
     .description_field textarea,
     .terms_field textarea {
       width: 450px;
@@ -69,6 +87,13 @@
       <%= f.file_field :icon, :label => false %>
     <% end -%>
   <% end %>
+  
+  <div>
+  <%= f.check_box :project_type, {}, :contest, nil %>
+    <label for="project_type">
+      <span class="description">Check if the project is a contest</span>
+    </label>
+  </div>
   
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>

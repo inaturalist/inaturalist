@@ -8,6 +8,10 @@ class ProjectObservation < ActiveRecord::Base
   
   after_save :refresh_project_list
   after_destroy :refresh_project_list
+  after_create :update_observation_counter_cache
+  after_destroy :update_observation_counter_cache
+  after_create :update_taxon_counter_cache
+  after_destroy :update_taxon_counter_cache
   
   def observed_by_project_member?
     project.project_users.exists?(:user_id => observation.user_id)
@@ -17,6 +21,31 @@ class ProjectObservation < ActiveRecord::Base
     return true if observation.taxon_id.blank?
     Project.send_later(:refresh_project_list, project_id, 
       :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
+    true
+  end
+  
+  def update_observation_counter_cache
+    project_user = ProjectUser.first(
+      :conditions => {:project_id => project_id, :user_id => observation.user_id}
+    )
+    thecount = project.project_observations.count(
+      :include => :observation,
+      :conditions => ["observations.user_id = ?", observation.user_id]
+    )
+    project_user.send_later(:update_attribute, :observations_count, thecount)
+    true
+  end
+  
+  def update_taxon_counter_cache
+    project_user = ProjectUser.first(
+      :conditions => {:project_id => project_id, :user_id => observation.user_id}
+    )
+    thecount = project.project_observations.count(
+      :select => "distinct observations.taxon_id",
+      :include => :observation,
+      :conditions => ["observations.user_id = ?", observation.user_id]
+    )
+    project_user.send_later(:update_attribute, :taxa_count, thecount)
     true
   end
   

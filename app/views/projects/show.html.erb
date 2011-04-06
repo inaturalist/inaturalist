@@ -89,6 +89,23 @@
       <li><%= link_to "Checklist", list_path(@project.project_list) %></li>
     </ul>
 
+    <% if @project.project_type=='contest' && !@project_users.blank? && @top_observers.first.taxa_count>0 -%>
+      <div id="top observers" style="margin-bottom: 10px">
+        <h3>Top Contributors</h3>
+        <% for project_user in @top_observers %>
+          <div id="top_observer">
+            <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+              observations_by_login_path(project_user.user.login),
+              :alt => h(project_user.user.login),
+              :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+            <%= link_to h(project_user.user.login), project_show_contributor_path(@project,project_user) %>
+            observed <%= project_user.taxa_count %> taxa
+          </div>
+        <% end %>
+        <br /><%= link_to "See more contributions", project_contributors_path(@project) %>
+      </div>
+    <% end %>
+    
     <div id="members" style="margin-bottom: 10px">
       <h3>Members</h3>
       <% if @project_users.blank? -%>

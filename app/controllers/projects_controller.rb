@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   end
   
   def show
+    @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 10)
     @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
     @project_observations = @project.project_observations.paginate(:page => 1, :include => :observation, :order => "id DESC")
     @observations = @project_observations.map(&:observation)
@@ -82,13 +83,43 @@ class ProjectsController < ApplicationController
   end
   
   def members
-      @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
+    @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "id DESC")
+  end
+  
+  def contributors
+    @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC")
+    respond_to do |format|
+      format.html do
+      end
+      format.widget do
+        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
+          :show_user => true
+          })
+      end
+    end
+  end
+  
+  def show_contributor
+    @contributor = @project.project_users.find_by_id(params[:project_user_id])
+    if @contributor.blank?
+      flash[:error] = "Contributor cannot be found"
+      redirect_to project_contributors_path(@project)
+      return
+    end
+    
+    @project_observations = @project.project_observations.paginate(:page => params[:page], :include => :observation, :conditions => ["observations.user_id = ?", @contributor.user])
+       
   end
   
   def make_curator
     @project_user = @project.project_users.find_by_id(params[:project_user_id])
     if @project_user.blank?
       flash[:error] = "Project user cannot be found"
+      redirect_to project_members_path(@project)
+      return
+    end
+    if @project.user_id != current_user.id
+      flash[:error] = "Only an admin can add project curator status"
       redirect_to project_members_path(@project)
       return
     end
@@ -107,6 +138,11 @@ class ProjectsController < ApplicationController
     @project_user = @project.project_users.find_by_id(params[:project_user_id])
     if @project_user.blank?
       flash[:error] = "Project user cannot be found"
+      redirect_to project_members_path(@project)
+      return
+    end
+    if @project.user_id != current_user.id
+      flash[:error] = "Only an admin can remove curator status"
       redirect_to project_members_path(@project)
       return
     end
