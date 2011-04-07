@@ -25,6 +25,7 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def update_observation_counter_cache
+    return true unless project.project_users.exists?
     project_user = ProjectUser.first(
       :conditions => {:project_id => project_id, :user_id => observation.user_id}
     )
@@ -40,6 +41,7 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def update_taxon_counter_cache
+    return true unless project.project_users.exists?
     project_user = ProjectUser.first(
       :conditions => {:project_id => project_id, :user_id => observation.user_id}
     )
