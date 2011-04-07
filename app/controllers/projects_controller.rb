@@ -92,9 +92,7 @@ class ProjectsController < ApplicationController
       format.html do
       end
       format.widget do
-        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-          :show_user => true
-          })
+        render :js => render_to_string(:partial => "widget.js.erb")
       end
     end
   end

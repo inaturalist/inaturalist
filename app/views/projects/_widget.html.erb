@@ -1,18 +1,15 @@
 <table>
 <% for project_user in @contributors %>
   <tr class="inat-contributor">
-    <td class="inat-contributorimage" valign="top" align="center">
-      <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-        observations_by_login_path(project_user.user.login),
-        :alt => h(project_user.user.login),
-        :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-      <%= link_to h(project_user.user.login), project_show_contributor_path(@project,project_user) %>
+    <td class="inat-contributor-pic">
+      <%- img_url = root_url + project_user.user.icon.url(:thumb) -%>
+      <%= link_to image_tag(img_url), project_show_contributor_url(@project, project_user) %>
+      <div class="inat-value">
+        <%= link_to project_user.user.login, project_show_contributor_url(@project, project_user) %>
+      </div>
     </td>
-    <td width="33%">
-      <span class="description"><%= project_user.taxa_count %> taxa observed</span>
-    </td>
-    <td width="33%">
-      <span class="description"><%= project_user.observations_count %> total observations</span>
+    <td>
+      <span class="inat-value"><b><%= project_user.taxa_count %></b> sp.<br /><b><%= project_user.observations_count %></b> obs.</span>
     </td>
 <% end %>
 </table>
