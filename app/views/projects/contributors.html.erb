@@ -1,0 +1,103 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Contributors to #{h truncate(@project.title, :length => 85)}" %>
+<%- end -%>
+<% content_for(:extracss) do %>
+<style type="text/css" media="screen">
+  td .usericon {
+    vertical-align: middle;
+  }
+  
+  td {
+    vertical-align: middle;
+  }
+  
+  td .description {
+    display: block;
+  }
+  
+  #active .usericon {
+    float: left;
+  }
+  
+  #active .attr {
+    display: block;
+    padding-left: 58px;
+    color: #888;
+  }
+  
+  #active .attr strong {
+    font-weight: normal;
+    color: #333;
+  }
+  
+  #active .attr.login {
+    font-size: 120%;
+  }
+  
+  #active .user {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+  }
+  
+  #letter_nav {
+    font-size: 100%;
+    margin-bottom: 1em;
+    text-align: left;
+  }
+  
+  #invite {
+    float: right;
+  }
+  
+  #invite .button {
+    margin-right: 0;
+  }
+</style>
+<% end %>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  
+  <h2>
+    <% if @project.icon.file? -%>
+      <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+    <% end -%>
+    <%= @title %>
+  </h2>
+
+</div>
+
+<div id="members" style="margin-bottom: 10px">
+  <h3>Top Contributors</h3>
+  <% if @contributors.blank? -%>
+    <div class="noresults">
+      No members yet.
+    </div>
+  <% else %>
+    <table class="readable">
+    <% for project_user in @contributors %>
+      <tr>
+        <td width="33%">
+          <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+            observations_by_login_path(project_user.user.login),
+            :alt => h(project_user.user.login),
+            :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+          <%= link_to h(project_user.user.login), project_show_contributor_path(@project,project_user) %>
+        </td>
+        <td width="33%">
+          <span class="description"><%= project_user.taxa_count %> taxa observed</span>
+        </td>
+        <td width="33%">
+          <span class="description"><%= project_user.observations_count %> total observations</span>
+        </td>
+    <% end %>
+    </table>
+    <%= will_paginate @contributors %>
+  <% end -%>
+</div>
+
+<div class="breadcrumbs">
+  <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+</div><!-- /#breadcrumbs -->

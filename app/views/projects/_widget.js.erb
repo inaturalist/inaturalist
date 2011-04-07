@@ -1,0 +1,15 @@
+try {
+  var msg = document.getElementById('inatwidgetmsg');
+  <% if @contributors.size >= 1 -%>
+    if (msg) {
+      msg.style.visibility = 'visible';
+    }
+  <% else %>
+    if (msg) {
+      msg.style.visibility = 'hidden';
+    }
+  <% end %>
+  
+  document.write('<%= escape_javascript(render(:partial => "widget.html").gsub(/\n\s*/, '')) %>')
+  
+} catch (e) {}

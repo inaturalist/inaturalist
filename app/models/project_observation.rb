@@ -28,9 +28,12 @@ class ProjectObservation < ActiveRecord::Base
     project_user = ProjectUser.first(
       :conditions => {:project_id => project_id, :user_id => observation.user_id}
     )
-    thecount = project.project_observations.count(
-      :include => :observation,
-      :conditions => ["observations.user_id = ?", observation.user_id]
+    thecount = project_user.project.project_observations.count(
+      :include => {:observation => :taxon},
+      :conditions => [
+        "observations.user_id = ? AND taxa.rank_level <= ?", 
+        project_user.user_id, Taxon::RANK_LEVELS['species']
+      ]
     )
     project_user.send_later(:update_attribute, :observations_count, thecount)
     true
@@ -40,10 +43,13 @@ class ProjectObservation < ActiveRecord::Base
     project_user = ProjectUser.first(
       :conditions => {:project_id => project_id, :user_id => observation.user_id}
     )
-    thecount = project.project_observations.count(
+    thecount = project_user.project.project_observations.count(
       :select => "distinct observations.taxon_id",
-      :include => :observation,
-      :conditions => ["observations.user_id = ?", observation.user_id]
+      :include => {:observation => :taxon},
+      :conditions => [
+        "observations.user_id = ? AND taxa.rank_level <= ?", 
+        project_user.user_id, Taxon::RANK_LEVELS['species']
+      ]
     )
     project_user.send_later(:update_attribute, :taxa_count, thecount)
     true
