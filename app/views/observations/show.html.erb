@@ -150,29 +150,26 @@
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
-  <%= gmap_include_tag %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag('jquery/jquery.ui.all.packed',
                              'jquery/plugins/jqModal',
                              'modal_image',
                              'jquery/plugins/inat/taxon_selectors', 
-                             'inaturalist/map2') %>
+                             'inaturalist/map3') %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // setup the map if one is needed
       var observation = <%= @observation.to_json(:include => [:user, :taxon, :iconic_taxon]) %>;
-      if (observation.latitude != null && 
-          observation.longitude != null &&
-          typeof(observation.latitude) != 'undefined' && 
-          typeof(observation.longitude) != 'undefined') {
+      if (observation.latitude && observation.longitude) {
         var map = iNaturalist.Map.createMap({
           lat: 40.714, 
           lng: -98.262, 
           zoom: 3, 
           controls: 'small'
         });
-        map.addObservation(observation, {clickable: false});
-        var center = new GLatLng(observation.latitude, observation.longitude);
+        map.addObservation(observation, {clickable: false, showAccuracy: true});
+        var center = new google.maps.LatLng(observation.latitude, observation.longitude);
         map.setCenter(center); 
       }
       
@@ -349,6 +346,11 @@
           <span class="longitude">
             Lon: <%= @observation.longitude %>
           </span>
+          <% unless @observation.positional_accuracy.blank? -%>
+            <div class="positional_accuracy">
+              Accuracy: <%= @observation.positional_accuracy %>m
+            </div>
+          <% end -%>
         </div>
         <% end %>
       </div>

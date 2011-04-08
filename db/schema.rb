@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110405041659) do
+ActiveRecord::Schema.define(:version => 20110408005124) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -248,6 +248,7 @@ ActiveRecord::Schema.define(:version => 20110405041659) do
     t.column "time_zone", :string
     t.column "location_is_exact", :boolean, :default => false
     t.column "delta", :boolean, :default => false
+    t.column "positional_accuracy", :integer
   end
 
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
@@ -478,18 +479,15 @@ ActiveRecord::Schema.define(:version => 20110405041659) do
     t.column "ancestry", :string
   end
 
-  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
+  add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
+  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name"
   add_index "taxa", ["name"], :name => "index_taxa_on_name"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["is_iconic"], :name => "index_taxa_on_is_iconic"
-  add_index "taxa", ["lft"], :name => "index_taxa_on_lft"
-  add_index "taxa", ["rgt"], :name => "index_taxa_on_rgt"
-  add_index "taxa", ["lft", "rgt"], :name => "index_taxa_on_lft_and_rgt"
   add_index "taxa", ["observations_count"], :name => "index_taxa_on_observations_count"
   add_index "taxa", ["listed_taxa_count"], :name => "index_taxa_on_listed_taxa_count"
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
   add_index "taxa", ["featured_at"], :name => "index_taxa_on_featured_at"
-  add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
 
   create_table "taxon_links", :force => true do |t|
     t.column "url", :string, :null => false

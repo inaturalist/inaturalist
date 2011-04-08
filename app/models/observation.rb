@@ -92,7 +92,8 @@ class Observation < ActiveRecord::Base
               :set_taxon_from_species_guess,
               :set_iconic_taxon,
               :keep_old_taxon_id,
-              :set_latlon_from_place_guess
+              :set_latlon_from_place_guess,
+              :set_positional_accuracy
                  
   after_save :refresh_lists,
              :update_identifications_after_save
@@ -718,6 +719,14 @@ class Observation < ActiveRecord::Base
     return true if place_guess.blank?
     if matches = place_guess.strip.match(/(-?\d+(?:\.\d+)?),\s?(-?\d+(?:\.\d+)?)/)
       self.latitude, self.longitude = matches[1..2]
+    end
+    true
+  end
+  
+  # Not *entirely* sure this is the best strategy...
+  def set_positional_accuracy
+    if (latitude_changed? || longitude_changed?) && !positional_accuracy_changed?
+      self.positional_accuracy = nil
     end
     true
   end

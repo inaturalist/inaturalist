@@ -1,13 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Observation, "creation" do
-  # fixtures :taxa, :taxon_names, :users, :lists, :listed_taxa, :observations
   before(:each) do
-    # @observation = Observation.new(
-    #   :user => users(:quentin),
-    #   :taxon => taxa(:Calypte_anna),
-    #   :observed_on_string => 'yesterday at 1pm'
-    # )
     @taxon = Taxon.make
     @observation = Observation.make(:taxon => @taxon, :observed_on_string => 'yesterday at 1pm')
   end
@@ -17,14 +11,9 @@ describe Observation, "creation" do
   end
   
   it "should not be in the future" do
-    # future_observation = Observation.make(
-    #   :observed_on_string => '2 weeks from now'
-    # )
     lambda {
       Observation.make(:observed_on_string => '2 weeks from now')
     }.should raise_error(ActiveRecord::RecordInvalid)
-    # future_observation.valid?
-    # future_observation.errors.on(:observed_on).should_not be(nil)
   end
   
   it "should properly set date and time" do
@@ -185,42 +174,32 @@ describe Observation, "creation" do
 end
 
 describe Observation, "updating" do
-  fixtures :observations, :identifications, :users, :taxa, :lists, 
-           :listed_taxa, :goal_participants, :goal_contributions, :goal_rules, 
-           :goals
   before(:each) do
-    @observation = Observation.create(
-      :user => users(:jill),
-      :taxon => Taxon.find_by_name('Calypte anna'),
-      :observed_on_string => 'yesterday at 1pm',
-      :time_zone => 'UTC'
-    )
+    @observation = Observation.make(
+      :taxon => Taxon.make, 
+      :observed_on_string => 'yesterday at 1pm', 
+      :time_zone => 'UTC')
   end
   
-  it "should destroy the owner's identifications if the taxon has been " + 
-     "removed" do
-    observation = Observation.first
-    observation.identifications.select do |ident|
-      ident.user_id == observation.user_id
+  it "should destroy the owner's identifications if the taxon has been removed" do
+    @observation.identifications.select do |ident|
+      ident.user_id == @observation.user_id
     end.empty?.should_not be(true)
-    observation.taxon_id = nil
-    observation.save
-    observation.reload
-    observation.identifications.select do |ident|
+    @observation.taxon_id = nil
+    @observation.save
+    @observation.reload
+    @observation.identifications.select do |ident|
       ident.user_id == observation.user_id
     end.empty?.should be(true)
   end
   
   it "should update the owner's identification if the taxon has changed" do
-    @observation.save
-    @observation.reload
-    
     owners_ident = @observation.identifications.select do |ident|
       ident.user_id == @observation.user_id
     end.first
     owners_ident.taxon.name.should == @observation.taxon.name
     
-    psre = Taxon.find_by_name('Pseudacris regilla')
+    psre = Taxon.make
     @observation.taxon.should_not be(psre)
     @observation.taxon = psre
     @observation.save
@@ -263,23 +242,32 @@ describe Observation, "updating" do
   end
   
   it "should set an iconic taxon if the taxon was set" do
-    @observation.taxon.should_not be(nil)
-    @observation.save
-    @observation.iconic_taxon.name.should == 'Aves'
+    obs = Observation.make
+    obs.iconic_taxon.should be_blank
+    taxon = Taxon.make(:iconic_taxon => Taxon.make(:is_iconic => true))
+    taxon.iconic_taxon.should_not be_blank
+    obs.taxon = taxon
+    obs.save!
+    obs.iconic_taxon.name.should == taxon.iconic_taxon.name
   end
   
   it "should remove an iconic taxon if the taxon was removed" do
-    @observation.save
-    @observation.iconic_taxon.should_not be(nil)
-    @observation.taxon = nil
-    @observation.valid?
-    @observation.errors.empty?.should be(true)
-    @observation.save
-    @observation.reload
-    @observation.iconic_taxon.should be(nil)
+    taxon = Taxon.make(:iconic_taxon => Taxon.make(:is_iconic => true))
+    taxon.iconic_taxon.should_not be_blank
+    obs = Observation.make(:taxon => taxon)
+    obs.iconic_taxon.should_not be_blank
+    obs.taxon = nil
+    obs.save!
+    obs.reload
+    obs.iconic_taxon.should be_blank
   end
   
-  
+  it "should nilify positional_accuracy if accuracy not set and position changed" do
+    obs = Observation.make(:latitude => 1, :longitude => 1, :positional_accuracy => 10)
+    obs.update_attributes(:latitude => 2)
+    obs.reload
+    obs.positional_accuracy.should be_blank
+  end
 end
 
 describe Observation, "destruction" do
