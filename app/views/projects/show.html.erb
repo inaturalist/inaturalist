@@ -97,6 +97,11 @@
     </ul>
 
     <% if @project.project_type=='contest' && !@project_users.blank? && @top_observers.first.taxa_count>0 -%>
+      <h3>Unique Contributions</h3>
+      <div id="species-count" style="font-size: larger">
+        <b><%= @species_count %> Species Observed</b>
+      </div>
+      </br>
       <div id="top observers" style="margin-bottom: 10px">
         <h3>Top Contributors</h3>
         <% for project_user in @top_observers %>

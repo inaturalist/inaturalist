@@ -17,6 +17,7 @@ class ProjectsController < ApplicationController
   end
   
   def show
+    @species_count = List.first(:conditions => ["project_id = ?", @project.id]).species_count
     @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 5, :conditions => "taxa_count > 0")
     @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
     @project_observations = @project.project_observations.paginate(:page => 1, :include => :observation, :order => "id DESC")
@@ -84,6 +85,17 @@ class ProjectsController < ApplicationController
   
   def members
     @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "id DESC")
+  end
+  
+  def species_count
+    @species_count = List.first(:conditions => ["project_id = ?", @project.id]).species_count
+    respond_to do |format|
+      format.html do
+      end
+      format.widget do
+        render :js => render_to_string(:partial => "species_count_widget.js.erb")
+      end
+    end
   end
   
   def contributors
