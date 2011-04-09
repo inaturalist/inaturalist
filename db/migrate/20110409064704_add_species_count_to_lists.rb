@@ -1,6 +1,6 @@
 class AddSpeciesCountToLists < ActiveRecord::Migration
   def self.up
-    add_column :lists, :species_count, :int
+    add_column :lists, :species_count, :integer, :default => 0
     List.all.each do |the_list|
       the_list.species_count = the_list.listed_taxa.count(
         'DISTINCT(taxon.id)',

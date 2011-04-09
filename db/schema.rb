@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(:version => 20110409064704) do
     t.column "last_synced_at", :datetime
     t.column "place_id", :integer
     t.column "project_id", :integer
-    t.column "species_count", :integer
+    t.column "species_count", :integer, :default => 0
   end
 
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
