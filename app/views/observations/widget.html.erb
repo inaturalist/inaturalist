@@ -63,7 +63,7 @@
 <div id="pageheader">
   <div id="widgetnav" class="right">
     <span class="meta">Observations</span>
-    <%= link_to "by you", url_for(), :class => "#{'selected' unless @place || @taxon}" %>
+    <%= link_to "by you", url_for(), :class => "#{'selected' unless @place || @taxon || @project}" %>
     <span class="meta">&middot;</span>
     <%= link_to_function "from a place", "$('#placechooser').show(); $(this).hide()",
       :id => "placechooserlink",
@@ -104,6 +104,10 @@
       <% if @taxon -%>
         <input type="text" id="species_guess" value="<%= @taxon.name if @taxon %>"/>
         <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
+      <%end -%>
+      <% if @project -%>
+        <input type="text" id="project_title" value="<%= @project.title if @project %>"/>
+        <input type="hidden" name="project_id" value="<%= @project.id if @project %>"/>
       <%end -%>
 
       <div class="field">
@@ -157,7 +161,9 @@
   <div class="last column span-18">
     <div id="loading" class="loading status" style="display: none">Loading preview and code...</div>
     <div id="widget_preview_and_code">
-      <%= render :partial => 'widget_preview_and_code', :locals => {:place => @place, :taxon => @taxon} %>
+      <%= render :partial => 'widget_preview_and_code', :locals => {
+        :place => @place, :taxon => @taxon, :project => @project
+      } %>
     </div>
   </div>
   

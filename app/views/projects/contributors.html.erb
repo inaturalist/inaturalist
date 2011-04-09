@@ -84,7 +84,7 @@
             observations_by_login_path(project_user.user.login),
             :alt => h(project_user.user.login),
             :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-          <%= link_to h(project_user.user.login), project_show_contributor_path(@project,project_user) %>
+          <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
         </td>
         <td width="33%">
           <span class="description"><%= project_user.taxa_count %> taxa observed</span>

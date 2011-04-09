@@ -39,6 +39,12 @@
     #place_q { width: 300px; }
     .observationrules { clear: left; }
     
+    .checkbox-field{
+      max-width: 60px;
+      float: right;
+      display: block;
+    }
+    
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
@@ -88,11 +94,11 @@
     <% end -%>
   <% end %>
   
-  <div>
-  <%= f.check_box :project_type, {}, :contest, nil %>
+  <div class="checkbox-field">
     <label for="project_type">
-      <span class="description">Check if the project is a contest</span>
+      <span class="description">Contest?</span>
     </label>
+    <%= f.check_box :project_type, {}, :contest, nil %>
   </div>
   
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>

@@ -270,4 +270,12 @@ module ApplicationHelper
     @__serial_id
   end
   
+  def image_url(source)
+     abs_path = image_path(source)
+     unless abs_path =~ /\Ahttp/
+       abs_path = "http#{'s' if https?}://#{host_with_port}/#{abs_path}"
+     end
+     abs_path
+  end
+  
 end

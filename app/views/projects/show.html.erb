@@ -10,6 +10,13 @@
       margin: 0;
       float: left;
     }
+    .inat-contributor-block {
+        display: inline-block;
+    }
+    .inat-contributor-pic {
+      text-align: center;
+      max-width: 50px;
+      float: left;}
   </style>
 <%- end -%>
 
@@ -93,17 +100,22 @@
       <div id="top observers" style="margin-bottom: 10px">
         <h3>Top Contributors</h3>
         <% for project_user in @top_observers %>
-          <div id="top_observer">
-            <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-              observations_by_login_path(project_user.user.login),
-              :alt => h(project_user.user.login),
-              :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-            <%= link_to h(project_user.user.login), project_show_contributor_path(@project,project_user) %>
-            observed <%= project_user.taxa_count %> taxa
+          <div class="inat-contributor-block">
+            <div class="inat-contributor-pic">
+              <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+                observations_by_login_path(project_user.user.login),
+                :alt => h(project_user.user.login),
+                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+              <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
+            </div>
+            <div class="inat-contributor-pic">
+              <b><%= project_user.taxa_count %></b> sp.<br /><b><%= project_user.observations_count %></b> obs.
+            </div>
           </div>
+          <br />
         <% end %>
-        <br /><%= link_to "See more contributions", project_contributors_path(@project) %>
       </div>
+      <%= link_to "See more contributions", project_contributors_path(@project) %>
     <% end %>
     
     <div id="members" style="margin-bottom: 10px">
@@ -132,4 +144,9 @@
     <span class="description">created this project on <%= @project.created_at.to_date.to_s(:long) %></span>
   </div>
 
+  <div class="last column span-6">
+    <div class="small meta right">
+      <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project) %>
+    </div>
+  </div>
 </div>
