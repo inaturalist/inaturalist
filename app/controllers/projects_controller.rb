@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_filter :login_required, :except => [:index, :show, :search, :map]
+  before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :species_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map]
   before_filter :load_project_user, :except => [:index, :search, :new, :join, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
