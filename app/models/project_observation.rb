@@ -25,11 +25,9 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def update_observation_counter_cache
-    return true unless project.project_users.exists?
-    project_user = ProjectUser.first(
-      :conditions => {:project_id => project_id, :user_id => observation.user_id}
-    )
-    thecount = project_user.project.project_observations.count(
+    project_user = project.project_users.find_by_user_id(observation.user_id)
+    return true unless project_user
+    thecount = project.project_observations.count(
       :include => {:observation => :taxon},
       :conditions => [
         "observations.user_id = ? AND taxa.rank_level <= ?", 
@@ -41,10 +39,8 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def update_taxon_counter_cache
-    return true unless project.project_users.exists?
-    project_user = ProjectUser.first(
-      :conditions => {:project_id => project_id, :user_id => observation.user_id}
-    )
+    project_user = project.project_users.find_by_user_id(observation.user_id)
+    return true unless project_user
     thecount = project_user.project.project_observations.count(
       :select => "distinct observations.taxon_id",
       :include => {:observation => :taxon},

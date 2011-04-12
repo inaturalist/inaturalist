@@ -5,7 +5,7 @@ describe ProjectObservation, "creation" do
     stamp = Time.now
     ProjectObservation.make(:observation => Observation.make(:taxon => Taxon.make))
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    # jobs.each {|j| puts j.handler}
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
   end
 end
