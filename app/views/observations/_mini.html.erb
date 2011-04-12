@@ -50,6 +50,6 @@ image_url ||= observation_image_url(observation, :size => image_size) ||
   <% end %>
   
   <div class="meta">
-    <%= link_to("View full observation", observation, :class => "readmore") %>
+    <%= link_to("View full observation", observation_url(observation), :class => "readmore") %>
   </div>
 </div>
