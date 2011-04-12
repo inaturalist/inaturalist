@@ -804,6 +804,7 @@ class ObservationsController < ApplicationController
   end
   
   def widget
+    @project = Project.find_by_id(params[:project_id]) if params[:project_id]
     @place = Place.find_by_id(params[:place_id]) if params[:place_id]
     @taxon = Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
     @order_by = params[:order_by] || "observed_on"
@@ -815,17 +816,21 @@ class ObservationsController < ApplicationController
     end
     @logo ||= "logo-small.gif"
     @layout = params[:layout] || "large"
+    @default_image = params[:default_image] || false
     url_params = {
       :format => "widget", 
       :limit => @limit, 
       :order => @order, 
       :order_by => @order_by,
-      :layout => @layout
+      :layout => @layout,
+      :default_image => @default_image
     }
     @widget_url = if @place
       observations_url(url_params.merge(:place_id => @place.id))
     elsif @taxon
       observations_url(url_params.merge(:taxon_id => @taxon.id))
+    elsif @project
+      project_observations_url(@project.id, url_params)
     elsif logged_in?
       observations_by_login_feed_url(current_user.login, url_params)
     end
@@ -904,6 +909,11 @@ class ObservationsController < ApplicationController
           :description => "Observations feed for the iNaturalist project '#{@project.title.html_safe}'", 
           :name => "#{@project.title.html_safe} Observations"
         )
+      end
+      format.widget do
+        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
+          :show_user => true
+        })
       end
       format.mobile
     end

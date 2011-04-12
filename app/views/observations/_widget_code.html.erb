@@ -3,6 +3,7 @@
   base_url = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
   place ||= @place
   taxon ||= @taxon
+  project ||= @project
 -%>
 <style type="text/css" media="screen">
 .inat-widget { font-family: Georgia, serif; padding: 10px; line-height: 1;}
@@ -28,7 +29,7 @@
   <script type="text/javascript" charset="utf-8" src="<%= widget_url %>"></script>
   <table>
     <tr class="inat-user">
-      <% unless place || taxon %>
+      <% unless place || taxon || project %>
         <td class="inat-user-image">
           <%- img_url = base_url + current_user.icon.url(:thumb) -%>
           <%= link_to image_tag(img_url, :class => 'usericon'), 
@@ -41,6 +42,8 @@
             <%= link_to "View more observations near #{place.name} on <nobr>iNaturalist &raquo;</nobr>", place_url(place) %>
           <% elsif taxon -%>
               <%= link_to "View more observations of #{taxon.name} on <nobr>iNaturalist &raquo;</nobr>", taxon_url(taxon) %>
+          <% elsif project -%>
+                <%= link_to "View more observations from #{project.title} on <nobr>iNaturalist &raquo;</nobr>", project_observations_url(project.id) %>
           <% else %>
             <%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>", 
               observations_by_login_url(current_user.login) %>
