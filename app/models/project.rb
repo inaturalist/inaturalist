@@ -27,6 +27,9 @@ class Project < ActiveRecord::Base
     :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
   
+  CONTEST_TYPE = 'contest'
+  PROJECT_TYPES = [CONTEST_TYPE]
+  
   def add_owner_as_project_user
     first_user = self.project_users.create(:user => user, :role => "curator")
     true
@@ -35,6 +38,10 @@ class Project < ActiveRecord::Base
   def create_the_project_list
     create_project_list
     true
+  end
+  
+  def contest?
+    project_type == CONTEST_TYPE
   end
   
   def self.refresh_project_list(project, options = {})

@@ -1,49 +1,22 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
-    .title_field,
-    .description_field { margin-right: 20px; }
+    .title_field, .description_field { margin-right: 20px; }
     
-    .project_icon_field { margin-right: 100px; }
-    
-    .project_type_field { margin-right: 50px; }
-    
-    .description_field,
-    .terms_field{
+    .description_field, .terms_field, .title_field {
       float: left;
       width: 465px;
     }
     
-    .title_field {
+    .project_icon_field { margin-right: 10px; }
+    .project_type_field, .project_icon_field {
       float: left;
-      width: 400px;
+      width: 225px;
     }
-    
-    .project_type_field {
-      float: right;
-      width: 10px;
-    }
-    .project_icon_field {
-      float: left;
-      width: 250px;
-    }
-    
-    .title_field input {
-      width: 390px;
-    }
-    .description_field textarea,
-    .terms_field textarea {
-      width: 450px;
-    }
-    
+    .title_field input { width: 390px; }
+    .description_field textarea, .terms_field textarea { width: 450px; }
     #place_q { width: 300px; }
     .observationrules { clear: left; }
-    
-    .checkbox-field{
-      max-width: 60px;
-      float: right;
-      display: block;
-    }
     
   </style>
 <%- end -%>
@@ -90,16 +63,11 @@
         <%= f.file_field :icon, :label => false %>
       </div>
     <% else %>
-      <%= f.file_field :icon, :label => false %>
+      <%= f.file_field :icon, :label => false, :size => 20 %>
     <% end -%>
   <% end %>
   
-  <div class="checkbox-field">
-    <label for="project_type">
-      <span class="description">Contest?</span>
-    </label>
-    <%= f.check_box :project_type, {}, :contest, nil %>
-  </div>
+  <%= f.select :project_type, Project::PROJECT_TYPES, :include_blank => "normal" %>
   
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
