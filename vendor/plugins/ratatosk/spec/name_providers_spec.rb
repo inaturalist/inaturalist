@@ -309,6 +309,7 @@ describe Ratatosk::NameProviders::UBioNameProvider do
     results.select {|tn| tn.name == name}.size.should_not > 1
   end
   
+  it "should not make identical taxa for Formica francoeuri"
 end
 
 describe Ratatosk::NameProviders::UBioTaxonNameAdapter do
