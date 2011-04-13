@@ -45,10 +45,14 @@
   </div><!-- /#breadcrumbs -->
   
   <h2>
-    <% if @project.icon.file? -%>
-      <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+    <% if @logo_image -%>
+      <%= image_tag @logo_image.asset.url %>
+    <% else %>
+      <% if @project.icon.file? -%>
+        <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+      <% end -%>
+      <%=h truncate @project.title, :length => 55 %>
     <% end -%>
-    <%=h truncate @project.title, :length => 55 %>
   </h2>
   <span class="right">
     <% if logged_in? %>
