@@ -626,7 +626,7 @@
               <% end -%>
               
               <% if %w(introduced naturalised managed).include?(lt.establishment_means) -%>
-                <div class="small description">non-native</div>
+                <div class="small description"><%= lt.establishment_means %></div>
               <% elsif lt.establishment_means == 'invasive' %>
                 <div class="small description" style="color: deeppink">invasive</div>
               <% end -%>
