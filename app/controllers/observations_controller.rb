@@ -880,7 +880,8 @@ class ObservationsController < ApplicationController
   def project
     unless @project = Project.find_by_id(params[:id])
       flash[:error] = "That project doesn't exist."
-      redirect_to :back and return
+      redirect_to request.env["HTTP_REFERER"] || projects_path
+      return
     end
     
     unless request.format.mobile?
