@@ -27,7 +27,7 @@ class Comment < ActiveRecord::Base
   end
   
   def update_parent_counter_cache
-    if parent.class.column_names.include?("comments_count")
+    if parent && parent.class.column_names.include?("comments_count")
       parent.update_attribute(:comments_count, parent.comments.count)
     end
     true
