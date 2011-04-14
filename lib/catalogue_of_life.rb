@@ -4,7 +4,7 @@
 # You have been warned.
 #
 class CatalogueOfLife
-  ENDPOINT = 'http://www.catalogueoflife.org/col/webservice/annual-checklist/2010/'.freeze
+  ENDPOINT = 'http://www.catalogueoflife.org/annual-checklist/2010/webservice'.freeze
 
   attr_reader :timeout
 
@@ -19,7 +19,7 @@ class CatalogueOfLife
   #
   def request(method, args = {})
     params = args
-    url    = ENDPOINT + "#{method}.php?" + 
+    url    = ENDPOINT + "?" + 
              params.map {|k,v| "#{k}=#{v}"}.join('&')
     uri    = URI.encode(url.gsub("'", '*'))
     response = nil
