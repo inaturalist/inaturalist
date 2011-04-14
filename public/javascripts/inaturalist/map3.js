@@ -107,8 +107,8 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   observation.marker = marker;
   
   if (options.showAccuracy && observation.positional_accuracy && observation.positional_accuracy > 0) {
-    var color = observation.iconic_taxon ? iNaturalist.Map.ICONIC_TAXON_COLORS[observation.iconic_taxon.name] : 'blue'
-    new google.maps.Circle({
+    var color = observation.iconic_taxon ? iNaturalist.Map.ICONIC_TAXON_COLORS[observation.iconic_taxon.name] : '#333333'
+    var circle = new google.maps.Circle({
       strokeColor: color,
       strokeOpacity: 0.8,
       strokeWeight: 2,
@@ -118,7 +118,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
       center: marker.getPosition(),
       radius: observation.positional_accuracy
     })
-  };
+  }
   
   // return the observation for futher use
   return observation;
@@ -515,18 +515,18 @@ iNaturalist.Map.ICONIC_TAXON_ICONS = {
 };
 
 iNaturalist.Map.ICONIC_TAXON_COLORS = {
-  Protozoa: 'DarkMagenta',
-  Animalia: 'DodgerBlue',
+  Protozoa: '#8B008B', // 'DarkMagenta',
+  Animalia: '#1E90FF', //'DodgerBlue',
   Plantae: '#73AC13',
-  Fungi: 'DeepPink',
-  Amphibia: 'DodgerBlue',
-  Reptilia: 'DodgerBlue',
-  Aves: 'DodgerBlue',
-  Mammalia: 'DodgerBlue',
-  Actinopterygii: 'DodgerBlue',
-  Mollusca: 'OrangeRed',
-  Insecta: 'OrangeRed',
-  Arachnida: 'OrangeRed'
+  Fungi: '#FF1493', // 'DeepPink',
+  Amphibia: '#1E90FF',
+  Reptilia: '#1E90FF',
+  Aves: '#1E90FF',
+  Mammalia: '#1E90FF',
+  Actinopterygii: '#1E90FF',
+  Mollusca: '#FF4500', //'OrangeRed',
+  Insecta: '#FF4500',
+  Arachnida: '#FF4500'
 }
 
-})(); // EOF, do not erase this line!
+})();
