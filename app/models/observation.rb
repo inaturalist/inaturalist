@@ -709,8 +709,15 @@ class Observation < ActiveRecord::Base
   def set_taxon_from_species_guess
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
-    taxon_names = TaxonName.all(:conditions => ["name = ?", species_guess.strip], :limit => 2)
-    self.taxon_id = taxon_names.first.taxon_id if taxon_names.size == 1
+    taxon_names = TaxonName.all(:conditions => ["name = ?", species_guess.strip], :limit => 5, :include => :taxon)
+    return true if taxon_names.blank?
+    if taxon_names.size == 1
+      self.taxon_id = taxon_names.first.taxon_id 
+      return true
+    end
+    sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon))
+    return true unless sorted.first.ancestor_of?(sorted.last)
+    self.taxon_id = sorted.first.id
     true
   end
   

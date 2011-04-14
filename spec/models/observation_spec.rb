@@ -143,12 +143,52 @@ describe Observation, "creation" do
     @observation.user.observations_count.should == old_count + 1
   end
   
-  it "should automatically set a taxon if the guess corresponds to a unique taxon" do
-    taxon = Taxon.make
-    @observation.taxon = nil
-    @observation.species_guess = taxon.name
-    @observation.save
-    @observation.taxon_id.should == taxon.id
+  describe "species_guess parsing" do
+    it "should choose a taxon if the guess corresponds to a unique taxon" do
+      taxon = Taxon.make
+      @observation.taxon = nil
+      @observation.species_guess = taxon.name
+      @observation.save
+      @observation.taxon_id.should == taxon.id
+    end
+
+    it "should choose a taxon from species_guess if exact matches form a subtree" do
+      taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
+      child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+      common_name = "Spiraled Banana Shrew"
+      TaxonName.make(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      @observation.taxon = nil
+      @observation.species_guess = common_name
+      @observation.save
+      @observation.taxon_id.should == taxon.id
+    end
+
+    it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
+      taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
+      child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+      taxon2 = Taxon.make(:rank => "species")
+      common_name = "Spiraled Banana Shrew"
+      TaxonName.make(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      TaxonName.make(:taxon => taxon2, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      @observation.taxon = nil
+      @observation.species_guess = common_name
+      @observation.save
+      @observation.taxon_id.should be_blank
+    end
+
+    it "should choose a taxon from species_guess if exact matches form a subtree regardless of case" do
+      taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
+      child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+      common_name = "Spiraled Banana Shrew"
+      TaxonName.make(:taxon => taxon, :name => common_name.downcase, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+      @observation.taxon = nil
+      @observation.species_guess = common_name
+      @observation.save
+      @observation.taxon_id.should == taxon.id
+    end
   end
   
   it "should allow lots of sigfigs" do
