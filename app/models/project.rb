@@ -8,6 +8,7 @@ class Project < ActiveRecord::Base
   has_many :listed_taxa, :through => :project_list
   has_many :taxa, :through => :listed_taxa
   has_many :project_assets, :dependent => :destroy
+  has_one :custom_project, :dependent => :destroy
   
   after_create :add_owner_as_project_user, :create_the_project_list
   

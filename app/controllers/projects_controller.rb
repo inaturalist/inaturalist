@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
     @project_observations = @project.project_observations.paginate(:page => 1, :include => :observation, :order => "id DESC")
     @observations = @project_observations.map(&:observation)
     
+    @custom_project = @project.custom_project
     @project_assets = @project.project_assets.all(:limit => 100)
     @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}
   end

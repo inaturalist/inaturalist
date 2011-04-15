@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   simplified_login_regex = /\w[\w\-_]+/
   
   map.root :controller => 'welcome', :action => 'index'
@@ -125,6 +124,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :project_assets, :except => [:index, :show]
+  map.resources :custom_projects, :except => [:index, :show]
   
   map.person_by_login 'people/:login', 
                       :controller => 'users',

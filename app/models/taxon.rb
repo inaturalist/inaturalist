@@ -611,6 +611,14 @@ class Taxon < ActiveRecord::Base
     super
   end
   
+  def ancestor_of?(taxon)
+    taxon.ancestor_ids.include?(id)
+  end
+  
+  def descendant_of?(taxon)
+    ancestor_ids.include?(taxon.id)
+  end
+  
   include TaxaHelper
   def image_url
     taxon_image_url(self)

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110409064704) do
+ActiveRecord::Schema.define(:version => 20110414202308) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(:version => 20110409064704) do
 
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
   add_index "comments", ["parent_type", "parent_id"], :name => "index_comments_on_parent_type_and_parent_id"
+
+  create_table "custom_projects", :force => true do |t|
+    t.column "head", :text
+    t.column "side", :text
+    t.column "css", :text
+    t.column "project_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "custom_projects", ["project_id"], :name => "index_custom_projects_on_project_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.column "priority", :integer, :default => 0

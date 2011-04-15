@@ -18,6 +18,12 @@
       max-width: 50px;
       float: left;}
   </style>
+  
+  <% if @custom_project && !@custom_project.css.blank? -%>
+    <style type="text/css" media="screen">
+      <%= @custom_project.css %>
+    </style>
+  <% end -%>
 <%- end -%>
 
 <div id="pageheader" class="clear">
@@ -44,26 +50,31 @@
     </span>
   </div><!-- /#breadcrumbs -->
   
-  <h2>
-    <% if @logo_image -%>
-      <%= image_tag @logo_image.asset.url %>
-    <% else %>
-      <% if @project.icon.file? -%>
-        <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+  <% if @custom_project && !@custom_project.head.blank? -%>
+    <%= @custom_project.head %>
+  <% else %>
+    <h2>
+      <% if @logo_image -%>
+        <%= image_tag @logo_image.asset.url %>
+      <% else %>
+        <% if @project.icon.file? -%>
+          <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+        <% end -%>
+        <%=h truncate @project.title, :length => 55 %>
       <% end -%>
-      <%=h truncate @project.title, :length => 55 %>
-    <% end -%>
-  </h2>
-  <span class="right">
-    <% if logged_in? %>
-    <%= link_to 'Add Observations to This Project!', new_observation_path(:project_id => @project.id), :id => 'addobs', :class => 'button default', :rel => "nofollow" %>
-    <% else %>
-    <%= link_to 'Sign Up to Add to This Project!', signup_url, :id => 'signup', :class => 'button default' %>
-    <% end %>
-  </span>
+    </h2>
+    
+    <span class="right">
+      <% if logged_in? %>
+      <%= link_to 'Add Observations to This Project!', new_observation_path(:project_id => @project.id), :id => 'addobs', :class => 'button default', :rel => "nofollow" %>
+      <% else %>
+      <%= link_to 'Sign Up to Add to This Project!', signup_url, :id => 'signup', :class => 'button default' %>
+      <% end %>
+    </span>
+  <% end -%>
 </div>
 
-<div class="column span-17 append-1">
+<div class="column span-15 append-1">
   <div class="description">
     <%= formatted_user_text(@project.description) %>
   </div>
@@ -87,7 +98,7 @@
   </div>
 </div>
 
-<div class="last column span-6">
+<div class="last column span-8">
   <div class="quiet box">
     <h3>Data</h3>
     <ul>
@@ -152,8 +163,12 @@
     <%= link_to h(@project.user.login), @project.user %>
     <span class="description">created this project on <%= @project.created_at.to_date.to_s(:long) %></span>
   </div>
+  
+  <% if @custom_project && !@custom_project.side.blank? -%>
+    <%= @custom_project.side %>
+  <% end -%>
 
-  <div class="last column span-6">
+  <div class="last column span-8">
     <div class="small meta right">
       <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project) %>
     </div>

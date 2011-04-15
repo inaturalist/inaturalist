@@ -131,7 +131,7 @@
   </fieldset>
   
   <% if current_user.is_admin? -%>
-    <fieldset id="project_assets" class="">
+    <fieldset id="project_assets">
       <legend>Project Assets</legend>
       
       <ul>
@@ -148,6 +148,16 @@
       </ul>
       
       <%= link_to "Add asset", new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
+    </fieldset>
+    
+    <fieldset id="custom_project_fields">
+      <legend>Custom Project Fields</legend>
+      
+      <% if @project.custom_project -%>
+        <%= link_to "Edit custom project fields", edit_custom_project_path(@project.custom_project), :class => "readmore" %>
+      <% else %>
+        <%= link_to "Add custom project fields", new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
+      <% end -%>
     </fieldset>
   <% end -%>
 
