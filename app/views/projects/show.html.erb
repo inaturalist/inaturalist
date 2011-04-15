@@ -112,7 +112,31 @@
   <% end -%>
 </div>
 
-<div class="column span-8">
+
+
+<div class="column span-16">
+  <div id="map" class="stacked"></div>
+  
+  <div id="observations">
+    <h3>
+      Recent Observations
+      <%= link_to "View all", project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+    </h3>
+    <% if @project_observations.blank? -%>
+      <div class="description noresults">
+        No observations have been added to this project yet.
+      </div>
+    <% else %>
+      <div class="mini observations">
+        <%= render :partial => "observations/cached_component", :collection => @project_observations %>
+      </div>
+      <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},
+        :class => "readmore" %>
+    <% end -%>
+  </div>
+</div>
+
+<div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
       <%= link_to "<span class='lead'>&raquo;</span> Observations / Map", project_observations_path(@project), :class => "navlink" %>
@@ -192,26 +216,4 @@
   <center class="small meta">
     <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project) %>
   </center>
-</div>
-
-<div class="last column span-16">
-  <div id="map" class="stacked"></div>
-  
-  <div id="observations">
-    <h3>
-      Recent Observations
-      <%= link_to "View all", project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
-    </h3>
-    <% if @project_observations.blank? -%>
-      <div class="description noresults">
-        No observations have been added to this project yet.
-      </div>
-    <% else %>
-      <div class="mini observations">
-        <%= render :partial => "observations/cached_component", :collection => @project_observations %>
-      </div>
-      <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},
-        :class => "readmore" %>
-    <% end -%>
-  </div>
 </div>

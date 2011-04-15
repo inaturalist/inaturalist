@@ -86,3 +86,27 @@ $('input[data-loading-click]').live('click', function() {
     $(link).attr('disabled', true)
   })
 })
+
+$(document).ready(function() {
+  function makeHeaderLinkCurrent(li) {
+    $(li).addClass('current').append(
+      $('<img src="/images/active_tab_bottom.gif">').css({
+        position: "absolute",
+        left: '50%',
+        bottom: '-6px',
+        marginLeft: '-5px'
+      })
+    )
+  }
+  if (window.location.pathname.match(/^\/observations/)) {
+    makeHeaderLinkCurrent('#mainnav .observationstab')
+  } else if (window.location.pathname.match(/^\/taxa/)) {
+    makeHeaderLinkCurrent('#mainnav .taxatab')
+  } else if (window.location.pathname.match(/^\/projects/)) {
+    makeHeaderLinkCurrent('#mainnav .projectstab')
+  } else if (window.location.pathname.match(/^\/places/)) {
+    makeHeaderLinkCurrent('#mainnav .placestab')
+  } else if (window.location.pathname.match(/^\/user/) || window.location.pathname.match(/^\/people/)) {
+    makeHeaderLinkCurrent('#mainnav .peopletab')
+  }
+})
