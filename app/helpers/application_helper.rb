@@ -278,4 +278,19 @@ module ApplicationHelper
      abs_path
   end
   
+  def truncate_with_more(text, options = {})
+    more = options.delete(:more) || " ...more &darr;"
+    less = options.delete(:less) || "&uarr; less"
+    truncated = truncate(text, options)
+    return truncated if text == truncated
+    truncated = Nokogiri::HTML(truncated)
+    morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()")
+    truncated.at('p:last-child').add_child(morelink)
+    wrapper = content_tag(:div, truncated, :class => "truncated")
+    
+    lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()")
+    untruncated = content_tag(:div, text + lesslink, :class => "untruncated", :style => "display: none")
+    wrapper + untruncated
+  end
+  
 end

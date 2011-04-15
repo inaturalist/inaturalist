@@ -18,8 +18,8 @@ class ProjectsController < ApplicationController
   
   def show
     @species_count = @project.project_list.species_count
-    @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 5, :conditions => "taxa_count > 0")
-    @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
+    @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 3, :conditions => "taxa_count > 0")
+    @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
     @project_observations = @project.project_observations.paginate(:page => 1, 
       :include => {:observation => :iconic_taxon}, :order => "id DESC")
     @observations = @project_observations.map(&:observation)

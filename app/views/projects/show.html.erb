@@ -29,6 +29,30 @@
     .inat-contributor-block{display:inline-block;}
     .inat-contributor-pic{text-align:center;max-width:50px;float:left;}
     #map { width: 100%; height: 500px; background-color: grey;}
+    #projectnav {
+      margin: 0 0 10px 0;
+      list-style: none;
+      padding: 0;
+    }
+    #projectnav li { border-top: 2px solid white; padding: 5px 0; margin: 0;}
+    #projectnav li:first-child { border-top: 0 transparent; }
+    #projectnav .navlink {
+      display: block;
+      font-family: Georgia, Times, serif;
+      font-size: 140%;
+      padding: 0 10px;
+    }
+    #projectnav li:hover { background-color: #F4F4F4; }
+    #projectnav .navlink .lead {
+      font-family: Arial;
+      font-size: 130%;
+      line-height: 0;
+      color: #333;
+    }
+    #projectnav li .inner { margin-left: 25px;}
+    #projectnav ol { margin-right: 0; margin-bottom: 10px;}
+    #projectnav ol li { padding: 5px 0; }
+    #pageheader .buttonrow {margin-top: 5px;}
   </style>
   
   <% if @custom_project && !@custom_project.css.blank? -%>
@@ -76,28 +100,107 @@
       <% end -%>
     </h2>
     
-    <span class="right">
+    <span class="right buttonrow">
       <% if logged_in? %>
-      <%= link_to 'Add Observations to This Project!', new_observation_path(:project_id => @project.id), :id => 'addobs', :class => 'button default', :rel => "nofollow" %>
+        <%= link_to 'Add observations to this project', new_observation_path(:project_id => @project.id), 
+          :class => 'last button default', :rel => "nofollow" %>
       <% else %>
-      <%= link_to 'Sign Up to Add to This Project!', signup_url, :id => 'signup', :class => 'button default' %>
+        <%= link_to 'Sign up to add to this project!', signup_url, 
+          :class => 'last button default', :rel => "nofollow" %>
       <% end %>
     </span>
   <% end -%>
 </div>
 
-<div class="column span-16">
-  <div id="map" class="stacked"></div>
+<div class="column span-8">
+  <ul id="projectnav" class="stacked quiet box">
+    <li>
+      <%= link_to "<span class='lead'>&raquo;</span> Observations / Map", project_observations_path(@project), :class => "navlink" %>
+      <div class="inner feeds">
+        <%= link_to("Atom", project_observations_path(:format => 'atom'), :id => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to("KML",  project_observations_path(:format => 'kml'), :id => 'kmllink', :rel => "nofollow") %> /
+        <%= link_to("CSV",  project_observations_path(:format => 'csv'), :id => 'csvlink', :rel => "nofollow") %>
+      </div>
+    </li>
+    <li>
+      <% if @species_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @species_count %></span> species total
+        </span>
+      <% end -%>
+      <%= link_to "<span class='lead'>&raquo;</span> Checklist", list_path(@project.project_list), :class => "navlink" %>
+    </li>
+    <li>
+      <% if @project.contest? -%>
+        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors", project_contributors_path(@project), :class => "navlink" %>
+      <% else %>
+        <%= link_to "<span class='lead'>&raquo;</span> Members", project_members_path(@project), :class => "navlink" %>
+      <% end -%>
+      <div class="inner">
+        <% if @project.contest? && !@project_users.blank? && !@top_observers.blank? -%>
+          <ol class="readable">
+            <% for project_user in @top_observers  %>
+              <li>
+                <div class="clear">
+                  <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
+                    observations_by_login_path(project_user.user.login),
+                    :alt => h(project_user.user.login),
+                    :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+                  <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
+                  <div class="small ui">
+                    <span class="count"><%= project_user.taxa_count %></span> species,
+                    <span class="count"><%= project_user.taxa_count %></span> observations
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ol>
+          <%= link_to "View leaderboard", project_contributors_path(@project), :class => "readmore" %>
+          <span class="description"> | </span>
+          <%= link_to "View all members", project_members_path(@project), :class => "readmore" %>
+        <% else %>
+          <div class="stacked clear">
+            <% for project_user in @project_users %>
+              <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+                observations_by_login_path(project_user.user.login),
+                :alt => h(project_user.user.login),
+                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+            <% end %>
+          </div>
+          <%= link_to "View all members", project_members_path(@project), :class => "readmore" %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
   
-  <h3>About this project</h3>
-  <div class="description">
-    <%= formatted_user_text(@project.description) %>
-  </div>
+  <h3>About</h3>
+  <%= truncate_with_more formatted_user_text(@project.description), :length => 400 %>
+  
+  <% if @custom_project && !@custom_project.side.blank? -%>
+    <%= @custom_project.side %>
+  <% end -%>
+  
+  <h3>Admin</h3>
+  <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
+    observations_by_login_path(@project.user.login),
+    :alt => h(@project.user.login),
+    :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
+  <%= link_to h(@project.user.login), @project.user %>
+  <span class="description">created this project on <%= @project.created_at.to_date.to_s(:long) %></span>
+
+  <%= separator %>
+  <center class="small meta">
+    <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project) %>
+  </center>
+</div>
+
+<div class="last column span-16">
+  <div id="map" class="stacked"></div>
   
   <div id="observations">
     <h3>
-      Observations
-      <%= link_to "View map", project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+      Recent Observations
+      <%= link_to "View all", project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
     </h3>
     <% if @project_observations.blank? -%>
       <div class="description noresults">
@@ -110,82 +213,5 @@
       <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},
         :class => "readmore" %>
     <% end -%>
-  </div>
-</div>
-
-<div class="last column span-8">
-  <div class="quiet box">
-    <h3>Data</h3>
-    <ul>
-      <li><%= link_to "Observations / Map", project_observations_path(@project) %></li>
-      <li class="feeds">
-        <%= link_to("Atom", project_observations_path(:format => 'atom'), :id => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to("KML",  project_observations_path(:format => 'kml'), :id => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to("CSV",  project_observations_path(:format => 'csv'), :id => 'csvlink', :rel => "nofollow") %>
-      </li>
-      <li><%= link_to "Checklist", list_path(@project.project_list) %></li>
-    </ul>
-
-    <% if @project.contest? && !@project_users.blank? && @top_observers.first.taxa_count > 0 -%>
-      <h3>Unique Contributions</h3>
-      <div id="species-count" style="font-size: larger">
-        <b><%= @species_count %> Species Observed</b>
-      </div>
-      </br>
-      <div id="top observers" style="margin-bottom: 10px">
-        <h3>Top Contributors</h3>
-        <% for project_user in @top_observers %>
-          <div class="inat-contributor-block">
-            <div class="inat-contributor-pic">
-              <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-                observations_by_login_path(project_user.user.login),
-                :alt => h(project_user.user.login),
-                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-              <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
-            </div>
-            <div class="inat-contributor-pic">
-              <b><%= project_user.taxa_count %></b> sp.<br /><b><%= project_user.observations_count %></b> obs.
-            </div>
-          </div>
-          <br />
-        <% end %>
-      </div>
-      <%= link_to "See more contributions", project_contributors_path(@project) %>
-    <% end %>
-    
-    <div id="members" style="margin-bottom: 10px">
-      <h3>Members</h3>
-      <% if @project_users.blank? -%>
-        <div class="noresults">
-          No members yet.
-        </div>
-      <% else %>
-        <% for project_user in @project_users %>
-          <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-            observations_by_login_path(project_user.user.login),
-            :alt => h(project_user.user.login),
-            :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-        <% end %>
-        <br /><%= link_to "View all members", project_members_path(@project) %>
-      <% end -%>
-    </div>
-
-    <h3>Admin</h3>
-    <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
-      observations_by_login_path(@project.user.login),
-      :alt => h(@project.user.login),
-      :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
-    <%= link_to h(@project.user.login), @project.user %>
-    <span class="description">created this project on <%= @project.created_at.to_date.to_s(:long) %></span>
-  </div>
-  
-  <% if @custom_project && !@custom_project.side.blank? -%>
-    <%= @custom_project.side %>
-  <% end -%>
-
-  <div class="last column span-8">
-    <div class="small meta right">
-      <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project) %>
-    </div>
   </div>
 </div>
