@@ -35,10 +35,19 @@
     .last_year .count {
       color: deeppink;
     }
+    
+    #summary { font-size: 150%; }
+    #summary .count { font-weight: bold; }
   </style>
 <%- end -%>
 
 <h2>Site Stats</h2>
+
+<p id="summary">
+  <span class="count"><%= number_with_delimiter @total_users %></span> total users,
+  <span class="count"><%= number_with_delimiter @active_observers %></span> unique observers in the last 3 months,
+  <span class="count"><%= number_with_delimiter @total_observations %></span> total observations
+</p>
 
 <h3>Observations / Week (<span class="last_year"><span class="count"><%= Time.now.year - 1 %></span></span> <span class="count"><%= Time.now.year %></span>)</h3>
 <div class="graph">

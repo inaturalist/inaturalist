@@ -26,7 +26,10 @@ class AdminController < ApplicationController
       :group => "WEEK(created_at)"
     )
     @users_max = (@user_weeks.values + @user_weeks_last_year.values).sort.last
-
+    
+    @total_users = User.count
+    @active_observers = Observation.count(:select => "distinct user_id", :conditions => ["created_at > ?", 3.months.ago])
+    @total_observations = Observation.count
   end
   
   def index
