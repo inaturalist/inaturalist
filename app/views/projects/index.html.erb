@@ -38,7 +38,7 @@
   <% if logged_in? -%>
     <%= link_to "View all your projects", projects_by_login_path(current_user.login), :class => "readmore" %>
   <% end -%>
-  <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+  <%= separator %>
 <% end -%>
 
 <% unless @joined.blank? -%>
@@ -52,17 +52,33 @@
   <% if logged_in? -%>
     <%= link_to "View all your projects", projects_by_login_path(current_user.login), :class => "readmore" %>
   <% end -%>
-  <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+  <%= separator %>
 <% end -%>
 
 <div id="recent" class="projects clear">
-  <h3>Recently Active Projects</h3>
+  <h3>Recently Active</h3>
   <% if @projects.blank? -%>
     <div class="noresults">
       No recently active projects yet.
     </div>
   <% else %>
     <% @projects.each_with_index do |project, i| %>
+      <%= render :partial => 'project', :object => project, :locals => {:last => i % 3 == 2} %>
+      <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
+    <% end %>
+  <% end -%>
+</div>
+
+<%= separator %>
+
+<div id="created" class="projects clear">
+  <h3>Recently Created</h3>
+  <% if @created.blank? -%>
+    <div class="noresults">
+      No projects yet.
+    </div>
+  <% else %>
+    <% @created.each_with_index do |project, i| %>
       <%= render :partial => 'project', :object => project, :locals => {:last => i % 3 == 2} %>
       <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
     <% end %>

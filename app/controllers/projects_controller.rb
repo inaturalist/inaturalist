@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     @project_observations = ProjectObservation.all(:include => :project, 
       :order => "project_observations.id desc", :limit => 9, :group => "project_id")
     @projects = @project_observations.map(&:project)
+    @created = Project.all(:order => "id desc", :limit => 9)
     if logged_in?
       @started = current_user.projects.all(:order => "id desc", :limit => 9)
       @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
