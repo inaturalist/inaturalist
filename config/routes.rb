@@ -96,7 +96,7 @@ ActionController::Routing::Routes.draw do |map|
     o.project_observations 'observations/project/:id.:format', :action => "project"
   end
   
-  map.resources :projects, :requirements => { :id => %r(\d+) }
+  map.resources :projects
   map.with_options :controller => "projects" do |p|
     p.join_project "projects/:id/join", :action => "join"
     p.leave_project "projects/:id/leave", :action => "leave"
@@ -110,7 +110,7 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => [:post, :delete]}
     p.project_search 'projects/search', :action => "search"
     p.project_terms "project/:id/terms", :action => "terms"
-    p.projects_by_login 'projects/:login', :action => 'by_login',
+    p.projects_by_login 'projects/user/:login', :action => 'by_login',
       :requirements => { :login => simplified_login_regex }
     p.project_members "projects/:id/members", :action => "members"
     p.project_contributors "projects/:id/contributors", :action => "contributors"

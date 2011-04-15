@@ -110,6 +110,7 @@ Rails::Initializer.run do |config|
   config.gem 'fastercsv'
   # config.gem 'newrelic_rpm'
   config.gem 'delayed_paperclip'
+  config.gem "friendly_id", :version => "~> 3.2.1"
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

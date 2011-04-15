@@ -7,12 +7,20 @@ describe Project, "creation" do
     @project.project_users.should_not be_empty
     @project.project_users.first.user_id.should == user.id
   end
+  
+  it "should not allow ProjectsController action names as titles" do
+    project = Project.make
+    project.should be_valid
+    project.title = "new"
+    project.should_not be_valid
+    project.title = "user"
+    project.should_not be_valid
+  end
 end
 
 describe Project, "destruction" do
   it "should work despite rule against owner leaving the project" do
     project = Project.make
-    puts "project.icon_file_name: #{project.icon_file_name}"
     assert_nothing_raised do
       project.destroy
     end

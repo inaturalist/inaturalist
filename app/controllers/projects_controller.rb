@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :species_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map]
+  before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :join, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
   
@@ -296,7 +297,12 @@ class ProjectsController < ApplicationController
   private
   
   def load_project
-    render_404 unless @project = Project.find_by_id(params[:id])
+    @project = Project.find(params[:id]) rescue nil
+    render_404 unless @project
+  end
+  
+  def ensure_current_project_url
+    return redirect_to @project, :status => :moved_permanently unless @project.friendly_id_status.best?
   end
   
   def load_project_user

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414202308) do
+ActiveRecord::Schema.define(:version => 20110415230149) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -391,6 +391,9 @@ ActiveRecord::Schema.define(:version => 20110414202308) do
     t.column "updated_at", :datetime
   end
 
+  add_index "project_observations", ["observation_id"], :name => "index_project_observations_on_observation_id"
+  add_index "project_observations", ["project_id"], :name => "index_project_observations_on_project_id"
+
   create_table "project_users", :force => true do |t|
     t.column "project_id", :integer
     t.column "user_id", :integer
@@ -400,6 +403,9 @@ ActiveRecord::Schema.define(:version => 20110414202308) do
     t.column "observations_count", :integer, :default => 0
     t.column "taxa_count", :integer, :default => 0
   end
+
+  add_index "project_users", ["user_id"], :name => "index_project_users_on_user_id"
+  add_index "project_users", ["project_id", "taxa_count"], :name => "index_project_users_on_project_id_and_taxa_count"
 
   create_table "projects", :force => true do |t|
     t.column "user_id", :integer
@@ -413,7 +419,11 @@ ActiveRecord::Schema.define(:version => 20110414202308) do
     t.column "icon_file_size", :integer
     t.column "icon_updated_at", :datetime
     t.column "project_type", :string
+    t.column "cached_slug", :string
   end
+
+  add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
+  add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.column "name", :string
@@ -437,6 +447,18 @@ ActiveRecord::Schema.define(:version => 20110414202308) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
+
+  create_table "slugs", :force => true do |t|
+    t.column "name", :string
+    t.column "sluggable_id", :integer
+    t.column "sequence", :integer, :default => 1, :null => false
+    t.column "sluggable_type", :string, :limit => 40
+    t.column "scope", :string
+    t.column "created_at", :datetime
+  end
+
+  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "sources", :force => true do |t|
     t.column "in_text", :string

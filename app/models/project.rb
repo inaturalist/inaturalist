@@ -15,6 +15,8 @@ class Project < ActiveRecord::Base
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
   
+  has_friendly_id :title, :use_slug => true
+  
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
@@ -30,6 +32,9 @@ class Project < ActiveRecord::Base
   
   CONTEST_TYPE = 'contest'
   PROJECT_TYPES = [CONTEST_TYPE]
+  RESERVED_TITLES = ProjectsController.action_methods
+  validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
+  
   
   def add_owner_as_project_user
     first_user = self.project_users.create(:user => user, :role => "curator")
