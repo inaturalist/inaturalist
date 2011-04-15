@@ -244,6 +244,7 @@
 
   <% if @show_range %>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <%= javascript_include_tag 'inaturalist/map3' %>
   <% end -%>
   
   <script type="text/javascript" charset="utf-8">
@@ -267,24 +268,6 @@
           controlUI.html('Show museum records')
           gbifLayer.setMap(null)
         })
-      }
-      
-      function FullScreenControl() {
-        var controlDiv = document.createElement('DIV')
-        controlDiv.style.padding = '5px';
-        var controlUI = $('<div>Full screen</div>').addClass('gmapv3control')
-        controlDiv.appendChild(controlUI.get(0))
-        
-        controlUI.toggle(function() {
-          $(this).html('Exit Full screen')
-          $('#taxon_range_map').addClass('fullscreen')
-          google.maps.event.trigger(window.map, 'resize')
-        }, function() {
-          $(this).html('Full screen')
-          $('#taxon_range_map').removeClass('fullscreen')
-          google.maps.event.trigger(window.map, 'resize')
-        })
-        return controlDiv;
       }
       
       function addKmlLayer(url) {
@@ -322,7 +305,7 @@
         var homeControl = new HomeControl(homeControlDiv);
         homeControlDiv.index = 1;
         window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
-        window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new FullScreenControl());
+        window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(window.map));
 
         <% if Rails.env.development? %>
           var iNatLyr = addKmlLayer('http://inaturalist.org/observations.kml?taxon_name=<%= URI.escape(@taxon.name) %>')

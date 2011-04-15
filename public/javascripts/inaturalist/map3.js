@@ -164,9 +164,7 @@ google.maps.Map.prototype.setObservationBounds = function(bounds) {
 };
 
 google.maps.Map.prototype.zoomToObservations = function() {
-  var bounds = this.getObservationBounds();
-  this.setZoom(this.getBoundsZoomLevel(bounds));
-  this.setCenter(bounds.getCenter());
+  this.fitBounds(this.getObservationBounds())
 };
 
 google.maps.Map.prototype.addPlace = function(place, options) {
@@ -386,8 +384,7 @@ if (typeof iNaturalist.Map === 'undefined') this.iNaturalist.Map = {};
 iNaturalist.Map.createMap = function(options) {
   options = $.extend({}, {
     div: 'map',
-    lat: 0,
-    lng: 0,
+    center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
     zoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     controls: 'big',
@@ -402,7 +399,7 @@ iNaturalist.Map.createMap = function(options) {
   else {
     map = new google.maps.Map(options.div, options);
   }
-  
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   map._observationsTileServer = options.observationsTileServer;
   
   return map;
@@ -487,6 +484,24 @@ ObservationsTileLayer.prototype.getTileUrl = function(tilePoint, zoom) {
 
 iNaturalist.Map.obsTilePointsURL = function(x, y, zoom) {
   return '/observations/tile_points/' + zoom + '/' + x + '/' + y + '.json';
+}
+
+iNaturalist.FullScreenControl = function(map) {
+  var controlDiv = document.createElement('DIV')
+  controlDiv.style.padding = '5px';
+  var controlUI = $('<div>Full screen</div>').addClass('gmapv3control')
+  controlDiv.appendChild(controlUI.get(0))
+  
+  controlUI.toggle(function() {
+    $(this).html('Exit Full screen')
+    $(map.getDiv()).addClass('fullscreen')
+    google.maps.event.trigger(map, 'resize')
+  }, function() {
+    $(this).html('Full screen')
+    $(map.getDiv()).removeClass('fullscreen')
+    google.maps.event.trigger(map, 'resize')
+  })
+  return controlDiv;
 }
 
 // Static constants

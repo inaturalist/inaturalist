@@ -2,21 +2,33 @@
   <%=h @project.title %>
 <%- end -%>
 
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag 'inaturalist/map3' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
+      var lyr;
+      <%- for kml_asset in @kml_assets %>
+      lyr = new google.maps.KmlLayer('<%= root_url.gsub(/\/$/, "") + kml_asset.asset.url %>');
+      lyr.setMap(window.map);
+      <% end %>
+      
+      map.addObservations(<%= @observations.to_json(:include => :iconic_taxon) %>)
+      <% if @kml_assets.blank? %>
+        map.zoomToObservations()
+      <% end %>
+    })
+  </script>
+<%- end -%>
+
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
+  <%= stylesheet_link_tag 'observations' %>
   <style type="text/css" media="screen">
-    h2 {
-      line-height: 1;
-      margin: 0;
-      float: left;
-    }
-    .inat-contributor-block {
-        display: inline-block;
-    }
-    .inat-contributor-pic {
-      text-align: center;
-      max-width: 50px;
-      float: left;}
+    h2{line-height:1;margin:0;float:left;}
+    .inat-contributor-block{display:inline-block;}
+    .inat-contributor-pic{text-align:center;max-width:50px;float:left;}
+    #map { width: 100%; height: 500px; background-color: grey;}
   </style>
   
   <% if @custom_project && !@custom_project.css.blank? -%>
@@ -74,7 +86,10 @@
   <% end -%>
 </div>
 
-<div class="column span-15 append-1">
+<div class="column span-16">
+  <div id="map" class="stacked"></div>
+  
+  <h3>About this project</h3>
   <div class="description">
     <%= formatted_user_text(@project.description) %>
   </div>

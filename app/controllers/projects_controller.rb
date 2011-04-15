@@ -20,12 +20,14 @@ class ProjectsController < ApplicationController
     @species_count = @project.project_list.species_count
     @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 5, :conditions => "taxa_count > 0")
     @project_users = @project.project_users.paginate(:page => 1, :include => :user, :order => "id DESC")
-    @project_observations = @project.project_observations.paginate(:page => 1, :include => :observation, :order => "id DESC")
+    @project_observations = @project.project_observations.paginate(:page => 1, 
+      :include => {:observation => :iconic_taxon}, :order => "id DESC")
     @observations = @project_observations.map(&:observation)
     
     @custom_project = @project.custom_project
     @project_assets = @project.project_assets.all(:limit => 100)
-    @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}
+    @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
+    @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
   end
 
   def new

@@ -149,24 +149,11 @@ form .field .label {
 .stacked { margin-bottom: 10px; }
 
 /* Page Headers */
-#pageheader {
-  margin-bottom: 1em;
-}
-
-#pageheader h2 {
-  margin-bottom: 0;
-  line-height: 1.2;
-}
-
-#pageheader a .usericon {
-  float: left;
-  margin-right: 10px;
-  border: 2px solid white;
-}
-
-#pageheader .usericon:hover {
-  border-color: #ddd;
-}
+#pageheader{margin-bottom:10px;}
+#pageheader h2{margin-bottom:0;line-height:1.2;}
+#pageheader a .usericon{float:left;margin-right:10px;border:2px solid white;}
+#pageheader .usericon:hover{border-color:#ddd;}
+#pageheader .breadcrumbs{margin-bottom:5px;}
 
 img.mini.usericon {
   vertical-align: middle;
@@ -968,7 +955,7 @@ form.inline .label {
 .gmapv3control:hover {
   border-color: #627CC9;
 }
-#taxon_range_map.fullscreen {
+.fullscreen {
   position: fixed !important;
   width:100% !important;
   height: 100% !important;
