@@ -878,7 +878,8 @@ class ObservationsController < ApplicationController
   end
   
   def project
-    unless @project = Project.find_by_id(params[:id])
+    @project = Project.find(params[:id]) rescue nil
+    unless @project
       flash[:error] = "That project doesn't exist."
       redirect_to request.env["HTTP_REFERER"] || projects_path
       return

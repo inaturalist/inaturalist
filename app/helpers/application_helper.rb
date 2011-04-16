@@ -280,16 +280,25 @@ module ApplicationHelper
   
   def truncate_with_more(text, options = {})
     more = options.delete(:more) || " ...more &darr;"
-    less = options.delete(:less) || "&uarr; less"
+    less = options.delete(:less) || " less &uarr;"
     truncated = truncate(text, options)
     return truncated if text == truncated
-    truncated = Nokogiri::HTML(truncated)
-    morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()")
-    truncated.at('p:last-child').add_child(morelink)
+    truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
+    morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
+      :class => "nobr ui")
+    last_node = truncated.children.last || truncated
+    last_node = last_node.parent if last_node.name == "a"
+    last_node.add_child(morelink)
     wrapper = content_tag(:div, truncated, :class => "truncated")
     
-    lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()")
-    untruncated = content_tag(:div, text + lesslink, :class => "untruncated", :style => "display: none")
+    lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()", 
+      :class => "nobr ui")
+    untruncated = Nokogiri::HTML::DocumentFragment.parse(text)
+    last_node = untruncated.children.last || untruncated
+    last_node = last_node.parent if last_node.name == "a"
+    last_node.add_child(lesslink)
+    untruncated = content_tag(:div, untruncated.to_s, :class => "untruncated", 
+      :style => "display: none")
     wrapper + untruncated
   end
   
