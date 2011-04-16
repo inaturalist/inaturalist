@@ -173,7 +173,7 @@
                   <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
                   <div class="small ui">
                     <span class="count"><%= project_user.taxa_count %></span> species,
-                    <span class="count"><%= project_user.taxa_count %></span> observations
+                    <span class="count"><%= project_user.observations_count %></span> observations
                   </div>
                 </div>
               </li>
