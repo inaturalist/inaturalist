@@ -456,8 +456,8 @@ ul.leafylist li li:first-child {
 .pagination a,
 .pagination span {
   border: 1px solid #ccc;
-  padding: 0.2em 0.4em;
-  margin-right: 0.2em;
+  padding: 1px 5px;
+  margin-right: 2px;
 }
 
 .pagination .disabled {
@@ -964,3 +964,9 @@ form.inline .label {
   z-index: 1000 !important;
 }
 .nobr { white-space: nowrap; }
+.inlineblock {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}

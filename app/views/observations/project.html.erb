@@ -27,10 +27,9 @@
 
 <%= render :partial => 'map' %>
 
-<div id="feeds" class="clear right small ui description feeds">
-  <%= render :partial => 'feed_links' %>
-</div>
-
 <div id="pagination" class="last column span-24">
+  <div id="feeds" class="clear right small ui description feeds">
+    <%= render :partial => 'feed_links' %>
+  </div>
   <%= will_paginate @observations %>
 </div>

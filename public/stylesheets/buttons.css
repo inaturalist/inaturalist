@@ -84,10 +84,13 @@ input.button:active {
 .buttonrow.inline form,
 .buttonrow.inline input.text,
 .buttonrow.inline label {
-  display: inline-block;
   float: none;
   margin-right: 5px;
   margin-bottom: 0;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
 }
 
 .buttonrow.inline .button,

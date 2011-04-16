@@ -64,7 +64,6 @@
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
     <span class="right">
       <%-
         links = []
@@ -84,6 +83,7 @@
       -%>
       <%= links.join(" | ") unless links.blank? %>
     </span>
+    <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <% if @custom_project && !@custom_project.head.blank? -%>
