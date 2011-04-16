@@ -23,13 +23,17 @@ class UsersController < ApplicationController
   end
 
   def activate
-    logout_keeping_session!
+    logout_keeping_session! unless logged_in? && current_user.is_admin?
     user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
     case
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
       flash[:notice] = "Your iNaturalist.org account has been verified! Please sign in to continue."
-      redirect_to '/login'
+      if logged_in? && current_user.is_admin?
+        redirect_back_or_default('/')
+      else
+        redirect_to '/login'
+      end
     when params[:activation_code].blank?
       flash[:error] = "Your activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default('/')
@@ -296,6 +300,7 @@ class UsersController < ApplicationController
     if @user.blank? && !params[:id].blank?
       flash[:error] = "Couldn't find a user matching #{params[:id]}"
     end
+    @users = User.paginate(:page => params[:page], :order => "id desc")
   end
 
 protected

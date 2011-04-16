@@ -22,6 +22,12 @@
         <% else %>
           <li><%= link_to "Make curator", add_role_path(@user, :role => "curator"), :method => :post %></li>
         <% end %>
+        <% unless @user.active? -%>
+          <li>
+            <%= link_to "Activate user", {:controller => "users", :action => "activate", :activation_code => @user.activation_code}, 
+              :confirm => "Are you sure you want to activate this account?" %>
+          </li>
+        <% end -%>
         <li>
           <%= link_to "Delete user", @user, :method => :delete, :confirm => "Are you really, really sure you want to delete this user and all of their content?" %>
         </li>
@@ -29,4 +35,23 @@
     </div>
     <%= render :partial => 'glance' %>
   </div>
+<% end -%>
+
+<% if !@users.blank? -%>
+  <table>
+    <tr>
+      <th>login</th>
+      <th>id</th>
+      <th>created_at</th>
+      <th>activated_at</th>
+    </tr>
+    <% for user in @users %>
+      <tr>
+        <td><%= link_to user.login, url_for(:id => user.id) %></td>
+        <td><%= user.id %></td>
+        <td><%= user.created_at %></td>
+        <td><%= user.activated_at %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end -%>
