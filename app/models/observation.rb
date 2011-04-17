@@ -502,6 +502,10 @@ class Observation < ActiveRecord::Base
     return if target_taxa.empty?
     
     List.send_later(:refresh_for_user, self.user, :taxa => target_taxa.map(&:id), :skip_update => true)
+    project_observations.each do |po|
+      Project.send_later(:refresh_project_list, po.project_id, 
+        :taxa => target_taxa.map(&:id), :add_new_taxa => true)
+    end
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil

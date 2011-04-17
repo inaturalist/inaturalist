@@ -45,5 +45,14 @@ describe LifeList do
         list.reload
       }.to change(list, :species_count).by(1)
     end
+    
+    it "should destroy unobserved taxa if you ask nicely" do
+      list = LifeList.make
+      list.taxa << Taxon.make
+      list.taxa.count.should be(1)
+      list.refresh(:destroy_unobserved => true)
+      list.reload
+      list.taxa.count.should be(0)
+    end
   end
 end

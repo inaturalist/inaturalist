@@ -308,6 +308,17 @@ describe Observation, "updating" do
     obs.reload
     obs.positional_accuracy.should be_blank
   end
+  
+  it "should refresh queue refresh jobs for associated project lists if the taxon changed" do
+    o = Observation.make(:taxon => Taxon.make)
+    po = ProjectObservation.make(:observation => o)
+    Delayed::Job.delete_all
+    o.update_attributes(:taxon => Taxon.make)
+    stamp = Time.now
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+  end
 end
 
 describe Observation, "destruction" do

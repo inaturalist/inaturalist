@@ -99,6 +99,10 @@ Project.blueprint do
   title { Sham.title }
 end
 
+ProjectList.blueprint do
+  project
+end
+
 ProjectUser.blueprint do
   user
   project

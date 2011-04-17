@@ -27,14 +27,14 @@ class LifeList < List
   # selected that were not in the list, they will be added if they've been
   # observed.
   #
-  def refresh(params = {})
-    if taxa = params[:taxa]
+  def refresh(options = {})
+    if taxa = options[:taxa]
       # Find existing listed_taxa of these taxa to update
       existing = ListedTaxon.all(:conditions => ["list_id = ? AND taxon_id IN (?)", self, taxa])
       collection = []
       
       # Add new listed taxa for taxa not already on this list
-      if params[:add_new_taxa]
+      if options[:add_new_taxa]
         taxa_ids = taxa.map do |taxon|
           if taxon.is_a?(Taxon)
             taxon.id
@@ -65,7 +65,8 @@ class LifeList < List
         listed_taxon.destroy
       end
       
-      if params[:destroy_unobserved] && listed_taxon.last_observation.blank?
+      if options[:destroy_unobserved] && 
+          listed_taxon.last_observation.try(:taxon_id) != listed_taxon.taxon_id
         listed_taxon.destroy
       end
     end
