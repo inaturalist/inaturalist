@@ -50,6 +50,10 @@ class Project < ActiveRecord::Base
     project_type == CONTEST_TYPE
   end
   
+  def editable_by?(user)
+    user.id == user_id || user.is_admin?
+  end
+  
   def self.refresh_project_list(project, options = {})
     unless project.is_a?(Project)
       project = Project.find_by_id(project, :include => :project_list)

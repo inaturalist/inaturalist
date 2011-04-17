@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :join, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
+  before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
   
   # GET /projects
   # GET /projects.xml
@@ -320,5 +321,13 @@ class ProjectsController < ApplicationController
     else
       []
     end
+  end
+  
+  def ensure_can_edit
+    unless @project.editable_by?(current_user)
+      flash[:error] = "You don't have permission to edit that project."
+      return redirect_to @project
+    end
+    true
   end
 end
