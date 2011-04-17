@@ -131,37 +131,37 @@
   </style>
 <% end %>
 
-<div class="observations map"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
-  <div id="map">
-    
+<div class="column span-24">
+  <div class="observations map"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
+    <div id="map"></div>
+    <div id="mapcontrols"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
+      <%= link_to_function "Redo search in map area", "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
+      <span id="redo_search_in_map_area_loading" class="loading status" style="display: none">Loading...</span>
+      | <%= link_to_function "Show all observations", 
+        "map.showAllObsOverlay(); $(this).hide(); $('#hide_all_obs_button').show()", 
+        :id => 'show_all_obs_button' %>
+      <%= link_to_function "Hide all observations", 
+        "map.hideAllObsOverlay(); $(this).hide(); $('#show_all_obs_button').show()", 
+        :id => 'hide_all_obs_button', :style => 'display: none' %>
+      <span class="description">(experimental)</span>
+    </div>
   </div>
-  <div id="mapcontrols"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
-    <%= link_to_function "Redo search in map area", "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
-    <span id="redo_search_in_map_area_loading" class="loading status" style="display: none">Loading...</span>
-    | <%= link_to_function "Show all observations", 
-      "map.showAllObsOverlay(); $(this).hide(); $('#hide_all_obs_button').show()", 
-      :id => 'show_all_obs_button' %>
-    <%= link_to_function "Hide all observations", 
-      "map.hideAllObsOverlay(); $(this).hide(); $('#show_all_obs_button').show()", 
-      :id => 'hide_all_obs_button', :style => 'display: none' %>
-    <span class="description">(experimental)</span>
+
+  <div id="mapdivider"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
+    &nbsp;
   </div>
-</div>
 
-<div id="mapdivider"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
-  &nbsp;
-</div>
-
-<div id="mapobservations" class="observations <%= (@view && @view == 'map') ? 'mini' : 'table' %>">
-  <% if @view && @view == 'map' %>
-    <%= render :partial => 'observations_table_header', :locals => {:display => 'none'} %>
-  <% else %>
-    <%= render :partial => 'observations_table_header' %>
-  <% end %>
-  <%= render :partial => 'observations/cached_component', :collection => observations %>
-  <% if @observations.empty? %>
-    <p id="noresults" class="readable description">
-      No matching observations!
-    </p>
-  <% end %>
+  <div id="mapobservations" class="observations <%= (@view && @view == 'map') ? 'mini' : 'table' %>">
+    <% if @view && @view == 'map' %>
+      <%= render :partial => 'observations_table_header', :locals => {:display => 'none'} %>
+    <% else %>
+      <%= render :partial => 'observations_table_header' %>
+    <% end %>
+    <%= render :partial => 'observations/cached_component', :collection => observations %>
+    <% if @observations.empty? %>
+      <p id="noresults" class="readable description">
+        No matching observations!
+      </p>
+    <% end %>
+  </div>
 </div>
