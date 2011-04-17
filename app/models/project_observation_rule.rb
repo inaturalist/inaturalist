@@ -1,9 +1,12 @@
 class ProjectObservationRule < Rule
   
   def validate
-    if operator == "observed_in_place?"
-      if operand.blank?
-        errors.add_to_base "Must select a place for that rule."
+    if operand.blank?
+      case operator
+      when "observed_in_place?"
+        errors.add_to_base("Must select a place for that rule.")
+      when "in_taxon?"
+        errors.add_to_base("Must select a taxon for that rule.")
       end
     end
   end

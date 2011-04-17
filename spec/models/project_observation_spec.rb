@@ -73,3 +73,27 @@ describe ProjectObservation, "identified?" do
   end
   
 end
+
+describe ProjectObservation, "in_taxon?" do
+  before(:each) do
+    @taxon = Taxon.make
+  end
+  
+  it "should be true for observations of target taxon" do
+    po = ProjectObservation.make(:observation => Observation.make(:taxon => @taxon))
+    po.should be_in_taxon(@taxon)
+  end
+  
+  it "should be true for observations of descendants if target taxon" do
+    child = Taxon.make(:parent => @taxon)
+    po = ProjectObservation.make(:observation => Observation.make(:taxon => child))
+    po.should be_in_taxon(@taxon)
+  end
+  
+  it "should not be true for observations outside of target taxon" do
+    other = Taxon.make
+    po = ProjectObservation.make(:observation => Observation.make(:taxon => other))
+    po.should_not be_in_taxon(@taxon)
+  end
+  
+end

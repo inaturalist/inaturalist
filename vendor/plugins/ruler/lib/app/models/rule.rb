@@ -13,8 +13,16 @@ class Rule < ActiveRecord::Base
   end
   
   def terms
-    return "must be #{operator}".gsub('?', '') unless operand
-    operand_name = operand.try(:display_name) || operand
-    "must be #{operator} #{operand_name}".strip.gsub('?', '')
+    return "must be #{operator.humanize.downcase}".gsub('?', '') unless operand
+    operand_name = if operand.respond_to?(:display_name)
+      operand.display_name
+    elsif operand.respond_to?(:name)
+      operand.name
+    elsif operand.respond_to?(:title)
+      operand.title
+    else
+      operand
+    end
+    "must be #{operator.humanize.downcase} #{operand_name}".strip.gsub('?', '')
   end
 end

@@ -7,13 +7,14 @@
     .project_type_field{clear:left;}
     .title_field input{width:390px;}
     .description_field textarea,.terms_field textarea{width:450px;}
-    #place_q{width:300px;}
+    #place_q,#taxon_q{width:300px;}
     .observationrules{clear:left;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag 'jquery/plugins/jquery.autocomplete.min.js',
-                             'jquery/plugins/inat/place_autocomplete.js' %>
+                             'jquery/plugins/inat/place_autocomplete.js',
+                             'jquery/plugins/inat/taxon_selectors.js' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#place_q').placeAutocomplete('<%= url_for(:controller => "places", :action => "autocomplete") %>', {
@@ -26,11 +27,29 @@
         }
       })
       
+      $('#taxon_q').simpleTaxonSelector({
+        taxonIDField: $('#new_operand_id'),
+        afterSelect: function() {
+          $('#new_operand_type').val("Taxon")
+        },
+        afterUnselect: function() {
+          $('#new_operand_type').val('')
+        }
+      })
+      $('#taxon_selector').hide()
+      
+      $('.observationrules .togglelink').click()
+      
       $('.operator_field select').change(function() {
         if ($(this).val() == 'observed_in_place?') {
           $('#place_selector').show()
         } else {
           $('#place_selector').hide()
+        }
+        if ($(this).val() == 'in_taxon?') {
+          $('#taxon_selector').show()
+        } else {
+          $('#taxon_selector').hide()
         }
       })
     })
@@ -58,7 +77,8 @@
     <% end -%>
   <% end %>
   
-  <%= f.select :project_type, Project::PROJECT_TYPES, :include_blank => "normal" %>
+  <%= f.select :project_type, Project::PROJECT_TYPES, :include_blank => "normal",
+    :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
   
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
@@ -101,8 +121,8 @@
       <% end %>
     </ul>
     
-    <%= link_to_toggle "add a new rule", "#new_project_observation_rule" %>
-    <div id="new_project_observation_rule" style="display:none">
+    <%= link_to_toggle "add a new rule", "#new_project_observation_rule", :class => "open" %>
+    <div id="new_project_observation_rule">
       <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
         <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
           :include_blank => "Choose a rule",
@@ -116,6 +136,10 @@
             Not finding the place you want?
             <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
           </span>
+        </div>
+        <div id="taxon_selector">
+          <label for="taxon_q">Choose a taxon</label><br/>
+          <input type="text" name="taxon_q" value="" id="taxon_q">
         </div>
       <% end %>
     </div>
