@@ -8,16 +8,35 @@ describe ProjectObservation, "creation" do
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
   end
+  
+  it "should queue a DJ job to set project user counters" do
+    stamp = Time.now
+    ProjectObservation.make(:observation => Observation.make(:taxon => Taxon.make))
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.map(&:handler).inspect
+    jobs.select{|j| j.handler =~ /\:update_observation_counter_cache/}.should_not be_blank
+    jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
+  end
 end
 
 describe ProjectObservation, "destruction" do
   it "should queue a DJ job for the list" do
-    stamp = Time.now
     project_observation = ProjectObservation.make(:observation => Observation.make(:taxon => Taxon.make))
-    jobs = Delayed::Job.destroy_all
+    Delayed::Job.destroy_all
+    stamp = Time.now
     project_observation.destroy
-    Delayed::Job.last.should_not be_blank
-    Delayed::Job.last.handler.should match(/\:refresh_project_list\n/)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+  end
+  
+  it "should queue a DJ job to set project user counters" do
+    project_observation = ProjectObservation.make(:observation => Observation.make(:taxon => Taxon.make))
+    Delayed::Job.destroy_all
+    stamp = Time.now
+    project_observation.destroy
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /\:update_observation_counter_cache/}.should_not be_blank
+    jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
   end
 end
 

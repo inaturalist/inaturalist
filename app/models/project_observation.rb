@@ -8,10 +8,10 @@ class ProjectObservation < ActiveRecord::Base
   
   after_save :refresh_project_list
   after_destroy :refresh_project_list
-  after_create :update_observation_counter_cache
-  after_destroy :update_observation_counter_cache
-  after_create :update_taxon_counter_cache
-  after_destroy :update_taxon_counter_cache
+  after_create :update_observations_counter_cache_later
+  after_destroy :update_observations_counter_cache_later
+  after_create :update_taxa_counter_cache_later
+  after_destroy :update_taxa_counter_cache_later
   
   def observed_by_project_member?
     project.project_users.exists?(:user_id => observation.user_id)
@@ -24,32 +24,13 @@ class ProjectObservation < ActiveRecord::Base
     true
   end
   
-  def update_observation_counter_cache
-    project_user = project.project_users.find_by_user_id(observation.user_id)
-    return true unless project_user
-    thecount = project.project_observations.count(
-      :include => {:observation => :taxon},
-      :conditions => [
-        "observations.user_id = ? AND taxa.rank_level <= ?", 
-        project_user.user_id, Taxon::RANK_LEVELS['species']
-      ]
-    )
-    project_user.send_later(:update_attribute, :observations_count, thecount)
+  def update_observations_counter_cache_later
+    ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, observation.user_id)
     true
   end
   
-  def update_taxon_counter_cache
-    project_user = project.project_users.find_by_user_id(observation.user_id)
-    return true unless project_user
-    thecount = project_user.project.project_observations.count(
-      :select => "distinct observations.taxon_id",
-      :include => {:observation => :taxon},
-      :conditions => [
-        "observations.user_id = ? AND taxa.rank_level <= ?", 
-        project_user.user_id, Taxon::RANK_LEVELS['species']
-      ]
-    )
-    project_user.send_later(:update_attribute, :taxa_count, thecount)
+  def update_taxa_counter_cache_later
+    ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, observation.user_id)
     true
   end
   

@@ -4,32 +4,16 @@
 
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
-  <style type="text/css" media="screen">
-    h2 {
-      line-height: 1;
-      margin: 0;
-      float: left;
-    }
-    td .usericon {
-      vertical-align: middle;
-    }
-  
-    td {
-      vertical-align: middle;
-    }
-  
-    td .description {
-      display: block;
-    }
-  </style>
 <% end %>
 
 <div id="pageheader" class="clear">
-
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
   <h2>
     Contributions from <%= link_to h(@contributor.user.login), observations_by_login_path(@contributor.user.login) %> to
     <% if @project.icon.file? -%>
-      <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+      <%= image_tag @project.icon.url(:span1), :style => "vertical-align: middle" %>
     <% end -%>
     <%=h truncate @project.title, :length => 55 %>
   </h2>
@@ -66,7 +50,3 @@
     <% end -%>
   </div>
 </div>
-
-<div class="breadcrumbs">
-  <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
-</div><!-- /#breadcrumbs -->

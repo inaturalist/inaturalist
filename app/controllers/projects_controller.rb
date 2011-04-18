@@ -127,8 +127,8 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project_observations = @project.project_observations.paginate(:page => params[:page], :include => :observation, :conditions => ["observations.user_id = ?", @contributor.user])
-       
+    @project_observations = @project.project_observations.paginate(:page => params[:page], 
+      :include => :observation, :conditions => ["observations.user_id = ?", @contributor.user])
   end
   
   def make_curator
