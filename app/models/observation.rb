@@ -719,7 +719,8 @@ class Observation < ActiveRecord::Base
       self.taxon_id = taxon_names.first.taxon_id 
       return true
     end
-    sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon))
+    sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon).compact)
+    return true if sorted.blank?
     return true unless sorted.first.ancestor_of?(sorted.last)
     self.taxon_id = sorted.first.id
     true
