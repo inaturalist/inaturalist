@@ -226,9 +226,9 @@ class ListsController < ApplicationController
   private
   
   def owner_required
-    unless logged_in? && @list.user.id == current_user.id
+    unless logged_in? && @list.user.id == current_user.id || current_user.is_admin?
       flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
-      redirect_to lists_by_login_path(@list.user.login)
+      redirect_back_or_default('/')
       return false
     end
   end
