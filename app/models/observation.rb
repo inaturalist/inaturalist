@@ -8,6 +8,10 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_identifications
+  
+  # Set if you need to set the taxon from a name separate from the species 
+  # guess
+  attr_accessor :taxon_name
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -90,6 +94,7 @@ class Observation < ActiveRecord::Base
   
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
+              :set_taxon_from_taxon_name,
               :set_iconic_taxon,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
@@ -710,20 +715,28 @@ class Observation < ActiveRecord::Base
     end
   end
   
+  def set_taxon_from_taxon_name
+    return true if @taxon_name.blank?
+    return true if taxon_id
+    self.taxon_id = single_taxon_id_for_name(@taxon_name)
+    true
+  end
+  
   def set_taxon_from_species_guess
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
-    taxon_names = TaxonName.all(:conditions => ["name = ?", species_guess.strip], :limit => 5, :include => :taxon)
-    return true if taxon_names.blank?
-    if taxon_names.size == 1
-      self.taxon_id = taxon_names.first.taxon_id 
-      return true
-    end
-    sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon).compact)
-    return true if sorted.blank?
-    return true unless sorted.first.ancestor_of?(sorted.last)
-    self.taxon_id = sorted.first.id
+    self.taxon_id = single_taxon_id_for_name(species_guess)
     true
+  end
+  
+  def single_taxon_id_for_name(name)
+    taxon_names = TaxonName.all(:conditions => ["name = ?", name.strip], :limit => 5, :include => :taxon)
+    return if taxon_names.blank?
+    return taxon_names.first.taxon_id if taxon_names.size == 1
+    sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon).compact)
+    return if sorted.blank?
+    return unless sorted.first.ancestor_of?(sorted.last)
+    sorted.first.id
   end
   
   def set_latlon_from_place_guess

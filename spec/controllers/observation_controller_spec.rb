@@ -23,6 +23,16 @@ describe ObservationsController do
       project.users.find_by_id(user.id).should_not be_blank
       project.observations.last.id.should == Observation.last.id
     end
+    
+    it "should set taxon from taxon_name param" do
+      user = User.make
+      taxon = Taxon.make
+      login_as user
+      post :create, :observation => {:species_guess => "Foo", :taxon_name => taxon.name}
+      obs = user.observations.last
+      obs.species_guess.should == "Foo"
+      obs.taxon_id.should == taxon.id
+    end
   end
   
   describe :update do
