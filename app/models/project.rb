@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
   
-  has_friendly_id :title, :use_slug => true
+  has_friendly_id :title, :use_slug => true, :reserved_words => ProjectsController.action_methods.to_a
   
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true

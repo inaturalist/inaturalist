@@ -96,7 +96,6 @@ ActionController::Routing::Routes.draw do |map|
     o.project_observations 'observations/project/:id.:format', :action => "project"
   end
   
-  map.resources :projects
   map.with_options :controller => "projects" do |p|
     p.join_project "projects/:id/join", :action => "join"
     p.leave_project "projects/:id/leave", :action => "leave"
@@ -122,7 +121,7 @@ ActionController::Routing::Routes.draw do |map|
     p.make_curator 'projects/:id/make_curator/:project_user_id', :action => 'make_curator'
     p.remove_curator 'projects/:id/remove_curator/:project_user_id', :action => 'remove_curator'
   end
-  
+  map.resources :projects
   map.resources :project_assets, :except => [:index, :show]
   map.resources :custom_projects, :except => [:index, :show]
   
