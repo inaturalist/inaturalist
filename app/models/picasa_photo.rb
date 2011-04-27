@@ -50,7 +50,7 @@ class PicasaPhoto < Photo
       latrads = observation.latitude.to_f * (Math::PI / 180)
       lonrads = observation.longitude.to_f * (Math::PI / 180)
       places = Place.search(:geo => [latrads,lonrads], :order => "@geodist asc", :limit => 5) rescue []
-      places = places.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
+      places = places.compact.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
       places = places.sort_by(&:bbox_area)
       # if place = Place.containing_lat_lng(observation.latitude, observation.longitude).first(:order => "bbox_area ASC")
       #   observation.place_guess = place.display_name
