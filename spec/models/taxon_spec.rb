@@ -498,6 +498,18 @@ describe Taxon, "moving" do
   end
 end
 
+describe Taxon do
+  describe "featuring" do
+    it "should fail if no photos" do
+      taxon = Taxon.make
+      taxon.featured_at = Time.now
+      taxon.photos.should be_blank
+      taxon.valid?
+      taxon.errors.on(:featured_at).should_not be_blank
+    end
+  end
+end
+
 def load_test_taxa
   Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
   @Life = Taxon.make(:name => 'Life')

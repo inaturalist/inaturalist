@@ -503,11 +503,7 @@ class TaxaController < ApplicationController
   
   def update_photos
     @taxon.photos = retreive_flickr_photos
-    if @taxon.save
-      flash[:notice] = "Taxon photos updated!"
-    else
-      flash[:error] = "Something went wrong saving the photos: #{@taxon.errors.full_messages}"
-    end
+    flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
   end
   

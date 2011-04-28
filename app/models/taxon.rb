@@ -345,6 +345,17 @@ class Taxon < ActiveRecord::Base
     self.flags.select { |f| not f.resolved? }.size > 0
   end
   
+  # Override assignment method provided by has_many to ensure that all
+  # callbacks on photos and taxon_photos get called, including after_destroy
+  def photos=(new_photos)
+    photos.each do |photo|
+      photo.destroy unless new_photos.detect{|p| p.id == photo.id}
+    end
+    new_photos.each do |photo|
+      taxon_photos.create(:photo => photo) unless photos.detect{|p| p.id == photo.id}
+    end
+  end
+  
   #
   # Fetches associated user-selected FlickrPhotos if they exist, otherwise
   # gets the the first :limit Create Commons-licensed photos tagged with the
@@ -398,6 +409,9 @@ class Taxon < ActiveRecord::Base
     end
     if self.ancestors and self.ancestors.include? self
       errors.add(self.name, "can't be its own ancestor")
+    end
+    if !featured_at.blank? && taxon_photos.blank?
+      errors.add(:featured_at, "can only be set if the taxon has photos")
     end
   end
   
