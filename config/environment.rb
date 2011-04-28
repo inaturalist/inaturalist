@@ -21,6 +21,7 @@ FlickRawOptions = {
   'shared_secret' => FLICKR_SHARED_SECRET
 }
 
+require "omniauth"
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -111,6 +112,7 @@ Rails::Initializer.run do |config|
   # config.gem 'newrelic_rpm'
   config.gem 'delayed_paperclip'
   config.gem "friendly_id", :version => "~> 3.2.1"
+ # config.gem "omniauth", :version => ">= 0.1.6"
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

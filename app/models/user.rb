@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   serialize :preferences, Preferences
   
   belongs_to :life_list, :dependent => :destroy
+  has_many  :provider_authorizations, :dependent => :destroy
   has_one  :flickr_identity, :dependent => :destroy
   has_one  :picasa_identity, :dependent => :destroy
   has_many :observations, :dependent => :destroy
@@ -81,10 +82,10 @@ class User < ActiveRecord::Base
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100
 
-  validates_presence_of     :email
-  validates_length_of       :email,    :within => 6..100 #r@a.wk
+  #validates_presence_of     :email
+  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_nil => true
+  validates_length_of       :email,    :within => 6..100, :allow_nil => true #r@a.wk
   validates_uniqueness_of   :email
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message  
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -121,6 +122,38 @@ class User < ActiveRecord::Base
     u = find_in_state :first, :active, :conditions => {:login => login}
     u = find_in_state :first, :active, :conditions => {:email => login} if u.nil?
     u && u.authenticated?(password) ? u : nil
+  end
+
+  # create a user using 3rd party provider credentials (via omniauth)
+  # note that this bypasses validation and immediately activates the new user
+  # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
+  def self.create_from_omniauth(auth_info)
+    autogen_login = (auth_info["user_info"]["nickname"] || auth_info["user_info"]["first_name"] || auth_info["user_info"]["name"])
+    autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
+    u = User.new({
+      :login => User.suggest_login(autogen_login),
+      :email => auth_info["user_info"]["email"],
+      :name => auth_info["user_info"]["name"],
+      :password => autogen_pw,
+      :password_confirmation => autogen_pw
+    })
+    if u
+      # if we decide to not use acts_as_state_machine (which is baked into restful_authentication), 
+      # uncomment the next two lines (and comment the follow two) to register and activate the user
+      #u.state = "active"
+      #u.activated_at = Time.now.utc
+      u.register! 
+      u.activate!
+      u.save
+      u.provider_authorizations.create(
+        :provider_name => auth_info['provider'], 
+        :provider_uid => auth_info['uid'],
+        :token => (auth_info["credentials"]["token"] || auto_info["credentials"]["secret"])
+      ) 
+    end
+    return u
+    # TODO: set user image
+    # TODO: do something useful with location?  -> time zone, perhaps
   end
 
   def login=(value)
@@ -175,6 +208,22 @@ class User < ActiveRecord::Base
   end
 
   protected
+
+  # given a requested login, will try to find existing users with that login
+  # and suggest handle2, handle3, handle4, etc if the login's taken
+  # to prevent namespace clashes (e.g. i register with twitter @joe but there's already an inat user where login=joe, so it suggest joe2)
+  def self.suggest_login(requested_login)
+    # strip out everything but letters and numbers so we can pass the login format regex validation
+    requested_login = requested_login.downcase.split('').select{|l| ('a'..'z').member?(l) || ('0'..'9').member?(l) }.join('')
+    suggested_login = requested_login
+    appendix = 1
+    while !User.find_by_login(suggested_login).nil?
+      appendix += 1 
+      suggested_login = (requested_login + appendix.to_s)
+    end  
+    return suggested_login
+  end  
+  
   def make_activation_code
     self.deleted_at = nil
     self.activation_code = self.class.make_token

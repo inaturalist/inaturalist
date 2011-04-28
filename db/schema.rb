@@ -439,6 +439,17 @@ ActiveRecord::Schema.define(:version => 20110514221925) do
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
+  create_table "provider_authorizations", :force => true do |t|
+    t.column "provider_name", :string, :null => false
+    t.column "provider_uid", :string
+    t.column "token", :text
+    t.column "user_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "provider_authorizations", ["user_id"], :name => "index_provider_authorizations_on_user_id"
+
   create_table "roles", :force => true do |t|
     t.column "name", :string
   end

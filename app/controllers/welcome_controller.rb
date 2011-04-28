@@ -29,4 +29,5 @@ class WelcomeController < ApplicationController
     session[:mobile_view] = session[:mobile_view] ? false : true
     redirect_to params[:return_to] || session[:return_to] || "/"
   end
+
 end
