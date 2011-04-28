@@ -667,7 +667,8 @@
     </p>
     
     <p class="ui">
-      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon) %>
+      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon), 
+        :rel => "nofollow" %>
     </p>
     
   </div>

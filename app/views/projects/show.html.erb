@@ -213,6 +213,7 @@
 
   <%= separator %>
   <center class="small meta">
-    <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project) %>
+    <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project),
+      :rel => "nofollow" %>
   </center>
 </div>
