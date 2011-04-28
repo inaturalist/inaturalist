@@ -1,4 +1,10 @@
 class ProjectsController < ApplicationController
+  WIDGET_CACHE_EXPIRATION = 15.minutes
+  caches_action :species_count, :contributors,
+    :expires_in => WIDGET_CACHE_EXPIRATION,
+    :cache_path => Proc.new {|c| c.params}, 
+    :if => Proc.new {|c| c.request.format.widget?}
+  
   before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :species_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map]
   before_filter :ensure_current_project_url, :only => :show

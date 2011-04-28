@@ -1,4 +1,13 @@
 class ObservationsController < ApplicationController
+  caches_page :tile_points
+  
+  WIDGET_CACHE_EXPIRATION = 15.minutes
+  caches_action :index, :by_login, :project,
+    :expires_in => WIDGET_CACHE_EXPIRATION,
+    :cache_path => Proc.new {|c| c.params}, 
+    :if => Proc.new {|c| c.request.format.widget?}
+  cache_sweeper :observation_sweeper, :only => [:update, :destroy]
+  
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :login_required, 
                 :except => [:explore,
@@ -10,7 +19,6 @@ class ObservationsController < ApplicationController
                             :nearby,
                             :widget,
                             :project]
-  cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
     :update_photos, :destroy]
   before_filter :require_owner, :only => [:edit, :edit_photos, 
@@ -28,9 +36,6 @@ class ObservationsController < ApplicationController
   MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  
-  
-  caches_page :tile_points
   
   ORDER_BY_FIELDS = %w"place user created_at observed_on species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
