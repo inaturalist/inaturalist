@@ -16,7 +16,10 @@ ActionController::Routing::Routes.draw do |map|
   map.toggle_mobile "/toggle_mobile", :controller => 'welcome', :action => 'toggle_mobile'
   
   map.help '/help', :controller => 'help'
-  
+
+  map.omniauth_callback "/auth/:provider/callback", :controller => "provider_authorizations", :action => "create"
+  map.omniauth_failure "/auth/failure", :controller => "provider_authorizations", :action => "failure"
+
   # Special controller routes
   
   # Users routes
