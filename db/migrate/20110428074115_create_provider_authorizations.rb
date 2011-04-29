@@ -2,7 +2,7 @@ class CreateProviderAuthorizations < ActiveRecord::Migration
   def self.up
     create_table :provider_authorizations do |t|
       t.string  :provider_name, :null => false # e.g. 'facebook' or 'twitter'
-      t.string  :provider_uid # e.g. facebook or twitter id 
+      t.text  :provider_uid # e.g. facebook or twitter id. type=text cause openid uids can get pretty long
       t.text  :token # oauth2 token
       t.integer :user_id # inat user id
 
