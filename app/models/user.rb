@@ -1,4 +1,5 @@
 require 'digest/sha1'
+require 'open-uri'
 
 class User < ActiveRecord::Base
   
@@ -73,7 +74,20 @@ class User < ActiveRecord::Base
   before_create :create_preferences
   after_create :create_life_list, :signup_for_incomplete_community_goals
   after_destroy :create_deleted_user
-              
+  before_validation :download_remote_icon, :if => :icon_url_provided?
+
+  validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
+  
+  def icon_url_provided?
+    !self.icon_url.blank?
+  end
+
+  def download_remote_icon
+    io = open(URI.parse(self.icon_url))
+    self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+  end
+
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
@@ -90,7 +104,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url
   
   
   named_scope :order, Proc.new { |sort_by, sort_dir|
@@ -143,7 +157,8 @@ class User < ActiveRecord::Base
       :email => email,
       :name => auth_info["user_info"]["name"],
       :password => autogen_pw,
-      :password_confirmation => autogen_pw
+      :password_confirmation => autogen_pw,
+      :icon_url => auth_info["user_info"]["image"]
     })
     if u
       # if we decide to not use acts_as_state_machine (which is baked into restful_authentication), 

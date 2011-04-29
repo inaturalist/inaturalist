@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110428074115) do
+ActiveRecord::Schema.define(:version => 20110429075345) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -639,6 +639,7 @@ ActiveRecord::Schema.define(:version => 20110428074115) do
     t.column "journal_posts_count", :integer, :default => 0
     t.column "life_list_taxa_count", :integer, :default => 0
     t.column "preferences", :text
+    t.column "icon_url", :string
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
