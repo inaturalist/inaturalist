@@ -4,7 +4,7 @@ require 'openid/store/filesystem'
 ActionController::Dispatcher.middleware.use OmniAuth::Builder do #if you are using rails 2.3.x
 #Rails.application.config.middleware.use OmniAuth::Builder do #comment out the above line and use this if you are using rails 3
   provider :twitter, INAT_CONFIG["twitter"]["key"] , INAT_CONFIG["twitter"]["secret"]
-  provider :facebook, INAT_CONFIG["facebook"]["app_id"], INAT_CONFIG["facebook"]["app_secret"], :scope => 'email,offline_access' 
+  provider :facebook, INAT_CONFIG["facebook"]["app_id"], INAT_CONFIG["facebook"]["app_secret"], :scope => 'email,offline_access,publish_stream,user_location' 
   #provider :linked_in, 'key', 'secret'
   provider :open_id,  OpenID::Store::Filesystem.new('/tmp')
 end

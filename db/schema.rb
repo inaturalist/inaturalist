@@ -658,6 +658,7 @@ ActiveRecord::Schema.define(:version => 20110514221925) do
     t.column "journal_posts_count", :integer, :default => 0
     t.column "life_list_taxa_count", :integer, :default => 0
     t.column "preferences", :text
+    t.column "icon_url", :string
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

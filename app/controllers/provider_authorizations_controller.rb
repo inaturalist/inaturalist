@@ -12,11 +12,14 @@ class ProviderAuthorizationsController < ApplicationController
 
   def create
     auth_info = request.env['rack.auth']
-    logger.debug("auth_info: " + auth_info.inspect)
-    # omniauth bug sets fb nickname to 'profile.php?id=xxxxx' if no other nickname exists
-    if (auth_info["user_info"]["nickname"] && auth_info["user_info"]["nickname"].match("profile.php"))
-      auth_info["user_info"]["nickname"] = nil 
+    if auth_info["provider"]=='facebook' 
+      # omniauth bug sets fb nickname to 'profile.php?id=xxxxx' if no other nickname exists
+      auth_info["user_info"]["nickname"] = nil if (auth_info["user_info"]["nickname"] && auth_info["user_info"]["nickname"].match("profile.php"))
+      # for some reason, omniauth doesn't populate image url
+      # (maybe cause our version of omniauth was pre- fb graph api?)
+      auth_info["user_info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
     end
+    logger.debug("auth_info: " + auth_info.inspect)
     existing_authorization = ProviderAuthorization.find_from_omniauth(auth_info)
     if existing_authorization.nil?  # first time logging in with this provider + provider uid combo
       if current_user # if logged in, link provider to existing inat user
