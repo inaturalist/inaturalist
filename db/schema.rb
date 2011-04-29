@@ -441,7 +441,7 @@ ActiveRecord::Schema.define(:version => 20110514221925) do
 
   create_table "provider_authorizations", :force => true do |t|
     t.column "provider_name", :string, :null => false
-    t.column "provider_uid", :string
+    t.column "provider_uid", :text
     t.column "token", :text
     t.column "user_id", :integer
     t.column "created_at", :datetime

@@ -128,6 +128,15 @@ class User < ActiveRecord::Base
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
   def self.create_from_omniauth(auth_info)
+    email = (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"])
+    # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
+    unless email.nil?
+      u = User.find_by_email(email)
+      if u
+        u.add_provider_auth(auth_info)
+        return u
+      end
+    end
     autogen_login = (auth_info["user_info"]["nickname"] || auth_info["user_info"]["first_name"] || auth_info["user_info"]["name"])
     autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
     u = User.new({
@@ -145,15 +154,24 @@ class User < ActiveRecord::Base
       u.register! 
       u.activate!
       u.save
-      u.provider_authorizations.create(
-        :provider_name => auth_info['provider'], 
-        :provider_uid => auth_info['uid'],
-        :token => (auth_info["credentials"]["token"] || auto_info["credentials"]["secret"])
-      ) 
+      u.add_provider_auth(auth_info)
     end
     return u
     # TODO: set user image
     # TODO: do something useful with location?  -> time zone, perhaps
+  end
+
+  # add a provider_authorization to this user.  
+  # auth_info is the omniauth info from rack.
+  def add_provider_auth(auth_info)
+    provider_auth_info = {
+      :provider_name => auth_info['provider'], 
+      :provider_uid => auth_info['uid']
+    }
+    unless auth_info["credentials"].nil? # open_id (google, yahoo, etc) doesn't provide a token
+      provider_auth_info.merge!({ :token => (auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]) }) 
+    end
+    self.provider_authorizations.create(provider_auth_info) 
   end
 
   def login=(value)
