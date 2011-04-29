@@ -33,56 +33,17 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_options = {
-      :order => "#{Taxon.table_name}.name ASC",
-      :include => :taxon_names
-    }
-    
-    @qparams = {}
-    if params[:q]
-      @qparams[:q] = params[:q]
-      find_options[:conditions] =  [ "#{Taxon.table_name}.name LIKE ?", 
-                                      '%' + params[:q].split(' ').join('%') + '%' ]
-    elsif params[:name]
-      @qparams[:name] = params[:name]
-      find_options[:conditions] = [ "name = ?", params[:name] ]
-    else
-      find_options[:conditions] = ["is_iconic = ?", true]
-      find_options[:order] = :ancestry
-    end
-    if params[:limit]
-      @qparams[:limit] = params[:limit]
-      find_options[:limit] = params[:limit]
-    else
-      params[:page_size] ||= 10
-      params[:page] ||= 1
-      find_options[:page] = params[:page]
-      find_options[:per_page] = params[:page_size]
-    end
-    if params[:all_names] == 'true'
-      @qparams[:all_names] = params[:all_names]
-      find_options[:include] = [:taxon_names]
-      if find_options[:conditions]
-        find_options[:conditions][0] += " OR #{TaxonName.table_name}.name LIKE ?"
-        find_options[:conditions] << ('%' + params[:q].split(' ').join('%') + '%')
-      else
-        find_options[:conditions] =  [ "#{TaxonName.table_name}.name LIKE ?", 
-                                        '%' + params[:q].split(' ').join('%') + '%' ]
-      end
-    end
-
-    logger.info(find_options)
-    @taxa = Taxon.paginate(:all, find_options)
-    
-    do_external_lookups
+    find_taxa unless request.format.html?
     
     respond_to do |format|
-      format.html do # index.html.erb
-        @featured_taxa = Taxon.all(:conditions => "featured_at > 0", 
-          :order => "featured_at DESC", :limit => 100,
+      format.html do
+        
+        Taxon.all(:conditions => "featured_at > 0", 
+          :order => "featured_at DESC", :limit => 50,
           :include => [:iconic_taxon, :photos, :taxon_names])
+        
         if @featured_taxa.blank?
-          @featured_taxa = Taxon.all(:limit => 100, :conditions => [
+          @featured_taxa = Taxon.all(:limit => 50, :conditions => [
             "taxa.wikipedia_summary > 0 AND " +
             "photos.id > 0 AND " +
             "taxa.observations_count > 1"
@@ -100,7 +61,7 @@ class TaxaController < ApplicationController
           @iconic_taxa = Taxon::ICONIC_TAXA
           @recent = Observation.latest.all(
             :limit => 5, 
-            :include => {:taxon => [:taxon_names]},
+            :include => {:taxon => [:taxon_names, :photos]},
             :conditions => 'taxon_id > 0',
             :group => :taxon_id)
         end
@@ -782,6 +743,49 @@ class TaxaController < ApplicationController
   
 ## Protected / private actions ###############################################
   private
+  
+  def find_taxa
+    find_options = {
+      :order => "#{Taxon.table_name}.name ASC",
+      :include => :taxon_names
+    }
+    
+    @qparams = {}
+    if params[:q]
+      @qparams[:q] = params[:q]
+      find_options[:conditions] =  [ "#{Taxon.table_name}.name LIKE ?", 
+                                      '%' + params[:q].split(' ').join('%') + '%' ]
+    elsif params[:name]
+      @qparams[:name] = params[:name]
+      find_options[:conditions] = [ "name = ?", params[:name] ]
+    else
+      find_options[:conditions] = ["is_iconic = ?", true]
+      find_options[:order] = :ancestry
+    end
+    if params[:limit]
+      @qparams[:limit] = params[:limit]
+      find_options[:limit] = params[:limit]
+    else
+      params[:page_size] ||= 10
+      params[:page] ||= 1
+      find_options[:page] = params[:page]
+      find_options[:per_page] = params[:page_size]
+    end
+    if params[:all_names] == 'true'
+      @qparams[:all_names] = params[:all_names]
+      find_options[:include] = [:taxon_names]
+      if find_options[:conditions]
+        find_options[:conditions][0] += " OR #{TaxonName.table_name}.name LIKE ?"
+        find_options[:conditions] << ('%' + params[:q].split(' ').join('%') + '%')
+      else
+        find_options[:conditions] =  [ "#{TaxonName.table_name}.name LIKE ?", 
+                                        '%' + params[:q].split(' ').join('%') + '%' ]
+      end
+    end
+    
+    @taxa = Taxon.paginate(find_options)
+    do_external_lookups
+  end
   
   #
   # Find locally cached photos or get new ones from flickr based on form
