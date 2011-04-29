@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   #validates_presence_of     :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_nil => true
   validates_length_of       :email,    :within => 6..100, :allow_nil => true #r@a.wk
-  validates_uniqueness_of   :email
+  validates_uniqueness_of   :email,    :allow_nil => true
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -137,11 +137,11 @@ class User < ActiveRecord::Base
         return u
       end
     end
-    autogen_login = (auth_info["user_info"]["nickname"] || auth_info["user_info"]["first_name"] || auth_info["user_info"]["name"])
+    autogen_login = User.suggest_login(auth_info["user_info"]["nickname"] || auth_info["user_info"]["first_name"] || auth_info["user_info"]["name"])
     autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
     u = User.new({
-      :login => User.suggest_login(autogen_login),
-      :email => (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"]),
+      :login => autogen_login,
+      :email => email,
       :name => auth_info["user_info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw

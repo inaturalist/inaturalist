@@ -19,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.omniauth_callback "/auth/:provider/callback", :controller => "provider_authorizations", :action => "create"
   map.omniauth_failure "/auth/failure", :controller => "provider_authorizations", :action => "failure"
+  map.edit_login "/users/edit_username", :controller => "users", :action => "edit_login"
 
   # Special controller routes
   
