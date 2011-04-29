@@ -7,6 +7,7 @@ class ProviderAuthorizationsController < ApplicationController
 
   def create
     auth_info = request.env['rack.auth']
+    logger.debug("auth_info: " + auth_info.inspect)
     existing_authorization = ProviderAuthorization.find_from_omniauth(auth_info)
     if existing_authorization.nil?  # first time logging in with this provider + provider uid combo
       if current_user # if logged in, link provider to existing inat user
