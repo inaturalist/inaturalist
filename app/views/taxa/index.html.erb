@@ -219,8 +219,7 @@ Taxa &middot; All Species
       </div>
 
       <div class="taxon_observations">
-        <% if taxon.observations_count > 0 -%>
-          <%- observation = taxon.observations.first(:order => "id DESC", :include => :user) -%>
+        <% if taxon.observations_count > 0 && observation = taxon.observations.first(:order => "id DESC", :include => :user) -%>
           <%= link_to(
             image_tag(observation.user.icon.url(:thumb), :class => 'usericon left'),
             person_by_login_path(observation.user.login)) %>

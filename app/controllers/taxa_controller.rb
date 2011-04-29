@@ -38,7 +38,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do
         
-        Taxon.all(:conditions => "featured_at > 0", 
+        @featured_taxa = Taxon.all(:conditions => "featured_at > 0", 
           :order => "featured_at DESC", :limit => 50,
           :include => [:iconic_taxon, :photos, :taxon_names])
         
