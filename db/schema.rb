@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415230149) do
+ActiveRecord::Schema.define(:version => 20110429004856) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 20110415230149) do
 
   add_index "activity_streams", ["subscriber_id"], :name => "index_activity_streams_on_subscriber_id"
   add_index "activity_streams", ["user_id", "activity_object_type"], :name => "index_activity_streams_on_user_id_and_activity_object_type"
+
+  create_table "announcements", :force => true do |t|
+    t.column "placement", :string
+    t.column "start", :datetime
+    t.column "end", :datetime
+    t.column "body", :text
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
 
   create_table "colors", :force => true do |t|
     t.column "value", :string
@@ -607,13 +616,13 @@ ActiveRecord::Schema.define(:version => 20110415230149) do
     t.column "login", :string, :limit => 40
     t.column "name", :string, :limit => 100, :default => ""
     t.column "email", :string, :limit => 100
-    t.column "crypted_password", :string, :limit => 40
-    t.column "salt", :string, :limit => 40
+    t.column "crypted_password", :string, :limit => 40, :default => "", :null => false
+    t.column "salt", :string, :limit => 40, :default => "", :null => false
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "remember_token", :string, :limit => 40
     t.column "remember_token_expires_at", :datetime
-    t.column "activation_code", :string, :limit => 40
+    t.column "activation_code", :string
     t.column "activated_at", :datetime
     t.column "state", :string, :default => "passive"
     t.column "deleted_at", :datetime

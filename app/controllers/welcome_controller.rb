@@ -3,11 +3,15 @@ class WelcomeController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
-  caches_action :index, :expires_in => 15.minute, :if => Proc.new {|c|
-    !c.send(:logged_in?) && c.send(:flash).blank? && !c.request.format.mobile?
+  caches_action :index, :expires_in => 15.minutes, :if => Proc.new {|c|
+    !c.send(:logged_in?) && 
+    c.send(:flash).blank? && 
+    !c.request.format.mobile?
   }
   
   def index
+    @announcement = Announcement.last(:conditions => [
+      "placement = 'welcome/index' AND ? BETWEEN start AND end", Time.now.utc])
     respond_to do |format|
       format.html do
         @observations = Observation.all( 

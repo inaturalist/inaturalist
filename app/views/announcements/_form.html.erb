@@ -1,0 +1,12 @@
+<% form_for @announcement, :builder => DefaultFormBuilder do |f| %>
+  <%= f.error_messages %>
+  <%= f.select :placement, Announcement::PLACEMENTS %>
+  <%= f.datetime_select :start %>
+  <%= f.datetime_select :end %>
+  <%= f.text_area :body %>
+  
+  <div class="actions buttons">
+    <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => "default button" %>
+    <%= link_to 'Cancel', announcements_path, :class => "button" %>
+  </div>
+<% end %>

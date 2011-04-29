@@ -96,6 +96,11 @@
   </script>
 <% end %>
 
+<% if @announcement -%>
+  <div class="column span-24">
+    <%= @announcement.body %>
+  </div>
+<% end -%>
 
 <div id="welcomecol" class="clear last column prepend-2 span-21 append-1">
   <div id="explore" class="column span-5">

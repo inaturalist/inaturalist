@@ -131,6 +131,12 @@
   </script>
 <%- end -%>
 
+<% if @announcement -%>
+  <div class="column span-24">
+    <%= @announcement.body %>
+  </div>
+<% end -%>
+
 <div id="pageheader">
   <h2>Welcome, <%= @user.login %>!</h2>
   <%= render :partial => 'users/subnav', :locals => { :user => current_user } %>

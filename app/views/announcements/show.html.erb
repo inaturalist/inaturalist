@@ -1,0 +1,23 @@
+<p>
+  <b>Placement:</b>
+  <%=h @announcement.placement %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%=h @announcement.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%=h @announcement.end %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @announcement.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
+<%= link_to 'Back', announcements_path %>

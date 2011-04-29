@@ -1,0 +1,28 @@
+<h1>Listing announcements</h1>
+
+<table>
+  <tr>
+    <th>Placement</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Body</th>
+  </tr>
+
+<% @announcements.each do |announcement| %>
+  <tr>
+    <td><%=h announcement.placement %></td>
+    <td><%=h announcement.start %></td>
+    <td><%=h announcement.end %></td>
+    <td><%=h announcement.body %></td>
+    <td><%= link_to 'Show', announcement %></td>
+    <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
+    <td><%= link_to 'Destroy', announcement, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @announcements %>
+
+<br />
+
+<%= link_to 'New announcement', new_announcement_path %>

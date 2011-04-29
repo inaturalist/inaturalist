@@ -19,6 +19,8 @@ ActionController::Routing::Routes.draw do |map|
   
   # Special controller routes
   
+  map.resources :announcements
+  
   # Users routes
   map.with_options(:controller => 'users') do |users|
     users.dashboard '/users/dashboard', :action => 'dashboard'

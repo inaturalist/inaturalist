@@ -116,6 +116,7 @@ input[type="file"],
 }
 
 .select { padding: 0; }
+select { width: auto; max-width: 200px; }
 
 textarea:focus,
 input.text:focus,

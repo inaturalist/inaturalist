@@ -173,6 +173,8 @@ class UsersController < ApplicationController
   
   # These are protected by login_required
   def dashboard
+    @announcement = Announcement.last(:conditions => [
+      "placement = 'users/dashboard' AND ? BETWEEN start AND end", Time.now.utc])
     @user = current_user
     @recently_commented = Observation.all(
       :include => [:comments, :user, :photos],
