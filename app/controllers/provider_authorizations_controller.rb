@@ -5,6 +5,11 @@ class ProviderAuthorizationsController < ApplicationController
     render(:text=>request.env['rack.auth'].to_yaml)
   end
 
+  def failure
+    flash[:notice] = "Hm, that didn't work. Try again or choose another login option."
+    redirect_to login_url
+  end
+
   def create
     auth_info = request.env['rack.auth']
     logger.debug("auth_info: " + auth_info.inspect)
@@ -15,7 +20,7 @@ class ProviderAuthorizationsController < ApplicationController
           :provider_name => auth_info['provider'], 
           :provider_uid => auth_info['uid']
         }
-        unless auth_info["credentials"].nil? # open_id (google, yahoo, etc) don't provide a token
+        unless auth_info["credentials"].nil? # open_id (google, yahoo, etc) doesn't provide a token
           provider_auth_info.merge!({ :token => (auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]) }) 
         end
         current_user.provider_authorizations.create(provider_auth_info) 
