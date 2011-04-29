@@ -96,12 +96,6 @@
   </script>
 <% end %>
 
-<% if @announcement -%>
-  <div class="column span-24">
-    <%= @announcement.body %>
-  </div>
-<% end -%>
-
 <div id="welcomecol" class="clear last column prepend-2 span-21 append-1">
   <div id="explore" class="column span-5">
     <center>
@@ -151,6 +145,12 @@
     </div>
   </div>
 </div><!-- end welcome col -->
+
+<% if @announcement -%>
+  <div class="column span-24">
+    <%= @announcement.body %>
+  </div>
+<% end -%>
 
 <div class="column prepend-2 span-7">
   <h3 class="description">Recent additions</h3>

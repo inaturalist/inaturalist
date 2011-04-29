@@ -193,7 +193,7 @@ module ApplicationHelper
     text = auto_link(markdown(simple_format(sanitize(text))))
     
     # Ensure all tags are closed
-    Nokogiri::HTML(text).to_s
+    Nokogiri::HTML::DocumentFragment.parse(text).to_s
   end
   
   def render_in_format(format, *args)
