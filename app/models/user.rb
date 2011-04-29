@@ -132,7 +132,7 @@ class User < ActiveRecord::Base
     autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
     u = User.new({
       :login => User.suggest_login(autogen_login),
-      :email => auth_info["user_info"]["email"],
+      :email => (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"]),
       :name => auth_info["user_info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw
