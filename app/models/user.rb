@@ -96,7 +96,10 @@ class User < ActiveRecord::Base
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100
 
-  #validates_presence_of     :email
+  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
+  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
+  # (this option is necessary because the User is created before the associated ProviderAuthorization)
+  validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count>0))}
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_nil => true
   validates_length_of       :email,    :within => 6..100, :allow_nil => true #r@a.wk
   validates_uniqueness_of   :email,    :allow_nil => true
@@ -106,6 +109,8 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url
   
+  # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
+  attr_accessor :skip_email_validation 
   
   named_scope :order, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -162,18 +167,13 @@ class User < ActiveRecord::Base
       :icon_url => auth_info["user_info"]["image"]
     })
     if u
-      # if we decide to not use acts_as_state_machine (which is baked into restful_authentication), 
-      # uncomment the next two lines (and comment the follow two) to register and activate the user
-      #u.state = "active"
-      #u.activated_at = Time.now.utc
+      u.skip_email_validation = true
       u.register! 
       u.activate!
-      u.save
       u.add_provider_auth(auth_info)
+      # TODO: do something useful with location?  -> time zone, perhaps
     end
     return u
-    # TODO: set user image
-    # TODO: do something useful with location?  -> time zone, perhaps
   end
 
   # add a provider_authorization to this user.  
