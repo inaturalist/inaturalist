@@ -114,7 +114,7 @@ Some notes:
     <% unless observation.description.blank? %>
       <h4 class="label">Description</h4>
       <div class="description">
-        <%= auto_link(simple_format(observation.description)) %>
+        <%= formatted_user_text observation.description %>
       </div>
     <% end %>
     

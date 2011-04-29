@@ -187,9 +187,13 @@ module ApplicationHelper
   end
   
   def formatted_user_text(text)
-    auto_link(markdown(simple_format(sanitize(text))))
-  rescue BlueCloth::FormatError
-    auto_link(simple_format(sanitize(text)))
+    # make sure attributes are quoted correctly
+    text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
+    
+    text = auto_link(markdown(simple_format(sanitize(text))))
+    
+    # Ensure all tags are closed
+    Nokogiri::HTML(text).to_s
   end
   
   def render_in_format(format, *args)
