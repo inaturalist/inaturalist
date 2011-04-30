@@ -48,7 +48,8 @@ gem 'google_analytics'
 
 # May not be necessary...
 # gem 'ambethia-smtp-tls', :require => 'smtp-tls', :git => 'git://github.com/ambethia/smtp-tls.git'
-gem 'ancestry', :git => 'git://github.com/kueda/ancestry.git' 
+# gem 'ancestry', :git => 'git://github.com/kueda/ancestry.git' 
+gem 'ancestry'
 
 
 group :test, :development do
