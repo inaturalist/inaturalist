@@ -127,7 +127,6 @@ class ListedTaxaController < ApplicationController
   def load_listed_taxon
     unless @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => [:list, :taxon, :user])
       flash[:notice] = "That listed taxon doesn't exist."
-      redirect_to :back
       redirect_back_or_default('/')
       return
     end

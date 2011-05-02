@@ -471,6 +471,22 @@
   </div>
 </div>
 
+<% if @conservation_status_name %>
+  <div class="column span-24">
+    <div class="conservation_status <%= @conservation_status_name %> box">
+      Global conservation status: <strong><%= @conservation_status_name.humanize.downcase %></strong>
+      <span class="small">
+        (Source:
+        <% if @conservation_status_source && !@conservation_status_source.url.blank? -%>
+          <%= link_to @conservation_status_source.title, @conservation_status_source.url -%>
+        <%- else -%>
+          <%= @conservation_status_source.title -%>
+        <%- end -%>)
+      </span>
+    </div>
+  </div>
+<% end %>
+
 <div class="column span-4 aka">
   <h3>
     Classification

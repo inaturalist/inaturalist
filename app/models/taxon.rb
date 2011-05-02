@@ -24,7 +24,10 @@ class Taxon < ActiveRecord::Base
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
+  belongs_to :conservation_status_source, :class_name => "Source"
   has_and_belongs_to_many :colors
+  
+  accepts_nested_attributes_for :conservation_status_source
   
   define_index do
     indexes :name
@@ -41,7 +44,8 @@ class Taxon < ActiveRecord::Base
   
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
-              :capitalize_name
+              :capitalize_name,
+              :set_conservation_status_source
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move
@@ -136,6 +140,47 @@ class Taxon < ActiveRecord::Base
     'Animalia' => 'Other Animals'
   )
   
+  IUCN_NOT_EVALUATED = 0
+  IUCN_DATA_DEFICIENT = 5
+  IUCN_LEAST_CONCERN = 10
+  IUCN_NEAR_THREATENED = 20
+  IUCN_VULNERABLE = 30
+  IUCN_ENDANGERED = 40
+  IUCN_CRITICALLY_ENDANGERED = 50
+  IUCN_EXTINCT_IN_THE_WILD = 60
+  IUCN_EXTINCT = 70
+  IUCN_STATUS_NAMES = %w(not_evaluated data_deficient least_concern
+    near_threatened vulnerable endangered critically_endangered
+    extinct_in_the_wild extinct)
+  IUCN_STATUS_CODES = {
+    "not_evaluated"         => "NE",
+    "data_deficient"        => "DD",
+    "least_concern"         => "LC",
+    "near_threatened"       => "NT",
+    "vulnerable"            => "VU",
+    "endangered"            => "EN",
+    "critically_endangered" => "CR",
+    "extinct_in_the_wild"   => "EW",
+    "extinct"               => "EX"
+  }
+  IUCN_STATUSES = Hash[IUCN_STATUS_NAMES.map {|status_name|
+    [const_get("IUCN_#{status_name.upcase}"), status_name]
+  }]
+  IUCN_STATUSES_SELECT = IUCN_STATUS_NAMES.map do |status_name|
+    ["#{status_name.humanize} (#{IUCN_STATUS_CODES[status_name]})", const_get("IUCN_#{status_name.upcase}")]
+  end
+  IUCN_STATUS_NAMES.each do |status_name|
+    define_method("iucn_#{status_name}?") do
+      conservation_status == self.class.const_get("IUCN_#{status_name.upcase}")
+    end
+  end
+  
+  # TODO make this work for different conservation status sources
+  def conservation_status_name
+    return nil if conservation_status.blank?
+    IUCN_STATUSES[conservation_status]
+  end
+  
   named_scope :observed_by, lambda {|user|
     { :joins => """
       JOIN (
@@ -214,6 +259,15 @@ class Taxon < ActiveRecord::Base
   
   def set_wikipedia_summary_later
     send_later(:set_wikipedia_summary) if wikipedia_title_changed?
+    true
+  end
+  
+  def set_conservation_status_source
+    return true unless conservation_status_changed? || !conservation_status.blank?
+    return true unless conservation_status_source.blank?
+    unless self.conservation_status_source = Source.last(:conditions => "title LIKE 'IUCN Red List of Threatened Species%'")
+      self.build_conservation_status_source(:title => 'IUCN Red List of Threatened Species')
+    end
     true
   end
   

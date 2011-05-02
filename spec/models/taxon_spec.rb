@@ -508,6 +508,22 @@ describe Taxon do
       taxon.errors.on(:featured_at).should_not be_blank
     end
   end
+  
+  describe "conservation status" do
+    it "should set conervation_status_source to IUCN by default" do
+      taxon = Taxon.make
+      taxon.conservation_status_source.should be_blank
+      taxon.update_attributes(:conservation_status => Taxon::IUCN_VULNERABLE)
+      taxon.conservation_status_source.should_not be_blank
+      taxon.conservation_status_source.title.should == 'IUCN Red List of Threatened Species'
+    end
+    
+    it "should define boolean methods" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_VULNERABLE)
+      taxon.should be_iucn_vulnerable
+      taxon.should_not be_iucn_extinct
+    end
+  end
 end
 
 def load_test_taxa

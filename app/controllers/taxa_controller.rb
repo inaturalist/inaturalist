@@ -89,6 +89,11 @@ class TaxaController < ApplicationController
     @taxon ||= Taxon.find_by_id(params[:id], :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
     
+    if !@taxon.conservation_status.blank? && @taxon.conservation_status > Taxon::IUCN_LEAST_CONCERN
+      @conservation_status_name = @taxon.conservation_status_name
+      @conservation_status_source = @taxon.conservation_status_source
+    end
+    
     respond_to do |format|
       format.html do
         @amphibiaweb = amphibiaweb_description?

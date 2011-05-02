@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110429004856) do
+ActiveRecord::Schema.define(:version => 20110502182056) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -520,6 +520,8 @@ ActiveRecord::Schema.define(:version => 20110429004856) do
     t.column "wikipedia_title", :string
     t.column "featured_at", :datetime
     t.column "ancestry", :string
+    t.column "conservation_status", :integer
+    t.column "conservation_status_source_id", :integer
   end
 
   add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
@@ -531,6 +533,7 @@ ActiveRecord::Schema.define(:version => 20110429004856) do
   add_index "taxa", ["listed_taxa_count"], :name => "index_taxa_on_listed_taxa_count"
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
   add_index "taxa", ["featured_at"], :name => "index_taxa_on_featured_at"
+  add_index "taxa", ["conservation_status_source_id"], :name => "index_taxa_on_conservation_status_source_id"
 
   create_table "taxon_links", :force => true do |t|
     t.column "url", :string, :null => false
