@@ -187,6 +187,8 @@ module ApplicationHelper
   end
   
   def formatted_user_text(text)
+    return text if text.blank?
+    
     # make sure attributes are quoted correctly
     text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
     
