@@ -212,23 +212,25 @@
     <% end -%>
   </fieldset>
   
-  <fieldset class="column span-24">
-    <legend>Conservation Status</legend>
-    <p class="description ui">
-      Generally these come from IUCN Red List, and if they come from elsewhere
-      they will adhere to the IUCN categories.
-    </p>
-    
-    <p class="ui">
-      <%= f.label :conservation_status %><br/>
-      <%= f.select :conservation_status, Taxon::IUCN_STATUSES_SELECT, :include_blank => "Unknown" %>
-    </p>
-    
-    <div class="stacked">
-      <%= f.label :conservation_status_source %>
-      <%= render :partial => "sources/nested_form_fields", :locals => { :f => f, :assoc_name => "conservation_status_source" } %>
-    </div>
-  </fieldset>
+  <% if @taxon.species_or_lower? -%>
+    <fieldset class="column span-24">
+      <legend>Conservation Status</legend>
+      <p class="description ui">
+        Generally these come from IUCN Red List, and if they come from elsewhere
+        they will adhere to the IUCN categories.
+      </p>
+
+      <p class="ui">
+        <%= f.label :conservation_status %><br/>
+        <%= f.select :conservation_status, Taxon::IUCN_STATUSES_SELECT, :include_blank => "Unknown" %>
+      </p>
+
+      <div class="stacked">
+        <%= f.label :conservation_status_source %>
+        <%= render :partial => "sources/nested_form_fields", :locals => { :f => f, :assoc_name => "conservation_status_source" } %>
+      </div>
+    </fieldset>
+  <% end -%>
   
   <div class="clear buttonrow">
     <%= f.submit "Save Changes", :class => 'default button' %>
