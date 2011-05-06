@@ -157,7 +157,7 @@
     <% else %>
       <%= render :partial => 'observations_table_header' %>
     <% end %>
-    <%= render :partial => 'observations/cached_component', :collection => observations %>
+   <%= render :partial => 'observations/cached_component', :collection => observations %>
     <% if @observations.empty? %>
       <p id="noresults" class="readable description">
         No matching observations!
