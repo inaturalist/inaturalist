@@ -1,7 +1,13 @@
+<style type='text/css'>
+  #errorExplanation ul { display: none; }
+  #errorExplanation p { margin-bottom: 0; }
+  #errorExplanation img { vertical-align: text-bottom; }
+</style>
 <h1>Forgot Your Password?</h1>
 
 <% form_for(@password) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages(:header_message=>"We couldn't find a user with that email address.", 
+                       :message=>"Maybe you signed in with your #{["Facebook","Twitter","Google","Yahoo"].map{|p| link_to((image_tag(p.downcase+"_favicon.jpg")+" "+p), ProviderAuthorization.auth_url_for(p))}.to_sentence(:last_word_connector=>', or ')} account?") %>
 
   <p>That's okay!  We forget ours too.  Give us the email address you used to create your account and we'll email you a link to reset your password.</p>
 
