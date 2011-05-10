@@ -821,6 +821,7 @@ class ObservationsController < ApplicationController
     end
     @logo ||= "logo-small.gif"
     @layout = params[:layout] || "large"
+    @target = params[:target] || "nil"
     @default_image = params[:default_image] || false
     url_params = {
       :format => "widget", 
@@ -828,6 +829,7 @@ class ObservationsController < ApplicationController
       :order => @order, 
       :order_by => @order_by,
       :layout => @layout,
+      :target => @target,
       :default_image => @default_image
     }
     @widget_url = if @place
