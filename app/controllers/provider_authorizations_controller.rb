@@ -22,7 +22,8 @@ class ProviderAuthorizationsController < ApplicationController
     logger.debug("auth_info: " + auth_info.inspect)
     existing_authorization = ProviderAuthorization.find_from_omniauth(auth_info)
     if existing_authorization.nil?  # first time logging in with this provider + provider uid combo
-      if current_user # if logged in, link provider to existing inat user
+      email = (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"])
+      if current_user || (!email.blank? && self.current_user=User.find_by_email(email)) # if logged in or user with this email exists, link provider to existing inat user
         current_user.add_provider_auth(auth_info)
         flash[:notice] = "You've successfully linked your #{auth_info['provider'].capitalize unless auth_info['provider']=='open_id'} account."
       else # create a new inat user and link provider to that user
@@ -30,6 +31,7 @@ class ProviderAuthorizationsController < ApplicationController
         self.current_user = User.create_from_omniauth(auth_info)
         handle_remember_cookie! true # set 'remember me' to true
         flash[:notice] = "Welcome!"
+        flash[:allow_edit_login] = true
         redirect_to edit_login_url and return
       end
     else # existing provider + inat user, so log him in
