@@ -48,11 +48,7 @@ class ProviderAuthorizationsController < ApplicationController
       handle_remember_cookie! true # set 'remember me' to true
       flash[:notice] = "Welcome back!"
     end
-    if session[:return_to]
-      redirect_to session[:return_to] and return
-    else
-      redirect_back_or_default('/') and return
-    end
+    redirect_back_or_default('/') and return
   end
 
 end

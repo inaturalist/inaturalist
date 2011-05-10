@@ -9,6 +9,7 @@ class ProviderAuthorization < ActiveRecord::Base
   end
 
   def self.auth_url_for(provider)
+    provider = provider.downcase
     openid_urls = {
       "google"=>"https://www.google.com/accounts/o8/id",
       "yahoo"=>"https://me.yahoo.com"
