@@ -189,6 +189,15 @@ class User < ActiveRecord::Base
     self.provider_authorizations.create(provider_auth_info) 
   end
 
+  # test to see if this user has authorized with the given provider
+  # argument is one of: 'facebook', 'twitter', 'google', 'yahoo'
+  # returns either nil or the appropriate ProviderAuthorization
+  def has_provider_auth(provider)
+    provider = provider.downcase
+    all_providers = self.provider_authorizations
+    return (all_providers.select{|p| (p.provider_name==provider || p.provider_uid.match(provider))}.first)
+  end
+
   def login=(value)
     write_attribute :login, (value ? value.downcase : nil)
   end

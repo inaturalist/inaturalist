@@ -28,6 +28,39 @@
   #preferencescol .field label {
     display: inline;
   }
+  #providercol {
+    margin-left: 10px;
+  }
+  #providercol ul {
+    margin: 0;
+    padding: 0;
+  }
+  #providercol li {
+    list-style-type: none;
+    margin: 10px 0;
+  }
+  #providercol img.favicon {
+    vertical-align: text-bottom;
+    width: 16px;
+  }
+  #providercol img.provider_signin {
+    width: 154px;
+  }
+  #providercol form,
+  #providercol form div {
+    display: inline;
+  }
+  #providercol input[type='submit'] {
+    background: none;
+    border: 0;
+    color: #36C;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  #providercol input[type='submit']:active {
+    color: #039;
+  }
 </style>
 <!--[if lt IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie' %>
@@ -111,6 +144,18 @@
 </div><!-- end first col -->
 
 <div class="column last span-6">
+  <div id="providercol" class="last field">
+    <label>Connected Accounts</label>
+    <ul>
+      <% ["facebook","twitter","google","yahoo"].each do |provider| %>
+        <% if current_user.has_provider_auth(provider) %>
+          <li><img class='favicon' src="/images/<%=provider%>_favicon.jpg" /> Connected <%= button_to("Disconnect", "/auth/#{provider}/disconnect", :method=>"delete") %></li>
+        <% else %>
+          <li><a href="<%=ProviderAuthorization.auth_url_for(provider)%>"><img class="provider_signin" src="/images/<%=provider%>_login_button.png" /></a></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
   <div class="clear box">
     <h2>Change Your Password</h2>
     <% form_for(@user) do %>
