@@ -474,6 +474,9 @@ class TaxaController < ApplicationController
     @taxon.photos = retreive_flickr_photos
     flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
+  rescue Errno::ETIMEDOUT
+    flash[:error] = "Flickr request timeed out!"
+    redirect_back_or_default(taxon_path(@taxon))
   end
   
   def describe
