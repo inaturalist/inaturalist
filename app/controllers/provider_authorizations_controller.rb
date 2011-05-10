@@ -1,4 +1,5 @@
 class ProviderAuthorizationsController < ApplicationController
+  before_filter :login_required, :only => [:destroy]
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test
@@ -8,6 +9,14 @@ class ProviderAuthorizationsController < ApplicationController
   def failure
     flash[:notice] = "Hm, that didn't work. Try again or choose another login option."
     redirect_to login_url
+  end
+
+  def destroy
+    if request.delete?
+      provider = current_user.has_provider_auth(params[:provider])
+      provider.destroy unless provider.nil?
+    end
+    redirect_to edit_person_url(current_user)
   end
 
   def create

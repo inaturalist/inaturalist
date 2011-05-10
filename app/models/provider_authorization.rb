@@ -8,4 +8,14 @@ class ProviderAuthorization < ActiveRecord::Base
     return self.find_by_provider_name_and_provider_uid(auth_info['provider'], auth_info['uid'])
   end
 
+  def self.auth_url_for(provider)
+    openid_urls = {
+      "google"=>"https://www.google.com/accounts/o8/id",
+      "yahoo"=>"https://me.yahoo.com"
+    }
+    # if provider uses openid, url is of form /auth/open_id?openid_url=...
+    # else url is simply /auth/:provider_name
+    return "/auth/#{(openid_urls.has_key?(provider) ? ("open_id?openid_url="+openid_urls[provider]) : provider)}"
+  end
+
 end
