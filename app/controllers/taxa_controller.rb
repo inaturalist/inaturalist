@@ -867,7 +867,7 @@ class TaxaController < ApplicationController
   
   def do_external_lookups
     return unless logged_in?
-    return unless params[:force_external] || (params[:include_external] && @taxa.empty?)
+    return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     @external_taxa = []
     logger.info("DEBUG: Making an external lookup...")
     begin
