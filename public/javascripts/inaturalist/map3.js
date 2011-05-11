@@ -430,16 +430,22 @@ iNaturalist.Map.createPlaceIcon = function(options) {
 iNaturalist.Map.createObservationIcon = function(options) {
   if (typeof(options) == 'undefined') { var options = {} };
   
+  var iconPath;
+  
   // Choose the right settings for the observation's iconic taxon
   if (options.observation) {
+    var iconSet = options.observation.private_latitude ? 'STEMLESS_ICONS' : 'ICONS'
+    var iconicTaxonIconsSet = options.observation.private_latitude ? 'STEMLESS_ICONIC_TAXON_ICONS' : 'ICONIC_TAXON_ICONS'
     if (options.observation.iconic_taxon) {
-      return iNaturalist.Map.ICONIC_TAXON_ICONS[options.observation.iconic_taxon.name];
+      iconPath = iNaturalist.Map[iconicTaxonIconsSet][options.observation.iconic_taxon.name];
     } else {
-      return iNaturalist.Map.ICONS['unknown34'];
-    };
-  };
+      iconPath = iNaturalist.Map[iconSet]['unknown34'];
+    }
+
+    return iconPath
+  }
   
-  var iconPath = "/images/mapMarkers/mm_34_";
+  iconPath = "/images/mapMarkers/mm_34_";
   if (typeof(options.color) == 'undefined') {
     iconPath += "HotPink";
   }
@@ -514,6 +520,15 @@ iNaturalist.Map.ICONS = {
   unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_unknown.png")
 };
 
+iNaturalist.Map.STEMLESS_ICONS = {
+  DodgerBlue34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_DodgerBlue.png"),
+  DeepPink34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_DeepPink.png"),
+  iNatGreen34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_iNatGreen.png"),
+  OrangeRed34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_OrangeRed.png"),
+  DarkMagenta34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_DarkMagenta.png"),
+  unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_unknown.png")
+};
+
 iNaturalist.Map.ICONIC_TAXON_ICONS = {
   Protozoa: iNaturalist.Map.ICONS.DarkMagenta34,
   Animalia: iNaturalist.Map.ICONS.DodgerBlue34,
@@ -527,6 +542,21 @@ iNaturalist.Map.ICONIC_TAXON_ICONS = {
   Mollusca: iNaturalist.Map.ICONS.OrangeRed34,
   Insecta: iNaturalist.Map.ICONS.OrangeRed34,
   Arachnida: iNaturalist.Map.ICONS.OrangeRed34
+};
+
+iNaturalist.Map.STEMLESS_ICONIC_TAXON_ICONS = {
+  Protozoa: iNaturalist.Map.STEMLESS_ICONS.DarkMagenta34,
+  Animalia: iNaturalist.Map.STEMLESS_ICONS.DodgerBlue34,
+  Plantae: iNaturalist.Map.STEMLESS_ICONS.iNatGreen34,
+  Fungi: iNaturalist.Map.STEMLESS_ICONS.DeepPink34,
+  Amphibia: iNaturalist.Map.STEMLESS_ICONS.DodgerBlue34,
+  Reptilia: iNaturalist.Map.STEMLESS_ICONS.DodgerBlue34,
+  Aves: iNaturalist.Map.STEMLESS_ICONS.DodgerBlue34,
+  Mammalia: iNaturalist.Map.STEMLESS_ICONS.DodgerBlue34,
+  Actinopterygii: iNaturalist.Map.STEMLESS_ICONS.DodgerBlue34,
+  Mollusca: iNaturalist.Map.STEMLESS_ICONS.OrangeRed34,
+  Insecta: iNaturalist.Map.STEMLESS_ICONS.OrangeRed34,
+  Arachnida: iNaturalist.Map.STEMLESS_ICONS.OrangeRed34
 };
 
 iNaturalist.Map.ICONIC_TAXON_COLORS = {

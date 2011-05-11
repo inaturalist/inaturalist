@@ -175,12 +175,6 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  # TODO make this work for different conservation status sources
-  def conservation_status_name
-    return nil if conservation_status.blank?
-    IUCN_STATUSES[conservation_status]
-  end
-  
   named_scope :observed_by, lambda {|user|
     { :joins => """
       JOIN (
@@ -685,6 +679,17 @@ class Taxon < ActiveRecord::Base
   
   def descendant_of?(taxon)
     ancestor_ids.include?(taxon.id)
+  end
+  
+  # TODO make this work for different conservation status sources
+  def conservation_status_name
+    return nil if conservation_status.blank?
+    IUCN_STATUSES[conservation_status]
+  end
+  
+  def threatened?
+    return false if conservation_status.blank?
+    conservation_status >= IUCN_NEAR_THREATENED && conservation_status < IUCN_EXTINCT_IN_THE_WILD
   end
   
   include TaxaHelper

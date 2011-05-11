@@ -33,6 +33,7 @@ describe ObservationsController do
       obs.species_guess.should == "Foo"
       obs.taxon_id.should == taxon.id
     end
+    
   end
   
   describe :update do
@@ -43,6 +44,20 @@ describe ObservationsController do
       lambda {
         post :update
       }.should_not raise_error
+    end
+    
+    it "should use latitude param even if private_latitude set" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      observation = Observation.make(:taxon => taxon, :latitude => 38, :longitude => -122)
+      observation.private_longitude.should_not be_blank
+      old_latitude = observation.latitude
+      old_private_latitude = observation.private_latitude
+      login_as observation.user
+      post :update, :id => observation.id, :observation => {:latitude => 1}
+      observation.reload
+      observation.private_longitude.should_not be_blank
+      observation.latitude.should_not == old_latitude
+      observation.private_latitude.should_not == old_private_latitude
     end
   end
   

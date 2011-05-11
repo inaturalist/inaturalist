@@ -340,16 +340,20 @@
         <%= render :partial => 'place_guess', :object => @observation %>
         <% if @observation.latitude and @observation.longitude %>
         <div>
-          <span class="latitude">
-            Lat: <%= @observation.latitude %>
-          </span>,
-          <span class="longitude">
-            Lon: <%= @observation.longitude %>
-          </span>
-          <% unless @observation.positional_accuracy.blank? -%>
-            <div class="positional_accuracy">
-              Accuracy: <%= @observation.positional_accuracy %>m
-            </div>
+          <% if @observation.coordinates_obscured? -%>
+            Public coordinates obscured for threatened species.
+          <% else %>
+            <span class="latitude">
+              Lat: <%= @observation.latitude %>
+            </span>,
+            <span class="longitude">
+              Lon: <%= @observation.longitude %>
+            </span>
+            <% unless @observation.positional_accuracy.blank? -%>
+              <div class="positional_accuracy">
+                Accuracy: <%= @observation.positional_accuracy %>m
+              </div>
+            <% end -%>
           <% end -%>
         </div>
         <% end %>

@@ -312,6 +312,12 @@ class ObservationsController < ApplicationController
       return
     end
     
+    # Make sure user is editing the REAL coordinates
+    if @observation.coordinates_obscured?
+      @observation.latitude = @observation.private_latitude
+      @observation.longitude = @observation.private_longitude
+    end
+    
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
   end
@@ -628,6 +634,13 @@ class ObservationsController < ApplicationController
     @observations = Observation.all(
       :conditions => [
         "id in (?) AND user_id = ?", params[:o].split(','), current_user])
+    @observations.map do |o|
+      if o.coordinates_obscured?
+        o.latitude = o.private_latitude
+        o.longitude = o.private_longitude
+      end
+      o
+    end
   end
   
   def delete_batch
