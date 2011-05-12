@@ -359,6 +359,18 @@ class Observation < ActiveRecord::Base
     s
   end
   
+  def to_json(options = {})
+    options[:except] ||= []
+    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+    super(options)
+  end
+  
+  def to_xml(options = {})
+    options[:except] ||= []
+    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+    super(options)
+  end
+  
   # Used to help user debug their CSV files
   # TODO: move this to a helper
   def csv_record_to_s

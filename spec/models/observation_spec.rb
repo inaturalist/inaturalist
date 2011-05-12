@@ -589,6 +589,17 @@ describe Observation do
       observation.update_attributes(:taxon => @taxon)
       observation.place_guess.should be_blank
     end
+    
+    it "should not be included in json" do
+      observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation.to_json.should_not match(/private_latitude/)
+    end
+    
+    it "should not be included in a json array" do
+      observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observations = [observation, Observation.make]
+      observations.to_json.should_not match(/private_latitude/)
+    end
   end
 end
 

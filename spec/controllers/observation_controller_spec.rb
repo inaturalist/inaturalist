@@ -100,4 +100,5 @@ describe ObservationsController do
     # to test this we need to mock a flickr response
     it "should import photos that are already entered as taxon photos"
   end
+  
 end
