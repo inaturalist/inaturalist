@@ -340,7 +340,7 @@
         <%= render :partial => 'place_guess', :object => @observation %>
         <% if @observation.latitude and @observation.longitude %>
         <div>
-          <% if @observation.coordinates_obscured? -%>
+          <% if @observation.coordinates_obscured? && is_not_me?(@observation.user) -%>
             Public coordinates obscured for threatened species.
           <% else %>
             <span class="latitude">
@@ -354,6 +354,11 @@
                 Accuracy: <%= @observation.positional_accuracy %>m
               </div>
             <% end -%>
+            <%- if @observation.coordinates_obscured? -%>
+              <div>
+                Exact coordinates hidden from public view for protected species.
+              </div>
+            <% end %>
           <% end -%>
         </div>
         <% end %>
