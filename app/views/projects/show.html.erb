@@ -129,7 +129,7 @@
     <% else %>
       <div class="mini observations">
         <% for obs in @project_observations %>
-          <% unless obs.curator_identification_id.blank? -%>
+          <% unless obs.curator_identification_id.blank? or obs.curator_identification.taxon_id==obs.observation.taxon_id -%>
             <div class="box curator_id">
               curator id:
               <%= link_to obs.curator_identification.taxon.name,
