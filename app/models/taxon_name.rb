@@ -145,4 +145,19 @@ class TaxonName < ActiveRecord::Base
       ext_name.save ? ext_name : nil
     end.compact
   end
+  
+  def self.find_single(name, options = {})
+    lexicon = options.delete(:lexicon) # || TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    name = name.split('_').join(' ')
+    name = Taxon.remove_rank_from_name(name)
+    conditions = {:name => name}
+    conditions[:lexicon] = lexicon if lexicon
+    taxon_names = TaxonName.all(
+      :conditions => conditions,
+      :limit => 10, :include => :taxon)
+    unless options[:iconic_taxa].blank?
+      taxon_names.reject {|tn| options[:iconic_taxa].include?(tn.taxon.iconic_taxon_id)}
+    end
+    taxon_names.detect{|tn| tn.is_valid?} || taxon_names.first
+  end
 end

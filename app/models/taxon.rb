@@ -16,7 +16,7 @@ class Taxon < ActiveRecord::Base
   has_many :lists, :through => :listed_taxa
   has_many :places, :through => :listed_taxa
   has_many :identifications, :dependent => :destroy
-  has_many :taxon_links, :dependent => :destroy 
+  has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos

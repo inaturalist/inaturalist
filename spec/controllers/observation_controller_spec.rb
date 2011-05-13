@@ -80,22 +80,6 @@ describe ObservationsController do
     end
   end
   
-  describe :index do
-    it "should find observations by taxon_name" do
-      taxon = Taxon.make
-      observation = Observation.make(:taxon => taxon)
-      get :index, :format => 'json', :taxon_name => taxon.name
-      response.body.should match /#{observation.species_guess}/
-    end
-    
-    it "should find observations when taxon_name is blank" do
-      taxon = Taxon.make
-      observation = Observation.make(:taxon => taxon)
-      get :index, :format => 'json', :taxon_name => ''
-      response.body.should match /#{observation.species_guess}/
-    end
-  end
-  
   describe :import_photos do
     # to test this we need to mock a flickr response
     it "should import photos that are already entered as taxon photos"

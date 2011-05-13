@@ -248,20 +248,26 @@ class ObservationsController < ApplicationController
   def new
     options = {}
     options[:id_please] ||= params[:id_please]
-    if !params[:taxon_id].blank? && (taxon = Taxon.find_by_id(params[:taxon_id]))
-      options[:taxon] = taxon
-      if common_name = taxon.common_name
-        options[:species_guess] = taxon.common_name.name
+    
+    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
+    @taxon ||= TaxonName.find_single(params[:taxon_name]).try(:taxon) unless params[:taxon_name].blank?
+    if @taxon
+      options[:taxon] = @taxon
+      if common_name = @taxon.common_name
+        options[:species_guess] = @taxon.common_name.name
       else 
-        options[:species_guess] = taxon.name
+        options[:species_guess] = @taxon.name
       end
+    else
+      options[:species_guess] = params[:taxon_name]
     end
+    
     if !params[:project_id].blank? && (project = Project.find_by_id(params[:project_id]))
       @project = Project.find_by_id(params[:project_id])
     end
     options[:time_zone] = current_user.time_zone
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
-      :observed_on_string].each do |obs_attr|
+        :observed_on_string].each do |obs_attr|
       options[obs_attr] ||= params[obs_attr]
     end
     @observation = Observation.new(options)
@@ -1039,8 +1045,16 @@ class ObservationsController < ApplicationController
     end
     
     # taxon
-    @observations_taxon_id = search_params[:taxon_id] unless search_params[:taxon_id].blank?
-    @observations_taxon_name = search_params[:taxon_name] unless search_params[:taxon_name].blank?
+    unless search_params[:taxon_id].blank?
+      @observations_taxon_id = search_params[:taxon_id] 
+      @observations_taxon = Taxon.find_by_id(@observations_taxon_id)
+    end
+    unless search_params[:taxon_name].blank?
+      @observations_taxon_name = search_params[:taxon_name]
+      @observations_taxon = TaxonName.find_single(params[:taxon_name], 
+        :iconic_taxa => params[:iconic_taxa]).try(:taxon)
+    end
+    search_params[:taxon] = @observations_taxon
     
     # iconic_taxa
     if search_params[:iconic_taxa]

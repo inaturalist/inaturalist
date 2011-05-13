@@ -5,6 +5,21 @@ class ObservationsControllerTest < ActionController::TestCase
     @o = make_observation_of_threatened
   end
   
+  def test_index_finds_observations_by_taxon_name
+    taxon = Taxon.make
+    observation = Observation.make(:taxon => taxon)
+    get :index, :format => 'json', :taxon_name => taxon.name
+    assert_match /id.*?#{observation.id}/, @response.body
+    assert_equal 1, assigns(:observations).map(&:taxon_id).uniq.size
+  end
+  
+  def test_index_finds_observations_when_taxon_name_is_blank
+    taxon = Taxon.make
+    observation = Observation.make(:taxon => taxon)
+    get :index, :format => 'json', :taxon_name => ''
+    assert_match /id.*?#{observation.id}/, @response.body
+  end
+  
   def test_private_coordinates_hidden_for_show
     get :show, :id => @o.id
     assert_private_coordinates_hidden(@o)
