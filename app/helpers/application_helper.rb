@@ -96,8 +96,6 @@ module ApplicationHelper
   end
 
   def is_me?(user = @selected_user)
-    Rails.logger.debug "[DEBUG] current_user: #{current_user}"
-    Rails.logger.debug "[DEBUG] user: #{user}"
     logged_in? && (user === current_user)
   end
   

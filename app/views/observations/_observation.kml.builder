@@ -1,3 +1,6 @@
+styleUrl = "#{root_url}stylesheets/observations/google_earth.kml#{@prevent_cache}#"
+styleUrl += observation.iconic_taxon.try(:name) || 'Unknown'
+styleUrl += "Stemless" if observation.coordinates_obscured?
 xml.Placemark(:id => "ID#{observation.id}") do
   xml.name observation.species_guess
   xml.visibility "1"
@@ -17,10 +20,7 @@ xml.Placemark(:id => "ID#{observation.id}") do
     )
   end
   
-  xml.styleUrl(
-    "#{root_url}stylesheets/observations/google_earth.kml#{@prevent_cache}" +
-      "##{observation.iconic_taxon.try(:name) || 'Unknown'}"
-  )
+  xml.styleUrl styleUrl
 
   if observation.latitude && observation.longitude
     xml.Point do

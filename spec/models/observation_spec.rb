@@ -597,7 +597,9 @@ describe Observation do
     
     it "should not be included in a json array" do
       observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
-      observations = [observation, Observation.make]
+      Observation.make
+      observations = Observation.paginate(:page => 1, :per_page => 2, :order => "id desc")
+      puts "observations.to_json: #{observations.to_json}"
       observations.to_json.should_not match(/private_latitude/)
     end
   end

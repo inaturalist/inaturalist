@@ -17,4 +17,21 @@ module ObservationsHelper
     order_by = 'observations.id' if order_by.blank?
     options_for_select(pairs, order_by)
   end
+  
+  def observation_place_guess(observation)
+    if !observation.place_guess.blank?
+      if observation.latitude.blank?
+        observation.place_guess + 
+        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank"})".html_safe
+      else
+        link_to(observation.place_guess, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+         " (#{link_to("Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank")})".html_safe
+      end
+    elsif !observation.latitude.blank?
+      link_to("#{observation.latitude}, #{observation.longitude}", observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+       " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
+    else
+      content_tag(:span, "(Somewhere...)")
+    end
+  end
 end

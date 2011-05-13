@@ -749,7 +749,9 @@ class ObservationsController < ApplicationController
       end
 
       format.atom
-      format.csv { render_observations_to_csv }
+      format.csv do
+        render_observations_to_csv(:show_private => logged_in? && @selected_user.id == current_user.id)
+      end
       format.widget do
         render :js => render_to_string(:partial => "widget.js.erb")
       end
@@ -806,7 +808,7 @@ class ObservationsController < ApplicationController
     swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
     nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
     @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
-      :select => "id, species_guess, latitude, longitude, user_id, description",
+      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude",
       :include => [:user, :photos], :limit => 500, :order => "id DESC")
     
     respond_to do |format|
@@ -1378,10 +1380,14 @@ class ObservationsController < ApplicationController
     end
   end
   
-  def render_observations_to_csv
+  def render_observations_to_csv(options = {})
+    except = [:map_scale, :timeframe, :iconic_taxon_id, :delta]
+    unless options[:show_private] == true
+      except += [:private_latitude, :private_longitude, :private_positional_accuracy]
+    end
     render :text => @observations.to_csv(
       :methods => [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login],
-      :except => [:map_scale, :timeframe, :iconic_taxon_id, :delta]
+      :except => except
     )
   end
   

@@ -58,7 +58,8 @@
           map.addObservation(o, {
             icon: iNaturalist.Map.createObservationIcon({
               color: "HotPink",
-              character: letters[letter_counter]
+              character: letters[letter_counter],
+              stemless: o.coordinates_obscured
             })
           });
           letter_counter++;

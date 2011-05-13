@@ -30,13 +30,13 @@ class ObservationsControllerTest < ActionController::TestCase
     assert_private_coordinates_hidden(@o)
   end
   
-  def test_private_coordinates_hidden_for_index_xml
-    get :index, :format => "xml"
+  def test_private_coordinates_hidden_for_index_csv
+    get :index, :format => "csv"
     assert_private_coordinates_hidden(@o)
   end
   
-  def test_private_coordinates_hidden_for_index_xml
-    get :index, :format => "json"
+  def test_private_coordinates_hidden_for_by_login_csv
+    get :by_login, :login => @o.user.login, :format => "csv"
     assert_private_coordinates_hidden(@o)
   end
   

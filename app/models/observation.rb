@@ -360,8 +360,16 @@ class Observation < ActiveRecord::Base
   end
   
   def to_json(options = {})
-    options[:except] ||= []
-    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+    viewer = options.delete(:viewer)
+    viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
+    if viewer_id != user_id
+      options[:except] ||= []
+      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+      options[:except].uniq!
+      options[:methods] ||= []
+      options[:methods] << :coordinates_obscured
+      options[:methods].uniq!
+    end
     super(options)
   end
   
@@ -687,6 +695,7 @@ class Observation < ActiveRecord::Base
   def coordinates_obscured?
     !private_latitude.blank? || !private_longitude.blank?
   end
+  alias :coordinates_obscured :coordinates_obscured?
   
   protected
   

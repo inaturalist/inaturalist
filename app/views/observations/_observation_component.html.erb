@@ -97,7 +97,7 @@ Some notes:
   </div>
   <div class="place attribute">
     <h4 class="label">Place</h4>
-    <%= render :partial => 'observations/place_guess', :object => observation %>
+    <%= observation_place_guess observation %>
   </div>
   <% unless observation.created_at.blank? -%>
     <div class="created_at attribute" style="display:none">
