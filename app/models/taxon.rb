@@ -48,7 +48,8 @@ class Taxon < ActiveRecord::Base
               :set_conservation_status_source
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
-             :handle_after_move
+             :handle_after_move,
+             :update_observations_with_conservation_status_change
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
@@ -285,6 +286,17 @@ class Taxon < ActiveRecord::Base
     tn.is_valid = true
     
     self.taxon_names << tn
+    true
+  end
+  
+  def update_observations_with_conservation_status_change
+    return true unless conservation_status_changed?
+    if threatened?
+      Observation.send_later(:obscure_coordinates_for_observations_of, id)
+    elsif !conservation_status_was.blank? && conservation_status_was >= IUCN_NEAR_THREATENED && 
+        conservation_status_was < IUCN_EXTINCT_IN_THE_WILD
+      Observation.send_later(:unobscure_coordinates_for_observations_of, id)
+    end
     true
   end
   
