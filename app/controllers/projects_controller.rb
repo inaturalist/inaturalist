@@ -150,7 +150,9 @@ class ProjectsController < ApplicationController
       return
     end
     @project_user.role = 'curator'
+    
     if @project_user.save
+      Project.send_later(:update_curator_idents_on_make_curator, @project.id, @project_user.id)
       flash[:notice] = "Added curator role"
       redirect_to project_members_path(@project)
     else
@@ -174,6 +176,7 @@ class ProjectsController < ApplicationController
     end
     @project_user.role = nil
     if @project_user.save
+      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.id)
       flash[:notice] = "Removed curator role"
       redirect_to project_members_path(@project)
     else

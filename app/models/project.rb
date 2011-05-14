@@ -54,6 +54,43 @@ class Project < ActiveRecord::Base
     user.id == user_id || user.is_admin?
   end
   
+  def self.update_curator_idents_on_make_curator(project_id, project_user_id)
+    unless proj = Project.find_by_id(project_id)
+      return
+    end
+    unless usr = proj.project_users.find_by_id(project_user_id).user
+      return
+    end
+    proj.project_observations.find_each(:include => {:observation => :identifications}) do |po|
+      po.observation.identifications.each do |ident|
+        if ident.user.project_users.exists?(:id => project_user_id, :project_id => project_id)
+          po.update_attributes(:curator_identification_id => ident.id)
+        end
+      end
+    end
+  end
+  
+  def self.update_curator_idents_on_remove_curator(project_id, project_user_id)
+    unless proj = Project.find_by_id(project_id)
+      return
+    end
+    unless usr = proj.project_users.find_by_id(project_user_id).user
+      return
+    end
+    proj.project_observations.find_each(:include => {:observation => :identifications}) do |po|
+      po.observation.identifications.each do |ident|
+        if ident.user.project_users.exists?(:id => project_user_id, :project_id => project_id)
+          po.observation.identifications.each do |other_ident| #that project observation has other identifications that belong to users who are curators use those
+            if other_ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
+              po.update_attributes(:curator_identification_id => other_ident.id)
+            end
+          end
+          po.update_attributes(:curator_identification_id => nil)
+        end
+      end
+    end
+  end
+  
   def self.refresh_project_list(project, options = {})
     unless project.is_a?(Project)
       project = Project.find_by_id(project, :include => :project_list)

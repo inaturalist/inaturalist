@@ -47,31 +47,15 @@ class Identification < ActiveRecord::Base
     end
   end
   
-  #This bit worked
-  #def revisit_curator_identification
-  #  self.observation.project_observations.each do |po|
-  #    if self.user.project_users.exists?(:project_id => po.project_id, :role => 'curator') #The ident that was deleted is owned by user who is a curator of a project that that obs belongs to
-  #      #loop through all the other identifiers
-  #      po.observation.identifications.each do |id|#that project observation has other identifications that belong to users who are curators use those
-  #        if id.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
-  #          po.update_attributes(:curator_identification_id => id.id)
-  #          return
-  #        end
-  #      end
-  #      po.update_attributes(:curator_identification_id => nil)
-  #    end
-  #  end
-  #end
-  
-  ###This bit doesn't work
+  # Revise the project_observation curator_identification_id if the
+  # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
     return true if self.observation.id.blank?
     Identification.send_later(:run_revisit_curator_identification, self.observation_id, self.user_id)
     true
   end
-  #
+  
   def self.run_revisit_curator_identification(observation_id, user_id)
-    #theid = ident.observation_id
     unless obs = Observation.find_by_id(observation_id)
       return
     end
@@ -80,18 +64,15 @@ class Identification < ActiveRecord::Base
     end
     obs.project_observations.each do |po|
       if usr.project_users.exists?(:project_id => po.project_id, :role => 'curator') #The ident that was deleted is owned by user who is a curator of a project that that obs belongs to
-        #loop through all the other identifiers
         po.observation.identifications.each do |other_ident| #that project observation has other identifications that belong to users who are curators use those
           if other_ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
             po.update_attributes(:curator_identification_id => other_ident.id)
-            return
           end
         end
         po.update_attributes(:curator_identification_id => nil)
       end
     end
   end
-  ###
     
   # Update the observation if you're adding an ID to your own obs
   def update_observation

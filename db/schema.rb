@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110505040504) do
+ActiveRecord::Schema.define(:version => 20110513230256) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -403,6 +403,7 @@ ActiveRecord::Schema.define(:version => 20110505040504) do
 
   add_index "project_observations", ["observation_id"], :name => "index_project_observations_on_observation_id"
   add_index "project_observations", ["project_id"], :name => "index_project_observations_on_project_id"
+  add_index "project_observations", ["curator_identification_id"], :name => "index_project_observations_on_curator_identification_id"
 
   create_table "project_users", :force => true do |t|
     t.column "project_id", :integer
