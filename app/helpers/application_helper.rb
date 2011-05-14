@@ -96,11 +96,11 @@ module ApplicationHelper
   end
 
   def is_me?(user = @selected_user)
-    logged_in? && (user == current_user)
+    logged_in? && (user === current_user)
   end
   
   def is_not_me?(user = @selected_user)
-    logged_in? && (user != current_user)
+    !is_me?(user)
   end
   
   def curator_of?(project)

@@ -21,4 +21,11 @@ module MakeHelpers
     )
     list
   end
+  
+  def make_observation_of_threatened
+    Observation.make(
+      :latitude => 38, :longitude => -122,
+      :taxon => Taxon.make(:threatened)
+    )
+  end
 end

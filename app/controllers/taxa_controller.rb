@@ -474,6 +474,9 @@ class TaxaController < ApplicationController
     @taxon.photos = retreive_flickr_photos
     flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
+  rescue Errno::ETIMEDOUT
+    flash[:error] = "Flickr request timeed out!"
+    redirect_back_or_default(taxon_path(@taxon))
   end
   
   def describe
@@ -864,7 +867,7 @@ class TaxaController < ApplicationController
   
   def do_external_lookups
     return unless logged_in?
-    return unless params[:force_external] || (params[:include_external] && @taxa.empty?)
+    return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     @external_taxa = []
     logger.info("DEBUG: Making an external lookup...")
     begin

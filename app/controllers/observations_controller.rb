@@ -5,7 +5,7 @@ class ObservationsController < ApplicationController
   caches_action :index, :by_login, :project,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format.widget?}
+    :if => Proc.new {|c| c.request.format.widget? && c.request.url.size < 250}
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   
   before_filter :load_user_by_login, :only => [:by_login]
@@ -248,20 +248,26 @@ class ObservationsController < ApplicationController
   def new
     options = {}
     options[:id_please] ||= params[:id_please]
-    if !params[:taxon_id].blank? && (taxon = Taxon.find_by_id(params[:taxon_id]))
-      options[:taxon] = taxon
-      if common_name = taxon.common_name
-        options[:species_guess] = taxon.common_name.name
+    
+    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
+    @taxon ||= TaxonName.find_single(params[:taxon_name]).try(:taxon) unless params[:taxon_name].blank?
+    if @taxon
+      options[:taxon] = @taxon
+      if common_name = @taxon.common_name
+        options[:species_guess] = @taxon.common_name.name
       else 
-        options[:species_guess] = taxon.name
+        options[:species_guess] = @taxon.name
       end
+    else
+      options[:species_guess] = params[:taxon_name]
     end
+    
     if !params[:project_id].blank? && (project = Project.find_by_id(params[:project_id]))
       @project = Project.find_by_id(params[:project_id])
     end
     options[:time_zone] = current_user.time_zone
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
-      :observed_on_string].each do |obs_attr|
+        :observed_on_string].each do |obs_attr|
       options[obs_attr] ||= params[obs_attr]
     end
     @observation = Observation.new(options)
@@ -310,6 +316,12 @@ class ObservationsController < ApplicationController
     unless current_user.id == @observation.user_id or current_user.is_admin?
       redirect_to observation_path(@observation)
       return
+    end
+    
+    # Make sure user is editing the REAL coordinates
+    if @observation.coordinates_obscured?
+      @observation.latitude = @observation.private_latitude
+      @observation.longitude = @observation.private_longitude
     end
     
     sync_flickr_photo if params[:flickr_photo_id]
@@ -628,6 +640,13 @@ class ObservationsController < ApplicationController
     @observations = Observation.all(
       :conditions => [
         "id in (?) AND user_id = ?", params[:o].split(','), current_user])
+    @observations.map do |o|
+      if o.coordinates_obscured?
+        o.latitude = o.private_latitude
+        o.longitude = o.private_longitude
+      end
+      o
+    end
   end
   
   def delete_batch
@@ -736,7 +755,9 @@ class ObservationsController < ApplicationController
       end
 
       format.atom
-      format.csv { render_observations_to_csv }
+      format.csv do
+        render_observations_to_csv(:show_private => logged_in? && @selected_user.id == current_user.id)
+      end
       format.widget do
         render :js => render_to_string(:partial => "widget.js.erb")
       end
@@ -793,7 +814,7 @@ class ObservationsController < ApplicationController
     swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
     nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
     @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
-      :select => "id, species_guess, latitude, longitude, user_id, description",
+      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude",
       :include => [:user, :photos], :limit => 500, :order => "id DESC")
     
     respond_to do |format|
@@ -1024,8 +1045,16 @@ class ObservationsController < ApplicationController
     end
     
     # taxon
-    @observations_taxon_id = search_params[:taxon_id] unless search_params[:taxon_id].blank?
-    @observations_taxon_name = search_params[:taxon_name] unless search_params[:taxon_name].blank?
+    unless search_params[:taxon_id].blank?
+      @observations_taxon_id = search_params[:taxon_id] 
+      @observations_taxon = Taxon.find_by_id(@observations_taxon_id)
+    end
+    unless search_params[:taxon_name].blank?
+      @observations_taxon_name = search_params[:taxon_name]
+      @observations_taxon = TaxonName.find_single(params[:taxon_name], 
+        :iconic_taxa => params[:iconic_taxa]).try(:taxon)
+    end
+    search_params[:taxon] = @observations_taxon
     
     # iconic_taxa
     if search_params[:iconic_taxa]
@@ -1365,10 +1394,14 @@ class ObservationsController < ApplicationController
     end
   end
   
-  def render_observations_to_csv
+  def render_observations_to_csv(options = {})
+    except = [:map_scale, :timeframe, :iconic_taxon_id, :delta]
+    unless options[:show_private] == true
+      except += [:private_latitude, :private_longitude, :private_positional_accuracy]
+    end
     render :text => @observations.to_csv(
       :methods => [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login],
-      :except => [:map_scale, :timeframe, :iconic_taxon_id, :delta]
+      :except => except
     )
   end
   

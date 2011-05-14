@@ -550,3 +550,58 @@ describe Observation, "named scopes" do
     Observation.of(91919191).should be_empty
   end
 end
+
+describe Observation do
+  describe "private coordinates" do
+    before(:each) do
+      @taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+    end
+    
+    it "should be set automatically if the taxon is threatened" do
+      observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation.taxon.should be_threatened
+      observation.private_longitude.should_not be_blank
+      observation.private_longitude.should_not == observation.longitude
+    end
+    
+    it "should be set automatically if the taxon's parent is threatened" do
+      child = Taxon.make(:parent => @taxon, :rank => "subspecies")
+      observation = Observation.make(:taxon => child, :latitude => 38, :longitude => -122)
+      observation.taxon.should_not be_threatened
+      observation.private_longitude.should_not be_blank
+      observation.private_longitude.should_not == observation.longitude
+    end
+    
+    it "should be unset if the taxon changes to something unthreatened" do
+      observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation.taxon.should be_threatened
+      observation.private_longitude.should_not be_blank
+      observation.private_longitude.should_not == observation.longitude
+      
+      observation.update_attributes(:taxon => Taxon.make)
+      observation.taxon.should_not be_threatened
+      observation.private_longitude.should be_blank
+    end
+    
+    it "should remove coordinates from place_guess" do
+      observation = Observation.make(:place_guess => "38, -122")
+      observation.latitude.to_f.should == 38.0
+      observation.update_attributes(:taxon => @taxon)
+      observation.place_guess.should be_blank
+    end
+    
+    it "should not be included in json" do
+      observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation.to_json.should_not match(/private_latitude/)
+    end
+    
+    it "should not be included in a json array" do
+      observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      Observation.make
+      observations = Observation.paginate(:page => 1, :per_page => 2, :order => "id desc")
+      puts "observations.to_json: #{observations.to_json}"
+      observations.to_json.should_not match(/private_latitude/)
+    end
+  end
+end
+

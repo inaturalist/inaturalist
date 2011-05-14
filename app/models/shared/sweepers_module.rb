@@ -59,6 +59,8 @@ module Shared::SweepersModule
       SPHERICAL_MERCATOR.levels.times do |zoom|
         begin
           x, y = SPHERICAL_MERCATOR.from_ll_to_pixel([observation.longitude, observation.latitude], zoom)
+          x = (x / 256).floor
+          y = (y / 256).floor
           expire_page :controller => 'observations', :action => 'tile_points', 
             :zoom => zoom, :x => x, :y => y
         rescue Errno::EDOM => e

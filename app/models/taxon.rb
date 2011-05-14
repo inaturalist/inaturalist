@@ -16,7 +16,7 @@ class Taxon < ActiveRecord::Base
   has_many :lists, :through => :listed_taxa
   has_many :places, :through => :listed_taxa
   has_many :identifications, :dependent => :destroy
-  has_many :taxon_links, :dependent => :destroy 
+  has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
@@ -173,12 +173,6 @@ class Taxon < ActiveRecord::Base
     define_method("iucn_#{status_name}?") do
       conservation_status == self.class.const_get("IUCN_#{status_name.upcase}")
     end
-  end
-  
-  # TODO make this work for different conservation status sources
-  def conservation_status_name
-    return nil if conservation_status.blank?
-    IUCN_STATUSES[conservation_status]
   end
   
   named_scope :observed_by, lambda {|user|
@@ -685,6 +679,17 @@ class Taxon < ActiveRecord::Base
   
   def descendant_of?(taxon)
     ancestor_ids.include?(taxon.id)
+  end
+  
+  # TODO make this work for different conservation status sources
+  def conservation_status_name
+    return nil if conservation_status.blank?
+    IUCN_STATUSES[conservation_status]
+  end
+  
+  def threatened?
+    return false if conservation_status.blank?
+    conservation_status >= IUCN_NEAR_THREATENED && conservation_status < IUCN_EXTINCT_IN_THE_WILD
   end
   
   include TaxaHelper

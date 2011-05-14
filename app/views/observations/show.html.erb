@@ -160,7 +160,7 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // setup the map if one is needed
-      var observation = <%= @observation.to_json(:include => [:user, :taxon, :iconic_taxon]) %>;
+      var observation = <%= @observation.to_json(:viewer => current_user, :include => [:user, :taxon, :iconic_taxon]) %>;
       if (observation.latitude && observation.longitude) {
         var map = iNaturalist.Map.createMap({
           lat: 40.714, 
@@ -336,23 +336,7 @@
         <div id="map"></div>
       <% end %>
       <div class="description">
-        Location: 
-        <%= render :partial => 'place_guess', :object => @observation %>
-        <% if @observation.latitude and @observation.longitude %>
-        <div>
-          <span class="latitude">
-            Lat: <%= @observation.latitude %>
-          </span>,
-          <span class="longitude">
-            Lon: <%= @observation.longitude %>
-          </span>
-          <% unless @observation.positional_accuracy.blank? -%>
-            <div class="positional_accuracy">
-              Accuracy: <%= @observation.positional_accuracy %>m
-            </div>
-          <% end -%>
-        </div>
-        <% end %>
+        <%= render :partial => 'location' %>
       </div>
     </div><!-- end where -->
   </div><!-- end where-and-photos -->

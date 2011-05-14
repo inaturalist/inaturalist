@@ -12,6 +12,10 @@ class Observation < ActiveRecord::Base
   # Set if you need to set the taxon from a name separate from the species 
   # guess
   attr_accessor :taxon_name
+  
+  M_TO_OBSCURE_THREATENED_TAXA = 5000
+  DEGREES_PER_RADIAN = 57.2958
+  LAT_LON_REGEX = /(-?\d+(?:\.\d+)?),\s?(-?\d+(?:\.\d+)?)/
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -98,7 +102,8 @@ class Observation < ActiveRecord::Base
               :set_iconic_taxon,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
-              :set_positional_accuracy
+              :set_positional_accuracy,
+              :obscure_coordinates_for_threatened_taxa
                  
   after_save :refresh_lists,
              :update_identifications_after_save
@@ -135,9 +140,8 @@ class Observation < ActiveRecord::Base
   named_scope :near_point, Proc.new { |lat, lng, radius|
     radius ||= 10.0
     planetary_radius = 6371 # km
-    deg_per_rad = 57.2958
-    latrads = lat.to_f / deg_per_rad
-    lngrads = lng.to_f / deg_per_rad
+    latrads = lat.to_f / DEGREES_PER_RADIAN
+    lngrads = lng.to_f / DEGREES_PER_RADIAN
 
     {:conditions => [
       "#{planetary_radius} * acos(sin(?) * sin(latitude/57.2958) + "  + 
@@ -302,17 +306,13 @@ class Observation < ActiveRecord::Base
     scope = scope.identifications(params[:identifications]) if (params[:identifications])
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
     scope = scope.order_by(params[:order_by]) if params[:order_by]
-    if !params[:taxon_id].blank?
+    
+    if params[:taxon]
+      scope = scope.of(params[:taxon])
+    elsif !params[:taxon_id].blank?
       scope = scope.of(params[:taxon_id])
     elsif !params[:taxon_name].blank?
-      name = params[:taxon_name].split('_').join(' ')
-      taxon_names = TaxonName.all(
-        :conditions => {:name => name, :lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 
-        :limit => 10, :include => :taxon)
-      unless params[:iconic_taxa].blank?
-        taxon_names.reject {|tn| params[:iconic_taxa].include?(tn.taxon.iconic_taxon_id)}
-      end
-      taxon_name = taxon_names.detect{|tn| tn.is_valid?} || taxon_names.first
+      taxon_name = TaxonName.find_single(params[:taxon_name], :iconic_taxa => params[:iconic_taxa])
       scope = scope.of(taxon_name.try(:taxon) || false)
     end
     scope = scope.by(params[:user_id]) if params[:user_id]
@@ -353,6 +353,26 @@ class Observation < ActiveRecord::Base
     end
     s += " by #{self.user.login}" unless options[:no_user]
     s
+  end
+  
+  def to_json(options = {})
+    viewer = options.delete(:viewer)
+    viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
+    if viewer_id != user_id
+      options[:except] ||= []
+      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+      options[:except].uniq!
+      options[:methods] ||= []
+      options[:methods] << :coordinates_obscured
+      options[:methods].uniq!
+    end
+    super(options)
+  end
+  
+  def to_xml(options = {})
+    options[:except] ||= []
+    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+    super(options)
   end
   
   # Used to help user debug their CSV files
@@ -668,6 +688,11 @@ class Observation < ActiveRecord::Base
     self.flags.select { |f| not f.resolved? }.size > 0
   end
   
+  def coordinates_obscured?
+    !private_latitude.blank? || !private_longitude.blank?
+  end
+  alias :coordinates_obscured :coordinates_obscured?
+  
   protected
   
   ##### Validations #########################################################
@@ -742,7 +767,7 @@ class Observation < ActiveRecord::Base
   def set_latlon_from_place_guess
     return true unless latitude.blank? && longitude.blank?
     return true if place_guess.blank?
-    if matches = place_guess.strip.match(/(-?\d+(?:\.\d+)?),\s?(-?\d+(?:\.\d+)?)/)
+    if matches = place_guess.strip.match(LAT_LON_REGEX)
       self.latitude, self.longitude = matches[1..2]
     end
     true
@@ -754,6 +779,30 @@ class Observation < ActiveRecord::Base
       self.positional_accuracy = nil
     end
     true
+  end
+  
+  def obscure_coordinates_for_threatened_taxa
+    if !taxon.blank? && taxon.species_or_lower? &&
+        !(latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank?) &&
+        (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+    else
+      unobscure_coordinates
+    end
+    true
+  end
+  
+  def obscure_coordinates(distance = M_TO_OBSCURE_THREATENED_TAXA)
+    unobscure_coordinates if latitude_changed? || longitude_changed?
+    self.private_latitude ||= latitude
+    self.private_longitude ||= longitude
+    self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
+    self.place_guess = nil if place_guess =~ LAT_LON_REGEX
+  end
+  
+  def unobscure_coordinates
+    self.private_latitude = nil
+    self.private_longitude = nil
   end
   
   # I'm not psyched about having this stuff here, but it makes generating 
@@ -788,6 +837,24 @@ class Observation < ActiveRecord::Base
   end
   
   private
+  
+  def random_neighbor_lat_lon(lat, lon, max_distance, radius = 6370997.0)
+    latrads = lat.to_f / DEGREES_PER_RADIAN
+    lonrads = lon.to_f / DEGREES_PER_RADIAN
+    max_distance = max_distance / radius
+    random_distance = Math.acos(rand * (Math.cos(max_distance) - 1) + 1)
+    random_bearing = 1 * Math::PI * rand
+    new_latrads = Math.asin(
+      Math.sin(latrads)*Math.cos(random_distance) + 
+      Math.cos(latrads)*Math.sin(random_distance)*Math.cos(random_bearing)
+    )
+    new_lonrads = lonrads + 
+      Math.atan2(
+        Math.sin(random_bearing)*Math.sin(random_distance)*Math.cos(latrads), 
+        Math.cos(random_distance)-Math.sin(latrads)*Math.sin(latrads)
+      )
+    [new_latrads * DEGREES_PER_RADIAN, new_lonrads * DEGREES_PER_RADIAN]
+  end
   
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description

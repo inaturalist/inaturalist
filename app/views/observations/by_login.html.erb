@@ -60,9 +60,9 @@ Observations by <%= h @login %>
 <% end %>
 
 <% content_for(:extrajs) do %>
-<%= gmap_include_tag %>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <%= javascript_include_tag 'inaturalist',
-                           'inaturalist/map2',
+                           'inaturalist/map3',
                            "observations/filters",
                            'jquery/plugins/jquery.labelize',
                            'jquery/plugins/inat/checkboxes',
@@ -79,34 +79,29 @@ Observations by <%= h @login %>
       var obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"});
       var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
     
-      var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+      var observations = <%= @observations.to_json(:viewer => current_user, 
+        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var bounds = new google.maps.LatLngBounds();
       $.each(observations, function(o) {
         var o = this;
-         if (typeof(o.latitude) != 'undefined' && typeof(o.longitude) != 'undefined') {
+         if (o.latitude && o.longitude) {
            map.addObservation(o, {
              icon: iNaturalist.Map.createObservationIcon({
                color: "HotPink",
-               character: letters[letter_counter]
+               character: letters[letter_counter],
+               stemless: o.coordinates_obscured
              })
            });
            letter_counter++;
+           bounds.extend(new google.maps.LatLng(o.latitude, o.longitude));
          }
        });
       
       // zoom the map to the extent of the observations
-      var bounds = new GLatLngBounds();
-      $.each(observations, function(o) {
-        var o = this;
-        if (typeof(o.latitude) != 'undefined' && typeof(o.longitude) != 'undefined') {
-          marker = new GMarker(new GLatLng(o.latitude, o.longitude))
-          bounds.extend(new GLatLng(o.latitude, o.longitude));
-        }
-      });
-      map.setZoom(map.getBoundsZoomLevel(bounds));
-      map.setCenter(bounds.getCenter());
+      map.fitBounds(bounds)
       
       // create infowindows and behaviors
       $.each(observations, function(observation) {
@@ -116,12 +111,14 @@ Observations by <%= h @login %>
           var marker = map.observations[observation.id];
           
           // add the marker image to the list
-          var icon_img = $('<img/>').attr('src', marker.getIcon().image).addClass('marker');
+          var src = marker.getIcon()
+          if (src.url) src = src.url
+          var icon_img = $('<img/>').attr('src', src).addClass('marker');
     
           // bind the observation's marker as the context to operate in when
           // the obsNode is clicked in the list.
           $(icon_img).click(function() {
-            map.openInfoWindow.apply(marker)
+            map.openInfoWindow.apply(marker);
           });
         }
         else {
@@ -135,7 +132,6 @@ Observations by <%= h @login %>
     }
     
     $(document).ready(initialize);
-    $(window).unload(GUnload);
     
     function batchEdit() {
       $('.observation .icon').toggle();

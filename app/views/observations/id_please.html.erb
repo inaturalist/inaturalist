@@ -254,17 +254,8 @@
         </div>
       <%- end -%>
       <div class="description">
-        Location: 
-        <%= render :partial => 'place_guess', :object => observation %>
+        <%= render :partial => "location", :object => observation %>
         <% if observation.latitude and observation.longitude %>
-          <div>
-            <span class="latitude">
-              Lat: <%= observation.latitude %>
-            </span>,
-            <span class="longitude">
-              Lon: <%= observation.longitude %>
-            </span>
-          </div>
           <script type="text/javascript" charset="utf-8">
             var observation_<%= observation.id %>_map = iNaturalist.Map.createMap({
               div: 'observation-<%= observation.id %>-map',

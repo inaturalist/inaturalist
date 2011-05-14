@@ -7,7 +7,11 @@
             <div class="field species_guess_field">
               <%= o.label :species_guess, "What did you see?" %>
               <%= o.text_field(:species_guess, :class => 'species_guess') %>
-              <%= o.hidden_field(:taxon_id, :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
+              <%= o.hidden_field(:taxon_id, 
+                :alt => (observation.taxon ? 
+                  content_tag(:span, observation.taxon.name, 
+                    :class => "taxon sciname #{observation.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[observation.taxon.iconic_taxon_id].try(:name)}") : nil),
+                :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
               
               <div class="id_please">
                 <%= o.check_box(:id_please) %>
