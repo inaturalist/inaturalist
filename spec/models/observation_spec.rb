@@ -599,8 +599,59 @@ describe Observation do
       observation = Observation.make(:taxon => @taxon, :latitude => 38, :longitude => -122)
       Observation.make
       observations = Observation.paginate(:page => 1, :per_page => 2, :order => "id desc")
-      puts "observations.to_json: #{observations.to_json}"
       observations.to_json.should_not match(/private_latitude/)
+    end
+  end
+  
+  describe "unobscure_coordinates" do
+    it "should work" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      true_lat = 38.0
+      true_lon = -122.0
+      o = Observation.make(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
+      o.should be_coordinates_obscured
+      o.latitude.to_f.should_not == true_lat
+      o.longitude.to_f.should_not == true_lon
+      o.unobscure_coordinates
+      o.should_not be_coordinates_obscured
+      o.latitude.to_f.should == true_lat
+      o.longitude.to_f.should == true_lon
+    end
+  end
+  
+  describe "obscure_coordinates_for_observations_of" do
+    it "should work" do
+      taxon = Taxon.make(:rank => "species")
+      true_lat = 38.0
+      true_lon = -122.0
+      obs = []
+      3.times do
+        obs << Observation.make(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
+        obs.last.should_not be_coordinates_obscured
+      end
+      Observation.obscure_coordinates_for_observations_of(taxon)
+      obs.each do |o|
+        o.reload
+        o.should be_coordinates_obscured
+      end
+    end
+  end
+  
+  describe "unobscure_coordinates_for_observations_of" do
+    it "should work" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      true_lat = 38.0
+      true_lon = -122.0
+      obs = []
+      3.times do
+        obs << Observation.make(:taxon => taxon, :latitude => true_lat, :longitude => true_lon)
+        obs.last.should be_coordinates_obscured
+      end
+      Observation.unobscure_coordinates_for_observations_of(taxon)
+      obs.each do |o|
+        o.reload
+        o.should_not be_coordinates_obscured
+      end
     end
   end
 end

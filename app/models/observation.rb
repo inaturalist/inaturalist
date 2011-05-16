@@ -693,6 +693,79 @@ class Observation < ActiveRecord::Base
   end
   alias :coordinates_obscured :coordinates_obscured?
   
+  def obscure_coordinates_for_threatened_taxa
+    if !taxon.blank? && taxon.species_or_lower? &&
+        !(latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank?) &&
+        (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+    else
+      unobscure_coordinates
+    end
+    true
+  end
+  
+  def obscure_coordinates(distance = M_TO_OBSCURE_THREATENED_TAXA)
+    if latitude_changed? || longitude_changed?
+      self.private_latitude = latitude
+      self.private_longitude = longitude
+    else
+      self.private_latitude ||= latitude
+      self.private_longitude ||= longitude
+    end
+    self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
+    self.place_guess = nil if place_guess =~ LAT_LON_REGEX
+
+  end
+  
+  def unobscure_coordinates
+    return unless coordinates_obscured?
+    self.latitude = private_latitude
+    self.longitude = private_longitude
+    self.private_latitude = nil
+    self.private_longitude = nil
+  end
+  
+  def self.obscure_coordinates_for_observations_of(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    Observation.find_observations_of(taxon) do |o|
+      o.obscure_coordinates
+      Observation.update_all({
+        :latitude => o.latitude,
+        :longitude => o.longitude,
+        :private_latitude => o.private_latitude,
+        :private_longitude => o.private_longitude,
+      }, {:id => o.id})
+    end
+  end
+  
+  def self.unobscure_coordinates_for_observations_of(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    Observation.find_observations_of(taxon) do |o|
+      o.unobscure_coordinates
+      Observation.update_all({
+        :latitude => o.latitude,
+        :longitude => o.longitude,
+        :private_latitude => o.private_latitude,
+        :private_longitude => o.private_longitude,
+      }, {:id => o.id})
+    end
+  end
+  
+  def self.find_observations_of(taxon)
+    options = {
+      :include => :taxon,
+      :conditions => [
+        "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
+        taxon
+      ]
+    }
+    Observation.find_each(options) do |o|
+      yield(o)
+    end
+  end
+  
   protected
   
   ##### Validations #########################################################
@@ -779,30 +852,6 @@ class Observation < ActiveRecord::Base
       self.positional_accuracy = nil
     end
     true
-  end
-  
-  def obscure_coordinates_for_threatened_taxa
-    if !taxon.blank? && taxon.species_or_lower? &&
-        !(latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank?) &&
-        (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
-    else
-      unobscure_coordinates
-    end
-    true
-  end
-  
-  def obscure_coordinates(distance = M_TO_OBSCURE_THREATENED_TAXA)
-    unobscure_coordinates if latitude_changed? || longitude_changed?
-    self.private_latitude ||= latitude
-    self.private_longitude ||= longitude
-    self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
-    self.place_guess = nil if place_guess =~ LAT_LON_REGEX
-  end
-  
-  def unobscure_coordinates
-    self.private_latitude = nil
-    self.private_longitude = nil
   end
   
   # I'm not psyched about having this stuff here, but it makes generating 

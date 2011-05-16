@@ -96,6 +96,7 @@ class User < ActiveRecord::Base
     sort_dir ||= 'DESC'
     {:order => ("%s %s" % [sort_by, sort_dir])}
   }
+  named_scope :curators, :include => [:roles], :conditions => "roles.name = 'curator'"
   
   def self.query(params={}) 
     scope = self.scoped({})

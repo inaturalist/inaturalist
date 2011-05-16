@@ -2,7 +2,7 @@ class TaxonNamesController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
   before_filter :load_taxon, :except => [:index]
-  before_filter :curator_required_for_sciname, :only => [:edit, :update, :destroy]
+  before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
     
@@ -174,8 +174,15 @@ class TaxonNamesController < ApplicationController
   end
   
   def curator_required_for_sciname
-    return true unless @taxon.scientific_name == @taxon_name
-    session[:return_to] = url_for(@taxon)
-    curator_required
+    return true if current_user.is_curator?
+    if @taxon_name
+      return true if @taxon_name.lexicon != TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    else
+      return true if params[:taxon_name].blank?
+      return true if params[:taxon_name][:lexicon] != TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    end
+    flash[:error] = "Only curators can add/edit scientific names."
+    redirect_back_or_default(@taxon)
+    false
   end
 end

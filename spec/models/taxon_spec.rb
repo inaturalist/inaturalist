@@ -524,6 +524,18 @@ describe Taxon do
       taxon.should_not be_iucn_extinct
     end
   end
+  
+  describe "locking" do
+    it "should cause grafting descendents to fail" do
+      taxon = Taxon.make(:locked => true)
+      child = Taxon.make
+      child.parent.should_not be(taxon)
+      child.update_attribute(:parent, taxon)
+      child.parent.should_not be(taxon)
+    end
+    
+    it "should prevent new scientific taxon names of descendents"
+  end
 end
 
 def load_test_taxa

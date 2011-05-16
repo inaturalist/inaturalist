@@ -1,47 +1,51 @@
 <% unless flags.blank? %>
   <h3>Existing Flags</h3>
-<ul>
-  <% if flags.empty? %>
-    <li class="quiet description">No flags at this time!</li>
-  <% end %>
-
-  <%# Username flagged user's model model_string because  %>
-  <% if current_user.is_curator? %>
-    <% for flag in flags %>
-      <li>
-        <div class="flag <%= 'resolved' if flag.resolved? %>">
-          <%= link_to flag.user.login, flag.user %>
-          <%= link_to "flagged", flag, :action=>"show" %>
-          <%= 
-            if @object.methods.include?("user")
-              link_to "#{@object.user.login}'s'", :controller=>"users", :action=>"show", :id=>@object.user_id 
-            else
-              "the"
-            end
-          %>
-          <%= @model.name %>
-          <%= link_to @object.to_plain_s, @object %> 
-          because 
-          "<%= flag.flag %>"
-          ---<%= link_to "Delete Flag", flag, 
-                  :confirm => "Are you sure you want to delete this flag?", 
-                  :method => :delete %>
-        </div>
-        <% if flag.resolved? && !flag.comment.blank? -%>
-          <div class="resolution description">
-            <strong>Resolution:</strong>
-            <%= h flag.comment %>
-          </div>
-        <% end -%>
-      </li>
+  <ul>
+    <% if flags.empty? %>
+      <li class="quiet description">No flags at this time!</li>
     <% end %>
-  <% else %>
-        <% for flag in flags %>
-          <li>
-           "<%= flag.flag %>"
-          </li>
-        <% end %>
-  <% end %>
-</ul>
+
+    <%# Username flagged user's model model_string because  %>
+    <% if current_user.is_curator? %>
+      <% for flag in flags %>
+        <li>
+          <div class="flag <%= 'resolved' if flag.resolved? %>">
+            <% if flag.user -%>
+              <%= link_to flag.user.login, flag.user %>
+            <% else %>
+              iNat
+            <% end -%>
+            <%= link_to "flagged", flag, :action=>"show" %>
+            <%= 
+              if @object.methods.include?("user")
+                link_to "#{@object.user.login}'s'", :controller => "users", :action => "show", :id => @object.user_id 
+              else
+                "the"
+              end
+            %>
+            <%= @model.name %>
+            <%= link_to @object.to_plain_s, @object %> 
+            because 
+            "<%= flag.flag %>"
+            ---<%= link_to "Delete Flag", flag, 
+                    :confirm => "Are you sure you want to delete this flag?", 
+                    :method => :delete %>
+          </div>
+          <% if flag.resolved? && !flag.comment.blank? -%>
+            <div class="resolution description">
+              <strong>Resolution:</strong>
+              <%= h flag.comment %>
+            </div>
+          <% end -%>
+        </li>
+      <% end %>
+    <% else %>
+      <% for flag in flags %>
+        <li>
+         "<%= flag.flag %>"
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
 
 <% end %>

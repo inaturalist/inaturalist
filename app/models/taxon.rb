@@ -6,6 +6,9 @@ class Taxon < ActiveRecord::Base
   # If you want to shove some HTML in there before creating some JSON...
   attr_accessor :html
   
+  # Allow this taxon to be grafted to locked subtrees
+  attr_accessor :skip_locks
+  
   acts_as_flaggable
   has_ancestry
   
@@ -48,7 +51,8 @@ class Taxon < ActiveRecord::Base
               :set_conservation_status_source
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
-             :handle_after_move
+             :handle_after_move,
+             :update_observations_with_conservation_status_change
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
@@ -196,6 +200,8 @@ class Taxon < ActiveRecord::Base
     {:conditions => ["rank = ?", rank]}
   }
   
+  named_scope :locked, :conditions => {:locked => true}
+  
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
@@ -285,6 +291,17 @@ class Taxon < ActiveRecord::Base
     tn.is_valid = true
     
     self.taxon_names << tn
+    true
+  end
+  
+  def update_observations_with_conservation_status_change
+    return true unless conservation_status_changed?
+    if threatened?
+      Observation.send_later(:obscure_coordinates_for_observations_of, id)
+    elsif !conservation_status_was.blank? && conservation_status_was >= IUCN_NEAR_THREATENED && 
+        conservation_status_was < IUCN_EXTINCT_IN_THE_WILD
+      Observation.send_later(:unobscure_coordinates_for_observations_of, id)
+    end
     true
   end
   
@@ -452,14 +469,20 @@ class Taxon < ActiveRecord::Base
   
 
   def validate
-    if self.parent == self
+    if !new_record? && parent_id == id
       errors.add(self.name, "can't be its own parent")
     end
-    if self.ancestors and self.ancestors.include? self
+    if ancestor_ids.include?(id)
       errors.add(self.name, "can't be its own ancestor")
     end
     if !featured_at.blank? && taxon_photos.blank?
       errors.add(:featured_at, "can only be set if the taxon has photos")
+    end
+    
+    if !@skip_locks && ancestry_changed? && (locked_ancestor = ancestors.locked.first)
+      errors.add(:ancestry, "includes a locked taxon (#{locked_ancestor}), " +
+        "so this cannot be added as a descendent.  Either unlock the " + 
+        "locked taxon or merge this taxon with an existing one.")
     end
   end
   
