@@ -64,12 +64,16 @@ class Identification < ActiveRecord::Base
     end
     obs.project_observations.each do |po|
       if usr.project_users.exists?(:project_id => po.project_id, :role => 'curator') #The ident that was deleted is owned by user who is a curator of a project that that obs belongs to
+        other_curator_id = false
         po.observation.identifications.each do |other_ident| #that project observation has other identifications that belong to users who are curators use those
           if other_ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
             po.update_attributes(:curator_identification_id => other_ident.id)
+            other_curator_id = true
           end
         end
-        po.update_attributes(:curator_identification_id => nil)
+        unless other_curator_id
+          po.update_attributes(:curator_identification_id => nil)
+        end
       end
     end
   end

@@ -176,7 +176,7 @@ class ProjectsController < ApplicationController
     end
     @project_user.role = nil
     if @project_user.save
-      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.id)
+      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
       flash[:notice] = "Removed curator role"
       redirect_to project_members_path(@project)
     else
@@ -202,6 +202,9 @@ class ProjectsController < ApplicationController
     unless @project_user && request.post?
       flash[:error] = "You aren't a member of that project."
       redirect_to @project and return
+    end
+    unless @project_user.role == nil
+      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
     end
     @project_user.destroy
     flash[:notice] = "You have left #{@project.title}"
