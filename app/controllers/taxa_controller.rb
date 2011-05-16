@@ -179,6 +179,12 @@ class TaxaController < ApplicationController
     @taxon.creator = current_user
     if @taxon.save
       flash[:notice] = 'Taxon was successfully created.'
+      if locked_ancestor = @taxon.ancestors.locked.first
+        flash[:notice] += " Heads up: you just added a descendant of a " + 
+          "locked taxon (<a href='/taxa/#{locked_ancestor.id}'>" + 
+          "#{locked_ancestor.name}</a>).  Please consider merging this " + 
+          "into an existing taxon instead."
+      end
       redirect_to :action => 'show', :id => @taxon
     else
       render :action => 'new'
@@ -200,6 +206,12 @@ class TaxaController < ApplicationController
     return unless presave
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = 'Taxon was successfully updated.'
+      if locked_ancestor = @taxon.ancestors.locked.first
+        flash[:notice] += " Heads up: you just added a descendant of a " + 
+          "locked taxon (<a href='/taxa/#{locked_ancestor.id}'>" + 
+          "#{locked_ancestor.name}</a>).  Please consider merging this " + 
+          "into an existing taxon instead."
+      end
       redirect_to taxon_path(@taxon)
       return
     else
@@ -937,6 +949,9 @@ class TaxaController < ApplicationController
     
     # Set the last editor
     params[:taxon].update(:updater_id => current_user.id)
+    
+    # Anyone who's allowed to create or update should be able to skip locks
+    params[:taxon].update(:skip_locks => true)
     
     if params[:taxon][:featured_at] && params[:taxon][:featured_at] == "1"
       params[:taxon][:featured_at] = Time.now

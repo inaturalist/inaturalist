@@ -690,12 +690,20 @@
   </div>
   
   <% if logged_in? && current_user.is_curator? -%>
-    <div id="curation">
+    <div id="curation" class="quiet box">
       <h3>Curation</h3>
       <ul>
         <li><%= link_to "Edit", edit_taxon_path(@taxon) %></li>
         <li><%= link_to "Merge", merge_taxon_path(@taxon) %></li>
       </ul>
+      <% if @taxon.locked? -%>
+        <div class="notice">
+          <strong>Heads up:</strong> this taxon is locked, which means that most users can't add
+          new descendants to it by importing taxa. Curators can still do so by
+          editing taxa and choosing a parent, but please consider merging taxa
+          instead.
+        </div>
+      <% end -%>
     </div>
   <% end -%>
 </div>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513230256) do
+ActiveRecord::Schema.define(:version => 20110514221925) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -406,7 +406,6 @@ ActiveRecord::Schema.define(:version => 20110513230256) do
 
   add_index "project_observations", ["observation_id"], :name => "index_project_observations_on_observation_id"
   add_index "project_observations", ["project_id"], :name => "index_project_observations_on_project_id"
-  add_index "project_observations", ["curator_identification_id"], :name => "index_project_observations_on_curator_identification_id"
 
   create_table "project_users", :force => true do |t|
     t.column "project_id", :integer
@@ -527,6 +526,7 @@ ActiveRecord::Schema.define(:version => 20110513230256) do
     t.column "ancestry", :string
     t.column "conservation_status", :integer
     t.column "conservation_status_source_id", :integer
+    t.column "locked", :boolean, :default => false, :null => false
   end
 
   add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
@@ -539,6 +539,7 @@ ActiveRecord::Schema.define(:version => 20110513230256) do
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
   add_index "taxa", ["featured_at"], :name => "index_taxa_on_featured_at"
   add_index "taxa", ["conservation_status_source_id"], :name => "index_taxa_on_conservation_status_source_id"
+  add_index "taxa", ["locked"], :name => "index_taxa_on_locked"
 
   create_table "taxon_links", :force => true do |t|
     t.column "url", :string, :null => false

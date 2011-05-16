@@ -149,7 +149,6 @@ module Ratatosk
       # if this is an adapter of some kind, just get the underlying Taxon
       # object. It will smooth the way with nested_set...
       taxon = taxon.taxon unless taxon.is_a? Taxon
-            
       raise RatatoskGraftError, "Can't graft unsaved taxa" if taxon.new_record?
 
       graft_point, lineage = graft_point_and_lineage(taxon)
@@ -162,18 +161,24 @@ module Ratatosk
 
       # For each new taxon (starting with the highest), move it to the graft
       # point, moving the point as we walk along the branch
-      lineage.reverse_each do |ancestor|        
-        ancestor = ancestor.taxon unless ancestor.is_a? Taxon
-        ancestor.save if ancestor.new_record? # can't move new nodes
-        unless ancestor.valid?
-          msg = "Failed to graft #{ancestor} because it was invalid: " + 
-            ancestor.errors.full_messages.join(', ')
-          ancestor.logger.error "[ERROR] #{msg}"
+      lineage.reverse_each do |new_taxon|
+        new_taxon = new_taxon.taxon unless new_taxon.is_a? Taxon
+        new_taxon.save if new_taxon.new_record? # can't move new nodes
+        unless new_taxon.valid?
+          msg = "Failed to graft #{new_taxon} because it was invalid: " + 
+            new_taxon.errors.full_messages.join(', ')
+          new_taxon.logger.error "[ERROR] #{msg}"
           raise RatatoskGraftError, msg
         end
-        ancestor.set_scientific_taxon_name
-        ancestor.move_to_child_of(graft_point)
-        graft_point = ancestor
+        new_taxon.set_scientific_taxon_name
+        new_taxon.move_to_child_of(graft_point)
+        if !new_taxon.valid? && new_taxon.errors.on(:ancestry).to_s =~ /locked/
+          msg = "it failed to graft to #{taxon}, which "
+          msg += taxon.locked? ? "is locked. " : "descends from a locked taxon. "
+          msg += "Please merge or delete."
+          new_taxon.flags.create(:flag => msg)
+        end
+        graft_point = new_taxon
       end
 
       lineage

@@ -85,7 +85,7 @@ class ApplicationController < ActionController::Base
     unless logged_in? && current_user.is_curator?
       flash[:notice] = "Only curators can access that page."
       redirect_to session[:return_to] || root_url
-      return
+      return false
     end
   end
   

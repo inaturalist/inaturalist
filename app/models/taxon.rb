@@ -6,6 +6,9 @@ class Taxon < ActiveRecord::Base
   # If you want to shove some HTML in there before creating some JSON...
   attr_accessor :html
   
+  # Allow this taxon to be grafted to locked subtrees
+  attr_accessor :skip_locks
+  
   acts_as_flaggable
   has_ancestry
   
@@ -196,6 +199,8 @@ class Taxon < ActiveRecord::Base
   named_scope :of_rank, lambda {|rank|
     {:conditions => ["rank = ?", rank]}
   }
+  
+  named_scope :locked, :conditions => {:locked => true}
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
@@ -464,14 +469,20 @@ class Taxon < ActiveRecord::Base
   
 
   def validate
-    if self.parent == self
+    if !new_record? && parent_id == id
       errors.add(self.name, "can't be its own parent")
     end
-    if self.ancestors and self.ancestors.include? self
+    if ancestor_ids.include?(id)
       errors.add(self.name, "can't be its own ancestor")
     end
     if !featured_at.blank? && taxon_photos.blank?
       errors.add(:featured_at, "can only be set if the taxon has photos")
+    end
+    
+    if !@skip_locks && ancestry_changed? && (locked_ancestor = ancestors.locked.first)
+      errors.add(:ancestry, "includes a locked taxon (#{locked_ancestor}), " +
+        "so this cannot be added as a descendent.  Either unlock the " + 
+        "locked taxon or merge this taxon with an existing one.")
     end
   end
   

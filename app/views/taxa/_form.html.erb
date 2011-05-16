@@ -26,31 +26,50 @@
   
   <fieldset class="last column span-24">
     <legend>Classification</legend>
-    <div class="column span-12">
-      <%= f.label :parent_id, 'Parent ID' %><br/>
-      <%= f.text_field :parent_id, :class => 'text' %><br/>
-      
-      <%= label_tag :parent_name %><br/>
-      <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : '', :id => 'parent_name', :class => 'text' %>
-      <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
-      <div class="description">
-        This is a more convenient way to find a parent ID. It's the parent ID
-        that actually gets saved.
+    
+    <div class="stacked last column span-23">
+      <div class="column span-12">
+        <%= f.label :parent_id, 'Parent ID' %><br/>
+        <%= f.text_field :parent_id, :class => 'text' %><br/>
+
+        <%= label_tag :parent_name %><br/>
+        <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : '', :id => 'parent_name', :class => 'text' %>
+        <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
+        <div class="description">
+          This is a more convenient way to find a parent ID. It's the parent ID
+          that actually gets saved.
+        </div>
+
       </div>
-      
+      <% unless taxon.new_record? -%>
+        <div class="column span-5">
+          <label>Graft</label><br/>
+          <%= link_to "Graft <i>#{taxon.name}</i>", graft_taxon_path(taxon), :class => "button" %>
+        </div>
+        <div class="last column span-6 description">
+          Grafting attempts to insert this taxon into our taxonomic tree,
+          finding an existing parent taxon or creating all the necessary
+          in-between taxa in order to attach it to an existing higher level
+          taxon.
+        </div>
+      <% end -%>
     </div>
-    <% unless taxon.new_record? -%>
-      <div class="column span-5">
-        <label>Graft</label><br/>
-        <%= link_to "Graft <i>#{taxon.name}</i>", graft_taxon_path(taxon), :class => "button" %>
-      </div>
-      <div class="last column span-6 description">
-        Grafting attempts to insert this taxon into our taxonomic tree,
-        finding an existing parent taxon or creating all the necessary
-        in-between taxa in order to attach it to an existing higher level
-        taxon.
-      </div>
-    <% end -%>
+    
+    <div class="column span-23">
+      <%= f.check_box :locked %>
+      <%= f.label :locked %>
+      <p class="description ui">
+        Locked taxa will not allow new descendent taxa to be added to them. So
+        if you locked Amphibia and someone tried to import 
+        <i>Rana catesbeiana</i> from an external name provider, the new taxon 
+        would be created but it could not be classified as an amphibian. When
+        this happens, the newly added taxa should be flagged for curator
+        attention.  This should really only be used for taxa for which we 
+        think we already have all the descendants. Curator can override this
+        by editing taxa and entering parent IDs directly, but please consider
+        merging new taxa into existing ones instead.
+      </p>
+    </div>
   </fieldset>
   
   <fieldset class="column span-24">
