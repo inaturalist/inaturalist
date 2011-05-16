@@ -173,9 +173,9 @@ module Ratatosk
         new_taxon.set_scientific_taxon_name
         new_taxon.move_to_child_of(graft_point)
         if !new_taxon.valid? && new_taxon.errors.on(:ancestry).to_s =~ /locked/
-          msg = "it failed to graft to #{taxon}, which "
+          msg = "it failed to graft to #{graft_point.name}, which "
           msg += taxon.locked? ? "is locked. " : "descends from a locked taxon. "
-          msg += "Please merge or delete."
+          msg += "Please merge or delete, or edit and add it if it's legit."
           new_taxon.flags.create(:flag => msg)
         end
         graft_point = new_taxon
