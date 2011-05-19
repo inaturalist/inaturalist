@@ -16,11 +16,14 @@ ActionController::Routing::Routes.draw do |map|
   map.toggle_mobile "/toggle_mobile", :controller => 'welcome', :action => 'toggle_mobile'
   
   map.help '/help', :controller => 'help'
-
-  map.omniauth_callback "/auth/:provider/callback", :controller => "provider_authorizations", :action => "create"
-  map.omniauth_failure "/auth/failure", :controller => "provider_authorizations", :action => "failure"
-  map.omniauth_disconnect "/auth/:provider/disconnect", :controller => "provider_authorizations", :action => "destroy", :method=>"delete"
-  map.edit_login "/users/edit_username", :controller => "users", :action => "edit_login"
+  
+  map.with_options :controller => "provider_authorizations" do |pa|
+    pa.connect '/auth/:provider', :action => 'blank'
+    pa.omniauth_callback "/auth/:provider/callback", :action => "create"
+    pa.omniauth_failure "/auth/failure", :action => "failure"
+    pa.omniauth_disconnect "/auth/:provider/disconnect", :action => "destroy", :method => "delete"
+  end
+  map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"
 
   # Special controller routes
   

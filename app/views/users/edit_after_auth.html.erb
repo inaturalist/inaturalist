@@ -1,0 +1,26 @@
+<%- content_for(:title) do -%>
+  Confirm your info
+<%- end -%>
+<div class="column prepend-4 span-8">
+  <img src="/images/bird.png" width="300" height="239" />
+</div>
+<div class="column span-8 append-4 last">
+
+  <% form_for current_user, :builder => DefaultFormBuilder do |f| %>
+    <%= f.text_field :login, :label => "Please confirm your iNat username", :class => "text" %>
+    <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
+      :label => "Your default time zone",
+      :description => "All your observations will default to this time zone unless you specify otherwise.",
+      :class => 'select'}) %>
+    <%= f.submit "Save &amp; continue...", :class => "default button" %>
+  <% end %>
+  <script type="text/javascript" charset="utf-8">
+    var tzid = (new Date()).toString().match(/[+-]\d{2}/)[0]
+    $('#user_time_zone option').each(function() {
+      if (this.innerHTML.match(tzid)) {
+        $('#user_time_zone').val($(this).val())
+        return false;
+      }
+    })
+  </script>
+</div>

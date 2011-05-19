@@ -1,5 +1,11 @@
 class ProviderAuthorizationsController < ApplicationController
   before_filter :login_required, :only => [:destroy]
+  
+  # This is kind of a dumb placeholder. OA calls through to the app before
+  # doing its magic, so if this isn't here we get nonsense in the logs
+  def blank
+    render_404
+  end
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test
@@ -40,15 +46,15 @@ class ProviderAuthorizationsController < ApplicationController
         self.current_user = User.create_from_omniauth(auth_info)
         handle_remember_cookie! true # set 'remember me' to true
         flash[:notice] = "Welcome!"
-        flash[:allow_edit_login] = true
-        redirect_to edit_login_url and return
+        flash[:allow_edit_after_auth] = true
+        redirect_to edit_after_auth_url and return
       end
     else # existing provider + inat user, so log him in
       self.current_user = existing_authorization.user
       handle_remember_cookie! true # set 'remember me' to true
       flash[:notice] = "Welcome back!"
     end
-    redirect_back_or_default('/') and return
+    redirect_back_or_default(edit_user_path(current_user)) and return
   end
 
 end
