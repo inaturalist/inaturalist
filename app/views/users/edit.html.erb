@@ -1,75 +1,20 @@
 <% content_for(:title) do %>Edit Your Account &amp; Profile<% end %>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
-  label {
-    display: block;
-    clear: right;
-    margin-bottom: 0.5em;
-  }
-  
-  textarea, input.text {
-    margin-top: 0;
-  }
-  
-  textarea {
-    width: 330px;
-  }
-  
-  .field {
-    margin-bottom: 1em;
-  }
-  
-  .usericon {
-    float: left;
-    margin-right: 1em;
-    border: 2px solid #ddd;
-  }
-  
-  #preferencescol .field label {
-    display: inline;
-  }
-  #providercol {
-    margin-left: 10px;
-  }
-  #providercol ul {
-    margin: 0;
-    padding: 0;
-  }
-  #providercol li {
-    list-style-type: none;
-    margin: 10px 0;
-  }
-  #providercol img.favicon {
-    vertical-align: text-bottom;
-    width: 16px;
-  }
-  #providercol img.provider_signin {
-    width: 154px;
-  }
-  #providercol form,
-  #providercol form div {
-    display: inline;
-  }
-  #providercol input[type='submit'] {
-    background: none;
-    border: 0;
-    color: #36C;
-    padding: 0;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  #providercol input[type='submit']:active {
-    color: #039;
-  }
+  label{display:block;clear:right;margin-bottom:0.5em;}
+  textarea,input.text{margin-top:0;}
+  textarea{width:330px;}
+  .field{margin-bottom:1em;}
+  .usericon{float:left;margin-right:1em;border:2px solid #ddd;}
+  #preferencescol .field label{display:inline;}
+  #providercol ul{margin:0;padding:0;}
+  #providercol li{list-style-type:none;}
 </style>
 <!--[if lt IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie' %>
 <![endif]-->
 <% end -%>
-
 <% content_for(:extrajs) do %>
-  <%= gmap_include_tag %>
-  
   <!--[if lt IE 8]>
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
@@ -129,13 +74,6 @@
         <% end %>
       <% end %>
     </div>
-    <div id="flickrcol" class="last column span-9 field">
-      <label>Photo Hosting Accounts</label>
-      <ul>
-        <li><%= link_to "Link or unlink your Flickr account", {:controller => "flickr", :action => 'options'}, :class => 'readmore' %></li>
-        <li><%= link_to "Link or unlink your Picasa account", {:controller => "picasa", :action => 'options'}, :class => 'readmore' %></li>
-      </ul>
-    </div>
     <div class="column span-18 field">
       <%= f.submit("Save", :class => 'default button') %>
     </div>
@@ -144,21 +82,39 @@
 </div><!-- end first col -->
 
 <div class="column last span-6">
-  <div id="providercol" class="last field">
-    <label>Connected Accounts</label>
+  <div id="providercol" class="stacked">
+    <h3>Connected Accounts</h3>
     <ul>
-      <% ["facebook","twitter","google","yahoo"].each do |provider| %>
+      <% %w(facebook twitter Google Yahoo).each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
-          <li><img class='favicon' src="/images/<%=provider%>_favicon.jpg" /> Connected <%= button_to("Disconnect", "/auth/#{provider}/disconnect", :method=>"delete") %></li>
+          <li class="clear">
+            <%= link_to "Disconnect #{provider}", omniauth_disconnect_path(provider.downcase), 
+              :class => "providerlink #{provider.downcase} disabled button", :method => "delete" %>
+          </li>
         <% else %>
-          <li><a href="<%=ProviderAuthorization.auth_url_for(provider)%>"><img class="provider_signin" src="/images/<%=provider%>_login_button.png" /></a></li>
+          <li class="clear">
+            <%= link_to "Connect to #{provider}", ProviderAuthorization.auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
+          </li>
         <% end %>
       <% end %>
     </ul>
+    <p class="ui description">
+      Connecting your iNat account to accounts on other sites will allow you
+      to login to iNat using your credentials from those sites.
+    </p>
   </div>
+  
+  <h3>Photo Hosting Accounts</h3>
+  <ul>
+    <li><%= link_to "Link or unlink your Flickr account", {:controller => "flickr", :action => 'options'}, :class => 'readmore' %></li>
+    <li><%= link_to "Link or unlink your Picasa account", {:controller => "picasa", :action => 'options'}, :class => 'readmore' %></li>
+  </ul>
+  
+  <%= separator %>
+  
   <div class="clear box">
-    <h2>Change Your Password</h2>
-    <% form_for(@user) do %>
+    <%= link_to_toggle "Change Your Password", "#passwordform", :class => "ui" %>
+    <% form_for(@user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <%= label(:current_password, 'Current Password') %>
       <%= password_field_tag(:current_password, '', :class => 'text') %>
 
@@ -170,7 +126,6 @@
 
       <%= submit_tag("Change Password", :class => 'button') %>
     <% end %>
-    
   </div>
   <%= link_to "Delete your account", @user, :method => :delete, :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
     :class => "minor delete button" %>

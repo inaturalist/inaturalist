@@ -1,41 +1,48 @@
 <%- content_for(:title) do -%>
   Sign in
 <%- end -%>
-<div class="column prepend-4 span-8">
-  <img src="/images/logo-bird-300px-trans.png" width="300" height="237" />
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .providerlink, .button.providerlink { width: 140px; }
+  </style>
+<%- end -%>
+<div class="column span-8 prepend-2">
+  <img src="/images/bird.png" width="300" height="239" />
 </div>
-<div class="column span-8 append-4 last">
-  <p>
-    <a href='/auth/facebook'><img src='/images/facebook_login_button.png' /></a>
-    <br />
-    <a href='/auth/twitter'><img src='/images/twitter_login_button.png' /></a>
-    <br />
-    <a href='/auth/open_id?openid_url=https://www.google.com/accounts/o8/id'>login with google</a>
-    <br />
-    <a href='/auth/open_id?openid_url=https://me.yahoo.com'>login with yahoo</a>
-  </p>
-  <% form_tag session_path do %>
-
-    <p class="ui">
-      <%= label_tag 'login', 'Username or email' %><br/>
-      <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
-    </p>
-
-    <p class="ui">
-      <%= label_tag 'password', 'Password' %><br/>
-      <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
-    </p>
+<div class="column span-6">
+  <% form_for :session, :builder => DefaultFormBuilder do |f| %>
+    <%= f.text_field :login, :label => "Email / username", :class => "text" %>
+    <%= f.password_field :password, :class => "text" %>
+    <%= f.check_box :remember_me, :label_after => true %>
+    <%= f.submit "Sign in!", :class => "default inline button" %>
+  <% end %>
   
-    <p class="ui">
-      <%= check_box_tag 'remember_me', '1', 'Remember me' %>
-      <%= label_tag 'remember_me', 'Remember me' %>
-    </p>
-
-    <p><%= submit_tag 'Sign in!', :class => "default button", :style => "float: none;" %></p>
-
-  <% end -%>
-
   <p class="ui">
     <%= link_to 'Forgot your password?', forgot_password_path %>
+  </p>
+</div>
+
+<div class="last column prepend-1 span-6">
+  <div class="clear stacked">
+    <div style="margin-bottom: 0.5em;">
+      <label>Or you can...</label>
+    </div>
+    <%- {
+      "facebook" => "/auth/facebook",
+      "twitter" => "/auth/twitter",
+      "Google" => "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id",
+      "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com",
+    }.each do |provider, url| -%>
+      <%= link_to "Sign in with #{provider}", url, :class => "button providerlink #{provider.downcase}" %>
+    <%- end -%>
+  </div>
+  
+  <%= link_to_toggle "If you already have an iNat account...", "#already" %>
+  <p id="already" class="ui description" style="display: none;">
+    ...and you haven't linked one of these
+    external accounts, you should sign in through iNat first, then edit your
+    profile and link your account from there. Otherwise iNat may not be able
+    to tell that the two accounts are connected and try to create a new
+    account for you instead!
   </p>
 </div>

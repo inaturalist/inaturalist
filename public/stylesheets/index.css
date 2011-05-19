@@ -127,27 +127,12 @@ input[type="file"]:focus {
   border-color: #ccc;
 }
 
-input, select, textarea {
-  font-family: "Trebuchet MS", Arial, sans-serif;
-}
+input,select,textarea{font-family:"Trebuchet MS",Arial,sans-serif;}
+form .field{margin-bottom:10px;}
+.required{color:deeppink;}
+.label .fieldWithErrors{display:inline;}
+.stacked{margin-bottom:10px;}
 
-form .field {
-  margin-bottom: 10px;
-}
-
-form .field .label {
-  display: block;
-}
-
-.required {
-  color: deeppink;
-}
-
-.label .fieldWithErrors {
-  display: inline;
-}
-
-.stacked { margin-bottom: 10px; }
 
 /* Page Headers */
 #pageheader{margin-bottom:10px;}
@@ -306,11 +291,7 @@ img.mini.usericon {
   background-color: #ffc;
 }
 
-.auto_complete .description {
-/*  display: block;*/
-/*  margin-left: 1em;*/
-  font-size: 80%;
-}
+.auto_complete .description { font-size: 80%; }
 
 /* Button Styles */
 span.button {
@@ -432,7 +413,7 @@ ul.leafylist li li:first-child {
   overflow: visible;
 }
 
-.column-separator img {
+.column-separator .inner {
   display: block;
   position: relative;
   margin: 0 auto;
@@ -795,9 +776,6 @@ ul.leafylist li li:first-child {
 .taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
 
 /* Users table */
-/*table.user-table {
-  margin: 0 auto;
-}*/
 
 table.user-table td {
   vertical-align: top;
@@ -978,3 +956,9 @@ form.inline .label {
 .extinct_in_the_wild, .extinct { background-color: black; color: white; }
 
 .box.curator_id { text-align: center; padding: 5px 10px; margin-bottom: 0; background-color: #7EB6FF; color: #FBE3E4;}
+
+.providerlink, .button.providerlink { width: 190px; padding-left: 28px; background: url(/images/favicon.png) no-repeat 5px 50%; }
+.providerlink.facebook { background-image: url(/images/external/facebook_favicon.png); }
+.providerlink.twitter { background-image: url(/images/external/twitter_favicon.png); }
+.providerlink.google { background-image: url(/images/external/google_favicon.png); }
+.providerlink.yahoo { background-image: url(/images/external/yahoo_favicon.png); }

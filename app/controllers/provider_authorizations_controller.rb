@@ -3,7 +3,7 @@ class ProviderAuthorizationsController < ApplicationController
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test
-    render(:text=>request.env['rack.auth'].to_yaml)
+    render(:text=>request.env['omniauth.auth'].to_yaml)
   end
 
   def failure
@@ -20,7 +20,7 @@ class ProviderAuthorizationsController < ApplicationController
   end
 
   def create
-    auth_info = request.env['rack.auth']
+    auth_info = request.env['omniauth.auth']
     if auth_info["provider"]=='facebook' 
       # omniauth bug sets fb nickname to 'profile.php?id=xxxxx' if no other nickname exists
       auth_info["user_info"]["nickname"] = nil if (auth_info["user_info"]["nickname"] && auth_info["user_info"]["nickname"].match("profile.php"))
