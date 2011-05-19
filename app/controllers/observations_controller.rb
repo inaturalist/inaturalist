@@ -123,9 +123,15 @@ class ObservationsController < ApplicationController
       end
       
       format.widget do
-        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-          :show_user => true
-        })
+        if params[:markup_only]=='true'
+          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
+            :show_user => true, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
+          })
+        else
+          render :js => render_to_string(:partial => "widget.js.erb", :locals => {
+            :show_user => true
+          })
+        end
       end
     end
   end
@@ -759,7 +765,13 @@ class ObservationsController < ApplicationController
         render_observations_to_csv(:show_private => logged_in? && @selected_user.id == current_user.id)
       end
       format.widget do
-        render :js => render_to_string(:partial => "widget.js.erb")
+        if params[:markup_only]=='true'
+          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
+            :show_user => false, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
+          })
+        else
+          render :js => render_to_string(:partial => "widget.js.erb")
+        end
       end
       
     end
@@ -842,16 +854,12 @@ class ObservationsController < ApplicationController
     end
     @logo ||= "logo-small.gif"
     @layout = params[:layout] || "large"
-    @target = params[:target] || "nil"
-    @default_image = params[:default_image] || false
     url_params = {
       :format => "widget", 
       :limit => @limit, 
       :order => @order, 
       :order_by => @order_by,
       :layout => @layout,
-      :target => @target,
-      :default_image => @default_image
     }
     @widget_url = if @place
       observations_url(url_params.merge(:place_id => @place.id))
@@ -941,9 +949,15 @@ class ObservationsController < ApplicationController
         )
       end
       format.widget do
-        render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-          :show_user => true
-        })
+        if params[:markup_only]=='true'
+          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
+            :show_user => true, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
+          })
+        else
+          render :js => render_to_string(:partial => "widget.js.erb", :locals => {
+            :show_user => true
+          })
+        end
       end
       format.mobile
     end

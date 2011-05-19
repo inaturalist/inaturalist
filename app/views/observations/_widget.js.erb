@@ -8,13 +8,24 @@ try {
   <% else %>
     if (msg) {
       msg.style.visibility = 'hidden';
-      msg.style.height = '0px';
     }
   <% end %>
   
-  <% if params[:layout] == 'small' %>
-    document.write('<%= escape_javascript(render(:partial => "widget_small.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image]}).gsub(/\n\s*/, '')) %>')
-  <% else %>
-    document.write('<%= escape_javascript(render(:partial => "widget.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image]}).gsub(/\n\s*/, '')) %>')
+  <% unless @observations_taxon.nil?  and ( !params[:taxon_id].nil? or !params[:taxon_name].nil? ) %>
+    <% if params[:show_header] == 'true' %>
+      document.write('<%= escape_javascript(render(:partial => "widget_header.html").gsub(/\n\s*/, '')) %>')
+    <% end %>
+    
+    <% if params[:layout] == 'small' %>
+      document.write('<%= escape_javascript(render(:partial => "widget_small.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')) %>')
+    <% else %>
+      document.write('<%= escape_javascript(render(:partial => "widget.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')) %>')
+    <% end %>
+    
+    <% if params[:show_footer] == 'true' %>
+      document.write('<%= escape_javascript(render(:partial => "widget_footer.html").gsub(/\n\s*/, '')) %>')
+    <% end %>
   <% end %>
+  
 } catch (e) {}
+
