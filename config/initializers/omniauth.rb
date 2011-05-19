@@ -7,7 +7,9 @@ ActionController::Dispatcher.middleware.use OmniAuth::Builder do #if you are usi
     provider :twitter, INAT_CONFIG["twitter"]["key"] , INAT_CONFIG["twitter"]["secret"]
   end
   if INAT_CONFIG["facebook"]
-    provider :facebook, INAT_CONFIG["facebook"]["app_id"], INAT_CONFIG["facebook"]["app_secret"], :scope => 'email,offline_access,publish_stream,user_location' 
+    opts = {:scope => 'email,offline_access,publish_stream,user_location'}
+    opts[:client_options] = {:ssl => {:ca_path => "/etc/ssl/certs"}} if File.exists?("/etc/ssl/certs")
+    provider :facebook, INAT_CONFIG["facebook"]["app_id"], INAT_CONFIG["facebook"]["app_secret"], opts
   end
   #provider :linked_in, 'key', 'secret'
   provider :open_id,  OpenID::Store::Filesystem.new('/tmp')
