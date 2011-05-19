@@ -10,12 +10,21 @@
   <img src="/images/bird.png" width="300" height="239" />
 </div>
 <div class="column span-6">
-  <% form_for :session, :builder => DefaultFormBuilder do |f| %>
-    <%= f.text_field :login, :label => "Email / username", :class => "text" %>
-    <%= f.password_field :password, :class => "text" %>
-    <%= f.check_box :remember_me, :label_after => true %>
-    <%= f.submit "Sign in!", :class => "default inline button" %>
-  <% end %>
+  <% form_tag session_path do %>
+    <p class="ui">
+      <%= label_tag 'login', 'Username or email' %><br/>
+      <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
+    </p>
+    <p class="ui">
+      <%= label_tag 'password', 'Password' %><br/>
+      <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
+    </p>
+    <p class="ui">
+      <%= check_box_tag 'remember_me', '1', 'Remember me' %>
+      <%= label_tag 'remember_me', 'Remember me' %>
+    </p>
+    <p class="clear"><%= submit_tag 'Sign in!', :class => "default button" %></p>
+  <% end -%>
   
   <p class="ui">
     <%= link_to 'Forgot your password?', forgot_password_path %>
