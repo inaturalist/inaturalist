@@ -1,4 +1,12 @@
+<%- target ||= nil -%>
+<%- default_image ||= nil -%>
+<%- silence ||= nil -%>
 <table>
+  <% if @observations.size == 0 %>
+    <% unless silence == "true" %>
+      <span class="inat-value">no observations</span>
+    <% end %>
+  <% end %>
   <% for observation in @observations %>
     <tr class="inat-observation">
       <td class="inat-observation-image" valign="top" align="center">
