@@ -99,10 +99,10 @@ class User < ActiveRecord::Base
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
   # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count>0))}
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_nil => true
-  validates_length_of       :email,    :within => 6..100, :allow_nil => true #r@a.wk
-  validates_uniqueness_of   :email,    :allow_nil => true
+  validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count > 0))}
+  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_blank => true
+  validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
+  validates_uniqueness_of   :email,    :allow_blank => true
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

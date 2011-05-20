@@ -303,7 +303,7 @@ class UsersController < ApplicationController
     
     if @user.update_attributes(params[:user])
       flash[:notice] = 'Your profile was successfully updated!'
-      redirect_to(person_by_login_path(:login => @user.login))
+      redirect_back_or_default(person_by_login_path(:login => current_user.login))
     else
       render :action => 'edit', :login => @original_user.login
     end
