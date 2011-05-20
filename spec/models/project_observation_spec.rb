@@ -13,8 +13,7 @@ describe ProjectObservation, "creation" do
     stamp = Time.now
     ProjectObservation.make(:observation => Observation.make(:taxon => Taxon.make))
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    # puts jobs.map(&:handler).inspect
-    jobs.select{|j| j.handler =~ /\:update_observation_counter_cache/}.should_not be_blank
+    jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
     jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
   end
 end
@@ -35,7 +34,7 @@ describe ProjectObservation, "destruction" do
     stamp = Time.now
     project_observation.destroy
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    jobs.select{|j| j.handler =~ /\:update_observation_counter_cache/}.should_not be_blank
+    jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
     jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
   end
 end
