@@ -705,6 +705,7 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates(distance = M_TO_OBSCURE_THREATENED_TAXA)
+    return if latitude.blank? || longitude.blank?
     if latitude_changed? || longitude_changed?
       self.private_latitude = latitude
       self.private_longitude = longitude
@@ -714,7 +715,6 @@ class Observation < ActiveRecord::Base
     end
     self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
     self.place_guess = nil if place_guess =~ LAT_LON_REGEX
-
   end
   
   def unobscure_coordinates

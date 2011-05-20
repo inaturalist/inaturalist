@@ -603,6 +603,18 @@ describe Observation do
     end
   end
   
+  describe "obscure_coordinates" do
+    it "should not affect observations without coordinates" do
+      o = Observation.make
+      o.latitude.should be_blank
+      o.obscure_coordinates
+      o.latitude.should be_blank
+      o.private_latitude.should be_blank
+      o.longitude.should be_blank
+      o.private_longitude.should be_blank
+    end
+  end
+  
   describe "unobscure_coordinates" do
     it "should work" do
       taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
@@ -616,6 +628,16 @@ describe Observation do
       o.should_not be_coordinates_obscured
       o.latitude.to_f.should == true_lat
       o.longitude.to_f.should == true_lon
+    end
+    
+    it "should not affect observations without coordinates" do
+      o = Observation.make
+      o.latitude.should be_blank
+      o.unobscure_coordinates
+      o.latitude.should be_blank
+      o.private_latitude.should be_blank
+      o.longitude.should be_blank
+      o.private_longitude.should be_blank
     end
   end
   
@@ -635,6 +657,18 @@ describe Observation do
         o.should be_coordinates_obscured
       end
     end
+    
+    it "should not affect observations without coordinates" do
+      taxon = Taxon.make(:rank => "species")
+      o = Observation.make(:taxon => taxon)
+      o.latitude.should be_blank
+      Observation.obscure_coordinates_for_observations_of(taxon)
+      o.reload
+      o.latitude.should be_blank
+      o.private_latitude.should be_blank
+      o.longitude.should be_blank
+      o.private_longitude.should be_blank
+    end
   end
   
   describe "unobscure_coordinates_for_observations_of" do
@@ -652,6 +686,18 @@ describe Observation do
         o.reload
         o.should_not be_coordinates_obscured
       end
+    end
+    
+    it "should not affect observations without coordinates" do
+      taxon = Taxon.make(:rank => "species")
+      o = Observation.make(:taxon => taxon)
+      o.latitude.should be_blank
+      Observation.unobscure_coordinates_for_observations_of(taxon)
+      o.reload
+      o.latitude.should be_blank
+      o.private_latitude.should be_blank
+      o.longitude.should be_blank
+      o.private_longitude.should be_blank
     end
   end
 end
