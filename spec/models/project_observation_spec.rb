@@ -115,4 +115,14 @@ describe ProjectObservation, "in_taxon?" do
     po.should_not be_in_taxon(@taxon)
   end
   
+  it "should be false if taxon is blank" do
+    po = ProjectObservation.make
+    po.should_not be_in_taxon(nil)
+  end
+  
+  it "should be false of obs has no taxon" do
+    po = ProjectObservation.make
+    po.observation.taxon.should be_blank
+    po.should_not be_in_taxon(@taxon)
+  end
 end
