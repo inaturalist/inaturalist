@@ -62,6 +62,18 @@
   <% end -%>
 <%- end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @project.title %>"/> 
+  <meta property="og:type" content="inaturalist project"/>
+ <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/> 
+ <meta property="og:url" content="<%= project_url(@project) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027"> 
+  <% og_description = h strip_tags(truncate(@project.description, :length => 110)) %>
+  <meta property="og:description" content="<%= og_description %>"/>
+<%- end -%>
+
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
     <span class="right">
