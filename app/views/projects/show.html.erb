@@ -113,13 +113,8 @@
     </h2>
     
     <span class="right buttonrow">
-      <% if logged_in? %>
-        <%= link_to 'Add observations to this project', new_observation_path(:project_id => @project.id), 
-          :class => 'last button default', :rel => "nofollow" %>
-      <% else %>
-        <%= link_to 'Sign up to add to this project!', signup_url, 
-          :class => 'last button default', :rel => "nofollow" %>
-      <% end %>
+      <%= link_to 'Add observations to this project', new_observation_path(:project_id => @project.id), 
+        :class => 'last button default', :rel => "nofollow" %>
     </span>
   <% end -%>
 </div>

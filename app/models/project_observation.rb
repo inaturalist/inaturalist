@@ -53,6 +53,8 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def in_taxon?(taxon)
+    return false if taxon.blank?
+    return false if observation.taxon.blank?
     taxon.id == observation.taxon_id || taxon.ancestor_of?(observation.taxon)
   end
   
