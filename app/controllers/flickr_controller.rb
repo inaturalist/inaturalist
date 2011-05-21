@@ -1,7 +1,7 @@
 class FlickrController < ApplicationController
   before_filter :login_required  
-  before_filter :ensure_has_no_flickr_identity,
-                :only => ['link']
+  before_filter :ensure_has_no_flickr_identity, :only => ['link']
+  before_filter :return_here, :only => [:index, :show, :by_login, :options]
   
   # This is where Flickr sends the user back to after authorizing their
   # account.  Note that there should not be a view associated with this end-

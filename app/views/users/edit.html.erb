@@ -80,7 +80,7 @@
   <div id="providercol" class="stacked">
     <h3>Connected Accounts</h3>
     <ul>
-      <% %w(facebook twitter Google Yahoo).each do |provider| %>
+      <% ProviderAuthorization::PROVIDERS.each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
           <li class="clear">
             <%= link_to "Disconnect #{provider}", omniauth_disconnect_path(provider.downcase), 

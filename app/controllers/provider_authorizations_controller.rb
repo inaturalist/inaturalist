@@ -27,13 +27,15 @@ class ProviderAuthorizationsController < ApplicationController
 
   def create
     auth_info = request.env['omniauth.auth']
-    if auth_info["provider"]=='facebook' 
+    case auth_info["provider"]
+    when 'facebook'
       # omniauth bug sets fb nickname to 'profile.php?id=xxxxx' if no other nickname exists
       auth_info["user_info"]["nickname"] = nil if (auth_info["user_info"]["nickname"] && auth_info["user_info"]["nickname"].match("profile.php"))
       # for some reason, omniauth doesn't populate image url
       # (maybe cause our version of omniauth was pre- fb graph api?)
       auth_info["user_info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
     end
+    
     logger.debug("auth_info: " + auth_info.inspect)
     existing_authorization = ProviderAuthorization.find_from_omniauth(auth_info)
     if existing_authorization.nil?  # first time logging in with this provider + provider uid combo
@@ -52,7 +54,9 @@ class ProviderAuthorizationsController < ApplicationController
     else # existing provider + inat user, so log him in
       self.current_user = existing_authorization.user
       handle_remember_cookie! true # set 'remember me' to true
-      flash[:notice] = "Welcome back!"
+      existing_authorization.auth_info = auth_info
+      existing_authorization.save
+      # flash[:notice] = "Welcome back!"
     end
     redirect_back_or_default(edit_user_path(current_user)) and return
   end

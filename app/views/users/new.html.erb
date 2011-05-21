@@ -14,12 +14,7 @@
     <div style="margin-bottom: 0.5em;">
       <label>Or you can...</label>
     </div>
-    <%- {
-      "facebook" => "/auth/facebook",
-      "twitter" => "/auth/twitter",
-      "Google" => "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id",
-      "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com",
-    }.each do |provider, url| -%>
+    <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
       <%= link_to "Sign in with #{provider}", url, :class => "button providerlink #{provider.downcase}" %>
     <%- end -%>
   </div>

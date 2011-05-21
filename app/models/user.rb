@@ -191,7 +191,10 @@ class User < ActiveRecord::Base
     unless auth_info["credentials"].nil? # open_id (google, yahoo, etc) doesn't provide a token
       provider_auth_info.merge!({ :token => (auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]) }) 
     end
-    self.provider_authorizations.create(provider_auth_info) 
+    pa = self.provider_authorizations.build(provider_auth_info) 
+    pa.auth_info = auth_info
+    pa.save
+    pa
   end
 
   # test to see if this user has authorized with the given provider
