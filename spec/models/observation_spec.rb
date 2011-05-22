@@ -130,6 +130,15 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(13)
   end
   
+  it "should set the time zone to UTC if the user's time zone is blank" do
+    u = User.make
+    u.update_attribute(:time_zone, nil)
+    u.time_zone.should be_blank
+    o = Observation.new(:user => u)
+    o.save
+    o.time_zone.should == 'UTC'
+  end
+  
   it "should trim whitespace from species_guess" do
     @observation.species_guess = " Anna's Hummingbird     "
     @observation.save
