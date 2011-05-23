@@ -2,6 +2,17 @@
   <%=h @project.title %>
 <%- end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @project.title %>"/> 
+  <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/> 
+  <meta property="og:url" content="<%= project_url(@project) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" /> 
+  <% og_description = h strip_tags(truncate(@project.description, :length => 110)) %>
+  <meta property="og:description" content="<%= og_description %>"/>
+<%- end -%>
+
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3' %>
@@ -60,18 +71,6 @@
       <%= @custom_project.css %>
     </style>
   <% end -%>
-<%- end -%>
-
-<%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="<%= @project.title %>"/> 
-  <meta property="og:type" content="inaturalist project"/>
- <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/> 
- <meta property="og:url" content="<%= project_url(@project) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027"> 
-  <% og_description = h strip_tags(truncate(@project.description, :length => 110)) %>
-  <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
 
 <div id="pageheader" class="clear">
@@ -220,13 +219,18 @@
     <%= @custom_project.side %>
   <% end -%>
   
+  <div id="fblike" class="stacked">
+      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+      <fb:like send="true" show_faces="true" width="270"></fb:like>
+  </div>
+  
   <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
     observations_by_login_path(@project.user.login),
     :alt => h(@project.user.login),
     :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
   <%= link_to h(@project.user.login), @project.user %>
   <span class="description">created this project on <%= @project.created_at.to_date.to_s(:long) %></span>
-
+  
   <%= separator %>
   <center class="small meta">
     <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project.id),

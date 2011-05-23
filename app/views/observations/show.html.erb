@@ -13,6 +13,22 @@
 <%- end -%>
 <% end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @observation.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <% if !@photos.blank? -%>
+    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
+  <% elsif @observation.taxon %>
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
+  <% end -%>
+  <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" />
+  <% unless @observation.description.blank? %>
+    <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
+  <% end %>
+<%- end -%>
+
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'observations', 'identifications', 'observations/show', "jquery/ui.tabs.css" %>
   <style type="text/css" media="screen">
@@ -206,22 +222,7 @@
     });
   </script>
 <% end %>
-<%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="<%= @observation.to_plain_s(:verb => true, :no_time => true) %>"/> 
-  <meta property="og:type" content="observation"/> 
-  <% if !@photos.blank? -%>
-    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
-  <% elsif @observation.taxon %>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
-  <% end -%>
-  <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027">
-  <% unless @observation.description.blank? %>
-    <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
-  <% end %>
-<%- end -%>
+
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
@@ -566,7 +567,8 @@
   <%= separator %>
   
   <div id="fblike" class="stacked">
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
+    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+    <fb:like send="true" show_faces="true" width="270"></fb:like>
   </div>
   <br/>
   
@@ -576,6 +578,7 @@
     <%= link_to "Add another flag", new_observation_flag_path(@observation),
                 :id => "flag_this" %>
   </div>
+  
   <% else %>
     <% if logged_in? %>
     <p class="description ui">

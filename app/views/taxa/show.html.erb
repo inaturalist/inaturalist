@@ -2,6 +2,30 @@
 <%= render :partial => "taxa/taxon.txt.erb", :locals => { :taxon => @taxon } %>
 <% end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <% if @photos.blank? -%>
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 
+  <% else %>
+    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
+  <% end -%>
+  <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" /> 
+  <% unless @taxon.wikipedia_summary.blank? -%>
+    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
+    <%-
+      og_description = if @photos.blank?
+        html_attributize(@taxon.wikipedia_summary)
+      else
+        "(Photo: #{@photos.first.attribution}) #{html_attributize @taxon.wikipedia_summary}"
+      end
+    -%>
+    <meta property="og:description" content="<%= og_description %>"/>
+  <% end -%>
+<%- end -%>
+
 <%- content_for(:extracss) do %>
 <%= stylesheet_link_tag 'taxa/show', 'observations', "jquery/ui.tabs.css" %>
 <style type="text/css" media="screen">
@@ -406,31 +430,6 @@
   </script>
 <% end -%>
 
-<%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/> 
-  <meta property="og:type" content="taxon"/> 
-  <% if @photos.blank? -%>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 
-  <% else %>
-    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
-  <% end -%>
-  <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027"> 
-  <% unless @taxon.wikipedia_summary.blank? -%>
-    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
-    <%-
-      og_description = if @photos.blank?
-        html_attributize(@taxon.wikipedia_summary)
-      else
-        "(Photo: #{@photos.first.attribution}) #{html_attributize @taxon.wikipedia_summary}"
-      end
-    -%>
-    <meta property="og:description" content="<%= og_description %>"/>
-  <% end -%>
-<%- end -%>
-
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">
     <%= link_to 'All Species', taxa_path, :class => 'back crumb' %>
@@ -796,7 +795,8 @@
     </div>
     
     <div id="fblike" class="stacked">
-      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
+      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+      <fb:like send="true" show_faces="true" width="270"></fb:like>
     </div>
   <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
   </div>
