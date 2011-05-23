@@ -608,9 +608,9 @@ class Observation < ActiveRecord::Base
   # Set the time_zone of this observation if not already set
   #
   def set_time_zone
-    self.time_zone = user.time_zone if user && time_zone.blank?
-    self.time_zone = Time.zone if time_zone.blank? && !time_observed_at.blank?
-    self.time_zone = nil if time_zone.blank?
+    self.time_zone ||= user.time_zone if user
+    self.time_zone ||= Time.zone.try(:name) unless time_observed_at.blank?
+    self.time_zone ||= 'UTC'
     true
   end
 
