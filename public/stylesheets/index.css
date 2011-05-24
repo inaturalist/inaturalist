@@ -4,6 +4,7 @@
 @import 'statuses.css';
 @import 'prevnext.css';
 @import 'flickr_photos.css';
+@import 'projects.css';
 
 body {
   margin: 0;
@@ -17,23 +18,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5em;
 }
 
-h3 {
-  line-height: 1.3;
-}
-
-em {
-  background: none; /* hard to believe BluePrint does this... */
-}
-
+h3{line-height:1.3;}
+em{background:none;}
 img,
-p img {
-  margin: 0;
-  float: none;
-}
-
-.small {
-  margin-bottom: 0;
-}
+p img{margin:0;float:none;}
+.small{margin-bottom:0;}
 
 /* Container Types */
 .wide.container {
@@ -954,8 +943,6 @@ form.inline .label {
 .near_threatened { background-color: #817134 ; color: #FFF6BF; }
 .vulnerable, .endangered, .critically_endangered { background-color: #D12F19; color: #FBE3E4; }
 .extinct_in_the_wild, .extinct { background-color: black; color: white; }
-
-.box.curator_id { text-align: center; padding: 5px 10px; margin-bottom: 0; background-color: #7EB6FF; color: #FBE3E4;}
 
 .providerlink, .button.providerlink { width: 190px; padding-left: 28px; background: url(/images/favicon.png) no-repeat 5px 50%; }
 .providerlink.facebook { background-image: url(/images/external/facebook_favicon.png); }

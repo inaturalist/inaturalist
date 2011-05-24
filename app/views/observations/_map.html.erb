@@ -2,6 +2,7 @@
   observations ||= @observations
   @iconic_taxa ||= []
   @view = params[:view] ||= 'map'
+  observations_html ||= nil
 -%>
 <% content_for(:extrajs) do %>
   <!-- Note: The parent view should include the GMaps libs! -->
@@ -156,7 +157,7 @@
     <% else %>
       <%= render :partial => 'observations_table_header' %>
     <% end %>
-   <%= render :partial => 'observations/cached_component', :collection => observations %>
+    <%= observations_html ? observations_html : render(:partial => 'observations/cached_component', :collection => observations) %>
     <% if @observations.empty? %>
       <p id="noresults" class="readable description">
         No matching observations!

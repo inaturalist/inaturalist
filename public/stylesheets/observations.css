@@ -169,7 +169,8 @@
 .observations.mini .place,
 .observations.mini .user,
 .observations.mini .actions,
-.observations.mini .details {
+.observations.mini .details,
+.observations.mini .curator_ident {
   padding-left: 30px;
 }
 
@@ -200,7 +201,8 @@
 .observations.mini .user .label,
 .observations.mini .observed_on .label,
 .observations.mini .created_at .label,
-.observations.mini .place .label {
+.observations.mini .place .label,
+.observations.mini .curator_ident .label {
   display: block;
   width: 50px;
   position: absolute;
@@ -211,6 +213,14 @@
   font-family: "Trebuchet MS",Arial,sans-serif;
   line-height: 1.5;
 }
+.observations.mini .curator_ident .label {
+  display: inline;
+  width: auto;
+  position: static;
+  font-weight: bold;
+}
+
+.observations.mini .curator_ident .label:after { content: ': ';}
 
 .observations.mini .species_guess {
   line-height: 1.2;
@@ -520,33 +530,14 @@
   width: 7.8em;
 }
 
-.observationform .latlonfields.status label:after {
-  content: ':';
-}
+.observationform .latlonfields.status label:after{content:':';}
+.observationform select{width:auto;}
+.observationform .observed_on_string{margin-bottom:0.2em;}
+.observationform .time_zone{color:#888;}
+a#kmllink{background-image:url(/images/google_earth.png);}
+a#csvlink{background-image:url(/images/silk/table.png);}
+#batchformcol{margin-bottom:1em;}
 
-.observationform select {
-  width: auto;
-}
-
-.observationform .observed_on_string {
-  margin-bottom: 0.2em;
-}
-
-.observationform .time_zone {
-  color: #888;
-}
-
-a#kmllink {
-  background-image: url(/images/google_earth.png);
-}
-
-a#csvlink {
-  background-image: url(/images/silk/table.png);
-}
-
-#batchformcol {
-  margin-bottom: 1em;
-}
 
 #batchformcol h3 a {
   color: black;
@@ -578,19 +569,11 @@ a#csvlink {
   padding: 1.5em 0 1em;
 }
 
-.batchcontrols .button {
-  float: none;
-  display: inline;
-}
+.batchcontrols .button{float:none;display:inline;}
+#detailscol .span-14{width:540px;}
+#detailscol textarea{width:520px;}
+.observation .error ul{margin-bottom:0;}
 
-#detailscol .span-14 {
-  width: 540px;
-}
-
-#detailscol textarea {
-  width: 520px;
-}
-
-.observation .error ul {
-  margin-bottom: 0;
+.observation .curator_ident {
+  
 }

@@ -138,15 +138,8 @@
       </div>
     <% else %>
       <div class="mini observations">
-        <% for obs in @project_observations %>
-          <% unless obs.curator_identification_id.blank? or obs.curator_identification.taxon_id==obs.observation.taxon_id -%>
-            <div class="box curator_id">
-              curator id:
-              <%= link_to obs.curator_identification.taxon.name,
-                url_for(obs.curator_identification.taxon) %>
-            </div>
-          <% end %>
-          <%= render :partial => 'observations/cached_component', :object => obs %>
+        <% for project_observation in @project_observations %>
+          <%= render :partial => 'project_observation', :object => project_observation %>
         <% end %>
       </div>
       <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},

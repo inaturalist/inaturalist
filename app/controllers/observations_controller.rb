@@ -931,6 +931,11 @@ class ObservationsController < ApplicationController
       end
     end
     
+    @project_observations = @project.project_observations.all(
+      :conditions => ["observation_id IN (?)", @observations],
+      :include => [{:curator_identification => [:taxon, :user]}])
+    @project_observations_by_observation_id = @project_observations.index_by(&:observation_id)
+    
     @kml_assets = @project.project_assets.all(:conditions => {
       :asset_content_type => "application/vnd.google-earth.kml+xml"})
     

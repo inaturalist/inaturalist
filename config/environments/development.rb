@@ -16,7 +16,7 @@ config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 config.action_view.cache_template_loading            = false
 
-# # Comment out the 'Caching' section an uncomment these to test caching
+# # Uncomment these to test caching
 # # ActionController::Base.cache_store = :file_store, RAILS_ROOT + "/tmp/cache"
 # ActionController::Base.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
 # config.action_controller.perform_caching             = true

@@ -16,7 +16,7 @@
   link_url ||= nil
   singular ||= false
 
-  taxon_class = "taxon taxon-#{taxon.id} lft-#{taxon.lft} rgt-#{taxon.rgt}"
+  taxon_class = "taxon taxon-#{taxon.id}"
   taxon_class << " #{taxon.rank.downcase}" if taxon.rank
   if @iconic_taxa && (iconic_taxon = @iconic_taxa.detect {|it| it.id == taxon.iconic_taxon_id})
     taxon_class << " #{iconic_taxon.name}"
