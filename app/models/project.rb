@@ -54,6 +54,11 @@ class Project < ActiveRecord::Base
     user.id == user_id || user.is_admin?
   end
   
+  def curated_by?(user)
+    return false if user.blank?
+    project_users.curators.exists?(:user_id => user.id)
+  end
+  
   def self.update_curator_idents_on_make_curator(project_id, project_user_id)
     unless proj = Project.find_by_id(project_id)
       return

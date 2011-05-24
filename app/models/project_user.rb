@@ -6,6 +6,8 @@ class ProjectUser < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
   
+  named_scope :curators, :conditions => {:role => "curator"}
+  
   def prevent_owner_from_leaving
     raise "The owner of a project can't leave the project" if project.user_id == user_id
   end
