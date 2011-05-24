@@ -4,7 +4,11 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @project.title %>"/> 
-  <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/> 
+  <% if Rails.env.development? %>
+    <meta property="og:image" content="http://inaturalist.org/<%= @project.icon.url(:span2) %>"/> 
+  <% else %>
+    <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/>
+  <% end %>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <meta property="og:site_name" content="iNaturalist"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
