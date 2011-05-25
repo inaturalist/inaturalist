@@ -222,7 +222,8 @@ module ApplicationHelper
   def user_image(user, options = {})
     size = options.delete(:size)
     style = "vertical-align:middle; #{options[:style]}"
-    image_tag(user.icon.url(size || :mini), options.merge(:style => style))
+    url = "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
+    image_tag(url, options.merge(:style => style))
   end
   
   def color_pluralize(num, singular)
@@ -276,12 +277,12 @@ module ApplicationHelper
     @__serial_id
   end
   
-  def image_url(source)
-     abs_path = image_path(source)
-     unless abs_path =~ /\Ahttp/
-       abs_path = "http#{'s' if https?}://#{host_with_port}/#{abs_path}"
-     end
-     abs_path
+  def image_url(source, options = {})
+    abs_path = image_path(source)
+    unless abs_path =~ /\Ahttp/
+     abs_path = "http#{'s' if https?}://#{host_with_port}/#{abs_path}"
+    end
+    abs_path
   end
   
   def truncate_with_more(text, options = {})

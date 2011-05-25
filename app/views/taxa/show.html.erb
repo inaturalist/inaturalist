@@ -332,12 +332,8 @@
         homeControlDiv.index = 1;
         window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
         window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(window.map));
-
-        <% if Rails.env.development? %>
-          var iNatLyr = addKmlLayer('http://inaturalist.org/observations.kml?taxon_name=<%= URI.escape(@taxon.name) %>')
-        <% else %>
-          var iNatLyr = addKmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>')
-        <% end %>
+        
+        var iNatLyr = addKmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>')
         iNatLyr.setMap(window.map);
         window.map.layers.push(iNatLyr)
 
