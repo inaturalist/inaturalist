@@ -27,9 +27,10 @@ module ObservationsHelper
         link_to(observation.place_guess, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
          " (#{link_to("Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank")})".html_safe
       end
-    elsif !observation.latitude.blank?
-      link_to("#{observation.latitude}, #{observation.longitude}", observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
-       " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
+    elsif !observation.latitude.blank? && !observation.coordinates_obscured?
+      link_to("#{observation.latitude}, #{observation.longitude}", 
+        observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
     else
       content_tag(:span, "(Somewhere...)")
     end
