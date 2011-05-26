@@ -14,7 +14,7 @@ class FlickrPhoto < Photo
         fp_flickr_user_id = self.api_response.owner.nsid
       end
       
-      unless fp_flickr_user_id == self.user.flickr_identity.flickr_user_id
+      if user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
         errors.add(:user, "must own the photo on Flickr.")
       end
     end
