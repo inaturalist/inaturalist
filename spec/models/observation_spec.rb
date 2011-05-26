@@ -217,8 +217,23 @@ describe Observation, "creation" do
     @observation.latitude.should be_blank
     @observation.place_guess = "#{lat}, #{lon}"
     @observation.save
-    @observation.latitude.should == lat
-    @observation.longitude.should == lon
+    @observation.latitude.to_f.should == lat
+    @observation.longitude.to_f.should == lon
+  end
+  
+  it "should set lat/lon if entered in place_guess as NSEW" do
+    lat =  -37.91143999
+    lon = -122.2687819
+    @observation.latitude.should be_blank
+    @observation.place_guess = "S#{lat * -1}, W#{lon * -1}"
+    @observation.save
+    @observation.latitude.to_f.should == lat
+    @observation.longitude.to_f.should == lon
+  end
+  
+  it "should not set lat/lon for addresses with numbers" do
+    o = Observation.make(:place_guess => "Apt 1, 33 Figueroa Ave., Somewhere, CA")
+    o.latitude.should be_blank
   end
 end
 
@@ -593,10 +608,20 @@ describe Observation do
     end
     
     it "should remove coordinates from place_guess" do
-      observation = Observation.make(:place_guess => "38, -122")
-      observation.latitude.to_f.should == 38.0
-      observation.update_attributes(:taxon => @taxon)
-      observation.place_guess.should be_blank
+      [
+        "38, -122",
+        "38.284, -122.23452",
+        "38.284N, -122.23452 W",
+        "N38.284, W 122.23452",
+        "44.43411 N 122.11360 W",
+        "S35 46' 52.8\", E78 43' 6\"",
+        "35° 46' 52.8\" N, 78° 43' 6\" W"
+      ].each do |place_guess|
+        observation = Observation.make(:place_guess => place_guess)
+        observation.latitude.should_not be_blank
+        observation.update_attributes(:taxon => @taxon)
+        observation.place_guess.to_s.should == ""
+      end
     end
     
     it "should not be included in json" do
@@ -665,6 +690,15 @@ describe Observation do
         o.reload
         o.should be_coordinates_obscured
       end
+    end
+    
+    it "should remove coordinates from place_guess" do
+      taxon = Taxon.make(:rank => "species")
+      observation = Observation.make(:place_guess => "38, -122", :taxon => taxon)
+      observation.latitude.should_not be_blank
+      Observation.obscure_coordinates_for_observations_of(taxon)
+      observation.reload
+      observation.place_guess.to_s.should == ""
     end
     
     it "should not affect observations without coordinates" do

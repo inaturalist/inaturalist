@@ -15,7 +15,10 @@ class Observation < ActiveRecord::Base
   
   M_TO_OBSCURE_THREATENED_TAXA = 5000
   DEGREES_PER_RADIAN = 57.2958
-  LAT_LON_REGEX = /(-?\d+(?:\.\d+)?),\s?(-?\d+(?:\.\d+)?)/
+  FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
+  COORDINATE_REGEX = /[^\d\,]*?(#{FLOAT_REGEX})[^\d\,]*?/
+  LAT_LON_SEPARATOR_REGEX = /[\,\s]\s*/
+  LAT_LON_REGEX = /#{COORDINATE_REGEX}#{LAT_LON_SEPARATOR_REGEX}#{COORDINATE_REGEX}/
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -731,6 +734,7 @@ class Observation < ActiveRecord::Base
     Observation.find_observations_of(taxon) do |o|
       o.obscure_coordinates
       Observation.update_all({
+        :place_guess => o.place_guess,
         :latitude => o.latitude,
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
@@ -840,9 +844,20 @@ class Observation < ActiveRecord::Base
   def set_latlon_from_place_guess
     return true unless latitude.blank? && longitude.blank?
     return true if place_guess.blank?
-    if matches = place_guess.strip.match(LAT_LON_REGEX)
-      self.latitude, self.longitude = matches[1..2]
+    return true if place_guess =~ /[a-cf-mo-rt-vx-z]/i # ignore anything with word chars other than NSEW
+    matches = place_guess.strip.scan(COORDINATE_REGEX).flatten
+    case matches.size
+    when 2 # decimal degrees
+      self.latitude, self.longitude = matches
+    when 4 # decimal minutes
+      self.latitude = matches[0].to_i + matches[1].to_f/60.0
+      self.longitude = matches[3].to_i + matches[4].to_f/60.0
+    when 6 # degrees / minutes / seconds
+      self.latitude = matches[0].to_i + matches[1].to_i/60.0 + matches[2].to_f/60/60
+      self.longitude = matches[3].to_i + matches[4].to_i/60.0 + matches[5].to_f/60/60
     end
+    self.latitude *= -1 if latitude.to_f > 0 && place_guess =~ /s/i
+    self.longitude *= -1 if longitude.to_f > 0 && place_guess =~ /w/i
     true
   end
   
