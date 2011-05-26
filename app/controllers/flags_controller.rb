@@ -52,7 +52,7 @@ class FlagsController < ApplicationController
         flash[:notice] = "We had a problem saving your flag."
       end
       format.html do 
-        render :action => "show"
+        redirect_back_or_default(@flag)
       end
     end
     
