@@ -428,7 +428,7 @@ class Observation < ActiveRecord::Base
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
-    Time.zone = time_zone || user.time_zone
+    Time.zone = time_zone || user.try(:time_zone)
     Chronic.time_class = Time.zone
     
     begin
