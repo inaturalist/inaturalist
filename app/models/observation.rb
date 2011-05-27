@@ -13,12 +13,26 @@ class Observation < ActiveRecord::Base
   # guess
   attr_accessor :taxon_name
   
-  M_TO_OBSCURE_THREATENED_TAXA = 5000
+  M_TO_OBSCURE_THREATENED_TAXA = 10000
   DEGREES_PER_RADIAN = 57.2958
   FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
   COORDINATE_REGEX = /[^\d\,]*?(#{FLOAT_REGEX})[^\d\,]*?/
   LAT_LON_SEPARATOR_REGEX = /[\,\s]\s*/
   LAT_LON_REGEX = /#{COORDINATE_REGEX}#{LAT_LON_SEPARATOR_REGEX}#{COORDINATE_REGEX}/
+  
+  PRIVATE = "private"
+  OBSCURED = "obscured"
+  GEOPRIVACIES = [OBSCURED, PRIVATE]
+  GEOPRIVACY_DESCRIPTIONS = {
+    nil => "Everyone can see the coordinates unless the taxon is threatened.",
+    OBSCURED => "Public coordinates shown as a random point within " + 
+      "#{M_TO_OBSCURE_THREATENED_TAXA / 1000}KM of the true coordinates. " +
+      "True coordinates are only visible to you and the curators of projects " + 
+      "to which you add the observation.",
+    PRIVATE => "Coordinates completely hidden from public maps, true " + 
+      "coordinates only visible to you and the curators of projects to " + 
+      "which you add the observation.",
+  }
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -33,6 +47,7 @@ class Observation < ActiveRecord::Base
   has_many :comments, :as => :parent, :dependent => :destroy
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
+  has_many :projects, :through => :project_observations
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -106,6 +121,7 @@ class Observation < ActiveRecord::Base
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
               :set_positional_accuracy,
+              :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa
                  
   after_save :refresh_lists,
@@ -359,7 +375,9 @@ class Observation < ActiveRecord::Base
   end
   
   def to_json(options = {})
-    viewer = options.delete(:viewer)
+    # don't use delete here, it will just remove the option for all 
+    # subsequent records in an array
+    viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     if viewer_id != user_id
       options[:except] ||= []
@@ -621,8 +639,8 @@ class Observation < ActiveRecord::Base
   # Cast lat and lon so they will (hopefully) pass the numericallity test
   #
   def cast_lat_lon
-    self.latitude = latitude.to_f unless latitude.blank?
-    self.longitude = longitude.to_f unless longitude.blank?
+    # self.latitude = latitude.to_f unless latitude.blank?
+    # self.longitude = longitude.to_f unless longitude.blank?
     true
   end  
 
@@ -696,12 +714,43 @@ class Observation < ActiveRecord::Base
   end
   alias :coordinates_obscured :coordinates_obscured?
   
+  def geoprivacy_private?
+    geoprivacy == PRIVATE
+  end
+  
+  def geoprivacy_obscured?
+    geoprivacy == OBSCURED
+  end
+  
+  def coordinates_viewable_by?(user)
+    return true unless coordinates_obscured?
+    return false unless user
+    return true if user_id == user.id
+    return true if user.project_users.curators.exists?(["project_id IN (?)", project_ids])
+    false
+  end
+  
+  def obscure_coordinates_for_geoprivacy
+    # return true unless geoprivacy_changed?
+    self.geoprivacy = nil if geoprivacy.blank?
+    case geoprivacy
+    when PRIVATE
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+      self.latitude, self.longitude = [nil, nil]
+    when OBSCURED
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+    else
+      unobscure_coordinates
+    end
+    true
+  end
+  
   def obscure_coordinates_for_threatened_taxa
     if !taxon.blank? && taxon.species_or_lower? &&
         !(latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank?) &&
         (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
-    else
+    elsif geoprivacy.blank?
       unobscure_coordinates
     end
     true
@@ -717,11 +766,16 @@ class Observation < ActiveRecord::Base
       self.private_longitude ||= longitude
     end
     self.latitude, self.longitude = random_neighbor_lat_lon(private_latitude, private_longitude, distance)
-    self.place_guess = nil if place_guess =~ LAT_LON_REGEX
+    self.place_guess = nil if lat_lon_in_place_guess?
+  end
+  
+  def lat_lon_in_place_guess?
+    !place_guess.blank? && place_guess !~ /[a-cf-mo-rt-vx-z]/i && !place_guess.scan(COORDINATE_REGEX).blank?
   end
   
   def unobscure_coordinates
     return unless coordinates_obscured?
+    return unless geoprivacy.blank?
     self.latitude = private_latitude
     self.longitude = private_longitude
     self.private_latitude = nil

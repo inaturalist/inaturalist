@@ -1,9 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ObservationsControllerTest < ActionController::TestCase
-  def setup
-    @o = make_observation_of_threatened
-  end
   
   def test_index_finds_observations_by_taxon_name
     taxon = Taxon.make
@@ -21,58 +18,142 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   
   def test_private_coordinates_hidden_for_show
-    get :show, :id => @o.id
-    assert_private_coordinates_hidden(@o)
+    o = make_observation_of_threatened
+    get :show, :id => o.id
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_json
-    get :show, :id => @o.id, :format => "json"
-    assert_private_coordinates_hidden(@o)
+    o = make_observation_of_threatened
+    get :show, :id => o.id, :format => "json"
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_show_xml
-    get :show, :id => @o.id, :format => "xml"
-    assert_private_coordinates_hidden(@o)
+    o = make_observation_of_threatened
+    get :show, :id => o.id, :format => "xml"
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_index
+    o = make_observation_of_threatened
     get :index
-    assert_private_coordinates_hidden(@o)
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_index_json
+    o = make_observation_of_threatened
     get :index, :format => "json"
-    assert_private_coordinates_hidden(@o)
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_index_csv
+    o = make_observation_of_threatened
     get :index, :format => "csv"
-    assert_private_coordinates_hidden(@o)
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_by_login_csv
-    get :by_login, :login => @o.user.login, :format => "csv"
-    assert_private_coordinates_hidden(@o)
+    o = make_observation_of_threatened
+    get :by_login, :login => o.user.login, :format => "csv"
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_project
+    o = make_observation_of_threatened
     p = Project.make
-    p.observations << @o
+    p.observations << o
     get :project, :id => p.id
-    assert_private_coordinates_hidden(@o)
+    assert_private_coordinates_obscured(o)
   end
   
   def test_private_coordinates_hidden_for_tile_points
-    x, y = SPHERICAL_MERCATOR.from_ll_to_pixel([@o.longitude, @o.latitude], 5)
+    o = make_observation_of_threatened
+    x, y = SPHERICAL_MERCATOR.from_ll_to_pixel([o.longitude, o.latitude], 5)
     x = (x / 256).floor
     y = (y / 256).floor
     get :tile_points, :format => "json", :x => x, :y => y, :zoom => 5
-    assert_private_coordinates_hidden(@o)
+    assert_private_coordinates_obscured(o)
+  end
+  
+  # Geoprivacy
+  
+  def test_geoprivacy_private_hides_all_coordinates_for_show
+    o = make_private_observation
+    get :show, :id => o.id
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_all_coordinates_for_show_json
+    o = make_private_observation
+    get :show, :id => o.id, :format => "json"
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_all_coordinates_for_show_xml
+    o = make_private_observation
+    get :show, :id => o.id, :format => "xml"
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_coordinates_for_index
+    o = make_private_observation
+    get :index
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_coordinates_for_index_json
+    o = make_private_observation
+    get :index, :format => "json"
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_coordinates_for_index_csv
+    o = make_private_observation
+    get :index, :format => "csv"
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_coordinates_for_by_login_csv
+    o = make_private_observation
+    get :by_login, :login => o.user.login, :format => "csv"
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_coordinates_for_project
+    o = make_private_observation
+    p = Project.make
+    p.observations << o
+    get :project, :id => p.id
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_private_hides_coordinates_for_tile_points
+    o = make_private_observation
+    x, y = SPHERICAL_MERCATOR.from_ll_to_pixel([o.private_longitude, o.private_latitude], 5)
+    x = (x / 256).floor
+    y = (y / 256).floor
+    get :tile_points, :format => "json", :x => x, :y => y, :zoom => 5
+    assert_private_coordinates_hidden(o)
+  end
+  
+  def test_geoprivacy_obscured_obscured_coordinates_for_show
+    o = Observation.make(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
+    get :show, :id => o.id
+    assert_private_coordinates_obscured(o)
+  end
+  # the obs spec tests whether manual obscuring really obscures, so I'm not 
+  # too concerned about testing all the other endpoints here
+  
+  def assert_private_coordinates_obscured(observation)
+    assert_response :success
+    assert_match /#{observation.latitude}/, @response.body
+    assert_no_match /private[\-_]latitude/, @response.body
   end
   
   def assert_private_coordinates_hidden(observation)
     assert_response :success
-    assert_match /#{observation.latitude}/, @response.body
+    assert_no_match /#{observation.private_latitude}/, @response.body
     assert_no_match /private[\-_]latitude/, @response.body
   end
 end

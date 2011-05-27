@@ -27,30 +27,7 @@
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag('jquery/jquery.ui.all.packed',
-                             'jquery/plugins/jqModal',
-                             "jquery/plugins/jquery.qtip.min" ) %>
-  <% if @list.is_a?(CheckList) -%>
-    <script type="text/javascript" charset="utf-8">
-      $(document).ready(function() {
-        var qtipDefaults = $.extend(QTIP_DEFAULTS, {
-          content: $('#occurrence_tip').get(0).innerHTML,
-          show: {when: 'click'},
-          hide: {when: 'unfocus'},
-          position: {
-            corner: {
-              target: 'rightMiddle',
-              tooltip: 'leftTop'
-            }
-          }
-        })
-        qtipDefaults.style.tip = 'leftTop'
-        $('.occurrence_tip_target').qtip(qtipDefaults)
-        qtipDefaults.content = $('#establishment_tip').get(0).innerHTML
-        $('.establishment_tip_target').qtip(qtipDefaults)
-      })
-    </script>
-  <% end %>
-
+                             'jquery/plugins/jqModal' ) %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
@@ -144,7 +121,7 @@
         <%= link_to_function "edit", "$('#occurrence').hide(); $('##{dom_id(@listed_taxon, "edit_occurrence")}').show()",
           :class => "small" %>
       <% end -%>
-      <span class="occurrence_tip_target description helptip"></span>
+      <span class="occurrence_tip_target description helptip" rel="#occurrence_tip"></span>
     </div>
     <% if @list.listed_taxa_editable_by?(current_user) -%>
       <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
@@ -152,7 +129,7 @@
           :class => "clear box listed_taxon_form smallbuttons inline buttonrow", 
           :style => "display: none"} do |f| %>
         <%= f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse, :include_blank => "unknown" %>
-        <span class="occurrence_tip_target description helptip"></span>
+        <span class="occurrence_tip_target description helptip" rel="#occurrence_tip"></span>
         <%= f.submit "Save", :class => "default button" %>
         <%= link_to_function "Cancel", "$('#occurrence').show(); $('##{dom_id(@listed_taxon, "edit_occurrence")}').hide()", 
           :class => "minor button" %>
@@ -179,7 +156,7 @@
         <%= link_to_function "edit", "$('#establishment').hide(); $('##{dom_id(@listed_taxon, "edit_establishment")}').show()",
           :class => "small" %>
       <% end -%>
-      <span class="establishment_tip_target description helptip"></span>
+      <span class="establishment_tip_target description helptip" rel="#establishment_tip"></span>
     </div>
     <% if @list.listed_taxa_editable_by?(current_user) -%>
       <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
@@ -187,7 +164,7 @@
           :class => "clear box listed_taxon_form inline buttonrow smallbuttons", 
           :style => "display: none"} do |f| %>
         <%= f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS, :include_blank => "unknown" %>
-        <span class="establishment_tip_target description helptip"></span>
+        <span class="establishment_tip_target description helptip" rel="#establishment_tip"></span>
         <%= f.submit "Save", :class => "default button" %>
         <%= link_to_function "Cancel", "$('#establishment').show(); $('##{dom_id(@listed_taxon, "edit_establishment")}').hide()", 
           :class => "minor button" %>

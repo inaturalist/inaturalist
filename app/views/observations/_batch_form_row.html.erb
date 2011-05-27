@@ -19,24 +19,15 @@
             &nbsp;
           </div>
           <div class="column span-7">
-            <%= o.text_field(:species_guess, :class => 'species_guess') %>
+            <%= o.text_field(:species_guess, :class => 'text species_guess') %>
             <%= o.hidden_field(:taxon_id) %>
-
-            <div class="clear batchcontrols">
-              <%= link_to_function("&darr; Apply &darr;", "applyBatch(['species_guess', 'taxon_id'])", :id => 'apply_batch_taxon_button', :class => 'default button') %>
-            </div>
           </div>
           <div class="column span-7">
-            <%= o.text_field(:observed_on_string, 
-                             :class => 'observed_on_string') %>
+            <%= o.text_field(:observed_on_string, :class => 'text observed_on_string') %>
             <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
-
-            <div class="clear batchcontrols">
-              <%= link_to_function("&darr; Apply &darr;", "applyBatch(['observed_on_string', 'time_zone'])", :id => 'apply_batch_observed_on_button', :class => 'default button') %>
-            </div>
           </div>
           <div class="last column span-7">
-            <%= o.text_field(:place_guess, :class => 'place_guess') %>
+            <%= o.text_field(:place_guess, :class => 'text place_guess') %>
             <div id="coordinates" class="latlonfields status">
               <%= o.label(:latitude, 'Lat') %>
               <%= o.text_field(:latitude, :class => 'latitude') %>
@@ -51,9 +42,29 @@
             </div>
             <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
             <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
-
-            <div class="clear batchcontrols">
-              <%= link_to_function("&darr; Apply &darr;", "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact'])", :id => 'apply_batch_place_button', :class => 'default button') %>
+            
+            <center>
+              <%= o.label :geoprivacy, "Geoprivacy" %>
+              <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+            </center>
+          </div>
+          
+          
+          <div class="last column prepend-1 span-21">
+            <div class="column span-7">
+              <div class="clear batchcontrols">
+                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['species_guess', 'taxon_id'])", :id => 'apply_batch_taxon_button', :class => 'default button') %>
+              </div>
+            </div>
+            <div class="column span-7">
+              <div class="clear batchcontrols">
+                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['observed_on_string', 'time_zone'])", :id => 'apply_batch_observed_on_button', :class => 'default button') %>
+              </div>
+            </div>
+            <div class="last column span-7">
+              <div class="clear batchcontrols">
+                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact', 'geoprivacy'])", :id => 'apply_batch_place_button', :class => 'default button') %>
+              </div>
             </div>
           </div>
         </div><!-- end #batchFormFields -->

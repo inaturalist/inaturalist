@@ -712,7 +712,7 @@ class Taxon < ActiveRecord::Base
   
   def threatened?
     return false if conservation_status.blank?
-    conservation_status >= IUCN_NEAR_THREATENED && conservation_status < IUCN_EXTINCT_IN_THE_WILD
+    conservation_status >= IUCN_NEAR_THREATENED
   end
   
   include TaxaHelper

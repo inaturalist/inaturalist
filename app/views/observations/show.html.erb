@@ -177,7 +177,7 @@
     $(document).ready(function() {
       // setup the map if one is needed
       var observation = <%= @observation.to_json(:viewer => current_user, :include => [:user, :taxon, :iconic_taxon]) %>;
-      if (observation.latitude && observation.longitude) {
+      if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
         var map = iNaturalist.Map.createMap({
           lat: 40.714, 
           lng: -98.262, 
@@ -185,7 +185,9 @@
           controls: 'small'
         });
         map.addObservation(observation, {clickable: false, showAccuracy: true});
-        var center = new google.maps.LatLng(observation.latitude, observation.longitude);
+        var center = new google.maps.LatLng(
+          observation.private_latitude || observation.latitude, 
+          observation.private_longitude || observation.longitude);
         map.setCenter(center); 
       }
       
@@ -333,11 +335,11 @@
     <%- end -%>
     
     <div id="where">
-      <% if @observation.latitude and @observation.longitude %>
+      <% if show_observation_coordinates?(@observation) %>
         <div id="map"></div>
       <% end %>
       <div class="description">
-        <%= render :partial => 'location' %>
+        <%= render :partial => 'location', :locals => {:inline_edit => true} %>
       </div>
     </div><!-- end where -->
   </div><!-- end where-and-photos -->
@@ -352,7 +354,7 @@
   <% end %>
   
   <div id="tags" class="description">
-    <i>Tags:</i>
+    <label>Tags:</label>
     <ul>
       <% if @observation.tags.empty? %>
         <li class="description">none</li>

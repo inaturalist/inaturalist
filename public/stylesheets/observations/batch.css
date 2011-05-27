@@ -74,3 +74,7 @@ h3 label em {
   margin-right: 10px;
   vertical-align: middle;
 }
+
+.observationform input.text, #batch_form_fields input.text { width: 256px; margin-top: 0;}
+.observationform .observation_place_guess, #batch_form_fields .observation_place_guess {margin-bottom: 0;}
+

@@ -13,16 +13,26 @@ input.place_guess { width: 336px; }
 #mapcontainer {
   height: 433px;
   border: 1px solid #ccc;
+  margin-bottom: 10px;
 }
 
-.latlonfields { position: relative; }
+.latlonfields {
+  position: relative;
+  background-color: white;
+  padding: 0px 10px 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+}
+.latlonfields.status { background-color: #F6F6F6; padding-bottom: 3px;}
 
 .observationform .latlonfields.status input { width: 134px; }
 
 .latlonfields .button {
   position: absolute;
-  top: 0.2em;
-  right: 0;
+  top: 2px;
+  right: 5px;
 }
 
 .photoSelectorControls input.text { width: 189px; }

@@ -47,6 +47,8 @@
       <li><a href="#observations6">What are tags?</a></li>
       <li><a href="#observations7">Can I include my iNat observations on my own website of blog?</a></li>
       <li><a href="#observations8">What kind of photos should I attach to observations?  Can I attach photos I didn't take?</a></li>
+      <li><a href="#geoprivacy">What is geoprivacy?</a></li>
+      <li><a href="#obscured">What is does it mean for an observation to be obscured?</a></li>
     </ol>
 
     <h4>
@@ -197,10 +199,9 @@
         We also support Picasa: <a href="http://inaturalist.org/picasa/options">Configure your Picasa account &raquo;</a>
       </p>
       <p>
-        You can still add photos to your observation without a
-        photo provider account: First identify the url of your photo and then
-        paste the following image html into the description field:
-        &lt;img src=&quot;url&quot;&gt;.
+        We also support uploading photos directly to iNat, but it can be a bit
+        slow, so we only allow one upload at a time. Using Flickr or Picasa is
+        probably faster if you already use those services.
       </p>
     </li>
     <li>
@@ -214,13 +215,73 @@
       </p>
     </li>
     <li>
-      <h5><a name="observations7">What kind of photos should I attach to observations?  Can I attach photos I didn't take?</a></h5>
+      <h5><a name="observations8">What kind of photos should I attach to observations?  Can I attach photos I didn't take?</a></h5>
       <p>
-        Photos attached to observations should be of the individual observed at the time of the observation.  If you record an observation of a tree, then go back a day later to take a picture, please add a new observation for the picture, because it represents the tree at a different point in time.
+        Photos attached to observations should be of the individual observed
+        at the time of the observation. If you record an observation of a
+        tree, then go back a day later to take a picture, please add a new
+        observation for the picture, because it represents the tree at a
+        different point in time.
       </p>
       
       <p>
-        Please <em>do not upload pictures you didn't take</em> unless you have obtained permission from the photographer.  It is illegal to publish copyrighted works without some form of license granted by the creator of the work, and all photographers have full copyright over their photos by default.  If the photo was of the thing you observed, and someone else took it and you've obtained their permission to publish it, you should also note the name of the photographer in the observation's description.
+        Please <em>do not upload pictures you didn't take</em> unless you have
+        obtained permission from the photographer. It is illegal to publish
+        copyrighted works without some form of license granted by the creator
+        of the work, and all photographers have full copyright over their
+        photos by default. If the photo was of the thing you observed, and
+        someone else took it and you've obtained their permission to publish
+        it, you should also note the name of the photographer in the
+        observation's description.
+      </p>
+    </li>
+    
+    <li>
+      <h5><a name="geoprivacy">What is geoprivacy?</a></h5>
+      <p>
+        Geoprivacy is a setting you can make on your observations that
+        controls how the spatial coordinates (latitude and longitude) are 
+        displayed. Here are the options:
+      </p>
+      <dl class="readable">
+        <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
+          <dt><%= privacy || "open" %></dt>
+          <dd><%= description %></dd>
+        <% end %>
+      </dl>
+      <p>
+        Note that curators of individual projects can always see the
+        coordinates regardless of your geoprivacy setting, so if you are
+        concerned about who has access to the coordinates you should be sure
+        you trust the curators of the projects in which you participate.
+      </p>
+    </li>
+    
+    <li>
+      <h5><a name="obscured">What is does it mean for an observation to be obscured?</a></h5>
+      <p>
+        When coordinates are obscured it means that a random point within
+        <%= Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 %>KM of the true coordinates 
+        is shown publicly (i.e. on the home page, the observations page, and 
+        project pages), while the true coordinates are only visible when you
+        are viewing your own observations (i.e. on the individual project
+        pages and the list of your own observations). Note that curators of
+        the projects to which you've added an observation can also see the
+        true coordinates. Obscured coordinates should always be symbolized by
+        circular marker without stems on maps and in geospatial feeds.
+      </p>
+      
+      <p>
+        Coordinates are automatically obscured for all taxa that are "NEAR
+        THREATENED" or worse according to the IUCN Red List. Some taxa may be
+        declared threatened according to other conservation authorities, and
+        some may be simply marked as threatened by iNat site curators if they
+        believe it merits protection.
+      </p>
+      
+      <p>
+        You can also obscure the coordinates of your own observations 
+        regardless of what the taxon is.  See <a href="#geoprivacy">geoprivacy</a> above.
       </p>
     </li>
   </ol>

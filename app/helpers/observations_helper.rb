@@ -18,6 +18,12 @@ module ObservationsHelper
     options_for_select(pairs, order_by)
   end
   
+  def show_observation_coordinates?(observation)
+    ![observation.latitude, observation.longitude, 
+        observation.private_latitude, observation.private_longitude].compact.blank? &&
+        (!observation.geoprivacy_private? || observation.coordinates_viewable_by?(current_user))
+  end
+  
   def observation_place_guess(observation)
     if !observation.place_guess.blank?
       if observation.latitude.blank?
@@ -31,6 +37,11 @@ module ObservationsHelper
       link_to("#{observation.latitude}, #{observation.longitude}", 
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
         " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
+        
+    elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
+      link_to("#{observation.private_latitude}, #{observation.private_longitude}", 
+        observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
+        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.private_latitude}, #{observation.private_longitude}", :target => "_blank"})".html_safe
     else
       content_tag(:span, "(Somewhere...)")
     end

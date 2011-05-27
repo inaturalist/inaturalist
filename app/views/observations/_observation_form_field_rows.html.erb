@@ -58,7 +58,7 @@
                                 {:class => 'time_zone'}) %>
         </div>
         <div class="column span-7">
-          <%= o.text_field(:place_guess, :class => 'place_guess') %>
+          <%= o.text_field(:place_guess, :class => 'text place_guess') %>
           <div id="coordinates_<%= i %>" class="latlonfields status">
             <%= o.label(:latitude, 'Lat') %>
             <%= o.text_field(:latitude, :class => 'latitude') %>
@@ -95,7 +95,7 @@
         <div id="detailscol" class="column span-21">
           <div class="clear compactfield field">
             <a href="#" onclick="$('#descriptiontags_<%= i %>').slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
-              Description &amp; Tags
+              Description, Tags, &amp; More
             </a>
             <div id="descriptiontags_<%= i %>" style="display: none" class="compactfieldcontent">
               <div class="column span-14">
@@ -103,8 +103,22 @@
                 <%= o.text_area(:description) %><br/>
               </div>
               <div class="last column span-6">
-                <%= o.label :tag_list, "Tags" %><br/>
-                <%= o.text_field :tag_list %>
+                <div class="stacked">
+                  <%= o.label :tag_list, "Tags" %><br/>
+                  <%= o.text_field :tag_list, :style => "margin-top: 8px" %>
+                </div>
+                
+                <%= o.label :geoprivacy, "Geoprivacy" %>
+                <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+                <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
+                <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
+                  <dl>
+                    <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
+                      <dt><%= privacy || "open" %></dt>
+                      <dd><%= description %></dd>
+                    <% end %>
+                  </dl>
+                </div>
               </div>
             </div>
           </div>

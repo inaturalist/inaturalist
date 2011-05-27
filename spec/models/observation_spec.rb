@@ -673,6 +673,21 @@ describe Observation do
       o.longitude.should be_blank
       o.private_longitude.should be_blank
     end
+    
+    it "should not obscure observations with obscured geoprivacy" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
+      o.unobscure_coordinates
+      o.should be_coordinates_obscured
+    end
+    
+    it "should not obscure observations with private geoprivacy" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make(:latitude => 38, :longitude => -122, :geoprivacy => Observation::PRIVATE)
+      o.unobscure_coordinates
+      o.should be_coordinates_obscured
+      o.latitude.should be_blank
+    end
   end
   
   describe "obscure_coordinates_for_observations_of" do
@@ -712,6 +727,17 @@ describe Observation do
       o.longitude.should be_blank
       o.private_longitude.should be_blank
     end
+    
+    it "should not add coordinates to private observations" do
+      taxon = Taxon.make(:rank => "species")
+      observation = Observation.make(:place_guess => "38, -122", :taxon => taxon, :geoprivacy => Observation::PRIVATE)
+      observation.latitude.should be_blank
+      observation.private_latitude.should_not be_blank
+      Observation.obscure_coordinates_for_observations_of(taxon)
+      observation.reload
+      observation.latitude.should be_blank
+      observation.private_latitude.should_not be_blank
+    end
   end
   
   describe "unobscure_coordinates_for_observations_of" do
@@ -741,6 +767,78 @@ describe Observation do
       o.private_latitude.should be_blank
       o.longitude.should be_blank
       o.private_longitude.should be_blank
+    end
+    
+    it "should not obscure observations with obscured geoprivacy" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
+      Observation.unobscure_coordinates_for_observations_of(taxon)
+      o.reload
+      o.should be_coordinates_obscured
+    end
+    
+    it "should not obscure observations with private geoprivacy" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make(:latitude => 38, :longitude => -122, :geoprivacy => Observation::PRIVATE)
+      Observation.unobscure_coordinates_for_observations_of(taxon)
+      o.reload
+      o.should be_coordinates_obscured
+      o.latitude.should be_blank
+    end
+  end
+  
+  describe "geoprivacy" do
+    it "should obscure coordinates when private" do
+      o = Observation.make(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
+      o.should be_coordinates_obscured
+    end
+    
+    it "should remove public coordinates when private" do
+      o = Observation.make(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
+      o.latitude.should be_blank
+      o.longitude.should be_blank
+    end
+    
+    it "should remove public coordinates when private if coords change but not geoprivacy" do
+      o = Observation.make(:latitude => 37, :longitude => -122, :geoprivacy => Observation::PRIVATE)
+      o.update_attributes(:latitude => 1, :longitude => 1)
+      o.should be_coordinates_obscured
+      o.latitude.should be_blank
+      o.longitude.should be_blank
+    end
+    
+    it "should obscure coordinates when obscured" do
+      o = Observation.make(:latitude => 37, :longitude => -122, :geoprivacy => Observation::OBSCURED)
+      o.should be_coordinates_obscured
+    end
+    
+    it "should not unobscure observations of threatened taxa" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make(:taxon => taxon, :latitude => 37, :longitude => -122, :geoprivacy => Observation::OBSCURED)
+      o.should be_coordinates_obscured
+      o.update_attributes(:geoprivacy => nil)
+      o.geoprivacy.should be_blank
+      o.should be_coordinates_obscured
+    end
+    
+    it "should remove public coordinates when private even if taxon threatened" do
+      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make(:latitude => 37, :longitude => -122, :taxon => taxon)
+      o.should be_coordinates_obscured
+      o.latitude.should_not be_blank
+      o.update_attributes(:geoprivacy => Observation::PRIVATE)
+      o.latitude.should be_blank
+      o.longitude.should be_blank
+    end
+    
+    it "should restore public coordinates when removing geoprivacy" do
+      lat, lon = [37, -122]
+      o = Observation.make(:latitude => lat, :longitude => lon, :geoprivacy => Observation::PRIVATE)
+      o.latitude.should be_blank
+      o.longitude.should be_blank
+      o.update_attributes(:geoprivacy => nil)
+      o.latitude.to_f.should == lat
+      o.longitude.to_f.should == lon
     end
   end
 end

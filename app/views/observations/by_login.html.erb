@@ -87,18 +87,19 @@ Observations by <%= h @login %>
       var bounds = new google.maps.LatLngBounds();
       $.each(observations, function(o) {
         var o = this;
-         if (o.latitude && o.longitude) {
-           map.addObservation(o, {
-             icon: iNaturalist.Map.createObservationIcon({
-               color: "HotPink",
-               character: letters[letter_counter],
-               stemless: o.coordinates_obscured
-             })
-           });
-           letter_counter++;
-           bounds.extend(new google.maps.LatLng(o.latitude, o.longitude));
-         }
-       });
+        if ((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude)) {
+          map.addObservation(o, {
+            icon: iNaturalist.Map.createObservationIcon({
+              color: "HotPink",
+              character: letters[letter_counter],
+              stemless: o.coordinates_obscured
+            })
+          });
+          letter_counter++;
+          bounds.extend(new google.maps.LatLng(o.latitude || o.private_latitude, 
+            o.longitude || o.private_longitude));
+        }
+      });
       
       // zoom the map to the extent of the observations
       map.fitBounds(bounds)

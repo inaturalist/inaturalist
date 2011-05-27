@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110514221925) do
+ActiveRecord::Schema.define(:version => 20110526205447) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(:version => 20110514221925) do
     t.column "private_latitude", :decimal, :precision => 15, :scale => 10
     t.column "private_longitude", :decimal, :precision => 15, :scale => 10
     t.column "private_positional_accuracy", :integer
+    t.column "geoprivacy", :string
   end
 
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
@@ -541,16 +542,15 @@ ActiveRecord::Schema.define(:version => 20110514221925) do
     t.column "locked", :boolean, :default => false, :null => false
   end
 
-  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
+  add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
+  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name"
   add_index "taxa", ["name"], :name => "index_taxa_on_name"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["is_iconic"], :name => "index_taxa_on_is_iconic"
-  add_index "taxa", ["lft"], :name => "index_taxa_on_lft"
   add_index "taxa", ["observations_count"], :name => "index_taxa_on_observations_count"
   add_index "taxa", ["listed_taxa_count"], :name => "index_taxa_on_listed_taxa_count"
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
   add_index "taxa", ["featured_at"], :name => "index_taxa_on_featured_at"
-  add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
   add_index "taxa", ["conservation_status_source_id"], :name => "index_taxa_on_conservation_status_source_id"
   add_index "taxa", ["locked"], :name => "index_taxa_on_locked"
 
@@ -594,15 +594,15 @@ ActiveRecord::Schema.define(:version => 20110514221925) do
   add_index "taxon_photos", ["taxon_id"], :name => "index_taxon_photos_on_taxon_id"
   add_index "taxon_photos", ["photo_id"], :name => "index_taxon_photos_on_photo_id"
 
-  create_table "taxon_ranges", :options=>'ENGINE=MyISAM', :force => true do |t|
+  create_table "taxon_ranges", :force => true do |t|
     t.column "taxon_id", :integer
-    t.column "range_type", :string
     t.column "source", :string
     t.column "start_month", :integer
     t.column "end_month", :integer
     t.column "geom", :multi_polygon
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "range_type", :string
     t.column "range_content_type", :string
     t.column "range_file_name", :string
     t.column "range_file_size", :integer
@@ -638,13 +638,13 @@ ActiveRecord::Schema.define(:version => 20110514221925) do
     t.column "login", :string, :limit => 40
     t.column "name", :string, :limit => 100, :default => ""
     t.column "email", :string, :limit => 100
-    t.column "crypted_password", :string, :limit => 40
-    t.column "salt", :string, :limit => 40
+    t.column "crypted_password", :string, :limit => 40, :default => "", :null => false
+    t.column "salt", :string, :limit => 40, :default => "", :null => false
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "remember_token", :string, :limit => 40
     t.column "remember_token_expires_at", :datetime
-    t.column "activation_code", :string, :limit => 40
+    t.column "activation_code", :string
     t.column "activated_at", :datetime
     t.column "state", :string, :default => "passive"
     t.column "deleted_at", :datetime

@@ -435,8 +435,20 @@
   $.fn.latLonSelector.lookup = function(q) {
     var map = $.fn.latLonSelector._map;
     var marker = getMarker({exact: false});
+    var parsedLatLon = $.fn.latLonSelector.parseLatLon(q)
+    if (parsedLatLon) {
+      var point = new GLatLng(
+        parsedLatLon[0],
+        parsedLatLon[1]
+      );
+      marker.setLatLng(point);
+      $.fn.latLonSelector._map.setCenter(point);
+      $.fn.latLonSelector.updateFormLatLon(parsedLatLon[0], parsedLatLon[1]);
+      setExact(true)
+      return
+    }
+    
     var geocoder = getGeocoder();
-
     geocoder.getLocations(q, function(response) {
       if (response.Status.code == 602) {
         alert("Google couldn't find '" + q + "'");
@@ -474,6 +486,31 @@
       9: 13   // Premise (building name, property name, shopping center, etc.) level accuracy. (Since 2.105)
     };
     return dict[accuracy];
+  };
+  
+  $.fn.latLonSelector.COORDINATE_REGEX = /[-+]?[0-9]*\.?[0-9]+/g;
+  $.fn.latLonSelector.parseLatLon = function(latLon) {
+    if (!latLon || latLon == '' || latLon.match(/[a-cf-mo-rt-vx-z]/i)) { return }
+    var matches = latLon.match(this.COORDINATE_REGEX),
+        lat, lon
+    switch(matches.length) {
+      case 2:
+        lat = parseFloat(matches[0])
+        lon = parseFloat(matches[1])
+        break;
+      case 4:
+        lat = parseInt(matches[0]) + parseFloat(matches[1])/60.0
+        lon = parseInt(matches[3]) + parseFloat(matches[4])/60.0
+      case 6:
+        lat = parseInt(matches[0]) + parseInt(matches[1])/60.0 + parseFloat(matches[2])/60/60
+        lon = parseInt(matches[3]) + parseInt(matches[4])/60.0 + parseFloat(matches[5])/60/60
+        break;
+      default:
+        return
+    }
+    if (lat > 0 && latLon.match(/s/i)) {lat *= -1}
+    if (lon > 0 && latLon.match(/w/i)) {lon *= -1}
+    return [lat,lon]
   };
   
   $.fn.latLonSelector.defaults = {

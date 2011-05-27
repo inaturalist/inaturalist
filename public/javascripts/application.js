@@ -87,6 +87,29 @@ $('input[data-loading-click]').live('click', function() {
   })
 })
 
+function buildHelpTips() {
+  var options = $.extend(QTIP_DEFAULTS, {
+    show: {when: 'click'},
+    hide: {when: 'unfocus'},
+    position: {
+      corner: {
+        target: 'rightMiddle',
+        tooltip: 'leftTop'
+      }
+    },
+  })
+  options.style.tip = 'leftTop'
+  $('.helptip').each(function() {
+    var content
+    if ($(this).attr('rel').match(/^#/)) {
+      content = $($(this).attr('rel')).html()
+    } else {
+      content = $(this).attr('rel')
+    }
+    $(this).qtip($.extend({}, options, {content: content}))
+  })
+}
+
 $(document).ready(function() {
   function makeHeaderLinkCurrent(li) {
     $(li).addClass('current').append(
@@ -109,4 +132,6 @@ $(document).ready(function() {
   } else if (window.location.pathname.match(/^\/user/) || window.location.pathname.match(/^\/people/)) {
     makeHeaderLinkCurrent('#mainnav .peopletab')
   }
+  
+  buildHelpTips()
 })
