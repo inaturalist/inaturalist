@@ -82,7 +82,7 @@ module Shared::ListsModule
   
   # GET /lists/new
   def new
-    @list = List.new(:user => current_user)
+    @list = List.new(:user => current_user, :title => params[:title])
     respond_to do |format|
       format.html
     end

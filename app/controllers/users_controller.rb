@@ -139,6 +139,12 @@ class UsersController < ApplicationController
   def show
     @selected_user = @user
     @login = @selected_user.login
+    @followees = @selected_user.friends.paginate(:page => 1, :order => "id desc")
+    if @favorites_list = @selected_user.lists.find_by_title("Favorites")
+      @favorite_listed_taxa = @favorites_list.listed_taxa.paginate(:page => 1, 
+        :per_page => 15,
+        :include => {:taxon => [:photos, :taxon_names]}, :order => "listed_taxa.id desc")
+    end
   end
   
   def relationships
