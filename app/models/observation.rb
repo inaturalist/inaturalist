@@ -379,7 +379,7 @@ class Observation < ActiveRecord::Base
     # subsequent records in an array
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
-    if viewer_id != user_id
+    if viewer_id != user_id && !options[:force_coordinate_visibility]
       options[:except] ||= []
       options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
       options[:except].uniq!
@@ -724,6 +724,7 @@ class Observation < ActiveRecord::Base
   
   def coordinates_viewable_by?(user)
     return true unless coordinates_obscured?
+    user = User.find_by_id(user) unless user.is_a?(User)
     return false unless user
     return true if user_id == user.id
     return true if user.project_users.curators.exists?(["project_id IN (?)", project_ids])

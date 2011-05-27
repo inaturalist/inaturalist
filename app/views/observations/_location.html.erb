@@ -6,7 +6,7 @@
 <%= observation_place_guess observation %>
 <% if show_observation_coordinates?(observation) %>
 <div>
-  <% if observation.coordinates_obscured? && is_not_me?(observation.user) -%>
+  <% if !observation.coordinates_viewable_by?(current_user) -%>
     Public coordinates obscured by <%= Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 %>KM
   <% else %>
     <% if observation.coordinates_obscured? -%>
