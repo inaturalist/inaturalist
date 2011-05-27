@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  simplified_login_regex = /\w[\w\-_]+/
+  simplified_login_regex = /\w[^\.,\/]+/
   
   map.root :controller => 'welcome', :action => 'index'
   
@@ -68,6 +68,7 @@ ActionController::Routing::Routes.draw do |map|
   # /observations/212445          # single observation
   # /observations/212445/edit     # edit an observation
   # /observations/kueda/          # kueda's observations  
+  # map.resources :observations, :requirements => { :id => %r(\d+) } do |observation|
   map.resources :observations, :requirements => { :id => %r(\d+) } do |observation|
     observation.resources :flags
   end
@@ -95,7 +96,7 @@ ActionController::Routing::Routes.draw do |map|
     o.update_observation_photos "observations/:id/update_photos", :action => "update_photos"
     
     # by_login paths must come after all others
-    o.observations_by_login 'observations/:login', :action => 'by_login',
+    o.observations_by_login 'observations/:login', :action => 'by_login', 
       :requirements => { :login => simplified_login_regex }
     o.observations_by_login_feed 'observations/:login.:format', :action => 'by_login',
       :requirements => { :login => simplified_login_regex },

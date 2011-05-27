@@ -8,6 +8,13 @@ class ObservationsController < ApplicationController
     :if => Proc.new {|c| c.request.format.widget? && c.request.url.size < 250}
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   
+  rescue_from ActionController::UnknownAction do
+    unless @selected_user = User.find_by_login(params[:action])
+      render_404
+    end
+    by_login
+  end
+  
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :login_required, 
                 :except => [:explore,
