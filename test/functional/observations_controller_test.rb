@@ -138,7 +138,7 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   
   def test_geoprivacy_obscured_obscured_coordinates_for_show
-    o = Observation.make(:latitude => 38, :longitude => -122, :geoprivacy => Observation::OBSCURED)
+    o = Observation.make(:latitude => 38.222, :longitude => -122.333, :geoprivacy => Observation::OBSCURED)
     get :show, :id => o.id
     assert_private_coordinates_obscured(o)
   end
@@ -148,12 +148,11 @@ class ObservationsControllerTest < ActionController::TestCase
   def assert_private_coordinates_obscured(observation)
     assert_response :success
     assert_match /#{observation.latitude}/, @response.body
-    assert_no_match /private[\-_]latitude/, @response.body
+    assert_no_match /#{observation.private_latitude}/, @response.body
   end
   
   def assert_private_coordinates_hidden(observation)
     assert_response :success
     assert_no_match /#{observation.private_latitude}/, @response.body
-    assert_no_match /private[\-_]latitude/, @response.body
   end
 end

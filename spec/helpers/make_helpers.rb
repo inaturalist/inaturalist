@@ -24,7 +24,7 @@ module MakeHelpers
   
   def make_observation_of_threatened
     Observation.make(
-      :latitude => 38, :longitude => -122,
+      :latitude => 38.333, :longitude => -122.111,
       :taxon => Taxon.make(:threatened),
       :created_at => Time.now.to_date
     )
@@ -33,7 +33,7 @@ module MakeHelpers
   # It's important that the lat & lon don't show up in the date when doing 
   # simple regex tests
   def make_private_observation
-    Observation.make(:latitude => 38, :longitude => -122, 
+    Observation.make(:latitude => 38.888, :longitude => -122.222, 
       :geoprivacy => Observation::PRIVATE, 
       :created_at => Time.now.to_date)
   end
