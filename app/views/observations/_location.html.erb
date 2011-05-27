@@ -67,6 +67,10 @@
       <% end -%>
     </div>
     
+    <% if observation.coordinates_obscured? && is_not_me?(observation.user) -%>
+      You can see these coordinates because you curate one of the projects to
+      which this observation has been added.
+    <% end -%>
   <% end -%>
 </div>
 <% end %>
