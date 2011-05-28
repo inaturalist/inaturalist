@@ -296,6 +296,46 @@ class PlacesController < ApplicationController
     end
   end
   
+  def guide
+    @taxon = Taxon.find_by_id(params[:taxon_id])
+    @place = Place.find_by_id(params[:id])
+    @month = params[:month]
+    @month = Date.today.month if @month && @month.to_i < 1 || @month.to_i > 12
+    @view = params[:view] || "grid"
+    @view = "big grid" if @view == "grid"
+    @view = "list guide" if @view == "guide"
+    
+    scope = if @place
+      Observation.near_place(@place).scoped({})
+    elsif params[:swlat]
+      @coords = [params[:swlat], params[:swlng], params[:nelat], params[:nelng]].map{|c| c.round(2)}
+      Observation.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng]).scoped({})
+    end
+    scope = scope.of(@taxon) if @taxon
+    scope = scope.in_month(@month) if @month
+    
+    if @month
+      @counts = scope.count(:group => :taxon_id)
+      taxon_ids = @counts.keys
+    else
+      @counts = scope.count(:group => "CONCAT(taxon_id, '-', MONTH(observed_on))")
+      @counts.delete(nil)
+      taxon_ids = []
+      @month_counts = @counts.inject({}) do |memo, pair|
+        unless pair[0].blank?
+          Rails.logger.debug "[DEBUG] pair: #{pair.inspect}"
+          taxon_id, month = pair[0].split('-')
+          taxon_ids << taxon_id
+          memo[taxon_id] ||= {}
+          memo[taxon_id][month] = pair[1]
+        end
+        memo
+      end
+    end
+    @taxa = Taxon.paginate(:page => params[:page], :conditions => ["id IN (?)", taxon_ids])
+    # TODO common-only: choose taxa from max to median obs counts
+    # TODO inclide un-observed taxa from place check list
+  end
   
   private
   

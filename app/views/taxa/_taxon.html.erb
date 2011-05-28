@@ -67,6 +67,20 @@
       </div>
     <% end -%>
     
+    <% if @month_counts && data = @month_counts[taxon.id.to_s] -%>
+      <h4>Monthly Abundance</h4>
+      <div class="graph">
+        <%- max = @counts.values.max -%>
+        <%- %w(? J F M A M J J A S O N D).each_with_index do |name, month| -%>
+          <%- count = data[month.to_s] -%>
+          <div class="bar last_year" style="height: <%= (count.to_f / max * 100).to_i %>%">
+            <span class="count"><%= count %></span>
+            <span class="month"><%= name %></span>
+          </div>
+        <% end %>
+      </div>
+    <% end -%>
+    
     <div class="wikipedia_summary">
       <% if summary = taxon.wikipedia_summary -%>
         <%= summary %>
@@ -77,6 +91,7 @@
         </span>
       <% end -%>
     </div>
+    
   </div>
   <% if include_image_attribution && (photo = taxon.photos.first) -%>
     <div class="meta attribution">

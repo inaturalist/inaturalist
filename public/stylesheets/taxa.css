@@ -26,11 +26,16 @@ table.taxa .taxon_name {
 .taxa.grid .taxon .image.nophoto a {
   background-color: #f1f1f1;
 }
-
 .taxa.grid .taxon .image .iconic { margin: 30px; }
 .taxa.grid .first { clear: left; }
 .taxa.grid .last { margin-right: 0; }
 .taxa.grid .infolink { display: none; }
+
+/* big grid */
+.taxa.big.grid .taxon { width: 310px; }
+.taxa.big.grid .taxon img { max-width: 310px; }
+
+/* list */
 
 .taxa.list .taxon_list_taxon { margin-bottom: 10px; }
 .taxa.list .taxonimage {
@@ -50,6 +55,8 @@ table.taxa .taxon_name {
   width: 400px;
 }
 .taxa.list .info { display: none; }
+
+.taxa.guide .info { display: block; }
 
 .amphibiaweb table,
 .amphibiaweb tr,

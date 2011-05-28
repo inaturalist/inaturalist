@@ -370,6 +370,9 @@
   <div id="carouselwrapper">
     <div id="carousellabel">
       <div class="right controls">
+        <% if params[:test] == "true" -%>
+          <%= link_to "View guide", :action => "guide", :id => @place %> |
+        <% end -%>
         <% if logged_in? -%>
           <%= link_to_function "Add Species", "$('#batchadder').jqmShow()" %> |
         <% end -%>
