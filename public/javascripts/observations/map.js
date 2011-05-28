@@ -40,7 +40,7 @@ function showMapView() {
   $('#mapcontrols').show();
   if ($('#mapdivider').hasClass('closed')) $('#mapobservations').hide();
   if (window.map) {
-    window.map.checkResize();
+    google.maps.event.trigger(window.map, 'resize')
     if (window.map._oldCenter) {
       window.map.setCenter(window.map._oldCenter)
       window.map._oldCenter = null
@@ -74,7 +74,7 @@ function showTableView() {
 // '/observations?view=table'
 // Yes, this is a lame hack.
 function alterLinkParams(params) {
-  $('#wrapper a[href^=/observations?]').each(function() {
+  $('#wrapper a[href^="/observations?"]').each(function() {
     var href = $(this).attr('href');
     var path = jQuery.url.setUrl(href).attr('path');
     var queryString = jQuery.url.setUrl(href).attr('query');

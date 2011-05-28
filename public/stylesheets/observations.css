@@ -52,6 +52,24 @@
   display: table;
   width: 100%;
 }
+.observations.table .project_observation {
+  display: table-row-group;
+}
+.observations.table .project_observation .icon.attribute {
+  padding-bottom: 50px;
+}
+.observations.table .project_observation_extra {
+  display: block;
+  position:relative;
+}
+.observations.table .attribute.curator_ident {
+  display: block;
+  bottom: 10px;
+  left: 130px;
+  position: absolute;
+}
+.observations.table .attribute.curator_ident h4 { display: inline; font-family: "Trebuchet MS",Arial,sans-serif; font-size: 100%; font-weight: bold; color: #888;}
+
 
 .observations.table .headerrow {
   display: table-header-group;

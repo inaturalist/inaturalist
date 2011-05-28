@@ -25,14 +25,12 @@
 } %>
 
 <%- observations_html = capture do %>
-  <div class="mini observations">
-    <% for observation in @observations %>
-      <%= render :partial => 'projects/project_observation', :locals => {
-        :project_observation => @project_observations_by_observation_id[observation.id],
-        :observation => observation
-      } %>
-    <% end %>
-  </div>
+  <% for observation in @observations %>
+    <%= render :partial => 'projects/project_observation', :locals => {
+      :project_observation => @project_observations_by_observation_id[observation.id],
+      :observation => observation
+    } %>
+  <% end %>
 <% end -%>
 <%= render :partial => 'map', :locals => {:observations_html => observations_html} %>
 
