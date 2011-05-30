@@ -150,6 +150,15 @@ class Observation < ActiveRecord::Base
     end
   end
   
+  named_scope :in_place, lambda {|place| {
+    :joins => "JOIN place_geometries ON place_geometries.place_id = #{place.id}",
+    :conditions => [
+      "place_geometries.place_id = ? AND " + 
+      "intersects(place_geometries.geom, observations.geom)",
+      place.id
+    ]
+  }}
+  
   # inneficient radius in kilometers
   # See http://www.movable-type.co.uk/scripts/latlong-db.html for the math
   named_scope :near_point, Proc.new { |lat, lng, radius|

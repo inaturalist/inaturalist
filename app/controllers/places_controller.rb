@@ -108,8 +108,8 @@ class PlacesController < ApplicationController
       :page => 1, 
       :per_page => 11,
       :include => {:taxon => [:taxon_names, :photos, :iconic_taxon]},
-      :conditions => "photos.id > 0",
-      :group => 'listed_taxa.taxon_id',
+      :conditions => "photos.id IS NOT NULL",
+      :select => "DISTINCT (listed_taxa.taxon_id)",
       :order => "taxa.observations_count DESC"
     )
 
@@ -126,9 +126,9 @@ class PlacesController < ApplicationController
     end
 
     @children = @place.children.paginate(:page => 1, :order => 'name')
-    @observations = Observation.near_place(@place).order_by("observed_on DESC").paginate(
-      :page => params[:page],
-      :include => [:user, :taxon, :photos]
+    @observations = Observation.in_place(@place).order_by("observed_on DESC NULLS LAST").all(
+      :include => [:user, :taxon, :photos, :iconic_taxon],
+      :limit => 30
     )
 
     # Get directions info
