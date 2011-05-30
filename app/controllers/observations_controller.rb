@@ -805,7 +805,11 @@ class ObservationsController < ApplicationController
       search_params[:has] = 'id_please'
     end
     
-    search_observations(search_params, find_options)
+    if search_params[:q].blank?
+      get_paginated_observations(search_params, find_options)
+    else
+      search_observations(search_params, find_options)
+    end
     
     @top_identifiers = User.all(:order => "identifications_count DESC", 
       :limit => 5)
@@ -1266,12 +1270,12 @@ class ObservationsController < ApplicationController
     end
     
     # Taxon ID
-    if search_params[:taxon_id]
+    unless search_params[:taxon_id].blank?
       sphinx_options[:with][:taxon_id] = search_params[:taxon_id]
     end
     
     # Iconic taxa
-    if search_params[:iconic_taxa]
+    unless search_params[:iconic_taxa].blank?
       sphinx_options[:with][:iconic_taxon_id] = \
           search_params[:iconic_taxa].map do |iconic_taxon|
         iconic_taxon.nil? ? nil : iconic_taxon.id
@@ -1279,21 +1283,21 @@ class ObservationsController < ApplicationController
     end
     
     # User ID
-    if search_params[:user_id]
+    unless search_params[:user_id].blank?
       sphinx_options[:with][:user_id] = search_params[:user_id]
     end
     
     # User login
-    if search_params[:user]
+    unless search_params[:user].blank?
       sphinx_options[:with][:user] = search_params[:user]
     end
     
     # Ordering
-    if search_params[:order_by]
+    unless search_params[:order_by].blank?
       # observations.id is a more efficient sql clause, but it's not the name of a field in sphinx
       search_params[:order_by].gsub!(/observations\.id/, 'created_at')
       
-      if sphinx_options[:order]
+      if !sphinx_options[:order].blank?
         sphinx_options[:order] += ", #{search_params[:order_by]}"
         sphinx_options[:sort_mode] = :extended
       elsif search_params[:order_by] =~ /\sdesc|asc/i
@@ -1304,7 +1308,7 @@ class ObservationsController < ApplicationController
       end
     end
     
-    if search_params[:projects]
+    unless search_params[:projects].blank?
       sphinx_options[:with][:projects] = if search_params[:projects].is_a?(String) && search_params[:projects].index(',')
         search_params[:projects].split(',')
       else
