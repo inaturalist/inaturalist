@@ -732,8 +732,8 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_geoprivacy
-    # return true unless geoprivacy_changed?
     self.geoprivacy = nil if geoprivacy.blank?
+    return true if geoprivacy.blank? && !geoprivacy_changed?
     case geoprivacy
     when PRIVATE
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
