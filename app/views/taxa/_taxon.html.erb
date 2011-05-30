@@ -68,15 +68,15 @@
     <% end -%>
     
     <% if @month_counts && data = @month_counts[taxon.id.to_s] -%>
-      <h4>Monthly Abundance</h4>
+      <h4>Observations / Month</h4>
       <div class="graph">
         <%- max = @counts.values.max -%>
         <%- %w(? J F M A M J J A S O N D).each_with_index do |name, month| -%>
           <%- count = data[month.to_s] -%>
-          <div class="bar last_year" style="height: <%= (count.to_f / max * 100).to_i %>%">
+          <a href="<%= url_for(:month => month) %>" class="bar last_year" style="height: <%= (count.to_f / max * 100).to_i %>%">
             <span class="count"><%= count %></span>
             <span class="month"><%= name %></span>
-          </div>
+          </a>
         <% end %>
       </div>
     <% end -%>

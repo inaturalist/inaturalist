@@ -112,3 +112,13 @@ function redoSearchInMapArea() {
   $('#filters input[name=nelng]').val(bounds.getNorthEast().lng());
   $('#submit_filters_button').click();
 }
+
+function linkWithBoundingBox(url) {
+  url += url.match(/&/) ? '&' : '?'
+  var bounds = map.getBounds();
+  url += 'swlat=' + bounds.getSouthWest().lat()
+  url += '&swlng=' + bounds.getSouthWest().lng()
+  url += '&nelat=' + bounds.getNorthEast().lat()
+  url += '&nelng=' + bounds.getNorthEast().lng()
+  window.location = url
+}

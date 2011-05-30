@@ -210,6 +210,11 @@ class Observation < ActiveRecord::Base
     }
   }
   
+  named_scope :at_or_below_rank, lambda {|rank| 
+    rank_level = Taxon::RANK_LEVELS[rank]
+    {:include => [:taxon], :conditions => ["taxa.rank_level <= ?", rank_level]}
+  }
+  
   # Find observations by user
   named_scope :by, lambda { |user| 
     {:conditions => ["observations.user_id = ?", user]}
@@ -276,6 +281,10 @@ class Observation < ActiveRecord::Base
   
   named_scope :observed_before, lambda { |time|
     {:conditions => ['time_observed_at <= ?', time]}
+  }
+  
+  named_scope :in_month, lambda {|month|
+    {:conditions => ["MONTH(observed_on) = ?", month]}
   }
   
   named_scope :in_projects, lambda { |projects|
