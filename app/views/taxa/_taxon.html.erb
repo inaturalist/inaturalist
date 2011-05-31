@@ -73,7 +73,7 @@
         <%- max = @counts.values.max -%>
         <%- %w(? J F M A M J J A S O N D).each_with_index do |name, month| -%>
           <%- count = data[month.to_s] -%>
-          <a href="<%= url_for(:month => month) %>" class="bar last_year" style="height: <%= (count.to_f / max * 100).to_i %>%">
+          <a href="<%= url_for(request.params.merge(:month => month)) %>" class="bar last_year" style="height: <%= (count.to_f / max * 100).to_i %>%">
             <span class="count"><%= count %></span>
             <span class="month"><%= name %></span>
           </a>

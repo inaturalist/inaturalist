@@ -313,6 +313,12 @@ class PlacesController < ApplicationController
       end
       Observation.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng]).scoped({})
     end
+    
+    if scope.blank?
+      flash[:error] = "You must choose a place to show a guide."
+      redirect_back_or_default(places_path)
+      return
+    end
     scope = scope.at_or_below_rank(Taxon::SPECIES)
     scope = scope.of(@taxon) if @taxon
     scope = scope.in_month(@month) if @month
