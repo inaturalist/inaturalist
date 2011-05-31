@@ -109,7 +109,7 @@ class TaxaController < ApplicationController
         
         @check_listed_taxa = ListedTaxon.paginate(:page => 1,
           :include => :place,
-          :conditions => ["place_id > 0 && taxon_id = ?", @taxon],
+          :conditions => ["place_id > 0 AND taxon_id = ?", @taxon],
           :order => "listed_taxa.id DESC")
         @places = @check_listed_taxa.map(&:place)
         @countries = @taxon.places.all(
@@ -283,7 +283,7 @@ class TaxaController < ApplicationController
       if @facets[:places]
         @faceted_places = if @places.blank?
           Place.all(:order => "name", :conditions => [
-            "id in (?) && place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
+            "id in (?) AND place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
           ])
         else
           Place.all(:order => "name", :conditions => [

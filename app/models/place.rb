@@ -86,11 +86,11 @@ class Place < ActiveRecord::Base
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   
   named_scope :containing_lat_lng, lambda {|lat, lng|
-    {:conditions => ["swlat <= ? && nelat >= ? && swlng <= ? && nelng >= ?", lat, lat, lng, lng]}
+    {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", lat, lat, lng, lng]}
   }
   
   named_scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
-    {:conditions => ["swlat <= ? && nelat >= ? && swlng <= ? && nelng >= ?", swlat, nelat, swlng, nelng]}
+    {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", swlat, nelat, swlng, nelng]}
   }
   
   def to_s
