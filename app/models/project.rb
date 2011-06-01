@@ -70,6 +70,8 @@ class Project < ActiveRecord::Base
       po.observation.identifications.each do |ident|
         if ident.user.project_users.exists?(:id => project_user_id, :project_id => project_id)
           po.update_attributes(:curator_identification_id => ident.id)
+          ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+          ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
         end
       end
     end
@@ -92,6 +94,8 @@ class Project < ActiveRecord::Base
           unless other_curator_id
             po.update_attributes(:curator_identification_id => nil)
           end
+          ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+          ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
         end
       end
       return
@@ -109,6 +113,8 @@ class Project < ActiveRecord::Base
           unless other_curator_id
             po.update_attributes(:curator_identification_id => nil)
           end
+          ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+          ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
         end
       end
     end
@@ -126,5 +132,28 @@ class Project < ActiveRecord::Base
     end
     
     project.project_list.refresh(options)
+  end
+  
+  def self.update_species_count(project_id)
+    user_taxon_ids = ProjectObservation.all(
+      :select => "distinct observations.taxon_id",
+      :include => [{:observation => :taxon}, :curator_identification],
+      :conditions => [
+        "identifications.id IS NULL AND project_id = ? AND taxa.rank_level <= ?",
+        project_id, Taxon::RANK_LEVELS['species']
+      ]
+    ).map{|po| po.observation.taxon_id}
+    
+    curator_taxon_ids = ProjectObservation.all(
+      :select => "distinct identifications.taxon_id",
+      :include => [:observation, {:curator_identification => :taxon}],
+      :conditions => [
+        "identifications.id IS NOT NULL AND project_id = ? AND taxa.rank_level <= ?",
+        project_id, Taxon::RANK_LEVELS['species']
+      ]
+    ).map{|po| po.curator_identification.taxon_id}
+    
+    project = Project.find_by_id(project_id)
+    project.update_attributes(:species_count => (user_taxon_ids + curator_taxon_ids).uniq.size)
   end
 end

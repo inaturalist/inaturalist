@@ -40,9 +40,13 @@ class Identification < ActiveRecord::Base
   end
 
   def self.run_update_curator_identification(ident)
+    obs = ident.observation
     ident.observation.project_observations.each do |po|
       if ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
         po.update_attributes(:curator_identification_id => ident.id)
+        ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, po.project_id, obs.user_id)
+        ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, po.project_id, obs.user_id)
+        Project.send_later(:update_species_count, po.project_id)
       end
     end
   end
@@ -74,6 +78,9 @@ class Identification < ActiveRecord::Base
         unless other_curator_id
           po.update_attributes(:curator_identification_id => nil)
         end
+        ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, po.project_id, obs.user_id)
+        ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, po.project_id, obs.user_id)
+        Project.send_later(:update_species_count, po.project_id)
       end
     end
   end
@@ -90,6 +97,7 @@ class Identification < ActiveRecord::Base
     end
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon => taxon, :iconic_taxon_id => taxon.iconic_taxon_id)
+    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, observation.id, self.user_id)
     true
   end
   
@@ -191,6 +199,7 @@ class Identification < ActiveRecord::Base
       ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", nil, species_guess, nil],
       "id = #{self.observation_id}"
     )
+    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, self.observation.id, self.user_id)
     true
   end
 end

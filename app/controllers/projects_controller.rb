@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @species_count = @project.project_list.species_count
+    @species_count = @project.species_count
     @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 3, :conditions => "taxa_count > 0")
     @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
     @project_observations = @project.project_observations.paginate(:page => 1, 
@@ -106,7 +106,7 @@ class ProjectsController < ApplicationController
   end
   
   def species_count
-    @species_count = List.first(:conditions => ["project_id = ?", @project.id]).species_count
+    @species_count = @project.species_count
     respond_to do |format|
       format.html do
       end

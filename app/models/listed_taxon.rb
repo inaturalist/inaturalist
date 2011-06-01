@@ -27,8 +27,6 @@ class ListedTaxon < ActiveRecord::Base
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
   after_destroy :update_user_life_list_taxa_count
-  after_create :update_species_count
-  after_destroy :update_species_count
   
   validates_presence_of :list, :taxon
   validates_uniqueness_of :taxon_id, 
@@ -177,19 +175,6 @@ class ListedTaxon < ActiveRecord::Base
   
   def editable_by?(user)
     list.editable_by?(user)
-  end
-  
-  def update_species_count
-    thecount = list.listed_taxa.count(
-      'DISTINCT(taxon.id)',
-      :include =>:taxon,
-      :conditions => [
-        "taxa.rank_level <= ?",
-        Taxon::RANK_LEVELS['species']
-      ]
-    )
-    list.update_attribute(:species_count, thecount)
-    true
   end
   
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be
