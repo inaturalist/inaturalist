@@ -66,6 +66,7 @@ class TaxonName < ActiveRecord::Base
       end
     EOT
   end
+  alias :is_scientific? :is_scientific_names?
   
   def to_s
     "<TaxonName #{self.id}: #{self.name} in #{self.lexicon}>"

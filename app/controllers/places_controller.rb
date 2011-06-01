@@ -308,11 +308,15 @@ class PlacesController < ApplicationController
     scope = if @place
       Observation.near_place(@place).scoped({})
     elsif params[:swlat]
-      @coords = [params[:swlat], params[:swlng], params[:nelat], params[:nelng]].map{|c| c.round(2)}
+      @coords = [params[:swlat], params[:swlng], params[:nelat], params[:nelng]].map do |c|
+        c.to_f.round(2)
+      end
       Observation.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng]).scoped({})
     end
+    scope = scope.at_or_below_rank(Taxon::SPECIES)
     scope = scope.of(@taxon) if @taxon
     scope = scope.in_month(@month) if @month
+    scope = scope.order_by("taxa.ancestry")
     
     if @month
       @counts = scope.count(:group => :taxon_id)
@@ -332,7 +336,10 @@ class PlacesController < ApplicationController
         memo
       end
     end
-    @taxa = Taxon.paginate(:page => params[:page], :conditions => ["id IN (?)", taxon_ids])
+    @taxa = Taxon.paginate(:page => params[:page], 
+      :conditions => ["id IN (?)", taxon_ids],
+      :order => "ancestry"
+    )
     # TODO common-only: choose taxa from max to median obs counts
     # TODO inclide un-observed taxa from place check list
   end

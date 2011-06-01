@@ -31,138 +31,40 @@
 
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'observations', 'identifications', 'observations/show', "jquery/ui.tabs.css" %>
-  <style type="text/css" media="screen">
-  
-    .identification_form_wrapper {
-      background-color: #eee;
-      padding: 10px;
-    }
-    
-    .identification_form_wrapper input.text {
-      width: 236px;
-      margin-top: 0;
-    }
-    
-    .identification_form_wrapper .button.default {
-      margin: 0 auto;
-      float: none;
-    }
-    
-    .identification_form_wrapper label {
-      display: none;
-    }
-    
-    #tools .button {
-      margin-bottom: 0;
-    }
-    
-    #tools .toggle_menu {
-      float: left;
-    }
-    
-    #comments_and_identifications .item {
-      margin-bottom: 1.5em;
-    }
-    
-    .item_user {
-      width: 48px;
-    }
-    
-    .item_content {
-      width: 532px;
-    }
-    
-    .item_content .identification_image {
-      margin-right: 0.5em;
-    }
+  <style type="text/css" media="screen">  
+    .identification_form_wrapper{background-color:#eee;padding:10px;}
+    .identification_form_wrapper input.text{width:236px;margin-top:0;}
+    .identification_form_wrapper .button.default{margin:0 auto;float:none;}
+    .identification_form_wrapper label{display:none;}
+    #tools .button{margin-bottom:0;}
+    #tools .toggle_menu{float:left;}
+    #comments_and_identifications .item{margin-bottom:1.5em;}
+    .item_user{width:48px;}
+    .item_content{width:532px;}
+    .item_content .identification_image{margin-right:0.5em;}
     .item_content .identification_image,
-    .item_content .identification_body {
-      display: inline;
-      float: none;
-    }
-    .item_content .identification_image img {
-      width: 32px;
-      vertical-align: middle;
-    }
-    
-    .item_content .identification {
-      padding: 0.5em;
-      background-color: #eee;
-      margin-bottom: 0.5em;
-    }
-    
-    .item_content p {
-      margin-bottom: 0.5em;
-    }
-    
-    .comment {
-      padding: 0;
-    }
-    
-    .comment .meta {
-      float: none;
-      width: auto;
-    }
-    
-    .comment .body {
-      padding-left: 0;
-    }
-    
-    #forms h3 {
-      margin: 0;
-    }
-    
-    .ui-tabs .ui-tabs-nav li {
-      border-color: transparent;
-      background-color: white;
-    }
-    
+    .item_content .identification_body{display:inline;float:none;}
+    .item_content .identification_image img{width:32px;vertical-align:middle;}
+    .item_content .identification{padding:0.5em;background-color:#eee;margin-bottom:0.5em;}
+    .item_content p{margin-bottom:0.5em;}
+    .comment{padding:0;}
+    .comment .meta{float:none;width:auto;}
+    .comment .body{padding-left:0;}
+    #forms h3{margin:0;}
+    .ui-tabs .ui-tabs-nav li{border-color:transparent;background-color:white;}
     .ui-tabs .ui-tabs-nav,
-    .ui-tabs .ui-tabs-nav .ui-tabs-selected {
-      border-color: #eee;
-    }
-    
-    .ui-tabs .ui-tabs-nav li a {
-      padding: 0.25em 0.5em;
-    }
-    
-    #new_identification_form .species_guess {
-      width: 538px;
-      margin: 5px 0 0 0;
-    }
-    
-    #new_identification_form label {
-      display: block;
-    }
-    
-    #new_identification_form textarea {
-      width: 538px;
-      height: 150px;
-    }
-    
-    .identifications-list .agreers {
-      padding-left: 60px;
-    }
-    
-    .identifications-list .identification_image {
-      width: 40px;
-      text-align: center;
-    }
-    
-    .identifications-list .identification_image img {
-      max-width: 40px;
-    }
-    
-    .identifications-list .identification_body {
-      float: left;
-      width: 200px;
-    }
-    
-    .identification_group {
-      margin-bottom: 10px;
-    }
-    .button_toggle_menu .menu { top: 32px; }
-    #projects .box { padding: 5px; }
+    .ui-tabs .ui-tabs-nav .ui-tabs-selected{border-color:#eee;}
+    .ui-tabs .ui-tabs-nav li a{padding:0.25em 0.5em;}
+    #new_identification_form .species_guess{width:538px;margin:5px 0 0 0;}
+    #new_identification_form label{display:block;}
+    #new_identification_form textarea{width:538px;height:150px;}
+    .identifications-list .agreers{padding-left:60px;}
+    .identifications-list .identification_image{width:40px;text-align:center;}
+    .identifications-list .identification_image img{max-width:40px;}
+    .identifications-list .identification_body{float:left;width:200px;}
+    .identification_group{margin-bottom:10px;}
+    .button_toggle_menu .menu{top:32px;}
+    #projects .box{padding:5px;}
   </style>
 <% end %>
 <% content_for(:extrajs) do %>

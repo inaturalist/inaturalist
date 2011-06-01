@@ -144,6 +144,11 @@
         "map.hideAllObsOverlay(); $(this).hide(); $('#show_all_obs_button').show()", 
         :id => 'hide_all_obs_button', :style => 'display: none' %>
       <span class="description">(experimental)</span> -->
+      <% if logged_in? && params[:test] == "true" -%>
+        |
+        <%= link_to_function "View species guide for this area", 
+          "linkWithBoundingBox(#{url_for(:controller => "places", :action => "guide").inspect})" %>
+      <% end -%>
     </div>
   </div>
 

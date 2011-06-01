@@ -510,7 +510,7 @@
               <li>
                 <span class="taxon_name <%= lexicon.split.join('_') %><%= ' invalid' unless taxon_name.is_valid? %>">
                   <%= taxon_name.name %></span>
-                <% if logged_in? && (taxon_name.name != @taxon.name || current_user.is_curator?) -%>
+                <% if logged_in? && (!taxon_name.is_scientific? || current_user.is_curator?) -%>
                   <%= link_to "edit", edit_taxon_name_path(taxon_name), :class => 'small description' %>
                 <% end -%>
               </li>

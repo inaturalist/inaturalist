@@ -89,6 +89,10 @@ class Taxon < ActiveRecord::Base
     'variety'      => 5,
     'form'         => 5
   }
+  RANK_LEVELS.each do |rank, level|
+    const_set rank.upcase, rank
+    const_set "#{rank.upcase}_LEVEL", level
+  end
   
   RANKS = RANK_LEVELS.keys
   
