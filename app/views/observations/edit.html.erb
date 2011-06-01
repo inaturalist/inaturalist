@@ -127,7 +127,7 @@
     <% if current_user != @observation.user %>
       <%= hidden_field_tag "admin_action", "true" %>
     <% end %>
-    <%= submit_tag("Save observation", :class => 'default button') %>
+    <%= submit_tag("Save observation", :class => 'default button', "data-loading-click" => true) %>
     <%= link_to("Cancel", session[:return_to], :class => 'button') %>
     <%= link_to "Delete", @observation, 
                 :confirm => "Are you sure you want to delete this observation?", 
