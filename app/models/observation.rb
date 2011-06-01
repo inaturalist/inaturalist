@@ -971,7 +971,7 @@ class Observation < ActiveRecord::Base
     lonrads = lon.to_f / DEGREES_PER_RADIAN
     max_distance = max_distance / radius
     random_distance = Math.acos(rand * (Math.cos(max_distance) - 1) + 1)
-    random_bearing = 1 * Math::PI * rand
+    random_bearing = 2 * Math::PI * rand
     new_latrads = Math.asin(
       Math.sin(latrads)*Math.cos(random_distance) + 
       Math.cos(latrads)*Math.sin(random_distance)*Math.cos(random_bearing)
