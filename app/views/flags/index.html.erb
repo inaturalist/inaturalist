@@ -1,3 +1,9 @@
+<%- content_for(:title) do -%>
+  <% @title = capture do %>
+    Flags for <%= link_to @object.to_plain_s, @object %>
+  <% end %>
+  <%= strip_tags @title %>
+<%- end -%>
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">
     <%= link_to "Back to the #{@model.name}", 
@@ -5,15 +11,14 @@
                 :class => 'back crumb' %>
   </span>
 
-  <h2>
-    Flags for <%= link_to @object.to_plain_s, @object %>
-  </h2>
+  <h2><%= @title %></h2>
 </div>
 
 <div class="description">
   <p>
-    iNaturalist users flag observations when they find something that is not right. Here are
-    some issues that haven't been resolved by the curators yet. Users have flagged this <%= @model.name %> because:
+    iNaturalist users flag things when they find something that's right. Here
+    are some issues that haven't been resolved by the curators yet. Users have
+    flagged this <%= @model.name.downcase %> because:
   </p>
 </div>
 
@@ -21,15 +26,14 @@
   <% if @flags.empty? %>
     <li class="quiet description">No flags at this time!</li>
   <% end %>
-
-  <%# Username flagged user's model model_string because  %>
+  
   <% if logged_in? && current_user.is_curator? %>
     <%= render :partial => "flag_list", :locals => { :flags => @flags } %>
   <% else %>
-        <% for flag in @flags %>
-          <li>
-           "<%= flag.flag %>"
-          </li>
-        <% end %>
+    <% for flag in @flags %>
+      <li>
+       "<%= flag.flag %>"
+      </li>
+    <% end %>
   <% end %>
 </ul>

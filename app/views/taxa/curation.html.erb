@@ -40,9 +40,9 @@
       <% end -%>
     </td>
     <td>
-      <%= link_to "Edit #{rendered_taxon}", 
-                  edit_taxon_path(:id => flagging.flaggable_id) %>
-      <span class="inter">or</span>
+      <%= link_to "View", taxon_path(:id => flagging.flaggable_id) %> /
+      <%= link_to "Edit", edit_taxon_path(:id => flagging.flaggable_id) %> /
+      <%= link_to "Merge", merge_taxon_path(:id => flagging.flaggable_id) %>
       <% form_for(flagging, :action => "update", :html => {:class => "inline buttonrow"}) do |f| %>
         <fieldset>
           <legend>Resolve this flag</legend>
@@ -57,6 +57,16 @@
   </tr>
   <% end %>
 </table>
+
+<% unless @resolved_flags.blank? -%>
+  <div class="stacked">
+    <h3>Recently Resolved</h3>
+    <% for flag in @resolved_flags %>
+      <%= render :partial => "flags/flag", :object => flag %>
+    <% end %>
+  </div>
+<% end -%>
+
 
 <%= will_paginate @flags %>
 

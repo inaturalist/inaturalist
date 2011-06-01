@@ -2,7 +2,7 @@ class TaxaController < ApplicationController
   include TaxaHelper
   include Shared::WikipediaModule
   
-  before_filter :return_here, :only => [:index, :show, :flickr_tagger]
+  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation]
   before_filter :login_required, :only => [:edit_photos, :update_photos, 
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places]
@@ -617,7 +617,12 @@ class TaxaController < ApplicationController
   def curation
     @flags = Flag.paginate(:page => params[:page], 
       :include => :user,
-      :conditions => "resolved = false AND flaggable_type = 'Taxon'")
+      :conditions => "resolved = false AND flaggable_type = 'Taxon'",
+      :order => "flags.id desc")
+    @resolved_flags = Flag.all(:limit => 5, 
+      :include => [:user, :resolver],
+      :conditions => "resolved = true AND flaggable_type = 'Taxon'",
+      :order => "flags.id desc")
     life = Taxon.find_by_name('Life')
     @ungrafted_roots = Taxon.roots.paginate(:conditions => ["id != ?", life], :page => 1, :per_page => 100)
     @ungrafted =  (@ungrafted_roots + @ungrafted_roots.map{|ur| ur.descendants}).flatten

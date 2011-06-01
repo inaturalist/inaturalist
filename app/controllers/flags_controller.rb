@@ -10,7 +10,8 @@ class FlagsController < ApplicationController
 
   def index
     @object = @model.find(params[@param])
-    @flags = @object.flags.all(:include => :user, :limit => 500, :order => "id desc")
+    @flags = @object.flags.paginate(:page => params[:page],
+      :include => [:user, :resolver], :order => "id desc")
     @unresolved = @flags.select {|f| not f.resolved }
     @resolved = @flags.select {|f| f.resolved }
   end
