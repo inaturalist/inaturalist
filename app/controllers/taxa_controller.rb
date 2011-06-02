@@ -10,7 +10,8 @@ class TaxaController < ApplicationController
     :destroy, :curation, :refresh_wikipedia_summary, :merge]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
-    :update_colors, :add_places, :refresh_wikipedia_summary, :merge]
+    :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
+    :observation_photos]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
@@ -394,6 +395,25 @@ class TaxaController < ApplicationController
     end
   end
   
+  def observation_photos
+    if per_page = params[:per_page]
+      per_page = per_page.to_i > 50 ? 50 : per_page.to_i
+    end
+    observations = if params[:q].blank?
+      Observation.of(@taxon).paginate(:page => params[:page], 
+        :per_page => per_page, :include => [:photos], 
+        :conditions => "photos.id IS NOT NULL")
+    else
+      Observation.search(params[:q], :page => params[:page], 
+      :per_page => per_page, :with => {:has_photos => true, :taxon_id => @taxon.id})
+    end
+    @photos = observations.map(&:photos).flatten
+    render :partial => 'photos/photo_list_form', :locals => {
+      :photos => @photos, 
+      :index => params[:index],
+      :local_photos => false }
+  end
+  
   def edit_photos
     render :layout => false
   end
@@ -483,7 +503,7 @@ class TaxaController < ApplicationController
   end
   
   def update_photos
-    @taxon.photos = retreive_flickr_photos
+    @taxon.photos = (retreive_flickr_photos + retrieve_local_photos).compact
     flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
   rescue Errno::ETIMEDOUT
@@ -830,6 +850,17 @@ class TaxaController < ApplicationController
       else
         fp = flickr.photos.get_info(photo_id)
         photos << FlickrPhoto.new_from_net_flickr(fp)
+      end
+    end
+    photos
+  end
+  
+  def retrieve_local_photos
+    return [] if params[:local_photos].nil?
+    photos = []
+    params[:local_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
+      if fp = LocalPhoto.find_by_native_photo_id(photo_id)
+        photos << fp 
       end
     end
     photos

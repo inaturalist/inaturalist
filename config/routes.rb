@@ -211,6 +211,7 @@ ActionController::Routing::Routes.draw do |map|
     taxa.formatted_taxa_action 'taxa/:action.:format'
     taxa.merge_taxon 'taxa/:id/merge', :action => 'merge'
     taxa.formatted_merge_taxon 'taxa/:id/merge.:format', :action => 'merge'
+    taxa.taxon_observation_photos 'taxa/:id/observation_photos', :action => 'observation_photos'
   end
   
   map.connect 'taxa/auto_complete_name', :controller => 'taxa',

@@ -309,4 +309,16 @@ module ApplicationHelper
     wrapper + untruncated
   end
   
+  def native_url_for_photo(photo)
+    return photo.native_page_url unless photo.native_page_url.blank?
+    case photo.class.name
+    when "FlickrPhoto"
+      "http://flickr.com/photos/#{photo.native_username}/#{photo.native_photo_id}"
+    when "LocalPhoto"
+      url_for(photo.observations.first)
+    else
+      nil
+    end
+  end
+  
 end

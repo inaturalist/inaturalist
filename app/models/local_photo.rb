@@ -41,7 +41,6 @@ class LocalPhoto < Photo
   # validates_attachment_size :file, :less_than => 5.megabytes
   
   def set_defaults
-    self.native_page_url = url_for(observations.first) unless observations.blank?
     self.native_username = user.login
     self.license = Photo::COPYRIGHT
     true

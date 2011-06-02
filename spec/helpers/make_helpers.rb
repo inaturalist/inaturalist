@@ -37,4 +37,10 @@ module MakeHelpers
       :geoprivacy => Observation::PRIVATE, 
       :created_at => Time.now.to_date)
   end
+  
+  def make_local_photo(options = {})
+    lp = LocalPhoto.make(options)
+    lp.observations << Observation.make(:user => lp.user)
+    lp
+  end
 end

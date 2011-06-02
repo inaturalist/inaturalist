@@ -41,6 +41,10 @@ ListRule.blueprint do
   list
 end
 
+LocalPhoto.blueprint do
+  user
+end
+
 Observation.blueprint do
   user
 end

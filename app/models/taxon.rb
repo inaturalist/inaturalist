@@ -467,6 +467,14 @@ class Taxon < ActiveRecord::Base
     chosen_photos
   end
   
+  def observation_photos(options = {})
+    options = {:page => 1}.merge(options).merge(
+      :include => {:observations => :taxon},
+      :conditions => ["taxa.id = ?", id]
+    )
+    Photo.paginate(options)
+  end
+  
   def phylum
     ancestors.find(:first, :conditions => "rank = 'phylum'")
   end

@@ -26,6 +26,31 @@
     // Grab all the existing content
     var existing = $(wrapper).contents();
     
+    if (!options.noControls) { buildControls(wrapper, options) };
+    
+    // Insert a container to hold the photos
+    var container = $('<div class="photoSelectorPhotos"></div>').css(
+      $.fn.photoSelector.defaults.containerCSS
+    );
+    container.addClass('clear');
+    $(wrapper).append(container);
+    
+    // Insert all existing content into the container
+    $(container).append(existing);
+    
+    // Fill with photos
+    if (options.queryOnLoad) {
+      $(document).ready(function() {
+        var q = '';
+        if (typeof(options.defaultQuery) == 'string') {
+          q = options.defaultQuery;
+        };
+        $.fn.photoSelector.queryPhotos(q, wrapper);
+      });
+    };
+  };
+  
+  function buildControls(wrapper, options) {
     // Insert a search field and button.  No forms, please
     var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
       $.fn.photoSelector.defaults.controlsCSS
@@ -112,16 +137,6 @@
       $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
     }
     
-    // Insert a container to hold the photos
-    var container = $('<div class="photoSelectorPhotos"></div>').css(
-      $.fn.photoSelector.defaults.containerCSS
-    );
-    container.addClass('clear');
-    $(wrapper).append(container);
-    
-    // Insert all existing content into the container
-    $(container).append(existing);
-    
     // Bind button clicks to search photos
     $(button).click(function(e) {
       $(wrapper).find('.photoSelectorPage').val(1);
@@ -143,18 +158,7 @@
         return false;
       };
     });
-    
-    // Fill with photos
-    if (options.queryOnLoad) {
-      $(document).ready(function() {
-        var q = '';
-        if (typeof(options.defaultQuery) == 'string') {
-          q = options.defaultQuery;
-        };
-        $.fn.photoSelector.queryPhotos(q, wrapper);
-      });
-    };
-  };
+  }
   
   $.fn.photoSelector.changeBaseUrl = function(wrapper, url) {
     var options = $(wrapper).data('photoSelectorOptions');
