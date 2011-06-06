@@ -7,7 +7,8 @@
 <div class="column span-8 append-4 last">
 
   <% form_for current_user, :builder => DefaultFormBuilder do |f| %>
-    <%= f.text_field :login, :label => "Please confirm your iNat username", :class => "text" %>
+    <%= error_messages_for :user %>
+    <%= f.text_field :login, :label => "Please confirm your iNat username", :class => "text", :required => true %>
     <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
       :label => "Your default time zone",
       :description => "All your observations will default to this time zone unless you specify otherwise.",

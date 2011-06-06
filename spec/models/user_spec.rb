@@ -61,6 +61,11 @@ describe User do
       u = create_user(:login => nil)
       u.errors.on(:login).should_not be_nil
     end.should_not change(User, :count)
+    
+    lambda do
+      u = create_user(:login => "")
+      u.errors.on(:login).should_not be_nil
+    end.should_not change(User, :count)
   end
 
   describe 'allows legitimate logins:' do

@@ -311,7 +311,12 @@ class UsersController < ApplicationController
       flash[:notice] = 'Your profile was successfully updated!'
       redirect_back_or_default(person_by_login_path(:login => current_user.login))
     else
-      render :action => 'edit', :login => @original_user.login
+      @user.login = @user.login_was if @user.login.blank?
+      if request.env['HTTP_REFERER'] =~ /edit_after_auth/
+        render :action => 'edit_after_auth', :login => @original_user.login
+      else
+        render :action => 'edit', :login => @original_user.login
+      end
     end
   end
   
