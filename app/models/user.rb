@@ -156,7 +156,12 @@ class User < ActiveRecord::Base
         return u
       end
     end
-    autogen_login = User.suggest_login(auth_info["user_info"]["nickname"] || auth_info["user_info"]["first_name"] || auth_info["user_info"]["name"])
+    autogen_login = User.suggest_login(
+      auth_info["user_info"]["nickname"] || 
+      auth_info["user_info"]["first_name"] || 
+      auth_info["user_info"]["name"])
+    autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
+    autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
     autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
     u = User.new({
       :login => autogen_login,
@@ -173,7 +178,7 @@ class User < ActiveRecord::Base
       u.add_provider_auth(auth_info)
       # TODO: do something useful with location?  -> time zone, perhaps
     end
-    return u
+    u
   end
 
   # add a provider_authorization to this user.  
@@ -253,7 +258,8 @@ class User < ActiveRecord::Base
 
   # given a requested login, will try to find existing users with that login
   # and suggest handle2, handle3, handle4, etc if the login's taken
-  # to prevent namespace clashes (e.g. i register with twitter @joe but there's already an inat user where login=joe, so it suggest joe2)
+  # to prevent namespace clashes (e.g. i register with twitter @joe but 
+  # there's already an inat user where login=joe, so it suggest joe2)
   def self.suggest_login(requested_login)
     # strip out everything but letters and numbers so we can pass the login format regex validation
     requested_login = requested_login.downcase.split('').select{|l| ('a'..'z').member?(l) || ('0'..'9').member?(l) }.join('')
