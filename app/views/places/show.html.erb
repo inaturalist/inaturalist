@@ -386,11 +386,11 @@
       </div>
     <% else %>
       <ul id="carousel" class="jcarousel-skin-inat">
-        <% for listed_taxon in @listed_taxa %>
-          <li><%= taxon_image(listed_taxon.taxon, :id => dom_id(listed_taxon.taxon, 'image')) %></li>
+        <% for taxon in @taxa %>
+          <li><%= taxon_image(taxon, :id => dom_id(taxon, 'image')) %></li>
           <script type="text/javascript" charset="utf-8">
-            $('#<%= dom_id(listed_taxon.taxon, "image") %>').data('json', 
-              <%= listed_taxon.taxon.to_json(:include => :photos, 
+            $('#<%= dom_id(taxon, "image") %>').data('json', 
+              <%= taxon.to_json(:include => :photos, 
                 :methods => [:image_url, :default_name, :common_name, 
                   :scientific_name, :html]) %>
             );

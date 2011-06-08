@@ -89,7 +89,7 @@ class LifeList < List
     conditions = if options[:taxa]
       ["taxon_id IN (?)", options[:taxa]]
     else
-      'taxon_id > 0'
+      'taxon_id IS NOT NULL'
     end
     # Note: this should use find_each, but due to a bug in rails < 3,
     # conditions in find_each get applied to scopes utilized by anything

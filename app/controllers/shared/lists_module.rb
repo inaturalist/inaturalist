@@ -36,7 +36,7 @@ module Shared::ListsModule
     @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
     @total_listed_taxa ||= @list.listed_taxa.count
     
-    @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id > 0")
+    @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
     
     @view = params[:view]
     @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
@@ -218,7 +218,7 @@ module Shared::ListsModule
   def taxa
     per_page = params[:per_page]
     per_page = 100 if per_page && per_page.to_i > 100
-    conditions = params[:photos_only] ? "photos.id > 0" : nil
+    conditions = params[:photos_only] ? "photos.id IS NOT NULL" : nil
     @taxa = @list.taxa.paginate(:page => params[:page], :per_page => per_page,
       :include => [:iconic_taxon, :photos, :taxon_names], 
       :conditions => conditions)
@@ -292,7 +292,7 @@ module Shared::ListsModule
       ],
       
       # TODO: somehow make the following not cause a filesort...
-      :order => 'taxon_ancestor_ids, listed_taxa.taxon_id'
+      :order => '(taxon_ancestor_ids || listed_taxa.taxon_id)'
     }
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])

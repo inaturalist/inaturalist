@@ -105,24 +105,29 @@ class PlacesController < ApplicationController
   def show
     # TODO this causes a temporary table sort, which == badness
     @listed_taxa = @place.listed_taxa.paginate(
-      :page => 1, 
+      :page => 1,
       :per_page => 11,
-      :include => {:taxon => [:taxon_names, :photos, :iconic_taxon]},
-      :conditions => "photos.id IS NOT NULL",
-      :select => "DISTINCT (listed_taxa.taxon_id)",
-      :order => "taxa.observations_count DESC"
+      :select => "MAX(listed_taxa.id) AS id, listed_taxa.taxon_id",
+      :joins => 
+        "LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
+        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id",
+      :group => "listed_taxa.taxon_id",
+      :order => "id DESC",
+      :conditions => "photos.id IS NOT NULL"
     )
+    @taxa = Taxon.all(:conditions => ["id IN (?)", @listed_taxa.map(&:taxon_id)])
+    
 
     # Load tips HTML
-    @listed_taxa.map! do |listed_taxon|
-      listed_taxon.taxon.html = render_to_string(:partial => 'taxa/taxon.html.erb', 
-        :object => listed_taxon.taxon, :locals => {
+    @taxa.map! do |taxon|
+      taxon.html = render_to_string(:partial => 'taxa/taxon.html.erb', 
+        :object => taxon, :locals => {
           :image_options => {:size => 'small'},
           :link_image => true,
           :link_name => true,
           :include_image_attribution => true
       })
-      listed_taxon
+      taxon
     end
 
     @children = @place.children.paginate(:page => 1, :order => 'name')
@@ -264,16 +269,22 @@ class PlacesController < ApplicationController
   def taxa
     per_page = params[:per_page]
     per_page = 100 if per_page && per_page.to_i > 100
-    conditions = params[:photos_only] ? "photos.id > 0" : nil
+    conditions = params[:photos_only] ? "photos.id IS NOT NULL" : nil
     listed_taxa = @place.listed_taxa.paginate(
-      :page => params[:page], 
+      :page => params[:page],
       :per_page => per_page,
-      :include => {:taxon => [:iconic_taxon, :photos]}, 
-      :conditions => conditions, 
-      :group => 'listed_taxa.taxon_id',
-      # :order => "taxa.observations_count DESC, listed_taxa.id DESC")
-      :order => "listed_taxa.id DESC")
-    @taxa = listed_taxa.map(&:taxon)
+      :select => "MAX(listed_taxa.id) AS id, listed_taxa.taxon_id",
+      :joins => 
+        "LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
+        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id",
+      :group => "listed_taxa.taxon_id",
+      :order => "id DESC",
+      :conditions => conditions
+    )
+    @taxa = Taxon.all(
+      :conditions => ["id IN (?)", listed_taxa.map(&:taxon_id)],
+      :include => [:iconic_taxon, :photos, :taxon_names]
+    )
     
     respond_to do |format|
       format.html { redirect_to @place }

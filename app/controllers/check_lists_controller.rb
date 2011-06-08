@@ -25,7 +25,7 @@ class CheckListsController < ApplicationController
         @find_options[:conditions], ["AND place_id = ?", @list.place_id])
       
       # Make sure we don't get duplicate taxa from check lists other than the default
-      @find_options[:group] = "listed_taxa.taxon_id"
+      @find_options[:select] = "DISTINCT ON(taxon_ancestor_ids || listed_taxa.taxon_id) listed_taxa.*"
       
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
@@ -127,7 +127,7 @@ class CheckListsController < ApplicationController
         :joins => "JOIN taxa ON taxa.id = listed_taxa.taxon_id",
         :conditions => ["place_id = ?", list.place_id])
     else
-      list.listed_taxa.count(:all, :include => [:taxon], :group => "taxa.iconic_taxon_id")
+      list.listed_taxa.count(:include => [:taxon], :group => "taxa.iconic_taxon_id")
     end
     iconic_taxa.map do |iconic_taxon|
       [iconic_taxon, iconic_taxon_counts_by_id_hash[iconic_taxon.id.to_s]]

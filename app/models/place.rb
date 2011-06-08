@@ -21,6 +21,15 @@ class Place < ActiveRecord::Base
     indexes name
     indexes display_name
     has place_type
+    
+    # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
+    # for Postgres when using custom SQL attr definitions.  It may or may not 
+    # be fixed in more up-to-date versions, but the issue has been raised: 
+    # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
+    has :latitude, :as => :fake_latitude
+    has :longitude, :as => :fake_longitude
+    # END HACK
+    
     has 'RADIANS(latitude)', :as => :latitude,  :type => :float
     has 'RADIANS(longitude)', :as => :longitude,  :type => :float
     set_property :delta => :delayed

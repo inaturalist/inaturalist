@@ -63,7 +63,6 @@ class ListsController < ApplicationController
     
     # Load listed taxa for pagination
     paginating_find_options = find_options.merge(
-      :group => 'listed_taxa.taxon_id', 
       :page => params[:page], 
       :per_page => 26)
       

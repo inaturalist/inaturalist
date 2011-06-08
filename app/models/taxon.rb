@@ -777,7 +777,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def self.find_duplicates
-    duplicate_counts = Taxon.count(:group => "name", :having => "count_all > 1")
+    duplicate_counts = Taxon.count(:group => "name", :having => "count(*) > 1")
     num_keepers = 0
     num_rejects = 0
     for name in duplicate_counts.keys

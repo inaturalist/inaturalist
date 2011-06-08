@@ -78,6 +78,17 @@ class Observation < ActiveRecord::Base
       :as => :has_geo, :type => :boolean
     has 'RADIANS(latitude)', :as => :latitude,  :type => :float
     has 'RADIANS(longitude)', :as => :longitude,  :type => :float
+    
+    # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
+    # for Postgres when using custom SQL attr definitions.  It may or may not 
+    # be fixed in more up-to-date versions, but the issue has been raised: 
+    # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
+    has :latitude, :as => :fake_latitude
+    has :longitude, :as => :fake_longitude
+    has :num_identification_agreements
+    has :num_identification_disagreements
+    # END HACK
+    
     has "num_identification_agreements > num_identification_disagreements",
       :as => :identifications_most_agree, :type => :boolean
     has "num_identification_agreements > 0", 
@@ -146,7 +157,7 @@ class Observation < ActiveRecord::Base
     end
   } do
     def distinct_taxon
-      all(:group => "taxon_id", :conditions => "taxon_id > 0", :include => :taxon)
+      all(:group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
     end
   end
   
@@ -177,7 +188,7 @@ class Observation < ActiveRecord::Base
   # Has_property scopes
   named_scope :has_taxon, lambda { |taxon_id|
     if taxon_id.nil?
-    then return {:conditions => "taxon_id > 0"}
+    then return {:conditions => "taxon_id IS NOT NULL"}
     else {:conditions => ["taxon_id IN (?)", taxon_id]}
     end
   }
@@ -198,7 +209,7 @@ class Observation < ActiveRecord::Base
   named_scope :has_photos, 
               :include => :photos,
               :select => "DISTINCT ON(observations.id)",
-              :conditions => ['photos.id > 0']
+              :conditions => ['photos.id IS NOT NULL']
   
   
   # Find observations by a taxon object.  Querying on taxa columns forces 

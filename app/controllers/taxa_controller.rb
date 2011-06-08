@@ -37,19 +37,15 @@ class TaxaController < ApplicationController
     find_taxa unless request.format.html?
     
     respond_to do |format|
-      format.html do
-        unless params[:q].blank?
-          redirect_to search_taxa_path(:q => params[:q])
-          return
-        end
-        @featured_taxa = Taxon.all(:conditions => "featured_at > 0", 
-          :order => "featured_at DESC", :limit => 50,
+      format.html do # index.html.erb
+        @featured_taxa = Taxon.all(:conditions => "featured_at IS NOT NULL", 
+          :order => "featured_at DESC", :limit => 100,
           :include => [:iconic_taxon, :photos, :taxon_names])
         
         if @featured_taxa.blank?
-          @featured_taxa = Taxon.all(:limit => 50, :conditions => [
-            "taxa.wikipedia_summary > 0 AND " +
-            "photos.id > 0 AND " +
+          @featured_taxa = Taxon.all(:limit => 100, :conditions => [
+            "taxa.wikipedia_summary IS NOT NULL AND " +
+            "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
           ], :include => [:iconic_taxon, :photos, :taxon_names],
           :order => "taxa.id DESC")
@@ -63,11 +59,12 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
-          @recent = Observation.latest.all(
-            :limit => 5, 
-            :include => {:taxon => [:taxon_names, :photos]},
-            :conditions => 'taxon_id > 0',
-            :group => :taxon_id)
+          @recent = Observation.all(
+            :select => "DISTINCT ON (taxon_id) *",
+            :from => "(SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10) AS obs",
+            :include => {:taxon => [:taxon_names]},
+            :limit => 5
+          ).sort_by(&:id).reverse
         end
       end
       format.xml  do
@@ -109,7 +106,7 @@ class TaxaController < ApplicationController
         
         @check_listed_taxa = ListedTaxon.paginate(:page => 1,
           :include => :place,
-          :conditions => ["place_id > 0 AND taxon_id = ?", @taxon],
+          :conditions => ["place_id IS NOT NULL AND taxon_id = ?", @taxon],
           :order => "listed_taxa.id DESC")
         @places = @check_listed_taxa.map(&:place)
         @countries = @taxon.places.all(
@@ -434,7 +431,8 @@ class TaxaController < ApplicationController
         []
       end
       
-      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
+      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
+        :select => "DISTINCT ON (place_id) listed_taxa.*")
       @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
       
       render :partial => 'taxa/add_to_place_link', :collection => @places, :locals => {
@@ -476,7 +474,8 @@ class TaxaController < ApplicationController
       end
       
       search_for_places
-      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
+      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
+        :select => "DISTINCT ON (place_id) listed_taxa.*")
       @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
       render :update do |page|
         if @places.blank?

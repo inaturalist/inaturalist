@@ -12,6 +12,14 @@ class WelcomeController < ApplicationController
   def index
     @announcement = Announcement.last(:conditions => [
       "placement = 'welcome/index' AND ? BETWEEN start AND end", Time.now.utc])
+    @observations = Observation.all( 
+      :include => :photos,
+      :limit => 4,
+      :order => "observations.created_at DESC",
+      :conditions => "latitude IS NOT NULL AND longitude IS NOT NULL " + 
+                     "AND photos.id IS NOT NULL")
+    @first_goal_total = Observation.count
+    
     respond_to do |format|
       format.html do
         @observations = Observation.all( 

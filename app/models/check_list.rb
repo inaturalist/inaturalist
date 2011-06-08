@@ -59,7 +59,7 @@ class CheckList < List
   end
   
   def sync_with_parent(options = {})
-    conditions = "listed_taxa.place_id > 0 AND listed_taxa.created_at"
+    conditions = "listed_taxa.place_id IS NOT NULL"
     unless options[:force]
       time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
       conditions = CheckList.merge_conditions(conditions, 
@@ -91,7 +91,7 @@ class CheckList < List
     ListedTaxon.all(
       :include => [:taxon, :list, {:place => {:parent => :check_list}}], 
       :conditions => [
-        "listed_taxa.place_id > 0 AND listed_taxa.created_at > ?", 
+        "listed_taxa.place_id IS NOT NULL AND listed_taxa.created_at > ?", 
         time_since_last_sync]
     ).each do |listed_taxon|
       next unless listed_taxon.place.parent_id

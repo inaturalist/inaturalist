@@ -179,7 +179,7 @@ class ObservationsController < ApplicationController
     # dated one
     unless @observation.observed_on
       @next ||= Observation.by(@observation.user).find(:first,
-        :conditions => "observed_on > 0",
+        :conditions => "observed_on IS NOT NULL",
         :order => "observed_on ASC, time_observed_at ASC"
       )
     else

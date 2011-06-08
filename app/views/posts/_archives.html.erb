@@ -1,16 +1,16 @@
 <%- archives ||= @archives -%>
 <%- display_user ||= @display_user -%>
-    <div id="archives">
-      <h3>Archives</h3>
-      <ul class="readable">
-        <li class="clear">
-          <span class="label">Month</span>
-          <span class="count">Posts</span>
-        </li>
-        <% for year, month_num, month_name, count in archives %>
-          <li class="clear">
-            <%= link_to "#{month_name} #{year}", journal_archives_by_month_path(display_user.login, year, month_num) %>
-            <span class="count"><%= count %></span></li>
-        <% end %>
-      </ul>
-    </div>
+<div id="archives">
+  <h3>Archives</h3>
+  <ul class="readable">
+    <li class="clear">
+      <span class="label">Month</span>
+      <span class="count">Posts</span>
+    </li>
+    <% for year, month_num, month_name, count in archives %>
+      <li class="clear">
+        <%= link_to "#{month_name} #{year}", journal_archives_by_month_path(display_user.login, year, month_num) %>
+        <span class="count"><%= count %></span></li>
+    <% end %>
+  </ul>
+</div>

@@ -12,13 +12,11 @@ class ProjectsController < ApplicationController
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
   
-  # GET /projects
-  # GET /projects.xml
   def index
-    @project_observations = ProjectObservation.all(:include => :project, 
-      :order => "project_observations.id desc", :limit => 20)
-    @projects = @project_observations.map(&:project).uniq[0..9]
-    @created = Project.all(:order => "id desc", :limit => 9)
+    project_observations = ProjectObservation.all(
+      :select => "MAX(id) AS id, project_id",
+      :order => "id desc", :limit => 9, :group => "project_id")
+    @projects = Project.all(:conditions => ["id IN (?)", project_observations.map(&:project_id)])
     if logged_in?
       @started = current_user.projects.all(:order => "id desc", :limit => 9)
       @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
