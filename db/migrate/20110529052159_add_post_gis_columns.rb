@@ -1,8 +1,8 @@
 class AddPostGisColumns < ActiveRecord::Migration
   def self.up
-    # remove_column :place_geometries, :geom
-    # add_column :place_geometries, :geom, :multi_polygon, :null => false
-    # add_index :place_geometries, :geom, :spatial => true
+    remove_column :place_geometries, :geom
+    add_column :place_geometries, :geom, :multi_polygon, :null => false
+    add_index :place_geometries, :geom, :spatial => true
     
     add_column :observations, :geom, :point
     add_index :observations, :geom, :spatial => true
