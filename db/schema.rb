@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531065431) do
+ActiveRecord::Schema.define(:version => 20110610193807) do
 
   create_table "activity_streams", :force => true do |t|
     t.column "user_id", :integer
@@ -599,7 +599,6 @@ ActiveRecord::Schema.define(:version => 20110531065431) do
     t.column "source", :string
     t.column "start_month", :integer
     t.column "end_month", :integer
-    t.column "geom", :multi_polygon
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "range_type", :string
