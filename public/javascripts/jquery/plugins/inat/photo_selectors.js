@@ -188,7 +188,7 @@
     // Fetch new fields
     $(wrapper).find('.photoSelectorPhotos').load(
       baseURL, 
-      params, 
+      $.param(params),
       function(responseText, textStatus, XMLHttpRequest) {
         // Remove fields with identical values to the extracted checkboxes
         var existingValues = $(existing).find('input').map(function() {
