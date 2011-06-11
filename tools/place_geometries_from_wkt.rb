@@ -9,4 +9,5 @@ Place.find_each do |place|
   rescue => e
     puts e.message
   end
+  GC.start
 end
