@@ -256,21 +256,22 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
   if (typeof(existing) != 'undefined' && existing != null) {
     var infowinobs = $(existing).clone().get(0);
     $(infowinobs).find('.details').show();
-    var wrapper = $(
-      '<div class="mini infowindow observations"></div>').append(infowinobs);
+    var wrapper = $('<div class="compact mini infowindow observations"></div>').append(infowinobs);
     return $(wrapper).get(0);
   };
   
   var wrapper = $('<div class="observation"></div>');
+  var photoURL
   if (typeof(observation.image_url) != 'undefined' && observation.image_url != null) {
-    wrapper.append(
-      $('<img width="75" height="75"></img>').attr('src', observation.image_url).addClass('left')
-    );
+    photoURL = observation.image_url
   } else if (typeof(observation.photos) != 'undefined' && observation.photos.length > 0) {
+    photoURL = observation.photos[0].square_url
+  }
+  if (photoURL) {
     wrapper.append(
-      $('<img width="75" height="75"></img>').attr('src', observation.photos[0].square_url).addClass('left')
+      $('<img width="75" height="75"></img>').attr('src', photoURL).addClass('left')
     );
-  };
+  }
   
   wrapper.append(
     $('<div class="readable attribute"></div>').append(

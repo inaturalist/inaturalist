@@ -307,8 +307,12 @@
   height: auto;
 }
 
-.observations.infowindow .observation .attribute.icon {
-/*  display: inherit !important;*/
+.observations.mini.compact.infowindow .observation .user,
+.observations.mini.compact.infowindow .observation .observed_on,
+.observations.mini.compact.infowindow .observation .created_at,
+.observations.mini.compact.infowindow .observation .details,
+.observations.mini.compact.infowindow .observation .actions {
+  padding-left: 0px;
 }
 
 .observations.infowindow .observation .attribute.control {
