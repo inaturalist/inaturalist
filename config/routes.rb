@@ -56,6 +56,7 @@ ActionController::Routing::Routes.draw do |map|
   # Everything below here needs to be cleaned up in subsequent releases
   #
   
+  map.local_photo_fields 'photos/local_photo_fields', :controller => 'photos', :action => 'local_photo_fields'
   map.resources :photos, :only => :show
   map.resources :observation_photos, :only => :create
   map.connect   'flickr/photos.:format',
