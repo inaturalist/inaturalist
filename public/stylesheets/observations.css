@@ -315,6 +315,12 @@
   padding-left: 0px;
 }
 
+.observations.mini.compact.infowindow p {
+  margin-bottom: 0.8em;
+  line-height: 1.4;
+  font-size: 120%;
+}
+
 .observations.infowindow .observation .attribute.control {
   display: none !important;
 }
