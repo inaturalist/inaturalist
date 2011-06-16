@@ -37,8 +37,7 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag 'jquery', 
-                             "jquery/plugins/inat/taxon_selectors.js" %>
+  <%= javascript_include_tag "jquery/plugins/inat/taxon_selectors.js" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#species_guess').simpleTaxonSelector();
