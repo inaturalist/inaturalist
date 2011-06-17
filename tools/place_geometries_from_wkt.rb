@@ -1,6 +1,6 @@
 # Dump all PlaceGeometry geometries to WKT files named by place_id
-start = ENV['START'] || 1
-stop = ENV['STOP'] || Place.count
+start = ARGV[0] || 1
+stop = ARGV[1] || Place.count
 Place.find_each(:batch_size => 50, :conditions => ["id BETWEEN ? AND ?", start, stop]) do |place|
   print "#{place.display_name} (#{place.id}): "
   path = "place_wkts/#{place.id}.wkt"
