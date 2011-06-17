@@ -127,6 +127,7 @@ class Observation < ActiveRecord::Base
               :set_iconic_taxon,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
+              :set_geom_from_latlon,
               :set_positional_accuracy,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa
@@ -940,6 +941,15 @@ class Observation < ActiveRecord::Base
     end
     self.latitude *= -1 if latitude.to_f > 0 && place_guess =~ /s/i
     self.longitude *= -1 if longitude.to_f > 0 && place_guess =~ /w/i
+    true
+  end
+  
+  def set_geom_from_latlon
+    self.geom = if longitude.blank? || latitude.blank?
+      nil
+    elsif longitude_changed? || latitude_changed?
+      Point.from_x_y(longitude, latitude)
+    end
     true
   end
   

@@ -858,5 +858,30 @@ describe Observation do
       o.longitude.to_f.should == lon
     end
   end
+  
+  describe "geom" do
+    it "should be set with coords" do
+      o = Observation.make(:latitude => 1, :longitude => 1)
+      o.geom.should_not be_blank
+    end
+    
+    it "should not be set without coords" do
+      o = Observation.make
+      o.geom.should be_blank
+    end
+    
+    it "should change with coords" do
+      o = Observation.make(:latitude => 1, :longitude => 1)
+      assert_difference 'o.geom.y' do
+        o.update_attributes(:latitude => 2)
+      end
+    end
+    
+    it "should go away with coords" do
+      o = Observation.make(:latitude => 1, :longitude => 1)
+      o.update_attributes(:latitude => nil, :longitude => nil)
+      o.geom.should be_blank
+    end
+  end
 end
 
