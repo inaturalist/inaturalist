@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
   
   def index
     @announcement = Announcement.last(:conditions => [
-      "placement = 'welcome/index' AND ? BETWEEN start AND end", Time.now.utc])
+      "placement = 'welcome/index' AND ? BETWEEN 'start' AND 'end'", Time.now.utc])
     @observations = Observation.all( 
       :include => :photos,
       :limit => 4,
