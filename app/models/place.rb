@@ -251,12 +251,12 @@ class Place < ActiveRecord::Base
     other_attrs.merge!(:geom => geom)
     
     begin
-      if self.place_geometry
+      if place_geometry
         self.place_geometry.update_attributes(other_attrs)
       else
         self.place_geometry = PlaceGeometry.create(other_attrs)
       end
-      self.update_bbox_from_geom(geom)
+      update_bbox_from_geom(geom)
     rescue ActiveRecord::StatementInvalid => e
       puts "[ERROR] \tMySQL couldn't save #{self.place_geometry}: " + 
         e.message[0..200]
