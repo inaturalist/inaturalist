@@ -129,6 +129,7 @@ end
 User.blueprint do
   login { Sham.login }
   email { Sham.email }
+  name { Sham.name }
   salt "9dadb9a490337c3e23dbc9bd20b08af841da4512"
   crypted_password "4ed912738a4c0facedbdfd4fd1db8c9245d93e40" # 'monkey'
   created_at 5.days.ago.to_s(:db)

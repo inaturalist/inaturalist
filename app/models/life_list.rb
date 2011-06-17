@@ -95,8 +95,8 @@ class LifeList < List
     # conditions in find_each get applied to scopes utilized by anything
     # further up the call stack, causing bugs.
     list.owner.observations.all(
-        :select => 'observations.id, observations.taxon_id', 
-        :group => 'observations.taxon_id', 
+        :select => 'DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id', 
+        # :group => 'observations.taxon_id', 
         :conditions => conditions).each do |observation|
       list.add_taxon(observation.taxon_id, 
         :last_observation_id => observation.id,

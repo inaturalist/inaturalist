@@ -38,7 +38,7 @@ describe Observation, "creation" do
   it "should not save a time if one wasn't specified" do
     @observation.observed_on_string = "April 2 2008"
     @observation.save
-    @observation.time_observed_at.should be(nil)
+    @observation.time_observed_at.should be_blank
   end
   
   it "should not save a time for 'today' or synonyms" do
@@ -305,22 +305,28 @@ describe Observation, "updating" do
   end
   
   it "should not save a time if one wasn't specified" do
-    observation = Observation.make(:observed_on_string => "April 2 2008")
-    @observation.time_observed_at.should be(nil)
+    @observation.update_attributes(:observed_on_string => "April 2 2008")
+    @observation.save
+    @observation.time_observed_at.should be_blank
   end
   
   it "should set an iconic taxon if the taxon was set" do
-    iconic = Taxon.make(:iconic)
-    obs = Observation.make(:taxon => Taxon.make(:iconic_taxon => iconic))
-    obs.iconic_taxon.name.should == iconic.name
+    obs = Observation.make
+    obs.iconic_taxon.should be_blank
+    taxon = Taxon.make(:iconic_taxon => Taxon.make(:is_iconic => true))
+    taxon.iconic_taxon.should_not be_blank
+    obs.taxon = taxon
+    obs.save!
+    obs.iconic_taxon.name.should == taxon.iconic_taxon.name
   end
   
   it "should remove an iconic taxon if the taxon was removed" do
-    iconic = Taxon.make(:iconic)
-    taxon = Taxon.make(:iconic_taxon => iconic)
+    taxon = Taxon.make(:iconic_taxon => Taxon.make(:is_iconic => true))
+    taxon.iconic_taxon.should_not be_blank
     obs = Observation.make(:taxon => taxon)
     obs.iconic_taxon.should_not be_blank
-    obs.update_attributes(:taxon => nil)
+    obs.taxon = nil
+    obs.save!
     obs.reload
     obs.iconic_taxon.should be_blank
   end

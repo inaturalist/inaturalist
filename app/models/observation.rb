@@ -491,8 +491,7 @@ class Observation < ActiveRecord::Base
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
-      if tspan = Chronic.parse(date_string, :context => :past, 
-                                                      :guess => false)
+      if tspan = Chronic.parse(date_string, :context => :past, :guess => false)
         # If tspan is less than a day and the string wasn't 'today', set time
         if tspan.width < 86400 && date_string.strip.downcase != 'today'
           self.time_observed_at = t
@@ -913,7 +912,7 @@ class Observation < ActiveRecord::Base
   end
   
   def single_taxon_id_for_name(name)
-    taxon_names = TaxonName.all(:conditions => ["name = ?", name.strip], :limit => 5, :include => :taxon)
+    taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name.strip.downcase], :limit => 5, :include => :taxon)
     return if taxon_names.blank?
     return taxon_names.first.taxon_id if taxon_names.size == 1
     sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon).compact)

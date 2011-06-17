@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110529052159) do
+ActiveRecord::Schema.define(:version => 20110610193807) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
   add_index "activity_streams", ["user_id", "activity_object_type"], :name => "index_activity_streams_on_user_id_and_activity_object_type"
 
   create_table "announcements", :force => true do |t|
-    t.column "placement", :string
-    t.column "start", :datetime
-    t.column "end", :datetime
-    t.column "body", :text
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.string   "placement"
+    t.datetime "start"
+    t.datetime "end"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "colors", :force => true do |t|
@@ -57,12 +57,12 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "custom_projects", :force => true do |t|
-    t.column "head", :text
-    t.column "side", :text
-    t.column "css", :text
-    t.column "project_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.text     "head"
+    t.text     "side"
+    t.text     "css"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "custom_projects", ["project_id"], :name => "index_custom_projects_on_project_id"
@@ -269,6 +269,11 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
     t.boolean  "location_is_exact",                                                               :default => false
     t.boolean  "delta",                                                                           :default => false
     t.point    "geom",                             :limit => nil
+    t.integer  "positional_accuracy"
+    t.decimal  "private_latitude",                                :precision => 15, :scale => 10
+    t.decimal  "private_longitude",                               :precision => 15, :scale => 10
+    t.integer  "private_positional_accuracy"
+    t.string   "geoprivacy"
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -358,6 +363,7 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
     t.string   "source_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "delta",                                             :default => false
   end
 
   add_index "places", ["bbox_area"], :name => "index_places_on_bbox_area"
@@ -379,38 +385,42 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
 
   create_table "project_assets", :force => true do |t|
-    t.column "project_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "asset_file_name", :string
-    t.column "asset_content_type", :string
-    t.column "asset_file_size", :integer
-    t.column "asset_updated_at", :datetime
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
   end
 
-  add_index "project_assets", ["project_id"], :name => "index_project_assets_on_project_id"
   add_index "project_assets", ["asset_content_type"], :name => "index_project_assets_on_asset_content_type"
+  add_index "project_assets", ["project_id"], :name => "index_project_assets_on_project_id"
 
   create_table "project_observations", :force => true do |t|
     t.integer  "project_id"
     t.integer  "observation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "curator_identification_id"
   end
 
+  add_index "project_observations", ["curator_identification_id"], :name => "index_project_observations_on_curator_identification_id"
   add_index "project_observations", ["observation_id"], :name => "index_project_observations_on_observation_id"
   add_index "project_observations", ["project_id"], :name => "index_project_observations_on_project_id"
-  add_index "project_observations", ["curator_identification_id"], :name => "index_project_observations_on_curator_identification_id"
 
   create_table "project_users", :force => true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
+    t.integer  "observations_count", :default => 0
+    t.integer  "taxa_count",         :default => 0
   end
 
-  add_index "project_users", ["user_id"], :name => "index_project_users_on_user_id"
   add_index "project_users", ["project_id", "taxa_count"], :name => "index_project_users_on_project_id_and_taxa_count"
+  add_index "project_users", ["user_id"], :name => "index_project_users_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
@@ -423,18 +433,21 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
+    t.string   "project_type"
+    t.string   "cached_slug"
+    t.integer  "species_count",     :default => 0
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "provider_authorizations", :force => true do |t|
-    t.column "provider_name", :string, :null => false
-    t.column "provider_uid", :text
-    t.column "token", :text
-    t.column "user_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.string   "provider_name", :null => false
+    t.text     "provider_uid"
+    t.text     "token"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "provider_authorizations", ["user_id"], :name => "index_provider_authorizations_on_user_id"
@@ -463,12 +476,12 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
   end
 
   create_table "slugs", :force => true do |t|
-    t.column "name", :string
-    t.column "sluggable_id", :integer
-    t.column "sequence", :integer, :default => 1, :null => false
-    t.column "sluggable_type", :string, :limit => 40
-    t.column "scope", :string
-    t.column "created_at", :datetime
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
@@ -507,30 +520,35 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "iconic_taxon_id"
-    t.boolean  "is_iconic",          :default => false
-    t.boolean  "auto_photos",        :default => true
-    t.boolean  "auto_description",   :default => true
+    t.boolean  "is_iconic",                     :default => false
+    t.boolean  "auto_photos",                   :default => true
+    t.boolean  "auto_description",              :default => true
     t.integer  "version"
     t.integer  "lft"
     t.integer  "rgt"
     t.string   "name_provider"
-    t.boolean  "delta",              :default => false
+    t.boolean  "delta",                         :default => false
     t.integer  "creator_id"
     t.integer  "updater_id"
-    t.integer  "observations_count", :default => 0
-    t.integer  "listed_taxa_count",  :default => 0
+    t.integer  "observations_count",            :default => 0
+    t.integer  "listed_taxa_count",             :default => 0
     t.integer  "rank_level"
     t.string   "unique_name"
     t.text     "wikipedia_summary"
     t.string   "wikipedia_title"
     t.datetime "featured_at"
     t.string   "ancestry"
+    t.integer  "conservation_status"
+    t.integer  "conservation_status_source_id"
+    t.boolean  "locked",                        :default => false, :null => false
   end
 
   add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
+  add_index "taxa", ["conservation_status_source_id"], :name => "index_taxa_on_conservation_status_source_id"
   add_index "taxa", ["featured_at"], :name => "index_taxa_on_featured_at"
   add_index "taxa", ["is_iconic"], :name => "index_taxa_on_is_iconic"
   add_index "taxa", ["listed_taxa_count"], :name => "index_taxa_on_listed_taxa_count"
+  add_index "taxa", ["locked"], :name => "index_taxa_on_locked"
   add_index "taxa", ["name"], :name => "index_taxa_on_name"
   add_index "taxa", ["observations_count"], :name => "index_taxa_on_observations_count"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
@@ -582,7 +600,6 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
     t.string   "source"
     t.integer  "start_month"
     t.integer  "end_month"
-    t.text     "geom"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "range_type"
@@ -590,6 +607,7 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
     t.string   "range_file_name"
     t.integer  "range_file_size"
     t.text     "description"
+    t.integer  "source_id"
   end
 
   create_table "taxon_versions", :force => true do |t|
@@ -641,6 +659,7 @@ ActiveRecord::Schema.define(:version => 20110529052159) do
     t.integer  "journal_posts_count",                      :default => 0
     t.integer  "life_list_taxa_count",                     :default => 0
     t.text     "preferences"
+    t.string   "icon_url"
   end
 
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"
