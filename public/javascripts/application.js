@@ -86,6 +86,14 @@ $('input[data-loading-click]').live('click', function() {
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
   $(this).addClass('disabled description').val(txt)
   var link = this
+  
+  if (!$(this).attr('data-loading-click-bound')) {
+    $(this).parents('form').bind('ajax:success', function() {
+      $(link).attr('disabled', false).removeClass('disabled description')
+    })
+    $(this).attr('data-loading-click-bound', true)
+  }
+  
   $(this).parents('form').submit(function() {
     $(link).attr('disabled', true)
   })

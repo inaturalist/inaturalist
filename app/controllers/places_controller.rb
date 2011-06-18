@@ -224,7 +224,7 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @places = Place.paginate(:page => params[:page], 
-      :conditions => ["display_name LIKE ?", "#{params[:q]}%"])
+      :conditions => ["lower(display_name) LIKE ?", "#{params[:q].to_s.downcase}%"])
     render :layout => false, :partial => 'autocomplete'
   end
   

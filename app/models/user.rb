@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :name,     :maximum => 100
+  validates_length_of       :name,     :maximum => 100, :allow_blank => true
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
