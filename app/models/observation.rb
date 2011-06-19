@@ -96,18 +96,14 @@ class Observation < ActiveRecord::Base
   validate :must_be_in_the_past,
            :must_not_be_a_range
   
-  validates_numericality_of :latitude, {
-    :on => :create, 
-    :allow_nil => true, 
+  validates_numericality_of :latitude,
+    :allow_blank => true, 
     :less_than_or_equal_to => 90, 
     :greater_than_or_equal_to => -90
-  }
-  validates_numericality_of :longitude, {
-    :on => :create, 
-    :allow_nil => true, 
+  validates_numericality_of :longitude,
+    :allow_blank => true, 
     :less_than_or_equal_to => 180, 
     :greater_than_or_equal_to => -180
-  }
   
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
@@ -909,7 +905,9 @@ class Observation < ActiveRecord::Base
     return true unless latitude.blank? && longitude.blank?
     return true if place_guess.blank?
     return true if place_guess =~ /[a-cf-mo-rt-vx-z]/i # ignore anything with word chars other than NSEW
+    return true unless place_guess.strip =~ /[.+,\s.+]/ # ignore anything without a legit separator
     matches = place_guess.strip.scan(COORDINATE_REGEX).flatten
+    return true if matches.blank?
     case matches.size
     when 2 # decimal degrees
       self.latitude, self.longitude = matches

@@ -235,6 +235,13 @@ describe Observation, "creation" do
     o = Observation.make(:place_guess => "Apt 1, 33 Figueroa Ave., Somewhere, CA")
     o.latitude.should be_blank
   end
+  
+  it "should not set lat/lon for addresses with zip codes" do
+    o = Observation.make(:place_guess => "94618")
+    o.latitude.should be_blank
+    o = Observation.make(:place_guess => "94618-5555")
+    o.latitude.should be_blank
+  end
 end
 
 describe Observation, "updating" do
@@ -342,6 +349,24 @@ describe Observation, "updating" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+  end
+  
+  it "should not allow impossible coordinates" do
+    o = Observation.make
+    o.update_attributes(:latitude => 100)
+    o.should_not be_valid
+    
+    o = Observation.make
+    o.update_attributes(:longitude => 200)
+    o.should_not be_valid
+    
+    o = Observation.make
+    o.update_attributes(:latitude => -100)
+    o.should_not be_valid
+    
+    o = Observation.make
+    o.update_attributes(:longitude => -200)
+    o.should_not be_valid
   end
 end
 
