@@ -76,7 +76,7 @@ class PicasaPhoto < Photo
     Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip), options)
   end
   
-  # TODO Retrieve info about a photo from its native source given its native id.  
+  # Retrieve info about a photo from its native source given its native id.  
   def self.get_api_response(native_photo_id, options = {})
     # Picasa API calls only work with a user's token, so first we try to get 
     # a PicasaIdentity from a passed in user, then we try to parse one out of 
@@ -97,7 +97,7 @@ class PicasaPhoto < Photo
     nil
   end
   
-  # TODO Create a new Photo object from an API response.
+  # Create a new Photo object from an API response.
   def self.new_from_api_response(api_response, options = {})
     if api_response.author
       native_username = api_response.author.user

@@ -503,11 +503,11 @@ class TaxaController < ApplicationController
   end
   
   def update_photos
-    @taxon.photos = (retreive_flickr_photos + retrieve_local_photos).compact
+    @taxon.photos = retrieve_photos
     flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
   rescue Errno::ETIMEDOUT
-    flash[:error] = "Flickr request timeed out!"
+    flash[:error] = "Request timed out!"
     redirect_back_or_default(taxon_path(@taxon))
   end
   
@@ -835,11 +835,29 @@ class TaxaController < ApplicationController
     do_external_lookups
   end
   
+  def retrieve_photos
+    [retrieve_flickr_photos, retrieve_picasa_photos, retrieve_local_photos].flatten.compact
+  end
+  
+  def retrieve_picasa_photos
+    return [] if params[:picasa_photos].nil?
+    photos = []
+    params[:picasa_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
+      if fp = PicasaPhoto.find_by_native_photo_id(photo_id)
+        photos << fp 
+      else
+        pp = PicasaPhoto.get_api_response(self.photo_id)
+        photos << PicasaPhotos.new_from_api_response(pp)
+      end
+    end
+    photos
+  end
+  
   #
   # Find locally cached photos or get new ones from flickr based on form
   # params.
   #
-  def retreive_flickr_photos
+  def retrieve_flickr_photos
     return [] if params[:flickr_photos].nil?
 
     flickr = get_net_flickr
@@ -967,7 +985,7 @@ class TaxaController < ApplicationController
   end
   
   def presave
-    @taxon.photos = retreive_flickr_photos
+    @taxon.photos = retrieve_flickr_photos
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end
