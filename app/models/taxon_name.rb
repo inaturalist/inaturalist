@@ -59,12 +59,13 @@ class TaxonName < ActiveRecord::Base
     LEXICONS[:ENGLISH]
   ]
   
-  LEXICONS.keys.each do |language|
+  LEXICONS.each do |k,v|
     class_eval <<-EOT
-      def is_#{language.to_s.downcase}?
-        lexicon == LEXICONS[:#{language}]
+      def is_#{k.to_s.downcase}?
+        lexicon == "#{v}"
       end
     EOT
+    const_set k.to_s.upcase, v
   end
   alias :is_scientific? :is_scientific_names?
   

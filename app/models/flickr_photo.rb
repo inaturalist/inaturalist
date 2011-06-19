@@ -141,21 +141,9 @@ class FlickrPhoto < Photo
     end
     
     # Try to get a taxon
-    photo_taxa = to_taxa
-    unless photo_taxa.blank?
-      unless photo_taxa.detect{|t| t.rank_level.blank?}
-        photo_taxa = photo_taxa.sort_by(&:rank_level)
-      end
-      observation.taxon = photo_taxa.detect(&:species_or_lower?)
-      observation.taxon ||= photo_taxa.first
-      
-      if observation.taxon
-        begin
-          observation.species_guess = observation.taxon.common_name.name
-        rescue
-          observation.species_guess = observation.taxon.name
-        end
-      end
+    observation.taxon = to_taxon
+    if t = observation.taxon
+      observation.species_guess = t.common_name.try(:name) || t.name
     end
 
     observation
@@ -172,7 +160,7 @@ class FlickrPhoto < Photo
       tags = api_response.tags.values.map(&:raw)
       machine_tags = tags.select{|t| t =~ /taxonomy\:/}
       taxa = Taxon.tags_to_taxa(machine_tags) unless machine_tags.blank?
-      taxa ||= Taxon.tags_to_taxa(tags)
+      taxa ||= Taxon.tags_to_taxa(tags, options)
       taxa
     end
     taxa.compact

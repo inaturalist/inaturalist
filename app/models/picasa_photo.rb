@@ -49,38 +49,31 @@ class PicasaPhoto < Photo
     if observation.place_guess.blank? && api_response.point
       latrads = observation.latitude.to_f * (Math::PI / 180)
       lonrads = observation.longitude.to_f * (Math::PI / 180)
-      places = Place.search(:geo => [latrads,lonrads], :order => "@geodist asc", :limit => 5) rescue []
-      places = places.compact.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
-      places = places.sort_by(&:bbox_area)
-      # if place = Place.containing_lat_lng(observation.latitude, observation.longitude).first(:order => "bbox_area ASC")
-      #   observation.place_guess = place.display_name
-      # end
-      if place = places.first
-        observation.place_guess = place.display_name
+      begin
+        places = Place.search(:geo => [latrads,lonrads], :order => "@geodist asc", :limit => 5)
+        places = places.compact.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
+        places = places.sort_by(&:bbox_area)
+        if place = places.first
+          observation.place_guess = place.display_name
+        end
+      rescue Riddle::ConnectionError
+        # sphinx down for some reason
       end
     end
     
     # Try to get a taxon
-    photo_taxa = to_taxa
-    unless photo_taxa.blank?
-      observation.taxon = photo_taxa.detect(&:species_or_lower?)
-      observation.taxon ||= photo_taxa.first
-      
-      if observation.taxon
-        begin
-          observation.species_guess = observation.taxon.common_name.name
-        rescue
-          observation.species_guess = observation.taxon.name
-        end
-      end
+    observation.taxon = to_taxon
+    if t = observation.taxon
+      observation.species_guess = t.common_name.try(:name) || t.name
     end
 
     observation
   end
   
-  def to_taxa
+  def to_taxa(options = {})
     self.api_response ||= PicasaPhoto.get_api_response(self.native_photo_id, :user => self.user)
-    Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip)) unless api_response.keywords.blank?
+    return nil if api_response.keywords.blank?
+    Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip), options)
   end
   
   # TODO Retrieve info about a photo from its native source given its native id.  

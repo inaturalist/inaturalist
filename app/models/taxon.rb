@@ -764,12 +764,13 @@ class Taxon < ActiveRecord::Base
   end
   
   # Convert an array of strings to taxa
-  def self.tags_to_taxa(tags)
+  def self.tags_to_taxa(tags, options = {})
+    conditions = options[:lexicon] ? {:lexicon => options[:lexicon]} : {}
     taxon_names = tags.map do |tag|
       if matches = tag.match(/^taxonomy:\w+=(.*)/)
-        TaxonName.find_by_name(matches[1])
+        TaxonName.find_by_name(matches[1], :conditions => conditions)
       else
-        TaxonName.find_by_name(tag)
+        TaxonName.find_by_name(tag, :conditions => conditions)
       end
     end.compact
     taxon_names.map(&:taxon).compact
