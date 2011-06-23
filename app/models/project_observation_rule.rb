@@ -1,14 +1,26 @@
 class ProjectObservationRule < Rule
+  OPERAND_OPERATORS_CLASSES = {
+    "observed_in_place?" => "Place",
+    "in_taxon?" => "Taxon"
+  }
+  OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
+  
+  before_save :clear_operand
   
   def validate
-    if operand.blank?
-      case operator
-      when "observed_in_place?"
-        errors.add_to_base("Must select a place for that rule.")
-      when "in_taxon?"
-        errors.add_to_base("Must select a taxon for that rule.")
+    if OPERAND_OPERATORS.include?(operator)
+      if operand.blank? || !operand.is_a?(Object.const_get(OPERAND_OPERATORS_CLASSES[operator]))
+        errors.add_to_base("Must select a " + 
+          OPERAND_OPERATORS_CLASSES[operator].underscore.humanize.downcase + 
+          " for that rule.")
       end
     end
+  end
+  
+  def clear_operand
+    return true if OPERAND_OPERATORS.include?(operator)
+    self.operand = nil
+    true
   end
   
   def terms
