@@ -1,4 +1,4 @@
-<% if photo.is_a? FlickrPhoto %>
+<% if photo.is_a? Photo %>
   <%= modal_image(photo, :size => :square) %>
 <% else %>
   <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>

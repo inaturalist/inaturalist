@@ -447,7 +447,7 @@
     <% end %>
   </span>
   <div id="meta" class="right description">
-    <% if @taxon.source_url %>
+    <% if @taxon.source && @taxon.source_url %>
       Source: <%= link_to @taxon.source.title, @taxon.source_url %>
     <% elsif @taxon.source %>
       Source: <%= @taxon.source.title %>
