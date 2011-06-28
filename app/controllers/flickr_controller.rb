@@ -1,5 +1,5 @@
 class FlickrController < ApplicationController
-  before_filter :login_required  
+  before_filter :login_required , :except => "authorize"
   before_filter :ensure_has_no_flickr_identity, :only => ['link']
   before_filter :return_here, :only => [:index, :show, :by_login, :options]
   
@@ -220,7 +220,7 @@ class FlickrController < ApplicationController
         @flickr_url = @flickr.auth.url_webapp(:write)
       else
         @person = get_net_flickr.people.find_by_username(@user.flickr_identity.flickr_username)
-        @photos = @person.photos({'per_page' => 5})
+        @photos = @person.photos({'per_page' => 6})
       end
     rescue Net::Flickr::APIError => e
       logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
