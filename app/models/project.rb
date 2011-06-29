@@ -56,6 +56,7 @@ class Project < ActiveRecord::Base
   
   def curated_by?(user)
     return false if user.blank?
+    return true if user.is_admin?
     project_users.curators.exists?(:user_id => user.id)
   end
   
