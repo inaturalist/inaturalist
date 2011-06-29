@@ -957,46 +957,7 @@ class ObservationsController < ApplicationController
         render :action => "index"
       end
       format.csv do
-        columns = Observation.column_names
-        columns += [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login].map(&:to_s)
-        except = [:map_scale, :timeframe, :iconic_taxon_id, :delta].map(&:to_s)
-        unless @project.curated_by?(current_user)
-          except += %w(private_latitude private_longitude private_positional_accuracy)
-        end
-        columns -= except
-        headers = columns.map{|c| Observation.human_attribute_name(c)}
-        project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login)
-        columns += project_columns
-        headers += project_columns.map{|c| c.to_s.humanize}
-        text = FasterCSV.generate do |csv|
-          csv << headers
-          @project_observations.each do |project_observation|
-            observation = project_observation.observation
-            csv << columns.map do |column|
-              case column
-              when "curator_ident_taxon_id"
-                project_observation.curator_identification.try(:taxon_id)
-              when "curator_ident_taxon_name"
-                if project_observation.curator_identification
-                  project_observation.curator_identification.taxon.name
-                else
-                  nil
-                end
-              when "curator_ident_user_id"
-                project_observation.curator_identification.try(:user_id)
-              when "curator_ident_user_login"
-                if project_observation.curator_identification
-                  project_observation.curator_identification.user.login
-                else
-                  nil
-                end
-              else
-                observation.send(column)
-              end
-            end
-          end
-        end
-        render :text => text
+        render :text => ProjectObservation.to_csv(@project_observations, :user => current_user)
       end
       format.kml do
         render_observations_to_kml(
@@ -1017,6 +978,27 @@ class ObservationsController < ApplicationController
         end
       end
       format.mobile
+    end
+  end
+  
+  def project_all
+    @project = Project.find(params[:id]) rescue nil
+    unless @project
+      flash[:error] = "That project doesn't exist."
+      redirect_to request.env["HTTP_REFERER"] || projects_path
+      return
+    end
+    
+    unless @project.curated_by?(current_user)
+      flash[:error] = "Only project curators can do that."
+      redirect_to request.env["HTTP_REFERER"] || @project
+      return
+    end
+    
+    respond_to do |format|
+      format.csv do
+        render :text => ProjectObservation.to_csv(@project.project_observations.all, :user => current_user)
+      end
     end
   end
 

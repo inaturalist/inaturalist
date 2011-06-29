@@ -37,6 +37,9 @@
 <div id="pagination" class="last column span-24">
   <div id="feeds" class="clear right small ui description feeds">
     <%= render :partial => 'feed_links' %>
+    <% if @project.curated_by?(current_user) -%>
+      <%= link_to("All CSV",  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
+    <% end -%>
   </div>
   <%= will_paginate @observations %>
 </div>

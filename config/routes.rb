@@ -106,6 +106,7 @@ ActionController::Routing::Routes.draw do |map|
       :requirements => { :zoom => /\d+/, :x => /\d+/, :y => /\d+/ },
       :conditions => {:method => :get}
     o.project_observations 'observations/project/:id.:format', :action => "project"
+    o.all_project_observations 'observations/project/:id.all.:format', :action => "project_all"
   end
   
   map.with_options :controller => "projects" do |p|

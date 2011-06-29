@@ -564,8 +564,8 @@
 .observationform select{width:auto;}
 .observationform .observed_on_string{margin-bottom:0.2em;}
 .observationform .time_zone{color:#888;}
-a#kmllink{background-image:url(/images/google_earth.png);}
-a#csvlink{background-image:url(/images/silk/table.png);}
+a.kmllink{background-image:url(/images/google_earth.png);}
+a.csvlink{background-image:url(/images/silk/table.png);}
 #batchformcol{margin-bottom:1em;}
 
 

@@ -153,9 +153,12 @@
     <li>
       <%= link_to "<span class='lead'>&raquo;</span> Observations / Map", project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
-        <%= link_to("Atom", project_observations_path(:format => 'atom'), :id => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to("KML",  project_observations_path(:format => 'kml'), :id => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to("CSV",  project_observations_path(:format => 'csv'), :id => 'csvlink', :rel => "nofollow") %>
+        <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
+        <%= link_to("CSV",  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>  
+        <% if @project.curated_by?(current_user) -%>
+          / <%= link_to("All CSV",  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
+        <% end -%>
       </div>
     </li>
     <li>
