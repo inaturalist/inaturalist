@@ -1,5 +1,6 @@
 class ProviderAuthorizationsController < ApplicationController
   before_filter :login_required, :only => [:destroy]
+  protect_from_forgery :except => :create
   
   # This is kind of a dumb placeholder. OA calls through to the app before
   # doing its magic, so if this isn't here we get nonsense in the logs
@@ -34,7 +35,7 @@ class ProviderAuthorizationsController < ApplicationController
       # (maybe cause our version of omniauth was pre- fb graph api?)
       auth_info["user_info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
     end
-    logger.debug("auth_info: " + auth_info.inspect)
+    Rails.logger.debug "[DEBUG] auth_info: #{auth_info.inspect}"
     existing_authorization = ProviderAuthorization.find_from_omniauth(auth_info)
     if existing_authorization.nil?  # first time logging in with this provider + provider uid combo
       email = (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"])
@@ -49,12 +50,16 @@ class ProviderAuthorizationsController < ApplicationController
         flash[:allow_edit_after_auth] = true
         redirect_to edit_after_auth_url and return
       end
+      landing_path = edit_user_path(current_user)
     else # existing provider + inat user, so log him in
       self.current_user = existing_authorization.user
       handle_remember_cookie! true # set 'remember me' to true
       flash[:notice] = "Welcome back!"
+      landing_path = home_path
     end
-    redirect_back_or_default(edit_user_path(current_user)) and return
+    landing_path = session[:return_to] if !session[:return_to].blank? && session[:return_to] != login_url
+    redirect_to landing_path
+    return
   end
 
 end

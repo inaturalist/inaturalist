@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :species_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map]
   before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new, :join, :by_login]
+  before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
   
@@ -190,7 +190,12 @@ class ProjectsController < ApplicationController
   end
   
   def join
-    return unless @project_user.blank? && request.post?
+    if @project_user
+      flash[:notice] = "You're already a member of this project!"
+      redirect_to @project
+      return
+    end
+    return unless request.post?
     @project_user = @project.project_users.create(:user => current_user)
     if @project_user.valid?
       flash[:notice] = "Welcome to #{@project.title}"
