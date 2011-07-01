@@ -100,7 +100,7 @@ function buildHelpTips() {
         target: 'rightMiddle',
         tooltip: 'leftTop'
       }
-    },
+    }
   })
   options.style.tip = 'leftTop'
   $('.helptip').each(function() {

@@ -91,20 +91,20 @@
   
   <ul id="usernav" class="navtabs">
     <% unless logged_in? %>
-    <li><%= link_to "Sign In", login_url %></li>
+    <li><%= link_to "Sign in", login_url(:return_to => request.request_uri) %></li>
     <li><span class="inter">or</span></li>
-    <li><%= link_to "Sign Up!", signup_url %></li>
+    <li><%= link_to "Sign up!", signup_url(:return_to => request.request_uri) %></li>
     <% else %>
     <li style="margin-right: 10px">
       <span class="inter">
         Welcome, 
         <%= link_to current_user.login, user_path(:id => current_user.login) %>!
-        (<%= link_to "Sign Out", logout_path %>)
+        (<%= link_to "Sign out", logout_path %>)
       </span>
     </li>
     <li class="subnavwrapper">
       <div class="clear subnavtab">
-        <%= link_to "Your Stuff", home_path %>
+        <%= link_to "Dashboard", home_path %>
         <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>

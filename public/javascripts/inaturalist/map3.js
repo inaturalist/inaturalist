@@ -158,10 +158,10 @@ google.maps.Map.prototype.removeObservations = function(observations) {
 };
 
 google.maps.Map.prototype.getObservationBounds = function() {
-  if (typeof(this.observationBounds) == 'undefined') {
-    this.observationBounds = new google.maps.LatLngBounds();
-  };
-  return this.observationBounds;
+  if (!this.observationBounds) {
+    this.observationBounds = new google.maps.LatLngBounds()
+  }
+  return this.observationBounds
 };
 
 google.maps.Map.prototype.setObservationBounds = function(bounds) {
