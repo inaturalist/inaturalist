@@ -307,6 +307,9 @@ class UsersController < ApplicationController
       @user.preferences.update_attributes(params[:user][:preferences])
     end
     
+    # Nix the icon_url if an icon file was provided
+    @user.icon_url = nil if params[:user].try(:[], :icon)
+    
     if @user.update_attributes(params[:user])
       flash[:notice] = 'Your profile was successfully updated!'
       redirect_back_or_default(person_by_login_path(:login => current_user.login))
