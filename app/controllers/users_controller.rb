@@ -324,8 +324,9 @@ class UsersController < ApplicationController
   end
   
   def curation
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by_id(params[:id].to_i)
     @user ||= User.find_by_login(params[:id])
+    @user ||= User.find_by_email(params[:id])
     if @user.blank? && !params[:id].blank?
       flash[:error] = "Couldn't find a user matching #{params[:id]}"
     end
