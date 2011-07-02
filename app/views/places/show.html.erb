@@ -210,8 +210,8 @@
             icon: iNaturalist.Map.createPlaceIcon()
           })
         );
-        <% if @place.place_geometry %>
-          <% for geom in @place.place_geometry.geom %>
+        <% if @place_geometry %>
+          <% for geom in @place_geometry.geom %>
             map.addOverlay(<%= Ym4r::GmPlugin::GPolygonEncoded.from_georuby(geom, "#FF1493", 2 ,0.6,"#FF1493",0.2).to_javascript %>);
           <% end %>
         <% end %>

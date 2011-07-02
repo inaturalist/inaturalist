@@ -31,7 +31,13 @@ class PlacesController < ApplicationController
       lat = @geoip_result[:latitude]
       lon = @geoip_result[:longitude]
       @q = "#{@geoip_result[:city]}, #{@geoip_result[:state_code]}"
-      @place = Place.first(:conditions => ["display_name LIKE ?", "#{@q}%"])
+      begin
+        @place = Place.first(:conditions => ["display_name LIKE ?", "#{@q}%"])
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        q = Iconv.iconv('UTF8', 'LATIN1', @q)
+        @place = Place.first(:conditions => ["display_name LIKE ?", "#{q}%"])
+      end
       latrads = lat.to_f * (Math::PI / 180)
       lonrads = lon.to_f * (Math::PI / 180)
       @places = Place.search(options.merge(:geo => [latrads,lonrads], 
@@ -115,7 +121,8 @@ class PlacesController < ApplicationController
       :order => "id DESC",
       :conditions => "photos.id IS NOT NULL"
     )
-    @taxa = Taxon.all(:conditions => ["id IN (?)", @listed_taxa.map(&:taxon_id)])
+    @taxa = Taxon.all(:conditions => ["id IN (?)", @listed_taxa.map(&:taxon_id)],
+      :include => [:photos, :taxon_names])
     
 
     # Load tips HTML
@@ -128,6 +135,13 @@ class PlacesController < ApplicationController
           :include_image_attribution => true
       })
       taxon
+    end
+    
+    begin
+      @place_geometry = @place.place_geometry
+    rescue ActiveRecord::StatementInvalid => e
+      Rails.logger.error "[ERROR #{Time.now}] Broken geometry for place #{@place.id}: #{e}"
+      HoptoadNotifier.notify(e, :request => request, :session => session)
     end
 
     @children = @place.children.paginate(:page => 1, :order => 'name')

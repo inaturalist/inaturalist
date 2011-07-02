@@ -174,7 +174,8 @@ class Observation < ActiveRecord::Base
   # inneficient radius in kilometers
   # See http://www.movable-type.co.uk/scripts/latlong-db.html for the math
   named_scope :near_point, Proc.new { |lat, lng, radius|
-    radius ||= 10.0
+    radius = radius.to_f
+    raidus = 10.0 if radius == 0
     planetary_radius = 6371 # km
     latrads = lat.to_f / DEGREES_PER_RADIAN
     lngrads = lng.to_f / DEGREES_PER_RADIAN
@@ -237,26 +238,30 @@ class Observation < ActiveRecord::Base
   }
   
   # Order observations by date and time observed
-  named_scope :latest, :order => "observed_on DESC, time_observed_at DESC"
+  named_scope :latest, :order => "observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST"
   named_scope :recently_added, :order => "observations.id DESC"
   
   # TODO: Make this work for any SQL order statement, including multiple cols
   named_scope :order_by, lambda { |order|
-    order_by, order = order.split == [order] ? [order, 'ASC'] : order.split
+    pieces = order.split
+    order_by = pieces[0]
+    order = pieces[1] || 'ASC'
+    extra = pieces[2..-1].join(' ')
+    extra = "NULLS LAST" if extra.blank?
     options = {}
     case order_by
     when 'observed_on'
-      options[:order] = "observed_on #{order}, " + 
-                        "time_observed_at #{order}"
+      options[:order] = "observed_on #{order} #{extra}, " + 
+                        "time_observed_at #{order} #{extra}"
     when 'user'
       options[:include] = [:user]
-      options[:order] = "users.login #{order}"
+      options[:order] = "users.login #{order} #{extra}"
     when 'place'
-      options[:order] = "place_guess #{order}"
+      options[:order] = "place_guess #{order} #{extra}"
     when 'created_at'
-      options[:order] = "observations.created_at #{order}"
+      options[:order] = "observations.created_at #{order} #{extra}"
     else
-      options[:order] = "#{order_by} #{order}"
+      options[:order] = "#{order_by} #{order} #{extra}"
     end
     options
   }
