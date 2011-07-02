@@ -56,6 +56,7 @@ class TaxaController < ApplicationController
         
         flash[:notice] = @status unless @status.blank?
         if params[:q]
+          find_taxa
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
