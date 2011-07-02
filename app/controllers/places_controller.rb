@@ -149,6 +149,11 @@ class PlacesController < ApplicationController
       :include => [:user, :taxon, :photos, :iconic_taxon],
       :limit => 30
     )
+    if @observations.blank? && @place.bounding_box
+      @observations = Observation.in_bounding_box(*@place.bounding_box).
+        order_by("observed_on DESC NULLS LAST").
+        all(:include => [:user, :taxon, :photos, :iconic_taxon], :limit => 30)
+    end
 
     # Get directions info
     ip = request.remote_ip

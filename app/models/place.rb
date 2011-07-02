@@ -456,6 +456,11 @@ class Place < ActiveRecord::Base
     self
   end
   
+  def bounding_box
+    box = [swlat, swlng, nelat, nelng].compact
+    box.blank? ? nil : box
+  end
+  
   def contains_lat_lng?(lat, lng)
     bbox_contains_lat_lng?(lat, lng) # TODO implement true containment
   end
