@@ -209,7 +209,6 @@ class Observation < ActiveRecord::Base
   named_scope :has_id_please, :conditions => ["id_please IS TRUE"]
   named_scope :has_photos, 
               :include => :photos,
-              :select => "DISTINCT ON(observations.id)",
               :conditions => ['photos.id IS NOT NULL']
   
   
