@@ -896,17 +896,35 @@ class TaxaController < ApplicationController
     name, format = params[:action].split('_').join(' ').split('.')
     request.format = format unless format.blank?
     
-    # Try to look by its current scientifc name
-    taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
+    # Try to look by its current unique name
+    begin
+      taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
+    rescue ActiveRecord::StatementInvalid => e
+      raise e unless e.message =~ /invalid byte sequence/
+      name = Iconv.iconv('UTF8', 'LATIN1', name)
+      taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
+    end
     @taxon ||= taxa.first if taxa.size == 1
     
     # Try to look by its current scientifc name
-    taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon
+    begin
+      taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon
+    rescue ActiveRecord::StatementInvalid => e
+      raise e unless e.message =~ /invalid byte sequence/
+      name = Iconv.iconv('UTF8', 'LATIN1', name)
+      taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2)
+    end
     @taxon ||= taxa.first if taxa.size == 1
     
     # Try to find a unique TaxonName
     unless @taxon
-      taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)
+      begin
+        taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)
+      end
       if taxon_names.size == 1
         @taxon = taxon_names.first.taxon
         
