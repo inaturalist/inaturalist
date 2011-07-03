@@ -66,8 +66,11 @@
   }
   
   $.fn.placeAutocomplete.formattedAutocompletePlace = function(placeJSON) {
-    return placeJSON.display_name + ' <span class="description">' + 
-      placeJSON.place_type_name + '</span>'
+    var html = placeJSON.display_name
+    if (placeJSON.place_type_name) {
+      html += ' <span class="description">' + placeJSON.place_type_name + '</span>'
+    }
+    return html
   }
   
   $.fn.placeAutocomplete.choosePlace = function(input, placeJSON, options) {
