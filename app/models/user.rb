@@ -173,8 +173,15 @@ class User < ActiveRecord::Base
     })
     if u
       u.skip_email_validation = true
-      u.register! 
-      u.activate!
+      begin
+        u.register! 
+        u.activate!
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /unique constraint/
+        u.login = User.suggest_login(u.login)
+        u.register! 
+        u.activate!
+      end
       u.add_provider_auth(auth_info)
       # TODO: do something useful with location?  -> time zone, perhaps
     end
