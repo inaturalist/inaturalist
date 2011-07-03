@@ -246,7 +246,7 @@ class Observation < ActiveRecord::Base
     pieces = order.split
     order_by = pieces[0]
     order = pieces[1] || 'ASC'
-    extra = pieces[2..-1].join(' ')
+    extra = [pieces[2..-1]].flatten.join(' ')
     extra = "NULLS LAST" if extra.blank?
     options = {}
     case order_by
@@ -305,7 +305,7 @@ class Observation < ActiveRecord::Base
   }
   
   named_scope :in_month, lambda {|month|
-    {:conditions => ["MONTH(observed_on) = ?", month]}
+    {:conditions => ["EXTRACT(MONTH FROM observed_on) = ?", month]}
   }
   
   named_scope :in_projects, lambda { |projects|

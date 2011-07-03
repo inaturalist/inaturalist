@@ -358,7 +358,7 @@ class PlacesController < ApplicationController
       @counts = scope.count(:group => :taxon_id)
       taxon_ids = @counts.keys
     else
-      @counts = scope.count(:group => "CONCAT(taxon_id, '-', MONTH(observed_on))")
+      @counts = scope.count(:group => "taxon_id || '-' || EXTRACT(MONTH FROM observed_on)")
       @counts.delete(nil)
       taxon_ids = []
       @month_counts = @counts.inject({}) do |memo, pair|
