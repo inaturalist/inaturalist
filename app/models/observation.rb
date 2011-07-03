@@ -230,7 +230,7 @@ class Observation < ActiveRecord::Base
   # Find observations by a taxon object.  Querying on taxa columns forces 
   # massive joins, it's a bit sluggish
   named_scope :of, lambda { |taxon|
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a? Taxon
+    taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return {:conditions => "1 = 2"} unless taxon
     {
       :include => :taxon,
