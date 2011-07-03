@@ -171,20 +171,34 @@ class Observation < ActiveRecord::Base
     ]
   }}
   
-  # inneficient radius in kilometers
-  # See http://www.movable-type.co.uk/scripts/latlong-db.html for the math
+  # possibly radius in kilometers
   named_scope :near_point, Proc.new { |lat, lng, radius|
+    lat = lat.to_f
+    lng = lng.to_f
     radius = radius.to_f
-    raidus = 10.0 if radius == 0
+    radius = 10.0 if radius == 0
     planetary_radius = 6371 # km
-    latrads = lat.to_f / DEGREES_PER_RADIAN
-    lngrads = lng.to_f / DEGREES_PER_RADIAN
-
-    {:conditions => [
-      "#{planetary_radius} * acos(sin(?) * sin(latitude/57.2958) + "  + 
-      'cos(?) * cos(latitude/57.2958) *  cos(longitude/57.2958 - ?)) < ?',
-      latrads, latrads, lngrads, radius
-    ]}    
+    radius_degrees = radius / (2*Math::PI*planetary_radius) * 360.0
+    
+    {:conditions => ["ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees]}
+    
+    # # The following attempts to utilize the spatial index by restricting to a 
+    # # bounding box.  It doesn't seem to be a speed improvement given the 
+    # # current number of obs, but maybe later...  Note that it's messed up 
+    # # around the poles
+    # box_xmin = lng - radius_degrees
+    # box_ymin = lat - radius_degrees
+    # box_xmax = lng + radius_degrees
+    # box_ymax = lat + radius_degrees
+    # box_xmin = 180 - (box_xmin * -1 - 180) if box_xmin < -180
+    # box_ymin = -90 if box_ymin < -90
+    # box_xmax = -180 + box_max - 180 if box_xmax > 180
+    # box_ymax = 90 if box_ymin > 90
+    # 
+    # {:conditions => [
+    #   "geom && 'BOX3D(? ?, ? ?)'::box3d AND ST_Distance(ST_Point(?,?), geom) <= ?", 
+    #   box_xmin, box_ymin, box_xmax, box_ymax,
+    #   lng.to_f, lat.to_f, radius_degrees]}
   }
   
   # Has_property scopes
