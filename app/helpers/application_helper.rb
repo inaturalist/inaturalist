@@ -54,15 +54,12 @@ module ApplicationHelper
   end
   
   def friend_button(user, potential_friend, html_options = {})
-    options = {
+    url_options = {
       :controller => 'users',
       :action => 'update',
-      :id => current_user.id
+      :id => current_user.id,
+      :format => "json"
     }
-    html_options = {
-      :class => 'link',
-      :method => :put
-    }.merge(html_options)
     
     already_friends = if user.friends.loaded?
       user.friends.include?(potential_friend)
@@ -70,13 +67,26 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    if already_friends
-      link_to "Stop following #{potential_friend.login}", 
-        options.merge(:remove_friend_id => potential_friend.id), html_options
-    elsif user != potential_friend
-      link_to "Follow #{potential_friend.login}", 
-        options.merge(:friend_id => potential_friend.id), html_options
-    end
+    unfriend_link = link_to_remote "Stop following #{potential_friend.login}", 
+      :url => url_options.merge(:remove_friend_id => potential_friend.id), 
+      :datatype => "json",
+      :method => :put,
+      :loading => 
+        "$('##{dom_id(potential_friend, 'unfriend_link')}').fadeOut(function() { $('##{dom_id(potential_friend, 'friend_link')}').fadeIn() });",
+      :html => html_options.merge(
+        :id => dom_id(potential_friend, 'unfriend_link'),
+        :style => already_friends ? "" : "display:none")
+    friend_link = link_to_remote "Follow #{potential_friend.login}", 
+      :url => url_options.merge(:friend_id => potential_friend.id), 
+      :method => :put,
+      :datatype => "json",
+      :loading => 
+        "$('##{dom_id(potential_friend, 'friend_link')}').fadeOut(function() { $('##{dom_id(potential_friend, 'unfriend_link')}').fadeIn() });",
+      :html => html_options.merge(
+        :id => dom_id(potential_friend, 'friend_link'),
+        :style => (!already_friends && user != potential_friend) ? "" : "display:none")
+    
+    content_tag :span, friend_link + unfriend_link, :class => "friend_button"
   end
   
   def char_wrap(text, len)
@@ -224,6 +234,17 @@ module ApplicationHelper
     style = "vertical-align:middle; #{options[:style]}"
     url = "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
     image_tag(url, options.merge(:style => style))
+  end
+  
+  def image_and_content(image, options = {}, &block)
+    image_size = options.delete(:image_size) || 48
+    content = capture(&block)
+    image_wrapper = content_tag(:div, image, :class => "image", :style => "width: #{image_size}px; position: absolute; left: 0; top: 0;")
+    options[:class] = "image_and_content #{options[:class]}".strip
+    if image_size
+      options[:style] = "#{options[:style]}; padding-left: #{image_size.to_i + 10}px; position: relative;"
+    end
+    concat content_tag(:div, image_wrapper + content, options)
   end
   
   def color_pluralize(num, singular)

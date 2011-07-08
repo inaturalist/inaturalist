@@ -262,24 +262,43 @@ class UsersController < ApplicationController
     
     # Add a friend
     unless params[:friend_id].blank?
-      if (friend_user = User.find_by_id(params[:friend_id])) && !current_user.friends_with?(friend_user)
-        flash[:notice] = "You are now following #{friend_user.login}."
-        current_user.friends << friend_user
+      error_msg, notice_msg = [nil, nil]
+      friend_user = User.find_by_id(params[:friend_id])
+      if friend_user.blank? || friendship = current_user.friendships.find_by_friend_id(friend_user.id)
+        error_msg = "Either that user doesn't exist or you are already following them."
       else
-        flash[:error] = "Either that user doesn't exist or you are already following them."
+        notice_msg = "You are now following #{friend_user.login}."
+        friendship = current_user.friendships.create(:friend => friend_user)
       end
-      return redirect_back_or_default(person_by_login_path(:login => current_user.login))
+      respond_to do |format|
+        format.html do
+          flash[:error] = error_msg
+          flash[:notice] = notice_msg
+          redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        end
+        format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
+      end
+      return
     end
     
     # Remove a friend
     unless params[:remove_friend_id].blank?
+      error_msg, notice_msg = [nil, nil]
       if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
-        flash[:notice] = "You are no longer following #{friendship.friend.login}."
+        notice_msg = "You are no longer following #{friendship.friend.login}."
         friendship.destroy
       else
-        flash[:error] = "You aren't following that person."
+        error_msg = "You aren't following that person."
       end
-      return redirect_back_or_default(person_by_login_path(:login => current_user.login))
+      respond_to do |format|
+        format.html do
+          flash[:error] = error_msg
+          flash[:notice] = notice_msg
+          redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        end
+        format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
+      end
+      return
     end
     
     # Update passwords
