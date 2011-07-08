@@ -1455,7 +1455,7 @@ class ObservationsController < ApplicationController
   def render_observations_to_csv(options = {})
     except = [:map_scale, :timeframe, :iconic_taxon_id, :delta]
     unless options[:show_private] == true
-      except += [:private_latitude, :private_longitude, :private_positional_accuracy]
+      except += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
     end
     render :text => @observations.to_csv(
       :methods => [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login],

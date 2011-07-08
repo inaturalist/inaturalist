@@ -151,10 +151,10 @@ class Observation < ActiveRecord::Base
   named_scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
     if swlng.to_f > 0 && nelng.to_f < 0
       {:conditions => ['latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)',
-                        swlat, nelat, swlng, nelng]}
+                        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f]}
     else
       {:conditions => ['latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?',
-                        swlat, nelat, swlng, nelng]}
+                        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f]}
     end
   } do
     def distinct_taxon
@@ -425,7 +425,7 @@ class Observation < ActiveRecord::Base
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     if viewer_id != user_id && !options[:force_coordinate_visibility]
       options[:except] ||= []
-      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+      options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
       options[:except].uniq!
       options[:methods] ||= []
       options[:methods] << :coordinates_obscured
@@ -436,7 +436,7 @@ class Observation < ActiveRecord::Base
   
   def to_xml(options = {})
     options[:except] ||= []
-    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy]
+    options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
     super(options)
   end
   
