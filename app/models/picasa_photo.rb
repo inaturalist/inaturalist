@@ -84,7 +84,7 @@ class PicasaPhoto < Photo
     picasa_identity = if options[:user]
       picasa_identity = options[:user].picasa_identity
     elsif native_photo_id.is_a?(String) && matches = native_photo_id.match(/user\/(.+?)\//)
-      picasa_identity = PicasaIdentify.find_by_picasa_user_id(matches[1])
+      picasa_identity = PicasaIdentity.find_by_picasa_user_id(matches[1])
     else
       nil
     end
