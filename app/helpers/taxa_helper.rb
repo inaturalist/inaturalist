@@ -91,6 +91,44 @@ module TaxaHelper
   end
   
   #
+  # URL of this taxon's icon, using the following convention
+  #
+  #   /images/iconic_taxa/[taxon_name]-[color]-[size]px.png
+  #
+  # where :color and :size are values you can pass in as params.  Right now,
+  # it returns a path for the taxon's iconic_taxon, or itself if it IS an
+  # iconic taxon.  If/when we support chosen images for taxa (instead of just
+  # photos tagged with the scientific name), maybe we should use one of them
+  # as the icon for non-iconic taxa...
+  #
+  # Example:
+  #  >> iconic_taxon_image_url(Taxon.find_by_name('Aves'))
+  #  => "/images/iconic_taxa/aves.png"
+  #  >> iconic_taxon_image_url(Taxon.find_by_name('Aves'), :color => 'ffaa00', :size => 20)
+  #  => "/images/iconic_taxa/aves-ffaa00-20px.png"
+  # 
+  def iconic_taxon_image_url(taxon, params = {})
+    params[:size] = nil unless params[:size].is_a? Fixnum
+    params[:size] ||= 32
+    iconic_taxon = if taxon
+      taxon.is_iconic? ? taxon : Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
+    else
+      nil
+    end
+    path = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
+    path += '/images/iconic_taxa/'
+    if iconic_taxon
+      path += iconic_taxon.name.downcase
+    else
+      path += 'unknown'
+    end
+    path += '-' + params[:color] if params[:color]
+    path += "-%spx" % params[:size] if params[:size]
+    path += '.png'
+    image_path(path)
+  end
+  
+  #
   # Return a default name string for this taxon, English common if available.
   #
   def default_taxon_name(taxon, options = {})
