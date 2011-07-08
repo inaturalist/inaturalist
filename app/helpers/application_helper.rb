@@ -236,14 +236,19 @@ module ApplicationHelper
     image_tag(url, options.merge(:style => style))
   end
   
+  def observation_image(observation, options = {})
+    style = "vertical-align:middle; #{options[:style]}"
+    url = observation_image_url(observation, options)
+    url ||= iconic_taxon_image_url(observation.iconic_taxon)
+    image_tag(url, options.merge(:style => style))
+  end
+  
   def image_and_content(image, options = {}, &block)
     image_size = options.delete(:image_size) || 48
     content = capture(&block)
     image_wrapper = content_tag(:div, image, :class => "image", :style => "width: #{image_size}px; position: absolute; left: 0; top: 0;")
     options[:class] = "image_and_content #{options[:class]}".strip
-    if image_size
-      options[:style] = "#{options[:style]}; padding-left: #{image_size.to_i + 10}px; position: relative;"
-    end
+    options[:style] = "#{options[:style]}; padding-left: #{image_size.to_i + 10}px; position: relative; min-height: #{image_size}px;"
     concat content_tag(:div, image_wrapper + content, options)
   end
   
@@ -340,6 +345,44 @@ module ApplicationHelper
     else
       nil
     end
+  end
+  
+  #
+  # URL of this taxon's icon, using the following convention
+  #
+  #   /images/iconic_taxa/[taxon_name]-[color]-[size]px.png
+  #
+  # where :color and :size are values you can pass in as params.  Right now,
+  # it returns a path for the taxon's iconic_taxon, or itself if it IS an
+  # iconic taxon.  If/when we support chosen images for taxa (instead of just
+  # photos tagged with the scientific name), maybe we should use one of them
+  # as the icon for non-iconic taxa...
+  #
+  # Example:
+  #  >> iconic_taxon_image_url(Taxon.find_by_name('Aves'))
+  #  => "/images/iconic_taxa/aves.png"
+  #  >> iconic_taxon_image_url(Taxon.find_by_name('Aves'), :color => 'ffaa00', :size => 20)
+  #  => "/images/iconic_taxa/aves-ffaa00-20px.png"
+  # 
+  def iconic_taxon_image_url(taxon, params = {})
+    params[:size] = nil unless params[:size].is_a? Fixnum
+    params[:size] ||= 32
+    iconic_taxon = if taxon
+      taxon.is_iconic? ? taxon : Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
+    else
+      nil
+    end
+    path = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
+    path += '/images/iconic_taxa/'
+    if iconic_taxon
+      path += iconic_taxon.name.downcase
+    else
+      path += 'unknown'
+    end
+    path += '-' + params[:color] if params[:color]
+    path += "-%spx" % params[:size] if params[:size]
+    path += '.png'
+    image_path(path)
   end
   
 end

@@ -756,6 +756,11 @@ class ObservationsController < ApplicationController
       format.html do
         if logged_in? && @selected_user.id == current_user.id
           @project_users = current_user.project_users.all(:include => :project)
+          if @proj_obs_errors = Rails.cache.read("proj_obs_errors_#{current_user.id}") 
+            @project = Project.find_by_id(@proj_obs_errors[:project_id])
+            @proj_obs_errors_obs = current_user.observations.all(:conditions => ["id IN (?)", @proj_obs_errors[:errors].keys], :include => [:photos, :taxon])
+            Rails.cache.delete("proj_obs_errors_#{current_user.id}")
+          end
         end
       end
       

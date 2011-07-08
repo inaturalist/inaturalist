@@ -269,11 +269,11 @@ class ProjectsController < ApplicationController
       if project_observation.valid?
         @project_observations << project_observation
       else
-        @errors[observation.id] = project_observation.errors
+        @errors[observation.id] = project_observation.errors.full_messages
       end
     end
     
-    @unique_errors = @errors.values.map {|errors| errors.full_messages}.uniq.to_sentence
+    @unique_errors = @errors.values.uniq.to_sentence
     
     if @observations.empty?
       flash[:error] = "You must specify at least one observation to add the project \"#{@project.title}\""
@@ -287,7 +287,10 @@ class ProjectsController < ApplicationController
       end
     end
     
-    redirect_to :back
+    # Cache the errors in case the next action wants to show the details
+    Rails.cache.write("proj_obs_errors_#{current_user.id}", {:project_id => @project.id, :errors => @errors})
+    
+    redirect_back_or_default(observations_by_login_path(current_user.login))
   end
   
   def remove_batch

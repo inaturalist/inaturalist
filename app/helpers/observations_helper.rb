@@ -46,4 +46,5 @@ module ObservationsHelper
       content_tag(:span, "(Somewhere...)")
     end
   end
+  
 end

@@ -251,6 +251,24 @@ Observations by <%= h @login %>
 <link rel="alternate" type="application/atom+xml" title="Recent Observations by <%= h @login %> (Atom)" href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
 <% end %>
 
+<% unless @proj_obs_errors_obs.blank? -%>
+  <div class="error">
+    <h3>The following observations could not be added to <%= link_to @project.title, @project %></h3>
+    <ul>
+      <% for o in @proj_obs_errors_obs %>
+        <li class="clear stacked">
+          <% image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
+            <%= link_to o.to_plain_s(:user => false), o %>
+            <div>
+              <%= @proj_obs_errors[:errors][o.id].join("<br/>") %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end -%>
+
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if @user && @user.login == @login -%>
