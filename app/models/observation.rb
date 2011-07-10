@@ -48,6 +48,7 @@ class Observation < ActiveRecord::Base
   has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
   has_many :projects, :through => :project_observations
+  has_many :quality_metrics, :dependent => :destroy
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -752,6 +753,37 @@ class Observation < ActiveRecord::Base
     self.flags.select { |f| not f.resolved? }.size > 0
   end
   
+  def georeferenced?
+    geom?
+  end
+  
+  def quality_metric_score(metric)
+    quality_metrics.all unless quality_metrics.loaded?
+    metrics = quality_metrics.select{|qm| qm.metric == metric}
+    return nil if metrics.blank?
+    metrics.select{|qm| qm.agree?}.size.to_f / metrics.size
+  end
+  
+  def community_supported_id?
+    num_identification_agreements.to_i > 1 && num_identification_agreements > num_identification_disagreements
+  end
+  
+  def quality_metrics_pass?
+    QualityMetric::METRICS.each do |metric|
+      score = quality_metric_score(metric)
+      return false if score && score < 0.5
+    end
+    true
+  end
+  
+  def quality_grade
+    if georeferenced? && community_supported_id? && quality_metrics_pass?
+      "research"
+    else
+      "casual"
+    end
+  end
+  
   def coordinates_obscured?
     !private_latitude.blank? || !private_longitude.blank?
   end
@@ -962,10 +994,10 @@ class Observation < ActiveRecord::Base
   end
   
   def set_geom_from_latlon
-    self.geom = if longitude.blank? || latitude.blank?
-      nil
+    if longitude.blank? || latitude.blank?
+      self.geom = nil
     elsif longitude_changed? || latitude_changed?
-      Point.from_x_y(longitude, latitude)
+      self.geom = Point.from_x_y(longitude, latitude)
     end
     true
   end

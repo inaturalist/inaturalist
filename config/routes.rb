@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   simplified_login_regex = /\w[^\.,\/]+/
   
   map.root :controller => 'welcome', :action => 'index'
@@ -108,6 +109,7 @@ ActionController::Routing::Routes.draw do |map|
     o.project_observations 'observations/project/:id.:format', :action => "project"
     o.all_project_observations 'observations/project/:id.all.:format', :action => "project_all"
   end
+  map.observation_quality 'observations/:id/quality/:metric', :controller => "quality_metrics", :action => "vote"
   
   map.with_options :controller => "projects" do |p|
     p.join_project "projects/:id/join", :action => "join"

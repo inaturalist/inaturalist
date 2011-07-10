@@ -22,7 +22,8 @@ h3{line-height:1.3;}
 em{background:none;}
 img,
 p img{margin:0;float:none;}
-.small{margin-bottom:0;}
+tfoot, tfoot td { font-style: normal; font-weight: bold; }
+.small{margin-bottom:0; line-height: 1.4;}
 
 /* Container Types */
 .wide.container {
@@ -615,63 +616,21 @@ ul.leafylist li li:first-child {
 
 
 /* Comments */
-#new_comment #comment_body {
-  width: 100%;
-  height: 150px;
-}
-
-.comment {
-  padding: 1em;
-}
-
-#new-comment {
-  position: relative;
-}
-
-#new-comment textarea {
-  margin-top: 0;
-}
-
-#new-comment .meta {
-  position: absolute;
-  left: 0;
-}
-
-.comment .meta {
-  float: left;
-  width: 110px;
-  margin-right: 10px;
-}
-
-.comment .body {
-  padding-left: 120px;
-}
-
-.comment.preview .body {
-  padding-left: 0;
-}
-
-.comment .body ul {
-  font-family: Georgia, serif;
-  font-size: 125%;
-}
-
-.comment .body img {
-  max-width: 100%;
-  height: auto;
-}
-
-.comment .comment_actions {
-  font-size: 90%;
-}
-
-#pageheader #tools {
-  margin-top: 0.5em;
-}
-
-.count {
-  color: #74AC00;
-}
+#new_comment #comment_body{width:100%;height:150px;}
+.comment{padding:1em;}
+#new-comment{position:relative;}
+#new-comment textarea{margin-top:0;}
+#new-comment .meta{position:absolute;left:0;}
+.comment .meta{float:left;width:110px;margin-right:10px;}
+.comment .body{padding-left:120px;}
+.comment.preview .body{padding-left:0;}
+.comment .body ul{font-family:Georgia,serif;font-size:125%;}
+.comment .body img{max-width:100%;height:auto;}
+.comment .comment_actions{font-size:90%;}
+#pageheader #tools{margin-top:0.5em;}
+.count { color: #74AC00; }
+.good  { color: #74AC00; }
+.bad  { color: deeppink; }
 
 .feeds a {
   background: url(/images/silk/feed.png) no-repeat 0 50%;
@@ -950,3 +909,5 @@ form.inline .label {
 .providerlink.google { background-image: url(/images/external/google_favicon.png); }
 .providerlink.yahoo { background-image: url(/images/external/yahoo_favicon.png); }
 .providerlink.flickr { background-image: url(/images/external/flickr_favicon.png); }
+
+.quality_assessment .loading.status { padding-left: 16px; }

@@ -75,7 +75,7 @@ QTIP_DEFAULTS = {
 }
 
 $('a[data-loading-click]').live('click', function() {
-  var txt = $.trim($(this).attr('data-loading-click'))
+  var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
   var loading = $('<span></span>').html(txt).addClass('loading').addClass($(this).attr('class'))
   $(this).hide().before(loading)

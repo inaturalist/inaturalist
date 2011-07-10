@@ -78,11 +78,11 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // setup the map if one is needed
-      var observation = <%= @observation.to_json(:viewer => current_user, 
+      window.observation = <%= @observation.to_json(:viewer => current_user, 
         :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
         :include => [:user, :taxon, :iconic_taxon]) %>;
       if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
-        var map = iNaturalist.Map.createMap({
+        window.map = iNaturalist.Map.createMap({
           lat: 40.714, 
           lng: -98.262, 
           zoom: 3, 
@@ -93,6 +93,15 @@
           observation.private_latitude || observation.latitude, 
           observation.private_longitude || observation.longitude);
         map.setCenter(center); 
+        
+        $(window).load(function() {
+          $('#where').width($('#where-and-photos').width() - $("#photos").width())
+          $('#map').width($('#where-and-photos').width() - $("#photos").width())
+          if (map && observation) {
+            google.maps.event.trigger(map, 'resize')
+            map.setCenter(center)
+          }
+        })
       }
       
       $('.identification_form_wrapper input.text').simpleTaxonSelector({
@@ -472,19 +481,120 @@
   
   <%= separator %>
   
-  <div id="fblike" class="stacked">
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-    <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
-  </div>
-  <br/>
+  <% if params[:test] == "true" -%>
+
+    <h3>Data Quality Assessment</h3>
+    <table class="quality_assessment">
+      <tr>
+        <td>Community-supported ID?</td>
+        <td>
+          <% if @observation.community_supported_id? %>
+            <span class="good">yes</span>
+          <% else %>
+            no
+          <% end -%>
+          <div class="small meta">
+            <%= @observation.num_identification_agreements == 1 ? "#{@observation.num_identification_agreements} person agrees" : "#{@observation.num_identification_agreements} people agree" %>
+          </div>
+          <div class="small meta">
+            <%=  @observation.num_identification_disagreements %> disagree<%= 's' if @observation.num_identification_disagreements == 1 %>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Georeferenced?</td>
+        <td>
+          <%= @observation.georeferenced? ? '<span class="good">yes</span>' : 'no' %>
+        </td>
+      </tr>
+
+      <% for metric, question in QualityMetric::METRIC_QUESTIONS  %>
+        <tr>
+          <td><%= question %></td>
+          <td width="100%" style="padding-right: 0">
+            <% if score = @observation.quality_metric_score(metric) -%>
+              <table width="100%">
+                <tr>
+                  <td>
+                    <% if score >= 0.5 -%>
+                      <span class="good">yes</span>
+                    <% else %>
+                      yes
+                    <% end -%>
+                  </td>
+                  <td width="100%">
+                    <% for qm in @quality_metrics.select{|qm| qm.metric == metric && qm.agree?} %>
+                      <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
+                    <% end %>
+                  </td>
+                  <td class="small meta"><%= (score * 100).round %>%</td>
+                </tr>
+                <tr>
+                  <td>
+                    <% if score >= 0.5 -%>
+                      no
+                    <% else %>
+                      <span class="bad">no</span>
+                    <% end -%>
+                  </td>
+                  <td>
+                    <% for qm in @quality_metrics.select{|qm| qm.metric == metric && !qm.agree?} %>
+                      <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
+                    <% end %>
+                  </td>
+                  <td class="small meta"><%= ((1 - score) * 100).round %>%</td>
+                </tr>
+              </table>
+            <% else %>
+              unknown
+            <% end -%>
+
+            <% if logged_in? -%>
+              <div class="small meta">
+                What do you think?
+                <div class="right">
+                  <% if existing = @user_quality_metrics.detect{|qm| qm.metric == metric} -%>
+                    <% if existing.agree? -%>
+                      <strong>
+                        yes
+                        <%= link_to "(x)", observation_quality_path(@observation, metric), :method => :delete, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
+                      </strong>
+                      /
+                      <%= link_to "no", observation_quality_path(@observation, metric, :agree => false), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
+                    <% else %>
+                      <%= link_to "yes", observation_quality_path(@observation, metric), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
+                      /
+                      <strong>
+                        no
+                        <%= link_to "(x)", observation_quality_path(@observation, metric), :method => :delete, "data-loading-click" => '&nbsp;', :class => "inlineblock status" %>
+                      </strong>
+                    <% end -%>
+                  <% else %>
+                    <%= link_to "yes", observation_quality_path(@observation, metric), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %> /
+                    <%= link_to "no", observation_quality_path(@observation, metric, :agree => false), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
+                  <% end -%>
+                </div>
+              </div>
+            <% end -%>
+          </td>
+        </tr>
+      <% end %>
+      <tfoot>
+        <tr>
+          <td>Quality grade</td>
+          <td><%= @observation.quality_grade %></td>
+        </tr>
+      </tfoot>
+    </table>
+  <% end -%>
   
   <% if @observation.flagged? %>
-  <div id="flaggings_heads_up" class="description">
-    HEADS UP: this observation has been flagged.
-    <%= link_to "Add another flag", new_observation_flag_path(@observation),
-                :id => "flag_this" %>
-  </div>
-  
+    <div id="flaggings_heads_up" class="description">
+      HEADS UP: this observation has been flagged.
+      <%= link_to "Add another flag", new_observation_flag_path(@observation),
+                  :id => "flag_this" %>
+    </div>
   <% else %>
     <% if logged_in? %>
     <p class="description ui">
@@ -496,5 +606,12 @@
     </p>
     <% end %>
   <% end %>
+  
+  <%= separator %>
+  
+  <div id="fblike" class="stacked">
+    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+    <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
+  </div>
   
 </div><!-- end right col -->

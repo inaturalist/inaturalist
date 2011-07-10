@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110610193807) do
+ActiveRecord::Schema.define(:version => 20110709200352) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -451,6 +451,18 @@ ActiveRecord::Schema.define(:version => 20110610193807) do
   end
 
   add_index "provider_authorizations", ["user_id"], :name => "index_provider_authorizations_on_user_id"
+
+  create_table "quality_metrics", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "observation_id"
+    t.string   "metric"
+    t.boolean  "agree",          :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "quality_metrics", ["observation_id"], :name => "index_quality_metrics_on_observation_id"
+  add_index "quality_metrics", ["user_id"], :name => "index_quality_metrics_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string "name"

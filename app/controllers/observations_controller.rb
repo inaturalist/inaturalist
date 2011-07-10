@@ -189,6 +189,11 @@ class ObservationsController < ApplicationController
       )
     end
     
+    @quality_metrics = @observation.quality_metrics.all(:include => :user)
+    if logged_in?
+      @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
+    end
+    
     # b/c there were potenially many observations loaded above.  *hides face in shame*
     GC.start if concurrent_observations.size > 10
     
