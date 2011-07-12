@@ -485,7 +485,11 @@ class Observation < ActiveRecord::Base
   # Set all the time fields based on the contents of observed_on_string
   #
   def munge_observed_on_with_chronic
-    return true if observed_on_string.blank?
+    if observed_on_string.blank?
+      self.observed_on = nil
+      self.time_observed_at = nil
+      return true
+    end
     date_string = observed_on_string.strip
     if parsed_time_zone = ActiveSupport::TimeZone::CODES[date_string[/\s([A-Z]{3,})$/, 1]]
       date_string = observed_on_string.sub(/\s([A-Z]{3,})$/, '')
@@ -777,7 +781,7 @@ class Observation < ActiveRecord::Base
   end
   
   def quality_grade
-    if georeferenced? && community_supported_id? && quality_metrics_pass?
+    if georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on?
       "research"
     else
       "casual"

@@ -1,0 +1,80 @@
+<%-
+  metric ||= QualityMetric::METRIC_QUESTIONS.keys.first
+  question ||= QualityMetric::METRIC_QUESTIONS.values.first
+  existing_quality_metrics ||= []
+  user_quality_metric ||= nil
+  observation ||= nil
+  if o = observation
+    score ||= o.quality_metric_score(metric)
+  end
+  score ||= nil
+-%>
+<tr class="<%= metric.parameterize %>_metric quality_metric">
+  <td><%= question %></td>
+  <td width="100%" style="padding-right: 0">
+    <% if score -%>
+      <table width="100%">
+        <tr>
+          <td>
+            <% if score >= 0.5 -%>
+              <span class="good">yes</span>
+            <% else %>
+              yes
+            <% end -%>
+          </td>
+          <td width="100%">
+            <% for qm in existing_quality_metrics.select{|qm| qm.metric == metric && qm.agree?} %>
+              <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
+            <% end %>
+          </td>
+          <td class="small meta"><%= (score * 100).round %>%</td>
+        </tr>
+        <tr>
+          <td>
+            <% if score >= 0.5 -%>
+              no
+            <% else %>
+              <span class="bad">no</span>
+            <% end -%>
+          </td>
+          <td>
+            <% for qm in existing_quality_metrics.select{|qm| qm.metric == metric && !qm.agree?} %>
+              <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
+            <% end %>
+          </td>
+          <td class="small meta percent"><%= ((1 - score) * 100).round %>%</td>
+        </tr>
+      </table>
+    <% else %>
+      unknown
+    <% end -%>
+
+    <% if logged_in? -%>
+      <div class="small meta">
+        What do you think?
+        <div class="right">
+          <% if user_quality_metric -%>
+            <% if user_quality_metric.agree? -%>
+              <strong>
+                yes
+                <%= link_to "(x)", observation_quality_path(o, metric), "data-method" => "delete", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+              </strong>
+              /
+              <%= link_to "no", observation_quality_path(o, metric, :agree => false), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+            <% else %>
+              <%= link_to "yes", observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+              /
+              <strong>
+                no
+                <%= link_to "(x)", observation_quality_path(o, metric), "data-method" => "delete", "data-loading-click" => '&nbsp;', :class => "inlineblock status quality_metric_vote_link" %>
+              </strong>
+            <% end -%>
+          <% else %>
+            <%= link_to "yes", observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
+            <%= link_to "no", observation_quality_path(o, metric, :agree => false), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+          <% end -%>
+        </div>
+      </div>
+    <% end -%>
+  </td>
+</tr>

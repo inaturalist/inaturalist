@@ -1,0 +1,61 @@
+<%- 
+  o = object || @observation
+  quality_metrics = @quality_metrics || []
+  user_quality_metrics = @user_quality_metrics || []
+-%>
+<table class="quality_assessment">
+  <tr>
+    <td>Community-supported ID?</td>
+    <td>
+      <% if o.community_supported_id? %>
+        <span class="good">yes</span>
+      <% else %>
+        no
+      <% end -%>
+      <div class="small meta">
+        <%= o.num_identification_agreements == 1 ? "#{o.num_identification_agreements} person agrees" : "#{o.num_identification_agreements} people agree" %>
+      </div>
+      <div class="small meta">
+        <%=  o.num_identification_disagreements %> disagree<%= 's' if o.num_identification_disagreements == 1 %>
+      </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>Date?</td>
+    <td>
+      <%= o.observed_on? ? '<span class="good">yes</span>' : 'no' %>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>Georeferenced?</td>
+    <td>
+      <%= o.georeferenced? ? '<span class="good">yes</span>' : 'no' %>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>Photo?</td>
+    <td>
+      <%= o.photos.exists? ? '<span class="good">yes</span>' : 'no' %>
+    </td>
+  </tr>
+  
+  <% for metric, question in QualityMetric::METRIC_QUESTIONS  %>
+    <%= render :partial => 'quality_metrics/quality_metric_row', :locals => {
+      :metric => metric, 
+      :question => question, 
+      :existing_quality_metrics => quality_metrics,
+      :user_quality_metric => user_quality_metrics.detect{|qm| qm.metric == metric},
+      :observation => o} %>
+  <% end %>
+  <tfoot>
+    <tr>
+      <td>Quality grade</td>
+      <%- log_timer do %>
+      <td><%= o.quality_grade %></td>
+      <% end -%>
+    </tr>
+  </tfoot>
+</table>

@@ -134,6 +134,24 @@
       });
       
       $('#forms > ul').tabs();
+      
+      $('.quality_assessment .quality_metric_vote_link').live('click', function(e) {
+        e.preventDefault()
+        var tr = $(this).parents('tr.quality_metric')
+        $.ajax({
+          url: $(this).attr('href'),
+          dataType: 'json',
+          type: $(this).attr('data-method'),
+          data: {authenticity_token: $('meta[name=csrf-token]').attr('content')},
+          success: function(data, status) {
+            if (data.error) {
+              alert(data.error)
+            } else if (data.html) {
+              tr.replaceWith(data.html)
+            }
+          }
+        })
+      })
     });
   </script>
 <% end %>
@@ -482,129 +500,24 @@
   <%= separator %>
   
   <% if params[:test] == "true" -%>
-
     <h3>Data Quality Assessment</h3>
-    <table class="quality_assessment">
-      <tr>
-        <td>Community-supported ID?</td>
-        <td>
-          <% if @observation.community_supported_id? %>
-            <span class="good">yes</span>
-          <% else %>
-            no
-          <% end -%>
-          <div class="small meta">
-            <%= @observation.num_identification_agreements == 1 ? "#{@observation.num_identification_agreements} person agrees" : "#{@observation.num_identification_agreements} people agree" %>
-          </div>
-          <div class="small meta">
-            <%=  @observation.num_identification_disagreements %> disagree<%= 's' if @observation.num_identification_disagreements == 1 %>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Georeferenced?</td>
-        <td>
-          <%= @observation.georeferenced? ? '<span class="good">yes</span>' : 'no' %>
-        </td>
-      </tr>
-
-      <% for metric, question in QualityMetric::METRIC_QUESTIONS  %>
-        <tr>
-          <td><%= question %></td>
-          <td width="100%" style="padding-right: 0">
-            <% if score = @observation.quality_metric_score(metric) -%>
-              <table width="100%">
-                <tr>
-                  <td>
-                    <% if score >= 0.5 -%>
-                      <span class="good">yes</span>
-                    <% else %>
-                      yes
-                    <% end -%>
-                  </td>
-                  <td width="100%">
-                    <% for qm in @quality_metrics.select{|qm| qm.metric == metric && qm.agree?} %>
-                      <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
-                    <% end %>
-                  </td>
-                  <td class="small meta"><%= (score * 100).round %>%</td>
-                </tr>
-                <tr>
-                  <td>
-                    <% if score >= 0.5 -%>
-                      no
-                    <% else %>
-                      <span class="bad">no</span>
-                    <% end -%>
-                  </td>
-                  <td>
-                    <% for qm in @quality_metrics.select{|qm| qm.metric == metric && !qm.agree?} %>
-                      <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
-                    <% end %>
-                  </td>
-                  <td class="small meta"><%= ((1 - score) * 100).round %>%</td>
-                </tr>
-              </table>
-            <% else %>
-              unknown
-            <% end -%>
-
-            <% if logged_in? -%>
-              <div class="small meta">
-                What do you think?
-                <div class="right">
-                  <% if existing = @user_quality_metrics.detect{|qm| qm.metric == metric} -%>
-                    <% if existing.agree? -%>
-                      <strong>
-                        yes
-                        <%= link_to "(x)", observation_quality_path(@observation, metric), :method => :delete, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
-                      </strong>
-                      /
-                      <%= link_to "no", observation_quality_path(@observation, metric, :agree => false), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
-                    <% else %>
-                      <%= link_to "yes", observation_quality_path(@observation, metric), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
-                      /
-                      <strong>
-                        no
-                        <%= link_to "(x)", observation_quality_path(@observation, metric), :method => :delete, "data-loading-click" => '&nbsp;', :class => "inlineblock status" %>
-                      </strong>
-                    <% end -%>
-                  <% else %>
-                    <%= link_to "yes", observation_quality_path(@observation, metric), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %> /
-                    <%= link_to "no", observation_quality_path(@observation, metric, :agree => false), :method => :post, "data-loading-click" => "&nbsp;", :class => "inlineblock status" %>
-                  <% end -%>
-                </div>
-              </div>
-            <% end -%>
-          </td>
-        </tr>
-      <% end %>
-      <tfoot>
-        <tr>
-          <td>Quality grade</td>
-          <td><%= @observation.quality_grade %></td>
-        </tr>
-      </tfoot>
-    </table>
+    <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
   <% end -%>
   
   <% if @observation.flagged? %>
     <div id="flaggings_heads_up" class="description">
       HEADS UP: this observation has been flagged.
       <%= link_to "Add another flag", new_observation_flag_path(@observation),
-                  :id => "flag_this" %>
+                  :id => "flag_this", :rel => "nofollow" %>
     </div>
   <% else %>
-    <% if logged_in? %>
     <p class="description ui">
       Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?
-      <%= link_to "Flag this observation", new_observation_flag_path(@observation), :id => "flag_this" %>
+      <%= link_to "Flag this observation", new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow" %>
     </p>
     <p class="description ui">
       If you think this observation is inaccurate, please add an ID or describe the inaccuracy in a comment.
     </p>
-    <% end %>
   <% end %>
   
   <%= separator %>

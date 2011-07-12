@@ -310,6 +310,12 @@ describe Observation, "updating" do
     @observation.time_observed_at.should be_blank
   end
   
+  it "should clear date if observed_on_string blank" do
+    @observation.observed_on.should_not be_blank
+    @observation.update_attributes(:observed_on_string => "")
+    @observation.observed_on.should be_blank
+  end
+  
   it "should set an iconic taxon if the taxon was set" do
     obs = Observation.make
     obs.iconic_taxon.should be_blank

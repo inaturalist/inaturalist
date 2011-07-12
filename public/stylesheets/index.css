@@ -910,4 +910,9 @@ form.inline .label {
 .providerlink.yahoo { background-image: url(/images/external/yahoo_favicon.png); }
 .providerlink.flickr { background-image: url(/images/external/flickr_favicon.png); }
 
-.quality_assessment .loading.status { padding-left: 16px; }
+.quality_assessment .loading.status { padding-left: 16px;}
+.quality_assessment .status { margin: 0;}
+.quality_assessment td table {margin: 0;}
+.quality_assessment td:last-child {padding-right: 0;}
+.quality_assessment td table tr:last-child td {border-bottom: 1px solid transparent;}
+.quality_assessment .percent {text-align: right;}
