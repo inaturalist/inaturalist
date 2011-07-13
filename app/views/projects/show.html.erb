@@ -210,6 +210,11 @@
         <% end %>
       </div>
     </li>
+    <% if logged_in? -%>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> Stats", project_stats_path(@project), :class => "navlink" %>
+      </li>
+    <% end -%>
   </ul>
   
   <h3>About</h3>

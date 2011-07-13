@@ -218,6 +218,36 @@ class ProjectsController < ApplicationController
     redirect_to @project
   end
   
+  def stats
+    @project_user_stats = @project.project_users.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
+    @project_observation_stats = @project.project_observations.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
+    @unique_observer_stats = @project.project_observations.count(
+      :select => "observations.user_id", 
+      :include => :observation, 
+      :group => "EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)")
+    
+    @total_project_users = @project.project_users.count
+    @total_project_observations = @project.project_observations.count
+    @total_unique_observers = @project.project_observations.count(:select => "observations.user_id", :include => :observation)
+    
+    @headers = ['year/month', 'new users', 'new observations', 'unique observers']
+    @data = []
+    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.sort.reverse.each do |key|
+      @data << [key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
+    end
+    
+    respond_to do |format|
+      format.html
+      format.csv do 
+        csv_text = FasterCSV.generate(:headers => true) do |csv|
+          csv << @headers
+          @data.each {|row| csv << row}
+        end
+        render :text => csv_text
+      end
+    end
+  end
+  
   def add
     unless @observation = Observation.find_by_id(params[:observation_id])
       flash[:error] = "That observation doesn't exist."

@@ -1,0 +1,57 @@
+<%- content_for(:title) do -%>
+  <%= @title = "#{h truncate(@project.title, :length => 85)} Stats" %>
+<%- end -%>
+
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  </div>
+  
+  <h2>
+    <% if @project.icon.file? -%>
+      <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
+    <% end -%>
+    <%= @title %>
+  </h2>
+
+</div>
+
+<div class="column span-12">
+  <table>
+    <thead>
+      <tr>
+        <%- @headers.each do |header| %>
+          <th><%= header %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% for line in @data %>
+        <tr>
+          <%- line.each do |item| %>
+            <td><%= item %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= link_to "Download CSV", formatted_project_stats_path(@project, 'csv') %>
+</div>
+
+<div class="last column span-12">
+  <table>
+    <tr>
+      <td>Total members</td>
+      <td><%= @total_project_users %></td>
+    </tr>
+    <tr>
+      <td>Total observations</td>
+      <td><%= @total_project_observations %></td>
+    </tr>
+    <tr>
+      <td>Total unique observers</td>
+      <td><%= @total_unique_observers %></td>
+    </tr>
+  </table>
+</div>
