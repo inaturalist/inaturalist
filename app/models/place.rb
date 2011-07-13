@@ -258,7 +258,7 @@ class Place < ActiveRecord::Base
       end
       update_bbox_from_geom(geom)
     rescue ActiveRecord::StatementInvalid => e
-      puts "[ERROR] \tMySQL couldn't save #{self.place_geometry}: " + 
+      puts "[ERROR] \tCouldn't save #{self.place_geometry}: " + 
         e.message[0..200]
     end
   end
