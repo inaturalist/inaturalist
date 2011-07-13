@@ -202,6 +202,9 @@ module ApplicationHelper
     # make sure attributes are quoted correctly
     text = text.gsub(/(\w+)=['"]([^'"]*?)['"]/, '\\1="\\2"')
     
+    # Make sure P's don't get nested in P's
+    text = text.gsub(/<\\?p>/, "\n\n")
+    
     text = auto_link(markdown(simple_format(sanitize(text))))
     
     # Ensure all tags are closed
@@ -320,7 +323,7 @@ module ApplicationHelper
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
-    last_node = last_node.parent if last_node.name == "a"
+    last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(morelink)
     wrapper = content_tag(:div, truncated, :class => "truncated")
     
@@ -328,11 +331,15 @@ module ApplicationHelper
       :class => "nobr ui")
     untruncated = Nokogiri::HTML::DocumentFragment.parse(text)
     last_node = untruncated.children.last || untruncated
-    last_node = last_node.parent if last_node.name == "a"
+    last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(lesslink)
     untruncated = content_tag(:div, untruncated.to_s, :class => "untruncated", 
       :style => "display: none")
     wrapper + untruncated
+  rescue RuntimeError => e
+    raise e unless e.message =~ /error parsing fragment/
+    HoptoadNotifier.notify(e, :request => request, :session => session)
+    text
   end
   
   def native_url_for_photo(photo)
