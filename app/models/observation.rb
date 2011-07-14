@@ -377,7 +377,7 @@ class Observation < ActiveRecord::Base
       scope = scope.of(params[:taxon_id])
     elsif !params[:taxon_name].blank?
       taxon_name = TaxonName.find_single(params[:taxon_name], :iconic_taxa => params[:iconic_taxa])
-      scope = scope.of(taxon_name.try(:taxon) || false)
+      scope = scope.of(taxon_name.try(:taxon))
     end
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
@@ -769,7 +769,7 @@ class Observation < ActiveRecord::Base
   end
   
   def community_supported_id?
-    num_identification_agreements.to_i > 1 && num_identification_agreements > num_identification_disagreements
+    num_identification_agreements.to_i > 0 && num_identification_agreements > num_identification_disagreements
   end
   
   def quality_metrics_pass?

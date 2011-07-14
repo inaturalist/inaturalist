@@ -107,9 +107,9 @@ class Identification < ActiveRecord::Base
   # or a child taxon of the observer's idnetification, then they agree.
   #
   def is_agreement?
-    return false if self.observation.taxon.nil?
-    return true if self.taxon_id == self.observation.taxon_id
-    self.taxon.in_taxon? self.observation.taxon
+    return false if observation.taxon.blank?
+    return true if taxon_id == observation.taxon_id
+    taxon.in_taxon? observation.taxon
   end
   
   #
