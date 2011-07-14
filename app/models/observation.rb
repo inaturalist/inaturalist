@@ -167,7 +167,7 @@ class Observation < ActiveRecord::Base
     :joins => "JOIN place_geometries ON place_geometries.place_id = #{place.id}",
     :conditions => [
       "place_geometries.place_id = ? AND " + 
-      "intersects(place_geometries.geom, observations.geom)",
+      "ST_Intersects(place_geometries.geom, observations.geom)",
       place.id
     ]
   }}

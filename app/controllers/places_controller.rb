@@ -70,13 +70,22 @@ class PlacesController < ApplicationController
       end
     end
     
-    @places.compact!
+    
+    if @places.blank?
+      if Rails.cache.exist?('random_places')
+        @places = Rails.cache.read('random_places')
+      else
+        @places = Place.all(options.merge(:order => "RANDOM()"))
+        Rails.cache.write('random_places', @places, :expires_in => 1.day)
+      end
+    end
+    
+    @places = @places.compact
     
     @taxa_by_place_id = {}
     @places.each do |place|
-      @taxa_by_place_id[place.id] = place.taxa.paginate(
-        :page => 1, 
-        :per_page => 6, 
+      @taxa_by_place_id[place.id] = place.taxa.all(
+        :limit => 6, 
         :include => [:photos, :taxon_names, :iconic_taxon],
         :order => "listed_taxa.id desc")
     end

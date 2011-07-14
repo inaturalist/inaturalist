@@ -238,7 +238,7 @@ class ObservationsController < ApplicationController
           @identifications).sort_by(&:created_at)
         
         @photos = @observation.observation_photos.sort_by do |op| 
-          op.position || @observation.photos.size
+          op.position || @observation.photos.size + op.id.to_i
         end.map(&:photo)
         
         if params[:partial]
