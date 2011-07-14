@@ -70,7 +70,7 @@ class CheckListsController < ApplicationController
     @check_list = CheckList.new(params[:check_list])
     
     # Override taxon choice with iconic taxon choice
-    if params[:iconic_taxon] && (iconic_taxon = Taxon.find_by_id(params[:iconic_taxon][:id]))
+    if params[:iconic_taxon] && (iconic_taxon = Taxon.find_by_id(params[:iconic_taxon][:id].to_i))
       @check_list.taxon = iconic_taxon
     end
     
