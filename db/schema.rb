@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110709200352) do
+ActiveRecord::Schema.define(:version => 20110714185244) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -274,10 +274,12 @@ ActiveRecord::Schema.define(:version => 20110709200352) do
     t.decimal  "private_longitude",                               :precision => 15, :scale => 10
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
+    t.string   "quality_grade",                                                                   :default => "casual"
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
   add_index "observations", ["observed_on", "time_observed_at"], :name => "index_observations_on_observed_on_and_time_observed_at"
+  add_index "observations", ["quality_grade"], :name => "index_observations_on_quality_grade"
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
   add_index "observations", ["user_id", "observed_on", "time_observed_at"], :name => "index_observations_user_datetime"
   add_index "observations", ["user_id"], :name => "index_observations_on_user_id"

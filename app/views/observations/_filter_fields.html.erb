@@ -24,6 +24,10 @@
         <input type="checkbox" name="has[]" id="id_please_checkbox" 
                value="id_please" <% if @id_please %>checked="checked"<% end %>/>
         <label for="id_please_checkbox">ID Please</label>
+        
+        <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
+        <label for="research_grade_checkbox">Research quality</label>
+        
       </fieldset>
       <fieldset>
         <strong>Identifications</strong>

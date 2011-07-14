@@ -242,6 +242,13 @@ describe Observation, "creation" do
     o = Observation.make(:place_guess => "94618-5555")
     o.latitude.should be_blank
   end
+  
+  describe "quality_grade" do
+    it "should default to casual" do
+      o = Observation.make
+      o.quality_grade.should == Observation::CASUAL_GRADE
+    end
+  end
 end
 
 describe Observation, "updating" do
@@ -371,6 +378,28 @@ describe Observation, "updating" do
     o = Observation.make
     o.update_attributes(:longitude => -200)
     o.should_not be_valid
+  end
+  
+  describe "quality_grade" do
+    it "should become research when it qualifies" do
+      o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1)
+      i = Identification.make(:observation => o, :taxon => o.taxon)
+      o.photos << LocalPhoto.make(:user => o.user)
+      o.reload
+      o.quality_grade.should == Observation::CASUAL_GRADE
+      o.update_attributes(:observed_on_string => "yesterday")
+      o.quality_grade.should == Observation::RESEARCH_GRADE
+    end
+    
+    it "should become casual when it isn't research" do
+      o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
+      i = Identification.make(:observation => o, :taxon => o.taxon)
+      o.photos << LocalPhoto.make(:user => o.user)
+      o.reload
+      o.quality_grade.should == Observation::RESEARCH_GRADE
+      o.update_attributes(:observed_on_string => "")
+      o.quality_grade.should == Observation::CASUAL_GRADE
+    end
   end
 end
 
@@ -893,6 +922,16 @@ describe Observation do
       o = Observation.make(:latitude => 1, :longitude => 1)
       o.update_attributes(:latitude => nil, :longitude => nil)
       o.geom.should be_blank
+    end
+  end
+  
+  describe "query" do
+    it "should filter by research grade" do
+      r = make_research_grade_observation
+      c = Observation.make(:user => r.user)
+      observations = Observation.query(:user => r.user, :quality_grade => Observation::RESEARCH_GRADE)
+      observations.should include(r)
+      observations.should_not include(c)
     end
   end
 end

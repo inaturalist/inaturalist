@@ -161,9 +161,14 @@ class Identification < ActiveRecord::Base
     num_agreements = idents.select(&:is_agreement?).size
     num_disagreements = idents.reject(&:is_agreement?).size
     
+    # Kinda lame, but Observation#get_quality_grade relies on these numbers
+    self.observation.num_identification_agreements = num_agreements
+    self.observation.num_identification_disagreements = num_disagreements
+    quality_grade = observation.get_quality_grade
+    
     Observation.update_all(
-      "num_identification_agreements = #{num_agreements}, " +
-      "num_identification_disagreements = #{num_disagreements}", 
+      ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
+        num_agreements, num_disagreements, quality_grade], 
       "id = #{self.observation_id}")
     true
   end
@@ -191,8 +196,8 @@ class Identification < ActiveRecord::Base
     return true unless self.observation.user_id == self.user_id
     
     # update the species_guess
-    species_guess = self.observation.species_guess
-    unless self.taxon.taxon_names.exists?(:name => species_guess)
+    species_guess = observation.species_guess
+    if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
       species_guess = nil
     end
     Observation.update_all(

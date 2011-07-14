@@ -91,6 +91,12 @@ ProjectObservation.blueprint do
   project
 end
 
+QualityMetric.blueprint do
+  user
+  observation
+  metric { QualityMetric::METRICS.first }
+end
+
 Role.blueprint do
   name { Sham.title }
 end

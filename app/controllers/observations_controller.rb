@@ -1145,6 +1145,7 @@ class ObservationsController < ApplicationController
       @with_photos = true if search_params[:has].include?('photos')
     end
     
+    @quality_grade = search_params[:quality_grade]
     @identifications = search_params[:identifications]
     
     if search_params[:order_by] && ORDER_BY_FIELDS.include?(search_params[:order_by])
@@ -1168,7 +1169,8 @@ class ObservationsController < ApplicationController
       !@iconic_taxa.blank? ||
       @id_please == true ||
       !@with_photos.blank? ||
-      !@identifications.blank?
+      !@identifications.blank? ||
+      !@quality_grade.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]

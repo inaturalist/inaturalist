@@ -33,6 +33,9 @@ class Observation < ActiveRecord::Base
       "coordinates only visible to you and the curators of projects to " + 
       "which you add the observation.",
   }
+  CASUAL_GRADE = "casual"
+  RESEARCH_GRADE = "research"
+  QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -132,6 +135,8 @@ class Observation < ActiveRecord::Base
               :set_positional_accuracy,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa
+  
+  before_update :set_quality_grade
                  
   after_save :refresh_lists,
              :update_identifications_after_save
@@ -226,6 +231,10 @@ class Observation < ActiveRecord::Base
   named_scope :has_photos, 
               :include => :photos,
               :conditions => ['photos.id IS NOT NULL']
+  named_scope :has_quality_grade, lambda {|quality_grade|
+    quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
+    {:conditions => ["quality_grade = ?", quality_grade]}
+  }
   
   
   # Find observations by a taxon object.  Querying on taxa columns forces 
@@ -370,6 +379,8 @@ class Observation < ActiveRecord::Base
     scope = scope.identifications(params[:identifications]) if (params[:identifications])
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
     scope = scope.order_by(params[:order_by]) if params[:order_by]
+    
+    scope = scope.has_quality_grade( params[:quality_grade]) if QUALITY_GRADES.include?(params[:quality_grade])
     
     if params[:taxon]
       scope = scope.of(params[:taxon])
@@ -780,12 +791,27 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  def quality_grade
-    if georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on?
-      "research"
-    else
-      "casual"
+  def research_grade?
+    georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && photos?
+  end
+  
+  def photos?
+    observation_photos.exists?
+  end
+  
+  def casual_grade?
+    !research_grade?
+  end
+  
+  def set_quality_grade(options = {})
+    if options[:force] || quality_grade_changed? || latitude_changed? || longitude_changed? || observed_on_changed? || taxon_id_changed?
+      self.quality_grade = get_quality_grade
     end
+    true
+  end
+  
+  def get_quality_grade
+    research_grade? ? RESEARCH_GRADE : CASUAL_GRADE
   end
   
   def coordinates_obscured?
