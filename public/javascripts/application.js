@@ -51,7 +51,7 @@ function subnavClickOff(e) {
   }
 }
 
-QTIP_DEFAULTS = {
+var QTIP_DEFAULTS = {
   hide: {
     fixed: true
   },
@@ -70,7 +70,7 @@ QTIP_DEFAULTS = {
       target: 'rightMiddle',
       tooltip: 'leftMiddle'
     },
-    adjust: {screen: true}
+    adjust: {'screen': true}
   }
 }
 
@@ -100,17 +100,13 @@ $('input[data-loading-click]').live('click', function() {
 })
 
 function buildHelpTips() {
-  var options = $.extend(QTIP_DEFAULTS, {
+  var options = $.extend({}, QTIP_DEFAULTS, {
     show: {when: 'click'},
     hide: {when: 'unfocus'},
     position: {
-      corner: {
-        target: 'rightMiddle',
-        tooltip: 'leftTop'
-      }
+      adjust: {'screen': true}
     }
   })
-  options.style.tip = 'leftTop'
   $('.helptip').each(function() {
     var content
     if ($(this).attr('rel').match(/^#/)) {
@@ -118,7 +114,20 @@ function buildHelpTips() {
     } else {
       content = $(this).attr('rel')
     }
-    $(this).qtip($.extend({}, options, {content: content}))
+    
+    var tipOptions = $.extend({}, options, {
+      content: {
+        text: content, 
+        title: $(this).attr('data-helptip-title')
+      }
+    })
+    if ($(this).attr('data-helptip-width')) {
+      tipOptions.style = tipOptions.style || {}
+      tipOptions.style.width = {
+        min: $(this).attr('data-helptip-width')
+      }
+    }
+    $(this).qtip(tipOptions)
   })
 }
 

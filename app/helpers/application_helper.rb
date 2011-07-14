@@ -354,4 +354,11 @@ module ApplicationHelper
     end
   end
   
+  def helptip_for(id, options = {}, &block)
+    tip_id = "#{id}_tip"
+    html = content_tag(:span, '', :class => "#{options[:class]} #{tip_id}_target helptip", :rel => "##{tip_id}")
+    html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
+    concat html
+  end
+  
 end
