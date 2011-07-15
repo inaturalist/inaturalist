@@ -1,43 +1,43 @@
 class QualityMetricsController < ApplicationController
   before_filter :login_required
+  before_filter :return_here, :except => [:vote]
+  before_filter :load_observation
   
   def vote
-    unless @observation = Observation.find_by_id(params[:id])
-      msg = "Observation does not exist."
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_back_or_default('/')
-        end
-        format.json { render :json => {:error => msg} }
-      end
-    end
-    
-    if existing = @observation.quality_metrics.first(:conditions => {:user_id => current_user.id, :metric => params[:metric]})
-      existing.destroy
+    if @existing = @observation.quality_metrics.first(:conditions => {:user_id => current_user.id, :metric => params[:metric]})
+      @existing.destroy
     end
     
     if request.delete?
-      respond_to do |format|
-        format.html do
-          flash[:notice] = "Metric removed."
-          redirect_back_or_default(@observation)
-        end
-        format.json do
-          render :json => {
-            :object => existing,
-            :html => render_to_string(:partial => "quality_metric_row.html.erb", :locals => {
-              :metric => params[:metric], 
-              :question => QualityMetric::METRIC_QUESTIONS[params[:metric]], 
-              :existing_quality_metrics => @observation.quality_metrics.all,
-              :observation => @observation
-            })
-          }
-        end
-      end
+      respond_to_destroy
       return
     end
-    
+    respond_to_create
+  end
+  
+  private
+  
+  def respond_to_destroy
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Metric removed."
+        redirect_back_or_default(@observation)
+      end
+      format.json do
+        render :json => {
+          :object => @existing,
+          :html => render_to_string(:partial => "quality_metric_row.html.erb", :locals => {
+            :metric => params[:metric], 
+            :question => QualityMetric::METRIC_QUESTIONS[params[:metric]], 
+            :existing_quality_metrics => @observation.quality_metrics.all,
+            :observation => @observation
+          })
+        }
+      end
+    end
+  end
+  
+  def respond_to_create
     qm = @observation.quality_metrics.build(:user_id => current_user.id, 
       :metric => params[:metric], :agree => params[:agree] != "false")
     if qm.save
@@ -69,5 +69,18 @@ class QualityMetricsController < ApplicationController
         format.json { render :json => {:error => msg, :object => qm} }
       end
     end
+  end
+  
+  def load_observation
+    return true if @observation = Observation.find_by_id(params[:id])
+    msg = "Observation does not exist."
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_back_or_default('/')
+      end
+      format.json { render :json => {:error => msg} }
+    end
+    false
   end
 end

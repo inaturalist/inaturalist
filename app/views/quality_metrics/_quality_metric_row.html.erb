@@ -48,33 +48,36 @@
     <% else %>
       unknown
     <% end -%>
-
-    <% if logged_in? -%>
-      <div class="small meta">
-        What do you think?
-        <div class="right">
-          <% if user_quality_metric -%>
-            <% if user_quality_metric.agree? -%>
-              <strong>
-                yes
-                <%= link_to "(x)", observation_quality_path(o, metric), "data-method" => "delete", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-              </strong>
-              /
-              <%= link_to "no", observation_quality_path(o, metric, :agree => false), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-            <% else %>
-              <%= link_to "yes", observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
-              /
-              <strong>
-                no
-                <%= link_to "(x)", observation_quality_path(o, metric), "data-method" => "delete", "data-loading-click" => '&nbsp;', :class => "inlineblock status quality_metric_vote_link" %>
-              </strong>
-            <% end -%>
+    
+    <div class="small meta">
+      What do you think?
+      <div class="right">
+        <% if user_quality_metric -%>
+          <% if user_quality_metric.agree? -%>
+            <strong>
+              yes
+              <%= link_to "(x)", observation_quality_path(o, metric), "data-method" => "delete", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+            </strong>
+            /
+            <%= link_to "no", observation_quality_path(o, metric, :agree => false), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
           <% else %>
+            <%= link_to "yes", observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+            /
+            <strong>
+              no
+              <%= link_to "(x)", observation_quality_path(o, metric), "data-method" => "delete", "data-loading-click" => '&nbsp;', :class => "inlineblock status quality_metric_vote_link" %>
+            </strong>
+          <% end -%>
+        <% else %>
+          <% if logged_in? -%>
             <%= link_to "yes", observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
             <%= link_to "no", observation_quality_path(o, metric, :agree => false), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+          <% else %>
+            <%= link_to "yes", login_path, :class => "inlineblock status" %> /
+            <%= link_to "no", login_path, :class => "inlineblock status" %>
           <% end -%>
-        </div>
+        <% end -%>
       </div>
-    <% end -%>
+    </div>
   </td>
 </tr>

@@ -934,5 +934,11 @@ describe Observation do
       observations.should_not include(c)
     end
   end
+  
+  it "should be georeferenced? even with private geoprivacy" do
+    o = Observation.make(:latitude => 1, :longitude => 1, :geoprivacy => Observation::PRIVATE)
+    o.should be_georeferenced
+  end
+  
 end
 

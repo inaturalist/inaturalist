@@ -499,13 +499,11 @@
   
   <%= separator %>
   
-  <% if params[:test] == "true" -%>
-    <h3>
-      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="About the Quality Assessment" data-helptip-width="500" style="margin-top:4px"></span>
-      Data Quality Assessment
-    </h3>
-    <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
-  <% end -%>
+  <h3>
+    <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="About the Quality Assessment" data-helptip-width="500" style="margin-top:4px"></span>
+    Data Quality Assessment
+  </h3>
+  <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
   
   <% if @observation.flagged? %>
     <div id="flaggings_heads_up" class="description">
@@ -519,7 +517,9 @@
       <%= link_to "Flag this observation", new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow" %>
     </p>
     <p class="description ui">
-      If you think this observation is inaccurate, please add an ID or describe the inaccuracy in a comment.
+      If you think this observation is inaccurate, please add an ID,
+      participate in the quality assessment above, or describe the inaccuracy
+      in a comment.
     </p>
   <% end %>
   

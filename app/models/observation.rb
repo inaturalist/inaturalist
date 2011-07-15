@@ -131,10 +131,10 @@ class Observation < ActiveRecord::Base
               :set_iconic_taxon,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
-              :set_geom_from_latlon,
               :set_positional_accuracy,
               :obscure_coordinates_for_geoprivacy,
-              :obscure_coordinates_for_threatened_taxa
+              :obscure_coordinates_for_threatened_taxa,
+              :set_geom_from_latlon
   
   before_update :set_quality_grade
                  
@@ -769,7 +769,7 @@ class Observation < ActiveRecord::Base
   end
   
   def georeferenced?
-    geom?
+    geom? || (private_latitude? && private_longitude?)
   end
   
   def quality_metric_score(metric)

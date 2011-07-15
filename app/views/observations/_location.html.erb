@@ -73,4 +73,6 @@
     <% end -%>
   <% end -%>
 </div>
+<% elsif observation.georeferenced? %>
+  <span class="meta">(coordinates private)</span>
 <% end %>
