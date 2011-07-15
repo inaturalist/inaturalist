@@ -554,7 +554,7 @@ class Taxon < ActiveRecord::Base
         logger.info "Updating unique_name for #{self} to #{candidate}"
         Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
       rescue ActiveRecord::StatementInvalid => e
-        next if e.message =~ /Duplicate entry/
+        next if e.message =~ /duplicate key value violates unique/
         raise e
       end
       break
