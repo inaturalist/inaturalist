@@ -12,13 +12,13 @@ class ListedTaxaController < ApplicationController
   
   def create
     if params[:listed_taxon]
-      @list = List.find_by_id(params[:listed_taxon][:list_id])
-      @place = Place.find_by_id(params[:listed_taxon][:place_id]) if params[:listed_taxon][:place_id]
-      @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id])
+      @list = List.find_by_id(params[:listed_taxon][:list_id].to_i)
+      @place = Place.find_by_id(params[:listed_taxon][:place_id].to_i) if params[:listed_taxon][:place_id]
+      @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id].to_i)
     else
-      @list = List.find_by_id(params[:list_id])
-      @place = Place.find_by_id(params[:place_id])
-      @taxon = Taxon.find_by_id(params[:taxon_id])
+      @list = List.find_by_id(params[:list_id].to_i)
+      @place = Place.find_by_id(params[:place_id].to_i)
+      @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     end
     @list ||= @place.check_list if @place
     
