@@ -202,7 +202,7 @@ class ObservationsController < ApplicationController
         # always display the time in the zone in which is was observed
         Time.zone = @observation.user.time_zone
                 
-        @identifications = @observation.identifications.all(:include => :user)
+        @identifications = @observation.identifications.all(:include => [:user, {:taxon => :photos}])
         @owners_identification = @identifications.select do |ident|
           ident.user_id == @observation.user_id
         end.first
