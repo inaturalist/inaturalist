@@ -792,6 +792,10 @@ class Observation < ActiveRecord::Base
   end
   
   def research_grade?
+    # puts "Determining quality grade of #{self}"
+    # %w(georeferenced? community_supported_id? quality_metrics_pass? observed_on? photos?).each do |metric|
+    #   puts "[DEBUG] #{metric.ljust(30)} #{send(metric)}"
+    # end
     georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && photos?
   end
   
@@ -1069,6 +1073,27 @@ class Observation < ActiveRecord::Base
   
   def user_login
     user.login
+  end
+  
+  def update_stats
+    reload
+    if taxon_id.blank?
+      num_agreements    = 0
+      num_disagreements = 0
+    else
+      idents = identifications.all(:include => [:observation, :taxon])
+      num_agreements    = idents.select(&:is_agreement?).size
+      num_disagreements = idents.select(&:is_disagreement?).size
+    end
+    
+    # Kinda lame, but Observation#get_quality_grade relies on these numbers
+    self.num_identification_agreements = num_agreements
+    self.num_identification_disagreements = num_disagreements
+    
+    Observation.update_all(
+      ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
+        num_agreements, num_disagreements, get_quality_grade], 
+      "id = #{id}")
   end
   
   private

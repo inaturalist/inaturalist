@@ -10,11 +10,19 @@ class Identification < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :observation_id, 
                           :message => "can only identify an observation once"
   
-  after_create :update_observation, :increment_user_counter_cache, 
-    :notify_observer, :expire_caches
-  after_save :update_obs_stats, :update_curator_identification
-  after_destroy :revisit_curator_identification, :update_obs_stats, :decrement_user_counter_cache, 
-    :update_observation_after_destroy, :expire_caches
+  after_create  :update_observation, 
+                :increment_user_counter_cache, 
+                :notify_observer, 
+                :expire_caches
+                
+  after_save    :update_obs_stats, 
+                :update_curator_identification
+                
+  after_destroy :revisit_curator_identification, 
+                :decrement_user_counter_cache, 
+                :update_observation_after_destroy,
+                :update_obs_stats,
+                :expire_caches
   
   attr_accessor :skip_observation
   
@@ -30,7 +38,52 @@ class Identification < ActiveRecord::Base
   named_scope :by, lambda {|user|
     {:conditions => ["identifications.user_id = ?", user]}
   }
+  
+  # Callbacks ###############################################################
+  
+  # Update the observation if you're adding an ID to your own obs
+  def update_observation
+    return true unless self.user_id == self.observation.user_id
+    return true if @skip_observation
 
+    # update the species_guess
+    species_guess = observation.species_guess
+    unless taxon.taxon_names.exists?(:name => species_guess)
+      species_guess = taxon.to_plain_s
+    end
+    observation.skip_identifications = true
+    observation.update_attributes(:species_guess => species_guess, :taxon => taxon, :iconic_taxon_id => taxon.iconic_taxon_id)
+    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, observation.id, self.user_id)
+    true
+  end
+  
+  def update_observation_after_destroy
+    return true unless self.observation
+    return true unless self.observation.user_id == self.user_id
+    
+    # update the species_guess
+    species_guess = observation.species_guess
+    if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
+      species_guess = nil
+    end
+    Observation.update_all(
+      ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", nil, species_guess, nil],
+      "id = #{self.observation_id}"
+    )
+    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, self.observation.id, self.user_id)
+    true
+  end
+  
+  #
+  # Update the identification stats in the observation.
+  #
+  def update_obs_stats
+    return true unless observation
+    observation.update_stats
+    # Observation.update_stats_for(observation_id)
+    true
+  end
+  
   # Set the project_observation curator_identification_id if the
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
@@ -38,7 +91,89 @@ class Identification < ActiveRecord::Base
     Identification.send_later(:run_update_curator_identification, self)
     true
   end
-
+  
+  # Update the counter cache in users.  That cache ONLY tracks observations 
+  # made for others.
+  def increment_user_counter_cache
+    return true unless self.user && self.observation
+    if self.user_id != self.observation.user_id
+      self.user.increment!(:identifications_count)
+    end
+    true
+  end
+  
+  def decrement_user_counter_cache
+    return true unless self.user && self.observation
+    if self.user_id != self.observation.user_id
+      self.user.decrement!(:identifications_count)
+    end
+    true
+  end
+  
+  def notify_observer
+    if self.observation.user_id != self.user_id && 
+        !self.observation.user.email.blank? && self.observation.user.preferences.identification_email_notification
+      Emailer.send_later(:deliver_identification_notification, self)
+    end
+    true
+  end
+  
+  def expire_caches
+    Identification.send_later(:expire_caches, self.id)
+    true
+  end
+  
+  # Revise the project_observation curator_identification_id if the
+  # a curator's identification is deleted to be nil or that of another curator
+  def revisit_curator_identification
+    return true if self.observation.id.blank?
+    Identification.send_later(:run_revisit_curator_identification, self.observation_id, self.user_id)
+    true
+  end
+  
+  # /Callbacks ##############################################################
+  
+  #
+  # Tests whether this identification should be considered an agreement with
+  # the observer's identification.  If this identification has the same taxon
+  # or a child taxon of the observer's idnetification, then they agree.
+  #
+  def is_agreement?
+    return false if observation.taxon_id.blank?
+    return false if observation.user_id == user_id
+    return true if taxon_id == observation.taxon_id
+    taxon.in_taxon? observation.taxon_id
+  end
+  
+  def is_disagreement?
+    return false if observation.user_id == user_id
+    !is_agreement?
+  end
+  
+  #
+  # Tests whether this identification should be considered an agreement with
+  # another identification.
+  #
+  def in_agreement_with?(identification)
+    return false unless identification
+    return false if identification.taxon_id.nil?
+    return true if self.taxon_id == identification.taxon_id
+    self.taxon.in_taxon? identification.taxon
+  end
+  
+  # Static ##################################################################
+  
+  def self.expire_caches(ident)
+    ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
+    return unless ident
+    ctrl = ActionController::Base.new
+    ctrl.expire_fragment(ident.observation.component_cache_key(:for_owner => true))
+    ctrl.expire_fragment(ident.observation.component_cache_key)
+  rescue => e
+    puts "[DEBUG] Failed to expire obs caches for #{self}: #{e}"
+    puts e.backtrace.join("\n")
+  end
+  
   def self.run_update_curator_identification(ident)
     obs = ident.observation
     ident.observation.project_observations.each do |po|
@@ -49,14 +184,6 @@ class Identification < ActiveRecord::Base
         Project.send_later(:update_species_count, po.project_id)
       end
     end
-  end
-  
-  # Revise the project_observation curator_identification_id if the
-  # a curator's identification is deleted to be nil or that of another curator
-  def revisit_curator_identification
-    return true if self.observation.id.blank?
-    Identification.send_later(:run_revisit_curator_identification, self.observation_id, self.user_id)
-    true
   end
   
   def self.run_revisit_curator_identification(observation_id, user_id)
@@ -84,127 +211,7 @@ class Identification < ActiveRecord::Base
       end
     end
   end
-    
-  # Update the observation if you're adding an ID to your own obs
-  def update_observation
-    return true unless self.user_id == self.observation.user_id
-    return true if @skip_observation
-
-    # update the species_guess
-    species_guess = observation.species_guess
-    unless taxon.taxon_names.exists?(:name => species_guess)
-      species_guess = taxon.to_plain_s
-    end
-    observation.skip_identifications = true
-    observation.update_attributes(:species_guess => species_guess, :taxon => taxon, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, observation.id, self.user_id)
-    true
-  end
   
-  #
-  # Tests whether this identification should be considered an agreement with
-  # the observer's identification.  If this identification has the same taxon
-  # or a child taxon of the observer's idnetification, then they agree.
-  #
-  def is_agreement?
-    return false if observation.taxon.blank?
-    return true if taxon_id == observation.taxon_id
-    taxon.in_taxon? observation.taxon
-  end
+  # /Static #################################################################
   
-  #
-  # Tests whether this identification should be considered an agreement with
-  # another identification.
-  #
-  def in_agreement_with?(identification)
-    return false unless identification
-    return false if identification.taxon_id.nil?
-    return true if self.taxon_id == identification.taxon_id
-    self.taxon.in_taxon? identification.taxon
-  end
-  
-  def notify_observer
-    if self.observation.user_id != self.user_id && 
-        !self.observation.user.email.blank? && self.observation.user.preferences.identification_email_notification
-      Emailer.send_later(:deliver_identification_notification, self)
-    end
-    true
-  end
-  
-  def expire_caches
-    Identification.send_later(:expire_caches, self.id)
-    true
-  end
-  
-  def self.expire_caches(ident)
-    ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
-    return unless ident
-    ctrl = ActionController::Base.new
-    ctrl.expire_fragment(ident.observation.component_cache_key(:for_owner => true))
-    ctrl.expire_fragment(ident.observation.component_cache_key)
-  rescue => e
-    puts "[DEBUG] Failed to expire obs caches for #{self}: #{e}"
-    puts e.backtrace.join("\n")
-  end
-  
-  protected
-  
-  #
-  # Update the identification stats in the observation.
-  #
-  def update_obs_stats
-    return true unless self.observation && self.observation.taxon_id
-    
-    idents = Identification.all(
-      :conditions => ["observation_id = ?", self.observation_id]
-    ).select {|ident| ident.user_id != self.observation.user_id}
-    num_agreements = idents.select(&:is_agreement?).size
-    num_disagreements = idents.reject(&:is_agreement?).size
-    
-    # Kinda lame, but Observation#get_quality_grade relies on these numbers
-    self.observation.num_identification_agreements = num_agreements
-    self.observation.num_identification_disagreements = num_disagreements
-    quality_grade = observation.get_quality_grade
-    
-    Observation.update_all(
-      ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
-        num_agreements, num_disagreements, quality_grade], 
-      "id = #{self.observation_id}")
-    true
-  end
-  
-  # Update the counter cache in users.  That cache ONLY tracks observations 
-  # made for others.
-  def increment_user_counter_cache
-    return true unless self.user && self.observation
-    if self.user_id != self.observation.user_id
-      self.user.increment!(:identifications_count)
-    end
-    true
-  end
-  
-  def decrement_user_counter_cache
-    return true unless self.user && self.observation
-    if self.user_id != self.observation.user_id
-      self.user.decrement!(:identifications_count)
-    end
-    true
-  end
-  
-  def update_observation_after_destroy
-    return true unless self.observation
-    return true unless self.observation.user_id == self.user_id
-    
-    # update the species_guess
-    species_guess = observation.species_guess
-    if !taxon.blank? && !taxon.taxon_names.exists?(:name => species_guess)
-      species_guess = nil
-    end
-    Observation.update_all(
-      ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", nil, species_guess, nil],
-      "id = #{self.observation_id}"
-    )
-    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, self.observation.id, self.user_id)
-    true
-  end
 end

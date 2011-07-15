@@ -348,7 +348,8 @@ class Taxon < ActiveRecord::Base
   #
   def in_taxon?(taxon)
     # self.lft > taxon.lft && self.rgt < taxon.rgt
-    ancestor_ids.include?(taxon.id)
+    target_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
+    ancestor_ids.include?(target_id)
   end
   
   def graft
