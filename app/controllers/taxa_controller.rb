@@ -1012,7 +1012,7 @@ class TaxaController < ApplicationController
     end
     
     unless params[:taxon][:parent_id].blank?
-      unless Taxon.exists?(params[:taxon][:parent_id])
+      unless Taxon.exists?(params[:taxon][:parent_id].to_i)
         flash[:error] = "That parent taxon doesn't exist (try a different ID)"
         render :action => 'edit'
         return false

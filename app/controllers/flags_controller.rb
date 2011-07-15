@@ -45,12 +45,11 @@ class FlagsController < ApplicationController
   end
   
   def update
-    @object = @flag.flagged_object
     respond_to do |format|
       if @flag.update_attributes(params[:flag])
         flash[:notice] = "Your flag was saved."
       else
-        flash[:notice] = "We had a problem saving your flag."
+        flash[:notice] = "We had a problem saving your flag: #{@flag.errors.full_messages.to_sentence}"
       end
       format.html do 
         redirect_back_or_default(@flag)
