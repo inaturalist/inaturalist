@@ -705,6 +705,21 @@ describe Observation do
       o.longitude.should be_blank
       o.private_longitude.should be_blank
     end
+    
+    it "should strip leading digits out of street addresses" do
+      o = Observation.make(:place_guess => '5720 Claremont Ave. Oakland, CA')
+      o.obscure_coordinates
+      o.place_guess.should_not match(/5720/)
+      
+      o = Observation.make(:place_guess => '3333 23rd St, San Francisco, CA 94114, USA ')
+      o.obscure_coordinates
+      o.place_guess.should_not match(/3333/)
+      
+      o = Observation.make(:place_guess => '3333-6666 23rd St, San Francisco, CA 94114, USA ')
+      o.obscure_coordinates
+      o.place_guess.should_not match(/3333/)
+      o.place_guess.should_not match(/6666/)
+    end
   end
   
   describe "unobscure_coordinates" do
