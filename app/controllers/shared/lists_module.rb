@@ -65,6 +65,8 @@ module Shared::ListsModule
     
     @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
     
+    load_listed_taxon_photos
+    
     respond_to do |format|
       format.html do
         if logged_in?
@@ -316,5 +318,9 @@ module Shared::ListsModule
   
   def require_editor
     @list.editable_by?(current_user)
+  end
+  
+  def load_listed_taxon_photos
+    # override
   end
 end
