@@ -27,6 +27,7 @@ module Shared::ListsModule
       @find_options[:conditions] = List.merge_conditions(
         @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
     end
+    
     @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     
     @taxon_names_by_taxon_id = TaxonName.all(:conditions => [
@@ -293,7 +294,7 @@ module Shared::ListsModule
       ],
       
       # TODO: somehow make the following not cause a filesort...
-      :order => '(taxon_ancestor_ids || listed_taxa.taxon_id)'
+      :order => 'taxon_ancestor_ids || listed_taxa.taxon_id'
     }
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])
@@ -307,6 +308,9 @@ module Shared::ListsModule
         :last_observation, 
         {:taxon => [:iconic_taxon, :photos]}
       ]
+    elsif params[:iconic_taxon]
+      @filter_taxon = Taxon.find_by_id(params[:iconic_taxon])
+      @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon.try(:id)]
     end
   end
   
