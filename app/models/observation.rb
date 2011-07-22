@@ -334,8 +334,10 @@ class Observation < ActiveRecord::Base
   
   named_scope :in_projects, lambda { |projects|
     projects = projects.split(',') if projects.is_a?(String)
+    # NOTE using :include seems to trigger an erroneous eager load of 
+    # observations that screws up sorting kueda 2011-07-22
     {
-      :include => :project_observations,
+      :joins => [:project_observations],
       :conditions => ["project_observations.project_id IN (?)", projects]
     }
   }
