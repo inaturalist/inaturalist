@@ -277,6 +277,8 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
+    self.latitude = geom.envelope.center.y
+    self.longitude = geom.envelope.center.x
     self.swlat = geom.envelope.lower_corner.y
     self.swlng = geom.envelope.lower_corner.x
     self.nelat = geom.envelope.upper_corner.y

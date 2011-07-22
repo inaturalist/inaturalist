@@ -77,9 +77,8 @@ class CheckList < List
     parent_check_list.update_attribute(:last_synced_at, Time.now)
   end
   
-  # TODO when we have real spatial queries, and maybe data quality grades
   def last_observation_of(taxon)
-    nil
+    Observation.in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).latest.first
   end
   
   def self.sync_check_lists_with_parents(options = {})
@@ -103,5 +102,51 @@ class CheckList < List
 
     logger.info "[INFO] Finished CheckList.sync_check_lists_with_parents " + 
       "at #{Time.now} (#{Time.now - start_time}s)"
+  end
+  
+  def self.refresh_with_observation(observation, options = {})
+    # retrieve the observation or the id of the deleted observation and any relevant taxa
+    if observation.is_a?(Observation)
+      observation_id = observation.id
+    else
+      observation_id = observation.to_i
+      observation = Observation.find_by_id(observation_id)
+    end
+    taxon_id = observation.try(:taxon_id) || options[:taxon_id]
+    return if taxon_id.blank?
+    taxon_ids = [taxon_id]
+    taxon_ids += observation.taxon.ancestor_ids if observation
+    
+    # get places in which the observation was made
+    place_ids = if observation
+      PlaceGeometry.all(:select => "place_geometries.id, place_id",
+        :joins => "JOIN observations ON observations.id = #{observation_id}",
+        :conditions => "ST_Intersects(place_geometries.geom, observations.geom)").map(&:place_id)
+    else
+      []
+    end
+    
+    # get places places where this obs was made that already have this taxon listed
+    existing_place_ids = ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
+      :conditions => ["place_id IN (?) AND taxon_id IN (?)", place_ids, taxon_ids]).map(&:place_id)
+      
+    # if we need to add / update
+    if observation && observation.quality_grade == Observation::RESEARCH_GRADE
+      ListedTaxon.update_all(["last_observation_id = ?", observation], ["place_id IN (?)", existing_place_ids])
+      return unless observation.taxon.rank == Taxon::SPECIES
+      new_place_ids = place_ids - existing_place_ids
+      CheckList.find_each(:conditions => ["place_id IN (?)", new_place_ids]) do |list|
+        list.add_taxon(observation.taxon, :last_observation => observation)
+      end
+    
+    # otherwise well be refreshing / deleting
+    else
+      ListedTaxon.find_each(:include => :list, :conditions => ["lists.type = 'CheckList' AND last_observation_id = ?", observation_id]) do |lt|
+        obs = ListedTaxon.update_last_observation_for(lt)
+        if obs.blank? && !lt.user_id
+          lt.destroy
+        end
+      end
+    end
   end
 end

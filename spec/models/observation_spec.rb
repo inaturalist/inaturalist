@@ -401,6 +401,9 @@ describe Observation, "updating" do
       o.quality_grade.should == Observation::CASUAL_GRADE
     end
   end
+  
+  it "should queue a job to update user lists"
+  it "should queue a job to update check lists"
 end
 
 describe Observation, "destruction" do
@@ -956,4 +959,3 @@ describe Observation do
   end
   
 end
-

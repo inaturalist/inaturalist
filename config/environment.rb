@@ -73,7 +73,8 @@ Rails::Initializer.run do |config|
   config.active_record.observers = :user_observer, :listed_taxon_sweeper
   
   # Gems
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  # config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'will_paginate'
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
   config.gem "GeoRuby", :lib => 'geo_ruby'
   config.gem "spatial_adapter"

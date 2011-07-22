@@ -38,8 +38,11 @@ module MakeHelpers
       :created_at => Time.now.to_date)
   end
   
-  def make_research_grade_observation
-    o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
+  def make_research_grade_observation(options = {})
+    options = {
+      :taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
+    }.merge(options)
+    o = Observation.make(options)
     i = Identification.make(:observation => o, :taxon => o.taxon)
     o.photos << LocalPhoto.make(:user => o.user)
     o.reload

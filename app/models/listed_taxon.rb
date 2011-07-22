@@ -112,9 +112,25 @@ class ListedTaxon < ActiveRecord::Base
   # here.  Takes an optional last_observation if one had been chosen in the
   # calling scope to save a query.
   #
-  def update_last_observation(latest_observation = nil)
-    self.last_observation = list.last_observation_of(taxon_id)
+  def update_last_observation(options = {})
+    if list.is_a?(CheckList)
+      ListedTaxon.send_later(:update_last_observation_for, id, options)
+    end
+    self.last_observation = options[:latest_observation] || list.last_observation_of(taxon_id)
     true
+  end
+  
+  def self.update_last_observation_for(listed_taxon, options = {})
+    listed_taxon = ListedTaxon.find_by_id(listed_taxon.to_i) unless listed_taxon.is_a?(ListedTaxon)
+    return unless listed_taxon
+    obs = options[:latest_observation] || listed_taxon.list.last_observation_of(listed_taxon.taxon_id)
+    if listed_taxon.valid?
+      ListedTaxon.update_all(["last_observation_id = ?", obs], ["id = ?", listed_taxon])
+    else
+      Rails.logger.error "[ERROR #{Time.now}] Failed to add #{obs} " + 
+        "as last observation of #{listed_taxon}: #{listed_taxon.errors.full_messages.to_sentence}"
+    end
+    obs
   end
   
   def set_ancestor_taxon_ids
