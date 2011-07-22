@@ -24,7 +24,8 @@ class SessionsController < ApplicationController
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
       flash[:notice] = "Logged in successfully"
-      if session[:return_to] != login_url && !session[:return_to].blank?
+      if !session[:return_to].blank? && 
+          ![login_url, root_url, login_path, root_path].include?(session[:return_to])
         redirect_to session[:return_to]
       else
         redirect_to home_path

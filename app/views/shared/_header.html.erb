@@ -91,9 +91,9 @@
   
   <ul id="usernav" class="navtabs">
     <% unless logged_in? %>
-    <li><%= link_to "Sign in", login_url(:return_to => request.request_uri) %></li>
+    <li><%= link_to "Sign in", login_url, :class => "signin_link" %></li>
     <li><span class="inter">or</span></li>
-    <li><%= link_to "Sign up!", signup_url(:return_to => request.request_uri) %></li>
+    <li><%= link_to "Sign up!", signup_url, :class => "signup_link" %></li>
     <% else %>
     <li style="margin-right: 10px">
       <span class="inter">

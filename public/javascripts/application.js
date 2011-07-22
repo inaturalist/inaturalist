@@ -155,4 +155,11 @@ $(document).ready(function() {
   }
   
   buildHelpTips()
+  
+  $('#usernav .signin_link, #usernav .signup_link').click(function() {
+    if (window.location.pathname != '' && window.location.pathname != '/') {
+      window.location = $(this).attr('href') + '?return_to=' + window.location
+      return false
+    }
+  })
 })

@@ -15,7 +15,7 @@
     <%= yield :extrajs %>
   </head>
 <body>
-  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 4) do %>
+  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 5) do %>
   <%= render :partial => 'shared/header' %>
   <% end %>
 
