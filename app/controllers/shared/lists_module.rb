@@ -195,7 +195,6 @@ module Shared::ListsModule
           @lines_taxa << [name, listed_taxon.errors.full_messages.to_sentence]
         end
       else
-        # @errors << "#{name}: matched several different taxa"
         @lines_taxa << [name, "matched several different taxa"]
       end
     end

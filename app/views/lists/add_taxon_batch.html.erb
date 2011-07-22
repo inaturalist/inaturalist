@@ -58,7 +58,7 @@
         $.ajax({
           type: "post",
           url: '<%= url_for %>',
-          data: {names: batch.join("\n")},
+          data: {names: batch.join("\n"), authenticity_token: $('meta[name=csrf-token]').attr('content')},
           dataType: "script",
           success: function(data, textStatus, XMLHttpRequest) {
             loadNextBatch();

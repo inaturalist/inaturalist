@@ -37,7 +37,7 @@
                   $('#refreshloading').hide()
                 } else {
                   $.ajax({
-                    data:'tries='+refreshTries+'&authenticity_token=' + encodeURIComponent(<%= form_authenticity_token.inspect %>), 
+                    data:'tries='+refreshTries+'&authenticity_token=' + $('meta[name=csrf-token]').attr('content'), 
                     dataType:'script', 
                     type:'post', 
                     url:'<%= list_reload_from_observations_path(@list.id) %>'
