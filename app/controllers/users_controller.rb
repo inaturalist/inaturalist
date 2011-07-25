@@ -1,9 +1,9 @@
 class UsersController < ApplicationController  
-  before_filter :login_required, :only => [:dashboard, :edit, :update]
+  before_filter :login_required, :except => [:index, :show, :new, :create, :activate]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :edit, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
-  before_filter :ensure_user_is_admin, :only => [:suspend, :unsuspend]
+  before_filter :admin_required, :only => [:suspend, :unsuspend, :curation]
   
   def new
     @user = User.new
@@ -366,12 +366,6 @@ protected
   def ensure_user_is_current_user_or_admin
     unless current_user.has_role? :admin
       redirect_to edit_user_path(current_user, :id => current_user.login) if @user.id != current_user.id
-    end
-  end
-  
-  def ensure_user_is_admin
-    unless current_user.has_role? :admin
-      redirect_to user_path(current_user, :id => current_user.login)
     end
   end
     

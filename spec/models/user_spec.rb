@@ -81,7 +81,9 @@ describe User do
   describe 'disallows illegitimate logins:' do
     ['12', '123', '1234567890_234567890_234567890_234567890_', "tab\t", "newline\n",
      "Iñtërnâtiônàlizætiøn hasn't happened to ruby 1.8 yet",
-     'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 'space ', 'period.'].each do |login_str|
+     'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 
+     'space ', 'period.', 'm', 
+     'this_is_the_longest_login_ever_written_by_man'].each do |login_str|
       it "'#{login_str}'" do
         lambda do
           u = create_user(:login => login_str)
