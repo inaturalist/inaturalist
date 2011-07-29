@@ -96,8 +96,8 @@ module Ratatosk
         unique_names = {}
         unique_taxa = {}
         names.each do |n| 
-          # puts "[DEBUG] #{n.name}'s phylum: #{name_provider.get_phylum_for(n.taxon).name}"
           phylum_name = name_provider.get_phylum_for(n.taxon).name rescue nil
+          # puts "[DEBUG] #{n.name}'s phylum: #{phylum_name}"
           unique_taxa[[n.taxon.name, phylum_name]] ||= n.taxon
           n.taxon = unique_taxa[[n.taxon.name, phylum_name]]
           unique_names[[n.name, n.lexicon, n.taxon.name, phylum_name]] = n
@@ -115,8 +115,11 @@ module Ratatosk
             # If the name was invalid b/c its taxon was saved first, and the
             # taxon made a TaxonName from its own scientific name already,
             # just use that scientific name
+            # puts "[DEBUG] #{name} was invalid: #{name.errors.full_messages.to_sentence}"
             if name.taxon.valid?
-              name = name.taxon.taxon_names.first(:conditions => {:name => name.name})
+              # puts "name.taxon.taxon_names: #{name.taxon.taxon_names.inspect}"
+              name = TaxonName.first(:conditions => ["name = ? AND taxon_id = ?", name.name, name.taxon_id])
+              name ||= name.taxon.taxon_names.detect{|tn| tn.name == name.name}
             
             # If the taxon was invalid, try to see if something similar has 
             # already been saved

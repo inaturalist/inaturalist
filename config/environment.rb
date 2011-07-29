@@ -91,7 +91,8 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
   config.gem 'geoip'
-  config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
+  # config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
+  config.gem 'daemon-spawn', :lib => 'daemon_spawn'
   config.gem 'nokogiri'
   config.gem 'objectify-xml', :lib => 'objectify_xml'
   config.gem 'delayed_job'
