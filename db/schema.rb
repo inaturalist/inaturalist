@@ -268,12 +268,12 @@ ActiveRecord::Schema.define(:version => 20110714185244) do
     t.string   "time_zone"
     t.boolean  "location_is_exact",                                                               :default => false
     t.boolean  "delta",                                                                           :default => false
-    t.point    "geom",                             :limit => nil
     t.integer  "positional_accuracy"
     t.decimal  "private_latitude",                                :precision => 15, :scale => 10
     t.decimal  "private_longitude",                               :precision => 15, :scale => 10
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
+    t.point    "geom",                             :limit => nil
     t.string   "quality_grade",                                                                   :default => "casual"
   end
 
