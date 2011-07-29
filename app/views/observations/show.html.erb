@@ -284,20 +284,23 @@
   </div>
   <% end %>
   
-  <div id="tags" class="description">
-    <label>Tags:</label>
-    <ul>
-      <% if @observation.tags.empty? %>
-        <li class="description">none</li>
-      <% else %>
-        <% @observation.tags.each do |tag| %>
-        <li>
-          <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
-        </li>
-        <% end %>
-      <% end %>
-    </ul>
+  <div id="dates" class="description date">
+    <label>Added:</label>
+    <%= @observation.created_at.to_s(:long) %>
   </div>
+  
+  <% unless @observation.tags.blank? %>
+    <div id="tags" class="description">
+      <label>Tags:</label>
+      <ul>
+        <% @observation.tags.each do |tag| %>
+          <li>
+            <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end -%>
   
   <%= separator %>
   
