@@ -863,9 +863,9 @@ class ObservationsController < ApplicationController
   end
   
   def widget
-    @project = Project.find_by_id(params[:project_id]) if params[:project_id]
-    @place = Place.find_by_id(params[:place_id]) if params[:place_id]
-    @taxon = Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
+    @project = Project.find_by_id(params[:project_id].to_i) if params[:project_id]
+    @place = Place.find_by_id(params[:place_id].to_i) if params[:place_id]
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
     @order_by = params[:order_by] || "observed_on"
     @order = params[:order] || "desc"
     @limit = params[:limit] || 5
