@@ -5,7 +5,7 @@ class ObservationsController < ApplicationController
   caches_action :index, :by_login, :project,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format.widget? && c.request.url.size < 250}
+    :if => Proc.new {|c| (c.request.format.geojson? || c.request.format.widget?) && c.request.url.size < 250}
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   
   rescue_from ActionController::UnknownAction do
@@ -111,6 +111,13 @@ class ObservationsController < ApplicationController
             }
           })
         end
+      end
+      
+      format.geojson do
+        render :json => @observations.to_geojson(:except => [
+          :geom, :latitude, :longitude, :map_scale, 
+          :num_identification_agreements, :num_identification_disagreements, 
+          :delta, :location_is_exact])
       end
       
       format.atom do

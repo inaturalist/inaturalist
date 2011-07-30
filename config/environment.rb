@@ -76,7 +76,9 @@ Rails::Initializer.run do |config|
   # config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'will_paginate'
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
-  config.gem "GeoRuby", :lib => 'geo_ruby'
+  # config.gem "GeoRuby", :lib => 'geo_ruby'
+  config.gem "dbf", :version => "<= 1.2.9"
+  config.gem "nofxx-georuby", :lib => 'geo_ruby'
   config.gem "spatial_adapter"
   config.gem "mojombo-chronic", :lib => 'chronic', :source => 'http://gems.github.com'
   config.gem 'bluecloth'
@@ -126,6 +128,7 @@ require 'model_tips'
 require 'meta_service'
 require 'wikipedia_service'
 require 'batch_tools'
+require 'geo_ruby/shp4r/shp'
 require 'georuby_extra'
 
 # GeoIP setup, for IP geocoding

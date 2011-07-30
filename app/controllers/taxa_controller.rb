@@ -11,7 +11,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos]
+    :observation_photos, :map]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
@@ -391,6 +391,40 @@ class TaxaController < ApplicationController
         :photos => @photos
       }
     end
+  end
+  
+  def map
+    if @bounds = Observation.of(@taxon).calculate(:extent, :geom)
+      @extent = [
+        {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
+        {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
+      ]
+    end
+
+    @county_listings = @taxon.listed_taxa.all(
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :joins => [:place], 
+      :conditions => [
+        "place_id IS NOT NULL AND places.place_type = ?", 
+        Place::PLACE_TYPE_CODES['County']
+      ]
+    ).index_by(&:place_id)
+    @state_listings = @taxon.listed_taxa.all(
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :joins => [:place], 
+      :conditions => [
+        "place_id IS NOT NULL AND places.place_type = ?", 
+        Place::PLACE_TYPE_CODES['State']
+      ]
+    ).index_by(&:place_id)
+    @country_listings = @taxon.listed_taxa.all(
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :joins => [:place], 
+      :conditions => [
+        "place_id IS NOT NULL AND places.place_type = ?", 
+        Place::PLACE_TYPE_CODES['Country']
+      ]
+    ).index_by(&:place_id)
   end
   
   def observation_photos

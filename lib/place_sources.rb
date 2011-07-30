@@ -184,23 +184,26 @@ module PlaceSources
   # obtained from http://www2.census.gov/cgi-bin/shapefiles/national-files
   #
   def self.new_place_from_census_shape(shape, options = {})
+    options = options.clone
     geoplanet_type = nil
+    name = options[:name] || shape.data['NAME'] || shape.data['NAME10'] || shape.data['NAMELSAD']
+    options[:name] = name
     case options[:place_type]
     when 'state'
-      geoplanet_query = if FIPS_STATES.values.include?(shape.data['NAME'])
-        "#{shape.data['NAME']} State, US"
+      geoplanet_query = if FIPS_STATES.values.include?(name)
+        "#{name} State, US"
       else
-        shape.data['NAME']
+        name
       end
       geoplanet_type = "State"
     when 'county'
-      geoplanet_query = "#{shape.data['NAMELSAD']}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
+      geoplanet_query = "#{name}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
       geoplanet_type = "County"
     when 'place'
-      geoplanet_query = "#{shape.data['NAMELSAD']}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
+      geoplanet_query = "#{name}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
       geoplanet_type = "Town,City,Local+Administrative+Area"
     else
-      geoplanet_query = "#{shape.data['NAME']}, US"
+      geoplanet_query = "#{name}, US"
     end
     options = {
       :geoplanet_query => geoplanet_query, 

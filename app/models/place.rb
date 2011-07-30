@@ -391,7 +391,7 @@ class Place < ActiveRecord::Base
   #
   def self.new_from_shape(shape, options = {})
     place = Place.new(
-      :name => shape.data['NAME'] || shape.data['Name'] || shape.data['name'],
+      :name => options[:name] || shape.data['NAME'] || shape.data['Name'] || shape.data['name'],
       :latitude => shape.geometry.envelope.center.y,
       :longitude => shape.geometry.envelope.center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
