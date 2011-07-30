@@ -9,8 +9,8 @@ def end_log_timer
   @log_timer, @log_timer_name = nil, nil
 end
 
-def log_timer
-  start_log_timer
+def log_timer(name = nil)
+  start_log_timer(name)
   yield
   end_log_timer
 end
