@@ -98,11 +98,13 @@
         map.center({lat: 0, lon: 0}).zoom(3)
       }
       
-      map.add(po.image()
-          .url(po.url("http://{S}tile.cloudmade.com"
-          + "/047ad27b65b8438fb15a0553e4029104" // http://cloudmade.com/register
-          + "/998/256/{Z}/{X}/{Y}.png")
-          .hosts(["a.", "b.", "c.", ""])));
+      <% if @cloudmade_key %>
+        map.add(po.image()
+            .url(po.url("http://{S}tile.cloudmade.com"
+            + "/<%= @cloudmade_key %>"
+            + "/998/256/{Z}/{X}/{Y}.png")
+            .hosts(["a.", "b.", "c.", ""])));
+      <% end %>
         
       map.add(po.geoJson()
         .id('counties_simple')

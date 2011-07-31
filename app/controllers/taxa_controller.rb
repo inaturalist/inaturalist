@@ -400,7 +400,9 @@ class TaxaController < ApplicationController
         {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
       ]
     end
-
+    
+    @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
+    
     @county_listings = @taxon.listed_taxa.all(
       :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
       :joins => [:place], 

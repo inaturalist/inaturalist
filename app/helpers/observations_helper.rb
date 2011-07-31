@@ -10,6 +10,7 @@ module ObservationsHelper
   end
   
   def observations_order_by_options(order_by = nil)
+    order_by ||= @order_by
     pairs = ObservationsController::ORDER_BY_FIELDS.map do |f|
       value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
       [ObservationsController::DISPLAY_ORDER_BY_FIELDS[f], value]

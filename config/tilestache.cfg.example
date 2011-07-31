@@ -1,0 +1,137 @@
+{
+  "cache": {
+    "name": "Multi",
+    "tiers": [
+      {
+        "name": "Memcache",
+        "servers": ["localhost:11211"]
+      },
+      {
+        "name": "Disk",
+        "path": "/tmp/stache",
+        "gzip": ["xml", "json", "geojson"]
+      }
+    ]
+  },
+  "layers": {
+    "observations":
+    {
+      "provider": {
+        "name": "vector", 
+        "driver": "PostgreSQL",
+        "clipped": false,
+        "parameters": {
+          "dbname": "inaturalist_production", 
+          "query": "SELECT id as observation_id, * FROM observations"
+        },
+        "properties": {"observation_id": "id", "taxon_id": "taxon_id", "quality_grade": "quality_grade"}
+      },
+      "cache lifespan": 86400,
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "counties": {
+      "provider": {
+        "name": "vector",
+        "driver": "PostgreSQL",
+        "clipped": "padded",
+        "parameters": {
+          "dbname": "inaturalist_production", 
+          "query": "SELECT places.*, place_geometries.geom FROM places JOIN place_geometries ON places.id = place_geometries.place_id WHERE places.place_type = 9"
+        }
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "counties_simplified_1": {
+      "provider": {
+        "name": "vector",
+        "driver": "shapefile",
+        "clipped": "padded",
+        "parameters": {
+          "file": "/Users/kueda/projects/TileStache/data/counties_simplified_1.shp"
+        },
+        "properties": {"ID": "id"}
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "counties_simplified_01": {
+      "provider": {
+        "name": "vector",
+        "driver": "shapefile",
+        "clipped": "padded",
+        "parameters": {
+          "file": "/Users/kueda/projects/TileStache/data/counties_simplified_01.shp"
+        },
+        "properties": {"ID": "id"}
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "states_simplified_1": {
+      "provider": {
+        "name": "vector",
+        "driver": "shapefile",
+        "clipped": "padded",
+        "parameters": {
+          "file": "/Users/kueda/projects/TileStache/data/states_simplified_1.shp"
+        },
+        "properties": {"ID": "id"}
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "states_simplified_01": {
+      "provider": {
+        "name": "vector",
+        "driver": "shapefile",
+        "clipped": "padded",
+        "parameters": {
+          "file": "/Users/kueda/projects/TileStache/data/states_simplified_01.shp"
+        },
+        "properties": {"ID": "id"}
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "countries_simplified_1": {
+      "provider": {
+        "name": "vector",
+        "driver": "shapefile",
+        "clipped": "padded",
+        "parameters": {
+          "file": "/Users/kueda/projects/TileStache/data/countries_simplified_1.shp"
+        },
+        "properties": {"ID": "id"}
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "countries_simplified_01": {
+      "provider": {
+        "name": "vector",
+        "driver": "shapefile",
+        "clipped": "padded",
+        "parameters": {
+          "file": "/Users/kueda/projects/TileStache/data/countries_simplified_01.shp"
+        },
+        "properties": {"ID": "id"}
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    },
+    "openspace": {
+      "provider": {
+        "name": "vector",
+        "driver": "PostgreSQL",
+        "parameters": {
+          "dbname": "inaturalist_production", 
+          "query": "SELECT places.*, place_geometries.geom FROM places JOIN place_geometries ON places.id = place_geometries.place_id WHERE places.place_type = 100"
+        }
+      },
+      "preview": {"ext": "geojson"},
+      "allowed origin": "*"
+    }
+  }
+}
