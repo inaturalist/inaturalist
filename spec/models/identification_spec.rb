@@ -141,6 +141,7 @@ describe Identification, "creation" do
   it "should update observation quality_grade" do
     o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
     o.photos << LocalPhoto.make(:user => o.user)
+    o.reload
     o.quality_grade.should == Observation::CASUAL_GRADE
     i = Identification.make(:observation => o, :taxon => o.taxon)
     o.reload
@@ -221,4 +222,26 @@ describe Identification, "deletion" do
     o.reload
     o.quality_grade.should == Observation::CASUAL_GRADE
   end
+  
+  it "should update observation quality_grade if made by another user" do
+    o = make_research_grade_observation
+    o.quality_grade.should == Observation::RESEARCH_GRADE
+    o.identifications.each {|ident| ident.destroy if ident.user_id != o.user_id}
+    o.reload
+    o.quality_grade.should == Observation::CASUAL_GRADE
+  end
+  
+  it "should queue a job to update check lists if research grade" do
+    o = make_research_grade_observation
+    o.identifications.each {|ident| ident.destroy if ident.user_id != o.user_id}
+    o.reload
+    o.quality_grade.should == Observation::CASUAL_GRADE
+    stamp = Time.now
+    Identification.make(:taxon => o.taxon, :observation => o)
+    o.reload
+    o.quality_grade.should == Observation::RESEARCH_GRADE
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /refresh_with_observation/}.should_not be_blank
+  end
+  
 end

@@ -188,7 +188,7 @@ module Shared::ListsModule
       when 0
         @lines_taxa << [name, "not found"]
       when 1
-        listed_taxon = @list.add_taxon(taxon_names.first.taxon)
+        listed_taxon = @list.add_taxon(taxon_names.first.taxon, :user_id => current_user.id)
         if listed_taxon.valid?
           @lines_taxa << [name, listed_taxon]
         else

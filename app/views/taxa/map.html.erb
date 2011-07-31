@@ -1,0 +1,224 @@
+<%- content_for(:title) do -%>
+  <%- @title = capture do %>
+    Map for <%= link_to @taxon.name, @taxon %>
+  <%- end -%>
+  <%= strip_tags(@title) %>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "jquery/plugins/jquery.qtip2.min" %>
+  <script type="text/javascript" charset="utf-8">
+    var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
+    var countyListings = <%= @county_listings.to_json %>;
+    var stateListings = <%= @state_listings.to_json %>;
+    var countryListings = <%= @country_listings.to_json %>;
+    var extent = <%= @extent.to_json %>;
+    function classifyCounties(e) { classifyPlaces(e, {placeType: 'county'}) }
+    function classifyStates(e) { classifyPlaces(e, {placeType: 'state'}) }
+    function classifyCountries(e) { classifyPlaces(e, {placeType: 'country'}) }
+    function classifyPlaces(e, options) {
+      var options = options || {},
+          placeType = options.placeType || 'county'
+          // visibleFeatures = []
+      for (var i = e.features.length - 1; i >= 0; i--){
+        var feature = e.features[i]
+        if (feature.data.properties) {
+          var placeId = feature.data.properties.ID || feature.data.properties.id
+        } else {
+          continue
+        }
+        // var countyListing = countyListings[placeId];
+        var listing
+        switch (placeType) {
+          case 'county':
+            listing = countyListings[placeId]
+            break;
+          case 'state':
+            listing = stateListings[placeId]
+            break;
+          case 'country':
+            listing = countryListings[placeId]
+            break;
+        }
+        if (listing) {
+          feature.element.setAttribute('class', placeType + ' ' + (listing.last_observation_id ? 'confirmed' : 'putative'))
+          // visibleFeatures.push(feature)
+        }
+      }
+    }
+    function handleObservations(e) {
+      for (var i = e.features.length - 1; i >= 0; i--){
+        var feature = e.features[i]
+        if (!feature) {continue}
+        feature.element.setAttribute('data-observation-id', feature.data.properties.observation_id || feature.data.properties.id)
+        $(feature.element).qtip({
+          style: {
+            classes: 'mini infowindow observations ui-tooltip-light ui-tooltip-shadow'
+          },
+          show: {
+            event: 'click',
+            solo: true
+          },
+          hide: {
+            event: 'unfocus'
+          },
+          position: {
+            viewport: $(window),
+            my: 'bottom left',
+            at: 'center center'
+          },
+          content: {
+            text: '<span class="meta loading status">Loading..</span>',
+            ajax: {
+              url: '/observations/'+feature.data.properties.id,
+              method: 'GET',
+              data: {partial: 'cached_component'}
+            }
+          }
+        })
+      }
+    }
+    function handleTaxonObservations(e) {
+      // if (window.extent) { return };
+      // window.extent = Polymaps.bounds(e.features)
+      // window.map.extent(window.extent).zoomBy(-.5);
+    }
+    $(document).ready(function() {
+      window.po = org.polymaps
+      window.map = po.map()
+        .container($('#map').get(0).appendChild(po.svg('svg')))
+        .zoomRange([2, 15])
+        // .center({lat: 0, lon: 0})
+        // .zoom(5)
+        // .extent(<%= @extent.to_json %>).zoomBy(-0.5)
+        .add(po.interact());
+      if (extent) {
+        map.extent(<%= @extent.to_json %>).zoomBy(-0.5)
+      } else {
+        map.center({lat: 0, lon: 0}).zoom(3)
+      }
+      
+      map.add(po.image()
+          .url(po.url("http://{S}tile.cloudmade.com"
+          + "/047ad27b65b8438fb15a0553e4029104" // http://cloudmade.com/register
+          + "/998/256/{Z}/{X}/{Y}.png")
+          .hosts(["a.", "b.", "c.", ""])));
+        
+      map.add(po.geoJson()
+        .id('counties_simple')
+        .zoom(function(z) {
+          if (z < 7) { return -100};
+          if (z > 11) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/counties_simplified_01/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCounties));
+        
+      map.add(po.geoJson()
+        .id('states_simple')
+        .zoom(function(z) {
+          if (z < 4) { return -100};
+          if (z > 6) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/states_simplified_1/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyStates));
+        
+      map.add(po.geoJson()
+        .id('countries_simple')
+        .zoom(function(z) {
+          if (z > 3) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/countries_simplified_1/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCountries));
+      
+      map.add(po.geoJson()
+        .id('counties')
+        .zoom(function(z) {
+          if (z < 12) { return -100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/counties/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCounties));
+        
+      // map.add(po.geoJson()
+      //   .id('openspace')
+      //   .url("http://localhost:8080/openspace/{Z}/{X}/{Y}.geojson"));
+          
+      map.add(po.geoJson()
+        .id('all_observations')
+        .url(TILESTACHE_SERVER+"/observations/{Z}/{X}/{Y}.geojson")
+        .on('load', handleObservations)
+        .zoom(function(z) {
+          if (z < 9) { return -100};
+          return z;
+        })
+        .clip(false));
+        
+      map.add(po.geoJson()
+        .id('observations')
+        .url("/observations.geojson?taxon_id=<%= @taxon.id %>")
+        .on('load', handleObservations)
+        .on('load', handleTaxonObservations)
+        .clip(false));
+    })
+  </script>
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.qtip.min", "observations" %>
+  <style type="text/css" media="screen">
+    #map.fullscreen {background-color: white;}
+    circle {
+      fill: #FF6FCF;
+      stroke: DeepPink;
+      stroke-width: 2px;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    circle:hover {
+      opacity: 1;
+    }
+    #all_observations circle {
+      fill: #1E75BF;
+      stroke: #074D86;
+      opacity: 0.1;
+    }
+    #all_observations circle:hover {opacity: 1;}
+    path {
+      fill: transparent;
+      opacity: 0.5;
+      stroke: lightblue;
+      stroke-width: 2px;
+      vector-effect: non-scaling-stroke;
+      z-index: 1;
+/*      visibility: hidden;*/
+    }
+    path.putative {
+/*      fill: #84A92F;
+      stroke: #55721F;*/
+/*      opacity: 0.25;*/
+      fill: #CA9D2C;
+      stroke: #91681D;
+      z-index: 20;
+      visibility: visible;
+    }
+    path.confirmed {
+      fill: #84A92F;
+      stroke: #55721F;
+      z-index: 30;
+      visibility: visible;
+    }
+    #openspace path {
+      fill: #B3C927;
+      stroke: #5E6708;
+      stroke-width: 1px;
+      vector-effect: non-scaling-stroke;
+    }
+  </style>
+<%- end -%>
+
+<div id="map" class="fullscreen">
+  
+</div>

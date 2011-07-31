@@ -116,4 +116,14 @@ class List < ActiveRecord::Base
       list.refresh(options)
     end
   end
+  
+  # def self.refresh_with_observation(observation, options = {})
+  #   observation = Observation.find_by_id(observation.to_i) unless observation.is_a?(Observation)
+  #   return unless observation && observation.taxon
+  #   user = observation.user
+  #   ListedTaxon.update_all(
+  #     ["last_observation_id = ?", observation], 
+  #     ["list_id IN (?) AND taxon_id IN (?)", user.list_ids, [observation.taxon_id] + observation.taxon.ancestor_ids]
+  #   )
+  # end
 end

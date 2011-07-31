@@ -613,6 +613,9 @@ class Observation < ActiveRecord::Base
       Project.send_later(:refresh_project_list, po.project_id, 
         :taxa => target_taxa.map(&:id), :add_new_taxa => true)
     end
+    # List.send_later(:refresh_with_observation,        id, :taxon_id => taxon_id, :skip_update => true)
+    CheckList.send_later(:refresh_with_observation,   id, :taxon_id => taxon_id, :skip_update => true)
+    # ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -942,7 +945,6 @@ class Observation < ActiveRecord::Base
     end
   end
   
-  protected
   
   ##### Validations #########################################################
   #
@@ -1097,14 +1099,14 @@ class Observation < ActiveRecord::Base
     # Kinda lame, but Observation#get_quality_grade relies on these numbers
     self.num_identification_agreements = num_agreements
     self.num_identification_disagreements = num_disagreements
+    new_quality_grade = get_quality_grade
     
     Observation.update_all(
       ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
-        num_agreements, num_disagreements, get_quality_grade], 
+        num_agreements, num_disagreements, new_quality_grade], 
       "id = #{id}")
+    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
   end
-  
-  private
   
   def random_neighbor_lat_lon(lat, lon, max_distance, radius = 6370997.0)
     latrads = lat.to_f / DEGREES_PER_RADIAN

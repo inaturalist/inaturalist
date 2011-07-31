@@ -58,7 +58,19 @@ Spec::Runner.configure do |config|
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
   
-  config.before(:all)    { Sham.reset(:before_all)  }
+  config.before(:all) do
+    Sham.reset(:before_all)
+    begin
+      ActiveRecord::Base.connection.execute("ALTER TABLE place_geometries DROP CONSTRAINT enforce_srid_geom")
+    rescue ActiveRecord::StatementInvalid 
+      # already dropped
+    end
+    begin
+      ActiveRecord::Base.connection.execute("ALTER TABLE observations DROP CONSTRAINT enforce_srid_geom")
+    rescue ActiveRecord::StatementInvalid 
+      # already dropped
+    end
+  end
   config.before(:each)   { Sham.reset(:before_each) }
 
 end

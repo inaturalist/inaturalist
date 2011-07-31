@@ -5,7 +5,7 @@ class ObservationsController < ApplicationController
   caches_action :index, :by_login, :project,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format.widget? && c.request.url.size < 250}
+    :if => Proc.new {|c| (c.request.format.geojson? || c.request.format.widget?) && c.request.url.size < 250}
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   
   rescue_from ActionController::UnknownAction do
@@ -111,6 +111,13 @@ class ObservationsController < ApplicationController
             }
           })
         end
+      end
+      
+      format.geojson do
+        render :json => @observations.to_geojson(:except => [
+          :geom, :latitude, :longitude, :map_scale, 
+          :num_identification_agreements, :num_identification_disagreements, 
+          :delta, :location_is_exact])
       end
       
       format.atom do
@@ -977,9 +984,12 @@ class ObservationsController < ApplicationController
         )
       end
       format.widget do
-        if params[:markup_only]=='true'
+        if params[:markup_only] == 'true'
           render :js => render_to_string(:partial => "widget.html.erb", :locals => {
-            :show_user => true, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
+            :show_user => true, 
+            :target => params[:target], 
+            :default_image => params[:default_image], 
+            :silence => params[:silence]
           })
         else
           render :js => render_to_string(:partial => "widget.js.erb", :locals => {
@@ -1155,7 +1165,6 @@ class ObservationsController < ApplicationController
       else
         'desc'
       end
-      search_params[:order_by] = "#{@order_by} #{@order}"
     else
       @order_by = "observations.id"
       @order = "desc"
