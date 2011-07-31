@@ -85,7 +85,7 @@
         window.map = iNaturalist.Map.createMap({
           lat: 40.714, 
           lng: -98.262, 
-          zoom: 3, 
+          zoom: <%= @observation.map_scale || 3 %>, 
           controls: 'small'
         });
         map.addObservation(observation, {clickable: false, showAccuracy: true});
