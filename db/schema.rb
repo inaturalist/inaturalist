@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714185244) do
+ActiveRecord::Schema.define(:version => 20110731201217) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -273,8 +273,8 @@ ActiveRecord::Schema.define(:version => 20110714185244) do
     t.decimal  "private_longitude",                               :precision => 15, :scale => 10
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
-    t.point    "geom",                             :limit => nil
     t.string   "quality_grade",                                                                   :default => "casual"
+    t.point    "geom",                             :limit => nil
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -345,6 +345,7 @@ ActiveRecord::Schema.define(:version => 20110714185244) do
   end
 
   add_index "place_geometries", ["geom"], :name => "index_place_geometries_on_geom", :spatial => true
+  add_index "place_geometries", ["place_id"], :name => "index_place_geometries_on_place_id"
 
   create_table "places", :force => true do |t|
     t.string   "name"
