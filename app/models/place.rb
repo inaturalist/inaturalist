@@ -112,6 +112,10 @@ class Place < ActiveRecord::Base
     PLACE_TYPES[self.place_type]
   end
   
+  def place_type_name=(name)
+    self.place_type = PLACE_TYPE_CODES[name]
+  end
+  
   # Wrap the attr call to set it if unset (or if :reload => true)
   def display_name(options = {})
     return super unless super.blank? || options[:reload]

@@ -257,8 +257,8 @@ class PlacesController < ApplicationController
   end
   
   def merge
-    @place = Place.find_by_id(params[:id])
-    @merge_target = Place.find_by_id(params[:with])
+    @place = Place.find_by_id(params[:id].to_i)
+    @merge_target = Place.find_by_id(params[:with].to_i)
     
     if request.post?
       keepers = params.map do |k,v|
