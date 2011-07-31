@@ -1105,9 +1105,7 @@ class Observation < ActiveRecord::Base
       ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
         num_agreements, num_disagreements, new_quality_grade], 
       "id = #{id}")
-    if new_quality_grade == RESEARCH_GRADE
-      CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
-    end
+    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
   end
   
   def random_neighbor_lat_lon(lat, lon, max_distance, radius = 6370997.0)

@@ -80,7 +80,6 @@ class Identification < ActiveRecord::Base
   def update_obs_stats
     return true unless observation
     observation.update_stats
-    # Observation.update_stats_for(observation_id)
     true
   end
   
