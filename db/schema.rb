@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110731201217) do
+ActiveRecord::Schema.define(:version => 20110801001844) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -55,6 +55,26 @@ ActiveRecord::Schema.define(:version => 20110731201217) do
 
   add_index "comments", ["parent_type", "parent_id"], :name => "index_comments_on_parent_type_and_parent_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "counties_simplified_01", :force => true do |t|
+    t.integer       "place_geometry_id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",              :limit => nil, :null => false
+  end
+
+  add_index "counties_simplified_01", ["geom"], :name => "index_counties_simplified_01_on_geom", :spatial => true
+  add_index "counties_simplified_01", ["place_geometry_id"], :name => "index_counties_simplified_01_on_place_geometry_id"
+  add_index "counties_simplified_01", ["place_id"], :name => "index_counties_simplified_01_on_place_id"
+
+  create_table "countries_simplified_1", :force => true do |t|
+    t.integer       "place_geometry_id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",              :limit => nil, :null => false
+  end
+
+  add_index "countries_simplified_1", ["geom"], :name => "index_countries_simplified_1_on_geom", :spatial => true
+  add_index "countries_simplified_1", ["place_geometry_id"], :name => "index_countries_simplified_1_on_place_geometry_id"
+  add_index "countries_simplified_1", ["place_id"], :name => "index_countries_simplified_1_on_place_id"
 
   create_table "custom_projects", :force => true do |t|
     t.text     "head"
@@ -510,6 +530,16 @@ ActiveRecord::Schema.define(:version => 20110731201217) do
     t.datetime "updated_at"
     t.string   "title"
   end
+
+  create_table "states_simplified_1", :force => true do |t|
+    t.integer       "place_geometry_id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",              :limit => nil, :null => false
+  end
+
+  add_index "states_simplified_1", ["geom"], :name => "index_states_simplified_1_on_geom", :spatial => true
+  add_index "states_simplified_1", ["place_geometry_id"], :name => "index_states_simplified_1_on_place_geometry_id"
+  add_index "states_simplified_1", ["place_id"], :name => "index_states_simplified_1_on_place_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
