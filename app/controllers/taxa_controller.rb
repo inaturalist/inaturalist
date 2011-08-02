@@ -394,6 +394,7 @@ class TaxaController < ApplicationController
   end
   
   def map
+    @taxon_range = @taxon.taxon_ranges.first
     if @bounds = Observation.of(@taxon).calculate(:extent, :geom)
       @extent = [
         {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 

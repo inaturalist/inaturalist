@@ -6,13 +6,14 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "jquery/plugins/jquery.qtip2.min" %>
+  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", "jquery/plugins/jquery.qtip2.min" %>
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
     var countyListings = <%= @county_listings.to_json %>;
     var stateListings = <%= @state_listings.to_json %>;
     var countryListings = <%= @country_listings.to_json %>;
     var extent = <%= @extent.to_json %>;
+    var taxonRangeUrl = <%= (@taxon_range ? @taxon_range.range.url : nil).to_json %>
     function classifyCounties(e) { classifyPlaces(e, {placeType: 'county'}) }
     function classifyStates(e) { classifyPlaces(e, {placeType: 'state'}) }
     function classifyCountries(e) { classifyPlaces(e, {placeType: 'country'}) }
@@ -107,16 +108,6 @@
       <% end %>
         
       map.add(po.geoJson()
-        .id('counties_simple')
-        .zoom(function(z) {
-          if (z < 7) { return -100};
-          if (z > 11) { return 100};
-          return z;
-        })
-        .url(TILESTACHE_SERVER+"/counties_simplified_01/{Z}/{X}/{Y}.geojson")
-        .on('load', classifyCounties));
-        
-      map.add(po.geoJson()
         .id('states_simple')
         .zoom(function(z) {
           if (z < 4) { return -100};
@@ -125,6 +116,22 @@
         })
         .url(TILESTACHE_SERVER+"/states_simplified_1/{Z}/{X}/{Y}.geojson")
         .on('load', classifyStates));
+      
+      if (taxonRangeUrl) {
+        map.add(po.kml()
+          .id('range')
+          .url(taxonRangeUrl))
+      }
+      
+      map.add(po.geoJson()
+        .id('counties_simple')
+        .zoom(function(z) {
+          if (z < 7) { return -100};
+          if (z > 11) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/counties_simplified_01/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCounties));
         
       map.add(po.geoJson()
         .id('countries_simple')
@@ -148,15 +155,15 @@
       //   .id('openspace')
       //   .url("http://localhost:8080/openspace/{Z}/{X}/{Y}.geojson"));
           
-      map.add(po.geoJson()
-        .id('all_observations')
-        .url(TILESTACHE_SERVER+"/observations/{Z}/{X}/{Y}.geojson")
-        .on('load', handleObservations)
-        .zoom(function(z) {
-          if (z < 9) { return -100};
-          return z;
-        })
-        .clip(false));
+      // map.add(po.geoJson()
+      //   .id('all_observations')
+      //   .url(TILESTACHE_SERVER+"/observations/{Z}/{X}/{Y}.geojson")
+      //   .on('load', handleObservations)
+      //   .zoom(function(z) {
+      //     if (z < 9) { return -100};
+      //     return z;
+      //   })
+      //   .clip(false));
         
       map.add(po.geoJson()
         .id('observations')
@@ -195,7 +202,7 @@
       stroke-width: 2px;
       vector-effect: non-scaling-stroke;
       z-index: 1;
-/*      visibility: hidden;*/
+      visibility: hidden;
     }
     path.putative {
 /*      fill: #84A92F;
@@ -210,6 +217,11 @@
       fill: #84A92F;
       stroke: #55721F;
       z-index: 30;
+      visibility: visible;
+    }
+    #range path {
+      fill: #FF5EB0;
+      stroke: deeppink;
       visibility: visible;
     }
     #openspace path {
