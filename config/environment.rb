@@ -20,6 +20,7 @@ FlickRawOptions = {
   'api_key' => FLICKR_API_KEY,
   'shared_secret' => FLICKR_SHARED_SECRET
 }
+DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
 
 require "omniauth"
 Rails::Initializer.run do |config|
@@ -155,3 +156,5 @@ Rubaidh::GoogleAnalytics.environments = ['production']
 SITE_NAME = INAT_CONFIG['general']['SITE_NAME']
 OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
 SPHERICAL_MERCATOR = SphericalMercator.new
+
+
