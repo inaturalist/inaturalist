@@ -13,7 +13,7 @@
     var stateListings = <%= @state_listings.to_json %>;
     var countryListings = <%= @country_listings.to_json %>;
     var extent = <%= @extent.to_json %>;
-    var taxonRangeUrl = <%= (@taxon_range ? @taxon_range.range.url : nil).to_json %>
+    var taxonRangeUrl = <%= (@taxon_range ? taxon_range_url(@taxon, :format => "geojson") : nil).to_json %>
     function classifyCounties(e) { classifyPlaces(e, {placeType: 'county'}) }
     function classifyStates(e) { classifyPlaces(e, {placeType: 'state'}) }
     function classifyCountries(e) { classifyPlaces(e, {placeType: 'country'}) }
@@ -49,7 +49,7 @@
     function handleObservations(e) {
       for (var i = e.features.length - 1; i >= 0; i--){
         var feature = e.features[i]
-        if (!feature) {continue}
+        if (!feature || !feature.element) {continue}
         feature.element.setAttribute('data-observation-id', feature.data.properties.observation_id || feature.data.properties.id)
         $(feature.element).qtip({
           style: {
@@ -108,11 +108,12 @@
             .hosts(["a.", "b.", "c.", ""])));
       <% end %>
       
-      // if (taxonRangeUrl) {
-      //   map.add(po.kml()
-      //     .id('range')
-      //     .url(taxonRangeUrl))
-      // }
+      if (taxonRangeUrl) {
+        map.add(po.geoJson()
+          .id('range')
+          .tile(false)
+          .url(taxonRangeUrl))
+      }
       
       map.add(po.geoJson()
         .id('countries_simple')
@@ -170,6 +171,7 @@
       map.add(po.geoJson()
         .id('observations')
         .url("<%= observations_of_url(@taxon, :format => 'geojson') %>")
+        .tile(false)
         .on('load', handleObservations)
         .on('load', handleTaxonObservations)
         .clip(false));
@@ -200,7 +202,7 @@
     #all_observations circle:hover {opacity: 1;}
     path {
       fill: transparent;
-      opacity: 0.5;
+      opacity: 0.2;
       stroke: #91681D;
       stroke-width: 2px;
       vector-effect: non-scaling-stroke;
@@ -211,12 +213,14 @@
       fill: #CA9D2C;
       stroke: #91681D;
       z-index: 20;
+      opacity: 0.5;
       visibility: visible;
     }
     path.confirmed {
       fill: #84A92F;
       stroke: #55721F;
       z-index: 30;
+      opacity: 0.5;
       visibility: visible;
     }
     #range path {

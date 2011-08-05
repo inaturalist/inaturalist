@@ -1,4 +1,6 @@
 class TaxaController < ApplicationController
+  caches_page :range, :if => Proc.new {|c| c.request.format.geojson?}
+  
   include TaxaHelper
   include Shared::WikipediaModule
   
@@ -11,7 +13,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos, :map]
+    :observation_photos, :map, :range]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
@@ -145,7 +147,7 @@ class TaxaController < ApplicationController
           return redirect_to(:action => 'index')
         end
         
-        @taxon_range = @taxon.taxon_ranges.first
+        @taxon_range = @taxon.taxon_ranges.without_geom.first
         @taxon_gbif = @taxon.name.gsub(' ','+')
         @show_range = @taxon_range # && params[:test] =~ /range/
         
@@ -394,8 +396,13 @@ class TaxaController < ApplicationController
   end
   
   def map
-    @taxon_range = @taxon.taxon_ranges.first
-    if @bounds = Observation.of(@taxon).calculate(:extent, :geom)
+    @taxon_range = @taxon.taxon_ranges.without_geom.first
+    @bounds = if @taxon_range
+      @taxon.taxon_ranges.calculate(:extent, :geom)
+    else
+      Observation.of(@taxon).calculate(:extent, :geom)
+    end
+    if @bounds
       @extent = [
         {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
         {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
@@ -428,6 +435,24 @@ class TaxaController < ApplicationController
         Place::PLACE_TYPE_CODES['Country']
       ]
     ).index_by(&:place_id)
+  end
+  
+  def range
+    @taxon_range = if request.format.geojson?
+      @taxon.taxon_ranges.simplified.first
+    else
+      @taxon.taxon_ranges.first
+    end
+    unless @taxon_range
+      flash[:error] = "Taxon doesn't have a range"
+      redirect_to @taxon
+      return
+    end
+    respond_to do |format|
+      format.html { redirect_to taxon_map_path(@taxon) }
+      format.kml { redirect_to @taxon_range.range.url }
+      format.geojson { render :json => [@taxon_range].to_geojson }
+    end
   end
   
   def observation_photos
