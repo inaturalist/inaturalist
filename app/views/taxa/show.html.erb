@@ -458,17 +458,18 @@
     <% end %>
     
     | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
+    <% if is_admin? -%>
+      | <%= link_to "Map", taxon_map_path(@taxon) %>
+    <% end -%>
     <% if logged_in? and @user.is_curator? %>
-    
-    | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
+      | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
     <% end %>
     <% if @taxon.flagged? %>
-    
-    | <span id="flaggings_heads_up" class="description">
+      | <span id="flaggings_heads_up" class="description">
       Flagged for curation.
       <%= link_to "View flags", taxon_flags_path(@taxon), :class => 'readmore', 
         :title => "See something wrong with this taxon?  Let the curators know." %>
-    </span>
+      </span>
     <% else %>
       <% if logged_in? %>
       | <%= link_to "Flag for curation", new_taxon_flag_path(@taxon), :id => "flag_this" %>

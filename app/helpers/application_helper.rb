@@ -113,6 +113,14 @@ module ApplicationHelper
     !is_me?(user)
   end
   
+  def is_admin?
+    logged_in? && current_user.is_admin?
+  end
+  
+  def is_curator?
+    logged_in? && current_user.is_curator?
+  end
+  
   def curator_of?(project)
    return false unless logged_in?
    current_user.project_users.first(:conditions => {:project_id => project.id, :role => 'curator'})

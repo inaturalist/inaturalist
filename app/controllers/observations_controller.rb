@@ -6,6 +6,10 @@ class ObservationsController < ApplicationController
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
     :if => Proc.new {|c| (c.request.format.geojson? || c.request.format.widget?) && c.request.url.size < 250}
+  caches_action :of,
+    :expires_in => 1.day,
+    :cache_path => Proc.new {|c| c.params},
+    :if => Proc.new {|c| !c.request.format.html? }
   cache_sweeper :observation_sweeper, :only => [:update, :destroy]
   
   rescue_from ActionController::UnknownAction do
@@ -19,6 +23,7 @@ class ObservationsController < ApplicationController
   before_filter :login_required, 
                 :except => [:explore,
                             :index,
+                            :of,
                             :show,
                             :by_login,
                             :id_please,
@@ -146,6 +151,26 @@ class ObservationsController < ApplicationController
             :show_user => true
           })
         end
+      end
+    end
+  end
+  
+  def of
+    if request.format.html?
+      redirect_to observations_path(:taxon_id => params[:id])
+      return
+    end
+    unless @taxon = Taxon.find_by_id(params[:id])
+      render_404 && return
+    end
+    @observations = Observation.of(@taxon).all(:order => "observations.id desc", :limit => 500)
+    respond_to do |format|
+      format.json { render :json => @observations }
+      format.geojson do
+        render :json => @observations.to_geojson(:except => [
+          :geom, :latitude, :longitude, :map_scale, 
+          :num_identification_agreements, :num_identification_disagreements, 
+          :delta, :location_is_exact])
       end
     end
   end

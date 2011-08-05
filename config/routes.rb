@@ -108,6 +108,7 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => :get}
     o.project_observations 'observations/project/:id.:format', :action => "project"
     o.all_project_observations 'observations/project/:id.all.:format', :action => "project_all"
+    o.observations_of 'observations/of/:id.:format', :action => 'of'
   end
   map.observation_quality 'observations/:id/quality/:metric', :controller => "quality_metrics", :action => "vote", :conditions => {:method => [:post, :delete]}
   
@@ -218,7 +219,7 @@ ActionController::Routing::Routes.draw do |map|
     taxa.merge_taxon 'taxa/:id/merge', :action => 'merge'
     taxa.formatted_merge_taxon 'taxa/:id/merge.:format', :action => 'merge'
     taxa.taxon_observation_photos 'taxa/:id/observation_photos', :action => 'observation_photos'
-    taxa.map 'taxa/:id/map', :action => 'map'
+    taxa.taxon_map 'taxa/:id/map', :action => 'map'
   end
   
   map.connect 'taxa/auto_complete_name', :controller => 'taxa',

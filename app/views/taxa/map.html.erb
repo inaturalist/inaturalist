@@ -24,11 +24,10 @@
       for (var i = e.features.length - 1; i >= 0; i--){
         var feature = e.features[i]
         if (feature.data.properties) {
-          var placeId = feature.data.properties.ID || feature.data.properties.id
+          var placeId = feature.data.properties.place_id
         } else {
           continue
         }
-        // var countyListing = countyListings[placeId];
         var listing
         switch (placeType) {
           case 'county':
@@ -98,6 +97,8 @@
       } else {
         map.center({lat: 0, lon: 0}).zoom(3)
       }
+      // map.center({lat: 37.5, lon: -121.5}).zoom(9)
+      // map.center({lat: 0, lon: 0}).zoom(2)
       
       <% if @cloudmade_key %>
         map.add(po.image()
@@ -106,7 +107,22 @@
             + "/998/256/{Z}/{X}/{Y}.png")
             .hosts(["a.", "b.", "c.", ""])));
       <% end %>
-        
+      
+      // if (taxonRangeUrl) {
+      //   map.add(po.kml()
+      //     .id('range')
+      //     .url(taxonRangeUrl))
+      // }
+      
+      map.add(po.geoJson()
+        .id('countries_simple')
+        .zoom(function(z) {
+          if (z > 3) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/countries_simplified/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCountries));
+      
       map.add(po.geoJson()
         .id('states_simple')
         .zoom(function(z) {
@@ -114,14 +130,8 @@
           if (z > 6) { return 100};
           return z;
         })
-        .url(TILESTACHE_SERVER+"/states_simplified_1/{Z}/{X}/{Y}.geojson")
+        .url(TILESTACHE_SERVER+"/states_simplified/{Z}/{X}/{Y}.geojson")
         .on('load', classifyStates));
-      
-      if (taxonRangeUrl) {
-        map.add(po.kml()
-          .id('range')
-          .url(taxonRangeUrl))
-      }
       
       map.add(po.geoJson()
         .id('counties_simple')
@@ -130,22 +140,14 @@
           if (z > 11) { return 100};
           return z;
         })
-        .url(TILESTACHE_SERVER+"/counties_simplified_01/{Z}/{X}/{Y}.geojson")
+        .url(TILESTACHE_SERVER+"/counties_simplified/{Z}/{X}/{Y}.geojson")
         .on('load', classifyCounties));
-        
-      map.add(po.geoJson()
-        .id('countries_simple')
-        .zoom(function(z) {
-          if (z > 3) { return 100};
-          return z;
-        })
-        .url(TILESTACHE_SERVER+"/countries_simplified_1/{Z}/{X}/{Y}.geojson")
-        .on('load', classifyCountries));
       
       map.add(po.geoJson()
         .id('counties')
         .zoom(function(z) {
           if (z < 12) { return -100};
+          if (z > 13) { return 100};
           return z;
         })
         .url(TILESTACHE_SERVER+"/counties/{Z}/{X}/{Y}.geojson")
@@ -167,7 +169,7 @@
         
       map.add(po.geoJson()
         .id('observations')
-        .url("/observations.geojson?taxon_id=<%= @taxon.id %>")
+        .url("<%= observations_of_url(@taxon, :format => 'geojson') %>")
         .on('load', handleObservations)
         .on('load', handleTaxonObservations)
         .clip(false));
@@ -185,6 +187,7 @@
       stroke-width: 2px;
       opacity: 0.5;
       cursor: pointer;
+      vector-effect: non-scaling-stroke;
     }
     circle:hover {
       opacity: 1;
@@ -198,16 +201,13 @@
     path {
       fill: transparent;
       opacity: 0.5;
-      stroke: lightblue;
+      stroke: #91681D;
       stroke-width: 2px;
       vector-effect: non-scaling-stroke;
       z-index: 1;
       visibility: hidden;
     }
     path.putative {
-/*      fill: #84A92F;
-      stroke: #55721F;*/
-/*      opacity: 0.25;*/
       fill: #CA9D2C;
       stroke: #91681D;
       z-index: 20;
@@ -223,6 +223,7 @@
       fill: #FF5EB0;
       stroke: deeppink;
       visibility: visible;
+      opacity: 0.25;
     }
     #openspace path {
       fill: #B3C927;
