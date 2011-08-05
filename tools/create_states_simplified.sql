@@ -24,3 +24,5 @@ SELECT
   multi(cleangeometry(ST_SimplifyPreserveTopology(geom, 0.05)))
 FROM 
   states_large_polygons;
+
+GRANT SELECT ON states_simplified TO readonly;

@@ -24,3 +24,5 @@ SELECT
   multi(cleangeometry(ST_SimplifyPreserveTopology(geom, 0.1)))
 FROM 
   countries_large_polygons;
+
+GRANT SELECT ON countries_simplified TO readonly;
