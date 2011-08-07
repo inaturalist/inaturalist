@@ -262,6 +262,10 @@ class ObservationsController < ApplicationController
           end
           
           @project_users = current_user.project_users.all(:include => :project)
+          
+          if params[:test] && @observation.georeferenced?
+            @places = Place.containing_lat_lng(@observation.latitude, @observation.longitude).sort_by(&:bbox_area)
+          end
         end
         @project_observations = @observation.project_observations.all(:limit => 100)
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
