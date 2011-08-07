@@ -5,6 +5,7 @@
   image_options ||= {}
   include_image_attribution ||= false
   hide_child_count ||= true
+  hide_wikipedia_summary ||= false
   link_name ||= false
   link_image ||= false
   link_url ||= url_for_taxon(taxon)
@@ -81,16 +82,18 @@
       </div>
     <% end -%>
     
-    <div class="wikipedia_summary">
-      <% if summary = taxon.wikipedia_summary -%>
-        <%= summary %>
-        <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
-      <% else %>
-        <span class="description">
-          No Wikipedia page for this taxon. <%= link_to "Start one now!", "http://wikipedia.org/wiki/#{taxon.name}" %>
-        </span>
-      <% end -%>
-    </div>
+    <% unless hide_wikipedia_summary -%>
+      <div class="wikipedia_summary">
+        <% if summary = taxon.wikipedia_summary -%>
+          <%= summary %>
+          <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
+        <% else %>
+          <span class="description">
+            No Wikipedia page for this taxon. <%= link_to "Start one now!", "http://wikipedia.org/wiki/#{taxon.name}" %>
+          </span>
+        <% end -%>
+      </div>
+    <% end -%>
     
   </div>
   <% if include_image_attribution && (photo = taxon.photos.first) -%>

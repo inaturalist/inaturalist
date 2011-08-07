@@ -458,8 +458,8 @@
     <% end %>
     
     | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
-    <% if is_admin? -%>
-      | <%= link_to "Map", taxon_map_path(@taxon) %>
+    <% if logged_in? -%>
+      | <%= link_to "Map", taxon_map_path(@taxon) %> <span class="meta">(experimental)</span>
     <% end -%>
     <% if logged_in? and @user.is_curator? %>
       | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
