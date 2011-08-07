@@ -152,7 +152,8 @@ class CheckList < List
           "lists.type = 'CheckList' AND last_observation_id = ? OR list_id IN (?)", 
           observation_id, existing_place_ids]) do |lt|
         obs = ListedTaxon.update_last_observation_for(lt)
-        if obs.blank? && !lt.user_id && !lt.updater_id && lt.comments_count.to_i == 0 && lt.list.is_default?
+        l = lt.list
+        if obs.blank? && !lt.user_id && !lt.updater_id && lt.comments_count.to_i == 0 && l.is_default?
           lt.destroy
         end
       end
