@@ -103,11 +103,9 @@
       window.map = po.map()
         .container($('#map').get(0).appendChild(po.svg('svg')))
         .zoomRange([2, 15])
-        .add(po.interact())
-        .add(po.hash());
+        .add(po.interact());
       if (window.location.hash.length > 0) {
         // let the po.hash() control handle it
-        console.log("foo");
       } else if (extent) {
         map.extent(<%= @extent.to_json %>).zoomBy(-0.5)
       } else {
@@ -115,6 +113,8 @@
       }
       // map.center({lat: 37.5, lon: -121.5}).zoom(9)
       // map.center({lat: 0, lon: 0}).zoom(2)
+      
+      map.add(po.hash())
       
       <% if @cloudmade_key %>
         map.add(po.image()

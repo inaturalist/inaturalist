@@ -10,7 +10,8 @@ class TaxonRange < ActiveRecord::Base
       multi(cleangeometry(
         ST_SimplifyPreserveTopology(geom, 
           CASE 
-          WHEN npoints(geom) > 1000 THEN 0.1
+          WHEN npoints(geom) > 9000 THEN 0.1
+          WHEN npoints(geom) > 1000 THEN 0.05
           ELSE 0.01 END))) AS geom
     SQL
   }

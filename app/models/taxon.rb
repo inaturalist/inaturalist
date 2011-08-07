@@ -728,6 +728,15 @@ class Taxon < ActiveRecord::Base
     conservation_status >= IUCN_NEAR_THREATENED
   end
   
+  def add_to_intersecting_places
+    Place.
+        place_types(%w(Country State County)).
+        intersecting_taxon(self).
+        find_each(:select => "places.id, place_type, check_list_id", :include => :check_list) do |place|
+      place.check_list.add_taxon(self)
+    end
+  end
+  
   include TaxaHelper
   def image_url
     taxon_image_url(self)

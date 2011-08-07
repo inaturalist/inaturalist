@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805044702) do
+ActiveRecord::Schema.define(:version => 20110807035642) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -416,6 +416,7 @@ ActiveRecord::Schema.define(:version => 20110805044702) do
   add_index "places", ["bbox_area"], :name => "index_places_on_bbox_area"
   add_index "places", ["latitude", "longitude"], :name => "index_places_on_latitude_and_longitude"
   add_index "places", ["parent_id"], :name => "index_places_on_parent_id"
+  add_index "places", ["place_type"], :name => "index_places_on_place_type"
   add_index "places", ["swlat", "swlng", "nelat", "nelng"], :name => "index_places_on_swlat_and_swlng_and_nelat_and_nelng"
 
   create_table "posts", :force => true do |t|
@@ -692,6 +693,7 @@ ActiveRecord::Schema.define(:version => 20110805044702) do
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true
+  add_index "taxon_ranges", ["taxon_id"], :name => "index_taxon_ranges_on_taxon_id"
 
   create_table "taxon_versions", :force => true do |t|
     t.integer  "taxon_id"

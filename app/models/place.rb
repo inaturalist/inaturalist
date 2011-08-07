@@ -103,6 +103,31 @@ class Place < ActiveRecord::Base
     {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", swlat, nelat, swlng, nelng]}
   }
   
+  # This can be very expensive.  Use sparingly, or scoped.
+  named_scope :intersecting_taxon, lambda{|taxon|
+    taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
+    {
+      :joins => 
+        "JOIN place_geometries ON place_geometries.place_id = places.id " + 
+        "JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}",
+      :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
+    }
+  }
+  
+  named_scope :place_type, lambda{|place_type|
+    place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
+    place_type = place_type.to_i
+    {:conditions => {:place_type => place_type}}
+  }
+  
+  named_scope :place_types, lambda{|place_types|
+    place_types = place_types.map do |place_type|
+      place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
+      place_type.to_i
+    end
+    {:conditions => ["place_type IN (?)", place_types]}
+  }
+  
   def to_s
     "<Place id: #{self.id}, name: #{self.name}, woeid: #{self.woeid}, " + 
     "place_type_name: #{self.place_type_name}, lat: #{self.latitude}, " +
