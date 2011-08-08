@@ -147,7 +147,7 @@ class Place < ActiveRecord::Base
     return super unless super.blank? || options[:reload]
     
     ancestor_names = self.ancestors.select do |a|
-      %w"town state country".include?(PLACE_TYPES[a.place_type].downcase)
+      %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
     end.map do |a|
       a.code.blank? ? a.name : a.code.split('-').last
     end.compact
