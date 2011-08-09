@@ -13,7 +13,7 @@
     var stateListings = <%= @state_listings.to_json %>;
     var countryListings = <%= @country_listings.to_json %>;
     var extent = <%= @extent.to_json %>;
-    var taxonRangeUrl = <%= (@taxon_range_geom ? taxon_range_geom_url(@taxon, :format => "geojson") : nil).to_json %>
+    var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon, :format => "geojson") : nil).to_json %>
     function classifyCounties(e) { classifyPlaces(e, {placeType: 'county'}) }
     function classifyStates(e) { classifyPlaces(e, {placeType: 'state'}) }
     function classifyCountries(e) { classifyPlaces(e, {placeType: 'country'}) }
