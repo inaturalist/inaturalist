@@ -24,7 +24,6 @@ class TaxonRangesController < ApplicationController
   def update
     @taxon_range = TaxonRange.find(params[:id])
     respond_to do |format|
-      Rails.logger.debug "Log a bunch of stuff: #{@taxon_range.taxon} #{taxon_path}"
       if @taxon_range.update_attributes(params[:taxon_range])
         @taxon_range.taxon
         format.html { redirect_to(@taxon_range.taxon || taxa_path, :notice => 'TaxonRange was successfully updated.') }
