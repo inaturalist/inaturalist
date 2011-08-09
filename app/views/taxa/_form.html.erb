@@ -248,6 +248,11 @@
         <%= f.label :conservation_status_source %>
         <%= render :partial => "sources/nested_form_fields", :locals => { :f => f, :assoc_name => "conservation_status_source" } %>
       </div>
+      
+      <p class="ui">
+        <%= f.label :conservation_status_source_identifier %><br/>
+        <%= f.text_field :conservation_status_source_identifier %>
+      </p>
     </fieldset>
   <% end -%>
   

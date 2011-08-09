@@ -220,7 +220,7 @@ ActionController::Routing::Routes.draw do |map|
     taxa.formatted_merge_taxon 'taxa/:id/merge.:format', :action => 'merge'
     taxa.taxon_observation_photos 'taxa/:id/observation_photos', :action => 'observation_photos'
     taxa.taxon_map 'taxa/:id/map', :action => 'map'
-    taxa.taxon_range 'taxa/:id/range.:format', :action => 'range'
+    taxa.taxon_range_geom 'taxa/:id/range.:format', :action => 'range'
   end
   
   map.connect 'taxa/auto_complete_name', :controller => 'taxa',
