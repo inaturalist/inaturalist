@@ -163,7 +163,7 @@ class ObservationsController < ApplicationController
     unless @taxon = Taxon.find_by_id(params[:id])
       render_404 && return
     end
-    @observations = Observation.of(@taxon).all(:order => "observations.id desc", :limit => 500)
+    @observations = Observation.of(@taxon).all(:order => "observations.id desc", :limit => 500).sort_by{|o| [o.research_grade? ? 1 : 0, id]}
     respond_to do |format|
       format.json { render :json => @observations }
       format.geojson do
