@@ -13,7 +13,7 @@ class List < ActiveRecord::Base
   after_create :refresh
   
   def to_s
-    "<List #{self.id}: #{self.title}>"
+    "<#{self.class} #{id}: #{title}>"
   end
   
   #

@@ -85,14 +85,23 @@ describe CheckList, "refresh_with_observation" do
     @check_list.taxon_ids.should include(t.id)
   end
   
+  it "should not add to a non-default list" do
+    t = Taxon.make(:rank => Taxon::SPECIES)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
+    l = CheckList.make(:place => @check_list.place)
+    CheckList.refresh_with_observation(o)
+    l.reload
+    l.taxon_ids.should_not include(t.id)
+  end
+  
   it "should not remove listed taxa if non-default list" do
     t = Taxon.make(:rank => Taxon::SPECIES)
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
     l = CheckList.make(:place => @check_list.place)
     l.add_taxon(t)
-    CheckList.refresh_with_observation(o)
     l.reload
     l.taxon_ids.should include(t.id)
+    CheckList.refresh_with_observation(o)
     observation_id = o.id
     o.destroy
     CheckList.refresh_with_observation(observation_id, :taxon_id => t.id)

@@ -142,18 +142,22 @@ class CheckList < List
       )
       return unless observation.taxon.rank == Taxon::SPECIES
       new_place_ids = place_ids - existing_place_ids
-      CheckList.find_each(:conditions => ["place_id IN (?)", new_place_ids]) do |list|
+      CheckList.find_each(:include => :place, 
+          :conditions => ["places.check_list_id = lists.id AND place_id IN (?)", new_place_ids]) do |list|
         list.add_taxon(observation.taxon, :last_observation => observation)
       end
     
     # otherwise well be refreshing / deleting
     else
       ListedTaxon.find_each(:include => :list, :conditions => [
-          "lists.type = 'CheckList' AND last_observation_id = ? OR list_id IN (?)", 
+          "lists.type = 'CheckList' AND (last_observation_id = ? OR listed_taxa.place_id IN (?))", 
           observation_id, existing_place_ids]) do |lt|
         obs = ListedTaxon.update_last_observation_for(lt)
-        l = lt.list
-        if obs.blank? && !lt.user_id && !lt.updater_id && lt.comments_count.to_i == 0 && l.is_default?
+        if obs.blank? && 
+            !lt.user_id && 
+            !lt.updater_id && 
+            lt.comments_count.to_i == 0 && 
+            lt.list.is_default?
           lt.destroy
         end
       end
