@@ -958,35 +958,36 @@ class TaxaController < ApplicationController
     raise exception if params[:action].blank?
     name, format = params[:action].split('_').join(' ').split('.')
     request.format = format unless format.blank?
+    name = name.to_s.downcase
     
     # Try to look by its current unique name
     begin
-      taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
+      taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2) unless @taxon
     rescue ActiveRecord::StatementInvalid => e
       raise e unless e.message =~ /invalid byte sequence/
       name = Iconv.iconv('UTF8', 'LATIN1', name)
-      taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
+      taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2)
     end
     @taxon ||= taxa.first if taxa.size == 1
     
     # Try to look by its current scientifc name
     begin
-      taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon
+      taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
     rescue ActiveRecord::StatementInvalid => e
       raise e unless e.message =~ /invalid byte sequence/
       name = Iconv.iconv('UTF8', 'LATIN1', name)
-      taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2)
+      taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
     end
     @taxon ||= taxa.first if taxa.size == 1
     
     # Try to find a unique TaxonName
     unless @taxon
       begin
-        taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)
+        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
         name = Iconv.iconv('UTF8', 'LATIN1', name)
-        taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)
+        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       end
       if taxon_names.size == 1
         @taxon = taxon_names.first.taxon
@@ -999,7 +1000,13 @@ class TaxaController < ApplicationController
     end
     
     # Redirect to a canonical form
-    return redirect_to :action => name.split.join('_') if @taxon && params[:action].split.size > 1
+    if @taxon
+      canonical = @taxon.unique_name.split.join('_')
+      taxon_names ||= @taxon.taxon_names.all
+      unless taxon_names.detect{|tn| tn.name.split.join('_') == params[:action]}
+        return redirect_to :action => canonical
+      end
+    end
     
     # TODO: if multiple exact matches, render a disambig page with status 300 (Mulitple choices)
     unless @taxon

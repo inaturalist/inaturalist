@@ -147,8 +147,8 @@ class ApplicationController < ActionController::Base
   end
   
   def load_user_by_login
-    @login = params[:login]
-    unless @selected_user = User.find_by_login(@login)
+    @login = params[:login].to_s.downcase
+    unless @selected_user = User.first(:conditions => ["lower(login) = ?", @login])
       return render_404
     end
   end
