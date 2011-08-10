@@ -6,7 +6,7 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", "jquery/plugins/jquery.qtip2.min" %>
+  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", "jquery/plugins/jquery.qtip2.min", "d3.min" %>
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
     var countyListings = <%= @county_listings.to_json %>;
@@ -14,6 +14,8 @@
     var countryListings = <%= @country_listings.to_json %>;
     var extent = <%= @extent.to_json %>;
     var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon, :format => "geojson") : nil).to_json %>
+    var children = <%= @children.to_json %>
+    window.colorScale = d3.scale.category10()
     function classifyCounties(e) { classifyPlaces(e, {placeType: 'county'}) }
     function classifyStates(e) { classifyPlaces(e, {placeType: 'state'}) }
     function classifyCountries(e) { classifyPlaces(e, {placeType: 'country'}) }
@@ -104,6 +106,78 @@
     //   li.append(symbol, label)
     //   $('#legend ul').append(li)
     // }
+    
+    function styleRange(e, child) {
+      var fill = colorScale(child.id)
+      var stroke = d3.rgb(fill).darker().toString()
+      for (var i = e.features.length - 1; i >= 0; i--){
+        var feature = e.features[i]
+        feature.element.setAttribute('fill', fill)
+        feature.element.setAttribute('stroke', stroke)
+      }
+    }
+    
+    function styleObservations(e, child) {
+      var fill = colorScale(child.id)
+      var stroke = fill.darken()
+    }
+    
+    function addPlaces() {
+      layers['countries_simple'] = po.geoJson()
+        .id('countries_simple')
+        .zoom(function(z) {
+          if (z > 3) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/countries_simplified/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCountries)
+      map.add(layers['countries_simple']);
+
+      layers['states_simple'] = po.geoJson()
+        .id('states_simple')
+        .zoom(function(z) {
+          if (z < 4) { return -100};
+          if (z > 6) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/states_simplified/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyStates)
+      map.add(layers['states_simple']);
+
+      layers['counties_simple'] = po.geoJson()
+        .id('counties_simple')
+        .zoom(function(z) {
+          if (z < 7) { return -100};
+          if (z > 11) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/counties_simplified/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCounties)
+      map.add(layers['counties_simple']);
+
+      layers['counties'] = po.geoJson()
+        .id('counties')
+        .zoom(function(z) {
+          if (z < 12) { return -100};
+          if (z > 13) { return 100};
+          return z;
+        })
+        .url(TILESTACHE_SERVER+"/counties/{Z}/{X}/{Y}.geojson")
+        .on('load', classifyCounties)
+      map.add(layers['counties']);
+    }
+    
+    function addObservations() {
+      layers['observations'] = po.geoJson()
+        .id('observations')
+        .url("<%= observations_of_url(@taxon, :format => 'geojson') %>")
+        .tile(false)
+        .on('load', handleObservations)
+        .on('load', handleTaxonObservations)
+        .clip(false)
+      map.add(layers['observations']);
+    }
+    
     $(document).ready(function() {
       window.layers = {}
       window.po = org.polymaps
@@ -131,76 +205,83 @@
             .hosts(["a.", "b.", "c.", ""])));
       <% end %>
       
-      if (taxonRangeUrl) {
-        layers['range'] = po.geoJson()
-          .id('range')
-          .tile(false)
-          .url(taxonRangeUrl)
-        map.add(layers['range'])
+      if (children && children.length > 0) {
+        $('#legend ul').html('')
+        // addObservations()
+        var styling = po.stylist()
+          .style('visibility', 'visible')
+          .style('fill', function(f) { return colorScale(f.properties.taxon_id) })
+          .style('stroke', function(f) { return d3.rgb(colorScale(f.properties.taxon_id)).darker().toString() })
+          
+        $.each(children, function() {
+          var child = this,
+              rangeId = 'range_'+child.id,
+              observationsId = 'observations_'+child.id;
+          if (child.range_url) {
+            layers[rangeId] = po.geoJson()
+              .id(rangeId)
+              .url(child.range_url)
+              .tile(false)
+              .clip(false)
+              .on('load', styling)
+            map.add(layers[rangeId])
+          }
+
+          var inputId = 'taxon_check_' + child.id
+          var input = $('<input type="checkbox">')
+            .attr('id', inputId)
+            .attr('checked', 'checked')
+            .click(function() { 
+              if (layers[rangeId]) { layers[rangeId].visible(this.checked); }
+              layers[observationsId].visible(this.checked)
+            })
+          var symbol = $('<div class="symbol"></div>').css({
+            backgroundColor: colorScale(child.id),
+            borderColor: d3.rgb(colorScale(child.id)).darker().toString(),
+            borderStyle: 'solid',
+            borderWidth: '1px'
+          })
+          var label = $('<label></label>').attr('for', inputId).html(child.name)
+          var link = $('<a></a>').attr('href', '/taxa/'+child.id).html('(view)').addClass('small')
+          var li = $('<li></li>').append(input, ' ', symbol, ' ', label, ' ', link)
+          $('#legend ul').append(li)
+        })
+        
+        $.each(children, function() {
+          var child = this,
+              rangeId = 'range_'+child.id,
+              observationsId = 'observations_'+child.id;
+          layers[observationsId] = po.geoJson()
+            .id(observationsId)
+            .url(child.observations_url)
+            .tile(false)
+            .clip(false)
+            .on('load', handleObservations)
+            .on('load', styling)
+          map.add(layers[observationsId])
+        })
+        
+      } else  {
+        if (taxonRangeUrl) {
+          layers['range'] = po.geoJson()
+            .id('range')
+            .tile(false)
+            .url(taxonRangeUrl)
+          map.add(layers['range'])
+        }
+        addPlaces()
+        addObservations()
+        $('#legend li').each(function() {
+          var targetLayers = $(this).attr('rel').split(' ')
+          $(this).find('input').click(function() {
+            for (var i = targetLayers.length - 1; i >= 0; i--){
+              if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
+            };
+          })
+        })
       }
       
-      layers['countries_simple'] = po.geoJson()
-        .id('countries_simple')
-        .zoom(function(z) {
-          if (z > 3) { return 100};
-          return z;
-        })
-        .url(TILESTACHE_SERVER+"/countries_simplified/{Z}/{X}/{Y}.geojson")
-        .on('load', classifyCountries)
-      map.add(layers['countries_simple']);
-      
-      layers['states_simple'] = po.geoJson()
-        .id('states_simple')
-        .zoom(function(z) {
-          if (z < 4) { return -100};
-          if (z > 6) { return 100};
-          return z;
-        })
-        .url(TILESTACHE_SERVER+"/states_simplified/{Z}/{X}/{Y}.geojson")
-        .on('load', classifyStates)
-      map.add(layers['states_simple']);
-      
-      layers['counties_simple'] = po.geoJson()
-        .id('counties_simple')
-        .zoom(function(z) {
-          if (z < 7) { return -100};
-          if (z > 11) { return 100};
-          return z;
-        })
-        .url(TILESTACHE_SERVER+"/counties_simplified/{Z}/{X}/{Y}.geojson")
-        .on('load', classifyCounties)
-      map.add(layers['counties_simple']);
-      
-      layers['counties'] = po.geoJson()
-        .id('counties')
-        .zoom(function(z) {
-          if (z < 12) { return -100};
-          if (z > 13) { return 100};
-          return z;
-        })
-        .url(TILESTACHE_SERVER+"/counties/{Z}/{X}/{Y}.geojson")
-        .on('load', classifyCounties)
-      map.add(layers['counties']);
-      
-      layers['observations'] = po.geoJson()
-        .id('observations')
-        .url("<%= observations_of_url(@taxon, :format => 'geojson') %>")
-        .tile(false)
-        .on('load', handleObservations)
-        .on('load', handleTaxonObservations)
-        .clip(false)
-      map.add(layers['observations']);
-      
       map.add(po.compass())
-      
-      $('#legend li').each(function() {
-        var targetLayers = $(this).attr('rel').split(' ')
-        $(this).find('input').click(function() {
-          for (var i = targetLayers.length - 1; i >= 0; i--){
-            if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
-          };
-        })
-      })
     })
   </script>
 <%- end -%>
@@ -209,17 +290,17 @@
   <%= stylesheet_link_tag "jquery/plugins/jquery.qtip.min", "observations" %>
   <style type="text/css" media="screen">
     #map.fullscreen {background-color: white;}
-    #observations circle {
+    circle {
       stroke-width: 2px;
       opacity: 0.5;
-      cursor: pointer;
       vector-effect: non-scaling-stroke;
     }
     #observations circle.confirmed {
       opacity: 1;
     }
-    #observations circle:hover {
+    circle:hover {
       opacity: 1;
+      cursor: pointer;
     }
     #all_observations circle {
       fill: #1E75BF;
@@ -228,10 +309,15 @@
     }
     #all_observations circle:hover {opacity: 1;}
     path {
+      opacity: 0.5;
       fill: transparent;
       vector-effect: non-scaling-stroke;
       visibility: hidden;
     }
+    path:hover {
+      opacity: 0.6;
+    }
+    .range path { visibility: visible; }
     svg .putative {
       fill: #CA9D2C;
       stroke: #91681D;

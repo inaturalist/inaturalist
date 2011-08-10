@@ -435,6 +435,19 @@ class TaxaController < ApplicationController
         Place::PLACE_TYPE_CODES['Country']
       ]
     ).index_by(&:place_id)
+    
+    if params[:test]
+      @child_taxa = @taxon.descendants.of_rank(Taxon::SPECIES).all(:limit => 10)
+      @child_taxon_ranges = TaxonRange.without_geom.all(:conditions => ["taxon_id IN (?)", @child_taxa]).group_by(&:taxon_id)
+      @children = @child_taxa.map do |child|
+        {
+          :id => child.id, 
+          :range_url => @child_taxon_ranges[child.id] ? taxon_range_geom_url(child, :format => "geojson") : nil, 
+          :observations_url => observations_of_url(child, :format => "geojson"),
+          :name => child.name
+        }
+      end
+    end
   end
   
   def range
