@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110809064437) do
+ActiveRecord::Schema.define(:version => 20110811040139) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20110809064437) do
     t.string   "establishment_means",     :limit => 32
   end
 
+  add_index "listed_taxa", ["last_observation_id"], :name => "index_listed_taxa_on_last_observation_id"
   add_index "listed_taxa", ["list_id", "taxon_ancestor_ids", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i"
   add_index "listed_taxa", ["list_id", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_id"
   add_index "listed_taxa", ["list_id"], :name => "index_listed_taxa_on_list_id_and_lft"
@@ -255,6 +256,7 @@ ActiveRecord::Schema.define(:version => 20110809064437) do
 
   add_index "lists", ["place_id"], :name => "index_lists_on_place_id"
   add_index "lists", ["project_id"], :name => "index_lists_on_project_id"
+  add_index "lists", ["type"], :name => "index_lists_on_type"
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
 
   create_table "observation_photos", :force => true do |t|
@@ -288,13 +290,13 @@ ActiveRecord::Schema.define(:version => 20110809064437) do
     t.string   "time_zone"
     t.boolean  "location_is_exact",                                                               :default => false
     t.boolean  "delta",                                                                           :default => false
+    t.point    "geom",                             :limit => nil
     t.integer  "positional_accuracy"
     t.decimal  "private_latitude",                                :precision => 15, :scale => 10
     t.decimal  "private_longitude",                               :precision => 15, :scale => 10
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
     t.string   "quality_grade",                                                                   :default => "casual"
-    t.point    "geom",                             :limit => nil
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -390,6 +392,7 @@ ActiveRecord::Schema.define(:version => 20110809064437) do
   end
 
   add_index "places", ["bbox_area"], :name => "index_places_on_bbox_area"
+  add_index "places", ["check_list_id"], :name => "index_places_on_check_list_id"
   add_index "places", ["latitude", "longitude"], :name => "index_places_on_latitude_and_longitude"
   add_index "places", ["parent_id"], :name => "index_places_on_parent_id"
   add_index "places", ["place_type"], :name => "index_places_on_place_type"

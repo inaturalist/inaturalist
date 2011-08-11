@@ -81,6 +81,8 @@ class ListedTaxon < ActiveRecord::Base
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
+  attr_accessor :skip_update_last_observation
+  
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
     "list_id: #{self.list_id}>"
@@ -113,6 +115,7 @@ class ListedTaxon < ActiveRecord::Base
   # calling scope to save a query.
   #
   def update_last_observation(options = {})
+    return true if @skip_update_last_observation
     if list.is_a?(CheckList)
       ListedTaxon.send_later(:update_last_observation_for, id, options)
     end
