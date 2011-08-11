@@ -121,7 +121,7 @@ class CheckList < List
     Rails.logger.info "[INFO #{Time.now}] taxon_ids: #{taxon_ids.inspect}"
     
     # get places in which the observation was made
-    place_ids = if observation
+    place_ids = if observation && observation.georeferenced?
       Rails.logger.info "[INFO #{Time.now}] Finding intersecting place geometries for #{observation}"
       PlaceGeometry.all(:select => "place_geometries.id, place_id",
         :joins => "JOIN observations ON observations.id = #{observation_id}",
@@ -129,6 +129,7 @@ class CheckList < List
     else
       []
     end
+    Rails.logger.info "[INFO #{Time.now}] place_ids: #{place_ids.inspect}"
     
     # get places places where this obs was made that already have this taxon listed
     existing_place_ids = ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
@@ -158,18 +159,13 @@ class CheckList < List
     # otherwise well be refreshing / deleting
     else
       Rails.logger.info "[INFO #{Time.now}] Finding listed taxa to remove for #{observation}"
-      conditions = if existing_place_ids.blank?
-        ["lists.type = 'CheckList' AND last_observation_id = ?", observation_id]
-      else
-        ["lists.type = 'CheckList' AND (last_observation_id = ? OR listed_taxa.place_id IN (?))", 
-          observation_id, existing_place_ids]
-      end
+      conditions = ["place_id > 0 AND last_observation_id = ?", observation_id]
       ListedTaxon.find_each(:include => :list, :conditions => conditions) do |lt|
         obs = ListedTaxon.update_last_observation_for(lt)
         if obs.blank? && 
             !lt.user_id && 
             !lt.updater_id && 
-            lt.comments_count.to_i == 0 && 
+            lt.comments_count.to_i == 0 &&
             lt.list.is_default?
           lt.destroy
         end

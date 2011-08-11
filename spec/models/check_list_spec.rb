@@ -59,6 +59,10 @@ describe CheckList, "refresh_with_observation" do
   it "should remove listed taxa if observation deleted" do
     t = Taxon.make(:rank => Taxon::SPECIES)
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
+    
+    @place.place_geometry.geom.should_not be_blank
+    o.geom.should_not be_blank
+    
     @check_list.add_taxon(t)
     CheckList.refresh_with_observation(o)
     @check_list.reload
@@ -66,6 +70,7 @@ describe CheckList, "refresh_with_observation" do
     observation_id = o.id
     o.destroy
     Rails.logger.debug "[DEBUG] let's get this party started, observation_id = #{observation_id}"
+    
     CheckList.refresh_with_observation(observation_id, :taxon_id => t.id)
     @check_list.reload
     @check_list.taxon_ids.should_not include(t.id)

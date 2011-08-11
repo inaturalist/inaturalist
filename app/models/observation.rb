@@ -140,10 +140,9 @@ class Observation < ActiveRecord::Base
                  
   after_save :refresh_lists,
              :update_identifications_after_save
-             
-  
+  after_create :refresh_check_lists
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
   # Activity updates
   # after_save :update_activity_update
@@ -614,11 +613,16 @@ class Observation < ActiveRecord::Base
         :taxa => target_taxa.map(&:id), :add_new_taxa => true)
     end
     # List.send_later(:refresh_with_observation,        id, :taxon_id => taxon_id, :skip_update => true)
-    CheckList.send_later(:refresh_with_observation,   id, :taxon_id => taxon_id, :skip_update => true)
     # ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
+    true
+  end
+  
+  def refresh_check_lists
+    return true unless taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?
+    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
     true
   end
   
@@ -630,7 +634,6 @@ class Observation < ActiveRecord::Base
   def refresh_lists_after_destroy
     return if @skip_refresh_lists
     return unless taxon
-
     List.send_later(:refresh_for_user, self.user, :taxa => [taxon], :add_new_taxa => false)
   end
   
