@@ -349,7 +349,9 @@ class UsersController < ApplicationController
     if @user.blank? && !params[:id].blank?
       flash[:error] = "Couldn't find a user matching #{params[:id]}"
     end
-    @users = User.paginate(:page => params[:page], :order => "id desc")
+    if @user.blank?
+      @users = User.paginate(:page => params[:page], :order => "id desc")
+    end
   end
 
 protected

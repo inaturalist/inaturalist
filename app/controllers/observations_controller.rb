@@ -304,7 +304,7 @@ class ObservationsController < ApplicationController
     options[:id_please] ||= params[:id_please]
     
     @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
-    @taxon ||= TaxonName.find_single(params[:taxon_name]).try(:taxon) unless params[:taxon_name].blank?
+    @taxon ||= TaxonName.find_by_name(params[:taxon_name]).try(:taxon) unless params[:taxon_name].blank?
     if @taxon
       options[:taxon] = @taxon
       if common_name = @taxon.common_name
@@ -1146,18 +1146,6 @@ class ObservationsController < ApplicationController
       find_options[:limit] = 200
     end
     
-    # taxon
-    unless search_params[:taxon_id].blank?
-      @observations_taxon_id = search_params[:taxon_id] 
-      @observations_taxon = Taxon.find_by_id(@observations_taxon_id.to_i)
-    end
-    unless search_params[:taxon_name].blank?
-      @observations_taxon_name = search_params[:taxon_name]
-      @observations_taxon = TaxonName.find_single(params[:taxon_name], 
-        :iconic_taxa => params[:iconic_taxa]).try(:taxon)
-    end
-    search_params[:taxon] = @observations_taxon
-    
     # iconic_taxa
     if search_params[:iconic_taxa]
       # split a string of names
@@ -1175,6 +1163,25 @@ class ObservationsController < ApplicationController
       end
       @iconic_taxa = search_params[:iconic_taxa]
     end
+    
+    # taxon
+    unless search_params[:taxon_id].blank?
+      @observations_taxon_id = search_params[:taxon_id] 
+      @observations_taxon = Taxon.find_by_id(@observations_taxon_id.to_i)
+    end
+    unless search_params[:taxon_name].blank?
+      @observations_taxon_name = search_params[:taxon_name].to_s
+      taxon_name_conditions = ["taxon_names.name = ?", @observations_taxon_name]
+      includes = nil
+      unless @iconic_taxa.blank?
+        taxon_name_conditions[0] += " AND taxa.iconic_taxon_id IN (?)"
+        taxon_name_conditions << @iconic_taxa
+        includes = :taxon
+      end
+      @observations_taxon = TaxonName.first(:include => includes, 
+        :conditions => taxon_name_conditions).try(:taxon)
+    end
+    search_params[:taxon] = @observations_taxon
     
     if search_params[:has]
       if search_params[:has].is_a?(String)
@@ -1354,7 +1361,8 @@ class ObservationsController < ApplicationController
     # Field-specific searches
     if @search_on
       sphinx_options[:conditions] ||= {}
-      sphinx_options[:conditions][@search_on.to_sym] = q
+      # not sure why sphinx chokes on slashes when searching on attributes...
+      sphinx_options[:conditions][@search_on.to_sym] = q.gsub(/\//, '')
       @observations = Observation.search(find_options.merge(sphinx_options))
     else
       @observations = Observation.search(q, find_options.merge(sphinx_options))

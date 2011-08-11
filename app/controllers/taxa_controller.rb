@@ -1014,7 +1014,7 @@ class TaxaController < ApplicationController
     
     # Redirect to a canonical form
     if @taxon
-      canonical = @taxon.unique_name.split.join('_')
+      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
       taxon_names ||= @taxon.taxon_names.all
       unless taxon_names.detect{|tn| tn.name.split.join('_') == params[:action]}
         return redirect_to :action => canonical

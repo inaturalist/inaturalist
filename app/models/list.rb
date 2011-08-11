@@ -12,6 +12,8 @@ class List < ActiveRecord::Base
   
   after_create :refresh
   
+  validates_presence_of :title
+  
   def to_s
     "<#{self.class} #{id}: #{title}>"
   end
