@@ -2,12 +2,19 @@ class ListedTaxaController < ApplicationController
   before_filter :login_required, :except => [:show]
   before_filter :load_listed_taxon, :except => [:index, :create]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
+  
+  SHOW_PARTIALS = %w(place_tip)
 
   def index
     redirect_to lists_path
   end
   
   def show
+    if partial = params[:partial]
+      partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
+      render :partial => partial, :layout => false
+      return
+    end
   end
   
   def create

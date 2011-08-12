@@ -45,6 +45,35 @@
         if (listing) {
           feature.element.setAttribute('class', placeType + ' ' + (listing.last_observation_id ? 'confirmed' : 'putative'))
           // visibleFeatures.push(feature)
+          $(feature.element).qtip({
+            style: {
+              classes: 'listed_taxon ui-tooltip-light ui-tooltip-shadow'
+            },
+            show: {
+              event: 'click',
+              solo: true
+            },
+            hide: {
+              event: 'unfocus'
+            },
+            position: {
+              viewport: $(window),
+              my: 'bottom left',
+              at: 'center center'
+            },
+            content: {
+              title: {
+                text: 'Listed taxon',
+                button: true
+              },
+              text: '<span class="meta loading status">Loading..</span>',
+              ajax: {
+                url: '/listed_taxa/'+listing.id,
+                method: 'GET',
+                data: {partial: 'place_tip'}
+              }
+            }
+          })
         }
       }
     }
@@ -77,6 +106,10 @@
             at: 'center center'
           },
           content: {
+            title: {
+              text: 'Observation',
+              button: true
+            },
             text: '<span class="meta loading status">Loading..</span>',
             ajax: {
               url: '/observations/'+feature.data.properties.id,
@@ -371,7 +404,9 @@
     .compass .zoom .chevron{stroke-width:4px;}
     .compass .active .chevron,.compass .chevron.active{stroke:#fff;}
     .compass.active .active .direction{fill:#999;}
-
+    
+    .listed_taxon.ui-tooltip { max-width: 400px; }
+    .namelink { font-weight: bold; }
   </style>
 <%- end -%>
 
