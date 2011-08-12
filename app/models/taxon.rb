@@ -206,7 +206,7 @@ class Taxon < ActiveRecord::Base
   
   named_scope :locked, :conditions => {:locked => true}
   
-  # Like it's counterpart in Place, this is potentially VERY expensive
+  # Like it's counterpart in Place, this is potentially VERY expensive/slow
   named_scope :intersecting_place, lambda {|place|
     place_id = place.is_a?(Place) ? place.id : place.to_i
     {
