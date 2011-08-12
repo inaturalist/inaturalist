@@ -206,6 +206,17 @@ class Taxon < ActiveRecord::Base
   
   named_scope :locked, :conditions => {:locked => true}
   
+  # Like it's counterpart in Place, this is potentially VERY expensive
+  named_scope :intersecting_place, lambda {|place|
+    place_id = place.is_a?(Place) ? place.id : place.to_i
+    {
+      :joins => 
+        "JOIN place_geometries ON place_geometries.place_id = #{place_id} " + 
+        "JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id",
+      :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
+    }
+  }
+  
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)

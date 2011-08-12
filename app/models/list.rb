@@ -23,6 +23,7 @@ class List < ActiveRecord::Base
   # Note that subclasses like LifeList may override this.
   #
   def add_taxon(taxon, options = {})
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     ListedTaxon.create(options.merge(:list => self, :taxon => taxon))
   end
   

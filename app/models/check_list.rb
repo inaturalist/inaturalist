@@ -81,6 +81,20 @@ class CheckList < List
     Observation.of(taxon).in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).latest.first
   end
   
+  # This is a loaded gun.  Please fire with discretion.
+  def add_intersecting_taxa(options = {})
+    return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
+    ancestor = options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor])
+    if options[:ancestor] && ancestor.blank?
+      return nil
+    end
+    scope = Taxon.intersecting_place(place).scoped({})
+    scope = scope.descendants_of(ancestor) if ancestor
+    scope.find_each do |taxon|
+      send_later(:add_taxon, taxon.id)
+    end
+  end
+  
   def self.sync_check_lists_with_parents(options = {})
     time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
     start_time = Time.now
