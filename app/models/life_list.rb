@@ -2,7 +2,7 @@
 # A LifeList is a List of all the taxa a person has observed.
 #
 class LifeList < List
-  before_create :set_defaults
+  before_validation :set_defaults
   after_create :add_taxa_from_observations
   
   MAX_RELOAD_TRIES = 15
