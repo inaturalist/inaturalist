@@ -1,3 +1,4 @@
+<%- @qtip2 = true -%>
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
     Map for <%= link_to @taxon.name, @taxon %>
@@ -43,8 +44,14 @@
             break;
         }
         if (listing) {
-          feature.element.setAttribute('class', placeType + ' ' + (listing.last_observation_id ? 'confirmed' : 'putative'))
-          // visibleFeatures.push(feature)
+          var placeClass = 'place_' + listing.place_id
+          feature.element.setAttribute('class', placeType + ' ' + placeClass + 
+            ' ' + (listing.last_observation_id ? 'confirmed' : 'putative'))
+          feature.element.setAttribute('data-place-id', listing.place_id)
+          $(feature.element).hover(
+            function() { $('path.place_'+$(this).attr('data-place-id')).css('opacity', 0.8) },
+            function() { $('path.place_'+$(this).attr('data-place-id')).css('opacity', 0.5) }
+          )
           $(feature.element).qtip({
             style: {
               classes: 'listed_taxon ui-tooltip-light ui-tooltip-shadow'
@@ -211,6 +218,37 @@
       map.add(layers['observations']);
     }
     
+    function scaleLegend() {
+      var scaleWidth  = $('#legend').outerWidth() > $(window).width() / 2,
+          scaleHeight = $('#legend').outerHeight() > $(window).height() / 2
+      if (scaleWidth || scaleHeight) {
+        $('#legend .taxonimage').hide()
+        if (scaleWidth) {
+          $('#legend').width($(window).width() / 2)
+        }
+        $('#legend .small, #legend .meta').hide()
+      } else {
+        $('#legend .taxonimage').show()
+        if (!scaleWidth) {
+          $('#legend').width('auto')
+        }
+        $('#legend .small, #legend .meta').show()
+      }
+      window.windowResized = null
+    }
+    
+    window.windowResizeHandler = function() {
+      var now = (new Date()).getTime()
+      if (windowResized && now - windowResized > 400) {
+        scaleLegend()
+      }
+    }
+    
+    $(window).resize(function() {
+      window.windowResized = (new Date()).getTime()
+      setTimeout('windowResizeHandler()', 500)
+    })
+    
     $(document).ready(function() {
       window.layers = {}
       window.po = org.polymaps
@@ -315,7 +353,10 @@
       }
       
       map.add(po.compass())
+      scaleLegend()
     })
+    
+    
   </script>
 <%- end -%>
 
@@ -363,6 +404,9 @@
       opacity: 0.5;
       visibility: visible;
     }
+    path.confirmed:hover, path.putative:hover {
+      cursor: pointer;
+    }
     #range path {
       fill: #FF5EB0;
       stroke: deeppink;
@@ -404,6 +448,9 @@
     .compass .zoom .chevron{stroke-width:4px;}
     .compass .active .chevron,.compass .chevron.active{stroke:#fff;}
     .compass.active .active .direction{fill:#999;}
+    
+    .container {width: auto;}
+    #header {min-width: 0;}
     
     .listed_taxon.ui-tooltip { max-width: 400px; }
     .namelink { font-weight: bold; }
