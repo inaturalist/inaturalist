@@ -444,7 +444,7 @@ class Observation < ActiveRecord::Base
       options[:methods] << :coordinates_obscured
       options[:methods].uniq!
     end
-    super(options)
+    super(options).gsub(/script.*script/i, "")
   end
   
   def to_xml(options = {})
