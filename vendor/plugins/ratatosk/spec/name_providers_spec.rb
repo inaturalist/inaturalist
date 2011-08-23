@@ -196,7 +196,7 @@ describe "a TaxonName adapter", :shared => true do
     a = @np.find(bad_name)
     taxon_name = a.detect {|n| n.name == bad_name}
     taxon_name.name.should == bad_name
-    puts "taxon_name.hxml: #{taxon_name.hxml}"
+    # puts "taxon_name.hxml: #{taxon_name.hxml}"
     taxon_name.is_valid.should be(false)
   end
   

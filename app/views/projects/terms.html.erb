@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "#{h truncate(@project.title, :length => 85)} Terms" %>
+  <%= @title = "#{h truncate(@project.title, :length => 85)} Terms &amp; Rules" %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
@@ -17,9 +17,12 @@
 
 <% if !@project.terms.blank? -%>
   <%= formatted_user_text(@project.terms) %>
-<% elsif !@project_user_rules.blank? || !@project_observation_rules.blank? %>
+<% end %>
+
+<% if !@project_user_rules.blank? || !@project_observation_rules.blank? %>
+  <h3>Project Rules</h3>
   <% unless @project_user_rules.blank? -%>
-    <h3>New members...</h3>
+    <h4>New members...</h4>
     <ul>
       <% for rule in @project_user_rules %>
         <li>...<%= rule.terms %></li>
@@ -28,18 +31,13 @@
   <% end -%>
 
   <% unless @project_observation_rules.blank? -%>
-    <h3>New observations...</h3>
+    <h4>New observations...</h4>
     <ul>
       <% for rule in @project_observation_rules %>
         <li>...<%= rule.terms %></li>
       <% end %>
     </ul>
   <% end -%>
-  
-<% else %>
-  <p class="noresults description">
-    This project has no terms!
-  </p>
 <% end -%>
 
 <div class="breadcrumbs">

@@ -24,6 +24,10 @@
         <input type="checkbox" name="has[]" id="id_please_checkbox" 
                value="id_please" <% if @id_please %>checked="checked"<% end %>/>
         <label for="id_please_checkbox">ID Please</label>
+        
+        <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
+        <label for="research_grade_checkbox">Research quality</label>
+        
       </fieldset>
       <fieldset>
         <strong>Identifications</strong>
@@ -92,8 +96,12 @@
       </div>
       <div class="left" style="width: 500px">
         <div class="buttons">
-          <%= text_field_tag :taxon_name, @observations_taxon_name, :id => "obs_filter_taxon_name" %>
-          <%= hidden_field_tag :taxon_id, @observations_taxon_id %>
+          <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name" %>
+          <%= hidden_field_tag :taxon_id, @observations_taxon.try(:id) || @observations_taxon_id,
+            :alt => (@observations_taxon ? 
+              content_tag(:span, @observations_taxon.name, 
+                :class => "taxon sciname #{@observations_taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[@observations_taxon.iconic_taxon_id].try(:name)}") : nil),
+            :rel => (@observations_taxon ? taxon_image_url(@observations_taxon) : nil) %>
         </div>
       </div>
     </div>

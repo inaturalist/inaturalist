@@ -8,22 +8,22 @@ class AdminController < ApplicationController
   
   def stats
     @observation_weeks = Observation.count(
-      :conditions => ["YEAR(created_at) = ?", Time.now.year],
-      :group => "WEEK(created_at)"
+      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year],
+      :group => "EXTRACT(WEEK FROM created_at)"
     )
     @observation_weeks_last_year = Observation.count(
-      :conditions => ["YEAR(created_at) = ?", Time.now.year - 1],
-      :group => "WEEK(created_at)"
+      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1],
+      :group => "EXTRACT(WEEK FROM created_at)"
     )
     @observations_max = (@observation_weeks.values + @observation_weeks_last_year.values).sort.last
     
     @user_weeks = User.count(
-      :conditions => ["YEAR(created_at) = ?", Time.now.year],
-      :group => "WEEK(created_at)"
+      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year],
+      :group => "EXTRACT(WEEK FROM created_at)"
     )
     @user_weeks_last_year = User.count(
-      :conditions => ["YEAR(created_at) = ?", Time.now.year - 1],
-      :group => "WEEK(created_at)"
+      :conditions => ["EXTRACT(YEAR FROM created_at) = ?", Time.now.year - 1],
+      :group => "EXTRACT(WEEK FROM created_at)"
     )
     @users_max = (@user_weeks.values + @user_weeks_last_year.values).sort.last
     

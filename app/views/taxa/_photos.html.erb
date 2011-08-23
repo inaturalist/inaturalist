@@ -4,10 +4,10 @@
 -%>
 <% unless photos.size == 0 %>
   <% if taxon.species_or_lower? %>
-    <% if photos[0].is_a? FlickrPhoto %>
+    <% if [Photo, Photo.descendent_classes].flatten.include?(photos[0].class) %>
       <%= modal_image(photos.first, :size => :medium) %>
       <div class="clear description" style="clear: both">
-        Photo: <%= link_to "View original CC'd photo on Flickr by #{photos[0].native_username}", photos[0].native_page_url %>
+        Photo: <%= link_to photos[0].attribution, native_url_for_photo(photos[0]) %>
       </div>
     <% else %>
       <% photo_url = "http://flickr.com/photos/#{photos[0].photo_xml[:owner]}/#{photos[0].id}" %>
@@ -20,7 +20,7 @@
     <div class="clear photos_wrapper">
       <% for photo in photos %>
         <%- photo_pos_class = cycle('first', '', '', '', '', 'last') -%>
-        <% if photo.is_a? FlickrPhoto %>
+        <% if [Photo, Photo.descendent_classes].flatten.include?(photo.class) %>
           <%= modal_image(photo, :size => :square, :class => photo_pos_class) %>
         <% else %>
           <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
@@ -57,7 +57,7 @@
     <div class="clear photos_wrapper">
       <% for photo in photos[1..6] %>
         <%- photo_pos_class = cycle('first', '', '', '', '', 'last') -%>
-        <% if photo.is_a? FlickrPhoto %>
+        <% if [Photo, Photo.descendent_classes].flatten.include?(photo.class) %>
           <%= modal_image(photo, :size => :square, :class => photo_pos_class) %>
         <% else %>
           <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>

@@ -2,6 +2,21 @@
   <%=h @project.title %>
 <%- end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @project.title %>"/> 
+  <% if Rails.env.development? %>
+    <meta property="og:image" content="http://inaturalist.org/<%= @project.icon.url(:span2) %>"/> 
+  <% else %>
+    <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/>
+  <% end %>
+  <meta property="og:url" content="<%= project_url(@project) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" /> 
+  <% og_description = h strip_tags(truncate(@project.description, :length => 110)) %>
+  <meta property="og:description" content="<%= og_description %>"/>
+<%- end -%>
+
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3' %>
@@ -101,13 +116,8 @@
     </h2>
     
     <span class="right buttonrow">
-      <% if logged_in? %>
-        <%= link_to 'Add observations to this project', new_observation_path(:project_id => @project.id), 
-          :class => 'last button default', :rel => "nofollow" %>
-      <% else %>
-        <%= link_to 'Sign up to add to this project!', signup_url, 
-          :class => 'last button default', :rel => "nofollow" %>
-      <% end %>
+      <%= link_to 'Add observations to this project', new_observation_path(:project_id => @project.id), 
+        :class => 'last button default', :rel => "nofollow" %>
     </span>
   <% end -%>
 </div>
@@ -128,7 +138,9 @@
       </div>
     <% else %>
       <div class="mini observations">
-        <%= render :partial => "observations/cached_component", :collection => @project_observations %>
+        <% for project_observation in @project_observations %>
+          <%= render :partial => 'project_observation', :object => project_observation %>
+        <% end %>
       </div>
       <%= link_to "More observations", {:controller => "observations", :action => "project", :id => @project},
         :class => "readmore" %>
@@ -141,9 +153,12 @@
     <li>
       <%= link_to "<span class='lead'>&raquo;</span> Observations / Map", project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
-        <%= link_to("Atom", project_observations_path(:format => 'atom'), :id => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to("KML",  project_observations_path(:format => 'kml'), :id => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to("CSV",  project_observations_path(:format => 'csv'), :id => 'csvlink', :rel => "nofollow") %>
+        <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
+        <%= link_to("CSV",  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>  
+        <% if @project.curated_by?(current_user) -%>
+          / <%= link_to("All CSV",  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
+        <% end -%>
       </div>
     </li>
     <li>
@@ -195,6 +210,11 @@
         <% end %>
       </div>
     </li>
+    <% if logged_in? -%>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> Stats", project_stats_path(@project), :class => "navlink" %>
+      </li>
+    <% end -%>
   </ul>
   
   <h3>About</h3>
@@ -204,15 +224,22 @@
     <%= @custom_project.side %>
   <% end -%>
   
+  <div id="fblike" class="stacked">
+    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+    <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
+  </div>
+  
+  
   <%= link_to image_tag(@project.user.icon.url(:mini), :style => "vertical-align:middle;"),
     observations_by_login_path(@project.user.login),
     :alt => h(@project.user.login),
     :title => "#{h(@project.user.login)}, joined #{project_user.created_at.to_s(:long)}" %>
   <%= link_to h(@project.user.login), @project.user %>
   <span class="description">created this project on <%= @project.created_at.to_date.to_s(:long) %></span>
-
+  
   <%= separator %>
   <center class="small meta">
-    <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project) %>
+    <%= link_to "embed a widget for this project on your website", observations_widget_path(:project_id => @project.id),
+      :rel => "nofollow" %>
   </center>
 </div>

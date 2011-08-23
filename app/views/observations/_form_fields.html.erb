@@ -7,7 +7,11 @@
             <div class="field species_guess_field">
               <%= o.label :species_guess, "What did you see?" %>
               <%= o.text_field(:species_guess, :class => 'species_guess') %>
-              <%= o.hidden_field(:taxon_id, :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
+              <%= o.hidden_field(:taxon_id, 
+                :alt => (observation.taxon ? 
+                  content_tag(:span, observation.taxon.name, 
+                    :class => "taxon sciname #{observation.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[observation.taxon.iconic_taxon_id].try(:name)}") : nil),
+                :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
               
               <div class="id_please">
                 <%= o.check_box(:id_please) %>
@@ -44,12 +48,10 @@
             </div>
           </div>
           <div class="column span-9">
-            <div class="field">
+            <div class="place_guess_field field">
               <%= o.label(:place_guess, 'Where were you?') %>
-              <%= o.text_field(:place_guess, :class => 'place_guess') %>
+              <%= o.text_field(:place_guess, :class => 'place_guess', :placeholder => "Name of the place you made the observation") %>
             </div>
-            <div class="description">Click on the map to place your observation</div>
-            <div id="mapcontainer"></div>
             <div id="coordinates_<%= i %>" class="latlonfields status">
               <%= o.label(:latitude, 'Lat') %>
               <%= o.text_field(:latitude, :class => 'latitude') %>
@@ -63,6 +65,24 @@
               </span>
               <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
               <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
+            </div>
+            <div class="description">Click on the map to place your observation</div>
+            <div id="mapcontainer"></div>
+            <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
+              <div class="stacked">
+                <label>Change visibility of spatial coordinates?</label>
+              </div>
+              <label for="observations_<%= i %>_geoprivacy">Geoprivacy</label>
+              <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+              <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
+              <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
+                <dl>
+                  <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
+                    <dt><%= privacy || "open" %></dt>
+                    <dd><%= description %></dd>
+                  <% end %>
+                </dl>
+              </div>
             </div>
           </div>
           <div class="last column span-8">

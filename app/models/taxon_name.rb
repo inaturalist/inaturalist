@@ -10,13 +10,13 @@ class TaxonName < ActiveRecord::Base
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
-  before_validation :strip_name, :remove_rank_from_name, :normalize_lexicon
+  before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
-  after_destroy {|name| name.taxon.update_unique_name if name.taxon}
+  after_destroy {|name| name.taxon.send_later(:update_unique_name) if name.taxon}
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
@@ -59,13 +59,15 @@ class TaxonName < ActiveRecord::Base
     LEXICONS[:ENGLISH]
   ]
   
-  LEXICONS.keys.each do |language|
+  LEXICONS.each do |k,v|
     class_eval <<-EOT
-      def is_#{language.to_s.downcase}?
-        lexicon == LEXICONS[:#{language}]
+      def is_#{k.to_s.downcase}?
+        lexicon == "#{v}"
       end
     EOT
+    const_set k.to_s.upcase, v
   end
+  alias :is_scientific? :is_scientific_names?
   
   def to_s
     "<TaxonName #{self.id}: #{self.name} in #{self.lexicon}>"
@@ -73,22 +75,30 @@ class TaxonName < ActiveRecord::Base
   
   def strip_name
     self.name.strip! if self.name
+    true
+  end
+  
+  def strip_tags
+    self.name.gsub!(/<.*?>/, '')
+    true
   end
   
   def remove_rank_from_name
     return unless self.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
     self.name = Taxon.remove_rank_from_name(self.name)
+    true
   end
   
   def normalize_lexicon
     return true if lexicon.blank?
     self.lexicon = LEXICONS[lexicon.upcase.to_sym] if LEXICONS[lexicon.upcase.to_sym]
+    true
   end
   
   def update_unique_names
     return true unless name_changed?
     non_unique_names = TaxonName.all(:include => :taxon, 
-      :conditions => {:name => name}, :group => :taxon_id)
+      :conditions => {:name => name}, :select => "DISTINCT ON (taxon_id) *")
     non_unique_names.each do |taxon_name|
       taxon_name.taxon.update_unique_name if taxon_name.taxon
     end
@@ -144,5 +154,20 @@ class TaxonName < ActiveRecord::Base
       end
       ext_name.save ? ext_name : nil
     end.compact
+  end
+  
+  def self.find_single(name, options = {})
+    lexicon = options.delete(:lexicon) # || TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    name = name.split('_').join(' ')
+    name = Taxon.remove_rank_from_name(name)
+    conditions = {:name => name}
+    conditions[:lexicon] = lexicon if lexicon
+    taxon_names = TaxonName.all(
+      :conditions => conditions,
+      :limit => 10, :include => :taxon)
+    unless options[:iconic_taxa].blank?
+      taxon_names.reject {|tn| options[:iconic_taxa].include?(tn.taxon.iconic_taxon_id)}
+    end
+    taxon_names.detect{|tn| tn.is_valid?} || taxon_names.first
   end
 end

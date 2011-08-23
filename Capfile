@@ -100,6 +100,7 @@ namespace :deploy do
   task :symlink_cache, :hosts => "#{domain}" do
     run "ln -s #{shared_path}/system/cache #{latest_release}/cache"
     run "ln -s #{shared_path}/system/page_cache/observations #{latest_release}/public/observations"
+    run "ln -s #{shared_path}/system/page_cache/taxa #{latest_release}/public/taxa"
   end
   
   desc "Symlink the path to tilelite"

@@ -146,17 +146,24 @@
           </div>
         </a>
         <% for grouper, count in @iconic_taxon_counts -%>
-          <% next unless count %>
-          <% if grouper.respond_to?(:common_name) && grouper.common_name %>
-            <% grouper_name = grouper.common_name.name rescue 'Unclassified' -%>
-          <% elsif grouper.respond_to?(:name) %>
-            <% grouper_name = grouper.name -%>
-          <% else %>
-            <% grouper_name = 'Unclassified' -%>
-          <% end -%>
-          <%- grouper_name = 'Other Animals' if grouper_name == 'Animals' -%>
-          <%- grouper_class = grouper.name rescue 'Unknown' -%>
-          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:taxon => grouper.id, :without => [:page, :q]) %>">
+          <%-
+            next unless count
+            if grouper.respond_to?(:common_name) && grouper.common_name
+              grouper_name = grouper.common_name.name rescue 'Unclassified'
+            elsif grouper.respond_to?(:name)
+              grouper_name = grouper.name
+            else
+              grouper_name = 'Unclassified'
+            end
+            grouper_class = grouper.name rescue 'Unknown'
+            url_params = {:taxon => grouper.id, :without => [:page, :q, :taxon, :iconic_taxon]}
+            if grouper_name.downcase == 'animals'
+              grouper_name = 'Other Animals'
+              url_params[:taxon] = nil
+              url_params[:iconic_taxon] = grouper.id
+            end
+          -%>
+          <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(url_params) %>">
             <div class="readable title">
               &nbsp;
             </div>

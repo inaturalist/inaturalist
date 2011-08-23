@@ -51,7 +51,14 @@
 <% end -%>
 <ul class="clear photo_view listed_taxa">
   <% for listed_taxon in listed_taxa %>
-    <%- cycle_class = cycle('first', '', 'last') -%>
+    <%-
+      cycle_class = cycle('first', '', 'last')
+      photo = if @photos_by_listed_taxon_id && @photos_by_listed_taxon_id[listed_taxon.id]
+        @photos_by_listed_taxon_id[listed_taxon.id]
+      else
+        listed_taxon.taxon.photos.first
+      end
+    -%>
     <% if cycle_class == 'first' && listed_taxon != listed_taxa.first -%>
       <div class="column-separator">
         <img src="/images/logo-eee-15px.png">
@@ -59,10 +66,10 @@
     <% end -%>
     <li class="clear <%= cycle_class %>">
       <%- prepend = capture do -%>
-        <% if listed_taxon.taxon.photos.empty? -%>
-          <%= render :partial => 'taxa/nophoto', :object => listed_taxon.taxon %>
+        <% if photo -%>
+          <%= modal_image photo, :size => photo_size %>
         <%- else -%>
-          <%= modal_image listed_taxon.taxon.photos.first, :size => photo_size %>
+          <%= render :partial => 'taxa/nophoto', :object => listed_taxon.taxon %>
         <% end -%>
         <div class="clear"></div>
       <%- end -%>

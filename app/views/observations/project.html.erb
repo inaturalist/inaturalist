@@ -7,7 +7,6 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <%= gmap_include_tag %>
   <%= javascript_include_tag "jquery/jquery.ui.all.packed.js", "inaturalist", "observations/filters", "observations/map" %>
 <%- end -%>
 
@@ -25,11 +24,22 @@
   :control_span => 11
 } %>
 
-<%= render :partial => 'map' %>
+<%- observations_html = capture do %>
+  <% for observation in @observations %>
+    <%= render :partial => 'projects/project_observation', :locals => {
+      :project_observation => @project_observations_by_observation_id[observation.id],
+      :observation => observation
+    } %>
+  <% end %>
+<% end -%>
+<%= render :partial => 'map', :locals => {:observations_html => observations_html} %>
 
 <div id="pagination" class="last column span-24">
   <div id="feeds" class="clear right small ui description feeds">
     <%= render :partial => 'feed_links' %>
+    <% if @project.curated_by?(current_user) -%>
+      <%= link_to("All CSV",  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
+    <% end -%>
   </div>
   <%= will_paginate @observations %>
 </div>

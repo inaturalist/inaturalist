@@ -1,3 +1,6 @@
+<%- content_for(:title) do -%>
+  Curating <%= @user ? @user.login : 'Users' %>
+<%- end -%>
 <form method="get" class="clear buttonrow">
   <input type="text" name="id" value="<%= @user.try(:login) %>" id="id" class="text">
   <input type="submit" value="Lookup user &rarr;" class="button">
@@ -34,6 +37,32 @@
       </ul>
     </div>
     <%= render :partial => 'glance' %>
+    
+    <% unless @user.provider_authorizations.blank? -%>
+      <h3>Provider Authorizations</h3>
+      <ul>
+        <% for pa in @user.provider_authorizations %>
+          <li>
+            <%= pa.provider_name %>
+            (<%= pa.provider_uid %>)
+            <div class="small meta">Created <%= pa.created_at %></div>
+          </li>
+        <% end %>
+      </ul>
+    <% end -%>
+    
+    <% if fi = @user.flickr_identity -%>
+      <h3>Flickr Identity</h3>
+      <%= link_to fi.flickr_username, "http://flickr.com/photos/#{fi.flickr_username}" %>
+      <%= link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}" %>
+      <div class="small meta">Created <%= fi.created_at %></div>
+    <% end -%>
+    
+    <% if pi = @user.picasa_identity -%>
+      <h3>Picasa Identity</h3>
+      <%= link_to pi.picasa_user_id, "https://picasaweb.google.com/#{pi.picasa_user_id}" %>
+      <div class="small meta">Created <%= pi.created_at %></div>
+    <% end -%>
   </div>
 <% end -%>
 

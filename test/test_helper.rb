@@ -2,10 +2,13 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 require File.expand_path(File.dirname(__FILE__) + "/../spec/blueprints")
+require File.expand_path(File.dirname(__FILE__) + "/../spec/helpers/make_helpers")
 
 class ActiveSupport::TestCase
   # RoleRequirementTestHelper must be included to test RoleRequirement
   include RoleRequirementTestHelper
+  include AuthenticatedTestHelper
+  include MakeHelpers
   
   # Use the rspec fixtures
   self.fixture_path = File.dirname(__FILE__) + '/../spec/fixtures'

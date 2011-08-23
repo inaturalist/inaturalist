@@ -1,13 +1,15 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ActivityStream, "batches" do
-  fixtures :users, :taxa, :friendships
-  
   before(:each) do
-    taxon = Taxon.last
+    @friendship = Friendship.make
+    @user, @friend = [@friendship.user, @friendship.friend]
+    @friend.followers.should_not be_blank
     @observations = []
     5.times do
-      @observations << Observation.create(:user => users(:ted), :taxon => taxon)
+      o = Observation.make(:user => @friend, :taxon => Taxon.make)
+      @observations << o
+      Observation.create_activity_update(o) # skip the DJ stuff
     end
     @activity_stream = ActivityStream.last
   end

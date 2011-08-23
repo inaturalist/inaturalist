@@ -46,7 +46,7 @@
       <%= link_to 'Profile', person_by_login_path(:login => user.login), :id => "profile_link" %>
     <% end %>
   </li>
-  <% if is_not_me?(user) %>
+  <% if logged_in? && is_not_me?(user) %>
   <li>
     <%= friend_button current_user, user, {:id => 'follow_button'} %>
   </li>

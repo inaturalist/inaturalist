@@ -237,6 +237,24 @@ describe Ratatosk, "grafting" do
     rola.phylum.name.should == 'Magnoliophyta'
     rola.ancestors.first.name.should == 'Life'
   end
+  
+  describe "to a locked subtree" do
+    it "should fail" do
+      @Amphibia.update_attributes(:locked => true)
+      taxon = Taxon.make(:name => "Ensatina foobar")
+      @ratatosk.graft(taxon)
+      taxon.reload
+      taxon.ancestor_ids.should_not include(@Amphibia.id)
+    end
+
+    it "should flag taxa that could not be grafted" do
+      @Amphibia.update_attributes(:locked => true)
+      taxon = Taxon.make(:name => "Ensatina foobar")
+      lambda {
+        @ratatosk.graft(taxon)
+      }.should change(Flag, :count).by_at_least(1)
+    end
+  end
 end
 
 describe Ratatosk, "get_graft_point_for" do

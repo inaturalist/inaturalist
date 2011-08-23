@@ -61,6 +61,8 @@ class User < ActiveRecord::Base
   has_many :projects, :dependent => :destroy
   has_many :project_users, :dependent => :destroy
   has_many :listed_taxa, :dependent => :nullify
+  has_many :invites, :dependent => :nullify
+  has_many :quality_metrics, :dependent => :destroy
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
@@ -94,15 +96,15 @@ class User < ActiveRecord::Base
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :name,     :maximum => 100
+  validates_length_of       :name,     :maximum => 100, :allow_blank => true
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
   # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count>0))}
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_nil => true
-  validates_length_of       :email,    :within => 6..100, :allow_nil => true #r@a.wk
-  validates_uniqueness_of   :email,    :allow_nil => true
+  validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count > 0))}
+  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_blank => true
+  validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
+  validates_uniqueness_of   :email,    :allow_blank => true
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -116,6 +118,7 @@ class User < ActiveRecord::Base
     sort_dir ||= 'DESC'
     {:order => ("%s %s" % [sort_by, sort_dir])}
   }
+  named_scope :curators, :include => [:roles], :conditions => "roles.name = 'curator'"
   
   def self.query(params={}) 
     scope = self.scoped({})
@@ -155,7 +158,12 @@ class User < ActiveRecord::Base
         return u
       end
     end
-    autogen_login = User.suggest_login(auth_info["user_info"]["nickname"] || auth_info["user_info"]["first_name"] || auth_info["user_info"]["name"])
+    autogen_login = User.suggest_login(
+      auth_info["user_info"]["nickname"] || 
+      auth_info["user_info"]["first_name"] || 
+      auth_info["user_info"]["name"])
+    autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
+    autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
     autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
     u = User.new({
       :login => autogen_login,
@@ -167,12 +175,19 @@ class User < ActiveRecord::Base
     })
     if u
       u.skip_email_validation = true
-      u.register! 
-      u.activate!
+      begin
+        u.register! 
+        u.activate!
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /unique constraint/
+        u.login = User.suggest_login(u.login)
+        u.register! 
+        u.activate!
+      end
       u.add_provider_auth(auth_info)
       # TODO: do something useful with location?  -> time zone, perhaps
     end
-    return u
+    u
   end
 
   # add a provider_authorization to this user.  
@@ -185,7 +200,10 @@ class User < ActiveRecord::Base
     unless auth_info["credentials"].nil? # open_id (google, yahoo, etc) doesn't provide a token
       provider_auth_info.merge!({ :token => (auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]) }) 
     end
-    self.provider_authorizations.create(provider_auth_info) 
+    pa = self.provider_authorizations.build(provider_auth_info) 
+    pa.auth_info = auth_info
+    pa.save
+    pa
   end
 
   # test to see if this user has authorized with the given provider
@@ -252,7 +270,8 @@ class User < ActiveRecord::Base
 
   # given a requested login, will try to find existing users with that login
   # and suggest handle2, handle3, handle4, etc if the login's taken
-  # to prevent namespace clashes (e.g. i register with twitter @joe but there's already an inat user where login=joe, so it suggest joe2)
+  # to prevent namespace clashes (e.g. i register with twitter @joe but 
+  # there's already an inat user where login=joe, so it suggest joe2)
   def self.suggest_login(requested_login)
     # strip out everything but letters and numbers so we can pass the login format regex validation
     requested_login = requested_login.downcase.split('').select{|l| ('a'..'z').member?(l) || ('0'..'9').member?(l) }.join('')

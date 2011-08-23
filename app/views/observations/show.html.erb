@@ -13,140 +13,58 @@
 <%- end -%>
 <% end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @observation.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <% if !@photos.blank? -%>
+    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
+  <% elsif @observation.taxon %>
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
+  <% end -%>
+  <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" />
+  <% unless @observation.description.blank? %>
+    <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
+  <% end %>
+<%- end -%>
+
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'observations', 'identifications', 'observations/show', "jquery/ui.tabs.css" %>
-  <style type="text/css" media="screen">
-  
-    .identification_form_wrapper {
-      background-color: #eee;
-      padding: 10px;
-    }
-    
-    .identification_form_wrapper input.text {
-      width: 236px;
-      margin-top: 0;
-    }
-    
-    .identification_form_wrapper .button.default {
-      margin: 0 auto;
-      float: none;
-    }
-    
-    .identification_form_wrapper label {
-      display: none;
-    }
-    
-    #tools .button {
-      margin-bottom: 0;
-    }
-    
-    #tools .toggle_menu {
-      float: left;
-    }
-    
-    #comments_and_identifications .item {
-      margin-bottom: 1.5em;
-    }
-    
-    .item_user {
-      width: 48px;
-    }
-    
-    .item_content {
-      width: 532px;
-    }
-    
-    .item_content .identification_image {
-      margin-right: 0.5em;
-    }
+  <style type="text/css" media="screen">  
+    .identification_form_wrapper{background-color:#eee;padding:10px;}
+    .identification_form_wrapper input.text{width:236px;margin-top:0;}
+    .identification_form_wrapper .button.default{margin:0 auto;float:none;}
+    .identification_form_wrapper label{display:none;}
+    #tools .button{margin-bottom:0;}
+    #tools .toggle_menu{float:left;}
+    #comments_and_identifications .item{margin-bottom:1.5em;}
+    .item_user{width:48px;}
+    .item_content{width:532px;}
+    .item_content .identification_image{margin-right:0.5em;}
     .item_content .identification_image,
-    .item_content .identification_body {
-      display: inline;
-      float: none;
-    }
-    .item_content .identification_image img {
-      width: 32px;
-      vertical-align: middle;
-    }
-    
-    .item_content .identification {
-      padding: 0.5em;
-      background-color: #eee;
-      margin-bottom: 0.5em;
-    }
-    
-    .item_content p {
-      margin-bottom: 0.5em;
-    }
-    
-    .comment {
-      padding: 0;
-    }
-    
-    .comment .meta {
-      float: none;
-      width: auto;
-    }
-    
-    .comment .body {
-      padding-left: 0;
-    }
-    
-    #forms h3 {
-      margin: 0;
-    }
-    
-    .ui-tabs .ui-tabs-nav li {
-      border-color: transparent;
-      background-color: white;
-    }
-    
+    .item_content .identification_body{display:inline;float:none;}
+    .item_content .identification_image img{width:32px;vertical-align:middle;}
+    .item_content .identification{padding:0.5em;background-color:#eee;margin-bottom:0.5em;}
+    .item_content p{margin-bottom:0.5em;}
+    .comment{padding:0;}
+    .comment .meta{float:none;width:auto;}
+    .comment .body{padding-left:0;}
+    #forms h3{margin:0;}
+    .ui-tabs .ui-tabs-nav li{border-color:transparent;background-color:white;}
     .ui-tabs .ui-tabs-nav,
-    .ui-tabs .ui-tabs-nav .ui-tabs-selected {
-      border-color: #eee;
-    }
-    
-    .ui-tabs .ui-tabs-nav li a {
-      padding: 0.25em 0.5em;
-    }
-    
-    #new_identification_form .species_guess {
-      width: 538px;
-      margin: 5px 0 0 0;
-    }
-    
-    #new_identification_form label {
-      display: block;
-    }
-    
-    #new_identification_form textarea {
-      width: 538px;
-      height: 150px;
-    }
-    
-    .identifications-list .agreers {
-      padding-left: 60px;
-    }
-    
-    .identifications-list .identification_image {
-      width: 40px;
-      text-align: center;
-    }
-    
-    .identifications-list .identification_image img {
-      max-width: 40px;
-    }
-    
-    .identifications-list .identification_body {
-      float: left;
-      width: 200px;
-    }
-    
-    .identification_group {
-      margin-bottom: 10px;
-    }
-    .button_toggle_menu .menu { top: 32px; }
-    #projects .box { padding: 5px; }
+    .ui-tabs .ui-tabs-nav .ui-tabs-selected{border-color:#eee;}
+    .ui-tabs .ui-tabs-nav li a{padding:0.25em 0.5em;}
+    #new_identification_form .species_guess{width:538px;margin:5px 0 0 0;}
+    #new_identification_form label{display:block;}
+    #new_identification_form textarea{width:538px;height:150px;}
+    .identifications-list .agreers{padding-left:60px;}
+    .identifications-list .identification_image{width:40px;text-align:center;}
+    .identifications-list .identification_image img{max-width:40px;}
+    .identifications-list .identification_body{float:left;width:200px;}
+    .identification_group{margin-bottom:10px;}
+    .button_toggle_menu .menu{top:32px;}
+    #projects .box{padding:5px;}
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -160,17 +78,30 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // setup the map if one is needed
-      var observation = <%= @observation.to_json(:include => [:user, :taxon, :iconic_taxon]) %>;
-      if (observation.latitude && observation.longitude) {
-        var map = iNaturalist.Map.createMap({
+      window.observation = <%= @observation.to_json(:viewer => current_user, 
+        :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
+        :include => [:user, :taxon, :iconic_taxon]) %>;
+      if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
+        window.map = iNaturalist.Map.createMap({
           lat: 40.714, 
           lng: -98.262, 
-          zoom: 3, 
+          zoom: <%= @observation.map_scale || 3 %>, 
           controls: 'small'
         });
         map.addObservation(observation, {clickable: false, showAccuracy: true});
-        var center = new google.maps.LatLng(observation.latitude, observation.longitude);
+        var center = new google.maps.LatLng(
+          observation.private_latitude || observation.latitude, 
+          observation.private_longitude || observation.longitude);
         map.setCenter(center); 
+        
+        $(window).load(function() {
+          $('#where').width($('#where-and-photos').width() - $("#photos").width())
+          $('#map').width($('#where-and-photos').width() - $("#photos").width())
+          if (map && observation) {
+            google.maps.event.trigger(map, 'resize')
+            map.setCenter(center)
+          }
+        })
       }
       
       $('.identification_form_wrapper input.text').simpleTaxonSelector({
@@ -203,25 +134,28 @@
       });
       
       $('#forms > ul').tabs();
+      
+      $('.quality_assessment .quality_metric_vote_link').live('click', function(e) {
+        e.preventDefault()
+        var tr = $(this).parents('tr.quality_metric')
+        $.ajax({
+          url: $(this).attr('href'),
+          dataType: 'json',
+          type: $(this).attr('data-method'),
+          data: {authenticity_token: $('meta[name=csrf-token]').attr('content')},
+          success: function(data, status) {
+            if (data.error) {
+              alert(data.error)
+            } else if (data.html) {
+              tr.replaceWith(data.html)
+            }
+          }
+        })
+      })
     });
   </script>
 <% end %>
-<%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="<%= @observation.to_plain_s(:verb => true, :no_time => true) %>"/> 
-  <meta property="og:type" content="observation"/> 
-  <% if !@photos.blank? -%>
-    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
-  <% elsif @observation.taxon %>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
-  <% end -%>
-  <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027">
-  <% unless @observation.description.blank? %>
-    <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
-  <% end %>
-<%- end -%>
+
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
@@ -332,27 +266,11 @@
     <%- end -%>
     
     <div id="where">
-      <% if @observation.latitude and @observation.longitude %>
+      <% if show_observation_coordinates?(@observation) %>
         <div id="map"></div>
       <% end %>
       <div class="description">
-        Location: 
-        <%= render :partial => 'place_guess', :object => @observation %>
-        <% if @observation.latitude and @observation.longitude %>
-        <div>
-          <span class="latitude">
-            Lat: <%= @observation.latitude %>
-          </span>,
-          <span class="longitude">
-            Lon: <%= @observation.longitude %>
-          </span>
-          <% unless @observation.positional_accuracy.blank? -%>
-            <div class="positional_accuracy">
-              Accuracy: <%= @observation.positional_accuracy %>m
-            </div>
-          <% end -%>
-        </div>
-        <% end %>
+        <%= render :partial => 'location', :locals => {:inline_edit => true} %>
       </div>
     </div><!-- end where -->
   </div><!-- end where-and-photos -->
@@ -366,20 +284,23 @@
   </div>
   <% end %>
   
-  <div id="tags" class="description">
-    <i>Tags:</i>
-    <ul>
-      <% if @observation.tags.empty? %>
-        <li class="description">none</li>
-      <% else %>
-        <% @observation.tags.each do |tag| %>
-        <li>
-          <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
-        </li>
-        <% end %>
-      <% end %>
-    </ul>
+  <div id="dates" class="description date">
+    <label>Added:</label>
+    <%= @observation.created_at.to_s(:long) %>
   </div>
+  
+  <% unless @observation.tags.blank? %>
+    <div id="tags" class="description">
+      <label>Tags:</label>
+      <ul>
+        <% @observation.tags.each do |tag| %>
+          <li>
+            <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end -%>
   
   <%= separator %>
   
@@ -581,27 +502,65 @@
   
   <%= separator %>
   
-  <div id="fblike" class="stacked">
-    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
-  </div>
-  <br/>
+  <h3>
+    <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="About the Quality Assessment" data-helptip-width="500" style="margin-top:4px"></span>
+    Data Quality Assessment
+  </h3>
+  <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
   
   <% if @observation.flagged? %>
-  <div id="flaggings_heads_up" class="description">
-    HEADS UP: this observation has been flagged.
-    <%= link_to "Add another flag", new_observation_flag_path(@observation),
-                :id => "flag_this" %>
-  </div>
+    <div id="flaggings_heads_up" class="description">
+      HEADS UP: this observation has been flagged.
+      <%= link_to "Add another flag", new_observation_flag_path(@observation),
+                  :id => "flag_this", :rel => "nofollow" %>
+    </div>
   <% else %>
-    <% if logged_in? %>
     <p class="description ui">
       Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?
-      <%= link_to "Flag this observation", new_observation_flag_path(@observation), :id => "flag_this" %>
+      <%= link_to "Flag this observation", new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow" %>
     </p>
     <p class="description ui">
-      If you think this observation is inaccurate, please add an ID or describe the inaccuracy in a comment.
+      If you think this observation is inaccurate, please add an ID,
+      participate in the quality assessment above, or describe the inaccuracy
+      in a comment.
     </p>
-    <% end %>
   <% end %>
+  
+  <%= separator %>
+  
+  <% if logged_in? && params[:test] && !@places.blank?-%>
+    <h3>Places</h3>
+    <ul>
+      <%- @places.each do |place| %>
+        <%- extra = capture do %>
+          <% if @observation.taxon -%>
+            <ul class="plain small stacked">
+              <li>
+                <% if @observation.taxon.species_or_lower? -%>
+                  <%= link_to "View other <nobr>#{default_taxon_name(@observation.taxon.parent)} &raquo;</nobr>", 
+                    {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon.parent_id, :places => place.id} %>
+                <% else %>
+                  <%= link_to "View other <nobr>#{default_taxon_name(@observation.taxon)} &raquo;</nobr>", 
+                    {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon_id, :places => place.id} %>
+                <% end -%>
+              </li>
+              <li>
+                <%- it = Taxon::ICONIC_TAXA_BY_ID[@observation.taxon.iconic_taxon_id] -%>
+                <%= link_to "View other <nobr>#{default_taxon_name(it)} &raquo;</nobr>", 
+                  {:controller => "taxa", :action => "search", :taxon_id => it.id, :places => place.id} %>
+              </li>
+            </ul>
+          <% end -%>
+        <% end -%>
+        <%= render :partial => "places/place_li", :object => place, :locals => {:extra => extra} %>
+      <% end %>
+    </ul>
+    <%= separator %>
+  <% end -%>
+  
+  <div id="fblike" class="stacked">
+    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+    <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
+  </div>
   
 </div><!-- end right col -->

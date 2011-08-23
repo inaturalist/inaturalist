@@ -1,0 +1,40 @@
+<%-
+  listed_taxon ||= object || @listed_taxon
+  list ||= listed_taxon.list || @list
+-%>
+<div class="establishmentfield">
+  <div class="establishment">
+    <label>Establishment means:</label>
+    <%= listed_taxon.establishment_means || "unknown" %>
+    <% if list.listed_taxa_editable_by?(current_user) -%>
+      <%= link_to_function "edit", "$(this).parents('.establishment').hide(); $(this).parents('.establishmentfield').find('form').show()",
+        :class => "small" %>
+    <% end -%>
+    <span class="establishment_tip_target description helptip" rel="#establishment_tip"></span>
+  </div>
+  <% if list.listed_taxa_editable_by?(current_user) -%>
+    <% form_for listed_taxon, :builder => DefaultFormBuilder, :html => {
+        :id => dom_id(listed_taxon, "edit_establishment"), 
+        :class => "clear box listed_taxon_form inline buttonrow smallbuttons", 
+        :style => "display: none"} do |f| %>
+      <%= f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS, :include_blank => "unknown" %>
+      <span class="establishment_tip_target description helptip" rel="#establishment_tip"></span>
+      <%= f.submit "Save", :class => "default button" %>
+      <%= link_to_function "Cancel", "$(this).parents('.establishment').show(); $(this).parents('.establishmentfield').find('form').hide()", 
+        :class => "minor button" %>
+    <% end %>
+  <% end -%>
+  <div id="establishment_tip" style="display:none">
+    <p class="ui">
+      Establishment means describes how the taxon came to be established in an area.
+      See DarwinCore for 
+      <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
+    </p>
+    <dl>
+      <% for identifier, description in ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS %>
+        <dt><%= identifier %></dt>
+        <dd><%= description %></dd>
+      <% end %>
+    </dl>
+  </div>
+</div>

@@ -27,8 +27,6 @@ class ListedTaxon < ActiveRecord::Base
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
   after_destroy :update_user_life_list_taxa_count
-  after_create :update_species_count
-  after_destroy :update_species_count
   
   validates_presence_of :list, :taxon
   validates_uniqueness_of :taxon_id, 
@@ -83,6 +81,8 @@ class ListedTaxon < ActiveRecord::Base
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
+  attr_accessor :skip_update_last_observation
+  
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
     "list_id: #{self.list_id}>"
@@ -114,9 +114,26 @@ class ListedTaxon < ActiveRecord::Base
   # here.  Takes an optional last_observation if one had been chosen in the
   # calling scope to save a query.
   #
-  def update_last_observation(latest_observation = nil)
-    self.last_observation = list.last_observation_of(taxon_id)
+  def update_last_observation(options = {})
+    return true if @skip_update_last_observation
+    if list.is_a?(CheckList)
+      ListedTaxon.send_later(:update_last_observation_for, id, options)
+    end
+    self.last_observation = options[:latest_observation] || list.last_observation_of(taxon_id)
     true
+  end
+  
+  def self.update_last_observation_for(listed_taxon, options = {})
+    listed_taxon = ListedTaxon.find_by_id(listed_taxon.to_i) unless listed_taxon.is_a?(ListedTaxon)
+    return unless listed_taxon
+    obs = options[:latest_observation] || listed_taxon.list.last_observation_of(listed_taxon.taxon_id)
+    if listed_taxon.valid?
+      ListedTaxon.update_all(["last_observation_id = ?", obs], ["id = ?", listed_taxon])
+    else
+      Rails.logger.error "[ERROR #{Time.now}] Failed to add #{obs} " + 
+        "as last observation of #{listed_taxon}: #{listed_taxon.errors.full_messages.to_sentence}"
+    end
+    obs
   end
   
   def set_ancestor_taxon_ids
@@ -179,25 +196,12 @@ class ListedTaxon < ActiveRecord::Base
     list.editable_by?(user)
   end
   
-  def update_species_count
-    thecount = list.listed_taxa.count(
-      'DISTINCT(taxon.id)',
-      :include =>:taxon,
-      :conditions => [
-        "taxa.rank_level <= ?",
-        Taxon::RANK_LEVELS['species']
-      ]
-    )
-    list.update_attribute(:species_count, thecount)
-    true
-  end
-  
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes
     start_time = Time.now
     logger.info "[INFO] Starting ListedTaxon.update_all_taxon_attributes..."
-    Taxon.do_in_batches(:conditions => "listed_taxa_count > 0") do |taxon|
+    Taxon.do_in_batches(:conditions => "listed_taxa_count IS NOT NULL") do |taxon|
       taxon.update_listed_taxa
     end
     logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +

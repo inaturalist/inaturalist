@@ -3,4 +3,5 @@
 # memory every time you want to work with a place is expensive.
 class PlaceGeometry < ActiveRecord::Base
   belongs_to :place
+  named_scope :without_geom, {:select => (column_names - ['geom']).join(', ')}
 end

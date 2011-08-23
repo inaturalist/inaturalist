@@ -12,8 +12,10 @@ class List < ActiveRecord::Base
   
   after_create :refresh
   
+  validates_presence_of :title
+  
   def to_s
-    "<List #{self.id}: #{self.title}>"
+    "<#{self.class} #{id}: #{title}>"
   end
   
   #
@@ -21,6 +23,7 @@ class List < ActiveRecord::Base
   # Note that subclasses like LifeList may override this.
   #
   def add_taxon(taxon, options = {})
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     ListedTaxon.create(options.merge(:list => self, :taxon => taxon))
   end
   
@@ -116,4 +119,14 @@ class List < ActiveRecord::Base
       list.refresh(options)
     end
   end
+  
+  # def self.refresh_with_observation(observation, options = {})
+  #   observation = Observation.find_by_id(observation.to_i) unless observation.is_a?(Observation)
+  #   return unless observation && observation.taxon
+  #   user = observation.user
+  #   ListedTaxon.update_all(
+  #     ["last_observation_id = ?", observation], 
+  #     ["list_id IN (?) AND taxon_id IN (?)", user.list_ids, [observation.taxon_id] + observation.taxon.ancestor_ids]
+  #   )
+  # end
 end

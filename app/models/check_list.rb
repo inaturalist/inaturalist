@@ -59,7 +59,7 @@ class CheckList < List
   end
   
   def sync_with_parent(options = {})
-    conditions = "listed_taxa.place_id > 0 AND listed_taxa.created_at"
+    conditions = "listed_taxa.place_id IS NOT NULL"
     unless options[:force]
       time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
       conditions = CheckList.merge_conditions(conditions, 
@@ -77,9 +77,22 @@ class CheckList < List
     parent_check_list.update_attribute(:last_synced_at, Time.now)
   end
   
-  # TODO when we have real spatial queries, and maybe data quality grades
   def last_observation_of(taxon)
-    nil
+    Observation.of(taxon).in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).latest.first
+  end
+  
+  # This is a loaded gun.  Please fire with discretion.
+  def add_intersecting_taxa(options = {})
+    return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
+    ancestor = options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor])
+    if options[:ancestor] && ancestor.blank?
+      return nil
+    end
+    scope = Taxon.intersecting_place(place).scoped({})
+    scope = scope.descendants_of(ancestor) if ancestor
+    scope.find_each do |taxon|
+      send_later(:add_taxon, taxon.id)
+    end
   end
   
   def self.sync_check_lists_with_parents(options = {})
@@ -91,7 +104,7 @@ class CheckList < List
     ListedTaxon.all(
       :include => [:taxon, :list, {:place => {:parent => :check_list}}], 
       :conditions => [
-        "listed_taxa.place_id > 0 AND listed_taxa.created_at > ?", 
+        "listed_taxa.place_id IS NOT NULL AND listed_taxa.created_at > ?", 
         time_since_last_sync]
     ).each do |listed_taxon|
       next unless listed_taxon.place.parent_id
@@ -103,5 +116,76 @@ class CheckList < List
 
     logger.info "[INFO] Finished CheckList.sync_check_lists_with_parents " + 
       "at #{Time.now} (#{Time.now - start_time}s)"
+  end
+  
+  def self.refresh_with_observation(observation, options = {})
+    start = Time.now
+    Rails.logger.info "[INFO #{start}] Starting CheckList.refresh_with_observation for #{observation}, options: #{options.inspect}"
+    # retrieve the observation or the id of the deleted observation and any relevant taxa
+    if observation.is_a?(Observation)
+      observation_id = observation.id
+    else
+      observation_id = observation.to_i
+      observation = Observation.find_by_id(observation_id)
+    end
+    taxon_id = observation.try(:taxon_id) || options[:taxon_id]
+    return if taxon_id.blank?
+    taxon_ids = [taxon_id]
+    taxon_ids += observation.taxon.ancestor_ids if observation
+    Rails.logger.info "[INFO #{Time.now}] taxon_ids: #{taxon_ids.inspect}"
+    
+    # get places in which the observation was made
+    place_ids = if observation && observation.georeferenced?
+      Rails.logger.info "[INFO #{Time.now}] Finding intersecting place geometries for #{observation}"
+      PlaceGeometry.all(:select => "place_geometries.id, place_id",
+        :joins => "JOIN observations ON observations.id = #{observation_id}",
+        :conditions => "ST_Intersects(place_geometries.geom, observations.geom)").map(&:place_id)
+    else
+      []
+    end
+    Rails.logger.info "[INFO #{Time.now}] place_ids: #{place_ids.inspect}"
+    
+    # get places places where this obs was made that already have this taxon listed
+    existing_place_ids = ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
+      :conditions => ["place_id IN (?) AND taxon_id = ?", place_ids, taxon_id]).map(&:place_id)
+    if observation
+      existing_place_ids += ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
+        :conditions => ["place_id IN (?) AND last_observation_id = ?", place_ids, observation.id]).map(&:place_id)
+    end
+    Rails.logger.info "[INFO #{Time.now}] existing_place_ids: #{existing_place_ids.inspect}"
+      
+    # if we need to add / update
+    if observation && observation.quality_grade == Observation::RESEARCH_GRADE
+      Rails.logger.info "[INFO #{Time.now}] Setting last obs of listed taxa to #{observation}"
+      ListedTaxon.update_all(
+        ["last_observation_id = ?", observation], 
+        ["place_id IN (?) AND taxon_id IN (?)", existing_place_ids, taxon_ids]
+      )
+      return unless observation.taxon.rank == Taxon::SPECIES
+      new_place_ids = place_ids - existing_place_ids
+      Rails.logger.info "[INFO #{Time.now}] Adding taxon for #{observation} to new places: #{new_place_ids.inspect}"
+      CheckList.find_each(:joins => "JOIN places ON places.check_list_id = lists.id", 
+          :conditions => ["place_id IN (?)", new_place_ids]) do |list|
+        list.add_taxon(observation.taxon, :last_observation => observation, 
+          :skip_update_last_observation => true)
+      end
+    
+    # otherwise well be refreshing / deleting
+    else
+      Rails.logger.info "[INFO #{Time.now}] Finding listed taxa to remove for #{observation}"
+      conditions = ["place_id > 0 AND last_observation_id = ?", observation_id]
+      ListedTaxon.find_each(:include => :list, :conditions => conditions) do |lt|
+        obs = ListedTaxon.update_last_observation_for(lt)
+        if obs.blank? && 
+            !lt.user_id && 
+            !lt.updater_id && 
+            lt.comments_count.to_i == 0 &&
+            lt.list.is_default?
+          lt.destroy
+        end
+        obs = nil
+      end
+    end
+    Rails.logger.info "[INFO #{Time.now}] Finished CheckList.refresh_with_observation for #{observation} (#{Time.now - start}s)"
   end
 end

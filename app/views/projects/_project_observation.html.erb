@@ -1,0 +1,21 @@
+<%-
+  project_observation ||= project_observation || object
+  observation ||= project_observation.observation
+-%>
+<div class="project_observation">
+  <%= render :partial => 'observations/cached_component', :object => observation %>
+  <% unless project_observation.curator_identification_id.blank? || project_observation.curator_identification.taxon_id == observation.taxon_id -%>
+    <div class="project_observation_extra">
+      <div class="attribute curator_ident fadednowrap">
+        <h4 class="label">
+          <%= link_to user_image(project_observation.curator_identification.user), project_observation.curator_identification.user %>
+          Project curator ID
+        </h4>
+        <%= render :partial => "shared/taxon", :object => project_observation.curator_identification.taxon, :locals => {
+          :no_common => true,
+          :link_url => project_observation.curator_identification.taxon
+        } %>
+      </div>
+    </div>
+  <% end %>
+</div>

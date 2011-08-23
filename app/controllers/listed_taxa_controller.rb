@@ -2,23 +2,30 @@ class ListedTaxaController < ApplicationController
   before_filter :login_required, :except => [:show]
   before_filter :load_listed_taxon, :except => [:index, :create]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
+  
+  SHOW_PARTIALS = %w(place_tip)
 
   def index
     redirect_to lists_path
   end
   
   def show
+    if partial = params[:partial]
+      partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
+      render :partial => partial, :layout => false
+      return
+    end
   end
   
   def create
     if params[:listed_taxon]
-      @list = List.find_by_id(params[:listed_taxon][:list_id])
-      @place = Place.find_by_id(params[:listed_taxon][:place_id]) if params[:listed_taxon][:place_id]
-      @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id])
+      @list = List.find_by_id(params[:listed_taxon][:list_id].to_i)
+      @place = Place.find_by_id(params[:listed_taxon][:place_id].to_i) if params[:listed_taxon][:place_id]
+      @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id].to_i)
     else
-      @list = List.find_by_id(params[:list_id])
-      @place = Place.find_by_id(params[:place_id])
-      @taxon = Taxon.find_by_id(params[:taxon_id])
+      @list = List.find_by_id(params[:list_id].to_i)
+      @place = Place.find_by_id(params[:place_id].to_i)
+      @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     end
     @list ||= @place.check_list if @place
     
@@ -127,7 +134,7 @@ class ListedTaxaController < ApplicationController
   def load_listed_taxon
     unless @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => [:list, :taxon, :user])
       flash[:notice] = "That listed taxon doesn't exist."
-      redirect_to :back
+      redirect_back_or_default('/')
       return
     end
     @list = @listed_taxon.list

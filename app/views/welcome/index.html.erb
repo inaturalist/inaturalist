@@ -58,7 +58,8 @@
           map.addObservation(o, {
             icon: iNaturalist.Map.createObservationIcon({
               color: "HotPink",
-              character: letters[letter_counter]
+              character: letters[letter_counter],
+              stemless: o.coordinates_obscured
             })
           });
           letter_counter++;
@@ -96,7 +97,6 @@
   </script>
 <% end %>
 
-
 <div id="welcomecol" class="clear last column prepend-2 span-21 append-1">
   <div id="explore" class="column span-5">
     <center>
@@ -117,10 +117,6 @@
       <%= link_to image_tag("/images/notebook-icon-color-155px-shadow.jpg", :width => 131, :height => 155), new_observation_path, :rel => "nofollow" %>
       <h1><%= link_to "Record!", new_observation_path, :rel => "nofollow" %></h1>
       <p>
-        <% unless logged_in? -%>
-          <%= link_to 'Sign Up', {:controller => :account, :action => :signup} %>
-          and
-        <% end -%>
         <%= link_to "Add Observations!", new_observation_path, :rel => 'nofollow' %>
       </p>
     </center>
@@ -146,6 +142,12 @@
     </div>
   </div>
 </div><!-- end welcome col -->
+
+<% if @announcement -%>
+  <div class="column span-24">
+    <%= @announcement.body %>
+  </div>
+<% end -%>
 
 <div class="column prepend-2 span-7">
   <h3 class="description">Recent additions</h3>

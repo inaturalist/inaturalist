@@ -27,27 +27,46 @@
   </tr>
   <% for flagging in @flags %>
   <% rendered_taxon =  render(:partial => 'shared/taxon', 
-                              :locals => { :taxon => flagging.flagged_object }) %>
+                              :locals => { :taxon => flagging.flagged_object, :link_url => flagging.flagged_object }) %>
   <tr>
     <td><%= flagging.created_at %></td>
     <td><%= rendered_taxon %></td>
     <td><%= h flagging.flag %></td>
-    <td><%= link_to h(flagging.user.login), flagging.user %></td>
-    <td class="buttonrow">
-      <%= link_to "Edit #{rendered_taxon}", 
-                  edit_taxon_path(:id => flagging.flaggable_id), :class => 'button' %>
-      <span class="inter">or</span>
-      <% form_for(flagging, :action=>"update") do |f| %>
-        <%= f.text_field :comment, :class => 'text' %>
-        <%= f.hidden_field :resolver_id, :value => @user.id %>
-        <%= f.hidden_field :resolved, :value => true %>
-        <%= f.submit 'Resolve this flag', :class => 'button' %>
+    <td>
+      <% if flagging.user -%>
+        <%= link_to h(flagging.user.login), flagging.user %>
+      <% else %>
+        iNat
+      <% end -%>
+    </td>
+    <td>
+      <%= link_to "View", taxon_path(:id => flagging.flaggable_id) %> /
+      <%= link_to "Edit", edit_taxon_path(:id => flagging.flaggable_id) %> /
+      <%= link_to "Merge", merge_taxon_path(:id => flagging.flaggable_id) %>
+      <% form_for(flagging, :action => "update", :html => {:class => "inline buttonrow"}) do |f| %>
+        <fieldset>
+          <legend>Resolve this flag</legend>
+          <%= f.text_field :comment, :class => 'text', :placeholder => "Explain your decision" %>
+          <%= f.hidden_field :resolver_id, :value => @user.id %>
+          <%= f.hidden_field :resolved, :value => true %>
+          <%= f.submit 'Resolve', :class => 'inline button' %>
+        </fieldset>
       <% end %>
       
     </td>
   </tr>
   <% end %>
 </table>
+
+<% unless @resolved_flags.blank? -%>
+  <div class="stacked">
+    <h3>Recently Resolved</h3>
+    <% for flag in @resolved_flags %>
+      <%= render :partial => "flags/flag", :object => flag %>
+    <% end %>
+  </div>
+<% end -%>
+
 
 <%= will_paginate @flags %>
 
@@ -62,26 +81,40 @@
     and their descendents.  Try resolving some of these first.
   </p>
 <% end %>
-<ul>
+
+<table>
   <% for taxon in @ungrafted %>
-    <li>
-      <%= link_to(
-        render(:partial => 'shared/taxon', :locals => {:taxon => taxon}),
-        taxon
-      ) %>
+    <tr>
+      <td>
+        <%= link_to(
+          render(:partial => 'shared/taxon', :locals => {:taxon => taxon}),
+          taxon
+        ) %>
+      </td>
       
-      <span class="button">
-        <%= link_to 'edit', edit_taxon_path(taxon) %>
-      </span>
-      | <span class="button">
-        <%= link_to_remote 'graft', :url => graft_taxon_path(taxon), 
-          :html => { :id => "grafting_link_#{taxon.id}" },
-          :loading => "$('#grafting_link_#{taxon.id}').hide(); $('#grafting_status_#{taxon.id}').show()",
-          :success => "$('#grafting_status_#{taxon.id}').removeClass('loading').addClass('success').text(request); return false;",
-          :failure => "$('#grafting_link_#{taxon.id}').show(); $('#grafting_status_#{taxon.id}').removeClass('loading').addClass('error').text(request.responseText); return false;"
-         %>
-      </span>
-      <span id="grafting_status_<%= taxon.id %>" class="loading status" style="display: none">Grafting...</span>
-    </li>
+      <td>
+        <span class="button">
+          <%= link_to 'edit', edit_taxon_path(taxon) %>
+        </span>
+        |
+        <span class="button">
+          <%= link_to 'merge', merge_taxon_path(taxon) %>
+        </span>
+        |
+        <span class="button">
+          <%= link_to 'delete', taxon, :method => :delete, :confirm => "Are you sure you want to delete this?  You should probably check to see if it has observations or listed taxa first." %>
+        </span>
+        |
+        <span class="button">
+          <%= link_to_remote 'graft', :url => graft_taxon_path(taxon), 
+            :html => { :id => "grafting_link_#{taxon.id}" },
+            :loading => "$('#grafting_link_#{taxon.id}').hide(); $('#grafting_status_#{taxon.id}').show()",
+            :success => "$('#grafting_status_#{taxon.id}').removeClass('loading').addClass('success').text(request); return false;",
+            :failure => "$('#grafting_link_#{taxon.id}').show(); $('#grafting_status_#{taxon.id}').removeClass('loading').addClass('error').text(request.responseText); return false;"
+           %>
+        </span>
+        <span id="grafting_status_<%= taxon.id %>" class="loading status" style="display: none">Grafting...</span>
+      </td>
+    </tr>
   <% end %>
-</ul>
+</table>

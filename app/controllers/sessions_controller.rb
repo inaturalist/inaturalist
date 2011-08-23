@@ -1,13 +1,10 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
   
   MOBILIZED = [:new]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-
-  # render new.rhtml
+  
   def new
     respond_to do |format|
       format.html
@@ -26,12 +23,14 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      if session[:return_to]
+      flash[:notice] = "Logged in successfully"
+      if !session[:return_to].blank? && 
+          ![login_url, root_url, login_path, root_path].include?(session[:return_to])
         redirect_to session[:return_to]
       else
-        redirect_back_or_default('/')
+        redirect_to home_path
       end
-      flash[:notice] = "Logged in successfully"
+      
     else
       note_failed_signin
       @login       = params[:login]
@@ -42,7 +41,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout_killing_session!
-    flash[:notice] = "You have been logged out."
+    flash[:notice] = "You have been logged out. Come back soon!"
     redirect_back_or_default('/')
   end
 

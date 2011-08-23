@@ -34,16 +34,26 @@ base: &base
         YDN_APP_ID: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
     hoptoad:
         # http://www.hoptoadapp.com/
-        api_key: '09azAZ09azAZ09azAZ09azAZ09azA'
+        api_key: 09af09af09af09af09af09af09af09af09af09af
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with 
         # requests like /{Z}/{X}/{Y}.png.  
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
+        tilestache: 'http://localhost:8080'
     noreply_email: 'no-reply@yoursite.org'
     google_webmaster:
       verification: abiglongkey
     s3_bucket: 'yourbucketname'
+    memcached: 'localhost'
+    facebook:
+      app_id: 00000000000
+      app_secret: 09af09af09af09af09af09af09af09af09af09af
+    twitter:
+      key: 09af09af09af09af09af09af09af09af09af09af
+      secret: 09af09af09af09af09af09af09af09af09af09af
+    cloudmade:
+      key: 09af09af09af09af09af09af09af09af09af09af
 
 development:
     <<: *base

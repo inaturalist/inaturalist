@@ -2,10 +2,12 @@
   observations ||= @observations
   @iconic_taxa ||= []
   @view = params[:view] ||= 'map'
+  observations_html ||= nil
 -%>
 <% content_for(:extrajs) do %>
   <!-- Note: The parent view should include the GMaps libs! -->
-  <%= javascript_include_tag 'inaturalist/map2', 
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag 'inaturalist/map3', 
                              'jquery/plugins/jquery.url.packed.js',
                              'jquery/plugins/jqModal',
                              'modal_image',
@@ -13,12 +15,11 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // Setup the Map
-      var map = iNaturalist.Map.createMap({observationsTileServer: '<%= OBSERVATIONS_TILE_SERVER %>'});
+      var map = iNaturalist.Map.createMap({
+        observationsTileServer: '<%= OBSERVATIONS_TILE_SERVER %>',
+        overviewMapControl: true
+      });
       window.map = map;
-      
-      // Add some fancy-pants controls
-      map.addControl(new GOverviewMapControl());
-      map.enableGoogleBar();
       
       // Add the observations
       var observations = <%= observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
@@ -43,12 +44,11 @@
       // and zoom to 2
       if ($('#map:visible').length > 0) {
         <%- if !@swlat.blank? && !@swlng.blank? && !@nelat.blank? && !@nelng.blank? -%>
-          var bounds = new GLatLngBounds(
-            new GLatLng(<%= @swlat %>, <%= @swlng %>),
-            new GLatLng(<%= @nelat %>, <%= @nelng %>)
+          var bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(<%= @swlat %>, <%= @swlng %>),
+            new google.maps.LatLng(<%= @nelat %>, <%= @nelng %>)
           );
-          map.setZoom(map.getBoundsZoomLevel(bounds));
-          map.setCenter(bounds.getCenter());
+          map.fitBounds(bounds)
         <%- else -%>
           map.zoomToObservations();
         <%- end -%>
@@ -69,7 +69,7 @@
             width: '640px'
           });
         };
-        map.checkResize();
+        google.maps.event.trigger(map, 'resize')
       });
     });
   </script>
@@ -137,13 +137,18 @@
     <div id="mapcontrols"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
       <%= link_to_function "Redo search in map area", "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
       <span id="redo_search_in_map_area_loading" class="loading status" style="display: none">Loading...</span>
-      | <%= link_to_function "Show all observations", 
+      <!-- | <%= link_to_function "Show all observations", 
         "map.showAllObsOverlay(); $(this).hide(); $('#hide_all_obs_button').show()", 
         :id => 'show_all_obs_button' %>
       <%= link_to_function "Hide all observations", 
         "map.hideAllObsOverlay(); $(this).hide(); $('#show_all_obs_button').show()", 
         :id => 'hide_all_obs_button', :style => 'display: none' %>
-      <span class="description">(experimental)</span>
+      <span class="description">(experimental)</span> -->
+      <% if logged_in? && params[:test] == "true" -%>
+        |
+        <%= link_to_function "View species guide for this area", 
+          "linkWithBoundingBox(#{url_for(:controller => "places", :action => "guide").inspect})" %>
+      <% end -%>
     </div>
   </div>
 
@@ -157,7 +162,7 @@
     <% else %>
       <%= render :partial => 'observations_table_header' %>
     <% end %>
-    <%= render :partial => 'observations/cached_component', :collection => observations %>
+    <%= observations_html ? observations_html : render(:partial => 'observations/cached_component', :collection => observations) %>
     <% if @observations.empty? %>
       <p id="noresults" class="readable description">
         No matching observations!

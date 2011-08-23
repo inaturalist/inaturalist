@@ -5,6 +5,6 @@
   <% form_tag :action => 'add_taxon_batch', :id => @list do %>
     <label for="names">Names</label>
     <%= text_area_tag :names, '', :style => 'width: 580px' %>
-    <%= submit_tag 'Add taxa', :class => 'default button' %>
+    <%= submit_tag 'Add taxa', :class => 'default button', "data-loading-click" => "Adding..." %>
   <% end %>
 </div>

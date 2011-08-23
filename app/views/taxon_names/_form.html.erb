@@ -38,16 +38,11 @@
   </p>
   <p class="ui">
     <%= n.label :lexicon %><br/>
-    <%= n.select :lexicon, 
-      options_for_select(TaxonName::DEFAULT_LEXICONS, 
-        :selected => @taxon_name.new_record? ? TaxonName::LEXICONS[:ENGLISH] : nil) +
-      options_for_select(['---------------------------'], :disabled => '---------------------------') +
-      "<option value='' #{'selected="selected"' if @taxon_name.lexicon.blank?}>Unknown</option>" +
-      options_for_select(TaxonName::LEXICONS.values.sort,
-        :include_blank => "Unknown",
-        :selected => @taxon_name.new_record? ? nil : @taxon_name.lexicon),
-      {}, {:id => "taxon_name_lexicon_select"}
-    %>
+    <%-
+      options = TaxonName::DEFAULT_LEXICONS + ['---------------------------'] + 
+        (TaxonName::LEXICONS.values.sort - TaxonName::DEFAULT_LEXICONS)
+    -%>
+    <%= n.select :lexicon, options, :include_blank => "Unknown", :disabled => '---------------------------' %>
   </p>
   <p class="ui">
     <%= link_to_function "Add new lexicon", 

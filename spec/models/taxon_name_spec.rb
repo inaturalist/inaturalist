@@ -77,4 +77,9 @@ describe TaxonName, 'creation' do
     name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
     name2.should_not be_valid
   end
+  
+  it "should strip html" do
+    tn = TaxonName.make(:name => "Foo <i>")
+    tn.name.should == 'Foo'
+  end
 end

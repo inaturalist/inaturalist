@@ -1,0 +1,78 @@
+<%- 
+  observation ||= object || @observation
+  inline_edit ||= false
+-%>
+<label>Location:</label>
+<%= observation_place_guess observation %>
+<% if show_observation_coordinates?(observation) %>
+<div>
+  <% if !observation.coordinates_viewable_by?(current_user) -%>
+    Public coordinates obscured by <%= Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 %>KM
+  <% else %>
+    <% if observation.coordinates_obscured? -%>
+      <span class="latitude"><label>Lat:</label> <%= observation.private_latitude %></span>,
+      <span class="longitude"><label>Lon:</label> <%= observation.private_longitude %></span>
+      <% if observation.latitude && observation.longitude -%>
+        <div class="small meta">
+        Shown publicly as 
+        <span class="latitude"><label>Lat:</label> <%= observation.latitude %></span>,
+        <span class="longitude"><label>Lon:</label> <%= observation.longitude %></span>
+        </div>
+      <% end -%>
+    <% else %>
+      <span class="latitude"><label>Lat:</label> <%= observation.latitude %></span>,
+      <span class="longitude"><label>Lon:</label> <%= observation.longitude %></span>
+    <% end -%>
+    <%- if observation.coordinates_obscured? && observation.geoprivacy.blank? -%>
+      <div class="small meta">
+        Exact coordinates obscured for public view for threatened species.
+      </div>
+    <% end %>
+    
+    <% unless observation.positional_accuracy.blank? -%>
+      <div class="positional_accuracy">
+        <labe>Accuracy:</labe> <%= observation.positional_accuracy %>m
+      </div>
+    <% end -%>
+    
+    <div class="geoprivacy">
+      <div class="geoprivacy_display">
+        <label>Geoprivacy:</label> <%= observation.geoprivacy || "open" %>
+        <% if inline_edit && is_me?(observation.user) -%>
+          <%= link_to_function "edit", 
+            "$(this).parents('.geoprivacy').find('form').css('display', 'inline'); " + 
+            "$(this).parents('.geoprivacy_display').hide()", 
+            :class => "editlink" %>
+        <% end %>
+        <span class="helptip" rel="#<%= dom_id observation, 'geoprivacy_tip' %>"></span>
+        <div id="<%= dom_id observation, 'geoprivacy_tip' %>"style="display:none">
+          <dl>
+            <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
+              <dt><%= privacy || "open" %></dt>
+              <dd><%= description %></dd>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+      <% if inline_edit && is_me?(observation.user) -%>
+        <%- form_for observation, :html => {:style => "display:none;"} do |f| %>
+          <%= f.label :geoprivacy, "Geoprivacy: " %>
+          <%= f.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+          <%= hidden_field_tag :ignore_photos, true %>
+          <%= f.submit "Save", "data-loading-click" => true %>
+          <%= link_to_function "Cancel", 
+            "$(this).parents('.geoprivacy').find('.geoprivacy_display').show(); " + 
+            "$(this).parents('form').hide()" %>
+        <%- end %>
+      <% end -%>
+    </div>
+    
+    <% if observation.coordinates_obscured? && is_not_me?(observation.user) -%>
+      You can see these coordinates because you curate one of the projects to
+      which this observation has been added.
+    <% end -%>
+  <% end -%>
+</div>
+<% elsif observation.georeferenced? %>
+  <span class="meta">(coordinates private)</span>
+<% end %>

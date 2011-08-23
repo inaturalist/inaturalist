@@ -1,8 +1,10 @@
 class TaxaController < ApplicationController
+  caches_page :range, :if => Proc.new {|c| c.request.format.geojson?}
+  
   include TaxaHelper
   include Shared::WikipediaModule
   
-  before_filter :return_here, :only => [:index, :show, :flickr_tagger]
+  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation]
   before_filter :login_required, :only => [:edit_photos, :update_photos, 
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places]
@@ -10,7 +12,8 @@ class TaxaController < ApplicationController
     :destroy, :curation, :refresh_wikipedia_summary, :merge]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
-    :update_colors, :add_places, :refresh_wikipedia_summary, :merge]
+    :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
+    :observation_photos, :map, :range]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   verify :method => :post, :only => [:create, :update_photos, 
@@ -33,58 +36,18 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_options = {
-      :order => "#{Taxon.table_name}.name ASC",
-      :include => :taxon_names
-    }
-    
-    @qparams = {}
-    if params[:q]
-      @qparams[:q] = params[:q]
-      find_options[:conditions] =  [ "#{Taxon.table_name}.name LIKE ?", 
-                                      '%' + params[:q].split(' ').join('%') + '%' ]
-    elsif params[:name]
-      @qparams[:name] = params[:name]
-      find_options[:conditions] = [ "name = ?", params[:name] ]
-    else
-      find_options[:conditions] = ["is_iconic = ?", true]
-      find_options[:order] = :ancestry
-    end
-    if params[:limit]
-      @qparams[:limit] = params[:limit]
-      find_options[:limit] = params[:limit]
-    else
-      params[:page_size] ||= 10
-      params[:page] ||= 1
-      find_options[:page] = params[:page]
-      find_options[:per_page] = params[:page_size]
-    end
-    if params[:all_names] == 'true'
-      @qparams[:all_names] = params[:all_names]
-      find_options[:include] = [:taxon_names]
-      if find_options[:conditions]
-        find_options[:conditions][0] += " OR #{TaxonName.table_name}.name LIKE ?"
-        find_options[:conditions] << ('%' + params[:q].split(' ').join('%') + '%')
-      else
-        find_options[:conditions] =  [ "#{TaxonName.table_name}.name LIKE ?", 
-                                        '%' + params[:q].split(' ').join('%') + '%' ]
-      end
-    end
-
-    logger.info(find_options)
-    @taxa = Taxon.paginate(:all, find_options)
-    
-    do_external_lookups
+    find_taxa unless request.format.html?
     
     respond_to do |format|
       format.html do # index.html.erb
-        @featured_taxa = Taxon.all(:conditions => "featured_at > 0", 
+        @featured_taxa = Taxon.all(:conditions => "featured_at IS NOT NULL", 
           :order => "featured_at DESC", :limit => 100,
           :include => [:iconic_taxon, :photos, :taxon_names])
+        
         if @featured_taxa.blank?
           @featured_taxa = Taxon.all(:limit => 100, :conditions => [
-            "taxa.wikipedia_summary > 0 AND " +
-            "photos.id > 0 AND " +
+            "taxa.wikipedia_summary IS NOT NULL AND " +
+            "photos.id IS NOT NULL AND " +
             "taxa.observations_count > 1"
           ], :include => [:iconic_taxon, :photos, :taxon_names],
           :order => "taxa.id DESC")
@@ -95,14 +58,16 @@ class TaxaController < ApplicationController
         
         flash[:notice] = @status unless @status.blank?
         if params[:q]
+          find_taxa
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
-          @recent = Observation.latest.all(
-            :limit => 5, 
+          @recent = Observation.all(
+            :select => "DISTINCT ON (taxon_id) *",
+            :from => "(SELECT * from observations WHERE taxon_id IS NOT NULL ORDER BY observed_on DESC NULLS LAST LIMIT 10) AS obs",
             :include => {:taxon => [:taxon_names]},
-            :conditions => 'taxon_id > 0',
-            :group => :taxon_id)
+            :limit => 5
+          ).sort_by(&:id).reverse
         end
       end
       format.xml  do
@@ -125,6 +90,11 @@ class TaxaController < ApplicationController
     @taxon ||= Taxon.find_by_id(params[:id], :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
     
+    if !@taxon.conservation_status.blank? && @taxon.conservation_status > Taxon::IUCN_LEAST_CONCERN
+      @conservation_status_name = @taxon.conservation_status_name
+      @conservation_status_source = @taxon.conservation_status_source
+    end
+    
     respond_to do |format|
       format.html do
         @amphibiaweb = amphibiaweb_description?
@@ -139,7 +109,7 @@ class TaxaController < ApplicationController
         
         @check_listed_taxa = ListedTaxon.paginate(:page => 1,
           :include => :place,
-          :conditions => ["place_id > 0 && taxon_id = ?", @taxon],
+          :conditions => ["place_id IS NOT NULL AND taxon_id = ?", @taxon],
           :order => "listed_taxa.id DESC")
         @places = @check_listed_taxa.map(&:place)
         @countries = @taxon.places.all(
@@ -177,7 +147,7 @@ class TaxaController < ApplicationController
           return redirect_to(:action => 'index')
         end
         
-        @taxon_range = @taxon.taxon_ranges.first
+        @taxon_range = @taxon.taxon_ranges.without_geom.first
         @taxon_gbif = @taxon.name.gsub(' ','+')
         @show_range = @taxon_range # && params[:test] =~ /range/
         
@@ -210,6 +180,12 @@ class TaxaController < ApplicationController
     @taxon.creator = current_user
     if @taxon.save
       flash[:notice] = 'Taxon was successfully created.'
+      if locked_ancestor = @taxon.ancestors.locked.first
+        flash[:notice] += " Heads up: you just added a descendant of a " + 
+          "locked taxon (<a href='/taxa/#{locked_ancestor.id}'>" + 
+          "#{locked_ancestor.name}</a>).  Please consider merging this " + 
+          "into an existing taxon instead."
+      end
       redirect_to :action => 'show', :id => @taxon
     else
       render :action => 'new'
@@ -231,6 +207,12 @@ class TaxaController < ApplicationController
     return unless presave
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = 'Taxon was successfully updated.'
+      if locked_ancestor = @taxon.ancestors.locked.first
+        flash[:notice] += " Heads up: you just added a descendant of a " + 
+          "locked taxon (<a href='/taxa/#{locked_ancestor.id}'>" + 
+          "#{locked_ancestor.name}</a>).  Please consider merging this " + 
+          "into an existing taxon instead."
+      end
       redirect_to taxon_path(@taxon)
       return
     else
@@ -301,7 +283,7 @@ class TaxaController < ApplicationController
       if @facets[:places]
         @faceted_places = if @places.blank?
           Place.all(:order => "name", :conditions => [
-            "id in (?) && place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
+            "id in (?) AND place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
           ])
         else
           Place.all(:order => "name", :conditions => [
@@ -413,6 +395,98 @@ class TaxaController < ApplicationController
     end
   end
   
+  def map
+    @taxon_range = @taxon.taxon_ranges.without_geom.first
+    @bounds = if @taxon_range
+      @taxon.taxon_ranges.calculate(:extent, :geom)
+    else
+      Observation.of(@taxon).calculate(:extent, :geom)
+    end
+    if @bounds
+      @extent = [
+        {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
+        {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
+      ]
+    end
+    
+    @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
+    
+    @county_listings = @taxon.listed_taxa.all(
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :joins => [:place], 
+      :conditions => [
+        "place_id IS NOT NULL AND places.place_type = ?", 
+        Place::PLACE_TYPE_CODES['County']
+      ]
+    ).index_by(&:place_id)
+    @state_listings = @taxon.listed_taxa.all(
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :joins => [:place], 
+      :conditions => [
+        "place_id IS NOT NULL AND places.place_type = ?", 
+        Place::PLACE_TYPE_CODES['State']
+      ]
+    ).index_by(&:place_id)
+    @country_listings = @taxon.listed_taxa.all(
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :joins => [:place], 
+      :conditions => [
+        "place_id IS NOT NULL AND places.place_type = ?", 
+        Place::PLACE_TYPE_CODES['Country']
+      ]
+    ).index_by(&:place_id)
+    
+    if params[:test]
+      @child_taxa = @taxon.descendants.of_rank(Taxon::SPECIES).all(:limit => 10)
+      @child_taxon_ranges = TaxonRange.without_geom.all(:conditions => ["taxon_id IN (?)", @child_taxa]).group_by(&:taxon_id)
+      @children = @child_taxa.map do |child|
+        {
+          :id => child.id, 
+          :range_url => @child_taxon_ranges[child.id] ? taxon_range_geom_url(child, :format => "geojson") : nil, 
+          :observations_url => observations_of_url(child, :format => "geojson"),
+          :name => child.name
+        }
+      end
+    end
+  end
+  
+  def range
+    @taxon_range = if request.format.geojson?
+      @taxon.taxon_ranges.simplified.first
+    else
+      @taxon.taxon_ranges.first
+    end
+    unless @taxon_range
+      flash[:error] = "Taxon doesn't have a range"
+      redirect_to @taxon
+      return
+    end
+    respond_to do |format|
+      format.html { redirect_to taxon_map_path(@taxon) }
+      format.kml { redirect_to @taxon_range.range.url }
+      format.geojson { render :json => [@taxon_range].to_geojson }
+    end
+  end
+  
+  def observation_photos
+    if per_page = params[:per_page]
+      per_page = per_page.to_i > 50 ? 50 : per_page.to_i
+    end
+    observations = if params[:q].blank?
+      Observation.of(@taxon).paginate(:page => params[:page], 
+        :per_page => per_page, :include => [:photos], 
+        :conditions => "photos.id IS NOT NULL")
+    else
+      Observation.search(params[:q], :page => params[:page], 
+      :per_page => per_page, :with => {:has_photos => true, :taxon_id => @taxon.id})
+    end
+    @photos = observations.map(&:photos).flatten
+    render :partial => 'photos/photo_list_form', :locals => {
+      :photos => @photos, 
+      :index => params[:index],
+      :local_photos => false }
+  end
+  
   def edit_photos
     render :layout => false
   end
@@ -433,7 +507,8 @@ class TaxaController < ApplicationController
         []
       end
       
-      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
+      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
+        :select => "DISTINCT ON (place_id) listed_taxa.*")
       @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
       
       render :partial => 'taxa/add_to_place_link', :collection => @places, :locals => {
@@ -475,7 +550,8 @@ class TaxaController < ApplicationController
       end
       
       search_for_places
-      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], :group => "place_id")
+      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
+        :select => "DISTINCT ON (place_id) listed_taxa.*")
       @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
       render :update do |page|
         if @places.blank?
@@ -502,13 +578,12 @@ class TaxaController < ApplicationController
   end
   
   def update_photos
-    @taxon.photos = retreive_flickr_photos
-    if @taxon.save
-      flash[:notice] = "Taxon photos updated!"
-    else
-      flash[:error] = "Something went wrong saving the photos: #{@taxon.errors.full_messages}"
-    end
+    @taxon.photos = retrieve_photos
+    flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
+  rescue Errno::ETIMEDOUT
+    flash[:error] = "Request timed out!"
+    redirect_back_or_default(taxon_path(@taxon))
   end
   
   def describe
@@ -637,7 +712,12 @@ class TaxaController < ApplicationController
   def curation
     @flags = Flag.paginate(:page => params[:page], 
       :include => :user,
-      :conditions => "resolved = false AND flaggable_type = 'Taxon'")
+      :conditions => "resolved = false AND flaggable_type = 'Taxon'",
+      :order => "flags.id desc")
+    @resolved_flags = Flag.all(:limit => 5, 
+      :include => [:user, :resolver],
+      :conditions => "resolved = true AND flaggable_type = 'Taxon'",
+      :order => "flags.id desc")
     life = Taxon.find_by_name('Life')
     @ungrafted_roots = Taxon.roots.paginate(:conditions => ["id != ?", life], :page => 1, :per_page => 100)
     @ungrafted =  (@ungrafted_roots + @ungrafted_roots.map{|ur| ur.descendants}).flatten
@@ -649,8 +729,8 @@ class TaxaController < ApplicationController
       net_flickr.auth.token = current_user.flickr_identity.token
     end
     
-    @taxon ||= Taxon.find_by_id(params[:id]) if params[:id]
-    @taxon ||= Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
+    @taxon ||= Taxon.find_by_id(params[:id].to_i) if params[:id]
+    @taxon ||= Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
     
     @flickr_photo_ids = [params[:flickr_photo_id], params[:flickr_photos]].flatten.compact
     @flickr_photos = @flickr_photo_ids.map do |flickr_photo_id|
@@ -787,11 +867,72 @@ class TaxaController < ApplicationController
 ## Protected / private actions ###############################################
   private
   
+  def find_taxa
+    find_options = {
+      :order => "#{Taxon.table_name}.name ASC",
+      :include => :taxon_names
+    }
+    
+    @qparams = {}
+    if params[:q]
+      @qparams[:q] = params[:q]
+      find_options[:conditions] =  [ "#{Taxon.table_name}.name LIKE ?", 
+                                      '%' + params[:q].split(' ').join('%') + '%' ]
+    elsif params[:name]
+      @qparams[:name] = params[:name]
+      find_options[:conditions] = [ "name = ?", params[:name] ]
+    else
+      find_options[:conditions] = ["is_iconic = ?", true]
+      find_options[:order] = :ancestry
+    end
+    if params[:limit]
+      @qparams[:limit] = params[:limit]
+      find_options[:limit] = params[:limit]
+    else
+      params[:page_size] ||= 10
+      params[:page] ||= 1
+      find_options[:page] = params[:page]
+      find_options[:per_page] = params[:page_size]
+    end
+    if params[:all_names] == 'true'
+      @qparams[:all_names] = params[:all_names]
+      find_options[:include] = [:taxon_names]
+      if find_options[:conditions]
+        find_options[:conditions][0] += " OR #{TaxonName.table_name}.name LIKE ?"
+        find_options[:conditions] << ('%' + params[:q].split(' ').join('%') + '%')
+      else
+        find_options[:conditions] =  [ "#{TaxonName.table_name}.name LIKE ?", 
+                                        '%' + params[:q].split(' ').join('%') + '%' ]
+      end
+    end
+    
+    @taxa = Taxon.paginate(find_options)
+    do_external_lookups
+  end
+  
+  def retrieve_photos
+    [retrieve_flickr_photos, retrieve_picasa_photos, retrieve_local_photos].flatten.compact
+  end
+  
+  def retrieve_picasa_photos
+    return [] if params[:picasa_photos].nil?
+    photos = []
+    params[:picasa_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
+      if fp = PicasaPhoto.find_by_native_photo_id(photo_id)
+        photos << fp 
+      else
+        pp = PicasaPhoto.get_api_response(self.photo_id)
+        photos << PicasaPhotos.new_from_api_response(pp)
+      end
+    end
+    photos
+  end
+  
   #
   # Find locally cached photos or get new ones from flickr based on form
   # params.
   #
-  def retreive_flickr_photos
+  def retrieve_flickr_photos
     return [] if params[:flickr_photos].nil?
 
     flickr = get_net_flickr
@@ -802,6 +943,17 @@ class TaxaController < ApplicationController
       else
         fp = flickr.photos.get_info(photo_id)
         photos << FlickrPhoto.new_from_net_flickr(fp)
+      end
+    end
+    photos
+  end
+  
+  def retrieve_local_photos
+    return [] if params[:local_photos].nil?
+    photos = []
+    params[:local_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
+      if fp = LocalPhoto.find_by_native_photo_id(photo_id)
+        photos << fp 
       end
     end
     photos
@@ -819,18 +971,37 @@ class TaxaController < ApplicationController
     raise exception if params[:action].blank?
     name, format = params[:action].split('_').join(' ').split('.')
     request.format = format unless format.blank?
+    name = name.to_s.downcase
     
-    # Try to look by its current scientifc name
-    taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
+    # Try to look by its current unique name
+    begin
+      taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2) unless @taxon
+    rescue ActiveRecord::StatementInvalid => e
+      raise e unless e.message =~ /invalid byte sequence/
+      name = Iconv.iconv('UTF8', 'LATIN1', name)
+      taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2)
+    end
     @taxon ||= taxa.first if taxa.size == 1
     
     # Try to look by its current scientifc name
-    taxa = Taxon.all(:conditions => ["name = ?", name], :limit => 2) unless @taxon
+    begin
+      taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
+    rescue ActiveRecord::StatementInvalid => e
+      raise e unless e.message =~ /invalid byte sequence/
+      name = Iconv.iconv('UTF8', 'LATIN1', name)
+      taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+    end
     @taxon ||= taxa.first if taxa.size == 1
     
     # Try to find a unique TaxonName
     unless @taxon
-      taxon_names = TaxonName.all(:conditions => ["name = ?", name], :limit => 2)
+      begin
+        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+      end
       if taxon_names.size == 1
         @taxon = taxon_names.first.taxon
         
@@ -842,7 +1013,13 @@ class TaxaController < ApplicationController
     end
     
     # Redirect to a canonical form
-    return redirect_to :action => name.split.join('_') if @taxon && params[:action].split.size > 1
+    if @taxon
+      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
+      taxon_names ||= @taxon.taxon_names.all
+      unless taxon_names.detect{|tn| tn.name.split.join('_') == params[:action]}
+        return redirect_to :action => canonical
+      end
+    end
     
     # TODO: if multiple exact matches, render a disambig page with status 300 (Mulitple choices)
     unless @taxon
@@ -856,7 +1033,7 @@ class TaxaController < ApplicationController
   
   def do_external_lookups
     return unless logged_in?
-    return unless params[:force_external] || (params[:include_external] && @taxa.empty?)
+    return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     @external_taxa = []
     logger.info("DEBUG: Making an external lookup...")
     begin
@@ -908,7 +1085,7 @@ class TaxaController < ApplicationController
   end
   
   def presave
-    @taxon.photos = retreive_flickr_photos
+    @taxon.photos = retrieve_flickr_photos
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end
@@ -917,7 +1094,7 @@ class TaxaController < ApplicationController
     end
     
     unless params[:taxon][:parent_id].blank?
-      unless Taxon.exists?(params[:taxon][:parent_id])
+      unless Taxon.exists?(params[:taxon][:parent_id].to_i)
         flash[:error] = "That parent taxon doesn't exist (try a different ID)"
         render :action => 'edit'
         return false
@@ -926,6 +1103,9 @@ class TaxaController < ApplicationController
     
     # Set the last editor
     params[:taxon].update(:updater_id => current_user.id)
+    
+    # Anyone who's allowed to create or update should be able to skip locks
+    params[:taxon].update(:skip_locks => true)
     
     if params[:taxon][:featured_at] && params[:taxon][:featured_at] == "1"
       params[:taxon][:featured_at] = Time.now

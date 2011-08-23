@@ -57,10 +57,17 @@ module Shared::SweepersModule
     # Expire page-cached tile_points JSON
     if observation.latitude? && observation.longitude?
       SPHERICAL_MERCATOR.levels.times do |zoom|
-        x, y = SPHERICAL_MERCATOR.from_ll_to_pixel(
-          [observation.longitude, observation.latitude], zoom)
-        expire_page :controller => 'observations', :action => 'tile_points', 
-          :zoom => zoom, :x => x, :y => y
+        begin
+          x, y = SPHERICAL_MERCATOR.from_ll_to_pixel([observation.longitude, observation.latitude], zoom)
+          x = (x / 256).floor
+          y = (y / 256).floor
+          expire_page :controller => 'observations', :action => 'tile_points', 
+            :zoom => zoom, :x => x, :y => y
+        rescue Errno::EDOM => e
+          # This is a rare and mysterious error.  Might have something to do 
+          # with slicehost backups...
+          Rails.logger.error "[ERROR #{Time.now}] Failed to sweep obs tilepoints while saving #{observation}: #{e}"
+        end
       end
     end
   end

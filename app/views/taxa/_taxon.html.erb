@@ -5,6 +5,7 @@
   image_options ||= {}
   include_image_attribution ||= false
   hide_child_count ||= true
+  hide_wikipedia_summary ||= false
   link_name ||= false
   link_image ||= false
   link_url ||= url_for_taxon(taxon)
@@ -67,16 +68,33 @@
       </div>
     <% end -%>
     
-    <div class="wikipedia_summary">
-      <% if summary = taxon.wikipedia_summary -%>
-        <%= summary %>
-        <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
-      <% else %>
-        <span class="description">
-          No Wikipedia page for this taxon. <%= link_to "Start one now!", "http://wikipedia.org/wiki/#{taxon.name}" %>
-        </span>
-      <% end -%>
-    </div>
+    <% if @month_counts && data = @month_counts[taxon.id.to_s] -%>
+      <h4>Observations / Month</h4>
+      <div class="graph">
+        <%- max = @counts.values.max -%>
+        <%- %w(? J F M A M J J A S O N D).each_with_index do |name, month| -%>
+          <%- count = data[month.to_s] -%>
+          <a href="<%= url_for(request.params.merge(:month => month)) %>" class="bar last_year" style="height: <%= (count.to_f / max * 100).to_i %>%">
+            <span class="count"><%= count %></span>
+            <span class="month"><%= name %></span>
+          </a>
+        <% end %>
+      </div>
+    <% end -%>
+    
+    <% unless hide_wikipedia_summary -%>
+      <div class="wikipedia_summary">
+        <% if summary = taxon.wikipedia_summary -%>
+          <%= summary %>
+          <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
+        <% else %>
+          <span class="description">
+            No Wikipedia page for this taxon. <%= link_to "Start one now!", "http://wikipedia.org/wiki/#{taxon.name}" %>
+          </span>
+        <% end -%>
+      </div>
+    <% end -%>
+    
   </div>
   <% if include_image_attribution && (photo = taxon.photos.first) -%>
     <div class="meta attribution">

@@ -63,7 +63,6 @@ class ListsController < ApplicationController
     
     # Load listed taxa for pagination
     paginating_find_options = find_options.merge(
-      :group => 'listed_taxa.taxon_id', 
       :page => params[:page], 
       :per_page => 26)
       
@@ -226,10 +225,22 @@ class ListsController < ApplicationController
   private
   
   def owner_required
-    unless logged_in? && @list.user.id == current_user.id
+    unless logged_in? && @list.user.id == current_user.id || current_user.is_admin?
       flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
-      redirect_to lists_by_login_path(@list.user.login)
+      redirect_back_or_default('/')
       return false
+    end
+  end
+  
+  def load_listed_taxon_photos
+    @photos_by_listed_taxon_id = {}
+    obs_ids = @listed_taxa.map(&:last_observation_id).compact
+    obs_photos = ObservationPhoto.all(:select => "DISTINCT ON (observation_id) *", 
+      :conditions => ["observation_id IN (?)", obs_ids], :include => [:photo])
+    obs_photos_by_obs_id = obs_photos.index_by(&:observation_id)
+    @listed_taxa.each do |lt|
+      next unless (op = obs_photos_by_obs_id[lt.last_observation_id])
+      @photos_by_listed_taxon_id[lt.id] = op.photo
     end
   end
 end

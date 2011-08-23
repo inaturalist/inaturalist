@@ -18,13 +18,14 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     options ||= {}
     wrapper_options = options.delete(:wrapper) || {}
     wrapper_options[:class] = "#{wrapper_options[:class]} field #{field}_field".strip
+    content, label_content = '', ''
     
     if options[:label] != false
       label_tag = label(field, options[:label], :class => options[:label_class])
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end
-      content = content_tag(:div, label_tag, :class => 'label')
+      label_content = content_tag(options[:label_after] ? :span : :div, label_tag, :class => "label")
     end
     
     if options[:description]
@@ -32,6 +33,12 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     end
     
     content = "#{content}#{block_given? ? @template.capture(&block) : field_content}"
+    
+    content = if options[:label_after]
+      "#{content} #{label_content}"
+    else
+      "#{label_content} #{content}"
+    end
     
     if block_given?
       @template.concat @template.content_tag(:div, content, wrapper_options)

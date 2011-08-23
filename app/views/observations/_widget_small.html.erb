@@ -1,10 +1,22 @@
+<%- target ||= nil -%>
+<%- default_image ||= nil -%>
+<%- silence ||= nil -%>
 <div class="inat-widget-small">
+  <% if @observations.size == 0 %>
+    <% unless silence == "true" %>
+      <span class="inat-value">no observations</span>
+    <% end %>
+  <% end %>
   <% for observation in @observations %>
-    <% link_to observation_url(observation), :class => "inat-observation-image" do %>
+    <% link_to observation_url(observation), :class => "inat-observation-image", :target => (target ? "_blank" : nil) do %>
       <% if obs_img_url = observation_image_url(observation) -%>
         <%= image_tag obs_img_url, :border => 0 %>
       <% else %>
-        <%= iconic_taxon_image(observation.iconic_taxon, :border => 0) %>
+        <% if default_image %>
+          <%= image_tag(image_url(default_image)) %>
+        <% else %>
+          <%= iconic_taxon_image(observation.iconic_taxon, :border => 0) %>
+        <% end -%>
       <% end -%>
     <% end %>
   <% end %>

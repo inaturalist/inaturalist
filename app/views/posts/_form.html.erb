@@ -1,8 +1,7 @@
 <%- post ||= @post -%>
 <%- observations ||= @observations ||= @post.observations -%>
 <% content_for(:extrajs) do -%>
-  <%= javascript_include_tag 'jquery',
-                             'jquery/plugins/jquery.labelize',
+  <%= javascript_include_tag 'jquery/plugins/jquery.labelize',
                              "jquery/plugins/inat/observation_selectors" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {

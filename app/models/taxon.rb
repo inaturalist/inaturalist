@@ -6,6 +6,9 @@ class Taxon < ActiveRecord::Base
   # If you want to shove some HTML in there before creating some JSON...
   attr_accessor :html
   
+  # Allow this taxon to be grafted to locked subtrees
+  attr_accessor :skip_locks
+  
   acts_as_flaggable
   has_ancestry
   
@@ -16,7 +19,7 @@ class Taxon < ActiveRecord::Base
   has_many :lists, :through => :listed_taxa
   has_many :places, :through => :listed_taxa
   has_many :identifications, :dependent => :destroy
-  has_many :taxon_links, :dependent => :destroy 
+  has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
@@ -24,7 +27,10 @@ class Taxon < ActiveRecord::Base
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
+  belongs_to :conservation_status_source, :class_name => "Source"
   has_and_belongs_to_many :colors
+  
+  accepts_nested_attributes_for :conservation_status_source
   
   define_index do
     indexes :name
@@ -41,10 +47,12 @@ class Taxon < ActiveRecord::Base
   
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
-              :capitalize_name
+              :capitalize_name,
+              :set_conservation_status_source
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
-             :handle_after_move
+             :handle_after_move,
+             :update_observations_with_conservation_status_change
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
@@ -81,6 +89,10 @@ class Taxon < ActiveRecord::Base
     'variety'      => 5,
     'form'         => 5
   }
+  RANK_LEVELS.each do |rank, level|
+    const_set rank.upcase, rank
+    const_set "#{rank.upcase}_LEVEL", level
+  end
   
   RANKS = RANK_LEVELS.keys
   
@@ -136,6 +148,41 @@ class Taxon < ActiveRecord::Base
     'Animalia' => 'Other Animals'
   )
   
+  IUCN_NOT_EVALUATED = 0
+  IUCN_DATA_DEFICIENT = 5
+  IUCN_LEAST_CONCERN = 10
+  IUCN_NEAR_THREATENED = 20
+  IUCN_VULNERABLE = 30
+  IUCN_ENDANGERED = 40
+  IUCN_CRITICALLY_ENDANGERED = 50
+  IUCN_EXTINCT_IN_THE_WILD = 60
+  IUCN_EXTINCT = 70
+  IUCN_STATUS_NAMES = %w(not_evaluated data_deficient least_concern
+    near_threatened vulnerable endangered critically_endangered
+    extinct_in_the_wild extinct)
+  IUCN_STATUS_CODES = {
+    "not_evaluated"         => "NE",
+    "data_deficient"        => "DD",
+    "least_concern"         => "LC",
+    "near_threatened"       => "NT",
+    "vulnerable"            => "VU",
+    "endangered"            => "EN",
+    "critically_endangered" => "CR",
+    "extinct_in_the_wild"   => "EW",
+    "extinct"               => "EX"
+  }
+  IUCN_STATUSES = Hash[IUCN_STATUS_NAMES.map {|status_name|
+    [const_get("IUCN_#{status_name.upcase}"), status_name]
+  }]
+  IUCN_STATUSES_SELECT = IUCN_STATUS_NAMES.map do |status_name|
+    ["#{status_name.humanize} (#{IUCN_STATUS_CODES[status_name]})", const_get("IUCN_#{status_name.upcase}")]
+  end
+  IUCN_STATUS_NAMES.each do |status_name|
+    define_method("iucn_#{status_name}?") do
+      conservation_status == self.class.const_get("IUCN_#{status_name.upcase}")
+    end
+  end
+  
   named_scope :observed_by, lambda {|user|
     { :joins => """
       JOIN (
@@ -155,6 +202,19 @@ class Taxon < ActiveRecord::Base
   
   named_scope :of_rank, lambda {|rank|
     {:conditions => ["rank = ?", rank]}
+  }
+  
+  named_scope :locked, :conditions => {:locked => true}
+  
+  # Like it's counterpart in Place, this is potentially VERY expensive/slow
+  named_scope :intersecting_place, lambda {|place|
+    place_id = place.is_a?(Place) ? place.id : place.to_i
+    {
+      :joins => 
+        "JOIN place_geometries ON place_geometries.place_id = #{place_id} " + 
+        "JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id",
+      :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
+    }
   }
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
@@ -217,6 +277,15 @@ class Taxon < ActiveRecord::Base
     true
   end
   
+  def set_conservation_status_source
+    return true unless conservation_status_changed? || !conservation_status.blank?
+    return true unless conservation_status_source.blank?
+    unless self.conservation_status_source = Source.last(:conditions => "title LIKE 'IUCN Red List of Threatened Species%'")
+      self.build_conservation_status_source(:title => 'IUCN Red List of Threatened Species')
+    end
+    true
+  end
+  
   def capitalize_name
     self.name = name.capitalize
     true
@@ -237,6 +306,17 @@ class Taxon < ActiveRecord::Base
     tn.is_valid = true
     
     self.taxon_names << tn
+    true
+  end
+  
+  def update_observations_with_conservation_status_change
+    return true unless conservation_status_changed?
+    if threatened?
+      Observation.send_later(:obscure_coordinates_for_observations_of, id)
+    elsif !conservation_status_was.blank? && conservation_status_was >= IUCN_NEAR_THREATENED && 
+        conservation_status_was < IUCN_EXTINCT_IN_THE_WILD
+      Observation.send_later(:unobscure_coordinates_for_observations_of, id)
+    end
     true
   end
   
@@ -279,7 +359,8 @@ class Taxon < ActiveRecord::Base
   #
   def in_taxon?(taxon)
     # self.lft > taxon.lft && self.rgt < taxon.rgt
-    ancestor_ids.include?(taxon.id)
+    target_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
+    ancestor_ids.include?(target_id)
   end
   
   def graft
@@ -345,6 +426,17 @@ class Taxon < ActiveRecord::Base
     self.flags.select { |f| not f.resolved? }.size > 0
   end
   
+  # Override assignment method provided by has_many to ensure that all
+  # callbacks on photos and taxon_photos get called, including after_destroy
+  def photos=(new_photos)
+    photos.each do |photo|
+      photo.destroy unless new_photos.detect{|p| p.id == photo.id}
+    end
+    new_photos.each do |photo|
+      taxon_photos.create(:photo => photo) unless photos.detect{|p| p.id == photo.id}
+    end
+  end
+  
   #
   # Fetches associated user-selected FlickrPhotos if they exist, otherwise
   # gets the the first :limit Create Commons-licensed photos tagged with the
@@ -387,17 +479,34 @@ class Taxon < ActiveRecord::Base
     chosen_photos
   end
   
+  def observation_photos(options = {})
+    options = {:page => 1}.merge(options).merge(
+      :include => {:observations => :taxon},
+      :conditions => ["taxa.id = ?", id]
+    )
+    Photo.paginate(options)
+  end
+  
   def phylum
     ancestors.find(:first, :conditions => "rank = 'phylum'")
   end
   
 
   def validate
-    if self.parent == self
+    if !new_record? && parent_id == id
       errors.add(self.name, "can't be its own parent")
     end
-    if self.ancestors and self.ancestors.include? self
+    if ancestor_ids.include?(id)
       errors.add(self.name, "can't be its own ancestor")
+    end
+    if !featured_at.blank? && taxon_photos.blank?
+      errors.add(:featured_at, "can only be set if the taxon has photos")
+    end
+    
+    if !@skip_locks && ancestry_changed? && (locked_ancestor = ancestors.locked.first)
+      errors.add(:ancestry, "includes a locked taxon (#{locked_ancestor}), " +
+        "so this cannot be added as a descendent.  Either unlock the " + 
+        "locked taxon or merge this taxon with an existing one.")
     end
   end
   
@@ -457,7 +566,7 @@ class Taxon < ActiveRecord::Base
         logger.info "Updating unique_name for #{self} to #{candidate}"
         Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
       rescue ActiveRecord::StatementInvalid => e
-        next if e.message =~ /Duplicate entry/
+        next if e.message =~ /duplicate key value violates unique/
         raise e
       end
       break
@@ -619,6 +728,26 @@ class Taxon < ActiveRecord::Base
     ancestor_ids.include?(taxon.id)
   end
   
+  # TODO make this work for different conservation status sources
+  def conservation_status_name
+    return nil if conservation_status.blank?
+    IUCN_STATUSES[conservation_status]
+  end
+  
+  def threatened?
+    return false if conservation_status.blank?
+    conservation_status >= IUCN_NEAR_THREATENED
+  end
+  
+  def add_to_intersecting_places
+    Place.
+        place_types(%w(Country State County)).
+        intersecting_taxon(self).
+        find_each(:select => "places.id, place_type, check_list_id", :include => :check_list) do |place|
+      place.check_list.add_taxon(self)
+    end
+  end
+  
   include TaxaHelper
   def image_url
     taxon_image_url(self)
@@ -656,19 +785,20 @@ class Taxon < ActiveRecord::Base
   end
   
   # Convert an array of strings to taxa
-  def self.tags_to_taxa(tags)
+  def self.tags_to_taxa(tags, options = {})
+    conditions = options[:lexicon] ? {:lexicon => options[:lexicon]} : {}
     taxon_names = tags.map do |tag|
       if matches = tag.match(/^taxonomy:\w+=(.*)/)
-        TaxonName.find_by_name(matches[1])
+        TaxonName.find_by_name(matches[1], :conditions => conditions)
       else
-        TaxonName.find_by_name(tag)
+        TaxonName.find_by_name(tag, :conditions => conditions)
       end
     end.compact
     taxon_names.map(&:taxon).compact
   end
   
   def self.find_duplicates
-    duplicate_counts = Taxon.count(:group => "name", :having => "count_all > 1")
+    duplicate_counts = Taxon.count(:group => "name", :having => "count(*) > 1")
     num_keepers = 0
     num_rejects = 0
     for name in duplicate_counts.keys

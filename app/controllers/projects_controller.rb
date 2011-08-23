@@ -1,17 +1,22 @@
 class ProjectsController < ApplicationController
+  WIDGET_CACHE_EXPIRATION = 15.minutes
+  caches_action :species_count, :contributors,
+    :expires_in => WIDGET_CACHE_EXPIRATION,
+    :cache_path => Proc.new {|c| c.params}, 
+    :if => Proc.new {|c| c.request.format.widget?}
+  
   before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :species_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map]
   before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new, :join, :by_login]
+  before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
   
-  # GET /projects
-  # GET /projects.xml
   def index
-    @project_observations = ProjectObservation.all(:include => :project, 
-      :order => "project_observations.id desc", :limit => 9, :group => "project_id")
-    @projects = @project_observations.map(&:project)
+    project_observations = ProjectObservation.all(
+      :select => "MAX(id) AS id, project_id",
+      :order => "id desc", :limit => 9, :group => "project_id")
+    @projects = Project.all(:conditions => ["id IN (?)", project_observations.map(&:project_id)])
     @created = Project.all(:order => "id desc", :limit => 9)
     if logged_in?
       @started = current_user.projects.all(:order => "id desc", :limit => 9)
@@ -20,11 +25,14 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @species_count = @project.project_list.species_count
+    @species_count = @project.species_count
     @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 3, :conditions => "taxa_count > 0")
     @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
     @project_observations = @project.project_observations.paginate(:page => 1, 
-      :include => {:observation => :iconic_taxon}, :order => "id DESC")
+      :include => {
+        :observation => :iconic_taxon,
+        :curator_identification => [:user, :taxon]
+      }, :order => "id DESC")
     @observations = @project_observations.map(&:observation)
     
     @custom_project = @project.custom_project
@@ -97,7 +105,7 @@ class ProjectsController < ApplicationController
   end
   
   def species_count
-    @species_count = List.first(:conditions => ["project_id = ?", @project.id]).species_count
+    @species_count = @project.species_count
     respond_to do |format|
       format.html do
       end
@@ -144,7 +152,9 @@ class ProjectsController < ApplicationController
       return
     end
     @project_user.role = 'curator'
+    
     if @project_user.save
+      Project.send_later(:update_curator_idents_on_make_curator, @project.id, @project_user.id)
       flash[:notice] = "Added curator role"
       redirect_to project_members_path(@project)
     else
@@ -168,6 +178,7 @@ class ProjectsController < ApplicationController
     end
     @project_user.role = nil
     if @project_user.save
+      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
       flash[:notice] = "Removed curator role"
       redirect_to project_members_path(@project)
     else
@@ -178,7 +189,12 @@ class ProjectsController < ApplicationController
   end
   
   def join
-    return unless @project_user.blank? && request.post?
+    if @project_user
+      flash[:notice] = "You're already a member of this project!"
+      redirect_to @project
+      return
+    end
+    return unless request.post?
     @project_user = @project.project_users.create(:user => current_user)
     if @project_user.valid?
       flash[:notice] = "Welcome to #{@project.title}"
@@ -194,9 +210,42 @@ class ProjectsController < ApplicationController
       flash[:error] = "You aren't a member of that project."
       redirect_to @project and return
     end
+    unless @project_user.role == nil
+      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
+    end
     @project_user.destroy
     flash[:notice] = "You have left #{@project.title}"
     redirect_to @project
+  end
+  
+  def stats
+    @project_user_stats = @project.project_users.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
+    @project_observation_stats = @project.project_observations.count(:group => "EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)")
+    @unique_observer_stats = @project.project_observations.count(
+      :select => "observations.user_id", 
+      :include => :observation, 
+      :group => "EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)")
+    
+    @total_project_users = @project.project_users.count
+    @total_project_observations = @project.project_observations.count
+    @total_unique_observers = @project.project_observations.count(:select => "observations.user_id", :include => :observation)
+    
+    @headers = ['year/month', 'new users', 'new observations', 'unique observers']
+    @data = []
+    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.sort.reverse.each do |key|
+      @data << [key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
+    end
+    
+    respond_to do |format|
+      format.html
+      format.csv do 
+        csv_text = FasterCSV.generate(:headers => true) do |csv|
+          csv << @headers
+          @data.each {|row| csv << row}
+        end
+        render :text => csv_text
+      end
+    end
   end
   
   def add
@@ -250,11 +299,11 @@ class ProjectsController < ApplicationController
       if project_observation.valid?
         @project_observations << project_observation
       else
-        @errors[observation.id] = project_observation.errors
+        @errors[observation.id] = project_observation.errors.full_messages
       end
     end
     
-    @unique_errors = @errors.values.map {|errors| errors.full_messages}.uniq.to_sentence
+    @unique_errors = @errors.values.uniq.to_sentence
     
     if @observations.empty?
       flash[:error] = "You must specify at least one observation to add the project \"#{@project.title}\""
@@ -268,7 +317,10 @@ class ProjectsController < ApplicationController
       end
     end
     
-    redirect_to :back
+    # Cache the errors in case the next action wants to show the details
+    Rails.cache.write("proj_obs_errors_#{current_user.id}", {:project_id => @project.id, :errors => @errors})
+    
+    redirect_back_or_default(observations_by_login_path(current_user.login))
   end
   
   def remove_batch

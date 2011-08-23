@@ -167,14 +167,23 @@
     </div>
   </div>
   
-  <% if @place -%>
-    <div class="last column span-24 meta">
-      Note: observations "near" a place are within a rectangle drawn around
-      the place's boundary, which may result in some inaccurate results for
-      places that don't resemble rectangles. This is due to a limitation with
-      our database that we're working to resolve.
-    </div>
-  <% end -%>
+  
+  <div class="last column span-24 meta">
+    <h3>Note</h3>
+    <p class="ui">
+      New observations may take up to
+      <%= ObservationsController::WIDGET_CACHE_EXPIRATION / 60 %> minutes to 
+      appear in the widget.
+    </p>
+    <% if @place -%>
+      <p class="ui">
+        Observations "near" a place are within a rectangle drawn around
+        the place's boundary, which may result in some inaccurate results for
+        places that don't resemble rectangles. This is due to a limitation with
+        our database that we're working to resolve.
+      </p>
+    <% end -%>
+  </div>
 
 <% else %>
   <p>

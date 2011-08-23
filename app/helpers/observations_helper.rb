@@ -10,6 +10,7 @@ module ObservationsHelper
   end
   
   def observations_order_by_options(order_by = nil)
+    order_by ||= @order_by
     pairs = ObservationsController::ORDER_BY_FIELDS.map do |f|
       value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
       [ObservationsController::DISPLAY_ORDER_BY_FIELDS[f], value]
@@ -17,4 +18,34 @@ module ObservationsHelper
     order_by = 'observations.id' if order_by.blank?
     options_for_select(pairs, order_by)
   end
+  
+  def show_observation_coordinates?(observation)
+    ![observation.latitude, observation.longitude, 
+        observation.private_latitude, observation.private_longitude].compact.blank? &&
+        (!observation.geoprivacy_private? || observation.coordinates_viewable_by?(current_user))
+  end
+  
+  def observation_place_guess(observation)
+    if !observation.place_guess.blank?
+      if observation.latitude.blank?
+        observation.place_guess + 
+        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank"})".html_safe
+      else
+        link_to(observation.place_guess, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+         " (#{link_to("Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank")})".html_safe
+      end
+    elsif !observation.latitude.blank? && !observation.coordinates_obscured?
+      link_to("#{observation.latitude}, #{observation.longitude}", 
+        observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
+        
+    elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
+      link_to("#{observation.private_latitude}, #{observation.private_longitude}", 
+        observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
+        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.private_latitude}, #{observation.private_longitude}", :target => "_blank"})".html_safe
+    else
+      content_tag(:span, "(Somewhere...)")
+    end
+  end
+  
 end

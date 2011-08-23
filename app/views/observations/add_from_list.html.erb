@@ -74,7 +74,7 @@
       <%= render :partial => 'add_from_list.html.erb' %>
     <% end %>
     <div class="clear buttonrow">
-      <%= submit_tag "Create observations", :class => "default button" %>
+      <%= submit_tag "Create observations", :class => "default button", "data-loading-click" => true %>
       <%= link_to "Back to your observations", observations_by_login_path(current_user.login), :class => "minor button" %>
     </div>
   <% end %>

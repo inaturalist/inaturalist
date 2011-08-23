@@ -18,7 +18,7 @@
         <option value="#">Taxonomic Order</option>
         <% for order in @orders %>
           <optgroup label="<%= order.name %>">
-            <% for family in @families.select{|f| f.lft > order.lft && f.rgt < order.rgt} %>
+            <% for family in @families.select{|f| f.ancestry.index(order.child_ancestry)} %>
               <option value="#<%= dom_id(family) %>">
                 <%= family.default_name.name %>
               </option>
@@ -41,12 +41,12 @@
   <% if @order == ListedTaxon::TAXONOMIC_ORDER -%>
     <% for order in @orders %>
       <h3><%= render :partial => "shared/taxon.html.erb", :object => order %></h3>
-      <% for family in @families.select{|f| f.lft > order.lft && f.rgt < order.rgt} %>
+      <% for family in @families.select{|f| f.ancestry.index(order.child_ancestry)} %>
         <a name="<%= dom_id(family) %>"></a>
         <h4><%= render :partial => "shared/taxon.html.erb", :object => family %></h4>
         <ul class="listed_taxa">
           <%= render :partial => 'add_from_list_li.html.erb', 
-            :collection => @listed_taxa.select {|lt| lt.taxon.lft > family.lft && lt.taxon.rgt < family.rgt} %>
+            :collection => @listed_taxa.select {|lt| lt.taxon.ancestry.index(family.child_ancestry) } %>
         </ul>
       <% end %>
     <% end %>

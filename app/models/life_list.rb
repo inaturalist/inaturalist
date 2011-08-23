@@ -2,7 +2,7 @@
 # A LifeList is a List of all the taxa a person has observed.
 #
 class LifeList < List
-  before_create :set_defaults
+  before_validation :set_defaults
   after_create :add_taxa_from_observations
   
   MAX_RELOAD_TRIES = 15
@@ -89,14 +89,14 @@ class LifeList < List
     conditions = if options[:taxa]
       ["taxon_id IN (?)", options[:taxa]]
     else
-      'taxon_id > 0'
+      'taxon_id IS NOT NULL'
     end
     # Note: this should use find_each, but due to a bug in rails < 3,
     # conditions in find_each get applied to scopes utilized by anything
     # further up the call stack, causing bugs.
     list.owner.observations.all(
-        :select => 'observations.id, observations.taxon_id', 
-        :group => 'observations.taxon_id', 
+        :select => 'DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id', 
+        # :group => 'observations.taxon_id', 
         :conditions => conditions).each do |observation|
       list.add_taxon(observation.taxon_id, 
         :last_observation_id => observation.id,

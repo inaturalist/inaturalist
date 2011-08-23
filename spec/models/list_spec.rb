@@ -48,3 +48,19 @@ describe List, "taxon adding" do
   end
   
 end
+
+# describe List, "refresh_with_observation" do
+#   it "should update existing last observation" do
+#     user = User.make
+#     list = List.make(:user => user)
+#     listed_taxon = ListedTaxon.make(:list => list)
+#     listed_taxon.last_observation.should be_blank
+#     observation = Observation.make(:user => user, :taxon => listed_taxon.taxon)
+#     List.refresh_with_observation(observation)
+#     listed_taxon.reload
+#     listed_taxon.last_observation_id.should be(observation.id)
+#   end
+#   
+#   it "should not add a new taxon"
+# end
+

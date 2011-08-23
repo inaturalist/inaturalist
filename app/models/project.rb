@@ -15,7 +15,7 @@ class Project < ActiveRecord::Base
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
   
-  has_friendly_id :title, :use_slug => true
+  has_friendly_id :title, :use_slug => true, :reserved_words => ProjectsController.action_methods.to_a
   
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
@@ -54,6 +54,73 @@ class Project < ActiveRecord::Base
     user.id == user_id || user.is_admin?
   end
   
+  def curated_by?(user)
+    return false if user.blank?
+    return true if user.is_admin?
+    project_users.curators.exists?(:user_id => user.id)
+  end
+  
+  def self.update_curator_idents_on_make_curator(project_id, project_user_id)
+    unless proj = Project.find_by_id(project_id)
+      return
+    end
+    unless usr = proj.project_users.find_by_id(project_user_id).user
+      return
+    end
+    proj.project_observations.find_each(:include => {:observation => :identifications}) do |po|
+      po.observation.identifications.each do |ident|
+        if ident.user.project_users.exists?(:id => project_user_id, :project_id => project_id)
+          po.update_attributes(:curator_identification_id => ident.id)
+          ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+          ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+        end
+      end
+    end
+  end
+  
+  def self.update_curator_idents_on_remove_curator(project_id, user_id)
+    unless proj = Project.find_by_id(project_id)
+      return
+    end
+    unless usr = User.find_by_id(user_id) #on delete user
+      proj.project_observations.find_each(:include => {:observation => :identifications}) do |po|
+        po.observation.identifications.each do |ident| #loop through all idents in all pos in the proj - big job
+          other_curator_id = false
+          po.observation.identifications.each do |other_ident| #that project observation has other identifications that belong to users who are curators use those
+            if other_ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
+              po.update_attributes(:curator_identification_id => other_ident.id)
+              other_curator_id = true
+            end
+          end
+          unless other_curator_id
+            po.update_attributes(:curator_identification_id => nil)
+          end
+          ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+          ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+        end
+      end
+      return
+    end
+    proj.project_observations.find_each(:include => {:observation => :identifications}) do |po|
+      po.observation.identifications.each do |ident|
+        if ident.user.id == user_id #ident belongs to the user of interest
+          other_curator_id = false
+          po.observation.identifications.each do |other_ident| #that project observation has other identifications that belong to users who are curators use those
+            if other_ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
+              po.update_attributes(:curator_identification_id => other_ident.id)
+              other_curator_id = true
+            end
+          end
+          unless other_curator_id
+            po.update_attributes(:curator_identification_id => nil)
+          end
+          ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+          ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+        end
+      end
+    end
+  end
+  
   def self.refresh_project_list(project, options = {})
     unless project.is_a?(Project)
       project = Project.find_by_id(project, :include => :project_list)
@@ -66,5 +133,28 @@ class Project < ActiveRecord::Base
     end
     
     project.project_list.refresh(options)
+  end
+  
+  def self.update_species_count(project_id)
+    user_taxon_ids = ProjectObservation.all(
+      :select => "distinct observations.taxon_id",
+      :include => [{:observation => :taxon}, :curator_identification],
+      :conditions => [
+        "identifications.id IS NULL AND project_id = ? AND taxa.rank_level <= ?",
+        project_id, Taxon::RANK_LEVELS['species']
+      ]
+    ).map{|po| po.observation.taxon_id}
+    
+    curator_taxon_ids = ProjectObservation.all(
+      :select => "distinct identifications.taxon_id",
+      :include => [:observation, {:curator_identification => :taxon}],
+      :conditions => [
+        "identifications.id IS NOT NULL AND project_id = ? AND taxa.rank_level <= ?",
+        project_id, Taxon::RANK_LEVELS['species']
+      ]
+    ).map{|po| po.curator_identification.taxon_id}
+    
+    project = Project.find_by_id(project_id)
+    project.update_attributes(:species_count => (user_taxon_ids + curator_taxon_ids).uniq.size)
   end
 end

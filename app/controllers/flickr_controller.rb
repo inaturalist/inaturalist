@@ -1,7 +1,7 @@
 class FlickrController < ApplicationController
-  before_filter :login_required  
-  before_filter :ensure_has_no_flickr_identity,
-                :only => ['link']
+  before_filter :login_required , :except => "authorize"
+  before_filter :ensure_has_no_flickr_identity, :only => ['link']
+  before_filter :return_here, :only => [:index, :show, :by_login, :options]
   
   # This is where Flickr sends the user back to after authorizing their
   # account.  Note that there should not be a view associated with this end-
@@ -88,8 +88,8 @@ class FlickrController < ApplicationController
     redirect_to(:action => 'options') and return if @user.flickr_identity.nil?
     begin
       unless !params[:flickr_identity].nil?
-        @person = get_net_flickr.people.find_by_username(@user.flickr_identity.flickr_username)
-        @photos = @person.photos({'per_page' => 5})
+        @flickr = get_net_flickr
+        @photos = @flickr.photos.search(:user_id => @user.flickr_identity.flickr_user_id, :per_page => 6)
       else
         unless @user.flickr_identity.update_attributes(params[:flickr_identity])
           flash[:notice] = "Oh my! We messed up somewhere and couldn't " + 
@@ -215,12 +215,11 @@ class FlickrController < ApplicationController
   # signup process.
   def options
     begin
+      @flickr = get_net_flickr
       unless @user.flickr_identity
-        @flickr = get_net_flickr
         @flickr_url = @flickr.auth.url_webapp(:write)
       else
-        @person = get_net_flickr.people.find_by_username(@user.flickr_identity.flickr_username)
-        @photos = @person.photos({'per_page' => 5})
+        @photos = @flickr.photos.search(:user_id => @user.flickr_identity.flickr_user_id, :per_page => 6)
       end
     rescue Net::Flickr::APIError => e
       logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"

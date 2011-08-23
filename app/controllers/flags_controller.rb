@@ -10,7 +10,8 @@ class FlagsController < ApplicationController
 
   def index
     @object = @model.find(params[@param])
-    @flags = @object.flags.all(:include => :user, :limit => 500, :order => "id desc")
+    @flags = @object.flags.paginate(:page => params[:page],
+      :include => [:user, :resolver], :order => "id desc")
     @unresolved = @flags.select {|f| not f.resolved }
     @resolved = @flags.select {|f| f.resolved }
   end
@@ -44,15 +45,14 @@ class FlagsController < ApplicationController
   end
   
   def update
-    @object = @flag.flagged_object
     respond_to do |format|
       if @flag.update_attributes(params[:flag])
         flash[:notice] = "Your flag was saved."
       else
-        flash[:notice] = "We had a problem saving your flag."
+        flash[:notice] = "We had a problem saving your flag: #{@flag.errors.full_messages.to_sentence}"
       end
       format.html do 
-        render :action => "show"
+        redirect_back_or_default(@flag)
       end
     end
     

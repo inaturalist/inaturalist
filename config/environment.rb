@@ -1,3 +1,4 @@
+$KCODE = 'UTF8'
 # Be sure to restart your server when you modify this file
 
 # Uncomment below to force Rails into production mode when
@@ -5,7 +6,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.12' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -20,6 +21,7 @@ FlickRawOptions = {
   'api_key' => FLICKR_API_KEY,
   'shared_secret' => FLICKR_SHARED_SECRET
 }
+DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
 
 require "omniauth"
 Rails::Initializer.run do |config|
@@ -49,8 +51,8 @@ Rails::Initializer.run do |config|
   # Make sure the secret is at least 30 characters and all random, 
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-    :session_key => INAT_CONFIG['rails']['secret'],
-    :secret      => INAT_CONFIG['rails']['secret']
+    :key => INAT_CONFIG['rails']['session_key'],
+    :secret => INAT_CONFIG['rails']['secret']
   }
 
   # Use the database for sessions instead of the cookie-based default,
@@ -73,9 +75,13 @@ Rails::Initializer.run do |config|
   config.active_record.observers = :user_observer, :listed_taxon_sweeper
   
   # Gems
-  config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  # config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
+  config.gem 'will_paginate'
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
-  config.gem "GeoRuby", :lib => 'geo_ruby'
+  # config.gem "GeoRuby", :lib => 'geo_ruby'
+  config.gem "dbf", :version => "<= 1.2.9"
+  config.gem "nofxx-georuby", :lib => 'geo_ruby'
+  config.gem "spatial_adapter"
   config.gem "mojombo-chronic", :lib => 'chronic', :source => 'http://gems.github.com'
   config.gem 'bluecloth'
   config.gem "htmlentities"
@@ -90,21 +96,16 @@ Rails::Initializer.run do |config|
   config.gem 'hoptoad_notifier'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
   config.gem 'geoip'
-  config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
+  # config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
+  config.gem 'daemon-spawn', :lib => 'daemon_spawn'
   config.gem 'nokogiri'
   config.gem 'objectify-xml', :lib => 'objectify_xml'
-  # As of 2010-04-21, TS doesn't work with DJ >= 2.0
-  # config.gem 'delayed_job', :version => '<= 1.8.5'
   config.gem 'delayed_job'
   config.gem 'thinking-sphinx',
     :lib     => 'thinking_sphinx',
-    # :version => '>= 1.3.11',
-    :version => '<= 1.3.20',
-    :source  => 'http://gemcutter.org'
+    :version => '< 2'
   config.gem 'ts-delayed-delta',
-    :lib     => 'thinking_sphinx/deltas/delayed_delta',
-    :version => '>= 1.0.0',
-    :source  => 'http://gemcutter.org'
+    :lib     => 'thinking_sphinx/deltas/delayed_delta'
   config.gem 'ancestry'
   config.gem 'machinist'
   config.gem 'faker'
@@ -130,6 +131,7 @@ require 'model_tips'
 require 'meta_service'
 require 'wikipedia_service'
 require 'batch_tools'
+require 'geo_ruby/shp4r/shp'
 require 'georuby_extra'
 
 # GeoIP setup, for IP geocoding
@@ -155,3 +157,5 @@ Rubaidh::GoogleAnalytics.environments = ['production']
 SITE_NAME = INAT_CONFIG['general']['SITE_NAME']
 OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
 SPHERICAL_MERCATOR = SphericalMercator.new
+
+

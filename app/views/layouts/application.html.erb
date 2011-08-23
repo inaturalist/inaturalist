@@ -1,18 +1,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+     xmlns:fb="http://www.facebook.com/2008/fbml"
+     xmlns:og="http://ogp.me/ns#">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <title>iNaturalist.org &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= render :partial => 'shared/common_stylesheets'%>
-    <%= javascript_include_tag 'jquery/jquery-1.5.1.min', 'application', 'inaturalist' %>
+    <%= 
+      jslibs = ['jquery/jquery-1.5.1.min']
+      jslibs << 'jquery/plugins/jquery.qtip.min' unless @qtip2
+      jslibs += ['application', 'inaturalist']
+      javascript_include_tag *jslibs 
+    %>
+    <%= csrf_meta_tag %>
+    <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
-    <%= yield :extrahead %>
   </head>
 <body>
-  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 3) do %>
+  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 5) do %>
   <%= render :partial => 'shared/header' %>
   <% end %>
 

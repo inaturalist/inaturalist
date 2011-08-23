@@ -24,8 +24,11 @@ module ActivityStreams
         end
         
         def create_activity_update(id)
+          Rails.logger.debug "[DEBUG] creating act up for #{id}"
           activity_object = id.is_a?(self) ? id : find_by_id(id)
           return unless activity_object
+          
+          Rails.logger.debug "[DEBUG] proceeding with #{id}"
           
           # Handle batch updates
           batch_point = if activity_stream_options[:batch_window]
@@ -37,6 +40,8 @@ module ActivityStreams
               existing_stream = ActivityStream.last(:conditions => [
                 "activity_object_type = ? AND user_id = ? AND created_at >= ?", 
                 self.to_s, activity_object.user, batch_point])
+            
+            Rails.logger.debug "[DEBUG] updating batches"
             
             existing_records = if activity_stream_options[:user_scope]
               send(activity_stream_options[:user_scope], existing_stream.user).
@@ -57,8 +62,9 @@ module ActivityStreams
             
           # Handle single updates
           else
+            Rails.logger.debug "[DEBUG] creating singletons, activity_object.user.followers.size: #{activity_object.user.followers.size}"
             activity_object.user.followers.find_each do |follower|
-              ActivityStream.create(
+              ActivityStream.create!(
                 :user_id => activity_object.user_id,
                 :subscriber_id => follower.id,
                 :activity_object => activity_object

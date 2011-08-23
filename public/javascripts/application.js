@@ -51,7 +51,7 @@ function subnavClickOff(e) {
   }
 }
 
-QTIP_DEFAULTS = {
+var QTIP_DEFAULTS = {
   hide: {
     fixed: true
   },
@@ -70,22 +70,66 @@ QTIP_DEFAULTS = {
       target: 'rightMiddle',
       tooltip: 'leftMiddle'
     },
-    adjust: {screen: true}
+    adjust: {'screen': true}
   }
 }
 
 $('a[data-loading-click]').live('click', function() {
-  var loading = $('<span>Loading...</span>').addClass('loading').addClass($(this).attr('class'))
+  var txt = $(this).attr('data-loading-click')
+  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
+  var loading = $('<span></span>').html(txt).addClass('loading').addClass($(this).attr('class'))
   $(this).hide().before(loading)
 })
 
 $('input[data-loading-click]').live('click', function() {
-  $(this).addClass('disabled description').val('Saving...')
+  var txt = $.trim($(this).attr('data-loading-click'))
+  if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
+  $(this).addClass('disabled description').val(txt)
   var link = this
+  
+  if (!$(this).attr('data-loading-click-bound')) {
+    $(this).parents('form').bind('ajax:success', function() {
+      $(link).attr('disabled', false).removeClass('disabled description')
+    })
+    $(this).attr('data-loading-click-bound', true)
+  }
+  
   $(this).parents('form').submit(function() {
     $(link).attr('disabled', true)
   })
 })
+
+function buildHelpTips() {
+  var options = $.extend({}, QTIP_DEFAULTS, {
+    show: {when: 'click'},
+    hide: {when: 'unfocus'},
+    position: {
+      adjust: {'screen': true}
+    }
+  })
+  $('.helptip').each(function() {
+    var content
+    if ($(this).attr('rel').match(/^#/)) {
+      content = $($(this).attr('rel')).html()
+    } else {
+      content = $(this).attr('rel')
+    }
+    
+    var tipOptions = $.extend({}, options, {
+      content: {
+        text: content, 
+        title: $(this).attr('data-helptip-title')
+      }
+    })
+    if ($(this).attr('data-helptip-width')) {
+      tipOptions.style = tipOptions.style || {}
+      tipOptions.style.width = {
+        min: $(this).attr('data-helptip-width')
+      }
+    }
+    $(this).qtip(tipOptions)
+  })
+}
 
 $(document).ready(function() {
   function makeHeaderLinkCurrent(li) {
@@ -109,4 +153,13 @@ $(document).ready(function() {
   } else if (window.location.pathname.match(/^\/user/) || window.location.pathname.match(/^\/people/)) {
     makeHeaderLinkCurrent('#mainnav .peopletab')
   }
+  
+  buildHelpTips()
+  
+  $('#usernav .signin_link, #usernav .signup_link').click(function() {
+    if (window.location.pathname != '' && window.location.pathname != '/') {
+      window.location = $(this).attr('href') + '?return_to=' + window.location
+      return false
+    }
+  })
 })

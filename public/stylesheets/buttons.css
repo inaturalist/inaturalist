@@ -127,7 +127,8 @@ button.default {
   border-color: #999;
   border: 0 none;
 }
-
+.button.disabled { opacity: 0.5; cursor: default;}
+.button.disabled:hover { opacity: 0.5; }
 
 .okcancel.buttons {
   clear: both;
@@ -237,3 +238,7 @@ input[type='submit'].link:hover {
   font-weight: normal;
 }
 .button.last { margin-right: 0; }
+
+@-moz-document url-prefix() {
+  input.button { padding: 6px 6px 7px 6px;}
+}

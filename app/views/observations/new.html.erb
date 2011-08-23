@@ -15,7 +15,6 @@
                              "jquery/plugins/jquery.latLonSelector.js",
                              "jquery/plugins/inat/taxon_selectors.js",
                              "jquery/plugins/jqModal",
-                             "jquery/plugins/jquery.qtip.min",
                              "taxon_browser",
                              "observations/edit" %>
   <script type="text/javascript" charset="utf-8">
@@ -88,7 +87,7 @@
       }) %>
     <% end %>
     <%= hidden_field_tag(:project_id, @project.id) if @project %>
-    <%= submit_tag("Save observation", :class => 'default button') %>
+    <%= submit_tag("Save observation", :class => 'default button', "data-loading-click" => true) %>
     <%= submit_tag("Save and add another", :class => 'button') %>
     <%= link_to("Cancel", session[:return_to], :class => 'button') %>
   <% end %>

@@ -21,6 +21,15 @@ class Place < ActiveRecord::Base
     indexes name
     indexes display_name
     has place_type
+    
+    # HACK: TS doesn't seem to include attributes in the GROUP BY correctly
+    # for Postgres when using custom SQL attr definitions.  It may or may not 
+    # be fixed in more up-to-date versions, but the issue has been raised: 
+    # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
+    has :latitude, :as => :fake_latitude
+    has :longitude, :as => :fake_longitude
+    # END HACK
+    
     has 'RADIANS(latitude)', :as => :latitude,  :type => :float
     has 'RADIANS(longitude)', :as => :longitude,  :type => :float
     set_property :delta => :delayed
@@ -86,11 +95,37 @@ class Place < ActiveRecord::Base
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   
   named_scope :containing_lat_lng, lambda {|lat, lng|
-    {:conditions => ["swlat <= ? && nelat >= ? && swlng <= ? && nelng >= ?", lat, lat, lng, lng]}
+    # {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", lat, lat, lng, lng]}
+    {:joins => :place_geometry, :conditions => ["ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat]}
   }
   
   named_scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
-    {:conditions => ["swlat <= ? && nelat >= ? && swlng <= ? && nelng >= ?", swlat, nelat, swlng, nelng]}
+    {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", swlat, nelat, swlng, nelng]}
+  }
+  
+  # This can be very expensive.  Use sparingly, or scoped.
+  named_scope :intersecting_taxon, lambda{|taxon|
+    taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
+    {
+      :joins => 
+        "JOIN place_geometries ON place_geometries.place_id = places.id " + 
+        "JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}",
+      :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
+    }
+  }
+  
+  named_scope :place_type, lambda{|place_type|
+    place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
+    place_type = place_type.to_i
+    {:conditions => {:place_type => place_type}}
+  }
+  
+  named_scope :place_types, lambda{|place_types|
+    place_types = place_types.map do |place_type|
+      place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
+      place_type.to_i
+    end
+    {:conditions => ["place_type IN (?)", place_types]}
   }
   
   def to_s
@@ -103,12 +138,16 @@ class Place < ActiveRecord::Base
     PLACE_TYPES[self.place_type]
   end
   
+  def place_type_name=(name)
+    self.place_type = PLACE_TYPE_CODES[name]
+  end
+  
   # Wrap the attr call to set it if unset (or if :reload => true)
   def display_name(options = {})
     return super unless super.blank? || options[:reload]
     
     ancestor_names = self.ancestors.select do |a|
-      %w"town state country".include?(PLACE_TYPES[a.place_type].downcase)
+      %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
     end.map do |a|
       a.code.blank? ? a.name : a.code.split('-').last
     end.compact
@@ -242,14 +281,14 @@ class Place < ActiveRecord::Base
     other_attrs.merge!(:geom => geom)
     
     begin
-      if self.place_geometry
+      if place_geometry
         self.place_geometry.update_attributes(other_attrs)
       else
         self.place_geometry = PlaceGeometry.create(other_attrs)
       end
-      self.update_bbox_from_geom(geom)
+      update_bbox_from_geom(geom)
     rescue ActiveRecord::StatementInvalid => e
-      puts "[ERROR] \tMySQL couldn't save #{self.place_geometry}: " + 
+      puts "[ERROR] \tCouldn't save #{self.place_geometry}: " + 
         e.message[0..200]
     end
   end
@@ -268,6 +307,8 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
+    self.latitude = geom.envelope.center.y
+    self.longitude = geom.envelope.center.x
     self.swlat = geom.envelope.lower_corner.y
     self.swlng = geom.envelope.lower_corner.x
     self.nelat = geom.envelope.upper_corner.y
@@ -380,7 +421,7 @@ class Place < ActiveRecord::Base
   #
   def self.new_from_shape(shape, options = {})
     place = Place.new(
-      :name => shape.data['NAME'] || shape.data['Name'] || shape.data['name'],
+      :name => options[:name] || shape.data['NAME'] || shape.data['Name'] || shape.data['name'],
       :latitude => shape.geometry.envelope.center.y,
       :longitude => shape.geometry.envelope.center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
@@ -445,6 +486,11 @@ class Place < ActiveRecord::Base
     mergee.destroy
     self.save
     self
+  end
+  
+  def bounding_box
+    box = [swlat, swlng, nelat, nelng].compact
+    box.blank? ? nil : box
   end
   
   def contains_lat_lng?(lat, lng)

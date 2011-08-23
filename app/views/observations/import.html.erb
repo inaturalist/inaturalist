@@ -100,7 +100,7 @@
             photo's metadata, and try to look up species names from the tags.
           </div>
           <div id="photos" class="clear"></div>
-          <%= submit_tag("Import photos", :class => 'default button') %>
+          <%= submit_tag("Import photos", :class => 'default button', "data-loading-click" => "Importing...") %>
         <% end %>
       <% else %>
         <div class="notice">
@@ -126,7 +126,7 @@
           <div class="buttonrow">
             <label for="upload_file">Upload CSV file</label>
             <%= file_field 'upload', 'datafile', :class => 'text' %>
-            <%= submit_tag "Upload", :class => 'default button' %>
+            <%= submit_tag "Upload", :class => 'default button', "data-loading-click" => "Importing..." %>
           </div>
         <% end %>
       </div>

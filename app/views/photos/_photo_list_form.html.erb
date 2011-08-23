@@ -18,13 +18,14 @@
       square_url = photo.is_a?(Photo) ? photo.square_url : photo.source_url(:square)
       thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.source_url(:thumb)
       prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
+      unique_id = serial_id
     -%>
     <div class="photo">
       <% if index %>
         <%= check_box_tag "#{prefix.pluralize}[#{index}][]", 
           native_photo_id, 
           checked, 
-          {:id => "#{prefix}_#{index}_#{native_photo_id}", :class => "checkbox"} %>
+          {:id => "#{prefix}_#{index}_#{native_photo_id}_#{unique_id}", :class => "checkbox"} %>
         
         <% if synclink_base && synclink_uri = URI.parse(synclink_base) %>
           <% 
@@ -44,15 +45,15 @@
               "revert to your saved copy." %>
         <% end %>
         
-        <label for="<%= prefix %>_<%= index %>_<%= native_photo_id %>">
+        <label for="<%= prefix %>_<%= index %>_<%= native_photo_id %>_<%= unique_id %>">
           <%= image_tag(thumb_url) %>
         </label>
       <% else %>
         <%= check_box_tag "#{prefix.pluralize}[]", 
           native_photo_id, 
           checked, 
-          {:id => "#{prefix}_#{native_photo_id}", :class => "checkbox"} %>
-        <label for="<%= prefix %>_<%= native_photo_id %>">
+          {:id => "#{prefix}_#{native_photo_id}_#{unique_id}", :class => "checkbox"} %>
+        <label for="<%= prefix %>_<%= native_photo_id %>_<%= unique_id %>">
           <%= image_tag(thumb_url) %>
         </label>
       <% end %>

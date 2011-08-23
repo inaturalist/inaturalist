@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   before_filter :login_from_cookie, :get_user, :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
+  before_filter :return_here_from_url
   
   PER_PAGES = [10,30,50,100]
   
@@ -84,8 +85,12 @@ class ApplicationController < ActionController::Base
   def curator_required
     unless logged_in? && current_user.is_curator?
       flash[:notice] = "Only curators can access that page."
-      redirect_to session[:return_to] || root_url
-      return
+      if session[:return_to] == request.request_uri
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
     end
   end
   
@@ -103,9 +108,20 @@ class ApplicationController < ActionController::Base
   # Filter to set a return url
   #
   def return_here
-    if request.format == Mime::HTML && !params.keys.include?('partial')
+    ie_needs_return_to = false
+    if request.user_agent =~ /msie/i && params[:format].blank? && 
+        ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)
+      ie_needs_return_to = true
+    end
+    if (ie_needs_return_to || request.format.html?) && !params.keys.include?('partial')
       session[:return_to] = request.request_uri
     end
+    true
+  end
+  
+  def return_here_from_url
+    return true if params[:return_to].blank?
+    session[:return_to] = params[:return_to]
   end
   
   #
@@ -131,8 +147,8 @@ class ApplicationController < ActionController::Base
   end
   
   def load_user_by_login
-    @login = params[:login]
-    unless @selected_user = User.find_by_login(@login)
+    @login = params[:login].to_s.downcase
+    unless @selected_user = User.first(:conditions => ["lower(login) = ?", @login])
       return render_404
     end
   end

@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  simplified_login_regex = /\w[\w\-_]+/
+
+  simplified_login_regex = /\w[^\.,\/]+/
   
   map.root :controller => 'welcome', :action => 'index'
   
@@ -16,13 +17,18 @@ ActionController::Routing::Routes.draw do |map|
   map.toggle_mobile "/toggle_mobile", :controller => 'welcome', :action => 'toggle_mobile'
   
   map.help '/help', :controller => 'help'
-
-  map.omniauth_callback "/auth/:provider/callback", :controller => "provider_authorizations", :action => "create"
-  map.omniauth_failure "/auth/failure", :controller => "provider_authorizations", :action => "failure"
-  map.omniauth_disconnect "/auth/:provider/disconnect", :controller => "provider_authorizations", :action => "destroy", :method=>"delete"
-  map.edit_login "/users/edit_username", :controller => "users", :action => "edit_login"
+  
+  map.with_options :controller => "provider_authorizations" do |pa|
+    pa.connect '/auth/:provider', :action => 'blank'
+    pa.omniauth_callback "/auth/:provider/callback", :action => "create"
+    pa.omniauth_failure "/auth/failure", :action => "failure"
+    pa.omniauth_disconnect "/auth/:provider/disconnect", :action => "destroy", :method => "delete"
+  end
+  map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"
 
   # Special controller routes
+  
+  map.resources :announcements
   
   # Users routes
   map.with_options(:controller => 'users') do |users|
@@ -51,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   # Everything below here needs to be cleaned up in subsequent releases
   #
   
+  map.local_photo_fields 'photos/local_photo_fields', :controller => 'photos', :action => 'local_photo_fields'
   map.resources :photos, :only => :show
   map.resources :observation_photos, :only => :create
   map.connect   'flickr/photos.:format',
@@ -63,6 +70,7 @@ ActionController::Routing::Routes.draw do |map|
   # /observations/212445          # single observation
   # /observations/212445/edit     # edit an observation
   # /observations/kueda/          # kueda's observations  
+  # map.resources :observations, :requirements => { :id => %r(\d+) } do |observation|
   map.resources :observations, :requirements => { :id => %r(\d+) } do |observation|
     observation.resources :flags
   end
@@ -90,7 +98,7 @@ ActionController::Routing::Routes.draw do |map|
     o.update_observation_photos "observations/:id/update_photos", :action => "update_photos"
     
     # by_login paths must come after all others
-    o.observations_by_login 'observations/:login', :action => 'by_login',
+    o.observations_by_login 'observations/:login', :action => 'by_login', 
       :requirements => { :login => simplified_login_regex }
     o.observations_by_login_feed 'observations/:login.:format', :action => 'by_login',
       :requirements => { :login => simplified_login_regex },
@@ -99,9 +107,11 @@ ActionController::Routing::Routes.draw do |map|
       :requirements => { :zoom => /\d+/, :x => /\d+/, :y => /\d+/ },
       :conditions => {:method => :get}
     o.project_observations 'observations/project/:id.:format', :action => "project"
+    o.all_project_observations 'observations/project/:id.all.:format', :action => "project_all"
+    o.observations_of 'observations/of/:id.:format', :action => 'of'
   end
+  map.observation_quality 'observations/:id/quality/:metric', :controller => "quality_metrics", :action => "vote", :conditions => {:method => [:post, :delete]}
   
-  map.resources :projects
   map.with_options :controller => "projects" do |p|
     p.join_project "projects/:id/join", :action => "join"
     p.leave_project "projects/:id/leave", :action => "leave"
@@ -126,8 +136,10 @@ ActionController::Routing::Routes.draw do |map|
     p.project_map 'projects/:id/map', :action => 'map'
     p.make_curator 'projects/:id/make_curator/:project_user_id', :action => 'make_curator'
     p.remove_curator 'projects/:id/remove_curator/:project_user_id', :action => 'remove_curator'
+    p.project_stats 'projects/:id/stats', :action => 'stats'
+    p.formatted_project_stats 'projects/:id/stats.:format', :action => 'stats'
   end
-  
+  map.resources :projects
   map.resources :project_assets, :except => [:index, :show]
   map.resources :custom_projects, :except => [:index, :show]
   
@@ -206,6 +218,9 @@ ActionController::Routing::Routes.draw do |map|
     taxa.formatted_taxa_action 'taxa/:action.:format'
     taxa.merge_taxon 'taxa/:id/merge', :action => 'merge'
     taxa.formatted_merge_taxon 'taxa/:id/merge.:format', :action => 'merge'
+    taxa.taxon_observation_photos 'taxa/:id/observation_photos', :action => 'observation_photos'
+    taxa.taxon_map 'taxa/:id/map', :action => 'map'
+    taxa.taxon_range_geom 'taxa/:id/range.:format', :action => 'range'
   end
   
   map.connect 'taxa/auto_complete_name', :controller => 'taxa',

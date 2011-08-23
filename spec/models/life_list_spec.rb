@@ -37,15 +37,6 @@ end
 
 describe LifeList do
   describe "refresh" do
-    it "should update species_count when handed a species" do
-      species = Taxon.make(:rank => "species")
-      list = LifeList.make
-      expect {
-        list.refresh(:taxa => [species], :add_new_taxa => true)
-        list.reload
-      }.to change(list, :species_count).by(1)
-    end
-    
     it "should destroy unobserved taxa if you ask nicely" do
       list = LifeList.make
       list.taxa << Taxon.make

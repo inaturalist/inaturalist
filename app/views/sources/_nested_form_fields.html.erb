@@ -1,0 +1,40 @@
+<%- 
+  assoc_name ||= "source"
+  foreign_key ||= "#{assoc_name}_id" || :source_id
+-%>
+<div class="source_nested_form_fields">
+  <%= f.collection_select foreign_key, Source.all(:limit => 100), :id, :title, :include_blank => "Unknown" %>
+
+  <% if f.object.send(assoc_name) -%>
+    <%- edit_source_fields = capture do %>
+      <% f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
+        <%= s.text_field :title %>
+        <%= s.text_field :in_text %>
+        <%= s.text_field :url %>
+        <%= s.text_area :citation %>
+      <% end %>
+    <%- end -%>
+    <%= link_to_function "Edit #{f.object.send(assoc_name).title}...", 
+      "$(this).after('#{escape_javascript edit_source_fields}'); " +
+      "$(this).hide();" +
+      "$(this).parents('.source_nested_form_fields').find('select').remove();" +
+      "$('#new_source_link').remove()",
+      :id => "edit_source_link" %>
+    <br/>
+  <% end -%>
+  <%- new_source_fields = capture do %>
+    <% f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
+      <%= s.text_field :title %>
+      <%= s.text_field :in_text %>
+      <%= s.text_field :url %>
+      <%= s.text_area :citation %>
+    <% end %>
+  <%- end -%>
+  <%= link_to_function "Add new source...", 
+    "$(this).after('#{escape_javascript new_source_fields}'); " +
+    "$(this).hide(); " +
+    "$(this).parents('.source_nested_form_fields').find('select').remove();" +
+    "$('#edit_source_link').remove()",
+    :id => "new_source_link" %>
+  
+</div>

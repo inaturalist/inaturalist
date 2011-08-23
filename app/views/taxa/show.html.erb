@@ -2,6 +2,30 @@
 <%= render :partial => "taxa/taxon.txt.erb", :locals => { :taxon => @taxon } %>
 <% end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <% if @photos.blank? -%>
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 
+  <% else %>
+    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
+  <% end -%>
+  <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" /> 
+  <% unless @taxon.wikipedia_summary.blank? -%>
+    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
+    <%-
+      og_description = if @photos.blank?
+        html_attributize(@taxon.wikipedia_summary)
+      else
+        "(Photo: #{@photos.first.attribution}) #{html_attributize @taxon.wikipedia_summary}"
+      end
+    -%>
+    <meta property="og:description" content="<%= og_description %>"/>
+  <% end -%>
+<%- end -%>
+
 <%- content_for(:extracss) do %>
 <%= stylesheet_link_tag 'taxa/show', 'observations', "jquery/ui.tabs.css" %>
 <style type="text/css" media="screen">
@@ -24,6 +48,7 @@
     float: left;
     margin: 0 10px 10px 0;
   }
+  #photos img {max-width: 500px;}
   
   #photos .photos_wrapper a.last {
     margin-right: 0;
@@ -239,7 +264,6 @@
                              "jquery/plugins/inat/photo_selectors.js",
                              'jquery/plugins/jquery.autocomplete.min.js',
                              'jquery/plugins/inat/place_autocomplete.js',
-                             "jquery/plugins/jquery.qtip.min",
                              'jquery/jquery-ui-1.8.11.min' %>
 
   <% if @show_range %>
@@ -294,10 +318,12 @@
         window.map = new google.maps.Map(document.getElementById("taxon_range_map"), {
           mapTypeId: google.maps.MapTypeId.TERRAIN
         });
+        window.map.layers = []
 
         window.ctaLayer = new google.maps.KmlLayer('<%= root_url.gsub(/\/$/, "") + @taxon_range.range.url %>',
             {suppressInfoWindows: true});
         window.ctaLayer.setMap(map);
+        window.map.layers.push(window.ctaLayer)
     
         var gbifLayer = window.gbifLayer = addKmlLayer('http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml')
       
@@ -306,24 +332,27 @@
         homeControlDiv.index = 1;
         window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
         window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(window.map));
-
-        <% if Rails.env.development? %>
-          var iNatLyr = addKmlLayer('http://inaturalist.org/observations.kml?taxon_name=<%= URI.escape(@taxon.name) %>')
-        <% else %>
-          var iNatLyr = addKmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>')
-        <% end %>
+        
+        var iNatLyr = addKmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>')
         iNatLyr.setMap(window.map);
+        window.map.layers.push(iNatLyr)
 
         $('#tabs').bind('tabsshow', function(event, ui) {
-          google.maps.event.trigger(window.map, 'resize')
-          window.map.fitBounds(window.ctaLayer.getDefaultViewport())
+          if (ui.panel.id == "taxon_range") {
+            google.maps.event.trigger(window.map, 'resize')
+            window.map.fitBounds(window.ctaLayer.getDefaultViewport())
+            for (var i=0; i < window.map.layers.length; i++) {
+              window.map.layers[i].setMap(null)
+              window.map.layers[i].setMap(window.map)
+            };
+          }
         })
       <% end %>
       
       <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()
         $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
-          $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link');
+          $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link')
         });
       <% end %>
       
@@ -360,7 +389,7 @@
           },
           onLoad: function(h) {
             iNaturalist.modalCenter(h.w)
-            $(h.w).find('.taxon_photos').photoSelector({
+            $(h.w).find('#flickr_taxon_photos .taxon_photos').photoSelector({
               defaultQuery: '<%= @taxon.name %>',
               urlParams: {
                 authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
@@ -370,6 +399,18 @@
                 iNaturalist.modalCenter(h.w)
               }
             });
+            
+            $(h.w).find('#inat_obs_taxon_photos .taxon_photos').photoSelector({
+              baseURL: '<%= taxon_observation_photos_url(@taxon) %>',
+              urlParams: {
+                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                limit: 15
+              },
+              afterQueryPhotos: function() {
+                iNaturalist.modalCenter(h.w)
+              }
+            });
+            $(h.w).find('.tabs').tabs()
           }
         });
       
@@ -397,31 +438,6 @@
   </script>
 <% end -%>
 
-<%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/> 
-  <meta property="og:type" content="taxon"/> 
-  <% if @photos.blank? -%>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 
-  <% else %>
-    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
-  <% end -%>
-  <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027"> 
-  <% unless @taxon.wikipedia_summary.blank? -%>
-    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
-    <%-
-      og_description = if @photos.blank?
-        html_attributize(@taxon.wikipedia_summary)
-      else
-        "(Photo: #{@photos.first.attribution}) #{html_attributize @taxon.wikipedia_summary}"
-      end
-    -%>
-    <meta property="og:description" content="<%= og_description %>"/>
-  <% end -%>
-<%- end -%>
-
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">
     <%= link_to 'All Species', taxa_path, :class => 'back crumb' %>
@@ -431,7 +447,7 @@
     <% end %>
   </span>
   <div id="meta" class="right description">
-    <% if @taxon.source_url %>
+    <% if @taxon.source && @taxon.source_url %>
       Source: <%= link_to @taxon.source.title, @taxon.source_url %>
     <% elsif @taxon.source %>
       Source: <%= @taxon.source.title %>
@@ -442,17 +458,18 @@
     <% end %>
     
     | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
+    <% if logged_in? -%>
+      | <%= link_to "Map", taxon_map_path(@taxon) %> <span class="meta">(experimental)</span>
+    <% end -%>
     <% if logged_in? and @user.is_curator? %>
-    
-    | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
+      | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
     <% end %>
     <% if @taxon.flagged? %>
-    
-    | <span id="flaggings_heads_up" class="description">
+      | <span id="flaggings_heads_up" class="description">
       Flagged for curation.
       <%= link_to "View flags", taxon_flags_path(@taxon), :class => 'readmore', 
         :title => "See something wrong with this taxon?  Let the curators know." %>
-    </span>
+      </span>
     <% else %>
       <% if logged_in? %>
       | <%= link_to "Flag for curation", new_taxon_flag_path(@taxon), :id => "flag_this" %>
@@ -470,6 +487,22 @@
     </h2>
   </div>
 </div>
+
+<% if @conservation_status_name %>
+  <div class="column span-24">
+    <div class="conservation_status <%= @conservation_status_name %> box">
+      Global conservation status: <strong><%= @conservation_status_name.humanize.downcase %></strong>
+      <span class="small">
+        (Source:
+        <% if @conservation_status_source && !@conservation_status_source.url.blank? -%>
+          <%= link_to @conservation_status_source.title, @conservation_status_source.url -%>
+        <%- else -%>
+          <%= @conservation_status_source.title -%>
+        <%- end -%>)
+      </span>
+    </div>
+  </div>
+<% end %>
 
 <div class="column span-4 aka">
   <h3>
@@ -491,7 +524,7 @@
               <li>
                 <span class="taxon_name <%= lexicon.split.join('_') %><%= ' invalid' unless taxon_name.is_valid? %>">
                   <%= taxon_name.name %></span>
-                <% if logged_in? && (taxon_name.name != @taxon.name || current_user.is_curator?) -%>
+                <% if logged_in? && (!taxon_name.is_scientific? || current_user.is_curator?) -%>
                   <%= link_to "edit", edit_taxon_name_path(taxon_name), :class => 'small description' %>
                 <% end -%>
               </li>
@@ -667,18 +700,27 @@
     </p>
     
     <p class="ui">
-      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon) %>
+      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon), 
+        :rel => "nofollow" %>
     </p>
     
   </div>
   
   <% if logged_in? && current_user.is_curator? -%>
-    <div id="curation">
+    <div id="curation" class="quiet box">
       <h3>Curation</h3>
       <ul>
         <li><%= link_to "Edit", edit_taxon_path(@taxon) %></li>
         <li><%= link_to "Merge", merge_taxon_path(@taxon) %></li>
       </ul>
+      <% if @taxon.locked? -%>
+        <div class="notice">
+          <strong>Heads up:</strong> this taxon is locked, which means that most users can't add
+          new descendants to it by importing taxa. Curators can still do so by
+          editing taxa and choosing a parent, but please consider merging taxa
+          instead.
+        </div>
+      <% end -%>
     </div>
   <% end -%>
 </div>
@@ -762,7 +804,8 @@
     </div>
     
     <div id="fblike" class="stacked">
-      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="270"></fb:like>
+      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+      <fb:like send="true" show_faces="true" width="270" layout="button_count"></fb:like>
     </div>
   <div><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="inaturalist">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
   </div>

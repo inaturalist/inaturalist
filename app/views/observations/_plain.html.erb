@@ -1,0 +1,69 @@
+<%
+  observation ||= object || @observation
+  image_size ||= nil
+  description_length ||= 140
+  include_description ||= false
+  hide_species_guess ||= false
+  image_url ||= observation_image_url(observation, :size => image_size) || 
+    iconic_taxon_image_url(observation.iconic_taxon, :size => image_size)
+-%>
+<table cellpadding="5" border="0">
+  <tr>
+    <td valign="top" style="vertical-align: top">
+      <a href="<%= observation_url(observation) %>">
+        <%= image_tag image_url, 
+          :width => image_size == "square" ? 75 : nil,
+          :height => image_size == "square" ? 75 : nil %>
+      </a>
+    </td>
+    <td valign="top" style="vertical-align: top">
+      <% unless hide_species_guess -%>
+        <div>
+          <big>
+            <% if observation.species_guess.blank? %>
+              <%= link_to '<i>Something...</i>', observation_url(observation) %>
+            <% else %>
+              <%= link_to observation.species_guess, observation_url(observation) %>
+            <% end %>
+          </big>
+          <br/>
+          <br/>
+        </div>
+      <% end -%>
+      <div>
+        Observed by <%= link_to observation.user.login, observations_by_login_url(observation.user.login) %>
+        <% if observation.observed_on %>
+          <span class="observed_on">on <span class="date"><%= observation.observed_on.strftime('%b %d %Y') %></span></span>
+        <% end %>
+        <% unless observation.place_guess.blank? %>
+          <span class="place_guess">in <%=h observation.place_guess %></span>
+        <% end %>
+        <br/>
+        <br/>
+      </div>
+      
+      <% if include_description %>
+        <%= truncate(strip_links(observation.description), :length => description_length) %>
+      <% end %>
+      
+      <% if @project_observations_by_observation_id && 
+            (po = @project_observations_by_observation_id[observation.id]) &&
+            (poci = po.curator_identification) -%>
+        <div>
+          <strong>
+            <%= link_to user_image(poci.user), user_url(poci.user) %>
+            Project curator ID:
+          </strong>
+          <%= link_to poci.taxon.name, taxon_url(poci.taxon), 
+            :style => "#{'font-style: italic' if poci.taxon.species_or_lower?}" %>
+          <br/>
+          <br/>
+        </div>
+      <% end -%>
+
+      <div>
+        <%= link_to("View observation", observation_url(observation), :class => "readmore") %>
+      </div>
+    </td>
+  </tr>
+</table>

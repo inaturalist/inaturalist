@@ -4,13 +4,15 @@ class CommentsController < ApplicationController
   
   def index
     find_options = {
-      :page => params[:page], :order => "id DESC",
-      :include => :user,
+      :select => "MAX(id) AS id, parent_id",
+      :page => params[:page],
+      :order => "id DESC",
       :group => "parent_id"
     }
-    @comments = Comment.scoped({})
-    @comments = @comments.by(current_user) if logged_in? && params[:mine]
-    @comments = @comments.paginate(find_options)
+    @paging_comments = Comment.scoped({})
+    @paging_comments = @paging_comments.by(current_user) if logged_in? && params[:mine]
+    @paging_comments = @paging_comments.paginate(find_options)
+    @comments = Comment.find(@paging_comments.map(&:id), :include => :user, :order => "id desc")
     @extra_comments = Comment.all(:conditions => [
       "parent_id IN (?) AND created_at >= ?", 
       @comments.map(&:parent_id), @comments.last.created_at

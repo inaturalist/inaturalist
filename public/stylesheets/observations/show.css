@@ -1,84 +1,19 @@
-.even {
-  background-color: #f3f3f3;
-}
-
-#identifications {
-  margin-bottom: 1em;
-}
-
-#identifications h3 {
-  margin-bottom: 0.5em;
-}
-
-.identifications-list .identification.yours {
-  padding: 10px;
-}
-
-#photos {
-  max-width: 350px;
-}
-
+.even{background-color:#f3f3f3;}
+#identifications{margin-bottom:1em;}
+#identifications h3{margin-bottom:0.5em;}
+.identifications-list .identification.yours{padding:10px;}
+#photos{max-width:350px;}
 #photos img,
-#photos .first {
-  vertical-align: top;
-  float: left;
-  margin: 0 10px 10px 0;
-}
-
-#photos .first {
-  border: 3px solid #ddd;
-  margin-bottom: 9px;
-}
-
-#photos .first img {
-  float: none;
-  margin: 0;
-}
-
-#photos, #where {
-  float: left;
-}
-
-#where {
-  width: 100%;
-  max-width: 280px;
-}
-
-#map {
-  height: 245px;
-  overflow: hidden;
-}
-
-#observation-description .description {
-  color: #666;
-}
-
-#observation-description img {
-  max-width: 500px;
-  height: auto;
-}
-
-#tags ul {
-  display: inline;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#tags li {
-  display: inline;
-}
-
-#tags li:after {
-  content: ',';
-}
-
+#photos .first{vertical-align:top;float:left;margin:0 10px 10px 0;}
+#photos .first{border:3px solid #ddd;margin-bottom:9px;}
+#photos .first img{float:none;margin:0;}
+#photos,#where{float:left;}
+#map{height:245px;overflow:hidden;}
+#observation-description .description{color:#666;}
+#observation-description img{max-width:500px;height:auto;}
+#tags ul{display:inline;list-style:none;padding:0;margin:0;}
+#tags li{display:inline;}
+#tags li:after{content:',';}
 /* This won't work in some browsers until they EMBRACE THE FUTURE!!! */
-#tags li:last-child:after {
-  content: '';
-}
-
-.breadcrumbs {
-  float: left;
-  width: auto;
-}
+#tags li:last-child:after{content:'';}
+.breadcrumbs{float:left;width:auto;}

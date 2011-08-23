@@ -9,34 +9,19 @@ Sham.title { Faker::Lorem.sentence }
 Sham.body  { Faker::Lorem.paragraph }
 Sham.url { "http://#{Faker::Internet.domain_name}" }
 
-Taxon.blueprint do
-  name { Sham.name }
-  rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
-end
-
-TaxonName.blueprint do
-  name { Sham.name }
-  taxon
-end
-
-Observation.blueprint do
-  user
-end
-
-User.blueprint do
-  login { Sham.login }
-  email { Sham.email }
-  salt "9dadb9a490337c3e23dbc9bd20b08af841da4512"
-  crypted_password "4ed912738a4c0facedbdfd4fd1db8c9245d93e40" # 'monkey'
-  created_at 5.days.ago.to_s(:db)
-  activated_at { 1.day.ago }
-  state "active"
-  time_zone "Pacific Time (US & Canada)"
+CheckList.blueprint do
+  place
 end
 
 Friendship.blueprint do
   user
   friend
+end
+
+Identification.blueprint do
+  user
+  observation
+  taxon
 end
 
 ListedTaxon.blueprint do
@@ -56,30 +41,17 @@ ListRule.blueprint do
   list
 end
 
-Identification.blueprint do
+LocalPhoto.blueprint do
   user
-  observation
-  taxon
 end
 
-TaxonLink.blueprint do
+Observation.blueprint do
   user
-  taxon
-  url { Sham.url }
-end
-
-TaxonPhoto.blueprint do
-  taxon
-  photo
 end
 
 Photo.blueprint do
   user
   native_photo_id { rand(1000) }
-end
-
-CheckList.blueprint do
-  place
 end
 
 Place.blueprint do
@@ -88,10 +60,16 @@ Place.blueprint do
   longitude { rand(180) }
 end
 
-TaxonLink.blueprint do
-  taxon
-  url { Sham.url }
-  site_title { Sham.title }
+Post.blueprint do
+  user
+  parent { user }
+  title { Sham.title }
+  body { Sham.body }
+  published_at { Time.now }
+end
+
+Post.blueprint(:draft) do
+  published_at { nil }
 end
 
 Project.blueprint do
@@ -113,6 +91,12 @@ ProjectObservation.blueprint do
   project
 end
 
+QualityMetric.blueprint do
+  user
+  observation
+  metric { QualityMetric::METRICS.first }
+end
+
 Role.blueprint do
   name { Sham.title }
 end
@@ -121,14 +105,42 @@ Role.blueprint(:admin) do
   name User::JEDI_MASTER_ROLE
 end
 
-Post.blueprint do
-  user
-  parent { user }
-  title { Sham.title }
-  body { Sham.body }
-  published_at { Time.now }
+Taxon.blueprint do
+  name { Sham.name }
+  rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
 end
 
-Post.blueprint(:draft) do
-  published_at { nil }
+Taxon.blueprint(:threatened) do
+  conservation_status Taxon::IUCN_ENDANGERED
+  rank "species"
 end
+
+TaxonLink.blueprint do
+  user
+  taxon
+  url { Sham.url }
+  site_title { Sham.title }
+end
+
+TaxonPhoto.blueprint do
+  taxon
+  photo
+end
+
+TaxonName.blueprint do
+  name { Sham.name }
+  taxon
+end
+
+User.blueprint do
+  login { Sham.login }
+  email { Sham.email }
+  name { Sham.name }
+  salt "9dadb9a490337c3e23dbc9bd20b08af841da4512"
+  crypted_password "4ed912738a4c0facedbdfd4fd1db8c9245d93e40" # 'monkey'
+  created_at 5.days.ago.to_s(:db)
+  activated_at { 1.day.ago }
+  state "active"
+  time_zone "Pacific Time (US & Canada)"
+end
+

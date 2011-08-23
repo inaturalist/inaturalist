@@ -27,6 +27,7 @@ module Shared::ListsModule
       @find_options[:conditions] = List.merge_conditions(
         @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
     end
+    
     @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
     
     @taxon_names_by_taxon_id = TaxonName.all(:conditions => [
@@ -36,7 +37,7 @@ module Shared::ListsModule
     @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
     @total_listed_taxa ||= @list.listed_taxa.count
     
-    @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id > 0")
+    @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
     
     @view = params[:view]
     @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
@@ -64,6 +65,8 @@ module Shared::ListsModule
     
     @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
     
+    load_listed_taxon_photos
+    
     respond_to do |format|
       format.html do
         if logged_in?
@@ -82,7 +85,7 @@ module Shared::ListsModule
   
   # GET /lists/new
   def new
-    @list = List.new(:user => current_user)
+    @list = List.new(:user => current_user, :title => params[:title])
     respond_to do |format|
       format.html
     end
@@ -179,19 +182,19 @@ module Shared::ListsModule
         next
       end
       
-      taxon_names = TaxonName.paginate(:page => 1, :conditions => {:name => name}, :include => :taxon)
+      taxon_names = TaxonName.paginate(:page => 1, :include => :taxon,
+        :conditions => ["lower(name) = ?", name.to_s.downcase])
       case taxon_names.size
       when 0
         @lines_taxa << [name, "not found"]
       when 1
-        listed_taxon = @list.add_taxon(taxon_names.first.taxon)
+        listed_taxon = @list.add_taxon(taxon_names.first.taxon, :user_id => current_user.id)
         if listed_taxon.valid?
           @lines_taxa << [name, listed_taxon]
         else
           @lines_taxa << [name, listed_taxon.errors.full_messages.to_sentence]
         end
       else
-        # @errors << "#{name}: matched several different taxa"
         @lines_taxa << [name, "matched several different taxa"]
       end
     end
@@ -218,7 +221,7 @@ module Shared::ListsModule
   def taxa
     per_page = params[:per_page]
     per_page = 100 if per_page && per_page.to_i > 100
-    conditions = params[:photos_only] ? "photos.id > 0" : nil
+    conditions = params[:photos_only] ? "photos.id IS NOT NULL" : nil
     @taxa = @list.taxa.paginate(:page => params[:page], :per_page => per_page,
       :include => [:iconic_taxon, :photos, :taxon_names], 
       :conditions => conditions)
@@ -292,7 +295,7 @@ module Shared::ListsModule
       ],
       
       # TODO: somehow make the following not cause a filesort...
-      :order => 'taxon_ancestor_ids, listed_taxa.taxon_id'
+      :order => 'taxon_ancestor_ids || listed_taxa.taxon_id'
     }
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])
@@ -306,10 +309,17 @@ module Shared::ListsModule
         :last_observation, 
         {:taxon => [:iconic_taxon, :photos]}
       ]
+    elsif params[:iconic_taxon]
+      @filter_taxon = Taxon.find_by_id(params[:iconic_taxon])
+      @find_options[:conditions] = ["taxa.iconic_taxon_id = ?", @filter_taxon.try(:id)]
     end
   end
   
   def require_editor
     @list.editable_by?(current_user)
+  end
+  
+  def load_listed_taxon_photos
+    # override
   end
 end

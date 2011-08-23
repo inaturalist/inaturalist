@@ -11,45 +11,14 @@
     <% else %>
       <%= f.file_field :range %>
     <% end -%>
+    <%= f.text_field :source_identifier %>
     <%= f.text_area :description %>  
   </div>
 
   <div class="last column span-12">
     <fieldset id="source">
       <legend>Source</legend>
-      
-      <%= f.collection_select :source_id, Source.all(:limit => 100), :id, :title, :include_blank => "Unknown" %>
-      
-      <%- edit_source_fields = capture do %>
-        <% f.fields_for :source do |s| %>
-          <%= s.text_field :title %>
-          <%= s.text_field :in_text %>
-          <%= s.text_field :url %>
-          <%= s.text_area :citation %>
-        <% end %>
-      <%- end -%>
-      <%= link_to_function "Edit source...", 
-        "$(this).after('#{escape_javascript edit_source_fields}'); " +
-        "$(this).hide();" +
-        "$(this).parents('form').find('select').remove();" +
-        "$('#new_source_link').remove()",
-        :id => "edit_source_link" %>
-      
-      <%- new_source_fields = capture do %>
-        <% f.fields_for :source, :object => f.object.build_source do |s| %>
-          <%= s.text_field :title %>
-          <%= s.text_field :in_text %>
-          <%= s.text_field :url %>
-          <%= s.text_area :citation %>
-        <% end %>
-      <%- end -%>
-      <%= link_to_function "Add new source...", 
-        "$(this).after('#{escape_javascript new_source_fields}'); " +
-        "$(this).hide(); " +
-        "$(this).parents('form').find('select').remove();" +
-        "$('#edit_source_link').remove()",
-        :id => "new_source_link" %>
-      
+      <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
     </fieldset>
   </div>
 </div>

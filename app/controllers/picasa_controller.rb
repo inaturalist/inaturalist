@@ -6,7 +6,8 @@ class PicasaController < ApplicationController
   def options
     if @picasa_identity = current_user.picasa_identity
       @picasa = Picasa.new(@picasa_identity.token)
-      @picasa_photos = @picasa.recent_photos(@picasa_identity.picasa_user_id).entries
+      @picasa_photos = @picasa.recent_photos(@picasa_identity.picasa_user_id, 
+        :max_results => 18, :thumbsize => '72c').entries
     else
       @auth_url = Picasa.authorization_url(url_for(:action => "authorize"))
     end

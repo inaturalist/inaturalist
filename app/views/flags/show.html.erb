@@ -27,7 +27,13 @@
     <td><%= @flag.created_at %></td>
     <td><%= link_to @object.to_plain_s, @object %></td>
     <td><%= h @flag.flag %></td>
-    <td><%= link_to h(@flag.user.login), @flag.user %></td>
+    <td>
+      <% if @flag.user -%>
+        <%= link_to h(@flag.user.login), @flag.user %>
+      <% else %>
+        iNat
+      <% end -%>
+    </td>
     <td><%= 
       unless @flag.resolver.nil? 
         link_to h(@flag.resolver.login), @flag.resolver

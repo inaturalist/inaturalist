@@ -57,6 +57,25 @@ class Photo < ActiveRecord::Base
     "#{rights} #{name}"
   end
   
+  # Try to choose a single taxon for this photo.  Only works if class has 
+  # implemented to_taxa
+  def to_taxon
+    photo_taxa_from_scinames = try(:to_taxa, :lexicon => TaxonName::SCIENTIFIC_NAMES)
+    unless photo_taxa_from_scinames.blank?
+      unless photo_taxa_from_scinames.detect{|t| t.rank_level.blank?}
+        photo_taxa_from_scinames = photo_taxa_from_scinames.sort_by(&:rank_level)
+      end
+      return photo_taxa_from_scinames.detect(&:species_or_lower?) || photo_taxa_from_scinames.first
+    end
+    
+    photo_taxa = try(:to_taxa)
+    return nil if photo_taxa.blank?
+    unless photo_taxa.detect{|t| t.rank_level.blank?}
+      photo_taxa = photo_taxa.sort_by(&:rank_level)
+    end
+    photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
+  end
+  
   # Sync photo object with its native source.  Implemented by descendents
   def sync
     nil

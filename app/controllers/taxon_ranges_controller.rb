@@ -23,9 +23,9 @@ class TaxonRangesController < ApplicationController
   
   def update
     @taxon_range = TaxonRange.find(params[:id])
-
     respond_to do |format|
       if @taxon_range.update_attributes(params[:taxon_range])
+        @taxon_range.taxon
         format.html { redirect_to(@taxon_range.taxon || taxa_path, :notice => 'TaxonRange was successfully updated.') }
       else
         format.html { render :action => "edit" }
@@ -36,7 +36,7 @@ class TaxonRangesController < ApplicationController
   def destroy
     @taxon_range = TaxonRange.find(params[:id])
     @taxon_range.destroy
-
+    
     respond_to do |format|
       format.html { redirect_to(@taxon_range.taxon) }
     end

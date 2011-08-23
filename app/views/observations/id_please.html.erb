@@ -125,11 +125,11 @@
 <% end %>
 
 <% content_for(:extrajs) do %>
-  <%= gmap_include_tag %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag('jquery/plugins/jqModal',
                              'modal_image',
                              'jquery/plugins/inat/taxon_selectors', 
-                             'inaturalist/map2',
+                             'inaturalist/map3',
                              'observations/filters') %>
                              
   <script type="text/javascript" charset="utf-8">
@@ -254,17 +254,8 @@
         </div>
       <%- end -%>
       <div class="description">
-        Location: 
-        <%= render :partial => 'place_guess', :object => observation %>
+        <%= render :partial => "location", :object => observation %>
         <% if observation.latitude and observation.longitude %>
-          <div>
-            <span class="latitude">
-              Lat: <%= observation.latitude %>
-            </span>,
-            <span class="longitude">
-              Lon: <%= observation.longitude %>
-            </span>
-          </div>
           <script type="text/javascript" charset="utf-8">
             var observation_<%= observation.id %>_map = iNaturalist.Map.createMap({
               div: 'observation-<%= observation.id %>-map',

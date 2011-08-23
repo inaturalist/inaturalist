@@ -10,9 +10,7 @@ Observations by <%= h @login %>
     display: none;
   }
   
-  .observations.infowindow .observation {
-    width: 220px;
-  }
+  .observations.infowindow .observation { width: 220px; }
   
   #edit_selected_button {
     background-color: #FFC;
@@ -60,9 +58,9 @@ Observations by <%= h @login %>
 <% end %>
 
 <% content_for(:extrajs) do %>
-<%= gmap_include_tag %>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <%= javascript_include_tag 'inaturalist',
-                           'inaturalist/map2',
+                           'inaturalist/map3',
                            "observations/filters",
                            'jquery/plugins/jquery.labelize',
                            'jquery/plugins/inat/checkboxes',
@@ -79,34 +77,30 @@ Observations by <%= h @login %>
       var obsIcon = iNaturalist.Map.createObservationIcon({color: "HotPink"});
       var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
     
-      var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+      var observations = <%= @observations.to_json(:viewer => current_user, 
+        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      var bounds = new google.maps.LatLngBounds();
       $.each(observations, function(o) {
         var o = this;
-         if (typeof(o.latitude) != 'undefined' && typeof(o.longitude) != 'undefined') {
-           map.addObservation(o, {
-             icon: iNaturalist.Map.createObservationIcon({
-               color: "HotPink",
-               character: letters[letter_counter]
-             })
-           });
-           letter_counter++;
-         }
-       });
-      
-      // zoom the map to the extent of the observations
-      var bounds = new GLatLngBounds();
-      $.each(observations, function(o) {
-        var o = this;
-        if (typeof(o.latitude) != 'undefined' && typeof(o.longitude) != 'undefined') {
-          marker = new GMarker(new GLatLng(o.latitude, o.longitude))
-          bounds.extend(new GLatLng(o.latitude, o.longitude));
+        if ((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude)) {
+          map.addObservation(o, {
+            icon: iNaturalist.Map.createObservationIcon({
+              color: "HotPink",
+              character: letters[letter_counter],
+              stemless: o.coordinates_obscured
+            })
+          });
+          letter_counter++;
+          bounds.extend(new google.maps.LatLng(o.latitude || o.private_latitude, 
+            o.longitude || o.private_longitude));
         }
       });
-      map.setZoom(map.getBoundsZoomLevel(bounds));
-      map.setCenter(bounds.getCenter());
+      
+      // zoom the map to the extent of the observations
+      map.fitBounds(bounds)
       
       // create infowindows and behaviors
       $.each(observations, function(observation) {
@@ -116,12 +110,14 @@ Observations by <%= h @login %>
           var marker = map.observations[observation.id];
           
           // add the marker image to the list
-          var icon_img = $('<img/>').attr('src', marker.getIcon().image).addClass('marker');
+          var src = marker.getIcon()
+          if (src.url) src = src.url
+          var icon_img = $('<img/>').attr('src', src).addClass('marker');
     
           // bind the observation's marker as the context to operate in when
           // the obsNode is clicked in the list.
           $(icon_img).click(function() {
-            map.openInfoWindow.apply(marker)
+            map.openInfoWindow.apply(marker);
           });
         }
         else {
@@ -135,7 +131,6 @@ Observations by <%= h @login %>
     }
     
     $(document).ready(initialize);
-    $(window).unload(GUnload);
     
     function batchEdit() {
       $('.observation .icon').toggle();
@@ -256,6 +251,24 @@ Observations by <%= h @login %>
 <link rel="alternate" type="application/atom+xml" title="Recent Observations by <%= h @login %> (Atom)" href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
 <% end %>
 
+<% unless @proj_obs_errors_obs.blank? -%>
+  <div class="error">
+    <h3>The following observations could not be added to <%= link_to @project.title, @project %></h3>
+    <ul>
+      <% for o in @proj_obs_errors_obs %>
+        <li class="clear stacked">
+          <% image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
+            <%= link_to o.to_plain_s(:user => false), o %>
+            <div>
+              <%= @proj_obs_errors[:errors][o.id].join("<br/>") %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end -%>
+
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if @user && @user.login == @login -%>
@@ -363,9 +376,9 @@ Observations by <%= h @login %>
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params), :id => 'atomlink', :rel => "nofollow") %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params), :id => 'kmllink', :rel => "nofollow") %>
-      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params), :id => 'csvlink', :rel => "nofollow") %>
+      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params),     :class => 'atomlink', :rel => "nofollow") %>
+      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params),  :class => 'kmllink', :rel => "nofollow") %>
+      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params),      :class => 'csvlink', :rel => "nofollow") %>
       
     </span>
   </div>

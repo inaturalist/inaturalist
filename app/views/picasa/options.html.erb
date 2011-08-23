@@ -7,6 +7,7 @@
   <% if @picasa_identity -%>
     <div class="clear photos">
       <% for photo in @picasa_photos %>
+        <%- next unless photo.url('72c') %>
         <%= image_tag photo.url('72c') %>
       <% end %>
     </div>

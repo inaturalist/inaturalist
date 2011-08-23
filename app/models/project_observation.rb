@@ -1,6 +1,7 @@
 class ProjectObservation < ActiveRecord::Base
   belongs_to :project
   belongs_to :observation
+  belongs_to :curator_identification, :class_name => "Identification"
   validates_presence_of :project_id, :observation_id
   validate_on_create :observed_by_project_member?
   validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?]
@@ -34,6 +35,29 @@ class ProjectObservation < ActiveRecord::Base
     true
   end
   
+  def to_csv_column(column)
+    case column
+    when "curator_ident_taxon_id"
+      curator_identification.try(:taxon_id)
+    when "curator_ident_taxon_name"
+      if curator_identification
+        curator_identification.taxon.name
+      else
+        nil
+      end
+    when "curator_ident_user_id"
+      curator_identification.try(:user_id)
+    when "curator_ident_user_login"
+      if curator_identification
+        curator_identification.user.login
+      else
+        nil
+      end
+    else
+      observation.send(column)
+    end
+  end
+  
   ##### Rules ###############################################################
   def observed_in_place?(place)
     place.contains_lat_lng?(observation.latitude, observation.longitude)
@@ -52,7 +76,31 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def in_taxon?(taxon)
+    return false if taxon.blank?
+    return false if observation.taxon.blank?
     taxon.id == observation.taxon_id || taxon.ancestor_of?(observation.taxon)
   end
   
+  ##### Static ##############################################################
+  def self.to_csv(project_observations, options = {})
+    return nil if project_observations.blank?
+    project = options[:project] || project_observations.first.project
+    columns = Observation.column_names
+    columns += [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login].map(&:to_s)
+    except = [:map_scale, :timeframe, :iconic_taxon_id, :delta].map(&:to_s)
+    unless project.curated_by?(options[:user])
+      except += %w(private_latitude private_longitude private_positional_accuracy)
+    end
+    columns -= except
+    headers = columns.map{|c| Observation.human_attribute_name(c)}
+    project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login)
+    columns += project_columns
+    headers += project_columns.map{|c| c.to_s.humanize}
+    FasterCSV.generate do |csv|
+      csv << headers
+      project_observations.each do |project_observation|
+        csv << columns.map {|column| project_observation.to_csv_column(column)}
+      end
+    end
+  end
 end

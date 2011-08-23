@@ -46,7 +46,7 @@
     <%= render :partial => 'observations/observation_form_field_rows' %>
     <div class="column span-24">
       <div id="observation_form_links" class="buttonrow">
-        <%= submit_tag "Save All", :class => 'default button' -%>
+        <%= submit_tag "Save All", :class => 'default button', "data-loading-click" => true -%>
         <%= link_to 'Cancel', 
                     observations_by_login_path(:login => current_user.login),
                     :class => 'button' %>

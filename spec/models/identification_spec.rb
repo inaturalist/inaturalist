@@ -2,22 +2,6 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Identification, "creation" do
   
-  # before(:each) do
-  #   @taxon = Taxon.make
-  #   @user = User.make
-  #   @obs = Observation.make(:species_guess => "Pacific Chorus Frog", 
-  #                         :taxon => @taxon,
-  #                         :user => @user)
-  #   @identification = Identification.new(
-  #     :user => users(:quentin),
-  #     :observation => obs,
-  #     :taxon => obs.taxon
-  #   )
-  #   @empty_identification = Identification.new
-  #   @unknown_obs = Observation.create(:species_guess => "You got me!",
-  #                         :user => users(:adam))
-  # end
-  
   it "should have a taxon" do 
     @id = Identification.make
     @id.taxon = nil
@@ -153,24 +137,24 @@ describe Identification, "creation" do
   
   # Not sure how to do this with Delayed Job
   it "should update the user's life lists"
+  
+  it "should update observation quality_grade" do
+    o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
+    o.photos << LocalPhoto.make(:user => o.user)
+    o.reload
+    o.quality_grade.should == Observation::CASUAL_GRADE
+    i = Identification.make(:observation => o, :taxon => o.taxon)
+    o.reload
+    o.quality_grade.should == Observation::RESEARCH_GRADE
+  end
 end
 
 describe Identification, "deletion" do
-  fixtures :observations, :identifications, :users, :taxa
   
   before(:each) do
-    @observation = Observation.create(
-      :species_guess => "Pacific Chorus Frog", 
-      :taxon => taxa(:Pseudacris_regilla),
-      :user => users(:adam))
-    @unknown_obs = Observation.create(
-      :species_guess => "You got me!",
-      :user => users(:adam))
-    @identification = Identification.create(
-      :user => users(:ted),
-      :observation => @observation,
-      :taxon => taxa(:Pseudacris_regilla)
-    )
+    @observation = Observation.make(:taxon => Taxon.make)
+    @unknown_obs = Observation.make(:user => @observation.user)
+    @identification = Identification.make(:observation => @observation, :taxon => @observation.taxon)
   end
   
   it "should remove the taxon associated with the observation if it's the " +
@@ -198,11 +182,7 @@ describe Identification, "deletion" do
   end
   
   it "should decrement the observations num_identification_disagreements if this was a disagreement" do
-    ident = Identification.create(
-      :user => users(:quentin),
-      :observation => @observation,
-      :taxon => Taxon.find_by_name('Calypte anna')
-    )
+    ident = Identification.make(:observation => @observation)
     puts "ident was invalid: #{ident.errors.full_messages.join(', ')}" unless ident.valid?
     @observation.reload
     @observation.num_identification_disagreements.should >= 1
@@ -222,10 +202,7 @@ describe Identification, "deletion" do
   end
   
   it "should NOT decremement the counter cache in users for an ident on one's OWN observation" do
-    new_observation = Observation.create(
-      :species_guess => "Pacific Chorus Frog", 
-      :taxon => taxa(:Pseudacris_regilla),
-      :user => users(:adam))
+    new_observation = Observation.make(:taxon => Taxon.make)
     puts "new_observations wasn't valid: #{new_observation.errors.full_messages.join(', ')}" unless new_observation.valid?
     new_observation.reload
     owners_ident = new_observation.identifications.select do |ident|
@@ -237,4 +214,34 @@ describe Identification, "deletion" do
     user.reload
     user.identifications_count.should == old_count
   end
+  
+  it "should update observation quality_grade" do
+    o = make_research_grade_observation
+    o.quality_grade.should == Observation::RESEARCH_GRADE
+    o.identifications.last.destroy
+    o.reload
+    o.quality_grade.should == Observation::CASUAL_GRADE
+  end
+  
+  it "should update observation quality_grade if made by another user" do
+    o = make_research_grade_observation
+    o.quality_grade.should == Observation::RESEARCH_GRADE
+    o.identifications.each {|ident| ident.destroy if ident.user_id != o.user_id}
+    o.reload
+    o.quality_grade.should == Observation::CASUAL_GRADE
+  end
+  
+  it "should queue a job to update check lists if research grade" do
+    o = make_research_grade_observation
+    o.identifications.each {|ident| ident.destroy if ident.user_id != o.user_id}
+    o.reload
+    o.quality_grade.should == Observation::CASUAL_GRADE
+    stamp = Time.now
+    Identification.make(:taxon => o.taxon, :observation => o)
+    o.reload
+    o.quality_grade.should == Observation::RESEARCH_GRADE
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /refresh_with_observation/}.should_not be_blank
+  end
+  
 end
