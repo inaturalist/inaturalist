@@ -9,11 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20110429075345) do
-=======
 ActiveRecord::Schema.define(:version => 20110811040139) do
->>>>>>> 821625165f050cffb3f0e16b2cd4ef904aeb7d62
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -473,27 +469,16 @@ ActiveRecord::Schema.define(:version => 20110811040139) do
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "provider_authorizations", :force => true do |t|
-<<<<<<< HEAD
-    t.column "provider_name", :string, :null => false
-    t.column "provider_uid", :text
-    t.column "token", :text
-    t.column "user_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-=======
     t.string   "provider_name", :null => false
     t.text     "provider_uid"
     t.text     "token"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
->>>>>>> 821625165f050cffb3f0e16b2cd4ef904aeb7d62
   end
 
   add_index "provider_authorizations", ["user_id"], :name => "index_provider_authorizations_on_user_id"
 
-<<<<<<< HEAD
-=======
   create_table "quality_metrics", :force => true do |t|
     t.integer  "user_id"
     t.integer  "observation_id"
@@ -506,7 +491,6 @@ ActiveRecord::Schema.define(:version => 20110811040139) do
   add_index "quality_metrics", ["observation_id"], :name => "index_quality_metrics_on_observation_id"
   add_index "quality_metrics", ["user_id"], :name => "index_quality_metrics_on_user_id"
 
->>>>>>> 821625165f050cffb3f0e16b2cd4ef904aeb7d62
   create_table "roles", :force => true do |t|
     t.string "name"
   end
@@ -706,33 +690,6 @@ ActiveRecord::Schema.define(:version => 20110811040139) do
   end
 
   create_table "users", :force => true do |t|
-<<<<<<< HEAD
-    t.column "login", :string, :limit => 40
-    t.column "name", :string, :limit => 100, :default => ""
-    t.column "email", :string, :limit => 100
-    t.column "crypted_password", :string, :limit => 40
-    t.column "salt", :string, :limit => 40
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "remember_token", :string, :limit => 40
-    t.column "remember_token_expires_at", :datetime
-    t.column "activation_code", :string, :limit => 40
-    t.column "activated_at", :datetime
-    t.column "state", :string, :default => "passive"
-    t.column "deleted_at", :datetime
-    t.column "time_zone", :string
-    t.column "description", :string
-    t.column "icon_file_name", :string
-    t.column "icon_content_type", :string
-    t.column "icon_file_size", :integer
-    t.column "life_list_id", :integer
-    t.column "observations_count", :integer, :default => 0
-    t.column "identifications_count", :integer, :default => 0
-    t.column "journal_posts_count", :integer, :default => 0
-    t.column "life_list_taxa_count", :integer, :default => 0
-    t.column "preferences", :text
-    t.column "icon_url", :string
-=======
     t.string   "login",                     :limit => 40
     t.string   "name",                      :limit => 100
     t.string   "email",                     :limit => 100
@@ -758,7 +715,6 @@ ActiveRecord::Schema.define(:version => 20110811040139) do
     t.integer  "life_list_taxa_count",                     :default => 0
     t.text     "preferences"
     t.string   "icon_url"
->>>>>>> 821625165f050cffb3f0e16b2cd4ef904aeb7d62
   end
 
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"
