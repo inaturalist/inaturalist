@@ -76,7 +76,7 @@ Rails::Initializer.run do |config|
   
   # Gems
   # config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
-  config.gem 'will_paginate'
+  config.gem 'will_paginate', :version => '2.3.15'
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
   # config.gem "GeoRuby", :lib => 'geo_ruby'
   config.gem "dbf", :version => "<= 1.2.9"
