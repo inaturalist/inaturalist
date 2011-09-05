@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
       else
         redirect_to home_path
       end
-      
+      user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
     else
       note_failed_signin
       @login       = params[:login]

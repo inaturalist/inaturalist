@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   before_filter :login_from_cookie, :get_user, :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
+  before_filter :user_logging
   
   PER_PAGES = [10,30,50,100]
   
@@ -122,6 +123,11 @@ class ApplicationController < ActionController::Base
   def return_here_from_url
     return true if params[:return_to].blank?
     session[:return_to] = params[:return_to]
+  end
+  
+  def user_logging
+    return true unless logged_in?
+    Rails.logger.info "  User: #{current_user.login} #{current_user.id}"
   end
   
   #
