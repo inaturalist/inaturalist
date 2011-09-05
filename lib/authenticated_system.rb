@@ -109,13 +109,23 @@ module AuthenticatedSystem
 
     # Called from #current_user.  First attempt to login by the user id stored in the session.
     def login_from_session
-      self.current_user = User.find_by_id(session[:user_id]) if session[:user_id]
+      if session[:user_id]
+        self.current_user = User.find_by_id(session[:user_id])
+        if current_user && current_user.last_ip != request.env['REMOTE_ADDR']
+          current_user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+        end
+        self.current_user
+      end
     end
 
     # Called from #current_user.  Now, attempt to login by basic authentication information.
     def login_from_basic_auth
       authenticate_with_http_basic do |login, password|
-        self.current_user = User.authenticate(login, password)
+        u = User.authenticate(login, password)
+        if u && u.last_ip != request.env['REMOTE_ADDR']
+          u.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+        end
+        self.current_user = u
       end
     end
     
@@ -130,6 +140,9 @@ module AuthenticatedSystem
       if user && user.remember_token?
         self.current_user = user
         handle_remember_cookie! false # freshen cookie token (keeping date)
+        if current_user && current_user.last_ip != request.env['REMOTE_ADDR']
+          current_user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+        end
         self.current_user
       end
     end
