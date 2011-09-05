@@ -264,7 +264,7 @@
               zoom: 4,
               controls: 'none'});
             observation_<%= observation.id %>_map.addObservation(
-              <%= observation.to_json(:include => [:user, :taxon, :iconic_taxon]) %>, 
+              <%= observation.to_json(:include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}) %>, 
               {clickable: false});
           </script>
         <% end %>

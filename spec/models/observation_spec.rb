@@ -958,4 +958,16 @@ describe Observation do
     o.should be_georeferenced
   end
   
+  describe "to_json" do
+    it "should not include script tags" do
+      o = Observation.make(:description => "<script lang='javascript'>window.close()</script>")
+      o.to_json.should_not match(/<script/)
+      o.to_json(:viewer => o.user, 
+        :force_coordinate_visibility => true,
+        :include => [:user, :taxon, :iconic_taxon]).should_not match(/<script/)
+      o = Observation.make(:species_guess => "<script lang='javascript'>window.close()</script>")
+      o.to_json.should_not match(/<script/)
+    end
+  end
+  
 end
