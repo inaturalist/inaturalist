@@ -269,13 +269,30 @@
       map.add(po.hash())
       
       <% if @cloudmade_key %>
-        map.add(po.image()
+        window.cloudmadeLyr = po.image()
             .url(po.url("http://{S}tile.cloudmade.com"
             + "/<%= @cloudmade_key %>"
             + "/998/256/{Z}/{X}/{Y}.png")
-            .hosts(["a.", "b.", "c.", ""])));
+            .hosts(["a.", "b.", "c.", ""]))
+        map.add(cloudmadeLyr);
       <% end %>
       
+      <% if @bing_key %>
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        script.setAttribute("src", "http://dev.virtualearth.net"
+            + "/REST/V1/Imagery/Metadata/AerialWithLabels"
+            + "?key=AuVY09Rr_bsOst_VeRGXWlJ4XRtJl95EP8BovD1ryA_Fajvj7XH4DRNI28eW9D-C"
+            + "&jsonp=bingCallback");
+        document.body.appendChild(script);
+      <% else %>
+        loadLayers()
+        $('#basemap').hide();
+      <% end %>
+      
+    })
+    
+    function loadLayers() {
       if (children && children.length > 0) {
         $('#legend ul').html('')
         // addObservations()
@@ -362,7 +379,37 @@
           return false;
         })
       }
-    })
+    }
+    
+    function bingCallback(data) {
+
+      /* Display each resource as an image layer. */
+      var resourceSets = data.resourceSets;
+      for (var i = 0; i < resourceSets.length; i++) {
+        var resources = data.resourceSets[i].resources;
+        for (var j = 0; j < resources.length; j++) {
+          var resource = resources[j];
+          window.bingLyr = po.image()
+              .url(Polymaps.bingUrlTemplate(resource.imageUrl, resource.imageUrlSubdomains))
+              .id('satellite')
+              .visible(false)
+          map.add(bingLyr
+            ).tileSize({x: resource.imageWidth, y: resource.imageHeight});
+        }
+      }
+
+      /* Display copyright notice. */
+      document.getElementById("copyright").appendChild(document.createTextNode(data.copyright));
+      loadLayers()
+      $('#basemap_map').click(function() {
+        cloudmadeLyr.visible(true)
+        bingLyr.visible(false)
+      })
+      $('#basemap_sat').click(function() {
+        cloudmadeLyr.visible(false)
+        bingLyr.visible(true)
+      })
+    }
   </script>
 <%- end -%>
 
@@ -460,11 +507,39 @@
     
     .listed_taxon.ui-tooltip { max-width: 300px; }
     .namelink { font-weight: bold; }
+    
+    #controls {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      z-index: 1000;
+      background-color: white;
+      border: 1px solid #eee;
+      padding: 2px 5px;
+    }
+    #copyright { 
+      z-index: 1000;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      font-size: 80%;
+      white-space: nowrap;
+      opacity: 0.5;
+    }
   </style>
 <%- end -%>
 
 <div id="map" class="fullscreen"></div>
 
+<div id="controls">
+  <div id="basemap">
+    <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
+    <label for="basemap_map">Map</label>
+    <input type="radio" name="basemap" value="sat" id="basemap_sat">
+    <label for="basemap_sat">Sat</label>
+  </div>
+</div>
+<div id="copyright"></div>
 <div id="legend">
   <div class="meta">
     THIS MAP IS AN EXPERIMENT!  Probably won't work in IE

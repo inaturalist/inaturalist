@@ -410,6 +410,7 @@ class TaxaController < ApplicationController
     end
     
     @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
+    @bing_key = INAT_CONFIG['bing'].try(:[], 'key')
     
     @county_listings = @taxon.listed_taxa.all(
       :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 

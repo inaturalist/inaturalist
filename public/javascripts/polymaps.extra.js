@@ -43,3 +43,28 @@ Polymaps.bounds = function(features) {
   }
   return bounds;
 }
+
+// Lifted from the bing example in the polymaps source
+Polymaps.bingUrlTemplate = function(url, subdomains) {
+  var n = subdomains.length,
+      salt = ~~(Math.random() * n); // per-session salt
+
+  /** Returns the given coordinate formatted as a 'quadkey'. */
+  function quad(column, row, zoom) {
+    var key = "";
+    for (var i = 1; i <= zoom; i++) {
+      key += (((row >> zoom - i) & 1) << 1) | ((column >> zoom - i) & 1);
+    }
+    return key;
+  }
+
+  return function(c) {
+    var quadKey = quad(c.column, c.row, c.zoom),
+        server = Math.abs(salt + c.column + c.row + c.zoom) % n;
+    return url
+        .replace("{quadkey}", quadKey)
+        .replace("{subdomain}", subdomains[server]);
+  };
+}
+
+
