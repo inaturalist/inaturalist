@@ -1,5 +1,5 @@
 class FlickrController < ApplicationController
-  before_filter :login_required , :except => "authorize"
+  before_filter :login_required , :except => ["authorize", "invite"]
   before_filter :ensure_has_no_flickr_identity, :only => ['link']
   before_filter :return_here, :only => [:index, :show, :by_login, :options]
   
@@ -288,6 +288,11 @@ class FlickrController < ApplicationController
         end
       end
     end
+  end
+
+  def invite
+    session[:flickr_invite_photo_id] = params[:flickr_photo_id]
+    redirect_to "/auth/flickr"
   end
   
   private
