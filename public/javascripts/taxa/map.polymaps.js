@@ -192,7 +192,7 @@ function addPlaces() {
 function addObservations() {
   layers['observations'] = po.geoJson()
     .id('observations')
-    .url("<%= observations_of_url(@taxon, :format => 'geojson') %>")
+    .url(observationsGeoJsonUrl)
     .tile(false)
     .on('load', handleObservations)
     .on('load', handleTaxonObservations)
@@ -257,6 +257,13 @@ $(document).ready(function() {
         + "/998/256/{Z}/{X}/{Y}.png")
         .hosts(["a.", "b.", "c.", ""]))
     map.add(cloudmadeLyr);
+    $('#copyright').append(
+      $('<div id="cloudmade_attribution"></div>').append(
+        "Base map &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> contributors, " + 
+        "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, " + 
+        "provided by <a href='http://cloudmade.com/'>CloudMade</a>"
+      )
+    )
   }
   
   if (BING_KEY) {
@@ -381,14 +388,20 @@ function bingCallback(data) {
   }
 
   /* Display copyright notice. */
-  document.getElementById("copyright").appendChild(document.createTextNode(data.copyright));
+  $('#copyright').append(
+    $('<div id="bing_attribution"></div>').append(data.copyright).hide()
+  )
   loadLayers()
   $('#basemap_map').click(function() {
     cloudmadeLyr.visible(true)
     bingLyr.visible(false)
+    $('#cloudmade_attribution').show()
+    $('#bing_attribution').hide()
   })
   $('#basemap_sat').click(function() {
     cloudmadeLyr.visible(false)
     bingLyr.visible(true)
+    $('#cloudmade_attribution').hide()
+    $('#bing_attribution').show()
   })
 }

@@ -21,6 +21,7 @@
     var taxonRangeKmlUrl = <%= (@taxon_range ? root_url.gsub(/\/$/, "") + @taxon_range.range.url : nil).to_json %>
     var observationsKmlUrl = <%= observations_url(:format => :kml, :taxon_id => @taxon.id).inspect %>
     var observationsJsonUrl = <%= observations_of_url(@taxon.id, :format => :json).inspect %>
+    var observationsGeoJsonUrl = <%= observations_of_url(@taxon.id, :format => :geojson).inspect %>
     var children = <%= @children.to_json %>
     
     $(document).ready(function() {
@@ -43,7 +44,7 @@
 
 <div id="map" class="fullscreen"></div>
 
-<div id="controls">
+<div id="controls" class="floating">
   <div id="basemap">
     <input type="radio" name="basemap" value="map" id="basemap_map" checked="checked">
     <label for="basemap_map">Map</label>
@@ -52,21 +53,22 @@
   </div>
 </div>
 <div id="copyright"></div>
-<div id="legend">
-  <div class="clear stacked">
-    <div class="stacked breadcrumbs">
-      <%- link_to @taxon, :class => "back crumb" do %>
-        Back to
-        <%= render :partial => "shared/taxon", :object => @taxon, :locals => {:link => false} %>
-      <% end %>
-    </div>
+<div id="legend" class="floating">
+  <div class="breadcrumbs stacked">
+    <%- link_to @taxon, :class => "back crumb" do %>
+      Back to
+      <%= render :partial => "shared/taxon", :object => @taxon, :locals => {:link => false} %>
+    <% end %>
+  </div>
+  
+  <div id="legendcontent" class="clear stacked">
     <%= link_to taxon_image(@taxon, :size => "square"), @taxon, :class => "taxonimage" %>
     <ul>
       <li class="putative observations" rel="observations">
         <input type="checkbox" checked="checked" id="observations_check"/>
         <div class="symbol"></div>
         <label for="observations_check">Observations (last 500)</label>
-        
+
         <div class="confirmed">
           <input type="checkbox" checked="checked" style="visibility: hidden"/>
           <div class="symbol"></div>
@@ -90,9 +92,12 @@
       </li>
     </ul>
   </div>
-  
-  <div class="clear small meta">
-    Only country, state, and county equivalent places shown for now. <br/>
-    Zoom in to see smaller places.
+      
+  <div id="legendfooter" class="clear small meta">
+    <a href="/" title="iNaturalist.org"><img src="/images/logo-mini.png" alt="iNaturalist logo" class="left" style="width: 75px"></a>
+    <div class="last column">
+      Only country, state, and county equivalent places <br/>
+      shown for now. Zoom in to see smaller places.
+    </div>
   </div>
 </div>

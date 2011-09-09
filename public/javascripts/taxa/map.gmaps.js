@@ -5,9 +5,13 @@ $(document).ready(function() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
   })
   $('#controls').hide()
-  $('#legend .breadcrumbs').nextAll().hide()
-  $('#legend .small.meta').hide()
+  $('#legendcontent').hide()
   $('#legend .stacked').removeClass('stacked')
+  $('#legendfooter .last').html(
+    '<div class="meta">FYI, this map is a lot cooler in modern browsers like ' +
+    '<a href="http://www.apple.com/safari/">Safari</a>, ' +
+    '<a href="http://www.google.com/chrome">Chrome</a>, and ' +
+    '<a href="http://www.mozilla.org/en-US/firefox/">Firefox</a>.</div>')
   
   if (extent) {
     map.fitBounds(

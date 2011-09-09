@@ -64,7 +64,10 @@ path.confirmed:hover, path.putative:hover {
   border: 1px solid #eee;
   padding: 10px;
 }
-
+/*#legend .legendheader {padding: 5px 10px; border-bottom: 1px solid #eee; line-height: 1.1;}*/
+/*#legend img {vertical-align:middle;}*/
+/*#legend .breadcrumbs {margin-top: 2px;}*/
+/*#legend .contents { padding: 10px; padding-top: 0;}*/
 #legend .taxonimage { display: block; width: 75px; float: left; margin-right: 10px; text-align: center;}
 #legend ul { float: left; list-style: none; margin: 0;}
 #legend li { white-space: nowrap;}
@@ -74,7 +77,8 @@ path.confirmed:hover, path.putative:hover {
 #legend .putative .symbol { border: 1px solid #91681D; background-color: #CA9D2C; }
 #legend .confirmed .symbol { border: 1px solid #55721F; background-color: #84A92F; }
 
-.compass path{visibility:visible;}
+.compass path{visibility:visible; opacity: 1;}
+.compass circle {opacity: 1;}
 .compass .back{fill:#eee;fill-opacity:.8;}
 .compass .fore{stroke:#999;stroke-width:1.5px;}
 .compass rect.back.fore{fill:#999;fill-opacity:.3;stroke:#eee;stroke-width:1px;shape-rendering:crispEdges;}
@@ -102,9 +106,12 @@ path.confirmed:hover, path.putative:hover {
 #copyright { 
   z-index: 1000;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 5px;
+  bottom: 5px;
   font-size: 80%;
   white-space: nowrap;
-  opacity: 0.5;
+  opacity: 0.8;
+  text-align: right;
 }
+
+.floating { box-shadow: 0px 3px 3px #888; }
