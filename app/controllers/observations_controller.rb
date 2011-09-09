@@ -165,7 +165,10 @@ class ObservationsController < ApplicationController
     end
     @observations = Observation.of(@taxon).all(:order => "observations.id desc", :limit => 500).sort_by{|o| [o.research_grade? ? 1 : 0, id]}
     respond_to do |format|
-      format.json { render :json => @observations }
+      format.json do
+        render :json => @observations.to_json(
+          :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}})
+        end
       format.geojson do
         render :json => @observations.to_geojson(:except => [
           :geom, :latitude, :longitude, :map_scale, 

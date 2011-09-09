@@ -277,13 +277,17 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
     $('<div class="readable attribute"></div>').append(
       $('<a href="/observations/'+observation.id+'"></a>').append(
         observation.species_guess
-      ),
+      )
+    )
+  );
+  if (observation.user) {
+    wrapper.append(
       ', by ',
       $('<a href="/people/'+observation.user.login+'"></a>').append(
         observation.user.login
       )
     )
-  );
+  }
   
   if (typeof(observation.short_description) != 'undefined' && observation.short_description != null) {
     wrapper.append($('<div class="description"></div>').append(observation.short_description));
