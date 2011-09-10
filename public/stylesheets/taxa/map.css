@@ -41,7 +41,7 @@ svg .confirmed {
 }
 svg .absent {
   fill: #999;
-  stroke: #333;
+  stroke: #666;
   opacity: 0.5;
   visibility: visible;
 }
@@ -82,6 +82,7 @@ path.confirmed:hover, path.putative:hover {
 #legend .observations .symbol {width: 5px; height: 5px; opacity: 0.5; position: relative; bottom: 2px; margin: 5px; -moz-border-raidus: 5px; -webkit-border-radius:5px; border-radius: 5px;}
 #legend .putative .symbol { border: 1px solid #91681D; background-color: #CA9D2C; }
 #legend .confirmed .symbol { border: 1px solid #55721F; background-color: #84A92F; }
+#legend .absent .symbol { border: 1px solid #666; background-color: #999; }
 
 .compass path{visibility:visible; opacity: 1;}
 .compass circle {opacity: 1;}

@@ -163,3 +163,11 @@ $(document).ready(function() {
     }
   })
 })
+
+// from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010
+jQuery.fn.autolink = function() {
+  return this.each(function() {
+    var re = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
+    $(this).html( $(this).html().replace(re, '<a href="$1">$1</a> ') );
+  })
+}

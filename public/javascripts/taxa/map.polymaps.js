@@ -321,7 +321,7 @@ $(document).ready(function() {
     map.add(cloudmadeLyr);
     $('#copyright').append(
       $('<div id="cloudmade_attribution"></div>').append(
-        "Base map &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> contributors, " + 
+        "Base map: &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> contributors, " + 
         "<a href='http://creativecommons.org/licenses/by-sa/2.0/'>CC-BY-SA</a>, " + 
         "provided by <a href='http://cloudmade.com/'>CloudMade</a>"
       )
@@ -407,6 +407,12 @@ function loadLayers() {
         .tile(false)
         .url(taxonRangeUrl)
       map.add(layers['range'])
+      $('#copyright').append(
+        $('<div id="range_attribution"></div>').append(
+          'Taxon range: ',
+          taxonRange.source ? (taxonRange.source.citation || taxonRange.source.title) : 'unknown source'
+        ).autolink()
+      )
     }
     addPlaces()
     addObservations()
