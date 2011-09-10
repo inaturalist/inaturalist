@@ -81,7 +81,7 @@
         <label for="range_check">Range</label>
       </li>
       <li class="putative places" rel="countries_simple states_simple counties_simple counties">
-        <input type="checkbox" checked="checked" id="places_check"/>
+        <input type="checkbox" checked="checked" id="places_check" />
         <div class="symbol"></div>
         <label for="places_check">Checklist places</label>
         <div class="confirmed">
@@ -89,6 +89,22 @@
           <div class="symbol"></div>
           <label for="places_check">Checklist places (confirmed)</label>
         </div>
+        
+        <%= link_to_toggle "Toggle place types", "#place_types", :style => "margin-left: 40px" %>
+        <ul id="place_types" style="display:none">
+          <li class="place_type" rel="countries_simple">
+            <input name="place_type" type="radio" id="place_type_countries"/>
+            <label for="place_type_countries">Countries</label>
+          </li>
+          <li class="place_type" rel="states_simple">
+            <input name="place_type" type="radio" id="place_type_states"/>
+            <label for="place_type_states">States</label>
+          </li>
+          <li class="place_type" rel="counties_simple">
+            <input name="place_type" type="radio" id="place_type_counties"/>
+            <label for="place_type_counties">Counties</label>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>

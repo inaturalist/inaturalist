@@ -147,46 +147,98 @@ function styleObservations(e, child) {
 function addPlaces() {
   layers['countries_simple'] = po.geoJson()
     .id('countries_simple')
-    .zoom(function(z) {
-      if (z > 3) { return 100};
-      return z;
-    })
+    .visible(false)
     .url(TILESTACHE_SERVER+"/countries_simplified/{Z}/{X}/{Y}.geojson")
     .on('load', classifyCountries)
   map.add(layers['countries_simple']);
-
+  
   layers['states_simple'] = po.geoJson()
     .id('states_simple')
+    .visible(false)
     .zoom(function(z) {
-      if (z < 4) { return -100};
-      if (z > 6) { return 100};
-      return z;
+      if (z < 4) { 
+        $('#place_type_states').attr('disabled', true)
+        return -100
+      }
+      $('#place_type_states').attr('disabled', false)
+      return z
     })
     .url(TILESTACHE_SERVER+"/states_simplified/{Z}/{X}/{Y}.geojson")
     .on('load', classifyStates)
   map.add(layers['states_simple']);
-
+  
   layers['counties_simple'] = po.geoJson()
     .id('counties_simple')
+    .visible(false)
     .zoom(function(z) {
-      if (z < 7) { return -100};
-      if (z > 11) { return 100};
+      if (z < 7) { 
+        $('#place_type_counties').attr('disabled', true)
+        return -100
+      }
+      $('#place_type_counties').attr('disabled', false)
       return z;
     })
     .url(TILESTACHE_SERVER+"/counties_simplified/{Z}/{X}/{Y}.geojson")
     .on('load', classifyCounties)
   map.add(layers['counties_simple']);
-
+  
   layers['counties'] = po.geoJson()
     .id('counties')
+    .visible(false)
     .zoom(function(z) {
-      if (z < 12) { return -100};
-      if (z > 13) { return 100};
+      if (z < 12) { return -100 }
       return z;
     })
     .url(TILESTACHE_SERVER+"/counties/{Z}/{X}/{Y}.geojson")
     .on('load', classifyCounties)
   map.add(layers['counties']);
+  
+  window.map.on('move', showPlacesByZoom)
+  showPlacesByZoom()
+}
+
+function showPlacesByZoom() {
+  if (!$('#places_check').attr('checked')) {
+    return
+  }
+  if (window.lastZoom == map.zoom()) {
+    return
+  }
+  var lyr
+  for (var lyrName in layers) {
+    lyr = layers[lyrName]
+    switch (lyrName) {
+      case 'countries_simple':
+        if (map.zoom() < 4) { 
+          lyr.visible(true)
+          $('#place_type_countries').attr('checked', true)
+        }
+        else { lyr.visible(false) }
+        break;
+      case 'states_simple':
+        if (map.zoom() >= 4 && map.zoom() < 7) { 
+          lyr.visible(true)
+          $('#place_type_states').attr('checked', true)
+        }
+        else { lyr.visible(false) }
+        break;
+      case 'counties_simple':
+        if (map.zoom() >= 7 && map.zoom() < 12) { 
+          lyr.visible(true)
+          $('#place_type_counties').attr('checked', true)
+        }
+        else { lyr.visible(false) }
+        break;
+      case 'counties':
+        if (map.zoom() >= 12) { 
+          lyr.visible(true)
+          $('#place_type_counties').attr('checked', true)
+        }
+        else { lyr.visible(false) }
+        break;
+    }
+  }
+  window.lastZoom = map.zoom()
 }
 
 function addObservations() {
@@ -348,14 +400,38 @@ function loadLayers() {
     }
     addPlaces()
     addObservations()
+    
+    // layer toggles
     $('#legend li').each(function() {
-      var targetLayers = $(this).attr('rel').split(' ')
-      $(this).find('input').click(function() {
-        for (var i = targetLayers.length - 1; i >= 0; i--){
-          if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
-        };
+      if ($(this).attr('rel')) {
+        var targetLayers = $(this).attr('rel').split(' ')
+      } else {
+        return
+      }
+      
+      $(this).find('input[type=checkbox]').click(function() {
+        if ($(this).attr('id') == 'places_check' && this.checked) {
+          showPlacesByZoom()
+        } else {
+          for (var i = targetLayers.length - 1; i >= 0; i--){
+            if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
+          }
+        }
       })
     })
+    
+    var radios = $('#legend input[type=radio]'),
+        exclusiveLayers = radios.map(function() { return $(this).parents('li').attr('rel').split(' ') })
+    radios.click(function() {
+      for (var i = exclusiveLayers.length - 1; i >= 0; i--){
+        layers[exclusiveLayers[i]].visible(false)
+      }
+      var targetLayers = $(this).parents('li').attr('rel').split(' ')
+      for (var i = targetLayers.length - 1; i >= 0; i--){
+        if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
+      }
+    })
+    
   }
   
   map.add(po.compass())
