@@ -53,19 +53,19 @@ class ListedTaxon < ActiveRecord::Base
   ORDERS = [ALPHABETICAL_ORDER, TAXONOMIC_ORDER]
   OCCURRENCE_STATUS_LEVELS = {
     60 => "present",
-    50 => "common",
-    40 => "uncommon",
-    30 => "irregular",
-    20 => "doubtful",
+    # 50 => "common",
+    # 40 => "uncommon",
+    # 30 => "irregular",
+    # 20 => "doubtful",
     10 => "absent"
   }
   OCCURRENCE_STATUSES = OCCURRENCE_STATUS_LEVELS.values
   OCCURRENCE_STATUS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   OCCURRENCE_STATUS_DESCRIPTIONS["present" ] =  "occurs in the area"
-  OCCURRENCE_STATUS_DESCRIPTIONS["common" ] =  "occurs frequently"
-  OCCURRENCE_STATUS_DESCRIPTIONS["uncommon" ] =  "occurs regularly, but in small numbers; requires careful searching of proper habitat" 
-  OCCURRENCE_STATUS_DESCRIPTIONS["irregular" ] =  "presence unpredictable, including vagrants; may be common in some years and absent others"
-  OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
+  # OCCURRENCE_STATUS_DESCRIPTIONS["common" ] =  "occurs frequently"
+  # OCCURRENCE_STATUS_DESCRIPTIONS["uncommon" ] =  "occurs regularly, but in small numbers; requires careful searching of proper habitat" 
+  # OCCURRENCE_STATUS_DESCRIPTIONS["irregular" ] =  "presence unpredictable, including vagrants; may be common in some years and absent others"
+  # OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
   OCCURRENCE_STATUS_DESCRIPTIONS["absent" ] =  "does not occur in the area"
   
   ESTABLISHMENT_MEANS = %w(native introduced naturalised invasive managed)

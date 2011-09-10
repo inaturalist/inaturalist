@@ -39,6 +39,12 @@ svg .confirmed {
   opacity: 0.5;
   visibility: visible;
 }
+svg .absent {
+  fill: #999;
+  stroke: #333;
+  opacity: 0.5;
+  visibility: visible;
+}
 path.confirmed:hover, path.putative:hover {
   cursor: pointer;
 }

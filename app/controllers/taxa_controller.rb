@@ -413,7 +413,7 @@ class TaxaController < ApplicationController
     @bing_key = INAT_CONFIG['bing'].try(:[], 'key')
     
     @county_listings = @taxon.listed_taxa.all(
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level", 
       :joins => [:place], 
       :conditions => [
         "place_id IS NOT NULL AND places.place_type = ?", 
@@ -421,7 +421,7 @@ class TaxaController < ApplicationController
       ]
     ).index_by(&:place_id)
     @state_listings = @taxon.listed_taxa.all(
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level", 
       :joins => [:place], 
       :conditions => [
         "place_id IS NOT NULL AND places.place_type = ?", 
@@ -429,7 +429,7 @@ class TaxaController < ApplicationController
       ]
     ).index_by(&:place_id)
     @country_listings = @taxon.listed_taxa.all(
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type", 
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level", 
       :joins => [:place], 
       :conditions => [
         "place_id IS NOT NULL AND places.place_type = ?", 

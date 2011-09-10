@@ -27,8 +27,15 @@ function classifyPlaces(e, options) {
     }
     if (listing) {
       var placeClass = 'place_' + listing.place_id
-      feature.element.setAttribute('class', placeType + ' ' + placeClass + 
-        ' ' + (listing.last_observation_id ? 'confirmed' : 'putative'))
+      var cssClass = placeType + ' ' + placeClass + ' '
+      if (listing.last_observation_id) {
+        cssClass += 'confirmed'
+      } else if (listing.occurrence_status == 'absent') {
+        cssClass += 'absent'
+      } else {
+        cssClass += 'putative'
+      }
+      feature.element.setAttribute('class',  cssClass)
       feature.element.setAttribute('data-place-id', listing.place_id)
       $(feature.element).hover(
         function() { $('path.place_'+$(this).attr('data-place-id')).css('opacity', 0.7) },
@@ -197,12 +204,15 @@ function addPlaces() {
   showPlacesByZoom()
 }
 
-function showPlacesByZoom() {
-  if (!$('#places_check').attr('checked')) {
-    return
-  }
-  if (window.lastZoom == map.zoom()) {
-    return
+function showPlacesByZoom(options) {
+  options = options || {}
+  if (!options.force) {
+    if (!$('#places_check').attr('checked')) {
+      return
+    }
+    if (window.lastZoom == map.zoom()) {
+      return
+    }
   }
   var lyr
   for (var lyrName in layers) {
@@ -411,7 +421,7 @@ function loadLayers() {
       
       $(this).find('input[type=checkbox]').click(function() {
         if ($(this).attr('id') == 'places_check' && this.checked) {
-          showPlacesByZoom()
+          showPlacesByZoom({force: true})
         } else {
           for (var i = targetLayers.length - 1; i >= 0; i--){
             if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
