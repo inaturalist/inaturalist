@@ -291,7 +291,11 @@ class FlickrController < ApplicationController
   end
 
   def invite
-    session[:flickr_invite_photo_id] = params[:flickr_photo_id]
+    # params should include 'flickr_photo_id' and whatever else you want to add
+    # to the observation, e.g. taxon_id, project_id, etc
+    invite_params = params
+    [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
+    session[:flickr_invite_params] = invite_params
     redirect_to "/auth/flickr"
   end
   
