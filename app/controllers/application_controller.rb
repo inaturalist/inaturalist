@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
   def get_net_flickr
     Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
   end
-  
+
   def get_flickraw
     FlickRaw.api_key = FLICKR_API_KEY
     FlickRaw.shared_secret = FLICKR_SHARED_SECRET

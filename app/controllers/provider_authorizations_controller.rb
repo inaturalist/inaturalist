@@ -63,6 +63,7 @@ class ProviderAuthorizationsController < ApplicationController
       landing_path = home_path
     end
     landing_path = session[:return_to] if !session[:return_to].blank? && session[:return_to] != login_url
+    session[:return_to] = nil
     if session[:flickr_invite_params] # registering via an invite link in a flickr comment. see /flickr/invite
       flickr_invite_params = session[:flickr_invite_params]
       session[:flickr_invite_params] = nil

@@ -133,6 +133,7 @@ require 'wikipedia_service'
 require 'batch_tools'
 require 'geo_ruby/shp4r/shp'
 require 'georuby_extra'
+require 'koala'
 
 # GeoIP setup, for IP geocoding
 geoip_config = YAML.load(File.open("#{RAILS_ROOT}/config/geoip.yml"))

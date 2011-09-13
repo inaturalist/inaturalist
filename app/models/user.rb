@@ -266,6 +266,26 @@ class User < ActiveRecord::Base
     friends.exists?(user)
   end
 
+  def facebook_identity
+    @facebook_identity ||= self.has_provider_auth('facebook')
+    return @facebook_identity
+  end
+
+  def facebook_api
+    return nil if self.facebook_identity.nil?
+    @fb ||= Koala::Facebook::GraphAndRestAPI.new(self.facebook_identity.token)
+    return @fb
+  end
+
+  # returns an array of urls for facebook album cover photo thumbnails
+  # image_size can be 'src_small' or 'src_big'
+  def facebook_album_cover_photos(image_size="src_small")
+    return [] if self.facebook_api.nil? 
+    return self.facebook_api.fql_query(
+      "SELECT #{image_size} FROM photo WHERE pid IN (SELECT cover_pid FROM album WHERE owner = me())"
+    ).map{|p| p[image_size]}
+  end
+
   protected
 
   # given a requested login, will try to find existing users with that login
@@ -315,4 +335,5 @@ class User < ActiveRecord::Base
     )
     true
   end
+
 end
