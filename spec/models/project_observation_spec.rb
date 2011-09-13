@@ -70,6 +70,23 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
   
 end
 
+describe ProjectObservation, "observed_in_place" do
+  it "should use private coordinates" do
+    place = Place.make(:name => "Berkeley")
+    place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
+    observation = Observation.make(:latitude => 37.8732, :longitude => -122.263)
+    project_observation = ProjectObservation.make(:observation => observation)
+    project_observation.should be_observed_in_place(place)
+    observation.update_attributes(:latitude => 37, :longitude => -122)
+    project_observation.reload
+    project_observation.should_not be_observed_in_place(place)
+    observation.update_attributes(:private_latitude => 37.8732, :private_longitude => -122.263)
+    observation.save
+    project_observation.reload
+    project_observation.should be_observed_in_place(place)
+  end
+end
+
 describe ProjectObservation, "georeferenced?" do
   
   it "should work" do

@@ -494,7 +494,11 @@ class Place < ActiveRecord::Base
   end
   
   def contains_lat_lng?(lat, lng)
-    bbox_contains_lat_lng?(lat, lng) # TODO implement true containment
+    PlaceGeometry.exists?([
+      "place_id = ? AND " + 
+      "ST_Intersects(place_geometries.geom, ST_Point(?, ?))",
+      id, lng, lat
+    ])
   end
   
   def bbox_contains_lat_lng?(lat, lng)

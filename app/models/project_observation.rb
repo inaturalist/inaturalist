@@ -60,11 +60,15 @@ class ProjectObservation < ActiveRecord::Base
   
   ##### Rules ###############################################################
   def observed_in_place?(place)
-    place.contains_lat_lng?(observation.latitude, observation.longitude)
+    place.contains_lat_lng?(
+      observation.private_latitude || observation.latitude, 
+      observation.private_longitude || observation.longitude)
   end
   
   def observed_in_bounding_box_of?(place)
-    place.bbox_contains_lat_lng?(observation.latitude, observation.longitude)
+    place.bbox_contains_lat_lng?(
+      observation.private_latitude || observation.latitude, 
+      observation.private_longitude || observation.longitude)
   end
   
   def georeferenced?
