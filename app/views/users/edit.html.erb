@@ -64,7 +64,9 @@
         <% for attr_name in Preferences::NOTIFICATION_ATTRIBUTES %>
           <div class="field">
             <%= p.check_box attr_name %>
-            <%= p.label attr_name, attr_name.to_s.split('_').first.pluralize.capitalize %>
+            <%= p.label attr_name,
+              (attr_name.to_s.split('_').first=="project" ? "Project Invitations" :  attr_name.to_s.split('_').first.pluralize.capitalize)
+            %>
           </div>
         <% end %>
       <% end %>

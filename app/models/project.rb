@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :project_users, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
+  has_many :project_invitations, :dependent => :destroy
   has_many :users, :through => :project_users
   has_many :observations, :through => :project_observations
   has_one :project_list, :dependent => :destroy

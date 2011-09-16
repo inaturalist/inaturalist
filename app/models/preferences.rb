@@ -2,6 +2,7 @@ class Preferences
   PREFERENCES = [
     :comment_email_notification,
     :identification_email_notification,
+    :project_invitation_email_notification,
     :lists_by_login_sort,
     :lists_by_login_order,
     :per_page
@@ -10,6 +11,7 @@ class Preferences
   ALLOWED = {
     :comment_email_notification => [true, false],
     :identification_email_notification => [true, false],
+    :project_invitation_email_notification => [true, false],
     :lists_by_login_sort => ListsController::LIST_SORTS,
     :lists_by_login_order => ListsController::LIST_ORDERS,
     :per_page => ApplicationController::PER_PAGES
@@ -18,6 +20,7 @@ class Preferences
   DEFAULTS = {
     :comment_email_notification => true,
     :identification_email_notification => true,
+    :project_invitation_email_notification => true,
     :lists_by_login_sort => 'id',
     :lists_by_login_order => 'asc',
     :per_page => 30
@@ -25,7 +28,8 @@ class Preferences
   
   NOTIFICATION_ATTRIBUTES = [
     :comment_email_notification,
-    :identification_email_notification
+    :identification_email_notification,
+    :project_invitation_email_notification
   ]
   
   # Set all prefs as instance vars

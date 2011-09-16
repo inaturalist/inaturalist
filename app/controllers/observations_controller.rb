@@ -273,6 +273,9 @@ class ObservationsController < ApplicationController
         @project_observations = @observation.project_observations.all(:limit => 100)
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         
+        @project_invitations = @observation.project_invitations.all(:limit => 100)
+        @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
+        
         @comments_and_identifications = (@observation.comments.all + 
           @identifications).sort_by(&:created_at)
         

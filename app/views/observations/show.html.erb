@@ -240,6 +240,37 @@
       <%= link_to "To the Bat Cave!", admin_url, 
                   :id => "admin_button", :class => "button" %>
     </div>
+  <% else %>
+    <div id="tools">
+      <% unless @project_users.blank? %>
+          
+          <% link_to_toggle_menu "Invite to project", :class => "button", 
+              :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
+            <ul>
+              <% for project_user in @project_users %>
+                <li class="inline buttonrow">
+                  <% if @project_observations_by_project_id[project_user.project_id] -%>
+                    <span class = "disabled pale button" >added</span>
+                  <% elsif @project_invitations_by_project_id[project_user.project_id] -%>
+                    <span class = "disabled pale button" >invited</span>
+                  <% else %>
+                    <%= link_to "invite",
+                      { :controller => 'project_invitations',
+                        :action => 'create',
+                        :project_id => project_user.project.id,
+                        :observation_id => @observation.id,
+                        :user_id => @user.id },
+                      :method => :post,
+                      :class => "glaucous button" %>
+                  <% end -%>
+                  <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+          
+      <% end %>
+    </div>
   
   <% end %>
 </div><!-- end pageheader -->
@@ -474,10 +505,12 @@
     <% end %>
   </div><!-- end identifications -->
   
-  <% unless @project_observations.blank? -%>
-    <%= separator %>
-    <div id="projects" class="stacked">
-      <h3>Projects</h3>
+  <% unless @project_observations.blank? && @project_invitations.blank? -%>
+  <%= separator %>
+  <div id="projects" class="stacked">
+    <h3>Projects</h3>
+    
+    <% unless @project_observations.blank? -%>
       <p class="description">
         Added to the following projects:
       </p>
@@ -497,6 +530,34 @@
           <% end -%>
         </div>
       <% end %>
+    <% end %>
+    <% unless @observation.project_invitations.empty? %>
+      <p class="description">
+        Invited to the following projects:
+      </p>
+      <% for pi in @project_invitations %>
+        <div class="quiet box clear inline buttonrow">
+          <span class="inter">
+            <%= image_tag pi.project.icon.url(:mini), :style => "vertical-align: middle" %>
+            <%= link_to truncate(h(pi.project.title), :length => (is_me?(@observation.user) || is_me?(pi.user) || curator_of?(pi.project) ? 21 : 31)), pi.project %>
+          </span>
+          <% if is_me?(@observation.user) -%>
+            <%= link_to "accept", 
+              accept_project_invitation_path(pi),
+              :method => :post,
+              :class => "glaucous button" %>
+          <% end -%>
+          <% if is_me?(@observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
+            <%= link_to (is_me?(@observation.user) ? "ignore" : "uninvite"), 
+              pi,
+              :method => :delete,
+              :confirm => "Are you sure you want to remove this invitation?",
+              :class => "pale button",
+              :style => "float: right; margin: 0" %>
+          <% end -%>
+        </div>
+      <% end %>
+    <% end %>
     </div>
   <% end -%>
   

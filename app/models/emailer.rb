@@ -56,6 +56,22 @@ class Emailer < ActionMailer::Base
     }
   end
   
+  def project_invitation_notification(project_invitation)
+    setup_email
+    recipients project_invitation.observation.user.email
+    obs_str = project_invitation.observation.to_plain_s(:no_user => true, 
+      :no_time => true, :no_place_guess => true)
+    @subject << "#{project_invitation.user.login} invited your " + 
+      "observation \"#{obs_str})\"" +
+      "to the project #{h project_user.project.title}"
+    @body = {
+      :project => project_invitation.project,
+      :observation => project_invitation.observation,
+      :user => project_invitation.observation.user,
+      :inviter => project_invitation.user
+    }
+  end
+  
   protected
     def setup_email
       from    "iNaturalist.org <#{APP_CONFIG[:noreply_email]}>"

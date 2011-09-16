@@ -190,6 +190,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'lists', :action => 'reload_from_observations'
   
   map.resources :comments
+  map.resources :project_invitations, :except => [:index, :show]
+  map.with_options :controller => 'project_invitations' do |project_invitation|
+    project_invitation.accept_project_invitation 'project_invitation/:id/accept', :action => 'accept', :conditions => {:method => :post}
+  end
   
   #
   # Taxon and Name routes
