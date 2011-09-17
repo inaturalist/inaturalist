@@ -24,18 +24,23 @@ class FacebookController < ApplicationController
     render(:partial => 'facebook/albums')
   end
 
-  # Return an HTML fragment containing photos in the album with the given param[:id]
+  # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
-    #render(:text=>@user.facebook_album_photos(params[:id]).to_json)
-    @photos = @user.facebook_album_photos(params[:id]).map{|fp| FacebookPhoto.new_from_api_response(fp)}
-    @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
+    per_page = (params[:limit] || 10).to_i
+    page = (params[:page] || 1).to_i
+    from = ((page-1)*per_page)
+    to = ((page*per_page)-1)
+    all_photos = @user.facebook_album_photos(params[:id])
+    @photos = (all_photos[from..to] || []).map{|fp| FacebookPhoto.new_from_api_response(fp)}
+    # sync doesn't work with facebook! they strip exif metadata from photos. :(
+    #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|
       format.html do
         render :partial => 'photos/photo_list_form', 
                :locals => {
                  :photos => @photos, 
                  :index => params[:index],
-                 :synclink_base => @synclink_base,
+                 :synclink_base => nil, #@synclink_base,
                  :local_photos => false
                }
       end
