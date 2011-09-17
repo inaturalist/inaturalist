@@ -4,8 +4,8 @@
 <div class="column span-13">
 <% if @user.facebook_identity -%>
   <p>
-    <% @album_cover_photos.each do |photo_src| -%>
-      <img src="<%= photo_src -%>" />
+    <% @album_cover_photos.each do |photo| -%>
+      <img src="<%= photo['cover_photo_src'] -%>" />
     <% end -%>
   </p>
   <p>

@@ -30,16 +30,23 @@
             baseURL: '/flickr/photo_fields?context=user',
           <%- elsif @default_photo_identity && @default_photo_identity.is_a?(PicasaIdentity) -%>
             baseURL: '/picasa/photo_fields?context=user',
+          <%- elsif !@user.facebook_identity.nil? -%>
+            baseURL: '/facebook/albums?context=user',
           <% else %>
             baseURL: '/photos/local_photo_fields?context=user',
             queryOnLoad: false,
           <%- end -%>
-          <%- unless @photo_identities.blank? %>
+          <%- unless @photo_identities.blank? && @user.facebook_identity.nil? %>
             <%- 
               urls = @photo_identities.map do |identity|
                 service = identity.class.to_s.underscore.split('_').first.capitalize
                 "{title: '#{service}', url: '/#{service.downcase}/photo_fields?context=user'}"
               end
+            -%>
+          <%- 
+            if !@user.facebook_identity.nil?
+              urls << "{title: 'Facebook', url: '/facebook/albums'}"
+            end
             -%>
             urls: [<%= urls.join(', ') %>],
           <% end -%>
@@ -50,6 +57,10 @@
             synclink_base: "/observations/new"
           }
         });
+      });
+      $(".facebookAlbums .album").live('click',function(){
+        $('.observation_photos').photoSelector.changeBaseUrl('.observation_photos','/facebook/album/'+$(this).attr('data-aid'));
+        //$('.photoSelectorControls .prevlink, .photoSelectorControls .nextlink').css('visibility','visible');
       });
     });
   </script>
