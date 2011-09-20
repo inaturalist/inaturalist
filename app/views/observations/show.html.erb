@@ -240,40 +240,6 @@
       <%= link_to "To the Bat Cave!", admin_url, 
                   :id => "admin_button", :class => "button" %>
     </div>
-  <% else %>
-    <div id="tools">
-      <% if logged_in? && params[:test] -%>
-        <% unless @project_users.blank? %>
-          
-          <% link_to_toggle_menu "Invite to project", :class => "button", 
-              :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-            <ul>
-              <% for project_user in @project_users %>
-                <li class="inline buttonrow">
-                  <% if @project_observations_by_project_id[project_user.project_id] -%>
-                    <span class = "disabled pale button" >added</span>
-                  <% elsif @project_invitations_by_project_id[project_user.project_id] -%>
-                    <span class = "disabled pale button" >invited</span>
-                  <% else %>
-                    <%= link_to "invite",
-                      { :controller => 'project_invitations',
-                        :action => 'create',
-                        :project_id => project_user.project.id,
-                        :observation_id => @observation.id,
-                        :user_id => @user.id },
-                      :method => :post,
-                      :class => "glaucous button" %>
-                  <% end -%>
-                  <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
-          
-        <% end %>
-      <% end %>
-    </div>
-  
   <% end %>
 </div><!-- end pageheader -->
 
@@ -535,7 +501,39 @@
       <% end %>
     <% end %>
     <% if logged_in? && params[:test] -%>
-     <% unless @observation.project_invitations.empty? %>
+      <% if @user && @user.login != @observation.user.login %>
+       <div id="tools">
+        <% unless @project_users.blank? %>
+          
+          <% link_to_toggle_menu "Invite to project", :class => "button", 
+              :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
+            <ul>
+              <% for project_user in @project_users %>
+                <li class="inline buttonrow">
+                  <% if @project_observations_by_project_id[project_user.project_id] -%>
+                    <span class = "disabled pale button" >added</span>
+                  <% elsif @project_invitations_by_project_id[project_user.project_id] -%>
+                    <span class = "disabled pale button" >invited</span>
+                  <% else %>
+                    <%= link_to "invite",
+                      { :controller => 'project_invitations',
+                        :action => 'create',
+                        :project_id => project_user.project.id,
+                        :observation_id => @observation.id,
+                        :user_id => @user.id },
+                      :method => :post,
+                      :class => "glaucous button" %>
+                  <% end -%>
+                  <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+       </div>
+       <br /><br />
+      <% end %>
+     <% unless @project_invitations.empty? %>
       <p class="description">
         Invited to the following projects:
       </p>
