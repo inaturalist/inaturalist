@@ -13,6 +13,8 @@ class ProjectObservation < ActiveRecord::Base
   after_destroy :update_observations_counter_cache_later
   after_create :update_taxa_counter_cache_later
   after_destroy :update_taxa_counter_cache_later
+  after_create :update_project_species_counter_cache_later
+  after_destroy :update_project_species_counter_cache_later
   
   def observed_by_project_member?
     project.project_users.exists?(:user_id => observation.user_id)
@@ -35,6 +37,10 @@ class ProjectObservation < ActiveRecord::Base
     true
   end
   
+  def update_project_species_counter_cache_later
+    Project.send_later(:update_species_count, project_id)
+  end
+
   def to_csv_column(column)
     case column
     when "curator_ident_taxon_id"

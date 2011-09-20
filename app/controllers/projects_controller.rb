@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   
   def show
     @species_count = @project.species_count
-    @top_observers = @project.project_users.all(:order => "taxa_count desc", :limit => 3, :conditions => "taxa_count > 0")
+    @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 3, :conditions => "taxa_count > 0")
     @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
     @project_observations = @project.project_observations.paginate(:page => 1, 
       :include => {
@@ -116,8 +116,8 @@ class ProjectsController < ApplicationController
   end
   
   def contributors
-    @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC", :conditions => "taxa_count > 0")
-    @top_contributors = @project.project_users.all(:order => "taxa_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+    @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
+    @top_contributors = @project.project_users.all(:order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0", :limit => 5)
     respond_to do |format|
       format.html do
       end
