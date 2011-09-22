@@ -26,6 +26,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"
 
+  map.connect "/facebook/photo_fields", :controller => "facebook", :action => "albums"
+
   # Special controller routes
   
   map.resources :announcements

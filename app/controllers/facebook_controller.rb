@@ -24,6 +24,11 @@ class FacebookController < ApplicationController
     render(:partial => 'facebook/albums')
   end
 
+#  this is mapped in config/routes.rb
+#  def photo_fields
+#    redirect_to :action => "albums"
+#  end
+
   # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
     per_page = (params[:limit] || 10).to_i
@@ -41,7 +46,8 @@ class FacebookController < ApplicationController
                  :photos => @photos, 
                  :index => params[:index],
                  :synclink_base => nil, #@synclink_base,
-                 :local_photos => false
+                 :local_photos => false,
+                 :organized_by_album => true
                }
       end
     end
