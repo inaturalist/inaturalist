@@ -281,6 +281,13 @@ describe Taxon, "unique name" do
     taxon.unique_name.should_not be_blank
     taxon.unique_name.should == "foo"
   end
+  
+  it "should not contain punctuation" do
+    taxon = Taxon.make
+    TaxonName.make(:taxon => taxon, :name => "St. Gerome's Radical Snake", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    taxon.reload
+    taxon.unique_name.should_not match(/[\.\'\?\!\\\/]/)
+  end
 end
 
 describe Taxon, "tags_to_taxa" do

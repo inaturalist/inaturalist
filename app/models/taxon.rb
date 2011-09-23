@@ -563,6 +563,7 @@ class Taxon < ActiveRecord::Base
         next
       end
       begin
+        candidate = candidate.gsub(/[\.\'\?\!\\\/]/, '')
         logger.info "Updating unique_name for #{self} to #{candidate}"
         Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
       rescue ActiveRecord::StatementInvalid => e
