@@ -12,8 +12,9 @@ LATEST_TIME = Time.now
 count = 0
 taxon_count = Taxon.count
 user_count = User.count
+num_obs = ARGV[0].to_i || 100
 
-2000.times do
+num_obs.times do
   taxon = Taxon.first(:offset => rand(taxon_count))
   time = EARLIEST_TIME + rand(LATEST_TIME - EARLIEST_TIME)
   user = User.first(:offset => rand(user_count))
