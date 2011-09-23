@@ -473,12 +473,10 @@
     <% end %>
   </div><!-- end identifications -->
   
-  <% unless @project_observations.blank? && @project_invitations.blank? -%>
+  <% unless @project_observations.blank? && @project_invitations.blank? && @project_users.blank? -%>
   <%= separator %>
   <div id="projects" class="stacked">
-    <% unless @project_observations.blank? -%>
-     <h3>Projects</h3>
-    <% end -%>
+    <h3>Projects</h3>
     <% unless @project_observations.blank? -%>
       <p class="description">
         Added to the following projects:

@@ -136,6 +136,7 @@ ActionController::Routing::Routes.draw do |map|
     p.project_map 'projects/:id/map', :action => 'map'
     p.make_curator 'projects/:id/make_curator/:project_user_id', :action => 'make_curator'
     p.remove_curator 'projects/:id/remove_curator/:project_user_id', :action => 'remove_curator'
+    p.remove_project_user 'projects/:id/remove_project_user/:project_user_id', :action => 'remove_project_user'
     p.project_stats 'projects/:id/stats', :action => 'stats'
     p.formatted_project_stats 'projects/:id/stats.:format', :action => 'stats'
   end

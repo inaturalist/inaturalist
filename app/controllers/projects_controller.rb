@@ -188,21 +188,67 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def remove_project_user
+    @project_user = @project.project_users.find_by_id(params[:project_user_id])
+    if @project_user.blank?
+      flash[:error] = "Project user cannot be found"
+      redirect_to project_members_path(@project)
+      return
+    end
+    if @project.user_id != current_user.id
+      flash[:error] = "Only an admin can remove project users"
+      redirect_to project_members_path(@project)
+      return
+    end
+    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
+    if @project_user.destroy
+      flash[:notice] = "Removed project user"
+      redirect_to project_members_path(@project)
+    else
+      flash[:error] = "Project user was invalid: #{@project_user.errors.full_messages.to_sentence}"
+      redirect_to project_members_path(@project)
+      return
+    end
+  end
+  
   def join
+    @observation = Observation.find_by_id(params[:observation_id])
+    @project_curators = @project.project_users.all('role = "curator"')
     if @project_user
       flash[:notice] = "You're already a member of this project!"
       redirect_to @project
       return
     end
     return unless request.post?
+    
     @project_user = @project.project_users.create(:user => current_user)
-    if @project_user.valid?
-      flash[:notice] = "Welcome to #{@project.title}"
-      redirect_to @project and return
-    else
-      flash[:error] = "Sorry, there were problems with your request: " + 
+    unless @observation
+      if @project_user.valid?
+        flash[:notice] = "Welcome to #{@project.title}"
+        redirect_to @project and return
+      else
+        flash[:error] = "Sorry, there were problems with your request: " + 
         @project_user.errors.full_messages.to_sentence
+        redirect_to @project and return
+      end
     end
+    
+    unless @project_user.valid?
+      flash[:error] = "Sorry, there were problems with your request: " + 
+      @project_user.errors.full_messages.to_sentence
+      redirect_to @observation and return
+    end
+    @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
+    unless @project_observation.valid?
+      flash[:error] = "There were problems adding your observation to this project: " + 
+        @project_observation.errors.full_messages.to_sentence
+      redirect_to @observation and return
+    end
+    if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => @observation.id})
+      @project_invitation.destroy
+    end
+    flash[:notice] = "You've joined the \"#{@project_invitation.project.title}\" project and your observation was added"
+    redirect_to @observation
   end
   
   def leave
@@ -213,6 +259,7 @@ class ProjectsController < ApplicationController
     unless @project_user.role == nil
       Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
     end
+    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
     @project_user.destroy
     flash[:notice] = "You have left #{@project.title}"
     redirect_to @project

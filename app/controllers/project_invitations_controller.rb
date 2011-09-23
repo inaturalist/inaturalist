@@ -5,8 +5,8 @@ class ProjectInvitationsController < ApplicationController
       flash[:error] = "You don't have permission to invite that observation."
       redirect_to :back and return
     end
-    if ProjectInvitation.first(:conditions => {:observation_id => params[:observation_id], :project_id => params[:project_id], :user_id => params[:user_id]})
-      flash[:error] = "This observation was already invited"
+    if ProjectInvitation.first(:conditions => {:observation_id => params[:observation_id], :project_id => params[:project_id]})
+      flash[:error] = "This observation was already invited to this project"
       redirect_to :back and return
     end
     if ProjectObservation.first(:conditions => {:observation_id => params[:observation_id], :project_id => params[:project_id]})
@@ -31,10 +31,10 @@ class ProjectInvitationsController < ApplicationController
       flash[:error] = "You don't have permission to accept that invitation."
       return redirect_to @project_invitation.observation
     end
-    @project_user = current_user.project_users.find_or_create_by_project_id(@project_invitation.project.id)
-    unless @project_user && @project_user.valid?
-      flash[:error] = "There was a problem"
-      redirect_to :back and return
+    
+    unless @project_user = current_user.project_users.find_by_project_id(@project_invitation.project.id)
+      #Need to join
+      return redirect_to join_project_path(@project_invitation.project, :observation_id => @project_invitation.observation.id)
     end
     
     @project_observation = ProjectObservation.create(:project => @project_invitation.project, :observation => @project_invitation.observation)

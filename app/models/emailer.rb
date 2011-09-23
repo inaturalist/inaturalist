@@ -63,7 +63,7 @@ class Emailer < ActionMailer::Base
       :no_time => true, :no_place_guess => true)
     @subject << "#{project_invitation.user.login} invited your " + 
       "observation \"#{obs_str})\"" +
-      "to the project #{h project_invitation.project.title}"
+      "to the project #{project_invitation.project.title}"
     @body = {
       :project => project_invitation.project,
       :observation => project_invitation.observation,

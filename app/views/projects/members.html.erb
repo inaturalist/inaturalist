@@ -79,27 +79,32 @@
     <table class="readable">
     <% for project_user in @project_users %>
       <tr>
-        <td width="33%">
+        <td width="25%">
           <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
             observations_by_login_path(project_user.user.login),
             :alt => h(project_user.user.login),
             :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
           <%= link_to h(project_user.user.login), observations_by_login_path(project_user.user.login) %>
         </td>
-        <td width="33%">
+        <td width="25%">
           <% if project_user.is_curator? && @project.user_id != project_user.user.id %>
             <span class="description">Curator</span>
           <% elsif @project.user_id == project_user.user.id %>
             <span class="description">Admin</span>
           <% end %>
         </td>
-        <td width="33%">
+        <td width="25%">
           <% if logged_in? && current_user.id == @project.user_id  && @project.user_id != project_user.user.id %>
             <% if project_user.is_curator? %>
-              <%= link_to "Remove curator role", remove_curator_path(@project.id, project_user.id) %>
+              <%= link_to "Remove curator role", remove_curator_path(@project.id, project_user.id), :confirm => "Are you sure you want to remove #{project_user.user.login} as a curator?"%>
             <% else %>
               <%= link_to "Make curator", make_curator_path(@project.id, project_user.id) %>
             <% end %>
+          <% end -%>
+        </td>
+        <td width="25%">
+          <% if logged_in? && current_user.id == @project.user_id  && @project.user_id != project_user.user.id %>
+            <%= link_to "Remove project user", remove_project_user_path(@project.id, project_user.id), :confirm => "Are you sure you want to remove #{project_user.user.login} from this project?"%>
           <% end -%>
         </td>
       </tr>

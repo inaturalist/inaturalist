@@ -1,0 +1,6 @@
+<%= @inviter.login %> would like to invite your observation "<%= @observation.to_plain_s(:no_user => true) %>"
+to the <%= @project.title %> project
+
+You can accept or ignore the invitation here: <%= observation_url(@observation) %>
+
+<%= render :partial => 'footer' %>

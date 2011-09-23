@@ -158,4 +158,17 @@ class Project < ActiveRecord::Base
     project = Project.find_by_id(project_id)
     project.update_attributes(:species_count => (user_taxon_ids + curator_taxon_ids).uniq.size)
   end
+  
+  
+  def self.delete_project_observations_on_leave_project(project_id, user_id)
+    unless proj = Project.find_by_id(project_id)
+      return
+    end
+    unless usr = User.find_by_id(user_id)
+      return
+    end
+    proj.project_observations.find_each(:include => :observation, :conditions => ["observations.user_id = ?", usr]) do |po|
+      po.destroy
+    end
+  end
 end
