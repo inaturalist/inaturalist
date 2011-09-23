@@ -304,32 +304,13 @@ span.button {
     border: none;
 }
 
-#flash.notice {
-  background-color: #ffc;
-}
+#flash.notice{background-color:#ffc;}
+.notice a{color:#36C;text-decoration:none;}
+.notice a:hover{color:#039;}
+.description{font-style:italic;color:#888;}
+.description em{font-style:normal;color:#333;}
+.meta{color:#888;}
 
-.notice a {
-  color: #36C;
-  text-decoration: none;
-}
-
-.notice a:hover {
-  color: #039;
-}
-
-.description {
-    font-style: italic;
-    color: #888;
-}
-
-.description em {
-  font-style: normal;
-  color: #333;
-}
-
-.meta {
-  color: #888;
-}
 
 .status .success {
   color: green;
@@ -424,6 +405,11 @@ ul.leafylist li li:first-child {
 
 .quiet.box {
   background-color: #eee;
+}
+
+.notice.box {
+  border: 0 none;
+  background-color: #FFEE91;
 }
 
 /* Navigation */
@@ -918,3 +904,17 @@ form.inline .label {
 .quality_assessment td:last-child {padding-right: 0;}
 .quality_assessment td table tr:last-child td {border-bottom: 1px solid transparent;}
 .quality_assessment .percent {text-align: right;}
+
+.loadingclick {
+  cursor: default;
+  background-position: 5px 50%;
+  background-repeat: no-repeat;
+  color: #888;
+}
+.pale.loadingclick {
+  background-image: url(/images/spinner-small-ffffff_on_dedede.gif);
+}
+
+.glaucous.loadingclick {
+  background-image: url(/images/spinner-small-ffffff_on_aaaaaa.gif);
+}

@@ -63,7 +63,6 @@
     .identifications-list .identification_image img{max-width:40px;}
     .identifications-list .identification_body{float:left;width:200px;}
     .identification_group{margin-bottom:10px;}
-    .button_toggle_menu .menu{top:32px;}
     #projects .box{padding:5px;}
   </style>
 <% end %>
@@ -373,7 +372,7 @@
               :f => f,
               :show_body => true
             } %>
-            <%= f.submit 'Save Identification', :class => 'default button' %>
+            <%= f.submit 'Save Identification', :class => 'default button', "data-loading-click" => "Saving..." %>
           <% end %>
         <% end -%>
       </div>
@@ -473,93 +472,88 @@
     <% end %>
   </div><!-- end identifications -->
   
-  <% unless @project_observations.blank? && @project_invitations.blank? && @project_users.blank? -%>
-  <%= separator %>
-  <div id="projects" class="stacked">
-    <h3>Projects</h3>
-    <% unless @project_observations.blank? -%>
-      <p class="description">
-        Added to the following projects:
-      </p>
-      <% for po in @project_observations %>
-        <div class="quiet box clear inline buttonrow">
-          <span class="inter">
-            <%= image_tag po.project.icon.url(:mini), :style => "vertical-align: middle" %>
-            <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) || curator_of?(po.project) ? 21 : 31)), po.project %>
-          </span>
-          <% if is_me?(@observation.user) || curator_of?(po.project) -%>
-            <%= link_to "remove", 
-              remove_project_observation_path(po.project_id, :observation_id => @observation.id),
-              :method => :delete,
-              :confirm => "Are you sure you want to remove this observation?",
-              :class => "pale button",
-              :style => "float: right; margin: 0" %>
-          <% end -%>
-        </div>
-      <% end %>
-    <% end %>
-    <% if logged_in? && params[:test] -%>
-      <% if @user && @user.login != @observation.user.login %>
-       <div id="tools">
-        <% unless @project_users.blank? %>
-          
-          <% link_to_toggle_menu "Invite to project", :class => "button", 
-              :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
-            <ul>
-              <% for project_user in @project_users %>
-                <li class="inline buttonrow">
-                  <% if @project_observations_by_project_id[project_user.project_id] -%>
-                    <span class = "disabled pale button" >added</span>
-                  <% elsif @project_invitations_by_project_id[project_user.project_id] -%>
-                    <span class = "disabled pale button" >invited</span>
-                  <% else %>
-                    <%= link_to "invite",
-                      { :controller => 'project_invitations',
-                        :action => 'create',
-                        :project_id => project_user.project.id,
-                        :observation_id => @observation.id,
-                        :user_id => @user.id },
-                      :method => :post,
-                      :class => "glaucous button" %>
-                  <% end -%>
-                  <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
+  <% if !@project_observations.blank? || 
+        !@project_invitations.blank? || 
+        (logged_in? && is_not_me?(@observation.user) && !@project_users.blank?) -%>
+    <%= separator %>
+    <div id="projects" class="stacked">
+      <h3>Projects</h3>
+      <% unless @project_observations.blank? -%>
+        <% for po in @project_observations %>
+          <div class="quiet box clear inline buttonrow">
+            <span class="inter">
+              <%= image_tag po.project.icon.url(:mini), :style => "vertical-align: middle" %>
+              <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) || curator_of?(po.project) ? 21 : 31)), po.project %>
+            </span>
+            <% if is_me?(@observation.user) || curator_of?(po.project) -%>
+              <%= link_to "remove", 
+                remove_project_observation_path(po.project_id, :observation_id => @observation.id),
+                :method => :delete,
+                :confirm => "Are you sure you want to remove this observation?",
+                :class => "pale button",
+                :style => "float: right; margin: 0" %>
+            <% end -%>
+          </div>
         <% end %>
-       </div>
-       <br /><br />
       <% end %>
-     <% unless @project_invitations.empty? %>
-      <p class="description">
-        Invited to the following projects:
-      </p>
-      <% for pi in @project_invitations %>
-        <div class="quiet box clear inline buttonrow">
-          <span class="inter">
-            <%= image_tag pi.project.icon.url(:mini), :style => "vertical-align: middle" %>
-            <%= link_to truncate(h(pi.project.title), :length => (is_me?(@observation.user) || is_me?(pi.user) || curator_of?(pi.project) ? 21 : 31)), pi.project %>
-          </span>
-          <% if is_me?(@observation.user) -%>
-            <%= link_to "accept", 
-              accept_project_invitation_path(pi),
-              :method => :post,
-              :class => "glaucous button" %>
-          <% end -%>
-          <% if is_me?(@observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
-            <%= link_to (is_me?(@observation.user) ? "ignore" : "uninvite"), 
-              pi,
-              :method => :delete,
-              :confirm => "Are you sure you want to remove this invitation?",
-              :class => "pale button",
-              :style => "float: right; margin: 0" %>
-          <% end -%>
-        </div>
+    
+      <% if !@project_invitations.empty? && (is_me?(current_user) || @project_invitations.map(&:user_id).include?(current_user.try(&:id))) %>
+        <p class="ui description">Invited to the following projects:</p>
+        <% for pi in @project_invitations %>
+          <div class="notice box clear inline buttonrow">
+            <span class="inter">
+              <%= image_tag pi.project.icon.url(:mini), :width => 16, :height => 16, :style => "vertical-align: middle" %>
+              <%= link_to truncate(h(pi.project.title), :length => (is_me?(@observation.user) || is_me?(pi.user) || curator_of?(pi.project) ? 16 : 31)), pi.project %>
+            </span>
+            <nobr class="inlineblock right">
+              <% if is_me?(@observation.user) -%>
+                <%= link_to "accept", accept_project_invitation_path(pi),
+                  :method => :post,
+                  :class => "glaucous button",
+                  "data-loading-click" => "" %>
+              <% end -%>
+              <% if is_me?(@observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
+                <%= link_to (is_me?(@observation.user) ? "ignore" : "uninvite"), pi,
+                  :method => :delete,
+                  :confirm => "Are you sure you want to remove this invitation?",
+                  :class => "pale button",
+                  "data-loading-click" => "" %>
+              <% end -%>
+            </nobr>
+          </div>
+        <% end %>
       <% end %>
-     <% end %>
-    <% end %>
     </div>
+    
+    <% if !@project_users.blank? && logged_in? && is_not_me?(@observation.user) -%>
+      <div class="clear">
+        <% link_to_toggle_menu "Invite to project", :class => "button", 
+           :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
+          <ul>
+            <% for project_user in @project_users %>
+              <li class="inline buttonrow">
+                <% if @project_observations_by_project_id[project_user.project_id] -%>
+                  <div class = "disabled pale button" >added</div>
+                <% elsif @project_invitations_by_project_id[project_user.project_id] -%>
+                  <div class = "disabled pale button" >invited</div>
+                <% else %>
+                  <%= link_to "invite",
+                    { :controller => 'project_invitations',
+                      :action => 'create',
+                      :project_id => project_user.project.id,
+                      :observation_id => @observation.id,
+                      :user_id => @user.id },
+                    :method => :post,
+                    :class => "glaucous button",
+                    "data-loading-click" => "inviting..." %>
+                <% end -%>
+                <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
   <% end -%>
   
   <%= separator %>

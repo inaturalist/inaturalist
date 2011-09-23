@@ -77,7 +77,14 @@ var QTIP_DEFAULTS = {
 $('a[data-loading-click]').live('click', function() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
-  var loading = $('<span></span>').html(txt).addClass('loading').addClass($(this).attr('class'))
+  var loading = $('<div></div>').html(txt)
+    .addClass('loadingclick inlineblock')
+    .addClass($(this).attr('class'))
+    .css('padding-left', '25px')
+    .height($(this).height())
+  if (txt == '') {
+    loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
+  }
   $(this).hide().before(loading)
 })
 
@@ -162,6 +169,12 @@ $(document).ready(function() {
       return false
     }
   })
+  
+  $([
+    '/images/spinner-small.gif',
+    '/images/spinner-small-ffffff_on_dedede.gif',
+    '/images/spinner-small-ffffff_on_aaaaaa.gif'
+  ]).preload();
 })
 
 // from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010
@@ -170,4 +183,8 @@ jQuery.fn.autolink = function() {
     var re = /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g;
     $(this).html( $(this).html().replace(re, '<a href="$1">$1</a> ') );
   })
+}
+
+$.fn.preload = function() {
+  this.each(function(){ $('<img/>')[0].src = this; })
 }

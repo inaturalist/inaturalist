@@ -8,6 +8,8 @@ button {
   float:left;
   margin:0 0.583em 0.667em 0;
   
+  vertical-align: top;
+  
 /*  Blueprint overrides*/
   padding: 7px 10px 7px 7px;
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -178,7 +180,9 @@ input[type='submit'].link:hover {
   padding: 0;
 }
 
-.button.pale {
+.button.pale,
+.button.pale.disabled:hover {
+  border-color: #dedede;
   background-color: #dedede;
   color: white;
   text-align: center;
@@ -191,7 +195,8 @@ input[type='submit'].link:hover {
   color: white;
 }
 
-.button.glaucous {
+.button.glaucous,
+.button.glaucous.disabled:hover {
   background-color: #aaa;
   border-color: #aaa;
   color: white;

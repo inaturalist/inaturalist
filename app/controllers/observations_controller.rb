@@ -270,11 +270,13 @@ class ObservationsController < ApplicationController
             @places = Place.containing_lat_lng(@observation.latitude, @observation.longitude).sort_by(&:bbox_area)
           end
         end
+        
         @project_observations = @observation.project_observations.all(:limit => 100)
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
-        
-        @project_invitations = @observation.project_invitations.all(:limit => 100)
-        @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
+        if logged_in?
+          @project_invitations = @observation.project_invitations.all(:limit => 100)
+          @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
+        end
         
         @comments_and_identifications = (@observation.comments.all + 
           @identifications).sort_by(&:created_at)
