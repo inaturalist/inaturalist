@@ -39,6 +39,9 @@ class ProjectsController < ApplicationController
     @project_assets = @project.project_assets.all(:limit => 100)
     @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
     @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new
