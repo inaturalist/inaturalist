@@ -395,9 +395,6 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def map
-  end
-  
   private
   
   def load_project
