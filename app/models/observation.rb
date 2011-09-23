@@ -453,38 +453,24 @@ class Observation < ActiveRecord::Base
     options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
     super(options)
   end
-  
-  # Used to help user debug their CSV files
-  # TODO: move this to a helper
-  def csv_record_to_s
-    "Required Columns in order<br />"
-      "Species Guess: #{self.species_guess}<br />"+
-      "Observed On: #{self.observed_on}, which is interpreted as #{datetime}<br />"+
-      "Description: #{self.description}<br />"+
-      "Place Guess: #{self.place_guess}<br />"+
-      "Optional Columns (Note: for any of these columns to be used in an observation, they must all be present)<br />"+
-      "Latitude: #{self.latitude}<br />"+
-      "Longitude: #{self.longitude}<br />"+
-      "Location is exact: #{self.location_is_exact}"
-  end
 
   #
   # Return a time from observed_on and time_observed_at
   #
   def datetime
-    if self.observed_on
-      if self.time_observed_at
-        Time.mktime(self.observed_on.year, 
-                    self.observed_on.month, 
-                    self.observed_on.day, 
-                    self.time_observed_at.hour, 
-                    self.time_observed_at.min, 
-                    self.time_observed_at.sec, 
-                    self.time_observed_at.zone)
+    if observed_on && errors.on(:observed_on).blank?
+      if time_observed_at
+        Time.mktime(observed_on.year, 
+                    observed_on.month, 
+                    observed_on.day, 
+                    time_observed_at.hour, 
+                    time_observed_at.min, 
+                    time_observed_at.sec, 
+                    time_observed_at.zone)
       else
-        Time.mktime(self.observed_on.year, 
-                    self.observed_on.month, 
-                    self.observed_on.day)
+        Time.mktime(observed_on.year, 
+                    observed_on.month, 
+                    observed_on.day)
       end
     end
   end
@@ -1010,7 +996,7 @@ class Observation < ActiveRecord::Base
   end
   
   def single_taxon_id_for_name(name)
-    taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name.strip.downcase], :limit => 5, :include => :taxon)
+    taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase], :limit => 5, :include => :taxon)
     return if taxon_names.blank?
     return taxon_names.first.taxon_id if taxon_names.size == 1
     sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon).compact)

@@ -312,7 +312,11 @@ class ObservationsController < ApplicationController
     options[:id_please] ||= params[:id_please]
     
     @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
-    @taxon ||= TaxonName.find_by_name(params[:taxon_name]).try(:taxon) unless params[:taxon_name].blank?
+    unless params[:taxon_name].blank?
+      @taxon ||= TaxonName.first(:conditions => [
+        "lower(name) = ?", params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
+      ).try(:taxon)
+    end
     if @taxon
       options[:taxon] = @taxon
       if common_name = @taxon.common_name
@@ -638,8 +642,6 @@ class ObservationsController < ApplicationController
 
 
   def new_batch_csv
-    require "csv"
-    
     if params[:upload].blank? || params[:upload] && params[:upload][:datafile].blank?
       flash[:error] = "You must select a CSV file to upload."
       return redirect_to :action => "import"
@@ -652,40 +654,40 @@ class ObservationsController < ApplicationController
     row_num = 0
     
     begin
-      CSV::Reader.parse(csv) do |row|
-        if row[0] or row[1] or row[2] or row[3] or row[4] or row[5]
-          obsHash = {:user => current_user,
+      FasterCSV.parse(csv) do |row|
+        next if row.blank?
+        row = row.map{|item| Iconv.iconv('UTF8', 'LATIN1', item).to_s.strip}
+        obs = Observation.new(
+          :user => current_user,
           :species_guess => row[0],
-          :taxon => Taxon.find(
-            :first, 
-            :include => :taxon_names, 
-            :conditions => ["taxon_names.name = ?", row[0]]),
           :observed_on_string => row[1],
           :description => row[2],
           :place_guess => row[3],
-          :time_zone => current_user.time_zone}
-          if(row[4] && row[5]) 
-            obsHash.update(:latitude => row[4], :longitude => row[5], :location_is_exact => true)
-          elsif row[3]
-            places = Ym4r::GmPlugin::Geocoding.get(row[3])
-            unless places.empty?
-              latitude = places.first.latitude
-              longitude = places.first.longitude
-              obsHash.update(:latitude => latitude, :longitude => longitude, :location_is_exact => false)
-            end
+          :time_zone => current_user.time_zone,
+          :latitude => row[4], 
+          :longitude => row[5]
+        )
+        obs.set_taxon_from_species_guess
+        if obs.georeferenced?
+          obs.location_is_exact = true
+        elsif row[3]
+          places = Ym4r::GmPlugin::Geocoding.get(row[3])
+          unless places.empty?
+            obs.latitude = places.first.latitude
+            obs.longitude = places.first.longitude
+            obs.location_is_exact = false
           end
-          obs = Observation.new(obsHash)
-          obs.tag_list = row[6]
-         @hasInvalid ||= !obs.valid?
-         @observations << obs
-         row_num += 1
         end
+        obs.tag_list = row[6]
+        @hasInvalid ||= !obs.valid?
+        @observations << obs
+        row_num += 1
         if row_num >= max_rows
           flash[:notice] = "You have a beehive of observations!<br /> We can only take your first #{max_rows} observations in every CSV"
           break
         end
       end
-    rescue CSV::IllegalFormatError
+    rescue CSV::IllegalFormatError => e
       flash[:error] = <<-EOT
         Your CSV had a formatting problem. Try removing any strange
         characters, and if the problem persists, please
