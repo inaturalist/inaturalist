@@ -1102,9 +1102,11 @@ class ObservationsController < ApplicationController
       
       # Create a new one if one doesn't already exist
       unless photo
-        api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
-        unless photo = photo_class.new_from_api_response(api_response, :user => current_user)
-          photo = LocalPhoto.new(:file => photo_id, :user => current_user)
+        photo = if photo_class == LocalPhoto
+          LocalPhoto.new(:file => photo_id, :user => current_user)
+        else
+          api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
+          photo_class.new_from_api_response(api_response, :user => current_user)
         end
       end
       
