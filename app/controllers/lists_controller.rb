@@ -159,6 +159,8 @@ class ListsController < ApplicationController
       ]
       pair.compact.empty? ? nil : [iconic_taxon, pair]
     end.compact
+    
+    load_listed_taxon_photos
   end
   
   def remove_taxon    
