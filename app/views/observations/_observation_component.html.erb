@@ -107,7 +107,7 @@ Some notes:
   </div>
   <div class="place attribute">
     <h4 class="label">Place</h4>
-    <%= observation_place_guess observation %>
+    <%= observation_place_guess observation, :truncate_coordinates => true %>
   </div>
   <% unless observation.created_at.blank? -%>
     <div class="created_at attribute" style="display:none">
