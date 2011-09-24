@@ -67,15 +67,22 @@ class ProviderAuthorizationsController < ApplicationController
       flash[:notice] = "Welcome back!"
       landing_path = home_path
     end
-    landing_path = session[:return_to] if !session[:return_to].blank? && session[:return_to] != login_url
+    
+    if !session[:return_to].blank? && session[:return_to] != login_url
+      landing_path = session[:return_to]
+    end
+    
     if session[:flickr_invite_params] # registering via an invite link in a flickr comment. see /flickr/invite
       flickr_invite_params = session[:flickr_invite_params]
       session[:flickr_invite_params] = nil
-      redirect_to(new_observation_url(flickr_invite_params)) and return
-    else
-      redirect_to landing_path
+      landing_path = new_observation_url(flickr_invite_params)
+      unless existing_authorization
+        flash[:notice] = "Welcome to iNaturalist! If these options look good, " + 
+          "click \"Save observation\" below and you'll be good to go!"
+      end
     end
-    return
+    
+    redirect_to landing_path
   end
 
 end
