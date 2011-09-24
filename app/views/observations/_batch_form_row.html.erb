@@ -53,7 +53,8 @@
           <div class="last column prepend-1 span-21">
             <div class="column span-7">
               <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['species_guess', 'taxon_id'])", :id => 'apply_batch_taxon_button', :class => 'default button') %>
+                <%= link_to_function("&darr; Apply &darr;", "batchTaxon()",
+                  :id => 'apply_batch_taxon_button', :class => 'default button') %>
               </div>
             </div>
             <div class="column span-7">

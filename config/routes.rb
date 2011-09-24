@@ -133,7 +133,6 @@ ActionController::Routing::Routes.draw do |map|
     p.project_species_count "projects/:id/species_count", :action => "species_count"
     p.formatted_project_species_count "projects/:id/species_count.:format", :action => "species_count"
     p.project_show_contributor "projects/:id/contributors/:project_user_id", :action => "show_contributor"
-    p.project_map 'projects/:id/map', :action => 'map'
     p.make_curator 'projects/:id/make_curator/:project_user_id', :action => 'make_curator'
     p.remove_curator 'projects/:id/remove_curator/:project_user_id', :action => 'remove_curator'
     p.remove_project_user 'projects/:id/remove_project_user/:project_user_id', :action => 'remove_project_user'

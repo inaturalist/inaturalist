@@ -5,41 +5,17 @@
                           'jquery-datepicker', 
                           "jquery/ui.tabs.css" %>
   <style type="text/css" media="screen">
-    #pageheader p {
-      margin-bottom: 0;
-    }
-    
-    #tabs div .description.readable {
-      margin-bottom: 10px;
-    }
-    
-    .buttonrow label {
-      padding-top: 9px;
-    }
-    
+    #pageheader p{margin-bottom:0;}
+    #tabs div .description.readable{margin-bottom:10px;}
+    .buttonrow label{padding-top:9px;}
     .buttonrow label,
     .buttonrow .button,
-    .buttonrow .text {
-      margin-bottom: 0;
-    }
-    
+    .buttonrow .text{margin-bottom:0;}
     #csv_import .description table td,
-    #csv_import .description table th {
-      border: 1px solid #ddd;
-      border-left: 0 none;
-      padding: 0.5em;
-    }
-    
+    #csv_import .description table th{border:1px solid #ddd;border-left:0 none;padding:0.5em;}
     #csv_import .description table th:first-child,
-    #csv_import .description table td:first-child {
-      border: 1px solid #ddd;
-    }
-    
-    #csv_import .description code {
-      display: block;
-      overflow: auto;
-      font-size: larger;
-    }
+    #csv_import .description table td:first-child{border:1px solid #ddd;}
+    #csv_import .description code{display:block;overflow:auto;font-size:larger;}
   </style>
 <% end -%>
 <% content_for(:extrajs) do -%>
@@ -55,11 +31,14 @@
         <%- else -%>
           baseURL: '/picasa/photo_fields?context=user',
         <%- end -%>
-        <%- if @photo_identities.size > 1 %>
-        urls: [
-          {title: 'Flickr', url: '/flickr/photo_fields?context=user'},
-          {title: 'Picasa', url: '/picasa/photo_fields?context=user'}
-        ],
+        <%- unless @photo_identities.blank? %>
+          <%- 
+            urls = @photo_identities.map do |identity|
+              service = identity.class.to_s.underscore.split('_').first.capitalize
+              "{title: '#{service}', url: '/#{service.downcase}/photo_fields?context=user'}"
+            end
+          -%>
+          urls: [<%= urls.join(', ') %>],
         <% end -%>
         urlParams: {
           authenticity_token: AUTH_TOKEN,
@@ -99,7 +78,7 @@
             observations. We'll fill in the date, time, and location from a
             photo's metadata, and try to look up species names from the tags.
           </div>
-          <div id="photos" class="clear"></div>
+          <div id="photos" class="clear stacked"></div>
           <%= submit_tag("Import photos", :class => 'default button', "data-loading-click" => "Importing...") %>
         <% end %>
       <% else %>

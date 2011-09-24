@@ -975,24 +975,28 @@ class TaxaController < ApplicationController
     name = name.to_s.downcase
     
     # Try to look by its current unique name
-    begin
-      taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2) unless @taxon
-    rescue ActiveRecord::StatementInvalid => e
-      raise e unless e.message =~ /invalid byte sequence/
-      name = Iconv.iconv('UTF8', 'LATIN1', name)
-      taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2)
+    unless @taxon
+      begin
+        taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2) unless @taxon
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2)
+      end
+      @taxon = taxa.first if taxa.size == 1
     end
-    @taxon ||= taxa.first if taxa.size == 1
     
     # Try to look by its current scientifc name
-    begin
-      taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
-    rescue ActiveRecord::StatementInvalid => e
-      raise e unless e.message =~ /invalid byte sequence/
-      name = Iconv.iconv('UTF8', 'LATIN1', name)
-      taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+    unless @taxon
+      begin
+        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+      end
+      @taxon = taxa.first if taxa.size == 1
     end
-    @taxon ||= taxa.first if taxa.size == 1
     
     # Try to find a unique TaxonName
     unless @taxon
@@ -1017,8 +1021,15 @@ class TaxaController < ApplicationController
     if @taxon
       canonical = (@taxon.unique_name || @taxon.name).split.join('_')
       taxon_names ||= @taxon.taxon_names.all
-      unless taxon_names.detect{|tn| tn.name.split.join('_') == params[:action]}
-        return redirect_to :action => canonical
+      acceptable_names = [@taxon.unique_name, @taxon.name].compact.map{|n| n.split.join('_')} + 
+        taxon_names.map{|tn| tn.name.split.join('_')}
+      unless acceptable_names.include?(params[:action])
+        redirect_target = if params[:action].to_s.split.join('_') == @taxon.name.split.join('_')
+          @taxon.name.split.join('_')
+        else
+          canonical
+        end
+        return redirect_to :action => redirect_target
       end
     end
     

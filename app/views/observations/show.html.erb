@@ -273,7 +273,7 @@
     </div><!-- end where -->
   </div><!-- end where-and-photos -->
   
-  <% if @observation.description && !@observation.description.empty? %>
+  <% unless @observation.description.blank? %>
   <div id="observation-description">
     <h3>Description</h3>
     <div class="clear readable description">
@@ -497,7 +497,7 @@
         <% end %>
       <% end %>
     
-      <% if !@project_invitations.empty? && (is_me?(current_user) || @project_invitations.map(&:user_id).include?(current_user.try(&:id))) %>
+      <% if !@project_invitations.blank? && (is_me?(current_user) || @project_invitations.map(&:user_id).include?(current_user.try(&:id))) %>
         <p class="ui description">Invited to the following projects:</p>
         <% for pi in @project_invitations %>
           <div class="notice box clear inline buttonrow">

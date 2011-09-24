@@ -287,11 +287,13 @@
     // Set the image
     $(image).attr('src', '/images/iconic_taxa/unknown-32px.png')
     
+    $(wrapper).data('taxon', null)
+    
     // Fire afterUnselect callback
     if (typeof(options.afterUnselect) == 'function') {
       options.afterUnselect(wrapper, name, options);
-    };
-  };
+    }
+  }
   
   $.fn.simpleTaxonSelector.selectTaxon = function(wrapper, taxon, options) {
     var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options);
@@ -329,7 +331,10 @@
     // Update the image
     if (typeof(taxon.image_url) != 'undefined') {
       $(wrapper).find('.simpleTaxonSelectorImage').attr('src', taxon.image_url);
-    };
+    }
+    
+    $(wrapper).data('taxon', taxon)
+    
     
     // Fire afterSelect callback
     if (typeof(options.afterSelect) == 'function') {
