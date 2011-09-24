@@ -87,7 +87,17 @@ Some notes:
   <div class="observed_on attribute">
     <h4 class="label">Date</h4>
     <span class="date" title="<%= observation.observed_on ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
-      <%= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
+      <%#= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
+      <% if observation.observed_on -%>
+        <%= link_to observation.observed_on.strftime('%b'), 
+          observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
+        <%= link_to observation.observed_on.day, 
+          observations_by_login_path(observation.user.login, :on => "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
+        <%= link_to observation.observed_on.year, 
+          observations_by_login_path(observation.user.login, :on => observation.observed_on.year) %>
+      <% else %>
+        the past
+      <% end -%>
     </span>
     <% if observation.time_observed_at %>
     <span class="time">

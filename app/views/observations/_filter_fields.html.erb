@@ -1,131 +1,142 @@
 <% selected_taxa ||= [] %>
-    <div id="submit_filters" class="buttonrow">
-      <input id="submit_filters_button" type="submit" value="Search" class="default button" />
-    </div>
+<div id="search_filter" class="row">
+  <label class="label" for="q">Search</label>
+  <input type="text" name="q" value="<%= @q %>" id="q" />
+  <select name="search_on" id="search_on">
+    option
+    <option value="" class="description">search all fields</option>
+    <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names">species names</option>
+    <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags">tags</option>
+    <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description">description</option>
+    <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place">place name</option>
+  </select>
+</div>
+<div id="attribute_filters" class="row">
+  <strong id="attributes_filters_label" class="label">Filter by</strong>
+  <fieldset>
+    <input type="checkbox" name="has[]" id="with_photos_checkbox" 
+           value="photos" <% if @with_photos %>checked="checked"<% end %>/>
+    <label for="with_photos_checkbox">w/ photos only</label>
+    <input type="checkbox" name="has[]" id="id_please_checkbox" 
+           value="id_please" <% if @id_please %>checked="checked"<% end %>/>
+    <label for="id_please_checkbox">ID Please</label>
     
-    <div id="search_filter" class="row">
-      <label class="label" for="q">Search</label>
-      <input type="text" name="q" value="<%= @q %>" id="q" />
-      <select name="search_on" id="search_on">
-        option
-        <option value="" class="description">search all fields</option>
-        <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names">species names</option>
-        <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags">tags</option>
-        <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description">description</option>
-        <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place">place name</option>
-      </select>
-    </div>
-    <div id="attribute_filters" class="row">
-      <strong id="attributes_filters_label" class="label">Filter by</strong>
-      <fieldset>
-        <input type="checkbox" name="has[]" id="with_photos_checkbox" 
-               value="photos" <% if @with_photos %>checked="checked"<% end %>/>
-        <label for="with_photos_checkbox">w/ photos only</label>
-        <input type="checkbox" name="has[]" id="id_please_checkbox" 
-               value="id_please" <% if @id_please %>checked="checked"<% end %>/>
-        <label for="id_please_checkbox">ID Please</label>
-        
-        <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
-        <label for="research_grade_checkbox">Research quality</label>
-        
-      </fieldset>
-      <fieldset>
-        <strong>Identifications</strong>
-        <% for state in %w"any most_agree some_agree most_disagree" %>
-          <% if @identifications == state %>
-            <%= radio_button_tag :identifications, state, :checked => 'checked' %>
-          <% else %>
-            <%= radio_button_tag :identifications, state %>
-          <% end %>
-          <%= label :identifications, state %>
-        <% end %>
-      </fieldset>
-    </div>
-    <div id="iconic_taxon_filters" class="row">
-      <div id="iconic_taxon_filters_label" class="label">
-        <strong>Show only</strong>
-      </div>
-      <%-
-        all_iconic_taxa = Taxon.iconic_taxa.all(
-          :include => [:photos, :taxon_names], :order => "lft DESC")
-      -%>
-      <% for iconic_taxon in all_iconic_taxa -%>
-        <div id="iconic_taxon_<%= iconic_taxon.name.downcase %>" class="iconic_taxon_filter">
-          <input type="checkbox" name="iconic_taxa[]" 
-                 value="<%= iconic_taxon.name %>" 
-                 id="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'checked="checked"' if selected_taxa.include?(iconic_taxon) %>/>
-          <label for="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'class="selected"' if selected_taxa.include?(iconic_taxon) %>>
-            <%- if iconic_taxon.name == 'Animalia' -%>
-            <span>Other Animals</span>
-            <%- else -%>
-            <span><%= iconic_taxon.common_name.name rescue iconic_taxon.name %></span><!-- This should really be a common name -->
-            <%- end -%>
-          </label>
-        </div>
-      <% end -%>
-      <% if selected_taxa.include? nil %>
-      <div id="iconic_taxon_unknown" class="iconic_taxon_filter">
-        <input type="checkbox" name="iconic_taxa[]" 
-               value="unknown" checked="checked"
-               id="iconic_taxon_unknown_checkbox" />
-        <label for="iconic_taxon_unknown_checkbox" class="selected">
-          <span>Unknown</span>
-        </label>
-      </div>
+    <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
+    <label for="research_grade_checkbox">Research quality</label>
+    
+  </fieldset>
+  <fieldset>
+    <strong>Identifications</strong>
+    <% for state in %w"any most_agree some_agree most_disagree" %>
+      <% if @identifications == state %>
+        <%= radio_button_tag :identifications, state, :checked => 'checked' %>
       <% else %>
-      <div id="iconic_taxon_unknown" class="iconic_taxon_filter">
-        <input type="checkbox" name="iconic_taxa[]" 
-               value="unknown" 
-               id="iconic_taxon_unknown_checkbox" />
-        <label for="iconic_taxon_unknown_checkbox">
-          <span>Unknown</span>
-        </label>
-      </div>
+        <%= radio_button_tag :identifications, state %>
       <% end %>
+      <%= label :identifications, state %>
+    <% end %>
+  </fieldset>
+</div>
+<div id="iconic_taxon_filters" class="row">
+  <div id="iconic_taxon_filters_label" class="label">
+    <strong>Show only</strong>
+  </div>
+  <%-
+    all_iconic_taxa = Taxon.iconic_taxa.all(
+      :include => [:photos, :taxon_names], :order => "lft DESC")
+  -%>
+  <% for iconic_taxon in all_iconic_taxa -%>
+    <div id="iconic_taxon_<%= iconic_taxon.name.downcase %>" class="iconic_taxon_filter">
+      <input type="checkbox" name="iconic_taxa[]" 
+             value="<%= iconic_taxon.name %>" 
+             id="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'checked="checked"' if selected_taxa.include?(iconic_taxon) %>/>
+      <label for="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'class="selected"' if selected_taxa.include?(iconic_taxon) %>>
+        <%- if iconic_taxon.name == 'Animalia' -%>
+        <span>Other Animals</span>
+        <%- else -%>
+        <span><%= iconic_taxon.common_name.name rescue iconic_taxon.name %></span><!-- This should really be a common name -->
+        <%- end -%>
+      </label>
+    </div>
+  <% end -%>
+  <% if selected_taxa.include? nil %>
+  <div id="iconic_taxon_unknown" class="iconic_taxon_filter">
+    <input type="checkbox" name="iconic_taxa[]" 
+           value="unknown" checked="checked"
+           id="iconic_taxon_unknown_checkbox" />
+    <label for="iconic_taxon_unknown_checkbox" class="selected">
+      <span>Unknown</span>
+    </label>
+  </div>
+  <% else %>
+  <div id="iconic_taxon_unknown" class="iconic_taxon_filter">
+    <input type="checkbox" name="iconic_taxa[]" 
+           value="unknown" 
+           id="iconic_taxon_unknown_checkbox" />
+    <label for="iconic_taxon_unknown_checkbox">
+      <span>Unknown</span>
+    </label>
+  </div>
+  <% end %>
 
-      <small>
-        Select
-        <%= link_to_function "All", 'selectAllIconicTaxa()' %>,
-        <%= link_to_function "None", 'deSelectAllIconicTaxa()' %>
-      </small>
+  <small>
+    Select
+    <%= link_to_function "All", 'selectAllIconicTaxa()' %>,
+    <%= link_to_function "None", 'deSelectAllIconicTaxa()' %>
+  </small>
+</div>
+
+<div class="clear row">
+  <div id="taxon_filter" class="left">
+    <div id="taxon_filter_label" class="label">
+      <strong>Taxon</strong>
     </div>
-    
-    <div id="taxon_filter" class="clear row">
-      <div id="taxon_filter_label" class="label">
-        <strong>Taxon</strong>
-      </div>
-      <div class="left" style="width: 500px">
-        <div class="buttons">
-          <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name" %>
-          <%= hidden_field_tag :taxon_id, @observations_taxon.try(:id) || @observations_taxon_id,
-            :alt => (@observations_taxon ? 
-              content_tag(:span, @observations_taxon.name, 
-                :class => "taxon sciname #{@observations_taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[@observations_taxon.iconic_taxon_id].try(:name)}") : nil),
-            :rel => (@observations_taxon ? taxon_image_url(@observations_taxon) : nil) %>
-        </div>
-      </div>
-    </div>
-    <% if @filters_open -%>
-      <script type="text/javascript" charset="utf-8">
-        $('#filters input[name=taxon_name]').simpleTaxonSelector()
-      </script>
-    <% end -%>
-    
-    <div id="order_filters" class="row">
-      <div id="order_filters_label" class="label">
-        <strong>Order</strong>
-      </div>
-      <div class="left">
-        <%= select_tag :order_by, observations_order_by_options %>
-        <%= select_tag :order, options_for_select(%w(asc desc), @order) %>
+    <div class="left">
+      <div class="buttons">
+        <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name" %>
+        <%= hidden_field_tag :taxon_id, @observations_taxon.try(:id) || @observations_taxon_id,
+          :alt => (@observations_taxon ? 
+            content_tag(:span, @observations_taxon.name, 
+              :class => "taxon sciname #{@observations_taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[@observations_taxon.iconic_taxon_id].try(:name)}") : nil),
+          :rel => (@observations_taxon ? taxon_image_url(@observations_taxon) : nil) %>
       </div>
     </div>
-    
-    <input type="hidden" name="swlat" id="swlat" value="<%= @swlat %>"/>
-    <input type="hidden" name="swlng" id="swlng" value="<%= @swlng %>"/>
-    <input type="hidden" name="nelat" id="nelat" value="<%= @nelat %>"/>
-    <input type="hidden" name="nelng" id="nelng" value="<%= @nelng %>"/>
-    
-    <input type="hidden" name="tdate" id="tdate"/>
-    <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
-    <input type="hidden" name="view" id="view_input" value="<%= @view %>"/> <!-- Temporary! Inputs not specific to the filtering don't really belong here... -->
+  </div>
+  <% if @filters_open -%>
+    <script type="text/javascript" charset="utf-8">
+      $('#filters input[name=taxon_name]').simpleTaxonSelector()
+    </script>
+  <% end -%>
+  
+  <div id="observed_on_filters" class="left">
+    <div id="observed_on_filters_label" class="label">
+      <strong>Observed on</strong>
+    </div>
+    <div class="left">
+      <%= select_tag :year, options_for_select([["Year", nil]] + (1970..Date.today.year).to_a.reverse.map{|n| [n,n]}, :selected => @observed_on_year) %>
+      <%= select_tag :month, options_for_select([["Month", nil]] + (1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_month) %>
+      <%= select_tag :day, options_for_select([["Day", nil]] + (1..31).to_a.map{|n| [n,n]}, :selected => @observed_on_day) %>
+    </div>
+  </div>
+  
+  <div id="order_filters" class="left">
+    <div id="order_filters_label" class="label">
+      <strong>Order</strong>
+    </div>
+    <div class="left">
+      <%= select_tag :order_by, observations_order_by_options %>
+      <%= select_tag :order, options_for_select(%w(asc desc), @order) %>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" name="swlat" id="swlat" value="<%= @swlat %>"/>
+<input type="hidden" name="swlng" id="swlng" value="<%= @swlng %>"/>
+<input type="hidden" name="nelat" id="nelat" value="<%= @nelat %>"/>
+<input type="hidden" name="nelng" id="nelng" value="<%= @nelng %>"/>
+
+<input type="hidden" name="tdate" id="tdate"/>
+<input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
+<input type="hidden" name="view" id="view_input" value="<%= @view %>"/> <!-- Temporary! Inputs not specific to the filtering don't really belong here... -->
+
+<input id="submit_filters_button" type="submit" value="Search" class="default inline button" data-loading-click="Searching..."/>

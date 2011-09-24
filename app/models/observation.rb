@@ -342,6 +342,30 @@ class Observation < ActiveRecord::Base
     }
   }
   
+  named_scope :on, lambda {|date|
+    year, month, day = date.split('-').map{|d| d.blank? ? nil : d}
+    if year && month && day
+      {:conditions => ["observed_on = ?", "#{year.to_i}-#{month.to_i}-#{day.to_i}"]}
+    elsif year || month || day
+      conditions, values = [[],[]]
+      if year
+        conditions << "EXTRACT(YEAR FROM observed_on) = ?"
+        values << year
+      end
+      if month
+        conditions << "EXTRACT(MONTH FROM observed_on) = ?"
+        values << month
+      end
+      if day
+        conditions << "EXTRACT(DAY FROM observed_on) = ?"
+        values << day
+      end
+      {:conditions => [conditions.join(' AND '), *values]}
+    else
+      {:conditions => "1 = 2"}
+    end
+  }
+  
   def self.near_place(place)
     place = Place.find_by_id(place) unless place.is_a?(Place)
     if place.swlat
@@ -395,6 +419,7 @@ class Observation < ActiveRecord::Base
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
     scope = scope.near_place(params[:place_id]) if params[:place_id]
+    scope = scope.on(params[:on]) if params[:on]
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()
