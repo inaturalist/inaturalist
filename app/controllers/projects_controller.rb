@@ -308,6 +308,10 @@ class ProjectsController < ApplicationController
       redirect_to :back and return
     end
     
+    if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => @observation.id})
+      @project_invitation.destroy
+    end
+    
     flash[:notice] = "Observation added to the project \"#{@project.title}\""
     redirect_to :back
   end
