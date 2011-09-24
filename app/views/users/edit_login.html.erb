@@ -1,0 +1,17 @@
+<%- content_for(:title) do -%>
+  Choose your username
+<%- end -%>
+<div class="column prepend-4 span-8">
+  <img src="/images/logo-bird-300px-trans.png" width="300" height="237" />
+</div>
+<div class="column span-8 append-4 last">
+
+  <% form_for(current_user, :url => person_path(current_user)) do |f| %>
+    <p class="ui">
+      <%= label_tag 'login', 'Pick a username' %><br/>
+      <%= f.text_field(:login) %>
+    </p>
+    <p><%= submit_tag 'Save', :class => "default button", :style => "float: none;" %></p>
+
+  <% end %>
+</div>
