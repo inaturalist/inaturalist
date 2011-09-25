@@ -6,14 +6,14 @@
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected {  padding-bottom: .1em; border-bottom: 0; }
 .ui-tabs .ui-tabs-panel { padding: 1em 1.4em;  display: block; border: 0; background: none; }
 .ui-tabs .ui-tabs-hide { display: none !important; }
+.ui-tabs.ui-widget-content { border: 0 none; background: none; color: inherit;; }
+.ui-tabs .ui-widget-header { border: 0 none; background: none; color: inherit; font-weight: normal; }
 
 /* Custom Visual Tab styles */
-
 .ui-tabs .ui-tabs-nav {
   border-bottom: 1px solid #ccc;
   margin: 0;
 }
-
 .ui-tabs .ui-tabs-nav:after {
   content: '.';
   display: block;
@@ -21,23 +21,13 @@
   height: 0;
   clear: both;
 }
-
 .ui-tabs .ui-tabs-nav li {
   border: 1px solid #ccc;
   border-bottom: 0 none;
   margin: 0 5px -1px 5px;
   background-color: #efefef;
 }
-
-.ui-tabs .ui-tabs-nav li:hover {
-  background-color: #F9F9F9;
-}
-
-.ui-tabs .ui-tabs-nav li a {
-  outline: none;
-}
-
+.ui-tabs .ui-tabs-nav li:hover{background-color:#f6f6f6;}
+.ui-tabs .ui-tabs-nav li a{outline:none;}
 .ui-tabs li.ui-tabs-selected,
-.ui-tabs li.ui-tabs-selected:hover {
-  background-color: white;
-}
+.ui-tabs li.ui-tabs-selected:hover{background-color:white;}

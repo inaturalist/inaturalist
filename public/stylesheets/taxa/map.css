@@ -68,7 +68,6 @@ path.confirmed:hover, path.putative:hover {
   border: 1px solid #eee;
   padding: 10px;
 }
-#legend .taxonimage { display: block; width: 75px; float: left; margin-right: 10px; text-align: center;}
 #legend ul { float: left; list-style: none; margin: 0;}
 #legend li { white-space: nowrap;}
 #legend .symbol { display: inline-block; vertical-align: middle; width: 16px; height: 16px; opacity: 0.5; vertical-align: middle;}
@@ -118,3 +117,6 @@ path.confirmed:hover, path.putative:hover {
 
 .floating { box-shadow: 0px 3px 3px #888; }
 li.place_type { padding-left: 40px; }
+#togglecollapse { position: absolute; top: 0; right: 0; border-left: 1px solid #eee; border-bottom: 1px solid #eee;}
+#legend table { margin-top: 10px; }
+#legend td { vertical-align: top; border: 0 transparent;}

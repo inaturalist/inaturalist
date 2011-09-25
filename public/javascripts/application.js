@@ -188,3 +188,7 @@ jQuery.fn.autolink = function() {
 $.fn.preload = function() {
   this.each(function(){ $('<img/>')[0].src = this; })
 }
+
+$('.ui-widget-overlay').live('click', function() {
+  $('.dialog').dialog('close')
+})
