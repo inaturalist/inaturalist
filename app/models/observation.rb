@@ -14,6 +14,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :taxon_name
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
+  PLANETARY_RADIUS = 6370997.0
   DEGREES_PER_RADIAN = 57.2958
   FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
   COORDINATE_REGEX = /[^\d\,]*?(#{FLOAT_REGEX})[^\d\,]*?/
@@ -183,7 +184,7 @@ class Observation < ActiveRecord::Base
     lng = lng.to_f
     radius = radius.to_f
     radius = 10.0 if radius == 0
-    planetary_radius = 6371 # km
+    planetary_radius = PLANETARY_RADIUS / 1000 # km
     radius_degrees = radius / (2*Math::PI*planetary_radius) * 360.0
     
     {:conditions => ["ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees]}
@@ -1123,7 +1124,7 @@ class Observation < ActiveRecord::Base
     CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
   end
   
-  def random_neighbor_lat_lon(lat, lon, max_distance, radius = 6370997.0)
+  def random_neighbor_lat_lon(lat, lon, max_distance, radius = PLANETARY_RADIUS)
     latrads = lat.to_f / DEGREES_PER_RADIAN
     lonrads = lon.to_f / DEGREES_PER_RADIAN
     max_distance = max_distance / radius

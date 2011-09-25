@@ -13,6 +13,10 @@
     var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
     var CLOUDMADE_KEY = <%= @cloudmade_key.inspect %>
     var BING_KEY = <%= @bing_key.inspect %>
+    var M_TO_OBSCURE_THREATENED_TAXA = <%= Observation::M_TO_OBSCURE_THREATENED_TAXA %>
+    var PLANETARY_RADIUS = <%= Observation::PLANETARY_RADIUS %>
+    var DEGREES_PER_RADIAN = <%= Observation::DEGREES_PER_RADIAN %>
+    var OBSCURATION_DISTANCE_IN_DEGREES = M_TO_OBSCURE_THREATENED_TAXA / PLANETARY_RADIUS * DEGREES_PER_RADIAN
     var countyListings = <%= @county_listings.to_json(:methods => [:occurrence_status]) %>;
     var stateListings = <%= @state_listings.to_json(:methods => [:occurrence_status]) %>;
     var countryListings = <%= @country_listings.to_json(:methods => [:occurrence_status]) %>;
@@ -74,6 +78,12 @@
           <input type="checkbox" checked="checked" style="visibility: hidden"/>
           <div class="symbol"></div>
           <label for="observations_check">Observations (confirmed)</label>
+        </div>
+        
+        <div class="obscured">
+          <input type="checkbox" checked="checked" style="visibility: hidden"/>
+          <div class="symbol"></div>
+          <label for="observations_check">Observations (obscured)</label>
         </div>
       </li>
       <li class="range" rel="range">
