@@ -25,7 +25,19 @@ module ObservationsHelper
         (!observation.geoprivacy_private? || observation.coordinates_viewable_by?(current_user))
   end
   
-  def observation_place_guess(observation)
+  def observation_place_guess(observation, options = {})
+    display_lat = observation.latitude
+    display_lon = observation.longitude
+    if !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
+      display_lat = observation.private_latitude
+      display_lon = observation.private_longitude
+    end
+    if coordinate_truncation = options[:truncate_coordinates]
+      coordinate_truncation = 6 unless coordinate_truncation.is_a?(Fixnum)
+      display_lat = display_lat.to_s[0..coordinate_truncation] + "..." unless display_lat.blank?
+      display_lon = display_lon.to_s[0..coordinate_truncation] + "..." unless display_lon.blank?
+    end
+    
     if !observation.place_guess.blank?
       if observation.latitude.blank?
         observation.place_guess + 
@@ -35,12 +47,12 @@ module ObservationsHelper
          " (#{link_to("Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank")})".html_safe
       end
     elsif !observation.latitude.blank? && !observation.coordinates_obscured?
-      link_to("#{observation.latitude}, #{observation.longitude}", 
+      link_to("<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>", 
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
         " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
         
     elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
-      link_to("#{observation.private_latitude}, #{observation.private_longitude}", 
+      link_to("<nobr>#{observation.private_latitude}</nobr>, <nobr>#{observation.private_longitude}</nobr>", 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{link_to "Google", "http://maps.google.com/?q=#{observation.private_latitude}, #{observation.private_longitude}", :target => "_blank"})".html_safe
     else

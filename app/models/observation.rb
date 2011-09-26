@@ -14,6 +14,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :taxon_name
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
+  PLANETARY_RADIUS = 6370997.0
   DEGREES_PER_RADIAN = 57.2958
   FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
   COORDINATE_REGEX = /[^\d\,]*?(#{FLOAT_REGEX})[^\d\,]*?/
@@ -183,7 +184,7 @@ class Observation < ActiveRecord::Base
     lng = lng.to_f
     radius = radius.to_f
     radius = 10.0 if radius == 0
-    planetary_radius = 6371 # km
+    planetary_radius = PLANETARY_RADIUS / 1000 # km
     radius_degrees = radius / (2*Math::PI*planetary_radius) * 360.0
     
     {:conditions => ["ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees]}
@@ -342,6 +343,30 @@ class Observation < ActiveRecord::Base
     }
   }
   
+  named_scope :on, lambda {|date|
+    year, month, day = date.split('-').map{|d| d.blank? ? nil : d}
+    if year && month && day
+      {:conditions => ["observed_on = ?", "#{year.to_i}-#{month.to_i}-#{day.to_i}"]}
+    elsif year || month || day
+      conditions, values = [[],[]]
+      if year
+        conditions << "EXTRACT(YEAR FROM observed_on) = ?"
+        values << year
+      end
+      if month
+        conditions << "EXTRACT(MONTH FROM observed_on) = ?"
+        values << month
+      end
+      if day
+        conditions << "EXTRACT(DAY FROM observed_on) = ?"
+        values << day
+      end
+      {:conditions => [conditions.join(' AND '), *values]}
+    else
+      {:conditions => "1 = 2"}
+    end
+  }
+  
   def self.near_place(place)
     place = Place.find_by_id(place) unless place.is_a?(Place)
     if place.swlat
@@ -395,6 +420,7 @@ class Observation < ActiveRecord::Base
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
     scope = scope.near_place(params[:place_id]) if params[:place_id]
+    scope = scope.on(params[:on]) if params[:on]
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()
@@ -1098,7 +1124,7 @@ class Observation < ActiveRecord::Base
     CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
   end
   
-  def random_neighbor_lat_lon(lat, lon, max_distance, radius = 6370997.0)
+  def random_neighbor_lat_lon(lat, lon, max_distance, radius = PLANETARY_RADIUS)
     latrads = lat.to_f / DEGREES_PER_RADIAN
     lonrads = lon.to_f / DEGREES_PER_RADIAN
     max_distance = max_distance / radius

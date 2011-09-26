@@ -214,7 +214,7 @@ Taxa &middot; All Species
         </center>
         <div class="readable">
           <%= taxon.wikipedia_summary %>
-          <%= link_to "Learn more &raquo;", taxon %>
+          <%= link_to "Learn more &raquo;", taxon, :class => "nobr" %>
         </div>
       </div>
 
@@ -244,9 +244,11 @@ Taxa &middot; All Species
           </p>
         <% end -%>
       </div>
-      <div id="photocredit">
-        Photo: <%= link_to taxon.photos.first.attribution, taxon.photos.first.native_page_url %>
-      </div>
+      <% if photo = taxon.photos.first -%>
+        <div id="photocredit">
+          Photo: <%= link_to photo.attribution, photo.native_page_url %>
+        </div>
+      <% end -%>
       <%= link_to taxon_image(taxon, :size => "large", :class => "taxonimage"), taxon %>
     </div>
   <% end %>

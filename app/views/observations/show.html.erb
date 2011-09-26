@@ -185,12 +185,20 @@
     <%- else -%>
       Something<% end -%>, observed by 
     <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
-    <span class="meta">
-    <%- if @observation.time_observed_at -%>
-      at <%=h @observation.time_observed_at.in_time_zone(@observation.time_zone).strftime("%I:%M %p %Z, %b %d, %Y") %>
-    <%- elsif @observation.observed_on -%>
-      on <%=h @observation.observed_on.to_s(:long) %>
-    <%- end -%>
+    <span class="meta date">
+      <%- if @observation.time_observed_at -%>
+        at 
+        <%=h @observation.time_observed_at.in_time_zone(@observation.time_zone).strftime("%I:%M %p %Z") %>
+      <% end -%>
+      <%- if @observation.observed_on -%>
+        on 
+        <%= link_to @observation.observed_on.strftime(@observation.time_observed_at ? '%b' : '%B'), 
+          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}") %>
+        <%= link_to @observation.observed_on.day, 
+          observations_by_login_path(@observation.user.login, :on => "#{@observation.observed_on.year}-#{@observation.observed_on.month}-#{@observation.observed_on.day}") %>,
+        <%= link_to @observation.observed_on.year, 
+          observations_by_login_path(@observation.user.login, :on => @observation.observed_on.year) %>
+      <%- end -%>
     </span>
   </h2>
   

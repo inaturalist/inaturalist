@@ -417,7 +417,6 @@ ul.leafylist li li:first-child {
 .pagination span {
   border: 1px solid #ccc;
   padding: 1px 5px;
-  margin-right: 2px;
 }
 
 .pagination .disabled {
@@ -918,3 +917,5 @@ form.inline .label {
 .glaucous.loadingclick {
   background-image: url(/images/spinner-small-ffffff_on_aaaaaa.gif);
 }
+
+.date a:hover { border-bottom: 1px dotted #36c;}

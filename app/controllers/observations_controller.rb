@@ -1219,6 +1219,16 @@ class ObservationsController < ApplicationController
     end
     search_params[:order_by] = "#{@order_by} #{@order}"
     
+    # date
+    date_pieces = [search_params[:year], search_params[:month], search_params[:day]]
+    unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
+      search_params[:on] = date_pieces.join('-')
+    end
+    if search_params[:on]
+      @observed_on = search_params[:on]
+      @observed_on_year, @observed_on_month, @observed_on_day = @observed_on.split('-').map(&:to_i)
+    end
+    
     @filters_open = 
       !@q.nil? ||
       !@observations_taxon_id.blank? ||
@@ -1227,7 +1237,8 @@ class ObservationsController < ApplicationController
       @id_please == true ||
       !@with_photos.blank? ||
       !@identifications.blank? ||
-      !@quality_grade.blank?
+      !@quality_grade.blank? ||
+      !@observed_on.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]

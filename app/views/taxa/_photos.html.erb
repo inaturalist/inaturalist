@@ -34,7 +34,8 @@
       <div class="description">
         Creative Commons Flickr Photos Tagged "<%= taxon.name %>."
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-          View all photos tagged "<%=h taxon.name %>" on Flickr &raquo;
+          View all photos tagged "<%=h taxon.name %>" on 
+          <nobr>Flickr &raquo;</nobr>
         </a>
       </div>
     <% end %>
@@ -46,7 +47,7 @@
     No Creative Commons Flickr Photos Tagged "<%= taxon.name %>"
   </h3>
   <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-    View all photos tagged "<%=h taxon.name %>" on Flickr &raquo;
+    View all photos tagged "<%=h taxon.name %>" on <nobr>Flickr &raquo;</nobr>
   </a><br/>
   (not just Creative Commons-licensed)
 </div>
@@ -69,7 +70,7 @@
     </div>
     <div class="description">
       <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-        View all photos tagged "<%=h taxon.name %>" on Flickr &raquo;
+        View all photos tagged "<%=h taxon.name %>" on <nobr>Flickr &raquo;</nobr>
       </a>
     </div>
   <% end %>

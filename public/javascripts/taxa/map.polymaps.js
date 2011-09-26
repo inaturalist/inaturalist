@@ -84,6 +84,22 @@ function handleObservations(e) {
     } else {
       cssClass += ' putative'
     }
+    
+    if (feature.data.properties.coordinates_obscured) {
+      cssClass += ' obscured'
+      var r = map.locationPoint({lat:0,lon:OBSCURATION_DISTANCE_IN_DEGREES}).x - map.locationPoint({lat:0,lon:0}).x
+      if (r > 4.5) {
+        feature.element.setAttribute('r', r)
+      }
+    } else if (feature.data.properties.positional_accuracy) {
+      var accuracyInDegrees = feature.data.properties.positional_accuracy / PLANETARY_RADIUS * DEGREES_PER_RADIAN
+      feature.element.setAttribute('radius-meters', feature.data.properties.positional_accuracy)
+      var r = map.locationPoint({lat:0,lon:accuracyInDegrees}).x - map.locationPoint({lat:0,lon:0}).x
+      if (r > 4.5) {
+        feature.element.setAttribute('r', r)
+      }
+    }
+    
     feature.element.setAttribute('class', cssClass)
     $(feature.element).qtip({
       style: {
@@ -200,17 +216,22 @@ function addPlaces() {
     .on('load', classifyCounties)
   map.add(layers['counties']);
   
-  window.map.on('move', showPlacesByZoom)
+  window.map.on('move', onZoom)
   showPlacesByZoom()
+}
+
+function onZoom() {
+  if (window.lastZoom == map.zoom()) {
+    return
+  }
+  showPlacesByZoom()
+  window.lastZoom = map.zoom()
 }
 
 function showPlacesByZoom(options) {
   options = options || {}
   if (!options.force) {
     if (!$('#places_check').attr('checked')) {
-      return
-    }
-    if (window.lastZoom == map.zoom()) {
       return
     }
   }
@@ -248,7 +269,6 @@ function showPlacesByZoom(options) {
         break;
     }
   }
-  window.lastZoom = map.zoom()
 }
 
 function addObservations() {
@@ -263,20 +283,15 @@ function addObservations() {
 }
 
 function scaleLegend() {
-  var scaleWidth  = $('#legend').outerWidth() > $(window).width() / 2,
-      scaleHeight = $('#legend').outerHeight() > $(window).height() / 2
+  if ($('#legend').hasClass('collapsed') || $('#legend').hasClass('expanded')) {
+    return
+  }
+  var scaleWidth  = $('#legend').data('originalOuterWidth') > $(window).width() / 2,
+      scaleHeight = $('#legend').data('originalOuterHeight') > $(window).height() / 2
   if (scaleWidth || scaleHeight) {
-    $('#legend .taxonimage').hide()
-    if (scaleWidth) {
-      $('#legend').width($(window).width() / 2)
-    }
-    $('#legend .small, #legend .meta').hide()
+    collapseLegend()
   } else {
-    $('#legend .taxonimage').show()
-    if (!scaleWidth) {
-      $('#legend').width('auto')
-    }
-    $('#legend .small, #legend .meta').show()
+    expandLegend()
   }
   window.windowResized = null
 }
@@ -451,6 +466,10 @@ function loadLayers() {
   }
   
   map.add(po.compass())
+  $('#legendcontent').data('originalWidth',  $('#legendcontent').width())
+  $('#legendcontent').data('originalHeight', $('#legendcontent').height())
+  $('#legend').data('originalOuterWidth', $('#legend').outerWidth())
+  $('#legend').data('originalOuterHeight', $('#legend').outerHeight())
   scaleLegend()
   
   // open links in the parent window if this is an iframe
@@ -499,4 +518,28 @@ function bingCallback(data) {
     $('#cloudmade_attribution').hide()
     $('#bing_attribution').show()
   })
+}
+
+function toggleLegend() {
+  if ($('#legendcontent:visible').length > 0) {
+    $('#legend').addClass('collapsed').removeClass('expanded')
+    collapseLegend()
+  } else {
+    $('#legend').removeClass('collapsed').addClass('expanded')
+    expandLegend()
+  }
+}
+
+function collapseLegend() {
+  $('#togglecollapse').removeClass('ui-icon-arrow-1-sw').addClass('ui-icon-arrow-1-ne')
+  $('#legendcontent').animate({height: 0}).animate({width: 0}, function() {
+    $('#legendcontent').hide()
+  })
+}
+
+function expandLegend() {
+  $('#togglecollapse').addClass('ui-icon-arrow-1-sw').removeClass('ui-icon-arrow-1-ne')
+  $('#legendcontent').show()
+    .animate({height: $('#legendcontent').data('originalHeight')})
+    .animate({width:  $('#legendcontent').data('originalWidth' )})
 }
