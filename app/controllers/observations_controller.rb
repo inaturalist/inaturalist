@@ -326,6 +326,7 @@ class ObservationsController < ApplicationController
     end
     @observation = Observation.new(options)
     
+    sync_facebook_photo if params[:facebook_photo_id]
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
     
@@ -378,6 +379,7 @@ class ObservationsController < ApplicationController
       @observation.longitude = @observation.private_longitude
     end
     
+    sync_facebook_photo if params[:facebook_photo_id]
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
   end
@@ -1382,6 +1384,39 @@ class ObservationsController < ApplicationController
     true
   end
   
+  # Tries to create a new observation from the specified Facebook photo ID and
+  # update the existing @observation with the new properties, without saving
+  def sync_facebook_photo
+    fb = current_user.facebook_api
+    if fb
+      fbp_json = FacebookPhoto.get_api_response(params[:facebook_photo_id], {:user=>current_user})
+      @facebook_photo = FacebookPhoto.new_from_api_response(fbp_json)
+    else 
+      @facebook_photo = nil
+    end
+    if @facebook_photo && @facebook_photo.valid?
+      @facebook_observation = @facebook_photo.to_observation
+      sync_attrs = [:description] # facebook strips exif metadata so we can't get geo or observed_on :-/
+      #, :species_guess, :taxon_id, :observed_on, :observed_on_string, :latitude, :longitude, :place_guess]
+      unless params[:facebook_sync_attrs].blank?
+        sync_attrs = sync_attrs & params[:facebook_sync_attrs]
+      end
+      sync_attrs.each do |sync_attr|
+        # merge facebook_observation with existing observation
+        @observation[sync_attr] ||= @facebook_observation[sync_attr]
+      end
+      unless @observation.photos.detect {|p| p.native_photo_id == @facebook_photo.native_photo_id}
+        @observation.photos[@observation.photos.size] = @facebook_photo
+      end
+      unless @observation.new_record?
+        flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
+          "<a href=\"#{url_for}\">Undo?</a>"
+      end
+    else
+      flash.now[:error] = "Sorry, we didn't find that photo."
+    end
+  end
+
   # Tries to create a new observation from the specified Flickr photo ID and
   # update the existing @observation with the new properties, without saving
   def sync_flickr_photo

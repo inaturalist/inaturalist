@@ -27,6 +27,8 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"
 
   map.connect "/facebook/photo_fields", :controller => "facebook", :action => "albums"
+  map.connect "/flickr/invite", :controller => "photos", :action => "invite", :provider => "flickr"
+  map.connect "/facebook/invite", :controller => "photos", :action => "invite", :provider => "facebook"
 
   # Special controller routes
   

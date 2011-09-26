@@ -22,7 +22,12 @@ class FacebookPhoto < Photo
 #  
   
   def validate
-    # TODO
+    fbp_json = FacebookPhoto.get_api_response(self.native_photo_id, {:user=>self.user})
+    if self.user && fbp_json
+      if user.facebook_identity.blank? || fbp_json['from']['id'] != user.facebook_identity.provider_uid
+        errors.add(:user, "must own the photo on Facebook.")
+      end
+    end
   end
 
   def self.get_api_response(native_photo_id, options = {})
@@ -56,63 +61,18 @@ class FacebookPhoto < Photo
     return facebook_photo
   end
 
-#  #
-#  # Sync photo properties with Flickr original.  Right now, that just means
-#  # the URLs.
-#  #
-#  def sync
-#    fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
-#    old_urls = [self.square_url, self.thumb_url, self.small_url, 
-#                self.medium_url, self.large_url, self.original_url]
-#    new_urls = [fp.source_url(:square), fp.source_url(:thumb), 
-#                fp.source_url(:small), fp.source_url(:medium), 
-#                fp.source_url(:large), fp.source_url(:original)]
-#    if old_urls != new_urls
-#      self.square_url    = fp.source_url(:square)
-#      self.thumb_url     = fp.source_url(:thumb)
-#      self.small_url     = fp.source_url(:small)
-#      self.medium_url    = fp.source_url(:medium)
-#      self.large_url     = fp.source_url(:large)
-#      self.original_url  = fp.source_url(:original)
-#      self.save
-#    end
-#  end
-#  
-#  def to_observation  
-#    # Get the Flickr data
-#    fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
-#    unless fp.is_a?(Net::Flickr::Photo)
-#      fp = FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
-#      self.api_response = fp
-#    end
-#    
-#    # Setup the observation
-#    observation = Observation.new
-#    observation.user = self.user if self.user
-#    observation.photos << self
-#    observation.description = fp.description
-#    observation.observed_on_string = fp.taken.to_s(:long)
-#    observation.munge_observed_on_with_chronic
-#    observation.time_zone = observation.user.time_zone if observation.user
-#    
-#    # Get the geo fields
-#    begin
-#      observation.place_guess = %w"locality region country".map do |tag|
-#        fp.geo.get_location.at(tag).inner_text rescue nil
-#      end.compact.join(', ').strip
-#      observation.latitude = fp.geo.latitude
-#      observation.longitude = fp.geo.longitude
-#    rescue Net::Flickr::APIError
-#    end
-#    
-#    # Try to get a taxon
-#    observation.taxon = to_taxon
-#    if t = observation.taxon
-#      observation.species_guess = t.common_name.try(:name) || t.name
-#    end
-#
-#    observation
-#  end
+  def to_observation
+    fbp_json = self.api_response || FacebookPhoto.get_api_response(self.native_photo_id, :user => self.user)
+    observation = Observation.new
+    observation.user = self.user if self.user
+    observation.photos << self
+    observation.description = fbp_json["name"]
+    #observation.observed_on_string = fp.taken.to_s(:long)
+    #observation.munge_observed_on_with_chronic
+    #observation.time_zone = observation.user.time_zone if observation.user
+    return observation
+  end
+
 #  
 #  # Try to extract known taxa from the tags of a flickr photo
 #  def to_taxa(options = {})

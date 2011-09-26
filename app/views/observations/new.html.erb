@@ -42,9 +42,8 @@
                 service = if identity.is_a?(ProviderAuthorization)
                             identity.provider_name
                           else
-                            identity.class.to_s.underscore.split('_').first
+                            identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
                           end
-                #service = (identity.is_a?(ProviderAuthorization) ? identity.provider_name : identity.class.to_s.underscore.split('_').first).capitalize
                 "{title: '#{service.capitalize}', url: '/#{service.downcase}/photo_fields?context=user'}"
               end
             -%>
@@ -60,7 +59,6 @@
       });
       $(".facebookAlbums .album").live('click',function(){
         $.fn.photoSelector.changeBaseUrl('.observation_photos','/facebook/album/'+$(this).attr('data-aid'));
-        //$('.photoSelectorControls .prevlink, .photoSelectorControls .nextlink').css('visibility','visible');
       });
     });
   </script>
