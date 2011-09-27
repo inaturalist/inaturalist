@@ -52,7 +52,7 @@ class ProviderAuthorizationsController < ApplicationController
         self.current_user = User.create_from_omniauth(auth_info)
         handle_remember_cookie! true # set 'remember me' to true
         flash[:notice] = "Welcome!"
-        if session[:flickr_invite_photo_id].nil?
+        if session[:flickr_invite_params].nil?
           flash[:allow_edit_after_auth] = true
           redirect_to edit_after_auth_url and return
         end
