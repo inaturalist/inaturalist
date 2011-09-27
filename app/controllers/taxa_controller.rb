@@ -234,6 +234,15 @@ class TaxaController < ApplicationController
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
   def search
     @q = params[:q]
+    match_mode = :all
+    
+    # Wrap the query in modifiers to ensure exact matches show first
+    if @q.blank?
+      q = @q
+    else
+      q = "\"^#{@q}$\" | #{@q}"
+      match_mode = :extended
+    end
     drill_params = {}
     
     if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id]))
@@ -261,10 +270,11 @@ class TaxaController < ApplicationController
     
     unless @q.blank? && drill_params.blank?
       page = params[:page] ? params[:page].to_i : 1
-      @facets = Taxon.facets(@q, :page => page, :per_page => per_page,
+      @facets = Taxon.facets(q, :page => page, :per_page => per_page,
         :with => drill_params, 
         :include => [:taxon_names, :photos],
-        :field_weights => {:name => 2})
+        :field_weights => {:name => 2},
+        :match_mode => match_mode)
 
       if @facets[:iconic_taxon_id]
         @faceted_iconic_taxa = Taxon.all(
