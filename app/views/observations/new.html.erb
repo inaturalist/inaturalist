@@ -61,12 +61,11 @@
       <% end -%>
       Add an Observation
       <% if @project %>
-        to the
+        to
         <% if @project.icon.file? -%>
           <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
         <% end -%>
         <%= link_to truncate(h(@project.title), :length => 30), @project %>
-        Project
       <% end -%>
     </h2>
   </div>
@@ -84,7 +83,7 @@
     <% if @project && !member_of?(@project)%>
       <div class="stacked">
         <%= check_box_tag :accept_terms %>
-        <span class="notice">You must check this box to indicate that you agree to <%= link_to_function "the #{truncate(@project.title, :length => 30)} project the terms", 
+        <span class="notice">You must check this box to agree to <%= link_to_function "the #{truncate(@project.title, :length => 35)} project the terms", 
           "$('#terms').dialog({modal: true, title: 'Project Terms', width: 600})" %> before joining this project and contributing your observation</span>
         <br />
         <br />
