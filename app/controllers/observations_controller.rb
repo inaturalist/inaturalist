@@ -330,6 +330,7 @@ class ObservationsController < ApplicationController
     
     if !params[:project_id].blank? && (project = Project.find_by_id(params[:project_id]))
       @project = Project.find_by_id(params[:project_id])
+      @project_curators = @project.project_users.all('role = "curator"')
     end
     options[:time_zone] = current_user.time_zone
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
@@ -399,6 +400,14 @@ class ObservationsController < ApplicationController
   def create
     # Handle the case of a single obs
     params[:observations] = [['0', params[:observation]]] if params[:observation]
+    
+    if params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
+      unless params[:accept_terms]
+        flash[:error] = "You need check that you agree to the project terms before joining the project"
+        redirect_to new_observation_path(:project_id => params[:project_id])
+        return
+      end
+    end
     
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|

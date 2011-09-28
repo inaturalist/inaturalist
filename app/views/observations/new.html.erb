@@ -61,11 +61,12 @@
       <% end -%>
       Add an Observation
       <% if @project %>
-        to
+        to the
         <% if @project.icon.file? -%>
           <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
         <% end -%>
         <%= link_to truncate(h(@project.title), :length => 30), @project %>
+        Project
       <% end -%>
     </h2>
   </div>
@@ -75,6 +76,15 @@
 </div>
 
 <div class="column span-24">
+  <% if @project && !member_of?(@project)%>
+    <div class="stacked">
+      <%= check_box_tag :accept_terms %>
+      <span class="notice">You must check this box to indicate that you agree to <%= link_to_function "the #{truncate(@project.title, :length => 30)} project the terms", 
+        "$('#terms').dialog({modal: true, title: 'Project Terms', width: 600})" %> before joining this project and contributing your observation</span>
+      <br />
+      <br />
+    </div>
+  <%  end %>
   <% form_tag(
       {:controller => 'observations', :action => 'create'}, 
       :multipart => true,
@@ -93,4 +103,56 @@
     <%= submit_tag("Save and add another", :class => 'button') %>
     <%= link_to("Cancel", session[:return_to], :class => 'button') %>
   <% end %>
+</div>
+
+<div id="terms" class="dialog" style="display:none">
+  <h3>About this Project</h3>
+  <div class="description">
+    <%= formatted_user_text @project.description %>
+  </div>
+
+  <h3>Project Curators</h3>
+  <div class="clear">
+    <% @project_curators.each do |project_curator| %>
+      <div class="stacked column span-5">
+        <%= link_to(
+              image_tag(project_curator.user.icon.url(:thumb), :class => 'left usericon'),
+              person_by_login_path(project_curator.user.login)) %>
+        <div class="column span-3">
+          <%= link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr" %>
+          <br/>
+          <%= link_to("<span class='count'>#{project_curator.user.observations.count}</span> observations", observations_by_login_path(project_curator.user.login)) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="description">
+  Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
+  </div>
+  <%= separator %>
+
+  <% unless @project.terms.blank? -%>
+    <h3>Terms</h3>
+    <div class="stacked description">
+      <%= formatted_user_text @project.terms %>
+    </div>
+  <% end -%>
+
+  <% unless @project.project_user_rules.blank? -%>
+    <h3>Rules for Becoming a Member</h3>
+    <ul class="stacked">
+      <% for rule in @project.project_user_rules %>
+        <li><%= rule.terms %></li>
+      <% end %>
+    </ul>
+  <% end -%>
+
+  <% unless @project.project_observation_rules.blank? -%>
+    <h3>Rules for Adding Observations</h3>
+    <ul class="stacked">
+      <% for rule in @project.project_observation_rules %>
+        <li><%= rule.terms %></li>
+      <% end %>
+    </ul>
+  <% end -%>
 </div>
