@@ -330,7 +330,7 @@ class ObservationsController < ApplicationController
     
     if !params[:project_id].blank? && (project = Project.find_by_id(params[:project_id]))
       @project = Project.find_by_id(params[:project_id])
-      @project_curators = @project.project_users.all('role = "curator"')
+      @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
     end
     options[:time_zone] = current_user.time_zone
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
@@ -432,7 +432,7 @@ class ObservationsController < ApplicationController
         flash[:error] = "You need check that you agree to the project terms before joining the project"
         #redirect_to new_observation_path(:project_id => params[:project_id])
         @project = Project.find_by_id(params[:project_id])
-        @project_curators = @project.project_users.all('role = "curator"')
+        @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
         render :action => 'new'
         return
       end

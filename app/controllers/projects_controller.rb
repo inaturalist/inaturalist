@@ -216,7 +216,7 @@ class ProjectsController < ApplicationController
   
   def join
     @observation = Observation.find_by_id(params[:observation_id])
-    @project_curators = @project.project_users.all('role = "curator"')
+    @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
     if @project_user
       flash[:notice] = "You're already a member of this project!"
       redirect_to @project
