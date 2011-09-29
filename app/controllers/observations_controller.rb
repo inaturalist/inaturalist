@@ -339,8 +339,8 @@ class ObservationsController < ApplicationController
     end
     @observation = Observation.new(options)
     
-    sync_flickr_photo if params[:flickr_photo_id]
-    sync_picasa_photo if params[:picasa_photo_id]
+    sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
+    sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
     
     respond_to do |format|
       format.html do
