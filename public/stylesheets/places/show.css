@@ -1,0 +1,24 @@
+#wrapper { width: auto; padding: 0 10px; position: relative;}
+.taxon .wikipedia_summary { display: none; }
+
+#sidecol { width: 230px; position: absolute; }
+/*#maincol { padding-left: 250px;}*/
+#pageheader { position: relative; }
+#pageheader h2 { background-color: white; opacity: 0.8; position: absolute; bottom: 51px; padding: 10px;}
+#placephotos { position: absolute; bottom: 5px; left: 5px;}
+#placephotos img { height: 40px; margin-right: 10px; box-shadow: 0 2px 5px #666; border: 1px solid transparent;}
+#placephotos img:hover { border: 1px solid white;}
+
+.colorfield input { display: none; }
+.colorfield label { content: ''; width: 1em; height: 1em;}
+.colorfield.black  label { color: lightgrey;  background-color: black;}
+.colorfield.white  label { color: grey;       background-color: white;}
+.colorfield.red    label { color: lightpink;  background-color: red;}
+.colorfield.green  label { color: lightgreen; background-color: green;}
+.colorfield.blue   label { color: lightblue;  background-color: blue;}
+.colorfield.purple label { color: violet;     background-color: purple;}
+.colorfield.yellow label { color: goldenrod;  background-color: yellow;}
+.colorfield.grey   label { color: lightgrey;  background-color: grey;}
+.colorfield.orange label { color: chocolate;  background-color: orange;}
+.colorfield.brown  label { color: peru;       background-color: saddlebrown;}
+.colorfield.pink   label { color: deeppink;   background-color: pink;}

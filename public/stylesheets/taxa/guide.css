@@ -1,0 +1,57 @@
+.graph {
+  height: 20px; 
+  margin-bottom: 20px;
+}
+.bar {
+  opacity: 0.8;
+  display: inline-block;
+  background-color: #7E9739;
+  margin-right: 1px;
+  width: 19px;
+  font-size: smaller;
+  vertical-align: bottom;
+  text-align: center;
+  position: relative;
+  color: inherit;
+}
+.bar:hover {opacity: 1;}
+.bar .count {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-family: Helvetica;
+  font-weight: bold;
+  margin-top: 5px;
+  position: absolute;
+  top: -16px;
+  -webkit-transform: rotate(-45deg);
+  font-size: smaller;
+}
+.month {
+  position: absolute;
+  bottom: -15px;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.taxonimage {
+  min-height: 206px;
+}
+.taxa.big.grid .taxon img { max-height: 206px;}
+.taxa.grid .taxon .image, 
+.taxa.grid .taxon .image a {
+  text-align: left;
+}
+.taxa.grid .taxon .image.nophoto, 
+.taxa.grid .taxon .image.nophoto a {
+  text-align: center;
+}
+.taxa.grid .taxon .image .iconic { margin: 80px; }
+
+.taxon .name { display: block; font-family: Georgia, serif; font-size: 140%;}
+.taxon .othernames { display: block;}
+
+.taxa.fluid.grid .taxon { width: auto; }
+.taxa.fluid.grid .taxon .name { font-size: 120%; }
+.taxa.fluid.grid .taxon .othernames { display: inline; }
+.taxa.fluid.big.grid .taxon  { max-height: 237px; }

@@ -129,13 +129,13 @@ class Place < ActiveRecord::Base
   }
   
   def to_s
-    "<Place id: #{self.id}, name: #{self.name}, woeid: #{self.woeid}, " + 
-    "place_type_name: #{self.place_type_name}, lat: #{self.latitude}, " +
-    "lng: #{self.longitude}, parent_id: #{self.parent_id}>"
+    "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
+    "place_type_name: #{place_type_name}, lat: #{latitude}, " +
+    "lng: #{longitude}, parent_id: #{parent_id}>"
   end
   
   def place_type_name
-    PLACE_TYPES[self.place_type]
+    PLACE_TYPES[place_type]
   end
   
   def place_type_name=(name)

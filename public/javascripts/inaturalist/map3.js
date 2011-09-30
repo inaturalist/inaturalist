@@ -357,7 +357,6 @@ google.maps.Map.prototype.hideAllObsOverlay = function() {
 }
 
 google.maps.Map.prototype._mouseMoveListener = function(e) {
-  console.log("mouseLatLng: ", e);
   var mouseLatLng = e.latLng
   var zoom = this.getZoom();
   var mousePx = e.pixel
@@ -402,7 +401,7 @@ iNaturalist.Map.createMap = function(options) {
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
     zoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
-    controls: 'big',
+    streetViewControl: false,
     observationsTileServer: 'http://localhost:8000'
   }, options);
   
@@ -423,23 +422,14 @@ iNaturalist.Map.createMap = function(options) {
 
 // The following code should be abstracted out a bit more
 iNaturalist.Map.createPlaceIcon = function(options) {
-  if (typeof(options) == 'undefined') { var options = {} };
+  var options = options || {}
   var iconPath = "/images/mapMarkers/mm_34_stemless_";
-  if (typeof(options.color) == 'undefined') {
-    iconPath += "DeepPink";
-  }
-  else {
-    iconPath += options.color;
-  }
-  if (typeof(options.character) != 'undefined') {
-    iconPath += ('_' + options.character);
-  }
+  iconPath += options.color ? options.color : "DeepPink"
+  if (options.character) { iconPath += ('_' + options.character); }
   iconPath += '.png';
-  var place = new google.maps.Icon();
-  place.image = iconPath;
-  place.iconSize = new google.maps.Size(20,20);
-  place.iconAnchor = new google.maps.Point(10,10);
-  place.infoWindowAnchor = new google.maps.Point(10,0);
+  var place = new google.maps.MarkerImage(iconPath);
+  place.size = new google.maps.Size(20,20);
+  place.anchor = new google.maps.Point(10,10);
   return place;
 };
 

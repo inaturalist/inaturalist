@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :login_required, :except => [:index, :show, :search, 
-    :wikipedia, :taxa, :children, :autocomplete]
+    :wikipedia, :taxa, :children, :autocomplete, :geometry]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry]
@@ -24,25 +24,7 @@ class PlacesController < ApplicationController
     end
     @places = []
     @q = params[:q] || session[:places_index_q]
-    if @q
-      search_places_for_index(options)
-    elsif GEOIP && (@geoip_result = GeoipTools.city(ip)) && 
-        !@geoip_result[:latitude].blank? && @geoip_result[:latitude] <= 180
-      lat = @geoip_result[:latitude]
-      lon = @geoip_result[:longitude]
-      @q = "#{@geoip_result[:city]}, #{@geoip_result[:state_code]}"
-      begin
-        @place = Place.first(:conditions => ["display_name LIKE ?", "#{@q}%"])
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /invalid byte sequence/
-        q = Iconv.iconv('UTF8', 'LATIN1', @q)
-        @place = Place.first(:conditions => ["display_name LIKE ?", "#{q}%"])
-      end
-      latrads = lat.to_f * (Math::PI / 180)
-      lonrads = lon.to_f * (Math::PI / 180)
-      @places = Place.search(options.merge(:geo => [latrads,lonrads], 
-        :order => "@geodist asc", :limit => limit)) rescue []
-    end
+    search_places_for_index(options) if @q
     
     @places = if @place && @places.size > 2
       @places.insert(2, @place)
@@ -50,36 +32,15 @@ class PlacesController < ApplicationController
       @places.insert(0, @place)
     end.compact
     
-    # If the IP geocoding failed for some reason...
-    if @places.size < limit && @places.size > 0
-      if @place
-        # Backfill with child places
-        @places += Place.all(:limit => (limit - @places.size), 
-          :conditions => ["parent_id = ?", @place.parent_id])
-        @places.delete_if{|p| p.id == @place.id}
-        @places = @places[0..limit]
-      else
-        # Grab random places
-        places_count = Place.count
-        # test_place = Place.find_by_name_and_place_type('Oakland', Place::PLACE_TYPE_CODES['Town'])
-        limit.times do |i|
-          place = Place.first(options.merge(:offset => rand(places_count)))
-          # place = test_place.children.first(:offset => i)
-          @places << place
-        end
-      end
-    end
-    
-    
     if @places.blank?
-      if Rails.cache.exist?('random_places')
-        @places = Rails.cache.read('random_places')
+      if Rails.cache.exist?('random_place_ids')
+        place_ids = Rails.cache.read('random_place_ids')
+        @places = Place.all(:conditions => ["id in (?)", place_ids])
       else
         @places = Place.all(options.merge(:order => "RANDOM()"))
-        Rails.cache.write('random_places', @places, :expires_in => 1.day)
+        Rails.cache.write('random_place_ids', @places.map(&:id), :expires_in => 1.day)
       end
     end
-    
     @places = @places.compact
     
     @taxa_by_place_id = {}
@@ -115,6 +76,9 @@ class PlacesController < ApplicationController
   
   def search
     search_for_places
+    if @places.size == 1
+      redirect_to @places.first
+    end
   end
   
   def show
@@ -163,14 +127,12 @@ class PlacesController < ApplicationController
         order_by("observed_on DESC NULLS LAST").
         all(:include => [:user, :taxon, :photos, :iconic_taxon], :limit => 30)
     end
-
-    # Get directions info
-    ip = request.remote_ip
-    # ip = '66.117.138.26' # Emeryville IP, for testing
-    if GEOIP && (geoip_result = GeoipTools.city(ip))
-      @directions_from = "#{geoip_result[:city]}, #{geoip_result[:state_code]}"
-    end
+    
     @directions_to = "#{@place.latitude}, #{@place.longitude}"
+    
+    if params[:test]
+      render :action => "show2"
+    end
   end
   
   def geometry

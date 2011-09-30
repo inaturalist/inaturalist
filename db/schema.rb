@@ -290,13 +290,13 @@ ActiveRecord::Schema.define(:version => 20110913060143) do
     t.string   "time_zone"
     t.boolean  "location_is_exact",                                                               :default => false
     t.boolean  "delta",                                                                           :default => false
+    t.point    "geom",                             :limit => nil
     t.integer  "positional_accuracy"
     t.decimal  "private_latitude",                                :precision => 15, :scale => 10
     t.decimal  "private_longitude",                               :precision => 15, :scale => 10
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
     t.string   "quality_grade",                                                                   :default => "casual"
-    t.point    "geom",                             :limit => nil
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -668,8 +668,8 @@ ActiveRecord::Schema.define(:version => 20110913060143) do
     t.integer       "range_file_size"
     t.text          "description"
     t.integer       "source_id"
-    t.integer       "source_identifier"
     t.multi_polygon "geom",               :limit => nil
+    t.integer       "source_identifier"
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true

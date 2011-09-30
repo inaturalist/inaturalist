@@ -1,0 +1,107 @@
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "taxa", "taxa/guide", "places/show" %>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" charset="utf-8">
+    var PLACE = <%= @place.to_json %>,
+        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? ''.inspect : place_geometry_url(@place, :format => "kml").inspect %>,
+        WIKIPEDIA_DESCRIPTION_URL = <%= url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect %>,
+        FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>
+  </script>
+  <%= javascript_include_tag 'inaturalist/map3', "places/show" %>
+<%- end -%>
+
+<div id="pageheader">
+  <div id="searchform" class="clear right buttonrow smallbuttons">
+    <%= render :partial => 'places/search_form', :locals => {:q => ''} %>
+  </div>
+  <div class="breadcrumbs">
+    <strong><%= link_to "Places", places_path, :class => 'crumb' %></strong>
+    <span class="description">&gt;</span>
+    <% @place.ancestors.reverse_each do |ancestor| %>
+      <%- link_txt = capture do -%>
+        <%= ancestor.name %>
+        <span class="small description">(<%= ancestor.place_type_name %>)</span>
+      <%- end -%>
+      <%= link_to link_txt, ancestor, :class => 'crumb' %>
+      <span class="description">&gt;</span>
+    <% end %>
+  </div><!-- /#breadcrumbs -->
+  <div id="map" style="height: 100px"></div>
+  <h2>
+    <%=h @place.display_name %>
+    <span class="small description"><%= @place.place_type_name %></span>
+  </h2>
+  <div id="placephotos"></div>
+</div>
+
+<!-- <div id="sidecol">
+  <div id="map" style="width: 230px; height: 230px;"></div>
+  
+  <h3>
+    Description
+    <span class="small description">(from
+      <a href="http://en.wikipedia.org/wiki/<%= @place.wikipedia_name %>">Wikipedia</a>)
+    </span>
+  </h3>
+
+  <div id="wikipedia_description">
+    <div class="loading status">Loading description...</div>
+  </div>
+  <div id="nodescription" class="meta" style="display: none">
+    There isn't a Wikipedia article or 
+    redirect titled '<i><%= @place.wikipedia_name %></i>'.  Perhaps you'd like to
+    <a href='http://en.wikipedia.org/wiki/<%= @place.wikipedia_name %>'>
+    make one</a>?
+  </div>
+</div> -->
+
+<div id="maincol">
+  <div class="clear">
+    <div id="filters" class="left">
+      <div id="taxonfilter" class="inlineblock">
+        <label>Taxon</label>
+        <% for taxon in Taxon::ICONIC_TAXA %>
+          <%= link_to iconic_taxon_image(taxon, :size => 15), :taxon => taxon.id %>
+        <% end %>
+      </div>
+      <div id="colorfilters" class="inlineblock">
+        <label>Color</label>
+        <% for color in Color.all %>
+          <span class="colorfield <%= color.value %>">
+            <%= check_box_tag "colors[]", color.id, 
+              false, 
+              :id => "color_ids_#{color.value}",
+              :class => 'checkbox',
+              :alt => color.value %>
+            <label for="<%= "color_ids_#{color.value}" %>" class="inlineblock"></label>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="abundances" class="right">
+      month abundances
+    </div>
+  </div>
+  
+  <div id="listed_taxa">
+    <div id="taxa" class="clear taxa fluid big grid">
+      <% if @taxa.blank? -%>
+        <div class="noresults">
+          Holy smokes, nothing lives here!
+        </div>
+      <% else %>
+        <% for taxon in @taxa %>
+          <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
+            :include_full_name => true,
+            :image_options => {:size => 'medium'},
+            :link_name => true,
+            :link_image => true
+          } %>
+        <% end %>
+      <% end -%>
+    </div>
+  </div>
+</div>

@@ -174,7 +174,14 @@ $(document).ready(function() {
     '/images/spinner-small.gif',
     '/images/spinner-small-ffffff_on_dedede.gif',
     '/images/spinner-small-ffffff_on_aaaaaa.gif'
-  ]).preload();
+  ]).preload()
+})
+
+$(window).bind('load', function() {
+  $('.fluid.grid > .taxon').each(function() {
+    var img = $(this).find('.taxonimage img')
+    $(this).width(img.width())
+  })
 })
 
 // from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010

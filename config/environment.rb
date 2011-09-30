@@ -95,8 +95,6 @@ Rails::Initializer.run do |config|
   config.gem 'rest-client', :lib => 'rest_client'
   config.gem 'hoptoad_notifier'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
-  config.gem 'geoip'
-  # config.gem 'alexvollmer-daemon-spawn', :lib => 'daemon-spawn', :source => "http://gems.github.com/"
   config.gem 'daemon-spawn', :lib => 'daemon_spawn'
   config.gem 'nokogiri'
   config.gem 'objectify-xml', :lib => 'objectify_xml'
@@ -123,7 +121,6 @@ end
 WINDOWS = false
 
 require 'geoplanet'
-require 'geoip'
 require 'net-flickr/lib/net/flickr'
 require 'catalogue_of_life'
 require 'ubio'
@@ -133,11 +130,6 @@ require 'wikipedia_service'
 require 'batch_tools'
 require 'geo_ruby/shp4r/shp'
 require 'georuby_extra'
-
-# GeoIP setup, for IP geocoding
-geoip_config = YAML.load(File.open("#{RAILS_ROOT}/config/geoip.yml"))
-GEOIP = GeoIP.new(geoip_config[RAILS_ENV]['city'])
-
 
 ### API KEYS ###
 UBIO_KEY = INAT_CONFIG['ubio']['UBIO_KEY']
