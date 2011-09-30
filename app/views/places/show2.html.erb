@@ -1,5 +1,5 @@
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "taxa", "taxa/guide", "places/show" %>
+  <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "places/show" %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -57,32 +57,58 @@
   </div>
 </div> -->
 
-<div id="maincol">
-  <div class="clear">
-    <div id="filters" class="left">
-      <div id="taxonfilter" class="inlineblock">
-        <label>Taxon</label>
-        <% for taxon in Taxon::ICONIC_TAXA %>
-          <%= link_to iconic_taxon_image(taxon, :size => 15), :taxon => taxon.id %>
-        <% end %>
-      </div>
-      <div id="colorfilters" class="inlineblock">
-        <label>Color</label>
-        <% for color in Color.all %>
-          <span class="colorfield <%= color.value %>">
-            <%= check_box_tag "colors[]", color.id, 
-              false, 
-              :id => "color_ids_#{color.value}",
-              :class => 'checkbox',
-              :alt => color.value %>
-            <label for="<%= "color_ids_#{color.value}" %>" class="inlineblock"></label>
-          </span>
-        <% end %>
-      </div>
+<div id="sidecol">
+  <div class="stacked barchart inlineblock">
+    <%= render :partial => "shared/barchart_datum", :locals => {
+      :value => @confirmed_listed_taxa_count, 
+      :max => @distinct_listed_taxa_count, 
+      :label_text => "of #{@distinct_listed_taxa_count} confirmed" } %>
+  </div>
+  <% if @current_user_observed_count -%>
+    <div class="stacked barchart inlineblock">
+      <%= render :partial => "shared/barchart_datum", :locals => {
+        :value => @current_user_observed_count, 
+        :max => @distinct_listed_taxa_count, 
+        :label_text => "of #{@distinct_listed_taxa_count} obs. by you" } %>
     </div>
+  <% end -%>
+  
+  <div id="browsingtaxa">
+    <ul class="taxon_links">
+      <li>
+        <%= link_to "All life", url_for_params(:taxon => nil), :class => "taxon #{'selected' if @taxon.blank?}" %>
+        <ul>
+          <% taxonomic_taxon_list(@arranged_taxa, :class => "clear") do |taxon| %>
+            <%= link_to default_taxon_name(taxon).capitalize, url_for_params(:taxon => taxon.id), 
+              :class => "taxon #{'selected' if @taxon && @taxon.id == taxon.id} #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}" %>
+          <% end -%>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
 
-    <div id="abundances" class="right">
-      month abundances
+<div id="maincol">
+  <div class="stacked clear">
+    <div id="filters" class="left">
+      <div id="colorfilters" class="inlineblock">
+        <%- form_tag url_for, :method => :get, :class => "inlineblock" do %>
+          <%= hidden_fields_for_params :without => [:colors] %>
+          <label>Color</label>
+          <% for color in Color.all %>
+            <span class="colorfield <%= color.value %>">
+              <%= check_box_tag "colors[]", color.id, 
+                @colors && @colors.include?(color.id.to_s), 
+                :id => "color_ids_#{color.value}",
+                :class => 'checkbox',
+                :alt => color.value,
+                "data-loading-click" => '',
+                "data-autosubmit" => true %>
+              <label for="<%= "color_ids_#{color.value}" %>" class="inlineblock"><%= color.value %></label>
+            </span>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
   
@@ -101,6 +127,7 @@
             :link_image => true
           } %>
         <% end %>
+        <%= will_paginate @taxa %>
       <% end -%>
     </div>
   </div>

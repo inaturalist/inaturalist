@@ -171,6 +171,23 @@ module ApplicationHelper
     url_for(new_params)
   end
   
+  def hidden_fields_for_params(options = {})
+    new_params = request.query_parameters.clone
+    if without = options.delete(:without)
+      without = [without] unless without.is_a?(Array)
+      without.map!(&:to_s)
+      new_params.reject! {|k,v| without.include?(k) }
+    end
+    
+    new_params.merge!(options) unless options.empty?
+    
+    html = ""
+    new_params.each do |key, value|
+      html += hidden_field_tag key, value
+    end
+    html
+  end
+  
   def link_to(*args)
     if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name? && 
         !(args[2] && args[2].is_a?(Hash) && args[2][:method])

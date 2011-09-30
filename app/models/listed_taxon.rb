@@ -48,6 +48,8 @@ class ListedTaxon < ActiveRecord::Base
     end
   }
   
+  named_scope :confirmed, :conditions => "last_observation_id IS NOT NULL"
+  
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
   ORDERS = [ALPHABETICAL_ORDER, TAXONOMIC_ORDER]

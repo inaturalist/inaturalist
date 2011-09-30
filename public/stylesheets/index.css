@@ -906,6 +906,7 @@ form.inline .label {
 
 .loadingclick {
   cursor: default;
+  background-image: url(/images/spinner-small.gif);
   background-position: 5px 50%;
   background-repeat: no-repeat;
   color: #888;

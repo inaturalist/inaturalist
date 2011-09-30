@@ -74,7 +74,7 @@ var QTIP_DEFAULTS = {
   }
 }
 
-$('a[data-loading-click]').live('click', function() {
+$('a[data-loading-click], input[data-loading-click][type=radio], input[data-loading-click][type=checkbox]').live('click', function() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
   var loading = $('<div></div>').html(txt)
@@ -88,7 +88,7 @@ $('a[data-loading-click]').live('click', function() {
   $(this).hide().before(loading)
 })
 
-$('input[data-loading-click]').live('click', function() {
+$('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function() {
   var txt = $.trim($(this).attr('data-loading-click'))
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
   $(this).addClass('disabled description').val(txt)
@@ -104,6 +104,10 @@ $('input[data-loading-click]').live('click', function() {
   $(this).parents('form').submit(function() {
     $(link).attr('disabled', true)
   })
+})
+
+$('[data-autosubmit]').live('change', function() {
+  $(this).parents('form').submit()
 })
 
 function buildHelpTips() {
@@ -179,6 +183,7 @@ $(document).ready(function() {
 
 $(window).bind('load', function() {
   $('.fluid.grid > .taxon').each(function() {
+    if ($(this).hasClass('noimg')) { return };
     var img = $(this).find('.taxonimage img')
     $(this).width(img.width())
   })

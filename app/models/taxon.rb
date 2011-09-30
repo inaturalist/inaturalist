@@ -217,6 +217,17 @@ class Taxon < ActiveRecord::Base
     }
   }
   
+  named_scope :colored, lambda {|colors|
+    colors = [colors] unless colors.is_a?(Array)
+    if colors.first.to_i == 0
+      {:include => [:colors], :conditions => ["colors.name IN (?)", colors]}
+    else
+      {:include => [:colors], :conditions => ["colors.id IN (?)", colors]}
+    end
+  }
+  
+  named_scope :has_photos, :include => [:photos], :conditions => ["photos.id IS NOT NULL"]
+  
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)

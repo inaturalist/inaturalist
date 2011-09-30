@@ -131,6 +131,29 @@ class PlacesController < ApplicationController
     @directions_to = "#{@place.latitude}, #{@place.longitude}"
     
     if params[:test]
+      scope = @place.taxa.scoped({})
+      order = nil
+      if params[:taxon] && @taxon = Taxon.find_by_id(params[:taxon])
+        scope = scope.descendants_of(@taxon)
+        order = "ancestry"
+      else
+        scope = scope.has_photos
+      end
+      if @colors = params[:colors]
+        scope = scope.colored(@colors)
+      end
+      @taxa = scope.paginate(:page => params[:page], :per_page => 50, :include => [:taxon_names, :photos], :order => order)
+      @distinct_listed_taxa_count = @place.listed_taxa.count(:select => "DISTINCT(taxon_id)")
+      @confirmed_listed_taxa_count = @place.listed_taxa.confirmed.count(:select => "DISTINCT(taxon_id)")
+      if logged_in?
+        @current_user_observed_count = @place.listed_taxa.count(
+          :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
+          :conditions => ["ult.list_id = ?", current_user.life_list_id])
+      end
+      browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
+      browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+      browsing_taxa.delete_if{|t| t.name == "Life"}
+      @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
       render :action => "show2"
     end
   end
