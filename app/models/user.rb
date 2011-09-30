@@ -280,8 +280,8 @@ class User < ActiveRecord::Base
   def facebook_albums
     return [] if self.facebook_api.nil? 
     album_data = self.facebook_api.get_connections('me','albums')
-    return album_data.map{|a| 
-      {'aid'=>a['id'], 'name'=>a['name'], #'cover_photo_src'=>self.facebook_api.get_object(a['cover_photo'])['picture']}
+    return album_data.reject{|a| a['count'].nil? || a['count']<1}.map{|a| 
+      {'aid'=>a['id'], 'name'=>a['name'], 'photo_count'=>a['count'],
        'cover_photo_src'=>"https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{self.facebook_token}"}
     }
   end

@@ -32,7 +32,7 @@ class FacebookPhoto < Photo
 
   def self.get_api_response(native_photo_id, options = {})
     return nil unless (options[:user] && options[:user].facebook_api)
-    return options[:user].facebook_api.get_object(native_photo_id)
+    return (options[:user].facebook_api.get_object(native_photo_id) || nil) # api returns 'false' if photo not found
   end
 
   # facebook doesn't provide a square image
@@ -43,6 +43,7 @@ class FacebookPhoto < Photo
 
   def self.new_from_api_response(api_response, options = {})
     fp = api_response
+    return nil if fp.nil?
     # facebook api provides these sizes in an keyless array, in this order
     [:large_url, :medium_url, :small_url, :thumb_url].each_with_index{|img_size,i|
       options.update(img_size=>fp['images'][i]['source'])
