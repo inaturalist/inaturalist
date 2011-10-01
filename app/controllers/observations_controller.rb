@@ -264,9 +264,9 @@ class ObservationsController < ApplicationController
             end
           end
           
-          @project_users = current_user.project_users.all(:include => :project)
+          @project_users = current_user.project_users.all(:include => :project, :limit => 1000, :order => "projects.title")
           
-          if params[:test] && @observation.georeferenced?
+          if @observation.georeferenced?
             @places = Place.containing_lat_lng(@observation.latitude, @observation.longitude).sort_by(&:bbox_area)
           end
         end
@@ -818,7 +818,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         if logged_in? && @selected_user.id == current_user.id
-          @project_users = current_user.project_users.all(:include => :project)
+          @project_users = current_user.project_users.all(:include => :project, :order => "projects.title")
           if @proj_obs_errors = Rails.cache.read("proj_obs_errors_#{current_user.id}") 
             @project = Project.find_by_id(@proj_obs_errors[:project_id])
             @proj_obs_errors_obs = current_user.observations.all(:conditions => ["id IN (?)", @proj_obs_errors[:errors].keys], :include => [:photos, :taxon])

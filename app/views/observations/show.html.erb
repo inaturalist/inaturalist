@@ -276,7 +276,7 @@
         <div id="map"></div>
       <% end %>
       <div class="description">
-        <%= render :partial => 'location', :locals => {:inline_edit => true} %>
+        <%= render :partial => 'location', :locals => {:inline_edit => true, :places => @places} %>
       </div>
     </div><!-- end where -->
   </div><!-- end where-and-photos -->

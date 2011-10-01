@@ -1,9 +1,16 @@
 <%- 
   observation ||= object || @observation
   inline_edit ||= false
+  places ||= nil
 -%>
 <label>Location:</label>
 <%= observation_place_guess observation %>
+<% unless places.blank? -%>
+  <div>
+    <label>Places:</label>
+    <%= places.map{|place| link_to(place.code || place.name, place, :title => place.display_name)}.join(', ') %>
+  </div>
+<% end -%>
 <% if show_observation_coordinates?(observation) %>
 <div>
   <% if !observation.coordinates_viewable_by?(current_user) -%>
