@@ -154,6 +154,18 @@ class PlacesController < ApplicationController
       browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
       browsing_taxa.delete_if{|t| t.name == "Life"}
       @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
+      latrads = @place.latitude.to_f * (Math::PI / 180)
+      lonrads = @place.longitude.to_f * (Math::PI / 180)
+      @nearby_places = begin
+        Place.search(
+          :geo => [latrads,lonrads], 
+          :order => "@geodist asc",
+          :with => {:place_type => @place.place_type},
+          :limit => 10)
+      rescue ThinkingSphinx::ConnectionError
+        []
+      end
+      @inside_places = @place.children.all(:limit => 10, :order => "RANDOM()")
       render :action => "show2"
     end
   end
