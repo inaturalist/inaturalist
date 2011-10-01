@@ -38,6 +38,8 @@ $(document).ready(function() {
         var marker = map.createMarker(place.latitude, place.longitude, {icon: smallIcon, title: place.display_name})
         marker.setMap(map)
         marker.placeId = place.place_id
+        marker.placeType = place.place_type
+        
         marker.setZIndex(1)
         google.maps.event.addListener(marker, 'click', function() {
           window.location = '/places/'+this.placeId+'?test=true'
@@ -54,15 +56,15 @@ $(document).ready(function() {
     if (zoom > 4 && zoom <= 7) {
       layer = 'state_points'
       for (var i = placeMarkers.length - 1; i >= 0; i--){
-        placeMarkers[i].setVisible(placeMarkers[i].placeType == 'state')
+        placeMarkers[i].setVisible(placeMarkers[i].placeType == 8) // state
       }
     } else if (zoom > 7 && zoom < 12) {
       for (var i = placeMarkers.length - 1; i >= 0; i--){
-        placeMarkers[i].setVisible(placeMarkers[i].placeType == 'county')
+        placeMarkers[i].setVisible(placeMarkers[i].placeType == 9) // county
       }
     } else {
       for (var i = placeMarkers.length - 1; i >= 0; i--){
-        placeMarkers[i].setVisible(placeMarkers[i].placeType == 'country')
+        placeMarkers[i].setVisible(placeMarkers[i].placeType == 12) // country
       }
     }
   })
