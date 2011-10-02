@@ -43,7 +43,7 @@ module ObservationsHelper
         observation.place_guess + 
         " (#{link_to "Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank"})".html_safe
       else
-        place_guess = if observation.lat_lon_in_place_guess? && coordinate_trunctation
+        place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
           "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
         else
           observation.place_guess
