@@ -39,7 +39,7 @@ class TaxaController < ApplicationController
     find_taxa unless request.format.html?
     
     begin
-      @taxa.total_entries
+      @taxa.try(:total_entries)
     rescue ThinkingSphinx::SphinxError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
       @taxa = WillPaginate::Collection.new(1,30,0)
