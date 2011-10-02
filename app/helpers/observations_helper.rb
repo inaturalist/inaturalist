@@ -43,7 +43,12 @@ module ObservationsHelper
         observation.place_guess + 
         " (#{link_to "Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank"})".html_safe
       else
-        link_to(observation.place_guess, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+        place_guess = if observation.lat_lon_in_place_guess? && coordinate_trunctation
+          "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
+        else
+          observation.place_guess
+        end
+        link_to(place_guess, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
          " (#{link_to("Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank")})".html_safe
       end
     elsif !observation.latitude.blank? && !observation.coordinates_obscured?
@@ -52,7 +57,7 @@ module ObservationsHelper
         " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
         
     elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
-      link_to("<nobr>#{observation.private_latitude}</nobr>, <nobr>#{observation.private_longitude}</nobr>", 
+      link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>", 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{link_to "Google", "http://maps.google.com/?q=#{observation.private_latitude}, #{observation.private_longitude}", :target => "_blank"})".html_safe
     else
