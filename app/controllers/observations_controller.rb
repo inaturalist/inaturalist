@@ -72,6 +72,12 @@ class ObservationsController < ApplicationController
       get_paginated_observations(search_params, find_options)
     else
       search_observations(search_params, find_options)
+      begin
+        @observations.total_entries
+      rescue ThinkingSphinx::SphinxError => e
+        Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
+        @observations = WillPaginate::Collection.new(1,30, 0)
+      end
     end
 
     respond_to do |format|

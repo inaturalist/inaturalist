@@ -38,6 +38,13 @@ class TaxaController < ApplicationController
   def index
     find_taxa unless request.format.html?
     
+    begin
+      @taxa.total_entries
+    rescue ThinkingSphinx::SphinxError => e
+      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
+      @taxa = WillPaginate::Collection.new(1,30,0)
+    end
+    
     respond_to do |format|
       format.html do # index.html.erb
         @featured_taxa = Taxon.all(:conditions => "featured_at IS NOT NULL", 
@@ -303,8 +310,14 @@ class TaxaController < ApplicationController
         end
         @faceted_places_by_id = @faceted_places.index_by(&:id)
       end
-      
       @taxa = @facets.for(drill_params)
+    end
+    
+    begin
+      @taxa.blank?
+    rescue ThinkingSphinx::SphinxError => e
+      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
+      @taxa = WillPaginate::Collection.new(1,30,0)
     end
     
     do_external_lookups
