@@ -13,6 +13,18 @@
         TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
   </script>
   <%= javascript_include_tag 'inaturalist/map3', "places/show" %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      var script = document.createElement("script")
+      script.setAttribute("type", "text/javascript")
+      if (true || $.browser.msie) {
+        script.setAttribute("src", "/javascripts/places/show.gmaps.js")
+      } else {
+        script.setAttribute("src", "/javascripts/places/show.polymaps.js")
+      }
+      document.body.appendChild(script);
+    })
+  </script>
 <%- end -%>
 
 <div id="pageheader">

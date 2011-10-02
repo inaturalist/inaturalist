@@ -35,3 +35,6 @@
 }
 #browsingtaxa a.taxon:hover { background-color: #f6f6f6;}
 #browsingtaxa a.taxon.selected { background-color: white;}
+
+.markerlink { position: absolute; display: block; width: 10px; height: 10px; background-color: deeppink; border-radius: 10px; opacity: 0.5; z-index: 1000;}
+#map { position: relative; }
