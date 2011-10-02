@@ -181,13 +181,13 @@ $(document).ready(function() {
   ]).preload()
 })
 
-$(window).bind('load', function() {
-  $('.fluid.grid > .taxon').each(function() {
-    if ($(this).hasClass('noimg')) { return };
-    var img = $(this).find('.taxonimage img')
-    $(this).width(img.width())
-  })
-})
+// $(window).bind('load', function() {
+//   $('.fluid.grid .taxon.img').each(function() {
+//     // if ($(this).hasClass('noimg')) { return };
+//     var img = $(this).find('.taxonimage img')
+//     $(this).width(img.width())
+//   })
+// })
 
 // from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010
 jQuery.fn.autolink = function() {

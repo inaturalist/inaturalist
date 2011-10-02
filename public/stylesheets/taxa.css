@@ -35,6 +35,9 @@ table.taxa .taxon_name {
 .taxa.big.grid .taxon { width: 310px; }
 .taxa.big.grid .taxon img { max-width: 310px; }
 
+/* small grid */
+.taxa.medium.grid .taxon img { max-width: 240px; }
+
 /* list */
 
 .taxa.list .taxon_list_taxon { margin-bottom: 10px; }

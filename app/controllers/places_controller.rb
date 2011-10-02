@@ -135,16 +135,22 @@ class PlacesController < ApplicationController
       order = nil
       if params[:taxon] && @taxon = Taxon.find_by_id(params[:taxon])
         scope = scope.descendants_of(@taxon)
-        order = "ancestry"
+        order = "ancestry || taxa.id"
       else
         scope = scope.has_photos
       end
       if @colors = params[:colors]
         scope = scope.colored(@colors)
       end
-      @taxa = scope.paginate(:page => params[:page], :per_page => 50, :include => [:taxon_names, :photos], :order => order)
-      @distinct_listed_taxa_count = @place.listed_taxa.count(:select => "DISTINCT(taxon_id)")
-      @confirmed_listed_taxa_count = @place.listed_taxa.confirmed.count(:select => "DISTINCT(taxon_id)")
+      @taxa = scope.of_rank(Taxon::SPECIES).paginate(:select => "DISTINCT ON (ancestry || taxa.id) taxa.*", 
+        :page => params[:page], :per_page => 50, 
+        :include => [:taxon_names, :photos], :order => order)
+      @distinct_listed_taxa_count = @place.listed_taxa.count(
+        :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
+        :conditions => ["taxa.rank = ?", Taxon::SPECIES])
+      @confirmed_listed_taxa_count = @place.listed_taxa.confirmed.count(
+        :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
+        :conditions => ["taxa.rank = ?", Taxon::SPECIES])
       if logged_in?
         @current_user_observed_count = @place.listed_taxa.count(
           :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
@@ -156,16 +162,6 @@ class PlacesController < ApplicationController
       @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
       latrads = @place.latitude.to_f * (Math::PI / 180)
       lonrads = @place.longitude.to_f * (Math::PI / 180)
-      @nearby_places = begin
-        Place.search(
-          :geo => [latrads,lonrads], 
-          :order => "@geodist asc",
-          :with => {:place_type => @place.place_type},
-          :limit => 10)
-      rescue ThinkingSphinx::ConnectionError
-        []
-      end
-      @inside_places = @place.children.all(:limit => 10, :order => "RANDOM()")
       render :action => "show2"
     end
   end

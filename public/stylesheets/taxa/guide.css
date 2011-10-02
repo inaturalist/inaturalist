@@ -34,10 +34,13 @@
   display: block;
   text-align: center;
 }
-.taxonimage {
-  min-height: 206px;
-}
+.taxa.grid .taxon { float: none; vertical-align: top; }
+.taxa.big.grid .taxonimage { min-height: 206px; }
 .taxa.big.grid .taxon img { max-height: 206px;}
+
+.taxa.medium.grid .taxonimage { min-height: 160px; }
+.taxa.medium.grid .taxon img  { max-height: 160px;}
+
 .taxa.grid .taxon .image, 
 .taxa.grid .taxon .image a {
   text-align: left;
@@ -46,12 +49,15 @@
 .taxa.grid .taxon .image.nophoto a {
   text-align: center;
 }
-.taxa.grid .taxon .image .iconic { margin: 80px; }
+.taxa.big.grid .taxon .image .iconic { margin: 80px; }
+.taxa.medium.grid .taxon .image .iconic { margin: 64px; }
 
 .taxon .name { display: block; font-family: Georgia, serif; font-size: 140%;}
 .taxon .othernames { display: block;}
 
 .taxa.fluid.grid .taxon { width: auto; }
 .taxa.fluid.grid .taxon .name { font-size: 120%; }
-.taxa.fluid.grid .taxon .othernames { display: inline; }
+.taxa.fluid.grid .taxon .comname { white-space: nowrap; }
 .taxa.fluid.big.grid .taxon  { max-height: 237px; }
+.taxa.fluid.medium.grid .taxon  { max-height: 191px; }
+

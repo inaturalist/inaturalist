@@ -14,7 +14,7 @@
   taxon_class = "clear taxon #{taxon.rank}"
   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
   taxon_class << " #{iconic_taxon.name}" if iconic_taxon
-  taxon_class << ' noimg' if taxon.photos.empty?
+  taxon_class << (taxon.photos.empty? ? ' noimg' : ' img')
   taxon_class << " #{extra_class}" if extra_class
   include_full_name ||= false
   taxon_name_str = if include_full_name

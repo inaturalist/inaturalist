@@ -1,3 +1,6 @@
+<%- content_for(:title) do -%>
+  <%= @place.display_name %>
+<%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "places/show" %>
 <%- end -%>
@@ -128,20 +131,23 @@
   </div>
   
   <div id="listed_taxa">
-    <div id="taxa" class="clear taxa fluid big grid">
+    <div id="taxa" class="clear taxa fluid medium grid">
       <% if @taxa.blank? -%>
         <div class="noresults">
           Holy smokes, nothing lives here!
         </div>
       <% else %>
-        <% for taxon in @taxa %>
-          <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
-            :include_full_name => true,
-            :image_options => {:size => 'medium'},
-            :link_name => true,
-            :link_image => true
-          } %>
-        <% end %>
+        <div class="clear">
+          <% for taxon in @taxa %>
+            <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
+              :include_full_name => true,
+              :image_options => {:size => 'small'},
+              :link_name => true,
+              :link_image => true,
+              :extra_class => "inlineblock"
+            } %>
+          <% end %>
+        </div>
         <%= will_paginate @taxa %>
       <% end -%>
     </div>

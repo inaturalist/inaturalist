@@ -109,6 +109,7 @@ class TaxonName < ActiveRecord::Base
     return nil if taxon_names.blank?
     common_names = taxon_names.reject { |tn| tn.is_scientific_names? }
     return nil if common_names.blank?
+    common_names = common_names.sort_by(&:id)
     
     engnames = common_names.select {|n| n.is_english?}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
