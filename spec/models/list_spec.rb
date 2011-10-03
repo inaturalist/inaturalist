@@ -1,19 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe List, "creation" do
-  fixtures :users, :taxa
-  before(:each) do
-    @list = List.new(
-      :user => User.first
-    )
-  end
-  it "should return a new instance" do
-    @list.save!
-    @list.should_not be(nil)
-    @list.new_record?.should be(false)
-  end
-end
-
 describe List, "updating" do
   fixtures :users, :taxa, :lists
   it "should not be allowed anyone other than the owner" do
@@ -48,19 +34,3 @@ describe List, "taxon adding" do
   end
   
 end
-
-# describe List, "refresh_with_observation" do
-#   it "should update existing last observation" do
-#     user = User.make
-#     list = List.make(:user => user)
-#     listed_taxon = ListedTaxon.make(:list => list)
-#     listed_taxon.last_observation.should be_blank
-#     observation = Observation.make(:user => user, :taxon => listed_taxon.taxon)
-#     List.refresh_with_observation(observation)
-#     listed_taxon.reload
-#     listed_taxon.last_observation_id.should be(observation.id)
-#   end
-#   
-#   it "should not add a new taxon"
-# end
-

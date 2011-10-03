@@ -3,7 +3,8 @@ class CheckList < List
   belongs_to :place
   belongs_to :taxon
   
-  before_create :set_last_synced_at, :set_title, :create_taxon_list_rule
+  before_validation :set_title
+  before_create :set_last_synced_at, :create_taxon_list_rule
   after_save :update_listed_taxa_places
   
   validates_presence_of :place_id
@@ -17,6 +18,7 @@ class CheckList < List
     if self.place_id
       ListedTaxon.update_all("place_id = #{self.place_id}", "list_id = #{self.id}")
     end
+    true
   end
   
   # CheckLists can be edited by any logged in user.
@@ -34,28 +36,26 @@ class CheckList < List
   end
   
   def create_taxon_list_rule
-    unless self.taxon.nil? || 
-        self.rules.map(&:operand_id).include?(self.taxon_id)
-      self.rules << ListRule.new(
-        :operand => self.taxon, :operator => 'in_taxon?'
-      )
+    unless taxon.nil? || rules.map(&:operand_id).include?(taxon_id)
+      self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
     end
+    true
   end
   
   def set_title
-    return true unless self.title.blank?
-    unless self.taxon
-      self.title = "#{self.place.name} Check List"
-      return
+    return true unless title.blank?
+    unless taxon
+      self.title = "#{place.name} Check List"
+      return true
     end
-    common_name = self.taxon.common_name
-    self.title = "#{common_name ? common_name.name : self.taxon.name} of " + 
-      self.place.name
+    common_name = taxon.common_name
+    self.title = "#{common_name ? common_name.name : taxon.name} of #{place.name}"
     true
   end
   
   def set_last_synced_at
     self.last_synced_at = Time.now
+    true
   end
   
   def sync_with_parent(options = {})
@@ -132,38 +132,39 @@ class CheckList < List
     return if taxon_id.blank?
     taxon_ids = [taxon_id]
     taxon_ids += observation.taxon.ancestor_ids if observation
-    Rails.logger.info "[INFO #{Time.now}] taxon_ids: #{taxon_ids.inspect}"
     
     # get places in which the observation was made
     place_ids = if observation && observation.georeferenced?
-      Rails.logger.info "[INFO #{Time.now}] Finding intersecting place geometries for #{observation}"
+      conditions = if observation.coordinates_obscured?
+        "ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude))"
+      else
+        "ST_Intersects(place_geometries.geom, observations.geom)"
+      end
       PlaceGeometry.all(:select => "place_geometries.id, place_id",
         :joins => "JOIN observations ON observations.id = #{observation_id}",
-        :conditions => "ST_Intersects(place_geometries.geom, observations.geom)").map(&:place_id)
+        :conditions => conditions).map(&:place_id)
     else
       []
     end
-    Rails.logger.info "[INFO #{Time.now}] place_ids: #{place_ids.inspect}"
+    place_ids.uniq!
     
     # get places places where this obs was made that already have this taxon listed
     existing_place_ids = ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
       :conditions => ["place_id IN (?) AND taxon_id = ?", place_ids, taxon_id]).map(&:place_id)
     if observation
       existing_place_ids += ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
-        :conditions => ["place_id IN (?) AND last_observation_id = ?", place_ids, observation.id]).map(&:place_id)
+        :conditions => ["place_id IS NOT NULL AND last_observation_id = ?", observation.id]).map(&:place_id)
     end
-    Rails.logger.info "[INFO #{Time.now}] existing_place_ids: #{existing_place_ids.inspect}"
+    existing_place_ids.uniq!
       
     # if we need to add / update
     if observation && observation.quality_grade == Observation::RESEARCH_GRADE
-      Rails.logger.info "[INFO #{Time.now}] Setting last obs of listed taxa to #{observation}"
       ListedTaxon.update_all(
         ["last_observation_id = ?", observation], 
         ["place_id IN (?) AND taxon_id IN (?)", existing_place_ids, taxon_ids]
       )
       return unless observation.taxon.rank == Taxon::SPECIES
       new_place_ids = place_ids - existing_place_ids
-      Rails.logger.info "[INFO #{Time.now}] Adding taxon for #{observation} to new places: #{new_place_ids.inspect}"
       CheckList.find_each(:joins => "JOIN places ON places.check_list_id = lists.id", 
           :conditions => ["place_id IN (?)", new_place_ids]) do |list|
         list.add_taxon(observation.taxon, :last_observation => observation, 
@@ -172,7 +173,6 @@ class CheckList < List
     
     # otherwise well be refreshing / deleting
     else
-      Rails.logger.info "[INFO #{Time.now}] Finding listed taxa to remove for #{observation}"
       conditions = ["place_id > 0 AND last_observation_id = ?", observation_id]
       ListedTaxon.find_each(:include => :list, :conditions => conditions) do |lt|
         obs = ListedTaxon.update_last_observation_for(lt)

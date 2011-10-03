@@ -36,6 +36,7 @@ describe CheckList, "refresh_with_observation" do
     @place = Place.make(:name => "foo to the bar")
     @place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     @check_list = @place.check_list
+    @taxon = Taxon.make(:rank => Taxon::SPECIES)
   end
   
   it "should update last observation" do
@@ -48,71 +49,90 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should add listed taxa" do
-    t = Taxon.make(:rank => Taxon::SPECIES)
-    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
-    @check_list.taxon_ids.should_not include(t.id)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
+    @check_list.taxon_ids.should_not include(@taxon.id)
     CheckList.refresh_with_observation(o)
     @check_list.reload
-    @check_list.taxon_ids.should include(t.id)
+    @check_list.taxon_ids.should include(@taxon.id)
   end
   
   it "should remove listed taxa if observation deleted" do
-    t = Taxon.make(:rank => Taxon::SPECIES)
-    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
     
     @place.place_geometry.geom.should_not be_blank
     o.geom.should_not be_blank
     
-    @check_list.add_taxon(t)
+    @check_list.add_taxon(@taxon)
     CheckList.refresh_with_observation(o)
     @check_list.reload
-    @check_list.taxon_ids.should include(t.id)
+    @check_list.taxon_ids.should include(@taxon.id)
     observation_id = o.id
     o.destroy
     Rails.logger.debug "[DEBUG] let's get this party started, observation_id = #{observation_id}"
     
-    CheckList.refresh_with_observation(observation_id, :taxon_id => t.id)
+    CheckList.refresh_with_observation(observation_id, :taxon_id => @taxon.id)
     @check_list.reload
-    @check_list.taxon_ids.should_not include(t.id)
+    @check_list.taxon_ids.should_not include(@taxon.id)
   end
   
   it "should not remove listed taxa if added by a user" do
-    t = Taxon.make(:rank => Taxon::SPECIES)
-    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
-    @check_list.add_taxon(t, :user => User.make)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
+    @check_list.add_taxon(@taxon, :user => User.make)
     CheckList.refresh_with_observation(o)
     @check_list.reload
-    @check_list.taxon_ids.should include(t.id)
+    @check_list.taxon_ids.should include(@taxon.id)
     observation_id = o.id
     o.destroy
-    CheckList.refresh_with_observation(observation_id, :taxon_id => t.id)
+    CheckList.refresh_with_observation(observation_id, :taxon_id => @taxon.id)
     @check_list.reload
-    @check_list.taxon_ids.should include(t.id)
+    @check_list.taxon_ids.should include(@taxon.id)
   end
   
   it "should not add to a non-default list" do
-    t = Taxon.make(:rank => Taxon::SPECIES)
-    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
     l = CheckList.make(:place => @check_list.place)
     CheckList.refresh_with_observation(o)
     l.reload
-    l.taxon_ids.should_not include(t.id)
+    l.taxon_ids.should_not include(@taxon.id)
   end
   
   it "should not remove listed taxa if non-default list" do
-    t = Taxon.make(:rank => Taxon::SPECIES)
-    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
     l = CheckList.make(:place => @check_list.place)
-    l.add_taxon(t)
+    l.add_taxon(@taxon)
     l.reload
-    l.taxon_ids.should include(t.id)
+    l.taxon_ids.should include(@taxon.id)
     CheckList.refresh_with_observation(o)
     observation_id = o.id
     o.destroy
-    CheckList.refresh_with_observation(observation_id, :taxon_id => t.id)
+    CheckList.refresh_with_observation(observation_id, :taxon_id => @taxon.id)
     l.reload
-    l.taxon_ids.should include(t.id)
+    l.taxon_ids.should include(@taxon.id)
   end
   
   it "should remove taxa from ancestor lists"
+  
+  it "should use private coordinates" do
+    g = @place.place_geometry.geom
+    obscured_lat = g.envelope.lower_corner.y - 1
+    obscured_lon = g.envelope.lower_corner.x - 1
+    
+    # make sure obscured coords lie outside the place geom
+    PlaceGeometry.all(
+      :conditions => "ST_Intersects(place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat}))").
+      map(&:place_id).should_not include(@check_list.place_id)
+      
+    o = make_research_grade_observation(:latitude => @place.latitude, 
+      :longitude => @place.longitude, :taxon => @taxon, :geoprivacy => Observation::OBSCURED)
+    Observation.update_all(
+      ["latitude = ?, longitude = ?, geom = St_Point(#{obscured_lon}, #{obscured_lat})", 
+        obscured_lat, obscured_lon], 
+      ["id = ?", o.id])
+    o.reload
+    @check_list.taxon_ids.should_not include(@taxon.id)
+    CheckList.refresh_with_observation(o)
+    @check_list.reload
+    
+    @check_list.taxon_ids.should include(@taxon.id)
+  end
 end

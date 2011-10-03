@@ -268,11 +268,11 @@ class Place < ActiveRecord::Base
   # Create a CheckList associated with this place
   def create_default_check_list
     self.create_check_list(:place => self)
-    self.save(false)
-    unless self.check_list.valid?
+    save(false)
+    unless check_list.valid?
       logger.info "[INFO] Failed to create a default check list on " + 
         "creation of #{self}: " + 
-        self.check_list.errors.full_messages.join(', ')
+        check_list.errors.full_messages.join(', ')
     end
   end
   
