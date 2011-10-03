@@ -152,8 +152,15 @@ class CheckList < List
     existing_place_ids = ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
       :conditions => ["place_id IN (?) AND taxon_id = ?", place_ids, taxon_id]).map(&:place_id)
     if observation
-      existing_place_ids += ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
-        :conditions => ["place_id IS NOT NULL AND last_observation_id = ?", observation.id]).map(&:place_id)
+      confirmed_listed_taxa = ListedTaxon.all(:conditions => [
+        "place_id IS NOT NULL AND last_observation_id = ?", observation.id])
+      confirmed_place_ids = confirmed_listed_taxa.map(&:place_id)
+      legit_confirmed_place_ids = confirmed_listed_taxa.select{|lt| place_ids.include?(lt.place_id)}.map(&:place_id)
+      illegit_confirmed_place_ids = confirmed_place_ids - legit_confirmed_place_ids
+      illegit_confirmed_listed_taxa = confirmed_listed_taxa.select{|lt| illegit_confirmed_place_ids.include?(lt.place_id)}
+      existing_place_ids += legit_confirmed_place_ids
+    else
+      illegit_confirmed_listed_taxa = []
     end
     existing_place_ids.uniq!
       
@@ -170,19 +177,20 @@ class CheckList < List
         list.add_taxon(observation.taxon, :last_observation => observation, 
           :skip_update_last_observation => true)
       end
+      
+      # remove from illegit confirmed places
+      illegit_confirmed_listed_taxa.each do |lt|
+        obs = ListedTaxon.update_last_observation_for(lt)
+        lt.destroy if obs.blank? && lt.can_be_auto_removed_from_check_list?
+        obs = nil
+      end
     
     # otherwise well be refreshing / deleting
     else
       conditions = ["place_id > 0 AND last_observation_id = ?", observation_id]
       ListedTaxon.find_each(:include => :list, :conditions => conditions) do |lt|
         obs = ListedTaxon.update_last_observation_for(lt)
-        if obs.blank? && 
-            !lt.user_id && 
-            !lt.updater_id && 
-            lt.comments_count.to_i == 0 &&
-            lt.list.is_default?
-          lt.destroy
-        end
+        lt.destroy if obs.blank? && lt.can_be_auto_removed_from_check_list?
         obs = nil
       end
     end

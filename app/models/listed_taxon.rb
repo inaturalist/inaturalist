@@ -198,6 +198,14 @@ class ListedTaxon < ActiveRecord::Base
     list.editable_by?(user)
   end
   
+  def can_be_auto_removed_from_check_list?
+    list.is_a?(CheckList) &&
+      !user_id && 
+      !updater_id && 
+      comments_count.to_i == 0 &&
+      list.is_default?
+  end
+  
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes

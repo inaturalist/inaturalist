@@ -135,4 +135,21 @@ describe CheckList, "refresh_with_observation" do
     
     @check_list.taxon_ids.should include(@taxon.id)
   end
+  
+  it "should update old listed taxa which this observation confirmed" do
+    other_place = Place.make(:name => "other place")
+    other_place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"))
+    o = make_research_grade_observation(:latitude => other_place.latitude, 
+      :longitude => other_place.longitude, :taxon => @taxon)
+    CheckList.refresh_with_observation(o)
+    lt = other_place.listed_taxa.find_by_taxon_id(@taxon.id)
+    lt.last_observation_id.should be(o.id)
+    
+    o.update_attributes(:latitude => @place.latitude, :longitude => @place.longitude)
+    CheckList.refresh_with_observation(o)
+    lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
+    lt.last_observation_id.should be(o.id)
+    
+    other_place.listed_taxa.find_by_taxon_id(@taxon.id).should be_blank
+  end
 end
