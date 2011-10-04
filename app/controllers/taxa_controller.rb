@@ -870,10 +870,10 @@ class TaxaController < ApplicationController
         @flickr_photos.map(&:native_photo_id), FlickrPhoto.to_s
       ]
     )
-    @imported_native_photo_id = {}
+    @observations_by_native_photo_id = {}
     @observations.each do |observation|
       observation.photos.each do |flickr_photo|
-        @imported_native_photo_id[flickr_photo.native_photo_id] = true
+        @observations_by_native_photo_id[flickr_photo.native_photo_id] = observation
       end
     end
   end
