@@ -434,12 +434,20 @@ class ObservationsController < ApplicationController
     end
     
     if params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
-      unless params[:accept_terms]
-        flash[:error] = "You need check that you agree to the project terms before joining the project"
-        #redirect_to new_observation_path(:project_id => params[:project_id])
+      # JSON conditions is a bit of a hack to accomodate mobile clients
+      unless params[:accept_terms] || request.format.json?
+        msg = "You need check that you agree to the project terms before joining the project"
         @project = Project.find_by_id(params[:project_id])
         @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
-        render :action => 'new'
+        respond_to do |format|
+          format.html do
+            flash[:error] = msg
+            render :action => 'new'
+          end
+          format.json do
+            render :json => {:errors => msg}, :status => :unprocessable_entity
+          end
+        end
         return
       end
     end
@@ -477,7 +485,14 @@ class ObservationsController < ApplicationController
           end
         end
       end
-      format.json { render :json => @observations.to_json }
+      format.json do
+        if errors
+          render :json => {:errors => @observations.map{|o| o.errors.full_messages}}, 
+            :status => :unprocessable_entity
+        else
+          render :json => @observations.to_json  
+        end
+      end
     end
   end
 
