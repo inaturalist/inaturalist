@@ -20,14 +20,20 @@ class ProjectList < LifeList
     super(options.merge(:destroy_unobserved => true))
   end
   
+  def first_observation_of(taxon)
+    return nil unless taxon
+    project.observations.recently_added.of(taxon).last
+  end
+  
   def last_observation_of(taxon)
     return nil unless taxon
-    Observation.latest.first(
-      :include => :project_observations, 
-      :conditions => [
-        "taxon_id = ? AND project_observations.project_id = ?", taxon, project_id
-      ])
+    project.observations.of(taxon).latest.first
   end
+  
+  def observation_stats_for(taxon)
+    project.observations.of(taxon).count(:group => "EXTRACT(month FROM observed_on)")
+  end
+  
   
   private
   def set_defaults

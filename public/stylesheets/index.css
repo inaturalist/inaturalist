@@ -920,3 +920,40 @@ form.inline .label {
 }
 
 .date a:hover { border-bottom: 1px dotted #36c;}
+
+.monthgraph {
+  height: 20px; 
+  margin: 20px 0;
+}
+.monthgraph .bar {
+  opacity: 0.8;
+  display: inline-block;
+  background-color: #74AC00; /*#7E9739;*/
+  margin-right: 1px;
+  width: 20px;
+  font-size: smaller;
+  vertical-align: bottom;
+  text-align: center;
+  position: relative;
+  color: inherit;
+}
+.monthgraph .bar:hover {opacity: 1;}
+.monthgraph .bar .count {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-family: Helvetica;
+  font-weight: bold;
+  margin-top: 5px;
+  position: absolute;
+  top: -20px;
+  -webkit-transform: rotate(-45deg);
+  font-size: smaller;
+}
+.monthgraph .month {
+  position: absolute;
+  bottom: -15px;
+  width: 100%;
+  display: block;
+  text-align: center;
+}

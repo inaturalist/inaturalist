@@ -9,6 +9,9 @@ class ListedTaxon < ActiveRecord::Base
     :user_scope => :by_user
   belongs_to :list
   belongs_to :taxon, :counter_cache => true
+  belongs_to :first_observation,
+             :class_name => 'Observation', 
+             :foreign_key => 'first_observation_id'
   belongs_to :last_observation,
              :class_name => 'Observation', 
              :foreign_key => 'last_observation_id'
@@ -21,8 +24,10 @@ class ListedTaxon < ActiveRecord::Base
   before_create :set_ancestor_taxon_ids
   before_create :set_place_id
   before_create :set_updater_id
-  before_save :update_last_observation
   before_save :set_user_id
+  before_save :update_observation_associates
+  after_save :update_observation_associates_for_check_list
+  after_save :update_observations_count
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
@@ -83,7 +88,8 @@ class ListedTaxon < ActiveRecord::Base
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
-  attr_accessor :skip_update_last_observation
+  attr_accessor :skip_update_observation_associates,
+                :force_update_observation_associates
   
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
@@ -116,24 +122,51 @@ class ListedTaxon < ActiveRecord::Base
   # here.  Takes an optional last_observation if one had been chosen in the
   # calling scope to save a query.
   #
-  def update_last_observation(options = {})
-    return true if @skip_update_last_observation
-    if list.is_a?(CheckList)
-      ListedTaxon.send_later(:update_last_observation_for, id, options)
-    end
-    self.last_observation = options[:latest_observation] || list.last_observation_of(taxon_id)
+  def update_observation_associates(options = {})
+    return true if @skip_update_observation_associates
+    return true if list.is_a?(CheckList)
+    self.first_observation    = list.first_observation_of(taxon_id)
+    self.last_observation     = list.last_observation_of(taxon_id)
     true
   end
   
+  def update_observation_associates_for_check_list(options = {})
+    return true if @skip_update_observation_associates
+    return true unless list.is_a?(CheckList)
+    if @force_update_observation_associates
+      options = options.merge(:skip_save => true)
+      @skip_update_observation_associates = true
+      ListedTaxon.update_last_observation_for(self, options)
+      ListedTaxon.update_first_observation_for(self, options)
+      save
+    else
+      ListedTaxon.send_later(:update_last_observation_for, id, options)
+      ListedTaxon.send_later(:update_first_observation_for, id, options)
+    end
+    return true
+  end
+  
+  def self.update_first_observation_for(listed_taxon, options = {})
+    update_observation_associate_for(listed_taxon, :first_observation, options)
+  end
+  
   def self.update_last_observation_for(listed_taxon, options = {})
+    update_observation_associate_for(listed_taxon, :last_observation, options)
+  end
+  
+  def self.update_observation_associate_for(listed_taxon, assoc_name, options = {})
     listed_taxon = ListedTaxon.find_by_id(listed_taxon.to_i) unless listed_taxon.is_a?(ListedTaxon)
     return unless listed_taxon
-    obs = options[:latest_observation] || listed_taxon.list.last_observation_of(listed_taxon.taxon_id)
-    if listed_taxon.valid?
-      ListedTaxon.update_all(["last_observation_id = ?", obs], ["id = ?", listed_taxon])
-    else
-      Rails.logger.error "[ERROR #{Time.now}] Failed to add #{obs} " + 
-        "as last observation of #{listed_taxon}: #{listed_taxon.errors.full_messages.to_sentence}"
+    list = listed_taxon.list
+    obs = options[:observation] || list.send("#{assoc_name}_of", listed_taxon.taxon_id)
+    listed_taxon.send("#{assoc_name}=", obs)
+    yield(listed_taxon) if block_given?
+    unless options[:skip_save]
+      listed_taxon.skip_update_observation_associates = true
+      unless listed_taxon.save
+        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{obs} " + 
+          "as #{assoc_name} of #{listed_taxon}: #{listed_taxon.errors.full_messages.to_sentence}"
+      end
     end
     obs
   end
@@ -172,7 +205,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def sync_parent_check_list
-    return unless list.is_a?(CheckList)
+    return true unless list.is_a?(CheckList)
     list.send_later(:sync_with_parent)
     true
   end
@@ -181,6 +214,35 @@ class ListedTaxon < ActiveRecord::Base
     taxon.delta = true
     taxon.save
     true
+  end
+  
+  def update_observations_count
+    if list.is_a?(CheckList) && !@force_update_observation_associates
+      ListedTaxon.send_later(:update_observations_count_for, id)
+      return true
+    end
+    ListedTaxon.update_observations_count_for(id)
+    true
+  end
+  
+  def self.update_observations_count_for(id)
+    return true unless (lt = find_by_id(id))
+    return true unless (counts = lt.list.observation_stats_for(lt.taxon_id))
+    total_count = counts.map(&:last).sum
+    month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
+    ListedTaxon.update_all(
+      ["observations_count = ?, observations_month_counts = ?", total_count, month_counts],
+      ["id = ?", id]
+    )
+    true
+  end
+  
+  def observation_month_stats
+    return {} if observations_month_counts.blank?
+    Hash[observations_month_counts.split(',').map {|kv| 
+      k, v = kv.split('-')
+      [k, v.to_i]
+    }]
   end
   
   def nilify_blanks

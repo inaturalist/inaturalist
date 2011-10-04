@@ -70,7 +70,7 @@
     
     <% if @month_counts && data = @month_counts[taxon.id.to_s] -%>
       <h4>Observations / Month</h4>
-      <div class="graph">
+      <div class="monthgraph graph">
         <%- max = @counts.values.max -%>
         <%- %w(? J F M A M J J A S O N D).each_with_index do |name, month| -%>
           <%- count = data[month.to_s] -%>

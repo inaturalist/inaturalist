@@ -138,6 +138,7 @@ class PlacesController < ApplicationController
         order = "ancestry || taxa.id"
       else
         scope = scope.has_photos
+        order = "listed_taxa.observations_count DESC"
       end
       if @colors = params[:colors]
         scope = scope.colored(@colors)

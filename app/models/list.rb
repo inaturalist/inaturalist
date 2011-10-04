@@ -71,9 +71,19 @@ class List < ActiveRecord::Base
     user
   end
   
+  def first_observation_of(taxon)
+    return nil unless taxon || user
+    Observation.recently_added.by(user).of(taxon).last
+  end
+  
   def last_observation_of(taxon)
     return nil unless taxon || user
-    Observation.latest.by(user).first(:conditions => ["taxon_id = ?", taxon])
+    Observation.order_by("observed_on DESC").by(user).of(taxon).first
+  end
+  
+  def observation_stats_for(taxon)
+    return nil unless taxon || user
+    Observation.by(user).of(taxon).count(:group => "EXTRACT(month FROM observed_on)")
   end
   
   def refresh_key

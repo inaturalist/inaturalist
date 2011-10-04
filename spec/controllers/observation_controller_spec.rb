@@ -19,7 +19,7 @@ describe ObservationsController do
       login_as user
       
       project.users.find_by_id(user.id).should be_blank
-      post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id
+      post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
       project.users.find_by_id(user.id).should_not be_blank
       project.observations.last.id.should == Observation.last.id
     end

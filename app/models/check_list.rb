@@ -77,8 +77,18 @@ class CheckList < List
     parent_check_list.update_attribute(:last_synced_at, Time.now)
   end
   
+  def first_observation_of(taxon)
+    Observation.recently_added.of(taxon).in_place(place).
+      has_quality_grade(Observation::RESEARCH_GRADE).last
+  end
+  
   def last_observation_of(taxon)
     Observation.of(taxon).in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).latest.first
+  end
+  
+  def observation_stats_for(taxon)
+    Observation.in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).
+      of(taxon).count(:group => "EXTRACT(month FROM observed_on)")
   end
   
   # This is a loaded gun.  Please fire with discretion.
@@ -166,16 +176,16 @@ class CheckList < List
       
     # if we need to add / update
     if observation && observation.quality_grade == Observation::RESEARCH_GRADE
-      ListedTaxon.update_all(
-        ["last_observation_id = ?", observation], 
-        ["place_id IN (?) AND taxon_id IN (?)", existing_place_ids, taxon_ids]
-      )
+      # rely on update_observation_associates callback on ListedTaxon to reset the assocs
+      ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", existing_place_ids, taxon_ids]).each do |lt|
+        lt.force_update_observation_associates = true
+        lt.save
+      end
       return unless observation.taxon.rank == Taxon::SPECIES
       new_place_ids = place_ids - existing_place_ids
       CheckList.find_each(:joins => "JOIN places ON places.check_list_id = lists.id", 
           :conditions => ["place_id IN (?)", new_place_ids]) do |list|
-        list.add_taxon(observation.taxon, :last_observation => observation, 
-          :skip_update_last_observation => true)
+        list.add_taxon(observation.taxon, :force_update_observation_associates => true)
       end
       
       # remove from illegit confirmed places

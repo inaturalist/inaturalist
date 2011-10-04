@@ -23,6 +23,7 @@
       margin-right: 0;
     }
     form.inline { margin-bottom: 10px;}
+    .monthgraph .month_0 { display: none;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
@@ -50,12 +51,40 @@
     <% end -%>
   </div>
   
+  <div class="stacked ui description">
+    Observed
+    <span class="count"><%= @listed_taxon.observations_count %></span>
+    <%= @listed_taxon.observations_count == 1 ? 'time' : 'times' %>
+  </div>
+  <%= month_graph @listed_taxon.observation_month_stats %>
+  <div class="stacked meta">(research-grade observations only)</div>
+  
+  <% if @listed_taxon.first_observation -%>
+    <p class="ui description">
+      First iNat observation
+      <%= link_to one_line_observation(@listed_taxon.first_observation, :skip => %w(user taxon)), @listed_taxon.first_observation %>
+      <% if is_not_me?(@list.user) -%>
+        by 
+        <%= link_to user_image(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>
+        <%= link_to you_or_login(@listed_taxon.first_observation.user), @listed_taxon.first_observation.user %>,
+        added <%= @listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
+      <% end -%>
+    </p>
+  <% end -%>
+  
   <% if @listed_taxon.last_observation -%>
     <p class="ui description">
       Last observation
       <%= link_to one_line_observation(@listed_taxon.last_observation, :skip => %w(user taxon)), @listed_taxon.last_observation %>
+      <% if is_not_me?(@list.user) -%>
+        by 
+        <%= link_to user_image(@listed_taxon.last_observation.user), @listed_taxon.last_observation.user %>
+        <%= link_to you_or_login(@listed_taxon.last_observation.user), @listed_taxon.last_observation.user %>
+      <% end -%>
     </p>
   <% end -%>
+  
+  <%= separator %>
   
   <p class="ui description">
     Added 

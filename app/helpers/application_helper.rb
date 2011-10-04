@@ -386,4 +386,23 @@ module ApplicationHelper
     concat html
   end
   
+  def month_graph(counts, options = {})
+    return '' if counts.blank?
+    max = counts.values.max
+    html = ''
+    tag = options[:link] ? :a : :span
+    %w(? J F M A M J J A S O N D).each_with_index do |name, month|
+      count = counts[month.to_s] || 0
+      tag_options = {:class => "bar month_#{month}", :style => "height: #{(count.to_f / max * 100).to_i}%"}
+      if options[:link]
+        tag_options[:href] = url_for(request.params.merge(:month => month))
+      end
+      html += content_tag(tag, tag_options) do
+        content_tag(:span, count, :class => "count") +
+        content_tag(:span, name, :class => "month")
+      end
+    end
+    content_tag(:div, html, :class => 'monthgraph graph')
+  end
+  
 end

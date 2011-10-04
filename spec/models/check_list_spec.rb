@@ -32,6 +32,11 @@ end
 
 describe CheckList, "refresh_with_observation" do
   
+  before(:all) do
+    @worker = Delayed::Worker.new(:quiet => true)
+    @worker.work_off
+  end
+  
   before(:each) do
     @place = Place.make(:name => "foo to the bar")
     @place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
@@ -46,6 +51,37 @@ describe CheckList, "refresh_with_observation" do
     CheckList.refresh_with_observation(o)
     lt = @check_list.listed_taxa.find_by_taxon_id(t.id)
     lt.last_observation_id.should be(o.id)
+  end
+  
+  it "should update first observation" do
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude)
+    t = o.taxon
+    @check_list.add_taxon(t)
+    CheckList.refresh_with_observation(o)
+    lt = @check_list.listed_taxa.find_by_taxon_id(t.id)
+    lt.first_observation_id.should be(o.id)
+  end
+  
+  it "should update observations count" do
+    t = Taxon.make(:rank => Taxon::SPECIES)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
+    lt = @check_list.add_taxon(t)
+    lt.observations_count.should be(0)
+    CheckList.refresh_with_observation(o)
+    lt = @check_list.listed_taxa.find_by_taxon_id(t.id)
+    lt.observations_count.should be(1)
+  end
+  
+  it "should update observations month counts" do
+    t = Taxon.make(:rank => Taxon::SPECIES)
+    o = make_research_grade_observation(
+      :latitude => @place.latitude, :longitude => @place.longitude, 
+      :taxon => t, :observed_on_string => "2011-10-01")
+    lt = @check_list.add_taxon(t)
+    lt.observations_count.should be(0)
+    CheckList.refresh_with_observation(o)
+    lt = @check_list.listed_taxa.find_by_taxon_id(t.id)
+    lt.observation_month_stats['10'].should be(1)
   end
   
   it "should add listed taxa" do
@@ -68,8 +104,6 @@ describe CheckList, "refresh_with_observation" do
     @check_list.taxon_ids.should include(@taxon.id)
     observation_id = o.id
     o.destroy
-    Rails.logger.debug "[DEBUG] let's get this party started, observation_id = #{observation_id}"
-    
     CheckList.refresh_with_observation(observation_id, :taxon_id => @taxon.id)
     @check_list.reload
     @check_list.taxon_ids.should_not include(@taxon.id)
