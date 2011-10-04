@@ -32,6 +32,12 @@ module ObservationsHelper
       display_lat = observation.private_latitude
       display_lon = observation.private_longitude
     end
+    
+    google_search_link = link_to("Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank")
+    google_coords_link = link_to("Google", "http://maps.google.com/?q=#{display_lat},#{display_lon}&z=#{observation.map_scale}", :target => "_blank")
+    osm_search_link = link_to("OSM", "http://nominatim.openstreetmap.org/search?q=#{observation.place_guess}", :target => "_blank")
+    osm_coords_link = link_to("OSM", "http://www.openstreetmap.org/?mlat=#{display_lat}&mlon=#{display_lon}&zoom=#{observation.map_scale}", :target => "_blank")
+    
     if coordinate_truncation = options[:truncate_coordinates]
       coordinate_truncation = 6 unless coordinate_truncation.is_a?(Fixnum)
       display_lat = display_lat.to_s[0..coordinate_truncation] + "..." unless display_lat.blank?
@@ -41,7 +47,7 @@ module ObservationsHelper
     if !observation.place_guess.blank?
       if observation.latitude.blank?
         observation.place_guess + 
-        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank"})".html_safe
+        " (#{google_search_link}, #{osm_search_link})".html_safe
       else
         place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
           "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
@@ -49,17 +55,17 @@ module ObservationsHelper
           observation.place_guess
         end
         link_to(place_guess, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
-         " (#{link_to("Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank")})".html_safe
+         " (#{google_coords_link}, #{osm_coords_link})".html_safe
       end
     elsif !observation.latitude.blank? && !observation.coordinates_obscured?
       link_to("<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>", 
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
-        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.latitude}, #{observation.longitude}", :target => "_blank"})".html_safe
+        " (#{google_coords_link}, #{osm_coords_link})".html_safe
         
     elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
       link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>", 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
-        " (#{link_to "Google", "http://maps.google.com/?q=#{observation.private_latitude}, #{observation.private_longitude}", :target => "_blank"})".html_safe
+        " (#{google_coords_link}, #{osm_coords_link})".html_safe
     else
       content_tag(:span, "(Somewhere...)")
     end
