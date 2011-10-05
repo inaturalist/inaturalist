@@ -1394,7 +1394,7 @@ class ObservationsController < ApplicationController
     else 
       @facebook_photo = nil
     end
-    if @facebook_photo && @facebook_photo.valid?
+    if @facebook_photo && @facebook_photo.owned_by?(current_user)
       @facebook_observation = @facebook_photo.to_observation
       sync_attrs = [:description] # facebook strips exif metadata so we can't get geo or observed_on :-/
       #, :species_guess, :taxon_id, :observed_on, :observed_on_string, :latitude, :longitude, :place_guess]

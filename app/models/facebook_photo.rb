@@ -4,30 +4,12 @@ class FacebookPhoto < Photo
   Photo.descendent_classes << self
   
   validates_presence_of :native_photo_id
-    
-#  def validate
-#    # Check to make sure the user owns the flickr photo
-#    if self.user && self.api_response
-#      if self.api_response.is_a?(Net::Flickr::Photo)
-#        fp_flickr_user_id = self.api_response.owner
-#      else
-#        fp_flickr_user_id = self.api_response.owner.nsid
-#      end
-#      
-#      if user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
-#        errors.add(:user, "must own the photo on Flickr.")
-#      end
-#    end
-#  end
-#  
-  
-  def validate
-    fbp_json = FacebookPhoto.get_api_response(self.native_photo_id, {:user=>self.user})
-    if self.user && fbp_json
-      if user.facebook_identity.blank? || fbp_json['from']['id'] != user.facebook_identity.provider_uid
-        errors.add(:user, "must own the photo on Facebook.")
-      end
-    end
+
+  def owned_by?(user)
+    fbp_json = FacebookPhoto.get_api_response(self.native_photo_id, {:user=>user})
+    return false unless user && fbp_json
+    return false if user.facebook_identity.blank? || (fbp_json['from']['id'] != user.facebook_identity.provider_uid)
+    return true
   end
 
   def self.get_api_response(native_photo_id, options = {})
