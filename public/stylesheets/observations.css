@@ -158,13 +158,8 @@
   padding-left: 30px;
 }
 
-.observations.mini .icon {
-  position: absolute;
-}
-
-.observations.mini .photos.attribute {
-  max-width: 80px;
-}
+.observations.mini .icon{position:absolute;}
+.observations.mini .photos.attribute{max-width:80px;}
 
 .observations.mini .photos .photolist .photo.nophoto {
   border: 1px dashed #eee;
@@ -239,6 +234,9 @@
 .observations.mini.compact .observation .label:after { content: ': '; }
 .observations.mini.compact .observation .photo:first-child { display: block !important; }
 .observations.mini .editlink { display: none ;}
+
+.observations.mini.compact .actions,
+.observations.mini.infowindow .actions { margin-top: 5px;}
 
 /* Infowindow */
 .observations.infowindow {

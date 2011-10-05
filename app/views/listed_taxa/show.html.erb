@@ -182,9 +182,9 @@
           <%= render :partial => "observations/cached_component", :collection => @observations %>
           <% if @observations.total_pages > 1 -%>
             <% if @list.is_a?(CheckList) -%>
-              <%= link_to "View more", observations_path(:place_id => @check_list.place_id, :taxon_id => @listed_taxon.taxon_id) %>
+              <%= link_to "View more", observations_path(:place_id => @list.place_id, :taxon_id => @listed_taxon.taxon_id) %>
             <% elsif @list.is_a?(ProjectList) %>
-              <%= link_to "View more", project_observations_path(:id => @check_list.place_id, :taxon_id => @listed_taxon.taxon_id) %>
+              <%= link_to "View more", project_observations_path(:id => @list.place_id, :taxon_id => @listed_taxon.taxon_id) %>
             <% elsif @list.user %>
               <%= link_to "View more", observations_by_login_path(:login => @list.user.login, :taxon_id => @listed_taxon.taxon_id) %>
             <% end -%>

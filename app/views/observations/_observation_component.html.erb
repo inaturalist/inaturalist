@@ -161,10 +161,10 @@ Some notes:
         </li>
       <% end -%>
     </ul>
-    <%- if observation.research_grade? %>
-      <ul><li class="last"><%= link_to "Research Grade", observation, :class => "research_grade_notice" %></li></ul>
-    <% elsif observation.id_please? %>
+    <%- if observation.id_please? %>
       <ul><li class="last"><%= link_to "ID Please!", observation, :class => "id_please_notice" %></li></ul>
+    <%- elsif observation.research_grade? %>
+      <ul><li class="last"><%= link_to "Research Grade", observation, :class => "research_grade_notice" %></li></ul>
     <% end -%>
     <ul>
       <% if logged_in? && current_user.id == observation.user_id -%>
