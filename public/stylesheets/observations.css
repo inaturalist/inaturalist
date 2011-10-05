@@ -3,49 +3,16 @@
  * Styles for visualizing individual observations.  Most assume a container of 
  * the class .observations and children of the class .observation.
  */
-
-.observations h4 {
-  display: none;
-  margin: 0;
-}
-
-.observations .details h4 {
-  display: block;
-}
-
-.observation .description.attribute {
-  color: #333;
-}
-
-.observation div.description p {
-  font-style: italic;
-}
-
+.observations h4{display:none;margin:0;}
+.observations .details h4{display:block;}
+.observation .description.attribute{color:#333;}
+.observation div.description p{font-style:italic;}
 .observation .description.attribute img,
-.observation .details.attribute img {
-  max-width: 400px;
-  height: auto;
-}
-
-.observation .actions ul {
-  display: inline;
-  list-style: none;
-  margin: 0;
-}
-
-.observation .actions ul li {
-  display: inline;
-  white-space: nowrap;
-}
-
-.observation .actions ul li:after {
-  content: ' | ';
-  color: #888;
-}
-
-.observation .actions ul li.last:after {
-  content: '';
-}
+.observation .details.attribute img{max-width:400px;height:auto;}
+.observation .actions ul{display:inline;list-style:none;margin:0;}
+.observation .actions ul li{display:inline;white-space:nowrap;}
+.observation .actions ul li:after{content:' | ';color:#888;}
+.observation .actions ul li.last:after{content:'';}
 
 /* Table */
 .observations.table {
@@ -155,8 +122,7 @@
   font-style: italic;
 }
 
-.observations.table .actions ul,
-.observations.table .identifications_count {
+.observations.table .actions ul {
   display: block;
 }
 
@@ -270,14 +236,9 @@
   display: inline;
   position: static;
 }
-
-.observations.mini.compact .observation .label:after {
-  content: ': ';
-}
-
-.observations.mini.compact .observation .photo:first-child {
-  display: block !important;
-}
+.observations.mini.compact .observation .label:after { content: ': '; }
+.observations.mini.compact .observation .photo:first-child { display: block !important; }
+.observations.mini .editlink { display: none ;}
 
 /* Infowindow */
 .observations.infowindow {
