@@ -44,13 +44,13 @@ a:hover {
 
 
 /* Tabs List Skeleton */
-.tabs ul {
+.tabs > ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.tabs ul li {
+.tabs > ul li {
   float: left;
   position: relative;
   margin: 0;
@@ -957,3 +957,10 @@ form.inline .label {
   display: block;
   text-align: center;
 }
+
+.research_grade_notice,.id_please_notice{-webkit-border-radius:5px;-moz-border-radius:5px;border:0 transparent;border-radius:10px;padding:2px 5px; white-space: nowrap;}
+.research_grade_notice{background-color:#DCEAA3;color:#529214;}
+a.research_grade_notice:hover{color:#326412;}
+.id_please_notice{background-color:#FFEE91;color:#85743D;}
+a.id_please_notice:hover{color:#584925;}
+

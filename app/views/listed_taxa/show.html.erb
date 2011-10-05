@@ -10,7 +10,7 @@
   <%= strip_tags @title %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "lists" %>
+  <%= stylesheet_link_tag "lists", "observations", "jquery/ui.tabs" %>
   <style type="text/css" media="screen">
     #taxonimage { margin-bottom: 10px; }
     #taxonimage .iconic {
@@ -24,11 +24,16 @@
     }
     form.inline { margin-bottom: 10px;}
     .monthgraph .month_0 { display: none;}
+    #comments > h3 { display: none;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag('jquery/jquery.ui.all.packed',
-                             'jquery/plugins/jqModal' ) %>
+  <%= javascript_include_tag("jquery/jquery-ui-1.8.11.min", 'jquery/plugins/jqModal' ) %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('.tabs').tabs()
+    })
+  </script>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
@@ -143,9 +148,49 @@
   <% end -%>
   
   <% if @list.is_a?(CheckList) -%>
-    <%= render :partial => 'occurrence_field' %>
-    <%= render :partial => 'establishment_field' %>
+    <div class="stacked">
+      <%= render :partial => 'occurrence_field' %>
+      <%= render :partial => 'establishment_field' %>
+    </div>
   <% end -%>
   
-  <%= render :partial => "comments/comments", :object => @listed_taxon %>
+  <div class="tabs">
+    <%-
+      obs_tab_txt = case @list.class.to_s
+      when 'CheckList'
+        "Observations from this place"
+      when 'ProjectList'
+        "Observations from this project"
+      else
+        is_me?(@list.user) ? "Observations by you" : "Observations by #{@list.user.login}"
+      end
+    -%>
+    <ul>
+      <li><%= link_to content_tag(:span, "Comments"), '#comments' %></li>
+      <li><%= link_to content_tag(:span, obs_tab_txt), '#observations' %></li>
+    </ul>
+    <div id="comments">
+      <%= render :partial => "comments/comments", :object => @listed_taxon %>
+    </div>
+    <div id="observations">
+      <div class="mini observations">
+        <% if @observations.blank? -%>
+          <p class="noresults description">
+            No observations yet.
+          </p>
+        <% else %>
+          <%= render :partial => "observations/cached_component", :collection => @observations %>
+          <% if @observations.total_pages > 1 -%>
+            <% if @list.is_a?(CheckList) -%>
+              <%= link_to "View more", observations_path(:place_id => @check_list.place_id, :taxon_id => @listed_taxon.taxon_id) %>
+            <% elsif @list.is_a?(ProjectList) %>
+              <%= link_to "View more", project_observations_path(:id => @check_list.place_id, :taxon_id => @listed_taxon.taxon_id) %>
+            <% elsif @list.user %>
+              <%= link_to "View more", observations_by_login_path(:login => @list.user.login, :taxon_id => @listed_taxon.taxon_id) %>
+            <% end -%>
+          <% end -%>
+        <% end -%>
+      </div>
+    </div>
+  </div>
 </div>

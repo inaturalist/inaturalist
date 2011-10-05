@@ -249,6 +249,16 @@ describe Observation, "creation" do
       o.quality_grade.should == Observation::CASUAL_GRADE
     end
   end
+  
+  # new observations are not research-grade and never were
+  it "should not queue refresh job for check lists" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    o = Observation.make(:taxon => Taxon.make)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs.select{|j| j.handler =~ /\:refresh_with_observation\n/}.should be_blank
+  end
 end
 
 describe Observation, "updating" do
@@ -351,7 +361,7 @@ describe Observation, "updating" do
     obs.positional_accuracy.should be_blank
   end
   
-  it "should refresh queue refresh jobs for associated project lists if the taxon changed" do
+  it "should queue refresh jobs for associated project lists if the taxon changed" do
     o = Observation.make(:taxon => Taxon.make)
     po = ProjectObservation.make(:observation => o)
     Delayed::Job.delete_all
@@ -360,6 +370,16 @@ describe Observation, "updating" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+  end
+  
+  it "should queue refresh job for check lists if the coordinates changed" do
+    o = make_research_grade_observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    o.update_attributes(:latitude => o.latitude + 1)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs.select{|j| j.handler =~ /\:refresh_with_observation\n/}.should_not be_blank
   end
   
   it "should not allow impossible coordinates" do

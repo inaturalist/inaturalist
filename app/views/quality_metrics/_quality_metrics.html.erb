@@ -53,7 +53,13 @@
   <tfoot>
     <tr>
       <td>Quality grade</td>
-      <td><%= o.quality_grade %></td>
+      <td>
+        <% if o.research_grade? -%>
+          <span class="research_grade_notice"><%= o.quality_grade %></span>
+        <% else %>
+          <%= o.quality_grade %>
+        <% end -%>
+      </td>
     </tr>
   </tfoot>
 </table>

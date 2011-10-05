@@ -34,8 +34,15 @@ Some notes:
   check_box_name ||= false
   check_box_checked ||= false
   top ||= false
+  css_class = "observation #{cycle('odd', 'even')}"
+  css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
+  if observation.research_grade?
+    css_class += ' research_grade'
+  elsif observation.id_please
+    css_class += ' id_please'
+  end
 -%>
-<div id="observation-<%= observation.id rescue rand(999) %>" class="observation <%= cycle('odd', 'even') %><% if !observation.description.blank? && observation.description.size > 200 %> longdesc<% end %>">
+<div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>">
   <%= top if top %>
   <% if check_box_name -%>
     <div class="check_box attribute">
@@ -155,6 +162,11 @@ Some notes:
       <% end -%>
     </ul>
     <ul>
+      <%- if observation.research_grade? %>
+        <li><%= link_to "Research Grade", observation, :class => "research_grade_notice" %></li>
+      <% elsif observation.id_please? %>
+        <li><%= link_to "ID Please!", observation, :class => "id_please_notice" %></li>
+      <% end -%>
       <% if logged_in? && current_user.id == observation.user_id -%>
         <li class="editlink"><%= link_to "Edit", edit_observation_path(observation) %></li>
       <% end -%>

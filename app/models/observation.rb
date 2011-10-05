@@ -142,7 +142,7 @@ class Observation < ActiveRecord::Base
                  
   after_save :refresh_lists,
              :update_identifications_after_save
-  after_create :refresh_check_lists
+  after_update :refresh_check_lists
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
@@ -634,8 +634,14 @@ class Observation < ActiveRecord::Base
   end
   
   def refresh_check_lists
-    return true unless taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?
-    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
+    refresh_needed = quality_grade_changed? || 
+      (research_grade? && (taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?))
+    return true unless refresh_needed
+    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
+      :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
+      :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
+      :skip_update => true)
     true
   end
   
@@ -813,10 +819,6 @@ class Observation < ActiveRecord::Base
   end
   
   def research_grade?
-    # puts "Determining quality grade of #{self}"
-    # %w(georeferenced? community_supported_id? quality_metrics_pass? observed_on? photos?).each do |metric|
-    #   puts "[DEBUG] #{metric.ljust(30)} #{send(metric)}"
-    # end
     georeferenced? && community_supported_id? && quality_metrics_pass? && observed_on? && photos?
   end
   
@@ -1116,12 +1118,13 @@ class Observation < ActiveRecord::Base
     self.num_identification_agreements = num_agreements
     self.num_identification_disagreements = num_disagreements
     new_quality_grade = get_quality_grade
+    self.quality_grade = new_quality_grade
     
     Observation.update_all(
       ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
         num_agreements, num_disagreements, new_quality_grade], 
       "id = #{id}")
-    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
+    refresh_check_lists
   end
   
   def random_neighbor_lat_lon(lat, lon, max_distance, radius = PLANETARY_RADIUS)

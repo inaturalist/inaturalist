@@ -64,6 +64,7 @@
     .identifications-list .identification_body{float:left;width:200px;}
     .identification_group{margin-bottom:10px;}
     #projects .box{padding:5px;}
+    .id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -424,7 +425,7 @@
     
     <% if is_me?(@observation.user) -%>
       <div id="idplease" class="clear inline buttonrow">
-        <div id="added_to_id_please" class="box" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
+        <div id="added_to_id_please" class="box id_please_notice" style="display: <%= @observation.id_please? ? 'block' : 'none' %>">
           <span class="inter">
             Added to <%= link_to "ID Please", id_please_path %>
           </span>

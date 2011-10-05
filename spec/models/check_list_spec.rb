@@ -186,4 +186,45 @@ describe CheckList, "refresh_with_observation" do
     
     other_place.listed_taxa.find_by_taxon_id(@taxon.id).should be_blank
   end
+  
+  it "should update old listed taxa when obs coordinates change" do
+    make_research_grade_observation(:latitude => @place.latitude, 
+      :longitude => @place.longitude, :taxon => @taxon)
+    # it's the middle one, see?
+    o = make_research_grade_observation(:latitude => @place.latitude, 
+      :longitude => @place.longitude, :taxon => @taxon)
+    make_research_grade_observation(:latitude => @place.latitude, 
+      :longitude => @place.longitude, :taxon => @taxon)
+    CheckList.refresh_with_observation(o)
+    lt = @place.listed_taxa.find_by_taxon_id(@taxon.id)
+    lt.last_observation_id.should_not be(o.id)
+    lt.observations_count.should be(3)
+    
+    o.update_attributes(:latitude => 0, :longitude => 0)
+    CheckList.refresh_with_observation(o, :latitude_was => @place.latitude, 
+      :longitude_was => @place.longitude)
+    lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
+    lt.should_not be_blank
+    lt.observations_count.should be(2)
+  end
+  
+  it "should update old listed taxa when taxon changes" do
+    make_research_grade_observation(:latitude => @place.latitude, 
+      :longitude => @place.longitude, :taxon => @taxon)
+    # it's the middle one, see?
+    o = make_research_grade_observation(:latitude => @place.latitude, 
+      :longitude => @place.longitude, :taxon => @taxon)
+    make_research_grade_observation(:latitude => @place.latitude, 
+      :longitude => @place.longitude, :taxon => @taxon)
+    CheckList.refresh_with_observation(o)
+    lt = @place.listed_taxa.find_by_taxon_id(@taxon.id)
+    lt.last_observation_id.should_not be(o.id)
+    lt.observations_count.should be(3)
+    
+    o.update_attributes(:taxon => Taxon.make)
+    CheckList.refresh_with_observation(o, :taxon_id_was => @taxon.id)
+    lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
+    lt.should_not be_blank
+    lt.observations_count.should be(2)
+  end
 end

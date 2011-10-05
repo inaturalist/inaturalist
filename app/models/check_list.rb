@@ -129,21 +129,46 @@ class CheckList < List
   end
   
   def self.refresh_with_observation(observation, options = {})
-    start = Time.now
-    Rails.logger.info "[INFO #{start}] Starting CheckList.refresh_with_observation for #{observation}, options: #{options.inspect}"
-    # retrieve the observation or the id of the deleted observation and any relevant taxa
+    observation, observation_id = get_observation_to_refresh(observation)
+    options[:observation_id] ||= observation_id
+    taxon_ids = get_taxon_ids_to_refresh(observation, options)
+    return if taxon_ids.blank?
+    current_place_ids = get_current_place_ids_to_refresh(observation, options)
+    current_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", current_place_ids, taxon_ids])
+    new_place_ids = current_place_ids - current_listed_taxa.map(&:place_id)
+    old_place_ids = get_old_place_ids_to_refresh(observation, options)
+    old_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", old_place_ids - current_place_ids, taxon_ids])
+    listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
+    unless listed_taxa.blank?
+      listed_taxa.each do |lt|
+        lt.force_update_observation_associates = true
+        lt.save # sets all observation associates, months stats, etc.
+        lt.destroy if lt.last_observation_id.blank? && lt.can_be_auto_removed_from_check_list?
+      end
+    end
+    add_new_listed_taxa(observation.taxon, new_place_ids) if observation
+  end
+  
+  def self.get_observation_to_refresh(observation)
     if observation.is_a?(Observation)
       observation_id = observation.id
     else
       observation_id = observation.to_i
       observation = Observation.find_by_id(observation_id)
     end
+    [observation, observation_id]
+  end
+  
+  def self.get_taxon_ids_to_refresh(observation, options)
     taxon_id = observation.try(:taxon_id) || options[:taxon_id]
-    return if taxon_id.blank?
-    taxon_ids = [taxon_id]
-    taxon_ids += observation.taxon.ancestor_ids if observation
-    
-    # get places in which the observation was made
+    taxon_ids = [taxon_id, options[:taxon_id_was]].compact
+    taxa = Taxon.all(:conditions => ["id in (?)", taxon_ids])
+    taxon_ids += taxa.map(&:ancestor_ids).flatten
+    taxon_ids.uniq.compact
+  end
+  
+  def self.get_current_place_ids_to_refresh(observation, options = {})
+    observation_id = observation.try(:id) || options[:observation_id]
     place_ids = if observation && observation.georeferenced?
       conditions = if observation.coordinates_obscured?
         "ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude))"
@@ -156,54 +181,28 @@ class CheckList < List
     else
       []
     end
-    place_ids.uniq!
-    
-    # get places places where this obs was made that already have this taxon listed
-    existing_place_ids = ListedTaxon.all(:select => "id, list_id, place_id, taxon_id", 
-      :conditions => ["place_id IN (?) AND taxon_id = ?", place_ids, taxon_id]).map(&:place_id)
-    if observation
-      confirmed_listed_taxa = ListedTaxon.all(:conditions => [
-        "place_id IS NOT NULL AND last_observation_id = ?", observation.id])
-      confirmed_place_ids = confirmed_listed_taxa.map(&:place_id)
-      legit_confirmed_place_ids = confirmed_listed_taxa.select{|lt| place_ids.include?(lt.place_id)}.map(&:place_id)
-      illegit_confirmed_place_ids = confirmed_place_ids - legit_confirmed_place_ids
-      illegit_confirmed_listed_taxa = confirmed_listed_taxa.select{|lt| illegit_confirmed_place_ids.include?(lt.place_id)}
-      existing_place_ids += legit_confirmed_place_ids
-    else
-      illegit_confirmed_listed_taxa = []
+    place_ids.compact.uniq
+  end
+  
+  def self.get_old_place_ids_to_refresh(observation, options = {})
+    observation_id = observation.try(:id) || options[:observation_id]
+    place_ids = Place.all(:include => :listed_taxa, :conditions => [
+      "listed_taxa.first_observation_id = ? OR listed_taxa.last_observation_id = ?", 
+      observation_id, observation_id])
+    if (lat = options[:latitude_was]) && (lon = options[:longitude_was])
+      place_ids += PlaceGeometry.all(:select => "place_geometries.id, place_id",
+        :joins => "JOIN observations ON observations.id = #{observation_id}",
+        :conditions => [
+          "ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lon, lat]
+      ).map(&:place_id)
     end
-    existing_place_ids.uniq!
-      
-    # if we need to add / update
-    if observation && observation.quality_grade == Observation::RESEARCH_GRADE
-      # rely on update_observation_associates callback on ListedTaxon to reset the assocs
-      ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", existing_place_ids, taxon_ids]).each do |lt|
-        lt.force_update_observation_associates = true
-        lt.save
-      end
-      return unless observation.taxon.rank == Taxon::SPECIES
-      new_place_ids = place_ids - existing_place_ids
-      CheckList.find_each(:joins => "JOIN places ON places.check_list_id = lists.id", 
-          :conditions => ["place_id IN (?)", new_place_ids]) do |list|
-        list.add_taxon(observation.taxon, :force_update_observation_associates => true)
-      end
-      
-      # remove from illegit confirmed places
-      illegit_confirmed_listed_taxa.each do |lt|
-        obs = ListedTaxon.update_last_observation_for(lt)
-        lt.destroy if obs.blank? && lt.can_be_auto_removed_from_check_list?
-        obs = nil
-      end
-    
-    # otherwise well be refreshing / deleting
-    else
-      conditions = ["place_id > 0 AND last_observation_id = ?", observation_id]
-      ListedTaxon.find_each(:include => :list, :conditions => conditions) do |lt|
-        obs = ListedTaxon.update_last_observation_for(lt)
-        lt.destroy if obs.blank? && lt.can_be_auto_removed_from_check_list?
-        obs = nil
-      end
+    place_ids.compact.uniq
+  end
+  
+  def self.add_new_listed_taxa(taxon, new_place_ids)
+    CheckList.find_each(:joins => "JOIN places ON places.check_list_id = lists.id", 
+        :conditions => ["place_id IN (?)", new_place_ids]) do |list|
+      list.add_taxon(taxon, :force_update_observation_associates => true)
     end
-    Rails.logger.info "[INFO #{Time.now}] Finished CheckList.refresh_with_observation for #{observation} (#{Time.now - start}s)"
   end
 end

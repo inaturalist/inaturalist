@@ -93,7 +93,12 @@ module AuthenticatedSystem
     #   after_filter :store_location, :only => [:index, :new, :show, :edit]
     # for any controller you want to be bounce-backable.
     def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || request.env['HTTP_REFERER'] || default)
+      back_url = session[:return_to] || request.env['HTTP_REFERER']
+      if back_url && ![request.path, request.url].include?(back_url)
+        redirect_to(back_url)
+      else
+        redirect_to default
+      end
       session[:return_to] = nil
     end
 
