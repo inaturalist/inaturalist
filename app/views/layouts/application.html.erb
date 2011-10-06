@@ -10,7 +10,8 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= 
       jslibs = ['jquery/jquery-1.5.1.min']
-      jslibs << 'jquery/plugins/jquery.qtip.min' unless @qtip2
+      # jslibs << 'jquery/plugins/jquery.qtip.min' unless @qtip2
+      jslibs << "jquery/plugins/jquery.qtip2.min"
       jslibs += ['application', 'inaturalist']
       javascript_include_tag *jslibs 
     %>

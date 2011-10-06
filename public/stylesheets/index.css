@@ -63,7 +63,7 @@ a:hover {
 .ui, .ui p { font-family: "Trebuchet MS", Arial, sans-serif; }
 p.ui, .ui p { font-size: 100%; }
 p.ui { margin-bottom: 10px; }
-.qtip-content p { font-size: 100%; font-family: "Trebuchet MS", Arial, sans-serif; }
+.ui-tooltip p, .qtip p, .qtip-content p { font-size: 100%; font-family: "Trebuchet MS", Arial, sans-serif; }
 
 .tinyui {
   font-family: "Trebuchet MS", Arial, sans-serif;
@@ -964,3 +964,4 @@ a.research_grade_notice:hover{color:#326412;}
 .id_please_notice{background-color:#FFEE91;color:#85743D;}
 a.id_please_notice:hover{color:#584925;}
 
+.ui-tooltip, .qtip{ max-width: 500px; line-height: 1.5;}

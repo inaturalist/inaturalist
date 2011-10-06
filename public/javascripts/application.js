@@ -50,29 +50,19 @@ function subnavClickOff(e) {
     $('.subnavtab').removeClass('open');
   }
 }
-
 var QTIP_DEFAULTS = {
   hide: {
     fixed: true
   },
-  style: { 
-    name: 'green',
-    tip: 'leftMiddle',
-    border: {
-      radius: 5
-    },
-    width: {
-      max: 300
-    }
+  style: {
+    classes: 'ui-tooltip-light ui-tooltip-shadow',
+    width: 'auto'
   },
   position: {
-    corner: {
-      target: 'rightMiddle',
-      tooltip: 'leftMiddle'
-    },
-    adjust: {'screen': true}
+    viewport: $(window)
   }
 }
+
 
 $('a[data-loading-click], input[data-loading-click][type=radio], input[data-loading-click][type=checkbox]').live('click', function() {
   var txt = $(this).attr('data-loading-click')
@@ -112,11 +102,8 @@ $('[data-autosubmit]').live('change', function() {
 
 function buildHelpTips() {
   var options = $.extend({}, QTIP_DEFAULTS, {
-    show: {when: 'click'},
-    hide: {when: 'unfocus'},
-    position: {
-      adjust: {'screen': true}
-    }
+    show: {event: 'click'},
+    hide: {event: 'unfocus'},
   })
   $('.helptip').each(function() {
     var content
@@ -134,9 +121,7 @@ function buildHelpTips() {
     })
     if ($(this).attr('data-helptip-width')) {
       tipOptions.style = tipOptions.style || {}
-      tipOptions.style.width = {
-        min: $(this).attr('data-helptip-width')
-      }
+      tipOptions.style.width = $(this).attr('data-helptip-width')
     }
     $(this).qtip(tipOptions)
   })
@@ -179,6 +164,34 @@ $(document).ready(function() {
     '/images/spinner-small-ffffff_on_dedede.gif',
     '/images/spinner-small-ffffff_on_aaaaaa.gif'
   ]).preload()
+  
+  $('[data-tip]').each(function() {
+    if ($(this).attr('data-tip').match(/^#/)) {
+      content = $($(this).attr('data-tip')).html()
+    } else {
+      content = $(this).attr('data-tip')
+    }
+    var tipOptions = $.extend({}, QTIP_DEFAULTS, {})
+    if ($(this).attr('data-tip-title')) {
+      tipOptions.content = {
+        text: content, 
+        title: $(this).attr('data-helptip-title')
+      }
+    } else {
+      tipOptions.content = content
+    }
+    
+    if ($(this).attr('data-tip-show-delay')) {
+      tipOptions.show = tipOptions.show || {}
+      tipOptions.show.delay = parseInt($(this).attr('data-tip-show-delay'))
+    }
+    
+    if ($(this).attr('data-tip-width')) {
+      tipOptions.style = tipOptions.style || {}
+      tipOptions.style.width = $(this).attr('data-helptip-width')
+    }
+    $(this).qtip(tipOptions)
+  })
 })
 
 // $(window).bind('load', function() {

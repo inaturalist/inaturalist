@@ -1,4 +1,3 @@
-<%- @qtip2 = true -%>
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
     Map for <%= link_to @taxon.name, @taxon %>
@@ -8,7 +7,7 @@
 
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", "jquery/jquery-ui-1.8.11.min", "jquery/plugins/jquery.qtip2.min", "d3.min", 'inaturalist/map3' %>
+  <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", "jquery/jquery-ui-1.8.11.min", 'd3.min', 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
     var CLOUDMADE_KEY = <%= @cloudmade_key.inspect %>
@@ -44,7 +43,7 @@
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "jquery/plugins/jquery.qtip.min", "observations", "taxa/map" %>
+  <%= stylesheet_link_tag "observations", "taxa/map" %>
 <%- end -%>
 
 <div id="map" class="fullscreen"></div>

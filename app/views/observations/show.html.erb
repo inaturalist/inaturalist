@@ -567,11 +567,13 @@
   
   <%= separator %>
   
-  <h3>
-    <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="About the Quality Assessment" data-helptip-width="500" style="margin-top:4px"></span>
-    Data Quality Assessment
-  </h3>
-  <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
+  <div id="data_quality_assessment">
+    <h3>
+      <span class="right quality_tip_target description helptip" rel="#quality_tip" data-helptip-title="About the Quality Assessment" data-helptip-width="500" style="margin-top:4px"></span>
+      Data Quality Assessment
+    </h3>
+    <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
+  </div>
   
   <% if @observation.flagged? %>
     <div id="flaggings_heads_up" class="description">

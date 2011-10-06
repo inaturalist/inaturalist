@@ -23,16 +23,6 @@
 
 .ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: 10px; top: 50%; margin-top: -8px; }
 
-.ui-accordion-header .ui-icon-triangle-1-s {
-  background-image: url(/images/toggle_arrow_down.png);
-}
-
-.ui-accordion-header .ui-icon-triangle-1-e {
-  background-image: url(/images/toggle_arrow_right.png);
-}
-
-
-
 .ui-accordion .ui-state-active {
   display: block;
   color: black;
