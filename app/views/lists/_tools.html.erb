@@ -22,7 +22,11 @@
         <li class="inline buttonrow">
           <div id="refresher" class="clear">
             <%= link_to_function "Reload from observations", 
-              "if (confirm('This will update all last observations and add new taxa from your observations.  It may take a few minutes.')) { " +
+              "if (
+                confirm(
+                  'This will update all last observations and add new taxa from #{ @list.user ? 'your' : 'the project' } observations.  It may take a few minutes.'
+                )
+              ) { " +
                 "reloadFromObservations()" +
               "}; ", :id => "refreshlink" %>
             <div id="refreshloading" class="loading status" style="display:none">Reloading...</div>

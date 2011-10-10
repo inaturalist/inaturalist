@@ -15,9 +15,15 @@ class ProjectList < LifeList
     project.project_users.exists?(:user_id => user)
   end
   
-  def refresh(options = {})
+  #def refresh(options = {})
     # ProjectLists listed taxa *must* be observed
-    super(options.merge(:destroy_unobserved => true))
+    #super(options.merge(:destroy_unobserved => true))
+  #end
+  
+  # Curators and admins can alter the list.
+  def editable_by?(user)
+    return false if user.blank?
+    project.project_users.exists?(:role => "curator", :user_id => user)
   end
   
   def first_observation_of(taxon)
@@ -38,7 +44,7 @@ class ProjectList < LifeList
   private
   def set_defaults
     self.title ||= "%s's Check List" % owner_name
-    self.description ||= "Every species observed by members of #{owner_name}"
+    self.description ||= "The species list for #{owner_name}"
     true
   end
 end

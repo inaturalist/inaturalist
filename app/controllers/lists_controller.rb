@@ -227,10 +227,24 @@ class ListsController < ApplicationController
   private
   
   def owner_required
-    unless logged_in? && @list.user.id == current_user.id || current_user.is_admin?
+    unless logged_in?
       flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
       redirect_back_or_default('/')
       return false
+    end
+    if @list.user.blank?
+      project = Project.find_by_id(@list.project_id)
+      unless project.project_users.exists?(:role => "curator", :user_id => current_user.id)
+        flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
+        redirect_back_or_default('/')
+        return false
+      end
+    else
+      unless @list.user.id == current_user.id || current_user.is_admin?
+        flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
+        redirect_back_or_default('/')
+        return false
+      end
     end
   end
   

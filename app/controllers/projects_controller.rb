@@ -303,7 +303,10 @@ class ProjectsController < ApplicationController
       flash[:error] = "That observation doesn't exist."
       redirect_to :back and return
     end
-    
+    if @project_observation = ProjectObservation.first(:conditions => { :project_id => @project.id, :observation_id => @observation.id })
+      flash[:error] = "The observation was already added to that project."
+      redirect_to :back and return
+    end
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
     unless @project_observation.valid?
       flash[:error] = "There were problems adding your observation to this project: " + 

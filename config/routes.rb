@@ -25,7 +25,7 @@ ActionController::Routing::Routes.draw do |map|
     pa.omniauth_disconnect "/auth/:provider/disconnect", :action => "destroy", :method => "delete"
   end
   map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"
-
+  
   # Special controller routes
   
   map.resources :announcements
