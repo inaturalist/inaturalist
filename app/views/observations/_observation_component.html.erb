@@ -120,10 +120,10 @@ Some notes:
     <div class="created_at attribute" style="display:none">
       <h4 class="label">Date added</h4>
       <span class="date">
-        <%= observation.created_at.in_time_zone(observation.time_zone || 'UTC').strftime("%b. %e, %Y") %>
+        <%= observation.created_at.in_time_zone(observation.user.time_zone || 'UTC').strftime("%b. %e, %Y") %>
       </span>
       <span class="time">
-        <%= observation.created_at.in_time_zone(observation.time_zone || 'UTC').strftime("%I:%M %p %Z") %>
+        <%= observation.created_at.in_time_zone(observation.user.time_zone || 'UTC').strftime("%I:%M %p %Z") %>
       </span>
     </div>
   <% end -%>

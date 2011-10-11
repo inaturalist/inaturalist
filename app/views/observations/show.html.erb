@@ -293,7 +293,12 @@
   
   <div id="dates" class="description date">
     <label>Added:</label>
-    <%= @observation.created_at.to_s(:long) %>
+    <span class="date">
+      <%= @observation.created_at.strftime("%b. %e, %Y") %>
+    </span>
+    <span class="time">
+      <%= @observation.created_at.strftime("%I:%M %p %Z") %>
+    </span>
   </div>
   
   <% unless @observation.tags.blank? %>
