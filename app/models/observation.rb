@@ -796,7 +796,7 @@ class Observation < ActiveRecord::Base
   end
   
   def georeferenced?
-    geom? || (private_latitude? && private_longitude?)
+    (latitude? && longitude?) || (private_latitude? && private_longitude?)
   end
   
   def quality_metric_score(metric)
@@ -868,10 +868,10 @@ class Observation < ActiveRecord::Base
     return true if geoprivacy.blank? && !geoprivacy_changed?
     case geoprivacy
     when PRIVATE
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
       self.latitude, self.longitude = [nil, nil]
     when OBSCURED
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
     else
       unobscure_coordinates
     end
@@ -880,7 +880,7 @@ class Observation < ActiveRecord::Base
   
   def obscure_coordinates_for_threatened_taxa
     if !taxon.blank? && taxon.species_or_lower? &&
-        !(latitude.blank? && longitude.blank? && private_latitude.blank? && private_longitude.blank?) &&
+        georeferenced? && !coordinates_obscured? &&
         (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
     elsif geoprivacy.blank?
