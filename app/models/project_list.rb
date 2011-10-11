@@ -15,11 +15,6 @@ class ProjectList < LifeList
     project.project_users.exists?(:user_id => user)
   end
   
-  #def refresh(options = {})
-    # ProjectLists listed taxa *must* be observed
-    #super(options.merge(:destroy_unobserved => true))
-  #end
-  
   # Curators and admins can alter the list.
   def editable_by?(user)
     return false if user.blank?

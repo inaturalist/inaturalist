@@ -232,7 +232,7 @@ class ListsController < ApplicationController
       redirect_back_or_default('/')
       return false
     end
-    if @list.user.blank?
+    if @list.is_a?(ProjectList)
       project = Project.find_by_id(@list.project_id)
       unless project.project_users.exists?(:role => "curator", :user_id => current_user.id)
         flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
