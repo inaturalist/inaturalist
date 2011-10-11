@@ -8,7 +8,7 @@
   <%= javascript_include_tag 'jquery/jquery.ui.all.packed' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('#tabs > ul').tabs();
+      $('#tabs').tabs();
     });
   </script>
 <%- end -%>
@@ -87,7 +87,7 @@
       </p>
       
       <p>
-        <%= link_to_function "Photos &rarr;", "$('#tabs > ul').tabs('select', 'photos')", :class => "right" %>
+        <%= link_to_function "Photos &rarr;", "$('#tabs').tabs('select', 'photos')", :class => "right" %>
         <%= link_to "Start adding observations", new_observation_path, :class => "readmore", :rel => "nofollow" %>
       </p>
     </div>
@@ -159,7 +159,7 @@
       </p>
       
       <p>
-        <%= link_to_function "Lists &rarr;", "$('#tabs > ul').tabs('select', 'lists')", :class => "right" %>
+        <%= link_to_function "Lists &rarr;", "$('#tabs').tabs('select', 'lists')", :class => "right" %>
       </p>
       
     </div>
@@ -209,7 +209,7 @@
       </dl>
       
       <p class="meta readable">
-        <%= link_to_function "Species &rarr;", "$('#tabs > ul').tabs('select', 'species')", :class => "right" %>
+        <%= link_to_function "Species &rarr;", "$('#tabs').tabs('select', 'species')", :class => "right" %>
         <%= link_to "Start a new list", new_list_path, :class => "readmore", :rel => "nofollow" %>
         <% if logged_in? -%>
           &nbsp;or&nbsp; <%= link_to "View your life list", current_user.life_list, :class => 'readmore' %>
