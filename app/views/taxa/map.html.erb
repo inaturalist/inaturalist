@@ -27,6 +27,10 @@
     var observationsJsonUrl = <%= observations_of_url(@taxon.id, :format => :json).inspect %>
     var observationsGeoJsonUrl = <%= observations_of_url(@taxon.id, :format => :geojson).inspect %>
     var children = <%= @children.to_json %>
+    var place = <%= @place.to_json %>
+    var placeGeometry = <%= @place_geometry.to_json %>
+    var placeKmlUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "kml").inspect : 'null' %>
+    var placeGeoJsonUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "geojson").inspect : 'null' %>
     
     $(document).ready(function() {
       var script = document.createElement("script")

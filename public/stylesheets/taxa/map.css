@@ -59,6 +59,12 @@ path.confirmed:hover, path.putative:hover {
   vector-effect: non-scaling-stroke;
 }
 
+#place path {
+  visibility: visible;
+  stroke-width: 2px;
+  stroke: #FF68B6;
+}
+
 #legend {
   position: absolute;
   left: 10px;

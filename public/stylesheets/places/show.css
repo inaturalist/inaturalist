@@ -38,3 +38,16 @@
 
 .markerlink { position: absolute; display: block; width: 10px; height: 10px; background-color: deeppink; border-radius: 10px; opacity: 0.5; z-index: 1000;}
 #map { position: relative; }
+
+.listed_taxon_guide { position: relative; width: 100%;}
+.listed_taxon_guide .photos { position: absolute; width: 312px;}
+.listed_taxon_guide .desc {padding-left: 322px; }
+.listed_taxon_guide .map { 
+  width: 100%;
+  height: 310px;
+  background: #eee url(/images/spinner-small-on_eeeeee.gif) center center no-repeat; }
+.listed_taxon_guide .modal_image_link img.image { max-width: 312px;}
+
+.dialog { height: auto;}
+.photos_wrapper { margin-bottom: 10px;}
+.stacked.comments {margin-bottom: 20px;}

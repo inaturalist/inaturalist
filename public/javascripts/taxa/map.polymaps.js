@@ -5,7 +5,6 @@ function classifyCountries(e) { classifyPlaces(e, {placeType: 'country'}) }
 function classifyPlaces(e, options) {
   var options = options || {},
       placeType = options.placeType || 'county'
-      // visibleFeatures = []
   for (var i = e.features.length - 1; i >= 0; i--){
     var feature = e.features[i]
     if (feature.data.properties) {
@@ -41,6 +40,7 @@ function classifyPlaces(e, options) {
         function() { $('path.place_'+$(this).attr('data-place-id')).css('opacity', 0.7) },
         function() { $('path.place_'+$(this).attr('data-place-id')).css('opacity', 0.5) }
       )
+      
       $(feature.element).qtip({
         style: {
           classes: 'listed_taxon ui-tooltip-light ui-tooltip-shadow'
@@ -54,7 +54,7 @@ function classifyPlaces(e, options) {
         },
         position: {
           viewport: $(window),
-          my: 'bottom left',
+          my: 'bottom center',
           at: 'center center'
         },
         content: {
@@ -114,7 +114,7 @@ function handleObservations(e) {
       },
       position: {
         viewport: $(window),
-        my: 'bottom left',
+        my: 'bottom center',
         at: 'center center'
       },
       content: {
@@ -128,30 +128,19 @@ function handleObservations(e) {
           method: 'GET',
           data: {partial: 'cached_component'}
         }
+      },
+      events: {
+        show: function(event, api) {
+          if (window.map.size().x < 450) {
+            api.elements.tooltip.width('260px').addClass('compact')
+          } else {
+            api.elements.tooltip.width('425px').removeClass('compact')
+          }
+        }
       }
     })
   }
 }
-function handleTaxonObservations(e) {
-  // if (window.extent) { return };
-  // window.extent = Polymaps.bounds(e.features)
-  // window.map.extent(window.extent).zoomBy(-.5);
-}
-// function legend(e) {
-//   var lyr = $(e.tile.element).parent().parent();
-//   // console.log("$(e.tile.element).parents(): ", $(e.tile.element).parents());
-//   if (lyr.length == 0) { return };
-//   // console.log("lyr: ", lyr);
-//   var klass = $(lyr).attr('id') || 'Unknown',
-//       title = klass.replace(/[-_]/, ' ');
-//   if ($('#legend .'+klass).length > 0) { return };
-//   var li = $('<li></li>').addClass(klass),
-//       symbol = $('<span></span>').addClass('symbol'),
-//       label = $('<label></label>').html(title);
-//   li.append(symbol, label)
-//   $('#legend ul').append(li)
-// }
-
 function styleRange(e, child) {
   var fill = colorScale(child.id)
   var stroke = d3.rgb(fill).darker().toString()
@@ -277,7 +266,6 @@ function addObservations() {
     .url(observationsGeoJsonUrl)
     .tile(false)
     .on('load', handleObservations)
-    .on('load', handleTaxonObservations)
     .clip(false)
   map.add(layers['observations']);
 }
@@ -322,8 +310,6 @@ $(document).ready(function() {
   } else {
     map.center({lat: 0, lon: 0}).zoom(3)
   }
-  // map.center({lat: 37.5, lon: -121.5}).zoom(9)
-  // map.center({lat: 0, lon: 0}).zoom(2)
   
   map.add(po.hash())
   
@@ -360,110 +346,17 @@ $(document).ready(function() {
 
 function loadLayers() {
   if (children && children.length > 0) {
-    $('#legend ul').html('')
-    // addObservations()
-    var styling = po.stylist()
-      .style('visibility', 'visible')
-      .style('fill', function(f) { return colorScale(f.properties.taxon_id) })
-      .style('stroke', function(f) { return d3.rgb(colorScale(f.properties.taxon_id)).darker().toString() })
-      
-    $.each(children, function() {
-      var child = this,
-          rangeId = 'range_'+child.id,
-          observationsId = 'observations_'+child.id;
-      if (child.range_url) {
-        layers[rangeId] = po.geoJson()
-          .id(rangeId)
-          .url(child.range_url)
-          .tile(false)
-          .clip(false)
-          .on('load', styling)
-        map.add(layers[rangeId])
-      }
-
-      var inputId = 'taxon_check_' + child.id
-      var input = $('<input type="checkbox">')
-        .attr('id', inputId)
-        .attr('checked', 'checked')
-        .click(function() { 
-          if (layers[rangeId]) { layers[rangeId].visible(this.checked); }
-          layers[observationsId].visible(this.checked)
-        })
-      var symbol = $('<div class="symbol"></div>').css({
-        backgroundColor: colorScale(child.id),
-        borderColor: d3.rgb(colorScale(child.id)).darker().toString(),
-        borderStyle: 'solid',
-        borderWidth: '1px'
-      })
-      var label = $('<label></label>').attr('for', inputId).html(child.name)
-      var link = $('<a></a>').attr('href', '/taxa/'+child.id).html('(view)').addClass('small')
-      var li = $('<li></li>').append(input, ' ', symbol, ' ', label, ' ', link)
-      $('#legend ul').append(li)
-    })
-    
-    $.each(children, function() {
-      var child = this,
-          rangeId = 'range_'+child.id,
-          observationsId = 'observations_'+child.id;
-      layers[observationsId] = po.geoJson()
-        .id(observationsId)
-        .url(child.observations_url)
-        .tile(false)
-        .clip(false)
-        .on('load', handleObservations)
-        .on('load', styling)
-      map.add(layers[observationsId])
-    })
-    
+    loadChildTaxaLayers()
   } else  {
-    if (taxonRangeUrl) {
-      layers['range'] = po.geoJson()
-        .id('range')
-        .tile(false)
-        .url(taxonRangeUrl)
-      map.add(layers['range'])
-      $('#copyright').append(
-        $('<div id="range_attribution"></div>').append(
-          'Taxon range: ',
-          taxonRange.source ? (taxonRange.source.citation || taxonRange.source.title) : 'unknown source'
-        ).autolink()
-      )
-    }
-    addPlaces()
-    addObservations()
-    
-    // layer toggles
-    $('#legend li').each(function() {
-      if ($(this).attr('rel')) {
-        var targetLayers = $(this).attr('rel').split(' ')
-      } else {
-        return
-      }
-      
-      $(this).find('input[type=checkbox]').click(function() {
-        if ($(this).attr('id') == 'places_check' && this.checked) {
-          showPlacesByZoom({force: true})
-        } else {
-          for (var i = targetLayers.length - 1; i >= 0; i--){
-            if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
-          }
-        }
-      })
-    })
-    
-    var radios = $('#legend input[type=radio]'),
-        exclusiveLayers = radios.map(function() { return $(this).parents('li').attr('rel').split(' ') })
-    radios.click(function() {
-      for (var i = exclusiveLayers.length - 1; i >= 0; i--){
-        layers[exclusiveLayers[i]].visible(false)
-      }
-      var targetLayers = $(this).parents('li').attr('rel').split(' ')
-      for (var i = targetLayers.length - 1; i >= 0; i--){
-        if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
-      }
-    })
-    
+    loadSingleTaxonLayers()
   }
+  
+  if (placeGeoJsonUrl) {
+    map.add(po.geoJson()
+      .id('place')
+      .url(placeGeoJsonUrl)
+      .on('load', classifyPlaces))
+  };
   
   map.add(po.compass())
   $('#legendcontent').data('originalWidth',  $('#legendcontent').width())
@@ -482,6 +375,111 @@ function loadLayers() {
       return false;
     })
   }
+}
+
+function loadChildTaxaLayers() {
+  $('#legend ul').html('')
+  var styling = po.stylist()
+    .style('visibility', 'visible')
+    .style('fill', function(f) { return colorScale(f.properties.taxon_id) })
+    .style('stroke', function(f) { return d3.rgb(colorScale(f.properties.taxon_id)).darker().toString() })
+    
+  $.each(children, function() {
+    var child = this,
+        rangeId = 'range_'+child.id,
+        observationsId = 'observations_'+child.id;
+    if (child.range_url) {
+      layers[rangeId] = po.geoJson()
+        .id(rangeId)
+        .url(child.range_url)
+        .tile(false)
+        .clip(false)
+        .on('load', styling)
+      map.add(layers[rangeId])
+    }
+
+    var inputId = 'taxon_check_' + child.id
+    var input = $('<input type="checkbox">')
+      .attr('id', inputId)
+      .attr('checked', 'checked')
+      .click(function() { 
+        if (layers[rangeId]) { layers[rangeId].visible(this.checked); }
+        layers[observationsId].visible(this.checked)
+      })
+    var symbol = $('<div class="symbol"></div>').css({
+      backgroundColor: colorScale(child.id),
+      borderColor: d3.rgb(colorScale(child.id)).darker().toString(),
+      borderStyle: 'solid',
+      borderWidth: '1px'
+    })
+    var label = $('<label></label>').attr('for', inputId).html(child.name)
+    var link = $('<a></a>').attr('href', '/taxa/'+child.id).html('(view)').addClass('small')
+    var li = $('<li></li>').append(input, ' ', symbol, ' ', label, ' ', link)
+    $('#legend ul').append(li)
+  })
+  
+  $.each(children, function() {
+    var child = this,
+        rangeId = 'range_'+child.id,
+        observationsId = 'observations_'+child.id;
+    layers[observationsId] = po.geoJson()
+      .id(observationsId)
+      .url(child.observations_url)
+      .tile(false)
+      .clip(false)
+      .on('load', handleObservations)
+      .on('load', styling)
+    map.add(layers[observationsId])
+  })
+}
+
+function loadSingleTaxonLayers() {
+  if (taxonRangeUrl) {
+    layers['range'] = po.geoJson()
+      .id('range')
+      .tile(false)
+      .url(taxonRangeUrl)
+    map.add(layers['range'])
+    $('#copyright').append(
+      $('<div id="range_attribution"></div>').append(
+        'Taxon range: ',
+        taxonRange.source ? (taxonRange.source.citation || taxonRange.source.title) : 'unknown source'
+      ).autolink()
+    )
+  }
+  addPlaces()
+  addObservations()
+  
+  // layer toggles
+  $('#legend li').each(function() {
+    if ($(this).attr('rel')) {
+      var targetLayers = $(this).attr('rel').split(' ')
+    } else {
+      return
+    }
+    
+    $(this).find('input[type=checkbox]').click(function() {
+      if ($(this).attr('id') == 'places_check' && this.checked) {
+        showPlacesByZoom({force: true})
+      } else {
+        for (var i = targetLayers.length - 1; i >= 0; i--){
+          if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
+        }
+      }
+    })
+  })
+  
+  var radios = $('#legend input[type=radio]'),
+      exclusiveLayers = radios.map(function() { return $(this).parents('li').attr('rel').split(' ') })
+  radios.click(function() {
+    for (var i = exclusiveLayers.length - 1; i >= 0; i--){
+      layers[exclusiveLayers[i]].visible(false)
+    }
+    var targetLayers = $(this).parents('li').attr('rel').split(' ')
+    for (var i = targetLayers.length - 1; i >= 0; i--){
+      if (layers[targetLayers[i]]) { layers[targetLayers[i]].visible(this.checked) }
+    }
+  })
 }
 
 function bingCallback(data) {

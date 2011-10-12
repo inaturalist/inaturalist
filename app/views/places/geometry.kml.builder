@@ -12,7 +12,7 @@ if @place.place_geometry
         xml.outline 1
       end
     end
-    xml << @place.place_geometry.geom.as_kml if @place.place_geometry
+    xml << @place_geometry.geom.as_kml if @place_geometry
   end
 else
   xml.Placemark do

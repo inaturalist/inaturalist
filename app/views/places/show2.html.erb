@@ -13,9 +13,10 @@
         FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>,
         NEARBY_PLACES = <%= @nearby_places.to_json %>,
         INSIDE_PLACES = <%= @inside_places.to_json %>,
-        TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
+        TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>,
+        taxa = <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>
   </script>
-  <%= javascript_include_tag 'inaturalist/map3', "places/show" %>
+  <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", "places/show" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       var script = document.createElement("script")
@@ -144,6 +145,7 @@
               :image_options => {:size => 'small'},
               :link_name => true,
               :link_image => true,
+              :link_url => listed_taxon_url(@listed_taxa_by_taxon_id[taxon.id]),
               :extra_class => "inlineblock"
             } %>
           <% end %>

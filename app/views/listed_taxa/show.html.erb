@@ -61,8 +61,10 @@
     <span class="count"><%= @listed_taxon.observations_count %></span>
     <%= @listed_taxon.observations_count == 1 ? 'time' : 'times' %>
   </div>
-  <%= month_graph @listed_taxon.observation_month_stats %>
-  <div class="stacked meta">(research-grade observations only)</div>
+  <% unless @listed_taxon.observation_month_stats.blank? -%>
+    <%= month_graph @listed_taxon.observation_month_stats %>
+    <div class="stacked meta">(research-grade observations only)</div>
+  <% end -%>
   
   <% if @listed_taxon.first_observation -%>
     <p class="ui description">
