@@ -129,6 +129,7 @@ ActionController::Routing::Routes.draw do |map|
       :requirements => { :login => simplified_login_regex }
     p.project_members "projects/:id/members", :action => "members"
     p.project_contributors "projects/:id/contributors", :action => "contributors"
+    p.project_list "projects/:id/list", :action => "list"
     p.formatted_project_contributors "projects/:id/contributors.:format", :action => "contributors"
     p.project_species_count "projects/:id/species_count", :action => "species_count"
     p.formatted_project_species_count "projects/:id/species_count.:format", :action => "species_count"

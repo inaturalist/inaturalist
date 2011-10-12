@@ -142,6 +142,36 @@ class ProjectsController < ApplicationController
       :include => :observation, :conditions => ["observations.user_id = ?", @contributor.user])
   end
   
+  def list
+    # TODO this causes a temporary table sort, which == badness
+    @listed_taxa =  ProjectList.first(:conditions => { :project_id => @project.id }).listed_taxa.paginate(
+      :page => 1,
+      :per_page => 11,
+      :select => "MAX(listed_taxa.id) AS id, listed_taxa.taxon_id",
+      :joins => 
+        "LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
+        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id",
+      :group => "listed_taxa.taxon_id",
+      :order => "id DESC",
+      :conditions => "photos.id IS NOT NULL"
+    )
+    @taxa = Taxon.all(:conditions => ["id IN (?)", @listed_taxa.map(&:taxon_id)],
+      :include => [:photos, :taxon_names])
+    
+
+    # Load tips HTML
+    @taxa.map! do |taxon|
+      taxon.html = render_to_string(:partial => 'taxa/taxon.html.erb', 
+        :object => taxon, :locals => {
+          :image_options => {:size => 'small'},
+          :link_image => true,
+          :link_name => true,
+          :include_image_attribution => true
+      })
+      taxon
+    end
+  end
+  
   def make_curator
     @project_user = @project.project_users.find_by_id(params[:project_user_id])
     if @project_user.blank?
@@ -358,6 +388,11 @@ class ProjectsController < ApplicationController
       else
         @errors[observation.id] = project_observation.errors.full_messages
       end
+      
+      if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => observation.id})
+        @project_invitation.destroy
+      end
+      
     end
     
     @unique_errors = @errors.values.uniq.to_sentence
