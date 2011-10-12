@@ -169,14 +169,16 @@ class Observation < ActiveRecord::Base
     end
   end
   
-  named_scope :in_place, lambda {|place| {
-    :joins => "JOIN place_geometries ON place_geometries.place_id = #{place.id}",
-    :conditions => [
-      "place_geometries.place_id = ? AND " + 
-      "ST_Intersects(place_geometries.geom, observations.geom)",
-      place.id
-    ]
-  }}
+  named_scope :in_place, lambda {|place|
+    place_id = place.is_a?(Place) ? place.id : place.to_i
+    {
+      :joins => "JOIN place_geometries ON place_geometries.place_id = #{place_id}",
+      :conditions => [
+        "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+      ]
+    }
+  }
   
   # possibly radius in kilometers
   named_scope :near_point, Proc.new { |lat, lng, radius|
@@ -419,7 +421,7 @@ class Observation < ActiveRecord::Base
     end
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
-    scope = scope.near_place(params[:place_id]) if params[:place_id]
+    scope = scope.in_place(params[:place_id]) if params[:place_id]
     scope = scope.on(params[:on]) if params[:on]
     
     # return the scope, we can use this for will_paginate calls like:

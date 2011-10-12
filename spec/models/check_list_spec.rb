@@ -210,12 +210,12 @@ describe CheckList, "refresh_with_observation" do
   
   it "should update old listed taxa when taxon changes" do
     make_research_grade_observation(:latitude => @place.latitude, 
-      :longitude => @place.longitude, :taxon => @taxon)
+      :longitude => @place.longitude, :taxon => @taxon, :observed_on_string => "1 week ago")
     # it's the middle one, see?
     o = make_research_grade_observation(:latitude => @place.latitude, 
-      :longitude => @place.longitude, :taxon => @taxon)
+      :longitude => @place.longitude, :taxon => @taxon, :observed_on_string => "3 days ago")
     make_research_grade_observation(:latitude => @place.latitude, 
-      :longitude => @place.longitude, :taxon => @taxon)
+      :longitude => @place.longitude, :taxon => @taxon, :observed_on_string => "yesterday")
     CheckList.refresh_with_observation(o)
     lt = @place.listed_taxa.find_by_taxon_id(@taxon.id)
     lt.last_observation_id.should_not be(o.id)
@@ -226,5 +226,17 @@ describe CheckList, "refresh_with_observation" do
     lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
     lt.should_not be_blank
     lt.observations_count.should be(2)
+  end
+  
+  it "should not not remove taxa just because obs obscured" do
+    p = Place.make
+    p.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))"))
+    o = make_research_grade_observation(:latitude => p.latitude, :longitude => p.longitude)
+    CheckList.refresh_with_observation(o)
+    p.check_list.taxon_ids.should include(o.taxon_id)
+    o.update_attributes(:geoprivacy => Observation::OBSCURED)
+    CheckList.refresh_with_observation(o, :latitude_was => p.latitude, :longitude_was => p.longitude)
+    p.reload
+    p.check_list.taxon_ids.should include(o.taxon_id)
   end
 end

@@ -188,7 +188,7 @@ class CheckList < List
     observation_id = observation.try(:id) || options[:observation_id]
     place_ids = Place.all(:include => :listed_taxa, :conditions => [
       "listed_taxa.first_observation_id = ? OR listed_taxa.last_observation_id = ?", 
-      observation_id, observation_id])
+      observation_id, observation_id]).map(&:id)
     if (lat = options[:latitude_was]) && (lon = options[:longitude_was])
       place_ids += PlaceGeometry.all(:select => "place_geometries.id, place_id",
         :joins => "JOIN observations ON observations.id = #{observation_id}",
