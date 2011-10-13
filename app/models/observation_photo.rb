@@ -15,7 +15,9 @@ class ObservationPhoto < ActiveRecord::Base
     return true unless observation
     new_quality_grade = observation.get_quality_grade
     Observation.update_all(["quality_grade = ?", new_quality_grade], ["id = ?", observation_id])
-    CheckList.send_later(:refresh_with_observation, observation.id, :taxon_id => observation.taxon_id, :skip_update => true)
+    if new_quality_grade != observation.quality_grade
+      CheckList.send_later(:refresh_with_observation, observation.id, :taxon_id => observation.taxon_id, :skip_update => true)
+    end
     true
   end
   

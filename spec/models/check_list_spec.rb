@@ -92,6 +92,14 @@ describe CheckList, "refresh_with_observation" do
     @check_list.taxon_ids.should include(@taxon.id)
   end
   
+  it "should not add listed taxa for casual observations" do
+    o = Observation.make(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
+    @check_list.taxon_ids.should_not include(@taxon.id)
+    CheckList.refresh_with_observation(o)
+    @check_list.reload
+    @check_list.taxon_ids.should_not include(@taxon.id)
+  end
+  
   it "should remove listed taxa if observation deleted" do
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
     
