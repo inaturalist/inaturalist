@@ -43,14 +43,15 @@
     } else if (options.latitude || options.longitude) {
       map.setCenter(new google.maps.LatLng(options.latitutde || 0, options.longitude || 0))
     }
+    
     if (options.placeKmlUrl) {
       var placeLyr = new google.maps.KmlLayer(options.placeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      placeLyr.setMap(map)
+      map.addOverlay('Place Boundary', placeLyr, {id: 'place_boundary-'+options.taxonId})
       preserveViewport = true
     }
     if (options.taxonRangeKmlUrl) {
       var taxonRangeLyr = new google.maps.KmlLayer(options.taxonRangeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      taxonRangeLyr.setMap(map)
+      map.addOverlay('Taxon Range', taxonRangeLyr, {id: 'taxon_range-'+options.taxonId})
       preserveViewport = true
     }
     if (options.observationsJsonUrl) {
@@ -58,6 +59,8 @@
         map.addObservations(data)
       })
     }
+    
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
   }
   
   function setupPolymaps(elt) {

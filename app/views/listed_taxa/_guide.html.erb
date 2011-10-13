@@ -12,7 +12,7 @@
     map_tag_attrs["data-latitude"] = place.latitude
     map_tag_attrs["data-longitude"] = place.longitude
     map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
-    map_tag_attrs["data-place-kml"] = place_geometry_url(place) if place.place_geometry.loaded? || place.place_geometry_exists?
+    map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if place.place_geometry.loaded? || place.place_geometry_exists?
     map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
     # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon, :format => "geojson")
   end

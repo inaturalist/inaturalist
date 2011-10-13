@@ -23,9 +23,10 @@ $(document).ready(function() {
   }
   
   if (taxonRangeUrl) {
-    window.taxonRangeLyr = new google.maps.KmlLayer(taxonRangeKmlUrl,
+    taxonRangeLyr = new google.maps.KmlLayer(taxonRangeKmlUrl,
         {suppressInfoWindows: true});
-    taxonRangeLyr.setMap(map);
+    map.addOverlay(taxonRangeLyr)
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
   }
   
   $.get(observationsJsonUrl, function(data) {

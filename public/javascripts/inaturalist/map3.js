@@ -535,6 +535,71 @@ iNaturalist.FullScreenControl = function(map) {
   return controlDiv;
 }
 
+iNaturalist.OverlayControl = function(map) {
+  var controlDiv = document.createElement('DIV')
+  controlDiv.style.padding = '5px';
+  var controlUI = $('<div>Overlays</div>').addClass('gmapv3control overlaycontrol')
+  var ul = $('<ul></ul>').hide()
+  controlUI.append(ul)
+  controlUI.hover(function() {
+    $('ul', this).show()
+  }, function() {
+    $('ul', this).hide()
+  })
+  controlDiv.appendChild(controlUI.get(0))
+  this.div = controlDiv
+  this.map = map
+  if (map.overlays) {
+    for (var i=0; i < map.overlays.length; i++) {
+      this.addOverlay(map.overlays[i])
+    }
+  }
+  return controlDiv;
+}
+iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
+  var map = this.map,
+      ul = $('ul', this.div)
+      name = lyr.name,
+      id = lyr.id || name,
+      overlay = lyr.overlay,
+      checkbox = $('<input type="checkbox"></input>')
+        .attr('id', id)
+        .attr('name', name)
+        .attr('checked', overlay.getMap()),
+      label = $('<label></label>').attr('for', id).html(name),
+      li = $('<li></li>')
+  checkbox.click(function() {
+    var name = $(this).attr('name'),
+        overlay = map.getOverlay(name).overlay
+    overlay.setMap(overlay.getMap() ? null : map)
+  })
+  li.append(checkbox, label)
+  ul.append(li)
+}
+
+google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
+  options = options || {}
+  this.overlays = this.overlays || []
+  this.overlays.push({
+    name: name,
+    overlay: overlay,
+    id: options.id
+  })
+  overlay.setMap(this)
+}
+google.maps.Map.prototype.removeOverlay = function(name) {
+  if (!this.overlays) { return }
+  for (var i=0; i < this.overlays.length; i++) {
+    if (this.overlays[i].name == name) { this.overlays.splice(i) }
+  }
+}
+google.maps.Map.prototype.getOverlay = function(name) {
+  if (!this.overlays) { return }
+  for (var i=0; i < this.overlays.length; i++) {
+    if (this.overlays[i].name == name) { return this.overlays[i] }
+  }
+}
+
 // Static constants
 iNaturalist.Map.ICONS = {
   DodgerBlue34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_DodgerBlue.png"),
