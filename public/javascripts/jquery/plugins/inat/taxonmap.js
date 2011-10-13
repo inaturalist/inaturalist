@@ -16,7 +16,6 @@
     options.taxonRangeKmlUrl = options.taxonRangeKmlUrl || $(elt).attr('data-taxon-range-kml')
     options.observationsJsonUrl = options.observationsJsonUrl || $(elt).attr('data-observations-json') || observationsJsonUrl(options.taxonId)
     options.bbox = options.bbox || $(elt).attr('data-bbox')
-    console.log("typeof(options.bbox): ", typeof(options.bbox));
     if (typeof(options.bbox) == 'string') {
       options.bbox = $.map(options.bbox.split(','), Number)
     }
