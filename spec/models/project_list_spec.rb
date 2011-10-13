@@ -10,14 +10,5 @@ describe ProjectList do
       pl.description.should_not be_blank
     end
   end
-  describe "refresh" do
-    it "should destroy unobserved taxa" do
-      list = ProjectList.make
-      list.taxa << Taxon.make
-      list.taxa.count.should be(1)
-      list.refresh
-      list.taxa.count.should be(0)
-    end
-  end
 end
 
