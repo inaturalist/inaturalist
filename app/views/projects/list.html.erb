@@ -1,0 +1,21 @@
+<div>
+  <strong>Project List</strong>
+</div>
+<% if @listed_taxa.blank? -%>
+  <div class="notice" style="margin-bottom: 0; text-align: center">
+      No taxa
+  </div>
+<% else %>
+  <ul>
+  <% for taxon in @taxa %>
+    <li><%= taxon_image(taxon, :id => dom_id(taxon, 'image')) %></li>
+    <script type="text/javascript" charset="utf-8">
+      $('#<%= dom_id(taxon, "image") %>').data('json', 
+      <%= taxon.to_json(:include => :photos, 
+        :methods => [:image_url, :default_name, :common_name, 
+        :scientific_name, :html]) %>
+      );
+      </script>
+    <% end %>
+  </ul>
+<% end -%>
