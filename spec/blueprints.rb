@@ -110,6 +110,10 @@ Taxon.blueprint do
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
 end
 
+Taxon.blueprint(:species) do
+  rank "species"
+end
+
 Taxon.blueprint(:threatened) do
   conservation_status Taxon::IUCN_ENDANGERED
   rank "species"

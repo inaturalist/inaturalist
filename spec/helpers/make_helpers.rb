@@ -40,7 +40,7 @@ module MakeHelpers
   
   def make_research_grade_observation(options = {})
     options = {
-      :taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
+      :taxon => Taxon.make(:species), :latitude => 1, :longitude => 1, :observed_on_string => "yesterday"
     }.merge(options)
     o = Observation.make(options)
     i = Identification.make(:observation => o, :taxon => o.taxon)

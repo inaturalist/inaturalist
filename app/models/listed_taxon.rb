@@ -99,14 +99,13 @@ class ListedTaxon < ActiveRecord::Base
   def validate
     # don't bother if validates_presence_of(:taxon) has already failed
     if errors.on(:taxon).blank?
-      self.list.rules.each do |rule|
-        errors.add(taxon.to_plain_s, "is not #{rule.terms}") unless rule.validates?(self.taxon)
+      list.rules.each do |rule|
+        errors.add(taxon.to_plain_s, "is not #{rule.terms}") unless rule.validates?(taxon)
       end
     end
     
-    if self.last_observation && self.taxon != self.last_observation.taxon
-      errors.add(self.taxon.name, "must be the same as the last observed " + 
-                                  "taxon, #{self.last_observation.taxon}")
+    if last_observation && !(taxon == last_observation.taxon || last_observation.taxon.in_taxon?(taxon))
+      errors.add(taxon, "must be the same as the last observed taxon, #{last_observation.taxon}")
     end
     
     unless list.is_a?(CheckList)

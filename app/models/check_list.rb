@@ -146,7 +146,9 @@ class CheckList < List
         lt.destroy if lt.last_observation_id.blank? && lt.can_be_auto_removed_from_check_list?
       end
     end
-    add_new_listed_taxa(observation.taxon, new_place_ids) if observation && observation.research_grade?
+    if observation && observation.research_grade? && observation.taxon.species_or_lower?
+      add_new_listed_taxa(observation.taxon, new_place_ids)
+    end
   end
   
   def self.get_observation_to_refresh(observation)
