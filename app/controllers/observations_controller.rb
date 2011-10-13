@@ -117,6 +117,7 @@ class ObservationsController < ApplicationController
         else
           render :json => @observations.to_json({
             :include => {
+              :iconic_taxon => {},
               :user => {:only => :login},
               :photos => {}
             }
@@ -1458,15 +1459,14 @@ class ObservationsController < ApplicationController
     end
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
-      sync_attrs = [:description, :species_guess, :taxon_id, :observed_on, 
-        :observed_on_string, :latitude, :longitude, :place_guess]
+      sync_attrs = %w(description species_guess taxon_id observed_on 
+        observed_on_string latitude longitude place_guess)
       unless params[:flickr_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:flickr_sync_attrs]
       end
       sync_attrs.each do |sync_attr|
         # merge flickr_observation with existing observation
-        @observation[sync_attr] ||= @flickr_observation[sync_attr]
-        #@observation.send("#{sync_attr}=", @flickr_observation.send(sync_attr))
+        @observation.send("#{sync_attr}=", @flickr_observation.send(sync_attr))
       end
       
       # Note: the following is sort of a hacky alternative to build().  We

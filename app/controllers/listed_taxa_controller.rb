@@ -3,7 +3,7 @@ class ListedTaxaController < ApplicationController
   before_filter :load_listed_taxon, :except => [:index, :create]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
   
-  SHOW_PARTIALS = %w(place_tip)
+  SHOW_PARTIALS = %w(place_tip guide)
 
   def index
     redirect_to lists_path

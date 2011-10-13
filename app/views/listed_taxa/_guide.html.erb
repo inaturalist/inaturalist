@@ -1,0 +1,104 @@
+<%-
+  listed_taxon ||= object || @listed_taxon
+  place ||= listed_taxon.place
+  taxon ||= listed_taxon.taxon
+  map_tag_attrs = {"data-taxon-id" => taxon.id}
+  taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
+  if taxon_range
+    map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
+    map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon, :format => "geojson")
+  end
+  if place
+    map_tag_attrs["data-latitude"] = place.latitude
+    map_tag_attrs["data-longitude"] = place.longitude
+    map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
+    map_tag_attrs["data-place-kml"] = place_geometry_url(place) if place.place_geometry.loaded? || place.place_geometry_exists?
+    map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
+    # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon, :format => "geojson")
+  end
+  
+-%>
+<div class="listed_taxon_guide clear">
+  <div class="photos">
+    <div class="stacked">
+      <%= render :partial => "taxa/photos", :locals => { :taxon => taxon } %>
+    </div>
+    
+    <div class="ui description">
+      Observed
+      <span class="count"><%= listed_taxon.observations_count %></span>
+      <%= listed_taxon.observations_count == 1 ? 'time' : 'times' %>
+      in this place
+    </div>
+    <% unless listed_taxon.observation_month_stats.blank? -%>
+      <%= month_graph listed_taxon.observation_month_stats %>
+      <div class="stacked meta">(research-grade observations only)</div>
+    <% end -%>
+    
+    <% if listed_taxon.first_observation -%>
+      <p class="ui description">
+        First iNat observation
+        <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
+        by 
+        <%= link_to user_image(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>
+        <%= link_to you_or_login(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>,
+        added <%= listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
+      </p>
+    <% end -%>
+
+    <% if listed_taxon.last_observation -%>
+      <p class="ui description">
+        Last observation
+        <%= link_to one_line_observation(listed_taxon.last_observation, :skip => %w(user taxon)), listed_taxon.last_observation %>
+        by 
+        <%= link_to user_image(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
+        <%= link_to you_or_login(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
+      </p>
+    <% end -%>
+  </div>
+  <div class="desc">
+    <!-- <iframe class="map" src="<%= taxon_map_url(taxon, :place_id => place) %>">Loading...</iframe> -->
+    <!-- <div class="right map" data-taxon-id="<%= taxon.id %>" data-taxon-range-kml="<%=  %>"></div> -->
+    <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
+    <div class="stacked">
+      <%= taxon.wikipedia_summary %>
+      <%= link_to "Read the full Wikipedia description", taxon, :class => "readmore" %>
+    </div>
+    <div class="stacked">
+      <h3>Place Notes</h3>
+      <%= listed_taxon.description %>
+      <% if listed_taxon.description.blank? -%>
+        <div class="noresults ui description">
+          No one has added any notes for this place.
+          <%= link_to "Add some now", listed_taxon, :class => "readmore" %>
+        </div>
+      <% else %>
+        <%= link_to "Edit notes", listed_taxon, :class => "readmore" %>
+      <% end -%>
+    </div>
+    <div class="clear stacked">
+      <div id="occurrence">
+        <label>Occurrence status:</label>
+        <%= listed_taxon.occurrence_status || "unknown" %>
+        <%= link_to "edit", listed_taxon, :class => "small" %>
+      </div>
+
+      <div class="establishment stacked">
+        <label>Establishment means:</label>
+        <%= listed_taxon.establishment_means || "unknown" %>
+        <%= link_to "edit", listed_taxon, :class => "small" %>
+      </div>
+    </div>
+    
+    <div class="stacked clear comments">
+      <%= render :partial => "comments/comments", :object => listed_taxon %>
+    </div>
+    
+    <div>
+      <%= link_to "View taxon page", taxon, :class => "readmore" %>
+    </div>
+    <div>
+      <%= link_to "View taxon page for this place", listed_taxon, :class => "readmore" %>
+    </div>
+  </div>
+</div>

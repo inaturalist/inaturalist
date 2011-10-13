@@ -146,6 +146,11 @@ class PlacesController < ApplicationController
       @taxa = scope.of_rank(Taxon::SPECIES).paginate(:select => "DISTINCT ON (ancestry || taxa.id) taxa.*", 
         :page => params[:page], :per_page => 50, 
         :include => [:taxon_names, :photos], :order => order)
+      @taxa_by_taxon_id = @taxa.index_by(&:id)
+      @listed_taxa = @place.listed_taxa.all(
+        :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
+        :conditions => ["taxon_id IN (?)", @taxa])
+      @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
       @distinct_listed_taxa_count = @place.listed_taxa.count(
         :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
         :conditions => ["taxa.rank = ?", Taxon::SPECIES])
@@ -168,8 +173,12 @@ class PlacesController < ApplicationController
   end
   
   def geometry
+    @place_geometry = @place.place_geometry
     respond_to do |format|
       format.kml
+      format.geojson do
+        render :json => [@place_geometry].to_geojson
+      end
     end
   end
   

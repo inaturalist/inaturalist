@@ -38,8 +38,7 @@
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= gmap_include_tag %>
-  <%= javascript_include_tag "jquery/jquery.ui.all.packed.js", 
-                             'inaturalist/map2', 
+  <%= javascript_include_tag 'inaturalist/map2', 
                              'jquery/plugins/jquery.url.packed.js',
                              'jquery/plugins/jquery.autocomplete.min.js',
                              'jquery/plugins/inat/place_autocomplete.js' %>

@@ -88,7 +88,9 @@ google.maps.event.addListener(map, 'zoom_changed', function() {
   }
 })
 
-var icon = iNaturalist.Map.createPlaceIcon()
+var icon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DeepPink.png')
+icon.size = new google.maps.Size(12,12)
+icon.anchor = new google.maps.Point(6,6)
 var marker = map.createMarker(PLACE.latitude, PLACE.longitude, {
   icon: icon
 })

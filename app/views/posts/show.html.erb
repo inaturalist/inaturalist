@@ -72,8 +72,7 @@
 <% end -%>
 <% content_for(:extrajs) do -%>
   <%= gmap_include_tag %>
-  <%= javascript_include_tag "jquery/jquery.ui.all.packed.js",
-                             'jquery/plugins/jqModal',
+  <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'inaturalist',
                              'inaturalist/map2' %>
   

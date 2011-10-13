@@ -420,7 +420,15 @@ class TaxaController < ApplicationController
   
   def map
     @taxon_range = @taxon.taxon_ranges.without_geom.first
-    @bounds = if @taxon_range
+    if params[:place_id] && (@place = Place.find_by_id(params[:place_id]))
+      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
+    end
+    @bounds = if @place && (bbox = @place.bounding_box)
+      GeoRuby::SimpleFeatures::Envelope.from_points([
+        Point.from_coordinates([bbox[1], bbox[0]]), 
+        Point.from_coordinates([bbox[3], bbox[2]])
+      ])
+    elsif @taxon_range
       @taxon.taxon_ranges.calculate(:extent, :geom)
     else
       Observation.of(@taxon).calculate(:extent, :geom)

@@ -207,8 +207,8 @@ describe Observation, "creation" do
     @observation.longitude = lon
     @observation.save
     @observation.reload
-    @observation.latitude.should == lat
-    @observation.longitude.should == lon
+    @observation.latitude.to_f.should == lat
+    @observation.longitude.to_f.should == lon
   end
   
   it "should set lat/lon if entered in place_guess" do
@@ -743,6 +743,29 @@ describe Observation do
       o.place_guess.should_not match(/3333/)
       o.place_guess.should_not match(/6666/)
     end
+    
+    it "should not affect already obscured coordinates" do
+      o = Observation.make(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED)
+      lat = o.latitude
+      private_lat = o.private_latitude
+      o.should be_coordinates_obscured
+      o.obscure_coordinates
+      o.reload
+      o.latitude.to_f.should == lat
+      o.private_latitude.to_f.should == private_lat
+    end
+    
+    it "should not affect already coordinates of a protected taxon" do
+      o = make_observation_of_threatened
+      lat = o.latitude
+      private_lat = o.private_latitude
+      o.should be_coordinates_obscured
+      o.update_attributes(:geoprivacy => Observation::OBSCURED)
+      o.reload
+      o.latitude.to_f.should == lat.to_f
+      o.private_latitude.to_f.should == private_lat.to_f
+    end
+    
   end
   
   describe "unobscure_coordinates" do

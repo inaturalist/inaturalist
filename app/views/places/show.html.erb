@@ -47,59 +47,24 @@
       padding: 5px 10px 10px 10px;
     }
     
-    .jcarousel-skin-inat .jcarousel-container {
-      border: 0 none;
-      background-color: none;
-    }
-    
-    .jcarousel-skin-inat .jcarousel-container-horizontal {
-      padding: 0 20px;
-    }
-    
+    .jcarousel-skin-inat .jcarousel-container{border:0 none;background-color:none;}
+    .jcarousel-skin-inat .jcarousel-container-horizontal{padding:0 20px;}
     .jcarousel-skin-inat .jcarousel-next-horizontal,
-    .jcarousel-skin-inat .jcarousel-prev-horizontal {
-        top: 30px;
-    }
-    
-    #species_guess {
-      width: 400px;
-    }
-    
-    .simpleTaxonSelector {
-      float: left;
-      margin-right: 10px;
-    }
-    
-    .listed_taxon .details {
-      width: 360px;
-    }
-    
-    #batchadder {
-      min-height: 100px;
-    }
-    
-    .taxon .name {
-      font-size: larger;
-      font-family: Georgia, serif;
-    }
-    .attribution {
-      font-size: smaller;
-    }
-    
-    .wikipedia_summary {
-      color: #333;
-      max-width: 240px;
-    }
-    
-    .qtip-content .taxon .image {
-      text-align: center;
-    }
+    .jcarousel-skin-inat .jcarousel-prev-horizontal{top:30px;}
+    #species_guess{width:400px;}
+    .simpleTaxonSelector{float:left;margin-right:10px;}
+    .listed_taxon .details{width:360px;}
+    #batchadder{min-height:100px;}
+    .taxon .name{font-size:larger;font-family:Georgia,serif;}
+    .attribution{font-size:smaller;}
+    .wikipedia_summary{color:#333;max-width:240px;}
+    .ui-tooltip .taxon .image{text-align:center;}
+
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= gmap_include_tag %>
-  <%= javascript_include_tag 'jquery/jquery-ui-1.7.2.min',
-                             'jquery/plugins/jqModal',
+  <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              'inaturalist/map2', 
                              'jquery/plugins/jquery.url.packed',
@@ -245,28 +210,14 @@
     
     function addToolTipToCarouselItem(carouselItem, content) {
       if (typeof(content) == 'undefined') var content = null;
-      $(carouselItem).qtip({
+      var tipOptions = $.extend({}, QTIP_DEFAULTS, {
         content: {text: content},
-        hide: {
-          fixed: true
-        },
-        style: { 
-          name: 'green',
-          tip: 'topMiddle',
-          border: {
-            radius: 5
-          },
-          width: {
-            max: 500
-          }
-        },
         position: {
-          corner: {
-            target: 'bottomMiddle',
-            tooltip: 'topMiddle'
-          }
+          my: 'top center',
+          at: 'bottom center'
         }
-      });
+      })
+      $(carouselItem).qtip(tipOptions)
     }
     
     function getDirections() {
