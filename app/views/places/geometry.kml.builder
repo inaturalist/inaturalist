@@ -1,22 +1,13 @@
-if @place.place_geometry
+if @place_geometry
   xml.Placemark do
     xml.name "#{@place.name} Border"
-    xml.Style do
-      xml.LineStyle do
-        xml.color 'ff9314FF'
-        xml.width 1
-      end
-      xml.PolyStyle do
-        xml.color '339314FF'
-        xml.fill 1
-        xml.outline 1
-      end
-    end
-    xml << @place_geometry.geom.as_kml if @place_geometry
+    xml.styleUrl "#{root_url}stylesheets/index.kml#place"
+    xml << @place_geometry.geom.as_kml
   end
 else
   xml.Placemark do
     xml.name @place.name
+    xml.styleUrl "#{root_url}stylesheets/index.kml#place"
     xml.Point do
       xml.coordinates("#{@place.longitude},#{@place.latitude}")
     end

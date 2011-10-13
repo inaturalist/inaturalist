@@ -88,7 +88,7 @@ google.maps.event.addListener(map, 'zoom_changed', function() {
   }
 })
 
-var icon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DeepPink.png')
+var icon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_GoldenRod.png')
 icon.size = new google.maps.Size(12,12)
 icon.anchor = new google.maps.Point(6,6)
 var marker = map.createMarker(PLACE.latitude, PLACE.longitude, {
