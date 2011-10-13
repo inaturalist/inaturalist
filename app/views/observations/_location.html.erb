@@ -2,6 +2,9 @@
   observation ||= object || @observation
   inline_edit ||= false
   places ||= nil
+  if places && !observation.coordinates_viewable_by?(current_user)
+    places = places[-3,3]
+  end
 -%>
 <label>Location:</label>
 <%= observation_place_guess observation %>

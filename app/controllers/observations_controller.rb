@@ -274,7 +274,9 @@ class ObservationsController < ApplicationController
           @project_users = current_user.project_users.all(:include => :project, :limit => 1000, :order => "projects.title")
           
           if @observation.georeferenced?
-            @places = Place.containing_lat_lng(@observation.latitude, @observation.longitude).sort_by(&:bbox_area)
+            @places = Place.containing_lat_lng(
+              @observation.private_latitude || @observation.latitude, 
+              @observation.private_longitude || @observation.longitude).sort_by(&:bbox_area)
           end
         end
         
