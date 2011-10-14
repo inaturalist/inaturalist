@@ -984,18 +984,11 @@ class ObservationsController < ApplicationController
   end
   
   def nearby
-    # Geocoding IP until I figure out getting loc from iphone
-    ip = request.remote_ip
-    # ip = '66.117.138.26' # Emeryville IP, for testing
-    if GEOIP && (@geoip_result = GeoipTools.city(ip)) && 
-        !@geoip_result[:latitude].blank? && @geoip_result[:latitude] <= 180
-      @lat = @geoip_result[:latitude]
-      @lon = @geoip_result[:longitude]
-      @city = @geoip_result[:city]
-      @state_code = @geoip_result[:state_code]
-      @place_name = "#{@city}, #{@state_code}" unless @city.blank? || @state_code.blank?
-      @latrads = @lat.to_f * (Math::PI / 180)
-      @lonrads = @lon.to_f * (Math::PI / 180)
+    @lat = params[:latitude].to_f
+    @lon = params[:longitude].to_f
+    if @lat && @lon
+      @latrads = @lat * (Math::PI / 180)
+      @lonrads = @lon * (Math::PI / 180)
       @observations = Observation.search(:geo => [latrads,lonrads], 
         :page => params[:page],
         :without => {:observed_on => 0},
