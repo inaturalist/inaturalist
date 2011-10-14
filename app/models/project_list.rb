@@ -31,7 +31,7 @@ class ProjectList < LifeList
     project.observations.of(taxon).latest.first
   end
   
-  def observation_stats_for(taxon)
+  def observation_stats_for(taxon, options = {})
     project.observations.of(taxon).count(:group => "EXTRACT(month FROM observed_on)")
   end
   

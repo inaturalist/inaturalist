@@ -92,7 +92,7 @@
     </div>
   <% end -%>
   
-  <div id="browsingtaxa">
+  <div id="browsingtaxa" class="stacked">
     <ul class="taxon_links">
       <li>
         <%= link_to "All life", url_for_params(:taxon => nil), :class => "taxon #{'selected' if @taxon.blank?}" %>
@@ -105,6 +105,10 @@
       </li>
     </ul>
   </div>
+  
+  <p class="ui">
+    <%= link_to "View check list page", @place.check_list %>
+  </p>
 </div>
 
 <div id="maincol">

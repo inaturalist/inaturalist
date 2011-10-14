@@ -86,9 +86,10 @@ class CheckList < List
     Observation.of(taxon).in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).latest.first
   end
   
-  def observation_stats_for(taxon)
-    Observation.in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).
-      of(taxon).count(:group => "EXTRACT(month FROM observed_on)")
+  def observation_stats_for(taxon, options = {})
+    scope = Observation.in_place(place).of(taxon).scoped({})
+    scope = scope.has_quality_grade(Observation::RESEARCH_GRADE) unless options[:all]
+    scope.count(:group => "EXTRACT(month FROM observed_on)")
   end
   
   # This is a loaded gun.  Please fire with discretion.

@@ -26,18 +26,32 @@
     
     <div class="ui description">
       Observed
-      <span class="count"><%= listed_taxon.observations_count %></span>
-      <%= listed_taxon.observations_count == 1 ? 'time' : 'times' %>
-      in this place
+      <% if @all_obs_stats -%>
+        <%= pluralize @all_obs_stats.map(&:last).sum, "time" %> in this place,
+        <span class="count"><%= listed_taxon.observations_count %></span>
+        confirmed
+      <% else %>
+        <span class="count"><%= listed_taxon.observations_count %></span>
+        <%= listed_taxon.observations_count == 1 ? 'time' : 'times' %>
+        in this place
+      <% end -%>
     </div>
-    <% unless listed_taxon.observation_month_stats.blank? -%>
-      <%= month_graph listed_taxon.observation_month_stats %>
-      <div class="stacked meta">(research-grade observations only)</div>
-    <% end -%>
+    <div id="statsgraphs" class="stacked">
+      <% unless @all_obs_stats.blank? -%>
+        <div id="allobsgraph">
+          <%= month_graph @all_obs_stats %>
+        </div>
+      <% end -%>
+      <% unless listed_taxon.observation_month_stats.blank? -%>
+        <div id="confirmedgraph">
+          <%= month_graph listed_taxon.observation_month_stats %>
+        </div>
+      <% end -%>
+    </div>
     
     <% if listed_taxon.first_observation -%>
       <p class="ui description">
-        First iNat observation
+        First confirmed iNat observation
         <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
         by 
         <%= link_to user_image(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>
@@ -48,7 +62,7 @@
 
     <% if listed_taxon.last_observation -%>
       <p class="ui description">
-        Last observation
+        Last confirmed observation
         <%= link_to one_line_observation(listed_taxon.last_observation, :skip => %w(user taxon)), listed_taxon.last_observation %>
         by 
         <%= link_to user_image(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
@@ -70,7 +84,16 @@
       </div>
     </div>
     
+    <div>
+      <%= link_to "View taxon page for this place", listed_taxon, :class => "readmore" %>
+    </div>
+    <div>
+      <%= link_to "View taxon page", taxon, :class => "readmore" %>
+    </div>
+    
   </div>
+  <!-- end side -->
+  
   <div class="desc">
     <div class="stacked tabs">
       <ul>
@@ -125,13 +148,6 @@
           <% end -%>
         </div>
       </div>
-    </div>
-    
-    <div>
-      <%= link_to "View taxon page", taxon, :class => "readmore" %>
-    </div>
-    <div>
-      <%= link_to "View taxon page for this place", listed_taxon, :class => "readmore" %>
     </div>
   </div>
 </div>

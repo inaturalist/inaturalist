@@ -81,7 +81,7 @@ class List < ActiveRecord::Base
     Observation.order_by("observed_on DESC").by(user).of(taxon).first
   end
   
-  def observation_stats_for(taxon)
+  def observation_stats_for(taxon, options = {})
     return nil unless taxon || user
     Observation.by(user).of(taxon).count(:group => "EXTRACT(month FROM observed_on)")
   end
