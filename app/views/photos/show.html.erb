@@ -1,0 +1,59 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Photo #{@photo.id}, #{@photo.attribution}"  %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "taxa", "observations" %>
+  <style type="text/css" media="screen">
+    th, td { vertical-align: top;}
+  </style>
+<%- end -%>
+
+<h2><%= @title %></h2>
+
+<table>
+  <tr>
+    <td>
+      <%= image_tag @photo.medium_url %>
+    </td>
+    
+    <td style="width: 100%">
+      <table width="100%">
+        <tr>
+          <th>Attribution</th>
+          <td width="100%"><%= @photo.attribution %></td>
+        </tr>
+        <% unless @photo.is_a?(LocalPhoto) -%>
+          <tr>
+            <th>Source</th>
+            <td><%= @photo.class.to_s.gsub(/Photo$/, '') %></td>
+          </tr>
+          <tr>
+            <th>Original</th>
+            <td><%= link_to @photo.native_page_url, @photo.native_page_url %></td>
+          </tr>
+        <% end -%>
+        <% unless @observations.blank? -%>
+          <tr>
+            <th>Associated observations</th>
+            <td class="mini observations">
+              <%= render :partial => "observations/cached_component", :collection => @observations %>
+            </td>
+          </tr>
+        <% end -%>
+
+        <% unless @taxa.blank? -%>
+          <tr>
+            <th>Associated taxa</th>
+            <td class="taxa grid">
+              <%= render :partial => "taxa/taxon", :collection => @taxa, :locals => {
+                :hide_wikipedia_summary => true,
+                :link_name => true,
+                :include_full_name => true
+              } %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+    </td>
+  </tr>
+</table>

@@ -104,6 +104,7 @@ var PlaceGuide = {
             $(this).dialog('option', 'height', newHeight)
             $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
             $('.map', this).taxonMap()
+            $('.tabs', this).tabs()
           })
         }
         return false

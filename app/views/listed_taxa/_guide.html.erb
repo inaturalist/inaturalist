@@ -19,7 +19,7 @@
   
 -%>
 <div class="listed_taxon_guide clear">
-  <div class="photos">
+  <div class="side">
     <div class="stacked">
       <%= render :partial => "taxa/photos", :locals => { :taxon => taxon } %>
     </div>
@@ -55,27 +55,7 @@
         <%= link_to you_or_login(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
       </p>
     <% end -%>
-  </div>
-  <div class="desc">
-    <!-- <iframe class="map" src="<%= taxon_map_url(taxon, :place_id => place) %>">Loading...</iframe> -->
-    <!-- <div class="right map" data-taxon-id="<%= taxon.id %>" data-taxon-range-kml="<%=  %>"></div> -->
-    <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
-    <div class="stacked">
-      <%= taxon.wikipedia_summary %>
-      <%= link_to "Read the full Wikipedia description", taxon, :class => "readmore" %>
-    </div>
-    <div class="stacked">
-      <h3>Place Notes</h3>
-      <%= listed_taxon.description %>
-      <% if listed_taxon.description.blank? -%>
-        <div class="noresults ui description">
-          No one has added any notes for this place.
-          <%= link_to "Add some now", listed_taxon, :class => "readmore" %>
-        </div>
-      <% else %>
-        <%= link_to "Edit notes", listed_taxon, :class => "readmore" %>
-      <% end -%>
-    </div>
+    
     <div class="clear stacked">
       <div id="occurrence">
         <label>Occurrence status:</label>
@@ -90,8 +70,61 @@
       </div>
     </div>
     
-    <div class="stacked clear comments">
-      <%= render :partial => "comments/comments", :object => listed_taxon %>
+  </div>
+  <div class="desc">
+    <div class="stacked tabs">
+      <ul>
+        <li><%= link_to "Info", "##{dom_id(listed_taxon, 'infotab')}" %></li>
+        <li><%= link_to "All photos", "##{dom_id(listed_taxon, 'photostab')}" %></li>
+        <li><%= link_to "Observations", "##{dom_id(listed_taxon, 'observationstab')}" %></li>
+      </ul>
+
+      <div id="<%= dom_id(listed_taxon, 'infotab') %>">
+        <!-- <iframe class="map" src="<%= taxon_map_url(taxon, :place_id => place) %>">Loading...</iframe> -->
+        <!-- <div class="right map" data-taxon-id="<%= taxon.id %>" data-taxon-range-kml="<%=  %>"></div> -->
+        <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
+        <div class="stacked">
+          <%= taxon.wikipedia_summary %>
+          <%= link_to "Read the full Wikipedia description", taxon, :class => "readmore" %>
+        </div>
+        <div class="stacked">
+          <h3>Place Notes</h3>
+          <%= listed_taxon.description %>
+          <% if listed_taxon.description.blank? -%>
+            <div class="noresults ui description">
+              No one has added any notes for this place.
+              <%= link_to "Add some now", listed_taxon, :class => "readmore" %>
+            </div>
+          <% else %>
+            <%= link_to "Edit notes", listed_taxon, :class => "readmore" %>
+          <% end -%>
+        </div>
+
+        <div class="stacked clear comments">
+          <%= render :partial => "comments/comments", :object => listed_taxon %>
+        </div>
+      </div>
+
+      <div id="<%= dom_id(listed_taxon, 'photostab') %>" class="photostab">
+        <% for photo in taxon.photos %>
+          <%= link_to image_tag(photo.medium_url), photo.becomes(Photo) %>
+        <% end %>
+      </div>
+
+      <div id="<%= dom_id(listed_taxon, 'observationstab') %>">
+        <div class="mini observations">
+          <% if @observations.blank? -%>
+            <p class="noresults description">
+              No observations yet.
+            </p>
+          <% else %>
+            <%= render :partial => "observations/cached_component", :collection => @observations %>
+            <% if @observations.total_pages > 1 -%>
+              <%= link_to "View more", observations_path(:place_id => list.place_id, :taxon_id => listed_taxon.taxon_id), :class => "readmore" %>
+            <% end -%>
+          <% end -%>
+        </div>
+      </div>
     </div>
     
     <div>

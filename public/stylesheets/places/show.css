@@ -40,7 +40,7 @@
 #map { position: relative; }
 
 .listed_taxon_guide { position: relative; width: 100%;}
-.listed_taxon_guide .photos { position: absolute; width: 312px;}
+.listed_taxon_guide .side { position: absolute; width: 312px;}
 .listed_taxon_guide .desc {padding-left: 322px; }
 .listed_taxon_guide .map { 
   width: 100%;
@@ -51,3 +51,4 @@
 .dialog { height: auto;}
 .photos_wrapper { margin-bottom: 10px;}
 .stacked.comments {margin-bottom: 20px;}
+.photostab img { margin: 0 10px 10px 0;}
