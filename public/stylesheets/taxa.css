@@ -18,7 +18,6 @@ table.taxa .taxon_name {
 
 .taxa.grid .taxon .image,
 .taxa.grid .taxon .image a {
-  display: block;
   text-align: center;
   background-color: white;
 }
@@ -64,3 +63,18 @@ table.taxa .taxon_name {
 .amphibiaweb table,
 .amphibiaweb tr,
 .amphibiaweb td { vertical-align: top; }
+
+.taxonimage { position: relative; }
+.taxonimage .attribution {
+  position: absolute; 
+  right: 5px; 
+  bottom: 5px;
+  color: white;
+  background-color: black;
+  opacity: 0.5;
+  font-size: smaller;
+  border-radius: 10px;
+  padding: 0 5px;
+}
+.taxonimage:hover .attribution { opacity: 1; }
+

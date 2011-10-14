@@ -127,7 +127,7 @@
   <div id="description" class="description">
     <% if @listed_taxon.description.blank? && @list.listed_taxa_editable_by?(current_user) -%>
       <p class="ui description inplaceedit">
-        <%= link_to_function "Add a description", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %>
+        <%= link_to_function "Add place notes", "$('#description').hide(); $('##{dom_id(@listed_taxon, "edit_description")}').show()" %>
       </p>
     <% else %>
       <div class="clear readable">
@@ -142,7 +142,7 @@
   <% if @list.listed_taxa_editable_by?(current_user) -%>
     <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
         :id => dom_id(@listed_taxon, "edit_description"), :class => "clear box listed_taxon_form", :style => "display: none"} do |f| %>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, :placeholder => "Add notes about this taxon in this place, e.g. where and when it occurs." %>
       <%= f.submit "Save", :class => "default button" %>
       <%= link_to_function "Cancel", "$('#description').show(); $('##{dom_id(@listed_taxon, "edit_description")}').hide()", 
         :class => "minor button" %>

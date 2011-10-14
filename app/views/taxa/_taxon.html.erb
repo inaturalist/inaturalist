@@ -27,10 +27,11 @@
   if js_link
     taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon)
   end
+  photo ||= taxon.photos.sort_by(&:id).first
 -%>
 
 <div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
-  <div class="image taxonimage <%= 'nophoto' if taxon.photos.blank? %>">
+  <div class="image inlineblock taxonimage <%= 'nophoto' if taxon.photos.blank? %>">
     <% if link_image -%>
       <% if js_link -%>
         <%= link_to_function taxon_image(taxon, image_options), "handleTaxonClick(event, #{taxon_json})" %>
@@ -39,6 +40,11 @@
       <% end -%>
     <% else %>
       <%= taxon_image(taxon, image_options) %>
+    <% end -%>
+    <% if photo -%>
+      <span class="attribution" data-tip="#<%= dom_id(photo, "attribution") %>">
+        <%= photo.creative_commons? ? "CC" : photo.license_short %>
+      </span>
     <% end -%>
   </div>
   <% if more_images -%>
@@ -96,8 +102,8 @@
     <% end -%>
     
   </div>
-  <% if include_image_attribution && (photo = taxon.photos.first) -%>
-    <div class="meta attribution">
+  <% if photo -%>
+    <div id="<%= dom_id(photo, "attribution") %>" class="meta attribution <%= photo.license_short.gsub(/\W/, ' ').strip.gsub(/\s+/, '_') %>" style="<%= 'display: none' unless include_image_attribution %>">
       Photo <%= link_to photo.attribution, photo.native_page_url %>
     </div>
   <% end -%>

@@ -56,3 +56,23 @@
 #allobsgraph .monthgraph .bar { background-color: #ccc; }
 #allobsgraph .monthgraph .month { display: none;}
 #allobsgraph .monthgraph .count { color: #ccc; }
+
+.listed_taxon { position: relative; }
+.listed_taxon .firstobs {
+  position: absolute;
+  padding: 2px 5px;
+  top: 0;
+  background-color: #84A92F;
+  color: white;
+  opacity: 0.7;
+  font-size: smaller;
+}
+.listed_taxon:hover .firstobs { opacity: 1; }
+.listed_taxon .firstobs img {
+  vertical-align: middle;
+  width: 12px;
+}
+.listed_taxon .monthstats {position: absolute; left: 5px; top: 145px;}
+.listed_taxon .monthstats .month, .listed_taxon .monthstats .count { display: none;}
+.listed_taxon .monthgraph .bar { background-color: white; min-height: 1px; width: 2px;}
+.listed_taxon .monthgraph { margin: 0; height: 10px;}

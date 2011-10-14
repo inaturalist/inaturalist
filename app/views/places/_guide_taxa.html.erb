@@ -1,0 +1,15 @@
+<% if @taxa.blank? -%>
+  <div class="noresults">
+    Holy smokes, nothing lives here!
+  </div>
+<% else %>
+  <div class="clear">
+    <% for taxon in @taxa %>
+      <%= render :partial => "listed_taxa/guide_taxon", :locals => { :listed_taxon => @listed_taxa_by_taxon_id[taxon.id], :taxon => taxon } %>
+    <% end %>
+  </div>
+  <%= will_paginate @taxa %>
+<% end -%>
+<script type="text/javascript" charset="utf-8">
+  var taxa = <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>
+</script>

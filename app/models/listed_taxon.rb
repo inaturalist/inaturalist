@@ -47,7 +47,7 @@ class ListedTaxon < ActiveRecord::Base
     when "alphabetical"
       {:include => [:taxon], :order => "taxa.name ASC"}
     when "taxonomic"
-      {:include => [:taxon], :order => "taxa.lft ASC"}
+      {:include => [:taxon], :order => "taxa.ancestry ASC, taxa.id ASC"}
     else
       {} # default to id asc ordering
     end

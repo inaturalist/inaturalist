@@ -13,8 +13,7 @@
         FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>,
         NEARBY_PLACES = <%= @nearby_places.to_json %>,
         INSIDE_PLACES = <%= @inside_places.to_json %>,
-        TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>,
-        taxa = <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>
+        TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
   </script>
   <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", "places/show" %>
   <script type="text/javascript" charset="utf-8">
@@ -137,24 +136,12 @@
   
   <div id="listed_taxa">
     <div id="taxa" class="clear taxa fluid medium grid">
-      <% if @taxa.blank? -%>
-        <div class="noresults">
-          Holy smokes, nothing lives here!
-        </div>
+      <% if @filter_params.blank? -%>
+        <% cache({:action => "show", :action_suffix => "taxa_first_page"}, :expires_in => 1.hour) do %>
+          <%= render :partial => 'guide_taxa' %>
+        <% end -%>
       <% else %>
-        <div class="clear">
-          <% for taxon in @taxa %>
-            <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
-              :include_full_name => true,
-              :image_options => {:size => 'small'},
-              :link_name => true,
-              :link_image => true,
-              :link_url => listed_taxon_url(@listed_taxa_by_taxon_id[taxon.id]),
-              :extra_class => "inlineblock"
-            } %>
-          <% end %>
-        </div>
-        <%= will_paginate @taxa %>
+        <%= render :partial => 'guide_taxa' %>
       <% end -%>
     </div>
   </div>

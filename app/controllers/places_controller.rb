@@ -82,6 +82,10 @@ class PlacesController < ApplicationController
   end
   
   def show
+    if params[:test]
+      show2
+      return
+    end
     # TODO this causes a temporary table sort, which == badness
     @listed_taxa = @place.listed_taxa.paginate(
       :page => 1,
@@ -129,47 +133,52 @@ class PlacesController < ApplicationController
     end
     
     @directions_to = "#{@place.latitude}, #{@place.longitude}"
-    
-    if params[:test]
-      scope = @place.taxa.scoped({})
-      order = nil
-      if params[:taxon] && @taxon = Taxon.find_by_id(params[:taxon])
-        scope = scope.descendants_of(@taxon)
-        order = "ancestry || taxa.id"
-      else
-        scope = scope.has_photos
-        order = "listed_taxa.observations_count DESC"
-      end
-      if @colors = params[:colors]
-        scope = scope.colored(@colors)
-      end
-      @taxa = scope.of_rank(Taxon::SPECIES).paginate(:select => "DISTINCT ON (ancestry || taxa.id) taxa.*", 
+  end
+  
+  def show2
+    filter_param_keys = [:color, :taxon, :page]
+    @filter_params = params.select{|k,v| filter_param_keys.include?(k.to_sym)}
+    scope = @place.taxa.scoped({})
+    order = nil
+    if params[:taxon] && @taxon = Taxon.find_by_id(params[:taxon])
+      scope = scope.descendants_of(@taxon)
+      order = "ancestry, taxa.id"
+    else
+      scope = scope.has_photos
+      order = "listed_taxa.observations_count DESC"
+    end
+    if @colors = params[:colors]
+      scope = scope.colored(@colors)
+    end
+    if !@filter_params.blank? || !fragment_exist?(:action => "show", :action_suffix => "taxa_first_page")
+      @taxa = scope.of_rank(Taxon::SPECIES).paginate(:select => "DISTINCT ON (ancestry, taxa.id) taxa.*", 
         :page => params[:page], :per_page => 50, 
-        :include => [:taxon_names, :photos], :order => order)
+        :include => [:taxon_names, :photos], 
+        :order => order)
       @taxa_by_taxon_id = @taxa.index_by(&:id)
       @listed_taxa = @place.listed_taxa.all(
         :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
         :conditions => ["taxon_id IN (?)", @taxa])
       @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
-      @distinct_listed_taxa_count = @place.listed_taxa.count(
-        :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
-        :conditions => ["taxa.rank = ?", Taxon::SPECIES])
-      @confirmed_listed_taxa_count = @place.listed_taxa.confirmed.count(
-        :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
-        :conditions => ["taxa.rank = ?", Taxon::SPECIES])
-      if logged_in?
-        @current_user_observed_count = @place.listed_taxa.count(
-          :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
-          :conditions => ["ult.list_id = ?", current_user.life_list_id])
-      end
-      browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-      browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
-      browsing_taxa.delete_if{|t| t.name == "Life"}
-      @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
-      latrads = @place.latitude.to_f * (Math::PI / 180)
-      lonrads = @place.longitude.to_f * (Math::PI / 180)
-      render :action => "show2"
     end
+    @distinct_listed_taxa_count = @place.listed_taxa.count(
+      :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
+      :conditions => ["taxa.rank = ?", Taxon::SPECIES])
+    @confirmed_listed_taxa_count = @place.listed_taxa.confirmed.count(
+      :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
+      :conditions => ["taxa.rank = ?", Taxon::SPECIES])
+    if logged_in?
+      @current_user_observed_count = @place.listed_taxa.count(
+        :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
+        :conditions => ["ult.list_id = ?", current_user.life_list_id])
+    end
+    browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
+    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+    browsing_taxa.delete_if{|t| t.name == "Life"}
+    @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
+    latrads = @place.latitude.to_f * (Math::PI / 180)
+    lonrads = @place.longitude.to_f * (Math::PI / 180)
+    render :action => "show2"
   end
   
   def geometry

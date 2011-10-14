@@ -521,14 +521,6 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  def indexed_self_and_ancestors(params = {})
-    params = params.merge({
-      :from => "`#{Taxon.table_name}` FORCE INDEX (index_taxa_on_lft_and_rgt)", 
-      :conditions => ["`lft` <= ? AND `rgt` >= ?", self.lft, self.rgt]
-    })
-    Taxon.all(params)
-  end
-  
   #
   # Determine whether this taxon is at or below the rank of species
   #
@@ -537,7 +529,7 @@ class Taxon < ActiveRecord::Base
     %w"species subspecies variety infraspecies".include?(rank.downcase)
   end
   
-  # Updated the "cached" lft values in all listed taxa with this taxon
+  # Updated the "cached" ancestor values in all listed taxa with this taxon
   def update_listed_taxa
     ListedTaxon.update_all(
       "taxon_ancestor_ids = '#{ancestor_ids.join(',')}'", 

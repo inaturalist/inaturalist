@@ -1,0 +1,27 @@
+<%-
+  listed_taxon ||= object || @listed_taxon
+  taxon ||= listed_taxon.taxon
+-%>
+<div class="listed_taxon inlineblock" href="<%= listed_taxon_url(listed_taxon) %>">
+  <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
+    :include_full_name => true,
+    :image_options => {:size => 'small'},
+    :link_name => true,
+    :link_image => true,
+    # :link_url => listed_taxon_url(listed_taxon),
+    :extra_class => "inlineblock"
+  } %>
+  <% if obs = listed_taxon.first_observation -%>
+    <div class="firstobs">
+      1st observer:
+      <%= link_to image_tag(obs.user.icon(:mini)), obs %>
+      <%= link_to obs.user.login, obs %>
+    </div>
+  <% end -%>
+  
+  <% if stats = listed_taxon.observation_month_stats -%>
+    <div class="monthstats">
+      <%= month_graph stats %>
+    </div>
+  <% end -%>
+</div>

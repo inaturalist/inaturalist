@@ -61,7 +61,7 @@ function loadWikipediaDescription() {
 
 var PlaceGuide = {
   ajaxify: function(context) {
-    $('a[href*="listed_taxa"]', context).each(function() {
+    $('.listed_taxon', context).each(function() {
       var matches = $(this).attr('href').match(/listed_taxa\/(\d+)/)
       if (!matches) { return }
       var listedTaxonId = matches[1]

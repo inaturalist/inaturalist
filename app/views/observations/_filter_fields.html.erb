@@ -42,8 +42,7 @@
     <strong>Show only</strong>
   </div>
   <%-
-    all_iconic_taxa = Taxon.iconic_taxa.all(
-      :include => [:photos, :taxon_names], :order => "lft DESC")
+    all_iconic_taxa = Taxon::ICONIC_TAXA
   -%>
   <% for iconic_taxon in all_iconic_taxa -%>
     <div id="iconic_taxon_<%= iconic_taxon.name.downcase %>" class="iconic_taxon_filter">
