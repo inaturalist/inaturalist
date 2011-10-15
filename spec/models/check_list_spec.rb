@@ -247,4 +247,16 @@ describe CheckList, "refresh_with_observation" do
     p.reload
     p.check_list.taxon_ids.should include(o.taxon_id)
   end
+  
+  it "should add new taxa even if ancestors have already been added to this place" do
+    parent = Taxon.make(:rank => Taxon::GENUS)
+    child = Taxon.make(:rank => Taxon::SPECIES, :parent => parent)
+    @place.check_list.add_taxon(parent)
+    @place.taxon_ids.should include(parent.id)
+    
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => child)
+    CheckList.refresh_with_observation(o)
+    @place.reload
+    @place.taxon_ids.should include(child.id)
+  end
 end

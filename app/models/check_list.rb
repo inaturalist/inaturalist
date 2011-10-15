@@ -15,8 +15,8 @@ class CheckList < List
   # validates_uniqueness_of :taxon_id, :scope => :place_id
   
   def update_listed_taxa_places
-    if self.place_id
-      ListedTaxon.update_all("place_id = #{self.place_id}", "list_id = #{self.id}")
+    if place_id
+      ListedTaxon.update_all("place_id = #{place_id}", "list_id = #{id}")
     end
     true
   end
@@ -130,14 +130,15 @@ class CheckList < List
   end
   
   def self.refresh_with_observation(observation, options = {})
-    observation, observation_id = get_observation_to_refresh(observation)
+    observation, observation_id = CheckList.get_observation_to_refresh(observation)
     options[:observation_id] ||= observation_id
-    taxon_ids = get_taxon_ids_to_refresh(observation, options)
+    taxon_ids = CheckList.get_taxon_ids_to_refresh(observation, options)
     return if taxon_ids.blank?
-    current_place_ids = get_current_place_ids_to_refresh(observation, options)
+    current_place_ids = CheckList.get_current_place_ids_to_refresh(observation, options)
     current_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", current_place_ids, taxon_ids])
-    new_place_ids = current_place_ids - current_listed_taxa.map(&:place_id)
-    old_place_ids = get_old_place_ids_to_refresh(observation, options)
+    current_listed_taxa_of_this_taxon = current_listed_taxa.select{|lt| lt.taxon_id == observation.taxon_id}
+    new_place_ids = current_place_ids - current_listed_taxa_of_this_taxon.map(&:place_id)
+    old_place_ids = CheckList.get_old_place_ids_to_refresh(observation, options)
     old_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", old_place_ids - current_place_ids, taxon_ids])
     listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
     unless listed_taxa.blank?
