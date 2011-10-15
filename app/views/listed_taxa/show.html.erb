@@ -31,7 +31,16 @@
   <%= javascript_include_tag('jquery/plugins/jqModal' ) %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('.tabs').tabs()
+      $('.tabs').tabs({
+        ajaxOptions: {
+          data: "partial=cached_component"
+        },
+        load: function(event, ui) {
+          $(ui.panel).append(
+            $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
+          )
+        }
+      })
     })
   </script>
 <%- end -%>
@@ -158,41 +167,25 @@
   
   <div class="tabs">
     <%-
-      obs_tab_txt = case @list.class.to_s
+      case @list.class.to_s
       when 'CheckList'
-        "Observations from this place"
+        obs_tab_txt = "Observations from this place"
+        obs_url = observations_path(:place_id => @listed_taxon.place_id, :taxon_id => @listed_taxon.taxon_id)
       when 'ProjectList'
-        "Observations from this project"
+        obs_tab_txt = "Observations from this project"
+        obs_url = project_observations_path(@list.project_id, :taxon_id => @listed_taxon.taxon_id)
       else
-        is_me?(@list.user) ? "Observations by you" : "Observations by #{@list.user.login}"
+        obs_tab_txt = is_me?(@list.user) ? "Observations by you" : "Observations by #{@list.user.login}"
+        obs_url = observations_by_login_path(@list.user.login, :taxon_id => @listed_taxon.taxon_id)
       end
     -%>
     <ul>
       <li><%= link_to content_tag(:span, "Comments"), '#comments' %></li>
-      <li><%= link_to content_tag(:span, obs_tab_txt), '#observations' %></li>
+      <li><%= link_to content_tag(:span, obs_tab_txt), obs_url, :rel => obs_url, :title => "observations" %></li>
     </ul>
     <div id="comments">
       <%= render :partial => "comments/comments", :object => @listed_taxon %>
     </div>
-    <div id="observations">
-      <div class="mini observations">
-        <% if @observations.blank? -%>
-          <p class="noresults description">
-            No observations yet.
-          </p>
-        <% else %>
-          <%= render :partial => "observations/cached_component", :collection => @observations %>
-          <% if @observations.total_pages > 1 -%>
-            <% if @list.is_a?(CheckList) -%>
-              <%= link_to "View more", observations_path(:place_id => @list.place_id, :taxon_id => @listed_taxon.taxon_id), :class => "readmore" %>
-            <% elsif @list.is_a?(ProjectList) %>
-              <%= link_to "View more", project_observations_path(:id => @list.place_id, :taxon_id => @listed_taxon.taxon_id), :class => "readmore" %>
-            <% elsif @list.user %>
-              <%= link_to "View more", observations_by_login_path(:login => @list.user.login, :taxon_id => @listed_taxon.taxon_id), :class => "readmore" %>
-            <% end -%>
-          <% end -%>
-        <% end -%>
-      </div>
-    </div>
+    <div id="observations" class="mini observations"></div>
   </div>
 </div>

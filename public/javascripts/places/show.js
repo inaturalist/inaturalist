@@ -104,7 +104,16 @@ var PlaceGuide = {
             $(this).dialog('option', 'height', newHeight)
             $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
             $('.map', this).taxonMap()
-            $('.tabs', this).tabs()
+            $('.tabs', this).tabs({
+              ajaxOptions: {
+                data: "partial=cached_component"
+              },
+              load: function(event, ui) {
+                $(ui.panel).append(
+                  $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
+                )
+              }
+            })
           })
         }
         return false

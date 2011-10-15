@@ -70,11 +70,10 @@ table.taxa .taxon_name {
   right: 5px; 
   bottom: 5px;
   color: white;
-  background-color: black;
   opacity: 0.5;
   font-size: smaller;
   border-radius: 10px;
   padding: 0 5px;
 }
-.taxonimage:hover .attribution { opacity: 1; }
+.taxonimage:hover .attribution { opacity: 1; background-color: black; }
 

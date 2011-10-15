@@ -10,16 +10,6 @@ class ListedTaxaController < ApplicationController
   end
   
   def show
-    @observations = if @list.is_a?(CheckList)
-      Observation.of(@listed_taxon.taxon).in_place(@list.place).paginate(:page => 1)
-    elsif @list.is_a?(ProjectList)
-      Observation.of(@listed_taxon.taxon).in_projects(@list.project).paginate(:page => 1)
-    else
-      Observation.of(@listed_taxon.taxon).by(@list.user).paginate(:page => 1)
-    end
-    if @list.is_a?(CheckList)
-      @all_obs_stats = @list.observation_stats_for(@listed_taxon.taxon, :all => true)
-    end
     if partial = params[:partial]
       partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
       render :partial => partial, :layout => false

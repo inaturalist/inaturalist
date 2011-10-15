@@ -61,6 +61,7 @@ class ObservationsController < ApplicationController
     'observed_on' => 'date observed',
     'species_guess' => 'species name'
   }
+  PARTIALS = %w(cached_component observation_component observation mini)
 
   # GET /observations
   # GET /observations.xml
@@ -85,19 +86,13 @@ class ObservationsController < ApplicationController
       format.html do
         @iconic_taxa ||= []
         @view = params[:view] ||= 'map'
-        if params[:partial]
-          if @observations.empty?
-            return render(:text => 'No observations matching those parameters.', 
-              :status => 404)
-          else
-            return render(:partial => params[:partial], 
-              :collection => @observations, :layout => false)
-          end
+        if (partial = params[:partial]) && PARTIALS.include?(partial)
+          return render_observations_partial(partial)
         end
       end
 
       format.json do
-        unless params[:partial].blank?
+        if (partial = params[:partial]) && PARTIALS.include?(partial)
           data = @observations.map do |observation|
             item = {
               :instance => observation,
@@ -109,7 +104,7 @@ class ObservationsController < ApplicationController
             }
 
             @template.template_format = :html
-            item[:html] = render_to_string(:partial => params[:partial], :object => observation)
+            item[:html] = render_to_string(:partial => partial, :object => observation)
             @template.template_format = :json
             item
           end
@@ -849,6 +844,10 @@ class ObservationsController < ApplicationController
             Rails.cache.delete("proj_obs_errors_#{current_user.id}")
           end
         end
+        
+        if (partial = params[:partial]) && PARTIALS.include?(partial)
+          return render_observations_partial(partial)
+        end
       end
       
       format.kml do
@@ -1036,7 +1035,11 @@ class ObservationsController < ApplicationController
       :asset_content_type => "application/vnd.google-earth.kml+xml"})
     
     respond_to do |format|
-      format.html
+      format.html do
+        if (partial = params[:partial]) && PARTIALS.include?(partial)
+          return render_observations_partial(partial)
+        end
+      end
       format.atom do
         @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
         render :action => "index"
@@ -1607,5 +1610,14 @@ class ObservationsController < ApplicationController
        flash[:error] = "Your observations couldn't be added to that " + 
          "project: #{errors.to_sentence}"
      end
+  end
+  
+  def render_observations_partial(partial)
+    if @observations.empty?
+      render(:text => 'No observations matching those parameters.', 
+        :status => 404)
+    else
+      render(:partial => partial, :collection => @observations, :layout => false)
+    end
   end
 end

@@ -13,36 +13,34 @@
     map_tag_attrs["data-latitude"] = place.latitude
     map_tag_attrs["data-longitude"] = place.longitude
     map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
-    map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if place.place_geometry.loaded? || place.place_geometry_exists?
+    map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
     map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
     # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon, :format => "geojson")
   end
-  
+  obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)
+  photos = taxon.photos.sort_by(&:id)
 -%>
 <div class="listed_taxon_guide clear">
   <div class="side">
-    <div class="stacked">
-      <%= render :partial => "taxa/photos", :locals => { :taxon => taxon } %>
+    <div class="stacked photos">
+      <div class="stacked">
+        <%= image_tag photos.first.medium_url %>
+        <div class="meta">
+          Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
+        </div>
+      </div>
+      <% for photo in photos[1..4] %>
+        <%= image_tag photo.square_url %>
+      <% end %>
     </div>
     
     <div class="ui description">
-      Observed
-      <% if @all_obs_stats -%>
-        <%= pluralize @all_obs_stats.map(&:last).sum, "time" %> in this place,
-        <span class="count"><%= listed_taxon.observations_count %></span>
-        confirmed
-      <% else %>
-        <span class="count"><%= listed_taxon.observations_count %></span>
-        <%= listed_taxon.observations_count == 1 ? 'time' : 'times' %>
-        in this place
-      <% end -%>
+      <span class="count"><%= listed_taxon.observations_count %></span>
+      research-quality
+      <%= listed_taxon.observations_count == 1 ? 'observation' : 'observations' %>
+      from in this place
     </div>
     <div id="statsgraphs" class="stacked">
-      <% unless @all_obs_stats.blank? -%>
-        <div id="allobsgraph">
-          <%= month_graph @all_obs_stats %>
-        </div>
-      <% end -%>
       <% unless listed_taxon.observation_month_stats.blank? -%>
         <div id="confirmedgraph">
           <%= month_graph listed_taxon.observation_month_stats %>
@@ -100,7 +98,7 @@
       <ul>
         <li><%= link_to "Info", "##{dom_id(listed_taxon, 'infotab')}" %></li>
         <li><%= link_to "All photos", "##{dom_id(listed_taxon, 'photostab')}" %></li>
-        <li><%= link_to "Observations", "##{dom_id(listed_taxon, 'observationstab')}" %></li>
+        <li><%= link_to "Observations", obs_url, :rel => obs_url, :title => dom_id(listed_taxon, 'observationstab') %></li>
       </ul>
 
       <div id="<%= dom_id(listed_taxon, 'infotab') %>">
@@ -130,23 +128,19 @@
       </div>
 
       <div id="<%= dom_id(listed_taxon, 'photostab') %>" class="photostab">
-        <% for photo in taxon.photos %>
-          <%= link_to image_tag(photo.medium_url), photo.becomes(Photo) %>
+        <% for photo in photos %>
+          <div class="inlineblock">
+            <%= link_to image_tag(photo.medium_url), photo.becomes(Photo) %>
+            <div class="meta">
+              Photo: <%= link_to photo.attribution, native_url_for_photo(photo) %>
+            </div>
+          </div>
         <% end %>
       </div>
 
-      <div id="<%= dom_id(listed_taxon, 'observationstab') %>">
-        <div class="mini observations">
-          <% if @observations.blank? -%>
-            <p class="noresults description">
-              No observations yet.
-            </p>
-          <% else %>
-            <%= render :partial => "observations/cached_component", :collection => @observations %>
-            <% if @observations.total_pages > 1 -%>
-              <%= link_to "View more", observations_path(:place_id => list.place_id, :taxon_id => listed_taxon.taxon_id), :class => "readmore" %>
-            <% end -%>
-          <% end -%>
+      <div id="<%= dom_id(listed_taxon, 'observationstab') %>" class="mini observations">
+        <div class="loading status">
+          Loading...
         </div>
       </div>
     </div>

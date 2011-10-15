@@ -46,12 +46,12 @@
   width: 100%;
   height: 310px;
   background: #eee url(/images/spinner-small-on_eeeeee.gif) center center no-repeat; }
-.listed_taxon_guide .modal_image_link img.image { max-width: 312px;}
+.listed_taxon_guide .side .photos img { max-width: 312px;}
 
 .dialog { height: auto;}
 .photos_wrapper { margin-bottom: 10px;}
 .stacked.comments {margin-bottom: 20px;}
-.photostab img { margin: 0 10px 10px 0;}
+.photostab .inlineblock { margin: 0 10px 10px 0;}
 
 #allobsgraph .monthgraph .bar { background-color: #ccc; }
 #allobsgraph .monthgraph .month { display: none;}
@@ -61,13 +61,15 @@
 .listed_taxon .firstobs {
   position: absolute;
   padding: 2px 5px;
-  top: 0;
+  top: 5px;
+  left: 5px;
   background-color: #84A92F;
   color: white;
   opacity: 0.7;
   font-size: smaller;
+  border-radius: 10px;
 }
-.listed_taxon:hover .firstobs { opacity: 1; }
+.listed_taxon:hover .firstobs { opacity: 1; box-shadow: #222 0 1px 2px; }
 .listed_taxon .firstobs img {
   vertical-align: middle;
   width: 12px;
