@@ -111,6 +111,7 @@ class ObservationsController < ApplicationController
           render :json => data
         else
           render :json => @observations.to_json({
+            :methods => [:short_description],
             :include => {
               :iconic_taxon => {},
               :user => {:only => :login},

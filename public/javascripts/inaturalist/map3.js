@@ -274,7 +274,7 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
   }
   
   wrapper.append(
-    $('<div class="readable attribute"></div>').append(
+    $('<div class="readable attribute inlineblock"></div>').append(
       $('<a href="/observations/'+observation.id+'"></a>').append(
         observation.species_guess
       )
@@ -295,7 +295,7 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
     wrapper.append($('<div class="description"></div>').append(observation.description));
   }
   
-  wrapper = $('<div class="observations mini infowindow"></div>').append(wrapper);
+  wrapper = $('<div class="compact observations mini infowindow"></div>').append(wrapper);
   
   return wrapper.get(0);
 };
