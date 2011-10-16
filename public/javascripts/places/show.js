@@ -68,7 +68,7 @@ var PlaceGuide = {
       if (!listedTaxonId) { return }
       var dialogId = 'listed_taxon_dialog_'+listedTaxonId,
           dialog = $('#'+dialogId),
-          taxonElt = $(this).parents('.taxon[id*="taxon_"]').get(0),
+          taxonElt = $(this).find('.taxon[id*="taxon_"]').get(0),
           taxonId = taxonElt ? $(taxonElt).attr('id').split('_')[1] : null,
           taxon = taxa[taxonId]
       if (dialog.length == 0) {
@@ -88,8 +88,15 @@ var PlaceGuide = {
       $(dialog).dialog({
         autoOpen: false,
         width: '80%',
-        modal: true,
-        title: title
+        title: title,
+        
+        // faking modal behavior to make sure google maps links are clickable
+        open: function() {
+          $(document.body).shades()
+        },
+        close: function() {
+          $(document.body).shades('close')
+        }
       })
       $(this).click(function() {
         var dialog = $('#'+dialogId)

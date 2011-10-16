@@ -61,6 +61,8 @@
     }
     
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    
+    $(elt).data('taxonMap', map)
   }
   
   function setupPolymaps(elt) {

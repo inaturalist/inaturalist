@@ -214,6 +214,30 @@ $.fn.preload = function() {
   this.each(function(){ $('<img/>')[0].src = this; })
 }
 
-$('.ui-widget-overlay').live('click', function() {
+$('.ui-widget-overlay, .shades').live('click', function() {
   $('.dialog').dialog('close')
 })
+
+$.fn.shades = function(e) {
+  switch (e) {
+    case 'close':
+      $(this).find('.shades:last').hide()
+      break;
+    case 'remove':
+      $(this).find('.shades:last').remove()
+      break;
+    default:
+      var shades = $(this).find('.shades:last')[0] || $('<div></div>').addClass('shades')
+      if (this != document.body) {
+        $(shades)
+          .width($(this).outerWidth())
+          .height($(this).outerHeight())
+          .position({my: 'top left', at: 'top left', of: this})
+      };
+      $(this).append(shades)
+      $(shades).show()
+      break;
+  }
+}
+
+
