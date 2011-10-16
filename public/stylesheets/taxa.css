@@ -25,10 +25,12 @@ table.taxa .taxon_name {
 .taxa.grid .taxon .image.nophoto a {
   background-color: #f1f1f1;
 }
-.taxa.grid .taxon .image .iconic { margin: 30px; }
+.taxa.grid .taxon .image .iconic { margin: 30px 0; }
 .taxa.grid .first { clear: left; }
 .taxa.grid .last { margin-right: 0; }
 .taxa.grid .infolink { display: none; }
+
+.taxa.grid .taxonimage { width: 100px; }
 
 /* big grid */
 .taxa.big.grid .taxon { width: 310px; }

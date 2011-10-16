@@ -584,7 +584,9 @@ class Taxon < ActiveRecord::Base
       return nil if last_try_date > 1.week.ago
       options[:reload] = true
     end
-    return super unless super.blank? || options[:reload]
+    unless super.blank? || options[:reload]
+      return Nokogiri::HTML::DocumentFragment.parse(super).to_s
+    end
     
     send_later(:set_wikipedia_summary)
     nil
