@@ -219,25 +219,24 @@ $('.ui-widget-overlay, .shades').live('click', function() {
 })
 
 $.fn.shades = function(e) {
+  elt = this[0]
   switch (e) {
     case 'close':
-      $(this).find('.shades:last').hide()
+      $(elt).find('.shades:last').hide()
       break;
     case 'remove':
-      $(this).find('.shades:last').remove()
+      $(elt).find('.shades:last').remove()
       break;
     default:
-      var shades = $(this).find('.shades:last')[0] || $('<div></div>').addClass('shades')
-      if (this != document.body) {
+      var shades = $(elt).find('.shades:last')[0] || $('<div></div>').addClass('shades')
+      if (elt == document.body) {
         $(shades)
-          .width($(this).outerWidth())
-          .height($(this).outerHeight())
-          .position({my: 'top left', at: 'top left', of: this})
+          .width($(elt).outerWidth())
+          .height($(elt).outerHeight())
+          .position({my: 'top left', at: 'top left', of: elt})
       };
-      $(this).append(shades)
+      $(elt).append(shades)
       $(shades).show()
       break;
   }
 }
-
-

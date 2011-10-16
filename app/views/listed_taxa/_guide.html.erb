@@ -23,15 +23,19 @@
 <div class="listed_taxon_guide clear">
   <div class="side">
     <div class="stacked photos">
-      <div class="stacked">
-        <%= image_tag photos.first.medium_url %>
-        <div class="meta">
-          Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
+      <% if photos.blank? -%>
+        <%= render :partial => 'taxa/nophoto', :object => taxon %>
+      <% else %>
+        <div class="stacked">
+          <%= image_tag photos.first.medium_url %>
+          <div class="meta">
+            Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
+          </div>
         </div>
-      </div>
-      <% for photo in photos[1..4] %>
-        <%= image_tag photo.square_url %>
-      <% end %>
+        <% for photo in photos[1..4] %>
+          <%= image_tag photo.square_url %>
+        <% end %>
+      <% end -%>
     </div>
     
     <div class="ui description">
