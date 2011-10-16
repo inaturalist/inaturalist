@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
   NO_COPYRIGHT = 7
   
   LICENSE_INFO = {
-    0 => {:short => "C", :name => "Copyright", :url => "http://en.wikipedia.org/wiki/Copyright"},
+    0 => {:short => "(c)", :name => "Copyright", :url => "http://en.wikipedia.org/wiki/Copyright"},
     1 => {:short => "CC BY-NC-SA", :name => "Attribution-NonCommercial-ShareAlike License", :url => "http://creativecommons.org/licenses/by-nc-sa/2.0/"},
     2 => {:short => "CC BY-NC", :name => "Attribution-NonCommercial License", :url => "http://creativecommons.org/licenses/by-nc/2.0/"},
     3 => {:short => "CC BY-NC-ND", :name => "Attribution-NonCommercial-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nc-nd/2.0/"},
@@ -64,6 +64,10 @@ class Photo < ActiveRecord::Base
   
   def license_name
     LICENSE_INFO[license.to_i].try(:[], :name)
+  end
+  
+  def copyrighted?
+    license.to_i == COPYRIGHT
   end
   
   def creative_commons?

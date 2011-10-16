@@ -8,6 +8,8 @@
 #placephotos { position: absolute; bottom: 5px; left: 5px;}
 #placephotos img { height: 40px; margin-right: 10px; box-shadow: 0 2px 5px #666; border: 1px solid transparent;}
 #placephotos img:hover { border: 1px solid white;}
+#taxa .noresults { padding: 100px;}
+#taxa .pagination{ margin-top: 20px; }
 
 .colorfield label { padding: 2px 5px; margin-right: 5px; border-radius: 5px;}
 .colorfield.black   label { color: lightgrey;  border: 1px solid transparent; background-color: black;}
@@ -69,13 +71,17 @@
   opacity: 0.7;
   font-size: smaller;
   border-radius: 10px;
+  line-height: 0;
 }
 .listed_taxon:hover .firstobs { opacity: 1; box-shadow: #222 0 1px 2px; }
+.listed_taxon .firstobs span { display: none;}
+.listed_taxon:hover .firstobs span { display: inline;}
 .listed_taxon .firstobs img {
   vertical-align: middle;
-  width: 12px;
+  width: 10px;
 }
-.listed_taxon .monthstats {position: absolute; left: 5px; top: 145px;}
+.listed_taxon .monthstats {position: absolute; left: 5px; bottom: 5px;  border-radius: 10px; padding: 3px 5px;}
+.listed_taxon:hover .monthstats {background-color: #111;}
 .listed_taxon .monthstats .month, .listed_taxon .monthstats .count { display: none;}
 .listed_taxon .monthgraph .bar { background-color: white; min-height: 1px; width: 2px;}
-.listed_taxon .monthgraph { margin: 0; height: 10px;}
+.listed_taxon .monthgraph { margin: 0; height: 9px;}

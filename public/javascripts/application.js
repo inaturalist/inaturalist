@@ -229,7 +229,7 @@ $.fn.shades = function(e) {
       break;
     default:
       var shades = $(elt).find('.shades:last')[0] || $('<div></div>').addClass('shades')
-      if (elt == document.body) {
+      if (elt != document.body) {
         $(shades)
           .width($(elt).outerWidth())
           .height($(elt).outerHeight())

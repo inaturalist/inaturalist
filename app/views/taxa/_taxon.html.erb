@@ -28,6 +28,7 @@
     taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon)
   end
   photo ||= taxon.photos.sort_by(&:id).first
+  after_image ||= nil
 -%>
 
 <div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
@@ -43,9 +44,16 @@
     <% end -%>
     <% if photo -%>
       <span class="attribution" data-tip="#<%= dom_id(photo, "attribution") %>">
-        <%= photo.creative_commons? ? "CC" : photo.license_short %>
+        <% if photo.creative_commons? -%>
+          CC
+        <% elsif photo.copyrighted? %>
+          C
+        <% else %>
+          <%= photo.license_short %>
+        <% end -%>
       </span>
     <% end -%>
+    <%= after_image if after_image %>
   </div>
   <% if more_images -%>
     <div class="moreimages">

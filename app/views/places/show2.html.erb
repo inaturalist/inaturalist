@@ -97,7 +97,7 @@
         <%= link_to "All life", url_for_params(:taxon => nil), :class => "taxon #{'selected' if @taxon.blank?}" %>
         <ul>
           <% taxonomic_taxon_list(@arranged_taxa, :class => "clear") do |taxon| %>
-            <%= link_to default_taxon_name(taxon).capitalize, url_for_params(:taxon => taxon.id), 
+            <%= link_to default_taxon_name(taxon).capitalize, url_for_params(:taxon => taxon.id, :without => [:page]), 
               :class => "taxon #{'selected' if @taxon && @taxon.id == taxon.id} #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}" %>
           <% end -%>
         </ul>
@@ -115,7 +115,7 @@
     <div id="filters" class="left">
       <div id="colorfilters" class="inlineblock">
         <%- form_tag url_for, :method => :get, :class => "inlineblock" do %>
-          <%= hidden_fields_for_params :without => [:colors] %>
+          <%= hidden_fields_for_params :without => [:colors, :page] %>
           <label>Color</label>
           <% for color in Color.all %>
             <span class="colorfield <%= color.value %>">
