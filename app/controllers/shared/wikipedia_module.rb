@@ -14,6 +14,8 @@ module Shared::WikipediaModule
       unless raw.blank? || raw['missing']
         parsed = w.parse(:page => raw['title']).at('text').try(:inner_text).to_s
         @decoded = coder.decode(parsed)
+        @decoded.gsub!('href="//', 'href="http://')
+        @decoded.gsub!('src="//', 'src="http://')
         @decoded.gsub!('href="/', 'href="http://en.wikipedia.org/')
         @decoded.gsub!('src="/', 'src="http://en.wikipedia.org/')
         filter_wikipedia_content
