@@ -112,10 +112,11 @@
   }
   
   #taxon_links.tabs li {
-    padding: 4px 15px 4px 10px;
+    padding: 4px 15px 3px 10px;
     border: 1px solid transparent;
     position: relative;
   }
+  #taxon_links .toggle_menu ul { list-style: none; margin: 0;}
   
   .taxon_link .controls {
     display: none;
@@ -134,7 +135,7 @@
   
   .toggle_menu .togglelink {
     border: 1px solid transparent;
-    padding: 4px 10px 4px 16px;
+    padding: 4px 10px 3px 16px;
   }
   
   .toggle_menu .menu {
@@ -848,7 +849,7 @@
         <% end -%>
       </ul>
     </div>
-    <div id="tabs" class="ui-tabs">
+    <div id="tabs">
       <ul>
         <li><a href="#description"><span>Description</span></a></li>
         <% if @show_range %>
