@@ -69,8 +69,14 @@ class ObservationsController < ApplicationController
     @update = params[:update] # this is ONLY for RJS calls.  Lame.  Sorry.
     
     search_params, find_options = get_search_params(params)
+    
     if search_params[:q].blank?
-      get_paginated_observations(search_params, find_options)
+      cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
+      cache_params[:page] ||= 1
+      cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
+      @observations = Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
+        get_paginated_observations(search_params, find_options)
+      end
     else
       search_observations(search_params, find_options)
       begin
@@ -1291,6 +1297,7 @@ class ObservationsController < ApplicationController
       end
     end
     @observations ||= Observation.query(search_params).paginate(find_options)
+    @observations
   rescue ThinkingSphinx::ConnectionError
     find_options.delete(:class)
     find_options.delete(:classes)
@@ -1423,6 +1430,7 @@ class ObservationsController < ApplicationController
     else
       @observations = Observation.search(q, find_options.merge(sphinx_options))
     end
+    @observations
   rescue ThinkingSphinx::ConnectionError
     get_paginated_observations(search_params, find_options)
   end
@@ -1615,8 +1623,7 @@ class ObservationsController < ApplicationController
   
   def render_observations_partial(partial)
     if @observations.empty?
-      render(:text => 'No observations matching those parameters.', 
-        :status => 404)
+      render(:text => '')
     else
       render(:partial => partial, :collection => @observations, :layout => false)
     end

@@ -31,3 +31,4 @@ ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
 config.action_mailer.delivery_method = :test
 
 require 'ruby-debug'
+require 'activerecord_reset_subclass_fix'
