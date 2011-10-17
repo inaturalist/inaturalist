@@ -215,7 +215,7 @@ $.fn.preload = function() {
 }
 
 $('.ui-widget-overlay, .shades').live('click', function() {
-  $('.dialog').dialog('close')
+  $('.dialog:visible').dialog('close')
 })
 
 $.fn.shades = function(e) {

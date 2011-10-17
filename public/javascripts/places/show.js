@@ -94,7 +94,7 @@ var PlaceGuide = {
         open: function() {
           $(document.body).shades()
         },
-        close: function() {
+        close: function(event, ui) {
           $(document.body).shades('close')
         }
       })
