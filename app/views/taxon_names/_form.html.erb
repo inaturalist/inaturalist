@@ -18,23 +18,23 @@
       </div>
       <p class="ui">
         <%= n.label :name_provider %><br/>
-        <%= n.text_field :name_provider, :disabled => true %>
+        <%= n.text_field :name_provider, :disabled => true, :class => "text" %>
       </p>
 
       <p class="ui">
         <%= n.label :source_url %><br/>
-        <%= n.text_field :source_url, :disabled => true %>
+        <%= n.text_field :source_url, :disabled => true, :class => "text" %>
       </p>
       <p class="ui">
         <%= n.label :source_identifier %><br/>
-        <%= n.text_field :source_identifier, :disabled => true %>
+        <%= n.text_field :source_identifier, :disabled => true, :class => "text" %>
       </p>
     </div>
   <%- end -%>
   
   <p class="ui">
     <%= n.label :name %><br/>
-    <%= n.text_field :name %>
+    <%= n.text_field :name, :class => "text" %>
   </p>
   <p class="ui">
     <%= n.label :lexicon %><br/>
@@ -52,7 +52,7 @@
       "$(this).hide();",
       :id => "new_lexicon_link" %>
     <div id="new_lexicon_field" style="display: none">
-      <%= n.text_field :lexicon, :name => "lexicon_text" %>
+      <%= n.text_field :lexicon, :name => "lexicon_text", :class => "text" %>
       <%= link_to_function "Cancel", 
         "$('#new_lexicon_field').hide(); " +
         "$('#new_lexicon_field input').attr('name', 'lexicon_text');" +

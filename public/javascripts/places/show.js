@@ -1,4 +1,19 @@
 $(document).ready(function() {  
+  $('#filters select[multiple]').multiselect({
+    header: false,
+    noneSelectedText: "Select colors",
+    minWidth: 130,
+    selectedText: function(selected, total, elts) {
+      if (selected > 2) {
+        return selected+' colors'
+      }
+      var html = ''
+      for (var i=0; i < elts.length; i++) {
+        html += '<span class="colorfield '+elts[i].value+'">'+elts[i].value+'</span>'
+      }
+      return html
+    }
+  })
   // loadWikipediaDescription()
   loadFlickrPlacePhotos()
   PlaceGuide.ajaxify('#taxa')
@@ -116,9 +131,15 @@ var PlaceGuide = {
                 data: "partial=cached_component"
               },
               load: function(event, ui) {
-                $(ui.panel).append(
-                  $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
-                )
+                if ($(ui.panel).text() == '') {
+                  $(ui.panel).append(
+                    $('<span>No observations from this place yet.</span>').addClass('noresults meta')
+                  )
+                } else {
+                  $(ui.panel).append(
+                    $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
+                  )
+                }
               }
             })
           })

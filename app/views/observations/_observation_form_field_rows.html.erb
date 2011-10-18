@@ -33,7 +33,7 @@
           &nbsp;
         </div>
         <div class="column span-7">
-          <%= o.text_field(:species_guess, :class => 'species_guess') %>
+          <%= o.text_field(:species_guess, :class => 'text species_guess') %>
           <% if observation.taxon -%>
             <%- alt_name = capture do -%>
               <%= render :partial => "shared/taxon", :locals => { :taxon => observation.taxon, :no_common => true } -%>
@@ -50,7 +50,7 @@
         </div>
         <div class="column span-7">
           <%= o.text_field(:observed_on_string, 
-                           :class => 'observed_on_string') %>
+                           :class => 'text observed_on_string') %>
           <%# A bug in select prevents us from relying on the fields_for index until the bug fix is pushed in 2.2.  See http://rails.lighthouseapp.com/projects/8994/tickets/518 and http://rails.lighthouseapp.com/projects/8994/tickets/518 %>
           <%= time_zone_select("observations[#{i}]", :time_zone, 
                                 ActiveSupport::TimeZone.us_zones, 
@@ -105,7 +105,7 @@
               <div class="last column span-6">
                 <div class="stacked">
                   <%= o.label :tag_list, "Tags" %><br/>
-                  <%= o.text_field :tag_list, :style => "margin-top: 8px" %>
+                  <%= o.text_field :tag_list, :class => "text", :style => "margin-top: 8px" %>
                 </div>
                 
                 <%= o.label :geoprivacy, "Geoprivacy" %>

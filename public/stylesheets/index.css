@@ -100,11 +100,18 @@ input.file,
 input[type="text"],
 input[type="file"],
 .select {
-  padding: 0.4em;
   border: 1px solid #ccc;
-  font-size: 125%;
   width: auto;
   background-color: #f6f6f6;
+  margin: 0;
+}
+
+textarea,
+input.text,
+input.file,
+.select {
+  padding: 0.4em;
+  font-size: 125%;
 }
 
 .select { padding: 0; }
@@ -531,7 +538,7 @@ ul.leafylist li li:first-child {
 .toggle_menu .menu {
   position: absolute;
   z-index: 1;
-  top: 27px;
+  top: 26px;
   background-color: white;
   border: 1px solid #ccc;
   padding: 0.5em;

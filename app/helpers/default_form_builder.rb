@@ -8,7 +8,12 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   helpers.each do |name|
     define_method(name) do |field, *args|
       options = args.last.is_a?(Hash) ? args.pop : {}
-      content = super
+      unless args.last.is_a?(Hash)
+        args << {}
+      end
+      args.last[:class] = "#{options[:class]} text" if name.to_s == "text_field"
+      args.last[:class] = "#{options[:class]} file" if name.to_s == "file_field"
+      content = super(field, *args)
       form_field(field, content, options)
     end
   end

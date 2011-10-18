@@ -44,7 +44,7 @@
     <div class="column span-9">
       <div class="field">
         <%= f.label(:email) %>
-        <%= f.text_field(:email) %>
+        <%= f.text_field(:email, :class => "text") %>
       </div>
     </div>
     <div class="last column span-9 field">
@@ -112,14 +112,14 @@
   <div class="clear box">
     <%= link_to_toggle "Change Your Password", "#passwordform", :class => "ui" %>
     <% form_for(@user, :html => {:id => "passwordform", :style => "display:none"}) do %>
-      <%= label(:current_password, 'Current Password') %>
-      <%= password_field_tag(:current_password, '', :class => 'text') %>
-
-      <%= label(:password, 'New Password') %>
-      <%= password_field_tag(:password, '', :class => 'text') %>
-
-      <%= label(:password_confirmation, 'Confirm New Password') %>
-      <%= password_field_tag(:password_confirmation, '', :class => 'text') %>
+      <div class="stacked">
+        <%= label(:current_password, 'Current Password') %>
+        <%= password_field_tag(:current_password, '', :class => 'text') %>
+        <%= label(:password, 'New Password') %>
+        <%= password_field_tag(:password, '', :class => 'text') %>
+        <%= label(:password_confirmation, 'Confirm New Password') %>
+        <%= password_field_tag(:password_confirmation, '', :class => 'text') %>
+      </div>
 
       <%= submit_tag("Change Password", :class => 'button') %>
     <% end %>

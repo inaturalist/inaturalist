@@ -5,17 +5,15 @@
 </style>
 <h1>Forgot Your Password?</h1>
 
-<% form_for(@password) do |f| %>
+<% form_for(@password, :builder => DefaultFormBuilder) do |f| %>
   <%= f.error_messages(:header_message=>"We couldn't find a user with that email address.", 
                        :message=>"Maybe you signed in with your #{["Facebook","Twitter","Google","Yahoo"].map{|p| link_to((image_tag(p.downcase+"_favicon.jpg")+" "+p), ProviderAuthorization.auth_url_for(p))}.to_sentence(:last_word_connector=>', or ')} account?") %>
 
-  <p>That's okay!  We forget ours too.  Give us the email address you used to create your account and we'll email you a link to reset your password.</p>
-
   <p>
-    <%= f.label(:email) %><br />
-    <%= f.text_field :email, :options => {:size => 50, :class => 'text'} %>
+    That's okay! We forget ours too. Give us the email address you used to
+    create your account and we'll email you a link to reset your password.
   </p>
-  <p>
-    <%= f.submit 'Request Password', :class => 'default button', :style => 'float: none;' %>
-  </p>
+  
+  <%= f.text_field :email %>
+  <%= f.submit 'Request Password', :class => 'default button' %>
 <% end %>

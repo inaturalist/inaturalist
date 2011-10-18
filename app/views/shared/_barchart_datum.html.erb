@@ -1,8 +1,10 @@
-<%- value_width = max == 0 ? 0 : (value.to_f / max * 100).to_i -%>
-<%- remainder_width = 100 - value_width %>
-<%- min_value_label_width ||= 10 -%>
-<%- min_remainder_label_width ||= 25 -%>
-<%- label_text ||= '&nbsp;' -%>
+<%- 
+  value_width = max == 0 ? 0 : (value.to_f / max * 100).to_i
+  remainder_width = 100 - value_width
+  min_value_label_width ||= 10
+  min_remainder_label_width ||= 25
+  label_text ||= '&nbsp;'
+-%>
 <div class="datum">
   <div class="value" style="width: <%= value_width %>%">
     <div class="label">

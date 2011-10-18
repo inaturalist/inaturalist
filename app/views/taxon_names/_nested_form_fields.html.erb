@@ -5,11 +5,11 @@
   <div class="column span-8">
     <p class="ui">
       <%= n.label :name %><br/>
-      <%= n.text_field :name %>
+      <%= n.text_field :name, :class => "text" %>
     </p>
     <p class="ui">
       <%= n.label :lexicon %><br/>
-      <%= n.text_field :lexicon %>
+      <%= n.text_field :lexicon, :class => "text" %>
     </p>
     <p class="ui">
       <%= label_tag 'Valid?' %><br/>
@@ -25,16 +25,16 @@
       </div>
       <p class="ui">
         <%= n.label :name_provider %><br/>
-        <%= n.text_field :name_provider, :disabled => true %>
+        <%= n.text_field :name_provider, :disabled => true, :class => "text" %>
       </p>
       
       <p class="ui">
         <%= n.label :source_url %><br/>
-        <%= n.text_field :source_url, :disabled => true %>
+        <%= n.text_field :source_url, :disabled => true, :class => "text" %>
       </p>
       <p class="ui">
         <%= n.label :source_identifier %><br/>
-        <%= n.text_field :source_identifier, :disabled => true %>
+        <%= n.text_field :source_identifier, :disabled => true, :class => "text" %>
       </p>
     </div>
   <%- end -%>

@@ -8,7 +8,7 @@
       :success => "afterTaxonAdded(request)",
       :failure => "afterTaxonAddedFailure(request)") do |f| %>
       <div>          
-        <%= text_field_tag :species_guess, species_guess, :size => '' %>
+        <%= text_field_tag :species_guess, species_guess, :size => '', :class => "text" %>
         <%= f.hidden_field :taxon_id %>
       </div>
       <%= f.hidden_field :list_id %>

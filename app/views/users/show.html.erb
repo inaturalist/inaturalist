@@ -54,7 +54,7 @@
           </div>
           
           <%- form_for @selected_user, :html => {:style => "display: none"} do |f| %>
-            <%= f.text_area :description, :style => "width: 590px; height: 100px;", :placeholder => "Describe your interest in nature!" %>
+            <%= f.text_area :description, :style => "width: 590px; height: 100px;", :placeholder => "Describe your interest in nature!", :class => "stacked" %>
             <div class="actions">
               <%= f.submit "Save", :class => "default button", "data-loading-click" => true %>
               <a href="#" class="button cancellink">Cancel</a>

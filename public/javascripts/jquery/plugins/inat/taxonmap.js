@@ -44,16 +44,18 @@
       map.setCenter(new google.maps.LatLng(options.latitutde || 0, options.longitude || 0))
     }
     
-    if (options.placeKmlUrl) {
-      var placeLyr = new google.maps.KmlLayer(options.placeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
-      map.addOverlay('Place Boundary', placeLyr, {id: 'place_boundary-'+options.taxonId})
-      preserveViewport = true
-    }
     if (options.taxonRangeKmlUrl) {
       var taxonRangeLyr = new google.maps.KmlLayer(options.taxonRangeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
       map.addOverlay('Taxon Range', taxonRangeLyr, {id: 'taxon_range-'+options.taxonId})
       preserveViewport = true
     }
+    
+    if (options.placeKmlUrl) {
+      var placeLyr = new google.maps.KmlLayer(options.placeKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
+      map.addOverlay('Place Boundary', placeLyr, {id: 'place_boundary-'+options.taxonId})
+      preserveViewport = true
+    }
+    
     if (options.observationsJsonUrl) {
       $.get(options.observationsJsonUrl, function(data) {
         map.addObservations(data)

@@ -136,18 +136,43 @@ class PlacesController < ApplicationController
   end
   
   def show2
-    filter_param_keys = [:color, :taxon, :page]
-    @filter_params = params.select{|k,v| filter_param_keys.include?(k.to_sym)}
+    filter_param_keys = [:colors, :taxon, :page, :q]
+    @filter_params = Hash[params.select{|k,v| 
+      is_filter_param = filter_param_keys.include?(k.to_sym)
+      is_blank = if v.is_a?(Array) && v.size == 1
+        v[0].blank?
+      else
+        v.blank?
+      end
+      is_filter_param && !is_blank
+    }].symbolize_keys
     scope = @place.taxa.scoped({})
     order = nil
-    if params[:taxon] && @taxon = Taxon.find_by_id(params[:taxon])
+    if @q = @filter_params[:q]
+      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
+      if @search_taxon_ids.size == 1
+        @taxon = Taxon.find_by_id(@search_taxon_ids.first)
+      elsif Taxon.count(:conditions => ["id IN (?) AND name LIKE ?", @search_taxon_ids, "#{@q.capitalize}%"]) == 1
+        @taxon = Taxon.first(:conditions => ["name = ?", @q.capitalize])
+      else
+        scope = scope.among(@search_taxon_ids)
+      end
+    end
+    
+    if @filter_params[:taxon]
+      @taxon = Taxon.find_by_id(@filter_params[:taxon].to_i) if @filter_params[:taxon].to_i > 0
+      @taxon ||= TaxonName.first(:conditions => [
+        "lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
+      ).try(:taxon)
+    end
+    if @taxon
       scope = scope.descendants_of(@taxon)
       order = "ancestry, taxa.id"
     else
       scope = scope.has_photos
       order = "listed_taxa.observations_count DESC"
     end
-    if @colors = params[:colors]
+    if @colors = @filter_params[:colors]
       scope = scope.colored(@colors)
     end
     if !@filter_params.blank? || !fragment_exist?(:action => "show", :action_suffix => "taxa_first_page")

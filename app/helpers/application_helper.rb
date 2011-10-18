@@ -183,7 +183,13 @@ module ApplicationHelper
     
     html = ""
     new_params.each do |key, value|
-      html += hidden_field_tag key, value
+      if value.is_a?(Array)
+        value.each do |v|
+          html += hidden_field_tag "#{key}[]", v
+        end
+      else
+        html += hidden_field_tag key, value
+      end
     end
     html
   end

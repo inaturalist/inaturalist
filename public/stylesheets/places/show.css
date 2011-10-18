@@ -11,18 +11,22 @@
 #taxa .noresults { padding: 100px;}
 #taxa .pagination{ margin-top: 20px; }
 
-.colorfield label { padding: 2px 5px; margin-right: 5px; border-radius: 5px;}
-.colorfield.black   label { color: lightgrey;  border: 1px solid transparent; background-color: black;}
-.colorfield.white   label { color: grey;       border: 1px solid #eee; background-color: white;}
-.colorfield.red     label { color: lightpink;  border: 1px solid transparent; background-color: red;}
-.colorfield.green   label { color: lightgreen; border: 1px solid transparent; background-color: green;}
-.colorfield.blue    label { color: lightblue;  border: 1px solid transparent; background-color: blue;}
-.colorfield.purple  label { color: violet;     border: 1px solid transparent; background-color: purple;}
-.colorfield.yellow  label { color: goldenrod;  border: 1px solid transparent; background-color: yellow;}
-.colorfield.grey    label { color: lightgrey;  border: 1px solid transparent; background-color: grey;}
-.colorfield.orange  label { color: chocolate;  border: 1px solid transparent; background-color: orange;}
-.colorfield.brown   label { color: peru;       border: 1px solid transparent; background-color: saddlebrown;}
-.colorfield.pink    label { color: deeppink;   border: 1px solid transparent; background-color: pink;}
+#controls form { vertical-align: top;}
+#controls button, #controls .inter, #controls .text, #controls .button {padding: 4px 5px;}
+#controls .ui-multiselect { padding: 3px 0px 3px 5px; margin-bottom: 0; }
+#controls .value { background-color: #84A92F; }
+.colorfield { padding: 1px 5px; margin-right: 5px; border-radius: 5px;}
+.colorfield.black   { color: lightgrey;  border: 1px solid transparent; background-color: black;}
+.colorfield.white   { color: grey;       border: 1px solid #eee; background-color: white;}
+.colorfield.red     { color: lightpink;  border: 1px solid transparent; background-color: red;}
+.colorfield.green   { color: lightgreen; border: 1px solid transparent; background-color: green;}
+.colorfield.blue    { color: lightblue;  border: 1px solid transparent; background-color: blue;}
+.colorfield.purple  { color: violet;     border: 1px solid transparent; background-color: purple;}
+.colorfield.yellow  { color: goldenrod;  border: 1px solid transparent; background-color: yellow;}
+.colorfield.grey    { color: lightgrey;  border: 1px solid transparent; background-color: grey;}
+.colorfield.orange  { color: chocolate;  border: 1px solid transparent; background-color: orange;}
+.colorfield.brown   { color: peru;       border: 1px solid transparent; background-color: saddlebrown;}
+.colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}
 
 #sidecol .barchart { width: 230px; float: none;}
 #browsingtaxa { background-color: #eee; padding: 5px 0; }
@@ -72,6 +76,8 @@
   font-size: smaller;
   border-radius: 10px;
   line-height: 0;
+  white-space: nowrap;
+  z-index: 100;
 }
 .listed_taxon:hover .firstobs { opacity: 1; box-shadow: #222 0 1px 2px; }
 .listed_taxon .firstobs span { display: none;}

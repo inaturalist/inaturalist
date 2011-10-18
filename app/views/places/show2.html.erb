@@ -76,28 +76,23 @@
 </div> -->
 
 <div id="sidecol">
-  <div class="stacked barchart inlineblock">
-    <%= render :partial => "shared/barchart_datum", :locals => {
-      :value => @confirmed_listed_taxa_count, 
-      :max => @distinct_listed_taxa_count, 
-      :label_text => "of #{@distinct_listed_taxa_count} confirmed" } %>
-  </div>
   <% if @current_user_observed_count -%>
     <div class="stacked barchart inlineblock">
       <%= render :partial => "shared/barchart_datum", :locals => {
         :value => @current_user_observed_count, 
         :max => @distinct_listed_taxa_count, 
-        :label_text => "of #{@distinct_listed_taxa_count} obs. by you" } %>
+        :label_text => "of #{@distinct_listed_taxa_count} obs. by you",
+        :min_remainder_label_width => 60 } %>
     </div>
   <% end -%>
   
   <div id="browsingtaxa" class="stacked">
     <ul class="taxon_links">
       <li>
-        <%= link_to "All life", url_for_params(:taxon => nil), :class => "taxon #{'selected' if @taxon.blank?}" %>
+        <%= link_to "All life", url_for(:taxon => nil, :test => true), :class => "taxon #{'selected' if @taxon.blank?}" %>
         <ul>
           <% taxonomic_taxon_list(@arranged_taxa, :class => "clear") do |taxon| %>
-            <%= link_to default_taxon_name(taxon).capitalize, url_for_params(:taxon => taxon.id, :without => [:page]), 
+            <%= link_to default_taxon_name(taxon).capitalize, url_for(:taxon => taxon.id, :test => true), 
               :class => "taxon #{'selected' if @taxon && @taxon.id == taxon.id} #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}" %>
           <% end -%>
         </ul>
@@ -111,26 +106,26 @@
 </div>
 
 <div id="maincol">
-  <div class="stacked clear">
-    <div id="filters" class="left">
-      <div id="colorfilters" class="inlineblock">
-        <%- form_tag url_for, :method => :get, :class => "inlineblock" do %>
-          <%= hidden_fields_for_params :without => [:colors, :page] %>
-          <label>Color</label>
-          <% for color in Color.all %>
-            <span class="colorfield <%= color.value %>">
-              <%= check_box_tag "colors[]", color.id, 
-                @colors && @colors.include?(color.id.to_s), 
-                :id => "color_ids_#{color.value}",
-                :class => 'checkbox',
-                :alt => color.value,
-                "data-loading-click" => '',
-                "data-autosubmit" => true %>
-              <label for="<%= "color_ids_#{color.value}" %>" class="inlineblock"><%= color.value %></label>
-            </span>
-          <% end %>
-        <% end %>
-      </div>
+  <div id="controls" class="clear buttonrow smallbuttons">
+    <div class="barchart inlineblock">
+      <%= render :partial => "shared/barchart_datum", :locals => {
+        :value => @confirmed_listed_taxa_count, 
+        :max => @distinct_listed_taxa_count, 
+        :label_text => "of #{@distinct_listed_taxa_count} confirmed",
+        :min_remainder_label_width => 50} %>
+    </div>
+    <div id="filters" class="right">
+      <%- form_tag url_for, :method => :get, :class => "inlineblock" do %>
+        <%= hidden_fields_for_params :without => [:colors, :page] %>
+        <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter" %>
+        <%= submit_tag "Filter", :class => "glaucous button" %>
+      <% end %>
+      
+      <%- form_tag url_for, :method => :get, :class => "inlineblock" do %>
+        <%= hidden_field_tag :test, true %>
+        <%= text_field_tag :q, @q, :class => "text", :placeholder => "Search for species", :id => "searchFilter" %>
+        <%= submit_tag "Search", :class => "last glaucous button" %>
+      <% end %>
     </div>
   </div>
   

@@ -7,11 +7,11 @@
   <div class="last column span-24">
     <div class="column span-8">
         <%= f.label :name, 'Name <span class="required">*</span>' %><br/>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :class => "text" %>
     </div>
     <div class="column span-8">
       <%= f.label 'Rank <span class="required">*</span>' %><br/>
-      <%= f.text_field :rank %>
+      <%= f.text_field :rank, :class => "text" %>
     </div>
     
     <div class="last column span-8">
@@ -93,9 +93,9 @@
     
     <p class="ui">
       or <label>Add new photos by their Flickr IDs (must be Creative Commons!)</label><br/>
-      <input type="text" name="flickr_photos[]" />&nbsp;
-      <input type="text" name="flickr_photos[]" />&nbsp;
-      <input type="text" name="flickr_photos[]" />
+      <input type="text" class="text" name="flickr_photos[]" />&nbsp;
+      <input type="text" class="text" name="flickr_photos[]" />&nbsp;
+      <input type="text" class="text" name="flickr_photos[]" />
     </p>
     
     <p class="ui">
@@ -125,7 +125,7 @@
     
     <p class="ui">
       <%= f.label :wikipedia_title %><br/>
-      <%= f.text_field :wikipedia_title %><br/>
+      <%= f.text_field :wikipedia_title, :class => "text" %><br/>
       <span class="description">
         The title of the Wikipedia article that we use for the description. If
         the Wikipedia URL is <code>http://en.wikipedia.org/wiki/Bird</code>,
@@ -202,12 +202,12 @@
         </div>
         <p class="ui">
           <%= f.label :source_identifier %><br/>
-          <%= f.text_field :source_identifier, :disabled => true %>
+          <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
         </p>
 
         <p class="ui">
           <%= f.label :source_url %><br/>
-          <%= f.text_field :source_url, :disabled => true %>
+          <%= f.text_field :source_url, :disabled => true, :class => "text" %>
         </p>
       </div>
     <% end -%>
@@ -251,7 +251,7 @@
       
       <p class="ui">
         <%= f.label :conservation_status_source_identifier %><br/>
-        <%= f.text_field :conservation_status_source_identifier %>
+        <%= f.text_field :conservation_status_source_identifier, :class => "text" %>
       </p>
     </fieldset>
   <% end -%>

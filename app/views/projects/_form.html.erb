@@ -132,7 +132,7 @@
         <%= pu.hidden_field :operand_id, :id => "new_operand_id" %>
         <div id="place_selector" style="display:none">
           <label for="place_q">Choose a place</label><br/>
-          <input type="text" name="place_q" value="" id="place_q">
+          <input type="text" name="place_q" value="" id="place_q" class="text">
           <span class="description">
             Not finding the place you want?
             <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
@@ -140,7 +140,7 @@
         </div>
         <div id="taxon_selector">
           <label for="taxon_q">Choose a taxon</label><br/>
-          <input type="text" name="taxon_q" value="" id="taxon_q">
+          <input type="text" name="taxon_q" value="" id="taxon_q" class="text">
         </div>
       <% end %>
     </div>

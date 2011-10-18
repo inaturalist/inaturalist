@@ -25,8 +25,6 @@ button {
   background-color: white;
 }
 
-input[type='button']:hover,
-input[type='submit']:hover,
 input.button:hover {
   background-color:#dff4ff;
   border:1px solid #c2e1ef;
@@ -239,7 +237,6 @@ input[type='submit'].link:hover {
 .buttonrow.smallbuttons input[type='submit']:hover,
 .buttonrow.smallbuttons input[type='button']:active,
 .buttonrow.smallbuttons input[type='submit']:active {
-  border: 0 transparent;
   font-weight: normal;
 }
 .button.last { margin-right: 0; }

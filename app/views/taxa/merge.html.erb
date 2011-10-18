@@ -48,7 +48,7 @@
 </div>
 
 <% form_tag merge_taxon_path(@taxon), :class => "clear buttons" do %>
-  <%= text_field_tag :keeper_name %>
+  <%= text_field_tag :keeper_name, @taxon.name, :class => "text" %>
   <%= hidden_field_tag :taxon_id %>
   <%= submit_tag "Merge", :disabled => true, :class => "default button", 
     :id => "submitbutton",

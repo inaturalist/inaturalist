@@ -208,7 +208,7 @@
       <div class="clear boxheader">
         <span class="title">Choose a taxon</span>
       </div>
-      <input type="text" name="taxon_name" value="<%= default_taxon_name(@taxon) %>" id="taxon_name"/>
+      <input type="text" class="text" name="taxon_name" value="<%= default_taxon_name(@taxon) %>" id="taxon_name"/>
       <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>" id="taxon_id" />
       <input type="submit" value="Make tags" class="default button" id="choose_taxon_button">
     <% end %>

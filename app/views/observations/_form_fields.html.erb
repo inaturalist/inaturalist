@@ -1,151 +1,151 @@
-      <% fields_for("observations[]", observation, :index => i) do |o| %>
-        <div class="column span-24 observation">
-          <% unless observation.errors.empty? %>
-          <%= error_messages_for('observation', :object => observation) %>
-          <% end %>
-          <div class="column span-7">
-            <div class="field species_guess_field">
-              <%= o.label :species_guess, "What did you see?" %>
-              <%= o.text_field(:species_guess, :class => 'species_guess') %>
-              <%= o.hidden_field(:taxon_id, 
-                :alt => (observation.taxon ? 
-                  content_tag(:span, observation.taxon.name, 
-                    :class => "taxon sciname #{observation.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[observation.taxon.iconic_taxon_id].try(:name)}") : nil),
-                :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
-              
-              <div class="id_please">
-                <%= o.check_box(:id_please) %>
-                <%= o.label(:id_please, "ID Please!") %>
-              </div>
-            </div>
-            
-            <div class="field">
-              <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
-            </div>
-            
-            <div class="field<%= ' error' if observation.errors.on(:observed_on) && !observation.errors.on(:observed_on).empty? %>">
-              <%= o.label :observed_on_string, "When did you see it?" %>
-              <%= o.text_field(:observed_on_string, 
-                               :class => 'observed_on_string') %>
-              <%= o.error_message_on(:observed_on) %>
-              <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
-              <div class="small description">
-                e.g. "<%= Date.today.to_s(:long) %>" or "yesterday"
-              </div>
-            </div>
-            
-            <div class="field">
-              <%= o.label(:description, 'Description') %>
-              <%= o.text_area(:description) %>
-            </div>
-            
-            <div class="field">
-              <%= o.label :tag_list, "Tags" %>
-              <span class="small description">
-                Comma-separated, please
-              </span>
-              <%= o.text_field :tag_list %>
-            </div>
-          </div>
-          <div class="column span-9">
-            <div class="place_guess_field field">
-              <%= o.label(:place_guess, 'Where were you?') %>
-              <%= o.text_field(:place_guess, :class => 'place_guess', :placeholder => "Name of the place you made the observation") %>
-            </div>
-            <div id="coordinates_<%= i %>" class="latlonfields status">
-              <%= o.label(:latitude, 'Lat') %>
-              <%= o.text_field(:latitude, :class => 'latitude') %>
-              
-              <%= o.label(:longitude, 'Lon') %>
-              <%= o.text_field(:longitude, :class => 'longitude') %>
-
-              <span class="button">
-                <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
-                <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
-              </span>
-              <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
-              <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
-            </div>
-            <div class="description">Click on the map to place your observation</div>
-            <div id="mapcontainer"></div>
-            <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
-              <div class="stacked">
-                <label>Change visibility of spatial coordinates?</label>
-              </div>
-              <label for="observations_<%= i %>_geoprivacy">Geoprivacy</label>
-              <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
-              <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
-              <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
-                <dl>
-                  <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-                    <dt><%= privacy || "open" %></dt>
-                    <dd><%= description %></dd>
-                  <% end %>
-                </dl>
-              </div>
-            </div>
-          </div>
-          <div class="last column span-8">
-            <div class="field">
-              <label>
-                Add photos
-              </label>
-              
-              <div id="photos_<%= i %>" class="observation_photos">
-                <%-
-                  # if the photo was invalid, we can't show new local_photos
-                  photos = if observation.new_record? && !observation.valid?
-                    observation.photos.reject do |p|
-                      p.is_a?(LocalPhoto)
-                    end
-                  else
-                    observation.photos
-                  end
-                -%>
-                <%= render :partial => "photos/photo_list_form", :locals => { 
-                  :photos => photos, 
-                  :index => i,
-                  :checked => true,
-                  :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
-                  :photo_identity => @photo_identities.first,
-                  :local_photos => @photo_identities.blank? || observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
-                } %>
-              </div>
-              
-              <% if @photo_identities.blank? %>
-              
-                <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
-                
-                <p class="ui description">
-                  We also support <a href="http://flickr.com">Flickr</a> and 
-                  <a href="http://picasaweb.google.com">Picasa</a> for image hosting.
-                </p>
-                
-                <div class="clear buttons">
-                  <%= link_to "Link your Flickr account",
-                    {:controller => 'flickr', :action => 'link'}, :class => "button" %>
-                  <%= link_to "Link your Picasa account",
-                    {:controller => 'picasa', :action => 'options'}, :class => "button" %>
-                </div>
-
-              <% end %>
-              
-              <div>
-                <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
-                  <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;",
-                    "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
-                      "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
-                    ").join('&');" +
-                    "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
-                      "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
-                <% end -%>
-
-                <% unless observation.photos.empty? || observation.new_record? -%>
-                  <br/>
-                  <%= link_to "Re-order photos &raquo;", edit_observation_photos_path(observation) %>
-                <% end -%>
-              </div>
-            </div>
-          </div>
+<% fields_for("observations[]", observation, :index => i) do |o| %>
+  <div class="column span-24 observation stacked">
+    <% unless observation.errors.empty? %>
+    <%= error_messages_for('observation', :object => observation) %>
+    <% end %>
+    <div class="column span-7">
+      <div class="field species_guess_field">
+        <%= o.label :species_guess, "What did you see?" %>
+        <%= o.text_field(:species_guess, :class => 'species_guess text') %>
+        <%= o.hidden_field(:taxon_id, 
+          :alt => (observation.taxon ? 
+            content_tag(:span, observation.taxon.name, 
+              :class => "taxon sciname #{observation.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[observation.taxon.iconic_taxon_id].try(:name)}") : nil),
+          :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
+        
+        <div class="id_please">
+          <%= o.check_box(:id_please) %>
+          <%= o.label(:id_please, "ID Please!") %>
         </div>
-      <% end %>
+      </div>
+      
+      <div class="field">
+        <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
+      </div>
+      
+      <div class="field<%= ' error' if observation.errors.on(:observed_on) && !observation.errors.on(:observed_on).empty? %>">
+        <%= o.label :observed_on_string, "When did you see it?" %>
+        <%= o.text_field(:observed_on_string, 
+                         :class => 'observed_on_string text') %>
+        <%= o.error_message_on(:observed_on) %>
+        <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+        <div class="small description">
+          e.g. "<%= Date.today.to_s(:long) %>" or "yesterday"
+        </div>
+      </div>
+      
+      <div class="field">
+        <%= o.label(:description, 'Description') %>
+        <%= o.text_area(:description, :class => "text") %>
+      </div>
+      
+      <div class="field">
+        <%= o.label :tag_list, "Tags" %>
+        <span class="small description">
+          Comma-separated, please
+        </span>
+        <%= o.text_field :tag_list, :class => "text" %>
+      </div>
+    </div>
+    <div class="column span-9">
+      <div class="place_guess_field field">
+        <%= o.label(:place_guess, 'Where were you?') %>
+        <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => "Name of the place you made the observation") %>
+      </div>
+      <div id="coordinates_<%= i %>" class="latlonfields status">
+        <%= o.label(:latitude, 'Lat') %>
+        <%= o.text_field(:latitude, :class => 'latitude text') %>
+        
+        <%= o.label(:longitude, 'Lon') %>
+        <%= o.text_field(:longitude, :class => 'longitude text') %>
+
+        <span class="button">
+          <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
+          <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
+        </span>
+        <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
+        <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
+      </div>
+      <div class="description">Click on the map to place your observation</div>
+      <div id="mapcontainer"></div>
+      <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
+        <div class="stacked">
+          <label>Change visibility of spatial coordinates?</label>
+        </div>
+        <label for="observations_<%= i %>_geoprivacy">Geoprivacy</label>
+        <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+        <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
+        <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
+          <dl>
+            <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
+              <dt><%= privacy || "open" %></dt>
+              <dd><%= description %></dd>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="last column span-8">
+      <div class="field">
+        <label>
+          Add photos
+        </label>
+        
+        <div id="photos_<%= i %>" class="observation_photos">
+          <%-
+            # if the photo was invalid, we can't show new local_photos
+            photos = if observation.new_record? && !observation.valid?
+              observation.photos.reject do |p|
+                p.is_a?(LocalPhoto)
+              end
+            else
+              observation.photos
+            end
+          -%>
+          <%= render :partial => "photos/photo_list_form", :locals => { 
+            :photos => photos, 
+            :index => i,
+            :checked => true,
+            :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
+            :photo_identity => @photo_identities.first,
+            :local_photos => @photo_identities.blank? || observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
+          } %>
+        </div>
+        
+        <% if @photo_identities.blank? %>
+        
+          <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
+          
+          <p class="ui description">
+            We also support <a href="http://flickr.com">Flickr</a> and 
+            <a href="http://picasaweb.google.com">Picasa</a> for image hosting.
+          </p>
+          
+          <div class="clear buttons">
+            <%= link_to "Link your Flickr account",
+              {:controller => 'flickr', :action => 'link'}, :class => "button" %>
+            <%= link_to "Link your Picasa account",
+              {:controller => 'picasa', :action => 'options'}, :class => "button" %>
+          </div>
+
+        <% end %>
+        
+        <div>
+          <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+            <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;",
+              "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
+                "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
+              ").join('&');" +
+              "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
+                "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
+          <% end -%>
+
+          <% unless observation.photos.empty? || observation.new_record? -%>
+            <br/>
+            <%= link_to "Re-order photos &raquo;", edit_observation_photos_path(observation) %>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
