@@ -1473,7 +1473,8 @@ class ObservationsController < ApplicationController
       end
       sync_attrs.each do |sync_attr|
         # merge flickr_observation with existing observation
-        @observation.send("#{sync_attr}=", @flickr_observation.send(sync_attr))
+        val = @flickr_observation.send(sync_attr)
+        @observation.send("#{sync_attr}=", val) unless val.blank?
       end
       
       # Note: the following is sort of a hacky alternative to build().  We
