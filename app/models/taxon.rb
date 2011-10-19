@@ -231,6 +231,13 @@ class Taxon < ActiveRecord::Base
     {:conditions => ["taxa.id IN (?)", ids]}
   }
   
+  named_scope :self_and_descendants_of, lambda{|taxon|
+    conditions = taxon.descendant_conditions
+    conditions[0] += " OR taxa.id = ?"
+    conditions << taxon
+    {:conditions => conditions}
+  }
+  
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)

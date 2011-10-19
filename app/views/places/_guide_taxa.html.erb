@@ -7,11 +7,9 @@
     <% end -%>
   </div>
 <% else %>
-  <div class="clear">
-    <% for taxon in @taxa %>
-      <%= render :partial => "listed_taxa/guide_taxon", :locals => { :listed_taxon => @listed_taxa_by_taxon_id[taxon.id], :taxon => taxon } %>
-    <% end %>
-  </div>
+  <% for taxon in @taxa %>
+    <%= render :partial => "listed_taxa/guide_taxon", :locals => { :listed_taxon => @listed_taxa_by_taxon_id[taxon.id], :taxon => taxon } %>
+  <% end %>
   <%= will_paginate @taxa %>
 <% end -%>
 <script type="text/javascript" charset="utf-8">

@@ -5,14 +5,16 @@
 #maincol { padding-left: 250px;}
 #pageheader { position: relative; }
 #pageheader h2 { background-color: white; opacity: 0.8; position: absolute; bottom: 51px; padding: 10px;}
+#pageheader h2 a {color:black;}
 #placephotos { position: absolute; bottom: 5px; left: 5px;}
 #placephotos img { height: 40px; margin-right: 10px; box-shadow: 0 2px 5px #666; border: 1px solid transparent;}
 #placephotos img:hover { border: 1px solid white;}
 #taxa .noresults { padding: 100px;}
 #taxa .pagination{ margin-top: 20px; }
 
-#controls form { vertical-align: top;}
+#controls form { vertical-align: top; margin-right: 10px;}
 #controls button, #controls .inter, #controls .text, #controls .button {padding: 4px 5px;}
+#controls a.button {padding: 4px 5px 3px;}
 #controls .ui-multiselect { padding: 3px 0px 3px 5px; margin-bottom: 0; }
 #controls .value { background-color: #84A92F; }
 .colorfield { padding: 1px 5px; margin-right: 5px; border-radius: 5px;}
@@ -29,6 +31,7 @@
 .colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}
 
 #sidecol .barchart { width: 230px; float: none;}
+#controls .barchart { width: 230px; float: right;}
 #browsingtaxa { background-color: #eee; padding: 5px 0; }
 #browsingtaxa ul { margin: 0; }
 #browsingtaxa ul ul { margin-left: 20px;}
@@ -91,3 +94,5 @@
 .listed_taxon .monthstats .month, .listed_taxon .monthstats .count { display: none;}
 .listed_taxon .monthgraph .bar { background-color: white; min-height: 1px; width: 2px;}
 .listed_taxon .monthgraph { margin: 0; height: 9px;}
+.taxa.grid .taxon{vertical-align:baseline;}
+.listed_taxon{vertical-align:top;}

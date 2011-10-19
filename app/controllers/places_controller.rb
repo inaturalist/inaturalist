@@ -146,7 +146,7 @@ class PlacesController < ApplicationController
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    scope = @place.taxa.scoped({})
+    scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({})
     order = nil
     if @q = @filter_params[:q]
       @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
@@ -166,36 +166,41 @@ class PlacesController < ApplicationController
       ).try(:taxon)
     end
     if @taxon
-      scope = scope.descendants_of(@taxon)
+      scope = if @taxon.species_or_lower? 
+        scope.self_and_descendants_of(@taxon)
+      else
+        scope.descendants_of(@taxon)
+      end
       order = "ancestry, taxa.id"
-    else
-      scope = scope.has_photos
-      order = "listed_taxa.observations_count DESC"
     end
+    
     if @colors = @filter_params[:colors]
       scope = scope.colored(@colors)
     end
+    
+    @distinct_listed_taxa_count = scope.count
+    @confirmed_listed_taxa_count = scope.count(:conditions => "listed_taxa.first_observation_id IS NOT NULL")
+    if logged_in?
+      @current_user_observed_count = scope.count(
+        :joins => "JOIN listed_taxa ult ON ult.taxon_id = taxa.id", 
+        :conditions => ["ult.list_id = ?", current_user.life_list_id])
+    end
+    
+    if @filter_params.blank?
+      scope = scope.has_photos
+      order = "listed_taxa.observations_count DESC"
+    end
+    
     if !@filter_params.blank? || !fragment_exist?(:action => "show", :action_suffix => "taxa_first_page")
-      @taxa = scope.of_rank(Taxon::SPECIES).paginate(:select => "DISTINCT ON (ancestry, taxa.id) taxa.*", 
-        :page => params[:page], :per_page => 50, 
-        :include => [:taxon_names, :photos], 
-        :order => order)
+      @taxa = scope.paginate(:select => "DISTINCT ON (ancestry, taxa.id) taxa.*", 
+        :include => [:taxon_names, :photos],
+        :order => order,
+        :page => params[:page], :per_page => 50)
       @taxa_by_taxon_id = @taxa.index_by(&:id)
       @listed_taxa = @place.listed_taxa.all(
         :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
         :conditions => ["taxon_id IN (?)", @taxa])
       @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
-    end
-    @distinct_listed_taxa_count = @place.listed_taxa.count(
-      :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
-      :conditions => ["taxa.rank = ?", Taxon::SPECIES])
-    @confirmed_listed_taxa_count = @place.listed_taxa.confirmed.count(
-      :select => "DISTINCT(taxon_id)", :joins => [:taxon], 
-      :conditions => ["taxa.rank = ?", Taxon::SPECIES])
-    if logged_in?
-      @current_user_observed_count = @place.listed_taxa.count(
-        :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
-        :conditions => ["ult.list_id = ?", current_user.life_list_id])
     end
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
     browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
