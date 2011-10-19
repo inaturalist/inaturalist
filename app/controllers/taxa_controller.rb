@@ -247,7 +247,8 @@ class TaxaController < ApplicationController
     if @q.blank?
       q = @q
     else
-      q = "\"^#{@q}$\" | #{@q}".gsub(/\-/, '\-')
+      q = @q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
+      q = "\"^#{q}$\" | #{q}"
       match_mode = :extended
     end
     drill_params = {}
