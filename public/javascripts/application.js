@@ -160,6 +160,7 @@ $(document).ready(function() {
   })
   
   $([
+    '/images/spinner.gif',
     '/images/spinner-small.gif',
     '/images/spinner-small-ffffff_on_dedede.gif',
     '/images/spinner-small-ffffff_on_aaaaaa.gif'
@@ -218,7 +219,8 @@ $('.ui-widget-overlay, .shades').live('click', function() {
   $('.dialog:visible').dialog('close')
 })
 
-$.fn.shades = function(e) {
+$.fn.shades = function(e, options) {
+  options = options || {}
   elt = this[0]
   switch (e) {
     case 'close':
@@ -228,13 +230,14 @@ $.fn.shades = function(e) {
       $(elt).find('.shades:last').remove()
       break;
     default:
-      var shades = $(elt).find('.shades:last')[0] || $('<div></div>').addClass('shades')
+      var shades = $(elt).find('.shades:last')[0] || $('<div></div>')
+      $(shades).addClass('shades')
+      if (options.css) { $(shades).css(options.css) }
+      if (options.content) { $(shades).html(options.content) }
       if (elt != document.body) {
-        $(shades)
-          .width($(elt).outerWidth())
-          .height($(elt).outerHeight())
-          .position({my: 'top left', at: 'top left', of: elt})
-      };
+        $(elt).css('position', 'relative')
+        $(shades).css('position', 'absolute')
+      }
       $(elt).append(shades)
       $(shades).show()
       break;

@@ -281,6 +281,7 @@ ActionController::Routing::Routes.draw do |map|
     places.place_children '/places/:id/children', :action => 'children', :conditions => {:method => :get}
     places.place_taxa 'places/:id/taxa.:format', :action => 'taxa', :conditions => {:method => :get}
     places.place_geometry 'places/geometry/:id.:format', :action => 'geometry', :conditions => {:method => :get}
+    places.place_guide 'places/guide/:id', :action => 'guide', :conditions => {:method => :get}
   end
   
   map.resources :flags, :requirements => { :id => %r(\d+) }

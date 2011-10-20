@@ -411,4 +411,8 @@ module ApplicationHelper
     content_tag(:div, html, :class => 'monthgraph graph')
   end
   
+  def catch_and_release(&block)
+    concat capture(&block) if block_given?
+  end
+  
 end

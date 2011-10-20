@@ -9,8 +9,10 @@
 #placephotos { position: absolute; bottom: 5px; left: 5px;}
 #placephotos img { height: 40px; margin-right: 10px; box-shadow: 0 2px 5px #666; border: 1px solid transparent;}
 #placephotos img:hover { border: 1px solid white;}
+#taxa { min-height: 500px; }
 #taxa .noresults { padding: 100px;}
 #taxa .pagination{ margin-top: 20px; }
+#taxa .shades { opacity: 0.8; z-index: 100;}
 
 #controls form { vertical-align: top; margin-right: 10px;}
 #controls button, #controls .inter, #controls .text, #controls .button {padding: 4px 5px;}
@@ -96,3 +98,4 @@
 .listed_taxon .monthgraph { margin: 0; height: 9px;}
 .taxa.grid .taxon{vertical-align:baseline;}
 .listed_taxon{vertical-align:top;}
+#sidecol .extralabel {background-color: #efefef; padding: 0.5em; text-align: center;}

@@ -2,10 +2,10 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :login_required, :except => [:index, :show, :search, 
-    :wikipedia, :taxa, :children, :autocomplete, :geometry]
+    :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
-    :children, :taxa, :geometry]
+    :children, :taxa, :geometry, :guide]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :search]
   
@@ -136,78 +136,17 @@ class PlacesController < ApplicationController
   end
   
   def show2
-    filter_param_keys = [:colors, :taxon, :page, :q]
-    @filter_params = Hash[params.select{|k,v| 
-      is_filter_param = filter_param_keys.include?(k.to_sym)
-      is_blank = if v.is_a?(Array) && v.size == 1
-        v[0].blank?
-      else
-        v.blank?
-      end
-      is_filter_param && !is_blank
-    }].symbolize_keys
-    scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({})
-    order = nil
-    if @q = @filter_params[:q]
-      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-      if @search_taxon_ids.size == 1
-        @taxon = Taxon.find_by_id(@search_taxon_ids.first)
-      elsif Taxon.count(:conditions => ["id IN (?) AND name LIKE ?", @search_taxon_ids, "#{@q.capitalize}%"]) == 1
-        @taxon = Taxon.first(:conditions => ["name = ?", @q.capitalize])
-      else
-        scope = scope.among(@search_taxon_ids)
-      end
-    end
-    
-    if @filter_params[:taxon]
-      @taxon = Taxon.find_by_id(@filter_params[:taxon].to_i) if @filter_params[:taxon].to_i > 0
-      @taxon ||= TaxonName.first(:conditions => [
-        "lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
-      ).try(:taxon)
-    end
-    if @taxon
-      scope = if @taxon.species_or_lower? 
-        scope.self_and_descendants_of(@taxon)
-      else
-        scope.descendants_of(@taxon)
-      end
-      order = "ancestry, taxa.id"
-    end
-    
-    if @colors = @filter_params[:colors]
-      scope = scope.colored(@colors)
-    end
-    
-    @distinct_listed_taxa_count = scope.count
-    @confirmed_listed_taxa_count = scope.count(:conditions => "listed_taxa.first_observation_id IS NOT NULL")
     if logged_in?
+      scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
+      @listed_taxa_count = scope.count
       @current_user_observed_count = scope.count(
-        :joins => "JOIN listed_taxa ult ON ult.taxon_id = taxa.id", 
+        :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
         :conditions => ["ult.list_id = ?", current_user.life_list_id])
-    end
-    
-    if @filter_params.blank?
-      scope = scope.has_photos
-      order = "listed_taxa.observations_count DESC"
-    end
-    
-    if !@filter_params.blank? || !fragment_exist?(:action => "show", :action_suffix => "taxa_first_page")
-      @taxa = scope.paginate(:select => "DISTINCT ON (ancestry, taxa.id) taxa.*", 
-        :include => [:taxon_names, :photos],
-        :order => order,
-        :page => params[:page], :per_page => 50)
-      @taxa_by_taxon_id = @taxa.index_by(&:id)
-      @listed_taxa = @place.listed_taxa.all(
-        :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
-        :conditions => ["taxon_id IN (?)", @taxa])
-      @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
     end
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
     browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
-    latrads = @place.latitude.to_f * (Math::PI / 180)
-    lonrads = @place.longitude.to_f * (Math::PI / 180)
     render :action => "show2"
   end
   
@@ -378,57 +317,76 @@ class PlacesController < ApplicationController
   end
   
   def guide
-    @taxon = Taxon.find_by_id(params[:taxon_id])
-    @place = Place.find_by_id(params[:id])
-    @month = params[:month]
-    @month = Date.today.month if @month && @month.to_i < 1 || @month.to_i > 12
-    @view = params[:view] || "grid"
-    @view = "big grid" if @view == "grid"
-    @view = "list guide" if @view == "guide"
-    
-    scope = if @place
-      Observation.near_place(@place).scoped({})
-    elsif params[:swlat]
-      @coords = [params[:swlat], params[:swlng], params[:nelat], params[:nelng]].map do |c|
-        c.to_f.round(2)
+    filter_param_keys = [:colors, :taxon, :q]
+    @filter_params = Hash[params.select{|k,v| 
+      is_filter_param = filter_param_keys.include?(k.to_sym)
+      is_blank = if v.is_a?(Array) && v.size == 1
+        v[0].blank?
+      else
+        v.blank?
       end
-      Observation.in_bounding_box(params[:swlat], params[:swlng], params[:nelat], params[:nelng]).scoped({})
-    end
-    
-    if scope.blank?
-      flash[:error] = "You must choose a place to show a guide."
-      redirect_back_or_default(places_path)
-      return
-    end
-    scope = scope.at_or_below_rank(Taxon::SPECIES)
-    scope = scope.of(@taxon) if @taxon
-    scope = scope.in_month(@month) if @month
-    scope = scope.order_by("taxa.ancestry")
-    
-    if @month
-      @counts = scope.count(:group => :taxon_id)
-      taxon_ids = @counts.keys
-    else
-      @counts = scope.count(:group => "taxon_id || '-' || EXTRACT(MONTH FROM observed_on)")
-      @counts.delete(nil)
-      taxon_ids = []
-      @month_counts = @counts.inject({}) do |memo, pair|
-        unless pair[0].blank?
-          Rails.logger.debug "[DEBUG] pair: #{pair.inspect}"
-          taxon_id, month = pair[0].split('-')
-          taxon_ids << taxon_id
-          memo[taxon_id] ||= {}
-          memo[taxon_id][month] = pair[1]
-        end
-        memo
+      is_filter_param && !is_blank
+    }].symbolize_keys
+    scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
+    order = nil
+    if @q = @filter_params[:q]
+      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000, :with => {:places => [@place.id]})
+      @search_taxon_ids = Taxon.search_for_ids(@q) if @search_taxon_ids.blank?
+      if @search_taxon_ids.size == 1
+        @taxon = Taxon.find_by_id(@search_taxon_ids.first)
+      elsif Taxon.count(:conditions => ["id IN (?) AND name LIKE ?", @search_taxon_ids, "#{@q.capitalize}%"]) == 1
+        @taxon = Taxon.first(:conditions => ["name = ?", @q.capitalize])
+      else
+        scope = scope.among(@search_taxon_ids)
       end
     end
-    @taxa = Taxon.paginate(:page => params[:page], 
-      :conditions => ["id IN (?)", taxon_ids],
-      :order => "ancestry"
-    )
-    # TODO common-only: choose taxa from max to median obs counts
-    # TODO inclide un-observed taxa from place check list
+    
+    if @filter_params[:taxon]
+      @taxon = Taxon.find_by_id(@filter_params[:taxon].to_i) if @filter_params[:taxon].to_i > 0
+      @taxon ||= TaxonName.first(:conditions => [
+        "lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
+      ).try(:taxon)
+    end
+    if @taxon
+      scope = if @taxon.species_or_lower? 
+        scope.self_and_descendants_of(@taxon)
+      else
+        scope.descendants_of(@taxon)
+      end
+      order = "ancestry, taxa.id"
+    end
+    
+    if @colors = @filter_params[:colors]
+      scope = scope.colored(@colors)
+    end
+    
+    @listed_taxa_count = scope.count
+    @confirmed_listed_taxa_count = scope.count(:conditions => "listed_taxa.first_observation_id IS NOT NULL")
+    if logged_in?
+      @current_user_observed_count = scope.count(
+        :joins => "JOIN listed_taxa ult ON ult.taxon_id = taxa.id", 
+        :conditions => ["ult.list_id = ?", current_user.life_list_id])
+    end
+    
+    if @filter_params.blank?
+      scope = scope.has_photos
+      order = "listed_taxa.observations_count DESC"
+    end
+    
+    @cache_this = @filter_params.blank? && (params[:page].blank? || params[:page].to_i == 1)
+    if !@cache_this || !fragment_exist?(:action => "guide", :action_suffix => "first_page")
+      @taxa = scope.paginate( 
+        :include => [:taxon_names, :photos],
+        :order => order,
+        :page => params[:page], :per_page => 50)
+      @taxa_by_taxon_id = @taxa.index_by(&:id)
+      @listed_taxa = @place.listed_taxa.all(
+        :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
+        :conditions => ["taxon_id IN (?)", @taxa])
+      @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
+    end
+    
+    render :layout => false, :partial => "guide_taxa"
   end
   
   private

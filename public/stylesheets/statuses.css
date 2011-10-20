@@ -16,6 +16,13 @@
   color: #888;
 }
 
+.status.loading.bigloading {
+  padding-left: 40px;
+  background: url('/images/spinner.gif') transparent 0px 50% no-repeat;
+  font-size: 14pt;
+  line-height: 2;
+}
+
 .status.pale.loading {
   background-image: url(/images/spinner-small-999999_on_ffff99.gif);
 }
