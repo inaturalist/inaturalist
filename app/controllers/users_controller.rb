@@ -256,84 +256,28 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = current_user
-    @login = @user.login
-    @original_user = @user
+    @display_user = current_user
+    @login = @display_user.login
+    @original_user = @display_user
     
-    # Add a friend
-    unless params[:friend_id].blank?
-      error_msg, notice_msg = [nil, nil]
-      friend_user = User.find_by_id(params[:friend_id])
-      if friend_user.blank? || friendship = current_user.friendships.find_by_friend_id(friend_user.id)
-        error_msg = "Either that user doesn't exist or you are already following them."
-      else
-        notice_msg = "You are now following #{friend_user.login}."
-        friendship = current_user.friendships.create(:friend => friend_user)
-      end
-      respond_to do |format|
-        format.html do
-          flash[:error] = error_msg
-          flash[:notice] = notice_msg
-          redirect_back_or_default(person_by_login_path(:login => current_user.login))
-        end
-        format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
-      end
-      return
-    end
-    
-    # Remove a friend
-    unless params[:remove_friend_id].blank?
-      error_msg, notice_msg = [nil, nil]
-      if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
-        notice_msg = "You are no longer following #{friendship.friend.login}."
-        friendship.destroy
-      else
-        error_msg = "You aren't following that person."
-      end
-      respond_to do |format|
-        format.html do
-          flash[:error] = error_msg
-          flash[:notice] = notice_msg
-          redirect_back_or_default(person_by_login_path(:login => current_user.login))
-        end
-        format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
-      end
-      return
-    end
-    
-    # Update passwords
-    unless params[:password].blank?
-      if current_user.authenticated?(params[:current_password])
-        current_user.password = params[:password]
-        current_user.password_confirmation = params[:password_confirmation]
-        begin
-          current_user.save!
-          flash[:notice] = 'Successfully changed your password.'
-        rescue ActiveRecord::RecordInvalid => e
-          flash[:error] = "Couldn't change your password: #{e}"
-          return redirect_to(edit_person_path(@user))
-        end
-      else
-        flash[:error] = "Couldn't change your password: is that really your current password?"
-        return redirect_to(edit_person_path(@user))
-      end
-      return redirect_to(person_by_login_path(:login => current_user.login))
-    end
+    return add_friend unless params[:friend_id].blank?
+    return remove_friend unless params[:remove_friend_id].blank?
+    return update_password unless params[:password].blank?
     
     # Update the preferences
-    @user.preferences ||= Preferences.new
+    @display_user.preferences ||= Preferences.new
     if params[:user] && params[:user][:preferences]
-      @user.preferences.update_attributes(params[:user][:preferences])
+      @display_user.preferences.update_attributes(params[:user][:preferences])
     end
     
     # Nix the icon_url if an icon file was provided
-    @user.icon_url = nil if params[:user].try(:[], :icon)
+    @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
-    if @user.update_attributes(params[:user])
+    if @display_user.update_attributes(params[:user])
       flash[:notice] = 'Your profile was successfully updated!'
       redirect_back_or_default(person_by_login_path(:login => current_user.login))
     else
-      @user.login = @user.login_was if @user.login.blank?
+      @display_user.login = @display_user.login_was unless @display_user.errors[:login].blank?
       if request.env['HTTP_REFERER'] =~ /edit_after_auth/
         render :action => 'edit_after_auth', :login => @original_user.login
       else
@@ -355,6 +299,62 @@ class UsersController < ApplicationController
   end
 
 protected
+
+  def add_friend
+    error_msg, notice_msg = [nil, nil]
+    friend_user = User.find_by_id(params[:friend_id])
+    if friend_user.blank? || friendship = current_user.friendships.find_by_friend_id(friend_user.id)
+      error_msg = "Either that user doesn't exist or you are already following them."
+    else
+      notice_msg = "You are now following #{friend_user.login}."
+      friendship = current_user.friendships.create(:friend => friend_user)
+    end
+    respond_to do |format|
+      format.html do
+        flash[:error] = error_msg
+        flash[:notice] = notice_msg
+        redirect_back_or_default(person_by_login_path(:login => current_user.login))
+      end
+      format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
+    end
+  end
+  
+  def remove_friend
+    error_msg, notice_msg = [nil, nil]
+    if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
+      notice_msg = "You are no longer following #{friendship.friend.login}."
+      friendship.destroy
+    else
+      error_msg = "You aren't following that person."
+    end
+    respond_to do |format|
+      format.html do
+        flash[:error] = error_msg
+        flash[:notice] = notice_msg
+        redirect_back_or_default(person_by_login_path(:login => current_user.login))
+      end
+      format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
+    end
+  end
+  
+  def update_password
+    if current_user.authenticated?(params[:current_password])
+      current_user.password = params[:password]
+      current_user.password_confirmation = params[:password_confirmation]
+      begin
+        current_user.save!
+        flash[:notice] = 'Successfully changed your password.'
+      rescue ActiveRecord::RecordInvalid => e
+        flash[:error] = "Couldn't change your password: #{e}"
+        return redirect_to(edit_person_path(@user))
+      end
+    else
+      flash[:error] = "Couldn't change your password: is that really your current password?"
+      return redirect_to(edit_person_path(@user))
+    end
+    redirect_to(person_by_login_path(:login => current_user.login))
+  end
+  
   def find_user
     params[:id] ||= params[:login]
     begin

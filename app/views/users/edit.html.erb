@@ -32,11 +32,11 @@
 </div>
 
 <div class="column span-18">
-  <% form_for(@user, :url => person_path(@user), 
+  <% form_for(current_user, :url => person_path(current_user), 
               :html => {:multipart => true}) do |f| %>
     <%= error_messages_for :user %>
     <div class="column span-18 field">
-      <%= image_tag(@user.icon.url(:thumb), :class => 'usericon') %>
+      <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon') %>
       <%= f.label(:icon, 'Icon/Photo') %>
       <%= link_to_function('change', "$('#user_icon').show(); $(this).hide()", :class => 'button') %>
       <%= f.file_field(:icon, :class => 'text', :style => 'display: none') %>
@@ -60,7 +60,7 @@
     </div>
     <div id="preferencescol" class="last column span-9 field">
       <label>Receive email notifications when people leave you</label>
-      <% f.fields_for @user.preferences do |p| %>
+      <% f.fields_for current_user.preferences do |p| %>
         <% for attr_name in Preferences::NOTIFICATION_ATTRIBUTES %>
           <div class="field">
             <%= p.check_box attr_name %>
@@ -111,7 +111,7 @@
   
   <div class="clear box">
     <%= link_to_toggle "Change Your Password", "#passwordform", :class => "ui" %>
-    <% form_for(@user, :html => {:id => "passwordform", :style => "display:none"}) do %>
+    <% form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
         <%= label(:current_password, 'Current Password') %>
         <%= password_field_tag(:current_password, '', :class => 'text') %>
@@ -124,6 +124,6 @@
       <%= submit_tag("Change Password", :class => 'button') %>
     <% end %>
   </div>
-  <%= link_to "Delete your account", @user, :method => :delete, :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
+  <%= link_to "Delete your account", current_user, :method => :delete, :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
     :class => "minor delete button" %>
 </div><!-- end side col -->
