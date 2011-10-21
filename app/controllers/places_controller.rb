@@ -328,7 +328,7 @@ class PlacesController < ApplicationController
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
+    scope = @place.taxa.of_rank(Taxon::SPECIES).distinct.scoped({})
     order = nil
     if @q = @filter_params[:q]
       @q = @q.to_s

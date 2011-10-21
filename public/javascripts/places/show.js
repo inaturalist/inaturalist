@@ -150,9 +150,10 @@ var PlaceGuide = {
     if ($('.listed_taxon', context).length > 0) {
       PlaceGuide.ajaxify(context)
     }
-    if (window.location.search != '' && window.location.hash == '') {
-      $.bbq.pushState(PlaceGuide.cleanParamString($.param.querystring()))
-    } else if (window.location.hash != '') {
+    var cleanQueryString = PlaceGuide.cleanParamString($.param.querystring())
+    if (cleanQueryString != '' && $.param.fragment() == '') {
+      $.bbq.pushState(cleanQueryString)
+    } else if ($('.listed_taxon', context).length == 0) {
       $(window).trigger('hashchange')
     }
   },

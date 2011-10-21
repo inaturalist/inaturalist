@@ -238,6 +238,8 @@ class Taxon < ActiveRecord::Base
     {:conditions => conditions}
   }
   
+  named_scope :distinct, :select => "DISTINCT ON (ancestry, taxa.id) taxa.*"
+  
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
   ICONIC_TAXA_BY_NAME = ICONIC_TAXA.index_by(&:name)
