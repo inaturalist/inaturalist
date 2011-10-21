@@ -1170,7 +1170,7 @@ class ObservationsController < ApplicationController
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
     
-    @q = search_params[:q] unless search_params[:q].blank?
+    @q = search_params[:q].to_s unless search_params[:q].blank?
     @search_on = search_params[:search_on] unless search_params[:search_on].blank?
     
     find_options = {

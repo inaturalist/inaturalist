@@ -24,6 +24,7 @@ class PlacesController < ApplicationController
     end
     @places = []
     @q = params[:q] || session[:places_index_q]
+    @q = @q.to_s
     search_places_for_index(options) if @q
     
     @places = if @place && @places.size > 2
@@ -330,6 +331,7 @@ class PlacesController < ApplicationController
     scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
     order = nil
     if @q = @filter_params[:q]
+      @q = @q.to_s
       @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000, :with => {:places => [@place.id]})
       @search_taxon_ids = Taxon.search_for_ids(@q) if @search_taxon_ids.blank?
       if @search_taxon_ids.size == 1
