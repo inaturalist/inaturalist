@@ -75,7 +75,6 @@ function loadWikipediaDescription() {
 }
 
 var PlaceGuide = {
-  paramKeys: ['colors', 'q', 'taxon'],
   OVERRIDE_EXISTING: 0,
   RESPECT_EXISTING: 1,
   REPLACE_EXISTING: 2,
@@ -146,6 +145,21 @@ var PlaceGuide = {
     var data = $.param.fragment()
     $(context).load(url, data, function() {
       PlaceGuide.ajaxify(context)
+      if ($('#taxa .guide_taxa .pagination').length > 0) {
+        $('#taxa .guide_taxa').infinitescroll({
+          navSelector  : ".pagination",
+          nextSelector : ".pagination .next_page",
+          itemSelector : ".guide_taxa .listed_taxon",
+          bufferPx: 400,
+          loading: {
+            img: (window.location.origin + '/images/spinner-small.gif'),
+            msgText: '',
+            finishedMsg: '<span class="meta">No more taxa to load!</span>'
+          }
+        }, function() {
+          PlaceGuide.ajaxify(context)
+        })
+      }
     })
   },
   updateConfirmedChart: function(context) {
@@ -194,7 +208,8 @@ var PlaceGuide = {
       $.bbq.pushState($.deparam.querystring(href))
       return false
     })
-    $('.listed_taxon', context).each(function() {
+    $('.listed_taxon', context).not('.ajaxified').each(function() {
+      $(this).addClass('ajaxified')
       var matches = $(this).attr('href').match(/listed_taxa\/(\d+)/)
       if (!matches) { return }
       var listedTaxonId = matches[1]
