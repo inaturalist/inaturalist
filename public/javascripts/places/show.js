@@ -75,26 +75,47 @@ function loadWikipediaDescription() {
 }
 
 var PlaceGuide = {
+  IGNORE_PARAMS: ['test', 'multiselect_colorsFilter', 'multiselect_colorsFilter[]'],
   OVERRIDE_EXISTING: 0,
   RESPECT_EXISTING: 1,
   REPLACE_EXISTING: 2,
+  
+  cleanParamString: function(s) {
+    var re
+    for (var i = PlaceGuide.IGNORE_PARAMS.length - 1; i >= 0; i--){
+      re = new RegExp(PlaceGuide.IGNORE_PARAMS[i]+'=[^\&]*', 'g')
+      s = s.replace(re, '')
+    }
+    return s
+  },
   
   init: function(context) {
     // ensure controls change url state
     function replaceParams() {
       var href = $(this).attr("href") || $(this).serialize()
+      href = PlaceGuide.cleanParamString(href)
       $.bbq.pushState($.deparam.querystring(href), PlaceGuide.REPLACE_EXISTING)
       return false
     }
     function filterParams() {
       var href = $(this).attr("href") || $(this).serialize()
+      href = PlaceGuide.cleanParamString(href)
       $.bbq.pushState($.deparam.querystring(href))
+      return false
+    }
+    function underrideParams() {
+      var href = $(this).attr("href") || $(this).serialize()
+      href = PlaceGuide.cleanParamString(href)
+      $.bbq.pushState($.deparam.querystring(href), PlaceGuide.RESPECT_EXISTING)
       return false
     }
     $('#browsingtaxa a, #controls form.searchfilter a').click(replaceParams)
     $('#controls form.searchfilter').submit(replaceParams)
     $('#controls form.colorfilter').submit(filterParams)
-    $('#controls form.colorfilter a').click(filterParams)
+    $('#controls form.colorfilter a').click(function() {
+      $.bbq.removeState('colors')
+      return false
+    })
     
     // ensure url state changes update controls
     $(window).bind("hashchange", function(e) {
@@ -116,6 +137,11 @@ var PlaceGuide = {
       } else {
         $('#controls form.searchfilter .pale.button').hide()
       }
+      
+      var state = $.bbq.getState()
+      var placeId = $.deparam.querystring($('#sidecol .extralabel a').attr('href'))['place_id']
+      state['place_id'] = placeId
+      $('#sidecol .extralabel a').querystring(state, PlaceGuide.REPLACE_EXISTING)
     })
     
     $(window).bind("hashchange", function(e) {
@@ -125,7 +151,7 @@ var PlaceGuide = {
       PlaceGuide.ajaxify(context)
     }
     if (window.location.search != '' && window.location.hash == '') {
-      $.bbq.pushState($.deparam.querystring())
+      $.bbq.pushState(PlaceGuide.cleanParamString($.param.querystring()))
     } else if (window.location.hash != '') {
       $(window).trigger('hashchange')
     }

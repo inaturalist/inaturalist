@@ -87,10 +87,10 @@
       </div>
       <div class="extralabel">
         <%-
-          percent = @distinct_listed_taxa_count.to_i == 0 ? 0 : (@current_user_observed_count.to_f / @distinct_listed_taxa_count.to_f * 100).round
+          percent = @listed_taxa_count.to_i == 0 ? 0 : (@current_user_observed_count.to_f / @listed_taxa_count.to_f * 100).round
         -%>
         <strong><span class="value"><%= percent %></span>%</strong>
-        observed by you
+        <%= link_to "observed by you", observations_by_login_url(current_user.login, :place_id => @place) %>
       </div>
     </div>
   <% end -%>
@@ -115,7 +115,10 @@
   </div>
   
   <p class="ui">
-    <%= link_to "View check list page", @place.check_list %>
+    <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
+  </p>
+  <p class="ui">
+    <%= link_to "View observations from here", observations_url(:place_id => @place), :class => "readmore" %>
   </p>
 </div>
 
