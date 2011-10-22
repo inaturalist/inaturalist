@@ -137,6 +137,7 @@ class PlacesController < ApplicationController
   end
   
   def show2
+    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     if logged_in?
       scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
       @listed_taxa_count = scope.count
@@ -318,6 +319,7 @@ class PlacesController < ApplicationController
   end
   
   def guide
+    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     filter_param_keys = [:colors, :taxon, :q]
     @filter_params = Hash[params.select{|k,v| 
       is_filter_param = filter_param_keys.include?(k.to_sym)
