@@ -1012,7 +1012,7 @@ class TaxaController < ApplicationController
         taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2) unless @taxon
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
-        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        name = Iconv.iconv('UTF8', 'LATIN1', name).first
         taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2)
       end
       @taxon = taxa.first if taxa.size == 1

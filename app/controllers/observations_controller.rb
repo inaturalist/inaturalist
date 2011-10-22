@@ -1229,8 +1229,15 @@ class ObservationsController < ApplicationController
         taxon_name_conditions << @iconic_taxa
         includes = :taxon
       end
-      @observations_taxon = TaxonName.first(:include => includes, 
-        :conditions => taxon_name_conditions).try(:taxon)
+      begin
+        @observations_taxon = TaxonName.first(:include => includes, 
+          :conditions => taxon_name_conditions).try(:taxon)
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        taxon_name_conditions[1] = Iconv.iconv('UTF8', 'LATIN1', @observations_taxon_name)
+        @observations_taxon = TaxonName.first(:include => includes, 
+          :conditions => taxon_name_conditions).try(:taxon)
+      end
     end
     search_params[:taxon] = @observations_taxon
     

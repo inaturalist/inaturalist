@@ -163,9 +163,13 @@ class TaxonName < ActiveRecord::Base
     name = Taxon.remove_rank_from_name(name)
     conditions = {:name => name}
     conditions[:lexicon] = lexicon if lexicon
-    taxon_names = TaxonName.all(
-      :conditions => conditions,
-      :limit => 10, :include => :taxon)
+    begin
+      taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
+    rescue ActiveRecord::StatementInvalid => e
+      raise e unless e.message =~ /invalid byte sequence/
+      conditions[:name] = Iconv.iconv('UTF8', 'LATIN1', name).first
+      taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
+    end
     unless options[:iconic_taxa].blank?
       taxon_names.reject {|tn| options[:iconic_taxa].include?(tn.taxon.iconic_taxon_id)}
     end
