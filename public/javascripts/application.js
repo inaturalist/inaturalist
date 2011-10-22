@@ -166,34 +166,36 @@ $(document).ready(function() {
     '/images/spinner-small-ffffff_on_aaaaaa.gif'
   ]).preload()
   
-  $('[data-tip]').each(function() {
-    if ($(this).attr('data-tip').match(/^#/)) {
-      content = $($(this).attr('data-tip')).html()
-    } else {
-      content = $(this).attr('data-tip')
-    }
-    var tipOptions = $.extend({}, QTIP_DEFAULTS, {})
-    if ($(this).attr('data-tip-title')) {
-      tipOptions.content = {
-        text: content, 
-        title: $(this).attr('data-helptip-title')
-      }
-    } else {
-      tipOptions.content = content
-    }
-    
-    if ($(this).attr('data-tip-show-delay')) {
-      tipOptions.show = tipOptions.show || {}
-      tipOptions.show.delay = parseInt($(this).attr('data-tip-show-delay'))
-    }
-    
-    if ($(this).attr('data-tip-width')) {
-      tipOptions.style = tipOptions.style || {}
-      tipOptions.style.width = $(this).attr('data-helptip-width')
-    }
-    $(this).qtip(tipOptions)
-  })
+  $('[data-tip]').each(autoTip)
 })
+
+function autoTip() {
+  if ($(this).attr('data-tip').match(/^#/)) {
+    content = $($(this).attr('data-tip')).html()
+  } else {
+    content = $(this).attr('data-tip')
+  }
+  var tipOptions = $.extend({}, QTIP_DEFAULTS, {})
+  if ($(this).attr('data-tip-title')) {
+    tipOptions.content = {
+      text: content, 
+      title: $(this).attr('data-helptip-title')
+    }
+  } else {
+    tipOptions.content = content
+  }
+  
+  if ($(this).attr('data-tip-show-delay')) {
+    tipOptions.show = tipOptions.show || {}
+    tipOptions.show.delay = parseInt($(this).attr('data-tip-show-delay'))
+  }
+  
+  if ($(this).attr('data-tip-width')) {
+    tipOptions.style = tipOptions.style || {}
+    tipOptions.style.width = $(this).attr('data-helptip-width')
+  }
+  $(this).qtip(tipOptions)
+}
 
 // $(window).bind('load', function() {
 //   $('.fluid.grid .taxon.img').each(function() {

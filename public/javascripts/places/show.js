@@ -230,6 +230,7 @@ var PlaceGuide = {
   ajaxify: function(context) {
     PlaceGuide.updateConfirmedChart(context)
     PlaceGuide.updateObservedChart(context)
+    $('[data-tip]', context).each(autoTip)
     $('.pagination a', context).click(function() {
       var href = $(this).attr("href")
       $.bbq.pushState($.deparam.querystring(href))
