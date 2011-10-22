@@ -17,6 +17,9 @@
                              'jquery/plugins/inat/taxon_selectors.js' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
+
+    })
+    function rulify() {
       $('#place_q').placeAutocomplete('<%= url_for(:controller => "places", :action => "autocomplete") %>', {
         placeIdField: $('#new_operand_id'),
         afterChoosePlace: function(input, json) {
@@ -52,7 +55,8 @@
           $('#taxon_selector').hide()
         }
       })
-    })
+      $('.operator_field select').change()
+    }
   </script>
 <%- end -%>
 <%- project ||= @project -%>
@@ -77,7 +81,7 @@
     <% end -%>
   <% end %>
   
-  <%= f.select :project_type, Project::PROJECT_TYPES, :include_blank => "normal",
+  <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
     :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
   
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
@@ -111,10 +115,10 @@
     </p>
     
     <ul>
-      <% f.fields_for :project_observation_rules do |pu| %>
+      <% f.fields_for :project_observation_rules do |por| %>
         <li>
-          <%= pu.object.terms %>
-          <%= pu.hidden_field :_destroy, :class => "destroyer" %>
+          <%= por.object.terms %>
+          <%= por.hidden_field :_destroy, :class => "destroyer" %>
           <%= link_to_function "remove", 
             "$(this).parent().fadeTo('fast', 0.5).css('text-decoration', 'line-through');" + 
             "$(this).parent().find('.destroyer').val(true)" %>
@@ -122,28 +126,31 @@
       <% end %>
     </ul>
     
-    <%= link_to_toggle "add a new rule", "#new_project_observation_rule", :class => "open" %>
-    <div id="new_project_observation_rule">
-      <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
-        <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
-          :include_blank => "Choose a rule",
-          :label => "Rule: must be..." %>
-        <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
-        <%= pu.hidden_field :operand_id, :id => "new_operand_id" %>
-        <div id="place_selector" style="display:none">
-          <label for="place_q">Choose a place</label><br/>
-          <input type="text" name="place_q" value="" id="place_q" class="text">
-          <span class="description">
-            Not finding the place you want?
-            <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
-          </span>
-        </div>
-        <div id="taxon_selector">
-          <label for="taxon_q">Choose a taxon</label><br/>
-          <input type="text" name="taxon_q" value="" id="taxon_q" class="text">
-        </div>
-      <% end %>
-    </div>
+    <%- new_rule_field = capture do %>
+      <fieldset id="new_project_observation_rule">
+        <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
+          <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
+            :include_blank => "Choose a rule",
+            :label => "Rule: must be..." %>
+          <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
+          <%= pu.hidden_field :operand_id, :id => "new_operand_id" %>
+          <div id="place_selector">
+            <label for="place_q">Choose a place</label><br/>
+            <input type="text" name="place_q" value="" id="place_q" class="text">
+            <span class="description">
+              Not finding the place you want?
+              <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
+            </span>
+          </div>
+          <div id="taxon_selector">
+            <label for="taxon_q">Choose a taxon</label><br/>
+            <input type="text" name="taxon_q" value="" id="taxon_q" class="text">
+          </div>
+        <% end %>
+        <%= link_to_function "remove", "$(this).parent().next('a').show();$(this).parent().remove() " %>
+      </fieldset>
+    <% end -%>
+    <%= link_to_function "add a new rule", "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
   
   <% if current_user.is_admin? -%>
