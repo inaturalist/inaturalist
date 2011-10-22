@@ -45,6 +45,7 @@ namespace :deploy do
   desc "Create a symlink to a copy of config.yml that is outside the repos."
   task :symlink_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/config.yml #{latest_release}/config/config.yml"
+    run "ln -s #{inat_config_shared_path}/settings.yml #{latest_release}/config/settings.yml"
   end
 
   desc "Create a symlink to a copy of database.yml that is outside the repos."
