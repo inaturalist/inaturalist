@@ -19,7 +19,7 @@
     :hide_wikipedia_summary => true,
     :after_image => month_stats
   } %>
-  
+
   <% if obs = listed_taxon.first_observation -%>
     <div class="firstobs">
       <%= link_to image_tag(obs.user.icon(:mini)), obs %>

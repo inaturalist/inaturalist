@@ -32,7 +32,13 @@
       </div>
     <% else %>
       <% for taxon in @taxa %>
-        <%= render :partial => "listed_taxa/guide_taxon", :locals => { :listed_taxon => @listed_taxa_by_taxon_id[taxon.id], :taxon => taxon } %>
+        <%-
+          listed_taxon = @listed_taxa_by_taxon_id[taxon.id]
+          cache_key = "guide_taxon_#{listed_taxon.try(:id)}_#{taxon.try(:id)}"
+        -%>
+        <%- cache cache_key, :expires_in => 30.minutes do %>
+          <%= render :partial => "listed_taxa/guide_taxon", :locals => { :listed_taxon => listed_taxon, :taxon => taxon } %>
+        <% end -%>
       <% end %>
       <%= will_paginate @taxa %>
     <% end -%>
