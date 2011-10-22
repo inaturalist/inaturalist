@@ -330,7 +330,7 @@ class PlacesController < ApplicationController
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    scope = @place.taxa.of_rank(Taxon::SPECIES).distinct.scoped({})
+    scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({})
     order = nil
     if @q = @filter_params[:q]
       @q = @q.to_s
@@ -364,10 +364,12 @@ class PlacesController < ApplicationController
       scope = scope.colored(@colors)
     end
     
-    @listed_taxa_count = scope.count
-    @confirmed_listed_taxa_count = scope.count(:conditions => "listed_taxa.first_observation_id IS NOT NULL")
+    @listed_taxa_count = scope.count(:select => "DISTINCT taxa.id")
+    @confirmed_listed_taxa_count = scope.count(:select => "DISTINCT taxa.id",
+      :conditions => "listed_taxa.first_observation_id IS NOT NULL")
     if logged_in?
       @current_user_observed_count = scope.count(
+        :select => "DISTINCT taxa.id",
         :joins => "JOIN listed_taxa ult ON ult.taxon_id = taxa.id", 
         :conditions => ["ult.list_id = ?", current_user.life_list_id])
     end
@@ -380,6 +382,7 @@ class PlacesController < ApplicationController
     @cache_this = @filter_params.blank? && (params[:page].blank? || params[:page].to_i == 1)
     if !@cache_this || !fragment_exist?(:action => "guide", :action_suffix => "first_page")
       @taxa = scope.paginate( 
+        :select => "DISTINCT ON (ancestry, taxa.id) taxa.*",
         :include => [:taxon_names, :photos],
         :order => order,
         :page => params[:page], :per_page => 50)
