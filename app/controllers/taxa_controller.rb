@@ -247,7 +247,7 @@ class TaxaController < ApplicationController
     if @q.blank?
       q = @q
     else
-      q = @q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
+      q = sanitize_sphinx_query(@q)
       q = "\"^#{q}$\" | #{q}"
       match_mode = :extended
     end

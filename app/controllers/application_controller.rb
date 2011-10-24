@@ -248,6 +248,10 @@ class ApplicationController < ActionController::Base
       redirect_to observations_path
     end
   end
+  
+  def sanitize_sphinx_query(q)
+    q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

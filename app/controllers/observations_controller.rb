@@ -1426,7 +1426,7 @@ class ObservationsController < ApplicationController
     end
     
     # Sanitize query
-    q = @q.gsub(/[\(\)]/, '')
+    q = sanitize_sphinx_query(@q)
     
     # Field-specific searches
     if @search_on
