@@ -2,13 +2,13 @@ class PasswordMailer < ActionMailer::Base
   
   def forgot_password(password)
     setup_email(password.user)
-    @subject    += 'Link to change your iNaturalist.org password.'
+    @subject    += "Link to change your #{APP_CONFIG[:site_name]} password."
     @body[:url]  = "#{APP_CONFIG[:site_url]}/change_password/#{password.reset_code}"
   end
 
   def reset_password(user)
     setup_email(user)
-    @subject    += 'Your iNaturalist.org password has been reset.'
+    @subject    += "Your #{APP_CONFIG[:site_name]} password has been reset."
   end
 
   protected
