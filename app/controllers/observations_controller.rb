@@ -725,10 +725,10 @@ class ObservationsController < ApplicationController
           break
         end
       end
-    rescue CSV::IllegalFormatError => e
+    rescue FasterCSV::MalformedCSVError => e
       flash[:error] = <<-EOT
         Your CSV had a formatting problem. Try removing any strange
-        characters, and if the problem persists, please
+        characters and unclosed quotes, and if the problem persists, please
         <a href="mailto:help@inaturalist.org">email us</a> the file and we'll
         figure out the problem.
       EOT
