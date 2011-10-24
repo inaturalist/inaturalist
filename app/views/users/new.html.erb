@@ -21,21 +21,5 @@
 </div>
 <div class="column span-10 append-2 last">
   <h2>Join iNaturalist!</h2>
-  
-  <%= error_messages_for :user, 
-        :header_message => "Oops.",
-        :message => "There were some problems with the following fields:" %>
-
-  <% form_for :user, :url => users_path, :builder => DefaultFormBuilder, :html => { :id => 'signup_form' } do |f| -%>
-    <%= f.text_field :login, :class => 'text', :label => "Login / username" %>
-    <%= f.text_field :email, :class => 'text' %>
-    <%= f.password_field :password, :class => 'text' %>
-    <%= f.password_field :password_confirmation, :class => 'text' %>
-    <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
-      :label => "Your default time zone",
-      :description => "All your observations will default to this time zone unless you specify otherwise.",
-      :class => 'select'}) %>
-
-    <%= f.submit 'Sign up', :class => "default button" %>
-  <% end -%>
+  <%= render :partial => 'new_form' %>
 </div>
