@@ -230,9 +230,7 @@ google.maps.Map.prototype.removePlaces = function(places) {
   this.placeBounds = new google.maps.LatLngBounds();
 }
 google.maps.Map.prototype.zoomToPlaces = function() {
-  var bounds = this.getPlaceBounds();
-  this.setZoom(this.getBoundsZoomLevel(bounds));
-  this.setCenter(bounds.getCenter());
+  this.fitBounds(this.getPlaceBounds())
 }
 google.maps.Map.prototype.getPlaceBounds = function() {
   if (typeof(this.placeBounds) == 'undefined') {

@@ -450,9 +450,11 @@ class PlacesController < ApplicationController
       if @place
         latrads = @place.latitude.to_f * (Math::PI / 180)
         lonrads = @place.longitude.to_f * (Math::PI / 180)
-        @places = Place.search(options.merge(
+        nearby_options = options.merge(
           :geo => [latrads,lonrads], 
-          :order => "@geodist asc"))
+          :order => "@geodist asc")
+        nearby_options[:with] = nearby_options.delete(:conditions)
+        @places = Place.search(nearby_options)
         @places.delete_if {|p| p.id == @place.id}
       else
         @places = Place.search(@q, options.clone)
