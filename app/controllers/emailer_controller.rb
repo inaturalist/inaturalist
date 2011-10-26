@@ -3,7 +3,7 @@ class EmailerController < ApplicationController
   before_filter :login_required
 
   def invite
-    from = "The iNaturalist Community <no-reply@inaturalist.org>"
+    from = "#{APP_CONFIG[:site_name]} <#{APP_CONFIG[:noreply_email]}>"
     subject = "#REAL NAME wants you to join them on iNaturalist"
     @sending_user = current_user
     @sending_user_real_name = "YOUR REAL NAME"

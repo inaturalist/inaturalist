@@ -3,7 +3,9 @@ development: &non_production_settings
   site_name: iNaturalist.org
   admin_email: admin@inaturalist.org
   noreply_email: no-reply@inaturalist.org
-  
+  help_email: help@inaturalist.org
+  info_email: info@inaturalist.org
+
 test:
   <<: *non_production_settings
 
@@ -12,9 +14,13 @@ staging:
   site_name: iNaturalist.org
   admin_email: admin@inaturalist.org
   noreply_email: no-reply@inaturalist.org
-  
+  help_email: help@inaturalist.org
+  info_email: info@inaturalist.org
+
 production:
   site_url: http://www.inaturalist.org
   site_name: iNaturalist.org
   admin_email: admin@inaturalist.org
   noreply_email: no-reply@inaturalist.org
+  help_email: help@inaturalist.org
+  info_email: info@inaturalist.org
