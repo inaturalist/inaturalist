@@ -583,7 +583,7 @@ google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
     overlay: overlay,
     id: options.id
   })
-  overlay.setMap(this)
+  if (overlay.setMap) { overlay.setMap(this) }
 }
 google.maps.Map.prototype.removeOverlay = function(name) {
   if (!this.overlays) { return }

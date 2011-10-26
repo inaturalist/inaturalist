@@ -18,6 +18,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
         css_class = options[:class] || []
         css_class = [css_class, 'text'].flatten.uniq if name.to_s == "text_field"
         css_class = [css_class, 'file'].flatten.uniq if name.to_s == "file_field"
+        args << {} unless args.last.is_a?(Hash)
         args.last[:class] = css_class
       end
       content = super(field, *args)
