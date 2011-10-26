@@ -729,7 +729,7 @@ class ObservationsController < ApplicationController
       flash[:error] = <<-EOT
         Your CSV had a formatting problem. Try removing any strange
         characters and unclosed quotes, and if the problem persists, please
-        <a href="mailto:help@inaturalist.org">email us</a> the file and we'll
+        <a href="mailto:#{APP_CONFIG[:help_email]}">email us</a> the file and we'll
         figure out the problem.
       EOT
       redirect_to :action => 'import'
