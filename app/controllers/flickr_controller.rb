@@ -61,7 +61,7 @@ class FlickrController < ApplicationController
       HoptoadNotifier.notify(e, :request => request, :session => session) # testing
       flash[:error] = <<-EOF
         Ack! Something went wrong linking your iNaturalist account to Flickr.
-        Try it again, or contact us at help@inaturalist.org.
+        Try it again, or contact us at #{APP_CONFIG[:help_email]}.
         
         Error: #{e.message}
       EOF
@@ -102,8 +102,8 @@ class FlickrController < ApplicationController
       logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
       HoptoadNotifier.notify(e, :request => request, :session => session) # testing
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
-                       "squid ate your Flickr info.  You can contact us at " + 
-                       "help@inaturalist.org if you still can't get this " + 
+                       "squid ate your Flickr info.  You can contact us at " +
+                       "#{APP_CONFIG[:help_email]} if you still can't get this " +
                        "working.  Error: #{e.message}"
       redirect_to :action => 'options'
     end
@@ -226,7 +226,7 @@ class FlickrController < ApplicationController
       HoptoadNotifier.notify(e, :request => request, :session => session) # testing
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
                        "squid ate your Flickr info.  You can contact us at " +
-                       "help@inaturalist.org if you still can't get this " + 
+                       "#{APP_CONFIG[:help_email]} if you still can't get this " +
                        "working.  Error: #{e.message}"
     end
   end
