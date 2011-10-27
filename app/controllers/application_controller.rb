@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
   include RoleRequirementSystem
+  include Ambidextrous
   
   has_mobile_fu
   around_filter :catch_missing_mobile_templates

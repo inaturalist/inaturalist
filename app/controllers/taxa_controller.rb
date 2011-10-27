@@ -16,6 +16,10 @@ class TaxaController < ApplicationController
     :observation_photos, :map, :range]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
+  
+  before_filter :ensure_flickr_write_permission, :only => [:flickr_tagger, 
+    :flickr_photos_tagged, :tag_flickr_photos, 
+    :tag_flickr_photos_from_observations]
   verify :method => :post, :only => [:create, :update_photos, 
       :tag_flickr_photos, :tag_flickr_photos_from_observations],
     :redirect_to => { :action => :index }
@@ -1181,6 +1185,15 @@ class TaxaController < ApplicationController
       get_amphibiaweb(taxon_names)
     else
       xml
+    end
+  end
+  
+  def ensure_flickr_write_permission
+    @provider_authorization = current_user.provider_authorizations.first(:conditions => {:provider_name => 'flickr'})
+    if @provider_authorization.blank? || @provider_authorization.scope != 'write'
+      session[:return_to] = request.request_uri if request.get?
+      redirect_to auth_url_for('flickr', :scope => 'write')
+      return false
     end
   end
 end

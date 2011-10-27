@@ -6,7 +6,7 @@
   <% if @photos %>
     <p>
       <% @photos.each do |photo| -%>
-      <img src="<%= photo.source_url(:square) -%>" />
+        <img src="<%= photo.url_sq -%>" />
       <% end -%>
     </p>
   <% end %>

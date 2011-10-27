@@ -19,9 +19,9 @@ ActionController::Routing::Routes.draw do |map|
   map.help '/help', :controller => 'help'
   
   map.with_options :controller => "provider_authorizations" do |pa|
+    pa.omniauth_failure "/auth/failure", :action => "failure"
     pa.connect '/auth/:provider', :action => 'blank'
     pa.omniauth_callback "/auth/:provider/callback", :action => "create"
-    pa.omniauth_failure "/auth/failure", :action => "failure"
     pa.omniauth_disconnect "/auth/:provider/disconnect", :action => "destroy", :method => "delete"
   end
   map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"

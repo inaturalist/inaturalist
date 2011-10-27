@@ -14,7 +14,7 @@ ActionController::Dispatcher.middleware.use OmniAuth::Builder do #if you are usi
     provider :facebook, INAT_CONFIG["facebook"]["app_id"], INAT_CONFIG["facebook"]["app_secret"], opts
   end
   if INAT_CONFIG["flickr"]
-    provider :flickr, FLICKR_API_KEY, FLICKR_SHARED_SECRET, :scope => 'write'
+    provider :flickr, FLICKR_API_KEY, FLICKR_SHARED_SECRET
   end
   #provider :linked_in, 'key', 'secret'
   provider :open_id,  OpenID::Store::Filesystem.new('/tmp')

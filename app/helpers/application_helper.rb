@@ -1,6 +1,8 @@
 # Methods added to this helper will be available to all templates in the application.
 # require 'recaptcha'
 module ApplicationHelper
+  include Ambidextrous
+  
   def gmap_include_tag(key = false)
     unless key
       '<script src="http://maps.google.com/maps?file=api&v=2&key=' +

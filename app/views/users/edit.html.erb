@@ -44,7 +44,7 @@
     <div class="column span-9">
       <div class="field">
         <%= f.label(:email) %>
-        <%= f.text_field(:email, :class => "text") %>
+        <%= f.text_field(:email, :class => "text", :required => true) %>
       </div>
     </div>
     <div class="last column span-9 field">
@@ -90,7 +90,7 @@
           </li>
         <% else %>
           <li class="clear">
-            <%= link_to "Connect to #{provider}", ProviderAuthorization.auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
+            <%= link_to "Connect to #{provider}", auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
           </li>
         <% end %>
       <% end %>

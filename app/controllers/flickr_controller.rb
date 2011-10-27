@@ -215,15 +215,19 @@ class FlickrController < ApplicationController
   # signup process.
   def options
     begin
-      @flickr = get_net_flickr
-      unless @user.flickr_identity
-        @flickr_url = @flickr.auth.url_webapp(:write)
+      get_flickraw
+      if current_user.flickr_identity
+        @photos = flickr.photos.search(
+          :user_id => current_user.flickr_identity.flickr_user_id, 
+          :per_page => 6, 
+          :extras => "url_sq",
+          :auth_token => current_user.flickr_identity.token)
       else
-        @photos = @flickr.photos.search(:user_id => @user.flickr_identity.flickr_user_id, :per_page => 6)
+        @flickr_url = auth_url_for('flickr')
       end
     rescue Net::Flickr::APIError => e
       logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
-      HoptoadNotifier.notify(e, :request => request, :session => session) # testing
+      HoptoadNotifier.notify(e, :request => request, :session => session)
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
                        "squid ate your Flickr info.  You can contact us at " +
                        "#{APP_CONFIG[:help_email]} if you still can't get this " +

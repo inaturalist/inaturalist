@@ -249,7 +249,7 @@
       <div id="tag_loading_status" class="loading status" style="display: none">
         Loading tags...
       </div>
-      <div class="clear checkboxes">
+      <div class="clear checkboxes stacked">
         <% unless @tags.blank? -%>
           <% for tags in @tags.in_groups_of(5) %>
             <div class="tagcol column <%= cycle '', '', 'last' %>">
@@ -281,7 +281,7 @@
       </div>
       <% if logged_in? -%>
         <% if current_user.flickr_identity %>
-          <div id="photo_selector" class="clear">
+          <div id="photo_selector" class="stacked clear">
             <% unless @flickr_photos.blank? %>
               <%= render :partial => "photos/photo_list_form", :locals => { 
                 :photos => @flickr_photos, 

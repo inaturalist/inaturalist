@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111014182046) do
+ActiveRecord::Schema.define(:version => 20111027041911) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -490,6 +490,7 @@ ActiveRecord::Schema.define(:version => 20111014182046) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "scope"
   end
 
   add_index "provider_authorizations", ["user_id"], :name => "index_provider_authorizations_on_user_id"

@@ -18,20 +18,10 @@ class ProviderAuthorization < ActiveRecord::Base
   AUTH_URLS.merge!(
     "Google" => "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id",
     "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
+  ALLOWED_SCOPES = %w(read write)
 
   def self.find_from_omniauth(auth_info)
-    return self.find_by_provider_name_and_provider_uid(auth_info['provider'], auth_info['uid'])
-  end
-
-  def self.auth_url_for(provider)
-    provider = provider.downcase
-    openid_urls = {
-      "google"=>"https://www.google.com/accounts/o8/id",
-      "yahoo"=>"https://me.yahoo.com"
-    }
-    # if provider uses openid, url is of form /auth/open_id?openid_url=...
-    # else url is simply /auth/:provider_name
-    return "/auth/#{(openid_urls.has_key?(provider) ? ("open_id?openid_url="+openid_urls[provider]) : provider)}"
+    find_by_provider_name_and_provider_uid(auth_info['provider'], auth_info['uid'])
   end
   
   # Trey to create a photo identity if the auth provider has/is a photo 
@@ -55,6 +45,16 @@ class ProviderAuthorization < ActiveRecord::Base
         photo_identity.errors.full_messages.to_sentence
     end
     true
+  end
+  
+  def update_with_auth_info(auth_info)
+    @auth_info = auth_info
+    return unless auth_info["credentials"] # open_id (google, yahoo, etc) doesn't provide a token
+    token = auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]
+    update_attribute(:token, token)
+    if user.flickr_identity && token && token != user.flickr_identity.token
+      user.flickr_identity.update_attribute(:token, token)
+    end
   end
 
 end

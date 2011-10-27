@@ -14,7 +14,7 @@
 <% form_for(@password, :builder => DefaultFormBuilder) do |f| %>
   <%-
     omniauth_links = ["Facebook","Twitter","Google","Yahoo"].map do |p| 
-      link_to((image_tag(p.downcase+"_favicon.jpg")+" "+p), ProviderAuthorization.auth_url_for(p))
+      link_to((image_tag(p.downcase+"_favicon.jpg")+" "+p), auth_url_for(p))
     end.to_sentence(:last_word_connector => ', or ')
   -%>
   <%= f.error_messages(:header_message => "We couldn't find a user with that email address.", 
