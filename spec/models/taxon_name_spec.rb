@@ -1,14 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe TaxonName do
-  fixtures :taxa, :taxon_names
-  it "should show the taxon of 'Pacific Chorus Frog' as being 'Pseudacris regilla" do
-    pcf = TaxonName.find_by_name('Pacific Chorus Frog')
-    pcre = Taxon.find_by_name('Pseudacris regilla')
-    pcf.taxon.should == pcre
-  end
-end
-
 describe TaxonName, 'creation' do
   before(:each) do
     @taxon_name = TaxonName.new(:name => 'Physeter catodon', 

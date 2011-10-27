@@ -233,7 +233,6 @@ describe Taxon, "unique name" do
     taxon.unique_name.should == taxon.default_name.name
   end
   
-  # This seems to break unless we use transactional fixtures.  Grr...
   it "should be the scientific name if the common name is already another taxon's unique name" do
     taxon = Taxon.make
     common_name = TaxonName.make(:name => "Most Awesome Radicalbird", 
@@ -469,7 +468,6 @@ describe Taxon, "merging" do
 end
 
 describe Taxon, "moving" do
-  # fixtures :taxa, :observations
   
   before(:each) do
     load_test_taxa
@@ -543,71 +541,6 @@ describe Taxon do
     
     it "should prevent new scientific taxon names of descendents"
   end
-end
-
-def load_test_taxa
-  Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-  @Life = Taxon.find_by_name('Life') || Taxon.make(:name => 'Life')
-  
-  unless @Animalia = Taxon.iconic_taxa.find_by_name('Animalia')
-    @Animalia = Taxon.make(:name => 'Animalia', :rank => 'kingdom', :is_iconic => true)
-  end
-  @Animalia.update_attributes(:parent => @Life)
-  
-  unless @Chordata = Taxon.iconic_taxa.find_by_name('Chordata')
-    @Chordata = Taxon.make(:name => 'Chordata', :rank => "phylum")
-  end
-  @Chordata.update_attributes(:parent => @Animalia)
-  
-  unless @Amphibia = Taxon.iconic_taxa.find_by_name('Amphibia')
-    @Amphibia = Taxon.make(:name => 'Amphibia', :rank => "class", :is_iconic => true)
-  end
-  @Amphibia.update_attributes(:parent => @Chordata)
-  
-  unless @Hylidae = Taxon.iconic_taxa.find_by_name('Hylidae')
-    @Hylidae = Taxon.make(:name => 'Hylidae', :rank => "order")
-  end
-  @Hylidae.update_attributes(:parent => @Amphibia)
-  
-  unless @Pseudacris = Taxon.iconic_taxa.find_by_name('Pseudacris')
-    @Pseudacris = Taxon.make(:name => 'Pseudacris', :rank => "genus")
-  end
-  @Pseudacris.update_attributes(:parent => @Hylidae)
-  
-  unless @Pseudacris_regilla = Taxon.iconic_taxa.find_by_name('Pseudacris regilla')
-    @Pseudacris_regilla = Taxon.make(:name => 'Pseudacris regilla', :rank => "species")
-  end
-  @Pseudacris_regilla.update_attributes(:parent => @Pseudacris)
-  
-  unless @Aves = Taxon.iconic_taxa.find_by_name('Aves')
-    @Aves = Taxon.make(:name => "Aves", :rank => "class", :is_iconic => true)
-  end
-  @Aves.update_attributes(:parent => @Chordata)
-  
-  unless @Apodiformes = Taxon.iconic_taxa.find_by_name('Apodiformes')
-    @Apodiformes = Taxon.make(:name => "Apodiformes", :rank => "order")
-  end
-  @Apodiformes.update_attributes(:parent => @Aves)
-  
-  unless @Trochilidae = Taxon.iconic_taxa.find_by_name('Trochilidae')
-    @Trochilidae = Taxon.make(:name => "Trochilidae", :rank => "family")
-  end
-  @Trochilidae.update_attributes(:parent => @Apodiformes)
-  
-  unless @Calypte = Taxon.iconic_taxa.find_by_name('Calypte')
-    @Calypte = Taxon.make(:name => "Calypte", :rank => "genus")
-  end
-  @Calypte.update_attributes(:parent => @Trochilidae)
-  
-  unless @Calypte_anna = Taxon.iconic_taxa.find_by_name('Calypte anna')
-    @Calypte_anna = Taxon.make(:name => "Calypte anna", :rank => "species")
-    @Calypte_anna.taxon_names << TaxonName.make(:name => "Anna's Hummingbird", 
-      :taxon => @Calypte_anna, 
-      :lexicon => TaxonName::LEXICONS[:ENGLISH])
-  end
-  @Calypte_anna.update_attributes(:parent => @Calypte)
-
-  Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
 end
 
 # def unload_test_taxa

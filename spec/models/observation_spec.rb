@@ -427,17 +427,8 @@ describe Observation, "updating" do
 end
 
 describe Observation, "destruction" do
-  fixtures :observations, :identifications, :users, :taxa, :lists, :listed_taxa
-  before(:each) do
-    @observation = Observation.create(
-      :user => User.find_by_login('aaron'), # aaron shouldn't have ANY  obs
-      :taxon => Taxon.find_by_name('Ensatina eschscholtzii'),
-      :observed_on_string => 'yesterday at 1pm',
-      :time_zone => 'UTC'
-    )
-  end
-  
   it "should decrement the counter cache in users" do
+    @observation = Observation.make
     user = @observation.user
     user.reload
     old_count = user.observations_count
@@ -448,8 +439,9 @@ describe Observation, "destruction" do
 end
 
 describe Observation, "named scopes" do
-  fixtures :observations, :users, :taxa
-  
+  before(:all) do
+    load_test_taxa
+  end
   # Valid UTC is something like:
   # '2008-01-01T01:00:00+00:00'
   # '2008-11-30T18:53:15+00:00'
@@ -459,10 +451,13 @@ describe Observation, "named scopes" do
     
     @after_formats = [@after, @after.iso8601]
     @before_formats = [@before, @before.iso8601]
+    
+    @amphibia = Taxon.find_by_name('Amphibia')
+    @mollusca = Taxon.find_by_name('Mollusca')
+    @pseudacris = Taxon.find_by_name('Pseudacris regilla')
 
-    @pos = Observation.create(
-      :user => User.find_by_login('aaron'),
-      :taxon => Taxon.find_by_name('Ensatina eschscholtzii'),
+    @pos = Observation.make(
+      :taxon => @pseudacris,
       :observed_on_string => '14 months ago',
       :id_please => true,
       :latitude => 20.01,
@@ -471,33 +466,29 @@ describe Observation, "named scopes" do
       :time_zone => 'UTC'
     )
     
-    @neg = Observation.create(
-      :user => User.find_by_login('aaron'),
-      :taxon => Taxon.find_by_name('Ensatina eschscholtzii'),
+    @neg = Observation.make(
+      :taxon => @pseudacris,
       :observed_on_string => 'yesterday at 1pm',
       :latitude => 40,
       :longitude => 40,
       :time_zone => 'UTC'
     )
     
-    @between = Observation.create(
-      :user => User.find_by_login('aaron'),
-      :taxon => Taxon.find_by_name('Ensatina eschscholtzii'),
+    @between = Observation.make(
+      :taxon => @pseudacris,
       :observed_on_string => '6 months ago',
       :created_at => 6.months.ago,
       :time_zone => 'UTC'
     )
     
-    @aaron_saw_an_amphibian = @pos
-    @aaron_saw_a_mollusk = Observation.create(
-      :user => User.find_by_login('aaron'),
-      :taxon => Taxon.find_by_name('Mollusca'),
+    @aaron_saw_an_amphibian = Observation.make(:taxon => @pseudacris)
+    @aaron_saw_a_mollusk = Observation.make(
+      :taxon => @mollusca,
       :observed_on_string => '6 months ago',
       :created_at => 6.months.ago,
       :time_zone => 'UTC'
     )
-    @aaron_saw_a_mystery = Observation.create(
-      :user => User.find_by_login('aaron'),
+    @aaron_saw_a_mystery = Observation.make(
       :observed_on_string => '6 months ago',
       :created_at => 6.months.ago,
       :time_zone => 'UTC'
@@ -622,21 +613,21 @@ describe Observation, "named scopes" do
   end
   
   it "should find observations in one iconic taxon" do
-    observations = Observation.has_iconic_taxa(taxa(:Mollusca))
+    observations = Observation.has_iconic_taxa(@mollusca)
     observations.should include(@aaron_saw_a_mollusk)
-    observations.should_not include(@aaron_saw_an_amphibian)
+    observations.map(&:id).should_not include(@aaron_saw_an_amphibian.id)
   end
   
   it "should find observations in many iconic taxa" do
     observations = Observation.has_iconic_taxa(
-      [taxa(:Mollusca), taxa(:Amphibia)])
+      [@mollusca, @amphibia])
     observations.should include(@aaron_saw_a_mollusk)
     observations.should include(@aaron_saw_an_amphibian)
   end
   
   it "should find observations with NO iconic taxon" do
     observations = Observation.has_iconic_taxa(
-      [taxa(:Mollusca), nil])
+      [@mollusca, nil])
     observations.should include(@aaron_saw_a_mollusk)
     observations.should include(@aaron_saw_a_mystery)
   end

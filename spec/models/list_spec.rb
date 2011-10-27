@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe List, "updating" do
-  fixtures :users, :taxa, :lists
   it "should not be allowed anyone other than the owner" do
-    lists(:quentin_life_list).editable_by?(users(:quentin)).should be_true
-    lists(:quentin_life_list).editable_by?(users(:ted)).should be_false
+    list = LifeList.make
+    other_user = User.make
+    list.should be_editable_by list.user
+    list.should_not be_editable_by other_user
   end
 end
 
