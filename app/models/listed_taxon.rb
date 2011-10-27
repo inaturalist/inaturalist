@@ -105,7 +105,7 @@ class ListedTaxon < ActiveRecord::Base
     end
     
     if last_observation && !(taxon == last_observation.taxon || last_observation.taxon.in_taxon?(taxon))
-      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon}")
+      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
     end
     
     unless list.is_a?(CheckList)
