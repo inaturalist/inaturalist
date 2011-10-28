@@ -15,10 +15,15 @@ class ListedTaxon < ActiveRecord::Base
   belongs_to :last_observation,
              :class_name => 'Observation', 
              :foreign_key => 'last_observation_id'
-  belongs_to :place
-  belongs_to :user
+  belongs_to :user # creator
+  
   belongs_to :updater, :class_name => 'User'
   has_many :comments, :as => :parent, :dependent => :destroy
+  
+  # check list assocs
+  belongs_to :place
+  belongs_to :taxon_range # if listed taxon was created b/c of a range intersection
+  belongs_to :source # if added b/c of a published source
   
   before_validation :nilify_blanks
   before_create :set_ancestor_taxon_ids
@@ -259,8 +264,22 @@ class ListedTaxon < ActiveRecord::Base
     list.editable_by?(user)
   end
   
-  def can_be_auto_removed_from_check_list?
+  def removable_by?(user)
+    return false unless user
+    return true if user.admin?
+    citation_object == user
+  end
+  
+  def citation_object
+    user || source || taxon_range || first_observation || last_observation
+  end
+  
+  def auto_removable_from_check_list?
     list.is_a?(CheckList) &&
+      first_observation_id.blank? &&
+      last_observation_id.blank? &&
+      taxon_range_id.blank? &&
+      source_id.blank? &&
       !user_id && 
       !updater_id && 
       comments_count.to_i == 0 &&

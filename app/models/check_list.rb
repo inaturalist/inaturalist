@@ -101,8 +101,8 @@ class CheckList < List
     end
     scope = Taxon.intersecting_place(place).scoped({})
     scope = scope.descendants_of(ancestor) if ancestor
-    scope.find_each do |taxon|
-      send_later(:add_taxon, taxon.id)
+    scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
+      send_later(:add_taxon, taxon.id, :taxon_range_id => taxon.taxon_range_id)
     end
   end
   
@@ -145,7 +145,7 @@ class CheckList < List
       listed_taxa.each do |lt|
         lt.force_update_observation_associates = true
         lt.save # sets all observation associates, months stats, etc.
-        lt.destroy if lt.last_observation_id.blank? && lt.can_be_auto_removed_from_check_list?
+        lt.destroy if lt.last_observation_id.blank? && lt.auto_removable_from_check_list?
       end
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?

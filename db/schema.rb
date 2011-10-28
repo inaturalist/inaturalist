@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027041911) do
+ActiveRecord::Schema.define(:version => 20111027211849) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -232,6 +232,8 @@ ActiveRecord::Schema.define(:version => 20111027041911) do
     t.integer  "first_observation_id"
     t.integer  "observations_count",                      :default => 0
     t.string   "observations_month_counts"
+    t.integer  "taxon_range_id"
+    t.integer  "source_id"
   end
 
   add_index "listed_taxa", ["first_observation_id"], :name => "index_listed_taxa_on_first_observation_id"
@@ -242,7 +244,9 @@ ActiveRecord::Schema.define(:version => 20111027041911) do
   add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["place_id", "observations_count"], :name => "index_listed_taxa_on_place_id_and_observations_count"
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
+  add_index "listed_taxa", ["source_id"], :name => "index_listed_taxa_on_source_id"
   add_index "listed_taxa", ["taxon_id"], :name => "index_listed_taxa_on_taxon_id"
+  add_index "listed_taxa", ["taxon_range_id"], :name => "index_listed_taxa_on_taxon_range_id"
   add_index "listed_taxa", ["user_id"], :name => "index_listed_taxa_on_user_id"
 
   create_table "lists", :force => true do |t|

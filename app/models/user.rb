@@ -257,6 +257,7 @@ class User < ActiveRecord::Base
   def is_admin?
     has_role?(:admin)
   end
+  alias :admin? :is_admin?
   
   def to_s
     "<User #{self.id}: #{self.login}>"

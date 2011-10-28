@@ -105,6 +105,10 @@ Role.blueprint(:admin) do
   name User::JEDI_MASTER_ROLE
 end
 
+Source.blueprint do
+  title { Sham.title }
+end
+
 Taxon.blueprint do
   name { Sham.name }
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
@@ -134,6 +138,11 @@ end
 TaxonName.blueprint do
   name { Sham.name }
   taxon
+end
+
+TaxonRange.blueprint do
+  taxon
+  source
 end
 
 User.blueprint do

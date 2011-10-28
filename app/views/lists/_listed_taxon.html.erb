@@ -24,7 +24,7 @@
     <% end -%>
   </div>
   <div class="actions">
-    <% if logged_in? && list.editable_by?(current_user) -%>
+    <% if logged_in? && listed_taxon.removable_by?(current_user) -%>
       <%= link_to_remote("&times;", 
         :url => listed_taxon_path(listed_taxon, :format => :json), 
         :method => :delete,

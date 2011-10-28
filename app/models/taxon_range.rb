@@ -1,6 +1,8 @@
 class TaxonRange < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :source
+  has_many :listed_taxa
+  
   accepts_nested_attributes_for :source
   
   named_scope :without_geom, {:select => (column_names - ['geom']).join(', ')}

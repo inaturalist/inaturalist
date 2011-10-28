@@ -43,9 +43,10 @@ describe FlickrPhoto, "creation" do
 end
 
 describe FlickrPhoto, "to_observation" do
-  fixtures :users, :flickr_identities, :taxa, :taxon_names
+  fixtures :users, :flickr_identities
   
   before(:all) do
+    load_test_taxa
     @flickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
     # grab Ken-ichi's photo of an Anna's hummingbird
     @fp = @flickr.photos.get_info(3372373404)

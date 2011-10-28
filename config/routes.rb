@@ -201,7 +201,7 @@ ActionController::Routing::Routes.draw do |map|
   #
   map.connect 'taxa/names', :controller => 'taxon_names'
   map.connect 'taxa/names.:format', :controller => 'taxon_names'
-  map.resources :taxa, :requirements => { :id => %r(\d+) } do |taxon|
+  map.resources :taxa, :requirements => { :id => %r(\d+([\w\-]*)) } do |taxon|
     # taxon.resources :names, :controller => :taxon_names
     taxon.resources :taxon_names, :controller => :taxon_names, :shallow => true
     taxon.resources :flags

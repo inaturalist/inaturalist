@@ -349,6 +349,10 @@ class Taxon < ActiveRecord::Base
     "<Taxon #{id}: #{to_plain_s(:skip_common => true)}>"
   end
   
+  def to_param
+    "#{id}-#{name.gsub(/\W/, '-')}"
+  end
+  
   def to_plain_s(options = {})
     comname = common_name unless options[:skip_common]
     sciname = if %w(species infraspecies).include?(rank)
@@ -759,8 +763,8 @@ class Taxon < ActiveRecord::Base
     Place.
         place_types(%w(Country State County)).
         intersecting_taxon(self).
-        find_each(:select => "places.id, place_type, check_list_id", :include => :check_list) do |place|
-      place.check_list.add_taxon(self)
+        find_each(:select => "places.id, place_type, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
+      place.check_list.add_taxon(self, :taxon_range_id => place.taxon_range_id)
     end
   end
   

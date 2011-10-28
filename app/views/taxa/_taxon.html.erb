@@ -8,7 +8,7 @@
   hide_wikipedia_summary ||= false
   link_name ||= false
   link_image ||= false
-  link_url ||= url_for_taxon(taxon)
+  link_url ||= url_for(taxon)
   name_class = taxon.default_name.is_scientific_names? ? 'sciname' : 'comname'
   extra_class ||= nil
   taxon_class = "clear taxon #{taxon.rank}"

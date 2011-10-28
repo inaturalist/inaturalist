@@ -46,6 +46,10 @@
         <%= f.label(:email) %>
         <%= f.text_field(:email, :class => "text", :required => true) %>
       </div>
+      <div class="field">
+        <label for="name">Full name</label>
+        <%= f.text_field(:name, :class => "text") %>
+      </div>
     </div>
     <div class="last column span-9 field">
       <%= f.label(:time_zone, 'Your default time zone')%>

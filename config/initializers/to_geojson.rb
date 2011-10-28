@@ -2,7 +2,7 @@ class Array
   def to_geojson(options = {})
     return to_json unless first.is_a?(ActiveRecord::Base)
     klass = first.class
-    geomcol = first.class.columns.detect{|c| c.is_a?(SpatialColumn)}
+    geomcol = first.class.columns.detect{|c| c.is_a?(SpatialAdapter::SpatialColumn)}
     return to_json unless geomcol
     data = {:type => "FeatureCollection"}
     # only = options[:only] ? options[:only].map(&:to_s) : []

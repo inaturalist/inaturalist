@@ -37,5 +37,89 @@ describe ListedTaxon do
       @listed_taxon.observations_month_counts.should_not be_blank
     end
   end
+  
+  describe "check list auto removal" do
+    before(:each) do
+      @place = Place.make
+      @check_list = @place.check_list
+      @check_list.should be_is_default
+    end
+    
+    it "should work for vanilla" do
+      lt = ListedTaxon.make(:list => @check_list)
+      lt.should be_auto_removable_from_check_list
+    end
+    
+    it "should not work if first observation" do
+      lt = ListedTaxon.make(:list => @check_list, :first_observation => Observation.make)
+      lt.should_not be_auto_removable_from_check_list
+    end
+    
+    it "should not work if user" do
+      lt = ListedTaxon.make(:list => @check_list, :user => User.make)
+      lt.should_not be_auto_removable_from_check_list
+    end
+    
+    it "should not work if taxon range" do
+      lt = ListedTaxon.make(:list => @check_list, :taxon_range => TaxonRange.make)
+      lt.should_not be_auto_removable_from_check_list
+    end
+    
+    it "should not work if source" do
+      lt = ListedTaxon.make(:list => @check_list, :source => Source.make)
+      lt.should_not be_auto_removable_from_check_list
+    end
+  end
+  
+  describe "check list user removal" do
+    before(:each) do
+      @place = Place.make
+      @check_list = @place.check_list
+      @check_list.should be_is_default
+      @user = User.make
+    end
+    
+    it "should work for user who added" do
+      lt = ListedTaxon.make(:list => @check_list, :user => @user)
+      lt.should be_removable_by @user
+    end
+    
+    it "should work for lists the user owns" do
+      list = List.make(:user => @user)
+      lt = ListedTaxon.make(:list => list)
+      lt.should be_removable_by @user
+    end
+    
+    it "should not work if first observation" do
+      lt = ListedTaxon.make(:list => @check_list, :first_observation => Observation.make)
+      lt.should_not be_removable_by @user
+    end
+    
+    it "should not work if remover is not user" do
+      lt = ListedTaxon.make(:list => @check_list, :user => User.make)
+      lt.should_not be_removable_by @user
+    end
+    
+    it "should not work if taxon range" do
+      lt = ListedTaxon.make(:list => @check_list, :taxon_range => TaxonRange.make)
+      lt.should_not be_removable_by @user
+    end
+    
+    it "should not work if source" do
+      lt = ListedTaxon.make(:list => @check_list, :source => Source.make)
+      lt.should_not be_removable_by @user
+    end
+    
+    it "should work for admins" do
+      lt = ListedTaxon.make(:list => @check_list, :first_observation => Observation.make)
+      user = make_user_with_role(:admin)
+      user.should be_admin
+      lt.should be_removable_by user
+    end
+  end
+  
+  describe "citation object" do
+    it "should set occurrence_status to present if set"
+  end
 
 end

@@ -147,6 +147,12 @@
       <%= user_image @user, :size => "medium" %>
     </div>
   <% end -%>
+  
+  <% unless @selected_user.name.blank? -%>
+    <p class="description">
+      aka <%= @selected_user.name %>
+    </p>
+  <% end -%>
   <%= render :partial => 'glance' %>
   
   <% if is_me?(@user) %>

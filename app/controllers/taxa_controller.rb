@@ -98,7 +98,7 @@ class TaxaController < ApplicationController
     if params[:entry]=='widget'
       flash[:notice] = "Welcome to iNat! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
     end
-    @taxon ||= Taxon.find_by_id(params[:id], :include => [:taxon_names]) if params[:id]
+    @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
     
     if !@taxon.conservation_status.blank? && @taxon.conservation_status > Taxon::IUCN_LEAST_CONCERN
@@ -997,7 +997,7 @@ class TaxaController < ApplicationController
   end
   
   def load_taxon
-    unless @taxon = Taxon.find_by_id(params[:id], :include => :taxon_names)
+    unless @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
       render_404
       return
     end

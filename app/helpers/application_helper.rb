@@ -417,4 +417,21 @@ module ApplicationHelper
     concat capture(&block) if block_given?
   end
   
+  def citation_for(record)
+    return 'unknown' if record.blank?
+    render :partial => "#{record.class.to_s.underscore.pluralize}/citation", :object => record
+  rescue ActionView::MissingTemplate
+    record.to_s.gsub(/[\<\>]*/, '')
+  end
+  
+  def link_to_taxon(taxon, options = {})
+    iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
+    iconic_taxon_name = iconic_taxon.try(:name) || 'Unknown'
+    url = taxon_path(taxon, options.delete(:url_params) || {})
+    content_tag :span, :class => "taxon #{iconic_taxon_name} #{taxon.rank}" do
+      link_to(iconic_taxon_image(taxon, :size => 15), url, options) + " " +
+      link_to(default_taxon_name(taxon), url, options)
+    end
+  end
+  
 end
