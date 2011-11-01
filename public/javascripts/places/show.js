@@ -15,18 +15,50 @@ $(document).ready(function() {
     }
   })
   // loadWikipediaDescription()
-  loadFlickrPlacePhotos()
+  // loadFlickrPlacePhotos()
+  $('#placephotos').loadFlickrPlacePhotos()
   PlaceGuide.init('#taxa')
+  $('#maintabs').tabs({
+    show: function(event, ui) {
+      if ($(ui.panel).attr('id') == 'abouttab' && !$(ui.panel).hasClass('loaded')) {
+        $('#abouttab .photos').loadFlickrPlacePhotos({urlType: 'url_m', showAttribution: true, noPhotosNotice: true})
+        $('#abouttab .wikipedia_description').loadWikipediaDescription()
+        $(ui.panel).addClass('loaded')
+      }
+    },
+    load: function(event, ui) {
+      if ($(ui.panel).hasClass('observations')) {
+        if ($(ui.panel).text() == '') {
+          $(ui.panel).append(
+            $('<span>No observations from this place yet.</span>').addClass('noresults meta')
+          )
+        } else {
+          $(ui.panel).append(
+            $('<div></div>').addClass('morelink').append(
+              $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
+            )
+          )
+        }
+      }
+    }
+  })
 })
 
-function loadFlickrPlacePhotos() {
+$.fn.loadFlickrPlacePhotos = function(options) {
+  options = $.extend({}, {
+    urlType: 'url_t'
+  }, options)
+  var extras = ['owner_name', 'date_upload']
+  extras.push(options.urlType)
+  extras = extras.join(',')
+  var self = this
   var flickrOptions = {
     api_key: FLICKR_API_KEY,
     sort: 'interestingness-desc',
     page: 1,
     per_page: 7,
     woe_id: PLACE.woeid,
-    extras: 'url_t,owner_name,date_upload',
+    extras: extras,
     safe_search: 1,
     text: "landscape -portrait -model",
     license: '1,2,3,4,5,6'
@@ -43,33 +75,41 @@ function loadFlickrPlacePhotos() {
     "http://www.flickr.com/services/rest/?method=flickr.photos.search&format=json&jsoncallback=?",
     flickrOptions,
     function(json) {
-      if (json.photos && json.photos.photo) {
+      $(self).html('')
+      if (json.photos && json.photos.photo && json.photos.photo.length > 0) {
         for (var i = json.photos.photo.length - 1; i >= 0; i--){
           var p = json.photos.photo[i],
               date = new Date(p.dateupload * 1000),
-              attribution = ("(CC) " + (date.getFullYear() || '') + " " + p.ownername).replace(/\s+/, ' ')
-          $('#placephotos').append(
-            $('<a href="http://www.flickr.com/photos/'+p.owner+'/'+p.id+'"></a>').append(
+              attribution = ("(CC) " + (date.getFullYear() || '') + " " + p.ownername).replace(/\s+/, ' '),
+              url = 'http://www.flickr.com/photos/'+p.owner+'/'+p.id
+          $(self).append(
+            $('<a href="'+url+'"></a>').append(
               $('<img></img>')
-                .attr('src', p.url_t).attr('title', attribution)
+                .attr('src', p[options.urlType]).attr('title', attribution)
             )
           )
+          if (options.showAttribution) {
+            $(self).append($('<div class="stacked attribution meta"></div>').html('Photo: '+attribution))
+          }
         }
+      } else if (options.noPhotosNotice) {
+        $(self).append('<div class="noresults meta">Flickr has no Creative Commons-licensed photos from this place.</div>')
       }
     }
   )
 }
 
-function loadWikipediaDescription() {
+$.fn.loadWikipediaDescription = function() {
+  var self = this
   $.ajax({
     url: WIKIPEDIA_DESCRIPTION_URL,
     method: 'get',
     success: function(data, status) {
-      $('#wikipedia_description').html(data)
+      $(self).html(data)
     },
     error: function(request, status, error) {
-      $('#nodescription').show()
-      $('#wikipedia_description .loading').hide()
+      $('.noresults', self).show()
+      $('.loading', self).hide()
     }
   })
 }

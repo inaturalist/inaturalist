@@ -101,3 +101,10 @@
 #sidecol .extralabel {background-color: #efefef; padding: 0.5em; text-align: center;}
 #sidecol .extralabel a { color: inherit; }
 #infscr-loading { width: 100%; text-align: middle; padding: 20px 0; margin: 0 auto;}
+#observationstab .morelink { margin-top: 20px;}
+#abouttab .photos img { max-width: 310px; }
+.wikipedia_description table, .wikipedia_description .tright, .wikipedia_description .infobox { float: right; clear: right; margin: 0 0 10px 10px;}
+.wikipedia_description .tleft { float: left; clear: left; margin: 0 10px 10px 0;}
+.wikipedia_description .dablink, .wikipedia_description .mainarticle { margin: 10px 0; color: #888; font-style: italic; }
+.wikipedia_description .editsection { display: none; }
+.wikipedia_description table.navbox { display: none; }

@@ -55,106 +55,120 @@
   <div id="placephotos"></div>
 </div>
 
-<!-- <div id="sidecol">
-  <div id="map" style="width: 230px; height: 230px;"></div>
+<div id="maintabs">
+  <ul>
+    <li><a href="#guidetab"><span>Species Guide</span></a></li>
+    <li><a href="<%= observations_url(:place_id => @place, :per_page => 50, :partial => "cached_component") %>" rel="<%= observations_url(:place_id => @place) %>" title="observationstab"><span>Observations</span></a></li>
+    <li><a href="#abouttab"><span>About <%= @place.name %></span></a></li>
+  </ul>
   
-  <h3>
-    Description
-    <span class="small description">(from
-      <a href="http://en.wikipedia.org/wiki/<%= @place.wikipedia_name %>">Wikipedia</a>)
-    </span>
-  </h3>
-
-  <div id="wikipedia_description">
-    <div class="loading status">Loading description...</div>
-  </div>
-  <div id="nodescription" class="meta" style="display: none">
-    There isn't a Wikipedia article or 
-    redirect titled '<i><%= @place.wikipedia_name %></i>'.  Perhaps you'd like to
-    <a href='http://en.wikipedia.org/wiki/<%= @place.wikipedia_name %>'>
-    make one</a>?
-  </div>
-</div> -->
-
-<div id="sidecol">
-  <% if logged_in? -%>
-    <div class="stacked">
-      <div id="observedchart" class="barchart inlineblock">
-        <%= render :partial => "shared/barchart_datum", :locals => {
-          :value => @current_user_observed_count.to_i, 
-          :max => @listed_taxa_count.to_i, 
-          :label_text => "of #{@listed_taxa_count.to_i}" } %>
-      </div>
-      <div class="extralabel">
-        <%-
-          percent = @listed_taxa_count.to_i == 0 ? 0 : (@current_user_observed_count.to_f / @listed_taxa_count.to_f * 100).round
-        -%>
-        <strong><span class="value"><%= percent %></span>%</strong>
-        <%= link_to "observed by you", observations_by_login_url(current_user.login, :place_id => @place) %>
-      </div>
-    </div>
-  <% end -%>
-  
-  <div id="browsingtaxa" class="stacked">
-    <ul class="taxon_links">
-      <li>
-        <%= link_to "All life", url_for(:taxon => nil, :test => true), :class => "taxon #{'selected' if @taxon.blank?}" %>
-        <ul>
-          <% taxonomic_taxon_list(@arranged_taxa, :class => "clear") do |taxon| %>
+  <div id="guidetab">
+    <div id="sidecol">
+      <% if logged_in? -%>
+        <div class="stacked">
+          <div id="observedchart" class="barchart inlineblock">
+            <%= render :partial => "shared/barchart_datum", :locals => {
+              :value => @current_user_observed_count.to_i, 
+              :max => @listed_taxa_count.to_i, 
+              :label_text => "of #{@listed_taxa_count.to_i}" } %>
+          </div>
+          <div class="extralabel">
             <%-
-              css_class = "taxon"
-              css_class += ' selected' if @taxon && @taxon.id == taxon.id
-              css_class += " #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}"
-              css_class += " taxon_#{taxon.id} taxon_#{taxon.name}"
+              percent = @listed_taxa_count.to_i == 0 ? 0 : (@current_user_observed_count.to_f / @listed_taxa_count.to_f * 100).round
             -%>
-            <%= link_to default_taxon_name(taxon).capitalize, url_for(:taxon => taxon.id, :test => true), :class => css_class %>
-          <% end -%>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  
-  <p class="ui">
-    <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
-  </p>
-  <p class="ui">
-    <%= link_to "View observations from here", observations_url(:place_id => @place), :class => "readmore" %>
-  </p>
-</div>
-
-<div id="maincol">
-  <div id="controls" class="stacked clear buttonrow smallbuttons">
-    <div id="confirmedchart" class="barchart">
-      <%= render :partial => "shared/barchart_datum", :locals => {
-        :value => @confirmed_listed_taxa_count.to_i, 
-        :max => @listed_taxa_count.to_i, 
-        :label_text => "of #{@listed_taxa_count.to_i} confirmed",
-        :min_remainder_label_width => 50
-      } %>
-    </div>
-    
-    <div id="filters">
-      <%- form_tag url_for, :method => :get, :class => "searchfilter inlineblock inline buttonrow" do %>
-        <%= hidden_field_tag :test, true %>
-        <%= text_field_tag :q, @q, :class => "text", :placeholder => "Search for species", :id => "searchFilter" %>
-        <%= submit_tag "Search", :class => "glaucous button" %>
-        <%= link_to "&times;", url_for_params(:without => [:q]), :class => "pale button", :style => "#{'display:none' if @q.blank?}", :title => "Clear search" %>
-      <% end %>
-      
-      <%- form_tag url_for, :method => :get, :class => "colorfilter inlineblock inline buttonrow" do %>
-        <%= hidden_fields_for_params :without => [:colors, :page] %>
-        <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
-        <%= submit_tag "Filter", :class => "glaucous button" %>
-        <%= link_to "&times;", url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear color filters" %>
-      <% end %>
-    </div>
-  </div>
-  
-  <div id="listed_taxa">
-    <div id="taxa" class="clear taxa fluid medium grid" data-guide-url="<%= place_guide_url(@place) %>">
-      <% if frag = controller.read_fragment(:action => "guide", :action_suffix => "first_page") -%>
-        <%= frag %>
+            <strong><span class="value"><%= percent %></span>%</strong>
+            <%= link_to "observed by you", observations_by_login_url(current_user.login, :place_id => @place) %>
+          </div>
+        </div>
       <% end -%>
+
+      <div id="browsingtaxa" class="stacked">
+        <ul class="taxon_links">
+          <li>
+            <%= link_to "All life", url_for(:taxon => nil, :test => true), :class => "taxon #{'selected' if @taxon.blank?}" %>
+            <ul>
+              <% taxonomic_taxon_list(@arranged_taxa, :class => "clear") do |taxon| %>
+                <%-
+                  css_class = "taxon"
+                  css_class += ' selected' if @taxon && @taxon.id == taxon.id
+                  css_class += " #{Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)}"
+                  css_class += " taxon_#{taxon.id} taxon_#{taxon.name}"
+                -%>
+                <%= link_to default_taxon_name(taxon).capitalize, url_for(:taxon => taxon.id, :test => true), :class => css_class %>
+              <% end -%>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <p class="ui">
+        <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
+      </p>
+    </div>
+
+    <div id="maincol">
+      <div id="controls" class="stacked clear buttonrow smallbuttons">
+        <div id="confirmedchart" class="barchart">
+          <%= render :partial => "shared/barchart_datum", :locals => {
+            :value => @confirmed_listed_taxa_count.to_i, 
+            :max => @listed_taxa_count.to_i, 
+            :label_text => "of #{@listed_taxa_count.to_i} confirmed",
+            :min_remainder_label_width => 50
+          } %>
+        </div>
+
+        <div id="filters">
+          <%- form_tag url_for, :method => :get, :class => "searchfilter inlineblock inline buttonrow" do %>
+            <%= hidden_field_tag :test, true %>
+            <%= text_field_tag :q, @q, :class => "text", :placeholder => "Search for species", :id => "searchFilter" %>
+            <%= submit_tag "Search", :class => "glaucous button" %>
+            <%= link_to "&times;", url_for_params(:without => [:q]), :class => "pale button", :style => "#{'display:none' if @q.blank?}", :title => "Clear search" %>
+          <% end %>
+
+          <%- form_tag url_for, :method => :get, :class => "colorfilter inlineblock inline buttonrow" do %>
+            <%= hidden_fields_for_params :without => [:colors, :page] %>
+            <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
+            <%= submit_tag "Filter", :class => "glaucous button" %>
+            <%= link_to "&times;", url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear color filters" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="listed_taxa">
+        <div id="taxa" class="clear taxa fluid medium grid" data-guide-url="<%= place_guide_url(@place) %>">
+          <% if frag = controller.read_fragment(:action => "guide", :action_suffix => "first_page") -%>
+            <%= frag %>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div><!-- end guidetab -->
+  
+  <div id="observationstab" class="observations table">
+    <div class="loading status">Loading...</div>
+  </div>
+  
+  <div id="abouttab">
+    <div class="container">
+      <div class="column span-8 append-1">
+        <h3>Flickr Photos</h3>
+        <div class="photos">
+          <div class="loading status">Loading Flickr photos...</div>
+        </div>
+      </div>
+      
+      <%- wikipedia_url = "http://en.wikipedia.org/wiki/#{@place.wikipedia_name}" -%>
+      <div class="last column span-15">
+        <h3><%= link_to "Wikipedia", wikipedia_url %> Description</h3>
+        <div class="wikipedia_description">
+          <div class="loading status">Loading Wikipedia description...</div>
+          <div class="noresults description" style="display:none">
+            There is no Wikipedia page matching "<%= @place.wikipedia_name %>."  Would you like to
+            <%= link_to "start one", wikipedia_url %>?
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</div><!-- end maintabs -->
+

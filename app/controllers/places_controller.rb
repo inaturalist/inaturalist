@@ -404,18 +404,8 @@ class PlacesController < ApplicationController
   end
   
   def filter_wikipedia_content
-    # Find the TOC and delete it and all following
-    if toc_pos = @decoded =~ /\<table id=\"toc/
-      @decoded = @decoded[0...toc_pos]
-    end
-    
-    # Delete anything that's not a <p>
-    hhtml = Hpricot.parse(@decoded)
-    hhtml.search('sup').remove
-    hhtml.search('table').remove
-    hhtml.search('ul').remove unless @decoded[0..100] =~ /refer to/
-    hhtml = hhtml.search('p')
-    
+    hhtml = Nokogiri::HTML(@decoded)
+    hhtml.search('table[id=toc], table.metadata').remove
     @decoded = hhtml.to_s
     @decoded.gsub!(/\[\d+\]/, '')
   end
