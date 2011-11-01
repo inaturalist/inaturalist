@@ -9,9 +9,12 @@
     _create: function() {
       var self = this,
           source = this.options.source,
-          collectionUrl = this.options.collectionUrl || this.options.source,
+          collectionUrl = this.options.collectionUrl,
           cache = {},
           defaultSources = $.parseJSON($(this.element).attr('data-chooser-default-sources'))
+      if (!collectionUrl && typeof(this.options.source) == 'string') {
+        collectionUrl = this.options.collectionUrl = this.options.source
+      }
       this.defaultSources = defaultSources = this.recordsToItems(defaultSources)
       this.options.source = this.options.source || defaultSources
       var markup = this.setupMarkup()
@@ -23,7 +26,7 @@
         minLength: 0,
         select: function(ui, event) {
           if (event.item.forceRemote) {
-            self.options.source = url
+            self.options.source = collectionUrl
             $(ui.target).autocomplete('search', ui.target.value)
           } else {
             self.selectItem(event.item)
@@ -40,7 +43,7 @@
             var selected = $.map(source, function(src) {
               if (src.forceRemote || matcher.test(src.label)) { return src }
             })
-            if (selected.length != 0) {
+            if (selected.length != 0 && collectionUrl) {
               selected.push({label: '<em>Search remote</em>', value: request.term, forceRemote: true})
               response(selected)
               return
@@ -52,6 +55,8 @@
             response(cache[request.term])
             return
           }
+          
+          if (!collectionUrl) { return };
           
           markup.chooseButton.hide()
           markup.loadingButton.showInlineBlock()

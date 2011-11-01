@@ -134,14 +134,14 @@
     </div>
     
     <div id="filters">
-      <%- form_tag url_for, :method => :get, :class => "searchfilter inlineblock" do %>
+      <%- form_tag url_for, :method => :get, :class => "searchfilter inlineblock inline buttonrow" do %>
         <%= hidden_field_tag :test, true %>
         <%= text_field_tag :q, @q, :class => "text", :placeholder => "Search for species", :id => "searchFilter" %>
         <%= submit_tag "Search", :class => "glaucous button" %>
         <%= link_to "&times;", url_for_params(:without => [:q]), :class => "pale button", :style => "#{'display:none' if @q.blank?}", :title => "Clear search" %>
       <% end %>
       
-      <%- form_tag url_for, :method => :get, :class => "colorfilter inlineblock" do %>
+      <%- form_tag url_for, :method => :get, :class => "colorfilter inlineblock inline buttonrow" do %>
         <%= hidden_fields_for_params :without => [:colors, :page] %>
         <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
         <%= submit_tag "Filter", :class => "glaucous button" %>
