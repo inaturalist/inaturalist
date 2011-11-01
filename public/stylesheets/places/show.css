@@ -35,7 +35,7 @@
 #sidecol .barchart { width: 230px; float: none;}
 #controls .barchart { width: 230px; float: right;}
 #browsingtaxa { background-color: #eee; padding: 5px 0; }
-#browsingtaxa ul { margin: 0; }
+#browsingtaxa ul { margin: 0; list-style: none; }
 #browsingtaxa ul ul { margin-left: 20px;}
 #browsingtaxa a.taxon { 
   display: block; 

@@ -386,11 +386,11 @@ class PlacesController < ApplicationController
         :include => [:taxon_names, :photos],
         :order => order,
         :page => params[:page], :per_page => 50)
-      @taxa_by_taxon_id = @taxa.index_by(&:id)
+      @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
       @listed_taxa = @place.listed_taxa.all(
         :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
         :conditions => ["taxon_id IN (?)", @taxa])
-      @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
+      @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     end
     
     render :layout => false, :partial => "guide_taxa"

@@ -27,7 +27,7 @@
   if js_link
     taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon)
   end
-  photo ||= taxon.photos.sort_by(&:id).first
+  photo ||= taxon.photos.sort_by{|p| p.id}.first
   after_image ||= nil
 -%>
 

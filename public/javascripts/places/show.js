@@ -178,10 +178,8 @@ var PlaceGuide = {
         $('#controls form.searchfilter .pale.button').hide()
       }
       
-      var state = $.bbq.getState()
-      var placeId = $.deparam.querystring($('#sidecol .extralabel a').attr('href'))['place_id']
-      state['place_id'] = placeId
-      $('#sidecol .extralabel a').querystring(state, PlaceGuide.REPLACE_EXISTING)
+      // updated observed link
+      $('#sidecol .extralabel a').querystring($.bbq.getState(), PlaceGuide.REPLACE_EXISTING)
     })
     
     $(window).bind("hashchange", function(e) {

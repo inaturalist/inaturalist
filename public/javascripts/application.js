@@ -103,7 +103,7 @@ $('[data-autosubmit]').live('change', function() {
 function buildHelpTips() {
   var options = $.extend({}, QTIP_DEFAULTS, {
     show: {event: 'click'},
-    hide: {event: 'unfocus'},
+    hide: {event: 'unfocus'}
   })
   $('.helptip').each(function() {
     var content
@@ -170,7 +170,7 @@ $(document).ready(function() {
   
   $('.source_nested_form_fields input.existing').chooser({
     collectionUrl: 'http://'+window.location.host + '/sources.json',
-    resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json',
+    resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json'
   })
 })
 

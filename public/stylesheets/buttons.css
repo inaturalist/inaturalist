@@ -225,9 +225,15 @@ input[type='submit'].link:hover {
 .buttonrow.smallbuttons .button,
 .buttonrow.smallbuttons input.text,
 .buttonrow.smallbuttons label {
-  padding: 2px 3px;
+  padding: 1px 3px;
   font-size: 100%;
   margin-bottom: 0;
+}
+
+@-moz-document url-prefix() {
+  .buttonrow.smallbuttons input.button {
+    padding: 0px 3px;
+  }
 }
 
 .buttonrow.smallbuttons .button,
