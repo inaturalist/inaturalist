@@ -42,11 +42,6 @@
             </div>
             <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
             <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
-            
-            <center>
-              <%= o.label :geoprivacy, "Geoprivacy" %>
-              <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
-            </center>
           </div>
           
           
@@ -64,8 +59,26 @@
             </div>
             <div class="last column span-7">
               <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact', 'geoprivacy'])", :id => 'apply_batch_place_button', :class => 'default button') %>
+                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact'])", :id => 'apply_batch_place_button', :class => 'default button') %>
               </div>
+            </div>
+          </div>
+          
+          <div class="last column prepend-1 span-21">
+            <%= link_to_toggle "More fields", "#morebatchcontrols" %>
+            <div id="morebatchcontrols" style="display:none;">
+              <table class="plain">
+                <tr class="inline buttonrow">
+                  <td><label>Tags</label></td>
+                  <td><%= o.text_field :tag_list, :class => "text" %></td>
+                  <td><%= link_to_function "Apply &darr;", "applyBatch(['tag_list'])", :class => "default button" %></td>
+                </tr>
+                <tr class="inline buttonrow">
+                  <td><%= o.label :geoprivacy, "Geoprivacy" %></td>
+                  <td><%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %></td>
+                  <td><%= link_to_function "Apply &darr;", "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+                </tr>
+              </table>
             </div>
           </div>
         </div><!-- end #batchFormFields -->
