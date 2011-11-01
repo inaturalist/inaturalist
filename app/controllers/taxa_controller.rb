@@ -17,7 +17,7 @@ class TaxaController < ApplicationController
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   
-  before_filter :ensure_flickr_write_permission, :only => [:flickr_tagger, 
+  before_filter :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
   verify :method => :post, :only => [:create, :update_photos, 

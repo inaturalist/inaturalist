@@ -3,87 +3,24 @@
 <% end -%>
 <% content_for(:extracss) do -%>
   <style type="text/css" media="screen">
-    #pageheader .description {
-      margin-bottom: 0;
-    }
-    #tags {
-      width: 913px;
-    }
-    
-    .chosen {
-      border: 1px solid #eee;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-    
-    #taxon_name {
-      width: 434px;
-    }
-    
-    #choose_taxon_button {
-      float: left;
-      margin-right: 10px;
-    }
-    
-    .photoSelectorPhotos .photo {
-      margin: 0 0.5em 0.5em 0;
-      padding: 5px;
-    }
-    
-    #taxon .simpleTaxonSelector {
-      margin-bottom: 10px !important;
-      float: left;
-      margin-right: 8px;
-    }
-    
-    #signed_out_taxon_info {
-      float: left; 
-      width: 350px;
-      line-height: 2.4;
-      margin-left: 10px;
-    }
-    
-    #signed_out_taxon_info .button {
-      float: none;
-      display: inline;
-    }
-    
-    #link_flickr_message {
-      text-align: center;
-    }
-    #link_flickr_message .button {
-      float: none;
-      clear: both;
-      margin: 10px auto;
-      width: 300px;
-    }
-
-    .boxheader {
-      margin-bottom: 5px;
-    }
-    
-    .boxheader .title {
-      float: left;
-      font-weight: bold;
-      margin-right: 10px;
-    }
-    
+    #pageheader .description{margin-bottom:0;}
+    #tags{width:913px;}
+    .chosen{border:1px solid #eee;padding:10px;margin-bottom:10px;}
+    #taxon_name{width:434px;}
+    #choose_taxon_button{float:left;margin-right:10px;}
+    .photoSelectorPhotos .photo{margin:0 0.5em 0.5em 0;padding:5px;}
+    #taxon .simpleTaxonSelector{margin-bottom:10px !important;float:left;margin-right:8px;}
+    #signed_out_taxon_info{float:left;width:350px;line-height:2.4;margin-left:10px;}
+    #signed_out_taxon_info .button{margin: 0 5px;}
+    #link_flickr_message{text-align:center;}
+    #link_flickr_message .button{float:none;clear:both;margin:10px auto;width:300px;}
+    .boxheader{margin-bottom:5px;}
+    .boxheader .title{float:left;font-weight:bold;margin-right:10px;}
     #tagform .boxheader .controls,
-    #photos .controls {
-      float: right;
-    }
-    
-    #tagform .checkboxes {
-      clear: both;
-    }
-    
-    .checkboxes .column {
-      width: 302px;
-    }
-    
-    #greasemonkeylink {
-      text-align: center;
-    }
+    #photos .controls{float:right;}
+    #tagform .checkboxes{clear:both;}
+    .checkboxes .column{width:302px;}
+    #greasemonkeylink{text-align:center;}
   </style>
 <% end -%>
 <% content_for(:extrajs) do %>
@@ -214,7 +151,7 @@
     <% end %>
     
     <% unless logged_in? -%>
-      <div id="signed_out_taxon_info" class="description column">
+      <div id="signed_out_taxon_info" class="description column inline buttonrow">
         <strong>Not finding what you're looking for?</strong><br/>
         <%= link_to "Sign in", login_path, :class => 'button' %>
         or
@@ -301,9 +238,7 @@
         <% end %>
       <% else %>
         <div id="sign_in_sign_up" class="buttonrow">
-          <%= link_to "Sign in", login_path, :class => 'button' %>
-          <span class="inter">or</span>
-          <%= link_to "Sign up", signup_path, :class => 'button' %>
+          <%= link_to "Sign in with Flickr", auth_url_for('flickr', :scope => 'write'), :class => 'button providerlink flickr' %>
           <span class="inter">to tag your Flickr photos from here without cutting and pasting.</span>
         </div>
       <% end -%>
