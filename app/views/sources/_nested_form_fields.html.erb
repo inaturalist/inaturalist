@@ -1,40 +1,67 @@
 <%- 
   assoc_name ||= "source"
   foreign_key ||= "#{assoc_name}_id" || :source_id
+  if source = f.object.send(assoc_name)
+    source.html = render(:partial => "sources/chooser", :object => source)
+  end
+  source_options = []
+  user_sources ||= current_user.sources.all(:limit => 100, :order => "title")
+  source_options << ["Sources you've added", user_sources] unless user_sources.blank?
+  source_options << ["All", Source.all(:limit => 100, :order => "title")]
+  sources = source_options.map(&:last).compact.flatten.map do |src|
+    src.html = render(:partial => "sources/chooser", :object => src)
+    src
+  end.compact
+  chooser_options = {
+    :placeholder => "Type source title...", 
+    :class => "existing", 
+    "data-chooser-default-sources" => sources.to_json(:methods => [:html])
+  }
+  if source
+    chooser_options["data-chooser-chosen"] = source.to_json(:methods => [:html])
+  end
 -%>
-<div class="source_nested_form_fields">
-  <%= f.collection_select foreign_key, Source.all(:limit => 100), :id, :title, :include_blank => "Unknown" %>
-
-  <% if f.object.send(assoc_name) -%>
-    <%- edit_source_fields = capture do %>
-      <% f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
-        <%= s.text_field :title %>
-        <%= s.text_field :in_text %>
-        <%= s.text_field :url %>
-        <%= s.text_area :citation %>
-      <% end %>
-    <%- end -%>
-    <%= link_to_function "Edit #{f.object.send(assoc_name).title}...", 
-      "$(this).after('#{escape_javascript edit_source_fields}'); " +
-      "$(this).hide();" +
-      "$(this).parents('.source_nested_form_fields').find('select').remove();" +
-      "$('#new_source_link').remove()",
-      :id => "edit_source_link" %>
-    <br/>
-  <% end -%>
-  <%- new_source_fields = capture do %>
-    <% f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
-      <%= s.text_field :title %>
-      <%= s.text_field :in_text %>
-      <%= s.text_field :url %>
-      <%= s.text_area :citation %>
+<% if f.object.send(assoc_name) -%>
+  <%- edit_source_fields = capture do %>
+    <% f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
+      <%= s.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
+      <%= s.text_field :in_text, :description => "e.g. Greene, 2000" %>
+      <%= s.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>
+      <%= s.text_area :citation, :description => "e.g. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print." %>
     <% end %>
   <%- end -%>
-  <%= link_to_function "Add new source...", 
-    "$(this).after('#{escape_javascript new_source_fields}'); " +
-    "$(this).hide(); " +
+  <!-- <%= link_to_function "Edit #{f.object.send(assoc_name).title}...", 
+    "$(this).after('#{escape_javascript edit_source_fields}'); " +
+    "$(this).hide();" +
     "$(this).parents('.source_nested_form_fields').find('select').remove();" +
-    "$('#edit_source_link').remove()",
-    :id => "new_source_link" %>
-  
+    "$('#new_source_link').remove()",
+    :id => "edit_source_link" %>
+  <br/> -->
+<% end -%>
+<%- new_source_fields = capture do %>
+  <fieldset>
+    <legend>New Source</legend>
+    <% f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
+      <%= s.hidden_field :user_id, :value => current_user.id %>
+      <%= s.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
+      <%= s.text_field :in_text, :description => "e.g. Greene, 2000" %>
+      <%= s.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>
+      <%= s.text_area :citation, :description => "e.g. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print." %>
+    <% end %>
+    <%= link_to_function "cancel", 
+      "$(this).parents('.source_nested_form_fields').find('.choicefields').show();" +
+      "$(this).parents('fieldset:first').remove(); " %>
+  </fieldset>
+<%- end -%>
+
+<div class="source_nested_form_fields">
+  <div class="choicefields">
+    <%= f.text_field foreign_key, chooser_options %>
+    or 
+    <%= link_to_function "Add new source...", 
+        "$(this).parents('.choicefields').after('#{escape_javascript new_source_fields}'); " +
+        "$(this).parents('.choicefields').hide();" +
+        "$(this).parents('.source_nested_form_fields').find('.existing').chooser('clear')",
+      :id => "new_source_link" %>
+  </div>
 </div>

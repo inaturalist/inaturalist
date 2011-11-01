@@ -16,8 +16,8 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       end
       if %w(text_field file_field).include?(name.to_s)
         css_class = options[:class] || []
-        css_class = [css_class, 'text'].flatten.uniq if name.to_s == "text_field"
-        css_class = [css_class, 'file'].flatten.uniq if name.to_s == "file_field"
+        css_class = [css_class, 'text'].flatten.uniq.join(' ') if name.to_s == "text_field"
+        css_class = [css_class, 'file'].flatten.uniq.join(' ') if name.to_s == "file_field"
         args << {} unless args.last.is_a?(Hash)
         args.last[:class] = css_class
       end

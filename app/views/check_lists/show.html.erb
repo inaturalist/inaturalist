@@ -117,11 +117,28 @@
   <div id="pagination">
     <%= will_paginate @listed_taxa %>
   </div>
+  
+  <% if @list.source -%>
+    <%= separator %>
+    <div class="clear meta">
+      <strong>Source:</strong>
+      <%= citation_for @list.source %>
+    </div>
+  <% end -%>
+  <% if @list.user -%>
+    <div class="clear meta">
+      <strong>Created by </strong>
+      <%= link_to user_image(@list.user), @list.user %>
+      <%= link_to_user @list.user %>
+      on
+      <%= @list.created_at.to_date.to_s(:long) %>
+    </div>
+  <% end -%>
 </div>
 
 <div class="last column span-7">
   <div id="sidebar">
-    <% if logged_in? %>
+    <% if @list.editable_by?(current_user) %>
       <div id="add" class="clear">
         <%= link_to_function "Add Batch", "$('#add_batch_dialog').jqmShow()", 
           :class => "right small", :style => 'padding-top: 3px' %>

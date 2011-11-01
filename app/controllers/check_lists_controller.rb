@@ -68,6 +68,7 @@ class CheckListsController < ApplicationController
   
   def create
     @check_list = CheckList.new(params[:check_list])
+    @check_list.user = current_user
     
     # Override taxon choice with iconic taxon choice
     if params[:iconic_taxon] && (iconic_taxon = Taxon.find_by_id(params[:iconic_taxon][:id].to_i))

@@ -33,8 +33,36 @@ describe ListedTaxon do
     it "should set observations_count" do
       @listed_taxon.observations_count.should be(2)
     end
+    
     it "should set observations_month_counts" do
       @listed_taxon.observations_month_counts.should_not be_blank
+    end
+  end
+  
+  describe "creation for check lists" do
+    before(:each) do
+      @place = Place.make
+      @check_list = @place.check_list
+      @check_list.should be_is_default
+      @user = User.make
+      @user_check_list = @place.check_lists.create(:title => "Foo!", :user => @user, :source => Source.make)
+    end
+    
+    it "should make sure the user matches the check list user" do
+      lt = @user_check_list.listed_taxa.build(:taxon => Taxon.make, :user => @user)
+      lt.should be_valid
+      lt = @user_check_list.listed_taxa.build(:taxon => Taxon.make, :user => User.make)
+      lt.should_not be_valid
+    end
+    
+    it "should allow curators to add to owned check lists" do
+      lt = @user_check_list.listed_taxa.build(:taxon => Taxon.make, :user => make_curator)
+      lt.should be_valid
+    end
+    
+    it "should inherit the check list's source" do
+      lt = @user_check_list.listed_taxa.create(:taxon => Taxon.make, :user => @user)
+      lt.source_id.should be(@user_check_list.source_id)
     end
   end
   

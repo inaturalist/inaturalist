@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027211849) do
+ActiveRecord::Schema.define(:version => 20111028190803) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,12 @@ ActiveRecord::Schema.define(:version => 20111027211849) do
   add_index "comments", ["parent_type", "parent_id"], :name => "index_comments_on_parent_type_and_parent_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "counties_simplified", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
+  end
+
   create_table "counties_simplified_01", :force => true do |t|
     t.integer       "place_geometry_id"
     t.integer       "place_id"
@@ -65,6 +71,24 @@ ActiveRecord::Schema.define(:version => 20111027211849) do
   add_index "counties_simplified_01", ["geom"], :name => "index_counties_simplified_01_on_geom", :spatial => true
   add_index "counties_simplified_01", ["place_geometry_id"], :name => "index_counties_simplified_01_on_place_geometry_id"
   add_index "counties_simplified_01", ["place_id"], :name => "index_counties_simplified_01_on_place_id"
+
+  create_table "counties_simplified_1", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
+  end
+
+  create_table "countries_large_polygons", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.integer  "place_id"
+    t.geometry "geom",     :limit => nil
+  end
+
+  create_table "countries_simplified", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
+  end
 
   create_table "countries_simplified_1", :force => true do |t|
     t.integer       "place_geometry_id"
@@ -261,10 +285,12 @@ ActiveRecord::Schema.define(:version => 20111027211849) do
     t.datetime "last_synced_at"
     t.integer  "place_id"
     t.integer  "project_id"
+    t.integer  "source_id"
   end
 
   add_index "lists", ["place_id"], :name => "index_lists_on_place_id"
   add_index "lists", ["project_id"], :name => "index_lists_on_project_id"
+  add_index "lists", ["source_id"], :name => "index_lists_on_source_id"
   add_index "lists", ["type", "id"], :name => "index_lists_on_type_and_id"
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
 
@@ -553,17 +579,30 @@ ActiveRecord::Schema.define(:version => 20111027211849) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.integer  "user_id"
   end
 
-  create_table "states_simplified_1", :force => true do |t|
-    t.integer       "place_geometry_id"
+  add_index "sources", ["user_id"], :name => "index_sources_on_user_id"
+
+  create_table "states_large_polygons", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.integer  "place_id"
+    t.geometry "geom",     :limit => nil
+  end
+
+  create_table "states_simplified", :id => false, :force => true do |t|
+    t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",              :limit => nil, :null => false
+    t.multi_polygon "geom",     :limit => nil
+  end
+
+  create_table "states_simplified_1", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
   end
 
   add_index "states_simplified_1", ["geom"], :name => "index_states_simplified_1_on_geom", :spatial => true
-  add_index "states_simplified_1", ["place_geometry_id"], :name => "index_states_simplified_1_on_place_geometry_id"
-  add_index "states_simplified_1", ["place_id"], :name => "index_states_simplified_1_on_place_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -621,7 +660,7 @@ ActiveRecord::Schema.define(:version => 20111027211849) do
   add_index "taxa", ["observations_count"], :name => "index_taxa_on_observations_count"
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
-  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name"
+  add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
 
   create_table "taxon_links", :force => true do |t|
     t.string   "url",                                         :null => false
@@ -665,19 +704,19 @@ ActiveRecord::Schema.define(:version => 20111027211849) do
 
   create_table "taxon_ranges", :force => true do |t|
     t.integer       "taxon_id"
+    t.string        "range_type"
     t.string        "source"
     t.integer       "start_month"
     t.integer       "end_month"
     t.datetime      "created_at"
     t.datetime      "updated_at"
-    t.string        "range_type"
     t.string        "range_content_type"
     t.string        "range_file_name"
     t.integer       "range_file_size"
     t.text          "description"
     t.integer       "source_id"
-    t.integer       "source_identifier"
     t.multi_polygon "geom",               :limit => nil
+    t.integer       "source_identifier"
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true

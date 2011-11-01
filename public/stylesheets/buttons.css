@@ -1,8 +1,8 @@
 /* Overrides to the Blueprint button plugin */
 a.button,
 .button, 
-input[type='button'],
-button {
+input[type='button'].button,
+button.button {
 /*  Lifted from Blueprint plugin, which doesn't support <input type="button">*/
   display:block;
   float:left;

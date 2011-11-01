@@ -2,6 +2,9 @@
 class CheckList < List
   belongs_to :place
   belongs_to :taxon
+  belongs_to :source
+  
+  accepts_nested_attributes_for :source
   
   before_validation :set_title
   before_create :set_last_synced_at, :create_taxon_list_rule
@@ -21,9 +24,8 @@ class CheckList < List
     true
   end
   
-  # CheckLists can be edited by any logged in user.
   def editable_by?(user)
-    user.is_a?(User)
+    user && (self.user.blank? || self.user == user || user.is_curator?)
   end
   
   def owner_name

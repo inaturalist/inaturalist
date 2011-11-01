@@ -94,11 +94,9 @@ p.ui { margin-bottom: 10px; }
 }
 
 /* Default Form Styles */
-textarea,
+textarea.text,
 input.text,
 input.file,
-input[type="text"],
-input[type="file"],
 .select {
   border: 1px solid #ccc;
   width: auto;
@@ -886,7 +884,8 @@ form.inline .label {
   z-index: 1000 !important;
 }
 .nobr { white-space: nowrap; }
-.inlineblock {
+.inlineblock,
+.ui-multiselect {
   display:-moz-inline-stack;
   display:inline-block;
   zoom:1;
@@ -978,3 +977,26 @@ a.id_please_notice:hover{color:#584925;}
 .overlaycontrol ul { list-style: none; margin: 0; text-align: left;}
 
 .shades { background-color: black; opacity: 0.5;filter:Alpha(Opacity=50); position: absolute; width: 100%; height: 100%; top: 0; left: 0; position: fixed;}
+
+.ui-chooser-input, .ui-chooser-choice { 
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  padding: 6px 5px 5px; 
+  margin: 0; 
+  border-color: #ccc; 
+  border-right: 0 transparent; 
+  overflow: hidden; 
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.ui-widget-content.ui-chooser-choice { background: #eee; }
+.ui-chooser-button {float: none; padding: 0; margin: 0; border-color: #ccc; vertical-align: middle; }
+.ui-multiselect { margin: 0; }
+
+.ui-icon-loading {
+  background-image: url(/images/spinner-small-on_eeeeee.gif);
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.source_nested_form_fields .ui-chooser-choice { max-width: 300px; padding: 5px 10px; }

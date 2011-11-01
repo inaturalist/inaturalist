@@ -419,7 +419,11 @@ module ApplicationHelper
   
   def citation_for(record)
     return 'unknown' if record.blank?
-    render :partial => "#{record.class.to_s.underscore.pluralize}/citation", :object => record
+    if record.is_a?(Source)
+      h(record.citation || [record.title, record.in_text, record.url].join(', '))
+    else
+      render :partial => "#{record.class.to_s.underscore.pluralize}/citation", :object => record
+    end
   rescue ActionView::MissingTemplate
     record.to_s.gsub(/[\<\>]*/, '')
   end

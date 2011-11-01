@@ -1,0 +1,22 @@
+<h2>Sources</h2>
+<table>
+  <tr>
+    <th>id</th>
+    <th>title</th>
+    <th>details</th>
+  </tr>
+  <% for source in @sources %>
+    <tr>
+      <th><%= source.id %></th>
+      <th><%= source.title %></th>
+      <td>
+        <dl class="stacked">
+          <% for c in Source.column_names - %w(id title) %>
+            <dt><%= c.humanize %></dt>
+            <dd><%= source.send(c) %></dd>
+          <% end %>
+        </dl>
+      </td>
+    </tr>
+  <% end %>
+</table>

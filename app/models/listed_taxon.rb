@@ -30,6 +30,7 @@ class ListedTaxon < ActiveRecord::Base
   before_create :set_place_id
   before_create :set_updater_id
   before_save :set_user_id
+  before_save :set_source_id
   before_save :update_observation_associates
   after_save :update_observation_associates_for_check_list
   after_save :update_observations_count
@@ -113,7 +114,11 @@ class ListedTaxon < ActiveRecord::Base
       errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
     end
     
-    unless list.is_a?(CheckList)
+    if list.is_a?(CheckList)
+      if list.user && user && user != list.user && !user.is_curator?
+        errors.add(:user_id, "must be the list creator or a curator")
+      end
+    else
       CHECK_LIST_FIELDS.each do |field|
         errors.add(field, "can only be set for check lists") unless send(field).blank?
       end
@@ -195,6 +200,11 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_user_id
     self.user_id ||= list.user_id
+    true
+  end
+  
+  def set_source_id
+    self.source_id ||= list.source_id
     true
   end
   

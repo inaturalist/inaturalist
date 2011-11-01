@@ -167,6 +167,11 @@ $(document).ready(function() {
   ]).preload()
   
   $('[data-tip]').each(autoTip)
+  
+  $('.source_nested_form_fields input.existing').chooser({
+    collectionUrl: 'http://'+window.location.host + '/sources.json',
+    resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json',
+  })
 })
 
 function autoTip() {
@@ -244,4 +249,14 @@ $.fn.shades = function(e, options) {
       $(shades).show()
       break;
   }
+}
+
+$.fn.showInlineBlock = function() {
+  $(this).css({
+    'display': '-moz-inline-stack',
+    'display': 'inline-block',
+    'zoom': 1,
+    '*display': 'inline'
+  })
+  return this
 }
