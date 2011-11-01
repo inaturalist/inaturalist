@@ -257,7 +257,7 @@ class TaxaController < ApplicationController
     end
     drill_params = {}
     
-    if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id]))
+    if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id].to_i))
       drill_params[:ancestors] = @taxon.id
     end
     
