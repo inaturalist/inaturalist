@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111028190803) do
+ActiveRecord::Schema.define(:version => 20111102210429) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -424,6 +424,7 @@ ActiveRecord::Schema.define(:version => 20111028190803) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "delta",                                             :default => false
+    t.integer  "user_id"
   end
 
   add_index "places", ["bbox_area"], :name => "index_places_on_bbox_area"
@@ -432,6 +433,7 @@ ActiveRecord::Schema.define(:version => 20111028190803) do
   add_index "places", ["parent_id"], :name => "index_places_on_parent_id"
   add_index "places", ["place_type"], :name => "index_places_on_place_type"
   add_index "places", ["swlat", "swlng", "nelat", "nelng"], :name => "index_places_on_swlat_and_swlng_and_nelat_and_nelng"
+  add_index "places", ["user_id"], :name => "index_places_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.integer  "parent_id",    :null => false

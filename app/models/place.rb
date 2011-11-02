@@ -1,5 +1,6 @@
 class Place < ActiveRecord::Base
   acts_as_tree
+  belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   has_many :check_lists, :dependent => :destroy
   has_many :listed_taxa
@@ -192,6 +193,14 @@ class Place < ActiveRecord::Base
   
   def contains_lat_lng?(lat, lng)
     swlat <= lat && nelat >= lat && swlng <= lng && nelng >= lng
+  end
+  
+  def editable_by?(user)
+    return false if user.blank?
+    return true if user.is_curator?
+    return false if !self.user.blank? && self.user != user
+    return false if %(country state county).include?(place_type_name.to_s.downcase)
+    true
   end
   
   # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)

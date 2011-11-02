@@ -8,6 +8,7 @@ class PlacesController < ApplicationController
     :children, :taxa, :geometry, :guide]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :search]
+  before_filter :editor_required, :only => [:edit, :update, :destroy]
   
   caches_page :geometry
   
@@ -170,7 +171,9 @@ class PlacesController < ApplicationController
     if params[:woeid]
       @place = Place.import_by_woeid(params[:woeid])
     else
-      @place = Place.create(params[:place])
+      @place = Place.new(params[:place])
+      @place.user = current_user
+      @place.save
       unless params[:kml].blank?
         @geometry = geometry_from_messy_kml(params[:kml])
         @place.save_geom(@geometry) if @geometry && @place.valid?
@@ -452,5 +455,14 @@ class PlacesController < ApplicationController
     rescue ThinkingSphinx::ConnectionError
       @places = []
     end
+  end
+  
+  def editor_required
+    unless @place.editable_by?(current_user)
+      flash[:error] = "You don't have permission to do that."
+      redirect_back_or_default(@place)
+      return false
+    end
+    true
   end
 end

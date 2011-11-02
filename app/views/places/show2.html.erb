@@ -63,6 +63,13 @@
 </div>
 
 <div id="maintabs">
+  <div id="metalinks" class="meta right">
+    <%= link_to "embed place widget", observations_widget_path(:place_id => @place), :rel => "nofollow" %>
+    <% if @place.editable_by?(current_user) -%>
+      |
+      <%= link_to "edit place", edit_place_path(@place), :rel => "nofollow" %>
+    <% end -%>
+  </div>
   <ul>
     <li><a href="#guidetab"><span>Species Guide</span></a></li>
     <li><a href="<%= observations_url(:place_id => @place, :per_page => 50, :partial => "cached_component") %>" rel="<%= observations_url(:place_id => @place) %>" title="observationstab"><span>Observations</span></a></li>
