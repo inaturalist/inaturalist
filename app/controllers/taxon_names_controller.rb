@@ -161,14 +161,14 @@ class TaxonNamesController < ApplicationController
   private
   
   def load_taxon
-    @taxon = Taxon.find_by_id(params[:taxon_id])
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     @taxon ||= @taxon_name.taxon if @taxon_name
     render_404 and return unless @taxon
     true
   end
   
   def load_taxon_name
-    @taxon_name = TaxonName.find_by_id(params[:id])
+    @taxon_name = TaxonName.find_by_id(params[:id].to_i)
     render_404 and return unless @taxon_name
     true
   end
