@@ -717,7 +717,7 @@ class TaxaController < ApplicationController
   end
   
   def merge
-    @keeper = Taxon.find_by_id(params[:taxon_id])
+    @keeper = Taxon.find_by_id(params[:taxon_id].to_i)
     
     if request.post? && params[:commit] == "Merge"
       unless @keeper
@@ -893,7 +893,7 @@ class TaxaController < ApplicationController
   
   def tree
     @taxon = Taxon.find_by_id(params[:id], :include => [:taxon_names, :photos])
-    @taxon ||= Taxon.find_by_id(params[:taxon_id], :include => [:taxon_names, :photos])
+    @taxon ||= Taxon.find_by_id(params[:taxon_id].to_i, :include => [:taxon_names, :photos])
     unless @taxon
       @taxon = Taxon.find_by_name('Life')
       @taxon ||= Taxon.iconic_taxa.first.parent

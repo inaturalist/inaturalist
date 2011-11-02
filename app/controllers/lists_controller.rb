@@ -165,7 +165,7 @@ class ListsController < ApplicationController
   
   def remove_taxon    
     respond_to do |format|
-      if @listed_taxon = @list.listed_taxa.find_by_taxon_id(params[:taxon_id])
+      if @listed_taxon = @list.listed_taxa.find_by_taxon_id(params[:taxon_id].to_i)
         @listed_taxon.destroy
         format.html do
           flash[:notice] = "Taxon removed from list."

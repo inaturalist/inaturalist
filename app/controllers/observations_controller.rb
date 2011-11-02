@@ -322,7 +322,7 @@ class ObservationsController < ApplicationController
     options = {}
     options[:id_please] ||= params[:id_please]
     
-    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) unless params[:taxon_id].blank?
     unless params[:taxon_name].blank?
       @taxon ||= TaxonName.first(:conditions => [
         "lower(name) = ?", params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase]

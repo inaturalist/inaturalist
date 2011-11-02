@@ -276,9 +276,9 @@ module Shared::ListsModule
   def update_rules(list, params)
     params[:taxa].each do |taxon_params|
       list.rules << ListRule.new(
-        :operand => Taxon.find(taxon_params[:taxon_id]), 
+        :operand => Taxon.find_by_id(taxon_params[:taxon_id].to_i), 
         :operator => 'in_taxon?'
-      ) unless list.rules.map(&:operand_id).include?(taxon_params[:taxon_id])
+      ) unless list.rules.map(&:operand_id).include?(taxon_params[:taxon_id].to_i)
     end
     list
   end

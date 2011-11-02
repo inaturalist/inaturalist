@@ -411,10 +411,10 @@ class Observation < ActiveRecord::Base
     
     scope = scope.has_quality_grade( params[:quality_grade]) if QUALITY_GRADES.include?(params[:quality_grade])
     
-    if params[:taxon]
-      scope = scope.of(params[:taxon])
+    if taxon = params[:taxon]
+      scope = scope.of(taxon.is_a?(Taxon) ? taxon : taxon.to_i)
     elsif !params[:taxon_id].blank?
-      scope = scope.of(params[:taxon_id])
+      scope = scope.of(params[:taxon_id].to_i)
     elsif !params[:taxon_name].blank?
       taxon_name = TaxonName.find_single(params[:taxon_name], :iconic_taxa => params[:iconic_taxa])
       scope = scope.of(taxon_name.try(:taxon))

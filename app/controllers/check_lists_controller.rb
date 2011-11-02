@@ -61,7 +61,7 @@ class CheckListsController < ApplicationController
       return redirect_to places_path
     end
     
-    @taxon = Taxon.find_by_id(params[:taxon_id])
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     @iconic_taxa = Taxon.iconic_taxa
     @check_list = CheckList.new(:place => @place, :taxon => @taxon)
   end

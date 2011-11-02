@@ -8,7 +8,7 @@ class TaxonLinksController < ApplicationController
   def index; redirect_to taxa_path; end
   
   def new
-    @taxon = Taxon.find_by_id(params[:taxon_id]) if params[:taxon_id]
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
     @taxon ||= Taxon.find_by_name('Life')
     @taxon_link = TaxonLink.new(:taxon => @taxon)
   end
