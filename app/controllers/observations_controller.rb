@@ -166,7 +166,7 @@ class ObservationsController < ApplicationController
   
   def of
     if request.format.html?
-      redirect_to observations_path(:taxon_id => params[:id])
+      redirect_to observations_path(:taxon_id => params[:id].to_i)
       return
     end
     unless @taxon = Taxon.find_by_id(params[:id])
