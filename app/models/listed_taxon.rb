@@ -310,10 +310,15 @@ class ListedTaxon < ActiveRecord::Base
       "(#{Time.now - start_time}s)"
   end
   
+  def guide_taxon_cache_key
+    "guide_taxon_#{id}_#{taxon_id}"
+  end
+  
   def expire_caches
     return true unless place_id
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(Place.guide_cache_key(place_id))
+    ctrl.expire_fragment(guide_taxon_cache_key)
+    ctrl.expire_page("/places/cached_guide/#{place_id}.html")
     true
   end
   

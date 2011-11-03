@@ -27,13 +27,13 @@
     <% for taxon in @taxa %>
       <%-
         listed_taxon = @listed_taxa_by_taxon_id[taxon.id]
-        cache_key = "guide_taxon_#{listed_taxon.try(:id)}_#{taxon.try(:id)}"
+        cache_key = listed_taxon.guide_taxon_cache_key
       -%>
-      <%- cache cache_key, :expires_in => 30.minutes do %>
+      <%- cache cache_key do %>
         <%= render :partial => "listed_taxa/guide_taxon", :locals => { :listed_taxon => listed_taxon, :taxon => taxon } %>
       <% end -%>
     <% end %>
-    <%= will_paginate @taxa %>
+    <%= will_paginate @taxa, :params => {:action => 'guide'} %>
   <% end -%>
   <script type="text/javascript" charset="utf-8">
     var newTaxa = <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>

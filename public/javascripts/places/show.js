@@ -134,7 +134,8 @@ var PlaceGuide = {
     function replaceParams() {
       var href = $(this).attr("href") || $(this).serialize()
       href = PlaceGuide.cleanParamString(href)
-      $.bbq.pushState($.deparam.querystring(href), PlaceGuide.REPLACE_EXISTING)
+      var state = href.match(/[\?\&]/) ? $.deparam.querystring(href) : {}
+      $.bbq.pushState(state, PlaceGuide.REPLACE_EXISTING)
       return false
     }
     function filterParams() {
@@ -208,6 +209,9 @@ var PlaceGuide = {
       url = window.location.origin + '/places/guide/'+placeId
     }
     var data = $.param.fragment()
+    if (data.length == 0) {
+      url = url.replace('guide', 'cached_guide')
+    }
     if (PlaceGuide.lastRequest) {
       PlaceGuide.lastRequest.abort()
     }

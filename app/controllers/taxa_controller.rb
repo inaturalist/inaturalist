@@ -616,6 +616,7 @@ class TaxaController < ApplicationController
   
   def update_photos
     @taxon.photos = retrieve_photos
+    @taxon.save
     flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
   rescue Errno::ETIMEDOUT

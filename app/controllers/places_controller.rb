@@ -2,20 +2,16 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :login_required, :except => [:index, :show, :search, 
-    :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide]
+    :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide, :cached_guide]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
-    :children, :taxa, :geometry, :guide]
+    :children, :taxa, :geometry, :guide, :cached_guide]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
   caches_page :geometry
-  caches_action :guide, 
-    :cache_path => Proc.new {|c| Place.guide_cache_key(c.params[:id])},
-    :if => Proc.new {|c|
-      c.params.keys.size == 3
-    }
+  caches_page :cached_guide
   
   def index
     place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
@@ -220,6 +216,12 @@ class PlacesController < ApplicationController
             :scientific_name, :html])
       end
     end
+  end
+  
+  # page cached version of guide
+  def cached_guide
+    params.delete_if{|k,v| !%w(controller action id).include?(k.to_s)}
+    guide
   end
   
   def guide
