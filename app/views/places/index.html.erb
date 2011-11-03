@@ -74,7 +74,7 @@
           ), place) %>
         <div class="placeinfo">
           <h3>
-            <%= link_to place.name, place %>
+            <%= link_to h(truncate(place.name, :length => 30)), place %>
           </h3>
           <div class="small description">
             <%= place.place_type_name %>

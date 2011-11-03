@@ -15,9 +15,10 @@ class PlacesController < ApplicationController
   def index
     place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
       place_types = [Place::PLACE_TYPE_CODES['Country']]
-      @places = Place.all(:order => "RANDOM()", :limit => 5, :conditions => ["place_type IN (?)", place_types])
+      @places = Place.all(:order => "RANDOM()", :limit => 50, :conditions => ["place_type IN (?)", place_types])
       @places.map{|p| p.id}
     end
+    place_ids = place_ids.sort_by{rand}[0..4]
     @places ||= Place.all(:conditions => ["id in (?)", place_ids])
     
     respond_to do |format|
@@ -33,60 +34,6 @@ class PlacesController < ApplicationController
   end
   
   def show
-    if params[:test]
-      show2
-      return
-    end
-    # TODO this causes a temporary table sort, which == badness
-    @listed_taxa = @place.listed_taxa.paginate(
-      :page => 1,
-      :per_page => 11,
-      :select => "MAX(listed_taxa.id) AS id, listed_taxa.taxon_id",
-      :joins => 
-        "LEFT OUTER JOIN taxon_photos ON taxon_photos.taxon_id = listed_taxa.taxon_id " +
-        "LEFT OUTER JOIN photos ON photos.id = taxon_photos.photo_id",
-      :group => "listed_taxa.taxon_id",
-      :order => "id DESC",
-      :conditions => "photos.id IS NOT NULL"
-    )
-    @taxa = Taxon.all(:conditions => ["id IN (?)", @listed_taxa.map(&:taxon_id)],
-      :include => [:photos, :taxon_names])
-    
-
-    # Load tips HTML
-    @taxa.map! do |taxon|
-      taxon.html = render_to_string(:partial => 'taxa/taxon.html.erb', 
-        :object => taxon, :locals => {
-          :image_options => {:size => 'small'},
-          :link_image => true,
-          :link_name => true,
-          :include_image_attribution => true
-      })
-      taxon
-    end
-    
-    begin
-      @place_geometry = @place.place_geometry
-    rescue ActiveRecord::StatementInvalid => e
-      Rails.logger.error "[ERROR #{Time.now}] Broken geometry for place #{@place.id}: #{e}"
-      HoptoadNotifier.notify(e, :request => request, :session => session)
-    end
-
-    @children = @place.children.paginate(:page => 1, :order => 'name')
-    @observations = Observation.in_place(@place).order_by("observed_on DESC NULLS LAST").all(
-      :include => [:user, :taxon, :photos, :iconic_taxon],
-      :limit => 30
-    )
-    if @observations.blank? && @place.bounding_box
-      @observations = Observation.in_bounding_box(*@place.bounding_box).
-        order_by("observed_on DESC NULLS LAST").
-        all(:include => [:user, :taxon, :photos, :iconic_taxon], :limit => 30)
-    end
-    
-    @directions_to = "#{@place.latitude}, #{@place.longitude}"
-  end
-  
-  def show2
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     if logged_in?
       scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
@@ -99,7 +46,6 @@ class PlacesController < ApplicationController
     browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
-    render :action => "show2"
   end
   
   def geometry
@@ -360,7 +306,8 @@ class PlacesController < ApplicationController
     hhtml.search('table[id=toc], table.metadata').remove
     @decoded = hhtml.to_s
     @decoded.gsub!(/\[\d+\]/, '')
-    @decoded.gsub!(/(width|white-space):[^;\"]+?[;\"]/, '')
+    @decoded.gsub!(/width:\d+/, '')
+    @decoded.gsub!(/white-space:\s?nowrap/, '')
   end
   
   def geometry_from_messy_kml(kml)
