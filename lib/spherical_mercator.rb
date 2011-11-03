@@ -64,10 +64,12 @@ class SphericalMercator
   end
   
   def from_ll_to_pixel(lonlat, zoom)
+    lonlat[1] = -89.999 if lonlat[1] <= -90
+    lonlat[1] = 90 if lonlat[1] > 90
     e = @zc[zoom]
     x = lonlat[0] * @Bc[zoom] + e[0]
     g = Math.log(Math.tan((lonlat[1] / (2*@RAD_TO_DEG)) + (Math::PI / 4)))
     y = e[1] - (g * @Cc[zoom])
-    return x.round, y.round
+    [x.round, y.round]
   end
 end
