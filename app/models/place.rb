@@ -519,4 +519,8 @@ class Place < ActiveRecord::Base
       lat > swlat && lat < nelat && lng > swlng && lng < nelng
     end
   end
+  
+  def self.guide_cache_key(id)
+    "place_guide_#{id}"
+  end
 end

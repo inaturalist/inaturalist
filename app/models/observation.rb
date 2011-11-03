@@ -1154,4 +1154,13 @@ class Observation < ActiveRecord::Base
   def self.white_list_sanitizer
     @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
   end
+  
+  def self.expire_components_for(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    Observation.of(taxon).find_each do |o|
+      ctrl = ActionController::Base.new
+      ctrl.expire_fragment(o.component_cache_key)
+      ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
+    end
+  end
 end

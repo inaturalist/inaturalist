@@ -583,7 +583,7 @@ iNaturalist.Map.builtPlacesMapType = function(map, options) {
         marker.setZIndex(1)
         marker.setVisible(marker.layer == layerForZoom(map.getZoom()))
         google.maps.event.addListener(marker, 'click', function() {
-          window.location = '/places/'+this.placeId+'?test=true'
+          window.location = '/places/'+this.placeId
         })
         map.placeMarkers.push(marker)
       }

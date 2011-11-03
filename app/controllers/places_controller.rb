@@ -11,6 +11,11 @@ class PlacesController < ApplicationController
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
   caches_page :geometry
+  caches_action :guide, 
+    :cache_path => Proc.new {|c| Place.guide_cache_key(c.params[:id])},
+    :if => Proc.new {|c|
+      c.params.keys.size == 3
+    }
   
   def index
     place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
@@ -277,19 +282,16 @@ class PlacesController < ApplicationController
       order = "listed_taxa.observations_count DESC"
     end
     
-    @cache_this = @filter_params.blank? && (params[:page].blank? || params[:page].to_i == 1)
-    if !@cache_this || !fragment_exist?(:action => "guide", :action_suffix => "first_page")
-      @taxa = scope.paginate( 
-        :select => "DISTINCT ON (ancestry, taxa.id) taxa.*",
-        :include => [:taxon_names, :photos],
-        :order => order,
-        :page => params[:page], :per_page => 50)
-      @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
-      @listed_taxa = @place.listed_taxa.all(
-        :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
-        :conditions => ["taxon_id IN (?)", @taxa])
-      @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
-    end
+    @taxa = scope.paginate( 
+      :select => "DISTINCT ON (ancestry, taxa.id) taxa.*",
+      :include => [:taxon_names, :photos],
+      :order => order,
+      :page => params[:page], :per_page => 50)
+    @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
+    @listed_taxa = @place.listed_taxa.all(
+      :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
+      :conditions => ["taxon_id IN (?)", @taxa])
+    @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
     render :layout => false, :partial => "guide_taxa"
   end

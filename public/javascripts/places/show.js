@@ -227,7 +227,7 @@ var PlaceGuide = {
           itemSelector : ".guide_taxa .listed_taxon",
           bufferPx: 400,
           loading: {
-            img: (window.location.origin + '/images/spinner-small.gif'),
+            img: '/images/spinner-small.gif',
             msgText: '',
             finishedMsg: '<span class="meta">No more taxa to load!</span>'
           }
@@ -247,9 +247,9 @@ var PlaceGuide = {
   },
   updateBarchart: function(context, selector, countAttr, options) {
     options = options || {}
-    var count = $('.guide_taxa', context).attr(countAttr)
+    var count = $('.guide_taxa', context).attr(countAttr) || $(selector).attr('data-original-count')
     if (!count) { return false }
-    var total = $('.guide_taxa', context).attr('data-listed-taxa-count') || 0,
+    var total = $('.guide_taxa', context).attr('data-listed-taxa-count') || $(selector).attr('data-original-total') || 0,
         labelText = ' of ' + total,
         valueWidth = Math.round(total == 0 ? 0 : (count / total)*100),
         remainderWidth = 100 - valueWidth,

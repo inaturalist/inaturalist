@@ -34,10 +34,12 @@ class ListedTaxon < ActiveRecord::Base
   before_save :update_observation_associates
   after_save :update_observation_associates_for_check_list
   after_save :update_observations_count
+  after_save :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
   after_destroy :update_user_life_list_taxa_count
+  after_destroy :expire_caches
   
   validates_presence_of :list, :taxon
   validates_uniqueness_of :taxon_id, 
@@ -307,4 +309,12 @@ class ListedTaxon < ActiveRecord::Base
     logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +
       "(#{Time.now - start_time}s)"
   end
+  
+  def expire_caches
+    return true unless place_id
+    ctrl = ActionController::Base.new
+    ctrl.expire_fragment(Place.guide_cache_key(place_id))
+    true
+  end
+  
 end

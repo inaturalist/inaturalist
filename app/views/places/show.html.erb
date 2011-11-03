@@ -80,7 +80,7 @@
     <div id="sidecol">
       <% if logged_in? -%>
         <div class="stacked">
-          <div id="observedchart" class="barchart inlineblock">
+          <div id="observedchart" class="barchart inlineblock" data-original-count="<%= @current_user_observed_count.to_i %>" data-original-total="<%= @listed_taxa_count.to_i %>">
             <%= render :partial => "shared/barchart_datum", :locals => {
               :value => @current_user_observed_count.to_i, 
               :max => @listed_taxa_count.to_i, 
@@ -154,9 +154,6 @@
 
       <div id="listed_taxa">
         <div id="taxa" class="clear taxa fluid medium grid" data-guide-url="<%= place_guide_url(@place) %>">
-          <% if frag = controller.read_fragment(:action => "guide", :action_suffix => "first_page") -%>
-            <%= frag %>
-          <% end -%>
         </div>
       </div>
     </div>

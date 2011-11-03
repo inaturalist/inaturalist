@@ -169,7 +169,7 @@ class Identification < ActiveRecord::Base
     ctrl.expire_fragment(ident.observation.component_cache_key(:for_owner => true))
     ctrl.expire_fragment(ident.observation.component_cache_key)
   rescue => e
-    puts "[DEBUG] Failed to expire obs caches for #{self}: #{e}"
+    puts "[DEBUG] Failed to expire caches for #{ident}: #{e}"
     puts e.backtrace.join("\n")
   end
   

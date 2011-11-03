@@ -147,7 +147,9 @@ class CheckList < List
       listed_taxa.each do |lt|
         lt.force_update_observation_associates = true
         lt.save # sets all observation associates, months stats, etc.
-        lt.destroy if lt.last_observation_id.blank? && lt.auto_removable_from_check_list?
+        if lt.last_observation_id.blank? && lt.auto_removable_from_check_list?
+          lt.destroy
+        end
       end
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
