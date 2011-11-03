@@ -159,7 +159,9 @@ class Place < ActiveRecord::Base
       self.name
     end
     new_display_name = [new_name, *ancestor_names].join(', ')
-    self.update_attribute(:display_name, new_display_name) unless new_record?
+    unless new_record?
+      Place.update_all(["display_name = ?", new_display_name], ["id = ?", id])
+    end
     
     new_display_name
   end
