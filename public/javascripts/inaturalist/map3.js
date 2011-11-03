@@ -172,6 +172,11 @@ google.maps.Map.prototype.zoomToObservations = function() {
   this.fitBounds(this.getObservationBounds())
 };
 
+google.maps.Map.prototype.addPlaces = function(places) {
+  for (var i = places.length - 1; i >= 0; i--){
+    this.addPlace(places[i])
+  }
+}
 google.maps.Map.prototype.addPlace = function(place, options) {
   if (typeof(options) == 'undefined') { var options = {} };
   
@@ -511,6 +516,106 @@ iNaturalist.Map.buildObservationsMapType = function(map) {
   })
 }
 
+iNaturalist.Map.builtPlacesMapType = function(map, options) {
+  options = $.extend({
+    tilestacheServer: ''
+  }, options)
+  map.placeMarkers = []
+  map.placeUrlsRequested = {}
+  var countryIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DodgerBlue_dark.png')
+  countryIcon.size = new google.maps.Size(12,12)
+  countryIcon.anchor = new google.maps.Point(6,6)
+  var stateIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DodgerBlue.png')
+  stateIcon.size = new google.maps.Size(12,12)
+  stateIcon.anchor = new google.maps.Point(6,6)
+  var countyIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_DodgerBlue_light.png')
+  countyIcon.size = new google.maps.Size(12,12)
+  countyIcon.anchor = new google.maps.Point(6,6)
+  var openSpaceIcon = new google.maps.MarkerImage('/images/mapMarkers/mm_20_stemless_iNatGreen.png')
+  openSpaceIcon.size = new google.maps.Size(12,12)
+  openSpaceIcon.anchor = new google.maps.Point(6,6)
+  var PlacesMapType = function(tileSize) { this.tileSize = tileSize; }
+  PlacesMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
+    var tileSize = this.tileSize,
+        max = Math.pow(2, zoom),
+        coordX = coord.x < 0 ? max + coord.x : coord.x,
+        coordY = coord.y < 0 ? max + coord.y : coord.y,
+        layer = layerForZoom(zoom),
+        div = ownerDocument.createElement('DIV'),
+        url = options.tilestacheServer+'/'+layer+'/'+zoom+'/'+coordX+'/'+coordY+'.geojson'
+    
+    if (coordX > max) { coordX = coordX - max }
+    if (coordY > max) { coordY = coordY - max }
+    
+    if (map.placeUrlsRequested[url]) {
+      return div
+    }
+    map.placeUrlsRequested[url] = true
+
+    $.getJSON(url, function(json) {
+      for (var i = json.features.length - 1; i >= 0; i--){
+        var f = json.features[i],
+            place = f.properties,
+            proj = map.getProjection()
+        place.latitude = f.geometry.coordinates[1]
+        place.longitude = f.geometry.coordinates[0]
+        var pt = proj.fromLatLngToPoint(new google.maps.LatLng(place.latitude, place.longitude))
+        switch (place.place_type) {
+          case 12:
+            icon = countryIcon
+            break
+          case 9:
+            icon = countyIcon
+            break
+          case 100:
+            icon = openSpaceIcon
+            break
+          default:
+            icon = stateIcon
+        }
+        var marker = map.createMarker(place.latitude, place.longitude, {
+          icon: icon, 
+          title: place.display_name
+        })
+        marker.setMap(map)
+        marker.placeId = place.id
+        marker.layer = layer
+        marker.setZIndex(1)
+        marker.setVisible(marker.layer == layerForZoom(map.getZoom()))
+        google.maps.event.addListener(marker, 'click', function() {
+          window.location = '/places/'+this.placeId+'?test=true'
+        })
+        map.placeMarkers.push(marker)
+      }
+    })
+    return div
+  }
+  
+  function layerForZoom(zoom) {
+    var layer = 'country_points_5'
+    if (zoom > 3 && zoom <= 5) {
+      layer = 'place_points_5'
+    } else if (zoom > 5 && zoom <= 7) {
+      layer = 'place_points_r0'
+    } else if (zoom > 7 && zoom <= 9) {
+      layer = 'place_points_r1'
+    } else if (zoom > 9) {
+      layer = 'place_points_r2'
+    }
+    return layer  
+  }
+  
+  google.maps.event.addListener(map, 'zoom_changed', function() {
+    var zoom = map.getZoom(),
+        layer = layerForZoom(zoom)
+    for (var i = map.placeMarkers.length - 1; i >= 0; i--){
+      map.placeMarkers[i].setVisible(map.placeMarkers[i].layer == layer)
+    }
+  })
+  
+  return PlacesMapType
+}
+
 iNaturalist.FullScreenControl = function(map) {
   var controlDiv = document.createElement('DIV')
   controlDiv.style.padding = '5px';
@@ -662,4 +767,6 @@ iNaturalist.Map.ICONIC_TAXON_COLORS = {
   Arachnida: '#FF4500'
 }
 
+
 })();
+

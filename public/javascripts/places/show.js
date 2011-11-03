@@ -14,8 +14,7 @@ $(document).ready(function() {
       return html
     }
   })
-  // loadWikipediaDescription()
-  // loadFlickrPlacePhotos()
+  
   $('#placephotos').loadFlickrPlacePhotos()
   PlaceGuide.init('#taxa')
   $('#maintabs').tabs({
@@ -57,14 +56,15 @@ $.fn.loadFlickrPlacePhotos = function(options) {
     sort: 'interestingness-desc',
     page: 1,
     per_page: 7,
-    woe_id: PLACE.woeid,
     extras: extras,
     safe_search: 1,
     text: "landscape -portrait -model",
     license: '1,2,3,4,5,6'
   }
   
-  if (PLACE.swlng) {
+  if (PLACE.woeid && PLACE.woeid != '') {
+    flickrOptions.woe_id = PLACE.woeid
+  } else if (PLACE.swlng) {
     flickrOptions.bbox = [PLACE.swlng, PLACE.swlat, PLACE.nelng, PLACE.nelat].join(', ')
   } else {
     flickrOptions.lat = PLACE.latitude

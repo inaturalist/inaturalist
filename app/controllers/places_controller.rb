@@ -13,66 +13,15 @@ class PlacesController < ApplicationController
   caches_page :geometry
   
   def index
-    ip = request.remote_ip
-    # ip = '66.117.138.26' # Emeryville IP, for testing
-    limit = 9
-    options = {
-      :include => [:parent, :check_list],
-      :limit => limit
-    }
-    unless params[:place_type].blank?
-      options.merge!(:conditions => {:place_type => params[:place_type]})
+    place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
+      place_types = [Place::PLACE_TYPE_CODES['Country']]
+      @places = Place.all(:order => "RANDOM()", :limit => 5, :conditions => ["place_type IN (?)", place_types])
+      @places.map{|p| p.id}
     end
-    @places = []
-    @q = params[:q] || session[:places_index_q]
-    @q = @q.to_s
-    search_places_for_index(options) if @q
-    
-    @places = if @place && @places.size > 2
-      @places.insert(2, @place)
-    else
-      @places.insert(0, @place)
-    end.compact
-    
-    if @places.blank?
-      if Rails.cache.exist?('random_place_ids')
-        place_ids = Rails.cache.read('random_place_ids')
-        @places = Place.all(:conditions => ["id in (?)", place_ids])
-      else
-        @places = Place.all(options.merge(:order => "RANDOM()"))
-        Rails.cache.write('random_place_ids', @places.map(&:id), :expires_in => 1.day)
-      end
-    end
-    @places = @places.compact
-    
-    @taxa_by_place_id = {}
-    @places.each do |place|
-      @taxa_by_place_id[place.id] = place.taxa.all(
-        :limit => 6, 
-        :include => [:photos, :taxon_names, :iconic_taxon],
-        :order => "listed_taxa.id desc")
-    end
+    @places ||= Place.all(:conditions => ["id in (?)", place_ids])
     
     respond_to do |format|
       format.html
-      format.js do
-        render :update do |page|
-          if @places.empty?
-            page << "showNoPlaces()"
-          else
-            @place ||= @places.first
-            page << "hideNoPlaces()"
-            page << "map.removePlaces()"
-            @places.each_with_index do |place, i|
-              page << "addPlace(#{place.to_json}, #{i+1}, '#{dom_id(place)}')"
-            end
-            page << "map.zoomToPlaces()"
-            page.replace_html :places, :partial => 'index_columns'
-            page << "bindPlaceClicks()"
-            page << "selectPlace('#{dom_id(@place)}')"
-          end
-        end
-      end
     end
   end
   
@@ -411,6 +360,7 @@ class PlacesController < ApplicationController
     hhtml.search('table[id=toc], table.metadata').remove
     @decoded = hhtml.to_s
     @decoded.gsub!(/\[\d+\]/, '')
+    @decoded.gsub!(/(width|white-space):[^;\"]+?[;\"]/, '')
   end
   
   def geometry_from_messy_kml(kml)
