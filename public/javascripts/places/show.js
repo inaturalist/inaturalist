@@ -198,7 +198,7 @@ var PlaceGuide = {
   load: function(context, options) {
     $(context).shades('open', {
       css: {'background-color': 'white'}, 
-      content: '<div class="noresults"><span class="loading bigloading status inlineblock">Loading...</span></div>'
+      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
     })
     var options = options || {}
     var url = options.url || $(context).attr('data-guide-url')
@@ -208,7 +208,17 @@ var PlaceGuide = {
       url = window.location.origin + '/places/guide/'+placeId
     }
     var data = $.param.fragment()
-    $(context).load(url, data, function() {
+    if (PlaceGuide.lastRequest) {
+      PlaceGuide.lastRequest.abort()
+    }
+    PlaceGuide.lastRequest = $.ajax({
+      url: url,
+      type: 'GET',
+      data: data,
+      dataType: 'html'
+    }).done(function(html) {
+      $(context).html(html)
+      PlaceGuide.lastRequest = null
       PlaceGuide.ajaxify(context)
       if ($('#taxa .guide_taxa .pagination').length > 0) {
         $('#taxa .guide_taxa').infinitescroll({
