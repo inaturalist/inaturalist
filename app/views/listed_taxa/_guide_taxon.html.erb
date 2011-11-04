@@ -9,7 +9,7 @@
     </div>
   <% end -%>
 <% end -%>
-<div class="listed_taxon inlineblock" href="<%= listed_taxon_url(listed_taxon) %>">
+<div class="listed_taxon inlineblock" foo="bar" href="<%= listed_taxon_path(listed_taxon) %>">
   <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
     :include_full_name => true,
     :image_options => {:size => 'small'},

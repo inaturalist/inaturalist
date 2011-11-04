@@ -130,6 +130,7 @@ var PlaceGuide = {
   },
   
   init: function(context) {
+    window.taxa = window.taxa || {}
     // ensure controls change url state
     function replaceParams() {
       var href = $(this).attr("href") || $(this).serialize()
@@ -280,6 +281,13 @@ var PlaceGuide = {
     return {count: count, total: total, valueWidth: valueWidth}
   },
   ajaxify: function(context) {
+    var jsonContainer = $(context).find('code.json')
+    var newTaxa = $.parseJSON(jsonContainer.text())
+    if (newTaxa) {
+      window.taxa = $.extend({}, window.taxa, newTaxa)
+    }
+    jsonContainer.remove()
+    
     PlaceGuide.updateConfirmedChart(context)
     PlaceGuide.updateObservedChart(context)
     $('[data-tip]', context).each(autoTip)
@@ -298,7 +306,7 @@ var PlaceGuide = {
           dialog = $('#'+dialogId),
           taxonElt = $(this).find('.taxon[id*="taxon_"]').get(0),
           taxonId = taxonElt ? $(taxonElt).attr('id').split('_')[1] : null,
-          taxon = taxa[taxonId]
+          taxon = window.taxa[taxonId]
       if (dialog.length == 0) {
         dialog = $('<div id="'+dialogId+'"></div>').addClass('dialog')
         $('body').append(dialog)

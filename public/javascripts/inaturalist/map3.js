@@ -366,8 +366,6 @@ google.maps.Map.prototype._mouseMoveListener = function(e) {
   var tileKey = iNaturalist.Map.obsTilePointsURL(Math.floor(mousePx.x / 256), 
     Math.floor(mousePx.y / 256), zoom);
   
-  // console.log("tileKey: ", tileKey);
-  
   window.tilePoints = window.tilePoints || {}
   if (typeof(window.tilePoints[tileKey]) == 'undefined' || window.tilePoints[tileKey].length == 0) return;
   var observations = window.tilePoints[tileKey];

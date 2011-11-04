@@ -35,12 +35,8 @@
     <% end %>
     <%= will_paginate @taxa, :params => {:action => 'guide'} %>
   <% end -%>
-  <script type="text/javascript" charset="utf-8">
-    var newTaxa = <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>
-    if (taxa) {
-      $.extend(taxa, newTaxa)
-    } else {
-      var taxa = newTaxa
-    }
-  </script>
+  <%# NOTE this is a lame kludge to get some JSON in here such that infinite scroll won't nix it %>
+  <code class="json listed_taxon" style="display:none;">
+    <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>
+  </code>
 </div>
