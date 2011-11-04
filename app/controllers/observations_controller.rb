@@ -166,10 +166,10 @@ class ObservationsController < ApplicationController
   
   def of
     if request.format.html?
-      redirect_to observations_path(:taxon_id => params[:id].to_i)
+      redirect_to observations_path(:taxon_id => params[:id])
       return
     end
-    unless @taxon = Taxon.find_by_id(params[:id])
+    unless @taxon = Taxon.find_by_id(params[:id].to_i)
       render_404 && return
     end
     @observations = Observation.of(@taxon).all(:order => "observations.id desc", :limit => 500).sort_by{|o| [o.research_grade? ? 1 : 0, id]}
