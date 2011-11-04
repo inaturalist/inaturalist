@@ -142,17 +142,19 @@
         <% else %>
           <span id="wikipedia_summary" class="description">No summary has been set.</span>
         <% end -%>
-        <strong><%= link_to_remote "refresh", 
-          :url => {:action => 'refresh_wikipedia_summary', :id => taxon},
-          :loading => "$('#summary_refresh').hide(); $('#summary_refresh_loading').show()",
-          :complete => 
-            "$('#summary_refresh').show(); " + 
-            "$('#summary_refresh_loading').hide();",
-          :success => "$('#wikipedia_summary').html(request)",
-          :error => "alert(request.responseText)",
-          :datatype => :html,
-          :html => { :id => 'summary_refresh'} %></strong>
-        <span id="summary_refresh_loading" class="eee loading status" style="display: none">Loading...</span>
+        <% unless @taxon.new_record? -%>
+          <strong><%= link_to_remote "refresh", 
+            :url => {:action => 'refresh_wikipedia_summary', :id => taxon},
+            :loading => "$('#summary_refresh').hide(); $('#summary_refresh_loading').show()",
+            :complete => 
+              "$('#summary_refresh').show(); " + 
+              "$('#summary_refresh_loading').hide();",
+            :success => "$('#wikipedia_summary').html(request)",
+            :error => "alert(request.responseText)",
+            :datatype => :html,
+            :html => { :id => 'summary_refresh'} %></strong>
+          <span id="summary_refresh_loading" class="eee loading status" style="display: none">Loading...</span>
+        <% end -%>
       </blockquote>
       <span class="description">
         This is a cached summary of this taxon based on its

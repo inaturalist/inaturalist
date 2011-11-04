@@ -350,6 +350,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def to_param
+    return nil if new_record?
     "#{id}-#{name.gsub(/\W/, '-')}"
   end
   
