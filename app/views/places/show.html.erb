@@ -167,7 +167,7 @@
     <div class="container">
       <div class="column span-8 append-1">
         <h3>Flickr Photos</h3>
-        <div class="photos">
+        <div class="stacked photos">
           <div class="loading status">Loading Flickr photos...</div>
         </div>
       </div>
@@ -187,3 +187,14 @@
   </div>
 </div><!-- end maintabs -->
 
+<div class="meta right">
+  <% if @place.user -%>
+    Place added to iNat by 
+    <%= link_to user_image(@place.user), @place.user %>
+    <%= link_to you_or_login(@place.user), @place.user %>
+    on
+    <%= @place.created_at.to_date.to_s(:long) %>
+    |
+  <% end -%>
+  <%= link_to "Add a new place", new_place_path, :class => "readmore" %>
+</div>
