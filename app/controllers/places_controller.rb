@@ -97,6 +97,10 @@ class PlacesController < ApplicationController
         @geometry = geometry_from_messy_kml(params[:kml])
         @place.save_geom(@geometry) if @geometry
       end
+      unless @place.valid?
+        render :action => :edit
+        return
+      end
       expire_page :action => "geometry", :id => @place.id
       flash[:notice] = "Place updated!"
       redirect_to @place

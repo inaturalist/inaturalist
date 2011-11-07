@@ -4,4 +4,13 @@
 class PlaceGeometry < ActiveRecord::Base
   belongs_to :place
   named_scope :without_geom, {:select => (column_names - ['geom']).join(', ')}
+  
+  validates_presence_of :geom
+  validate :validate_geometry
+  
+  def validate_geometry
+    if geom.num_points < 3
+      errors.add(:geom, " must have more than 2 points")
+    end
+  end
 end

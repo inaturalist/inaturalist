@@ -27,4 +27,10 @@ class TaxonRange < ActiveRecord::Base
     # :bucket => INAT_CONFIG['s3_bucket'],
     # :path => "taxon_ranges/:id.:extension",
     # :url => ":s3_alias_url"
+  
+  def validate_geometry
+    if geom && geom.num_points < 3
+      errors.add(:geom, " must have more than 2 points")
+    end
+  end
 end

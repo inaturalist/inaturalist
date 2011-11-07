@@ -18,7 +18,17 @@ module GeoRuby
       end
     end
     
+    class MultiPolygon
+      def num_points
+        geometries.sum {|r| r.num_points}
+      end
+    end
+    
     class Polygon
+      def num_points
+        rings.sum {|r| r.size}
+      end
+      
       def bounding_box
         unless with_z
           bbox = @rings[0].bounding_box

@@ -187,6 +187,7 @@ class Place < ActiveRecord::Base
       end
       self.bbox_area = width * height
     end
+    true
   end
   
   def straddles_date_line?
@@ -297,7 +298,10 @@ class Place < ActiveRecord::Base
       else
         self.place_geometry = PlaceGeometry.create(other_attrs)
       end
-      update_bbox_from_geom(geom)
+      if place_geometry.valid?
+        update_bbox_from_geom(geom)
+        errors.add_to_base "boundary shape was invalid: #{place_geometry.errors.full_messages.to_sentence}"
+      end
     rescue ActiveRecord::StatementInvalid => e
       puts "[ERROR] \tCouldn't save #{self.place_geometry}: " + 
         e.message[0..200]
