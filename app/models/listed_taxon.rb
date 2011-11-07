@@ -151,6 +151,7 @@ class ListedTaxon < ActiveRecord::Base
       ListedTaxon.update_first_observation_for(self, options)
       save
     else
+      options[:dj_priority] = 1
       ListedTaxon.send_later(:update_last_observation_for, id, options)
       ListedTaxon.send_later(:update_first_observation_for, id, options)
     end
@@ -222,7 +223,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
-    list.send_later(:sync_with_parent)
+    list.send_later(:sync_with_parent, :dj_priority => 1)
     true
   end
   
@@ -234,7 +235,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def update_observations_count
     if list.is_a?(CheckList) && !@force_update_observation_associates
-      ListedTaxon.send_later(:update_observations_count_for, id)
+      ListedTaxon.send_later(:update_observations_count_for, id, :dj_priority => 1)
       return true
     end
     ListedTaxon.update_observations_count_for(id)

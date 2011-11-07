@@ -643,7 +643,8 @@ class Observation < ActiveRecord::Base
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
-      :skip_update => true)
+      :skip_update => true,
+      :dj_priority => 1)
     true
   end
   

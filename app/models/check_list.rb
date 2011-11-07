@@ -69,10 +69,10 @@ class CheckList < List
     end
     return unless self.place.parent_id
     parent_check_list = self.place.parent.check_list
-    self.listed_taxa.all(
+    listed_taxa.find_each(
       :include => [:taxon, {:place => {:parent => :check_list}}], 
       :conditions => conditions
-    ).each do |listed_taxon|
+    ) do |listed_taxon|
       next if parent_check_list.listed_taxa.exists?(:taxon_id => listed_taxon.taxon_id)
       parent_check_list.add_taxon(listed_taxon.taxon)
     end

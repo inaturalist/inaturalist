@@ -296,7 +296,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def set_wikipedia_summary_later
-    send_later(:set_wikipedia_summary) if wikipedia_title_changed?
+    send_later(:set_wikipedia_summary, :dj_priority => 2) if wikipedia_title_changed?
     true
   end
   
@@ -605,7 +605,7 @@ class Taxon < ActiveRecord::Base
       return Nokogiri::HTML::DocumentFragment.parse(super).to_s
     end
     
-    send_later(:set_wikipedia_summary)
+    send_later(:set_wikipedia_summary, :dj_priority => 2)
     nil
   end
   
