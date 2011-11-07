@@ -75,10 +75,8 @@ Rails::Initializer.run do |config|
   config.active_record.observers = :user_observer, :listed_taxon_sweeper
   
   # Gems
-  # config.gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
   config.gem 'will_paginate', :version => '2.3.15'
   config.gem 'rubyist-aasm', :lib => 'aasm', :source => 'http://gems.github.com', :version => '2.0.2'
-  # config.gem "GeoRuby", :lib => 'geo_ruby'
   config.gem "dbf", :version => "<= 1.2.9"
   config.gem "nofxx-georuby", :lib => 'geo_ruby'
   config.gem "spatial_adapter"
@@ -111,7 +109,6 @@ Rails::Initializer.run do |config|
   # config.gem 'newrelic_rpm'
   config.gem 'delayed_paperclip'
   config.gem "friendly_id", :version => "~> 3.2.1"
- # config.gem "omniauth", :version => ">= 0.1.6"
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

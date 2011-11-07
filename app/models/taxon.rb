@@ -183,6 +183,8 @@ class Taxon < ActiveRecord::Base
     end
   end
   
+  PROBLEM_NAMES = %w(california lichen)
+  
   named_scope :observed_by, lambda {|user|
     { :joins => """
       JOIN (
@@ -807,15 +809,20 @@ class Taxon < ActiveRecord::Base
   
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
-    conditions = options[:lexicon] ? {:lexicon => options[:lexicon]} : {}
-    taxon_names = tags.map do |tag|
-      if matches = tag.match(/^taxonomy:\w+=(.*)/)
-        TaxonName.find_by_name(matches[1], :conditions => conditions)
+    scope = TaxonName.scoped(:include => [:taxon])
+    scope = scope.scoped(:conditions => {:lexicon => options[:lexicon]}) if options[:lexicon]
+    names = tags.map do |tag|
+      if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
+        name.downcase
       else
-        TaxonName.find_by_name(tag, :conditions => conditions)
+        name = tag.downcase
+        next if PROBLEM_NAMES.include?(name)
+        name
       end
     end.compact
-    taxon_names.map(&:taxon).compact
+    scope = scope.scoped(:conditions => ["lower(name) IN (?)", names])
+    taxon_names = scope.all
+    taxon_names.map{|tn| tn.taxon}.compact
   end
   
   def self.find_duplicates
