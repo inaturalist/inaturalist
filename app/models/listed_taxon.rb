@@ -223,7 +223,9 @@ class ListedTaxon < ActiveRecord::Base
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
-    list.send_later(:sync_with_parent, :dj_priority => 1)
+    unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
+      list.send_later(:sync_with_parent, :dj_priority => 1)
+    end
     true
   end
   

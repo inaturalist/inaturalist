@@ -61,20 +61,17 @@ class CheckList < List
   end
   
   def sync_with_parent(options = {})
-    conditions = "listed_taxa.place_id IS NOT NULL"
+    conditions = ["place_id = ?", place_id]
     unless options[:force]
       time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
-      conditions = CheckList.merge_conditions(conditions, 
+      conditions = ListedTaxon.merge_conditions(conditions, 
         ["listed_taxa.created_at > ?", time_since_last_sync])
     end
     return unless self.place.parent_id
     parent_check_list = self.place.parent.check_list
-    listed_taxa.all(
-      :include => [:taxon], 
-      :conditions => conditions
-    ).each do |listed_taxon|
-      next if parent_check_list.listed_taxa.exists?(:taxon_id => listed_taxon.taxon_id)
-      parent_check_list.add_taxon(listed_taxon.taxon)
+    ListedTaxon.do_in_batches(:include => [:taxon], :conditions => conditions) do |lt|
+      next if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
+      parent_check_list.add_taxon(lt.taxon)
     end
     parent_check_list.update_attribute(:last_synced_at, Time.now)
   end
