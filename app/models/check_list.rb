@@ -38,7 +38,7 @@ class CheckList < List
   end
   
   def create_taxon_list_rule
-    unless taxon.nil? || rules.map(&:operand_id).include?(taxon_id)
+    unless taxon.nil? || rules.map{|r| r.operand_id}.include?(taxon_id)
       self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
     end
     true
@@ -69,11 +69,13 @@ class CheckList < List
     end
     return unless self.place.parent_id
     parent_check_list = self.place.parent.check_list
+    Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, conditions: #{conditions.inspect}"
     ListedTaxon.do_in_batches(:include => [:taxon], :conditions => conditions) do |lt|
       next if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
       parent_check_list.add_taxon(lt.taxon)
     end
     parent_check_list.update_attribute(:last_synced_at, Time.now)
+    Rails.logger.info "[INFO #{Time.now}] Finished syncing check list #{id} with parent #{parent_check_list.id}"
   end
   
   def first_observation_of(taxon)
@@ -133,14 +135,19 @@ class CheckList < List
     options[:observation_id] ||= observation_id
     taxon_ids = CheckList.get_taxon_ids_to_refresh(observation, options)
     return if taxon_ids.blank?
+    Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, taxon_ids: #{taxon_ids.inspect}"
     current_place_ids = CheckList.get_current_place_ids_to_refresh(observation, options)
+    Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, current_place_ids: #{current_place_ids.inspect}"
     current_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", current_place_ids, taxon_ids])
     current_listed_taxa_of_this_taxon = current_listed_taxa.select{|lt| lt.taxon_id == observation.taxon_id}
-    new_place_ids = current_place_ids - current_listed_taxa_of_this_taxon.map(&:place_id)
+    new_place_ids = current_place_ids - current_listed_taxa_of_this_taxon.map{|lt| lt.place_id}
+    Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, new_place_ids: #{new_place_ids.inspect}"
     old_place_ids = CheckList.get_old_place_ids_to_refresh(observation, options)
+    Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, old_place_ids: #{old_place_ids.inspect}"
     old_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", old_place_ids - current_place_ids, taxon_ids])
     listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
     unless listed_taxa.blank?
+      Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
         lt.force_update_observation_associates = true
         lt.save # sets all observation associates, months stats, etc.
@@ -150,8 +157,10 @@ class CheckList < List
       end
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
+      Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
       add_new_listed_taxa(observation.taxon, new_place_ids)
     end
+    Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, finished"
   end
   
   def self.get_observation_to_refresh(observation)
@@ -168,7 +177,7 @@ class CheckList < List
     taxon_id = observation.try(:taxon_id) || options[:taxon_id]
     taxon_ids = [taxon_id, options[:taxon_id_was]].compact
     taxa = Taxon.all(:conditions => ["id in (?)", taxon_ids])
-    taxon_ids += taxa.map(&:ancestor_ids).flatten
+    taxon_ids += taxa.map{|t| t.ancestor_ids}.flatten
     taxon_ids.uniq.compact
   end
   
@@ -182,7 +191,7 @@ class CheckList < List
       end
       PlaceGeometry.all(:select => "place_geometries.id, place_id",
         :joins => "JOIN observations ON observations.id = #{observation_id}",
-        :conditions => conditions).map(&:place_id)
+        :conditions => conditions).map{|pg| pg.place_id}
     else
       []
     end
@@ -193,13 +202,13 @@ class CheckList < List
     observation_id = observation.try(:id) || options[:observation_id]
     place_ids = Place.all(:include => :listed_taxa, :conditions => [
       "listed_taxa.first_observation_id = ? OR listed_taxa.last_observation_id = ?", 
-      observation_id, observation_id]).map(&:id)
+      observation_id, observation_id]).map{|p| p.id}
     if (lat = options[:latitude_was]) && (lon = options[:longitude_was])
       place_ids += PlaceGeometry.all(:select => "place_geometries.id, place_id",
         :joins => "JOIN observations ON observations.id = #{observation_id}",
         :conditions => [
           "ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lon, lat]
-      ).map(&:place_id)
+      ).map{|pg| pg.place_id}
     end
     place_ids.compact.uniq
   end

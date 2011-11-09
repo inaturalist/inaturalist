@@ -260,3 +260,19 @@ describe CheckList, "refresh_with_observation" do
     @place.taxon_ids.should include(child.id)
   end
 end
+
+describe CheckList, "sync_with_parent" do
+  it "should add taxa to the parent" do
+    parent_place = Place.make
+    parent_list = parent_place.check_list
+    place = Place.make(:parent => parent_place)
+    list = place.check_list
+    taxon = Taxon.make
+    
+    list.add_taxon(taxon.id)
+    list.taxon_ids.should include(taxon.id)
+    list.sync_with_parent
+    parent_list.reload
+    parent_list.taxon_ids.should include(taxon.id)
+  end
+end
