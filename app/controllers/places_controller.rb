@@ -97,10 +97,19 @@ class PlacesController < ApplicationController
         @geometry = geometry_from_messy_kml(params[:kml])
         @place.save_geom(@geometry) if @geometry
       end
-      unless @place.valid?
+      
+      if !@place.valid?
         render :action => :edit
         return
       end
+      
+      if @place.place_geometry && !@place.place_geometry.valid?
+        flash[:error] = "Place updated, but boundary shape was invalid: #{@place.place_geometry.errors.full_messages.to_sentence}"
+        flash[:error] += " You may have to edit the KML directly to fix issues like slivers."
+        render :action => :edit
+        return
+      end
+      
       expire_page :action => "geometry", :id => @place.id
       flash[:notice] = "Place updated!"
       redirect_to @place
