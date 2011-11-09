@@ -21,7 +21,7 @@
     var countryListings = <%= @country_listings.to_json(:methods => [:occurrence_status]) %>;
     var extent = <%= @extent.to_json %>;
     var taxonRange = <%= @taxon_range.to_json(:include => [:source]) %>
-    var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon, :format => "geojson") : nil).to_json %>
+    var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon.id, :format => "geojson") : nil).to_json %>
     var taxonRangeKmlUrl = <%= (@taxon_range ? root_url.gsub(/\/$/, "") + @taxon_range.range.url : nil).to_json %>
     var observationsKmlUrl = <%= observations_url(:format => :kml, :taxon_id => @taxon.id).inspect %>
     var observationsJsonUrl = <%= observations_of_url(@taxon.id, :format => :json).inspect %>
