@@ -1,7 +1,7 @@
 class TaxonRange < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :source
-  has_many :listed_taxa
+  has_many :listed_taxa, :dependent => :nullify
   
   accepts_nested_attributes_for :source
   
