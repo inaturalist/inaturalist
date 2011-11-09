@@ -8,9 +8,10 @@ module BatchTools
     module ClassMethods
       def do_in_batches(options = {}, &block)
         batch_size = options.delete(:batch_size) || 1000
-        (self.count(options) / batch_size + 1).times do |batch|
+        full_count = self.count(options)
+        (full_count / batch_size + 1).times do |batch|
           logger.info "[INFO] Working on #{self} batch #{batch} of " + 
-            "#{self.count / batch_size + 1} (batch size: #{batch_size})"
+            "#{full_count / batch_size + 1} (batch size: #{batch_size})"
           work_on_batch(batch, batch_size, options, &block)
         end
       end
