@@ -11,64 +11,30 @@ People
 <% end %>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
-  td .usericon {
-    vertical-align: middle;
-  }
-  
-  td {
-    vertical-align: middle;
-  }
-  
-  td .description {
-    display: block;
-  }
-  
-  #active .usericon {
-    float: left;
-  }
-  
-  #active .attr {
-    display: block;
-    padding-left: 58px;
-    color: #888;
-  }
-  
-  #active .attr strong {
-    font-weight: normal;
-    color: #333;
-  }
-  
-  #active .attr.login {
-    font-size: 120%;
-  }
-  
-  #active .user {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-  }
-  
-  #letter_nav {
-    font-size: 100%;
-    margin-bottom: 1em;
-    text-align: left;
-  }
-  
-  #invite {
-    float: right;
-  }
-  
-  #invite .button {
-    margin-right: 0;
-  }
+  table {width: 100%;}
+  td .usericon{vertical-align:middle;}
+  td{vertical-align:middle;}
+  td .description{display:block;}
+  #active .usericon{float:left;}
+  #active .attr{display:block;padding-left:58px;color:#888;}
+  #active .attr strong{font-weight:normal;color:#333;}
+  #active .attr.login{font-size:120%;}
+  #active .user{border-bottom:1px solid #ddd;padding-bottom:1em;margin-bottom:1em;}
+  #letter_nav{font-size:100%;margin-bottom:1em;text-align:left;}
+  #invite{float:right;}
+  #invite .button{margin-right:0;}
 </style>
 <% end %>
 <div class="container">  
   <div id="pageheader" class="column span-24">
     <% if logged_in? -%>
-      <div id="invite" class="clear buttonrow toolset">
-        <strong class="inter">Know a naturalist?</strong>
-        <%= link_to "Invite them to iNat!", emailer_invite_path, :class => 'readmore inter' %>
+      <div class="right inline smallbuttons buttonrow">
+        <%= link_to "Invite someone to iNat!", emailer_invite_path, :class => "inter" %>
+        <span class="meta inter">or</span>
+        <% form_tag(people_path, :method => :get, :class => "last") do %>
+          <%= text_field_tag :q, @q, :class => 'text', :placeholder => "Search by name or email", :style => "width: 150px;" %>
+          <%= submit_tag 'Search', :class => 'last default button' %>
+        <% end %>
       </div>
     <% end -%>
     
@@ -79,19 +45,19 @@ People
       <h2>People following <%=h @user.login %></h2>
       <% end %>
     <% else %>
-    <h1>The People of iNaturalist</h1>
+    <h2>The People of iNaturalist</h2>
     <% end %>
   </div>
   
   <div class="column span-17 append-1">
     <% if controller.action_name == 'index' %>
-    <div id="letter_nav" class="pagination">
-      <%= link_to "All", url_for(), :class => "#{'current' unless @letter}" %>
-      <%- for letter in @alphabet -%>
-        <%- css_class = "#{'current' if letter == @letter}" -%>
-        <%= link_to letter.upcase, url_for(:letter => letter), :class => css_class -%>
-      <%- end -%>
-    </div>
+      <div id="letter_nav" class="pagination">
+        <%= link_to "All", url_for(), :class => "#{'current' unless @letter}" %>
+        <%- for letter in @alphabet -%>
+          <%- css_class = "#{'current' if letter == @letter}" -%>
+          <%= link_to letter.upcase, url_for(:letter => letter), :class => css_class -%>
+        <%- end -%>
+      </div>
     <% end %>
     
     <% if @users.blank? -%>
@@ -100,102 +66,115 @@ People
       </div>
     <% end -%>
     
-    <table class="readable">
+    <table>
       <% for person in @users %>
-      <tr>
-        <td width="40%">
-          <%= link_to(
-            image_tag(person.icon.url(:thumb), :class => 'usericon'),
-            observations_by_login_path(person.login)) %>
-          <%= link_to h(person.login), observations_by_login_path(person.login) %>
-        </td>
-        <td>
-          <%= link_to 'View Observations', 
-                      observations_by_login_path(person.login) %>
-          <% if person.observations.count > 0 -%>
-            <span class="description">
-              <span class="count"><%= number_with_delimiter(person.observations.count) %></span>
-              total
-            </span>
-          <% end -%>
-        </td>
-        <td>
-          <%= link_to 'View Lists', 
-                      lists_by_login_path(person.login) %>
-          <% if person.life_list && person.life_list.taxa.count > 0 %>
-            <span class="description">
-              <span class="count"><%= number_with_delimiter(person.life_list.taxa.count) %></span> known species total
-            </span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to 'View Journal', 
-                      journal_by_login_path(person.login) %>
-          <% unless person.posts.size == 0 %>
-            <span class="description">
-              <span class="count"><%= number_with_delimiter(person.posts.size) %></span>
-              posts
-            </span>
-          <% end %>
-        </td>
-      </tr>
+        <%- 
+          observations_count = @observation_counts[person.id].to_i
+          listed_taxa_count = @listed_taxa_counts[person.id].to_i
+          post_count = @post_counts[person.id].to_i
+        -%>
+        <tr>
+          <td>
+            <%= link_to(
+              image_tag(person.icon.url(:thumb), :class => 'usericon'),
+              observations_by_login_path(person.login)) %>
+          </td>
+          <td>
+            <%= link_to h(person.login), observations_by_login_path(person.login), :class => "readable" %>
+            <div class="meta">
+              <%=h person.name %>
+            </div>
+          </td>
+          <td>
+            <%= link_to 'View Observations', observations_by_login_path(person.login), :class => "readable" %>
+            <% if observations_count > 0 -%>
+              <div class="meta">
+                <span class="count"><%= number_with_delimiter(observations_count) %></span>
+                total
+              </div>
+            <% end -%>
+          </td>
+          <td>
+            <%= link_to 'View Lists', lists_by_login_path(person.login), :class => "readable" %>
+            <% if listed_taxa_count > 0 %>
+              <div class="meta">
+                <span class="count"><%= number_with_delimiter(listed_taxa_count) %></span> known species total
+              </div>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to 'View Journal', journal_by_login_path(person.login), :class => "readable" %>
+            <% unless post_count == 0 %>
+              <div class="meta">
+                <span class="count"><%= number_with_delimiter(post_count) %></span>
+                posts
+              </div>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
     </table>
     
     <%= will_paginate @users %>
   </div>
   <div id="activecol" class="last column span-6">
-    <% if !@updates.blank? %>
+    <% cache "recently_active", :expires_in => 5.minutes do %>
       <div id="active" class="box">
         <h2>Recently Active</h2>
-        <% for user, updates in @updates %>
-          <%- next unless user -%>
-          <div class="clear readable user">
-            <%= link_to(
-              image_tag(user.icon.url(:thumb), :class => 'usericon'),
-              observations_by_login_path(user.login)) %>
-            <span class="login attr">
-              <%= link_to char_wrap(h(user.login), 18), observations_by_login_path(user.login) %>
-            </span>
-            
-            <span class="update attr">
-              <%- update = updates.first -%>
-              <%- case update.class.name -%>
-              <%- when 'Observation' %>
-                added an
-                <%= link_to "observation", update %> of
-                <% if update.taxon -%>
-                  <%= update.species_guess =~ /^[aeiou]/i ? 'an' : 'a' %>
-                  <%= link_to update.species_guess, update.taxon %>
-                <% else %>
-                  something
-                <% end -%>
-              <%- when 'Identification' %>
-                added an <strong>ID</strong>
-                to an
-                <%= link_to 'observation', update.observation %>
-                by 
-                <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
-              <%- when 'Post' %>
-                made a <%= link_to "journal post", post_path(update.user.login, update) %>
-              <%- when 'Comment' %>
-                <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
-                <strong>commented</strong> on
-                <%= class_name =~ /^[aeiou]/i ? 'an' : 'a' %>
-                <% if update.parent.is_a? Post -%>
-                  <%= link_to class_name, post_path(update.parent.user.login, update.parent) %>
-                <% else %>
-                  <%= link_to class_name, update.parent %>
-                <% end -%>
-                <% if update.parent.user -%>
-                  by <%= link_to char_wrap(h(update.parent.user.login), 18), observations_by_login_path(update.parent.user.login) %>
-                <% end -%>
-              <% end %>
-              on <%= update.created_at.to_s(:long) %>
-            </span>
+        <% if @updates.blank? -%>
+          <div class="meta">
+            No recent activity
           </div>
-        <% end %>
+        <% else %>
+          <% for user, updates in @updates %>
+            <%- next unless user -%>
+            <div class="clear readable user">
+              <%= link_to(
+                image_tag(user.icon.url(:thumb), :class => 'usericon'),
+                observations_by_login_path(user.login)) %>
+              <span class="login attr">
+                <%= link_to char_wrap(h(user.login), 18), observations_by_login_path(user.login) %>
+              </span>
+
+              <span class="update attr">
+                <%- update = updates.first -%>
+                <%- case update.class.name -%>
+                <%- when 'Observation' %>
+                  added an
+                  <%= link_to "observation", update %> of
+                  <% if update.taxon -%>
+                    <%= update.species_guess =~ /^[aeiou]/i ? 'an' : 'a' %>
+                    <%= link_to update.species_guess, update.taxon %>
+                  <% else %>
+                    something
+                  <% end -%>
+                <%- when 'Identification' %>
+                  added an <strong>ID</strong>
+                  to an
+                  <%= link_to 'observation', update.observation %>
+                  by 
+                  <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
+                <%- when 'Post' %>
+                  made a <%= link_to "journal post", post_path(update.user.login, update) %>
+                <%- when 'Comment' %>
+                  <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
+                  <strong>commented</strong> on
+                  <%= class_name =~ /^[aeiou]/i ? 'an' : 'a' %>
+                  <% if update.parent.is_a? Post -%>
+                    <%= link_to class_name, post_path(update.parent.user.login, update.parent) %>
+                  <% else %>
+                    <%= link_to class_name, update.parent %>
+                  <% end -%>
+                  <% if update.parent.user -%>
+                    by <%= link_to char_wrap(h(update.parent.user.login), 18), observations_by_login_path(update.parent.user.login) %>
+                  <% end -%>
+                <% end %>
+                on <%= update.created_at.to_s(:long) %>
+              </span>
+            </div>
+          <% end %>
+        <% end -%>
       </div>
-    <% end %> 
+    <% end -%>
   </div>
 </div>

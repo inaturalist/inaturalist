@@ -112,28 +112,44 @@ class UsersController < ApplicationController
   # Methods below here are added by iNaturalist
   
   def index
-    update_find_options = {
-      :limit => 10, 
-      :order => "id DESC",
-      :conditions => ["created_at > ?", 1.week.ago],
-      :include => :user
-    }
-    
-    @updates = [
-      Observation.all(update_find_options),
-      Identification.all(update_find_options),
-      Post.published.all(update_find_options),
-      Comment.all(update_find_options)
-    ].flatten.sort{|a,b| b.created_at <=> a.created_at}.group_by(&:user)
+    unless fragment_exist?("recently_active")
+      update_find_options = {
+        :limit => 10, 
+        :order => "id DESC",
+        :conditions => ["created_at > ?", 1.week.ago],
+        :include => :user
+      }
+      @updates = [
+        Observation.all(update_find_options),
+        Identification.all(update_find_options),
+        Post.published.all(update_find_options),
+        Comment.all(update_find_options)
+      ].flatten.sort{|a,b| b.created_at <=> a.created_at}.group_by(&:user)
+    end
 
     find_options = {
       :page => params[:page] || 1, :order => 'login'
     }
+    @q = params[:q].to_s
+    if logged_in? && !@q.blank?
+      wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
+      if @q =~ Authentication.email_regex
+        find_options[:conditions] = ["email = ?", @q]
+      elsif @q =~ /\w+\s+\w+/
+        find_options[:conditions] = ["lower(name) LIKE ?", wildcard_q]
+      else
+        find_options[:conditions] = ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
+      end
+    end
     @alphabet = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z"
     if (@letter = params[:letter]) && @alphabet.include?(@letter.downcase)
       find_options.update(:conditions => ["login LIKE ?", "#{params[:letter].first}%"])
     end
     @users = User.active.paginate(find_options)
+    @observation_counts = Observation.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
+    @listed_taxa_counts = ListedTaxon.count(:conditions => ["list_id IN (?)", @users.map{|u| u.life_list_id}], 
+      :group => :user_id)
+    @post_counts = Post.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
   end
   
   def show
