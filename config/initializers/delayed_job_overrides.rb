@@ -8,6 +8,7 @@ module Delayed
       if args
         args.each_with_index do |a, i|
           next unless a.is_a?(Hash)
+          args[i] = a.clone # don't modify in place!
           priority = args[i].delete(:dj_priority).to_i
           args.slice!(i) if args[i].blank?
         end
