@@ -37,8 +37,6 @@ class ObservationsController < ApplicationController
     :update_photos]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
-    :by_login]
   before_filter :curator_required, :only => [:curation]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :edit,
     :update, :edit_batch, :create, :import, :import_photos, :new_from_list]
@@ -78,13 +76,7 @@ class ObservationsController < ApplicationController
         get_paginated_observations(search_params, find_options)
       end
     else
-      search_observations(search_params, find_options)
-      begin
-        @observations.total_entries
-      rescue ThinkingSphinx::SphinxError => e
-        Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-        @observations = WillPaginate::Collection.new(1,30, 0)
-      end
+      @observations = search_observations(search_params, find_options)
     end
 
     respond_to do |format|
@@ -1323,6 +1315,14 @@ class ObservationsController < ApplicationController
     sphinx_options = find_options.dup
     sphinx_options[:with] = {}
     
+    if sphinx_options[:page] && sphinx_options[:page].to_i > 50
+      if request.format.html?
+        flash.now[:notice] = "Heads up: observation search can only load up to 50 pages"
+      end
+      sphinx_options[:page] = 50
+      find_options[:page] = 50
+    end
+    
     if search_params[:has]
       # id please
       if search_params[:has].include?('id_please')
@@ -1438,6 +1438,12 @@ class ObservationsController < ApplicationController
       @observations = Observation.search(find_options.merge(sphinx_options))
     else
       @observations = Observation.search(q, find_options.merge(sphinx_options))
+    end
+    begin
+      @observations.total_entries
+    rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e
+      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
+      @observations = WillPaginate::Collection.new(1,30, 0)
     end
     @observations
   rescue ThinkingSphinx::ConnectionError
