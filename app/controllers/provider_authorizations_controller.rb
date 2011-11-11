@@ -20,7 +20,7 @@ class ProviderAuthorizationsController < ApplicationController
 
   def failure
     flash[:notice] = "Hm, that didn't work. Try again or choose another login option."
-    redirect_to_back_or_default login_url
+    redirect_back_or_default login_url
   end
 
   def destroy

@@ -1169,8 +1169,9 @@ class ObservationsController < ApplicationController
     
     find_options = {
       :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
-      :page => search_params[:page] || 1
+      :page => search_params[:page]
     }
+    find_options[:page] = 1 if find_options[:page].to_i == 0
     find_options[:per_page] = @prefs.per_page if @prefs
     
     # Set format-based page sizes
@@ -1190,6 +1191,8 @@ class ObservationsController < ApplicationController
     if find_options[:limit] && find_options[:limit].to_i > 200
       find_options[:limit] = 200
     end
+    
+    find_options[:per_page] = 30 if find_options[:per_page].to_i == 0
     
     # iconic_taxa
     if search_params[:iconic_taxa]
