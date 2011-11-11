@@ -8,7 +8,6 @@ class CheckList < List
   
   before_validation :set_title
   before_create :set_last_synced_at, :create_taxon_list_rule
-  after_save :update_listed_taxa_places
   
   validates_presence_of :place_id
   validates_uniqueness_of :taxon_id, :scope => :place_id, :allow_nil => true,
@@ -16,13 +15,6 @@ class CheckList < List
   
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
-  
-  def update_listed_taxa_places
-    if place_id
-      ListedTaxon.update_all("place_id = #{place_id}", "list_id = #{id}")
-    end
-    true
-  end
   
   def editable_by?(user)
     user && (self.user.blank? || self.user == user || user.is_curator?)
@@ -71,8 +63,14 @@ class CheckList < List
     parent_check_list = self.place.parent.check_list
     Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, conditions: #{conditions.inspect}"
     ListedTaxon.do_in_batches(:include => [:taxon], :conditions => conditions) do |lt|
-      next if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
+      Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, working on #{lt}"
+      if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
+        Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, taxon already on parent list, skipping..."
+        next
+      end
+      Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, adding taxon #{lt.taxon_id} to parent list"
       parent_check_list.add_taxon(lt.taxon)
+      Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, done with #{lt}"
     end
     parent_check_list.update_attribute(:last_synced_at, Time.now)
     Rails.logger.info "[INFO #{Time.now}] Finished syncing check list #{id} with parent #{parent_check_list.id}"
