@@ -87,8 +87,7 @@ class CheckList < List
   
   def observation_stats_for(taxon, options = {})
     scope = Observation.in_place(place).of(taxon).scoped({})
-    scope = scope.has_quality_grade(Observation::RESEARCH_GRADE) unless options[:all]
-    scope.count(:group => "EXTRACT(month FROM observed_on)")
+    scope.count(:group => "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)")
   end
   
   # This is a loaded gun.  Please fire with discretion.
@@ -149,7 +148,7 @@ class CheckList < List
       listed_taxa.each do |lt|
         lt.force_update_observation_associates = true
         lt.save # sets all observation associates, months stats, etc.
-        if lt.last_observation_id.blank? && lt.auto_removable_from_check_list?
+        if lt.auto_removable_from_check_list?
           lt.destroy
         end
       end

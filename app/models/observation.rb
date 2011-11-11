@@ -145,8 +145,8 @@ class Observation < ActiveRecord::Base
   before_update :set_quality_grade
                  
   after_save :refresh_lists,
-             :update_identifications_after_save
-  after_update :refresh_check_lists
+             :update_identifications_after_save,
+             :refresh_check_lists
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
@@ -640,8 +640,8 @@ class Observation < ActiveRecord::Base
   end
   
   def refresh_check_lists
-    refresh_needed = quality_grade_changed? || 
-      (research_grade? && (taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?))
+    refresh_needed = georeferenced? && taxon_id && 
+      (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
     CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,

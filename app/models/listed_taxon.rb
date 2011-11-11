@@ -258,10 +258,37 @@ class ListedTaxon < ActiveRecord::Base
   
   def observation_month_stats
     return {} if observations_month_counts.blank?
+    r_stats = confirmed_observation_month_stats
+    c_stats = casual_observation_month_stats
+    stats = {}
+    (r_stats.keys + c_stats.keys).uniq.each do |key|
+      stats[key] = r_stats[key].to_i + c_stats[key].to_i
+    end
+    stats
+  end
+  
+  def confirmed_observation_month_stats
+    return {} if observations_month_counts.blank?
     Hash[observations_month_counts.split(',').map {|kv| 
       k, v = kv.split('-')
-      [k, v.to_i]
-    }]
+      quality_grade = k[/[rc]/,0]
+      next unless (quality_grade == 'r' || quality_grade.blank?)
+      [k.to_i.to_s, v.to_i]
+    }.compact]
+  end
+  
+  def casual_observation_month_stats
+    return {} if observations_month_counts.blank?
+    Hash[observations_month_counts.split(',').map {|kv| 
+      k, v = kv.split('-')
+      quality_grade = k[/[rc]/,0]
+      next unless quality_grade == 'c'
+      [k.to_i.to_s, v.to_i]
+    }.compact]
+  end
+  
+  def confirmed_observations_count
+    confirmed_observation_month_stats.map{|k,v| v}.sum
   end
   
   def nilify_blanks

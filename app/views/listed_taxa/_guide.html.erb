@@ -39,15 +39,19 @@
     </div>
     
     <div class="ui description">
-      <span class="count"><%= listed_taxon.observations_count %></span>
-      research-quality
+      <strong><%= listed_taxon.observations_count %></strong>
       <%= listed_taxon.observations_count == 1 ? 'observation' : 'observations' %>
-      from in this place
+      from in this place,
+      <strong class="count"><%= listed_taxon.confirmed_observations_count %></strong>
+      research grade
     </div>
-    <div id="statsgraphs" class="stacked">
+    <div class="statsgraphs stacked">
       <% unless listed_taxon.observation_month_stats.blank? -%>
-        <div id="confirmedgraph">
+        <div class="observedgraph">
           <%= month_graph listed_taxon.observation_month_stats %>
+        </div>
+        <div class="confirmedgraph">
+          <%= month_graph listed_taxon.confirmed_observation_month_stats %>
         </div>
       <% end -%>
     </div>

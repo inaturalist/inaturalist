@@ -65,15 +65,26 @@
     <% end -%>
   </div>
   
-  <div class="stacked ui description">
-    Observed
-    <span class="count"><%= @listed_taxon.observations_count %></span>
-    <%= @listed_taxon.observations_count == 1 ? 'time' : 'times' %>
+  <div class="ui description">
+    <strong><%= @listed_taxon.observations_count %></strong>
+    <%= @listed_taxon.observations_count == 1 ? 'observation' : 'observations' -%>
+    <%- if @list.is_a?(CheckList) -%>,
+      <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
+      research grade
+    <% end -%>
   </div>
-  <% unless @listed_taxon.observation_month_stats.blank? -%>
-    <%= month_graph @listed_taxon.observation_month_stats %>
-    <div class="stacked meta">(research-grade observations only)</div>
-  <% end -%>
+  <div class="statsgraphs stacked">
+    <% unless @listed_taxon.observation_month_stats.blank? -%>
+      <div class="observedgraph">
+        <%= month_graph @listed_taxon.observation_month_stats %>
+      </div>
+      <% if @list.is_a?(CheckList) -%>
+        <div class="confirmedgraph">
+          <%= month_graph @listed_taxon.confirmed_observation_month_stats %>
+        </div>
+      <% end -%>
+    <% end -%>
+  </div>
   
   <% if @listed_taxon.first_observation -%>
     <p class="ui description">
