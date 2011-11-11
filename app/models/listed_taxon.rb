@@ -97,7 +97,9 @@ class ListedTaxon < ActiveRecord::Base
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
   attr_accessor :skip_update_observation_associates,
-                :force_update_observation_associates
+                :skip_update_observations_count,
+                :force_update_observation_associates,
+                :skip_sync_with_parent
   
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
@@ -223,6 +225,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
+    return true if @skip_sync_with_parent
     unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
       list.send_later(:sync_with_parent, :dj_priority => 1)
     end
@@ -236,6 +239,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def update_observations_count
+    return true if @skip_update_observations_count
     if list.is_a?(CheckList) && !@force_update_observation_associates
       ListedTaxon.send_later(:update_observations_count_for, id, :dj_priority => 1)
       return true

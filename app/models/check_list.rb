@@ -100,7 +100,10 @@ class CheckList < List
     scope = Taxon.intersecting_place(place).scoped({})
     scope = scope.descendants_of(ancestor) if ancestor
     scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
-      send_later(:add_taxon, taxon.id, :taxon_range_id => taxon.taxon_range_id)
+      send_later(:add_taxon, taxon.id, :taxon_range_id => taxon.taxon_range_id, 
+        :skip_update_observation_associates => options[:skip_update_observation_associates],
+        :skip_update_observations_count => options[:skip_update_observations_count],
+        :skip_sync_with_parent => options[:skip_sync_with_parent])
     end
   end
   
