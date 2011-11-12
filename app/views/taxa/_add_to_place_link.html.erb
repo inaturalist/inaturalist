@@ -12,23 +12,27 @@
       :markers => "size:mid|color:blue|#{place.latitude},#{place.longitude}"
     }, {:class => 'left'}) %>
   <% end -%>
-  <% if listed_taxon && listed_taxon.removable_by?(current_user) -%>
-    <%= link_to_remote 'remove', :url => listed_taxon_path(listed_taxon), 
-      :method => :delete,
-      :datatype => 'json',
-      :confirm => "Are you sure you want to remove this taxon from #{place.name}'s checklist?",
-      :loading => 
-        "$('##{dom_id place, 'remove_status'}').show();" +
-        "$('##{dom_id(place, 'remove_link')}').hide();",
-      :failure => 
-        "$('##{dom_id(place, 'remove_link')}').hide();",
-      :success => "$('##{dom_id place, 'remove_status'}').html('Removed!').removeClass('loading')",
-      :html => {
-        :id => dom_id(place, 'remove_link'),
-        :class => "last button delete pale",
-        :style => 'float: right; margin: 0'
-      } %>
-    <span id="<%= dom_id place, 'remove_status' %>" class="inter status loading right" style="display:none">Removing...</span>
+  <% if listed_taxon -%>
+    <% if listed_taxon.removable_by?(current_user) -%>
+      <%= link_to_remote 'remove', :url => listed_taxon_path(listed_taxon), 
+        :method => :delete,
+        :datatype => 'json',
+        :confirm => "Are you sure you want to remove this taxon from #{place.name}'s checklist?",
+        :loading => 
+          "$('##{dom_id place, 'remove_status'}').show();" +
+          "$('##{dom_id(place, 'remove_link')}').hide();",
+        :failure => 
+          "$('##{dom_id(place, 'remove_link')}').hide();",
+        :success => "$('##{dom_id place, 'remove_status'}').html('Removed!').removeClass('loading')",
+        :html => {
+          :id => dom_id(place, 'remove_link'),
+          :class => "last button delete pale",
+          :style => 'float: right; margin: 0'
+        } %>
+      <span id="<%= dom_id place, 'remove_status' %>" class="inter status loading right" style="display:none">Removing...</span>
+    <% else %>
+      <div class="last right pale disabled button">added</div>
+    <% end -%>
   <% else %>
     <%= link_to_remote 'add to checklist', :url => listed_taxa_path, 
       :datatype => 'json',
@@ -51,8 +55,11 @@
   <div class="small description">
     <%= place.place_type_name %>
     <% if place.parent %>in <%= place.parent.display_name %><% end %>
-    <% if listed_taxon -%>
-      <%= citation_for listed_taxon.citation_object %>
-    <% end -%>
   </div>
+
+  <% if listed_taxon -%>
+    <div class="small description">
+      Source: <%= citation_for listed_taxon.citation_object %>
+    </div>
+  <% end -%>
 </li>

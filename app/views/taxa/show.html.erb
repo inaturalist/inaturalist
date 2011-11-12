@@ -448,7 +448,7 @@
   </span>
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
-      Source: <%= link_to @taxon.source.title, @taxon.source_url %>
+      Source: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source_url %>
     <% elsif @taxon.source %>
       Source: <%= @taxon.source.title %>
     <% elsif @taxon.creator %>
@@ -459,7 +459,7 @@
     
     | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
     <% if logged_in? -%>
-      | <%= link_to "Map", taxon_map_path(@taxon) %> <span class="meta">(experimental)</span>
+      | <%= link_to "Map", taxon_map_path(@taxon) %>
     <% end -%>
     <% if logged_in? and @user.is_curator? %>
       | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
