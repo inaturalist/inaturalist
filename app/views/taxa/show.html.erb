@@ -674,6 +674,11 @@
     </p>
     
     <p class="ui">
+      <%= link_to "Flickr invite link &raquo;", 
+        url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
+    </p>
+    
+    <p class="ui">
       <%= link_to_function "Wikipedia taxobox &raquo;", "return false;", :id => "taxoboxlink" %>
       <%- taxobox_content = capture do -%>
         <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>

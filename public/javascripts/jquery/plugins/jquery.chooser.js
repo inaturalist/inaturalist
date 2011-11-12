@@ -4,14 +4,15 @@
     options: {
       choiceClass: 'ui-widget ui-widget-content ui-corner-left inlineblock ui-chooser-choice',
       inputClass:  'ui-widget ui-widget-content ui-corner-left inlineblock ui-chooser-input',
-      buttonClass: 'ui-corner-right ui-chooser-button ui-button-icon inlineblock'
+      buttonClass: 'ui-corner-right ui-chooser-button ui-button-icon inlineblock',
+      queryParam: 'term'
     },
     _create: function() {
       var self = this,
           source = this.options.source,
           collectionUrl = this.options.collectionUrl,
           cache = {},
-          defaultSources = $.parseJSON($(this.element).attr('data-chooser-default-sources'))
+          defaultSources = this.options.defaultSources || $.parseJSON($(this.element).attr('data-chooser-default-sources'))
       if (!collectionUrl && typeof(this.options.source) == 'string') {
         collectionUrl = this.options.collectionUrl = this.options.source
       }
@@ -61,7 +62,7 @@
           markup.chooseButton.hide()
           markup.loadingButton.showInlineBlock()
           
-          $.getJSON(collectionUrl, "term="+request.term, function(json) {
+          $.getJSON(collectionUrl, self.options.queryParam+"="+request.term, function(json) {
             markup.chooseButton.showInlineBlock()
             markup.loadingButton.hide()
             json = self.recordsToItems(json)
@@ -111,7 +112,7 @@
     },
     
     recordsToItems: function(records) {
-      var items = []
+      var items = [], records = records || []
       for (var i=0; i < records.length; i++) {
         if (!records[i]) { continue }
         items.push(

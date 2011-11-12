@@ -331,9 +331,15 @@ class ObservationsController < ApplicationController
       options[:species_guess] = params[:taxon_name]
     end
     
-    if !params[:project_id].blank? && (project = Project.find_by_id(params[:project_id]))
-      @project = Project.find_by_id(params[:project_id])
-      @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
+    if !params[:project_id].blank?
+      @project = if params[:project_id].to_i == 0
+        Project.find(params[:project_id])
+      else
+        Project.find_by_id(params[:project_id].to_i)
+      end
+      if @project
+        @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
+      end
     end
     options[:time_zone] = current_user.time_zone
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
