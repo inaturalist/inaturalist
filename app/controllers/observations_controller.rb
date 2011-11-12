@@ -1513,6 +1513,12 @@ class ObservationsController < ApplicationController
         flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
           "<a href=\"#{url_for}\">Undo?</a>"
       end
+      
+      if (@existing_photo = Photo.find_by_native_photo_id(@flickr_photo.native_photo_id)) && 
+          (@existing_photo_observation = @existing_photo.observations.first) && @existing_photo_observation.id != @observation.id
+        msg = "Heads up: this photo is already associated with <a target='_blank' href='#{url_for(@existing_photo_observation)}'>another observation</a>"
+        flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
+      end
     else
       flash.now[:error] = "Sorry, we didn't find that photo."
     end
