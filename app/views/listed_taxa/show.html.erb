@@ -65,24 +65,26 @@
     <% end -%>
   </div>
   
-  <div class="ui description">
-    <strong><%= @listed_taxon.observations_count %></strong>
-    <%= @listed_taxon.observations_count == 1 ? 'observation' : 'observations' -%>
-    <%- if @list.is_a?(CheckList) -%>,
-      <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
-      research grade
-    <% end -%>
-  </div>
-  <div class="statsgraphs stacked">
-    <% unless @listed_taxon.observation_month_stats.blank? -%>
-      <div class="observedgraph">
-        <%= month_graph @listed_taxon.observation_month_stats %>
-      </div>
-      <% if @list.is_a?(CheckList) -%>
-        <div class="confirmedgraph">
-          <%= month_graph @listed_taxon.confirmed_observation_month_stats %>
-        </div>
+  <div class="observationcounts stacked">
+    <div class="ui description">
+      <strong><%= @listed_taxon.observations_count %></strong>
+      <%= @listed_taxon.observations_count == 1 ? 'observation' : 'observations' -%>
+      <%- if @list.is_a?(CheckList) -%>,
+        <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
+        research grade
       <% end -%>
+    </div>
+    <% unless @listed_taxon.observation_month_stats.blank? -%>
+      <div class="statsgraphs stacked">
+        <div class="observedgraph">
+          <%= month_graph @listed_taxon.observation_month_stats %>
+        </div>
+        <% if @list.is_a?(CheckList) -%>
+          <div class="confirmedgraph">
+            <%= month_graph @listed_taxon.confirmed_observation_month_stats, :max => @listed_taxon.observation_month_stats.values.max %>
+          </div>
+        <% end -%>
+      </div>
     <% end -%>
   </div>
   
