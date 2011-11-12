@@ -71,9 +71,6 @@
 #allobsgraph .monthgraph .count { color: #ccc; }
 
 .listed_taxon { position: relative; }
-.listed_taxon .upperleft {
-  
-}
 .listed_taxon .firstobs, .listed_taxon .upperleft {
   position: absolute;
   padding: 2px 5px;
@@ -86,7 +83,7 @@
   border-radius: 10px;
   line-height: 0;
   white-space: nowrap;
-/*  z-index: 100;*/
+  z-index: 1;
 }
 .listed_taxon:hover .firstobs, .listed_taxon:hover .upperleft { opacity: 1; box-shadow: #222 0 1px 2px; }
 .listed_taxon .firstobs span, .listed_taxon .upperleft span  { display: none;}
@@ -94,8 +91,28 @@
 .listed_taxon .firstobs img, .listed_taxon .upperleft .ui-icon {vertical-align:middle;width:12px;height: 12px; top:0;}
 .listed_taxon .upperleft .ui-icon-help { background-position: -50px -146px; }
 .listed_taxon .upperleft .ui-icon-flag { background-position: -17px -115px; }
-.listed_taxon .confirmobs {background-color:#FFEE91;color:#85743D;}
+.listed_taxon .confirmobs {background-color:#FFEE91;color:#60542B;}
 .listed_taxon .upperleft span { top: 1px; position: relative;}
+
+.listed_taxon .upperright {
+  position: absolute;
+  padding: 2px 5px;
+  top: 5px;
+  right: 5px;
+  background-color: #333;
+  color: white;
+  opacity: 0.7;
+  font-size: smaller;
+  border-radius: 10px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.listed_taxon:hover .upperright { opacity: 1; box-shadow: #222 0 1px 2px; }
+.listed_taxon .upperright.endemic {background-color:#84A92F;color:#B7EC3F;}
+.listed_taxon .upperright.introduced {background-color:DeepPink;color:pink;}
+.listed_taxon .upperright .ui-icon {vertical-align:middle;width:12px;height:12px;top:0;}
+.listed_taxon .upperright .ui-icon-star { background-position: -226px -114px; }
+.listed_taxon .upperright .ui-icon-notice { background-position: -34px -146px; }
 
 .listed_taxon .monthstats {position: absolute; left: 5px; bottom: 5px;  border-radius: 10px; padding: 3px 5px;}
 .listed_taxon:hover .monthstats {background-color: #111;}

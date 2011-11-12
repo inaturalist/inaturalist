@@ -9,6 +9,23 @@
     </div>
   <% end -%>
 <% end -%>
+<%- establishment_means = capture do %>
+  <% if listed_taxon.endemic? || listed_taxon.introduced? -%>
+    <%- 
+      icon_class = listed_taxon.introduced? ? 'ui-icon-notice' : 'ui-icon-star'
+      tip_class = listed_taxon.introduced? ? 'ui-tooltip-error' : 'ui-tooltip-success'
+    -%>
+    <div class="upperright <%= listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore %>" 
+        title="<%= listed_taxon.establishment_means.capitalize %>" 
+        data-tip="<strong><%= listed_taxon.establishment_means.capitalize %>:</strong> <%= ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means] %>"
+        data-tip-style-classes="<%= tip_class %> ui-tooltip-shadow"
+        data-tip-position-at="bottom center">
+      <span class="ui-icon <%= icon_class %>">
+        <%= listed_taxon.introduced? ? 'I' : listed_taxon.establishment_means.chars.to_a[0].upcase %>
+      </span>
+    </div>
+  <% end -%>
+<% end -%>
 <div class="listed_taxon inlineblock" foo="bar" href="<%= listed_taxon_path(listed_taxon) %>">
   <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
     :include_full_name => true,
@@ -17,7 +34,7 @@
     :link_image => true,
     :extra_class => "inlineblock",
     :hide_wikipedia_summary => true,
-    :after_image => month_stats
+    :after_image => month_stats + establishment_means
   } %>
 
   <% if obs = listed_taxon.first_observation -%>

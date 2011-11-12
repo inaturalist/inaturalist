@@ -1009,3 +1009,16 @@ table.plain td, table.plain th { border: 0 transparent; }
 .statsgraphs { position: relative; height: 50px; }
 .statsgraphs .observedgraph, .statsgraphs .confirmedgraph { position: absolute; top: 0; left: 0;}
 .statsgraphs .confirmedgraph .count, .statsgraphs .confirmedgraph .month {display:none;}
+
+.ui-tooltip-error .ui-tooltip-titlebar,
+.ui-tooltip-error .ui-tooltip-content{border-color:deeppink;color:pink;}
+.ui-tooltip-error .ui-tooltip-content{background-color:deeppink;}
+.ui-tooltip-error .ui-tooltip-titlebar{background-color:deeppink;}
+.ui-tooltip-notice .ui-tooltip-titlebar,
+.ui-tooltip-notice .ui-tooltip-content{border-color:#FFEE91;color:#85743D;}
+.ui-tooltip-notice .ui-tooltip-content{background-color:#FFEE91;}
+.ui-tooltip-notice .ui-tooltip-titlebar{background-color:#FFEE91;}
+.ui-tooltip-success .ui-tooltip-titlebar,
+.ui-tooltip-success .ui-tooltip-content{border-color:#84A92F;color:#E0EDC3}
+.ui-tooltip-success .ui-tooltip-content{background-color:#84A92F;}
+.ui-tooltip-success .ui-tooltip-titlebar{background-color:#84A92F;}

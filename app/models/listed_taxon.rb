@@ -83,13 +83,17 @@ class ListedTaxon < ActiveRecord::Base
   # OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
   OCCURRENCE_STATUS_DESCRIPTIONS["absent" ] =  "does not occur in the area"
   
-  ESTABLISHMENT_MEANS = %w(native introduced naturalised invasive managed)
+  ESTABLISHMENT_MEANS = %w(native endemic introduced naturalised invasive managed)
   ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenicmeans"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["endemic"] = "native and occurs no where else"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenic means"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["naturalised"] = "reproduces naturally and forms part of the local ecology"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["invasive"] = "has a deleterious impact on another organism, multiple organisms, or the ecosystem as a whole"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["managed"] = "maintains presence through intentional cultivation or husbandry"
+  
+  NATIVE_EQUIVALENTS = %w(native endemic)
+  INTRODUCED_EQUIVALENTS = %w(introduced naturalised invasive managed)
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
@@ -330,6 +334,18 @@ class ListedTaxon < ActiveRecord::Base
       !updater_id && 
       comments_count.to_i == 0 &&
       list.is_default?
+  end
+  
+  def introduced?
+    INTRODUCED_EQUIVALENTS.include?(establishment_means)
+  end
+  
+  def native?
+    NATIVE_EQIVALENTS.include?(establishment_means)
+  end
+  
+  def endemic?
+    establishment_means == "endemic"
   end
   
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be
