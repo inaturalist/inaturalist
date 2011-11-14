@@ -54,8 +54,8 @@ class CheckList < List
   
   def sync_with_parent(options = {})
     conditions = ["place_id = ?", place_id]
-    unless options[:force]
-      time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
+    unless options.delete(:force)
+      time_since_last_sync = options.delete(:time_since_last_sync) || 1.hour.ago
       conditions = ListedTaxon.merge_conditions(conditions, 
         ["listed_taxa.created_at > ?", time_since_last_sync])
     end
@@ -69,7 +69,7 @@ class CheckList < List
         next
       end
       Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, adding taxon #{lt.taxon_id} to parent list"
-      parent_check_list.add_taxon(lt.taxon)
+      parent_check_list.add_taxon(lt.taxon, options)
       Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, done with #{lt}"
     end
     parent_check_list.update_attribute(:last_synced_at, Time.now)
