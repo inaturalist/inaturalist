@@ -208,6 +208,11 @@ class Taxon < ActiveRecord::Base
   
   named_scope :locked, :conditions => {:locked => true}
   
+  named_scope :containing_lat_lng, lambda {|lat, lng|
+    # {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", lat, lat, lng, lng]}
+    {:joins => :taxon_ranges, :conditions => ["ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat]}
+  }
+  
   # Like it's counterpart in Place, this is potentially VERY expensive/slow
   named_scope :intersecting_place, lambda {|place|
     place_id = place.is_a?(Place) ? place.id : place.to_i
@@ -216,6 +221,17 @@ class Taxon < ActiveRecord::Base
         "JOIN place_geometries ON place_geometries.place_id = #{place_id} " + 
         "JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id",
       :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
+    }
+  }
+  
+  # this is potentially VERY expensive/slow
+  named_scope :contained_in_place, lambda {|place|
+    place_id = place.is_a?(Place) ? place.id : place.to_i
+    {
+      :joins => 
+        "JOIN place_geometries ON place_geometries.place_id = #{place_id} " + 
+        "JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id",
+      :conditions => "ST_Contains(place_geometries.geom, taxon_ranges.geom)"
     }
   }
   
