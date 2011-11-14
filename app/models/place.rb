@@ -298,10 +298,7 @@ class Place < ActiveRecord::Base
       else
         self.place_geometry = PlaceGeometry.create(other_attrs)
       end
-      if place_geometry.valid?
-        update_bbox_from_geom(geom)
-        errors.add_to_base "boundary shape was invalid: #{place_geometry.errors.full_messages.to_sentence}"
-      end
+      update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e
       puts "[ERROR] \tCouldn't save #{self.place_geometry}: " + 
         e.message[0..200]

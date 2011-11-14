@@ -7,7 +7,7 @@
   taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
   if taxon_range
     map_tag_attrs["data-taxon-range-kml"] = root_url.gsub(/\/$/, "") + taxon_range.range.url
-    map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon, :format => "geojson")
+    map_tag_attrs["data-taxon-range-geojson"] = taxon_range_geom_url(taxon.id, :format => "geojson")
   end
   if place
     map_tag_attrs["data-latitude"] = place.latitude
@@ -15,7 +15,7 @@
     map_tag_attrs["data-bbox"] = place.bounding_box.join(',') if place.bounding_box
     map_tag_attrs["data-place-kml"] = place_geometry_url(place, :format => "kml") if @place_geometry || PlaceGeometry.without_geom.exists?(:place_id => place)
     map_tag_attrs["data-observations-json"] = observations_url(:taxon_id => taxon, :place_id => place, :format => "json")
-    # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon, :format => "geojson")
+    # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon.id, :format => "geojson")
   end
   obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)
   photos = taxon.photos.sort_by(&:id)
@@ -38,16 +38,23 @@
       <% end -%>
     </div>
     
-    <div class="ui description">
-      <span class="count"><%= listed_taxon.observations_count %></span>
-      research-quality
-      <%= listed_taxon.observations_count == 1 ? 'observation' : 'observations' %>
-      from in this place
-    </div>
-    <div id="statsgraphs" class="stacked">
+    <div class="observationcounts stacked">
+      <div class="ui description">
+        <strong><%= listed_taxon.observations_count %></strong>
+        <%= listed_taxon.observations_count == 1 ? 'observation' : 'observations' %>
+        from in this place,
+        <strong class="count"><%= listed_taxon.confirmed_observations_count %></strong>
+        research grade
+      </div>
       <% unless listed_taxon.observation_month_stats.blank? -%>
-        <div id="confirmedgraph">
-          <%= month_graph listed_taxon.observation_month_stats %>
+        <div class="statsgraphs stacked">
+          <div class="observedgraph">
+            <%= month_graph listed_taxon.observation_month_stats %>
+          </div>
+          <div class="confirmedgraph">
+            <%= month_graph listed_taxon.confirmed_observation_month_stats, 
+              :max => @listed_taxon.observation_month_stats.values.max %>
+          </div>
         </div>
       <% end -%>
     </div>

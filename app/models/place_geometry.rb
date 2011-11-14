@@ -9,8 +9,12 @@ class PlaceGeometry < ActiveRecord::Base
   validate :validate_geometry
   
   def validate_geometry
-    if geom.num_points < 3
-      errors.add(:geom, " must have more than 2 points")
+    if geom.num_points < 4
+      errors.add(:geom, " must have more than 3 points")
+    end
+    
+    if geom.geometries.detect{|g| g.num_points < 4}
+      errors.add(:geom, " has a sub geometry with less than 4 points!")
     end
   end
 end

@@ -298,9 +298,23 @@ class FlickrController < ApplicationController
     # params should include 'flickr_photo_id' and whatever else you want to add
     # to the observation, e.g. taxon_id, project_id, etc
     invite_params = params
+    invite_params[:flickr_photo_id] ||= request.env['HTTP_REFERER'].to_s[/flickr.com\/photos\/[^\/]+\/(\d+)/,1]
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
     session[:flickr_invite_params] = invite_params
     redirect_to "/auth/flickr"
+  end
+  
+  def create_invite
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    if params[:project_id]
+      @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
+    end
+    @flick_photo_id = params[:flickr_photo_id]
+    @invite_url = url_for(:action => "invite", :taxon_id => @taxon.try(:id), 
+      :project_id => @project.try(:id), :flickr_photo_id => @flickr_photo_id)
+    if logged_in?
+      @projects = current_user.projects.all(:limit => 100, :order => :title)
+    end
   end
   
   private

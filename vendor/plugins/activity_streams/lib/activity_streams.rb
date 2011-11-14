@@ -54,8 +54,14 @@ module ActivityStreams
               raise "Models with activity streams must belong to a user or specificy a user_scope."
             end
             
+            batch_ids = existing_records.map{|r| r.id}.sort.reverse
+            col_size_limit = ActivityStream.columns.detect{|c| c.name == 'batch_ids'}.limit
+            while batch_ids.join(',').size > col_size_limit
+              batch_ids.pop
+            end
+            
             ActivityStream.update_all(
-              ["batch_ids = ?, updated_at = ?", existing_records.map(&:id).join(','), Time.now], 
+              ["batch_ids = ?, updated_at = ?", batch_ids.join(','), Time.now], 
               ["activity_object_type = ? AND activity_object_id = ?", 
                 existing_stream.activity_object_type, existing_stream.activity_object_id]
             )
@@ -70,6 +76,9 @@ module ActivityStreams
                 :activity_object => activity_object
               )
             end
+            
+            # clear out old activity streams
+            ActivityStream.delete_all(["user_id = ? AND created_at < ?", activity_object.user, 1.year.ago])
           end
           true
         end

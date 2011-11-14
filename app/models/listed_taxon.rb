@@ -83,13 +83,17 @@ class ListedTaxon < ActiveRecord::Base
   # OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
   OCCURRENCE_STATUS_DESCRIPTIONS["absent" ] =  "does not occur in the area"
   
-  ESTABLISHMENT_MEANS = %w(native introduced naturalised invasive managed)
+  ESTABLISHMENT_MEANS = %w(native endemic introduced naturalised invasive managed)
   ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   ESTABLISHMENT_MEANS_DESCRIPTIONS["native"] = "evolved in this region or arrived by non-anthropogenic means"
-  ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenicmeans"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["endemic"] = "native and occurs nowhere else"
+  ESTABLISHMENT_MEANS_DESCRIPTIONS["introduced"] = "arrived in the region via anthropogenic means"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["naturalised"] = "reproduces naturally and forms part of the local ecology"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["invasive"] = "has a deleterious impact on another organism, multiple organisms, or the ecosystem as a whole"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["managed"] = "maintains presence through intentional cultivation or husbandry"
+  
+  NATIVE_EQUIVALENTS = %w(native endemic)
+  INTRODUCED_EQUIVALENTS = %w(introduced naturalised invasive managed)
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
@@ -97,7 +101,9 @@ class ListedTaxon < ActiveRecord::Base
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
   attr_accessor :skip_update_observation_associates,
-                :force_update_observation_associates
+                :skip_update_observations_count,
+                :force_update_observation_associates,
+                :skip_sync_with_parent
   
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
@@ -223,7 +229,10 @@ class ListedTaxon < ActiveRecord::Base
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
-    list.send_later(:sync_with_parent, :dj_priority => 1)
+    return true if @skip_sync_with_parent
+    unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
+      list.send_later(:sync_with_parent, :dj_priority => 1)
+    end
     true
   end
   
@@ -234,6 +243,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def update_observations_count
+    return true if @skip_update_observations_count
     if list.is_a?(CheckList) && !@force_update_observation_associates
       ListedTaxon.send_later(:update_observations_count_for, id, :dj_priority => 1)
       return true
@@ -256,10 +266,37 @@ class ListedTaxon < ActiveRecord::Base
   
   def observation_month_stats
     return {} if observations_month_counts.blank?
+    r_stats = confirmed_observation_month_stats
+    c_stats = casual_observation_month_stats
+    stats = {}
+    (r_stats.keys + c_stats.keys).uniq.each do |key|
+      stats[key] = r_stats[key].to_i + c_stats[key].to_i
+    end
+    stats
+  end
+  
+  def confirmed_observation_month_stats
+    return {} if observations_month_counts.blank?
     Hash[observations_month_counts.split(',').map {|kv| 
       k, v = kv.split('-')
-      [k, v.to_i]
-    }]
+      quality_grade = k[/[rc]/,0]
+      next unless (quality_grade == 'r' || quality_grade.blank?)
+      [k.to_i.to_s, v.to_i]
+    }.compact]
+  end
+  
+  def casual_observation_month_stats
+    return {} if observations_month_counts.blank?
+    Hash[observations_month_counts.split(',').map {|kv| 
+      k, v = kv.split('-')
+      quality_grade = k[/[rc]/,0]
+      next unless quality_grade == 'c'
+      [k.to_i.to_s, v.to_i]
+    }.compact]
+  end
+  
+  def confirmed_observations_count
+    confirmed_observation_month_stats.map{|k,v| v}.sum
   end
   
   def nilify_blanks
@@ -297,6 +334,18 @@ class ListedTaxon < ActiveRecord::Base
       !updater_id && 
       comments_count.to_i == 0 &&
       list.is_default?
+  end
+  
+  def introduced?
+    INTRODUCED_EQUIVALENTS.include?(establishment_means)
+  end
+  
+  def native?
+    NATIVE_EQIVALENTS.include?(establishment_means)
+  end
+  
+  def endemic?
+    establishment_means == "endemic"
   end
   
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be

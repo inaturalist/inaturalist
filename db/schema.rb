@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111102210429) do
+ActiveRecord::Schema.define(:version => 20111108184751) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20111102210429) do
     t.string   "activity_object_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "batch_ids"
+    t.string   "batch_ids",            :limit => 512
   end
 
   add_index "activity_streams", ["subscriber_id"], :name => "index_activity_streams_on_subscriber_id"

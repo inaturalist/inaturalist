@@ -479,7 +479,7 @@ class TaxaController < ApplicationController
       @children = @child_taxa.map do |child|
         {
           :id => child.id, 
-          :range_url => @child_taxon_ranges[child.id] ? taxon_range_geom_url(child, :format => "geojson") : nil, 
+          :range_url => @child_taxon_ranges[child.id] ? taxon_range_geom_url(child.id, :format => "geojson") : nil, 
           :observations_url => observations_of_url(child, :format => "geojson"),
           :name => child.name
         }

@@ -197,8 +197,19 @@ function autoTip() {
   
   if ($(this).attr('data-tip-width')) {
     tipOptions.style = tipOptions.style || {}
-    tipOptions.style.width = $(this).attr('data-helptip-width')
+    tipOptions.style.width = $(this).attr('data-tip-width')
   }
+  
+  if ($(this).attr('data-tip-style-classes')) {
+    tipOptions.style = tipOptions.style || {}
+    tipOptions.style.classes = $(this).attr('data-tip-style-classes')
+  }
+  
+  if ($(this).attr('data-tip-position-at')) {
+    tipOptions.position = tipOptions.position || {}
+    tipOptions.position.at = $(this).attr('data-tip-position-at')
+  }
+  
   $(this).qtip(tipOptions)
 }
 

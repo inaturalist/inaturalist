@@ -6,8 +6,7 @@ class PlacesController < ApplicationController
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
     :children, :taxa, :geometry, :guide, :cached_guide]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
-    :search]
+  before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
   caches_page :geometry
@@ -97,10 +96,19 @@ class PlacesController < ApplicationController
         @geometry = geometry_from_messy_kml(params[:kml])
         @place.save_geom(@geometry) if @geometry
       end
-      unless @place.valid?
+      
+      if !@place.valid?
         render :action => :edit
         return
       end
+      
+      if @place.place_geometry && !@place.place_geometry.valid?
+        flash[:error] = "Place updated, but boundary shape was invalid: #{@place.place_geometry.errors.full_messages.to_sentence}"
+        flash[:error] += " You may have to edit the KML directly to fix issues like slivers."
+        render :action => :edit
+        return
+      end
+      
       expire_page :action => "geometry", :id => @place.id
       flash[:notice] = "Place updated!"
       redirect_to @place

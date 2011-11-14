@@ -245,7 +245,9 @@ input[type='submit'].link:hover {
 .buttonrow.smallbuttons input[type='submit']:active {
   font-weight: normal;
 }
-.button.last { margin-right: 0; }
+
+.buttonrow.inline form.last,
+.buttonrow.inline .button.last { margin-right: 0; }
 
 @-moz-document url-prefix() {
   input.button { padding: 6px 6px 7px 6px;}

@@ -37,8 +37,6 @@ class ObservationsController < ApplicationController
     :update_photos]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
-  before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
-    :by_login]
   before_filter :curator_required, :only => [:curation]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :edit,
     :update, :edit_batch, :create, :import, :import_photos, :new_from_list]
@@ -78,13 +76,7 @@ class ObservationsController < ApplicationController
         get_paginated_observations(search_params, find_options)
       end
     else
-      search_observations(search_params, find_options)
-      begin
-        @observations.total_entries
-      rescue ThinkingSphinx::SphinxError => e
-        Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
-        @observations = WillPaginate::Collection.new(1,30, 0)
-      end
+      @observations = search_observations(search_params, find_options)
     end
 
     respond_to do |format|
@@ -339,9 +331,15 @@ class ObservationsController < ApplicationController
       options[:species_guess] = params[:taxon_name]
     end
     
-    if !params[:project_id].blank? && (project = Project.find_by_id(params[:project_id]))
-      @project = Project.find_by_id(params[:project_id])
-      @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
+    if !params[:project_id].blank?
+      @project = if params[:project_id].to_i == 0
+        Project.find(params[:project_id])
+      else
+        Project.find_by_id(params[:project_id].to_i)
+      end
+      if @project
+        @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
+      end
     end
     options[:time_zone] = current_user.time_zone
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
@@ -1177,8 +1175,9 @@ class ObservationsController < ApplicationController
     
     find_options = {
       :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
-      :page => search_params[:page] || 1
+      :page => search_params[:page]
     }
+    find_options[:page] = 1 if find_options[:page].to_i == 0
     find_options[:per_page] = @prefs.per_page if @prefs
     
     # Set format-based page sizes
@@ -1198,6 +1197,8 @@ class ObservationsController < ApplicationController
     if find_options[:limit] && find_options[:limit].to_i > 200
       find_options[:limit] = 200
     end
+    
+    find_options[:per_page] = 30 if find_options[:per_page].to_i == 0
     
     # iconic_taxa
     if search_params[:iconic_taxa]
@@ -1323,6 +1324,14 @@ class ObservationsController < ApplicationController
     sphinx_options = find_options.dup
     sphinx_options[:with] = {}
     
+    if sphinx_options[:page] && sphinx_options[:page].to_i > 50
+      if request.format.html?
+        flash.now[:notice] = "Heads up: observation search can only load up to 50 pages"
+      end
+      sphinx_options[:page] = 50
+      find_options[:page] = 50
+    end
+    
     if search_params[:has]
       # id please
       if search_params[:has].include?('id_please')
@@ -1439,6 +1448,12 @@ class ObservationsController < ApplicationController
     else
       @observations = Observation.search(q, find_options.merge(sphinx_options))
     end
+    begin
+      @observations.total_entries
+    rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e
+      Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
+      @observations = WillPaginate::Collection.new(1,30, 0)
+    end
     @observations
   rescue ThinkingSphinx::ConnectionError
     get_paginated_observations(search_params, find_options)
@@ -1497,6 +1512,12 @@ class ObservationsController < ApplicationController
       unless @observation.new_record?
         flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
           "<a href=\"#{url_for}\">Undo?</a>"
+      end
+      
+      if (@existing_photo = Photo.find_by_native_photo_id(@flickr_photo.native_photo_id)) && 
+          (@existing_photo_observation = @existing_photo.observations.first) && @existing_photo_observation.id != @observation.id
+        msg = "Heads up: this photo is already associated with <a target='_blank' href='#{url_for(@existing_photo_observation)}'>another observation</a>"
+        flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
       end
     else
       flash.now[:error] = "Sorry, we didn't find that photo."

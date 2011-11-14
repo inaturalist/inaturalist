@@ -25,22 +25,25 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @species_count = @project.species_count
-    @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 3, :conditions => "taxa_count > 0")
-    @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
-    @project_observations = @project.project_observations.paginate(:page => 1, 
-      :include => {
-        :observation => :iconic_taxon,
-        :curator_identification => [:user, :taxon]
-      }, :order => "id DESC")
-    @observations = @project_observations.map(&:observation)
-    
-    @custom_project = @project.custom_project
-    @project_assets = @project.project_assets.all(:limit => 100)
-    @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
-    @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
     respond_to do |format|
-      format.html
+      format.html do
+        @species_count = @project.species_count
+        @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 3, :conditions => "taxa_count > 0")
+        @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
+        @project_observations = @project.project_observations.paginate(:page => 1, 
+          :include => {
+            :observation => :iconic_taxon,
+            :curator_identification => [:user, :taxon]
+          }, :order => "id DESC")
+        @observations = @project_observations.map(&:observation)
+        @custom_project = @project.custom_project
+        @project_assets = @project.project_assets.all(:limit => 100)
+        @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
+        @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
+      end
+      format.json do
+        render :json => @project
+      end
     end
   end
 
@@ -433,7 +436,11 @@ class ProjectsController < ApplicationController
   
   def search
     if @q = params[:q]
-      @projects = Project.paginate(:page => params[:page], :conditions => ["title LIKE ?", "%#{params[:q]}%"])
+      @projects = Project.paginate(:page => params[:page], :conditions => ["lower(title) LIKE ?", "%#{@q.downcase}%"])
+    end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @projects }
     end
   end
   

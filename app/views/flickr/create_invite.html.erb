@@ -1,0 +1,35 @@
+<h2>Invite Flickr Photos to iNaturalist</h2>
+<p class="description">
+  You can make it super easy for people on Flickr to add their photos as iNat
+  observations. Just leave a comment including this special invite URL below.
+  You can also pre-select a taxon and project for the new observation.
+</p>
+
+<div class="stacked">
+  <textarea class="text" style="width: 100%; height: 1.2em; font-size: 175%"><%= @invite_url %></textarea>
+</div>
+
+<% form_tag url_for, :method => :get do %>
+  <label for="taxonchooser">Automatically ID the new obs as</label>
+  <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
+  &nbsp;
+  <label for="taxonchooser">Automatically add to project</label>
+  <%= text_field_tag :project_id, @project.try(:id), :class => "chooser text", :id => "projectchooser", :placeholder => "Type project name..." %>
+  
+  <%= submit_tag "Regenerate URL" %>
+<% end -%>
+
+
+<script type="text/javascript" charset="utf-8">
+  $('#taxonchooser').chooser({
+    queryParam: 'q',
+    collectionUrl: 'http://'+window.location.host + '/taxa/search.json',
+    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json'
+  })
+  $('#projectchooser').chooser({
+    queryParam: 'q',
+    collectionUrl: 'http://'+window.location.host + '/projects/search.json',
+    resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
+    defaultSources: <%= @projects.to_json %>
+  })
+</script>
