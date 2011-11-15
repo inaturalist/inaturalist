@@ -294,7 +294,7 @@ class PlacesController < ApplicationController
     
     if @filter_params.blank?
       scope = scope.has_photos
-      order = "listed_taxa.observations_count DESC"
+      order = "listed_taxa.observations_count DESC, listed_taxa.id DESC"
     end
     
     @taxa = scope.paginate( 
