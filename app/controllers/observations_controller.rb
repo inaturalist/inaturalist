@@ -320,16 +320,6 @@ class ObservationsController < ApplicationController
         "lower(name) = ?", params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
       ).try(:taxon)
     end
-    if @taxon
-      options[:taxon] = @taxon
-      if common_name = @taxon.common_name
-        options[:species_guess] = @taxon.common_name.name
-      else 
-        options[:species_guess] = @taxon.name
-      end
-    else
-      options[:species_guess] = params[:taxon_name]
-    end
     
     if !params[:project_id].blank?
       @project = if params[:project_id].to_i == 0
@@ -342,14 +332,27 @@ class ObservationsController < ApplicationController
       end
     end
     options[:time_zone] = current_user.time_zone
-    [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
-        :observed_on_string].each do |obs_attr|
-      options[obs_attr] ||= params[obs_attr]
-    end
     @observation = Observation.new(options)
     
     sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
     sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
+    
+    # this should happen AFTER photo syncing so params can override attrs 
+    # from the photo
+    [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
+        :observed_on_string].each do |obs_attr|
+      @observation.send("#{obs_attr}=", params[obs_attr]) unless params[obs_attr].blank?
+    end
+    if @taxon
+      @observation.taxon = @taxon
+      @observation.species_guess = if @taxon.common_name
+        @taxon.common_name.name
+      else 
+        @taxon.name
+      end
+    elsif !params[:taxon_name].blank?
+      @observation.species_guess =  params[:taxon_name]
+    end
     
     respond_to do |format|
       format.html do
