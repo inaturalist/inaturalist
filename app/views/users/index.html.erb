@@ -1,13 +1,5 @@
 <% content_for(:title) do %>
-<% if controller.action_name == 'relationships' %>
-<% if params.has_key?('following') %>
-People <%=h @user.login %> follows
-<% elsif params.has_key?('followers') %>
-People following <%=h @user.login %>
-<% end %>
-<% else %>
-People
-<% end %>
+  People
 <% end %>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
@@ -37,86 +29,20 @@ People
         <% end %>
       </div>
     <% end -%>
-    
-    <% if controller.action_name == 'relationships' %>
-      <% if params.has_key?('following') %>
-      <h2>People <%=h @user.login %> follows</h2>
-      <% elsif params.has_key?('followers') %>
-      <h2>People following <%=h @user.login %></h2>
-      <% end %>
-    <% else %>
     <h2>The People of iNaturalist</h2>
-    <% end %>
   </div>
   
   <div class="column span-17 append-1">
-    <% if controller.action_name == 'index' %>
-      <div id="letter_nav" class="pagination">
-        <%= link_to "All", url_for(), :class => "#{'current' unless @letter}" %>
-        <%- for letter in @alphabet -%>
-          <%- css_class = "#{'current' if letter == @letter}" -%>
-          <%= link_to letter.upcase, url_for(:letter => letter), :class => css_class -%>
-        <%- end -%>
-      </div>
-    <% end %>
-    
-    <% if @users.blank? -%>
-      <div class="noresults description" style="margin: 50px auto">
-        No matching users.
-      </div>
-    <% end -%>
-    
-    <table>
-      <% for person in @users %>
-        <%- 
-          observations_count = @observation_counts[person.id].to_i
-          listed_taxa_count = @listed_taxa_counts[person.id].to_i
-          post_count = @post_counts[person.id].to_i
-        -%>
-        <tr>
-          <td>
-            <%= link_to(
-              image_tag(person.icon.url(:thumb), :class => 'usericon'),
-              observations_by_login_path(person.login)) %>
-          </td>
-          <td>
-            <%= link_to h(person.login), observations_by_login_path(person.login), :class => "readable" %>
-            <div class="meta">
-              <%=h person.name %>
-            </div>
-          </td>
-          <td>
-            <%= link_to 'View Observations', observations_by_login_path(person.login), :class => "readable" %>
-            <% if observations_count > 0 -%>
-              <div class="meta">
-                <span class="count"><%= number_with_delimiter(observations_count) %></span>
-                total
-              </div>
-            <% end -%>
-          </td>
-          <td>
-            <%= link_to 'View Lists', lists_by_login_path(person.login), :class => "readable" %>
-            <% if listed_taxa_count > 0 %>
-              <div class="meta">
-                <span class="count"><%= number_with_delimiter(listed_taxa_count) %></span> known species total
-              </div>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to 'View Journal', journal_by_login_path(person.login), :class => "readable" %>
-            <% unless post_count == 0 %>
-              <div class="meta">
-                <span class="count"><%= number_with_delimiter(post_count) %></span>
-                posts
-              </div>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-    
-    <%= will_paginate @users %>
+    <div id="letter_nav" class="pagination">
+      <%= link_to "All", url_for(), :class => "#{'current' unless @letter}" %>
+      <%- for letter in @alphabet -%>
+        <%- css_class = "#{'current' if letter == @letter}" -%>
+        <%= link_to letter.upcase, url_for(:letter => letter), :class => css_class -%>
+      <%- end -%>
+    </div>
+    <%= render :partial => 'table' %>
   </div>
+  
   <div id="activecol" class="last column span-6">
     <% cache "recently_active", :expires_in => 5.minutes do %>
       <div id="active" class="box">

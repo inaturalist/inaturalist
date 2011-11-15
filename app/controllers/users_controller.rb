@@ -1,5 +1,5 @@
 class UsersController < ApplicationController  
-  before_filter :login_required, :except => [:index, :show, :new, :create, :activate]
+  before_filter :login_required, :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :edit, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
@@ -146,10 +146,7 @@ class UsersController < ApplicationController
       find_options.update(:conditions => ["login LIKE ?", "#{params[:letter].first}%"])
     end
     @users = User.active.paginate(find_options)
-    @observation_counts = Observation.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
-    @listed_taxa_counts = ListedTaxon.count(:conditions => ["list_id IN (?)", @users.map{|u| u.life_list_id}], 
-      :group => :user_id)
-    @post_counts = Post.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
+    counts_for_users
   end
   
   def show
@@ -164,40 +161,13 @@ class UsersController < ApplicationController
   end
   
   def relationships
-    update_find_options = {
-      :limit => 10, 
-      :order => "created_at DESC"
-    }
-    
-    # @updates = [
-    #   Observation.find(:all, update_find_options),
-    #   Identification.find(:all, update_find_options),
-    #   Post.find(:all, update_find_options),
-    #   Comment.find(:all, update_find_options)
-    # ].flatten.sort{|a,b| b.created_at <=> a.created_at}.group_by(&:user)
-
-    find_options = {
-      :page => params[:page] || 1, :order => 'login'
-    }
-    if @letter = params[:letter]
-      find_options.update(:conditions => [
-        "login LIKE ?", "#{params[:letter].first}%"])
+    find_options = {:page => params[:page] || 1, :order => 'login'}
+    @users = if params[:following]
+      User.find_by_login(params[:login]).friends.paginate(find_options)
+    else
+      User.find_by_login(params[:login]).followers.paginate(find_options)
     end
-    
-    if (params[:following])
-      @users = User.find_by_login(params[:login]).friends.paginate(find_options)
-    elsif (params[:followers])
-      @users = User.find_by_login(params[:login]).followers.paginate(find_options)
-    end
-    
-    # @users_by_letter = User.count(:group => "LOWER(LEFT(login, 1))")
-    # alphabet = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    # @users_by_letter = alphabet.map do |letter|
-    #   [letter, @users_by_letter[letter] || 0]
-    # end
-    
-    render :action => 'index'
-    return
+    counts_for_users
   end
   
   # These are protected by login_required
@@ -385,6 +355,13 @@ protected
     unless current_user.has_role? :admin
       redirect_to edit_user_path(current_user, :id => current_user.login) if @user.id != current_user.id
     end
+  end
+  
+  def counts_for_users
+    @observation_counts = Observation.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
+    @listed_taxa_counts = ListedTaxon.count(:conditions => ["list_id IN (?)", @users.map{|u| u.life_list_id}], 
+      :group => :user_id)
+    @post_counts = Post.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
   end
     
 end

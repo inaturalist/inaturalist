@@ -1,0 +1,56 @@
+<% if @users.blank? -%>
+  <div class="noresults description" style="margin: 50px auto">
+    No matching users.
+  </div>
+<% end -%>
+
+<table>
+  <% for person in @users %>
+    <%- 
+      observations_count = @observation_counts[person.id].to_i
+      listed_taxa_count = @listed_taxa_counts[person.id].to_i
+      post_count = @post_counts[person.id].to_i
+    -%>
+    <tr>
+      <td>
+        <%= link_to(
+          image_tag(person.icon.url(:thumb), :class => 'usericon'),
+          person_path(person)) %>
+      </td>
+      <td>
+        <%= link_to h(person.login), person_path(person), :class => "readable" %>
+        <div class="meta">
+          <%=h person.name %>
+        </div>
+      </td>
+      <td>
+        <%= link_to 'View Observations', observations_by_login_path(person.login), :class => "readable" %>
+        <% if observations_count > 0 -%>
+          <div class="meta">
+            <span class="count"><%= number_with_delimiter(observations_count) %></span>
+            total
+          </div>
+        <% end -%>
+      </td>
+      <td>
+        <%= link_to 'View Lists', lists_by_login_path(person.login), :class => "readable" %>
+        <% if listed_taxa_count > 0 %>
+          <div class="meta">
+            <span class="count"><%= number_with_delimiter(listed_taxa_count) %></span> known species total
+          </div>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to 'View Journal', journal_by_login_path(person.login), :class => "readable" %>
+        <% unless post_count == 0 %>
+          <div class="meta">
+            <span class="count"><%= number_with_delimiter(post_count) %></span>
+            posts
+          </div>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @users %>
