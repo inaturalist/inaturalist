@@ -144,6 +144,12 @@ describe ListedTaxon do
       user.should be_admin
       lt.should be_removable_by user
     end
+    
+    it "should work if there's no source" do
+      lt = ListedTaxon.make(:list => @check_list)
+      lt.citation_object.should be_blank
+      lt.should be_removable_by @user
+    end
   end
   
   describe "citation object" do

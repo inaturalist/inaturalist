@@ -290,11 +290,12 @@ class ListedTaxon < ActiveRecord::Base
   def removable_by?(user)
     return false unless user
     return true if user.admin?
+    return true if citation_object.blank?
     citation_object == user
   end
   
   def citation_object
-    user || source || taxon_range || first_observation || last_observation
+    source || taxon_range || first_observation || last_observation || user
   end
   
   def auto_removable_from_check_list?
