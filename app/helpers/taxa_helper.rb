@@ -69,7 +69,11 @@ module TaxaHelper
   def taxon_image_url(taxon, params = {})
     return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.photos.blank?
     size = params[:size] ? "#{params[:size]}_url" : 'square_url'
-    photo = taxon.photos.sort_by(&:id).first
+    photo = if taxon.taxon_photos.loaded?
+      taxon.taxon_photos.sort_by{|tp| tp.id}.first.photo
+    else
+      taxon.taxon_photos.first(:include => [:photo], :order => "taxon_photos.id DESC").photo
+    end
     if photo.respond_to?(size)
       photo.send(size)
     else

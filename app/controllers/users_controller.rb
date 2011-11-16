@@ -217,7 +217,7 @@ class UsersController < ApplicationController
         :batch_limit => 18,
         :includes => {
           "Observation" => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
-          "Identification" => [:user, {:taxon => :taxon_names}, {:observation => :user}],
+          "Identification" => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
           "Comment" => [:user, :parent],
           "ListedTaxon" => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
         })
