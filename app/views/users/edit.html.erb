@@ -34,12 +34,12 @@
 <div class="column span-18">
   <% form_for(current_user, :url => person_path(current_user), 
               :html => {:multipart => true}) do |f| %>
-    <%= error_messages_for :user %>
+    <%= error_messages_for :current_user %>
     <div class="column span-18 field">
       <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon') %>
       <%= f.label(:icon, 'Icon/Photo') %>
       <%= link_to_function('change', "$('#user_icon').show(); $(this).hide()", :class => 'button') %>
-      <%= f.file_field(:icon, :class => 'text', :style => 'display: none') %>
+      <%= f.file_field(:icon, :class => 'text', :style => 'display: none', :accept => "image") %>
     </div>
     <div class="column span-9">
       <div class="field">

@@ -81,6 +81,8 @@ class User < ActiveRecord::Base
   before_validation :download_remote_icon, :if => :icon_url_provided?
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
+  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i], 
+    :message => "must be JPG, PNG, or GIF"
   
   def icon_url_provided?
     !self.icon_url.blank?
