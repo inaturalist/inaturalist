@@ -622,13 +622,13 @@ iNaturalist.FullScreenControl = function(map) {
   
   controlUI.toggle(function() {
     var oldCenter = map.getCenter()
-    $(this).html('Exit Full screen')
+    $(this).html('Exit full screen').css('font-weight', 'bold')
     $(map.getDiv()).addClass('fullscreen')
     google.maps.event.trigger(map, 'resize')
     map.setCenter(oldCenter)
   }, function() {
     var oldCenter = map.getCenter()
-    $(this).html('Full screen')
+    $(this).html('Full screen').css('font-weight', 'normal')
     $(map.getDiv()).removeClass('fullscreen')
     google.maps.event.trigger(map, 'resize')
     map.setCenter(oldCenter)
