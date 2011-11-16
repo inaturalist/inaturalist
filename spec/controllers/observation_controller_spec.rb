@@ -67,8 +67,8 @@ describe ObservationsController do
       post :update, :id => observation.id, :observation => {:latitude => 1}
       observation.reload
       observation.private_longitude.should_not be_blank
-      observation.latitude.should_not == old_latitude
-      observation.private_latitude.should_not == old_private_latitude
+      observation.latitude.to_f.should_not == old_latitude.to_f
+      observation.private_latitude.to_f.should_not == old_private_latitude.to_f
     end
   end
   

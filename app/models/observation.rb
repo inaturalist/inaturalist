@@ -138,6 +138,7 @@ class Observation < ActiveRecord::Base
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
               :set_positional_accuracy,
+              :reset_private_coordinates_if_coordinates_changed,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon
@@ -872,6 +873,14 @@ class Observation < ActiveRecord::Base
     false
   end
   
+  def reset_private_coordinates_if_coordinates_changed
+    if (latitude_changed? || longitude_changed?)
+      self.private_latitude = nil
+      self.private_longitude = nil
+    end
+    true
+  end
+  
   def obscure_coordinates_for_geoprivacy
     self.geoprivacy = nil if geoprivacy.blank?
     return true if geoprivacy.blank? && !geoprivacy_changed?
@@ -888,8 +897,10 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    if !taxon.blank? && taxon.species_or_lower? &&
-        georeferenced? && !coordinates_obscured? &&
+    if !taxon.blank? && 
+        taxon.species_or_lower? &&
+        georeferenced? && 
+        !coordinates_obscured? &&
         (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
     elsif geoprivacy.blank?
