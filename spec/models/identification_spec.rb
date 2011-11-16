@@ -231,6 +231,15 @@ describe Identification, "deletion" do
     o.quality_grade.should == Observation::CASUAL_GRADE
   end
   
+  it "should queue a job to update check lists if changed from research grade" do
+    o = make_research_grade_observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    o.identifications.by(o.user).first.destroy
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /refresh_with_observation/}.should_not be_blank
+  end
+  
   it "should queue a job to update check lists if research grade" do
     o = make_research_grade_observation
     o.identifications.each {|ident| ident.destroy if ident.user_id != o.user_id}

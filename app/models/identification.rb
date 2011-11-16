@@ -70,6 +70,12 @@ class Identification < ActiveRecord::Base
       ["taxon_id = ?, species_guess = ?, iconic_taxon_id = ?", nil, species_guess, nil],
       "id = #{self.observation_id}"
     )
+    
+    # make sure update_obs_stats operates on an updated version of the obs obj
+    self.observation.taxon_id = nil
+    self.observation.species_guess = nil
+    self.observation.iconic_taxon_id = nil
+    
     ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, self.observation.id, self.user_id)
     true
   end

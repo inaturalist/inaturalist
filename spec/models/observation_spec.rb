@@ -372,6 +372,16 @@ describe Observation, "updating" do
     jobs.select{|j| j.handler =~ /\:refresh_with_observation\n/}.should_not be_blank
   end
   
+  it "should queue refresh job for check lists if the taxon changed" do
+    o = make_research_grade_observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    o.update_attributes(:taxon => Taxon.make)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs.select{|j| j.handler =~ /\:refresh_with_observation\n/}.should_not be_blank
+  end
+  
   it "should not allow impossible coordinates" do
     o = Observation.make
     o.update_attributes(:latitude => 100)

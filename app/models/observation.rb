@@ -641,7 +641,8 @@ class Observation < ActiveRecord::Base
   end
   
   def refresh_check_lists
-    refresh_needed = georeferenced? && taxon_id && 
+    refresh_needed = (georeferenced? || was_georeferenced?) && 
+      (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
     CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
@@ -807,6 +808,10 @@ class Observation < ActiveRecord::Base
   
   def georeferenced?
     (latitude? && longitude?) || (private_latitude? && private_longitude?)
+  end
+  
+  def was_georeferenced?
+    (latitude_was && longitude_was) || (private_latitude_was && private_longitude_was)
   end
   
   def quality_metric_score(metric)
@@ -1124,7 +1129,6 @@ class Observation < ActiveRecord::Base
   end
   
   def update_stats
-    reload
     if taxon_id.blank?
       num_agreements    = 0
       num_disagreements = 0
