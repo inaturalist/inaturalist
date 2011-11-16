@@ -47,7 +47,7 @@ describe CheckList, "refresh_with_observation" do
   it "should update last observation" do
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude)
     t = o.taxon
-    @check_list.add_taxon(t)
+    lt = @check_list.add_taxon(t)
     CheckList.refresh_with_observation(o)
     lt = @check_list.listed_taxa.find_by_taxon_id(t.id)
     lt.last_observation_id.should be(o.id)
@@ -205,7 +205,7 @@ describe CheckList, "refresh_with_observation" do
       :longitude => @place.longitude, :taxon => @taxon)
     CheckList.refresh_with_observation(o)
     lt = @place.listed_taxa.find_by_taxon_id(@taxon.id)
-    lt.last_observation_id.should_not be(o.id)
+    lt.first_observation_id.should_not be(o.id)
     lt.observations_count.should be(3)
     
     o.update_attributes(:latitude => 0, :longitude => 0)

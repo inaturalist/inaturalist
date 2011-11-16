@@ -76,20 +76,6 @@ class CheckList < List
     Rails.logger.info "[INFO #{Time.now}] Finished syncing check list #{id} with parent #{parent_check_list.id}"
   end
   
-  def first_observation_of(taxon)
-    Observation.recently_added.of(taxon).in_place(place).
-      has_quality_grade(Observation::RESEARCH_GRADE).last
-  end
-  
-  def last_observation_of(taxon)
-    Observation.of(taxon).in_place(place).has_quality_grade(Observation::RESEARCH_GRADE).latest.first
-  end
-  
-  def observation_stats_for(taxon, options = {})
-    scope = Observation.in_place(place).of(taxon).scoped({})
-    scope.count(:group => "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)")
-  end
-  
   # This is a loaded gun.  Please fire with discretion.
   def add_intersecting_taxa(options = {})
     return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
@@ -101,10 +87,41 @@ class CheckList < List
     scope = scope.descendants_of(ancestor) if ancestor
     scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
       send_later(:add_taxon, taxon.id, :taxon_range_id => taxon.taxon_range_id, 
-        :skip_update_observation_associates => options[:skip_update_observation_associates],
-        :skip_update_observations_count => options[:skip_update_observations_count],
+        :skip_update_cache_columns => options[:sskip_update_cache_columns],
         :skip_sync_with_parent => options[:skip_sync_with_parent])
     end
+  end
+  
+  def cache_columns_query_for(lt)
+    lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return nil unless lt
+    sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
+    <<-SQL
+      SELECT
+        array_agg(CASE WHEN quality_grade = 'research' THEN o.id END) AS ids,
+        count(*),
+        (#{sql_key}) AS key
+      FROM
+        observations o
+          LEFT OUTER JOIN taxa t ON t.id = o.taxon_id 
+          JOIN place_geometries pg ON pg.place_id = #{lt.place_id}
+      WHERE
+        (
+          (
+            o.private_latitude IS NULL AND 
+            ST_Intersects(pg.geom, o.geom)
+          ) OR 
+          (
+            o.private_latitude IS NOT NULL AND 
+            ST_Intersects(pg.geom, ST_Point(o.private_longitude, o.private_latitude))
+          )
+        ) AND 
+        (
+          o.taxon_id = #{lt.taxon_id} OR 
+          t.ancestry LIKE '#{lt.taxon.ancestry}/#{lt.taxon_id}/%'
+        )
+      GROUP BY #{sql_key}
+    SQL
   end
   
   def self.sync_check_lists_with_parents(options = {})
@@ -149,7 +166,7 @@ class CheckList < List
     unless listed_taxa.blank?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        lt.force_update_observation_associates = true
+        lt.force_update_cache_columns = true
         lt.save # sets all observation associates, months stats, etc.
         if lt.auto_removable_from_check_list?
           lt.destroy
@@ -216,7 +233,7 @@ class CheckList < List
   def self.add_new_listed_taxa(taxon, new_place_ids)
     CheckList.find_each(:joins => "JOIN places ON places.check_list_id = lists.id", 
         :conditions => ["place_id IN (?)", new_place_ids]) do |list|
-      list.add_taxon(taxon, :force_update_observation_associates => true)
+      list.add_taxon(taxon, :force_update_cache_columns => true)
     end
   end
 end

@@ -31,9 +31,8 @@ class ListedTaxon < ActiveRecord::Base
   before_create :set_updater_id
   before_save :set_user_id
   before_save :set_source_id
-  before_save :update_observation_associates
-  after_save :update_observation_associates_for_check_list
-  after_save :update_observations_count
+  before_save :update_cache_columns
+  after_save :update_cache_columns_for_check_list
   after_save :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
@@ -100,10 +99,9 @@ class ListedTaxon < ActiveRecord::Base
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
-  attr_accessor :skip_update_observation_associates,
-                :skip_update_observations_count,
-                :force_update_observation_associates,
-                :skip_sync_with_parent
+  attr_accessor :skip_sync_with_parent,
+                :skip_update_cache_columns,
+                :force_update_cache_columns
   
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
@@ -131,62 +129,6 @@ class ListedTaxon < ActiveRecord::Base
         errors.add(field, "can only be set for check lists") unless send(field).blank?
       end
     end
-  end
-  
-  #
-  # Update the last observation for this listed_taxon.  This might have worked
-  # in a validation, but it involves a potentially expensive query, so it's
-  # here.  Takes an optional last_observation if one had been chosen in the
-  # calling scope to save a query.
-  #
-  def update_observation_associates(options = {})
-    return true if @skip_update_observation_associates
-    return true if list.is_a?(CheckList)
-    self.first_observation    = list.first_observation_of(taxon_id)
-    self.last_observation     = list.last_observation_of(taxon_id)
-    true
-  end
-  
-  def update_observation_associates_for_check_list(options = {})
-    return true if @skip_update_observation_associates
-    return true unless list.is_a?(CheckList)
-    if @force_update_observation_associates
-      options = options.merge(:skip_save => true)
-      @skip_update_observation_associates = true
-      ListedTaxon.update_last_observation_for(self, options)
-      ListedTaxon.update_first_observation_for(self, options)
-      save
-    else
-      options[:dj_priority] = 1
-      ListedTaxon.send_later(:update_last_observation_for, id, options)
-      ListedTaxon.send_later(:update_first_observation_for, id, options)
-    end
-    return true
-  end
-  
-  def self.update_first_observation_for(listed_taxon, options = {})
-    update_observation_associate_for(listed_taxon, :first_observation, options)
-  end
-  
-  def self.update_last_observation_for(listed_taxon, options = {})
-    update_observation_associate_for(listed_taxon, :last_observation, options)
-  end
-  
-  def self.update_observation_associate_for(listed_taxon, assoc_name, options = {})
-    listed_taxon = ListedTaxon.find_by_id(listed_taxon.to_i) unless listed_taxon.is_a?(ListedTaxon)
-    return unless listed_taxon
-    list = listed_taxon.list
-    obs = options[:observation] || list.send("#{assoc_name}_of", listed_taxon.taxon_id)
-    listed_taxon.send("#{assoc_name}=", obs)
-    yield(listed_taxon) if block_given?
-    unless options[:skip_save]
-      listed_taxon.skip_update_observation_associates = true
-      unless listed_taxon.save
-        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{obs} " + 
-          "as #{assoc_name} of #{listed_taxon}: #{listed_taxon.errors.full_messages.to_sentence}"
-      end
-    end
-    obs
   end
   
   def set_ancestor_taxon_ids
@@ -242,26 +184,57 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   
-  def update_observations_count
-    return true if @skip_update_observations_count
-    if list.is_a?(CheckList) && !@force_update_observation_associates
-      ListedTaxon.send_later(:update_observations_count_for, id, :dj_priority => 1)
-      return true
-    end
-    ListedTaxon.update_observations_count_for(id)
+  def update_cache_columns
+    return true if @skip_update_cache_columns
+    return true if list.is_a?(CheckList)
+    set_cache_columns
     true
   end
   
-  def self.update_observations_count_for(id)
-    return true unless (lt = find_by_id(id))
-    return true unless (counts = lt.list.observation_stats_for(lt.taxon_id))
-    total_count = counts.map(&:last).sum
-    month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
-    ListedTaxon.update_all(
-      ["observations_count = ?, observations_month_counts = ?", total_count, month_counts],
-      ["id = ?", id]
-    )
+  def set_cache_columns
+    self.first_observation_id, self.last_observation_id, self.observations_count, self.observations_month_counts = cache_columns
+  end
+  
+  def update_cache_columns_for_check_list
+    return true if @skip_update_cache_columns
+    if @force_update_cache_columns
+      ListedTaxon.update_cache_columns_for(self)
+    else
+      ListedTaxon.send_later(:update_cache_columns_for, id)
+    end
     true
+  end
+  
+  def cache_columns
+    return unless (sql = list.cache_columns_query_for(self))
+    ids = []
+    counts = {}
+    connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
+      counts[row['key']] = row['count'].to_i
+      ids += row['ids'].to_s.gsub(/[\{\}]/, '').split(',')
+    end
+    ids = ids.map {|id| id == "NULL" ? nil : id.to_i}.compact.uniq
+    first_observation_id = nil
+    last_observation_id = nil
+    Rails.logger.debug "[DEBUG] ids: #{ids.inspect}"
+    unless ids.blank?
+      first_observation_id = ids.min
+      last_observation_id = Observation.latest.first(:select => "id, observed_on, time_observed_at", :conditions => ["id IN (?)", ids]).try(:id)
+    end
+    total = counts.map{|k,v| v}.sum
+    month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
+    [first_observation_id, last_observation_id, total, month_counts]
+  end
+  
+  def self.update_cache_columns_for(lt)
+    lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return nil unless lt
+    lt.set_cache_columns
+    update_all(
+      ["first_observation_id = ?, last_observation_id = ?, observations_count = ?, observations_month_counts = ?", 
+        lt.first_observation_id, lt.last_observation_id, lt.observations_count, lt.observations_month_counts],
+      ["id = ?", lt.id]
+    )
   end
   
   def observation_month_stats

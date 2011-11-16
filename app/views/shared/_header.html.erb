@@ -97,7 +97,8 @@
     <% else %>
     <li style="margin-right: 10px">
       <span class="inter">
-        Welcome, 
+        Welcome 
+        <%= link_to user_image(current_user, :size => 'mini'), user_path(:id => current_user.login) %>
         <%= link_to current_user.login, user_path(:id => current_user.login) %>!
         (<%= link_to "Sign out", logout_path %>)
       </span>
