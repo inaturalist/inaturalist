@@ -1,5 +1,6 @@
 class FacebookController < ApplicationController
   before_filter :return_here, :only => [:options]
+  before_filter :login_required
 
   # This is the endpoint which allows a user to manager their facebook account
   # settings.  They use this endpoint after they have already gone through the
@@ -20,8 +21,8 @@ class FacebookController < ApplicationController
 
   # Return an HTML fragment containing a list of the user's fb albums
   def albums
-    @albums = @user.facebook_albums
-    render(:partial => 'facebook/albums')
+    @albums = current_user.facebook_albums
+    render :partial => 'facebook/albums'
   end
 
 #  this is mapped in config/routes.rb
