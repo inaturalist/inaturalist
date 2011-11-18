@@ -72,7 +72,7 @@ module TaxaHelper
     photo = if taxon.taxon_photos.loaded?
       taxon.taxon_photos.sort_by{|tp| tp.id}.first.photo
     else
-      taxon.taxon_photos.first(:include => [:photo], :order => "taxon_photos.id DESC").photo
+      taxon.taxon_photos.first(:include => [:photo], :order => "taxon_photos.id ASC").photo
     end
     if photo.respond_to?(size)
       photo.send(size)
