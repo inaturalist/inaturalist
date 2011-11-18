@@ -94,6 +94,7 @@
 
       $('.back_to_albums').live('click', function(){
         $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
+        return false;
       });
 
       $(urlSelectWrapper).append(urlSelect);

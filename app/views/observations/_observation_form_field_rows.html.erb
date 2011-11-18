@@ -51,11 +51,7 @@
         <div class="column span-7">
           <%= o.text_field(:observed_on_string, 
                            :class => 'text observed_on_string') %>
-          <%# A bug in select prevents us from relying on the fields_for index until the bug fix is pushed in 2.2.  See http://rails.lighthouseapp.com/projects/8994/tickets/518 and http://rails.lighthouseapp.com/projects/8994/tickets/518 %>
-          <%= time_zone_select("observations[#{i}]", :time_zone, 
-                                ActiveSupport::TimeZone.us_zones, 
-                                {:object => observation}, 
-                                {:class => 'time_zone'}) %>
+              <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
         </div>
         <div class="column span-7">
           <%= o.text_field(:place_guess, :class => 'text place_guess') %>

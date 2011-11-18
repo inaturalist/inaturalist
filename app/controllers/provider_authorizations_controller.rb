@@ -61,10 +61,10 @@ class ProviderAuthorizationsController < ApplicationController
     end
     
     # registering via an invite link in a flickr comment. see /flickr/invite
-    if session[:flickr_invite_params]
-      flickr_invite_params = session[:flickr_invite_params]
-      session[:flickr_invite_params] = nil
-      @landing_path = new_observation_url(flickr_invite_params)
+    if session[:invite_params]
+      invite_params = session[:invite_params]
+      session[:invite_params] = nil
+      @landing_path = new_observation_url(invite_params)
       if @provider_authorization && @provider_authorization.created_at > 15.minutes.ago
         flash[:notice] = "Welcome to iNaturalist! If these options look good, " + 
           "click \"Save observation\" below and you'll be good to go!"
@@ -100,7 +100,7 @@ class ProviderAuthorizationsController < ApplicationController
       @provider_authorization = current_user.provider_authorizations.last
       handle_remember_cookie! true # set 'remember me' to true
       flash[:notice] = "Welcome!"
-      if session[:flickr_invite_params].nil?
+      if session[:invite_params].nil?
         flash[:allow_edit_after_auth] = true
         @landing_path = edit_after_auth_url
         return
