@@ -109,6 +109,7 @@ Rails::Initializer.run do |config|
   # config.gem 'newrelic_rpm'
   config.gem 'delayed_paperclip'
   config.gem "friendly_id", :version => "~> 3.2.1"
+  config.gem "koala", :version => "<= 1.1.0"
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'
@@ -127,7 +128,6 @@ require 'wikipedia_service'
 require 'batch_tools'
 require 'geo_ruby/shp4r/shp'
 require 'georuby_extra'
-require 'koala'
 
 ### API KEYS ###
 UBIO_KEY = INAT_CONFIG['ubio']['UBIO_KEY']

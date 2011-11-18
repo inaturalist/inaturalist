@@ -34,7 +34,8 @@ class ProviderAuthorizationsController < ApplicationController
   def create
     auth_info = request.env['omniauth.auth']
     
-    if auth_info["provider"] == 'facebook'
+    case auth_info["provider"]
+    when 'facebook'
       # omniauth bug sets fb nickname to 'profile.php?id=xxxxx' if no other nickname exists
       if auth_info["user_info"]["nickname"] && auth_info["user_info"]["nickname"].match("profile.php")
         auth_info["user_info"]["nickname"] = nil
@@ -66,7 +67,7 @@ class ProviderAuthorizationsController < ApplicationController
     end
     
     if !session[:return_to].blank? && session[:return_to] != login_url
-      @landing_path = session[:return_to]
+      @landing_path ||= session[:return_to]
     end
     
     # registering via an invite link in a flickr comment. see /flickr/invite

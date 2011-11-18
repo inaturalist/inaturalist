@@ -24,7 +24,12 @@ class FacebookPhoto < Photo
   # facebook doesn't provide a square image
   # so for now, just return the thumbnail image
   def square_url
-    return self.thumb_url
+    thumb_url
+  end
+  
+  # fb's small url is too small
+  def small_url
+    medium_url
   end
 
   def self.new_from_api_response(api_response, options = {})
@@ -32,7 +37,7 @@ class FacebookPhoto < Photo
     return nil if fp.nil?
     # facebook api provides these sizes in an keyless array, in this order
     [:large_url, :medium_url, :small_url, :thumb_url].each_with_index{|img_size,i|
-      options.update(img_size=>fp['images'][i]['source'])
+      options.update(img_size => fp['images'][i]['source'])
     }
     options.update(
       :native_photo_id => fp["id"],

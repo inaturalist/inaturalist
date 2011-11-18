@@ -225,7 +225,7 @@ class FlickrController < ApplicationController
       else
         @flickr_url = auth_url_for('flickr')
       end
-    rescue Net::Flickr::APIError => e
+    rescue Net::Flickr::APIError, FlickRaw::FailedResponse => e
       logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
       HoptoadNotifier.notify(e, :request => request, :session => session)
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 

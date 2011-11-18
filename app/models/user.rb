@@ -215,8 +215,7 @@ class User < ActiveRecord::Base
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth(provider)
     provider = provider.downcase
-    all_providers = self.provider_authorizations
-    return (all_providers.select{|p| (p.provider_name==provider || p.provider_uid.match(provider))}.first)
+    provider_authorizations.all.select{|p| (p.provider_name == provider || p.provider_uid.match(provider))}.first
   end
 
   def login=(value)
@@ -285,27 +284,29 @@ class User < ActiveRecord::Base
   def facebook_albums
     return [] if self.facebook_api.nil? 
     album_data = self.facebook_api.get_connections('me','albums')
-    return album_data.reject{|a| a['count'].nil? || a['count']<1}.map{|a| 
-      {'aid'=>a['id'], 'name'=>a['name'], 'photo_count'=>a['count'],
-       'cover_photo_src'=>"https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{self.facebook_token}"}
-    }
+    album_data.reject{|a| a['count'].nil? || a['count'] < 1}.map do |a|
+      {
+        'aid' => a['id'],
+        'name' => a['name'],
+        'photo_count' => a['count'],
+        'cover_photo_src' => "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{self.facebook_token}"
+      }
+    end
   end
 
   def facebook_album_photos(aid)
     return [] if self.facebook_api.nil? 
     album_data = self.facebook_api.get_connections(aid, 'photos')
-    return album_data
+    album_data
   end
 
   # returns nil or the facebook ProviderAuthorization
   def facebook_identity
-    @facebook_identity ||= self.has_provider_auth('facebook')
-    return @facebook_identity
+    @facebook_identity ||= has_provider_auth('facebook')
   end
 
   def facebook_token
-    return nil if self.facebook_identity.nil?
-    return self.facebook_identity.token
+    facebook_identity.try(:token)
   end
 
   # returns a koala object to make (authenticated) facebook api calls
