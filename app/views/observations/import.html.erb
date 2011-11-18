@@ -52,19 +52,31 @@
       $('#photos').photoSelector({
         <%- if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
           baseURL: '/flickr/photo_fields?context=user',
+        <%- elsif !@user.facebook_identity.nil? -%>
+          baseURL: '/facebook/albums?context=user',
         <%- else -%>
           baseURL: '/picasa/photo_fields?context=user',
         <%- end -%>
-        <%- if @photo_identities.size > 1 %>
-        urls: [
-          {title: 'Flickr', url: '/flickr/photo_fields?context=user'},
-          {title: 'Picasa', url: '/picasa/photo_fields?context=user'}
-        ],
+        <%- unless @photo_identities.blank? && @user.facebook_identity.nil? %>
+          <%- 
+            urls = @photo_identities.map do |identity|
+              service = if identity.is_a?(ProviderAuthorization)
+                          identity.provider_name
+                        else
+                          identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
+                        end
+              "{title: '#{service.capitalize}', url: '/#{service.downcase}/photo_fields?context=user'}"
+            end
+          -%>
+          urls: [<%= urls.join(', ') %>],
         <% end -%>
         urlParams: {
           authenticity_token: AUTH_TOKEN,
           limit: 24
         }
+      });
+      $(".facebookAlbums .album").live('click',function(){
+        $.fn.photoSelector.changeBaseUrl('#photos','/facebook/album/'+$(this).attr('data-aid'));
       });
     });
   </script>
@@ -91,7 +103,7 @@
     </ul>
     
     <div id="photo_import">
-      <% if current_user.flickr_identity || current_user.picasa_identity %>      
+      <% if current_user.flickr_identity || current_user.picasa_identity || current_user.facebook_identity %>      
         <% form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">

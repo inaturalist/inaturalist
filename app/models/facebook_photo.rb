@@ -12,6 +12,10 @@ class FacebookPhoto < Photo
     return true
   end
 
+  def validate
+    return self.owned_by?(user)
+  end
+
   def self.get_api_response(native_photo_id, options = {})
     return nil unless (options[:user] && options[:user].facebook_api)
     return (options[:user].facebook_api.get_object(native_photo_id) || nil) # api returns 'false' if photo not found
@@ -52,7 +56,7 @@ class FacebookPhoto < Photo
     observation.description = fbp_json["name"]
     #observation.observed_on_string = fp.taken.to_s(:long)
     #observation.munge_observed_on_with_chronic
-    #observation.time_zone = observation.user.time_zone if observation.user
+    observation.time_zone = observation.user.time_zone if observation.user
     return observation
   end
 
