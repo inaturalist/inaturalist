@@ -185,7 +185,7 @@ class User < ActiveRecord::Base
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /unique constraint/
         u.login = User.suggest_login(u.login)
-        u.register! 
+        u.register! unless u.pending?
         u.activate!
       end
       u.add_provider_auth(auth_info)
