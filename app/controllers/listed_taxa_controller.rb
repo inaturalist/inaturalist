@@ -10,10 +10,15 @@ class ListedTaxaController < ApplicationController
   end
   
   def show
-    if partial = params[:partial]
-      partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
-      render :partial => partial, :layout => false
-      return
+    respond_to do |format|
+      format.html do
+        if partial = params[:partial]
+          partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
+          render :partial => partial, :layout => false
+          return
+        end
+      end
+      format.json { render :json => @listed_taxon }
     end
   end
   
