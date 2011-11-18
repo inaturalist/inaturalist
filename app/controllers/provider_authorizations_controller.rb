@@ -42,6 +42,15 @@ class ProviderAuthorizationsController < ApplicationController
       # for some reason, omniauth doesn't populate image url
       # (maybe cause our version of omniauth was pre- fb graph api?)
       auth_info["user_info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
+    when 'flickr'
+      # construct the url for the user's flickr buddy icon
+      nsid = auth_info['extra']['user_hash']['nsid']
+      flickr_info = flickr.people.getInfo(:user_id=>nsid) # we make this api call to get the icon-farm and icon-server
+      iconfarm = flickr_info['iconfarm']
+      iconserver = flickr_info['iconserver']
+      unless (iconfarm==0 || iconserver==0)
+        auth_info["user_info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
+      end
     end
     
     
