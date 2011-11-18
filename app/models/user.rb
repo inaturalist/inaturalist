@@ -292,6 +292,9 @@ class User < ActiveRecord::Base
         'cover_photo_src' => "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{self.facebook_token}"
       }
     end
+  rescue OpenSSL::SSL::SSLError => e
+    Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    return []
   end
 
   def facebook_album_photos(aid)
