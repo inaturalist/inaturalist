@@ -5,6 +5,7 @@
   photo_identity ||= nil
   local_photos ||= false
   local_photos = false unless logged_in?
+  organized_by_album ||= false
 -%>
 
 <% if photos.blank? && !local_photos %>
@@ -12,6 +13,9 @@
     We didn't find any photos using the search terms you provided.
   </div>
 <% else %>
+  <% if organized_by_album %>
+    <label><a href='#' class="back_to_albums">&laquo; Back to albums</a></label>
+  <% end %>
   <% photos.each do |photo| %>
     <%- 
       native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id

@@ -127,6 +127,7 @@ require 'wikipedia_service'
 require 'batch_tools'
 require 'geo_ruby/shp4r/shp'
 require 'georuby_extra'
+require 'koala'
 
 ### API KEYS ###
 UBIO_KEY = INAT_CONFIG['ubio']['UBIO_KEY']

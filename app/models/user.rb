@@ -271,6 +271,52 @@ class User < ActiveRecord::Base
     friends.exists?(user)
   end
 
+#  # returns an array of urls for facebook album cover photo thumbnails
+#  # image_size can be 'src_small' or 'src_big'
+#  def facebook_album_cover_photos(image_size="src_small")
+#    return [] if self.facebook_api.nil? 
+#    return self.facebook_api.fql_query(
+#      "SELECT #{image_size} FROM photo WHERE pid IN (SELECT cover_pid FROM album WHERE owner = me())"
+#    ).map{|p| p[image_size]}
+#  end
+
+  # returns an array of album data hashes like [{ 'name'=>'Safari Pics', 'cover_photo_src'=>(thumbnail_url) }, ...]
+  # not terribly efficient, cause it makes an api call to get album data and separate calls for each album to get the url
+  def facebook_albums
+    return [] if self.facebook_api.nil? 
+    album_data = self.facebook_api.get_connections('me','albums')
+    return album_data.reject{|a| a['count'].nil? || a['count']<1}.map{|a| 
+      {'aid'=>a['id'], 'name'=>a['name'], 'photo_count'=>a['count'],
+       'cover_photo_src'=>"https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{self.facebook_token}"}
+    }
+  end
+
+  def facebook_album_photos(aid)
+    return [] if self.facebook_api.nil? 
+    album_data = self.facebook_api.get_connections(aid, 'photos')
+    return album_data
+  end
+
+  # returns nil or the facebook ProviderAuthorization
+  def facebook_identity
+    @facebook_identity ||= self.has_provider_auth('facebook')
+    return @facebook_identity
+  end
+
+  def facebook_token
+    return nil if self.facebook_identity.nil?
+    return self.facebook_identity.token
+  end
+
+  # returns a koala object to make (authenticated) facebook api calls
+  # e.g. @user.facebook_api.get_object('me')
+  # see koala docs for available methods: https://github.com/arsduo/koala
+  def facebook_api
+    return nil if self.facebook_identity.nil?
+    @fb ||= Koala::Facebook::GraphAndRestAPI.new(self.facebook_identity.token)
+    return @fb
+  end
+  
   protected
 
   # given a requested login, will try to find existing users with that login
@@ -320,4 +366,5 @@ class User < ActiveRecord::Base
     )
     true
   end
+
 end

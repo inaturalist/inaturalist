@@ -92,6 +92,10 @@
         $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
       });
 
+      $('.back_to_albums').live('click', function(){
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
+      });
+
       $(urlSelectWrapper).append(urlSelect);
     }
     

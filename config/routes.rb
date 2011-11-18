@@ -25,7 +25,11 @@ ActionController::Routing::Routes.draw do |map|
     pa.omniauth_disconnect "/auth/:provider/disconnect", :action => "destroy", :method => "delete"
   end
   map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"
-  
+
+  map.connect "/facebook/photo_fields", :controller => "facebook", :action => "albums"
+  map.connect "/flickr/invite", :controller => "photos", :action => "invite", :provider => "flickr"
+  map.connect "/facebook/invite", :controller => "photos", :action => "invite", :provider => "facebook"
+
   # Special controller routes
   
   map.resources :announcements

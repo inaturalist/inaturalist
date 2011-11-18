@@ -1,0 +1,18 @@
+<div class='photoSelectorAlbums facebookAlbums'>
+  <% if @albums.empty? %>
+    <p>We can't find any photos from Facebook.</p>
+  <% else %>
+    <label>Select an album</label>
+    <table>
+    <% @albums.each do |album| %>
+      <tr class='album' data-aid='<%= album['aid'] %>'>
+        <td><%= image_tag(album['cover_photo_src']) %></td>
+        <td><%= album['name'] %></td>
+      </tr>
+    <% end %>
+    </table>
+  <% end %>
+</div>
+<script type='text/javascript'>
+  //$('.photoSelectorControls .prevlink, .photoSelectorControls .nextlink').css('visibility','hidden');
+</script>

@@ -117,8 +117,10 @@
           <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
           
           <p class="ui description">
-            We also support <a href="http://flickr.com">Flickr</a> and 
-            <a href="http://picasaweb.google.com">Picasa</a> for image hosting.
+            We also support <a href="http://flickr.com">Flickr</a>,
+            <a href="http://picasaweb.google.com">Picasa</a>, and
+            <a href="http://facebook.com">Facebook</a>
+            for image hosting.
           </p>
           
           <div class="clear buttons">
@@ -126,6 +128,7 @@
               {:controller => 'flickr', :action => 'link'}, :class => "button" %>
             <%= link_to "Link your Picasa account",
               {:controller => 'picasa', :action => 'options'}, :class => "button" %>
+            <%= link_to "Link your Facebook account", "/auth/facebook", :class => "button" %>
           </div>
 
         <% end %>

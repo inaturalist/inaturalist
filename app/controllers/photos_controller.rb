@@ -34,4 +34,15 @@ class PhotosController < ApplicationController
       end
     end
   end
+
+  def invite
+    # params should include '#{flickr || facebook}_photo_id' and whatever else you want to add
+    # to the observation, e.g. taxon_id, project_id, etc
+    invite_params = params
+    [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
+    provider = invite_params.delete(:provider)
+    session[:invite_params] = invite_params
+    redirect_to "/auth/#{provider}"
+  end
+
 end
