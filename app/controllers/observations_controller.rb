@@ -1601,27 +1601,30 @@ class ObservationsController < ApplicationController
   
   def load_photo_identities
     @photo_identities = Photo.descendent_classes.map do |klass|
-      klass_name = klass.to_s.underscore.split('_').first + "_identity"
-      current_user.send(klass_name) if current_user.respond_to?(klass_name)
+      assoc_name = klass.to_s.underscore.split('_').first + "_identity"
+      current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end.compact
     
-    first = if @observation
-      @observation.photos.first
-    elsif !@observations.blank?
-      @observations.first.photos.first
-    else
-      nil
-    end
-    
-    if first
-      @default_photo_identity = case first.class.to_s
-      when 'FlickrPhoto'
-        @photo_identities.detect{|pi| pi.is_a?(FlickrIdentity)}
-      when 'PicasaPhoto'
-        @photo_identities.detect{|pi| pi.is_a?(PicasaIdentity)}
-      end
+    reference_photo = @observation.try(:photos).try(:first)
+    reference_photo ||= @observations.try(:first).try(:photos).try(:first)
+    reference_photo ||= current_user.photos.last
+    if reference_photo
+      assoc_name = reference_photo.class.to_s.underscore.split('_').first + "_identity"
+      @default_photo_identity = current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     else
       @default_photo_identity = @photo_identities.first
+    end
+    
+    @default_photo_identity_url = nil
+    @photo_identity_urls = @photo_identities.map do |identity|
+      provider_name = if identity.is_a?(ProviderAuthorization)
+        identity.provider_name
+      else
+        identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
+      end
+      url = "/#{provider_name.downcase}/photo_fields?context=user"
+      @default_photo_identity_url = url if identity == @default_photo_identity
+      "{title: '#{provider_name.capitalize}', url: '#{url}'}"
     end
   end
   
