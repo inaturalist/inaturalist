@@ -1,6 +1,11 @@
 <div class='photoSelectorAlbums facebookAlbums'>
-  <% if @albums.empty? %>
-    <p>We can't find any photos from Facebook.</p>
+  <% if @reauthorization_needed -%>
+    <p class="notice ui">
+      Facebook would like to confirm that you want your account connected to iNat.
+      <%= link_to "Confirm now", ProviderAuthorization::AUTH_URLS['facebook'], :class => "readmore" %>
+    </p>
+  <% elsif @albums.empty? %>
+    <p class="meta ui">We can't find any photos from Facebook.</p>
   <% else %>
     <label>Select an album</label>
     <table>
@@ -13,6 +18,4 @@
     </table>
   <% end %>
 </div>
-<script type='text/javascript'>
-  //$('.photoSelectorControls .prevlink, .photoSelectorControls .nextlink').css('visibility','hidden');
-</script>
+

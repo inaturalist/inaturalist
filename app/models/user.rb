@@ -155,12 +155,9 @@ class User < ActiveRecord::Base
   def self.create_from_omniauth(auth_info)
     email = (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"])
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
-    unless email.nil?
-      u = User.find_by_email(email)
-      if u
-        u.add_provider_auth(auth_info)
-        return u
-      end
+    if email && u = User.find_by_email(email)
+      u.add_provider_auth(auth_info)
+      return u
     end
     autogen_login = User.suggest_login(
       auth_info["user_info"]["nickname"] || 
@@ -169,22 +166,23 @@ class User < ActiveRecord::Base
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
     autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
-    u = User.new({
+    u = User.new(
       :login => autogen_login,
       :email => email,
       :name => auth_info["user_info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw,
       :icon_url => auth_info["user_info"]["image"]
-    })
+    )
     if u
       u.skip_email_validation = true
       begin
-        u.register! 
+        u.register!
         u.activate!
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /unique constraint/
         u.login = User.suggest_login(u.login)
+        Rails.logger.info "[INFO #{Time.now}] unique violation, suggested login: #{u.login}"
         u.register! unless u.pending?
         u.activate!
       end
@@ -269,40 +267,15 @@ class User < ActiveRecord::Base
   def friends_with?(user)
     friends.exists?(user)
   end
-
-#  # returns an array of urls for facebook album cover photo thumbnails
-#  # image_size can be 'src_small' or 'src_big'
-#  def facebook_album_cover_photos(image_size="src_small")
-#    return [] if self.facebook_api.nil? 
-#    return self.facebook_api.fql_query(
-#      "SELECT #{image_size} FROM photo WHERE pid IN (SELECT cover_pid FROM album WHERE owner = me())"
-#    ).map{|p| p[image_size]}
-#  end
-
-  # returns an array of album data hashes like [{ 'name'=>'Safari Pics', 'cover_photo_src'=>(thumbnail_url) }, ...]
-  # not terribly efficient, cause it makes an api call to get album data and separate calls for each album to get the url
-  def facebook_albums
-    return [] if self.facebook_api.nil? 
-    album_data = self.facebook_api.get_connections('me','albums')
-    album_data.reject{|a| a['count'].nil? || a['count'] < 1}.map do |a|
-      {
-        'aid' => a['id'],
-        'name' => a['name'],
-        'photo_count' => a['count'],
-        'cover_photo_src' => "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{self.facebook_token}"
-      }
-    end
-  rescue OpenSSL::SSL::SSLError => e
-    Rails.logger.error "[ERROR #{Time.now}] #{e}"
-    return []
+  
+  # returns a koala object to make (authenticated) facebook api calls
+  # e.g. @facebook_api.get_object('me')
+  # see koala docs for available methods: https://github.com/arsduo/koala
+  def facebook_api
+    return nil unless facebook_identity
+    @facebook_api ||= Koala::Facebook::GraphAndRestAPI.new(facebook_identity.token)
   end
-
-  def facebook_album_photos(aid)
-    return [] if self.facebook_api.nil? 
-    album_data = self.facebook_api.get_connections(aid, 'photos')
-    album_data
-  end
-
+  
   # returns nil or the facebook ProviderAuthorization
   def facebook_identity
     @facebook_identity ||= has_provider_auth('facebook')
@@ -310,15 +283,6 @@ class User < ActiveRecord::Base
 
   def facebook_token
     facebook_identity.try(:token)
-  end
-
-  # returns a koala object to make (authenticated) facebook api calls
-  # e.g. @user.facebook_api.get_object('me')
-  # see koala docs for available methods: https://github.com/arsduo/koala
-  def facebook_api
-    return nil if self.facebook_identity.nil?
-    @fb ||= Koala::Facebook::GraphAndRestAPI.new(self.facebook_identity.token)
-    return @fb
   end
   
   protected
@@ -332,11 +296,11 @@ class User < ActiveRecord::Base
     requested_login = requested_login.downcase.split('').select{|l| ('a'..'z').member?(l) || ('0'..'9').member?(l) }.join('')
     suggested_login = requested_login
     appendix = 1
-    while !User.find_by_login(suggested_login).nil?
+    while User.find_by_login(suggested_login)
       appendix += 1 
-      suggested_login = (requested_login + appendix.to_s)
+      suggested_login = "#{requested_login}#{appendix}"
     end  
-    return suggested_login
+    suggested_login
   end  
   
   def make_activation_code

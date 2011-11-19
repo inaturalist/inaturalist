@@ -11,7 +11,6 @@ class ProviderAuthorization < ActiveRecord::Base
   attr_accessor :auth_info
   
   PROVIDERS = %w(facebook twitter Flickr Google Yahoo) 
-  #PROVIDERS = %w(facebook twitter Google Yahoo) # disabling flickr until we change the callback url
   AUTH_URLS = PROVIDERS.inject({}) do |memo, provider|
     memo.update(provider => "/auth/#{provider.downcase}")
   end

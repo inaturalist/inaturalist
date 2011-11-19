@@ -6,13 +6,18 @@ class FacebookController < ApplicationController
   # settings.  They use this endpoint after they have already gone through the
   # signup process.
   def options
-    begin
-      #@album_cover_photos = @user.facebook_album_cover_photos[0..5]
-      @album_cover_photos = @user.facebook_albums[0..3]
-    rescue Koala::Facebook::APIError => e
-      logger.error "[Error #{Time.now}] Facebok connection failed, error ##{e.type} (#{e}):  #{e.message}"
+    @album_cover_photos = if current_user.facebook_identity
+      facebook_albums(current_user)[0..3] || []
+    else
+      []
+    end
+  rescue Koala::Facebook::APIError => e
+    if e.message =~ /OAuthException/
+      redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+    else
+      logger.error "[Error #{Time.now}] Facebook connection failed, error ##{e.type} (#{e}):  #{e.message}"
       HoptoadNotifier.notify(e, :request => request, :session => session) # testing
-      flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
+      flash[:error] = "Ack! Something went horribly wrong, like a giant " + 
                        "squid ate your Facebook info.  You can contact us at " +
                        "help@inaturalist.org if you still can't get this " + 
                        "working.  Error: #{e.message}"
@@ -21,7 +26,13 @@ class FacebookController < ApplicationController
 
   # Return an HTML fragment containing a list of the user's fb albums
   def albums
-    @albums = current_user.facebook_albums
+    @albums = begin
+      facebook_albums(current_user)
+    rescue Koala::Facebook::APIError => e
+      raise e unless e.message =~ /OAuthException/
+      @reauthorization_needed = true
+      []
+    end
     render :partial => 'facebook/albums'
   end
 
@@ -36,7 +47,7 @@ class FacebookController < ApplicationController
     page = (params[:page] || 1).to_i
     from = ((page-1)*per_page)
     to = ((page*per_page)-1)
-    all_photos = @user.facebook_album_photos(params[:id])
+    all_photos = facebook_album_photos(current_user, params[:id])
     @photos = (all_photos[from..to] || []).map{|fp| FacebookPhoto.new_from_api_response(fp)}
     # sync doesn't work with facebook! they strip exif metadata from photos. :(
     #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
@@ -52,6 +63,33 @@ class FacebookController < ApplicationController
                }
       end
     end
+  end
+  
+  protected
+
+  # returns an array of album data hashes like [{ 'name'=>'Safari Pics', 'cover_photo_src'=>(thumbnail_url) }, ...]
+  # not terribly efficient, cause it makes an api call to get album data and separate calls for each album to get the url
+  def facebook_albums(user)
+    return [] unless user.facebook_api
+    album_data = user.facebook_api.get_connections('me','albums')
+    album_data.reject{|a| a['count'].nil? || a['count'] < 1}.map do |a|
+      {
+        'aid' => a['id'],
+        'name' => a['name'],
+        'photo_count' => a['count'],
+        'cover_photo_src' => 
+          "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{user.facebook_token}"
+      }
+    end
+  rescue OpenSSL::SSL::SSLError => e
+    Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    return []
+  end
+
+  def facebook_album_photos(user, aid)
+    return [] unless user.facebook_api
+    album_data = user.facebook_api.get_connections(aid, 'photos')
+    album_data
   end
   
 end
