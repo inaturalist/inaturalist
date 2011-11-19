@@ -1,7 +1,9 @@
 class UserObserver < ActiveRecord::Observer
   def after_create(user)
     user.reload
-    UserMailer.deliver_signup_notification(user) unless user.email.blank?
+    if !user.email.blank? && user.pending?
+      UserMailer.deliver_signup_notification(user)
+    end
   end
   def after_save(user)
     user.reload
