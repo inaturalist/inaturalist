@@ -334,7 +334,15 @@ class ObservationsController < ApplicationController
     options[:time_zone] = current_user.time_zone
     @observation = Observation.new(options)
     
-    sync_facebook_photo if params[:facebook_photo_id]
+    if params[:facebook_photo_id]
+      begin
+        sync_facebook_photo
+      rescue Koala::Facebook::APIError => e
+        raise e unless e.message =~ /OAuthException/
+        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        return
+      end
+    end
     sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
     sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
     
@@ -404,7 +412,15 @@ class ObservationsController < ApplicationController
       @observation.longitude = @observation.private_longitude
     end
     
-    sync_facebook_photo if params[:facebook_photo_id]
+    if params[:facebook_photo_id]
+      begin
+        sync_facebook_photo
+      rescue Koala::Facebook::APIError => e
+        raise e unless e.message =~ /OAuthException/
+        redirect_to ProviderAuthorization::AUTH_URLS['facebook']
+        return
+      end
+    end
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
   end
@@ -1480,7 +1496,7 @@ class ObservationsController < ApplicationController
   def sync_facebook_photo
     fb = current_user.facebook_api
     if fb
-      fbp_json = FacebookPhoto.get_api_response(params[:facebook_photo_id], {:user=>current_user})
+      fbp_json = FacebookPhoto.get_api_response(params[:facebook_photo_id], :user => current_user)
       @facebook_photo = FacebookPhoto.new_from_api_response(fbp_json)
     else 
       @facebook_photo = nil
