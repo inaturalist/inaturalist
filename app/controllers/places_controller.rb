@@ -238,7 +238,8 @@ class PlacesController < ApplicationController
   
   def guide
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
-    filter_param_keys = [:colors, :taxon, :q]
+    filter_param_keys = [:colors, :taxon, :q, :establishment_means, 
+      :conservation_status, :threatened, :introduced, :native]
     @filter_params = Hash[params.select{|k,v| 
       is_filter_param = filter_param_keys.include?(k.to_sym)
       is_blank = if v.is_a?(Array) && v.size == 1
@@ -280,6 +281,20 @@ class PlacesController < ApplicationController
     
     if @colors = @filter_params[:colors]
       scope = scope.colored(@colors)
+    end
+    
+    if @introduced = @filter_params[:introduced]
+      scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
+    elsif @native = @filter_params[:native]
+      scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+    elsif @establishment_means = @filter_params[:establishment_means]
+      scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
+    end
+    
+    if @threatened = @filter_params[:threatened]
+      scope = scope.threatened
+    elsif @conservation_status = @filter_params[:conservation_status]
+      scope = scope.has_conservation_status(@conservation_status)
     end
     
     @listed_taxa_count = scope.count(:select => "DISTINCT taxa.id")

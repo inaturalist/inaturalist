@@ -177,6 +177,9 @@ class Taxon < ActiveRecord::Base
   IUCN_STATUSES_SELECT = IUCN_STATUS_NAMES.map do |status_name|
     ["#{status_name.humanize} (#{IUCN_STATUS_CODES[status_name]})", const_get("IUCN_#{status_name.upcase}")]
   end
+  IUCN_STATUS_VALUES = Hash[IUCN_STATUS_NAMES.map {|status_name|
+    [status_name, const_get("IUCN_#{status_name.upcase}")]
+  }]
   IUCN_STATUS_NAMES.each do |status_name|
     define_method("iucn_#{status_name}?") do
       conservation_status == self.class.const_get("IUCN_#{status_name.upcase}")
@@ -255,6 +258,19 @@ class Taxon < ActiveRecord::Base
     conditions << taxon
     {:conditions => conditions}
   }
+  
+  named_scope :has_conservation_status, lambda {|status|
+    if status.is_a?(String)
+      status = if status.size == 2
+        IUCN_STATUS_VALUES[IUCN_STATUS_CODES.invert[status]]
+      else
+        IUCN_STATUS_VALUES[status]
+      end
+    end
+    {:conditions => ["conservation_status = ?", status.to_i]}
+  }
+  
+  named_scope :threatened, {:conditions => ["conservation_status >= ?", IUCN_NEAR_THREATENED]}
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)

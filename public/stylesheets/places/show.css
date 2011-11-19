@@ -15,11 +15,14 @@
 #taxa .pagination{ margin-top: 20px; }
 #taxa .shades { opacity: 0.8; z-index: 100;}
 
-#controls form { vertical-align: top; margin-right: 10px;}
+#controls form { vertical-align: top; margin: 0 10px 10px 0;}
 #controls button, #controls .inter, #controls .text, #controls .button {padding: 4px 5px; margin:0;}
 #controls a.button {padding: 4px 5px 3px;}
 #controls .ui-multiselect { padding: 3px 0px 3px 5px; margin-bottom: 0; }
-#controls .value { background-color: #84A92F; }
+@-moz-document url-prefix() {
+  #controls input.button {padding: 3px 5px;}
+  #controls .ui-multiselect {padding-top: 2px;}
+}
 .colorfield { padding: 1px 5px; margin-right: 5px; border-radius: 5px;}
 .colorfield.black   { color: lightgrey;  border: 1px solid transparent; background-color: black;}
 .colorfield.white   { color: grey;       border: 1px solid #eee; background-color: white;}
@@ -34,7 +37,9 @@
 .colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}
 
 #sidecol .barchart { width: 230px; float: none;}
+#controls { line-height: 0; }
 #controls .barchart { width: 230px; float: right;}
+#confirmedchart .value { background-color: #84A92F; }
 #browsingtaxa { background-color: #eee; padding: 5px 0; }
 #browsingtaxa ul { margin: 0; list-style: none; }
 #browsingtaxa ul ul { margin-left: 20px;}

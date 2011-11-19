@@ -5,7 +5,7 @@ $(document).ready(function() {
     minWidth: 130,
     selectedText: function(selected, total, elts) {
       if (selected > 2) {
-        return selected+' colors'
+        return '<strong>'+selected+' colors</strong>'
       }
       var html = ''
       for (var i=0; i < elts.length; i++) {
@@ -13,6 +13,37 @@ $(document).ready(function() {
       }
       return html
     }
+  })
+  $('#filters .establishmentfilter select').multiselect({
+    header: false,
+    noneSelectedText: "Native/endemic/inroduced",
+    minWidth: 110,
+    multiple: false,
+    selectedText: function(selected, total, elts) {
+      if (elts[0].value) {
+        return "<strong>"+elts[0].title+"</strong>"
+      } else {
+        return elts[0].title
+      }
+    }
+  })
+  $('#filters .conservationfilter select').multiselect({
+    header: false,
+    noneSelectedText: "Conservation status",
+    minWidth: 140,
+    multiple: false,
+    selectedText: function(selected, total, elts) {
+      if (elts[0].value) {
+        return "<strong>"+elts[0].title+"</strong>"
+      } else {
+        return elts[0].title
+      }
+    }
+  })
+  
+  $('#filters select').siblings('input.button').hide()
+  $('#filters select').change(function() {
+    $(this).parents('form:first').submit()
   })
   
   $('#placephotos').loadFlickrPlacePhotos()
@@ -115,7 +146,11 @@ $.fn.loadWikipediaDescription = function() {
 }
 
 var PlaceGuide = {
-  IGNORE_PARAMS: ['test', 'multiselect_colorsFilter', 'multiselect_colorsFilter[]'],
+  IGNORE_PARAMS: ['test', 
+    'multiselect_colorsFilter', 
+    'multiselect_colorsFilter[]', 
+    'multiselect_conservationFilter', 
+    'multiselect_establishmentFilter'],
   OVERRIDE_EXISTING: 0,
   RESPECT_EXISTING: 1,
   REPLACE_EXISTING: 2,
@@ -152,10 +187,25 @@ var PlaceGuide = {
       return false
     }
     $('#browsingtaxa a, #controls form.searchfilter a').click(replaceParams)
-    $('#controls form.searchfilter').submit(replaceParams)
-    $('#controls form.colorfilter').submit(filterParams)
+    $('#controls form').each(function() {
+      if ($(this).hasClass('searchfilter')) {
+        $(this).submit(replaceParams)
+      } else {
+        $(this).submit(filterParams)
+      }
+    })
     $('#controls form.colorfilter a').click(function() {
       $.bbq.removeState('colors')
+      return false
+    })
+    
+    $('#controls form.establishmentfilter a').click(function() {
+      $.bbq.removeState('establishment_means')
+      return false
+    })
+    
+    $('#controls form.conservationfilter a').click(function() {
+      $.bbq.removeState('conservation_status')
       return false
     })
     
@@ -165,15 +215,30 @@ var PlaceGuide = {
       $('#browsingtaxa a').removeClass('selected')
       if (taxon) {
         $('#browsingtaxa a.taxon_'+taxon).addClass('selected')
+      } else {
+        $('#browsingtaxa a.default_taxon').addClass('selected')
       }
       $('#controls form.searchfilter input[type=text]').val($.bbq.getState('q'))
       $('#controls form.colorfilter select').val($.bbq.getState('colors'))
-      $('#controls form.colorfilter select').multiselect('refresh')
+      $('#controls form.establishmentfilter select').val($.bbq.getState('establishment_means'))
+      $('#controls form.conservationfilter select').val($.bbq.getState('conservation_status'))
+      $('#controls select:hidden').multiselect('refresh')
       if ($.bbq.getState('colors')) {
         $('#controls form.colorfilter .pale.button').show()
       } else {
         $('#controls form.colorfilter .pale.button').hide()
       }
+      if ($.bbq.getState('establishment_means')) {
+        $('#controls form.establishmentfilter .pale.button').show()
+      } else {
+        $('#controls form.establishmentfilter .pale.button').hide()
+      }
+      if ($.bbq.getState('conservation_status')) {
+        $('#controls form.conservationfilter .pale.button').show()
+      } else {
+        $('#controls form.conservationfilter .pale.button').hide()
+      }
+      
       if ($.bbq.getState('q')) {
         $('#controls form.searchfilter .pale.button').show()
       } else {

@@ -78,6 +78,14 @@
   
   <div id="guidetab">
     <div id="sidecol">
+      <div id="confirmedchart" class="barchart clear stacked">
+        <%= render :partial => "shared/barchart_datum", :locals => {
+          :value => @confirmed_listed_taxa_count.to_i, 
+          :max => @listed_taxa_count.to_i, 
+          :label_text => "of #{@listed_taxa_count.to_i} confirmed",
+          :min_remainder_label_width => 50
+        } %>
+      </div>
       <% if logged_in? -%>
         <div class="stacked">
           <div id="observedchart" class="barchart inlineblock" data-original-count="<%= @current_user_observed_count.to_i %>" data-original-total="<%= @listed_taxa_count.to_i %>">
@@ -99,7 +107,7 @@
       <div id="browsingtaxa" class="stacked">
         <ul class="taxon_links">
           <li>
-            <%= link_to "All life", url_for(:taxon => nil, :test => true), :class => "taxon #{'selected' if @taxon.blank?}" %>
+            <%= link_to "All life", url_for(:taxon => nil, :test => true), :class => "default_taxon taxon #{'selected' if @taxon.blank?}" %>
             <ul>
               <% taxonomic_taxon_list(@arranged_taxa, :class => "clear") do |taxon| %>
                 <%-
@@ -121,15 +129,7 @@
     </div>
 
     <div id="maincol">
-      <div id="controls" class="stacked clear buttonrow smallbuttons">
-        <div id="confirmedchart" class="barchart">
-          <%= render :partial => "shared/barchart_datum", :locals => {
-            :value => @confirmed_listed_taxa_count.to_i, 
-            :max => @listed_taxa_count.to_i, 
-            :label_text => "of #{@listed_taxa_count.to_i} confirmed",
-            :min_remainder_label_width => 50
-          } %>
-        </div>
+      <div id="controls" class="clear buttonrow smallbuttons">
 
         <div id="filters">
           <%- form_tag url_for, :method => :get, :class => "searchfilter inlineblock" do %>
@@ -147,6 +147,30 @@
               <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
               <%= submit_tag "Filter", :class => "glaucous button" %>
               <%= link_to "&times;", url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear color filters" %>
+            </div>
+          <% end %>
+          
+          <%- form_tag url_for, :method => :get, :class => "establishmentfilter inlineblock" do %>
+            <div class="inline buttonrow">
+              <%= hidden_fields_for_params :without => [:establishment_means, :page] %>
+              <%-
+                options = [['Establishment', nil]] + ListedTaxon::ESTABLISHMENT_MEANS.map {|em| [em,em]}
+              -%>
+              <%= select_tag "establishment_means", options_for_select(options, @establishment_means), :id => "establishmentFilter", :class => "inlineblock" %>
+              <%= submit_tag "Filter", :class => "glaucous button" %>
+              <%= link_to "&times;", url_for_params(:without => [:establishment_means]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
+            </div>
+          <% end %>
+          
+          <%- form_tag url_for, :method => :get, :class => "conservationfilter inlineblock" do %>
+            <div class="inline buttonrow">
+              <%= hidden_fields_for_params :without => [:conservation_status, :page] %>
+              <%-
+                options = [['Conservation status', nil]] + Taxon::IUCN_STATUS_NAMES.map{|n| [n.humanize.downcase, n]}
+              -%>
+              <%= select_tag "conservation_status", options_for_select(options, @conservation_status), :id => "conservationFilter", :class => "inlineblock" %>
+              <%= submit_tag "Filter", :class => "glaucous button" %>
+              <%= link_to "&times;", url_for_params(:without => [:conservation_status]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
             </div>
           <% end %>
         </div>
