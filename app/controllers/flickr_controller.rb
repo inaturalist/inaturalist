@@ -181,7 +181,13 @@ class FlickrController < ApplicationController
       search_params['page'] = params[:page] ||= 1
       search_params['extras'] = 'date_upload,owner_name'
       search_params['sort'] = 'relevance'
-      @photos = @flickr.photos.search(search_params)
+      begin
+        @photos = @flickr.photos.search(search_params)
+      rescue Net::Flickr::APIError => e
+        raise e unless e.message =~ /Invalid auth token/
+        @reauthorization_needed = true
+        Rails.logger.error "[ERROR #{Time.now}] #{e}"
+      end
     end
     
     # Determine whether we should include synclinks

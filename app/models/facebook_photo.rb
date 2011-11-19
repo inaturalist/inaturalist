@@ -26,11 +26,6 @@ class FacebookPhoto < Photo
   def square_url
     thumb_url
   end
-  
-  # fb's small url is too small
-  def small_url
-    medium_url
-  end
 
   def self.new_from_api_response(api_response, options = {})
     fp = api_response

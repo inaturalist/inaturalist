@@ -8,7 +8,12 @@
   organized_by_album ||= false
 -%>
 
-<% if photos.blank? && !local_photos %>
+<% if @reauthorization_needed -%>
+  <p class="notice ui">
+    Flickr needs to confirm that you want your account connected to iNat.
+    <%= link_to "Confirm now", ProviderAuthorization::AUTH_URLS['flickr'], :class => "readmore" %>
+  </p>
+<% elsif photos.blank? && !local_photos %>
   <div class="description" style="clear: both">
     We didn't find any photos using the search terms you provided.
   </div>
