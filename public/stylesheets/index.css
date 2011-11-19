@@ -1009,7 +1009,7 @@ table.plain td, table.plain th { border: 0 transparent; }
 .statsgraphs .confirmedgraph .count, .statsgraphs .confirmedgraph .month {display:none;}
 
 .ui-tooltip-error .ui-tooltip-titlebar,
-.ui-tooltip-error .ui-tooltip-content{border-color:deeppink;color:pink;}
+.ui-tooltip-error .ui-tooltip-content{border-color:deeppink;color:white;}
 .ui-tooltip-error .ui-tooltip-content{background-color:deeppink;}
 .ui-tooltip-error .ui-tooltip-titlebar{background-color:deeppink;}
 .ui-tooltip-notice .ui-tooltip-titlebar,
@@ -1020,3 +1020,27 @@ table.plain td, table.plain th { border: 0 transparent; }
 .ui-tooltip-success .ui-tooltip-content{border-color:#84A92F;color:#E0EDC3}
 .ui-tooltip-success .ui-tooltip-content{background-color:#84A92F;}
 .ui-tooltip-success .ui-tooltip-titlebar{background-color:#84A92F;}
+.ui-tooltip-near_threatened .ui-tooltip-titlebar,
+.ui-tooltip-near_threatened .ui-tooltip-content{border-color:#817134;color:#FFF6BF;}
+.ui-tooltip-near_threatened .ui-tooltip-content{background-color:#817134;}
+.ui-tooltip-near_threatened .ui-tooltip-titlebar{background-color:#817134;}
+.ui-tooltip-vulnerable .ui-tooltip-titlebar,
+.ui-tooltip-vulnerable .ui-tooltip-content,
+.ui-tooltip-endangered .ui-tooltip-titlebar,
+.ui-tooltip-endangered .ui-tooltip-content,
+.ui-tooltip-critically_endangered .ui-tooltip-titlebar,
+.ui-tooltip-critically_endangered .ui-tooltip-content{border-color:#D12F19;color:#FBE3E4;}
+.ui-tooltip-vulnerable .ui-tooltip-content,
+.ui-tooltip-endangered .ui-tooltip-content,
+.ui-tooltip-critically_endangered .ui-tooltip-content{background-color:#D12F19;}
+.ui-tooltip-vulnerable .ui-tooltip-titlebar,
+.ui-tooltip-endangered .ui-tooltip-titlebar,
+.ui-tooltip-critically_endangered .ui-tooltip-titlebar{background-color:#D12F19;}
+.ui-tooltip-extinct .ui-tooltip-titlebar,
+.ui-tooltip-extinct .ui-tooltip-content,
+.ui-tooltip-extinct_in_the_wild .ui-tooltip-titlebar,
+.ui-tooltip-extinct_in_the_wild .ui-tooltip-content{border-color:black;color:white;}
+.ui-tooltip-extinct .ui-tooltip-content,
+.ui-tooltip-extinct_in_the_wild .ui-tooltip-content{background-color:black;}
+.ui-tooltip-extinct .ui-tooltip-titlebar,
+.ui-tooltip-extinct_in_the_wild .ui-tooltip-titlebar{background-color:black;}

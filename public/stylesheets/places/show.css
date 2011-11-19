@@ -101,23 +101,26 @@
 
 .listed_taxon .upperright {
   position: absolute;
-  padding: 2px 5px;
   top: 5px;
   right: 5px;
-  background-color: #333;
+}
+.listed_taxon .upperright .blob {
+  padding: 2px 5px;
   color: white;
   opacity: 0.7;
   font-size: smaller;
   border-radius: 10px;
   line-height: 1;
   white-space: nowrap;
+  margin-bottom: 5px;
 }
-.listed_taxon:hover .upperright { opacity: 1; box-shadow: #222 0 1px 2px; }
-.listed_taxon .upperright.endemic {background-color:#84A92F;color:#B7EC3F;}
-.listed_taxon .upperright.introduced {background-color:DeepPink;color:pink;}
+.listed_taxon:hover .upperright .blob { opacity: 1; box-shadow: #222 0 1px 2px; }
+.listed_taxon .upperright .blob.endemic {background-color:#84A92F;color:#B7EC3F;}
+.listed_taxon .upperright .blob.introduced {background-color:DeepPink;color:pink;}
 .listed_taxon .upperright .ui-icon {vertical-align:middle;width:12px;height:12px;top:0;}
 .listed_taxon .upperright .ui-icon-star { background-position: -226px -114px; }
 .listed_taxon .upperright .ui-icon-notice { background-position: -34px -146px; }
+.listed_taxon .upperright .blob.conservation_status {padding: 3px 5px;}
 
 .listed_taxon .monthstats {position: absolute; left: 5px; bottom: 5px;  border-radius: 10px; padding: 3px 5px;}
 .listed_taxon:hover .monthstats {background-color: #111;}
@@ -138,3 +141,15 @@
 .wikipedia_description table.navbox { display: none; }
 .wikipedia_description .infobox { width: 300px; }
 .wikipedia_description .thumb, .wikipedia_description .thumb img { max-width: 230px; }
+
+.crossout {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: -5px;
+  padding: 0 5px 0;
+  margin-top: -15px;
+  text-align: center;
+  box-shadow: #222 0 1px 2px;
+}
+.crossout div {padding: 3px; letter-spacing: 3px; font-weight: bold;}

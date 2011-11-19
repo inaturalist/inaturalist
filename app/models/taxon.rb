@@ -789,6 +789,11 @@ class Taxon < ActiveRecord::Base
     IUCN_STATUSES[conservation_status]
   end
   
+  def conservation_status_code
+    return nil if conservation_status.blank?
+    IUCN_STATUS_CODES[conservation_status_name]
+  end
+  
   def threatened?
     return false if conservation_status.blank?
     conservation_status >= IUCN_NEAR_THREATENED
