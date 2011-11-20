@@ -7,6 +7,7 @@ class Photo < ActiveRecord::Base
   
   attr_accessor :api_response
   cattr_accessor :descendent_classes
+  cattr_accessor :remote_descendent_classes
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7

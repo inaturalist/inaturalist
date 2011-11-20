@@ -489,10 +489,8 @@ class Taxon < ActiveRecord::Base
   # Override assignment method provided by has_many to ensure that all
   # callbacks on photos and taxon_photos get called, including after_destroy
   def photos=(new_photos)
-    photos.each do |photo|
-      unless new_photos.detect{|p| p.id == photo.id} || photo.observation_photos.exists?
-        photo.destroy
-      end
+    taxon_photos.each do |taxon_photo|
+      taxon_photo.destroy unless new_photos.detect{|p| p.id == taxon_photo.photo_id}
     end
     new_photos.each do |photo|
       taxon_photos.create(:photo => photo) unless photos.detect{|p| p.id == photo.id}

@@ -622,6 +622,10 @@ class TaxaController < ApplicationController
   rescue Errno::ETIMEDOUT
     flash[:error] = "Request timed out!"
     redirect_back_or_default(taxon_path(@taxon))
+  rescue Koala::Facebook::APIError => e
+    raise e unless e.message =~ /OAuthException/
+    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to iNat."
+    redirect_back_or_default(taxon_path(@taxon))
   end
   
   def describe
@@ -949,38 +953,22 @@ class TaxaController < ApplicationController
   end
   
   def retrieve_photos
-    [retrieve_flickr_photos, retrieve_picasa_photos, retrieve_local_photos].flatten.compact
+    [retrieve_remote_photos, retrieve_local_photos].flatten.compact
   end
   
-  def retrieve_picasa_photos
-    return [] if params[:picasa_photos].nil?
+  def retrieve_remote_photos
+    photo_classes = Photo.descendent_classes - [LocalPhoto]
     photos = []
-    params[:picasa_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
-      if fp = PicasaPhoto.find_by_native_photo_id(photo_id)
-        photos << fp 
-      else
-        pp = PicasaPhoto.get_api_response(self.photo_id)
-        photos << PicasaPhotos.new_from_api_response(pp)
-      end
-    end
-    photos
-  end
-  
-  #
-  # Find locally cached photos or get new ones from flickr based on form
-  # params.
-  #
-  def retrieve_flickr_photos
-    return [] if params[:flickr_photos].nil?
-
-    flickr = get_net_flickr
-    photos = []
-    params[:flickr_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
-      if fp = FlickrPhoto.find_by_native_photo_id(photo_id)
-        photos << fp 
-      else
-        fp = flickr.photos.get_info(photo_id)
-        photos << FlickrPhoto.new_from_net_flickr(fp)
+    photo_classes.each do |photo_class|
+      param = photo_class.to_s.underscore.pluralize
+      next if params[param].blank?
+      params[param].reject {|i| i.blank?}.uniq.each do |photo_id|
+        if fp = photo_class.find_by_native_photo_id(photo_id)
+          photos << fp 
+        else
+          pp = photo_class.get_api_response(photo_id)
+          photos << photo_class.new_from_api_response(pp)
+        end
       end
     end
     photos
@@ -1134,7 +1122,7 @@ class TaxaController < ApplicationController
   end
   
   def presave
-    @taxon.photos = retrieve_flickr_photos
+    @taxon.photos = retrieve_remote_photos
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end

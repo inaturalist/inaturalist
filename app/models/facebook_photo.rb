@@ -9,16 +9,16 @@ class FacebookPhoto < Photo
     fbp_json = FacebookPhoto.get_api_response(self.native_photo_id, {:user=>user})
     return false unless user && fbp_json
     return false if user.facebook_identity.blank? || (fbp_json['from']['id'] != user.facebook_identity.provider_uid)
-    return true
+    true
   end
 
   def validate
-    return self.owned_by?(user)
+    owned_by?(user)
   end
 
   def self.get_api_response(native_photo_id, options = {})
     return nil unless (options[:user] && options[:user].facebook_api)
-    return (options[:user].facebook_api.get_object(native_photo_id) || nil) # api returns 'false' if photo not found
+    options[:user].facebook_api.get_object(native_photo_id) || nil # api returns 'false' if photo not found
   end
 
   # facebook doesn't provide a square image
@@ -45,7 +45,7 @@ class FacebookPhoto < Photo
     )
     facebook_photo = FacebookPhoto.new(options)
     facebook_photo.api_response = fp
-    return facebook_photo
+    facebook_photo
   end
 
   def to_observation
@@ -57,7 +57,7 @@ class FacebookPhoto < Photo
     #observation.observed_on_string = fp.taken.to_s(:long)
     #observation.munge_observed_on_with_chronic
     observation.time_zone = observation.user.time_zone if observation.user
-    return observation
+    observation
   end
 
 #  
