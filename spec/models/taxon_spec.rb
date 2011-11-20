@@ -114,6 +114,17 @@ describe Taxon, "updating" do
   #   listed_taxa(:quentin_life_list_pseudacris_regilla).lft.should be(taxa(:Pseudacris_regilla).lft)
   #   listed_taxa(:quentin_life_list_pseudacris_regilla).lft.should_not be(old_lft)
   # end
+  
+  it "should not destroy photos that have observations" do
+    t = Taxon.make
+    o = Observation.make
+    p = Photo.make
+    t.photos << p
+    o.photos << p
+    t.photos = [Photo.make]
+    o.reload
+    o.photos.should_not be_blank
+  end
 end
 
 describe Taxon, "destruction" do

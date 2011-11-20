@@ -490,7 +490,9 @@ class Taxon < ActiveRecord::Base
   # callbacks on photos and taxon_photos get called, including after_destroy
   def photos=(new_photos)
     photos.each do |photo|
-      photo.destroy unless new_photos.detect{|p| p.id == photo.id}
+      unless new_photos.detect{|p| p.id == photo.id} || photo.observation_photos.exists?
+        photo.destroy
+      end
     end
     new_photos.each do |photo|
       taxon_photos.create(:photo => photo) unless photos.detect{|p| p.id == photo.id}
