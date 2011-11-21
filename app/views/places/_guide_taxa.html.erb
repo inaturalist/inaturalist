@@ -36,7 +36,9 @@
     <%= will_paginate @taxa, :params => {:action => 'guide'} %>
   <% end -%>
   <%# NOTE this is a lame kludge to get some JSON in here such that infinite scroll won't nix it %>
-  <code class="json listed_taxon" style="display:none;">
-    <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>
-  </code>
+  <% unless @taxa_by_taxon_id.blank? -%>
+    <code class="json listed_taxon" style="display:none;">
+      <%= @taxa_by_taxon_id.to_json(:methods => [:common_name]) %>
+    </code>
+  <% end -%>
 </div>

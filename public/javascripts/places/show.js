@@ -287,6 +287,7 @@ var PlaceGuide = {
       data: data,
       dataType: 'html'
     }).done(function(html) {
+      $('#taxa .guide_taxa').infinitescroll('destroy')
       $(context).html(html)
       PlaceGuide.lastRequest = null
       PlaceGuide.ajaxify(context)
@@ -295,7 +296,7 @@ var PlaceGuide = {
           navSelector  : ".pagination",
           nextSelector : ".pagination .next_page",
           itemSelector : ".guide_taxa .listed_taxon",
-          bufferPx: 400,
+          bufferPx: 1000,
           loading: {
             img: '/images/spinner-small.gif',
             msgText: '',
