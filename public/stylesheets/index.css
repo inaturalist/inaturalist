@@ -1036,11 +1036,15 @@ table.plain td, table.plain th { border: 0 transparent; }
 .ui-tooltip-vulnerable .ui-tooltip-titlebar,
 .ui-tooltip-endangered .ui-tooltip-titlebar,
 .ui-tooltip-critically_endangered .ui-tooltip-titlebar{background-color:#D12F19;}
+.ui-tooltip-black .ui-tooltip-titlebar,
+.ui-tooltip-black .ui-tooltip-content,
 .ui-tooltip-extinct .ui-tooltip-titlebar,
 .ui-tooltip-extinct .ui-tooltip-content,
 .ui-tooltip-extinct_in_the_wild .ui-tooltip-titlebar,
 .ui-tooltip-extinct_in_the_wild .ui-tooltip-content{border-color:black;color:white;}
+.ui-tooltip-black .ui-tooltip-content,
 .ui-tooltip-extinct .ui-tooltip-content,
 .ui-tooltip-extinct_in_the_wild .ui-tooltip-content{background-color:black;}
+.ui-tooltip-black .ui-tooltip-titlebar,
 .ui-tooltip-extinct .ui-tooltip-titlebar,
 .ui-tooltip-extinct_in_the_wild .ui-tooltip-titlebar{background-color:black;}

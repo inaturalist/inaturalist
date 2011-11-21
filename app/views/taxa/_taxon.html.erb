@@ -43,7 +43,7 @@
       <%= taxon_image(taxon, image_options) %>
     <% end -%>
     <% if photo -%>
-      <span class="attribution" data-tip="#<%= dom_id(photo, "attribution") %>">
+      <span class="attribution" data-tip="#<%= dom_id(photo, "attribution") %>" data-tip-style-classes="ui-tooltip-black ui-tooltip-shadow">
         <% if photo.creative_commons? -%>
           CC
         <% elsif photo.copyrighted? %>

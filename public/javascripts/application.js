@@ -180,7 +180,7 @@ function autoTip() {
   } else {
     content = $(this).attr('data-tip')
   }
-  var tipOptions = $.extend({}, QTIP_DEFAULTS, {})
+  var tipOptions = $.extend({}, QTIP_DEFAULTS)
   if ($(this).attr('data-tip-title')) {
     tipOptions.content = {
       text: content, 
