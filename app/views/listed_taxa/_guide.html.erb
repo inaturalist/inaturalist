@@ -18,7 +18,7 @@
     # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon.id, :format => "geojson")
   end
   obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)
-  photos = taxon.photos.sort_by(&:id)
+  photos = taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
 -%>
 <div class="listed_taxon_guide clear">
   <div class="side">
@@ -27,7 +27,7 @@
         <%= render :partial => 'taxa/nophoto', :object => taxon %>
       <% else %>
         <div class="stacked">
-          <%= link_to image_tag(photos.first.medium_url), photos.first.becomes(Photo) %>
+          <%= link_to image_tag(photos[0].medium_url), photos[0].becomes(Photo) %>
           <div class="meta">
             Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
           </div>

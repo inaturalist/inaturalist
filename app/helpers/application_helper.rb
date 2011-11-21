@@ -342,7 +342,7 @@ module ApplicationHelper
   def image_url(source, options = {})
     abs_path = image_path(source)
     unless abs_path =~ /\Ahttp/
-     abs_path = "http#{'s' if https?}://#{host_with_port}/#{abs_path}"
+     abs_path = [request.protocol, request.host_with_port, abs_path].join('')
     end
     abs_path
   end

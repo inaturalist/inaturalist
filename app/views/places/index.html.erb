@@ -14,6 +14,15 @@
   </style>
 <%- end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="iNaturalist Places"/> 
+  <meta property="og:image" content="<%= image_url('place_preview.jpg') %>"/> 
+  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" />
+  <meta property="og:description" name="description" content="The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street! iNaturalist Places let you browse life from around the planet.  Start exploring!"/> 
+<%- end -%>
+
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3' %>
@@ -106,14 +115,60 @@
       they can also be useful for looking up things you've found at particular
       spots.
     </p>
+    
+    <div class="column span-5">
+      <%= image_tag "place_preview.jpg" %>
+    </div>
+    <div class="last column span-11">
+      <h3>Species from around the world</h3>
+      <p>
+        Each place page displays all the species iNat knows about from
+        that place, including information about their abundance, conservation
+        status, and who was first to observe that species from that place on
+        iNat. You can filter the species by taxonomic group, color,
+        conservation status, or plain old search.
+      </p>
+    </div>
+    
+    <div class="column span-11">
+      <h3>Localized species accounts</h3>
+      <p>
+        View photos, species ranges, iNat observations, and more! We've
+        assembled information from many different sources and combined them
+        for a quick summary of each species in each place.
+      </p>
+    </div>
+    <div class="last column span-5">
+      <%= image_tag "listed_taxon_preview.jpg" %>
+    </div>
+    
+    <div class="column span-5">
+      <%= image_tag "place_map_preview.jpg" %>
+    </div>
+    <div class="last column span-11">
+      <h3>Click the map to jump to a new place</h3>
+      <p>
+        Blue icons represent political units like countries, states,
+        provinces, counties, and the like, while green icons represent
+        different kinds of open space (parks, reserves). If you zoom in you'll
+        see more, smaller places.
+      </p>
+    </div>
   </div>
   <div class="last column span-8">
     <div class="clear box">
-      <p class="ui description">
+      <p>
         You can help out by <%= link_to "adding new places", new_place_path, :rel => "nofollow" %>
         and filling in check lists for the places you know!
       </p>
-      <%= link_to "Add a New Place", new_place_path, :class => 'button readmore right', :rel => "nofollow" %>
+      <ul class="readable leafylist">
+        <li><%= link_to "adding new places", new_place_path, :rel => "nofollow" %></li>
+        <li><%= link_to "confirming identifications", observations_path %> by adding IDs to observations</li>
+        <li>filling out checklists for places you know well</li>
+      </ul>
+      <div style="margin: 20px 0; text-align: center;">
+        <%= link_to "Add a New Place", new_place_path, :class => 'inline button readmore right', :rel => "nofollow" %>
+      </div>
     </div>
   </div>
 </div>

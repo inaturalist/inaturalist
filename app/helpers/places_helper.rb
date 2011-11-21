@@ -18,6 +18,16 @@ module PlacesHelper
   end
   
   def google_static_map_for_place(place, options = {}, tag_options = {})
+    tag_options[:alt] ||= "Google Map for #{place.display_name}"
+    tag_options[:width] ||= options[:size] ? options[:size].split('x').first : 200
+    tag_options[:height] ||= options[:size] ? options[:size].split('x').last : 200
+    image_tag(
+      google_static_map_for_place_url(place, options),
+      tag_options
+    )
+  end
+  
+  def google_static_map_for_place_url(place, options = {})
     url_for_options = {
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',
@@ -27,15 +37,7 @@ module PlacesHelper
       :sensor => 'false',
       :key => Ym4r::GmPlugin::ApiKey.get
     }.merge(options)
-    
-    tag_options[:alt] ||= "Google Map for #{place.display_name}"
-    tag_options[:width] ||= url_for_options[:size].split('x').first
-    tag_options[:height] ||= url_for_options[:size].split('x').last
-    
-    image_tag(
-      url_for(url_for_options),
-      tag_options
-    )
+    url_for(url_for_options)
   end
   
   # Returns GMaps zoom level for a place given map dimensions in pixels

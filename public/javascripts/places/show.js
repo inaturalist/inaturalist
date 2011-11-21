@@ -17,7 +17,7 @@ $(document).ready(function() {
   $('#filters .establishmentfilter select').multiselect({
     header: false,
     noneSelectedText: "Native/endemic/inroduced",
-    minWidth: 110,
+    minWidth: 130,
     multiple: false,
     selectedText: function(selected, total, elts) {
       if (elts[0].value) {
