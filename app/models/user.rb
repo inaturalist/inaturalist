@@ -116,7 +116,8 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
-  attr_accessor :skip_email_validation 
+  attr_accessor :skip_email_validation
+  attr_accessor :skip_registration_email
   
   named_scope :order, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -176,6 +177,7 @@ class User < ActiveRecord::Base
     )
     if u
       u.skip_email_validation = true
+      u.skip_registration_email = true
       begin
         u.register!
         u.activate!
