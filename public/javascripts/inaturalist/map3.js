@@ -540,7 +540,8 @@ iNaturalist.Map.builtPlacesMapType = function(map, options) {
         coordY = coord.y < 0 ? max + coord.y : coord.y,
         layer = layerForZoom(zoom),
         div = ownerDocument.createElement('DIV'),
-        url = options.tilestacheServer+'/'+layer+'/'+zoom+'/'+coordX+'/'+coordY+'.geojson'
+        url = options.tilestacheServer+'/'+layer+'/'+zoom+'/'+coordX+'/'+coordY+'.geojson',
+        icon
     
     if (coordX > max) { coordX = coordX - max }
     if (coordY > max) { coordY = coordY - max }
@@ -549,7 +550,7 @@ iNaturalist.Map.builtPlacesMapType = function(map, options) {
       return div
     }
     map.placeUrlsRequested[url] = true
-
+    
     $.getJSON(url, function(json) {
       for (var i = json.features.length - 1; i >= 0; i--){
         var f = json.features[i],
