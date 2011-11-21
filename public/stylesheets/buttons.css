@@ -252,3 +252,5 @@ input[type='submit'].link:hover {
 @-moz-document url-prefix() {
   input.button { padding: 6px 6px 7px 6px;}
 }
+
+.button.last { margin-right: 0; }
