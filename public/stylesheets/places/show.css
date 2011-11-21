@@ -127,6 +127,7 @@
 .listed_taxon .monthstats .month, .listed_taxon .monthstats .count { display: none;}
 .listed_taxon .monthgraph .bar { background-color: white; min-height: 1px; width: 2px;}
 .listed_taxon .monthgraph { margin: 0; height: 9px;}
+.listed_taxon .monthgraph .month_0 { display:none;}
 .taxa.grid .taxon{vertical-align:baseline;}
 .listed_taxon{vertical-align:top;}
 #sidecol .extralabel {background-color: #efefef; padding: 0.5em; text-align: center;}

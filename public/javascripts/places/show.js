@@ -413,6 +413,10 @@ var PlaceGuide = {
             $(this).dialog('option', 'height', newHeight)
             $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
             $('.map', this).taxonMap()
+            $('.side .photos a', this).has('img').click(function() {
+              $(this).parents('.listed_taxon_guide').find('.tabs').tabs('select', 1)
+              return false
+            })
             $('.tabs', this).tabs({
               ajaxOptions: {
                 data: "partial=cached_component"
