@@ -11,6 +11,7 @@ class Project < ActiveRecord::Base
   has_many :project_assets, :dependent => :destroy
   has_one :custom_project, :dependent => :destroy
   
+  before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
   
   has_rules_for :project_users, :rule_class => ProjectUserRule
@@ -37,6 +38,10 @@ class Project < ActiveRecord::Base
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
   
+  def strip_title
+    self.title = title.strip
+    true
+  end
   
   def add_owner_as_project_user
     first_user = self.project_users.create(:user => user, :role => "curator")

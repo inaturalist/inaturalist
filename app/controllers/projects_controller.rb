@@ -6,11 +6,17 @@ class ProjectsController < ApplicationController
     :if => Proc.new {|c| c.request.format.widget?}
   
   before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :species_count]
-  before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map]
+  before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
+  
+  ORDERS = %w(title created)
+  ORDER_CLAUSES = {
+    'title' => 'lower(title)',
+    'created' => 'id'
+  }
   
   def index
     project_observations = ProjectObservation.all(
@@ -22,6 +28,12 @@ class ProjectsController < ApplicationController
       @started = current_user.projects.all(:order => "id desc", :limit => 9)
       @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
     end
+  end
+  
+  def browse
+    @order = params[:order] if ORDERS.include?(params[:order])
+    @order ||= 'title'
+    @projects = Project.paginate(:page => params[:page], :order => ORDER_CLAUSES[@order])
   end
   
   def show

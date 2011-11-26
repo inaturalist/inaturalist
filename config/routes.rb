@@ -144,6 +144,7 @@ ActionController::Routing::Routes.draw do |map|
     p.remove_project_user 'projects/:id/remove_project_user/:project_user_id', :action => 'remove_project_user'
     p.project_stats 'projects/:id/stats', :action => 'stats'
     p.formatted_project_stats 'projects/:id/stats.:format', :action => 'stats'
+    p.browse_projects 'projects/browse', :action => 'browse'
   end
   map.resources :projects
   map.resources :project_assets, :except => [:index, :show]

@@ -16,6 +16,11 @@ describe Project, "creation" do
     project.title = "user"
     project.should_not be_valid
   end
+  
+  it "should stip titles" do
+    project = Project.make(:title => " zomg spaces ")
+    project.title.should == 'zomg spaces'
+  end
 end
 
 describe Project, "destruction" do
