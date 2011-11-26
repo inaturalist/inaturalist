@@ -120,3 +120,5 @@ run_sql "VACUUM ANALYZE listed_taxa"
 puts "CLEANING UP..."
 FileUtils.rm(new_path)
 FileUtils.rm(existing_fname)
+
+puts "FINISHED ALL IN #{Time.now - start}s"
