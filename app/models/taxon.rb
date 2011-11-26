@@ -857,7 +857,7 @@ class Taxon < ActiveRecord::Base
         name
       end
     end.compact
-    scope = scope.scoped(:conditions => ["lower(name) IN (?)", names])
+    scope = scope.scoped(:conditions => ["lower(taxon_names.name) IN (?)", names])
     taxon_names = scope.all
     taxon_names.map{|tn| tn.taxon}.compact
   end
