@@ -36,9 +36,9 @@ class PlacesController < ApplicationController
   
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
-    scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
-    @listed_taxa_count = scope.count
     if logged_in?
+      scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
+      @listed_taxa_count = scope.count
       @current_user_observed_count = scope.count(
         :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
         :conditions => ["ult.list_id = ?", current_user.life_list_id])
