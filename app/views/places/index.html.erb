@@ -38,11 +38,12 @@
         minZoom: 2
       })
       for (var i=0; i < places.length; i++) {
-        var place = places[i]
-        var icon = iNaturalist.Map.createPlaceIcon({color: 'DodgerBlue', character: i+1})
-        var marker = map.createMarker(place.latitude, place.longitude, {icon: icon})
+        var place = places[i],
+            icon = iNaturalist.Map.createPlaceIcon({color: 'DodgerBlue', character: i+1}),
+            marker = map.createMarker(place.latitude, place.longitude, {icon: icon})
+        marker._url = '/places/'+place.id
         google.maps.event.addListener(marker, 'click', function() {
-          window.location = '/places/'+place.id
+          window.location = this._url
         })
         marker.setMap(map)
       }
