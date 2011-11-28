@@ -297,7 +297,6 @@ class ObservationsController < ApplicationController
       format.xml { render :xml => @observation }
       
       format.json do
-        response.headers['Content-Type'] = 'text/plain; charset=utf-8'
         render :json => @observation.to_json
       end
       
@@ -874,6 +873,10 @@ class ObservationsController < ApplicationController
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           return render_observations_partial(partial)
         end
+      end
+      
+      format.json do
+        render :json => @observations
       end
       
       format.kml do
