@@ -168,7 +168,7 @@ class CheckList < List
       listed_taxa.each do |lt|
         lt.force_update_cache_columns = true
         lt.save # sets all observation associates, months stats, etc.
-        if lt.auto_removable_from_check_list?
+        if lt.auto_removable_from_check_list? && !options[:new]
           lt.destroy
         end
       end

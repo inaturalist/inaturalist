@@ -236,7 +236,7 @@ describe CheckList, "refresh_with_observation" do
     lt.observations_count.should be(2)
   end
   
-  it "should not not remove taxa just because obs obscured" do
+  it "should not remove taxa just because obs obscured" do
     p = Place.make
     p.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))"))
     o = make_research_grade_observation(:latitude => p.latitude, :longitude => p.longitude)
@@ -246,6 +246,16 @@ describe CheckList, "refresh_with_observation" do
     CheckList.refresh_with_observation(o, :latitude_was => p.latitude, :longitude_was => p.longitude)
     p.reload
     p.check_list.taxon_ids.should include(o.taxon_id)
+  end
+  
+  it "should not remove taxa for new observations" do
+    t = Taxon.make(:species)
+    lt = @check_list.add_taxon(t)
+    lt.should be_auto_removable_from_check_list
+    o = Observation.make(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
+    CheckList.refresh_with_observation(o, :new => true)
+    @check_list.reload
+    @check_list.taxon_ids.should include(o.taxon_id)
   end
   
   it "should add new taxa even if ancestors have already been added to this place" do
