@@ -1630,9 +1630,8 @@ class ObservationsController < ApplicationController
     if reference_photo
       assoc_name = reference_photo.class.to_s.underscore.split('_').first + "_identity"
       @default_photo_identity = current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
-    else
-      @default_photo_identity = @photo_identities.first
     end
+    @default_photo_identity ||= @photo_identities.first
     
     @default_photo_identity_url = nil
     @photo_identity_urls = @photo_identities.map do |identity|

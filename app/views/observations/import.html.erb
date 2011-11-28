@@ -27,13 +27,11 @@
       $('#photos').photoSelector({
         <%- if @default_photo_identity_url -%>
           baseURL: <%= @default_photo_identity_url.inspect %>,
-        <% else %>
-          baseURL: '/photos/local_photo_fields?context=user',
-          queryOnLoad: false,
         <%- end -%>
         <%- unless @photo_identity_urls.blank? %>
           urls: [<%= @photo_identity_urls.join(', ') %>],
         <% end -%>
+        skipLocal: true,
         urlParams: {
           authenticity_token: AUTH_TOKEN,
           limit: 24

@@ -71,10 +71,12 @@
     if (options.baseURL.match(/context=user/)) {
       var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
       var urls = options.urls || [];
-      urls.push({
-        title: "your hard drive",
-        url: '/photos/local_photo_fields?context=user'
-      });
+      if (!options.skipLocal) {
+        urls.push({
+          title: "your hard drive",
+          url: '/photos/local_photo_fields?context=user'
+        })
+      }
       $.each(urls, function() {
         if (this.url) {
           var title = this.title;
