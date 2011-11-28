@@ -92,6 +92,11 @@ class Taxon < ActiveRecord::Base
   RANK_LEVELS.each do |rank, level|
     const_set rank.upcase, rank
     const_set "#{rank.upcase}_LEVEL", level
+    define_method "find_#{rank}" do
+      return nil if rank_level >= level
+      ancestors.first(:conditions => {:rank => rank})
+    end
+    alias_method(rank, "find_#{rank}") unless method_exists?(rank)
   end
   
   RANKS = RANK_LEVELS.keys

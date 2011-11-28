@@ -1170,6 +1170,13 @@ class Observation < ActiveRecord::Base
     [new_latrads * DEGREES_PER_RADIAN, new_lonrads * DEGREES_PER_RADIAN]
   end
   
+  def places
+    return nil unless georeferenced?
+    Place.containing_lat_lng(
+      private_latitude || latitude, 
+      private_longitude || longitude).sort_by(&:bbox_area)
+  end
+  
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer

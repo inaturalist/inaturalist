@@ -1,0 +1,38 @@
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag "jquery/plugins/jquery.ba-bbq.min" %>
+    
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#taxa').load("<%= place_guide_path(@place, :taxon => @taxon.id, :q => @query) %>")
+      $('#places a').click(function() {
+        $.bbq.pushState($.deparam.querystring($(this).attr('href')))
+        return false
+      })
+      
+      $(window).bind("hashchange", function(e) {
+        var placeId = $.bbq.getState('place')
+        if (!placeId) { return }
+        var state = $.bbq.getState()
+        state.place = null
+        var url = '/places/guide/' + placeId + '?' + $.param(state)
+        $('#taxa').load(url)
+      })
+    })
+  </script>
+<%- end -%>
+
+<h2>Identotron for <%= @observation.to_plain_s %></h2>
+
+<div class="column span-6">
+  <ul id="places">
+    <% for place in @places %>
+      <li><%= link_to place.name, :place => place, :taxon => @taxon.id %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="last column span-18">
+  <div id="taxa">
+    <%= loading %>
+  </div>
+</div>

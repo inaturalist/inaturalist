@@ -12,6 +12,8 @@ class PlacesController < ApplicationController
   caches_page :geometry
   caches_page :cached_guide
   
+  GUIDE_PARTIALS = %w(guide_taxa identotron)
+  
   def index
     place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
       place_types = [Place::PLACE_TYPE_CODES['Country']]
@@ -323,7 +325,10 @@ class PlacesController < ApplicationController
       :conditions => ["taxon_id IN (?)", @taxa])
     @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
-    render :layout => false, :partial => "guide_taxa"
+    partial = params[:partial]
+    partial = "guide_taxa" unless GUIDE_PARTIALS.include?(partial)
+    
+    render :layout => false, :partial => partial
   end
   
   private

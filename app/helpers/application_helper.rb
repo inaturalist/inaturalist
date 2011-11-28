@@ -440,4 +440,8 @@ module ApplicationHelper
     end
   end
   
+  def loading
+    content_tag :span, (block_given? ? capture(&block) : 'Loading...'), :class => "loading status"
+  end
+  
 end

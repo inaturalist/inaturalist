@@ -32,7 +32,7 @@ class ObservationsController < ApplicationController
                             :widget,
                             :project]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
-    :update_photos, :destroy]
+    :update_photos, :destroy, :identotron]
   before_filter :require_owner, :only => [:edit, :edit_photos, 
     :update_photos]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -266,12 +266,7 @@ class ObservationsController < ApplicationController
           end
           
           @project_users = current_user.project_users.all(:include => :project, :limit => 1000, :order => "projects.title")
-          
-          if @observation.georeferenced?
-            @places = Place.containing_lat_lng(
-              @observation.private_latitude || @observation.latitude, 
-              @observation.private_longitude || @observation.longitude).sort_by(&:bbox_area)
-          end
+          @places = @observation.places
         end
         
         @project_observations = @observation.project_observations.all(:limit => 100)
@@ -1119,6 +1114,19 @@ class ObservationsController < ApplicationController
       format.csv do
         render :text => ProjectObservation.to_csv(@project.project_observations.all, :user => current_user)
       end
+    end
+  end
+  
+  def identotron
+    @places = @observation.places.reverse
+    @place = @places.last
+    # @check_lists = CheckList.all(:conditions => ["id IN (?)", @places])
+    if @observation.taxon.blank?
+      @query = @observation.species_guess
+    elsif @observation.taxon.species_or_lower?
+      @taxon = @observation.taxon.genus
+    else
+      @taxon = @observation.taxon
     end
   end
 
