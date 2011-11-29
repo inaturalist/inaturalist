@@ -30,6 +30,7 @@ ListedTaxon.blueprint do
 end
 
 List.blueprint do
+  user
   title { Sham.title }
 end
 

@@ -133,7 +133,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_ancestor_taxon_ids
     unless taxon.ancestry.blank?
-      self.taxon_ancestor_ids = taxon.ancestor_ids.join(',') 
+      self.taxon_ancestor_ids = taxon.ancestry
     else
       self.taxon_ancestor_ids = '' # this should probably be in the db...
     end

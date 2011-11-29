@@ -81,8 +81,25 @@ puts "Copied #{count} lines into #{new_path}, leftovers in #{leftovers_fname}"
 
 puts
 run_sql "COPY listed_taxa (list_id, taxon_id, place_id, taxon_range_id) FROM STDIN WITH CSV", new_path
+run_sql "UPDATE listed_taxa SET taxon_ancestor_ids = taxa.ancestry FROM taxa WHERE listed_taxa.created_at IS NULL AND taxa.id = listed_taxa.taxon_id"
 stamp = Time.now.strftime('%Y-%m-%d %H:%M:%S')
 run_sql "UPDATE listed_taxa SET created_at = '#{stamp}', updated_at = '#{stamp}' WHERE created_at IS NULL"
+
+puts
+puts "UPDATING EXISTING..."
+existing_count = %x{wc -l #{leftovers_fname}}.split.first.to_i
+i = 0
+FasterCSV.foreach(leftovers_fname, :headers => %w(list_id taxon_id place_id taxon_range_id)) do |row|
+  puts "#{i} of #{existing_count}"
+  run_sql <<-SQL
+    UPDATE listed_taxa SET taxon_range_id = #{row['taxon_range_id']} 
+    WHERE 
+      taxon_range_id IS NULL AND
+      list_id = #{row['list_id']} AND 
+      taxon_id = #{row['taxon_id']}
+  SQL
+  i += 1
+end
 
 foreign_keys.each do |table, key|
   puts

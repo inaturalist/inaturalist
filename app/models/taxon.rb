@@ -581,7 +581,7 @@ class Taxon < ActiveRecord::Base
   # Updated the "cached" ancestor values in all listed taxa with this taxon
   def update_listed_taxa
     ListedTaxon.update_all(
-      "taxon_ancestor_ids = '#{ancestor_ids.join(',')}'", 
+      "taxon_ancestor_ids = '#{ancestry}'", 
       "taxon_id = #{self.id}")
     true
   end

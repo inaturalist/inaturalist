@@ -295,11 +295,11 @@ module Shared::ListsModule
       ],
       
       # TODO: somehow make the following not cause a filesort...
-      :order => 'taxon_ancestor_ids || listed_taxa.taxon_id'
+      :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     }
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])
-      self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join(',')
+      self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
       @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids},%"]
       
       # The above condition on a joined table will trigger an eager load, 
