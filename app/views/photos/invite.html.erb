@@ -1,0 +1,52 @@
+<%-
+  @title = "Add your photo to #{@project ? h(@project.title) : 'iNaturalist'}"
+  @img = if @project && @project.icon.file?
+    image_url @project.icon.url(:span2)
+  else
+    image_url "bird.png"
+  end
+-%>
+<%- @description = capture do %>
+  <% if @project && !@project.description.blank? -%>
+    <%= formatted_user_text @project.description %>
+  <% else %>
+    <p>
+      iNaturalist is an online community for naturalists! By adding your photo,
+      you can help researchers learn more about
+      <% if @taxon -%>
+        <% if @taxon.species_or_lower? && @taxon.common_name && @taxon.common_name.to_s !~/'/ -%>
+          the
+        <% end -%>
+        <%= render(:partial => "shared/taxon", :object => @taxon, :locals => {:link_url => taxon_url(@taxon)}) %>
+      <% else %>
+        this species
+      <% end -%>
+      and help the iNaturalist community grow.
+    </p>
+  <% end -%>
+<% end %>
+
+<%- content_for(:title) do -%>
+  <%= @title %>!
+<%- end -%>
+
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @title %>"/> 
+  <meta property="og:image" content="<%= @img %>"/> 
+  <meta property="og:site_name" content="iNaturalist.org"/> 
+  <meta property="fb:admins" content="611249211,800415373"/>
+  <meta property="fb:app_id" content="26558815027" /> 
+  <% og_description = h strip_tags(@description) %>
+  <meta property="og:description" content="<%= og_description %>"/>
+<%- end -%>
+
+<h2><%= @title %></h2>
+
+<%= image_tag @img, :class => "right" %>
+
+<%= @description %>
+
+<p>
+  <%- url = url_for(params.reject{|k,v| k.to_s == 'test'}.merge(:only_path => false)) -%>
+  <%= link_to "Add your photo", url, :class => "default button" %>
+</p>

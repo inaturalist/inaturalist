@@ -42,7 +42,12 @@ class PhotosController < ApplicationController
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
     provider = invite_params.delete(:provider)
     session[:invite_params] = invite_params
-    redirect_to "/auth/#{provider}"
+    if request.user_agent =~ /facebookexternalhit/ || params[:test]
+      @project = Project.find_by_id(params[:project_id].to_i)
+      @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
+    else
+      redirect_to "/auth/#{provider}"
+    end
   end
 
 end
