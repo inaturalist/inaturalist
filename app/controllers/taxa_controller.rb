@@ -320,7 +320,7 @@ class TaxaController < ApplicationController
     
     begin
       @taxa.blank?
-    rescue ThinkingSphinx::SphinxError => e
+    rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed sphinx search: #{e}"
       @taxa = WillPaginate::Collection.new(1,30,0)
     end

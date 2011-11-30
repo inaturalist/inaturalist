@@ -351,9 +351,9 @@ class Observation < ActiveRecord::Base
   }
   
   named_scope :on, lambda {|date|
-    year, month, day = date.split('-').map{|d| d.blank? ? nil : d}
-    if year && month && day
-      {:conditions => ["observed_on = ?", "#{year.to_i}-#{month.to_i}-#{day.to_i}"]}
+    year, month, day = date.to_s.split('-').map{|d| d.blank? ? nil : d.to_i}
+    if date.to_s =~ /^\d{4}/ && year && month && day
+      {:conditions => ["observed_on = ?", "#{year}-#{month}-#{day}"]}
     elsif year || month || day
       conditions, values = [[],[]]
       if year

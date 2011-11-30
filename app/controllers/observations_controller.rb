@@ -1297,9 +1297,9 @@ class ObservationsController < ApplicationController
     unless date_pieces.map{|d| d.blank? ? nil : d}.compact.blank?
       search_params[:on] = date_pieces.join('-')
     end
-    if search_params[:on]
+    if search_params[:on].to_s =~ /^\d{4}/
       @observed_on = search_params[:on]
-      @observed_on_year, @observed_on_month, @observed_on_day = @observed_on.split('-').map(&:to_i)
+      @observed_on_year, @observed_on_month, @observed_on_day = @observed_on.split('-').map{|d| d.to_i}
     end
     
     @filters_open = 
