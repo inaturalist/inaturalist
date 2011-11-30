@@ -15,10 +15,6 @@ describe CheckList do
     @check_list.respond_to?(:comprehensive).should be_true
   end
   
-  it "should be editable by any user" do
-    @check_list.should be_editable_by User.make
-  end
-  
   it "should have a unique taxon for its place" do
     @new_check_list = CheckList.new(:place => @check_list.place, 
       :taxon => @check_list.taxon)
