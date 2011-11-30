@@ -71,7 +71,7 @@ class FacebookController < ApplicationController
   # not terribly efficient, cause it makes an api call to get album data and separate calls for each album to get the url
   def facebook_albums(user)
     return [] unless user.facebook_api
-    album_data = user.facebook_api.get_connections('me','albums')
+    album_data = user.facebook_api.get_connections('me','albums', :limit => 0)
     album_data.reject{|a| a['count'].nil? || a['count'] < 1}.map do |a|
       {
         'aid' => a['id'],
@@ -81,7 +81,7 @@ class FacebookController < ApplicationController
           "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{user.facebook_token}"
       }
     end
-  rescue OpenSSL::SSL::SSLError => e
+  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
   end
