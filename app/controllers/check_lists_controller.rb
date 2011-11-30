@@ -37,16 +37,11 @@ class CheckListsController < ApplicationController
         @find_options[:conditions] = List.merge_conditions(
           @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
       end
+      
       @listed_taxa = ListedTaxon.paginate(@find_options)
       
       @total_listed_taxa = ListedTaxon.count('DISTINCT(taxon_id)',
         :conditions => ["place_id = ?", @list.place_id])
-      
-      if logged_in?
-        @total_observed_taxa = current_user.observations.count(
-          'DISTINCT(taxon_id)',
-          :conditions => ["taxon_id IN (?)", @list.taxon_ids])
-      end
     end
     super
   end

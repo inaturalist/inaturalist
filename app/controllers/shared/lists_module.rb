@@ -36,7 +36,6 @@ module Shared::ListsModule
     
     @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
     @total_listed_taxa ||= @list.listed_taxa.count
-    
     @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
     
     @view = params[:view]
@@ -300,7 +299,7 @@ module Shared::ListsModule
     if params[:taxon]
       @filter_taxon = Taxon.find_by_id(params[:taxon])
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
-      @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids},%"]
+      @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"]
       
       # The above condition on a joined table will trigger an eager load, 
       # which won't load all 2nd order associations (e.g. taxon names), so 
