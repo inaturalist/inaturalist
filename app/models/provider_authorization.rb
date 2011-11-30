@@ -23,7 +23,7 @@ class ProviderAuthorization < ActiveRecord::Base
     find_by_provider_name_and_provider_uid(auth_info['provider'], auth_info['uid'])
   end
   
-  # Trey to create a photo identity if the auth provider has/is a photo 
+  # Try to create a photo identity if the auth provider has/is a photo 
   # service
   def create_photo_identity
     photo_identity = case provider_name
@@ -46,14 +46,21 @@ class ProviderAuthorization < ActiveRecord::Base
     true
   end
   
+  # right now this only needs to happen for flickr
+  def update_photo_identities
+    return unless token
+    return unless provider_name == "flickr"
+    return unless user.flickr_identity
+    return if user.flickr_identity.token == token
+    user.flickr_identity.update_attribute(:token, token)
+  end
+  
   def update_with_auth_info(auth_info)
     @auth_info = auth_info
     return unless auth_info["credentials"] # open_id (google, yahoo, etc) doesn't provide a token
     token = auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]
     update_attribute(:token, token)
-    if user.flickr_identity && token && token != user.flickr_identity.token
-      user.flickr_identity.update_attribute(:token, token)
-    end
+    update_photo_identities
   end
 
 end

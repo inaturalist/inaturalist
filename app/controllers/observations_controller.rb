@@ -1631,6 +1631,11 @@ class ObservationsController < ApplicationController
       assoc_name = reference_photo.class.to_s.underscore.split('_').first + "_identity"
       @default_photo_identity = current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end
+    if params[:facebook_photo_id]
+      @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /facebook/i}
+    elsif params[:flickr_photo_id]
+      @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /flickr/i}
+    end
     @default_photo_identity ||= @photo_identities.first
     
     @default_photo_identity_url = nil
