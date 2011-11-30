@@ -688,19 +688,8 @@ class Taxon < ActiveRecord::Base
   
   def merge(reject)
     raise "Can't merge a taxon with itself" if reject.id == self.id
-    
     reject_taxon_names = reject.taxon_names.all
-    
-    # Merge has_many associations
-    has_many_reflections = Taxon.reflections.select{|k,v| v.macro == :has_many}
-    has_many_reflections.each do |k, reflection|
-      # Avoid those pesky :through relats
-      next unless reflection.klass.column_names.include?(reflection.primary_key_name)
-      reflection.klass.update_all(
-        ["#{reflection.primary_key_name} = ?", id], 
-        ["#{reflection.primary_key_name} = ?", reject.id]
-      )
-    end
+    merge_has_many_associations(reject)
     
     # Merge ListRules and other polymorphic assocs
     ListRule.update_all(["operand_id = ?", id], ["operand_id = ? AND operand_type = ?", reject.id, Taxon.to_s])

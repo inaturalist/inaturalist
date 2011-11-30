@@ -13,6 +13,11 @@ CheckList.blueprint do
   place
 end
 
+Comment.blueprint do
+  user
+  body { Sham.body }
+end
+
 Friendship.blueprint do
   user
   friend

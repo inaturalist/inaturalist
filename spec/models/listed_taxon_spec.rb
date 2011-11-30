@@ -155,5 +155,48 @@ describe ListedTaxon do
   describe "citation object" do
     it "should set occurrence_status to present if set"
   end
+  
+  describe "merge" do
+    before(:each) do
+      @keeper = ListedTaxon.make
+      @reject = ListedTaxon.make
+    end
+    
+    it "should destroy the reject" do
+      @keeper.merge(@reject)
+      ListedTaxon.find_by_id(@reject.id).should be_blank
+    end
+    
+    it "should add comments from the reject to the keeper" do
+      comment = Comment.make(:parent => @reject)
+      @keeper.comments.count.should be(0)
+      @keeper.merge(@reject)
+      @keeper.comments.count.should be(1)
+    end
+    
+    it "should add attributes from the reject to the keeper" do
+      @reject.update_attribute(:description, "this thing is dust")
+      @keeper.merge(@reject)
+      @keeper.description.should == "this thing is dust"
+    end
+    
+    it "should not override attributes in the keeper" do
+      @keeper.update_attribute(:description, "i will survive")
+      @reject.update_attribute(:description, "i'm doomed!")
+      @keeper.merge(@reject)
+      @keeper.description.should == "i will survive"
+    end
+  end
+  
+  describe "merge_duplicates" do
+    it "should keep the earliest listed taxon" do
+      keeper = ListedTaxon.make
+      reject = ListedTaxon.make(:list => keeper.list)
+      ListedTaxon.update_all("taxon_id = #{keeper.taxon_id}", "id = #{reject.id}")
+      ListedTaxon.merge_duplicates
+      ListedTaxon.find_by_id(keeper.id).should_not be_blank
+      ListedTaxon.find_by_id(reject.id).should be_blank
+    end
+  end
 
 end

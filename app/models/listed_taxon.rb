@@ -346,4 +346,32 @@ class ListedTaxon < ActiveRecord::Base
     true
   end
   
+  def merge(reject)
+    mutable_columns = self.class.column_names - %w(id created_at updated_at)
+    mutable_columns.each do |column|
+      self.send("#{column}=", reject.send(column)) if send(column).blank?
+    end
+    merge_has_many_associations(reject)
+    reject.destroy
+    save!
+  end
+  
+  def self.merge_duplicates(options = {})
+    where = options.map{|k,v| "#{k} = #{v}"}.join(' AND ') unless options.blank?
+    sql = <<-SQL
+      SELECT list_id, taxon_id, array_agg(id) AS ids, count(*) 
+      FROM listed_taxa
+      #{"WHERE #{where}" if where}
+      GROUP BY list_id, taxon_id HAVING count(*) > 1
+    SQL
+    connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
+      to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
+      lt = ListedTaxon.find_by_id(to_merge_ids.first)
+      rejects = ListedTaxon.all(:conditions => ["id IN (?)", to_merge_ids[1..-1]])
+      rejects.each do |reject|
+        lt.merge(reject)
+      end
+    end
+  end
+  
 end

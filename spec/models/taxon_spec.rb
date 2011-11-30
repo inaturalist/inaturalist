@@ -286,7 +286,6 @@ describe Taxon, "unique name" do
     taxon = Taxon.make
     name1 = TaxonName.make(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
     name2 = TaxonName.make(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:SPANISH])
-    puts name2
     taxon.reload
     taxon.unique_name.should_not be_blank
     taxon.unique_name.should == "foo"
@@ -475,6 +474,13 @@ describe Taxon, "merging" do
   it "should destroy the reject" do
     @keeper.merge(@reject)
     TaxonName.find_by_id(@reject.id).should be_nil
+  end
+  
+  it "should not create duplicate listed taxa" do
+    lt1 = ListedTaxon.make(:taxon => @keeper)
+    lt2 = ListedTaxon.make(:taxon => @reject, :list => lt1.list)
+    @keeper.merge(@reject)
+    lt1.list.listed_taxa.count(:conditions => {:taxon_id => @keeper.id}).should == 1
   end
 end
 
