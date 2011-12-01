@@ -113,6 +113,7 @@ ActionController::Routing::Routes.draw do |map|
     o.project_observations 'observations/project/:id.:format', :action => "project"
     o.all_project_observations 'observations/project/:id.all.:format', :action => "project_all"
     o.observations_of 'observations/of/:id.:format', :action => 'of'
+    o.identotron 'observations/:id/identotron', :action => 'identotron'
   end
   map.observation_quality 'observations/:id/quality/:metric', :controller => "quality_metrics", :action => "vote", :conditions => {:method => [:post, :delete]}
   

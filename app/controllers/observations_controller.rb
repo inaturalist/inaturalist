@@ -1119,15 +1119,17 @@ class ObservationsController < ApplicationController
   
   def identotron
     @places = @observation.places.reverse
-    @place = @places.last
+    @place = Place.find_by_id(params[:place].to_i) || @places.last
+    @taxon = Taxon.find_by_id(params[:taxon].to_i)
     # @check_lists = CheckList.all(:conditions => ["id IN (?)", @places])
     if @observation.taxon.blank?
       @query = @observation.species_guess
     elsif @observation.taxon.species_or_lower?
-      @taxon = @observation.taxon.genus
+      @taxon ||= @observation.taxon.genus
     else
-      @taxon = @observation.taxon
+      @taxon ||= @observation.taxon
     end
+    @taxon ||= Taxon::LIFE
   end
 
 ## Protected / private actions ###############################################

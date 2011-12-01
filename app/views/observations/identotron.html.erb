@@ -1,13 +1,31 @@
+<%- content_for(:title) do -%>
+  Identotron
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "taxa", "taxa/guide" %>
+  <style type="text/css" media="screen">
+/*    #taxa .photos {float: left; width: 200px;}*/
+    #taxa .map {height: 350px;}
+    #taxa .photos img { max-width: 350px; }
+    .taxon { display: block; }
+    .taxon .othernames { display: inline; }
+    li.selected { font-weight: bold; }
+  </style>
+<%- end -%>
+
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag "jquery/plugins/jquery.ba-bbq.min" %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag "jquery/plugins/jquery.ba-bbq.min", 'inaturalist/map3', "jquery/plugins/inat/taxonmap" %>
     
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('#taxa').load("<%= place_guide_path(@place, :taxon => @taxon.id, :q => @query) %>")
-      $('#places a').click(function() {
-        $.bbq.pushState($.deparam.querystring($(this).attr('href')))
-        return false
-      })
+      // $('#controls a').click(function() {
+      //   $.bbq.pushState($.deparam.querystring($(this).attr('href')))
+      //   return false
+      // })
+      
+      var observation = <%= @observation.to_json(:include => [:taxon, :iconic_taxon]) %>
       
       $(window).bind("hashchange", function(e) {
         var placeId = $.bbq.getState('place')
@@ -15,24 +33,53 @@
         var state = $.bbq.getState()
         state.place = null
         var url = '/places/guide/' + placeId + '?' + $.param(state)
-        $('#taxa').load(url)
+        url += '&partial=identotron_taxa&per_page=30'
+        $('#taxa').shades('open', {
+          css: {'background-color': 'white'}, 
+          content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
+        })
+        $('#taxa').load(url, function() {
+          $('.map', this).taxonMap({
+            observationsJsonUrl: false,
+            preserveViewport: true,
+            latitude: observation.latitude,
+            longitude: observation.longitude
+          })
+          $('.map', this).each(function() {
+            $(this).data('taxonMap').addObservation(observation)
+            if (observation.latitude) {
+              $(this).data('taxonMap').setCenter(new google.maps.LatLng(observation.latitude, observation.longitude))
+            }
+          })
+        })
       })
+      
+      $.bbq.pushState({place: <%= @place.id.inspect %>, taxon: <%= @taxon.id.inspect %>})
+      $(window).trigger('hashchange')
     })
   </script>
 <%- end -%>
 
-<h2>Identotron for <%= @observation.to_plain_s %></h2>
+<div id="pageheader">
+  <div class="breadcrumbs">
+    <%= link_to 'Back to observation', @observation, :class => 'back crumb' %>
+  </div><!-- /#breadcrumbs -->
+  <h2>Identotron for <%= @observation.to_plain_s %></h2>
+</div>
 
-<div class="column span-6">
+<div id="controls" class="column span-6">
   <ul id="places">
     <% for place in @places %>
-      <li><%= link_to place.name, :place => place, :taxon => @taxon.id %></li>
+      <li class="<%= place.id == @place.id ? 'selected' : nil %>"><%= link_to place.name, :place => place, :taxon => @taxon %></li>
     <% end %>
   </ul>
+
+  <%= render :partial => "taxa/classification_list", :object => @taxon, :locals => {:link_method => lambda{|t| url_for(:place => place, :taxon => t.id)}} %>
 </div>
 
 <div class="last column span-18">
-  <div id="taxa">
-    <%= loading %>
+  <div id="listed_taxa">
+    <div id="taxa" class="clear taxa fluid medium grid">
+    </div>
   </div>
 </div>

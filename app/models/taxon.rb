@@ -153,6 +153,8 @@ class Taxon < ActiveRecord::Base
     'Animalia' => 'Other Animals'
   )
   
+  LIFE = Taxon.roots.find_by_name('Life')
+  
   IUCN_NOT_EVALUATED = 0
   IUCN_DATA_DEFICIENT = 5
   IUCN_LEAST_CONCERN = 10

@@ -445,7 +445,7 @@
             } %>
         </div>
         
-        <div id="need_id_help" class="quiet box" style="display: <%= @observation.id_please? ? 'none' : 'block' %>">
+        <div id="need_id_help" class="quiet box" style="margin: 0; display: <%= @observation.id_please? ? 'none' : 'block' %>">
           <span class="inter">Need ID help?</span>
           
           <%= link_to_remote "add to ID Please",
@@ -477,12 +477,18 @@
                  :locals => { :observation => @observation }%>
     </div>
     <% if user_identified %>
-    <script type="text/javascript" charset="utf-8">
-      $(document).ready(function() {
-        $('#identification_form_wrapper-<%= @observation.id %>').hide();
-      });
-    </script>
+      <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+          $('#identification_form_wrapper-<%= @observation.id %>').hide();
+        });
+      </script>
     <% end %>
+    
+    <% if logged_in? && current_user.admin? -%>
+      <div class="quiet stacked box" style="background-color: #ddd; text-align:center">
+        <%= link_to "Identotron", identotron_path(@observation), :class => "glaucous inline button" %>
+      </div>
+    <% end -%>
   </div><!-- end identifications -->
   
   <% if !@project_observations.blank? || 

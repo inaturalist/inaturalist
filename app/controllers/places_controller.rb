@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
   caches_page :geometry
   caches_page :cached_guide
   
-  GUIDE_PARTIALS = %w(guide_taxa identotron)
+  GUIDE_PARTIALS = %w(guide_taxa identotron_taxa)
   
   def index
     place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do

@@ -14,7 +14,11 @@
     options.longitude = options.longitude || $(elt).attr('data-longitude')
     options.placeKmlUrl = options.placeKmlUrl || $(elt).attr('data-place-kml')
     options.taxonRangeKmlUrl = options.taxonRangeKmlUrl || $(elt).attr('data-taxon-range-kml')
-    options.observationsJsonUrl = options.observationsJsonUrl || $(elt).attr('data-observations-json') || observationsJsonUrl(options.taxonId)
+    if (options.observationsJsonUrl != false) {
+      options.observationsJsonUrl = options.observationsJsonUrl 
+        || $(elt).attr('data-observations-json') 
+        || observationsJsonUrl(options.taxonId)
+    }
     options.bbox = options.bbox || $(elt).attr('data-bbox')
     if (typeof(options.bbox) == 'string') {
       options.bbox = $.map(options.bbox.split(','), Number)
@@ -31,7 +35,7 @@
   function setupGoogle(elt) {
     var options = $(elt).data('taxonMapOptions'),
         map = iNaturalist.Map.createMap({div: elt}),
-        preserveViewport = false
+        preserveViewport = options.preserveViewport
     if (options.bbox) {
       map.fitBounds(
         new google.maps.LatLngBounds(

@@ -6,6 +6,8 @@
   no_common ||= false
   if taxon.species_or_lower?
     sciname = '<span class="sciname"><i>%s</i></span>' % taxon.name
+  elsif taxon.root?
+    sciname = "<span class=\"sciname\">#{taxon.name}</span>"
   else
     rank = taxon.rank ? taxon.rank.capitalize : '(Unknown Rank)'
     rank = content_tag(:span, rank, :class => 'rank')
