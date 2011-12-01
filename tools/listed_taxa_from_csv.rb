@@ -11,6 +11,7 @@
 require 'rubygems'
 require 'fastercsv'
 require 'fileutils'
+require 'open3'
 
 DEBUG = false
 
@@ -32,7 +33,21 @@ def run_sql(sql, inpath = nil)
   cmd = "nice psql inaturalist_production -c \"#{sql}\""
   cmd += " < #{inpath}" if inpath
   puts "EXECUTING #{cmd}..."
-  system cmd unless DEBUG
+  # system cmd unless DEBUG
+  unless DEBUG
+    stdin, stdout, stderr = Open3.popen3(cmd).map do |io|
+      s = io.read.strip rescue nil
+      io.close
+      s
+    end
+    [stdout, stderr].each do |io|
+      puts io unless io.to_s.strip.size == 0
+      if io =~ /error/i
+        puts "Bailing!"
+        exit(0)
+      end
+    end
+  end
   puts "Finished in #{Time.now - sql_start}s"
   puts
 end
@@ -64,6 +79,7 @@ new_csv = FasterCSV.open(new_fname, 'w')
 leftovers_csv = FasterCSV.open(leftovers_fname, 'w')
 count = 0
 FasterCSV.foreach(input_path) do |row|
+  next if row.nil? || row.size == 0
   list_id, taxon_id = row
   if existing_lookup[taxon_id] && existing_lookup[taxon_id].detect{|id| id == list_id}
     leftovers_csv << row
@@ -80,24 +96,40 @@ new_path = File.expand_path(new_fname)
 puts "Copied #{count} lines into #{new_path}, leftovers in #{leftovers_fname}"
 
 puts
-run_sql "COPY listed_taxa (list_id, taxon_id, place_id, taxon_range_id) FROM STDIN WITH CSV", new_path
-run_sql "UPDATE listed_taxa SET taxon_ancestor_ids = taxa.ancestry FROM taxa WHERE listed_taxa.created_at IS NULL AND taxa.id = listed_taxa.taxon_id"
+run_sql "COPY listed_taxa (list_id, taxon_id, place_id, taxon_range_id, establishment_means) FROM STDIN WITH CSV", new_path
 stamp = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-run_sql "UPDATE listed_taxa SET created_at = '#{stamp}', updated_at = '#{stamp}' WHERE created_at IS NULL"
+run_sql <<-SQL
+  UPDATE listed_taxa 
+  SET 
+    taxon_ancestor_ids = taxa.ancestry,
+    created_at = '#{stamp}', 
+    updated_at = '#{stamp}'
+  FROM taxa 
+  WHERE listed_taxa.created_at IS NULL AND taxa.id = listed_taxa.taxon_id
+SQL
 
 puts
 puts "UPDATING EXISTING..."
 existing_count = %x{wc -l #{leftovers_fname}}.split.first.to_i
 i = 0
-FasterCSV.foreach(leftovers_fname, :headers => %w(list_id taxon_id place_id taxon_range_id)) do |row|
+FasterCSV.foreach(leftovers_fname, :headers => %w(list_id taxon_id place_id taxon_range_id establishment_means)) do |row|
   puts "#{i} of #{existing_count}"
   run_sql <<-SQL
-    UPDATE listed_taxa SET taxon_range_id = #{row['taxon_range_id']} 
+    UPDATE listed_taxa SET taxon_range_id = #{row['taxon_range_id']}
     WHERE 
       taxon_range_id IS NULL AND
       list_id = #{row['list_id']} AND 
       taxon_id = #{row['taxon_id']}
   SQL
+  if row['establishment_means']
+    run_sql <<-SQL
+      UPDATE listed_taxa SET establishment_means = '#{row['establishment_means']}'
+      WHERE 
+        establishment_means IS NULL AND
+        list_id = #{row['list_id']} AND 
+        taxon_id = #{row['taxon_id']}
+    SQL
+  end
   i += 1
 end
 
