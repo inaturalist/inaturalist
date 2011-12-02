@@ -38,8 +38,8 @@ class Taxon < ActiveRecord::Base
     indexes colors.value, :as => :color_values
     has iconic_taxon_id, :facet => true, :type => :integer
     has colors(:id), :as => :colors, :facet => true, :type => :multi
-    has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
-    has listed_taxa(:list_id), :as => :lists, :type => :multi
+    # has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
+    # has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at, ancestry
     has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
     set_property :delta => :delayed

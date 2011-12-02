@@ -255,7 +255,7 @@ class PlacesController < ApplicationController
     order = nil
     if @q = @filter_params[:q]
       @q = @q.to_s
-      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000, :with => {:places => [@place.id]})
+      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
       @search_taxon_ids = Taxon.search_for_ids(@q) if @search_taxon_ids.blank?
       if @search_taxon_ids.size == 1
         @taxon = Taxon.find_by_id(@search_taxon_ids.first)

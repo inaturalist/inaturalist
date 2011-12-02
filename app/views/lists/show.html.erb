@@ -68,7 +68,7 @@
   
   <% if @q -%>
     <div id="searchresults" class="description quiet box">
-      <%= render :partial => "shared/page_results", :object => @taxa %>
+      <%= render :partial => "shared/page_results", :object => @listed_taxa %>
       for <strong>"<%= @q %>"</strong>
       <%= link_to "clear", url_for_params(:without => [:page, :q]) %>
     </div>
@@ -132,7 +132,7 @@
     
     <% unless @list.listed_taxa.empty? -%>
       <div id="stats" class="clear">
-        <a href="<%= url_for(params.merge(:page => 1, :taxon => nil)) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
+        <a href="<%= url_for_params(:without => [:page, :taxon, :q]) %>" class="clear stat total<%= ' current' unless @filter_taxon %>">
           <div class="readable title">
             &nbsp;
           </div>

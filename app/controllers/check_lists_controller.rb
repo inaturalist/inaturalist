@@ -30,12 +30,9 @@ class CheckListsController < ApplicationController
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
       if @q = params[:q]
-        @taxa = Taxon.search(@q, 
-          :with => {:places => @list.place_id},
-          :page => @find_options[:page], 
-          :per_page => @find_options[:per_page])
+        @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
         @find_options[:conditions] = List.merge_conditions(
-          @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @taxa])
+          @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
       end
       
       @listed_taxa = ListedTaxon.paginate(@find_options)
