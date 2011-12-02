@@ -200,7 +200,7 @@ class ListedTaxon < ActiveRecord::Base
     if @force_update_cache_columns
       ListedTaxon.update_cache_columns_for(self)
     else
-      ListedTaxon.send_later(:update_cache_columns_for, id)
+      ListedTaxon.send_later(:update_cache_columns_for, id, :dj_priority => 1)
     end
     true
   end

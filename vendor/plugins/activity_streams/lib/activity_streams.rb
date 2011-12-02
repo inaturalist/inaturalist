@@ -90,7 +90,7 @@ module ActivityStreams
           return true unless self.respond_to?(:user) && self.user
           
           if Object.const_get('Delayed')
-            self.class.send_later(:create_activity_update, id)
+            self.class.send_later(:create_activity_update, id, :dj_priority => 1)
           else
             self.class.create_activity_update(self)
           end
