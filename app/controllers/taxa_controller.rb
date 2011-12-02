@@ -266,11 +266,11 @@ class TaxaController < ApplicationController
       @iconic_taxa = Taxon.find(@iconic_taxa_ids)
       drill_params[:iconic_taxon_id] = @iconic_taxa_ids
     end
-    if params[:places] && @place_ids = params[:places].split(',')
-      @place_ids = @place_ids.map(&:to_i)
-      @places = Place.find(@place_ids)
-      drill_params[:places] = @place_ids
-    end
+    # if params[:places] && @place_ids = params[:places].split(',')
+    #   @place_ids = @place_ids.map(&:to_i)
+    #   @places = Place.find(@place_ids)
+    #   drill_params[:places] = @place_ids
+    # end
     if params[:colors] && @color_ids = params[:colors].split(',')
       @color_ids = @color_ids.map(&:to_i)
       @colors = Color.find(@color_ids)
@@ -302,19 +302,19 @@ class TaxaController < ApplicationController
         @faceted_colors_by_id = @faceted_colors.index_by(&:id)
       end
 
-      if @facets[:places]
-        @faceted_places = if @places.blank?
-          Place.all(:order => "name", :conditions => [
-            "id in (?) AND place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
-          ])
-        else
-          Place.all(:order => "name", :conditions => [
-            "id in (?) AND parent_id IN (?)", 
-            @facets[:places].keys, @places.map(&:id)
-          ])
-        end
-        @faceted_places_by_id = @faceted_places.index_by(&:id)
-      end
+      # if @facets[:places]
+      #   @faceted_places = if @places.blank?
+      #     Place.all(:order => "name", :conditions => [
+      #       "id in (?) AND place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
+      #     ])
+      #   else
+      #     Place.all(:order => "name", :conditions => [
+      #       "id in (?) AND parent_id IN (?)", 
+      #       @facets[:places].keys, @places.map(&:id)
+      #     ])
+      #   end
+      #   @faceted_places_by_id = @faceted_places.index_by(&:id)
+      # end
       @taxa = @facets.for(drill_params)
     end
     
