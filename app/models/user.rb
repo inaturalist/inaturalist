@@ -294,8 +294,12 @@ class User < ActiveRecord::Base
   # to prevent namespace clashes (e.g. i register with twitter @joe but 
   # there's already an inat user where login=joe, so it suggest joe2)
   def self.suggest_login(requested_login)
+    requested_login = requested_login.to_s
+    requested_login = "naturalist" if requested_login.blank?
     # strip out everything but letters and numbers so we can pass the login format regex validation
-    requested_login = requested_login.downcase.split('').select{|l| ('a'..'z').member?(l) || ('0'..'9').member?(l) }.join('')
+    requested_login = requested_login.downcase.split('').select do |l| 
+      ('a'..'z').member?(l) || ('0'..'9').member?(l)
+    end.join('')
     suggested_login = requested_login
     appendix = 1
     while User.find_by_login(suggested_login)
