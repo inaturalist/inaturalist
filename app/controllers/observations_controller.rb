@@ -182,56 +182,12 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-
-    if @observation.observed_on
-      concurrent_observations = Observation.by(@observation.user).all(
-        :conditions => ["observed_on < ? AND observed_on > ?", 
-          @observation.observed_on + 1.day, 
-          @observation.observed_on - 1.day],
-        :order => "observed_on DESC, time_observed_at DESC",
-        :include => [{:taxon => [:taxon_names]}]
-      )
-    else
-      concurrent_observations = Observation.by(@observation.user).all(
-        :conditions => "observed_on IS NULL",
-        :order => "observed_on DESC, time_observed_at DESC",
-        :include => [{:taxon => [:taxon_names]}]
-      )
-    end
-    obs_pos = concurrent_observations.index(@observation)
-    @previous = concurrent_observations[obs_pos+1]
-    @next = concurrent_observations[obs_pos-1] if obs_pos != 0
-    @previous ||= Observation.by(@observation.user).find(:first,
-      :conditions => ["observed_on < ?", @observation.observed_on],
-      :order => "observed_on DESC, time_observed_at DESC"
-    )
-    @next ||= Observation.by(@observation.user).find(:first,
-      :conditions => ["observed_on > ?", @observation.observed_on],
-      :order => "observed_on ASC, time_observed_at ASC"
-    )
-    
-    # last lame condition: if next is still nil and observed_on is nil, then
-    # we must be at the end of the dateless observations so grab the first 
-    # dated one
-    unless @observation.observed_on
-      @next ||= Observation.by(@observation.user).find(:first,
-        :conditions => "observed_on IS NOT NULL",
-        :order => "observed_on ASC, time_observed_at ASC"
-      )
-    else
-      @previous ||= Observation.by(@observation.user).find(:first,
-        :conditions => "observed_on IS NULL",
-        :order => "observed_on DESC, time_observed_at DESC"
-      )
-    end
-    
+    @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id])
+    @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id])
     @quality_metrics = @observation.quality_metrics.all(:include => :user)
     if logged_in?
       @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
     end
-    
-    # b/c there were potenially many observations loaded above.  *hides face in shame*
-    GC.start if concurrent_observations.size > 10
     
     respond_to do |format|
       format.html do
@@ -239,18 +195,18 @@ class ObservationsController < ApplicationController
         Time.zone = @observation.user.time_zone
                 
         @identifications = @observation.identifications.all(:include => [:user, {:taxon => :photos}])
-        @owners_identification = @identifications.select do |ident|
+        @owners_identification = @identifications.detect do |ident|
           ident.user_id == @observation.user_id
-        end.first
+        end
         if logged_in?
-          @viewers_identification = @identifications.select do |ident|
+          @viewers_identification = @identifications.detect do |ident|
             ident.user_id == current_user.id
-          end.first
+          end
         end
         
         @identifications_by_taxon = @identifications.select do |ident|
           ident.user_id != ident.observation.user_id
-        end.group_by(&:taxon)
+        end.group_by{|i| i.taxon}
         @identifications_by_taxon = @identifications_by_taxon.sort_by do |row|
           row.last.size
         end.reverse
@@ -265,7 +221,11 @@ class ObservationsController < ApplicationController
             end
           end
           
-          @project_users = current_user.project_users.all(:include => :project, :limit => 1000, :order => "projects.title")
+          @projects = Project.all(
+            :joins => [:project_users], 
+            :limit => 1000, 
+            :conditions => ["project_users.user_id = ?", current_user]
+          ).sort_by{|p| p.title}
           @places = @observation.places
         end
         
@@ -277,11 +237,11 @@ class ObservationsController < ApplicationController
         end
         
         @comments_and_identifications = (@observation.comments.all + 
-          @identifications).sort_by(&:created_at)
+          @identifications).sort_by{|r| r.created_at}
         
         @photos = @observation.observation_photos.sort_by do |op| 
           op.position || @observation.photos.size + op.id.to_i
-        end.map(&:photo)
+        end.map{|op| op.photo}
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,

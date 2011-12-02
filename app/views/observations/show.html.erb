@@ -208,25 +208,25 @@
       <%= link_to "Edit", edit_observation_url, 
         :id => "edit_list_button", :class => "button" %>
 
-      <% unless @project_users.blank? %>
+      <% unless @projects.blank? %>
         <% link_to_toggle_menu "Add to project", :class => "button", 
             :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
           <ul>
-            <% for project_user in @project_users %>
+            <% for project in @projects %>
               <li class="inline buttonrow">
-                <% if @project_observations_by_project_id[project_user.project_id] -%>
+                <% if @project_observations_by_project_id[projects.id] -%>
                   <%= link_to "remove", 
-                    remove_project_observation_path(project_user.project, :observation_id => @observation.id),
+                    remove_project_observation_path(project, :observation_id => @observation.id),
                     :method => :delete,
                     :confirm => "Are you sure you want to remove this observation from #{h project_user.project.title}?",
                     :class => "pale button" %>
                 <% else %>
                   <%= link_to "add", 
-                    add_project_observation_path(project_user.project, :observation_id => @observation.id),
+                    add_project_observation_path(project, :observation_id => @observation.id),
                     :method => :post,
                     :class => "glaucous button" %>
                 <% end -%>
-                <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
+                <%= link_to h(project.title), project, :class => "inter" %>
               </li>
             <% end %>
           </ul>
@@ -544,29 +544,29 @@
       <% end %>
     </div>
     
-    <% if !@project_users.blank? && logged_in? && is_not_me?(@observation.user) -%>
+    <% if !@projects.blank? && logged_in? && is_not_me?(@observation.user) -%>
       <div class="clear">
         <% link_to_toggle_menu "Invite to project", :class => "button", 
            :wrapper => {:id => "project_menu", :class => "toggle_menu_list"} do %>
           <ul>
-            <% for project_user in @project_users %>
+            <% for project in @projects %>
               <li class="inline buttonrow">
-                <% if @project_observations_by_project_id[project_user.project_id] -%>
+                <% if @project_observations_by_project_id[project.id] -%>
                   <div class = "disabled pale button" >added</div>
-                <% elsif @project_invitations_by_project_id[project_user.project_id] -%>
+                <% elsif @project_invitations_by_project_id[project.id] -%>
                   <div class = "disabled pale button" >invited</div>
                 <% else %>
                   <%= link_to "invite",
                     { :controller => 'project_invitations',
                       :action => 'create',
-                      :project_id => project_user.project.id,
+                      :project_id => project.id,
                       :observation_id => @observation.id,
                       :user_id => @user.id },
                     :method => :post,
                     :class => "glaucous button",
                     "data-loading-click" => "inviting..." %>
                 <% end -%>
-                <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
+                <%= link_to h(project.title), project, :class => "inter" %>
               </li>
             <% end %>
           </ul>
