@@ -218,7 +218,7 @@
                   <%= link_to "remove", 
                     remove_project_observation_path(project, :observation_id => @observation.id),
                     :method => :delete,
-                    :confirm => "Are you sure you want to remove this observation from #{h project_user.project.title}?",
+                    :confirm => "Are you sure you want to remove this observation from #{h project.title}?",
                     :class => "pale button" %>
                 <% else %>
                   <%= link_to "add", 
@@ -493,7 +493,7 @@
   
   <% if !@project_observations.blank? || 
         !@project_invitations.blank? || 
-        (logged_in? && is_not_me?(@observation.user) && !@project_users.blank?) -%>
+        (logged_in? && is_not_me?(@observation.user) && !@projects.blank?) -%>
     <%= separator %>
     <div id="projects" class="stacked">
       <h3>Projects</h3>
