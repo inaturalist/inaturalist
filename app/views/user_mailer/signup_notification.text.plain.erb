@@ -1,7 +1,7 @@
 Your <%= APP_CONFIG[:site_name] %> account has been created.
 
   Username: <%=h @user.login %>
-  Password: <%=h @user.password %>
+  Password: <%= "*" * @user.password.size %>
 
 In order to login and start using the site you must visit this url to activate your account:
 
