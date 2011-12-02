@@ -214,7 +214,7 @@
           <ul>
             <% for project in @projects %>
               <li class="inline buttonrow">
-                <% if @project_observations_by_project_id[projects.id] -%>
+                <% if @project_observations_by_project_id[project.id] -%>
                   <%= link_to "remove", 
                     remove_project_observation_path(project, :observation_id => @observation.id),
                     :method => :delete,
@@ -485,9 +485,9 @@
     <% end %>
     
     <% if logged_in? && current_user.admin? -%>
-      <div class="quiet stacked box" style="background-color: #ddd; text-align:center">
+      <!-- <div class="quiet stacked box" style="background-color: #ddd; text-align:center">
         <%= link_to "Identotron", identotron_path(@observation), :class => "glaucous inline button" %>
-      </div>
+      </div> -->
     <% end -%>
   </div><!-- end identifications -->
   

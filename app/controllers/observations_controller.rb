@@ -182,8 +182,8 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-    @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id])
-    @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id])
+    @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id], :order => "id DESC")
+    @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id], :order => "id ASC")
     @quality_metrics = @observation.quality_metrics.all(:include => :user)
     if logged_in?
       @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
