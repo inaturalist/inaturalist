@@ -26,13 +26,13 @@ function classifyPlaces(e, options) {
     }
     if (listing) {
       var placeClass = 'place_' + listing.place_id
-      var cssClass = placeType + ' ' + placeClass + ' '
+      var cssClass = [placeType, placeClass, listing.establishment_means].join(' ')
       if (listing.last_observation_id) {
-        cssClass += 'confirmed'
+        cssClass += ' confirmed'
       } else if (listing.occurrence_status == 'absent') {
-        cssClass += 'absent'
+        cssClass += ' absent'
       } else {
-        cssClass += 'putative'
+        cssClass += ' putative'
       }
       feature.element.setAttribute('class',  cssClass)
       feature.element.setAttribute('data-place-id', listing.place_id)

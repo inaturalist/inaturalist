@@ -46,6 +46,10 @@ svg .absent {
 path.confirmed:hover, path.putative:hover {
   cursor: pointer;
 }
+svg .introduced, svg .invasive, svg .naturalised, svg .managed {
+  stroke-width: 3px;
+  stroke-dasharray: 7,5;
+}
 #range path {
   fill: #FF5EB0;
   stroke: deeppink;
@@ -83,6 +87,7 @@ path.confirmed:hover, path.putative:hover {
 #legend .confirmed .symbol { border: 1px solid #55721F; background-color: #84A92F; }
 #legend .obscured .symbol { border: 1px dashed black; background-color: #ccc; width: 11px; height: 11px; margin: 2px; -moz-border-raidus: 11px; -webkit-border-radius:11px; border-radius: 11px;}
 #legend .absent .symbol { border: 1px solid #666; background-color: #999; }
+#legend .introduced .symbol { border: 1px dashed black; background-color: #ccc; }
 
 .compass path{visibility:visible; opacity: 1;}
 .compass circle {opacity: 1;}

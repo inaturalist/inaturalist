@@ -448,30 +448,19 @@ class TaxaController < ApplicationController
     @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
     @bing_key = INAT_CONFIG['bing'].try(:[], 'key')
     
-    @county_listings = @taxon.listed_taxa.all(
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level", 
+    find_options = {
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means", 
       :joins => [:place], 
       :conditions => [
         "place_id IS NOT NULL AND places.place_type = ?", 
         Place::PLACE_TYPE_CODES['County']
       ]
-    ).index_by(&:place_id)
-    @state_listings = @taxon.listed_taxa.all(
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level", 
-      :joins => [:place], 
-      :conditions => [
-        "place_id IS NOT NULL AND places.place_type = ?", 
-        Place::PLACE_TYPE_CODES['State']
-      ]
-    ).index_by(&:place_id)
-    @country_listings = @taxon.listed_taxa.all(
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level", 
-      :joins => [:place], 
-      :conditions => [
-        "place_id IS NOT NULL AND places.place_type = ?", 
-        Place::PLACE_TYPE_CODES['Country']
-      ]
-    ).index_by(&:place_id)
+    }
+    @county_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['State']
+    @state_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['County']
+    @country_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
     
     if params[:test]
       @child_taxa = @taxon.descendants.of_rank(Taxon::SPECIES).all(:limit => 10)
