@@ -26,6 +26,12 @@ class FlickrPhoto < Photo
       flickr.auth.token = options[:user].flickr_identity.token
     end
     flickr.photos.get_info(native_photo_id)
+  rescue Net::Flickr::APIError => e
+    if options.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Net::Flickr had an auth " + 
+        "token when it shouldn't: #{flickr.auth.inspect}"
+    end
+    raise e
   end
   
   def self.new_from_api_response(api_response, options = {})
