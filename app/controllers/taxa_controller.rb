@@ -108,43 +108,52 @@ class TaxaController < ApplicationController
     
     respond_to do |format|
       format.html do
+        if @taxon.name == 'Life' && !@taxon.parent_id
+          return redirect_to(:action => 'index')
+        end
+        
         @amphibiaweb = amphibiaweb_description?
         @try_amphibiaweb = try_amphibiaweb?
         
         @children = @taxon.children.all(:include => :taxon_names, :order => "name")
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
-        @iconic_taxa = Taxon.iconic_taxa.all(:include => :taxon_names)
+        @iconic_taxa = Taxon::ICONIC_TAXA
         
         @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
         @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
         
         @check_listed_taxa = ListedTaxon.paginate(:page => 1,
-          :include => :place,
-          :conditions => ["place_id IS NOT NULL AND taxon_id = ?", @taxon],
-          :order => "listed_taxa.id DESC")
-        @places = @check_listed_taxa.map(&:place)
+          :include => [:place, :list],
+          :conditions => ["place_id IS NOT NULL AND taxon_id = ?", @taxon]
+        )
+        @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.place_type || 0}.reverse
+        @places = @check_listed_taxa.map{|lt| lt.place}
         @countries = @taxon.places.all(
+          :select => "places.id, place_type, code",
           :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
         )
         if @countries.size == 1 && @countries.first.code == 'US'
-          @us_states = @taxon.places.all(:conditions => [
-            "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
-            @countries.first.id
-          ])
+          @us_states = @taxon.places.all(
+            :select => "places.id, place_type, code",
+            :conditions => [
+              "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
+              @countries.first.id
+            ]
+          )
         end
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
         @photos = @taxon.photos.all(:limit => 24)
         @photos = @taxon.photos_with_backfill(:skip_external => true, :limit => 24) if @photos.blank?
 
         if logged_in?
-          @current_user_lists = current_user.lists.all
           @listed_taxa = ListedTaxon.all(
-            :include => :list,
+            :include => [{:list => [:rules]}],
             :conditions => [
               "lists.user_id = ? AND listed_taxa.taxon_id = ?", 
               current_user, @taxon
           ])
-          @listed_taxa_by_list_id = @listed_taxa.index_by(&:list_id)
+          @current_user_lists = @listed_taxa.map {|lt| lt.list}
+          @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
           @lists_rejecting_taxon = @current_user_lists.select do |list|
             if list.is_a?(LifeList)
               list.rules.map {|rule| rule.validates?(@taxon)}.include?(false)
@@ -154,13 +163,10 @@ class TaxaController < ApplicationController
           end
         end
         
-        if @taxon.name == 'Life' && !@taxon.parent_id
-          return redirect_to(:action => 'index')
-        end
-        
         @taxon_range = @taxon.taxon_ranges.without_geom.first
         @taxon_gbif = @taxon.name.gsub(' ','+')
-        @show_range = @taxon_range # && params[:test] =~ /range/
+        @show_range = @taxon_range
+        @colors = @taxon.colors if @taxon.species_or_lower?
         
         render :action => 'show'
       end

@@ -542,7 +542,7 @@
   <% if @taxon.species_or_lower? -%>
     <div id="colors" class="clear">
       <h3>Colors</h3>
-      <% if @taxon.colors.blank?-%>
+      <% if @colors.blank?-%>
         <% if logged_in? -%>
           <div class="notice">
             This species has no colors! Help improve species searches by telling
@@ -555,7 +555,7 @@
         <% end -%>
       <% end -%>
       <div id="colorboxen">
-        <% for color in @taxon.colors %>
+        <% for color in @colors %>
           <%= link_to "&nbsp;", {:controller => "taxa", :action => "search", :colors => color.id},
             :class => "color", :style => "background-color: #{color.value}", :title => color.value, 
             :rel => "nofollow" %>
@@ -603,7 +603,7 @@
               </div>
             <% end %>
           </div>
-          <% if @taxon.colors.blank? -%>
+          <% if @colors.blank? -%>
             <script type="text/javascript" charset="utf-8">
               $('#edit_colors_dialog').prev('.togglelink').click();
             </script>
@@ -616,7 +616,7 @@
   <% if @taxon.species_or_lower? -%>
     <div id="places" class="clear">
       <h3>
-        Range
+        Places
         <% if @check_listed_taxa.total_entries > @check_listed_taxa.size -%>
           <span class="small description"><%= @check_listed_taxa.size %> of <%= @check_listed_taxa.total_entries %></span>
         <% end -%>
@@ -634,7 +634,7 @@
         <% unless logged_in? %><div class="description">No places selected.</div><% end %>
       <% else %>
         <ul id="places_list">
-          <% for lt in @check_listed_taxa %>
+          <% for lt in @sorted_check_listed_taxa %>
             <li>
               <%= link_to lt.place.display_name, lt.place %>
               <% if logged_in? && lt.editable_by?(current_user) -%>
