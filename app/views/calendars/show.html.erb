@@ -1,0 +1,136 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Observation by #{you_or_login(@selected_user, :capitalize => true)} on #{[@year, @month, @day].compact.join('-')}" %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "observations" %>
+  <style type="text/css" media="screen">
+    .bigun {text-align: center; height: 150px; border-radius: 150px; background-color: #eee; position: relative;}
+    .bigun .inner { width: 150px; height: 72px; top: 50%; margin-top: -47px; position: absolute;}
+    .bigun .count { font-size: 300%;}
+    .bigun .label { font-size: 120%;}
+    .iconic_taxon_sprite { vertical-align: middle; }    
+    .lilun { display: table-cell; vertical-align: middle; height: 150px;}
+  </style>
+<%- end -%>
+
+<div id="pageheader" class="clear">
+  <%= render :partial => 'shared/prevnext', :locals => {
+    :prev_item => @previous ? @previous.observed_on.strftime('%Y-%m-%d') : nil,
+    :prev_url => @previous ? calendar_date_path(@login, @previous.observed_on.year, @previous.observed_on.month, @previous.observed_on.day) : nil,
+    :next_item => @next ? @next.observed_on.strftime('%Y-%m-%d') : nil,
+    :next_url => @next ? calendar_date_path(@login, @next.observed_on.year, @next.observed_on.month, @next.observed_on.day) : nil
+  } %>
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar", calendar_path(@login), :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  
+  <h2><%= @title %></h2>
+</div>
+
+<% if @day -%>
+  <div class="clear stacked">
+    <div class="column span-8">
+      <div class="column span-4 readable">
+        <div class="bigun">
+          <div class="inner">
+            <div class="count"><%= number_with_delimiter @taxa_count %></div>
+            <div class="meta label"><%= @taxa_count == 1 ? 'taxon' : 'taxa' %></div>
+          </div>
+        </div>
+      </div>
+      <div class="last class column span-4">
+        <div class="lilun">
+          <% @iconic_taxon_counts.each do |id, count| %>
+            <div class="taxon %>">
+              <span class="iconic_taxon_sprite selected <%= Taxon::ICONIC_TAXA_BY_ID[id].name.downcase %>"></span>
+              <%= count %>
+              <%= default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase %>
+            </div>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+
+    <div class="column span-8">
+      <div class="column span-4 readable">
+        <div class="bigun">
+          <div class="inner">
+            <%- count = @observations.total_entries rescue @observations.size -%>
+            <div class="count"><%= number_with_delimiter(count) %></div>
+            <div class="meta label">observation<%= 's' unless count == 1 %></div>
+          </div>
+        </div>
+      </div>
+      <div class="last class column span-4">
+        <div class="lilun">
+          <% for place_name, count in @place_name_counts %>
+            <div>
+              <span class="count"><%= count %></span>
+              from <%= place_name.blank? ? "somewhere" : place_name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <% if !@life_list_firsts.blank? -%>
+      <div class="last column span-8">
+        <div class="column span-4 readable">
+          <div class="bigun">
+            <div class="inner">
+              <div class="count"><%= number_with_delimiter(@life_list_firsts.size) %></div>
+              <div class="meta label">life list first<%= 's' unless @life_list_firsts.size == 1 %></div>
+            </div>
+          </div>
+        </div>
+        <div class="last class column span-4">
+          <div class="lilun">
+            <div class="stacked">
+              <% for lt in @life_list_firsts[0..5] %>
+                <%- 
+                  taxon = @taxa.detect{|t| t.id == lt.taxon_id} || lt.taxon
+                  iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] if taxon
+                  iconic_taxon_name = (iconic_taxon.try(:name) || "unknown").downcase
+                -%>
+                <div class="nobr">
+                  <span class="iconic_taxon_sprite selected <%= iconic_taxon_name %>"></span>
+                  <%= default_taxon_name taxon %>
+                </div>
+              <% end %>
+            </div>
+            <% if @life_list_firsts.size > 5 -%>
+              <div class="buttonrow smallbuttons">
+                <%= link_to_function "View all #{@life_list_firsts.size}", 
+                  "$('#life_list_first_dialog').dialog({modal: true, width: 'auto', title: 'Life List Firsts'})",
+                  :class => "small inline glaucous button" %>
+              </div>
+              <div id="life_list_first_dialog" style="display:none">
+                <table>
+                  <tr>
+                    <% @life_list_firsts.in_groups(3) do |listed_taxa| %>
+                      <td>
+                        <% for lt in listed_taxa.compact %>
+                          <%- 
+                            taxon = @taxa.detect{|t| t.id == lt.taxon_id} || lt.taxon
+                            iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] if taxon
+                            iconic_taxon_name = (iconic_taxon.try(:name) || "unknown").downcase
+                          -%>
+                          <div class="nobr">
+                            <span class="iconic_taxon_sprite selected <%= iconic_taxon_name %>"></span>
+                            <%= render :partial => "shared/taxon", :object => taxon, :locals => {:link_url => url_for_taxon(taxon)} %>
+                          </div>
+                        <% end %>
+                      </td>
+                    <% end -%>
+                  </tr>
+                </table>
+              </div>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>
+
+<%= render :partial => "observations/map" %>

@@ -322,9 +322,7 @@ Observations by <%= h @login %>
   </div>
 <% end %>
 
-<%= render :partial => 'shared/by_login_header', :locals => {
-  :after => tools
-} %>
+<%= render :partial => 'shared/by_login_header', :locals => {:title => @title} %>
 
 <div id="listcol" class="column span-17">
   <div class="observations table">

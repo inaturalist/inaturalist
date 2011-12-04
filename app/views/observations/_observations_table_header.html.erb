@@ -1,36 +1,36 @@
 <% display ||= '' %>
-    <div class="headerrow" <% unless display.blank? %>style="display: <%= display %>"<% end %>>
-      <div class="header icon">Icon</div>
-      <div class="header photos">Photos</div>
-      <div class="header species_guess <%= "order_by #{@order}" if @order_by == 'species_guess' %>">
-        <% url = params.merge(:order_by => 'species_guess') %>
-        <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'species_guess' %>
-        <%= link_to 'Species / Taxon Name', url %>
-      </div>
-      <div class="header user <%= "order_by #{@order}"  if @order_by == 'user' %>">
-        <% url = params.merge(:order_by => 'user') %>
-        <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'user' %>
-        <%= link_to 'Observer', url %>
-      </div>
-      <div class="header observed_on <%= "order_by #{@order}" if @order_by == 'observed_on' %>">
-        <% url = params.merge(:order_by => 'observed_on') %>
-        <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'observed_on' %>
-        <%= link_to 'Date observed', url %>
-      </div>
-      <div class="header place<%= " order_by #{@order}" if @order_by == 'place' %>">
-        <% url = params.merge(:order_by => 'place') %>
-        <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'place' %>
-        <%= link_to 'Place', url %>
-      </div>
-      <div class="header created_at <%= "order_by #{@order}" if %w(id observations.id created_at).include?(@order_by) %>" style="display: none">
-        <% url = params.merge(:order_by => 'created_at') %>
-        <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if %w(id observations.id created_at).include?(@order_by) %>
-        <%= link_to 'Date added', url %>
-      </div>
-      <div class="header details" style="display: none">
-        Details
-      </div>
-      <div class="header actions">
-        Actions
-      </div>
-    </div>
+<div class="headerrow" <% unless display.blank? %>style="display: <%= display %>"<% end %>>
+  <div class="header icon">Icon</div>
+  <div class="header photos">Photos</div>
+  <div class="header species_guess <%= "order_by #{@order}" if @order_by == 'species_guess' %>">
+    <% url = params.merge(:order_by => 'species_guess') %>
+    <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'species_guess' %>
+    <%= link_to 'Species / Taxon Name', url %>
+  </div>
+  <div class="header user <%= "order_by #{@order}"  if @order_by == 'user' %>">
+    <% url = params.merge(:order_by => 'user') %>
+    <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'user' %>
+    <%= link_to 'Observer', url %>
+  </div>
+  <div class="header observed_on <%= "order_by #{@order}" if @order_by == 'observed_on' %>">
+    <% url = params.merge(:order_by => 'observed_on') %>
+    <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'observed_on' %>
+    <%= link_to 'Date observed', url %>
+  </div>
+  <div class="header place<%= " order_by #{@order}" if @order_by == 'place' %>">
+    <% url = params.merge(:order_by => 'place') %>
+    <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'place' %>
+    <%= link_to 'Place', url %>
+  </div>
+  <div class="header created_at <%= "order_by #{@order}" if %w(id observations.id created_at).include?(@order_by) %>" style="display: none">
+    <% url = params.merge(:order_by => 'created_at') %>
+    <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if %w(id observations.id created_at).include?(@order_by) %>
+    <%= link_to 'Date added', url %>
+  </div>
+  <div class="header details" style="display: none">
+    Details
+  </div>
+  <div class="header actions">
+    Actions
+  </div>
+</div>

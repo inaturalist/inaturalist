@@ -295,6 +295,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :flags, :requirements => { :id => %r(\d+) }
   map.admin '/admin', :controller => 'admin', :action => 'index'
   map.resources :taxon_ranges, :except => [:index, :show]
+  
+  map.calendar '/calendar/:login', :controller => 'calendars', :action => 'index'
+  map.calendar_compare '/calendar/:login/compare', :controller => 'calendars', :action => 'compare'
+  # map.calendar_year   '/calendar/:login/:year', :controller => 'calendars', :action => 'show'
+  # map.calendar_month  '/calendar/:login/:year/:month', :controller => 'calendars', :action => 'show'
+  map.calendar_date    '/calendar/:login/:year/:month/:day', :controller => 'calendars', :action => 'show'
 
   # Default route
   map.connect ':controller/:action/:id'

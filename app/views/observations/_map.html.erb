@@ -76,58 +76,16 @@
 <% end %>
 <% content_for(:extracss) do %>
   <style type="text/css" media="screen">
-    .observations.map {
-      float: left;
-      width: 640px;
-    }
-    
-    #map {
-      width: 640px;
-      height: 500px;
-    }
-    
-    #mapcontrols {
-      width: 640px;
-      float: left;
-      clear: left;
-      margin-top: 0.2em;
-    }
-    
-    #mapdivider {
-      float: left;
-      width: 10px;
-      height: 500px;
-      background: 50% 50% url(/images/toggle_arrow_right.png) no-repeat;
-    }
-    
-    #mapdivider.closed {
-      background: 50% 50% url(/images/toggle_arrow_left.png) no-repeat;
-    }
-    
-    #mapdivider:hover {
-      background-color: #FFC;
-      cursor: pointer;
-    }
-    
-    #mapobservations {
-      position: relative;
-    }
-    
-    #mapobservations.mini {
-      float: left;
-      width: 300px;
-      height: 520px;
-      overflow: auto;
-    }
-    
-    #redo_search_in_map_area_button {
-      background: 0% 50% url(/images/silk/arrow_refresh.png) no-repeat;
-      padding-left: 20px;
-    }
-    
-    #redo_search_in_map_area_loading.loading {
-      display: inline;
-    }
+    .observations.map{float:left;width:640px;}
+    #map{width:640px;height:500px;}
+    #mapcontrols{width:640px;float:left;clear:left;margin-top:0.2em;}
+    #mapdivider{float:left;width:10px;height:500px;background:50% 50% url(/images/toggle_arrow_right.png) no-repeat;}
+    #mapdivider.closed{background:50% 50% url(/images/toggle_arrow_left.png) no-repeat;}
+    #mapdivider:hover{background-color:#FFC;cursor:pointer;}
+    #mapobservations{position:relative;}
+    #mapobservations.mini{float:left;width:300px;height:520px;overflow:auto;}
+    #redo_search_in_map_area_button{background:0% 50% url(/images/silk/arrow_refresh.png) no-repeat;padding-left:20px;}
+    #redo_search_in_map_area_loading.loading{display:inline;}
   </style>
 <% end %>
 
@@ -137,13 +95,6 @@
     <div id="mapcontrols"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
       <%= link_to_function "Redo search in map area", "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
       <span id="redo_search_in_map_area_loading" class="loading status" style="display: none">Loading...</span>
-      <!-- | <%= link_to_function "Show all observations", 
-        "map.showAllObsOverlay(); $(this).hide(); $('#hide_all_obs_button').show()", 
-        :id => 'show_all_obs_button' %>
-      <%= link_to_function "Hide all observations", 
-        "map.hideAllObsOverlay(); $(this).hide(); $('#show_all_obs_button').show()", 
-        :id => 'hide_all_obs_button', :style => 'display: none' %>
-      <span class="description">(experimental)</span> -->
       <% if logged_in? && params[:test] == "true" -%>
         |
         <%= link_to_function "View species guide for this area", 
@@ -158,9 +109,9 @@
 
   <div id="mapobservations" class="observations <%= (@view && @view == 'map') ? 'mini' : 'table' %>">
     <% if @view && @view == 'map' %>
-      <%= render :partial => 'observations_table_header', :locals => {:display => 'none'} %>
+      <%= render :partial => 'observations/observations_table_header', :locals => {:display => 'none'} %>
     <% else %>
-      <%= render :partial => 'observations_table_header' %>
+      <%= render :partial => 'observations/observations_table_header' %>
     <% end %>
     <%= observations_html ? observations_html : render(:partial => 'observations/cached_component', :collection => observations) %>
     <% if @observations.empty? %>

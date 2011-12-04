@@ -103,6 +103,10 @@ class ListedTaxon < ActiveRecord::Base
                 :skip_update_cache_columns,
                 :force_update_cache_columns
   
+  def ancestry
+    taxon_ancestor_ids
+  end
+  
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
     "list_id: #{self.list_id}>"

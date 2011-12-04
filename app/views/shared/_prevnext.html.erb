@@ -1,31 +1,33 @@
-<%- prev_title ||= prev_item.title rescue prev_item.name rescue prev_item.to_s -%>
-<%- next_title ||= next_item.title rescue next_item.name rescue next_item.to_s -%>
-<%- prev_url ||= url_for(prev_item) -%>
-<%- next_url ||= url_for(next_item) -%>
-    <div id="prevnext" class="column <% if next_item %>span-6<% else %>span-3<% end %> clear">
-      <div class="column span-3">
-        <% if prev_item %>
-          <a id="prevlink" href="<%= prev_url %>">
-            <span class="arrow">&lsaquo;</span>
-            Previous
-            <div class="title">            
-              <div><%= prev_title %></div>
-            </div>
-          </a>
-        <% else %>
-          &nbsp;
-        <% end %>
-      </div>
+<%- 
+  prev_title ||= prev_item.title rescue prev_item.name rescue prev_item.to_s
+  next_title ||= next_item.title rescue next_item.name rescue next_item.to_s
+  prev_url ||= url_for(prev_item)
+  next_url ||= url_for(next_item)
+-%>
+<div id="prevnext" class="column <% if next_item %>span-6<% else %>span-3<% end %> clear">
+  <div class="column span-3">
+    <% if prev_item %>
+      <a id="prevlink" href="<%= prev_url %>">
+        <span class="arrow">&lsaquo;</span>
+        Previous
+        <div class="title">            
+          <div><%= prev_title %></div>
+        </div>
+      </a>
+    <% else %>
+      &nbsp;
+    <% end %>
+  </div>
 
-      <div class="last column span-3">        
-        <% if next_item %>
-        <a id="nextlink" href="<%= next_url %>">
-          <span class="arrow">&rsaquo;</span>
-          Next
-          <div class="title">
-            <div><%= next_title %></div>
-          </div>
-        </a>
-        <% end %>
+  <div class="last column span-3">        
+    <% if next_item %>
+    <a id="nextlink" href="<%= next_url %>">
+      <span class="arrow">&rsaquo;</span>
+      Next
+      <div class="title">
+        <div><%= next_title %></div>
       </div>
-    </div><!-- /#prevnext -->
+    </a>
+    <% end %>
+  </div>
+</div><!-- /#prevnext -->

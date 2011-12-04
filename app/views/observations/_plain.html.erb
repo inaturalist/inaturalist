@@ -5,7 +5,7 @@
   include_description ||= false
   hide_species_guess ||= false
   image_url ||= observation_image_url(observation, :size => image_size) || 
-    iconic_taxon_image_url(observation.iconic_taxon, :size => image_size)
+    iconic_taxon_image_url((observation.iconic_taxon_id ? Taxon::ICONIC_TAXA[observation.iconic_taxon_id] : nil), :size => image_size)
 -%>
 <table cellpadding="5" border="0">
   <tr>
