@@ -83,7 +83,7 @@
       <div id="taxon_photos" class="clear">
         <% for photo in taxon.photos %>
           <div class="photo">
-            <%= check_box_tag "flickr_photos[]", 
+            <%= check_box_tag "#{photo.class.to_s.underscore.pluralize}[]", 
                 photo.native_photo_id, :checked => 'checked', :id => dom_id(photo) %>
             <label for="<%= dom_id(photo) %>"><%= image_tag(photo.square_url) %></label>
           </div>

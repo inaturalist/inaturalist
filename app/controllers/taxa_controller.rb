@@ -1117,7 +1117,7 @@ class TaxaController < ApplicationController
   end
   
   def presave
-    @taxon.photos = retrieve_remote_photos
+    @taxon.photos = retrieve_photos
     if params[:taxon_names]
       TaxonName.update(params[:taxon_names].keys, params[:taxon_names].values)
     end
