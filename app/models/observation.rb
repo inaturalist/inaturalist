@@ -585,6 +585,7 @@ class Observation < ActiveRecord::Base
   #
   def update_identifications_after_save
     return true if @skip_identifications
+    return true unless taxon_id_changed?
     owners_ident = identifications.first(:conditions => {:user_id => self.user_id})
     owners_ident.skip_observation = true if owners_ident
     
@@ -618,7 +619,8 @@ class Observation < ActiveRecord::Base
   # then the last_observation should be reset to another observation.
   #
   def refresh_lists
-    return if @skip_refresh_lists
+    return true if @skip_refresh_lists
+    return true unless taxon_id_changed?
     
     # Update the observation's current taxon and/or a previous one that was
     # just removed/changed
