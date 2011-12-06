@@ -147,13 +147,13 @@ class TaxaController < ApplicationController
 
         if logged_in?
           @listed_taxa = ListedTaxon.all(
-            :include => [{:list => [:rules]}],
+            :include => [:list],
             :conditions => [
               "lists.user_id = ? AND listed_taxa.taxon_id = ?", 
               current_user, @taxon
           ])
-          @current_user_lists = @listed_taxa.map {|lt| lt.list}
           @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
+          @current_user_lists = current_user.lists.all(:include => [:rules])
           @lists_rejecting_taxon = @current_user_lists.select do |list|
             if list.is_a?(LifeList)
               list.rules.map {|rule| rule.validates?(@taxon)}.include?(false)
