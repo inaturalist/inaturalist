@@ -96,6 +96,7 @@ class CheckList < List
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
     sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
+    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].map{|i| i.blank? ? nil : i}.compact.join('/')
     <<-SQL
       SELECT
         array_agg(CASE WHEN quality_grade = 'research' THEN o.id END) AS ids,
@@ -118,7 +119,8 @@ class CheckList < List
         ) AND 
         (
           o.taxon_id = #{lt.taxon_id} OR 
-          t.ancestry LIKE '#{lt.taxon.ancestry}/#{lt.taxon_id}/%'
+          t.ancestry = '#{ancestry_clause}' OR
+          t.ancestry LIKE '#{ancestry_clause}/%'
         )
       GROUP BY #{sql_key}
     SQL

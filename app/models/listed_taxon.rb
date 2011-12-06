@@ -220,7 +220,6 @@ class ListedTaxon < ActiveRecord::Base
     ids = ids.map {|id| id == "NULL" ? nil : id.to_i}.compact.uniq
     first_observation_id = nil
     last_observation_id = nil
-    Rails.logger.debug "[DEBUG] ids: #{ids.inspect}"
     unless ids.blank?
       first_observation_id = ids.min
       last_observation_id = Observation.latest.first(:select => "id, observed_on, time_observed_at", :conditions => ["id IN (?)", ids]).try(:id)

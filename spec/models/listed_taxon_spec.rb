@@ -198,5 +198,22 @@ describe ListedTaxon do
       ListedTaxon.find_by_id(reject.id).should be_blank
     end
   end
-
+  
+  describe "cache_columns" do
+    before(:each) do
+      @place = Place.make(:name => "foo to the bar")
+      @place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
+      @check_list = @place.check_list
+      @taxon = Taxon.make(:rank => Taxon::SPECIES)
+    end
+    
+    it "should set first observation to obs of desc taxa" do
+      subspecies = Taxon.make(:rank => Taxon::SUBSPECIES, :parent => @taxon)
+      o = make_research_grade_observation(:taxon => subspecies, :latitude => @place.latitude, :longitude => @place.longitude)
+      lt = ListedTaxon.make(:list => @check_list, :place => @place, :taxon => @taxon)
+      ListedTaxon.update_cache_columns_for(lt)
+      lt.reload
+      lt.first_observation_id.should == o.id
+    end
+  end
 end

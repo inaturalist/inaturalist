@@ -587,6 +587,7 @@ class Taxon < ActiveRecord::Base
   
   # Updated the "cached" ancestor values in all listed taxa with this taxon
   def update_listed_taxa
+    return true if ancestry.blank?
     ListedTaxon.update_all(
       "taxon_ancestor_ids = '#{ancestry}'", 
       "taxon_id = #{self.id}")
