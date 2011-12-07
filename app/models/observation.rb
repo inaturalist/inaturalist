@@ -351,31 +351,39 @@ class Observation < ActiveRecord::Base
   }
   
   named_scope :on, lambda {|date|
+    Observation.conditions_for_date(:observed_on, date)
+  }
+  
+  named_scope :created_on, lambda {|date|
+    Observation.conditions_for_date("observations.created_at", date)
+  }
+  
+  def self.conditions_for_date(column, date)
     year, month, day = date.to_s.split('-').map do |d|
       d = d.blank? ? nil : d.to_i
       d == 0 ? nil : d
     end
     if date.to_s =~ /^\d{4}/ && year && month && day
-      {:conditions => ["observed_on = ?", "#{year}-#{month}-#{day}"]}
+      {:conditions => ["#{column}::DATE = ?", "#{year}-#{month}-#{day}"]}
     elsif year || month || day
       conditions, values = [[],[]]
       if year
-        conditions << "EXTRACT(YEAR FROM observed_on) = ?"
+        conditions << "EXTRACT(YEAR FROM #{column}) = ?"
         values << year
       end
       if month
-        conditions << "EXTRACT(MONTH FROM observed_on) = ?"
+        conditions << "EXTRACT(MONTH FROM #{column}) = ?"
         values << month
       end
       if day
-        conditions << "EXTRACT(DAY FROM observed_on) = ?"
+        conditions << "EXTRACT(DAY FROM #{column}) = ?"
         values << day
       end
       {:conditions => [conditions.join(' AND '), *values]}
     else
       {:conditions => "1 = 2"}
     end
-  }
+  end
   
   def self.near_place(place)
     place = Place.find_by_id(place) unless place.is_a?(Place)
@@ -431,6 +439,7 @@ class Observation < ActiveRecord::Base
     scope = scope.in_projects(params[:projects]) if params[:projects]
     scope = scope.in_place(params[:place_id]) if params[:place_id]
     scope = scope.on(params[:on]) if params[:on]
+    scope = scope.created_on(params[:created_on]) if params[:created_on]
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

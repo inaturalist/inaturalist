@@ -82,3 +82,25 @@
   </div>
 <% end %>
 </div>
+
+<h3>Country stats for observations created on <%= @daily_date %></h3>
+<% table_for @daily_country_stats.to_a.sort_by(&:first) do |t| %>
+  <% t.head do %>
+    <% t.r do %>
+      <%= t.h('name') %>
+      <%= t.h('code') %>
+      <%= t.h('count') %>
+      <%= t.h %>
+    <% end -%>
+  <% end -%>
+  <% t.body do |row| %>
+    <% t.r do %>
+      <%= t.d row['display_name'] %>
+      <%= t.d row['code'] %>
+      <%= t.d row['count'] %>
+      <% t.d do %>
+        <%= link_to "View observations", observations_path(:place_id => row['id'], :created_on => @daily_date.to_s) %>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+<% end -%>

@@ -30,6 +30,23 @@ class AdminController < ApplicationController
     @total_users = User.count
     @active_observers = Observation.count(:select => "distinct user_id", :conditions => ["created_at > ?", 3.months.ago])
     @total_observations = Observation.count
+    
+    @daily_date = Date.yesterday
+    daily_country_stats_sql = <<-SQL
+      SELECT 
+        p.display_name, p.code, p.id, count(o.*)
+      FROM 
+        observations o, 
+        places p, 
+        place_geometries pg
+      WHERE 
+        ST_Intersects(o.geom, pg.geom) 
+        AND p.id = pg.place_id 
+        AND o.created_at::DATE = '#{@daily_date.to_s}' 
+        AND p.place_type = 12 
+      GROUP BY p.display_name, p.code, p.id
+    SQL
+    @daily_country_stats = Observation.connection.execute(daily_country_stats_sql.gsub(/\s+/, ' ').strip)
   end
   
   def index
