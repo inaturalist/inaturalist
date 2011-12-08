@@ -57,7 +57,7 @@ foreign_keys = {
   "taxa" => "taxon_id",
   "places" => "place_id",
   "taxon_ranges" => "taxon_range_id",
-  "list" => "list_id"
+  "lists" => "list_id"
 }
 
 puts "FILTER OUT EXISTING"
