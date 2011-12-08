@@ -1,5 +1,5 @@
 styleUrl = "#{root_url}stylesheets/observations/google_earth.kml#{@prevent_cache}#"
-styleUrl += observation.iconic_taxon_id ? Taxon::ICONIC_TAXA[observation.iconic_taxon_id].try(:name).to_s : 'Unknown'
+styleUrl += observation.iconic_taxon_id ? Taxon::ICONIC_TAXA_BY_ID[observation.iconic_taxon_id].try(:name).to_s : 'Unknown'
 styleUrl += "Stemless" if observation.coordinates_obscured?
 xml.Placemark(:id => "ID#{observation.id}") do
   xml.name observation.species_guess
