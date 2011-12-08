@@ -485,7 +485,7 @@ class TaxaController < ApplicationController
     @county_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
     find_options[:conditions][1] = Place::PLACE_TYPE_CODES['State']
     @state_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
-    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['County']
+    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['Country']
     @country_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
     
     if params[:test]
