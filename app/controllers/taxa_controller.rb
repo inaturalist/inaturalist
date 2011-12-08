@@ -359,6 +359,26 @@ class TaxaController < ApplicationController
     end
   end
   
+  def autocomplete
+    @q = params[:q] || params[:term]
+    @taxon_names = TaxonName.paginate(
+      :page => params[:page], 
+      :include => [:taxon],
+      :conditions => ["lower(name) LIKE ?", "#{@q.to_s.downcase}%"]
+    )
+    @taxa = @taxon_names.map do |taxon_name|
+      taxon = taxon_name.taxon
+      taxon.html = render_to_string(:partial => "chooser.html.erb", 
+        :object => taxon, :comname => taxon_name.is_scientific_names? ? nil : taxon_name)
+      taxon
+    end
+    respond_to do |format|
+      format.json do
+        render :json => @taxa.to_json(:methods => [:html])
+      end
+    end
+  end
+  
   def browse
     redirect_to :action => "search"
   end

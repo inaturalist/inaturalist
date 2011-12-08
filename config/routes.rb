@@ -80,6 +80,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.with_options :controller => "observations" do |o|
+    o.identotron 'observations/identotron', :action => 'identotron'
     o.update_observations 'observations/update', :action => 'update'
     o.new_observation_batch_csv 'observations/new/batch_csv', :action => 'new_batch_csv'
     o.new_observation_batch 'observations/new/batch', :action => 'new_batch'
@@ -113,7 +114,6 @@ ActionController::Routing::Routes.draw do |map|
     o.project_observations 'observations/project/:id.:format', :action => "project"
     o.all_project_observations 'observations/project/:id.all.:format', :action => "project_all"
     o.observations_of 'observations/of/:id.:format', :action => 'of'
-    o.identotron 'observations/:id/identotron', :action => 'identotron'
   end
   map.observation_quality 'observations/:id/quality/:metric', :controller => "quality_metrics", :action => "vote", :conditions => {:method => [:post, :delete]}
   
@@ -290,7 +290,11 @@ ActionController::Routing::Routes.draw do |map|
     places.place_geometry 'places/geometry/:id.:format', :action => 'geometry', :conditions => {:method => :get}
     places.place_guide 'places/guide/:id', :action => 'guide', :conditions => {:method => :get}
     places.cached_place_guide 'places/cached_guide/:id', :action => 'cached_guide', :conditions => {:method => :get}
+    places.autocomplete 'places/autocomplete', :action => 'autocomplete'
+    places.formatted_autocomplete 'places/autocomplete.:format', :action => 'autocomplete'
   end
+  
+  map.guide '/guide', :controller => 'places', :action => 'guide'
   
   map.resources :flags, :requirements => { :id => %r(\d+) }
   map.admin '/admin', :controller => 'admin', :action => 'index'

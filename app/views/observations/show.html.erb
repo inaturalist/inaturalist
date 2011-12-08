@@ -466,6 +466,12 @@
       </div>
     <% end -%>
     
+    <% if logged_in? && current_user.admin? -%>
+      <div class="quiet stacked box" style="background-color: #ddd; text-align:center">
+        <%= link_to "Identotron (admin-only for now)", identotron_path(:observation_id => @observation), :class => "glaucous inline button" %>
+      </div>
+    <% end -%>
+    
     <% user_identified = false %>
     <% if logged_in? %>
       <% identifying_user_ids =  @observation.identifications.map { |ident| ident.user_id } -%>
@@ -483,12 +489,6 @@
         });
       </script>
     <% end %>
-    
-    <% if logged_in? && current_user.admin? -%>
-      <!-- <div class="quiet stacked box" style="background-color: #ddd; text-align:center">
-        <%= link_to "Identotron", identotron_path(@observation), :class => "glaucous inline button" %>
-      </div> -->
-    <% end -%>
   </div><!-- end identifications -->
   
   <% if !@project_observations.blank? || 

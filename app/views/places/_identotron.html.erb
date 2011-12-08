@@ -1,15 +1,23 @@
 <%-
-  listed_taxon ||= object || @listed_taxon
-  list ||= @list || listed_taxon.list
-  place ||= listed_taxon.place
-  taxon ||= listed_taxon.taxon
+  taxon ||= object || @taxon
+  listed_taxon ||=  @listed_taxon
+  if listed_taxon
+    list ||= @list || listed_taxon.list
+    place ||= listed_taxon.place
+  end
+  # taxon ||= listed_taxon.taxon
   taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
   map_tag_attrs = setup_map_tag_attrs(taxon, :place => place, :taxon_range => taxon_range)
-  obs_url = observations_path(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id)
+  obs_url = observations_path(:place_id => listed_taxon.try(:place_id), :taxon_id => taxon.id)
   photos = taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
+  dialog_url = listed_taxon_url(listed_taxon) if listed_taxon
 -%>
-<div class="clear listed_taxon stacked" href="<%= listed_taxon_path(listed_taxon) %>">
-  <%= render :partial => "shared/taxon", :object => taxon, :locals => {:link_url => url_for(taxon)} %>
+<div class="clear listed_taxon stacked" href="<%= dialog_url %>" data-taxon-id="<%= taxon.id %>">
+  <div class="column span-15 headercol">
+    <h3>
+      <%= render :partial => "shared/taxon", :object => taxon, :locals => {:link_url => url_for(taxon)} %>
+    </h3>
+  </div>
   <div class="photos column span-9">
     <% if photos.blank? -%>
       <%= render :partial => 'taxa/nophoto', :object => taxon %>
@@ -26,5 +34,5 @@
     <% end -%>
   </div>
   
-  <%= content_tag :div, '', map_tag_attrs.merge(:class => "last column span-9 map") %>
+  <%= content_tag :div, '', map_tag_attrs.merge(:class => "last column span-6 map") %>
 </div>

@@ -5,7 +5,7 @@ class PlacesController < ApplicationController
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide, :cached_guide]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
-    :children, :taxa, :geometry, :guide, :cached_guide]
+    :children, :taxa, :geometry, :cached_guide]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
@@ -15,17 +15,21 @@ class PlacesController < ApplicationController
   GUIDE_PARTIALS = %w(guide_taxa identotron_taxa)
   
   def index
-    place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
-      place_types = [Place::PLACE_TYPE_CODES['Country']]
-      places = Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-        :conditions => ["place_type IN (?)", place_types])
-      places.map{|p| p.id}
-    end
-    place_ids = place_ids.sort_by{rand}[0..4]
-    @places = Place.all(:conditions => ["id in (?)", place_ids])
-    
     respond_to do |format|
-      format.html
+      format.html do
+        place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
+          place_types = [Place::PLACE_TYPE_CODES['Country']]
+          places = Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
+            :conditions => ["place_type IN (?)", place_types])
+          places.map{|p| p.id}
+        end
+        place_ids = place_ids.sort_by{rand}[0..4]
+        @places = Place.all(:conditions => ["id in (?)", place_ids])
+      end
+      
+      format.json do
+        render :json => Place.search((params[:q] || params[:term]).to_s)
+      end
     end
   end
   
@@ -148,9 +152,17 @@ class PlacesController < ApplicationController
   end
   
   def autocomplete
+    @q = params[:q] || params[:term]
     @places = Place.paginate(:page => params[:page], 
-      :conditions => ["lower(display_name) LIKE ?", "#{params[:q].to_s.downcase}%"])
-    render :layout => false, :partial => 'autocomplete'
+      :conditions => ["lower(display_name) LIKE ?", "#{@q.to_s.downcase}%"])
+    respond_to do |format|
+      format.html do
+        render :layout => false, :partial => 'autocomplete' 
+      end
+      format.json do
+        render :json => @places.to_json
+      end
+    end
   end
   
   def merge
@@ -239,7 +251,15 @@ class PlacesController < ApplicationController
   end
   
   def guide
-    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    place = params[:id] || params[:place_id] || params[:place]
+    @place = if place.to_i == 0
+      Place.search(place).first
+    else
+      @place = Place.find_by_id(place.to_i)
+    end
+    if @place
+      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    end
     filter_param_keys = [:colors, :taxon, :q, :establishment_means, 
       :conservation_status, :threatened, :introduced, :native]
     @filter_params = Hash[params.select{|k,v| 
@@ -251,7 +271,8 @@ class PlacesController < ApplicationController
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({})
+    scope = Taxon.of_rank(Taxon::SPECIES).scoped({})
+    scope = scope.from_place(@place) if @place
     order = nil
     if @q = @filter_params[:q]
       @q = @q.to_s
@@ -299,10 +320,12 @@ class PlacesController < ApplicationController
       scope = scope.has_conservation_status(@conservation_status)
     end
     
-    @listed_taxa_count = scope.count(:select => "DISTINCT taxa.id")
-    @confirmed_listed_taxa_count = scope.count(:select => "DISTINCT taxa.id",
-      :conditions => "listed_taxa.first_observation_id IS NOT NULL")
-    if logged_in?
+    if @place
+      @listed_taxa_count = scope.count(:select => "DISTINCT taxa.id")
+      @confirmed_listed_taxa_count = scope.count(:select => "DISTINCT taxa.id",
+        :conditions => "listed_taxa.first_observation_id IS NOT NULL")
+    end
+    if @place && logged_in?
       @current_user_observed_count = scope.count(
         :select => "DISTINCT taxa.id",
         :joins => "JOIN listed_taxa ult ON ult.taxon_id = taxa.id", 
@@ -311,7 +334,7 @@ class PlacesController < ApplicationController
     
     if @filter_params.blank?
       scope = scope.has_photos
-      order = "listed_taxa.observations_count DESC, listed_taxa.id ASC"
+      order = "listed_taxa.observations_count DESC, listed_taxa.id ASC" if @place
     end
     
     @taxa = scope.paginate( 
@@ -320,10 +343,12 @@ class PlacesController < ApplicationController
       :order => order,
       :page => params[:page], :per_page => 50)
     @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
-    @listed_taxa = @place.listed_taxa.all(
-      :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
-      :conditions => ["taxon_id IN (?)", @taxa])
-    @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
+    if @place
+      @listed_taxa = @place.listed_taxa.all(
+        :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
+        :conditions => ["taxon_id IN (?)", @taxa])
+      @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
+    end
     
     partial = params[:partial]
     partial = "guide_taxa" unless GUIDE_PARTIALS.include?(partial)

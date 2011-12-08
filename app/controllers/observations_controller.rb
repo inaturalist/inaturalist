@@ -14,7 +14,7 @@ class ObservationsController < ApplicationController
   
   rescue_from ActionController::UnknownAction do
     unless @selected_user = User.find_by_login(params[:action])
-      render_404
+      return render_404
     end
     by_login
   end
@@ -32,7 +32,7 @@ class ObservationsController < ApplicationController
                             :widget,
                             :project]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
-    :update_photos, :destroy, :identotron]
+    :update_photos, :destroy]
   before_filter :require_owner, :only => [:edit, :edit_photos, 
     :update_photos]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -1079,18 +1079,26 @@ class ObservationsController < ApplicationController
   end
   
   def identotron
-    @places = @observation.places.reverse
-    @place = Place.find_by_id(params[:place].to_i) || @places.last
+    @observation = Observation.find_by_id((params[:observation] || params[:observation_id]).to_i)
     @taxon = Taxon.find_by_id(params[:taxon].to_i)
-    # @check_lists = CheckList.all(:conditions => ["id IN (?)", @places])
-    if @observation.taxon.blank?
-      @query = @observation.species_guess
-    elsif @observation.taxon.species_or_lower?
-      @taxon ||= @observation.taxon.genus
-    else
-      @taxon ||= @observation.taxon
+    @q = params[:q] unless params[:q].blank?
+    if @observation
+      @places = @observation.places.try(:reverse)
+      if @observation.taxon.blank?
+        # @q ||= @observation.species_guess
+      elsif @observation.taxon.species_or_lower?
+        @taxon ||= @observation.taxon.genus
+      else
+        @taxon ||= @observation.taxon
+      end
+      if @taxon && @places
+        @place = @places.reverse.detect {|p| p.taxa.self_and_descendants_of(@taxon).exists?}
+      end
     end
+    @place ||= Place.find_by_id(params[:place].to_i) || @places.try(:last)
+    @default_taxa = @taxon ? @taxon.ancestors : Taxon::ICONIC_TAXA
     @taxon ||= Taxon::LIFE
+    @default_taxa = [@default_taxa, @taxon].flatten.compact
   end
 
 ## Protected / private actions ###############################################

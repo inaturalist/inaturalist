@@ -278,6 +278,9 @@ class Taxon < ActiveRecord::Base
   }
   
   named_scope :threatened, {:conditions => ["conservation_status >= ?", IUCN_NEAR_THREATENED]}
+  named_scope :from_place, lambda {|place|
+    {:include => [:listed_taxa], :conditions => ["listed_taxa.place_id = ?", place]}
+  }
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
@@ -803,6 +806,10 @@ class Taxon < ActiveRecord::Base
         find_each(:select => "places.id, place_type, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
       place.check_list.add_taxon(self, :taxon_range_id => place.taxon_range_id)
     end
+  end
+  
+  def iconic_taxon_name
+    ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
   end
   
   include TaxaHelper

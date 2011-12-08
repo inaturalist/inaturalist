@@ -64,7 +64,9 @@ var QTIP_DEFAULTS = {
 }
 
 
-$('a[data-loading-click], input[data-loading-click][type=radio], input[data-loading-click][type=checkbox]').live('click', function() {
+$('a[data-loading-click], input[data-loading-click][type=radio], input[data-loading-click][type=checkbox]').live('click', loadingClickForLink)
+
+function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
   var loading = $('<div></div>').html(txt)
@@ -76,7 +78,7 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
     loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
   }
   $(this).hide().before(loading)
-})
+}
 
 $('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function() {
   var txt = $.trim($(this).attr('data-loading-click'))

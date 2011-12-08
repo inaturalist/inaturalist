@@ -17,6 +17,7 @@
         collectionUrl = this.options.collectionUrl = this.options.source
       }
       this.defaultSources = defaultSources = this.recordsToItems(defaultSources)
+      this.options.chosen = this.options.chosen || $.parseJSON($(this.element).attr('data-chooser-chosen')),
       this.options.source = this.options.source || defaultSources
       var markup = this.setupMarkup()
       
@@ -62,7 +63,11 @@
           markup.chooseButton.hide()
           markup.loadingButton.showInlineBlock()
           
-          $.getJSON(collectionUrl, self.options.queryParam+"="+request.term, function(json) {
+          if (self.request) {
+            self.request.abort()
+          }
+          
+          self.request = $.getJSON(collectionUrl, self.options.queryParam+"="+request.term, function(json) {
             markup.chooseButton.showInlineBlock()
             markup.loadingButton.hide()
             json = self.recordsToItems(json)
@@ -86,6 +91,8 @@
 
         // work around a bug (likely same cause as #5265)
         $( this ).blur()
+        
+        self.clear()
 
         // pass empty string as value to search for, displaying all results
         markup.input.autocomplete( "search", "" )
@@ -95,8 +102,8 @@
     
     selectDefault: function() {
       var self = this, markup = this.markup
-      if ($(this.element).attr('data-chooser-chosen')) {
-        var item = $.parseJSON($(this.element).attr('data-chooser-chosen'))
+      if (this.options.chosen) {
+        var item = this.options.chosen
         item = self.recordsToItems([item])[0]
         this.selectItem(item)
       } else if ($(this.element).val() != '' && this.options.resourceUrl) {
@@ -134,26 +141,37 @@
       $(this.markup.input).hide()
       $(this.markup.choice).width('auto')
       $(this.markup.choice).html(item.label || item.html).showInlineBlock()
-      $(this.markup.chooseButton).hide()
-      $(this.markup.clearButton).showInlineBlock()
+      // $(this.markup.chooseButton).hide()
+      $(this.markup.chooseButton).showInlineBlock()
+      // $(this.markup.clearButton).showInlineBlock()
       $(this.markup.clearButton)
+        .height(this.markup.choice.outerHeight())
+      $(this.markup.chooseButton)
         .height(this.markup.choice.outerHeight())
       $('.ui-icon', this.markup.clearButton)
         .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
-      $(this.markup.originalInput).val(item.recordId || item.value || item.id)
+      $('.ui-icon', this.markup.chooseButton)
+        .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
+      $(this.markup.originalInput).val(item.recordId || item.value || item.id).change()
     },
     
     clear: function() {
+      $(this.markup.originalInput).val('')
       $(this.markup.input).val('').showInlineBlock()
       $(this.markup.choice).html('').hide()
-      $(this.markup.chooseButton).showInlineBlock()
-      $(this.markup.clearButton).hide()
+      
+      $(this.markup.chooseButton).height(this.markup.input.outerHeight())
+      $('.ui-icon', this.markup.chooseButton)
+        .css('margin-top', '-' + Math.round((this.markup.input.outerHeight() / 2) - 6) + 'px')
+      // $(this.markup.chooseButton).showInlineBlock()
+      // $(this.markup.clearButton).hide()
     },
     
     setupMarkup: function() {
       var originalInput = this.element.hide()
       this.markup = {
         originalInput: originalInput,
+        wrapper: $('<div class="inlineblock ui-chooser"></div>').attr('id', originalInput.attr('id') + '_chooser'),
         input: $('<input type="text"/>')
           .addClass(this.options.inputClass)
           .attr('id', 'existing_source_id')
@@ -189,6 +207,7 @@
           .addClass(this.options.buttonClass + ' ui-icon-loading')
           .hide()
       }
+      $(this.markup.originalInput).wrap(this.markup.wrapper)
       this.markup.originalInput.after(
         this.markup.input, 
         this.markup.choice, 
