@@ -226,8 +226,9 @@ class ObservationsController < ApplicationController
             :limit => 1000, 
             :conditions => ["project_users.user_id = ?", current_user]
           ).sort_by{|p| p.title}
-          @places = @observation.places
         end
+        
+        @places = @observation.places
         
         @project_observations = @observation.project_observations.all(:limit => 100)
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
