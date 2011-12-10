@@ -71,7 +71,7 @@
 
 <div id="pagheader">
   <div class="breadcrumbs">
-    <%= link_to "Back to #{@list.title}", @list, :class => "back crumb" %>
+    <%= link_to "Back to #{@list.title}", list_path(@list), :class => "back crumb" %>
   </div>
   <h2><%= @pagetitle %></h2>
 </div>
@@ -85,4 +85,4 @@
   <%= render :partial => 'lists/add_taxon_batch_line', :collection => @lines_taxa %>
 </table>
 
-<%= link_to "Back to #{@list.title}", @list, :class => "back crumb" %>
+<%= link_to "Back to #{@list.title}", list_path(@list), :class => "back crumb" %>
