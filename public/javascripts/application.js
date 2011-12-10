@@ -250,13 +250,15 @@ $.fn.shades = function(e, options) {
       $(elt).find('.shades:last').remove()
       break;
     default:
-      var shades = $(elt).find('.shades:last')[0] || $('<div></div>')
-      $(shades).addClass('shades')
-      if (options.css) { $(shades).css(options.css) }
-      if (options.content) { $(shades).html(options.content) }
+      var shades = $(elt).find('.shades:last')[0] || $('<div class="shades"></div>'),
+          underlay = $('<div class="underlay"></div>'),
+          overlay = $('<div class="overlay"></div>').html(options.content)
+      $(shades).html('').append(underlay, overlay)
+      if (options.css) { $(underlay).css(options.css) }
       if (elt != document.body) {
         $(elt).css('position', 'relative')
         $(shades).css('position', 'absolute')
+        $(underlay).css('position', 'absolute')
       }
       $(elt).append(shades)
       $(shades).show()

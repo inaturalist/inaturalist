@@ -21,7 +21,9 @@
   // Setup an individual photoSelector
   function setup(wrapper, options) {
     // Store the options
-    $(wrapper).data('photoSelectorOptions', options);
+    $(wrapper).data('photoSelectorOptions', options)
+    
+    $(wrapper).addClass('photoSelector')
     
     // Grab all the existing content
     var existing = $(wrapper).contents();
@@ -37,6 +39,10 @@
     
     // Insert all existing content into the container
     $(container).append(existing);
+    
+    $(".facebookAlbums .album", wrapper).live('click', function() {
+      $.fn.photoSelector.changeBaseUrl(wrapper, '/facebook/album/' + $(this).attr('data-aid'))
+    })
     
     // Fill with photos
     if (options.queryOnLoad) {
@@ -188,9 +194,12 @@
     var existing = $(wrapper).find('.photoSelectorPhotos input:checked').parent().clone();
     
     // Set loading status
-    $(wrapper).find('.photoSelectorPhotos').prepend(
-      $('<div class="loading status">Loading...</div>')
-    );
+    var loading = $('<center><span class="loading bigloading status inlineblock">Loading...</span></center>')
+      .css('margin-top', $(wrapper).height() / 2 - 25)
+    $(wrapper).shades('open', {
+      css: {'background-color': 'white'}, 
+      content: loading
+    })
     
     // Fetch new fields
     $(wrapper).find('.photoSelectorPhotos').load(
@@ -219,7 +228,8 @@
         }
         
         // Unset loading status
-        $(wrapper).find('.photoSelectorPhotos').removeClass('loading status');
+        $(wrapper).shades('close')
+        
         if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
       }
     );

@@ -1,48 +1,18 @@
-.photo_list {
-  clear: both;
-}
-
-.photoSelectorPhotos .photo {
-  width: auto;
-  display: inline-block;
-/*  margin: 0 0.5em 0 0;*/
-  border: 1px solid transparent;
-  padding: 5px;
-}
-
-.photoSelectorPhotos .photo:hover {
-  border: 1px solid #ddd;
-}
-
-.photoSelectorPhotos .photo .checkbox {
-  margin: 0 auto 2px
-}
-
-.photoSelectorPhotos .photo img {
-  vertical-align: top;
-  width: 75px;
-}
-.photoSelectorAlbums img {
-  width: 75px;
-}
-.photoSelectorAlbums td {
-  color: #36C;
-  vertical-align: middle;
-  cursor: pointer;
-  border: 1px solid #fff;
-  padding: 3px;
-}
-.photoSelectorAlbums .album:hover td {
-  border: 1px solid #ddd;
-  color: #039;
-}
-.photoSelectorAlbums .album td:first-child {
-  border-right: 0;
-}
-.photoSelectorAlbums .album td:last-child {
-  border-left: 0;
-}
-.photoSelectorAlbums {
-  height: 437px;
+.photoSelector{position:relative;}
+.photo_list{clear:both;}
+.photoSelectorAlbums{
+  max-height:412px;
+  margin:0 auto;
   overflow: auto;
 }
+.photoSelectorPhotos .photo{width:auto;display:inline-block;/* margin:0 0.5em 0 0;*/
+border:1px solid transparent;padding:5px;}
+.photoSelectorPhotos .photo:hover{border:1px solid #ddd;}
+.photoSelectorPhotos .photo .checkbox{margin:0 auto 2px}
+.photoSelectorPhotos .photo img{vertical-align:top;width:75px;}
+.photoSelectorAlbums img{width:75px;}
+.photoSelectorAlbums td{color:#36C;vertical-align:middle;cursor:pointer;border:1px solid #fff;padding:3px;}
+.photoSelectorAlbums .album:hover td{border:1px solid #ddd;color:#039;}
+.photoSelectorAlbums .album td:first-child{border-right:0;}
+.photoSelectorAlbums .album td:last-child{border-left:0;}
+.photoSelectorAlbums{border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;}
