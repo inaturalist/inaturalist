@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111202065742) do
+ActiveRecord::Schema.define(:version => 20111209033826) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -295,9 +295,11 @@ ActiveRecord::Schema.define(:version => 20111202065742) do
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
 
   create_table "observation_photos", :force => true do |t|
-    t.integer "observation_id", :null => false
-    t.integer "photo_id",       :null => false
-    t.integer "position"
+    t.integer  "observation_id", :null => false
+    t.integer  "photo_id",       :null => false
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "observation_photos", ["observation_id"], :name => "index_observation_photos_on_observation_id"
@@ -696,9 +698,11 @@ ActiveRecord::Schema.define(:version => 20111202065742) do
   add_index "taxon_names", ["taxon_id"], :name => "index_taxon_names_on_taxon_id"
 
   create_table "taxon_photos", :force => true do |t|
-    t.integer "taxon_id", :null => false
-    t.integer "photo_id", :null => false
-    t.integer "position"
+    t.integer  "taxon_id",   :null => false
+    t.integer  "photo_id",   :null => false
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "taxon_photos", ["photo_id"], :name => "index_taxon_photos_on_photo_id"

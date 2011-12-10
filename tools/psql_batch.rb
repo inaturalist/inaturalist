@@ -17,7 +17,7 @@ EOS
     :type => :string, :short => "-d", :default => "inaturalist_development"
   opt :batch_size, "Number of rows to run this on in a batch", 
     :type => :int, :short => "-b", :default => 1000
-  opt :offset, "Startin offset", 
+  opt :offset, "Starting offset", 
     :type => :int, :short => "-o", :default => 0
   opt :max, "Max number of rows", 
     :type => :int, :short => "-m", :default => 10000
