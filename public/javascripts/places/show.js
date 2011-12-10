@@ -89,7 +89,7 @@ $.fn.loadFlickrPlacePhotos = function(options) {
     per_page: 7,
     extras: extras,
     safe_search: 1,
-    text: "landscape -portrait -model -birthday",
+    text: "landscape -portrait -model -birthday -honeymoon -festival -halloween -iPad",
     license: '1,2,3,4,5,6'
   }
   

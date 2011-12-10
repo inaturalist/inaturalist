@@ -197,7 +197,7 @@
     var loading = $('<center><span class="loading bigloading status inlineblock">Loading...</span></center>')
       .css('margin-top', $(wrapper).height() / 2 - 25)
     $(wrapper).shades('open', {
-      css: {'background-color': 'white'}, 
+      css: {'background-color': 'white', 'opacity': 0.7}, 
       content: loading
     })
     
