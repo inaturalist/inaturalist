@@ -59,7 +59,7 @@
                 image_tag(user.icon.url(:thumb), :class => 'usericon'),
                 observations_by_login_path(user.login)) %>
               <span class="login attr">
-                <%= link_to char_wrap(h(user.login), 18), observations_by_login_path(user.login) %>
+                <%= link_to char_wrap(h(user.login), 16), observations_by_login_path(user.login) %>
               </span>
 
               <span class="update attr">

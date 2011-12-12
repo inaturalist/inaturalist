@@ -194,8 +194,8 @@
     var existing = $(wrapper).find('.photoSelectorPhotos input:checked').parent().clone();
     
     // Set loading status
-    var loading = $('<center><span class="loading bigloading status inlineblock">Loading...</span></center>')
-      .css('margin-top', $(wrapper).height() / 2 - 25)
+    var loading = $('<center><span class="loading status inlineblock">Loading...</span></center>')
+      .css('margin-top', $(wrapper).height() / 2)
     $(wrapper).shades('open', {
       css: {'background-color': 'white', 'opacity': 0.7}, 
       content: loading
