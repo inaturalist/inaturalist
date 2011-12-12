@@ -159,12 +159,11 @@
         return
       }
       $(this).data('selected', item)
+      $(this).data('previous', null)
       $(this.markup.input).hide()
       $(this.markup.choice).width('auto')
       $(this.markup.choice).html(item.label || item.html).showInlineBlock()
-      // $(this.markup.chooseButton).hide()
       $(this.markup.chooseButton).showInlineBlock()
-      // $(this.markup.clearButton).showInlineBlock()
       $(this.markup.clearButton)
         .height(this.markup.choice.outerHeight())
       $(this.markup.chooseButton)

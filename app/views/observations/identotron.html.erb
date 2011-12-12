@@ -78,7 +78,9 @@
       })
       
       $('#controls').submit(function() {
-        $.bbq.pushState($.deparam.querystring($(this).serialize()), OVERRIDE_EXISTING)
+        var state = $.deparam.querystring($(this).serialize())
+        delete state.page
+        $.bbq.pushState(state, REPLACE_EXISTING)
         return false
       })
       
