@@ -214,10 +214,10 @@ class TaxaController < ApplicationController
       :include => :taxon, 
       :conditions => "taxon_id = #{@taxon.id} OR taxa.ancestry LIKE '#{@taxon.ancestry}/#{@taxon.id}%'"
     }
-    @observations_count = Observation.count(options)
-    @listed_taxa_count = ListedTaxon.count(options)
-    @identifications_count = Identification.count(options)
-    @descendants_count = @taxon.descendants.count
+    @observations_exist = Observation.first(options)
+    @listed_taxa_exist = ListedTaxon.first(options)
+    @identifications_exist = Identification.first(options)
+    @descendants_exist = @taxon.descendants.first
   end
 
   def update

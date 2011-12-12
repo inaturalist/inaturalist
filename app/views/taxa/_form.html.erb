@@ -261,14 +261,18 @@
   <div class="clear buttonrow">
     <%= f.submit "Save Changes", :class => 'default button' %>
     <%= link_to "Cancel", taxon, :class => 'button' %>
+    <%-
+      pieces = []
+      pieces << "listed taxa" if @listed_taxa_exist
+      pieces << "identifications" if @identifications_exist
+      pieces << "observations" if @observations_exist
+      msg = "It has "
+      msg += " descendant taxa" if @descendants_exist
+      msg += " and #{pieces.join(', ')} of it and its descendants" unless pieces.empty?
+    -%>
     <%= link_to 'Delete', taxon,
                 :method => :delete,
-                :confirm => "Are you sure you want to delete this taxon?  " + 
-                            "It has #{@descendants_count} descendents, " +
-                            "#{@listed_taxa_count} listed taxa, " + 
-                            "#{@identifications_count} identifications, " +
-                            "and #{@observations_count} observations " + 
-                            "of it and its descendants..." ,
+                :confirm => "Are you sure you want to delete this taxon?  #{msg}",
                 :class => 'minor delete button' %>
     
     <% if taxon.taxon_ranges.blank? %>
