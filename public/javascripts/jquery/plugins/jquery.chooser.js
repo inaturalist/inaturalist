@@ -179,6 +179,9 @@
     clear: function() {
       $(this).data('selected', null)
       $(this.markup.originalInput).val('')
+      if (!$(this).data('previous')) {
+        $(this.markup.originalInput).change()
+      }
       $(this.markup.input).val('').showInlineBlock()
       $(this.markup.choice).html('').hide()
       
