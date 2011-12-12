@@ -275,10 +275,10 @@
                 :confirm => "Are you sure you want to delete this taxon?  #{msg}",
                 :class => 'minor delete button' %>
     
-    <% if taxon.taxon_ranges.blank? %>
-      <%= link_to "Add taxon range", new_taxon_range_path(:taxon_id => taxon), :class => "right minor button" %>
+    <% if @taxon_range %>
+      <%= link_to "Edit taxon range", edit_taxon_range_path(@taxon_range), :class => "right minor button" %>
     <% else %>
-      <%= link_to "Edit taxon range", edit_taxon_range_path(taxon.taxon_ranges.first), :class => "right minor button" %>
+      <%= link_to "Add taxon range", new_taxon_range_path(:taxon_id => taxon), :class => "right minor button" %>
     <% end -%>
   </div>
 <% end %>

@@ -210,14 +210,13 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    options = {
-      :include => :taxon, 
-      :conditions => "taxon_id = #{@taxon.id} OR taxa.ancestry LIKE '#{@taxon.ancestry}/#{@taxon.id}%'"
-    }
-    @observations_exist = Observation.first(options)
-    @listed_taxa_exist = ListedTaxon.first(options)
-    @identifications_exist = Identification.first(options)
+    descendant_options = {:joins => [:taxon], :conditions => @taxon.descendant_conditions}
+    taxon_options = {:conditions => {:taxon_id => @taxon}}
+    @observations_exist = Observation.first(taxon_options) || Observation.first(descendant_options)
+    @listed_taxa_exist = ListedTaxon.first(taxon_options) || ListedTaxon.first(descendant_options)
+    @identifications_exist = Identification.first(taxon_options) || Identification.first(descendant_options)
     @descendants_exist = @taxon.descendants.first
+    @taxon_range = TaxonRange.without_geom.first(:conditions => {:taxon_id => @taxon})
   end
 
   def update
