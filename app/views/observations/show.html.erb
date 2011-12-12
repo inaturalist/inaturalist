@@ -445,7 +445,7 @@
             } %>
         </div>
         
-        <div id="need_id_help" class="quiet box" style="margin: 0; display: <%= @observation.id_please? ? 'none' : 'block' %>">
+        <div id="need_id_help" class="quiet stacked box" style="display: <%= @observation.id_please? ? 'none' : 'block' %>">
           <span class="inter">Need ID help?</span>
           
           <%= link_to_remote "add to ID Please",
@@ -461,14 +461,8 @@
         </div>
       </div>
     <% elsif @observation.id_please? %>
-      <div id="idplease" class="box">
+      <div id="idplease" class="box stacked">
         <%= link_to @observation.user.login, @observation.user %> would like some help identifying this.
-      </div>
-    <% end -%>
-    
-    <% if logged_in? && current_user.admin? -%>
-      <div class="quiet stacked box" style="background-color: #ddd; text-align:center">
-        <%= link_to "Identotron (admin-only for now)", identotron_path(:observation_id => @observation), :class => "glaucous inline button" %>
       </div>
     <% end -%>
     
@@ -477,7 +471,7 @@
       <% identifying_user_ids =  @observation.identifications.map { |ident| ident.user_id } -%>
       <% user_identified = identifying_user_ids.include?(@user.id) -%>
     <% end %>
-    <div id="identification_form_wrapper-<%= @observation.id %>" class="identification_form_wrapper">
+    <div id="identification_form_wrapper-<%= @observation.id %>" class="identification_form_wrapper stacked">
       <h4>Suggest an ID</h4>
       <%= render :partial => 'identifications/identification_form',
                  :locals => { :observation => @observation }%>
@@ -489,6 +483,14 @@
         });
       </script>
     <% end %>
+    
+    <% if logged_in? -%>
+      <%= link_to "Identotron", identotron_path(:observation_id => @observation), 
+        :rel => "nofollow",
+        :class => "glaucous button",
+        :style => "float: none; margin: 0 auto; width: 80px;",
+        "data-loading-click" => true %>
+    <% end -%>
   </div><!-- end identifications -->
   
   <% if !@project_observations.blank? || 

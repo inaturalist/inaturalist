@@ -181,6 +181,13 @@
     <div class="stacked">
       <%= render :partial => 'occurrence_field' %>
       <%= render :partial => 'establishment_field' %>
+      <% if is_admin? -%>
+        <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {:class => "admin notice"} do |f| %>
+          <%= f.check_box :comprehensive, :label => "Comprehensive?", :label_after => true,
+            :description => "Does this check list contain all the descendants of this taxon that occur here?" %>
+          <%= f.submit "Save", "data-loading-click" => "Saving..." %>
+        <% end -%>
+      <% end -%>
     </div>
   <% end -%>
   

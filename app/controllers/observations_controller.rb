@@ -1084,9 +1084,7 @@ class ObservationsController < ApplicationController
     @q = params[:q] unless params[:q].blank?
     if @observation
       @places = @observation.places.try(:reverse)
-      if @observation.taxon.blank?
-        # @q ||= @observation.species_guess
-      elsif @observation.taxon.species_or_lower?
+      if @observation.taxon.species_or_lower?
         @taxon ||= @observation.taxon.genus
       else
         @taxon ||= @observation.taxon

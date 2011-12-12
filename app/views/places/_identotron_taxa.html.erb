@@ -1,4 +1,4 @@
-<div class="identotron_taxa">
+<div class="identotron_taxa <%= 'comprehensive' if @comprehensive %>">
   <% if @taxa.total_pages == 0 -%>
     <div class="noresults meta">
       <% if @filter_params.blank? -%>

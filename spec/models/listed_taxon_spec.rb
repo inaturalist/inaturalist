@@ -216,4 +216,18 @@ describe ListedTaxon do
       lt.first_observation_id.should == o.id
     end
   end
+  
+  describe "comprehensive" do
+    it "should alter children on change" do
+      load_test_taxa
+      p = Place.make
+      l = p.check_list
+      lt_ancestor = ListedTaxon.make(:list => l, :place => p, :taxon => @Aves)
+      lt_descendant = ListedTaxon.make(:list => l, :place => p, :taxon => @Calypte_anna)
+      lt_descendant.should_not be_comprehensive
+      lt_ancestor.update_attributes(:comprehensive => true)
+      lt_descendant.reload
+      lt_descendant.should be_comprehensive
+    end
+  end
 end

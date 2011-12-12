@@ -17,11 +17,13 @@
       :f => f
     } %>
 
-    <%= image_tag('spinner.gif', 
-      :id => "new_identification-#{observation.id}-loading", 
-      :class => 'loading', 
-      :style => 'display: none') %>
-    <%= f.submit('Save', :class => 'default button', :tabindex => observation.id+1) %>
+    <div class="buttonrow" style="text-align:center">
+      <%= image_tag('spinner.gif', 
+        :id => "new_identification-#{observation.id}-loading", 
+        :class => 'loading inlineblock', 
+        :style => 'display: none') %>
+      <%= f.submit('Save', :class => 'default button inlineblock', :tabindex => observation.id+1) %>
+    </div>
   <% end %>
 <% else %>
   <%= link_to "Sign in", login_path %>

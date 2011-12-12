@@ -69,11 +69,7 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
-  var loading = $('<div></div>').html(txt)
-    .addClass('loadingclick inlineblock')
-    .addClass($(this).attr('class'))
-    .css('padding-left', '25px')
-    .height($(this).height())
+  var loading = $(this).clone().addClass('loadingclick').css('padding-left', '25px').html(txt)
   if (txt == '') {
     loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
   }
@@ -107,7 +103,8 @@ function buildHelpTips() {
     show: {event: 'click'},
     hide: {event: 'unfocus'}
   })
-  $('.helptip').each(function() {
+  $('.helptip').not('.helptipified').each(function() {
+    $(this).addClass('helptipified')
     var content
     if ($(this).attr('rel').match(/^#/)) {
       content = $($(this).attr('rel')).html()

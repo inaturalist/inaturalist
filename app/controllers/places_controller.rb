@@ -160,7 +160,10 @@ class PlacesController < ApplicationController
         render :layout => false, :partial => 'autocomplete' 
       end
       format.json do
-        render :json => @places.to_json
+        @places.each_with_index do |place, i|
+          @places[i].html = render_to_string(:partial => 'places/autocomplete_item.html.erb', :object => place)
+        end
+        render :json => @places.to_json(:methods => [:html])
       end
     end
   end
@@ -300,6 +303,10 @@ class PlacesController < ApplicationController
         scope.descendants_of(@taxon)
       end
       order = "ancestry, taxa.id"
+    end
+    
+    if @taxon && @place
+      @comprehensive = @place.listed_taxa.exists?(:comprehensive => true, :taxon_id => @taxon)
     end
     
     if @colors = @filter_params[:colors]

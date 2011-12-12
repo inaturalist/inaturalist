@@ -34,6 +34,7 @@ class ListedTaxon < ActiveRecord::Base
   before_save :update_cache_columns
   after_save :update_cache_columns_for_check_list
   after_save :expire_caches
+  after_save :set_comprehensive_on_descendants
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
@@ -97,7 +98,7 @@ class ListedTaxon < ActiveRecord::Base
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
   
-  CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
+  CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means comprehensive)
   
   attr_accessor :skip_sync_with_parent,
                 :skip_update_cache_columns,
@@ -141,6 +142,16 @@ class ListedTaxon < ActiveRecord::Base
     else
       self.taxon_ancestor_ids = '' # this should probably be in the db...
     end
+    true
+  end
+  
+  def set_comprehensive_on_descendants
+    return true unless comprehensive_changed?
+    ListedTaxon.update_all(
+      ["comprehensive = ?", comprehensive],
+      ["list_id = ? AND (taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", 
+        list_id, "#{ancestry}/#{taxon_id}", "#{ancestry}/#{taxon_id}/%"]
+    )
     true
   end
   

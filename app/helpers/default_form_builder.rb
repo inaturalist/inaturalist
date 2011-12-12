@@ -41,16 +41,14 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       label_content = content_tag(options[:label_after] ? :span : :div, label_tag, :class => "label")
     end
     
-    if options[:description]
-      content += content_tag(:div, options[:description], :class => "description")
-    end
     
+    description = content_tag(:div, options[:description], :class => "description") if options[:description]
     content = "#{content}#{block_given? ? @template.capture(&block) : field_content}"
     
     content = if options[:label_after]
-      "#{content} #{label_content}"
+      "#{content} #{label_content} #{description}"
     else
-      "#{label_content} #{content}"
+      "#{label_content} #{description} #{content}"
     end
     
     if block_given?

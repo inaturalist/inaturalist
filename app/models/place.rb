@@ -17,6 +17,7 @@ class Place < ActiveRecord::Base
   
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
+  attr_accessor :html
   
   define_index do
     indexes name

@@ -30,6 +30,9 @@
           if (event.item.forceRemote) {
             self.options.source = collectionUrl
             $(ui.target).autocomplete('search', ui.target.value)
+          } else if (event.item.clear) {
+            $(self).data('previous', null)
+            self.clear()
           } else {
             self.selectItem(event.item)
           }
@@ -46,7 +49,10 @@
               if (src.forceRemote || matcher.test(src.label)) { return src }
             })
             if (selected.length != 0 && collectionUrl) {
-              selected.push({label: '<em>Search remote</em>', value: request.term, forceRemote: true})
+              if (request.term != '') {
+                selected.push({label: '<em>Search remote</em>', value: request.term, forceRemote: true})
+              }
+              selected.push({label: '<em>Clear</em>', value: request.term, clear: true})
               response(selected)
               return
             } else {
@@ -82,6 +88,12 @@
         self.clear()
       })
       
+      markup.input.blur(function() {
+        if ($(self).data('previous')) {
+          self.selectItem($(self).data('previous'))
+        }
+      })
+      
       markup.chooseButton.click(function() {
         // close if already visible
         if (markup.input.autocomplete( "widget" ).is( ":visible" )) {
@@ -92,11 +104,19 @@
         // work around a bug (likely same cause as #5265)
         $( this ).blur()
         
+        $(self).data('previous', $(self).data('selected'))
         self.clear()
 
         // pass empty string as value to search for, displaying all results
         markup.input.autocomplete( "search", "" )
         markup.input.focus()
+      })
+      
+      // Bind ENTER in search field
+      $(markup.input).keypress(function(e) {
+        if (e.which == 13) {
+          return false
+        }
       })
     },
     
@@ -138,6 +158,7 @@
         this.clear()
         return
       }
+      $(this).data('selected', item)
       $(this.markup.input).hide()
       $(this.markup.choice).width('auto')
       $(this.markup.choice).html(item.label || item.html).showInlineBlock()
@@ -156,6 +177,7 @@
     },
     
     clear: function() {
+      $(this).data('selected', null)
       $(this.markup.originalInput).val('')
       $(this.markup.input).val('').showInlineBlock()
       $(this.markup.choice).html('').hide()
@@ -163,8 +185,6 @@
       $(this.markup.chooseButton).height(this.markup.input.outerHeight())
       $('.ui-icon', this.markup.chooseButton)
         .css('margin-top', '-' + Math.round((this.markup.input.outerHeight() / 2) - 6) + 'px')
-      // $(this.markup.chooseButton).showInlineBlock()
-      // $(this.markup.clearButton).hide()
     },
     
     setupMarkup: function() {

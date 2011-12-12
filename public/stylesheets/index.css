@@ -1054,3 +1054,16 @@ table .numeric { text-align: center; }
 .ui-tooltip-black .ui-tooltip-titlebar,
 .ui-tooltip-extinct .ui-tooltip-titlebar,
 .ui-tooltip-extinct_in_the_wild .ui-tooltip-titlebar{background-color:black;}
+
+.admin {
+  border-width: 2px;
+  border-style: dotted;
+  position: relative;
+}
+.admin:before {
+  content: 'Admin only';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-weight: bold;
+}
