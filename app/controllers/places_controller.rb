@@ -13,6 +13,7 @@ class PlacesController < ApplicationController
   caches_page :cached_guide
   
   GUIDE_PARTIALS = %w(guide_taxa identotron_taxa)
+  ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
   
   def index
     respond_to do |format|
@@ -53,6 +54,17 @@ class PlacesController < ApplicationController
     browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
+    respond_to do |format|
+      format.html
+      format.json do
+        if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
+          @place.html = render_to_string(:partial => "#{partial}.html.erb", :object => @place)
+        end
+        render(:json => @place.to_json(
+          :methods => [:place_type_name, :html])
+        )
+      end
+    end
   end
   
   def geometry

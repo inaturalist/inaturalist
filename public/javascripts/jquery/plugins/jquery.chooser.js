@@ -127,15 +127,20 @@
         item = self.recordsToItems([item])[0]
         this.selectItem(item)
       } else if ($(this.element).val() != '' && this.options.resourceUrl) {
-        markup.chooseButton.hide()
-        markup.loadingButton.showInlineBlock()
-        var resourceUrl = this.options.resourceUrl.replace(/\{\{id\}\}/, $(this.element).val())
-        $.getJSON(resourceUrl, function(json) {
-          var item = self.recordsToItems([json])[0]
-          markup.loadingButton.hide()
-          self.selectItem(item)
-        })
+        selectId($(this.element).val())
       }
+    },
+    
+    selectId: function(id) {
+      var self = this, markup = this.markup
+      markup.chooseButton.hide()
+      markup.loadingButton.showInlineBlock()
+      var resourceUrl = this.options.resourceUrl.replace(/\{\{id\}\}/, id)
+      $.getJSON(resourceUrl, function(json) {
+        var item = self.recordsToItems([json])[0]
+        markup.loadingButton.hide()
+        self.selectItem(item)
+      })
     },
     
     recordsToItems: function(records) {
@@ -247,6 +252,21 @@
       
       this.element.show();
       $.Widget.prototype.destroy.call( this );
+    },
+    
+    getOptions: function() {
+      return this.options
+    },
+    
+    getSources: function() {
+      return this.options.source
+    },
+    
+    getItemById: function(id) {
+      for (var i = this.options.source.length - 1; i >= 0; i--){
+        if (this.options.source[i].id == id) { return this.options.source[i] }
+      }
+      return null
     }
   })
 })( jQuery )

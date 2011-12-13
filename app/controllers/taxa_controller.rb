@@ -31,6 +31,7 @@ class TaxaController < ApplicationController
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
+  ALLOWED_SHOW_PARTIALS = %w(chooser)
   
   #
   # GET /observations
@@ -177,9 +178,12 @@ class TaxaController < ApplicationController
         )
       end
       format.json do
+        if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
+          @taxon.html = render_to_string(:partial => "#{partial}.html.erb", :object => @taxon)
+        end
         render(:json => @taxon.to_json(
           :include => [:taxon_names, :iconic_taxon], 
-          :methods => [:common_name, :image_url])
+          :methods => [:common_name, :image_url, :html])
         )
       end
       format.node { render :json => jit_taxon_node(@taxon) }
