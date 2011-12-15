@@ -43,12 +43,12 @@ class FacebookController < ApplicationController
 
   # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
-    per_page = (params[:limit] || 10).to_i
-    page = (params[:page] || 1).to_i
-    from = ((page-1)*per_page)
-    to = ((page*per_page)-1)
-    all_photos = facebook_album_photos(current_user, params[:id])
-    @photos = (all_photos[from..to] || []).map{|fp| FacebookPhoto.new_from_api_response(fp)}
+    limit = (params[:limit] || 10).to_i
+    offset = ((params[:page] || 1).to_i - 1) * limit
+    @photos = current_user.facebook_api.get_connections(params[:id], 'photos', 
+        :limit => limit, :offset => offset).map do |fp|
+      FacebookPhoto.new_from_api_response(fp)
+    end
     # sync doesn't work with facebook! they strip exif metadata from photos. :(
     #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|
@@ -84,12 +84,6 @@ class FacebookController < ApplicationController
   rescue OpenSSL::SSL::SSLError, Timeout::Error => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
-  end
-
-  def facebook_album_photos(user, aid)
-    return [] unless user.facebook_api
-    album_data = user.facebook_api.get_connections(aid, 'photos')
-    album_data
   end
   
 end
