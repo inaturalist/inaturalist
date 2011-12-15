@@ -2,6 +2,9 @@ class ProjectUser < ActiveRecord::Base
   
   belongs_to :project
   belongs_to :user
+  has_many :project_observations, :through => :project, :include => [:observation], 
+    :conditions => 'observations.user_id = #{user_id}'
+  
   before_destroy :prevent_owner_from_leaving
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
@@ -21,23 +24,7 @@ class ProjectUser < ActiveRecord::Base
   end
   
   def update_observations_counter_cache
-    user_count = ProjectObservation.count(
-      :include => [{:observation => :taxon}, :curator_identification],
-      :conditions => [
-        "identifications.id IS NULL AND project_id = ? AND observations.user_id = ? AND taxa.rank_level <= ?",
-        project_id, user_id, Taxon::RANK_LEVELS['species']
-      ]
-    )
-    
-    curator_count = ProjectObservation.count(
-      :include => [:observation, {:curator_identification => :taxon}],
-      :conditions => [
-        "identifications.id IS NOT NULL AND project_id = ? AND observations.user_id = ? AND taxa.rank_level <= ?",
-        project_id, user_id, Taxon::RANK_LEVELS['species']
-      ]
-    )
-    
-    update_attributes(:observations_count => user_count + curator_count)
+    update_attributes(:observations_count => project_observations.count)
   end
   
   def update_taxa_counter_cache
