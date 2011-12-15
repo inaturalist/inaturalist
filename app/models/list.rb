@@ -78,6 +78,7 @@ class List < ActiveRecord::Base
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
+    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].map{|i| i.blank? ? nil : i}.compact.join('/')
     sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
     <<-SQL
       SELECT
@@ -91,7 +92,8 @@ class List < ActiveRecord::Base
         o.user_id = #{user_id} AND
         (
           o.taxon_id = #{lt.taxon_id} OR 
-          t.ancestry LIKE '#{lt.taxon.ancestry}/%'
+          t.ancestry = '#{ancestry_clause}' OR
+          t.ancestry LIKE '#{ancestry_clause}/%'
         )
       GROUP BY #{sql_key}
     SQL
