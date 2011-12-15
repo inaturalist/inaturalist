@@ -17,49 +17,49 @@ class ObservationsControllerTest < ActionController::TestCase
     assert_match /id.*?#{observation.id}/, @response.body
   end
   
-  def test_private_coordinates_hidden_for_show
+  def test_coordinates_obscured_for_threatened_for_show
     o = make_observation_of_threatened
     get :show, :id => o.id
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_json
+  def test_coordinates_obscured_for_threatened_for_json
     o = make_observation_of_threatened
     get :show, :id => o.id, :format => "json"
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_show_xml
+  def test_coordinates_obscured_for_threatened_for_show_xml
     o = make_observation_of_threatened
     get :show, :id => o.id, :format => "xml"
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_index
+  def test_coordinates_obscured_for_threatened_for_index
     o = make_observation_of_threatened
     get :index
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_index_json
+  def test_coordinates_obscured_for_threatened_for_index_json
     o = make_observation_of_threatened
     get :index, :format => "json"
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_index_csv
+  def test_coordinates_obscured_for_threatened_for_index_csv
     o = make_observation_of_threatened
     get :index, :format => "csv"
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_by_login_csv
+  def test_coordinates_obscured_for_threatened_for_by_login_csv
     o = make_observation_of_threatened
     get :by_login, :login => o.user.login, :format => "csv"
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_project
+  def test_coordinates_obscured_for_threatened_for_project
     o = make_observation_of_threatened
     p = Project.make
     p.observations << o
@@ -67,7 +67,7 @@ class ObservationsControllerTest < ActionController::TestCase
     assert_private_coordinates_obscured(o)
   end
   
-  def test_private_coordinates_hidden_for_tile_points
+  def test_coordinates_obscured_for_threatened_for_tile_points
     o = make_observation_of_threatened
     x, y = SPHERICAL_MERCATOR.from_ll_to_pixel([o.longitude, o.latitude], 5)
     x = (x / 256).floor

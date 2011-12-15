@@ -12,6 +12,10 @@ class ToCsvTest < Test::Unit::TestCase
     assert_equal( "", [].to_csv )
   end
 
+  def test_with_csv_options
+    assert_equal( "Age\tId\tName\n25\t1\tAry\n22\t2\tNati\n", @users.to_csv({}, :col_sep => "\t"))
+  end
+
   def test_with_no_options
     assert_equal( "Age,Id,Name\n25,1,Ary\n22,2,Nati\n", @users.to_csv )
   end
@@ -22,6 +26,16 @@ class ToCsvTest < Test::Unit::TestCase
 
   def test_with_only
     assert_equal( "Name\nAry\nNati\n", @users.to_csv(:only => :name) )
+  end
+  
+  def test_with_only_preserves_order
+    assert_match(/Ary,25/, @users.to_csv(:only => [:name, :age]))
+    assert_match(/25,Ary/, @users.to_csv(:only => [:age, :name]))
+  end
+  
+  def test_with_only_preserves_order_with_methods
+    assert_match(/Ary,25,false/, @users.to_csv(:only => [:name, :age, :is_old?]))
+    assert_match(/false,25,Ary/, @users.to_csv(:only => [:is_old?, :age, :name]))
   end
 
   def test_with_empty_only

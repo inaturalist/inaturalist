@@ -1,11 +1,16 @@
 begin
   require 'rubygems'
   require 'test/unit'
-  require 'fastercsv'
   require 'active_support'
+  require 'active_support/inflector'
+  if RUBY_VERSION >= "1.9.0"
+    require 'csv'
+  else
+    require 'fastercsv'
+  end
   require File.dirname(__FILE__) + '/../lib/to_csv'
 rescue LoadError
-  puts 'to_csv tests rely on fastercsv, and active_support'
+  puts 'to_csv tests rely on active_support, and fastercsv if ruby version < 1.9'
 end
 
 class User

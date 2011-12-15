@@ -69,10 +69,14 @@ class ObservationsController < ApplicationController
     search_params, find_options = get_search_params(params)
     
     if search_params[:q].blank?
-      cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
-      cache_params[:page] ||= 1
-      cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
-      @observations = Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
+      @observations = if perform_caching
+        cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
+        cache_params[:page] ||= 1
+        cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
+        Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
+          get_paginated_observations(search_params, find_options)
+        end
+      else
         get_paginated_observations(search_params, find_options)
       end
     else
@@ -108,14 +112,14 @@ class ObservationsController < ApplicationController
           end
           render :json => data
         else
-          render :json => @observations.to_json({
+          render :json => @observations.to_json(
             :methods => [:short_description],
             :include => {
               :iconic_taxon => {},
               :user => {:only => :login},
               :photos => {}
             }
-          })
+          )
         end
       end
       
@@ -687,8 +691,8 @@ class ObservationsController < ApplicationController
         if obs.georeferenced?
           obs.location_is_exact = true
         elsif row[3]
-          places = Ym4r::GmPlugin::Geocoding.get(row[3])
-          unless places.empty?
+          places = Ym4r::GmPlugin::Geocoding.get(row[3]) unless row[3].blank?
+          unless places.blank?
             obs.latitude = places.first.latitude
             obs.longitude = places.first.longitude
             obs.location_is_exact = false
@@ -1650,14 +1654,14 @@ class ObservationsController < ApplicationController
   end
   
   def render_observations_to_csv(options = {})
-    except = [:map_scale, :timeframe, :iconic_taxon_id, :delta]
+    first = %w(scientific_name datetime description place_guess latitude longitude tag_list common_name url image_url user_login)
+    only = (first + Observation.column_names).uniq
+    except = %w(map_scale timeframe iconic_taxon_id delta geom)
     unless options[:show_private] == true
-      except += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
+      except += %w(private_latitude private_longitude private_positional_accuracy)
     end
-    render :text => @observations.to_csv(
-      :methods => [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login],
-      :except => except
-    )
+    only = only - except
+    render :text => @observations.to_csv(:only => only.map{|c| c.to_sym})
   end
   
   def render_observations_to_kml(options = {})

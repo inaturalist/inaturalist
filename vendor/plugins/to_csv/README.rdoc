@@ -12,10 +12,11 @@ This simple plugin gives you the ability to call to_csv to a collection of activ
   #
 
   @users.to_csv
-  @users.to_csv(:only => [:last_name, :role])
+  @users.to_csv(:only => [:last_name, :role]) # This will also set the order
   @users.to_csv(:headers => false)
   @users.to_csv(:except => [:last_name, :role])
   @users.to_csv(:methods => :admin?)
+  @users.to_csv({:methods => :admin?}, {:col_sep => '\t'}) # Send csv generation options
 
 
 == Real life example
@@ -23,7 +24,6 @@ This simple plugin gives you the ability to call to_csv to a collection of activ
 In the controller where you want to export to csv, add the format.csv line (as of rails 2.1 it is not necessary to register the csv myme_type)
 
   class UserController < ApplicationController
-
     def index
       @users = User.all
 
@@ -33,19 +33,14 @@ In the controller where you want to export to csv, add the format.csv line (as o
         format.csv { send_data @users.to_csv }
       end
     end
-
-    def show...
-    def new...
-    def edit...
-    def create...
-    def update...
-    def destroy...
-
   end
 
 
 == Dependencies
 
+  None if using ruby >= 1.9
+  
+  Else, install fastercsv:
   sudo gem install fastercsv
 
 
@@ -64,4 +59,4 @@ I got ideas and influence from Mike Clarks recipe #35 in Rails Recipes book, som
 Does not work on a single activerecord, ie, User.first.to_csv.
 
 
-Copyright (c) 2008-2010 Ary Djmal, released under the MIT license
+Copyright (c) 2008-2011 Ary Djmal, released under the MIT license
