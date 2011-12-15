@@ -64,10 +64,17 @@
       <div class="last class column span-4">
         <div class="lilun">
           <% for place_name, count in @place_name_counts %>
-            <%- name, id = place_name.split('-') -%>
+            <%- name, id = [place_name.split('-')[0..-2].join('-'), place_name.split('-').last] -%>
             <div>
               <span class="count"><%= count %></span>
-              from <%= place_name.blank? ? "somewhere" : link_to(name, place_path(id)) %>
+              from
+              <% if place_name.blank? -%>
+                somewhere
+              <% elsif id.blank? %>
+                <%= name %>
+              <% else %>
+                <%= link_to(name, place_path(id)) %>
+              <% end -%>
             </div>
           <% end %>
         </div>
