@@ -261,7 +261,7 @@ module Shared::ListsModule
   end
   
   def load_list
-    @list = List.find_by_id(params[:id])
+    @list = List.find_by_id(params[:id].to_i)
     render_404 && return unless @list
     true
   end
