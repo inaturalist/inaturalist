@@ -36,7 +36,7 @@ class CalendarsController < ApplicationController
     
     @life_list_firsts = @selected_user.life_list.listed_taxa.all(
       :conditions => ["first_observation_id IN (?)", @observations]
-    ).sort_by{|lt| lt.ancestry + '/' + lt.id.to_s}
+    ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     @place_name_counts = Observation.count(
       :from => "observations, places, place_geometries", 
