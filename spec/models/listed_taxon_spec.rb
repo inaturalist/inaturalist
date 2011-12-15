@@ -99,6 +99,20 @@ describe ListedTaxon do
     end
   end
   
+  describe "updating" do
+    it "should set cache columns BEFORE validation" do
+      lt = ListedTaxon.make
+      good_obs = Observation.make(:user => lt.list.user, :taxon => lt.taxon)
+      bad_obs = Observation.make(:user => lt.list.user)
+      lt.update_attributes(:first_observation => good_obs)
+      lt.should be_valid
+      ListedTaxon.update_all("first_observation_id = #{bad_obs.id}", "id = #{lt.id}")
+      lt.reload
+      lt.should be_valid
+      lt.first_observation_id.should == good_obs.id
+    end
+  end
+  
   describe "check list user removal" do
     before(:each) do
       @place = Place.make

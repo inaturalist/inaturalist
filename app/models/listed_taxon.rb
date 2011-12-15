@@ -26,12 +26,12 @@ class ListedTaxon < ActiveRecord::Base
   belongs_to :source # if added b/c of a published source
   
   before_validation :nilify_blanks
+  before_validation :update_cache_columns
   before_create :set_ancestor_taxon_ids
   before_create :set_place_id
   before_create :set_updater_id
   before_save :set_user_id
   before_save :set_source_id
-  before_save :update_cache_columns
   after_save :update_cache_columns_for_check_list
   after_save :expire_caches
   after_save :set_comprehensive_on_descendants
