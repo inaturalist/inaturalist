@@ -244,6 +244,10 @@ class ObservationsController < ApplicationController
           op.position || @observation.photos.size + op.id.to_i
         end.map{|op| op.photo}
         
+        if @observation.observed_on
+          @day_observations = Observation.by(@observation.user).on(@observation.observed_on).paginate(:page => 1, :per_page => 14, :include => [:photos])
+        end
+        
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
             :layout => false)

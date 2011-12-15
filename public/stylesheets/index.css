@@ -152,17 +152,16 @@ img.mini.usericon {
   width: auto;
   float: left;
 }
-#subnav li a,
-#subnav li span.active {
+#subnav li a {
   display: block;
   width: auto;
   min-height: 15px;
   padding: 0 10px 0 18px;
   background: url('/images/logo-eee-15px.png') 0% 50% no-repeat;
 }
+#subnav li a.active { color: #333; }
 
-#subnav li a:hover,
-#subnav li a.active {
+#subnav li a:hover{
   background: url('/images/logo-15px.png') 0% 50% no-repeat;
 }
 
@@ -173,6 +172,15 @@ img.mini.usericon {
 #subnav #observations_link:hover,
 #subnav #observations_link.active {
   background: url('/images/notebook-icon-color-15px.png') 0% 45% no-repeat;
+}
+
+#subnav #calendar_link {
+  background: url('/images/silk/date-gray.png') 0% 40% no-repeat;
+}
+
+#subnav #calendar_link:hover,
+#subnav #calendar_link.active {
+  background: url('/images/silk/date.png') 0% 45% no-repeat;
 }
 
 #subnav #lists_link {

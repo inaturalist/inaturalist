@@ -13,7 +13,8 @@ class CalendarsController < ApplicationController
     @day = params[:day]
     @date = [@year, @month, @day].join('-')
     if @day
-      @observations = @selected_user.observations.on(@date).all(:include => [{:taxon => :taxon_names}])
+      scope = @selected_user.observations.on(@date).scoped({})
+      @observations = scope.paginate(:include => [{:taxon => :taxon_names}], :per_page => 500, :page => params[:page])
       @taxa = @observations.map{|o| o.taxon}.uniq.compact
       @taxa_count = @taxa.size
       @taxa_by_iconic_taxon_id = @taxa.group_by{|t| t.iconic_taxon_id}
@@ -22,9 +23,9 @@ class CalendarsController < ApplicationController
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
     else
-      @observations = @selected_user.observations.
-        on([@year, @month, @day].join('-')).
-        paginate(:page => params[:page], :per_page => 100)
+      scope = @selected_user.observations.on([@year, @month, @day].join('-')).scoped({})
+      @observations = scope.
+        paginate(:page => params[:page], :per_page => 500)
       @iconic_counts = Taxon.count(
         :joins => "JOIN observations o ON o.taxon_id = taxa.id", 
         :conditions => [
@@ -37,7 +38,19 @@ class CalendarsController < ApplicationController
       :conditions => ["first_observation_id IN (?)", @observations]
     ).sort_by{|lt| lt.ancestry + '/' + lt.id.to_s}
     
-    @place_name_counts = @observations.group_by{|o| o.place_guess}.map{|s,obs| [s,obs.compact.size]}
+    @place_name_counts = Observation.count(
+      :from => "observations, places, place_geometries", 
+      :group => "(places.display_name || '-' || places.id)",
+      :conditions => [
+        "ST_Intersects(observations.geom, place_geometries.geom) " +
+        "AND places.id = place_geometries.place_id " + 
+        "AND places.place_type NOT IN (?) " +
+        "AND observations.user_id = ? " + 
+        "AND observations.observed_on::DATE = ?",
+        [Place::PLACE_TYPE_CODES['Country'], Place::PLACE_TYPE_CODES['State']],
+        @selected_user,
+        @date
+      ])
     
     unless @observations.blank?
       @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @date], :order => "observed_on DESC")

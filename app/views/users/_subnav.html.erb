@@ -5,46 +5,38 @@
     </li>
   <% end -%>
   <li>
-    <% if current_page?(:controller => :observations, :action => :by_login) %>
-      <span id="observations_link" class="active">Observations</span> 
-    <% else %>
-      <%= link_to 'Observations', observations_by_login_path(user.login), :id => "observations_link" %>
-    <% end %>
+    <%= link_to 'Observations', observations_by_login_path(user.login), 
+      :id => "observations_link", 
+      :class => "#{'active' if current_page?(:controller => :observations, :action => :by_login)}" %>
   </li>
   <li>
-    <% if current_page?(:controller => :lists, :action => :by_login) %>
-      <span id="lists_link" class="active">Lists</span>
-    <% else %>
-      <%= link_to 'Lists', lists_by_login_path(user.login), :id => "lists_link" %>
-    <% end %>
+    <%= link_to 'Calendar', calendar_path(user.login), 
+      :id => "calendar_link", 
+      :class => "#{'active' if controller.is_a?(CalendarsController)}" %>
   </li>
   <li>
-    <% if @controller.request.request_uri =~ /\/journal\// %>
-      <span id="journal_link" class="active">Journal</span>
-    <% else %>
-      <%= link_to 'Journal', journal_by_login_path(:login => user.login), :id => "journal_link" %>
-    <% end %>
+    <%= link_to 'Lists', lists_by_login_path(user.login), :id => "lists_link",
+      :class => "#{'active' if current_page?(:controller => :lists, :action => :by_login)}" %>
   </li>
   <li>
-    <% if current_page?(:controller => :identifications, :action => :by_login) %>
-      <span id="identifications_link" class="active">Identifications</span>
-    <% else %>
-      <%= link_to 'Identifications', identifications_by_login_path(:login => user.login), :id => "identifications_link" %>
-    <% end %>
+    <%= link_to 'Journal', journal_by_login_path(:login => user.login), 
+      :id => "journal_link",
+      :class => "#{'active' if @controller.request.request_uri =~ /\/journal\//}" %>
   </li>
   <li>
-    <% if current_page?(:controller => :projects, :action => :by_login) %>
-      <span id="projects_link" class="active">Projects</span>
-    <% else %>
-      <%= link_to 'Projects', projects_by_login_path(:login => user.login), :id => "projects_link" %>
-    <% end %>
+    <%= link_to 'Identifications', identifications_by_login_path(:login => user.login), 
+      :id => "identifications_link",
+      :class => "#{'active' if current_page?(:controller => :identifications, :action => :by_login)}" %>
   </li>
   <li>
-    <% if current_page?(:controller => :users, :action => :show) %>
-      <span id="profile_link" class="active">Profile</span>
-    <% else %>
-      <%= link_to 'Profile', person_by_login_path(:login => user.login), :id => "profile_link" %>
-    <% end %>
+    <%= link_to 'Projects', projects_by_login_path(:login => user.login), 
+      :id => "projects_link",
+      :class => "#{'active' if current_page?(:controller => :projects, :action => :by_login)}" %>
+  </li>
+  <li>
+    <%= link_to 'Profile', person_by_login_path(:login => user.login), 
+      :id => "profile_link",
+      :class => "#{'active' if current_page?(:controller => :users, :action => :show)}" %>
   </li>
   <% if logged_in? && is_not_me?(user) %>
   <li>

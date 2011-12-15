@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observation by #{you_or_login(@selected_user, :capitalize => true)} on #{[@year, @month, @day].compact.join('-')}" %>
+  <%= @title = "Observation by #{you_or_login(@selected_user)} on #{Date.parse(@date).to_s(:long)}" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "observations" %>
@@ -64,9 +64,10 @@
       <div class="last class column span-4">
         <div class="lilun">
           <% for place_name, count in @place_name_counts %>
+            <%- name, id = place_name.split('-') -%>
             <div>
               <span class="count"><%= count %></span>
-              from <%= place_name.blank? ? "somewhere" : place_name %>
+              from <%= place_name.blank? ? "somewhere" : link_to(name, place_path(id)) %>
             </div>
           <% end %>
         </div>
@@ -94,7 +95,7 @@
                 -%>
                 <div class="nobr">
                   <span class="iconic_taxon_sprite selected <%= iconic_taxon_name %>"></span>
-                  <%= default_taxon_name taxon %>
+                  <%= link_to default_taxon_name(taxon), taxon %>
                 </div>
               <% end %>
             </div>
@@ -104,7 +105,7 @@
                   "$('#life_list_first_dialog').dialog({modal: true, width: 'auto', title: 'Life List Firsts'})",
                   :class => "small inline glaucous button" %>
               </div>
-              <div id="life_list_first_dialog" style="display:none">
+              <div id="life_list_first_dialog" class="dialog" style="display:none">
                 <table>
                   <tr>
                     <% @life_list_firsts.in_groups(3) do |listed_taxa| %>

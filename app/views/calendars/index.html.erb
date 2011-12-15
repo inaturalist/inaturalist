@@ -4,27 +4,76 @@
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     .notmonth { color: #ccc;}
-    .calendar { width: 227px; }
-    .calendar tbody td { color: #666; }
+    .calendar { width: 230px; }
+    .calendar tbody td, .calendar th { color: #ccc;}
     .calendar tbody td a { font-weight: bold; }
-    .calendar tbody td.notmonth { color: #ccc;}
+    .calendar tbody td.notmonth { color: #eee;}
     .calendar.first { clear: left; }
+    caption { background-color: transparent; text-transform: uppercase; letter-spacing: 0.4em; text-align:center;}
+    td, th { border: 0 transparent; text-align: center;}
+    th { font-weight: normal; }
+    .daylink { display: block; width: 22px; height: 22px; background-color: #eee; border-radius: 11px;text-align:center;line-height:1.9; cursor:pointer;}
+    .yearnav {position:relative;}
+    .yearnav .left, .yearnav .right {position:absolute;}
+    .yearnav .left { left: 0;}
+    .yearnav .right { right: 0;}
+    .yearnav select { margin-top:10px;}
   </style>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag "d3.min" %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      window.colorscale = d3.scale.linear()
+        .domain([0,50])
+        .range(["#fefefe", "#aaa"])
+      $('.daylink').css('background-color', function() {
+        var c = $(this).attr('data-count')
+        return colorscale(Math.min(c, 50))
+      })
+    })
+  </script>
 <%- end -%>
 
 <%= render :partial => 'shared/by_login_header', :locals => {:title => @title} %>
 
-<% %w(January February March April May June July August September October November December).each_with_index do |month, i| %>
-  <% calendar_for(@observations_by_month[i+1], :year => @year, :month => i+1, 
-      :html => {:class => "calendar column #{cycle('first', nil, nil, 'last')}"}) do |t| %>
-    <caption><%= month %></caption>
-    <%= t.head(*%w(sun mon tue wed thu fri sat)) %>
-    <% t.day(:day_method => :observed_on) do |day, observations| %>
-      <% if observations.size > 0 -%>
-        <%= link_to day.day, calendar_date_path(@login, @year, day.month, day.day), "data-count" => observations.size %>
-      <% else %>
-        <%= day.day %>
-      <% end -%>
-    <% end %>
-  <% end %>  
-<% end -%>
+<div class="column span-24 yearnav">
+  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}", :year => @year - 1 %></h2>
+  <% if @year < Date.today.year -%>
+    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;", :year => @year + 1 %></h2>
+  <% end -%>
+  <h2 style="text-align: center;">
+    <%= @year %>
+  </h2>
+</div>
+
+<div class="clear">
+  <% %w(January February March April May June July August September October November December).each_with_index do |month, i| %>
+    <% calendar_for(@observations_by_month[i+1], :year => @year, :month => i+1, 
+        :html => {:class => "calendar column #{cycle('first', nil, nil, 'last')}"}) do |t| %>
+      <caption><%= month %></caption>
+      <%= t.head(*%w(sun mon tue wed thu fri sat)) %>
+      <% t.day(:day_method => :observed_on) do |day, observations| %>
+        <% if observations.size > 0 -%>
+          <%= link_to day.day, calendar_date_path(@login, @year, day.month, day.day), 
+            :class => "daylink", "data-count" => observations.size, "data-tip" => "#{observations.size} observations" %>
+        <% else %>
+          <%= day.day %>
+        <% end -%>
+      <% end %>
+    <% end %>  
+  <% end -%>
+</div>
+
+<div class="column span-24 yearnav">
+  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}", :year => @year - 1 %></h2>
+  <% if @year < Date.today.year -%>
+    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;", :year => @year + 1 %></h2>
+  <% end -%>
+  <h2 style="text-align: center;">
+    <form method="get">
+      <%= select_tag :year, options_for_select(1950..Date.today.year, :selected => @year) %>
+    </form>
+  </h2>
+</div>

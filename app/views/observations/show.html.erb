@@ -65,6 +65,7 @@
     .identification_group{margin-bottom:10px;}
     #projects .box{padding:5px;}
     .id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
+    #day_observations img {width: 32px; margin-bottom: 5px;}
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -578,6 +579,17 @@
   <% end -%>
   
   <%= separator %>
+  <% if !@day_observations.blank? && @day_observations.size > 1 -%>
+      <div id="day_observations" class="clear quiet box">
+        <div class="clear">
+          <% for o in @day_observations %>
+            <%= link_to observation_image(o, :size => "square"), o, :title => o.to_plain_s %>
+          <% end %>
+        </div>
+        <%= link_to "View #{@day_observations.total_entries} from #{@observation.observed_on.to_s(:long)}", calendar_date_path(@observation.user.login, @observation.observed_on.year, @observation.observed_on.month, @observation.observed_on.day), :class => "right readmore" %>
+      </div>
+    <%= separator %>
+  <% end -%>
   
   <div id="data_quality_assessment">
     <h3>
