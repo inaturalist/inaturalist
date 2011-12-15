@@ -75,7 +75,7 @@
     <% photo_file_field = capture do %>
       <div class="photo_file_field clear quiet box">
         <%= file_field_tag("local_photos[#{index}][]", :class => 'text') %>
-        <%= link_to_function "remove", "$(this).parents('.photo_file_field').remove()" %>
+        <%= link_to_function "clear", "$(this).siblings('input[type=file]').val('')" %>
       </div>
     <% end %>
     <%= photo_file_field %>

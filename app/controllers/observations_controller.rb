@@ -1128,7 +1128,7 @@ class ObservationsController < ApplicationController
     existing = photo_class.all(
       :include => :user,
       :conditions => ["native_photo_id IN (?)", photo_list.uniq]
-    ).index_by(&:native_photo_id)
+    ).index_by{|p| p.native_photo_id}
     
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]
