@@ -35,6 +35,8 @@ class LocalPhoto < Photo
   after_post_process :set_urls, :expire_observation_caches
     
   validates_presence_of :user
+  validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i], 
+    :message => "must be JPG, PNG, or GIF"
   
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file

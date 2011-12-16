@@ -39,7 +39,7 @@
       <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon') %>
       <%= f.label(:icon, 'Icon/Photo') %>
       <%= link_to_function('change', "$('#user_icon').show(); $(this).hide()", :class => 'button') %>
-      <%= f.file_field(:icon, :class => 'text', :style => 'display: none', :accept => "image") %>
+      <%= f.file_field(:icon, :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
     </div>
     <div class="column span-9">
       <div class="field">
