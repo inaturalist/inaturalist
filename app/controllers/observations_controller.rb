@@ -5,7 +5,10 @@ class ObservationsController < ApplicationController
   caches_action :index, :by_login, :project,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| (c.request.format.geojson? || c.request.format.widget?) && c.request.url.size < 250}
+    :if => Proc.new {|c| 
+      c.session.blank? && # make sure they're logged out
+      (c.request.format.geojson? || c.request.format.widget? || c.request.format.kml?) && 
+      c.request.url.size < 250}
   caches_action :of,
     :expires_in => 1.day,
     :cache_path => Proc.new {|c| c.params},
