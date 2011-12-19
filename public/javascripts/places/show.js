@@ -1,4 +1,5 @@
 $(document).ready(function() {  
+  $('#observedchart').parent().hide()
   $('#filters select[multiple]').multiselect({
     header: false,
     noneSelectedText: "Select colors",
@@ -313,12 +314,16 @@ var PlaceGuide = {
   },
   updateObservedChart: function(context) {
     values = PlaceGuide.updateBarchart(context, '#observedchart', 'data-current-user-observed-count')
-    if (!values) { return }
+    if (!values) { 
+      $('#observedchart').parent().hide()
+      return
+    }
     $('#sidecol .extralabel .value').text(values.valueWidth)
+    $('#observedchart').parent().show()
   },
   updateBarchart: function(context, selector, countAttr, options) {
     options = options || {}
-    var count = $('.guide_taxa', context).attr(countAttr) || $(selector).attr('data-original-count')
+    var count = $('.guide_taxa', context).attr(countAttr)
     if (!count) { return false }
     var total = $('.guide_taxa', context).attr('data-listed-taxa-count') || $(selector).attr('data-original-total') || 0,
         labelText = ' of ' + total,
