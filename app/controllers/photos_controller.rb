@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def show
-    return render_404 unless @photo = Photo.find_by_id(params[:id])
+    return render_404 unless @photo = Photo.find_by_id(params[:id].to_i)
     respond_to do |format|
       format.html do
         if params[:partial]
