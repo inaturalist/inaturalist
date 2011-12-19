@@ -20,6 +20,7 @@ class TaxonPhoto < ActiveRecord::Base
   
   def expire_caches
     Rails.cache.delete(taxon.photos_cache_key)
+    Rails.cache.delete(taxon.photos_with_external_cache_key)
     true
   end
   
