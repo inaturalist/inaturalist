@@ -149,14 +149,11 @@ class TaxaController < ApplicationController
           )
         end
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
-        @photos = if Rails.cache.exist?(@taxon.photos_with_external_cache_key)
-          Rails.cache.read(@taxon.photos_with_external_cache_key)[0..23]
-        else
-          Rails.cache.fetch(@taxon.photos_cache_key) do
-            @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
-          end
+        
+        @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
+          @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
         end
-
+        
         if logged_in?
           @listed_taxa = ListedTaxon.all(
             :include => [:list],

@@ -75,6 +75,7 @@ class FlickrPhoto < Photo
     options[:native_username] ||= fp.owner
     options[:native_realname] = fp.owner.realname if fp.owner.respond_to?(:realname)
     options[:native_realname] ||= fp.ownername
+    options[:license] ||= fp.license if fp.respond_to?(:license)
     
     # Set sizes
     if fp.respond_to?(:url_sq)
