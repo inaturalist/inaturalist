@@ -1,9 +1,8 @@
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">
-    <%= link_to "Back to the observation", observation_path(@object),
-                :class => 'back crumb' %>
+    <%= link_to "Back to #{@object.to_plain_s}", @object, :class => 'back crumb' %>
   </span>
-  <h2>New Flag for <%= link_to @model.name, @object %></h2>
+  <h2>New Flag for <%= link_to @object.to_plain_s, @object %></h2>
 </div>
 
 <div class="description">
@@ -12,7 +11,7 @@
 
 <div class="clear readable buttonrow">
   <% form_for([@object,  @flag]) do |f| %>
-    <%= f.label :reason, "&ldquo;I'm flagging this #{@model.name} because" %>
+    <%= f.label :reason, "&ldquo;I'm flagging this #{@model.name.downcase} because" %>
     <%= f.text_field :flag, :class => 'text' %>
     <label>&rdquo;</label>
     <%= f.hidden_field :user_id, :value=>current_user.id %>    
