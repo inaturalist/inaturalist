@@ -348,7 +348,7 @@ Observations by <%= h @login %>
       <% end %>
     <% end -%>
     
-    <%= will_paginate @observations %>
+    <%= will_paginate @observations, :renderer => INatLinkRenderer %>
   </div>
 </div>
 

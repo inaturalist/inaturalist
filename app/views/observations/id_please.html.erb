@@ -363,5 +363,5 @@
 </div>
 
 <div id="pagination">
-  <%= will_paginate @observations %>
+  <%= will_paginate @observations, :renderer => INatLinkRenderer %>
 </div>

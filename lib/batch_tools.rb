@@ -26,7 +26,7 @@ module BatchTools
       # Like do in batches put prints progress to stdout
       def script_do_in_batches(options = {}, &block)
         start = Time.now
-        count_options = options.reject {|k,v| k.to_s == 'order'}
+        count_options = options.reject {|k,v| %w(order select).include?(k.to_s)}
         item_count = count(count_options)
         msg = ""
         iteration = 1

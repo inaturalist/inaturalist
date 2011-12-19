@@ -94,7 +94,7 @@
         </td>
     <% end %>
     </table>
-    <%= will_paginate @contributors %>
+    <%= will_paginate @contributors, :renderer => INatLinkRenderer %>
   <% end -%>
 </div>
 

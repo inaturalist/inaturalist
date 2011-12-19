@@ -224,7 +224,7 @@
   <% end %>
   
   <div class="column span-17">
-    <%= will_paginate(@paginating_listed_taxa) %>
+    <%= will_paginate(@paginating_listed_taxa, :renderer => INatLinkRenderer) %>
   </div>
 </div>
 

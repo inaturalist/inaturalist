@@ -123,5 +123,5 @@
     <% end %>
   <% end -%>
   
-  <%= will_paginate @lists %>
+  <%= will_paginate @lists, :renderer => INatLinkRenderer %>
 </div>

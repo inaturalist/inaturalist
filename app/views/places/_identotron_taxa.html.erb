@@ -15,6 +15,6 @@
       -%>
       <%= render :partial => "places/identotron", :locals => { :listed_taxon => listed_taxon, :taxon => taxon } %>
     <% end %>
-    <%= will_paginate @taxa, :params => {:action => 'guide'} %>
+    <%= will_paginate @taxa, :params => {:action => 'guide'}, :renderer => INatLinkRenderer %>
   <% end -%>
 </div>

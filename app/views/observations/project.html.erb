@@ -41,5 +41,5 @@
       <%= link_to("All CSV",  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
     <% end -%>
   </div>
-  <%= will_paginate @observations %>
+  <%= will_paginate @observations, :renderer => INatLinkRenderer %>
 </div>

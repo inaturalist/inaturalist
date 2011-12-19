@@ -37,7 +37,7 @@
         <%= render :partial => "taxa/guide_taxon", :locals => { :taxon => taxon } %>
       <% end -%>
     <% end %>
-    <%= will_paginate @taxa, :params => {:action => 'guide'} %>
+    <%= will_paginate @taxa, :params => {:action => 'guide'}, :renderer => INatLinkRenderer %>
   <% end -%>
   <%# NOTE this is a lame kludge to get some JSON in here such that infinite scroll won't nix it %>
   <% unless @taxa_by_taxon_id.blank? -%>

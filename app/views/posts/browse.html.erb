@@ -69,5 +69,5 @@
     <div id="noposts" class="description">No one's posted anything yet!</div>
   <% end %>
   
-  <%= will_paginate @posts %>
+  <%= will_paginate @posts, :renderer => INatLinkRenderer %>
 </div>

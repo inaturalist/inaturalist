@@ -25,5 +25,5 @@ Observations by Everyone
   <div id="feeds" class="clear right small ui description feeds">
     <%= render :partial => 'feed_links' %>
   </div>
-  <%= will_paginate @observations %>
+  <%= will_paginate @observations, :renderer => INatLinkRenderer %>
 </div>

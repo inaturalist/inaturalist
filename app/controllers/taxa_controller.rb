@@ -1,5 +1,11 @@
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format.geojson?}
+  caches_action :show, :expires_in => 1.day, :if => Proc.new {|c| 
+    c.session.blank? || c.session[:user_id].blank?
+  }
+  caches_action :describe, :expires_in => 1.day, :if => Proc.new {|c| 
+    c.session.blank? || c.session[:user_id].blank?
+  }
   
   include TaxaHelper
   include Shared::WikipediaModule
@@ -96,7 +102,7 @@ class TaxaController < ApplicationController
   end
 
   def show
-    if params[:entry]=='widget'
+    if params[:entry] == 'widget'
       flash[:notice] = "Welcome to iNat! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
     end
     @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
@@ -116,7 +122,7 @@ class TaxaController < ApplicationController
         @amphibiaweb = amphibiaweb_description?
         @try_amphibiaweb = try_amphibiaweb?
         
-        @children = @taxon.children.all(:include => :taxon_names, :order => "name")
+        @children = @taxon.children.all(:include => :taxon_names).sort_by{|c| c.name}
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
         @iconic_taxa = Taxon::ICONIC_TAXA
         
@@ -143,8 +149,13 @@ class TaxaController < ApplicationController
           )
         end
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
-        @photos = @taxon.photos.all(:limit => 24)
-        @photos = @taxon.photos_with_backfill(:skip_external => true, :limit => 24) if @photos.blank?
+        @photos = if Rails.cache.exist?(@taxon.photos_with_external_cache_key)
+          Rails.cache.read(@taxon.photos_with_external_cache_key)[0..23]
+        else
+          Rails.cache.fetch(@taxon.photos_cache_key) do
+            @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
+          end
+        end
 
         if logged_in?
           @listed_taxa = ListedTaxon.all(
@@ -426,7 +437,12 @@ class TaxaController < ApplicationController
     limit = 50 if limit > 50
     
     begin
-      @photos = @taxon.photos_with_backfill(:limit => limit)
+      @photos = Rails.cache.fetch(@taxon.photos_with_external_cache_key) do
+        @taxon.photos_with_backfill(:limit => 50).map do |fp|
+          fp.api_response = nil
+          fp
+        end
+      end[0..(limit-1)]
     rescue Timeout::Error => e
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
       HoptoadNotifier.notify(e, :request => request, :session => session)
@@ -450,6 +466,10 @@ class TaxaController < ApplicationController
         :photos => @photos
       }
     end
+  rescue SocketError => e
+    raise unless Rails.env.development?
+    Rails.logger.debug "[DEBUG] Looks like you're offline, skipping flickr"
+    render :text => "You're offline."
   end
   
   def map
@@ -1020,11 +1040,11 @@ class TaxaController < ApplicationController
     # Try to look by its current unique name
     unless @taxon
       begin
-        taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2) unless @taxon
+        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
         name = Iconv.iconv('UTF8', 'LATIN1', name).first
-        taxa = Taxon.all(:conditions => ["lower(unique_name) = ?", name], :limit => 2)
+        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
       end
       @taxon = taxa.first if taxa.size == 1
     end

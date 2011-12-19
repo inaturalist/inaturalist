@@ -47,5 +47,5 @@
     <% end %>
   </ul>
   
-  <%= will_paginate @places %>
+  <%= will_paginate @places, :renderer => INatLinkRenderer %>
 <% end -%>

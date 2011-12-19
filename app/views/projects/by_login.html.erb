@@ -24,7 +24,7 @@
       <% end %>
     <% end -%>
   </div>
-  <%= will_paginate @projects %>
+  <%= will_paginate @projects, :renderer => INatLinkRenderer %>
 </div>
 
 <div class="last column span-8">

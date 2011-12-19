@@ -61,7 +61,7 @@
     <% end %>
   </div>
   
-  <%= will_paginate @posts %>
+  <%= will_paginate @posts, :renderer => INatLinkRenderer %>
 </div>
 
 <div id="sidecol" class="last column span-7">  

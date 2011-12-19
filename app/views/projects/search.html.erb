@@ -35,5 +35,5 @@
       </div>
     <% end %>
   </div>
-  <%= will_paginate @projects %>
+  <%= will_paginate @projects, :renderer => INatLinkRenderer %>
 <% end -%>

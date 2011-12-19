@@ -37,6 +37,6 @@
 
 <% if taxa.respond_to?(:total_pages) %>
 <div id="pagination" class="pagination">
-  <%= will_paginate taxa %>
+  <%= will_paginate taxa, :renderer => INatLinkRenderer %>
 </div>
 <% end %>

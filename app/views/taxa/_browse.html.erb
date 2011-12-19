@@ -61,16 +61,17 @@
         <% if @iconic_taxa.blank? -%>
           <%= link_to_toggle "Taxonomic Groups", "#iconic_taxa", :class => 'open' %>
         <% else %>
-          <%= link_to '&laquo; All Taxonomic Groups', url_for_params(:without => [:iconic_taxa, :page]) %>
+          <%= link_to '&laquo; All Taxonomic Groups', url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow" %>
         <% end -%>
       </strong>
       <div id="iconic_taxa">
         <% for iconic_taxon in @faceted_iconic_taxa %>
           <%- selected = @iconic_taxa_ids && @iconic_taxa_ids.include?(iconic_taxon.id) -%>
           <div class="facet_value<%= ' selected' if selected %>">
-            <%= link_to('&times;', url_for_params(:without => [:iconic_taxa, :page]), :class => 'right description') if selected %>
+            <%= link_to('&times;', url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow", :class => 'right description') if selected %>
             <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
-              url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page),
+              url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page), 
+              :rel => "nofollow",
               :class => "taxon #{iconic_taxon.name}" %>
             (<span class="count"><%= number_with_delimiter @facets[:iconic_taxon_id][iconic_taxon.id] %></span>)
           </div>
@@ -85,7 +86,7 @@
         <% if @colors.blank? -%>
           <%= link_to_toggle "Colors", "#colors", :class => 'open' %>
         <% else %>
-          <%= link_to '&laquo; All Colors', url_for_params(:without => [:colors, :page]) %>
+          <%= link_to '&laquo; All Colors', url_for_params(:without => [:colors, :page]), :rel => "nofollow" %>
         <% end -%>
       </strong>
       <div id="colors">
@@ -99,15 +100,16 @@
                     :colors => @color_ids.reject {|cid| cid == color.id}.join(','),
                     :without => :page
                   ), 
+                  :rel => "nofollow", 
                   :class => 'right description') %>
               <% else %>
-                <%= link_to('&times;', url_for_params(:without => [:colors, :page]), :class => 'right description') %>
+                <%= link_to('&times;', url_for_params(:without => [:colors, :page]), :rel => "nofollow", :class => 'right description') %>
               <% end -%>
             <% elsif @color_ids %>
-              <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :class => 'right' %>
+              <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :rel => "nofollow", :class => 'right' %>
             <% end %>
-            <%= link_to "&nbsp;", url_for_params(:colors => color.id, :without => :page), :class => 'icon' %>
-            <%= link_to color.value, url_for_params(:colors => color.id, :without => :page) %>
+            <%= link_to "&nbsp;", url_for_params(:colors => color.id, :without => :page), :rel => "nofollow", :class => 'icon' %>
+            <%= link_to color.value, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow" %>
             (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
           </div>
         <% end %>
@@ -121,7 +123,7 @@
         <% if @places.blank? -%>
           <%= link_to_toggle "Places", "#places", :class => 'open' %>
         <% else %>
-          <%= link_to '&laquo; All Places', url_for_params(:without => [:page, :places]) %>
+          <%= link_to '&laquo; All Places', url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
         <% end -%>
       </strong>
 
@@ -130,8 +132,8 @@
           <% for place in @faceted_places %>
             <%- selected = @place_ids && @place_ids.include?(place.id) -%>
             <li class="facet_value<%= ' selected' if selected %>">
-              <%= link_to('&times;', url_for_params(:without => [:page, :places]), :class => 'right description') if selected %>
-              <%= link_to place_name_and_type(place), url_for_params(:places => place.id, :without => [:page, :places]) %>
+              <%= link_to('&times;', url_for_params(:without => [:page, :places]), :rel => "nofollow", :class => 'right description') if selected %>
+              <%= link_to place_name_and_type(place), url_for_params(:places => place.id, :without => [:page, :places]), :rel => "nofollow" %>
               (<span class="count"><%= number_with_delimiter @facets[:places][place.id] %></span>)
             </li>
           <% end %>
@@ -139,14 +141,14 @@
           <% if @places.first.parent -%>
             <li>
               <%= link_to place_name_and_type(@places.first.parent, :display => true), 
-                url_for_params(:places => @places.first.parent_id, :without => :page) %>
+                url_for_params(:places => @places.first.parent_id, :without => :page), :rel => "nofollow" %>
               <ul>
           <% end -%>
 
           <% for place in @places %>
             <li>
               <div class="facet_value selected">
-                <%= link_to('&times;', url_for_params(:without => [:page, :places]), :class => 'right description') %>
+                <%= link_to('&times;', url_for_params(:without => [:page, :places]), :rel => "nofollow", :class => 'right description') %>
                 <%= place_name_and_type place %>
                 (<span class="count"><%= number_with_delimiter @facets[:places][place.id] %></span>)
               </div>
@@ -154,7 +156,7 @@
               <ul>
                 <% for child_place in @faceted_places.select{|cp| cp.parent_id == place.id} %>
                   <li class="facet_value<%= ' selected' if @place_ids && @place_ids.include?(child_place.id) %>">
-                    <%= link_to place_name_and_type(child_place), url_for_params(:places => child_place.id, :without => :page) %>
+                    <%= link_to place_name_and_type(child_place), url_for_params(:places => child_place.id, :without => :page), :rel => "nofollow" %>
                     (<span class="count"><%= number_with_delimiter @facets[:places][child_place.id] %></span>)
                   </li>
                 <% end %>
@@ -187,7 +189,8 @@
           <% for iconic_taxon in @all_iconic_taxa %>
             <li>
               <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
-                url_for_params(:taxon_id => iconic_taxon.id),
+                url_for_params(:taxon_id => iconic_taxon.id), 
+                :rel => "nofollow",
                 :class => "taxon #{iconic_taxon.name}" %>
             </li>
           <% end %>
@@ -221,8 +224,8 @@
         <ul id="colors_facet">
           <% for color in @all_colors %>
             <li class="facet_value <%= color.value %>">
-              <%= link_to "&nbsp;", url_for_params(:colors => color.id), :class => 'icon' %>
-              <%= link_to color.value, url_for_params(:colors => color.id) %>
+              <%= link_to "&nbsp;", url_for_params(:colors => color.id), :rel => "nofollow", :class => 'icon' %>
+              <%= link_to color.value, url_for_params(:colors => color.id), :rel => "nofollow" %>
             </li>
           <% end %>
         </ul>
@@ -233,7 +236,7 @@
       <% for taxon in @taxa %>
         <div class="taxon_list_taxon">
           <% if @view == TaxaController::LIST_VIEW -%>
-            <%= link_to "search this taxon", url_for_params(:taxon_id => taxon.id, :without => :q), :class => "right", :rel => "nofollow" %>
+            <%= link_to "search this taxon", url_for_params(:taxon_id => taxon.id, :without => :q), :rel => "nofollow", :class => "right", :rel => "nofollow" %>
             <h3>
               <%- 
                 link_txt = render('shared/taxon', :object => taxon)
@@ -264,7 +267,7 @@
   <% end %>
   
   <div class="last column span-18">
-    <%= will_paginate(@taxa) unless @taxa.blank? %>
+    <%= will_paginate(@taxa, :renderer => INatLinkRenderer) unless @taxa.blank? %>
   </div>
 </div>
 

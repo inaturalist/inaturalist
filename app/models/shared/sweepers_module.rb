@@ -12,10 +12,10 @@ module Shared::SweepersModule
       expire_fragment(:controller => 'observations', :action => 'add_from_list', :id => listed_taxon.list_id, :order => order)
     end
     unless listed_taxon.place_id.blank?
-      # expire_action Place.guide_cache_key(listed_taxon.place_id)
       expire_fragment(listed_taxon.guide_taxon_cache_key)
       expire_page(:controller => 'places', :action => 'cached_guide', :id => listed_taxon.place_id)
     end
+    expire_action(:controller => 'taxa', :action => 'show', :id => listed_taxon.taxon_id)
   end
 
   def expire_listed_taxa(taxon)

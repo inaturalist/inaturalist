@@ -110,7 +110,7 @@
       </tr>
     <% end %>
     </table>
-    <%= will_paginate @project_users %>
+    <%= will_paginate @project_users, :renderer => INatLinkRenderer %>
   <% end -%>
 </div>
 

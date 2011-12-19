@@ -63,34 +63,45 @@ class FlickrPhoto < Photo
   end
   
   def self.new_from_flickraw(fp, options = {})
-    FlickRaw.api_key = FLICKR_API_KEY
-    FlickRaw.shared_secret = FLICKR_SHARED_SECRET
-    urls = fp.urls.index_by(&:type)
-    photopage_url = urls['photopage']._content rescue nil
-    options.update(
-      :native_photo_id => fp.id,
-      :native_page_url => photopage_url,
-      :native_username => fp.owner.username,
-      :native_realname => fp.owner.realname,
-      :license         => fp.license
-    )
+    if fp.respond_to?(:urls)
+      urls = fp.urls.index_by{|u| u.type}
+      photopage_url = urls['photopage']._content rescue nil
+    else
+      photopage_url = "http://flickr.com/photos/#{fp.owner}/#{fp.id}"
+    end
+    options[:native_photo_id] = fp.id
+    options[:native_page_url] = photopage_url
+    options[:native_username] = fp.owner.username if fp.owner.respond_to?(:username)
+    options[:native_username] ||= fp.owner
+    options[:native_realname] = fp.owner.realname if fp.owner.respond_to?(:realname)
+    options[:native_realname] ||= fp.ownername
     
     # Set sizes
-    unless sizes = options.delete(:sizes)
-      if options[:user] && options[:user].flickr_identity
-        sizes = flickr.photos.getSizes(:photo_id => fp.id, 
-          :auth_token => options[:user].flickr_identity.token)
-      else
-        sizes = flickr.photos.getSizes(:photo_id => fp.id)
-      end
+    if fp.respond_to?(:url_sq)
+      options[:square_url]   ||= fp.to_hash["url_sq"]
+      options[:thumb_url]    ||= fp.to_hash["url_t"]
+      options[:small_url]    ||= fp.to_hash["url_s"]
+      options[:medium_url]   ||= fp.to_hash["url_m"]
+      options[:large_url]    ||= fp.to_hash["url_l"]
+      options[:original_url] ||= fp.to_hash["url_o"]
     end
-    sizes = sizes.index_by(&:label)
-    options[:square_url]   ||= sizes['Square'].source rescue nil
-    options[:thumb_url]    ||= sizes['Thumbnail'].source rescue nil
-    options[:small_url]    ||= sizes['Small'].source rescue nil
-    options[:medium_url]   ||= sizes['Medium'].source rescue nil
-    options[:large_url]    ||= sizes['Large'].source rescue nil
-    options[:original_url] ||= sizes['Original'].source rescue nil
+    
+    if options[:square_url].blank?
+      unless sizes = options.delete(:sizes)
+        if options[:user] && options[:user].flickr_identity
+          sizes = flickr.photos.getSizes(:photo_id => fp.id, :auth_token => options[:user].flickr_identity.token)
+        else
+          sizes = flickr.photos.getSizes(:photo_id => fp.id)
+        end
+      end
+      sizes = sizes.index_by{|s| s.label}
+      options[:square_url]   ||= sizes['Square'].source rescue nil
+      options[:thumb_url]    ||= sizes['Thumbnail'].source rescue nil
+      options[:small_url]    ||= sizes['Small'].source rescue nil
+      options[:medium_url]   ||= sizes['Medium'].source rescue nil
+      options[:large_url]    ||= sizes['Large'].source rescue nil
+      options[:original_url] ||= sizes['Original'].source rescue nil
+    end
     
     flickr_photo = new(options)
     flickr_photo.api_response = fp

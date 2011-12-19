@@ -5,7 +5,7 @@
 <% unless photos.size == 0 %>
   <% if taxon.species_or_lower? %>
     <% if [Photo, Photo.descendent_classes].flatten.include?(photos[0].class) %>
-      <%= modal_image(photos.first, :size => :medium) %>
+      <%= photos.first.id ? modal_image(photos.first, :size => :medium) : image_tag(photos.first.medium_url) %>
       <div class="clear description" style="clear: both">
         Photo: <%= link_to photos[0].attribution, native_url_for_photo(photos[0]) %>
       </div>
@@ -21,7 +21,7 @@
       <% for photo in photos %>
         <%- photo_pos_class = cycle('first', '', '', '', '', 'last') -%>
         <% if [Photo, Photo.descendent_classes].flatten.include?(photo.class) %>
-          <%= modal_image(photo, :size => :square, :class => photo_pos_class) %>
+          <%= photo.id ? modal_image(photo, :size => :square, :class => photo_pos_class) : image_tag(photo.square_url) %>
         <% else %>
           <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
           <a href="<%= photo_url %>" class="<%= photo_pos_class %>">
@@ -59,7 +59,7 @@
       <% for photo in photos[1..6] %>
         <%- photo_pos_class = cycle('first', '', '', '', '', 'last') -%>
         <% if [Photo, Photo.descendent_classes].flatten.include?(photo.class) %>
-          <%= modal_image(photo, :size => :square, :class => photo_pos_class) %>
+          <%= photo.id ? modal_image(photo, :size => :square, :class => photo_pos_class) : image_tag(photo.square_url, :class => photo_pos_class) %>
         <% else %>
           <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
           <a href="<%= photo_url %>" class="<%= photo_pos_class %>">

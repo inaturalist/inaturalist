@@ -33,6 +33,10 @@ module Shared::WikipediaModule
         end
       end
     end
+  rescue SocketError => e
+    raise unless Rails.env.development?
+    Rails.logger.debug "[DEBUG] Looks like you're offline, skipping wikipedia"
+    render :text => "You're offline."
   end
   
   private

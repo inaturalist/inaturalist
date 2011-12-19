@@ -86,7 +86,7 @@
   </div>
   
   <div id="toppagination">
-    <%= will_paginate @listed_taxa %>
+    <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
   
   <%= render :partial => "show_#{@view}" %>
@@ -111,7 +111,7 @@
   <% end %>
   
   <div id="pagination">
-    <%= will_paginate @listed_taxa %>
+    <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
 </div>
 

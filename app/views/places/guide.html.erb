@@ -3,7 +3,7 @@
 <%- end -%>
 <div id="pageheader">
   <div class="right">
-    <%= will_paginate @taxa %>
+    <%= will_paginate @taxa, :renderer => INatLinkRenderer %>
   </div>
   <h2>
     Guide to
@@ -22,4 +22,4 @@
     } %>
   <% end %>
 </div>
-<%= will_paginate @taxa %>
+<%= will_paginate @taxa, :renderer => INatLinkRenderer %>

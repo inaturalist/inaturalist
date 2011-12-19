@@ -49,10 +49,10 @@ class Photo < ActiveRecord::Base
   def attribution
     name = if !native_realname.blank?
       native_realname
-    elsif !self.native_username.blank?
+    elsif !native_username.blank?
       native_username
-    elsif !self.observations.empty?
-      observations.first.user.login
+    elsif (o = observations.first)
+      o.user.login
     else
       "anonymous Flickr user"
     end

@@ -33,7 +33,7 @@
       <div class="mini observations">
         <%= render :partial => "observations/cached_component", :collection => @project_observations.map(&:observation).compact %>
       </div>
-     <%= will_paginate @project_observations %>
+     <%= will_paginate @project_observations, :renderer => INatLinkRenderer %>
     <% end -%>
   </div>
 </div>

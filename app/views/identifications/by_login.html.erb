@@ -49,7 +49,7 @@ Identifications by <%= h @login %>
     </div>
   <% end %>
   
-  <%= will_paginate @identifications %>
+  <%= will_paginate @identifications, :renderer => INatLinkRenderer %>
 </div>
 
 <div class="last column span-6">

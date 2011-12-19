@@ -517,7 +517,7 @@ class Taxon < ActiveRecord::Base
     options[:limit] ||= 9
     chosen_photos = photos.all(:limit => options[:limit])
     if chosen_photos.size < options[:limit]
-      conditions = ["(taxon_photos.taxon_id = ? OR taxa.ancestry LIKE '#{ancestry}/#{id}%')", self]
+      conditions = "taxa.ancestry LIKE '#{ancestry}/#{id}%'"
       if chosen_photos.size > 0
         conditions = Taxon.merge_conditions(conditions, ["photos.id NOT IN (?)", chosen_photos])
       end
@@ -529,24 +529,32 @@ class Taxon < ActiveRecord::Base
     flickr_chosen_photos = []
     if !options[:skip_external] && chosen_photos.size < options[:limit] && self.auto_photos
       begin
-        netflickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-        flickr_chosen_photos = netflickr.photos.search({
-          :tags => self.name.gsub(' ', '').strip,
+        flickr_chosen_photos = flickr.photos.search(
+          :tags => name.gsub(' ', '').strip,
           :per_page => options[:limit] - chosen_photos.size,
           :license => '1,2,3,4,5,6', # CC licenses
-          :extras => 'date_upload,owner_name',
+          :extras => 'date_upload,owner_name,url_sq,url_t,url_s,url_m,url_l,url_o,owner_name,license',
           :sort => 'relevance'
-        }).to_a
+        ).map{|fp| fp.url_sq ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
       rescue Net::Flickr::APIError => e
         logger.error "EXCEPTION RESCUE: #{e}"
         logger.error e.backtrace.join("\n\t")
       end
     end
-    flickr_ids = chosen_photos.map(&:native_photo_id)
+    # flickr_ids = chosen_photos.map(&:native_photo_id)
+    flickr_ids = chosen_photos.map{|p| p.native_photo_id}
     chosen_photos += flickr_chosen_photos.reject do |fp|
       flickr_ids.include?(fp.id)
     end
     chosen_photos
+  end
+  
+  def photos_cache_key
+    "taxon_photos_#{id}"
+  end
+  
+  def photos_with_external_cache_key
+    "taxon_photos_external_#{id}"
   end
   
   def observation_photos(options = {})
@@ -626,7 +634,7 @@ class Taxon < ActiveRecord::Base
         next
       end
       begin
-        candidate = candidate.gsub(/[\.\'\?\!\\\/]/, '')
+        candidate = candidate.gsub(/[\.\'\?\!\\\/]/, '').downcase
         logger.info "Updating unique_name for #{self} to #{candidate}"
         Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
       rescue ActiveRecord::StatementInvalid => e
