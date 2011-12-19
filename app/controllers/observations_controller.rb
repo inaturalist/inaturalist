@@ -116,7 +116,7 @@ class ObservationsController < ApplicationController
           render :json => data
         else
           render :json => @observations.to_json(
-            :methods => [:short_description],
+            :methods => [:short_description, :user_login],
             :include => {
               :iconic_taxon => {},
               :user => {:only => :login},
@@ -264,7 +264,7 @@ class ObservationsController < ApplicationController
       format.xml { render :xml => @observation }
       
       format.json do
-        render :json => @observation.to_json
+        render :json => @observation.to_json(:methods => [:user_login])
       end
       
       format.atom do
@@ -574,7 +574,7 @@ class ObservationsController < ApplicationController
         end
         format.xml  { head :ok }
         format.js { render :json => @observations }
-        format.json { render :json => @observations.to_json }
+        format.json { render :json => @observations.to_json(:methods => [:user_login]) }
       else
         format.html do
           if @observations.size == 1
@@ -843,7 +843,7 @@ class ObservationsController < ApplicationController
       end
       
       format.json do
-        render :json => @observations
+        render :json => @observations.to_json(:methods => [:user_login])
       end
       
       format.kml do
