@@ -175,6 +175,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.json do
         render :json => @observations.to_json(
+          :methods => [:user_login],
           :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}})
         end
       format.geojson do
@@ -480,7 +481,7 @@ class ObservationsController < ApplicationController
           render :json => {:errors => @observations.map{|o| o.errors.full_messages}}, 
             :status => :unprocessable_entity
         else
-          render :json => @observations.to_json  
+          render :json => @observations.to_json(:methods => [:user_login])
         end
       end
     end
