@@ -6,7 +6,7 @@
 <%- end -%>
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">
-    <%= link_to "Back to the #{@model.name}", 
+    <%= link_to "Back to #{@object.to_plain_s}", 
                 @object,
                 :class => 'back crumb' %>
   </span>

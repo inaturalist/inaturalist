@@ -733,12 +733,14 @@ class TaxaController < ApplicationController
         "were imported from an external name provider."
     else
       begin
-        Ratatosk.graft(@taxon)
+        lineage = Ratatosk.graft(@taxon)
       rescue Timeout::Error => e
         @error_message = e.message
       rescue RatatoskGraftError => e
         @error_message = e.message
       end
+      @taxon.reload
+      @error_message = "Graft failed" unless @taxon.grafted?
     end
     
     respond_to do |format|
@@ -796,8 +798,8 @@ class TaxaController < ApplicationController
       :conditions => "resolved = true AND flaggable_type = 'Taxon'",
       :order => "flags.id desc")
     life = Taxon.find_by_name('Life')
-    @ungrafted_roots = Taxon.roots.paginate(:conditions => ["id != ?", life], :page => 1, :per_page => 100)
-    @ungrafted =  (@ungrafted_roots + @ungrafted_roots.map{|ur| ur.descendants}).flatten
+    @ungrafted = Taxon.roots.paginate(:conditions => ["id != ?", life], 
+      :page => 1, :per_page => 100, :include => [:taxon_names])
   end
   
   def flickr_tagger    
