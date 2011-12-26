@@ -1,3 +1,10 @@
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('.time_zone_select').selectLocalTimeZone();
+    })
+  </script>
+<%- end -%>
 <h2>Join iNaturalist!</h2>
 <div class="stacked">
   <%= render_in_format :html, :partial => 'new_form' %>

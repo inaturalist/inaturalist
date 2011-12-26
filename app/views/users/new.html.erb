@@ -7,6 +7,13 @@
     .providerlink, .button.providerlink { width: 140px; }
   </style>
 <% end -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('.time_zone_select').selectLocalTimeZone();
+    })
+  </script>
+<%- end -%>
 <div class="column prepend-4 span-8">
   <img src="/images/bird.png" width="300" height="239" />
   

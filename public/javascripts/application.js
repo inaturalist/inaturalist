@@ -272,3 +272,22 @@ $.fn.showInlineBlock = function() {
   })
   return this
 }
+
+$.fn.selectLocalTimeZone = function() {
+  $(this).each(function() {
+    var now = new Date(),
+        timeZoneAbbr = now.toString().match(/\(([A-Z]{3})\)$/)[1],
+        timeZoneOffsetHour = now.toString().match(/([+-]\d\d)(\d\d)/)[1]
+        timeZoneOffsetMinute = now.toString().match(/([+-]\d\d)(\d\d)/)[2]      
+    if (timeZoneOffsetHour) {
+      var formattedOffset = timeZoneOffsetHour + ':' + timeZoneOffsetMinute
+      var matches = $("option[data-time-zone-formatted-offset='"+formattedOffset+"']", this)
+      if (timeZoneAbbr) {
+        matches = matches.filter('[data-time-zone-abbr='+timeZoneAbbr+']')
+      }
+      var option = matches.first()
+      $(this).val(option.val())
+    }
+  })
+  return this
+}
