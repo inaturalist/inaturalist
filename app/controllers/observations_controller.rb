@@ -413,6 +413,7 @@ class ObservationsController < ApplicationController
       observation.delete('fieldset_index') if observation[:fieldset_index]
       o = Observation.new(observation)
       o.user = current_user
+      o.user_agent = request.user_agent
       # Get photos
       Photo.descendent_classes.each do |klass|
         klass_key = klass.to_s.underscore.pluralize.to_sym

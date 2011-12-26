@@ -37,6 +37,10 @@ class Observation < ActiveRecord::Base
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
   QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
+  
+  IPHONE_USER_AGENT_PATTERN = /Titanium/
+  ANDROID_USER_AGENT_PATTERN = /^iNaturalist\/\d+.+Android/
+  MOBILE_USER_AGENT_PATTERNS = [IPHONE_USER_AGENT_PATTERN, ANDROID_USER_AGENT_PATTERN]
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -1196,6 +1200,36 @@ class Observation < ActiveRecord::Base
     Place.containing_lat_lng(
       private_latitude || latitude, 
       private_longitude || longitude).sort_by(&:bbox_area)
+  end
+  
+  def mobile?
+    return false unless user_agent
+    MOBILE_USER_AGENT_PATTERNS.each do |pattern|
+      return true if user_agent =~ pattern
+    end
+    false
+  end
+  
+  def device_name
+    return "unknown" unless user_agent
+    if user_agent =~ ANDROID_USER_AGENT_PATTERN
+      "iNaturalist Android App"
+    elsif user_agent =~ IPHONE_USER_AGENT_PATTERN
+      "iNaturalist iPhone App"
+    else
+      "web browser"
+    end
+  end
+  
+  def device_url
+    return unless user_agent
+    if user_agent =~ IPHONE_USER_AGENT_PATTERN
+      "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
+    # elsif user_agent =~ ANDROID_USER_AGENT_PATTERN
+    #   "/apps"
+    else
+      "/"
+    end
   end
   
   # Required for use of the sanitize method in

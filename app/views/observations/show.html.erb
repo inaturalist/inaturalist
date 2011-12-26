@@ -283,38 +283,51 @@
   </div><!-- end where-and-photos -->
   
   <% unless @observation.description.blank? %>
-  <div id="observation-description">
-    <h3>Description</h3>
-    <div class="clear readable description">
-      <%= formatted_user_text(@observation.description) %>
+    <div id="observation-description">
+      <h3>Description</h3>
+      <div class="clear readable description">
+        <%= formatted_user_text(@observation.description) %>
+      </div>
     </div>
-  </div>
   <% end %>
   
-  <div id="dates" class="description date">
-    <label>Added:</label>
-    <span class="date">
-      <%= @observation.created_at.strftime("%b. %e, %Y") %>
-    </span>
-    <span class="time">
-      <%= @observation.created_at.strftime("%I:%M %p %Z") %>
-    </span>
-  </div>
-  
-  <% unless @observation.tags.blank? %>
-    <div id="tags" class="description">
-      <label>Tags:</label>
-      <ul>
-        <% @observation.tags.each do |tag| %>
-          <li>
-            <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
-          </li>
-        <% end %>
-      </ul>
+  <div class="clear column span-16">
+    <% unless @observation.tags.blank? %>
+      <div id="tags" class="description">
+        <label>Tags:</label>
+        <ul>
+          <% @observation.tags.each do |tag| %>
+            <li>
+              <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end -%>
+
+    <div id="dates" class="description date nobr">
+      <label>Added:</label>
+      <span class="date">
+        <%= @observation.created_at.strftime("%b. %e, %Y") %>
+      </span>
+      <span class="time">
+        <%= @observation.created_at.strftime("%I:%M %p %Z") %>
+      </span>
     </div>
-  <% end -%>
-  
-  <%= separator %>
+
+    <% if @observation.mobile? -%>
+      <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
+        <label>Device:</label>
+        <% if @observation.device_url -%>
+          <%= link_to @observation.device_name, @observation.device_url %>
+        <% else %>
+          <%= @observation.device_name %>
+        <% end -%>
+      </div>
+    <% end -%>
+    
+    <%= separator %>
+  </div>
   
   <div id="comments_and_identifications" class="column span-15">
     <h3>Comments &amp; Identifications</h3>
