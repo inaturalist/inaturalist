@@ -564,7 +564,29 @@ class ObservationsController < ApplicationController
     end
 
     respond_to do |format|
-      unless errors
+      if errors
+        format.html do
+          if @observations.size == 1
+            @observation = @observations.first
+            render :action => 'edit'
+          else
+            render :action => 'edit_batch'
+          end
+        end
+        format.xml  { render :xml => @observations.collect(&:errors), :status => :unprocessable_entity }
+        format.json { render :json => @observations.collect(&:errors), :status => :unprocessable_entity }
+      elsif @observations.empty?
+        msg = if params[:id]
+          "That observation no longer exists."
+        else
+          "Those observations no longer exist."
+        end
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default(observations_by_login_path(current_user.login))
+        end
+        format.json { render :json => msg, :status => :gone }
+      else
         format.html do
           flash[:notice] = 'Observation(s) was successfully updated.'
           if @observations.size == 1
@@ -576,17 +598,6 @@ class ObservationsController < ApplicationController
         format.xml  { head :ok }
         format.js { render :json => @observations }
         format.json { render :json => @observations.to_json(:methods => [:user_login]) }
-      else
-        format.html do
-          if @observations.size == 1
-            @observation = @observations.first
-            render :action => 'edit'
-          else
-            render :action => 'edit_batch'
-          end
-        end
-        format.xml  { render :xml => @observations.collect(&:errors), :status => :unprocessable_entity }
-        format.json { render :json => @observations.collect(&:errors), :status => :unprocessable_entity }
       end
     end
   end

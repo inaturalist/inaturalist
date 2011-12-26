@@ -29,10 +29,24 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(22)
   end
   
+  it "should parse time from strings like 2011-12-23T11:52:06-0500" do
+    @observation.observed_on_string = '2011-12-23T11:52:06-0500'
+    @observation.save
+    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(11)
+  end
+  
   it "should parse a time zone from a code" do
     @observation.observed_on_string = 'October 30, 2008 10:31PM EST'
     @observation.save
     @observation.time_zone.should == ActiveSupport::TimeZone['Eastern Time (US & Canada)'].name
+  end
+  
+  it "should parse time zone from strings like 2011-12-23T11:52:06-0500" do
+    @observation.observed_on_string = '2011-12-23T11:52:06-0500'
+    @observation.save
+    zone = ActiveSupport::TimeZone[@observation.time_zone]
+    zone.should_not be_blank
+    zone.formatted_offset.should == "-05:00"
   end
   
   it "should not save a time if one wasn't specified" do

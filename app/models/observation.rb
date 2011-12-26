@@ -538,7 +538,12 @@ class Observation < ActiveRecord::Base
     if parsed_time_zone = ActiveSupport::TimeZone::CODES[date_string[/\s([A-Z]{3,})$/, 1]]
       date_string = observed_on_string.sub(/\s([A-Z]{3,})$/, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+    elsif (offset = date_string[/([+-]\d{4})$/, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+      date_string = observed_on_string.sub(/([+-]\d{4})$/, '')
+      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     end
+    
+    date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
