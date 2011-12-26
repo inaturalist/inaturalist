@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     :show, :edit, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
   before_filter :admin_required, :only => [:suspend, :unsuspend, :curation]
+  before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
   def new
     @user = User.new
