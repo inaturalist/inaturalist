@@ -73,7 +73,7 @@
   <% end -%>
   <h2 style="text-align: center;">
     <form method="get">
-      <%= select_tag :year, options_for_select(1950..Date.today.year, :selected => @year) %>
+      <%= select_tag :year, options_for_select(1950..Date.today.year, :selected => @year), "data-autosubmit" => true %>
     </form>
   </h2>
 </div>
