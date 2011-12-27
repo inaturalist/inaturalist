@@ -1,5 +1,9 @@
-<% if photo.is_a? Photo %>
-  <%= modal_image(photo, :size => :square) %>
+<% if photo.is_a?(Photo) %>
+  <% if photo.id -%>
+    <%= modal_image(photo, :size => :square) %>
+  <% else %>
+    <%= link_to image_tag(photo.square_url, :width => 75, :height => 75, :title => photo.attribution), photo.native_page_url %>
+  <% end -%>
 <% else %>
   <% photo_url = "http://flickr.com/photos/#{photo.photo_xml[:owner]}/#{photo.id}" %>
   <a href="<%= photo_url %>">
