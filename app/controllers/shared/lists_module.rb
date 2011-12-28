@@ -282,8 +282,10 @@ module Shared::ListsModule
   def load_find_options
     @iconic_taxa = Taxon::ICONIC_TAXA
     @iconic_taxa_by_id = @iconic_taxa.index_by(&:id)
+    page = params[:page].to_i
+    page = 1 if page == 0
     @find_options = {
-      :page => params[:page],
+      :page => page,
       :per_page => 45,
       :include => [
         :last_observation,

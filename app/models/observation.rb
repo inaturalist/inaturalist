@@ -66,11 +66,11 @@ class Observation < ActiveRecord::Base
   define_index do
     indexes taxon.taxon_names.name, :as => :names
     indexes tags.name, :as => :tags
-    indexes :species_guess, :sortable => true
-    indexes :description
+    indexes :species_guess, :sortable => true, :as => :species_guess
+    indexes :description, :as => :description
     indexes :place_guess, :as => :place, :sortable => true
     indexes user.login, :as => :user, :sortable => true
-    indexes :observed_on_string
+    indexes :observed_on_string, :as => :observed_on_string
     has :user_id
     has :taxon_id
     
@@ -112,6 +112,13 @@ class Observation < ActiveRecord::Base
     has project_observations(:project_id), :as => :projects, :type => :multi
     set_property :delta => :delayed
   end
+  
+  SPHINX_FIELD_NAMES = %w(names tags species_guess description place user observed_on_string)
+  SPHINX_ATTRIBUTE_NAMES = %w(user_id taxon_id has_photos created_at 
+    observed_on iconic_taxon_id id_please has_geo latitude longitude 
+    fake_latitude fake_longitude num_identification_agreements 
+    num_identification_disagreements identifications_most_agree 
+    identifications_some_agree identifications_most_disagree projects)
 
   ##
   # Validations

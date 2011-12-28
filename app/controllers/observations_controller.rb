@@ -1196,7 +1196,9 @@ class ObservationsController < ApplicationController
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
     
     @q = search_params[:q].to_s unless search_params[:q].blank?
-    @search_on = search_params[:search_on] unless search_params[:search_on].blank?
+    if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
+      @search_on = search_params[:search_on]
+    end
     
     find_options = {
       :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
