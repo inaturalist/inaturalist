@@ -7,3 +7,8 @@ body.mobile #footer li a.box {border-bottom:1px dotted #999;background-color:#22
 .readmore {color:#36C;}
 .box {color: #333;}
 .comment {border-bottom: 1px solid #333;}
+body.mobile .taxonimage, 
+body.mobile .taxa.grid .taxon .image.nophoto, 
+body.mobile .taxa.grid .taxon .image.nophoto a {background-color: #333;}
+body.mobile .taxa.grid .taxon .image, 
+body.mobile .taxa.grid .taxon .image a {background-color: black;}

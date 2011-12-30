@@ -4,16 +4,14 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "taxa" %>
   <style type="text/css" media="screen">
-    #photo .taxonimage {background-color: #eee; width: 100%; margin-bottom:10px;}
+    #photo .taxonimage {display:block; width: auto; margin:0 auto 10px;min-width:310px;}
     .taxonimage, .taxa.grid .taxon {text-align:center;}
     #photo .nophoto.taxonimage {padding: 20px;}
     #photo .taxon .name { text-align: center; font-size: 200%; display:block; margin-bottom:10px;}
     .infolink {display:none;}
     .taxonimage img {max-width:310px;}
     .taxa.grid .info {height: 4em;}
-/*    .taxa.grid {width:340px;}*/
     .wikipedia_summary { margin-bottom: 10px; }
-
     .taxa.grid .taxon {width:90px;}
     .taxa.grid .taxonimage { width: 90px; height:90px;}
     .taxa.grid .taxonimage img { max-width: 90px; max-height: 90px;}
