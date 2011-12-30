@@ -1230,8 +1230,8 @@ class Observation < ActiveRecord::Base
     return unless user_agent
     if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
       "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
-    # elsif user_agent =~ ANDROID_USER_AGENT_PATTERN
-    #   "/apps"
+    elsif user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
+      "https://market.android.com/details?id=org.inaturalist.android"
     else
       "/"
     end
