@@ -125,4 +125,66 @@ module UsersHelper
       user.login
     end
   end
+  
+  def activity_stream_tagline(update, options = {})
+    activity_object = options[:activity_object] || update.activity_object
+    html = link_to update.user.login, person_path(update.user)
+    html += " added "
+    if update.batch_ids.blank?
+      case update.activity_object_type 
+      when "Post" 
+        html += "a #{link_to "journal post", post_path(update.user.login, activity_object)} "
+      when "Comment" 
+        html += "a #{link_to "comment", activity_object} "
+        html += "on #{activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a'} "
+        html += link_to(activity_object.parent_type.underscore.humanize.downcase, activity_object)
+        if activity_object.parent.user 
+          html += " by #{link_to activity_object.parent.user.login, activity_object.parent.user} "
+        end 
+      when "ListedTaxon" 
+         html += "a taxon to #{link_to activity_object.list.title, activity_object} "
+      when "List" 
+        html += "a new list called #{link_to activity_object.title, activity_object }"
+      else 
+        html += update.activity_object_type.match(/^[aeiou]/i) ? 'an ' : 'a '
+        html += link_to update.activity_object_type.underscore.humanize.downcase, activity_object
+      end 
+    else 
+      html += pluralize update.batch_ids.split(',').size, update.activity_object_type.underscore.humanize.downcase 
+    end 
+    html += " at #{update.updated_at.strftime("%I:%S %p").downcase.gsub(/^0/, '')}"
+    html
+  end
+  
+  def activity_stream_body(update, options = {})
+    activity_object = options[:activity_object] || update.activity_object
+    mobile = request.format.mobile?
+    if update.batch_ids.blank?
+      case update.activity_object_type
+      when "Observation"
+        content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object), :class => "mini observations #{'compact' if mobile}")
+      when "Identification" 
+        render :partial => "identifications/identification_with_observation", :object => activity_object 
+      when "ListedTaxon" 
+        content_tag(:div, render(:partial => "lists/listed_taxon", :object => activity_object), :class => "listed_taxa plain_view")
+      when "Post" 
+        render :partial => "posts/post", :object => activity_object, :locals => { :truncate_length => 200 } 
+      when "List" 
+      when "Comment"
+        if activity_object.parent.is_a?(Observation)
+          content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object.parent), :class => "mini observations #{'compact' if mobile}") +
+          render(update.activity_object)
+        else
+          render(update.activity_object)
+        end
+      else 
+        render update.activity_object 
+      end 
+    elsif batch_partial = activity_object.class.activity_stream_options[:batch_partial] 
+      render :partial => batch_partial, :locals => { 
+        :update => update,
+        activity_object.class.to_s.underscore.pluralize.to_sym => @activity_objects_by_update_id[update.id]
+      }
+    end
+  end
 end

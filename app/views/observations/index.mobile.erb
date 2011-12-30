@@ -1,0 +1,15 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Observations by everyone" %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "observations" %>
+<%- end -%>
+<h2><%= @title %></h2>
+
+<div class="compact mini observations">
+  <% in_format :html do %>
+    <%= render :partial => "observations/cached_component", :collection => @observations %>
+  <% end -%>
+</div>
+
+<%= will_paginate @observations %>

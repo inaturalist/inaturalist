@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   # Top level routes
   # Anything that violates the /:controller first route standard goes here
   map.home '/home', :controller => 'users', :action => 'dashboard'
+  map.formatted_home '/home.:format', :controller => 'users', :action => 'dashboard'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create', :conditions => {:method => :post}

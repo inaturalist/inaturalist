@@ -46,7 +46,7 @@ class ObservationsController < ApplicationController
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
-  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project]
+  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :index, :show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
@@ -126,6 +126,8 @@ class ObservationsController < ApplicationController
         end
       end
       
+      format.mobile
+      
       format.geojson do
         render :json => @observations.to_geojson(:except => [
           :geom, :latitude, :longitude, :map_scale, 
@@ -191,6 +193,7 @@ class ObservationsController < ApplicationController
   # GET /observations/1.xml
   def show
     @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id], :order => "id DESC")
+    @prev = @previous
     @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id], :order => "id ASC")
     @quality_metrics = @observation.quality_metrics.all(:include => :user)
     if logged_in?
@@ -261,6 +264,8 @@ class ObservationsController < ApplicationController
             :layout => false)
         end
       end
+      
+      format.mobile
        
       format.xml { render :xml => @observation }
       
@@ -854,6 +859,8 @@ class ObservationsController < ApplicationController
           return render_observations_partial(partial)
         end
       end
+      
+      format.mobile
       
       format.json do
         render :json => @observations.to_json(:methods => [:user_login])

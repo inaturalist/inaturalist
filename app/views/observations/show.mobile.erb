@@ -1,0 +1,133 @@
+<%- content_for(:title) do -%>
+  <%= @observation.to_plain_s %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .photos img {max-width: 310px;}
+    .photos .main img {margin-bottom: 5px;}
+    .other_photos {float:none;display:inline;}
+    .box {padding:0;}
+    .box .boxbody {padding:10px;}
+    .box .boxheader{background-color:#EFEFC7; padding:5px 10px;}
+    .quiet.box .boxheader{background-color:#dedede;}
+    .taxon .othernames {display:block;}
+    .identification img {max-width:48px;}
+  </style>
+<%- end -%>
+<%#= observation_image @observation, :size => "medium" %>
+<h2><%= @observation.to_plain_s(:no_time => true) %></h2>
+<% in_format :html do %>
+  <% unless @observation.photos.blank? -%>
+    <div class="photos">
+      <%= render :partial => "observations/photos", :object => @observation, :locals => {
+        :no_js => true,
+        :image_size => "medium"
+      } %>
+    </div>
+  <% end -%>
+  
+  <% if @observation.georeferenced? && show_observation_coordinates?(@observation) -%>
+    <div class="stacked location">
+      <%= link_to image_tag(google_static_map_for_observation_url(@observation, :size => "310x200")), 
+        "http://maps.google.com/?q=#{@observation.latitude},#{@observation.longitude}" %>
+    </div>
+  <% end -%>
+  
+  <% if @observation.taxon.blank? -%>
+    <div class="identification box">
+      <div class="boxheader">
+        <%= possessive @observation.user, :capitalize => true %>
+        ID
+      </div>
+      <div class="boxbody">
+        <% image_and_content taxon_image(@observation.taxon) do %>
+          <%= user_image @observation.user, :size => "thumb", :class => "right" %>
+          <%= @observation.species_guess || "Unknown" %>
+        <% end -%>
+      </div>
+    </div>
+  <% end -%>
+  
+  <% for ident in @observation.identifications.sort_by{|ident| ident.id} %>
+    <div class="identification <%= ident.user_id == @observation.user_id ? 'box' : 'quiet box' %>">
+      <div class="boxheader">
+        <%= possessive ident.user, :capitalize => true %>
+        ID
+      </div>
+      <div class="boxbody">
+        <% image_and_content taxon_image(ident.taxon) do %>
+          <%= user_image ident.user, :size => "thumb", :class => "right" %>
+          <%= render :partial => "shared/taxon", :object => ident.taxon, :locals => {
+            :link_url => url_for(ident.taxon),
+            :include_parens => false
+          } %>
+        <% end -%>
+      </div>
+    </div>
+  <% end %>
+<% end -%>
+
+<% unless @observation.description.blank? -%>
+  <h3>Description</h3>
+  <%= formatted_user_text @observation.description %>
+<% end -%>
+
+<div class="stacked details">
+  <h3>Details</h3>
+  <% unless @observation.tags.blank? %>
+    <div id="tags" class="description">
+      <label>Tags:</label>
+        <%= @observation.tags.map{|tag| 
+          link_to(h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags"))
+        }.join(', ') %>
+    </div>
+  <% end -%>
+
+  <div id="dates" class="description date nobr">
+    <label>Added:</label>
+    <span class="date">
+      <%= @observation.created_at.strftime("%b. %e, %Y") %>
+    </span>
+    <span class="time">
+      <%= @observation.created_at.strftime("%I:%M %p %Z") %>
+    </span>
+  </div>
+  
+  <% if @observation.observed_on -%>
+    <div class="description date nobr">
+      <label>Observed:</label>
+      <span class="date">
+        <%= @observation.observed_on.strftime("%b. %e, %Y") %>
+      </span>
+      <% if @observation.time_observed_at %>
+        <span class="time">
+          <%= @observation.created_at.strftime("%I:%M %p %Z") %>
+        </span>
+      <% end -%>
+    </div>
+  <% end -%>
+  
+  <div class="description">
+    <% in_format :html do %>
+      <%= render :partial => 'location', :locals => {:places => @places} %>
+    <% end -%>
+  </div>
+
+  <% if @observation.mobile? -%>
+    <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
+      <label>Device:</label>
+      <% if @observation.device_url -%>
+        <%= link_to @observation.device_name, @observation.device_url %>
+      <% else %>
+        <%= @observation.device_name %>
+      <% end -%>
+    </div>
+  <% end -%>
+</div>
+
+<% in_format :html do %>
+  <%= render :partial => "comments/comments", :object => @observation %>
+<% end -%>
+
+<%= link_to("Prev", @prev, :class => "prevlink button inlineblock left  ") if @prev %>
+<%= link_to("Next", @next, :class => "nextlink button inlineblock right ") if @next %>

@@ -99,6 +99,7 @@ $('[data-autosubmit]').live('change', function() {
 })
 
 function buildHelpTips() {
+  if (typeof($.qtip) == "undefined") { return; }
   var options = $.extend({}, QTIP_DEFAULTS, {
     show: {event: 'click'},
     hide: {event: 'unfocus'}

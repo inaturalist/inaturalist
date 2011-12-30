@@ -1,14 +1,17 @@
-<%- observation ||= object ||= @observation -%>
-<%- no_js ||= false -%>
+<%- 
+  observation ||= object ||= @observation
+  no_js ||= false
+  image_size ||= "small"
+-%>
 <%- if no_js -%>
-  <%= link_to image_tag(observation.photos.first.small_url), observation, :class => 'main' %>
+  <%= link_to image_tag(observation.photos.first.send("#{image_size}_url")), observation.photos.first.becomes(Photo), :class => 'main' %>
 <%- else %>
-  <%= modal_image(observation.photos.first, :size => 'small', :class => 'main') %>
+  <%= modal_image(observation.photos.first, :size => image_size, :class => 'main') %>
 <%- end -%>
-<div class="other_photos" style="float: left">
+<div class="other_photos">
   <% if no_js -%>
     <% for photo in observation.photos[1..3] %>
-      <%= link_to image_tag(photo.square_url), observation, :class => cycle('', '', 'last') %>
+      <%= link_to image_tag(photo.square_url), photo, :class => cycle('', '', 'last') %>
     <%- end -%>
   <% else -%>
     <% for photo in observation.photos[1..3] %>

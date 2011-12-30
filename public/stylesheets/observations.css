@@ -9,7 +9,7 @@
 .observation div.description p{font-style:italic;}
 .observation .description.attribute img,
 .observation .details.attribute img{max-width:400px;height:auto;}
-.observation .actions ul{display:inline;list-style:none;margin:0;}
+.observation .actions ul{display:inline;list-style:none;margin:0;padding:0;}
 .observation .actions ul li{display:inline;white-space:nowrap;}
 .observation .actions ul li:after{content:' | ';color:#888;}
 .observation .actions ul li.last:after{content:'';}
@@ -568,3 +568,5 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 .observation .curator_ident {
   
 }
+
+.other_photos {float: left;}

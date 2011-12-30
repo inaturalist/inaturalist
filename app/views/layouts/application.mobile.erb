@@ -8,8 +8,17 @@
     <title><%= APP_CONFIG[:site_name] %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= stylesheet_link_tag 'blueprint/plugins/buttons/buttons' %>
-    <%= stylesheet_link_tag 'index' %>
-    <%= javascript_include_tag 'jquery/jquery-1.5.1.min', 'jquery/jquery-ui-1.8.11.min.js', 'jquery/plugins/jquery.chooser', 'application', 'inaturalist' %>
+    <%= stylesheet_link_tag 'index', 'jquery-ui', 'mobile' %>
+    <% if is_android_app? -%>
+      <%= stylesheet_link_tag "black" %>
+    <% end -%>
+    <%= javascript_include_tag 'jquery/jquery-1.5.1.min', 
+      'jquery/jquery-ui-1.8.11.min.js', 
+      'jquery/plugins/jquery.chooser', 
+      "jquery/plugins/jquery.qtip2.min", 
+      'application', 
+      'inaturalist', 
+      'mobile' %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
     <%= yield :extrahead %>

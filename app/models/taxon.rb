@@ -93,7 +93,8 @@ class Taxon < ActiveRecord::Base
     const_set rank.upcase, rank
     const_set "#{rank.upcase}_LEVEL", level
     define_method "find_#{rank}" do
-      return nil if rank_level >= level
+      return self if rank_level == level
+      return nil if rank_level > level
       ancestors.first(:conditions => {:rank => rank})
     end
     alias_method(rank, "find_#{rank}") unless method_exists?(rank)

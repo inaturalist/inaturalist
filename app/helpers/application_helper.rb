@@ -254,6 +254,13 @@ module ApplicationHelper
     html
   end
   
+  def in_format(format)
+    old_format = @template.template_format
+    @template.template_format = format
+    yield
+    @template.template_format = old_format
+  end
+  
   def taxonomic_taxon_list(taxa, options = {}, &block)
     taxa.each do |taxon, children|
       concat "<li class='#{options[:class]}'>"
@@ -463,6 +470,21 @@ module ApplicationHelper
       # map_tag_attrs["data-place-geojson"] = taxon_range_geom_url(@taxon.id, :format => "geojson")
     end
     map_tag_attrs
+  end
+  
+  def google_static_map_for_observation_url(o, options = {})
+    url_for_options = {
+      :host => 'maps.google.com',
+      :controller => 'maps/api/staticmap',
+      :center => "#{o.latitude},#{o.longitude}",
+      :zoom => o.map_scale,
+      :size => '200x200',
+      :sensor => 'false',
+      :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
+      :maptype => "hybrid",
+      :key => Ym4r::GmPlugin::ApiKey.get
+    }.merge(options)
+    url_for(url_for_options)
   end
   
 end

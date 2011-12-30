@@ -2,7 +2,7 @@
   Your Home
 <% end -%>
 <% content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations', 'identifications', "lists", 'lists/show_listed_taxa', 'account/index' %>
+  <%= stylesheet_link_tag 'observations', 'identifications', "lists", 'lists/show_listed_taxa', 'account/index', 'dashboard' %>
   <style type="text/css" media="screen">
     .comment {
       margin: 0;
@@ -93,24 +93,6 @@
     
     .update:hover .update_toggle {
       visibility: visible;
-    }
-    
-    .activitybatch .icon {
-      display: inline-block;
-      width: 75px;
-      text-align: center;
-      vertical-align: middle;
-      margin: 0 0 5px 5px;
-    }
-    
-    .activitybatch .icon .small {
-      line-height: 1.2;
-    }
-    
-    .activitybatch img {
-      vertical-align: middle;
-      margin: 0 0 5px 5px;
-      display: inline-block;
     }
     
     #recent_comments .mini.observation .place_guess { display: none; }
@@ -229,66 +211,12 @@
               :style => "display: none",
               :class => "right update_toggle expandlink" %>
               <h5>
-                <%= link_to image_tag(update.user.icon.url(:thumb), :class => 'usericon'),
-                  person_path(update.user) %>
-                <%= link_to update.user.login, person_path(update.user) %> added
-                <% if update.batch_ids.blank? -%>
-                  <%- case update.activity_object_type -%>
-                  <%- when "Post" -%>
-                    a <%= link_to "journal post", post_path(update.user.login, activity_object) %>
-                  <%- when "Comment" %>
-                    a <%= link_to "comment", activity_object %>
-                    on
-                    <%= activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
-                    <%= link_to activity_object.parent_type.underscore.humanize.downcase, activity_object %>
-                    <% if activity_object.parent.user -%>
-                      by
-                      <%= link_to image_tag(activity_object.parent.user.icon.url(:thumb), :class => 'usericon'),
-                        person_path(activity_object.parent.user) %>
-                      <%= link_to activity_object.parent.user.login, activity_object.parent.user %>
-                    <% end -%>
-                  <%- when "ListedTaxon" -%>
-                    a taxon to
-                    <%= link_to activity_object.list.title, activity_object %>
-                  <%- when "List" -%>
-                    a new list called
-                    <%= link_to activity_object.title, activity_object %>
-                  <%- else -%>
-                    <%= update.activity_object_type.match(/^[aeiou]/i) ? 'an' : 'a' %>
-                    <%= link_to update.activity_object_type.underscore.humanize.downcase, activity_object %>
-                  <%- end -%>
-                <% else %>
-                  <%= pluralize update.batch_ids.split(',').size, update.activity_object_type.underscore.humanize.downcase %>
-                <% end -%>
-                at <%= update.updated_at.strftime("%I:%S %p").downcase.gsub(/^0/, '') %>
+                <%= link_to image_tag(update.user.icon.url(:thumb), :class => 'usericon'), person_path(update.user) %>
+                <%= activity_stream_tagline(update, :activity_object => activity_object) %>
               </h5>
             
             <div id="<%= dom_id update, 'body' %>" class="clear update_body">
-              <% if update.batch_ids.blank? -%>
-                <%- case update.activity_object_type -%>
-                <%- when "Observation" -%>
-                  <div class="mini observations">
-                    <%= render :partial => "observations/cached_component", :object => activity_object %>
-                  </div>
-                <%- when "Identification" -%>
-                  <%= render :partial => "identifications/identification_with_observation", :object => activity_object %>
-                <%- when "ListedTaxon" -%>
-                  <div class="listed_taxa plain_view">
-                    <%= render :partial => "lists/listed_taxon", :object => activity_object %>
-                  </div>
-                <%- when "Post" %>
-                  <%= render :partial => "posts/post", :object => activity_object, 
-                    :locals => { :truncate_length => 200 } %>
-                <%- when "List" %>
-                <%- else -%>
-                  <%= render update.activity_object %>
-                <%- end -%>
-              <% elsif batch_partial = activity_object.class.activity_stream_options[:batch_partial] %>
-                <%= render :partial => batch_partial, :locals => { 
-                  :update => update,
-                  activity_object.class.to_s.underscore.pluralize.to_sym => @activity_objects_by_update_id[update.id]
-                } %>
-              <% end -%>
+              <%= activity_stream_body(update, :activity_object => activity_object) %>
             </div>
           </div>
         <% end %>

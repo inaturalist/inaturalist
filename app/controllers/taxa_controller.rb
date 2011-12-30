@@ -38,6 +38,9 @@ class TaxaController < ApplicationController
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
   ALLOWED_SHOW_PARTIALS = %w(chooser)
+  MOBILIZED = [:show, :index]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
   
   #
   # GET /observations
@@ -86,6 +89,14 @@ class TaxaController < ApplicationController
             :include => {:taxon => [:taxon_names]},
             :limit => 5
           ).sort_by(&:id).reverse
+        end
+      end
+      format.mobile do
+        if @taxa.blank?
+          page = params[:page].to_i
+          page = 1 if page < 1
+          @taxon_photos = TaxonPhoto.paginate(:page => page)
+          @taxa = Taxon.all(:conditions => ["id IN (?)", @taxon_photos.map{|tp| tp.taxon_id}])
         end
       end
       format.xml  do
@@ -179,6 +190,16 @@ class TaxaController < ApplicationController
         
         render :action => 'show'
       end
+      
+      format.mobile do
+        if @taxon.species_or_lower?
+          @siblings = @taxon.species.siblings.all(:limit => 100, :include => [:photos, :taxon_names]).sort_by{|t| t.name}
+          @siblings.delete_if{|s| s.id == @taxon.id}
+        else
+          @children = @taxon.children.all(:limit => 100, :include => [:photos, :taxon_names]).sort_by{|t| t.name}
+        end
+      end
+      
       format.xml do
         render :xml => @taxon.to_xml(
           :include => [:taxon_names, :iconic_taxon], 

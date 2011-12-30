@@ -233,4 +233,17 @@ module TaxaHelper
       :default_name => taxon.default_name
     }.to_json
   end
+  
+  def iconic_taxon_color(taxon)
+    taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.to_i] unless taxon.is_a?(Taxon)
+    taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] if taxon && !taxon.is_iconic?
+    case taxon.try(:name)
+    when "Animalia", "Actinopterygii", "Amphibia", "Reptilia", "Aves", "Mammalia" then "1E90FF"
+    when "Insecta", "Arachnida", "Mollusca" then "FF4500"
+    when "Plantae" then "73AC13"
+    when "Fungi" then "FF1493"
+    when "Protozoa" then "691776"
+    else nil
+    end
+  end
 end

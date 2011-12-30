@@ -1,5 +1,5 @@
 <%- identification ||= object || @identification -%>
-<div class="mini observations observationcol column span-8">
+<div class="mini <%= 'compact' if request.format.mobile? %> observations observationcol column span-8">
   <%= render :partial => "observations/cached_component", :locals => { 
     :observation => identification.observation } %>
 </div>

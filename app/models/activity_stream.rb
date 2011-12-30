@@ -8,6 +8,10 @@ class ActivityStream < ActiveRecord::Base
       "activity_object_type: #{activity_object_type}, activity_object_id: #{activity_object_id}"
   end
   
+  def activity_object_name
+    activity_object.class.to_s.underscore.humanize.downcase
+  end
+  
   # Destroys activity streams that have an activity_object that no longer 
   # exists
   def self.destroy_nils_for_activity_object_type(klass)

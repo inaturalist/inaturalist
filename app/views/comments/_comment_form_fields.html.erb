@@ -18,7 +18,7 @@
     :with => "$(this).parents('form').serialize() + '&preview=true'", 
     :html => {
       :id => "#{unique_id}-preview",
-      :class => 'button'
+      :class => 'button previewbutton'
     } %>
   <div id="<%= unique_id %>-preview_loading" class="loading status inter" style="display:none">Previewing...</div>
   <%- unless comment.new_record? -%>

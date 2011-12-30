@@ -1,0 +1,19 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Observations by #{you_or_login(@selected_user)}" %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "observations" %>
+<%- end -%>
+<h2>
+  <% image_and_content user_image(@selected_user, :size => "thumb") do %>
+    <%= @title %>
+  <% end -%>
+</h2>
+
+<div class="compact mini observations">
+  <% in_format :html do %>
+    <%= render :partial => "observations/cached_component", :collection => @observations %>
+  <% end -%>
+</div>
+
+<%= will_paginate @observations %>

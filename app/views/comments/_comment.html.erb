@@ -9,7 +9,7 @@
       <% if include_user_image -%>
         <%= link_to(image_tag(comment.user.icon.url(:thumb), :class => 'usericon'), comment.user) %>
       <% end -%>
-      <%= link_to(truncate(you_or_login(comment.user, :capitalize => true), :length => 20), person_path(comment.user)) %> said
+      <%= link_to(truncate(you_or_login(comment.user, :capitalize => true), :length => 20), comment.user) %> said
       <% unless comment.new_record? -%>
         <span class="when">
           <span class="date"><%= time_ago_in_words(comment.created_at) %></span> ago,

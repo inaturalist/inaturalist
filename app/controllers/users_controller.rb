@@ -6,6 +6,10 @@ class UsersController < ApplicationController
   before_filter :admin_required, :only => [:suspend, :unsuspend, :curation]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
+  MOBILIZED = [:show, :dashboard]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
+  
   def new
     @user = User.new
   end
@@ -159,6 +163,11 @@ class UsersController < ApplicationController
         :per_page => 15,
         :include => {:taxon => [:photos, :taxon_names]}, :order => "listed_taxa.id desc")
     end
+    
+    respond_to do |format|
+      format.html
+      format.mobile
+    end
   end
   
   def relationships
@@ -228,8 +237,26 @@ class UsersController < ApplicationController
       @id_please_observations += @commented_on
     end
     unless @id_please_observations.blank?
-      @id_please_observations = @id_please_observations.select(&:id_please?)
-      @id_please_observations = @id_please_observations.uniq.sort_by(&:id).reverse
+      @id_please_observations = @id_please_observations.select{|o| o.id_please?}
+      @id_please_observations = @id_please_observations.uniq.sort_by{|o| o.id}.reverse
+    end
+    
+    respond_to do |format|
+      format.html
+      format.json do
+        json = @updates.map do |u|
+          {
+            :subject_name => u.user.login,
+            :subject_image => u.user.icon.url(:small),
+            :verb => "added",
+            :object_name => u.activity_object.class.to_s.underscore.humanize.downcase,
+            :object_url => url_for(u.activity_object),
+            :object_image => activity_object_image_url(u)
+          }
+        end
+        render :json => json
+      end
+      format.mobile
     end
   end
   
@@ -363,6 +390,16 @@ protected
     @listed_taxa_counts = ListedTaxon.count(:conditions => ["list_id IN (?)", @users.map{|u| u.life_list_id}], 
       :group => :user_id)
     @post_counts = Post.count(:conditions => ["user_id IN (?)", @users], :group => :user_id)
+  end
+  
+  def activity_object_image_url(activity_stream)
+    o = activity_stream.activity_object
+    case o.class.to_s
+    when "Observation"
+      o.photos.first.try(:square_url)
+    when ""
+      nil
+    end
   end
     
 end

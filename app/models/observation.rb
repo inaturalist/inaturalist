@@ -4,6 +4,8 @@ class Observation < ActiveRecord::Base
   acts_as_taggable
   acts_as_flaggable
   
+  include Ambidextrous
+  
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
@@ -37,10 +39,6 @@ class Observation < ActiveRecord::Base
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
   QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
-  
-  IPHONE_USER_AGENT_PATTERN = /Titanium/
-  ANDROID_USER_AGENT_PATTERN = /^iNaturalist\/\d+.+Android/
-  MOBILE_USER_AGENT_PATTERNS = [IPHONE_USER_AGENT_PATTERN, ANDROID_USER_AGENT_PATTERN]
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -1211,7 +1209,7 @@ class Observation < ActiveRecord::Base
   
   def mobile?
     return false unless user_agent
-    MOBILE_USER_AGENT_PATTERNS.each do |pattern|
+    MOBILE_APP_USER_AGENT_PATTERNS.each do |pattern|
       return true if user_agent =~ pattern
     end
     false
@@ -1219,9 +1217,9 @@ class Observation < ActiveRecord::Base
   
   def device_name
     return "unknown" unless user_agent
-    if user_agent =~ ANDROID_USER_AGENT_PATTERN
+    if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
       "iNaturalist Android App"
-    elsif user_agent =~ IPHONE_USER_AGENT_PATTERN
+    elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
       "iNaturalist iPhone App"
     else
       "web browser"
@@ -1230,7 +1228,7 @@ class Observation < ActiveRecord::Base
   
   def device_url
     return unless user_agent
-    if user_agent =~ IPHONE_USER_AGENT_PATTERN
+    if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
       "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
     # elsif user_agent =~ ANDROID_USER_AGENT_PATTERN
     #   "/apps"

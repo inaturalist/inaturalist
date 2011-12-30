@@ -1,0 +1,38 @@
+<%- content_for(:title) do -%>
+  Dashboard
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "observations", 'identifications', 'dashboard' %>
+  <style type="text/css" media="screen">
+    #updates {list-style:none; padding:0; margin:0;}
+    #updates .update { margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom:10px;}
+    .subject_image { float: left; }
+    .tagline, .body { padding-left: 58px;}
+    .identification_update .observation, .comment_update .observation {opacity: 0.6;}
+    .identification_image {width:75px; text-align:center;}
+    .observations.mini .observation {border:0 none;}
+    .listed_taxon .actions {display:none;}
+  </style>
+  <% if is_android_app? -%>
+    <style type="text/css" media="screen">
+      #updates .update {border-bottom: 1px solid #333;}
+    </style>
+  <% end -%>
+<%- end -%>
+<h2>Recent Updates</h2>
+<ul id="updates">
+  <% for u in @updates %>
+    <li class="update <%= u.activity_object_type.underscore %>_update">
+      <%= link_to image_tag(u.user.icon.url(:thumb)), u.user, :class => "subject_image" %>
+      <div class="tagline meta">
+        <%= activity_stream_tagline(u) %>
+      </div>
+      <div class="body ui-helper-clearfix">
+        <% in_format(:html) do %>
+          <%= activity_stream_body(u) %>
+        <% end -%>
+      </div>
+    </li>
+  <% end %>
+</ul>
