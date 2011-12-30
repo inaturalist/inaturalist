@@ -21,7 +21,7 @@
 <h2><%= @observation.to_plain_s(:no_time => true) %></h2>
 <% in_format :html do %>
   <% unless @observation.photos.blank? -%>
-    <div class="photos">
+    <div class="stacked photos">
       <%= render :partial => "observations/photos", :object => @observation, :locals => {
         :no_js => true,
         :image_size => "medium"

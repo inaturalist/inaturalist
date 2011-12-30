@@ -1,6 +1,12 @@
 class PhotosController < ApplicationController
+  MOBILIZED = [:show]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
+  
   def show
     return render_404 unless @photo = Photo.find_by_id(params[:id].to_i)
+    @size = params[:size]
+    @size = "medium" if !%w(small medium large original).include?(@size)
     respond_to do |format|
       format.html do
         if params[:partial]
@@ -11,6 +17,7 @@ class PhotosController < ApplicationController
         @taxa = @photo.taxa.all(:limit => 100)
         @observations = @photo.observations.all(:limit => 100)
       end
+      format.mobile
       format.js do
         partial = params[:partial] || 'photo'
         render :layout => false, :partial => partial, :object => @photo

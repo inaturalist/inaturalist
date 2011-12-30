@@ -13,7 +13,7 @@
 <table>
   <tr>
     <td>
-      <%= image_tag @photo.medium_url %>
+      <%= image_tag @photo.send("#{@size}_url") %>
     </td>
     
     <td style="width: 100%">
