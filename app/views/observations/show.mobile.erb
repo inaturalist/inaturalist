@@ -60,7 +60,7 @@
       <div class="boxbody ui-helper-clearfix">
         <% image_and_content link_to(user_image(ident.user, :size => "thumb"), ident.user) do %>
           <% image_and_content link_to(taxon_image(ident.taxon, :class => "left"), ident.taxon) do %>
-            <% if logged_in? && ident.user_id != current_user.id && ident.taxon_id != @observation.taxon_id -%>
+            <% if logged_in? && ident.user_id != current_user.id -%>
               <%= link_to "Agree?", {
                    :controller => 'identifications',
                    :action => 'agree',
