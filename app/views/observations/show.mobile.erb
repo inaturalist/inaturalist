@@ -7,14 +7,17 @@
     .photos .main img {margin-bottom: 5px;}
     .other_photos {float:none;display:inline;}
     .box {padding:0;}
-    .box .boxbody {padding:10px;}
+    .box .boxbody {padding:10px 10px 0 10px;}
     .box .boxheader{background-color:#EFEFC7; padding:5px 10px;}
     .quiet.box .boxheader{background-color:#dedede;}
     .taxon .othernames {display:block;}
     .identification img {max-width:48px;}
+    .identification .button {margin:0 0 0 10px; float:right; text-align:center;}
+    .buttonrow.inline .prevlink {float:left;}
+    .buttonrow.inline .nextlink {float:right;}
+    .uplink {max-width: 160px;}
   </style>
 <%- end -%>
-<%#= observation_image @observation, :size => "medium" %>
 <h2><%= @observation.to_plain_s(:no_time => true) %></h2>
 <% in_format :html do %>
   <% unless @observation.photos.blank? -%>
@@ -54,13 +57,26 @@
         <%= possessive ident.user, :capitalize => true %>
         ID
       </div>
-      <div class="boxbody">
-        <% image_and_content taxon_image(ident.taxon) do %>
-          <%= user_image ident.user, :size => "thumb", :class => "right" %>
-          <%= render :partial => "shared/taxon", :object => ident.taxon, :locals => {
-            :link_url => url_for(ident.taxon),
-            :include_parens => false
-          } %>
+      <div class="boxbody ui-helper-clearfix">
+        <% image_and_content link_to(user_image(ident.user, :size => "thumb"), ident.user) do %>
+          <% image_and_content link_to(taxon_image(ident.taxon, :class => "left"), ident.taxon) do %>
+            <% if logged_in? && ident.user_id != current_user.id && ident.taxon_id != @observation.taxon_id -%>
+              <%= link_to "Agree?", {
+                   :controller => 'identifications',
+                   :action => 'agree',
+                   :observation_id => ident.observation_id,
+                   :taxon_id => ident.taxon_id },
+                 :method => :post,
+                 "data-loading-click" => "...",
+                 :class => "glaucous button" %>
+            <% end -%>
+            <div class="stacked">
+              <%= render :partial => "shared/taxon", :object => ident.taxon, :locals => {
+                :link_url => url_for(ident.taxon),
+                :include_parens => false
+              } %>
+            </div>
+          <% end -%>
         <% end -%>
       </div>
     </div>
@@ -129,5 +145,9 @@
   <%= render :partial => "comments/comments", :object => @observation %>
 <% end -%>
 
-<%= link_to("Prev", @prev, :class => "prevlink button inlineblock left  ") if @prev %>
-<%= link_to("Next", @next, :class => "nextlink button inlineblock right ") if @next %>
+<div class="inline buttonrow" style="text-align:center;">
+  <%= link_to("Prev", @prev, :class => "prevlink button inlineblock") if @prev %>
+  <%= link_to "#{truncate possessive(@observation.user, :capitalize => true), :length => 16} observations", 
+    observations_by_login_path(@observation.user.login), :class => "inlineblock button uplink" %>
+  <%= link_to("Next", @next, :class => "nextlink button inlineblock") if @next %>
+</div>

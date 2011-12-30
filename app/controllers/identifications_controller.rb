@@ -115,29 +115,35 @@ class IdentificationsController < ApplicationController
     
     respond_to do |format|
       if @identification.save
-        format.html do
-          flash[:notice] = "Identification saved!"
-          if params[:return_to]
-            return redirect_to(params[:return_to])
-          end
-          redirect_to @identification.observation and return
-        end
+        format.html { agree_respond_to_html }
+        format.mobile { agree_respond_to_html }
         format.js
       else
-        format.html do
-          flash[:notice] = "There was a problem saving your identification: " +
-            @identification.errors.full_messages.join(', ')
-          if params[:return_to]
-            return redirect_to(params[:return_to])
-          end
-          redirect_to @identification.observation and return
-        end
+        format.html { agree_respond_to_html_failure }
+        format.mobile { agree_respond_to_html_failure }
         format.js { render :action => 'agreement_error.js.rjs' }
       end
     end
   end
   
   private
+  
+  def agree_respond_to_html
+    flash[:notice] = "Identification saved!"
+    if params[:return_to]
+      return redirect_to(params[:return_to])
+    end
+    redirect_to @identification.observation
+  end
+  
+  def agree_respond_to_html_failure
+    flash[:notice] = "There was a problem saving your identification: " +
+      @identification.errors.full_messages.join(', ')
+    if params[:return_to]
+      return redirect_to(params[:return_to])
+    end
+    redirect_to @identification.observation
+  end
   
   def load_identification
     render_404 unless @identification = Identification.find_by_id(params[:id])
