@@ -1,10 +1,12 @@
 <%- content_for(:title) do -%>
-  Edit Comment
+  <%= @title = "Edit your comment" %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <%= javascript_include_tag 'jquery/plugins/jqModal' %>
 <%- end -%>
 <div class="last column prepend-7 span-10 append-7">
-  <h2>Edit Your Comment</h2>
-  <%= render :partial => "comment_form", :locals => { :comment => @comment } %>
+  <h2><%= @title %></h2>
+  <% in_format :html do %>
+    <%= render :partial => "comment_form", :locals => { :comment => @comment } %>
+  <% end -%>
 </div>

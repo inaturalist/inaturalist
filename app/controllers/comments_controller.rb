@@ -2,6 +2,10 @@ class CommentsController < ApplicationController
   before_filter :login_required, :except => :index
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
+  MOBILIZED = [:edit]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
+  
   def index
     find_options = {
       :select => "MAX(id) AS id, parent_id",
@@ -31,24 +35,20 @@ class CommentsController < ApplicationController
   
   def edit
     @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.mobile do
+        render "edit.html.erb"
+      end
+    end
   end
   
   def create
     @comment = Comment.new(params[:comment])
     @comment.save unless params[:preview]
     respond_to do |format|
-      format.html do
-        if @comment.valid?
-          flash[:notice] = "Your comment was saved."
-          if params[:return_to]
-            return redirect_to(params[:return_to])
-          end
-        else
-          flash[:error] = "We had trouble saving your comment: " +
-            @comment.errors.full_messages.join(', ')
-        end
-        redirect_to_parent
-      end
+      format.html { respond_to_create }
+      format.mobile { respond_to_create }
       format.js
     end
   end
@@ -87,5 +87,18 @@ class CommentsController < ApplicationController
     else
       redirect_to(url_for(@comment.parent) + "#comment-#{@comment.id}")
     end
+  end
+  
+  def respond_to_create
+    if @comment.valid?
+      flash[:notice] = "Your comment was saved."
+      if params[:return_to]
+        return redirect_to(params[:return_to])
+      end
+    else
+      flash[:error] = "We had trouble saving your comment: " +
+        @comment.errors.full_messages.join(', ')
+    end
+    redirect_to_parent
   end
 end

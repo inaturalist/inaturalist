@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :admin_required, :only => [:suspend, :unsuspend, :curation]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
-  MOBILIZED = [:show, :dashboard]
+  MOBILIZED = [:show, :dashboard, :new]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   

@@ -78,6 +78,9 @@
             </div>
           <% end -%>
         <% end -%>
+        <% unless ident.body.blank? -%>
+          <%= formatted_user_text ident.body %>
+        <% end -%>
       </div>
     </div>
   <% end %>
