@@ -158,6 +158,7 @@ module UsersHelper
   
   def activity_stream_body(update, options = {})
     activity_object = options[:activity_object] || update.activity_object
+    return nil unless activity_object
     mobile = request.format.mobile?
     if update.batch_ids.blank?
       case update.activity_object_type
