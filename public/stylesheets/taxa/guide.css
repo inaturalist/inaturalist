@@ -1,8 +1,8 @@
-.taxa.grid .taxon{float:none;vertical-align:top;}
+.taxa.grid .taxon{float:none;vertical-align:top;overflow:visible;}
+.taxa.grid .taxonimage {height:auto;}
 .taxa.big.grid .taxonimage { min-height: 206px; }
 .taxa.big.grid .taxon img { max-height: 206px;}
 
-/*.taxa.medium.grid .taxonimage { min-height: 160px; }*/
 .taxa.medium.grid .taxon img  { max-height: 160px;}
 
 .taxa.grid .taxon .image, 
