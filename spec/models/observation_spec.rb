@@ -35,6 +35,12 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(11)
   end
   
+  it "should parse time from strings like 2011-12-23T11:52:06.123" do
+    @observation.observed_on_string = '2011-12-23T11:52:06.123'
+    @observation.save
+    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(11)
+  end
+  
   it "should parse a time zone from a code" do
     @observation.observed_on_string = 'October 30, 2008 10:31PM EST'
     @observation.save

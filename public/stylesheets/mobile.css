@@ -4,19 +4,18 @@ p,.p,h1,h2,h3,h4,h5,h6,.readable{font-family:"Trebuchet MS",Arial,sans-serif;fon
 p,.p,.readable{font-size:100%;}
 body.mobile #wrapper,
 body.mobile #header,
-body.mobile #footer{min-width:310px;padding:5px;}
-body.mobile #footer{background-color:#eee; text-align:left;padding:0;}
-body.mobile #footer ul{list-style:none;margin:0 0 10px 0; padding:0;}
+body.mobile #footer{padding:5px;width:auto;}
+body.mobile #footer{text-align:left;}
+body.mobile #footer ul{ background-color:#eee;list-style:none;margin:0 0 10px 0; padding:0;}
 body.mobile #footer li a{display:block;padding:20px;border-bottom:1px dotted #ccc;margin:0;}
 body.mobile #footer li a.box {border-bottom:1px dotted #aaa;background-color:#ddd;}
 body.mobile #footer_text {text-align:center;}
 body.mobile #header { width: auto; }
-body.mobile select{max-width:310px;}
 body.mobile #header{margin:0;height:auto;line-height:1.4;height:22px;}
 input.button,
 input[type=button],
 input[type=text],
-input[type=password]{float:none;display:inline-block;width:290px;}
+input[type=password]{float:none;display:inline-block;}
 /* Cribbed from blueprint */
 .clear{display:inline-block;}
 .clear:after,.container:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
@@ -39,6 +38,33 @@ h2 {margin: 0 0 0.5em;}
 #new_comment #comment_body {width:auto;}
 #new-comment .meta {position:relative;}
 #new-comment .previewbutton {display:none;}
-textarea {max-width:300px;padding:0;max-height:300px;}
 
+@media all and (orientation: landscape) {
+  textarea {max-width:460px;max-height:200px;}
+  body.mobile #wrapper,
+  body.mobile #header,
+  body.mobile #footer{min-width:470px;}
+  body.mobile select{max-width:470px;}
+  input.select,
+  input.button,
+  input.text,
+  input[type=button],
+  input[type=text],
+  input[type=password],
+  textarea{width:450px !important;}
+}
 
+@media all and (orientation: portrait) {
+  textarea {max-width:300px;max-height:200px;}
+  body.mobile #wrapper,
+  body.mobile #header,
+  body.mobile #footer{min-width:310px;}
+  body.mobile select{max-width:310px;}
+  input.select,
+  input.button,
+  input.text,
+  input[type=button],
+  input[type=text],
+  input[type=password],
+  textarea{width:290px !important;}
+}

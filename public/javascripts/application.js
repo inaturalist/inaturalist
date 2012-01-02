@@ -292,3 +292,6 @@ $.fn.selectLocalTimeZone = function() {
   })
   return this
 }
+
+$.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled') }
+$.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') }

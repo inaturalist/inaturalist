@@ -1,24 +1,69 @@
+<% content_for(:title) do %>
+  Add an Observation
+<% end -%>
 
-<%form_for @observation do |o| %>
-<%= o.label :species_guess, "What did you see?" %>
-<%= o.text_field(:species_guess, :class => 'species_guess') %>
-<br/>
-<%= o.label(:id_please, "ID Please!") %>
-<%= o.check_box(:id_please) %>
-
-<%= o.hidden_field(:latitude) %>
-<%= o.hidden_field(:longitude) %>
-<br/>
-<br/>
-<%= submit_tag("Save observation") %>
+<% form_for @observation, :builder => DefaultFormBuilder do |o| %>
+  <%= o.text_field :species_guess, :label => "What did you see?", :placeholder => "Species name" %>
+  <%= o.check_box :id_please, :label_after => true, :label => "Request ID help" %>
+  <%= o.text_area :description, :placeholder => "Brief description of what you saw" %>
+  <% o.form_field :observed_on_string, :label => "Date/Time" do %>
+    <input type="datetime-local" id="observation_observed_on_string" name="observation[observed_on_string]" class="text" value="<%= Time.now %>"/>
+  <% end -%>
+  <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone select'} %>
+  <%= o.text_field :latitude %>
+  <%= o.text_field :longitude %>
+  <%= o.text_field :positional_accuracy, :label => "Accuracy (meters)" %>
+  <div style="text-align:center;" class="ui-helper-clearfix inline buttonrow stacked">
+    <%= link_to_function "Get current position", "getLocation()", :class => "button", :id => "positionbutton" %>
+    <%= link_to_function "Stop updating position", "stopGetLocation()", :class => "pale button", :style => "display:none", :id => "stoppositionbutton" %>
+    <%= link_to_function "Map", "viewMap()", :class => "button", :style => "display:none", :id => "mapbutton" %>
+  </div>
+  <%= submit_tag "Save observation", :class => "default button", "data-loading-click" => "Saving..." %>
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
-
-function update_location(loc) {
-  $('#observation_latitude').val(loc.coords.latitude);
-  $('#observation_longitude').val(loc.coords.longitude);
-}
-navigator.geolocation.getCurrentPosition(update_location);
-
+  function setLocation(loc) {
+    $('#observation_latitude').val(loc.coords.latitude)
+    $('#observation_longitude').val(loc.coords.longitude)
+    $('#observation_positional_accuracy').val(loc.coords.accuracy)
+    $('#mapbutton').show()
+  }
+  
+  function getLocation() {
+    $('#positionbutton').hide()
+    $('#stoppositionbutton').show()
+    window.watchId = navigator.geolocation.watchPosition(function(loc) {
+      setLocation(loc)
+      var acc = parseInt($('#observation_positional_accuracy').val()) || 0
+      if (acc < 10) {
+        navigator.geolocation.clearWatch(watchId);
+      }
+    })
+    setTimeout(stopGetLocation, 60*1000)
+  }
+  
+  function stopGetLocation() {
+    navigator.geolocation.clearWatch(window.watchId)
+    $('#positionbutton').show()
+    $('#stoppositionbutton').hide()
+  }
+  
+  function viewMap() {
+    window.location = 'http://maps.google.com/?q=' + 
+      $('#observation_latitude').val() + 
+      ',' + 
+      $('#observation_longitude').val()
+  }
+  
+  getLocation()
+  var dateString,
+      now = new Date(),
+      localNow = new Date(now - now.getTimezoneOffset()*60000)
+  try {
+    dateString = localNow.toISOString().replace(/Z$/, '')
+  } catch (e) {
+    dateString = now.toLocaleString()
+  }
+  $('#observation_observed_on_string').val(dateString)
+  $('.time_zone').selectLocalTimeZone()
 </script>

@@ -67,7 +67,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     end
     zone_options += convert_zones.call(zones, selected)
     tag = INatInstanceTag.new(
-      object || object_name, method, self, options.delete(:object)
+      object_name, method, self, options.delete(:object)
     ).to_select_tag_with_option_tags(zone_options, options, html_options)
     form_field method, tag, options.merge(html_options)
   end

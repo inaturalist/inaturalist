@@ -1018,7 +1018,7 @@ class ObservationsController < ApplicationController
   end
   
   def add_nearby
-    @observation = Observation.new
+    @observation = current_user.observations.build(:time_zone => current_user.time_zone)
     respond_to do |format|
       format.mobile
     end

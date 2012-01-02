@@ -477,11 +477,10 @@ module ApplicationHelper
       :host => 'maps.google.com',
       :controller => 'maps/api/staticmap',
       :center => "#{o.latitude},#{o.longitude}",
-      :zoom => o.map_scale,
+      :zoom => o.map_scale || 7,
       :size => '200x200',
       :sensor => 'false',
       :markers => "color:0x#{iconic_taxon_color(o.iconic_taxon_id)}|#{o.latitude},#{o.longitude}",
-      :maptype => "hybrid",
       :key => Ym4r::GmPlugin::ApiKey.get
     }.merge(options)
     url_for(url_for_options)

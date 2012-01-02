@@ -482,7 +482,7 @@ class Observation < ActiveRecord::Base
     unless self.time_observed_at.blank? || options[:no_time]
       s += " at #{self.time_observed_at_in_zone.to_s(:plain_time)}"
     end
-    s += " by #{self.user.login}" unless options[:no_user]
+    s += " by #{self.user.try(:login)}" unless options[:no_user]
     s
   end
   
@@ -553,6 +553,7 @@ class Observation < ActiveRecord::Base
     end
     
     date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
+    date_string.sub!(/(\d{2}:\d{2}:\d{2})\.\d+/, '\\1')
     
     # Set the time zone appropriately
     old_time_zone = Time.zone

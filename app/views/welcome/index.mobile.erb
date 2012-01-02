@@ -12,6 +12,10 @@
   A Community for Naturalists
 <% end %>
 
+<% unless logged_in? -%>
+  Welcome to iNaturlaist!
+<% end -%>
+
 <ul style="width: 100%">
   <li><%= link_to "Nearby observations", nearby_observations_path, :id => "nearbylink", :class => "button" %></li>
   <li><%= link_to "Add an observation", add_nearby_observations_path, :id => "addobslink", :class => "button" %></li>
