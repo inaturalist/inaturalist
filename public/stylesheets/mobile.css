@@ -52,6 +52,8 @@ h2 {margin: 0 0 0.5em;}
   input[type=text],
   input[type=password],
   textarea{width:450px !important;}
+  .button.full { width:450px; }
+  .iconified.button.full { width:428px; }
 }
 
 @media all and (orientation: portrait) {
@@ -67,4 +69,6 @@ h2 {margin: 0 0 0.5em;}
   input[type=text],
   input[type=password],
   textarea{width:290px !important;}
+  .button.full { width:290px; }
+  .iconified.button.full { width:268px; }
 }

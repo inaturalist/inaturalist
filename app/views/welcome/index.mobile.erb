@@ -1,7 +1,7 @@
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     ul { list-style: none; padding: 0; }
-    a.button {float: none; display: inline-block; padding-left: 30px;}
+    #quicklinks a.button {padding-left: 30px; width: 268px;}
     #nearbylink { background: url('/images/silk/world.png') 7px 45% no-repeat; }
     #addobslink { background: url('/images/notebook-icon-color-15px.png') 9px 45% no-repeat; }
     #addfromlistlink { background: url('/images/checklist-icon.png') 7px 45% no-repeat; }
@@ -16,10 +16,10 @@
   Welcome to iNaturlaist!
 <% end -%>
 
-<ul style="width: 100%">
-  <li><%= link_to "Nearby observations", nearby_observations_path, :id => "nearbylink", :class => "button" %></li>
-  <li><%= link_to "Add an observation", add_nearby_observations_path, :id => "addobslink", :class => "button" %></li>
+<ul id="quicklinks" style="width: 100%">
+  <li><%= link_to "Nearby observations", nearby_observations_path, :id => "nearbylink", :class => "inlineblock button fullportrait" %></li>
+  <li><%= link_to "Add an observation", add_nearby_observations_path, :id => "addobslink", :class => "inlineblock button fullportrait" %></li>
   <% if logged_in? -%>
-    <li><%= link_to "Add observations from a list", add_observations_from_list_path, :id => "addfromlistlink", :class => "button" %></li>
+    <li><%= link_to "Add observations from a list", add_observations_from_list_path, :id => "addfromlistlink", :class => "button inlineblock fullportrait" %></li>
   <% end -%>
 </ul>

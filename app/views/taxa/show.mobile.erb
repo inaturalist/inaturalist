@@ -6,7 +6,7 @@
   <style type="text/css" media="screen">
     #photo .taxonimage {display:block; width: auto; margin:0 auto 10px;min-width:310px;}
     .taxonimage, .taxa.grid .taxon {text-align:center;}
-    #photo .nophoto.taxonimage {padding: 20px;}
+    #photo .nophoto.taxonimage {padding: 20px 0;}
     #photo .taxon .name { text-align: center; font-size: 200%; display:block; margin-bottom:10px;}
     .infolink {display:none;}
     .taxonimage img {max-width:310px;}
@@ -16,19 +16,25 @@
     .taxa.grid .taxonimage { width: 90px; height:90px;}
     .taxa.grid .taxonimage img { max-width: 90px; max-height: 90px;}
     .taxa.grid .taxon .image .iconic { margin: 25px 0; }
+    #obslink { padding-left: 30px; background: url('/images/notebook-icon-color-15px.png') 9px 45% no-repeat; }
   </style>
 <%- end -%> 
 <% in_format :html do %>
   <div class="small stacked crumbs">
-    <%= @taxon.self_and_ancestors.map{|t| link_to(t.name, t)}.join(' > ') %>
+    <%= @taxon.self_and_ancestors.map{|t| link_to(t.name, t.name == 'Life' ? taxa_path : t)}.join(' > ') %>
   </div>
-  <div id="photo">
+  <div id="photo" class="stacked">
     <%= render :partial => "taxa/taxon", :object => @taxon, :locals => {
       :image_options => {:size => "medium"},
       :include_image_attribution => true
     } %>
   </div>
-  <% if @siblings -%>
+  
+  <%= link_to "View observations &raquo;", observations_path(:taxon_id => @taxon), 
+    :id => "obslink",
+    :class => "iconified full button inlineblock stacked " %>
+  
+  <% if !@siblings.blank? -%>
     <div class="siblings">
       <h3>Similar species</h3>
       <div class="taxa grid">
@@ -42,7 +48,7 @@
         <% end %>
       </div>
     </div>
-  <% elsif @children %>
+  <% elsif !@children.blank? %>
     <div class="children">
       <h3>Child taxa</h3>
       <div class="taxa grid">

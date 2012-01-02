@@ -8,7 +8,13 @@
 
 <div class="compact mini observations">
   <% in_format :html do %>
-    <%= render :partial => "observations/cached_component", :collection => @observations %>
+    <% if @observations.blank? -%>
+      <div class="meta nocontent">
+        No matching observations.
+      </div>
+    <% else %>
+      <%= render :partial => "observations/cached_component", :collection => @observations %>
+    <% end -%>
   <% end -%>
 </div>
 

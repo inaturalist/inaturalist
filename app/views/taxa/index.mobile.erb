@@ -1,14 +1,19 @@
 <%- content_for(:title) do -%>
   <%= @title = "Taxa" %>
 <%- end -%>
-<div style="width:395px">
-  <h2><%= @title %></h2>
-  <% if @taxa.blank? -%>
-    No taxa yet!
-  <% else %>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .taxa img {width:73px;}
+  </style>
+<%- end -%>
+<h2><%= @title %></h2>
+<% if @taxa.blank? -%>
+  No taxa yet!
+<% else %>
+  <div class="taxa">
     <% for taxon in @taxa %>
       <%= link_to taxon_image(taxon), taxon %>
     <% end %>
-    <%= will_paginate @taxon_photos %>
-  <% end -%>
-</div>
+  </div>
+  <%= will_paginate @taxon_photos %>
+<% end -%>

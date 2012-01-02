@@ -95,7 +95,7 @@ class TaxaController < ApplicationController
         if @taxa.blank?
           page = params[:page].to_i
           page = 1 if page < 1
-          @taxon_photos = TaxonPhoto.paginate(:page => page)
+          @taxon_photos = TaxonPhoto.paginate(:page => page, :per_page => 32, :order => "id DESC")
           @taxa = Taxon.all(:conditions => ["id IN (?)", @taxon_photos.map{|tp| tp.taxon_id}])
         end
       end
