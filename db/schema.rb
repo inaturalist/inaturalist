@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111226210945) do
+ActiveRecord::Schema.define(:version => 20120102213824) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -264,7 +264,6 @@ ActiveRecord::Schema.define(:version => 20111226210945) do
     t.string   "observations_month_counts"
     t.integer  "taxon_range_id"
     t.integer  "source_id"
-    t.boolean  "comprehensive",                           :default => false
   end
 
   add_index "listed_taxa", ["created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"

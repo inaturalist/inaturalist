@@ -34,9 +34,24 @@ class ListedTaxaController < ApplicationController
     end
     @list ||= @place.check_list if @place
     
-    unless @list && @list.editable_by?(current_user)
-      flash[:notice] = "Sorry, you don't have permission to add to this list."
-      return redirect_to lists_path
+    unless @list && @list.listed_taxa_editable_by?(current_user)
+      msg = "Sorry, you don't have permission to add to this list."
+      respond_to do |format|
+        format.html do
+          flash[:notice] = msg
+          redirect_to lists_path
+        end
+        format.json do
+          render :json => {
+              :object => @listed_taxon,
+              :errors => msg,
+              :full_messages => msg
+            },
+            :status => :unprocessable_entity,
+            :status_text => msg
+        end
+      end
+      return
     end
     
     @listed_taxon = @list.add_taxon(@taxon, :user_id => current_user.id) if @taxon

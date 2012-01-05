@@ -319,7 +319,8 @@ class PlacesController < ApplicationController
     
     if @taxon && @place
       ancestor_ids = @taxon.ancestor_ids + [@taxon.id]
-      @comprehensive = @place.listed_taxa.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
+      @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
+      @comprehensive_list = @place.check_lists.first(:conditions => ["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
     end
     
     if @colors = @filter_params[:colors]

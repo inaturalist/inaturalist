@@ -979,8 +979,8 @@ ul .providerlink, ul .button.providerlink { width: 190px; }
   text-align: center;
 }
 
-.research_grade_notice,.id_please_notice{-webkit-border-radius:5px;-moz-border-radius:5px;border:0 transparent;border-radius:10px;padding:2px 5px; white-space: nowrap;}
-.research_grade_notice{background-color:#DCEAA3;color:#529214;}
+.research_grade_notice,.id_please_notice, .comprehensive_notice{-webkit-border-radius:5px;-moz-border-radius:5px;border:0 transparent;border-radius:10px;padding:2px 5px; white-space: nowrap;}
+.research_grade_notice, .comprehensive_notice{background-color:#DCEAA3;color:#529214;}
 a.research_grade_notice:hover{color:#326412;}
 .id_please_notice{background-color:#FFEE91;color:#85743D;}
 a.id_please_notice:hover{color:#584925;}
@@ -1082,3 +1082,8 @@ table .numeric { text-align: center; }
   right: 5px;
   font-weight: bold;
 }
+
+#zoomable_dialog .close {display: none;}
+.zoomified {position:relative;}
+.zoomified .zoom_icon {position:absolute; top: 5px; right: 5px; opacity: 0.5;}
+.zoomified:hover .zoom_icon {opacity: 1;}

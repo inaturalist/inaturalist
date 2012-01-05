@@ -1,6 +1,6 @@
 <%- check_list ||= object ||= @check_list -%>
 <%= error_messages_for :check_list %>
-<% form_for check_list do |f| %>
+<% form_for check_list, :builder => DefaultFormBuilder do |f| %>
   <%= f.hidden_field :place_id %>
   <%- optionscol = capture do -%>
     <div id="taxonfield" class="type_fields">
@@ -26,6 +26,11 @@
       <%= collection_select :iconic_taxon, :id, @iconic_taxa, :id, 
         :to_plain_s, {:include_blank => true}, :class => 'select' %>
     </div>
+    
+    <% if is_admin? -%>
+      <%= f.check_box :comprehensive, :label => "Comprehensive?", :label_after => true,
+        :description => "Does this check list contain all the descendants of this taxon that occur here?" %>
+    <% end -%>
   <%- end -%>
   
   <%= render :partial => 'lists/form_fields', :locals => {
@@ -34,10 +39,7 @@
   } %>
   
   <div class="stacked column span-24">
-    <label>Source <span class="meta">(optional)</span></label>
-    <% fields_for :source, :builder => DefaultFormBuilder do |s| %>
-      <%= render :partial => "sources/nested_form_fields", :locals => { :f => f } %>
-    <% end -%>
+    <%= render :partial => "sources/nested_form_fields", :locals => { :f => f, :label_text => "Source <span class=\"meta\">(optional)</span>" } %>
   </div>
   
   <div class="column span-24">

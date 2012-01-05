@@ -99,6 +99,14 @@ class List < ActiveRecord::Base
     SQL
   end
   
+  def attribution
+    if source
+      source.in_text
+    elsif user
+      user.login
+    end
+  end
+  
   def self.icon_preview_cache_key(list)
     {:controller => "lists", :action => "icon_preview", :list_id => list}
   end

@@ -17,7 +17,14 @@ class CheckList < List
   # validates_uniqueness_of :taxon_id, :scope => :place_id
   
   def editable_by?(user)
-    user && (self.user.blank? || self.user == user || user.is_curator?)
+    user && (self.user == user || user.is_curator?)
+  end
+  
+  def listed_taxa_editable_by?(user)
+    return false if user.blank?
+    return true if self.user == user || user.is_curator?
+    return false if comprehensive?
+    true
   end
   
   def owner_name
@@ -233,8 +240,18 @@ class CheckList < List
   end
   
   def self.add_new_listed_taxa(taxon, new_place_ids)
-    CheckList.find_each(:joins => "JOIN places ON places.check_list_id = lists.id", 
-        :conditions => ["place_id IN (?)", new_place_ids]) do |list|
+    comprehensive_lists = CheckList.all(:conditions => [
+      "comprehensive = 't' AND place_id in (?) AND taxon_id IN (?)", 
+      new_place_ids, 
+      taxon.ancestor_ids
+    ])
+    comprehensive_lists.each do |list|
+      if list.add_taxon(taxon, :force_update_cache_columns => true)
+        new_place_ids = new_place_ids - [list.id]
+      end
+    end
+    CheckList.all(:joins => "JOIN places ON places.check_list_id = lists.id", 
+        :conditions => ["place_id IN (?)", new_place_ids]).each do |list|
       list.add_taxon(taxon, :force_update_cache_columns => true)
     end
   end

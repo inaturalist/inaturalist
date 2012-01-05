@@ -99,7 +99,7 @@ $('[data-autosubmit]').live('change', function() {
 })
 
 function buildHelpTips() {
-  if (typeof($.qtip) == "undefined") { return; }
+  if (typeof($().qtip) == "undefined") { return; }
   var options = $.extend({}, QTIP_DEFAULTS, {
     show: {event: 'click'},
     hide: {event: 'unfocus'}
@@ -172,6 +172,8 @@ $(document).ready(function() {
     collectionUrl: 'http://'+window.location.host + '/sources.json',
     resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json'
   })
+  
+  $('.zoomable').zoomify()
 })
 
 function autoTip() {
@@ -295,3 +297,28 @@ $.fn.selectLocalTimeZone = function() {
 
 $.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled') }
 $.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') }
+
+$.fn.zoomify = function() {
+  var selection = $(this).not('.zoomified')
+  selection
+    .addClass('zoomified')
+    .addClass('inlineblock')
+    .append('<img src="/images/silk/magnifier.png" class="zoom_icon"/>')
+  selection.click(function() {
+    if ($('#zoomable_dialog').length == 0) {
+      $(document.body).append(
+        $('<div></div>').attr('id', 'zoomable_dialog').addClass('dialog')
+      )
+    }
+    $('#zoomable_dialog').html('<div class="loading status">Loading...</div>')
+    $('#zoomable_dialog').load($(this).attr('href'), "partial=photo", function() {
+      $('#zoomable_dialog').dialog('option', 'position', 'center');
+    })
+    $('#zoomable_dialog').dialog({
+      modal: true, 
+      title: $(this).attr('title') || $(this).attr('alt'),
+      width: $(window).width() * 0.8
+    })
+    return false
+  })
+}

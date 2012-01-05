@@ -25,7 +25,8 @@
   <style type="text/css" media="screen">
     #taxa { min-height: 800px;}
     #taxa .map {height: 350px;}
-    #taxa .photos img, #observation .photos img { max-width: 350px; }
+    #taxa .photos img { max-width: 350px; }
+    #observation .photos img { max-width: 290px;}
     #taxa .right.button { float: right; clear: right; margin-right: 0;}
     li.selected { font-weight: bold; }
     .buttonrow.inline input.text, .buttonrow.inline .button, .buttonrow.inline label {vertical-align: top;padding: 5px;font-size:10pt; margin-bottom: 10px;}
@@ -33,7 +34,8 @@
     .identotron_taxa .headercol .taxon .othernames { display: inline; }
     .photos .nophoto {padding: 50px; text-align: center; background-color: #eee;}
     #controls .ui-chooser { vertical-align: top; }
-    #observation {position:fixed; width:350px;}
+    #observation {background-color:white; box-shadow: #aaa 0px 1px 10px; border-radius: 10px; padding:10px; z-index:100;}
+    #observation .observation {border: 0 transparent;}
     .taxon.chooseritem { white-space: nowrap; }
     .taxon.chooseritem .othernames { display:inline; }
     #taxonchooser_chooser .ui-chooser-choice { padding: 4px 5px 3px;}
@@ -63,7 +65,7 @@
     var REPLACE_EXISTING = 2
     
     $(document).ready(function() {
-      // $('#observation').fixedFollower()
+      $('#observation').fixedFollower()
       $('#placechooser').chooser({
         collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
         resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
@@ -87,11 +89,7 @@
       $('#placechooser, #taxonchooser').change(function() {
         $(this).parents('form:first').submit()
       })
-      $('#controls input[type=submit]').css({
-        visibility: 'hidden',
-        width: '0px',
-        height: '0px'
-      })
+      $('#controls input[type=submit]').hide()
       
       $(window).bind("hashchange", function(e) {
         var state = $.bbq.getState()
@@ -132,18 +130,26 @@
           dataType: 'html'
         }).done(function(html) {
           $('#taxa').html(html)
+          $('#taxa .zoomable').zoomify()
           $('#taxa .pagination a').click(function() {
             $.bbq.pushState($.deparam.querystring($(this).attr('href')), OVERRIDE_EXISTING)
             return false
           })
           if ($('#taxa .comprehensive').length > 0) {
             if ($('#taxa .comprehensive_notice').length == 0) {
+              var title       = $('#taxa .comprehensive:first').attr('data-comprehensive-list-title'),
+                  url         = $('#taxa .comprehensive:first').attr('data-comprehensive-list-url'),
+                  attribution = $('#taxa .comprehensive:first').attr('data-comprehensive-list-attribution'),
+                  content     = title + (attribution ? ' (Source: '+attribution+')' : ''),
+                  link        = $('<a></a>').attr('href', url).html(content)
               $('#taxa').prepend(
                 $('<div class="success status comprehensive_notice stacked"></div>').append(
-                  "<strong>Comprehensive list</strong>",
+                  "<strong>Comprehensive list: </strong>",
+                  link,
                   $('<span class="helptip right"></span>').attr('rel', "iNat believes this is a complete listing of this taxon in this place.")
                 )
               )
+              buildHelpTips()
             }
           } else {
             $('#taxa .comprehensive_notice').remove()
@@ -206,19 +212,18 @@
   <h2 class="fadednowrap">Identotron <%= "for #{@observation.to_plain_s}" if @observation %></h2>
 </div>
 
-<div class="column span-9">
+<div class="column span-8 append-1">
   <% if @observation -%>
     <div id="observation">
       <div class="photos">
         <%- photos = @observation.observation_photos.sort_by{|o| o.id}.map{|o| o.photo} -%>
-        <% if photos.first -%>
-          <%= modal_image photos.first, :size => "medium", :style => "margin-bottom: 5px;" %>
-        <% end -%>
-        <% if photos.size > 1 -%>
-          <% for photo in photos[1..-1] %>
-            <%= modal_image photo, :size => "square", :class => "stacked" %>
-          <% end %>
-        <% end -%>
+        <div class="stacked">
+          <%= link_to image_tag(photos[0].medium_url), photos[0].becomes(Photo), :class => "zoomable",
+            :title => "Photo #{photos[0].id}, #{photos[0].attribution}" %>
+        </div>
+        <% for photo in photos[1..-1] %>
+          <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => "Photo #{photo.id}, #{photo.attribution}" %>
+        <% end %>
       </div>
       <div class="observations mini">
         <%= render :partial => "observations/cached_component", :object => @observation %>
@@ -237,8 +242,6 @@
       <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => "Type taxon name" %>
       <%= submit_tag "Filter", :class => "glaucous button" %>
     <% end -%>
-
-    <%#= render :partial => "taxa/classification_list", :object => @taxon, :locals => {:link_method => lambda{|t| url_for(:place => place, :taxon => t.id)}} %>
   </div>
   <div id="listed_taxa">
     <div id="taxa" class="clear taxa fluid medium grid">
