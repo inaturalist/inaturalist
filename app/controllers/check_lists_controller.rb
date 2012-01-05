@@ -101,7 +101,7 @@ class CheckListsController < ApplicationController
   private
   
   def load_list
-    @list = CheckList.find_by_id(params[:id])
+    @list = CheckList.find_by_id(params[:id].to_i)
     render_404 && return unless @list
     true
   end
