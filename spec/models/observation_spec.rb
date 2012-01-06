@@ -84,11 +84,12 @@ describe Observation, "creation" do
     @observation.identifications.first.taxon.should == @observation.taxon
   end
   
-  it "should queue a DJ job for the life list" do
+  it "should queue a DJ job to refresh lists" do
+    Delayed::Job.delete_all
     stamp = Time.now
     Observation.make(:taxon => Taxon.make)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    jobs.select{|j| j.handler =~ /refresh_for_user/}.should_not be_blank
+    jobs.select{|j| j.handler =~ /;List.*refresh_with_observation/m}.should_not be_blank
   end
   
   it "should properly parse relative datetimes like '2 days ago'" do
@@ -455,6 +456,14 @@ describe Observation, "destruction" do
     @observation.destroy
     user.reload
     user.observations_count.should == old_count - 1
+  end
+  
+  it "should queue a DJ job to refresh lists" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    Observation.make(:taxon => Taxon.make)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /;List.*refresh_with_observation/m}.should_not be_blank
   end
 end
 

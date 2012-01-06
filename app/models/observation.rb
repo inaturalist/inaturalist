@@ -656,12 +656,13 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    List.send_later(:refresh_for_user, self.user, 
-      :taxa => target_taxa.map(&:id), :skip_update => true, :dj_priority => 1)
     project_observations.each do |po|
       Project.send_later(:refresh_project_list, po.project_id, 
         :taxa => target_taxa.map(&:id), :add_new_taxa => true)
     end
+    List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
+      :dj_priority => 1)
     # List.send_later(:refresh_with_observation,        id, :taxon_id => taxon_id, :skip_update => true)
     # ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
     
@@ -693,8 +694,10 @@ class Observation < ActiveRecord::Base
   def refresh_lists_after_destroy
     return if @skip_refresh_lists
     return unless taxon
-    List.send_later(:refresh_for_user, self.user, :taxa => [taxon], 
-      :add_new_taxa => false, :dj_priority => 1)
+    List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
+      :dj_priority => 1)
+    true
   end
   
   #

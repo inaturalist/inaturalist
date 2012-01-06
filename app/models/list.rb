@@ -107,6 +107,11 @@ class List < ActiveRecord::Base
     end
   end
   
+  def build_taxon_rule(taxon)
+    return if rules.detect{|r| r.operand_id == taxon.id && r.operand_type == 'Taxon' && r.operator == 'in_taxon?'}
+    rules.build(:operand => taxon, :operator => 'in_taxon?')
+  end
+  
   def self.icon_preview_cache_key(list)
     {:controller => "lists", :action => "icon_preview", :list_id => list}
   end
@@ -147,13 +152,40 @@ class List < ActiveRecord::Base
     end
   end
   
-  # def self.refresh_with_observation(observation, options = {})
-  #   observation = Observation.find_by_id(observation.to_i) unless observation.is_a?(Observation)
-  #   return unless observation && observation.taxon
-  #   user = observation.user
-  #   ListedTaxon.update_all(
-  #     ["last_observation_id = ?", observation], 
-  #     ["list_id IN (?) AND taxon_id IN (?)", user.list_ids, [observation.taxon_id] + observation.taxon.ancestor_ids]
-  #   )
-  # end
+  def self.refresh_with_observation(observation, options = {})
+    observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
+    user = observation.try(:user) || User.find_by_id(options[:user_id])
+    if user.blank?
+      puts "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
+        "failed with blank user, observation: #{observation}, options: #{options.inspect}"
+      return
+    end
+    unless taxon = Taxon.find_by_id(observation.try(:taxon_id) || options[:taxon_id])
+      puts "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
+        "failed with blank taxon, observation: #{observation}, options: #{options.inspect}"
+      return
+    end
+    taxon_ids = [taxon.ancestor_ids, taxon.id].flatten
+    if taxon_was = Taxon.find_by_id(options[:taxon_id_was])
+      taxon_ids = [taxon_ids, taxon_was.ancestor_ids, taxon_was.id].flatten.uniq
+    end
+    # get listed taxa for this taxon and its ancestors that are on the observer's life lists
+    listed_taxa = ListedTaxon.all(:include => [:list],
+      :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, user.list_ids])
+    new_list_ids = user.life_list_ids - listed_taxa.map{|lt| lt.taxon_id == taxon.id ? lt.list_id : nil}
+    new_list_ids.each do |list_id|
+      lt = ListedTaxon.new(:list_id => list_id, :taxon_id => taxon.id)
+      lt.skip_update = true
+      puts lt.errors.full_messages.to_sentence unless lt.save
+    end
+    listed_taxa.each do |lt|
+      unless lt.save
+        lt.destroy
+        next
+      end
+      if lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?
+        lt.destroy
+      end
+    end
+  end
 end

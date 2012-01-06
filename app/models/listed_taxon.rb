@@ -201,6 +201,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def update_cache_columns_for_check_list
     return true if @skip_update_cache_columns
+    return true unless list.is_a?(CheckList)
     if @force_update_cache_columns
       ListedTaxon.update_cache_columns_for(self)
     else

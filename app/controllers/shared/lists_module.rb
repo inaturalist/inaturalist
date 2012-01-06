@@ -184,7 +184,7 @@ module Shared::ListsModule
       when 0
         @lines_taxa << [name, "not found"]
       when 1
-        listed_taxon = @list.add_taxon(taxon_names.first.taxon, :user_id => current_user.id)
+        listed_taxon = @list.add_taxon(taxon_names.first.taxon, :user_id => current_user.id, :manually_added => true)
         if listed_taxon.valid?
           @lines_taxa << [name, listed_taxon]
         else
@@ -271,10 +271,9 @@ module Shared::ListsModule
   # array of taxon params.
   def update_rules(list, params)
     params[:taxa].each do |taxon_params|
-      list.rules << ListRule.new(
-        :operand => Taxon.find_by_id(taxon_params[:taxon_id].to_i), 
-        :operator => 'in_taxon?'
-      ) unless list.rules.map(&:operand_id).include?(taxon_params[:taxon_id].to_i)
+      taxon = Taxon.find_by_id(taxon_params[:taxon_id].to_i)
+      next unless taxon
+      list.build_taxon_rule(taxon)
     end
     list
   end

@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :activity_streams, :foreign_key => 'subscriber_id'
   
   has_many :lists, :dependent => :destroy
+  has_many :life_lists
   has_many :identifications, :dependent => :destroy
   has_many :photos, :dependent => :destroy
   has_many :goal_participants, :dependent => :destroy

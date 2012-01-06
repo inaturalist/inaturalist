@@ -54,7 +54,7 @@ class ListedTaxaController < ApplicationController
       return
     end
     
-    @listed_taxon = @list.add_taxon(@taxon, :user_id => current_user.id) if @taxon
+    @listed_taxon = @list.add_taxon(@taxon, :user_id => current_user.id, :manually_added => true)
     
     respond_to do |format|
       format.html do
