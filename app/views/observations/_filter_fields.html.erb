@@ -24,6 +24,9 @@
     <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
     <label for="research_grade_checkbox">Research quality</label>
     
+    <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
+    <label for="out_of_range_checkbox">Out of range</label>
+    
   </fieldset>
   <fieldset>
     <strong>Identifications</strong>

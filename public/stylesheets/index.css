@@ -430,6 +430,11 @@ ul.leafylist li li:first-child {
   background-color: #FFEE91;
 }
 
+.identification.box {padding:0;}
+.identification.box .boxbody {padding:10px 10px 0 10px;}
+.identification.box .boxheader{background-color:#EFEFC7; padding:5px 10px;}
+.identification.quiet.box .boxheader{background-color:#dedede;}
+
 /* Navigation */
 .pagination a,
 .pagination span {
@@ -839,6 +844,8 @@ form.inline .label {
   height: 16px;
   background: url(/images/silk/help-gray.png) no-repeat;
   vertical-align: middle;
+  position:relative;
+  top:-2px;
 }
 .helptip:hover {
   background: url(/images/silk/help.png) no-repeat;

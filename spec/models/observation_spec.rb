@@ -1034,3 +1034,34 @@ describe Observation do
   end
   
 end
+
+describe Observation, "set_out_of_range" do
+  before(:each) do
+    @taxon = Taxon.make
+    @taxon_range = TaxonRange.make(
+      :taxon => @taxon, 
+      :geom => MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    )
+  end
+  it "should set to false if observation intersects known range" do
+    o = Observation.make(:taxon => @taxon, :latitude => 0.5, :longitude => 0.5)
+    o.set_out_of_range
+    o.out_of_range.should == false
+  end
+  it "should set to true if observation does not intersect known range" do
+    o = Observation.make(:taxon => @taxon, :latitude => 2, :longitude => 2)
+    o.set_out_of_range
+    o.out_of_range.should == true
+  end
+  it "should set to null if observation does not have a taxon" do
+    o = Observation.make
+    o.set_out_of_range
+    o.out_of_range.should == nil
+  end
+  it "should set to null if taxon does not have a range" do
+    t = Taxon.make
+    o = Observation.make(:taxon => t)
+    o.set_out_of_range
+    o.out_of_range.should == nil
+  end
+end

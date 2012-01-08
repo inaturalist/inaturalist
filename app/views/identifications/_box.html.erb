@@ -1,0 +1,36 @@
+<%-
+  identification ||= object
+  observation ||= @observation
+  skip_body ||= false
+-%>
+<div class="identification <%= identification.user_id == observation.user_id ? 'box' : 'quiet box' %>">
+  <div class="boxheader">
+    <%= possessive identification.user, :capitalize => true %>
+    ID
+  </div>
+  <div class="boxbody ui-helper-clearfix">
+    <% image_and_content link_to(user_image(identification.user, :size => "thumb"), identification.user) do %>
+      <% image_and_content link_to(taxon_image(identification.taxon), identification.taxon) do %>
+        <% if logged_in? && identification.user_id != current_user.id -%>
+          <%= link_to "Agree?", {
+               :controller => 'identifications',
+               :action => 'agree',
+               :observation_id => identification.observation_id,
+               :taxon_id => identification.taxon_id },
+             :method => :post,
+             "data-loading-click" => "...",
+             :class => "glaucous button" %>
+        <% end -%>
+        <div class="stacked">
+          <%= render :partial => "shared/taxon", :object => identification.taxon, :locals => {
+            :link_url => url_for(identification.taxon),
+            :include_parens => false
+          } %>
+        </div>
+      <% end -%>
+    <% end -%>
+    <% if !identification.body.blank? && !skip_body -%>
+      <%= formatted_user_text identification.body %>
+    <% end -%>
+  </div>
+</div>

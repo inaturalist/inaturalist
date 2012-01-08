@@ -5,10 +5,6 @@
   <style type="text/css" media="screen">
     .photos .main img {margin-bottom: 5px;}
     .other_photos {float:none;display:inline;}
-    .box {padding:0;}
-    .box .boxbody {padding:10px 10px 0 10px;}
-    .box .boxheader{background-color:#EFEFC7; padding:5px 10px;}
-    .quiet.box .boxheader{background-color:#dedede;}
     .taxon .othernames {display:block;}
     .identification img {max-width:48px;}
     .identification .button {margin:0 0 0 10px; float:right; text-align:center;}
@@ -61,39 +57,7 @@
     </div>
   <% end -%>
   
-  <% for ident in @observation.identifications.sort_by{|ident| ident.id} %>
-    <div class="identification <%= ident.user_id == @observation.user_id ? 'box' : 'quiet box' %>">
-      <div class="boxheader">
-        <%= possessive ident.user, :capitalize => true %>
-        ID
-      </div>
-      <div class="boxbody ui-helper-clearfix">
-        <% image_and_content link_to(user_image(ident.user, :size => "thumb"), ident.user) do %>
-          <% image_and_content link_to(taxon_image(ident.taxon), ident.taxon) do %>
-            <% if logged_in? && ident.user_id != current_user.id -%>
-              <%= link_to "Agree?", {
-                   :controller => 'identifications',
-                   :action => 'agree',
-                   :observation_id => ident.observation_id,
-                   :taxon_id => ident.taxon_id },
-                 :method => :post,
-                 "data-loading-click" => "...",
-                 :class => "glaucous button" %>
-            <% end -%>
-            <div class="stacked">
-              <%= render :partial => "shared/taxon", :object => ident.taxon, :locals => {
-                :link_url => url_for(ident.taxon),
-                :include_parens => false
-              } %>
-            </div>
-          <% end -%>
-        <% end -%>
-        <% unless ident.body.blank? -%>
-          <%= formatted_user_text ident.body %>
-        <% end -%>
-      </div>
-    </div>
-  <% end %>
+  <%= render :partial => 'identifications/box', :collection => @observation.identifications.sort_by{|ident| ident.id} %>
 <% end -%>
 
 <% unless @observation.description.blank? -%>

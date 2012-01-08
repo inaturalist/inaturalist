@@ -1288,6 +1288,7 @@ class ObservationsController < ApplicationController
     
     @quality_grade = search_params[:quality_grade]
     @identifications = search_params[:identifications]
+    @out_of_range = search_params[:out_of_range]
     
     if search_params[:order_by] && ORDER_BY_FIELDS.include?(search_params[:order_by])
       @order_by = search_params[:order_by]
@@ -1321,6 +1322,7 @@ class ObservationsController < ApplicationController
       !@with_photos.blank? ||
       !@identifications.blank? ||
       !@quality_grade.blank? ||
+      !@out_of_range.blank? ||
       !@observed_on.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     

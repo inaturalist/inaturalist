@@ -16,6 +16,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :taxon_name
   
   M_TO_OBSCURE_THREATENED_TAXA = 10000
+  OUT_OF_RANGE_BUFFER = 5000 # meters
   PLANETARY_RADIUS = 6370997.0
   DEGREES_PER_RADIAN = 57.2958
   FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
@@ -156,7 +157,8 @@ class Observation < ActiveRecord::Base
                  
   after_save :refresh_lists,
              :update_identifications_after_save,
-             :refresh_check_lists
+             :refresh_check_lists,
+             :update_out_of_range_later
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
@@ -367,6 +369,9 @@ class Observation < ActiveRecord::Base
     Observation.conditions_for_date("observations.created_at", date)
   }
   
+  named_scope :out_of_range, :conditions => {:out_of_range => true}
+  named_scope :in_range, :conditions => {:out_of_range => false}
+  
   def self.conditions_for_date(column, date)
     year, month, day = date.to_s.split('-').map do |d|
       d = d.blank? ? nil : d.to_i
@@ -449,6 +454,8 @@ class Observation < ActiveRecord::Base
     scope = scope.in_place(params[:place_id]) if params[:place_id]
     scope = scope.on(params[:on]) if params[:on]
     scope = scope.created_on(params[:created_on]) if params[:created_on]
+    scope = scope.out_of_range if params[:out_of_range] == 'true'
+    scope = scope.in_range if params[:out_of_range] == 'false'
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()
@@ -1130,6 +1137,41 @@ class Observation < ActiveRecord::Base
       self.positional_accuracy = nil
     end
     true
+  end
+  
+  def update_out_of_range_later
+    return true unless latitude_changed? || private_latitude_changed? || taxon_id_changed?
+    send_later(:update_out_of_range)
+    true
+  end
+  
+  def update_out_of_range
+    set_out_of_range
+    Observation.update_all(["out_of_range = ?", out_of_range], ["id = ?", id])
+  end
+  
+  def set_out_of_range
+    if taxon_id.blank? || !georeferenced? || !TaxonRange.exists?(["taxon_id = ?", taxon_id])
+      out_of_range = nil
+      return
+    end
+    
+    # buffer the point to accomodate simplified or slightly inaccurate ranges
+    buffer_degrees = OUT_OF_RANGE_BUFFER / (2*Math::PI*Observation::PLANETARY_RADIUS) * 360.0
+    
+    self.out_of_range = if coordinates_obscured?
+      TaxonRange.exists?([
+        "taxon_ranges.taxon_id = ? AND ST_Distance(taxon_ranges.geom, ST_Point(?,?)) > ?",
+        taxon_id, private_longitude, private_latitude, buffer_degrees
+      ])
+    else
+      TaxonRange.count(
+        :from => "taxon_ranges, observations",
+        :conditions => [
+          "taxon_ranges.taxon_id = ? AND observations.id = ? AND ST_Distance(taxon_ranges.geom, observations.geom) > ?",
+          taxon_id, id, buffer_degrees]
+      ) > 0
+    end
   end
   
   # I'm not psyched about having this stuff here, but it makes generating 
