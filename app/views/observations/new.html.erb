@@ -16,32 +16,8 @@
                              "taxon_browser",
                              "observations/edit" %>
   <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('.observation_photos').each(function() {
-        // The photo_fields endpoint needs to know the auth token and the index
-        // for the field
-        var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
-        var index = $.string(index_str).gsub(/[^\d]*/, '').str;
-        var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val();
-        $(this).photoSelector({
-          <%- if @default_photo_identity_url -%>
-            baseURL: <%= @default_photo_identity_url.inspect %>,
-          <% else %>
-            baseURL: '/photos/local_photo_fields?context=user',
-            queryOnLoad: false,
-          <%- end -%>
-          <%- unless @photo_identity_urls.blank? %>
-            urls: [<%= @photo_identity_urls.join(', ') %>],
-          <% end -%>
-          urlParams: {
-            authenticity_token: authenticity_token,
-            index: index,
-            limit: 15,
-            synclink_base: "/observations/new"
-          }
-        });
-      });
-    });
+    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json %>
+    var PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',') %>]
   </script>
 <% end %>
 <div id="pageheader" class="column span-24">

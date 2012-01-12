@@ -9,17 +9,12 @@
     <%= optionscol %>
   <% elsif list.new_record? -%>
     <div id="typescol" class="column span-12 last">
-      <div class="last column span-6">
-        <%= f.check_box :type, {}, 'LifeList', nil %>
-        <label for="list_type">
-          Make it a life list?<br/>
-          <span class="description">
-            Life lists automatically fill up with new taxa as you observe them,
-            and they can be restricted to higher level parent taxa, e.g. a life
-            list of birds in the crow family (Corvidae).
-          </span>
-        </label>
-      </div>
+        <%= f.check_box :type, {}, 'LifeList', {:label => "Make it a life list?", :label_after => true} %>
+        <div class="description">
+          Life lists automatically fill up with new taxa as you observe them,
+          and they can be restricted to higher level parent taxa, e.g. a life
+          list of birds in the crow family (Corvidae).
+        </div>
     </div>
 
     <div id="optionscol" class="column span-12 last">

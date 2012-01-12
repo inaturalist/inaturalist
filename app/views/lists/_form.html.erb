@@ -8,9 +8,10 @@
 
   <div class="column span-24">
     <div class="tools buttons">
-      <%= f.submit "Save", :class => 'default button' %>
+      <%= f.submit "Save", :class => 'default button', "data-loading-click" => "Saving..." %>
       <%= link_to "Delete", @list, :method => :delete, :confirm => "Are you sure you want to delete this list?", 
-        :class => "minor delete button" %>
+        :class => "minor delete button",
+        "data-loading-click" => "Deleting..." %>
     </div>
   </div>
 <%- end -%>

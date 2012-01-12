@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :observation_field_values
+
+  map.resources :observation_fields
+
 
   simplified_login_regex = /\w[^\.,\/]+/
   

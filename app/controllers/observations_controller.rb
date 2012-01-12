@@ -37,7 +37,7 @@ class ObservationsController < ApplicationController
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
     :update_photos, :destroy]
   before_filter :require_owner, :only => [:edit, :edit_photos, 
-    :update_photos]
+    :update_photos, :destroy]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
   before_filter :curator_required, :only => [:curation]
@@ -116,7 +116,7 @@ class ObservationsController < ApplicationController
           render :json => data
         else
           render :json => @observations.to_json(
-            :methods => [:short_description, :user_login],
+            :methods => [:short_description, :user_login, :iconic_taxon_name],
             :include => {
               :iconic_taxon => {},
               :user => {:only => :login},
@@ -177,7 +177,7 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.json do
         render :json => @observations.to_json(
-          :methods => [:user_login],
+          :methods => [:user_login, :iconic_taxon_name],
           :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}})
         end
       format.geojson do
@@ -270,7 +270,7 @@ class ObservationsController < ApplicationController
       format.xml { render :xml => @observation }
       
       format.json do
-        render :json => @observation.to_json(:methods => [:user_login])
+        render :json => @observation.to_json(:methods => [:user_login, :iconic_taxon_name])
       end
       
       format.atom do
@@ -335,6 +335,8 @@ class ObservationsController < ApplicationController
       @observation.species_guess =  params[:taxon_name]
     end
     
+    @observation_fields = ObservationField.all(:order => "id DESC", :limit => 5)
+    
     respond_to do |format|
       format.html do
         @observations = [@observation]
@@ -395,6 +397,7 @@ class ObservationsController < ApplicationController
     end
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
+    @observation_fields = ObservationField.all(:order => "id DESC", :limit => 5)
   end
 
   # POST /observations
@@ -487,7 +490,7 @@ class ObservationsController < ApplicationController
           render :json => {:errors => @observations.map{|o| o.errors.full_messages}}, 
             :status => :unprocessable_entity
         else
-          render :json => @observations.to_json(:methods => [:user_login])
+          render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
         end
       end
     end
@@ -603,7 +606,7 @@ class ObservationsController < ApplicationController
         end
         format.xml  { head :ok }
         format.js { render :json => @observations }
-        format.json { render :json => @observations.to_json(:methods => [:user_login]) }
+        format.json { render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name]) }
       end
     end
   end
@@ -863,7 +866,7 @@ class ObservationsController < ApplicationController
       format.mobile
       
       format.json do
-        render :json => @observations.to_json(:methods => [:user_login])
+        render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
       end
       
       format.kml do
@@ -1675,7 +1678,7 @@ class ObservationsController < ApplicationController
   
   def require_owner
     unless logged_in? && current_user.id == @observation.user_id
-      flash[:error] = "You don't have permission to edit that observation."
+      flash[:error] = "You don't have permission to do that"
       return redirect_to @observation
     end
   end

@@ -61,6 +61,8 @@ class Observation < ActiveRecord::Base
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
+  has_many :observation_field_values, :dependent => :destroy
+  has_many :observation_fields, :through => :observation_field_values
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -119,6 +121,10 @@ class Observation < ActiveRecord::Base
     num_identification_disagreements identifications_most_agree 
     identifications_some_agree identifications_most_disagree projects)
 
+  accepts_nested_attributes_for :observation_field_values, 
+    :allow_destroy => true, 
+    :reject_if => lambda { |attrs| attrs[:value].blank? }
+  
   ##
   # Validations
   #
@@ -986,6 +992,10 @@ class Observation < ActiveRecord::Base
     self.longitude = private_longitude
     self.private_latitude = nil
     self.private_longitude = nil
+  end
+  
+  def iconic_taxon_name
+    Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
   end
   
   def self.obscure_coordinates_for_observations_of(taxon)

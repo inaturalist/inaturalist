@@ -48,8 +48,8 @@
             var selected = $.map(source, function(src) {
               if (src.forceRemote || matcher.test(src.label)) { return src }
             })
-            if (selected.length != 0 && collectionUrl) {
-              if (request.term != '') {
+            if (selected.length != 0) {
+              if (collectionUrl && request.term != '') {
                 selected.push({label: '<em>Search remote</em>', value: request.term, forceRemote: true})
               }
               selected.push({label: '<em>Clear</em>', value: request.term, clear: true})
@@ -90,7 +90,7 @@
       
       markup.input.blur(function() {
         if ($(self).data('previous')) {
-          self.selectItem($(self).data('previous'))
+          self.selectItem($(self).data('previous'), {blurring: true})
         }
       })
       
@@ -158,26 +158,33 @@
       return items
     },
     
-    selectItem: function(item) {
+    selectItem: function(item, options) {
+      options = options || {}
       if (!item) {
         this.clear()
-        return
+      } else {
+        if (!item.label) {
+          item = this.recordsToItems([item])[0]
+        }
+        $(this).data('selected', item)
+        $(this).data('previous', null)
+        $(this.markup.input).hide()
+        $(this.markup.choice).width('auto')
+        $(this.markup.choice).html(item.label || item.html).showInlineBlock()
+        $(this.markup.chooseButton).showInlineBlock()
+        $(this.markup.clearButton)
+          .height(this.markup.choice.outerHeight())
+        $(this.markup.chooseButton)
+          .height(this.markup.choice.outerHeight())
+        $('.ui-icon', this.markup.clearButton)
+          .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
+        $('.ui-icon', this.markup.chooseButton)
+          .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
+        $(this.markup.originalInput).val(item.recordId || item.value || item.id).change()
       }
-      $(this).data('selected', item)
-      $(this).data('previous', null)
-      $(this.markup.input).hide()
-      $(this.markup.choice).width('auto')
-      $(this.markup.choice).html(item.label || item.html).showInlineBlock()
-      $(this.markup.chooseButton).showInlineBlock()
-      $(this.markup.clearButton)
-        .height(this.markup.choice.outerHeight())
-      $(this.markup.chooseButton)
-        .height(this.markup.choice.outerHeight())
-      $('.ui-icon', this.markup.clearButton)
-        .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
-      $('.ui-icon', this.markup.chooseButton)
-        .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
-      $(this.markup.originalInput).val(item.recordId || item.value || item.id).change()
+      if (!options.blurring && typeof(this.options.afterSelect) == 'function') {
+        this.options.afterSelect(item)
+      }
     },
     
     clear: function() {
@@ -267,6 +274,11 @@
         if (this.options.source[i].id == id) { return this.options.source[i] }
       }
       return null
+    },
+    
+    selected: function() {
+      var selected = $(this).data('selected')
+      return typeof(selected) == 'undefined' ? null : selected
     }
   })
 })( jQuery )

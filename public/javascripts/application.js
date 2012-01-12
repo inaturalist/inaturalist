@@ -297,6 +297,7 @@ $.fn.selectLocalTimeZone = function() {
 
 $.fn.disable = function() { $(this).attr('disabled', true).addClass('disabled') }
 $.fn.enable = function() { $(this).attr('disabled', false).removeClass('disabled') }
+$.fn.toggleDisabled = function() { $(this).hasClass('disabled') ? $(this).enable() : $(this).disable() }
 
 $.fn.zoomify = function() {
   var selection = $(this).not('.zoomified')

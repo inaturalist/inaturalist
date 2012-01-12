@@ -1,0 +1,47 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Observation field: #{@observation_field.name}" %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "observations" %>
+<%- end -%>
+<div id="pageheader" class="column span-24">
+  <div id="nav" class="clear">
+    <div class="breadcrumbs">
+      <%= link_to 'Back to observation fields', observation_fields_path, :class => 'back crumb' %>
+    </div><!-- /#breadcrumbs -->
+  </div>
+  
+  <h2><%= @title %></h2>
+</div>
+
+<% unless @observation_field.description.blank? -%>
+  <p class="description"><%=h @observation_field.description %></p>
+<% end -%>
+
+<div class="stacked">
+  <div class="meta ui">
+    <b>Datatype:</b>
+    <%=h @observation_field.datatype %>
+  </div>
+  <div class="meta ui">
+    <b>Created by:</b>
+    <%= link_to user_image(@observation_field.user), @observation_field.user %>
+    <%= link_to_user @observation_field.user %>
+  </div>
+</div>
+
+<h3>Observations specifying this field</h3>
+
+<div class="mini observations">
+  <% if @observations.blank? -%>
+    <div class="noresults">
+      No observations yet.
+    </div>
+  <% else %>
+    <%= render :partial => "observations/cached_component", :collection => @observations %>
+  <% end -%>
+</div>
+
+<%= will_paginate @observation_field_values %>
+
+<%= link_to 'Edit', edit_observation_field_path(@observation_field) %>

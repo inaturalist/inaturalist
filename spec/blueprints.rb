@@ -55,6 +55,18 @@ Observation.blueprint do
   user
 end
 
+ObservationField.blueprint do
+  name { Sham.title }
+  datatype 'text'
+  user
+end
+
+ObservationFieldValue.blueprint do
+  observation
+  observation_field
+  value "foo"
+end
+
 Photo.blueprint do
   user
   native_photo_id { rand(1000) }

@@ -1,4 +1,5 @@
-<% fields_for("observations[]", observation, :index => i) do |o| %>
+<%- i ||= 0 -%>
+<% fields_for observation do |o| %>
   <div class="column span-24 observation stacked">
     <% unless observation.errors.empty? %>
     <%= error_messages_for('observation', :object => observation) %>
@@ -150,5 +151,40 @@
         </div>
       </div>
     </div>
+    
+    <% if is_admin? -%>
+      <div id="morefields" class="admin column span-24">
+        <h3>More fields</h3>
+        <div class="observation_fields">
+          <% o.fields_for :observation_field_values, :builder => DefaultFormBuilder do |ofv| %>
+            <div id="<%= ofv.object.observation_field ? dom_id(ofv.object.observation_field) : nil %>"class="observation_field fieldified stacked">
+              <%= ofv.hidden_field :observation_field_id, :class => "observation_field_id" %>
+              <%= ofv.text_field :value, :label => h(ofv.object.observation_field.try(:name).try(:capitalize)), :description => h(ofv.object.observation_field.try(:description)) %>
+              <%= ofv.hidden_field "_destroy" %>
+              <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')" %>
+            </div>
+          <% end -%>
+        </div>
+        <div>
+          <%- new_ofv_fields = capture do %>
+            <% o.fields_for :observation_field_values, o.object.observation_field_values.build, :builder => DefaultFormBuilder do |ofv| %>
+              <div class="observation_field stacked">
+                <%= ofv.hidden_field :observation_field_id, :class => "observation_field_id" %>
+                <%= ofv.text_field :value, :description => "" %>
+                <%= ofv.hidden_field "_destroy" %>
+                <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')" %>
+              </div>
+            <% end -%>
+          <% end -%>
+          <div class="inline buttonrow">
+            <label>Add a field</label>
+            <input placeholder="Start typing field name..." name="observation_field" class="observation_field_chooser" type="text" data-chooser-default-sources='<%= @observation_fields.to_json %>'/>
+            <%= link_to_function "Add a field", "newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
+            <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+    
   </div>
 <% end %>
