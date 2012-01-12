@@ -839,7 +839,7 @@ class TaxaController < ApplicationController
         flickr_photo = FlickrPhoto.new_from_net_flickr(original)
         if flickr_photo && @taxon.blank?
           if @taxa = flickr_photo.to_taxa
-            @taxon = @taxa.sort_by(&:ancestry).last
+            @taxon = @taxa.sort_by{|t| t.ancestry || ''}.last
           end
         end
         flickr_photo
