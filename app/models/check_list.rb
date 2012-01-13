@@ -8,6 +8,7 @@ class CheckList < List
   
   before_validation :set_title
   before_create :set_last_synced_at, :create_taxon_list_rule
+  after_save :mark_non_comprehensive_listed_taxa_as_absent
   
   validates_presence_of :place_id
   validates_uniqueness_of :taxon_id, :scope => :place_id, :allow_nil => true,
@@ -133,6 +134,22 @@ class CheckList < List
     SQL
   end
   
+  def mark_non_comprehensive_listed_taxa_as_absent
+    return true unless comprehensive_changed?
+    return true unless comprehensive?
+    ancestry = [taxon.ancestry, taxon.id].compact.join('/')
+    conditions = [
+      "place_id = ? AND list_id != ? AND (taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", 
+      place_id, id, ancestry, "#{ancestry}/%"
+    ]
+    sorted_taxon_ids = taxon_ids.uniq.sort
+    ListedTaxon.do_in_batches(:conditions => conditions) do |lt|
+      next if sorted_taxon_ids.include?(lt.taxon_id)
+      ListedTaxon.update_all(["occurrence_status_level = ?", ListedTaxon::ABSENT], "id = #{lt.id}")
+    end
+    true
+  end
+  
   def self.sync_check_lists_with_parents(options = {})
     time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
     start_time = Time.now
@@ -240,16 +257,6 @@ class CheckList < List
   end
   
   def self.add_new_listed_taxa(taxon, new_place_ids)
-    comprehensive_lists = CheckList.all(:conditions => [
-      "comprehensive = 't' AND place_id in (?) AND taxon_id IN (?)", 
-      new_place_ids, 
-      taxon.ancestor_ids
-    ])
-    comprehensive_lists.each do |list|
-      if list.add_taxon(taxon, :force_update_cache_columns => true)
-        new_place_ids = new_place_ids - [list.id]
-      end
-    end
     CheckList.all(:joins => "JOIN places ON places.check_list_id = lists.id", 
         :conditions => ["place_id IN (?)", new_place_ids]).each do |list|
       list.add_taxon(taxon, :force_update_cache_columns => true)

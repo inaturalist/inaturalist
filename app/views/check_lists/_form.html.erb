@@ -6,7 +6,10 @@
     <div id="taxonfield" class="type_fields">
       <h3>What do you want to list? <span class="small description">(optional)</span></h3>
       <p class="ui description">
-        Choose a taxon you'd like to show in this list, like "Aves" for birds, or "Amphibia" for amphibians.
+        Choose a higher-level taxon you'd like to show in this list, like
+        "Aves" for birds, or "Amphibia" for amphibians. When set, this list
+        won't allow taxa that are not in this taxon. For example, if you
+        create a list of birds, you won't be able to add any frogs to it. 
       </p>
       
       <% if check_list.taxon -%>
@@ -19,7 +22,7 @@
       <% end -%>
 
       <% fields_for check_list.taxon || :taxon, :builder => DefaultFormBuilder do |t| %>
-        <%= t.text_field :name, :label => 'Add a taxon (e.g. "birds")' %>
+        <%= t.text_field :name, :label => 'Add a higher-level taxon (e.g. "birds")' %>
       <% end %>
       
       <label>...or choose from some high-level taxa</label>
@@ -28,8 +31,16 @@
     </div>
     
     <% if is_admin? -%>
-      <%= f.check_box :comprehensive, :label => "Comprehensive?", :label_after => true,
-        :description => "Does this check list contain all the descendants of this taxon that occur here?" %>
+      <% if check_list.new_record? -%>
+        <div class="box">
+          If you want to mark this list as comprehensive, create it, add the
+          taxa, and then edit it and you'll have the option to mark it as
+          comprehensive here.
+        </div>
+      <% else %>
+        <%= f.check_box :comprehensive, :label => "Comprehensive?", :label_after => true,
+          :description => "Does this check list contain all the descendants of this taxon that occur here?" %>
+      <% end -%>
     <% end -%>
   <%- end -%>
   

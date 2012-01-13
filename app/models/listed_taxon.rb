@@ -67,20 +67,28 @@ class ListedTaxon < ActiveRecord::Base
   ORDERS = [ALPHABETICAL_ORDER, TAXONOMIC_ORDER]
   OCCURRENCE_STATUS_LEVELS = {
     60 => "present",
-    # 50 => "common",
-    # 40 => "uncommon",
-    # 30 => "irregular",
-    # 20 => "doubtful",
+    50 => "common",
+    40 => "uncommon",
+    30 => "irregular",
+    20 => "doubtful",
     10 => "absent"
   }
   OCCURRENCE_STATUSES = OCCURRENCE_STATUS_LEVELS.values
   OCCURRENCE_STATUS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   OCCURRENCE_STATUS_DESCRIPTIONS["present" ] =  "occurs in the area"
-  # OCCURRENCE_STATUS_DESCRIPTIONS["common" ] =  "occurs frequently"
-  # OCCURRENCE_STATUS_DESCRIPTIONS["uncommon" ] =  "occurs regularly, but in small numbers; requires careful searching of proper habitat" 
-  # OCCURRENCE_STATUS_DESCRIPTIONS["irregular" ] =  "presence unpredictable, including vagrants; may be common in some years and absent others"
-  # OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
+  OCCURRENCE_STATUS_DESCRIPTIONS["common" ] =  "occurs frequently"
+  OCCURRENCE_STATUS_DESCRIPTIONS["uncommon" ] =  "occurs regularly, but in small numbers; requires careful searching of proper habitat" 
+  OCCURRENCE_STATUS_DESCRIPTIONS["irregular" ] =  "presence unpredictable, including vagrants; may be common in some years and absent others"
+  OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
   OCCURRENCE_STATUS_DESCRIPTIONS["absent" ] =  "does not occur in the area"
+  
+  OCCURRENCE_STATUS_LEVELS.each do |level, name|
+    const_set name.upcase, level
+    define_method "#{name}?" do
+      level == occurrence_status_level
+    end
+  end
+  PRESENT_EQUIVALENTS = [PRESENT, COMMON, UNCOMMON]
   
   ESTABLISHMENT_MEANS = %w(native endemic introduced naturalised invasive managed)
   ESTABLISHMENT_MEANS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
@@ -91,11 +99,21 @@ class ListedTaxon < ActiveRecord::Base
   ESTABLISHMENT_MEANS_DESCRIPTIONS["invasive"] = "has a deleterious impact on another organism, multiple organisms, or the ecosystem as a whole"
   ESTABLISHMENT_MEANS_DESCRIPTIONS["managed"] = "maintains presence through intentional cultivation or husbandry"
   
+  ESTABLISHMENT_MEANS.each do |means|
+    const_set means.upcase, means
+    define_method "#{means}?" do
+      establishment_means == means
+    end
+  end
+  
   NATIVE_EQUIVALENTS = %w(native endemic)
   INTRODUCED_EQUIVALENTS = %w(introduced naturalised invasive managed)
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
+  validate_on_create :not_on_a_comprehensive_check_list
+  validate :absent_only_if_not_confirming_observations
+  validate :preserve_absense_if_not_on_a_comprehensive_list
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
@@ -133,6 +151,53 @@ class ListedTaxon < ActiveRecord::Base
         errors.add(field, "can only be set for check lists") unless send(field).blank?
       end
     end
+  end
+  
+  def not_on_a_comprehensive_check_list
+    return true unless list.is_a?(CheckList)
+    return true if first_observation_id || last_observation_id
+    target_place = place || list.place
+    return true unless existing_comprehensive_list
+    unless existing_comprehensive_listed_taxon
+      errors.add(:taxon_id, "isn't on the comprehensive list of #{existing_comprehensive_list.taxon.name} for #{target_place.name}")
+    end
+    true
+  end
+  
+  def existing_comprehensive_list
+    return nil unless list.is_a?(CheckList)
+    return @existing_comprehensive_list unless @existing_comprehensive_list.blank?
+    places = [self.place || list.place]
+    while !places.last.nil? do
+      places << places.last.parent
+    end
+    places.compact!
+    @existing_comprehensive_list = CheckList.first(:conditions => [
+      "comprehensive = 't' AND id != ? AND taxon_id IN (?) AND place_id IN (?)", 
+      list_id, taxon.ancestor_ids, places])
+  end
+  
+  def existing_comprehensive_listed_taxon
+    return nil unless existing_comprehensive_list
+    @existing_listed_taxon ||= existing_comprehensive_list.listed_taxa.first(:conditions => ["taxon_id = ?", taxon_id])
+  end
+  
+  def absent_only_if_not_confirming_observations
+    return true unless occurrence_status_level_changed?
+    return true unless absent?
+    if first_observation || last_observation
+      errors.add(:occurrence_status_level, "can't be absent if there are confirming observations")
+    end
+    true
+  end
+  
+  def preserve_absense_if_not_on_a_comprehensive_list
+    return true unless occurrence_status_level_changed?
+    return true if absent?
+    return true unless existing_comprehensive_list
+    return true if existing_comprehensive_listed_taxon
+    errors.add(:occurrence_status_level, "can't be changed from absent if this taxon is not on the comprehensive list of #{existing_comprehensive_list.taxon.name}")
+    true
   end
   
   def set_ancestor_taxon_ids

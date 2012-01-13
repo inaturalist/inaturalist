@@ -74,7 +74,7 @@ end
 
 Place.blueprint do
   name { Sham.title }
-  latitude { rand(180) }
+  latitude { rand(90) }
   longitude { rand(180) }
 end
 

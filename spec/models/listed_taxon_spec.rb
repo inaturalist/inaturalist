@@ -111,6 +111,17 @@ describe ListedTaxon do
       lt.should be_valid
       lt.first_observation_id.should == good_obs.id
     end
+    
+    it "should fail if occurrence_status set to absent and there is a confirming observation" do
+      l = CheckList.make
+      t = Taxon.make
+      o = make_research_grade_observation(:latitude => l.place.latitude, :longitude => l.place.longitude, :taxon => t)
+      lt = ListedTaxon.make(:list => l, :taxon => t, :first_observation => o)
+      lt.should be_valid
+      lt.occurrence_status_level = ListedTaxon::ABSENT
+      lt.should_not be_valid
+      lt.errors[:occurrence_status_level].should_not be_blank
+    end
   end
   
   describe "check list user removal" do
@@ -230,18 +241,67 @@ describe ListedTaxon do
       lt.first_observation_id.should == o.id
     end
   end
+end
+
+describe ListedTaxon, "validation for comprehensive check lists" do
+  before(:each) do
+    @parent = Taxon.make
+    @taxon = Taxon.make(:parent => @parent)
+    @place = Place.make
+    @check_list = CheckList.make(:place => @place, :taxon => @parent, :comprehensive => true)
+    @check_listed_taxon = @check_list.add_taxon(@taxon)
+  end
   
-  describe "comprehensive" do
-    it "should alter children on change" do
-      load_test_taxa
-      p = Place.make
-      l = p.check_list
-      lt_ancestor = ListedTaxon.make(:list => l, :place => p, :taxon => @Aves)
-      lt_descendant = ListedTaxon.make(:list => l, :place => p, :taxon => @Calypte_anna)
-      lt_descendant.should_not be_comprehensive
-      lt_ancestor.update_attributes(:comprehensive => true)
-      lt_descendant.reload
-      lt_descendant.should be_comprehensive
-    end
+  it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon" do
+    t = Taxon.make(:parent => @parent)
+    @check_list.taxon_ids.should_not include(t.id)
+    lt = @place.check_list.add_taxon(t)
+    lt.should_not be_valid
+    lt.errors[:taxon_id].should_not be_blank
+  end
+  
+  it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon in an ancestor place" do
+    t = Taxon.make(:parent => @parent)
+    @check_list.taxon_ids.should_not include(t.id)
+    p = Place.make(:parent => @place)
+    lt = p.check_list.add_taxon(t)
+    lt.should_not be_valid
+    lt.errors[:taxon_id].should_not be_blank
+  end
+  
+  it "should pass if a comprehensive check lists that does contain this taxon exists for a parent taxon" do
+    t = Taxon.make(:parent => @parent)
+    clt = @check_list.add_taxon(t)
+    @check_list.taxon_ids.should include(t.id)
+    lt = @place.check_list.add_taxon(t)
+    lt.should be_valid
+  end
+  
+  it "should pass if a comprehensive check list that does't contain this taxon exists for a parent taxon and there is a confirming observation" do
+    t = Taxon.make(:parent => @parent)
+    o = make_research_grade_observation(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
+    @check_list.taxon_ids.should_not include(t.id)
+    lt = @place.check_list.add_taxon(t, :first_observation => o)
+    lt.should be_valid
+  end
+  
+  it "should fail if occurence_status changed from absent and there is a comprehensive list of a parent taxon for this place that doesn't contain this taxon" do
+    p1 = Taxon.make
+    p2 = Taxon.make(:parent => p1)
+    t1 = Taxon.make(:parent => p1)
+    t2 = Taxon.make(:parent => p2)
+    # puts "p1: #{p1.id}, p2: #{p2.id}, t1: #{t1.id}, t2: #{t2.id}"
+    cl1 = CheckList.make(:place => @place, :taxon => p1)
+    cl2 = CheckList.make(:place => @place, :taxon => p2)
+    lt1 = cl1.add_taxon(t1)
+    lt2 = cl2.add_taxon(t2)
+    # puts "lt2.errors.full_messages: #{lt2.errors.full_messages.to_sentence}" unless lt2.valid?
+    cl1.update_attributes(:comprehensive => true)
+    lt2.reload
+    lt2.should be_absent
+    lt2.occurrence_status_level = ListedTaxon::PRESENT
+    # puts "lt2.errors.full_messages: #{lt2.errors.full_messages.to_sentence}" unless lt2.valid?
+    lt2.should_not be_valid
+    lt2.errors[:occurrence_status_level].should_not be_blank
   end
 end

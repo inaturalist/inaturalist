@@ -287,7 +287,13 @@ class PlacesController < ApplicationController
       is_filter_param && !is_blank
     }].symbolize_keys
     scope = Taxon.of_rank(Taxon::SPECIES).scoped({})
-    scope = scope.from_place(@place) if @place
+    if @place
+      scope = scope.from_place(@place)
+      scope = scope.scoped(:conditions => [
+        "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", 
+        ListedTaxon::PRESENT_EQUIVALENTS
+      ])
+    end
     order = nil
     if @q = @filter_params[:q]
       @q = @q.to_s

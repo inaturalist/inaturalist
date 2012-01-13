@@ -241,7 +241,7 @@ describe Taxon, "unique name" do
 
   it "should be the default_name by default" do
     taxon = Taxon.make
-    taxon.unique_name.should == taxon.default_name.name
+    taxon.unique_name.should == taxon.default_name.name.downcase
   end
   
   it "should be the scientific name if the common name is already another taxon's unique name" do
@@ -251,7 +251,7 @@ describe Taxon, "unique name" do
       :lexicon => TaxonName::LEXICONS[:ENGLISH])
     taxon.save
     taxon.reload
-    taxon.unique_name.should == taxon.common_name.name
+    taxon.unique_name.should == taxon.common_name.name.downcase
     
     new_taxon = Taxon.make(:name => "Ballywickia purhiensis", 
       :rank => 'species')
@@ -260,7 +260,7 @@ describe Taxon, "unique name" do
       :lexicon => TaxonName::LEXICONS[:ENGLISH]
     )
     new_taxon.reload
-    new_taxon.unique_name.should == new_taxon.name
+    new_taxon.unique_name.should == new_taxon.name.downcase
   end
   
   it "should be nil if all else fails" do
