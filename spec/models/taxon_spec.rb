@@ -264,11 +264,12 @@ describe Taxon, "unique name" do
   end
   
   it "should be nil if all else fails" do
-    taxon = Taxon.make
+    taxon = Taxon.make # unique name should be the common name
     common_name = TaxonName.make(
       :taxon => taxon, 
       :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      
+    
+    other_taxon = new_taxon = Taxon.make(:name => taxon.name) # unique name should be the sciname
     new_taxon = Taxon.make(:name => taxon.name)
     new_common_name = TaxonName.make(:name => common_name.name,
       :taxon => new_taxon, 

@@ -630,23 +630,14 @@ class Taxon < ActiveRecord::Base
     reload # there's a chance taxon names have been created since load
     return true unless default_name
     [default_name.name, name].uniq.each do |candidate|
-      # Skip if this name isn't unique
-      if TaxonName.count(:select => "distinct(taxon_id)", :conditions => {:name => candidate}) > 1  
-        next
-      end
-      begin
-        candidate = candidate.gsub(/[\.\'\?\!\\\/]/, '').downcase
-        logger.info "Updating unique_name for #{self} to #{candidate}"
-        Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
-      rescue ActiveRecord::StatementInvalid => e
-        next if e.message =~ /duplicate key value violates unique/
-        raise e
-      end
+      candidate = candidate.gsub(/[\.\'\?\!\\\/]/, '').downcase
+      return if unique_name == candidate
+      next if Taxon.exists?(:unique_name => candidate)
+      Taxon.update_all(["unique_name = ?", candidate], ["id = ?", self])
       break
     end
   end
   
-
   def wikipedia_summary(options = {})
     if super && super.match(/^\d\d\d\d-\d\d-\d\d$/)
       last_try_date = DateTime.parse(super)
