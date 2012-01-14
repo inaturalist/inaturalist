@@ -56,6 +56,15 @@ svg .introduced, svg .invasive, svg .naturalised, svg .managed {
   visibility: visible;
   opacity: 0.25;
 }
+path.range {
+  opacity:1;
+  fill-opacity:0.3;
+}
+path.range:hover {
+  opacity:1;
+  stroke-opacity:0.9;
+  fill-opacity:0.5;
+}
 #openspace path {
   fill: #B3C927;
   stroke: #5E6708;

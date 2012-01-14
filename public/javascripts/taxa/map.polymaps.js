@@ -383,6 +383,7 @@ function loadChildTaxaLayers() {
     .style('visibility', 'visible')
     .style('fill', function(f) { return colorScale(f.properties.taxon_id) })
     .style('stroke', function(f) { return d3.rgb(colorScale(f.properties.taxon_id)).darker().toString() })
+    .attr('class', 'range')
     
   $.each(children, function() {
     var child = this,
