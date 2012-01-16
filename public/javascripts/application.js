@@ -69,7 +69,13 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
-  var loading = $(this).clone().addClass('loadingclick').css('padding-left', '25px').html(txt)
+  var loading = $(this).clone()
+  loading
+    .attr('id', '')
+    .addClass('loadingclick')
+    .css('padding-left', '25px')
+    .html(txt)
+  loading.click(function(){return false})
   if (txt == '') {
     loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
   }

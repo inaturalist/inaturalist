@@ -14,6 +14,28 @@ class List < ActiveRecord::Base
   
   validates_presence_of :title
   
+  RANK_RULE_OPERATORS = %w(species? species_or_lower?)
+  
+  def rank_rule
+    if (r = rules.detect{|r| r.operator == 'species?'}) then r.operator
+    elsif (r = rules.detect{|r| r.operator == 'species_or_lower?'}) then r.operator
+    else 'any'
+    end
+  end
+  
+  def rank_rule=(new_rank_rule)
+    return if rank_rule == new_rank_rule
+    return if rank_rule.blank?
+    rules.each do |rule|
+      rule.destroy if RANK_RULE_OPERATORS.include?(rule.operator)
+    end
+    
+    case new_rank_rule
+    when "species?"          then self.rules.build(:operator => "species?")
+    when "species_or_lower?" then self.rules.build(:operator => "species_or_lower?")
+    end
+  end
+  
   def to_s
     "<#{self.class} #{id}: #{title}>"
   end
@@ -112,6 +134,10 @@ class List < ActiveRecord::Base
     rules.build(:operand => taxon, :operator => 'in_taxon?')
   end
   
+  def refresh_cache_key
+    "refresh_list_#{id}"
+  end
+  
   def self.icon_preview_cache_key(list)
     {:controller => "lists", :action => "icon_preview", :list_id => list}
   end
@@ -156,12 +182,12 @@ class List < ActiveRecord::Base
     observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
     user = observation.try(:user) || User.find_by_id(options[:user_id])
     if user.blank?
-      puts "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
+      Rails.logger.error "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
         "failed with blank user, observation: #{observation}, options: #{options.inspect}"
       return
     end
     unless taxon = Taxon.find_by_id(observation.try(:taxon_id) || options[:taxon_id])
-      puts "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
+      Rails.logger.error "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
         "failed with blank taxon, observation: #{observation}, options: #{options.inspect}"
       return
     end
@@ -173,10 +199,13 @@ class List < ActiveRecord::Base
     listed_taxa = ListedTaxon.all(:include => [:list],
       :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, user.list_ids])
     new_list_ids = user.life_list_ids - listed_taxa.map{|lt| lt.taxon_id == taxon.id ? lt.list_id : nil}
+    new_taxa = [taxon, taxon.species].compact
     new_list_ids.each do |list_id|
-      lt = ListedTaxon.new(:list_id => list_id, :taxon_id => taxon.id)
-      lt.skip_update = true
-      puts lt.errors.full_messages.to_sentence unless lt.save
+      new_taxa.each do |new_taxon|
+        lt = ListedTaxon.new(:list_id => list_id, :taxon_id => new_taxon.id)
+        lt.skip_update = true
+        puts lt.errors.full_messages.to_sentence unless lt.save
+      end
     end
     listed_taxa.each do |lt|
       unless lt.save

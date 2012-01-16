@@ -98,6 +98,9 @@ class Taxon < ActiveRecord::Base
       ancestors.first(:conditions => {:rank => rank})
     end
     alias_method(rank, "find_#{rank}") unless method_exists?(rank)
+    define_method "#{rank}?" do
+      self.rank == rank
+    end
   end
   
   RANKS = RANK_LEVELS.keys

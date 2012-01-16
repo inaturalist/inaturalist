@@ -53,6 +53,16 @@ describe List, "refresh_with_observation" do
     @list.taxon_ids.should include(t.id)
   end
   
+  it "should add the species if a subspecies was observed" do
+    species = Taxon.make(:parent => @parent, :rank => Taxon::SPECIES)
+    subspecies = Taxon.make(:parent => species, :rank => Taxon::SUBSPECIES)
+    o = Observation.make(:user => @list.user, :taxon => subspecies)
+    @list.taxon_ids.should_not include(species.id)
+    List.refresh_with_observation(o)
+    @list.reload
+    @list.taxon_ids.should include(species.id)
+  end
+  
   it "should remove listed taxa that weren't manually added" do
     t = Taxon.make(:parent => @parent)
     o = Observation.make(:user => @list.user, :taxon => t)

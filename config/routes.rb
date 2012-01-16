@@ -140,7 +140,6 @@ ActionController::Routing::Routes.draw do |map|
       :requirements => { :login => simplified_login_regex }
     p.project_members "projects/:id/members", :action => "members"
     p.project_contributors "projects/:id/contributors", :action => "contributors"
-    p.project_list "projects/:id/list", :action => "list"
     p.formatted_project_contributors "projects/:id/contributors.:format", :action => "contributors"
     p.project_species_count "projects/:id/species_count", :action => "species_count"
     p.formatted_project_species_count "projects/:id/species_count.:format", :action => "species_count"
@@ -201,6 +200,8 @@ ActionController::Routing::Routes.draw do |map|
     :conditions => {:method => :post}
   map.list_reload_from_observations 'lists/:id/reload_from_observations', 
     :controller => 'lists', :action => 'reload_from_observations'
+  map.list_refresh 'lists/:id/refresh', 
+    :controller => 'lists', :action => 'refresh'
   
   map.resources :comments
   map.resources :project_invitations, :except => [:index, :show]

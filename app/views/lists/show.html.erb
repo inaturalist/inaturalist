@@ -52,13 +52,18 @@
     <%= formatted_user_text(@list.description) %>
   </div>
   
-  <% if @list.is_a?(LifeList) && !@list.rules.empty? && @list.rules.first.operand.is_a?(Taxon) -%>
+  <% if @taxon_rule -%>
     <div id="life_list_taxon" class="life_list_taxon description">
-      <%= taxon_image(@list.rules.first.operand) %>
+      <%= taxon_image(@taxon_rule.operand) %>
       This is a life list of
       <%= render :partial => 'shared/taxon', 
-                 :locals => { :taxon => @list.rules.first.operand,
-                              :link_url => url_for(@list.rules.first.operand) } %>
+                 :locals => { :taxon => @taxon_rule.operand,
+                              :link_url => url_for(@taxon_rule.operand) } %>
+    </div>
+  <% end -%>
+  <% if @list.rank_rule != "any" -%>
+    <div id="life_list_rank_rule" class="description">
+      This list only accepts taxa that are <%= @list.rank_rule.gsub(/[_?]+/, ' ').strip %>.
     </div>
   <% end -%>
   

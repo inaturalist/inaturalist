@@ -14,6 +14,10 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       else
         {}
       end
+      options[:field_name] = name
+      if name == 'radio_button'
+        options[:field_value] = args[0]
+      end
       if %w(text_field file_field).include?(name.to_s)
         css_class = options[:class] || []
         css_class = [css_class, 'text'].flatten.uniq.join(' ') if name.to_s == "text_field"
@@ -80,13 +84,16 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     content, label_content = '', ''
     
     if options[:label] != false
-      label_tag = label(field, options[:label], :class => options[:label_class])
+      label_field = field
+      if options[:field_name] == 'radio_button'
+        label_field = [label_field, options[:field_value]].compact.join('_')
+      end
+      label_tag = label(label_field, options[:label], :class => options[:label_class])
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end
       label_content = content_tag(options[:label_after] ? :span : :div, label_tag, :class => "label")
     end
-    
     
     description = content_tag(:div, options[:description], :class => "description") if options[:description]
     content = "#{content}#{block_given? ? @template.capture(&block) : field_content}"

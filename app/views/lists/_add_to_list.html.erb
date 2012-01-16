@@ -13,8 +13,10 @@
       </div>
       <%= f.hidden_field :list_id %>
       <%= hidden_field_tag 'success_msg', 'Life list updated!' %>
-      <%= f.submit "Add", :class => 'default button' %>
-      <%= image_tag('spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none') %>
+      <div class="inline buttonrow" style="text-align:center">
+        <%= f.submit "Add", :class => 'default inline button inlineblock' %>
+        <%= image_tag('spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none') %>
+      </div>
     <% end %>
     
     <script type="text/javascript" charset="utf-8">

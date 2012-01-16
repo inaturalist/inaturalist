@@ -60,6 +60,7 @@ module Shared::ListsModule
     end
     
     @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
+    @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
     
     load_listed_taxon_photos
     
@@ -89,14 +90,14 @@ module Shared::ListsModule
   
   # GET /lists/1/edit
   def edit
+    @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
   end
   
   def create
     # Sometimes STI can be annoying...
-    if !params[:list][:type].blank? && Object.const_defined?(params[:list][:type])
-      @list = Object.const_get(params[:list][:type]).send(:new, params[:list])
-    else
-      @list = List.new(params[:list])
+    [List, LifeList, CheckList, ProjectList].each do |klass|
+      next unless p = params[klass.to_s.underscore]
+      @list = klass.new(p)
     end
 
     @list.user = current_user
@@ -148,7 +149,7 @@ module Shared::ListsModule
       format.html do
         flash[:notice] = "List deleted."
         redirect_path = if @list.is_a?(CheckList)
-          @list.place.check_list
+          @list.place.check_list || @list.place
         else
           lists_by_login_url(:login => current_user.login)
         end

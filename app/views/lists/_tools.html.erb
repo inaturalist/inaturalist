@@ -1,6 +1,52 @@
 <%-
   list ||= @list
 -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    function confirmStartDelayed(msg, url, maxTries, eltId) {
+      var selector = '#'+eltId
+      if (confirm(msg)) {
+        window.refreshTries = 0
+        startDelayed(url, maxTries)
+        loadingClickForLink.apply($(selector).get(0))
+      }
+    }
+    function startDelayed(url, maxTries) {
+      if (refreshTries > maxTries) {
+        alert('Reload timed out.  Please try again later.')
+      } else {
+        $.ajax({
+          data:'tries='+refreshTries+'&authenticity_token=' + $('meta[name=csrf-token]').attr('content'), 
+          dataType:'script', 
+          type:'post', 
+          url: url,
+          statusCode: {
+            // Processing
+            201: function() {
+              setTimeout('startDelayed("'+url+'", '+maxTries+')', 5000)
+            },
+            
+            // OK
+            200: function() {
+              window.location.reload()
+            },
+            
+            // Request Timeout
+            408: function(jqXHR, textStatus, errorThrown) {
+              alert(jqXHR.responseText)
+            },
+            
+            // Unprocessable Entity
+            422: function(jqXHR, textStatus, errorThrown) {
+              alert(jqXHR.responseText)
+            }
+          }
+        });
+        refreshTries += 1
+      }
+    }
+  </script>
+<%- end -%>
 <div id="tools" class="clear buttonrow">
   <% if list.editable_by?(current_user) %>
     <%= link_to "Edit", list.is_a?(CheckList) ? edit_check_list_path(list) : edit_list_url(list), :id => "edit_list_button", :class => "button" %>
@@ -19,38 +65,17 @@
     <% link_to_toggle_menu "Tools", :id => "tools_button", :class => "minor button",
         :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
       <ul>
-        <li class="inline buttonrow">
-          <div id="refresher" class="clear">
-            <%= link_to_function "Reload from observations", 
-              "if (
-                confirm(
-                  'This will update all last observations and add new taxa from #{ @list.user ? 'your' : 'the project' } observations.  It may take a few minutes.'
-                )
-              ) { " +
-                "reloadFromObservations()" +
-              "}; ", :id => "refreshlink" %>
-            <div id="refreshloading" class="loading status" style="display:none">Reloading...</div>
-            <script type="text/javascript" charset="utf-8">
-              var refreshTries = 0
-              function reloadFromObservations() {
-                $('#refreshlink').hide()
-                $('#refreshloading').show()
-                if (refreshTries > <%= LifeList::MAX_RELOAD_TRIES %>) {
-                  alert('Reload timed out.  Please try again later.')
-                  $('#refreshlink').show()
-                  $('#refreshloading').hide()
-                } else {
-                  $.ajax({
-                    data:'tries='+refreshTries+'&authenticity_token=' + $('meta[name=csrf-token]').attr('content'), 
-                    dataType:'script', 
-                    type:'post', 
-                    url:'<%= list_reload_from_observations_path(@list.id) %>'
-                  });
-                  refreshTries += 1
-                }
-              }
-            </script>
-          </div>
+        <li>
+          <%- msg = "This will update all last observations and add new taxa from #{ @list.user ? 'your' : 'the project' } observations.  It may take a few minutes. "-%>
+          <%= link_to_function "Reload from observations", 
+            "confirmStartDelayed('#{msg}', '#{list_reload_from_observations_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'reloadlink')", 
+            :id => "reloadlink" %>
+        </li>
+        <li>
+          <%- msg = "This will re-apply all list rules to the listed taxa, e.g. rejecting taxa that are not within the life list taxon or aren't of the selected rank.  It will not add any new taxa. It may take a few minutes."-%>
+          <%= link_to_function "Re-apply list rules", 
+            "confirmStartDelayed('#{escape_javascript(msg)}', '#{list_refresh_path(@list.id)}', #{LifeList::MAX_RELOAD_TRIES}, 'refreshlink')", 
+            :id => "refreshlink" %>
         </li>
       </ul>
     <% end %>

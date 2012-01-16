@@ -2,8 +2,7 @@ class ListsController < ApplicationController
   include Shared::ListsModule
 
   before_filter :login_required, :except => [:index, :show, :by_login, :taxa]  
-  before_filter :load_list, :only => [:show, :edit, :update, :destroy, 
-    :compare, :remove_taxon, :add_taxon_batch, :taxa, :reload_from_observations]
+  before_filter :load_list, :except => [:index, :new, :create, :by_login]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :add_taxon_batch, :reload_from_observations]
   before_filter :load_find_options, :only => [:show]
@@ -188,43 +187,68 @@ class ListsController < ApplicationController
   end
   
   def reload_from_observations
-    job_id = Rails.cache.read(@list.reload_from_observations_cache_key)
-    @job = Delayed::Job.find_by_id(job_id) if job_id && job_id.is_a?(Fixnum)
-    tries = params[:tries].to_i
-    start = tries == 0 && @job.blank?
-    done = tries > 0 && @job.blank?
-    error = @job && !@job.failed_at.blank?
-    timeout = tries > LifeList::MAX_RELOAD_TRIES
-    
-    if start
-      @job = @list.reload_from_observations
-    elsif done || error || timeout
-      Rails.cache.delete(@list.reload_from_observations_cache_key)
+    delayed_task(@list.reload_from_observations_cache_key) do
+      @list.reload_from_observations
     end
+    
+    respond_to_delayed_task(
+      :done => "List reloaded from observations",
+      :error => "Something went wrong reloading from observations",
+      :timeout => "Reload timed out, please try again later"
+    )
+  end
+  
+  def refresh
+    delayed_task(@list.refresh_cache_key) do
+      @list.refresh
+    end
+    
+    respond_to_delayed_task(
+      :done => "List rules re-applied",
+      :error => "Something went wrong re-applying list rules",
+      :timeout => "Re-applying list rules timed out, please try again later"
+    )
+  end
+  
+  private
+  
+  # Takes a block that sets the @job instance var
+  def delayed_task(cache_key)
+    @job_id = cache_key
+    @job = Delayed::Job.find_by_id(@job_id) if @job_id && @job_id.is_a?(Fixnum)
+    @tries = params[:tries].to_i
+    @start = @tries == 0 && @job.blank?
+    @done = @tries > 0 && @job.blank?
+    @error = @job && !@job.failed_at.blank?
+    @timeout = @tries > LifeList::MAX_RELOAD_TRIES
+    
+    if @start
+      @job = yield
+    elsif @done || @error || @timeout
+      Rails.cache.delete(cache_key)
+    end
+  end
+  
+  def respond_to_delayed_task(messages = {})
+    messages = {
+      :done => "Success!",
+      :error => "Something went wrong",
+      :timeout => "Request timed out, please try again later",
+      :processing => "Processing..."
+    }.merge(messages)
     
     respond_to do |format|
       format.js do
-        render :update do |page|
-          if done
-            page.replace_html :refresher, "Success!"
-            page << "$('#refresher').addClass('success status')"
-            flash[:notice] = "List reloaded"
-            page.reload
-          elsif error
-            page.replace_html :refresher, "Something went wrong refreshing your list: #{@job.last_error}"
-            page << "$('#refresher').addClass('error status')"
-          elsif timeout
-            page.replace_html :refresher, "Reload timed out, please try again later."
-            page << "$('#refresher').addClass('error status')"
-          else
-            page << "setTimeout('reloadFromObservations()', 5000)"
-          end
+        if @done
+          flash[:notice] = messages[:done]
+          render :status => :ok, :text => messages[:done]
+        elsif @error then render :status => :unprocessable_entity, :text => "#{messages[:error]}: #{@job.last_error}"
+        elsif @timeout then render :status => :request_timeout, :text => messages[:timeout]
+        else render :status => :created, :text => messages[:processing]
         end
       end
     end
   end
-  
-  private
   
   def owner_required
     unless logged_in?
