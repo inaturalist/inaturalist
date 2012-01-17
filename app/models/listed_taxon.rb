@@ -391,6 +391,14 @@ class ListedTaxon < ActiveRecord::Base
     establishment_means == "endemic"
   end
   
+  def taxon_name
+    taxon.name
+  end
+  
+  def user_login
+    user.try(:login)
+  end
+  
   # Update the taxon_ancestors of ALL listed_taxa. Note this will be
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes

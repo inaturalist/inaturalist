@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   simplified_login_regex = /\w[^\.,\/]+/
+  id_param_pattern = %r(\d+([\w\-]*))
   
   map.root :controller => 'welcome', :action => 'index'
   
@@ -170,9 +171,9 @@ ActionController::Routing::Routes.draw do |map|
                       :controller => 'users',
                       :action => 'relationships',
                       :following => 'following',
-                      :requirements => { :login => simplified_login_regex }                      
+                      :requirements => { :login => simplified_login_regex }
 
-  map.resources :lists, :requirements => { :id => %r(\d+) }
+  map.resources :lists, :requirements => { :id => id_param_pattern }
   map.with_options :controller => 'lists' do |lists|
     lists.list_taxa 'lists/:id/taxa', :action => 'taxa', :conditions => {:method => :get}
     lists.formatted_list_taxa 'lists/:id/taxa.:format', :action => 'taxa', :conditions => {:method => :get}
@@ -185,23 +186,37 @@ ActionController::Routing::Routes.draw do |map|
   map.lists_by_login 'lists/:login', :controller => 'lists', 
                                      :action => 'by_login',
                                      :requirements => { :login => simplified_login_regex }
-  map.compare_lists 'lists/:id/compare', :controller => 'lists', :action => 'compare'
+  map.compare_lists 'lists/:id/compare', 
+    :controller => 'lists', 
+    :action => 'compare',
+    :requirements => { :id => id_param_pattern }
   map.list_remove_taxon 'lists/:id/remove_taxon/:taxon_id', 
     :controller => 'lists', 
     :action => 'remove_taxon',
-    :conditions => {:method => :delete}
+    :conditions => {:method => :delete},
+    :requirements => { :id => id_param_pattern }
   map.list_add_taxon_batch 'lists/:id/add_taxon_batch', 
     :controller => 'lists', 
     :action => 'add_taxon_batch',
-    :conditions => {:method => :post}
+    :conditions => {:method => :post},
+    :requirements => { :id => id_param_pattern }
   map.check_list_add_taxon_batch 'check_lists/:id/add_taxon_batch', 
     :controller => 'check_lists', 
     :action => 'add_taxon_batch',
-    :conditions => {:method => :post}
+    :conditions => {:method => :post},
+    :requirements => { :id => id_param_pattern }
   map.list_reload_from_observations 'lists/:id/reload_from_observations', 
-    :controller => 'lists', :action => 'reload_from_observations'
+    :controller => 'lists', 
+    :action => 'reload_from_observations',
+    :requirements => { :id => id_param_pattern }
   map.list_refresh 'lists/:id/refresh', 
-    :controller => 'lists', :action => 'refresh'
+    :controller => 'lists', 
+    :action => 'refresh',
+    :requirements => { :id => id_param_pattern }
+  map.list_generate_csv 'lists/:id/generate_csv', 
+    :controller => 'lists', 
+    :action => 'generate_csv',
+    :requirements => { :id => id_param_pattern }
   
   map.resources :comments
   map.resources :project_invitations, :except => [:index, :show]
@@ -214,7 +229,7 @@ ActionController::Routing::Routes.draw do |map|
   #
   map.connect 'taxa/names', :controller => 'taxon_names'
   map.connect 'taxa/names.:format', :controller => 'taxon_names'
-  map.resources :taxa, :requirements => { :id => %r(\d+([\w\-]*)) } do |taxon|
+  map.resources :taxa, :requirements => { :id => id_param_pattern } do |taxon|
     # taxon.resources :names, :controller => :taxon_names
     taxon.resources :taxon_names, :controller => :taxon_names, :shallow => true
     taxon.resources :flags

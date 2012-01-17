@@ -40,6 +40,11 @@ class List < ActiveRecord::Base
     "<#{self.class} #{id}: #{title}>"
   end
   
+  def to_param
+    return nil if new_record?
+    "#{id}-#{title.gsub(/[\'\"]/, '').gsub(/\W/, '-')}"
+  end
+  
   #
   # Adds a taxon to this list and returns the listed_taxon (valid or not). 
   # Note that subclasses like LifeList may override this.
@@ -136,6 +141,50 @@ class List < ActiveRecord::Base
   
   def refresh_cache_key
     "refresh_list_#{id}"
+  end
+  
+  def generate_csv(options = {})
+    headers = %w(taxon_name occurrence_status establishment_means user_login first_observation_id last_observation_id id created_at updated_at)
+    fname = options[:fname] || "#{to_param}.csv"
+    fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
+    
+    # Always generate file to tmp path first
+    tmp_path = File.join(Dir::tmpdir, fname)
+    FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
+    
+    find_options = {
+      :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id",
+      :include => [:taxon, :user]
+    }
+    if is_a?(CheckList) && is_default?
+      find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
+      find_options[:conditions] = ["place_id = ?", place_id]
+    else
+      find_options[:conditions] = ["list_id = ?", id]
+    end
+    
+    FasterCSV.open(tmp_path, 'w') do |csv|
+      csv << headers
+      ListedTaxon.do_in_batches(find_options) do |lt|
+        csv << headers.map{|h| lt.send(h)}
+      end
+      csv << []
+      csv << ["List created at", created_at]
+      csv << ["List updated at", updated_at]
+      csv << ["List updated by", user.login] if user
+      csv << ["CSV generated at", Time.now.utc]
+    end
+    
+    # When the full file is ready, then move it over to the real path
+    FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
+    if tmp_path != fpath
+      FileUtils.mv tmp_path, fpath
+    end
+    fpath
+  end
+  
+  def generate_csv_cache_key
+    "generate_csv_#{id}"
   end
   
   def self.icon_preview_cache_key(list)

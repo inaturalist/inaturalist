@@ -8,6 +8,8 @@ class ListsController < ApplicationController
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
+  caches_page :show, :if => Proc.new {|c| c.request.format.csv?}
+  
   LIST_SORTS = %w"id title"
   LIST_ORDERS = %w"asc desc"
   
@@ -200,7 +202,9 @@ class ListsController < ApplicationController
   
   def refresh
     delayed_task(@list.refresh_cache_key) do
-      @list.refresh
+      job = @list.send_later(:refresh)
+      Rails.cache.write(@list.refresh_cache_key, job.id)
+      job
     end
     
     respond_to_delayed_task(
@@ -214,8 +218,9 @@ class ListsController < ApplicationController
   
   # Takes a block that sets the @job instance var
   def delayed_task(cache_key)
-    @job_id = cache_key
+    @job_id = Rails.cache.read(cache_key)
     @job = Delayed::Job.find_by_id(@job_id) if @job_id && @job_id.is_a?(Fixnum)
+    Rails.logger.debug "[DEBUG] @job: #{@job}"
     @tries = params[:tries].to_i
     @start = @tries == 0 && @job.blank?
     @done = @tries > 0 && @job.blank?
@@ -230,7 +235,7 @@ class ListsController < ApplicationController
   end
   
   def respond_to_delayed_task(messages = {})
-    messages = {
+    @messages = {
       :done => "Success!",
       :error => "Something went wrong",
       :timeout => "Request timed out, please try again later",
@@ -241,10 +246,10 @@ class ListsController < ApplicationController
       format.js do
         if @done
           flash[:notice] = messages[:done]
-          render :status => :ok, :text => messages[:done]
-        elsif @error then render :status => :unprocessable_entity, :text => "#{messages[:error]}: #{@job.last_error}"
-        elsif @timeout then render :status => :request_timeout, :text => messages[:timeout]
-        else render :status => :created, :text => messages[:processing]
+          render :status => :ok, :text => @messages[:done]
+        elsif @error then render :status => :unprocessable_entity, :text => "#{@messages[:error]}: #{@job.last_error}"
+        elsif @timeout then render :status => :request_timeout, :text => @messages[:timeout]
+        else render :status => :created, :text => @messages[:processing]
         end
       end
     end

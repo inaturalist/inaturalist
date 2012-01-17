@@ -124,6 +124,10 @@
       <%= @list.created_at.to_date.to_s(:long) %>
     </div>
   <% end -%>
+  
+  <div class="clear meta feeds">
+    <strong>Download</strong> <%= link_to "CSV", formatted_list_path(@list, 'csv'), :class => "delayedlink csvlink", :rel => "nofollow" %>
+  </div>
 </div>
 
 <div class="last column span-7">

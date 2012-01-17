@@ -14,68 +14,67 @@ module Shared::ListsModule
   end
   
   def show
-    # Make sure request is being handled by the right controller
-    if @list.is_a?(CheckList) && params[:controller] != CheckList.to_s.underscore.pluralize
-      return redirect_to @list
-    end
-    
-    if @q = params[:q]
-      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-      @find_options[:conditions] = List.merge_conditions(
-        @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
-    end
-    
-    @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
-    
-    @taxon_names_by_taxon_id = TaxonName.all(:conditions => [
-      "taxon_id IN (?)", [@listed_taxa.map(&:taxon), @taxa, @iconic_taxa].flatten.compact
-    ]).group_by(&:taxon_id)
-    
-    @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
-    @total_listed_taxa ||= @list.listed_taxa.count
-    @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
-    
-    @view = params[:view]
-    @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
-    
-    case @view
-    when TAXONOMIC_VIEW
-      @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
-      @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
-      ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
-      ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
-      taxa_to_arrange = (ancestors + @listed_taxa.map(&:taxon)).sort_by{|t| "#{t.ancestry}/#{t.id}"}
-      @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
-      @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
-      
-    # Default to plain view
-    else
-      @grouped_listed_taxa = @listed_taxa.group_by do |lt|
-        @iconic_taxa_by_id[lt.taxon.iconic_taxon_id]
-      end
-    end
-    
-    if job_id = Rails.cache.read("add_taxa_from_observations_job_#{@list.id}")
-      @add_taxa_from_observations_job = Delayed::Job.find_by_id(job_id)
-    end
-    
-    @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
-    @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
-    
-    load_listed_taxon_photos
-    
     respond_to do |format|
       format.html do
+        # Make sure request is being handled by the right controller
+        if @list.is_a?(CheckList) && params[:controller] != CheckList.to_s.underscore.pluralize
+          return redirect_to @list
+        end
+
+        if @q = params[:q]
+          @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
+          @find_options[:conditions] = List.merge_conditions(
+            @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+        end
+
+        @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
+
+        @taxon_names_by_taxon_id = TaxonName.all(:conditions => [
+          "taxon_id IN (?)", [@listed_taxa.map(&:taxon), @taxa, @iconic_taxa].flatten.compact
+        ]).group_by(&:taxon_id)
+
+        @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
+        @total_listed_taxa ||= @list.listed_taxa.count
+        @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
+
+        @view = params[:view]
+        @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
+
+        case @view
+        when TAXONOMIC_VIEW
+          @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
+          @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
+          ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
+          ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
+          taxa_to_arrange = (ancestors + @listed_taxa.map(&:taxon)).sort_by{|t| "#{t.ancestry}/#{t.id}"}
+          @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
+          @listed_taxa_by_taxon_id = @listed_taxa.index_by(&:taxon_id)
+
+        # Default to plain view
+        else
+          @grouped_listed_taxa = @listed_taxa.group_by do |lt|
+            @iconic_taxa_by_id[lt.taxon.iconic_taxon_id]
+          end
+        end
+
+        if job_id = Rails.cache.read("add_taxa_from_observations_job_#{@list.id}")
+          @add_taxa_from_observations_job = Delayed::Job.find_by_id(job_id)
+        end
+
+        @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
+        @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
+
+        load_listed_taxon_photos
+        
         if logged_in?
           @current_user_lists = current_user.lists.all(:limit => 100)
         end
       end
-      format.xml do
-        render(
-          :xml => @list.to_xml(
-            :include => {
-              :listed_taxa => {
-                :include => :taxon}}))
+      
+      format.csv do
+        @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
+        prevent_caching
+        render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.request_uri}"
       end
     end
   end

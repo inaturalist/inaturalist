@@ -118,6 +118,11 @@
   <div id="pagination">
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
+  
+  <div class="last column span-17 feeds small description">
+    <%= separator %>
+    Download <%= link_to "CSV", formatted_list_path(@list, 'csv'), :class => "delayedlink csvlink", :rel => "nofollow" %>
+  </div>
 </div>
 
 <div class="last column span-7">

@@ -180,7 +180,42 @@ $(document).ready(function() {
   })
   
   $('.zoomable').zoomify()
+  
+  $('.delayedlink').click(function() {
+    window.delayedLinkTries = 0
+    var dialog = $('#delayedlinknotice')
+    if (dialog.length == 0) {
+      dialog = $('<div id="delayedlinknotice"><div class="loading status">Hold on while we generate that file...</div></div>')
+      $(document.body).append(dialog)
+    }
+    dialog.dialog({modal: true, title: 'Hold on...'})
+    checkDelayedLink($(this).attr('href'))
+    return false
+  })
 })
+
+function checkDelayedLink(url) {
+  if (window.delayedLinkTries > 20) {
+    $('#delayedlinknotice').dialog('close')
+    alert('Your request for ' + url + ' seems to be taking forever.  Please try again later.')
+    return
+  }
+  $.ajax({
+    url: url,
+    type: 'get',
+    statusCode: {
+      // Accepted: request acnkowledged byt file hasn't been generated
+      202: function() {
+        setTimeout('checkDelayedLink("'+url+'")', 5000)
+      },
+      // OK: file is ready
+      200: function() {
+        $('#delayedlinknotice').dialog('close')
+        window.location = url
+      }
+    }
+  })
+}
 
 function autoTip() {
   if ($(this).attr('data-tip').match(/^#/)) {
