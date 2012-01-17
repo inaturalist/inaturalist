@@ -30,7 +30,7 @@
         :method => :delete,
         :datatype => 'text',
         :confirm => "Are you sure you want to remove #{default_taxon_name(listed_taxon.taxon)} from this list?", 
-        :loading => "$('#listed_taxon_#{listed_taxon.id}').fadeOut()",
+        :loading => "$('#listed_taxon_#{listed_taxon.id}').fadeOut().parents('.listed_taxon_photo:first').fadeOut()",
         :html => {
           :title => "Remove from list",
           :class => "description removelink"

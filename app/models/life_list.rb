@@ -57,17 +57,10 @@ class LifeList < List
       collection = self.listed_taxa
     end
 
-    collection.each do |listed_taxon|
-      # re-apply list rules to the listed taxa
-      unless listed_taxon.save
-        logger.debug "[DEBUG] #{listed_taxon} wasn't valid in #{self}, so " + 
-          "it's being destroyed: #{listed_taxon.errors.full_messages.to_sentence}"
-        listed_taxon.destroy
-      end
-      
-      if options[:destroy_unobserved] && 
-          listed_taxon.last_observation.try(:taxon_id) != listed_taxon.taxon_id
-        listed_taxon.destroy
+    collection.each do |lt|
+      lt.save
+      if lt.first_observation_id.blank? && lt.last_observation_id.blank? && (!lt.valid? || !lt.manually_added?)
+        lt.destroy
       end
     end
     true
@@ -103,14 +96,6 @@ class LifeList < List
         :skip_update => true)
     end
   end
-  
-  # def self.remove_unobserved(list, options = {})
-  #   list.listed_taxa.find_each(:include => :last_observation) do |listed_taxon|
-  #     if listed_taxon.last_observation.blank? || listed_taxon.taxon_id != listed_taxon.last_observation.taxon_id
-  #       listed_taxon.destroy
-  #     end
-  #   end
-  # end
   
   def self.update_life_lists_for_taxon(taxon)
     ListRule.find_each(:include => :list, :conditions => [

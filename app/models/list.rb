@@ -180,12 +180,6 @@ class List < ActiveRecord::Base
   
   def self.refresh_with_observation(observation, options = {})
     observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
-    user = observation.try(:user) || User.find_by_id(options[:user_id])
-    if user.blank?
-      Rails.logger.error "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
-        "failed with blank user, observation: #{observation}, options: #{options.inspect}"
-      return
-    end
     unless taxon = Taxon.find_by_id(observation.try(:taxon_id) || options[:taxon_id])
       Rails.logger.error "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
         "failed with blank taxon, observation: #{observation}, options: #{options.inspect}"
@@ -195,10 +189,11 @@ class List < ActiveRecord::Base
     if taxon_was = Taxon.find_by_id(options[:taxon_id_was])
       taxon_ids = [taxon_ids, taxon_was.ancestor_ids, taxon_was.id].flatten.uniq
     end
+    target_list_ids = refresh_with_observation_lists(observation, options)
     # get listed taxa for this taxon and its ancestors that are on the observer's life lists
     listed_taxa = ListedTaxon.all(:include => [:list],
-      :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, user.list_ids])
-    new_list_ids = user.life_list_ids - listed_taxa.map{|lt| lt.taxon_id == taxon.id ? lt.list_id : nil}
+      :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, target_list_ids])
+    new_list_ids = target_list_ids - listed_taxa.map{|lt| lt.taxon_id == taxon.id ? lt.list_id : nil}
     new_taxa = [taxon, taxon.species].compact
     new_list_ids.each do |list_id|
       new_taxa.each do |new_taxon|
@@ -216,5 +211,10 @@ class List < ActiveRecord::Base
         lt.destroy
       end
     end
+  end
+  
+  def self.refresh_with_observation_lists(observation, options = {})
+    user = observation.try(:user) || User.find_by_id(options[:user_id])
+    user ? user.life_list_ids : []
   end
 end

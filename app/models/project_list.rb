@@ -44,6 +44,13 @@ class ProjectList < LifeList
     SQL
   end
   
+  def self.refresh_with_observation_lists(observation, options = {})
+    observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
+    return [] unless observation.is_a?(Observation)
+    project_ids = observation.project_observations.map{|po| po.project_id}
+    ProjectList.all(:select => "id", :conditions => ["project_id IN (?)", project_ids]).map{|pl| pl.id}
+  end
+  
   private
   def set_defaults
     self.title ||= "%s's Check List" % owner_name

@@ -669,14 +669,17 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    project_observations.each do |po|
-      Project.send_later(:refresh_project_list, po.project_id, 
-        :taxa => target_taxa.map(&:id), :add_new_taxa => true)
-    end
+    # project_observations.each do |po|
+    #   Project.send_later(:refresh_project_list, po.project_id, 
+    #     :taxa => target_taxa.map(&:id), :add_new_taxa => true)
+    # end
     List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :dj_priority => 1)
-    # List.send_later(:refresh_with_observation,        id, :taxon_id => taxon_id, :skip_update => true)
+      
+    ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
+      :dj_priority => 1)
     # ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
     
     # Reset the instance var so it doesn't linger around

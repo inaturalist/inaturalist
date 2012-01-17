@@ -379,8 +379,8 @@ describe Observation, "updating" do
     o.update_attributes(:taxon => Taxon.make)
     stamp = Time.now
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
-    jobs.select{|j| j.handler =~ /\:refresh_project_list\n/}.should_not be_blank
+    # puts jobs.map(&:handler).inspect
+    jobs.select{|j| j.handler =~ /ProjectList.*\:refresh_with_observation/m}.should_not be_blank
   end
   
   it "should queue refresh job for check lists if the coordinates changed" do
