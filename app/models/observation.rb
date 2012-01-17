@@ -430,7 +430,7 @@ class Observation < ActiveRecord::Base
     end
     
     # has (boolean) selectors
-    if (params[:has])
+    if params[:has]
       params[:has] = params[:has].split(',') if params[:has].is_a? String
       params[:has].each do |prop|
         scope = case prop

@@ -192,7 +192,7 @@ class TaxaController < ApplicationController
       end
       
       format.mobile do
-        if @taxon.species_or_lower?
+        if @taxon.species_or_lower? && @taxon.species
           @siblings = @taxon.species.siblings.all(:limit => 100, :include => [:photos, :taxon_names]).sort_by{|t| t.name}
           @siblings.delete_if{|s| s.id == @taxon.id}
         else
@@ -463,7 +463,7 @@ class TaxaController < ApplicationController
       end[0..(limit-1)]
     rescue Timeout::Error => e
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      HoptoadNotifier.notify(e, :request => request, :session => session)
+      # HoptoadNotifier.notify(e, :request => request, :session => session)
       @photos = @taxon.photos
     end
     if params[:partial]
