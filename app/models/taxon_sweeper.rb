@@ -5,7 +5,7 @@ class TaxonSweeper < ActionController::Caching::Sweeper
   def after_update(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.send_later(:expire_components_for, taxon.id)
+    Observation.send_later(:expire_components_for, taxon.id, :dj_priority => 1)
     expire_listed_taxa(taxon)
     expire_fragment(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo")
     expire_action(:controller => 'taxa', :action => 'show', :id => taxon.id)

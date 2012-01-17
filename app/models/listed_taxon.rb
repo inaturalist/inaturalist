@@ -248,8 +248,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def delta_index_taxon
-    taxon.delta = true
-    taxon.save
+    Taxon.update_all(["delta = ?", true], ["id = ?", taxon_id])
     true
   end
   
