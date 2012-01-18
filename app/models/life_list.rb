@@ -5,7 +5,7 @@ class LifeList < List
   before_validation :set_defaults
   after_create :add_taxa_from_observations
   
-  MAX_RELOAD_TRIES = 15
+  MAX_RELOAD_TRIES = 30
   
   #
   # Adds a taxon to this life list by creating a new blank obs of the taxon
@@ -30,7 +30,9 @@ class LifeList < List
   def refresh(options = {})
     if taxa = options[:taxa]
       # Find existing listed_taxa of these taxa to update
-      existing = ListedTaxon.all(:conditions => ["list_id = ? AND taxon_id IN (?)", self, taxa])
+      existing = ListedTaxon.all(
+        :include => [{:list => :rules}, {:taxon => :taxon_names}, :last_observation],
+        :conditions => ["list_id = ? AND taxon_id IN (?)", self, taxa])
       collection = []
       
       # Add new listed taxa for taxa not already on this list
@@ -46,7 +48,7 @@ class LifeList < List
         end.compact
         
         # Create new ListedTaxa for the taxa that aren't already in the list
-        collection = (taxa_ids - existing.map(&:taxon_id)).map do |taxon_id|
+        collection = (taxa_ids - existing.map{|e| e.taxon_id}).map do |taxon_id|
           listed_taxon = ListedTaxon.new(:list => self, :taxon_id => taxon_id)
           listed_taxon.skip_update = true
           listed_taxon
@@ -54,12 +56,14 @@ class LifeList < List
       end
       collection += existing
     else
-      collection = self.listed_taxa
+      collection = self.listed_taxa.all(:include => [{:list => :rules}, {:taxon => :taxon_names}, :last_observation])
     end
 
     collection.each do |lt|
+      lt.skip_update_cache_columns = options[:skip_update_cache_columns]
+      lt.skip_update = options[:skip_update]
       lt.save
-      if lt.first_observation_id.blank? && lt.last_observation_id.blank? && (!lt.valid? || !lt.manually_added?)
+      if !lt.valid? || (lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?)
         lt.destroy
       end
     end

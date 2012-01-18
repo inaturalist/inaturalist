@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
 
   simplified_login_regex = /\w[^\.,\/]+/
-  id_param_pattern = %r(\d+([\w\-]*))
+  id_param_pattern = %r(\d+([\w\-\%]*))
   
   map.root :controller => 'welcome', :action => 'index'
   

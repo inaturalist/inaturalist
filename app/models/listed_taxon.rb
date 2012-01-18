@@ -138,7 +138,8 @@ class ListedTaxon < ActiveRecord::Base
       end
     end
     
-    if last_observation && !(taxon == last_observation.taxon || last_observation.taxon.in_taxon?(taxon))
+    # if last_observation && !(taxon == last_observation.taxon || last_observation.taxon.in_taxon?(taxon))
+    if last_observation_id && !(taxon_id == last_observation.taxon_id || taxon_ancestor_ids.split('/').include?(last_observation.taxon_id))
       errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
     end
     

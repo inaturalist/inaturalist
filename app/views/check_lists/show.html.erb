@@ -125,9 +125,15 @@
     </div>
   <% end -%>
   
-  <div class="clear meta feeds">
-    <strong>Download</strong> <%= link_to "CSV", formatted_list_path(@list, 'csv'), :class => "delayedlink csvlink", :rel => "nofollow" %>
-  </div>
+  <% if logged_in? -%>
+    <div class="clear meta feeds">
+      <strong>Download</strong>
+      <%= link_to "CSV", list_path(@list, :format => 'csv'), 
+        :class => "delayedlink csvlink", 
+        "data-delayed-link-msg" => "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+        :rel => "nofollow" %>
+    </div>
+  <% end -%>
 </div>
 
 <div class="last column span-7">

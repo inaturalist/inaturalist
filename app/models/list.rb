@@ -42,7 +42,7 @@ class List < ActiveRecord::Base
   
   def to_param
     return nil if new_record?
-    "#{id}-#{title.gsub(/[\'\"]/, '').gsub(/\W/, '-')}"
+    CGI.escape("#{id}-#{title.gsub(/[\'\"]/, '').gsub(/\W/, '-')}")
   end
   
   #
@@ -68,6 +68,7 @@ class List < ActiveRecord::Base
     end
     
     collection.each do |listed_taxon|
+      listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
       # re-apply list rules to the listed taxa
       listed_taxon.save
       unless listed_taxon.valid?
@@ -157,7 +158,7 @@ class List < ActiveRecord::Base
       :include => [:taxon, :user]
     }
     if is_a?(CheckList) && is_default?
-      find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
+      find_options[:select] = "DISTINCT (taxon_ancestor_ids || '/' || listed_taxa.taxon_id), listed_taxa.*"
       find_options[:conditions] = ["place_id = ?", place_id]
     else
       find_options[:conditions] = ["list_id = ?", id]

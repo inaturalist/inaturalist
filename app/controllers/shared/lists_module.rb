@@ -72,7 +72,16 @@ module Shared::ListsModule
       end
       
       format.csv do
-        @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
+        job_id = Rails.cache.read(@list.generate_csv_cache_key)
+        job = Delayed::Job.find_by_id(job_id)
+        if job
+          # Still working
+        else
+          # no job id, no job, let's get this party started
+          Rails.cache.delete(@list.generate_csv_cache_key)
+          job = @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
+          Rails.cache.write(@list.generate_csv_cache_key, job.id, :expires_in => 1.hour)
+        end
         prevent_caching
         render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.request_uri}"
       end

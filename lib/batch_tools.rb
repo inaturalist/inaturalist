@@ -9,10 +9,14 @@ module BatchTools
       def do_in_batches(options = {}, &block)
         batch_size = options.delete(:batch_size) || 1000
         count_options = options.reject {|k,v| k.to_s == 'order'}
+        if count_options[:select] && (distinct = count_options[:select][/DISTINCT \(.+?\)/, 0])
+          count_options[:select] = distinct
+        end
         est = false
         begin 
           full_count = self.count(count_options)
-        rescue 
+        rescue => e
+          Rails.logger.error "[ERROR #{Time.now}] Batch tool count failed: #{e}"
           full_count = self.count
           est = true
         end
