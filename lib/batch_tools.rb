@@ -48,9 +48,9 @@ module BatchTools
         options.merge!(:offset => batch * batch_size, :limit => batch_size)
         all(options).each do |item|
           yield(item)
-          GC.start
           item = nil
         end
+        GC.start
       end
     end
   end

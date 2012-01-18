@@ -5,7 +5,7 @@ class LifeList < List
   before_validation :set_defaults
   after_create :add_taxa_from_observations
   
-  MAX_RELOAD_TRIES = 30
+  MAX_RELOAD_TRIES = 60
   
   #
   # Adds a taxon to this life list by creating a new blank obs of the taxon
