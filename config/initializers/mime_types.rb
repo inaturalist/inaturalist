@@ -4,6 +4,7 @@
 # Mime::Type.register "text/richtext", :rtf
 # Mime::Type.register_alias "text/html", :iphone
 Mime::Type.register "application/vnd.google-earth.kml+xml", :kml
+Mime::Type.register "text/xml", :dwc
 Mime::Type.register "text/json", :node
 Mime::Type.register "text/json", :geojson
 Mime::Type.register_alias "text/html", :widget

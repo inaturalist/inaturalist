@@ -138,6 +138,8 @@ class ObservationsController < ApplicationController
       format.atom do
         @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
       end
+      
+      format.dwc
 
       format.csv do
         render_observations_to_csv

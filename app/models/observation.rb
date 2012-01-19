@@ -5,6 +5,7 @@ class Observation < ActiveRecord::Base
   acts_as_flaggable
   
   include Ambidextrous
+  include DarwinCoreModule
   
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
@@ -1296,6 +1297,14 @@ class Observation < ActiveRecord::Base
     end
   end
   
+  def owners_identification
+    if identifications.loaded?
+      identifications.detect {|ident| ident.user_id == user_id}
+    else
+      identifications.first(:conditions => {:user_id => user_id})
+    end
+  end
+  
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
@@ -1309,5 +1318,34 @@ class Observation < ActiveRecord::Base
       ctrl.expire_fragment(o.component_cache_key)
       ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
     end
+  end
+  
+  # Generates a CSV file suitable for inclusion in a Darwin Core Archive
+  def self.darwin_core_archive_csv(options = {})
+    headers = DARWIN_CORE_TERM_NAMES
+    fname = options[:fname] || "observations.csv"
+    fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
+    
+    # Always generate file to tmp path first
+    tmp_path = File.join(Dir::tmpdir, fname)
+    
+    find_options = {
+      :include => [:taxon, :user, :photos, :quality_metrics, :identifications],
+      :conditions => {:quality_grade => RESEARCH_GRADE}
+    }
+    
+    FasterCSV.open(tmp_path, 'w') do |csv|
+      csv << headers
+      Observation.do_in_batches(find_options) do |lt|
+        csv << headers.map{|h| lt.send(h)}
+      end
+    end
+    
+    # When the full file is ready, then move it over to the real path
+    FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
+    if tmp_path != fpath
+      FileUtils.mv tmp_path, fpath
+    end
+    fpath
   end
 end

@@ -7,6 +7,9 @@ class QualityMetric < ActiveRecord::Base
     "location" => "Does the location seem accurate?"
   }
   METRICS = METRIC_QUESTIONS.keys
+  METRICS.each do |metric|
+    const_set metric.upcase, metric
+  end
   
   after_save :set_observation_quality_grade
   after_destroy :set_observation_quality_grade

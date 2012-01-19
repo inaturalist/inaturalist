@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eml:eml 
+    xmlns:eml="eml://ecoinformatics.org/eml-2.1.1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:dc="http://purl.org/dc/terms/" 
+    xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.0.1/eml-gbif-profile.xsd" 
+    xml:lang="en" 
+    packageId="iNaturalist.observations.eml.<%= Time.now.to_i %>" 
+    system="http://gbif.org" 
+    scope="system">
+  <dataset>
+    <alternateIdentifier>http://www.inaturalist.org/observations?quality_grade=research</alternateIdentifier>
+    <title xml:lang="en">iNaturalist research-grade observations</title>
+    <pubDate><%= Date.today.to_s %></pubDate>
+    <!-- This is the RESOURCE language and not the metadata language which is at the bottom -->
+    <language>en_US</language>
+    <abstract>
+      <para>Research-grade observations from iNaturalist.org.</para>
+    </abstract>
+    <intellectualRights>
+      <para>
+        Owner grants GBIF a worldwide, non-exclusive right to: (i) use,
+        reproduce, perform, display, archive, transmit and distribute the
+        Content (including any trademarks, tradenames and logos in the
+        Content) in electronic form in connection with the Site, (ii) allow
+        users of the Site to use, search, copy, download and transmit the
+        Content, and (iii) modify and reformat the Content, but solely to the
+        extent necessary and for the purposes of: (a) conforming to the format
+        and "look and feel" of the Site, and (b) creating snippets, headlines
+        or teasers consisting of selected lines or sections from the Content
+        to be displayed on the Site (or displayed on other websites owned by
+        XXX for the purposes of directing traffic to the Site).
+      </para>
+    </intellectualRights>
+    <!-- The distributionType URL is generally meant for informational purposes, and the "function" attribute should be set to "information". -->
+    <distribution scope="document">
+      <online>
+        <url function="information"><%= observations_url %></url>
+      </online>
+    </distribution>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>Bounding Box</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate><%= @extent.lower_corner.y %></westBoundingCoordinate>
+          <eastBoundingCoordinate><%= @extent.upper_corner.y %></eastBoundingCoordinate>
+          <northBoundingCoordinate><%= @extent.upper_corner.x %></northBoundingCoordinate>
+          <southBoundingCoordinate><%= @extent.lower_corner.x %></southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate><%= @start_date.to_s %></calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate><%= @end_date.to_s %></calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    
+    <purpose>
+      <para>
+        iNaturalist.org is a website where anyone can record their
+        observations from nature. Members record observations for numerous
+        reasons, including participation in citizen science projects, class
+        projects, and personal fulfillment.
+      </para>
+    </purpose>
+    
+    <contact>
+      <individualName>
+        <givenName><%= @contact["first_name"] %></givenName>
+        <surName><%= @contact["last_name"] %></surName>
+      </individualName>
+      <organizationName><%= @contact["organization"] %></organizationName>
+      <positionName><%= @contact["position"] %></positionName>
+      <address>
+        <deliveryPoint><%= @contact["address"] %></deliveryPoint>
+        <city><%= @contact["city"] %></city>
+        <administrativeArea><%= @contact["admin_area"] %></administrativeArea>
+        <postalCode><%= @contact["postal_code"] %></postalCode>
+        <country><%= @contact["country"] %></country>
+      </address>
+      <phone><%= @contact["phone"] %></phone>
+      <electronicMailAddress><%= @contact["email"] %></electronicMailAddress>
+      <onlineUrl><%= @contact["url"] %></onlineUrl>
+    </contact>
+    
+    <methods>
+      <qualityControl>
+        <description>
+          <para>
+            iNaturalist observations achieve research grade when 1) the
+            iNaturalist community agrees with the observer's ID, where an
+            "agreeing" identification is one that matches exactly or is of a
+            child taxon of the observer's ID, 2) the observation has a date,
+            3) the observation is georeferenced, 4) the observation has a
+            photo.
+          </para>
+        </description>
+      </qualityControl>
+    </methods>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <gbif>
+        <!-- eml file creation date -->
+        <dateStamp><%= Time.now.iso8601 %></dateStamp>
+        <!-- level to which the metadata document applies; default for GBIF is "dataset";  "series" is the other common level -->
+        <hierarchyLevel> dataset </hierarchyLevel>
+        <!-- URL of the logo associated with a resource -->
+        <resourceLogoUrl>http://www.inaturalist.org/images/logo-small.gif</resourceLogoUrl>
+      </gbif>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
