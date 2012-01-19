@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120109221956) do
+ActiveRecord::Schema.define(:version => 20120119184143) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -484,6 +484,19 @@ ActiveRecord::Schema.define(:version => 20120109221956) do
 
   add_index "posts", ["published_at"], :name => "index_posts_on_published_at"
 
+  create_table "preferences", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "owner_id",   :null => false
+    t.string   "owner_type", :null => false
+    t.integer  "group_id"
+    t.string   "group_type"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "preferences", ["owner_id", "owner_type", "name", "group_id", "group_type"], :name => "index_preferences_on_owner_and_name_and_preference", :unique => true
+
   create_table "project_assets", :force => true do |t|
     t.integer  "project_id"
     t.datetime "created_at"
@@ -812,7 +825,7 @@ ActiveRecord::Schema.define(:version => 20120109221956) do
     t.integer  "identifications_count",                    :default => 0
     t.integer  "journal_posts_count",                      :default => 0
     t.integer  "life_list_taxa_count",                     :default => 0
-    t.text     "preferences"
+    t.text     "old_preferences"
     t.string   "icon_url"
     t.string   "last_ip"
   end

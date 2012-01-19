@@ -278,10 +278,14 @@ class UsersController < ApplicationController
     return remove_friend unless params[:remove_friend_id].blank?
     return update_password unless params[:password].blank?
     
-    # Update the preferences
-    @display_user.preferences ||= Preferences.new
-    if params[:user] && params[:user][:preferences]
-      @display_user.preferences.update_attributes(params[:user][:preferences])
+    params[:user].each do |k,v|
+      if k =~ /^prefer/
+        params[:user].delete(k)
+      else
+        next
+      end
+      @display_user.send("#{k}=", v)
+      Rails.logger.debug "[DEBUG] set #{k} to #{v}"
     end
     
     # Nix the icon_url if an icon file was provided

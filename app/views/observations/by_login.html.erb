@@ -340,11 +340,12 @@ Observations by <%= h @login %>
     </div>
   <% end %>
   <div id="pagination">
+    <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
-      <% form_for @prefs, :url => url_for, :html => {:style => "float: left"} do |f| %>
+      <% form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
         <%= f.label :per_page %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
-          {:selected => @prefs.per_page.to_i}, :onchange => "$(this).parents('form:first').submit()" %>
+          {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
     <% end -%>
     

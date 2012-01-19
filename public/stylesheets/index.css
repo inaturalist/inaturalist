@@ -131,6 +131,8 @@ input[type="file"]:focus {
 input,select,textarea{font-family:"Trebuchet MS",Arial,sans-serif;}
 form .field{margin-bottom:10px;}
 .required{color:deeppink;}
+.label { margin-bottom: 0.2em;}
+form .field .description { margin-bottom: 0.5em;}
 .label .fieldWithErrors{display:inline;}
 .stacked{margin-bottom:10px;}
 

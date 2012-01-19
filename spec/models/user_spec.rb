@@ -44,12 +44,6 @@ describe User do
       @user.reload
       @user.lists.should include(@user.life_list)
     end
-    
-    it "should create a Prefereces object" do
-      @creating_user.call
-      @user.preferences.should_not be_nil
-      @user.preferences.should be_a(Preferences)
-    end
   end
 
   #

@@ -11,7 +11,17 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   include Authorization::AasmRoles
   
-  serialize :preferences, Preferences
+  # old way
+  # serialize :old_preferences, OldPreferences
+  
+  # new way
+  preference :comment_email_notification, :boolean, :default => true
+  preference :identification_email_notification, :boolean, :default => true
+  preference :project_invitation_email_notification, :boolean, :default => true
+  preference :lists_by_login_sort, :string, :default => "id"
+  preference :lists_by_login_order, :string, :default => "asc"
+  preference :per_page, :integer, :default => 30
+  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :destroy
@@ -76,7 +86,6 @@ class User < ActiveRecord::Base
   # Roles
   has_and_belongs_to_many :roles
 
-  before_create :create_preferences
   after_create :create_life_list, :signup_for_incomplete_community_goals
   after_destroy :create_deleted_user
   before_validation :download_remote_icon, :if => :icon_url_provided?
@@ -324,10 +333,6 @@ class User < ActiveRecord::Base
   
   def signup_for_incomplete_community_goals
     goals << Goal.for('community').incomplete.find(:all)
-  end
-  
-  def create_preferences
-    self.preferences ||= Preferences.new
   end
   
   def create_deleted_user

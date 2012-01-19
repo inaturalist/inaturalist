@@ -106,7 +106,7 @@
   </div>
   
   <% if logged_in? -%>
-    <% form_for @prefs, :url => url_for do |f| %>
+    <% form_for :preferences, :url => url_for do |f| %>
       <%= f.label :per_page %>
       <%= f.select :per_page, ApplicationController::PER_PAGES, {}, 
         :onchange => "$(this).parents('form:first').submit()" %>

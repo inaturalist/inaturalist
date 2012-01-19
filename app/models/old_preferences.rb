@@ -1,4 +1,4 @@
-class Preferences
+class OldPreferences
   PREFERENCES = [
     :comment_email_notification,
     :identification_email_notification,

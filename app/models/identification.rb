@@ -117,7 +117,7 @@ class Identification < ActiveRecord::Base
   
   def notify_observer
     if self.observation.user_id != self.user_id && 
-        !self.observation.user.email.blank? && self.observation.user.preferences.identification_email_notification
+        !self.observation.user.email.blank? && self.observation.user.prefers_identification_email_notification?
       Emailer.send_later(:deliver_identification_notification, self)
     end
     true

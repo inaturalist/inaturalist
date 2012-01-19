@@ -1217,7 +1217,7 @@ class ObservationsController < ApplicationController
       :page => search_params[:page]
     }
     find_options[:page] = 1 if find_options[:page].to_i == 0
-    find_options[:per_page] = @prefs.per_page if @prefs
+    find_options[:per_page] = @prefs["per_page"] if @prefs
     
     # Set format-based page sizes
     if request.format == :kml

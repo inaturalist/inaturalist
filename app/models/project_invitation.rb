@@ -14,7 +14,7 @@ class ProjectInvitation < ActiveRecord::Base
   
   def deliver_notification
     if self.observation.user_id != self.user_id && 
-        !self.observation.user.email.blank? && self.observation.user.preferences.project_invitation_email_notification
+        !self.observation.user.email.blank? && self.observation.user.prefers_project_invitation_email_notification?
       Emailer.send_later(:deliver_project_invitation_notification, self)
     end
     true

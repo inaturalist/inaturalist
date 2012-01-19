@@ -12,10 +12,6 @@ quentin:
   state:                     active
   time_zone:                 "Pacific Time (US & Canada)"
   life_list:                 quentin_life_list
-  preferences: |
-    --- !ruby/object:Preferences 
-    comment_email_notification: true
-    identification_email_notification: true
       
 aaron:
   # id:                        30
@@ -33,10 +29,6 @@ aaron:
   state:                     pending
   time_zone:                 "Pacific Time (US & Canada)"
   life_list_id:              30
-  preferences: |
-    --- !ruby/object:Preferences 
-    comment_email_notification: true
-    identification_email_notification: true
 
 
 old_password_holder:
@@ -50,10 +42,6 @@ old_password_holder:
   activated_at:              <%= 5.days.ago.to_s :db %>
   state:                     active
   life_list_id:              31
-  preferences: |
-    --- !ruby/object:Preferences 
-    comment_email_notification: true
-    identification_email_notification: true
 
 # personas
 # password is 'password'
@@ -69,10 +57,6 @@ ted:
   activated_at:              <%= 5.days.ago.to_s :db %>
   state:                     active
   life_list_id:              32
-  preferences: |
-    --- !ruby/object:Preferences 
-    comment_email_notification: true
-    identification_email_notification: true
 
 jill:
   # id: 33
@@ -86,10 +70,7 @@ jill:
   activated_at:              <%= 5.days.ago.to_s :db %>
   state:                     active
   life_list_id:              33
-  preferences: |
-    --- !ruby/object:Preferences 
-    comment_email_notification: true
-    identification_email_notification: true
+
 adam:
   # id: 34
   login: adam
@@ -102,7 +83,3 @@ adam:
   activated_at:              <%= 5.days.ago.to_s :db %>
   state:                     active
   life_list_id:              34
-  preferences: |
-    --- !ruby/object:Preferences 
-    comment_email_notification: true
-    identification_email_notification: true

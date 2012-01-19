@@ -110,6 +110,7 @@ Rails::Initializer.run do |config|
   config.gem 'delayed_paperclip'
   config.gem "friendly_id", :version => "~> 3.2.1"
   config.gem "koala"
+  config.gem "preferences"
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

@@ -215,23 +215,36 @@ class ApplicationController < ActionController::Base
     prefs = if logged_in?
       current_user.preferences
     else
-      session[:preferences] ||= Preferences.new
-      session[:preferences]
+      session[:preferences] ||= {}
     end
     
-    update_params = update_params.reject{|k,v| v.nil?} if update_params
+    update_params = update_params.reject{|k,v| v.blank?} if update_params
     if update_params.is_a?(Hash) && !update_params.empty?
-      prefs.update_attributes(update_params)
+      # prefs.update_attributes(update_params)
+      if logged_in?
+        update_params.each do |k,v|
+          new_value = if v == "true"
+            true
+          elsif v == "false"
+            false
+          elsif v.to_i > 0
+            v.to_i
+          else
+            v
+          end
+          current_user.write_preference(k, new_value) unless new_value.blank?
+        end
+      else
+        prefs.update(update_params)
+      end
     end
     
     if logged_in?
-      current_user.preferences = prefs
       current_user.save
+      current_user.preferences
     else
       session[:preferences] = prefs
     end
-    
-    prefs
   end
   
   def log_timer
