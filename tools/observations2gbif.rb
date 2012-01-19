@@ -6,7 +6,7 @@ class FakeView < ActionView::Base
   include ActionView::Helpers::UrlHelper
   include ActionController::UrlWriter
   
-  @@default_url_options = {:host => APP_CONFIG[:site_url]}
+  @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
   
   def initialize
     super
