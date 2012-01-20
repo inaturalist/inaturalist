@@ -9,6 +9,7 @@ module DarwinCoreModule
     %w(datasetName http://rs.tdwg.org/dwc/terms/datasetName),
     %w(informationWithheld http://rs.tdwg.org/dwc/terms/informationWithheld),
     %w(catalogNumber http://rs.tdwg.org/dwc/terms/catalogNumber),
+    %w(references http://purl.org/dc/terms/references),
     %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
     %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
     %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
@@ -30,8 +31,30 @@ module DarwinCoreModule
   ]
   DARWIN_CORE_TERM_NAMES = DARWIN_CORE_TERMS.map{|name, uri| name}
   
+  class FakeView < ActionView::Base
+    include ActionView::Helpers::TagHelper
+    include ActionView::Helpers::AssetTagHelper
+    include ActionView::Helpers::UrlHelper
+    include ActionController::UrlWriter
+
+    @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
+
+    def initialize
+      super
+      self.view_paths = [File.join(RAILS_ROOT, 'app/views')]
+    end
+  end
+  
+  def fake_view
+    @fake_view ||= FakeView.new
+  end
+  
   def occurrenceID
-    lsid
+    fake_view.observation_url(self)
+  end
+  
+  def references
+    fake_view.observation_url(self)
   end
   
   def basisOfRecord
@@ -71,7 +94,7 @@ module DarwinCoreModule
   end
   
   def occurrenceRemarks
-    description.gsub(/\r\n/, "\n") if description.blank?
+    description.gsub(/\r\n/, "\n") unless description.blank?
   end
   
 
@@ -85,7 +108,7 @@ module DarwinCoreModule
   end
 
   def associatedMedia
-    photo_urls = photos.map{|p| p.original_url}.compact
+    photo_urls = photos.map{|p| [p.original_url, p.native_page_url]}.flatten.compact
     photo_urls.join(',')
   end
 
