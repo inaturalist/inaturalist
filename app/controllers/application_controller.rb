@@ -215,7 +215,11 @@ class ApplicationController < ActionController::Base
     prefs = if logged_in?
       current_user.preferences
     else
-      session[:preferences] ||= {}
+      session[:preferences] ||= User.preference_definitions.inject({}) do |memo, pair|
+        name, pref = pair
+        memo[name] = pref.default_value
+        memo
+      end
     end
     
     update_params = update_params.reject{|k,v| v.blank?} if update_params
