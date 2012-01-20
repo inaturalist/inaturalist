@@ -62,7 +62,7 @@ module Shared::ListsModule
         end
 
         @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
-        @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
+        @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?' && lr.operand.is_a?(Taxon)}
 
         load_listed_taxon_photos
         
