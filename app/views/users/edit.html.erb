@@ -42,7 +42,9 @@
       <%= f.text_field(:name, :class => "text") %>
     </div>
     <div class="last column span-9">
-      <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'select', :description => "All your observations will default to this time zone unless you specify otherwise."}) %>
+      <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, 
+        {:selected => current_user.time_zone}, 
+        {:class => 'select', :description => "All your observations will default to this time zone unless you specify otherwise."}) %>
     </div>
     <div class="column span-9">
       <%= f.text_area(:description, :label => "Tell everyone a little about yourself") %>

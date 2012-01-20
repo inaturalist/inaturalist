@@ -285,7 +285,6 @@ class UsersController < ApplicationController
         next
       end
       @display_user.send("#{k}=", v)
-      Rails.logger.debug "[DEBUG] set #{k} to #{v}"
     end
     
     # Nix the icon_url if an icon file was provided
