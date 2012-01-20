@@ -1320,32 +1320,4 @@ class Observation < ActiveRecord::Base
     end
   end
   
-  # Generates a CSV file suitable for inclusion in a Darwin Core Archive
-  def self.darwin_core_archive_csv(options = {})
-    headers = DARWIN_CORE_TERM_NAMES
-    fname = options[:fname] || "observations.csv"
-    fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
-    
-    # Always generate file to tmp path first
-    tmp_path = File.join(Dir::tmpdir, fname)
-    
-    find_options = {
-      :include => [:taxon, :user, :photos, :quality_metrics, :identifications],
-      :conditions => {:quality_grade => RESEARCH_GRADE}
-    }
-    
-    FasterCSV.open(tmp_path, 'w') do |csv|
-      csv << headers
-      Observation.do_in_batches(find_options) do |lt|
-        csv << headers.map{|h| lt.send(h)}
-      end
-    end
-    
-    # When the full file is ready, then move it over to the real path
-    FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
-    if tmp_path != fpath
-      FileUtils.mv tmp_path, fpath
-    end
-    fpath
-  end
 end

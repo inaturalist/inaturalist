@@ -39,6 +39,7 @@
       </online>
     </distribution>
     <coverage>
+      <% if @extent %>
       <geographicCoverage>
         <geographicDescription>Bounding Box</geographicDescription>
         <boundingCoordinates>
@@ -48,6 +49,7 @@
           <southBoundingCoordinate><%= @extent.lower_corner.x %></southBoundingCoordinate>
         </boundingCoordinates>
       </geographicCoverage>
+      <% end %>
       <temporalCoverage>
         <rangeOfDates>
           <beginDate>

@@ -18,9 +18,14 @@ class Metadata < FakeView
   def initialize
     super
     @contact = INAT_CONFIG["general"]["contact"] || {}
-    @extent = Observation.has_quality_grade(Observation::RESEARCH_GRADE).calculate(:extent, :geom)
-    @start_date = Observation.has_quality_grade(Observation::RESEARCH_GRADE).minimum(:observed_on)
-    @end_date = Observation.has_quality_grade(Observation::RESEARCH_GRADE).maximum(:observed_on)
+    scope = Observation.scoped({})
+    scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
+    scope = scope.scoped(
+      :include => {:user => :stored_preferences},
+      :conditions => "preferences.id IS NULL OR (preferences.name = 'gbif_sharing' AND preferences.value != 'f')")
+    @extent     = scope.calculate(:extent, :geom)
+    @start_date = scope.minimum(:observed_on)
+    @end_date   = scope.maximum(:observed_on)
   end
 end
 
@@ -48,14 +53,15 @@ def make_data
   tmp_path = File.join(Dir::tmpdir, fname)
   
   find_options = {
-    :include => [:taxon, :user, :photos, :quality_metrics, :identifications],
+    :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
     :conditions => {:quality_grade => Observation::RESEARCH_GRADE}
   }
   
   FasterCSV.open(tmp_path, 'w') do |csv|
     csv << headers
-    Observation.do_in_batches(find_options) do |lt|
-      csv << headers.map{|h| lt.send(h)}
+    Observation.do_in_batches(find_options) do |o|
+      next unless o.user.prefers_gbif_sharing?
+      csv << headers.map{|h| o.send(h)}
     end
   end
   

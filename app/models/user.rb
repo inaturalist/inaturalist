@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   preference :lists_by_login_sort, :string, :default => "id"
   preference :lists_by_login_order, :string, :default => "asc"
   preference :per_page, :integer, :default => 30
+  preference :gbif_sharing, :boolean, :default => true
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
