@@ -215,16 +215,6 @@ class ApplicationController < ActionController::Base
     prefs = if logged_in?
       current_user.preferences
     else
-      begin
-        session[:preferences]
-      rescue ArgumentError => e
-        raise e unless e.message =~ /Preferences/
-        session[:preferences] = User.preference_definitions.inject({}) do |memo, pair|
-          name, pref = pair
-          memo[name] = pref.default_value
-          memo
-        end
-      end
       session[:preferences] ||= User.preference_definitions.inject({}) do |memo, pair|
         name, pref = pair
         memo[name] = pref.default_value
