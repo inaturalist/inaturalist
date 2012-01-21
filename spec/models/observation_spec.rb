@@ -1065,3 +1065,12 @@ describe Observation, "set_out_of_range" do
     o.out_of_range.should == nil
   end
 end
+
+describe Observation, "out_of_range" do
+  it "should get set to false immediately if taxon set to nil" do
+    o = Observation.make(:taxon => Taxon.make, :out_of_range => true)
+    o.should be_out_of_range
+    o.update_attributes(:taxon => nil)
+    o.should_not be_out_of_range
+  end
+end

@@ -1154,8 +1154,11 @@ class Observation < ActiveRecord::Base
   end
   
   def update_out_of_range_later
-    return true unless latitude_changed? || private_latitude_changed? || taxon_id_changed?
-    send_later(:update_out_of_range)
+    if taxon_id_changed? && taxon.blank?
+      update_out_of_range
+    elsif latitude_changed? || private_latitude_changed? || taxon_id_changed?
+      send_later(:update_out_of_range)
+    end
     true
   end
   
@@ -1166,7 +1169,7 @@ class Observation < ActiveRecord::Base
   
   def set_out_of_range
     if taxon_id.blank? || !georeferenced? || !TaxonRange.exists?(["taxon_id = ?", taxon_id])
-      out_of_range = nil
+      self.out_of_range = nil
       return
     end
     
