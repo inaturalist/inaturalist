@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123001206) do
+ActiveRecord::Schema.define(:version => 20120120232035) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -65,6 +65,24 @@ ActiveRecord::Schema.define(:version => 20120123001206) do
   add_index "counties_simplified_01", ["geom"], :name => "index_counties_simplified_01_on_geom", :spatial => true
   add_index "counties_simplified_01", ["place_geometry_id"], :name => "index_counties_simplified_01_on_place_geometry_id"
   add_index "counties_simplified_01", ["place_id"], :name => "index_counties_simplified_01_on_place_id"
+
+  create_table "counties_simplified_1", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
+  end
+
+  create_table "countries_large_polygons", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.integer  "place_id"
+    t.geometry "geom",     :limit => nil
+  end
+
+  create_table "countries_simplified", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
+  end
 
   create_table "countries_simplified_1", :force => true do |t|
     t.integer       "place_geometry_id"
@@ -289,6 +307,7 @@ ActiveRecord::Schema.define(:version => 20120123001206) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "allowed_values"
   end
 
   add_index "observation_fields", ["name"], :name => "index_observation_fields_on_name"
@@ -332,6 +351,7 @@ ActiveRecord::Schema.define(:version => 20120123001206) do
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
     t.string   "quality_grade",                                                                   :default => "casual"
+    t.point    "geom",                             :limit => nil
     t.string   "user_agent"
     t.string   "positioning_method"
     t.string   "positioning_device"
@@ -404,7 +424,7 @@ ActiveRecord::Schema.define(:version => 20120123001206) do
     t.string        "source_identifier"
     t.datetime      "created_at"
     t.datetime      "updated_at"
-    t.multi_polygon "geom",              :limit => nil, :null => false, :srid => 4326
+    t.multi_polygon "geom",              :limit => nil, :null => false
   end
 
   add_index "place_geometries", ["geom"], :name => "index_place_geometries_on_geom", :spatial => true
@@ -605,15 +625,25 @@ ActiveRecord::Schema.define(:version => 20120123001206) do
 
   add_index "sources", ["user_id"], :name => "index_sources_on_user_id"
 
-  create_table "states_simplified_1", :force => true do |t|
-    t.integer       "place_geometry_id"
+  create_table "states_large_polygons", :id => false, :force => true do |t|
+    t.integer  "id"
+    t.integer  "place_id"
+    t.geometry "geom",     :limit => nil
+  end
+
+  create_table "states_simplified", :id => false, :force => true do |t|
+    t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",              :limit => nil, :null => false
+    t.multi_polygon "geom",     :limit => nil
+  end
+
+  create_table "states_simplified_1", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
   end
 
   add_index "states_simplified_1", ["geom"], :name => "index_states_simplified_1_on_geom", :spatial => true
-  add_index "states_simplified_1", ["place_geometry_id"], :name => "index_states_simplified_1_on_place_geometry_id"
-  add_index "states_simplified_1", ["place_id"], :name => "index_states_simplified_1_on_place_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -728,8 +758,8 @@ ActiveRecord::Schema.define(:version => 20120123001206) do
     t.integer       "range_file_size"
     t.text          "description"
     t.integer       "source_id"
+    t.multi_polygon "geom",               :limit => nil
     t.integer       "source_identifier"
-    t.multi_polygon "geom",               :limit => nil, :srid => 4326
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true

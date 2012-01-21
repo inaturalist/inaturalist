@@ -92,6 +92,8 @@ $(document).ready(function() {
     }
     $(this).photoSelector(options)
   })
+  
+  fieldify()
 })
 
 function handleTaxonClick(e, taxon) {
@@ -114,26 +116,55 @@ function newObservationField(markup) {
     return
   }
   
-  var lastName = $('.observation_field:last input').attr('name')
-  if (lastName) {
-    var index = parseInt(lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)[1]) + 1
-  } else {
-    var index = 0
-  }
   $('.observation_fields').append(markup)
+  fieldify(currentField)
+}
+
+function fieldify(observationField) {
   $('.observation_field').not('.fieldified').each(function() {
-    $(this).attr('id', 'observation_field_'+currentField.recordId)
+    var lastName = $('.observation_field.fieldified:last input').attr('name')
+    if (lastName) {
+      var index = parseInt(lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)[1]) + 1
+    } else {
+      var index = 0
+    }
+    
     $(this).addClass('fieldified')
+    var input = $('.value_field input', this),
+        currentField = observationField || $.parseJSON($(input).attr('data-json'))
+    if (!currentField) return
+    currentField.recordId = currentField.recordId || currentField.id
+    
+    $(this).attr('id', 'observation_field_'+currentField.recordId)
     $('.value_field label', this).html(currentField.name)
     $('.value_field .description', this).html(currentField.description)
     $('.observation_field_id', this).val(currentField.recordId)
     $('input', this).each(function() {
-      $(this).attr('name', $(this).attr('name').replace(/observation_field_values_attributes\]\[(\d+)\]/, 'observation_field_values_attributes]['+index+']'))
+      var newName = $(this).attr('name')
+        .replace(
+          /observation_field_values_attributes\]\[(\d+)\]/, 
+          'observation_field_values_attributes]['+index+']')
+      $(this).attr('name', newName)
     })
-    switch (currentField.datatype) {
-      case 'numeric':
-        $('.value_field input', this).attr('type', 'number')
-        break
+    if (currentField.allowed_values && currentField.allowed_values != '') {
+      var allowed_values = currentField.allowed_values.split('|')
+      var select = $('<select></select>')
+      for (var i=0; i < allowed_values.length; i++) {
+        select.append($('<option>'+allowed_values[i]+'</option>'))
+      }
+      select.change(function() { input.val($(this).val()) })
+      $(input).hide()
+      $(input).after(select)
+      select.change()
+    } else if (currentField.datatype == 'numeric') {
+      var newInput = input.clone()
+      newInput.attr('type', 'number')
+      input.after(newInput)
+      input.remove()
+    } else if (currentField.datatype == 'date') {
+      $(input).iNatDatepicker({constrainInput: true})
+    } else if (currentField.datatype == 'time') {
+      $(input).timepicker({})
     }
   })
 }

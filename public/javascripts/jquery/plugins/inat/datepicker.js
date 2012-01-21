@@ -6,13 +6,14 @@
     return true;
   }
   
-  $.fn.iNatDatepicker = function(args) {
+  $.fn.iNatDatepicker = function(options) {
     $(this).width($(this).width() - 26);
     $(this).css({
       'margin-right': '10px',
       'vertical-align': 'middle'
-    });
-    $(this).datepicker({
+    })
+    options = options || {}
+    options = $.extend({
       showOn: 'both',
       buttonImage: "/images/silk/date.png",
       buttonImageOnly: true,
@@ -25,7 +26,8 @@
       changeMonth: true,
       changeYear: true,
       dateFormat: 'yy-mm-dd'
-    });
+    }, options)
+    $(this).datepicker(options);
     $(this).next('.ui-datepicker-trigger').css({
       'vertical-align': 'middle'
     });

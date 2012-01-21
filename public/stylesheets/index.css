@@ -135,6 +135,11 @@ form .field{margin-bottom:10px;}
 form .field .description { margin-bottom: 0.5em;}
 .label .fieldWithErrors{display:inline;}
 .stacked{margin-bottom:10px;}
+.fieldWithErrors {
+  padding: 2px;
+  background-color: lightpink;
+  display: table;
+}
 
 
 /* Page Headers */

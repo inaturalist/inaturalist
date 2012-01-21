@@ -46,7 +46,7 @@ class Observation < ActiveRecord::Base
   belongs_to :taxon, :counter_cache => true
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
-  has_many :observation_photos, :dependent => :destroy
+  has_many :observation_photos, :dependent => :destroy, :order => "id asc"
   has_many :photos, :through => :observation_photos
   
   # note last_observation and first_observation on listed taxa will get reset 
@@ -62,7 +62,7 @@ class Observation < ActiveRecord::Base
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
   has_many :quality_metrics, :dependent => :destroy
-  has_many :observation_field_values, :dependent => :destroy
+  has_many :observation_field_values, :dependent => :destroy, :order => "id asc"
   has_many :observation_fields, :through => :observation_field_values
   
   define_index do
