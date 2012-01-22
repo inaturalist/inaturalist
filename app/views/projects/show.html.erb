@@ -162,10 +162,16 @@
       </div>
     </li>
     <li>
-      <% if @species_count.to_i > 0 -%>
-        <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @species_count %></span> species total
-        </span>
+      <% if @project.prefers_count_from_list? -%>
+      <span class="right" style="margin: 4px 10px 0 10px">
+        <span class="count"><%= @species_count %></span> of <span class="count"><%= @project.project_list.listed_taxa.count %></span> taxa observed
+      </span>
+      <% else -%>
+       <% if @species_count.to_i > 0 -%>
+         <span class="right" style="margin: 4px 10px 0 10px">
+           <span class="count"><%= @species_count %></span> taxa observed
+         </span>
+        <% end -%>
       <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> Checklist", list_path(@project.project_list), :class => "navlink" %>
     </li>

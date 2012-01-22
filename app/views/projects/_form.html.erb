@@ -5,6 +5,7 @@
     .description_field,.terms_field,.title_field{float:left;width:465px;}
     .project_icon_field{float:left;width:225px;}
     .project_type_field{clear:left;}
+    .preferes_count_from_list_field{clear:left;}
     .title_field input{width:390px;}
     .description_field textarea,.terms_field textarea{width:450px;}
     #place_q,#taxon_q{width:300px;}
@@ -84,6 +85,7 @@
   <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
     :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
   
+  <%= f.check_box :prefers_count_from_list, :description => "Show counts based on the list." %>
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
   

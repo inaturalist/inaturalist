@@ -124,6 +124,7 @@ class ProjectsController < ApplicationController
   
   def species_count
     @species_count = @project.species_count
+    @list_count = @project.project_list.listed_taxa.count
     respond_to do |format|
       format.html do
       end

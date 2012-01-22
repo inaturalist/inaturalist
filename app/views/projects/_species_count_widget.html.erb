@@ -1,1 +1,5 @@
-<%= @species_count %>
+<% if @project.prefers_count_from_list? -%>
+ <%= @species_count %> of <%= @list_count %>
+<% else -%>
+ <%= @species_count %>
+<% end -%>

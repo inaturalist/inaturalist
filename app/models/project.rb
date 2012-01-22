@@ -1,4 +1,7 @@
 class Project < ActiveRecord::Base
+  
+  preference :count_from_list, :boolean, :default => false
+  
   belongs_to :user
   has_many :project_users, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
@@ -147,8 +150,8 @@ class Project < ActiveRecord::Base
       :select => "distinct observations.taxon_id",
       :include => [{:observation => :taxon}, :curator_identification],
       :conditions => [
-        "identifications.id IS NULL AND project_id = ? AND taxa.rank_level <= ?",
-        project_id, Taxon::RANK_LEVELS['species']
+        "identifications.id IS NULL AND project_id = ?",
+        project_id
       ]
     ).map{|po| po.observation.taxon_id}
     
@@ -156,8 +159,8 @@ class Project < ActiveRecord::Base
       :select => "distinct identifications.taxon_id",
       :include => [:observation, {:curator_identification => :taxon}],
       :conditions => [
-        "identifications.id IS NOT NULL AND project_id = ? AND taxa.rank_level <= ?",
-        project_id, Taxon::RANK_LEVELS['species']
+        "identifications.id IS NOT NULL AND project_id = ?",
+        project_id
       ]
     ).map{|po| po.curator_identification.taxon_id}
     
