@@ -146,26 +146,31 @@ class Project < ActiveRecord::Base
   end
   
   def self.update_species_count(project_id)
-    user_taxon_ids = ProjectObservation.all(
-      :select => "distinct observations.taxon_id",
-      :include => [{:observation => :taxon}, :curator_identification],
-      :conditions => [
-        "identifications.id IS NULL AND project_id = ?",
-        project_id
-      ]
-    ).map{|po| po.observation.taxon_id}
+    #This way does uses curator IDs which is awesome, but is different from
+    #total_observed_taxa (which is project.project_list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL") )
+    #making this too confusing until total_observed_taxa can be made to also use curator IDs for project lists
+    #user_taxon_ids = ProjectObservation.all(
+    #  :select => "distinct observations.taxon_id",
+    #  :include => [{:observation => :taxon}, :curator_identification],
+    #  :conditions => [
+    #    "identifications.id IS NULL AND project_id = ?",
+    #    project_id
+    #  ]
+    #).map{|po| po.observation.taxon_id}
     
-    curator_taxon_ids = ProjectObservation.all(
-      :select => "distinct identifications.taxon_id",
-      :include => [:observation, {:curator_identification => :taxon}],
-      :conditions => [
-        "identifications.id IS NOT NULL AND project_id = ?",
-        project_id
-      ]
-    ).map{|po| po.curator_identification.taxon_id}
+    #curator_taxon_ids = ProjectObservation.all(
+    #  :select => "distinct identifications.taxon_id",
+    #  :include => [:observation, {:curator_identification => :taxon}],
+    #  :conditions => [
+    #    "identifications.id IS NOT NULL AND project_id = ?",
+    #    project_id
+    #  ]
+    #).map{|po| po.curator_identification.taxon_id}
     
     project = Project.find_by_id(project_id)
-    project.update_attributes(:species_count => (user_taxon_ids + curator_taxon_ids).uniq.size)
+    #project.update_attributes(:species_count => (user_taxon_ids + curator_taxon_ids).uniq.size)
+    species_count = project.project_list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
+    project.update_attributes(:species_count => species_count)
   end
   
   
