@@ -142,9 +142,9 @@ class CheckList < List
       "place_id = ? AND list_id != ? AND (taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", 
       place_id, id, ancestry, "#{ancestry}/%"
     ]
-    sorted_taxon_ids = taxon_ids.uniq.sort
+    that = self
     ListedTaxon.do_in_batches(:conditions => conditions) do |lt|
-      next if sorted_taxon_ids.include?(lt.taxon_id)
+      next if that.listed_taxa.exists?(:taxon_id => lt.taxon_id)
       ListedTaxon.update_all(["occurrence_status_level = ?", ListedTaxon::ABSENT], "id = #{lt.id}")
     end
     true
