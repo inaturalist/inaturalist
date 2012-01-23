@@ -35,8 +35,11 @@ module Shared::ListsModule
 
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
         @total_listed_taxa ||= @list.listed_taxa.count
+        #if @list.is_a?(ProjectList)
+        #  @total_observed_taxa = @list.project.observed_taxa_count
+        #else
         @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
-
+        #end
         @view = params[:view]
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
 

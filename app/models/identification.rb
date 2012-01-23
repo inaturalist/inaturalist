@@ -53,7 +53,7 @@ class Identification < ActiveRecord::Base
     end
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon => taxon, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, observation.id, self.user_id)
+    ProjectUser.send_later(:update_taxa_obs_and_observed_taxa_count_after_update_observation, observation.id, self.user_id)
     true
   end
   
@@ -76,7 +76,7 @@ class Identification < ActiveRecord::Base
     self.observation.species_guess = nil
     self.observation.iconic_taxon_id = nil
     
-    ProjectUser.send_later(:update_taxa_obs_and_species_count_after_update_observation, self.observation.id, self.user_id)
+    ProjectUser.send_later(:update_taxa_obs_and_observed_taxa_count_after_update_observation, self.observation.id, self.user_id)
     true
   end
   
@@ -186,7 +186,7 @@ class Identification < ActiveRecord::Base
         po.update_attributes(:curator_identification_id => ident.id)
         ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, po.project_id, obs.user_id)
         ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, po.project_id, obs.user_id)
-        Project.send_later(:update_species_count, po.project_id)
+        Project.send_later(:update_observed_taxa_count, po.project_id)
       end
     end
   end
@@ -212,7 +212,7 @@ class Identification < ActiveRecord::Base
         end
         ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, po.project_id, obs.user_id)
         ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, po.project_id, obs.user_id)
-        Project.send_later(:update_species_count, po.project_id)
+        Project.send_later(:update_observed_taxa_count, po.project_id)
       end
     end
   end

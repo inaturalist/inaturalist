@@ -1,0 +1,5 @@
+<% if @project.prefers_count_from_list? -%>
+ <%= @observed_taxa_count %> of <%= @list_count %>
+<% else -%>
+ <%= @observed_taxa_count %>
+<% end -%>

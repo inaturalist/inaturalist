@@ -1,11 +1,11 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
-  caches_action :species_count, :contributors,
+  caches_action :observed_taxa_count, :contributors,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
     :if => Proc.new {|c| c.request.format.widget?}
   
-  before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :species_count]
+  before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @species_count = @project.species_count
+        @observed_taxa_count = @project.observed_taxa_count
         @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 3, :conditions => "taxa_count > 0")
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
         @project_observations = @project.project_observations.paginate(:page => 1, 
@@ -122,14 +122,14 @@ class ProjectsController < ApplicationController
     @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "id DESC")
   end
   
-  def species_count
-    @species_count = @project.species_count
+  def observed_taxa_count
+    @observed_taxa_count = @project.observed_taxa_count
     @list_count = @project.project_list.listed_taxa.count
     respond_to do |format|
       format.html do
       end
       format.widget do
-        render :js => render_to_string(:partial => "species_count_widget.js.erb")
+        render :js => render_to_string(:partial => "observed_taxa_count_widget.js.erb")
       end
     end
   end

@@ -65,7 +65,7 @@ class ProjectUser < ActiveRecord::Base
     project_user.update_taxa_counter_cache
   end
   
-  def self.update_taxa_obs_and_species_count_after_update_observation(observation_id, user_id)
+  def self.update_taxa_obs_and_observed_taxa_count_after_update_observation(observation_id, user_id)
     unless obs = Observation.find_by_id(observation_id)
       return
     end
@@ -79,7 +79,7 @@ class ProjectUser < ActiveRecord::Base
       })
         project_user.update_taxa_counter_cache
         project_user.update_observations_counter_cache
-        Project.update_species_count(po.project_id)
+        Project.update_observed_taxa_count(po.project_id)
       end
     end
   end
