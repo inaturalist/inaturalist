@@ -136,9 +136,11 @@ describe ProjectObservation, "in_taxon?" do
     po.should_not be_in_taxon(nil)
   end
   
-  it "should be false of obs has no taxon" do
-    po = ProjectObservation.make
-    po.observation.taxon.should be_blank
-    po.should_not be_in_taxon(@taxon)
-  end
+  # changed in https://github.com/inaturalist/inaturalist/commit/f964867b31a58edfcc9fd8b5ec32d25c1729eada
+  # but might be worth re-implementing with a new rule
+  # it "should be false of obs has no taxon" do
+  #   po = ProjectObservation.make
+  #   po.observation.taxon.should be_blank
+  #   po.should_not be_in_taxon(@taxon)
+  # end
 end
