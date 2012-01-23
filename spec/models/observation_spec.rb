@@ -219,6 +219,14 @@ describe Observation, "creation" do
       @observation.save
       @observation.taxon_id.should == taxon.id
     end
+    
+    it "should not make a guess for problematic names" do
+      Taxon::PROBLEM_NAMES.each do |name|
+        t = Taxon.make(:name => name.capitalize)
+        o = Observation.make(:species_guess => name)
+        o.taxon_id.should_not == t.id
+      end
+    end
   end
   
   it "should allow lots of sigfigs" do

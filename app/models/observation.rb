@@ -1105,6 +1105,7 @@ class Observation < ActiveRecord::Base
   end
   
   def single_taxon_id_for_name(name)
+    return if Taxon::PROBLEM_NAMES.include?(name.downcase)
     taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase], :limit => 5, :include => :taxon)
     return if taxon_names.blank?
     return taxon_names.first.taxon_id if taxon_names.size == 1
