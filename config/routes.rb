@@ -144,6 +144,7 @@ ActionController::Routing::Routes.draw do |map|
     p.formatted_project_contributors "projects/:id/contributors.:format", :action => "contributors"
     p.project_observed_taxa_count "projects/:id/observed_taxa_count", :action => "observed_taxa_count"
     p.formatted_project_observed_taxa_count "projects/:id/observed_taxa_count.:format", :action => "observed_taxa_count"
+    p.formatted_project_species_count "projects/:id/species_count.:format", :action => "observed_taxa_count"
     p.project_show_contributor "projects/:id/contributors/:project_user_id", :action => "show_contributor"
     p.make_curator 'projects/:id/make_curator/:project_user_id', :action => 'make_curator'
     p.remove_curator 'projects/:id/remove_curator/:project_user_id', :action => 'remove_curator'
