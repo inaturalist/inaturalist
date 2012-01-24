@@ -13,14 +13,14 @@ class Photo < ActiveRecord::Base
   NO_COPYRIGHT = 7
   
   LICENSE_INFO = {
-    0 => {:short => "(c)", :name => "Copyright", :url => "http://en.wikipedia.org/wiki/Copyright"},
-    1 => {:short => "CC BY-NC-SA", :name => "Attribution-NonCommercial-ShareAlike License", :url => "http://creativecommons.org/licenses/by-nc-sa/2.0/"},
-    2 => {:short => "CC BY-NC", :name => "Attribution-NonCommercial License", :url => "http://creativecommons.org/licenses/by-nc/2.0/"},
-    3 => {:short => "CC BY-NC-ND", :name => "Attribution-NonCommercial-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nc-nd/2.0/"},
-    4 => {:short => "CC BY", :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/2.0/"},
-    5 => {:short => "CC BY-SA", :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/2.0/"},
-    6 => {:short => "CC BY-ND", :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/2.0/"},
-    7 => {:short => "PD", :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"}
+    0 => {:code => "C",                       :short => "(c)",          :name => "Copyright", :url => "http://en.wikipedia.org/wiki/Copyright"},
+    1 => {:code => Observation::CC_BY_NC_SA,  :short => "CC BY-NC-SA",  :name => "Attribution-NonCommercial-ShareAlike License", :url => "http://creativecommons.org/licenses/by-nc-sa/2.0/"},
+    2 => {:code => Observation::CC_BY_NC,     :short => "CC BY-NC",     :name => "Attribution-NonCommercial License", :url => "http://creativecommons.org/licenses/by-nc/2.0/"},
+    3 => {:code => Observation::CC_BY_NC_ND,  :short => "CC BY-NC-ND",  :name => "Attribution-NonCommercial-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nc-nd/2.0/"},
+    4 => {:code => Observation::CC_BY,        :short => "CC BY",        :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/2.0/"},
+    5 => {:code => Observation::CC_BY_SA,     :short => "CC BY-SA",     :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/2.0/"},
+    6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/2.0/"},
+    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"}
   }
   
   def validate
@@ -52,7 +52,7 @@ class Photo < ActiveRecord::Base
     elsif !native_username.blank?
       native_username
     elsif (o = observations.first)
-      o.user.login
+      o.user.name || o.user.login
     else
       "anonymous Flickr user"
     end
@@ -120,6 +120,15 @@ class Photo < ActiveRecord::Base
         photo.destroy
       end
     end
+  end
+  
+  def self.license_number_for_code(code)
+    return COPYRIGHT if code.blank?
+    LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:first)
+  end
+  
+  def self.license_code_for_number(number)
+    LICENSE_INFO[number].try(:[], :code)
   end
   
 end

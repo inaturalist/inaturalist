@@ -20,7 +20,7 @@
       <table width="100%">
         <tr>
           <th>Attribution</th>
-          <td width="100%"><%= @photo.attribution %></td>
+          <td width="100%"><%= rights @photo %></td>
         </tr>
         <% unless @photo.is_a?(LocalPhoto) -%>
           <tr>
@@ -53,6 +53,20 @@
             </td>
           </tr>
         <% end -%>
+        
+        <tr>
+          <th>Sizes</th>
+          <td>
+            <ul>
+              <% %w(small medium large original).each do |size| %>
+                <%- next if @photo.send("#{size}_url").blank? -%>
+                <li>
+                  <%= link_to size, url_for(:size => size) %>
+                </li>
+              <% end -%>
+            </ul>
+          </td>
+        </tr>
       </table>
     </td>
   </tr>

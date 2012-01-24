@@ -17,7 +17,7 @@
 <table width="100%">
   <tr>
     <th>Attribution</th>
-    <td width="100%"><%= @photo.attribution %></td>
+    <td width="100%"><%= rights @photo %></td>
   </tr>
   <% unless @photo.is_a?(LocalPhoto) -%>
     <tr>

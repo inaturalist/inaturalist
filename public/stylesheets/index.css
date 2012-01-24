@@ -1103,3 +1103,7 @@ table .numeric { text-align: center; }
 .zoomified {position:relative;}
 .zoomified .zoom_icon {position:absolute; top: 5px; right: 5px; opacity: 0.5;}
 .zoomified:hover .zoom_icon {opacity: 1;}
+
+.verticalmiddle img {vertical-align:middle;}
+.licensechoices div.description { margin-left: 20px; }
+.licensechoices .status.preferred {padding: 2px 5px;}

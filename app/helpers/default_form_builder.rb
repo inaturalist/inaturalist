@@ -86,7 +86,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     if options[:label] != false
       label_field = field
       if options[:field_name] == 'radio_button'
-        label_field = [label_field, options[:field_value]].compact.join('_')
+        label_field = [label_field, options[:field_value]].compact.join('_').gsub(/\W/, '').downcase
       end
       label_tag = label(label_field, options[:label], :class => options[:label_class])
       if options[:required]

@@ -54,7 +54,7 @@ def make_data
   
   find_options = {
     :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
-    :conditions => {:quality_grade => Observation::RESEARCH_GRADE}
+    :conditions => ["license IS NOT NULL AND quality_grade = ?", Observation::RESEARCH_GRADE]
   }
   
   FasterCSV.open(tmp_path, 'w') do |csv|

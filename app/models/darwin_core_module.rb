@@ -27,6 +27,7 @@ module DarwinCoreModule
     %w(taxonID http://rs.tdwg.org/dwc/terms/taxonID),
     %w(scientificName http://rs.tdwg.org/dwc/terms/scientificName),
     %w(taxonRank http://rs.tdwg.org/dwc/terms/taxonRank),
+    %w(rights http://purl.org/dc/terms/rights),
     %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
   ]
   DARWIN_CORE_TERM_NAMES = DARWIN_CORE_TERMS.map{|name, uri| name}
@@ -36,6 +37,7 @@ module DarwinCoreModule
     include ActionView::Helpers::AssetTagHelper
     include ActionView::Helpers::UrlHelper
     include ActionController::UrlWriter
+    include ApplicationHelper
 
     @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
 
@@ -166,6 +168,13 @@ module DarwinCoreModule
 
   def taxonRank
     taxon.rank if taxon
+  end
+  
+  def rights
+    s = "Copyright #{rightsHolder}"
+    unless license.blank?
+      s += ", licensed under a #{license_name} license: #{fake_view.url_for_license(license)}"
+    end
   end
 
   def rightsHolder

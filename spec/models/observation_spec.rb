@@ -1082,3 +1082,40 @@ describe Observation, "out_of_range" do
     o.should_not be_out_of_range
   end
 end
+
+describe Observation, "license" do
+  it "should use the user's default observation license" do
+    u = User.make
+    u.preferred_observation_license = "CC-BY-NC"
+    u.save
+    o = Observation.make(:user => u)
+    o.license.should == u.preferred_observation_license
+  end
+  
+  it "should update default license when requested" do
+    u = User.make
+    u.preferred_observation_license.should be_blank
+    o = Observation.make(:user => u, :make_license_default => true, :license => Observation::CC_BY_NC)
+    u.reload
+    u.preferred_observation_license.should == Observation::CC_BY_NC
+  end
+  
+  it "should update all other observations when requested" do
+    u = User.make
+    o1 = Observation.make(:user => u)
+    o2 = Observation.make(:user => u)
+    o1.license.should be_blank
+    o2.make_licenses_same = true
+    o2.license = Observation::CC_BY_NC
+    o2.save
+    o1.reload
+    o1.license.should == Observation::CC_BY_NC
+  end
+  
+  it "should nilify if not a license" do
+    o = Observation.make(:license => Observation::CC_BY)
+    o.update_attributes(:license => "on")
+    o.reload
+    o.license.should be_blank
+  end
+end

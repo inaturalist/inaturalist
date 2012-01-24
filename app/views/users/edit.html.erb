@@ -59,22 +59,76 @@
         <% end %>
       </div>
       
-      <%= separator %>
-      
-      <div class="stacked">
-        <label>Data partners</label>
-        <p class="ui description">Control whether your observations get distributed to iNat's data partners.</p>
-        <%= f.check_box :prefers_gbif_sharing, :label => "Share with GBIF", :label_after => true %>
+    </div>
+    
+    <div class="column span-18">
+      <div id="licenses" class="stacked">
+        <h3>Licensing</h3>
         <p class="ui description">
-          The <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> 
-          (GBIF) is an international, inter-governmental organization that
+          Licensing your content gives other people the legal right to use it
+          without asking your permission if they stick to the terms of the
+          license. iNat uses your Creative Commons-licensed content to share
+          with data partners like
+          the <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> 
+          (GBIF), an international, inter-governmental organization that
           compiles and distributes biodiversity information from around the
-          world. We only send them research-grade observations, and they only
-          see data that are publicly visible on the site (e.g. they do not see
-          private or obscured coordinates).
+          world.
+          <%= link_to_function "Learn what these licenses mean", 
+            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
         </p>
+        
+        <div class="column span-9 verticalmiddle licensechoices">
+          <h4>Default observation license</h4>
+          <% for code, name, description in Observation::LICENSES %>
+            <%= f.radio_button :preferred_observation_license, code, 
+              :label => "#{image_tag("#{code}.png")} #{name} #{'(preferred)' if code == 'CC-BY'}", :label_after => true %>
+          <% end %>
+          <%= f.radio_button :preferred_observation_license, nil, :label => "No license (all rights reserved)", :label_after => true,
+            :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
+          <%= f.check_box :make_observation_licenses_same, :label => "Update existing observations with new license choices", :label_after => true %>
+        </div>
+        
+        <div class="last column span-9 verticalmiddle licensechoices">
+          <h4>Default photo license</h4>
+          <% for code, name, description in Observation::LICENSES %>
+            <%= f.radio_button :preferred_photo_license, code, 
+              :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
+          <% end %>
+          <%= f.radio_button :preferred_photo_license, nil, :label => "No license  (all rights reserved)", :label_after => true,
+            :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
+          <%= f.check_box :make_photo_licenses_same, :label => "Update existing photos with new license choices", :label_after => true %>
+        </div>
+        
+        <div class="last column span-18">
+          <%= link_to_function "<span class='helptip'></span> About these licenses", 
+            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
+          <div id="aboutlicenses" class="dialog" style="display:none">
+            <div class="column span-18 verticalmiddle">
+              <% for code, name, description in Observation::LICENSES %>
+                <div class="column span-9 <%= cycle '', 'last' %>">
+                  <h4>
+                    <%= image_tag("#{code}.png") %>
+                    <%= name %>
+                  </h4>
+                  <div class="stacked description">
+                    <%= description %>
+                    <%= link_to "View license", url_for_license(code), :class => "readmore" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          
+          <p class="ui description">
+            License descriptions and images 
+            &copy; <%= Date.today.year %> Creative Commons, used under a <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons &mdash; Attribution 3.0 Unported
+              &mdash; CC BY 3.0">Creative Commons Attribution license</a>
+            (so meta!)
+          </p>
+        </div>
       </div>
     </div>
+    
     <div class="column span-18">
       <%= f.submit("Save", :class => 'default button') %>
     </div>

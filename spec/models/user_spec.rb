@@ -313,8 +313,28 @@ describe User do
       @user.should be_pending
     end
   end
+  
+  describe "licenses" do
+    it "should update existing observations if requested" do
+      u = User.make
+      o = Observation.make(:user => u)
+      u.preferred_observation_license = Observation::CC_BY
+      u.update_attributes(:make_observation_licenses_same => true)
+      o.reload
+      o.license.should == Observation::CC_BY
+    end
+    
+    it "should update existing photo if requested" do
+      u = User.make
+      p = LocalPhoto.make(:user => u)
+      u.preferred_photo_license = Observation::CC_BY
+      u.update_attributes(:make_photo_licenses_same => true)
+      p.reload
+      p.license.should == Photo.license_number_for_code(Observation::CC_BY)
+    end
+  end
 
-protected
+  protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
     record.register! if record.valid?

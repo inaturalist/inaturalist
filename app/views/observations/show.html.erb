@@ -66,6 +66,7 @@
     #projects .box{padding:5px;}
     .id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
     #day_observations img {width: 32px; margin-bottom: 5px;}
+    .quality_assessment {width:100%;}
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -623,6 +624,69 @@
       Data Quality Assessment
     </h3>
     <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
+    <%= separator %>
+  </div>
+  
+  <div class="rights stacked meta">
+    Observation <%= rights @observation %>
+    <% if is_me? @observation.user -%>
+      <span class="button">
+        <%= link_to_function "edit", "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>
+      </span>
+      <% if @observation.license.blank? -%>
+        <div class="padded notice status iconified">
+          <span class="ui-icon ui-icon-transfer-e-w inlineblock"></span>
+          Share your observation with researchers by
+          <%= link_to_function "adding a license", "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>.
+        </div>
+      <% end -%>
+      <div id="editlicense" class="dialog" style="display:none">
+        <div class="column span-18 verticalmiddle licensechoices">
+          <p class="ui description">
+            Licensing your content gives others the legal right to use it if
+            they stick to the terms of the license. iNat uses your Creative
+            Commons-licensed content to share with data partners like the 
+            <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+            (GBIF).
+          </p>
+          <% form_for @observation, :builder => DefaultFormBuilder do |f| %>
+            <%= hidden_field_tag :ignore_photos, true %>
+            <% for code, name, description in Observation::LICENSES %>
+              <div class="column span-9 <%= cycle '', 'last' %>">
+                <%= f.radio_button :license, code, 
+                  :label => "#{image_tag("#{code}.png")} #{name} #{'(your default)' if @observation.user.preferred_observation_license == code}", 
+                  :label_after => true %>
+                <div class="stacked description">
+                  <% if Observation::PREFERRED_LICENSES.include?(code) -%>
+                    <div class="success status preferred">
+                      Good choice for sharing with scientists
+                    </div>
+                  <% end -%>
+                  <%= description %>
+                  <%= link_to "View license", url_for_license(code), :class => "readmore", :target => "_blank" %>
+                </div>
+              </div>
+            <% end %>
+            <div class="column span-9">
+              <%= f.radio_button :license, nil, :label => "No license  (all rights reserved)", :label_after => true,
+                :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
+            </div>
+            
+            <div class="column span-18 inline buttonrow">
+              <%= f.submit "Set license", :class => "default button", "data-loading-click" => "Saving..." %>
+              <%= link_to_function "Cancel", "$(this).parents('.dialog:first').dialog('close')", :class => "minor button" %>
+              <span class="inlineblock">
+                <%= f.check_box :make_license_default, :label => "Make this your default observation license", :label_after => true %>
+              </span>
+              <span class="inlineblock">
+                <%= f.check_box :make_licenses_same, :label => "Update past observations", :label_after => true %>
+              </span>
+            </div>
+          <% end -%>
+        </div>
+        
+      </div>
+    <% end -%>
   </div>
   
   <% if @observation.flagged? %>

@@ -3,68 +3,85 @@
   quality_metrics = @quality_metrics || []
   user_quality_metrics = @user_quality_metrics || []
 -%>
-<table class="quality_assessment">
-  <tbody class="details">
-    <tr>
-      <td>Community-supported ID?</td>
-      <td>
-        <% if o.community_supported_id? %>
-          <span class="good">yes</span>
-        <% else %>
-          no
-        <% end -%>
-        <div class="small meta">
-          <%= o.num_identification_agreements == 1 ? "#{o.num_identification_agreements} person agrees" : "#{o.num_identification_agreements} people agree" %>
-        </div>
-        <div class="small meta">
-          <%=  o.num_identification_disagreements %> disagree<%= 's' if o.num_identification_disagreements == 1 %>
-        </div>
-      </td>
-    </tr>
+  
+<div class="details" style="display:none">
+  <table class="quality_assessment">
+    <tbody>
+      <tr>
+        <td>Community-supported ID?</td>
+        <td>
+          <% if o.community_supported_id? %>
+            <span class="good">yes</span>
+          <% else %>
+            no
+          <% end -%>
+          <div class="small meta">
+            <%= o.num_identification_agreements == 1 ? "#{o.num_identification_agreements} person agrees" : "#{o.num_identification_agreements} people agree" %>
+          </div>
+          <div class="small meta">
+            <%=  o.num_identification_disagreements %> disagree<%= 's' if o.num_identification_disagreements == 1 %>
+          </div>
+        </td>
+      </tr>
 
-    <tr>
-      <td>Date?</td>
-      <td>
-        <%= o.observed_on? ? '<span class="good">yes</span>' : 'no' %>
-      </td>
-    </tr>
+      <tr>
+        <td>Date?</td>
+        <td>
+          <%= o.observed_on? ? '<span class="good">yes</span>' : 'no' %>
+        </td>
+      </tr>
 
-    <tr>
-      <td>Georeferenced?</td>
-      <td>
-        <%= o.georeferenced? ? '<span class="good">yes</span>' : 'no' %>
-      </td>
-    </tr>
+      <tr>
+        <td>Georeferenced?</td>
+        <td>
+          <%= o.georeferenced? ? '<span class="good">yes</span>' : 'no' %>
+        </td>
+      </tr>
 
-    <tr>
-      <td>Photo?</td>
-      <td>
-        <%= o.photos.exists? ? '<span class="good">yes</span>' : 'no' %>
-      </td>
-    </tr>
+      <tr>
+        <td>Photo?</td>
+        <td>
+          <%= o.photos.exists? ? '<span class="good">yes</span>' : 'no' %>
+        </td>
+      </tr>
 
-    <% for metric, question in QualityMetric::METRIC_QUESTIONS  %>
-      <%= render :partial => 'quality_metrics/quality_metric_row', :locals => {
-        :metric => metric, 
-        :question => question, 
-        :existing_quality_metrics => quality_metrics,
-        :user_quality_metric => user_quality_metrics.detect{|qm| qm.metric == metric},
-        :observation => o} %>
-    <% end %>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>Quality grade</td>
-      <td>
-        <% if o.research_grade? -%>
-          <span class="research_grade_notice"><%= o.quality_grade %></span>
-        <% else %>
-          <%= o.quality_grade %>
-        <% end -%>
-      </td>
-    </tr>
-  </tfoot>
-</table>
+      <% for metric, question in QualityMetric::METRIC_QUESTIONS  %>
+        <%= render :partial => 'quality_metrics/quality_metric_row', :locals => {
+          :metric => metric, 
+          :question => question, 
+          :existing_quality_metrics => quality_metrics,
+          :user_quality_metric => user_quality_metrics.detect{|qm| qm.metric == metric},
+          :observation => o} %>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Quality grade</td>
+        <td>
+          <% if o.research_grade? -%>
+            <span class="research_grade_notice"><%= o.quality_grade %></span>
+          <% else %>
+            <%= o.quality_grade %>
+          <% end -%>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div class="summary inlineblock">
+  <label>Quality grade: </label>
+  <% if o.research_grade? -%>
+    <span class="research_grade_notice"><%= o.quality_grade %></span>
+  <% else %>
+    <%= o.quality_grade %>
+  <% end -%>
+</div>
+
+<span class="button">
+  <%= link_to_function "details", "$(this).parent().siblings('.summary').hide().siblings('.details').slideDown(); $(this).hide().next().show();" %>
+  <%= link_to_function "hide details", "$(this).parent().siblings('.summary').show().siblings('.details').slideUp();   $(this).hide().prev().show();", :style => "display:none" %>
+</span>
 
 <div id="quality_tip" style="display:none">
   <%= render :partial => 'quality_metrics/quality_assessment_help' %>

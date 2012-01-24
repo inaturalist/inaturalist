@@ -486,4 +486,44 @@ module ApplicationHelper
     url_for(url_for_options)
   end
   
+  def rights(record)
+    if record.is_a? Observation
+      s = "&copy; #{record.user.name || record.user.login}"
+      if record.license.blank?
+        s += "<br/>All rights reserved"
+      else
+        s += "<br/>"
+        s += content_tag(:span) do
+          link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) +
+          " " +
+          link_to("some rights reserved", url_for_license(record.license))
+        end
+      end
+    elsif record.is_a? Photo
+      s = if record.copyrighted? || record.creative_commons?
+        "&copy; #{record.user.name || record.user.login}"
+      else
+        "No known copy restrictions"
+      end
+      
+      if record.copyrighted?
+        s += "<br/>All rights reserved"
+      elsif record.creative_commons?
+        s += "<br/>"
+        code = Photo.license_code_for_number(record.license)
+        url = url_for_license(code)
+        s += content_tag(:span) do
+          link_to(image_tag("#{code}_small.png"), url) +
+          " " +
+          link_to("some rights reserved", url)
+        end
+      end
+    end
+    content_tag :span, s, :class => "rights verticalmiddle"
+  end
+  
+  def url_for_license(code)
+    "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+  end
+  
 end

@@ -16,6 +16,12 @@ class Observation < ActiveRecord::Base
   # guess
   attr_accessor :taxon_name
   
+  # licensing extras
+  attr_accessor :make_license_default
+  attr_accessor :make_licenses_same
+  
+  MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
+  
   M_TO_OBSCURE_THREATENED_TAXA = 10000
   OUT_OF_RANGE_BUFFER = 5000 # meters
   PLANETARY_RADIUS = 6370997.0
@@ -41,6 +47,20 @@ class Observation < ActiveRecord::Base
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
   QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
+  
+  LICENSES = [
+    ["CC-BY", "Attribution", "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."],
+    ["CC-BY-NC", "Attribution-NonCommercial", "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don’t have to license their derivative works on the same terms."],
+    ["CC-BY-SA", "Attribution-ShareAlike", "This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. All new works based on yours will carry the same license, so any derivatives will also allow commercial use."],
+    ["CC-BY-ND", "Attribution-NoDerivs", "This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you."],
+    ["CC-BY-NC-SA", "Attribution-NonCommercial-ShareAlike", "This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms."],
+    ["CC-BY-NC-ND", "Attribution-NonCommercial-NoDerivs", "This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can’t change them in any way or use them commercially."]
+  ]
+  LICENSE_CODES = LICENSES.map{|row| row.first}
+  LICENSES.each do |code, name, description|
+    const_set code.gsub(/\-/, '_'), code
+  end
+  PREFERRED_LICENSES = [CC_BY, CC_BY_NC]
 
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -158,14 +178,17 @@ class Observation < ActiveRecord::Base
               :reset_private_coordinates_if_coordinates_changed,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
-              :set_geom_from_latlon
+              :set_geom_from_latlon,
+              :set_license
   
   before_update :set_quality_grade
                  
   after_save :refresh_lists,
              :update_identifications_after_save,
              :refresh_check_lists,
-             :update_out_of_range_later
+             :update_out_of_range_later,
+             :update_default_license,
+             :update_all_licenses
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
@@ -1154,6 +1177,13 @@ class Observation < ActiveRecord::Base
     true
   end
   
+  def set_license
+    return true if license_changed? && license.blank?
+    self.license ||= user.preferred_observation_license
+    self.license = nil unless LICENSE_CODES.include?(license)
+    true
+  end
+  
   def update_out_of_range_later
     if taxon_id_changed? && taxon.blank?
       update_out_of_range
@@ -1190,6 +1220,33 @@ class Observation < ActiveRecord::Base
           taxon_id, id, buffer_degrees]
       ) > 0
     end
+  end
+  
+  def update_default_license
+    return true unless [true, "1", "true"].include?(@make_license_default)
+    user.update_attribute(:preferred_observation_license, license)
+    true
+  end
+  
+  def update_all_licenses
+    return true unless [true, "1", "true"].include?(@make_licenses_same)
+    Observation.update_all(["license = ?", license], ["user_id = ?", user_id])
+    true
+  end
+  
+  def update_attributes(attributes)
+    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+    end
+    super(attributes)
+  end
+  
+  def license_name
+    return nil if license.blank?
+    s = "Creative Commons "
+    s += LICENSES.detect{|row| row.first == license}.try(:[], 1).to_s
+    s
   end
   
   # I'm not psyched about having this stuff here, but it makes generating 
