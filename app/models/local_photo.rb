@@ -44,7 +44,6 @@ class LocalPhoto < Photo
   
   def set_defaults
     self.native_username = user.login
-    self.license = Photo::COPYRIGHT
     true
   end
   

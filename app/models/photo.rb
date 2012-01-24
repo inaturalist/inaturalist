@@ -9,6 +9,8 @@ class Photo < ActiveRecord::Base
   cattr_accessor :descendent_classes
   cattr_accessor :remote_descendent_classes
   
+  before_save :set_license
+  
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
   
@@ -43,6 +45,13 @@ class Photo < ActiveRecord::Base
         errors.add(:user, "must own the photo on Flickr.")
       end
     end
+  end
+  
+  def set_license
+    return true unless license.blank?
+    return true unless user
+    self.license = Photo.license_number_for_code(user.preferred_photo_license)
+    true
   end
   
   # Return a string with attribution info about this photo

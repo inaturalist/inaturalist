@@ -118,7 +118,7 @@ class PicasaPhoto < Photo
       :native_page_url => api_response.link('alternate').href,
       :native_username => native_username,
       :native_realname => native_realname,
-      :license         => api_response.license || 0
+      :license         => api_response.license
     )
     picasa_photo = PicasaPhoto.new(options)
     if !picasa_photo.native_username && matches = picasa_photo.native_photo_id.match(/user\/(.+?)\//)

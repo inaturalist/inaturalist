@@ -500,22 +500,28 @@ module ApplicationHelper
         end
       end
     elsif record.is_a? Photo
-      s = if record.copyrighted? || record.creative_commons?
-        "&copy; #{record.user.name || record.user.login}"
+      if record.user.blank?
+        s = record.attribution
       else
-        "No known copy restrictions"
-      end
-      
-      if record.copyrighted?
-        s += "<br/>All rights reserved"
-      elsif record.creative_commons?
-        s += "<br/>"
-        code = Photo.license_code_for_number(record.license)
-        url = url_for_license(code)
-        s += content_tag(:span) do
-          link_to(image_tag("#{code}_small.png"), url) +
-          " " +
-          link_to("some rights reserved", url)
+        user_name = record.user.name
+        user_name = record.user.login if user_name.blank?
+        s = if record.copyrighted? || record.creative_commons?
+          "&copy; #{user_name}"
+        else
+          "No known copy restrictions"
+        end
+
+        if record.copyrighted?
+          s += "<br/>All rights reserved"
+        elsif record.creative_commons?
+          s += "<br/>"
+          code = Photo.license_code_for_number(record.license)
+          url = url_for_license(code)
+          s += content_tag(:span) do
+            link_to(image_tag("#{code}_small.png"), url) +
+            " " +
+            link_to("some rights reserved", url)
+          end
         end
       end
     end
