@@ -78,7 +78,7 @@
     }
     
     if (options.gbifKmlUrl) {
-      var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
+      var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
       map.addOverlay('GBIF Occurrences', gbifLyr, {id: 'gbif-'+options.taxonId, hidden: true})
       google.maps.event.addListener(gbifLyr, 'click', function(e) {
         if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
