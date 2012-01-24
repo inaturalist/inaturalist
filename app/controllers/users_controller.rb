@@ -17,6 +17,14 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
+    params[:user].each do |k,v|
+      if k =~ /^prefer/
+        params[:user].delete(k)
+      else
+        next
+      end
+      @user.send("#{k}=", v)
+    end
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?

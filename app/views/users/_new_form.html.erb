@@ -11,6 +11,10 @@
     :label => "Your default time zone",
     :description => "All your observations will default to this time zone unless you specify otherwise.",
     :class => 'select'}) %>
+  <%= f.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY,
+    :label => "Yes, license my observations so scientists can use my data!", 
+    :label_after => true,
+    :description => "Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like." %>
 
   <%= f.submit 'Sign up', :class => "default button", "data-loading-click" => "Creating your account..." %>
 <% end -%>

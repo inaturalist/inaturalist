@@ -81,7 +81,7 @@
           <h4>Default observation license</h4>
           <% for code, name, description in Observation::LICENSES %>
             <%= f.radio_button :preferred_observation_license, code, 
-              :label => "#{image_tag("#{code}.png")} #{name} #{'(preferred)' if code == 'CC-BY'}", :label_after => true %>
+              :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_observation_license, nil, :label => "No license (all rights reserved)", :label_after => true,
             :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
@@ -130,7 +130,7 @@
     </div>
     
     <div class="column span-18">
-      <%= f.submit("Save", :class => 'default button') %>
+      <%= f.submit("Save", :class => 'default button', "data-loading-click" => "Saving...") %>
     </div>
   <% end %>
   
