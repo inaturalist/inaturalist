@@ -267,6 +267,8 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
   var photoURL
   if (typeof(observation.image_url) != 'undefined' && observation.image_url != null) {
     photoURL = observation.image_url
+  } else if (typeof(observation.obs_image_url) != 'undefined' && observation.obs_image_url != null) {
+    photoURL = observation.obs_image_url
   } else if (typeof(observation.photos) != 'undefined' && observation.photos.length > 0) {
     photoURL = observation.photos[0].square_url
   }
@@ -664,12 +666,13 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
       name = lyr.name,
       id = lyr.id || name,
       overlay = lyr.overlay,
-      checkbox = $('<input type="checkbox"></input>')
-        .attr('id', id)
-        .attr('name', name)
-        .attr('checked', overlay.getMap()),
+      checkbox = $('<input type="checkbox"></input>'),
       label = $('<label></label>').attr('for', id).html(name),
       li = $('<li></li>')
+  checkbox
+    .attr('id', id)
+    .attr('name', name)
+    .attr('checked', overlay.getMap())
   checkbox.click(function() {
     var name = $(this).attr('name'),
         overlay = map.getOverlay(name).overlay
@@ -687,7 +690,7 @@ google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
     overlay: overlay,
     id: options.id
   })
-  if (overlay.setMap) { overlay.setMap(this) }
+  if (overlay.setMap && !options.hidden) { overlay.setMap(this) }
 }
 google.maps.Map.prototype.removeOverlay = function(name) {
   if (!this.overlays) { return }

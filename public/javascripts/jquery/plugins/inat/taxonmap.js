@@ -2,7 +2,11 @@
   $.fn.taxonMap = function(options) {
     options = options || {}
     $(this).each(function() {
-      setup(this, options)
+      if (options == 'fit') {
+        fit(this)
+      } else {
+        setup(this, options)
+      }
     })
   }
   
@@ -13,7 +17,12 @@
     options.latitude = options.latitude || $(elt).attr('data-latitude')
     options.longitude = options.longitude || $(elt).attr('data-longitude')
     options.placeKmlUrl = options.placeKmlUrl || $(elt).attr('data-place-kml')
+    if (options.placeKmlUrl == '') { options.placeKmlUrl = null }
     options.taxonRangeKmlUrl = options.taxonRangeKmlUrl || $(elt).attr('data-taxon-range-kml')
+    if (options.taxonRangeKmlUrl == '') { options.taxonRangeKmlUrl = null }
+    options.gbifKmlUrl = options.gbifKmlUrl || $(elt).attr('data-gbif-kml')
+    if (options.gbifKmlUrl == '') { options.gbifKmlUrl = null }
+    
     if (options.observationsJsonUrl != false) {
       options.observationsJsonUrl = options.observationsJsonUrl 
         || $(elt).attr('data-observations-json') 
@@ -29,6 +38,14 @@
       setupGoogle(elt)
     } else if (typeof(org) != 'undefined' && typeof(org.polymaps) != 'undefined') {
       setupPolymaps(elt)
+    }
+  }
+  
+  function fit(elt) {
+    if (true) {
+      fitGoogle(elt)
+    } else if (typeof(org) != 'undefined' && typeof(org.polymaps) != 'undefined') {
+      fitPolymaps(elt)
     }
   }
   
@@ -60,10 +77,44 @@
       preserveViewport = true
     }
     
+    if (options.gbifKmlUrl) {
+      var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: preserveViewport})
+      map.addOverlay('GBIF Occurrences', gbifLyr, {id: 'gbif-'+options.taxonId, hidden: true})
+      google.maps.event.addListener(gbifLyr, 'click', function(e) {
+        if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
+        for (var k in window['kmlInfoWindows']) {
+          window['kmlInfoWindows'][k].close()
+        }
+        var win = window['kmlInfoWindows'][e.featureData.id]
+        if (!win) {
+          // filter out google's insane parsing
+          var content = (e.featureData.description || '').replace(/(<a.+?>)<a.+?>(.+?)<\/a><\/a>/, "$1$2</a>")
+          content = content.replace(/&lt;\/a/, '')
+          content = content.replace(/&gt;/, '')
+          win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
+            content: content, 
+            position: e.latLng,
+            pixelOffset: e.pixelOffset
+          })
+        }
+        win.open(window.map)
+        return false
+      })
+      preserveViewport = true
+    }
+    
     if (options.observationsJsonUrl) {
       $.get(options.observationsJsonUrl, function(data) {
         map.addObservations(data)
+        if (!preserveViewport && map.observationBounds) {
+          map.zoomToObservations()
+          preserveViewport = true
+        }
       })
+    }
+    
+    if (!preserveViewport) {
+      fit(elt)
     }
     
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
@@ -73,6 +124,47 @@
   
   function setupPolymaps(elt) {
     
+  }
+  
+  function fitGoogle(elt) {
+    var options = $(elt).data('taxonMapOptions'),
+        map = $(elt).data('taxonMap'),
+        preserveViewport = false
+    if (options.bbox) {
+      map.fitBounds(
+        new google.maps.LatLngBounds(
+          new google.maps.LatLng(options.bbox[0], options.bbox[1]),
+          new google.maps.LatLng(options.bbox[2], options.bbox[3])
+        )
+      )
+      return
+    } else if (options.latitude || options.longitude) {
+      map.setCenter(new google.maps.LatLng(options.latitutde || 0, options.longitude || 0))
+      map.setZoom(4)
+      return
+    }
+
+    if (options.taxonRangeKmlUrl) {
+      var lyrInfo = map.getOverlay('Taxon Range')
+      lyrInfo.overlay.setMap(null)
+      lyrInfo.overlay.setMap(map)
+      return
+    }
+
+    if (options.placeKmlUrl) {
+      var lyrInfo = map.getOverlay('Place Boundary')
+      lyrInfo.overlay.setMap(null)
+      lyrInfo.overlay.setMap(map)
+      return
+    }
+
+    if (options.observationsJsonUrl && map.observationBounds) {
+      map.zoomToObservations()
+      return
+    }
+    
+    map.setCenter(new google.maps.LatLng(0, 0))
+    map.setZoom(1)
   }
   
   function observationsJsonUrl(id) {

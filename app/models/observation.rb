@@ -1260,6 +1260,10 @@ class Observation < ActiveRecord::Base
     observation_image_url(self)
   end
   
+  def obs_image_url
+    image_url
+  end
+  
   def short_description
     short_observation_description(self)
   end

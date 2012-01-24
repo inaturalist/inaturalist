@@ -266,88 +266,21 @@
                              'jquery/plugins/jquery.autocomplete.min.js',
                              'jquery/plugins/inat/place_autocomplete.js' %>
 
-  <% if @show_range %>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <%= javascript_include_tag 'inaturalist/map3' %>
-  <% end -%>
+    <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#tabs').tabs()
       
-      //Toggle Gbif button, adapted from http://www.mappingsupport.com/forum_post/toggleGbif_good.html
-      function HomeControl(controlDiv) {
-        // Set CSS styles for the DIV containing the control
-        // Setting padding to 5 px will offset the control
-        // from the edge of the map
-        controlDiv.style.padding = '5px';
-        
-        var controlUI = $('<div>Show museum records</div>').addClass('gmapv3control')
-        controlDiv.appendChild(controlUI.get(0))
-        
-        controlUI.toggle(function() {
-          controlUI.html('Hide museum records')
-          gbifLayer.setMap(window.map);
-        }, function() {
-          controlUI.html('Show museum records')
-          gbifLayer.setMap(null)
-        })
-      }
-      
-      function addKmlLayer(url) {
-        var lyr = new google.maps.KmlLayer(url, {suppressInfoWindows: true, preserveViewport: true})
-        google.maps.event.addListener(lyr, 'click', function(e) {
-          if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
-          for (var k in window['kmlInfoWindows']) {
-            window['kmlInfoWindows'][k].close()
-          }
-          var win = window['kmlInfoWindows'][e.featureData.id]
-          if (!win) {
-            win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
-              content: e.featureData.description, 
-              position: e.latLng,
-              pixelOffset: e.pixelOffset
-            });
-          }
-          win.open(window.map);
-        });
-        return lyr;
-      }
-
-      <% if @show_range %>
-        window.map = new google.maps.Map(document.getElementById("taxon_range_map"), {
-          mapTypeId: google.maps.MapTypeId.TERRAIN
-        });
-        window.map.layers = []
-
-        window.ctaLayer = new google.maps.KmlLayer('<%= root_url.gsub(/\/$/, "") + @taxon_range.range.url %>',
-            {suppressInfoWindows: true});
-        window.ctaLayer.setMap(map);
-        window.map.layers.push(window.ctaLayer)
-    
-        var gbifLayer = window.gbifLayer = addKmlLayer('http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml')
-      
-        var homeControlDiv = document.createElement('DIV');
-        var homeControl = new HomeControl(homeControlDiv);
-        homeControlDiv.index = 1;
-        window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
-        window.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(window.map));
-        
-        var iNatLyr = addKmlLayer('<%= observations_url(:format => :kml, :taxon_id => @taxon.id) %>')
-        iNatLyr.setMap(window.map);
-        window.map.layers.push(iNatLyr)
-
-        $('#tabs').bind('tabsshow', function(event, ui) {
-          if (ui.panel.id == "taxon_range") {
-            google.maps.event.trigger(window.map, 'resize')
-            window.map.fitBounds(window.ctaLayer.getDefaultViewport())
-            for (var i=0; i < window.map.layers.length; i++) {
-              window.map.layers[i].setMap(null)
-              window.map.layers[i].setMap(window.map)
-            };
-          }
-        })
-      <% end %>
+      $('#taxon_range_map').taxonMap()
+      window.map = $('#taxon_range_map').data('taxonMap')
+      $('#tabs').bind('tabsshow', function(event, ui) {
+        if (ui.panel.id == "taxon_range") {
+          google.maps.event.trigger(window.map, 'resize')
+          $('#taxon_range_map').taxonMap('fit')
+        }
+      })
       
       <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()
@@ -858,19 +791,20 @@
     <div id="tabs">
       <ul>
         <li><a href="#description"><span>Description</span></a></li>
-        <% if @show_range %>
-          <li><a href="#taxon_range"><span>Range Map</span></a></li>
-        <% end -%>
+        <li><a href="#taxon_range"><span>Map</span></a></li>
       </ul>
 
       <div id="description" class="last column span-20">
         <%= render :partial => 'taxa/description' %>
       </div>
 
-      <% if @show_range -%>
-        <div id="taxon_range">
-          <div id="taxon_range_map" style="width: 790px; height: 488px"></div>
-          <div class="ui description">
+      <div id="taxon_range">
+        <div id="taxon_range_map" style="width: 790px; height: 488px"
+          data-taxon-id="<%= @taxon.id %>"
+          data-taxon-range-kml="<%= (root_url.gsub(/\/$/, "") + @taxon_range.range.url) if @taxon_range %>"
+          data-gbif-kml="http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml"></div>
+        <div class="ui description">
+          <% if @taxon_range -%>
             <% if @taxon_range.source -%>
               <div>
                 <strong>Source:</strong>
@@ -886,9 +820,11 @@
             <% if logged_in? && current_user.is_curator? -%>
               <%= link_to "Edit range &raquo;", edit_taxon_range_path(@taxon_range) %>
             <% end -%>
-          </div>
+          <% else %>
+            No range data available.
+          <% end -%>
         </div>
-      <% end -%>
+      </div>
     </div>
   </div>
 
