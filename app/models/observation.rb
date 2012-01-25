@@ -5,7 +5,6 @@ class Observation < ActiveRecord::Base
   acts_as_flaggable
   
   include Ambidextrous
-  include DarwinCoreModule
   
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and

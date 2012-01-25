@@ -1,20 +1,5 @@
 # Create a Darwin Core Archive from iNat observations
-
-class FakeView < ActionView::Base
-  include ActionView::Helpers::TagHelper
-  include ActionView::Helpers::AssetTagHelper
-  include ActionView::Helpers::UrlHelper
-  include ActionController::UrlWriter
-  
-  @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
-  
-  def initialize
-    super
-    self.view_paths = [File.join(RAILS_ROOT, 'app/views')]
-  end
-end
-
-class Metadata < FakeView
+class Metadata < DarwinCore::FakeView
   def initialize
     super
     @contact = INAT_CONFIG["general"]["contact"] || {}
@@ -39,7 +24,7 @@ def make_metadata
 end
 
 def make_descriptor
-  d = FakeView.new
+  d = DarwinCore::FakeView.new
   tmp_path = File.join(Dir::tmpdir, "meta.xml")
   open(tmp_path, 'w') do |f|
     f << d.render(:file => 'observations/gbif.descriptor.builder')
@@ -48,9 +33,10 @@ def make_descriptor
 end
 
 def make_data
-  headers = Observation::DARWIN_CORE_TERM_NAMES
+  headers = DarwinCore::DARWIN_CORE_TERM_NAMES
   fname = "observations.csv"
   tmp_path = File.join(Dir::tmpdir, fname)
+  fake_view = DarwinCore::FakeView.new
   
   find_options = {
     :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
@@ -61,6 +47,7 @@ def make_data
     csv << headers
     Observation.do_in_batches(find_options) do |o|
       next unless o.user.prefers_gbif_sharing?
+      o = DarwinCore.adapt(o, :view => fake_view)
       csv << headers.map{|h| o.send(h)}
     end
   end

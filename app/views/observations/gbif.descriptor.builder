@@ -11,7 +11,7 @@ xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",
       xml.location "observations.csv"
     end
     xml.id :index => 0
-    DarwinCoreModule::DARWIN_CORE_TERMS.each_with_index do |tuple, i|
+    DarwinCore::DARWIN_CORE_TERMS.each_with_index do |tuple, i|
       next if i == 0
       name, uri, default = tuple
       if default
