@@ -79,7 +79,15 @@
     
     if (options.gbifKmlUrl) {
       var gbifLyr = new google.maps.KmlLayer(options.gbifKmlUrl, {suppressInfoWindows: true, preserveViewport: true})
-      map.addOverlay('GBIF Occurrences', gbifLyr, {id: 'gbif-'+options.taxonId, hidden: true})
+      map.addOverlay('GBIF Occurrences', gbifLyr, {
+        id: 'gbif-'+options.taxonId, 
+        hidden: true,
+        description: 
+          ['It may take Google a while ',
+          'to load these data, ',
+          'assuming GBIF has any. ',
+          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">Data URL</a>'].join('<br/>')
+      })
       google.maps.event.addListener(gbifLyr, 'click', function(e) {
         if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
         for (var k in window['kmlInfoWindows']) {
@@ -88,9 +96,10 @@
         var win = window['kmlInfoWindows'][e.featureData.id]
         if (!win) {
           // filter out google's insane parsing
-          var content = (e.featureData.description || '').replace(/(<a.+?>)<a.+?>(.+?)<\/a><\/a>/, "$1$2</a>")
-          content = content.replace(/&lt;\/a/, '')
-          content = content.replace(/&gt;/, '')
+          var content = (e.featureData.description || '').replace(/(<a.+?>)<a.+?>(.+?)<\/a><\/a>/g, "$1$2</a>")
+          content = content.replace(/&lt;\/a/g, '')
+          content = content.replace(/&gt;/g, '')
+          content = content.replace(/<\/a"/g, '"')
           win = window['kmlInfoWindows'][e.featureData.id] = new google.maps.InfoWindow({
             content: content, 
             position: e.latLng,

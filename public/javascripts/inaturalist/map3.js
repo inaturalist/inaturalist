@@ -679,6 +679,9 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
     overlay.setMap(overlay.getMap() ? null : map)
   })
   li.append(checkbox, label)
+  if (lyr.description) {
+    li.append($('<div></div>').addClass('small meta').css('margin-left', '1.5em').html(lyr.description))
+  }
   ul.append(li)
 }
 
@@ -688,7 +691,8 @@ google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
   this.overlays.push({
     name: name,
     overlay: overlay,
-    id: options.id
+    id: options.id,
+    description: options.description
   })
   if (overlay.setMap && !options.hidden) { overlay.setMap(this) }
 }

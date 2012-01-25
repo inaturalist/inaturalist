@@ -802,7 +802,7 @@
         <div id="taxon_range_map" style="width: 790px; height: 488px"
           data-taxon-id="<%= @taxon.id %>"
           data-taxon-range-kml="<%= (root_url.gsub(/\/$/, "") + @taxon_range.range.url) if @taxon_range %>"
-          data-gbif-kml="http://data.gbif.org/ws/rest/occurrence/list?scientificname=<%= @taxon_gbif %>&format=kml"></div>
+          data-gbif-kml="http://data.gbif.org/ws/rest/occurrence/list?coordinatestatus=true&maxresults=500&coordinateissues=false&scientificname=<%= @taxon_gbif %>&format=kml"></div>
         <div class="ui description">
           <% if @taxon_range -%>
             <% if @taxon_range.source -%>
