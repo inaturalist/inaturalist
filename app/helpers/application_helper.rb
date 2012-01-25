@@ -488,7 +488,9 @@ module ApplicationHelper
   
   def rights(record)
     if record.is_a? Observation
-      s = "&copy; #{record.user.name || record.user.login}"
+      user_name = record.user.name
+      user_name = record.user.login if user_name.blank?
+      s = "&copy; #{user_name}"
       if record.license.blank?
         s += "<br/>All rights reserved"
       else
