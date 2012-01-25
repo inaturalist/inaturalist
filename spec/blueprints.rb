@@ -67,6 +67,11 @@ ObservationFieldValue.blueprint do
   value "foo"
 end
 
+ObservationPhoto.blueprint do
+  observation
+  photo
+end
+
 Photo.blueprint do
   user
   native_photo_id { rand(1000) }

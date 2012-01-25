@@ -9,6 +9,15 @@ describe ObservationPhoto, "creation" do
     o.reload
     o.quality_grade.should == Observation::RESEARCH_GRADE
   end
+  
+  it "should update user_id on photo" do
+    p = Photo.make(:user => nil)
+    p.user.should be_blank
+    o = Observation.make
+    op = ObservationPhoto.make(:photo => p, :observation => o)
+    p.reload
+    p.user_id.should == o.user_id
+  end
 end
 
 describe ObservationPhoto, "destruction" do

@@ -2,9 +2,10 @@ class PhotosController < ApplicationController
   MOBILIZED = [:show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
+  before_filter :load_photo, :only => [:show, :update]
+  before_filter :require_owner, :only => [:update]
   
   def show
-    return render_404 unless @photo = Photo.find_by_id(params[:id].to_i)
     @size = params[:size]
     @size = "medium" if !%w(small medium large original).include?(@size)
     respond_to do |format|
@@ -23,6 +24,15 @@ class PhotosController < ApplicationController
         render :layout => false, :partial => partial, :object => @photo
       end
     end
+  end
+  
+  def update
+    if @photo.update_attributes(params[:photo])
+      flash[:notice] = "Updated photo"
+    else
+      flash[:error] = "Error updating photo: #{@photo.errors.full_messages.to_sentence}"
+    end
+    redirect_to @photo
   end
   
   def local_photo_fields
@@ -54,6 +64,23 @@ class PhotosController < ApplicationController
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     else
       redirect_to "/auth/#{provider}"
+    end
+  end
+  
+  private
+  
+  def load_photo
+    if @photo = Photo.find_by_id(params[:id].to_i)
+      @photo = @photo.becomes(Photo)
+    else
+      render_404
+    end
+  end
+  
+  def require_owner
+    unless logged_in? && @photo.editable_by?(current_user)
+      flash[:error] = "You don't have permission to do that"
+      return redirect_to @photo
     end
   end
 

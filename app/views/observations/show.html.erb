@@ -649,42 +649,8 @@
             <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
             (GBIF).
           </p>
-          <% form_for @observation, :builder => DefaultFormBuilder do |f| %>
-            <%= hidden_field_tag :ignore_photos, true %>
-            <% for code, name, description in Observation::LICENSES %>
-              <div class="column span-9 <%= cycle '', 'last' %>">
-                <%= f.radio_button :license, code, 
-                  :label => "#{image_tag("#{code}.png")} #{name} #{'(your default)' if @observation.user.preferred_observation_license == code}", 
-                  :label_after => true %>
-                <div class="stacked description">
-                  <% if Observation::PREFERRED_LICENSES.include?(code) -%>
-                    <div class="success status preferred">
-                      Good choice for sharing with scientists
-                    </div>
-                  <% end -%>
-                  <%= description %>
-                  <%= link_to "View license", url_for_license(code), :class => "readmore", :target => "_blank" %>
-                </div>
-              </div>
-            <% end %>
-            <div class="column span-9">
-              <%= f.radio_button :license, nil, :label => "No license  (all rights reserved)", :label_after => true,
-                :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
-            </div>
-            
-            <div class="column span-18 inline buttonrow">
-              <%= f.submit "Set license", :class => "default button", "data-loading-click" => "Saving..." %>
-              <%= link_to_function "Cancel", "$(this).parents('.dialog:first').dialog('close')", :class => "minor button" %>
-              <span class="inlineblock">
-                <%= f.check_box :make_license_default, :label => "Make this your default observation license", :label_after => true %>
-              </span>
-              <span class="inlineblock">
-                <%= f.check_box :make_licenses_same, :label => "Update past observations", :label_after => true %>
-              </span>
-            </div>
-          <% end -%>
+          <%= render :partial => 'shared/license_form' %>
         </div>
-        
       </div>
     <% end -%>
   </div>

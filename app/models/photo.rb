@@ -6,10 +6,18 @@ class Photo < ActiveRecord::Base
   has_many :taxa, :through => :taxon_photos
   
   attr_accessor :api_response
+  
+  # licensing extras
+  attr_accessor :make_license_default
+  attr_accessor :make_licenses_same
+  MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
+  
   cattr_accessor :descendent_classes
   cattr_accessor :remote_descendent_classes
   
   before_save :set_license
+  after_save :update_default_license,
+             :update_all_licenses
   
   COPYRIGHT = 0
   NO_COPYRIGHT = 7
@@ -106,6 +114,31 @@ class Photo < ActiveRecord::Base
   # Sync photo object with its native source.  Implemented by descendents
   def sync
     nil
+  end
+  
+  def update_attributes(attributes)
+    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+    end
+    super(attributes)
+  end
+  
+  def update_default_license
+    return true unless [true, "1", "true"].include?(@make_license_default)
+    user.update_attribute(:preferred_photo_license, Photo.license_code_for_number(license))
+    true
+  end
+  
+  def update_all_licenses
+    return true unless [true, "1", "true"].include?(@make_licenses_same)
+    Photo.update_all(["license = ?", license], ["user_id = ?", user_id])
+    true
+  end
+  
+  def editable_by?(user)
+    return false if user.blank?
+    user.id == user_id || observations.exists?(:user_id => user.id)
   end
   
   # Retrieve info about a photo from its native source given its native id.  
