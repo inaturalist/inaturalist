@@ -26,19 +26,19 @@
               <span class="button">
                 <%= link_to_function "edit license", "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>
               </span>
-            <% end -%>
-            <div id="editlicense" class="dialog" style="display:none">
-              <div class="column span-18 verticalmiddle licensechoices">
-                <p class="ui description">
-                  Licensing your content gives others the legal right to use it if
-                  they stick to the terms of the license. iNat uses your Creative
-                  Commons-licensed content to share with data partners like the 
-                  <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-                  (GBIF).
-                </p>
-                <%= render :partial => 'shared/license_form' %>
+              <div id="editlicense" class="dialog" style="display:none">
+                <div class="column span-18 verticalmiddle licensechoices">
+                  <p class="ui description">
+                    Licensing your content gives others the legal right to use it if
+                    they stick to the terms of the license. iNat uses your Creative
+                    Commons-licensed content to share with data partners like the 
+                    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+                    (GBIF).
+                  </p>
+                  <%= render :partial => 'shared/license_form' %>
+                </div>
               </div>
-            </div>
+            <% end -%>
           </td>
         </tr>
         <% unless @photo.is_a?(LocalPhoto) -%>
