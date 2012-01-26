@@ -527,6 +527,8 @@ class Observation < ActiveRecord::Base
     # subsequent records in an array
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
+    options[:except] ||= []
+    options[:except] += [:user_agent]
     if viewer_id != user_id && !options[:force_coordinate_visibility]
       options[:except] ||= []
       options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]

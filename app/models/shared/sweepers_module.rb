@@ -16,7 +16,7 @@ module Shared::SweepersModule
       expire_page(:controller => 'places', :action => 'cached_guide', :id => listed_taxon.place_id)
     end
     expire_page list_path(listed_taxon.list_id, :format => 'csv')
-    expire_page list_path(listed_taxon.list, :format => 'csv')
+    expire_page list_path(listed_taxon.list, :format => 'csv') if listed_taxon.list
     # if listed_taxon.list.is_a?(CheckList)
     #   expire_page check_list_path(listed_taxon.list_id, :format => 'csv')
     #   expire_page check_list_path(listed_taxon.list, :format => 'csv')
