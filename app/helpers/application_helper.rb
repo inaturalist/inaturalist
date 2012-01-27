@@ -493,7 +493,7 @@ module ApplicationHelper
       user_name = record.user.login if user_name.blank?
       s = "&copy; #{user_name}"
       if record.license.blank?
-        s += "#{separator}All rights reserved"
+        s += "#{separator}all rights reserved"
       else
         s += separator
         s += content_tag(:span) do
@@ -514,11 +514,11 @@ module ApplicationHelper
         s = if record.copyrighted? || record.creative_commons?
           "&copy; #{user_name}"
         else
-          "No known copy restrictions"
+          "no known copy restrictions"
         end
 
         if record.copyrighted?
-          s += "#{separator}All rights reserved"
+          s += "#{separator}all rights reserved"
         elsif record.creative_commons?
           s += separator
           code = Photo.license_code_for_number(record.license)
