@@ -486,19 +486,23 @@ module ApplicationHelper
     url_for(url_for_options)
   end
   
-  def rights(record)
+  def rights(record, options = {})
+    separator = options[:separator] || "<br/>"
     if record.is_a? Observation
       user_name = record.user.name
       user_name = record.user.login if user_name.blank?
       s = "&copy; #{user_name}"
       if record.license.blank?
-        s += "<br/>All rights reserved"
+        s += "#{separator}All rights reserved"
       else
-        s += "<br/>"
+        s += separator
         s += content_tag(:span) do
-          link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) +
-          " " +
-          link_to("some rights reserved", url_for_license(record.license))
+          c = if options[:skip_image]
+            ""
+          else
+            link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) + " "
+          end
+          c + link_to("some rights reserved", url_for_license(record.license))
         end
       end
     elsif record.is_a? Photo
@@ -514,15 +518,18 @@ module ApplicationHelper
         end
 
         if record.copyrighted?
-          s += "<br/>All rights reserved"
+          s += "#{separator}All rights reserved"
         elsif record.creative_commons?
-          s += "<br/>"
+          s += separator
           code = Photo.license_code_for_number(record.license)
           url = url_for_license(code)
           s += content_tag(:span) do
-            link_to(image_tag("#{code}_small.png"), url) +
-            " " +
-            link_to("some rights reserved", url)
+            c = if options[:skip_image]
+              ""
+            else
+              link_to(image_tag("#{code}_small.png"), url) + " "
+            end
+            c + link_to("some rights reserved", url)
           end
         end
       end

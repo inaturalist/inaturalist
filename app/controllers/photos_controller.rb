@@ -32,7 +32,7 @@ class PhotosController < ApplicationController
     else
       flash[:error] = "Error updating photo: #{@photo.errors.full_messages.to_sentence}"
     end
-    redirect_to @photo
+    redirect_to @photo.becomes(Photo)
   end
   
   def local_photo_fields
@@ -70,9 +70,7 @@ class PhotosController < ApplicationController
   private
   
   def load_photo
-    if @photo = Photo.find_by_id(params[:id].to_i)
-      @photo = @photo.becomes(Photo)
-    else
+    unless @photo = Photo.find_by_id(params[:id].to_i)
       render_404
     end
   end
