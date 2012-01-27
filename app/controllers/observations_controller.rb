@@ -788,13 +788,17 @@ class ObservationsController < ApplicationController
       retrieve_photos(params[klass.to_s.underscore.pluralize.to_sym], 
         :user => current_user, :photo_class => klass)
     end.flatten.compact
-    @observations = photos.map(&:to_observation)
+    @observations = photos.map{|p| p.to_observation}
     @observation_photos = ObservationPhoto.all(
       :conditions => ["photos.native_photo_id IN (?)", photos.map(&:native_photo_id)],
       :include => [:photo, :observation]
     )
     @step = 2
     render :template => 'observations/new_batch'
+  rescue Timeout::Error => e
+    flash[:error] = "Sorry, that photo provider isn't responding at the moment. Please try again later."
+    Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
+    redirect_to :action => "import"
   end
   
   def add_from_list
