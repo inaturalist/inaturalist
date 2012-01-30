@@ -113,6 +113,40 @@ describe CheckList, "refresh_with_observation" do
     @check_list.taxon_ids.should_not include(@taxon.id)
   end
   
+  it "should remove listed taxa if observation deleted" do
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
+    
+    @place.place_geometry.geom.should_not be_blank
+    o.geom.should_not be_blank
+    
+    @check_list.add_taxon(@taxon)
+    CheckList.refresh_with_observation(o)
+    @check_list.reload
+    @check_list.taxon_ids.should include(@taxon.id)
+    observation_id = o.id
+    o.destroy
+    CheckList.refresh_with_observation(observation_id, :taxon_id => @taxon.id)
+    @check_list.reload
+    @check_list.taxon_ids.should_not include(@taxon.id)
+  end
+  
+  it "should remove listed taxa if observation taxon id changed" do
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
+    CheckList.refresh_with_observation(o)
+    @check_list.reload
+    
+    lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
+    lt.should_not be_auto_removable_from_check_list
+    
+    o.taxon = Taxon.make
+    o.save
+    CheckList.refresh_with_observation(o, :taxon_id => o.taxon_id, :taxon_id_was => @taxon.id)
+    @check_list.reload
+    @check_list.taxon_ids.should_not include(@taxon.id)
+  end
+  
+  it "should remove listed taxa if observation taxon id removed"
+  
   it "should not remove listed taxa if added by a user" do
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
     @check_list.add_taxon(@taxon, :user => User.make)

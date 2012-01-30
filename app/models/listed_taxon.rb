@@ -255,7 +255,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def update_cache_columns
     return true if @skip_update_cache_columns
-    return true if list.is_a?(CheckList)
+    return true if list.is_a?(CheckList) && (!@force_update_cache_columns || place_id.blank?)
     set_cache_columns
     true
   end
@@ -268,7 +268,7 @@ class ListedTaxon < ActiveRecord::Base
     return true if @skip_update_cache_columns
     return true unless list.is_a?(CheckList)
     if @force_update_cache_columns
-      ListedTaxon.update_cache_columns_for(self)
+      # this should have already happened in update_cache_columns
     else
       ListedTaxon.send_later(:update_cache_columns_for, id, :dj_priority => 1)
     end

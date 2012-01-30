@@ -84,6 +84,11 @@ class CheckList < List
     Rails.logger.info "[INFO #{Time.now}] Finished syncing check list #{id} with parent #{parent_check_list.id}"
   end
   
+  def add_taxon(taxon, options = {})
+    options[:place_id] = place_id
+    super(taxon, options)
+  end
+  
   # This is a loaded gun.  Please fire with discretion.
   def add_intersecting_taxa(options = {})
     return nil unless PlaceGeometry.exists?(["place_id = ?", place_id])
@@ -179,14 +184,18 @@ class CheckList < List
     taxon_ids = CheckList.get_taxon_ids_to_refresh(observation, options)
     return if taxon_ids.blank?
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, taxon_ids: #{taxon_ids.inspect}"
+    
     current_place_ids = CheckList.get_current_place_ids_to_refresh(observation, options)
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, current_place_ids: #{current_place_ids.inspect}"
+    
     current_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", current_place_ids, taxon_ids])
     current_listed_taxa_of_this_taxon = current_listed_taxa.select{|lt| lt.taxon_id == observation.taxon_id}
     new_place_ids = current_place_ids - current_listed_taxa_of_this_taxon.map{|lt| lt.place_id}
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, new_place_ids: #{new_place_ids.inspect}"
+    
     old_place_ids = CheckList.get_old_place_ids_to_refresh(observation, options)
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, old_place_ids: #{old_place_ids.inspect}"
+    
     old_listed_taxa = ListedTaxon.all(:conditions => ["place_id IN (?) AND taxon_id IN (?)", old_place_ids - current_place_ids, taxon_ids])
     listed_taxa = (current_listed_taxa + old_listed_taxa).compact.uniq
     unless listed_taxa.blank?
@@ -194,6 +203,9 @@ class CheckList < List
       listed_taxa.each do |lt|
         lt.force_update_cache_columns = true
         lt.save # sets all observation associates, months stats, etc.
+        unless lt.valid?
+          Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
+        end
         if lt.auto_removable_from_check_list? && !options[:new]
           lt.destroy
         end
