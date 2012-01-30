@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
+  cache_sweeper :user_sweeper, :only => [:update]
+  
   def new
     @user = User.new
   end
