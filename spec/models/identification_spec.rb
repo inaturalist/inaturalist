@@ -253,4 +253,18 @@ describe Identification, "deletion" do
     jobs.select{|j| j.handler =~ /refresh_with_observation/}.should_not be_blank
   end
   
+  it "should nilify curator_identification_id on project observations" do
+    o = Observation.make
+    p = Project.make
+    pu = ProjectUser.make(:user => o.user, :project => p)
+    po = ProjectObservation.make(:observation => o, :project => p)
+    i = Identification.make(:user => p.user, :observation => o)
+    Identification.run_update_curator_identification(i)
+    po.reload
+    po.curator_identification.should_not be_blank
+    po.curator_identification_id.should == i.id
+    i.destroy
+    po.reload
+    po.curator_identification_id.should be_blank
+  end
 end

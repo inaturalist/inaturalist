@@ -4,7 +4,7 @@
 -%>
 <div class="project_observation">
   <%= render :partial => 'observations/cached_component', :object => observation %>
-  <% unless project_observation.curator_identification_id.blank? || project_observation.curator_identification.taxon_id == observation.taxon_id -%>
+  <% if !project_observation.curator_identification.blank? -%>
     <div class="project_observation_extra">
       <div class="attribute curator_ident fadednowrap">
         <h4 class="label">

@@ -4,6 +4,7 @@ class Identification < ActiveRecord::Base
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon
+  has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
   validates_presence_of :observation_id, :user_id
   validates_presence_of :taxon_id, 
                         :message => "for an ID must be something we recognize"
