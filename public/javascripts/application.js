@@ -357,7 +357,15 @@ $.fn.zoomify = function() {
     }
     $('#zoomable_dialog').html('<div class="loading status">Loading...</div>')
     $('#zoomable_dialog').load($(this).attr('href'), "partial=photo", function() {
-      $('#zoomable_dialog').dialog('option', 'position', 'center');
+      
+      $('img', this).load(function() {
+        var dialog = $('#zoomable_dialog'),
+            newHeight = $(':first', dialog).height() + 60,
+            maxHeight = $(window).height() * 0.8
+        if (newHeight > maxHeight) { newHeight = maxHeight };
+        $(dialog).dialog('option', 'height', newHeight)
+        $(dialog).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
+      })
     })
     $('#zoomable_dialog').dialog({
       modal: true, 
