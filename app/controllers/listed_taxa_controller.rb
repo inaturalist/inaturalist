@@ -153,7 +153,7 @@ class ListedTaxaController < ApplicationController
   private
   
   def load_listed_taxon
-    unless @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => [:list, :taxon, :user])
+    unless @listed_taxon = ListedTaxon.find_by_id(params[:id].to_i, :include => [:list, :taxon, :user])
       flash[:notice] = "That listed taxon doesn't exist."
       redirect_back_or_default('/')
       return
