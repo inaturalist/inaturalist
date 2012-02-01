@@ -47,7 +47,7 @@
   
   <h2><%= @pagetitle %></h2>
   <% unless in_mobile_view? -%>
-    <p class="description">Add observations of taxa you've added to a list.  Under development, still working out the bugs...</p>
+    <p class="description">Add observations of taxa you've added to a list.  Only the first 1000 taxa shown.</p>
   <% end -%>
   <% form_tag url_for, :method => :get, :id => "listform" do %>
     <%= label_tag :id, "Choose from your lists" %>
