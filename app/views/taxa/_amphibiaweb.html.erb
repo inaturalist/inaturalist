@@ -16,7 +16,7 @@
       <% end %>
     <% end %>
     <%- content = @xml.at('lannoo').try(:inner_text) if content.strip.blank? -%>
-    <% if content.strip.blank? -%>
+    <% if content.to_s.strip.blank? -%>
       <p class="description">
         AmphibiaWeb doesn't have any information about this species.
         <%= link_to_function "Try Wikipedia?", "tryWikipedia()", 'data-loading-click' => true %>
