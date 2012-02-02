@@ -1,57 +1,44 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+# gem 'rails', '3.0.1'
+gem 'rails'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3-ruby', :require => 'sqlite3'
-
-# Deploy with Capistrano
-gem 'capistrano'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
-
-gem 'mysql'
-gem "will_paginate", "~> 3.0.pre2"
-gem 'GeoRuby', :require => 'geo_ruby'
-gem 'spatial_adapter'
+gem 'aasm'
+gem 'ancestry'
 gem 'bluecloth'
-gem 'htmlentities'
-gem 'right_http_connection'
-gem 'right_aws'
-gem 'mocha'
-gem 'flickraw'
-gem 'rest-client', :require => 'rest_client'
-gem 'hoptoad_notifier'
-gem 'geoip'
-gem 'nokogiri'
-gem 'hpricot'
-gem 'objectify-xml', :require => 'objectify_xml'
+gem 'capistrano'
+gem 'chronic'
+gem 'daemon-spawn'
 gem 'delayed_job'
-gem 'machinist'
 gem 'faker'
 gem 'fastercsv'
-gem 'thinking-sphinx', '2.0.0.rc1', :require => 'thinking_sphinx'
-gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
-gem 'aasm'
-gem 'chronic'
-gem 'paperclip'
+gem 'flickraw'
+gem 'geoip'
 gem 'geoplanet'
-gem 'daemon-spawn'
+gem 'GeoRuby', :require => 'geo_ruby'
 gem 'google_analytics'
+gem 'hoptoad_notifier'
+gem 'htmlentities'
+gem 'machinist'
+gem 'memcache-client'
+gem 'mocha'
+gem 'nokogiri'
+gem 'oa-more'
+gem 'oa-oauth'
+gem 'oa-openid'
+gem 'objectify-xml', :require => 'objectify_xml'
+gem 'paperclip'
+gem 'pg'
+gem 'preferences', :git => 'git://github.com/rds/preferences.git'
+gem 'rest-client', :require => 'rest_client'
+gem 'right_aws'
+gem 'right_http_connection'
+gem 'spatial_adapter'
+gem 'thinking-sphinx', '2.0.10'
+gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
+gem 'will_paginate'
 
-# May not be necessary...
-# gem 'ambethia-smtp-tls', :require => 'smtp-tls', :git => 'git://github.com/ambethia/smtp-tls.git'
-# gem 'ancestry', :git => 'git://github.com/kueda/ancestry.git' 
-gem 'ancestry'
 
-
-group :test, :development do
-  gem "rspec-rails", "~> 2.0.1"
-end
+# group :test, :development do
+#   gem "rspec-rails", "~> 2.0.1"
+# end

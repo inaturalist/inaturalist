@@ -47,7 +47,7 @@ module Inaturalist
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
     
-    config.active_record.observers = :user_observer, :listed_taxon_sweeper
+    # config.active_record.observers = :user_observer, :listed_taxon_sweeper # this might have to come back, was running into probs with Preferences
     
     config.time_zone = 'UTC'
     

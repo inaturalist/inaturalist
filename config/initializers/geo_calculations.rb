@@ -1,6 +1,6 @@
 module ActiveRecord
   module Calculations
-    module ClassMethods
+    # module ClassMethods
       GEO_OPERATIONS = %w(extent)
       FLOAT_REGEX = /[-+]?[0-9]*\.?[0-9]+/
       
@@ -26,6 +26,6 @@ module ActiveRecord
           end
         end
       end
-    end
+    # end
   end
 end

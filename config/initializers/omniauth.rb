@@ -6,8 +6,8 @@ OpenID.fetcher.ca_file = "#{Rails.root}/config/ca-bundle.crt"
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env=='development' # very hacky workaround for oauth2/faraday ca_path bug
 FACEBOOK_CONFIG = INAT_CONFIG['facebook']
 
-ActionController::Dispatcher.middleware.use OmniAuth::Builder do #if you are using rails 2.3.x
-#Rails.application.config.middleware.use OmniAuth::Builder do #comment out the above line and use this if you are using rails 3
+# ActionController::Dispatcher.middleware.use OmniAuth::Builder do #if you are using rails 2.3.x
+Rails.application.config.middleware.use OmniAuth::Builder do #comment out the above line and use this if you are using rails 3
   if INAT_CONFIG["twitter"]
     provider :twitter, INAT_CONFIG["twitter"]["key"] , INAT_CONFIG["twitter"]["secret"]
   end
@@ -26,8 +26,8 @@ end
 # you will be able to access the above providers by the following url
 # /auth/providername for example /auth/twitter /auth/facebook
 
-ActionController::Dispatcher.middleware do #if you are using rails 2.3.x
-  #Rails.application.config.middleware do #comment out the above line and use this if you are using rails 3
+# ActionController::Dispatcher.middleware do #if you are using rails 2.3.x
+Rails.application.config.middleware do #comment out the above line and use this if you are using rails 3
   use OmniAuth::Strategies::OpenID,  OpenID::Store::Filesystem.new('/tmp'), :name => "google",  :identifier => "https://www.google.com/accounts/o8/id"
   use OmniAuth::Strategies::OpenID,  OpenID::Store::Filesystem.new('/tmp'), :name => "yahoo",   :identifier => "https://me.yahoo.com"
   #use OmniAuth::Strategies::OpenID,  OpenID::Store::Filesystem.new('/tmp'), :name => "aol",     :identifier => "https://openid.aol.com"
