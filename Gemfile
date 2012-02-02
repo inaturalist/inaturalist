@@ -24,7 +24,6 @@ gem 'dynamic_form'
 gem 'faker'
 gem 'fastercsv'
 gem 'flickraw'
-gem "friendly_id", "~> 4.0.1"
 gem 'geoplanet'
 # gem 'GeoRuby', :require => 'geo_ruby'
 gem 'nofxx-georuby'
