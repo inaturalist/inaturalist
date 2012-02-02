@@ -11,7 +11,7 @@ Inaturalist::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
-  config.action_view.debug_rjs             = true
+  # config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
   
   # Uncomment these to test caching
@@ -36,5 +36,7 @@ config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
+  
+  config.active_support.deprecation = :log
 end
 

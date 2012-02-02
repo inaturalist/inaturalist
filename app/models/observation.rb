@@ -394,7 +394,7 @@ class Observation < ActiveRecord::Base
       d == 0 ? nil : d
     end
     if date.to_s =~ /^\d{4}/ && year && month && day
-      ["#{column}::DATE = ?", "#{year}-#{month}-#{day}"]
+      where("#{column}::DATE = ?", "#{year}-#{month}-#{day}")
     elsif year || month || day
       conditions, values = [[],[]]
       if year
@@ -409,9 +409,9 @@ class Observation < ActiveRecord::Base
         conditions << "EXTRACT(DAY FROM #{column}) = ?"
         values << day
       end
-      [conditions.join(' AND '), *values]
+      where([conditions.join(' AND '), *values])
     else
-      ["1 = 2"]
+      where("1 = 2")
     end
   end
   
@@ -1262,7 +1262,8 @@ class Observation < ActiveRecord::Base
   include ObservationsHelper
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
-  include ActionController::UrlWriter
+  # include ActionController::UrlWriter
+  include Rails.application.routes.url_helpers
   
   def image_url
     observation_image_url(self, :size => "medium")
