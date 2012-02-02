@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-# gem 'rails', '3.0.1'
 gem 'rails'
 
 gem 'aasm'
@@ -13,7 +12,6 @@ gem 'delayed_job'
 gem 'faker'
 gem 'fastercsv'
 gem 'flickraw'
-gem 'geoip'
 gem 'geoplanet'
 gem 'GeoRuby', :require => 'geo_ruby'
 gem 'google_analytics'

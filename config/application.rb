@@ -74,11 +74,6 @@ end
 
 ActiveRecord::Base.include_root_in_json = false
 
-# GeoIP setup, for IP geocoding
-geoip_config = YAML.load(File.open("#{Rails.root}/config/geoip.yml"))
-GEOIP = GeoIP.new(geoip_config[Rails.env]['city'])
-
-
 ### API KEYS ###
 UBIO_KEY = INAT_CONFIG['ubio']['UBIO_KEY']
 
