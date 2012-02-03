@@ -111,7 +111,7 @@ class DarwinCore
     end
 
     def occurrenceRemarks
-      description.gsub(/\r\n/, "\n") unless description.blank?
+      dwc_filter_text(description) unless description.blank?
     end
 
 
@@ -170,7 +170,7 @@ class DarwinCore
     end
 
     def identificationRemarks
-      owners_identification.body if owners_identification
+      dwc_filter_text(owners_identification.body) if owners_identification
     end
 
     def taxonID
@@ -194,6 +194,12 @@ class DarwinCore
 
     def rightsHolder
       user.name.blank? ? user.login : user.name
+    end
+    
+    protected
+    
+    def dwc_filter_text(s)
+      s.to_s.gsub(/\r\n|\n/, " ")
     end
   end
 end

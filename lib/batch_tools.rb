@@ -21,8 +21,10 @@ module BatchTools
           est = true
         end
         (full_count / batch_size + 1).times do |batch|
-          Rails.logger.info "[INFO #{Time.now}] Working on #{self} batch " +
+          msg = "[INFO #{Time.now}] Working on #{self} batch " +
             "#{batch+1} of #{full_count / batch_size + 1} #{'est' if est} (batch size: #{batch_size})"
+          # puts msg
+          Rails.logger.info msg
           work_on_batch(batch, batch_size, options, &block)
         end
       end
@@ -32,7 +34,6 @@ module BatchTools
         start = Time.now
         count_options = options.reject {|k,v| %w(order select).include?(k.to_s)}
         item_count = count(count_options)
-        msg = ""
         iteration = 1
         do_in_batches(options) do |record|
           msg = "#{iteration} of #{item_count} (#{(iteration.to_f / item_count * 100).round(2)}%)"
@@ -45,6 +46,8 @@ module BatchTools
       
       private
       def work_on_batch(batch, batch_size, options = {}, &block)
+        # pgsql is VERY weird about how it orders things by default, and by weird I mean inconsistent
+        options[:order] = "#{table_name}.id ASC" if options[:order].blank?
         options.merge!(:offset => batch * batch_size, :limit => batch_size)
         all(options).each do |item|
           yield(item)

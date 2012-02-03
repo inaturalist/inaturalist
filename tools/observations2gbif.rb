@@ -40,7 +40,7 @@ def make_data
   
   find_options = {
     :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
-    :conditions => ["license IS NOT NULL AND quality_grade = ?", Observation::RESEARCH_GRADE]
+    :conditions => ["observations.license IS NOT NULL AND quality_grade = ?", Observation::RESEARCH_GRADE]
   }
   
   FasterCSV.open(tmp_path, 'w') do |csv|
@@ -71,4 +71,4 @@ data_path = make_data
 puts "Data: #{data_path}"
 archive_path = make_archive(metadata_path, descriptor_path, data_path)
 puts "Archive: #{archive_path}"
-FileUtils.mv(archive_path, "public/gbif-observations-dwca.tgz")
+FileUtils.mv(archive_path, "public/observations/gbif-observations-dwca.tgz")
