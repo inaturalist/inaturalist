@@ -127,7 +127,7 @@
         item = self.recordsToItems([item])[0]
         this.selectItem(item)
       } else if ($(this.element).val() != '' && this.options.resourceUrl) {
-        selectId($(this.element).val())
+        this.selectId($(this.element).val())
       }
     },
     
