@@ -1,11 +1,10 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
-    .title_field,.description_field{margin-right:20px;}
-    .description_field,.terms_field,.title_field{float:left;width:465px;}
+    .title_field,.description_field,.project_type_field{margin-right:20px;}
+    .description_field,.terms_field,.title_field, .preference_fields, .project_type_field{float:left;width:465px;}
     .project_icon_field{float:left;width:225px;}
-    .project_type_field{clear:left;}
-    .preferes_count_from_list_field{clear:left;}
+    .description_field,.project_type_field{clear:left;}
     .title_field input{width:390px;}
     .description_field textarea,.terms_field textarea{width:450px;}
     #place_q,#taxon_q{width:300px;}
@@ -82,12 +81,27 @@
     <% end -%>
   <% end %>
   
+  <%= f.text_area :description, :description => "Describe the purpose of this project." %>
+  <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
+  
   <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
     :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
   
-  <%= f.check_box :prefers_count_from_list, :description => "Show counts based on the list." %>
-  <%= f.text_area :description, :description => "Describe the purpose of this project." %>
-  <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
+  <div class="preference_fields">
+    <%= f.check_box :prefers_count_from_list, 
+      :label => "Show total listed taxa", 
+      :label_after => true,
+      :description => 
+        "Show the total number of taxa on the project's list alongside " + 
+        "the number of taxa observed." %>
+    <%= f.check_box :prefers_place_boundary_visible, 
+      :label => "Show place boundary on map", 
+      :label_after => true,
+      :description => 
+        "If you have an observation rule specifying a place (see below), " + 
+        "you can show the boundary of that place on your project page, if " + 
+        "the place has a boundary." %>
+  </div>
   
   <!-- <fieldset class="userrules">
     <legend>New User Rules</legend>

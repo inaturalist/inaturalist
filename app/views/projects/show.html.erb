@@ -22,17 +22,40 @@
   <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
-      var lyr;
+      var map = window.map = iNaturalist.Map.createMap({lat: 0, lng: 0, zoom: 3}),
+          place = <%= @place.to_json %>,
+          placeGeometryKmlUrl = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect %>,
+          observations = <%= @observations.to_json(:include => :iconic_taxon) %>
+      var lyr, kmlSet = false;
       <%- for kml_asset in @kml_assets %>
-      lyr = new google.maps.KmlLayer('<%= root_url.gsub(/\/$/, "") + kml_asset.asset.url %>');
-      lyr.setMap(window.map);
+        lyr = new google.maps.KmlLayer('<%= root_url.gsub(/\/$/, "") + kml_asset.asset.url %>');
+        lyr.setMap(window.map);
+        kmlSet = true
       <% end %>
       
-      map.addObservations(<%= @observations.to_json(:include => :iconic_taxon) %>)
-      <% if @kml_assets.blank? %>
-        map.zoomToObservations()
-      <% end %>
+      if (placeGeometryKmlUrl) {
+        lyr = new google.maps.KmlLayer(placeGeometryKmlUrl, {preserveViewport: true})
+        map.addOverlay(place.name + ' boundary', lyr)
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+      }
+      
+      map.addObservations(observations)
+      
+      if (!kmlSet) {
+        if (place) {
+          if (place.swlat) {
+            var bounds = new google.maps.LatLngBounds(
+              new google.maps.LatLng(place.swlat, place.swlng),
+              new google.maps.LatLng(place.nelat, place.nelng)
+            )
+            map.fitBounds(bounds)
+          } else {
+            map.setCenter(new google.maps.LatLng(place.latitude, place.longitude));
+          }
+        } else if (observations && observations.length > 0) {
+          map.zoomToObservations()
+        }
+      }
     })
   </script>
 <%- end -%>
@@ -163,9 +186,9 @@
     </li>
     <li>
       <% if @project.prefers_count_from_list? -%>
-      <span class="right" style="margin: 4px 10px 0 10px">
-        <span class="count"><%= @observed_taxa_count %></span> of <span class="count"><%= @project.project_list.listed_taxa.count %></span> taxa observed
-      </span>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @observed_taxa_count %></span> of <span class="count"><%= @project.project_list.listed_taxa.count %></span> taxa observed
+        </span>
       <% else -%>
        <% if @observed_taxa_count.to_i > 0 -%>
          <span class="right" style="margin: 4px 10px 0 10px">

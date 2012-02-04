@@ -202,7 +202,7 @@ class Place < ActiveRecord::Base
   def editable_by?(user)
     return false if user.blank?
     return true if user.is_curator?
-    return false if !self.user.blank? && self.user != user
+    return true if self.user_id == user.id
     return false if %(country state county).include?(place_type_name.to_s.downcase)
     true
   end

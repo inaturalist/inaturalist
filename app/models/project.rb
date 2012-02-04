@@ -1,7 +1,4 @@
 class Project < ActiveRecord::Base
-  
-  preference :count_from_list, :boolean, :default => false
-  
   belongs_to :user
   has_many :project_users, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
@@ -22,6 +19,9 @@ class Project < ActiveRecord::Base
   
   has_friendly_id :title, :use_slug => true, 
     :reserved_words => ProjectsController.action_methods.to_a
+  
+  preference :count_from_list, :boolean, :default => false
+  preference :place_boundary_visible, :boolean, :default => false
   
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
