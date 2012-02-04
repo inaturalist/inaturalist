@@ -603,14 +603,32 @@ class Taxon < ActiveRecord::Base
   # Updated the "cached" ancestor values in all listed taxa with this taxon
   def update_listed_taxa
     return true if ancestry.blank?
-    ListedTaxon.update_all(
-      "taxon_ancestor_ids = '#{ancestry}'", 
-      "taxon_id = #{self.id}")
+    return true if ancestry_callbacks_disabled?
+    Taxon.send_later(:update_listed_taxa_for, id, ancestry_was)
     true
   end
   
-  def update_life_lists
-    LifeList.send_later(:update_life_lists_for_taxon, self)
+  def self.update_listed_taxa_for(taxon, ancestry_was)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return true unless taxon
+    ListedTaxon.update_all("taxon_ancestor_ids = '#{taxon.ancestry}'", "taxon_id = #{taxon.id}")
+    old_ancestry = ancestry_was
+    old_ancestry = old_ancestry.blank? ? id : "#{old_ancestry}/#{taxon.id}"
+    new_ancestry = taxon.ancestry
+    new_ancestry = new_ancestry.blank? ? id : "#{new_ancestry}/#{taxon.id}"
+    ListedTaxon.update_all(
+      "taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')", 
+      ["taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%"]
+    )
+  end
+  
+  def update_life_lists(options = {})
+    ids = options[:skip_ancestors] ? [id] : [id, ancestor_ids].flatten.compact
+    if ListRule.exists?([
+        "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
+        Taxon.to_s, ids])
+      LifeList.send_later(:update_life_lists_for_taxon, self, :dj_priority => 1)
+    end
     true
   end
   
@@ -728,7 +746,7 @@ class Taxon < ActiveRecord::Base
       end
     end
     
-    LifeList.send_later(:update_life_lists_for_taxon, self)
+    LifeList.send_later(:update_life_lists_for_taxon, self, :dj_priority => 1)
     
     reject.reload
     logger.info "[INFO] Merged #{reject} into #{self}"
@@ -813,6 +831,58 @@ class Taxon < ActiveRecord::Base
   
   def iconic_taxon_name
     ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
+  end
+  
+  # ancestry overrides - some ancestry methods iterate over ALL descendants 
+  # in memory.  It's database agnostic but massively ineffecient
+  def update_descendants_with_new_ancestry
+    return true if ancestry_callbacks_disabled?
+    return true unless changed.include?(self.base_class.ancestry_column.to_s) && !new_record? && valid?
+    old_ancestry = send("#{base_class.ancestry_column}_was")
+    old_ancestry = old_ancestry.blank? ? id : "#{old_ancestry}/#{id}"
+    new_ancestry = send(base_class.ancestry_column)
+    new_ancestry = new_ancestry.blank? ? id : "#{new_ancestry}/#{id}"
+    base_class.update_all(
+      "#{base_class.ancestry_column} = regexp_replace(#{base_class.ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
+      descendant_conditions
+    )
+    Taxon.send_later(:update_descendants_with_new_ancestry, id, child_ancestry, :dj_priority => 1)
+    true
+  end
+  
+  def self.update_descendants_with_new_ancestry(taxon, child_ancestry_was)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    Rails.logger.info "[INFO #{Time.now}] updating descendants of #{taxon}"
+    ThinkingSphinx.deltas_enabled = false
+    do_in_batches(:conditions => taxon.descendant_conditions) do |d|
+      d.without_ancestry_callbacks do
+        d.update_life_lists(:skip_ancestors => true)
+        d.set_iconic_taxon
+        d.update_obs_iconic_taxa
+      end
+    end
+    ThinkingSphinx.deltas_enabled = true
+  end
+  
+  def apply_orphan_strategy
+    return if ancestry_callbacks_disabled?
+    return if new_record?
+    Taxon.send_later(:apply_orphan_strategy, child_ancestry, :dj_priority => 1)
+  end
+  
+  def self.apply_orphan_strategy(child_ancestry_was)
+    # return unless taxon
+    Rails.logger.info "[INFO #{Time.now}] applying orphan strategy to #{child_ancestry_was}"
+    descendant_conditions = [
+      "ancestry = ? OR ancestry LIKE ?", 
+      child_ancestry_was, "#{child_ancestry_was}/%"
+    ]
+    do_in_batches(:conditions => descendant_conditions) do |d|
+      d.without_ancestry_callbacks do
+        d.destroy
+      end
+    end
   end
   
   include TaxaHelper

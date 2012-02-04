@@ -135,6 +135,31 @@ describe Taxon, "destruction" do
   it "should work" do
     @Calypte_anna.destroy
   end
+  
+  it "should queue a job to destroy descendants if orphaned" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @Apodiformes.destroy
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /apply_orphan_strategy/m}.should_not be_blank
+  end
+end
+
+describe Taxon, "orphan descendant destruction" do
+  before(:each) do
+    load_test_taxa
+  end
+  
+  it "should work" do
+    child_ancestry_was = @Apodiformes.child_ancestry
+    @Apodiformes.update_attributes(:parent => nil)
+    Taxon.update_descendants_with_new_ancestry(@Apodiformes.id, child_ancestry_was)
+    @Apodiformes.descendants.should include(@Calypte_anna)
+    child_ancestry_was = @Apodiformes.child_ancestry
+    @Apodiformes.destroy
+    Taxon.apply_orphan_strategy(child_ancestry_was)
+    Taxon.find_by_name("Calypte anna").should be_blank
+  end
 end
 
 describe "Making a", Taxon, "iconic" do
@@ -518,6 +543,31 @@ describe Taxon, "moving" do
     lambda {
       taxon.parent_id = bad_id
     }.should_not raise_error
+  end
+  
+  # this is something we override from the ancestry gem
+  it "should queue a job to update descendant ancetries" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @Calypte.update_attributes(:parent => @Hylidae)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}.should_not be_blank
+  end
+  
+end
+
+describe Taxon, "update_descendants_with_new_ancestry" do
+  before(:each) do
+    load_test_taxa
+  end
+  it "should update the ancestry of descendants" do
+    @Calypte.parent = @Hylidae
+    child_ancestry_was = @Calypte.child_ancestry
+    @Calypte.save
+    Taxon.update_descendants_with_new_ancestry(@Calypte.id, child_ancestry_was)
+    @Calypte_anna.reload
+    @Calypte_anna.ancestry.should =~ /^#{@Hylidae.ancestry}/
+    @Calypte_anna.ancestry.should =~ /^#{@Calypte.ancestry}/
   end
 end
 
