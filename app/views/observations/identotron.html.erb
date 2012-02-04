@@ -94,6 +94,11 @@
       $('#placechooser, #taxonchooser').change(function() {
         $(this).parents('form:first').submit()
       })
+      $('#guidesearch').keypress(function(e) {
+        if (e.which == 13) {
+          $(this).parents('form:first').submit()
+        }
+      })
       $('#controls input[type=submit]').hide()
       
       $(window).bind("hashchange", function(e) {
