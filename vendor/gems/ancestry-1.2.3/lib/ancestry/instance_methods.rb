@@ -171,7 +171,7 @@ module Ancestry
 
     # Descendants
     def descendant_conditions
-      ["#{self.base_class.ancestry_column} like ? or #{self.base_class.ancestry_column} = ?", "#{child_ancestry}/%", child_ancestry]
+      ["#{base_class.table_name}.#{self.base_class.ancestry_column} like ? or #{base_class.table_name}.#{self.base_class.ancestry_column} = ?", "#{child_ancestry}/%", child_ancestry]
     end
 
     def descendants depth_options = {}

@@ -1,3 +1,29 @@
+require 'rubygems'
+require 'trollop'
+
+opts = Trollop::options do
+    banner <<-EOS
+Exports a Darwin Core Archive from observations.  Archives will be gzip'd tarballs
+
+Usage:
+
+  script/runner dwca.rb
+
+will output licensed observations to public/observations/dwca.tgz
+
+where [options] are:
+EOS
+  opt :path, "Path to archive", :type => :string, :short => "-f", :default => "public/observations/dwca.tgz"
+  opt :place, "Only export observations from this place", :type => :string, :short => "-p"
+  opt :taxon, "Only export observations of this taxon", :type => :string, :short => "-t"
+  opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
+end
+
+@place = Place.find_by_id(opts[:place].to_i) || Place.find_by_name(opts[:place])
+puts "Found place: #{@place}" if opts[:debug]
+@taxon = Taxon.find_by_id(opts[:taxon].to_i) || Taxon.find_by_name(opts[:taxon])
+puts "Found taxon: #{@taxon}" if opts[:debug]
+
 # Create a Darwin Core Archive from iNat observations
 class Metadata < DarwinCore::FakeView
   def initialize
@@ -43,6 +69,21 @@ def make_data
     :conditions => ["observations.license IS NOT NULL AND quality_grade = ?", Observation::RESEARCH_GRADE]
   }
   
+  if @taxon
+    find_options[:conditions][0] += " AND (#{@taxon.descendant_conditions[0]})"
+    find_options[:conditions] += @taxon.descendant_conditions[1..-1]
+  end
+  
+  if @place
+    find_options[:joins] = "JOIN place_geometries ON place_geometries.place_id = #{@place.id}"
+    # find_options[:from] = "observations, place_geometries"
+    find_options[:conditions][0] +=
+      " AND (" +
+        "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
+      ")"
+  end
+  
   FasterCSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Observation.do_in_batches(find_options) do |o|
@@ -56,7 +97,7 @@ def make_data
 end
 
 def make_archive(*args)
-  fname = "gbif-observations-dwca.tgz"
+  fname = "dwca.tgz"
   tmp_path = File.join(Dir::tmpdir, fname)
   fnames = args.map{|f| File.basename(f)}
   system "cd #{Dir::tmpdir} && tar cvzf #{tmp_path} #{fnames.join(' ')}"
@@ -64,11 +105,12 @@ def make_archive(*args)
 end
 
 metadata_path = make_metadata
-puts "Metadata: #{metadata_path}"
+puts "Metadata: #{metadata_path}" if opts[:debug]
 descriptor_path = make_descriptor
-puts "Descriptor: #{descriptor_path}"
+puts "Descriptor: #{descriptor_path}" if opts[:debug]
 data_path = make_data
-puts "Data: #{data_path}"
+puts "Data: #{data_path}" if opts[:debug]
 archive_path = make_archive(metadata_path, descriptor_path, data_path)
-puts "Archive: #{archive_path}"
-FileUtils.mv(archive_path, "public/observations/gbif-observations-dwca.tgz")
+puts "Archive: #{archive_path}" if opts[:debug]
+FileUtils.mv(archive_path, opts[:path])
+puts "Archive generated: #{opts[:path]}"
