@@ -160,7 +160,7 @@ class ListedTaxon < ActiveRecord::Base
     target_place = place || list.place
     return true unless existing_comprehensive_list
     unless existing_comprehensive_listed_taxon
-      errors.add(:taxon_id, "isn't on the comprehensive list of #{existing_comprehensive_list.taxon.name} for #{target_place.name}")
+      errors.add(:taxon_id, "isn't on the comprehensive list \"#{existing_comprehensive_list.title}\"")
     end
     true
   end
