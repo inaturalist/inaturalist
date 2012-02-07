@@ -34,6 +34,13 @@
 
               <%= o.label(:longitude, 'Lon') %>
               <%= o.text_field(:longitude, :class => 'longitude') %>
+              
+              <div>
+                <%= o.label(:positional_accuracy, 'Acc') %>
+                <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy') %>
+                <%= o.label(:positioning_method, 'Src') %>
+                <%= o.text_field(:positioning_method, :class => 'positioning_method', :disabled => true) %>
+              </div>
 
               <span class="button">
                 <%= link_to_function("edit", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
@@ -42,6 +49,7 @@
             </div>
             <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
             <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
+            <%= o.hidden_field(:positioning_device, :class => 'positioning_device') %>
           </div>
           
           
@@ -59,7 +67,9 @@
             </div>
             <div class="last column span-7">
               <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact'])", :id => 'apply_batch_place_button', :class => 'default button') %>
+                <%= link_to_function("&darr; Apply &darr;", 
+                  "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact', 'positional_accuracy', 'positioning_method', 'positioning_device'])", 
+                  :id => 'apply_batch_place_button', :class => 'default button') %>
               </div>
             </div>
           </div>

@@ -79,3 +79,9 @@ h3 label em {
 .observationform .compactfield input.text, #batch_form_fields .compactfield input.text { width: auto;}
 .observationform .observation_place_guess, #batch_form_fields .observation_place_guess {margin-bottom: 0;}
 
+.latlonfields { position: relative; }
+.latlonfields .button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

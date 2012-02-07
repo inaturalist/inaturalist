@@ -52,8 +52,7 @@ class ProjectsController < ApplicationController
         @project_assets = @project.project_assets.all(:limit => 100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
         @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
-        @place = @project.project_observation_rules.first(:conditions => {:operator => "observed_in_place?"}).try(:operand)
-        if @place
+        if @place = @project.rule_place
           @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
         end
       end

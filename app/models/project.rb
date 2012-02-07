@@ -70,6 +70,10 @@ class Project < ActiveRecord::Base
     project_users.curators.exists?(:user_id => user.id)
   end
   
+  def rule_place
+    project_observation_rules.first(:conditions => {:operator => "observed_in_place?"}).try(:operand)
+  end
+  
   def self.update_curator_idents_on_make_curator(project_id, project_user_id)
     unless proj = Project.find_by_id(project_id)
       return

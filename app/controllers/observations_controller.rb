@@ -306,6 +306,9 @@ class ObservationsController < ApplicationController
       end
       if @project
         @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
+        if @project.rule_place
+          @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+        end
       end
     end
     options[:time_zone] = current_user.time_zone
@@ -673,14 +676,14 @@ class ObservationsController < ApplicationController
         @observations << Observation.new(
           :user => current_user,
           :species_guess => taxon_name_str,
-          :taxon => Taxon.find(
-            :first, 
-            :include => :taxon_names, 
-            :conditions => ["taxon_names.name = ?", taxon_name_str.strip]),
+          :taxon => Taxon.single_taxon_for_name(taxon_name_str.strip),
           :place_guess => params[:batch][:place_guess],
           :longitude => longitude,
           :latitude => latitude,
           :map_scale => params[:batch][:map_scale],
+          :positional_accuracy => params[:batch][:positional_accuracy],
+          :positioning_method => params[:batch][:positioning_method],
+          :positioning_device => params[:batch][:positioning_device],
           :location_is_exact => params[:batch][:location_is_exact],
           :observed_on_string => params[:batch][:observed_on_string],
           :time_zone => current_user.time_zone)

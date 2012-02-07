@@ -1029,6 +1029,17 @@ class Taxon < ActiveRecord::Base
     Taxon.find_by_sql(sql)
   end
   
+  def self.single_taxon_for_name(name)
+    return if PROBLEM_NAMES.include?(name.downcase)
+    taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase], :limit => 5, :include => :taxon)
+    return if taxon_names.blank?
+    return taxon_names.first.taxon if taxon_names.size == 1
+    sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon).compact)
+    return if sorted.blank?
+    return unless sorted.first.ancestor_of?(sorted.last)
+    sorted.first
+  end
+  
   # /Static #################################################################
   
 end

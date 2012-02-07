@@ -617,6 +617,23 @@ iNaturalist.Map.builtPlacesMapType = function(map, options) {
   return PlacesMapType
 }
 
+// Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
+iNaturalist.Map.distanceInMeters = function(lat1, lon1, lat2, lon2) {
+  var earthRadius = 6370997, // m 
+      degreesPerRadian = 57.2958,
+      dLat = (lat2-lat1) / degreesPerRadian,
+      dLon = (lon2-lon1) / degreesPerRadian,
+      lat1 = lat1 / degreesPerRadian,
+      lat2 = lat2 / degreesPerRadian
+
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = earthRadius * c;
+  
+  return d
+}
+
 iNaturalist.FullScreenControl = function(map) {
   var controlDiv = document.createElement('DIV')
   controlDiv.style.padding = '5px';

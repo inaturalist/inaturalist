@@ -5,9 +5,9 @@
   <%= stylesheet_link_tag 'observations', 'observations/new', 'taxa', 'taxon_browser', "observations/edit" %>
 <% end %>
 <% content_for(:extrajs) do %>
-  <%= gmap_include_tag %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag "jquery/plugins/jquery.string.1.0.js",
-                             'inaturalist/map2',
+                             'inaturalist/map3',
                              "jquery/plugins/inat/datepicker.js",
                              "jquery/plugins/inat/photo_selectors.js",
                              "jquery/plugins/jquery.latLonSelector.js",
@@ -16,8 +16,10 @@
                              "taxon_browser",
                              "observations/edit" %>
   <script type="text/javascript" charset="utf-8">
-    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json %>
-    var PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',') %>]
+    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json %>,
+        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',') %>],
+        PLACE = <%= @place.to_json %>,
+        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect %>
   </script>
 <% end %>
 <div id="pageheader" class="column span-24">
