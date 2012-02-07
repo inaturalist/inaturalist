@@ -3,6 +3,7 @@ textarea.text {
   width: 239px;
   margin: 0;
 }
+#observation_description {height: 319px;}
 
 .field label {
   display: inline-block;
@@ -39,14 +40,14 @@ input.place_guess { width: 336px; }
   right: 5px;
 }
 
-.photoSelector { width: 275px; }
+.photoSelector { width: 285px; }
 .photoSelectorControls .button { padding: 5px; }
 .photoSelectorControls .prevlink {
   float: left;
   clear: left;
 }
 .photoSelectorControls select { font-size: 90%; }
-.photoSelectorPhotos { margin: 0 auto; }
+.photoSelectorPhotos { margin: 0 auto; height: 500px; overflow: auto;}
 
 form .species_guess_field { margin-bottom: 0px; }
 .photo .synclink { float: right; }

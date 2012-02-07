@@ -1,12 +1,11 @@
 .photoSelector{position:relative;}
 .photo_list{clear:both;}
 .photoSelectorAlbums{
-  max-height:412px;
+  max-height:429px;
   margin:0 auto;
   overflow: auto;
 }
-.photoSelectorPhotos .photo{width:auto;display:inline-block;/* margin:0 0.5em 0 0;*/
-border:1px solid transparent;padding:5px;}
+.photoSelectorPhotos .photo{width:auto;display:inline-block;border:1px solid transparent;padding:5px;}
 .photoSelectorPhotos .photo:hover{border:1px solid #ddd;}
 .photoSelectorPhotos .photo .checkbox{margin:0 auto 2px}
 .photoSelectorPhotos .photo img{vertical-align:top;width:75px;}
