@@ -88,7 +88,33 @@
       $.fn.latLonSelector._exactMarker.setDraggable(true)
     }
     $.fn.latLonSelector._exactMarker.setMap($.fn.latLonSelector._map)
-    $.fn.latLonSelector._exactMarker.setVisible(false)
+    var marker = $.fn.latLonSelector._exactMarker
+    
+    // Bind dragend
+    google.maps.event.clearListeners(marker, 'dragend');
+    google.maps.event.addListener(marker, 'dragend', function(e) {
+      $(findFormField($.fn.latLonSelector._currentInput, 'positioning_method')).val('manual')
+      $(findFormField($.fn.latLonSelector._currentInput, 'positioning_device')).val('manual')
+      
+      $.fn.latLonSelector.updateFormLatLon(
+        e.latLng.lat(), 
+        e.latLng.lng()
+      )
+      
+      if ($.fn.latLonSelector._circle) {
+        $.fn.latLonSelector._circle.setCenter(this.getPosition())
+        if (!$.fn.latLonSelector._circle.getEditable()) {
+          $.fn.latLonSelector.setAccuracy(null)
+          $.fn.latLonSelector.updateFormAccuracy(null)
+        }
+      }
+    })
+    
+    google.maps.event.addListener(marker, 'click', function() {
+      $.fn.latLonSelector.toggleEditAccuracy()
+      return false
+    })
+    
     
     if (typeof options.approxMarker != 'undefined') {
       $.fn.latLonSelector._approxMarker = options.approxMarker;
@@ -240,74 +266,16 @@
     $(findFormField($.fn.latLonSelector._currentInput, 'positioning_device')).val('manual')
     if ($.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle.setCenter(marker.getPosition())
+      if (!$.fn.latLonSelector._circle.getEditable()) {
+        $.fn.latLonSelector.setAccuracy(null)
+        $.fn.latLonSelector.updateFormAccuracy(null)
+      }
     }
   }
   
   function getMarker(options) {
-    var options = $.extend({}, options);
-    var oldPoint;
-    var marker;
-    
-    if (typeof options.exact == 'undefined') {
-      if ($.fn.latLonSelector._exactMarker.getVisible()) {
-        marker = $.fn.latLonSelector._exactMarker;
-      } else {
-        marker = $.fn.latLonSelector._approxMarker;
-      }
-    } else {
-      if (options.exact == true) {
-        setExact(true);
-        if (!$.fn.latLonSelector._exactMarker.getVisible()) {
-          oldPoint = $.fn.latLonSelector._approxMarker.getPosition();
-          $.fn.latLonSelector._approxMarker.setVisible(false);
-          $.fn.latLonSelector._exactMarker.setPosition(oldPoint);
-        };
-        marker = $.fn.latLonSelector._exactMarker;
-      } else {
-        setExact(false);
-        if (!$.fn.latLonSelector._approxMarker.getVisible()) {
-          // Make the marker an approximate marker
-          oldPoint = $.fn.latLonSelector._exactMarker.getPosition();
-          $.fn.latLonSelector._exactMarker.setVisible(false);
-          $.fn.latLonSelector._approxMarker.setPosition(oldPoint);
-        }
-        marker = $.fn.latLonSelector._approxMarker;
-      }
-    }
-    
-    marker.setVisible(true);
-    
-    // Bind dragend
-    google.maps.event.clearListeners(marker, 'dragend');
-    google.maps.event.addListener(marker, 'dragend', function(e) {
-      // Drags indicate exact positioning
-      setExact(true);
-      var marker = getMarker({exact: true});
-      $(findFormField($.fn.latLonSelector._currentInput, 'positioning_method')).val('manual')
-      $(findFormField($.fn.latLonSelector._currentInput, 'positioning_device')).val('manual')
-      
-      $.fn.latLonSelector.updateFormLatLon(
-        e.latLng.lat(), 
-        e.latLng.lng()
-      )
-      
-      if ($.fn.latLonSelector._circle) {
-        $.fn.latLonSelector._circle.setCenter(marker.getPosition())
-      }
-    })
-    google.maps.event.addListener(marker, 'click', function() {
-      if (!$.fn.latLonSelector._circle) {
-        var bounds = $.fn.latLonSelector._map.getBounds(),
-            center = bounds.getCenter(), 
-            northEast = bounds.getNorthEast(),
-            mapAcc = iNaturalist.Map.distanceInMeters(center.lat(), center.lng(), northEast.lat(), northEast.lng()) / 5,
-            defaultAcc = Math.max(mapAcc, 20),
-            defaultAcc = Math.min(mapAcc, 100000)
-        $.fn.latLonSelector.setAccuracy(defaultAcc)
-      }
-    })
-    
-    return marker;
+    $.fn.latLonSelector._exactMarker.setVisible(true)
+    return $.fn.latLonSelector._exactMarker;
   }
   
   function getGeocoder() {
@@ -509,6 +477,46 @@
     $.fn.latLonSelector.setAccuracy(d, {lat: bounds.getCenter().lat(), lng: bounds.getCenter().lng()})
   }
   
+  $.fn.latLonSelector.editAccuracy = function() {
+    if (!$.fn.latLonSelector._circle) { 
+      $.fn.latLonSelector.setAccuracy(null)
+    }
+    var bounds = $.fn.latLonSelector._map.getBounds(),
+        center = bounds.getCenter(), 
+        northEast = bounds.getNorthEast(),
+        mapAcc = iNaturalist.Map.distanceInMeters(center.lat(), center.lng(), northEast.lat(), northEast.lng()) / 5,
+        defaultAcc = Math.max(mapAcc, 20),
+        defaultAcc = Math.min(mapAcc, 100000),
+        accuracyField = findFormField($.fn.latLonSelector._currentInput, 'positional_accuracy'),
+        acc = $(accuracyField).val() || defaultAcc
+    $.fn.latLonSelector.setAccuracy(acc)
+    $.fn.latLonSelector.updateFormAccuracy($.fn.latLonSelector._circle.getRadius(), {
+      positioningMethod: 'manual', 
+      positioningDevice: 'manual'})
+      
+    $.fn.latLonSelector._circle.setOptions({
+      editable: true,
+      visible: true,
+      fillOpacity: 0.35,
+    })
+  }
+  
+  $.fn.latLonSelector.stopEditAccuracy = function() {
+    if (!$.fn.latLonSelector._circle) { return }
+    $.fn.latLonSelector._circle.setOptions({
+      editable: false,
+      fillOpacity: 0,
+    })
+  }
+  
+  $.fn.latLonSelector.toggleEditAccuracy = function() {
+    if ($.fn.latLonSelector._circle && $.fn.latLonSelector._circle.getEditable()) {
+      $.fn.latLonSelector.stopEditAccuracy()
+    } else {
+      $.fn.latLonSelector.editAccuracy()
+    }
+  }
+  
   $.fn.latLonSelector.setAccuracy = function(accuracy, options) {
     options = options || {}
     if (!$.fn.latLonSelector._circle) {
@@ -517,8 +525,8 @@
         strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: "#FF6963",
-        fillOpacity: 0.35,
-        editable: true,
+        fillOpacity: 0,
+        editable: false,
         map: $.fn.latLonSelector._map
       })
       
@@ -530,7 +538,9 @@
       })
       google.maps.event.addListener($.fn.latLonSelector._circle, 'center_changed', function() {
         $.fn.latLonSelector.currentMarker().setPosition(this.getCenter())
-        $.fn.latLonSelector.updateFormLatLon(this.getCenter().lat(), this.getCenter().lng())
+        if (this.getCenter()) {
+          $.fn.latLonSelector.updateFormLatLon(this.getCenter().lat(), this.getCenter().lng())
+        }
       })
     }
     
@@ -539,17 +549,15 @@
       $.fn.latLonSelector._circle.setVisible(true)
       $.fn.latLonSelector._circle._nonManualRadiusChange = true
       $.fn.latLonSelector._circle.setRadius(accuracy)
-      $.fn.latLonSelector._circle.setEditable(true)
+      // $.fn.latLonSelector._circle.setEditable(true)
       
     } else {
       $.fn.latLonSelector._circle.setEditable(false)
       $.fn.latLonSelector._circle.setVisible(false)
     }
     
-    var lat = $(findFormField($.fn.latLonSelector._currentInput, 'latitude')).val(),
-        lng = $(findFormField($.fn.latLonSelector._currentInput, 'longitude')).val()
-    if (lat) {
-      $.fn.latLonSelector._circle.setCenter(new google.maps.LatLng(lat, lng))
+    if ($.fn.latLonSelector.currentMarker()) {
+      $.fn.latLonSelector._circle.setCenter($.fn.latLonSelector.currentMarker().getPosition())
     }
   }
   

@@ -32,7 +32,8 @@ input.place_guess { width: 336px; }
   border: 1px solid #CCCCCC;
 }
 .latlonfields.status { background-color: #F6F6F6; padding-bottom: 3px;}
-.observationform .latlonfields.status input { width: 134px; }
+.observationform .latlonfields.status label { width: 40px; }
+.observationform .latlonfields.status input { width: 118px; }
 
 .latlonfields .button {
   position: absolute;

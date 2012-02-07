@@ -505,20 +505,16 @@
   color: #888;
 }
 
-.observationform .latlonfields label {
-  display: block;
-}
+.observationform .latlonfields.open label{display:block;}
 
 .observationform .latlonfields.status label,
 .observationform .latlonfields.status input {
-  display: inline;
   color: #888;
   font-size: 0.8em;
   padding: 0;
   margin: 0;
   border: 0 none;
   background-color: transparent;
-  width: 7.8em;
 }
 
 .observationform .latlonfields.status label:after{content:':';}

@@ -54,24 +54,24 @@
         <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => "Name of the place you made the observation") %>
       </div>
       <div id="coordinates_<%= i %>" class="latlonfields status">
-        <%= o.label(:latitude, 'Lat') %>
+        <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
         <%= o.text_field(:latitude, :class => 'latitude text') %>
         
-        <%= o.label(:longitude, 'Lon') %>
+        <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
         <%= o.text_field(:longitude, :class => 'longitude text') %>
 
         <span class="button">
-          <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
-          <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
+          <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).next().show(); $.fn.latLonSelector.editAccuracy(); return false;") %>
+          <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).prev().show(); $.fn.latLonSelector.stopEditAccuracy(); return false;", :style => 'display: none') %>
         </span>
         
         <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
         <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
         
-        <%= o.label(:positional_accuracy, 'Acc', "data-tip" => "Accuracy of the coordinates. If you're not sure where you were, make the circle big enough so you're sure you were somewhere inside it.") %>
-        <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text') %>
-        <%= o.label(:positional_accuracy, 'Src', "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
-        <%= o.text_field(:positioning_method, :class => 'positioning_method text', :disabled => true) %>
+        <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock", "data-tip" => "Accuracy of the coordinates in meters. If you're not sure where you were, make the circle big enough so you're sure you were somewhere inside it.") %>
+        <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock') %>
+        <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
+        <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
         <%= o.hidden_field(:positioning_device, :class => 'positioning_device', :disabled => true) %>
       </div>
       <div class="description">Click on the map to place your observation</div>
