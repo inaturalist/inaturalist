@@ -899,11 +899,13 @@ form.inline .label {
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
   -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  min-height:19px;
 }
 .gmapv3control:hover {
   background: -moz-linear-gradient(center top, #ffffff, #e6e6e6) repeat scroll 0 0 transparent;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(255,255,255)), to(rgb(230,230,230))) repeat scroll 0 0 transparent;
 }
+.gmapv3control .ui-icon {background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png); }
 .fullscreen {
   position: fixed !important;
   width:100% !important;

@@ -6,15 +6,7 @@ window.map = iNaturalist.Map.createMap({
   zoomControl: false
 })
 
-if (PLACE.swlat) {
-  var bounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(PLACE.swlat, PLACE.swlng),
-    new google.maps.LatLng(PLACE.nelat, PLACE.nelng)
-  )
-  map.fitBounds(bounds)
-} else {
-  map.setCenter(new google.maps.LatLng(PLACE.latitude, PLACE.longitude));
-}
+map.setPlace(PLACE, {kml: PLACE_GEOMETRY_KML_URL})
 
 var placesMapType = iNaturalist.Map.builtPlacesMapType(map, {tilestacheServer: TILESTACHE_SERVER})
 map.overlayMapTypes.insertAt(0, new placesMapType(new google.maps.Size(256, 256)));
@@ -26,8 +18,4 @@ var marker = map.createMarker(PLACE.latitude, PLACE.longitude, {
   icon: icon
 })
 marker.setMap(map)
-if (PLACE_GEOMETRY_KML_URL.length > 0) {
-  var kml = new google.maps.KmlLayer(PLACE_GEOMETRY_KML_URL, {suppressInfoWindows: true})
-  kml.setMap(map)
-}
 marker.setZIndex(2)

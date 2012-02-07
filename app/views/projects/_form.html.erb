@@ -201,7 +201,7 @@
   <% end -%>
 
   <div class="buttons">
-    <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button" %>
+    <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button", "data-loading-click" => "Saving..." %>
     <%= link_to "Cancel", projects_path, :class => "button" %>
     <% unless project.new_record? -%>
       <%= link_to "Delete this project", project, :method => :delete, 

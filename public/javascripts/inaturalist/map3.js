@@ -209,6 +209,24 @@ google.maps.Map.prototype.addPlace = function(place, options) {
   // return the place for futher use
   return place;
 }
+
+// Zooms to place boundaries, adds kml if available
+google.maps.Map.prototype.setPlace = function(place, options) {
+  if (place.swlat) {
+    var bounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(place.swlat, place.swlng),
+      new google.maps.LatLng(place.nelat, place.nelng)
+    )
+    this.fitBounds(bounds)
+  } else {
+    this.setCenter(new google.maps.LatLng(place.latitude, place.longitude));
+  }
+  
+  if (options.kml && options.kml.length > 0) {
+    var kml = new google.maps.KmlLayer(options.kml, {suppressInfoWindows: true, preserveViewport: true})
+    this.addOverlay(place.name + " boundary", kml)
+  }
+}
 // 
 // google.maps.Map.prototype.addPlaces = function(places, options) {
 //   var map = this;
@@ -635,20 +653,22 @@ iNaturalist.Map.distanceInMeters = function(lat1, lon1, lat2, lon2) {
 }
 
 iNaturalist.FullScreenControl = function(map) {
-  var controlDiv = document.createElement('DIV')
+  var controlDiv = document.createElement('DIV'),
+      enter = '<span class="ui-icon ui-icon-extlink">Full screen</span>',
+      exit = '<span class="ui-icon ui-icon-arrow-1-sw inlineblock"></span> Exit full screen'
   controlDiv.style.padding = '5px';
-  var controlUI = $('<div>Full screen</div>').addClass('gmapv3control')
+  var controlUI = $('<div></div>').html(enter).addClass('gmapv3control')
   controlDiv.appendChild(controlUI.get(0))
   
   controlUI.toggle(function() {
     var oldCenter = map.getCenter()
-    $(this).html('Exit full screen').css('font-weight', 'bold')
+    $(this).html(exit).css('font-weight', 'bold')
     $(map.getDiv()).addClass('fullscreen')
     google.maps.event.trigger(map, 'resize')
     map.setCenter(oldCenter)
   }, function() {
     var oldCenter = map.getCenter()
-    $(this).html('Full screen').css('font-weight', 'normal')
+    $(this).html(enter).css('font-weight', 'normal')
     $(map.getDiv()).removeClass('fullscreen')
     google.maps.event.trigger(map, 'resize')
     map.setCenter(oldCenter)

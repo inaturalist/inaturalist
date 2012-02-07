@@ -24,7 +24,9 @@ class ProjectObservationRule < Rule
   end
   
   def terms
-    return "must be observed in #{operand.display_name}" if operator == "observed_in_place?" && operand
+    if operator == "observed_in_place?" && operand
+      return "must be observed in #{operand.display_name}"
+    end
     super
   end
 end
