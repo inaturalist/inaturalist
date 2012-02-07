@@ -68,9 +68,9 @@
         <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
         <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
         
-        <%= o.label(:positional_accuracy, 'Acc') %>
+        <%= o.label(:positional_accuracy, 'Acc', "data-tip" => "Accuracy of the coordinates. If you're not sure where you were, make the circle big enough so you're sure you were somewhere inside it.") %>
         <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text') %>
-        <%= o.label(:positional_accuracy, 'Src') %>
+        <%= o.label(:positional_accuracy, 'Src', "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
         <%= o.text_field(:positioning_method, :class => 'positioning_method text', :disabled => true) %>
         <%= o.hidden_field(:positioning_device, :class => 'positioning_device', :disabled => true) %>
       </div>

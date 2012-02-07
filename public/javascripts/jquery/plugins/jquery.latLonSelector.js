@@ -181,12 +181,9 @@
     if (accuracyField) {
       $(accuracyField).change(function() {
         var acc = parseInt($(this).val())
-        if (acc == null || acc == 0) {
-          $(this).val('')
-          return
-        }
-        $.fn.latLonSelector.setAccuracy(acc)
-        $.fn.latLonSelector.updateFormAccuracy(acc, {positioningMethod: 'manual', positioningDevice: 'manual'})
+        $.fn.latLonSelector.setAccuracy($(this).val())
+        $.fn.latLonSelector.updateFormAccuracy($(this).val(), {
+          positioningMethod: 'manual', positioningDevice: 'manual'})
       })
     }
   }
@@ -538,11 +535,14 @@
     }
     
     accuracy = parseInt(accuracy)
-    if (accuracy != 0) {
+    if (accuracy && accuracy != 0) {
       $.fn.latLonSelector._circle.setVisible(true)
       $.fn.latLonSelector._circle._nonManualRadiusChange = true
       $.fn.latLonSelector._circle.setRadius(accuracy)
+      $.fn.latLonSelector._circle.setEditable(true)
+      
     } else {
+      $.fn.latLonSelector._circle.setEditable(false)
       $.fn.latLonSelector._circle.setVisible(false)
     }
     
