@@ -3,10 +3,10 @@ $(document).ready(function() {
   $('.observed_on_string').iNatDatepicker();
   try {
     var map = iNaturalist.Map.createMap({div: $('#mapcontainer').get(0)})
-    if (PLACE) {
+    if (typeof(PLACE) != 'undefined' && PLACE) {
       map.setPlace(PLACE, {kml: PLACE_GEOMETRY_KML_URL})
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
     }
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
     $('.place_guess').latLonSelector({
       mapDiv: $('#mapcontainer').get(0),
       map: map

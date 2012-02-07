@@ -437,7 +437,7 @@
     if ($(latField).val() != '' && $(lonField).val() != '') {
       marker.setPosition(new google.maps.LatLng($(latField).val(), $(lonField).val()));
       $.fn.latLonSelector._map.setCenter(marker.getPosition(), scale);
-      if (accuracyField) {
+      if (accuracyField && $(accuracyField).val()) {
         $.fn.latLonSelector.setAccuracy($(accuracyField).val())
       }
     }
@@ -526,8 +526,8 @@
         strokeWeight: 2,
         fillColor: "#FF6963",
         fillOpacity: 0.35,
-        map: $.fn.latLonSelector._map,
-        editable: true
+        editable: true,
+        map: $.fn.latLonSelector._map
       })
       
       google.maps.event.addListener($.fn.latLonSelector._circle, 'radius_changed', function() {
