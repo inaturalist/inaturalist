@@ -373,17 +373,12 @@
   $.fn.latLonSelector.updateFormAccuracy = function(accuracy, options) {
     options = options || {}
     accuracy = parseInt(accuracy) || 0
-    if (accuracy == 0) {
-      var positioningMethod = 'manual'
-      var positioningDevice = 'manual'
-    } else {
-      var positioningMethod = options.positioningMethod || "google"
-      var positioningDevice = options.positioningDevice || "google"
-    }
-    var input = $.fn.latLonSelector._currentInput;
-    var accuracyField = findFormField(input, 'positional_accuracy'),
+    var input = $.fn.latLonSelector._currentInput,
+        accuracyField = findFormField(input, 'positional_accuracy'),
         methodField = findFormField(input, 'positioning_method'),
-        deviceField = findFormField(input, 'positioning_device')
+        deviceField = findFormField(input, 'positioning_device'),
+        positioningMethod = options.positioningMethod || $(methodField).val(),
+        positioningDevice = options.positioningDevice || $(deviceField).val()
     $(accuracyField).val(accuracy || '')
     $(methodField).val(positioningMethod || '')
     $(deviceField).val(positioningDevice || '')
@@ -505,7 +500,7 @@
               bounds.getSouthWest().lat(), bounds.getSouthWest().lng()),
             accuracy = Math.max(dNorthEast, dSouthWest)
         $.fn.latLonSelector.setAccuracy(accuracy, {lat: point.lat(), lng: point.lng()})
-        $.fn.latLonSelector.updateFormAccuracy(accuracy)
+        $.fn.latLonSelector.updateFormAccuracy(accuracy, {positioningMethod: 'google', positioningDevice: 'google'})
       }
     });
   };
@@ -531,7 +526,10 @@
       })
       
       google.maps.event.addListener($.fn.latLonSelector._circle, 'radius_changed', function() {
-        $.fn.latLonSelector.updateFormAccuracy(this.getRadius(), {positioningMethod: 'manual', positioningDevice: 'manual'})
+        if (!this._nonManualRadiusChange) {
+          $.fn.latLonSelector.updateFormAccuracy(this.getRadius(), {positioningMethod: 'manual', positioningDevice: 'manual'})
+        }
+        this._nonManualRadiusChange = false
       })
       google.maps.event.addListener($.fn.latLonSelector._circle, 'center_changed', function() {
         $.fn.latLonSelector.currentMarker().setPosition(this.getCenter())
@@ -542,6 +540,7 @@
     accuracy = parseInt(accuracy)
     if (accuracy != 0) {
       $.fn.latLonSelector._circle.setVisible(true)
+      $.fn.latLonSelector._circle._nonManualRadiusChange = true
       $.fn.latLonSelector._circle.setRadius(accuracy)
     } else {
       $.fn.latLonSelector._circle.setVisible(false)
