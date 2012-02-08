@@ -63,13 +63,22 @@ class SphericalMercator
     return f, h
   end
   
-  def from_ll_to_pixel(lonlat, zoom)
+  def from_ll_to_pixel(lonlat, zoom, options = {})
     lonlat[1] = -89.999 if lonlat[1] <= -90
     lonlat[1] = 90 if lonlat[1] > 90
     e = @zc[zoom]
     x = lonlat[0] * @Bc[zoom] + e[0]
     g = Math.log(Math.tan((lonlat[1] / (2*@RAD_TO_DEG)) + (Math::PI / 4)))
     y = e[1] - (g * @Cc[zoom])
-    [x.round, y.round]
+    if options[:skip_round]
+      [x, y]
+    else
+      [x.round, y.round]
+    end
+  end
+  
+  def from_ll_to_world_coordinate(lonlat, zoom)
+    x, y = from_ll_to_pixel(lonlat, zoom, :skip_round => true)
+    [(x / @tilesize).round, (y / @tilesize).round]
   end
 end

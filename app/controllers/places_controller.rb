@@ -11,6 +11,7 @@ class PlacesController < ApplicationController
   
   caches_page :geometry
   caches_page :cached_guide
+  cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
   
   GUIDE_PARTIALS = %w(guide_taxa identotron_taxa)
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
@@ -127,7 +128,6 @@ class PlacesController < ApplicationController
         return
       end
       
-      expire_page :action => "geometry", :id => @place.id
       flash[:notice] = "Place updated!"
       redirect_to @place
     else
