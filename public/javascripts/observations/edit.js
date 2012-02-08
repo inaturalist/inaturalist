@@ -7,7 +7,12 @@ $(document).ready(function() {
       mapTypeId: google.maps.MapTypeId.HYBRID
     })
     if (typeof(PLACE) != 'undefined' && PLACE) {
-      map.setPlace(PLACE, {kml: PLACE_GEOMETRY_KML_URL})
+      map.setPlace(PLACE, {
+        kml: PLACE_GEOMETRY_KML_URL,
+        click: function(e) {
+          $.fn.latLonSelector.handleMapClick(e)
+        }
+      })
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
     }
     $('.place_guess').latLonSelector({

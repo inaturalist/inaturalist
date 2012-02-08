@@ -234,6 +234,9 @@ google.maps.Map.prototype.setPlace = function(place, options) {
   if (options.kml && options.kml.length > 0) {
     var kml = new google.maps.KmlLayer(options.kml, {suppressInfoWindows: true, preserveViewport: true})
     this.addOverlay(place.name + " boundary", kml)
+    if (options.click) {
+      google.maps.event.addListener(kml, 'click', options.click)
+    }
   }
 }
 // 

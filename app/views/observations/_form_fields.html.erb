@@ -81,9 +81,11 @@
       </div>
       <div id="mapcontainer" class="stacked">
         <div id="map"></div>
-        <div class="floating dark description">
-          <strong>Click the map</strong> to add a location.
-        </div>
+        <% if observation.latitude.blank? -%>
+          <div class="floating dark description">
+            <strong>Click the map</strong> to add a location.
+          </div>
+        <% end -%>
       </div>
       <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
         <label for="observations_<%= i %>_geoprivacy">Change geoprivacy</label>

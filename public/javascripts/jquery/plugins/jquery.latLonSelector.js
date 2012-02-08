@@ -252,6 +252,9 @@
   }
   
   // function handleMapClick(overlay, point) {
+  $.fn.latLonSelector.handleMapClick = function(e) {
+    handleMapClick(e)
+  }
   function handleMapClick(e) {
     var map = $.fn.latLonSelector._map,
         input = $.fn.latLonSelector._currentInput,
