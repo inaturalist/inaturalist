@@ -543,7 +543,15 @@
           $.fn.latLonSelector.updateFormLatLon(this.getCenter().lat(), this.getCenter().lng())
         }
       })
-      google.maps.event.addListener($.fn.latLonSelector._circle, 'click', $.fn.latLonSelector.toggleEditAccuracy)
+      google.maps.event.addListener($.fn.latLonSelector._circle, 'click', function(e) {
+        var circleBounds = this.getBounds(),
+            mapBounds = $.fn.latLonSelector._map.getBounds()
+        if (circleBounds.contains(mapBounds.getNorthEast()) && circleBounds.contains(mapBounds.getSouthWest())) {
+          handleMapClick(e)
+        } else {
+          $.fn.latLonSelector.toggleEditAccuracy()
+        }
+      })
     }
     
     accuracy = parseInt(accuracy)

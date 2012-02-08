@@ -1013,6 +1013,8 @@ a.id_please_notice:hover{color:#584925;}
 .shades .overlay {position: absolute; width: 100%; height: 100%; top: 0; left: 0;}
 .shades .status.loading{background:url("/images/spinner-small.gif") no-repeat scroll 5px 50% white;padding:2px 5px 2px 25px;border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;box-shadow:0 0 20px #aaa;-webkit-box-shadow:0 0 20px #aaa;-moz-box-shadow:0 0 20px #aaa;}
 .shades .status.loading.bigloading{background:url("/images/spinner.gif") no-repeat scroll 10px 50% white;font-size:14pt;line-height:2;padding:5px 10px 5px 50px;border-radius:25px;-moz-border-radius:25px;-webkit-border-radius:25px;box-shadow:0 0 30px #aaa;-webkit-box-shadow:0 0 30px #aaa;-moz-box-shadow:0 0 30px #aaa;}
+.floating { border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;box-shadow:0 0 20px #aaa;-webkit-box-shadow:0 0 20px #aaa;-moz-box-shadow:0 0 20px #aaa;}
+.floating.dark { border-radius:15px;-moz-border-radius:15px;-webkit-border-radius:15px;box-shadow:0 0 20px #333;-webkit-box-shadow:0 0 20px #333;-moz-box-shadow:0 0 20px #333;}
 
 
 .ui-chooser-input, .ui-chooser-choice { 

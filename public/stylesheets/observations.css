@@ -507,6 +507,8 @@
 
 .observationform .latlonfields.open label{display:block;}
 
+.observationform .latlonfields.status label { width: 40px; }
+.observationform .latlonfields.status input { width: 89px; }
 .observationform .latlonfields.status label,
 .observationform .latlonfields.status input {
   color: #888;

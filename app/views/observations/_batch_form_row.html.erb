@@ -29,17 +29,17 @@
           <div class="last column span-7">
             <%= o.text_field(:place_guess, :class => 'text place_guess') %>
             <div id="coordinates" class="latlonfields status">
-              <%= o.label(:latitude, 'Lat') %>
-              <%= o.text_field(:latitude, :class => 'latitude') %>
+              <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
+              <%= o.text_field(:latitude, :class => 'latitude text') %>
 
-              <%= o.label(:longitude, 'Lon') %>
-              <%= o.text_field(:longitude, :class => 'longitude') %>
+              <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
+              <%= o.text_field(:longitude, :class => 'longitude text') %>
               
               <div>
-                <%= o.label(:positional_accuracy, 'Acc') %>
-                <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy') %>
-                <%= o.label(:positioning_method, 'Src') %>
-                <%= o.text_field(:positioning_method, :class => 'positioning_method', :disabled => true) %>
+                <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock", "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
+                <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock') %>
+                <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
+                <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
               </div>
 
               <span class="button">

@@ -3,7 +3,7 @@ textarea.text {
   width: 239px;
   margin: 0;
 }
-#observation_description {height: 319px;}
+#observation_description {height: 307px;}
 
 .field label {
   display: inline-block;
@@ -18,9 +18,12 @@ input.place_guess { width: 336px; }
 
 #mapcontainer {
   height: 433px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
+  position:relative;
 }
+
+#map { height: 433px; }
+
+#mapcontainer .description {position:absolute; top: 50%; left: 50%; margin-left: -100px; margin-top: -10px; width: 200px; z-index:10000; background-color:black; color: #eee; padding: 5px; border-radius: 10px; text-align:center;}
 
 .latlonfields {
   position: relative;
@@ -32,7 +35,6 @@ input.place_guess { width: 336px; }
   border: 1px solid #CCCCCC;
 }
 .latlonfields.status { background-color: #F6F6F6; padding-bottom: 3px;}
-.observationform .latlonfields.status label { width: 40px; }
 .observationform .latlonfields.status input { width: 118px; }
 
 .latlonfields .button {
@@ -48,7 +50,11 @@ input.place_guess { width: 336px; }
   clear: left;
 }
 .photoSelectorControls select { font-size: 90%; }
-.photoSelectorPhotos { margin: 0 auto; height: 500px; overflow: auto;}
+.photoSelectorPhotos { margin: 0 auto; height: 440px; overflow: auto;}
+.photoSelectorAlbums{
+  max-height:none;
+  overflow: none;
+}
 
 form .species_guess_field { margin-bottom: 0px; }
 .photo .synclink { float: right; }

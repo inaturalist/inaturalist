@@ -45,6 +45,11 @@
         <span class="small description">
           Comma-separated, please
         </span>
+        <% helptip_for "tags" do %>
+          Tags are a way to organize your observations. For example, you might
+          tag all your tidepool observations "tidepools" to make them easier
+          to find later.
+        <% end -%>
         <%= o.text_field :tag_list, :class => "text" %>
       </div>
     </div>
@@ -53,7 +58,7 @@
         <%= o.label(:place_guess, 'Where were you?') %>
         <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => "Name of the place you made the observation") %>
       </div>
-      <div id="coordinates_<%= i %>" class="latlonfields status">
+      <div id="coordinates_<%= i %>" class="latlonfields status stacked">
         <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
         <%= o.text_field(:latitude, :class => 'latitude text') %>
         
@@ -74,16 +79,18 @@
         <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
         <%= o.hidden_field(:positioning_device, :class => 'positioning_device', :disabled => true) %>
       </div>
-      <div class="description">Click on the map to place your observation</div>
-      <div id="mapcontainer"></div>
-      <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
-        <div class="stacked">
-          <label>Change visibility of spatial coordinates?</label>
+      <div id="mapcontainer" class="stacked">
+        <div id="map"></div>
+        <div class="floating dark description">
+          <strong>Click the map</strong> to add a location.
         </div>
-        <label for="observations_<%= i %>_geoprivacy">Geoprivacy</label>
+      </div>
+      <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
+        <label for="observations_<%= i %>_geoprivacy">Change geoprivacy</label>
         <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
         <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
         <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
+          <p>Changing the geoprivacy alters how other people see the location of your observation.</p>
           <dl>
             <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
               <dt><%= privacy || "open" %></dt>

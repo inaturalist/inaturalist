@@ -3,7 +3,7 @@ $(document).ready(function() {
   $('.observed_on_string').iNatDatepicker();
   try {
     var map = iNaturalist.Map.createMap({
-      div: $('#mapcontainer').get(0),
+      div: $('#map').get(0),
       mapTypeId: google.maps.MapTypeId.HYBRID
     })
     if (typeof(PLACE) != 'undefined' && PLACE) {
@@ -11,12 +11,16 @@ $(document).ready(function() {
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
     }
     $('.place_guess').latLonSelector({
-      mapDiv: $('#mapcontainer').get(0),
+      mapDiv: $('#map').get(0),
       map: map
     })
   } catch (e) {
     // maps didn't load
   }
+  
+  $('#mapcontainer').hover(function() {
+    $('#mapcontainer .description').fadeOut()
+  })
   
   // Setup taxon browser
   $('body').append(
