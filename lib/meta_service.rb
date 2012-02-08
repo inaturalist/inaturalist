@@ -24,11 +24,12 @@ class MetaService
   
   SERVICE_VERSION = 1
   
-  def initialize
+  def initialize(options = {})
     @service_name = 'Web Service'
     @timeout ||= 5
     @method_param ||= 'function'
     @default_params = {}
+    @debug = options[:debug]
   end
 
   #
@@ -47,7 +48,7 @@ class MetaService
     begin
       timed_out = Timeout::timeout(@timeout) do
         response = Net::HTTP.start(request_uri.host) do |http|
-          # puts "MetaService getting #{request_uri.path}?#{request_uri.query}"
+          puts "MetaService getting #{request_uri.host}#{request_uri.path}?#{request_uri.query}" if @debug
           http.get("#{request_uri.path}?#{request_uri.query}", 'User-Agent' => "#{self.class}/#{SERVICE_VERSION}")
         end
       end
