@@ -2,7 +2,10 @@ $(document).ready(function() {
   $('.species_guess').simpleTaxonSelector();
   $('.observed_on_string').iNatDatepicker();
   try {
-    var map = iNaturalist.Map.createMap({div: $('#mapcontainer').get(0)})
+    var map = iNaturalist.Map.createMap({
+      div: $('#mapcontainer').get(0),
+      mapTypeId: google.maps.MapTypeId.HYBRID
+    })
     if (typeof(PLACE) != 'undefined' && PLACE) {
       map.setPlace(PLACE, {kml: PLACE_GEOMETRY_KML_URL})
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))

@@ -78,6 +78,7 @@
     // Update scale field on zoomend
     google.maps.event.addListener(map, 'zoom_changed', function() {
       $.fn.latLonSelector._currentInput._lastScale = map.getZoom()
+      $.fn.latLonSelector.updateFormScale(map.getZoom())
     })
     
     // Set the default markers
@@ -542,6 +543,7 @@
           $.fn.latLonSelector.updateFormLatLon(this.getCenter().lat(), this.getCenter().lng())
         }
       })
+      google.maps.event.addListener($.fn.latLonSelector._circle, 'click', $.fn.latLonSelector.toggleEditAccuracy)
     }
     
     accuracy = parseInt(accuracy)
@@ -549,8 +551,6 @@
       $.fn.latLonSelector._circle.setVisible(true)
       $.fn.latLonSelector._circle._nonManualRadiusChange = true
       $.fn.latLonSelector._circle.setRadius(accuracy)
-      // $.fn.latLonSelector._circle.setEditable(true)
-      
     } else {
       $.fn.latLonSelector._circle.setEditable(false)
       $.fn.latLonSelector._circle.setVisible(false)

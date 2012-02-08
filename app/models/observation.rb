@@ -173,7 +173,6 @@ class Observation < ActiveRecord::Base
               :set_iconic_taxon,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
-              :set_positional_accuracy,
               :reset_private_coordinates_if_coordinates_changed,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
@@ -1163,14 +1162,6 @@ class Observation < ActiveRecord::Base
       self.geom = nil
     elsif longitude_changed? || latitude_changed?
       self.geom = Point.from_x_y(longitude, latitude)
-    end
-    true
-  end
-  
-  # Not *entirely* sure this is the best strategy...
-  def set_positional_accuracy
-    if (latitude_changed? || longitude_changed?) && !positional_accuracy_changed?
-      self.positional_accuracy = nil
     end
     true
   end

@@ -123,6 +123,15 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
       center: marker.getPosition(),
       radius: observation.positional_accuracy
     })
+    google.maps.event.addListener(this, 'zoom_changed', function() {
+      var mapBounds = this.getBounds(),
+          circleBounds = circle.getBounds()
+      if (circleBounds.contains(mapBounds.getNorthEast()) && circleBounds.contains(mapBounds.getSouthWest())) {
+        circle.setVisible(false)
+      } else {
+        circle.setVisible(true)
+      }
+    })
   }
   
   // return the observation for futher use

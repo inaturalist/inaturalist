@@ -329,6 +329,7 @@ class ObservationsController < ApplicationController
     # this should happen AFTER photo syncing so params can override attrs 
     # from the photo
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
+        :positional_accuracy, :positioning_device, :positioning_method,
         :observed_on_string].each do |obs_attr|
       @observation.send("#{obs_attr}=", params[obs_attr]) unless params[obs_attr].blank?
     end
@@ -479,7 +480,10 @@ class ObservationsController < ApplicationController
               :place_guess => o.place_guess, 
               :observed_on_string => o.observed_on_string,
               :location_is_exact => o.location_is_exact,
-              :map_scale => o.map_scale
+              :map_scale => o.map_scale,
+              :positional_accuracy => o.positional_accuracy,
+              :positioning_method => o.positional_accuracy,
+              :positioning_device => o.positional_accuracy
           elsif @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
