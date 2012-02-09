@@ -118,8 +118,7 @@ class ListedTaxaController < ApplicationController
   def destroy
     @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => :list)
     
-    unless @listed_taxon && @listed_taxon.list.editable_by?(current_user) && 
-        @listed_taxon.removable_by?(current_user)
+    unless @listed_taxon && @listed_taxon.removable_by?(current_user)
       flash[:notice] = "Sorry, you don't have permission to delete from " + 
         "this list."
       return redirect_to lists_path

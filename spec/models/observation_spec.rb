@@ -373,13 +373,6 @@ describe Observation, "updating" do
     obs.iconic_taxon.should be_blank
   end
   
-  it "should nilify positional_accuracy if accuracy not set and position changed" do
-    obs = Observation.make(:latitude => 1, :longitude => 1, :positional_accuracy => 10)
-    obs.update_attributes(:latitude => 2)
-    obs.reload
-    obs.positional_accuracy.should be_blank
-  end
-  
   it "should queue refresh jobs for associated project lists if the taxon changed" do
     o = Observation.make(:taxon => Taxon.make)
     po = ProjectObservation.make(:observation => o)
@@ -407,8 +400,22 @@ describe Observation, "updating" do
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
-    jobs.select{|j| j.handler =~ /\:refresh_with_observation\n/}.should_not be_blank
+    pattern = /LOAD;CheckList\nmethod\: \:refresh_with_observation\n/
+    job = jobs.detect{|j| j.handler =~ pattern}
+    job.should_not be_blank
+    # puts job.handler.inspect
+  end
+  
+  it "should queue refresh job for project lists if the taxon changed" do
+    o = make_research_grade_observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    o.update_attributes(:taxon => Taxon.make)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    pattern = /LOAD;ProjectList\nmethod\: \:refresh_with_observation\n/
+    job = jobs.detect{|j| j.handler =~ pattern}
+    job.should_not be_blank
+    # puts job.handler.inspect
   end
   
   it "should not allow impossible coordinates" do

@@ -249,7 +249,9 @@ class List < ActiveRecord::Base
       new_taxa.each do |new_taxon|
         lt = ListedTaxon.new(:list_id => list_id, :taxon_id => new_taxon.id)
         lt.skip_update = true
-        puts lt.errors.full_messages.to_sentence unless lt.save
+        unless lt.save
+          Rails.logger.info "[INFO #{Time.now}] Failed to create #{lt}: #{lt.errors.full_messages.to_sentence}"
+        end
       end
     end
     listed_taxa.each do |lt|
