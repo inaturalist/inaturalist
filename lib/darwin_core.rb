@@ -5,7 +5,8 @@ class DarwinCore
     %w(id id),
     %w(basisOfRecord http://rs.tdwg.org/dwc/terms/basisOfRecord HumanObservation),
     %w(modified http://purl.org/dc/terms/modified),
-    %w(institutionCode http://rs.tdwg.org/dwc/terms/institutionCode INAT),
+    %w(institutionCode http://rs.tdwg.org/dwc/terms/institutionCode iNaturalist),
+    %w(collectionCode http://rs.tdwg.org/dwc/terms/collectionCode Observations),
     %w(datasetName http://rs.tdwg.org/dwc/terms/datasetName),
     %w(informationWithheld http://rs.tdwg.org/dwc/terms/informationWithheld),
     %w(catalogNumber http://rs.tdwg.org/dwc/terms/catalogNumber),
@@ -83,7 +84,11 @@ class DarwinCore
     end
 
     def institutionCode
-      "INAT"
+      "iNaturalist"
+    end
+    
+    def collectionCode
+      "Observations"
     end
 
     def datasetName
