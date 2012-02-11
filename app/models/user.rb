@@ -270,6 +270,19 @@ class User < ActiveRecord::Base
     super(attributes)
   end
   
+  def merge(reject)
+    raise "Can't merge a user with itself" if reject.id == id
+    life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
+    ListedTaxon.update_all(
+      ["list_id = ?", life_list_id],
+      ["list_id = ? AND taxon_id IN (?)", reject.life_list_id, life_list_taxon_ids_to_move]
+    )
+    reject.friendships.all(:conditions => ["friend_id = ?", id]).each{|f| f.destroy}
+    merge_has_many_associations(reject)
+    reject.destroy
+    LifeList.send_later(:reload_from_observations, life_list_id)
+  end
+  
   def self.query(params={}) 
     scope = self.scoped({})
     if params[:sort_by] && params[:sort_dir]

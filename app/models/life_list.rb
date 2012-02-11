@@ -127,8 +127,11 @@ class LifeList < List
   end
   
   def self.repair_observed(list)
-    list.listed_taxa.find_each(:include => :last_observation, 
-        :conditions => "observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id") do |lt|
+    ListedTaxon.do_in_batches(
+        :include => :last_observation, 
+        :conditions => [
+          "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id",
+          list.id]) do |lt|
       lt.destroy
     end
   end

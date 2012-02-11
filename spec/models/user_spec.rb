@@ -341,3 +341,41 @@ describe User do
     record
   end
 end
+
+
+describe User, "merge" do
+  before(:each) do
+    @keeper = User.make
+    @reject = User.make
+  end
+  it "should move observations" do
+    o = Observation.make(:user => @reject)
+    @keeper.merge(@reject)
+    o.reload
+    o.user_id.should == @keeper.id
+  end
+  
+  it "should merge life lists" do
+    t = Taxon.make
+    @reject.life_list.add_taxon(t)
+    @keeper.merge(@reject)
+    @keeper.reload
+    @keeper.life_list.taxon_ids.should include(t.id)
+  end
+  
+  it "should remove self frienships" do
+    f = Friendship.make(:user => @reject, :friend => @keeper)
+    @keeper.merge(@reject)
+    Friendship.find_by_id(f.id).should be_blank
+    @keeper.friendships.map(&:friend_id).should_not include(@keeper.id)
+  end
+  
+  it "should queue a job to refresh the keeper's life list" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @keeper.merge(@reject)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.map(&:handler).inspect
+    jobs.select{|j| j.handler =~ /LifeList.*\:reload_from_observations/m}.should_not be_blank
+  end
+end
