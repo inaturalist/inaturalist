@@ -231,6 +231,7 @@
                 <% else %>
                   <%= link_to "add", 
                     add_project_observation_path(project, :observation_id => @observation.id),
+                    "data-loading-click" => "Adding...",
                     :method => :post,
                     :class => "glaucous button" %>
                 <% end -%>

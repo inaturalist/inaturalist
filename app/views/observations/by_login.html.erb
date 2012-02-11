@@ -296,9 +296,11 @@ Observations by <%= h @login %>
                 <li class="inline buttonrow">
                     <%= link_to_function "add", 
                       "actOnSelected('#{add_project_observation_batch_path(project_user.project)}', {method: 'post'})",
+                      "data-loading-click" => "Adding...",
                       :class => "glaucous button" %>
                     <%= link_to_function "remove", 
                       "actOnSelected('#{remove_project_observation_batch_path(project_user.project)}', {method: 'post'})",
+                      "data-loading-click" => "Removing...",
                       :class => "pale button" %>
                   <%= link_to h(project_user.project.title), project_user.project, :class => "inter" %>
                 </li>
