@@ -66,7 +66,7 @@ class PicasaController < ApplicationController
       return
     end
     
-    per_page = params[:limit].to_i || 10
+    per_page = params[:limit] ? params[:limit].to_i : 10
     search_params[:max_results] = per_page
     search_params[:start_index] = (params[:page] || 1).to_i * per_page - per_page + 1
     search_params[:thumbsize] = RubyPicasa::Photo::VALID.join(',')

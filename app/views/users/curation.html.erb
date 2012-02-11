@@ -34,6 +34,10 @@
         <li>
           <%= link_to "Delete user", @user, :method => :delete, :confirm => "Are you really, really sure you want to delete this user and all of their content?" %>
         </li>
+        
+        <li>
+          <%= link_to "Log in as #{@user.login}", :controller => "admin", :action => "login_as", :id => @user.id %>
+        </li>
       </ul>
     </div>
     <%= render :partial => 'glance' %>

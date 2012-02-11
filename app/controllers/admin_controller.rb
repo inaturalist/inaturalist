@@ -52,4 +52,16 @@ class AdminController < ApplicationController
   def index
   end
   
+  def login_as
+    unless user = User.find_by_id(params[:id] || [params[:user_id]])
+      flash[:error] = "That user doesn't exist"
+      redirect_back_or_default(:index)
+    end
+    logout_keeping_session!
+    self.current_user = user
+    
+    flash[:notice] = "Logged in as #{user.login}. Be careful, and remember to log out when you're done."
+    redirect_to root_path
+  end
+  
 end
