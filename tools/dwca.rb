@@ -9,11 +9,11 @@ Usage:
 
   script/runner dwca.rb
 
-will output licensed observations to public/observations/dwca.tgz
+will output licensed observations to public/observations/dwca.zip
 
 where [options] are:
 EOS
-  opt :path, "Path to archive", :type => :string, :short => "-f", :default => "public/observations/dwca.tgz"
+  opt :path, "Path to archive", :type => :string, :short => "-f", :default => "public/observations/dwca.zip"
   opt :place, "Only export observations from this place", :type => :string, :short => "-p"
   opt :taxon, "Only export observations of this taxon", :type => :string, :short => "-t"
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
@@ -97,10 +97,11 @@ def make_data
 end
 
 def make_archive(*args)
-  fname = "dwca.tgz"
+  fname = "dwca.zip"
   tmp_path = File.join(Dir::tmpdir, fname)
   fnames = args.map{|f| File.basename(f)}
-  system "cd #{Dir::tmpdir} && tar cvzf #{tmp_path} #{fnames.join(' ')}"
+  system "cd #{Dir::tmpdir} && zip #{tmp_path} #{fnames.join(' ')}"
+  # system "cd #{Dir::tmpdir} && tar cvzf #{tmp_path} #{fnames.join(' ')}"
   tmp_path
 end
 
