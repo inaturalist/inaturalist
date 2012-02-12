@@ -112,9 +112,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   observation.marker = marker;
   
   if (options.showAccuracy && 
-      (observation.geoprivacy == 'obscured' || (observation.positional_accuracy && observation.positional_accuracy > 0))) {
+      (observation.coordinates_obscured || (observation.positional_accuracy && observation.positional_accuracy > 0))) {
     var accuracy = parseInt(observation.positional_accuracy) || 0
-    if (observation.geoprivacy == 'obscured' && !observation.private_latitude) {
+    if (observation.coordinates_obscured) {
       accuracy += 10000
     }
     if (accuracy == 0) return
