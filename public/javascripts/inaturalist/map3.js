@@ -111,7 +111,13 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   marker.setMap(this);
   observation.marker = marker;
   
-  if (options.showAccuracy && observation.positional_accuracy && observation.positional_accuracy > 0) {
+  if (options.showAccuracy && 
+      (observation.geoprivacy == 'obscured' || (observation.positional_accuracy && observation.positional_accuracy > 0))) {
+    var accuracy = parseInt(observation.positional_accuracy) || 0
+    if (observation.geoprivacy == 'obscured' && !observation.private_latitude) {
+      accuracy += 10000
+    }
+    if (accuracy == 0) return
     var color = observation.iconic_taxon ? iNaturalist.Map.ICONIC_TAXON_COLORS[observation.iconic_taxon.name] : '#333333'
     var circle = new google.maps.Circle({
       strokeColor: color,
@@ -121,8 +127,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
       fillOpacity: 0.35,
       map: this,
       center: marker.getPosition(),
-      radius: observation.positional_accuracy
+      radius: accuracy
     })
+    observation._circle = circle
     google.maps.event.addListener(this, 'zoom_changed', function() {
       var mapBounds = this.getBounds(),
           circleBounds = circle.getBounds()

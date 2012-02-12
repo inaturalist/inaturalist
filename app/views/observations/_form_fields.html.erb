@@ -66,7 +66,12 @@
         <%= o.text_field(:longitude, :class => 'longitude text') %>
 
         <span class="button">
-          <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).next().show(); $.fn.latLonSelector.editAccuracy(); return false;") %>
+          <%= link_to_function("edit", 
+            "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); " +
+            "$(this).hide(); " + 
+            "$(this).next().show(); " + 
+            "if ($('#observation_positional_accuracy').val()) {$.fn.latLonSelector.editAccuracy()};" +
+            "return false;") %>
           <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).prev().show(); $.fn.latLonSelector.stopEditAccuracy(); return false;", :style => 'display: none') %>
         </span>
         

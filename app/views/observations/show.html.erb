@@ -93,7 +93,13 @@
         var center = new google.maps.LatLng(
           observation.private_latitude || observation.latitude, 
           observation.private_longitude || observation.longitude);
-        map.setCenter(center); 
+        map.setCenter(center);
+        google.maps.event.addListenerOnce(map, 'idle', function() {
+          if (observation._circle) {
+            map.fitBounds(map.getBounds().union(observation._circle.getBounds()))
+          }
+          google.maps.event.trigger(map, 'zoom_changed')
+        })
         
         $(window).load(function() {
           var newWidth = $('#where-and-photos').width() - $("#photos").width()

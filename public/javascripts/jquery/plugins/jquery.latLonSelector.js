@@ -209,10 +209,29 @@
       $(accuracyField).change(function() {
         var acc = parseInt($(this).val())
         $.fn.latLonSelector.setAccuracy($(this).val())
+        if (acc) {
+          $.fn.latLonSelector.editAccuracy()
+        } else {
+          $.fn.latLonSelector.stopEditAccuracy()
+        }
+        
         $.fn.latLonSelector.updateFormAccuracy($(this).val(), {
           positioningMethod: 'manual', positioningDevice: 'manual'})
       })
     }
+    
+    var latitudeField = findFormField(input, 'latitude'),
+        longitudeField = findFormField(input, 'longitude'),
+        f = function() {
+          var point = new google.maps.LatLng($(latitudeField).val(), $(longitudeField).val())
+          getMarker().setPosition(point);
+          $.fn.latLonSelector._map.setCenter(point)
+          if ($.fn.latLonSelector._circle) {
+            $.fn.latLonSelector._circle.setCenter(point)
+          }
+        }
+    $(latitudeField).change(f)
+    $(longitudeField).change(f)
   }
   
   function findFormField(context, name, options) {
