@@ -34,7 +34,6 @@ class PlaceSweeper < ActionController::Caching::Sweeper
       Rails.logger.info "[INFO #{Time.now}] checking #{path}"
       targets = Dir.glob(path)
       next if targets.blank?
-      puts "[INFO #{Time.now}] Deleting tile caches: #{targets.inspect}"
       FileUtils.rm targets
     end
   end

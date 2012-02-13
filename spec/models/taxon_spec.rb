@@ -158,7 +158,7 @@ describe Taxon, "orphan descendant destruction" do
     child_ancestry_was = @Apodiformes.child_ancestry
     @Apodiformes.destroy
     Taxon.apply_orphan_strategy(child_ancestry_was)
-    Taxon.find_by_name("Calypte anna").should be_blank
+    Taxon.find_by_id(@Calypte_anna.id).should be_blank
   end
 end
 
