@@ -148,11 +148,11 @@ class ObservationsControllerTest < ActionController::TestCase
   def assert_private_coordinates_obscured(observation)
     assert_response :success
     assert_match /#{observation.latitude}/, @response.body
-    assert_no_match /#{observation.private_latitude}/, @response.body
+    assert_no_match /#{observation.private_latitude}\D/, @response.body
   end
   
   def assert_private_coordinates_hidden(observation)
     assert_response :success
-    assert_no_match /#{observation.private_latitude}/, @response.body
+    assert_no_match /#{observation.private_latitude}\D/, @response.body
   end
 end
