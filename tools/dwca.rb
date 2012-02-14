@@ -29,6 +29,8 @@ class Metadata < DarwinCore::FakeView
   def initialize
     super
     @contact = INAT_CONFIG["general"]["contact"] || {}
+    @creator = INAT_CONFIG["general"]["creator"] || @contact || {}
+    @metadata_provider = INAT_CONFIG["general"]["metadata_provider"] || @contact || {}
     scope = Observation.scoped({})
     scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
     scope = scope.scoped(

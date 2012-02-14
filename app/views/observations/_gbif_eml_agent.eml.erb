@@ -1,0 +1,18 @@
+<% content_tag tag do %>
+  <individualName>
+    <givenName><%= data["first_name"] %></givenName>
+    <surName><%= data["last_name"] %></surName>
+  </individualName>
+  <organizationName><%= data["organization"] %></organizationName>
+  <positionName><%= data["position"] %></positionName>
+  <address>
+    <% if data["address"] %><deliveryPoint><%= data["address"] %></deliveryPoint><% end %>
+    <city><%= data["city"] %></city>
+    <administrativeArea><%= data["admin_area"] %></administrativeArea>
+    <postalCode><%= data["postal_code"] %></postalCode>
+    <country><%= data["country"] %></country>
+  </address>
+  <% unless data["phone"].blank? %><phone><%= data["phone"] %></phone><% end %>
+  <electronicMailAddress><%= data["email"] %></electronicMailAddress>
+  <onlineUrl><%= data["url"] %></onlineUrl>
+<% end %>

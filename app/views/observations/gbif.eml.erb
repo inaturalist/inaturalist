@@ -11,7 +11,13 @@
   <dataset>
     <alternateIdentifier>http://www.inaturalist.org/observations?quality_grade=research</alternateIdentifier>
     <title xml:lang="en">iNaturalist research-grade observations</title>
+    
+    <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "creator", :data => @creator} %>
+    
+    <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "metadataProvider", :data => @metadata_provider} %>
+    
     <pubDate><%= Date.today.to_s %></pubDate>
+    
     <!-- This is the RESOURCE language and not the metadata language which is at the bottom -->
     <language>en_US</language>
     <abstract>
@@ -43,10 +49,10 @@
       <geographicCoverage>
         <geographicDescription>Bounding Box</geographicDescription>
         <boundingCoordinates>
-          <westBoundingCoordinate><%= @extent.lower_corner.y %></westBoundingCoordinate>
-          <eastBoundingCoordinate><%= @extent.upper_corner.y %></eastBoundingCoordinate>
-          <northBoundingCoordinate><%= @extent.upper_corner.x %></northBoundingCoordinate>
-          <southBoundingCoordinate><%= @extent.lower_corner.x %></southBoundingCoordinate>
+          <westBoundingCoordinate><%= @extent.lower_corner.x %></westBoundingCoordinate>
+          <eastBoundingCoordinate><%= @extent.upper_corner.x %></eastBoundingCoordinate>
+          <northBoundingCoordinate><%= @extent.upper_corner.y %></northBoundingCoordinate>
+          <southBoundingCoordinate><%= @extent.lower_corner.y %></southBoundingCoordinate>
         </boundingCoordinates>
       </geographicCoverage>
       <% end %>
@@ -71,26 +77,14 @@
       </para>
     </purpose>
     
-    <contact>
-      <individualName>
-        <givenName><%= @contact["first_name"] %></givenName>
-        <surName><%= @contact["last_name"] %></surName>
-      </individualName>
-      <organizationName><%= @contact["organization"] %></organizationName>
-      <positionName><%= @contact["position"] %></positionName>
-      <address>
-        <deliveryPoint><%= @contact["address"] %></deliveryPoint>
-        <city><%= @contact["city"] %></city>
-        <administrativeArea><%= @contact["admin_area"] %></administrativeArea>
-        <postalCode><%= @contact["postal_code"] %></postalCode>
-        <country><%= @contact["country"] %></country>
-      </address>
-      <phone><%= @contact["phone"] %></phone>
-      <electronicMailAddress><%= @contact["email"] %></electronicMailAddress>
-      <onlineUrl><%= @contact["url"] %></onlineUrl>
-    </contact>
+    <%= render :partial => 'observations/gbif_eml_agent.eml.erb', :locals => {:tag => "contact", :data => @contact} %>
     
     <methods>
+      <methodStep>
+        <description>
+          <para>Observation recorded and verified by the community</para>
+        </description>
+      </methodStep>
       <qualityControl>
         <description>
           <para>
