@@ -5,17 +5,22 @@ class LocalPhoto < Photo
   before_create :set_defaults
   after_create :set_native_photo_id, :set_urls
   
+  # only perform EXIF-based rotation on mobile app contributions
+  image_convert_options = Proc.new {|record|
+    record.mobile? ? "-auto-orient" : nil
+  }
+  
   has_attached_file :file, 
     :styles => {
       :original => "2048x2048>",
       :large => "1024x1024>", :medium => "500x500>", :small => "240x240>", 
       :thumb => "100x100>", :square => "75x75#" },
     :convert_options => {
-      :large => "-auto-orient",
-      :medium => "-auto-orient",
-      :small => "-auto-orient",
-      :thumb => "-auto-orient",
-      :square => "-auto-orient"
+      :large  => image_convert_options,
+      :medium => image_convert_options,
+      :small  => image_convert_options,
+      :thumb  => image_convert_options,
+      :square => image_convert_options
     },
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -31,7 +36,6 @@ class LocalPhoto < Photo
     # :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
   
   process_in_background :file
-  
   after_post_process :set_urls, :expire_observation_caches
     
   validates_presence_of :user

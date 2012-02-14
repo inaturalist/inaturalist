@@ -17,7 +17,7 @@ class ObservationPhotosController < ApplicationController
       return
     end
     if params[:file]
-      @photo = LocalPhoto.new(:file => params[:file], :user => current_user)
+      @photo = LocalPhoto.new(:file => params[:file], :user => current_user, :mobile => is_mobile_app?)
       @photo.save
       @observation_photo.photo = @photo
     end

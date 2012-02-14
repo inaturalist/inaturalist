@@ -24,10 +24,14 @@ module Ambidextrous
   end
   
   def is_android_app?
-    request.user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
+    (request.user_agent =~ ANDROID_APP_USER_AGENT_PATTERN).nil?
   end
   
   def is_iphone_app?
-    request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
+    (request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN).nil?
+  end
+  
+  def is_mobile_app?
+    is_android_app? || is_iphone_app?
   end
 end
