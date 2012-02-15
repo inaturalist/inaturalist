@@ -8,10 +8,10 @@ class CalendarsController < ApplicationController
   end
   
   def show
-    @year = params[:year]
-    @month = params[:month]
-    @day = params[:day]
-    @date = [@year, @month, @day].join('-')
+    @year   = params[:year] if params[:year].to_i != 0
+    @month  = params[:month] if params[:month].to_i != 0
+    @day    = params[:day] if params[:day].to_i != 0
+    @date = [@year, @month, @day].compact.join('-')
     if @day
       scope = @selected_user.observations.on(@date).scoped({})
       @observations = scope.paginate(:include => [{:taxon => :taxon_names}], :per_page => 500, :page => params[:page])
@@ -23,14 +23,15 @@ class CalendarsController < ApplicationController
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
     else
-      scope = @selected_user.observations.on([@year, @month, @day].join('-')).scoped({})
+      scope = @selected_user.observations.on(@date).scoped({})
       @observations = scope.
         paginate(:page => params[:page], :per_page => 500)
+      iconic_counts_conditions = Observation.conditions_for_date("o.observed_on", @date)
+      iconic_counts_conditions[0] += " AND o.user_id = ?"
+      iconic_counts_conditions << @selected_user
       @iconic_counts = Taxon.count(
         :joins => "JOIN observations o ON o.taxon_id = taxa.id", 
-        :conditions => [
-          "o.user_id = ? AND o.observed_on = ?", @selected_user, [@year, @month, @day].join('-')
-        ], 
+        :conditions => iconic_counts_conditions,
         :group => "taxa.iconic_taxon_id")
     end
     
@@ -38,23 +39,23 @@ class CalendarsController < ApplicationController
       :conditions => ["first_observation_id IN (?)", @observations]
     ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
-    @place_name_counts = Observation.count(
-      :from => "observations, places, place_geometries", 
-      :group => "(places.display_name || '-' || places.id)",
-      :conditions => [
+    unless @observations.blank?
+      place_name_counts_conditions = [
         "ST_Intersects(observations.geom, place_geometries.geom) " +
         "AND places.id = place_geometries.place_id " + 
         "AND places.place_type NOT IN (?) " +
-        "AND observations.user_id = ? " + 
-        "AND observations.observed_on::DATE = ?",
+        "AND observations.user_id = ? ",
         [Place::PLACE_TYPE_CODES['Country'], Place::PLACE_TYPE_CODES['State']],
-        @selected_user,
-        @date
-      ])
-    
-    unless @observations.blank?
-      @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @date], :order => "observed_on DESC")
-      @next = @selected_user.observations.first(:conditions => ["observed_on > ?", @date], :order => "observed_on ASC")
+        @selected_user
+      ]
+      place_name_counts_conditions = Observation.merge_conditions(place_name_counts_conditions, 
+        Observation.conditions_for_date("observations.observed_on", @date))
+      @place_name_counts = Observation.count(
+        :from => "observations, places, place_geometries", 
+        :group => "(places.display_name || '-' || places.id)",
+        :conditions => place_name_counts_conditions)
+      @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @observations.first.observed_on], :order => "observed_on DESC")
+      @next = @selected_user.observations.first(:conditions => ["observed_on > ?", @observations.first.observed_on], :order => "observed_on ASC")
     end
   end
   
