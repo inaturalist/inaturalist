@@ -1111,3 +1111,6 @@ table .numeric { text-align: center; }
 .verticalmiddle img {vertical-align:middle;}
 .licensechoices div.description { margin-left: 20px; }
 .licensechoices .status.preferred {padding: 2px 5px;}
+
+#redo_search_in_map_area_button{background:0% 50% url(/images/silk/arrow_refresh.png) no-repeat;padding-left:20px;}
+#redo_search_in_map_area_loading.loading{display:inline;}

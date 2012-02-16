@@ -50,6 +50,8 @@ Observations by <%= h @login %>
     margin-bottom: -1px;
   }
   
+  #map { margin-bottom: 5px; }
+  
 </style>
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie', 'observations-ie' %>
@@ -67,6 +69,14 @@ Observations by <%= h @login %>
 
  <script type="text/javascript" charset="utf-8">
     // define a function to be run after the window is fully loaded
+    <% if !params[:nelat].blank? && !params[:nelng].blank? && !params[:swlat].blank? && !params[:swlng].blank? %>
+      var bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(<%= params[:swlat] %>, <%= params[:swlng] %>),
+        new google.maps.LatLng(<%= params[:nelat] %>, <%= params[:nelng] %>)
+      )
+    <% else %>
+      var bounds = new google.maps.LatLngBounds()
+    <% end -%>
     function initialize() {
       // create a Google Map instance
       var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
@@ -81,7 +91,7 @@ Observations by <%= h @login %>
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      var bounds = new google.maps.LatLngBounds();
+      
       $.each(observations, function(o) {
         var o = this;
         if ((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude)) {
@@ -239,6 +249,15 @@ Observations by <%= h @login %>
         $(this).parents('.observation').find('.control input').check()
       })
     }
+    
+    function redoSearchInMapArea() {
+      var bounds = map.getBounds();
+      $('#filters input[name=swlat]').val(bounds.getSouthWest().lat());
+      $('#filters input[name=swlng]').val(bounds.getSouthWest().lng());
+      $('#filters input[name=nelat]').val(bounds.getNorthEast().lat());
+      $('#filters input[name=nelng]').val(bounds.getNorthEast().lng());
+      $('#submit_filters_button').click();
+    }
  </script>
  
  <!--[if lt IE 8]>
@@ -355,8 +374,12 @@ Observations by <%= h @login %>
   </div>
 </div>
 
-<div id="mapcol" class="column span-7 last">
+<div id="mapcol" class="column span-7 last stacked">
   <div id="map"></div>
+  <%= link_to_function "Redo search in map area", 
+    "redoSearchInMapArea()", 
+    :id => 'redo_search_in_map_area_button',
+    "data-loading-click" => "Loading..." %>
 </div>
 
 <div class="last column span-24">
