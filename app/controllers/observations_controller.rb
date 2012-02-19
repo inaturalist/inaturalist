@@ -502,7 +502,11 @@ class ObservationsController < ApplicationController
           render :json => {:errors => @observations.map{|o| o.errors.full_messages}}, 
             :status => :unprocessable_entity
         else
-          render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
+          if @observations.size == 1 && is_iphone_app_2?
+            render :json => @observations[0].to_json(:methods => [:user_login, :iconic_taxon_name])
+          else
+            render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
+          end
         end
       end
     end
@@ -618,7 +622,13 @@ class ObservationsController < ApplicationController
         end
         format.xml  { head :ok }
         format.js { render :json => @observations }
-        format.json { render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name]) }
+        format.json do
+          if @observations.size == 1 && is_iphone_app_2?
+            render :json => @observations[0].to_json(:methods => [:user_login, :iconic_taxon_name])
+          else
+            render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
+          end
+        end
       end
     end
   end
