@@ -1,6 +1,19 @@
 class ObservationPhotosController < ApplicationController
   before_filter :login_required
   
+  def show
+    @observation_photo = ObservationPhoto.find_by_id(params[:id])
+    respond_to do |format|
+      format.json do
+        render :json => @observation_photo.to_json(:include => {
+          :photo => {
+            :methods => %w(license_code)
+          }
+        })
+      end
+    end
+  end
+  
   def create
     @observation_photo = ObservationPhoto.new(params[:observation_photo])
     unless @observation_photo.observation
@@ -35,7 +48,7 @@ class ObservationPhotosController < ApplicationController
     respond_to do |format|
       format.json do
         if @observation_photo.valid?
-          render :json => @observation_photo
+          render :json => @observation_photo.to_json(:include => [:photo])
         else
           Rails.logger.error "[ERROR #{Time.now}] Failed to create observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
           render :json => @observation_photo.errors, :status => :unprocessable_entity

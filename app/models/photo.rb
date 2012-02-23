@@ -84,6 +84,10 @@ class Photo < ActiveRecord::Base
     LICENSE_INFO[license.to_i].try(:[], :name)
   end
   
+  def license_code
+    LICENSE_INFO[license.to_i].try(:[], :code)
+  end
+  
   def copyrighted?
     license.to_i == COPYRIGHT
   end
