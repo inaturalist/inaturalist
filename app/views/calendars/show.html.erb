@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observation by #{you_or_login(@selected_user)} on #{Date.parse(@date).to_s(:long) rescue @date}" %>
+  <%= @title = "Observations by #{you_or_login(@selected_user)} on #{Date.parse(@date).to_s(:long) rescue @date}" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "observations" %>
@@ -63,7 +63,7 @@
       </div>
       <div class="last class column span-4">
         <div class="lilun">
-          <% for place_name, count in @place_name_counts %>
+          <% for place_name, count in (@place_name_counts || []) %>
             <%- name, id = [place_name.split('-')[0..-2].join('-'), place_name.split('-').last] -%>
             <div>
               <span class="count"><%= count %></span>
