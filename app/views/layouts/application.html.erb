@@ -23,9 +23,11 @@
     <%= yield :extrajs %>
   </head>
 <body>
-  <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 5) do %>
-  <%= render :partial => 'shared/header' %>
-  <% end %>
+  <% unless @headless -%>
+    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 5) do %>
+      <%= render :partial => 'shared/header' %>
+    <% end %>
+  <% end -%>
 
   <% if flash[:notice] %>
   <p id="flash" class="notice"><%= flash[:notice] %></p> 
@@ -42,6 +44,6 @@
   <div id="modal_image_box" class="modalbox" style="display:none"></div>
   <div id="comment_preview" class="modalbox" style="display: none"></div>
 
-  <%= render :partial => 'shared/footer' %>
+  <%= render :partial => 'shared/footer' unless @footless %>
 </body>
 </html>
