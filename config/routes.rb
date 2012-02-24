@@ -152,6 +152,7 @@ ActionController::Routing::Routes.draw do |map|
     p.project_stats 'projects/:id/stats', :action => 'stats'
     p.formatted_project_stats 'projects/:id/stats.:format', :action => 'stats'
     p.browse_projects 'projects/browse', :action => 'browse'
+    p.project_summary 'projects/:id/summary', :action => 'summary'
   end
   map.resources :projects
   map.resources :project_assets, :except => [:index, :show]

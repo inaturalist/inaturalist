@@ -347,6 +347,32 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def summary
+    respond_to do |format|
+      format.html do
+        @observed_taxa_count = @project.observed_taxa_count
+        @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 3, :conditions => "taxa_count > 0")
+        @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
+        @project_observations = @project.project_observations.paginate(:page => 1, 
+          :include => {
+            :observation => :iconic_taxon,
+            :curator_identification => [:user, :taxon]
+          }, :order => "id DESC")
+        @observations = @project_observations.map(&:observation)
+        @custom_project = @project.custom_project
+        @project_assets = @project.project_assets.all(:limit => 100)
+        @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
+        @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
+        if @place = @project.rule_place
+          @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+        end
+      end
+      format.json do
+        render :json => @project
+      end
+    end
+  end
+  
   def add
     unless @observation = Observation.find_by_id(params[:observation_id])
       flash[:error] = "That observation doesn't exist."
