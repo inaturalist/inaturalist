@@ -50,10 +50,15 @@ input.place_guess { width: 336px; }
   clear: left;
 }
 .photoSelectorControls select { font-size: 90%; }
-.photoSelectorPhotos { margin: 0 auto; height: 440px; overflow: auto;}
+.photoSelectorPhotos { margin: 0 auto; min-height:75px; max-height: 440px; overflow-y: auto; overflow-x: visible;}
 .photoSelectorAlbums{
   max-height:none;
   overflow: none;
+}
+
+.local_photos .photo_file_field {
+  width:auto;
+  margin:0;
 }
 
 form .species_guess_field { margin-bottom: 0px; }

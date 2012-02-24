@@ -70,8 +70,8 @@
 <% if local_photos -%>
   <div class="clear local_photos">
     <% photo_file_field = capture do %>
-      <div class="photo_file_field clear quiet box">
-        <%= file_field_tag("local_photos[#{index}][]", :class => 'text', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
+      <div class="photo_file_field clear quiet box inlineblock">
+        <%= file_field_tag("local_photos[#{index}][]", :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
         <%= link_to_function "clear", "$(this).siblings('input[type=file]').val('')" %>
       </div>
     <% end %>

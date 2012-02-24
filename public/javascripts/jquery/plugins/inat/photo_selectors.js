@@ -94,11 +94,11 @@
         var option = $('<option value="'+url+'">'+title+'</option>');
         if (url === options.baseURL) $(option).attr('selected', 'selected');
         $(urlSelect).append(option);
-      });
+      })
       
       $(urlSelect).change(function() {
         $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
-      });
+      })
 
       $('.back_to_albums').live('click', function(){
         $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
