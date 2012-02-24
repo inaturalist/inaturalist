@@ -144,7 +144,7 @@
       <div class="inner">
         <% if @project.contest? && !@project_users.blank? && !@top_observers.blank? -%>
           <ol class="readable">
-            <% for project_user in @top_observers  %>
+            <% for project_user in @top_observers[0..2] %>
               <li>
                 <div class="clear">
                   <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),

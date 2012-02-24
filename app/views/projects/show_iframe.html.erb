@@ -92,7 +92,7 @@
       <%= link_to "Top Contributors", project_contributors_path(@project), :class => "navlink" %>
     </h3>
     <ol class="readable">
-      <% for project_user in @top_observers  %>
+      <% for project_user in @top_observers %>
         <li class="stacked">
           <% image_and_content link_to(image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
               observations_by_login_path(project_user.user.login),
