@@ -1,0 +1,28 @@
+h2{line-height:1;margin:0;float:left;}
+.inat-contributor-block{display:inline-block;}
+.inat-contributor-pic{text-align:center;max-width:50px;float:left;}
+#map { width: 100%; height: 500px;}
+#projectnav {
+  margin: 0 0 10px 0;
+  list-style: none;
+  padding: 0;
+}
+#projectnav li { border-top: 2px solid white; padding: 5px 0; margin: 0;}
+#projectnav li:first-child { border-top: 0 transparent; }
+#projectnav .navlink {
+  display: block;
+  font-family: Georgia, Times, serif;
+  font-size: 140%;
+  padding: 0 10px;
+}
+#projectnav li:hover { background-color: #F4F4F4; }
+#projectnav .navlink .lead {
+  font-family: Arial;
+  font-size: 130%;
+  line-height: 0;
+  color: #333;
+}
+#projectnav li .inner { margin-left: 25px;}
+#projectnav ol { margin-right: 0; margin-bottom: 10px;}
+#projectnav ol li { padding: 5px 0; }
+#pageheader .buttonrow {margin-top: 5px;}
