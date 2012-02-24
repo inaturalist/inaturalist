@@ -1,0 +1,112 @@
+<%- content_for(:title) do -%>
+  <%=h @project.title %>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
+  <script type="text/javascript" charset="utf-8">
+    var PLACE = <%= @place.to_json %>,
+        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect %>,
+        OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon) %>,
+        KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect %>
+    $(document).ready(function() {
+      $('a').attr('target', '_blank')
+    })
+  </script>
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag 'observations' %>
+  <style type="text/css" media="screen">
+    .container {margin: 0;}
+    #map { width: 100%; height: 300px;}
+    .hMenu ul {margin: 0;}
+    .hMenu {text-align:justify;}
+    .item{ vertical-align:middle; width:154px;}
+    #logoitem { text-align: right; }
+    #countitem {text-align: center;}
+    ol {margin-right: 0;}
+    .userstats {font-size:0.7em;}
+  </style>
+<%- end -%>
+
+<div class="column span-12 header stacked">
+  <div class="hMenu">
+    <ul>
+      <li id="buttonitem" class="item inlineblock">
+        <%= link_to 'Add Observations', new_observation_path(:project_id => @project.id), 
+          :class => 'inline button default', :rel => "nofollow" %>
+      </li>
+      <li id="countitem" class="item inlineblock">
+        <% if @project.prefers_count_from_list? -%>
+          <span class="count"><%= @observed_taxa_count %></span>
+          of
+          <span class="count">
+            <%=@project.project_list.listed_taxa.count %></span> taxa observed</span>
+        <% else -%>
+          <% if @observed_taxa_count.to_i > 0 -%>
+            <% if @observed_taxa_count.to_i > 1 -%>
+              <span class="count"><%= @observed_taxa_count %></span> taxa observed
+            <% else -%>
+              <span class="count"><%= @observed_taxa_count %></span> taxon observed
+            <% end -%>
+          <% end -%>
+        <% end -%>
+      </li>
+      <li id="logoitem" class="item inlineblock">
+        <a href="<%= root_url %>" title="<%= APP_CONFIG[:site_name] %>" class="logolink">
+          <img src="/images/inat-logo-pb.png" alt="Powered by iNaturalist.org" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="column span-12 header">
+  <div id="map" class="stacked"></div>
+</div>
+
+<div class="column span-12">
+  <div class="column span-7">
+    <div id="observations">
+      <h3>
+        <%= link_to "Recent Observations", project_observations_path(@project), :class => "navlink" %>
+      </h3>
+      <% if @project_observations.blank? -%>
+        <div class="description noresults">
+          No observations have been added to this project yet.
+        </div>
+      <% else %>
+        <div class="mini observations">
+          <% for project_observation in @project_observations %>
+            <%= render :partial => 'project_observation', :object => project_observation %>
+          <% end %>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+
+  <div class="last column span-5">
+    <h3>
+      <%= link_to "Top Contributors", project_contributors_path(@project), :class => "navlink" %>
+    </h3>
+    <ol class="readable">
+      <% for project_user in @top_observers  %>
+        <li class="stacked">
+          <% image_and_content link_to(image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
+              observations_by_login_path(project_user.user.login),
+              :alt => h(project_user.user.login),
+              :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}") do %>
+            <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
+            <div class="small ui userstats">
+              <span class="count"><%= project_user.taxa_count %></span> species
+              <br/>
+              <span class="count"><%= project_user.observations_count %></span> observations
+            </div>
+          <% end -%>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
