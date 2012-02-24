@@ -348,6 +348,7 @@ class ProjectsController < ApplicationController
   end
   
   def summary
+    @headless = @footless = true
     respond_to do |format|
       format.html do
         @observed_taxa_count = @project.observed_taxa_count
