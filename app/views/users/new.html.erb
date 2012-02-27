@@ -22,7 +22,7 @@
       <label>Or you can...</label>
     </div>
     <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
-      <%= link_to "Sign in with #{provider}", url, :class => "button providerlink #{provider.downcase}" %>
+      <%= link_to "Sign in with #{provider.capitalize}", url, :class => "button providerlink #{provider.downcase}" %>
     <%- end -%>
   </div>
 </div>

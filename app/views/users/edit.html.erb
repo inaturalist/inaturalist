@@ -143,12 +143,12 @@
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= link_to "Disconnect #{provider}", omniauth_disconnect_path(provider.downcase), 
+            <%= link_to "Disconnect #{provider.capitalize}", omniauth_disconnect_path(provider.downcase),
               :class => "providerlink #{provider.downcase} disabled button", :method => "delete" %>
           </li>
         <% else %>
           <li class="clear">
-            <%= link_to "Connect to #{provider}", auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
+            <%= link_to "Connect to #{provider.capitalize}", auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
           </li>
         <% end %>
       <% end %>
