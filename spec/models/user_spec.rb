@@ -44,6 +44,13 @@ describe User do
       @user.reload
       @user.lists.should include(@user.life_list)
     end
+    
+    it "should enforce unique login regardless of a case" do
+      u1 = User.make(:login => 'foo')
+      lambda {
+        User.make(:login => 'FOO')
+      }.should raise_error(ActiveRecord::RecordInvalid)
+    end
   end
 
   #
