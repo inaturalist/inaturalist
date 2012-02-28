@@ -781,6 +781,20 @@ class TaxaController < ApplicationController
   
   def merge
     @keeper = Taxon.find_by_id(params[:taxon_id].to_i)
+    if @keeper && @keeper.id == @taxon.id
+      msg = "Failed to merge taxon #{@taxon.id} (#{@taxon.name}) into taxon #{@keeper.id} (#{@keeper.name}).  You can't merge a taxon with itself."
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default(@taxon)
+          return
+        end
+        format.js do
+          render :text => msg, :status => :unprocessable_entity, :layout => false
+          return
+        end
+      end
+    end
     
     if request.post? && params[:commit] == "Merge"
       unless @keeper

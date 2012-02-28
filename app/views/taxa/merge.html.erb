@@ -11,7 +11,12 @@
     $(document).ready(function() {
       $('#keeper_name').simpleTaxonSelector({
         afterSelect: function() {
-          $('#confirm').load('<%= url_for(:id => @taxon, :format => "js") %>', "taxon_id="+$('#taxon_id').val());
+          $('#confirm').html('<div class="loading status">Loading comparison...</div>')
+          $('#confirm').load('<%= url_for(:id => @taxon, :format => "js") %>', "taxon_id="+$('#taxon_id').val(), function(responseText, status, request) {
+            if (status == 'error') {
+              $(this).html('<div class="padded error status">'+responseText+'</div>')
+            }
+          })
           $('#submitbutton').attr('disabled', false).removeClass('disabled');
         },
         afterUnselect: function() {
