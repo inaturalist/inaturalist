@@ -36,6 +36,7 @@ class TaxonName < ActiveRecord::Base
     :HILIGAYNON          =>  'Hiligaynon',
     :ILOKANO             =>  'Ilokano',
     :ITALIAN             =>  'Italian',
+    :JAPANESE            =>  'Japanese',
     :KOREAN              =>  'Korean',
     :MALTESE             =>  'Maltese',
     :MAORI               =>  'Maori',
