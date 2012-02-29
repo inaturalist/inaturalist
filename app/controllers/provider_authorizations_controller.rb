@@ -95,7 +95,8 @@ class ProviderAuthorizationsController < ApplicationController
   end
   
   def create_provider_authorization(auth_info)
-    email = (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"])
+    email = auth_info.try(:[], 'user_info').try(:[], 'email')
+    email ||= auth_info.try(:[], 'extra').try(:[], 'user_hash').try(:[], 'email')
     
     # if logged in or user with this email exists, link provider to existing inat user
     if current_user || (!email.blank? && self.current_user = User.find_by_email(email))
