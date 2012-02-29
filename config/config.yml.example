@@ -54,6 +54,9 @@ base: &base
       secret: 09af09af09af09af09af09af09af09af09af09af
     cloudmade:
       key: 09af09af09af09af09af09af09af09af09af09af
+    bing:
+      # http://www.bingmapsportal.com/
+      key: 09af09af09af09af09af09af09af09af09af09af
 
 development:
     <<: *base
