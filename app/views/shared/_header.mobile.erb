@@ -2,7 +2,7 @@
   <% if logged_in? -%>
     <%= link_to("Welcome, #{current_user.login}", dashboard_path, :class => "right") %>
   <% else %>
-    <%= link_to("Log in", new_session_path, :class => "right") %>
+    <%= link_to("Sign in", new_session_path, :class => "right") %>
   <% end -%>
   <a href="/" title="<%= APP_CONFIG[:site_name] %>" class="logolink">
     <img src="/images/logo-small.gif" alt="iNaturalist logo" width="118" height="22"/>
