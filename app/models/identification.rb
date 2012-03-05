@@ -132,7 +132,6 @@ class Identification < ActiveRecord::Base
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    return true if self.observation.id.blank?
     Identification.send_later(:run_revisit_curator_identification, self.observation_id, self.user_id)
     true
   end

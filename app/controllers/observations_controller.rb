@@ -482,8 +482,8 @@ class ObservationsController < ApplicationController
               :location_is_exact => o.location_is_exact,
               :map_scale => o.map_scale,
               :positional_accuracy => o.positional_accuracy,
-              :positioning_method => o.positional_accuracy,
-              :positioning_device => o.positional_accuracy
+              :positioning_method => o.positioning_method,
+              :positioning_device => o.positioning_device
           elsif @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
