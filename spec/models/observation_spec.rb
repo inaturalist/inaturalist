@@ -173,62 +173,6 @@ describe Observation, "creation" do
     @observation.user.observations_count.should == old_count + 1
   end
   
-  describe "species_guess parsing" do
-    it "should choose a taxon if the guess corresponds to a unique taxon" do
-      taxon = Taxon.make
-      @observation.taxon = nil
-      @observation.species_guess = taxon.name
-      @observation.save
-      @observation.taxon_id.should == taxon.id
-    end
-
-    it "should choose a taxon from species_guess if exact matches form a subtree" do
-      taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
-      child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
-      common_name = "Spiraled Banana Shrew"
-      TaxonName.make(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      @observation.taxon = nil
-      @observation.species_guess = common_name
-      @observation.save
-      @observation.taxon_id.should == taxon.id
-    end
-
-    it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
-      taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
-      child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
-      taxon2 = Taxon.make(:rank => "species")
-      common_name = "Spiraled Banana Shrew"
-      TaxonName.make(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make(:taxon => taxon2, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      @observation.taxon = nil
-      @observation.species_guess = common_name
-      @observation.save
-      @observation.taxon_id.should be_blank
-    end
-
-    it "should choose a taxon from species_guess if exact matches form a subtree regardless of case" do
-      taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
-      child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
-      common_name = "Spiraled Banana Shrew"
-      TaxonName.make(:taxon => taxon, :name => common_name.downcase, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-      @observation.taxon = nil
-      @observation.species_guess = common_name
-      @observation.save
-      @observation.taxon_id.should == taxon.id
-    end
-    
-    it "should not make a guess for problematic names" do
-      Taxon::PROBLEM_NAMES.each do |name|
-        t = Taxon.make(:name => name.capitalize)
-        o = Observation.make(:species_guess => name)
-        o.taxon_id.should_not == t.id
-      end
-    end
-  end
-  
   it "should allow lots of sigfigs" do
     lat =  37.91143999
     lon = -122.2687819
@@ -479,6 +423,73 @@ describe Observation, "destruction" do
     Observation.make(:taxon => Taxon.make)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /;List.*refresh_with_observation/m}.should_not be_blank
+  end
+end
+
+describe Observation, "species_guess parsing" do
+  before(:each) do
+    @observation = Observation.make
+  end
+  
+  it "should choose a taxon if the guess corresponds to a unique taxon" do
+    taxon = Taxon.make
+    @observation.taxon = nil
+    @observation.species_guess = taxon.name
+    @observation.save
+    @observation.taxon_id.should == taxon.id
+  end
+
+  it "should choose a taxon from species_guess if exact matches form a subtree" do
+    taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
+    child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+    common_name = "Spiraled Banana Shrew"
+    TaxonName.make(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    @observation.taxon = nil
+    @observation.species_guess = common_name
+    @observation.save
+    @observation.taxon_id.should == taxon.id
+  end
+
+  it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
+    taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
+    child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+    taxon2 = Taxon.make(:rank => "species")
+    common_name = "Spiraled Banana Shrew"
+    TaxonName.make(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    TaxonName.make(:taxon => taxon2, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    @observation.taxon = nil
+    @observation.species_guess = common_name
+    @observation.save
+    @observation.taxon_id.should be_blank
+  end
+
+  it "should choose a taxon from species_guess if exact matches form a subtree regardless of case" do
+    taxon = Taxon.make(:rank => "species", :name => "Spirolobicus bananaensis")
+    child = Taxon.make(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
+    common_name = "Spiraled Banana Shrew"
+    TaxonName.make(:taxon => taxon, :name => common_name.downcase, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    TaxonName.make(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    @observation.taxon = nil
+    @observation.species_guess = common_name
+    @observation.save
+    @observation.taxon_id.should == taxon.id
+  end
+  
+  it "should not make a guess for problematic names" do
+    Taxon::PROBLEM_NAMES.each do |name|
+      t = Taxon.make(:name => name.capitalize)
+      o = Observation.make(:species_guess => name)
+      o.taxon_id.should_not == t.id
+    end
+  end
+  
+  it "should choose a taxon from a parenthesize scientific name" do
+    name = "Northern Pygmy Owl (Glaucidium gnoma)"
+    t = Taxon.make(:name => "Glaucidium gnoma")
+    o = Observation.make(:species_guess => name)
+    o.taxon_id.should == t.id
   end
 end
 

@@ -1038,11 +1038,17 @@ class Taxon < ActiveRecord::Base
   
   def self.single_taxon_for_name(name)
     return if PROBLEM_NAMES.include?(name.downcase)
-    taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase], :limit => 5, :include => :taxon)
-    return if taxon_names.blank?
+    if name =~ /.+\(.+?\)/
+      name = name[/.+\((.+?)\)/, 1]
+    end
+    taxon_names = TaxonName.all(:limit => 5, :include => :taxon, :conditions => [
+      "lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase])
     return taxon_names.first.taxon if taxon_names.size == 1
-    sorted = Taxon.sort_by_ancestry(taxon_names.map(&:taxon).compact)
+    taxa = taxon_names.map{|tn| tn.taxon}.compact
+    taxa = Taxon.search(name) if taxa.blank?
+    sorted = Taxon.sort_by_ancestry(taxa)
     return if sorted.blank?
+    return sorted.first if sorted.size == 1
     return unless sorted.first.ancestor_of?(sorted.last)
     sorted.first
   end
