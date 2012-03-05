@@ -333,9 +333,14 @@ class Taxon < ActiveRecord::Base
     end
     
     if !new_record? && (iconic_taxon_id_changed? || options[:force])
-      descendants.update_all(
-        "iconic_taxon_id = #{iconic_taxon_id || 'NULL'}", 
-        ["iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL", ancestor_ids])
+      new_child_ancestry = "#{ancestry}/#{id}"
+      conditions = ["(ancestry LIKE ? OR ancestry = ?)", "#{new_child_ancestry}/%", new_child_ancestry]
+      conditions[0] += " AND (iconic_taxon_id IN (?) OR iconic_taxon_id IS NULL)"
+      conditions << ancestry_was.to_s.split('/')
+      Taxon.update_all(
+        ["iconic_taxon_id = ?", iconic_taxon_id],
+        conditions
+      )
       Taxon.send_later(:set_iconic_taxon_for_observations_of, id)
     end
     true
@@ -456,7 +461,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def move_to_child_of(taxon)
-    self.update_attributes(:parent => taxon)
+    update_attributes(:parent => taxon)
   end
   
   def default_name
@@ -990,13 +995,15 @@ class Taxon < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
     Observation.update_all(
-      "iconic_taxon_id = #{taxon.iconic_taxon_id || 'NULL'}",
+      ["iconic_taxon_id = ?", taxon.iconic_taxon_id],
       ["taxon_id = ?", taxon.id]
     )
     
-    taxon.descendants.find_each(:conditions => "observations_count > 0") do |descendant|
+    conds = taxon.descendant_conditions
+    conds[0] += " AND observations_count > 0"
+    Taxon.do_in_batches(:conditions => conds) do |descendant|
       Observation.update_all(
-        "iconic_taxon_id = #{taxon.iconic_taxon_id || 'NULL'}",
+        ["iconic_taxon_id = ?", taxon.iconic_taxon_id],
         ["taxon_id = ?", descendant.id]
       )
     end

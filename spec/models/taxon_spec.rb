@@ -508,6 +508,31 @@ describe Taxon, "merging" do
     @keeper.merge(@reject)
     lt1.list.listed_taxa.count(:conditions => {:taxon_id => @keeper.id}).should == 1
   end
+  
+  it "should set iconic taxa on children" do
+    reject = Taxon.make
+    child = Taxon.make(:parent => reject)
+    child.iconic_taxon_id.should_not == @keeper.iconic_taxon_id
+    child.iconic_taxon_id.should == reject.iconic_taxon_id
+    @keeper.merge(reject)
+    child.reload
+    child.iconic_taxon_id.should == @keeper.iconic_taxon_id
+  end
+  
+  it "should set iconic taxa on descendants" do
+    @Calypte_anna.iconic_taxon_id.should_not == @Pseudacris.iconic_taxon_id
+    @Pseudacris.merge(@Calypte)
+    @Calypte_anna.reload
+    @Calypte_anna.iconic_taxon_id.should == @Pseudacris.iconic_taxon_id
+  end
+  
+  it "should queue a job to set iconic taxon on observations of descendants" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @Pseudacris.merge(@Calypte)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
+  end
 end
 
 describe Taxon, "moving" do
@@ -527,14 +552,15 @@ describe Taxon, "moving" do
     obs.iconic_taxon_id.should be(taxon.iconic_taxon_id)
   end
   
-  it "should update the iconic taxon of observations of descendants" do
+  it "should queue a job to set iconic taxon on observations of descendants" do
     obs = Observation.make(:taxon => @Calypte_anna)
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
+    Delayed::Job.delete_all
+    stamp = Time.now
     taxon.parent.move_to_child_of(@Amphibia)
-    taxon.reload
-    obs.reload
-    obs.iconic_taxon_id.should be(taxon.iconic_taxon_id)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
   
   it "should not raise an exception if the new parent doesn't exist" do
@@ -611,11 +637,35 @@ describe Taxon do
   end
 end
 
-# def unload_test_taxa
-#   # [@Life, @Animalia, @Chordata, @Amphibia, @Hylidae, @Pseudacris,
-#   #   @Pseudacris_regilla, @Aves, @Apodiformes, @Trochilidae, @Calypte,
-#   #   @Calypte_anna].each(&:destroy)
-#   # Taxon.all.each(&:destroy)
-#   Taxon.delete_all
-#   TaxonName.delete_all
-# end
+
+describe Taxon, "grafting" do
+  before(:each) do
+    load_test_taxa
+    @graftee = Taxon.make(:rank => "species")
+  end
+  
+  it "should set iconic taxa on children" do
+    @graftee.iconic_taxon_id.should_not == @Pseudacris.iconic_taxon_id
+    @graftee.update_attributes(:parent => @Pseudacris)
+    @graftee.reload
+    @graftee.iconic_taxon_id.should == @Pseudacris.iconic_taxon_id
+  end
+  
+  it "should set iconic taxa on descendants" do
+    taxon = Taxon.make(:name => "Craptaculous", :parent => @graftee)
+    puts
+    puts "starting test, created taxon: #{taxon}, ancestry: #{taxon.ancestry}, iconic_taxon_id: #{taxon.iconic_taxon_id.inspect}"
+    @graftee.update_attributes(:parent => @Pseudacris)
+    taxon.reload
+    puts "taxon.iconic_taxon_id now #{taxon.iconic_taxon_id}, ancestry now #{taxon.ancestry}"
+    taxon.iconic_taxon_id.should == @Pseudacris.iconic_taxon_id
+  end
+  
+  it "should queue a job to set iconic taxon on observations of descendants" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @graftee.update_attributes(:parent => @Pseudacris)
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
+  end
+end
