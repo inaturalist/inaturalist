@@ -65,7 +65,7 @@
           <% cache List.icon_preview_cache_key(list) do %>
             <a href="<%= list_path(list) %>" class="attr photos column span-3 <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
               <% if @iconic_taxa_for[list.id].blank? %>
-                No taxa listed
+                No taxon images
               <% else %>
                 <% for taxon in @iconic_taxa_for[list.id] %>
                   <%= taxon_image(taxon, :width => 32) %>
