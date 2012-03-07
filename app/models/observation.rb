@@ -521,9 +521,15 @@ class Observation < ActiveRecord::Base
     s
   end
   
+  def time_observed_at_utc
+    time_observed_at.try(:utc)
+  end
+  
   def to_json(options = {})
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
+    options[:methods] ||= []
+    options[:methods] << :time_observed_at_utc
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     options[:except] ||= []
@@ -532,7 +538,6 @@ class Observation < ActiveRecord::Base
       options[:except] ||= []
       options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
       options[:except].uniq!
-      options[:methods] ||= []
       options[:methods] << :coordinates_obscured
       options[:methods].uniq!
     end
