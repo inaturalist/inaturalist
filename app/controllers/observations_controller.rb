@@ -1210,10 +1210,12 @@ class ObservationsController < ApplicationController
         end
       end
       
-      if photo.valid?
+      if photo.blank?
+        Rails.logger.error "[ERROR #{Time.now}] Failed to get photo for photo_class: #{photo_class}, photo_id: #{photo_id}"
+      elsif photo.valid?
         photos << photo
       else
-        logger.info "[INFO] #{current_user} tried to save an observation with an invalid photo (#{photo}): #{photo.errors.full_messages.to_sentence}"
+        Rails.logger.error "[ERROR #{Time.now}] #{current_user} tried to save an observation with an invalid photo (#{photo}): #{photo.errors.full_messages.to_sentence}"
       end
     end
     photos
