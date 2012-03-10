@@ -558,7 +558,7 @@ class ObservationsController < ApplicationController
       # Note: this ignore photos thing is a total hack and should only be
       # included if you are updating observations but aren't including flickr
       # fields, e.g. when removing something from ID please
-      unless params[:ignore_photos]
+      if !params[:ignore_photos] && !is_mobile_app?
         # Get photos
         updated_photos = []
         old_photo_ids = observation.photo_ids
