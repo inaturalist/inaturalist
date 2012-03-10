@@ -4,92 +4,28 @@
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'lists', 'barchart', 'lists/show' %>
   <style type="text/css" media="screen">
-    #listed_taxa .span-8 {
-      width: 325px;
-    }
-    .owners {
-      clear: left
-    }
-    
-    .barchart {
-      width: 103px;
-    }
-    
-    .stat .title {
-      clear: none;
-    }
-    
-    .header {
-      border-bottom: 1px solid #eee;
-      padding: 5px 0;
-    }
-    
-    .listed_taxon {
-      padding: 0;
-    }
-    
-    .listed_taxon:hover {
-      border-color: transparent;
-      background-color: none;
-    }
-    
-    .listed_taxon .image {
-      width: 60px;
-    }
-    
-    .listed_taxon .actions {
-      display: none;
-    }
-    
-    .listed_taxon .details {
-      width: 250px;
-      margin-right: 0;
-    }
-    
-    .pair {
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .pair.match {
-      background-color: #FFFEDF;
-    }
-    
-    .pair:hover {
-      background-color: #F7F7F7;
-    }
-    
-    .pair .seenit {
-      margin: 0 auto;
-      width: 150px;
-      text-align: center;
-    }
-    
-    .seenit .button {
-      white-space: normal;
-    }
-    
-    .stat .title {
-      background-position: 50% 50%;
-      margin: 0 5px;
-    }
+    #listed_taxa .span-8{width:325px;}
+    .owners{clear:left}
+    .barchart{width:103px;}
+    .stat .title{clear:none;}
+    .header{border-bottom:1px solid #eee;padding:5px 0;}
+    .listed_taxon{padding:0;}
+    .listed_taxon:hover{border-color:transparent;background-color:none;}
+    .listed_taxon .image{width:60px;}
+    .listed_taxon .actions{display:none;}
+    .listed_taxon .details{width:250px;margin-right:0;}
+    .pair{padding:10px 0;border-bottom:1px solid #eee;}
+    .pair.match{background-color:#FFFEDF;}
+    .pair:hover{background-color:#F7F7F7;}
+    .pair .seenit{margin:0 auto;width:150px;text-align:center;}
+    .seenit .button{white-space:normal;}
+    .stat .title{background-position:50% 50%;margin:0 5px;}
     .barchart.owners .datum .value,
-    .barchart.owners .datum .remainder {
-      float: right;
-    }
-    
-    .barchart.owners .label {
-      text-align: left;
-    }
-    
+    .barchart.owners .datum .remainder{float:right;}
+    .barchart.owners .label{text-align:left;}
     .barchart.owners .label,
-    h3.stat .owners {
-      text-align: right;
-    }
-    
-    .listcontrols {
-      font-size: smaller;
-    }
+    h3.stat .owners{text-align:right;}
+    .listcontrols{font-size:smaller;}
   </style>
   <!--[if lt IE 7]>
     <%= stylesheet_link_tag 'blueprint/ie' %>
@@ -162,9 +98,9 @@
       <div class="listcontrols">
         <% if @show_list == "left" -%>
           <strong>only showing taxa from this list</strong>
-          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show]) %>
+          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show, :page]) %>
         <% else %>
-          <%= link_to "only show taxa from this list", url_for_params(:show => "left") %>
+          <%= link_to "only show taxa from this list", url_for_params(:show => "left", :without => [:page]) %>
         <% end -%>
       </div>
       
@@ -174,9 +110,9 @@
       <div class="listcontrols">
         <% if @show_list == "right" -%>
           <strong>only showing taxa from this list</strong>
-          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show]) %>
+          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show, :page]) %>
         <% else %>
-          <%= link_to "only show taxa from this list", url_for_params(:show => "right") %>
+          <%= link_to "only show taxa from this list", url_for_params(:show => "right", :without => [:page]) %>
         <% end -%>
       </div>
     </div>
