@@ -27,7 +27,8 @@ iconic_taxa_names = [
   ['Plantae', 'Plants'],
   ['Fungi', 'Fungi'],
   ['Protozoa', 'Protozoans'],
-  ['Mollusca', 'Mollusks']
+  ['Mollusca', 'Mollusks'],
+  ['Chromista', 'Chromista']
 ]
 
 # Make sure we graft from CoL

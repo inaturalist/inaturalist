@@ -722,6 +722,7 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 .simpleTaxonSelector .taxon.Aves             { color: #1E90FF;  background-image: url('/images/iconic_taxa/aves-15px.png'); }
 .simpleTaxonSelector .taxon.Mammalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-15px.png'); }
 .simpleTaxonSelector .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
+.simpleTaxonSelector .taxon.Chromista        { color: #993300;  background-image: url('/images/iconic_taxa/chromista-15px.png'); }
 
 .taxon_links .taxon {
   padding-left: 25px;
@@ -743,6 +744,7 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 .taxon_links .taxon.Aves             { color: #1E90FF;  background-image: url('/images/iconic_taxa/aves-15px.png'); }
 .taxon_links .taxon.Mammalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-15px.png'); }
 .taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
+.taxon_links .taxon.Chromista        { color: #993300;  background-image: url('/images/iconic_taxa/chromista-15px.png'); }
 
 /* Users table */
 
@@ -771,6 +773,7 @@ ul.taxonomic_tree li.Amphibia         { list-style-image: url('/images/iconic_ta
 ul.taxonomic_tree li.Reptilia         { list-style-image: url('/images/iconic_taxa/reptilia-15px.png'); }
 ul.taxonomic_tree li.Aves             { list-style-image: url('/images/iconic_taxa/aves-15px.png'); }
 ul.taxonomic_tree li.Mammalia         { list-style-image: url('/images/iconic_taxa/mammalia-15px.png'); }
+ul.taxonomic_tree li.Chromista         { list-style-image: url('/images/iconic_taxa/chromista-15px.png'); }
 ul.taxonomic_tree li.unknown          { list-style-image: url('/images/iconic_taxa/unknown-15px.png'); }
 ul.taxonomic_tree .taxon .othernames {
   display: block;
@@ -887,6 +890,7 @@ form.inline .label {
 .iconic_taxon_sprite.fungi { background-image: url(/images/iconic_taxa/fungi-sprite.png); }
 .iconic_taxon_sprite.protozoa { background-image: url(/images/iconic_taxa/protozoa-sprite.png); }
 .iconic_taxon_sprite.plantae { background-image: url(/images/iconic_taxa/plantae-sprite.png); }
+.iconic_taxon_sprite.chromista { background-image: url(/images/iconic_taxa/chromista-sprite.png); }
 
 .gmapv3control {
   color: black;

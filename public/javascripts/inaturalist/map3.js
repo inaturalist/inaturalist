@@ -772,7 +772,8 @@ iNaturalist.Map.ICONS = {
   iNatGreen34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_iNatGreen.png"),
   OrangeRed34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_OrangeRed.png"),
   DarkMagenta34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_DarkMagenta.png"),
-  unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_unknown.png")
+  unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_unknown.png"),
+  ChromistaBrown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_ChromistaBrown.png")
 };
 
 iNaturalist.Map.STEMLESS_ICONS = {
@@ -781,7 +782,8 @@ iNaturalist.Map.STEMLESS_ICONS = {
   iNatGreen34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_iNatGreen.png"),
   OrangeRed34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_OrangeRed.png"),
   DarkMagenta34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_DarkMagenta.png"),
-  unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_unknown.png")
+  unknown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_unknown.png"),
+  ChromistaBrown34: new google.maps.MarkerImage("/images/mapMarkers/mm_34_stemless_ChromistaBrown.png")
 };
 
 iNaturalist.Map.ICONIC_TAXON_ICONS = {
@@ -796,7 +798,8 @@ iNaturalist.Map.ICONIC_TAXON_ICONS = {
   Actinopterygii: iNaturalist.Map.ICONS.DodgerBlue34,
   Mollusca: iNaturalist.Map.ICONS.OrangeRed34,
   Insecta: iNaturalist.Map.ICONS.OrangeRed34,
-  Arachnida: iNaturalist.Map.ICONS.OrangeRed34
+  Arachnida: iNaturalist.Map.ICONS.OrangeRed34,
+  Chromista: iNaturalist.Map.ICONS.ChromistaBrown34
 };
 
 iNaturalist.Map.STEMLESS_ICONIC_TAXON_ICONS = {
@@ -811,7 +814,8 @@ iNaturalist.Map.STEMLESS_ICONIC_TAXON_ICONS = {
   Actinopterygii: iNaturalist.Map.STEMLESS_ICONS.DodgerBlue34,
   Mollusca: iNaturalist.Map.STEMLESS_ICONS.OrangeRed34,
   Insecta: iNaturalist.Map.STEMLESS_ICONS.OrangeRed34,
-  Arachnida: iNaturalist.Map.STEMLESS_ICONS.OrangeRed34
+  Arachnida: iNaturalist.Map.STEMLESS_ICONS.OrangeRed34,
+  Chromista: iNaturalist.Map.STEMLESS_ICONS.ChromistaBrown34
 };
 
 iNaturalist.Map.ICONIC_TAXON_COLORS = {
@@ -826,7 +830,8 @@ iNaturalist.Map.ICONIC_TAXON_COLORS = {
   Actinopterygii: '#1E90FF',
   Mollusca: '#FF4500', //'OrangeRed',
   Insecta: '#FF4500',
-  Arachnida: '#FF4500'
+  Arachnida: '#FF4500',
+  Chromista: '#993300'
 }
 
 
