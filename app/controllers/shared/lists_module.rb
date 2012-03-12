@@ -75,18 +75,22 @@ module Shared::ListsModule
       end
       
       format.csv do
-        job_id = Rails.cache.read(@list.generate_csv_cache_key)
+        job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => params[:view]))
         job = Delayed::Job.find_by_id(job_id)
         if job
           # Still working
         else
           # no job id, no job, let's get this party started
-          Rails.cache.delete(@list.generate_csv_cache_key)
-          job = @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
-          Rails.cache.write(@list.generate_csv_cache_key, job.id, :expires_in => 1.hour)
+          Rails.cache.delete(@list.generate_csv_cache_key(:view => params[:view]))
+          job = if params[:view] == "taxonomic"
+            @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.taxonomic.csv", :taxonomic => true)
+          else
+            @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
+          end
+          Rails.cache.write(@list.generate_csv_cache_key(:view => params[:view]), job.id, :expires_in => 1.hour)
         end
         prevent_caching
-        render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.request_uri}"
+        render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
       end
     end
   end

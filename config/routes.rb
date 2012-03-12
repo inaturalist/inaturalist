@@ -219,6 +219,10 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'lists', 
     :action => 'generate_csv',
     :requirements => { :id => id_param_pattern }
+  map.list_show_formatted_view 'lists/:id.:view.:format',
+    :controller => 'lists', 
+    :action => 'show',
+    :requirements => { :id => id_param_pattern }
   
   map.resources :comments
   map.resources :project_invitations, :except => [:index, :show]

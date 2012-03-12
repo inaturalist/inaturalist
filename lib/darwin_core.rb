@@ -33,21 +33,6 @@ class DarwinCore
   ]
   DARWIN_CORE_TERM_NAMES = DARWIN_CORE_TERMS.map{|name, uri| name}
   
-  class FakeView < ActionView::Base
-    include ActionView::Helpers::TagHelper
-    include ActionView::Helpers::AssetTagHelper
-    include ActionView::Helpers::UrlHelper
-    include ActionController::UrlWriter
-    include ApplicationHelper
-
-    @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
-
-    def initialize
-      super
-      self.view_paths = [File.join(RAILS_ROOT, 'app/views')]
-    end
-  end
-  
   # Extend observation with DwC methods.  For reasons unclear to me, url
   # methods are protected if you instantiate a view *outside* a model, but not
   # inside.  Otherwise I would just used a more traditional adapter with

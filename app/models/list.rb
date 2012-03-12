@@ -145,7 +145,10 @@ class List < ActiveRecord::Base
   end
   
   def generate_csv(options = {})
-    headers = %w(taxon_name occurrence_status establishment_means user_login first_observation_id last_observation_id id created_at updated_at)
+    controller = options[:controller] || FakeView.new
+    attrs = %w(taxon_name occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at)
+    ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
+    headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"
     fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
     
@@ -164,10 +167,38 @@ class List < ActiveRecord::Base
       find_options[:conditions] = ["list_id = ?", id]
     end
     
+    ancestor_cache = {}
     FasterCSV.open(tmp_path, 'w') do |csv|
       csv << headers
       ListedTaxon.do_in_batches(find_options) do |lt|
-        csv << headers.map{|h| lt.send(h)}
+        row = []
+        if options[:taxonomic]
+          ancestor_ids = lt.taxon.ancestor_ids.map{|tid| tid.to_i}
+          uncached_ancestor_ids = ancestor_ids - ancestor_cache.keys
+          if uncached_ancestor_ids.size > 0
+            Taxon.all(:select => "id, rank, name", :conditions => ["id IN (?)", uncached_ancestor_ids]).compact.each do |t|
+              ancestor_cache[t.id] = t
+            end
+          end
+          ancestors = ancestor_ids.map{|tid| t = ancestor_cache[tid]; t.try(:name) == 'Life' ? nil : t}.compact
+          ancestors << lt.taxon
+          row += ranks.map do |rank|
+            ancestors.detect{|t| t.rank == rank}.try(:name)
+          end
+        end
+        attrs.each do |h|
+          row << case h
+          when 'adding_user_login'
+            lt.user_login
+          when 'url'
+            controller.instance_eval { listed_taxon_url(lt) }
+          when 'first_observation', 'last_observation' 
+            controller.instance_eval { observation_url(lt.send(h)) } if lt.send(h)
+          else
+            lt.send(h)
+          end
+        end
+        csv << row
       end
       csv << []
       csv << ["List created at", created_at]
@@ -184,8 +215,12 @@ class List < ActiveRecord::Base
     fpath
   end
   
-  def generate_csv_cache_key
-    "generate_csv_#{id}"
+  def generate_csv_cache_key(options = {})
+    if options[:view] = "taxonomic"
+      "generate_csv_taxonomic_#{id}"
+    else
+      "generate_csv_#{id}"
+    end
   end
   
   def self.icon_preview_cache_key(list)
