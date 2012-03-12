@@ -1038,9 +1038,8 @@ class Taxon < ActiveRecord::Base
   
   def self.single_taxon_for_name(name)
     return if PROBLEM_NAMES.include?(name.downcase)
-    if name =~ /.+\(.+?\)/
-      name = name[/.+\((.+?)\)/, 1]
-    end
+    name = name[/.+\((.+?)\)/, 1] if name =~ /.+\(.+?\)/
+    name = name.gsub(/\sss?p\.?\s*$/, '')
     taxon_names = TaxonName.all(:limit => 5, :include => :taxon, :conditions => [
       "lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase])
     return taxon_names.first.taxon if taxon_names.size == 1

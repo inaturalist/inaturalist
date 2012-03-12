@@ -491,6 +491,28 @@ describe Observation, "species_guess parsing" do
     o = Observation.make(:species_guess => name)
     o.taxon_id.should == t.id
   end
+  
+  it "should choose a taxon from blah sp" do
+    name = "Clarkia sp"
+    t = Taxon.make(:name => "Clarkia")
+    o = Observation.make(:species_guess => name)
+    o.taxon_id.should == t.id
+    
+    name = "Clarkia sp."
+    o = Observation.make(:species_guess => name)
+    o.taxon_id.should == t.id
+  end
+  
+  it "should choose a taxon from blah ssp" do
+    name = "Clarkia ssp"
+    t = Taxon.make(:name => "Clarkia")
+    o = Observation.make(:species_guess => name)
+    o.taxon_id.should == t.id
+    
+    name = "Clarkia ssp."
+    o = Observation.make(:species_guess => name)
+    o.taxon_id.should == t.id
+  end
 end
 
 describe Observation, "named scopes" do
