@@ -23,10 +23,40 @@ class PicasaController < ApplicationController
       return redirect_to :action => "options"
     end
     
-    @picasa_identity = PicasaIdentity.find_or_create_by_user_id(current_user.id)
+    @picasa_identity = PicasaIdentity.find_or_initialize_by_user_id(current_user.id)
     @picasa_identity.token = @picasa.token
     @picasa_user = @picasa.user('default')
-    @picasa_identity.picasa_user_id = @picasa_user.user
+    if @picasa_user.respond_to?(:user)
+      @picasa_identity.picasa_user_id = @picasa_user.user
+    elsif @picasa_user.respond_to?(:photos)
+      @picasa_identity.picasa_user_id = @picasa_user.photos.first.try(:user)
+    end
+    
+    # trying to work out a bug here...
+    if @picasa_identity.picasa_user_id.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to extract Picasa user ID, trying again with debugging on..."
+      @picasa.debug = true
+      
+      @picasa_user = @picasa.user('default')
+      if @picasa_user.respond_to?(:user)
+        @picasa_identity.picasa_user_id = @picasa_user.user
+      elsif @picasa_user.respond_to?(:photos)
+        @picasa_identity.picasa_user_id = @picasa_user.photos.first.try(:user)
+      end
+      
+      if @picasa_identity.picasa_user_id.blank?
+        flash[:error] = "Picasa authorization worked, but we couldn't find " + 
+          "your Picasa user ID. The issue has been reported, so we'll look " + 
+          "into it. In the meantime, you might try uploading photos " + 
+          "directly, or linking your Flickr or Facebook accounts."
+        HoptoadNotifier.notify(
+          Exception.new("Failed to extract Picasa user ID from user response (#{@picasa_user})"), 
+          :request => request, :session => session)
+        redirect_to :action => "options"
+        return
+      end
+    end
+    
     @picasa_identity.save
     
     flash[:notice] = "Congrats, your iNaturalist and Picasa accunts have been linked!"

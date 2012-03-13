@@ -191,6 +191,7 @@ class Picasa
 
   # The AuthSub token currently in use.
   attr_reader :token
+  attr_accessor :debug
 
   def initialize(token)
     @token = token
@@ -292,6 +293,7 @@ class Picasa
   # Picasa.path method for valid options.
   def get(options = {})
     with_cache(options) do |xml|
+      Rails.logger.info "[INFO] Picasa response for #{options.inspect}: #{xml}" if @debug
       class_from_xml(xml)
     end
   end
