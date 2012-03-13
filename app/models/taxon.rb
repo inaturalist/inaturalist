@@ -150,7 +150,8 @@ class Taxon < ActiveRecord::Base
     'Plantae' => 'Plants',
     'Fungi' => 'Fungi',
     'Protozoa' => 'Protozoans',
-    'Mollusca' => 'Mollusks'
+    'Mollusca' => 'Mollusks',
+    'Chromista' => 'Chromista'
   }
   
   ICONIC_TAXON_DISPLAY_NAMES = ICONIC_TAXON_NAMES.merge(
