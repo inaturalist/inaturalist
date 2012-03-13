@@ -339,8 +339,9 @@ class User < ActiveRecord::Base
         u.activate!
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /unique constraint/
-        u.login = User.suggest_login(u.login)
-        Rails.logger.info "[INFO #{Time.now}] unique violation, suggested login: #{u.login}"
+        suggestion = User.suggest_login(u.login)
+        Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
+        u.login = suggestion
         u.register! unless u.pending?
         u.activate!
       end
