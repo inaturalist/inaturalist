@@ -290,7 +290,7 @@ class Observation < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return {:conditions => "1 = 2"} unless taxon
     {
-      :include => :taxon,
+      :joins => :taxon,
       :conditions => [
         "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
         taxon
