@@ -276,8 +276,9 @@ class Observation < ActiveRecord::Base
   named_scope :has_geo, :conditions => ["latitude IS NOT NULL AND longitude IS NOT NULL"]
   named_scope :has_id_please, :conditions => ["id_please IS TRUE"]
   named_scope :has_photos, 
-              :include => :photos,
-              :conditions => ['photos.id IS NOT NULL']
+              :joins => "LEFT OUTER JOIN observation_photos AS _op ON _op.observation_id = observations.id " + 
+                "LEFT OUTER JOIN photos AS _p ON _p.id = _op.photo_id",
+              :conditions => ['_op.id IS NOT NULL']
   named_scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     {:conditions => ["quality_grade = ?", quality_grade]}
@@ -300,7 +301,7 @@ class Observation < ActiveRecord::Base
   
   named_scope :at_or_below_rank, lambda {|rank| 
     rank_level = Taxon::RANK_LEVELS[rank]
-    {:include => [:taxon], :conditions => ["taxa.rank_level <= ?", rank_level]}
+    {:joins => [:taxon], :conditions => ["taxa.rank_level <= ?", rank_level]}
   }
   
   # Find observations by user
