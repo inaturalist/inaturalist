@@ -102,7 +102,7 @@
         </div>
       <% end -%>
       <% if @taxon -%>
-        <input type="text" id="species_guess" value="<%= @taxon.name if @taxon %>"/>
+        <input type="text" id="species_guess" class="text" value="<%= @taxon.name if @taxon %>"/>
         <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
       <%end -%>
       <% if @project -%>
@@ -114,13 +114,13 @@
         <label>Logo</label><br/>
 
         <input type="radio" name="logo" value="logo-small.gif" id="logo_small_gif" <%= 'checked="checked"' if @logo == "logo-small.gif" %>>
-        <label for="logo_small_gif">White BG GIF</label><br/>
+        <label for="logo_small_gif">white BG GIF</label><br/>
 
         <input type="radio" name="logo" value="logo-small.png" id="logo_small_png" <%= 'checked="checked"' if @logo == "logo-small.png" %>>
-        <label for="logo_small_png">Transparent PNG</label><br/>
+        <label for="logo_small_png">transparent PNG</label><br/>
 
         <input type="radio" name="logo" value="logo-small-white.png" id="logo_small_white_gif" <%= 'checked="checked"' if @logo  == "logo-small-white.png" %>>
-        <label for="logo_small_white_gif">White Text Transparent PNG</label><br/>
+        <label for="logo_small_white_gif">white text transparent PNG</label><br/>
 
         <input type="radio" name="logo" value="none" id="logo_none" <%= 'checked="checked"' if @logo == "none" %>>
         <label for="logo_none">none</label>
@@ -144,14 +144,14 @@
 
       <div class="field">
         <label for="order">Order</label><br/>
-        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc">Descending</label>
-        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc">Ascending</label>
+        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'desc' %> value="desc" id="order_desc"> <label for="order_desc">descending</label>
+        <input type="radio" name="order" <%= 'checked="checked"' if @order == 'asc' %> value="asc" id="order_asc"> <label for="order_asc">ascending</label>
       </div>
 
       <div class="field">
         <label for="layout">Layout</label><br/>
-        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'large' %> value="large" id="layout_large"> <label for="layout_large">Large</label>
-        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small">Small</label>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'large' %> value="large" id="layout_large"> <label for="layout_large">large</label>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small">small</label>
       </div>
 
       <%= submit_tag "Configure &raquo;", :class => "button" %>
