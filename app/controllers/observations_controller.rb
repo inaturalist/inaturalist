@@ -41,8 +41,9 @@ class ObservationsController < ApplicationController
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
   before_filter :curator_required, :only => [:curation]
-  before_filter :load_photo_identities, :only => [:new, :new_batch, :edit,
-    :update, :edit_batch, :create, :import, :import_photos, :new_from_list]
+  before_filter :load_photo_identities, :only => [:new, :new_batch,       
+    :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
+    :import_photos, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
   
