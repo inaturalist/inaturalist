@@ -1229,6 +1229,9 @@ class Observation < ActiveRecord::Base
   end
   
   def update_attributes(attributes)
+    # hack around a weird android bug, should be removeable after any release post-March 2012
+    attributes.delete(:iconic_taxon_name)
+    
     MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
       self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
       self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
