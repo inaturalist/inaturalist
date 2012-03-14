@@ -139,6 +139,8 @@ ActionController::Routing::Routes.draw do |map|
     p.project_terms "project/:id/terms", :action => "terms"
     p.projects_by_login 'projects/user/:login', :action => 'by_login',
       :requirements => { :login => simplified_login_regex }
+    p.formatted_projects_by_login 'projects/user/:login.:format', :action => 'by_login',
+      :requirements => { :login => simplified_login_regex }
     p.project_members "projects/:id/members", :action => "members"
     p.project_contributors "projects/:id/contributors", :action => "contributors"
     p.formatted_project_contributors "projects/:id/contributors.:format", :action => "contributors"

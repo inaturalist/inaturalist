@@ -120,10 +120,19 @@ class ProjectsController < ApplicationController
   
   def by_login
     @started = @selected_user.projects.all(:order => "id desc", :limit => 100)
-    @projects = Project.paginate(:page => params[:page],
-      :include => :project_users,
-      :conditions => ["project_users.user_id = ?", @selected_user],
-      :order => "projects.title")
+    @project_users = @selected_user.project_users.paginate(:page => params[:page],
+      :include => :project,
+      :order => "lower(projects.title)")
+    @projects = @project_users.map{|pu| pu.project}
+    respond_to do |format|
+      format.html
+      format.json do
+        render :json => @project_users.to_json(:include => {
+          :user => {:only => :login},
+          :project => {:methods => [:icon_url]}
+        })
+      end
+    end
   end
   
   def members

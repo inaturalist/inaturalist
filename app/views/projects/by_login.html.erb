@@ -24,12 +24,12 @@
       <% end %>
     <% end -%>
   </div>
-  <%= will_paginate @projects, :renderer => INatLinkRenderer %>
+  <%= will_paginate @project_users, :renderer => INatLinkRenderer %>
 </div>
 
 <div class="last column span-8">
   <div id="started" class="projects clear box">
-    <h3>Projects <%= is_me? ? "You Admin" : "#{@login} Admins" %></h3>
+    <h3>Projects <%= is_me? ? "you admin" : "#{@login} admins" %></h3>
     <% if @started.blank? -%>
       <p class="noresults"><%= is_me? ? "You don't" : "#{@login} doesn't" %> admin any projects.</p>
     <% else %>
@@ -38,6 +38,6 @@
       <% end %>
     <% end -%>
     
-    <%= link_to "Start a project", new_project_path, :class => "default button" %>
+    <%= link_to "Start a project", new_project_path, :class => "readmore" %>
   </div>
 </div>
