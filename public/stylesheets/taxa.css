@@ -27,12 +27,13 @@ table.taxa .taxon_name {
   background-color: #f1f1f1;
 }
 .taxa.grid .taxon {overflow:hidden;}
-.taxa.grid .taxon .image .iconic { margin: 35px 0; }
+.taxa.grid .taxon .image .iconic { margin: 50% 0; position: relative; top: -20px;}
 .taxa.grid .first { clear: left; }
 .taxa.grid .last { margin-right: 0; }
 .taxa.grid .infolink { display: none; }
 
-.taxa.grid .taxonimage { width: 100px; height:100px;}
+.taxa.grid .taxonimage { display:block; width: 100px; height:100px;}
+.taxa.grid .taxonimage a { max-height: 100px; }
 .taxa.grid .taxonimage img { max-width: 100px; max-height: 100px;}
 
 /* big grid */

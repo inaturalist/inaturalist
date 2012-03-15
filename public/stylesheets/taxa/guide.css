@@ -25,6 +25,7 @@
 .taxa.fluid.big.grid .taxon  { max-height: 237px; }
 .taxa.fluid.medium.grid .taxon  { max-height: 191px; }
 .taxa.fluid.grid .taxonimage { width: auto; }
+.taxa.fluid.grid .taxonimage a { max-height: none; }
 .taxa.fluid.medium.grid .taxon .image .iconic { margin: 64px; }
 
 .listed_taxon { position: relative; }
