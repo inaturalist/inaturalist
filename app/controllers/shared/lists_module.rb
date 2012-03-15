@@ -92,6 +92,20 @@ module Shared::ListsModule
         prevent_caching
         render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
       end
+      
+      format.json do
+        render :json => @list.to_json(:include => {
+          :listed_taxa => {
+            :except => [:manually_added, :updater_id, :observation_month_counts, :taxon_range_id, :source_id],
+            :include => {
+              :taxon => {
+                :methods => [:default_name, :photo_url, :iconic_taxon_name],
+                :only => [:name, :rank, :id]
+              }
+            }
+          }
+        })
+      end
     end
   end
   

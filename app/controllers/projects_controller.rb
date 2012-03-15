@@ -129,7 +129,9 @@ class ProjectsController < ApplicationController
       format.json do
         render :json => @project_users.to_json(:include => {
           :user => {:only => :login},
-          :project => {:methods => [:icon_url]}
+          :project => {
+            :methods => [:icon_url], 
+            :include => :project_list}
         })
       end
     end

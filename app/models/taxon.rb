@@ -896,6 +896,10 @@ class Taxon < ActiveRecord::Base
     taxon_image_url(self)
   end
   
+  def photo_url
+    photos.blank? ? nil : image_url
+  end
+  
   # Static ##################################################################
   
   #
