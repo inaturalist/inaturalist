@@ -103,7 +103,7 @@ class ProjectObservation < ActiveRecord::Base
     project = options[:project] || project_observations.first.project
     columns = Observation.column_names
     columns += [:scientific_name, :common_name, :url, :image_url, :tag_list, :user_login].map(&:to_s)
-    except = [:map_scale, :timeframe, :iconic_taxon_id, :delta].map(&:to_s)
+    except = [:map_scale, :timeframe, :iconic_taxon_id, :delta, :user_agent, :location_is_exact, :geom].map(&:to_s)
     unless project.curated_by?(options[:user])
       except += %w(private_latitude private_longitude private_positional_accuracy)
     end
