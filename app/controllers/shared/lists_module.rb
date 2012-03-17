@@ -94,8 +94,14 @@ module Shared::ListsModule
       end
       
       format.json do
-        render :json => @list.to_json(:include => {
-          :listed_taxa => {
+        per_page = params[:per_page].to_i
+        per_page = 200 unless (1..200).include?(per_page)
+        @listed_taxa = @list.listed_taxa.paginate(:page => params[:page], 
+          :per_page => per_page,
+          :order => "observations_count DESC",
+          :include => [{:taxon => [:photos, :taxon_names]}])
+        @listed_taxa_json = @listed_taxa.map do |lt|
+          lt.as_json(
             :except => [:manually_added, :updater_id, :observation_month_counts, :taxon_range_id, :source_id],
             :include => {
               :taxon => {
@@ -103,8 +109,15 @@ module Shared::ListsModule
                 :only => [:name, :rank, :id]
               }
             }
-          }
-        })
+          )
+        end
+        render :json => {
+          :list => @list,
+          :listed_taxa => @listed_taxa_json,
+          :current_page => @listed_taxa.current_page,
+          :total_pages => @listed_taxa.total_pages,
+          :total_entries => @listed_taxa.total_entries
+        }
       end
     end
   end
