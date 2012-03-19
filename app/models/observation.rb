@@ -325,11 +325,6 @@ class Observation < ActiveRecord::Base
     when 'observed_on'
       options[:order] = "observed_on #{order} #{extra}, " + 
                         "time_observed_at #{order} #{extra}"
-    when 'user'
-      options[:include] = [:user]
-      options[:order] = "users.login #{order} #{extra}"
-    when 'place'
-      options[:order] = "place_guess #{order} #{extra}"
     when 'created_at'
       options[:order] = "observations.created_at #{order} #{extra}"
     else

@@ -35,8 +35,8 @@ class ObservationsController < ApplicationController
                             :widget,
                             :project]
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
-    :update_photos, :destroy]
-  before_filter :require_owner, :only => [:edit, :edit_photos, 
+    :update, :update_photos, :destroy]
+  before_filter :require_owner, :only => [:edit, :edit_photos, :update,
     :update_photos, :destroy]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
@@ -51,12 +51,10 @@ class ObservationsController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
-  ORDER_BY_FIELDS = %w"place user created_at observed_on species_guess"
+  ORDER_BY_FIELDS = %w"created_at observed_on species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
   REJECTED_KML_FEED_PARAMS = REJECTED_FEED_PARAMS + %w"swlat swlng nelat nelng"
   DISPLAY_ORDER_BY_FIELDS = {
-    'place' => 'place',
-    'user' => 'user',
     'created_at' => 'date added',
     'observations.id' => 'date added',
     'id' => 'date added',
