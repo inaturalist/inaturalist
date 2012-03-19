@@ -1049,7 +1049,13 @@ class Taxon < ActiveRecord::Base
       "lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase])
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
-    taxa = Taxon.search(name) if taxa.blank?
+    if taxa.blank?
+      begin
+        taxa = Taxon.search(name)
+      rescue Riddle::ConnectionError => e
+        return
+      end
+    end
     sorted = Taxon.sort_by_ancestry(taxa)
     return if sorted.blank?
     return sorted.first if sorted.size == 1
