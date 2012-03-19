@@ -587,16 +587,23 @@ class Observation < ActiveRecord::Base
       return true
     end
     date_string = observed_on_string.strip
-    if parsed_time_zone = ActiveSupport::TimeZone::CODES[date_string[/\s([A-Z]{3,})$/, 1]]
-      date_string = observed_on_string.sub(/\s([A-Z]{3,})$/, '')
+    tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/
+    tz_offset_pattern = /([+-]\d{4})$/
+    tz_js_offset_pattern = /(GMT)?[+-]\d{4}/
+    if parsed_time_zone = ActiveSupport::TimeZone::CODES[date_string[tz_abbrev_pattern, 1]]
+      date_string = observed_on_string.sub(tz_abbrev_pattern, '')
+      date_string = date_string.sub(tz_js_offset_pattern, '').strip
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[/([+-]\d{4})$/, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
-      date_string = observed_on_string.sub(/([+-]\d{4})$/, '')
+    elsif (offset = date_string[tz_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+      date_string = observed_on_string.sub(tz_offset_pattern, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     end
     
     date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
     date_string.sub!(/(\d{2}:\d{2}:\d{2})\.\d+/, '\\1')
+    
+    # strip leading month if present
+    date_string.sub!(/^[A-z]{3} ([A-z]{3})/, '\\1')
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
