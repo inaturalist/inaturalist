@@ -322,17 +322,20 @@ $.fn.showInlineBlock = function() {
 
 $.fn.selectLocalTimeZone = function() {
   $(this).each(function() {
+    var option
     var now = new Date(),
         timeZoneAbbr = now.toString().match(/\(([A-Z]{3})\)$/)[1],
         timeZoneOffsetHour = now.toString().match(/([+-]\d\d)(\d\d)/)[1]
-        timeZoneOffsetMinute = now.toString().match(/([+-]\d\d)(\d\d)/)[2]      
-    if (timeZoneOffsetHour) {
+        timeZoneOffsetMinute = now.toString().match(/([+-]\d\d)(\d\d)/)[2]
+    if (timeZoneAbbr) {
+      var matches = $("option[data-time-zone-abbr='"+timeZoneAbbr+"']", this)
+      option = matches.first()
+    } else if (timeZoneOffsetHour) {
       var formattedOffset = timeZoneOffsetHour + ':' + timeZoneOffsetMinute
       var matches = $("option[data-time-zone-formatted-offset='"+formattedOffset+"']", this)
-      if (timeZoneAbbr) {
-        matches = matches.filter('[data-time-zone-abbr='+timeZoneAbbr+']')
-      }
-      var option = matches.first()
+      option = matches.first()
+    }
+    if (option) {
       $(this).val(option.val())
     }
   })
