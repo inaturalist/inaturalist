@@ -53,6 +53,10 @@
       <% if @taxon %>
       queryOnLoad: true,
       defaultQuery: '<%= escape_javascript(default_taxon_name(@taxon)) %>',
+      urls: [
+        {title: 'Flickr', url: '/flickr/photo_fields?context=user'}
+      ],
+      skipLocal: true,
       <% end %>
       urlParams: {
         authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
