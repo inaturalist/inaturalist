@@ -231,6 +231,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :controller => 'project_invitations' do |project_invitation|
     project_invitation.accept_project_invitation 'project_invitation/:id/accept', :action => 'accept', :conditions => {:method => :post}
   end
+  map.resources :project_observations, :only => [:create, :destroy]
   
   #
   # Taxon and Name routes

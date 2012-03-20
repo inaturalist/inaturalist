@@ -15,6 +15,7 @@ module Ruler
     def validates_rules_from(association, options = {})
       validation_method_name = "validate_rules_from_#{association.to_s}"
       define_method(validation_method_name) do
+        return if send(association).blank?
         rules = send(association).send("#{self.class.to_s.underscore.singularize}_rules")
         rules.each do |rule|
           errors.add_to_base("Didn't pass rule: #{rule.terms}") unless rule.validates?(self)
