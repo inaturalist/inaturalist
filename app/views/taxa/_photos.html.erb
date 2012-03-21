@@ -1,7 +1,7 @@
 <%-
   taxon ||= @taxon
   photos ||= taxon.photos.all(:limit => 24)
-  photos = photos.sort_by{|p| p.id}
+  photos = photos.compact.sort_by{|p| p.id ? 0 - p.id : 0}
 -%>
 <% unless photos.size == 0 %>
   <% if taxon.species_or_lower? %>
@@ -33,7 +33,7 @@
     </div>
     <% unless photos.empty? %>
       <div class="description">
-        Creative Commons Flickr Photos Tagged "<%= taxon.name %>."
+        Creative Commons Flickr photos tagged "<%= taxon.name %>."
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
           View all photos tagged "<%=h taxon.name %>" on 
           <nobr>Flickr &raquo;</nobr>
