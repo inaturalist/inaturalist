@@ -525,7 +525,8 @@ class Taxon < ActiveRecord::Base
   #
   def photos_with_backfill(options = {})
     options[:limit] ||= 9
-    chosen_photos = photos.all(:limit => options[:limit])
+    chosen_photos = taxon_photos.all(:limit => options[:limit], 
+      :include => :photo, :order => "taxon_photos.id ASC").map{|tp| tp.photo}
     if chosen_photos.size < options[:limit]
       conditions = "taxa.ancestry LIKE '#{ancestry}/#{id}%'"
       if chosen_photos.size > 0
