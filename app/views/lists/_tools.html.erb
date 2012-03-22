@@ -55,7 +55,7 @@
   <span class="toolset">
     <label class="description">View</label>
     <% for view in ListsController::LIST_VIEWS %>
-      <%= link_to(view.capitalize, url_for(params.merge(:view => view)), 
+      <%= link_to(view.capitalize, list_path(@list, :view => view), 
         :id => "#{view}_view_link", 
         :class => "inter modal_link#{' selected' if @view == view}") %>
     <% end %>
