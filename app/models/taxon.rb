@@ -534,6 +534,7 @@ class Taxon < ActiveRecord::Base
       chosen_photos += Photo.all(
         :include => [{:taxon_photos => :taxon}], 
         :conditions => conditions,
+        :order => "taxon_photos.id ASC",
         :limit => options[:limit] - chosen_photos.size)
     end
     flickr_chosen_photos = []

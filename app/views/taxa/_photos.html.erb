@@ -1,7 +1,6 @@
 <%-
   taxon ||= @taxon
   photos ||= taxon.photos.all(:limit => 24)
-  photos = photos.compact.sort_by{|p| p.id ? 0 - p.id : 0}
 -%>
 <% unless photos.size == 0 %>
   <% if taxon.species_or_lower? %>
