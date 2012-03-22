@@ -106,7 +106,20 @@ module Shared::ListsModule
             :include => {
               :taxon => {
                 :methods => [:default_name, :photo_url, :iconic_taxon_name],
-                :only => [:name, :rank, :id]
+                :except => [:delta, :auto_description, :source_url, 
+                  :source_identifier, :creator_id, :updater_id, :version, 
+                  :featured_at, :auto_photos, :locked],
+                :include => {
+                  :taxon_photos => {
+                    :include => {
+                      :photo => {
+                        :methods => [:license_code, :attribution],
+                        :except => [:original_url, :file_processing, :file_file_size, 
+                          :file_content_type, :file_file_name, :mobile]
+                      }
+                    }
+                  }
+                }
               }
             }
           )

@@ -274,7 +274,26 @@ class ObservationsController < ApplicationController
       format.xml { render :xml => @observation }
       
       format.json do
-        render :json => @observation.to_json(:methods => [:user_login, :iconic_taxon_name])
+        render :json => @observation.to_json(
+          :methods => [:user_login, :iconic_taxon_name],
+          :include => {
+            :project_observations => {
+              :include => {
+                :project => {
+                  :only => [:id, :title, :description],
+                  :methods => [:icon_url]
+                }
+              }
+            },
+            :observation_photos => {
+              :except => [:file_processing, :file_file_size, 
+                :file_content_type, :file_file_name, :user_id, 
+                :native_realname, :mobile, :native_photo_id],
+              :include => {
+                :photo => {}
+              }
+            }
+          })
       end
       
       format.atom do
@@ -623,7 +642,26 @@ class ObservationsController < ApplicationController
         format.js { render :json => @observations }
         format.json do
           if @observations.size == 1 && is_iphone_app_2?
-            render :json => @observations[0].to_json(:methods => [:user_login, :iconic_taxon_name])
+            render :json => @observations[0].to_json(
+              :methods => [:user_login, :iconic_taxon_name],
+              :include => {
+                :project_observations => {
+                  :include => {
+                    :project => {
+                      :only => [:id, :title, :description],
+                      :methods => [:icon_url]
+                    }
+                  }
+                },
+                :observation_photos => {
+                  :except => [:file_processing, :file_file_size, 
+                    :file_content_type, :file_file_name, :user_id, 
+                    :native_realname, :mobile, :native_photo_id],
+                  :include => {
+                    :photo => {}
+                  }
+                }
+              })
           else
             render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
           end
