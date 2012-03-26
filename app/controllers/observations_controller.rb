@@ -34,9 +34,8 @@ class ObservationsController < ApplicationController
                             :nearby,
                             :widget,
                             :project]
-  before_filter :load_observation, :only => [:show, :edit, :edit_photos, 
-    :update, :update_photos, :destroy]
-  before_filter :require_owner, :only => [:edit, :edit_photos, :update,
+  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy]
+  before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list]
