@@ -17,6 +17,7 @@ class ProjectObservation < ActiveRecord::Base
   after_destroy :update_project_observed_taxa_counter_cache_later
   
   def observed_by_project_member?
+    return false if project.blank? || observation.blank?
     project.project_users.exists?(:user_id => observation.user_id)
   end
   
