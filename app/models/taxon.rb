@@ -755,6 +755,7 @@ class Taxon < ActiveRecord::Base
     end
     
     LifeList.send_later(:update_life_lists_for_taxon, self, :dj_priority => 1)
+    Taxon.send_later(:update_listed_taxa_for, keeper, :dj_priority => 1)
     
     reject.reload
     logger.info "[INFO] Merged #{reject} into #{self}"
