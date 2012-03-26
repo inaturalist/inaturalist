@@ -271,6 +271,10 @@ class UsersController < ApplicationController
   end
   
   def edit
+    respond_to do |format|
+      format.html
+      format.json { render :json => @user }
+    end
   end
 
   # this is the page that's shown after a new user is created via 3rd party provider_authorization
@@ -388,7 +392,7 @@ protected
       @user = User.find(params[:id])
     rescue
       @user = User.find_by_login(params[:id])
-      raise ActiveRecord::RecordNotFound if @user.nil?
+      render_404 if @user.blank?
     end
   end
   
