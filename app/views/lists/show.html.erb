@@ -128,7 +128,7 @@
         "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
       :rel => "nofollow" %>
       
-    <%= link_to "Taxonomic CSV", list_show_formatted_view_path(@list, :view => "taxonomic", :format => "csv"), 
+    <%= link_to "Taxonomic CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"), 
       :class => "delayedlink csvlink", 
       "data-delayed-link-msg" => 
         "Please hold on while the file is generated.  It can take a couple minutes for large lists.",

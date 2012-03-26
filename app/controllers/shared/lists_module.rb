@@ -14,6 +14,7 @@ module Shared::ListsModule
   end
   
   def show
+    @view = params[:view] || params[:view_type]
     respond_to do |format|
       format.html do
         # Make sure request is being handled by the right controller
@@ -35,12 +36,7 @@ module Shared::ListsModule
 
         @iconic_taxon_counts = get_iconic_taxon_counts(@list, @iconic_taxa)
         @total_listed_taxa ||= @list.listed_taxa.count
-        #if @list.is_a?(ProjectList)
-        #  @total_observed_taxa = @list.project.observed_taxa_count
-        #else
         @total_observed_taxa ||= @list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
-        #end
-        @view = params[:view]
         @view = PHOTO_VIEW unless LIST_VIEWS.include?(@view)
 
         case @view
@@ -75,19 +71,19 @@ module Shared::ListsModule
       end
       
       format.csv do
-        job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => params[:view]))
+        job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
         job = Delayed::Job.find_by_id(job_id)
         if job
           # Still working
         else
           # no job id, no job, let's get this party started
-          Rails.cache.delete(@list.generate_csv_cache_key(:view => params[:view]))
-          job = if params[:view] == "taxonomic"
+          Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
+          job = if @view == "taxonomic"
             @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.taxonomic.csv", :taxonomic => true)
           else
             @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
           end
-          Rails.cache.write(@list.generate_csv_cache_key(:view => params[:view]), job.id, :expires_in => 1.hour)
+          Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
         end
         prevent_caching
         render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"

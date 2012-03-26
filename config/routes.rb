@@ -221,7 +221,7 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'lists', 
     :action => 'generate_csv',
     :requirements => { :id => id_param_pattern }
-  map.list_show_formatted_view 'lists/:id.:view.:format',
+  map.list_show_formatted_view 'lists/:id.:view_type.:format',
     :controller => 'lists', 
     :action => 'show',
     :requirements => { :id => id_param_pattern }
