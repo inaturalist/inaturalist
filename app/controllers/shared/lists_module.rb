@@ -105,7 +105,7 @@ module Shared::ListsModule
             :except => [:manually_added, :updater_id, :observation_month_counts, :taxon_range_id, :source_id],
             :include => {
               :taxon => {
-                :methods => [:default_name, :photo_url, :iconic_taxon_name],
+                :methods => [:default_name, :photo_url, :iconic_taxon_name, :conservation_status_name],
                 :except => [:delta, :auto_description, :source_url, 
                   :source_identifier, :creator_id, :updater_id, :version, 
                   :featured_at, :auto_photos, :locked],

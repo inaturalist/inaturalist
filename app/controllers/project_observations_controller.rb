@@ -20,17 +20,22 @@ class ProjectObservationsController < ApplicationController
     if @project_observation.blank?
       status = :gone
       json = "Project observation #{params[:id]} does not exist."
-    elsif @project_observation.user_id != current_user.id
+    elsif @project_observation.observation.user_id != current_user.id
       status = :forbidden
       json = "You do not have permission to do that."
     else
       @project_observation.destroy
       status = :ok
-      json = @project_observation
+      json = nil
     end
     
     respond_to do |format|
-      format.json { render :status => status, :json => json }
+      format.any do
+        render :status => :status, :text => json
+      end
+      format.json do 
+        render :status => status, :json => json
+      end
     end
   end
   
