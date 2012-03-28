@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   
   def show
     respond_to do |format|
-      format.html do
+      format.any do
         @observed_taxa_count = @project.observed_taxa_count
         @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
