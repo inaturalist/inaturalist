@@ -7,12 +7,15 @@ class ProjectObservation < ActiveRecord::Base
   validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?]
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
-  after_save    :refresh_project_list
+  after_create  :refresh_project_list
   after_destroy :refresh_project_list
+  
   after_create  :update_observations_counter_cache_later
   after_destroy :update_observations_counter_cache_later
+  
   after_create  :update_taxa_counter_cache_later
   after_destroy :update_taxa_counter_cache_later
+  
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
   
@@ -98,6 +101,7 @@ class ProjectObservation < ActiveRecord::Base
     return false if observation.taxon.blank?
     list.listed_taxa.detect{|lt| lt.taxon_id == observation.taxon_id}
   end
+  
   ##### Static ##############################################################
   def self.to_csv(project_observations, options = {})
     return nil if project_observations.blank?
