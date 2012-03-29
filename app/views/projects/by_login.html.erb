@@ -16,7 +16,12 @@
 <div class="column span-16">
   <div id="started" class="projects clear">
     <% if @projects.blank? -%>
-      <p class="noresults"><%= is_me? ? "You haven't" : "#{@login} hasn't" %> joined any projects.</p>
+      <p class="meta noresults">
+        <%= is_me? ? "You haven't" : "#{@login} hasn't" %> joined any projects.
+        <% if is_me? -%>
+          <%= link_to "Join a project!", projects_path %>
+        <% end -%>
+      </p>
     <% else %>
       <% @projects.each_with_index do |project, i| %>
         <%= render :partial => 'project', :object => project, :locals => {:last => i % 2 == 1} %>
@@ -31,13 +36,13 @@
   <div id="started" class="projects clear box">
     <h3>Projects <%= is_me? ? "you admin" : "#{@login} admins" %></h3>
     <% if @started.blank? -%>
-      <p class="noresults"><%= is_me? ? "You don't" : "#{@login} doesn't" %> admin any projects.</p>
+      <p class="meta noresults"><%= is_me? ? "You don't" : "#{@login} doesn't" %> admin any projects.</p>
     <% else %>
       <% @started.each_with_index do |project, i| %>
         <%= render :partial => 'project', :object => project, :locals => {:last => true} %>
       <% end %>
     <% end -%>
     
-    <%= link_to "Start a project", new_project_path, :class => "readmore" %>
+    <%= link_to "Start a project", new_project_path, :class => "readmore" if is_me? %>
   </div>
 </div>

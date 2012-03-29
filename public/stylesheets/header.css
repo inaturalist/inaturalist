@@ -72,10 +72,11 @@
 }
 
 #mainnav.navtabs .subnav a {
-  padding-right: 23px;
+  padding-right: 25px;
 }
 
-#header .navtabs .observationstab .subnav a {
+#header .navtabs .observationstab .subnav a,
+#header .navtabs .projectstab .subnav a {
   background-image: url('/images/logo-eee-15px.png');
   background-position: 148px center;
   background-repeat: no-repeat;
