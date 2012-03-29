@@ -23,19 +23,40 @@ class SessionsController < ApplicationController
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag
-      flash[:notice] = "Logged in successfully"
-      if !session[:return_to].blank? && 
-          ![login_url, root_url, login_path, root_path].include?(session[:return_to])
-        redirect_to session[:return_to]
-      else
-        redirect_to home_path
-      end
       user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+      
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Logged in successfully"
+          if !session[:return_to].blank? && 
+              ![login_url, root_url, login_path, root_path].include?(session[:return_to])
+            redirect_to session[:return_to]
+          else
+            redirect_to home_path
+          end
+        end
+        
+        format.json do
+          render :json => current_user.to_json(:except => [
+            :crypted_password, :salt, :old_preferences, :activation_code, 
+            :remember_token, :last_ip])
+        end
+      end
     else
       note_failed_signin
       @login       = params[:login]
       @remember_me = params[:remember_me]
-      render :action => 'new'
+      @msg = "Couldn't log you in as '#{params[:login]}'"
+      respond_to do |format|
+        format.html do
+          flash[:error] = @msg
+          render :action => 'new'
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => @msg}
+        end
+      end
+      
     end
   end
 
@@ -48,7 +69,6 @@ class SessionsController < ApplicationController
 protected
   # Track failed login attempts
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

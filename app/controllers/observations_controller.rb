@@ -13,7 +13,7 @@ class ObservationsController < ApplicationController
     :expires_in => 1.day,
     :cache_path => Proc.new {|c| c.params},
     :if => Proc.new {|c| !c.request.format.html? }
-  cache_sweeper :observation_sweeper, :only => [:update, :destroy]
+  cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
   
   rescue_from ActionController::UnknownAction do
     unless @selected_user = User.find_by_login(params[:action])
@@ -176,7 +176,7 @@ class ObservationsController < ApplicationController
     @observations = Observation.of(@taxon).all(
       :include => [:user, :taxon, :iconic_taxon, :photos], 
       :order => "observations.id desc", 
-      :limit => 500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, id]}
+      :limit => 500).sort_by{|o| [o.quality_grade == "research" ? 1 : 0, o.id]}
     respond_to do |format|
       format.json do
         render :json => @observations.to_json(

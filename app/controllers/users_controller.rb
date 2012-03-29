@@ -273,7 +273,9 @@ class UsersController < ApplicationController
   def edit
     respond_to do |format|
       format.html
-      format.json { render :json => @user }
+      format.json { render :json => @user.to_json(:except => [
+        :crypted_password, :salt, :old_preferences, :activation_code, 
+        :remember_token, :last_ip]) }
     end
   end
 
