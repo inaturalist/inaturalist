@@ -1066,6 +1066,26 @@ class Taxon < ActiveRecord::Base
     sorted.first
   end
   
+  def self.default_json_options
+    {
+      :methods => [:default_name, :photo_url, :iconic_taxon_name, :conservation_status_name],
+      :except => [:delta, :auto_description, :source_url, 
+        :source_identifier, :creator_id, :updater_id, :version, 
+        :featured_at, :auto_photos, :locked],
+      :include => {
+        :taxon_photos => {
+          :include => {
+            :photo => {
+              :methods => [:license_code, :attribution],
+              :except => [:original_url, :file_processing, :file_file_size, 
+                :file_content_type, :file_file_name, :mobile]
+            }
+          }
+        }
+      }
+    }
+  end
+  
   # /Static #################################################################
   
 end

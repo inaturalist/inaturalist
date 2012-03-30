@@ -520,7 +520,9 @@ class ObservationsController < ApplicationController
             :status => :unprocessable_entity
         else
           if @observations.size == 1 && is_iphone_app_2?
-            render :json => @observations[0].to_json(:methods => [:user_login, :iconic_taxon_name])
+            render :json => @observations[0].to_json(:methods => [:user_login, :iconic_taxon_name], :include => {
+              :taxon => Taxon.default_json_options
+            })
           else
             render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
           end
@@ -644,6 +646,7 @@ class ObservationsController < ApplicationController
             render :json => @observations[0].to_json(
               :methods => [:user_login, :iconic_taxon_name],
               :include => {
+                :taxon => Taxon.default_json_options,
                 :project_observations => {
                   :include => {
                     :project => {
