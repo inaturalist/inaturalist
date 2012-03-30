@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   
   def show
     respond_to do |format|
-      format.any do
+      format.html do
         @observed_taxa_count = @project.observed_taxa_count
         @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
@@ -61,6 +61,7 @@ class ProjectsController < ApplicationController
           render :action => "show_iframe"
         end
       end
+      
       format.json do
         render :json => @project
       end
@@ -131,7 +132,8 @@ class ProjectsController < ApplicationController
           :user => {:only => :login},
           :project => {
             :methods => [:icon_url], 
-            :include => :project_list}
+            :include => :project_list
+          }
         })
       end
     end
@@ -283,8 +285,7 @@ class ProjectsController < ApplicationController
     @observation = Observation.find_by_id(params[:observation_id])
     @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
     if @project_user
-      flash[:notice] = "You're already a member of this project!"
-      redirect_to @project
+      respond_to_join(:notice => "You're already a member of this project!")
       return
     end
     return unless request.post?
@@ -292,45 +293,78 @@ class ProjectsController < ApplicationController
     @project_user = @project.project_users.create(:user => current_user)
     unless @observation
       if @project_user.valid?
-        flash[:notice] = "Welcome to #{@project.title}"
-        redirect_to @project and return
+        respond_to_join(:notice => "Welcome to #{@project.title}")
       else
-        flash[:error] = "Sorry, there were problems with your request: " + 
-        @project_user.errors.full_messages.to_sentence
-        redirect_to @project and return
+        respond_to_join(:error => "Sorry, there were problems with your request: #{@project_user.errors.full_messages.to_sentence}")
       end
+      return
     end
     
     unless @project_user.valid?
-      flash[:error] = "Sorry, there were problems with your request: " + 
-      @project_user.errors.full_messages.to_sentence
-      redirect_to @observation and return
+      respond_to_join(:dest => @observation,
+        :error => "Sorry, there were problems with your request: #{@project_user.errors.full_messages.to_sentence}")
+      return
     end
+    
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
     unless @project_observation.valid?
-      flash[:error] = "There were problems adding your observation to this project: " + 
-        @project_observation.errors.full_messages.to_sentence
-      redirect_to @observation and return
+      respond_to_join(:dest => @observation, 
+        :error => "There were problems adding your observation to this project: #{@project_observation.errors.full_messages.to_sentence}")
+      return
     end
+    
     if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => @observation.id})
       @project_invitation.destroy
     end
-    flash[:notice] = "You've joined the \"#{@project_invitation.project.title}\" project and your observation was added"
-    redirect_to @observation
+    
+    respond_to_join(:dest => @observation, :notice => "You've joined the \"#{@project_invitation.project.title}\" project and your observation was added")
   end
   
   def leave
-    unless @project_user && request.post?
-      flash[:error] = "You aren't a member of that project."
-      redirect_to @project and return
+    unless @project_user && (request.post? || request.delete?)
+      respond_to do |format|
+        format.html do
+          flash[:error] = "You aren't a member of that project."
+          redirect_to @project
+        end
+        format.json do
+          render :status => :ok, :json => {}
+        end
+      end
+      return
     end
+    
+    if @project_user.user_id == @project.user_id
+      msg = "You can't leave a project you created."
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @project
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return
+    end
+    
+    
     unless @project_user.role == nil
       Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
     end
     Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
     @project_user.destroy
-    flash[:notice] = "You have left #{@project.title}"
-    redirect_to @project
+    
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "You have left #{@project.title}"
+        redirect_to @project
+      end
+      
+      format.json do
+        render :status => :ok, :json => {}
+      end
+    end
   end
   
   def stats
@@ -479,7 +513,9 @@ class ProjectsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.json { render :json => @projects }
+      format.json do
+        render :json => @projects.to_json (:methods => [:icon_url], :include => :project_list)
+      end
     end
   end
   
@@ -516,5 +552,32 @@ class ProjectsController < ApplicationController
       return redirect_to @project
     end
     true
+  end
+  
+  def respond_to_join(options = {})
+    error = options[:error]
+    notice = options[:notice]
+    dest = options[:dest] || @project
+    respond_to do |format|
+      if error
+        format.html do
+          flash[:error] = error
+          redirect_to dest
+        end
+        
+        format.json do
+          render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
+        end
+      else
+        format.html do
+          flash[:notice] = notice
+          redirect_to dest
+        end
+        
+        format.json do
+          render :json => @project_user
+        end
+      end
+    end
   end
 end
