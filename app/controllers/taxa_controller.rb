@@ -104,10 +104,8 @@ class TaxaController < ApplicationController
           :include => :taxon_names, :methods => [:common_name]))
       end
       format.json do
-        render(
-          :json => @taxa.to_json(
-            :include => :taxon_names, 
-            :methods => [:common_name] ) )
+        @taxa = Taxon::ICONIC_TAXA if @taxa.blank? && params[:q].blank?
+        render :json => @taxa.to_json(Taxon.default_json_options)
       end
     end
   end
@@ -384,9 +382,13 @@ class TaxaController < ApplicationController
         end
       end
       format.json do
-        render :json => @taxa.to_json(
-          :include => [:iconic_taxon, :taxon_names, :photos],
-          :methods => [:common_name, :image_url, :default_name])
+        options = Taxon.default_json_options
+        options[:include].merge!(
+          :iconic_taxon => {:only => [:id, :name]}, 
+          :taxon_names => {:only => [:id, :name, :lexicon]}
+        )
+        options[:methods] += [:common_name, :image_url, :default_name]
+        render :json => @taxa.to_json(options)
       end
     end
   end
@@ -441,10 +443,10 @@ class TaxaController < ApplicationController
                 :include => :taxon_names, :methods => [:common_name] )
       end
       format.json do
-        render(
-          :json => @taxon.children.to_json(
-            :include => :taxon_names, 
-            :methods => [:common_name] ) )
+        options = Taxon.default_json_options
+        options[:include].merge!(:taxon_names => {:only => [:id, :name, :lexicon]})
+        options[:methods] += [:common_name]
+        render :json => @taxon.children.to_json(options)
       end
     end
   end
