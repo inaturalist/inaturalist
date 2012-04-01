@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   
   def show
     respond_to do |format|
-      format.html do
+      format.any(:html, :mobile) do
         @observed_taxa_count = @project.observed_taxa_count
         @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
@@ -131,7 +131,7 @@ class ProjectsController < ApplicationController
         render :json => @project_users.to_json(:include => {
           :user => {:only => :login},
           :project => {
-            :methods => [:icon_url], 
+            :methods => [:icon_url, :project_observation_rule_terms], 
             :include => :project_list
           }
         })

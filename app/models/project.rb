@@ -78,6 +78,10 @@ class Project < ActiveRecord::Base
     icon.file? ? "#{APP_CONFIG[:site_url]}#{icon.url(:span2)}" : nil
   end
   
+  def project_observation_rule_terms
+    project_observation_rules.map{|por| por.terms}.join('|')
+  end
+  
   def self.update_curator_idents_on_make_curator(project_id, project_user_id)
     unless proj = Project.find_by_id(project_id)
       return

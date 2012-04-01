@@ -446,7 +446,7 @@ class TaxaController < ApplicationController
         options = Taxon.default_json_options
         options[:include].merge!(:taxon_names => {:only => [:id, :name, :lexicon]})
         options[:methods] += [:common_name]
-        render :json => @taxon.children.to_json(options)
+        render :json => @taxon.children.all(:include => [{:taxon_photos => :photo}, :taxon_names]).to_json(options)
       end
     end
   end
