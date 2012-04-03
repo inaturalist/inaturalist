@@ -47,7 +47,7 @@
         </li>
       </ul>
     </div>
-    <%= render :partial => 'glance' %>
+    <%= render :partial => 'glance', :locals => {:user => @display_user} %>
     
     <% unless @display_user.provider_authorizations.blank? -%>
       <h3>Provider Authorizations</h3>

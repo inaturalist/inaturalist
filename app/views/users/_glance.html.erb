@@ -1,38 +1,39 @@
-  <ul class="readable description leafylist">
+<%- user ||= @user %>
+<ul class="readable description leafylist">
+  <li>
+    <%= link_to pluralize(user.observations_count, "observation"), observations_by_login_path(user.login) %>
+  </li>
+  <li>
+    <%= link_to pluralize(user.life_list_taxa_count, "species"), user.life_list %>
+  </li>
+  <li>
+    <%= link_to pluralize(user.lists.count, "list"), lists_by_login_path(user.login) %>
+  </li>
+  <% if user.journal_posts_count > 0 -%>
     <li>
-      <%= link_to pluralize(@user.observations_count, "observation"), observations_by_login_path(@user.login) %>
+      <%= link_to pluralize(user.journal_posts_count, "journal post"), journal_by_login_path(user.login) %>
     </li>
+  <% end -%>
+  <% if user.identifications_count > 0 -%>
     <li>
-      <%= link_to pluralize(@user.life_list_taxa_count, "species"), @user.life_list %>
+      <%= link_to pluralize(user.identifications_count, "identification"), identifications_by_login_path(user.login) %>
     </li>
+  <% end -%>
+  <% if user.followers.count > 0 -%>
     <li>
-      <%= link_to pluralize(@user.lists.count, "list"), lists_by_login_path(@user.login) %>
+      <%= link_to pluralize(user.followers.count, "follower"), followers_by_login_path(user.login) %>
     </li>
-    <% if @user.journal_posts_count > 0 -%>
-      <li>
-        <%= link_to pluralize(@user.journal_posts_count, "journal post"), journal_by_login_path(@user.login) %>
-      </li>
-    <% end -%>
-    <% if @user.identifications_count > 0 -%>
-      <li>
-        <%= link_to pluralize(@user.identifications_count, "identification"), identifications_by_login_path(@user.login) %>
-      </li>
-    <% end -%>
-    <% if @user.followers.count > 0 -%>
-      <li>
-        <%= link_to pluralize(@user.followers.count, "follower"), followers_by_login_path(@user.login) %>
-      </li>
-    <% end -%>
-    <% if @user.friendships.count > 0 %>
-      <li>
-        following
-        <%= link_to pluralize(@user.friendships.count, "person"), following_by_login_path(@user.login) %>
-      </li>
-    <% end %>
-    
-    <% if @user.is_admin? -%>
-      <li><%= @user.login %> is an <%= link_to "admin", help_path(:anchor => "curators") %></li>
-    <% elsif @user.is_curator? %>
-      <li><%= @user.login %> is a <%= link_to "curator", help_path(:anchor => "curators") %></li>
-    <% end -%>
-  </ul>  
+  <% end -%>
+  <% if user.friendships.count > 0 %>
+    <li>
+      following
+      <%= link_to pluralize(user.friendships.count, "person"), following_by_login_path(user.login) %>
+    </li>
+  <% end %>
+  
+  <% if user.is_admin? -%>
+    <li><%= user.login %> is an <%= link_to "admin", help_path(:anchor => "curators") %></li>
+  <% elsif user.is_curator? %>
+    <li><%= user.login %> is a <%= link_to "curator", help_path(:anchor => "curators") %></li>
+  <% end -%>
+</ul>
