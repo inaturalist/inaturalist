@@ -227,6 +227,8 @@ ActionController::Routing::Routes.draw do |map|
     :requirements => { :id => id_param_pattern }
   
   map.resources :comments
+  map.comments_by_login 'comments/user/:login', :controller => 'comments', 
+    :action => 'user', :requirements => { :login => simplified_login_regex }
   map.resources :project_invitations, :except => [:index, :show]
   map.with_options :controller => 'project_invitations' do |project_invitation|
     project_invitation.accept_project_invitation 'project_invitation/:id/accept', :action => 'accept', :conditions => {:method => :post}

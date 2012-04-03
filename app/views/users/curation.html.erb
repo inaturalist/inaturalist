@@ -1,17 +1,17 @@
 <%- content_for(:title) do -%>
-  Curating <%= @user ? @user.login : 'Users' %>
+  Curating <%= @display_user ? @display_user.login : 'Users' %>
 <%- end -%>
 <form method="get" class="clear buttonrow">
-  <input type="text" name="id" value="<%= @user.try(:login) %>" id="id" class="text">
+  <input type="text" name="id" value="<%= @display_user.try(:login) %>" id="id" class="text">
   <input type="submit" value="Lookup user &rarr;" class="button">
 </form>
-<% if @user -%>
+<% if @display_user -%>
   <div class="column span-16">
     <table width="100%">
       <% for user_attr in User.column_names %>
         <tr>
           <th><%= user_attr %></th>
-          <td><%= @user.send(user_attr) %></td>
+          <td><%= @display_user.send(user_attr) %></td>
         </tr>
       <% end %>
     </table>
@@ -20,32 +20,39 @@
   <div class="last column span-8">
     <div class="box">
       <ul>
-        <% if @user.is_curator? %>
-          <li><%= link_to "Remove curator status", remove_role_path(@user, :role => "curator"), :method => :delete %></li>
+        <% if @display_user.is_curator? %>
+          <li><%= link_to "Remove curator status", remove_role_path(@display_user, :role => "curator"), :method => :delete %></li>
         <% else %>
-          <li><%= link_to "Make curator", add_role_path(@user, :role => "curator"), :method => :post %></li>
+          <li><%= link_to "Make curator", add_role_path(@display_user, :role => "curator"), :method => :post %></li>
         <% end %>
-        <% unless @user.active? -%>
+        <% unless @display_user.active? -%>
           <li>
-            <%= link_to "Activate user", {:controller => "users", :action => "activate", :activation_code => @user.activation_code}, 
+            <%= link_to "Activate user", {:controller => "users", :action => "activate", :activation_code => @display_user.activation_code}, 
               :confirm => "Are you sure you want to activate this account?" %>
           </li>
         <% end -%>
         <li>
-          <%= link_to "Delete user", @user, :method => :delete, :confirm => "Are you really, really sure you want to delete this user and all of their content?" %>
+          <% if @display_user.active? || @display_user.pending? %>
+            <%= link_to "Suspend user", suspend_user_path(@display_user) %>
+          <% else %>
+            <%= link_to "Unsuspend user", unsuspend_user_path(@display_user) %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to "Delete user", @display_user, :method => :delete, :confirm => "Are you really, really sure you want to delete this user and all of their content?" %>
         </li>
         
         <li>
-          <%= link_to "Log in as #{@user.login}", :controller => "admin", :action => "login_as", :id => @user.id %>
+          <%= link_to "Log in as #{@display_user.login}", :controller => "admin", :action => "login_as", :id => @display_user.id %>
         </li>
       </ul>
     </div>
     <%= render :partial => 'glance' %>
     
-    <% unless @user.provider_authorizations.blank? -%>
+    <% unless @display_user.provider_authorizations.blank? -%>
       <h3>Provider Authorizations</h3>
       <ul>
-        <% for pa in @user.provider_authorizations %>
+        <% for pa in @display_user.provider_authorizations %>
           <li>
             <%= pa.provider_name %>
             (<%= pa.provider_uid %>)
@@ -55,14 +62,14 @@
       </ul>
     <% end -%>
     
-    <% if fi = @user.flickr_identity -%>
+    <% if fi = @display_user.flickr_identity -%>
       <h3>Flickr Identity</h3>
       <%= link_to fi.flickr_username, "http://flickr.com/photos/#{fi.flickr_username}" %>
       <%= link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}" %>
       <div class="small meta">Created <%= fi.created_at %></div>
     <% end -%>
     
-    <% if pi = @user.picasa_identity -%>
+    <% if pi = @display_user.picasa_identity -%>
       <h3>Picasa Identity</h3>
       <%= link_to pi.picasa_user_id, "https://picasaweb.google.com/#{pi.picasa_user_id}" %>
       <div class="small meta">Created <%= pi.created_at %></div>
@@ -77,6 +84,9 @@
       <th>id</th>
       <th>created_at</th>
       <th>activated_at</th>
+      <th>obs</th>
+      <th>IDs</th>
+      <th>comments</th>
     </tr>
     <% for user in @users %>
       <tr>
@@ -84,6 +94,9 @@
         <td><%= user.id %></td>
         <td><%= user.created_at %></td>
         <td><%= user.activated_at %></td>
+        <td><%= link_to user.observations_count, observations_by_login_path(user.login) %></td>
+        <td><%= link_to user.identifications_count, identifications_by_login_path(user.login) %></td>
+        <td><%= link_to @comment_counts_by_user_id[user.id].to_i, comments_by_login_path(user.login) %></td>
       </tr>
     <% end %>
   </table>

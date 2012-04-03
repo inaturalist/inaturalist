@@ -294,15 +294,12 @@ class User < ActiveRecord::Base
   end
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
-  #
-  # uff.  this is really an authorization, not authentication routine.  
-  # We really need a Dispatch Chain here or something.
-  # This will also let us return a human error message.
-  #
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
     u = find_in_state :first, :active, :conditions => ["lower(login) = ?", login.downcase]
-    u = find_in_state :first, :active, :conditions => {:email => login} if u.nil?
+    u ||= find_in_state :first, :active, :conditions => {:email => login}
+    u ||= find_in_state :first, :pending, :conditions => ["lower(login) = ?", login.downcase]
+    u ||= find_in_state :first, :pending, :conditions => {:email => login}
     u && u.authenticated?(password) ? u : nil
   end
 

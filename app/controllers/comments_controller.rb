@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :login_required, :except => :index
+  before_filter :admin_required, :only => [:user]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
   MOBILIZED = [:edit]
@@ -22,6 +23,11 @@ class CommentsController < ApplicationController
       @comments.map(&:parent_id), @comments.last.created_at
     ]).sort_by(&:id)
     @comments_by_parent_id = @extra_comments.group_by(&:parent_id)
+  end
+  
+  def user
+    @display_user = User.find_by_id(params[:id]) || User.find_by_login(params[:login])
+    @comments = @display_user.comments.paginate(:page => params[:page], :order => "id DESC")
   end
   
   def show

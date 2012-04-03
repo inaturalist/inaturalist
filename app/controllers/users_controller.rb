@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :admin_required, :only => [:suspend, :unsuspend, :curation]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
-  MOBILIZED = [:show, :dashboard, :new]
+  MOBILIZED = [:show, :dashboard, :new, :create]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
@@ -30,10 +30,15 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
+      flash[:notice] = "Welcome to iNaturalist!  Please check for your confirmation email, but feel free to start cruising the site."
+      self.current_user = @user
+      @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
+      redirect_back_or_default(dashboard_path)
     else
-      render :action => 'new'
+      respond_to do |format|
+        format.html { render :action => 'new' }
+        format.mobile { render :action => 'new' }
+      end
     end
   end
 
@@ -320,14 +325,16 @@ class UsersController < ApplicationController
   end
   
   def curation
-    @user = User.find_by_id(params[:id].to_i)
-    @user ||= User.find_by_login(params[:id])
-    @user ||= User.find_by_email(params[:id])
-    if @user.blank? && !params[:id].blank?
-      flash[:error] = "Couldn't find a user matching #{params[:id]}"
-    end
-    if @user.blank?
+    if params[:id].blank?
       @users = User.paginate(:page => params[:page], :order => "id desc")
+      @comment_counts_by_user_id = Comment.count(:group => :user_id, :conditions => ["user_id IN (?)", @users])
+    else
+      @display_user = User.find_by_id(params[:id].to_i)
+      @display_user ||= User.find_by_login(params[:id])
+      @display_user ||= User.find_by_email(params[:id])
+      if @display_user.blank?
+        flash[:error] = "Couldn't find a user matching #{params[:id]}"
+      end
     end
   end
 
