@@ -1,0 +1,99 @@
+<%- content_for(:extracss) do -%>
+  <%= stylesheet_link_tag "taxa", "observations", "taxa/guide", "barchart", "places/show" %>
+  <!--[if lte IE 7]>
+    <%= stylesheet_link_tag 'observations-ie' %>
+    <style type="text/css" media="screen">
+      #pageheader { z-index: 100; }
+      .listed_taxon .monthstats { display: none; }
+      #controls button, #controls .button {padding: 2px 5px; margin:0;}
+      #controls button span { line-height: 1.3;}
+    </style>
+  <![endif]-->
+  <style type="text/css" media="screen">
+    #wrapper {padding:0;}
+    #maincol {padding-left: 0;}
+    #sidecol { 
+      position: fixed;
+      border-top-right-radius: 0px; 
+      border-bottom-right-radius: 0px; 
+      border-top-left-radius: 0px; 
+      top: 20px; 
+      right: 0;
+    }
+    #browsingtaxa {
+      border-bottom-left-radius: 20px; 
+    }
+    #controls {
+      width: 100%;
+      position: fixed;
+      z-index: 2;
+      background-color: white;
+    }
+    #listed_taxa {
+      padding-top: 25px;
+    }
+    #controls form { margin-bottom: 5px;}
+    #browsebutton {border: 1px solid transparent;}
+    .establishmentfilter, .conservationfilter {display:none;}
+    #controls .inlineblock {vertical-align:middle;}
+    .taxon .name { 
+      display: block; 
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      font-size:100%;
+    }
+  </style>
+<%- end -%>
+<%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 
+  "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min", 
+  "places/show" %>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript" charset="utf-8">
+    var PLACE = <%= @place.to_json %>,
+        FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>
+    $(document).ready(function() {
+      $('#sidecol').addClass('floating').css({padding: 10, zIndex: 2, backgroundColor: 'white'}).hide()
+      $('#sidecol .readmore').parent().hide();
+      $('#browsingtaxa').removeClass('stacked')
+      $('#filters').addClass('inlineblock').css({'white-space': 'nowrap'})
+      $('#filters').after(
+        $('#logo')
+      )
+      $('#controls').append(
+        $('<a href="#" id="browsebutton" class="right button"><span class="ui-icon ui-icon-arrow-1-s inlineblock"></span>Browse</a>').click(function() {
+          $('#sidecol').slideToggle()
+          var icon = $('.ui-icon', this)
+          if ($(icon).hasClass('ui-icon-arrow-1-s')) {
+            $(icon).removeClass('ui-icon-arrow-1-s')
+            $(icon).addClass('ui-icon-arrow-1-n')
+          } else {
+            $(icon).addClass('ui-icon-arrow-1-s')
+            $(icon).removeClass('ui-icon-arrow-1-n')
+          }
+          return false
+        })
+      )
+      
+      $('a').live('click', function() {
+        if ($(this).attr('href').indexOf(window.location.href) >= 0) {
+          return true
+        } else {
+          parent.location = $(this).attr('href')
+          return false
+        }
+      })
+    })
+    
+    function toggleSidebar() {
+      $('#browsingtaxa a.taxon').css({width: 0, overflow: 'hidden', paddingRight: 0})
+    }
+  </script>
+<% end %>
+<div class="ui-widget-content" style="border: 0px solid transparent;">
+  <%= render :partial => 'guide', :locals => {:size => @size, :grid => @grid} %>
+</div>
+
+<div id="logo" class="small meta inlineblock">
+  Powered by
+  <%= link_to image_tag('logo-small.gif', :style => "vertical-align:middle; height: 16px; position:relative; top: -2px;"), root_url %>
+</div>

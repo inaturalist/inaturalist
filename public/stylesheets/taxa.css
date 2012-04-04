@@ -12,14 +12,14 @@ table.taxa .taxon_name {
 
 .taxa.grid .taxon {
   float: left;
-  margin: 0 10px 10px 0;
+  margin: 0 5px 5px 0;
   width: 100px;
 }
 
 .taxa.grid .taxon .image,
 .taxa.grid .taxon .image a {
   text-align: center;
-  background-color: white;
+  background: white url(/images/stripe-eee-3px.png);
   display:block;
 }
 .taxa.grid .taxon .image.nophoto,
@@ -27,21 +27,29 @@ table.taxa .taxon_name {
   background-color: #f1f1f1;
 }
 .taxa.grid .taxon {overflow:hidden;}
-.taxa.grid .taxon .image .iconic { margin: 50% 0; position: relative; top: -20px;}
+.taxa.grid .taxon .image .iconic {top: 50%; margin-top: -16px; position: absolute; left: 50%; margin-left:-16px;}
 .taxa.grid .first { clear: left; }
 .taxa.grid .last { margin-right: 0; }
 .taxa.grid .infolink { display: none; }
 
 .taxa.grid .taxonimage { display:block; width: 100px; height:100px;}
-.taxa.grid .taxonimage a { max-height: 100px; }
-.taxa.grid .taxonimage img { max-width: 100px; max-height: 100px;}
+.taxa.grid .taxonimage a { height: 100px; position:relative;}
+.taxa.grid .taxonimage img { max-width: 100px; max-height: 100px; position:absolute; bottom: 0;}
+
+.taxa.fluid .taxonimage img {max-width:none; height: 100px; position: static;}
+.taxa.fluid .taxonimage img.iconic {height: auto;}
 
 /* big grid */
 .taxa.big.grid .taxon { width: 310px; }
 .taxa.big.grid .taxon img { max-width: 310px; }
 
-/* small grid */
-.taxa.medium.grid .taxon img { max-width: 240px; }
+/* medium grid */
+.taxa.medium.grid .taxon {width:160px; margin: 0 10px 10px 0;}
+.taxa.medium.grid .taxonimage { display:block; width: 160px; height:160px;}
+.taxa.medium.grid .taxonimage a { height: 160px; }
+.taxa.medium .taxonimage img {max-width:160px; max-height: 160px;}
+.taxa.medium.fluid .taxonimage img {max-width:none; height: 160px;}
+.taxa.medium.fluid .taxonimage img.iconic {height: auto;}
 
 /* list */
 

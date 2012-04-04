@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('#observedchart').parent().hide()
   $('#filters select[multiple]').multiselect({
     header: false,
-    noneSelectedText: "Select colors",
+    noneSelectedText: "Colors",
     minWidth: 130,
     selectedText: function(selected, total, elts) {
       if (selected > 2) {
@@ -18,7 +18,7 @@ $(document).ready(function() {
   $('#filters .establishmentfilter select').multiselect({
     header: false,
     noneSelectedText: "Native/endemic/inroduced",
-    minWidth: 130,
+    minWidth: 110,
     multiple: false,
     selectedText: function(selected, total, elts) {
       if (elts[0].value) {
@@ -394,7 +394,7 @@ var PlaceGuide = {
       title += ' in ' + PLACE.display_name
       $(dialog).dialog({
         autoOpen: false,
-        width: '80%',
+        width: '90%',
         title: title,
         
         // faking modal behavior to make sure google maps links are clickable

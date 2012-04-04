@@ -324,6 +324,7 @@ ActionController::Routing::Routes.draw do |map|
     places.cached_place_guide 'places/cached_guide/:id', :action => 'cached_guide', :conditions => {:method => :get}
     places.autocomplete 'places/autocomplete', :action => 'autocomplete'
     places.formatted_autocomplete 'places/autocomplete.:format', :action => 'autocomplete'
+    places.place_guide_widget 'places/guide_widget/:id', :action => 'guide_widget', :conditions => {:method => :get}
   end
   
   map.guide '/guide', :controller => 'places', :action => 'guide'

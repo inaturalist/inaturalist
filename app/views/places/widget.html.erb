@@ -1,0 +1,82 @@
+<%-
+@default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
+  taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+  taxon
+end
+-%>
+<%- content_for(:title) do -%>
+  <%= @title = "Widget for #{@place.display_name}" %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .chooseritem .iconic_taxon_sprite {vertical-align:middle;}
+  </style>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#taxonchooser').chooser({
+        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        defaultSources: <%= @default_taxa.to_json(:methods => [:html]) %>
+      })
+      
+      $('#configureform').submit(function() {
+        var params = $(this).serialize(),
+            url = $('iframe:first').attr('src')
+        if (url.match(/\?/)) {
+          var newUrl = url.replace(/\?.*/, '?'+params)
+        } else {
+          var newUrl = url + '?' + params
+        }
+        var textarea = $(this).parents('.column:first').find('textarea')
+        textarea.val(textarea.val().replace(url, newUrl))
+        $('iframe:first').replaceWith(textarea.val())
+        return false
+      })
+    })
+  </script>
+<%- end -%>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <div class="right meta" style="z-index:1">
+      For a widget showing recent observations from <%= @place.name %>, check out the
+      <%= link_to "observations widget", observations_widget_url(:place => @place), :class => "readmore" %>
+    </div>
+    <strong><%= link_to "&laquo #{@place.name}", @place, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  
+  <h2><%= @title %></h2>
+</div>
+
+<div class="column span-16">
+  <h3>Preview</h3>
+  <%= @widget_code = "<iframe width=\"100%\" height=\"600\" src=\"#{place_guide_widget_url(@place)}\"></iframe>" -%>
+</div>
+<div class="last column span-8">
+  <h3>Configure</h3>
+  <form id="configureform" class="stacked">
+    <div class="field">
+      <label>Icon size</label>
+      <br/>
+      <%= radio_button_tag 'size', 'medium', true %> <label for="size_medium">normal</label>
+      <%= radio_button_tag 'size', 'small' %> <label for="size_small">small</label>
+    </div>
+    <div class="field">
+      <label>Layout</label>
+      <br/>
+      <%= radio_button_tag 'grid', 'fluid', true %> <label for="grid_fluid">fluid</label>
+      <%= radio_button_tag 'grid', 'grid' %> <label for="grid_grid">grid</label>
+    </div>
+    <div class="field">
+      <label>Taxon</label>
+      <br/>
+      <%= text_field_tag :taxon, nil, :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
+    </div>
+    <input type="submit" value="Configure"/>
+  </form>
+  
+  <h3>Code</h3>
+  <textarea style="width:100%;"><%= @widget_code %></textarea>
+</div>
+

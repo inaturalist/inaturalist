@@ -11,7 +11,7 @@
 #placephotos img { height: 40px; margin-right: 10px; box-shadow: 0 2px 5px #666; border: 1px solid transparent;}
 #placephotos img:hover { border: 1px solid white;}
 #taxa { min-height: 500px; }
-#taxa .noresults { padding: 100px;}
+#taxa .noresults { padding: 100px; width: auto;}
 #taxa .pagination{ margin-top: 20px; }
 #taxa .shades { z-index: 100;}
 

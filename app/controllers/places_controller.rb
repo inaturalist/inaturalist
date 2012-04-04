@@ -5,7 +5,7 @@ class PlacesController < ApplicationController
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide, :cached_guide]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
-    :children, :taxa, :geometry, :cached_guide]
+    :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
@@ -381,6 +381,22 @@ class PlacesController < ApplicationController
     partial = "guide_taxa" unless GUIDE_PARTIALS.include?(partial)
     
     render :layout => false, :partial => partial
+  end
+  
+  def widget
+    
+  end
+  
+  def guide_widget
+    @headless = @footless = true
+    browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
+    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
+    browsing_taxa.delete_if{|t| t.name == "Life"}
+    @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
+    @grid = params[:grid]
+    @grid = "fluid" unless %w(grid fluid).include?(@grid)
+    @size = params[:size]
+    @size = "medium" unless %w(small medium).include?(@size)
   end
   
   private

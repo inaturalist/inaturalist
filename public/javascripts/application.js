@@ -378,3 +378,17 @@ $.fn.zoomify = function() {
     return false
   })
 }
+
+$.fn.slideToggleWidth = function() {
+  $(this).each(function() {
+    if ($(this).attr('data-original-width') && $(this).attr('data-original-width') != $(this).width()) {
+      $(this).show()
+      $(this).animate({
+        width: $(this).attr('data-original-width')
+      }, 500)
+    } else {
+      $(this).attr('data-original-width', $(this).width())
+      $(this).animate({width:0}, 500, function() {$(this).hide()})
+    }
+  })
+}
