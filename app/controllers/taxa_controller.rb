@@ -1070,7 +1070,7 @@ class TaxaController < ApplicationController
   def try_show(exception)
     raise exception if params[:action].blank?
     name, format = params[:action].split('_').join(' ').split('.')
-    request.format = format unless format.blank?
+    request.format = format if request.format.blank? && !format.blank?
     name = name.to_s.downcase
     
     # Try to look by its current unique name
