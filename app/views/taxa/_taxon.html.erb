@@ -1,5 +1,5 @@
 <%- 
-  taxon ||= object ||= @taxon
+  taxon ||= object || @taxon
   js_link ||= false
   no_ids ||= false
   image_options ||= {}
@@ -27,7 +27,7 @@
   if js_link
     taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon)
   end
-  photo ||= taxon.photos.sort_by{|p| p.id}.first
+  photo ||= taxon.taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
   after_image ||= nil
 -%>
 
