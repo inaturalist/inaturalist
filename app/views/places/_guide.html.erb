@@ -1,6 +1,7 @@
 <%-
   grid ||= "fluid"
   size ||= "medium"
+  labeled ||= nil
 -%>
 <div id="sidecol">
   <div id="confirmedchart" class="barchart clear stacked">
@@ -101,6 +102,6 @@
   </div>
 
   <div id="listed_taxa">
-    <div id="taxa" class="clear taxa <%= grid %> <%= size %> grid" data-guide-url="<%= place_guide_url(@place) %>"></div>
+    <div id="taxa" class="clear taxa <%= grid %> <%= size %> <%= labeled %> grid" data-guide-url="<%= place_guide_url(@place) %>"></div>
   </div>
 </div>

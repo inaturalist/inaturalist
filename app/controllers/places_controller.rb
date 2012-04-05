@@ -398,6 +398,8 @@ class PlacesController < ApplicationController
     @grid = "fluid" unless %w(grid fluid).include?(@grid)
     @size = params[:size]
     @size = "medium" unless %w(small medium).include?(@size)
+    @labeled = params[:labeled]
+    @labeld = nil unless params[:labeled] == 'unlabeled'
   end
   
   private

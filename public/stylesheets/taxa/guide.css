@@ -84,3 +84,7 @@
 .listed_taxon .monthgraph .month_0 { display:none;}
 .taxa.grid .taxon{vertical-align:baseline;}
 .listed_taxon{vertical-align:top;}
+.unlabeled.taxa.grid .info,
+.unlabeled.taxa.grid .upperleft,
+.unlabeled.taxa.grid .upperright,
+.unlabeled.taxa.grid .monthstats {display:none;}

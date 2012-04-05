@@ -69,6 +69,13 @@ end
       <%= radio_button_tag 'grid', 'grid' %> <label for="grid_grid">grid</label>
     </div>
     <div class="field">
+      <label>Labels</label>
+      <br/>
+      <%= radio_button_tag 'labeled', 'labeled', true %> <label for="labeled_labeled">yes</label>
+      <%= radio_button_tag 'labeled', 'unlabeled' %> <label for="labeled_unlabeled">no</label>
+    </div>
+    
+    <div class="field">
       <label>Taxon</label>
       <br/>
       <%= text_field_tag :taxon, nil, :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
