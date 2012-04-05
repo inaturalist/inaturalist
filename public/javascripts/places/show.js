@@ -422,6 +422,11 @@ var PlaceGuide = {
               $(this).parents('.listed_taxon_guide').find('.tabs').tabs('select', 1)
               return false
             })
+            
+            if ($('.desc', this).width() < $('.side', this).width()) {
+              $('.listed_taxon_guide', this).addClass('compact')
+            }
+            
             $('.tabs', this).tabs({
               ajaxOptions: {
                 data: "partial=cached_component"
