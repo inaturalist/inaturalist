@@ -105,6 +105,30 @@ class CheckList < List
     end
   end
   
+  def add_observed_taxa
+    place_id = 50664
+    options = {
+      :select => "DISTINCT ON (observations.taxon_id) observations.*",
+      :order => "observations.taxon_id",
+      :include => [:taxon, :user],
+      :joins => "JOIN place_geometries ON place_geometries.place_id = #{place_id}",
+      :conditions => [
+        "observations.quality_grade = ? AND " +
+        "(" +
+          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
+        ")",
+        Observation::RESEARCH_GRADE
+      ]
+    }
+    i = 0
+    Observation.do_in_batches(options) {|o| puts o; i += 1}
+    
+    Observation.do_in_batches(options) do |o|
+      add_taxon(o.taxon)
+    end
+  end
+  
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
@@ -151,6 +175,30 @@ class CheckList < List
     ListedTaxon.do_in_batches(:conditions => conditions) do |lt|
       next if that.listed_taxa.exists?(:taxon_id => lt.taxon_id)
       ListedTaxon.update_all(["occurrence_status_level = ?", ListedTaxon::ABSENT], "id = #{lt.id}")
+    end
+    true
+  end
+  
+  def refresh(options = {})
+    find_options = {}
+    if taxa = options[:taxa]
+      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
+    else
+      find_options[:conditions] = ["list_id = ?", self.id]
+    end
+    
+    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
+      listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
+      # re-apply list rules to the listed taxa
+      listed_taxon.force_update_cache_columns = true
+      listed_taxon.save
+      if !listed_taxon.valid?
+        logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+          "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
+        listed_taxon.destroy
+      elsif listed_taxon.auto_removable_from_check_list?
+        listed_taxon.destroy
+      end
     end
     true
   end

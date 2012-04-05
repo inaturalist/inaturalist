@@ -291,13 +291,14 @@ class Place < ActiveRecord::Base
   
   # Update the associated place_geometry or create a new one
   def save_geom(geom, other_attrs = {})
-    other_attrs.merge!(:geom => geom)
+    other_attrs.merge!(:geom => geom, :place => self)
     
     begin
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
       else
-        self.place_geometry = PlaceGeometry.create(other_attrs)
+        pg = PlaceGeometry.create(other_attrs)
+        self.place_geometry = pg
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e

@@ -61,13 +61,14 @@ class List < ActiveRecord::Base
   # been observed.
   #
   def refresh(options = {})
+    find_options = {}
     if taxa = options[:taxa]
-      collection = listed_taxa.all(:conditions => ["taxon_id IN (?)", taxa])
+      find_options[:conditions] = ["list_id = ? AND taxon_id IN (?)", self.id, taxa]
     else
-      collection = listed_taxa.all
+      find_options[:conditions] = ["list_id = ?", self.id]
     end
     
-    collection.each do |listed_taxon|
+    ListedTaxon.do_in_batches(find_options) do |listed_taxon|
       listed_taxon.skip_update_cache_columns = options[:skip_update_cache_columns]
       # re-apply list rules to the listed taxa
       listed_taxon.save
