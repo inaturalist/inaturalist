@@ -36,7 +36,10 @@ var iNaturalist = window.iNaturalist = new function(){
     }
     var ajaxOptions = $.extend({}, options, {
       type: 'POST',
-      data: $.extend({'_method': 'delete'}, options.data),
+      data: $.extend({
+        '_method': 'delete',
+        'authenticity_token': $('meta[name=csrf-token]').attr('content')
+      }, options.data),
       url: deleteURL
     });
     
