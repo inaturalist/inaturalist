@@ -54,14 +54,14 @@
 
 <div class="column span-7">
   <div id="taxonimage" class="photo_view">
-    <% if @taxon.photos.blank? -%>
-      <%= render :partial => 'taxa/nophoto', :object => @taxon %>
-    <% else %>
-      <%= link_to taxon_image(@taxon, :size => :small), @taxon %>
+    <% if @photo -%>
+      <%= link_to image_tag(@photo.small_url), @taxon %>
       <p class="ui attribution description">
         Photo: 
-        <%= link_to @taxon.photos.first.attribution, @taxon.photos.first.native_page_url %>
+        <%= link_to @photo.attribution, @photo.native_page_url %>
       </p>
+    <% else %>
+      <%= render :partial => 'taxa/nophoto', :object => @taxon %>
     <% end -%>
   </div>
   

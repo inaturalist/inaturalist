@@ -12,6 +12,11 @@ class ListedTaxaController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        if !@list.is_a?(CheckList)
+          @photo = @listed_taxon.first_observation.photos.first if @listed_taxon.first_observation
+          @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
+        end
+        @photo ||= @listed_taxon.taxon.taxon_photos.first(:order => "id ASC").try(:photo)
         if partial = params[:partial]
           partial = "lists/listed_taxon" unless SHOW_PARTIALS.include?(partial)
           render :partial => partial, :layout => false
