@@ -585,12 +585,22 @@ class Observation < ActiveRecord::Base
     tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/
     tz_offset_pattern = /([+-]\d{4})$/
     tz_js_offset_pattern = /(GMT)?[+-]\d{4}/
+    tz_failed_abbrev_pattern = /\((GMT|HSP)-\d+:\d+\)/
+    
+    if date_string =~ /#{tz_js_offset_pattern} #{tz_failed_abbrev_pattern}/
+      date_string = date_string.sub(tz_failed_abbrev_pattern, '').strip
+    end
+    
     if parsed_time_zone = ActiveSupport::TimeZone::CODES[date_string[tz_abbrev_pattern, 1]]
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
-      date_string = observed_on_string.sub(tz_offset_pattern, '')
+      date_string = date_string.sub(tz_offset_pattern, '')
+      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+    elsif (offset = date_string[tz_js_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
+      date_string = date_string.sub(tz_js_offset_pattern, '')
+      date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     end
     

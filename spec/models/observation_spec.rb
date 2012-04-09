@@ -41,6 +41,15 @@ describe Observation, "creation" do
     @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(11)
   end
   
+  it "should parse time from strings like Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)" do
+    @observation.observed_on_string = "Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)"
+    @observation.save
+    @observation.observed_on.day.should be(6)
+    @observation.time_observed_at.in_time_zone(@observation.time_zone).hour.should be(16)
+    zone = ActiveSupport::TimeZone[@observation.time_zone]
+    zone.formatted_offset.should == "-05:00"
+  end
+  
   it "should parse a time zone from a code" do
     @observation.observed_on_string = 'October 30, 2008 10:31PM EST'
     @observation.save
