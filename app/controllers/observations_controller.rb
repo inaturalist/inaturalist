@@ -1313,6 +1313,7 @@ class ObservationsController < ApplicationController
       
       # resolve taxa entered by name
       search_params[:iconic_taxa] = search_params[:iconic_taxa].map do |it|
+        it = it.last if it.is_a?(Enumerable)
         if it.to_i == 0
           Taxon.iconic_taxa.find_by_name(it)
         else
