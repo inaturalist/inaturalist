@@ -106,7 +106,6 @@ class CheckList < List
   end
   
   def add_observed_taxa
-    place_id = 50664
     options = {
       :select => "DISTINCT ON (observations.taxon_id) observations.*",
       :order => "observations.taxon_id",
@@ -121,9 +120,6 @@ class CheckList < List
         Observation::RESEARCH_GRADE
       ]
     }
-    i = 0
-    Observation.do_in_batches(options) {|o| puts o; i += 1}
-    
     Observation.do_in_batches(options) do |o|
       add_taxon(o.taxon)
     end
