@@ -82,6 +82,20 @@
           return false
         }
       })
+      
+      $('#taxa').not('.fluid').ajaxComplete(function() {
+        $('.taxonimage img', this).not('iconic').not('_centered').load(function() {
+          $(this).css({
+            height: $(this).parent().height(), 
+            maxWidth: 'none',
+          })
+          $(this).addClass('_centered').css({
+            left: '50%', 
+            marginLeft: '-' + ($(this).width() / 2) + 'px'
+          })
+          
+        })
+      })
     })
     
     function toggleSidebar() {

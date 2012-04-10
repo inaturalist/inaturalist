@@ -19,7 +19,6 @@ table.taxa .taxon_name {
 .taxa.grid .taxon .image,
 .taxa.grid .taxon .image a {
   text-align: center;
-  background: white url(/images/stripe-eee-3px.png);
   display:block;
 }
 .taxa.grid .taxon .image.nophoto,
@@ -33,8 +32,11 @@ table.taxa .taxon_name {
 .taxa.grid .infolink { display: none; }
 
 .taxa.grid .taxonimage { display:block; width: 100px; height:100px;}
-.taxa.grid .taxonimage a { height: 100px; position:relative;}
-.taxa.grid .taxonimage img { max-width: 100px; max-height: 100px; position:absolute; bottom:0; left: 0;}
+.taxa.grid .taxonimage a { height: 100px; position:relative; overflow:hidden;}
+.taxa.grid .taxonimage img { 
+  max-height: 100px; 
+  position:absolute; 
+  bottom:0; left: 0;}
 
 .taxa.fluid .taxonimage img {max-width:none; height: 100px; position: static;}
 .taxa.fluid .taxonimage img.iconic {height: auto;}
