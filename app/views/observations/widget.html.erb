@@ -150,8 +150,8 @@
 
       <div class="field">
         <label for="layout">Layout</label><br/>
-        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'large' %> value="large" id="layout_large"> <label for="layout_large">large</label>
-        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small">small</label>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'large' %> value="large" id="layout_large"> <label for="layout_large">list</label>
+        <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small">grid</label>
       </div>
 
       <%= submit_tag "Configure &raquo;", :class => "button" %>

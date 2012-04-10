@@ -41,7 +41,7 @@ end
   <div class="breadcrumbs">
     <div class="right meta" style="z-index:1">
       For a widget showing recent observations from <%= @place.name %>, check out the
-      <%= link_to "observations widget", observations_widget_url(:place => @place), :class => "readmore" %>
+      <%= link_to "observations widget", observations_widget_url(:place_id => @place), :class => "readmore" %>
     </div>
     <strong><%= link_to "&laquo #{@place.name}", @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->

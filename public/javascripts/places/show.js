@@ -420,6 +420,7 @@ var PlaceGuide = {
             $('.map', this).taxonMap()
             $('.side .photos a', this).has('img').click(function() {
               $(this).parents('.listed_taxon_guide').find('.tabs').tabs('select', 1)
+              $(this).parents('.dialog:first').scrollTo('.tabs a[href="'+$(this).attr('href')+'"] img')
               return false
             })
             
