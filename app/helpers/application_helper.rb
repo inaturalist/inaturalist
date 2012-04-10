@@ -297,6 +297,13 @@ module ApplicationHelper
     concat content_tag(:div, image_wrapper + content, options)
   end
   
+  # remove unecessary whitespace btwn tags
+  def compact(&block)
+    content = capture(&block)
+    content.gsub!(/\>[\n\s]+\</, '><')
+    concat content
+  end
+  
   def color_pluralize(num, singular)
     html = content_tag(:span, num, :class => "count")
     html += num == 1 ? " #{singular}" : " #{singular.pluralize}"

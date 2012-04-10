@@ -148,6 +148,9 @@ $.fn.loadWikipediaDescription = function() {
 
 var PlaceGuide = {
   IGNORE_PARAMS: ['test', 
+    'size',
+    'grid',
+    'labeled',
     'multiselect_colorsFilter', 
     'multiselect_colorsFilter[]', 
     'multiselect_conservationFilter', 
@@ -426,6 +429,7 @@ var PlaceGuide = {
             
             if ($('.desc', this).width() < $('.side', this).width()) {
               $('.listed_taxon_guide', this).addClass('compact')
+              google.maps.event.trigger($('.map', this).data('taxonMap'), 'resize')
             }
             
             $('.tabs', this).tabs({

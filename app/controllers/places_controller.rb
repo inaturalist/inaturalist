@@ -367,7 +367,7 @@ class PlacesController < ApplicationController
     
     @taxa = scope.paginate( 
       :select => "DISTINCT ON (ancestry, taxa.id) taxa.*",
-      :include => [:taxon_names, :photos],
+      :include => [:taxon_names, {:taxon_photos => :photo}],
       :order => order,
       :page => params[:page], :per_page => 50)
     @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
