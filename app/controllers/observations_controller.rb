@@ -116,9 +116,13 @@ class ObservationsController < ApplicationController
           render :json => @observations.to_json(
             :methods => [:short_description, :user_login, :iconic_taxon_name],
             :include => {
-              :iconic_taxon => {},
+              :iconic_taxon => {:only => [:id, :name, :rank, :rank_level, :ancestry]},
               :user => {:only => :login},
-              :photos => {}
+              :photos => {
+                :methods => [:license_code, :attribution],
+                :except => [:original_url, :file_processing, :file_file_size, 
+                  :file_content_type, :file_file_name, :mobile]
+              }
             }
           )
         end
@@ -1313,11 +1317,11 @@ class ObservationsController < ApplicationController
       
       # resolve taxa entered by name
       search_params[:iconic_taxa] = search_params[:iconic_taxa].map do |it|
-        it = it.last if it.is_a?(Enumerable)
+        it = it.last if it.is_a?(Array)
         if it.to_i == 0
-          Taxon.iconic_taxa.find_by_name(it)
+          Taxon::ICONIC_TAXA_BY_NAME[it]
         else
-          Taxon.iconic_taxa.find_by_id(it)
+          Taxon::ICONIC_TAXA_BY_ID[it]
         end
       end
       @iconic_taxa = search_params[:iconic_taxa]
