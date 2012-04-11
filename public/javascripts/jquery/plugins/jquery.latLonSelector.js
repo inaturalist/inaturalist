@@ -443,7 +443,7 @@
     var map = $.fn.latLonSelector._map;
     var marker = getMarker({exact: false});
     var parsedLatLon = $.fn.latLonSelector.parseLatLon(q)
-    self = this
+    var self = this
     if (parsedLatLon) {
       var point = new google.maps.LatLng(
         parsedLatLon[0],
@@ -520,7 +520,7 @@
     $.fn.latLonSelector._circle.setOptions({
       editable: true,
       visible: true,
-      fillOpacity: 0.35,
+      fillOpacity: 0.35
     })
   }
   
@@ -528,7 +528,7 @@
     if (!$.fn.latLonSelector._circle) { return }
     $.fn.latLonSelector._circle.setOptions({
       editable: false,
-      fillOpacity: 0,
+      fillOpacity: 0
     })
   }
   
