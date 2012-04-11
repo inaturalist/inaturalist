@@ -395,6 +395,15 @@ class Observation < ActiveRecord::Base
   
   named_scope :out_of_range, :conditions => {:out_of_range => true}
   named_scope :in_range, :conditions => {:out_of_range => false}
+  named_scope :license, lambda {|license|
+    if license == 'none'
+      {:conditions => "license IS NULL"}
+    elsif LICENSE_CODES.include?(license)
+      {:conditions => {:license => license}}
+    else
+      {:conditions => "license IS NOT NULL"}
+    end
+  }
   
   def self.conditions_for_date(column, date)
     year, month, day = date.to_s.split('-').map do |d|
@@ -480,6 +489,7 @@ class Observation < ActiveRecord::Base
     scope = scope.created_on(params[:created_on]) if params[:created_on]
     scope = scope.out_of_range if params[:out_of_range] == 'true'
     scope = scope.in_range if params[:out_of_range] == 'false'
+    scope = scope.license(params[:license]) unless params[:license].blank?
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

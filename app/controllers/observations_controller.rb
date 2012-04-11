@@ -1360,6 +1360,7 @@ class ObservationsController < ApplicationController
     @quality_grade = search_params[:quality_grade]
     @identifications = search_params[:identifications]
     @out_of_range = search_params[:out_of_range]
+    @license = search_params[:license]
     
     if search_params[:order_by] && ORDER_BY_FIELDS.include?(search_params[:order_by])
       @order_by = search_params[:order_by]
