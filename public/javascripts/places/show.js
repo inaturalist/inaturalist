@@ -162,7 +162,7 @@ var PlaceGuide = {
   cleanParamString: function(s) {
     var re
     for (var i = PlaceGuide.IGNORE_PARAMS.length - 1; i >= 0; i--){
-      re = new RegExp(PlaceGuide.IGNORE_PARAMS[i]+'=[^\&]*', 'g')
+      re = new RegExp(PlaceGuide.IGNORE_PARAMS[i]+'=[^\&]*\&?', 'g')
       s = s.replace(re, '')
     }
     return s

@@ -533,6 +533,7 @@ ul.leafylist li li:first-child {
   position: relative;
   padding: 0;
   border: 0 none;
+  z-index:1;
 }
 
 .toggle_menu .togglelink {
@@ -544,6 +545,7 @@ ul.leafylist li li:first-child {
   position: relative;
   z-index: 10;
   background-color: white;
+  color: #36C;
   border-color: #ccc;
   border-bottom: 1px solid white;
   background-position: 3px 50%;  
@@ -564,6 +566,7 @@ ul.leafylist li li:first-child {
   position: absolute;
   z-index: 1;
   top: 26px;
+  left: 0;
   background-color: white;
   border: 1px solid #ccc;
   padding: 0.5em;

@@ -563,7 +563,15 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-progressbar { height:2em; text-align: left; }
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
 
-.ui-icon.inlineblock { position: relative; top: -2px; display:inline-block; vertical-align:middle;}
+.ui-icon.inlineblock { 
+  position: relative; 
+  top: -2px; 
+  vertical-align:middle;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}
 
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }

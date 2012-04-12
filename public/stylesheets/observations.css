@@ -70,21 +70,17 @@
   display: block;
 }
 
-.observations.table .header a:after {
-  content: '\00A0';
-  visibility: hidden;
-  padding-right: 10px;
-}
-
-.observations.table .header.order_by a:after,
-.observations.table .header:hover a:after {
+.observations.table .header.order_by a,
+.observations.table .header:hover a {
   background: right center url(/images/toggle_arrow_up.png) no-repeat;
   visibility: visible;
+  padding-right: 16px;
 }
 
-.observations.table .header.order_by.desc a:after {
+.observations.table .header.order_by.desc a {
   background: right center url(/images/toggle_arrow_down.png) no-repeat;
   visibility: visible;
+  padding-right: 16px;
 }
 
 .observations.table .header.order_by a:after,

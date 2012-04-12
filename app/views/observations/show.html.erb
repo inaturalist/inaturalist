@@ -503,9 +503,7 @@
         </div>
         
         <div id="need_id_help" class="quiet stacked box" style="display: <%= @observation.id_please? ? 'none' : 'block' %>">
-          <span class="inter">Need ID help?</span>
-          
-          <%= link_to_remote "add to ID Please",
+          <%= link_to_remote "Add to ID Please",
             :url => @observation,
             :with => "'ignore_photos=true&observation[id_please]=true'",
             :method => :put,
@@ -515,6 +513,7 @@
               :class => "glaucous button",
               :style => "float: right; margin: 0;"
             } %>
+          <span class="inter">Need ID help?</span>
         </div>
       </div>
     <% elsif @observation.id_please? %>

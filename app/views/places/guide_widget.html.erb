@@ -30,11 +30,12 @@
       background-color: white;
     }
     #listed_taxa {
-      padding-top: 25px;
+      padding-top: 30px;
     }
     #controls form { margin-bottom: 5px;}
     #browsebutton {border: 1px solid transparent;}
     .establishmentfilter, .conservationfilter {display:none;}
+    #controls {background-color:none;}
     #controls .inlineblock {vertical-align:middle;}
     .taxon .name { 
       display: block; 
@@ -60,7 +61,7 @@
       $('#filters').after(
         $('#logo')
       )
-      $('#controls').append(
+      $('#controls').prepend(
         $('<a href="#" id="browsebutton" class="right button"><span class="ui-icon ui-icon-arrow-1-s inlineblock"></span>Browse</a>').click(function() {
           $('#sidecol').slideToggle()
           var icon = $('.ui-icon', this)
@@ -89,7 +90,7 @@
           if ($(this).width() > $(this).height()) {
             $(this).css({
               height: $(this).parent().height(), 
-              maxWidth: 'none',
+              maxWidth: 'none'
             })
             $(this).addClass('_centered').css({
               left: '50%', 
@@ -98,7 +99,7 @@
           } else {
             $(this).css({
               width: $(this).parent().width(), 
-              maxHeight: 'none',
+              maxHeight: 'none'
             })
             $(this).addClass('_centered').css({
               top: '50%', 

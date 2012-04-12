@@ -26,41 +26,37 @@
                             :link_url => identification.taxon } %>
     <% unless hide_actions -%>
       <% if logged_in? && identification.user != current_user %>
-        <span class="agree button">
-          <% if remote_actions -%>
-            <%= link_to_remote "Agree?", 
-               :url => {
-                 :controller => 'identifications',
-                 :action => 'agree',
-                 :observation_id => identification.observation_id,
-                 :taxon_id => identification.taxon_id },
-               :method => :post,
-               :loading => "$('##{id_for(identification)} .agree').text('').addClass('small pale inline loading status').removeClass('button').append('Loading...')",
-               :success => "$('##{id_for(identification)} .agree').remove()" %>
-          <%- else -%>
-            <%= link_to "Agree?", {
-                 :controller => 'identifications',
-                 :action => 'agree',
-                 :observation_id => identification.observation_id,
-                 :taxon_id => identification.taxon_id },
-               :method => :post %>
-          <% end -%>
-        </span>
+        <span class="agree button"><%- if remote_actions -%>
+          <%= link_to_remote "Agree?", 
+             :url => {
+               :controller => 'identifications',
+               :action => 'agree',
+               :observation_id => identification.observation_id,
+               :taxon_id => identification.taxon_id },
+             :method => :post,
+             :loading => "$('##{id_for(identification)} .agree').text('').addClass('small pale inline loading status').removeClass('button').append('Loading...')",
+             :success => "$('##{id_for(identification)} .agree').remove()" -%>
+        <%- else -%>
+          <%= link_to "Agree?", {
+               :controller => 'identifications',
+               :action => 'agree',
+               :observation_id => identification.observation_id,
+               :taxon_id => identification.taxon_id },
+             :method => :post -%>
+        <%- end -%></span>
       <% end %>
       <% if identification.user == current_user %>
-        <span class="button">
-          <% if remote_actions -%>
-            <%= link_to_remote "Remove", 
-               :url => identification_path(identification), 
-               :method => :delete,
-               :loading => "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" %>
-          <%- else -%>
-            <%= link_to "Remove", identification_path(identification), 
-              :method => :delete,
-              :onclick => 
-                "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" %>
-          <% end -%>
-        </span>
+        <span class="button"><%- if remote_actions -%>
+          <%= link_to_remote "Remove", 
+             :url => identification_path(identification), 
+             :method => :delete,
+             :loading => "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" -%>
+        <%- else -%>
+          <%= link_to "Remove", identification_path(identification), 
+            :method => :delete,
+            :onclick => 
+              "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" -%>
+        <%- end -%></span>
       <% end %>
     <% end -%>
     
