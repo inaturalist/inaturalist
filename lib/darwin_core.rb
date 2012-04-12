@@ -115,7 +115,7 @@ class DarwinCore
     end
 
     def associatedMedia
-      photo_urls = photos.map{|p| [p.original_url, p.native_page_url]}.flatten.compact
+      photo_urls = photos.map{|p| [p.medium_url, p.native_page_url]}.flatten.compact
       photo_urls.join(', ')
     end
 
