@@ -37,7 +37,7 @@ class ObservationPhotosController < ApplicationController
     
     unless @observation_photo.photo && @observation_photo.photo.valid?
       respond_to do |format|
-        Rails.logger.error "[ERROR #{Time.now}] Failed to creat observation photo: #{@observation_photo.photo.errors.full_messages.to_sentence}"
+        Rails.logger.error "[ERROR #{Time.now}] Failed to create observation photo, params: #{params.inspect}"
         format.json { render :json => "No photo specified", :status => :unprocessable_entity }
       end
       return
