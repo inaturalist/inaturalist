@@ -60,10 +60,10 @@
       </div>
       <div id="coordinates_<%= i %>" class="latlonfields status stacked">
         <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
-        <%= o.text_field(:latitude, :class => 'latitude text') %>
+        <%= o.text_field(:latitude, :class => 'latitude text', "data-tip" => "Latitude in decimal degrees, e.g. 38.123") %>
         
         <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
-        <%= o.text_field(:longitude, :class => 'longitude text') %>
+        <%= o.text_field(:longitude, :class => 'longitude text', "data-tip" => "Longitude in decimal degrees, e.g. -122.123") %>
 
         <span class="button">
           <%= link_to_function("edit", 
@@ -78,8 +78,8 @@
         <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
         <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
         
-        <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock", "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
-        <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock') %>
+        <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock") %>
+        <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock', "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
         <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
         <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
         <%= o.hidden_field(:positioning_device, :class => 'positioning_device', :disabled => true) %>

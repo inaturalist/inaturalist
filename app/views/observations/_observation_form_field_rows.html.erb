@@ -57,10 +57,10 @@
           <%= o.text_field(:place_guess, :class => 'text place_guess') %>
           <div id="coordinates_<%= i %>" class="latlonfields status">
             <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
-            <%= o.text_field(:latitude, :class => 'latitude text') %>
+            <%= o.text_field(:latitude, :class => 'latitude text', "data-tip" => "Latitude in decimal degrees, e.g. 38.123") %>
 
             <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
-            <%= o.text_field(:longitude, :class => 'longitude text') %>
+            <%= o.text_field(:longitude, :class => 'longitude text', "data-tip" => "Longitude in decimal degrees, e.g. -122.123") %>
 
             <span class="button">
               <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
@@ -68,8 +68,8 @@
             </span>
             
             <div>
-              <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock", "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
-              <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock') %>
+              <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock") %>
+              <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock', "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
               <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
               <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
             </div>
