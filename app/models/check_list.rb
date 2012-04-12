@@ -316,6 +316,7 @@ class CheckList < List
     CheckList.all(:joins => "JOIN places ON places.check_list_id = lists.id", 
         :conditions => ["place_id IN (?)", new_place_ids]).each do |list|
       list.add_taxon(taxon, :force_update_cache_columns => true)
+      list.add_taxon(taxon.species, :force_update_cache_columns => true) if taxon.rank_level < Taxon::SPECIES_LEVEL
     end
   end
 end

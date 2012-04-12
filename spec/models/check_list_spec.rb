@@ -299,6 +299,15 @@ describe CheckList, "refresh_with_observation" do
     @place.reload
     @place.taxon_ids.should include(child.id)
   end
+  
+  it "should add the species along with infraspecies" do
+    species = Taxon.make(:rank => Taxon::SPECIES)
+    subspecies = Taxon.make(:rank => Taxon::SUBSPECIES, :parent => species)
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => subspecies)
+    CheckList.refresh_with_observation(o)
+    @place.reload
+    @place.taxon_ids.should include(species.id)
+  end
 end
 
 describe CheckList, "sync_with_parent" do

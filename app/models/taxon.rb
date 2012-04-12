@@ -621,9 +621,9 @@ class Taxon < ActiveRecord::Base
     return true unless taxon
     ListedTaxon.update_all("taxon_ancestor_ids = '#{taxon.ancestry}'", "taxon_id = #{taxon.id}")
     old_ancestry = ancestry_was
-    old_ancestry = old_ancestry.blank? ? id : "#{old_ancestry}/#{taxon.id}"
+    old_ancestry = old_ancestry.blank? ? taxon.id : "#{old_ancestry}/#{taxon.id}"
     new_ancestry = taxon.ancestry
-    new_ancestry = new_ancestry.blank? ? id : "#{new_ancestry}/#{taxon.id}"
+    new_ancestry = new_ancestry.blank? ? taxon.id : "#{new_ancestry}/#{taxon.id}"
     ListedTaxon.update_all(
       "taxon_ancestor_ids = regexp_replace(taxon_ancestor_ids, '^#{old_ancestry}', '#{new_ancestry}')", 
       ["taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?", old_ancestry.to_s, "#{old_ancestry}/%"]
