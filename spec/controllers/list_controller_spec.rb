@@ -1,10 +1,17 @@
-# TODO:
-#  * removing all taxonomic rules should result in a list with all the taxa 
-#    the user has seen
-#  * adding a taxonomic rule should make a list with only taxa that match 
-#    that rule
-#  * deleting the only observation a user has made of a taxon should remove
-#    that taxon from the list
-#  * deleting an observation of a taoxn the user has seen more than once 
-#    should leave the taxon in the list AND set the listed_taxon's 
-#    last_observation to the next most recent observation of the taxon
+require File.dirname(__FILE__) + '/../spec_helper'
+
+describe ListsController do
+  describe :create do
+    it "allow creation of multiple types" do
+      taxon = Taxon.make
+      user = User.make
+      login_as user
+      
+      post :create, :list => {:title => "foo", :type => "LifeList"}, :taxa => [{:taxon_id => taxon.id}]
+      response.should be_redirect
+      list = user.lists.last
+      list.rules.first.operand_id.should be(taxon.id)
+      list.should be_a(LifeList)
+    end
+  end
+end

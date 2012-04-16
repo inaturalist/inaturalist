@@ -128,10 +128,9 @@ module Shared::ListsModule
   
   def create
     # Sometimes STI can be annoying...
-    [List, LifeList, CheckList, ProjectList].each do |klass|
-      next unless p = params[klass.to_s.underscore]
-      @list = klass.new(p)
-    end
+    klass = Object.const_get(params[:list].delete(:type)) rescue List
+    klass = List unless klass.ancestors.include?(List)
+    @list = klass.new(params[klass.to_s.underscore])
 
     @list.user = current_user
     
