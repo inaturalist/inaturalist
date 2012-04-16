@@ -673,8 +673,12 @@ class TaxaController < ApplicationController
   end
   
   def update_photos
-    @taxon.photos = retrieve_photos
+    photos = retrieve_photos
+    @taxon.photos = photos
     @taxon.save
+    unless photos.count == 0
+      Taxon.send_later(:update_ancestor_photos, @taxon.id, photos.first.id)
+    end
     flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
   rescue Errno::ETIMEDOUT

@@ -395,6 +395,20 @@ class Taxon < ActiveRecord::Base
     true
   end
   
+  def self.update_ancestor_photos(taxon_id, photo_id)
+    unless taxon = Taxon.find_by_id(taxon_id)
+      return
+    end
+    unless photo = Photo.find_by_id(photo_id)
+      return
+    end
+    taxon.ancestors.each do |anc|
+      unless anc.photos.count > 0
+        anc.photos << photo
+      end
+    end
+  end
+  
   # /Callbacks ##############################################################
   
   
