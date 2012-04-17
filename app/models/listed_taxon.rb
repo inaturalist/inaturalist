@@ -357,7 +357,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def removable_by?(user)
     return false unless user
-    return true if user.admin?
+    return true if list.is_a?(CheckList) && user.admin?
     return true if list.is_a?(ProjectList) && list.project.curated_by?(user)
     return true if citation_object.blank?
     citation_object == user

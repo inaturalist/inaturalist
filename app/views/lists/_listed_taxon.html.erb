@@ -15,7 +15,7 @@
 <%- rendered_taxon_name = capture do -%>
   <%= render(:partial => 'shared/taxon.html.erb', :object => listed_taxon.taxon) -%>
 <%- end -%>
-<div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unkown' %> taxon-<%= listed_taxon.taxon.id %>">
+<div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unknown' %> taxon-<%= listed_taxon.taxon.id %>">
   <div class="column image">
     <%- if photo -%>
       <%= modal_image(photo) %>
