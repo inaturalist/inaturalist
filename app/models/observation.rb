@@ -459,12 +459,11 @@ class Observation < ActiveRecord::Base
     # has (boolean) selectors
     if params[:has]
       params[:has] = params[:has].split(',') if params[:has].is_a? String
-      params[:has].each do |prop|
+      params[:has].select{|s| %w(geo id_please photos).include?(s)}.each do |prop|
         scope = case prop
           when 'geo' then scope.has_geo
           when 'id_please' then scope.has_id_please
           when 'photos' then scope.has_photos
-          else scope.conditions "? IS NOT NULL OR ? != ''", prop, prop # hmmm... this seems less than ideal
         end
       end
     end
