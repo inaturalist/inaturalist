@@ -170,7 +170,7 @@
   </fieldset>
   
   <% if current_user.is_admin? && !@project.new_record? -%>
-    <fieldset id="project_assets">
+    <fieldset id="project_assets" class="admin">
       <legend>Project Assets</legend>
       
       <ul>
@@ -189,7 +189,7 @@
       <%= link_to "Add asset", new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
     </fieldset>
     
-    <fieldset id="custom_project_fields">
+    <fieldset id="custom_project_fields" class="admin">
       <legend>Custom Project Fields</legend>
       
       <% if @project.custom_project -%>
@@ -197,6 +197,14 @@
       <% else %>
         <%= link_to "Add custom project fields", new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
       <% end -%>
+    </fieldset>
+    
+    <fieldset class="admin">
+      <legend>Extra Properties</legend>
+      
+      <%= f.check_box :featured_at, 
+        :label => "Feature this project?", 
+        :label_after => true %>
     </fieldset>
   <% end -%>
 

@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
+  before_filter :filter_params, :only => [:update, :create]
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -24,6 +25,7 @@ class ProjectsController < ApplicationController
       :order => "id desc", :limit => 9, :group => "project_id")
     @projects = Project.all(:conditions => ["id IN (?)", project_observations.map(&:project_id)])
     @created = Project.all(:order => "id desc", :limit => 9)
+    @featured = Project.featured.all
     if logged_in?
       @started = current_user.projects.all(:order => "id desc", :limit => 9)
       @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
@@ -131,7 +133,7 @@ class ProjectsController < ApplicationController
         render :json => @project_users.to_json(:include => {
           :user => {:only => :login},
           :project => {
-            :methods => [:icon_url, :project_observation_rule_terms], 
+            :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc], 
             :include => :project_list
           }
         })
@@ -579,5 +581,16 @@ class ProjectsController < ApplicationController
         end
       end
     end
+  end
+  
+  def filter_params
+    params[:project].delete(:featured_at) unless current_user.is_admin?
+    
+    if current_user.is_admin?
+      params[:project][:featured_at] = params[:project][:featured_at] == "1" ? Time.now : nil
+    else
+      params[:project].delete(:featured_at)
+    end
+    true
   end
 end

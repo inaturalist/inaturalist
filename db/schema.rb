@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120214200727) do
+ActiveRecord::Schema.define(:version => 20120416221933) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -358,12 +358,12 @@ ActiveRecord::Schema.define(:version => 20120214200727) do
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
     t.string   "quality_grade",                                                                   :default => "casual"
+    t.point    "geom",                             :limit => nil
     t.string   "user_agent"
     t.string   "positioning_method"
     t.string   "positioning_device"
     t.boolean  "out_of_range"
     t.string   "license"
-    t.point    "geom",                             :limit => nil
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -557,6 +557,7 @@ ActiveRecord::Schema.define(:version => 20120214200727) do
     t.string   "project_type"
     t.string   "cached_slug"
     t.integer  "observed_taxa_count", :default => 0
+    t.datetime "featured_at"
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
@@ -766,8 +767,8 @@ ActiveRecord::Schema.define(:version => 20120214200727) do
     t.integer       "range_file_size"
     t.text          "description"
     t.integer       "source_id"
-    t.integer       "source_identifier"
     t.multi_polygon "geom",               :limit => nil
+    t.integer       "source_identifier"
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true

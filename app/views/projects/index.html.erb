@@ -55,6 +55,17 @@
   <%= separator %>
 <% end -%>
 
+<% unless @featured.blank? -%>
+  <div id="recent" class="projects clear">
+    <h3>Featured</h3>
+    <% @featured.each_with_index do |project, i| %>
+      <%= render :partial => 'project', :object => project, :locals => {:last => i % 3 == 2} %>
+      <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
+    <% end %>
+  </div>
+  <%= separator %>
+<% end -%>
+
 <div id="recent" class="projects clear">
   <h3>Recently Active</h3>
   <% if @projects.blank? -%>

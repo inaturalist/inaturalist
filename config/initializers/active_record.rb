@@ -16,4 +16,18 @@ class ActiveRecord::Base
       end
     end
   end
+  
+  def created_at_utc
+    created_at.try(:utc) if respond_to?(:created_at)
+  end
+  
+  def updated_at_utc
+    updated_at.try(:utc) if respond_to?(:updated_at)
+  end
+  
+  def to_json(options = {})
+    options[:methods] ||= []
+    options[:methods] += [:created_at_utc, :updated_at_utc]
+    super(options)
+  end
 end

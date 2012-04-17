@@ -30,6 +30,8 @@ class Project < ActiveRecord::Base
   validates_length_of :title, :within => 1..85
   validates_presence_of :user_id
   
+  named_scope :featured, {:conditions => "featured_at IS NOT NULL"}
+  
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
@@ -80,6 +82,10 @@ class Project < ActiveRecord::Base
   
   def project_observation_rule_terms
     project_observation_rules.map{|por| por.terms}.join('|')
+  end
+  
+  def featured_at_utc
+    featured_at.try(:utc)
   end
   
   def self.update_curator_idents_on_make_curator(project_id, project_user_id)
