@@ -1073,7 +1073,7 @@ class Taxon < ActiveRecord::Base
         return
       end
     end
-    sorted = Taxon.sort_by_ancestry(taxa)
+    sorted = Taxon.sort_by_ancestry(taxa.compact)
     return if sorted.blank?
     return sorted.first if sorted.size == 1
     return unless sorted.first.ancestor_of?(sorted.last)

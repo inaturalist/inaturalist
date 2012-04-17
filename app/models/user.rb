@@ -108,7 +108,10 @@ class User < ActiveRecord::Base
     :message => "must be JPG, PNG, or GIF"
 
   validates_presence_of     :login
-  validates_length_of       :login,    :within => 3..40
+  
+  MIN_LOGIN_SIZE = 3
+  MAX_LOGIN_SIZE = 40
+  validates_length_of       :login,    :within => MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
@@ -362,12 +365,18 @@ class User < ActiveRecord::Base
       ('a'..'z').member?(l) || ('0'..'9').member?(l)
     end.join('')
     suggested_login = requested_login
+    
+    if suggested_login.size > MAX_LOGIN_SIZE
+      suggested_login = suggested_login[0..MAX_LOGIN_SIZE/2]
+    end
+    
     appendix = 1
-    while User.find_by_login(suggested_login)
+    while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login(suggested_login)
       appendix += 1 
       suggested_login = "#{requested_login}#{appendix}"
-    end  
-    suggested_login
+    end
+    
+    (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
   end  
   
   def make_activation_code

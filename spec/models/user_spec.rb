@@ -386,3 +386,17 @@ describe User, "merge" do
     jobs.select{|j| j.handler =~ /LifeList.*\:reload_from_observations/m}.should_not be_blank
   end
 end
+
+describe User, "suggest_login" do
+  it "should suggest logins that are too short" do
+    suggestion = User.suggest_login("AJ")
+    suggestion.should_not be_blank
+    suggestion.size.should be >= User::MIN_LOGIN_SIZE
+  end
+  
+  it "should not suggests logins that are too big" do
+    suggestion = User.suggest_login("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor")
+    suggestion.should_not be_blank
+    suggestion.size.should be <= User::MAX_LOGIN_SIZE
+  end
+end
