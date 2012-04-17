@@ -1,6 +1,14 @@
 <%- content_for(:title) do -%>
   Confirm your info
 <%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('.time_zone_select').selectLocalTimeZone();
+    })
+  </script>
+<%- end -%>
 <div class="column prepend-4 span-8">
   <img src="/images/bird.png" width="300" height="239" />
 </div>
@@ -20,13 +28,4 @@
       :description => "Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like." %>
     <%= f.submit "Save &amp; continue...", :class => "default button" %>
   <% end %>
-  <script type="text/javascript" charset="utf-8">
-    var tzid = (new Date()).toString().match(/[+-]\d{2}/)[0]
-    $('#user_time_zone option').each(function() {
-      if (this.innerHTML.match(tzid)) {
-        $('#user_time_zone').val($(this).val())
-        return false;
-      }
-    })
-  </script>
 </div>
