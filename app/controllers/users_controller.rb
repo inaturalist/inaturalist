@@ -297,7 +297,7 @@ class UsersController < ApplicationController
     
     return add_friend unless params[:friend_id].blank?
     return remove_friend unless params[:remove_friend_id].blank?
-    return update_password unless params[:password].blank?
+    return update_password unless (params[:password].blank? && params[:commit] !~ /password/i)
     
     params[:user].each do |k,v|
       if k =~ /^prefer/
@@ -378,18 +378,23 @@ protected
   end
   
   def update_password
-    if current_user.authenticated?(params[:current_password])
-      current_user.password = params[:password]
-      current_user.password_confirmation = params[:password_confirmation]
-      begin
-        current_user.save!
-        flash[:notice] = 'Successfully changed your password.'
-      rescue ActiveRecord::RecordInvalid => e
-        flash[:error] = "Couldn't change your password: #{e}"
-        return redirect_to(edit_person_path(@user))
-      end
-    else
+    if params[:password].blank? || params[:password_confirmation].blank?
+      flash[:error] = "You must specify and confirm a new password."
+      return redirect_to(edit_person_path(@user))
+    end
+    
+    unless current_user.authenticated?(params[:current_password])
       flash[:error] = "Couldn't change your password: is that really your current password?"
+      return redirect_to(edit_person_path(@user))
+    end
+    
+    current_user.password = params[:password]
+    current_user.password_confirmation = params[:password_confirmation]
+    begin
+      current_user.save!
+      flash[:notice] = 'Successfully changed your password.'
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:error] = "Couldn't change your password: #{e}"
       return redirect_to(edit_person_path(@user))
     end
     redirect_to(person_by_login_path(:login => current_user.login))
