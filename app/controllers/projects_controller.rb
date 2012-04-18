@@ -20,15 +20,26 @@ class ProjectsController < ApplicationController
   }
   
   def index
-    project_observations = ProjectObservation.all(
-      :select => "MAX(id) AS id, project_id",
-      :order => "id desc", :limit => 9, :group => "project_id")
-    @projects = Project.all(:conditions => ["id IN (?)", project_observations.map(&:project_id)])
-    @created = Project.all(:order => "id desc", :limit => 9)
-    @featured = Project.featured.all
-    if logged_in?
-      @started = current_user.projects.all(:order => "id desc", :limit => 9)
-      @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
+    respond_to do |format|
+      format.html do
+        project_observations = ProjectObservation.all(
+          :select => "MAX(id) AS id, project_id",
+          :order => "id desc", :limit => 9, :group => "project_id")
+        @projects = Project.all(:conditions => ["id IN (?)", project_observations.map(&:project_id)])
+        @created = Project.all(:order => "id desc", :limit => 9)
+        @featured = Project.featured.all
+        if logged_in?
+          @started = current_user.projects.all(:order => "id desc", :limit => 9)
+          @joined = current_user.project_users.all(:include => :project, :order => "id desc", :limit => 9).map(&:project)
+        end
+      end
+      format.json do
+        scope = Project.scoped({})
+        scope = scope.featured if params[:featured]
+        scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+        @projects = scope.paginate(:page => params[:page], :per_page => 100)
+        render :json => @projects.to_json(Project.default_json_options.update(:include => :project_list))
+      end
     end
   end
   
@@ -132,10 +143,7 @@ class ProjectsController < ApplicationController
       format.json do
         render :json => @project_users.to_json(:include => {
           :user => {:only => :login},
-          :project => {
-            :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc], 
-            :include => :project_list
-          }
+          :project => Project.default_json_options.update(:include => :project_list)
         })
       end
     end

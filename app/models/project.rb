@@ -31,6 +31,18 @@ class Project < ActiveRecord::Base
   validates_presence_of :user_id
   
   named_scope :featured, {:conditions => "featured_at IS NOT NULL"}
+  named_scope :near_point, lambda {|latitude, longitude|
+    latitude = latitude.to_f
+    longitude = longitude.to_f
+    {
+      :joins => [
+        "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
+        "INNER JOIN places ON places.id = rules.operand_id"
+      ],
+      :conditions => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude})) < 5",
+      :order => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))"
+    }
+  }
   
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
@@ -86,6 +98,12 @@ class Project < ActiveRecord::Base
   
   def featured_at_utc
     featured_at.try(:utc)
+  end
+  
+  def self.default_json_options
+    {
+      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place]
+    }
   end
   
   def self.update_curator_idents_on_make_curator(project_id, project_user_id)
