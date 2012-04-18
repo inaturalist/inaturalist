@@ -131,7 +131,7 @@ class ProviderAuthorizationsController < ApplicationController
         "on #{@provider_authorization.provider_name}. Thanks! Please try " +
         "what you were doing again.  We promise to be careful!"
     end
-    @landing_path = home_path
+    @landing_path = session[:return_to] || home_path
   end
 
 end
