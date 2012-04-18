@@ -61,6 +61,7 @@ class Identification < ActiveRecord::Base
   def update_observation_after_destroy
     return true unless self.observation
     return true unless self.observation.user_id == self.user_id
+    return true if @skip_observation
     
     # update the species_guess
     species_guess = observation.species_guess
@@ -86,6 +87,7 @@ class Identification < ActiveRecord::Base
   #
   def update_obs_stats
     return true unless observation
+    return true if @skip_observation
     observation.update_stats
     true
   end

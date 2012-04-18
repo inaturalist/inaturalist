@@ -674,27 +674,18 @@ class Observation < ActiveRecord::Base
   def update_identifications_after_save
     return true if @skip_identifications
     return true unless taxon_id_changed?
-    owners_ident = identifications.first(:conditions => {:user_id => self.user_id})
-    owners_ident.skip_observation = true if owners_ident
+    if owners_ident = identifications.first(:conditions => {:user_id => self.user_id})
+      owners_ident.skip_observation = true
+      owners_ident.destroy
+    end
     
     # If there's a taxon we need to make ure the owner's ident agrees
     if taxon
       # If the owner doesn't have an identification for this obs, make one
-      unless owners_ident
-        owners_ident = identifications.build(:user => user, :taxon => taxon)
-        owners_ident.skip_observation = true
-        owners_ident.skip_update = true
-        owners_ident.save
-      end
-      
-      # If the obs taxon and the owner's ident don't agree, make them
-      if owners_ident.taxon_id != taxon_id
-        owners_ident.update_attributes(:taxon_id => taxon_id)
-      end
-    
-    # If there's no taxon, we should destroy the owner's ident
-    elsif owners_ident
-      owners_ident.destroy
+      owners_ident = identifications.build(:user => user, :taxon => taxon)
+      owners_ident.skip_observation = true
+      owners_ident.skip_update = true
+      owners_ident.save
     end
     
     true

@@ -110,7 +110,7 @@ describe List, "refresh_with_observation" do
     List.refresh_with_observation(o)
     @list.taxon_ids.should include(t1.id)
     
-    o.update_attribute(:taxon_id, t2.id)
+    o.update_attributes(:taxon_id => t2.id)
     @list.user.observations.first(:conditions => {:taxon_id => t1.id}).should be_blank
     @list.user.observations.first(:conditions => {:taxon_id => t2.id}).should_not be_blank
     List.refresh_with_observation(o.id, :taxon_id_was => t1.id)

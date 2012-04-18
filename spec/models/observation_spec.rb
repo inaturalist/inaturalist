@@ -253,21 +253,16 @@ describe Observation, "updating" do
     end.empty?.should be(true)
   end
   
-  it "should update the owner's identification if the taxon has changed" do
-    owners_ident = @observation.identifications.select do |ident|
-      ident.user_id == @observation.user_id
-    end.first
-    owners_ident.taxon.name.should == @observation.taxon.name
-    
-    psre = Taxon.make
-    @observation.taxon.should_not be(psre)
-    @observation.taxon = psre
-    @observation.save
-    @observation.reload
-    owners_ident = @observation.identifications.select do |ident|
-      ident.user_id == @observation.user_id
-    end.first
-    owners_ident.taxon.should == psre
+  it "should replace the owner's identification if the taxon has changed" do
+    t1 = Taxon.make
+    t2 = Taxon.make
+    o = Observation.make(:taxon => t1)
+    old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
+    o.update_attributes(:taxon => t2)
+    o.reload
+    new_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
+    new_owners_ident.should_not be_blank
+    new_owners_ident.id.should_not be(old_owners_ident.id)
   end
 
   # # Handled by DJ
