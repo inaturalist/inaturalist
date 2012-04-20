@@ -56,7 +56,7 @@
       Lists
     </h4>
     <ol>
-      <li><a href="#lists1">What is a life list?</a></li>
+      <li><a href="#lists1">What are lists?</a></li>
       <li><a href="#lists2">I observed a species, why isn't it showing up in my life list?</a></li>
     </ol>
   </div>
@@ -244,10 +244,10 @@
         controls how the spatial coordinates (latitude and longitude) are 
         displayed. Here are the options:
       </p>
-      <dl class="readable">
+      <dl>
         <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
           <dt><%= privacy || "open" %></dt>
-          <dd><%= description %></dd>
+          <dd><p><%= description %></p></dd>
         <% end %>
       </dl>
       <p>
@@ -298,8 +298,63 @@
   </h4>
   <ol>
     <li>
-      <h5><a name="lists1">What is a life list?</a></h5>
-      <p>A life list is a list of every species that you have seen. Every iNaturalist user has a life list and these lists are automatically populated from the observations added to iNaturalist.</p>
+      <h5><a name="lists1">What are lists?</a></h5>
+      
+      <p>
+        Lists are simply lists of taxa (not observations). For example, you
+        could make a list called "My Favorite Turtles" and add all your favorite
+        turtles.  There are a number of different kinds of lists, and they behave in different ways.
+      </p>
+      
+      <dl>
+        <dt>List</dt>
+        <dd><p>Just a simple list of taxa with no special behavior.</p></dd>
+        
+        <dt>Life List</dt>
+        <dd>
+          <p>
+            Automatically updates based on your observations. Everyone on iNat
+            has a default life list that contains every species that person has
+            observed. If you delete an observation or change your ID, the
+            species will get removed. You can also manually add taxa to your
+            life list just like you can with an ordinary list. The species you
+            add manually won't get removed if you observe them and then delete
+            the observation.
+          </p>
+          <p>
+            You can also make additional life lists for specific groups of
+            organisms, like a life list of birds, or a life list of milkweeds.
+          </p>
+        </dd>
+        
+        <dt>Project List</dt>
+        <dd>
+          <p>
+            A project list belongs to a project and lists all the taxa
+            observed by members of that project. Project lists can also be
+            populated manually by the admin of that project, and can be used
+            to restrict project contributions to taxa that are on the list.
+          </p>
+        </dd>
+        
+        <dt>Check List</dt>
+        <dd>
+          <p>
+            A check list is a list of taxa that occur in a place. Every place
+            has a default check list, and whenever an observation is made
+            within the place's boundaries <em>and</em> it has achieved
+            research-grade status, the species observed will get automatically
+            added to the place's check list.
+          </p>
+          
+          <p>
+            iNat users can also add additional check lists to places, but
+            these check lists are not automatically updated. They mainly
+            provide a way for people to bring in outside sources of data or
+            just list things based on their own experience.
+          </p>
+        </dd>
+      </dl>
     </li>
     <li>
       <h5><a name="lists2">I observed a species, why isn't it showing up in my life list?</a></h5>
