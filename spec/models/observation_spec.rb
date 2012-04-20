@@ -395,6 +395,13 @@ describe Observation, "updating" do
       o.quality_grade.should == Observation::RESEARCH_GRADE
     end
     
+    it "should become casual when taxon changes" do
+      o = make_research_grade_observation
+      new_taxon = Taxon.make
+      o.update_attributes(:taxon => new_taxon)
+      o.quality_grade.should == Observation::CASUAL_GRADE
+    end
+    
     it "should become casual when it isn't research" do
       o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
       i = Identification.make(:observation => o, :taxon => o.taxon)

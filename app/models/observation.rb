@@ -177,12 +177,12 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
-              :set_license
+              :set_license,
+              :update_identifications
   
   before_update :set_quality_grade
                  
   after_save :refresh_lists,
-             :update_identifications_after_save,
              :refresh_check_lists,
              :update_out_of_range_later,
              :update_default_license,
@@ -671,7 +671,7 @@ class Observation < ActiveRecord::Base
   # Adds, updates, or destroys the identification corresponding to the taxon
   # the user selected.
   #
-  def update_identifications_after_save
+  def update_identifications
     return true if @skip_identifications
     return true unless taxon_id_changed?
     if owners_ident = identifications.first(:conditions => {:user_id => self.user_id})
@@ -682,11 +682,12 @@ class Observation < ActiveRecord::Base
     # If there's a taxon we need to make ure the owner's ident agrees
     if taxon
       # If the owner doesn't have an identification for this obs, make one
-      owners_ident = identifications.build(:user => user, :taxon => taxon)
+      owners_ident = self.identifications.build(:user => user, :taxon => taxon, :observation => self)
       owners_ident.skip_observation = true
       owners_ident.skip_update = true
-      owners_ident.save
     end
+    
+    update_stats(:skip_save => true)
     
     true
   end
@@ -1294,14 +1295,14 @@ class Observation < ActiveRecord::Base
     user.login
   end
   
-  def update_stats
+  def update_stats(options = {})
+    idents = [self.identifications.to_a, options[:include]].flatten.compact.uniq
     if taxon_id.blank?
       num_agreements    = 0
       num_disagreements = 0
     else
-      idents = identifications.all(:include => [:observation, :taxon])
-      num_agreements    = idents.select(&:is_agreement?).size
-      num_disagreements = idents.select(&:is_disagreement?).size
+      num_agreements    = idents.select{|ident| ident.is_agreement?(:observation => self)}.size
+      num_disagreements = idents.select{|ident| ident.is_disagreement?(:observation => self)}.size
     end
     
     # Kinda lame, but Observation#get_quality_grade relies on these numbers
@@ -1310,11 +1311,13 @@ class Observation < ActiveRecord::Base
     new_quality_grade = get_quality_grade
     self.quality_grade = new_quality_grade
     
-    Observation.update_all(
-      ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
-        num_agreements, num_disagreements, new_quality_grade], 
-      "id = #{id}")
-    refresh_check_lists
+    unless options[:skip_save]
+      Observation.update_all(
+        ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
+          num_agreements, num_disagreements, new_quality_grade], 
+        "id = #{id}")
+      refresh_check_lists
+    end
   end
   
   def random_neighbor_lat_lon(lat, lon, max_distance, radius = PLANETARY_RADIUS)

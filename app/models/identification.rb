@@ -40,6 +40,10 @@ class Identification < ActiveRecord::Base
     {:conditions => ["identifications.user_id = ?", user]}
   }
   
+  def to_s
+    "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"
+  end
+  
   # Callbacks ###############################################################
   
   # Update the observation if you're adding an ID to your own obs
@@ -88,7 +92,7 @@ class Identification < ActiveRecord::Base
   def update_obs_stats
     return true unless observation
     return true if @skip_observation
-    observation.update_stats
+    observation.update_stats(:include => self)
     true
   end
   
@@ -145,15 +149,19 @@ class Identification < ActiveRecord::Base
   # the observer's identification.  If this identification has the same taxon
   # or a child taxon of the observer's idnetification, then they agree.
   #
-  def is_agreement?
-    return false if observation.taxon_id.blank?
-    return false if observation.user_id == user_id
-    return true if taxon_id == observation.taxon_id
-    taxon.in_taxon? observation.taxon_id
+  def is_agreement?(options = {})
+    return false if frozen?
+    o = options[:observation] || observation
+    return false if o.taxon_id.blank?
+    return false if o.user_id == user_id
+    return true if taxon_id == o.taxon_id
+    taxon.in_taxon? o.taxon_id
   end
   
-  def is_disagreement?
-    return false if observation.user_id == user_id
+  def is_disagreement?(options = {})
+    return false if frozen?
+    o = options[:observation] || observation
+    return false if o.user_id == user_id
     !is_agreement?
   end
   

@@ -172,8 +172,7 @@ describe Identification, "deletion" do
     @observation.taxon_id.should be(nil)
   end
   
-  it "should decrement the observation's num_identification_agreements if " +
-     "this was an agreement" do
+  it "should decrement the observation's num_identification_agreements if this was an agreement" do
     @observation.reload
     @observation.num_identification_agreements.should == 1
     @identification.destroy
@@ -183,7 +182,6 @@ describe Identification, "deletion" do
   
   it "should decrement the observations num_identification_disagreements if this was a disagreement" do
     ident = Identification.make(:observation => @observation)
-    puts "ident was invalid: #{ident.errors.full_messages.join(', ')}" unless ident.valid?
     @observation.reload
     @observation.num_identification_disagreements.should >= 1
     num_identification_disagreements = @observation.num_identification_disagreements
