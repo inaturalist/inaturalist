@@ -656,6 +656,17 @@ ActiveRecord::Schema.define(:version => 20120425042326) do
 
   add_index "states_simplified_1", ["geom"], :name => "index_states_simplified_1_on_geom", :spatial => true
 
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["resource_type", "resource_id"], :name => "index_subscriptions_on_resource_type_and_resource_id"
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -799,6 +810,21 @@ ActiveRecord::Schema.define(:version => 20120425042326) do
     t.integer  "updater_id"
     t.integer  "rank_level"
   end
+
+  create_table "updates", :force => true do |t|
+    t.integer  "subscriber_id"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.string   "notifier_type"
+    t.integer  "notifier_id"
+    t.string   "notification"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "updates", ["notifier_type", "notifier_id"], :name => "index_updates_on_notifier_type_and_notifier_id"
+  add_index "updates", ["resource_type", "resource_id"], :name => "index_updates_on_resource_type_and_resource_id"
+  add_index "updates", ["subscriber_id"], :name => "index_updates_on_subscriber_id"
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

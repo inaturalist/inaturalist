@@ -1,0 +1,151 @@
+<% content_for(:title) do -%>
+  Your Home
+<% end -%>
+<% content_for(:extracss) do -%>
+  <%= stylesheet_link_tag 'observations', 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
+  <style type="text/css" media="screen">
+    .update {position:relative; margin-bottom: 20px;}
+    .updateresource {width: 48px; position: absolute; text-align:center;}
+    .updateresource img {max-width: 48px;}
+    .updateheader {padding-top: 5px;}
+    .updatebody {margin-left: 56px;}
+    .updateimage { width: 100px; float:left; margin-right: 10px;}
+    .updateimage img { max-width: 100px; }
+    .updatewithimage .updatecontent {float: left; width: 420px;}
+    .updatewithimage .updatecontent .photos.attribute {display:none;}
+    
+    .item_content {max-width: 475px;}
+    .item_content .identification {
+      padding: 5px;
+      background-color: #EEE;
+      margin-bottom: 5px;
+    }
+    
+    .activity.update:before {
+      content: ' ';
+      display:block;
+      position:absolute;
+      left:-21px;
+      top: 5px;
+      width:16px;
+      height: 16px;
+      background-position: -128px -96px;
+      background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);
+      z-index:1;
+    }
+    
+    .inat-widget td {vertical-align: top; padding: 5px;}
+    .inat-label { color: #888; }
+    .inat-meta { font-size: smaller; line-height: 1.2;}
+    .inat-observation-body, .inat-user-body { padding-left: 10px; }
+    .inat-observation-image {text-align: center;}
+    .inat-observation-image, .inat-user-image { width: 48px;}
+    .inat-observation-image img, .inat-user-image img { max-width: 48px; }
+    .inat-observation-image img { vertical-align: middle; }
+    .inat-widget-small .inat-observation-image { margin: 0 5px 5px 0; }
+    .inat-widget-small { margin-bottom: 10px; }
+  </style>
+<% end -%>
+
+<%- content_for(:extrajs) do -%>
+  <%= javascript_include_tag 'jquery/plugins/jqModal', 'modal_image' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#modal_image_box').jqmAddTrigger('a.modal_image_link');
+    });
+  </script>
+<%- end -%>
+
+<% if @announcement -%>
+  <div class="column span-24">
+    <%= @announcement.body %>
+  </div>
+<% end -%>
+
+<div id="pageheader">
+  <h2>Welcome, <%= current_user.login %>!</h2>
+  <%= render :partial => 'users/subnav', :locals => { :user => current_user } %>
+</div>
+
+<div id="updates" class="column span-15 append-1">
+  <h3>Recent updates by people you're following</h3>
+  
+  <% if @updates.blank? -%>
+    <% if params[:page].blank? -%>
+      <p>
+        <% if current_user.friendships.count == 0 -%>
+          Your dashboard helps you keep track of what people are doing on iNat.
+          To follow someone's updates, click the <strong>"Follow [name]"</strong>
+          link in the header when viewing their observations or profile.
+          <%= link_to "Find some people to follow", people_path, :class => "readmore" %>
+        <% else %>
+          None of the people you follow have made any updates yet!
+        <% end -%>
+      </p>
+      
+      <p>Here are some things you can do in the meantime:</p>
+      <ul class="readable leafylist">
+        <% unless @user.flickr_identity %>
+          <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
+        <% end %>
+        <li><%= link_to "Browse your observations", observations_by_login_path(@user.login) %></li>
+        <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
+        <li><%= link_to "Explore everyone's observations", observations_path %></li>
+        <li><%= link_to "Check out your Life List", lists_by_login_path(@user.login) %></li>
+      </ul>
+    <% else %>
+      <p class="description">
+        No more updates!
+      </p>
+    <% end -%>
+  
+  <% else %>
+    <% for key, updates in @grouped_updates %>
+      <%-
+        resource_type, resource_id, notification = key
+        resource = updates.last.resource
+        notifier = updates.last.notifier
+      -%>
+      <div class="update clear stacked <%= 'activity' if updates.first.notification == 'activity' %>">
+        <div class="updateresource">
+          <%= update_image_for(updates.first) %>
+        </div>
+        <div class="updatebody">
+          <div class="updateheader meta stacked">
+            <%= update_tagline_for(updates.first, :count => updates.size) %>
+          </div>
+          <%= 
+            begin
+              render :partial => "#{resource.class.to_s.underscore.pluralize}/update_#{notification}", 
+                :object => resource, :locals => {:updates => updates}
+            rescue ActionView::MissingTemplate, Errno::ENOENT
+              "#{resource_type} #{notification}"
+            end
+          -%>
+        </div>
+      </div>
+    <% end %>
+    <%= will_paginate @updates %>
+  <% end %>
+</div>
+
+<div id="rightcol" class="last column span-8">
+  
+  <div class="stacked">
+    <h4>Recent observations by everyone</h4>
+    <div class="inat-widget">
+      <script type="text/javascript" charset="utf-8" src="http://localhost:3000/observations.widget?layout=large&limit=10&order=desc&order_by=created_at"></script>
+    </div>
+    <%= link_to "View more recent observations", observations_path, :class => "readmore" %>
+    
+    <%= separator %>
+  </div>
+  
+  <h3>Extras</h3>
+  
+  <h4><%= link_to "Blog Widget", :controller => "observations", :action => "widget" %></h4>
+  <p class="description">
+    Show off your recent observations on your own blog or website!
+    <%= link_to "Get started &raquo;", :controller => "observations", :action => "widget" %>
+  </p>
+</div>

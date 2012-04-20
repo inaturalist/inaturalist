@@ -8,6 +8,7 @@
 .observation .description.attribute{color:#333;}
 .observation div.description p{font-style:italic;}
 .observation .description.attribute img,
+.observation .details.attribute {display:none;}
 .observation .details.attribute img{max-width:400px;height:auto;}
 .observation .actions ul{display:inline;list-style:none;margin:0;padding:0;}
 .observation .actions ul li{display:inline;white-space:nowrap;}
@@ -125,6 +126,7 @@
 .observations.table .observation .actions ul.counts li:after {
   content: '';
 }
+.observations.table .observation .details { display:none; }
 
 /* Mini */
 
@@ -235,6 +237,67 @@
 
 .observations.mini.compact .actions,
 .observations.mini.infowindow .actions { margin-top: 5px;}
+
+/* Grid */
+.observations.grid .observation {
+  position:relative;
+  z-index:0;
+  text-align:center;
+  width: 75px;
+  height: 75px;
+  vertical-align:top;
+  background-color: #eee;
+  margin-bottom:5px;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}
+.observations.grid .observed_on,
+.observations.grid .created_at,
+.observations.grid .place,
+.observations.grid .user,
+.observations.grid .actions,
+.observations.grid .details,
+.observations.grid .curator_ident {
+  display:none;
+}
+.observations.grid .icon {
+  position:absolute;
+  top: 20px;
+  width:75px;
+  text-align:center;
+}
+.observations.grid .species_guess,
+.observations.grid .readable,
+.observations.grid p {
+  font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+  font-size: 8pt;
+  line-height:1.2;
+}
+.observations.grid .species_guess a {
+  z-index:0;
+  width:71px;
+  padding: 2px;
+  color: white;
+  position:absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0.4;
+  background-color:black;
+}
+.observations.grid .observation:hover .species_guess a {opacity: 0.9;}
+.observations.grid .species_guess .othernames {display:none;}
+.observations.grid .photos {
+  display:block;
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 75px;
+  height: 75px;
+}
+.observations.grid .photos img {z-index: 1;}
+.observations.grid .photos .nophoto {display:none;}
 
 /* Infowindow */
 .observations.infowindow {
@@ -556,9 +619,7 @@
 #detailscol .span-14{width:540px;}
 #detailscol textarea{width:520px;}
 .observation .error ul{margin-bottom:0;}
-
-.observation .curator_ident {
-  
-}
-
 .other_photos {float: left;}
+
+
+

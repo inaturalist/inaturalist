@@ -527,7 +527,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render :json => @projects.to_json (:methods => [:icon_url], :include => :project_list)
+        render :json => @projects.to_json(:methods => [:icon_url], :include => :project_list)
       end
     end
   end

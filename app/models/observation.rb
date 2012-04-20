@@ -1,6 +1,8 @@
 class Observation < ActiveRecord::Base
   acts_as_activity_streamable :batch_window => 30.minutes, 
     :batch_partial => "observations/activity_stream_batch"
+  has_subscribers
+  notifies_subscribers_of :user, :notification => "created_observations"
   acts_as_taggable
   acts_as_flaggable
   

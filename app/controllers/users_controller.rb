@@ -199,6 +199,12 @@ class UsersController < ApplicationController
   def dashboard
     @announcement = Announcement.last(:conditions => [
       "placement = 'users/dashboard' AND ? BETWEEN \"start\" AND \"end\"", Time.now.utc])
+    
+    if params[:test]
+      dashboard2
+      return
+    end
+    
     @user = current_user
     @recently_commented = Observation.all(
       :include => [:comments, :user, :photos],
@@ -273,6 +279,25 @@ class UsersController < ApplicationController
       end
       format.mobile
     end
+  end
+  
+  def dashboard2
+    @updates = current_user.updates.paginate(:page => params[:page], :per_page => 50, :order => "id DESC")
+    @grouped_updates = []
+    @updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, updates|
+      resource_type, resource_id, notification = key
+      updates = updates.sort_by{|u| u.id * -1}
+      if notification == "created_observations" && updates.size > 18
+        updates.in_groups_of(18) do |bunch|
+          @grouped_updates << [key, bunch.compact]
+        end
+      else
+        @grouped_updates << [key, updates]
+      end
+    end
+    @grouped_updates = @grouped_updates.sort_by {|key, updates| updates.last.id * -1}
+    
+    render :dashboard2
   end
   
   def edit

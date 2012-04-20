@@ -169,6 +169,7 @@
 .Aves,            .stat.Aves a            { color: #1E90FF;  }
 .Mammalia,        .stat.Mammalia a        { color: #1E90FF;  }
 .Actinopterygii,  .stat.Actinopterygii a  { color: #1E90FF;  }
+.Chromista,       .stat.Chromista a  { color: #993300;  }
 
 .Protozoa:hover  { color: #691776;  }
 .Plantae:hover   { color: #73AC13;  }
@@ -182,6 +183,7 @@
 .Aves:hover      { color: #1E90FF;  }
 .Mammalia:hover  { color: #1E90FF;  }
 .Actinopterygii:hover  { color: #1E90FF;  }
+.Chromista:hover  { color: #993300;  }
 
 .listed_taxon.Unknown   .column.image { background-image: url('/images/iconic_taxa/unknown-32px.png'); }
 .listed_taxon.Protozoa  .column.image { background-image: url('/images/iconic_taxa/protozoa-32px.png'); }
@@ -196,6 +198,7 @@
 .listed_taxon.Aves      .column.image { background-image: url('/images/iconic_taxa/aves-32px.png'); }
 .listed_taxon.Mammalia  .column.image { background-image: url('/images/iconic_taxa/mammalia-32px.png'); }
 .listed_taxon.Actinopterygii  .column.image { background-image: url('/images/iconic_taxa/actinopterygii-32px.png'); }
+.listed_taxon.Chromista  .column.image { background-image: url('/images/iconic_taxa/chromista-32px.png'); }
 
 
 .listed_taxa_group .title {
@@ -218,6 +221,7 @@
 .listed_taxa_group.Aves      .title { color: #1E90FF;  background-image: url('/images/iconic_taxa/aves-32px.png'); }
 .listed_taxa_group.Mammalia  .title { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-32px.png'); }
 .listed_taxa_group.Actinopterygii  .title { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-32px.png'); }
+.listed_taxa_group.Chromista .title { color: #993300;  background-image: url('/images/iconic_taxa/chromista-32px.png'); }
 
 .listed_taxa_group .title .small.description {
   font-size: 60%;
@@ -249,6 +253,7 @@
 .stat.Aves            .title { color: #1E90FF;  background-image: url('/images/iconic_taxa/aves-15px.png'); }
 .stat.Mammalia        .title { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-15px.png'); }
 .stat.Actinopterygii  .title { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
+.stat.Chromista       .title { color: #993300;  background-image: url('/images/iconic_taxa/chromista-15px.png'); }
 
 .stat.Protozoa        .barchart .value { background-color: #691776;  }
 .stat.Plantae         .barchart .value { background-color: #73AC13;  }
@@ -262,6 +267,7 @@
 .stat.Aves            .barchart .value { background-color: #1E90FF;  }
 .stat.Mammalia        .barchart .value { background-color: #1E90FF;  }
 .stat.Actinopterygii  .barchart .value { background-color: #1E90FF;  }
+.stat.Chromista       .barchart .value { background-color: #993300;  }
 
 .pagination {
   margin: 1em 0;

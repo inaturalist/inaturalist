@@ -7,6 +7,9 @@ class ListedTaxon < ActiveRecord::Base
   acts_as_activity_streamable :batch_window => 30.minutes, 
     :batch_partial => "lists/listed_taxa_activity_stream_batch",
     :user_scope => :by_user
+  
+  has_subscribers
+  
   belongs_to :list
   belongs_to :taxon, :counter_cache => true
   belongs_to :first_observation,
@@ -128,6 +131,10 @@ class ListedTaxon < ActiveRecord::Base
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
     "list_id: #{self.list_id}>"
+  end
+  
+  def to_plain_s
+    "#{taxon.default_name.name} on #{list.title}"
   end
   
   def validate

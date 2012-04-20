@@ -7,6 +7,7 @@ class Friendship < ActiveRecord::Base
   
   after_create :create_activity_stream_for_last_observation
   after_destroy :clear_activity_streams
+  auto_subscribes :user, :to => :friend
   
   def no_self_love
     errors.add_to_base("Cannot be a friend of yourself. Hopefully you already are.") unless friend_id != user_id

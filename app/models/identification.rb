@@ -27,6 +27,9 @@ class Identification < ActiveRecord::Base
   
   attr_accessor :skip_observation
   
+  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true
+  auto_subscribes :user, :to => :observation
+  
   named_scope :for, lambda {|user|
     {:include => :observation,
     :conditions => ["observation.user_id = ?", user]}
