@@ -174,7 +174,7 @@ var PlaceGuide = {
     function replaceParams() {
       var href = $(this).attr("href") || $(this).serialize()
       href = PlaceGuide.cleanParamString(href)
-      var state = href.match(/[\?\&]/) ? $.deparam.querystring(href) : {}
+      var state = href.match(/[\?\&=]/) ? $.deparam.querystring(href) : {}
       $.bbq.pushState(state, PlaceGuide.REPLACE_EXISTING)
       return false
     }
