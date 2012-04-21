@@ -30,7 +30,19 @@
     <div class="observations grid">
       <%= render :partial => "observations/cached_component", :collection => observations %>
     </div>
+    
     <div class="description">
+      <div class="controls inlineblock">
+        <%= link_to_function "Grid", 
+          "$(this).parents('.updatecontent:first').find('.observations').addClass('grid').removeClass('mini');" +
+          "$(this).siblings().addClass('disabled'); $(this).removeClass('disabled')", 
+          :class => "inat-icon ui-icon inlineblock ui-icon-grid" %>
+        <%= link_to_function "List", 
+          "$(this).parents('.updatecontent:first').find('.observations').addClass('mini').removeClass('grid');" + 
+          "$(this).siblings().addClass('disabled'); $(this).removeClass('disabled')", 
+          :class => "disabled inat-icon ui-icon inlineblock ui-icon-list" %>
+      </div>
+      |
       <%= link_to "View #{login}'s observations", observations_by_login_path(login) %>
       <% unless place_guesses.blank? -%>
         from

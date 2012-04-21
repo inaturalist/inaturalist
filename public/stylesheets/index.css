@@ -1050,6 +1050,16 @@ a.id_please_notice:hover{color:#584925;}
   background-repeat: no-repeat;
 }
 
+.inat-icon {
+  background-image: url(/images/sprites-222222.png);
+  background-repeat: no-repeat;
+}
+.inat-icon:hover { background-image: url(/images/sprites-222222.png) !important; }
+.inat-icon.disabled {background-image: url(/images/sprites-888888.png);}
+.ui-icon-grid { background-position: 0 0;}
+.ui-icon-list { background-position: -16px 0;}
+.ui-icon-map { background-position: -32px 0;}
+
 .source_nested_form_fields .ui-chooser-choice { max-width: 300px; padding: 5px 10px; }
 .ui-tabs li.ui-corner-top, .ui-tabs ul.ui-corner-all { -moz-border-radius: 0px; -webkit-border-radius: 0px; -khtml-border-radius: 0px; border-radius: 0px;}
 table.plain td, table.plain th { border: 0 transparent; }

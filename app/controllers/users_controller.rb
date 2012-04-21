@@ -295,7 +295,7 @@ class UsersController < ApplicationController
         @grouped_updates << [key, updates]
       end
     end
-    @grouped_updates = @grouped_updates.sort_by {|key, updates| updates.last.id * -1}
+    @grouped_updates = @grouped_updates.sort_by {|key, updates| updates.first.id * -1}
     
     render :dashboard2
   end
