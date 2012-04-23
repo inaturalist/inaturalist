@@ -111,6 +111,7 @@ Rails::Initializer.run do |config|
   config.gem "friendly_id", :version => "~> 3.2.1"
   config.gem "koala"
   config.gem "preferences"
+  config.gem 'mail_view'
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'
@@ -149,5 +150,3 @@ Rubaidh::GoogleAnalytics.environments = ['production']
 SITE_NAME = INAT_CONFIG['general']['SITE_NAME']
 OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
 SPHERICAL_MERCATOR = SphericalMercator.new
-
-

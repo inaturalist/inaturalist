@@ -1,0 +1,38 @@
+<%-
+  observation = object || resource
+  updates ||= []
+  updates = updates.sort_by{|u| u.notifier.created_at}
+-%>
+
+<div class="updatecontent">
+  <table cellspacing="5" cellpadding="5">
+    <% for update in updates %>
+      <tr>
+        <td valign="top">
+          <%= user_image(update.notifier.user, :size => "thumb") %>
+        </td>
+        <td valign="top">
+          <% if update.notifier.is_a?(Comment) -%>
+            <%= formatted_user_text(update.notifier.body) %>
+          <% elsif update.notifier.is_a?(Identification) %>
+            <%= taxon_image(update.notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
+            <span><%= update.notifier.user.login %>'s ID:</span>
+            <%= render :partial => 'shared/taxon', 
+                       :locals => { :taxon => update.notifier.taxon,
+                                    :link_url => update.notifier.taxon } %>
+          <% end -%>
+          <div style="color:#aaaaaa;font-size:smaller;">
+            Posted by 
+            <%= link_to(truncate(update.notifier.user_id == @user.id ? "you" : update.notifier.user.login, :length => 20), 
+              person_url(update.notifier.user)) %>
+            <span class="when">
+              <span class="date"><%= time_ago_in_words(update.notifier.created_at) %></span> ago
+            </span>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  
+  <%= link_to "View observation", observation, :class => "readmore" %>
+</div>

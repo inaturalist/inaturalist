@@ -1,4 +1,9 @@
 class Emailer < ActionMailer::Base  
+  helper :application
+  helper :observations
+  helper :taxa
+  helper :users
+  
   def invite(address, params, current_user) 
     setup_email
     Invite.create(:user => current_user, :invite_address => address)
@@ -70,6 +75,19 @@ class Emailer < ActionMailer::Base
       :observation => project_invitation.observation,
       :user => project_invitation.observation.user,
       :inviter => project_invitation.user
+    }
+  end
+  
+  def updates_notification(user, updates)
+    return if user.blank? || updates.blank?
+    return if user.email.blank?
+    setup_email
+    recipients user.email
+    @subject << "New updates, #{Date.today}"
+    Rails.logger.debug "[DEBUG] updates: #{updates.inspect}"
+    @body = {
+      :user => user,
+      :grouped_updates => Update.group_and_sort(updates)
     }
   end
   

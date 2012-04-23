@@ -277,7 +277,11 @@ module ApplicationHelper
   def user_image(user, options = {})
     size = options.delete(:size)
     style = "vertical-align:middle; #{options[:style]}"
-    url = "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
+    url = if request
+      "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
+    else
+      "#{APP_CONFIG[:site_url]}#{user.icon.url(size || :mini)}"
+    end
     image_tag(url, options.merge(:style => style))
   end
   
@@ -546,6 +550,39 @@ module ApplicationHelper
   
   def url_for_license(code)
     "http://creativecommons.org/licenses/#{code[/CC\-(.+)/, 1].downcase}/3.0/"
+  end
+  
+  def update_image_for(update, options = {})
+    options[:style] = "vertical-align:middle; #{options[:style]}"
+    case update.resource_type
+    when "User"
+      image_tag(update.resource.icon.url(:thumb), options)
+    when "Observation"
+      observation_image(update.resource, options.merge(:size => "square"))
+    when "ListedTaxon"
+      image_tag('checklist-icon-color-32px.png', options)
+    else
+      image_tag("logo-grey-32px.png", options)
+    end
+  end
+  
+  def update_tagline_for(update, options = {})
+    case update.resource_type
+    when "User"
+      if options[:count].to_i == 1
+        "#{link_to(update.resource.login, update.resource)} added an observation"
+      else
+        "#{link_to(update.resource.login, update.resource)} added #{options[:count]} observations"
+      end
+    when "Observation", "ListedTaxon"
+      # "New activity on #{link_to update.resource.to_plain_s, update.resource}"
+      class_name = update.resource.class.to_s.underscore.humanize.downcase
+      s = "New activity on #{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{link_to class_name, update.resource}"
+      s += " by #{update.resource.user.login}" if update.resource.respond_to?(:user) && update.resource.user
+      s
+    else
+      "update"
+    end
   end
   
 end

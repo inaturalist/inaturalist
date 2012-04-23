@@ -1,0 +1,32 @@
+<h1>New updates from <%= APP_CONFIG[:site_name] %></h1>
+<table border="0" cellspacing="0" cellpadding="0" style="font-family: Trebuchet MS, Helvetica, Arial, sans-serif; line-height:1.2; border-collapse: collapse;">
+  <% @grouped_updates.each do |key, updates| %>
+    <%-
+      resource_type, resource_id, notification = key
+      resource = updates.last.resource
+      notifier = updates.last.notifier
+    -%>
+    <tr>
+      <td valign="top" align="center" style="border-bottom:1px solid #ccc;padding: 10px 10px 10px 0;">
+        <%= update_image_for(updates.first, :style => "max-width:48px;") %>
+      </td>
+      <td valign="top"  style="border-bottom:1px solid #ccc; padding: 10px 0 10px 0;">
+        <div class="updatebody">
+          <div style="color:#aaaaaa;">
+            <%= update_tagline_for(updates.first, :count => updates.size) %>
+          </div>
+          <%= 
+            begin
+              render :partial => "#{resource.class.to_s.underscore.pluralize}/update_email_#{notification}", 
+                :object => resource, :locals => {:updates => updates}
+            rescue ActionView::MissingTemplate, Errno::ENOENT
+              "#{resource_type} #{notification}"
+            end
+          -%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Edit your settings", edit_user_url(@user) %> to change the kinds of updates you receive or unsubscribe completely.

@@ -188,33 +188,4 @@ module UsersHelper
       }
     end
   end
-  
-  def update_image_for(update, options = {})
-    options[:style] = "#{options[:style]} vertical-align:middle;"
-    case update.resource_type
-    when "User"
-      image_tag(update.resource.icon.url(:thumb), options)
-    when "Observation"
-      observation_image(update.resource, :size => "square")
-    when "ListedTaxon"
-      image_tag('checklist-icon-color-32px.png')
-    else
-      image_tag("logo-grey-32px.png", options)
-    end
-  end
-  
-  def update_tagline_for(update, options = {})
-    case update.resource_type
-    when "User"
-      if options[:count].to_i == 1
-        "#{link_to(update.resource.login, update.resource)} added an observation"
-      else
-        "#{link_to(update.resource.login, update.resource)} added #{options[:count]} observations"
-      end
-    when "Observation", "ListedTaxon"
-      "New activity on #{link_to update.resource.to_plain_s, update.resource}"
-    else
-      "update"
-    end
-  end
 end

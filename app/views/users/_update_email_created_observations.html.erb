@@ -1,0 +1,31 @@
+<%-
+  user = object || resource
+  updates ||= []
+  observations = updates.map{|u| u.notifier}
+  default_observation = observations.first
+  login = user.login
+  place_guesses = observations.map{|o| o.place_guess.blank? ? nil : o.place_guess}.compact.uniq
+-%>
+
+<table border="0" cellspacing="0" cellpadding="5">
+  <% for obs_group in observations.in_groups_of(6) %>
+    <tr>
+      <% for o in obs_group.compact %>
+        <td width="75" align="center" valign="top">
+          <%= link_to observation_image(o), o %>
+          <br/>
+          <%= link_to o.species_guess, o, :style => "font-size:smaller;" %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<br/>
+
+<%= link_to "View #{login}'s observations", observations_by_login_url(login) %>
+<% unless place_guesses.blank? -%>
+  from
+  <% place_guesses.each_with_index do |pg, i| %>
+    <%= link_to(pg, observations_by_login_url(login, :q => pg, :search_on => "place")) %><%= ',' if i+1 < place_guesses.size %>
+  <% end %>
+<% end -%>
