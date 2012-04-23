@@ -141,9 +141,11 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
+        project_options = Project.default_json_options.update(:include => :project_list)
+        project_options[:methods] << :project_observation_rule_terms
         render :json => @project_users.to_json(:include => {
           :user => {:only => :login},
-          :project => Project.default_json_options.update(:include => :project_list)
+          :project => project_options
         })
       end
     end
