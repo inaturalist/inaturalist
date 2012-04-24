@@ -1306,6 +1306,10 @@ class ObservationsController < ApplicationController
       find_options[:limit] = 200
     end
     
+    unless request.format.html?
+      find_options[:include] = [{:taxon => :taxon_names}, {:observation_photos => :photo}, :user]
+    end
+    
     find_options[:per_page] = 30 if find_options[:per_page].to_i == 0
     
     # iconic_taxa
@@ -1365,6 +1369,7 @@ class ObservationsController < ApplicationController
     @identifications = search_params[:identifications]
     @out_of_range = search_params[:out_of_range]
     @license = search_params[:license]
+    @photo_license = search_params[:photo_license]
     
     if search_params[:order_by] && ORDER_BY_FIELDS.include?(search_params[:order_by])
       @order_by = search_params[:order_by]

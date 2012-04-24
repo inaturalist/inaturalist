@@ -284,7 +284,7 @@ module ApplicationHelper
   def observation_image(observation, options = {})
     style = "vertical-align:middle; #{options[:style]}"
     url = observation_image_url(observation, options)
-    url ||= iconic_taxon_image_url(observation.iconic_taxon)
+    url ||= iconic_taxon_image_url(observation.iconic_taxon_id)
     image_tag(url, options.merge(:style => style))
   end
   
