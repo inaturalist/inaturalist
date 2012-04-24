@@ -296,7 +296,9 @@ ActionController::Routing::Routes.draw do |map|
       :year => /\d{1,4}/,
       :month => /\d{1,2}/
     }
+  map.resources :posts
   map.resources :posts, :controller => 'posts', 
+    :name_prefix => 'journal_',
     :path_prefix => "/journal/:login",
     :requirements => { :login => simplified_login_regex }
   

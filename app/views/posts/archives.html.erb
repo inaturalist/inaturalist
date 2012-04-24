@@ -39,7 +39,7 @@
   
   <% if logged_in? && current_user.login == @display_user.login -%>
     <div id="tools" class="buttonrow">
-      <%= link_to "New Post", new_post_path(@display_user.login), 
+      <%= link_to "New Post", new_journal_post_path(@display_user.login), 
                   :id => "newpostbutton", :class => "default button"%>
     </div>
   <% end -%>
@@ -54,7 +54,7 @@
       <center id="noposts" class="readable description">
         No posts yet!
         <% if logged_in? && current_user.login == @display_user.login -%>
-          <%= link_to "Add one!", new_post_path(@display_user.login), 
+          <%= link_to "Add one!", new_journal_post_path(@display_user.login), 
             :class => "default button" %>
         <% end -%>
       </center>

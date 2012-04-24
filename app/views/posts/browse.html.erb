@@ -61,7 +61,7 @@
           <%= formatted_user_text(truncate(strip_tags(post.body), :length => 200)) %>
         </div>
         <div class="morecol column readable">
-          <p><%= link_to "More &raquo;", post_path(post.user.login, post) %></p>
+          <p><%= link_to "More &raquo;", journal_post_path(post.user.login, post) %></p>
         </div>
       </div>
     <% end %>

@@ -22,8 +22,7 @@
     }
   </style>
 <% end -%>
-<% form_for(post, :url => post.new_record? ? posts_path(post.user.login) : post_path(post.user.login, post), 
-            :html => {:class => 'post_form'}) do |f| %>
+<% form_for(post, :html => {:class => 'post_form'}) do |f| %>
   <div class="column span-13 append-1">
     <%= error_messages_for :post %>
     <div class="field">
@@ -52,7 +51,7 @@
         <%= link_to "Cancel", journal_by_login_path(post.user.login), :class => 'inter' %>
       <% else -%>
         <%= f.submit "Preview", :id => 'post_preview', :class => 'button' unless post.new_record? %>
-        <%= link_to "Delete", post_path(post.user.login, post), 
+        <%= link_to "Delete", journal_post_path(post.user.login, post), 
                     :confirm => "Are you sure you want to delete this post?", 
                     :method => :delete, 
                     :id => "delete_post_button", 

@@ -14,7 +14,7 @@
         <td width="75" align="center" valign="top">
           <%= link_to observation_image(o), o %>
           <br/>
-          <%= link_to o.species_guess, o, :style => "font-size:smaller;" %>
+          <%= link_to o.species_guess || "Something", o, :style => "font-size:smaller;" %>
         </td>
       <% end %>
     </tr>

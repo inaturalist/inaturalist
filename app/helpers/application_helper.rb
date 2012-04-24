@@ -561,6 +561,8 @@ module ApplicationHelper
       observation_image(update.resource, options.merge(:size => "square"))
     when "ListedTaxon"
       image_tag('checklist-icon-color-32px.png', options)
+    when "Post"
+      image_tag(update.resource.user.icon.url(:thumb), options)
     else
       image_tag("logo-grey-32px.png", options)
     end
@@ -580,6 +582,8 @@ module ApplicationHelper
       s = "New activity on #{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{link_to class_name, update.resource}"
       s += " by #{update.resource.user.login}" if update.resource.respond_to?(:user) && update.resource.user
       s
+    when "Post"
+      "New activity on \"#{link_to update.resource.title, update.resource}\" by #{update.resource.user.login}"
     else
       "update"
     end

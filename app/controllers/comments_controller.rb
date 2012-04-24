@@ -89,7 +89,7 @@ class CommentsController < ApplicationController
   private
   def redirect_to_parent
     if @comment.parent.is_a?(Post)
-      redirect_to post_path(@comment.parent.user.login, @comment.parent)
+      redirect_to journal_post_path(@comment.parent.user.login, @comment.parent)
     else
       redirect_to(url_for(@comment.parent) + "#comment-#{@comment.id}")
     end

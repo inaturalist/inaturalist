@@ -1,31 +1,31 @@
 <%- truncate_length ||= nil %>
-      <div id="post-<%= post.id %>" class="post">
-        <h3 class="title"><%= link_to h(post.title), post_path(post.user.login, post) %></h3>
-        <div class="body">
-          <% if truncate_length -%>
-            <%= truncate formatted_user_text(post.body), :length => truncate_length %>
-          <%- else -%>
-            <%= formatted_user_text(post.body) %>
-          <% end -%>
-        </div>
-        <div class="meta">
-          <span class="label">Posted on</span>
-          <% if post.published_at -%>
-            <span class="date"><%= post.published_at.to_s(:long) %></span>
-          <% else -%>
-            <span>DRAFT!</span>
-          <% end -%>
-          <span class="label">by</span>
-          <%= link_to(post.user.login, observations_by_login_path(post.user.login)) %>
-          <% if post.observations.size > 0 -%>
-            |
-            <span class="count"><%= post.observations.size %></span>
-            observations
-          <% end -%>
-          |
-          <span class="count"><%= post.comments.size %></span>
-          comments
-          |
-          <%= link_to 'Leave a comment', post_path(post.user.login, post) + "#new_comment" %>
-        </div>
-      </div>
+<div id="post-<%= post.id %>" class="post">
+  <h3 class="title"><%= link_to h(post.title), journal_post_path(post.user.login, post) %></h3>
+  <div class="body">
+    <% if truncate_length -%>
+      <%= truncate formatted_user_text(post.body), :length => truncate_length %>
+    <%- else -%>
+      <%= formatted_user_text(post.body) %>
+    <% end -%>
+  </div>
+  <div class="meta">
+    <span class="label">Posted on</span>
+    <% if post.published_at -%>
+      <span class="date"><%= post.published_at.to_s(:long) %></span>
+    <% else -%>
+      <span>DRAFT!</span>
+    <% end -%>
+    <span class="label">by</span>
+    <%= link_to(post.user.login, observations_by_login_path(post.user.login)) %>
+    <% if post.observations.size > 0 -%>
+      |
+      <span class="count"><%= post.observations.size %></span>
+      observations
+    <% end -%>
+    |
+    <span class="count"><%= post.comments.size %></span>
+    comments
+    |
+    <%= link_to 'Leave a comment', journal_post_path(post.user.login, post) + "#new_comment" %>
+  </div>
+</div>

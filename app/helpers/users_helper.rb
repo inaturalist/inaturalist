@@ -133,7 +133,7 @@ module UsersHelper
     if update.batch_ids.blank?
       case update.activity_object_type 
       when "Post" 
-        html += "a #{link_to "journal post", post_path(update.user.login, activity_object)} "
+        html += "a #{link_to "journal post", journal_post_path(update.user.login, activity_object)} "
       when "Comment" 
         html += "a #{link_to "comment", activity_object} "
         html += "on #{activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a'} "

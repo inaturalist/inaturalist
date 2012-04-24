@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_display_user_by_login, :except => [:browse]
+  before_filter :load_display_user_by_login, :except => [:browse, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
@@ -23,6 +23,11 @@ class PostsController < ApplicationController
   end
   
   def show
+    if params[:login].blank?
+      redirect_to journal_post_path(@display_user.login, @post)
+      return
+    end
+    
     unless @post.published_at
       if logged_in? && @post.user_id == current_user.id
         flash[:notice] ||= "Preview"
@@ -48,6 +53,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
     @post.parent = current_user
+    @display_user = current_user
     @post.published_at = Time.now if params[:commit] == 'Publish'
     if params[:observations]
       @post.observations << Observation.by(current_user).find(params[:observations])
@@ -55,10 +61,10 @@ class PostsController < ApplicationController
     if @post.save
       if @post.published_at
         flash[:notice] = "Post published!"
-        redirect_to post_path(@post.user.login, @post)
+        redirect_to journal_post_path(@post.user.login, @post)
       else
         flash[:notice] = "Draft saved!"
-        redirect_to edit_post_path(@post.user.login, @post)
+        redirect_to edit_post_path(@post)
       end
     else
       render :action => :new
@@ -92,10 +98,10 @@ class PostsController < ApplicationController
     if @post.update_attributes(params[:post])
       if @post.published_at
         flash[:notice] = "Post published!"
-        redirect_to post_path(@post.user.login, @post)
+        redirect_to journal_post_path(@post.user.login, @post)
       else
         flash[:notice] = "Draft saved!"
-        redirect_to edit_post_path(@post.user.login, @post)
+        redirect_to edit_post_path(@post)
       end
     else
       render :action => :edit

@@ -13,7 +13,7 @@
 <%- tools = capture do -%>
   <% if logged_in? && current_user.login == @display_user.login -%>
     <div id="tools" class="buttonrow">
-      <%= link_to "New Post", new_post_path(@display_user.login), 
+      <%= link_to "New Post", new_journal_post_path(@display_user.login), 
                   :id => "newpostbutton", :class => "default button"%>
     </div>
   <% end -%>
@@ -28,7 +28,7 @@
       <center id="noposts" class="readable description">
         No posts yet!
         <% if logged_in? && current_user.login == @display_user.login -%>
-          <%= link_to "Add one!", new_post_path(@display_user.login), 
+          <%= link_to "Add one!", new_journal_post_path(@display_user.login), 
             :class => "default button" %>
         <% end -%>
       </center>
@@ -44,7 +44,7 @@
       <ul>
         <% for post in @drafts %>
           <li>
-            <%= link_to h(post.title), edit_post_path(current_user.login, post) %>
+            <%= link_to h(post.title), edit_journal_post_path(current_user.login, post) %>
             <div class="meta">
               <span class="label">Created on</span>
               <span class="date"><%= post.created_at.to_s(:long) %></span>

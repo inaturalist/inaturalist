@@ -114,14 +114,21 @@
           <div class="updateheader meta stacked">
             <%= update_tagline_for(updates.first, :count => updates.size) %>
           </div>
-          <%= 
-            begin
-              render :partial => "#{resource.class.to_s.underscore.pluralize}/update_#{notification}", 
-                :object => resource, :locals => {:updates => updates}
-            rescue ActionView::MissingTemplate, Errno::ENOENT
-              "#{resource_type} #{notification}"
-            end
-          -%>
+          <% if notification == "activity" -%>
+            <div class="updatecontent">
+              <%= render :partial => "shared/activity_item", :collection => updates.map{|u| u.notifier}.compact %>
+              <%= link_to "View #{resource.class.to_s.underscore.humanize.downcase}", resource, :class => "readmore" %>
+            </div>
+          <% else %>
+            <%= 
+              begin
+                render :partial => "#{resource.class.to_s.underscore.pluralize}/update_#{notification}", 
+                  :object => resource, :locals => {:updates => updates}
+              rescue ActionView::MissingTemplate, Errno::ENOENT
+                "#{resource_type} #{notification}"
+              end
+            -%>
+          <% end -%>
         </div>
       </div>
     <% end %>

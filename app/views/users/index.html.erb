@@ -81,13 +81,13 @@
                   by 
                   <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
                 <%- when 'Post' %>
-                  made a <%= link_to "journal post", post_path(update.user.login, update) %>
+                  made a <%= link_to "journal post", journal_post_path(update.user.login, update) %>
                 <%- when 'Comment' %>
                   <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
                   <strong>commented</strong> on
                   <%= class_name =~ /^[aeiou]/i ? 'an' : 'a' %>
                   <% if update.parent.is_a? Post -%>
-                    <%= link_to class_name, post_path(update.parent.user.login, update.parent) %>
+                    <%= link_to class_name, journal_post_path(update.parent.user.login, update.parent) %>
                   <% else %>
                     <%= link_to class_name, update.parent %>
                   <% end -%>
