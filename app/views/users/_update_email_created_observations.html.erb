@@ -1,7 +1,11 @@
 <%-
   user = object || resource
   updates ||= []
-  observations = updates.map{|u| u.notifier}
+  observations = if @update_cache && @update_cache[:observations]
+    updates.map{|u| @update_cache[:observations][u.notifier_id]}
+  else
+    updates.map{|u| u.notifier}
+  end
   default_observation = observations.first
   login = user.login
   place_guesses = observations.map{|o| o.place_guess.blank? ? nil : o.place_guess}.compact.uniq

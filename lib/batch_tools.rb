@@ -19,6 +19,7 @@ module BatchTools
         est = false
         begin 
           full_count = self.count(count_options)
+          full_count = full_count.size if full_count.is_a?(Enumerable)
         rescue => e
           Rails.logger.error "[ERROR #{Time.now}] Batch tool count failed: #{e}"
           full_count = self.count

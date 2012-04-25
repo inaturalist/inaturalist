@@ -1,7 +1,11 @@
 <%-
   user = object || resource
   updates ||= []
-  observations = updates.map{|u| u.notifier}
+  observations = if @update_cache && @update_cache[:observations]
+    updates.map{|u| @update_cache[:observations][u.notifier_id]}
+  else
+    updates.map{|u| u.notifier}
+  end
   default_observation = observations.first
 -%>
 
@@ -42,7 +46,7 @@
           "$(this).siblings().addClass('disabled'); $(this).removeClass('disabled')", 
           :class => "disabled inat-icon ui-icon inlineblock ui-icon-list" %>
       </div>
-      |
+      
       <%= link_to "View #{login}'s observations", observations_by_login_path(login) %>
       <% unless place_guesses.blank? -%>
         from

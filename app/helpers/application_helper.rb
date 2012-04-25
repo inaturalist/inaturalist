@@ -556,15 +556,15 @@ module ApplicationHelper
     options[:style] = "vertical-align:middle; #{options[:style]}"
     case update.resource_type
     when "User"
-      image_tag(update.resource.icon.url(:thumb), options)
+      image_tag("#{root_url}#{update.resource.icon.url(:thumb)}", options)
     when "Observation"
       observation_image(update.resource, options.merge(:size => "square"))
     when "ListedTaxon"
-      image_tag('checklist-icon-color-32px.png', options)
+      image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
-      image_tag(update.resource.user.icon.url(:thumb), options)
+      image_tag("#{root_url}#{update.resource.user.icon.url(:thumb)}", options)
     else
-      image_tag("logo-grey-32px.png", options)
+      image_tag("#{root_url}images/logo-grey-32px.png", options)
     end
   end
   

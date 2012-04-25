@@ -84,10 +84,10 @@ class Emailer < ActionMailer::Base
     setup_email
     recipients user.email
     @subject << "New updates, #{Date.today}"
-    Rails.logger.debug "[DEBUG] updates: #{updates.inspect}"
     @body = {
       :user => user,
-      :grouped_updates => Update.group_and_sort(updates)
+      :grouped_updates => Update.group_and_sort(updates),
+      :update_cache => Update.eager_load_associates(updates)
     }
   end
   

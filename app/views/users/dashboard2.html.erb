@@ -4,7 +4,7 @@
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations', 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
   <style type="text/css" media="screen">
-    .update {position:relative; margin-bottom: 20px;}
+    .update {position:relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
     .updateresource {width: 48px; position: absolute; text-align:center;}
     .updateresource img {max-width: 48px;}
     .updateheader {padding-top: 5px;}
@@ -33,6 +33,8 @@
       background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);
       z-index:1;
     }
+    
+    .updatewithimage .observations.mini .observation {border: 0 transparent;}
     
     .inat-widget td {vertical-align: top; padding: 5px;}
     .inat-label { color: #888; }
@@ -103,8 +105,16 @@
     <% for key, updates in @grouped_updates %>
       <%-
         resource_type, resource_id, notification = key
-        resource = updates.last.resource
-        notifier = updates.last.notifier
+        resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
+          @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
+        else
+          updates.last.resource
+        end
+        notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
+          @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
+        else
+          updates.last.notifier
+        end
       -%>
       <div class="update clear stacked <%= 'activity' if updates.first.notification == 'activity' %>">
         <div class="updateresource">
@@ -116,7 +126,14 @@
           </div>
           <% if notification == "activity" -%>
             <div class="updatecontent">
-              <%= render :partial => "shared/activity_item", :collection => updates.map{|u| u.notifier}.compact %>
+              <%-
+                notifiers = if @update_cache
+                  updates.map{|u| @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]}
+                else
+                  updates.map{|u| u.notifier}.compact
+                end
+              -%>
+              <%= render :partial => "shared/activity_item", :collection => notifiers %>
               <%= link_to "View #{resource.class.to_s.underscore.humanize.downcase}", resource, :class => "readmore" %>
             </div>
           <% else %>

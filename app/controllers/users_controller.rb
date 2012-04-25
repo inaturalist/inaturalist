@@ -282,9 +282,10 @@ class UsersController < ApplicationController
   end
   
   def dashboard2
-    @updates = current_user.updates.paginate(:page => params[:page], :per_page => 50, :order => "id DESC")
+    @updates = current_user.updates.paginate(:page => params[:page], :per_page => 50, :order => "id DESC", 
+      :include => [:resource, :notifier])
     @grouped_updates = Update.group_and_sort(@updates)
-    
+    @update_cache = Update.eager_load_associates(@updates)
     render :dashboard2
   end
   

@@ -28,7 +28,7 @@ config.action_mailer.raise_delivery_errors = true
 config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 smtp_config_path = File.open("#{RAILS_ROOT}/config/smtp.yml")
 ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
-config.action_mailer.delivery_method = :test
+# config.action_mailer.delivery_method = :test
 
 require 'ruby-debug'
 require 'activerecord_reset_subclass_fix'

@@ -59,13 +59,6 @@ module HasSubscribers
       notification ||= options[:notification] || "create"
       
       updater_proc = Proc.new {|subscribable|
-        Rails.logger.debug "[DEBUG] subscribable: #{subscribable}"
-        Rails.logger.debug "[DEBUG] notifier: #{notifier}"
-        if subscribable.respond_to?(:user)
-          Rails.logger.debug "[DEBUG] subscribable.user_id: #{subscribable.user_id}"
-          Rails.logger.debug "[DEBUG] notifier.user_id: #{notifier.user_id}"
-        end
-        
         if options[:include_owner] && subscribable.respond_to?(:user) && subscribable.user_id != notifier.user_id
           owner_subscription = subscribable.subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
