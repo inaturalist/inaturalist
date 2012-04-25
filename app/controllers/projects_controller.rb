@@ -37,6 +37,7 @@ class ProjectsController < ApplicationController
         scope = Project.scoped({})
         scope = scope.featured if params[:featured]
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+        scope = scope.from_source_url(params[:source]) if params[:source]
         @projects = scope.paginate(:page => params[:page], :per_page => 100)
         render :json => @projects.to_json(Project.default_json_options.update(:include => :project_list))
       end

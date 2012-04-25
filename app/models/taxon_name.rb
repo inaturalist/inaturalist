@@ -176,4 +176,13 @@ class TaxonName < ActiveRecord::Base
     end
     taxon_names.detect{|tn| tn.is_valid?} || taxon_names.first
   end
+  
+  def self.strip_author(name)
+    name = name.gsub(/\(.*?\)/, '')
+    name = name.gsub(/\[.*?\]/, '')
+    name = name.gsub(/[\w\.,]+\s+\d+.*/, '')
+    name = name.gsub(/\w[\.,]+.*/, '')
+    name = name.gsub(/\s+[A-Z].*/, '')
+    name
+  end
 end

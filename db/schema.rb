@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416221933) do
+ActiveRecord::Schema.define(:version => 20120425042326) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -558,9 +558,11 @@ ActiveRecord::Schema.define(:version => 20120416221933) do
     t.string   "cached_slug"
     t.integer  "observed_taxa_count", :default => 0
     t.datetime "featured_at"
+    t.string   "source_url"
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
+  add_index "projects", ["source_url"], :name => "index_projects_on_source_url"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "provider_authorizations", :force => true do |t|

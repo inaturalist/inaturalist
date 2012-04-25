@@ -43,6 +43,9 @@ class Project < ActiveRecord::Base
       :order => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))"
     }
   }
+  named_scope :from_source_url, lambda {|url|
+    {:conditions => {:source_url => url}}
+  }
   
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
@@ -54,6 +57,10 @@ class Project < ActiveRecord::Base
   PROJECT_TYPES = [CONTEST_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
+  
+  def to_s
+    "<Project #{id} #{title}>"
+  end
   
   def strip_title
     self.title = title.strip
