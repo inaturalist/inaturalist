@@ -17,6 +17,9 @@ module Ratatosk
 
       def find(name)
         hxml = @service.search(:name => name, :response => 'full')
+        unless hxml.errors.blank?
+          raise NameProviderError, "Failed to parse the response from the Catalogue of Life"
+        end
         hxml.search('//result').map do |r|
           ColTaxonNameAdapter.new(r)
         end
