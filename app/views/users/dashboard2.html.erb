@@ -122,6 +122,9 @@
         </div>
         <div class="updatebody">
           <div class="updateheader meta stacked">
+            <div class="right date small">
+              <%= compact_date(updates.first.created_at) %>
+            </div>
             <%= update_tagline_for(updates.first, :count => updates.size) %>
           </div>
           <% if notification == "activity" -%>

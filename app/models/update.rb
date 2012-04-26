@@ -16,9 +16,9 @@ class Update < ActiveRecord::Base
     updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, updates|
       resource_type, resource_id, notification = key
       updates = updates.sort_by{|u| u.id * -1}
-      if notification == "created_observations" && updates.size > 18
-        updates.in_groups_of(18) do |bunch|
-          grouped_updates << [key, bunch.compact]
+      if notification == "created_observations" && updates.size > 1
+        updates.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
+          grouped_updates << [key, hour_updates]
         end
       else
         grouped_updates << [key, updates]
