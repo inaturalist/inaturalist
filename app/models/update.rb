@@ -11,20 +11,41 @@ class Update < ActiveRecord::Base
     resource && resource.respond_to?(:user) ? resource.user : nil
   end
   
+  def sort_by_date
+    created_at || notifier.try(:created_at) || Time.now
+  end
+  
   def self.group_and_sort(updates)
     grouped_updates = []
-    updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, updates|
+    updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
       resource_type, resource_id, notification = key
-      updates = updates.sort_by{|u| u.id * -1}
-      if notification == "created_observations" && updates.size > 1
-        updates.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
+      batch = batch.sort_by{|u| u.sort_by_date}
+      if notification == "created_observations" && batch.size > 1
+        batch.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
           grouped_updates << [key, hour_updates]
         end
+      elsif notification == "activity"
+        # get the reousrce that has all this activity
+        resource = Object.const_get(resource_type).find_by_id(resource_id)
+        
+        # get the associations on that resource that generate activity updates
+        activity_assocs = resource.class.notifying_associations.select do |assoc, assoc_options|
+          assoc_options[:notification] == "activity"
+        end
+        
+        # create pseudo updates for all activity objects
+        activity_assocs.each do |assoc, assoc_options|
+          # this is going to lazy load assoc's of the associate (e.g. a comment's user) which might not be ideal
+          resource.send(assoc).each do |associate|
+            batch << Update.new(:resource => resource, :notifier => associate) unless batch.detect{|u| u.notifier == associate}
+          end
+        end
+        grouped_updates << [key, batch.sort_by{|u| u.sort_by_date}]
       else
-        grouped_updates << [key, updates]
+        grouped_updates << [key, batch]
       end
     end
-    grouped_updates.sort_by {|key, updates| updates.first.id * -1}
+    grouped_updates.sort_by {|key, updates| updates.last.sort_by_date.to_i * -1}
   end
   
   def self.email_updates

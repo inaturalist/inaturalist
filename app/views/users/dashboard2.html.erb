@@ -34,6 +34,9 @@
       z-index:1;
     }
     
+    .stub { opacity: 0.5; }
+    .stub:hover { opacity: 1; }
+    
     .updatewithimage .observations.mini .observation {border: 0 transparent;}
     
     .inat-widget td {vertical-align: top; padding: 5px;}
@@ -118,12 +121,12 @@
       -%>
       <div class="update clear stacked <%= 'activity' if updates.first.notification == 'activity' %>">
         <div class="updateresource">
-          <%= update_image_for(updates.first) %>
+          <%= link_to update_image_for(updates.first), resource %>
         </div>
         <div class="updatebody">
           <div class="updateheader meta stacked">
             <div class="right date small">
-              <%= compact_date(updates.first.created_at) %>
+              <%= compact_date(updates.last.sort_by_date) %>
             </div>
             <%= update_tagline_for(updates.first, :count => updates.size) %>
           </div>
@@ -131,12 +134,21 @@
             <div class="updatecontent">
               <%-
                 notifiers = if @update_cache
-                  updates.map{|u| @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]}
+                  updates.map{|u| @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id] || u.notifier}
                 else
                   updates.map{|u| u.notifier}.compact
                 end
               -%>
-              <%= render :partial => "shared/activity_item", :collection => notifiers %>
+              <%#= render :partial => "shared/activity_item", :collection => notifiers %>
+              <% for u in updates %>
+                <%-
+                  notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id] if @update_cache
+                  notifier ||= u.notifier
+                -%>
+                <div class="<%= 'stub' if u.new_record? %>">
+                  <%= render :partial => "shared/activity_item", :object => notifier %>
+                </div>
+              <% end %>
               <%= link_to "View #{resource.class.to_s.underscore.humanize.downcase}", resource, :class => "readmore" %>
             </div>
           <% else %>

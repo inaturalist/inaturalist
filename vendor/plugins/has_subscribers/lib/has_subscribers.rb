@@ -4,12 +4,20 @@ module HasSubscribers
   end
   
   module ClassMethods
+    # designate that a class has subscribers
+    # :to => {:notofying_association => options}
+    #   this is a way to explicitly decalre a notifying association.  This 
+    #   will happen automatically from notifies_subscribers_of in most cases, 
+    #   but NOT for polymorphic associations
     def has_subscribers(options = {})
       return if self.included_modules.include?(HasSubscribers::InstanceMethods)
       include HasSubscribers::InstanceMethods
       
       has_many :subscriptions, :as => :resource
       has_many :subscribers, :through => :subscriptions, :source => :user
+      
+      cattr_accessor :notifying_associations
+      self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
       
       after_destroy do |record|
         Update.delete_all(["resource_type = ? AND resource_id = ?", to_s, record.id])
@@ -27,7 +35,22 @@ module HasSubscribers
       end
       callback_method = options[:on] || :notify_subscribers_of
       send callback_type do |record|
-        record.send(callback_method, subscribable_association, options)
+        record.send_later(callback_method, subscribable_association, options.merge(:dj_priority => 2))
+      end
+      
+      if Object.const_defined?(subscribable_association.to_s.classify) && 
+          (klass = Object.const_get(subscribable_association.to_s.classify)) && 
+          (klass.reflections.detect{|k,v| k == to_s.underscore.pluralize.to_sym} || klass.respond_to?(to_s.underscore.pluralize.to_sym))
+        klass.notifying_associations[to_s.underscore.pluralize.to_sym] ||= options
+      end
+      
+      if self.respond_to?(:associations_to_notify)
+        self.associations_to_notify[subscribable_association.to_sym] = options
+      else
+        cattr_accessor :associations_to_notify
+        self.associations_to_notify = {
+          subscribable_association.to_sym => options
+        }
       end
       
       after_destroy do |record|
@@ -68,24 +91,21 @@ module HasSubscribers
         end
         
         subscribable.subscriptions.find_each do |subscription|
+          next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id
           Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
             :notification => notification)
         end
       }
       
       if has_many_reflections.include?(subscribable_association.to_s)
-        Rails.logger.debug "[DEBUG] creating updates for has_many relat"
         notifier.send(subscribable_association).find_each(updater_proc)
       elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
-        Rails.logger.debug "[DEBUG] creating updates for another relat"
         updater_proc.call(notifier.send(subscribable_association))
       else
         subscribable = notifier.send(subscribable_association)
         if subscribable.is_a?(Enumerable)
-          Rails.logger.debug "[DEBUG] creating updates for enumerable"
           subscribable.each(updater_proc)
         else
-          Rails.logger.debug "[DEBUG] creating updates for single attr/meth"
           updater_proc.call(subscribable)
         end
       end
