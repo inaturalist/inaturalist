@@ -1,3 +1,3 @@
-if File.exists?("/etc/ssl/certs")
+if File.exists?("/etc/ssl/certs") && Koala.http_service.respond_to?("http_options=")
   Koala.http_service.http_options = { :ssl => { :ca_path => "/etc/ssl/certs" } }
 end
