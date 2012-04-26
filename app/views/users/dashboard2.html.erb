@@ -161,7 +161,7 @@
   <div class="stacked">
     <h4>Recent observations by everyone</h4>
     <div class="inat-widget">
-      <script type="text/javascript" charset="utf-8" src="http://localhost:3000/observations.widget?layout=large&limit=10&order=desc&order_by=created_at"></script>
+      <script type="text/javascript" charset="utf-8" src="<%= root_url %>/observations.widget?layout=large&limit=10&order=desc&order_by=created_at"></script>
     </div>
     <%= link_to "View more recent observations", observations_path, :class => "readmore" %>
     
