@@ -84,7 +84,7 @@
 </div>
 
 <h3>Country stats for observations created on <%= @daily_date %></h3>
-<% table_for @daily_country_stats.to_a.sort_by(&:first) do |t| %>
+<% table_for @daily_country_stats.to_a.sort_by{|stat| stat["display_name"] || ""} do |t| %>
   <% t.head do %>
     <% t.r do %>
       <%= t.h('name') %>
