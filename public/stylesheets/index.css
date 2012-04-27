@@ -1054,8 +1054,8 @@ a.id_please_notice:hover{color:#584925;}
   background-image: url(/images/sprites-222222.png);
   background-repeat: no-repeat;
 }
-.inat-icon:hover { background-image: url(/images/sprites-222222.png) !important; }
-.inat-icon.disabled {background-image: url(/images/sprites-888888.png);}
+a:hover .inat-icon, .inat-icon:hover { background-image: url(/images/sprites-222222.png) !important; }
+.disabled .inat-icon, .inat-icon.disabled {background-image: url(/images/sprites-888888.png);}
 .ui-icon-grid { background-position: 0 0;}
 .ui-icon-list { background-position: -16px 0;}
 .ui-icon-map { background-position: -32px 0;}

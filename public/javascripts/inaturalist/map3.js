@@ -482,7 +482,7 @@ iNaturalist.Map.createObservationIcon = function(options) {
   if (options.observation) {
     var iconSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONS' : 'ICONS'
     var iconicTaxonIconsSet = options.observation.coordinates_obscured ? 'STEMLESS_ICONIC_TAXON_ICONS' : 'ICONIC_TAXON_ICONS'
-    if (options.observation.iconic_taxon) {
+    if (options.observation.iconic_taxon && options.observation.iconic_taxon.name) {
       iconPath = iNaturalist.Map[iconicTaxonIconsSet][options.observation.iconic_taxon.name];
     } else {
       iconPath = iNaturalist.Map[iconSet]['unknown34'];

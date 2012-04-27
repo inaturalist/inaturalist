@@ -296,8 +296,21 @@
   width: 75px;
   height: 75px;
 }
-.observations.grid .photos img {z-index: 1;width:75px;}
+.observations.grid .photos img {
+/*  z-index: 1;*/
+  width:75px;
+}
 .observations.grid .photos .readmore, .observations.grid .photos .nophoto {display:none;}
+
+.observations.medium.grid .observation {overflow: hidden;}
+.observations.medium.grid .observation,
+.observations.medium.grid .photos,
+.observations.medium.grid .icon {width:160px; height: 160px;}
+.observations.medium.grid .photos img { width:auto; position:absolute;}
+/*.observations.medium.grid .observation,
+.observations.medium.grid .photos {height: 160px;}*/
+.observations.medium.grid .species_guess a {width:auto;padding: 5px;}
+.observations.medium.grid .icon {top: 20px;}
 
 /* Infowindow */
 .observations.infowindow {

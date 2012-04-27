@@ -392,3 +392,80 @@ $.fn.slideToggleWidth = function() {
     }
   })
 }
+
+$.fn.observationsGrid = function(size) {
+  $('.observation', this).showInlineBlock()
+  $('.map', this).hide()
+  var that = this
+  $(this).removeClass('mini map')
+  $(this).addClass('grid')
+  if (size == 'medium') {
+    $(this).addClass('medium')
+    $('.photos img[data-small-url]', this).each(function() { 
+      $(this).load(function() {
+        if ($(this).width() > $(this).height()) {
+          $(this).css({height: $(this).parents('.observation:first').height(), maxWidth: 'none'})
+          $(this).css({top: 0, left: '50%', marginLeft: '-' + ($(this).width() / 2) + 'px'})
+        } else {
+          $(this).css({width: $(this).parents('.observation:first').width(), maxHeight: 'none'})
+          $(this).css({left: 0, top: '50%', marginTop: '-' + ($(this).height() / 2) + 'px'})
+        }
+        $(this).fadeIn()
+        $(this).unbind('load')
+      })
+      $(this).attr('src', $(this).attr('data-small-url')).hide(); 
+    })
+    $('.icon img[data-small-url]', this).each(function() {
+      $(this).attr('src', $(this).attr('data-small-url')); 
+    })
+  } else {
+    $(that).removeClass('medium')
+    $('.photos img[data-square-url]', that).attr('style', '')
+    $('.photos img[data-square-url]', that).attr('src', function() { return $(this).attr('data-square-url')})
+    $('.icon img[data-square-url]', that).attr('src', function() { return $(this).attr('data-square-url')})
+  }
+}
+
+$.fn.observationsList = function() {
+  $('.observation', this).show().css('display', 'block')
+  $('.map', this).hide()
+  $(this).removeClass('medium grid map')
+  $(this).addClass('mini')
+  $('.photos img[data-square-url]', this).attr('style', '')
+  $('.photos img[data-square-url]', this).attr('src', function() { return $(this).attr('data-square-url')})
+  $('.icon img[data-square-url]', this).attr('src', function() { return $(this).attr('data-square-url')})
+}
+
+$.fn.observationsMap = function() {
+  $(this).observationsList()
+  $(this).each(function() {
+    if ($('.map', this).length > 0) {
+      $('.map', this).show()
+      google.maps.event.trigger($('.map', this).get(0), 'resize')
+      return
+    }
+    var w = $(this).width(),
+        h = $(this).height() > w ? w : $(this).height(),
+        mapDiv = $('<div></div>')
+    mapDiv.addClass('stacked map')
+    mapDiv.width(w)
+    mapDiv.height(h)
+    mapDiv.css('background-color', 'lightgreen')
+    $(this).prepend(mapDiv)
+    var map = iNaturalist.Map.createMap({div: mapDiv.get(0)})
+    $('.observation', this).each(function() {
+      var o = {
+        id: $(this).attr('id').split('-')[1],
+        latitude: $(this).attr('data-latitude'),
+        longitude: $(this).attr('data-longitude'),
+        taxonId: $(this).attr('data-taxon-id'),
+        iconic_taxon: {
+          name: $(this).attr('data-iconic-taxon-name'),
+        }
+      }
+      map.addObservation(o)
+    })
+    map.zoomToObservations()
+  })
+  $('.observation', this).hide()
+}
