@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425042326) do
+ActiveRecord::Schema.define(:version => 20120427014202) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -524,6 +524,7 @@ ActiveRecord::Schema.define(:version => 20120425042326) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "curator_identification_id"
+    t.string   "tracking_code"
   end
 
   add_index "project_observations", ["curator_identification_id"], :name => "index_project_observations_on_curator_identification_id"
@@ -559,6 +560,7 @@ ActiveRecord::Schema.define(:version => 20120425042326) do
     t.integer  "observed_taxa_count", :default => 0
     t.datetime "featured_at"
     t.string   "source_url"
+    t.string   "tracking_codes"
   end
 
   add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true

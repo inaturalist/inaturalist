@@ -47,6 +47,7 @@
           if synclink_uri.query.blank?
             synclink_uri.query = "#{prefix}_id=#{native_photo_id}"
           else
+            synclink_uri.query.gsub!(/\&?#{prefix}_id=[^\&]+/, '')
             synclink_uri.query += "&#{prefix}_id=#{native_photo_id}"
           end 
           synclink_url = synclink_uri.to_s

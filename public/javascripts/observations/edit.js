@@ -95,7 +95,7 @@ $(document).ready(function() {
         authenticity_token: authenticity_token,
         index: index,
         limit: 15,
-        synclink_base: window.location.pathname
+        synclink_base: window.location.href
       }
     }
     if (DEFAULT_PHOTO_IDENTITY_URL) {

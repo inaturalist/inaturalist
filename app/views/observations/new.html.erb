@@ -68,6 +68,7 @@
       <% end %>
     </div>
     <%= hidden_field_tag(:project_id, @project.id) if @project %>
+    <%= hidden_field_tag(:tracking_code, @tracking_code) if @tracking_code %>
     <%= submit_tag("Save observation", :class => 'default button', "data-loading-click" => true) %>
     <%= submit_tag("Save and add another", :class => 'button') %>
     <%= link_to("Cancel", session[:return_to], :class => 'button') %>

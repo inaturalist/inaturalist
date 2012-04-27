@@ -169,6 +169,13 @@
     <%= link_to_function "add a new rule", "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
   
+  <%= f.text_field :tracking_codes, :description => 
+    "Comma-separated list of tracking codes. Add these if you want to " + 
+    "append a tracking code when sending people to the new observation form, " + 
+    "e.g. #{root_url}observations/new?project_id=#{@project.id}&tracking_code=yourcode123. " + 
+    "You can use this to track participation from different sources. " + 
+    "You can access these codes when downloading your project's observations as CSV." %>
+  
   <% if current_user.is_admin? && !@project.new_record? -%>
     <fieldset id="project_assets" class="admin">
       <legend>Project Assets</legend>

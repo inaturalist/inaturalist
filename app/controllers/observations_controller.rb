@@ -330,6 +330,7 @@ class ObservationsController < ApplicationController
         if @place = @project.rule_place
           @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
         end
+        @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
       end
     end
     options[:time_zone] = current_user.time_zone
@@ -1795,9 +1796,10 @@ class ObservationsController < ApplicationController
     return unless params[:project_id] && @project = Project.find_by_id(params[:project_id])
     @project_user = current_user.project_users.find_or_create_by_project_id(@project.id)
     return unless @project_user && @project_user.valid?
+    tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []
      @observations.each do |observation|
-       po = @project.project_observations.build(:observation => observation)
+       po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code)
        unless po.save
          errors = (errors + po.errors.full_messages).uniq
        end
