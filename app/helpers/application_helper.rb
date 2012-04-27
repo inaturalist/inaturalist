@@ -47,10 +47,16 @@ module ApplicationHelper
   def compact_date(date)
     return 'the past' if date.nil?
     if date.is_a?(Time)
+      date = date.in_time_zone(current_user.time_zone) if current_user
       time = date
       date = date.to_date
     end
-    if date == Date.today 
+    today = if current_user
+      Time.now.in_time_zone(current_user.time_zone).to_date
+    else
+      Date.today
+    end
+    if date == today
       time ? time.strftime("%I:%M %p").downcase.sub(/^0/, '')  : 'Today'
     elsif date.year == Date.today.year 
       date.strftime("%b. %e") 

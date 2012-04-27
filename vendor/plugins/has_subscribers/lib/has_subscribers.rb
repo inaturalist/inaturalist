@@ -35,7 +35,7 @@ module HasSubscribers
       end
       callback_method = options[:on] || :notify_subscribers_of
       send callback_type do |record|
-        record.send_later(callback_method, subscribable_association, options.merge(:dj_priority => 2))
+        record.send_later(callback_method, subscribable_association, options.merge(:dj_priority => 1))
       end
       
       if Object.const_defined?(subscribable_association.to_s.classify) && 
