@@ -30,6 +30,45 @@
   <div class='container'>
     <h1>iNaturalist API</h1>
     <p>The iNat REST API is generally for retrieving data from iNaturalist. Data can be retrieved in different formats by appending .[format] to the endpoint, e.g. /observations.json to retrieve observations as JSON.</p>
+    <strong>Contents</strong>
+    <ul>
+      <li>
+        <a href='#/observations'>
+          /observations
+        </a>
+      </li>
+      <li>
+        <a href='#/observations/:username'>
+          /observations/:username
+        </a>
+      </li>
+      <li>
+        <a href='#/observations/project/:id'>
+          /observations/project/:id
+        </a>
+      </li>
+      <li>
+        <a href='#/projects'>
+          /projects
+        </a>
+      </li>
+      <li>
+        <a href='#/projects/:id'>
+          /projects/:id
+        </a>
+      </li>
+      <li>
+        <a href='#/projects/:id?iframe=true'>
+          /projects/:id?iframe=true
+        </a>
+      </li>
+      <li>
+        <a href='#/projects/:id/contributors.widget'>
+          /projects/:id/contributors.widget
+        </a>
+      </li>
+    </ul>
+    <a name='/observations'></a>
     <h2>
       GET
       /observations
@@ -40,10 +79,15 @@
       href='http://rs.tdwg.org/dwc/terms/simple/index.htm'>Simple Darin Core</a>, an
       XML schema for biodiversity data. iNat uses JSON responses internally quite a
       bit, so it will probably always be the most information-rich.
+      
+      The widget response is a JS snippet that inserts HTML.  It should be used 
+      with a script tag, e.g. <pre>&lt;script src="http://www.inaturalist.org/observations.widget"&gt;&lt;/script&gt;</pre>
     </p>
-    <p>
-      Formats:
-      json, atom, dwc
+    <p class='ui'>
+      <strong>
+        Formats:
+        atom, csv, dwc, json, kml, widget
+      </strong>
     </p>
     <h3>Params</h3>
     <dl>
@@ -220,13 +264,118 @@
     <h3>Example</h3>
     <h4>
       Request
-      <a href='/observations.json'>
+      <a href='/observations.json' rel='nofollow'>
         (try it)
       </a>
     </h4>
     <pre>/observations.json</pre>
     <h4>Response</h4>
-    <pre>{&#x000A;          "user_login": "greatjon",&#x000A;          "place_guess": "San Francisco, San Francisco",&#x000A;          "location_is_exact": false,&#x000A;          "quality_grade": "casual",&#x000A;          "latitude": 37.713539,&#x000A;          "created_at": "2012-04-10T21:48:25-07:00",&#x000A;          "timeframe": null,&#x000A;          "species_guess": "gray wolf",&#x000A;          "observed_on": "2012-04-10",&#x000A;          "num_identification_disagreements": 0,&#x000A;          "delta": true,&#x000A;          "updated_at": "2012-04-10T21:49:50-07:00",&#x000A;          "num_identification_agreements": 0,&#x000A;          "license": null,&#x000A;          "geoprivacy": null,&#x000A;          "positional_accuracy": 354,&#x000A;          "coordinates_obscured": false,&#x000A;          "taxon_id": 42048,&#x000A;          "id_please": false,&#x000A;          "id": 2281,&#x000A;          "iconic_taxon": {&#x000A;              "name": "Mammalia",&#x000A;              "ancestry": "48460/1/2",&#x000A;              "rank": "class",&#x000A;              "id": 40151,&#x000A;              "rank_level": 50,&#x000A;              "iconic_taxon_name": "Mammalia"&#x000A;          },&#x000A;          "time_observed_at_utc": "2012-04-11T04:47:55Z",&#x000A;          "user_id": 53,&#x000A;          "time_observed_at": "2012-04-10T21:47:55-07:00",&#x000A;          "observed_on_string": "Tue Apr 10 2012 21:47:55 GMT-0700 (PDT)",&#x000A;          "short_description": "",&#x000A;          "time_zone": "Pacific Time (US & Canada)",&#x000A;          "out_of_range": null,&#x000A;          "longitude": -122.340054,&#x000A;          "description": "",&#x000A;          "user": {&#x000A;              "login": "greatjon"&#x000A;          },&#x000A;          "positioning_method": null,&#x000A;          "map_scale": null,&#x000A;          "photos": [],&#x000A;          "iconic_taxon_name": "Mammalia",&#x000A;          "positioning_device": null,&#x000A;          "iconic_taxon_id": 40151&#x000A;      }</pre>
+    <pre>[{&#x000A;    "user_login": "greatjon",&#x000A;    "place_guess": "San Francisco, San Francisco",&#x000A;    "location_is_exact": false,&#x000A;    "quality_grade": "casual",&#x000A;    "latitude": 37.713539,&#x000A;    "created_at": "2012-04-10T21:48:25-07:00",&#x000A;    "timeframe": null,&#x000A;    "species_guess": "gray wolf",&#x000A;    "observed_on": "2012-04-10",&#x000A;    "num_identification_disagreements": 0,&#x000A;    "delta": true,&#x000A;    "updated_at": "2012-04-10T21:49:50-07:00",&#x000A;    "num_identification_agreements": 0,&#x000A;    "license": null,&#x000A;    "geoprivacy": null,&#x000A;    "positional_accuracy": 354,&#x000A;    "coordinates_obscured": false,&#x000A;    "taxon_id": 42048,&#x000A;    "id_please": false,&#x000A;    "id": 2281,&#x000A;    "iconic_taxon": {&#x000A;        "name": "Mammalia",&#x000A;        "ancestry": "48460/1/2",&#x000A;        "rank": "class",&#x000A;        "id": 40151,&#x000A;        "rank_level": 50,&#x000A;        "iconic_taxon_name": "Mammalia"&#x000A;    },&#x000A;    "time_observed_at_utc": "2012-04-11T04:47:55Z",&#x000A;    "user_id": 53,&#x000A;    "time_observed_at": "2012-04-10T21:47:55-07:00",&#x000A;    "observed_on_string": "Tue Apr 10 2012 21:47:55 GMT-0700 (PDT)",&#x000A;    "short_description": "",&#x000A;    "time_zone": "Pacific Time (US & Canada)",&#x000A;    "out_of_range": null,&#x000A;    "longitude": -122.340054,&#x000A;    "description": "",&#x000A;    "user": {&#x000A;        "login": "greatjon"&#x000A;    },&#x000A;    "positioning_method": null,&#x000A;    "map_scale": null,&#x000A;    "photos": [],&#x000A;    "iconic_taxon_name": "Mammalia",&#x000A;    "positioning_device": null,&#x000A;    "iconic_taxon_id": 40151&#x000A;}]</pre>
+    <a name='/observations/:username'></a>
+    <h2>
+      GET
+      /observations/:username
+    </h2>
+    <p>Just like /observations except filtered by a username.</p>
+    <a name='/observations/project/:id'></a>
+    <h2>
+      GET
+      /observations/project/:id
+    </h2>
+    <p>Just like /observations except filtered by a project.  :id can be a project ID or slug. CSV response will return some extra project-specific daa.</p>
+    <p class='ui'>
+      <strong>
+        Formats:
+        atom, csv, json, kml, widget
+      </strong>
+    </p>
+    <a name='/projects'></a>
+    <h2>
+      GET
+      /projects
+    </h2>
+    <p>Retrieve information about projects on iNaturalist.</p>
+    <p class='ui'>
+      <strong>
+        Formats:
+        json
+      </strong>
+    </p>
+    <h3>Params</h3>
+    <dl>
+      <dt>page</dt>
+      <dd>Results are returned in pages of 100 projects.</dd>
+      <dd>
+        <label>Allowed values:</label>
+        any integer
+      </dd>
+      <dt>featured</dt>
+      <dd>Select only featured projects.  Featured projects are chosen by site admins.</dd>
+      <dd>
+        <label>Allowed values:</label>
+        true
+      </dd>
+      <dt>latitude</dt>
+      <dd>
+                Search for observations within 5 degrees of a given point. Results are
+                ordered by distance from that point. Geographic queries will only
+                return projects that have an observation rule tied to a given place.
+      </dd>
+      <dd>
+        <label>Allowed values:</label>
+        -90
+        to
+        90
+      </dd>
+      <dt>longitude</dt>
+      <dd>See latitude.</dd>
+      <dd>
+        <label>Allowed values:</label>
+        -180
+        to
+        180
+      </dd>
+      <dt>source</dt>
+      <dd>Find projects by source, usually a URI identifying an external resource from which the project was derived.</dd>
+      <dd>
+        <label>Allowed values:</label>
+        
+      </dd>
+    </dl>
+    <h3>Example</h3>
+    <h4>
+      Request
+      <a href='/projects.json?featured=true' rel='nofollow'>
+        (try it)
+      </a>
+    </h4>
+    <pre>/projects.json?featured=true</pre>
+    <h4>Response</h4>
+    <pre>[{&#x000A;    "created_at": "2011-08-12T10:21:28-07:00",&#x000A;    "created_at_utc": "2011-08-12T17:21:28Z",&#x000A;    "title": "ASC Pika Project",&#x000A;    "project_type": "contest",&#x000A;    "project_observation_rule_terms": "must be on list",&#x000A;    "updated_at": "2012-04-26T19:38:51-07:00",&#x000A;    "updated_at_utc": "2012-04-27T02:38:51Z",&#x000A;    "source_url": "",&#x000A;    "id": 44,&#x000A;    "user_id": 477,&#x000A;    "featured_at": "2012-04-26T19:38:51-07:00",&#x000A;    "featured_at_utc": "2012-04-27T02:38:51Z",&#x000A;    "icon_url": "http://www.inaturalist.org/attachments/projects/icons/44/span2/APAlogo.png?1315005828",&#x000A;    "icon_file_size": 9454,&#x000A;    "icon_file_name": "APAlogo.png",&#x000A;    "icon_content_type": "image/png",&#x000A;    "description": "The goal of this project is to document the persistence or extirpation of American Pika throughout their range for science and conservation. <a href="/attachments/project_assets/95-flyer.html?1320257073">Read our flyer</a> to find out more! According to the pika range map compiled by the <a href="http://www.iucnredlist.org/apps/redlist/details/41267/0">IUCN</a>, American pika are thought to occur in two occur in 2 Countries, 12 States (or Canadian Provinces) and 276 Counties (or Canadian Regional Districts). We seek to collect recent observations verifying Pika persistence in each of these places. This project is supported by the North American Pika Consortium, the California Department of Fish and Game, and the Front Range Pika Project.",&#x000A;    "cached_slug": "asc-pika-project",&#x000A;    "project_list": {&#x000A;        "comprehensive": false,&#x000A;        "place_id": null,&#x000A;        "created_at": "2011-08-12T12:33:04-07:00",&#x000A;        "created_at_utc": "2011-08-12T19:33:04Z",&#x000A;        "title": "American Pika Atlas's Check List",&#x000A;        "updated_at": "2011-08-12T12:33:04-07:00",&#x000A;        "project_id": 44,&#x000A;        "updated_at_utc": "2011-08-12T19:33:04Z",&#x000A;        "taxon_id": null,&#x000A;        "id": 52561,&#x000A;        "user_id": null,&#x000A;        "last_synced_at": null,&#x000A;        "description": "Every species observed by members of American Pika Atlas",&#x000A;        "source_id": null&#x000A;    },&#x000A;    "terms": "Please only upload observations if you agree to make them available non-commercial scientific analyses. We will attribute you as the photographer if your photos are used in any published scientific analyses. If possible please include locations, dates, and photos with your observations.",&#x000A;    "observed_taxa_count": 2,&#x000A;    "icon_updated_at": "2011-09-02T16:23:48-07:00",&#x000A;    "rule_place": null,&#x000A;    "project_observations_count": 12&#x000A;}]</pre>
+    <a name='/projects/:id'></a>
+    <h2>
+      GET
+      /projects/:id
+    </h2>
+    <p>Retrieve information about a single project.  :id is the project ID or slug.</p>
+    <p class='ui'>
+      <strong>
+        Formats:
+        json
+      </strong>
+    </p>
+    <a name='/projects/:id?iframe=true'></a>
+    <h2>
+      GET
+      /projects/:id?iframe=true
+    </h2>
+    <p>This returns a complete web page without header or footer suitable for use in an IFRAME.</p>
+    <a name='/projects/:id/contributors.widget'></a>
+    <h2>
+      GET
+      /projects/:id/contributors.widget
+    </h2>
+    <p>JS widget snippet of the top contributors to a project.</p>
     <div id='footer'>
       <div id='footer_text'>
         <a href='/about'>About iNaturalist</a>

@@ -95,37 +95,7 @@ class ObservationsController < ApplicationController
       end
 
       format.json do
-        if (partial = params[:partial]) && PARTIALS.include?(partial)
-          data = @observations.map do |observation|
-            item = {
-              :instance => observation,
-              :extra => {
-                :taxon => observation.taxon,
-                :iconic_taxon => observation.iconic_taxon,
-                :user => {:login => observation.user.login}
-              }
-            }
-
-            @template.template_format = :html
-            item[:html] = render_to_string(:partial => partial, :object => observation)
-            @template.template_format = :json
-            item
-          end
-          render :json => data
-        else
-          render :json => @observations.to_json(
-            :methods => [:short_description, :user_login, :iconic_taxon_name],
-            :include => {
-              :iconic_taxon => {:only => [:id, :name, :rank, :rank_level, :ancestry]},
-              :user => {:only => :login},
-              :photos => {
-                :methods => [:license_code, :attribution],
-                :except => [:original_url, :file_processing, :file_file_size, 
-                  :file_content_type, :file_file_name, :mobile]
-              }
-            }
-          )
-        end
+        render_observations_to_json
       end
       
       format.mobile
@@ -1129,6 +1099,9 @@ class ObservationsController < ApplicationController
           return render_observations_partial(partial)
         end
       end
+      format.json do
+        render_observations_to_json
+      end
       format.atom do
         @updated_at = Observation.first(:order => 'updated_at DESC').updated_at
         render :action => "index"
@@ -1759,6 +1732,40 @@ class ObservationsController < ApplicationController
     unless logged_in? && current_user.id == @observation.user_id
       flash[:error] = "You don't have permission to do that"
       return redirect_to @observation
+    end
+  end
+  
+  def render_observations_to_json(options = {})
+    if (partial = params[:partial]) && PARTIALS.include?(partial)
+      data = @observations.map do |observation|
+        item = {
+          :instance => observation,
+          :extra => {
+            :taxon => observation.taxon,
+            :iconic_taxon => observation.iconic_taxon,
+            :user => {:login => observation.user.login}
+          }
+        }
+
+        @template.template_format = :html
+        item[:html] = render_to_string(:partial => partial, :object => observation)
+        @template.template_format = :json
+        item
+      end
+      render :json => data
+    else
+      render :json => @observations.to_json(
+        :methods => [:short_description, :user_login, :iconic_taxon_name],
+        :include => {
+          :iconic_taxon => {:only => [:id, :name, :rank, :rank_level, :ancestry]},
+          :user => {:only => :login},
+          :photos => {
+            :methods => [:license_code, :attribution],
+            :except => [:original_url, :file_processing, :file_file_size, 
+              :file_content_type, :file_file_name, :mobile]
+          }
+        }
+      )
     end
   end
   

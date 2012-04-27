@@ -103,6 +103,10 @@ class Project < ActiveRecord::Base
     project_observation_rules.map{|por| por.terms}.join('|')
   end
   
+  def project_observations_count
+    project_observations.count
+  end
+  
   def featured_at_utc
     featured_at.try(:utc)
   end
@@ -115,7 +119,8 @@ class Project < ActiveRecord::Base
   
   def self.default_json_options
     {
-      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place]
+      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place],
+      :except => [:tracking_codes]
     }
   end
   
