@@ -205,6 +205,8 @@
       <%= f.check_box :featured_at, 
         :label => "Feature this project?", 
         :label_after => true %>
+        
+      <%= f.text_field :source_url, :description => "URL / identifier of a project derived from some external resource" %>
     </fieldset>
   <% end -%>
 
