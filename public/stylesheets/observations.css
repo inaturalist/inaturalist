@@ -257,10 +257,21 @@
 .observations.grid .created_at,
 .observations.grid .place,
 .observations.grid .user,
-.observations.grid .actions,
 .observations.grid .details,
 .observations.grid .curator_ident {
   display:none;
+}
+.observations.grid .actions .counts {
+  display:block;
+  top: 0px;
+  left: 0px;
+}
+.observations.grid .actions ul:last-child {display:none;}
+.observations.grid .observation .actions ul li:after {content:'';}
+.observations.grid .research_grade_notice, 
+.observations.grid .id_please_notice {
+  top: 0px;
+  right: 0px;
 }
 .observations.grid .icon {
   position:absolute;
@@ -270,23 +281,42 @@
 }
 .observations.grid .species_guess,
 .observations.grid .readable,
-.observations.grid p {
+.observations.grid p,
+.observations.grid .research_grade_notice, 
+.observations.grid .id_please_notice,
+.observations.grid .actions .counts {
   font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
   font-size: 8pt;
   line-height:1.2;
 }
-.observations.grid .species_guess a {
-  z-index:0;
-  width:71px;
+.observations.grid .species_guess a,
+.observations.grid .research_grade_notice, 
+.observations.grid .id_please_notice,
+.observations.grid .actions .counts {
   padding: 2px;
+  z-index:0;
   color: white;
   position:absolute;
-  left: 0;
-  bottom: 0;
   opacity: 0.4;
   background-color:black;
 }
-.observations.grid .observation:hover .species_guess a {opacity: 0.9;}
+.observations.grid .observation:hover .species_guess a,
+.observations.grid .observation:hover .research_grade_notice, 
+.observations.grid .observation:hover .id_please_notice,
+.observations.grid .observation:hover .actions .counts {
+  opacity: 0.9;
+}
+.observations.grid .species_guess a {
+  left: 0;
+  bottom: 0;
+}
+.observations.grid .research_grade_notice,.id_please_notice {-webkit-border-radius:0px;-moz-border-radius:0px;border:0 transparent;border-radius:0px;padding:2px 5px; white-space: nowrap;}
+.observations.grid .research_grade_notice {color:#74AC00;}
+.observations.grid .id_please_notice{color:yellow;}
+.observations.grid .research_grade_notice .full,
+.observations.grid .id_please_notice .full { display:none; }
+.observations.grid .ui-icon-comment {width:12px; height: 12px; background-position: -130px -99px;}
+
 .observations.grid .species_guess .othernames {display:none;}
 .observations.grid .photos {
   display:block;
@@ -305,12 +335,15 @@
 .observations.medium.grid .observation {overflow: hidden;}
 .observations.medium.grid .observation,
 .observations.medium.grid .photos,
-.observations.medium.grid .icon {width:160px; height: 160px;}
+.observations.medium.grid .icon {width:160px; height: 160px; }
 .observations.medium.grid .photos img { width:auto; position:absolute;}
-/*.observations.medium.grid .observation,
-.observations.medium.grid .photos {height: 160px;}*/
-.observations.medium.grid .species_guess a {width:auto;padding: 5px;}
-.observations.medium.grid .icon {top: 20px;}
+.observations.medium.grid .species_guess a { width: auto; padding: 5px;}
+.observations.medium.grid .research_grade_notice, 
+.observations.medium.grid .id_please_notice,
+.observations.medium.grid .actions .counts {width:auto;padding: 3px 5px;}
+.observations.medium.grid .icon {top: 40px;}
+.observations.medium.grid .observation:hover .research_grade_notice .full,
+.observations.medium.grid .observation:hover .id_please_notice .full { display:inline; }
 
 /* Infowindow */
 .observations.infowindow {
