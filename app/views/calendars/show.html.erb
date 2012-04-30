@@ -10,7 +10,19 @@
     .bigun .label { font-size: 120%;}
     .iconic_taxon_sprite { vertical-align: middle; }    
     .lilun { display: table-cell; vertical-align: middle; height: 150px;}
+    
+    .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+      width: 186px;
+      height: 186px;
+    }
   </style>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <% if params[:test] -%>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <%= javascript_include_tag 'inaturalist/map3' %>
+  <% end -%>
 <%- end -%>
 
 <div id="pageheader" class="clear">
@@ -141,4 +153,15 @@
   </div>
 <% end -%>
 
-<%= render :partial => "observations/map" %>
+<% if params[:test] -%>
+  <div class="observationcontrols stacked"></div>
+  <div class="observations grid">
+    <%= render :partial => "observations/cached_component", :collection => @observations %>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    $('.observations').observationsGrid('medium')
+    $('.observationcontrols').observationControls()
+  </script>
+<% else %>
+  <%= render :partial => "observations/map" %>  
+<% end -%>

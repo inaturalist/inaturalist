@@ -398,21 +398,28 @@ $.fn.observationsGrid = function(size) {
   $('.map', this).hide()
   var that = this
   $(this).removeClass('mini map')
-  $(this).addClass('grid')
+  $(this).addClass('observations grid')
   if (size == 'medium') {
     $(this).addClass('medium')
     $('.photos img[data-small-url]', this).each(function() { 
-      $(this).load(function() {
-        if ($(this).width() > $(this).height()) {
+      $(this).imagesLoaded(function($images, $proper, $broken) {
+        if (this) {}; // not sure why FF needs this but without it natural dimensions seem to be zero
+        var w = $(this).naturalWidth(),
+            h = $(this).naturalHeight()
+        if (w > h) {
           $(this).css({height: $(this).parents('.observation:first').height(), maxWidth: 'none'})
-          $(this).css({top: 0, left: '50%', marginLeft: '-' + ($(this).width() / 2) + 'px'})
+          $(this).css({top: 0, left: '50%', marginLeft: '-' + (w / 2) + 'px'})
+        } else if (w < h) {
+          $(this).css({width: $(this).parents('.observation:first').width(), maxHeight: 'none'})
+          $(this).css({left: 0, top: '50%', marginTop: '-' + (h / 2) + 'px'})
         } else {
           $(this).css({width: $(this).parents('.observation:first').width(), maxHeight: 'none'})
-          $(this).css({left: 0, top: '50%', marginTop: '-' + ($(this).height() / 2) + 'px'})
+          $(this).css({left: 0, top: 0, marginTop: '0px'})
         }
         $(this).fadeIn()
-        $(this).unbind('load')
+        // $(this).unbind('load')
       })
+      
       $(this).attr('src', $(this).attr('data-small-url')).hide(); 
     })
     $('.icon img[data-small-url]', this).each(function() {
@@ -447,7 +454,7 @@ $.fn.observationsMap = function() {
       return
     }
     var w = $(this).width(),
-        h = $(this).height() > w ? w : $(this).height(),
+        h = $(window).height() / $(window).width() * w,
         mapDiv = $('<div></div>')
     mapDiv.addClass('stacked map')
     mapDiv.width(w)
@@ -518,3 +525,24 @@ $.fn.observationControls = function(options) {
   })
 }
 
+$.fn.naturalWidth = function() {
+  var img = $(this).get(0)
+  if (typeof(img.naturalWidth) == 'undefined') {
+    var fakeImg = new Image()
+    fakeImg.src = $(this).attr('src')
+    return fakeImg.width
+  } else {
+    return img.naturalWidth
+  }
+}
+
+$.fn.naturalHeight = function() {
+  var img = $(this).get(0)
+  if (typeof(img.naturalHeight) == 'undefined') {
+    var fakeImg = new Image()
+    fakeImg.src = $(this).attr('src')
+    return fakeImg.height
+  } else {
+    return img.naturalHeight
+  }
+}
