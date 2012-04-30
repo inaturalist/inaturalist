@@ -9,54 +9,26 @@
   default_observation = observations.first
 -%>
 
-<% if observations.size == 1 -%>
-  <% if default_observation.photos.size > 0 -%>
-    <div class="updatewithimage">
-      <div class="updateimage">
-        <%= observation_image(default_observation, :size => "small", :class => "left") %>
-      </div>
-      <div class="updatecontent mini observations">
-        <%= render :partial => "observations/cached_component", :object => default_observation %>
-      </div>
-    </div>
-  <% else %>
-    <div class="updatecontent mini observations">
-      <%= render :partial => "observations/cached_component", :object => default_observation %>
-    </div>
-  <% end -%>
-<% else %>
-  <%- 
-    place_guesses = observations.map(&:place_guess).reject(&:blank?).uniq
-    login = observations.first.user.login
-  -%>
+
+<%- 
+  place_guesses = observations.map{|o| o.place_guess.blank? ? nil : o.place_guess }.compact.uniq
+  login = observations.first.user.login
+-%>
+
+<div class="updatecontent">
+  <div class="observationcontrols stacked"></div>
   
-  <div class="updatecontent">
-    <div class="controls stacked">
-      <%= link_to_function "<div class='inat-icon ui-icon inlineblock ui-icon-grid'></div> Grid", 
-        "$(this).parents('.updatecontent:first').find('.observations').observationsGrid('medium');" +
-        "$(this).siblings().addClass('disabled'); $(this).removeClass('disabled')" %>
-      <%= link_to_function "<div class='inat-icon ui-icon inlineblock ui-icon-list'></div> List", 
-        "$(this).parents('.updatecontent:first').find('.observations').observationsList();" + 
-        "$(this).siblings().addClass('disabled'); $(this).removeClass('disabled')", 
-        :class => "disabled" %>
-      <%= link_to_function "<div class='inat-icon ui-icon inlineblock ui-icon-map'></div> Map", 
-        "$(this).parents('.updatecontent:first').find('.observations').observationsMap();" + 
-        "$(this).siblings().addClass('disabled'); $(this).removeClass('disabled')", 
-        :class => "disabled" %>
-    </div>
-    
-    <div class="observations grid">
-      <%= render :partial => "observations/cached_component", :collection => observations %>
-    </div>
-    
-    <div class="description">
-      <%= link_to "View #{login}'s observations", observations_by_login_path(login) %>
-      <% unless place_guesses.blank? -%>
-        from
-        <% place_guesses.each_with_index do |pg, i| %>
-          <%= link_to(pg, observations_by_login_path(login, :q => pg, :search_on => "place")) %><%= ',' if i+1 < place_guesses.size %>
-        <% end %>
-      <% end -%>
-    </div>
+  <div class="observations <%= observations.size > 1 ? 'grid' : 'mini' %> stacked">
+    <%= render :partial => "observations/cached_component", :collection => observations %>
   </div>
-<% end -%>
+  
+  <div class="meta">
+    <%= link_to "View #{login}'s observations", observations_by_login_path(login), :class => "#{'readmore' if place_guesses.size == 0}" %>
+    <% unless place_guesses.blank? -%>
+      from
+      <%= place_guesses.map {|pg| 
+        link_to(pg, observations_by_login_path(login, :q => pg, :search_on => "place"))
+      }.join(', ') %>
+    <% end -%>
+  </div>
+</div>

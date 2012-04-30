@@ -438,6 +438,8 @@ $.fn.observationsList = function() {
 
 $.fn.observationsMap = function() {
   $(this).observationsList()
+  $(this).removeClass('medium grid mini')
+  $(this).addClass('map')
   $(this).each(function() {
     if ($('.map', this).length > 0) {
       $('.map', this).show()
@@ -450,7 +452,6 @@ $.fn.observationsMap = function() {
     mapDiv.addClass('stacked map')
     mapDiv.width(w)
     mapDiv.height(h)
-    mapDiv.css('background-color', 'lightgreen')
     $(this).prepend(mapDiv)
     var map = iNaturalist.Map.createMap({div: mapDiv.get(0)})
     $('.observation', this).each(function() {
@@ -469,3 +470,51 @@ $.fn.observationsMap = function() {
   })
   $('.observation', this).hide()
 }
+
+
+$.fn.observationControls = function(options) {
+  var options = options || {}
+  $(this).each(function() {
+    var observations = options.for || $(this).parent().find('.observations')
+    var gridButton = $('<a href="#"></a>').append(
+      $('<div class="inat-icon ui-icon inlineblock ui-icon-grid"></div>'),
+      'Grid'
+    ).click(function() {
+      $(observations).observationsGrid('medium')
+      $(this).siblings().addClass('disabled')
+      $(this).removeClass('disabled')
+      return false
+    })
+
+    var listButton = $('<a href="#"></a>').append(
+      $('<div class="inat-icon ui-icon inlineblock ui-icon-list"></div>'),
+      'List'
+    ).click(function() {
+      $(observations).observationsList()
+      $(this).siblings().addClass('disabled')
+      $(this).removeClass('disabled')
+      return false
+    })
+
+    var mapButton = $('<a href="#"></a>').append(
+      $('<div class="inat-icon ui-icon inlineblock ui-icon-map"></div>'),
+      'Map'
+    ).click(function() {
+      $(observations).observationsMap()
+      $(this).siblings().addClass('disabled')
+      $(this).removeClass('disabled')
+      return false
+    })
+
+    $(this).append(gridButton, listButton, mapButton)
+
+    if ($(observations).hasClass('grid')) {
+      gridButton.click()
+    } else if ($(observations).hasClass('map')) {
+      mapButton.click()
+    } else {
+      listButton.click()
+    }
+  })
+}
+

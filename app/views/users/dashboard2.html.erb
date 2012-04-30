@@ -37,10 +37,7 @@
     .stub { opacity: 0.5; }
     .stub:hover { opacity: 1; }
     
-    .updatewithimage .observations.mini .observation {border: 0 transparent;}
-    
-    .controls a, .controls a:hover {color: #222;}
-    .controls a.disabled {color: #888;}
+    .observations.mini .observation:last-child {border: 0 transparent;}
     
     .inat-widget td {vertical-align: top; padding: 5px;}
     .inat-label { color: #888; }
@@ -58,11 +55,6 @@
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'jquery/plugins/jqModal', 'inaturalist/map3' %>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('.observations').observationsGrid('medium')
-    })
-  </script>
 <%- end -%>
 
 <% if @announcement -%>
@@ -161,6 +153,10 @@
         </div>
       </div>
     <% end %>
+    <script type="text/javascript" charset="utf-8">
+      $('.observations.grid').observationsGrid('medium')
+      $('.observationcontrols').observationControls()
+    </script>
     <%= will_paginate @updates %>
   <% end %>
 </div>
