@@ -1,14 +1,14 @@
 <%-
   resource = object || resource
   updates ||= []
-  updates = updates.sort_by do |u| 
-    n = if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-      @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-    else
-      u.notifier
-    end
-    n ? n.created_at : nil
-  end
+  # updates = updates.sort_by do |u| 
+  #   n = if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
+  #     @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
+  #   else
+  #     u.notifier
+  #   end
+  #   n ? n.created_at : nil
+  # end
   class_name = resource.class.to_s.underscore
 -%>
 

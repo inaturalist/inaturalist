@@ -57,21 +57,28 @@ class Update < ActiveRecord::Base
         :select => "DISTINCT subscriber_id",
         :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact
     user_ids.each do |subscriber_id|
-      user = User.find_by_id(subscriber_id)
-      next unless user
-      next if user.email.blank?
-      next unless user.active? # email verified
-      next unless user.admin? # testing
-      updates = Update.all(:conditions => ["subscriber_id = ? AND created_at BETWEEN ? AND ?", subscriber_id, start_time, end_time])
-      updates.delete_if do |u| 
-        !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
-        !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
+      if email_updates_to_user(subscriber_id, start_time, end_time)
+        email_count += 1
       end
-      next if updates.blank?
-      Emailer.deliver_updates_notification(user, updates)
-      email_count += 1
     end
     Rails.logger.info "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - end_time} s"
+  end
+  
+  def self.email_updates_to_user(subscriber, start_time, end_time)
+    user = User.find_by_id(subscriber.to_i) unless subscriber.is_a?(User)
+    user ||= User.find_by_login(subscriber)
+    return unless user
+    return if user.email.blank?
+    return unless user.active? # email verified
+    return unless user.admin? # testing
+    updates = Update.all(:conditions => ["subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
+    updates.delete_if do |u| 
+      !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
+      !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
+    end.compact
+    return if updates.blank?
+    Emailer.deliver_updates_notification(user, updates)
+    true
   end
   
   def self.eager_load_associates(updates, options = {})
