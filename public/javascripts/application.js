@@ -398,14 +398,18 @@ $.fn.centerInContainer = function(options) {
   var containerSelector = options.container || ':first'
   $(this).not('.centeredInContainer').each(function() {
     if ($(this)) {};
-    var w = $(this).naturalWidth(),
+    var containerWidth = $(this).parents(containerSelector).width(),
+        containerHeight = $(this).parents(containerSelector).height(),
+        w = $(this).naturalWidth(),
         h = $(this).naturalHeight()
     if (w > h) {
-      $(this).css({height: $(this).parents(containerSelector).height(), maxWidth: 'none'})
-      $(this).css({top: 0, left: '50%', marginLeft: '-' + (w / 2) + 'px'})
+      var width = containerHeight / h * w
+      $(this).css({height: containerHeight, maxWidth: 'none'})
+      $(this).css({top: 0, left: '50%', marginLeft: '-' + (width / 2) + 'px'})
     } else if (w < h) {
+      var height = containerWidth / w * h
       $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
-      $(this).css({left: 0, top: '50%', marginTop: '-' + (h / 2) + 'px'})
+      $(this).css({left: 0, top: '50%', marginTop: '-' + (height / 2) + 'px'})
     } else {
       $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
       $(this).css({left: 0, top: 0, marginTop: '0px'})
@@ -422,17 +426,17 @@ $.fn.observationsGrid = function(size) {
   $(this).addClass('observations grid')
   if (size == 'medium') {
     $(this).addClass('medium')
-    $('.photos img[data-small-url]', this).each(function() { 
+    $('.photos img[data-medium-url]', this).each(function() { 
       $(this).load(function() {
         $(this).centerInContainer({container: '.observation:first'})
         $(this).fadeIn()
         $(this).unbind('load')
       })
       
-      $(this).attr('src', $(this).attr('data-small-url')).hide(); 
+      $(this).attr('src', $(this).attr('data-medium-url')).hide(); 
     })
-    $('.icon img[data-small-url]', this).each(function() {
-      $(this).attr('src', $(this).attr('data-small-url')); 
+    $('.icon img[data-medium-url]', this).each(function() {
+      $(this).attr('src', $(this).attr('data-medium-url')); 
     })
   } else {
     $(that).removeClass('medium')
