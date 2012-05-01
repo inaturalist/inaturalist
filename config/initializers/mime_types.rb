@@ -7,5 +7,5 @@ Mime::Type.register "application/vnd.google-earth.kml+xml", :kml
 Mime::Type.register "text/xml", :dwc
 Mime::Type.register "text/json", :node
 Mime::Type.register "text/json", :geojson
-Mime::Type.register_alias "text/html", :widget
+Mime::Type.register_alias "text/javascript", :widget, %w( application/javascript application/x-javascript )
 Mime::Type.register_alias "text/html", :mobile

@@ -2,8 +2,7 @@
 <% for project_user in @top_contributors %>
   <tr class="inat-contributor">
     <td class="inat-contributor-image" valign="top" align="center">
-      <%- img_url = root_url + project_user.user.icon.url(:thumb) -%>
-      <%= link_to image_tag(img_url), project_show_contributor_url(@project, project_user) %>
+      <%= link_to user_image(project_user.user, :size => :thumb), project_show_contributor_url(@project, project_user) %>
       <div class="inat-value">
         <%= link_to truncate(project_user.user.login, :length => 10), project_show_contributor_url(@project, project_user) %>
       </div>
