@@ -1331,13 +1331,26 @@ class Observation < ActiveRecord::Base
     new_quality_grade = get_quality_grade
     self.quality_grade = new_quality_grade
     
-    unless options[:skip_save]
+    if !options[:skip_save] && (num_identification_agreements_changed? || num_identification_disagreements_changed? || quality_grade_changed?)
       Observation.update_all(
         ["num_identification_agreements = ?, num_identification_disagreements = ?, quality_grade = ?", 
           num_agreements, num_disagreements, new_quality_grade], 
         "id = #{id}")
       refresh_check_lists
     end
+  end
+  
+  def self.update_stats_for_observations_of(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    Rails.logger.info "[INFO #{Time.now}] Observation.update_stats_for_observations_of(#{taxon})"
+    conditions = taxon.descendant_conditions
+    conditions[0] = "#{conditions[0]} OR observations.taxon_id = ?"
+    conditions << taxon.id
+    Observation.do_in_batches(:include => :taxon, :conditions => conditions) do |o|
+      o.update_stats
+    end
+    Rails.logger.info "[INFO #{Time.now}] Finished Observation.update_stats_for_observations_of(#{taxon})"
   end
   
   def random_neighbor_lat_lon(lat, lon, max_distance, radius = PLANETARY_RADIUS)

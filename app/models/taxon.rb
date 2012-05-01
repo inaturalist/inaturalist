@@ -300,6 +300,7 @@ class Taxon < ActiveRecord::Base
         update_listed_taxa
         update_life_lists
         update_obs_iconic_taxa
+        Observation.send_later(:update_stats_for_observations_of, id, :dj_priority => 2)
       end
       set_iconic_taxon
     end
