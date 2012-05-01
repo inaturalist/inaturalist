@@ -393,6 +393,27 @@ $.fn.slideToggleWidth = function() {
   })
 }
 
+$.fn.centerInContainer = function(options) {
+  options = options || {}
+  var containerSelector = options.container || ':first'
+  $(this).not('.centeredInContainer').each(function() {
+    if ($(this)) {};
+    var w = $(this).naturalWidth(),
+        h = $(this).naturalHeight()
+    if (w > h) {
+      $(this).css({height: $(this).parents(containerSelector).height(), maxWidth: 'none'})
+      $(this).css({top: 0, left: '50%', marginLeft: '-' + (w / 2) + 'px'})
+    } else if (w < h) {
+      $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
+      $(this).css({left: 0, top: '50%', marginTop: '-' + (h / 2) + 'px'})
+    } else {
+      $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
+      $(this).css({left: 0, top: 0, marginTop: '0px'})
+    }
+    $(this).addClass('centeredInContainer')
+  })
+}
+
 $.fn.observationsGrid = function(size) {
   $('.observation', this).showInlineBlock()
   $('.map', this).hide()
@@ -402,20 +423,8 @@ $.fn.observationsGrid = function(size) {
   if (size == 'medium') {
     $(this).addClass('medium')
     $('.photos img[data-small-url]', this).each(function() { 
-      $(this).load(function($images, $proper, $broken) {
-        if (this) {}; // not sure why FF needs this but without it natural dimensions seem to be zero
-        var w = $(this).naturalWidth(),
-            h = $(this).naturalHeight()
-        if (w > h) {
-          $(this).css({height: $(this).parents('.observation:first').height(), maxWidth: 'none'})
-          $(this).css({top: 0, left: '50%', marginLeft: '-' + (w / 2) + 'px'})
-        } else if (w < h) {
-          $(this).css({width: $(this).parents('.observation:first').width(), maxHeight: 'none'})
-          $(this).css({left: 0, top: '50%', marginTop: '-' + (h / 2) + 'px'})
-        } else {
-          $(this).css({width: $(this).parents('.observation:first').width(), maxHeight: 'none'})
-          $(this).css({left: 0, top: 0, marginTop: '0px'})
-        }
+      $(this).load(function() {
+        $(this).centerInContainer({container: '.observation:first'})
         $(this).fadeIn()
         $(this).unbind('load')
       })
@@ -428,6 +437,7 @@ $.fn.observationsGrid = function(size) {
   } else {
     $(that).removeClass('medium')
     $('.photos img[data-square-url]', that).attr('style', '')
+    $('.photos img[data-square-url]', that).removeClass('centeredInContainer')
     $('.photos img[data-square-url]', that).attr('src', function() { return $(this).attr('data-square-url')})
     $('.icon img[data-square-url]', that).attr('src', function() { return $(this).attr('data-square-url')})
   }
@@ -439,6 +449,7 @@ $.fn.observationsList = function() {
   $(this).removeClass('medium grid map')
   $(this).addClass('mini')
   $('.photos img[data-square-url]', this).attr('style', '')
+  $('.photos img[data-square-url]', this).removeClass('centeredInContainer')
   $('.photos img[data-square-url]', this).attr('src', function() { return $(this).attr('data-square-url')})
   $('.icon img[data-square-url]', this).attr('src', function() { return $(this).attr('data-square-url')})
 }
