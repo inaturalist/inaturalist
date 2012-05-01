@@ -402,7 +402,7 @@ $.fn.observationsGrid = function(size) {
   if (size == 'medium') {
     $(this).addClass('medium')
     $('.photos img[data-small-url]', this).each(function() { 
-      $(this).imagesLoaded(function($images, $proper, $broken) {
+      $(this).load(function($images, $proper, $broken) {
         if (this) {}; // not sure why FF needs this but without it natural dimensions seem to be zero
         var w = $(this).naturalWidth(),
             h = $(this).naturalHeight()
@@ -417,7 +417,7 @@ $.fn.observationsGrid = function(size) {
           $(this).css({left: 0, top: 0, marginTop: '0px'})
         }
         $(this).fadeIn()
-        // $(this).unbind('load')
+        $(this).unbind('load')
       })
       
       $(this).attr('src', $(this).attr('data-small-url')).hide(); 
