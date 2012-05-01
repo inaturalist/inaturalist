@@ -426,17 +426,17 @@ $.fn.observationsGrid = function(size) {
   $(this).addClass('observations grid')
   if (size == 'medium') {
     $(this).addClass('medium')
-    $('.photos img[data-medium-url]', this).each(function() { 
+    $('.photos img[data-small-url]', this).each(function() { 
       $(this).load(function() {
         $(this).centerInContainer({container: '.observation:first'})
         $(this).fadeIn()
         $(this).unbind('load')
       })
       
-      $(this).attr('src', $(this).attr('data-medium-url')).hide(); 
+      $(this).attr('src', $(this).attr('data-small-url')).hide()
     })
-    $('.icon img[data-medium-url]', this).each(function() {
-      $(this).attr('src', $(this).attr('data-medium-url')); 
+    $('.icon img[data-small-url]', this).each(function() {
+      $(this).attr('src', $(this).attr('data-small-url')) 
     })
   } else {
     $(that).removeClass('medium')
