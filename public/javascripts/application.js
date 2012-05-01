@@ -468,7 +468,7 @@ $.fn.observationsMap = function() {
         longitude: $(this).attr('data-longitude'),
         taxonId: $(this).attr('data-taxon-id'),
         iconic_taxon: {
-          name: $(this).attr('data-iconic-taxon-name'),
+          name: $(this).attr('data-iconic-taxon-name')
         }
       }
       map.addObservation(o)
@@ -482,7 +482,7 @@ $.fn.observationsMap = function() {
 $.fn.observationControls = function(options) {
   var options = options || {}
   $(this).each(function() {
-    var observations = options.for || $(this).parent().find('.observations')
+    var observations = options.div || $(this).parent().find('.observations')
     var gridButton = $('<a href="#"></a>').append(
       $('<div class="inat-icon ui-icon inlineblock ui-icon-grid"></div>'),
       'Grid'
