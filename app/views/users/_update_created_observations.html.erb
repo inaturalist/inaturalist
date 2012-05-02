@@ -19,7 +19,9 @@
   <div class="observationcontrols stacked"></div>
   
   <div class="observations <%= observations.size > 1 ? 'grid' : 'mini' %> stacked">
-    <%= render :partial => "observations/cached_component", :collection => observations %>
+    <%- compact do %>
+      <%= render :partial => "observations/cached_component", :collection => observations %>
+    <% end -%>
   </div>
   
   <div class="meta">

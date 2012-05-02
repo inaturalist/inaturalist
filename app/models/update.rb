@@ -37,7 +37,9 @@ class Update < ActiveRecord::Base
         activity_assocs.each do |assoc, assoc_options|
           # this is going to lazy load assoc's of the associate (e.g. a comment's user) which might not be ideal
           resource.send(assoc).each do |associate|
-            batch << Update.new(:resource => resource, :notifier => associate) unless batch.detect{|u| u.notifier == associate}
+            unless batch.detect{|u| u.notifier == associate}
+              batch << Update.new(:resource => resource, :notifier => associate, :notification => "activity")
+            end
           end
         end
         grouped_updates << [key, batch.sort_by{|u| u.sort_by_date}]

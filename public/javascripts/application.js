@@ -259,14 +259,6 @@ function autoTip() {
   $(this).qtip(tipOptions)
 }
 
-// $(window).bind('load', function() {
-//   $('.fluid.grid .taxon.img').each(function() {
-//     // if ($(this).hasClass('noimg')) { return };
-//     var img = $(this).find('.taxonimage img')
-//     $(this).width(img.width())
-//   })
-// })
-
 // from http://forum.jquery.com/topic/jquery-simple-autolink-and-highlight-12-1-2010
 jQuery.fn.autolink = function() {
   return this.each(function() {
@@ -311,12 +303,14 @@ $.fn.shades = function(e, options) {
 }
 
 $.fn.showInlineBlock = function() {
-  $(this).css({
-    'display': '-moz-inline-stack',
-    'display': 'inline-block',
-    'zoom': 1,
-    '*display': 'inline'
-  })
+  var opts = {}
+  if ($.browser.msie) {
+    opts.zoom = 1
+    opts['*display'] = 'inline'
+  } else {
+    opts.display = 'inline-block'
+  }
+  $(this).css(opts)
   return this
 }
 
@@ -410,8 +404,15 @@ $.fn.centerInContainer = function(options) {
       var height = containerWidth / w * h
       $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
       $(this).css({left: 0, top: '50%', marginTop: '-' + (height / 2) + 'px'})
+    } else if (w == 0 && h == 0) {
+      var that = this
+      // hack for ff
+      setTimeout(function() {
+        $(that).centerInContainer(options)
+      }, 500)
+      return
     } else {
-      $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
+      $(this).css({width: $(this).parents(containerSelector).width(), maxWidth: 'none', maxHeight: 'none'})
       $(this).css({left: 0, top: 0, marginTop: '0px'})
     }
     $(this).addClass('centeredInContainer')
@@ -431,13 +432,15 @@ $.fn.observationsGrid = function(size) {
         $(this).centerInContainer({container: '.observation:first'})
         $(this).fadeIn()
         $(this).unbind('load')
-      })
-      
+      })      
       $(this).attr('src', $(this).attr('data-small-url')).hide()
     })
     $('.icon img[data-small-url]', this).each(function() {
       $(this).attr('src', $(this).attr('data-small-url')) 
     })
+    
+    
+    
   } else {
     $(that).removeClass('medium')
     $('.photos img[data-square-url]', that).attr('style', '')
@@ -498,37 +501,31 @@ $.fn.observationControls = function(options) {
   var options = options || {}
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
-    var gridButton = $('<a href="#"></a>').append(
-      $('<div class="inat-icon ui-icon inlineblock ui-icon-grid"></div>'),
-      'Grid'
-    ).click(function() {
+    var gridButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span>Grid</a>')
+    gridButton.click(function() {
       $(observations).observationsGrid('medium')
       $(this).siblings().addClass('disabled')
       $(this).removeClass('disabled')
       return false
     })
 
-    var listButton = $('<a href="#"></a>').append(
-      $('<div class="inat-icon ui-icon inlineblock ui-icon-list"></div>'),
-      'List'
-    ).click(function() {
+    var listButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span>List</a>')
+    listButton.click(function() {
       $(observations).observationsList()
       $(this).siblings().addClass('disabled')
       $(this).removeClass('disabled')
       return false
     })
 
-    var mapButton = $('<a href="#"></a>').append(
-      $('<div class="inat-icon ui-icon inlineblock ui-icon-map"></div>'),
-      'Map'
-    ).click(function() {
+    var mapButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span>Map</a>')
+    mapButton.click(function() {
       $(observations).observationsMap()
       $(this).siblings().addClass('disabled')
       $(this).removeClass('disabled')
       return false
     })
-
-    $(this).append(gridButton, listButton, mapButton)
+    
+    $(this).append(' ', gridButton, listButton, mapButton)
 
     if ($(observations).hasClass('grid')) {
       gridButton.click()
@@ -542,22 +539,14 @@ $.fn.observationControls = function(options) {
 
 $.fn.naturalWidth = function() {
   var img = $(this).get(0)
-  if (typeof(img.naturalWidth) == 'undefined') {
-    var fakeImg = new Image()
-    fakeImg.src = $(this).attr('src')
-    return fakeImg.width
-  } else {
-    return img.naturalWidth
-  }
+  var fakeImg = new Image()
+  fakeImg.src = $(this).attr('src')
+  return fakeImg.width
 }
 
 $.fn.naturalHeight = function() {
   var img = $(this).get(0)
-  if (typeof(img.naturalHeight) == 'undefined') {
-    var fakeImg = new Image()
-    fakeImg.src = $(this).attr('src')
-    return fakeImg.height
-  } else {
-    return img.naturalHeight
-  }
+  var fakeImg = new Image()
+  fakeImg.src = $(this).attr('src')
+  return fakeImg.height
 }

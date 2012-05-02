@@ -5,15 +5,15 @@
   <%= stylesheet_link_tag "observations" %>
   <style type="text/css" media="screen">
     .bigun {text-align: center; height: 150px; border-radius: 150px; background-color: #eee; position: relative;}
-    .bigun .inner { width: 150px; height: 72px; top: 50%; margin-top: -47px; position: absolute;}
+    .bigun .inner { left: 0; width: 150px; height: 72px; top: 50%; margin-top: -47px; position: absolute;}
     .bigun .count { font-size: 300%;}
     .bigun .label { font-size: 120%;}
     .iconic_taxon_sprite { vertical-align: middle; }    
     .lilun { display: table-cell; vertical-align: middle; height: 150px;}
     
     .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
-      width: 186px;
-      height: 186px;
+      width: 185px;
+      height: 185px;
     }
   </style>
 <%- end -%>
@@ -153,14 +153,12 @@
   </div>
 <% end -%>
 
-<% if params[:test] -%>
-  <div class="observationcontrols stacked"></div>
-  <div class="observations grid">
-    <%= render :partial => "observations/cached_component", :collection => @observations %>
-  </div>
-  <script type="text/javascript" charset="utf-8">
-    $('.observationcontrols').observationControls()
-  </script>
-<% else %>
-  <%= render :partial => "observations/map" %>  
-<% end -%>
+<div class="observationcontrols stacked"></div>
+<div class="observations grid">
+  <%- compact do %>
+    <%= render(:partial => "observations/cached_component", :collection => @observations) %>
+  <% end -%>
+</div>
+<script type="text/javascript" charset="utf-8">
+  $('.observationcontrols').observationControls()
+</script>

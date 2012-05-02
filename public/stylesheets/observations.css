@@ -245,6 +245,7 @@
   text-align:center;
   width: 75px;
   height: 75px;
+  margin: 0 5px 5px 0;
   vertical-align:top;
   background-color: #eee;
   margin-bottom:5px;
@@ -294,17 +295,18 @@
 .observations.grid .id_please_notice,
 .observations.grid .actions .counts {
   padding: 2px;
-  z-index:0;
+  z-index:1;
   color: white;
   position:absolute;
   opacity: 0.4;
-  background-color:black;
+  background-color:transparent;
+  text-shadow: 1px 1px 1px black;
 }
 .observations.grid .observation:hover .species_guess a,
 .observations.grid .observation:hover .research_grade_notice, 
 .observations.grid .observation:hover .id_please_notice,
 .observations.grid .observation:hover .actions .counts {
-  opacity: 0.9;
+  opacity: 1;
 }
 .observations.grid .species_guess a {
   left: 0;
@@ -312,11 +314,33 @@
 }
 .observations.grid .research_grade_notice,
 .observations.grid .id_please_notice {-webkit-border-radius:0px;-moz-border-radius:0px;border:0 transparent;border-radius:0px;padding:2px 5px; white-space: nowrap;}
-.observations.grid .research_grade_notice {color:#74AC00;}
-.observations.grid .id_please_notice {color:yellow;}
+.observations.grid .research_grade_notice,
+.observations.grid .id_please_notice,
+.observations.grid .observation .actions .counts,
+.observations.grid .observation .actions .counts .count,
+.observations.grid .observation .actions .counts a {color:white;}
 .observations.grid .research_grade_notice .full,
 .observations.grid .id_please_notice .full { display:none; }
-.observations.grid .ui-icon-comment {width:12px; height: 12px; background-position: -130px -99px;}
+.observations.grid .ui-icon-comment {
+  position:relative; 
+  width:12px; 
+  height: 12px; 
+  background-position: -130px -99px;
+  background-image: url(/images/jquery-ui/ui-icons_ffffff_256x240.png);
+  margin-right: 2px;
+}
+.observations.grid .ui-icon-comment:before {
+  z-index: -1;
+  content: ' ';
+  display:block;
+  position: relative;
+  width:12px; 
+  height: 12px; 
+  background-position: -130px -99px;
+  left: 1px;
+  top: 1px;
+  background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png);
+}
 
 .observations.grid .species_guess .othernames {display:none;}
 .observations.grid .photos {
@@ -339,7 +363,7 @@
 .observations.medium.grid .icon {width:160px; height: 160px; }*/
 .observations.medium.grid .observation,
 .observations.medium.grid .photos,
-.observations.medium.grid .icon {width:175px; height: 175px; }
+.observations.medium.grid .icon {width:173px; height: 173px; }
 .observations.medium.grid .photos img { width:auto; position:absolute;}
 .observations.medium.grid .species_guess a { width: auto; padding: 5px;}
 .observations.medium.grid .research_grade_notice, 

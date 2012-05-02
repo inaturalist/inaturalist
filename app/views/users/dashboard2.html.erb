@@ -128,7 +128,6 @@
           </div>
           <% if notification == "activity" -%>
             <div class="updatecontent">
-              <%#= render :partial => "shared/activity_item", :collection => notifiers %>
               <% for u in updates %>
                 <%-
                   notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id] if @update_cache
