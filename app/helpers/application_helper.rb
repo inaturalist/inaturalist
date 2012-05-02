@@ -311,10 +311,10 @@ module ApplicationHelper
     concat content_tag(:div, image_wrapper + content, options)
   end
   
-  # remove unecessary whitespace btwn tags
+  # remove unecessary whitespace btwn divs
   def compact(&block)
     content = capture(&block)
-    content.gsub!(/\>[\n\s]+\</, '><')
+    content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
     concat content
   end
   
