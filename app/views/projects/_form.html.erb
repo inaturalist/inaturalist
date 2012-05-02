@@ -220,7 +220,7 @@
   <div class="buttons">
     <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button", "data-loading-click" => "Saving..." %>
     <%= link_to "Cancel", projects_path, :class => "button" %>
-    <% if @project_user.is_admin? && !project.new_record? -%>
+    <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
       <%= link_to "Delete this project", project, :method => :delete, 
         :confirm => "Are you sure you want to delete this project?",
         :class => "minor delete button" %>
