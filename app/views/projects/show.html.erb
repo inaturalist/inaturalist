@@ -45,7 +45,7 @@
         if !@project.terms.blank? || !@project.project_observation_rules.blank? || !@project.project_user_rules.blank?
           links << link_to("Terms &amp; Rules", project_terms_path(@project), :class => "ui")
         end
-        if logged_in? && current_user.id == @project.user_id
+        if @project.editable_by?(current_user)
           links << link_to("Edit project", edit_project_path(@project), :class => "ui description")
         end
         if @project_user && @project_user.user_id != @project.user_id
@@ -150,8 +150,10 @@
                   <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
                     observations_by_login_path(project_user.user.login),
                     :alt => h(project_user.user.login),
-                    :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-                  <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
+                    :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" -%>
+                  <div>
+                    <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
+                  </div>
                   <div class="small ui">
                     <span class="count"><%= project_user.taxa_count %></span> species,
                     <span class="count"><%= project_user.observations_count %></span> observations

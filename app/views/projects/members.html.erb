@@ -3,56 +3,17 @@
 <%- end -%>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
-  td .usericon {
-    vertical-align: middle;
-  }
-  
-  td {
-    vertical-align: middle;
-  }
-  
-  td .description {
-    display: block;
-  }
-  
-  #active .usericon {
-    float: left;
-  }
-  
-  #active .attr {
-    display: block;
-    padding-left: 58px;
-    color: #888;
-  }
-  
-  #active .attr strong {
-    font-weight: normal;
-    color: #333;
-  }
-  
-  #active .attr.login {
-    font-size: 120%;
-  }
-  
-  #active .user {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-  }
-  
-  #letter_nav {
-    font-size: 100%;
-    margin-bottom: 1em;
-    text-align: left;
-  }
-  
-  #invite {
-    float: right;
-  }
-  
-  #invite .button {
-    margin-right: 0;
-  }
+  td .usericon{vertical-align:middle;}
+  td{vertical-align:middle;}
+  td .description{display:block;}
+  #active .usericon{float:left;}
+  #active .attr{display:block;padding-left:58px;color:#888;}
+  #active .attr strong{font-weight:normal;color:#333;}
+  #active .attr.login{font-size:120%;}
+  #active .user{border-bottom:1px solid #ddd;padding-bottom:1em;margin-bottom:1em;}
+  #letter_nav{font-size:100%;margin-bottom:1em;text-align:left;}
+  #invite{float:right;}
+  #invite .button{margin-right:0;}
 </style>
 <% end %>
 <div id="pageheader" class="clear">
@@ -69,48 +30,115 @@
 
 </div>
 
-<div id="members" style="margin-bottom: 10px">
-  <h3>Members</h3>
+<div id="members" style="margin-bottom: 10px" class="column span-24">
   <% if @project_users.blank? -%>
     <div class="noresults">
       No members yet.
     </div>
   <% else %>
-    <table class="readable">
-    <% for project_user in @project_users %>
-      <tr>
-        <td width="25%">
-          <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-            observations_by_login_path(project_user.user.login),
-            :alt => h(project_user.user.login),
-            :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-          <%= link_to h(project_user.user.login), observations_by_login_path(project_user.user.login) %>
-        </td>
-        <td width="25%">
-          <% if project_user.is_curator? && @project.user_id != project_user.user.id %>
-            <span class="description">Curator</span>
-          <% elsif @project.user_id == project_user.user.id %>
-            <span class="description">Admin</span>
-          <% end %>
-        </td>
-        <td width="25%">
-          <% if logged_in? && current_user.id == @project.user_id  && @project.user_id != project_user.user.id %>
-            <% if project_user.is_curator? %>
-              <%= link_to "Remove curator role", remove_curator_path(@project.id, project_user.id), :confirm => "Are you sure you want to remove #{project_user.user.login} as a curator?"%>
-            <% else %>
-              <%= link_to "Make curator", make_curator_path(@project.id, project_user.id) %>
+    <div class="column span-16">
+      <table width="100%">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Role</th>
+            <% if logged_in? && @project_user && @project_user.is_manager? -%>
+              <th></th>
+              <th></th>
+              <th></th>
+            <% end -%>
+          </tr>
+        </thead>
+      <% for project_user in @project_users %>
+        <tr>
+          <td width="100%">
+            <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+              observations_by_login_path(project_user.user.login),
+              :alt => h(project_user.user.login),
+              :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+            <%= link_to h(project_user.user.login), observations_by_login_path(project_user.user.login) %>
+          </td>
+          <td>
+            <% if project_user.is_admin? %>
+              <span class="description">admin</span>
+            <% elsif !project_user.role.blank? %>
+              <span class="description"><%= project_user.role.humanize.downcase %></span>
             <% end %>
+          </td>
+          <% if logged_in? && @project_user && @project_user.is_manager? -%>
+            <td>
+              <% if @project.user_id != project_user.user.id %>
+                <div class="buttonrow smallbuttons">
+                  <% if project_user.role == ProjectUser::CURATOR %>
+                    <%= link_to "Remove curator", change_project_user_role_path(@project.id, project_user.id), 
+                      :method => :post,
+                      :class => "pale button nobr",
+                      :confirm => "Are you sure you want to remove #{project_user.user.login} as a curator?",
+                      "data-loading-click" => true %>
+                  <% else %>
+                    <%= link_to "Make curator", change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::CURATOR), 
+                      :method => :post,
+                      :class => "glaucous button nobr",
+                      "data-loading-click" => true %>
+                  <% end %>
+                </div>
+              <% end -%>
+            </td>
+            <td>
+              <% if @project.user_id != project_user.user_id %>
+                <div class="smallbuttons buttonrow">
+                  <% if project_user.role == ProjectUser::MANAGER %>
+                    <%= link_to "Remove manager", change_project_user_role_path(@project.id, project_user.id), 
+                      :method => :post,
+                      :class => "pale button nobr",
+                      :confirm => "Are you sure you want to remove #{project_user.user.login} as a manager?",
+                      "data-loading-click" => true %>
+                  <% else %>
+                    <%= link_to "Make manager", change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::MANAGER), 
+                      :method => :post,
+                      :class => "glaucous button nobr",
+                      "data-loading-click" => true %>
+                  <% end %>
+                </div>
+              <% end -%>
+            </td>
+            
+            <td class="smallbuttons buttonrow">
+              <% if @project.user_id != project_user.user_id -%>
+                <%= link_to "Remove from project", remove_project_user_path(@project.id, project_user.id), 
+                  "data-loading-click" => "Removing...",
+                  :confirm => "Are you sure you want to remove #{project_user.user.login} from this project?",
+                  :class => "delete button nobr" %>
+              <% end -%>
+            </td>
           <% end -%>
-        </td>
-        <td width="25%">
-          <% if logged_in? && current_user.id == @project.user_id  && @project.user_id != project_user.user.id %>
-            <%= link_to "Remove project user", remove_project_user_path(@project.id, project_user.id), :confirm => "Are you sure you want to remove #{project_user.user.login} from this project?"%>
-          <% end -%>
-        </td>
-      </tr>
-    <% end %>
-    </table>
-    <%= will_paginate @project_users, :renderer => INatLinkRenderer %>
+        </tr>
+      <% end %>
+      </table>
+      <%= will_paginate @project_users, :renderer => INatLinkRenderer %>
+    </div>
+    
+    <div class="last column span-8">
+      <div class="quiet box">
+        <h3>Roles</h3>
+        <h4>Curators</h4>
+        <p>
+          Curators can remove observations from the project and their
+          identifications are shown alongside the observations on
+          project-specific views.
+        </p>
+        
+        <h4>Managers</h4>
+        <p>
+          Managers can do everything curators can do as well as editing project settings.
+        </p>
+        
+        <h4>Admin</h4>
+        <p>
+          The admin is the person who created the project.
+        </p>
+      </div>
+    </div>
   <% end -%>
 </div>
 

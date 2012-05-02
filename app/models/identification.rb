@@ -188,7 +188,7 @@ class Identification < ActiveRecord::Base
   def self.run_update_curator_identification(ident)
     obs = ident.observation
     ident.observation.project_observations.each do |po|
-      if ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
+      if ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
         po.update_attributes(:curator_identification_id => ident.id)
         ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, po.project_id, obs.user_id)
         ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, po.project_id, obs.user_id)
@@ -205,10 +205,10 @@ class Identification < ActiveRecord::Base
       return
     end
     obs.project_observations.each do |po|
-      if usr.project_users.exists?(:project_id => po.project_id, :role => 'curator') #The ident that was deleted is owned by user who is a curator of a project that that obs belongs to
+      if usr.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]]) #The ident that was deleted is owned by user who is a curator of a project that that obs belongs to
         other_curator_id = false
         po.observation.identifications.each do |other_ident| #that project observation has other identifications that belong to users who are curators use those
-          if other_ident.user.project_users.exists?(:project_id => po.project_id, :role => 'curator')
+          if other_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
             po.update_attributes(:curator_identification_id => other_ident.id)
             other_curator_id = true
           end

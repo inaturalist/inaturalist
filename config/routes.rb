@@ -148,8 +148,7 @@ ActionController::Routing::Routes.draw do |map|
     p.formatted_project_observed_taxa_count "projects/:id/observed_taxa_count.:format", :action => "observed_taxa_count"
     p.formatted_project_species_count "projects/:id/species_count.:format", :action => "observed_taxa_count"
     p.project_show_contributor "projects/:id/contributors/:project_user_id", :action => "show_contributor"
-    p.make_curator 'projects/:id/make_curator/:project_user_id', :action => 'make_curator'
-    p.remove_curator 'projects/:id/remove_curator/:project_user_id', :action => 'remove_curator'
+    p.change_project_user_role 'projects/:id/change_role/:project_user_id', :action => 'change_role', :conditions => {:method => :post}
     p.remove_project_user 'projects/:id/remove_project_user/:project_user_id', :action => 'remove_project_user'
     p.project_stats 'projects/:id/stats', :action => 'stats'
     p.formatted_project_stats 'projects/:id/stats.:format', :action => 'stats'

@@ -8,9 +8,9 @@ class ProjectsController < ApplicationController
   before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
+  before_filter :load_project_user, :except => [:index, :search, :new, :by_login, :remove]
   before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
+  before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
   
   ORDERS = %w(title created)
@@ -119,9 +119,15 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    @project = Project.find(params[:id])
+    project_user = current_user.project_users.first(:conditions => {:project_id => @project.id})
+    if project_user.blank? || !project_user.is_admin?
+      flash[:error] = "Only the project admin can delete this project."
+      redirect_to @project
+      return
+    end
+    
     @project.destroy
-
+    
     respond_to do |format|
       format.html do
         flash[:notice] = "#{@project.title} was deleted"
@@ -155,7 +161,7 @@ class ProjectsController < ApplicationController
   end
   
   def members
-    @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "id DESC")
+    @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "users.login ASC")
   end
   
   def observed_taxa_count
@@ -224,47 +230,27 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def make_curator
+  def change_role
     @project_user = @project.project_users.find_by_id(params[:project_user_id])
+    current_project_user = current_user.project_users.first(:conditions => {:project_id => @project.id})
+    role = params[:role] if ProjectUser::ROLES.include?(params[:role])
+    
     if @project_user.blank?
       flash[:error] = "Project user cannot be found"
       redirect_to project_members_path(@project)
       return
     end
-    if @project.user_id != current_user.id
-      flash[:error] = "Only an admin can add project curator status"
+    
+    unless current_project_user.is_manager?
+      flash[:error] = "Only a project manager can add project curator status"
       redirect_to project_members_path(@project)
       return
     end
-    @project_user.role = 'curator'
+    
+    @project_user.role = role
     
     if @project_user.save
-      Project.send_later(:update_curator_idents_on_make_curator, @project.id, @project_user.id)
-      flash[:notice] = "Added curator role"
-      redirect_to project_members_path(@project)
-    else
-      flash[:error] = "Project user was invalid: #{@project_user.errors.full_messages.to_sentence}"
-      redirect_to project_members_path(@project)
-      return
-    end
-  end
-  
-  def remove_curator
-    @project_user = @project.project_users.find_by_id(params[:project_user_id])
-    if @project_user.blank?
-      flash[:error] = "Project user cannot be found"
-      redirect_to project_members_path(@project)
-      return
-    end
-    if @project.user_id != current_user.id
-      flash[:error] = "Only an admin can remove curator status"
-      redirect_to project_members_path(@project)
-      return
-    end
-    @project_user.role = nil
-    if @project_user.save
-      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
-      flash[:notice] = "Removed curator role"
+      flash[:notice] = "#{role.blank? ? 'Removed' : 'Added'} #{role} role"
       redirect_to project_members_path(@project)
     else
       flash[:error] = "Project user was invalid: #{@project_user.errors.full_messages.to_sentence}"
@@ -298,7 +284,7 @@ class ProjectsController < ApplicationController
   
   def join
     @observation = Observation.find_by_id(params[:observation_id])
-    @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
+    @project_curators = @project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
     if @project_user
       respond_to_join(:notice => "You're already a member of this project!")
       return
@@ -446,7 +432,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    unless @project_observation.observation.user_id == current_user.id || current_user.project_users.first(:conditions => {:project_id => @project_observation.project.id, :role => 'curator'})
+    unless @project_observation.observation.user_id == current_user.id || @project_user.is_curator?
       flash[:error] = "You can't remove other people's observations."
       redirect_back_or_default(@project)
       return

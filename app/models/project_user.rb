@@ -5,11 +5,16 @@ class ProjectUser < ActiveRecord::Base
   has_many :project_observations, :through => :project, :include => [:observation], 
     :conditions => 'observations.user_id = #{user_id}'
   
+  after_save :check_role
   before_destroy :prevent_owner_from_leaving
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
   
-  named_scope :curators, :conditions => {:role => "curator"}
+  ROLES = %w(curator manager)
+  ROLES.each do |role|
+    const_set role.upcase, role
+    named_scope role.pluralize, :conditions => {:role => role}
+  end
   
   def prevent_owner_from_leaving
     raise "The owner of a project can't leave the project" if project.user_id == user_id
@@ -20,7 +25,15 @@ class ProjectUser < ActiveRecord::Base
   end
   
   def is_curator?
-    role == 'curator'
+    role == 'curator' || is_manager? || is_admin?
+  end
+  
+  def is_manager?
+    role == 'manager' || is_admin?
+  end
+  
+  def is_admin?
+    user_id == project.user_id
   end
   
   def update_observations_counter_cache
@@ -47,6 +60,16 @@ class ProjectUser < ActiveRecord::Base
     ).map{|po| po.curator_identification.taxon_id}
     
     update_attributes(:taxa_count => (user_taxon_ids + curator_taxon_ids).uniq.size)
+  end
+  
+  def check_role
+    return true unless role_changed?
+    if role_was.blank?
+      Project.send_later(:update_curator_idents_on_make_curator, project_id, id)
+    elsif role.blank?
+      Project.send_later(:update_curator_idents_on_remove_curator, project_id, id)
+    end
+    true
   end
   
   def self.update_observations_counter_cache_from_project_and_user(project_id, user_id)
