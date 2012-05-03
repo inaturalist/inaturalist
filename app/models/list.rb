@@ -107,7 +107,7 @@ class List < ActiveRecord::Base
   def cache_columns_query_for(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
-    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].map{|i| i.blank? ? nil : i}.compact.join('/')
+    ancestry_clause = [lt.taxon_ancestor_ids, lt.taxon_id].flatten.map{|i| i.blank? ? nil : i}.compact.join('/')
     sql_key = "EXTRACT(month FROM observed_on) || substr(quality_grade,1,1)"
     <<-SQL
       SELECT
