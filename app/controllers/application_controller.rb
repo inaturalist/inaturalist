@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   before_filter :return_here_from_url
   before_filter :user_logging
   before_filter :remove_header_and_footer_for_apps
+  before_filter :login_from_param
   
   PER_PAGES = [10,30,50,100]
   
@@ -284,6 +285,25 @@ class ApplicationController < ActionController::Base
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+  
+  # try to log a user in through a 3rd party auth provider based on a GET param
+  # if they're already logged in, strip out the param
+  def login_from_param
+    return true unless params[:auth_provider]
+    return true unless request.get?
+    if logged_in?
+      uri_pieces = request.request_uri.split('?')
+      param_pieces = uri_pieces[1].split('&')
+      param_pieces.delete_if {|p| p =~ /^auth_provider/}
+      redirect_to [uri_pieces[0], param_pieces.join('&')].join('?')
+      return true
+    end
+    provider, url = ProviderAuthorization::AUTH_URLS.detect do |provider, url| 
+      provider.downcase == params[:auth_provider].to_s.downcase
+    end
+    redirect_to url if url
+    true
   end
 end
 
