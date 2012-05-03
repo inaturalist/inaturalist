@@ -119,7 +119,8 @@ eol_collection_ids.each do |eol_collection_id|
     puts "\t name: #{list_item}"
     #Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
     existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
-      "taxon_names.name = ? AND listed_taxa.taxon_id IN (?)",
+      "taxon_names.lexicon = ? AND taxon_names.name = ? AND listed_taxa.taxon_id IN (?)",
+      TaxonName::SCIENTIFIC_NAMES,
       list_item.strip,
       listed_taxa_taxon_ids
     ])
@@ -129,6 +130,7 @@ eol_collection_ids.each do |eol_collection_id|
     else
       #find the taxon to make a listed taxon
       taxon = Taxon.single_taxon_for_name(list_item)
+      taxon ||= Taxon.find_by_name(list_item.strip)
       taxon = nil if taxon && taxon.taxon_names.detect{|tn| tn.name == list_item}.blank?
       unless taxon
         external_names = Ratatosk.find(list_item)
@@ -155,9 +157,13 @@ eol_collection_ids.each do |eol_collection_id|
       lt = ListedTaxon.new(:taxon_id => taxon.id, :list_id => the_list.id, :manually_added => true)
       lt.save unless opts[:test]
       #Record the taxon we just created a listed_taxon for under 'taxa_added'
-      taxa_added << taxon.name
       listed_taxa_taxon_ids.reject!{ |taxon_id| taxon_id == taxon.id }
-      puts "\t\tCreated #{lt} for #{list_item}"
+      if lt.valid?
+        puts "\t\tCreated #{lt} for #{list_item}"
+        taxa_added << taxon.name
+      else
+        puts "\t\tFailed to create #{lt} for #{list_item}: #{lt.errors.full_messages.to_sentence}"
+      end
     end
   end
     
