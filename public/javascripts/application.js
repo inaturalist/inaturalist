@@ -306,6 +306,7 @@ $.fn.showInlineBlock = function() {
   var opts = {}
   if ($.browser.msie) {
     opts.zoom = 1
+    opts.display = 'inline'
     opts['*display'] = 'inline'
   } else {
     opts.display = 'inline-block'
@@ -420,11 +421,11 @@ $.fn.centerInContainer = function(options) {
 }
 
 $.fn.observationsGrid = function(size) {
+  $(this).removeClass('mini map')
+  $(this).addClass('observations grid')
   $('.observation', this).showInlineBlock()
   $('.map', this).hide()
   var that = this
-  $(this).removeClass('mini map')
-  $(this).addClass('observations grid')
   if (size == 'medium') {
     $(this).addClass('medium')
     $('.photos img[data-small-url]', this).each(function() { 
@@ -433,14 +434,14 @@ $.fn.observationsGrid = function(size) {
         $(this).fadeIn()
         $(this).unbind('load')
       })      
-      $(this).attr('src', $(this).attr('data-small-url')).hide()
+      $(this).attr('src', $(this).attr('data-small-url'))
+      if (!$.browser.msie) {
+        $(this).hide()
+      }
     })
     $('.icon img[data-small-url]', this).each(function() {
       $(this).attr('src', $(this).attr('data-small-url')) 
     })
-    
-    
-    
   } else {
     $(that).removeClass('medium')
     $('.photos img[data-square-url]', that).attr('style', '')

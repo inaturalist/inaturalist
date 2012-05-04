@@ -267,7 +267,8 @@
   top: 0px;
   left: 0px;
 }
-.observations.grid .actions ul:last-child {display:none;}
+.observations.grid .actions ul:last-child,
+.observations.grid .actions ul.editview {display:none;}
 .observations.grid .observation .actions ul li:after {content:'';}
 .observations.grid .research_grade_notice, 
 .observations.grid .id_please_notice {
@@ -311,6 +312,35 @@
 .observations.grid .species_guess a {
   left: 0;
   bottom: 0;
+  width:100%;
+}
+.observations.grid .observation:hover .species_guess {
+  width: 100%;
+  height: 40%;
+  z-index:1;
+  display: block;
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(rgba(0,0,0,0.2)));
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+  background-image:    -moz-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+  background-image:     -ms-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+  background-image:      -o-linear-gradient(top, transparent, rgba(0,0,0,0.2));
+}
+.observations.grid .observation:hover .actions {
+  width: 100%;
+  height: 40%;
+  z-index:1;
+  display: block;
+  position:absolute;
+  top: 0;
+  left: 0;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,0.2)), to(transparent));
+  background-image: -webkit-linear-gradient(top, rgba(0,0,0,0.2), transparent);
+  background-image:    -moz-linear-gradient(top, rgba(0,0,0,0.2), transparent);
+  background-image:     -ms-linear-gradient(top, rgba(0,0,0,0.2), transparent);
+  background-image:      -o-linear-gradient(top, rgba(0,0,0,0.2), transparent);
 }
 .observations.grid .research_grade_notice,
 .observations.grid .id_please_notice {-webkit-border-radius:0px;-moz-border-radius:0px;border:0 transparent;border-radius:0px;padding:2px 5px; white-space: nowrap;}
@@ -358,9 +388,6 @@
 .observations.grid .photos .readmore, .observations.grid .photos .nophoto {display:none;}
 
 .observations.medium.grid .observation {overflow: hidden;}
-/*.observations.medium.grid .observation,
-.observations.medium.grid .photos,
-.observations.medium.grid .icon {width:160px; height: 160px; }*/
 .observations.medium.grid .observation,
 .observations.medium.grid .photos,
 .observations.medium.grid .icon {width:173px; height: 173px; }
