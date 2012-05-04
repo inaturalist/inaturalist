@@ -67,7 +67,9 @@ Some notes:
           No photos
         </div>
       <% else %>
-        <%- photos = observation.observation_photos.sort_by{|op| op.position || observation.photos.size + op.id.to_i}.map(&:photo) %>
+        <%- photos = observation.observation_photos.sort_by{|op| 
+          op.position || observation.photos.size + op.id.to_i
+        }.map{|op| op.photo}.compact %>
         <%= link_to image_tag(photos.first.square_url,
           "data-square-url" => photos.first.square_url,
           "data-small-url" => photos.first.small_url,
