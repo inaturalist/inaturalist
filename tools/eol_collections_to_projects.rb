@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'trollop'
+require 'erb'
 
 opts = Trollop::options do
     banner <<-EOS
@@ -30,6 +31,9 @@ EOS
   # opt :defunct, "Path to archive", :type => :string, :short => "-d"
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :user, "Username or ID of the EOL user on iNat that owns these projects", :type => :string, :short => "-u", :default => "eol"
+  opt :logo, "URL of logo to use for the project icons", :type => :string, :short => "-l"
+  opt :header, "Path to an ERB template file for a custom header. Bound variables should be project, collection_title, collection_url, and collection_image_url", :type => :string, :short => "-h"
+  opt :css, "Path to an CSS file.", :type => :string, :short => "-c"
   opt :test, "Don't actually touch the db", :short => "-t", :type => :boolean
 end
 
@@ -60,7 +64,7 @@ eol_collection_ids.each do |eol_collection_id|
   taxa_missing = []  #in the eol collection but not added because it doesn't exist as a taxon in iNat (make manually)
   begin
     #Get the collection
-    url = "http://eol.org/api/collections/1.0/#{eol_collection_id}?per_page=1000"
+    url = "http://eol.org/api/collections/1.0/#{eol_collection_id}/?per_page=1000"
     puts url
     unless response = Net::HTTP.get_response(URI.parse(url))
       puts "\tcouldn't access Collection #{eol_collection_id} on EOL"
@@ -81,21 +85,24 @@ eol_collection_ids.each do |eol_collection_id|
       break
     end
   end
-  project_name = "#{col.xpath('//name').first.text} EOL Collection"
-  logo_url = col.xpath('//logo_url').first.text
   
-  # Get the all of the EOL object_ids for the EOL items (ListedTaxon equivalents)
-  puts "\tGetting the items in EOL collection #{eol_collection_id}"
-  collection_item_dwc_names = col.xpath('//collection_items/item/name[../object_type/text() = "TaxonConcept"]').map do |node|
-    TaxonName.strip_author(node.text)
+  begin
+    collection_title = col.xpath('//name').first.text
+    project_name = "#{collection_title} EOL Collection"
+  rescue
+    puts "\t Woah, couldn't find a name! Skipping..."
+    next
   end
+  collection_image_url = col.xpath('//logo_url').first.try(:text)
+  logo_url = opts[:logo] || collection_image_url
+  collection_url = "http://eol.org/collections/#{eol_collection_id}"
   
   #Make a new project for the collection if it doesn't exist
   puts "\tChecking whether iNat project '#{project_name}' exists...."
-  if theproj = Project.first(:conditions => { :title => project_name })
-    theproj.update_attribute(:source_url, "http://eol.org/collections/#{eol_collection_id}") if theproj.source_url.blank?
+  if project = Project.first(:conditions => { :title => project_name })
+    project.update_attribute(:source_url, collection_url) if project.source_url.blank?
   else
-    theproj = Project.new(
+    project = Project.new(
       :user_id => the_user.id, 
       :title => project_name,
       :source_url => "http://eol.org/collections/#{eol_collection_id}",
@@ -103,20 +110,41 @@ eol_collection_ids.each do |eol_collection_id|
       :project_type => "contest")
     if logo_url
       io = open(URI.parse(logo_url))
-      theproj.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      project.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
     end
-    theproj.save unless opts[:test]
+    unless opts[:test]
+      if project.save
+        if opts[:header] || opts[:css]
+          cp = project.build_custom_project
+          if opts[:header] && tpl = (open(opts[:header]).read rescue nil)
+            cp.head = ERB.new(tpl).result(binding)
+          end
+          if opts[:css]
+            cp.css = open(opts[:css]).read rescue nil
+          end
+          cp.save
+        end
+      else
+        puts "\t\t Failed to create project: #{project.errors.full_messages.to_sentence}"
+      end
+    end
     puts "\t\t Created iNat project '#{project_name}'"
   end
   
   #Find the project list and loop through the listed_taxa taxon_ids
   #so we can later see if any of these listed_taxa aren't on the collection anymore
   #and must be removed
-  the_list = theproj.project_list
+  the_list = project.project_list
   listed_taxa_taxon_ids = the_list.listed_taxa.map{|lt| lt.taxon_id}
   
-  collection_item_dwc_names.each do |list_item|
+  collection_item_dwc_names = []
+  
+  col.xpath('//collection_items/item[object_type/text() = "TaxonConcept"]').each do |node|
+    list_item = TaxonName.strip_author(node.at('name').text)
+    collection_item_dwc_names << list_item
+    annotation = node.at('annotation').try(:text)
     puts "\t name: #{list_item}"
+    
     #Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
     existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
       "taxon_names.lexicon = ? AND taxon_names.name = ? AND listed_taxa.taxon_id IN (?)",
@@ -125,7 +153,8 @@ eol_collection_ids.each do |eol_collection_id|
       listed_taxa_taxon_ids
     ])
     if existing
-      puts "\t\t#{list_item} already on #{the_list}, skipping..."
+      puts "\t\t#{list_item} already on #{the_list}, updating..."
+      existing.update_attributes(:description => annotation)
       listed_taxa_taxon_ids.delete(existing.taxon_id)
     else
       #find the taxon to make a listed taxon
