@@ -14,6 +14,9 @@
   #letter_nav{font-size:100%;margin-bottom:1em;text-align:left;}
   #invite{float:right;}
   #invite .button{margin-right:0;}
+  td.actions .smallbuttons:first-child {margin-bottom:5px;}
+  td.actions .button {width:100%;}
+  td.actions {padding-right:15px;}
 </style>
 <% end %>
 <div id="pageheader" class="clear">
@@ -41,11 +44,11 @@
         <thead>
           <tr>
             <th>User</th>
+            <th></th>
             <th>Role</th>
-            <th># Contributions</th>
+            <th class="nobr"># Obs.</th>
             <th></th>
             <% if logged_in? && @project_user && @project_user.is_manager? -%>
-              <th></th>
               <th></th>
               <th></th>
             <% end -%>
@@ -53,11 +56,13 @@
         </thead>
       <% for project_user in @project_users %>
         <tr>
-          <td width="100%">
+          <td>
             <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
               observations_by_login_path(project_user.user.login),
               :alt => h(project_user.user.login),
               :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+          </td>
+          <td width="100%">
             <%= link_to h(project_user.user.login), observations_by_login_path(project_user.user.login) %>
           </td>
           <td>
@@ -77,9 +82,9 @@
               :class => "readmore" %>
           </td>
           <% if logged_in? && @project_user && @project_user.is_manager? -%>
-            <td>
+            <td class="actions">
               <% if @project.user_id != project_user.user.id %>
-                <div class="buttonrow smallbuttons">
+                <div class="buttonrow smallbuttons clear">
                   <% if project_user.role == ProjectUser::CURATOR %>
                     <%= link_to "Remove curator", change_project_user_role_path(@project.id, project_user.id), 
                       :method => :post,
@@ -94,8 +99,6 @@
                   <% end %>
                 </div>
               <% end -%>
-            </td>
-            <td>
               <% if @project.user_id != project_user.user_id %>
                 <div class="smallbuttons buttonrow">
                   <% if project_user.role == ProjectUser::MANAGER %>
