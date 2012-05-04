@@ -144,7 +144,7 @@ class ProjectsController < ApplicationController
   def by_login
     @started = @selected_user.projects.all(:order => "id desc", :limit => 100)
     @project_users = @selected_user.project_users.paginate(:page => params[:page],
-      :include => :project,
+      :include => [:project, :user],
       :order => "lower(projects.title)")
     @projects = @project_users.map{|pu| pu.project}
     respond_to do |format|
@@ -189,7 +189,8 @@ class ProjectsController < ApplicationController
   end
   
   def show_contributor
-    @contributor = @project.project_users.find_by_id(params[:project_user_id])
+    @contributor = @project.project_users.find_by_id(params[:project_user_id].to_i)
+    @contributor ||= @project.project_users.first(:include => :user, :conditions => ["users.login = ?", params[:project_user_id]])
     if @contributor.blank?
       flash[:error] = "Contributor cannot be found"
       redirect_to project_contributors_path(@project)
@@ -197,7 +198,25 @@ class ProjectsController < ApplicationController
     end
     
     @project_observations = @project.project_observations.paginate(:page => params[:page], 
+      :per_page => 28,
       :include => :observation, :conditions => ["observations.user_id = ?", @contributor.user])
+    
+    @research_grade_count = @project.project_observations.count(
+      :joins => :observation,
+      :conditions => [
+        "observations.user_id = ? AND observations.quality_grade = ?", 
+        @contributor.user,
+        Observation::RESEARCH_GRADE
+    ])
+    
+    @research_grade_species_count = @project.project_observations.count(
+      :joins => {:observation => :taxon},
+      :conditions => [
+        "observations.user_id = ? AND observations.quality_grade = ? AND taxa.rank_level < ?", 
+        @contributor.user,
+        Observation::RESEARCH_GRADE,
+        Taxon::GENUS_LEVEL
+    ])
   end
   
   def list

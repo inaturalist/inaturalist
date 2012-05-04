@@ -54,4 +54,10 @@
       <td><%= @total_unique_observers %></td>
     </tr>
   </table>
+  
+  <% if @project_user -%>
+    <%= link_to "View #{possessive(@project_user.user)} contributions", 
+      project_show_contributor_path(@project, @project_user.user.login),
+      :class => "readmore" %>
+  <% end -%>
 </div>

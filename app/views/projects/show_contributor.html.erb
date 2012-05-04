@@ -4,7 +4,18 @@
 
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
+  <style type="text/css" media="screen">
+    .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+      width: 172px;
+      height: 172px;
+    }
+  </style>
 <% end %>
+
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag 'inaturalist/map3' %>
+<%- end -%>
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
@@ -19,20 +30,23 @@
   </h2>
 </div>  
   
-<div class="column span-17 append-1">
+<div class="column span-18">
   <div id="observations">
-    <h3>
-      Observations
-    </h3>
     <% if @project_observations.blank? -%>
       <div class="description noresults">
         <%= link_to h(@contributor.user.login), observations_by_login_path(@contributor.user.login) %> 
         hasn't contributed any observations to this project.
       </div>
     <% else %>
-      <div class="mini observations">
-        <%= render :partial => "observations/cached_component", :collection => @project_observations.map(&:observation).compact %>
+      <div class="stacked observationcontrols"></div>
+      <div class="observations grid">
+        <% compact do %>
+          <%= render :partial => "observations/cached_component", :collection => @project_observations.map{|po| po.observation}.compact %>
+        <% end -%>
       </div>
+      <script type="text/javascript" charset="utf-8">
+        $('.observationcontrols').observationControls('medium')
+      </script>
      <%= will_paginate @project_observations, :renderer => INatLinkRenderer %>
     <% end -%>
   </div>
@@ -42,10 +56,16 @@
   <h3>Stats</h3>
   <ul class="meta">
     <li>
-      <span class="count"><%= @contributor.taxa_count %></span> taxa observed</span>
+      <span class="count"><%= number_with_delimiter @contributor.taxa_count %></span> taxa observed</span>
     </li>
     <li>
-      <span class="count"><%= @contributor.observations_count %></span> total observations</span>
+      <span class="count"><%= number_with_delimiter @contributor.observations_count %></span> total observations</span>
+    </li>
+    <li>
+      <span class="count"><%= number_with_delimiter @research_grade_count %></span> research-grade observations</span>
+    </li>
+    <li>
+      <span class="count"><%= number_with_delimiter @research_grade_species_count %></span> research-grade observations ID'd to species or lower</span>
     </li>
   </ul>
 </div>

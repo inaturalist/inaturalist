@@ -23,8 +23,10 @@
         <% end -%>
       </p>
     <% else %>
-      <% @projects.each_with_index do |project, i| %>
-        <%= render :partial => 'project', :object => project, :locals => {:last => i % 2 == 1} %>
+      <% @project_users.each_with_index do |project_user, i| %>
+        <%= render :partial => 'project', :object => project_user.project, :locals => {
+          :project_user => project_user,
+          :last => i % 2 == 1} %>
         <% if i % 2 == 1 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
       <% end %>
     <% end -%>

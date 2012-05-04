@@ -37,7 +37,7 @@
       No members yet.
     </div>
   <% else %>
-    <table class="readable">
+    <table>
     <% for project_user in @contributors %>
       <tr>
         <td width="33%">
@@ -45,13 +45,16 @@
             observations_by_login_path(project_user.user.login),
             :alt => h(project_user.user.login),
             :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
-          <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
+          <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
         </td>
         <td width="33%">
           <span class="description"><%= project_user.taxa_count %> taxa observed</span>
         </td>
         <td width="33%">
           <span class="description"><%= project_user.observations_count %> total observations</span>
+        </td>
+        <td>
+          <%= link_to "View contributions", project_show_contributor_path(@project, project_user.user.login), :class => "readmore" %>
         </td>
     <% end %>
     </table>

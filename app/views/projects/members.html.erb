@@ -42,6 +42,8 @@
           <tr>
             <th>User</th>
             <th>Role</th>
+            <th># Contributions</th>
+            <th></th>
             <% if logged_in? && @project_user && @project_user.is_manager? -%>
               <th></th>
               <th></th>
@@ -64,6 +66,15 @@
             <% elsif !project_user.role.blank? %>
               <span class="description"><%= project_user.role.humanize.downcase %></span>
             <% end %>
+          </td>
+          <td class="nobr numeric">
+            <%= link_to number_with_delimiter(project_user.observations_count), 
+              project_show_contributor_path(@project, project_user.user.login) %>
+          </td>
+          <td class="nobr">
+            <%= link_to "View stats", 
+              project_show_contributor_path(@project, project_user.user.login),
+              :class => "readmore" %>
           </td>
           <% if logged_in? && @project_user && @project_user.is_manager? -%>
             <td>
