@@ -18,6 +18,16 @@ class ProviderAuthorization < ActiveRecord::Base
     "Google" => "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id",
     "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
   ALLOWED_SCOPES = %w(read write)
+  
+  def provider
+    if provider_uid =~ /google.com\/accounts/
+      'google'
+    elsif provider_uid =~ /me.yahoo.com/
+      'yahoo'
+    else
+      provider_name
+    end
+  end
 
   def self.find_from_omniauth(auth_info)
     find_by_provider_name_and_provider_uid(auth_info['provider'], auth_info['uid'])
