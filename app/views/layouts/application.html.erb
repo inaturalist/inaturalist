@@ -5,6 +5,9 @@
      xmlns:og="http://ogp.me/ns#">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <% if logged_in? && @provider_authorizations -%>
+      <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider_name}.join(',') %>">
+    <% end -%>
     <title><%= APP_CONFIG[:site_name] %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= render :partial => 'shared/common_stylesheets'%>
