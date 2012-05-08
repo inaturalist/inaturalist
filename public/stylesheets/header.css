@@ -208,3 +208,26 @@
   background-repeat: no-repeat;
   background-position: 145px center;
 }
+
+#header .inter.user {padding: 0;}
+#header .inter.user strong {position:relative; top: 1px;}
+#header .inter.user img {height: 29px;}
+#header .navtabs .subnavtab a.updates:first-child,
+#header .navtabs a.updates,
+#header .updates {
+  display:block;
+  padding: 0;
+  float:left;
+  padding: 7px 7px 0px 2px;
+  height: 22px;
+}
+#header .updates .count {color: inherit;}
+#header .navtabs #updatessubnav.subnav ul a {display:block; padding:5px;}
+#updatessubnav {background-color:white;padding:0px;max-height: 400px; overflow-y: auto; overflow-x: hidden;}
+#updatessubnav .loadingwrapper {padding: 10px;}
+#updatessubnav img {max-width: 32px;}
+#header #updatessubnav.subnav ul {list-style:none; padding: 0; margin: 0;}
+#updatessubnav li a {white-space:nowrap;}
+#updatessubnav:hover, #updatessubnav:hover li a { background-color: #FBFBFB;}
+#updatessubnav li:hover a { background-color: white;}
+#header .navtabs li#updatesnav { display:none; }

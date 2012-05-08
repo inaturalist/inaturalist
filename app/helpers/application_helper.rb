@@ -564,36 +564,59 @@ module ApplicationHelper
   
   def update_image_for(update, options = {})
     options[:style] = "vertical-align:middle; #{options[:style]}"
+    resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
+      @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
+    end
+    resource ||= update.resource
     case update.resource_type
     when "User"
-      image_tag("#{root_url}#{update.resource.icon.url(:thumb)}", options)
+      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
     when "Observation"
-      observation_image(update.resource, options.merge(:size => "square"))
+      observation_image(resource, options.merge(:size => "square"))
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
-      image_tag("#{root_url}#{update.resource.user.icon.url(:thumb)}", options)
+      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
     else
       image_tag("#{root_url}images/logo-grey-32px.png", options)
     end
   end
   
   def update_tagline_for(update, options = {})
+    resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
+      @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
+    end
+    resource ||= update.resource
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
-        "#{link_to(update.resource.login, update.resource)} added an observation"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, resource)} added an observation"
       else
-        "#{link_to(update.resource.login, update.resource)} added #{options[:count]} observations"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, resource)} added #{options[:count]} observations"
       end
     when "Observation", "ListedTaxon"
-      # "New activity on #{link_to update.resource.to_plain_s, update.resource}"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
-      s = "New activity on #{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{link_to class_name, update.resource}"
-      s += " by #{update.resource.user.login}" if update.resource.respond_to?(:user) && update.resource.user
+      notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
+        @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
+      end
+      notifier ||= update.notifier
+      if notifier.respond_to?(:user)
+        notifier_user = if @update_cache && @update_cache[:users]
+          @update_cache[:users][notifier.user_id]
+        end
+        notifier_user = notifier.user
+      end
+      s = if update.notification == "activity" && notifier_user
+        notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
+        "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, notifier_user)} added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{notifier_class_name} to "
+      else
+        s = "New activity on "
+      end
+      s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{options[:skip_links] ? class_name : link_to(class_name, resource)}"
+      s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s
     when "Post"
-      "New activity on \"#{link_to update.resource.title, update.resource}\" by #{update.resource.user.login}"
+      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, resource)}\" by #{update.resource_owner.login}"
     else
       "update"
     end

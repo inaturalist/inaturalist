@@ -1,14 +1,6 @@
 <%-
   resource = object || resource
   updates ||= []
-  # updates = updates.sort_by do |u| 
-  #   n = if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
-  #     @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
-  #   else
-  #     u.notifier
-  #   end
-  #   n ? n.created_at : nil
-  # end
   class_name = resource.class.to_s.underscore
 -%>
 
@@ -16,15 +8,14 @@
   <table cellspacing="5" cellpadding="5">
     <% for update in updates %>
       <%-
-        notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize]
-          @update_cache[update.notifier_type.underscore.pluralize][update.notifier_id]
-        else
-          update.notifier
+        notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
+          @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
         end
+        notifier ||= update.notifier
       -%>
       <tr>
         <td valign="top">
-          <%= user_image(notifier.user, :size => "thumb") %>
+          <%= user_image(notifier.user, :size => "thumb", :width => 48, :height => 48) %>
         </td>
         <td valign="top">
           <% if notifier.is_a?(Comment) -%>

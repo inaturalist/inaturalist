@@ -33,6 +33,9 @@
       background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);
       z-index:1;
     }
+    .new.activity.update:before {
+      background-image: url(/images/jquery-ui/ui-icons_cd0a0a_256x240.png);
+    }
     
     .stub { opacity: 0.5; }
     .stub:hover { opacity: 1; }
@@ -69,7 +72,7 @@
 </div>
 
 <div id="updates" class="column span-15 append-1">
-  <h3>Recent updates by people you're following</h3>
+  <h3>Recent updates</h3>
   
   <% if @updates.blank? -%>
     <% if params[:page].blank? -%>
@@ -115,25 +118,29 @@
           updates.last.notifier
         end
       -%>
-      <div class="update clear stacked <%= 'activity' if updates.first.notification == 'activity' %>">
+      <div class="update clear stacked 
+          <%= 'activity' if updates.last.notification == 'activity' %>
+          <%= 'new' if updates.detect{|u| u.viewed_at.blank?} && updates.last.resource_owner_id == current_user.id %>">
         <div class="updateresource">
-          <%= link_to update_image_for(updates.first), resource %>
+          <%= link_to update_image_for(updates.last), resource %>
         </div>
         <div class="updatebody">
           <div class="updateheader meta stacked">
             <div class="right date small">
               <%= compact_date(updates.last.sort_by_date) %>
             </div>
-            <%= update_tagline_for(updates.first, :count => updates.size) %>
+            <%= update_tagline_for(updates.last, :count => updates.size) %>
           </div>
           <% if notification == "activity" -%>
             <div class="updatecontent">
               <% for u in updates %>
                 <%-
-                  notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id] if @update_cache
+                  if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
+                    notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
+                  end
                   notifier ||= u.notifier
                 -%>
-                <div class="<%= 'stub' if u.new_record? %>">
+                <div id="<%= dom_id(u) unless u.new_record? %>" class="<%= 'stub' if u.new_record? %>">
                   <%= render :partial => "shared/activity_item", :object => notifier %>
                 </div>
               <% end %>
@@ -155,7 +162,9 @@
     <script type="text/javascript" charset="utf-8">
       $('.observationcontrols').observationControls()
     </script>
-    <%= will_paginate @updates %>
+    <div class="pagination">
+      <%= link_to("More", url_for_params(:from => @updates.last.id), :class => "readmore") unless @updates.blank? %>
+    </div>
   <% end %>
 </div>
 

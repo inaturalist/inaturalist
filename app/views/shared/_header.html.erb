@@ -106,13 +106,22 @@
     <li><span class="inter">or</span></li>
     <li><%= link_to "Sign up!", signup_url, :class => "signup_link" %></li>
     <% else %>
-    <li style="margin-right: 10px">
-      <span class="inter">
-        Welcome 
-        <%= link_to user_image(current_user, :size => 'mini'), user_path(:id => current_user.login) %>
-        <%= link_to current_user.login, user_path(:id => current_user.login) %>!
-        (<%= link_to "Sign out", logout_path %>)
+    <li id="usernav" style="margin-right:5px;">
+      <span class="inter user">
+        <%= link_to user_image(current_user, :size => 'thumb'), user_path(:id => current_user.login) %>
+        <strong class="inlineblock"><%= link_to current_user.login, user_path(:id => current_user.login) %></strong>
       </span>
+    </li>
+    <li id="updatesnav" class="subnavwrapper">
+      <div class="clear subnavtab">
+        <%= link_to "<span class='ui-icon ui-icon-comment inlineblock'></span><span class='count'>0</span>", 
+          home_path, 
+          :id => "headerupdatesnotice",
+          :class => "updates" %>
+      </div>
+      <div id="updatessubnav" class="subnav meta" style="display: none">
+        <div class="loadingwrapper"><%= loading %></div>
+      </div>
     </li>
     <li class="subnavwrapper">
       <div class="clear subnavtab">
@@ -133,6 +142,7 @@
         <li><%= link_to "Lists", lists_by_login_path(current_user.login), :class => 'lists_link' %></li>
         <li><%= link_to "Journal", journal_by_login_path(current_user.login), :class => 'journal_link' %></li>
         <li><%= link_to "Profile", person_path(current_user), :class => 'profile_link' %></li>
+        <li><%= link_to "Sign out", logout_path %></li>
       </ul>
     </li>
     <%- end -%>

@@ -41,7 +41,7 @@ function openHeaderSubnav(link) {
 function closeHeaderSubnav(link) {
   $(link).parents('.subnavtab').removeClass('open');
   $(link).parents('li').find('.subnav').hide();
-  $(document).unbind(subnavClickOff);
+  $(document).unbind('click', subnavClickOff);
 }
 
 function subnavClickOff(e) {
@@ -193,6 +193,18 @@ $(document).ready(function() {
     dialog.html(status)
     dialog.dialog({modal: true, title: 'Hold on...'})
     checkDelayedLink($(this).attr('href'))
+    return false
+  })
+  
+  $('#headerupdatesnotice').click(function() {
+    toggleHeaderSubnav(this)
+    if (!$('#updatessubnav').data('loaded')) {
+      $('#updatessubnav').load('/users/new_updates', function(data) {
+        $(this).html(data)
+        $('#updatessubnav').data('loaded', true)
+        setUpdatesCount(0)
+      })
+    }
     return false
   })
 })
@@ -551,3 +563,21 @@ $.fn.naturalHeight = function() {
   fakeImg.src = $(this).attr('src')
   return fakeImg.height
 }
+
+
+function setUpdatesCount(count) {
+  if (count > 0) {
+    $('#header .updates').switchClass('', 'alert')
+    $('#header .updates .count').html(count)
+  } else {
+    $('#header .updates').switchClass('alert', '')
+    $('#header .updates .count').html(0)
+  }
+}
+
+function getUpdatesCount() {
+  $.get('/users/updates_count', function(data) {
+    setUpdatesCount(data.count)
+  })
+}
+

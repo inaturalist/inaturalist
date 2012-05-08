@@ -1,0 +1,24 @@
+<ul>
+  <% if @updates.blank? -%>
+    <li class="meta nobr" style="padding:10px;">No recent activity.</li>
+  <% end -%>
+  <% for update in @updates %>
+    <%- 
+      resource = if @update_cache && @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
+        @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
+      end
+      resource ||= update.resource
+    -%>
+    <li>
+      <a href="<%= url_for(resource) %>">
+        <%= update_image_for(update, :style => "vertical-align:top", :width => 32) %>
+        <span class="inlineblock">
+          <span class="small meta">
+            <%= compact_date(update.created_at) %>
+          </span><br/>
+          <%= update_tagline_for(update, :skip_links => true) %>
+        </span>
+      </a>
+    </li>
+  <% end %>
+</ul>

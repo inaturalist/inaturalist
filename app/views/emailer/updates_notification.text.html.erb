@@ -2,20 +2,24 @@
   <% @grouped_updates.each do |key, updates| %>
     <%-
       resource_type, resource_id, notification = key
-      resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize]
-        @update_cache[updates.last.resource_type.underscore.pluralize][updates.last.resource_id]
+      resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
+        @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
       else
         updates.last.resource
       end
-      notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize]
-        @update_cache[updates.last.notifier_type.underscore.pluralize][updates.last.notifier_id]
+      notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
+        @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
       else
         updates.last.notifier
       end
     -%>
     <tr>
       <td valign="top" align="center" style="border-bottom:1px solid #ccc;padding: 10px 10px 10px 0;">
-        <%= update_image_for(updates.first, :style => "max-width:48px;") %>
+        <% if resource.is_a?(User) -%>
+          <%= update_image_for(updates.first, :width => 48, :height => 48) %>
+        <% else %>
+          <%= update_image_for(updates.first, :style => "max-width:48px;") %>
+        <% end -%>
       </td>
       <td valign="top"  style="border-bottom:1px solid #ccc; padding: 10px 0 10px 0;">
         <div class="updatebody">

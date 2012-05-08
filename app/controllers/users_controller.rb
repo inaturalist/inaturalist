@@ -282,11 +282,45 @@ class UsersController < ApplicationController
   end
   
   def dashboard2
-    @updates = current_user.updates.paginate(:page => params[:page], :per_page => 50, :order => "id DESC", 
-      :include => [:resource, :notifier])
+    conditions = ["id < ?", params[:from].to_i] if params[:from]
+    updates = current_user.updates.all(:limit => 50, :order => "id DESC", 
+      :include => [:resource, :notifier, :subscriber, :resource_owner],
+      :conditions => conditions)
+    @updates = Update.load_additional_activity_updates(updates)
     @grouped_updates = Update.group_and_sort(@updates)
     @update_cache = Update.eager_load_associates(@updates)
+    Update.user_viewed_updates(updates)
     render :dashboard2
+  end
+  
+  def updates_count
+    count = current_user.updates.unviewed.activity.count
+    session[:updates_count] = count
+    render :json => {:count => count}
+  end
+  
+  def new_updates
+    @updates = current_user.updates.unviewed.activity.all(
+      :include => [:resource, :notifier, :subscriber, :resource_owner],
+      :order => "id DESC",
+      :limit => 200
+    )
+    session[:updates_count] = @updates.size
+    if @updates.blank?
+      @updates = current_user.updates.activity(
+        :include => [:resource, :notifier, :subscriber, :resource_owner],
+        :order => "id DESC",
+        :limit => 10,
+        :conditions => ["viewed_at > ?", 1.day.ago])
+    end
+    if @updates.blank?
+      @updates = current_user.updates.activity.all(:limit => 5, :order => "id DESC")
+    else
+      Update.user_viewed_updates(@updates)
+    end
+    @update_cache = Update.eager_load_associates(@updates)
+    @updates = @updates.sort_by{|u| u.created_at.to_i * -1}
+    render :layout => false
   end
   
   def edit

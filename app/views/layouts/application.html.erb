@@ -25,7 +25,7 @@
   </head>
 <body>
   <% unless @headless -%>
-    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 5) do %>
+    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 6) do %>
       <%= render :partial => 'shared/header' %>
     <% end %>
   <% end -%>
@@ -46,5 +46,12 @@
   <div id="comment_preview" class="modalbox" style="display: none"></div>
 
   <%= render :partial => 'shared/footer' unless @footless %>
+  
+  <% if logged_in? -%>
+    <script type="text/javascript" charset="utf-8">
+      setUpdatesCount(<%= session[:updates_count].to_i %>)
+      setTimeout(getUpdatesCount, 1000)
+    </script>
+  <% end -%>
 </body>
 </html>

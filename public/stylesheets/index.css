@@ -1152,3 +1152,6 @@ table .numeric { text-align: center; }
 .item_content .identification_image img{width:32px;vertical-align:middle;}
 .item_content .identification{padding:0.5em;background-color:#eee;margin-bottom:0.5em;}
 .item_content p{margin-bottom:0.5em;}
+
+.alert, .alert:hover {background-color: #cd0a0a; color: white; }
+.alert .ui-icon { background-image: url(/images/jquery-ui/ui-icons_ffffff_256x240.png); }

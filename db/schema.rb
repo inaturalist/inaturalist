@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120427014202) do
+ActiveRecord::Schema.define(:version => 20120504214431) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -822,11 +822,15 @@ ActiveRecord::Schema.define(:version => 20120427014202) do
     t.string   "notification"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "resource_owner_id"
+    t.datetime "viewed_at"
   end
 
   add_index "updates", ["notifier_type", "notifier_id"], :name => "index_updates_on_notifier_type_and_notifier_id"
+  add_index "updates", ["resource_owner_id"], :name => "index_updates_on_resource_owner_id"
   add_index "updates", ["resource_type", "resource_id"], :name => "index_updates_on_resource_type_and_resource_id"
   add_index "updates", ["subscriber_id"], :name => "index_updates_on_subscriber_id"
+  add_index "updates", ["viewed_at"], :name => "index_updates_on_viewed_at"
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40

@@ -44,6 +44,8 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:controller => 'users') do |users|
     users.dashboard '/users/dashboard', :action => 'dashboard'
     users.curate_users '/users/curation', :action => 'curation'
+    users.updates_count '/users/updates_count', :action => 'updates_count'
+    users.new_updates '/users/new_updates', :action => 'new_updates'
   end
   
   # Resources

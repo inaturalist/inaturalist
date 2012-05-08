@@ -168,6 +168,12 @@ TaxonRange.blueprint do
   source
 end
 
+Update.blueprint do
+  subscriber
+  resource { Observation.make }
+  notifier { Comment.make(:parent => self.resource) }
+end
+
 User.blueprint do
   login { Sham.login }
   email { Sham.email }
