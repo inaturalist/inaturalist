@@ -431,11 +431,6 @@ protected
       return redirect_to(edit_person_path(@user))
     end
     
-    unless current_user.authenticated?(params[:current_password])
-      flash[:error] = "Couldn't change your password: is that really your current password?"
-      return redirect_to(edit_person_path(@user))
-    end
-    
     current_user.password = params[:password]
     current_user.password_confirmation = params[:password_confirmation]
     begin
