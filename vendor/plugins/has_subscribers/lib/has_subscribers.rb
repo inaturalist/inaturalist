@@ -92,6 +92,7 @@ module HasSubscribers
         
         subscribable.subscriptions.find_each do |subscription|
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id
+          next if subscription.created_at > notifier.created_at
           Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
             :notification => notification)
         end
