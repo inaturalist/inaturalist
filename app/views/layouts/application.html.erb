@@ -54,6 +54,9 @@
     <script type="text/javascript" charset="utf-8">
       setUpdatesCount(<%= session[:updates_count].to_i %>)
       setTimeout(getUpdatesCount, 1000)
+      <% if current_user.is_admin? %>
+        $('#header .navtabs li#updatesnav').show()
+      <% end -%>
     </script>
   <% end -%>
 </body>

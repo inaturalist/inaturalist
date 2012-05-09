@@ -608,7 +608,8 @@ module ApplicationHelper
       end
       s = if update.notification == "activity" && notifier_user
         notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
-        "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, notifier_user)} added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{notifier_class_name} to "
+        "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, notifier_user)} " + 
+        "added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong> to "
       else
         s = "New activity on "
       end
