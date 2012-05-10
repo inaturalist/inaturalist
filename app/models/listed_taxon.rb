@@ -358,16 +358,17 @@ class ListedTaxon < ActiveRecord::Base
     OCCURRENCE_STATUS_LEVELS[occurrence_status_level]
   end
   
-  def editable_by?(user)
-    list.editable_by?(user)
+  def editable_by?(target_user)
+    list.editable_by?(target_user)
   end
   
-  def removable_by?(user)
-    return false unless user
-    return true if list.is_a?(CheckList) && user.admin?
-    return true if list.is_a?(ProjectList) && list.project.curated_by?(user)
+  def removable_by?(target_user)
+    return false unless target_user
+    return true if user == target_user
+    return true if list.is_a?(CheckList) && target_user.admin?
+    return true if list.is_a?(ProjectList) && list.project.curated_by?(target_user)
     return true if citation_object.blank?
-    citation_object == user
+    citation_object == target_user
   end
   
   def citation_object
