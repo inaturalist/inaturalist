@@ -39,7 +39,7 @@
       </div>
     <% else %>
       <div class="stacked observationcontrols"></div>
-      <div class="observations grid">
+      <div class="medium observations grid">
         <% compact do %>
           <%= render :partial => "observations/cached_component", :collection => @project_observations.map{|po| po.observation}.compact %>
         <% end -%>
