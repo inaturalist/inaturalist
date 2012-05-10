@@ -1,0 +1,20 @@
+<%- 
+  observations ||= []
+  year ||= Date.today.year
+  month ||= Date.today.month
+  month_name ||= %w(January February March April May June July August September October November December)[month-1]
+  login ||= @login || current_user.try(:login)
+-%>
+<% calendar_for(observations, :year => year, :month => month, 
+    :html => {:class => "calendar column #{cycle('first', nil, nil, 'last')}"}) do |t| %>
+  <caption><%= month_name %></caption>
+  <%= t.head(*%w(sun mon tue wed thu fri sat)) %>
+  <% t.day(:day_method => :observed_on) do |day, observations| %>
+    <% if observations.size > 0 -%>
+      <%= link_to day.day, calendar_date_path(login, year, day.month, day.day), 
+        :class => "daylink inlineblock", "data-count" => observations.size, "data-tip" => "#{observations.size} observations" %>
+    <% else %>
+      <%= day.day %>
+    <% end -%>
+  <% end %>
+<% end %>
