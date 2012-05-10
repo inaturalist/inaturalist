@@ -515,8 +515,9 @@ $.fn.observationControls = function(options) {
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
     var gridButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span>Grid</a>')
+    gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
     gridButton.click(function() {
-      $(observations).observationsGrid('medium')
+      $(observations).observationsGrid($(this).data('gridSize'))
       $(this).siblings().addClass('disabled')
       $(this).removeClass('disabled')
       return false

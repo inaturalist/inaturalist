@@ -18,7 +18,7 @@
 <div class="updatecontent">
   <div class="observationcontrols stacked"></div>
   
-  <div class="observations <%= observations.size > 1 ? 'grid' : 'mini' %> stacked">
+  <div class="observations <%= observations.size > 1 ? 'medium grid' : 'mini' %> stacked">
     <%- compact do %>
       <%= render :partial => "observations/cached_component", :collection => observations %>
     <% end -%>

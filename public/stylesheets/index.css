@@ -1050,7 +1050,8 @@ a.id_please_notice:hover{color:#584925;}
   background-repeat: no-repeat;
 }
 
-.inat-icon {
+.inat-icon,
+.ui-widget-content .inat-icon {
   background-image: url(/images/sprites-222222.png);
   background-repeat: no-repeat;
 }
@@ -1155,3 +1156,16 @@ table .numeric { text-align: center; }
 
 .alert, .alert:hover {background-color: #cd0a0a; color: white; }
 .alert .ui-icon { background-image: url(/images/jquery-ui/ui-icons_ffffff_256x240.png); }
+
+.notmonth { color: #ccc;}
+.calendar { width: 230px; }
+.calendar tbody td, .calendar th { color: #ccc;}
+.calendar tbody td a { font-weight: bold; }
+.calendar tbody td.notmonth { color: #eee;}
+.calendar.first { clear: left; }
+.calendar caption { background-color: transparent; text-transform: uppercase; letter-spacing: 0.4em; text-align:center;}
+.calendar td, .calendar th { border: 0 transparent; text-align: center;}
+.calendar th { font-weight: normal; }
+.calendar .daylink {
+  width: 22px; height: 22px; 
+  background-color: #eee; border-radius: 11px;text-align:center;line-height:1.9; cursor:pointer;}

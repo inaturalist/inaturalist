@@ -3,16 +3,6 @@
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
-    .notmonth { color: #ccc;}
-    .calendar { width: 230px; }
-    .calendar tbody td, .calendar th { color: #ccc;}
-    .calendar tbody td a { font-weight: bold; }
-    .calendar tbody td.notmonth { color: #eee;}
-    .calendar.first { clear: left; }
-    caption { background-color: transparent; text-transform: uppercase; letter-spacing: 0.4em; text-align:center;}
-    td, th { border: 0 transparent; text-align: center;}
-    th { font-weight: normal; }
-    .daylink { display: block; width: 22px; height: 22px; background-color: #eee; border-radius: 11px;text-align:center;line-height:1.9; cursor:pointer;}
     .yearnav {position:relative;}
     .yearnav .left, .yearnav .right {position:absolute;}
     .yearnav .left { left: 0;}
@@ -50,19 +40,12 @@
 
 <div class="clear">
   <% %w(January February March April May June July August September October November December).each_with_index do |month, i| %>
-    <% calendar_for(@observations_by_month[i+1], :year => @year, :month => i+1, 
-        :html => {:class => "calendar column #{cycle('first', nil, nil, 'last')}"}) do |t| %>
-      <caption><%= month %></caption>
-      <%= t.head(*%w(sun mon tue wed thu fri sat)) %>
-      <% t.day(:day_method => :observed_on) do |day, observations| %>
-        <% if observations.size > 0 -%>
-          <%= link_to day.day, calendar_date_path(@login, @year, day.month, day.day), 
-            :class => "daylink", "data-count" => observations.size, "data-tip" => "#{observations.size} observations" %>
-        <% else %>
-          <%= day.day %>
-        <% end -%>
-      <% end %>
-    <% end %>  
+    <%= render :partial => 'calendar', :locals => {
+      :observations => @observations_by_month[i+1], 
+      :year => @year, 
+      :month => i+1,
+      :month_name => month
+    } %>
   <% end -%>
 </div>
 

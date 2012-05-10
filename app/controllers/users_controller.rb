@@ -290,6 +290,11 @@ class UsersController < ApplicationController
     @grouped_updates = Update.group_and_sort(@updates)
     @update_cache = Update.eager_load_associates(@updates)
     Update.user_viewed_updates(updates)
+    @month_observations = current_user.observations.all(:select => "id, observed_on",
+      :conditions => [
+        "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
+        Date.today.month, Date.today.year
+        ])
     render :dashboard2
   end
   
