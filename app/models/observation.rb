@@ -732,11 +732,11 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    # project_observations.each do |po|
-    #   Project.send_later(:refresh_project_list, po.project_id, 
-    #     :taxa => target_taxa.map(&:id), :add_new_taxa => true)
-    # end
     List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
+      :skip_subclasses => true,
+      :dj_priority => 1)
+    LifeList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :dj_priority => 1)
       
@@ -774,6 +774,10 @@ class Observation < ActiveRecord::Base
     return if @skip_refresh_lists
     return unless taxon
     List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
+      :skip_subclasses => true,
+      :dj_priority => 1)
+    LifeList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :dj_priority => 1)
     true

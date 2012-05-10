@@ -268,7 +268,7 @@ class List < ActiveRecord::Base
   def self.refresh_with_observation(observation, options = {})
     observation = Observation.find_by_id(observation) unless observation.is_a?(Observation)
     unless taxon = Taxon.find_by_id(observation.try(:taxon_id) || options[:taxon_id])
-      Rails.logger.error "[ERROR #{Time.now}] LifeList.refresh_with_observation " + 
+      Rails.logger.error "[ERROR #{Time.now}] List.refresh_with_observation " + 
         "failed with blank taxon, observation: #{observation}, options: #{options.inspect}"
       return
     end
@@ -280,30 +280,25 @@ class List < ActiveRecord::Base
     # get listed taxa for this taxon and its ancestors that are on the observer's life lists
     listed_taxa = ListedTaxon.all(:include => [:list],
       :conditions => ["taxon_id IN (?) AND list_id IN (?)", taxon_ids, target_list_ids])
-    new_list_ids = target_list_ids - listed_taxa.map{|lt| lt.taxon_id == taxon.id ? lt.list_id : nil}
-    new_taxa = [taxon, taxon.species].compact
-    new_list_ids.each do |list_id|
-      new_taxa.each do |new_taxon|
-        lt = ListedTaxon.new(:list_id => list_id, :taxon_id => new_taxon.id)
-        lt.skip_update = true
-        unless lt.save
-          Rails.logger.info "[INFO #{Time.now}] Failed to create #{lt}: #{lt.errors.full_messages.to_sentence}"
-        end
-      end
+    if respond_to?(:create_new_listed_taxa_for_refresh)
+      create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
     end
     listed_taxa.each do |lt|
-      unless lt.save
-        lt.destroy
-        next
-      end
-      if lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?
-        lt.destroy
-      end
+      refresh_listed_taxon(lt)
     end
+  end
+  
+  def self.refresh_listed_taxon(lt)
+    lt.save
   end
   
   def self.refresh_with_observation_lists(observation, options = {})
     user = observation.try(:user) || User.find_by_id(options[:user_id])
-    user ? user.life_list_ids : []
+    return [] unless user
+    if options[:skip_subclasses]
+      user.lists.all(:select => "id, type", :conditions => "type IS NULL").map{|l| l.id}
+    else
+      user.list_ids
+    end
   end
 end

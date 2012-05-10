@@ -70,6 +70,35 @@ class LifeList < List
     true
   end
   
+  def self.create_new_listed_taxa_for_refresh(taxon, listed_taxa, target_list_ids)
+    new_list_ids = target_list_ids - listed_taxa.map{|lt| lt.taxon_id == taxon.id ? lt.list_id : nil}
+    new_taxa = [taxon, taxon.species].compact
+    new_list_ids.each do |list_id|
+      new_taxa.each do |new_taxon|
+        lt = ListedTaxon.new(:list_id => list_id, :taxon_id => new_taxon.id)
+        lt.skip_update = true
+        unless lt.save
+          Rails.logger.info "[INFO #{Time.now}] Failed to create #{lt}: #{lt.errors.full_messages.to_sentence}"
+        end
+      end
+    end
+  end
+  
+  def self.refresh_listed_taxon(lt)
+    unless lt.save
+      lt.destroy
+      return
+    end
+    if lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?
+      lt.destroy
+    end
+  end
+  
+  def self.refresh_with_observation_lists(observation, options = {})
+    user = observation.try(:user) || User.find_by_id(options[:user_id])
+    user ? user.life_list_ids : []
+  end
+  
   # Add all the taxa the list's owner has observed.  Cache the job ID so we 
   # can display a loading notification on lists/show.
   def add_taxa_from_observations
