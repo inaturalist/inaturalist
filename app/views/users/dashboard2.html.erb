@@ -56,7 +56,7 @@
 
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <%= javascript_include_tag 'inaturalist/map3' %>
+  <%= javascript_include_tag 'inaturalist/map3', "d3.min", 'calendars' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#tabs').tabs({

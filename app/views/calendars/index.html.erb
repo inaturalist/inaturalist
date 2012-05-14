@@ -12,18 +12,7 @@
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag "d3.min" %>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      window.colorscale = d3.scale.linear()
-        .domain([0,50])
-        .range(["#fefefe", "#aaa"])
-      $('.daylink').css('background-color', function() {
-        var c = $(this).attr('data-count')
-        return colorscale(Math.min(c, 50))
-      })
-    })
-  </script>
+  <%= javascript_include_tag "d3.min", "calendars" %>
 <%- end -%>
 
 <%= render :partial => 'shared/by_login_header', :locals => {:title => @title} %>
