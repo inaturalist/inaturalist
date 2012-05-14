@@ -166,8 +166,13 @@ eol_collection_ids.each do |eol_collection_id|
         if match = external_names.detect{|en| en.name == list_item}
           match.save unless opts[:test]
           taxon = match.taxon
-          puts "\t\tImported new taxon: #{taxon}"
-          taxon.send_later(:graft) unless opts[:test]
+          if taxon.valid? && !taxon.new_record?
+            puts "\t\tImported new taxon: #{taxon}"
+            taxon.send_later(:graft) unless opts[:test]
+          else
+            puts "\t\tFailed to import #{taxon}: #{taxon.errors.full_messages.to_sentence}"
+            taxon = nil
+          end
         end
       end
       
