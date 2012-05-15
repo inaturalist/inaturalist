@@ -2,7 +2,6 @@
   <%= @title = "Observations by #{you_or_login(@selected_user)} on #{Date.parse(@date).to_s(:long) rescue @date}" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "observations" %>
   <style type="text/css" media="screen">
     .bigun {text-align: center; height: 150px; border-radius: 150px; background-color: #eee; position: relative;}
     .bigun .inner { left: 0; width: 150px; height: 72px; top: 50%; margin-top: -47px; position: absolute;}

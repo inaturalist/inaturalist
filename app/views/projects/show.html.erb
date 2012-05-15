@@ -29,7 +29,7 @@
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations', 'projects/show' %>
+  <%= stylesheet_link_tag 'projects/show' %>
   <% if @custom_project && !@custom_project.css.blank? -%>
     <style type="text/css" media="screen">
       <%= @custom_project.css %>
