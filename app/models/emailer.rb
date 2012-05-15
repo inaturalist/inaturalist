@@ -86,7 +86,7 @@ class Emailer < ActionMailer::Base
     @subject << "New updates, #{Date.today}"
     @body = {
       :user => user,
-      :grouped_updates => Update.group_and_sort(updates),
+      :grouped_updates => Update.group_and_sort(updates, :skip_past_activity => true),
       :update_cache => Update.eager_load_associates(updates)
     }
   end

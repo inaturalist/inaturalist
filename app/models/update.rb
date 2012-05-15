@@ -38,7 +38,7 @@ class Update < ActiveRecord::Base
     updates
   end
   
-  def self.group_and_sort(updates)
+  def self.group_and_sort(updates, options = {})
     grouped_updates = []
     
     updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
@@ -48,7 +48,7 @@ class Update < ActiveRecord::Base
         batch.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
           grouped_updates << [key, hour_updates]
         end
-      elsif notification == "activity"
+      elsif notification == "activity" && !options[:skip_past_activity]
         # get the resource that has all this activity
         resource = Object.const_get(resource_type).find_by_id(resource_id)
         
