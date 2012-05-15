@@ -203,6 +203,27 @@ $(document).ready(function() {
         $(this).html(data)
         $('#updatessubnav').data('loaded', true)
         setUpdatesCount(0)
+        var tipOptions = $.extend({}, QTIP_DEFAULTS, {
+          position: {
+            my: 'right center',
+            at: 'left center',
+            target: 'event'
+          },
+          content: {
+            text: '<span class="loading status">Loading...</span>',
+            ajax: {
+              type: 'GET',
+              data: {partial: 'cached_component'}
+            }
+          }
+        })
+        tipOptions.style.classes += ' compact mini observations'
+        tipOptions.style.width = 200
+        $('li a[href*="/observations/"]', this).each(function() {
+          tipOptions.position.target = $(this).parents('li:first')
+          tipOptions.content.ajax.url = $(this).attr('href')
+          $(this).qtip(tipOptions)
+        })
       })
     }
     return false

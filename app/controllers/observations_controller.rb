@@ -169,6 +169,13 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
+    if request.format.html? && 
+        params[:partial] == "cached_component" && 
+        fragment_exist?(@observation.component_cache_key(:for_owner => @observation.user_id == current_user.try(:id)))
+      return render(:partial => params[:partial], :object => @observation,
+        :layout => false)
+    end
+    
     @previous = @observation.user.observations.first(:conditions => ["id < ?", @observation.id], :order => "id DESC")
     @prev = @previous
     @next = @observation.user.observations.first(:conditions => ["id > ?", @observation.id], :order => "id ASC")

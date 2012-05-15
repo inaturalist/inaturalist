@@ -28,7 +28,7 @@
   </head>
 <body>
   <% unless @headless -%>
-    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 6) do %>
+    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 7) do %>
       <%= render :partial => 'shared/header' %>
     <% end %>
   <% end -%>
@@ -54,9 +54,6 @@
     <script type="text/javascript" charset="utf-8">
       setUpdatesCount(<%= session[:updates_count].to_i %>)
       setTimeout(getUpdatesCount, 1000)
-      <% if current_user.is_admin? %>
-        $('#header .navtabs li#updatesnav').show()
-      <% end -%>
     </script>
   <% end -%>
 </body>
