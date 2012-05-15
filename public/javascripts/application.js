@@ -218,7 +218,7 @@ $(document).ready(function() {
           }
         })
         tipOptions.style.classes += ' compact mini observations'
-        tipOptions.style.width = 200
+        tipOptions.style.width = 250
         $('li a[href*="/observations/"]', this).each(function() {
           tipOptions.position.target = $(this).parents('li:first')
           tipOptions.content.ajax.url = $(this).attr('href')
