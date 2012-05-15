@@ -310,7 +310,7 @@ class UsersController < ApplicationController
       :order => "id DESC",
       :limit => 200
     )
-    session[:updates_count] = @updates.size
+    session[:updates_count] = 0
     if @updates.blank?
       @updates = current_user.updates.activity.all(
         :include => [:resource, :notifier, :subscriber, :resource_owner],
