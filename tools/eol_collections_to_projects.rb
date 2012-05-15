@@ -89,8 +89,8 @@ eol_collection_ids.each do |eol_collection_id|
   begin
     collection_title = col.xpath('//name').first.text
     project_name = "#{collection_title} EOL Collection"
-  rescue
-    puts "\t Woah, couldn't find a name! Skipping..."
+  rescue => e
+    puts "\t Woah, couldn't find a name! Skipping... error: #{e}"
     next
   end
   collection_image_url = col.xpath('//logo_url').first.try(:text)
@@ -108,6 +108,7 @@ eol_collection_ids.each do |eol_collection_id|
       :source_url => "http://eol.org/collections/#{eol_collection_id}",
       :description => col.at('description').try(:text),
       :project_type => "contest")
+    project.project_observation_rules.build(:operator => "on_list?")
     if logo_url
       io = open(URI.parse(logo_url))
       project.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
