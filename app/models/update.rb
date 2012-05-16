@@ -82,12 +82,16 @@ class Update < ActiveRecord::Base
     user_ids = Update.all(
         :select => "DISTINCT subscriber_id",
         :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact
+    delivery_times = []
     user_ids.each do |subscriber_id|
+      delivery_start_time = Time.now
       if email_updates_to_user(subscriber_id, start_time, end_time)
+        delivery_times << (Time.now - delivery_start_time)
         email_count += 1
       end
     end
-    Rails.logger.info "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - end_time} s"
+    avg_time = delivery_times.sum / delivery_times.size
+    Rails.logger.info "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - end_time} s, avg: #{avg_time}"
   end
   
   def self.email_updates_to_user(subscriber, start_time, end_time)
