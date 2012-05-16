@@ -7,6 +7,12 @@
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     .updatecontent p:first-child { margin-top: 0; }
+    @media all and (orientation: portrait) {
+      .updatecontent td { max-width: 210px; overflow:hidden; }
+    }
+    @media all and (orientation: landscape) {
+      .updatecontent td { max-width: 360px; overflow:hidden; }
+    }
   </style>
 <%- end -%>
 <h2><%= @title %></h2>
