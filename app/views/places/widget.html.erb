@@ -76,6 +76,15 @@ end
     </div>
     
     <div class="field">
+      <label>BG Color</label>
+      <span class="small meta">
+        Hex color, e.g. 65644F
+      </span>
+      <br/>
+      <%= text_field_tag 'bgcolor', nil, :class => "text" %>
+    </div>
+    
+    <div class="field">
       <label>Taxon</label>
       <br/>
       <%= text_field_tag :taxon, nil, :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>

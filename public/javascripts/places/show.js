@@ -151,6 +151,7 @@ var PlaceGuide = {
     'size',
     'grid',
     'labeled',
+    'bgcolor',
     'multiselect_colorsFilter', 
     'multiselect_colorsFilter[]', 
     'multiselect_conservationFilter', 

@@ -42,6 +42,10 @@
       font-family: "Trebuchet MS", Arial, sans-serif;
       font-size:100%;
     }
+    <% if !params[:bgcolor].blank? && !%w(white fff ffffff).include?(params[:bgcolor].to_s.downcase) %>
+      body, #listed_taxa {background-color: #<%=h params[:bgcolor] %>;}
+      #controls {border-bottom: 1px solid #ccc;}
+    <% end -%>
   </style>
 <%- end -%>
 <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 
@@ -109,6 +113,8 @@
           
         })
       })
+      
+      $('#taxa').css({'minHeight': $(window).height()})
     })
     
     function toggleSidebar() {
