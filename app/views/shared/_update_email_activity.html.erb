@@ -5,7 +5,7 @@
 -%>
 
 <div class="updatecontent">
-  <table cellspacing="5" cellpadding="5">
+  <table cellspacing="0" cellpadding="0">
     <% for update in updates %>
       <%-
         notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
@@ -14,20 +14,22 @@
         notifier ||= update.notifier
       -%>
       <tr>
-        <td valign="top">
-          <%= user_image(notifier.user, :size => "thumb", :width => 48, :height => 48) %>
+        <td valign="top" style="padding-right:10px;">
+          <%= user_image(notifier.user, :size => "thumb", :width => 32, :height => 32) %>
         </td>
         <td valign="top">
           <% if notifier.is_a?(Comment) -%>
             <%= formatted_user_text(notifier.body) %>
           <% elsif notifier.is_a?(Identification) %>
-            <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
-            <span><%= notifier.user.login %>'s ID:</span>
-            <%= render :partial => 'shared/taxon', 
-                       :locals => { :taxon => notifier.taxon,
-                                    :link_url => notifier.taxon } %>
+            <div style="margin-bottom:10px;">
+              <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
+              <span><%= notifier.user.login %>'s ID:</span>
+              <%= render :partial => 'shared/taxon', 
+                         :locals => { :taxon => notifier.taxon,
+                                      :link_url => taxon_url(notifier.taxon) } %>
+            </div>
           <% end -%>
-          <div style="color:#aaaaaa;font-size:smaller;">
+          <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
             Posted by 
             <%= link_to(truncate(notifier.user_id == @user.id ? "you" : notifier.user.login, :length => 20), 
               person_url(notifier.user)) %>
@@ -39,6 +41,5 @@
       </tr>
     <% end %>
   </table>
-  
-  <%= link_to "View #{class_name.humanize.downcase}", resource, :class => "readmore" %>
+  <%= link_to "View #{class_name.humanize.downcase}", url_for_resource_with_host(resource), :class => "readmore" %>
 </div>

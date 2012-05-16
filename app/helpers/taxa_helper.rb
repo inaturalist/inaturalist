@@ -131,7 +131,7 @@ module TaxaHelper
     path += '-' + params[:color] if params[:color]
     path += "-%spx" % params[:size] if params[:size]
     path += '.png'
-    image_path(path)
+    image_url(path)
   end
   
   #

@@ -1,0 +1,13 @@
+<%-
+  @observation_columns = 3
+-%>
+<%- content_for(:title) do -%>
+  <%= @title = "Recent updates" %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .updatecontent p:first-child { margin-top: 0; }
+  </style>
+<%- end -%>
+<h2><%= @title %></h2>
+<%= render_in_format :html, :partial => 'shared/updates_table' %>

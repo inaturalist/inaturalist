@@ -590,9 +590,9 @@ module ApplicationHelper
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, resource)} added an observation"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added an observation"
       else
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, resource)} added #{options[:count]} observations"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations"
       end
     when "Observation", "ListedTaxon"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
@@ -608,19 +608,23 @@ module ApplicationHelper
       end
       s = if update.notification == "activity" && notifier_user
         notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
-        "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, notifier_user)} " + 
+        "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))} " + 
         "added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong> to "
       else
         s = "New activity on "
       end
-      s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{options[:skip_links] ? class_name : link_to(class_name, resource)}"
+      s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))}"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s
     when "Post"
-      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, resource)}\" by #{update.resource_owner.login}"
+      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}"
     else
       "update"
     end
+  end
+  
+  def url_for_resource_with_host(resource)
+    "#{APP_CONFIG[:site_url]}#{url_for(resource)}"
   end
   
 end

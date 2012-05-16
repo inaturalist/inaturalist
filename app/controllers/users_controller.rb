@@ -295,7 +295,10 @@ class UsersController < ApplicationController
         "EXTRACT(month FROM observed_on) = ? AND EXTRACT(year FROM observed_on) = ?",
         Date.today.month, Date.today.year
         ])
-    render :dashboard2
+    respond_to do |format|
+      format.html { render :dashboard2 }
+      format.mobile { render :dashboard2 }
+    end
   end
   
   def updates_count

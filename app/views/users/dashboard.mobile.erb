@@ -23,6 +23,7 @@
 <h2>Recent Updates</h2>
 <ul id="updates">
   <% for u in @updates %>
+    <%- next unless u.activity_object -%>
     <li class="update <%= u.activity_object_type.underscore %>_update">
       <%= link_to image_tag(u.user.icon.url(:thumb)), u.user, :class => "subject_image" %>
       <div class="tagline meta">

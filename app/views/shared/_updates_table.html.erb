@@ -1,0 +1,45 @@
+<table border="0" cellspacing="0" cellpadding="0" style="font-family: Trebuchet MS, Helvetica, Arial, sans-serif; line-height:1.2; border-collapse: collapse;">
+  <% @grouped_updates.each do |key, updates| %>
+    <%-
+      resource_type, resource_id, notification = key
+      resource = if @update_cache && @update_cache[updates.last.resource_type.underscore.pluralize.to_sym]
+        @update_cache[updates.last.resource_type.underscore.pluralize.to_sym][updates.last.resource_id]
+      else
+        updates.last.resource
+      end
+      notifier = if @update_cache && @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym]
+        @update_cache[updates.last.notifier_type.underscore.pluralize.to_sym][updates.last.notifier_id]
+      else
+        updates.last.notifier
+      end
+    -%>
+    <tr>
+      <td valign="top" align="center" style="border-bottom:1px solid #ccc;padding: 10px 10px 10px 0;">
+        <% if resource.is_a?(User) -%>
+          <%= update_image_for(updates.first, :width => 48, :height => 48) %>
+        <% else %>
+          <%= update_image_for(updates.first, :style => "max-width:48px;") %>
+        <% end -%>
+      </td>
+      <td valign="top"  style="border-bottom:1px solid #ccc; padding: 10px 0 10px 0;">
+        <div class="updatebody">
+          <div style="color:#aaaaaa;margin-bottom:10px;">
+            <%= update_tagline_for(updates.first, :count => updates.size) %>
+          </div>
+          <%= 
+            if notification == "activity"
+              render_in_format :html, :partial => "shared/update_email_activity", :object => resource, :locals => {:updates => updates}
+            else
+              begin
+                render_in_format :html, :partial => "#{resource.class.to_s.underscore.pluralize}/update_email_#{notification}", 
+                  :object => resource, :locals => {:updates => updates}
+              rescue ActionView::MissingTemplate, Errno::ENOENT
+                "#{resource_type} #{notification}"
+              end
+            end
+          -%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

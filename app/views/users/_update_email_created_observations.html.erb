@@ -9,16 +9,17 @@
   default_observation = observations.first
   login = user.login
   place_guesses = observations.map{|o| o.place_guess.blank? ? nil : o.place_guess}.compact.uniq
+  columns ||= @observation_columns || 6
 -%>
 
-<table border="0" cellspacing="0" cellpadding="5">
-  <% for obs_group in observations.in_groups_of(6) %>
+<table border="0" cellspacing="0" cellpadding="0">
+  <% for obs_group in observations.in_groups_of(columns) %>
     <tr>
       <% for o in obs_group.compact %>
-        <td width="75" align="center" valign="top">
-          <%= link_to observation_image(o), o %>
+        <td width="75" align="center" valign="top" style="padding-right: 10px; padding-bottom: 10px;">
+          <%= link_to observation_image(o, :style => "max-width: 75px; max-height: 75px;"), observation_url(o), :only_path => false %>
           <br/>
-          <%= link_to o.species_guess || "Something", o, :style => "font-size:smaller;" %>
+          <%= link_to o.species_guess || "Something", observation_url(o), :style => "font-size:smaller;" %>
         </td>
       <% end %>
     </tr>
