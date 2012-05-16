@@ -25,7 +25,7 @@ class ProjectObservationRule < Rule
   
   def terms
     if operator == "observed_in_place?" && operand
-      return "must be observed in #{operand.display_name}"
+      return "must be observed in #{send(:operand).display_name}"
     end
     super
   end
