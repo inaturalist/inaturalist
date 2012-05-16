@@ -200,10 +200,10 @@ class UsersController < ApplicationController
     @announcement = Announcement.last(:conditions => [
       "placement = 'users/dashboard' AND ? BETWEEN \"start\" AND \"end\"", Time.now.utc])
     
-    if params[:test]
+    # if params[:test]
       dashboard2
       return
-    end
+    # end
     
     @user = current_user
     @recently_commented = Observation.all(
