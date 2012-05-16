@@ -121,7 +121,7 @@ module TaxaHelper
     else
       nil
     end
-    path = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
+    path = APP_CONFIG[:site_url]
     path += '/images/iconic_taxa/'
     if iconic_taxon
       path += iconic_taxon.name.downcase
@@ -131,7 +131,7 @@ module TaxaHelper
     path += '-' + params[:color] if params[:color]
     path += "-%spx" % params[:size] if params[:size]
     path += '.png'
-    image_url(path)
+    image_path(path)
   end
   
   #
