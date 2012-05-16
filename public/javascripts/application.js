@@ -106,7 +106,7 @@ $('[data-autosubmit]').live('change', function() {
 
 function buildHelpTips() {
   if (typeof($().qtip) == "undefined") { return; }
-  var options = $.extend({}, QTIP_DEFAULTS, {
+  var options = $.extend(true, {}, QTIP_DEFAULTS, {
     show: {event: 'click'},
     hide: {event: 'unfocus'}
   })
@@ -119,7 +119,7 @@ function buildHelpTips() {
       content = $(this).attr('rel')
     }
     
-    var tipOptions = $.extend({}, options, {
+    var tipOptions = $.extend(true, {}, options, {
       content: {
         text: content, 
         title: $(this).attr('data-helptip-title')
@@ -203,7 +203,7 @@ $(document).ready(function() {
         $(this).html(data)
         $('#updatessubnav').data('loaded', true)
         setUpdatesCount(0)
-        var tipOptions = $.extend({}, QTIP_DEFAULTS, {
+        var tipOptions = $.extend(true, {}, QTIP_DEFAULTS, {
           position: {
             my: 'right center',
             at: 'left center',
@@ -259,7 +259,7 @@ function autoTip() {
   } else {
     content = $(this).attr('data-tip')
   }
-  var tipOptions = $.extend({}, QTIP_DEFAULTS)
+  var tipOptions = $.extend(true, {}, QTIP_DEFAULTS)
   if ($(this).attr('data-tip-title')) {
     tipOptions.content = {
       text: content, 
