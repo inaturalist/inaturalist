@@ -141,6 +141,10 @@ class Update < ActiveRecord::Base
   end
   
   def self.user_viewed_updates(updates)
+    updates = updates.compact
+    return if updates.blank?
+    subscriber_id = updates.first.subscriber_id
+    
     # mark all as viewed
     Update.update_all(["viewed_at = ?", Time.now], ["id in (?)", updates])
     
@@ -158,6 +162,6 @@ class Update < ActiveRecord::Base
         update.resource_id
       ])
     end
-    Update.delete_all(["subscriber_id = ? AND created_at < ?", updates.first.subscriber_id, 1.year.ago])
+    Update.delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 1.year.ago])
   end
 end
