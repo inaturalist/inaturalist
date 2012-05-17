@@ -281,7 +281,7 @@ class ListsController < ApplicationController
     end
     if @list.is_a?(ProjectList)
       project = Project.find_by_id(@list.project_id)
-      unless project.project_users.exists?(:role => "curator", :user_id => current_user.id)
+      unless project.project_users.exists?(["role IN ('curator', 'manager') AND user_id = ?", current_user])
         flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
         redirect_back_or_default('/')
         return false
