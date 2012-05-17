@@ -207,16 +207,20 @@ eol_collection_ids.each do |eol_collection_id|
     end
   end
     
-  #Anything left on listed_taxa_taxon_ids doesn't exist on the EOL collection so the iNat listed_taxon will be destroyed
-  listed_taxa_taxon_ids.each do |lt_taxon_id|
-    thelt = the_list.listed_taxa.first(:conditions => { :taxon_id => lt_taxon_id } )
-    thelt.destroy unless opts[:test]
-    #Record the taxon we just destroyed the listed_taxon for under 'taxa_removed'
-    taxa_removed << Taxon.find_by_id(lt_taxon_id).name
-    puts "\tRemoved #{thelt} with taxon_id #{lt_taxon_id} which is no longer in the collection"
+  # Anything left on listed_taxa_taxon_ids doesn't exist on the EOL 
+  # collection so the iNat listed_taxon will be destroyed IFF there's a rule 
+  # specifying that obs must be on the list
+  if project.project_observation_rules.exists?(:operator => "on_list?")
+    listed_taxa_taxon_ids.each do |lt_taxon_id|
+      thelt = the_list.listed_taxa.first(:conditions => { :taxon_id => lt_taxon_id } )
+      thelt.destroy unless opts[:test]
+      # Record the taxon we just destroyed the listed_taxon for under 'taxa_removed'
+      taxa_removed << Taxon.find_by_id(lt_taxon_id).name
+      puts "\tRemoved #{thelt} with taxon_id #{lt_taxon_id} which is no longer in the collection"
+    end
   end
   
-  #Print out the statistics for the collection: unchanged, added, removed, missing:
+  # Print out the statistics for the collection: unchanged, added, removed, missing:
   puts "\tthe EOL collection has #{collection_item_dwc_names.count} items and the iNat project_list has #{the_list.listed_taxa.count} listed_taxa"
 
   if taxa_added.count > 0
@@ -231,7 +235,7 @@ eol_collection_ids.each do |eol_collection_id|
       puts "\t\t#{t_r}"
     end
   end
-  if taxa_missing.count>0
+  if taxa_missing.count > 0
     puts "\tthe missing taxa are:"
     taxa_missing.each do |t_m|
       puts "\t\t#{t_m}"
