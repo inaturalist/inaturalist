@@ -99,8 +99,13 @@ eol_collection_ids.each do |eol_collection_id|
   
   #Make a new project for the collection if it doesn't exist
   puts "\tChecking whether iNat project '#{project_name}' exists...."
-  if project = Project.first(:conditions => { :title => project_name })
-    project.update_attribute(:source_url, collection_url) if project.source_url.blank?
+  project = Project.first(:conditions => { :source_url => collection_url })
+  project ||= Project.first(:conditions => { :title => project_name })
+  if project
+    project.title = project_name
+    project.source_url = collection_url if project.source_url.blank?
+    project.description = col.at('description').try(:text)
+    project.save
   else
     project = Project.new(
       :user_id => the_user.id, 
