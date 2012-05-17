@@ -18,7 +18,7 @@ class ProjectList < LifeList
   # Curators and admins can alter the list.
   def editable_by?(user)
     return false if user.blank?
-    project.project_users.exists?(:role => "curator", :user_id => user)
+    project.project_users.exists?(["role IN ('curator', 'manager') AND user_id = ?", user])
   end
   
   def cache_columns_query_for(lt)
