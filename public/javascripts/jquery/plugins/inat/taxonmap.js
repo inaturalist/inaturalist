@@ -139,6 +139,7 @@
     var options = $(elt).data('taxonMapOptions'),
         map = $(elt).data('taxonMap'),
         preserveViewport = false
+    if (!map) {return};
     if (options.bbox) {
       map.fitBounds(
         new google.maps.LatLngBounds(

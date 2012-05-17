@@ -87,7 +87,7 @@
     </div>
     
     <div>
-      <%= link_to "View taxon page for this place", listed_taxon, :class => "readmore" %>
+      <%= link_to "View taxon page for this #{@place ? 'place' : 'list' }", listed_taxon, :class => "readmore" %>
     </div>
     <div>
       <%= link_to "View taxon page", taxon, :class => "readmore" %>

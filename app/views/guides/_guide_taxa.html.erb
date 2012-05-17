@@ -26,7 +26,7 @@
       </div>
     <% else %>
       <% for taxon in @taxa %>
-        <% if @place -%>
+        <% if @listed_taxa_by_taxon_id -%>
           <%-
             listed_taxon = @listed_taxa_by_taxon_id[taxon.id]
             cache_key = listed_taxon.guide_taxon_cache_key

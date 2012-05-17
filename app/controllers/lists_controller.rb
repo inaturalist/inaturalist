@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   include Shared::ListsModule
+  include Shared::GuideModule
 
   before_filter :login_required, :except => [:index, :show, :by_login, :taxa]  
   before_filter :load_list, :except => [:index, :new, :create, :by_login]
@@ -212,6 +213,23 @@ class ListsController < ApplicationController
       :error => "Something went wrong re-applying list rules",
       :timeout => "Re-applying list rules timed out, please try again later"
     )
+  end
+  
+  def guide
+    show_guide do |scope|
+      scope = scope.on_list(@list)
+    end
+    @listed_taxa = @list.listed_taxa.all(
+      :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
+      :conditions => ["taxon_id IN (?)", @taxa])
+    @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
+    render :layout => false, :partial => @partial
+  end
+  
+  def guide_widget
+    @guide_url = url_for(:action => "guide", :id => @list)
+    show_guide_widget
+    render :template => "guides/guide_widget"
   end
   
   private

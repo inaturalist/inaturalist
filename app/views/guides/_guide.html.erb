@@ -2,6 +2,7 @@
   grid ||= "fluid"
   size ||= "medium"
   labeled ||= nil
+  guide_url ||= @guide_url || place_guide_url(@place)
 -%>
 <div id="sidecol">
   <div id="confirmedchart" class="barchart clear stacked">
@@ -12,7 +13,7 @@
       :min_remainder_label_width => 50
     } %>
   </div>
-  <% if logged_in? -%>
+  <% if logged_in? && @place -%>
     <div class="stacked">
       <div id="observedchart" class="barchart inlineblock" data-original-count="<%= @current_user_observed_count.to_i %>" data-original-total="<%= @listed_taxa_count.to_i %>">
         <%= render :partial => "shared/barchart_datum", :locals => {
@@ -48,10 +49,12 @@
       </li>
     </ul>
   </div>
-
-  <p class="ui">
-    <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
-  </p>
+  
+  <% if @place -%>
+    <p class="ui">
+      <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
+    </p>
+  <% end -%>
 </div>
 
 <div id="maincol">
@@ -101,6 +104,6 @@
   </div>
 
   <div id="listed_taxa">
-    <div id="taxa" class="clear taxa <%= grid %> <%= size %> <%= labeled %> grid" data-guide-url="<%= place_guide_url(@place) %>"></div>
+    <div id="taxa" class="clear taxa <%= grid %> <%= size %> <%= labeled %> grid" data-guide-url="<%= guide_url %>"></div>
   </div>
 </div>

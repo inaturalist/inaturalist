@@ -1,5 +1,6 @@
 class PlacesController < ApplicationController
   include Shared::WikipediaModule
+  include Shared::GuideModule
   
   before_filter :login_required, :except => [:index, :show, :search, 
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide,
@@ -14,7 +15,6 @@ class PlacesController < ApplicationController
   caches_page :cached_guide
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
   
-  GUIDE_PARTIALS = %w(guide_taxa identotron_taxa)
   ALLOWED_SHOW_PARTIALS = %w(autocomplete_item)
   
   def index
@@ -267,121 +267,52 @@ class PlacesController < ApplicationController
   end
   
   def guide
-    place = params[:id] || params[:place_id] || params[:place]
-    @place = if place.to_i == 0
-      Place.search(place).first
+    place_id = params[:id] || params[:place_id] || params[:place]
+    @place ||= if place_id.to_i == 0
+      Place.search(place_id).first
     else
-      @place = Place.find_by_id(place.to_i)
+      Place.find_by_id(place_id.to_i)
     end
-    if @place
-      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
-    end
-    filter_param_keys = [:colors, :taxon, :q, :establishment_means, 
-      :conservation_status, :threatened, :introduced, :native]
-    @filter_params = Hash[params.select{|k,v| 
-      is_filter_param = filter_param_keys.include?(k.to_sym)
-      is_blank = if v.is_a?(Array) && v.size == 1
-        v[0].blank?
-      else
-        v.blank?
-      end
-      is_filter_param && !is_blank
-    }].symbolize_keys
-    scope = Taxon.of_rank(Taxon::SPECIES).scoped({})
-    if @place
+    @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    
+    show_guide do |scope|
       scope = scope.from_place(@place)
       scope = scope.scoped(:conditions => [
         "listed_taxa.occurrence_status_level IS NULL OR listed_taxa.occurrence_status_level IN (?)", 
         ListedTaxon::PRESENT_EQUIVALENTS
       ])
-    end
-    order = nil
-    if @q = @filter_params[:q]
-      @q = @q.to_s
-      @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-      @search_taxon_ids = Taxon.search_for_ids(@q) if @search_taxon_ids.blank?
-      if @search_taxon_ids.size == 1
-        @taxon = Taxon.find_by_id(@search_taxon_ids.first)
-      elsif Taxon.count(:conditions => ["id IN (?) AND name LIKE ?", @search_taxon_ids, "#{@q.capitalize}%"]) == 1
-        @taxon = Taxon.first(:conditions => ["name = ?", @q.capitalize])
-      else
-        scope = scope.among(@search_taxon_ids)
+      
+      if @introduced = @filter_params[:introduced]
+        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
+      elsif @native = @filter_params[:native]
+        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
+      elsif @establishment_means = @filter_params[:establishment_means]
+        scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
       end
+      
+      if @filter_params.blank?
+        scope = scope.has_photos
+        @order = "listed_taxa.observations_count DESC, listed_taxa.id ASC"
+      end
+      scope
     end
     
-    if @filter_params[:taxon]
-      @taxon = Taxon.find_by_id(@filter_params[:taxon].to_i) if @filter_params[:taxon].to_i > 0
-      @taxon ||= TaxonName.first(:conditions => [
-        "lower(name) = ?", @filter_params[:taxon].to_s.strip.gsub(/[\s_]+/, ' ').downcase]
-      ).try(:taxon)
-    end
     if @taxon
-      scope = if @taxon.species_or_lower? 
-        scope.self_and_descendants_of(@taxon)
-      else
-        scope.descendants_of(@taxon)
-      end
-      order = "ancestry, taxa.id"
-    end
-    
-    if @taxon && @place
       ancestor_ids = @taxon.ancestor_ids + [@taxon.id]
       @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
       @comprehensive_list = @place.check_lists.first(:conditions => ["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
     end
     
-    if @colors = @filter_params[:colors]
-      scope = scope.colored(@colors)
-    end
+    @listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id")
+    @confirmed_listed_taxa_count = @scope.count(:select => "DISTINCT taxa.id",
+      :conditions => "listed_taxa.first_observation_id IS NOT NULL")
     
-    if @introduced = @filter_params[:introduced]
-      scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS])
-    elsif @native = @filter_params[:native]
-      scope = scope.scoped(:conditions => ["listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS])
-    elsif @establishment_means = @filter_params[:establishment_means]
-      scope = scope.scoped(:conditions => ["listed_taxa.establishment_means = ?", @establishment_means])
-    end
+    @listed_taxa = @place.listed_taxa.all(
+      :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
+      :conditions => ["taxon_id IN (?)", @taxa])
+    @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
     
-    if @threatened = @filter_params[:threatened]
-      scope = scope.threatened
-    elsif @conservation_status = @filter_params[:conservation_status]
-      scope = scope.has_conservation_status(@conservation_status)
-    end
-    
-    if @place
-      @listed_taxa_count = scope.count(:select => "DISTINCT taxa.id")
-      @confirmed_listed_taxa_count = scope.count(:select => "DISTINCT taxa.id",
-        :conditions => "listed_taxa.first_observation_id IS NOT NULL")
-    end
-    if @place && logged_in?
-      # @current_user_observed_count = scope.count(
-      #   :select => "DISTINCT taxa.id",
-      #   :joins => "JOIN listed_taxa ult ON ult.taxon_id = taxa.id", 
-      #   :conditions => ["ult.list_id = ?", current_user.life_list_id])
-    end
-    
-    if @filter_params.blank?
-      scope = scope.has_photos
-      order = "listed_taxa.observations_count DESC, listed_taxa.id ASC" if @place
-    end
-    
-    @taxa = scope.paginate( 
-      :select => "DISTINCT ON (ancestry, taxa.id) taxa.*",
-      :include => [:taxon_names, {:taxon_photos => :photo}],
-      :order => order,
-      :page => params[:page], :per_page => 50)
-    @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
-    if @place
-      @listed_taxa = @place.listed_taxa.all(
-        :select => "DISTINCT ON (taxon_id) listed_taxa.*", 
-        :conditions => ["taxon_id IN (?)", @taxa])
-      @listed_taxa_by_taxon_id = @listed_taxa.index_by{|lt| lt.taxon_id}
-    end
-    
-    partial = params[:partial]
-    partial = "guide_taxa" unless GUIDE_PARTIALS.include?(partial)
-    
-    render :layout => false, :partial => partial
+    render :layout => false, :partial => @partial
   end
   
   def widget
@@ -389,17 +320,9 @@ class PlacesController < ApplicationController
   end
   
   def guide_widget
-    @headless = @footless = true
-    browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
-    browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
-    browsing_taxa.delete_if{|t| t.name == "Life"}
-    @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
-    @grid = params[:grid]
-    @grid = "fluid" unless %w(grid fluid).include?(@grid)
-    @size = params[:size]
-    @size = "medium" unless %w(small medium).include?(@size)
-    @labeled = params[:labeled]
-    @labeld = nil unless params[:labeled] == 'unlabeled'
+    @guide_url = place_guide_url(@place)
+    show_guide_widget
+    render :template => "guides/guide_widget"
   end
   
   private

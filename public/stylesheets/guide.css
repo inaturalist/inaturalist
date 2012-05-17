@@ -1,0 +1,90 @@
+#sidecol { width: 230px; position: absolute; }
+#maincol { padding-left: 250px;}
+#taxa { min-height: 500px; }
+#taxa .noresults { padding: 100px; width: auto;}
+#taxa .pagination{ margin-top: 20px; }
+#taxa .shades { z-index: 100;}
+
+#controls form { vertical-align: top; margin: 0 10px 10px 0;}
+#controls button, #controls .inter, #controls .text, #controls .button {padding: 4px 5px; margin:0;}
+#controls a.button {padding: 4px 5px 3px;}
+#controls .ui-multiselect { padding: 3px 0px 3px 5px; margin-bottom: 0; }
+@-moz-document url-prefix() {
+  #controls input.button {padding: 3px 5px;}
+  #controls .ui-multiselect {padding-top: 2px;}
+}
+.colorfield { padding: 1px 5px; margin-right: 5px; border-radius: 5px;}
+.colorfield.black   { color: lightgrey;  border: 1px solid transparent; background-color: black;}
+.colorfield.white   { color: grey;       border: 1px solid #eee; background-color: white;}
+.colorfield.red     { color: lightpink;  border: 1px solid transparent; background-color: red;}
+.colorfield.green   { color: lightgreen; border: 1px solid transparent; background-color: green;}
+.colorfield.blue    { color: lightblue;  border: 1px solid transparent; background-color: blue;}
+.colorfield.purple  { color: violet;     border: 1px solid transparent; background-color: purple;}
+.colorfield.yellow  { color: goldenrod;  border: 1px solid transparent; background-color: yellow;}
+.colorfield.grey    { color: lightgrey;  border: 1px solid transparent; background-color: grey;}
+.colorfield.orange  { color: chocolate;  border: 1px solid transparent; background-color: orange;}
+.colorfield.brown   { color: peru;       border: 1px solid transparent; background-color: saddlebrown;}
+.colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}
+
+#sidecol .barchart { width: 230px; float: none;}
+#controls { line-height: 0; }
+#controls .barchart { width: 230px; float: right;}
+#confirmedchart .value { background-color: #84A92F; }
+#browsingtaxa { background-color: #eee; padding: 5px 0; }
+#browsingtaxa ul { margin: 0; list-style: none; }
+#browsingtaxa ul ul { margin-left: 20px;}
+#browsingtaxa a.taxon { 
+  display: block; 
+  padding: 5px 10px 5px 30px;
+  background-position: 5px 50%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+#browsingtaxa a.taxon:hover { background-color: #f6f6f6;}
+#browsingtaxa a.taxon.selected { background-color: white;}
+
+.markerlink { position: absolute; display: block; width: 10px; height: 10px; background-color: deeppink; border-radius: 10px; opacity: 0.5; z-index: 1000;}
+#map { position: relative; }
+
+.listed_taxon_guide { position: relative; width: 100%;}
+.listed_taxon_guide .side { position: absolute; width: 312px;}
+.listed_taxon_guide .desc {padding-left: 322px; }
+
+.compact.listed_taxon_guide .side {position:static; width: auto; margin-bottom: 10px;}
+.compact.listed_taxon_guide .side .stacked.photos { text-align:center;}
+.compact.listed_taxon_guide .desc {padding-left: 0;}
+
+.listed_taxon_guide .map { 
+  width: 100%;
+  height: 310px;
+  background: #eee url(/images/spinner-small-on_eeeeee.gif) center center no-repeat; }
+.listed_taxon_guide .side .photos img { max-width: 312px;}
+.compact.listed_taxon_guide .side .photos img { max-width: 500px;}
+.listed_taxon_guide .side .photos .nophoto { padding: 50px; text-align: center; background-color: #eee;}
+
+.compact.listed_taxon_guide .monthgraph .bar { width: 30px;}
+
+.dialog { height: auto;}
+.photos_wrapper { margin-bottom: 10px;}
+.stacked.comments {margin-bottom: 20px;}
+.photostab .inlineblock { margin: 0 10px 10px 0;}
+
+#allobsgraph .monthgraph .bar { background-color: #ccc; }
+#allobsgraph .monthgraph .month { display: none;}
+#allobsgraph .monthgraph .count { color: #ccc; }
+
+#sidecol .extralabel {background-color: #efefef; padding: 0.5em; text-align: center;}
+#sidecol .extralabel a { color: inherit; }
+#infscr-loading { width: 100%; text-align: middle; padding: 20px 0; margin: 0 auto;}
+
+.crossout {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: -5px;
+  padding: 0 5px 0;
+  margin-top: -15px;
+  text-align: center;
+  box-shadow: #222 0 1px 2px;
+}
+.crossout div {padding: 3px; letter-spacing: 3px; font-weight: bold;}

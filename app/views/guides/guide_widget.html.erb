@@ -1,5 +1,5 @@
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "places/show" %>
+  <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "guide" %>
   <!--[if lte IE 7]>
     <%= stylesheet_link_tag 'observations-ie' %>
     <style type="text/css" media="screen">
@@ -10,7 +10,7 @@
     </style>
   <![endif]-->
   <style type="text/css" media="screen">
-    #wrapper {padding:0;}
+    #wrapper { width: auto; padding: 0 10px; position: relative;padding:0;}
     #maincol {padding-left: 0;}
     #sidecol { 
       position: fixed;
@@ -26,12 +26,12 @@
     #controls {
       width: 100%;
       position: fixed;
+      top: 0;
+      left: 0;
       z-index: 2;
       background-color: white;
     }
-    #listed_taxa {
-      padding-top: 30px;
-    }
+    #listed_taxa {padding-top: 30px;}
     #controls form { margin-bottom: 5px;}
     #browsebutton {border: 1px solid transparent;}
     .establishmentfilter, .conservationfilter {display:none;}
@@ -51,13 +51,14 @@
 <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 
   "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min", 
   "jquery/plugins/jquery.scrollTo-min.js",
-  "places/show" %>
+  "taxon_guide" %>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script type="text/javascript" charset="utf-8">
     var PLACE = <%= @place.to_json %>,
         FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>
     $(document).ready(function() {
+      TaxonGuide.init('#taxa')
       $('#sidecol').addClass('floating').css({padding: 10, zIndex: 2, backgroundColor: 'white'}).hide()
       $('#sidecol .readmore').parent().hide();
       $('#browsingtaxa').removeClass('stacked')
@@ -114,7 +115,7 @@
         })
       })
       
-      $('#taxa').css({'minHeight': $(window).height()})
+      $('#taxa').css({'minHeight': $(window).height() - 30})
     })
     
     function toggleSidebar() {
@@ -123,7 +124,7 @@
   </script>
 <% end %>
 <div class="ui-widget-content" style="border: 0px solid transparent;">
-  <%= render :partial => 'guide', :locals => {:size => @size, :grid => @grid, :labeled => @labeled} %>
+  <%= render :partial => 'guides/guide', :locals => {:size => @size, :grid => @grid, :labeled => @labeled} %>
 </div>
 
 <div id="logo" class="small meta inlineblock">
