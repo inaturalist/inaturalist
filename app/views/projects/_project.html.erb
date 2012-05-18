@@ -12,7 +12,7 @@
     <h4><%= link_to h(project.title), project %></h4>
     <% unless project.description.blank? %>
       <div class="description">
-        <%= h strip_tags(truncate(project.description, :length => 110)) %>
+        <%= h truncate(strip_tags(project.description), :length => 110) %>
       </div>
     <% end %>
     <% if project_user -%>
