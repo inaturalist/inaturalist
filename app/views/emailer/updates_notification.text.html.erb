@@ -1,6 +1,10 @@
 <%= render :partial => 'shared/updates_table' %>
 
 <p>
+  <%= link_to "View your dashboard", dashboard_url %> for more recent updates.
+</p>
+
+<p>
   <%= link_to "Edit your settings", edit_user_url(@user) %> to change the kinds of updates you receive or unsubscribe completely.
 </p>
 

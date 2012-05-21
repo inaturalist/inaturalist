@@ -101,7 +101,8 @@ class Update < ActiveRecord::Base
     return if user.email.blank?
     return unless user.active? # email verified
     return unless user.admin? # testing
-    updates = Update.all(:conditions => ["subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
+    updates = Update.all(:limit => 100, :conditions => [
+      "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
     updates.delete_if do |u| 
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
       !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
