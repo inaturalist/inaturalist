@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504214431) do
+ActiveRecord::Schema.define(:version => 20120521225005) do
 
   create_table "activity_streams", :force => true do |t|
     t.integer  "user_id"
@@ -433,6 +433,7 @@ ActiveRecord::Schema.define(:version => 20120504214431) do
     t.datetime      "created_at"
     t.datetime      "updated_at"
     t.multi_polygon "geom",              :limit => nil, :null => false
+    t.string        "source_filename"
   end
 
   add_index "place_geometries", ["geom"], :name => "index_place_geometries_on_geom", :spatial => true
@@ -459,6 +460,7 @@ ActiveRecord::Schema.define(:version => 20120504214431) do
     t.datetime "updated_at"
     t.boolean  "delta",                                             :default => false
     t.integer  "user_id"
+    t.string   "source_filename"
   end
 
   add_index "places", ["bbox_area"], :name => "index_places_on_bbox_area"

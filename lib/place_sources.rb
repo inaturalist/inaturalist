@@ -279,7 +279,7 @@ module PlaceSources
     # options = {:geoplanet_query => geoplanet_query}.merge(options)
     place = Place.new_from_shape(shape, options.merge(:skip_woeid => true))
     
-    name = shape.data['Unit_Name']
+    name = shape.data['Unit_Name'] || shape.data['UNIT_NAME']
     name.gsub!(/SP$/, 'State Park')
     name.gsub!(/SB$/, 'State Beach')
     name.gsub!(/NP$/, 'National Park')
@@ -288,8 +288,11 @@ module PlaceSources
     name.gsub!(/WA$/, 'Wildlife Area')
     place.name = name
     
+    unit_id = shape.data['UNIT_ID']
+    
     # Sometimes single parks have many units, so we lump them
-    place.source_identifier = name
+    place.source_name = name
+    place.source_identifier = unit_id.to_s
     
     puts "[INFO] \t\tTrying to find a unique WOEID from '#{name}, US'..."
     ydn_places = GeoPlanet::Place.search("#{name}, US", :count => 10, 

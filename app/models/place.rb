@@ -370,7 +370,7 @@ class Place < ActiveRecord::Base
         next
       end
       
-      new_place.source_name = File.basename(shapefile_path)
+      new_place.source_filename = options[:source_filename] || File.basename(shapefile_path)
         
       puts "[INFO] \t\tMade new place: #{new_place}"
       unless new_place.woeid || options[:skip_woeid]
@@ -380,24 +380,29 @@ class Place < ActiveRecord::Base
       
       # Try to find an existing place
       existing = nil
-      existing = if new_place.woeid
-        Place.find_by_woeid(new_place.woeid)
-      elsif new_place.source_name && new_place.source_identifier
-        Place.find_by_source_name_and_source_identifier(new_place.source_name,
-          new_place.source_identifier)
+      existing = Place.find_by_woeid(new_place.woeid) if new_place.woeid
+      if new_place.source_filename && new_place.source_identifier
+        existing ||= Place.first(:conditions => [
+          "source_filename = ? AND source_identifier = ?", 
+          new_place.source_filename, new_place.source_identifier])
+      end
+      if new_place.source_filename && new_place.source_name
+        existing ||= Place.first(:conditions => [
+          "source_filename = ? AND source_name = ?", 
+          new_place.source_filename, new_place.source_name])
       end
       
       if existing
         puts "[INFO] \t\tFound existing place: #{existing}"
         place = existing
-        [:swlat, :swlng, :nelat, :nelng, :source_name, 
+        [:swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
             :source_identifier].each do |attr_name|
           place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
         end
         num_updated += 1
       else
         place = new_place.woeid ? Place.import_by_woeid(new_place.woeid) : new_place
-        [:latitude, :longitude, :swlat, :swlng, :nelat, :nelng, :source_name, 
+        [:latitude, :longitude, :swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
             :source_identifier, :place_type].each do |attr_name|
           place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
         end
@@ -421,6 +426,7 @@ class Place < ActiveRecord::Base
       else
         puts "[INFO] \t\tAdding geom..."
         place.save_geom(shp.geometry, 
+          :source_filename => place.source_filename,
           :source_name => place.source_name, 
           :source_identifier => place.source_identifier)
       end
