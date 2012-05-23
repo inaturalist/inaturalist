@@ -292,7 +292,7 @@ module PlaceSources
     
     # Sometimes single parks have many units, so we lump them
     place.source_name = name
-    place.source_identifier = unit_id.to_s
+    place.source_identifier = unit_id.to_i.to_s if unit_id.to_i != 0
     
     puts "[INFO] \t\tTrying to find a unique WOEID from '#{name}, US'..."
     ydn_places = GeoPlanet::Place.search("#{name}, US", :count => 10, 

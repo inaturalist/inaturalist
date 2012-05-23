@@ -1292,7 +1292,7 @@ class Observation < ActiveRecord::Base
   include ActionController::UrlWriter
   
   def image_url
-    observation_image_url(self)
+    observation_image_url(self, :size => "medium")
   end
   
   def obs_image_url
