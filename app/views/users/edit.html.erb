@@ -12,6 +12,16 @@
 <![endif]-->
 <% end -%>
 <% content_for(:extrajs) do %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#user_prefers_no_email').click(function() {
+        $('#notificationpreferences input').attr('checked', !$(this).attr('checked'))
+      })
+      $('#notificationpreferences input').click(function() {
+        $('#user_prefers_no_email').attr('checked', false)
+      })
+    })
+  </script>
   <!--[if lt IE 8]>
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
@@ -49,13 +59,20 @@
       <%= f.text_area(:description, :label => "Tell everyone a little about yourself") %>
     </div>
     <div id="preferencescol" class="last column span-9">
-      <div class="stacked">
+      <div id="notificationpreferences" class="stacked">
         <label>Receive email notifications when people leave you</label>
         <% for attr_name in User::NOTIFICATION_PREFERENCES %>
           <%= f.check_box "prefers_#{attr_name}", 
             :label => attr_name.humanize.capitalize.gsub(/ email notification/, '').pluralize, 
             :label_after => true %>
         <% end %>
+      </div>
+      
+      <div class="stacked">
+        <label>Or if you just don't want any email...</label>
+        <%= f.check_box "prefers_no_email", 
+          :label => "Don't send me any email!", 
+          :label_after => true %>
       </div>
       
     </div>

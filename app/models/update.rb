@@ -99,6 +99,7 @@ class Update < ActiveRecord::Base
     user ||= User.find_by_login(subscriber)
     return unless user
     return if user.email.blank?
+    return if user.prefers_no_email
     return unless user.active? # email verified
     return unless user.admin? # testing
     updates = Update.all(:limit => 100, :conditions => [

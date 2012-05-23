@@ -113,7 +113,7 @@ function buildHelpTips() {
   $('.helptip').not('.helptipified').each(function() {
     $(this).addClass('helptipified')
     var content
-    if ($(this).attr('rel').match(/^#/)) {
+    if ($(this).attr('rel') && $(this).attr('rel').match(/^#/)) {
       content = $($(this).attr('rel')).html()
     } else {
       content = $(this).attr('rel')

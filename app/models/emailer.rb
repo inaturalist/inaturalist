@@ -22,6 +22,7 @@ class Emailer < ActionMailer::Base
     parent = comment.parent
     return unless parent && parent.respond_to?(:user)
     return unless parent.user
+    return if parent.user.prefers_no_email
     setup_email
     recipients parent.user.email
     parent_str = parent.to_plain_s(:no_user => true, :no_time => true, 
@@ -47,6 +48,7 @@ class Emailer < ActionMailer::Base
   end
   
   def identification_notification(identification)
+    return if identification.observation.user.prefers_no_email
     setup_email
     recipients identification.observation.user.email
     obs_str = identification.observation.to_plain_s(:no_user => true, 
@@ -63,6 +65,7 @@ class Emailer < ActionMailer::Base
   
   def project_invitation_notification(project_invitation)
     return unless project_invitation
+    return if project_invitation.observation.user.prefers_no_email
     setup_email
     recipients project_invitation.observation.user.email
     obs_str = project_invitation.observation.to_plain_s(:no_user => true, 
@@ -81,6 +84,7 @@ class Emailer < ActionMailer::Base
   def updates_notification(user, updates)
     return if user.blank? || updates.blank?
     return if user.email.blank?
+    return if user.prefers_no_email
     setup_email
     recipients user.email
     @subject << "New updates, #{Date.today}"
