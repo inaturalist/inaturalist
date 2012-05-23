@@ -24,7 +24,9 @@
   <meta property="og:site_name" content="iNaturalist"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
-  <% unless @observation.description.blank? %>
+  <% if @observation.description.blank? %>
+    <meta property="og:description" content="<%= html_attributize @observation.to_plain_s %>"/> 
+  <% else %>
     <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
   <% end %>
 <%- end -%>
