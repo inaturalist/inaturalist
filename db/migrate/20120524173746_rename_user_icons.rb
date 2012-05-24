@@ -7,11 +7,15 @@ class RenameUserIcons < ActiveRecord::Migration
       (user.icon.styles.keys+[:original]).each do |style|
         new_path = user.icon.path(style)
         old_path = new_path.sub(/#{user.id}\-.*$/, "#{user.id}/#{style}/#{user.icon_file_name}")
+        
+        # for some reason a lot of openid stuff has a trailing dot
+        old_path = "#{old_path}." unless File.exist?(old_path)
+        
         begin
           FileUtils.move(old_path, new_path)
           move_failed = false
-        rescue
-          puts "Failed to move #{old_path} to #{new_path}"
+        rescue => e
+          puts "Failed to move #{old_path} to #{new_path}: #{e}"
           move_failed = true
         end
       end
