@@ -90,8 +90,8 @@ class User < ActiveRecord::Base
   
   has_attached_file :icon, 
     :styles => { :medium => "300x300>", :thumb => "48x48#", :mini => "16x16#" },
-    :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
+    :url => "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
     :default_url => "/attachment_defaults/:class/:attachment/defaults/:style.png"
 
   # Roles
