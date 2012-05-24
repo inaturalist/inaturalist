@@ -56,7 +56,7 @@ module TaxaHelper
     end
     image_params = params.merge(:alt => default_taxon_name(taxon))
     unless taxon.photos.blank?
-      image_params[:alt] += " - Photo #{taxon.photos.first.attribution}"
+      image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
     end
     image_params[:title] = image_params[:alt]
     
@@ -69,11 +69,7 @@ module TaxaHelper
   def taxon_image_url(taxon, params = {})
     return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.photos.blank?
     size = params[:size] ? "#{params[:size]}_url" : 'square_url'
-    photo = if taxon.taxon_photos.loaded?
-      taxon.taxon_photos.sort_by{|tp| tp.id}.first.photo
-    else
-      taxon.taxon_photos.first(:include => [:photo], :order => "taxon_photos.id ASC").photo
-    end
+    photo = taxon.default_photo
     if photo.respond_to?(size)
       photo.send(size)
     else

@@ -1,9 +1,12 @@
 <%
+  taxon ||= identification.taxon
+  observation ||= identification.observation
+  user ||= identification.user
   identification_classes = ''
-  if logged_in? and identification.user == current_user
+  if logged_in? && identification.user_id == current_user.id
     identification_classes += ' yours'
   end
-  if identification.user == identification.observation.user
+  if identification.user_id == observation.user_id
     identification_classes += ' owners'
   end
   hide_actions ||= false
@@ -12,20 +15,20 @@
 -%>
 <div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>">
   <div class="identification_image">
-    <%= link_to taxon_image(identification.taxon), identification.taxon %>
+    <%= link_to taxon_image(taxon), taxon %>
   </div>
   <div class="identification_body">
-    <% if identification.user == current_user %>
+    <% if identification.user_id == current_user.id %>
       <strong>Your</strong>
     <% else %>
-      <%= link_to("#{identification.user.login}'s", person_path(identification.user)) %>
+      <%= link_to("#{user.login}'s", person_path(user)) %>
     <% end %>
     ID:
     <%= render :partial => 'shared/taxon', 
-               :locals => { :taxon => identification.taxon,
-                            :link_url => identification.taxon } %>
+               :locals => { :taxon => taxon,
+                            :link_url => taxon } %>
     <% unless hide_actions -%>
-      <% if logged_in? && identification.user != current_user %>
+      <% if logged_in? && identification.user_id != current_user.id %>
         <span class="agree button"><%- if remote_actions -%>
           <%= link_to_remote "Agree?", 
              :url => {
@@ -45,7 +48,7 @@
              :method => :post -%>
         <%- end -%></span>
       <% end %>
-      <% if identification.user == current_user %>
+      <% if identification.user_id == current_user.id %>
         <span class="button"><%- if remote_actions -%>
           <%= link_to_remote "Remove", 
              :url => identification_path(identification), 

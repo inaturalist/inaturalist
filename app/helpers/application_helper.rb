@@ -633,4 +633,11 @@ module ApplicationHelper
     "#{list[0..-2].join(', ')}, and #{list.last}"
   end
   
+  def update_cached(record, association)
+    if @update_cache && @update_cache[association.to_s.pluralize.to_sym]
+      cached = @update_cache[association.to_s.pluralize.to_sym][record.send("#{association}_id")]
+    end
+    cached ||= record.send(association)
+  end
+  
 end

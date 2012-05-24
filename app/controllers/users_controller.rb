@@ -287,8 +287,8 @@ class UsersController < ApplicationController
       :include => [:resource, :notifier, :subscriber, :resource_owner],
       :conditions => conditions)
     @updates = Update.load_additional_activity_updates(updates)
-    @grouped_updates = Update.group_and_sort(@updates)
     @update_cache = Update.eager_load_associates(@updates)
+    @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache)
     Update.user_viewed_updates(updates)
     @month_observations = current_user.observations.all(:select => "id, observed_on",
       :conditions => [

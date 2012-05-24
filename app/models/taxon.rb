@@ -877,6 +877,14 @@ class Taxon < ActiveRecord::Base
     true
   end
   
+  def default_photo
+    if taxon_photos.loaded?
+      taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
+    else
+      taxon_photos.first(:include => [:photo], :order => "taxon_photos.id ASC").try(:photo)
+    end
+  end
+  
   def self.update_descendants_with_new_ancestry(taxon, child_ancestry_was)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon

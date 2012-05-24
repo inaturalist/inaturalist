@@ -26,20 +26,18 @@ class Update < ActiveRecord::Base
     # fetch all other activity updates for the loaded resources
     activity_updates = updates.select{|u| u.notification == 'activity'}
     activity_update_ids = activity_updates.map{|u| u.id}
+    clauses = []
     activity_updates.each do |update|
-      new_updates = Update.all(:conditions => [
-        "subscriber_id = ? AND notification = 'activity' AND resource_type = ? AND resource_id = ? AND id NOT IN (?)",
-        update.subscriber_id, update.resource_type, update.resource_id, activity_update_ids
-      ])
-      updates += new_updates
-      activity_update_ids += new_updates.map{|u| u.id}
-      activity_update_ids.uniq!
+      clauses << "(subscriber_id = #{update.subscriber_id} AND resource_type = '#{update.resource_type}' AND resource_id = #{update.resource_id})"
     end
+    conditions = ["notification = 'activity' AND (#{clauses.join(' OR ')}) AND id NOT IN (?)", activity_update_ids]
+    updates += Update.all(:conditions => conditions, :include => [:resource, :notifier, :subscriber, :resource_owner])
     updates
   end
   
   def self.group_and_sort(updates, options = {})
     grouped_updates = []
+    update_cache = options[:update_cache]
     
     updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
       resource_type, resource_id, notification = key
@@ -50,7 +48,8 @@ class Update < ActiveRecord::Base
         end
       elsif notification == "activity" && !options[:skip_past_activity]
         # get the resource that has all this activity
-        resource = Object.const_get(resource_type).find_by_id(resource_id)
+        resource = update_cache[resource_type.underscore.pluralize.to_sym][resource_id] if update_cache
+        resource ||= Object.const_get(resource_type).find_by_id(resource_id)
         
         # get the associations on that resource that generate activity updates
         activity_assocs = resource.class.notifying_associations.select do |assoc, assoc_options|
@@ -118,10 +117,11 @@ class Update < ActiveRecord::Base
       :observation => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
       :comment => [:user, :parent],
-      :listed_taxon => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
+      :listed_taxon => [{:list => :user}, {:taxon => [:photos, :taxon_names]}],
+      :taxon => [:taxon_names, {:taxon_photos => :photos}]
     }
     update_cache = {}
-    [Comment, Identification, Observation, ListedTaxon, Post, User].each do |klass|
+    [Comment, Identification, Observation, ListedTaxon, Post, User, Taxon].each do |klass|
       ids = []
       updates.each do |u|
         ids << u.notifier_id if u.notifier_type == klass.to_s
@@ -151,19 +151,20 @@ class Update < ActiveRecord::Base
     Update.update_all(["viewed_at = ?", Time.now], ["id in (?)", updates])
     
     # delete PAST activity updates that were not in this batch
-    update_ids = updates.map{|u| u.id}
+    clauses = []
+    update_ids = []
     updates.each do |update|
       next unless update.notification == 'activity'
-      Update.delete_all([
-        "id < ? AND id NOT IN (?) AND subscriber_id = ? AND " + 
-        "notification = 'activity' AND resource_type = ? AND resource_id = ?",
-        update_ids.min,
-        update_ids,
-        update.subscriber_id,
-        update.resource_type,
-        update.resource_id
-      ])
+      update_ids << update.id
+      clauses << "(subscriber_id = #{update.subscriber_id} AND resource_type = '#{update.resource_type}' AND resource_id = #{update.resource_id})"
     end
+    update_ids.compact!
+    update_ids.uniq!
+    Update.delete_all([
+      "id < ? AND id NOT IN (?) AND notification = 'activity' AND (#{clauses.join(' OR ')})",
+      update_ids.min,
+      update_ids
+    ])
     Update.delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 1.year.ago])
   end
 end
