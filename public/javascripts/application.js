@@ -70,12 +70,17 @@ function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
   var loading = $(this).clone()
+  loading.unbind()
+  loading.attr('onclick', 'return false;')
   loading
     .attr('id', '')
     .addClass('loadingclick')
     .css('padding-left', '25px')
     .html(txt)
-  loading.click(function(){return false})
+  loading.click(function(e){
+    e.preventDefault()
+    return false
+  })
   if (txt == '') {
     loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
   }

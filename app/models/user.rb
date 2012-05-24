@@ -98,6 +98,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   has_subscribers
+  has_many :subscriptions
   has_many :updates, :foreign_key => :subscriber_id
 
   before_validation :download_remote_icon, :if => :icon_url_provided?

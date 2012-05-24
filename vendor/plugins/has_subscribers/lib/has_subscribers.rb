@@ -13,8 +13,8 @@ module HasSubscribers
       return if self.included_modules.include?(HasSubscribers::InstanceMethods)
       include HasSubscribers::InstanceMethods
       
-      has_many :subscriptions, :as => :resource
-      has_many :subscribers, :through => :subscriptions, :source => :user
+      has_many :update_subscriptions, :class_name => "Subscription", :as => :resource
+      has_many :subscribers, :through => :update_subscriptions, :source => :user
       
       cattr_accessor :notifying_associations
       self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
@@ -83,14 +83,14 @@ module HasSubscribers
       
       updater_proc = Proc.new {|subscribable|
         if options[:include_owner] && subscribable.respond_to?(:user) && subscribable.user_id != notifier.user_id
-          owner_subscription = subscribable.subscriptions.first(:conditions => {:user_id => subscribable.user_id})
+          owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
             Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
               :notification => notification)
           end
         end
         
-        subscribable.subscriptions.find_each do |subscription|
+        subscribable.update_subscriptions.find_each do |subscription|
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id
           next if subscription.created_at > notifier.created_at
           Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 

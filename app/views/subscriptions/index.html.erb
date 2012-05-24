@@ -1,0 +1,28 @@
+<h2>Subscriptions</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>resource</th>
+      <th>actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for subscription in @subscriptions %>
+      <tr>
+        <td><%= subscription.id %></td>
+        <td>
+          <%= subscription.resource_type %> <%= subscription.resource_id %>:
+          <% name = subscription.resource.to_plain_s rescue subscription.resource.login rescue subscription.resource.name rescue subscription.resource.title rescue subscription.resource.to_s %>
+          <%= link_to name, subscription.resource %>
+        </td>
+        <td>
+          <%#= link_to "edit", edit_subscription_url(subscription) %>
+          <%= link_to "delete", subscription_url(subscription), :method => "delete", :confirm => "Are you sure you want to delete this?" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @subscriptions %>

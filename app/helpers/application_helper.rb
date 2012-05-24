@@ -627,4 +627,10 @@ module ApplicationHelper
     "#{APP_CONFIG[:site_url]}#{url_for(resource)}"
   end
   
+  def commas_and(list)
+    return list.first.to_s if list.size == 1
+    return list.join(' and ') if list.size == 2
+    "#{list[0..-2].join(', ')}, and #{list.last}"
+  end
+  
 end

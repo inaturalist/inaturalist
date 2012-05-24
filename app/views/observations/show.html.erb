@@ -409,6 +409,50 @@
       </div>
     </div><!-- end new comment -->
   </div><!-- end comments -->
+  
+  <% if logged_in? -%>
+    <div class="meta subscription">
+      <%- subscription = Subscription.new(:user => current_user, :resource => @observation) %>
+      <% form_for subscription, :html => {
+        :class => "subscribe",
+        :style => "#{'display:none;' if @subscription}"
+      } do |f| %>
+        <%= f.hidden_field :resource_type %>
+        <%= f.hidden_field :resource_id %>
+        <%= f.hidden_field :user_id %>
+        <%= link_to_function "Subscribe", "$(this).parents('form:first').submit()" %>
+        to <%= commas_and Observation.notifying_associations.keys %>
+        from this observation.
+      <% end -%>
+
+      <% form_tag delete_subscription_url('Observation', @observation.id), 
+          :method => :delete, 
+          :class => 'unsubscribe', 
+          :style => "#{'display:none;' unless @subscription}" do %>
+        You're subscribed to <%= commas_and Observation.notifying_associations.keys %>
+        from this observation.
+        <%= hidden_field_tag :resource_type, 'Observation' %>
+        <%= hidden_field_tag :resource_id, @observation.id %>
+        <%= link_to_function "Unsubscribe?", "$(this).parents('form:first').submit()" %>
+      <% end -%>
+    </div>
+
+    <script type="text/javascript" charset="utf-8">
+      $('.subscription form').submit(function() {
+        $(this).fadeOut(function() {
+          $(this).siblings('form').fadeIn()
+        })
+        var data = $(this).serialize() + '&format=json'
+        $.ajax({
+          url: $(this).attr('action'),
+          type: 'post',
+          data: data
+        })
+        return false
+      })
+    </script>
+  <% end -%>
+  
 </div><!-- end singleobs -->
 
 <div class="column span-7 last">  

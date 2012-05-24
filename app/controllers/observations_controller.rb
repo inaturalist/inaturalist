@@ -243,6 +243,10 @@ class ObservationsController < ApplicationController
           @day_observations = Observation.by(@observation.user).on(@observation.observed_on).paginate(:page => 1, :per_page => 14, :include => [:photos])
         end
         
+        if logged_in?
+          @subscription = @observation.update_subscriptions.first(:conditions => {:user_id => current_user})
+        end
+        
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
             :layout => false)
