@@ -3,14 +3,21 @@ class RenameUserIcons < ActiveRecord::Migration
     User.find_each do |user|
       next unless user.icon.file?
       new_path = ""
+      move_failed = false
       (user.icon.styles.keys+[:original]).each do |style|
         new_path = user.icon.path(style)
         old_path = new_path.sub(/#{user.id}\-.*$/, "#{user.id}/#{style}/#{user.icon_file_name}")
-        FileUtils.move(old_path, new_path)
+        begin
+          FileUtils.move(old_path, new_path)
+          move_failed = false
+        rescue
+          puts "Failed to move #{old_path} to #{new_path}"
+          move_failed = true
+        end
       end
       
       # remove the old dir
-      FileUtils.rm_rf(new_path[/^.+?#{user.id}/, 0])
+      FileUtils.rm_rf(new_path[/^.+?#{user.id}/, 0]) unless move_failed
       
       new_file_name = new_path[/#{user.id}\-.*$/, 0]
 
