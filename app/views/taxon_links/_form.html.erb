@@ -1,43 +1,18 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations' %>
   <style type="text/css" media="screen">
-    form.taxon_link_form .field label {
-      display: block;
-      margin-bottom: 0.25em;
-    }
-    
-    form.taxon_link_form .buttonrow {
-      clear: both;
-    }
-    
-    input.text {
-      margin-top: 0;
-    }
-    
+    form.taxon_link_form .field label{display:block;margin-bottom:0.25em;}
+    form.taxon_link_form .buttonrow{clear:both;}
+    input.text{margin-top:0;}
     #url_field input.text,
-    #species_field input.text {
-      width: 575px;
-    }
-    
-    #site_title_field {
-      float: left;
-    }
-    
-    #show_for_descendent_taxa_field {
-      margin: 0;
-    }
-    
-    #show_for_descendent_taxa_field label {
-      display: inline;
-    }
-    
-    #species_field {
-      clear: left;
-    }
+    #species_field input.text{width:575px;}
+    #site_title_field{float:left;}
+    #show_for_descendent_taxa_field{margin:0;}
+    #show_for_descendent_taxa_field label{display:inline;}
+    #species_field{clear:left;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag "jquery/plugins/inat/taxon_selectors.js" %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#species_guess').simpleTaxonSelector();

@@ -1,5 +1,5 @@
 <%-
-  user = object || resource
+  place = object || resource
   updates ||= []
   observations = if @update_cache && @update_cache[:observations]
     updates.map{|u| @update_cache[:observations][u.notifier_id]}
@@ -7,7 +7,6 @@
     updates.map{|u| u.notifier}
   end
   default_observation = observations.first
-  login = user.login
   columns ||= @observation_columns || 6
 -%>
 

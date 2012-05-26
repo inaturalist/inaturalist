@@ -52,10 +52,10 @@
     $(wrapper).append(button);
     
     // Resize & style the input
-    $(input).width(options.inputWidth - $(button).outerWidth() - 67);
+    $(input).width(options.inputWidth - $(button).outerWidth() - 57);
     $(input).css({
       float: 'left',
-      'margin-right': '10px',
+      'margin-right': '5px',
       'margin-bottom': '3px'
     });
 

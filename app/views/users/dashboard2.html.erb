@@ -71,6 +71,8 @@
           }
         }
       })
+      
+      $('.subscriptionsettings').subscriptionSettings()
     })
   </script>
 <%- end -%>
@@ -146,8 +148,10 @@
             </div>
             <div class="updatebody">
               <div class="updateheader meta stacked">
-                <div class="right date small">
-                  <%= compact_date(updates.last.sort_by_date) %>
+                <div class="right small">
+                  <span class="date"><%= compact_date(updates.last.sort_by_date) %></span>
+                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>", edit_subscription_by_resource_path(resource_type, resource_id), 
+                    :class => "subscriptionsettings" %>
                 </div>
                 <%= update_tagline_for(updates.last, :count => updates.size) %>
               </div>

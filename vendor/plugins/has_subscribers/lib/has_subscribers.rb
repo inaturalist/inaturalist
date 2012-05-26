@@ -24,18 +24,37 @@ module HasSubscribers
       end
     end
     
+    # 
+    # Model generates updates for subscribers of an association. For example,
+    # a Common notifies_subscribers_of :blog_post.
+    # 
+    # Configuration options:
+    # * <tt>:on</tt> - event that triggers notification. Values: update or 
+    #   create.
+    # * <tt>:with</tt> - name of an instance method that notifies subscribers.
+    #   Use this if you want to customize the way updates get generated.
+    # * <tt>:if</tt> - block to decide whether to send generate an update. 
+    #   Takes the following arguments: notifier, associate, subscription.  So
+    #   if a comment was going to generate updates for subscribers to its
+    #   parent blog post, the arguments would be comment, blog_post,
+    #   subscription, and this block would get called for every subscription.
+    #
     def notifies_subscribers_of(subscribable_association, options = {})
       unless self.included_modules.include?(HasSubscribers::InstanceMethods)
         include HasSubscribers::InstanceMethods
       end
       
+      cattr_accessor :notifies_subscribers_of_options
+      @@notifies_subscribers_of_options ||= {}
+      @@notifies_subscribers_of_options[subscribable_association.to_sym] = options.merge(:dj_priority => 1)
+      
       callback_type = case options[:on]
       when :update then :after_update
       else :after_create
       end
-      callback_method = options[:on] || :notify_subscribers_of
+      callback_method = options[:with] || :notify_subscribers_of
       send callback_type do |record|
-        record.send_later(callback_method, subscribable_association, options.merge(:dj_priority => 1))
+        record.send_later(callback_method, subscribable_association)
       end
       
       if Object.const_defined?(subscribable_association.to_s.classify) && 
@@ -73,7 +92,8 @@ module HasSubscribers
       end
     end
     
-    def notify_subscribers_of(notifier, subscribable_association, options = {})
+    def notify_subscribers_with(notifier, subscribable_association)
+      options = @@notifies_subscribers_of_options[subscribable_association.to_sym]
       notifier = find_by_id(notifier) unless notifier.is_a?(self)
       has_many_reflections    = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
       belongs_to_reflections  = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
@@ -93,19 +113,25 @@ module HasSubscribers
         subscribable.update_subscriptions.find_each do |subscription|
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id
           next if subscription.created_at > notifier.created_at
+          next if subscription.has_unviewed_updates_from(notifier)
+          
+          if options[:if]
+            next unless options[:if].call(notifier, subscribable, subscription)
+          end
+          
           Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
             :notification => notification)
         end
       }
       
       if has_many_reflections.include?(subscribable_association.to_s)
-        notifier.send(subscribable_association).find_each(updater_proc)
+        notifier.send(subscribable_association).find_each(&updater_proc)
       elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
         updater_proc.call(notifier.send(subscribable_association))
       else
         subscribable = notifier.send(subscribable_association)
         if subscribable.is_a?(Enumerable)
-          subscribable.each(updater_proc)
+          subscribable.each(&updater_proc)
         else
           updater_proc.call(subscribable)
         end
@@ -114,8 +140,8 @@ module HasSubscribers
   end
   
   module InstanceMethods
-    def notify_subscribers_of(subscribable_association, options = {})
-      self.class.send(:notify_subscribers_of, self, subscribable_association, options)
+    def notify_subscribers_of(subscribable_association)
+      self.class.send(:notify_subscribers_with, self, subscribable_association)
     end
   end
 end

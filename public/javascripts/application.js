@@ -608,3 +608,58 @@ function getUpdatesCount() {
   })
 }
 
+$.fn.subscriptionSettings = function() {
+  var options = $.extend(true, {
+    position: {
+      my: 'top right',
+      at: 'bottom center'
+    },
+    show: {
+      event: 'click'
+    },
+    hide: {
+      event: 'unfocus'
+    },
+    content: {
+      text: '<span class="loading status">Loading...</span>',
+      ajax: {
+        type: 'GET',
+        data: {partial: 'edit_inline'},
+        error: function(jqXHR, textStatus, errorThrown) {
+          this.set('content.text', "<div class='meta'>You're no longer subscribed to that item.</div>")
+        },
+        success: function(data, status) {
+          this.set('content.text', data);
+          $('.taxonchooser', this.elements.content).simpleTaxonSelector({
+            afterSelect: function(wrapper, taxon, options) {
+              var form = $(wrapper).parents('form:first'),
+                  data = form.serialize() + '&format=json'
+              $.ajax({
+                url: form.attr('action'),
+                type: 'post',
+                data: data
+              })
+            }
+          })
+          $('.createdestroy form', this.elements.content).submit(function() {
+            $(this).fadeOut(function() {
+              $(this).siblings('form').fadeIn()
+            })
+            var data = $(this).serialize() + '&format=json'
+            $.ajax({
+              url: $(this).attr('action'),
+              type: 'post',
+              data: data
+            })
+            return false
+          })
+        }
+      }
+    }
+  }, QTIP_DEFAULTS)
+  $(this).each(function() {
+    options.content.ajax.url = $(this).attr('href')
+    $(this).qtip(options)
+    $(this).click(function() {return false})
+  })
+}

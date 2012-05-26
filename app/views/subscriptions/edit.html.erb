@@ -1,0 +1,36 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Editing subscription" %>
+<%- end -%>
+<%- content_for(:extrajs) do -%>
+  <%-
+    @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
+      taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+      taxon
+    end
+    if @subscription.taxon
+      @subscription.taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @subscription.taxon)
+    end
+  -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('#subscription_taxon_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        defaultSources: <%= @default_taxa.to_json(:methods => [:html]) %>,
+        chosen: <%= @subscription.taxon.to_json %>
+      })
+    })
+  </script>
+<%- end -%>
+
+<h2>
+  <%= @title %>
+</h2>
+
+<% form_for @subscription, :builder => DefaultFormBuilder do |f| %>
+  <% if @subscription.resource_type == Place.to_s -%>
+    <%= f.text_field :taxon_id, :placeholder => "Choose a taxon", :label => "Only receive updates for observations of this taxon" %>
+  <% end -%>
+  <%= f.submit "Update subscription" %>
+  <%= link_to "Delete", @subscription, :method => "delete", :confirm => "Are you sure?" %>
+<% end -%>

@@ -711,10 +711,9 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 }
 
 .simpleTaxonSelectorImage {
-  width: 32px;
+  width: 31px;
   float: left;
-  margin-right: 10px;
-  margin-top: 3px;
+  margin-right: 5px;
 }
 
 .simpleTaxonSelector .taxon.Unknown          { color: inherit;  background-image: url('/images/iconic_taxa/unknown-15px.png'); }
@@ -1168,4 +1167,30 @@ table .numeric { text-align: center; }
 .calendar th { font-weight: normal; }
 .calendar .daylink {
   width: 22px; height: 22px; 
-  background-color: #eee; border-radius: 11px;text-align:center;line-height:1.9; cursor:pointer;}
+  background-color: #eee; border-radius: 11px;text-align:center;line-height:1.9; cursor:pointer;
+}
+
+.iconic_taxon_sprite { vertical-align:middle;}
+.taxon.chooseritem { white-space: nowrap; }
+.taxon.chooseritem .othernames { display:inline; }
+#taxonchooser_chooser .ui-chooser-choice { padding: 4px 5px 3px;}
+#taxonchooser_chooser .ui-chooser-choice { padding: 5px 5px 4px;}
+
+.subscriptionsettings .ui-icon {
+  background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);
+  border: 0 none;
+}
+.subscriptionsettings .ui-icon:hover {
+  background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png);
+}
+
+.edit_subscription_inline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.edit_subscription_inline .taxonchooser {width: 200px;}
+.edit_subscription_inline .simpleTaxonSelectorImage {
+  width: 27px;
+}

@@ -1,0 +1,44 @@
+<%- subscription ||= @subscription %>
+<ul class="edit_subscription_inline">
+  <% if @resource.is_a?(Place) && subscription -%>
+    <li>
+      <% form_for subscription, :builder => DefaultFormBuilder do |f| %>
+        <div class="field">
+          <div>
+            <label>Only receive updates about this taxon</label>
+          </div>
+          <%= text_field_tag :taxon_name, subscription.taxon.try(:name),
+            :width => 50,
+            :placeholder => "Type a taxon name",
+            :class => "taxonchooser text" %>
+          <%= f.hidden_field(:taxon_id, 
+            :alt => (subscription.taxon ? 
+              content_tag(:span, subscription.taxon.name, 
+                :class => "taxon sciname #{subscription.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[subscription.taxon.iconic_taxon_id].try(:name)}") : nil),
+            :rel => (subscription.taxon ? taxon_image_url(subscription.taxon) : nil)) %>
+        </div>
+      <% end -%>
+    </li>
+  <% end -%>
+  <li class="createdestroy">
+    <%- new_subscription = Subscription.new(:user => current_user, :resource => @resource) %>
+    <% form_for new_subscription, :html => {
+      :class => "subscribe",
+      :style => "#{'display:none;' if subscription}"
+    } do |f| %>
+      <%= f.hidden_field :resource_type %>
+      <%= f.hidden_field :resource_id %>
+      <%= f.hidden_field :user_id %>
+      <%= link_to_function "Subscribe to this #{@resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
+    <% end -%>
+
+    <% form_tag delete_subscription_url(@resource.class.to_s, @resource.id), 
+        :method => :delete, 
+        :class => 'unsubscribe', 
+        :style => "#{'display:none;' unless subscription}" do %>
+      <%= hidden_field_tag :resource_type, @resource.class.to_s %>
+      <%= hidden_field_tag :resource_id, @resource.id %>
+      <%= link_to_function "Unsubscribe from this #{@resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
+    <% end -%>
+  </li>
+</ul>

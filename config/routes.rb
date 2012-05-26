@@ -337,9 +337,13 @@ ActionController::Routing::Routes.draw do |map|
   map.admin '/admin', :controller => 'admin', :action => 'index'
   map.resources :taxon_ranges, :except => [:index, :show]
   map.resources :subscriptions, :only => [:index, :edit, :create, :update, :destroy]
-  map.delete_subscription 'subscriptions/:resource_type/:resource_id', 
-    :controller => 'subscriptions', :action => 'destroy', 
-    :conditions => {:method => :delete}
+  map.with_options :controller => 'subscriptions' do |subscriptions|
+    subscriptions.delete_subscription 'subscriptions/:resource_type/:resource_id', 
+      :action => 'destroy', 
+      :conditions => {:method => :delete}
+    subscriptions.edit_subscription_by_resource 'subscriptions/:resource_type/:resource_id/edit',
+      :action => 'edit'
+  end
   
   map.calendar '/calendar/:login', :controller => 'calendars', :action => 'index'
   map.calendar_compare '/calendar/:login/compare', :controller => 'calendars', :action => 'compare'

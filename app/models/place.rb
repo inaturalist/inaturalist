@@ -15,6 +15,10 @@ class Place < ActiveRecord::Base
     :message => "must be between 2 and 500 characters"
   validates_uniqueness_of :name, :scope => :parent_id
   
+  has_subscribers :to => {
+    :observations => {:notification => "new_observations", :include_owner => false}
+  }
+  
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
   attr_accessor :html

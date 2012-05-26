@@ -57,7 +57,11 @@ class PlacesController < ApplicationController
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     respond_to do |format|
-      format.html
+      format.html do
+        if logged_in?
+          @subscription = @place.update_subscriptions.first(:conditions => {:user_id => current_user})
+        end
+      end
       format.json do
         if (partial = params[:partial]) && ALLOWED_SHOW_PARTIALS.include?(partial)
           @place.html = render_to_string(:partial => "#{partial}.html.erb", :object => @place)

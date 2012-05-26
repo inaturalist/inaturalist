@@ -570,13 +570,15 @@ module ApplicationHelper
     resource ||= update.resource
     case update.resource_type
     when "User"
-      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options.merge(:alt => "#{resource.login} icon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
       image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
+    when "Place"
+      image_tag("#{root_url}images/icon-maps.png", options)
     else
       image_tag("#{root_url}images/logo-grey-32px.png", options)
     end
@@ -618,6 +620,8 @@ module ApplicationHelper
       s
     when "Post"
       "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}"
+    when "Place"
+      "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}"
     else
       "update"
     end

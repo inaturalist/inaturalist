@@ -1,0 +1,26 @@
+<%-
+  place = object || resource
+  updates ||= []
+  observations = if @update_cache && @update_cache[:observations]
+    updates.map{|u| @update_cache[:observations][u.notifier_id]}
+  else
+    updates.map{|u| u.notifier}
+  end
+  default_observation = observations.first
+-%>
+
+<div class="updatecontent">
+  <div class="observationcontrols stacked"></div>
+  
+  <div class="observations <%= observations.size > 1 ? 'medium grid' : 'mini' %> stacked">
+    <%- compact do %>
+      <%= render :partial => "observations/cached_component", :collection => observations %>
+    <% end -%>
+  </div>
+  
+  <div class="meta">
+    <%= link_to "View more observations", observations_url(:place_id => place) %>
+    from
+    <%= link_to place.display_name, place %>
+  </div>
+</div>

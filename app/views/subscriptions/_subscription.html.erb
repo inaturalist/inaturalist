@@ -1,0 +1,56 @@
+<%- 
+  subscription ||= object || @subscription
+  resource ||= subscription.resource
+-%>
+<div class="meta subscription">
+  <%- new_subscription = Subscription.new(:user => current_user, :resource => resource) %>
+  <% form_for new_subscription, :html => {
+    :class => "subscribe",
+    :style => "#{'display:none;' if subscription}"
+  } do |f| %>
+    <%= f.hidden_field :resource_type %>
+    <%= f.hidden_field :resource_id %>
+    <%= f.hidden_field :user_id %>
+    <%= link_to_function "Subscribe", "$(this).parents('form:first').submit()" %>
+    to <%= commas_and resource.class.notifying_associations.keys %>
+    from this <%= resource.class.to_s.underscore.humanize.downcase %>.
+  <% end -%>
+
+  <% form_tag delete_subscription_url(resource.class.to_s, resource.id), 
+      :method => :delete, 
+      :class => 'unsubscribe', 
+      :style => "#{'display:none;' unless subscription}" do %>
+    You're subscribed to
+    <%= commas_and resource.class.notifying_associations.keys %>
+    <% if subscription && subscription.taxon -%>
+      of <%= subscription.taxon.default_name.is_scientific? ? subscription.taxon.default_name.name : subscription.taxon.default_name.name.pluralize.downcase %>
+    <% end -%>
+    from this <%= resource.class.to_s.underscore.humanize.downcase %>.
+    <%= hidden_field_tag :resource_type, resource.class.to_s %>
+    <%= hidden_field_tag :resource_id, resource.id %>
+    <nobr>
+      <% if resource.is_a?(Place) -%>
+        <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'></span>Settings", edit_subscription_by_resource_url(resource.class.to_s, resource.id), 
+          :class => "subscriptionsettings" %>
+      <% else %>
+        <%= link_to_function "Unsubscribe", "$(this).parents('form:first').submit()" %>
+      <% end -%>
+    </nobr>
+  <% end -%>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $('.subscription form').submit(function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('form').fadeIn()
+    })
+    var data = $(this).serialize() + '&format=json'
+    $.ajax({
+      url: $(this).attr('action'),
+      type: 'post',
+      data: data
+    })
+    return false
+  })
+  $('.subscriptionsettings').subscriptionSettings()
+</script>

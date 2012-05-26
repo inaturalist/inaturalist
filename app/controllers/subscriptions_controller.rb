@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
   before_filter :login_required
-  before_filter :load_subscription, :except => [:new, :create, :index]
-  before_filter :require_owner, :except => [:new, :create, :index]
+  before_filter :load_subscription, :except => [:new, :create, :index, :edit]
+  before_filter :require_owner, :except => [:new, :create, :index, :edit]
   
   def index
     @subscriptions = current_user.subscriptions.paginate(
@@ -11,6 +11,26 @@ class SubscriptionsController < ApplicationController
   end
 
   def edit
+    @subscription = Subscription.find_by_id(params[:id]) if params[:id]
+    if params[:resource_type] && params[:resource_id]
+      @resource = Object.const_get(params[:resource_type]).find_by_id(params[:resource_id]) rescue nil
+      if @resource
+        @subscription ||= current_user.subscriptions.first(:conditions => {
+          :resource_type => params[:resource_type], 
+          :resource_id => params[:resource_id]})
+      end
+    end
+    @resource ||= @subscription.resource if @subscription
+    
+    if @subscription && @subscription.user_id != current_user.id
+      flash[:error] = "You don't have permission to do that"
+      return redirect_back_or_default(@subscription.resource)
+    end
+    
+    if (partial = params[:partial]) && partial == 'edit_inline'
+      render :partial => partial, :layout => false
+      return
+    end
   end
 
   def create
@@ -36,18 +56,18 @@ class SubscriptionsController < ApplicationController
     end
   end
   
-  # def update
-  #   respond_to do |format|
-  #     if @subscription.update_attributes(params[:subscription])
-  #       format.html do
-  #         flash[:notice] = "Subscription updated."
-  #         return redirect_back_or_default(@subscription.resource)
-  #       end
-  #     else
-  #       format.html { render :action => :edit }
-  #     end
-  #   end
-  # end
+  def update
+    respond_to do |format|
+      if @subscription.update_attributes(params[:subscription])
+        format.html do
+          flash[:notice] = "Subscription updated."
+          return redirect_back_or_default(@subscription.resource)
+        end
+      else
+        format.html { render :action => :edit }
+      end
+    end
+  end
 
   def destroy
     @subscription.destroy

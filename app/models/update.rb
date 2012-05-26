@@ -42,7 +42,7 @@ class Update < ActiveRecord::Base
     updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
       resource_type, resource_id, notification = key
       batch = batch.sort_by{|u| u.sort_by_date}
-      if notification == "created_observations" && batch.size > 1
+      if "created_observations new_observations".include?(notification) && batch.size > 1
         batch.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
           grouped_updates << [key, hour_updates]
         end

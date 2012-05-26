@@ -6,6 +6,11 @@ class Observation < ActiveRecord::Base
     :identifications => {:notification => "activity", :include_owner => true}
   }
   notifies_subscribers_of :user, :notification => "created_observations"
+  notifies_subscribers_of :places, :notification => "new_observations", :if => lambda {|observation, place, subscription|
+    return true if subscription.taxon_id.blank?
+    return true if observation.taxon.blank?
+    observation.taxon.ancestor_ids.include?(subscription.taxon_id)
+  }
   acts_as_taggable
   acts_as_flaggable
   
@@ -76,6 +81,8 @@ class Observation < ActiveRecord::Base
   # note last_observation and first_observation on listed taxa will get reset 
   # by CheckList.refresh_with_observation
   has_many :listed_taxa, :foreign_key => 'last_observation_id'
+  has_many :first_listed_taxa, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id'
+  has_many :first_check_listed_taxa, :class_name => "ListedTaxon", :foreign_key => 'first_observation_id', :conditions => "listed_taxa.place_id IS NOT NULL"
   
   has_many :goal_contributions,
            :as => :contribution,
@@ -288,7 +295,6 @@ class Observation < ActiveRecord::Base
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     {:conditions => ["quality_grade = ?", quality_grade]}
   }
-  
   
   # Find observations by a taxon object.  Querying on taxa columns forces 
   # massive joins, it's a bit sluggish
