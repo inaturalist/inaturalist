@@ -496,7 +496,7 @@ describe Observation, "species_guess parsing" do
     end
   end
   
-  it "should choose a taxon from a parenthesize scientific name" do
+  it "should choose a taxon from a parenthesized scientific name" do
     name = "Northern Pygmy Owl (Glaucidium gnoma)"
     t = Taxon.make(:name => "Glaucidium gnoma")
     o = Observation.make(:species_guess => name)
