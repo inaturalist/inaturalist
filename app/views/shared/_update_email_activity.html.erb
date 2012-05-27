@@ -8,6 +8,7 @@
   <table cellspacing="0" cellpadding="0">
     <% for update in updates %>
       <%-
+        notifier = nil
         notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
           @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
         end

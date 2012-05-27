@@ -159,6 +159,7 @@
                 <div class="updatecontent">
                   <% for u in updates %>
                     <%-
+                      notifier = nil
                       if @update_cache && @update_cache[u.notifier_type.underscore.pluralize.to_sym]
                         notifier = @update_cache[u.notifier_type.underscore.pluralize.to_sym][u.notifier_id]
                       end
