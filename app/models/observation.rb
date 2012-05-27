@@ -6,7 +6,7 @@ class Observation < ActiveRecord::Base
     :identifications => {:notification => "activity", :include_owner => true}
   }
   notifies_subscribers_of :user, :notification => "created_observations"
-  notifies_subscribers_of :places, :notification => "new_observations", :if => lambda {|observation, place, subscription|
+  notifies_subscribers_of :public_places, :notification => "new_observations", :if => lambda {|observation, place, subscription|
     return true if subscription.taxon_id.blank?
     return true if observation.taxon.blank?
     observation.taxon.ancestor_ids.include?(subscription.taxon_id)
@@ -1386,6 +1386,23 @@ class Observation < ActiveRecord::Base
     Place.containing_lat_lng(
       private_latitude || latitude, 
       private_longitude || longitude).sort_by(&:bbox_area)
+  end
+  
+  def public_places
+    all_places = places
+    return if all_places.blank?
+    return all_places unless coordinates_obscured?
+    
+    # for obscured coordinates only return default place types that weren't
+    # made by users. This is not ideal, but hopefully will get around honey
+    # pots.
+    all_places.select do |p| 
+      p.user_id.blank? &&
+        [Place::PLACE_TYPE_CODES['Country'],
+          Place::PLACE_TYPE_CODES['State'],
+          Place::PLACE_TYPE_CODES['County'],
+          Place::PLACE_TYPE_CODES['Open Space']].include?(p.place_type)
+    end
   end
   
   def mobile?
