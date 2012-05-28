@@ -30,7 +30,8 @@ class Update < ActiveRecord::Base
     activity_updates.each do |update|
       clauses << "(subscriber_id = #{update.subscriber_id} AND resource_type = '#{update.resource_type}' AND resource_id = #{update.resource_id})"
     end
-    conditions = ["notification = 'activity' AND (#{clauses.join(' OR ')}) AND id NOT IN (?)", activity_update_ids]
+    conditions = ["notification = 'activity' AND id NOT IN (?)", activity_update_ids]
+    conditions[0] += " AND (#{clauses.join(' OR ')})" unless clauses.blank?
     updates += Update.all(:conditions => conditions, :include => [:resource, :notifier, :subscriber, :resource_owner])
     updates
   end
