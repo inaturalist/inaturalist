@@ -25,6 +25,7 @@ class Update < ActiveRecord::Base
   def self.load_additional_activity_updates(updates)
     # fetch all other activity updates for the loaded resources
     activity_updates = updates.select{|u| u.notification == 'activity'}
+    return updates if activity_updates.blank?
     activity_update_ids = activity_updates.map{|u| u.id}
     clauses = []
     activity_updates.each do |update|
@@ -159,13 +160,15 @@ class Update < ActiveRecord::Base
       update_ids << update.id
       clauses << "(subscriber_id = #{update.subscriber_id} AND resource_type = '#{update.resource_type}' AND resource_id = #{update.resource_id})"
     end
-    update_ids.compact!
-    update_ids.uniq!
-    Update.delete_all([
-      "id < ? AND id NOT IN (?) AND notification = 'activity' AND (#{clauses.join(' OR ')})",
-      update_ids.min,
-      update_ids
-    ])
+    unless clauses.blank?
+      update_ids.compact!
+      update_ids.uniq!
+      Update.delete_all([
+        "id < ? AND id NOT IN (?) AND notification = 'activity' AND (#{clauses.join(' OR ')})",
+        update_ids.min,
+        update_ids
+      ])
+    end
     Update.delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 1.year.ago])
   end
 end
