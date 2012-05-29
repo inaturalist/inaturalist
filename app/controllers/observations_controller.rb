@@ -247,6 +247,8 @@ class ObservationsController < ApplicationController
           @subscription = @observation.update_subscriptions.first(:conditions => {:user_id => current_user})
         end
         
+        @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
+        
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
             :layout => false)

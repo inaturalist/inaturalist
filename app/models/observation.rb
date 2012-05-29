@@ -95,6 +95,7 @@ class Observation < ActiveRecord::Base
   has_many :quality_metrics, :dependent => :destroy
   has_many :observation_field_values, :dependent => :destroy, :order => "id asc"
   has_many :observation_fields, :through => :observation_field_values
+  has_many :observation_links
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
