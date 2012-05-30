@@ -1,23 +1,23 @@
 <p>
-  <b>Placement:</b>
+  <b><%=t :placement %>:</b>
   <%=h @announcement.placement %>
 </p>
 
 <p>
-  <b>Start:</b>
+  <b><%=t :start %>:</b>
   <%=h @announcement.start %>
 </p>
 
 <p>
-  <b>End:</b>
+  <b><%=t :end %>:</b>
   <%=h @announcement.end %>
 </p>
 
 <p>
-  <b>Body:</b>
+  <b><%=t :body %>:</b>
   <%= @announcement.body %>
 </p>
 
 
-<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
-<%= link_to 'Back', announcements_path %>
+<%= link_to t(:edit), edit_announcement_path(@announcement) %> |
+<%= link_to t(:back), announcements_path %>
