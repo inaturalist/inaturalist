@@ -1,9 +1,9 @@
-<h2>Admin Tools</h2>
+<h2><%=t :admin_tools %></h2>
 
 <ul>
-  <li><%= link_to "Curate Observations", :controller => "observations", :action =>"curation" %> </li>
-  <li><%= link_to "Curate Taxa", :controller => "taxa", :action =>"curation" %></li>
-  <li><%= link_to "Curate Users", :controller => "users", :action => "curation" %></li>
-  <li><%= link_to "Stats", :action => "stats" %></li>
-  <li><%= link_to "Announcements", announcements_path %></li>
+  <li><%= link_to t(:curate_observations), :controller => "observations", :action =>"curation" %> </li>
+  <li><%= link_to t(:curate_taxa), :controller => "taxa", :action =>"curation" %></li>
+  <li><%= link_to t(:curate_users), :controller => "users", :action => "curation" %></li>
+  <li><%= link_to t(:stats), :action => "stats" %></li>
+  <li><%= link_to t(:announcements), announcements_path %></li>
 </ul>
