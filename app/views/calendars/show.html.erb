@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observations by #{you_or_login(@selected_user)} on #{Date.parse(@date).to_s(:long) rescue @date}" %>
+  <%= @title = t(:observation_by, :user=>"#{you_or_login(@selected_user)}", :date=>"#{Date.parse(@date).to_s(:long)}") %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
