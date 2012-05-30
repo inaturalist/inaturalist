@@ -8,7 +8,7 @@ class Observation < ActiveRecord::Base
   notifies_subscribers_of :user, :notification => "created_observations"
   notifies_subscribers_of :public_places, :notification => "new_observations", :if => lambda {|observation, place, subscription|
     return true if subscription.taxon_id.blank?
-    return true if observation.taxon.blank?
+    return false if observation.taxon.blank?
     observation.taxon.ancestor_ids.include?(subscription.taxon_id)
   }
   acts_as_taggable
