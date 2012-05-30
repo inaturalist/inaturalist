@@ -180,6 +180,7 @@ class DarwinCore
       unless license.blank?
         s += ", licensed under a #{license_name} license: #{view.url_for_license(license)}"
       end
+      s
     end
 
     def rightsHolder

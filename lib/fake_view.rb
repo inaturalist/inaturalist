@@ -8,6 +8,19 @@ class FakeView < ActionView::Base
   include ApplicationHelper
 
   @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
+  
+  def photo_url(*args)
+    super
+  end
+  
+  def method_missing(method, *args)
+    # hack around those pesky protected url methods
+    if method.to_s =~ /url$/ && respond_to?(method)
+      send(method, *args)
+    else
+      super
+    end
+  end
 
   def initialize
     super
