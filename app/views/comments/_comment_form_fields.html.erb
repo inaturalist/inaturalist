@@ -6,8 +6,8 @@
   <%= f.text_area :body %>
 </div>
 <div class="buttonrow">
-  <%= submit_tag 'Save comment', :class => 'default button', 'data-loading-click' => true %>
-  <%= link_to_remote "Preview", 
+  <%= submit_tag t(:save_comment), :class => 'default button', 'data-loading-click' => true %>
+  <%= link_to_remote t(:preview), 
     :url => comment.new_record? ? comments_path : comment_path(comment), 
     :loading => 
       "$('##{unique_id}-preview').hide();" +
@@ -20,10 +20,10 @@
       :id => "#{unique_id}-preview",
       :class => 'button previewbutton'
     } %>
-  <div id="<%= unique_id %>-preview_loading" class="loading status inter" style="display:none">Previewing...</div>
+  <div id="<%= unique_id %>-preview_loading" class="loading status inter" style="display:none"><%=t :previewing %></div>
   <%- unless comment.new_record? -%>
     <span class="inter description">or</span>
-    <%- cancel_url = comment.parent.is_a?(Post) ? journal_post_path(comment.parent.user.login, comment.parent) : url_for(comment.parent) %>
-    <%= link_to 'Cancel', "#{cancel_url}#comment-#{comment.id}", :class => 'button' %>
+    <%- cancel_url = comment.parent.is_a?(Post) ? post_path(comment.parent.user.login, comment.parent) : url_for(comment.parent) %>
+    <%= link_to t(:cancel), "#{cancel_url}#comment-#{comment.id}", :class => 'button' %>
   <%- end -%>
 </div>
