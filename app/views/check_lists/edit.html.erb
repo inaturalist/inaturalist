@@ -1,15 +1,16 @@
 <% content_for(:title) do -%>
-  <%= @title = "Editing #{@list.title}" %>
+  <%= @title = t(:editing_this, :elem => "#{@list.title}") %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'lists/form', 'check_lists/form' %>
 <% end -%>
 <% content_for(:extrajs) do -%>
-  <%= javascript_include_tag 'check_lists/form' %>
+  <%= javascript_include_tag 'jquery/plugins/inat/taxon_selectors',
+                             'check_lists/form' %>
 <% end -%>
 <div id="pageheader" class="column span-24 last">
   <span class="breadcrumbs">
-    <%= link_to "Back to #{@list.title}", @list, :class => 'back crumb' %>
+    <%= link_to t(:back_to_this, :place => "#{@list.title}"), @list, :class => 'back crumb' %>
   </span>
   <h2><%= @title %></h2>
 </div>
