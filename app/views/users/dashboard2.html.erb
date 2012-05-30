@@ -73,6 +73,23 @@
       })
       
       $('.subscriptionsettings').subscriptionSettings()
+      $('abbr.timeago').timeago()
+      $('#flash').hide()
+      var dayInSeconds = 24 * 60 * 60,
+          now = new Date(),
+          monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      $('abbr.compact.date').each(function() {
+        var dateString = $(this).attr('title').split('T')[0],
+            timeString = $(this).attr('title').split('T')[1],
+            d = new Date($(this).attr('title'))
+        if (!timeString.indexOf(':')) { return }
+        if (now.getFullYear() == d.getFullYear() &&
+            now.getMonth() == d.getMonth() &&
+            now.getDate() == d.getDate()) {
+          return 
+        }
+        $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
+      })
     })
   </script>
 <%- end -%>
@@ -149,7 +166,7 @@
             <div class="updatebody">
               <div class="updateheader meta stacked">
                 <div class="right small">
-                  <span class="date"><%= compact_date(updates.last.sort_by_date) %></span>
+                  <abbr class="compact date" title="<%= updates.last.sort_by_date.iso8601 %>"><%= compact_date(updates.last.sort_by_date) %></abbr>
                   <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>", edit_subscription_by_resource_path(resource_type, resource_id), 
                     :class => "subscriptionsettings" %>
                 </div>
