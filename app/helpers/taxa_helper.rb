@@ -63,6 +63,8 @@ module TaxaHelper
     [:id, :class, :style, :alt, :title, :width, :height].each do |attr_name|
       image_params[attr_name] = params.delete(attr_name) if params[attr_name]
     end
+    image_params[:class] ||= ""
+    image_params[:class] += " #{params[:size]} photo" if params[:size]
     image_tag(taxon_image_url(taxon, params), image_params)
   end
   

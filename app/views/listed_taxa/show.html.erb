@@ -17,6 +17,7 @@
       display: block;
       margin: 10px auto;
     }
+    #taxonimage .small.photo {max-width:270px;}
     .listed_taxon_form textarea {
       width: 636px; 
       height: 100px; 
@@ -55,7 +56,7 @@
 <div class="column span-7">
   <div id="taxonimage" class="photo_view">
     <% if @photo -%>
-      <%= link_to image_tag(@photo.small_url), @taxon %>
+      <%= link_to image_tag(@photo.small_url, :class => "small photo"), @taxon %>
       <p class="ui attribution description">
         Photo: 
         <%= link_to @photo.attribution, @photo.native_page_url %>
