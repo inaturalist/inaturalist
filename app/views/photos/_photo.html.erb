@@ -12,9 +12,8 @@
         <%- next if photo.send("#{photo_size}_url").blank? %>
         <li class="<%= photo_size %>_link <%= 'selected' if photo_size == size %>">
           <%= link_to_function photo_size, 
-            "$('#photo_wrapper_#{photo.id} img').hide(); " +
-            "$('#photo_#{photo.id}_#{photo_size}').css('display', 'block').attr(" +
-              "'src', '#{photo.send("#{photo_size}_url")}'); " +
+            "$('#photo_wrapper_#{photo.id} img').hide().removeClass('small medium large').addClass('#{photo_size} photo'); " +
+            "$('#photo_#{photo.id}_#{photo_size}').css('display', 'block').attr('src', '#{photo.send("#{photo_size}_url")}'); " +
             "$(this).parents('li').addClass('selected').siblings('li').removeClass('selected')" %>
         </li>
       <% end %>
@@ -34,7 +33,7 @@
       <% if photo_size == size -%>
         <%= image_tag(photo.send(size_method), 
           :id => "photo_#{photo.id}_#{photo_size}", 
-          :class => size) %>
+          :class => "#{size} photo") %>
       <%- else -%>
         <%= image_tag('spinner.gif', 
           :id => "photo_#{photo.id}_#{photo_size}", 
