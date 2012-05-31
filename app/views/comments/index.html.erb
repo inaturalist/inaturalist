@@ -1,5 +1,9 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/ui.tabs.css", "comments" %>
+  <style type="text/css" media="screen">
+    .ui-tabs ul{margin-bottom:10px;}
+    .ui-tabs .ui-tabs-nav li{float:right;}
+  </style>
 <%- end -%>
 
 <div id="tabs" class="ui-tabs">

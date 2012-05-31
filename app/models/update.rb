@@ -7,6 +7,7 @@ class Update < ActiveRecord::Base
   validates_uniqueness_of :notifier_id, :scope => [:notifier_type, :subscriber_id, :notification]
   
   before_create :set_resource_owner
+  after_create :expire_caches
   
   NOTIFICATIONS = %w(create change activity)
   
@@ -20,6 +21,13 @@ class Update < ActiveRecord::Base
   
   def sort_by_date
     created_at || notifier.try(:created_at) || Time.now
+  end
+  
+  def expire_caches
+    ctrl = ActionController::Base.new
+    fv = FakeView.new
+    ctrl.expire_fragment(fv.home_url(:user_id => subscriber_id).gsub('http://', ''))
+    true
   end
   
   def self.load_additional_activity_updates(updates)

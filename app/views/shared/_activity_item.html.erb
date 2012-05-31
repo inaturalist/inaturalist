@@ -27,7 +27,7 @@
     <div class="meta">
       Posted by <%= link_to(truncate(you_or_login(item.user), :length => 20), person_path(item.user)) %>
       <span class="when">
-        <span class="date"><%= time_ago_in_words(item.created_at) %></span> ago
+        <abbr class="date timeago" title="<%= item.created_at.iso8601 %>"><%= time_ago_in_words(item.created_at) %> ago</abbr>
       </span>
       <%- if is_me?(item.user) -%>
         <span class="comment_actions">
