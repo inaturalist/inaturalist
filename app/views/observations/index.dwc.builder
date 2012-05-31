@@ -11,13 +11,13 @@ for observation in @observations
         xml.dwc term.to_sym, value
       end
     end
-
+    
     unless observation.photos.blank?
       observation.photos.each do |photo|
-        EolMedia.adapt(photo)
+        adapted_photo = EolMedia.adapt(photo)
         xml.eol :dataObject do
           EolMedia::TERMS.each do |term, uri, default|
-            value = photo.send(term)
+            value = adapted_photo.send(term)
             next if value.blank?
             ns = uri.split('/')[-2]
             if uri =~ /purl/

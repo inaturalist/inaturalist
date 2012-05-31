@@ -1269,7 +1269,7 @@ class ObservationsController < ApplicationController
     end
     
     find_options = {
-      :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
+      :include => [:user, {:taxon => [:taxon_names]}, :tags, {:observation_photos => :photo}],
       :page => search_params[:page]
     }
     find_options[:page] = 1 if find_options[:page].to_i == 0

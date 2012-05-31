@@ -25,8 +25,7 @@ class Update < ActiveRecord::Base
   
   def expire_caches
     ctrl = ActionController::Base.new
-    fv = FakeView.new
-    ctrl.expire_fragment(fv.home_url(:user_id => subscriber_id).gsub('http://', ''))
+    ctrl.expire_fragment(FakeView.home_url(:user_id => subscriber_id).gsub('http://', ''))
     true
   end
   

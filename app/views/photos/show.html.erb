@@ -13,7 +13,7 @@
 <table>
   <tr>
     <td>
-      <%= image_tag @photo.send("#{@size}_url") %>
+      <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
     </td>
     
     <td style="width: 100%">
