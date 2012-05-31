@@ -28,10 +28,16 @@ class DarwinCore
     %w(taxonID http://rs.tdwg.org/dwc/terms/taxonID),
     %w(scientificName http://rs.tdwg.org/dwc/terms/scientificName),
     %w(taxonRank http://rs.tdwg.org/dwc/terms/taxonRank),
+    %w(kingdom http://rs.tdwg.org/dwc/terms/kingdom),
+    %w(phylum http://rs.tdwg.org/dwc/terms/phylum),
+    ['class', 'http://rs.tdwg.org/dwc/terms/class', nil, 'taxon_class'],
+    %w(order http://rs.tdwg.org/dwc/terms/order),
+    %w(family http://rs.tdwg.org/dwc/terms/family),
+    %w(genus http://rs.tdwg.org/dwc/terms/genus),
     %w(rights http://purl.org/dc/terms/rights),
     %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
   ]
-  DARWIN_CORE_TERM_NAMES = DARWIN_CORE_TERMS.map{|name, uri| name}
+  DARWIN_CORE_TERM_NAMES = DARWIN_CORE_TERMS.map{|name, uri, default, method| name}
   
   # Extend observation with DwC methods.  For reasons unclear to me, url
   # methods are protected if you instantiate a view *outside* a model, but not
@@ -174,6 +180,31 @@ class DarwinCore
     def taxonRank
       taxon.rank if taxon
     end
+    
+    def kingdom
+      taxon.kingdom.try(:name) if taxon
+    end
+    
+    def phylum
+      taxon.phylum.try(:name) if taxon
+    end
+    
+    def taxon_class
+      taxon.find_class.try(:name) if taxon
+    end
+    
+    def order
+      taxon.order.try(:name) if taxon
+    end
+    
+    def family
+      taxon.family.try(:name) if taxon
+    end
+    
+    def genus
+      taxon.genus.try(:name) if taxon
+    end
+    
 
     def rights
       s = "Copyright #{rightsHolder}"

@@ -1,9 +1,9 @@
 for observation in @observations
   xml.dwr :SimpleDarwinRecord do
     adapted_record = DarwinCore.adapt(observation, :view => self)
-    DarwinCore::DARWIN_CORE_TERMS.each do |term, uri, default|
+    DarwinCore::DARWIN_CORE_TERMS.each do |term, uri, default, method|
       term = "occurrenceID" if term == "id"
-      value = adapted_record.send(term)
+      value = adapted_record.send(method || term)
       next if value.blank?
       if uri =~ /purl/
         xml.dcterms term.to_sym, value
@@ -16,8 +16,8 @@ for observation in @observations
       observation.photos.each do |photo|
         adapted_photo = EolMedia.adapt(photo)
         xml.eol :dataObject do
-          EolMedia::TERMS.each do |term, uri, default|
-            value = adapted_photo.send(term)
+          EolMedia::TERMS.each do |term, uri, default, method|
+            value = adapted_photo.send(method || term)
             next if value.blank?
             ns = uri.split('/')[-2]
             if uri =~ /purl/

@@ -91,7 +91,7 @@ def make_data
     Observation.do_in_batches(find_options) do |o|
       next unless o.user.prefers_gbif_sharing?
       o = DarwinCore.adapt(o, :view => fake_view)
-      csv << headers.map{|h| o.send(h)}
+      csv << DarwinCore::DARWIN_CORE_TERMS.map{|field, uri, default, method| o.send(method || field)}
     end
   end
   

@@ -95,7 +95,8 @@ class Taxon < ActiveRecord::Base
     define_method "find_#{rank}" do
       return self if rank_level == level
       return nil if rank_level > level
-      ancestors.first(:conditions => {:rank => rank})
+      @cached_ancestors ||= ancestors.all
+      @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless method_exists?(rank)
     define_method "#{rank}?" do
