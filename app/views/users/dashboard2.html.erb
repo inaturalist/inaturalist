@@ -51,6 +51,8 @@
       width: 153px;
       height: 153px;
     }
+    
+    #comments .commentitem { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 10px;}
   </style>
 <% end -%>
 
@@ -67,8 +69,13 @@
               $(this).html(html)
               $(this).parent().find('.observationcontrols').observationControls()
             })
-            $(ui.panel).addClass('loaded')
+          } else if ($(ui.panel).attr('id') == 'comments' && !$(ui.panel).hasClass('loaded')) {
+            $(ui.panel).load('/comments?partial=true', function(data) {
+              var html = data.replace(/[\s\n]+/, ' ')
+              $(this).html(html)
+            })
           }
+          $(ui.panel).addClass('loaded')
         }
       })
       
@@ -108,7 +115,8 @@
 <div id="tabs" class="ui-tabs">
   <ul>
     <li><a href="#updates"><span>Recent updates</span></a></li>
-    <li><a href="#explore"><span>Explore</span></a></li>
+    <li><a href="#explore"><span>Observations by everyone</span></a></li>
+    <li><a href="#comments"><span>Comments by everyone</span></a></li>
   </ul>
   
   <div id="updates">
@@ -235,5 +243,9 @@
       <%= loading %>
     </div>
     <%= link_to "View more recent observations", observations_url, :class => "readmore" %>
+  </div>
+  
+  <div id="comments">
+    <%= loading %>
   </div>
 </div>

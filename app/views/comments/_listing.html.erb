@@ -45,13 +45,9 @@
   
   <div class="last column span-16">
     <% if @comments_by_parent_id -%>
-      <%= render :partial => "comments/comment", 
-        :collection => @comments_by_parent_id[comment.parent_id],
-        :locals => { :include_user_image => true } %>
+      <%= render :partial => "shared/activity_item", :collection => @comments_by_parent_id[comment.parent_id] %>
     <% else %>
-      <%= render :partial => "comments/comment", 
-        :object => comment,
-        :locals => { :include_user_image => true } %>
+      <%= render :partial => "shared/activity_item", :object => comment %>
     <% end -%>
   </div>
 </div>
