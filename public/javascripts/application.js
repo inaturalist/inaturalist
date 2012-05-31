@@ -207,7 +207,7 @@ $(document).ready(function() {
       $('#updatessubnav').load('/users/new_updates', function(data) {
         $(this).html(data)
         $('#updatessubnav').data('loaded', true)
-        setUpdatesCount(0)
+        setUpdatesCount(0, {skipAnimation: true})
         var tipOptions = $.extend(true, {}, QTIP_DEFAULTS, {
           position: {
             my: 'right center',
@@ -592,12 +592,21 @@ $.fn.naturalHeight = function() {
 }
 
 
-function setUpdatesCount(count) {
+function setUpdatesCount(count, options) {
+  options = options || {}
   if (count > 0) {
-    $('#header .updates').switchClass('', 'alert')
+    if (options.skipAnimation) {
+      $('#header .updates').addClass('alert')
+    } else {
+      $('#header .updates').switchClass('', 'alert')
+    }
     $('#header .updates .count').html(count)
   } else {
-    $('#header .updates').switchClass('alert', '')
+    if (options.skipAnimation) {
+      $('#header .updates').removeClass('alert')
+    } else {
+      $('#header .updates').switchClass('alert', '')
+    }
     $('#header .updates .count').html(0)
   }
 }
