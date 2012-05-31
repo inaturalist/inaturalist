@@ -33,6 +33,10 @@ class Photo < ActiveRecord::Base
     7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"}
   }
   
+  def to_s
+    "<#{self.class} id: #{id}, user_id: #{user_id}>"
+  end
+  
   def validate
     if user.blank? && self.license == 0
       errors.add(

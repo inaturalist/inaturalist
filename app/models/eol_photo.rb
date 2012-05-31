@@ -101,7 +101,8 @@ class EolPhoto < Photo
         :native_realname => native_username,
         :license =>  license_code
       }
-    rescue
+    rescue => e
+      Rails.logger.error "[ERROR #{Time.now}] Failed to retrieve EOL API response: #{e}"
       api_response = nil
     end
     return api_response
