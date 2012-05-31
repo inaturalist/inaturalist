@@ -35,7 +35,7 @@ class EolMedia
   
   module InstanceMethods
     def view
-      @view ||= FakeView.new
+      @view ||= FakeView
     end
 
     def set_view(view)

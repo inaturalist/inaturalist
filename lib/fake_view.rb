@@ -9,10 +9,6 @@ class FakeView < ActionView::Base
 
   @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
   
-  def photo_url(*args)
-    super
-  end
-  
   def method_missing(method, *args)
     # hack around those pesky protected url methods
     if method.to_s =~ /url$/ && respond_to?(method)
@@ -25,5 +21,10 @@ class FakeView < ActionView::Base
   def initialize
     super
     self.view_paths = [File.join(RAILS_ROOT, 'app/views')]
+  end
+  
+  def self.method_missing(method, *args)
+    @@fake_view ||= self.new
+    @@fake_view.send(method, *args)
   end
 end

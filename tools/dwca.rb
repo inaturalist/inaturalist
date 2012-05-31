@@ -64,7 +64,7 @@ def make_data
   headers = DarwinCore::DARWIN_CORE_TERM_NAMES
   fname = "observations.csv"
   tmp_path = File.join(Dir::tmpdir, fname)
-  fake_view = DarwinCore::FakeView.new
+  fake_view = FakeView.new
   
   find_options = {
     :include => [:taxon, {:user => :stored_preferences}, :photos, :quality_metrics, :identifications],
