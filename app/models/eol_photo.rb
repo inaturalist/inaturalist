@@ -65,7 +65,7 @@ class EolPhoto < Photo
       eol_page_xml = Nokogiri::XML.parse(open(eol_page_url).read)
       license_string = eol_page_xml.search('license').children.first.inner_text
       license_code = 0
-      if license_string.include? "licenses/pd/"
+      if license_string.include? "licenses/publicdomain/"
         license_code = 7
       end
       [1,2,3,4,5,6].each do |num|
