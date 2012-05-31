@@ -13,8 +13,23 @@
     <ul>
       <li><%= link_to "<span>From Flickr</span>", "#flickr_taxon_photos" %></li>
       <li><%= link_to "<span>From iNat observations</span>", "#inat_obs_taxon_photos" %></li>
+      <li><%= link_to "<span>From EOL</span>", "#eol_taxon_photos" %></li>
     </ul>
     
+		<div id="eol_taxon_photos">
+      <% form_tag({:action => 'update_photos'}) do %>
+        <div class="taxon_photos clear">
+          <%= render :partial => "photos/photo_list_form", :locals => { 
+            :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
+            :checked => true } %>
+        </div>
+        <div class="buttonrow">
+          <%= submit_tag 'Save photos', :class => 'default button' %>
+          <%= link_to_function 'Cancel', 'return false;', :class => 'button close' %>
+        </div>
+      <% end %>
+    </div>
+
     <div id="flickr_taxon_photos">
       <% form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
