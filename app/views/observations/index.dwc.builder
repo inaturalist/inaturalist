@@ -1,7 +1,7 @@
 for observation in @observations
   xml.dwr :SimpleDarwinRecord do
-    adapted_record = DarwinCore.adapt(observation, :view => self)
-    DarwinCore::DARWIN_CORE_TERMS.each do |term, uri, default, method|
+    adapted_record = DarwinCore::Occurrence.adapt(observation, :view => self)
+    DarwinCore::Occurrence::TERMS.each do |term, uri, default, method|
       term = "occurrenceID" if term == "id"
       value = adapted_record.send(method || term)
       next if value.blank?
@@ -14,9 +14,10 @@ for observation in @observations
     
     unless observation.photos.blank?
       observation.photos.each do |photo|
-        adapted_photo = EolMedia.adapt(photo)
+        adapted_photo = EolMedia.adapt(photo, :observation => observation)
         xml.eol :dataObject do
           EolMedia::TERMS.each do |term, uri, default, method|
+            next if %w(taxonID spatial lat long referenceID).include?(term)
             value = adapted_photo.send(method || term)
             next if value.blank?
             ns = uri.split('/')[-2]

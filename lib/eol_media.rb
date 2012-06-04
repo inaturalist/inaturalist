@@ -2,13 +2,14 @@
 class EolMedia
   
   TERMS = [
-    %w(identifier http://purl.org/dc/terms/identifier),
     %w(taxonID http://rs.tdwg.org/dwc/terms/taxonID),
+    %w(identifier http://purl.org/dc/terms/identifier),
     %w(type http://purl.org/dc/terms/type http://purl.org/dc/dcmitype/StillImage),
     %w(format http://purl.org/dc/terms/format),
     %w(accessURI http://rs.tdwg.org/ac/terms/accessURI),
     %w(thumbnailURL http://eol.org/schema/media/thumbnailURL),
     %w(furtherInformationURL http://rs.tdwg.org/ac/terms/furtherInformationURL),
+    %w(derivedFrom http://rs.tdwg.org/ac/terms/derivedFrom),
     %w(CreateDate http://ns.adobe.com/xap/1.0/CreateDate),
     %w(modified http://purl.org/dc/terms/modified),
     %w(UsageTerms http://ns.adobe.com/xap/1.0/rights/UsageTerms),
@@ -19,7 +20,8 @@ class EolMedia
     %w(spatial http://purl.org/dc/terms/spatial),
     %w(lat http://www.w3.org/2003/01/geo/wgs84_pos#lat),
     %w(long http://www.w3.org/2003/01/geo/wgs84_pos#long),
-    %w(referenceID http://eol.org/schema/reference/referenceID)
+    %w(referenceID http://eol.org/schema/reference/referenceID),
+    %w(description http://purl.org/dc/terms/description)
   ]
   TERM_NAMES = TERMS.map{|name, uri| name}
   
@@ -29,11 +31,14 @@ class EolMedia
   # delegation.
   def self.adapt(record, options = {})
     record.extend(InstanceMethods)
+    record.observation = options[:observation]
     record.set_view(options[:view])
     record
   end
   
   module InstanceMethods
+    attr_accessor :observation
+    
     def view
       @view ||= FakeView
     end
@@ -47,7 +52,8 @@ class EolMedia
     end
     
     def taxonID
-      observation ? observation.taxon_id : taxon_photos.first.try(:taxon_id)
+      taxon_id = observation ? observation.taxon_id : taxon_photos.first.try(:taxon_id)
+      view.taxon_url(taxon_id) if taxon_id
     end
     
     def type
@@ -68,6 +74,10 @@ class EolMedia
     
     def furtherInformationURL
       view.photo_url(self)
+    end
+    
+    def derivedFrom
+      native_page_url
     end
     
     def CreateDate
@@ -91,7 +101,15 @@ class EolMedia
     end
     
     def Owner
-      user.name || user.login
+      if !user.try(:name).blank?
+        user.name
+      elsif !user.try(:login).blank?
+        user.login
+      elsif !native_realname.blank?
+        native_realname
+      else
+        native_username
+      end
     end
     
     def publisher
@@ -103,17 +121,15 @@ class EolMedia
     end
     
     def spatial
-      return unless observation
-      observation.place_guess
+      observation.try(:place_guess)
     end
     
     def lat
-      return unless observation
-      observation.latitude
+      observation.try(:latitude)
     end
     
     def long
-      observation.longitude
+      observation.try(:longitude)
     end
     
     def referenceID
@@ -124,6 +140,10 @@ class EolMedia
       end
     end
     
+    def description
+      view.strip_tags(observation.description) unless (observation.blank? || observation.description.blank?)
+    end
+    
     protected
     
     def dwc_filter_text(s)
@@ -131,7 +151,9 @@ class EolMedia
     end
     
     def observation
-      @observation ||= observation_photos.first.try(:observation)
+      @observation ||= observation_photos.detect{|op|
+        !op.observation.taxon_id.blank?
+      }.try(:observation)
     end
   end
 end
