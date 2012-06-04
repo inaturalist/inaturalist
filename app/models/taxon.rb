@@ -94,7 +94,7 @@ class Taxon < ActiveRecord::Base
     const_set "#{rank.upcase}_LEVEL", level
     define_method "find_#{rank}" do
       return self if rank_level == level
-      return nil if rank_level > level
+      return nil if rank_level.to_i > level.to_i
       @cached_ancestors ||= ancestors.all
       @cached_ancestors.detect{|a| a.rank == rank}
     end

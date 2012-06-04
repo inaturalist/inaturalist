@@ -45,8 +45,7 @@ class Metadata < FakeView
       scope = scope.has_quality_grade(Observation::CASUAL_GRADE)
     end
     scope = scope.license('any')
-    puts "options[:extensions]: #{options[:extensions]}"
-    scope = scope.has_photos if options[:extensions].include?("EolMedia")
+    scope = scope.has_photos if options[:extensions] && options[:extensions].include?("EolMedia")
     @extent     = scope.calculate(:extent, :geom)
     @start_date = scope.minimum(:observed_on)
     @end_date   = scope.maximum(:observed_on)
