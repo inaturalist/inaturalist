@@ -12,18 +12,15 @@
   <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
   <meta property="og:site_name" content="iNaturalist"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" /> 
-  <% unless @taxon.wikipedia_summary.blank? -%>
-    <meta name="description" content="<%= strip_tags(@taxon.wikipedia_summary).gsub('"', "'") %>"/>
-    <%-
-      og_description = if @photos.blank?
-        html_attributize(@taxon.wikipedia_summary)
-      else
-        "(Photo: #{@photos.first.attribution}) #{html_attributize @taxon.wikipedia_summary}"
-      end
-    -%>
-    <meta property="og:description" content="<%= og_description %>"/>
-  <% end -%>
+  <meta property="fb:app_id" content="26558815027" />
+	<%-
+	   description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary
+	   og_description = description
+	   og_description = "(Photo: #{@photos.first.attribution}) #{og_description}" unless @photos.blank?
+	-%>
+	<meta name="description" content="<%= html_attributize description %>"/>
+	<meta property="og:description" content="<%= html_attributize og_description %>"/>
+	
 <%- end -%>
 
 <%- content_for(:extracss) do %>
