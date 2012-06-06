@@ -96,9 +96,7 @@
       </p>
       
       <% if logged_in? -%>
-        <div class="admin">
-          <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
-        </div>
+        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
       <% end -%>
     <% end -%>
     <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
