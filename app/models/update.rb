@@ -109,7 +109,7 @@ class Update < ActiveRecord::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
-    return unless user.admin? # testing
+    # return unless user.admin? # testing
     updates = Update.all(:limit => 100, :conditions => [
       "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
     updates.delete_if do |u| 

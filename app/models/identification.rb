@@ -13,7 +13,7 @@ class Identification < ActiveRecord::Base
   
   after_create  :update_observation, 
                 :increment_user_counter_cache, 
-                :notify_observer, 
+                # :notify_observer, 
                 :expire_caches
                 
   after_save    :update_obs_stats, 
