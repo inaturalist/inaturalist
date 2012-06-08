@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   attr_accessor   :make_photo_licenses_same
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same]
   
-  # new way
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false

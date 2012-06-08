@@ -977,6 +977,19 @@ class Observation < ActiveRecord::Base
     true
   end
   
+  def self.set_quality_grade(id)
+    return unless observation = Observation.find_by_id(id)
+    observation.set_quality_grade(:force => true)
+    observation.save
+    if observation.quality_grade_changed?
+      CheckList.send_later(:refresh_with_observation, observation.id, 
+        :taxon_id => observation.taxon_id, 
+        :skip_update => true,
+        :dj_priority => 1)
+    end
+    observation.quality_grade
+  end
+  
   def get_quality_grade
     research_grade? ? RESEARCH_GRADE : CASUAL_GRADE
   end
