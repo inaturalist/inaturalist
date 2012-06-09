@@ -1,5 +1,4 @@
 class Post < ActiveRecord::Base
-  acts_as_activity_streamable
   has_subscribers
   belongs_to :parent, :polymorphic => true
   belongs_to :user

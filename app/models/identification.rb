@@ -1,6 +1,4 @@
 class Identification < ActiveRecord::Base
-  acts_as_activity_streamable
-  
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon

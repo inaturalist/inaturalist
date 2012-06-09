@@ -1,6 +1,4 @@
 class Observation < ActiveRecord::Base
-  acts_as_activity_streamable :batch_window => 30.minutes, 
-    :batch_partial => "observations/activity_stream_batch"
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
@@ -711,7 +709,6 @@ class Observation < ActiveRecord::Base
       # If the owner doesn't have an identification for this obs, make one
       owners_ident = self.identifications.build(:user => user, :taxon => taxon, :observation => self)
       owners_ident.skip_observation = true
-      owners_ident.skip_update = true
     end
     
     update_stats(:skip_save => true)
@@ -750,7 +747,6 @@ class Observation < ActiveRecord::Base
     ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :dj_priority => 1)
-    # ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -767,7 +763,6 @@ class Observation < ActiveRecord::Base
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
       :new => id_was.blank?,
-      :skip_update => true,
       :dj_priority => 1)
     true
   end
@@ -984,7 +979,6 @@ class Observation < ActiveRecord::Base
     if observation.quality_grade_changed?
       CheckList.send_later(:refresh_with_observation, observation.id, 
         :taxon_id => observation.taxon_id, 
-        :skip_update => true,
         :dj_priority => 1)
     end
     observation.quality_grade
