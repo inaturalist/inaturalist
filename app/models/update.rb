@@ -83,23 +83,29 @@ class Update < ActiveRecord::Base
   end
   
   def self.email_updates
-    Rails.logger.info "[INFO #{Time.now}] start daily updates emailer"
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
     email_count = 0
     user_ids = Update.all(
         :select => "DISTINCT subscriber_id",
-        :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact
+        :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact.uniq.sort
     delivery_times = []
+    process_start_time = Time.now
+    msg = "[INFO #{Time.now}] start daily updates emailer, #{user_ids.size} users"
+    Rails.logger.info msg
+    puts msg
     user_ids.each do |subscriber_id|
       delivery_start_time = Time.now
+      Rails.logger.info "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
       if email_updates_to_user(subscriber_id, start_time, end_time)
         delivery_times << (Time.now - delivery_start_time)
         email_count += 1
       end
     end
-    avg_time = delivery_times.sum / delivery_times.size
-    Rails.logger.info "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - end_time} s, avg: #{avg_time}"
+    avg_time = delivery_times.size == 0 ? 0 : delivery_times.sum / delivery_times.size
+    msg = "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - process_start_time} s, avg: #{avg_time}"
+    Rails.logger.info msg
+    puts msg
   end
   
   def self.email_updates_to_user(subscriber, start_time, end_time)
