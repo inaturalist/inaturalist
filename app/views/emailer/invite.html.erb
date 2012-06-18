@@ -40,14 +40,13 @@
 
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">    
-    <%= link_to "Back to browsing people", 
+    <%= link_to t(:back_to_browsing_people), 
                 people_path,
                 :class => 'back crumb' %>
   </span>
-  <h2>Invite Your Friends to Join iNaturalist</h2>
+  <h2><%=t :invite_your_friends %></h2>
   <p class="description">
-    Help make iNaturalist a bigger, better community by inviting your friends
-    to join!
+    <%=t :invite_your_friends_description %>
   </p>
 </div>
 
@@ -55,44 +54,42 @@
   <% form_tag(:action => 'invite_send') do %>
   
   <div class="clear field">
-    <%= label :email, :sender_name, 'From' %>
+    <%= label :email, :sender_name, t(:from) %>
     <%= text_field(:email, :sender_name, :value => current_user.login, :class => 'text') %>
   </div>
   
   <div class="clear field">
-    <%= label :email, :addresses, 'Email addresses to receive invites' %>
+    <%= label :email, :addresses, t(:email_addresses_to_receive_invites) %>
     <div class="description">
-      Comma-separated email addresses, limit 60 every 30 days.
+      <%=t :email_addresses_description %>
     </div>
     <%=  text_area(:email, :addresses) %>
   </div>
   
   <div class="clear field">
-    <%= label :email, :personal_message, 'Personal message' %>
+    <%= label :email, :personal_message, t(:personal_message) %>
     <div class="description">
-      Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
+      <%=t :personal_message_description %>
     </div>
     <%=  text_area(:email, :personal_message) %>
   </div>
   
-  <%= submit_tag("Send the Invites", :class => 'default button') %><br />
+  <%= submit_tag(t(:send_the_invites), :class => 'default button') %><br />
     
   <% end %>
 </div>
 
 <div class="last column span-12">
-  <label>Preview your message</label>
+  <label><%=t :preview_your_message %></label>
   <div id="preview" class="box">
-    <p>Hi,</p>
+    <p><%=t :hi %></p>
     
     <p id="preview_personal_message">
-      I'd like you to join me on <%= APP_CONFIG[:site_name] %>, a website where you can
-      record your observations of plants and animals, keep track of your life
-      list, and learn about the natural world!
+      <%= t(:preview_personal_message, :site=> "#{APP_CONFIG[:site_name]}" ) %>
     </p>
-    
+   
     <p>
-      You can sign up for a free iNaturalist account at
+      <%=t :you_can_sign_free_at %>
     </p>
     
     <p>
@@ -100,9 +97,10 @@
     </p>
     
     <p>
-      If you want, you can check out my observations at
-      <%= link_to observations_by_login_url(current_user.login), 
-        observations_by_login_url(current_user.login) %>.
+
+    <%=t :check_out_my_observations_at %>
+    <%= link_to observations_by_login_url(current_user.login), 
+      observations_by_login_url(current_user.login) %>.
     </p>
     
     <p>
