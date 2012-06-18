@@ -1,7 +1,7 @@
 <%- content_for(:title) do -%>
-  Facebook Options
+  <%=t :facebook_options %>
 <%- end -%>
-<h2>Your Facebook Account Information</h2>
+<h2><%=t :facebook_account_information %></h2>
 
 <div class="column span-13">
 <% if @user.facebook_identity -%>
@@ -11,31 +11,22 @@
     <% end -%>
   </p>
   <p>
-    Your iNaturalist account is currently linked to your Facebook account.
+    <%=t :linked_facebook %>
   </p>
   <p>
-    Keeping your iNaturalist account linked to your Facebook account allows you to
-    add multiple photos to your observations.  Of course, if you ever want
-    iNaturalist and Facebook to break up, we won't stop you, you just won't be
-    able to add photos. Sometimes this might be for the best, like if you create
-    a new Facebook account that you want to link iNaturalist to.
-  </p>
+    <%=t :linked_facebook_description %>
+     </p>
 <% else -%>
-<h3>Your iNaturalist account is not linked to your Facebook account :(</h3>
+<h3><%=t :not_linked_facebook %></h3>
 <p class="description">
-  To connect Facebook with iNat, click the link on the right and sign into
-  Facebook.com. 
+<%=t :linked_facebook_howto %>
 </p>
 <p class="description">
-  We will never ask you for your Facebook password (but Facebook might, check the
-  url that the button sends you and make sure it's Facebook.com). We will also
-  won't change your Facebook data unless you want us to. We're the good guys!
+<%=t :linked_facebook_password %>
 </p>
 
 <p class="description">
-  Also, keep in mind that if you log in to iNat via Facebook, we will
-  automatically re-link your iNat and Facebook accounts. Seems reasonable that
-  if you use Facebook you'll want to be able to import Facebook photos, right?
+<%=t :linked_facebook_automaticaly %>
 </p>
 <% end -%>
 
@@ -60,14 +51,14 @@
 <div class="column span-10 last">
 <p>
 <% if @user.facebook_identity %>
-  <%= link_to 'Unlink your Facebook and iNaturalist Accounts', 
+  <%= link_to t(:hate_me_facebook), 
     omniauth_disconnect_path('facebook'), :class => 'delete button', 
     :style=>'font-size:13px;', :method => 'delete' %>
 <% else %>
-  <%= link_to 'Yes, take me to Facebook!', "/auth/facebook", 
+  <%= link_to t(:take_me_facebook), "/auth/facebook", 
               :onclick => "$('.facebook-button').toggle();", :class => 'facebook-button default button' %>
   <div class="facebook-button" style="display:none;">
-    <span class="loading status">Connecting to Facebook...</span>
+    <span class="loading status"><%=t :connecting_to_facebook %></span>
   </div>
 <% end %>
 </p>
