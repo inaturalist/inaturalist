@@ -1,5 +1,5 @@
 <% content_for(:title)  do %>
-Identifications by <%= h @login %>
+  <%= t(:identifications_by, :user=> @login) %>
 <% end %>
 <% content_for(:extracss) do %>
 <%= stylesheet_link_tag 'identifications' %>
@@ -39,8 +39,8 @@ Identifications by <%= h @login %>
 <div id="identifications" class="column span-18">
   <% if @identifications.empty? -%>
     <div id="no_content" class="readable description">
-      <%= (logged_in? && @selected_user.id == current_user.id) ? "You haven't" : "#{@login} hasn't" %>
-      added identifications to anyone's observations.
+      <%= (logged_in? && @selected_user.id == current_user.id) ? t(:you_havent) : t(:user_hasnt, :user=>"#{@login}") %>
+      <%=t :added_identifications_to %> 
     </div>
   <% end -%>
   <% for identification in @identifications %>
@@ -54,18 +54,18 @@ Identifications by <%= h @login %>
 
 <div class="last column span-6">
   <div class="box">
-    <h3>Stats</h3>
+    <h3><%=t :stats %></h3>
     <ul>
       <li>
         <span class="count"><%= @identifications.total_entries %></span>
-        <label>IDs made for others</label>
+        <label><%=t :ids_made_for_others %></label>
       </li>
       <% if @helpful_id_count -%>
         <li>
           <span class="count">
             <%= number_to_percentage(@helpful_id_count * 1.0 / @identifications.total_entries, :precision => 0) %>
           </span>
-          <label>helped the observer make their final ID (i.e. they were made before the final ID and they match it)</label>
+          <label><%=t :helped_the_observer_make %></label>
         </li>
       <% end -%>
     </ul>
