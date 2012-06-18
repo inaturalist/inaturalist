@@ -2,21 +2,21 @@
   <%= @title = pluralize(@invited.size, "invite") + " sent" %>
 <%- end -%>
 
-<%= link_to "Back to people", people_path, :class => "back crumb" %>
+<%= link_to t(:back_to_people), people_path, :class => "back crumb" %>
 <h2><%= @title %></h2>
 
 <% if @invited.size > 0 -%>
-  <h3>Sent invites to</h3>
+  <h3><%=t :send_invites_to %></h3>
   <div class="success">
     <%= @invited.join(', ') %>
   </div>
 <% end -%>
 
 <% if @not_invited.size > 0 || @existing_users.size > 0 || @existing_invites.size > 0 -%>
-  <h3>Did not send invites to the following because...</h3>
+  <h3><%=t :did_not_send_invitations_because %></h3>
   
   <% if @existing_users.size > 0 -%>
-    <h4>...they already have iNat accounts</h4>
+    <h4> <%=t :they_already_have_iNat_accounts %></h4>
     <div class="box clear">
       <% for user in @existing_users %>
         <div class="column span-7">
@@ -33,14 +33,14 @@
   <% end -%>
   
   <% if @existing_invites.size > 0 -%>
-    <h4>...they've already been invited</h4>
+    <h4><%=t :they_have_been_invited %></h4>
     <div class="quiet box">
       <%= @existing_invites.map(&:invite_address).join(', ') %>
     </div>
   <% end -%>
   
   <% if @not_invited.size > 0 -%>
-    <h4>...you're over your monthly quota of 60 invites</h4>
+    <h4><%=t :you_are_over_your_invites_quota %></h4>
     <div class="quiet box">
       <%= @not_invited.join(', ') %>
     </div>
@@ -48,9 +48,9 @@
 <% end -%>
 
 <div class="description">
-  <%= link_to "Back to people", people_path, :class => "back crumb" %>
+  <%= link_to t(:back_to_people), people_path, :class => "back crumb" %>
   <%- if @not_invited.size == 0 %>
     or
-    <%= link_to "Invite more", emailer_invite_path, :class => "readmore" %>
+    <%= link_to t(:invite_more), emailer_invite_path, :class => "readmore" %>
   <% end %>
 </div>
