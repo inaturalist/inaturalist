@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Getting Started" %>
+  <%= @title = t(:getting_started) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "help", "jquery/ui.tabs.css" %>
@@ -14,7 +14,7 @@
 <%- end -%>
 <div id="pagheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo; Back to Help", help_path %></strong>
+    <strong><%= link_to "#{raw t(:back_to_help)}", help_path %></strong>
   </div>
   <h2><%= @title %></h2>
 </div>
@@ -23,104 +23,88 @@
 
 <div class="last column span-20">
   <p>
-    Hi and welcome to iNat! This guide will walk you through some of the main
-    features of the site.
+  <%=t :hi_and_welcome_to %> 
   </p>
   
   <div id="tabs" class="ui-tabs">
     <ul>
-      <li><a href="#observations"><span>Observations</span></a></li>
-      <li><a href="#photos"><span>Photos</span></a></li>
-      <li><a href="#lists"><span>Lists</span></a></li>
-      <li><a href="#species"><span>Species</span></a></li>
+      <li><a href="#observations"><span><%=t :observations %></span></a></li>
+      <li><a href="#photos"><span><%=t :photos %></span></a></li>
+      <li><a href="#lists"><span><%=t :lists %></span></a></li>
+      <li><a href="#species"><span><%=t :species %></span></a></li>
     </ul>
     
     <div id="observations">
-      <h3>Observations</h3>
+      <h3><%=t :observations %></h3>
       <p>
-        Observations lie at the core of iNaturalist. An observation is basically a
-        species you observed, a time, and a place.
+        <%=t :observations_lie_at_the_core %>
       </p>
 
       <div class="clear">
         <%= image_tag "help/add_obs.jpg", :alt => "drop-down menu", :class => "right" %>
-        <h4>Adding Observations</h4>
+        <h4><%=t :adding_observations %></h4>
         <p>
-          You can always add new observations by clicking the little arrow on the
-          upper right of the page and using the drop down menu.
+          <%=t :you_can_always_add_new %>
         </p>
       </div>
 
       <p>
-        The observation form looks like this:
+        <%=t :the_observation_form_looks %>
       </p>
 
       <%= image_tag "help/add_obs_form.jpg", :alt => "observation form" %>
 
       <p>
-        It's important that you click
-        <a class="button" style="display: inline-block; float: none; margin: 0 5px">Lookup</a>
-        and choose a matching taxon from the list.  If you don't end up with something like
+        <%=t :its_important_that_you %>click
+        <a class="button" style="display: inline-block; float: none; margin: 0 5px"><%=t :lookup %></a>
+        <%=t :and_choose_a_matching_taxon %> 
         <%= image_tag "help/matched_taxon.jpg", :alt => "matched taxon", :style => "vertical-align: middle" %>, your
-        observation won't get associated with other observations of this species,
-        and your life list won't get updated.
+       <%=t :your_observation_wont_get %> 
       </p>
 
       <p>
-        If iNat can't find taxon matching the name you provided in its database, you'll see something like
+        <%=t :if_inat_cant_find_taxon %> 
       </p>
 
       <%= image_tag "help/unmatched_taxon.jpg", :style => "margin: 0 auto 10px; display: block;" %>
 
       <p>
-        If you really don't know what
-        you saw, that's fine! If you do know, you should click
-        <strong class="ui">Search external name providers</strong>. This will ask iNat to
-        search some external taxonomic databases for the name and try to import
-        anything it finds.
+        <%= raw t(:if_you_really_dont_know_what) %>
       </p>
 
       <p>
-        Those are the basics of adding observations! There are plent of other
-        things you can do, like searching and filtering your observations or
-        editing them as a batch, but they should be pretty self-explanatory.
+        <%=t :those_are_the_basics_of %>
       </p>
-      
+
       <p>
-        <%= link_to_function "Photos &rarr;", "$('#tabs').tabs('select', 'photos')", :class => "right" %>
-        <%= link_to "Start adding observations", new_observation_path, :class => "readmore", :rel => "nofollow" %>
+        <%= link_to_function t(:photos_next) , "$('#tabs').tabs('select', 'photos')", :class => "right" %>
+        <%= link_to t(:start_adding_observations), new_observation_path, :class => "readmore", :rel => "nofollow" %>
       </p>
     </div>
 
     <div id="photos">
-      <%= image_tag "help/photo_selector.jpg", :alt => "The iNaturalist photo selector", :class => "right" %>
-      <h3>Photo Integration</h3>
+      <%= image_tag "help/photo_selector.jpg", :alt => t(:photo_selector), :class => "right" %>
+      <h3><%=t :photo_integration %></h3>
       
       <p>
-        We don't host photos at iNat, but we do allow you to associate your
-        observations with photos from <a href="http://www.flickr.com/">Flickr</a> 
-        or <a href="http://picasaweb.google.com/">Picasa</a>. If you use 
-        either of those services, you can link your accounts and always see a
-        list of your most recent photos when adding new observations.
+         <%= raw t( :we_dont_host_photos_at) %>
       </p>
       
       <p>
-        <%= link_to "Link your Flickr account", {:controller => "flickr" , :action => "options"}, :class => "readmore" %>
+        <%= link_to t(:link_your_flickr_account), {:controller => "flickr" , :action => "options"}, :class => "readmore" %>
       </p>
       <p>
-        <%= link_to "Link your Picasa account", {:controller => "picasa" , :action => "options"}, :class => "readmore" %>
+        <%= link_to t(:link_your_picasa_account), {:controller => "picasa" , :action => "options"}, :class => "readmore" %>
       </p>
       
-      <h4>Flickr Tagger</h4>
+      <h4><%=t :flickr_tagger %></h4>
       
       <p>
-        iNat can also help you add taxonomic tags to your Flickr photos using
-        the <%= link_to "Taxonomic Tags for Flickr", :controller => "taxa", :action => "flickr_tagger" %>
-        tool. This tool will add tags to your photos for all the common and
-        scientific names of the taxon you observed, and the names of its
-        ancestor taxa. So if your observation is of a
+        <%=t :inat_can_also_help_you_add %>
+        <%= link_to "Taxonomic Tags for Flickr", :controller => "taxa", :action => "flickr_tagger" %>
+        <%=t :this_tool_will_add_tags %>
         <span class="species taxon_links"><%= link_to "Spring Peeper", "/taxa/Spring_Peeper", :class => "taxon Amphibia" %></span>,
-        you would get the following tags:
+        <%=t :you_would_get_the %>
       </p>
       
       <code>
@@ -145,18 +129,11 @@
       </code>
       
       <p>
-        Tags like <code>taxonomy:binomial=Pseudacris crucifer</code> are
-        <a href="http://www.flickr.com/help/tags#613430">machine tags</a>. 
-        They help engineers programmatically make sense of your tags, and are
-        required by some Flickr groups like the
-        <a href="http://www.flickr.com/groups/encyclopedia_of_life/">Encyclopedia of Life Images</a>
-        group.
+      <%=t :tags_like_taxonomy_binomial %>
       </p>
       
       <p>
-        You can also add Flickr tags when editing an observation, or when
-        batch editing your observations.
-      </p>
+       <%=t :you_can_also_add_flickr %>      </p>
       
       <p>
         <%= link_to_function "Lists &rarr;", "$('#tabs').tabs('select', 'lists')", :class => "right" %>
@@ -166,15 +143,13 @@
 
     <div id="lists">
       <%= image_tag "help/list.jpg", :class => "right" %>
-      <h3>Lists</h3>
+      <h3><%=t :lists %></h3>
 
       <p>
-        Lists are lists of species (or other taxa), like a life list of all the
-        birds you've seen or a list of your favorite salamanders.  They are 
-        <em>not</em> lists of observations.
+      <%= raw t(:lists_are_lists_of_species) %>
       </p>
 
-      <p>Lists come in three varieties:</p>
+      <p><%=t :lists_come_in_three %>:</p>
       <dl>
         <dt>Lists</dt>
         <dd>
@@ -183,82 +158,54 @@
           seen at your bird feeder.
         </dd>
 
-        <dt>Life Lists</dt>
-        <dd>
-          Life lists are automatically filled in based on your observations
-          and a set of rules, and they can also be added to manually. At the
-          moment, the only rule we support is whether or not a species in some
-          higher level taxon. So you could make a life list of
-          all the mammals you've seen by associating with the taxon 
-          <a href="/taxa/Mammalia">Mammalia</a>. Everyone on iNat has one life
-          list by default which records all the taxa they've seen.
-        </dd>
-
-        <dt>Check Lists</dt>
-        <dd>
-          Check lists represent all the taxa that occur within a particular
-          <%= link_to "place", :controller => "places" %>. Unlike ordinary lists
-          and life lists, check lists can be edited by anyone on iNat. Since
-          places can contain other places (e.g. Connecticut is a state in the
-          USA), check lists automatically get updated by changes to contained
-          places. So if I add "Northern Cardinal" to the checklist for
-          Connecticut, it will get added to the USA checklist as well. Places can
-          also have multiple checklists for different taxa (e.g. "Plants of
-          Australia") that use taxonomic rules like life lists.
-        </dd>
+        <%=t :dt_lists %>
+        <%= raw t(:dt_life_lists) %>
+        <%= raw t(:dt_check_lists) %>
       </dl>
       
       <p class="meta readable">
-        <%= link_to_function "Species &rarr;", "$('#tabs').tabs('select', 'species')", :class => "right" %>
-        <%= link_to "Start a new list", new_list_path, :class => "readmore", :rel => "nofollow" %>
+        <%= link_to_function t(:species) +" &rarr;", "$('#tabs').tabs('select', 'species')", :class => "right" %>
+        <%= link_to t(:start_a_new_list), new_list_path, :class => "readmore", :rel => "nofollow" %>
         <% if logged_in? -%>
-          &nbsp;or&nbsp; <%= link_to "View your life list", current_user.life_list, :class => 'readmore' %>
+          &nbsp;or&nbsp; <%= link_to t(:view_your_life_lists), current_user.life_list, :class => 'readmore' %>
         <% end -%>
       </p>
     </div>
 
     <div id="species">
-      <h3>Species and Other Taxa on iNat</h3>
+      <h3><%=t :species_and_other_taxa %></h3>
       
       <p>
-        iNaturalist matinains a big database of species and other taxa, and we
-        have individual pages for each one, showing Flickr photos,
-        observations, our classification, and a description from Wikipedia.
-        Here's the page for
-        <span class="species taxon_links"><%= link_to "Homo sapiens", "/taxa/Homo_sapiens", :class => "sciname taxon Mammalia" %></span>.
+      <%=t :inaturalist_matinains_a_big %>
+      <span class="species taxon_links"><%= link_to "Homo sapiens", "/taxa/Homo_sapiens", :class => "sciname taxon Mammalia" %></span>.
       </p>
       
-      <h4>Names</h4>
+      <h4><%=t :names %></h4>
 
       <p>
-        We import our taxonomic data from some external taxonomic databases,
-        include the Catalogue of Life and uBio. A few of our taxa have also
-        been entered manually, and any user can add new names for taxa.  If 
-        you can't find a taxon or a name, try
-        <%= link_to "searching for it", search_taxa_path %>.  If your search 
-        comes up empty, you should see some search boxes to repeat the search
-        through our external name providers:
+      <%=t :we_import_our_taxonomic_data %> 
+      <%= link_to "searching for it", search_taxa_path %>.
+      <%=t :if_your_search_comes_up %>:
       </p>
       
       <%= image_tag "help/search_external.jpg", :style => "margin: 0 auto 10px; display: block;" %>
       
       <p>
-        If they know about the name, iNat will import and save the data.
+        <%=t :if_they_know_about %> 
       </p>
       
-      <h4>Help Out!</h4>
+      <h4><%=t :help_out! %></h4>
       
       <p>
-        You can help make our species pages more useful by adding data!
-        Here are a couple ways you can help:
+       <%=t :you_can_help_make_our %>:
       </p>
       
       <ul class="readable">
-        <li>search for new taxa</li>
-        <li>add common names for existing taxa</li>
-        <li>add colors</li>
-        <li>choose good default photos from the pool of Creative Commons photos on Flickr</li>
-        <li>add taxa to places</li>
+        <li><%=t :search_for_new_taxa %></li>
+        <li><%=t :add_common_names_for %></li>
+        <li><%=t :add_colors %></li>
+        <li><%=t :choose_good_default_photos %></li>
+        <li><%=t :add_taxa_to_places %></li>
       </ul>
     </div>
     
