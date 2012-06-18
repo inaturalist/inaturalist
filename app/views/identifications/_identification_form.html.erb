@@ -22,11 +22,11 @@
         :id => "new_identification-#{observation.id}-loading", 
         :class => 'loading inlineblock', 
         :style => 'display: none') %>
-      <%= f.submit('Save', :class => 'default button inlineblock', :tabindex => observation.id+1) %>
+      <%= f.submit(t(:save), :class => 'default button inlineblock', :tabindex => observation.id+1) %>
     </div>
   <% end %>
 <% else %>
-  <%= link_to "Sign in", login_path %>
-  or <%= link_to "sign up", signup_path %>
-  to add IDs.
+  <%= link_to t(:sign_in), login_path %>
+  <%=t :or %> <%= link_to t(:sign_up), signup_path %>
+  <%=t :to_add_ids %>
 <% end %>

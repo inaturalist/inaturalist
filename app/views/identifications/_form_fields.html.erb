@@ -1,7 +1,7 @@
 <%- show_body ||= false -%>
 <%- body_label ||= 'Remarks <span class="small description">(optional)</span>' -%>
   <div class="field species_guess_field">
-    <label for="identification_species_guess-<%= identification.observation_id %>">Species</label>
+    <label for="identification_species_guess-<%= identification.observation_id %>"><%=t :species%></label>
     <%= text_field_tag(:species_guess, '', 
       :size => '', 
       :class => 'text species_guess',
