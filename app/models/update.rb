@@ -11,9 +11,9 @@ class Update < ActiveRecord::Base
   
   NOTIFICATIONS = %w(create change activity)
   
-  named_scope :unviewed, :conditions => "viewed_at IS NULL"
-  named_scope :activity, :conditions => {:notification => "activity"}
-  named_scope :activity_on_my_stuff, :conditions => "resource_owner_id = subscriber_id AND notification = 'activity'"
+  scope :unviewed, where("viewed_at IS NULL")
+  scope :activity, where(:notification => "activity")
+  scope :activity_on_my_stuff, where("resource_owner_id = subscriber_id AND notification = 'activity'")
   
   def set_resource_owner
     self.resource_owner = resource && resource.respond_to?(:user) ? resource.user : nil

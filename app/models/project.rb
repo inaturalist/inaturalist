@@ -30,22 +30,18 @@ class Project < ActiveRecord::Base
   validates_length_of :title, :within => 1..85
   validates_presence_of :user_id
   
-  named_scope :featured, {:conditions => "featured_at IS NOT NULL"}
-  named_scope :near_point, lambda {|latitude, longitude|
+  scope :featured, where("featured_at IS NOT NULL")
+  scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f
-    {
-      :joins => [
-        "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
-        "INNER JOIN places ON places.id = rules.operand_id"
-      ],
-      :conditions => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude})) < 5",
-      :order => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))"
-    }
+    join(
+      "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
+      "INNER JOIN places ON places.id = rules.operand_id"
+    ).
+    where("ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
+    order("ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
-  named_scope :from_source_url, lambda {|url|
-    {:conditions => {:source_url => url}}
-  }
+  scope :from_source_url, lambda {|url| where(:source_url => url) }
   
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },

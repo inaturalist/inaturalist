@@ -32,7 +32,6 @@ class Identification < ActiveRecord::Base
   scope :for, lambda {|user|
     includes(:observation).where("observation.user_id = ?", user)
   }
-  
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
   
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}

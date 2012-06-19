@@ -38,5 +38,6 @@ config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
   config.action_dispatch.best_standards_support = :builtin
   
   config.active_support.deprecation = :log
+  # config.middleware.use MailView::Mapper, [EmailerPreview] # TODO maybe include this in Gemfile
 end
 
