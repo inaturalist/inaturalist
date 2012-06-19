@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
   }
-  named_scope :curators, :include => [:roles], :conditions => "roles.name = 'curator'"
+  scope :curators, includes(:roles).where("roles.name = 'curator'")
   
   def icon_url_provided?
     !self.icon_url.blank?
