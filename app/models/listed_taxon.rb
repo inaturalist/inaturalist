@@ -57,7 +57,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   }
   
-  named_scope :confirmed, :conditions => "last_observation_id IS NOT NULL"
+  scope :confirmed, where("last_observation_id IS NOT NULL")
   
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
@@ -108,7 +108,7 @@ class ListedTaxon < ActiveRecord::Base
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
-  validate_on_create :not_on_a_comprehensive_check_list
+  validate :not_on_a_comprehensive_check_list, :on => :create
   validate :absent_only_if_not_confirming_observations
   validate :preserve_absense_if_not_on_a_comprehensive_list
   

@@ -125,13 +125,13 @@ class Place < ActiveRecord::Base
     where("ST_Intersects(place_geometries.geom, taxon_ranges.geom)")
   }
   
-  scope :place_type, lambda{|place_type|
+  scope :place_type, lambda {|place_type|
     place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
     place_type = place_type.to_i
     where(:place_type => place_type)
   }
   
-  scope :place_types, lambda{|place_types|
+  scope :place_types, lambda {|place_types|
     place_types = place_types.map do |place_type|
       place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
       place_type.to_i

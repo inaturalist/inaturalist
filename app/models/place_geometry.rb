@@ -3,7 +3,7 @@
 # memory every time you want to work with a place is expensive.
 class PlaceGeometry < ActiveRecord::Base
   belongs_to :place
-  named_scope :without_geom, {:select => (column_names - ['geom']).join(', ')}
+  scope :without_geom, select((column_names - ['geom']).join(', '))
   
   after_save :refresh_place_check_list
   

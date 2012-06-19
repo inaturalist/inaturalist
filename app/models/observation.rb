@@ -368,11 +368,11 @@ class Observation < ActiveRecord::Base
   scope :in_range, where(:out_of_range => false)
   scope :license, lambda {|license|
     if license == 'none'
-      where "observations.license IS NULL"
+      where("observations.license IS NULL")
     elsif LICENSE_CODES.include?(license)
-      where :license => license
+      where(:license => license)
     else
-      where "observations.license IS NOT NULL"
+      where("observations.license IS NOT NULL")
     end
   }
   

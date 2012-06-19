@@ -13,7 +13,7 @@ class ProjectUser < ActiveRecord::Base
   ROLES = %w(curator manager)
   ROLES.each do |role|
     const_set role.upcase, role
-    named_scope role.pluralize, :conditions => {:role => role}
+    scope role.pluralize, where(:role => role)
   end
   
   def prevent_owner_from_leaving
