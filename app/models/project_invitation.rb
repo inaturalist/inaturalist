@@ -4,7 +4,7 @@ class ProjectInvitation < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :project_id, :observation_id, :user_id
   validate :invited_by_project_member?, :on => :create
-  after_create :deliver_notification
+  after_destroy :expire_caches
   validate :must_not_be_a_project_observation
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already invited to this project"
   notifies_owner_of :observation, :notification => "activity"
