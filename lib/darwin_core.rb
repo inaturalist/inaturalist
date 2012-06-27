@@ -254,11 +254,11 @@ module DarwinCore
       end
 
       def verbatimEventDate
-        observed_on_string unless observed_on_string.blank?
+        dwc_filter_text(observed_on_string) unless observed_on_string.blank?
       end
 
       def verbatimLocality
-        place_guess unless place_guess.blank?
+        dwc_filter_text(place_guess) unless place_guess.blank?
       end
 
       def decimalLatitude
@@ -341,7 +341,7 @@ module DarwinCore
       protected
 
       def dwc_filter_text(s)
-        s.to_s.gsub(/\r\n|\n/, " ")
+        s.to_s.gsub(/\r\n|\n|\t/, " ")
       end
     end
   end
