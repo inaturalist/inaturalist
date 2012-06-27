@@ -311,7 +311,8 @@ class User < ActiveRecord::Base
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
   def self.create_from_omniauth(auth_info)
-    email = (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"])
+    email = auth_info["user_info"].try(:[], "email")
+    email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
     if email && u = User.find_by_email(email)
       u.add_provider_auth(auth_info)
