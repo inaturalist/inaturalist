@@ -151,15 +151,14 @@ class FlickrController < ApplicationController
   #   index:    index to use if these inputs are part of a form subcomponent
   #             (makes names like flickr_photos[:index][])
   def photo_fields
-    @flickr = get_net_flickr
+    @flickr = get_flickraw
     search_params = {}
     
     # If this is for a user, set the auth token
     case params[:context]
     when 'user'
-      @flickr.auth.token = current_user.flickr_identity.token
-      search_params['user_id'] = @user.flickr_identity.flickr_user_id
-      
+      search_params[:auth_token] = current_user.flickr_identity.token
+      search_params[:user_id] = current_user.flickr_identity.flickr_user_id
     # Otherwise, make sure we're only searching CC'd photos
     else
       search_params['license'] = '1,2,3,4,5,6'
@@ -182,7 +181,9 @@ class FlickrController < ApplicationController
       search_params['extras'] = 'date_upload,owner_name'
       search_params['sort'] = 'relevance'
       begin
-        @photos = @flickr.photos.search(search_params)
+        @photos = @flickr.photos.search(search_params).map do |fp|
+          FlickrPhoto.new_from_flickraw(fp, :user => current_user, :skip_sizes => true)
+        end
       rescue Net::Flickr::APIError => e
         raise e unless e.message =~ /Invalid auth token/
         @reauthorization_needed = true
