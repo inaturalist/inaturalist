@@ -192,7 +192,7 @@
         new_observation_path(:id_please => true), :class => "default button", 
         :rel => 'nofollow' %>
       <%= link_to_function("Filters", 
-        "$('#filters').toggle(); $(this).toggleClass('open'); $('#filters:visible input[name=filters_open]').val(true); $('#filters:hidden input[name=filters_open]').val(false);", 
+        "toggleFilters(this)",
         :id => 'filters_button', 
         :class => "inter#{' open' if @filters_open}") %>
     </div>

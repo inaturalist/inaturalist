@@ -507,7 +507,7 @@ class Observation < ActiveRecord::Base
     end
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
-    scope = scope.in_place(params[:place_id]) if params[:place_id]
+    scope = scope.in_place(params[:place_id]) unless params[:place_id].blank?
     scope = scope.on(params[:on]) if params[:on]
     scope = scope.created_on(params[:created_on]) if params[:created_on]
     scope = scope.out_of_range if params[:out_of_range] == 'true'

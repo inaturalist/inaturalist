@@ -49,15 +49,22 @@
     
     // Setup the autocompleter
     $(input).autocomplete(url, autocompleteOptions).result(function(event, data, formatted) {
-      var placeJSON = eval('(' + data[0] + ')');
-      $.fn.placeAutocomplete.choosePlace(input, placeJSON, choosePlaceOptions);
-      return false;
-    });
-    $(input).change(function() {
-      if ($.trim($(this).val()) == '') {
-        $(placeIdField).val('');
-      };
-    });
+      var placeJSON = eval('(' + data[0] + ')')
+      $.fn.placeAutocomplete.choosePlace(input, placeJSON, choosePlaceOptions)
+      return false
+    })
+    
+    // Set existing
+    if ($(placeIdField).val() && $(input).attr('data-json')) {
+      var placeJSON = eval('(' + $(input).attr('data-json') + ')')
+      $.fn.placeAutocomplete.choosePlace(input, placeJSON, choosePlaceOptions)
+    } else {
+      $(input).change(function() {
+        if ($.trim($(this).val()) == '') {
+          $(placeIdField).val('')
+        }
+      })
+    }
     
     // Prevent ENTER
     $(input).keypress(function(e) {

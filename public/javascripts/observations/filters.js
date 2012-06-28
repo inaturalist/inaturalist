@@ -41,6 +41,9 @@ function showFilters(link, options) {
   if ($('#filters .simpleTaxonSelector').length == 0) {
     $('#filters input[name=taxon_name]').simpleTaxonSelector()
   }
+  if ($('#filters .ac_input').length == 0) {
+    $('#filters input[name=place_name]').placeAutocomplete()
+  }
 }
 
 function hideFilters(link, options) {

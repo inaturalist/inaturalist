@@ -39,9 +39,7 @@
 <%- content_for(:extrajs) do -%>
   <%= gmap_include_tag %>
   <%= javascript_include_tag 'inaturalist/map2', 
-                             'jquery/plugins/jquery.url.packed.js',
-                             'jquery/plugins/jquery.autocomplete.min.js',
-                             'jquery/plugins/inat/place_autocomplete.js' %>
+                             'jquery/plugins/jquery.url.packed.js' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#merge_target_name').placeAutocomplete('<%= url_for(:action => "autocomplete") %>', {

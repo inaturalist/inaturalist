@@ -33,9 +33,6 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag "jquery/plugins/jquery.autocomplete.min",
-                             "jquery/plugins/inat/place_autocomplete" %>
-  
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#placechooser input[type=text]').placeAutocomplete('/places/autocomplete', {
