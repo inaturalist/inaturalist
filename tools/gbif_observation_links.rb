@@ -3,7 +3,11 @@ require 'trollop'
 
 opts = Trollop::options do
     banner <<-EOS
+Create ObservationLinks for observations that have been integrated into GBIF.
 
+Usage:
+
+  script/runner tools/gbig_observation_links.rb
 
 where [options] are:
 EOS
