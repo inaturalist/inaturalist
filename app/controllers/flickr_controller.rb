@@ -179,7 +179,7 @@ class FlickrController < ApplicationController
       search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
       search_params['extras'] = 'date_upload,owner_name'
-      search_params['sort'] = 'relevance'
+      search_params['sort'] = 'relevance' unless search_params[:user_id]
       begin
         @photos = @flickr.photos.search(search_params).map do |fp|
           FlickrPhoto.new_from_flickraw(fp, :user => current_user, :skip_sizes => true)
