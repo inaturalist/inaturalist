@@ -21,43 +21,43 @@
 <% end -%>
 
 <div id="occurrence">
-  <label>Occurrence status:</label>
+  <label><%=t :occurrence_status %>:</label>
   <%= listed_taxon.occurrence_status || "unknown" %>
   <% if editable -%>
-    <%= link_to "edit", listed_taxon, :class => "small" %>
+    <%= link_to t(:edit), listed_taxon, :class => "small" %>
   <% end -%>
 </div>
 
 <div class="establishment stacked">
-  <label>Establishment means:</label>
+  <label><%=t :establishment_means %>:</label>
   <%= listed_taxon.establishment_means || "unknown" %>
   <% if editable -%>
-    <%= link_to "edit", listed_taxon, :class => "small" %>
+    <%= link_to t(:edit), listed_taxon, :class => "small" %>
   <% end -%>
 </div>
 
 <div class="ui description">
-  Added 
+  <%=t :added %> 
   <% if listed_taxon.user %>
-    by 
+    <%=t :by %> 
     <%= link_to you_or_login(listed_taxon.user), listed_taxon.user %>
   <% end %>
-  on <%= listed_taxon.created_at.to_s(:long) %>
+  <%=t :on %> <%= listed_taxon.created_at.to_s(:long) %>
 </div>
 
 <div class="stacked ui description">
-  Updated
+  <%=t :updated %>
   <% if listed_taxon.updater %>
-    by 
+    <%=t :by %> 
     <%= link_to you_or_login(listed_taxon.updater), listed_taxon.updater %>
   <% end %>
-  on <%= listed_taxon.updated_at.to_s(:long) %>
+  <%=t :on %><%= listed_taxon.updated_at.to_s(:long) %>
 </div>
 
 <div>
   <% if listed_taxon.last_observation %>
     <span class="observation">
-      Last seen
+      <%=t :last_seen %>
       <a href="<%= observation_url(listed_taxon.last_observation) %>">
         <%= one_line_observation listed_taxon.last_observation, :skip => %w(user taxon) %>
       </a>
@@ -70,7 +70,7 @@
   </nobr>
 
   <% if editable -%>
-    | <%= link_to "Edit / Remove", listed_taxon %>
+    | <%= link_to t(:edit_emove), listed_taxon %>
   <% end -%>
   </div>
 </div>

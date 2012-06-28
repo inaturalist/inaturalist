@@ -31,7 +31,7 @@
       <% if taxon.threatened? -%>
         <div class="blob conservation_status <%= taxon.conservation_status_name %>"
             title="<%= taxon.conservation_status_name %>" 
-            data-tip="IUCN Red List status: <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"
+            data-tip="<%=t :iucn_red_list_status %> <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"
             data-tip-style-classes="ui-tooltip-<%= taxon.conservation_status_name %> ui-tooltip-shadow"
             data-tip-position-at="bottom center">
           <strong><%= taxon.conservation_status_code %></strong>
@@ -41,7 +41,7 @@
   <% end -%>
   <% if taxon.iucn_extinct? -%>
     <div class="extinct crossout">
-      <div>EXTINCT</div>
+      <div><%=t :extinct %></div>
     </div>
   <% end -%>
 <% end -%>
@@ -61,14 +61,14 @@
       <%= link_to image_tag(obs.user.icon(:mini)), obs %>
       <span>
         <strong><%= obs.user.login %></strong>,
-        1st observer
+        <%=t :first_observer %>
       </span>
     </div>
   <% elsif listed_taxon.observations_count > 0 %>
     <div class="upperleft confirmobs">
       <%= link_to "", observations_url(:place_id => listed_taxon.place_id, :taxon_id => listed_taxon.taxon_id), 
         :class => "ui-icon ui-icon-flag inlineblock" %>
-      <span>Help confirm observations!</span>
+      <span><%=t :help_confirm_observations! %></span>
     </div>
   <% end -%>
   
