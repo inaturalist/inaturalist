@@ -4,7 +4,7 @@
 -%>
 <div class="occurrencefield">
   <div id="occurrence">
-    <label>Occurrence status:</label>
+    <label><%=t :occurrence_status %>:</label>
     <%= listed_taxon.occurrence_status || "unknown" %>
     <% if list.listed_taxa_editable_by?(current_user) -%>
       <%= link_to_function "edit", "$(this).parents('.occurrence').hide(); $(this).parents('.occurrencefield').find('form').show()",
@@ -26,9 +26,7 @@
   <% end -%>
   <div id="occurrence_tip" style="display:none">
     <p class="ui">
-      Occurence status describes how common or rare a taxon is in a given area.
-      See DarwinCore for 
-      <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
+    <%= raw t(:occurence_status_describes_how)%> 
     </p>
     <dl>
       <% for identifier, description in ListedTaxon::OCCURRENCE_STATUS_DESCRIPTIONS %>
