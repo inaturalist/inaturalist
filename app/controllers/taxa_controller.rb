@@ -301,8 +301,12 @@ class TaxaController < ApplicationController
       drill_params[:ancestors] = @taxon.id
     end
     
-    if params[:is_active] && @is_active = params[:is_active]
-      drill_params[:is_active] = @is_active
+    if params[:is_active] == "true" || params[:is_active].blank?
+      @is_active = true
+      drill_params[:is_active] = true
+    elsif params[:is_active] == "false"
+      @is_active = false
+      drill_params[:is_active] = false
     end
     
     if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')
