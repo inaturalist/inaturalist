@@ -1,6 +1,6 @@
 <%- update ||= nil %>
 <% if update && observations.blank? -%>
-  <%= link_to "View #{update.user.login}'s observations", observations_by_login_path(update.user.login), :class => "readmore" %>
+  <%= link_to t(:view_user_observation, :user=> "#{update.user.login}"), observations_by_login_path(update.user.login), :class => "readmore" %>
 <% else %>
   <%- place_guesses = observations.map(&:place_guess).reject(&:blank?).uniq -%>
   <%- login = observations.first.user.login -%>
@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <div class="description">
-    <%= link_to "View #{login}'s observations", observations_by_login_path(login) %>
+    <%= link_to t(:view_user_observation, :user=> "#{update.user.login}"), observations_by_login_path(login) %>
     <% unless place_guesses.blank? -%>
       from
       <% place_guesses.each_with_index do |pg, i| %>

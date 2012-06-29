@@ -150,20 +150,17 @@
 
 <div id="pageheader" class="column span-24">
   <h2>
-    ID Please!
+    <%=t :id_please! %>
   </h2>
   
   <div id="intro" class="column span-13">
     <p class="description">
-      Inspired by the Flickr group <a
-      href="http://flickr.com/groups/idplease/">ID Please</a>, this is a place
-      to post observations of things you don't know, and to help people identify
-      mysterious creatures!
+      <%=raw t(:inspired_by_the_flickr_group) %>
     </p>
     
     <div id="top_identifiers">
       <div class="column" style="width: 100px; margin-right: 0">
-        <strong>Top 5 identifiers:</strong>
+        <strong><%=t :top_5_identifiers %>:</strong>
       </div>
       <div class="last column" style="width: 410px">
         <% for user in @top_identifiers %>
@@ -179,19 +176,16 @@
   </div>
   <div class="column span-11 last">
     <div class="box">
-      Remember, it's a lot easier to ID something if you provide as much
-      descriptive information as possible. Most importantly, please provide a
-      <strong>place</strong>, a <strong>date/time</strong>, and some information
-      about the <strong>size</strong>.
+      <%=raw t(:remember_its_a_lot_easier_to_id) %>
     </div>
   </div>
   
   <div class="column span-24">
     <div class="buttonrow">
-      <%= link_to "Add a New Observation to ID Please!",
+      <%= link_to t(:add_a_new_observation_to_id_please!),
         new_observation_path(:id_please => true), :class => "default button", 
         :rel => 'nofollow' %>
-      <%= link_to_function("Filters", 
+      <%= link_to_function(t(:filters), 
         "$('#filters').toggle(); $(this).toggleClass('open'); $('#filters:visible input[name=filters_open]').val(true); $('#filters:hidden input[name=filters_open]').val(false);", 
         :id => 'filters_button', 
         :class => "inter#{' open' if @filters_open}") %>
@@ -207,32 +201,32 @@
 </div>
 
 <div id="filters" style="display: none">
-  View unidentified observations...
+  <%= raw t(:view_unidentified_observations) %>
   <div id="place_filter" class="column span-8">
-    from anywhere (<span class="button">change</span>)
+    <%=raw t(:from_anywhere_change) %>
   </div>
   <div id="observed_on_filter" class="column span-8">
-    at any time (<span class="button">change</span>)
+    <%=raw t(:at_any_time_change) %>
   </div>
   <div id="taxon_filter" class="column span-8 last">
-    of anything (<span class="button">change</span>)
+    <%=raw t(:of_anything_change) %>
   </div>
 </div>
 
 <div id="observations">
   <div id="column_headers" class="last column span-24">
     <div class="column span-12 guess_and_description">
-      Guess / Description
+      <%=t :guess_description %>
     </div>
     <div class="column span-6 where">
-      Where
+      <%=t :where %>
     </div>
     <div class="last column span-6 help_out">
-      Help Out!
+      <%=t :help_out! %>
     </div>
   </div>
   <% if @observations.empty? %>
-    <p class="description">No observations need an ID right now.  Amazing!</p>
+    <p class="description"><%=t :no_observations_need_an_id %> </p>
   <% end %>
   <% for observation in @observations %>
   <div id="observation-<%= observation.id %>" class="observation row column span-24 last">
@@ -288,7 +282,7 @@
         
         <div id="identification_form_wrapper-<%= observation.id %>" 
              class="identification_form_wrapper">
-          <strong>Suggest an ID</strong>
+          <strong><%=t :suggest_an_id %></strong>
           <%= render :partial => 'identifications/identification_form',
                      :locals => { :observation => observation, :remote_actions => true }%>
         </div>
@@ -327,13 +321,13 @@
         ) do |f| -%>
           <input type="hidden" name="observation[id_please]" value="false"/>
           <input type="hidden" name="ignore_photos" value="true"/>
-          <%= f.submit "Remove from ID Please?", :class => 'minor button remove' %>
+          <%= f.submit t(:remove_from_id_please?), :class => 'minor button remove' %>
         <%- end -%>
       <% end -%>
       
       <div class="comments_wrapper">
         <% if observation.comments.empty? %>
-          <p id="no_comments-<%= observation.id %>" class="description">No comments yet.</p>
+          <p id="no_comments-<%= observation.id %>" class="description"><%=t :no_comments_yet %>.</p>
           <div class="comments" style="display: none"></div>
         <% else %>
           <%= link_to_function("Show #{pluralize(observation.comments.size, 'comment')}", 
@@ -344,7 +338,7 @@
                        :collection => observation.comments.all %>
           </div>
         <% end %>
-        <%= link_to_function('Leave a comment', 
+        <%= link_to_function(t(:leave_a_comment), 
           "$(this).next('.comment_form_wrapper').toggle(); $(this).toggleClass('open')", 
           :class => 'toggle_button') %>
         <div class="comment_form_wrapper" style="display: none">

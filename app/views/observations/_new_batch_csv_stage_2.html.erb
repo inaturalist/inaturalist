@@ -13,13 +13,13 @@
         &nbsp;
       </div>
       <div class="column span-7">
-        <label>What</label>
+        <label><%=t :what %></label>
       </div>
       <div class="column span-7">
-        <label>When</label>
+        <label><%=t :when %></label>
       </div>
       <div class="last column span-7">
-        <label>Where</label>
+        <label><%=t :where %></label>
       </div>
     </div>
     <div id="batchcol">
@@ -32,14 +32,12 @@
     </div>
   <% else %>
     <div class="column span-24 headers">
-        There were some problems with your CSV file. 
-        Please revise the failed rows. Of course the problem could always be 
-        on our side. If that is the case, please let us know.
+      <%=t :there_were_some_problems_with %>
     </div>
     <%= render :partial => 'observations/observation_csv_parse_errors' %>
     <div class="column span-24">
       <div id="observation_form_links" class="buttonrow">
-        <%= link_to "Back to Import", :action => 'import' -%>
+        <%= link_to t(:back_to_import), :action => 'import' -%>
       </div>
     </div>
   <% end %>
