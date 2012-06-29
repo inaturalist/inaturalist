@@ -4,7 +4,7 @@ require 'trollop'
 opts = Trollop::options do
     banner <<-EOS
 Create ObservationLinks for observations that have been integrated into 
-CalFlora.
+Calflora.
 
 Usage:
 
@@ -41,14 +41,14 @@ open(url).read.split("\n").each do |line|
     old_count += 1
     puts "\tobservation link already exists, skipping"
   else
-    ol = ObservationLink.new(:observation => observation, :href => href, :href_name => "CalFlora", :rel => "alternate")
+    ol = ObservationLink.new(:observation => observation, :href => href, :href_name => "Calflora", :rel => "alternate")
     ol.save unless opts[:debug]
     new_count += 1
     puts "\tCreated #{ol}"
   end
 end
 
-delete_count = ObservationLink.count(:conditions => ["href_name = 'CalFlora' AND updated_at < ?", start_time])
-ObservationLink.delete_all(["href_name = 'CalFlora' AND updated_at < ?", start_time]) unless opts[:debug]
+delete_count = ObservationLink.count(:conditions => ["href_name = 'Calflora' AND updated_at < ?", start_time])
+ObservationLink.delete_all(["href_name = 'Calflora' AND updated_at < ?", start_time]) unless opts[:debug]
 
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"
