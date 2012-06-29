@@ -14,6 +14,8 @@ class Taxon < ActiveRecord::Base
   
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
+  has_many :taxon_changes, :dependent => :destroy
+  has_many :taxon_change_taxa, :dependent => :destroy
   has_many :observations, :dependent => :nullify
   has_many :listed_taxa, :dependent => :destroy
   has_many :lists, :through => :listed_taxa
@@ -38,6 +40,7 @@ class Taxon < ActiveRecord::Base
     indexes colors.value, :as => :color_values
     has iconic_taxon_id, :facet => true, :type => :integer
     has colors(:id), :as => :colors, :facet => true, :type => :multi
+    has is_active, :as => :is_active, :facet => true, :type => :boolean
     # has listed_taxa(:place_id), :as => :places, :facet => true, :type => :multi
     # has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at, ancestry
@@ -56,8 +59,8 @@ class Taxon < ActiveRecord::Base
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
-                          :scope => [:parent_id],
-                          :unless => Proc.new { |taxon| taxon.parent_id.nil? },
+                          :scope => [:parent_id, :is_active],
+                          :unless => Proc.new { |taxon| (taxon.parent_id.nil? || !taxon.is_active)},
                           :message => "already used as a child of this " + 
                                       "taxon's parent"
   

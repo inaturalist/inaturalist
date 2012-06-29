@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609003704) do
+ActiveRecord::Schema.define(:version => 20120629011843) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -722,6 +722,7 @@ ActiveRecord::Schema.define(:version => 20120609003704) do
     t.integer  "conservation_status_source_id"
     t.boolean  "locked",                                :default => false, :null => false
     t.integer  "conservation_status_source_identifier"
+    t.boolean  "is_active"
   end
 
   add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
@@ -735,6 +736,24 @@ ActiveRecord::Schema.define(:version => 20120609003704) do
   add_index "taxa", ["parent_id"], :name => "index_taxa_on_parent_id"
   add_index "taxa", ["rank_level"], :name => "index_taxa_on_rank_level"
   add_index "taxa", ["unique_name"], :name => "index_taxa_on_unique_name", :unique => true
+
+  create_table "taxon_change_taxa", :force => true do |t|
+    t.integer  "taxon_change_id"
+    t.integer  "taxon_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taxon_changes", :force => true do |t|
+    t.text     "description"
+    t.integer  "taxon_id"
+    t.integer  "source_id"
+    t.integer  "user_id"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "committed_on"
+  end
 
   create_table "taxon_links", :force => true do |t|
     t.string   "url",                                         :null => false
