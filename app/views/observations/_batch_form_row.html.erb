@@ -7,12 +7,12 @@
           <h3 style="display: inline">
             <%#= link_to_function('Batch Operations', 
               "$('#batch_form_fields').slideToggle(); $('#batchform').toggleClass('closed')") %>
-            <%= link_to_function 'Batch Operations', 
+            <%= link_to_function t(:batch_operations), 
               "if ($('#batch_form_fields:visible').length == 0) { $('#batch_form_fields').slideDown(); }" +
               "else { $('#batch_form_fields').hide(); }" + "$('#batchform').toggleClass('closed')" 
             %>
           </h3>
-          <span class="description">Apply these settings to all the observations below.</span>
+          <span class="description"><%=t :apply_these_settings_to_all %></span>
         </div>
         <div id="batch_form_fields"<% if closed %>style="display: none"<% end %>>
           <div class="column span-1">
@@ -29,8 +29,8 @@
           <div class="last column span-7">
             <%= o.text_field(:place_guess, :class => 'text place_guess') %>
             <div id="coordinates" class="latlonfields status">
-              <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
-              <%= o.text_field(:latitude, :class => 'latitude text') %>
+              <%= o.label(:latitude, 'Lat') %>
+              <%= o.text_field(:latitude, :class => 'latitude') %>
 
               <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
               <%= o.text_field(:longitude, :class => 'longitude text') %>
@@ -56,18 +56,18 @@
           <div class="last column prepend-1 span-21">
             <div class="column span-7">
               <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;", "batchTaxon()",
+                <%= link_to_function(raw t(:darr_apply_darr), "batchTaxon()",
                   :id => 'apply_batch_taxon_button', :class => 'default button') %>
               </div>
             </div>
             <div class="column span-7">
               <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;", "applyBatch(['observed_on_string', 'time_zone'])", :id => 'apply_batch_observed_on_button', :class => 'default button') %>
+                <%= link_to_function(raw t(:darr_apply_darr), "applyBatch(['observed_on_string', 'time_zone'])", :id => 'apply_batch_observed_on_button', :class => 'default button') %>
               </div>
             </div>
             <div class="last column span-7">
               <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;", 
+                <%= link_to_function(raw t(:darr_apply_darr), 
                   "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact', 'positional_accuracy', 'positioning_method', 'positioning_device'])", 
                   :id => 'apply_batch_place_button', :class => 'default button') %>
               </div>
@@ -75,18 +75,18 @@
           </div>
           
           <div class="last column prepend-1 span-21">
-            <%= link_to_toggle "More fields", "#morebatchcontrols" %>
+            <%= link_to_toggle t(:more_fields), "#morebatchcontrols" %>
             <div id="morebatchcontrols" style="display:none;">
               <table class="plain">
                 <tr class="inline buttonrow">
-                  <td><label>Tags</label></td>
+                  <td><label><%=t :tags %></label></td>
                   <td><%= o.text_field :tag_list, :class => "text" %></td>
-                  <td><%= link_to_function "Apply &darr;", "applyBatch(['tag_list'])", :class => "default button" %></td>
+                  <td><%= link_to_function raw t(:apply_darr),"applyBatch(['tag_list'])", :class => "default button" %></td>
                 </tr>
                 <tr class="inline buttonrow">
-                  <td><%= o.label :geoprivacy, "Geoprivacy" %></td>
+                  <td><%= o.label :geoprivacy, t(:geoprivacy) %></td>
                   <td><%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %></td>
-                  <td><%= link_to_function "Apply &darr;", "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+                  <td><%= link_to_function raw t(:apply_darr), "applyBatch(['geoprivacy'])", :class => "default button" %></td>
                 </tr>
               </table>
             </div>

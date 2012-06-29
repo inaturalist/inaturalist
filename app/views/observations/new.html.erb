@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-    Add an Observation
+    <%=t :add_an_observation %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations/new', 'taxa', 'taxon_browser', "observations/edit" %>
@@ -25,11 +25,11 @@
   <div class="column span-18">
     <h2>
       <% if @project && !member_of?(@project)%>
-      Join and 
+      <%=t :join_and %> 
       <% end -%>
-      Add an Observation
+      <%=t :add_an_observation %>
       <% if @project %>
-        to
+        <%=t :to %>
         <% if @project.icon.file? -%>
           <%= image_tag @project.icon.url(:thumb), :style => "vertical-align: middle" %>
         <% end -%>
@@ -51,7 +51,7 @@
     <% if @project && !member_of?(@project)%>
       <div class="stacked">
         <%= check_box_tag :accept_terms %>
-        <span class="notice">Agree to the project terms <%= link_to_function "View terms", 
+        <span class="notice"><%=t :agree_to_the_project_terms %> <%= link_to_function t(:view_terms), 
           "$('#terms').dialog({modal: true, title: 'Project Terms', width: 600})", :class => "readmore" %></span>
         <br />
         <br />
@@ -67,21 +67,20 @@
       <% end %>
     </div>
     <%= hidden_field_tag(:project_id, @project.id) if @project %>
-    <%= hidden_field_tag(:tracking_code, @tracking_code) if @tracking_code %>
-    <%= submit_tag("Save observation", :class => 'default button', "data-loading-click" => true) %>
-    <%= submit_tag("Save and add another", :class => 'button') %>
-    <%= link_to("Cancel", session[:return_to], :class => 'button') %>
+    <%= submit_tag(t(:save_observation), :class => 'default button', "data-loading-click" => true) %>
+    <%= submit_tag(t(:save_and_add_another), :class => 'button') %>
+    <%= link_to(t(:cancel), session[:return_to], :class => 'button') %>
   <% end %>
 </div>
 
 <% if @project && !member_of?(@project)%>
   <div id="terms" class="dialog" style="display:none">
-    <h3>About this Project</h3>
+    <h3><%=t :about_this_project %></h3>
     <div class="description">
       <%= formatted_user_text @project.description %>
     </div>
   
-    <h3>Project Curators</h3>
+    <h3><%=t :project_curators %></h3>
     <div class="clear">
       <% @project_curators.each do |project_curator| %>
         <div class="stacked column span-5">
@@ -91,25 +90,25 @@
               <div class="column span-3">
             <%= link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr" %>
             <br/>
-            <%= link_to("<span class='count'>#{project_curator.user.observations.count}</span> observations", observations_by_login_path(project_curator.user.login)) %>
+            <%= link_to("<span class='count'>#{project_curator.user.observations.count}</span> "+t(:observations), observations_by_login_path(project_curator.user.login)) %>
           </div>
         </div>
       <% end %>
     </div>
     <div class="description">
-    Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
+    <%=t :please_be_aware_that_project_curators %> 
     </div>
     <%= separator %>
   
     <% unless @project.terms.blank? -%>
-      <h3>Terms</h3>
+      <h3><%=t :terms %></h3>
       <div class="stacked description">
         <%= formatted_user_text @project.terms %>
       </div>
     <% end -%>
   
     <% unless @project.project_user_rules.blank? -%>
-      <h3>Rules for Becoming a Member</h3>
+      <h3><%=t :rules_for_becoming_a_member %></h3>
       <ul class="stacked">
         <% for rule in @project.project_user_rules %>
           <li><%= rule.terms %></li>
@@ -118,7 +117,7 @@
     <% end -%>
   
     <% unless @project.project_observation_rules.blank? -%>
-      <h3>Rules for Adding Observations</h3>
+      <h3><%=t :rules_for_adding_observations %></h3>
       <ul class="stacked">
         <% for rule in @project.project_observation_rules %>
           <li><%= rule.terms %></li>

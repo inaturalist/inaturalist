@@ -39,13 +39,13 @@
       <td class="inat-user-body"<%= ' colspan="2"' if place %>>
         <strong>
           <% if place -%>
-            <%= link_to "View more observations near #{place.name} on <nobr>iNaturalist &raquo;</nobr>", place_url(place) %>
+            <%= link_to t(:view_more_observations_near, :place => "#{place.name}" ), place_url(place) %>
           <% elsif taxon -%>
-              <%= link_to "View more observations of #{taxon.name} on <nobr>iNaturalist &raquo;</nobr>", taxon_url(taxon) %>
+            <%= link_to  t(:view_more_observations_of, :taxon =>"#{taxon.name}"), taxon_url(taxon) %>
           <% elsif project -%>
-                <%= link_to "View more observations from #{project.title} on <nobr>iNaturalist &raquo;</nobr>", project_observations_url(project.id) %>
+            <%= link_to  t(:view_more_observations_from, :project => "#{project.title}" ), project_observations_url(project.id) %>
           <% else %>
-            <%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>", 
+            <%= link_to  t(:view_more_user_observations, :user =>"#{current_user.login}"), 
               observations_by_login_url(current_user.login) %>
           <% end -%>
         </strong>

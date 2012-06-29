@@ -66,10 +66,10 @@
 <% end -%>
 
 <div class="stacked details">
-  <h3>Details</h3>
+  <h3><%=t :details %></h3>
   <% unless @observation.tags.blank? %>
     <div id="tags" class="description">
-      <label>Tags:</label>
+      <label><%=t :tags %></label>
         <%= @observation.tags.map{|tag| 
           link_to(h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags"))
         }.join(', ') %>
@@ -77,7 +77,7 @@
   <% end -%>
 
   <div id="dates" class="description date nobr">
-    <label>Added:</label>
+    <label><%=t :added %></label>
     <span class="date">
       <%= @observation.created_at.strftime("%b. %e, %Y") %>
     </span>
@@ -88,7 +88,7 @@
   
   <% if @observation.observed_on -%>
     <div class="description date nobr">
-      <label>Observed:</label>
+      <label><%=t :observed %></label>
       <span class="date">
         <%= @observation.observed_on.strftime("%b. %e, %Y") %>
       </span>
@@ -108,7 +108,7 @@
 
   <% if @observation.mobile? -%>
     <div id="device" class="description <%= @observation.device_name.to_s.split.join('_').downcase %>">
-      <label>Device:</label>
+      <label><%=t :device %></label>
       <% if @observation.device_url -%>
         <%= link_to @observation.device_name, @observation.device_url %>
       <% else %>
@@ -123,8 +123,8 @@
 <% end -%>
 
 <div class="inline buttonrow" style="text-align:center;">
-  <%= link_to("Prev", @prev, :class => "prevlink button inlineblock") if @prev %>
-  <%= link_to "#{truncate possessive(@observation.user, :capitalize => true), :length => 16} observations", 
+  <%= link_to(t(:prev), @prev, :class => "prevlink button inlineblock") if @prev %>
+  <%= link_to "#{truncate possessive(@observation.user, :capitalize => true), :length => 16} "+ t(:observations), 
     observations_by_login_path(@observation.user.login), :class => "inlineblock button uplink" %>
   <%= link_to("Next", @next, :class => "nextlink button inlineblock") if @next %>
 </div>

@@ -5,7 +5,7 @@
 
   <% if @order == ListedTaxon::ALPHABETICAL_ORDER -%>
     <div id="alphanav" class="gotonav">
-      <label class="topcontrol">Jump to letter</label>
+      <label class="topcontrol"><%=t :jump_to_letter %></label>
       <div id="alphanav_letters">
         <% "ABCDEFGHIJKLMNOPQRSTUVWXYZ".each_char do |letter| %>
           <a href="#anchor_<%= letter %>" id="link_<%= letter %>" class="letter"><%= letter %></a>
@@ -15,7 +15,7 @@
   <% else %>
     <div id="taxanav" class="gotonav">
       <select name="taxanav" id="taxanavselect" onchange="window.location = $(this).val()">
-        <option value="#">Taxonomic Order</option>
+        <option value="#"><%=t :taxonomic_order %></option>
         <% for order in @orders %>
           <optgroup label="<%= order.name %>">
             <% for family in @families.select{|f| f.ancestry.index(order.child_ancestry)} %>
@@ -29,7 +29,7 @@
     </div>
     <div id="alphanav" class="gotonav">
       <select name="alphanav" id="alphanavselect" onchange="window.location = $(this).val()">
-        <option value="#">Alphabetical Order</option>
+        <option value="#"><%=t :alphabetical_order %></option>
         <% for listed_taxon in @listed_taxa_alphabetical %>
           <option value="#<%= dom_id(listed_taxon.taxon) %>"><%= listed_taxon.taxon.default_name.name %></option>
         <% end %>

@@ -5,49 +5,49 @@
   end
 %>
 <div id="search_filter" class="row">
-  <label class="label" for="q">Search</label>
-  <input type="text" name="q" value="<%= @q %>" id="q" class="text" placeholder="Enter search terms"/>
+  <label class="label" for="q"><%=t :search %></label>
+  <input type="text" name="q" value="<%= @q %>" id="q" class="text" />
   <select name="search_on" id="search_on">
     option
-    <option value="" class="description">search all fields</option>
-    <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names">species names</option>
-    <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags">tags</option>
-    <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description">description</option>
-    <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place">place name</option>
+    <option value="" class="description"><%=t :search_all_fields %></option>
+    <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names"><%=t :species_name %></option>
+    <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags"> <%=t :tags %> </option>
+    <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description"> <%=t :description %> </option>
+    <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place"><%=t :place_name %></option>
   </select>
 </div>
 <div id="attribute_filters" class="row">
-  <strong id="attributes_filters_label" class="label">Filter by</strong>
+  <strong id="attributes_filters_label" class="label"><%=t :filter_by %></strong>
   <fieldset>
     <input type="checkbox" name="has[]" id="with_photos_checkbox" 
            value="photos" <% if @with_photos %>checked="checked"<% end %>/>
-    <label for="with_photos_checkbox">w/ photos only</label>
+    <label for="with_photos_checkbox"><%=t :w_photos_only %></label>
     <input type="checkbox" name="has[]" id="id_please_checkbox" 
            value="id_please" <% if @id_please %>checked="checked"<% end %>/>
-    <label for="id_please_checkbox">ID Please</label>
+    <label for="id_please_checkbox"><%=t :id_please %></label>
     
     <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
-    <label for="research_grade_checkbox">Research quality</label>
+    <label for="research_grade_checkbox"><%=t :research_quality %></label>
     
     <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
-    <label for="out_of_range_checkbox">Out of range</label>
+    <label for="out_of_range_checkbox"><%=t :out_of_range %></label>
     
   </fieldset>
   <fieldset>
-    <strong>Identifications</strong>
+    <strong><%=t :identifications %></strong>
     <% for state in %w"any most_agree some_agree most_disagree" %>
       <% if @identifications == state %>
         <%= radio_button_tag :identifications, state, :checked => 'checked' %>
       <% else %>
         <%= radio_button_tag :identifications, state %>
       <% end %>
-      <%= label :identifications, state %>
+      <%= label :identifications, t(state) %>
     <% end %>
   </fieldset>
 </div>
 <div id="iconic_taxon_filters" class="row">
   <div id="iconic_taxon_filters_label" class="label">
-    <strong>Show only</strong>
+    <strong><%=t :show_only %></strong>
   </div>
   <%-
     all_iconic_taxa = Taxon::ICONIC_TAXA
@@ -59,7 +59,7 @@
              id="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'checked="checked"' if selected_taxa.include?(iconic_taxon) %>/>
       <label for="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'class="selected"' if selected_taxa.include?(iconic_taxon) %>>
         <%- if iconic_taxon.name == 'Animalia' -%>
-        <span>Other Animals</span>
+        <span><%=t :other_animals %></span>
         <%- else -%>
         <span><%= iconic_taxon.common_name.name rescue iconic_taxon.name %></span><!-- This should really be a common name -->
         <%- end -%>
@@ -72,7 +72,7 @@
            value="unknown" checked="checked"
            id="iconic_taxon_unknown_checkbox" />
     <label for="iconic_taxon_unknown_checkbox" class="selected">
-      <span>Unknown</span>
+      <span><%=t :unknown %></span>
     </label>
   </div>
   <% else %>
@@ -81,15 +81,15 @@
            value="unknown" 
            id="iconic_taxon_unknown_checkbox" />
     <label for="iconic_taxon_unknown_checkbox">
-      <span>Unknown</span>
+      <span><%=t :unknown %></span>
     </label>
   </div>
   <% end %>
 
   <small>
-    Select
-    <%= link_to_function "All", 'selectAllIconicTaxa()' %>,
-    <%= link_to_function "None", 'deSelectAllIconicTaxa()' %>
+    <%=t :select %>
+    <%= link_to_function t(:all), 'selectAllIconicTaxa()' %>,
+    <%= link_to_function t(:none), 'deSelectAllIconicTaxa()' %>
   </small>
 </div>
 
@@ -139,9 +139,9 @@
 </div>
 
 <div class="clear row">
-  <div id="taxon_filter" class="left">
+  <div id="taxon_filter"class="left">
     <div id="taxon_filter_label" class="label">
-      <strong>Taxon</strong>
+      <strong><%=t :taxon %></strong>
     </div>
     <div class="left">
       <div class="buttons">
@@ -163,18 +163,18 @@
   
   <div id="observed_on_filters" class="left">
     <div id="observed_on_filters_label" class="label">
-      <strong>Observed on</strong>
+      <strong><%=t :observed_on %></strong>
     </div>
     <div class="left">
-      <%= select_tag :year, options_for_select([["Year", nil]] + (1970..Date.today.year).to_a.reverse.map{|n| [n,n]}, :selected => @observed_on_year) %>
-      <%= select_tag :month, options_for_select([["Month", nil]] + (1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_month) %>
-      <%= select_tag :day, options_for_select([["Day", nil]] + (1..31).to_a.map{|n| [n,n]}, :selected => @observed_on_day) %>
+      <%= select_tag :day, options_for_select([[ t(:day), nil]] + (1..31).to_a.map{|n| [n,n]}, :selected => @observed_on_day) %>
+      <%= select_tag :month, options_for_select([[t( :month), nil]] + (1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_month) %>
+      <%= select_tag :year, options_for_select([[t(:year), nil]] + (1970..Date.today.year).to_a.reverse.map{|n| [n,n]}, :selected => @observed_on_year) %>
     </div>
   </div>
   
   <div id="order_filters" class="left">
     <div id="order_filters_label" class="label">
-      <strong>Order</strong>
+      <strong><%=t :order %></strong>
     </div>
     <div class="left">
       <%= select_tag :order_by, observations_order_by_options %>
@@ -188,4 +188,4 @@
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/> <!-- Temporary! Inputs not specific to the filtering don't really belong here... -->
 
-<input id="submit_filters_button" type="submit" value="Search" class="default inline button" data-loading-click="Searching..."/>
+<input id="submit_filters_button" type="submit" value="<%=t :search%>" class="default inline button" data-loading-click=<%t :searching %>"/>
