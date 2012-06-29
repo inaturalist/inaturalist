@@ -1,4 +1,9 @@
-<% selected_taxa ||= [] %>
+<% 
+  selected_taxa ||= []
+  if @place && @place.html.blank?
+    @place.html = render(:partial => "places/autocomplete_item.html.erb", :object => @place)
+  end
+%>
 <div id="search_filter" class="row">
   <label class="label" for="q">Search</label>
   <input type="text" name="q" value="<%= @q %>" id="q" class="text" placeholder="Enter search terms"/>
@@ -97,16 +102,19 @@
       <div class="buttons">
         <%-
           opts = {:id => "obs_filter_place_name", :class => "text", :placeholder => "Start typing a place name"}
-          opts["data-json"] = @place.to_json unless @place.blank?
+          opts["data-json"] = @place.to_json(:methods => [:html]) unless @place.blank?
         -%>
-        <%= text_field_tag :place_name, @place_name, opts %>
-        <%= hidden_field_tag :place_id, @place.try(:id) || @place_id %>
+        <%= text_field_tag :place_id, @place.try(:id) || @place_id, opts %>
       </div>
     </div>
   </div>
   <% if @filters_open -%>
     <script type="text/javascript" charset="utf-8">
-      $('#filters input[name=place_name]').placeAutocomplete()
+      $('#filters input[name=place_id]').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('#filters input[name=place_id]').attr('data-json') + ')')
+      })
     </script>
   <% end -%>
   

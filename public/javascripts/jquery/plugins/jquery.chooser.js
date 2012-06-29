@@ -159,7 +159,7 @@
     },
     
     selectItem: function(item, options) {
-      options = options || {}
+      options = options || this.options || {}
       if (!item) {
         this.clear()
       } else {
@@ -188,6 +188,7 @@
     },
     
     clear: function() {
+      var options = this.options || {}
       $(this).data('selected', null)
       $(this.markup.originalInput).val('')
       if (!$(this).data('previous')) {
@@ -199,6 +200,9 @@
       $(this.markup.chooseButton).height(this.markup.input.outerHeight())
       $('.ui-icon', this.markup.chooseButton)
         .css('margin-top', '-' + Math.round((this.markup.input.outerHeight() / 2) - 6) + 'px')
+      if (!options.blurring && typeof(this.options.afterClear) == 'function') {
+        this.options.afterClear()
+      }
     },
     
     setupMarkup: function() {
@@ -248,6 +252,7 @@
         this.markup.chooseButton, 
         this.markup.loadingButton, 
         this.markup.clearButton)
+      this.markup.input.width(originalInput.width() - this.markup.chooseButton.width() - 3)
       return this.markup
     },
     destroy: function() {

@@ -9,10 +9,11 @@
       height: 400px;
     }
     
-    form.edit_place input.text,
-    form.edit_place textarea {
-      width: 100%
+    .edit_place input.text,
+    .edit_place textarea {
+      width: 415px;
     }
+    .latitude_field input.text, .longitude_field input.text { width: 175px;}
     
     input.ac_loading {
       background: white url('/images/spinner-small.gif') 420px 5px no-repeat;
@@ -35,7 +36,13 @@
       <% else %>
         drawingMap.setCenter(new GLatLng(<%= @place.latitude %>, <%= @place.longitude %>));
       <% end %>
-    });
+      
+      $('#place_parent_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('place_parent_id').attr('data-json') + ')')
+      })
+    })
   </script>
 <%- end -%>
 
@@ -63,8 +70,7 @@
     </div>
     
     <%= f.text_field :woeid %>
-    <%= f.hidden_field :parent_id %>
-    <%= render :partial => 'place_parent_field' %>
+    <%= f.text_field :parent_id, :placeholder => "Type place name" %>
     
     <div class="field">
       <%= link_to_function "Show KML", "$('#kmlfield').show(); $('#kmlfieldlink').hide();", :id => "kmlfieldlink" %>

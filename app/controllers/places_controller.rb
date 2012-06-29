@@ -169,7 +169,7 @@ class PlacesController < ApplicationController
   end
   
   def autocomplete
-    @q = params[:q] || params[:term]
+    @q = params[:q] || params[:term] || params[:item]
     @places = Place.paginate(:page => params[:page], 
       :conditions => ["lower(display_name) LIKE ?", "#{@q.to_s.downcase}%"])
     respond_to do |format|

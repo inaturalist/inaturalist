@@ -14,12 +14,7 @@
       font-size: 9pt;
     }
     #background_color_wrapper input { padding: 2px; margin-left: 5px; }
-    .placeAutocompleteStatus { width: auto; }
-    #placechooser .placeAutocompleteStatus { 
-      display: inline-block;
-      margin: 0 auto;
-      padding: 2px 5px;
-    }
+    #placechooser .default.button {vertical-align:middle;}
     
     #widgetnav .selected { font-weight: bold; }
     #species_guess { width: 200px; }
@@ -35,17 +30,24 @@
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('#placechooser input[type=text]').placeAutocomplete('/places/autocomplete', {
-        afterChoosePlace: function() {
+      $('#placechooser input[type=text]').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        afterSelect: function(item) {
           $('#placechooser .default.button').attr('disabled', false).removeClass('disabled').focus()
         },
-        afterClearPlace: function() {
+        afterClear: function() {
           $('#placechooser .default.button').attr('disabled', true).addClass('disabled')
-        }
+        },
+        chosen: eval('(' + $('#placechooser input[type=text]').attr('data-json') + ')')
       })
-      $('.placefield input[type=text]').placeAutocomplete()
-      <% if @place %>
-        $.fn.placeAutocomplete.choosePlace($('.placefield input[type=text]').get(0), <%= @place.to_json(:methods => [:place_type_name]) %>)
+      $('.placefield input[type=text]').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('.placefield input[type=text]').attr('data-json') + ')')
+      })
+      <% if @place.blank? %>
+        $('#placechooser .cancellink').click()
       <% end %>
       <% if @taxon %>
         $('#species_guess').simpleTaxonSelector();
@@ -63,13 +65,12 @@
     <span class="meta">&middot;</span>
     <%= link_to_function "from a place", "$('#placechooser').show(); $(this).hide()",
       :id => "placechooserlink",
-      :class => "#{'selected' if @place}" %>
-    <form method="get" id="placechooser" class="buttonrow smallbuttons inline" style="display: none">
+      :class => "selected" %>
+    <form method="get" id="placechooser" class="buttonrow smallbuttons inline">
       <label for="place_name">Place name</label>
-      <input type="text" name="place_name" id="place_name" class="text">
-      <input type="hidden" name="place_id" value="" id="place_id">
+      <input type="text" name="place_id" value="" id="place_id" placeholder="Type place name" data-json='<%= @place.to_json %>'/>
       <input type="submit" value="Generate Widget" disabled="true" class="disabled default button"/>
-      <%= link_to_function "cancel", "$('#placechooser').hide(); $('#placechooserlink').show()" %>
+      <%= link_to_function "cancel", "$('#placechooser').hide(); $('#placechooserlink').show()", :class => "cancellink" %>
     </form>
     <span class="meta">&middot;</span>
     <%= link_to "for a taxon", url_for(:taxon_id => '1'), :class => "#{'selected' if @taxon}" %>
@@ -90,8 +91,7 @@
       <% if @place -%>
         <div class="field placefield">
           <label>Place</label><br/>
-          <input type="text" name="place_name" value="<%= @place.name if @place %>"/>
-          <input type="hidden" name="place_id" value="<%= @place.id if @place %>"/>
+          <input type="text" name="place_id" value="<%= @place.id if @place %>" data-json='<%= @place.to_json %>'/>
           <div>
             <%= link_to "View #{h(truncate(@place.name, :length => 30))}", @place, :class => "readmore" %>
           </div>
