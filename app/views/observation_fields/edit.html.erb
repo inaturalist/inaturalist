@@ -1,9 +1,9 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Editing observation field" %>
+  <%= @title = t(:editing_observation_field) %>
 <%- end -%>
 <h2><%= @title %></h2>
 
 <%= render :partial => 'form' %>
 
-<%= link_to 'Show', @observation_field %> |
-<%= link_to 'Back', observation_fields_path %>
+<%= link_to t(:show), @observation_field %> |
+<%= link_to t(:back), observation_fields_path %>
