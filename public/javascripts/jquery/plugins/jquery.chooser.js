@@ -77,6 +77,7 @@
             markup.chooseButton.showInlineBlock()
             markup.loadingButton.hide()
             json = self.recordsToItems(json)
+            json.push({label: '<em>Clear</em>', value: request.term, clear: true})
             cache[request.term] = json
             response(json)
           })
@@ -89,7 +90,7 @@
       })
       
       markup.input.bind('autocompleteclose', function(e, ui) {
-        if ($(self).data('previous')) {
+        if (!markup.input.is(':focus') && $(self).data('previous')) {
           self.selectItem($(self).data('previous'), {blurring: true})
         }
       })
