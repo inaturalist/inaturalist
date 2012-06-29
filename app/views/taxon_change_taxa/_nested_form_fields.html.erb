@@ -1,0 +1,21 @@
+<%- taxon_change_taxon ||= object -%>
+<%- taxon_change ||= taxon_change_taxon.taxon_change -%>
+<%- fields_for "taxon_change_taxa[]", taxon_change_taxon do |n| -%>
+<div class="column span-24 taxon_name_fields">
+  <div class="column span-8">
+    <p class="ui">
+      <%= n.label :taxon_id %><br/>
+      <%= n.text_field :taxon_id, :class => "text" %>
+    </p>
+  </div>
+  
+  <%- unless taxon_change_taxon.new_record? -%>
+    <div class="last column span-8">
+      <%= link_to 'Remove this taxon', taxon_change_taxon_path(taxon_change, taxon_change_taxon),
+                  :method => :delete,
+                  :confirm => "Are you sure you want to remove this taxon?",
+                  :class => 'minor delete button' %>
+    </div>
+  <%- end -%>
+</div>
+<% end %>

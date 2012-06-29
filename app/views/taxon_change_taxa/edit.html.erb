@@ -1,0 +1,15 @@
+<% content_for(:title) do -%>
+  Editing Taxon Change Taxon "<%= @taxon_change_taxon.id %>" for Taxon Change <%= @taxon_change.id %>
+<% end -%>
+<div id="pageheader" class="last column span-24">
+  <span class="breadcrumbs">    
+    <%= link_to "Back to taxon change", @taxon_change, :class => 'back crumb' %>
+  </span>
+  <h2>
+    Editing Taxon Change Taxon "<%= @taxon_change_taxon.id %>" for Taxon Change <%= @taxon_change.id %>
+  </h2>
+</div>
+
+<%= render :partial => 'form' %>
+
+<% end -%>

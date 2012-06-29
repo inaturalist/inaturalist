@@ -1,0 +1,16 @@
+<% content_for(:title) do %>
+	Editing Taxonomic <%= @taxon_change.class.name.split('Taxon')[1] %>
+	(<%= @taxon_change.committed_on.nil? ? "Draft" : "Committed on #{@taxon_change.committed_on}" %>)
+<% end %>
+<%= render :partial => 'form_head' %>
+
+<div id="pageheader" class="last column span-24">
+  <span class="breadcrumbs">
+    <%= link_to "Back to Taxonomic #{@taxon_change.class.name.split('Taxon')[1]}", 
+                taxon_change_path(@taxon_change), :class => 'back crumb' %>
+  </span>
+  <h2>Editing Taxonomic <%= @taxon_change.class.name.split('Taxon')[1] %> (<%= @taxon_change.committed_on.nil? ? "Draft" : "Committed on #{@taxon_change.committed_on}" %>)</h2>
+
+</div>
+
+<%= render :partial => "form" %>

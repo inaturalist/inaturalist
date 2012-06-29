@@ -1,0 +1,110 @@
+<h2>
+	Taxonomic changes <%= "for <i>#{link_to @taxon.name, taxon_path(@taxon)}</i>
+	(#{@taxon.is_active ? 'active' : 'inactive' })" unless @all %>
+</h2>
+
+<% for taxon_change in @taxon_changes %>
+	<% change_children = ( taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa ) %>
+	<% change_parents = [taxon_change.taxon] %>
+	<% if taxon_change.class.name == "TaxonSplit" %>
+		<% old_taxa = change_children %>
+		<% new_taxa = change_parents %>
+	<% else %>
+		<% old_taxa = change_parents %>
+		<% new_taxa = change_children %>
+	<% end %>
+
+	<div class="last column span-24">
+		<div class="column span-16">
+			<h3>
+				Taxonomic <%= taxon_change.class.name.split('Taxon')[1] %>
+				(<%= taxon_change.committed_on.nil? ? "Draft" : "Committed on #{taxon_change.committed_on}" %>)
+			</h3>
+		</div>
+  	<div class="column span-4">
+			<%= link_to "edit", edit_taxon_change_path(taxon_change) %>
+  	</div>
+  	<div class="last column span-4">
+			<% if taxon_change.committed_on.nil? %>
+				<%= link_to "Commit",
+		  		{ :controller => 'taxon_changes',
+		    		:action => 'commit_taxon_change',
+		    		:taxon_change_id => @taxon_change.id},
+		  			:method => :post,
+		  			:class => "glaucous button",
+		  			"data-loading-click" => "committing..." %>
+			<% end %>
+  	</div>
+	</div>
+	<span class="description"><%= taxon_change.description %><br/>
+	<% if taxon_change.source && taxon_change.source.url %>
+		Source: <%= link_to h(truncate(taxon_change.source.title, :length => 40)), taxon_change.source.url %>
+	<% elsif taxon_change.source %>
+		Source: <%= taxon_change.source.title %>
+	<% elsif taxon_change.user %>
+		Added by <%= link_to h(taxon_change.user.login), taxon_change.user %>
+	<% else %>
+		Source: unknown
+	<% end %>
+	</span>
+
+	<table border="0" cellspacing="5" cellpadding="5">
+  	<tr>
+			<td>
+				<ul class="taxon_concepts">
+					<% for change_taxon in new_taxa %>
+ 						<li>
+							<%= link_to change_taxon.name, change_taxon -%>
+							<span class="small description"> (<%= change_taxon.is_active ? "active" : "inactive" %>)
+								<% if change_taxon.source && change_taxon.source_url %>
+				      		Source: <%= link_to h(truncate(change_taxon.source.title, :length => 40)), change_taxon.source_url %>
+				    		<% elsif change_taxon.source %>
+				      		Source: <%= change_taxon.source.title %>
+				    		<% elsif change_taxon.creator %>
+				      		Added by <%= link_to h(change_taxon.creator.login), change_taxon.creator %>
+				    		<% else %>
+				      		Source: unknown
+				    		<% end %>
+							</span>
+ 						</li>
+					<% end %>
+				</ul>
+			</td>
+			<td>
+				<span class="description">
+					<% case taxon_change.class.name when "TaxonSplit" %>
+						Split into
+					<% when "TaxonMerge" %>
+						Merged into
+					<% when "TaxonSwap" %>
+						Swapped with
+					<% end %>
+				</span>
+			</td>
+			<td>
+				<ul class="taxon_concepts">
+					<% for change_taxon in old_taxa %>
+						<li>
+							<%= link_to change_taxon.name, change_taxon -%>
+							<span class="small description"> (<%= change_taxon.is_active ? "active" : "inactive" %>)
+								<% if change_taxon.source && change_taxon.source_url %>
+				      		Source: <%= link_to h(truncate(change_taxon.source.title, :length => 40)), change_taxon.source_url %>
+				    		<% elsif change_taxon.source %>
+				      		Source: <%= change_taxon.source.title %>
+				    		<% elsif change_taxon.creator %>
+				      		Added by <%= link_to h(change_taxon.creator.login), change_taxon.creator %>
+				    		<% else %>
+				      		Source: unknown
+				    		<% end %>
+							</span>
+						</li>
+					<% end %>
+				</ul>
+			</td>
+		</tr>
+	</table>
+<% end %>
+
+<% if @all %>
+	<%= will_paginate @taxon_changes %>
+<% end %>

@@ -186,6 +186,10 @@ class TaxaController < ApplicationController
         @show_range = @taxon_range
         @colors = @taxon.colors if @taxon.species_or_lower?
         
+        @taxon_changes = [
+          TaxonChange.all(:conditions => {:taxon_id => @taxon.id}),
+          TaxonChangeTaxon.all(:conditions => {:taxon_id => @taxon.id}).map{|tct| tct.taxon_change}].flatten
+        
         render :action => 'show'
       end
       
@@ -295,6 +299,10 @@ class TaxaController < ApplicationController
     
     if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id].to_i))
       drill_params[:ancestors] = @taxon.id
+    end
+    
+    if params[:is_active] && @is_active = params[:is_active]
+      drill_params[:is_active] = @is_active
     end
     
     if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')
