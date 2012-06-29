@@ -1,10 +1,10 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observation field: #{@observation_field.name}" %>
+  <%= @title = t(:observation_field)+": #{@observation_field.name}" %>
 <%- end -%>
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
-      <%= link_to 'Back to observation fields', observation_fields_path, :class => 'back crumb' %>
+      <%= link_to t(:back_to_observation_fields), observation_fields_path, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   </div>
   
@@ -17,22 +17,22 @@
 
 <div class="stacked">
   <div class="meta ui">
-    <b>Datatype:</b>
+    <b><%=t :datatype %>:</b>
     <%=h @observation_field.datatype %>
   </div>
   <div class="meta ui">
-    <b>Created by:</b>
+    <b><%=t :created_by %>:</b>
     <%= link_to user_image(@observation_field.user), @observation_field.user %>
     <%= link_to_user @observation_field.user %>
   </div>
 </div>
 
-<h3>Observations specifying this field</h3>
+<h3><%=t :observations_specifying_this_field %></h3>
 
 <div class="mini observations">
   <% if @observations.blank? -%>
     <div class="noresults">
-      No observations yet.
+      <%=t :no_observations_yet %>
     </div>
   <% else %>
     <%= render :partial => "observations/cached_component", :collection => @observations %>
@@ -41,4 +41,4 @@
 
 <%= will_paginate @observation_field_values %>
 
-<%= link_to 'Edit', edit_observation_field_path(@observation_field) %>
+<%= link_to t(:edit), edit_observation_field_path(@observation_field) %>
