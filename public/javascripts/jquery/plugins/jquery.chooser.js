@@ -88,7 +88,7 @@
         self.clear()
       })
       
-      markup.input.blur(function() {
+      markup.input.bind('autocompleteclose', function(e, ui) {
         if ($(self).data('previous')) {
           self.selectItem($(self).data('previous'), {blurring: true})
         }

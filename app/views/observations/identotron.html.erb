@@ -66,17 +66,18 @@
     
     $(document).ready(function() {
       $('#observation').fixedFollower()
+      var currentState = $.deparam.fragment()
       $('#placechooser').chooser({
         collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
         resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
         defaultSources: places,
-        chosen: place
+        chosen: currentState.place ? place : null
       })
       $('#taxonchooser').chooser({
         collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
         resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
         defaultSources: defaultTaxa,
-        chosen: taxon
+        chosen: currentState.taxon ? taxon : null
       })
       
       $('#controls').submit(function() {
@@ -215,6 +216,7 @@
     </div><!-- /#breadcrumbs -->
   <% end -%>
   <h2 class="fadednowrap">Identotron <%= "for #{@observation.to_plain_s}" if @observation %></h2>
+  <p class="description">Browse species that occur near this observation.</p>
 </div>
 
 <div class="column span-8 append-1">
