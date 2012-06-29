@@ -3,10 +3,10 @@
   if @list
     lists.delete_if{|l| l.id == @list.id}
   end
-  options = [['one of your lists...', 0]] + lists.map{|l| [l.title, l.id]}
+  options = [[t(:one_of_your_lists), 0]] + lists.map{|l| [l.title, l.id]}
 -%>
 <% form_tag compare_lists_path(@list), :method => :get do %>
-  <label for="with">Compare with</label>
+  <label for="with"><%=t :compare_with %></label>
   <%= select_tag :with, options_for_select(options, :disabled  => 0, :selected => 0), 
     :onchange => "$(this).parents('form').submit()" %>
 <% end %>

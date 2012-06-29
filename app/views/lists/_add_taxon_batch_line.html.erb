@@ -18,11 +18,11 @@
   <td><%= line %></td>
   <td>
     <% case other.class.to_s when "ListedTaxon" %>
-      Added!
+      <%=t :added %>!
     <% when "String" %>
       <%= other %>
     <% else %>
-      <span class="loading status">Loading...</span>
+      <span class="loading status"><%=t :loading %></span>
     <% end %>
   </td>
   <td class="actions">
@@ -35,7 +35,7 @@
         <div class="buttonrow">
           <div class="inter">
             <%= text_field_tag :species_guess, line, :id => "#{line.parameterize}_guess", :class => "text species_guess" %>
-            <%= link_to_function "Lookup", 
+            <%= link_to_function t(:lookup), 
               "$('##{line.parameterize}_guess').simpleTaxonSelector({" + 
                 "taxonIDField: '##{line.parameterize}_taxon_id'," +
                 "inputWidth: 445," +
@@ -61,7 +61,7 @@
             <%= f.hidden_field :list_id %>
             <%= hidden_field_tag :partial, "add_taxon_batch_line" %>
             <%= f.hidden_field :taxon_id, :id => "#{line.parameterize}_taxon_id" %>
-            <%= f.submit "Add to list", :disabled => true, :id => "#{line.parameterize}_add", 
+            <%= f.submit t(:add_to_list), :disabled => true, :id => "#{line.parameterize}_add", 
               :class => "disabled default button", "data-loading-click" => "Adding..." %>
             <!-- <span class="loading status inter" style="display: none">Adding...</span> -->
           <% end %>

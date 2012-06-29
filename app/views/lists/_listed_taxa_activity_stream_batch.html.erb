@@ -20,11 +20,11 @@
 </div>
 
 <div class="description">
-  to
+  <%=t :to %>
   <% if lists.size == 1 && list = lists.first -%>
-    the list <%= link_to(list.title, list) %>
+    <%=t :the_list %> <%= link_to(list.title, list) %>
   <% else %>
-    the following lists:
+    <%=t :the_following_lists %>:
     <% lists.each_with_index do |list, i| %>
       <%= link_to(list.title, list) %><%= ',' if i+1 < lists.size %>
     <% end %>
