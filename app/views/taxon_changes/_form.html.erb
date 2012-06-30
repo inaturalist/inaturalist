@@ -21,7 +21,7 @@
     <div class="stacked column span-24">
       <div class="column span-24">
         <%= f.label :taxon_id, 'Taxon ID' %><br/>
-        <%= f.text_field :taxon_id, :class => 'text' %><br/>
+        <%= f.text_field :taxon_id, :class => 'text', :id => "taxon_change_taxon_id" %><br/>
 
         <%= label_tag :taxon_name %><br/>
         <%= text_field_tag :taxon_name, taxon_change.taxon ? taxon_change.taxon.name : '', :id => 'taxon_name', :class => 'text' %>
