@@ -1,4 +1,5 @@
 class TaxonChangesController < ApplicationController
+  before_filter :curator_required
   
   def index
     if params[:taxon_id]

@@ -237,12 +237,9 @@
     var input = $(wrapper).find('input[type=text]:first');
     var q = $(input).attr('value');
     var url = '/taxa/search.json?per_page=10&q='+q;
-    if (options.includeExternal) {
-      url += '&include_external=1';
-    };
-    if (options.forceExternal) {
-      url += '&force_external=1';
-    };
+    if (options.includeExternal) { url += '&include_external=1' }
+    if (options.forceExternal) { url += '&force_external=1' }
+    if (options.isActive) { url += "&is_active=" + String(options.isActive) }
     
     // If blank, unset
     if (q == '') {

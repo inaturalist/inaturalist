@@ -307,6 +307,8 @@ class TaxaController < ApplicationController
     elsif params[:is_active] == "false"
       @is_active = false
       drill_params[:is_active] = false
+    else
+      @is_active = params[:is_active]
     end
     
     if params[:iconic_taxa] && @iconic_taxa_ids = params[:iconic_taxa].split(',')

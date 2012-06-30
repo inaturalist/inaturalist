@@ -3,6 +3,7 @@
   <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
   <label for="q">Search</label>
   <%= hidden_field_tag :view, @view %>
+  <%= hidden_field_tag :is_active, @is_active %>
   <%= text_field_tag 'q', params[:q], :class => 'text' %>
   <input type="submit" class="default button" value="Go" />
   <%= link_to "Clear", url_for_params(:without => :q), :class => 'delete button' %>
