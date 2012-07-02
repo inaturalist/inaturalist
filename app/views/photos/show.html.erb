@@ -1,8 +1,8 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Photo #{@photo.id}, #{@photo.attribution}"  %>
+  <%= @title = t(:photoid_photoattribution, :photoid => "#{@photo.id}", :photoattribution => "#{@photo.attribution}" ) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "taxa" %>
+  <%= stylesheet_link_tag "taxa", "observations" %>
   <style type="text/css" media="screen">
     th, td { vertical-align: top;}
   </style>
@@ -19,19 +19,17 @@
     <td style="width: 100%">
       <table width="100%">
         <tr>
-          <th>Attribution</th>
+          <th><%= :attribution %></th>
           <td width="100%">
             <%= rights @photo %>
             <% if @photo.editable_by?(current_user) -%>
               <span class="button">
-                <%= link_to_function "edit license", "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>
+                <%= link_to_function t(:edit_license), "$('#editlicense').dialog({modal:true, width:'auto', title: t(:Edit_license)})" %>
               </span>
               <div id="editlicense" class="dialog" style="display:none">
                 <div class="column span-18 verticalmiddle licensechoices">
                   <p class="ui description">
-                    Licensing your content gives others the legal right to use it if
-                    they stick to the terms of the license. iNat uses your Creative
-                    Commons-licensed content to share with data partners like the 
+                  <%= t(:licensing_your_content_gives_others_legal) %>
                     <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
                     (GBIF).
                   </p>
@@ -43,11 +41,11 @@
         </tr>
         <% unless @photo.is_a?(LocalPhoto) -%>
           <tr>
-            <th>Source</th>
+            <th><%=t :source %></th>
             <td><%= @photo.class.to_s.gsub(/Photo$/, '') %></td>
           </tr>
           <tr>
-            <th>Original</th>
+            <th><%= :original %></th>
             <td><%= link_to @photo.native_page_url, @photo.native_page_url %></td>
           </tr>
         <% end -%>
@@ -74,7 +72,7 @@
         <% end -%>
         
         <tr>
-          <th>Sizes</th>
+          <th><%= :sizes %></th>
           <td>
             <ul>
               <% %w(small medium large original).each do |size| %>
