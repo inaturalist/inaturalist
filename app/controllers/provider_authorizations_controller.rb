@@ -37,12 +37,12 @@ class ProviderAuthorizationsController < ApplicationController
     case auth_info["provider"]
     when 'facebook'
       # omniauth bug sets fb nickname to 'profile.php?id=xxxxx' if no other nickname exists
-      if auth_info["user_info"]["nickname"] && auth_info["user_info"]["nickname"].match("profile.php")
-        auth_info["user_info"]["nickname"] = nil
+      if auth_info["info"]["nickname"] && auth_info["info"]["nickname"].match("profile.php")
+        auth_info["info"]["nickname"] = nil
       end
       # for some reason, omniauth doesn't populate image url
       # (maybe cause our version of omniauth was pre- fb graph api?)
-      auth_info["user_info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
+      auth_info["info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
     when 'flickr'
       # construct the url for the user's flickr buddy icon
       #nsid = auth_info['extra']['user_hash']['nsid']
@@ -51,7 +51,7 @@ class ProviderAuthorizationsController < ApplicationController
       iconfarm = flickr_info['iconfarm']
       iconserver = flickr_info['iconserver']
       unless (iconfarm==0 || iconserver==0)
-        auth_info["user_info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
+        auth_info["info"]["image"] = "http://farm#{iconfarm}.static.flickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
       end
     end
     
@@ -97,7 +97,7 @@ class ProviderAuthorizationsController < ApplicationController
   end
   
   def create_provider_authorization(auth_info)
-    email = auth_info.try(:[], 'user_info').try(:[], 'email')
+    email = auth_info.try(:[], 'info').try(:[], 'email')
     email ||= auth_info.try(:[], 'extra').try(:[], 'user_hash').try(:[], 'email')
     
     # if logged in or user with this email exists, link provider to existing inat user
