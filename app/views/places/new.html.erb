@@ -62,22 +62,22 @@
 <%- end -%>
 <div id="pageheader">
   <div class="breadcrumbs">
-    <%= link_to "Back to Places", places_path, :class => 'back crumb' %>
+    <%= link_to t(:back_to_places), places_path, :class => 'back crumb' %>
   </div><!-- /#breadcrumbs -->
-  <h2>Create a New Place</h2>
+  <h2><%= t(:create_a_new_place) %></h2>
 </div>
 
 <div id="tabs" class="ui-tabs">
   <ul>
-    <li><a href="#import">Import from Yahoo</a></li>
-    <li><a href="#manual">Manually Create a New Place</a></li>
+    <li><a href="#import"> <%= t(:import_from_yahoo) %></a></li>
+    <li><a href="#manual"> <%= t(:manually_create_new_place) %></a></li>
   </ul>
   
   <div id="import">
     <div class="column span-8">
-      <h3>Find a Place</h3>
+      <h3><%= t(:find_a_place) %></h3>
       <p class="description">
-        Search for a place to import from Yahoo.
+        <%= t(:search_for_place_to_import_from_yahoo) %>
       </p>
 
       <div id="place_selector">
@@ -86,10 +86,10 @@
             :complete => "$('#loading_status').hide()" do %>
           <div class="clear buttonrow">
             <%= text_field_tag :q, '', :class => 'inter text' %>
-            <%= submit_tag 'Search', :class => 'button' %>
+            <%= submit_tag t(:search), :class => 'button' %>
           </div>
         <% end %>
-        <div id="loading_status" class="loading status" style="display: none">Searching...</div>
+        <div id="loading_status" class="loading status" style="display: none"> <%= t(:searching) %></div>
         <ul id="places" style="margin: 0"></ul>
       </div>
     </div>
@@ -102,13 +102,13 @@
   <div id="manual">
     <div class="column span-15">
       <h3>
-        Click on the map to draw a shape around the place
+      	<%= t(:click_on_map_to_draw_shape_around_place) %>
         <span class="ui small description">(double click to finish)</span>
       </h3>
       <div id="drawingMap"></div>
     </div>
     <div class="last column span-8">
-      <h3>Give it some detail!</h3>
+      <h3><%= t(:give_it_some_detail) %></h3>
       <% form_for @place, :builder => DefaultFormBuilder do |f| %>
         <%= f.text_field :name, :class => 'text', :required => true %>
         <%= f.hidden_field :parent_id %>
@@ -116,7 +116,7 @@
         <%= f.text_field :latitude, :class => 'text', :required => true %>
         <%= f.text_field :longitude, :class => 'text', :required => true %>
         <input type="hidden" id="place_geometry" name="kml"/>
-        <%= f.submit 'Save Place', :class => 'default button' %>
+        <%= f.submit t(:save_place), :class => 'default button' %>
       <% end %>
     </div>
   </div>

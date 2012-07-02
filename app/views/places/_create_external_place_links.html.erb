@@ -1,6 +1,6 @@
 <% @places.each_with_index do |place, i| %>
   <li class="clear external_place_link">
-    <%= link_to 'import', places_path(:woeid => place.woeid), :method => :post, :style => 'width: 20%', :class => 'button' %>
+    <%= link_to t(:import), places_path(:woeid => place.woeid), :method => :post, :style => 'width: 20%', :class => 'button' %>
     <%= link_to_function "#{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[(i % 26)..(i % 26)]}. #{place.name}", 
       "importMap.panTo(new GLatLng(#{place.latitude}, #{place.longitude}))",
       :class => 'namelink' %>
