@@ -4,17 +4,17 @@
   <% if f.object.asset.file? -%>
     <% f.form_field :asset do %>
       <%= link_to f.object.asset.url, f.object.asset.url %>
-      <%= link_to_function "(replace)", 
+      <%= link_to_function t(:replace_parentesis), 
         "$(this).parents('.field').after('#{f.file_field(:asset)}'); " + 
         "$(this).parents('.field').hide()", :class => "small" %>
     <% end %>
   <% else %>
     <%= f.file_field :asset %>
   <% end -%>
-  <%= f.submit @project_asset.new_record? ? 'Create' : "Update", :class => "default button" %>
-  <%= link_to "Cancel", :back, :class => "button" %>
+  <%= f.submit @project_asset.new_record? ? t(:create) : t(:update), :class => "default button" %>
+  <%= link_to t(:cancel), :back, :class => "button" %>
   <% unless @project_asset.new_record? -%>
-    <%= link_to "Delete", @project_asset, :method => :delete, :confirm => "Are you sure you want to delete this asset?", 
+    <%= link_to t(:delete), @project_asset, :method => :delete, :confirm => t(:are_you_sure_delete_asset), 
       :class => "minor delete button" %>
   <% end -%>
 <% end %>
