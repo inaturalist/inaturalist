@@ -1,8 +1,8 @@
 <% content_for(:title) do -%>
-  New Taxon Name for <%= default_taxon_name @taxon %>
+  <%= t(:new_taxon_name_for) %> <%= default_taxon_name @taxon %>
 <% end -%>
 <h2>
-  New Taxon Name for
+  <%= t(:new_taxon_name_for) %>
   <%= render :partial => "shared/taxon", :object => @taxon, :locals => { :link_url => url_for(@taxon) } %>
 </h2>
 
