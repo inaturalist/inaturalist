@@ -257,7 +257,7 @@ class ListsController < ApplicationController
       :done => "Success!",
       :error => "Something went wrong",
       :timeout => "Request timed out, please try again later",
-      :processing => "Processing..."
+      :processing => t(:processing3p)
     }.merge(messages)
     
     respond_to do |format|

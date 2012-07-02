@@ -125,7 +125,7 @@ class ProviderAuthorizationsController < ApplicationController
     self.current_user = @provider_authorization.user
     handle_remember_cookie! true # set 'remember me' to true
     @provider_authorization.update_with_auth_info(auth_info)
-    flash[:notice] = "Welcome back!"
+    flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
       flash[:notice] = "You just authorized iNat to write to your account " +
         "on #{@provider_authorization.provider_name}. Thanks! Please try " +
