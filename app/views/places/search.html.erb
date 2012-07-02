@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Find Places
+  <%= t(:find_places) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -18,15 +18,15 @@
 <div id="pageheader">
   <% if logged_in? -%>
     <div id="tools" class="description">
-      Not finding what you want?
-      <%= link_to "Add a New Place", new_place_path, :class => 'readmore', :rel => "nofollow" %>
+      <%= t(:not_findig_what_you_want) %>
+      <%= link_to t(:add_new_place), new_place_path, :class => 'readmore', :rel => "nofollow" %>
     </div>
   <% end -%>
   <div class="breadcrumbs">
     <strong><%= link_to "Places", places_path, :class => 'crumb' %></strong>
     <span class="description">&gt;</span>
   </div><!-- /#breadcrumbs -->
-  <h2>Find Places</h2>
+  <h2><%= t(:find_places) %></h2>
 </div>
 
 <div id="searchform" class="clear buttonrow">
@@ -35,7 +35,7 @@
 
 <% if @places.blank? -%>
   <div id="nodata" class=" readable description">
-    No matching places
+    <%= t(:no_matching_places) %>
   </div>
 <% else %>
   <ul>
