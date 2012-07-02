@@ -1,16 +1,16 @@
-Welcome, <%= @user.login %>!
+¡<%= t(:welcome_comma) %> <%= @user.login %>!
 
-Your iNaturalist account has been activated. Thanks for signing up!
+<%= t(:your_inat_account_has_been_activated_plain) %>
 
-Wondering what to do next?  Why not
+<%= t(:wondering_what_to_do_next) %>
 
-* read our Getting Started guide: <%= url_for(:controller => "help", :action => "getting_started", :only_path => false) %>
-* add an observation: <%= new_observation_url %>
-* fill out your profile: <%= edit_user_url(@user) %>
-* find some people to follow: <%= people_url %>
-* or invite your friends: <%= emailer_invite_url %>
+* <%= t(:read_our_getting_started_guide) %>: <%= url_for(:controller => "help", :action => "getting_started", :only_path => false) %>
+* <%= t(:add_an_observation) %>: <%= new_observation_url %>
+* <%= t(:fill_out_your_profile) %>: <%= edit_user_url(@user) %>
+* <%= t(:find_some_people_to_follow) %>: <%= people_url %>
+* <%= t(:or_invite_your_friends) %>: <%= emailer_invite_url %>
 
-If you have any trouble with the site, please check out our help section:
+<%= t(:if_you_have_trouble_with_the_site) %>
 
   <%= help_url %>
   
