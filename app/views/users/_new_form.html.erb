@@ -1,20 +1,20 @@
 <%= error_messages_for :user, 
       :header_message => "Oops.",
-      :message => "There were some problems with the following fields:" %>
+      :message => t(:there_were_some_problems_with_fields) %>
 
 <% form_for :user, :url => users_path, :builder => DefaultFormBuilder, :html => { :id => 'signup_form' } do |f| -%>
-  <%= f.text_field :login, :class => 'text', :autocorrect => "off", :autocapitalize => "off", :label => "Login / username" %>
-  <%= f.text_field :email, :class => 'text', :autocorrect => "off", :autocapitalize => "off", :type => "email" %>
+  <%= f.text_field :login, :class => 'text', :label => t(:login_slash_username) %>
+  <%= f.text_field :email, :class => 'text' %>
   <%= f.password_field :password, :class => 'text' %>
   <%= f.password_field :password_confirmation, :class => 'text' %>
   <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
-    :label => "Your default time zone",
-    :description => "All your observations will default to this time zone unless you specify otherwise.",
+    :label => t(:your_default_time_zone),
+    :description => t(:all_your_observations_will_default_this_time_zone),
     :class => 'select'}) %>
   <%= f.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY,
-    :label => "Yes, license my observations so scientists can use my data!", 
+    :label => t(:yes_license_my_observations_so_scientists_can_use), 
     :label_after => true,
-    :description => "Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like." %>
+    :description => t(:using_cc_license_makes_easier_use_your_data) %>
 
-  <%= f.submit 'Sign up', :class => "default button", "data-loading-click" => "Creating your account..." %>
+  <%= f.submit t(:sign_up), :class => "default button", "data-loading-click" => t(:creating_your_account) %>
 <% end -%>

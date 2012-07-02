@@ -1,4 +1,4 @@
-<% content_for(:title) do %><%=h @user.login %>'s Profile<% end %>
+<% content_for(:title) do %><%= t(:users_profile, :user => "#{h @user.login}") %><% end %>
 
 <% content_for(:extracss) do %>
 <%= stylesheet_link_tag "taxa" %>
@@ -43,31 +43,28 @@
       <% if is_me?(@selected_user) -%>
         <div id="nodescription" class="clear small ui box">
           <div class="stacked">
-            <strong>Tell the world a little bit about yourself by <%= link_to_function "filling out your profile", "" %>!</strong>
+            <strong>¡<%= t(:tell_the_world_a_little_about_yourself) %> <%= link_to_function t(:filling_out_your_profile), "" %>!</strong>
           </div>
           
           <div class="more">
-            Do you study nematodes? Are you the world's foremost expert on
-            barnacle taxonomy? Do you just like looking at pretty flowers?
-            Filling out your profile adds some personality and helps establish
-            your credibility when helping people out with identifications.
+            <%= t(:do_you_study_nematodes_worlds_foremost_expert_barnacle) %>
           </div>
           
           <%- form_for @selected_user, :html => {:style => "display: none"} do |f| %>
-            <%= f.text_area :description, :style => "width: 590px; height: 100px;", :placeholder => "Describe your interest in nature!", :class => "stacked" %>
+            <%= f.text_area :description, :style => "width: 590px; height: 100px;", :placeholder => t(:describe_your_interest_in_nature), :class => "stacked" %>
             <div class="actions">
-              <%= f.submit "Save", :class => "default button", "data-loading-click" => true %>
-              <a href="#" class="button cancellink">Cancel</a>
+              <%= f.submit t(:save), :class => "default button", "data-loading-click" => true %>
+              <a href="#" class="button cancellink"><%= t(:cancel) %></a>
             </div>
           <% end %>
         </div>
       <% else %>
-        <%= @user.login %> is a naturalist!
+        <%= @user.login + " " + t(:is_a_naturalist) %>
       <% end -%>
     <% else %>
       <%= formatted_user_text(@user.description) %>
       <% if is_me?(@user) %>
-        <%= link_to "Edit your profile", edit_person_path(current_user), :class => "small ui" -%>
+        <%= link_to t(:edit_your_profile), edit_person_path(current_user), :class => "small ui" -%>
       <% end %>
     <% end %>
   </div>
@@ -76,8 +73,8 @@
   
   <div class="stacked clear">
     <h3>
-      Some people
-      <%= is_me?(@user) ? "you're following" : "#{h @user.login} follows" %>
+      <%= t(:some_people_that) %>
+      <%= is_me?(@user) ? t(:youre_following) : t(:user_follows, :user => "#{h @user.login}") %>
     </h3>
 
     <% unless @followees.blank? %>
@@ -90,19 +87,19 @@
             <div class="column span-3">
               <%= link_to friend.login, person_by_login_path(friend.login), :class => "readable nobr" %>
               <br/>
-              <%= link_to("<span class='count'>#{friend.observations.count}</span> observations", observations_by_login_path(friend.login)) %>
+              <%= link_to("<span class='count'>#{friend.observations.count}</span> "+t(:observations), observations_by_login_path(friend.login)) %>
             </div>
           </div>
         <% end %>
       </div>
       <div class="clear">
-        <%= link_to 'View all', following_by_login_path(@user.login), :class => "readmore" %>
+        <%= link_to t(:view_all), following_by_login_path(@user.login), :class => "readmore" %>
       </div>
     <% else %>
       <% if is_me?(@user) %>
-        <p>You're not following anyone. Following other naturalists will allow you to easily track their latest observations. Go find out what people are <%= link_to "observing", observations_path %> and make some new <%= link_to "acquaintances", people_path %>.</p>
+        <p><%= t(:youre_not_following_anyone)%> <%= link_to t(:observing), observations_path %> <%= t(:and_make_some_new) %> <%= link_to t(:acquaintances), people_path %>.</p>
       <% else %>
-        <p><%= @user.login %> is not following anyone.</p>
+        <p><%= @user.login %> <%= t(:is_not_following_anyone) %></p>
       <% end %>
     <% end %>
   </div>
@@ -112,7 +109,7 @@
     <div class="clear">
       <h3>
         <%= possessive @selected_user, :capitalize => true %>
-        <%= link_to "favorite taxa", @favorites_list %>
+        <%= link_to t(:favorite_taxa), @favorites_list %>
       </h3>
       <div class="clear taxa grid">
         <% for listed_taxon in @favorite_listed_taxa %>
@@ -125,7 +122,7 @@
         <% end %>
       </div>
       <div class="clear">
-        <%= link_to "View all", @favorites_list, :class => "readmore" %>
+        <%= link_to t(:view_all), @favorites_list, :class => "readmore" %>
       </div>
     </div>
   <% end -%>
@@ -133,9 +130,9 @@
   <% if @favorites_list.blank? && is_me?(@selected_user) -%>
     <%= separator %>
     <div class="quiet box" style="text-align: center;">
-      Want to show off some of your favorite taxa here?
-      <%= link_to "Create a list", new_list_path(:title => "Favorites") %>
-      titled "Favorites" and the most recent additions will appear in this space.
+      <%= t(:want_to_show_off_some_of_your_favorite_taxa) %>
+      <%= link_to t(:create_a_list), new_list_path(:title => t(:favorites)) %>
+      <%= t(:titled_favorites_and_the_most_recent_additions) %>
     </div>
   <% end -%>
 </div>
@@ -150,14 +147,14 @@
   
   <% unless @selected_user.name.blank? -%>
     <p class="description">
-      aka <%= @selected_user.name %>
+    <%=t :aka %> <%= @selected_user.name %>
     </p>
   <% end -%>
   <%= render :partial => 'glance' %>
   
   <% if is_me?(@user) %>
     <ul class="readable leafylist">
-      <li><%= link_to "Edit account settings &amp; profile", edit_person_path(current_user) -%></li>
+      <li><%= link_to t(:edit_account_settings_and_profile), edit_person_path(current_user) -%></li>
     </ul>
   <% end %>
 
@@ -167,18 +164,18 @@
   <div class="right clear ui description">
     <% if current_user.is_admin? -%>
       <% if @user.active? %>
-        <%= link_to "Suspend user", suspend_user_path(@user) %>
+        <%= link_to t(:suspend_user), suspend_user_path(@user) %>
       <% else %>
-        <%= link_to "Unsuspend user", unsuspend_user_path(@user) %>
+        <%= link_to t(:unsuspend_user), unsuspend_user_path(@user) %>
       <% end %>
       |
     <% end -%>
     
     <% if current_user.is_curator? && !@user.is_admin? -%>
       <% if @user.is_curator? %>
-        <%= link_to "Remove curator status", remove_role_path(@user, :role => "curator"), :method => :delete %>
+        <%= link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete %>
       <% else %>
-        <%= link_to "Make curator", add_role_path(@user, :role => "curator"), :method => :post %>
+        <%= link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post %>
       <% end %>
     <% end -%>
   </div>

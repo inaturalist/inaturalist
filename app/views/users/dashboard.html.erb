@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  Your Home
+  <%= t(:your_home) %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'account/index', 'dashboard' %>
@@ -120,21 +120,21 @@
 <% end -%>
 
 <div id="pageheader">
-  <h2>Welcome, <%= @user.login %>!</h2>
+<h2>¡<%= t(:welcome_comma)%> <%=@user.login %>!</h2>
   <%= render :partial => 'users/subnav', :locals => { :user => current_user } %>
 </div>
 
 <div id="updates" class="column span-15 append-1">
   <% unless @updates.blank? -%>
     <span class="small ui right description">
-      <%= link_to_function "collapse days", 
+      <%= link_to_function t(:collapse_days), 
         "$('#updates .datetoggle').removeClass('open');" +
         "$('#updates .datetoggle').each(function() {" +
           "$($(this).attr('rel')).hide()" +
         "});" +
         "$(this).hide();" +
         "$(this).next().show()" %>
-      <%= link_to_function "expand days", 
+      <%= link_to_function t(:expand_days), 
         "$('#updates .datetoggle').addClass('open');" +
         "$('#updates .datetoggle').each(function() {" +
           "$($(this).attr('rel')).show()" +
@@ -142,13 +142,13 @@
         "$(this).hide();" +
         "$(this).prev().show()",
         :style => "display: none" %> |
-      <%= link_to_function "collapse updates", 
+      <%= link_to_function t(:collapse_updates), 
         "$('#updates .update_body').hide();" +
         "$(this).hide();" +
         "$(this).next().show();" +
         "$('.collapselink').hide();" +
         "$('.expandlink').show()" %>
-      <%= link_to_function "expand updates", 
+      <%= link_to_function t(:expand_updates), 
         "$('#updates .update_body').show();" +
         "$(this).hide();" +
         "$(this).prev().show();" +
@@ -157,34 +157,32 @@
         :style => "display: none" %>
     </span>
   <% end -%>
-  <h3>Recent Updates</h3>
+  <h3><%= t(:recent_updates) %></h3>
   
   <% if @updates.blank? -%>
     <% if params[:page].blank? -%>
       <p>
         <% if current_user.friendships.count == 0 -%>
-          Your dashboard helps you keep track of what people are doing on iNat.
-          To follow someone's updates, click the <strong>"Follow [name]"</strong>
-          link in the header when viewing their observations or profile.
-          <%= link_to "Find some people to follow", people_path, :class => "readmore" %>
+          <%= t(:your_dashboard_helps_keep_track_people_doing) %>
+          <%= link_to t(:find_some_people_to_follow), people_path, :class => "readmore" %>
         <% else %>
-          None of the people you follow have made any updates yet!
+          <%= t(:none_of_the_people_you_follow_have_updates) %>
         <% end -%>
       </p>
       
-      <p>Here are some things you can do in the meantime:</p>
+      <p><%=  t(:here_are_some_things_you_can_do_meantime) %></p>
       <ul class="readable leafylist">
         <% unless @user.flickr_identity %>
-          <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
+          <li><%= link_to t(:link_your_flickr_account_to_inat), :controller => 'flickr', :action => 'link' %></li>
         <% end %>
-        <li><%= link_to "Browse your observations", observations_by_login_path(@user.login) %></li>
-        <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
-        <li><%= link_to "Explore everyone's observations", observations_path %></li>
-        <li><%= link_to "Check out your Life List", lists_by_login_path(@user.login) %></li>
+        <li><%= link_to t(:browse_your_observations), observations_by_login_path(@user.login) %></li>
+        <li><%= link_to t(:add_new_observations), :controller => 'observations', :action => 'new' %></li>
+        <li><%= link_to t(:explore_everyones_observations), observations_path %></li>
+        <li><%= link_to t(:check_out_your_life_list), lists_by_login_path(@user.login) %></li>
       </ul>
     <% else %>
       <p class="description">
-        No more updates!
+        <%= t(:no_more_updates) %>
       </p>
     <% end -%>
   
@@ -192,9 +190,9 @@
   
     <% for day, updates in @updates.group_by{|u| u.created_at.to_date} %>
       <h4 class="date description">
-        <%= link_to_toggle (day.today? ? "Today" : day.to_s(:long)), "#updates_#{day.to_time.to_i}",
+        <%= link_to_toggle (day.today? ? t(:today) : l( day)), "#updates_#{day.to_time.to_i}",
           :class => "open datetoggle" %>
-        <small>(<span class="count"><%= updates.size %></span> <%= updates.size == 1 ? "update" : "updates" %>)</small>
+        <small>(<span class="count"><%= updates.size %></span> <%= updates.size == 1 ? t(:to_update) : t(:to_updates) %>)</small>
       </h4>
       <div id="updates_<%= day.to_time.to_i %>">
         <% updates.each do |update| %>
@@ -229,32 +227,32 @@
 <div id="rightcol" class="last column span-8">
   <% unless @id_please_observations.blank? -%>
     <div id="id_please" class="box">
-      <h3>ID Please</h3>
-      <p class="description">Can you help your friends ID these?</p>
+      <h3><%= t(:id_please) %></h3>
+      <p class="description"><%= t(:can_you_help_your_friends_id_these) %></p>
       
       <%= render :partial => "observations/mini", :collection => @id_please_observations[0..2] %>
       
       <% if @id_please_observations.size > 3 -%>
-        <%= link_to_toggle "More..", "#more_id_please" %>
+        <%= link_to_toggle t(:more), "#more_id_please" %>
         <div id="more_id_please" style="display: none">
           <%= render :partial => "observations/mini", :collection => @id_please_observations[3..-1] %>
-          <%= link_to "ID more in ID Please", id_please_path, :class => "readmore" %>
+          <%= link_to t(:id_more_in_id_please), id_please_path, :class => "readmore" %>
         </div>
       <% else %>
-        <%= link_to "ID more in ID Please", id_please_path, :class => "readmore" %>
+        <%= link_to t(:id_more_in_id_please), id_please_path, :class => "readmore" %>
       <% end -%>
     </div>
   <% end -%>
   
   <div id="recent_comments">
     <h3>
-      Recent Comments on Your Stuff<br/>
-      <span class="description">in the past week</span>
+      <%= t(:recent_comments_on_your_stuff) %><br/>
+      <span class="description"><%=t :in_the_past_week %></span>
     </h3>
 
     <% if @recently_commented.empty? %>
     <div class="centered description">
-      No activity in the past week.  Time to <%= link_to "post some new stuff", new_observation_path %>!
+    <%= t(:no_activity_in_the_past_week) %> <%=  link_to t(:post_some_new_stuff), new_observation_path %>!
     </div>
     <% end %>
 
@@ -280,13 +278,12 @@
     <hr/>
     
     <h3>
-      Comments You've Made (w/ Others)<br/>
-      <span class="description">in the past week</span>
+      <%= t(:comments_youve_made_with_others) %>
     </h3>
 
     <% if @commented_on.empty? %>
     <div class="centered description">
-      You haven't left any comments recently.  Go leave someone a note!
+      <%= t(:you_havent_left_any_comments_recently) %>
     </div>
     <% end %>
 
@@ -315,11 +312,11 @@
   <br/>
   <hr/>
   
-  <h3>Extras</h3>
+  <h3><%= t(:extras) %></h3>
   
-  <h4><%= link_to "Blog Widget", :controller => "observations", :action => "widget" %></h4>
+  <h4><%= link_to t(:blog_widget), :controller => "observations", :action => "widget" %></h4>
   <p class="description">
-    Show off your recent observations on your own blog or website!
-    <%= link_to "Get started &raquo;", :controller => "observations", :action => "widget" %>
+    <%= t(:show_off_your_recent_observations) %>
+    <%= link_to t(:get_started_raquo), :controller => "observations", :action => "widget" %>
   </p>
 </div>

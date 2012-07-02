@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Dashboard
+  <%= t(:dashboard) %>
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
@@ -20,7 +20,7 @@
     </style>
   <% end -%>
 <%- end -%>
-<h2>Recent Updates</h2>
+<h2><%= t(:recent_updates) %></h2>
 <ul id="updates">
   <% for u in @updates %>
     <%- next unless u.activity_object -%>

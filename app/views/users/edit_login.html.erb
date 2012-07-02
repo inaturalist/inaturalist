@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Choose your username
+  <%= t(:choose_your_username) %>
 <%- end -%>
 <div class="column prepend-4 span-8">
   <img src="/images/logo-bird-300px-trans.png" width="300" height="237" />
@@ -8,10 +8,10 @@
 
   <% form_for(current_user, :url => person_path(current_user)) do |f| %>
     <p class="ui">
-      <%= label_tag 'login', 'Pick a username' %><br/>
+      <%= label_tag 'login', t(:pick_a_username) %><br/>
       <%= f.text_field(:login) %>
     </p>
-    <p><%= submit_tag 'Save', :class => "default button", :style => "float: none;" %></p>
+    <p><%= submit_tag t(:save), :class => "default button", :style => "float: none;" %></p>
 
   <% end %>
 </div>
