@@ -36,21 +36,21 @@
     </tbody>
   </table>
   
-  <%= link_to "Download CSV", formatted_project_stats_path(@project, 'csv') %>
+  <%= link_to t(:download_csv), formatted_project_stats_path(@project, 'csv') %>
 </div>
 
 <div class="last column span-12">
   <table>
     <tr>
-      <td>Total members</td>
+      <td><%= t(:total_members) %></td>
       <td><%= @total_project_users %></td>
     </tr>
     <tr>
-      <td>Total observations</td>
+      <td>t(:total_observations) %></td>
       <td><%= @total_project_observations %></td>
     </tr>
     <tr>
-      <td>Total unique observers</td>
+      <td>t(:total_unique_observers) %></td>
       <td><%= @total_unique_observers %></td>
     </tr>
   </table>
