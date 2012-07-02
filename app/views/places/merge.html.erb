@@ -4,73 +4,45 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
-    .ac_loading {
-      background: white url('/images/spinner-small.gif') 340px 5px no-repeat;
-    }
-    
-    td.target, td.merge_target {
-      width: 40%;
-    }
-    
-    td.attr_name {
-      font-weight: bold;
-    }
-    
-    #merge_target_name {
-      width: 350px;
-    }
-    
-    thead th {
-      vertical-align: middle;
-    }
-    
-    tr.fake td {
-      padding-top: 0;
-      padding-bottom: 0;
-      border: 0 none;
-    }
-    
-    .map {
-      width: 370px;
-      height: 120px;
-    }
+    td.target,td.merge_target{width:40%;}
+    td.attr_name{font-weight:bold;}
+    #merge_target_id{width:350px;}
+    thead th{vertical-align:middle;}
+    tr.fake td{padding-top:0;padding-bottom:0;border:0 none;}
+    .map{width:370px;height:120px;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <%= gmap_include_tag %>
-  <%= javascript_include_tag 'inaturalist/map2', 
-                             'jquery/plugins/jquery.url.packed.js',
-                             'jquery/plugins/jquery.autocomplete.min.js',
-                             'jquery/plugins/inat/place_autocomplete.js' %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag 'inaturalist/map3', 
+                             'jquery/plugins/jquery.url.packed.js' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('#merge_target_name').placeAutocomplete('<%= url_for(:action => "autocomplete") %>', {
-        placeIdField: $('#merge_target_id'),
-        afterChoosePlace: function(input, placeJSON) {
-          $.each(placeJSON, function(i, val) {
-            $('#keepers .merge_target.' + i).html(val);
-          });
-          window.mergeTargetMap.removePlaces();
-          window.mergeTargetMap.addPlace(placeJSON);
-          window.mergeTargetMap.zoomToPlaces();
+      $('#merge_target_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('place_parent_id').attr('data-json') + ')'),
+        afterSelect: function(item) {
+          $.each(item, function(i, val) {
+            $('#keepers .merge_target.' + i).html(val)
+          })
+          window.mergeTargetMap.removePlaces()
+          window.mergeTargetMap.addPlace(item)
+          window.mergeTargetMap.zoomToPlaces()
         },
-        afterClearPlace: function(input) {
-          $('#keepers .merge_target').html('');
-          window.mergeTargetMap.removePlaces();
+        afterClear: function() {
+          $('#keepers .merge_target').html('')
+          window.mergeTargetMap.removePlaces()
         }
-      });
-      
-      <% if @merge_target %>
-      $.fn.placeAutocomplete.choosePlace($('#merge_target_name'), <%= @merge_target.to_json(:methods => [:place_type_name]) %>);
-      <% end %>
+      })
       
       window.placeMap = iNaturalist.Map.createMap({
-        div: 'place_map', controls: 'small', type: G_NORMAL_MAP});
+        div: 'place_map', controls: 'small'});
       window.placeMap.addPlace(<%= @place.to_json %>);
       window.placeMap.zoomToPlaces();
       
       window.mergeTargetMap = iNaturalist.Map.createMap({
-        div: 'merge_target_map', controls: 'small', type: G_NORMAL_MAP});
+        div: 'merge_target_map', controls: 'small'});
       <% if @merge_target %>
         window.mergeTargetMap.addPlace(<%= @merge_target.to_json %>);
         window.mergeTargetMap.zoomToPlaces();
@@ -103,8 +75,7 @@
       <th><%= link_to h(@place.name), @place %></th>
       <th><%= t(:what_to_keep) %></th>
       <th>
-        <input type="hidden" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id">
-        <input type="text" name="merge_target_name" value="<%= @merge_target.name if @merge_target %>" id="merge_target_name">
+        <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="Type a place name" data-json="<%= @merge_target.to_json(:methods => [:place_type_name]) %>">
       </th>
     </tr>
   </thead>

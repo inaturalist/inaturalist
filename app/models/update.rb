@@ -7,6 +7,7 @@ class Update < ActiveRecord::Base
   validates_uniqueness_of :notifier_id, :scope => [:notifier_type, :subscriber_id, :notification]
   
   before_create :set_resource_owner
+  after_create :expire_caches
   
   NOTIFICATIONS = %w(create change activity)
   
@@ -20,6 +21,12 @@ class Update < ActiveRecord::Base
   
   def sort_by_date
     created_at || notifier.try(:created_at) || Time.now
+  end
+  
+  def expire_caches
+    ctrl = ActionController::Base.new
+    ctrl.expire_fragment(FakeView.home_url(:user_id => subscriber_id).gsub('http://', ''))
+    true
   end
   
   def self.load_additional_activity_updates(updates)
@@ -44,7 +51,7 @@ class Update < ActiveRecord::Base
     updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
       resource_type, resource_id, notification = key
       batch = batch.sort_by{|u| u.sort_by_date}
-      if "created_observations new_observations".include?(notification) && batch.size > 1
+      if options[:hour_groups] && "created_observations new_observations".include?(notification) && batch.size > 1
         batch.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
           grouped_updates << [key, hour_updates]
         end
@@ -76,23 +83,29 @@ class Update < ActiveRecord::Base
   end
   
   def self.email_updates
-    Rails.logger.info "[INFO #{Time.now}] start daily updates emailer"
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
     email_count = 0
     user_ids = Update.all(
         :select => "DISTINCT subscriber_id",
-        :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact
+        :conditions => ["created_at BETWEEN ? AND ?", start_time, end_time]).map{|u| u.subscriber_id}.compact.uniq.sort
     delivery_times = []
+    process_start_time = Time.now
+    msg = "[INFO #{Time.now}] start daily updates emailer, #{user_ids.size} users"
+    Rails.logger.info msg
+    puts msg
     user_ids.each do |subscriber_id|
       delivery_start_time = Time.now
+      Rails.logger.info "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
       if email_updates_to_user(subscriber_id, start_time, end_time)
         delivery_times << (Time.now - delivery_start_time)
         email_count += 1
       end
     end
-    avg_time = delivery_times.sum / delivery_times.size
-    Rails.logger.info "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - end_time} s, avg: #{avg_time}"
+    avg_time = delivery_times.size == 0 ? 0 : delivery_times.sum / delivery_times.size
+    msg = "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - process_start_time} s, avg: #{avg_time}"
+    Rails.logger.info msg
+    puts msg
   end
   
   def self.email_updates_to_user(subscriber, start_time, end_time)
@@ -102,7 +115,7 @@ class Update < ActiveRecord::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
-    return unless user.admin? # testing
+    # return unless user.admin? # testing
     updates = Update.all(:limit => 100, :conditions => [
       "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
     updates.delete_if do |u| 

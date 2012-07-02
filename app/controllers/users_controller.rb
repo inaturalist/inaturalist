@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
   
+  caches_action :dashboard,
+    :expires_in => 1.hour,
+    :cache_path => Proc.new {|c| c.send(:home_url, :user_id => c.instance_variable_get("@current_user").id)},
+    :if => Proc.new {|c| (c.params.keys - %w(action controller)).blank? }
   cache_sweeper :user_sweeper, :only => [:update]
   
   def new
@@ -195,100 +199,14 @@ class UsersController < ApplicationController
     counts_for_users
   end
   
-  # These are protected by login_required
   def dashboard
-    @announcement = Announcement.last(:conditions => [
-      "placement = 'users/dashboard' AND ? BETWEEN \"start\" AND \"end\"", Time.now.utc])
-    
-    # if params[:test]
-      dashboard2
-      return
-    # end
-    
-    @user = current_user
-    @recently_commented = Observation.all(
-      :include => [:comments, :user, :photos],
-      :conditions => [
-        "observations.user_id = ? AND comments.created_at > ?", 
-        @user, 1.week.ago],
-      :order => "comments.created_at DESC"
-    )
-    
-    if @recently_commented.empty?
-      @commented_on = Observation.all(
-        :include => [:comments, :user, :photos],
-        :conditions => [
-          "comments.user_id = ? AND comments.created_at > ?", 
-          @user, 1.week.ago],
-        :order => "comments.created_at DESC"
-      ).uniq
-    else
-      @commented_on = Observation.all(
-        :include => [:comments, :user, :photos],
-        :conditions => [
-          "comments.user_id = ? AND comments.created_at > ? AND observations.id NOT IN (?)", 
-          @user, 1.week.ago, @recently_commented],
-        :order => "comments.created_at DESC"
-      ).uniq
-    end
-    
-    per_page = params[:per_page] || 20
-    per_page = 100 if per_page.to_i > 100
-    @updates = current_user.activity_streams.paginate(
-      :page => params[:page], 
-      :per_page => per_page, 
-      :order => "id DESC", 
-      :include => [:user, :subscriber])
-    
-    return if @updates.blank?
-    
-    # Eager loading
-    @activity_objects_by_update_id, @associates = 
-      ActivityStream.eager_load_associates(@updates, 
-        :batch_limit => 18,
-        :includes => {
-          "Observation" => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
-          "Identification" => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
-          "Comment" => [:user, :parent],
-          "ListedTaxon" => [{:list => :user}, {:taxon => [:photos, :taxon_names]}]
-        })
-    
-    @id_please_observations = @associates[:observations]
-    if @id_please_observations && @commented_on
-      @id_please_observations += @commented_on
-    end
-    unless @id_please_observations.blank?
-      @id_please_observations = @id_please_observations.select{|o| o.id_please?}
-      @id_please_observations = @id_please_observations.uniq.sort_by{|o| o.id}.reverse
-    end
-    
-    respond_to do |format|
-      format.html
-      format.json do
-        json = @updates.map do |u|
-          {
-            :subject_name => u.user.login,
-            :subject_image => u.user.icon.url(:small),
-            :verb => "added",
-            :object_name => u.activity_object.class.to_s.underscore.humanize.downcase,
-            :object_url => url_for(u.activity_object),
-            :object_image => activity_object_image_url(u)
-          }
-        end
-        render :json => json
-      end
-      format.mobile
-    end
-  end
-  
-  def dashboard2
     conditions = ["id < ?", params[:from].to_i] if params[:from]
     updates = current_user.updates.all(:limit => 50, :order => "id DESC", 
       :include => [:resource, :notifier, :subscriber, :resource_owner],
       :conditions => conditions)
     @updates = Update.load_additional_activity_updates(updates)
     @update_cache = Update.eager_load_associates(@updates)
-    @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache)
+    @grouped_updates = Update.group_and_sort(@updates, :update_cache => @update_cache, :hour_groups => true)
     Update.user_viewed_updates(updates)
     @month_observations = current_user.observations.all(:select => "id, observed_on",
       :conditions => [
@@ -296,8 +214,8 @@ class UsersController < ApplicationController
         Date.today.month, Date.today.year
         ])
     respond_to do |format|
-      format.html { render :dashboard2 }
-      format.mobile { render :dashboard2 }
+      format.html
+      format.mobile
     end
   end
   

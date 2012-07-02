@@ -53,7 +53,7 @@ var iNaturalist = window.iNaturalist = new function(){
         $(target).hide();
         var deleteStatus = $('<span class="loading status">Deleting...</span>');
         $(target).after(deleteStatus);
-      };
+      }
       $.ajax(ajaxOptions);
     } else {
       return false;

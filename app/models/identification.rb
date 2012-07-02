@@ -1,6 +1,4 @@
 class Identification < ActiveRecord::Base
-  acts_as_activity_streamable
-  
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon
@@ -13,7 +11,7 @@ class Identification < ActiveRecord::Base
   
   after_create  :update_observation, 
                 :increment_user_counter_cache, 
-                :notify_observer, 
+                # :notify_observer, 
                 :expire_caches
                 
   after_save    :update_obs_stats, 
@@ -51,6 +49,7 @@ class Identification < ActiveRecord::Base
   
   # Update the observation if you're adding an ID to your own obs
   def update_observation
+    return false unless observation
     return true unless self.user_id == self.observation.user_id
     return true if @skip_observation
 

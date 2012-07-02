@@ -206,15 +206,21 @@ google.maps.Map.prototype.addPlace = function(place, options) {
   // If this is the first, set the bounds to the extent of the place.
   var placesLength = 0;
   for(var key in this.places) placesLength += 1;
-
+  
   if (placesLength == 1 && place.swlat != null && place.swlat != '') {
-    var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(place.swlat, place.swlng), 
+    var bounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(place.swlat, place.swlng), 
       new google.maps.LatLng(place.nelat, place.nelng));
   }
   // Otherwise just extend the bounds
   else {
-    var bounds = this.getPlaceBounds();
-    bounds.extend(new google.maps.LatLng(place.latitude, place.longitude));
+    var bounds = this.getPlaceBounds()
+    if (place.swlat) {
+      bounds.extend(new google.maps.LatLng(place.swlat, place.swlng))
+      bounds.extend(new google.maps.LatLng(place.nelat, place.nelng))
+    } else {
+      bounds.extend(new google.maps.LatLng(place.latitude, place.longitude))
+    }
   }
   this.setPlaceBounds(bounds);
   

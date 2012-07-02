@@ -7,6 +7,8 @@ class TaxonPhoto < ActiveRecord::Base
   after_destroy :unfeature_taxon
   after_destroy :expire_caches
   
+  validates_associated :photo
+  
   def destroy_orphan_photo
     Photo.send_later(:destroy_orphans, photo_id)
     true

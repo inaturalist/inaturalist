@@ -504,7 +504,7 @@ class Place < ActiveRecord::Base
     if self.place_geometry && mergee.place_geometry
       append_geom(mergee.place_geometry.geom)
     elsif mergee.place_geometry
-      update_geom(mergee.place_geometry.geom)
+      save_geom(mergee.place_geometry.geom)
     end
     
     mergee.destroy

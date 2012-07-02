@@ -893,8 +893,16 @@ class TaxaController < ApplicationController
     
     get_flickraw
     
+    photos = FlickrPhoto.all(:conditions => ["native_photo_id IN (?)", params[:flickr_photos]], :include => :observations)
+    
     params[:flickr_photos].each do |flickr_photo_id|
-      tag_flickr_photo(flickr_photo_id, params[:tags])
+      tags = params[:tags]
+      photo = nil
+      if photo = photos.detect{|p| p.native_photo_id == flickr_photo_id}
+        tags += " " + photo.observations.map{|o| "inaturalist:observation=#{o.id}"}.join(' ')
+        tags.strip!
+      end
+      tag_flickr_photo(flickr_photo_id, tags)
       return redirect_to :action => "flickr_tagger" unless flash[:error].blank?
     end
     
@@ -931,7 +939,9 @@ class TaxaController < ApplicationController
       observation.photos.each do |photo|
         next unless photo.is_a?(FlickrPhoto)
         next unless observation.taxon
-        tag_flickr_photo(photo.native_photo_id, observation.taxon.to_tags)
+        tags = observation.taxon.to_tags
+        tags << "inaturalist:observation=#{observation.id}"
+        tag_flickr_photo(photo.native_photo_id, tags)
         unless flash[:error].blank?
           return redirect_to :back
         end

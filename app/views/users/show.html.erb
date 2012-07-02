@@ -178,5 +178,10 @@
         <%= link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post %>
       <% end %>
     <% end -%>
+    
+    <% if is_admin? -%>
+      |
+      <%= link_to "Curate user", curate_users_path(:id => @user.id) %>
+    <% end -%>
   </div>
 <% end %>

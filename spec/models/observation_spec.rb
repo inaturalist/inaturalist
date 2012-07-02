@@ -402,11 +402,8 @@ describe Observation, "updating" do
       o.quality_grade.should == Observation::CASUAL_GRADE
     end
     
-    it "should become casual when it isn't research" do
-      o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
-      i = Identification.make(:observation => o, :taxon => o.taxon)
-      o.photos << LocalPhoto.make(:user => o.user)
-      o.reload
+    it "should become casual when date removed" do
+      o = make_research_grade_observation
       o.quality_grade.should == Observation::RESEARCH_GRADE
       o.update_attributes(:observed_on_string => "")
       o.quality_grade.should == Observation::CASUAL_GRADE

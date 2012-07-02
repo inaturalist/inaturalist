@@ -95,10 +95,8 @@
         <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
       </p>
       
-      <% if logged_in? && is_admin? -%>
-        <div class="admin">
-          <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
-        </div>
+      <% if logged_in? -%>
+        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
       <% end -%>
     <% end -%>
     <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>

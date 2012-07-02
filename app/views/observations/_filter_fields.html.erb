@@ -1,7 +1,12 @@
-<% selected_taxa ||= [] %>
+<% 
+  selected_taxa ||= []
+  if @place && @place.html.blank?
+    @place.html = render(:partial => "places/autocomplete_item.html.erb", :object => @place)
+  end
+%>
 <div id="search_filter" class="row">
   <label class="label" for="q"><%=t :search %></label>
-  <input type="text" name="q" value="<%= @q %>" id="q" class="text" />
+  <input type="text" name="q" value="<%= @q %>" id="q" class="text" placeholder="Enter search terms"/>
   <select name="search_on" id="search_on">
     option
     <option value="" class="description"><%=t :search_all_fields %></option>
@@ -88,6 +93,51 @@
   </small>
 </div>
 
+<div class="stacked clear row">
+  <div id="place_filter" class="left">
+    <div id="place_filter_label" class="label">
+      <strong>Place</strong>
+    </div>
+    <div class="left">
+      <div class="buttons">
+        <%-
+          opts = {:id => "obs_filter_place_name", :class => "text", :placeholder => "Start typing a place name"}
+          opts["data-json"] = @place.to_json(:methods => [:html]) unless @place.blank?
+        -%>
+        <%= text_field_tag :place_id, @place.try(:id) || @place_id, opts %>
+      </div>
+    </div>
+  </div>
+  <% if @filters_open -%>
+    <script type="text/javascript" charset="utf-8">
+      $('#filters input[name=place_id]').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('#filters input[name=place_id]').attr('data-json') + ')')
+      })
+    </script>
+  <% end -%>
+  
+  <div class="left latlon">
+    <label>SW Lat.</label>
+    <input type="text" class="text" name="swlat" id="swlat" value="<%= @swlat %>"/>
+  </div>
+  <div class="left latlon">
+    <label>SW Lon.</label>
+    <input type="text" class="text" name="swlng" id="swlng" value="<%= @swlng %>"/>
+  </div>
+  <div class="left latlon">
+    <label>NE Lat.</label>
+    <input type="text" class="text" name="nelat" id="nelat" value="<%= @nelat %>"/>
+  </div>
+  <div class="left latlon">
+    <label>NE Lon.</label>
+    <input type="text" class="text" name="nelng" id="nelng" value="<%= @nelng %>"/>
+    &nbsp;
+    <%= link_to_function "Clear", "$('.latlon input').val('')", :class => "small" %>
+  </div>
+</div>
+
 <div class="clear row">
   <div id="taxon_filter"class="left">
     <div id="taxon_filter_label" class="label">
@@ -95,7 +145,8 @@
     </div>
     <div class="left">
       <div class="buttons">
-        <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text" %>
+        <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text",
+          :placeholder => "Type taxon name and click lookup" %>
         <%= hidden_field_tag :taxon_id, @observations_taxon.try(:id) || @observations_taxon_id,
           :alt => (@observations_taxon ? 
             content_tag(:span, @observations_taxon.name, 
@@ -132,10 +183,6 @@
   </div>
 </div>
 
-<input type="hidden" name="swlat" id="swlat" value="<%= @swlat %>"/>
-<input type="hidden" name="swlng" id="swlng" value="<%= @swlng %>"/>
-<input type="hidden" name="nelat" id="nelat" value="<%= @nelat %>"/>
-<input type="hidden" name="nelng" id="nelng" value="<%= @nelng %>"/>
 
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>

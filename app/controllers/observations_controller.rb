@@ -247,6 +247,8 @@ class ObservationsController < ApplicationController
           @subscription = @observation.update_subscriptions.first(:conditions => {:user_id => current_user})
         end
         
+        @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
+        
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
             :layout => false)
@@ -1260,6 +1262,7 @@ class ObservationsController < ApplicationController
     @swlng = search_params[:swlng] unless search_params[:swlng].blank?
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
+    @place = Place.find_by_id(search_params[:place_id]) unless search_params[:place_id].blank?
     
     @q = search_params[:q].to_s unless search_params[:q].blank?
     if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
@@ -1267,7 +1270,7 @@ class ObservationsController < ApplicationController
     end
     
     find_options = {
-      :include => [:user, {:taxon => [:taxon_names]}, :tags, :photos],
+      :include => [:user, {:taxon => [:taxon_names]}, :tags, {:observation_photos => :photo}],
       :page => search_params[:page]
     }
     find_options[:page] = 1 if find_options[:page].to_i == 0
@@ -1389,7 +1392,8 @@ class ObservationsController < ApplicationController
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@out_of_range.blank? ||
-      !@observed_on.blank?
+      !@observed_on.blank? ||
+      !@place.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]

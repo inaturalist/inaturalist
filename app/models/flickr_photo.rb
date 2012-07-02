@@ -87,7 +87,11 @@ class FlickrPhoto < Photo
       options[:original_url] ||= fp.to_hash["url_o"]
     end
     
-    if options[:square_url].blank?
+    if options[:square_url].blank? && options.delete(:skip_sizes)
+      options[:square_url]   ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_s.jpg"
+      options[:thumb_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_t.jpg"
+      options[:small_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_m.jpg"
+    elsif options[:square_url].blank?
       unless sizes = options.delete(:sizes)
         if options[:user] && options[:user].flickr_identity
           sizes = flickr.photos.getSizes(:photo_id => fp.id, :auth_token => options[:user].flickr_identity.token)

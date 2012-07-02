@@ -62,6 +62,7 @@ table.taxa .taxon_name {
   width: 240px;
   text-align: center;
 }
+.taxa.list .taxonimage img {max-width: 240px;}
 .taxa.list .nophoto {
   background-color: #eee;
   width: 220px;

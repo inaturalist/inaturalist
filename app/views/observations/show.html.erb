@@ -29,6 +29,12 @@
   <% else %>
     <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
   <% end %>
+  
+  <% unless @observation_links.blank? -%>
+    <% for ol in @observation_links %>
+      <link rel="<%= ol.rel %>" href="<%= ol.href %>"/>
+    <% end %>
+  <% end -%>
 <%- end -%>
 
 <% content_for(:extracss) do %>
@@ -156,6 +162,13 @@
             }
           }
         })
+      })
+      
+      $('a[rel=alternate]').each(function() {
+        $(this).css({
+          background: "url(http://www.google.com/s2/u/0/favicons?domain=" + this.hostname + ") left center no-repeat",
+          "padding": "1px 0 1px 20px"
+        });
       })
     });
   </script>
@@ -618,6 +631,50 @@
     <%= render :partial => "quality_metrics/quality_metrics", :object => @observation %>
     <%= separator %>
   </div>
+  
+  <% unless @observation_links.blank? -%>
+    <div id="links" class="stacked">
+      <div id="links_tip" style="display:none;">
+        <p>
+          <%= APP_CONFIG[:site_name] %> shares licensed observation data with
+          several data partners so your data can be more accessible to
+          scientists and other researchers.
+        </p>
+        
+        <% if is_me?(current_user) -%>
+          <p>
+            If you don't want us to share your data, 
+            <%= link_to_function "un-license this observation", 
+              "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>,
+            or you can
+            <%= link_to "edit your account", edit_user_path(current_user, :anchor => 'licenses') %>
+            and un-license all your observations.
+          </p>
+        <% end -%>
+        
+        <p>
+          If you'd like us to share your observations with data partners, make
+          sure you've chosen to license your observations with a Creative
+          Commons license.
+        </p>
+      </div>
+      <h3>
+        <span class="right quality_tip_target description helptip" rel="#links_tip" data-helptip-title="About External Links" data-helptip-width="500" style="margin-top:4px"></span>
+        External Links
+      </h3>
+      <p class="meta ui">
+        This observation has been incorporated into the following external websites:
+      </p>
+      <ul class="plain inline">
+        <% for ol in @observation.observation_links %>
+          <li class="inlineblock" style="margin-right: 10px;">
+            <%= link_to ol.href_name, ol.href, :rel => "alternate" %>
+          </li>
+        <% end %>
+      </ul>
+      <%= separator %>
+    </div>
+  <% end -%>
   
   <div class="rights stacked meta">
     <%= t(:observation_rights, :rights => "#{rights @observation}") %>

@@ -12,19 +12,16 @@
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
-  <%= javascript_include_tag 'jquery/plugins/jquery.autocomplete.min.js',
-                             'jquery/plugins/inat/place_autocomplete.js' %>
   <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-
-    })
     function rulify() {
-      $('#place_q').placeAutocomplete('<%= url_for(:controller => "places", :action => "autocomplete") %>', {
-        placeIdField: $('#new_operand_id'),
-        afterChoosePlace: function(input, json) {
+      $('#new_operand_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('new_operand_id').attr('data-json') + ')'),
+        afterSelect: function(item) {
           $('#new_operand_type').val("Place")
         },
-        afterClearPlace: function(input, json) {
+        afterClear: function() {
           $('#new_operand_type').val('')
         }
       })
@@ -141,10 +138,8 @@
             :include_blank => t(:choose_rule),
             :label => t(:rule_must_be) %>
           <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
-          <%= pu.hidden_field :operand_id, :id => "new_operand_id" %>
           <div id="place_selector">
-            <label for="place_q"><%=t :choose_place %></label><br/>
-            <input type="text" name="place_q" value="" id="place_q" class="text">
+            <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => "Type place name", :label => "Choose a place" %>
             <span class="description">
               <%=t :not_finding_place_you_want? %>
               <%= link_to t(:make_new_place), new_place_path, :class => "readmore", :target => "_blank" %>

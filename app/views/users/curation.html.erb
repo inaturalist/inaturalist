@@ -18,6 +18,9 @@
   </div>
   
   <div class="last column span-8">
+    <p>
+      <%= user_image(@display_user, :size => "medium") %>
+    </p>
     <div class="box">
       <ul>
         <% if @display_user.is_curator? %>
@@ -47,7 +50,12 @@
         </li>
       </ul>
     </div>
-    <%= render :partial => 'glance', :locals => {:user => @display_user} %>
+    <%- extra = capture do -%>
+      <li>
+        <%= link_to pluralize(@display_user.comments.count, "comment"), comments_by_login_path(@display_user.login) %>
+      </li>
+    <% end -%>
+    <%= render :partial => 'glance', :locals => {:user => @display_user, :extra => extra} %>
     
     <% unless @display_user.provider_authorizations.blank? -%>
       <h3><%= t(:provider_authorizations) %></h3>

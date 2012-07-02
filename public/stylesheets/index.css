@@ -969,6 +969,7 @@ ul .providerlink, ul .button.providerlink { width: 190px; }
   background-image: url(/images/spinner-small-ffffff_on_aaaaaa.gif);
 }
 
+abbr.date {border:0 transparent;}
 .date a:hover { border-bottom: 1px dotted #36c;}
 
 .monthgraph {
@@ -1194,3 +1195,8 @@ table .numeric { text-align: center; }
 .edit_subscription_inline .simpleTaxonSelectorImage {
   width: 27px;
 }
+
+ul.plain {list-style:none;margin:0;padding:0}
+.small.photo {max-width:240px;}
+.medium.photo {max-width:500px;}
+.large.photo {max-width:1024px;}

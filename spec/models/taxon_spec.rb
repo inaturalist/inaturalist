@@ -533,6 +533,15 @@ describe Taxon, "merging" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
+  
+  it "should delete invalid flags" do
+    u = User.make
+    @keeper.flags.create(:user => u, :flag => "foo")
+    @reject.flags.create(:user => u, :flag => "foo")
+    @keeper.merge(@reject)
+    @keeper.reload
+    @keeper.flags.size.should be(1)
+  end
 end
 
 describe Taxon, "moving" do

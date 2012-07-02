@@ -45,6 +45,7 @@ module MakeHelpers
     o = Observation.make(options)
     i = Identification.make(:observation => o, :taxon => o.taxon)
     o.photos << LocalPhoto.make(:user => o.user)
+    Observation.set_quality_grade(o.id)
     o.reload
     o
   end

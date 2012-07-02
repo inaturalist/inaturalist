@@ -264,7 +264,7 @@ class ApplicationController < ActionController::Base
   
   def admin_required
     unless logged_in? && current_user.has_role?(:admin)
-      flash[:notice] = "Only Administrators may access that page"
+      flash[:notice] = "Only administrators may access that page"
       redirect_to observations_path
     end
   end

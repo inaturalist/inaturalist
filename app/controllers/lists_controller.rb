@@ -203,7 +203,7 @@ class ListsController < ApplicationController
   
   def refresh
     delayed_task(@list.refresh_cache_key) do
-      job = @list.send_later(:refresh, :skip_update_cache_columns => true, :skip_update => true)
+      job = @list.send_later(:refresh, :skip_update_cache_columns => true)
       Rails.cache.write(@list.refresh_cache_key, job.id)
       job
     end

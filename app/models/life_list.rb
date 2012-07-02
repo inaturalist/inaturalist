@@ -50,7 +50,6 @@ class LifeList < List
         # Create new ListedTaxa for the taxa that aren't already in the list
         collection = (taxa_ids - existing.map{|e| e.taxon_id}).map do |taxon_id|
           listed_taxon = ListedTaxon.new(:list => self, :taxon_id => taxon_id)
-          listed_taxon.skip_update = true
           listed_taxon
         end
       end
@@ -61,7 +60,6 @@ class LifeList < List
 
     collection.each do |lt|
       lt.skip_update_cache_columns = options[:skip_update_cache_columns]
-      lt.skip_update = options[:skip_update]
       lt.save
       if !lt.valid? || (lt.first_observation_id.blank? && lt.last_observation_id.blank? && !lt.manually_added?)
         lt.destroy
@@ -76,7 +74,6 @@ class LifeList < List
     new_list_ids.each do |list_id|
       new_taxa.each do |new_taxon|
         lt = ListedTaxon.new(:list_id => list_id, :taxon_id => new_taxon.id)
-        lt.skip_update = true
         unless lt.save
           Rails.logger.info "[INFO #{Time.now}] Failed to create #{lt}: #{lt.errors.full_messages.to_sentence}"
         end
@@ -126,11 +123,8 @@ class LifeList < List
     # further up the call stack, causing bugs.
     list.owner.observations.all(
         :select => 'DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id', 
-        # :group => 'observations.taxon_id', 
         :conditions => conditions).each do |observation|
-      list.add_taxon(observation.taxon_id, 
-        :last_observation_id => observation.id,
-        :skip_update => true)
+      list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
     end
   end
   

@@ -1,4 +1,7 @@
-<%- user ||= @user %>
+<%- 
+  user ||= @user
+  extra ||= nil
+%>
 <ul class="readable description leafylist">
   <li>
   <%= link_to pluralize(@user.observations_count, t(:observation), t(:observations)), observations_by_login_path(@user.login) %>
@@ -36,4 +39,5 @@
   <% elsif user.is_curator? %>
     <li><%= user.login %> <%=t :is_a %> <%= link_to t(:curator), help_path(:anchor => "curators") %></li>
   <% end -%>
-</ul>  
+  <%= extra %>
+</ul>

@@ -1,6 +1,4 @@
 class Observation < ActiveRecord::Base
-  acts_as_activity_streamable :batch_window => 30.minutes, 
-    :batch_partial => "observations/activity_stream_batch"
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
@@ -8,7 +6,7 @@ class Observation < ActiveRecord::Base
   notifies_subscribers_of :user, :notification => "created_observations"
   notifies_subscribers_of :public_places, :notification => "new_observations", :if => lambda {|observation, place, subscription|
     return true if subscription.taxon_id.blank?
-    return true if observation.taxon.blank?
+    return false if observation.taxon.blank?
     observation.taxon.ancestor_ids.include?(subscription.taxon_id)
   }
   acts_as_taggable
@@ -90,6 +88,7 @@ class Observation < ActiveRecord::Base
   has_many :quality_metrics, :dependent => :destroy
   has_many :observation_field_values, :dependent => :destroy, :order => "id asc"
   has_many :observation_fields, :through => :observation_field_values
+  has_many :observation_links
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -503,7 +502,7 @@ class Observation < ActiveRecord::Base
     end
     scope = scope.by(params[:user_id]) if params[:user_id]
     scope = scope.in_projects(params[:projects]) if params[:projects]
-    scope = scope.in_place(params[:place_id]) if params[:place_id]
+    scope = scope.in_place(params[:place_id]) unless params[:place_id].blank?
     scope = scope.on(params[:on]) if params[:on]
     scope = scope.created_on(params[:created_on]) if params[:created_on]
     scope = scope.out_of_range if params[:out_of_range] == 'true'
@@ -705,7 +704,6 @@ class Observation < ActiveRecord::Base
       # If the owner doesn't have an identification for this obs, make one
       owners_ident = self.identifications.build(:user => user, :taxon => taxon, :observation => self)
       owners_ident.skip_observation = true
-      owners_ident.skip_update = true
     end
     
     update_stats(:skip_save => true)
@@ -744,7 +742,6 @@ class Observation < ActiveRecord::Base
     ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :dj_priority => 1)
-    # ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, :skip_update => true)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -761,7 +758,6 @@ class Observation < ActiveRecord::Base
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
       :new => id_was.blank?,
-      :skip_update => true,
       :dj_priority => 1)
     true
   end
@@ -969,6 +965,18 @@ class Observation < ActiveRecord::Base
       self.quality_grade = get_quality_grade
     end
     true
+  end
+  
+  def self.set_quality_grade(id)
+    return unless observation = Observation.find_by_id(id)
+    observation.set_quality_grade(:force => true)
+    observation.save
+    if observation.quality_grade_changed?
+      CheckList.send_later(:refresh_with_observation, observation.id, 
+        :taxon_id => observation.taxon_id, 
+        :dj_priority => 1)
+    end
+    observation.quality_grade
   end
   
   def get_quality_grade

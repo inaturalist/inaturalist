@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   attr_accessor   :make_photo_licenses_same
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same]
   
-  # new way
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false
@@ -45,9 +44,6 @@ class User < ActiveRecord::Base
   has_many :friends, :through => :friendships
   has_many :stalkerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
   has_many :followers, :through => :stalkerships,  :source => 'user'
-  
-  has_many :activity_stream_updates, :class_name => 'ActivityStream', :dependent => :destroy
-  has_many :activity_streams, :foreign_key => 'subscriber_id'
   
   has_many :lists, :dependent => :destroy
   has_many :life_lists
@@ -315,7 +311,8 @@ class User < ActiveRecord::Base
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
   def self.create_from_omniauth(auth_info)
-    email = (auth_info["user_info"]["email"] || auth_info["extra"]["user_hash"]["email"])
+    email = auth_info["user_info"].try(:[], "email")
+    email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
     if email && u = User.find_by_email(email)
       u.add_provider_auth(auth_info)

@@ -59,9 +59,9 @@ module ApplicationHelper
     if date == today
       time ? time.strftime("%I:%M %p").downcase.sub(/^0/, '')  : 'Today'
     elsif date.year == Date.today.year 
-      date.strftime("%b. %e") 
+      date.strftime("%b %e") 
     else 
-      date.strftime("%b. %e, %Y") 
+      date.strftime("%b %e, %Y") 
     end 
   end
   
@@ -118,7 +118,7 @@ module ApplicationHelper
   end
 
   def is_me?(user = @selected_user)
-    logged_in? && (user === current_user)
+    logged_in? && (user.id == current_user.id)
   end
   
   def is_not_me?(user = @selected_user)

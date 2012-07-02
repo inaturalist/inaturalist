@@ -112,6 +112,13 @@ describe Place, "merging" do
   it "should merge the place geometries" do
     @place.place_geometry.geom.geometries.size.should > @place_geom.geometries.size
   end
+  
+  it "should merge the place geometries when the keeper has no geom" do
+    p = Place.make
+    p.place_geometry.should be_blank
+    p.merge(@merged_place)
+    p.place_geometry.should_not be_blank
+  end
 end
 
 describe Place, "bbox_contains_lat_lng?" do

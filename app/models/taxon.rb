@@ -94,8 +94,9 @@ class Taxon < ActiveRecord::Base
     const_set "#{rank.upcase}_LEVEL", level
     define_method "find_#{rank}" do
       return self if rank_level == level
-      return nil if rank_level > level
-      ancestors.first(:conditions => {:rank => rank})
+      return nil if rank_level.to_i > level.to_i
+      @cached_ancestors ||= ancestors.all
+      @cached_ancestors.detect{|a| a.rank == rank}
     end
     alias_method(rank, "find_#{rank}") unless method_exists?(rank)
     define_method "#{rank}?" do
@@ -198,7 +199,7 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive']
+  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia']
   
   named_scope :observed_by, lambda {|user|
     { :joins => """
@@ -774,6 +775,10 @@ class Taxon < ActiveRecord::Base
     
     LifeList.send_later(:update_life_lists_for_taxon, self, :dj_priority => 1)
     Taxon.send_later(:update_listed_taxa_for, self, :dj_priority => 1)
+    
+    flags.each do |flag|
+      flag.destroy unless flag.valid?
+    end
     
     reject.reload
     logger.info "[INFO] Merged #{reject} into #{self}"

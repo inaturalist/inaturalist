@@ -1,13 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
-describe ObservationPhoto, "creation" do
-  it "should update observation quality_grade" do
-    o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
-    i = Identification.make(:observation => o, :taxon => o.taxon)
-    o.quality_grade.should == Observation::CASUAL_GRADE
-    o.photos << LocalPhoto.make(:user => o.user)
-    o.reload
-    o.quality_grade.should == Observation::RESEARCH_GRADE
+describe ObservationPhoto, "creation" do  
+  it "should queue a job to update observation quality grade" do
+    Delayed::Job.delete_all
+    stamp = Time.now
+    ObservationPhoto.make
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /;Observation.*set_quality_grade/m}.should_not be_blank
   end
   
   it "should update user_id on photo" do
@@ -21,14 +20,12 @@ describe ObservationPhoto, "creation" do
 end
 
 describe ObservationPhoto, "destruction" do
-  it "should update observation quality_grade" do
-    o = Observation.make(:taxon => Taxon.make, :latitude => 1, :longitude => 1, :observed_on_string => "yesterday")
-    i = Identification.make(:observation => o, :taxon => o.taxon)
-    o.photos << LocalPhoto.make(:user => o.user)
-    o.reload
-    o.quality_grade.should == Observation::RESEARCH_GRADE
-    o.observation_photos.each(&:destroy)
-    o.reload
-    o.quality_grade.should == Observation::CASUAL_GRADE
+  it "should queue a job to update observation quality grade" do
+    op = ObservationPhoto.make
+    Delayed::Job.delete_all
+    stamp = Time.now
+    op.destroy
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /;Observation.*set_quality_grade/m}.should_not be_blank
   end
 end

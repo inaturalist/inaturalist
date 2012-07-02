@@ -14,14 +14,7 @@ class ObservationPhoto < ActiveRecord::Base
   # Might be better to do this with DJ...
   def set_observation_quality_grade
     return true unless observation
-    new_quality_grade = observation.get_quality_grade
-    Observation.update_all(["quality_grade = ?", new_quality_grade], ["id = ?", observation_id])
-    if new_quality_grade != observation.quality_grade
-      CheckList.send_later(:refresh_with_observation, observation.id, 
-        :taxon_id => observation.taxon_id, 
-        :skip_update => true,
-        :dj_priority => 1)
-    end
+    Observation.send_later(:set_quality_grade, observation.id)
     true
   end
   

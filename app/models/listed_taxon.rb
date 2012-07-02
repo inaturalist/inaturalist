@@ -3,11 +3,7 @@
 # last observed taxon (saving some db time), this model's validation makes
 # sure a taxon passes all of a list's ListRules.
 #
-class ListedTaxon < ActiveRecord::Base
-  acts_as_activity_streamable :batch_window => 30.minutes, 
-    :batch_partial => "lists/listed_taxa_activity_stream_batch",
-    :user_scope => :by_user
-  
+class ListedTaxon < ActiveRecord::Base  
   has_subscribers
   
   belongs_to :list

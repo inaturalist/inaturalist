@@ -57,7 +57,12 @@
       
       var importMap = iNaturalist.Map.createMap({div: 'importMap'});
       window.importMap = importMap;
-    });
+      $('#place_parent_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('place_parent_id').attr('data-json') + ')')
+      })
+    })
   </script>
 <%- end -%>
 <div id="pageheader">
@@ -111,8 +116,7 @@
       <h3><%= t(:give_it_some_detail) %></h3>
       <% form_for @place, :builder => DefaultFormBuilder do |f| %>
         <%= f.text_field :name, :class => 'text', :required => true %>
-        <%= f.hidden_field :parent_id %>
-        <%= render :partial => 'place_parent_field' %>
+        <%= f.text_field :parent_id, :placeholder => "Type place name", :style => "width: 300px" %>
         <%= f.text_field :latitude, :class => 'text', :required => true %>
         <%= f.text_field :longitude, :class => 'text', :required => true %>
         <input type="hidden" id="place_geometry" name="kml"/>

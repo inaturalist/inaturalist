@@ -1,4 +1,7 @@
-<%- comment ||= object -%>
+<%- 
+  comment ||= object
+  extra ||= nil
+-%>
 <div class="column span-24 commentitem">
   <div class="column span-8">
     <%- case comment.parent.class.to_s -%>
@@ -45,13 +48,11 @@
   
   <div class="last column span-16">
     <% if @comments_by_parent_id -%>
-      <%= render :partial => "comments/comment", 
-        :collection => @comments_by_parent_id[comment.parent_id],
-        :locals => { :include_user_image => true } %>
+      <%= render :partial => "shared/activity_item", :collection => @comments_by_parent_id[comment.parent_id] %>
     <% else %>
-      <%= render :partial => "comments/comment", 
-        :object => comment,
-        :locals => { :include_user_image => true } %>
+      <%= render :partial => "shared/activity_item", :object => comment %>
     <% end -%>
+    
+    <%= extra %>
   </div>
 </div>

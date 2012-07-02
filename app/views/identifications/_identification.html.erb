@@ -18,7 +18,7 @@
     <%= link_to taxon_image(taxon), taxon %>
   </div>
   <div class="identification_body">
-    <% if identification.user_id == current_user.id %>
+    <% if logged_in? && identification.user_id == current_user.id %>
       <strong>Your</strong>
     <% else %>
       <%= link_to("#{user.login}'s", person_path(user)) %>
@@ -48,7 +48,7 @@
              :method => :post -%>
         <%- end -%></span>
       <% end %>
-      <% if identification.user_id == current_user.id %>
+      <% if logged_in? && identification.user_id == current_user.id %>
         <span class="button"><%- if remote_actions -%>
           <%= link_to_remote t(:remove), 
              :url => identification_path(identification), 
