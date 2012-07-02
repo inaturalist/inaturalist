@@ -1,21 +1,22 @@
 <div id="footer" class="clear">
   <div id="footer_text" class="stacked">
-    <a href="/about">About iNaturalist</a> &nbsp;
-    <a href="/help">Help</a> &nbsp;
-    <a href="http://groups.google.com/group/inaturalist">Feedback</a> &nbsp;
-    <a href="http://inaturalist.org/terms.html">Terms of Service</a> &nbsp;
-    <a href="http://inaturalist.org/privacy.html">Privacy Policy</a> &nbsp;
-    <span class="description">|&nbsp; Follow us on</span>
-    <a href="http://twitter.com/inaturalist">Twitter</a> <span class="description">&amp;</span>
-    <a href="http://www.facebook.com/pages/iNaturalistorg/63336575498">Facebook</a> &nbsp;
+    <a href="/about"><%=t :about%> <%=t :initiative_name %></a> &nbsp;
+    <a href="/help"><%=t :help %></a> &nbsp;
+    <!--a href="http://groups.google.com/group/inaturalist"><%=t :feedback %></a--> &nbsp;
+    <a href="http://bioexplorador.inbio.ac.cr/terms.html"><%=t :terms_service %></a> &nbsp;
+    <a href="http://bioexplorador.inbio.ac.cr/privacy.html"><%=t :privacy%></a> &nbsp;
+    <span class="description">|&nbsp; <%=t :follow_us%></span>
+    <a href="http://twitter.com/inbiocr">Twitter</a> <span class="description">&amp;</span>
+    <a href="http://www.facebook.com/inbio">Facebook</a> &nbsp;
   </div>
   <div>
-    <a href="http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"><img src="/images/apple_app_store.png"></a> &nbsp;
-    <a href="https://market.android.com/details?id=org.inaturalist.android"><img src="/images/android_market.png"></a>
+    Este sitio funciona gracias al excelente software creado por <a href="http://www.inaturalist.org/" target="_new" ><img src="/images/inaturalist-logo.gif"></img></a>
+  </div>
+  <div>
   </div>
 </div>
 <%- if is_mobile_device? && @mobilized -%>
   <div class="flash notice">
-    <%= link_to "Mobile view available", toggle_mobile_path, :id => "mobiletogglelink" %>
+    <%= link_to t(:mobile_view_available), toggle_mobile_path, :id => "mobiletogglelink" %>
   </div>
 <% end -%>
