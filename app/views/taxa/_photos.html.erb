@@ -13,7 +13,7 @@
       <% photo_url = "http://flickr.com/photos/#{photos[0].photo_xml[:owner]}/#{photos[0].id}" %>
       <%= link_to image_tag(photos[0].source_url(:medium)), photo_url %>
       <div class="description">
-        Photo: <%= link_to "View original CC'd photo on Flickr by #{photos[0].photo_xml[:ownername]}", photos[0].page_url %>
+        Photo: <%= link_to t(:view_original_ccD_photo, :owner => "#{photos[0].photo_xml[:ownername]}"), photos[0].page_url %>
       </div>
     <% end %>
   <% else %>
@@ -32,10 +32,9 @@
     </div>
     <% unless photos.empty? %>
       <div class="description">
-        Creative Commons Flickr photos tagged "<%= taxon.name %>."
+        <%= t(:creative_commons_flickr_tagged) %>"<%= taxon.name %>."
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-          View all photos tagged "<%=h taxon.name %>" on 
-          <nobr>Flickr &raquo;</nobr>
+          <%= t(:view_all_photos_tagged_taxon, :taxon =>h(taxon.name) ) %>
         </a>
       </div>
     <% end %>
@@ -52,6 +51,16 @@
   </div>
 <% end %>
 
+<div class="description">
+  <h3 class="description">
+    <%= t(:no_creative_commons_flickr_photo) %> "<%= taxon.name %>"
+  </h3>
+  <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
+    <%= t(:view_all_photos_tagged_taxon, :taxon =>h(taxon.name)) %>
+  </a><br/>
+  <%= t(:not_just_creative_common_licensed_parentesis) %>
+</div>
+<% end %>
 <% if photos.size > 0 && taxon.species_or_lower? %>
 <div style="margin-top: 10px">
   <% unless photos[1..-1].size == 0 %>
@@ -70,7 +79,7 @@
     </div>
     <div class="description">
       <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-        View all photos tagged "<%=h taxon.name %>" on <nobr>Flickr &raquo;</nobr>
+        <%= t(:view_all_photos_tagged_taxon, :taxon =>h(taxon.name) ) %>
       </a>
     </div>
   <% end %>

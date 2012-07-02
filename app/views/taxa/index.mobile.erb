@@ -8,7 +8,7 @@
 <%- end -%>
 <h2><%= @title %></h2>
 <% if @taxa.blank? -%>
-  No taxa yet!
+  <%= t(:no_taxa_yet) %>
 <% else %>
   <div class="taxa">
     <% for taxon in @taxa %>

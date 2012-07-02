@@ -27,7 +27,7 @@
 <%- end -%>
 
 <%- content_for(:extracss) do %>
-<%= stylesheet_link_tag 'taxa/show' %>
+<%= stylesheet_link_tag 'taxa/show', 'observations' %>
 <style type="text/css" media="screen">
   #noobservations .readable.description {
     margin-bottom: 0.5em;
@@ -244,7 +244,7 @@
   .ui-tabs .ui-tabs-panel { padding: 10px 0; }
   #taxon_links { 
     position: relative;
-    z-index: 1;
+    z-index: 1000;
   }
 </style>
 
@@ -382,31 +382,31 @@
   </span>
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
-      Source: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source_url %>
+      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source_url %>
     <% elsif @taxon.source %>
-      Source: <%= @taxon.source.title %>
+      <%= t(:source)%>: <%= @taxon.source.title %>
     <% elsif @taxon.creator %>
-      Added by <%= link_to h(@taxon.creator.login), @taxon.creator %>
+      <%= t(:added_by) %> <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>
-      Source: unknown
+      <%= t(:source_unknown)%>
     <% end %>
     
-    | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
+    | <%= link_to "Permalink", url_for(@taxon), :title => t(:named_based_url_might_change)%>
     <% if logged_in? -%>
-      | <%= link_to "Map", taxon_map_path(@taxon) %>
+      | <%= link_to t(:map), taxon_map_path(@taxon) %>
     <% end -%>
     <% if logged_in? and @user.is_curator? %>
-      | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
+      | <strong><%= link_to t(:edit), edit_taxon_path(@taxon) %></strong>
     <% end %>
     <% if @taxon.flagged? %>
       | <span id="flaggings_heads_up" class="description">
-      Flagged for curation.
-      <%= link_to "View flags", taxon_flags_path(@taxon), :class => 'readmore', 
-        :title => "See something wrong with this taxon?  Let the curators know." %>
+      <%= t(:flagged_for_curation) %>
+      <%= link_to t(:view_flags), taxon_flags_path(@taxon), :class => 'readmore', 
+        :title => t(:see_something_wrong_with_taxon) %>
       </span>
     <% else %>
       <% if logged_in? %>
-      | <%= link_to "Flag for curation", new_taxon_flag_path(@taxon), :id => "flag_this" %>
+      | <%= link_to t(:flag_for_curation), new_taxon_flag_path(@taxon), :id => "flag_this" %>
       <% end %>
     <% end %>
   </div>
@@ -425,9 +425,9 @@
 <% if @conservation_status_name %>
   <div class="column span-24">
     <div class="conservation_status <%= @conservation_status_name %> box">
-      Global conservation status: <strong><%= @conservation_status_name.humanize.downcase %></strong>
+      <%= t(:global_conservation_status) %> <strong><%= @conservation_status_name.humanize.downcase %></strong>
       <span class="small">
-        (Source:
+        (<%= t(:source) %>:
         <% if @conservation_status_source && !@conservation_status_source.url.blank? -%>
           <%= link_to @conservation_status_source.title, @conservation_status_source.url -%>
         <%- else -%>
@@ -440,14 +440,14 @@
 
 <div class="column span-4 aka">
   <h3>
-    Classification
-    <div class="description">within iNaturalist</div>
+    <%= t(:classification) %>
+    <div class="description"><%=t :within_inaturalist %></div>
   </h3>
   
   <%= render :partial => 'classification_list' %>
   
   <div id="all_names">
-    <h3>All Names</h3>
+    <h3><%= t(:all_names) %></h3>
     <ul>
       <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
         <%- lexicon = lexicon.blank? ? 'Unknown' : lexicon.capitalize %>
@@ -459,7 +459,7 @@
                 <span class="taxon_name <%= lexicon.split.join('_') %><%= ' invalid' unless taxon_name.is_valid? %>">
                   <%= taxon_name.name %></span>
                 <% if logged_in? && (!taxon_name.is_scientific? || current_user.is_curator?) -%>
-                  <%= link_to "edit", edit_taxon_name_path(taxon_name), :class => 'small description' %>
+                  <%= link_to t(:edit), edit_taxon_name_path(taxon_name), :class => 'small description' %>
                 <% end -%>
               </li>
             <% end %>
@@ -469,22 +469,21 @@
     </ul>
 
     <% if logged_in? -%>
-      <%= link_to "Add a name", new_taxon_taxon_name_path(@taxon), :class => 'readmore' %>
+      <%= link_to t(:add_a_name), new_taxon_taxon_name_path(@taxon), :class => 'readmore' %>
     <% end -%>
   </div>
   
   <% if @taxon.species_or_lower? -%>
     <div id="colors" class="clear">
-      <h3>Colors</h3>
+      <h3><%= t(:colors) %></h3>
       <% if @colors.blank?-%>
         <% if logged_in? -%>
           <div class="notice">
-            This species has no colors! Help improve species searches by telling
-            us what color this is!
+            <%= t(:this_species_has_no_colors) %>
           </div>
         <% else -%>
           <div class="description">
-            No colors selected.
+            <%= t(:no_colors_selected) %>.
           </div>
         <% end -%>
       <% end -%>
@@ -497,7 +496,7 @@
       </div>
       <% if logged_in? -%>
         <div id="edit_colors">
-          <%= link_to_toggle "Edit colors", "#edit_colors_dialog" %>
+          <%= link_to_toggle t(:edit_colors), "#edit_colors_dialog" %>
           <div id="edit_colors_dialog" style="display: none">
             <% remote_form_for @taxon, 
                 :url => {:action => 'update_colors', :id => @taxon, :format => 'js'},
@@ -532,8 +531,8 @@
               <% end %>
               <%= hidden_field_tag "taxon[color_ids][]", '' %>
               <div class="buttonrow">
-                <%= f.submit "Save Colors", :class => 'button', :style => 'margin: 0.5em auto' %>
-                <div class="inter loading status" style="display: none; clear: left">Saving...</div>
+                <%= f.submit t(:save_colors), :class => 'button', :style => 'margin: 0.5em auto' %>
+                <div class="inter loading status" style="display: none; clear: left"><%= t(:saving) %></div>
               </div>
             <% end %>
           </div>
@@ -550,29 +549,29 @@
   <% if @taxon.species_or_lower? -%>
     <div id="places" class="clear">
       <h3>
-        Places
+        <%= t(:places) %>
         <% if @check_listed_taxa.total_entries > @check_listed_taxa.size -%>
           <span class="small description"><%= @check_listed_taxa.size %> of <%= @check_listed_taxa.total_entries %></span>
         <% end -%>
       </h3>
     
       <% if @us_states -%>
-        <span class="description">US states:</span>
+        <span class="description"><%=t(:US_states)%>:</span>
         <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
       <% elsif !@countries.blank? %>
-        <span class="description">Countries:</span>
+        <span class="description"><%= t(:countries)%>:</span>
         <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
       <% end -%>
     
       <% if @check_listed_taxa.blank? -%>
-        <% unless logged_in? %><div class="description">No places selected.</div><% end %>
+        <% unless logged_in? %><div class="description"><%= t(:no_places_selected)%></div><% end %>
       <% else %>
         <ul id="places_list">
           <% for lt in @sorted_check_listed_taxa %>
             <li>
               <%= link_to lt.place.display_name, lt.place %>
               <% if logged_in? && lt.editable_by?(current_user) -%>
-                <%= link_to("edit", lt, :class => "small description editlink") %>
+                <%= link_to(t(:edit), lt, :class => "small description editlink") %>
               <% end -%>
               
               <% if %w(introduced naturalised managed).include?(lt.establishment_means) -%>
@@ -588,11 +587,11 @@
       <% if logged_in? -%>
         <% if @places.blank? -%>
           <div class="notice">
-            Do you know where this species lives?
-            <strong><%= link_to_function "Add it to a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+            <%= t(:do_you_know_where_this_species_lives) %>
+            <strong><%= link_to_function t(:add_it_to_place_raquo), "$('#add_to_place_dialog').jqmShow()" %></strong>
           </div>
         <% else %>
-          <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+          <strong><%= link_to_function t(:add_a_place_raquo), "$('#add_to_place_dialog').jqmShow()" %></strong>
         <% end -%>
         <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
       <% end -%>
@@ -600,23 +599,23 @@
   <% end %>
   
   <div id="extras">
-    <h3>Extras</h3>
+    <h3><%= t(:extras) %></h3>
     
     <p class="ui">
-      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
+      <%= link_to t(:make_taxonomic_flickr_tags_for_taxon_raquo), 
         flickr_tagger_path(:taxon_id => @taxon.id) %>
     </p>
     
     <p class="ui">
-      <%= link_to "Flickr invite link &raquo;", 
+      <%= link_to t(:flickr_invite_link_raquo), 
         url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
     </p>
     
     <p class="ui">
-      <%= link_to_function "Wikipedia taxobox &raquo;", "return false;", :id => "taxoboxlink" %>
+      <%= link_to_function t(:wikipedia_taxobox_raquo), "return false;", :id => "taxoboxlink" %>
       <%- taxobox_content = capture do -%>
         <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>
-        <%= link_to "About the taxobox &raquo;", "http://en.wikipedia.org/wiki/Template:Taxobox" %>
+        <%= link_to t(:about_the_taxobox_raquo), "http://en.wikipedia.org/wiki/Template:Taxobox" %>
       <%- end -%>
       <script type="text/javascript" charset="utf-8">
         $('#taxoboxlink').qtip($.extend(QTIP_DEFAULTS, {
@@ -628,18 +627,18 @@
     </p>
     
     <p class="ui">
-      <%= link_to "Tree Browser &raquo;", {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
+      <%= link_to t(:tree_browser_raquo), {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
         :rel => "nofollow" %>
     </p>
     
     <p class="ui">
-      <%= link_to "Search descendant taxa &raquo;", 
+      <%= link_to t(:search_descendant_taxa_raquo), 
         {:controller => "taxa", :action => "search", :taxon_id => @taxon, :view => TaxaController::LIST_VIEW},
         :rel => "nofollow" %>
     </p>
     
     <p class="ui">
-      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon), 
+      <%= link_to t(:embed_a_widget_for_this_taxon_on_website), observations_widget_path(:taxon_id => @taxon), 
         :rel => "nofollow" %>
     </p>
     
@@ -647,17 +646,14 @@
   
   <% if logged_in? && current_user.is_curator? -%>
     <div id="curation" class="quiet box">
-      <h3>Curation</h3>
+      <h3><%= t(:curation) %></h3>
       <ul>
-        <li><%= link_to "Edit", edit_taxon_path(@taxon) %></li>
-        <li><%= link_to "Merge", merge_taxon_path(@taxon) %></li>
+        <li><%= link_to t(:edit), edit_taxon_path(@taxon) %></li>
+        <li><%= link_to t(:merge), merge_taxon_path(@taxon) %></li>
       </ul>
       <% if @taxon.locked? -%>
         <div class="notice">
-          <strong>Heads up:</strong> this taxon is locked, which means that most users can't add
-          new descendants to it by importing taxa. Curators can still do so by
-          editing taxa and choosing a parent, but please consider merging taxa
-          instead.
+          <%= t(:heads_up_this_taxon_locked_users_cant_add_descendants) %>
         </div>
       <% end -%>
     </div>
@@ -668,17 +664,17 @@
   <div id="photoscol" class="column span-13">
     <% if logged_in? && @taxon.species_or_lower? && @photos.empty? %>
       <div class="notice">
-        This taxon has no default photo!
-        <%= link_to_function("Add one", "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
+        <%= t(:this_taxon_has_no_default_photo) %>
+        <%= link_to_function( t(:add_one), "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
       </div>
     <% end %>
     <div id="photos">
       <%= render :partial => "photos", :locals => { :photos => @photos } %>
-      <div id="photos_loading_status" class="loading status" style="display:none">Loading more photos...</div>
+      <div id="photos_loading_status" class="loading status" style="display:none"><%= t(:loading_more_photos) %></div>
     </div>
     
     <% if logged_in? %>
-      <%= link_to_function("Edit photos", "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
+      <%= link_to_function(t(:edit_photos), "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
       <div id="edit_photos_dialog" class="modalbox dialog" style="display: none"></div>
     <% end %>
   </div>
@@ -687,9 +683,9 @@
     <div id="actions" class="clear">
       <div id="toplinks">
         <% if logged_in? -%>
-          <%= link_to_toggle "Add to list", '#add_to_list' %> |
+          <%= link_to_toggle t(:add_to_list), '#add_to_list' %> |
         <% end -%>
-        <%= link_to("Add an observation", new_observation_path(:taxon_id => @taxon), 
+        <%= link_to( t(:add_an_observation), new_observation_path(:taxon_id => @taxon), 
           :class => 'readmore', :rel => 'nofollow') %>
       </div>
       
@@ -699,7 +695,7 @@
             <% if @lists_rejecting_taxon.include?(list) -%>
               <li class="clear description">
                 "<%= link_to truncate(h(list.title), :length => 35), list %>"
-                only accepts taxa
+                <%= t(:only_accepts_taxa) %>
                 <%= list.rules.map(&:terms).join(', ') %>
               </li>
             <% else %>
@@ -717,11 +713,11 @@
     
     
     <div id="taxon_observations">
-      <h3>Recent Observations</h3>
+      <h3><%= t(:recent_observations) %></h3>
         <% if @observations.blank? -%>
           <div id="noobservations" class="clear">
             <div class="readable description">
-              No one's observed
+              <%= t(:no_ones_observed) %>
               <%= render(:partial => 'shared/taxon', :locals => {
                 :taxon => @taxon,
                 :include_article => true
@@ -735,11 +731,11 @@
         <% end -%>
       
       <% if logged_in? -%>
-        <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
+        <%= link_to t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
         <br/>
-        <%= link_to "View your observations", observations_by_login_path(current_user.login, :taxon_id => @taxon.id), :class => 'readmore' %>
+        <%= link_to t(:view_your_observations), observations_by_login_path(current_user.login, :taxon_id => @taxon.id), :class => 'readmore' %>
       <% else %>
-        <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
+        <%= link_to t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
       <% end -%>
     </div>
     
@@ -753,13 +749,13 @@
   <div class="last column span-20">
     <div id="taxon_links" class="right tabs">
       <ul>
-        <li class="description">More info:</li>
+        <li class="description"><%= t(:more_info) %></li>
         <% for taxon_link in @taxon_links[0..3] %>
           <li class="taxon_link">
             <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
             <%- if logged_in? -%>
               <span class="controls">
-                <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
+                <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => t(:edit_this_link) %>
               </span>
             <%- end -%>
           </li>
@@ -773,7 +769,7 @@
                     <%= link_to taxon_link.site_title, taxon_link.url_for_taxon(@taxon) -%>
                     <%- if logged_in? -%>
                       <span class="controls">
-                        <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => "Edit this link" %>
+                        <%= link_to image_tag('silk/pencil_grey.png'), edit_taxon_link_path(taxon_link), :title => t(:edit_this_link) %>
                       </span>
                     <%- end -%>
                   </li>
@@ -784,15 +780,15 @@
         <% end %>
         <% if logged_in? -%>
           <li class="description" style="padding-right: 0">
-            <%= link_to "Add a link &raquo;", new_taxon_link_path(:taxon_id => @taxon.id) %>
+            <%= link_to t(:add_a_link_raquo), new_taxon_link_path(:taxon_id => @taxon.id) %>
           </li>
         <% end -%>
       </ul>
     </div>
     <div id="tabs">
       <ul>
-        <li><a href="#description"><span>Description</span></a></li>
-        <li><a href="#taxon_range"><span>Map</span></a></li>
+        <li><a href="#description"><span><%= t(:description) %></span></a></li>
+        <li><a href="#taxon_range"><span><%= t(:map) %></span></a></li>
       </ul>
 
       <div id="description" class="last column span-20">
@@ -808,21 +804,21 @@
           <% if @taxon_range -%>
             <% if @taxon_range.source -%>
               <div>
-                <strong>Source:</strong>
+                <strong><%= t(:source) %>:</strong>
                 <%= auto_link(@taxon_range.source.citation) || @taxon_range.source.url || @taxon_range.source.title %>
               </div>
             <% end -%>
             <% unless @taxon_range.description.blank? -%>
               <div>
-                <strong>Description:</strong>
+                <strong><%= t(:description) %>:</strong>
                 <%= @taxon_range.description %>
               </div>
             <% end -%>
             <% if logged_in? && current_user.is_curator? -%>
-              <%= link_to "Edit range &raquo;", edit_taxon_range_path(@taxon_range) %>
+              <%= link_to t(:edit_range_raquo), edit_taxon_range_path(@taxon_range) %>
             <% end -%>
           <% else %>
-            No range data available.
+            <%= t(:no_range_data_available) %>
           <% end -%>
         </div>
       </div>
