@@ -10,7 +10,7 @@
     sciname = "<span class=\"sciname\">#{taxon.name}</span>"
   else
     rank = taxon.rank ? taxon.rank.capitalize : '(Unknown Rank)'
-    rank = content_tag(:span, rank, :class => 'rank')
+    rank = content_tag(:span, t(rank), :class => 'rank')
     sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
   end
 
