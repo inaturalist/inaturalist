@@ -1,8 +1,6 @@
-Your <%= APP_CONFIG[:site_name] %> account has been created.
+<%= t(:your_site_account_has_been_created, :site => "#{APP_CONFIG[:site_name]}") %>
 
-  Username: <%=h @user.login %>
-  Password: <%= "*" * @user.password.size %>
+  <%= t(:username)%>: <%=h @user.login %>
+  <%= t(:password)%>: <%= "*" * @user.password.size %>
 
-Please visit this URL to activate your account:
-
-  <%=h @url %>
+  <%= t(:in_order_to_login_and_using_site_visit_url) %> <%=h @url %>
