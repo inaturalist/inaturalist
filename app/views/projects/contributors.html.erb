@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Contributors to #{h truncate(@project.title, :length => 85)}" %>
+  <%= @title = t(:contributors_to_project, :project => "#{h truncate(@project.title, :length => 85)}") %>
 <%- end -%>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
@@ -31,10 +31,10 @@
 </div>
 
 <div id="members" style="margin-bottom: 10px">
-  <h3>Top Contributors</h3>
+  <h3><%= t(:top_contributors) %></h3>
   <% if @contributors.blank? -%>
     <div class="noresults">
-      No members yet.
+      <%= t(:no_members_yet) %>
     </div>
   <% else %>
     <table>

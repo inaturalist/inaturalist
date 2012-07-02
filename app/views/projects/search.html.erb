@@ -1,4 +1,4 @@
-<%- content_for(:title) do -%>Search Projects<%- end -%>
+<%- content_for(:title) do -%><%=t :search_projects %><%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     .project { margin-bottom: 5px; }
@@ -8,7 +8,7 @@
 <%- end -%>
 <div id="pageheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo "+t(:projects), projects_path, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2>Search Projects</h2>
 </div>
@@ -22,7 +22,7 @@
 
 <% if @projects.blank? -%>
   <div class="description noresults">
-    No matching projects.
+   <%=t :no_matching_projects %>
   </div>
 <% else %>
   <div class="clear projects">

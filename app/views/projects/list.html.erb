@@ -1,9 +1,9 @@
 <div>
-  <strong>Project List</strong>
+  <strong><%= t(:project_list) %></strong>
 </div>
 <% if @listed_taxa.blank? -%>
   <div class="notice" style="margin-bottom: 0; text-align: center">
-      No taxa
+      <%= t(:no_taxa) %>
   </div>
 <% else %>
   <ul>
