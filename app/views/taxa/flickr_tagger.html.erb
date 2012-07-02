@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  Taxonomic Tags for Flickr
+  <%= t(:taxonomic_tags_for_flickr) %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -134,9 +134,9 @@
 <%- end -%>
 
 <div id="pageheader" class="column span-24">
-  <h2>Taxonomic Tags for Flickr</h2>
+  <h2><%= t(:taxonomic_tags_for_flickr) %></h2>
   <p class="description">
-    Generate taxonomic tags for your Flickr photos.
+    <%= t(:generate_taxonomic_tags_for_flickr) %>
   </p>
 </div>
 
@@ -146,7 +146,7 @@
       :loading => "$('#tag_loading_status').show(); $('#tagform .checkboxes .tagcol').remove(); $('#tags').val('')",
       :complete => "updateTagCheckboxes(request); updateTagInput(); $('#tag_loading_status').hide()" do %>
       <div class="clear boxheader">
-        <span class="title">Choose a taxon</span>
+        <span class="title"><%= t(:choose_taxon) %></span>
       </div>
       <input type="text" class="text" name="taxon_name" value="<%= default_taxon_name(@taxon) %>" id="taxon_name"/>
       <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>" id="taxon_id" />
@@ -155,13 +155,13 @@
     
     <% unless logged_in? -%>
       <div id="signed_out_taxon_info" class="description column inline buttonrow">
-        <strong>Not finding what you're looking for?</strong><br/>
-        <%= link_to "Sign in", login_path, :class => 'button' %>
-        or
-        <%= link_to "Sign up", signup_path, :class => 'button' %>
+        <strong><%= t(:not_finding_what_looking_for) %></strong><br/>
+        <%= link_to t(:sign_in), login_path, :class => 'button' %>
+        <%= t(:or) %>
+        <%= link_to t(:sign_up), signup_path, :class => 'button' %>
         to import names from taxonomic name providers like 
-        <a href="http://ubio.org">uBio</a> and 
-        <a href="http://www.catalogueoflife.org">Catalogue of Life</a>.
+        <a href="http://ubio.org">uBio</a> <%= t(:and) %>
+        <a href="http://www.catalogueoflife.org"><%= t(:catalogue_of_life) %></a>.
       </div>
     <% end -%>
   </div>
@@ -173,21 +173,21 @@
     <div class="chosen">
     
       <div class="clear boxheader">
-        <span class="title">Choose tags</span>
+        <span class="title"><%= t(:choose_tags) %></span>
         
         <input type="radio" name="tagstyle" id="tagstyle_flickr" value="flickr" checked="checked">
-        <label for="tagstyle_flickr">Flickr-style</label>
+        <label for="tagstyle_flickr"><%= t(:flickr_style) %></label>
         
         <input type="radio" name="tagstyle" id="tagstyle_csv" value="csv">
         <label for="tagstyle_csv">comma-separated</label>
         
         <div class="controls">
-          <%= link_to_function "Select all", "$('#tagform input[type=checkbox]').check(); updateTagInput();" %> |
-          <%= link_to_function "Select none", "$('#tagform input[type=checkbox]').uncheck(); updateTagInput();" %>
+          <%= link_to_function t(:select_all), "$('#tagform input[type=checkbox]').check(); updateTagInput();" %> |
+          <%= link_to_function t(:select_none), "$('#tagform input[type=checkbox]').uncheck(); updateTagInput();" %>
         </div>
       </div>
       <div id="tag_loading_status" class="loading status" style="display: none">
-        Loading tags...
+        <%= t(:loading_tags) %>
       </div>
       <div class="clear checkboxes stacked">
         <% unless @tags.blank? -%>
@@ -213,11 +213,11 @@
       <div class="clear boxheader">
         <% if logged_in? && current_user.flickr_identity -%>
           <div class="controls">
-            <%= link_to_function "Select all",  "$('#photo_selector input[type=checkbox]').check();" %> |
-            <%= link_to_function "Select none", "$('#photo_selector input[type=checkbox]').uncheck();" %>
+            <%= link_to_function t(:select_all),  "$('#photo_selector input[type=checkbox]').check();" %> |
+            <%= link_to_function t(:select_none), "$('#photo_selector input[type=checkbox]').uncheck();" %>
           </div>
         <% end -%>
-        <span class="title">Choose photos to tag from your photostream</span>
+        <span class="title"><%= t(:choose_photos_to_tag_from_photostream) %></span>
       </div>
       <% if logged_in? -%>
         <% if current_user.flickr_identity %>
@@ -233,8 +233,8 @@
           </div>
         <% else %>
           <div id="link_flickr_message">
-            You need to have a linked Flickr account to tag your photos.
-            <%= link_to "Link your Flickr account with iNaturalist",
+            <%= t(:you_need_to_have_linked_flickr_account) %>
+            <%= link_to t(:link_your_flickr_account_with_iNat),
                         {:controller => 'flickr', :action => 'link'},
                         :class => 'button' %>
           </div>
@@ -242,7 +242,7 @@
       <% else %>
         <div id="sign_in_sign_up" class="buttonrow">
           <%= link_to "Sign in with Flickr", auth_url_for('flickr', :scope => 'write'), :class => 'button providerlink flickr' %>
-          <span class="inter">to tag your Flickr photos from here without cutting and pasting.</span>
+          <span class="inter"><%= t(:to_tag_your_flickr_from_here) %></span>
         </div>
       <% end -%>
     </div>
@@ -251,10 +251,10 @@
 <% end %>
 
 <div id="greasemonkeylink" class="column span-24 description">
-  If you use <a href="http://www.mozilla.com/firefox/" title="Firefox">Firefox</a> 
-  and <a href="http://www.greasespot.net/" title="Greasespot">Greasemonkey</a>, 
-  there's also 
-  <a href="http://userscripts.org/scripts/show/46129" title="iNaturalist Taxonomic Flickr Tagger for Greasemonkey">a Greasemonkey script</a>
-  that will insert a link to this tool on every Flickr photo page.  
-  <a href="http://userscripts.org/scripts/show/46129" title="iNaturalist Taxonomic Flickr Tagger for Greasemonkey" class="readmore">Check it out</a>
+  <%= t(:if_you_use) %> <a href="http://www.mozilla.com/firefox/" title="Firefox">Firefox</a> 
+  <%= t(:and) %> <a href="http://www.greasespot.net/" title="Greasespot">Greasemonkey</a>, 
+  <%= t(:theres_also) %>
+  <a href="http://userscripts.org/scripts/show/46129" title="iNaturalist Taxonomic Flickr Tagger for Greasemonkey"><%= t(:a_greasemonkey_script) %></a>
+  <%= t(:that_will_insert_a_link_to) %>  
+  <a href="http://userscripts.org/scripts/show/46129" title="iNaturalist Taxonomic Flickr Tagger for Greasemonkey" class="readmore"><%= t(:check_it_out) %></a>
 </div>

@@ -1,7 +1,7 @@
 <% if @qparams[:q] -%>
-  <% content_for(:title) do %>Taxon Search results for "<%= @qparams[:q] %>"<% end %>
+  <% content_for(:title) do %><%= t(:taxon_search_results_for) %> "<%= @qparams[:q] %>"<% end %>
 <% else -%>
-  <% content_for(:title) do %>Taxon Search<% end %>
+  <% content_for(:title) do %><%= t(:taxon_search) %><% end %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'taxa' %>
@@ -12,20 +12,20 @@
   <![endif]-->
 <% end %>
 <span class="breadcrumbs">
-  <%= link_to 'Back to All Species', 
+  <%= link_to t(:back_to_all_species), 
               taxa_path,
               :class => 'back crumb' %>
 </span>
-<h2>Search Results for <span class="description"><%= params[:q] %></span></h2>
+<h2><%= t(:search_results_for) %><span class="description"><%= params[:q] %></span></h2>
 
 <%= render :partial => 'search_form' %>
 
 <% if @qparams[:q] %>
   <div id="taxon_list" class="last column span-24">
-    <h3>Search Results for <em>&ldquo;<%= @qparams[:q] %>&rdquo;</em></h3>
+    <h3><%= t(:search_results_for) %><em>&ldquo;<%= @qparams[:q] %>&rdquo;</em></h3>
     <% if @taxa.empty? %>
       <div class="readable description">
-        No results found.
+        <%= t(:no_results_found) %>
       </div>
     <% else %>
       <%= render :partial => 'list', 
@@ -37,32 +37,30 @@
 <% if logged_in? -%>
   <div class="last column span-24">
     <div class="quiet clear box">
-      <h3>Not Seeing What You're Looking For?</h3>
+      <h3><%= t(:not_seeing_what_looking_for) %></h3>
       <p>
-        Sorry! How about we try and repeat your search in some other databases of
-        species names? If we find something, we'll save it so you can find it next
-        time.
+        <%= t(:sorry_how_about_we_try_repeat) %>
       </p>
       <div class="column span-6">
         <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
           <label for="q">
-            Search <a href="http://www.catalogueoflife.org">Catalogue of Life</a>
+            <%= t(:search_catalogue_of_life) %>
           </label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>
           <input type="hidden" name="force_external" value="true"/>
           <input type="hidden" name="external_src" value="col"/>
-          <input type="submit" class="button" value="Search Catalogue of Life &raquo;">
+          <input type="submit" class="button" value="<%= t(:search_catalogue_of_life_raquo) %>">
         <% end %>
       </div>
       <div class="column span-6">
         <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
-          <label for="q">Search <a href="http://www.ubio.org">uBio</a></label>
+          <label for="q"> <%= t(:search_ubio) %></label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>
           <input type="hidden" name="force_external" value="true"/>
           <input type="hidden" name="external_src" value="ubio"/>
-          <input type="submit" class="button" value="Search uBio &raquo;"/>
+          <input type="submit" class="button" value="<%= t(:search_ubio_raquo)%>"/>
         <% end %>
       </div>
     </div>

@@ -9,7 +9,7 @@
   <% unless taxon.grafted? -%>
     <li class="unknown">
       <span class="description">
-        Still working on classifying this taxon.  Check back later<br/>
+      	<%= t(:still_working_on_classifying_taxon) %><br/>
         &hellip;
       </span>
     </li>
@@ -32,7 +32,7 @@
     </ul>
           
     <% if children.size > 10 -%>
-      <%= link_to_toggle "More...", "#more_children" %>
+      <%= link_to_toggle t(:more), "#more_children" %>
       <ul id="more_children" style="display:none">
         <%= render :partial => 'taxa/classification_li', :collection => children[10..-1], :locals => {
           :link_method => link_method

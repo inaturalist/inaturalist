@@ -1,7 +1,7 @@
-<% content_for(:title) do %>Create a new taxon<% end %>
+<% content_for(:title) do %><%= t(:create_new_taxon) %><% end %>
 
 <%= render :partial => 'form_head' %>
 
-<h2>Create a New Taxon</h2>
+<h2><%= t(:create_new_taxon) %></h2>
 
 <%= render :partial => "form" %>

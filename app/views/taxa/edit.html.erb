@@ -1,20 +1,19 @@
 <% content_for(:title) do %>
-Editing <%= @taxon.name %>
+<%= t(:editing) %> <%= @taxon.name %>
 <% end %>
 
 <%= render :partial => 'form_head' %>
 
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">
-    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>", 
+    <%= link_to t(:back_to_viewing, :taxon => "#{@taxon.name}"), 
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
-  <h2>Editing <i><%= @taxon.name %></i></h2>
+  <h2><%= t(:editing) %> <i><%= @taxon.name %></i></h2>
   <div class="description">
-    Please be careful, particularly when deleting taxa. If a taxon has
-    associated observations, ids, listed taxa, etc, please 
-    <%= link_to "merge", :controller => "taxa", :action => "merge", :id => @taxon %>
-    it instead.
+    <%= t(:please_be_careful_particulary_when) %>
+    <%= link_to t(:merge), :controller => "taxa", :action => "merge", :id => @taxon %>
+    <%= t(:it_instead) %>
   </div>
 </div>
 

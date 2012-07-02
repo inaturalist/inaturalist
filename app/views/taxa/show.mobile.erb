@@ -29,13 +29,13 @@
     } %>
   </div>
   
-  <%= link_to "View observations &raquo;", observations_path(:taxon_id => @taxon), 
+  <%= link_to t(:view_observations_raquo), observations_path(:taxon_id => @taxon), 
     :id => "obslink",
     :class => "iconified full button inlineblock stacked " %>
   
   <% if !@siblings.blank? -%>
     <div class="siblings">
-      <h3>Similar species</h3>
+      <h3><%= t(:similar_species) %></h3>
       <div class="taxa grid">
         <% for taxon in @siblings %>
           <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
@@ -49,7 +49,7 @@
     </div>
   <% elsif !@children.blank? %>
     <div class="children">
-      <h3>Child taxa</h3>
+      <h3><%= t(:child_taxa) %></h3>
       <div class="taxa grid">
         <% for taxon in @children %>
           <%= render :partial => "taxa/taxon", :object => taxon, :locals => {

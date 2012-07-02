@@ -1,6 +1,6 @@
 <%- css_class ||= 'clear buttonrow' %>
 <% form_tag({:action => 'search'}, :method => :get, :class => css_class) do %>
-  <label for="q">Search</label>
+  <label for="q"><%= t(:search) %></label>
   <%= text_field_tag 'q', params[:q], :class => 'text' %>
-  <input type="submit" class="default button" value="Find Species" />
+  <input type="submit" class="default button" value="<%= t(:find_species) %>" />
 <% end %>
