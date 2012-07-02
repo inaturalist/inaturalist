@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%=h @display_user.login %>'s Journal
+  <%=h t(:x_journal, :user => "#{@display_user.login}") %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
@@ -13,7 +13,7 @@
 <%- tools = capture do -%>
   <% if logged_in? && current_user.login == @display_user.login -%>
     <div id="tools" class="buttonrow">
-      <%= link_to "New Post", new_journal_post_path(@display_user.login), 
+      <%= link_to t(:new_post), new_post_path(@display_user.login), 
                   :id => "newpostbutton", :class => "default button"%>
     </div>
   <% end -%>
@@ -26,9 +26,9 @@
     
     <% if @posts.empty? %>
       <center id="noposts" class="readable description">
-        No posts yet!
+        <%= t(:no_post_yet) %>
         <% if logged_in? && current_user.login == @display_user.login -%>
-          <%= link_to "Add one!", new_journal_post_path(@display_user.login), 
+          <%= link_to t(:add_one), new_post_path(@display_user.login), 
             :class => "default button" %>
         <% end -%>
       </center>
@@ -40,13 +40,13 @@
 <div id="sidecol" class="last column span-7">  
   <% unless @drafts.blank? -%>
     <div class="box">
-      <h3>Your Drafts</h3>
+      <h3><%= t(:your_drafts) %></h3>
       <ul>
         <% for post in @drafts %>
           <li>
-            <%= link_to h(post.title), edit_journal_post_path(current_user.login, post) %>
+            <%= link_to h(post.title), edit_post_path(current_user.login, post) %>
             <div class="meta">
-              <span class="label">Created on</span>
+              <span class="label"><%=t(:created_on)%></span>
               <span class="date"><%= post.created_at.to_s(:long) %></span>
             </div>
           </li>
