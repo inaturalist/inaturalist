@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Confirm your info
+  <%= t(:confirm_your_info) %>
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -16,16 +16,16 @@
 
   <% form_for current_user, :builder => DefaultFormBuilder do |f| %>
     <%= error_messages_for :display_user %>
-    <%= f.text_field :login, :label => "Please confirm your iNat username", :class => "text", :required => true %>
+    <%= f.text_field :login, :label => t(:please_confirm_your_inat_username), :class => "text", :required => true %>
     <%= f.text_field :email, :class => "text", :required => true %>
     <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
-      :label => "Your default time zone",
-      :description => "All your observations will default to this time zone unless you specify otherwise.",
+      :label => t(:your_default_time_zone),
+      :description => t(:all_your_observations_will_default_this_time_zone),
       :class => 'select'}) %>
     <%= f.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY,
-      :label => "Yes, license my observations so scientists can use my data!", 
+      :label => t(:yes_license_my_observations_so_scientists_can_use), 
       :label_after => true,
-      :description => "Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like." %>
-    <%= f.submit "Save &amp; continue...", :class => "default button" %>
+      :description => t(:using_cc_license_makes_easier_use_your_data) %>
+    <%= f.submit t(:save_and_continue), :class => "default button" %>
   <% end %>
 </div>
