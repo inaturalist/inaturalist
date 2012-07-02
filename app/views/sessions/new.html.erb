@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Sign in
+  <%= t(:sign_in) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -12,47 +12,43 @@
 <div class="column span-7">
   <% form_tag session_path do %>
     <p class="ui">
-      <%= label_tag 'login', 'Username or email' %><br/>
+      <%= label_tag 'login', t(:username_or_email) %><br/>
       <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
     </p>
     <p class="ui">
-      <%= label_tag 'password', 'Password' %><br/>
+      <%= label_tag 'password', t(:password) %><br/>
       <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
     </p>
     <p class="ui">
-      <%= check_box_tag 'remember_me', '1', 'Remember me' %>
-      <%= label_tag 'remember_me', 'Remember me' %>
+      <%= check_box_tag 'remember_me', '1', t(:remember_me) %>
+      <%= label_tag 'remember_me',  t(:remember_me) %>
     </p>
     <div class="clear buttonrow">
-      <%= submit_tag 'Sign in!', :class => "default button" %>
+      <%= submit_tag t(:sing_in_exclamation), :class => "default button" %>
       <span class="small inter ui nobr description" style="line-height: 1.6">
         or
-        <%= link_to "Start a new account", new_user_path, :class => "readmore" %>
+        <%= link_to t(:start_new_account), new_user_path, :class => "readmore" %>
       </span>
     </div>
   <% end -%>
   
   <p class="ui">
-    <%= link_to 'Forgot your password?', forgot_password_path %>
+    <%= link_to t(:forgot_your_password), forgot_password_path %>
   </p>
 </div>
 
 <div class="last column span-6">
   <div class="clear stacked">
     <div style="margin-bottom: 0.5em;">
-      <label>Or you can...</label>
+      <label> <%= t(:or_you_can) %></label>
     </div>
     <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
-      <%= link_to "Sign in with #{provider.capitalize}", url, :class => "button providerlink #{provider.downcase}" %>
+      <%= link_to t(:sign_in_with_provider, :provider => "#{provider}"), url, :class => "button providerlink #{provider.downcase}" %>
     <%- end -%>
   </div>
   
-  <%= link_to_toggle "If you already have an iNat account...", "#already" %>
+  <%= link_to_toggle t(:if_you_already_have_inat_account), "#already" %>
   <p id="already" class="ui description" style="display: none;">
-    ...and you haven't linked one of these
-    external accounts, you should sign in through iNat first, then edit your
-    profile and link your account from there. Otherwise iNat may not be able
-    to tell that the two accounts are connected and try to create a new
-    account for you instead!
+    <%= t(:and_you_havent_linked) %>
   </p>
 </div>
