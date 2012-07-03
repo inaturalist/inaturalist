@@ -22,7 +22,7 @@
     }
   </style>
 <% end -%>
-<% form_for(post, :html => {:class => 'post_form'}) do |f| %>
+<%= form_for(post, :html => {:class => 'post_form'}) do |f| %>
   <div class="column span-13 append-1">
     <%= error_messages_for :post %>
     <div class="field">

@@ -43,7 +43,7 @@
       <%= link_to "View", taxon_path(:id => flagging.flaggable_id) %> /
       <%= link_to "Edit", edit_taxon_path(:id => flagging.flaggable_id) %> /
       <%= link_to "Merge", merge_taxon_path(:id => flagging.flaggable_id) %>
-      <% form_for(flagging, :action => "update", :html => {:class => "inline buttonrow"}) do |f| %>
+      <%= form_for(flagging, :action => "update", :html => {:class => "inline buttonrow"}) do |f| %>
         <fieldset>
           <legend>Resolve this flag</legend>
           <%= f.text_field :comment, :class => 'text', :placeholder => "Explain your decision" %>

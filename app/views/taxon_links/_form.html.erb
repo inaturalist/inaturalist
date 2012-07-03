@@ -19,7 +19,7 @@
     });
   </script>
 <%- end -%>
-<% form_for(@taxon_link, :html => {:class => 'taxon_link_form'}) do |f| %>
+<%= form_for(@taxon_link, :html => {:class => 'taxon_link_form'}) do |f| %>
   <div class="column span-15 append-1">
     <div id="show_for_descendent_taxa_field" class="field right">
       <%= f.check_box :show_for_descendent_taxa %>

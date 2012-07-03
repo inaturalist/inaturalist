@@ -1,5 +1,5 @@
 class QualityMetricsController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   before_filter :return_here, :except => [:vote]
   before_filter :load_observation
   

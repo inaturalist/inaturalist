@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :login_required, :except => [:index, :show, :browse]
+  before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
   before_filter :load_display_user_by_login, :except => [:browse, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]

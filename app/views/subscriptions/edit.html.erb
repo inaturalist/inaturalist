@@ -27,7 +27,7 @@
   <%= @title %>
 </h2>
 
-<% form_for @subscription, :builder => DefaultFormBuilder do |f| %>
+<%= form_for @subscription, :builder => DefaultFormBuilder do |f| %>
   <% if @subscription.resource_type == Place.to_s -%>
     <%= f.text_field :taxon_id, :placeholder => "Choose a taxon", :label => "Only receive updates for observations of this taxon" %>
   <% end -%>

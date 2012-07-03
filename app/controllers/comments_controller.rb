@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :login_required, :except => :index
+  before_filter :authenticate_user!, :except => :index
   before_filter :admin_required, :only => [:user]
   # before_filter :owner_required, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]

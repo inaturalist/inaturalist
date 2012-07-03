@@ -690,17 +690,18 @@ class Taxon < ActiveRecord::Base
   end
   
   def wikipedia_summary(options = {})
-    summary = super()
-    if summary && summary.match(/^\d\d\d\d-\d\d-\d\d$/)
-      last_try_date = DateTime.parse(summary)
+    sum = read_attribute(:wikipedia_summary)
+    if sum && sum.match(/^\d\d\d\d-\d\d-\d\d$/)
+      last_try_date = DateTime.parse(sum)
       return nil if last_try_date > 1.week.ago
       options[:reload] = true
     end
-    unless super.blank? || options[:reload]
-      return Nokogiri::HTML::DocumentFragment.parse(super).to_s
+    unless sum.blank? || options[:reload]
+      return Nokogiri::HTML::DocumentFragment.parse(sum).to_s
     end
     
-    send_later(:set_wikipedia_summary, :dj_priority => 2)
+    # send_later(:set_wikipedia_summary, :dj_priority => 2)
+    delay.set_wikipedia_summary(:priority => 2)
     nil
   end
   
@@ -722,7 +723,7 @@ class Taxon < ActiveRecord::Base
     rescue Timeout::Error => e
       logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
     end
-
+  
     if query_results && parsed && !query_results.at('page')['missing']
       coder = HTMLEntities.new
       summary = coder.decode(parsed)
@@ -744,7 +745,7 @@ class Taxon < ActiveRecord::Base
       Taxon.update_all(["wikipedia_summary = ?", Date.today], ["id = ?", self])
       return nil
     end
-
+  
     Taxon.update_all(["wikipedia_summary = ?", summary], ["id = ?", self])
     summary
   end

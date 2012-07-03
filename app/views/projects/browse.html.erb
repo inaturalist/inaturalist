@@ -8,7 +8,7 @@
 <div id="pageheader" class="column span-24">
   <div class="breadcrumbs">
     <div class="clear right inline buttonrow smallbuttons">
-      <% form_tag url_for, :method => :get do %>
+      <%= form_tag url_for, :method => :get do %>
         <%= label :order, 'Order by' %>
         <%= select_tag :order, options_for_select(ProjectsController::ORDERS, @order), :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>

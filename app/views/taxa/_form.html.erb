@@ -1,5 +1,5 @@
 <%- taxon ||= @taxon -%>
-<% form_for(taxon) do |f| %>
+<%= form_for(taxon) do |f| %>
   <%= error_messages_for :taxon %>
   
   <%#= f.label :colors %>
@@ -173,7 +173,7 @@
       <h3>Add a new source</h3>
       <%- @taxon.source = Source.new -%>
     <% end -%>
-    <% fields_for taxon.source do |s| %>
+    <%= fields_for taxon.source do |s| %>
       <div class="column span-7">
         <p class="ui">
           <%= s.label :title %><br/>

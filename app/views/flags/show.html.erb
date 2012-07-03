@@ -42,7 +42,7 @@
       end
       %></td>
     <td class="buttonrow">
-      <% form_for(@flag, :action=>"update") do |f| %>
+      <%= form_for(@flag, :action=>"update") do |f| %>
         <%= f.text_field :comment, :class => 'text' %>
         <%= f.hidden_field :resolver_id, :value => @user.id %>
         <%= f.hidden_field :resolved, :value => true %>

@@ -36,9 +36,9 @@
       <%= render :partial => 'shared/header' %>
     <% end %>
   <% end -%>
-
-  <% if flash[:notice] %>
-  <p id="flash" class="notice"><%= flash[:notice] %></p> 
+  
+  <% if flash[:notice] || flash[:alert] %>
+  <p id="flash" class="notice"><%= flash[:notice] || flash[:alert] %></p> 
   <% end %>
   
   <% if flash[:error] %>

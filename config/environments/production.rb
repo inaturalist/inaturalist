@@ -47,4 +47,8 @@ Inaturalist::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  if INAT_CONFIG['google_analytics'] && INAT_CONFIG['google_analytics']['tracker_id']
+    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => INAT_CONFIG['google_analytics']['tracker_id']
+  end
 end

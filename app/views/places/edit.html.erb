@@ -54,7 +54,7 @@
 </div>
 
 <div class="column span-11 append-1">
-  <% form_for @place, :builder => DefaultFormBuilder do |f| %>
+  <%= form_for @place, :builder => DefaultFormBuilder do |f| %>
     <%= error_messages_for :place %>
     <%= f.text_field :name, :required => true, :class => 'text' %>
     <%= f.text_field :display_name, :class => 'text' %>

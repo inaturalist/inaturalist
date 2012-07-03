@@ -44,7 +44,7 @@
         time.
       </p>
       <div class="column span-6">
-        <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
+        <%= form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
           <label for="q">
             Search <a href="http://www.catalogueoflife.org">Catalogue of Life</a>
           </label>
@@ -56,7 +56,7 @@
         <% end %>
       </div>
       <div class="column span-6">
-        <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
+        <%= form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
           <label for="q">Search <a href="http://www.ubio.org">uBio</a></label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>

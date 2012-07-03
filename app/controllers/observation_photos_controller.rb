@@ -1,5 +1,5 @@
 class ObservationPhotosController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   
   def show
     @observation_photo = ObservationPhoto.find_by_id(params[:id])

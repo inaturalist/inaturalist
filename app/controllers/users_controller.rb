@@ -1,5 +1,5 @@
 class UsersController < ApplicationController  
-  before_filter :login_required, :except => [:index, :show, :new, :create, :activate, :relationships]
+  before_filter :authenticate_user!, :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :edit, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
