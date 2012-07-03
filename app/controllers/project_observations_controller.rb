@@ -1,5 +1,5 @@
 class ProjectObservationsController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])

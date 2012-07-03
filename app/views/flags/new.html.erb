@@ -10,7 +10,7 @@
 </div>
 
 <div class="clear readable buttonrow">
-  <% form_for([@object,  @flag]) do |f| %>
+  <%= form_for([@object,  @flag]) do |f| %>
     <%= f.label :reason, "&ldquo;I'm flagging this #{@model.name.downcase} because" %>
     <%= f.text_field :flag, :class => 'text' %>
     <label>&rdquo;</label>

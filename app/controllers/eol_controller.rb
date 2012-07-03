@@ -1,6 +1,6 @@
 class EolController < ApplicationController
   before_filter :return_here, :only => [:options]
-  before_filter :login_required
+  before_filter :authenticate_user!
 
   # Return an HTML fragment containing checkbox inputs for EOL photos.
   # Params:

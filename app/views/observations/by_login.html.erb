@@ -334,7 +334,7 @@ Observations by <%= h @login %>
       :class => "inter#{' open' if @filters_open} minor button") %>
   </div>
   <div id="filters" class="clear"<% unless @filters_open %> style="display: none"<% end %>>
-    <% form_tag observations_by_login_path(@login), :method => :get do -%>
+    <%= form_tag observations_by_login_path(@login), :method => :get do -%>
       <%= render :partial => 'filter_fields', :locals => {
         :selected_taxa => @iconic_taxa
       } %>
@@ -362,7 +362,7 @@ Observations by <%= h @login %>
   <div id="pagination">
     <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
-      <% form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
+      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
         <%= f.label :per_page %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>

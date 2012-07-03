@@ -1,4 +1,4 @@
-<% form_for @announcement, :builder => DefaultFormBuilder do |f| %>
+<%= form_for @announcement, :builder => DefaultFormBuilder do |f| %>
   <%= f.error_messages %>
   <%= f.select :placement, Announcement::PLACEMENTS %>
   <%= f.datetime_select :start %>

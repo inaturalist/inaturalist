@@ -1,5 +1,5 @@
 class IdentificationsController < ApplicationController
-  before_filter :login_required, :except => [:by_login]
+  before_filter :authenticate_user!, :except => [:by_login]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :load_identification, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]

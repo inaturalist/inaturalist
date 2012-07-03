@@ -2,7 +2,7 @@
   Add an Observation
 <% end -%>
 
-<% form_for @observation, :builder => DefaultFormBuilder do |o| %>
+<%= form_for @observation, :builder => DefaultFormBuilder do |o| %>
   <%= o.text_field :species_guess, :label => "What did you see?", :placeholder => "Species name" %>
   <%= o.check_box :id_please, :label_after => true, :label => "Request ID help" %>
   <%= o.text_area :description, :placeholder => "Brief description of what you saw" %>

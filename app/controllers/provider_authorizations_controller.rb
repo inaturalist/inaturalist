@@ -1,5 +1,5 @@
 class ProviderAuthorizationsController < ApplicationController
-  before_filter :login_required, :only => [:destroy]
+  before_filter :authenticate_user!, :only => [:destroy]
   protect_from_forgery :except => :create
   
   # This is kind of a dumb placeholder. OA calls through to the app before

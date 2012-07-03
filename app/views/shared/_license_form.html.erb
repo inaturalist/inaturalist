@@ -8,7 +8,7 @@
     nil
   end
 -%>
-<% form_for record, :builder => DefaultFormBuilder do |f| %>
+<%= form_for record, :builder => DefaultFormBuilder do |f| %>
   <% if record.is_a?(Observation) -%>
     <%= hidden_field_tag :ignore_photos, true %>
   <% end -%>

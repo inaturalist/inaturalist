@@ -1,5 +1,5 @@
 class PicasaController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   verify :method => :delete, :only => "unlink"
   
   # Configure Picasa linkage

@@ -5,7 +5,7 @@
   <% end -%>
 </h2>
 
-<% form_for(@taxon_range, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+<%= form_for(@taxon_range, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
   
   <%= render :partial => 'form_fields', :locals => {:f => f} %>

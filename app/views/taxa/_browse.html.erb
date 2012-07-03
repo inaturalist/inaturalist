@@ -1,5 +1,5 @@
 <%- js_link ||= nil -%>
-<% form_tag({}, :method => :get, :class => 'clear buttonrow taxon_search_form') do %>
+<%= form_tag({}, :method => :get, :class => 'clear buttonrow taxon_search_form') do %>
   <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
   <label for="q">Search</label>
   <%= hidden_field_tag :view, @view %>
@@ -282,7 +282,7 @@
         time.
       </p>
       <div class="column span-6">
-        <% form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
+        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
           <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
           <label for="q">
             Search <a href="http://www.catalogueoflife.org">Catalogue of Life</a>
@@ -295,7 +295,7 @@
         <% end %>
       </div>
       <div class="column span-6">
-        <% form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
+        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
           <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
           <label for="q">Search <a href="http://www.ubio.org">uBio</a></label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>

@@ -57,7 +57,7 @@
 <div id="maincol">
   <div id="controls" class="clear buttonrow smallbuttons">
     <div id="filters">
-      <%- form_tag url_for, :method => :get, :class => "searchfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "searchfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= text_field_tag :q, @q, :class => "text", :placeholder => "Search for species", :id => "searchFilter" %>
           <%= submit_tag "Search", :class => "glaucous button" %>
@@ -65,7 +65,7 @@
         </div>
       <% end %>
 
-      <%- form_tag url_for, :method => :get, :class => "colorfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "colorfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:colors, :page] %>
           <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
@@ -74,7 +74,7 @@
         </div>
       <% end %>
       
-      <%- form_tag url_for, :method => :get, :class => "establishmentfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "establishmentfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:establishment_means, :page] %>
           <%-
@@ -86,7 +86,7 @@
         </div>
       <% end %>
       
-      <%- form_tag url_for, :method => :get, :class => "conservationfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "conservationfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:conservation_status, :page] %>
           <%-

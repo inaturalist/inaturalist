@@ -1,6 +1,6 @@
 <h2>Reset your password</h2>
 
-<% form_for(:user, :builder => DefaultFormBuilder, :url => { :action => 'update_after_forgetting' }) do |f| %>
+<%= form_for(:user, :builder => DefaultFormBuilder, :url => { :action => 'update_after_forgetting' }) do |f| %>
   <%= f.error_messages %>
 
   <p>Please enter a new password and confirm it.</p>

@@ -4,7 +4,7 @@
 -%>
 <div class="meta subscription">
   <%- new_subscription = Subscription.new(:user => current_user, :resource => resource) %>
-  <% form_for new_subscription, :html => {
+  <%= form_for new_subscription, :html => {
     :class => "subscribe",
     :style => "#{'display:none;' if subscription}"
   } do |f| %>
@@ -16,7 +16,7 @@
     from this <%= resource.class.to_s.underscore.humanize.downcase %>.
   <% end -%>
 
-  <% form_tag delete_subscription_url(resource.class.to_s, resource.id), 
+  <%= form_tag delete_subscription_url(resource.class.to_s, resource.id), 
       :method => :delete, 
       :class => 'unsubscribe', 
       :style => "#{'display:none;' unless subscription}" do %>

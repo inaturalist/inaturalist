@@ -11,9 +11,9 @@ class TaxaController < ApplicationController
   include Shared::WikipediaModule
   
   before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms]
-  before_filter :login_required, :only => [:edit_photos, :update_photos, 
+  before_filter :authenticate_user!, :only => [:edit_photos, :update_photos, 
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
-    :flickr_photos_tagged, :add_places]
+    :flickr_photos_tagged, :add_places, :synonyms]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 

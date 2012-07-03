@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725194234) do
+ActiveRecord::Schema.define(:version => 20120702224519) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -30,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
   end
 
   add_index "colors_taxa", ["taxon_id", "color_id"], :name => "index_colors_taxa_on_taxon_id_and_color_id"
-  add_index "colors_taxa", ["taxon_id"], :name => "index_colors_taxa_on_taxon_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -59,6 +59,12 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
   add_index "counties_simplified_01", ["geom"], :name => "index_counties_simplified_01_on_geom", :spatial => true
   add_index "counties_simplified_01", ["place_geometry_id"], :name => "index_counties_simplified_01_on_place_geometry_id"
   add_index "counties_simplified_01", ["place_id"], :name => "index_counties_simplified_01_on_place_id"
+
+  create_table "counties_simplified_1", :id => false, :force => true do |t|
+    t.integer       "id"
+    t.integer       "place_id"
+    t.multi_polygon "geom",     :limit => nil
+  end
 
   create_table "countries_large_polygons", :id => false, :force => true do |t|
     t.integer  "id"
@@ -104,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.string   "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "queue"
   end
 
   create_table "deleted_users", :force => true do |t|
@@ -119,17 +126,6 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
 
   add_index "deleted_users", ["login"], :name => "index_deleted_users_on_login"
   add_index "deleted_users", ["user_id"], :name => "index_deleted_users_on_user_id"
-
-  create_table "flaggings", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "taxon_id"
-    t.string   "reason"
-    t.integer  "resolver_id"
-    t.boolean  "resolved",        :default => false
-    t.string   "resolution_note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "flags", :force => true do |t|
     t.string   "flag"
@@ -251,15 +247,16 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.string   "observations_month_counts"
     t.integer  "taxon_range_id"
     t.integer  "source_id"
+    t.boolean  "comprehensive",                           :default => false
     t.boolean  "manually_added",                          :default => false
   end
 
-  add_index "listed_taxa", ["created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["first_observation_id"], :name => "index_listed_taxa_on_first_observation_id"
   add_index "listed_taxa", ["last_observation_id"], :name => "index_listed_taxa_on_last_observation_id"
   add_index "listed_taxa", ["list_id", "taxon_ancestor_ids", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i"
   add_index "listed_taxa", ["list_id", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_id"
   add_index "listed_taxa", ["list_id"], :name => "index_listed_taxa_on_list_id_and_lft"
+  add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["place_id", "observations_count"], :name => "index_listed_taxa_on_place_id_and_observations_count"
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
   add_index "listed_taxa", ["source_id"], :name => "index_listed_taxa_on_source_id"
@@ -360,8 +357,8 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.decimal  "private_longitude",                               :precision => 15, :scale => 10
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
-    t.point    "geom",                             :limit => nil
     t.string   "quality_grade",                                                                   :default => "casual"
+    t.point    "geom",                             :limit => nil
     t.string   "user_agent"
     t.string   "positioning_method"
     t.string   "positioning_device"
@@ -655,15 +652,13 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.multi_polygon "geom",     :limit => nil
   end
 
-  create_table "states_simplified_1", :force => true do |t|
-    t.integer       "place_geometry_id"
+  create_table "states_simplified_1", :id => false, :force => true do |t|
+    t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",              :limit => nil, :null => false
+    t.multi_polygon "geom",     :limit => nil
   end
 
   add_index "states_simplified_1", ["geom"], :name => "index_states_simplified_1_on_geom", :spatial => true
-  add_index "states_simplified_1", ["place_geometry_id"], :name => "index_states_simplified_1_on_place_geometry_id"
-  add_index "states_simplified_1", ["place_id"], :name => "index_states_simplified_1_on_place_id"
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
@@ -892,18 +887,18 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.string   "login",                     :limit => 40
     t.string   "name",                      :limit => 100
     t.string   "email",                     :limit => 100
-    t.string   "crypted_password",          :limit => 40
-    t.string   "salt",                      :limit => 40
+    t.string   "encrypted_password",        :limit => 128, :default => "",        :null => false
+    t.string   "password_salt",                            :default => "",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
-    t.string   "activation_code",           :limit => 40
-    t.datetime "activated_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
     t.string   "state",                                    :default => "passive"
     t.datetime "deleted_at"
     t.string   "time_zone"
-    t.text     "description"
+    t.string   "description"
     t.string   "icon_file_name"
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
@@ -915,6 +910,10 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.text     "old_preferences"
     t.string   "icon_url"
     t.string   "last_ip"
+    t.datetime "confirmation_sent_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
   end
 
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"
@@ -923,25 +922,5 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["observations_count"], :name => "index_users_on_observations_count"
   add_index "users", ["state"], :name => "index_users_on_state"
-
-  create_table "users_old", :force => true do |t|
-    t.string   "login"
-    t.string   "email"
-    t.string   "crypted_password",          :limit => 40
-    t.string   "salt",                      :limit => 40
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "remember_token"
-    t.datetime "remember_token_expires_at"
-    t.string   "password_reset_code",       :limit => 40
-    t.text     "description"
-    t.string   "favorite_thing_1"
-    t.string   "favorite_thing_2"
-    t.string   "favorite_thing_3"
-    t.string   "time_zone",                               :default => "UTC"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-  end
 
 end

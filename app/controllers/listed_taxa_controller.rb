@@ -1,5 +1,5 @@
 class ListedTaxaController < ApplicationController
-  before_filter :login_required, :except => [:show]
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :load_listed_taxon, :except => [:index, :create]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
   

@@ -37,7 +37,7 @@
 </div>
 
 <div class="column span-24">
-  <% form_for(@observation, :html => {:class => 'observationform', :multipart => true}) do %>
+  <%= form_for(@observation, :html => {:class => 'observationform', :multipart => true}) do %>
     <%= render(:partial => 'form_fields', :locals => {
       :observation => @observation,
       :i => @observation.id

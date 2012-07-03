@@ -86,7 +86,7 @@
       </p>
 
       <div id="place_selector">
-        <% form_remote_tag :url => {:action => :find_external}, 
+        <%= form_remote_tag :url => {:action => :find_external}, 
             :loading => "$('#loading_status').show()",
             :complete => "$('#loading_status').hide()" do %>
           <div class="clear buttonrow">
@@ -114,7 +114,7 @@
     </div>
     <div class="last column span-8">
       <h3>Give it some detail!</h3>
-      <% form_for @place, :builder => DefaultFormBuilder do |f| %>
+      <%= form_for @place, :builder => DefaultFormBuilder do |f| %>
         <%= f.text_field :name, :class => 'text', :required => true %>
         <%= f.text_field :parent_id, :placeholder => "Type place name", :style => "width: 300px" %>
         <%= f.text_field :latitude, :class => 'text', :required => true %>

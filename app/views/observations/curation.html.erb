@@ -32,7 +32,7 @@
       <%= link_to "Edit the Observation", 
                   edit_observation_path(:id=>flagging.flaggable_id), :class => 'button' %>
       <span class="inter">or</span>
-      <% form_for(flagging, 
+      <%= form_for(flagging, 
                   :action=>"update") do |f| %>
         <%= f.text_field :comment, :class => 'text' %>
         <%= f.hidden_field :resolver_id, :value => @user.id %>

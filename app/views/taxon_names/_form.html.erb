@@ -5,7 +5,7 @@
     // });
   </script>
 <%- end -%>
-<% form_for(@taxon_name, 
+<%= form_for(@taxon_name, 
     :url => @taxon_name.new_record? ? taxon_taxon_names_path(@taxon || @taxon_name.taxon) : @taxon_name) do |n| %>
   <%= error_messages_for :taxon_name %>
   

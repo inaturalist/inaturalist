@@ -246,7 +246,7 @@
 
 <div class="last column span-15">
   <div class="stacked">
-    <%- form_tag url_for, :method => :get, :id => "controls", :class => "inline buttonrow" do %>
+    <%= form_tag url_for, :method => :get, :id => "controls", :class => "inline buttonrow" do %>
       <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => "Search" %>
       <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => "Type place name" %>
       <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => "Type taxon name" %>
