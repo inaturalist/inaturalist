@@ -21,7 +21,7 @@
   <li>
     <%= link_to 'Journal', journal_by_login_path(:login => user.login), 
       :id => "journal_link",
-      :class => "#{'active' if @controller.request.request_uri =~ /\/journal\//}" %>
+      :class => "#{'active' if request.fullpath =~ /\/journal\//}" %>
   </li>
   <li>
     <%= link_to 'Identifications', identifications_by_login_path(:login => user.login), 

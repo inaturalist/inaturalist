@@ -1,5 +1,5 @@
 class ObservationFieldsController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   before_filter :admin_required
   before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy]

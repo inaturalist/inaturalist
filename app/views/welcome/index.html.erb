@@ -40,7 +40,7 @@
      // Load in some observations
       var observations = [];
       <% for obs in @observations %>
-      observations.push(<%= obs.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>);
+        observations.push(<%= obs.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>)
       <% end %>
 
       // build a simple sidebar for the map

@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     :if => Proc.new {|c| c.request.format.widget?}
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
-  before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
+  before_filter :authenticate_user!, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]

@@ -1,5 +1,5 @@
 class FlickrController < ApplicationController
-  before_filter :login_required , :except => ["authorize", "invite"]
+  before_filter :authenticate_user! , :except => ["authorize", "invite"]
   before_filter :ensure_has_no_flickr_identity, :only => ['link']
   before_filter :return_here, :only => [:index, :show, :by_login, :options]
   

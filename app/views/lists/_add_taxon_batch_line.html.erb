@@ -47,7 +47,7 @@
               :class => "button" %>
           </div>
 
-          <% form_remote_for ListedTaxon.new(:list => @list), 
+          <%= form_remote_for ListedTaxon.new(:list => @list), 
               :url => listed_taxa_path(:format => 'json', :method => :post),
               :success => "try {" +
                 "var json = eval('(' + request + ')'); " + 

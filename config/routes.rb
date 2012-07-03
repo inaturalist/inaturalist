@@ -4,10 +4,16 @@ Inaturalist::Application.routes.draw do
   match '/' => 'welcome#index'
   match '/home' => 'users#dashboard', :as => :home
   match '/home.:format' => 'users#dashboard', :as => :formatted_home
-  match '/logout' => 'sessions#destroy', :as => :logout
-  match '/login' => 'sessions#new', :as => :login
+  
+  devise_for :users
+  devise_scope :user do
+    get "login", :to => "devise/sessions#new"
+    get "logout", :to => "devise/sessions#destroy"
+  end
   match '/register' => 'users#create', :as => :register, :via => :post
-  match '/signup' => 'users#new', :as => :signup
+  match '/signup'   => 'users#new', :as => :signup
+  
+  
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   match '/forgot_password' => 'passwords#new', :as => :forgot_password
   match '/change_password/:reset_code' => 'passwords#reset', :as => :change_password
@@ -29,9 +35,9 @@ Inaturalist::Application.routes.draw do
   match '/users/new_updates' => 'users#new_updates', :as => :new_updates
   
   resources :users
-  resource :session
-  resources :passwords
-  resources :people
+  # resource :session
+  # resources :passwords
+  resources :people, :controller => :users
   match '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   match '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   match 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }, :method => :post

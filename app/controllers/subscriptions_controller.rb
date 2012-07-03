@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   before_filter :load_subscription, :except => [:new, :create, :index, :edit]
   before_filter :require_owner, :except => [:new, :create, :index, :edit]
   

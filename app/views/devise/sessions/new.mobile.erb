@@ -1,7 +1,7 @@
 <%- content_for(:title) do -%>
   Log In
 <%- end -%>
-<% form_tag session_path do %>
+<%= form_tag session_path do %>
   <p class="ui">
     <%= label_tag 'login', 'Username or email' %><br/>
     <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>

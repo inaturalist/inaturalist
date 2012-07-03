@@ -10,31 +10,28 @@
   <img src="/images/bird.png" width="300" height="239" />
 </div>
 <div class="column span-7">
-  <% form_tag session_path do %>
-    <p class="ui">
-      <%= label_tag 'login', 'Username or email' %><br/>
-      <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
-    </p>
-    <p class="ui">
-      <%= label_tag 'password', 'Password' %><br/>
-      <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
-    </p>
-    <p class="ui">
-      <%= check_box_tag 'remember_me', '1', 'Remember me' %>
-      <%= label_tag 'remember_me', 'Remember me' %>
-    </p>
+  
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :builder => DefaultFormBuilder, :html => {:class => "clear"}) do |f| %>
+    <%= f.text_field :email, :class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off" %>
+    <%= f.password_field :password, :class => "text", :tabindex => 2 %>
+
+    <% if devise_mapping.rememberable? -%>
+      <%= f.check_box :remember_me, :label_after => true %>
+    <% end -%>
+    
     <div class="clear buttonrow">
-      <%= submit_tag 'Sign in!', :class => "default button" %>
+      <%= f.submit 'Sign in!', :class => "default button" %>
       <span class="small inter ui nobr description" style="line-height: 1.6">
         or
         <%= link_to "Start a new account", new_user_path, :class => "readmore" %>
       </span>
     </div>
-  <% end -%>
+  <% end %>
   
   <p class="ui">
-    <%= link_to 'Forgot your password?', forgot_password_path %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
   </p>
+  
 </div>
 
 <div class="last column span-6">

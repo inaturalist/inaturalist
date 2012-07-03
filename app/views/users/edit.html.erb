@@ -39,7 +39,7 @@
 </div>
 
 <div class="column span-18">
-  <% form_for(current_user, :url => person_path(current_user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+  <%= form_for(current_user, :url => person_path(current_user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
     <%= error_messages_for :current_user %>
     <div class="column span-18 stacked">
       <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon left') %>
@@ -185,8 +185,8 @@
   <%= separator %>
   
   <div class="clear box">
-    <%= link_to_toggle current_user.crypted_password ? "Change your password" : "Set a password", "#passwordform", :class => "ui" %>
-    <% form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
+    <%= link_to_toggle current_user.encrypted_password ? "Change your password" : "Set a password", "#passwordform", :class => "ui" %>
+    <%= form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
         <%= label(:password, 'New Password') %>
         <%= password_field_tag(:password, '', :class => 'text') %>

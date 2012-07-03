@@ -7,9 +7,12 @@ class User < ActiveRecord::Base
   JEDI_MASTER_ROLE = 'admin'
   
   include Authentication
-  include Authentication::ByPassword
-  include Authentication::ByCookieToken
-  include Authorization::AasmRoles
+  # include Authentication::ByPassword
+  # include Authentication::ByCookieToken
+  # include Authorization::AasmRoles
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :confirmable, :validatable, 
+         :encryptable, :encryptor => :restful_authentication_sha1
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
   attr_accessor :skip_email_validation
@@ -301,6 +304,11 @@ class User < ActiveRecord::Base
       params.order(query[:sort_by])
     end
     scope
+  end
+  
+  def self.find_for_authentication(conditions = {})
+    where("login = ?", conditions[:email]).first || 
+    where("email = ?", conditions[:email]).first
   end
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

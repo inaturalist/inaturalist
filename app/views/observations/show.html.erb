@@ -409,7 +409,7 @@
           </div>
         <% else %>
           <%- new_identification = Identification.new(:user => current_user, :observation => @observation) -%>
-          <% form_for new_identification do |f| %>
+          <%= form_for new_identification do |f| %>
             <%= render :partial => "identifications/form_fields", :locals => { 
               :identification => new_identification, 
               :f => f,

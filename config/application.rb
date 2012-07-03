@@ -81,11 +81,11 @@ UBIO_KEY = INAT_CONFIG['ubio']['UBIO_KEY']
 YDN_APP_ID = INAT_CONFIG['yahoo_dev_network']['YDN_APP_ID']
 GeoPlanet.appid = YDN_APP_ID
 
-# Google Analytics configs
-# See http://www.rubaidh.com/projects/google-analytics-plugin/
-Rubaidh::GoogleAnalytics.tracker_id   = INAT_CONFIG['google_analytics']['tracker_id']
-Rubaidh::GoogleAnalytics.domain_name  = INAT_CONFIG['google_analytics']['domain_name']
-Rubaidh::GoogleAnalytics.environments = ['production']
+# # Google Analytics configs
+# # See http://www.rubaidh.com/projects/google-analytics-plugin/
+# Rubaidh::GoogleAnalytics.tracker_id   = INAT_CONFIG['google_analytics']['tracker_id']
+# Rubaidh::GoogleAnalytics.domain_name  = INAT_CONFIG['google_analytics']['domain_name']
+# Rubaidh::GoogleAnalytics.environments = ['production']
 
 # General settings
 SITE_NAME = INAT_CONFIG['general']['SITE_NAME']

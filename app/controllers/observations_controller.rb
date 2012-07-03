@@ -23,7 +23,7 @@ class ObservationsController < ApplicationController
   end
   
   before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :login_required, 
+  before_filter :authenticate_user!, 
                 :except => [:explore,
                             :index,
                             :of,

@@ -1,8 +1,8 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
-  include AuthenticatedSystem
-  include RoleRequirementSystem
+  # include AuthenticatedSystem
+  # include RoleRequirementSystem
   include Ambidextrous
   
   has_mobile_fu
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery
-  before_filter :login_from_cookie, :get_user, :set_time_zone
+  # before_filter :login_from_cookie, :get_user, :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :user_logging
@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   
   PER_PAGES = [10,30,50,100]
   HEADER_VERSION = 8
+  
+  alias :logged_in? :user_signed_in?
   
   private
   
@@ -89,7 +91,7 @@ class ApplicationController < ActionController::Base
   def curator_required
     unless logged_in? && current_user.is_curator?
       flash[:notice] = "Only curators can access that page."
-      if session[:return_to] == request.request_uri
+      if session[:return_to] == request.fullpath
         redirect_to root_url
       else
         redirect_back_or_default(root_url)
@@ -118,7 +120,7 @@ class ApplicationController < ActionController::Base
       ie_needs_return_to = true
     end
     if (ie_needs_return_to || request.format.html?) && !params.keys.include?('partial')
-      session[:return_to] = request.request_uri
+      session[:return_to] = request.fullpath
     end
     true
   end
@@ -293,7 +295,7 @@ class ApplicationController < ActionController::Base
     return true unless params[:auth_provider]
     return true unless request.get?
     if logged_in?
-      uri_pieces = request.request_uri.split('?')
+      uri_pieces = request.fullpath.split('?')
       param_pieces = uri_pieces[1].split('&')
       param_pieces.delete_if {|p| p =~ /^auth_provider/}
       redirect_to [uri_pieces[0], param_pieces.join('&')].join('?')

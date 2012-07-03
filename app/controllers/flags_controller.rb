@@ -1,5 +1,5 @@
 class FlagsController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :curator_required, :only => [:edit, :update, :destroy]
   before_filter :set_model, :except => [:update, :show, :destroy]
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]

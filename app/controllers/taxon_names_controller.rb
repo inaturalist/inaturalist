@@ -1,5 +1,5 @@
 class TaxonNamesController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
   before_filter :load_taxon, :except => [:index]
   before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy]

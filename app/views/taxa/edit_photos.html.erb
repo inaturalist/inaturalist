@@ -17,7 +17,7 @@
     </ul>
     
 		<div id="eol_taxon_photos">
-      <% form_tag({:action => 'update_photos'}) do %>
+      <%= form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
             :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
@@ -31,7 +31,7 @@
     </div>
 
     <div id="flickr_taxon_photos">
-      <% form_tag({:action => 'update_photos'}) do %>
+      <%= form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
             :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
@@ -45,7 +45,7 @@
     </div>
     
     <div id="inat_obs_taxon_photos">
-      <% form_tag({:action => 'update_photos'}) do %>
+      <%= form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
             :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},

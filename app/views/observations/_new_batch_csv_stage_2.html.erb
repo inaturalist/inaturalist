@@ -3,7 +3,7 @@
   <%= render(:partial => 'batch_form_row') %>
 </div>
 <% end %>
-<% form_tag(
+<%= form_tag(
   {:controller => 'observations', :action => 'create'}, 
   :class => 'observationform') do %>
 
