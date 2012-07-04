@@ -1,5 +1,5 @@
 <%- 
-  item = object || item
+  item = activity_item || item
   taxon = update_cached(item, :taxon) if item.respond_to?(:taxon)
   observation = update_cached(item, :observation) if item.respond_to?(:observation)
   user = update_cached(item, :user) if item.respond_to?(:user)

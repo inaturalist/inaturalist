@@ -86,7 +86,7 @@ Observations by <%= h @login %>
       var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
     
       var observations = <%= @observations.to_json(:viewer => current_user, 
-        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -288,7 +288,7 @@ Observations by <%= h @login %>
 
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
-    <% if @user && @user.login == @login -%>
+    <% if is_me?(@selected_user) -%>
       <%= link_to "Add Observations", new_observation_path, 
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function("Batch Edit", "batchEdit()", :id => "batch_edit_button", :class => 'button') %>

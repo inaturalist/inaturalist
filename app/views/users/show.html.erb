@@ -157,7 +157,7 @@
   
   <% if is_me?(@user) %>
     <ul class="readable leafylist">
-      <li><%= link_to "Edit account settings &amp; profile", edit_person_path(current_user) -%></li>
+      <li><%= link_to "Edit account settings &amp; profile".html_safe, edit_person_path(current_user) -%></li>
     </ul>
   <% end %>
 
