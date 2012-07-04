@@ -392,7 +392,7 @@ class Observation < ActiveRecord::Base
       d == 0 ? nil : d
     end
     if date.to_s =~ /^\d{4}/ && year && month && day
-      where("#{column}::DATE = ?", "#{year}-#{month}-#{day}")
+      ["#{column}::DATE = ?", "#{year}-#{month}-#{day}"]
     elsif year || month || day
       conditions, values = [[],[]]
       if year
@@ -407,9 +407,9 @@ class Observation < ActiveRecord::Base
         conditions << "EXTRACT(DAY FROM #{column}) = ?"
         values << day
       end
-      where([conditions.join(' AND '), *values])
+      [conditions.join(' AND '), *values]
     else
-      where("1 = 2")
+      "1 = 2"
     end
   end
   
