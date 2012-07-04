@@ -141,6 +141,7 @@ class User < ActiveRecord::Base
     order("? ?", sort_by, sort_dir)
   }
   scope :curators, includes(:roles).where("roles.name = 'curator'")
+  scope :active, where("state = 'active'")
   
   def icon_url_provided?
     !self.icon_url.blank?
@@ -338,7 +339,7 @@ class User < ActiveRecord::Base
       auth_info["user_info"]["name"])
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
-    autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
+    autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
     u = User.new(
       :login => autogen_login,
       :email => email,
@@ -351,8 +352,7 @@ class User < ActiveRecord::Base
       u.skip_email_validation = true
       u.skip_registration_email = true
       begin
-        u.register!
-        u.activate!
+        u.save!
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /unique constraint/
         suggestion = User.suggest_login(u.login)

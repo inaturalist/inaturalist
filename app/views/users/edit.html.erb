@@ -159,12 +159,13 @@
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= link_to "Disconnect #{provider.capitalize}", omniauth_disconnect_path(provider.downcase),
+            <%= button_to "Disconnect #{provider.capitalize}", omniauth_disconnect_path(provider.downcase),
               :class => "providerlink #{provider.downcase} disabled button", :method => "delete" %>
           </li>
         <% else %>
           <li class="clear">
-            <%= link_to "Connect to #{provider.capitalize}", auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
+            <%= link_to "Connect to #{provider.capitalize}", auth_url_for(provider.downcase), 
+              :class => "providerlink #{provider.downcase} button" %>
           </li>
         <% end %>
       <% end %>
@@ -201,6 +202,7 @@
       </div>
     <% end %>
   </div>
-  <%= link_to "Delete your account", current_user, :method => :delete, :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
+  <%= button_to "Delete your account", current_user, :method => :delete, 
+    :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
     :class => "minor delete button" %>
 </div><!-- end side col -->

@@ -24,6 +24,27 @@ class ApplicationController < ActionController::Base
   
   private
   
+  # Store the URI of the current request in the session.
+  #
+  # We can return to this location by calling #redirect_back_or_default.
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  # Redirect to the URI stored by the most recent store_location call or
+  # to the passed default.  Set an appropriately modified
+  #   after_filter :store_location, :only => [:index, :new, :show, :edit]
+  # for any controller you want to be bounce-backable.
+  def redirect_back_or_default(default)
+    back_url = session[:return_to] # || request.env['HTTP_REFERER']
+    if back_url && ![request.path, request.url].include?(back_url)
+      redirect_to(back_url)
+    else
+      redirect_to default
+    end
+    session[:return_to] = nil
+  end
+  
   #
   # Update an ActiveRecord conditions array with new conditions
   #

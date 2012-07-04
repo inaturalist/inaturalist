@@ -1,3 +1,6 @@
+<%-
+  identification ||= identification_form
+-%>
 <% if logged_in? %>
   <%- identification ||= Identification.new(:user => current_user, 
                                            :observation => observation) -%>
