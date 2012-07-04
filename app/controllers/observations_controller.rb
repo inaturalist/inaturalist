@@ -15,7 +15,7 @@ class ObservationsController < ApplicationController
     :if => Proc.new {|c| !c.request.format.html? }
   cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
   
-  rescue_from ActionController::UnknownAction do
+  rescue_from ::AbstractController::ActionNotFound  do
     unless @selected_user = User.find_by_login(params[:action])
       return render_404
     end
@@ -225,10 +225,10 @@ class ObservationsController < ApplicationController
         
         @places = @observation.places
         
-        @project_observations = @observation.project_observations.all(:limit => 100)
+        @project_observations = @observation.project_observations.limit(100).to_a
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         if logged_in?
-          @project_invitations = @observation.project_invitations.all(:limit => 100)
+          @project_invitations = @observation.project_invitations.limit(100).to_a
           @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
         end
         
@@ -240,7 +240,9 @@ class ObservationsController < ApplicationController
         end.map{|op| op.photo}
         
         if @observation.observed_on
-          @day_observations = Observation.by(@observation.user).on(@observation.observed_on).paginate(:page => 1, :per_page => 14, :include => [:photos])
+          @day_observations = Observation.by(@observation.user).on(@observation.observed_on).
+            includes(:photos).
+            paginate(:page => 1, :per_page => 14)
         end
         
         if logged_in?

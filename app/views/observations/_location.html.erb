@@ -1,5 +1,5 @@
 <%- 
-  observation ||= object || @observation
+  observation ||= @observation
   inline_edit ||= false
   places ||= nil
   if places && !observation.coordinates_viewable_by?(current_user)

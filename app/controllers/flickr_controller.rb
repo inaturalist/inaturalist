@@ -262,8 +262,8 @@ class FlickrController < ApplicationController
   # Used by the options interface, this just removes the user's associated
   # flickr_identity
   def unlink_flickr_account
-    if @user.flickr_identity
-      @user.flickr_identity.destroy
+    if current_user.flickr_identity
+      current_user.flickr_identity.destroy
       flash[:notice] = "We've dissassociated your Flickr account from your iNaturalist account."
       redirect_to :action => 'options'
     else

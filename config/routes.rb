@@ -1,4 +1,6 @@
 Inaturalist::Application.routes.draw do
+  id_param_pattern = %r(\d+([\w\-\%]*))
+  
   resources :observation_field_values
   resources :observation_fields
   match '/' => 'welcome#index'
@@ -46,7 +48,7 @@ Inaturalist::Application.routes.draw do
   resources :photos, :only => [:show, :update]
   resources :observation_photos, :only => :create
   match 'flickr/photos.:format' => 'flickr#photos', :via => :get
-  resources :observations do
+  resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
   end
 
@@ -140,6 +142,7 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places
   match 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   match 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
+  match 'taxa/tag_flickr_photos_from_observations', :via => :post
   match 'taxa/search' => 'taxa#search', :as => :search_taxa
   match 'taxa/search.:format' => 'taxa#search', :as => :formatted_search_taxa
   match 'taxa/:action.:format' => 'taxa#index', :as => :formatted_taxa_action

@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  acts_as_tree
+  # acts_as_tree
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   has_many :check_lists, :dependent => :destroy
@@ -161,7 +161,7 @@ class Place < ActiveRecord::Base
   
   # Wrap the attr call to set it if unset (or if :reload => true)
   def display_name(options = {})
-    return super unless super.blank? || options[:reload]
+    return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
     ancestor_names = self.ancestors.select do |a|
       %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)

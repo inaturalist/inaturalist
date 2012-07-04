@@ -359,7 +359,7 @@ class Observation < ActiveRecord::Base
     joins(:project_observations).where("project_observations.project_id IN (?)", projects)
   }
   
-  scope :on, lambda {|date| where(Observation.conditions_for_date(:observed_on, date))}
+  scope :on, lambda {|date| where(Observation.conditions_for_date(:observed_on, date)) }
   
   scope :created_on, lambda {|date| where(Observation.conditions_for_date("observations.created_at", date))}
   
@@ -394,7 +394,7 @@ class Observation < ActiveRecord::Base
       d == 0 ? nil : d
     end
     if date.to_s =~ /^\d{4}/ && year && month && day
-      where("#{column}::DATE = ?", "#{year}-#{month}-#{day}")
+      ["#{column}::DATE = ?", "#{year}-#{month}-#{day}"]
     elsif year || month || day
       conditions, values = [[],[]]
       if year
@@ -409,9 +409,9 @@ class Observation < ActiveRecord::Base
         conditions << "EXTRACT(DAY FROM #{column}) = ?"
         values << day
       end
-      where([conditions.join(' AND '), *values])
+      [conditions.join(' AND '), *values]
     else
-      where("1 = 2")
+      "1 = 2"
     end
   end
   
