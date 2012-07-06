@@ -141,7 +141,7 @@ class EolMedia
     end
     
     def description
-      view.strip_tags(observation.description) unless (observation.blank? || observation.description.blank?)
+      view.strip_tags(dwc_filter_text(observation.description)) unless (observation.blank? || observation.description.blank?)
     end
     
     protected

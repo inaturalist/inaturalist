@@ -21,6 +21,7 @@ EOS
   opt :metadata, "Path to metadata template. Default: observations/gbif.eml.erb. \"skip\" will skip EML file generation.", :type => :string, :short => "-m", :default => "observations/gbif.eml.erb"
   opt :descriptor, "Path to descriptor template. Default: observations/gbif.descriptor.builder", :type => :string, :short => "-r", :default => "observations/gbif.descriptor.builder"
   opt :quality, "Quality grade of observation output.  This will also filter EolMedia exports. Options: research, casual, any.  Default: research.", :type => :string, :short => "-q", :default => "research"
+  opt :photo_licenses, "Photo licenses", :type => :strings, :default => ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
 end
 
@@ -145,13 +146,16 @@ def make_taxon_data
   headers = DarwinCore::Taxon::TERM_NAMES
   fname = "taxa.csv"
   tmp_path = File.join(Dir::tmpdir, fname)
+  licenses = @opts[:photo_licenses].map do |license_code|
+    Photo.license_number_for_code(license_code)
+  end
   
   find_options = {
     :select => "DISTINCT ON (taxa.id) taxa.*",
     :joins => {:observations => {:observation_photos => :photo}},
     :conditions => [
-      "rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license > ?", 
-      Taxon::SPECIES_LEVEL, Photo::COPYRIGHT]
+      "rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)", 
+      Taxon::SPECIES_LEVEL, licenses]
   }
   
   if @opts[:quality] == "research"
@@ -182,12 +186,15 @@ def make_eol_media_data
   headers = EolMedia::TERM_NAMES
   fname = "media.csv"
   tmp_path = File.join(Dir::tmpdir, fname)
+  licenses = @opts[:photo_licenses].map do |license_code|
+    Photo.license_number_for_code(license_code)
+  end
   
   find_options = {
     :include => [:user, {:observation_photos => {:observation => :taxon}}],
     :conditions => [
-      "photos.license > ? AND taxa.rank_level <= ? AND taxa.id IS NOT NULL", 
-      Photo::COPYRIGHT, Taxon::SPECIES_LEVEL]
+      "photos.license IN (?) AND taxa.rank_level <= ? AND taxa.id IS NOT NULL", 
+      licenses, Taxon::SPECIES_LEVEL]
   }
   
   if @opts[:quality] == "research"
@@ -227,7 +234,7 @@ def make_archive(*args)
   fname = "dwca.zip"
   tmp_path = File.join(Dir::tmpdir, fname)
   fnames = args.map{|f| File.basename(f)}
-  system "cd #{Dir::tmpdir} && zip #{tmp_path} #{fnames.join(' ')}"
+  system "cd #{Dir::tmpdir} && zip -D #{tmp_path} #{fnames.join(' ')}"
   tmp_path
 end
 
