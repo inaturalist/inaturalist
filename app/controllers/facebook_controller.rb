@@ -26,8 +26,16 @@ class FacebookController < ApplicationController
 
   # Return an HTML fragment containing a list of the user's fb albums
   def albums
+    context = params[:context] || 'user'
+    friend_id = params[:friend_id]
+    friend_id = nil if friend_id=='null'
+    # if context is friends, but no friend id specified, we want to show the friend selector
+    if (context=='friends' && friend_id.nil?) 
+      @friends = facebook_friends(current_user)
+      render :partial => 'facebook/friends' and return
+    end
     @albums = begin
-      facebook_albums(current_user)
+      facebook_albums(current_user, friend_id)
     rescue Koala::Facebook::APIError => e
       raise e unless e.message =~ /OAuthException/
       @reauthorization_needed = true
@@ -69,9 +77,9 @@ class FacebookController < ApplicationController
 
   # returns an array of album data hashes like [{ 'name'=>'Safari Pics', 'cover_photo_src'=>(thumbnail_url) }, ...]
   # not terribly efficient, cause it makes an api call to get album data and separate calls for each album to get the url
-  def facebook_albums(user)
+  def facebook_albums(user, friend_id=nil)
     return [] unless user.facebook_api
-    album_data = user.facebook_api.get_connections('me','albums', :limit => 0)
+    album_data = user.facebook_api.get_connections(friend_id || 'me','albums', :limit => 0)
     album_data.reject{|a| a['count'].nil? || a['count'] < 1}.map do |a|
       {
         'aid' => a['id'],
@@ -81,6 +89,15 @@ class FacebookController < ApplicationController
           "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{user.facebook_token}"
       }
     end
+  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+    Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    return []
+  end
+
+  def facebook_friends(user)
+    return [] unless user.facebook_api
+    friends_data = user.facebook_api.get_connections('me','friends').sort_by{|f| f['name']}
+    return friends_data
   rescue OpenSSL::SSL::SSLError, Timeout::Error => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []

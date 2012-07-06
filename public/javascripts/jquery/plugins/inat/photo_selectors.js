@@ -74,13 +74,14 @@
     );
     
     var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
-    if (options.baseURL.match(/context=user/)) {
+    if (options.urlParams !== undefined && options.urlParams.context !== undefined) {
       var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
       var urls = options.urls || [];
       if (!options.skipLocal) {
         urls.push({
           title: "your hard drive",
-          url: '/photos/local_photo_fields?context=user'
+          //url: '/photos/local_photo_fields?context=user'
+          url: '/photos/local_photo_fields'
         })
       }
       $.each(urls, function() {
@@ -95,17 +96,34 @@
         if (url === options.baseURL) $(option).attr('selected', 'selected');
         $(urlSelect).append(option);
       })
+
+      // photo context selector (user or friends)
+      var contextSelect = $('<select class="select" style="margin: 0 auto"></select>');
+      $.each([['Your photos', 'user'],['Your friends\' photos','friends']], function(){
+        contextSelect.append("<option value='"+this[1]+"'>"+this[0]+"</option>");
+      });
       
-      $(urlSelect).change(function() {
-        $.fn.photoSelector.changeBaseUrl(wrapper, $(this).val());
-      })
+      // event handlers for urlSelect and contextSelect
+      $.each([urlSelect,contextSelect], function(){
+        this.change(function() {
+          $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
+        })
+      });
 
       $('.back_to_albums').live('click', function(){
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
         return false;
       });
 
-      $(urlSelectWrapper).append(urlSelect);
+      // friend selector
+      $('.friendSelector .friend').live('click', function(){
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fid'));
+        return false;
+      });
+
+      $(urlSelectWrapper)
+        .append(urlSelect)
+        .append(contextSelect);
     }
     
     // Append next & prev links
@@ -173,9 +191,11 @@
     });
   }
   
-  $.fn.photoSelector.changeBaseUrl = function(wrapper, url) {
+  $.fn.photoSelector.changeBaseUrl = function(wrapper, url, context, friend_id) {
     var options = $(wrapper).data('photoSelectorOptions');
     options.baseURL = url;
+    options.urlParams.context = (context || 'user');
+    options.urlParams.friend_id = (friend_id || null);
     $(wrapper).data('photoSelectorOptions', options);
     $.fn.photoSelector.queryPhotos($(wrapper).find('.photoSelectorSearchField').val(), wrapper);
   };
