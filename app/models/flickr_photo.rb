@@ -8,11 +8,7 @@ class FlickrPhoto < Photo
   def validate
     # Check to make sure the user owns the flickr photo
     if self.user && self.api_response
-      if self.api_response.is_a?(Net::Flickr::Photo)
-        fp_flickr_user_id = self.api_response.owner
-      else
-        fp_flickr_user_id = self.api_response.owner.nsid
-      end
+      fp_flickr_user_id = self.api_response.owner.nsid
       
       if user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
         errors.add(:user, "must own the photo on Flickr.")
@@ -20,46 +16,21 @@ class FlickrPhoto < Photo
     end
   end
   
+  def self.flickraw_for_user(user)
+    return flickr unless (user && user.flickr_identity)
+    f = FlickRaw::Flickr.new
+    f.access_token = user.flickr_identity.token
+    f.access_secret = user.flickr_identity.secret
+    f
+  end
+  
   def self.get_api_response(native_photo_id, options = {})
-    flickr = Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-    if options[:user] && options[:user].flickr_identity
-      flickr.auth.token = options[:user].flickr_identity.token
-    end
-    flickr.photos.get_info(native_photo_id)
-  rescue Net::Flickr::APIError => e
-    if options.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Net::Flickr had an auth " + 
-        "token when it shouldn't: #{flickr.auth.inspect}"
-    end
-    raise e
+    f = options[:user] ? flickraw_for_user(options[:user]) : flickr
+    f.photos.getInfo(:photo_id => native_photo_id)
   end
   
   def self.new_from_api_response(api_response, options = {})
-    logger.debug "[DEBUG] api_response.class: #{api_response.class}"
-    if api_response.is_a? Net::Flickr::Photo
-      new_from_net_flickr(api_response, options)
-    else
-      new_from_flickraw(api_response, options)
-    end
-  end
-  
-  def self.new_from_net_flickr(fp, options = {})
-    options.update(
-      :native_photo_id => fp.id,
-      :square_url => fp.source_url(:square),
-      :thumb_url => fp.source_url(:thumb),
-      :small_url => fp.source_url(:small),
-      :medium_url => fp.source_url(:medium),
-      :large_url => fp.source_url(:large),
-      :original_url => fp.source_url(:original),
-      :native_page_url => fp.page_url,
-      :native_username => (fp.photo_xml.at('owner')[:username] rescue nil),
-      :native_realname => (fp.photo_xml.at('owner')[:realname] rescue nil),
-      :license => fp.photo_xml['license']
-    )
-    flickr_photo = FlickrPhoto.new(options)
-    flickr_photo.api_response = fp
-    flickr_photo
+    new_from_flickraw(api_response, options)
   end
   
   def self.new_from_flickraw(fp, options = {})
@@ -93,11 +64,8 @@ class FlickrPhoto < Photo
       options[:small_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_m.jpg"
     elsif options[:square_url].blank?
       unless sizes = options.delete(:sizes)
-        if options[:user] && options[:user].flickr_identity
-          sizes = flickr.photos.getSizes(:photo_id => fp.id, :auth_token => options[:user].flickr_identity.token)
-        else
-          sizes = flickr.photos.getSizes(:photo_id => fp.id)
-        end
+        f = FlickrPhoto.flickraw_for_user(options[:user])
+        sizes = f.photos.getSizes(:photo_id => fp.id)
       end
       sizes = sizes.index_by{|s| s.label}
       options[:square_url]   ||= sizes['Square'].source rescue nil
@@ -137,29 +105,27 @@ class FlickrPhoto < Photo
   
   def to_observation  
     # Get the Flickr data
-    fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
-    unless fp.is_a?(Net::Flickr::Photo)
-      fp = FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
-      self.api_response = fp
-    end
+    self.api_response ||= FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
+    fp = self.api_response
     
     # Setup the observation
     observation = Observation.new
     observation.user = self.user if self.user
-    observation.photos << self
+    # observation.photos << self
+    observation.observation_photos.build(:photo => self)
     observation.description = fp.description
-    observation.observed_on_string = fp.taken.to_s(:long)
+    observation.observed_on_string = fp.dates.taken
     observation.munge_observed_on_with_chronic
     observation.time_zone = observation.user.time_zone if observation.user
     
     # Get the geo fields
-    begin
+    if fp.respond_to?(:location)
       observation.place_guess = %w"locality region country".map do |tag|
-        fp.geo.get_location.at(tag).inner_text rescue nil
+        fp.location[tag]._content
       end.compact.join(', ').strip
-      observation.latitude = fp.geo.latitude
-      observation.longitude = fp.geo.longitude
-    rescue Net::Flickr::APIError
+      observation.latitude  = fp.location.latitude
+      observation.longitude = fp.location.longitude
+      observation.map_scale = fp.location.accuracy
     end
     
     # Try to get a taxon
@@ -179,7 +145,7 @@ class FlickrPhoto < Photo
     else
       # First try to find taxa matching taxonomic machine tags, then default 
       # to all tags
-      tags = api_response.tags.values.map(&:raw)
+      tags = api_response.tags.map{|t| t._content}
       machine_tags = tags.select{|t| t =~ /taxonomy\:/}
       taxa = Taxon.tags_to_taxa(machine_tags) unless machine_tags.blank?
       taxa ||= Taxon.tags_to_taxa(tags, options)

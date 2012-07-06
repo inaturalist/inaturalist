@@ -32,7 +32,6 @@ class TaxaController < ApplicationController
   # verify :method => :put, :only => [ :update, :update_colors ],
   #   :redirect_to => { :action => :index }
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
-  rescue_from ActionController::UnknownAction, :with => :try_show
   
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
@@ -897,10 +896,7 @@ class TaxaController < ApplicationController
   end
   
   def flickr_tagger    
-    net_flickr = get_net_flickr
-    if logged_in? && current_user.flickr_identity
-      net_flickr.auth.token = current_user.flickr_identity.token
-    end
+    f = get_flickraw
     
     @taxon ||= Taxon.find_by_id(params[:id].to_i) if params[:id]
     @taxon ||= Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
@@ -908,15 +904,15 @@ class TaxaController < ApplicationController
     @flickr_photo_ids = [params[:flickr_photo_id], params[:flickr_photos]].flatten.compact
     @flickr_photos = @flickr_photo_ids.map do |flickr_photo_id|
       begin
-        original = net_flickr.photos.get_info(flickr_photo_id)
-        flickr_photo = FlickrPhoto.new_from_net_flickr(original)
+        original = f.photos.getInfo(:photo_id => flickr_photo_id)
+        flickr_photo = FlickrPhoto.new_from_api_response(original)
         if flickr_photo && @taxon.blank?
           if @taxa = flickr_photo.to_taxa
             @taxon = @taxa.sort_by{|t| t.ancestry || ''}.last
           end
         end
         flickr_photo
-      rescue Net::Flickr::APIError
+      rescue FlickRaw::FailedResponse => e
         flash[:notice] = "Sorry, one of those Flickr photos either doesn't exist or " +
           "you don't have permission to view it."
         nil
@@ -1047,6 +1043,81 @@ class TaxaController < ApplicationController
     @iconic_taxa = Taxon::ICONIC_TAXA
   end
   
+  # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
+  def try_show
+    name, format = params[:q].split('_').join(' ').split('.')
+    request.format = format if request.format.blank? && !format.blank?
+    name = name.to_s.downcase
+    
+    # Try to look by its current unique name
+    unless @taxon
+      begin
+        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
+      rescue ActiveRecord::StatementInvalid, PGError => e
+        raise e unless e.message =~ /invalid byte sequence/ || e.message =~ /incomplete multibyte character/
+        name = Iconv.iconv('UTF8', 'LATIN1', name).first
+        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
+      end
+      @taxon = taxa.first if taxa.size == 1
+    end
+    
+    # Try to look by its current scientifc name
+    unless @taxon
+      begin
+        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+      end
+      @taxon = taxa.first if taxa.size == 1
+    end
+    
+    # Try to find a unique TaxonName
+    unless @taxon
+      begin
+        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+      rescue ActiveRecord::StatementInvalid => e
+        raise e unless e.message =~ /invalid byte sequence/
+        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
+      end
+      if taxon_names.size == 1
+        @taxon = taxon_names.first.taxon
+        
+        # Redirect to the currently accepted sciname if this isn't an accepted sciname
+        unless taxon_names.first.is_valid?
+          return redirect_to :action => @taxon.name.split.join('_')
+        end
+      end
+    end
+    
+    # Redirect to a canonical form
+    if @taxon
+      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
+      taxon_names ||= @taxon.taxon_names.all
+      acceptable_names = [@taxon.unique_name, @taxon.name].compact.map{|n| n.split.join('_')} + 
+        taxon_names.map{|tn| tn.name.split.join('_')}
+      unless acceptable_names.include?(params[:q])
+        redirect_target = if params[:action].to_s.split.join('_') == @taxon.name.split.join('_')
+          @taxon.name.split.join('_')
+        else
+          canonical
+        end
+        return redirect_to :action => redirect_target
+      end
+    end
+    
+    # TODO: if multiple exact matches, render a disambig page with status 300 (Mulitple choices)
+    unless @taxon
+      return redirect_to :action => 'search', :q => name
+    else
+      return_here
+      Rails.logger.debug "[DEBUG] showing #{@taxon}"
+      show
+    end
+  end
+  
 ## Protected / private actions ###############################################
   private
   
@@ -1130,82 +1201,6 @@ class TaxaController < ApplicationController
     unless @taxon = Taxon.find_by_id(params[:id].to_i, :include => :taxon_names)
       render_404
       return
-    end
-  end
-  
-  # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
-  def try_show(exception)
-    raise exception if params[:action].blank?
-    name, format = params[:action].split('_').join(' ').split('.')
-    request.format = format if request.format.blank? && !format.blank?
-    name = name.to_s.downcase
-    
-    # Try to look by its current unique name
-    unless @taxon
-      begin
-        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
-      rescue ActiveRecord::StatementInvalid, PGError => e
-        raise e unless e.message =~ /invalid byte sequence/ || e.message =~ /incomplete multibyte character/
-        name = Iconv.iconv('UTF8', 'LATIN1', name).first
-        taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
-      end
-      @taxon = taxa.first if taxa.size == 1
-    end
-    
-    # Try to look by its current scientifc name
-    unless @taxon
-      begin
-        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /invalid byte sequence/
-        name = Iconv.iconv('UTF8', 'LATIN1', name)
-        taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
-      end
-      @taxon = taxa.first if taxa.size == 1
-    end
-    
-    # Try to find a unique TaxonName
-    unless @taxon
-      begin
-        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /invalid byte sequence/
-        name = Iconv.iconv('UTF8', 'LATIN1', name)
-        taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
-      end
-      if taxon_names.size == 1
-        @taxon = taxon_names.first.taxon
-        
-        # Redirect to the currently accepted sciname if this isn't an accepted sciname
-        unless taxon_names.first.is_valid?
-          return redirect_to :action => @taxon.name.split.join('_')
-        end
-      end
-    end
-    
-    # Redirect to a canonical form
-    if @taxon
-      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
-      taxon_names ||= @taxon.taxon_names.all
-      acceptable_names = [@taxon.unique_name, @taxon.name].compact.map{|n| n.split.join('_')} + 
-        taxon_names.map{|tn| tn.name.split.join('_')}
-      unless acceptable_names.include?(params[:action])
-        redirect_target = if params[:action].to_s.split.join('_') == @taxon.name.split.join('_')
-          @taxon.name.split.join('_')
-        else
-          canonical
-        end
-        return redirect_to :action => redirect_target
-      end
-    end
-    
-    # TODO: if multiple exact matches, render a disambig page with status 300 (Mulitple choices)
-    unless @taxon
-      # TODO: render custom 404 page with search & import options
-      return redirect_to :action => 'search', :q => name
-    else
-      return_here
-      show
     end
   end
   

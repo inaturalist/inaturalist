@@ -126,12 +126,12 @@ Inaturalist::Application.routes.draw do
   match 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation, :via => :post
   match 'taxa/names' => 'taxon_names#index'
   match 'taxa/names.:format' => 'taxon_names#index'
-  resources :taxa # do
-  
-  resources :taxon_names
-  resources :flags
-
-  match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
+  resources :taxa, :constraints => { :id => id_param_pattern } do
+    resources :taxon_names
+    resources :flags
+    get 'description', :on => :member, :as => :describe_taxon
+  end
+  # match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
   match 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   match 'taxa/:id/children' => 'taxa#children', :as => :taxon_children
   match 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
@@ -153,6 +153,8 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/range.:format' => 'taxa#range', :as => :taxon_range_geom
   match 'taxa/auto_complete_name' => 'taxa#auto_complete_name'
   match 'taxa/occur_in' => 'taxa#occur_in'
+  match "taxa/*q" => 'taxa#try_show'
+  
   resources :sources, :only => [:index, :show]
   match 'journal' => 'posts#browse', :as => :journals
   match 'journal/:login' => 'posts#index', :as => :journal_by_login, :constraints => { :login => /\w[^\.,\/]+/ }

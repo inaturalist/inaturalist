@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails'
 
 gem 'aasm'
+gem 'bborn-acts_as_taggable_on_steroids', :git => 'git://github.com/samoli/acts_as_taggable_on_steroids.git', :require => 'acts_as_taggable'
 gem 'ancestry'
 gem 'bluecloth'
 gem 'capistrano'
