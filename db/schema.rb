@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120702224519) do
+ActiveRecord::Schema.define(:version => 20120704055118) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
