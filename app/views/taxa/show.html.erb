@@ -410,7 +410,7 @@
     <% if logged_in? -%>
       | <%= link_to "Map", taxon_map_path(@taxon) %>
     <% end -%>
-    <% if logged_in? and @user.is_curator? %>
+    <% if logged_in? and current_user.is_curator? %>
       | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
     <% end %>
     <% if @taxon.flagged? %>
