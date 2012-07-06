@@ -543,22 +543,21 @@ class Taxon < ActiveRecord::Base
   # Fetches associated user-selected FlickrPhotos if they exist, otherwise
   # gets the the first :limit Create Commons-licensed photos tagged with the
   # taxon's scientific name from Flickr.  So this will return a heterogeneous
-  # array: part FlickrPhotos, part net::flickr Photos
+  # array: part FlickrPhotos, part api responses
   #
   def photos_with_backfill(options = {})
     options[:limit] ||= 9
     chosen_photos = taxon_photos.all(:limit => options[:limit], 
       :include => :photo, :order => "taxon_photos.id ASC").map{|tp| tp.photo}
     if chosen_photos.size < options[:limit]
-      conditions = "taxa.ancestry LIKE '#{ancestry}/#{id}%'"
-      if chosen_photos.size > 0
-        conditions = update_conditions(conditions, ["photos.id NOT IN (?)", chosen_photos])
+      new_photos = Photo.includes({:taxon_photos => :taxon}).
+        order("taxon_photos.id ASC").
+        limit(options[:limit] - chosen_photos.size).
+        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'").includes()
+      if new_photos.size > 0
+        new_photos = new_photos.where("photos.id NOT IN (?)", chosen_photos)
       end
-      chosen_photos += Photo.all(
-        :include => [{:taxon_photos => :taxon}], 
-        :conditions => conditions,
-        :order => "taxon_photos.id ASC",
-        :limit => options[:limit] - chosen_photos.size)
+      chosen_photos += new_photos.to_a
     end
     flickr_chosen_photos = []
     if !options[:skip_external] && chosen_photos.size < options[:limit] && self.auto_photos
@@ -567,15 +566,14 @@ class Taxon < ActiveRecord::Base
           :tags => name.gsub(' ', '').strip,
           :per_page => options[:limit] - chosen_photos.size,
           :license => '1,2,3,4,5,6', # CC licenses
-          :extras => 'date_upload,owner_name,url_sq,url_t,url_s,url_m,url_l,url_o,owner_name,license',
+          :extras => 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
           :sort => 'relevance'
-        ).map{|fp| fp.url_sq ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
-      rescue Net::Flickr::APIError => e
+        ).map{|fp| fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
+      rescue FlickRaw::FailedResponse => e
         logger.error "EXCEPTION RESCUE: #{e}"
         logger.error e.backtrace.join("\n\t")
       end
     end
-    # flickr_ids = chosen_photos.map(&:native_photo_id)
     flickr_ids = chosen_photos.map{|p| p.native_photo_id}
     chosen_photos += flickr_chosen_photos.reject do |fp|
       flickr_ids.include?(fp.id)

@@ -38,7 +38,7 @@
             <%- alt_name = capture do -%>
               <%= render :partial => "shared/taxon", :locals => { :taxon => observation.taxon, :no_common => true } -%>
             <%- end -%>
-            <%= o.hidden_field(:taxon_id, :alt => alt_name, :rel => taxon_image_url(observation.taxon)) %>
+            <%= o.hidden_field(:taxon_id, :alt => alt_name.html_safe, :rel => taxon_image_url(observation.taxon)) %>
           <%- else -%>
             <%= o.hidden_field(:taxon_id) %>
           <% end -%>

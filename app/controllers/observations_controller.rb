@@ -435,8 +435,10 @@ class ObservationsController < ApplicationController
       return
     end
     
+    Rails.logger.debug "[DEBUG] params[:observations]: #{params[:observations].inspect}"
     @observations = params[:observations].map do |fieldset_index, observation|
       observation.delete('fieldset_index') if observation[:fieldset_index]
+      Rails.logger.debug "[DEBUG] observation: #{observation.inspect}"
       o = Observation.new(observation)
       o.user = current_user
       o.user_agent = request.user_agent
@@ -1624,8 +1626,7 @@ class ObservationsController < ApplicationController
   def sync_flickr_photo
     flickr = get_flickraw
     begin
-      fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id], 
-        :auth_token => current_user.flickr_identity.token)
+      fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id])
       @flickr_photo = FlickrPhoto.new_from_flickraw(fp, :user => current_user)
     rescue FlickRaw::FailedResponse => e
       logger.debug "[DEBUG] FlickRaw failed to find photo " +
@@ -1640,7 +1641,7 @@ class ObservationsController < ApplicationController
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
       sync_attrs = %w(description species_guess taxon_id observed_on 
-        observed_on_string latitude longitude place_guess)
+        observed_on_string latitude longitude place_guess map_scale)
       unless params[:flickr_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:flickr_sync_attrs]
       end

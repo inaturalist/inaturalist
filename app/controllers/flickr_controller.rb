@@ -1,73 +1,7 @@
 class FlickrController < ApplicationController
-  before_filter :authenticate_user! , :except => ["authorize", "invite"]
+  before_filter :authenticate_user! , :except => [:invite]
   before_filter :ensure_has_no_flickr_identity, :only => ['link']
   before_filter :return_here, :only => [:index, :show, :by_login, :options]
-  
-  # This is where Flickr sends the user back to after authorizing their
-  # account.  Note that there should not be a view associated with this end-
-  # point.  It simply takes the token along with some other data and creates
-  # a new FlickrIdentity.
-  def authorize
-    if params[:frob].nil?
-      redirect_to :action => 'options' and return
-    end
-    
-    begin
-      @flickr = get_net_flickr
-      
-      # Strangely, if an auth token has already been set, net-flickr will try 
-      # to append it to the getToken call, which makes Flickr unhappy.  So we
-      # reset it.
-      @flickr.auth.token = nil
-      @flickr.auth.get_token(params[:frob])
-      
-      if @flickr_identity = current_user.flickr_identity
-        @flickr_identity.token = @flickr.auth.token
-        @flickr_identity.token_created_at = Time.now
-      else
-        @flickr_identity = FlickrIdentity.new(
-          :user => current_user,
-          :token => @flickr.auth.token,
-          :token_created_at => Time.now,
-          :flickr_username => @flickr.auth.user_name,
-          :flickr_user_id => @flickr.auth.user_id
-        )
-      end
-      
-      if @flickr_identity.save
-        # This redirects to the 'success' page if the user has justed signed
-        # up to iNaturalist and has linked their flickr accounts.
-        if @user.created_at > 5.minutes.ago
-          redirect_to :action => 'success' and return
-        else
-          if @flickr_identity.created_at > 5.minutes.ago
-            flash[:notice] = <<-EOF
-              Great Success! We linked your Flickr account to your iNaturalist
-              account.
-            EOF
-          else
-            flash[:notice] = <<-EOF
-              Cool, your linked Flickr account has been updated.
-            EOF
-          end
-          redirect_to :action => 'options' and return
-        end
-      else
-        logger.error "[ERROR] Failed to save a new flickr identity: " +
-          @flickr_identity.errors.full_messages.join(', ')
-      end
-    rescue Net::Flickr::APIError => e
-      logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
-      HoptoadNotifier.notify(e, :request => request, :session => session) # testing
-      flash[:error] = <<-EOF
-        Ack! Something went wrong linking your iNaturalist account to Flickr.
-        Try it again, or contact us at #{APP_CONFIG[:help_email]}.
-        
-        Error: #{e.message}
-      EOF
-      redirect_to :action => 'options'
-    end
-  end
   
   # This is the endpoint the user visits to link their iNaturalist account to
   # their Flickr account directly after signup. Luckly we don't have to manage a
@@ -76,60 +10,33 @@ class FlickrController < ApplicationController
   # user.
   def link
     perms = params[:perms] || :write
-    @flickr = get_net_flickr
-    @flickr_url = @flickr.auth.url_webapp(perms)
-  end
-  
-  # A cheesy endpoint that is only accessed after the user has successfully
-  # linked their flickr account after signup.  It asks if the user would like
-  # to auto import from their Flickr account into their iNaturalist account,
-  # and then handles that simple form
-  def success
-    redirect_to(:action => 'options') and return if @user.flickr_identity.nil?
-    begin
-      unless !params[:flickr_identity].nil?
-        @flickr = get_net_flickr
-        @photos = @flickr.photos.search(:user_id => @user.flickr_identity.flickr_user_id, :per_page => 6)
-      else
-        unless @user.flickr_identity.update_attributes(params[:flickr_identity])
-          flash[:notice] = "Oh my! We messed up somewhere and couldn't " + 
-                           "turn on auto importing.  Try again in a bit, " + 
-                           "hopefully we'll have this figured out."
-        end
-        redirect_to :controller => :observations, :action => @user.login
-      end
-    rescue Net::Flickr::APIError => e
-      logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
-      HoptoadNotifier.notify(e, :request => request, :session => session) # testing
-      flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
-                       "squid ate your Flickr info.  You can contact us at " +
-                       "#{APP_CONFIG[:help_email]} if you still can't get this " +
-                       "working.  Error: #{e.message}"
-      redirect_to :action => 'options'
-    end
+    token = flickr.get_request_token
+    @flickr_url = flickr.get_authorize_url(token['oauth_token'], :perms => perms)
   end
   
   # Finds photos for the logged-in user
   def photos
-    @flickr = get_net_flickr
-    @flickr.auth.token = @user.flickr_identity.token
+    f = get_flickraw
     params[:limit] ||= 10
     params[:page] ||= 1
     unless params[:q]
-      @photos = @flickr.photos.get_public_photos(
-        @user.flickr_identity.flickr_user_id, 
-        {'per_page' => params[:limit], 'page' => params[:page]})
+      @photos = f.photos.search(
+        :user_id => current_user.flickr_identity.flickr_user_id, 
+        :extras => 'url_s',
+        'per_page' => params[:limit], 
+        'page' => params[:page])
     else
       # Try to look up a photo id
       if params[:q].to_i != 0 && params[:q].to_i > 10000
-        @photos = [@flickr.photos.get_info(params[:q])].compact
+        @photos = [f.photos.getInfo(:photo_id => params[:q])].compact
       else
-        @photos = @flickr.photos.search({
-          'user_id' => @user.flickr_identity.flickr_user_id, 
-          'text' => "#{params[:q]}",
-          'per_page' => params[:limit],
-          'page' => params[:page]}).map do |fp|
-          FlickrPhoto.new_from_net_flickr(fp)
+        @photos = @flickr.photos.search(
+            'user_id' => current_user.flickr_identity.flickr_user_id, 
+            'text' => "#{params[:q]}",
+            :extras => 'url_s',
+            'per_page' => params[:limit],
+            'page' => params[:page]).map do |fp|
+          FlickrPhoto.new_from_api_response(fp)
         end
       end
     end
@@ -151,7 +58,7 @@ class FlickrController < ApplicationController
   #   index:    index to use if these inputs are part of a form subcomponent
   #             (makes names like flickr_photos[:index][])
   def photo_fields
-    get_flickraw
+    @flickr = get_flickraw
     if params[:licenses].blank?
       @license_numbers = [1,2,3,4,5,6].join(',')
     elsif params[:licenses] == 'any'
@@ -176,7 +83,7 @@ class FlickrController < ApplicationController
 
     # Try to look up a photo id
     if params[:q].to_i != 0 && params[:q].to_i > 10000
-      if fp = flickr.photos.getInfo(:photo_id => params[:q])
+      if fp = @flickr.photos.getInfo(:photo_id => params[:q])
         @photos = [FlickrPhoto.new_from_api_response(fp)]
       end
     else
@@ -205,7 +112,16 @@ class FlickrController < ApplicationController
       search_params['page'] = params[:page] ||= 1
       search_params['extras'] = 'date_upload,owner_name,url_sq'
       search_params['sort'] = 'relevance'
-      @photos = flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
+      begin
+        @photos = @flickr.photos.search(search_params)
+      rescue FlickRaw::FailedResponse => e
+        raise e unless e.message =~ /Invalid auth token/
+        @reauthorization_needed = true
+        Rails.logger.error "[ERROR #{Time.now}] #{e}"
+      rescue Net::HTTPFatalError => e
+        Rails.logger.error "[ERROR #{Time.now}] #{e}"
+        @photos = []
+      end
     end
 
     # Determine whether we should include synclinks
@@ -239,17 +155,16 @@ class FlickrController < ApplicationController
   # signup process.
   def options
     begin
-      get_flickraw
+      flickr = get_flickraw
       if current_user.flickr_identity
         @photos = flickr.photos.search(
           :user_id => current_user.flickr_identity.flickr_user_id, 
           :per_page => 6, 
-          :extras => "url_sq",
-          :auth_token => current_user.flickr_identity.token)
+          :extras => "url_sq")
       else
         @flickr_url = auth_url_for('flickr')
       end
-    rescue Net::Flickr::APIError, FlickRaw::FailedResponse => e
+    rescue FlickRaw::FailedResponse => e
       logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
       HoptoadNotifier.notify(e, :request => request, :session => session)
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 

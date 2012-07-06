@@ -82,15 +82,9 @@ class ApplicationController < ActionController::Base
   def get_user
     @user = self.current_user if logged_in?
   end
-  
-  def get_net_flickr
-    Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-  end
 
   def get_flickraw
-    FlickRaw.api_key = FLICKR_API_KEY
-    FlickRaw.shared_secret = FLICKR_SHARED_SECRET
-    flickr
+    current_user ? FlickrPhoto.flickraw_for_user(current_user) : flickr
   end
   
   def flickr_required
