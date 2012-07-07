@@ -19,7 +19,7 @@
   </div>
 <% else %>
   <% if organized_by_album %>
-    <label><a href='#' class="back_to_albums">&laquo; Back to albums</a></label><br />
+    <label><a href='#' class="back_to_albums" <%= "data-fb_uid='#{@friend_id}'" if @friend_id %>>&laquo; Back to <%= "#{@friend_name}'s " if @friend_name %>albums</a></label><br />
   <% end %>
   <% photos.each do |photo| %>
     <%- 

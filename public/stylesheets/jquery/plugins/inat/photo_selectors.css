@@ -9,9 +9,32 @@
 .photoSelectorPhotos .photo:hover{border:1px solid #ddd;}
 .photoSelectorPhotos .photo .checkbox{margin:0 auto 2px}
 .photoSelectorPhotos .photo img{vertical-align:top;width:75px;}
-.photoSelectorAlbums img{width:75px;}
-.photoSelectorAlbums td{color:#36C;vertical-align:middle;cursor:pointer;border:1px solid #fff;padding:3px;}
-.photoSelectorAlbums .album:hover td{border:1px solid #ddd;color:#039;}
-.photoSelectorAlbums .album td:first-child{border-right:0;}
-.photoSelectorAlbums .album td:last-child{border-left:0;}
-.photoSelectorAlbums{border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;}
+.photoSelectorFriends img,
+.photoSelectorAlbums img {
+  width:75px;
+}
+.photoSelectorFriends td,
+.photoSelectorAlbums td {
+  color:#36C;vertical-align:middle;cursor:pointer;border:1px solid #fff;padding:3px;
+}
+.photoSelectorFriends .friend:hover td,
+.photoSelectorAlbums .album:hover td {
+  border:1px solid #ddd;color:#039;
+}
+.photoSelectorFriends .friend td:first-child,
+.photoSelectorAlbums .album td:first-child {
+  border-right:0;
+}
+.photoSelectorFriends .friend td:last-child,
+.photoSelectorAlbums .album td:last-child {
+  border-left:0;
+}
+.photoSelectorFriends, .photoSelectorAlbums{border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;}
+
+.photoSelector .friendSelector ul,
+.photoSelector .friendSelector li {
+  list-style-type: none;
+}
+.photoSelector .friendSelector li {
+  display: inline;
+}

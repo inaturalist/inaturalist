@@ -1,11 +1,11 @@
-<div class='friendSelector'>
+<div class='photoSelectorFriends friendSelector'>
   <label>Select a friend</label>
-  <ul>
+  <table>
     <% @friends.each do |friend| %>
-      <li class='friend' data-fid='<%= friend['id'] %>'>
-        <%= link_to(image_tag("https://graph.facebook.com/#{friend['id']}/picture"), '') %>
-        <%= link_to(friend['name'], '') %>
-      </li>
+      <tr class='friend' data-fb_uid='<%= friend['id'] %>'>
+        <td><%= link_to(image_tag("https://graph.facebook.com/#{friend['id']}/picture"), '') %></td>
+        <td><%= link_to(friend['name'], '') %></td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
 </div>

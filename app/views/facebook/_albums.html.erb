@@ -1,4 +1,4 @@
-<div class='photoSelectorAlbums facebookAlbums'>
+<div class='photoSelectorAlbums facebookAlbums' <%= "data-fb_uid='#{@friend_id}'" if @friend_id %>>
   <% if @reauthorization_needed -%>
     <p class="notice ui">
       Facebook would like to confirm that you want your account connected to iNat.
@@ -7,7 +7,12 @@
   <% elsif @albums.empty? %>
     <p class="meta ui">We can't find any photos from Facebook.</p>
   <% else %>
-    <label>Select an album</label>
+    <% if @friend_name %>
+      <label><a href='#' class="back_to_friends" data-fb_uid="<%= @friend_id %>">&laquo; Back to friends</a></label><br />
+      <label>Select one of <%= @friend_name %>'s albums</label>
+    <% else %>
+      <label>Select an album</label>
+    <% end %>
     <table>
     <% @albums.each do |album| %>
       <tr class='album' data-aid='<%= album['aid'] %>'>

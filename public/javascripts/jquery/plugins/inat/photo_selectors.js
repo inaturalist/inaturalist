@@ -40,10 +40,6 @@
     // Insert all existing content into the container
     $(container).append(existing);
     
-    $(".facebookAlbums .album", wrapper).live('click', function() {
-      $.fn.photoSelector.changeBaseUrl(wrapper, '/facebook/album/' + $(this).attr('data-aid'))
-    })
-    
     // Fill with photos
     if (options.queryOnLoad) {
       $(document).ready(function() {
@@ -110,14 +106,27 @@
         })
       });
 
+      $(".facebookAlbums .album", wrapper).live('click', function() {
+        $.fn.photoSelector.changeBaseUrl(
+          wrapper, 
+          '/facebook/album/' + $(this).data('aid'), 
+          contextSelect.val(), 
+          $(this).closest('.facebookAlbums').data('fb_uid'));
+      })
+    
       $('.back_to_albums').live('click', function(){
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
+        return false;
+      });
+
+      $('.back_to_friends').live('click', function(){
         $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
         return false;
       });
 
       // friend selector
       $('.friendSelector .friend').live('click', function(){
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fid'));
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
         return false;
       });
 
