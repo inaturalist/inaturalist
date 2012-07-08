@@ -3,6 +3,12 @@ class ActiveSupport::TimeZone
   # list is incomplete, as there is no official set of codes.  Mostly derived
   # from http://www.timeanddate.com/library/abbreviations/timezones/
   CODES = {
+    'AWST' => ActiveSupport::TimeZone["Perth"],
+    'ACST' => ActiveSupport::TimeZone["Adelaide"],
+    'AEST' => ActiveSupport::TimeZone["Brisbane"],
+    'AWDT' => ActiveSupport::TimeZone["Perth"],
+    'ACDT' => ActiveSupport::TimeZone["Adelaide"],
+    'AEDT' => ActiveSupport::TimeZone["Brisbane"],
     'ADT' => ActiveSupport::TimeZone['Atlantic Time (Canada)'],
     'AKDT' => ActiveSupport::TimeZone['Alaska'],
     'ALMT' => ActiveSupport::TimeZone['Almaty'],
