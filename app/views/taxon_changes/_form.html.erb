@@ -21,7 +21,7 @@
     <div class="stacked column span-24">
       <div class="column span-24">
         <%= f.label :taxon_id, 'Taxon ID' %><br/>
-        <%= f.text_field :taxon_id, :class => 'text' %><br/>
+        <%= f.text_field :taxon_id, :class => 'text', :id => "taxon_change_taxon_id" %><br/>
 
         <%= label_tag :taxon_name %><br/>
         <%= text_field_tag :taxon_name, taxon_change.taxon ? taxon_change.taxon.name : '', :id => 'taxon_name', :class => 'text' %>
@@ -48,7 +48,7 @@
     </div>
     
     <% if taxon_change.new_record? -%>
-      After you create this taxon change, make the taxon change taxa for split products/merge victims and link them to this taxon change.
+      After you create this taxon change then edit it to add input/output taxa.
     <% else -%>
       <%= link_to "add a new taxon", new_taxon_change_taxon_change_taxon_path(taxon_change), :class => 'readmore' %>
     <% end -%>

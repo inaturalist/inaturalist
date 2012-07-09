@@ -19,7 +19,8 @@ class TaxonChangeTaxaController < ApplicationController
   end
   
   def edit
-    @taxon_change = TaxonChange.find(params[:taxon_change_id])
+    @taxon_change = TaxonChange.find(params[:taxon_change])
+    @taxon_change_taxon = TaxonChangeTaxon.find(params[:taxon_change_taxon])
   end
   
   def update    

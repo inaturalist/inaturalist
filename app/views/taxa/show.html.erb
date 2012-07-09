@@ -501,19 +501,22 @@
 							<%= link_to "#{taxon_change.class.name.split('Taxon')[1]}", taxon_change_path(taxon_change) -%>
 							(<%= taxon_change.committed_on.nil? ? 'draft' : taxon_change.committed_on -%>)
 						</span>
-						<% if taxon_change.taxon == @taxon %>
-							<% change_children = ( taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa ) %>
-						<% else %>
-							<% change_children = [taxon_change.taxon] %>
+						<% unless taxon_change.class.name == 'TaxonDrop' %>
+							<% if taxon_change.taxon == @taxon %>
+								<% change_children = ( taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa ) %>
+								<% change_children = [change_children] if change_children.count == 1 %>
+							<% else %>
+								<% change_children = [taxon_change.taxon] %>
+							<% end %>
+          		<ul class="taxon_concepts">
+								<% for change_child in change_children %>
+             			<li>
+										<%= link_to change_child.name, change_child -%>
+										<span class="small description">(<%= change_child.is_active ? "active" : "inactive" %>)</span>
+             			</li>
+            		<% end %>
+          		</ul>
 						<% end %>
-          	<ul class="taxon_concepts">
-							<% for change_child in change_children %>
-             		<li>
-									<%= link_to change_child.name, change_child -%>
-									<span class="small description">(<%= change_child.is_active ? "active" : "inactive" %>)</span>
-             		</li>
-            	<% end %>
-          	</ul>
         	</li>
 				<% end %>
     	</ul>
