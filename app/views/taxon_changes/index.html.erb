@@ -4,20 +4,24 @@
 </h2>
 
 <% for taxon_change in @taxon_changes %>
-	<% change_children = ( taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa ) %>
-	<% change_parents = [taxon_change.taxon] %>
+	<% change_children = [] if taxon_change.class.name == "TaxonDrop" %>
+  <% change_parents = [taxon_change.taxon] %>
+	<% if taxon_change.class.name != "TaxonDrop" %>
+		<% change_children = taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa %>
+	<% end %>
 	<% if taxon_change.class.name == "TaxonSplit" %>
 		<% old_taxa = change_children %>
 		<% new_taxa = change_parents %>
 	<% else %>
 		<% old_taxa = change_parents %>
 		<% new_taxa = change_children %>
+		<% new_taxa = [new_taxa] if taxon_change.class.name == "TaxonSwap" %>
 	<% end %>
 
 	<div class="last column span-24">
 		<div class="column span-16">
 			<h3>
-				Taxonomic <%= taxon_change.class.name.split('Taxon')[1] %>
+				<%= link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]}", taxon_change_path(taxon_change) %>
 				(<%= taxon_change.committed_on.nil? ? "Draft" : "Committed on #{taxon_change.committed_on}" %>)
 			</h3>
 		</div>
@@ -29,7 +33,7 @@
 				<%= link_to "Commit",
 		  		{ :controller => 'taxon_changes',
 		    		:action => 'commit_taxon_change',
-		    		:taxon_change_id => @taxon_change.id},
+		    		:taxon_change_id => taxon_change.id},
 		  			:method => :post,
 		  			:class => "glaucous button",
 		  			"data-loading-click" => "committing..." %>

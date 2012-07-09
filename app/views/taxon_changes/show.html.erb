@@ -2,8 +2,10 @@
 	Taxonomic <%= @taxon_change.class.name.split('Taxon')[1] %>
 	(<%= @taxon_change.committed_on.nil? ? "Draft" : "Committed on #{@taxon_change.committed_on}" %>)
 <% end %>
-
-<% change_children = ( @taxon_change.class.name == "TaxonSplit" ? @taxon_change.new_taxa : @taxon_change.old_taxa ) %>
+<% change_children = [] if @taxon_change.class.name == "TaxonDrop" %>
+<% unless @taxon_change.class.name == "TaxonDrop" %>
+	<% change_children = ( @taxon_change.class.name == "TaxonSplit" ? @taxon_change.new_taxa : @taxon_change.old_taxa ) %>
+<% end %>
 <% change_parents = [@taxon_change.taxon] %>
 <% if @taxon_change.class.name == "TaxonSplit" %>
 <% old_taxa = change_children %>

@@ -5,10 +5,17 @@
   <%= n.hidden_field :taxon_change_id %>
   
   <p class="ui">
-    <%= n.label :taxon_id %><br/>
-    <%= n.text_field :taxon_id, :class => "text" %>
+    <%= n.label :taxon_id, 'Taxon ID' %><br/>
+    <%= n.text_field :taxon_id, :class => 'text', :id => "taxon_change_taxon_id" %><br/>
+    <%= label_tag :taxon_name %><br/>
+    <%= text_field_tag :taxon_name, @taxon_change.taxon ? @taxon_change.taxon.name : '', :id => 'taxon_name', :class => 'text' %>
+    <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
+    <div class="description">
+    	This is a more convenient way to find a taxon ID. It's the taxon ID
+    	that actually gets saved. This search only works for active taxa.
+  	</div>
   </p>
-  
+
   <div class="clear buttonrow">
     <%= n.submit "Save", :class => 'default button' %>
     <%= link_to "Cancel", @taxon_change || @taxon_change_taxon.taxon_change, :class => 'button' %>

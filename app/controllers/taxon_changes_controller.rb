@@ -2,7 +2,23 @@ class TaxonChangesController < ApplicationController
   before_filter :curator_required
   
   def index
-    if params[:taxon_id]
+    if params[:iconic_taxon_id] && params[:source_id]
+      @all = true
+      iconic_taxon_id = params[:iconic_taxon_id] #20978
+      source_id = params[:source_id] #27      
+       
+      @taxon_changes = TaxonChange.paginate(
+       :page => params[:page],
+       :include => [:taxon, {:taxon_change_taxa => :taxon}],
+       :joins =>
+         "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id " +
+         "LEFT OUTER JOIN taxa t1 ON taxon_changes.taxon_id = t1.id " +
+         "LEFT OUTER JOIN taxa t2 ON tct.taxon_id = t2.id",
+       :conditions => [
+         "(t1.iconic_taxon_id = ? AND t1.source_id = ?) OR (t2.iconic_taxon_id = ? AND t2.source_id = ?)",
+         iconic_taxon_id, source_id, iconic_taxon_id, source_id]
+      )
+    elsif params[:taxon_id]
       @all = false
       @taxon = Taxon.find_by_id(params[:taxon_id])
       @taxon_changes = [
