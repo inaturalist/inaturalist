@@ -346,7 +346,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :taxon_merges, :controller => :taxon_changes
   map.resources :taxon_swaps, :controller => :taxon_changes
   map.resources :taxon_drops, :controller => :taxon_changes
-  map.resources :taxon_stage, :controller => :taxon_changes
+  map.resources :taxon_stages, :controller => :taxon_changes
   
   map.with_options :controller => 'subscriptions' do |subscriptions|
     subscriptions.delete_subscription 'subscriptions/:resource_type/:resource_id', 
