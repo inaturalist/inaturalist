@@ -29,12 +29,12 @@ class FacebookController < ApplicationController
     context = params[:context] || 'user'
     @friend_id = params[:friend_id]
     @friend_id = nil if @friend_id=='null'
-    # if context is friends, but no friend id specified, we want to show the friend selector
-    if (context=='friends' && @friend_id.nil?) 
-      @friends = facebook_friends(current_user)
-      render :partial => 'facebook/friends' and return
-    end
     begin
+      # if context is friends, but no friend id specified, we want to show the friend selector
+      if (context=='friends' && @friend_id.nil?) 
+        @friends = facebook_friends(current_user)
+        render :partial => 'facebook/friends' and return
+      end
       @albums = facebook_albums(current_user, @friend_id)
       if @friend_id
         friend_data = current_user.facebook_api.get_object(@friend_id)
@@ -57,7 +57,7 @@ class FacebookController < ApplicationController
   def album
     limit = (params[:limit] || 10).to_i
     offset = ((params[:page] || 1).to_i - 1) * limit
-    @friend_id = params[:friend_id]
+    @friend_id = params[:friend_id] unless params[:friend_id]=='null'
     if @friend_id
       friend_data = current_user.facebook_api.get_object(@friend_id)
       @friend_name = friend_data['first_name']
@@ -84,10 +84,15 @@ class FacebookController < ApplicationController
 
   def photo_invite
     if request.post?
+      if !params[:comment].include?("{{INVITE_LINK}}")
+        render(:json => {"error" => "You need to include the {{INVITE_LINK}} placeholder in your comment!"}.to_json) and return 
+      end
       fb_photos = (params[:facebook_photos] || [])
       # params[:facebook_photos] looks like {"0" => ['fb_photo_id_1','fb_photo_id_2'],...} to accomodate multiple photo-selectors on the same page
       fb_photo_ids = (fb_photos.is_a?(Hash) && fb_photos.has_key?('0') ? fb_photos['0'] : [])
-      render(:json => {"error" => "You need to select at least one photo!"}.to_json) and return if fb_photo_ids.empty?
+      if fb_photo_ids.empty?
+        render(:json => {"error" => "You need to select at least one photo!"}.to_json) and return 
+      end
       
       invite_params = {:taxon_id => params[:taxon_id], :project_id=>params[:project_id]}
       invite_params.delete_if { |k, v| v.nil? || v.empty? }

@@ -29,7 +29,10 @@
 .photoSelectorAlbums .album td:last-child {
   border-left:0;
 }
-.photoSelectorFriends, .photoSelectorAlbums{border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;}
+/*.photoSelectorPhotos {*/
+.photoSelector {
+  border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;
+}
 
 .photoSelector .friendSelector ul,
 .photoSelector .friendSelector li {
@@ -37,4 +40,10 @@
 }
 .photoSelector .friendSelector li {
   display: inline;
+}
+.photoSelector h4 {
+  margin: 10px 0 5px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
 }

@@ -70,70 +70,75 @@
     );
     
     var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
-    if (options.urlParams !== undefined && options.urlParams.context !== undefined) {
-      var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
-      var urls = options.urls || [];
-      if (!options.skipLocal) {
-        urls.push({
-          title: "your hard drive",
-          //url: '/photos/local_photo_fields?context=user'
-          url: '/photos/local_photo_fields'
-        })
-      }
-      $.each(urls, function() {
-        if (this.url) {
-          var title = this.title;
-          var url = this.url;
-        } else {
-          var title = this;
-          var url = this;
-        }
-        var option = $('<option value="'+url+'">'+title+'</option>');
-        if (url === options.baseURL) $(option).attr('selected', 'selected');
-        $(urlSelect).append(option);
+    var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
+    var urls = options.urls || [];
+    if (!options.skipLocal) {
+      urls.push({
+        title: "your hard drive",
+        //url: '/photos/local_photo_fields?context=user'
+        url: '/photos/local_photo_fields'
       })
-
-      // photo context selector (user or friends)
-      var contextSelect = $('<select class="select" style="margin: 0 auto"></select>');
-      $.each([['Your photos', 'user'],['Your friends\' photos','friends']], function(){
-        contextSelect.append("<option value='"+this[1]+"'>"+this[0]+"</option>");
-      });
-      
-      // event handlers for urlSelect and contextSelect
-      $.each([urlSelect,contextSelect], function(){
-        this.change(function() {
-          $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
-        })
-      });
-
-      $(".facebookAlbums .album", wrapper).live('click', function() {
-        $.fn.photoSelector.changeBaseUrl(
-          wrapper, 
-          '/facebook/album/' + $(this).data('aid'), 
-          contextSelect.val(), 
-          $(this).closest('.facebookAlbums').data('fb_uid'));
-      })
-    
-      $('.back_to_albums').live('click', function(){
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
-        return false;
-      });
-
-      $('.back_to_friends').live('click', function(){
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
-        return false;
-      });
-
-      // friend selector
-      $('.friendSelector .friend').live('click', function(){
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
-        return false;
-      });
-
-      $(urlSelectWrapper)
-        .append(urlSelect)
-        .append(contextSelect);
     }
+    $.each(urls, function() {
+      if (this.url) {
+        var title = this.title;
+        var url = this.url;
+      } else {
+        var title = this;
+        var url = this;
+      }
+      var option = $('<option value="'+url+'">'+title+'</option>');
+      if (url === options.baseURL) $(option).attr('selected', 'selected');
+      $(urlSelect).append(option);
+    })
+
+    // photo context selector (user or friends)
+    var contextSelect = $('<select class="select" style="margin: 0 auto"></select>');
+    $.each([['Your photos', 'user'],['Your friends\' photos','friends']], function(){
+      var selected =(this[1]==options.urlParams.context ? "selected='selected'" : '');
+      contextSelect.append("<option value='"+this[1]+"'"+selected+">"+this[0]+"</option>");
+    });
+    
+    // event handlers for urlSelect and contextSelect
+    $.each([urlSelect,contextSelect], function(){
+      this.change(function() {
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
+      })
+    });
+
+    if (options.urlParams == undefined || options.urlParams.context == undefined) {
+      // hide the contextSelect 
+      contextSelect.hide();
+    }
+
+    $(".facebookAlbums .album", wrapper).live('click', function() {
+      $.fn.photoSelector.changeBaseUrl(
+        wrapper, 
+        '/facebook/album/' + $(this).data('aid'), 
+        contextSelect.val(), 
+        $(this).closest('.facebookAlbums').data('fb_uid'));
+    })
+  
+    $('.back_to_albums').live('click', function(){
+      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
+      return false;
+    });
+
+    $('.back_to_friends').live('click', function(){
+      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
+      return false;
+    });
+
+    // friend selector
+    $('.friendSelector .friend').live('click', function(){
+      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
+      return false;
+    });
+
+    $(urlSelectWrapper)
+      .append(urlSelect)
+      .append(contextSelect);
+    
     
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
@@ -246,7 +251,10 @@
         });
         
         // Re-insert the checkbox parents
-        $(wrapper).find('.photoSelectorPhotos').prepend(existing)
+        if (existing && existing.length > 0) {
+          //$(wrapper).find('.photoSelectorPhotos').prepend('<hr />').prepend(existing).prepend("<label>Selected photos</label><br />");
+          $(wrapper).find('.photoSelectorPhotos').append('<hr />').append("<h4>Selected photos</h4>").append(existing);
+        }
         
         if (options.baseURL.match(/local_photo/)) {
           $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();

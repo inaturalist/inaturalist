@@ -8,11 +8,9 @@
     <p class="meta ui">We can't find any photos from Facebook.</p>
   <% else %>
     <% if @friend_name %>
-      <label><a href='#' class="back_to_friends" data-fb_uid="<%= @friend_id %>">&laquo; Back to friends</a></label><br />
-      <label>Select one of <%= @friend_name %>'s albums</label>
-    <% else %>
-      <label>Select an album</label>
+      <a href='#' class="back_to_friends" data-fb_uid="<%= @friend_id %>">&laquo; Back to friends</a>
     <% end %>
+    <h4>Select one of <%= (@friend_name ? "#{@friend_name}'s" : 'your') %> albums</h4>
     <table>
     <% @albums.each do |album| %>
       <tr class='album' data-aid='<%= album['aid'] %>'>

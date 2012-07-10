@@ -47,6 +47,7 @@
     defaultSources: <%= @projects.to_json %>
   })
     var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields", //?context=user",
+    //var DEFAULT_PHOTO_IDENTITY_URL = "/photos/providers", //?context=user",
         PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]
         //PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields?context=user'},{title: 'Flickr', url: '/flickr/photo_fields?context=user'}]
 
@@ -60,9 +61,13 @@ $('.observation_photos').each(function() {
       url:$form.attr('action'), 
       data:$form.serialize(),
       success:function(d){
-        $("#taxonchooser").chooser('clear');
-        $("#projectchooser").chooser('clear');
-        $form[0].reset();
+        if (d.error) {
+          alert(d.error);
+        } else if (d.ok) {
+          $("#taxonchooser").chooser('clear');
+          $("#projectchooser").chooser('clear');
+          $form[0].reset();
+        }
         $submitButton.removeClass('disabled').val('Send invite');
       }});
     return false;
@@ -76,7 +81,7 @@ $('.observation_photos').each(function() {
       index: 0,
       limit: 15,
       synclink_base: window.location.href,
-      context: 'user'
+      context: 'friends'
     }
   }
   if (DEFAULT_PHOTO_IDENTITY_URL) {
