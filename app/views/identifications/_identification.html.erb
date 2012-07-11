@@ -64,5 +64,11 @@
     <% end -%>
     
     <%= extra if extra %>
+    
+    <% unless taxon.is_active -%>
+      <span class="small">
+        (<%= link_to "inactive taxon", taxon_changes_path(:taxon_id => taxon.id) -%>)
+      </small>
+    <% end -%>
   </div>
 </div>

@@ -13,14 +13,14 @@
   <meta property="og:site_name" content="iNaturalist"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
-	<%-
-	   description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary
-	   og_description = description
-	   og_description = "(Photo: #{@photos.first.attribution}) #{og_description}" unless @photos.blank?
-	-%>
-	<meta name="description" content="<%= html_attributize description %>"/>
-	<meta property="og:description" content="<%= html_attributize og_description %>"/>
-	
+  <%-
+     description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary
+     og_description = description
+     og_description = "(Photo: #{@photos.first.attribution}) #{og_description}" unless @photos.blank?
+  -%>
+  <meta name="description" content="<%= html_attributize description %>"/>
+  <meta property="og:description" content="<%= html_attributize og_description %>"/>
+  
 <%- end -%>
 
 <%- content_for(:extracss) do %>
@@ -341,11 +341,11 @@
                 iNaturalist.modalCenter(h.w)
               }
             });
-
-						$(h.w).find('#eol_taxon_photos .taxon_photos').photoSelector({
+            
+            $(h.w).find('#eol_taxon_photos .taxon_photos').photoSelector({
               baseURL: '<%= eol_photo_fields_url %>',
               urlParams: {
-								taxon_id: '<%= @taxon.id %>',
+                taxon_id: '<%= @taxon.id %>',
                 authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
                 limit: 15
               },
@@ -433,9 +433,9 @@
 
 <% unless @taxon.is_active %>
   <div class="column span-24">
-    <div class="concept_status box">
+    <div class="box">
       iNaturalist considers this an inactive taxonomic concept
-			(<%= link_to "read more", taxon_changes_path(:taxon_id => @taxon.id) -%>).
+      (<%= link_to "read more", taxon_changes_path(:taxon_id => @taxon.id) -%>).
     </div>
   </div>
 <% end %>
@@ -491,37 +491,37 @@
     <% end -%>
   </div>
   
-	<% if @taxon_changes.length > 0 -%>
-  	<div id="all_concepts">
-  		<h3>Related Concepts</h3>
-    	<ul>
-				<% for taxon_change in @taxon_changes %>
-      		<li>
-        		<span class="description">
-							<%= link_to "#{taxon_change.class.name.split('Taxon')[1]}", taxon_change_path(taxon_change) -%>
-							(<%= taxon_change.committed_on.nil? ? 'draft' : taxon_change.committed_on -%>)
-						</span>
-						<% unless taxon_change.class.name == 'TaxonDrop' %>
-							<% if taxon_change.taxon == @taxon %>
-								<% change_children = ( taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa ) %>
-								<% change_children = [change_children] if change_children.count == 1 %>
-							<% else %>
-								<% change_children = [taxon_change.taxon] %>
-							<% end %>
-          		<ul class="taxon_concepts">
-								<% for change_child in change_children %>
-             			<li>
-										<%= link_to change_child.name, change_child -%>
-										<span class="small description">(<%= change_child.is_active ? "active" : "inactive" %>)</span>
-             			</li>
-            		<% end %>
-          		</ul>
-						<% end %>
-        	</li>
-				<% end %>
-    	</ul>
-  	</div>
-	<% end %>
+  <% if @taxon_changes.length > 0 -%>
+    <div id="taxon_changes">
+      <h3>Taxonomic Changes</h3>
+      <ul>
+        <% for taxon_change in @taxon_changes %>
+          <li>
+            <span class="description">
+              <%= link_to "#{taxon_change.class.name.split('Taxon')[1]}", taxon_change_path(taxon_change) -%>
+              (<%= taxon_change.committed_on.nil? ? 'draft' : taxon_change.committed_on -%>)
+            </span>
+            <% unless taxon_change.class.name == 'TaxonDrop' %>
+              <% if taxon_change.taxon == @taxon %>
+                <% change_children = ( taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa ) %>
+                <% change_children = [change_children] if change_children.count == 1 %>
+              <% else %>
+                <% change_children = [taxon_change.taxon] %>
+              <% end %>
+              <ul class="taxon_concepts">
+                <% for change_child in change_children %>
+                  <li>
+                    <%= link_to change_child.name, change_child -%>
+                    <span class="small description">(<%= change_child.is_active ? "active" : "inactive" %>)</span>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 
   <% if @taxon.species_or_lower? -%>
