@@ -235,6 +235,17 @@ class Observation < ActiveRecord::Base
     }
   }
   
+  named_scope :in_taxons_range, lambda {|taxon|
+    taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
+    {
+      :joins => "JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}",
+      :conditions => [
+        "(observations.private_latitude IS NULL AND ST_Intersects(taxon_ranges.geom, observations.geom)) OR " +
+        "(observations.private_latitude IS NOT NULL AND ST_Intersects(taxon_ranges.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+      ]
+    }
+  }
+  
   # possibly radius in kilometers
   named_scope :near_point, Proc.new { |lat, lng, radius|
     lat = lat.to_f

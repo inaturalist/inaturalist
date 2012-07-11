@@ -285,7 +285,7 @@ class Taxon < ActiveRecord::Base
     end
     {:conditions => ["conservation_status = ?", status.to_i]}
   }
-  
+    
   named_scope :threatened, {:conditions => ["conservation_status >= ?", IUCN_NEAR_THREATENED]}
   named_scope :from_place, lambda {|place|
     {:include => [:listed_taxa], :conditions => ["listed_taxa.place_id = ?", place]}
