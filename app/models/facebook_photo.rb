@@ -1,9 +1,5 @@
 class FacebookPhoto < Photo
   
-  # fb comment that's posted when you invite someone to upload an fb photo to inat
-  # {{INVITE_LINK}} gets replaced with the url
-  DEFAULT_INVITE_COMMENT = "Great photo!  You should post it to iNaturalist.org: {{INVITE_LINK}}"
-
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self
   

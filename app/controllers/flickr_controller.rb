@@ -156,13 +156,33 @@ class FlickrController < ApplicationController
       @authorization_needed = true
       render(:partial => "flickr/photo_invite") and return
     end
+    context = (params[:context] || 'user')
+
+    @friend_id = params[:friend_id]
+    @friend_id = nil if @friend_id=='null'
+    #begin
+    # if context is friends, but no friend id specified, we want to show the friend selector
+    if (context=='friends' && @friend_id.nil?) 
+      @friends = flickr_friends
+      render :partial => 'flickr/friends' and return
+    end
+=begin
+    @albums = facebook_albums(current_user, @friend_id)
+    if @friend_id
+      friend_data = current_user.facebook_api.get_object(@friend_id)
+      @friend_name = friend_data['first_name']
+    end
+=end
 
     search_params = {}
-
-    if params[:context] && params[:context]=='user'
+    if context=='user'
       search_params['user_id'] = current_user.flickr_identity.flickr_user_id
-      search_params['auth_token'] = current_user.flickr_identity.token
+    elsif context=='friends'
+      #friend_data = flickr.people.getInfo(:user_id=>@friend_id)
+      #@friend_name = friend_data['username']
+      search_params['user_id'] = @friend_id
     end
+    search_params['auth_token'] = current_user.flickr_identity.token
     search_params['per_page'] = params[:limit] ||= 10
     search_params['text'] = params[:q]
     search_params['page'] = params[:page] ||= 1
@@ -355,6 +375,10 @@ class FlickrController < ApplicationController
   private
   def ensure_has_no_flickr_identity
     redirect_to(:action => 'options') and return if current_user.flickr_identity
+  end
+
+  def flickr_friends
+    flickr.contacts.getList(:auth_token=>current_user.flickr_identity.token)
   end
 
 end

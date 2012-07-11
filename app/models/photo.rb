@@ -1,4 +1,8 @@
 class Photo < ActiveRecord::Base
+  # comment that's posted to invite someone to upload that photo to inat
+  # {{INVITE_LINK}} gets replaced with the url
+  DEFAULT_INVITE_COMMENT = "Great photo!  You should post it to iNaturalist.org: {{INVITE_LINK}}"
+
   belongs_to :user
   has_many :observation_photos, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy

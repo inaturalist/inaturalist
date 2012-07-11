@@ -28,7 +28,7 @@
   <div class='invite_comment'>
     <label>Add a comment (don't forget to include the {{INVITE_LINK}} placeholder):</label>
     <br />
-    <%= text_area_tag :comment, FacebookPhoto::DEFAULT_INVITE_COMMENT, :class=>'text' %>
+    <%= text_area_tag :comment, Photo::DEFAULT_INVITE_COMMENT, :class=>'text' %>
   </div>
   <%= submit_tag("Send invite", :class => 'default button') %>
 <% end -%>
@@ -85,7 +85,7 @@ $('.observation_photos').each(function() {
       //synclink_base: window.location.href,
       context: 'friends'
     },
-    baseURL: DEFAULT_PHOTO_IDENTITY_URL<
+    baseURL: DEFAULT_PHOTO_IDENTITY_URL,
     urls: PHOTO_IDENTITY_URLS
   }
 /*

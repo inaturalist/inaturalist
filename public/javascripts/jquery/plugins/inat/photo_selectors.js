@@ -116,11 +116,11 @@
         wrapper, 
         '/facebook/album/' + $(this).data('aid'), 
         contextSelect.val(), 
-        $(this).closest('.facebookAlbums').data('fb_uid'));
+        $(this).closest('.facebookAlbums').data('friend_uid'));
     })
   
     $('.back_to_albums').live('click', function(){
-      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
+      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('friend_uid'));
       return false;
     });
 
@@ -131,7 +131,7 @@
 
     // friend selector
     $('.friendSelector .friend').live('click', function(){
-      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('fb_uid'));
+      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('friend_uid'));
       return false;
     });
 

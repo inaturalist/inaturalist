@@ -19,7 +19,9 @@
   </div>
 <% else %>
   <% if organized_by_album %>
-    <a href='#' class="back_to_albums" <%= "data-fb_uid='#{@friend_id}'" if @friend_id %>>&laquo; Back to <%= (@friend_name ? "#{@friend_name}'s" : "your") %> albums</a>
+    <a href='#' class="back_to_albums" <%= "data-friend_uid='#{@friend_id}'" if @friend_id %>>&laquo; Back to <%= (@friend_name ? "#{@friend_name}'s" : "your") %> albums</a>
+  <% elsif @friend_id %>
+    <a href='#' class="back_to_friends" data-friend_uid="<%= @friend_id %>">&laquo; Back to friends</a>
   <% end %>
   <h4>Select one or more photos</h4>
   <% photos.each do |photo| %>
