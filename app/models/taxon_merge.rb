@@ -9,6 +9,11 @@ class TaxonMerge < TaxonChange
   end
   
   def update_observations
+    #These should recieve updates of taxonomic change
+    #Observation.all(
+    #  :joins => :taxon,
+    #  :conditions => ["taxon_id IN (?) AND taxa.name != ?", old_taxon_ids, taxon.name]
+    #)
     Observation.update_all(["taxon_id = ?", taxon_id], ["taxon_id IN (?)", old_taxon_ids])
   end
 
