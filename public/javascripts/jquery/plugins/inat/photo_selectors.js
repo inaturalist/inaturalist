@@ -57,45 +57,138 @@
     var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
       $.fn.photoSelector.defaults.controlsCSS
     );
-    var input = $('<input type="text" class="text" placeholder="Search" />').css(
+    var $searchInput = $('<input type="text" class="text" placeholder="Search" />').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
-    $(input).attr('id', 'photoSelectorSearchField');
-    $(input).attr('name', 'photoSelectorSearchField');
+    //$searchInput.attr('id', 'photoSelectorSearchField');
+    $searchInput.attr('name', 'photoSelectorSearchField');
     if (typeof(options.defaultQuery) != 'undefined') {
-      $(input).val(options.defaultQuery);
+      $searchInput.val(options.defaultQuery);
     };
-    var button = $('<a href="#" class="button findbutton">Find Photos</a>').css(
+    var $searchButton = $('<a href="#" class="button findbutton">Find Photos</a>').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
+    var $searchWrapper = $("<span style='display:none'></span>");
+    $searchWrapper.append($searchInput).append($searchButton);
     
     var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
-    var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
-    var urls = options.urls || [];
-    if (!options.skipLocal) {
-      urls.push({
-        title: "your hard drive",
-        //url: '/photos/local_photo_fields?context=user'
-        url: '/photos/local_photo_fields'
+    if (typeof options != 'undefined' && typeof options.urls != 'undefined') {
+      var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
+      urlSelect.change(function() {
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val());
       })
-    }
-    $.each(urls, function() {
-      if (this.url) {
-        var title = this.title;
-        var url = this.url;
-      } else {
-        var title = this;
-        var url = this;
+      var urls = options.urls || [];
+      if (!options.skipLocal) {
+        urls.push({
+          title: "your hard drive",
+          //url: '/photos/local_photo_fields?context=user'
+          url: '/photos/local_photo_fields'
+        })
       }
-      var option = $('<option value="'+url+'">'+title+'</option>');
-      if (url === options.baseURL) $(option).attr('selected', 'selected');
-      $(urlSelect).append(option);
-    })
+      $.each(urls, function() {
+        if (this.url) {
+          var title = this.title;
+          var url = this.url;
+        } else {
+          var title = this;
+          var url = this;
+        }
+        var option = $('<option value="'+url+'">'+title+'</option>');
+        if (url === options.baseURL) $(option).attr('selected', 'selected');
+        $(urlSelect).append(option);
+      })
+      $(urlSelectWrapper).append(urlSelect);
+    }
 
+    if (typeof options != 'undefined' && typeof options.sources != 'undefined') {
+      var sources = options.sources || {};
+      var $allContextWrappers = [];
+      if (!options.skipLocal) { sources['local'] = {title: "Your computer", url: '/photos/local_photo_fields'}; }
+      var $sourceSelect = $("<select class='select'></select>");
+      var sourceIndex = 0;
+      $.each(sources, function(sourceKey, sourceData){
+        var $sourceOption = $("<option value='"+sourceKey+"'>"+sourceData.title+"</option>");
+        if (sourceData.url === options.baseUrl) { $sourceOption.attr('selected','selected') };
+        $sourceSelect.append($sourceOption);
+        var $contextWrapper = $("<span style='display:none'></span>");
+        var $contextSelect = $("<select class='select'></select>");
+        if (options.defaultSource) { // if we've specified a default source, and this it, show the associated contextSelect
+          if (options.defaultSource != sourceKey) {
+            $contextWrapper.css('display','inline-block');
+          }
+        } else if (sourceIndex==0) { // if we haven't specified a default source but this is the first one, show the associated contextSelect
+          $contextWrapper.css('display','inline-block');
+        }
+        sourceIndex += 1;
+        sourceData.contexts = (sourceData.contexts || []);
+         // todo: 1 or 0 contexts
+        $.each(sourceData.contexts, function(i,context){
+          var $contextOption = $("<option value='"+context[1]+"'>"+context[0]+"</option>");
+          if (context[2] && context[2].searchable) {
+            $contextOption.data('searchable', true);
+          }
+          $contextSelect.append($contextOption);
+        });
+        $contextWrapper.append($contextSelect);
+        //$contextWrapper.append(searchField());
+        sources[sourceKey].$contextWrapper = $contextWrapper;
+        $allContextWrappers.push($contextWrapper);
+        $contextSelect.change(function(){ 
+          updateSource(); 
+        });
+      });
+
+      // todo: currentSource not defined at beginning
+      var currentSource;
+      function updateSource(sourceOptions){
+        var newSource = sources[currentSource]; 
+        sourceOptions = (sourceOptions || {});
+        sourceOptions['url'] = (sourceOptions.url || newSource.url);
+        sourceOptions['friend_uid'] = (sourceOptions.friend_uid || false);
+        var currentContext;
+        $searchWrapper.hide();
+        if (typeof newSource.$contextWrapper == 'undefined') {
+          sourceOptions['context'] = newSource.defaultContext;
+        } else {
+          sourceOptions['context'] = newSource.$contextWrapper.find('select').val();
+          if (newSource.$contextWrapper.find("option:selected").data('searchable')) {
+            // show search field
+            $searchWrapper.show();
+          } else {
+        //    $searchWrapper.val('');
+            $searchWrapper.hide();
+          }
+        }
+        $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['friend_uid']);
+      }
+
+      $sourceSelect.change(function(){
+        var sourceKey = $(this).val();
+        var sourceData = sources[sourceKey];
+        // show the associated context <select>, and hide the others
+        $.each($allContextWrappers, function(i,c) { 
+          if (sourceData.$contextWrapper && (sourceData.$contextWrapper==c)) {
+            c.show();
+          } else {
+            c.hide(); 
+          }
+        });
+        currentSource = sourceKey;
+        updateSource();
+      });
+
+      $(urlSelectWrapper).append($sourceSelect);
+      $.each($allContextWrappers, function(i,c){
+        $(urlSelectWrapper).append(c);
+      });
+      
+    }
+
+/*
     // photo context selector (user or friends)
     var contextSelect = $('<select class="select" style="margin: 0 auto"></select>');
     $.each([['Your photos', 'user'],['Your friends\' photos','friends']], function(){
-      var selected =(this[1]==options.urlParams.context ? "selected='selected'" : '');
+      var selected = (this[1]==options.urlParams.context ? "selected='selected'" : '');
       contextSelect.append("<option value='"+this[1]+"'"+selected+">"+this[0]+"</option>");
     });
     
@@ -110,35 +203,61 @@
       // hide the contextSelect 
       contextSelect.hide();
     }
+*/
 
     $(".facebookAlbums .album", wrapper).live('click', function() {
-      $.fn.photoSelector.changeBaseUrl(
-        wrapper, 
-        '/facebook/album/' + $(this).data('aid'), 
-        contextSelect.val(), 
-        $(this).closest('.facebookAlbums').data('friend_uid'));
+      try {
+      updateSource({
+        url: '/facebook/album/'+$(this).data('aid'),
+        friend_uid: $(this).closest('.facebookAlbums').data('friend_uid')
+        });
+      } catch(e) {
+        console.log('catch!');
+        $.fn.photoSelector.changeBaseUrl(
+          wrapper, 
+          '/facebook/album/' + $(this).data('aid'), 
+          'user', //contextSelect.val(), 
+          $(this).closest('.facebookAlbums').data('friend_uid'));
+      }
+      return false;
     })
   
     $('.back_to_albums').live('click', function(){
-      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('friend_uid'));
+      try {
+        updateSource({ friend_uid: $(this).data('friend_uid') });
+      } catch(e) {
+        $.fn.photoSelector.changeBaseUrl(
+          wrapper, 
+          urlSelect.val(), 
+          'user', //contextSelect.val(), 
+          $(this).data('friend_uid'));
+      }
       return false;
     });
 
     $('.back_to_friends').live('click', function(){
-      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
+      try {
+        updateSource();
+      } catch(e) {
+        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val()); //, contextSelect.val());
+      }
       return false;
     });
 
     // friend selector
     $('.friendSelector .friend').live('click', function(){
-      $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val(), $(this).data('friend_uid'));
+      try {
+        updateSource({ friend_uid: $(this).data('friend_uid') });
+      } catch(e) {
+        $.fn.photoSelector.changeBaseUrl(
+          wrapper, 
+          urlSelect.val(), 
+          'user', // contextSelect.val(), 
+          $(this).data('friend_uid'));
+      }
       return false;
     });
 
-    $(urlSelectWrapper)
-      .append(urlSelect)
-      .append(contextSelect);
-    
     
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
@@ -149,7 +268,7 @@
       var prevOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       prevOpts.urlParams = $.extend({}, prevOpts.urlParams, {page: pagenum});
       $.fn.photoSelector.queryPhotos(
-        $(input).val(), 
+        $searchInput.val(), 
         wrapper, 
         prevOpts);
       $(wrapper).find('.photoSelectorPage').val(pagenum);
@@ -161,15 +280,17 @@
       var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       nextOpts.urlParams = $.extend({}, nextOpts.urlParams, {page: pagenum});
       $.fn.photoSelector.queryPhotos(
-        $(input).val(), 
+        $searchInput.val(), 
         wrapper, 
         nextOpts);
       $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
     });
     
-    if (urlSelect) $(controls).append(urlSelectWrapper);
-    $(controls).append(input, button, page, prev, next);
+    //if (urlSelect) $(controls).append(urlSelectWrapper);
+    $(controls).append(urlSelectWrapper);
+    //$(controls).append(input, button, page, prev, next);
+    $(controls).append($searchWrapper, page, prev, next);
     $(controls).append($('<div></div>').css({
       height: 0, 
       visibility: 'hidden', 
@@ -183,19 +304,19 @@
     }
     
     // Bind button clicks to search photos
-    $(button).click(function(e) {
+    $searchButton.click(function(e) {
       $(wrapper).find('.photoSelectorPage').val(1);
-      $.fn.photoSelector.queryPhotos($(input).val(), wrapper);
+      $.fn.photoSelector.queryPhotos($searchInput.val(), wrapper);
       return false;
     });
     
     // Bind ENTER in search field to search photos
-    $(input).keypress(function(e) {
+    $searchInput.keypress(function(e) {
       if (e.which == 13) {
         // Catch exceptions to ensure false return and precent form submission
         try {
           $(wrapper).find('.photoSelectorPage').val(1);
-          $.fn.photoSelector.queryPhotos($(input).val(), wrapper);
+          $.fn.photoSelector.queryPhotos($searchInput.val(), wrapper);
         }
         catch (e) {
           alert(e);

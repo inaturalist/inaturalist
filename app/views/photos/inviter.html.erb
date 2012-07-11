@@ -46,10 +46,21 @@
     resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
     defaultSources: <%= @projects.to_json %>
   })
-    var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields", //?context=user",
+    var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields";
     //var DEFAULT_PHOTO_IDENTITY_URL = "/photos/providers", //?context=user",
-        PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]
-        //PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields?context=user'},{title: 'Flickr', url: '/flickr/photo_fields?context=user'}]
+        //PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]
+
+    var PHOTO_SOURCES = {
+      facebook: {
+        title: 'Facebook', 
+        url: '/facebook/photo_fields', 
+        contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends']],
+        defaultContext: 'friends'},
+      flickr: {
+        title: 'Flickr', 
+        url: '/flickr/photo_fields', 
+        contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends'], ["Public photos", 'public', {searchable:true}]]}
+    }
 
 $('.observation_photos').each(function() {
   var $form = $(this).parents('form');
@@ -86,7 +97,8 @@ $('.observation_photos').each(function() {
       context: 'friends'
     },
     baseURL: DEFAULT_PHOTO_IDENTITY_URL,
-    urls: PHOTO_IDENTITY_URLS
+    //urls: PHOTO_IDENTITY_URLS,
+    sources: PHOTO_SOURCES
   }
 /*
   if (DEFAULT_PHOTO_IDENTITY_URL) {
