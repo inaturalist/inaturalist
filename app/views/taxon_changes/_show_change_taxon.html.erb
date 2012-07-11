@@ -1,0 +1,88 @@
+<%- 
+  taxon_change ||= object || @taxon_change
+-%>
+
+<% case taxon_change.class.name when "TaxonDrop"%>
+  <% new_taxa = [taxon_change.taxon] %>
+<% when "TaxonSwap"%>
+  <% old_taxa = [taxon_change.old_taxon] %>
+  <% new_taxa = [taxon_change.taxon] %>
+<% when "TaxonMerge"%>
+  <% old_taxa = [taxon_change.taxon] %>
+  <% new_taxa = taxon_change.old_taxa %>
+<% when "TaxonSplit"%>
+  <% old_taxa = taxon_change.new_taxa %>
+  <% new_taxa = [taxon_change.taxon] %>
+<% end %>
+
+<div class="last clear column span-24">
+  <div class="title column span-14">
+    <h2>
+      <%= link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]}", taxon_change_path(taxon_change) %>
+      (<%= taxon_change.committed_on.nil? ? "Draft" : "Committed on #{taxon_change.committed_on}" %>)
+    </h2>
+  </div>
+  <div class="last column span-10">
+    <% if taxon_change.committed_on.nil? %>
+      <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change) %>
+      <%= link_to "Commit",
+        { :controller => 'taxon_changes',
+          :action => 'commit_taxon_change',
+          :taxon_change_id => taxon_change.id},
+          :method => :post,
+          :class => "glaucous button",
+          "data-loading-click" => "committing..." %>
+    <% end %>
+  </div>
+</div>
+
+<p class="description">
+  <%= taxon_change.description %><br/>
+  <% if taxon_change.source && taxon_change.source.url %>
+    Source: <%= link_to h(truncate(taxon_change.source.title, :length => 40)), taxon_change.source.url %>
+  <% elsif taxon_change.source %>
+    Source: <%= taxon_change.source.title %>
+  <% elsif taxon_change.user %>
+    Added by <%= link_to h(taxon_change.user.login), taxon_change.user %>
+  <% else %>
+    Source: unknown
+  <% end %>
+</p>
+
+<table border="0" cellspacing="5" cellpadding="5">
+  <tr>
+    <td>
+      <ul class="change_taxon">
+        <% for change_taxon in new_taxa %>
+          <li>
+            <%= render :partial => 'change_taxon', :object => change_taxon %>
+          </li>
+        <% end %>
+      </ul>
+    </td>
+    <td>
+      <span class="description">
+      <% case taxon_change.class.name when "TaxonSplit" %>
+        Split into
+      <% when "TaxonMerge" %>
+        Merged into
+      <% when "TaxonSwap" %>
+        replaced with
+      <% when "TaxonDrop" %>
+        Dropped
+      <% end %>
+      </span>
+    </td>
+    <td>
+      <ul class="change_taxon">
+        <% unless taxon_change.class.name == "TaxonDrop" %>
+          <% for change_taxon in old_taxa %>
+            <li>
+              <%= render :partial => 'change_taxon', :object => change_taxon %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+</table>
