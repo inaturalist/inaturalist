@@ -4,9 +4,9 @@
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
 <% end %>
-<h2>Invite Facebook Photos to iNaturalist</h2>
+<h2>Invite other photographers to iNaturalist</h2>
 <p class="description">
-  You can make it super easy for people on Facebook to add their photos as iNat
+  You can make it super easy for people on Facebook and Flickr to add their photos as iNat
   observations. Just leave a comment including this special invite URL below.
   You can also pre-select a taxon and project for the new observation.
 </p>
@@ -53,6 +53,7 @@
 
 $('.observation_photos').each(function() {
   var $form = $(this).parents('form');
+  /*
   var $submitButton = $form.find('input[type=submit]')
   $form.submit(function(){
     $submitButton.addClass('disabled').val('Sending...');
@@ -72,6 +73,7 @@ $('.observation_photos').each(function() {
       }});
     return false;
   });
+  */
   var authenticity_token = $form.find('input[name=authenticity_token]').val()
   // The photo_fields endpoint needs to know the auth token and the index
   // for the field
@@ -79,13 +81,15 @@ $('.observation_photos').each(function() {
     urlParams: {
       authenticity_token: authenticity_token,
       index: 0,
-      limit: 15,
+      limit: 24,
       //synclink_base: window.location.href,
       context: 'friends'
-    }
+    },
+    baseURL: DEFAULT_PHOTO_IDENTITY_URL<
+    urls: PHOTO_IDENTITY_URLS
   }
+/*
   if (DEFAULT_PHOTO_IDENTITY_URL) {
-    options.baseURL = DEFAULT_PHOTO_IDENTITY_URL
   } else {
     options.baseURL = '/photos/local_photo_fields' //?context=user'
     options.queryOnLoad = false
@@ -93,6 +97,7 @@ $('.observation_photos').each(function() {
   if (PHOTO_IDENTITY_URLS && PHOTO_IDENTITY_URLS.length > 0) {
     options.urls = PHOTO_IDENTITY_URLS
   }
+  */
   $(this).photoSelector(options)
 })
 </script>

@@ -82,30 +82,6 @@ class FacebookController < ApplicationController
     end
   end
 
-  def photo_invite
-    if request.post?
-      if !params[:comment].include?("{{INVITE_LINK}}")
-        render(:json => {"error" => "You need to include the {{INVITE_LINK}} placeholder in your comment!"}.to_json) and return 
-      end
-      fb_photos = (params[:facebook_photos] || [])
-      # params[:facebook_photos] looks like {"0" => ['fb_photo_id_1','fb_photo_id_2'],...} to accomodate multiple photo-selectors on the same page
-      fb_photo_ids = (fb_photos.is_a?(Hash) && fb_photos.has_key?('0') ? fb_photos['0'] : [])
-      if fb_photo_ids.empty?
-        render(:json => {"error" => "You need to select at least one photo!"}.to_json) and return 
-      end
-      
-      invite_params = {:taxon_id => params[:taxon_id], :project_id=>params[:project_id]}
-      invite_params.delete_if { |k, v| v.nil? || v.empty? }
-      fb_photo_ids.each{|fb_photo_id|
-        invite_params[:facebook_photo_id] = fb_photo_id
-        # invite_params should include '#{flickr || facebook}_photo_id' and whatever else you want to add
-        # to the observation, e.g. taxon_id, project_id, etc
-        current_user.facebook_api.put_comment(fb_photo_id, params[:comment].gsub("{{INVITE_LINK}}", fb_accept_invite_url(invite_params)))
-      }
-      render :text => 'ok' and return
-    end
-  end
-  
   protected
 
   # returns an array of album data hashes like [{ 'name'=>'Safari Pics', 'cover_photo_src'=>(thumbnail_url) }, ...]

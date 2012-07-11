@@ -92,7 +92,7 @@ Rails::Initializer.run do |config|
   config.gem "mocha"
   config.gem "paperclip"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
-  config.gem "flickraw"
+  config.gem "flickraw" #, :version => "0.9.6"
   config.gem 'rest-client', :lib => 'rest_client'
   config.gem 'hoptoad_notifier'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"

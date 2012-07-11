@@ -34,9 +34,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.eol_photo_fields "/eol/photo_fields", :controller => "eol", :action => "photo_fields"
   map.connect "/facebook/photo_fields", :controller => "facebook", :action => "albums"
-  map.connect "/flickr/invite", :controller => "photos", :action => "invite", :provider => "flickr"
+  map.flickr_accept_invite "/flickr/invite", :controller => "photos", :action => "invite", :provider => "flickr"
   map.fb_accept_invite "/facebook/invite", :controller => "photos", :action => "invite", :provider => "facebook"
-  map.fb_photo_invite "/facebook/photo_invite", :controller => "facebook", :action => "photo_invite" #, :provider => "facebook"
+  map.photo_inviter "/photos/inviter", :controller => "photos", :action => "inviter" #, :provider => "facebook"
 
   # Special controller routes
   

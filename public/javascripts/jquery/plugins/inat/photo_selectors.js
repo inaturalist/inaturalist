@@ -57,7 +57,7 @@
     var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
       $.fn.photoSelector.defaults.controlsCSS
     );
-    var input = $('<input type="text" class="text"/>').css(
+    var input = $('<input type="text" class="text" placeholder="Search" />').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
     $(input).attr('id', 'photoSelectorSearchField');
@@ -168,8 +168,8 @@
       return false;
     });
     
-    $(controls).append(input, button, page, prev, next);
     if (urlSelect) $(controls).append(urlSelectWrapper);
+    $(controls).append(input, button, page, prev, next);
     $(controls).append($('<div></div>').css({
       height: 0, 
       visibility: 'hidden', 

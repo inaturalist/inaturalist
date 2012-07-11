@@ -151,6 +151,30 @@ class FlickrController < ApplicationController
   #   index:    index to use if these inputs are part of a form subcomponent
   #             (makes names like flickr_photos[:index][])
   def photo_fields
+    if current_user.flickr_identity.nil?
+      # TODO: set redirect back from referrer?
+      @authorization_needed = true
+      render(:partial => "flickr/photo_invite") and return
+    end
+
+    search_params = {}
+
+    if params[:context] && params[:context]=='user'
+      search_params['user_id'] = current_user.flickr_identity.flickr_user_id
+      search_params['auth_token'] = current_user.flickr_identity.token
+    end
+    search_params['per_page'] = params[:limit] ||= 10
+    search_params['text'] = params[:q]
+    search_params['page'] = params[:page] ||= 1
+    search_params['extras'] = 'date_upload,owner_name,url_sq'
+    search_params['sort'] = 'relevance'
+
+    #logger.info(search_params.to_yaml)
+    get_flickraw
+    @photos = flickr.photos.search(search_params)
+
+=begin
+
     @flickr = get_net_flickr
     search_params = {}
     
@@ -165,6 +189,7 @@ class FlickrController < ApplicationController
       search_params['license'] = '1,2,3,4,5,6'
     end
 
+    logger.info(@flickr)
     
     # Try to look up a photo id
     @photos = []
@@ -184,7 +209,7 @@ class FlickrController < ApplicationController
       begin
         @photos = @flickr.photos.search(search_params)
       rescue Net::Flickr::APIError => e
-        raise e unless e.message =~ /Invalid auth token/
+        raise e # unless e.message =~ /Invalid auth token/
         @reauthorization_needed = true
         Rails.logger.error "[ERROR #{Time.now}] #{e}"
       rescue Net::HTTPFatalError => e
@@ -192,6 +217,7 @@ class FlickrController < ApplicationController
         @photos = []
       end
     end
+=end
     
     # Determine whether we should include synclinks
     @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
@@ -218,7 +244,7 @@ class FlickrController < ApplicationController
       end
     end
   end
-  
+
   # This is the endpoint which allows a user to manager their flickr account
   # settings.  They use this endpoint after they have already gone through the
   # signup process.

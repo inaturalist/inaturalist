@@ -25,7 +25,8 @@
   <% photos.each do |photo| %>
     <%- 
       native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
-      thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.source_url(:thumb)
+      #thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.source_url(:thumb)
+      thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.url_sq
       next unless thumb_url
       prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
       unique_id = serial_id
