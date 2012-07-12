@@ -72,26 +72,28 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    unfriend_link = link_to_remote "Stop following #{potential_friend.login}", 
-      :url => url_options.merge(:remove_friend_id => potential_friend.id), 
-      :datatype => "json",
-      :method => :put,
-      :loading => 
-        "$('##{dom_id(potential_friend, 'unfriend_link')}').fadeOut(function() { $('##{dom_id(potential_friend, 'friend_link')}').fadeIn() });",
-      :html => html_options.merge(
+    unfriend_link = link_to "Stop following #{potential_friend.login}", 
+      url_options.merge(:remove_friend_id => potential_friend.id), 
+      html_options.merge(
+        :remote => true,
+        :datatype => "json",
+        :method => :put,
         :id => dom_id(potential_friend, 'unfriend_link'),
-        :style => already_friends ? "" : "display:none")
-    friend_link = link_to_remote "Follow #{potential_friend.login}", 
-      :url => url_options.merge(:friend_id => potential_friend.id), 
-      :method => :put,
-      :datatype => "json",
-      :loading => 
-        "$('##{dom_id(potential_friend, 'friend_link')}').fadeOut(function() { $('##{dom_id(potential_friend, 'unfriend_link')}').fadeIn() });",
-      :html => html_options.merge(
+        :class => "unfriend_link",
+        :style => already_friends ? "" : "display:none"
+      )
+    friend_link = link_to "Follow #{potential_friend.login}", 
+      url_options.merge(:friend_id => potential_friend.id), 
+      html_options.merge(
+        :remote => true,
+        :method => :put,
+        :datatype => "json",
         :id => dom_id(potential_friend, 'friend_link'),
-        :style => (!already_friends && user != potential_friend) ? "" : "display:none")
+        :class => "friend_link",
+        :style => (!already_friends && user != potential_friend) ? "" : "display:none"
+      )
     
-    content_tag :span, friend_link + unfriend_link, :class => "friend_button"
+    content_tag :span, (friend_link + unfriend_link).html_safe, :class => "friend_button"
   end
   
   def char_wrap(text, len)
