@@ -17,10 +17,10 @@
     :label => label_text,
     :placeholder => "Type source title...", 
     :class => "existing", 
-    "data-chooser-default-sources" => sources.to_json(:methods => [:html])
+    "data-chooser-default-sources" => sources.to_json(:methods => [:html]).html_safe
   }
   if source
-    chooser_options["data-chooser-chosen"] = source.to_json(:methods => [:html])
+    chooser_options["data-chooser-chosen"] = source.to_json(:methods => [:html]).html_safe
   end
 -%>
 <% if f.object.send(assoc_name) -%>
