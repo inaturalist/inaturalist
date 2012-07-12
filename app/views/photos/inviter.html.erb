@@ -1,6 +1,3 @@
-<% content_for(:extracss) do %>
-  <%= stylesheet_link_tag("invite") %>
-<% end %>
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
 <% end %>
@@ -17,9 +14,9 @@
 </div>
 -->
 
-<% form_tag(url_for, {:method => :post, :class => "photo_invite"}) do %>
+<% form_tag(url_for, {:method => :post, :class => "photo_inviter_form"}) do %>
   
-  <div class='observation_photos'></div>
+  <div class='photo_inviter'></div>
   <label for="taxonchooser">Automatically ID the new obs as</label>
   <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
   &nbsp;
@@ -58,16 +55,15 @@
         contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends'], ["Public photos", 'public', {searchable:true}]]}
     }
 
-$('.observation_photos').each(function() {
-  var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
+$('.photo_inviter').each(function() {
   // The photo_fields endpoint needs to know the auth token and the index for the field
+  var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
   var options = {
     urlParams: {
       authenticity_token: authenticity_token,
       index: 0,
       limit: 24,
       //synclink_base: window.location.href,
-      //context: 'friends'
     },
     //baseURL: DEFAULT_PHOTO_IDENTITY_URL,
     //urls: PHOTO_IDENTITY_URLS,
@@ -75,16 +71,6 @@ $('.observation_photos').each(function() {
     defaultSource: "facebook",
     defaultContext: "friends"
   }
-/*
-  if (DEFAULT_PHOTO_IDENTITY_URL) {
-  } else {
-    options.baseURL = '/photos/local_photo_fields' //?context=user'
-    options.queryOnLoad = false
-  }
-  if (PHOTO_IDENTITY_URLS && PHOTO_IDENTITY_URLS.length > 0) {
-    options.urls = PHOTO_IDENTITY_URLS
-  }
-  */
   $(this).photoSelector(options)
 })
 </script>
