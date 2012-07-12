@@ -1,6 +1,6 @@
 Inaturalist::Application.routes.draw do
   id_param_pattern = %r(\d+([\w\-\%]*))
-  
+  simplified_login_regex = /\w[^\.,\/]+/  
   resources :observation_field_values
   resources :observation_fields
   match '/' => 'welcome#index'
@@ -106,9 +106,12 @@ Inaturalist::Application.routes.draw do
   match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => /\w[^\.,\/]+/ }
   match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => /\w[^\.,\/]+/ }, :followers => 'followers'
   match 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => /\w[^\.,\/]+/ }, :following => 'following'
-  resources :lists
+  resources :lists, :constraints => { :id => id_param_pattern }
   match 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa, :via => :get
   match 'lists/:id/taxa.:format' => 'lists#taxa', :as => :formatted_list_taxa, :via => :get
+  match 'lists/:id.:view_type.:format' => 'lists#show',
+    :as => 'list_show_formatted_view',
+    :requirements => { :id => id_param_pattern }
   resources :life_lists
   resources :check_lists
   resources :project_lists
@@ -129,8 +132,9 @@ Inaturalist::Application.routes.draw do
   resources :taxa, :constraints => { :id => id_param_pattern } do
     resources :taxon_names
     resources :flags
-    get 'description', :on => :member, :as => :describe_taxon
+    get 'description' => 'taxa#describe', :on => :member, :as => :describe
   end
+  resources :taxon_names
   # match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
   match 'taxa/:id/graft' => 'taxa#graft', :as => :graft_taxon
   match 'taxa/:id/children' => 'taxa#children', :as => :taxon_children
@@ -157,10 +161,15 @@ Inaturalist::Application.routes.draw do
   
   resources :sources, :only => [:index, :show]
   match 'journal' => 'posts#browse', :as => :journals
-  match 'journal/:login' => 'posts#index', :as => :journal_by_login, :constraints => { :login => /\w[^\.,\/]+/ }
-  match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => /\w[^\.,\/]+/ }
-  match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => /\w[^\.,\/]+/ }
+  match 'journal/:login' => 'posts#index', :as => :journal_by_login, :constraints => { :login => simplified_login_regex }
+  match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
+  match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => simplified_login_regex }
   resources :posts
+  resources :posts,
+    :as => 'journal_posts',
+    :path => "/journal/:login",
+    :constraints => { :login => simplified_login_regex }
+  
   resources :identifications
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => /\w[^\.,\/]+/ }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
@@ -183,5 +192,10 @@ Inaturalist::Application.routes.draw do
   match '/calendar/:login' => 'calendars#index', :as => :calendar
   match '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
   match '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date
+  
+  resources :subscriptions, :only => [:index, :edit, :create, :update, :destroy]
+  match 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription, :via => :delete
+  match 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
+  
   match '/:controller(/:action(/:id))'
 end

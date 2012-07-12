@@ -244,7 +244,7 @@
                 taxon_json = nil
               -%>
               <% if js_link -%>
-                <%- taxon_json = taxon_to_json(taxon, :iconic_taxon => Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] || taxon.iconic_taxon) -%>
+                <%- taxon_json = taxon_to_json(taxon, :iconic_taxon => Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] || taxon.iconic_taxon).html_safe -%>
                 <%= link_to_function link_txt, "handleTaxonClick(event, #{taxon_json})" %>
               <% else %>
                 <%= link_to link_txt, taxon %>

@@ -78,7 +78,7 @@
 
             <div class="attr readable description">
               <%= truncate(strip_tags(list.description), :length => 75) %>
-              <%= link_to "View &raquo;", list_path(list), :style => "white-space: nowrap" %>
+              <%= link_to "View &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
             </div>
 
             <div class="barchart">

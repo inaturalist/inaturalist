@@ -26,12 +26,12 @@
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @place.to_json %>,
+    var PLACE = <%= @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? ''.inspect : place_geometry_url(@place, :format => "kml").inspect %>,
         WIKIPEDIA_DESCRIPTION_URL = <%= url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect %>,
         FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>,
-        NEARBY_PLACES = <%= @nearby_places.to_json %>,
-        INSIDE_PLACES = <%= @inside_places.to_json %>,
+        NEARBY_PLACES = <%= @nearby_places.to_json.html_safe %>,
+        INSIDE_PLACES = <%= @inside_places.to_json.html_safe %>,
         TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
   </script>
   <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 

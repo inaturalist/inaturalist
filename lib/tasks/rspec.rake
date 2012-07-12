@@ -1,4 +1,4 @@
-gem 'test-unit', '1.2.3' if RUBY_VERSION.to_f >= 1.9
+# gem 'test-unit', '1.2.3' if RUBY_VERSION.to_f >= 1.9
 rspec_gem_dir = nil
 Dir["#{Rails.root}/vendor/gems/*"].each do |subdir|
   rspec_gem_dir = subdir if subdir.gsub("#{Rails.root}/vendor/gems/","") =~ /^(\w+-)?rspec-(\d+)/ && File.exist?("#{subdir}/lib/spec/rake/spectask.rb")

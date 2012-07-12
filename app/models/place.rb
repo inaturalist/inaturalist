@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  # acts_as_tree
+  acts_as_tree
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   has_many :check_lists, :dependent => :destroy

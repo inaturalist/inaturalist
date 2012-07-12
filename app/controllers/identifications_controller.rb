@@ -44,6 +44,7 @@ class IdentificationsController < ApplicationController
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
     end
+    
     respond_to do |format|
       if @identification.save
         format.html do
@@ -53,7 +54,11 @@ class IdentificationsController < ApplicationController
           end
           redirect_to @identification.observation and return
         end
-        format.js
+        
+        format.json do
+          @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
+          render :json => @identification.to_json(:methods => [:html]).html_safe
+        end
       else
         format.html do
           flash[:error] = "There was a problem saving your identification: " +
@@ -63,7 +68,10 @@ class IdentificationsController < ApplicationController
           end
           redirect_to @identification.observation and return
         end
-        format.js { render :action => 'creation_error.js.rjs' }
+        
+        format.json do
+          render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages }
+        end
       end
     end
   end

@@ -7,19 +7,10 @@
 </div>
 <div class="buttonrow">
   <%= submit_tag 'Save comment', :class => 'default button', 'data-loading-click' => true %>
-  <%= link_to_remote "Preview", 
-    :url => comment.new_record? ? comments_path : comment_path(comment), 
-    :loading => 
-      "$('##{unique_id}-preview').hide();" +
-      "$('##{unique_id}-preview_loading').show();",
-    :complete => 
-      "$('##{unique_id}-preview').show();" + 
-      "$('##{unique_id}-preview_loading').hide();",
-    :with => "$(this).parents('form').serialize() + '&preview=true'", 
-    :html => {
-      :id => "#{unique_id}-preview",
-      :class => 'button previewbutton'
-    } %>
+  <%= link_to "Preview", 
+    comment.new_record? ? comments_path : comment_path(comment), 
+    :id => "#{unique_id}-preview",
+    :class => 'button previewbutton commentpreviewbutton' %>
   <div id="<%= unique_id %>-preview_loading" class="loading status inter" style="display:none">Previewing...</div>
   <%- unless comment.new_record? -%>
     <span class="inter description">or</span>

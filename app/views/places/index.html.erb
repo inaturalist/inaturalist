@@ -29,7 +29,7 @@
 
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>,
-        places = <%= @places.to_json %>
+        places = <%= @places.to_json.html_safe %>
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
         lat: 0, 

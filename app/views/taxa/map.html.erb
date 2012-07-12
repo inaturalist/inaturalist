@@ -16,29 +16,29 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", 'd3.min', 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
-    var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
-    var CLOUDMADE_KEY = <%= @cloudmade_key ? @cloudmade_key.inspect : 'null' %>
-    var BING_KEY = <%= @bing_key ? @bing_key.inspect : 'null' %>
+    var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect.html_safe %>
+    var CLOUDMADE_KEY = <%= @cloudmade_key ? @cloudmade_key.inspect.html_safe : 'null' %>
+    var BING_KEY = <%= @bing_key ? @bing_key.inspect.html_safe : 'null' %>
     var M_TO_OBSCURE_THREATENED_TAXA = <%= Observation::M_TO_OBSCURE_THREATENED_TAXA %>
     var PLANETARY_RADIUS = <%= Observation::PLANETARY_RADIUS %>
     var DEGREES_PER_RADIAN = <%= Observation::DEGREES_PER_RADIAN %>
     var OBSCURATION_DISTANCE_IN_DEGREES = M_TO_OBSCURE_THREATENED_TAXA / PLANETARY_RADIUS * DEGREES_PER_RADIAN
-    var countyListings = <%= @county_listings.to_json(:methods => [:occurrence_status]) %>;
-    var stateListings = <%= @state_listings.to_json(:methods => [:occurrence_status]) %>;
-    var countryListings = <%= @country_listings.to_json(:methods => [:occurrence_status]) %>;
-    var extent = <%= @extent.to_json %>;
-    var taxonRange = <%= @taxon_range.to_json(:include => [:source]) %>
-    var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon.id, :format => "geojson") : nil).to_json %>
-    var taxonRangeKmlUrl = <%= (@taxon_range ? root_url.gsub(/\/$/, "") + @taxon_range.range.url : nil).to_json %>
-    var observationsKmlUrl = <%= @taxon ? observations_url(:format => :kml, :taxon_id => @taxon.id).inspect : 'null' %>
-    var observationsJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :json).inspect : 'null' %>
-    var observationsGeoJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :geojson).inspect : 'null' %>
-    var children = <%= @children.to_json %>
-    var place = <%= @place.to_json %>
-    var placeGeometry = <%= @place_geometry.to_json %>
-    var placeKmlUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "kml").inspect : 'null' %>
-    var placeGeoJsonUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "geojson").inspect : 'null' %>
-    var taxa = <%= @taxa_data.to_json %>
+    var countyListings = <%= @county_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
+    var stateListings = <%= @state_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
+    var countryListings = <%= @country_listings.to_json(:methods => [:occurrence_status]).html_safe %>;
+    var extent = <%= @extent.to_json.html_safe %>;
+    var taxonRange = <%= @taxon_range.to_json(:include => [:source]).html_safe %>
+    var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon.id, :format => "geojson") : nil).to_json.html_safe %>
+    var taxonRangeKmlUrl = <%= (@taxon_range ? root_url.gsub(/\/$/, "") + @taxon_range.range.url : nil).to_json.html_safe %>
+    var observationsKmlUrl = <%= @taxon ? observations_url(:format => :kml, :taxon_id => @taxon.id).inspect.html_safe : 'null' %>
+    var observationsJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :json).inspect.html_safe : 'null' %>
+    var observationsGeoJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :geojson).inspect.html_safe : 'null' %>
+    var children = <%= @children.to_json.html_safe %>
+    var place = <%= @place.to_json.html_safe %>
+    var placeGeometry = <%= @place_geometry.to_json.html_safe %>
+    var placeKmlUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "kml").inspect.html_safe : 'null' %>
+    var placeGeoJsonUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "geojson").inspect.html_safe : 'null' %>
+    var taxa = <%= @taxa_data.to_json.html_safe %>
     
     $(document).ready(function() {
       var script = document.createElement("script")
