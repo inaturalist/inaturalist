@@ -306,6 +306,12 @@ class User < ActiveRecord::Base
     LifeList.delay.reload_from_observations(life_list_id)
   end
   
+  # vestigial from restful auth
+  # TODO make this work with Devise Suspendable
+  def active?
+    true
+  end
+  
   def self.query(params={}) 
     scope = self.scoped
     if params[:sort_by] && params[:sort_dir]
