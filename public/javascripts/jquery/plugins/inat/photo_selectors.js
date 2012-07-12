@@ -8,6 +8,27 @@
 //                  Default is true.
 //   defaultQuery:  Default query to run on load
 //   afterQueryPhotos(q, wrapper, options) : called after photos queried
+//   defaultSource: the default source (e.g. 'flickr' or 'facebook')
+//   defaultContext:the default context (e.g. 'user' or 'friends')
+//   sources:       a data structure used to specify the available photo sources (flickr, facebook, etc)
+//                  and available photo contexts ('user', 'friends', 'public', etc) for each source
+//                  see below for example of this data structure
+//                  note: options also currently supports options.urls (via lots of try/catch), 
+//                  but options.urls is deprecated in favor of options.sources
+//  
+//   example of options.sources:                  
+//
+//   options.sources = {
+//      facebook: {
+//        title: 'Facebook', 
+//        url: '/facebook/photo_fields', 
+//        contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends']]},
+//      flickr: {
+//        title: 'Flickr', 
+//        url: '/flickr/photo_fields', 
+//        contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends'], ["Public photos", 'public', {searchable:true}]]}
+//    }
+//
 (function($){
   $.fn.photoSelector = function(options) {
     var options = $.extend({}, $.fn.photoSelector.defaults, options);
@@ -43,11 +64,17 @@
     // Fill with photos
     if (options.queryOnLoad) {
       $(document).ready(function() {
-        var q = '';
-        if (typeof(options.defaultQuery) == 'string') {
-          q = options.defaultQuery;
-        };
-        $.fn.photoSelector.queryPhotos(q, wrapper);
+        try {
+          // yuk. ideally should just call updateSource, but can't cause of scope issues
+          var defaultSourceData = options.sources[options.defaultSource];
+          $.fn.photoSelector.changeBaseUrl(wrapper, defaultSourceData.url, options.defaultContext);
+        } catch(e) {
+          var q = '';
+          if (typeof(options.defaultQuery) == 'string') {
+            q = options.defaultQuery;
+          };
+          $.fn.photoSelector.queryPhotos(q, wrapper);
+        }
       });
     };
   };
@@ -68,10 +95,14 @@
     var $searchButton = $('<a href="#" class="button findbutton">Find Photos</a>').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
-    var $searchWrapper = $("<span style='display:none'></span>");
+    var $searchWrapper = $("<span></span>");
     $searchWrapper.append($searchInput).append($searchButton);
     
-    var urlSelectWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
+    var $sourceWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
+
+    // this branch is for backwards compatibility 
+    // options.urls is used by legacy photoSelectors, but is now deprecated. 
+    // use options.sources (see below) instead.
     if (typeof options != 'undefined' && typeof options.urls != 'undefined') {
       var urlSelect = $('<select class="select" style="margin: 0 auto"></select>');
       urlSelect.change(function() {
@@ -97,58 +128,85 @@
         if (url === options.baseURL) $(option).attr('selected', 'selected');
         $(urlSelect).append(option);
       })
-      $(urlSelectWrapper).append(urlSelect);
+      $sourceWrapper.append(urlSelect);
     }
 
+    // this branch is for options.sources (new style of photoselector)
     if (typeof options != 'undefined' && typeof options.sources != 'undefined') {
+      $searchWrapper.hide();
       var sources = options.sources || {};
+      var currentSource = options.defaultSource;
       var $allContextWrappers = [];
       if (!options.skipLocal) { sources['local'] = {title: "Your computer", url: '/photos/local_photo_fields'}; }
       var $sourceSelect = $("<select class='select'></select>");
-      var sourceIndex = 0;
+      var sourceIndex = 0; // used as index when iterating over sources below
       $.each(sources, function(sourceKey, sourceData){
         var $sourceOption = $("<option value='"+sourceKey+"'>"+sourceData.title+"</option>");
-        if (sourceData.url === options.baseUrl) { $sourceOption.attr('selected','selected') };
         $sourceSelect.append($sourceOption);
         var $contextWrapper = $("<span style='display:none'></span>");
-        var $contextSelect = $("<select class='select'></select>");
-        if (options.defaultSource) { // if we've specified a default source, and this it, show the associated contextSelect
-          if (options.defaultSource != sourceKey) {
+        if (typeof options.defaultSource != 'undefined') { 
+          if (options.defaultSource == sourceKey) { // if we've specified a default source, and this it, show the associated contextSelect
             $contextWrapper.css('display','inline-block');
-          }
+            $sourceOption.attr('selected','selected');
+            currentSource = sourceKey; 
+          } 
         } else if (sourceIndex==0) { // if we haven't specified a default source but this is the first one, show the associated contextSelect
+          currentSource = sourceKey; 
           $contextWrapper.css('display','inline-block');
         }
         sourceIndex += 1;
         sourceData.contexts = (sourceData.contexts || []);
-         // todo: 1 or 0 contexts
-        $.each(sourceData.contexts, function(i,context){
-          var $contextOption = $("<option value='"+context[1]+"'>"+context[0]+"</option>");
-          if (context[2] && context[2].searchable) {
-            $contextOption.data('searchable', true);
-          }
-          $contextSelect.append($contextOption);
-        });
-        $contextWrapper.append($contextSelect);
-        //$contextWrapper.append(searchField());
+        // create a sub-<select> menu for contexts, but only if this photo source has more than one possible context
+        if (sourceData.contexts.length > 1) {
+          var $contextSelect = $("<select class='select'></select>").change(updateSource);
+          $.each(sourceData.contexts, function(i,context){
+            var $contextOption = $("<option value='"+context[1]+"'>"+context[0]+"</option>");
+            // if searchable=true in context options, search box will be visible when this context is selected
+            // for example, if context is flickr public photos, we want to show the search box
+            // e.g. ["Public photos", "public", {searchable:true}]
+            var searchable = (context[2] && context[2].searchable);
+            if (searchable) { $contextOption.data('searchable', true); } 
+            if ((typeof options.defaultContext != 'undefined') && (options.defaultContext==context[1])) { // default context
+              $contextOption.attr('selected','selected');
+              if (searchable) { $searchWrapper.show(); }
+            }
+            $contextSelect.append($contextOption);
+          });
+          $contextWrapper.append($contextSelect);
+        }
         sources[sourceKey].$contextWrapper = $contextWrapper;
         $allContextWrappers.push($contextWrapper);
-        $contextSelect.change(function(){ 
-          updateSource(); 
-        });
       });
 
-      // todo: currentSource not defined at beginning
-      var currentSource;
+
+      $sourceSelect.change(function(){
+        var sourceKey = $sourceSelect.val();
+        var sourceData = sources[sourceKey];
+        // show the associated context <select>, and hide all the other context <selects>
+        $.each($allContextWrappers, function(i,c) { 
+          if (sourceData.$contextWrapper && (sourceData.$contextWrapper==c)) {
+            c.show();
+          } else {
+            c.hide(); 
+          }
+        });
+        currentSource = sourceKey;
+        updateSource();
+      });
+
+      $sourceWrapper.append($sourceSelect);
+      $.each($allContextWrappers, function(i,c){ $sourceWrapper.append(c); });
+
+      // this is called when you change either the source <select> or context <select>
       function updateSource(sourceOptions){
+        $searchWrapper.hide();
         var newSource = sources[currentSource]; 
         sourceOptions = (sourceOptions || {});
         sourceOptions['url'] = (sourceOptions.url || newSource.url);
         sourceOptions['friend_uid'] = (sourceOptions.friend_uid || false);
-        var currentContext;
-        $searchWrapper.hide();
         if (typeof newSource.$contextWrapper == 'undefined') {
-          sourceOptions['context'] = newSource.defaultContext;
+          // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
+          //sourceOptions['context'] = newSource.defaultContext;
         } else {
           sourceOptions['context'] = newSource.$contextWrapper.find('select').val();
           if (newSource.$contextWrapper.find("option:selected").data('searchable')) {
@@ -161,58 +219,15 @@
         }
         $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['friend_uid']);
       }
-
-      $sourceSelect.change(function(){
-        var sourceKey = $(this).val();
-        var sourceData = sources[sourceKey];
-        // show the associated context <select>, and hide the others
-        $.each($allContextWrappers, function(i,c) { 
-          if (sourceData.$contextWrapper && (sourceData.$contextWrapper==c)) {
-            c.show();
-          } else {
-            c.hide(); 
-          }
-        });
-        currentSource = sourceKey;
-        updateSource();
-      });
-
-      $(urlSelectWrapper).append($sourceSelect);
-      $.each($allContextWrappers, function(i,c){
-        $(urlSelectWrapper).append(c);
-      });
-      
     }
-
-/*
-    // photo context selector (user or friends)
-    var contextSelect = $('<select class="select" style="margin: 0 auto"></select>');
-    $.each([['Your photos', 'user'],['Your friends\' photos','friends']], function(){
-      var selected = (this[1]==options.urlParams.context ? "selected='selected'" : '');
-      contextSelect.append("<option value='"+this[1]+"'"+selected+">"+this[0]+"</option>");
-    });
-    
-    // event handlers for urlSelect and contextSelect
-    $.each([urlSelect,contextSelect], function(){
-      this.change(function() {
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val(), contextSelect.val());
-      })
-    });
-
-    if (options.urlParams == undefined || options.urlParams.context == undefined) {
-      // hide the contextSelect 
-      contextSelect.hide();
-    }
-*/
 
     $(".facebookAlbums .album", wrapper).live('click', function() {
       try {
-      updateSource({
-        url: '/facebook/album/'+$(this).data('aid'),
-        friend_uid: $(this).closest('.facebookAlbums').data('friend_uid')
-        });
+        updateSource({
+          url: '/facebook/album/'+$(this).data('aid'),
+          friend_uid: $(this).closest('.facebookAlbums').data('friend_uid')
+          });
       } catch(e) {
-        console.log('catch!');
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           '/facebook/album/' + $(this).data('aid'), 
@@ -223,9 +238,8 @@
     })
   
     $('.back_to_albums').live('click', function(){
-      try {
-        updateSource({ friend_uid: $(this).data('friend_uid') });
-      } catch(e) {
+      try { updateSource({ friend_uid: $(this).data('friend_uid') }); } 
+      catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           urlSelect.val(), 
@@ -236,19 +250,15 @@
     });
 
     $('.back_to_friends').live('click', function(){
-      try {
-        updateSource();
-      } catch(e) {
-        $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val()); //, contextSelect.val());
-      }
+      try { updateSource(); } 
+      catch(e) { $.fn.photoSelector.changeBaseUrl(wrapper, urlSelect.val()); }
       return false;
     });
 
     // friend selector
     $('.friendSelector .friend').live('click', function(){
-      try {
-        updateSource({ friend_uid: $(this).data('friend_uid') });
-      } catch(e) {
+      try { updateSource({ friend_uid: $(this).data('friend_uid') }); } 
+      catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           urlSelect.val(), 
@@ -287,9 +297,7 @@
       return false;
     });
     
-    //if (urlSelect) $(controls).append(urlSelectWrapper);
-    $(controls).append(urlSelectWrapper);
-    //$(controls).append(input, button, page, prev, next);
+    $(controls).append($sourceWrapper);
     $(controls).append($searchWrapper, page, prev, next);
     $(controls).append($('<div></div>').css({
       height: 0, 

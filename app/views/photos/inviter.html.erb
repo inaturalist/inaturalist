@@ -46,16 +46,12 @@
     resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
     defaultSources: <%= @projects.to_json %>
   })
-    var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields";
-    //var DEFAULT_PHOTO_IDENTITY_URL = "/photos/providers", //?context=user",
-        //PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]
-
+    //var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields";
     var PHOTO_SOURCES = {
       facebook: {
         title: 'Facebook', 
         url: '/facebook/photo_fields', 
-        contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends']],
-        defaultContext: 'friends'},
+        contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends']]},
       flickr: {
         title: 'Flickr', 
         url: '/flickr/photo_fields', 
@@ -63,42 +59,21 @@
     }
 
 $('.observation_photos').each(function() {
-  var $form = $(this).parents('form');
-  /*
-  var $submitButton = $form.find('input[type=submit]')
-  $form.submit(function(){
-    $submitButton.addClass('disabled').val('Sending...');
-    $.ajax({
-      type:'POST',
-      url:$form.attr('action'), 
-      data:$form.serialize(),
-      success:function(d){
-        if (d.error) {
-          alert(d.error);
-        } else if (d.ok) {
-          $("#taxonchooser").chooser('clear');
-          $("#projectchooser").chooser('clear');
-          $form[0].reset();
-        }
-        $submitButton.removeClass('disabled').val('Send invite');
-      }});
-    return false;
-  });
-  */
-  var authenticity_token = $form.find('input[name=authenticity_token]').val()
-  // The photo_fields endpoint needs to know the auth token and the index
-  // for the field
+  var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
+  // The photo_fields endpoint needs to know the auth token and the index for the field
   var options = {
     urlParams: {
       authenticity_token: authenticity_token,
       index: 0,
       limit: 24,
       //synclink_base: window.location.href,
-      context: 'friends'
+      //context: 'friends'
     },
-    baseURL: DEFAULT_PHOTO_IDENTITY_URL,
+    //baseURL: DEFAULT_PHOTO_IDENTITY_URL,
     //urls: PHOTO_IDENTITY_URLS,
-    sources: PHOTO_SOURCES
+    sources: PHOTO_SOURCES,
+    defaultSource: "facebook",
+    defaultContext: "friends"
   }
 /*
   if (DEFAULT_PHOTO_IDENTITY_URL) {
