@@ -276,6 +276,17 @@ $(document).ready(function() {
         alert('Failed to save identification: ' + errors)
       }
     })
+    
+    $('.friend_link').bind('ajax:before', function() {
+      $(this).fadeOut(function() {
+        $(this).siblings('.unfriend_link').fadeIn()
+      })
+    })
+    $('.unfriend_link').bind('ajax:before', function() {
+      $(this).fadeOut(function() {
+        $(this).siblings('.friend_link').fadeIn()
+      })
+    })
 })
 
 function checkDelayedLink(url) {
