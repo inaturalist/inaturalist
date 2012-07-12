@@ -1,0 +1,3 @@
+class TaxonStage < TaxonChange
+
+end

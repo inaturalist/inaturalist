@@ -11,6 +11,9 @@ class TaxonChange < ActiveRecord::Base
     unless taxon_change = TaxonChange.find_by_id(taxon_change_id)
       return
     end
+    unless taxon_change.committed_on.nil?
+      return
+    end
     TaxonChange.update_all(["committed_on = ?", Time.now],["id = ?", taxon_change.id])
     case taxon_change.class.name when 'TaxonSplit'
       Taxon.update_all({:is_active => false},["id = ?", taxon_change.taxon_id])
@@ -26,6 +29,8 @@ class TaxonChange < ActiveRecord::Base
       TaxonSwap.send_later(:update_observations_later, taxon_change.id, :dj_priority => 2)
     when 'TaxonDrop'
       Taxon.update_all({:is_active => false},["id = ?", taxon_change.taxon_id])
+    when 'TaxonStage'
+      Taxon.update_all({:is_active => true},["id = ?", taxon_change.taxon_id])
     end
   end
 

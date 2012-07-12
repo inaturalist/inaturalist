@@ -20,17 +20,18 @@
       <%= link_to change_taxon.observations_count, observations_path(:taxon_id => change_taxon.id) %> Obs
       <%= "|#{change_taxon.conservation_status_code}" unless change_taxon.conservation_status.nil? %>
       <%= "|Range" if taxon_range %>
+      <%= change_taxon.is_active ? "|Active" : "|Inactive" %>
     </div>
     <div class="description">
-      <span class="small description"> (<%= change_taxon.is_active ? "active" : "inactive" %>)
-        <% if change_taxon.source && change_taxon.source_url %>
-          Source: <%= link_to h(truncate(change_taxon.source.title, :length => 40)), change_taxon.source_url %>
-        <% elsif change_taxon.source %>
-          Source: <%= change_taxon.source.title %>
-        <% elsif change_taxon.creator %>
-          Added by <%= link_to h(change_taxon.creator.login), change_taxon.creator %>
-        <% else %>
-          Source: unknown
+      <span class="small description">
+        <% for taxon_scheme in change_taxon.taxon_schemes %>
+         <%= taxon_scheme.title  %><br/>
+        <% end %>
+        <% for swap in change_taxon.taxon_swaps %> 
+          <% aka_name = swap.old_taxon.name %>
+          <% for aka_scheme in swap.old_taxon.taxon_schemes %>
+          <%= link_to "#{aka_scheme.title} (as #{aka_name})", taxon_change_path(swap) %><br/>
+          <% end %>
         <% end %>
       </span>
     </div>
