@@ -90,7 +90,7 @@
             <div class="column span-3">
               <%= link_to friend.login, person_by_login_path(friend.login), :class => "readable nobr" %>
               <br/>
-              <%= link_to("<span class='count'>#{friend.observations.count}</span> observations", observations_by_login_path(friend.login)) %>
+              <%= link_to("<span class='count'>#{friend.observations.count}</span> observations".html_safe, observations_by_login_path(friend.login)) %>
             </div>
           </div>
         <% end %>
