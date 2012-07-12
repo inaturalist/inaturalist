@@ -1,4 +1,4 @@
-<%- check_list ||= object ||= @check_list -%>
+<%- check_list ||= form ||= @check_list -%>
 <%= error_messages_for :check_list %>
 <%= form_for check_list, :builder => DefaultFormBuilder do |f| %>
   <%= f.hidden_field :place_id %>

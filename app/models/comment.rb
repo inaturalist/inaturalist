@@ -14,6 +14,8 @@ class Comment < ActiveRecord::Base
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
   scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
   
+  attr_accessor :html
+  
   def formatted_body
     BlueCloth::new(self.body).to_html
   end

@@ -60,7 +60,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { respond_to_create }
       format.mobile { respond_to_create }
-      format.js
+      format.json do
+        @comment.html = render_to_string(:partial => 'comments/comment.html.erb')
+        render :json => @comment.to_json(:methods => [:html]).html_safe
+      end
     end
   end
   

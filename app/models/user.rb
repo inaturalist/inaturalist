@@ -1,15 +1,8 @@
-require 'digest/sha1'
-require 'open-uri'
-
 class User < ActiveRecord::Base
   
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
   
-  include Authentication
-  # include Authentication::ByPassword
-  # include Authentication::ByCookieToken
-  # include Authorization::AasmRoles
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :encryptor => :restful_authentication_sha1
@@ -116,18 +109,30 @@ class User < ActiveRecord::Base
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
+  
+  # Regexes from restful_authentication
+  login_regex       = /\A[A-z][\w\-_]+\z/                          # ASCII, strict
+  bad_login_message = "use only letters, numbers, and -_ please.".freeze
+  name_regex        = /\A[^[:cntrl:]\\<>\/&]*\z/              # Unicode, permissive
+  bad_name_message  = "avoid non-printing characters and \\&gt;&lt;&amp;/ please.".freeze
+  email_name_regex  = '[\w\.%\+\-]+'.freeze
+  domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
+  domain_tld_regex  = '(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)'.freeze
+  email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
+  bad_email_message = "should look like an email address.".freeze
+  
   validates_length_of       :login,    :within => MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  validates_format_of       :login,    :with => login_regex, :message => bad_login_message
 
-  validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  validates_format_of       :name,     :with => name_regex,  :message => bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100, :allow_blank => true
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
   # (this option is necessary because the User is created before the associated ProviderAuthorization)
   validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count > 0))}
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_blank => true
+  validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
   validates_uniqueness_of   :email,    :allow_blank => true
 

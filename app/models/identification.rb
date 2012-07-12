@@ -23,6 +23,7 @@ class Identification < ActiveRecord::Base
                 :expire_caches
   
   attr_accessor :skip_observation
+  attr_accessor :html
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
@@ -54,7 +55,7 @@ class Identification < ActiveRecord::Base
       species_guess = taxon.to_plain_s
     end
     observation.skip_identifications = true
-    observation.update_attributes(:species_guess => species_guess, :taxon => taxon, :iconic_taxon_id => taxon.iconic_taxon_id)
+    observation.update_attributes(:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id)
     ProjectUser.send_later(:update_taxa_obs_and_observed_taxa_count_after_update_observation, observation.id, self.user_id)
     true
   end

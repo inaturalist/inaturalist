@@ -1,4 +1,4 @@
-<% taxon ||= object || nophoto %>
+<% taxon ||= nophoto || nophoto %>
 <div class="nophoto">
   <%= link_to(taxon_image(taxon, :size => 32), taxon) %>
   <div class="description">

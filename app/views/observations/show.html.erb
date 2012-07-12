@@ -79,7 +79,7 @@
       // setup the map if one is needed
       window.observation = <%= @observation.to_json(:viewer => current_user, 
         :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
-        :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}) %>;
+        :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>;
       if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
         window.map = iNaturalist.Map.createMap({
           lat: 40.714, 
@@ -168,8 +168,18 @@
         $(this).css({
           background: "url(http://www.google.com/s2/u/0/favicons?domain=" + this.hostname + ") left center no-repeat",
           "padding": "1px 0 1px 20px"
-        });
+        })
       })
+      
+      $('#added_to_id_please .button')
+        .bind('ajax:before', function() {
+          $('#added_to_id_please').fadeOut(function() {$('#need_id_help').fadeIn()})
+        })
+        
+      $('#need_id_help .button')
+        .bind('ajax:before', function() {
+          $('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()})
+        })
     });
   </script>
 <% end %>
@@ -177,9 +187,9 @@
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
-      <% if @user and @user.login == @observation.user.login %>
+      <% if is_me?(@observation.user) %>
       <%= link_to 'Back to your observations', 
-                  observations_by_login_path(:login => @user.login),
+                  observations_by_login_path(:login => current_user.login),
                   :class => 'back crumb' %>
       <% else %>
       <%= link_to "Back to #{@observation.user.login}'s observations", 
@@ -221,7 +231,7 @@
     </span>
   </h2>
   
-  <% if @user && @user.login == @observation.user.login %>
+  <% if is_me?(@observation.user) %>
     
     <div id="tools">
       <%= link_to "Edit", edit_observation_url, 
@@ -260,7 +270,7 @@
                   :class => "minor delete button" %>
     </div>
   
-  <% elsif @user && @user.is_admin? && @observation.flagged? %>
+  <% elsif logged_in? && current_user.is_admin? && @observation.flagged? %>
     <div id="tools">
       <%= link_to "Edit Flagged Observation", edit_observation_url, 
                   :id => "edit_list_button", :class => "button" %>
@@ -430,7 +440,7 @@
 
 <div class="column span-7 last">  
 
-  <div id="identifications" class="clear">
+  <div id="identifications" class="identifications clear">
     <h3>Identification Summary</h3>
     
     <% if @owners_identification %>
@@ -468,29 +478,22 @@
           <span class="inter">
             Added to <%= link_to "ID Please", id_please_path %>
           </span>
-          <%= link_to_remote "remove",
-            :url => @observation,
-            :with => "'ignore_photos=true&observation[id_please]=false'",
+          <%= link_to "remove", @observation,
+            :remote => true,
+            "data-params" => "ignore_photos=true&observation[id_please]=false",
             :method => :put,
-            :loading => 
-              "$('#added_to_id_please').fadeOut(function() {$('#need_id_help').fadeIn()});",
-            :html => {
-              :class => "pale button",
-              :style => "float: right; margin: 0"
-            } %>
+            :class => "pale button",
+            :style => "float: right; margin: 0" %>
         </div>
         
         <div id="need_id_help" class="quiet stacked box" style="display: <%= @observation.id_please? ? 'none' : 'block' %>">
-          <%= link_to_remote "Add to ID Please",
-            :url => @observation,
-            :with => "'ignore_photos=true&observation[id_please]=true'",
+          <%= link_to "Add to ID Please", @observation,
+            :remote => true,
+            "data-params" => "ignore_photos=true&observation[id_please]=true",
+            "data-type" => "json",
             :method => :put,
-            :loading => 
-              "$('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()});",
-            :html => {
-              :class => "glaucous button",
-              :style => "float: right; margin: 0;"
-            } %>
+            :class => "glaucous button",
+            :style => "float: right; margin: 0;" %>
           <span class="inter">Need ID help?</span>
         </div>
       </div>
@@ -503,7 +506,7 @@
     <% user_identified = false %>
     <% if logged_in? %>
       <% identifying_user_ids =  @observation.identifications.map { |ident| ident.user_id } -%>
-      <% user_identified = identifying_user_ids.include?(@user.id) -%>
+      <% user_identified = identifying_user_ids.include?(current_user.id) -%>
     <% end %>
     <div id="identification_form_wrapper-<%= @observation.id %>" class="identification_form_wrapper stacked">
       <h4>Suggest an ID</h4>
@@ -578,7 +581,7 @@
                       :action => 'create',
                       :project_id => project.id,
                       :observation_id => @observation.id,
-                      :user_id => @user.id },
+                      :user_id => current_user.id },
                     :method => :post,
                     :class => "glaucous button",
                     "data-loading-click" => "inviting..." %>

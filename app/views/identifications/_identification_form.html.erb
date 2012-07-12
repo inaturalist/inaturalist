@@ -4,15 +4,11 @@
 <% if logged_in? %>
   <%- identification ||= Identification.new(:user => current_user, 
                                            :observation => observation) -%>
-  <% remote_form_for(identification,
-    :loading => 
-      "$('#new_identification-#{observation.id} .default.button').hide(); " +
-      "$('#new_identification-#{observation.id}-loading').show()",
-    :complete => 
-      "$('#new_identification-#{observation.id} .default.button').show(); " + 
-      "$('#new_identification-#{observation.id}-loading').hide()",
+  <%= form_for(identification, :remote => true,
     :html => {
-     :id => "new_identification-#{observation.id}"
+      "data-type" => "json",
+     :id => "new_identification-#{observation.id}",
+     :class => "identificationform"
     }) do |f| %>
     
     <%= render :partial => 'identifications/form_fields', :locals => {

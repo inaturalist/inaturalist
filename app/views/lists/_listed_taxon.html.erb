@@ -1,5 +1,5 @@
 <%- 
-  listed_taxon ||= object || @listed_taxon
+  listed_taxon ||= @listed_taxon
   list ||= @list ||= listed_taxon.list
   current_user_life_list_taxon_ids ||= @current_user_life_list_taxon_ids 
   seenit ||= current_user_life_list_taxon_ids && current_user_life_list_taxon_ids.include?(listed_taxon.taxon.id) 
@@ -13,7 +13,7 @@
   end
 -%>
 <%- rendered_taxon_name = capture do -%>
-  <%= render(:partial => 'shared/taxon.html.erb', :object => listed_taxon.taxon) -%>
+  <%= render(:partial => 'shared/taxon', :formats => [:html], :object => listed_taxon.taxon) -%>
 <%- end -%>
 <div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unknown' %> taxon-<%= listed_taxon.taxon.id %>">
   <div class="column image">
@@ -25,16 +25,14 @@
   </div>
   <div class="actions">
     <% if logged_in? && listed_taxon.removable_by?(current_user) -%>
-      <%= link_to_remote("&times;", 
-        :url => listed_taxon_path(listed_taxon, :format => :json), 
+      <%= link_to("&times;".html_safe, 
+        listed_taxon_path(listed_taxon, :format => :json), 
+        :remote => true,
         :method => :delete,
-        :datatype => 'text',
+        :type => 'text',
         :confirm => "Are you sure you want to remove #{default_taxon_name(listed_taxon.taxon)} from this list?", 
-        :loading => "$('#listed_taxon_#{listed_taxon.id}').fadeOut().parents('.listed_taxon_photo:first').fadeOut()",
-        :html => {
-          :title => "Remove from list",
-          :class => "description removelink"
-        }) %>
+        :title => "Remove from list",
+        :class => "description removelink") %>
     <% end -%>
     <div class="seenit">
       <%= link_to("Add an observation", 

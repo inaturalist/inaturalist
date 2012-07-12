@@ -285,6 +285,41 @@
         }
       })
       
+      $('.list_selector_row .addlink')
+        .bind('ajax:beforeSend', function() {
+          $(this).hide()
+          $(this).nextAll('.loading').show()
+        })
+        .bind('ajax:complete', function() {
+          $(this).nextAll('.loading').hide()
+        })
+        .bind('ajax:success', function() {
+          $(this).siblings('.removelink').show()
+          $(this).parents('.list_selector_row').addClass('added')
+        })
+        .bind('ajax:error', function(event, jqXHR, ajaxSettings, thrownError) {
+          $(this).show()
+          var json = eval('(' + jqXHR.responseText + ')')
+          var errorStr = 'Heads up: ' + json.errors
+          alert(errorStr)
+        })
+        
+      $('.list_selector_row .removelink')
+        .bind('ajax:beforeSend', function() {
+          $(this).hide()
+          $(this).nextAll('.loading').show()
+        })
+        .bind('ajax:complete', function() {
+          $(this).nextAll('.loading').hide()
+        })
+        .bind('ajax:success', function() {
+          $(this).siblings('.addlink').show()
+          $(this).parents('.list_selector_row').removeClass('added')
+        })
+        .bind('ajax:error', function(event, jqXHR, ajaxSettings, thrownError) {
+          $(this).show()
+        })
+      
       <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()
         $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
@@ -346,7 +381,7 @@
                 iNaturalist.modalCenter(h.w)
               }
             });
-            
+
             $(h.w).find('#eol_taxon_photos .taxon_photos').photoSelector({
               baseURL: '<%= eol_photo_fields_url %>',
               urlParams: {
@@ -394,7 +429,29 @@
           });
         <% end %>
       <% end %>
-    });
+      
+      $('#edit_colors_dialog form')
+        .bind('ajax:before', function() {
+          $('#edit_colors .button').hide()
+          $('#edit_colors .loading').show()
+        })
+        .bind('ajax:complete', function() {
+          $('#edit_colors .button').show()
+          $('#edit_colors .loading').hide()
+        })
+        .bind('ajax:success', function() {
+          $('#colorboxen .color').remove()
+          $('#colors .notice').remove()
+          $('#colors .description').remove()
+          $('#edit_colors input:checked').each(function() {
+           $('#colorboxen').append(
+             $('<div>&nbsp;</div>').css({
+               'background-color': $(this).attr('alt')
+             }).addClass('color').attr('title', $(this).attr('alt'))
+           )
+          })
+        })
+    })
   </script>
 <% end -%>
 
@@ -402,7 +459,7 @@
   <span class="breadcrumbs">
     <%= link_to 'All Species', taxa_path, :class => 'back crumb' %>
     <% for iconic_taxon in Taxon::ICONIC_TAXA %>
-      <%= link_to "&nbsp;", iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
+      <%= link_to "&nbsp;".html_safe, iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
         :title => Taxon::ICONIC_TAXON_NAMES[iconic_taxon.name] %>
     <% end %>
   </span>
@@ -558,7 +615,7 @@
       <% end -%>
       <div id="colorboxen">
         <% for color in @colors %>
-          <%= link_to "&nbsp;", {:controller => "taxa", :action => "search", :colors => color.id},
+          <%= link_to "&nbsp;".html_safe, {:controller => "taxa", :action => "search", :colors => color.id},
             :class => "color", :style => "background-color: #{color.value}", :title => color.value, 
             :rel => "nofollow" %>
         <% end %>
@@ -567,26 +624,9 @@
         <div id="edit_colors">
           <%= link_to_toggle "Edit colors", "#edit_colors_dialog" %>
           <div id="edit_colors_dialog" style="display: none">
-            <% remote_form_for @taxon, 
+            <%= form_for @taxon, 
                 :url => {:action => 'update_colors', :id => @taxon, :format => 'js'},
-                :datatype => 'text',
-                :loading => 
-                  "$('#edit_colors .button').hide();" +
-                  "$('#edit_colors .loading').show()",
-                :complete => 
-                 "$('#edit_colors .button').show();" +
-                 "$('#edit_colors .loading').hide();",
-                :success => 
-                  "$('#colorboxen .color').remove();" +
-                  "$('#colors .notice').remove();" +
-                  "$('#colors .description').remove();" +
-                  "$('#edit_colors input:checked').each(function() {" +
-                    "$('#colorboxen').append(" +
-                      "$('<div>&nbsp;</div>').css({" +
-                        "'background-color': $(this).attr('alt')" +
-                      "}).addClass('color').attr('title', $(this).attr('alt'))" +
-                    ");" +
-                  "});" do |f| %>
+                :remote => true do |f| %>
               <%#= f.collection_select :color_ids, Color.all, :id, :value, {:include_blank => true}, :multiple => true %>
               <% for color in Color.all %>
                 <div class="color_field <%= color.value %>">

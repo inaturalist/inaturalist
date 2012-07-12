@@ -1,10 +1,7 @@
 <%- comment ||= @comment -%>
 <%- include_user_image ||= false -%>
 <div id="comment-<%= comment.id %>" class="comment clear<%= ' preview' if params[:preview] %>">
-  <% if params[:preview] -%>
-    <%= link_to_function "&times;", "$('#comment_preview').jqmHide();", :class => 'close corner' %>
-    <strong>Comment Preview</strong>
-  <% else %>
+  <% unless params[:preview] -%>
     <div class="meta">
       <% if include_user_image -%>
         <%= link_to(image_tag(comment.user.icon.url(:thumb), :class => 'usericon'), comment.user) %>

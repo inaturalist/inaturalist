@@ -1,5 +1,0 @@
-if @identification.errors
-  errors = @identification.errors.full_messages.join('<br/>')
-  page << "taxonSearchBehavior_#{@identification.observation_id}.status.setState('error');"
-  page << "taxonSearchBehavior_#{@identification.observation_id}.status.setMessage(\""+errors+"\");"
-end

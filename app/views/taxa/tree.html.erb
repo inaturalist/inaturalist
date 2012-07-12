@@ -108,7 +108,7 @@
   <script type="text/javascript" charset="utf-8">
     window.loadedNodeIds = {};
     $(document).ready(function() {
-      var json = <%= jit_taxon_tree_with_taxon(@taxon).to_json %>;
+      var json = <%= jit_taxon_tree_with_taxon(@taxon).to_json.html_safe %>;
       var canvas = new Canvas('taxonTree', {
         injectInto: 'treevis',
         width: 950,
