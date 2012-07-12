@@ -3,16 +3,18 @@
 -%>
 
 <% case taxon_change.class.name when "TaxonDrop"%>
-  <% new_taxa = [taxon_change.taxon] %>
+  <% left_taxa = [taxon_change.taxon] %>
+<% when "TaxonStage"%>
+  <% left_taxa = [taxon_change.taxon] %>
 <% when "TaxonSwap"%>
-  <% old_taxa = [taxon_change.old_taxon] %>
-  <% new_taxa = [taxon_change.taxon] %>
+  <% right_taxa = [taxon_change.taxon] %>
+  <% left_taxa = [taxon_change.old_taxon] %>
 <% when "TaxonMerge"%>
-  <% old_taxa = [taxon_change.taxon] %>
-  <% new_taxa = taxon_change.old_taxa %>
+  <% right_taxa = [taxon_change.taxon] %>
+  <% left_taxa = taxon_change.old_taxa %>
 <% when "TaxonSplit"%>
-  <% old_taxa = taxon_change.new_taxa %>
-  <% new_taxa = [taxon_change.taxon] %>
+  <% right_taxa = taxon_change.new_taxa %>
+  <% left_taxa = [taxon_change.taxon] %>
 <% end %>
 
 <div class="last clear column span-24">
@@ -53,7 +55,7 @@
   <tr>
     <td>
       <ul class="change_taxon">
-        <% for change_taxon in new_taxa %>
+        <% for change_taxon in left_taxa %>
           <li>
             <%= render :partial => 'change_taxon', :object => change_taxon %>
           </li>
@@ -70,13 +72,15 @@
         replaced with
       <% when "TaxonDrop" %>
         Dropped
+      <% when "TaxonDrop" %>
+        Staged
       <% end %>
       </span>
     </td>
     <td>
       <ul class="change_taxon">
-        <% unless taxon_change.class.name == "TaxonDrop" %>
-          <% for change_taxon in old_taxa %>
+        <% unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage"%>
+          <% for change_taxon in right_taxa %>
             <li>
               <%= render :partial => 'change_taxon', :object => change_taxon %>
             </li>

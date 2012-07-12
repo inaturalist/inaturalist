@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629011843) do
+ActiveRecord::Schema.define(:version => 20120712040410) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -753,6 +753,7 @@ ActiveRecord::Schema.define(:version => 20120629011843) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "committed_on"
+    t.string   "group"
   end
 
   create_table "taxon_links", :force => true do |t|
@@ -816,6 +817,21 @@ ActiveRecord::Schema.define(:version => 20120629011843) do
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true
   add_index "taxon_ranges", ["taxon_id"], :name => "index_taxon_ranges_on_taxon_id"
+
+  create_table "taxon_scheme_taxa", :force => true do |t|
+    t.integer  "taxon_scheme_id"
+    t.integer  "taxon_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "taxon_schemes", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "source_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taxon_versions", :force => true do |t|
     t.integer  "taxon_id"

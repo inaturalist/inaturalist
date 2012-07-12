@@ -15,9 +15,9 @@
 
   <fieldset class="column span-24">
     <% if taxon_change.new_record? -%>
-      <legend>Input taxon (for split or drop) or output taxon (for merge or swap)</legend>
+      <legend>Input taxon (or output taxon for merge)</legend>
     <% else %>
-      <legend><%= taxon_change_type == 'TaxonSplit' ? "Input taxon" : "Output taxon" %></legend>
+      <legend><%= taxon_change_type == 'TaxonMerge' ? "Output taxon" : "Input taxon" %></legend>
     <% end %>
     <div class="stacked column span-24">
       <div class="column span-24">
@@ -36,25 +36,36 @@
     </div>    
   </fieldset>
 
-  <fieldset class="column span-24">
-    <% if taxon_change.new_record? -%>
-      <legend>Output taxa (for split) or input taxa (for merge or swap)</legend>
-    <% else %>
-      <legend><%= taxon_change_type == 'TaxonSplit' ? "Output taxa" : "Input taxa" %></legend>
-    <% end %>
-    <div class="clear">
-      <%= render :partial => "taxon_change_taxa/nested_form_fields", 
-        :collection => taxon_change.taxon_change_taxa
-      %>
-    </div>
-    
-    <% if taxon_change.new_record? -%>
-      After you create this taxon change then edit it to add input/output taxa.
-    <% else -%>
-      <%= link_to "add a new taxon", new_taxon_change_taxon_change_taxon_path(taxon_change), :class => 'readmore' %>
-    <% end -%>
-  </fieldset>
-
+  <% if taxon_change.new_record? || taxon_change_type == "TaxonSplit" || taxon_change_type == "TaxonMerge" || taxon_change_type == "TaxonSwap" %>
+    <fieldset class="column span-24">
+      <% if taxon_change.new_record? -%>
+        <legend>Output taxa or taxon (for split or swap) otherwise input taxa (for merge)</legend>
+      <% else %>
+        <legend>
+          <%= 
+            case taxon_change_type
+            when 'TaxonSplit' then "Output taxa"
+            when 'TaxonMerge' then "Input taxa"
+            when 'TaxonSwap' then "Output taxon"
+            else ''
+            end
+          %>
+        </legend>
+      <% end %>
+      <div class="clear">
+        <%= render :partial => "taxon_change_taxa/nested_form_fields", 
+          :collection => taxon_change.taxon_change_taxa
+        %>
+      </div>
+      
+      <% if taxon_change.new_record? -%>
+        After you create this taxon change then edit it to add input/output taxa.
+      <% else -%>
+        <%= link_to "add a new taxon", new_taxon_change_taxon_change_taxon_path(taxon_change), :class => 'readmore' %>
+      <% end %>
+    </fieldset>
+  <% end -%>
+  
   <fieldset class="column span-24">
     <legend>Source</legend>
     <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>

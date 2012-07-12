@@ -2,7 +2,23 @@ class TaxonChangesController < ApplicationController
   before_filter :curator_required
   
   def index
-    if params[:iconic_taxon_id] && params[:source_id]
+    
+    options = {:page => params[:page]}
+    conditions = ""
+    merge_param = params[:merge] ? params[:merge] : false
+    split_param = params[:split] ? params[:split] : false
+    swap_param = params[:swap] ? params[:swap] : false
+    stage_param = params[:stage] ? params[:stage] : false
+    drop_param = params[:drop] ? params[:drop] : false
+    conditions += "OR type = 'TaxonMerge'" if merge_param == 'true'
+    conditions += "OR type = 'TaxonSplit'" if split_param == 'true'
+    conditions += "OR type = 'TaxonDrop'" if drop_param == 'true'
+    conditions += "OR type = 'TaxonStage'" if stage_param == 'true'
+    conditions += "OR type = 'TaxonSwap'" if swap_param == 'true'
+    conditions = conditions[3..-1] if conditions[0..2]=="OR "
+    options[:conditions] = conditions
+    
+    if params[:iconic_taxon_id] && params[:source_id] #filter by iconic taxon and source
       @all = true
       iconic_taxon_id = params[:iconic_taxon_id] #20978
       source_id = params[:source_id] #27
@@ -31,21 +47,33 @@ class TaxonChangesController < ApplicationController
             "LEFT OUTER JOIN taxa t1 ON taxon_changes.taxon_id = t1.id " +
             "LEFT OUTER JOIN taxa t2 ON tct.taxon_id = t2.id",
           :conditions => [
-            "(t1.iconic_taxon_id = ? AND t1.source_id = ?) OR (t2.iconic_taxon_id = ? AND t2.source_id = ?)",
+            "#{options} (t1.iconic_taxon_id = ? AND t1.source_id = ?) OR (t2.iconic_taxon_id = ? AND t2.source_id = ?)",
             iconic_taxon_id, source_id, iconic_taxon_id, source_id]
           )
       end
-    elsif params[:taxon_id]
+    elsif params[:taxon_id] #filter by taxon
       @all = false
-      @taxon = Taxon.find_by_id(params[:taxon_id])
-      @taxon_changes = [
-        TaxonChange.all(:conditions => {:taxon_id => params[:taxon_id]}),
-        TaxonChangeTaxon.all(:conditions => {:taxon_id => params[:taxon_id]}).map{|tct| tct.taxon_change}].flatten
-    else
-      @all = true
+      taxon_id = params[:taxon_id]
+      @taxon = Taxon.find_by_id(taxon_id)
+      #@taxon_changes = [
+      #  TaxonChange.all(:conditions => {:taxon_id => params[:taxon_id]}),
+      #  TaxonChangeTaxon.all(:conditions => {:taxon_id => params[:taxon_id]}).map{|tct| tct.taxon_change}].flatten
+      
       @taxon_changes = TaxonChange.paginate(
-        :page => params[:page]
-      )
+        :page => params[:page],
+        :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
+        :include => [:taxon, {:taxon_change_taxa => :taxon}],
+        :joins =>
+          "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id " +
+          "LEFT OUTER JOIN taxa t1 ON taxon_changes.taxon_id = t1.id " +
+          "LEFT OUTER JOIN taxa t2 ON tct.taxon_id = t2.id",
+        :conditions => [
+          "(t1.id = ?) OR (t2.id = ?)",
+          taxon_id, taxon_id]
+        )
+    else #filter taxon_change type
+      @all = true
+      @taxon_changes = TaxonChange.paginate(options)
     end
   end
   
