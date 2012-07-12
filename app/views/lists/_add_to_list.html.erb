@@ -1,12 +1,14 @@
-<%- list ||= object || @list -%>
+<%- list ||= add_to_list || @list -%>
 <%- species_guess ||= '' -%>
     <% lt = ListedTaxon.new(:list => list) %>
-    <% remote_form_for(lt, 
-      :url => listed_taxa_path(lt, :format => 'json', :method => :post),
-      :loading => "$('#listed_taxon_submit').hide(); $('#listed_taxon_loading').show()",
-      :complete => "$('#listed_taxon_submit').show(); $('#listed_taxon_loading').hide()",
-      :success => "afterTaxonAdded(request)",
-      :failure => "afterTaxonAddedFailure(request)") do |f| %>
+    <%= form_for(lt, 
+        :remote => true,
+        :method => :post,
+        :html => {
+          "data-type" => 'json',
+          :class => 'add_to_list'
+        }
+      ) do |f| %>
       <div>          
         <%= text_field_tag :species_guess, species_guess, :size => '', :class => "text" %>
         <%= f.hidden_field :taxon_id %>
@@ -14,17 +16,29 @@
       <%= f.hidden_field :list_id %>
       <%= hidden_field_tag 'success_msg', 'Life list updated!' %>
       <div class="inline buttonrow" style="text-align:center">
-        <%= f.submit "Add", :class => 'default inline button inlineblock' %>
+        <%= f.submit "Add", :id => "listed_taxon_submit", :class => 'default inline button inlineblock' %>
         <%= image_tag('spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none') %>
       </div>
     <% end %>
     
     <script type="text/javascript" charset="utf-8">
-      function afterTaxonAdded(request) {
-        try {
-          var json = eval("(" + request + ")");
-        } catch (e) {};
-
+      $('form.add_to_list')
+        .bind('ajax:beforeSend', function() {
+          $('#listed_taxon_submit').hide()
+          $('#listed_taxon_loading').show()
+        })
+        .bind('ajax:complete', function() {
+          $('#listed_taxon_submit').show()
+          $('#listed_taxon_loading').hide()
+        })
+        .bind('ajax:success', function(event, request, options) {
+          afterTaxonAdded(request)
+        })
+        .bind('ajax:error', function(event, request) {
+          afterTaxonAddedFailure(request)
+        })
+        
+      function afterTaxonAdded(json) {
         $.fn.simpleTaxonSelector.unSelectTaxon($('.simpleTaxonSelector').get(0));
         $('#listed_taxon_submit').addClass('disabled').attr('disabled', 'disabled');
         $.fn.simpleTaxonSelector.setStatus(
@@ -34,7 +48,7 @@
         );
         
         if ($('#add').length > 0) $('#add').effect('highlight', {}, 1000);
-
+        
         // Append html to the list
         $('#justadded').fadeIn();
         $('#justadded .listed_taxa').append(

@@ -62,18 +62,18 @@ class Observation < ActiveRecord::Base
   
   LICENSES = [
     ["CC-BY", "Attribution", "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."],
-    ["CC-BY-NC", "Attribution-NonCommercial", "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don’t have to license their derivative works on the same terms."],
+    ["CC-BY-NC", "Attribution-NonCommercial", "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don't have to license their derivative works on the same terms."],
     ["CC-BY-SA", "Attribution-ShareAlike", "This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. All new works based on yours will carry the same license, so any derivatives will also allow commercial use."],
     ["CC-BY-ND", "Attribution-NoDerivs", "This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you."],
     ["CC-BY-NC-SA", "Attribution-NonCommercial-ShareAlike", "This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms."],
-    ["CC-BY-NC-ND", "Attribution-NonCommercial-NoDerivs", "This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can’t change them in any way or use them commercially."]
+    ["CC-BY-NC-ND", "Attribution-NonCommercial-NoDerivs", "This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can't change them in any way or use them commercially."]
   ]
   LICENSE_CODES = LICENSES.map{|row| row.first}
   LICENSES.each do |code, name, description|
     const_set code.gsub(/\-/, '_'), code
   end
   PREFERRED_LICENSES = [CC_BY, CC_BY_NC]
-
+  
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
@@ -120,7 +120,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has photos(:id), :as => :has_photos, :type => :boolean
+    has photos(:id), :as => :has_photos #, :type => :boolean
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -146,7 +146,7 @@ class Observation < ActiveRecord::Base
       :as => :identifications_some_agree, :type => :boolean
     has "num_identification_agreements < num_identification_disagreements",
       :as => :identifications_most_disagree, :type => :boolean
-    has project_observations(:project_id), :as => :projects, :type => :multi
+    has project_observations(:project_id), :as => :projects #, :type => :multi
     set_property :delta => :delayed
   end
   
@@ -156,7 +156,7 @@ class Observation < ActiveRecord::Base
     fake_latitude fake_longitude num_identification_agreements 
     num_identification_disagreements identifications_most_agree 
     identifications_some_agree identifications_most_disagree projects)
-
+  
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
     :reject_if => lambda { |attrs| attrs[:value].blank? }
@@ -205,10 +205,6 @@ class Observation < ActiveRecord::Base
              :update_all_licenses
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
-  
-  # Activity updates
-  # after_save :update_activity_update
-  # before_destroy :delete_activity_update
   
   ##
   # Named scopes
@@ -538,7 +534,7 @@ class Observation < ActiveRecord::Base
     options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
     super(options)
   end
-
+  
   #
   # Return a time from observed_on and time_observed_at
   #
@@ -809,7 +805,7 @@ class Observation < ActiveRecord::Base
     self.time_zone ||= 'UTC'
     true
   end
-
+  
   #
   # Cast lat and lon so they will (hopefully) pass the numericallity test
   #
@@ -818,7 +814,7 @@ class Observation < ActiveRecord::Base
     # self.longitude = longitude.to_f unless longitude.blank?
     true
   end  
-
+  
   #
   # Force time_observed_at into the time zone
   #
@@ -877,7 +873,7 @@ class Observation < ActiveRecord::Base
            :limit => args[0]).include?(observation)
     end
   end
-
+  
   #
   # Checks whether this observation has been flagged
   #
@@ -1089,13 +1085,13 @@ class Observation < ActiveRecord::Base
   # Make sure the observation is not in the future.
   #
   def must_be_in_the_past
-
+  
     unless observed_on.nil? || observed_on <= Date.today
       errors.add(:observed_on, "can't be in the future")
     end
     true
   end
-
+  
   #
   # Make sure the observation resolves to a single day.  Right now we don't
   # store ambiguity...
@@ -1239,16 +1235,16 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  def update_attributes(attributes)
-    # hack around a weird android bug, should be removeable after any release post-March 2012
-    attributes.delete(:iconic_taxon_name)
-    
-    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    end
-    super(attributes)
-  end
+  # def update_attributes(attributes)
+  #   # hack around a weird android bug, should be removeable after any release post-March 2012
+  #   attributes.delete(:iconic_taxon_name)
+  #   
+  #   MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+  #     self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+  #     self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+  #   end
+  #   super(attributes)
+  # end
   
   def license_name
     return nil if license.blank?

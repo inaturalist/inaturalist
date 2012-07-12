@@ -921,9 +921,16 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  include TaxaHelper
+  def ctrl
+    @@ctrl ||= ApplicationController.new
+  end
+  
+  def view_context
+    ctrl.view_context
+  end
+  
   def image_url
-    taxon_image_url(self)
+    view_context.taxon_image_url(self)
   end
   
   def photo_url

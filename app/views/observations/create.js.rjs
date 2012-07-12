@@ -3,4 +3,4 @@ page.insert_html :top, 'observation-list',
                  :locals => {:observation => @observation}
 page.visual_effect :highlight, 'observation-' + @observation.id.to_s,
                    :duration => 0.5
-page.call 'rjsBridge.createNewObservation', @observation.to_json(:include => { :user => { :only => :login }})
+page.call 'rjsBridge.createNewObservation', @observation.to_json(:include => { :user => { :only => :login }}).html_safe

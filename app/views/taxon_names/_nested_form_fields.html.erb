@@ -1,4 +1,4 @@
-<%- taxon_name ||= object -%>
+<%- taxon_name ||= nested_form_fields -%>
 <%- taxon ||= taxon_name.taxon -%>
 <%- fields_for "taxon_names[]", taxon_name do |n| -%>
 <div class="column span-24 taxon_name_fields">

@@ -1,4 +1,4 @@
-<%- observation ||= cached_component || object -%>
+<%- observation ||= cached_component -%>
 <% if logged_in? && current_user.id == observation.user_id -%>
   <% cache(observation.component_cache_key(:for_owner => true)) do %>
     <%= render :partial => 'observations/observation_component', 

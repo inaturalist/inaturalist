@@ -176,6 +176,9 @@ class ListsController < ApplicationController
         format.js do
           render :text => 'Taxon removed from list.'
         end
+        format.json do
+          render :json => @listed_taxon
+        end
       else
         format.html do
           flash[:error] = "Could't find that taxon."
@@ -184,6 +187,9 @@ class ListsController < ApplicationController
         format.js do
           render :status => :unprocessable_entity, 
             :text => "That taxon isn't in this list."
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => "That taxon isn't in this list."}
         end
       end
     end

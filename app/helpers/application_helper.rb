@@ -237,11 +237,13 @@ module ApplicationHelper
     
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
-    
-    text = auto_link(markdown(simple_format(sanitize(text))))
+    text = sanitize(text)
+    text = simple_format(text)
+    text = markdown(text)
+    text = auto_link(text.html_safe).html_safe
     
     # Ensure all tags are closed
-    Nokogiri::HTML::DocumentFragment.parse(text).to_s
+    Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
   
   def markdown(text)
@@ -249,18 +251,18 @@ module ApplicationHelper
   end
   
   def render_in_format(format, *args)
-    old_format = @template.template_format
-    @template.template_format = format
+    old_formats = formats
+    self.formats = [format]
     html = render(*args)
-    @template.template_format = old_format
+    self.formats = old_formats
     html
   end
   
   def in_format(format)
-    old_format = @template.template_format
-    @template.template_format = format
+    old_formats = formats
+    self.formats = [format]
     yield
-    @template.template_format = old_format
+    self.formats = old_formats
   end
   
   def taxonomic_taxon_list(taxa, options = {}, &block)
@@ -561,7 +563,7 @@ module ApplicationHelper
         end
       end
     end
-    content_tag :span, s, :class => "rights verticalmiddle"
+    content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
   end
   
   def url_for_license(code)

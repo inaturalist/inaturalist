@@ -233,6 +233,49 @@ $(document).ready(function() {
     }
     return false
   })
+  
+  $('.commentpreviewbutton').click(function() {
+    var button = this
+    $.ajax($(this).attr('href'), {
+      type: 'POST',
+      data: $(this).parents('form').serialize() + '&preview=true',
+      dataType: 'json',
+      beforeSend: function() {
+        $(button).hide()
+        $(button).nextAll('.loading').show()
+      }
+    })
+    .done(function(data) {
+      $(button).show()
+      $(button).nextAll('.loading').hide()
+      var html = data.html || data.body || ''
+      html = '<div class="dialog">'+html+'</div>'
+      $(html).dialog({modal: true, title: 'Preview'})
+    })
+    return false
+  })
+  
+  $('.identificationform')
+    .bind('ajax:before', function() {
+      $('.default.button', this).hide()
+      $('.loading', this).show()
+    })
+    .bind('ajax:complete', function() {
+      $('.default.button', this).show()
+      $('.loading', this).hide()
+    })
+    .bind('ajax:success', function(event, json, status) {
+      $(this).parents('.identification_form_wrapper:first').fadeOut()
+      $(this).parents('.identifications').find('.identifications-list').append(json.html)
+      $(this).parents('.identifications').find('.identifications-list .identification:last').addClass('stacked')
+    })
+    .bind('ajax:error', function(event, request, settings) {
+      var json = eval('(' + request.responseText + ')')
+      if (json.errors) {
+        var errors = json.errors.join(', ')
+        alert('Failed to save identification: ' + errors)
+      }
+    })
 })
 
 function checkDelayedLink(url) {

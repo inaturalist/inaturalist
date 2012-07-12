@@ -21,7 +21,7 @@
   <% else %>
     <div id="wikipedia_description">
       <p>
-        <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
+        <%= @taxon.wikipedia_summary.html_safe unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
         <span id="description_loading_status" class="loading status" style="display:none">Loading full description...</span>
       </p>
     </div>

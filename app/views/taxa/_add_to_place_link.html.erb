@@ -1,5 +1,5 @@
 <%- 
-  place ||= @place || object
+  place ||= @place || add_to_place_link
   taxon ||= @taxon
   listed_taxon = @listed_taxa_by_place_id ? @listed_taxa_by_place_id[place.id] : nil
   skip_map ||= false

@@ -54,11 +54,11 @@
                              "jquery/plugins/inat/fixed_follower.js" %>
     
   <script type="text/javascript" charset="utf-8">
-    window.taxon = <%= @taxon.to_json(:methods => [:html]) %>
-    window.place = <%= @place.to_json(:methods => [:html]) %>
-    window.places = <%= @places.to_json(:methods => [:html]) %>
-    window.observation = <%= @observation.to_json(:include => [:taxon, :iconic_taxon]) %>
-    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]) %>
+    window.taxon = <%= @taxon.to_json(:methods => [:html]).html_safe %>
+    window.place = <%= @place.to_json(:methods => [:html]).html_safe %>
+    window.places = <%= @places.to_json(:methods => [:html]).html_safe %>
+    window.observation = <%= @observation.to_json(:include => [:taxon, :iconic_taxon]).html_safe %>
+    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
     
     var OVERRIDE_EXISTING = 0
     var RESPECT_EXISTING = 1

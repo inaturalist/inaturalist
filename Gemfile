@@ -23,7 +23,7 @@ gem "friendly_id", "~> 4.0.1"
 gem 'geoplanet'
 gem 'GeoRuby', :require => 'geo_ruby'
 gem 'google_analytics'
-gem 'hoptoad_notifier'
+# gem 'hoptoad_notifier'
 gem 'htmlentities'
 gem 'machinist'
 gem 'memcache-client'
@@ -48,6 +48,6 @@ gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'will_paginate'
 
 
-# group :test, :development do
-#   gem "rspec-rails", "~> 2.0.1"
-# end
+group :test, :development do
+  gem "rspec-rails" #, "~> 2.0.1"
+end

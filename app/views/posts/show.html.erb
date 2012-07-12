@@ -80,7 +80,7 @@
     $(document).ready(function() {
       if ($('#map').length > 0) {
         var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
-        var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+        var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
         map.addObservations(observations);
         map.zoomToObservations();
         $('#map').hide();

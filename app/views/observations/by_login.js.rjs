@@ -1,3 +1,3 @@
 page.insert_html :top, 'observation-list', :partial => 'observation_component', :locals => {:observation => @observation}
 page.visual_effect :highlight, 'observation-' + @observation.id.to_s, :duration => 0.5
-page.call 'rjsBridge.createNewObservation', @observation.to_json
+page.call 'rjsBridge.createNewObservation', @observation.to_json.html_safe
