@@ -52,6 +52,10 @@ class TaxonChange < ActiveRecord::Base
     }
   }
   
+  def to_s
+    "<#{self.class} #{id}>"
+  end
+  
   def self.commit_taxon_change(taxon_change_id)
     unless taxon_change = TaxonChange.find_by_id(taxon_change_id)
       return
