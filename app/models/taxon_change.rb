@@ -7,6 +7,51 @@ class TaxonChange < ActiveRecord::Base
   
   validates_presence_of :taxon_id
   
+  TAXON_JOINS = [
+    "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id",
+    "LEFT OUTER JOIN taxa t1 ON taxon_changes.taxon_id = t1.id",
+    "LEFT OUTER JOIN taxa t2 ON tct.taxon_id = t2.id"
+  ]
+  
+  named_scope :types, lambda {|types|
+    {:conditions => ["type IN (?)", types]}
+  }
+  
+  named_scope :committed, {:conditions => "committed_on IS NOT NULL"}
+  named_scope :uncommitted, {:conditions => "committed_on IS NULL"}
+  named_scope :change_group, lambda{|group| {:conditions => ["change_group = ?", group]}}
+  named_scope :iconic_taxon, lambda{|iconic_taxon|
+    {
+      :joins => TAXON_JOINS,
+      :conditions => ["t1.iconic_taxon_id = ? OR t2.iconic_taxon_id = ?", iconic_taxon, iconic_taxon]
+    }
+  }
+  named_scope :source, lambda{|source|
+    {
+      :joins => TAXON_JOINS,
+      :conditions => ["t1.source_id = ? OR t2.source_id = ?", source, source]
+    }
+  }
+  
+  named_scope :taxon, lambda{|taxon|
+    {
+      :joins => TAXON_JOINS,
+      :conditions => ["t1.id = ? OR t2.id = ?", taxon, taxon]
+    }
+  }
+  
+  named_scope :taxon_scheme, lambda{|taxon_scheme|
+    {
+      :joins => TAXON_JOINS + [
+        "LEFT OUTER JOIN taxon_scheme_taxa tst1 ON tst1.taxon_id = t1.id",
+        "LEFT OUTER JOIN taxon_scheme_taxa tst2 ON tst2.taxon_id = t2.id",
+        "LEFT OUTER JOIN taxon_schemes ts1 ON ts1.taxon_scheme_id = ts1.id",
+        "LEFT OUTER JOIN taxon_schemes ts2 ON ts2.taxon_scheme_id = ts2.id"
+      ],
+      :conditions => ["ts1.id = ? OR ts2.id = ?", taxon_scheme, taxon_scheme]
+    }
+  }
+  
   def self.commit_taxon_change(taxon_change_id)
     unless taxon_change = TaxonChange.find_by_id(taxon_change_id)
       return

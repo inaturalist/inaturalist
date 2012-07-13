@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712040410) do
+ActiveRecord::Schema.define(:version => 20120713074557) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -753,7 +753,7 @@ ActiveRecord::Schema.define(:version => 20120712040410) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "committed_on"
-    t.string   "group"
+    t.string   "change_group"
   end
 
   create_table "taxon_links", :force => true do |t|
