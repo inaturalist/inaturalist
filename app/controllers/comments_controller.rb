@@ -56,13 +56,14 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
+    @comment.user ||= current_user
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
       format.mobile { respond_to_create }
       format.json do
-        @comment.html = render_to_string(:partial => 'comments/comment.html.erb')
-        render :json => @comment.to_json(:methods => [:html]).html_safe
+        @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        render :json => @comment.to_json(:methods => [:html])
       end
     end
   end

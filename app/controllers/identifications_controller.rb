@@ -99,7 +99,7 @@ class IdentificationsController < ApplicationController
         flash[:notice] = "Identification deleted."
         redirect_to observation
       end
-      format.js
+      format.js { render :status => :ok, :json => nil }
     end
   end
   
@@ -125,11 +125,16 @@ class IdentificationsController < ApplicationController
       if @identification.save
         format.html { agree_respond_to_html }
         format.mobile { agree_respond_to_html }
-        format.js
+        format.json do
+          @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
+          render :json => @identification.to_json(:methods => [:html])
+        end
       else
         format.html { agree_respond_to_html_failure }
         format.mobile { agree_respond_to_html_failure }
-        format.js { render :action => 'agreement_error.js.rjs' }
+        format.json do
+          render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages }
+        end
       end
     end
   end
