@@ -1,16 +1,20 @@
 <% content_for(:title) do %>
-  Taxonomic changes <%= "for <i>#{link_to @taxon.name, taxon_path(@taxon)}</i>
-  (#{@taxon.is_active ? 'active' : 'inactive' })" unless @all %>
+  <% @title = capture do %>
+    Taxonomic changes
+    <% if @taxon -%>
+      for
+      <i><%= link_to @taxon.name, taxon_path(@taxon) %></i>
+      (<%= @taxon.is_active ? 'active' : 'inactive' %>)"
+    <% end -%>
+  <% end -%>
+  <%= strip_tags(@title) %>
 <% end %>
 
 <%- content_for(:extracss) do %>
 <%= stylesheet_link_tag 'taxon_changes' %>
 <% end %>
 
-<h2>
-  Taxonomic changes <%= "for <i>#{link_to @taxon.name, taxon_path(@taxon)}</i>
-  (#{@taxon.is_active ? 'active' : 'inactive' })" unless @all %>
-</h2>
+<h2><%= @title %></h2>
 
 <% if @taxon_changes.empty? %>
   <p class="description">No taxonomic changes matching those criteria</p>
