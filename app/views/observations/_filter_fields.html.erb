@@ -183,9 +183,8 @@
   </div>
 </div>
 
-
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/> <!-- Temporary! Inputs not specific to the filtering don't really belong here... -->
 
-<input id="submit_filters_button" type="submit" value="<%=t :search%>" class="default inline button" data-loading-click=<%t :searching %>"/>
+<input id="submit_filters_button" type="submit" value="<%=t :search%>" class="default inline button" data-loading-click="<%t :searching %>"/>
