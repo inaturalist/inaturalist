@@ -32,6 +32,7 @@ class Photo < ActiveRecord::Base
     6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/3.0/"},
     7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"}
   }
+  LICENSE_NUMBERS = LICENSE_INFO.keys
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
