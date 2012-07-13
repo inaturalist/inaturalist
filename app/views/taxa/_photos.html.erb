@@ -35,6 +35,7 @@
         <%= t(:creative_commons_flickr_tagged) %>"<%= taxon.name %>."
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
           <%= t(:view_all_photos_tagged_taxon, :taxon =>h(taxon.name) ) %>
+          <nobr>Flickr &raquo;</nobr>
         </a>
       </div>
     <% end %>
@@ -51,16 +52,6 @@
   </div>
 <% end %>
 
-<div class="description">
-  <h3 class="description">
-    <%= t(:no_creative_commons_flickr_photo) %> "<%= taxon.name %>"
-  </h3>
-  <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-    <%= t(:view_all_photos_tagged_taxon, :taxon =>h(taxon.name)) %>
-  </a><br/>
-  <%= t(:not_just_creative_common_licensed_parentesis) %>
-</div>
-<% end %>
 <% if photos.size > 0 && taxon.species_or_lower? %>
 <div style="margin-top: 10px">
   <% unless photos[1..-1].size == 0 %>
