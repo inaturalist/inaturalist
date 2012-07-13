@@ -3,26 +3,26 @@
   hide_form ||= false
   remote ||= nil 
 -%>
-    <h3>Comments</h3>
-    <% if parent.comments.empty? %>
-      <p class="description">No comments yet.</p>
-    <% end %>
-    <% for comment in parent.comments.sort {|a,b| a.created_at <=> b.created_at } %>
-      <div class="<%= cycle('odd', 'even') %>">
-        <%= render :partial => 'comments/comment', 
-                   :locals => { :comment => comment } %>
-      </div>
-    <%- end -%>
-    <%- unless hide_form -%>
-      <div id="new-comment" class="comment">
-        <div class="meta">
-          <h3>Add a Comment</h3>
-        </div>
-        <div class="body">
-          <%= render :partial => 'comments/comment_form', :locals => { 
-            :comment => Comment.new(:parent => parent, :user => logged_in? ? current_user : nil),
-            :remote => remote
-          } %>
-        </div>
-      </div><!-- end new comment -->
-    <% end -%>
+<h3>Comments</h3>
+<% if parent.comments.empty? %>
+  <p class="noresults">No comments yet.</p>
+<% end %>
+<% for comment in parent.comments.sort {|a,b| a.created_at <=> b.created_at } %>
+  <div class="<%= cycle('odd', 'even') %>">
+    <%= render :partial => 'comments/comment', 
+               :locals => { :comment => comment } %>
+  </div>
+<%- end -%>
+<%- unless hide_form -%>
+  <div id="new-comment" class="comment">
+    <div class="meta">
+      <h3>Add a Comment</h3>
+    </div>
+    <div class="body">
+      <%= render :partial => 'comments/comment_form', :locals => { 
+        :comment => Comment.new(:parent => parent, :user => logged_in? ? current_user : nil),
+        :remote => remote
+      } %>
+    </div>
+  </div><!-- end new comment -->
+<% end -%>

@@ -59,16 +59,16 @@ module ObservationsHelper
         else
           observation.place_guess
         end
-        link_to(place_guess, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
+        link_to(place_guess.html_safe, observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
          " (#{google_coords_link}, #{osm_coords_link})".html_safe
       end
     elsif !observation.latitude.blank? && !observation.coordinates_obscured?
-      link_to("<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>", 
+      link_to("<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>".html_safe, 
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
         
     elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
-      link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>", 
+      link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>".html_safe, 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
     else

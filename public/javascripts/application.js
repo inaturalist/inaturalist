@@ -277,16 +277,33 @@ $(document).ready(function() {
       }
     })
     
-    $('.friend_link').bind('ajax:before', function() {
-      $(this).fadeOut(function() {
-        $(this).siblings('.unfriend_link').fadeIn()
-      })
+  $('.friend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.unfriend_link').fadeIn()
     })
-    $('.unfriend_link').bind('ajax:before', function() {
-      $(this).fadeOut(function() {
-        $(this).siblings('.friend_link').fadeIn()
-      })
+  })
+  $('.unfriend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.friend_link').fadeIn()
     })
+  })
+  
+  $('.commentform').bind('ajax:before', function() {
+    $(this).siblings('.loading').show()
+    $(this).hide()
+  }).bind('ajax:complete', function() {
+    $(this).siblings('.loading').hide()
+    $(this).show()
+    $('input[type=submit]', this).val('Save comment').attr('disabled', false)
+  }).bind('ajax:success', function(e, json, status) {
+    $('textarea', this).val('')
+    var wrapper = $(this).parents('.comments_wrapper:first')
+    wrapper.find('.comments').show()
+    wrapper.find('.noresults').hide()
+    wrapper.find('.comments').append(json.html)
+  }).bind('ajax:error', function(xhr, status, error) {
+    alert(error)
+  })
 })
 
 function checkDelayedLink(url) {
