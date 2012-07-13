@@ -496,10 +496,21 @@
         <% for taxon_change in @taxon_changes %>
           <li>
             <span class="description">
-              <%= link_to "#{taxon_change.class.name.split('Taxon')[1]}", taxon_change_path(taxon_change) -%>
-              (<%= taxon_change.committed_on.nil? ? 'draft' : taxon_change.committed_on -%>)
+              <%= taxon_change.committed_on.nil? ? "Draft:" : taxon_change.committed_on -%>
+              <% case taxon_change.class.name.split('Taxon')[1] when "Split" %>              
+                <% change_name = (@taxon.id == taxon_change.taxon_id) ? 'Split into' : 'Split from' %>
+              <% when "Merge" %>
+                <% change_name = (@taxon.id == taxon_change.taxon_id) ? 'Merged from' : 'Merged into' %>
+              <% when "Merge" %>
+                <% change_name = (@taxon.id == taxon_change.taxon_id) ? 'Replaced with' : 'Replaced' %>
+              <% when "Stage" %>
+                <% change_name = 'Staged' %>
+              <% when "Drop" %>
+                <% change_name = 'Dropped' %>
+              <% end %>
+              <%= link_to change_name, taxon_change_path(taxon_change) -%>
             </span>
-            <% unless taxon_change.class.name == 'TaxonDrop' %>
+            <% unless taxon_change.class.name == 'TaxonDrop' || taxon_change.class.name == 'TaxonStage' %>
               <% if taxon_change.taxon == @taxon %>
                 <% change_children = ( taxon_change.class.name == "TaxonSplit" ? taxon_change.new_taxa : taxon_change.old_taxa ) %>
                 <% change_children = [change_children] if change_children.count == 1 %>
@@ -510,7 +521,18 @@
                 <% for change_child in change_children %>
                   <li>
                     <%= link_to change_child.name, change_child -%>
-                    <span class="small description">(<%= change_child.is_active ? "active" : "inactive" %>)</span>
+                    <span class="small description">
+                      <% if change_child.source && change_child.source_url %>
+                        (<%= link_to h(truncate(change_child.source.title, :length => 15)), change_child.source_url %>
+                      <% elsif change_child.source %>
+                        (<%= change_child.source.title %>
+                      <% elsif change_child.creator %>
+                        (added by <%= link_to h(change_child.creator.login), change_child.creator %>
+                      <% else %>
+                        (source unknown
+                      <% end %>
+                      | <%= change_child.is_active ? "active" : "inactive" %>)
+                    </span>
                   </li>
                 <% end %>
               </ul>

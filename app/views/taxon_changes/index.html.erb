@@ -23,7 +23,4 @@
   <%= render :partial => 'show_change_taxon', :object => taxon_change %>
 <% end %>
 
-
-<% if @all %>
-  <%= will_paginate @taxon_changes %>
-<% end %>
+<%= will_paginate @taxon_changes %>

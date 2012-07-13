@@ -49,6 +49,9 @@
   <% else %>
     Source: unknown
   <% end %>
+  <% if taxon_change.change_group %>
+    | Group: <%= taxon_change.change_group %>
+  <% end %>
 </p>
 
 <table border="0" cellspacing="5" cellpadding="5">
