@@ -9,6 +9,7 @@ base: &base
     general:
         SITE_NAME: yoursite.org
     default_locale: es
+    feedback_url: http://groups.google.com/group/inaturalist
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af

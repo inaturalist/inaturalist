@@ -107,7 +107,7 @@
   <div id="learn" class="column span-5">
     <center>
       <%= link_to image_tag("/images/animals.jpg", :height => 155), taxa_path %>
-      <h1><%=  link_to t(:learn!), taxa_path %></h1>
+      <h1><%= link_to t(:learn!), taxa_path %></h1>
       <p><%= link_to t(:about)+" "+t(:life!), taxa_path %></p>
     </center>
   </div>
@@ -124,7 +124,9 @@
     <div id="more">
     <h2><%=t :welcome! %></h2>
       <p>
-      <%=t :to %> <%= raw t(:welcome_message) %>
+        <%=t :to %>
+        <%= image_tag('logo-small.gif') %>
+        <%= raw t(:welcome_message) %>
       </p>
 
       <a href="/about" id="learnmore" class="button">

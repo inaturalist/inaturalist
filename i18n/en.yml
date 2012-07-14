@@ -205,10 +205,9 @@ en:
       <<: *errors
 #en: #shared
   # _footer
-  initiative_name: Costa Rica salvaje
   help: Help
   feedback: Feedback
-  terms_service: Terms of service
+  terms_service: Terms of Service
   privacy: Privacy Policy
   follow_us: Follow us on
   # header
@@ -223,7 +222,6 @@ en:
   places: Places
   search_places: Search places
   people: People
-  welcome: Welcome
   dashboard: Dashboard
   home: Home
   add: Add
@@ -236,12 +234,12 @@ en:
   # index
   hello: <test> 
   explore!: Explore!
-  world!: World!
+  world!: Your World!
   learn!: Learn!
   life!: Life!
   record!: Record!
   welcome!: Welcome!
-  add_observations!: Add observations!
+  add_observations!: Add Observations!
   add_observation: Add observation
   your: Your
   about: About
@@ -633,7 +631,7 @@ en:
   from_in_this_place: from in this place
   research_grade: research grade
   first_confirmed_inat_observation: First confirmed iNat observation
-  added: added
+  added: Added
   last_confirmed_observation: Last confirmed observation
   occurrence_status: Occurrence status
   view_taxon_page_for: View taxon page for this place
@@ -1609,7 +1607,7 @@ en:
   no_more_updates: No more updates!
   id_please: ID Please
   can_you_help_your_friends_id_these: Can you help your friends ID these?
-  more: Más...
+  more: More
   id_more_in_id_please: ID more in ID Please
   recent_comments_on_your_stuff: Recent Comments on Your Stuff
   no_activity_in_the_past_week: No activity in the past week.  Time to 
@@ -1801,7 +1799,7 @@ en:
   connected_accounts: connected accounts
   home_faq: FAQ
 #help
-  welcome_message: |
+  welcome_message_help: |
     Howdy. If you're just getting started with iNat, check out
     <%= link_to "Getting Started", :action => "getting_started" %> guide to tour some of the site's features. If you have a
     question about the site, please peruse the FAQ below. If you're still
@@ -2003,7 +2001,7 @@ en:
   back_to_albums: Volver atras 
   full_id_please: ¿Nombre científico?
   observation_date: Fecha
-  observed: Obserado en
+  observed: Observed
   is_the_organism_wild: ¿Es el organismo salvaje? 
   does_the_location_seem_accurate: ¿El lugar parece correcto?
   n_person_agrees: %{amount} persona concuerda

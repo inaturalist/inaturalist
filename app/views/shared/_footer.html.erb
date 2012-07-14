@@ -1,16 +1,18 @@
 <div id="footer" class="clear">
   <div id="footer_text" class="stacked">
-    <a href="/about"><%=t :about%> <%=t :initiative_name %></a> &nbsp;
+    <a href="/about"><%=t :about %> <%= SITE_NAME %></a> &nbsp;
     <a href="/help"><%=t :help %></a> &nbsp;
-    <!--a href="http://groups.google.com/group/inaturalist"><%=t :feedback %></a--> &nbsp;
-    <a href="http://bioexplorador.inbio.ac.cr/terms.html"><%=t :terms_service %></a> &nbsp;
-    <a href="http://bioexplorador.inbio.ac.cr/privacy.html"><%=t :privacy%></a> &nbsp;
-    <span class="description">|&nbsp; <%=t :follow_us%></span>
-    <a href="http://twitter.com/inbiocr">Twitter</a> <span class="description">&amp;</span>
-    <a href="http://www.facebook.com/inbio">Facebook</a> &nbsp;
+    <a href="<%= INAT_CONFIG['feedback_url'] %>"><%=t :feedback %></a> &nbsp;
+    <a href="/terms.html"><%=t :terms_service %></a> &nbsp;
+    <a href="/privacy.html"><%=t :privacy%></a> &nbsp;
+    <span class="description">|&nbsp; <%=t :follow_us %></span>
+    <%= [
+      link_to('Twitter', INAT_CONFIG['twitter'].try(:[], 'url')),
+      link_to('Facebook', INAT_CONFIG['facebook'].try(:[], 'url'))
+    ].join('  <span class="description">&amp;</span> ') %>
   </div>
-  <div>
-    Este sitio funciona gracias al excelente software creado por <a href="http://www.inaturalist.org/" target="_new" ><img src="/images/inaturalist-logo.gif"></img></a>
+  <div class="meta">
+    Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> open source software
   </div>
   <div>
   </div>
