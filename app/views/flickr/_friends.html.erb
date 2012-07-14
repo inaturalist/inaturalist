@@ -2,7 +2,7 @@
   <h4>Select a friend</h4>
   <table>
     <% @friends.each do |friend| %>
-      <tr class='friend' data-friend_uid='<%= friend['nsid'] %>'>
+      <tr class='friend' data-friend_id='<%= friend['nsid'] %>'>
         <td><%= link_to(image_tag(flickr_buddyicon(friend['iconfarm'], friend['iconserver'], friend['nsid'])), '') %></td>
         <td><%= link_to(friend['username'], '') %></td>
       </tr>

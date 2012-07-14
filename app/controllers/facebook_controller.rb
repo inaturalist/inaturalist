@@ -25,39 +25,48 @@ class FacebookController < ApplicationController
   end
 
   # Return an HTML fragment containing a list of the user's fb albums
-  def albums
+  #def albums
+  def photo_fields
+    if current_user.facebook_api.nil?
+      @reauthorization_needed = true
+      render(:partial => 'facebook/albums') and return
+    end
     context = params[:context] || 'user'
-    @friend_id = params[:friend_id]
-    @friend_id = nil if @friend_id=='null'
     begin
-      # if context is friends, but no friend id specified, we want to show the friend selector
-      if (context=='friends' && @friend_id.nil?) 
-        @friends = facebook_friends(current_user)
-        render :partial => 'facebook/friends' and return
-      end
-      @albums = facebook_albums(current_user, @friend_id)
-      if @friend_id
-        friend_data = current_user.facebook_api.get_object(@friend_id)
-        @friend_name = friend_data['first_name']
+      if context=='user'
+        @albums = facebook_albums(current_user)
+        render :partial => 'facebook/albums' and return
+      elsif context=='groups'
+        if @group_id.nil?  # if context is groups, but no group id specified, we want to show the group selector
+          @groups = facebook_groups(current_user)
+          render :partial => 'facebook/groups' and return
+        else
+        end
+      elsif context=='friends'
+        @friend_id = params[:object_id]
+        @friend_id = nil if @friend_id=='null'
+        if @friend_id.nil?  # if context is friends, but no friend id specified, we want to show the friend selector
+          @friends = facebook_friends(current_user)
+          render :partial => 'facebook/friends' and return
+        else
+          @albums = facebook_albums(current_user, @friend_id)
+          friend_data = current_user.facebook_api.get_object(@friend_id)
+          @friend_name = friend_data['first_name']
+          render :partial => 'facebook/albums'
+        end
       end
     rescue Koala::Facebook::APIError => e
-      raise e unless e.message =~ /OAuthException/
+      raise e #unless e.message =~ /OAuthException/
       @reauthorization_needed = true
       []
     end
-    render :partial => 'facebook/albums'
   end
-
-#  this is mapped in config/routes.rb
-#  def photo_fields
-#    redirect_to :action => "albums"
-#  end
 
   # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
     limit = (params[:limit] || 10).to_i
     offset = ((params[:page] || 1).to_i - 1) * limit
-    @friend_id = params[:friend_id] unless params[:friend_id]=='null'
+    @friend_id = params[:object_id] unless params[:object_id]=='null'
     if @friend_id
       friend_data = current_user.facebook_api.get_object(@friend_id)
       @friend_name = friend_data['first_name']
@@ -82,6 +91,45 @@ class FacebookController < ApplicationController
     end
   end
 
+  def photos_in_group(group_id)
+    # this query gets the feed items from this group
+    # the created_time > 0 condition ensures that we get *all* feed items
+    # (default will limit it to 50 items)
+    group_feed = current_user.facebook_api.fql_query("
+                                                     SELECT attachment 
+                                                     FROM stream 
+                                                     WHERE source_id=#{group_id}
+                                                     AND created_time > 0
+                                                     ")
+    # filter out feed items that don't have a photo attached
+    group_feed_photo_attachments = group_feed.delete_if{|f| f['attachment'].nil? || f['attachment']['fb_object_type']!='photo'}
+    group_feed_photo_ids = group_feed_photo_attachments.map{|a| a['attachment']['media'][0]['photo']['fbid']}
+    # todo: pagination
+    fb_photos = current_user.facebook_api.get_objects(group_feed_photo_ids) # return hash like {"photo1_id"=>{photo1_data}, ...}
+    photos = fb_photos.values.map{|fp| FacebookPhoto.new_from_api_response(fp) }
+    return photos
+  end
+
+  # Return an HTML fragment containing photos in the group's feed 
+  def group
+    limit = (params[:limit] || 10).to_i
+    offset = ((params[:page] || 1).to_i - 1) * limit
+    @group_id = params[:object_id] unless params[:object_id]=='null'
+    @photos = photos_in_group(@group_id)
+    # sync doesn't work with facebook! they strip exif metadata from photos. :(
+    #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
+    respond_to do |format|
+      format.html do
+        render :partial => 'photos/photo_list_form', 
+               :locals => {
+                 :photos => @photos, 
+                 :index => params[:index],
+                 :synclink_base => nil, #@synclink_base,
+                 :local_photos => false
+               }
+      end
+    end
+  end
   protected
 
   # returns an array of album data hashes like [{ 'name'=>'Safari Pics', 'cover_photo_src'=>(thumbnail_url) }, ...]
@@ -107,6 +155,15 @@ class FacebookController < ApplicationController
     return [] unless user.facebook_api
     friends_data = user.facebook_api.get_connections('me','friends').sort_by{|f| f['name']}
     return friends_data
+  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+    Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    return []
+  end
+
+  def facebook_groups(user)
+    return [] unless user.facebook_api
+    groups_data = user.facebook_api.get_connections('me','groups').sort_by{|f| f['name']}
+    return groups_data
   rescue OpenSSL::SSL::SSLError, Timeout::Error => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []

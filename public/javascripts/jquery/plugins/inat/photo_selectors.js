@@ -203,7 +203,7 @@
         var newSource = sources[currentSource]; 
         sourceOptions = (sourceOptions || {});
         sourceOptions['url'] = (sourceOptions.url || newSource.url);
-        sourceOptions['friend_uid'] = (sourceOptions.friend_uid || false);
+        sourceOptions['object_id'] = (sourceOptions.object_id || false);
         if (typeof newSource.$contextWrapper == 'undefined') {
           // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
           //sourceOptions['context'] = newSource.defaultContext;
@@ -217,7 +217,7 @@
             $searchWrapper.hide();
           }
         }
-        $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['friend_uid']);
+        $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['object_id']);
       }
     }
 
@@ -225,26 +225,42 @@
       try {
         updateSource({
           url: '/facebook/album/'+$(this).data('aid'),
-          friend_uid: $(this).closest('.facebookAlbums').data('friend_uid')
+          object_id: $(this).closest('.facebookAlbums').data('friend_id')
           });
       } catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           '/facebook/album/' + $(this).data('aid'), 
           'user', //contextSelect.val(), 
-          $(this).closest('.facebookAlbums').data('friend_uid'));
+          $(this).closest('.facebookAlbums').data('friend_id'));
+      }
+      return false;
+    })
+
+    $(".facebookGroups .group", wrapper).live('click', function() {
+      try {
+        updateSource({
+          url: '/facebook/group/',
+          object_id: $(this).data('group_id')
+          });
+      } catch(e) {
+        $.fn.photoSelector.changeBaseUrl(
+          wrapper, 
+          '/facebook/group/', 
+          'group', //contextSelect.val(), 
+          $(this).data('group_id'));
       }
       return false;
     })
   
     $('.back_to_albums').live('click', function(){
-      try { updateSource({ friend_uid: $(this).data('friend_uid') }); } 
+      try { updateSource({ object_id: $(this).data('friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           urlSelect.val(), 
           'user', //contextSelect.val(), 
-          $(this).data('friend_uid'));
+          $(this).data('friend_id'));
       }
       return false;
     });
@@ -255,15 +271,27 @@
       return false;
     });
 
+    $('.back_to_groups').live('click', function(){
+      try { updateSource({ object_id: $(this).data('group_id') }); } 
+      catch(e) {
+        $.fn.photoSelector.changeBaseUrl(
+          wrapper, 
+          urlSelect.val(), 
+          'groups', //contextSelect.val(), 
+          $(this).data('group_id'));
+      }
+      return false;
+    });
+
     // friend selector
     $('.friendSelector .friend').live('click', function(){
-      try { updateSource({ friend_uid: $(this).data('friend_uid') }); } 
+      try { updateSource({ object_id: $(this).data('friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           urlSelect.val(), 
           'user', // contextSelect.val(), 
-          $(this).data('friend_uid'));
+          $(this).data('friend_id'));
       }
       return false;
     });
@@ -334,11 +362,11 @@
     });
   }
   
-  $.fn.photoSelector.changeBaseUrl = function(wrapper, url, context, friend_id) {
+  $.fn.photoSelector.changeBaseUrl = function(wrapper, url, context, object_id) {
     var options = $(wrapper).data('photoSelectorOptions');
     options.baseURL = url;
     options.urlParams.context = (context || 'user');
-    options.urlParams.friend_id = (friend_id || null);
+    options.urlParams.object_id = (object_id || null);
     $(wrapper).data('photoSelectorOptions', options);
     $.fn.photoSelector.queryPhotos($(wrapper).find('.photoSelectorSearchField').val(), wrapper);
   };

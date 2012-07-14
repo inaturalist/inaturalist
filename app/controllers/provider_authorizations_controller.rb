@@ -34,6 +34,7 @@ class ProviderAuthorizationsController < ApplicationController
   def create
     auth_info = request.env['omniauth.auth']
     
+    session[:return_to] = nil
     case auth_info["provider"]
     when 'facebook'
       # omniauth bug sets fb nickname to 'profile.php?id=xxxxx' if no other nickname exists
@@ -44,7 +45,7 @@ class ProviderAuthorizationsController < ApplicationController
       # (maybe cause our version of omniauth was pre- fb graph api?)
       auth_info["user_info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
     when 'flickr'
-      #logger.info(auth_info.to_yaml)
+      logger.info(auth_info.to_yaml)
       # construct the url for the user's flickr buddy icon
       #nsid = auth_info['extra']['user_hash']['nsid']
       nsid = auth_info['uid']

@@ -156,45 +156,44 @@ class FlickrController < ApplicationController
       @authorization_needed = true
       render(:partial => "flickr/photo_invite") and return
     end
-    context = (params[:context] || 'user')
+    # Try to look up a photo id
+    if params[:q].to_i != 0 && params[:q].to_i > 10000
+      if fp = @flickr.photos.get_info(params[:q])
+        if params[:context] == 'user' && 
+            fp.owner == current_user.flickr_identity.flickr_user_id
+          @photos = [fp]
+        end
+      end
+    else
+      context = (params[:context] || 'user')
 
-    @friend_id = params[:friend_id]
-    @friend_id = nil if @friend_id=='null'
-    #begin
-    # if context is friends, but no friend id specified, we want to show the friend selector
-    if (context=='friends' && @friend_id.nil?) 
-      @friends = flickr_friends
-      render :partial => 'flickr/friends' and return
-    end
-=begin
-    @albums = facebook_albums(current_user, @friend_id)
-    if @friend_id
-      friend_data = current_user.facebook_api.get_object(@friend_id)
-      @friend_name = friend_data['first_name']
-    end
-=end
+      @friend_id = params[:object_id]
+      @friend_id = nil if @friend_id=='null'
 
-    search_params = {}
-    if context=='user'
-      search_params['user_id'] = current_user.flickr_identity.flickr_user_id
-    elsif context=='friends'
-      #friend_data = flickr.people.getInfo(:user_id=>@friend_id)
-      #@friend_name = friend_data['username']
-      search_params['user_id'] = @friend_id
-    elsif context=='public'
-      search_params['license'] = '1,2,3,4,5,6'
-      search_params['text'] = params[:q]
-    end
-    search_params['auth_token'] = current_user.flickr_identity.token
-    search_params['per_page'] = params[:limit] ||= 10
-    #search_params['text'] = params[:q]
-    search_params['page'] = params[:page] ||= 1
-    search_params['extras'] = 'date_upload,owner_name,url_sq'
-    search_params['sort'] = 'relevance'
+      search_params = {}
+      if context=='user'
+        search_params['user_id'] = current_user.flickr_identity.flickr_user_id
+      elsif context=='friends'
+        if @friend_id.nil? # if context is friends, but no friend id specified, we want to show the friend selector
+          @friends = flickr_friends
+          render :partial => 'flickr/friends' and return
+        end
+        search_params['user_id'] = @friend_id
+      elsif context=='public'
+        search_params['license'] = '1,2,3,4,5,6'
+        search_params['text'] = params[:q]
+      end
+      search_params['auth_token'] = current_user.flickr_identity.token
+      search_params['per_page'] = params[:limit] ||= 10
+      #search_params['text'] = params[:q]
+      search_params['page'] = params[:page] ||= 1
+      search_params['extras'] = 'date_upload,owner_name,url_sq'
+      search_params['sort'] = 'relevance'
 
-    #logger.info(search_params.to_yaml)
-    get_flickraw
-    @photos = flickr.photos.search(search_params)
+      #logger.info(search_params.to_yaml)
+      get_flickraw
+      @photos = flickr.photos.search(search_params)
+    end
 
 =begin
 
