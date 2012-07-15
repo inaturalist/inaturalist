@@ -4,6 +4,7 @@ class PhotosController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_photo, :only => [:show, :update]
   before_filter :require_owner, :only => [:update]
+  before_filter :login_required, :only => [:inviter]
   
   def show
     @size = params[:size]

@@ -41,6 +41,11 @@
 .photoSelector .friendSelector li {
   display: inline;
 }
+.photoSelector .groupSelector,
+.photoSelector .friendSelector {
+  max-height: 300px;
+  overflow: auto;
+}
 .photoSelector h4 {
   margin: 10px 0 5px;
   font-family: "Trebuchet MS", Arial, sans-serif;
