@@ -71,6 +71,11 @@ class PhotosController < ApplicationController
   def inviter
     @default_source = params[:source]
     @default_context = params[:context]
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    if params[:project_id]
+      @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
+    end
+    @projects = current_user.projects.all(:limit => 100, :order => :title)
     if request.post?
       if !params[:comment].include?("{{INVITE_LINK}}")
         flash[:notice] = "You need to include the {{INVITE_LINK}} placeholder in your comment!"
