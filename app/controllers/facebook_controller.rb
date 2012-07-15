@@ -96,9 +96,6 @@ class FacebookController < ApplicationController
     end
   end
 
-  def photos_in_group(group_id)
-  end
-
   # Return an HTML fragment containing photos from the group's feed 
   # facebook group id should be specified as params[:object_id]
   def group

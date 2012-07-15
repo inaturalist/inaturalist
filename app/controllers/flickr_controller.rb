@@ -364,19 +364,6 @@ class FlickrController < ApplicationController
     redirect_to "/auth/flickr"
   end
   
-  def create_invite
-    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
-    if params[:project_id]
-      @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
-    end
-    @flick_photo_id = params[:flickr_photo_id]
-    @invite_url = url_for(:action => "invite", :taxon_id => @taxon.try(:id), 
-      :project_id => @project.try(:id), :flickr_photo_id => @flickr_photo_id)
-    if logged_in?
-      @projects = current_user.projects.all(:limit => 100, :order => :title)
-    end
-  end
-  
   private
   def ensure_has_no_flickr_identity
     redirect_to(:action => 'options') and return if current_user.flickr_identity
