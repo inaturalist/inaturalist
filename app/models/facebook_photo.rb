@@ -60,6 +60,24 @@ class FacebookPhoto < Photo
     observation
   end
 
+  # Get all the photos posted to the feed of the specified facebook group
+  def self.fetch_from_fb_group(fb_group_id, user)
+    # this query gets the feed items from this group
+    # the created_time > 0 condition ensures that we get *all* feed items
+    # (default will limit it to 50 items)
+    group_feed = user.facebook_api.fql_query("SELECT attachment 
+                                              FROM stream 
+                                              WHERE source_id=#{fb_group_id}
+                                              AND created_time > 0")
+    # filter out feed items that don't have a photo attached
+    group_feed_photo_attachments = group_feed.delete_if{|f| f['attachment'].nil? || f['attachment']['fb_object_type']!='photo'}
+    group_feed_photo_ids = group_feed_photo_attachments.map{|a| a['attachment']['media'][0]['photo']['fbid']}
+    # todo: pagination
+    fb_photos = user.facebook_api.get_objects(group_feed_photo_ids) # return hash like {"photo1_id"=>{photo1_data}, ...}
+    photos = fb_photos.values.map{|fp| FacebookPhoto.new_from_api_response(fp) }
+    return photos
+  end
+
 #  
 #  # Try to extract known taxa from the tags of a flickr photo
 #  def to_taxa(options = {})

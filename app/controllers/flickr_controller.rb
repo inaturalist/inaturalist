@@ -151,10 +151,15 @@ class FlickrController < ApplicationController
   #   index:    index to use if these inputs are part of a form subcomponent
   #             (makes names like flickr_photos[:index][])
   def photo_fields
+    context = (params[:context] || 'user')
     if current_user.flickr_identity.nil?
-      # TODO: set redirect back from referrer?
-      @authorization_needed = true
-      render(:partial => "flickr/photo_invite") and return
+      @reauthorization_needed = true
+      @provider = 'flickr'
+      uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
+      uri.query_values ||= {}
+      uri.query_values = uri.query_values.merge({:source => @provider, :context => context})
+      session[:return_to] = uri.to_s 
+      render(:partial => "photos/auth") and return
     end
     # Try to look up a photo id
     if params[:q].to_i != 0 && params[:q].to_i > 10000
@@ -165,8 +170,6 @@ class FlickrController < ApplicationController
         end
       end
     else
-      context = (params[:context] || 'user')
-
       @friend_id = params[:object_id]
       @friend_id = nil if @friend_id=='null'
 

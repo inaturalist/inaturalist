@@ -27,11 +27,16 @@ class FacebookController < ApplicationController
   # Return an HTML fragment containing a list of the user's fb albums
   #def albums
   def photo_fields
+    context = params[:context] || 'user'
     if current_user.facebook_api.nil?
       @reauthorization_needed = true
-      render(:partial => 'facebook/albums') and return
+      @provider = 'facebook'
+      uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
+      uri.query_values ||= {}
+      uri.query_values = uri.query_values.merge({:source => @provider, :context => context})
+      session[:return_to] = uri.to_s 
+      render(:partial => "photos/auth") and return
     end
-    context = params[:context] || 'user'
     begin
       if context=='user'
         @albums = facebook_albums(current_user)
@@ -92,30 +97,15 @@ class FacebookController < ApplicationController
   end
 
   def photos_in_group(group_id)
-    # this query gets the feed items from this group
-    # the created_time > 0 condition ensures that we get *all* feed items
-    # (default will limit it to 50 items)
-    group_feed = current_user.facebook_api.fql_query("
-                                                     SELECT attachment 
-                                                     FROM stream 
-                                                     WHERE source_id=#{group_id}
-                                                     AND created_time > 0
-                                                     ")
-    # filter out feed items that don't have a photo attached
-    group_feed_photo_attachments = group_feed.delete_if{|f| f['attachment'].nil? || f['attachment']['fb_object_type']!='photo'}
-    group_feed_photo_ids = group_feed_photo_attachments.map{|a| a['attachment']['media'][0]['photo']['fbid']}
-    # todo: pagination
-    fb_photos = current_user.facebook_api.get_objects(group_feed_photo_ids) # return hash like {"photo1_id"=>{photo1_data}, ...}
-    photos = fb_photos.values.map{|fp| FacebookPhoto.new_from_api_response(fp) }
-    return photos
   end
 
-  # Return an HTML fragment containing photos in the group's feed 
+  # Return an HTML fragment containing photos from the group's feed 
+  # facebook group id should be specified as params[:object_id]
   def group
     limit = (params[:limit] || 10).to_i
     offset = ((params[:page] || 1).to_i - 1) * limit
     @group_id = params[:object_id] unless params[:object_id]=='null'
-    @photos = photos_in_group(@group_id)
+    @photos = FacebookPhoto.fetch_from_fb_group(@group_id, current_user)
     # sync doesn't work with facebook! they strip exif metadata from photos. :(
     #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|

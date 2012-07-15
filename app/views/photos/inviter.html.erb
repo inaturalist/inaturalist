@@ -72,8 +72,9 @@
       //baseURL: DEFAULT_PHOTO_IDENTITY_URL,
       //urls: PHOTO_IDENTITY_URLS,
       sources: PHOTO_SOURCES,
-      defaultSource: "facebook",
-      defaultContext: "friends"
+      defaultSource: '<%= (@default_source || "facebook") %>',
+      defaultContext: '<%= (@default_context || "friends") %>',
+      skipLocal: true
     }
     $(this).photoSelector(options)
   })

@@ -23,7 +23,6 @@ FlickRawOptions = {
 }
 DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
 
-#gem "omniauth", "~> 0.3.2"
 gem "omniauth", "= 0.2.6"
 gem 'koala', "= 1.1.0"
 require "omniauth"

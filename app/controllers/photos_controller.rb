@@ -68,6 +68,8 @@ class PhotosController < ApplicationController
   end
 
   def inviter
+    @default_source = params[:source]
+    @default_context = params[:context]
     if request.post?
       if !params[:comment].include?("{{INVITE_LINK}}")
         flash[:notice] = "You need to include the {{INVITE_LINK}} placeholder in your comment!"
