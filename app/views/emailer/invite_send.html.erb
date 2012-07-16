@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = pluralize(@invited.size, "invite") + " sent" %>
+  <%= @title = @invited.size.to_s + t(:invite) + t(:send) %>
 <%- end -%>
 
 <%= link_to t(:back_to_people), people_path, :class => "back crumb" %>
