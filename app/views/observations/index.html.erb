@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-Observations by Everyone
+    <%=t :observations_title %>
 <% end %>
 
 <% content_for(:extracss) do %>
@@ -14,7 +14,7 @@ Observations by Everyone
 <% end %>
 
 <%= render :partial => 'map_header', :locals => {
-  :title => "Observations by Everyone"
+  :title =>  t(:observations_title)
 } %>
 
 <div class="last clear column span-24">

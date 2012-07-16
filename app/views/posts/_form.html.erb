@@ -41,18 +41,18 @@
     
     <div class="buttonrow">
       <% if post.published_at -%>
-        <%= f.submit 'Save', :id => 'post_save', :class => 'default button' %>
-        <%= f.submit 'Unpublish', :class => 'button' %>
+        <%= f.submit t(:save), :id => 'post_save', :class => 'default button' %>
+        <%= f.submit t(:unpublish), :class => 'button' %>
       <% else -%>
-        <%= f.submit 'Save Draft', :id => 'post_save', :class => 'button' %>
-        <%= f.submit 'Publish', :class => 'default button' %>
+        <%= f.submit t(:save_draft), :id => 'post_save', :class => 'button' %>
+        <%= f.submit t(:publish), :class => 'default button' %>
       <% end -%>
       <% if post.new_record? -%>
-        <%= link_to "Cancel", journal_by_login_path(post.user.login), :class => 'inter' %>
+        <%= link_to t(:cancel), journal_by_login_path(post.user.login), :class => 'inter' %>
       <% else -%>
-        <%= f.submit "Preview", :id => 'post_preview', :class => 'button' unless post.new_record? %>
-        <%= link_to "Delete", journal_post_path(post.user.login, post), 
-                    :confirm => "Are you sure you want to delete this post?", 
+        <%= f.submit t(:preview), :id => 'post_preview', :class => 'button' unless post.new_record? %>
+        <%= link_to t(:delete), post_path(post.user.login, post), 
+                    :confirm => t(:are_you_sure_delete_post), 
                     :method => :delete, 
                     :id => "delete_post_button", 
                     :class => "minor delete button" %>
@@ -62,9 +62,9 @@
   
   <div class="last column span-10">
     <div class="field">
-      <label>Observations</label>
+      <label><%= t(:observations) %></label>
       <div class="description">
-        You can choose observations to associate with this journal post.
+        <%= t(:you_can_choose_observations_associated) %>
       </div>
     </div>
     <div id="observation_selector" class="observations table">

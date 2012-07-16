@@ -1,18 +1,15 @@
 <div id="edit_taxon_photos_<%= @taxon.id %>" class="edit_taxon_photos">
   <span class="close corner">&times;</span>
-  <h2 style="margin: 0">Choose photos for this taxon</h2>
+  <h2 style="margin: 0"><%= t(:choose_photos_for_this_taxon) %></h2>
   
   <div class="readable description" style="margin-bottom: 1em">
-    Choose <a href="http://creativecommons.org/">CC</a>-licensed photos on 
-    Flickr or pick from iNat observations. Try to choose images that 
-    <em>show diagnostic features</em> and 
-    <em>look good as icons</em>.  The <em>first is the default</em>.
+    <%= t(:choose_cc_licensed_photos) %>
   </div>
   
   <div class="tabs">
     <ul>
-      <li><%= link_to "<span>From Flickr</span>", "#flickr_taxon_photos" %></li>
-      <li><%= link_to "<span>From iNat observations</span>", "#inat_obs_taxon_photos" %></li>
+      <li><%= link_to t(:from_flickr), "#flickr_taxon_photos" %></li>
+      <li><%= link_to t(:from_inat_observations), "#inat_obs_taxon_photos" %></li>
       <li><%= link_to "<span>From EOL</span>", "#eol_taxon_photos" %></li>
     </ul>
     
@@ -38,8 +35,8 @@
             :checked => true } %>
         </div>
         <div class="buttonrow">
-          <%= submit_tag 'Save photos', :class => 'default button' %>
-          <%= link_to_function 'Cancel', 'return false;', :class => 'button close' %>
+          <%= submit_tag t(:save_photos), :class => 'default button' %>
+          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
         </div>
       <% end %>
     </div>
@@ -48,12 +45,12 @@
       <% form_tag({:action => 'update_photos'}) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
-            :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},
+            :photos => @taxon.photos,
             :checked => true } %>
         </div>
         <div class="buttonrow">
-          <%= submit_tag 'Save photos', :class => 'default button' %>
-          <%= link_to_function 'Cancel', 'return false;', :class => 'button close' %>
+          <%= submit_tag t(:save_photos), :class => 'default button' %>
+          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
         </div>
       <% end %>
     </div>

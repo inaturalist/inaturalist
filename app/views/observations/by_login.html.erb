@@ -1,9 +1,9 @@
 <% content_for(:title)  do %>
-Observations by <%= h @login %>
+  <%=t :observations_by_user, :user=> h(@login) %>
 <% end %>
 
 <% content_for(:extracss) do %>
-<%= stylesheet_link_tag 'observations/by_login', 'observations/filters' %>
+<%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
 <style type="text/css" media="screen">
   .observations.table .header.user,
   .observations.table .observation .attribute.user {
@@ -50,8 +50,6 @@ Observations by <%= h @login %>
     margin-bottom: -1px;
   }
   
-  #map { margin-bottom: 5px; }
-  
 </style>
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie', 'observations-ie' %>
@@ -78,7 +76,7 @@ Observations by <%= h @login %>
     <% end -%>
     function initialize() {
       // create a Google Map instance
-      var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
+      var map = window.map = iNaturalist.Map.createMap({lat: 9.793177, lng: -83.971242, zoom: 8});
     
       // Create a basic icon and a 'new' icon
       // Note the convient color syntax
@@ -90,7 +88,7 @@ Observations by <%= h @login %>
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      
+
       $.each(observations, function(o) {
         var o = this;
         if ((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude)) {
@@ -198,12 +196,12 @@ Observations by <%= h @login %>
           window.location = baseURL + "?o=" + obs_ids.join(',');
         }
       } else {
-        alert('You need to select some observations first.');
+        alert('<%=t :you_need_to_select_some_observations_first %>');
       }
     }
     
     function flickrTagger() {
-      if (!confirm("This will try to add tags to your Flickr photos.  Continue?")) return;
+      if (!confirm('<%=t :this_will_try_to_add_tags_to_your_flickr %>')) return;
       
       actOnSelected(
         '<%= url_for :controller => "taxa", :action => "tag_flickr_photos_from_observations" %>',
@@ -233,7 +231,7 @@ Observations by <%= h @login %>
           }
         }, $('#delete_selected_button'));
       } else {
-        alert('You need to select some observations first.');
+        alert('<%=t :you_need_to_select_some_observations_first %>');
       }
     }
     
@@ -265,12 +263,12 @@ Observations by <%= h @login %>
 <% end %>
 
 <% content_for(:extrahead) do %>
-<link rel="alternate" type="application/atom+xml" title="Recent Observations by <%= h @login %> (Atom)" href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
+  <link rel="alternate" type="application/atom+xml" title=<%= t(:recent_observations_by, :login=> h(@login) ) %>  href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
 <% end %>
 
 <% unless @proj_obs_errors_obs.blank? -%>
   <div class="error">
-    <h3>The following observations could not be added to <%= link_to @project.title, @project %></h3>
+  <h3><%= raw t(:the_following_observations_could, :link=> "{link_to @project.title, @project}") %></h3>
     <ul>
       <% for o in @proj_obs_errors_obs %>
         <li class="clear stacked">
@@ -289,25 +287,25 @@ Observations by <%= h @login %>
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if @user && @user.login == @login -%>
-      <%= link_to "Add Observations", new_observation_path, 
+      <%= link_to t(:add_observations_), new_observation_path, 
                   :id => "newobsbutton", :class => "default button"%>
-      <%= link_to_function("Batch Edit", "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
+      <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
       <div id="batchcontrols" style="display: none">
-        <%= link_to_function("Stop Editing", "batchEdit()", :id => "stop_batch_edit_button", :class => 'button') %>
-        <%= link_to_function("Edit Selected", "editSelected()", :id => "edit_selected_button", :class => 'button') %>
+        <%= link_to_function(t(:stop_editing), "batchEdit()", :id => "stop_batch_edit_button", :class => 'button') %>
+        <%= link_to_function(t(:edit_selected), "editSelected()", :id => "edit_selected_button", :class => 'button') %>
         <span class="inter">
           Select
-          <%= link_to_function("All", "$('.observation .control input:checkbox').check()", :id => "select_all_button") %>
+          <%= link_to_function(t(:all), "$('.observation .control input:checkbox').check()", :id => "select_all_button") %>
           |
-          <%= link_to_function("Today", "selectToday()", :id => "select_today_button") %>
+          <%= link_to_function(t(:today), "selectToday()", :id => "select_today_button") %>
           |
-          <%= link_to_function("None", "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button") %>
+          <%= link_to_function(t(:none), "$('.observation .control input:checkbox').uncheck()", :id => "select_none_button") %>
         </span>
         
-        <%= link_to_function "Flickr Tagger", "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button",
-          :title => "Add taxonomic tags to the Fickr photos associated with the selected observations." %>
+        <%= link_to_function t(:flickr_tagger), "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button",
+          :title => t(:add_taxonomic_tags_to_the_fickr_photos) %>
         <% unless @project_users.blank? -%>
-          <% link_to_toggle_menu "Add to project", :id => "add_to_project_button", :class => "minor button",
+          <% link_to_toggle_menu t(:add_to_project), :id => "add_to_project_button", :class => "minor button",
               :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
             <ul>
               <% for project_user in @project_users %>
@@ -326,10 +324,10 @@ Observations by <%= h @login %>
             </ul>
           <% end %>
         <% end -%>
-        <%= link_to_function("Delete Selected", "deleteSelected()", :id => "delete_selected_button", :class => 'minor button') %>
+        <%= link_to_function(t(:delete_selected), "deleteSelected()", :id => "delete_selected_button", :class => 'minor button') %>
       </div>
     <% end -%>
-    <%= link_to_function("Search", 'toggleFilters(this)', 
+    <%= link_to_function(t(:search), 'toggleFilters(this)', 
       :id => 'filters_button', 
       :class => "inter#{' open' if @filters_open} minor button") %>
   </div>
@@ -352,9 +350,9 @@ Observations by <%= h @login %>
   </div><!-- end observations table -->
   <% if @observations.empty? %>
     <div id="no_obs_message" class="description">
-      No matching observations.
+      <%=t :no_matching_observations %>
       <% if @user and @user.login == @login %>
-      <%= link_to 'Add Observations', new_observation_path, 
+      <%= link_to t(:add_observations_), new_observation_path, 
                   :class => 'default inline button' %>
       <% end %>
     </div>
@@ -363,7 +361,7 @@ Observations by <%= h @login %>
     <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
       <% form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
-        <%= f.label :per_page %>
+        <%= f.label t(:per_page) %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
@@ -384,7 +382,7 @@ Observations by <%= h @login %>
 <div class="last column span-24">
   <div id="feeds" class="small ui description">
     <% if logged_in? && current_user.id == @selected_user.id -%>
-      <%= link_to "Widget", observations_widget_path %> |
+      <%= link_to t(:widget), observations_widget_path %> |
     <% end -%>
     
     <span class="feeds">
@@ -398,9 +396,9 @@ Observations by <%= h @login %>
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params),     :class => 'atomlink', :rel => "nofollow") %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params),  :class => 'kmllink', :rel => "nofollow") %>
-      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params),      :class => 'csvlink', :rel => "nofollow") %>
+      <%= link_to(t(:atom), observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params),     :class => 'atomlink', :rel => "nofollow") %>
+      <%= link_to(t(:kml),  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params),  :class => 'kmllink', :rel => "nofollow") %>
+      <%= link_to(t(:csv),  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params),      :class => 'csvlink', :rel => "nofollow") %>
       
     </span>
   </div>

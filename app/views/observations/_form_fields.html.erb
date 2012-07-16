@@ -6,7 +6,7 @@
     <% end %>
     <div class="column span-7">
       <div class="field species_guess_field">
-        <%= o.label :species_guess, "What did you see?" %>
+        <%= o.label :species_guess, t(:what_did_you_see?) %>
         <%= o.text_field(:species_guess, :class => 'species_guess text') %>
         <%= o.hidden_field(:taxon_id, 
           :alt => (observation.taxon ? 
@@ -16,16 +16,16 @@
         
         <div class="id_please">
           <%= o.check_box(:id_please) %>
-          <%= o.label(:id_please, "ID Please!") %>
+          <%= o.label(:id_please, t(:full_id_please?)) %>
         </div>
       </div>
       
       <div class="field">
-        <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
+        <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
       </div>
       
       <div class="field<%= ' error' if observation.errors.on(:observed_on) && !observation.errors.on(:observed_on).empty? %>">
-        <%= o.label :observed_on_string, "When did you see it?" %>
+        <%= o.label :observed_on_string, t(:when_did_you_see_it?) %>
         <%= o.text_field(:observed_on_string, 
                          :class => 'observed_on_string text') %>
         <%= o.error_message_on(:observed_on) %>
@@ -36,72 +36,51 @@
       </div>
       
       <div class="field">
-        <%= o.label(:description, 'Description') %>
+        <%= o.label(:description, t(:description)) %>
         <%= o.text_area(:description, :class => "text") %>
       </div>
       
       <div class="field">
-        <%= o.label :tag_list, "Tags" %>
+        <%= o.label :tag_list, t(:tags) %>
         <span class="small description">
-          Comma-separated, please
+          <%=t :comma_separated_please %>
         </span>
-        <% helptip_for "tags" do %>
-          Tags are a way to organize your observations. For example, you might
-          tag all your tidepool observations "tidepools" to make them easier
-          to find later.
-        <% end -%>
         <%= o.text_field :tag_list, :class => "text" %>
       </div>
     </div>
     <div class="column span-9">
       <div class="place_guess_field field">
-        <%= o.label(:place_guess, 'Where were you?') %>
-        <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => "Name of the place you made the observation") %>
+        <%= o.label(:place_guess, t(:where_were_you?)) %>
+        <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => t(:name_of_the_place_you)) %>
       </div>
-      <div id="coordinates_<%= i %>" class="latlonfields status stacked">
-        <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
-        <%= o.text_field(:latitude, :class => 'latitude text', "data-tip" => "Latitude in decimal degrees, e.g. 38.123") %>
+      <div id="coordinates_<%= i %>" class="latlonfields status">
+        <%= o.label(:latitude, 'Lat') %>
+        <%= o.text_field(:latitude, :class => 'latitude text') %>
         
-        <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
-        <%= o.text_field(:longitude, :class => 'longitude text', "data-tip" => "Longitude in decimal degrees, e.g. -122.123") %>
+        <%= o.label(:longitude, 'Lon') %>
+        <%= o.text_field(:longitude, :class => 'longitude text') %>
 
         <span class="button">
-          <%= link_to_function("edit", 
-            "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); " +
-            "$(this).hide(); " + 
-            "$(this).next().show(); " + 
-            "if ($('#observation_positional_accuracy').val()) {$.fn.latLonSelector.editAccuracy()};" +
-            "return false;") %>
-          <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).prev().show(); $.fn.latLonSelector.stopEditAccuracy(); return false;", :style => 'display: none') %>
+          <%= link_to_function("edit", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
+          <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
         </span>
-        
         <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
         <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
-        
-        <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock") %>
-        <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock', "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
-        <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
-        <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
-        <%= o.hidden_field(:positioning_device, :class => 'positioning_device', :disabled => true) %>
       </div>
-      <div id="mapcontainer" class="stacked">
-        <div id="map"></div>
-        <% if observation.latitude.blank? -%>
-          <div class="floating dark description">
-            <strong>Click the map</strong> to add a location.
-          </div>
-        <% end -%>
-      </div>
+      <div class="description"><%=t :click_on_the_map_to %></div>
+      <div id="mapcontainer"></div>
       <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
-        <label for="observations_<%= i %>_geoprivacy">Change geoprivacy</label>
-        <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+        <div class="stacked">
+          <label><%=t :change_visibility_of %></label>
+        </div>
+        <label for="observations_<%= i %>_geoprivacy"><%=t :geoprivacy %></label>
+        <%= o.select :geoprivacy, t( Observation::GEOPRIVACIES), :include_blank => t(:open) %>
         <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
         <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
-          <p>Changing the geoprivacy alters how other people see the location of your observation.</p>
           <dl>
             <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-              <dt><%= privacy || "open" %></dt>
-              <dd><%= description %></dd>
+              <dt><%= t( privacy ) || t(:open) %></dt>
+              <dd><%= t(description) %></dd>
             <% end %>
           </dl>
         </div>
@@ -110,7 +89,7 @@
     <div class="last column span-8">
       <div class="field">
         <label>
-          Add photos
+          <%=t :add_photos %>
         </label>
         
         <div id="photos_<%= i %>" class="observation_photos">
@@ -139,25 +118,22 @@
           <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
           
           <p class="ui description">
-            We also support <a href="http://flickr.com">Flickr</a>,
-            <a href="http://picasaweb.google.com">Picasa</a>, and
-            <a href="http://facebook.com">Facebook</a>
-            for image hosting.
-          </p>
+
+            <%= raw t :we_also_support %>          </p>
           
           <div class="clear buttons">
-            <%= link_to "Link your Flickr account",
+            <%= link_to t(:link_your_flickr_account),
               {:controller => 'flickr', :action => 'link'}, :class => "button" %>
-            <%= link_to "Link your Picasa account",
+            <%= link_to t(:link_your_picasa_account),
               {:controller => 'picasa', :action => 'options'}, :class => "button" %>
-            <%= link_to "Link your Facebook account", "/auth/facebook", :class => "button" %>
+            <%= link_to t(:link_your_facebook_account), "/auth/facebook", :class => "button" %>
           </div>
 
         <% end %>
         
         <div>
           <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
-            <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;",
+            <%= link_to_function "#{raw t(:add_taxonomic_tags_to)}",
               "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
                 "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
               ").join('&');" +
@@ -167,7 +143,7 @@
 
           <% unless observation.photos.empty? || observation.new_record? -%>
             <br/>
-            <%= link_to "Re-order photos &raquo;", edit_observation_photos_path(observation) %>
+            <%= link_to "#{raw t(:re_order_photos)}" , edit_observation_photos_path(observation) %>
           <% end -%>
         </div>
       </div>
@@ -175,7 +151,7 @@
     
     <% if is_admin? -%>
       <div id="morefields" class="admin column span-24">
-        <h3>More fields</h3>
+        <h3><%=t :more_fields %></h3>
         <div class="observation_fields">
           <% o.fields_for :observation_field_values, :builder => DefaultFormBuilder do |ofv| %>
             <div id="<%= ofv.object.observation_field ? dom_id(ofv.object.observation_field) : nil %>"
@@ -185,7 +161,7 @@
                 :description => h(ofv.object.observation_field.try(:description)),
                 "data-json" => ofv.object.observation_field.to_json %>
               <%= ofv.hidden_field "_destroy" %>
-              <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')" %>
+              <%= link_to_function t(:remove), "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')" %>
             </div>
           <% end -%>
         </div>
@@ -196,20 +172,20 @@
                 <%= ofv.hidden_field :observation_field_id, :class => "observation_field_id" %>
                 <%= ofv.text_field :value, :description => "" %>
                 <%= ofv.hidden_field "_destroy" %>
-                <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')" %>
+                <%= link_to_function t(:remove), "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')" %>
               </div>
             <% end -%>
           <% end -%>
           <div class="inline buttonrow">
-            <label>Add a field</label>
+            <label><%=t :add_a_field %></label>
             <%= content_tag :input, "",
               :name => "observation_field",
               :class => "observation_field_chooser",
               :type => :text,
-              :placeholder => "Start typing field name...",
+              :placeholder => t(:start_typing_field_name),
               "data-chooser-default-sources" => @observation_fields.to_json %>
-            <%= link_to_function "Add a field", "newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
-            <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+            <%= link_to_function t(:add_a_field), "newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
+            <%= link_to t(:create_a_new_field), new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
           </div>
         </div>
       </div>

@@ -90,7 +90,7 @@
   <div class="observations map"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
     <div id="map"></div>
     <div id="mapcontrols"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
-      <%= link_to_function "Redo search in map area", "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
+      <%= link_to_function t(:redo_search_in_map_area), "redoSearchInMapArea()", :id => 'redo_search_in_map_area_button' %>
       <span id="redo_search_in_map_area_loading" class="loading status" style="display: none">Loading...</span>
       <% if logged_in? && params[:test] == "true" -%>
         |

@@ -26,13 +26,13 @@
 
         <form action="<%= url_for %>" method="get" style="display: inline-block; margin-left: 10px">
           <input type="text" name="q" value="<%= @q %>" class="text" />
-          <input type="submit" value="Search List" class="default button" style="margin-right: 0"/>
+          <input type="submit" value=<%=t :search_list %> class="default button" style="margin-right: 0"/>
         </form>
       </div>
     <%- end -%>
     
     <span class="breadcrumbs">    
-      <%= link_to "Back to #{@list.place.name}", 
+      <%= link_to t(:back_to_this, :place=>"#{@list.place.name}"), 
                   place_path(@list.place),
                   :class => 'back crumb' %>
     </span>
@@ -81,9 +81,9 @@
   <% end -%>
   
   <div id="justadded" style="display: none">
-    <h2 class="title">Just Added!</h2>
+    <h2 class="title"><%=t :just_added! %></h2>
     <ul class="listed_taxa">
-      <li style="display: none">Stuff you've just added...</li>
+      <li style="display: none"><%=t :stuff_just_added %></li>
     </ul>
     
     <div class="column-separator">
@@ -99,8 +99,8 @@
   
   <% if @listed_taxa.empty? %>
     <div id="empty" class="readable description">
-      This list is empty!
-      <% if logged_in? %>Try adding some species using the form on this page.<% end %>
+      <%=t :this_list_is_empty! %>
+      <% if logged_in? %><%=t :try_adding_species_form %><% end %>
     </div>
   <% end %>
   
@@ -111,13 +111,13 @@
   <% if @list.source -%>
     <%= separator %>
     <div class="clear meta">
-      <strong>Source:</strong>
+      <strong><%=t :source %></strong>
       <%= citation_for @list.source %>
     </div>
   <% end -%>
   <% if @list.user -%>
     <div class="clear meta">
-      <strong>Created by </strong>
+      <strong><%=t :created_by_ %></strong>
       <%= link_to user_image(@list.user), @list.user %>
       <%= link_to_user @list.user %>
       on
@@ -126,17 +126,17 @@
   <% end -%>
   
   <div class="clear meta feeds">
-    <strong>Download</strong>
-    <%= link_to "CSV", list_path(@list, :format => 'csv'), 
+    <strong><%=t :download %></strong>
+    <%= link_to t(:csv), list_path(@list, :format => 'csv'), 
       :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+      "data-delayed-link-msg" => t(:hold_file_generation),
       :rel => "nofollow" %>
-      
-    <%= link_to "Taxonomic CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"), 
-      :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => 
-        "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
-      :rel => "nofollow" %>
+     
+   <%= link_to "Taxonomic CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"), 
+     :class => "delayedlink csvlink", 
+     "data-delayed-link-msg" => 
+       "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+     :rel => "nofollow" %>
   </div>
 </div>
 
@@ -144,11 +144,11 @@
   <div id="sidebar">
     <% if @list.listed_taxa_editable_by?(current_user) %>
       <div id="add" class="clear">
-        <%= link_to_function "Add Batch", "$('#add_batch_dialog').jqmShow()", 
+        <%= link_to_function t(:add_batch), "$('#add_batch_dialog').jqmShow()", 
           :class => "right small", :style => 'padding-top: 3px' %>
         <h3>
           <%= link_to_function(
-            'Add to List', 
+            t(:add_to_list), 
             "$('#new_listed_taxon').slideToggle();",
             :id => 'addlink') %>
         </h3>
@@ -177,10 +177,10 @@
           <% elsif grouper.respond_to?(:name) %>
             <% grouper_name = grouper.name -%>
           <% else %>
-            <% grouper_name = 'Unclassified' -%>
+            <% grouper_name = t(:unclassified) -%>
           <% end -%>
-          <%- grouper_name = 'Other Animals' if grouper_name == 'Animals' -%>
-          <%- grouper_class = grouper.name rescue 'Unknown' -%>
+          <%- grouper_name = t(:other_animals) if grouper_name == t(:animals) -%>
+          <%- grouper_class = grouper.name rescue t(:unknown) -%>
           <a class="clear stat <%= grouper_class %><%= ' current' if @filter_taxon && @filter_taxon.id == grouper.id %>" href="<%= url_for_params(:taxon => grouper.id, :without => [:page, :q]) %>">
             <div class="readable title">
               &nbsp;
@@ -199,12 +199,12 @@
     
     <div id="other_check_lists_wrapper">
       <h3>
-        <%= link_to_toggle "Other Check Lists for #{h(@place.name)}", '#other_check_lists', 
+        <%= link_to_toggle t(:check_lists_for, :place=> "#{h(@place.name)}"), '#other_check_lists', 
           :id => 'otherlistslink', :class => 'open' %>
       </h3>
       <div id="other_check_lists">
         <p class="ui description">
-          Check lists for individual taxa that live here, e.g. "Birds of <%= h(@place.name) %>".
+        <%=t :check_lists_individual_taxa, :place => "#{ h(@place.name)}" %>
         </p>
         <ul>
           <% for list in @other_check_lists %>
@@ -212,7 +212,7 @@
           <% end %>
         </ul>
 
-        <%= link_to "Create a new check list for #{h(@place.name)} &raquo;", new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
+        <%= link_to t(:new_check_list_for, :place=> "#{h(@place.name)}"), new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
       </div>
     </div>
   </div><!-- /sidebar -->

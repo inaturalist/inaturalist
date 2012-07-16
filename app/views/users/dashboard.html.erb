@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  Your Home
+  <%= t(:your_home) %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
@@ -108,13 +108,13 @@
 <% end -%>
 
 <div id="pageheader">
-  <h2>Welcome, <%= current_user.login %>!</h2>
+  <h2>¡<%= t(:welcome_comma)%> <%=@user.login %>!</h2>
   <%= render :partial => 'users/subnav', :locals => { :user => current_user } %>
 </div>
 
 <div id="tabs" class="ui-tabs">
   <ul>
-    <li><a href="#updates"><span>Recent updates</span></a></li>
+    <li><a href="#updates"><span><%= t(:recent_updates) %></span></a></li>
     <li><a href="#explore"><span>Observations by everyone</span></a></li>
     <li><a href="#comments"><span>Comments by everyone</span></a></li>
   </ul>
@@ -124,29 +124,26 @@
       <% if @updates.blank? -%>
         <% if params[:page].blank? -%>
           <p>
-            <% if current_user.friendships.count == 0 -%>
-              Your dashboard helps you keep track of what people are doing on iNat.
-              To follow someone's updates, click the <strong>"Follow [name]"</strong>
-              link in the header when viewing their observations or profile.
-              <%= link_to "Find some people to follow", people_path, :class => "readmore" %>
-            <% else %>
-              None of the people you follow have made any updates yet!
-            <% end -%>
+          <% if current_user.friendships.count == 0 -%>
+            <%= t(:your_dashboard_helps_keep_track_people_doing) %>
+            <%= link_to t(:find_some_people_to_follow), people_path, :class => "readmore" %>
+          <% else %>
+            <%= t(:none_of_the_people_you_follow_have_updates) %>
+          <% end -%>
           </p>
-
-          <p>Here are some things you can do in the meantime:</p>
+          <p><%=  t(:here_are_some_things_you_can_do_meantime) %></p>
           <ul class="readable leafylist">
             <% unless @user.flickr_identity %>
-              <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
+              <li><%= link_to t(:link_your_flickr_account_to_inat), :controller => 'flickr', :action => 'link' %></li>
             <% end %>
-            <li><%= link_to "Browse your observations", observations_by_login_path(@user.login) %></li>
-            <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
-            <li><%= link_to "Explore everyone's observations", observations_path %></li>
-            <li><%= link_to "Check out your Life List", lists_by_login_path(@user.login) %></li>
+            <li><%= link_to t(:browse_your_observations), observations_by_login_path(@user.login) %></li>
+            <li><%= link_to t(:add_new_observations), :controller => 'observations', :action => 'new' %></li>
+            <li><%= link_to t(:explore_everyones_observations), observations_path %></li>
+            <li><%= link_to t(:check_out_your_life_list), lists_by_login_path(@user.login) %></li>
           </ul>
         <% else %>
           <p class="description">
-            No more updates!
+            <%= t(:no_more_updates) %>
           </p>
         <% end -%>
 
@@ -217,7 +214,6 @@
         </div>
       <% end %>
     </div>
-
     <div id="rightcol" class="last column span-8">
 
       <div id="calendar" class="clear stacked">
@@ -226,7 +222,6 @@
           :month_name => "Your #{Date::MONTHNAMES[Date.today.month]} Observations" } %>
         <%= link_to "View your calendar", calendar_path(current_user.login), :class => "readmore" %>
       </div>
-
       <h3>Extras</h3>
 
       <h4><%= link_to "Blog Widget", :controller => "observations", :action => "widget" %></h4>

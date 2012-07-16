@@ -1,6 +1,6 @@
 <%- @user_scalable = 0 -%>
 <%- content_for(:title) do -%>
-  <%= @pagetitle = "Nearby Observations" %>
+  <%= @pagetitle = t(:nearby_observations) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "observations" %>
@@ -232,14 +232,14 @@
 
 <div id="mapcontainer">
   <div id="map"></div>
-  <div id="maploading"><span class="loading status eee">Loading observations...</span></div>
+  <div id="maploading"><span class="loading status eee"><%=t :loading_observations %></span></div>
 </div>
 
 <div id="observations" class="mini observations" style="display: none">
   <div class="loading status">
-    Loading...
+    <%=t :loading %>
   </div>
 </div>
 
-<div id="noobservations" class="meta" style="display: none">No nearby observations.</div>
+<div id="noobservations" class="meta" style="display: none"><%=t :no_nearby_observations %></div>
 

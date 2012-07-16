@@ -10,14 +10,14 @@
   score ||= nil
 -%>
 <tr class="<%= metric.parameterize %>_metric quality_metric">
-  <td><%= question %></td>
+  <td><%=t question %></td>
   <td width="100%" style="padding-right: 0">
     <% if score -%>
       <table width="100%">
         <tr>
           <td>
             <% if score >= 0.5 -%>
-              <span class="good">yes</span>
+              <span class="good"><%=t(:yes)%></span>
             <% else %>
               yes
             <% end -%>
@@ -45,12 +45,12 @@
           <td class="small meta percent"><%= ((1 - score) * 100).round %>%</td>
         </tr>
       </table>
-    <% else %>
-      unknown
-    <% end -%>
+    <% else 
+      t(:unknown)
+     end -%>
     
     <div class="small meta">
-      What do you think?
+      <%= t(:what_do_you_think) %>
       <div class="right">
         <% if user_quality_metric -%>
           <% if user_quality_metric.agree? -%>
@@ -61,7 +61,7 @@
             /
             <%= link_to "no", observation_quality_path(o, metric, :agree => false), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
           <% else %>
-            <%= link_to "yes", observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+            <%= link_to t(:yes), observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
             /
             <strong>
               no
@@ -70,10 +70,10 @@
           <% end -%>
         <% else %>
           <% if logged_in? -%>
-            <%= link_to "yes", observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
+            <%= link_to t(:yes), observation_quality_path(o, metric), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
             <%= link_to "no", observation_quality_path(o, metric, :agree => false), "data-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
           <% else %>
-            <%= link_to "yes", login_path, :class => "inlineblock status" %> /
+            <%= link_to t(:yes), login_path, :class => "inlineblock status" %> /
             <%= link_to "no", login_path, :class => "inlineblock status" %>
           <% end -%>
         <% end -%>

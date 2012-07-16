@@ -7,12 +7,12 @@
 <%- end -%>
 
 <div id="tabs" class="ui-tabs">
-  <h2>Comments</h2>
+  <h2><%=t :comments %></h2>
   <ul class="ui-tabs-nav">
     <% if logged_in? -%>
-      <li class="<%= 'ui-tabs-selected' if params[:mine] && logged_in? %>"><a href="<%= url_for(:mine => true) %>"><span>Comments by Me</span></a></li>
+      <li class="<%= 'ui-tabs-selected' if params[:mine] && logged_in? %>"><a href="<%= url_for(:mine => true) %>"><span><%=t :comments_by_me %></span></a></li>
     <% end -%>
-    <li class="<%= 'ui-tabs-selected' unless params[:mine] && logged_in? %>"><a href="<%= url_for %>"><span>All Comments</span></a></li>
+    <li class="<%= 'ui-tabs-selected' unless params[:mine] && logged_in? %>"><a href="<%= url_for %>"><span><%=t :all_comments %></span></a></li>
   </ul>
   
   <div id="all">

@@ -1,12 +1,12 @@
 <% content_for(:title) do -%>
-  Editing Taxon Name "<%= @taxon_name.name %>" for <%= default_taxon_name @taxon %>
+  <%= t(:editing_taxon_name)%> "<%= @taxon_name.name %>" for <%= default_taxon_name @taxon %>
 <% end -%>
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">    
-    <%= link_to "Back to #{default_taxon_name(@taxon)}", @taxon, :class => 'back crumb' %>
+    <%= link_to t(:back_to_taxon, :defaulttaxon => "#{default_taxon_name(@taxon)}"), @taxon, :class => 'back crumb' %>
   </span>
   <h2>
-    Editing Taxon Name "<%= @taxon_name.name %>" for
+    <%= t(:editing_taxon_name)%> "<%= @taxon_name.name %>" for
     <%= render :partial => "shared/taxon", :object => @taxon, :locals => { :link_url => url_for(@taxon) } %>
   </h2>
 </div>
@@ -15,7 +15,7 @@
 
 <% if @taxon_name.creator -%>
   <div class="clear description">
-    Created by <%= link_to @taxon_name.creator.login, @taxon_name.creator %> at <%= @taxon_name.created_at.to_s(:long) %><br/>
-    Updated by <%= link_to @taxon_name.updater.login, @taxon_name.updater %> at <%= @taxon_name.updated_at.to_s(:long) %>
+    <%= t(:created_by) %> <%= link_to @taxon_name.creator.login, @taxon_name.creator %> at <%= @taxon_name.created_at.to_s(:long) %><br/>
+    <%= t(:updated_by) %> <%= link_to @taxon_name.updater.login, @taxon_name.updater %> at <%= @taxon_name.updated_at.to_s(:long) %>
   </div>
 <% end -%>

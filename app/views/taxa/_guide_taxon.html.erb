@@ -6,7 +6,7 @@
     <div class="upperright">
       <div class="blob conservation_status <%= taxon.conservation_status_name %>"
           title="<%= taxon.conservation_status_name %>" 
-          data-tip="IUCN Red List status: <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"
+          data-tip= <%= t(:uicn_red_list_status) %>" <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"
           data-tip-style-classes="ui-tooltip-<%= taxon.conservation_status_name %> ui-tooltip-shadow"
           data-tip-position-at="bottom center">
         <strong><%= taxon.conservation_status_code %></strong>
@@ -15,7 +15,7 @@
   <% end -%>
   <% if taxon.iucn_extinct? -%>
     <div class="extinct crossout">
-      <div>EXTINCT</div>
+      <div><%= t(:extinct) %></div>
     </div>
   <% end -%>
 <% end -%>

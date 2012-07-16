@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-Taxa &middot; All Species
+<%= t(:taxa_all_species) %>
 <% end -%>
 
 <% content_for(:extrajs) do %>
@@ -175,7 +175,7 @@ Taxa &middot; All Species
   <div class="right">
     <%= render :partial => 'search_form' %>
   </div>
-  <h2>Species <span class="description">&amp; Other Taxa</span></h2>
+  <h2><%= t(:species) %><span class="description"><% t(:and_other_taxa) %></span></h2>
 </div>
 
 <div id="featured" class="column span-24">
@@ -214,7 +214,7 @@ Taxa &middot; All Species
         </center>
         <div class="readable">
           <%= taxon.wikipedia_summary %>
-          <%= link_to "Learn more &raquo;", taxon, :class => "nobr" %>
+          <%= link_to t(:learn_more_raquo), taxon, :class => "nobr" %>
         </div>
       </div>
 
@@ -225,22 +225,22 @@ Taxa &middot; All Species
             person_by_login_path(observation.user.login)) %>
           <%= link_to observation.user.login, person_path(observation.user) %>
           observed one
-          <%= observation.observed_on? ? "at #{observation.observed_on.to_s(:long)}" : "in the past" -%>
-          <%= observation.place_guess.blank? ? "somewhere on Earth" : " in #{observation.place_guess}" %>.
+          <%= observation.observed_on? ? t(:at).." #{observation.observed_on.to_s(:long)}" : t(:in_the_past) -%>
+          <%= observation.place_guess.blank? ? t(:somewhere_on_earth) : " t(:in) #{observation.place_guess}" %>.
 
           <div>
-            <%= link_to "View", observation %>
+            <%= link_to t(:view), observation %>
             <% if taxon.observations_count > 1 %>
               |
-              <%= link_to "View all #{pluralize(taxon.observations_count, 'observation')} &raquo;", 
+              <%= link_to t(:view_all).." #{pluralize(taxon.observations_count, 'observation')} &raquo;", 
                 observations_path(:taxon_id => taxon) %>
             <% end %>
           </div>
         <% else %>
           <br/>
           <p>
-            Seen one?
-            <%= link_to "Add an observation &raquo;", new_observation_path(:taxon_id => taxon), :rel => "nofollow" %>
+            <%= t(:seen_one) %>
+            <%= link_to t(:add_an_observation).." &raquo;", new_observation_path(:taxon_id => taxon), :rel => "nofollow" %>
           </p>
         <% end -%>
       </div>
@@ -280,14 +280,14 @@ Taxa &middot; All Species
 
 <div id="recently_observed" class="last column span-5">  
   <div class="box clear">
-    <h3>Recently Observed</h3>
+    <h3><%= t(:recently_observed) %></h3>
     <% for observation in @recent %>
     <p>
       <%= link_to taxon_image(observation.taxon, :size => "small"), observation.taxon %>
       <% link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>
-      <span class="description date">on <%= observation.observed_on.to_s(:long) %></span>
+      <span class="description date"><%=t :on %> <%=l observation.observed_on %></span>
     </p>
     <% end %>
   </div>

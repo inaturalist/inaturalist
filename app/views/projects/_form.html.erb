@@ -1,8 +1,8 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
-    .title_field,.description_field,.project_type_field{margin-right:20px;}
-    .description_field,.terms_field,.title_field, .preference_fields, .project_type_field{float:left;width:465px;}
+    .title_field,.description_field{margin-right:20px;}
+    .description_field,.terms_field,.title_field{float:left;width:465px;}
     .project_icon_field{float:left;width:225px;}
     .description_field,.project_type_field{clear:left;}
     .title_field input{width:390px;}
@@ -45,11 +45,6 @@
         } else {
           $('#place_selector').hide()
         }
-        if ($(this).val() == 'in_taxon?') {
-          $('#taxon_selector').show()
-        } else {
-          $('#taxon_selector').hide()
-        }
       })
       $('.operator_field select').change()
     }
@@ -58,7 +53,7 @@
 <%- project ||= @project -%>
 <% form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
-  
+
   <%= f.text_field :title, :required => true %>
   
   <% f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
@@ -66,9 +61,9 @@
       <%= image_tag(project.icon.url(:thumb), :class => "left") %>
       <div>
         <%= check_box_tag :icon_delete %>
-        <label for="icon_delete">Delete icon?</label>
+        <label for="icon_delete"><%=t :delete_icon? %></label>
       </div>
-      <%= link_to_toggle "Change icon", "#iconfield" %>
+      <%= link_to_toggle t(:change_icon), "#iconfield" %>
       <div id="iconfield" style="display: none">
         <%= f.file_field :icon, :label => false %>
       </div>
@@ -77,11 +72,11 @@
     <% end -%>
   <% end %>
   
-  <%= f.text_area :description, :description => "Describe the purpose of this project." %>
-  <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
-  
+  <%= f.text_area :description, :description => t(:describe_purpose) %>
+  <%= f.text_area :terms, :description => t(:terms_new_users) %>
+
   <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
-    :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
+    :description => t(:contest_projects_description) %>
   
   <div class="preference_fields">
     <%= f.check_box :prefers_count_from_list, 
@@ -100,30 +95,28 @@
   </div>
   
   <!-- <fieldset class="userrules">
-    <legend>New User Rules</legend>
+    <legend><%= t(:new_user_rules) %></legend>
     
     <% f.fields_for :project_user_rules do |pu| %>
       <div>
-        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
         <%= pu.hidden_field :_destroy, :class => "destroyer" %>
-        <%= link_to_function "remove", "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
+        <%= link_to_function t(:remove), "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
       </div>
     <% end %>
     <% f.fields_for :project_user_rules, [Rule.new] do |pu| %>
       <div>
-        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
-        <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
+        <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
+        <%= link_to_function t(:add_another), "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
       </div>
     <% end %>
   </fieldset> -->
   
   <fieldset class="observationrules">
-    <legend>New Observation Rules</legend>
+    <legend><%=t :new_observation_rules %></legend>
     <p class="description">
-      You can choose rules to determine what observations can be added to this
-      project, like limiting observations to a certain place. Note: limiting
-      to places currently relies on iNat Places, and can only limit
-      observations to the smallest rectangle that surrounds a place.
+    
+      <%= raw t(:observation_rules_description) %> 
     </p>
     
     <ul>
@@ -131,7 +124,7 @@
         <li>
           <%= por.object.terms %>
           <%= por.hidden_field :_destroy, :class => "destroyer" %>
-          <%= link_to_function "remove", 
+          <%= link_to_function t(:remove), 
             "$(this).parent().fadeTo('fast', 0.5).css('text-decoration', 'line-through');" + 
             "$(this).parent().find('.destroyer').val(true)" %>
         </li>
@@ -142,25 +135,25 @@
       <fieldset id="new_project_observation_rule">
         <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
           <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
-            :include_blank => "Choose a rule",
-            :label => "Rule: must be..." %>
+            :include_blank => t(:choose_rule),
+            :label => t(:rule_must_be) %>
           <%= pu.hidden_field :operand_type, :id => "new_operand_type" %>
           <div id="place_selector">
             <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => "Type place name", :label => "Choose a place" %>
             <span class="description">
-              Not finding the place you want?
-              <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
+              <%=t :not_finding_place_you_want? %>
+              <%= link_to t(:make_new_place), new_place_path, :class => "readmore", :target => "_blank" %>
             </span>
           </div>
           <div id="taxon_selector">
-            <label for="taxon_q">Choose a taxon</label><br/>
+            <label for="taxon_q"><%=t :choose_taxon %></label><br/>
             <input type="text" name="taxon_q" value="" id="taxon_q" class="text">
           </div>
         <% end %>
-        <%= link_to_function "remove", "$(this).parent().next('a').show();$(this).parent().remove() " %>
+        <%= link_to_function t(:remove), "$(this).parent().next('a').show();$(this).parent().remove() " %>
       </fieldset>
     <% end -%>
-    <%= link_to_function "add a new rule", "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
+    <%= link_to_function t(:add_new_rule), "$(this).before('#{escape_javascript new_rule_field}'); rulify(); $(this).hide()" %>
   </fieldset>
   
   <%= f.text_field :tracking_codes, :description => 
@@ -171,32 +164,32 @@
     "You can access these codes when downloading your project's observations as CSV." %>
   
   <% if current_user.is_admin? && !@project.new_record? -%>
-    <fieldset id="project_assets" class="admin">
-      <legend>Project Assets</legend>
+    <fieldset id="project_assets">
+      <legend><%=t :project_assets %></legend>
       
       <ul>
         <% for project_asset in @project.project_assets %>
         <li>
           <%= link_to project_asset.asset.url, project_asset.asset.url %>
           <small style="margin-left: 10px">
-            <%= link_to "edit", edit_project_asset_path(project_asset) %>
-            <%= link_to "delete", project_asset, :method => :delete, :confirm => "Are you sure you want to delete this asset?", 
+            <%= link_to t(:edit), edit_project_asset_path(project_asset) %>
+            <%= link_to t(:delete), project_asset, :method => :delete, :confirm => t(:you_sure_delete_asset?), 
               :class => 'description' %>
           </small>
         </li>
         <% end %>
       </ul>
       
-      <%= link_to "Add asset", new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
+      <%= link_to t(:add_asset), new_project_asset_path(:project_id => @project.id), :class => "readmore" %>
     </fieldset>
     
-    <fieldset id="custom_project_fields" class="admin">
-      <legend>Custom Project Fields</legend>
+    <fieldset id="custom_project_fields">
+      <legend><%=t :custom_project_fields %></legend>
       
       <% if @project.custom_project -%>
-        <%= link_to "Edit custom project fields", edit_custom_project_path(@project.custom_project), :class => "readmore" %>
+        <%= link_to t(:edit_custom_project_fields), edit_custom_project_path(@project.custom_project), :class => "readmore" %>
       <% else %>
-        <%= link_to "Add custom project fields", new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
+        <%= link_to t(:add_custom_project_fields), new_custom_project_path(:project_id => @project.id), :class => "readmore" %>
       <% end -%>
     </fieldset>
     
@@ -212,11 +205,11 @@
   <% end -%>
 
   <div class="buttons">
-    <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button", "data-loading-click" => "Saving..." %>
-    <%= link_to "Cancel", projects_path, :class => "button" %>
-    <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
-      <%= link_to "Delete this project", project, :method => :delete, 
-        :confirm => "Are you sure you want to delete this project?",
+    <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button" %>
+    <%= link_to t(:cancel), projects_path, :class => "button" %>
+    <% unless project.new_record? -%>
+      <%= link_to t(:delete_project), project, :method => :delete, 
+        :confirm => t(:you_sure_delete_project?),
         :class => "minor delete button" %>
     <% end -%>
   </div>

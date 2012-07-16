@@ -1,15 +1,15 @@
 <% seenit ||= @seenit ||= false -%>
 <% if logged_in? %>
   <% if seenit -%>
-    <% lead_text = "You've seen it! Want to" -%>
-    <% button_text = "Add an observation?" -%>
-    <% loading_text = "Adding observation..." -%>
-    <% success_text = "Observation added." -%>
+    <% lead_text = t(:youve_seen_it_want_to) -%>
+    <% button_text = t(:add_an_observation?) -%>
+    <% loading_text = t(:adding_observation___) -%>
+    <% success_text = t(:observation_added) -%>
   <% else -%>
-    <% lead_text = "Seen it?" -%>
-    <% button_text = "Add to your life list!" -%>
-    <% loading_text = "Adding to your life list..." -%>
-    <% success_text = "Life list updated! We also saved a blank observation of this taxon." -%>
+    <% lead_text = t(:seen_it?) -%>
+    <% button_text = t(:add_to_your_life_list) -%>
+    <% loading_text = t(:adding_to_your_life_list___) -%>
+    <% success_text = t(:life_list_updated_we_also_saved_a) -%>
   <% end -%>
   <div id="seenit_link_<%= taxon.id %>" class="seenit description">
     <%= lead_text %>
@@ -41,7 +41,7 @@
             );
           } else {
             $('#seenit_link_'+obsParams.taxon_id).addClass(
-              'error status').html("D'oh, something went wrong.");
+              'error status').html(<%=t :doh_something_went_wrong %>);
           }
         }, 'json');
         return false;

@@ -1,1 +1,1 @@
-page.alert('There were errors.')
+page.alert(<%=t :there_were_errors. %>)

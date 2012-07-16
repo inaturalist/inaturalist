@@ -20,9 +20,9 @@
   <% end -%>
   <% if observation.photos.size > 4 -%>
     <% if no_js -%>
-      <div class="clear"><%= link_to "View all #{observation.photos.size} photos", observation, :class => 'readmore' %></div>
+      <div class="clear"><%= link_to t(:view_all_photocount_photos, :photo_count => "#{observation.photos.size}" ), observation, :class => 'readmore' %></div>
     <% else %>
-      <div class="clear"><%= link_to_toggle "View all #{observation.photos.size} photos", "#morephotos" %></div>
+      <div class="clear"><%= link_to_toggle t(:view_all_photocount_photos, :photo_count => "#{observation.photos.size}" ), "#morephotos" %></div>
       <div id="morephotos" style="display: none">
         <% for photo in observation.photos[4..-1] -%>
           <%- if no_js -%>

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Places
+  <%=t :places %>
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
@@ -15,12 +15,12 @@
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="iNaturalist Places"/> 
+  <meta property="og:title" content="<%= t(:inaturalist_places) %>"/> 
   <meta property="og:image" content="<%= image_url('place_preview.jpg') %>"/> 
   <meta property="og:site_name" content="iNaturalist"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
-  <meta property="og:description" name="description" content="The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street! iNaturalist Places let you browse life from around the planet.  Start exploring!"/> 
+  <meta property="og:description" name="description" content=" <%= t(:the_world_is_full_of_interesting_places) %>" /> 
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -60,9 +60,9 @@
     <%= render :partial => 'places/search_form', :locals => {:q => ''} %>
   </div>
   <h2>
-    Places&nbsp;
+    <%=t :places %>&nbsp;
     <span class="small description">
-      Find a new place to explore!
+      <%= t(:find_new_place_to_explore) %>
     </span>
   </h2>
 </div>
@@ -102,41 +102,29 @@
 
 <div id="aboutcol" class="column span-24">
   <div class="column span-16">
-    <h3>About Places</h3>
+    <h3> <%= t(:about_places) %> </h3>
     <p>
-      The world is full of interesting places, each filled with weird and
-      wonderful life forms. Some are on the other side of the world, while
-      others are just down the street!
+      <%= t(:the_world_is_full_of_interesting_places_short) %>
     </p>
 
     <p>
-      iNaturalist Places are a way to record what lives where. If you're
-      looking for a particular species, you'll know where to search. Each
-      place has a check list to record all the species that occur there, so
-      they can also be useful for looking up things you've found at particular
-      spots.
+      <%= t(:inaturalist_places_are_way_record_what_lives_where) %>
     </p>
     
     <div class="column span-5">
       <%= image_tag "place_preview.jpg" %>
     </div>
     <div class="last column span-11">
-      <h3>Species from around the world</h3>
+      <h3> <%= t(:species_from_around_the_world) %> </h3>
       <p>
-        Each place page displays all the species iNat knows about from
-        that place, including information about their abundance, conservation
-        status, and who was first to observe that species from that place on
-        iNat. You can filter the species by taxonomic group, color,
-        conservation status, or plain old search.
+      	<%= t(:each_place_displays_all_species_inat_knows) %>
       </p>
     </div>
     
     <div class="column span-11">
-      <h3>Localized species accounts</h3>
+      <h3> <%= t(:localized_species_accounts) %> </h3>
       <p>
-        View photos, species ranges, iNat observations, and more! We've
-        assembled information from many different sources and combined them
-        for a quick summary of each species in each place.
+      	<%= t(:view_photos_ranges_observations_more) %>
       </p>
     </div>
     <div class="last column span-5">
@@ -147,28 +135,26 @@
       <%= image_tag "place_map_preview.jpg" %>
     </div>
     <div class="last column span-11">
-      <h3>Click the map to jump to a new place</h3>
+      <h3> <%= t(:click_the_map_to_jump_new_place) %> </h3>
       <p>
-        Blue icons represent political units like countries, states,
-        provinces, counties, and the like, while green icons represent
-        different kinds of open space (parks, reserves). If you zoom in you'll
-        see more, smaller places.
+      	<%= t(:blue_icons_represent_political_units) %>
       </p>
     </div>
   </div>
   <div class="last column span-8">
     <div class="clear box">
       <p>
-        You can help out by <%= link_to "adding new places", new_place_path, :rel => "nofollow" %>
-        and filling in check lists for the places you know!
+        <%= t(:you_can_help_out_by) %>
+        <%= link_to t(:adding_new_places), new_place_path, :rel => "nofollow" %>
+        <%= t(:and_filling_in_check_list) %>
       </p>
       <ul class="readable leafylist">
-        <li><%= link_to "adding new places", new_place_path, :rel => "nofollow" %></li>
-        <li><%= link_to "confirming identifications", observations_path %> by adding IDs to observations</li>
-        <li>filling out checklists for places you know well</li>
+        <li><%= link_to t(:adding_new_places), new_place_path, :rel => "nofollow" %></li>
+        <li><%= link_to t(:confirming_identifications), observations_path %> <%= t(:by_adding_ids_to_observations) %> </li>
+        <li><%= t(:filling_out_checklist_for_place) %></li>
       </ul>
       <div style="margin: 20px 0; text-align: center;">
-        <%= link_to "Add a New Place", new_place_path, :class => 'inline button readmore right', :rel => "nofollow" %>
+        <%= link_to t(:add_new_place), new_place_path, :class => 'inline button readmore right', :rel => "nofollow" %>
       </div>
     </div>
   </div>

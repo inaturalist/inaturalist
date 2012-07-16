@@ -9,5 +9,5 @@ end
 
 if @observations.empty?
   page.insert_html :bottom, @update, 
-                   '<p class="description">None yet&hellip;</p>'
+                   '<p class="description">'+<%=t :none_yet %>+'&hellip;</p>'
 end

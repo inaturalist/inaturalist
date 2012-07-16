@@ -21,19 +21,19 @@
           <%= render :partial => "shared/page_results", :locals => { :paginator => observations } %>
         </li>
         <li class="filters tab<%= ' open' if @filters_open %>">
-          <a href="#" id="filterslink" class="toggle">Search</a>
+          <a href="#" id="filterslink" class="toggle"><%=t :search %></a>
         </li>
-        <li class="description"><span>Views</span></li>
+        <li class="description"><span><%=t :views %></span></li>
         <li class="tab" style="padding: 0">
           <%= link_to(
-            'Map', 
+            t(:map), 
             params.merge(:view => 'map'),
             :id => 'maplink', 
             :class => "modal_link maplink#{(@view && @view == 'map' ? ' selected' : '')}") %>
         </li>
         <li class="last tab">
           <%= link_to(
-            'Table', 
+            t(:table), 
             params.merge(:view => 'table'), 
             :id => 'tablelink',
             :class => "modal_link tablelink#{(@view && @view == 'table' ? ' selected' : '')}") %>

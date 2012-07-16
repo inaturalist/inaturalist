@@ -13,10 +13,10 @@
   <div id="place_selector" class="ui-tabs">
     
     <ul>
-      <li><a href="#place_selector_search"><span>Search</span></a></li>
-      <li><a href="#place_selector_paste"><span>Paste</span></a></li>
-      <li><%= link_to "<span>Countries</span>", add_taxon_places_path(@taxon, :tab => "countries") %></li>
-      <li><%= link_to "<span>US States</span>", add_taxon_places_path(@taxon, :tab => "us_states") %></li>
+      <li><a href="#place_selector_search"><span><%=t(:search)%></span></a></li>
+      <li><a href="#place_selector_paste"><span><%=t(:paste)%></span></a></li>
+      <li><%= link_to "<span>#{t(:countries)}</span>", add_taxon_places_path(@taxon, :tab => "countries") %></li>
+      <li><%= link_to "<span>#{t(:US_states)}</span>", add_taxon_places_path(@taxon, :tab => "us_states") %></li>
     </ul>
     
     <div id="place_selector_search">
@@ -25,25 +25,25 @@
           :complete => "$('##{dom_id @taxon, 'place_selector_loading'}').hide()" do %>
         <div class="clear buttonrow">
           <%= text_field_tag :q, '', :class => 'text', :id => dom_id(@taxon, 'place_selector_q') %>
-          <%= submit_tag 'Find Places', :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
+          <%= submit_tag t(:find_places), :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
         </div>
       <% end %>
-      <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none">Searching...</div>
+      <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none"><%= t(:searching) %></div>
       <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0"></ul>
     </div>
     
     <div id="place_selector_paste">
-      <p class="description">Paste in a comma-separated list of countries</p>
+      <p class="description"><%= t(:paste_in_a_comma_separated_list) %></p>
       <% form_remote_tag :url => add_taxon_places_path(@taxon),
           :loading => "$('##{dom_id @taxon, 'place_selector_paste_loading'}').show()",
           :complete => "$('##{dom_id @taxon, 'place_selector_paste_loading'}').hide()" do %>
         <textarea name="paste_places" class="stacked"></textarea>
-        <%= submit_tag "Add Countries", :class => "default button" %>
-        <div id="<%= dom_id @taxon, 'place_selector_paste_loading' %>" class="loading status minor button" style="display: none">Adding...</div>
+        <%= submit_tag t(:add_countries), :class => "default button" %>
+        <div id="<%= dom_id @taxon, 'place_selector_paste_loading' %>" class="loading status minor button" style="display: none"><%= t(:adding) %></div>
       <% end %>
       <ul id="<%= dom_id(@taxon, 'place_selector_paste_places') %>" class="places">
         <li class="description" style="list-style: none">
-          No countries added yet
+          <%= t(:no_countries_added_yet) %>
         </li>
       </ul>
     </div>

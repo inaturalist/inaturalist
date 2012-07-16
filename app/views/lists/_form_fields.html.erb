@@ -10,26 +10,21 @@
   <% else -%>
     <% if list.new_record? -%>
       <div id="typescol" class="column span-12 last">
-        <%= f.check_box :type, {}, 'LifeList', {:label => "Make it a life list?", :label_after => true} %>
+        <%= f.check_box :type, {}, 'LifeList', {:label => t(:make_it_a_life_list?), :label_after => true} %>
         <div class="description">
-          Life lists automatically fill up with new taxa as you observe them,
-          and they can be restricted to higher level parent taxa, e.g. a life
-          list of birds in the crow family (Corvidae).
+         <%=t :life_lists_automatically_fill %>
         </div>
       </div>
 
       <div id="optionscol" class="column span-12 last">
         <div id="lifelist_fields" class="type_fields">
-          <h3>What do you want to list?</h3>
+          <h3><%=t :what_do_you_want_to_list? %></h3>
           <p class="ui description">
-            Choose a higher-level taxon you'd like to show in this list, like
-            "Aves" for birds, or "Amphibia" for amphibians. When set, this list
-            won't allow taxa that are not in this taxon. For example, if you
-            create a list of birds, you won't be able to add any frogs to it.
+          <%=t :check_list_description %>
           </p>
 
           <div class="field">
-            <label for="taxon_input_1">Add a taxon (e.g. "birds")</label>
+            <label for="taxon_input_1"><%=t :add_higher_level_taxon %></label>
             <input type="text" name="taxon_name" id="taxon_input_1" class="text" />
             <input type="hidden" name="taxa[][taxon_id]" value="" id="taxa_1"/>
           </div>
@@ -39,7 +34,7 @@
     <% elsif @taxon_rule %>
       <div id="life_list_taxon" class="life_list_taxon description stacked">
         <%= taxon_image(@taxon_rule.operand, :style => "width: 20px; vertical-align: middle") %>
-        This is a life list of
+        <%=t :this_is_a_life_list_of %>
         <%= render :partial => 'shared/taxon', 
                    :locals => { :taxon => @taxon_rule.operand,
                                 :link_url => url_for(@taxon_rule.operand) } %>
@@ -47,10 +42,10 @@
     <% end -%>
     
     <div id="rankcol" class="column span-12 last">
-      <h3>Rank restrictions</h3>
-      <%= f.radio_button :rank_rule, "any", :label => "allow any", :label_after => true %>
-      <%= f.radio_button :rank_rule, "species?", :label => "only species", :label_after => true %>
-      <%= f.radio_button :rank_rule, "species_or_lower?", :label => "only species and subspecies/varieties", :label_after => true %>
+      <h3><%=t :rank_restrictions %></h3>
+      <%= f.radio_button :rank_rule, "any", :label => t(:allow_any), :label_after => true %>
+      <%= f.radio_button :rank_rule, "species?", :label => t(:only_species), :label_after => true %>
+      <%= f.radio_button :rank_rule, "species_or_lower?", :label => t(:only_species_and_subspecies), :label_after => true %>
     </div>
   <% end -%>
 </div>

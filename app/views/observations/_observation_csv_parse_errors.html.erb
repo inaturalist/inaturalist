@@ -7,20 +7,19 @@
       </div>
     </div>
     <div class="column span-24 observation">
-      <b> Row number <%=  i+1 %> was parsed as: <br /></b>
-      Required columns in order
+      <b> <%= t(:row_number_i_was_parsed_as, :row=>(i+1)) %>: <br /></b>
+      <%=t :required_columns_in_order %>
       <ul>
-        <li><span <%= 'class="error status"' if observation.errors.on(:species_guess) %>>species guess: <%= observation.species_guess %></span></li>
-        <li><span <%= 'class="error status"' if observation.errors.on(:observed_on) %>>observed on: <%= observation.observed_on_string %>, which was interpreted as <%= observation.datetime %></span></li>
-        <li><span <%= 'class="error status"' if observation.errors.on(:description) %>>description: <%= observation.description %></span></li>
-        <li><span <%= 'class="error status"' if observation.errors.on(:place_guess) %>>place guess: <%= observation.place_guess %></span></li>
+        <li><span <%= 'class="error status"' if observation.errors.on(:species_guess) %>><%=t :species_guess %>: <%= observation.species_guess %></span></li>
+        <li><span <%= 'class="error status"' if observation.errors.on(:observed_on) %>><%=t :observed_on %>: <%= observation.observed_on_string %>, which was interpreted as <%= observation.datetime %></span></li>
+        <li><span <%= 'class="error status"' if observation.errors.on(:description) %>><%=t :description %>: <%= observation.description %></span></li>
+        <li><span <%= 'class="error status"' if observation.errors.on(:place_guess) %>><%=t :place_guess %>: <%= observation.place_guess %></span></li>
       </ul>
-      
-      Optional columns (note: for any of these columns to be used in an observation, they must all be present)
+      <%=t :optional_columns_note_for_any %>
       <ul>
-        <li><span <%= 'class="error status"' if observation.errors.on(:latitude) %>>latitude: <%= observation.latitude %></span></li>
-        <li><span <%= 'class="error status"' if observation.errors.on(:longitude) %>>longitude: <%= observation.longitude %></span></li>
-        <li><span <%= 'class="error status"' if observation.errors.on(:location_is_exact) %>>location is exact: <%= observation.location_is_exact %></span></li>
+        <li><span <%= 'class="error status"' if observation.errors.on(:latitude) %>><%=t :latitude %>: <%= observation.latitude %></span></li>
+        <li><span <%= 'class="error status"' if observation.errors.on(:longitude) %>><%=t :longitude %>: <%= observation.longitude %></span></li>
+        <li><span <%= 'class="error status"' if observation.errors.on(:location_is_exact) %>><%=t :location_is_exact %>: <%= observation.location_is_exact %></span></li>
       </ul>
     </div>
   <% end %>

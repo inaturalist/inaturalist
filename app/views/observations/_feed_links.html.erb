@@ -1,4 +1,4 @@
-Feeds for Current Filters:
+<%=t :feeds_for_current_filters %>:
 <%- 
   feed_params = params.reject do |key,value|
     ObservationsController::REJECTED_FEED_PARAMS.include?(key)

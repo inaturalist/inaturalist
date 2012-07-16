@@ -1,25 +1,25 @@
 <%- content_for(:title) do -%>
-  Log In
+  <%= t(:log_in) %>
 <%- end -%>
 <% form_tag session_path do %>
   <p class="ui">
-    <%= label_tag 'login', 'Username or email' %><br/>
+    <%= label_tag 'login', t(:username_or_email) %><br/>
     <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
   </p>
 
   <p class="ui">
-    <%= label_tag 'password', 'Password' %><br/>
+    <%= label_tag 'password', t(:password) %><br/>
     <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
   </p>
 
   <p class="ui">
-    <%= check_box_tag 'remember_me', '1', 'Remember me' %>
-    <%= label_tag 'remember_me', 'Remember me' %>
+    <%= check_box_tag 'remember_me', '1', t(:remember_me) %>
+    <%= label_tag 'remember_me', t(:remember_me) %>
   </p>
 
-  <p><%= submit_tag 'Sign in!', :class => "default button", :style => "float: none;" %></p>
+  <p><%= submit_tag t(:sing_in_exclamation), :class => "default button", :style => "float: none;" %></p>
 
 <% end -%>
 
-<p class="ui" style="text-align:center;"><%= link_to 'Forgot your password?', forgot_password_path %></p>
-<p class="ui" style="text-align:center;"><%= link_to 'Start a new account', new_user_path %></p>
+<p class="ui" style="text-align:center;"><%= link_to t(:forgot_your_password), forgot_password_path %></p>
+<p class="ui" style="text-align:center;"><%= link_to t(:start_new_account), new_user_path %></p>

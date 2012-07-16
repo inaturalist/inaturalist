@@ -79,7 +79,7 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    unfriend_link = link_to_remote "Stop following #{potential_friend.login}", 
+    unfriend_link = link_to_remote t(:stop_following_user, :user => " #{potential_friend.login}" ),
       :url => url_options.merge(:remove_friend_id => potential_friend.id), 
       :datatype => "json",
       :method => :put,
@@ -88,7 +88,7 @@ module ApplicationHelper
       :html => html_options.merge(
         :id => dom_id(potential_friend, 'unfriend_link'),
         :style => already_friends ? "" : "display:none")
-    friend_link = link_to_remote "Follow #{potential_friend.login}", 
+    friend_link = link_to_remote t(:follow_user, :user=> " #{potential_friend.login} "), 
       :url => url_options.merge(:friend_id => potential_friend.id), 
       :method => :put,
       :datatype => "json",
@@ -523,7 +523,7 @@ module ApplicationHelper
           else
             link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) + " "
           end
-          c + link_to("some rights reserved", url_for_license(record.license))
+          c + link_to(t(:some_rights_reserved), url_for_license(record.license))
         end
       end
     elsif record.is_a? Photo
@@ -550,7 +550,7 @@ module ApplicationHelper
             else
               link_to(image_tag("#{code}_small.png"), url) + " "
             end
-            c + link_to("some rights reserved", url)
+            c + link_to(t(:some_rights_reserved), url)
           end
         end
       end

@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%=h @display_user.login %>'s Journal &middot; Archives for <%= @target_date.strftime('%B %Y') %>
+  <%=h t(:x_journal_archives_for_y, :user => "#{@display_user.login}") %> <%=l @target_date %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
@@ -13,11 +13,11 @@
 <div id="pageheader" class="column span-24">
   <div class="breadcrumbs">
     <% if current_user and current_user.login == @display_user.login %>
-    <%= link_to 'Back to your journal', 
+    <%= link_to t(:back_to_your_journal), 
                 journal_by_login_path(current_user.login),
                 :class => 'back crumb' %>
     <% else %>
-    <%= link_to "Back to #{@display_user.login}'s journal", 
+    <%= link_to t(:back_to_x_journal, :user => "#{@display_user.login}", 
                 journal_by_login_path(@display_user.login),
                 :class => 'back crumb' %>
     <% end %>
@@ -28,33 +28,33 @@
   
   <h2>
     <% if current_user and current_user.login == @display_user.login %>
-      Your
+      <%= t(:your) %>
     <% else %>
-      <%= @display_user.login %>'s
+      <%= t(:user_s, :user => "#{@display_user.login}") %>
     <% end %>
-    Journal
+    <%= t(:journal) %>
   </h2>
   <%= render :partial => 'users/subnav', 
              :locals => { :user => @display_user } %>
   
   <% if logged_in? && current_user.login == @display_user.login -%>
     <div id="tools" class="buttonrow">
-      <%= link_to "New Post", new_journal_post_path(@display_user.login), 
+      <%= link_to t(:new_post), new_post_path(@display_user.login), 
                   :id => "newpostbutton", :class => "default button"%>
     </div>
   <% end -%>
 </div>
 
 <div id="postscol" class="column span-16 append-1">
-  <h2 class="title">Journal Archives for <%= @target_date.strftime('%B %Y') %></h2>
+  <h2 class="title"><%= t(:journal_archives_for) l @target_date %></h2>
   <div id="postdates" class="posts_by_date">
     <%= render :partial => 'posts_by_date' %>
     
     <% if @posts.empty? %>
       <center id="noposts" class="readable description">
-        No posts yet!
+        <%= t(:no_post_yet) %>
         <% if logged_in? && current_user.login == @display_user.login -%>
-          <%= link_to "Add one!", new_journal_post_path(@display_user.login), 
+          <%= link_to t(:add_one), new_post_path(@display_user.login), 
             :class => "default button" %>
         <% end -%>
       </center>
