@@ -66,11 +66,13 @@ class ObservationPhotosController < ApplicationController
     end
     
     @observation_photo.photo.file = params[:file] if params[:file]
-    if @observation_photo.save
-      render :json => @observation_photo.to_json(:include => [:photo])
-    else
-      Rails.logger.error "[ERROR #{Time.now}] Failed to update observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
-      render :json => @observation_photo.errors, :status => :unprocessable_entity
+    respond_to do |format|
+      if @observation_photo.save
+        format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
+      else
+        Rails.logger.error "[ERROR #{Time.now}] Failed to update observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
+        format.json {render :json => @observation_photo.errors, :status => :unprocessable_entity }
+      end
     end
   end
 end
