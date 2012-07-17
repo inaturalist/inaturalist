@@ -13,6 +13,8 @@
     rank = content_tag(:span, rank, :class => 'rank')
     sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
   end
+  include_id ||= false
+  sciname += " #{taxon.id}" if include_id
 
   include_parens ||= true unless include_parens == false
   link_url ||= nil

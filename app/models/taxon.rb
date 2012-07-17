@@ -26,6 +26,7 @@ class Taxon < ActiveRecord::Base
   has_many :identifications, :dependent => :destroy
   has_many :taxon_links, :dependent => :delete_all 
   has_many :taxon_ranges, :dependent => :destroy
+  has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   belongs_to :source

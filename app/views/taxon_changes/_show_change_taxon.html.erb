@@ -6,12 +6,12 @@
     left_taxa = [taxon_change.taxon]
   when "TaxonSwap"
     right_taxa = [taxon_change.taxon]
-    left_taxa = [taxon_change.old_taxon]
+    left_taxa = [taxon_change.taxa.first]
   when "TaxonMerge"
     right_taxa = [taxon_change.taxon]
-    left_taxa = taxon_change.old_taxa
+    left_taxa = taxon_change.taxa
   when "TaxonSplit"
-    right_taxa = taxon_change.new_taxa
+    right_taxa = taxon_change.taxa
     left_taxa = [taxon_change.taxon]
   end
 -%>
@@ -56,7 +56,7 @@
         <ul class="change_taxon">
           <% for change_taxon in left_taxa %>
             <li>
-              <%= render :partial => 'change_taxon', :object => change_taxon %>
+              <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
             </li>
           <% end %>
         </ul>
@@ -76,10 +76,10 @@
       </td>
       <td>
         <ul class="change_taxon">
-          <% unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage"%>
+          <% unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage" %>
             <% for change_taxon in right_taxa %>
               <li>
-                <%= render :partial => 'change_taxon', :object => change_taxon %>
+                <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
               </li>
             <% end %>
           <% end %>
