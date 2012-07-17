@@ -54,13 +54,11 @@
     <fieldset id="change_types" class="">
       <legend>Change Types</legend>
       <% %w(split merge swap stage drop).each do |type| %>
-        <%= f.check_box :types, {
-            :wrapper => {:class => "inlineblock"}, 
-            :multiple => true, 
-            :label_after => true, 
-            :label => type.capitalize, 
-            :checked => @types.include?("Taxon#{type.capitalize}")
-          }, type, nil %>
+        <%= f.check_box type, 
+          :wrapper => {:class => "inlineblock"}, 
+          :label_after => true, 
+          :label => type.capitalize, 
+          :checked => @types.include?("Taxon#{type.capitalize}") %>
       <% end -%>
     </fieldset>
     
