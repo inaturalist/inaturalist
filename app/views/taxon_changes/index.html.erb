@@ -53,18 +53,23 @@
   <% form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
     <fieldset id="change_types" class="">
       <legend>Change Types</legend>
-      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Split", :checked => @types.include?('TaxonSplit')}, 'split', nil%>
-      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Merge", :checked => @types.include?('TaxonMerge')}, 'merge', nil%>
-      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Swap",  :checked => @types.include?('TaxonSwap')}, 'swap'  , nil %>
-      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Drop",  :checked => @types.include?('TaxonDrop')}, 'drop'  , nil %>
+      <% %w(split merge swap stage drop).each do |type| %>
+        <%= f.check_box :types, {
+            :wrapper => {:class => "inlineblock"}, 
+            :multiple => true, 
+            :label_after => true, 
+            :label => type.capitalize, 
+            :checked => @types.include?("Taxon#{type.capitalize}")
+          }, type, nil %>
+      <% end -%>
     </fieldset>
     
-    <%= f.select :change_group, @change_groups, :include_blank => "None" %>
+    <%= f.select :change_group, @change_groups, :include_blank => "None", :selected => @change_group %>
     <%= f.select :committed, %w(Yes No), :include_blank => "Either", :selected => @committed %>
     <%= f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => "Any", :selected => @iconic_taxon.try(:read_attribute, :id) %>
     <%= f.text_field :taxon_id,  :value => @taxon ? @taxon.id : nil, :placeholder => "Type taxon name" %>
     <%= f.text_field :source_id, :value => @source ? @source.id : nil, :placeholder => "Type source name" %>
-    <%= f.submit "Filter" %>
+    <%= f.submit "Filter", :class => "default button", "data-loading-click" => "Filtering..." %>
   <% end -%>
 </div>
 

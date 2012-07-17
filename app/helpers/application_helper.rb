@@ -474,8 +474,10 @@ module ApplicationHelper
     end
   end
   
-  def loading
-    content_tag :span, (block_given? ? capture(&block) : 'Loading...'), :class => "loading status"
+  def loading(content = nil, options = {})
+    content ||= "Loading..."
+    options[:class] = "#{options[:class]} loading status"
+    content_tag :span, (block_given? ? capture(&block) : content), options
   end
   
   def setup_map_tag_attrs(taxon, options = {})

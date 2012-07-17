@@ -1,16 +1,26 @@
 <%- 
   photo ||= change_taxon.photos.first
-  taxon_range ||= change_taxon.taxon_ranges.first
-  taxon_change ||= @taxon_change
+  taxon_range ||= change_taxon.taxon_ranges_without_geom.first
+  taxon_change ||= nil
+  swaps = if @swaps_by_taxon_id
+    @swaps_by_taxon_id[change_taxon.id] || []
+  else
+    change_taxon.taxon_swaps + 
+      change_taxon.taxon_change_taxa.all(
+        :include => :taxon_change, 
+        :conditions => "taxon_changes.type = 'TaxonSwap'").map{|tct| tct.taxon_change}
+  end
+  if taxon_change
+    swaps.delete_if{|swap| swap.id == taxon_change.id}
+  end
 -%>
 
-<%- rendered_taxon_name = capture do -%>
-  <%= render(:partial => 'shared/taxon.html.erb', :object => change_taxon) -%>
-<%- end -%>
-
-<div id="change_taxon_<%= change_taxon.id %>" class="change_taxon clear <%= change_taxon.iconic_taxon.name rescue 'Unknown' %> taxon-<%= change_taxon.id %>">
+<div id="change_taxon_<%= change_taxon.id %>" class="change_taxon clear">
   <% image_and_content taxon_image(change_taxon), :image_size => 75 do %>
-    <%= link_to rendered_taxon_name, change_taxon %>
+    <% link_to change_taxon, :class => "taxon #{change_taxon.rank}" do %>
+      <span class="sciname"><%= change_taxon.name %></span>
+      <%= change_taxon.id %>
+    <% end -%>
     
     <div class="stacked">
       <%= link_to change_taxon.observations_count, observations_path(:taxon_id => change_taxon.id) %> Obs
@@ -18,29 +28,32 @@
       <%= "<span class='meta'>|</span> #{link_to 'Range', taxon_path(change_taxon, :anchor => 'taxon_range')}" if taxon_range %>
       <%= change_taxon.is_active ? "| <span class='active'>Active</span>" : "| <span class='inactive'>Inactive</span>" %>
     </div>
+    
     <div class="meta">
       <div class="small description">
         <% for taxon_scheme in change_taxon.taxon_schemes %>
           <%= taxon_scheme.title  %><br/>
         <% end %>
-        <% if taxon_change.class.name == 'TaxonSplit' || taxon_change.class.name == 'TaxonMerge'%>
-          <% for swap in change_taxon.taxon_swaps %> 
-            <% aka_name = swap.old_taxon.name %>
-            <% for aka_scheme in swap.old_taxon.taxon_schemes %>
-              <%= link_to "#{aka_scheme.title} (as #{aka_name})", taxon_change_path(swap) %><br/>
-            <% end %>
-          <% end %>
-          <% for tct in change_taxon.taxon_change_taxa %> 
-            <% swap = tct.taxon_change %>
-            <% if swap.class.name == "TaxonSwap" %>
-              <% aka_name = swap.taxon.name %>
-              <% for aka_scheme in swap.taxon.taxon_schemes %>
-                <%= link_to "#{aka_scheme.title} (as #{aka_name})", taxon_change_path(swap) %><br/>
+        
+        <% unless swaps.blank? -%>
+          <label>Synonyms</label>
+          <ul>
+            <% for swap in swaps %> 
+              <%- aka_taxon = swap.opposite_taxon_from(change_taxon) -%>
+              <% for aka_scheme in aka_taxon.taxon_schemes %>
+                <li>
+                  <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %>
+                  <div class="meta">
+                    <%= aka_scheme.title %>
+                  </div>
+                  <%= link_to "View change", taxon_change_path(swap) %>
+                </li>
               <% end %>
             <% end %>
-          <% end %>
-        <% end %>
+          </ul>
+        <% end -%>
       </div>
     </div>
   <% end -%>
 </div>
+

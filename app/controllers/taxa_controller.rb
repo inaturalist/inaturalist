@@ -527,7 +527,7 @@ class TaxaController < ApplicationController
         {
           :id => taxon.id,
           :range_url => @taxon_ranges[taxon.id] ? taxon_range_geom_url(taxon.id, :format => "geojson") : nil, 
-          :observations_url => observations_of_url(taxon, :format => "geojson"),
+          :observations_url => taxon.observations.exists? ? observations_of_url(taxon, :format => "geojson") : nil,
           :name => taxon.name
         }
       end
@@ -535,7 +535,7 @@ class TaxaController < ApplicationController
       @bounds = if !@taxon_ranges.blank?
         TaxonRange.calculate(:extent, :geom, :conditions => ["taxon_id IN (?)", @taxa])
       else
-        Observation.of(@taxa).calculate(:extent, :geom)
+        Observation.of(@taxa.first).calculate(:extent, :geom)
       end
       if @bounds
         @extent = [

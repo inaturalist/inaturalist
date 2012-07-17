@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713074557) do
+ActiveRecord::Schema.define(:version => 20120717184355) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -737,6 +737,9 @@ ActiveRecord::Schema.define(:version => 20120713074557) do
     t.datetime "updated_at"
   end
 
+  add_index "taxon_change_taxa", ["taxon_change_id"], :name => "index_taxon_change_taxa_on_taxon_change_id"
+  add_index "taxon_change_taxa", ["taxon_id"], :name => "index_taxon_change_taxa_on_taxon_id"
+
   create_table "taxon_changes", :force => true do |t|
     t.text     "description"
     t.integer  "taxon_id"
@@ -748,6 +751,10 @@ ActiveRecord::Schema.define(:version => 20120713074557) do
     t.date     "committed_on"
     t.string   "change_group"
   end
+
+  add_index "taxon_changes", ["source_id"], :name => "index_taxon_changes_on_source_id"
+  add_index "taxon_changes", ["taxon_id"], :name => "index_taxon_changes_on_taxon_id"
+  add_index "taxon_changes", ["user_id"], :name => "index_taxon_changes_on_user_id"
 
   create_table "taxon_links", :force => true do |t|
     t.string   "url",                                         :null => false
@@ -818,6 +825,9 @@ ActiveRecord::Schema.define(:version => 20120713074557) do
     t.datetime "updated_at"
   end
 
+  add_index "taxon_scheme_taxa", ["taxon_id"], :name => "index_taxon_scheme_taxa_on_taxon_id"
+  add_index "taxon_scheme_taxa", ["taxon_scheme_id"], :name => "index_taxon_scheme_taxa_on_taxon_scheme_id"
+
   create_table "taxon_schemes", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -825,6 +835,8 @@ ActiveRecord::Schema.define(:version => 20120713074557) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "taxon_schemes", ["source_id"], :name => "index_taxon_schemes_on_source_id"
 
   create_table "taxon_versions", :force => true do |t|
     t.integer  "taxon_id"
