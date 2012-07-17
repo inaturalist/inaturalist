@@ -4,7 +4,8 @@ class TaxonChangesController < ApplicationController
   def index
     filter_params = params[:filters] || params
     @committed = filter_params[:committed]
-    @types = filter_params[:types] || []
+    @types = filter_params[:types]
+    @types ||= %w(split merge swap stage drop).map{|t| filter_params[t] == "1" ? t : nil}
     @types.delete_if{|t| t.blank?}
     @types = @types.map{|t| t =~ /^Taxon/ ? t : "Taxon#{t.capitalize}"}
     @iconic_taxon = Taxon.find_by_id(filter_params[:iconic_taxon_id]) unless filter_params[:iconic_taxon_id].blank?
