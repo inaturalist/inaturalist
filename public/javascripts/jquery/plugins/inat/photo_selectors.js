@@ -411,8 +411,8 @@
         
         // Re-insert the checkbox parents
         if (existing && existing.length > 0) {
-          //$(wrapper).find('.photoSelectorPhotos').prepend('<hr />').prepend(existing).prepend("<label>Selected photos</label><br />");
-          $(wrapper).find('.photoSelectorPhotos').append('<hr />').append("<h4>Selected photos</h4>").append(existing);
+          $(wrapper).find('.photoSelectorPhotos').prepend('<hr />').prepend(existing).prepend("<h4>Selected photos</h4>");
+          //$(wrapper).find('.photoSelectorPhotos').append('<hr />').append("<h4>Selected photos</h4>").append(existing);
         }
         
         if (options.baseURL.match(/local_photo/)) {
