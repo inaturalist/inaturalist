@@ -1,106 +1,18 @@
 ul {
-  margin-right: 0;
-  margin-bottom: 0;
   list-style: none;
-  margin-left: 0;
+  margin: 0;
 }
-
-.change_taxon .column.details {
-  width: 300px;
-}
-.change_taxon .column.image {
-  width: 50px;
-  height: 50px;
-  background-image: url('/images/iconic_taxa/unknown-32px.png');
-  background-color: white;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-}
-
-.change_taxon .column.image a {
-  border: 1px solid #eee;
-  display: block;
-  width: 50px;
-  height: 50px;
-}
-
-.change_taxon .column.image img {
-  width: 50px;
-  height: 50px;
-}
-
-.change_taxon .column.image img.zoom_icon {
-  width: 16px;
-  height: 16px;
-  top: 2px;
-  right: 2px;
-}
-
-.change_taxon .column.image a:hover {
-  border: 1px solid #BACEF1;
-}
-
-.change_taxon {
-  padding: 0.5em 0 0.5em 0.5em;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
-}
-
-.change_taxon:hover {
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #eee;
-  background-color: #F7F7F7;
-}
-
-.Protozoa,        .stat.Protozoa a        { color: #691776;  }
-.Plantae,         .stat.Plantae a         { color: #73AC13;  }
-.Fungi,           .stat.Fungi a           { color: DeepPink; }
-.Animalia,        .stat.Animalia a        { color: #1E90FF;  }
-.Mollusca,        .stat.Mollusca a        { color: #FF4500;  }
-.Arachnida,       .stat.Arachnida a       { color: #FF4500;  }
-.Insecta,         .stat.Insecta a         { color: #FF4500;  }
-.Amphibia,        .stat.Amphibia a        { color: #1E90FF;  }
-.Reptilia,        .stat.Reptilia a        { color: #1E90FF;  }
-.Aves,            .stat.Aves a            { color: #1E90FF;  }
-.Mammalia,        .stat.Mammalia a        { color: #1E90FF;  }
-.Actinopterygii,  .stat.Actinopterygii a  { color: #1E90FF;  }
-.Chromista,       .stat.Chromista a  { color: #993300;  }
-
-.Protozoa:hover  { color: #691776;  }
-.Plantae:hover   { color: #73AC13;  }
-.Fungi:hover     { color: DeepPink; }
-.Animalia:hover  { color: #1E90FF;  }
-.Mollusca:hover  { color: #FF4500;  }
-.Arachnida:hover { color: #FF4500;  }
-.Insecta:hover   { color: #FF4500;  }
-.Amphibia:hover  { color: #1E90FF;  }
-.Reptilia:hover  { color: #1E90FF;  }
-.Aves:hover      { color: #1E90FF;  }
-.Mammalia:hover  { color: #1E90FF;  }
-.Actinopterygii:hover  { color: #1E90FF;  }
-.Chromista:hover  { color: #993300;  }
-
-.change_taxon.Unknown   .column.image { background-image: url('/images/iconic_taxa/unknown-32px.png'); }
-.change_taxon.Protozoa  .column.image { background-image: url('/images/iconic_taxa/protozoa-32px.png'); }
-.change_taxon.Plantae   .column.image { background-image: url('/images/iconic_taxa/plantae-32px.png'); }
-.change_taxon.Fungi     .column.image { background-image: url('/images/iconic_taxa/fungi-32px.png'); }
-.change_taxon.Animalia  .column.image { background-image: url('/images/iconic_taxa/animalia-32px.png'); }
-.change_taxon.Mollusca  .column.image { background-image: url('/images/iconic_taxa/mollusca-32px.png'); }
-.change_taxon.Arachnida .column.image { background-image: url('/images/iconic_taxa/arachnida-32px.png'); }
-.change_taxon.Insecta   .column.image { background-image: url('/images/iconic_taxa/insecta-32px.png'); }
-.change_taxon.Amphibia  .column.image { background-image: url('/images/iconic_taxa/amphibia-32px.png'); }
-.change_taxon.Reptilia  .column.image { background-image: url('/images/iconic_taxa/reptilia-32px.png'); }
-.change_taxon.Aves      .column.image { background-image: url('/images/iconic_taxa/aves-32px.png'); }
-.change_taxon.Mammalia  .column.image { background-image: url('/images/iconic_taxa/mammalia-32px.png'); }
-.change_taxon.Actinopterygii  .column.image { background-image: url('/images/iconic_taxa/actinopterygii-32px.png'); }
-.change_taxon.Chromista  .column.image { background-image: url('/images/iconic_taxa/chromista-32px.png'); }
+.active {color: #6E8B21;}
+.inactive {color: #777;}
 
 .change_taxon .taxon {
   font-family: Georgia, serif;
   font-size: 140%;
   line-height: 1.2;
+  margin-bottom: 5px;
+  display:block;
 }
-
-.change_taxon .details {
-  width: 437px;
-}
+.mergetype {font-weight:bold;text-align:center;}
+.taxon_change table {width: 100%;}
+.taxon_change .image_and_content .image {text-align:center;}
+.taxon_change .image_and_content .image img {max-width: 75px;}

@@ -1,6 +1,13 @@
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
-    Map for <%= link_to @taxon.name, @taxon %>
+    Map for
+    <% if @taxon -%>
+      <%= link_to @taxon.name, @taxon %>
+    <% elsif @taxa %>
+      <%= @taxa.map {|t| link_to(t.name, t)} %>
+    <% else %>
+      Taxa
+    <% end -%>
   <%- end -%>
   <%= strip_tags(@title) %>
 <%- end -%>
@@ -10,8 +17,8 @@
   <%= javascript_include_tag "polymaps.min", "polymaps.extra", "polymaps.kml", 'd3.min', 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
     var TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
-    var CLOUDMADE_KEY = <%= @cloudmade_key.inspect %>
-    var BING_KEY = <%= @bing_key.inspect %>
+    var CLOUDMADE_KEY = <%= @cloudmade_key ? @cloudmade_key.inspect : 'null' %>
+    var BING_KEY = <%= @bing_key ? @bing_key.inspect : 'null' %>
     var M_TO_OBSCURE_THREATENED_TAXA = <%= Observation::M_TO_OBSCURE_THREATENED_TAXA %>
     var PLANETARY_RADIUS = <%= Observation::PLANETARY_RADIUS %>
     var DEGREES_PER_RADIAN = <%= Observation::DEGREES_PER_RADIAN %>
@@ -23,14 +30,15 @@
     var taxonRange = <%= @taxon_range.to_json(:include => [:source]) %>
     var taxonRangeUrl = <%= (@taxon_range ? taxon_range_geom_url(@taxon.id, :format => "geojson") : nil).to_json %>
     var taxonRangeKmlUrl = <%= (@taxon_range ? root_url.gsub(/\/$/, "") + @taxon_range.range.url : nil).to_json %>
-    var observationsKmlUrl = <%= observations_url(:format => :kml, :taxon_id => @taxon.id).inspect %>
-    var observationsJsonUrl = <%= observations_of_url(@taxon.id, :format => :json).inspect %>
-    var observationsGeoJsonUrl = <%= observations_of_url(@taxon.id, :format => :geojson).inspect %>
+    var observationsKmlUrl = <%= @taxon ? observations_url(:format => :kml, :taxon_id => @taxon.id).inspect : 'null' %>
+    var observationsJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :json).inspect : 'null' %>
+    var observationsGeoJsonUrl = <%= @taxon ? observations_of_url(@taxon.id, :format => :geojson).inspect : 'null' %>
     var children = <%= @children.to_json %>
     var place = <%= @place.to_json %>
     var placeGeometry = <%= @place_geometry.to_json %>
     var placeKmlUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "kml").inspect : 'null' %>
     var placeGeoJsonUrl = <%= @place_geometry ? place_geometry_url(@place, :format => "geojson").inspect : 'null' %>
+    var taxa = <%= @taxa_data.to_json %>
     
     $(document).ready(function() {
       var script = document.createElement("script")
@@ -63,12 +71,14 @@
 <div id="copyright"></div>
 <div id="legend" class="floating">
   <%= link_to_function "collapse/expand", "toggleLegend()", :id => "togglecollapse", :class => "ui-icon ui-icon-arrow-1-sw" %>
-  <div class="breadcrumbs nobr">
-    <%- link_to @taxon, :class => "back crumb" do %>
-      Back to
-      <%= render :partial => "shared/taxon", :object => @taxon, :locals => {:link => false} %>
-    <% end %>
-  </div>
+  <% if @taxon -%>
+    <div class="breadcrumbs nobr">
+      <%- link_to @taxon, :class => "back crumb" do %>
+        Back to
+        <%= render :partial => "shared/taxon", :object => @taxon, :locals => {:link => false} %>
+      <% end %>
+    </div>
+  <% end -%>
   
   <div id="legendcontent" class="stacked">
     <table border="0">

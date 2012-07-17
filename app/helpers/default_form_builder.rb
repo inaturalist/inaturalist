@@ -12,7 +12,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       elsif args.last.is_a?(Hash)
         args.last
       else
-        {}
+        args.reverse.detect{|a| a.is_a?(Hash)} || {}
       end
       options[:field_name] = name
       if name == 'radio_button'

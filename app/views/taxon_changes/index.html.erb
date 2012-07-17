@@ -1,3 +1,13 @@
+<%-
+  if @taxon
+    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+  end
+  @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
+    taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+    taxon
+  end
+-%>
+
 <% content_for(:title) do %>
   <% @title = capture do %>
     Taxonomic changes
@@ -12,15 +22,59 @@
 
 <%- content_for(:extracss) do %>
 <%= stylesheet_link_tag 'taxon_changes' %>
+<style type="text/css" media="screen">
+  .ui-chooser-choice {max-width:190px;}
+  .change_taxon {margin-bottom: 10px; width: 310px;}
+</style>
 <% end %>
+
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    window.taxon = <%= @taxon.to_json(:methods => [:html]) %>
+    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]) %>
+    $(document).ready(function() {
+      $('#filters_taxon_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        defaultSources: defaultTaxa,
+        chosen: taxon
+      })
+      $('#filters_source_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/sources.json',
+        resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json'
+      })
+    })
+  </script>
+<%- end -%>
 
 <h2><%= @title %></h2>
 
-<% if @taxon_changes.empty? %>
-  <p class="description">No taxonomic changes matching those criteria</p>
-<% end %>
-<% for taxon_change in @taxon_changes %>
-  <%= render :partial => 'show_change_taxon', :object => taxon_change %>
-<% end %>
+<div class="column span-6">
+  <% form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
+    <fieldset id="change_types" class="">
+      <legend>Change Types</legend>
+      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Split", :checked => @types.include?('TaxonSplit')}, 'split', nil%>
+      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Merge", :checked => @types.include?('TaxonMerge')}, 'merge', nil%>
+      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Swap",  :checked => @types.include?('TaxonSwap')}, 'swap'  , nil %>
+      <%= f.check_box :types, {:wrapper => {:class => "inlineblock"}, :multiple => true, :label_after => true, :label => "Drop",  :checked => @types.include?('TaxonDrop')}, 'drop'  , nil %>
+    </fieldset>
+    
+    <%= f.select :change_group, @change_groups, :include_blank => "None" %>
+    <%= f.select :committed, %w(Yes No), :include_blank => "Either", :selected => @committed %>
+    <%= f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => "Any", :selected => @iconic_taxon.try(:read_attribute, :id) %>
+    <%= f.text_field :taxon_id,  :value => @taxon ? @taxon.id : nil, :placeholder => "Type taxon name" %>
+    <%= f.text_field :source_id, :value => @source ? @source.id : nil, :placeholder => "Type source name" %>
+    <%= f.submit "Filter" %>
+  <% end -%>
+</div>
 
-<%= will_paginate @taxon_changes %>
+<div class="last column span-18">
+  <% if @taxon_changes.empty? %>
+    <p class="description">No taxonomic changes matching those criteria</p>
+  <% end %>
+  <% for taxon_change in @taxon_changes %>
+    <%= render :partial => 'show_change_taxon', :object => taxon_change %>
+  <% end %>
+
+  <%= will_paginate @taxon_changes %>
+</div>

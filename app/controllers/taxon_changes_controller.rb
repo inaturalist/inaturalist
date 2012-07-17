@@ -2,18 +2,24 @@ class TaxonChangesController < ApplicationController
   before_filter :curator_required
   
   def index
-    @committed = params[:committed] == 'true' if params[:committed]
-    @types = params[:types].to_s.split(',').map{|t| t =~ /^Taxon/ ? t : "Taxon#{t.capitalize}"}
-    @iconic_taxon = Taxon.find_by_id(params[:iconic_taxon_id])
-    @source = Source.find_by_id(params[:source_id])
-    @taxon = Taxon.find_by_id(params[:taxon_id])
-    @change_group = params[:change_group]
-    @taxon_scheme = TaxonScheme.find_by_id(params[:taxon_scheme_id])
+    filter_params = params[:filters] || params
+    @committed = filter_params[:committed]
+    @types = filter_params[:types] || []
+    @types.delete_if{|t| t.blank?}
+    @types = @types.map{|t| t =~ /^Taxon/ ? t : "Taxon#{t.capitalize}"}
+    @iconic_taxon = Taxon.find_by_id(filter_params[:iconic_taxon_id]) unless filter_params[:iconic_taxon_id].blank?
+    @source = Source.find_by_id(filter_params[:source_id]) unless filter_params[:source_id].blank?
+    @taxon = Taxon.find_by_id(filter_params[:taxon_id]) unless filter_params[:taxon_id]
+    @change_group = filter_params[:change_group] unless filter_params[:change_group].blank?
+    @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id])
+    
+    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.sort
+    @taxon_schemes = TaxonScheme.all(:limit => 100)
     
     scope = TaxonChange.scoped({})
-    if @committed == true
+    if @committed == 'Yes'
       scope = scope.committed
-    elsif @committed == false
+    elsif @committed == 'No'
       scope = scope.uncommitted
     end
     scope = scope.types(@types) unless @types.blank?
@@ -24,7 +30,7 @@ class TaxonChangesController < ApplicationController
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
     
     @taxon_changes = scope.paginate(
-      :page => params[:page],
+      :page => filter_params[:page],
       :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
       :include => [
         {:taxon => [:taxon_names, :photos, :taxon_ranges, :taxon_schemes]}, 
