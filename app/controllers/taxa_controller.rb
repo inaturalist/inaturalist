@@ -19,7 +19,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos, :map, :range]
+    :observation_photos, :range]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   
@@ -507,43 +507,43 @@ class TaxaController < ApplicationController
   end
   
   def map
-    @taxon_range = @taxon.taxon_ranges.without_geom.first
-    if params[:place_id] && (@place = Place.find_by_id(params[:place_id]))
-      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
-    end
-    @bounds = if @place && (bbox = @place.bounding_box)
-      GeoRuby::SimpleFeatures::Envelope.from_points([
-        Point.from_coordinates([bbox[1], bbox[0]]), 
-        Point.from_coordinates([bbox[3], bbox[2]])
-      ])
-    elsif @taxon_range
-      @taxon.taxon_ranges.calculate(:extent, :geom)
-    else
-      Observation.of(@taxon).calculate(:extent, :geom)
-    end
-    if @bounds
-      @extent = [
-        {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
-        {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
-      ]
-    end
-    
     @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
     @bing_key = INAT_CONFIG['bing'].try(:[], 'key')
     
-    find_options = {
-      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means", 
-      :joins => [:place], 
-      :conditions => [
-        "place_id IS NOT NULL AND places.place_type = ?", 
-        Place::PLACE_TYPE_CODES['County']
-      ]
-    }
-    @county_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
-    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['State']
-    @state_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
-    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['Country']
-    @country_listings = @taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+    if @taxon = Taxon.find_by_id(params[:id].to_i)
+      load_single_taxon_map_data(@taxon)
+    end
+    
+    @taxa = if params[:taxa].is_a?(Array)
+      params[:taxa]
+    elsif params[:taxa].is_a?(String)
+      params[:taxa].split(',')
+    end
+    
+    if @taxa
+      @taxa = Taxon.all(:conditions => ["id IN (?)", @taxa.map{|t| t.to_i}], :limit => 20)
+      @taxon_ranges = TaxonRange.without_geom.all(:conditions => ["taxon_id IN (?)", @taxa]).group_by(&:taxon_id)
+      @taxa_data = @taxa.map do |taxon|
+        {
+          :id => taxon.id,
+          :range_url => @taxon_ranges[taxon.id] ? taxon_range_geom_url(taxon.id, :format => "geojson") : nil, 
+          :observations_url => observations_of_url(taxon, :format => "geojson"),
+          :name => taxon.name
+        }
+      end
+      
+      @bounds = if !@taxon_ranges.blank?
+        TaxonRange.calculate(:extent, :geom, :conditions => ["taxon_id IN (?)", @taxa])
+      else
+        Observation.of(@taxa).calculate(:extent, :geom)
+      end
+      if @bounds
+        @extent = [
+          {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
+          {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
+        ]
+      end
+    end
     
     if params[:test]
       @child_taxa = @taxon.descendants.of_rank(Taxon::SPECIES).all(:limit => 10)
@@ -1286,5 +1286,42 @@ class TaxaController < ApplicationController
       redirect_to auth_url_for('flickr', :scope => 'write')
       return false
     end
+  end
+  
+  def load_single_taxon_map_data(taxon)
+    taxon_range = taxon.taxon_ranges.without_geom.first
+    if params[:place_id] && (@place = Place.find_by_id(params[:place_id]))
+      @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
+    end
+    @bounds = if @place && (bbox = @place.bounding_box)
+      GeoRuby::SimpleFeatures::Envelope.from_points([
+        Point.from_coordinates([bbox[1], bbox[0]]), 
+        Point.from_coordinates([bbox[3], bbox[2]])
+      ])
+    elsif taxon_range
+      taxon.taxon_ranges.calculate(:extent, :geom)
+    else
+      Observation.of(taxon).calculate(:extent, :geom)
+    end
+    if @bounds
+      @extent = [
+        {:lon => @bounds.lower_corner.x, :lat => @bounds.lower_corner.y}, 
+        {:lon => @bounds.upper_corner.x, :lat => @bounds.upper_corner.y}
+      ]
+    end
+    
+    find_options = {
+      :select => "listed_taxa.id, place_id, last_observation_id, places.place_type, occurrence_status_level, establishment_means", 
+      :joins => [:place], 
+      :conditions => [
+        "place_id IS NOT NULL AND places.place_type = ?", 
+        Place::PLACE_TYPE_CODES['County']
+      ]
+    }
+    @county_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['State']
+    @state_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+    find_options[:conditions][1] = Place::PLACE_TYPE_CODES['Country']
+    @country_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
   end
 end

@@ -346,8 +346,10 @@ $(document).ready(function() {
 
 function loadLayers() {
   if (children && children.length > 0) {
-    loadChildTaxaLayers()
-  } else  {
+    loadLayersForTaxa(children)
+  } else if (taxa && taxa.length > 0) {
+    loadLayersForTaxa(taxa)
+  } else if (observationsJsonUrl)  {
     loadSingleTaxonLayers()
   }
   
@@ -377,7 +379,7 @@ function loadLayers() {
   }
 }
 
-function loadChildTaxaLayers() {
+function loadLayersForTaxa(taxa) {
   $('#legend ul').html('')
   var styling = po.stylist()
     .style('visibility', 'visible')
@@ -385,21 +387,21 @@ function loadChildTaxaLayers() {
     .style('stroke', function(f) { return d3.rgb(colorScale(f.properties.taxon_id)).darker().toString() })
     .attr('class', 'range')
     
-  $.each(children, function() {
-    var child = this,
-        rangeId = 'range_'+child.id,
-        observationsId = 'observations_'+child.id;
-    if (child.range_url) {
+  $.each(taxa, function() {
+    var taxon = this,
+        rangeId = 'range_'+taxon.id,
+        observationsId = 'observations_'+taxon.id;
+    if (taxon.range_url) {
       layers[rangeId] = po.geoJson()
         .id(rangeId)
-        .url(child.range_url)
+        .url(taxon.range_url)
         .tile(false)
         .clip(false)
         .on('load', styling)
       map.add(layers[rangeId])
     }
 
-    var inputId = 'taxon_check_' + child.id
+    var inputId = 'taxon_check_' + taxon.id
     var input = $('<input type="checkbox">')
       .attr('id', inputId)
       .attr('checked', 'checked')
@@ -408,24 +410,24 @@ function loadChildTaxaLayers() {
         layers[observationsId].visible(this.checked)
       })
     var symbol = $('<div class="symbol"></div>').css({
-      backgroundColor: colorScale(child.id),
-      borderColor: d3.rgb(colorScale(child.id)).darker().toString(),
+      backgroundColor: colorScale(taxon.id),
+      borderColor: d3.rgb(colorScale(taxon.id)).darker().toString(),
       borderStyle: 'solid',
       borderWidth: '1px'
     })
-    var label = $('<label></label>').attr('for', inputId).html(child.name)
-    var link = $('<a></a>').attr('href', '/taxa/'+child.id).html('(view)').addClass('small')
+    var label = $('<label></label>').attr('for', inputId).html(taxon.name)
+    var link = $('<a></a>').attr('href', '/taxa/'+taxon.id).html('(view)').addClass('small')
     var li = $('<li></li>').append(input, ' ', symbol, ' ', label, ' ', link)
     $('#legend ul').append(li)
   })
   
-  $.each(children, function() {
-    var child = this,
-        rangeId = 'range_'+child.id,
-        observationsId = 'observations_'+child.id;
+  $.each(taxa, function() {
+    var taxon = this,
+        rangeId = 'range_'+taxon.id,
+        observationsId = 'observations_'+taxon.id;
     layers[observationsId] = po.geoJson()
       .id(observationsId)
-      .url(child.observations_url)
+      .url(taxon.observations_url)
       .tile(false)
       .clip(false)
       .on('load', handleObservations)
