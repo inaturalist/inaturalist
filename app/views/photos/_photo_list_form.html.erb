@@ -9,11 +9,11 @@
 -%>
 
 <% if organized_by_album %>
-  <a href='#' class="back_to_albums" <%= "data-friend_uid='#{@friend_id}'" if @friend_id %>>&laquo; Back to <%= (@friend_name ? "#{@friend_name}'s" : "your") %> albums</a>
+  <a href='#' class="back_to_albums" <%= "data-friend_id='#{@friend_id}'" if @friend_id %>>&laquo; Back to <%= (@friend_name ? "#{@friend_name}'s" : "your") %> albums</a>
 <% elsif @friend_id %>
-  <a href='#' class="back_to_friends" data-friend_uid="<%= @friend_id %>">&laquo; Back to friends</a>
+  <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
 <% elsif @group_id %>
-  <a href='#' class="back_to_groups" data-group_uid="<%= @group_id %>">&laquo; Back to groups</a>
+  <a href='#' class="back_to_groups" data-group_id="<%= @group_id %>">&laquo; Back to groups</a>
 <% end %>
 <% if @reauthorization_needed -%>
   <p class="notice ui">
@@ -69,7 +69,7 @@
       <% end %>
 
       <label for="<%= input_id %>">
-        <%= image_tag(thumb_url) %>
+        <%= image_tag(thumb_url, :alt=>'Image') %>
       </label>
     </div>
   <% end %>

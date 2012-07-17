@@ -10,7 +10,7 @@
     <table>
     <% @albums.each do |album| %>
       <tr class='album' data-aid='<%= album['aid'] %>'>
-        <td><%= image_tag(album['cover_photo_src']) %></td>
+        <td><%= image_tag(album['cover_photo_src'], :alt=>"Album cover photo") %></td>
         <td><%= album['name'] %></td>
       </tr>
     <% end %>
