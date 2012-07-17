@@ -133,6 +133,30 @@
 
     // this branch is for options.sources (new style of photoselector)
     if (typeof options != 'undefined' && typeof options.sources != 'undefined') {
+
+      // this is called when you change either the source <select> or context <select>
+      function updateSource(sourceOptions){
+        $searchWrapper.hide();
+        var newSource = sources[currentSource]; 
+        sourceOptions = (sourceOptions || {});
+        sourceOptions['url'] = (sourceOptions.url || newSource.url);
+        sourceOptions['object_id'] = (sourceOptions.object_id || false);
+        if (typeof newSource.$contextWrapper == 'undefined') {
+          // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
+          //sourceOptions['context'] = newSource.defaultContext;
+        } else {
+          sourceOptions['context'] = newSource.$contextWrapper.find('select').val();
+          if (newSource.$contextWrapper.find("option:selected").data('searchable')) {
+            // show search field
+            $searchWrapper.show();
+          } else {
+        //    $searchWrapper.val('');
+            $searchWrapper.hide();
+          }
+        }
+        $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['object_id']);
+      }
+
       $searchWrapper.hide();
       var sources = options.sources || {};
       var currentSource = options.defaultSource;
@@ -197,28 +221,6 @@
       $sourceWrapper.append($sourceSelect);
       $.each($allContextWrappers, function(i,c){ $sourceWrapper.append(c); });
 
-      // this is called when you change either the source <select> or context <select>
-      function updateSource(sourceOptions){
-        $searchWrapper.hide();
-        var newSource = sources[currentSource]; 
-        sourceOptions = (sourceOptions || {});
-        sourceOptions['url'] = (sourceOptions.url || newSource.url);
-        sourceOptions['object_id'] = (sourceOptions.object_id || false);
-        if (typeof newSource.$contextWrapper == 'undefined') {
-          // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
-          //sourceOptions['context'] = newSource.defaultContext;
-        } else {
-          sourceOptions['context'] = newSource.$contextWrapper.find('select').val();
-          if (newSource.$contextWrapper.find("option:selected").data('searchable')) {
-            // show search field
-            $searchWrapper.show();
-          } else {
-        //    $searchWrapper.val('');
-            $searchWrapper.hide();
-          }
-        }
-        $.fn.photoSelector.changeBaseUrl(wrapper, sourceOptions['url'], sourceOptions['context'], sourceOptions['object_id']);
-      }
     }
 
     $(".facebookAlbums .album", wrapper).live('click', function() {

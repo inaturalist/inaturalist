@@ -6,9 +6,6 @@
     <br />
     <p class="meta ui">We can't find any albums from Facebook.</p>
   <% else %>
-    <% if @friend_name %>
-      <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
-    <% end %>
     <h4>Select one of <%= (@friend_name ? "#{@friend_name}'s" : 'your') %> albums</h4>
     <table>
     <% @albums.each do |album| %>
