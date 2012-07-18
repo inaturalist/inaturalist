@@ -206,7 +206,7 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive']
+  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman']
   
   named_scope :observed_by, lambda {|user|
     { :joins => """

@@ -3,6 +3,7 @@ module DarwinCore
   
   class Taxon
     TERMS = [
+      %w(taxonID http://rs.tdwg.org/dwc/terms/taxonID),
       %w(identifier http://purl.org/dc/terms/identifier),
       %w(kingdom http://rs.tdwg.org/dwc/terms/kingdom),
       %w(phylum http://rs.tdwg.org/dwc/terms/phylum),
@@ -43,6 +44,10 @@ module DarwinCore
       
       def identifier
         view.taxon_url(self.id)
+      end
+      
+      def taxonID
+        identifier
       end
       
       def specificEpithet

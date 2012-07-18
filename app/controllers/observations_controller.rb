@@ -1262,6 +1262,7 @@ class ObservationsController < ApplicationController
     @swlng = search_params[:swlng] unless search_params[:swlng].blank?
     @nelat = search_params[:nelat] unless search_params[:nelat].blank?
     @nelng = search_params[:nelng] unless search_params[:nelng].blank?
+    @place = Place.find_by_id(search_params[:place_id]) unless search_params[:place_id].blank?
     
     @q = search_params[:q].to_s unless search_params[:q].blank?
     if Observation::SPHINX_FIELD_NAMES.include?(search_params[:search_on])
@@ -1391,7 +1392,8 @@ class ObservationsController < ApplicationController
       !@identifications.blank? ||
       !@quality_grade.blank? ||
       !@out_of_range.blank? ||
-      !@observed_on.blank?
+      !@observed_on.blank? ||
+      !@place.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]
