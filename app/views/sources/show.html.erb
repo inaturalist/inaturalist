@@ -1,0 +1,10 @@
+<h2>Source: <%= @source.title %></h2>
+
+<table>
+  <% for c in Source.column_names %>
+    <tr>
+      <th><%= c.humanize %></th>
+      <td><%= @source.send(c) %></td>
+    </tr>
+  <% end %>
+</table>

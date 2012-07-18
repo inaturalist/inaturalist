@@ -11,4 +11,10 @@ class Source < ActiveRecord::Base
   def user_name
     user.try(&:login) || "unknown"
   end
+  
+  def editable_by?(u)
+    return false if u.blank?
+    return true if u.is_curator?
+    u.id == user_id
+  end
 end

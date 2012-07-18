@@ -1,0 +1,16 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Editing #{@source.title}" %>
+<%- end -%>
+<h2><%= @title %></h2>
+
+<% form_for @source, :builder => DefaultFormBuilder do |f| %>
+  <%= f.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
+  <%= f.text_field :in_text, :description => "e.g. Greene, 2000" %>
+  <%= f.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>
+  <%= f.text_area :citation, :description => "e.g. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print." %>
+  <div class="buttonrow">
+    <%= f.submit "Save", :class => "default button" %>
+    <%= link_to "Cancel", @source, :class => "button" %>
+    <%= link_to "Delete", @source, :method => :delete, :confirm => "Are you sure you want to delete this?", :class => "delete button" %>
+  </div>
+<% end -%>

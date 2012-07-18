@@ -110,13 +110,14 @@
   
   <% if @list.source -%>
     <%= separator %>
-    <div class="clear meta">
+    <div class="clear meta stacked">
       <strong>Source:</strong>
       <%= citation_for @list.source %>
     </div>
   <% end -%>
+  
   <% if @list.user -%>
-    <div class="clear meta">
+    <div class="clear meta stacked">
       <strong>Created by </strong>
       <%= link_to user_image(@list.user), @list.user %>
       <%= link_to_user @list.user %>

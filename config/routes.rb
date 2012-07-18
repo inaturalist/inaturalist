@@ -278,7 +278,7 @@ ActionController::Routing::Routes.draw do |map|
   #
   # Sources
   #        
-  map.resources :sources, :only => [:index, :show]
+  map.resources :sources, :except => [:new, :create]
   
   # Posts and journals
   map.journals 'journal', :controller => 'posts', :action => 'browse'
