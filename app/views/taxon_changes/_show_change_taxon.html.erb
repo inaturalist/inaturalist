@@ -21,12 +21,13 @@
     <div class="right inline buttonrow">
       <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
       <%= link_to "Commit",
-        { :controller => 'taxon_changes',
+        {:controller => 'taxon_changes',
           :action => 'commit_taxon_change',
           :taxon_change_id => taxon_change.id},
-          :method => :post,
-          :class => "glaucous inline button",
-          "data-loading-click" => "committing..." %>
+        :confirm => "Are you sure you want to commit this change?",
+        :method => :post,
+        :class => "glaucous inline button",
+        "data-loading-click" => "Committing..." %>
     </div>
   <% end %>
   <h2>
