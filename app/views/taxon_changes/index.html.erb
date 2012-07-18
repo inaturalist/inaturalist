@@ -13,7 +13,7 @@
     Taxonomic changes
     <% if @taxon -%>
       for
-      <i><%= link_to @taxon.name, taxon_path(@taxon) %></i>
+      <i><%= link_to @taxon.name, taxon_path(@taxon), "data-taxon-id" => @taxon.id %></i>
       (<%= @taxon.is_active ? 'active' : 'inactive' %>)"
     <% end -%>
   <% end -%>
@@ -25,6 +25,7 @@
 <style type="text/css" media="screen">
   .ui-chooser-choice {max-width:190px;}
   .change_taxon {margin-bottom: 10px; width: 310px;}
+  #change_types .field {width:60px;}
 </style>
 <% end %>
 
@@ -43,6 +44,10 @@
         collectionUrl: 'http://'+window.location.host + '/sources.json',
         resourceUrl: 'http://'+window.location.host + '/sources/{{id}}.json'
       })
+      
+      if (taxon) {
+        $('[data-taxon-id='+taxon.id+']').css('background-color', 'lightyellow')
+      }
     })
   </script>
 <%- end -%>
@@ -73,7 +78,7 @@
 
 <div class="last column span-18">
   <% if @taxon_changes.empty? %>
-    <p class="description">No taxonomic changes matching those criteria</p>
+    <p class="description">No taxonomic changes match those criteria</p>
   <% end %>
   <% for taxon_change in @taxon_changes %>
     <%= render :partial => 'show_change_taxon', :object => taxon_change %>

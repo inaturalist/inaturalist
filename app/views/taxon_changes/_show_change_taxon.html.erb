@@ -17,7 +17,7 @@
 -%>
 
 <div class="taxon_change">
-  <% if taxon_change.committed_on.nil? %>
+  <% if taxon_change.committed_on.blank? && is_admin? %>
     <div class="right inline buttonrow">
       <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
       <%= link_to "Commit",
