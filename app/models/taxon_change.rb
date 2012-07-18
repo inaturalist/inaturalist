@@ -41,6 +41,26 @@ class TaxonChange < ActiveRecord::Base
     }
   }
   
+  named_scope :input_taxon, lambda{|taxon|
+    {
+      :joins => TAXON_JOINS,
+      :conditions => [
+        "(taxon_changes.type IN ('TaxonSwap', 'TaxonMerge') AND t2.id = ?) OR " +
+        "(taxon_changes.type IN ('TaxonSplit', 'TaxonDrop', 'TaxonStage') AND taxon_changes.taxon_id = ?)", 
+        taxon, taxon]
+    }
+  }
+  
+  named_scope :output_taxon, lambda{|taxon|
+    {
+      :joins => TAXON_JOINS,
+      :conditions => [
+        "(taxon_changes.type IN ('TaxonSwap', 'TaxonMerge') AND taxon_changes.taxon_id = ?) OR " +
+        "(taxon_changes.type = 'TaxonSplit' AND t2.id = ?)", 
+        taxon, taxon]
+    }
+  }
+  
   named_scope :taxon_scheme, lambda{|taxon_scheme|
     {
       :joins => TAXON_JOINS + [
@@ -55,6 +75,10 @@ class TaxonChange < ActiveRecord::Base
   
   def to_s
     "<#{self.class} #{id}>"
+  end
+  
+  def committed?
+    !committed_on.blank?
   end
   
   def self.commit_taxon_change(taxon_change_id)

@@ -15,7 +15,7 @@
   end
 -%>
 
-<div id="change_taxon_<%= change_taxon.id %>" class="change_taxon clear">
+<div id="change_taxon_<%= change_taxon.id %>" class="change_taxon clear" data-taxon-id="<%= change_taxon.id %>">
   <% image_and_content taxon_image(change_taxon), :image_size => 75 do %>
     <% link_to change_taxon, :class => "taxon #{change_taxon.rank}" do %>
       <span class="sciname"><%= change_taxon.name %></span>

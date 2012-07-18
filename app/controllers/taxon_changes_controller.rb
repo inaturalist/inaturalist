@@ -1,5 +1,6 @@
 class TaxonChangesController < ApplicationController
-  before_filter :curator_required
+  before_filter :curator_required, :except => [:index, :show]
+  before_filter :load_taxon_change, :except => [:index, :new, :create]
   
   def index
     filter_params = params[:filters] || params
@@ -10,7 +11,7 @@ class TaxonChangesController < ApplicationController
     @types = @types.map{|t| t =~ /^Taxon/ ? t : "Taxon#{t.capitalize}"}
     @iconic_taxon = Taxon.find_by_id(filter_params[:iconic_taxon_id]) unless filter_params[:iconic_taxon_id].blank?
     @source = Source.find_by_id(filter_params[:source_id]) unless filter_params[:source_id].blank?
-    @taxon = Taxon.find_by_id(filter_params[:taxon_id]) unless filter_params[:taxon_id].blank?
+    @taxon = Taxon.find_by_id(filter_params[:taxon_id].to_i) unless filter_params[:taxon_id].blank?
     @change_group = filter_params[:change_group] unless filter_params[:change_group].blank?
     @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
     
@@ -61,12 +62,6 @@ class TaxonChangesController < ApplicationController
   end
   
   def show
-    @taxon_change ||= TaxonChange.find_by_id(params[:id].to_i,
-      :include => [
-        {:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        {:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        :source]
-    )
   end
   
   def new
@@ -86,11 +81,9 @@ class TaxonChangesController < ApplicationController
   end
   
   def edit
-    @taxon_change = TaxonChange.find(params[:id])
   end
 
   def update
-    @taxon_change = TaxonChange.find(params[:id])
     change_params = params[:taxon_change] ||= params[:taxon_split] ||= params[:taxon_merge]
     if @taxon_change.update_attributes(change_params)
       flash[:notice] = 'Taxon Change was successfully updated.'
@@ -102,7 +95,6 @@ class TaxonChangesController < ApplicationController
   end
   
   def destroy
-    @taxon_change = TaxonChange.find(params[:id])
     if @taxon_change.destroy
       flash[:notice] = "Taxon change was deleted."
     else
@@ -112,10 +104,6 @@ class TaxonChangesController < ApplicationController
   end
   
   def commit_taxon_change
-    unless logged_in?
-      flash[:error] = "You don't have permission to commit this taxonomic change."
-      redirect_to :back and return
-    end
     taxon_change_id = params[:taxon_change_id]
     unless TaxonChange.first(:conditions => {:id => taxon_change_id, :committed_on => nil})
       flash[:error] = "This taxonomic change was already committed!"
@@ -126,6 +114,16 @@ class TaxonChangesController < ApplicationController
     
     flash[:notice] = "Taxon change committed!"
     redirect_to :back and return
+  end
+  
+  private
+  def load_taxon_change
+    render_404 unless @taxon_change = TaxonChange.find_by_id(params[:id], 
+      :include => [
+        {:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        {:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
+        :source]
+    )
   end
   
 end

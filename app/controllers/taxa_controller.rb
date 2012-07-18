@@ -186,9 +186,9 @@ class TaxaController < ApplicationController
         @show_range = @taxon_range
         @colors = @taxon.colors if @taxon.species_or_lower?
         
-        @taxon_changes = [
-          TaxonChange.all(:conditions => {:taxon_id => @taxon.id}),
-          TaxonChangeTaxon.all(:conditions => {:taxon_id => @taxon.id}).map{|tct| tct.taxon_change}].flatten
+        unless @taxon.is_active?
+          @taxon_change = TaxonChange.taxon(@taxon).last
+        end
         
         render :action => 'show'
       end
