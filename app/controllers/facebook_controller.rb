@@ -100,9 +100,10 @@ class FacebookController < ApplicationController
   # facebook group id should be specified as params[:object_id]
   def group
     limit = (params[:limit] || 10).to_i
-    offset = ((params[:page] || 1).to_i - 1) * limit
+    page = (params[:page] || 1).to_i
+    #offset = ((params[:page] || 1).to_i - 1) * limit
     @group_id = params[:object_id] unless params[:object_id]=='null'
-    @photos = FacebookPhoto.fetch_from_fb_group(@group_id, current_user)
+    @photos = FacebookPhoto.fetch_from_fb_group(@group_id, current_user, {:limit => limit, :page => page})
     # sync doesn't work with facebook! they strip exif metadata from photos. :(
     #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|
