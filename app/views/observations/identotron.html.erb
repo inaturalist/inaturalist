@@ -191,9 +191,9 @@
                         $('<input type="hidden" name="observation_id">').val(observation.id),
                         $('<input type="hidden" name="taxon_id">').val(taxonId)
                       )
-                    $(document).append(form)
-                    form.submit()
-                    return false;
+                    $('body').append(form) // must append to body for FF
+                    $(form).submit()
+                    return false
                   })
               )
             })
