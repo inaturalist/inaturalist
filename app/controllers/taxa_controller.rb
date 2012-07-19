@@ -1289,7 +1289,7 @@ class TaxaController < ApplicationController
   end
   
   def load_single_taxon_map_data(taxon)
-    taxon_range = taxon.taxon_ranges.without_geom.first
+    @taxon_range = taxon.taxon_ranges.without_geom.first
     if params[:place_id] && (@place = Place.find_by_id(params[:place_id]))
       @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
     end
@@ -1298,7 +1298,7 @@ class TaxaController < ApplicationController
         Point.from_coordinates([bbox[1], bbox[0]]), 
         Point.from_coordinates([bbox[3], bbox[2]])
       ])
-    elsif taxon_range
+    elsif @taxon_range
       taxon.taxon_ranges.calculate(:extent, :geom)
     else
       Observation.of(taxon).calculate(:extent, :geom)
