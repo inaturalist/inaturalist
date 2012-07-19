@@ -451,6 +451,34 @@
            )
           })
         })
+      
+      $('#place_selector_search form, #place_selector_paste form')
+        .live('ajax:before', function() {
+          $('.loading', this).show()
+        })
+        .live('ajax:complete', function() {
+          $('.loading', this).hide()
+        })
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.place_selector_places').html(json.map(function(place) { return place.html }).join(' '))
+        })
+      
+      $('.add_to_place_link .add_link, .add_to_place_link .remove_link')
+        .live('ajax:before', function() {
+          $(this).siblings('.status').show()
+          $(this).hide()
+        })
+        .live('ajax:error', function(event, request, settings) {
+          $(this).hide()
+        })
+      $('.add_to_place_link .add_link')
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.status').html('Added!').removeClass('loading').addClass('success')
+        })
+      $('.add_to_place_link .remove_link')
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.status').html('Removed!').removeClass('loading')
+        })
     })
   </script>
 <% end -%>
@@ -697,10 +725,10 @@
         <% if @places.blank? -%>
           <div class="notice">
             Do you know where this species lives?
-            <strong><%= link_to_function "Add it to a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+            <strong><%= link_to_function "Add it to a place &raquo;".html_safe, "$('#add_to_place_dialog').jqmShow()" %></strong>
           </div>
         <% else %>
-          <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+          <strong><%= link_to_function "Add a place &raquo;".html_safe, "$('#add_to_place_dialog').jqmShow()" %></strong>
         <% end -%>
         <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
       <% end -%>
@@ -711,30 +739,30 @@
     <h3>Extras</h3>
     
     <p class="ui">
-      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>", taxon_changes_path(:taxon_id => @taxon),
+      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>".html_safe, taxon_changes_path(:taxon_id => @taxon),
         "data-tip" => "View the history of this taxon on iNat, e.g. splits, merges, etc." %>
     </p>
 
     <p class="ui">
-      <%= link_to "Taxon <nobr>schemes &raquo;</nobr>", taxon_schemes_path(@taxon), 
+      <%= link_to "Taxon <nobr>schemes &raquo;</nobr>".html_safe, taxon_schemes_path(@taxon), 
         "data-tip" => "Schemes are sets of taxa recognized by different authorities." %>
     </p>
     
     <p class="ui">
-      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
+      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;".html_safe, 
         flickr_tagger_path(:taxon_id => @taxon.id) %>
     </p>
     
     <p class="ui">
-      <%= link_to "Flickr invite link &raquo;", 
+      <%= link_to "Flickr invite link &raquo;".html_safe, 
         url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
     </p>
     
     <p class="ui">
-      <%= link_to_function "Wikipedia taxobox &raquo;", "return false;", :id => "taxoboxlink" %>
+      <%= link_to_function "Wikipedia taxobox &raquo;".html_safe, "return false;", :id => "taxoboxlink" %>
       <%- taxobox_content = capture do -%>
         <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>
-        <%= link_to "About the taxobox &raquo;", "http://en.wikipedia.org/wiki/Template:Taxobox" %>
+        <%= link_to "About the taxobox &raquo;".html_safe, "http://en.wikipedia.org/wiki/Template:Taxobox" %>
       <%- end -%>
       <script type="text/javascript" charset="utf-8">
         $('#taxoboxlink').qtip($.extend(true, {}, QTIP_DEFAULTS, {
@@ -746,18 +774,18 @@
     </p>
     
     <p class="ui">
-      <%= link_to "Tree Browser &raquo;", {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
+      <%= link_to "Tree Browser &raquo;".html_safe, {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
         :rel => "nofollow" %>
     </p>
     
     <p class="ui">
-      <%= link_to "Search descendant taxa &raquo;", 
+      <%= link_to "Search descendant taxa &raquo;".html_safe, 
         {:controller => "taxa", :action => "search", :taxon_id => @taxon, :view => TaxaController::LIST_VIEW},
         :rel => "nofollow" %>
     </p>
     
     <p class="ui">
-      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon), 
+      <%= link_to "Embed a widget for this taxon on your website &raquo;".html_safe, observations_widget_path(:taxon_id => @taxon), 
         :rel => "nofollow" %>
     </p>
     
@@ -902,7 +930,7 @@
         <% end %>
         <% if logged_in? -%>
           <li class="description" style="padding-right: 0">
-            <%= link_to "Add a link &raquo;", new_taxon_link_path(:taxon_id => @taxon.id) %>
+            <%= link_to "Add a link &raquo;".html_safe, new_taxon_link_path(:taxon_id => @taxon.id) %>
           </li>
         <% end -%>
       </ul>
@@ -937,7 +965,7 @@
               </div>
             <% end -%>
             <% if logged_in? && current_user.is_curator? -%>
-              <%= link_to "Edit range &raquo;", edit_taxon_range_path(@taxon_range) %>
+              <%= link_to "Edit range &raquo;".html_safe, edit_taxon_range_path(@taxon_range) %>
             <% end -%>
           <% else %>
             No range data available.

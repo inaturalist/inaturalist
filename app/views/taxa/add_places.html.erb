@@ -15,26 +15,28 @@
     <ul>
       <li><a href="#place_selector_search"><span>Search</span></a></li>
       <li><a href="#place_selector_paste"><span>Paste</span></a></li>
-      <li><%= link_to "<span>Countries</span>", add_taxon_places_path(@taxon, :tab => "countries") %></li>
-      <li><%= link_to "<span>US States</span>", add_taxon_places_path(@taxon, :tab => "us_states") %></li>
+      <li><%= link_to "<span>Countries</span>".html_safe, add_taxon_places_path(@taxon, :tab => "countries") %></li>
+      <li><%= link_to "<span>US States</span>".html_safe, add_taxon_places_path(@taxon, :tab => "us_states") %></li>
     </ul>
     
     <div id="place_selector_search">
-      <% form_remote_tag :url => {:controller => 'taxa', :action => 'add_places'},
+      <%= form_tag url_for(:controller => 'taxa', :action => 'add_places'),
+          :remote => true,
           :loading => "$('##{dom_id @taxon, 'place_selector_loading'}').show()",
           :complete => "$('##{dom_id @taxon, 'place_selector_loading'}').hide()" do %>
         <div class="clear buttonrow">
           <%= text_field_tag :q, '', :class => 'text', :id => dom_id(@taxon, 'place_selector_q') %>
           <%= submit_tag 'Find Places', :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
         </div>
+        <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none">Searching...</div>
       <% end %>
-      <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none">Searching...</div>
-      <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0"></ul>
+      <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0" class="place_selector_places"></ul>
     </div>
     
     <div id="place_selector_paste">
       <p class="description">Paste in a comma-separated list of countries</p>
-      <% form_remote_tag :url => add_taxon_places_path(@taxon),
+      <%= form_tag :url => add_taxon_places_path(@taxon),
+          :remote => true,
           :loading => "$('##{dom_id @taxon, 'place_selector_paste_loading'}').show()",
           :complete => "$('##{dom_id @taxon, 'place_selector_paste_loading'}').hide()" do %>
         <textarea name="paste_places" class="stacked"></textarea>

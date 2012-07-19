@@ -643,55 +643,50 @@ class TaxaController < ApplicationController
     
     if request.post?
       if params[:paste_places]
-        place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
-        @places = Place.all(:conditions => [
-          "place_type = ? AND name IN (?)", 
-          Place::PLACE_TYPE_CODES['Country'], place_names
-        ])
-        @places ||= []
-        (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
-          ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
-          next if ydn_places.blank?
-          @places << Place.import_by_woeid(ydn_places.first.woeid)
-        end
-        
-        @listed_taxa = @places.map do |place| 
-          place.check_list.add_taxon(@taxon, :user_id => current_user.id)
-        end.select(&:valid?)
-        @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
-        
-        render :update do |page|
-          if @places.blank?
-            page[dom_id(@taxon, 'place_selector_paste_places')].replace_html(
-              content_tag(:p, "No countries matching \"#{place_names.join(', ')}\"", :class => "description")
-            )
-          else
-            page[dom_id(@taxon, 'place_selector_paste_places')].replace_html(
-              :partial => 'add_to_place_link', :collection => @places)
-          end
-        end
-        return
+        add_places_from_paste
+      else
+        add_places_from_search
       end
-      
-      search_for_places
-      @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
-        :select => "DISTINCT ON (place_id) listed_taxa.*")
-      @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
-      render :update do |page|
-        if @places.blank?
-          page[dom_id(@taxon, 'place_selector_places')].replace_html(
-            content_tag(:p, "No places matching \"#{@q}\"", :class => "description")
-          )
-        else
-          page[dom_id(@taxon, 'place_selector_places')].replace_html(
-            :partial => 'add_to_place_link', :collection => @places)
+      respond_to do |format|
+        format.json do
+          @places.each_with_index do |place, i|
+            @places[i].html = view_context.render_in_format(:html, :partial => 'add_to_place_link', :object => place)
+          end
+          render :json => @places.to_json(:methods => [:html])
         end
       end
       return
     end
-    
     render :layout => false
   end
+  
+  private
+  def add_places_from_paste
+    place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
+    @places = Place.all(:conditions => [
+      "place_type = ? AND name IN (?)", 
+      Place::PLACE_TYPE_CODES['Country'], place_names
+    ])
+    @places ||= []
+    (place_names - @places.map{|p| p.name.strip.downcase}).each do |new_place_name|
+      ydn_places = GeoPlanet::Place.search(new_place_name, :count => 1, :type => "Country")
+      next if ydn_places.blank?
+      @places << Place.import_by_woeid(ydn_places.first.woeid)
+    end
+    
+    @listed_taxa = @places.map do |place| 
+      place.check_list.add_taxon(@taxon, :user_id => current_user.id)
+    end.select{|p| p.valid?}
+    @listed_taxa_by_place_id = @listed_taxa.index_by{|lt| lt.place_id}
+  end
+  
+  def add_places_from_search
+    search_for_places
+    @listed_taxa = @taxon.listed_taxa.all(:conditions => ["place_id IN (?)", @places], 
+      :select => "DISTINCT ON (place_id) listed_taxa.*")
+    @listed_taxa_by_place_id = @listed_taxa.index_by(&:place_id)
+  end
+  public
   
   def find_places
     @limit = 5

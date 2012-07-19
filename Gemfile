@@ -46,7 +46,7 @@ gem 'spatial_adapter'
 gem 'thinking-sphinx', '2.0.10'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'will_paginate'
-
+gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
 
 group :test, :development do
   gem "rspec-rails" #, "~> 2.0.1"
