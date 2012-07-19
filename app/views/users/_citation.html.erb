@@ -1,4 +1,4 @@
-<%- user = object -%>
+<%- user ||= citation -%>
 <%= link_to user_image(user), user %>
 <% if user.name.blank? -%>
   <%= link_to h(user.login), user %>
