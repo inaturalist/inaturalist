@@ -1,4 +1,4 @@
-<h2>Subscriptions</h2>
+<h2>Your Subscriptions</h2>
 <table border="0" cellspacing="5" cellpadding="5">
   <thead>
     <tr>
@@ -13,7 +13,7 @@
         <td><%= subscription.id %></td>
         <td>
           <%= subscription.resource_type %> <%= subscription.resource_id %>:
-          <% name = subscription.resource.to_plain_s rescue subscription.resource.login rescue subscription.resource.name rescue subscription.resource.title rescue subscription.resource.to_s %>
+          <% name = subscription.resource.try_methods(:to_plain_s, :login, :name, :title, :to_s) %>
           <%= link_to name, subscription.resource %>
         </td>
         <td>

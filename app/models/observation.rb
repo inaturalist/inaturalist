@@ -4,11 +4,16 @@ class Observation < ActiveRecord::Base
     :identifications => {:notification => "activity", :include_owner => true}
   }
   notifies_subscribers_of :user, :notification => "created_observations"
-  notifies_subscribers_of :public_places, :notification => "new_observations", :if => lambda {|observation, place, subscription|
-    return true if subscription.taxon_id.blank?
-    return false if observation.taxon.blank?
-    observation.taxon.ancestor_ids.include?(subscription.taxon_id)
-  }
+  notifies_subscribers_of :public_places, :notification => "new_observations", 
+    :queue_if => lambda {|observation|
+      observation.georeferenced? && !observation.taxon_id.blank?
+    },
+    :if => lambda {|observation, place, subscription|
+      return false unless observation.georeferenced?
+      return true if subscription.taxon_id.blank?
+      return false if observation.taxon.blank?
+      observation.taxon.ancestor_ids.include?(subscription.taxon_id)
+    }
   acts_as_taggable
   acts_as_flaggable
   

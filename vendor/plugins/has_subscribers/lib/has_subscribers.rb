@@ -21,6 +21,7 @@ module HasSubscribers
       
       after_destroy do |record|
         Update.delete_all(["resource_type = ? AND resource_id = ?", to_s, record.id])
+        Subscription.delete_all(["resource_type = ? AND resource_id = ?", to_s, record.id])
       end
     end
     
@@ -54,7 +55,9 @@ module HasSubscribers
       end
       callback_method = options[:with] || :notify_subscribers_of
       send callback_type do |record|
-        record.send_later(callback_method, subscribable_association)
+        if options[:queue_if].blank? || options[:queue_if].call(record)
+          record.send_later(callback_method, subscribable_association)
+        end
       end
       
       if Object.const_defined?(subscribable_association.to_s.classify) && 
@@ -77,14 +80,30 @@ module HasSubscribers
       end
     end
     
-    # auto_subscribes :user, :to => :friend
+    #
+    # Subscribe am associated user to an associated object when this record is
+    # created. For example, you might auto-subscribe a comment user to the
+    # blog post they commented on UNLESS they authored the blog post:
+    # 
+    #   auto_subscribes :user, :to => :blog_post, :if => {|comment, blog_post| comment.user_id != blog_post.user_id}
+    #
+    # Options:
+    # * <tt>:to</tt> - association to call to retrieve the user
+    # * <tt>:if</tt> - block called to determine whether or not to create the
+    #   subscription. Takes the record and the subscribable as args.
+    #
     def auto_subscribes(subscriber, options = {})
       after_create do |record|
         resource = options[:to] ? record.send(options[:to]) : record
-        Subscription.create(:user => record.send(subscriber), :resource => resource)
+        if options[:if].blank? || options[:if].call(record, resource)
+          Subscription.create(:user => record.send(subscriber), :resource => resource)
+        end
       end
       
-      # this is potentially weird b/c there might be other reasons you're subscribed to something, and this will remove the subscription anyway. alts would be to remove uniqueness constraint so every auto_subscribing object generates a subscription...
+      # this is potentially weird b/c there might be other reasons you're
+      # subscribed to something, and this will remove the subscription anyway.
+      # alts would be to remove uniqueness constraint so every
+      # auto_subscribing object generates a subscription...
       after_destroy do |record|
         resource = options[:to] ? record.send(options[:to]) : record
         Subscription.delete_all(:user_id => record.send(subscriber).id, 
@@ -102,6 +121,7 @@ module HasSubscribers
       notification ||= options[:notification] || "create"
       
       updater_proc = Proc.new {|subscribable|
+        next if subscribable.blank?
         if options[:include_owner] && subscribable.respond_to?(:user) && subscribable.user_id != notifier.user_id
           owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
@@ -132,7 +152,7 @@ module HasSubscribers
         subscribable = notifier.send(subscribable_association)
         if subscribable.is_a?(Enumerable)
           subscribable.each(&updater_proc)
-        else
+        elsif subscribable
           updater_proc.call(subscribable)
         end
       end

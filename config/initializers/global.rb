@@ -14,3 +14,14 @@ def log_timer(name = nil)
   yield
   end_log_timer
 end
+
+class Object
+  def try_methods(*methods)
+    methods.each do |method|
+      if respond_to?(method) && !send(method).blank?
+        return send(method)
+      end
+    end
+    nil
+  end
+end

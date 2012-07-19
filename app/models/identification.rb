@@ -11,7 +11,6 @@ class Identification < ActiveRecord::Base
   
   after_create  :update_observation, 
                 :increment_user_counter_cache, 
-                # :notify_observer, 
                 :expire_caches
                 
   after_save    :update_obs_stats, 
@@ -26,7 +25,9 @@ class Identification < ActiveRecord::Base
   attr_accessor :skip_observation
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true
-  auto_subscribes :user, :to => :observation
+  auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
+    ident.user_id != observation.user_id
+  }
   
   named_scope :for, lambda {|user|
     {:include => :observation,
