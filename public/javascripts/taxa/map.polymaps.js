@@ -386,6 +386,9 @@ function loadLayersForTaxa(taxa) {
     .style('fill', function(f) { return colorScale(f.properties.taxon_id) })
     .style('stroke', function(f) { return d3.rgb(colorScale(f.properties.taxon_id)).darker().toString() })
     .attr('class', 'range')
+  
+  var names = taxa.map(function(t) {return t.name}).unique()
+  var addIds = names.length < taxa.length;
     
   $.each(taxa, function() {
     var taxon = this,
@@ -415,7 +418,8 @@ function loadLayersForTaxa(taxa) {
       borderStyle: 'solid',
       borderWidth: '1px'
     })
-    var label = $('<label></label>').attr('for', inputId).html(taxon.name)
+    var nameContent = addIds ? taxon.name + ' ' + taxon.id : taxon.name
+    var label = $('<label></label>').attr('for', inputId).html(nameContent)
     var link = $('<a></a>').attr('href', '/taxa/'+taxon.id).html('(view)').addClass('small')
     var li = $('<li></li>').append(input, ' ', symbol, ' ', label, ' ', link)
     $('#legend ul').append(li)
