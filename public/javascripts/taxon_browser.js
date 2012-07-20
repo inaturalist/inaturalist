@@ -14,10 +14,12 @@ var TaxonBrowser = {
 
   handleFormSubmits: function(e) {
     $('#taxon_browser .loading:first').show();
-    var params = $(this).serialize()+'&partial=browse';
+    var params = $(this).serialize() + 
+      '&partial=browse' +
+      '&authenticity_token=' + $('meta[name=csrf-token]').attr('content')
     $.get($(this).attr('action'), params, function(data, status) {
-      $('#taxon_browser').html(data);
-      TaxonBrowser.ajaxify();
+      $('#taxon_browser').html(data)
+      TaxonBrowser.ajaxify()
     });
     return false;
   },
@@ -26,8 +28,11 @@ var TaxonBrowser = {
     $('#taxon_browser .loading:first').show();
     // don't make the extra params an object literal.  That will force a POST 
     // request, which will screw up the pagination links
-    $('#taxon_browser').load($(this).attr('href'), {partial: 'browse', js_link: true}, function() {TaxonBrowser.ajaxify()});
-    return false;
+    var params = {partial: 'browse', js_link: true, authenticity_token: $('meta[name=csrf-token]').attr('content')}
+    $('#taxon_browser').load($(this).attr('href'), params, function() {
+      TaxonBrowser.ajaxify()
+    })
+    return false
   },
 
   handleTaxonQtip: function() {
