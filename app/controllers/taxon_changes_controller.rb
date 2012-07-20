@@ -16,7 +16,7 @@ class TaxonChangesController < ApplicationController
     @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
     
     @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.sort
-    @taxon_schemes = TaxonScheme.all(:limit => 100)
+    @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     
     scope = TaxonChange.scoped({})
     if @committed == 'Yes'

@@ -436,16 +436,31 @@
       <%= @taxon_change.committed? ? 'has been' : 'will be' %>
       <% if @taxon_change -%>
         <% case @taxon_change.class.to_s when 'TaxonSplit' %>
-          split into
-          <%= commas_and @taxon_change.taxa.map {|t| "<i>#{link_to(t.name, t)}</i>"} %>.
+          <% if @taxon_change.taxon_id == @taxon.id -%>
+            split into
+            <%= commas_and @taxon_change.taxa.map {|t| "<i>#{link_to(t.name, t)}</i>"} %>.
+          <% else %>
+            split from
+            <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
+          <% end -%>
         <% when 'TaxonMerge' %>
-          merged into
-          <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
+          <% if @taxon_change.taxon_id == @taxon.id -%>
+            replacing
+            <%= commas_and @taxon_change.taxa.map {|t| "<i>#{link_to(t.name, t)}</i>"} %>.
+          <% else %>
+            merged into
+            <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
+          <% end -%>
         <% when 'TaxonDrop' %>
           dropped.
         <% when 'TaxonSwap' %>
-          renamed to
-          <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
+          <% if @taxon_change.taxon_id == @taxon.id -%>
+            replacing
+            <em><%= link_to @taxon_change.old_taxon.name, @taxon_change.old_taxon %></em>.
+          <% else %>
+            replaced by
+            <em><%= link_to @taxon_change.taxon.name, @taxon_change.taxon %></em>.
+          <% end -%>
         <% when 'TaxonStage' %>
           activated soon.
         <% end -%>

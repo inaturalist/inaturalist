@@ -66,8 +66,8 @@ class TaxonChange < ActiveRecord::Base
       :joins => TAXON_JOINS + [
         "LEFT OUTER JOIN taxon_scheme_taxa tst1 ON tst1.taxon_id = t1.id",
         "LEFT OUTER JOIN taxon_scheme_taxa tst2 ON tst2.taxon_id = t2.id",
-        "LEFT OUTER JOIN taxon_schemes ts1 ON ts1.id = ts1.id",
-        "LEFT OUTER JOIN taxon_schemes ts2 ON ts2.id = ts2.id"
+        "LEFT OUTER JOIN taxon_schemes ts1 ON ts1.id = tst1.taxon_scheme_id",
+        "LEFT OUTER JOIN taxon_schemes ts2 ON ts2.id = tst2.taxon_scheme_id"
       ],
       :conditions => ["ts1.id = ? OR ts2.id = ?", taxon_scheme, taxon_scheme]
     }
