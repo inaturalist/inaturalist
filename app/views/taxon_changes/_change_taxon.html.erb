@@ -3,7 +3,7 @@
   taxon_range ||= change_taxon.taxon_ranges_without_geom.first
   taxon_change ||= nil
   swaps = if @swaps_by_taxon_id
-    @swaps_by_taxon_id[change_taxon.id] || []
+    @swaps_by_taxon_id[change_taxon.id].clone || []
   else
     change_taxon.taxon_swaps + 
       change_taxon.taxon_change_taxa.all(
