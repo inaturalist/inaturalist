@@ -99,6 +99,9 @@ class PicasaPhoto < Photo
   
   # Create a new Photo object from an API response.
   def self.new_from_api_response(api_response, options = {})
+    options[:thumb_sizes] ||= ['square','thumb','small','medium','large']
+    thumb_sizes = options.delete(:thumb_sizes)
+    t0 = Time.now
     if api_response.author
       native_username = api_response.author.user
       native_realname = api_response.author.nickname
@@ -109,11 +112,11 @@ class PicasaPhoto < Photo
     options.update(
       :user            => options[:user],
       :native_photo_id => api_response.link('self').href,
-      :square_url      => api_response.url('72c'),
-      :thumb_url       => api_response.url('110'),
-      :small_url       => api_response.url('220'),
-      :medium_url      => api_response.url('512'),
-      :large_url       => api_response.url('1024'),
+      :square_url      => (api_response.url('72c') if thumb_sizes.include?('square')),
+      :thumb_url       => (api_response.url('110') if thumb_sizes.include?('thumb')),
+      :small_url       => (api_response.url('220') if thumb_sizes.include?('small')),
+      :medium_url      => (api_response.url('512') if thumb_sizes.include?('medium')),
+      :large_url       => (api_response.url('1024') if thumb_sizes.include?('large')),
       :original_url    => api_response.url,
       :native_page_url => api_response.link('alternate').href,
       :native_username => native_username,
@@ -127,4 +130,47 @@ class PicasaPhoto < Photo
     picasa_photo.api_response = api_response
     picasa_photo
   end
+
+  #def self.get_photos_from_album(user, picasa_album_id, picasa_user_id=nil)
+  def self.get_photos_from_album(user, picasa_album_id, options={})
+    options[:picasa_user_id] ||= nil
+    options[:max_results] ||= 10
+    options[:start_index] ||= 1
+    return [] unless user.picasa_identity
+    picasa = user.picasa_client
+    album_data = picasa.album(picasa_album_id.to_s, {:max_results=>options[:max_results], :start_index=>options[:start_index]})  # this also fetches photo data
+
+    photos = album_data.photos.map{|pp| 
+      PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
+    }
+=begin
+    picasa_uid = (picasa_user_id || user.picasa_identity.picasa_user_id)
+    photo_data = picasa_client.get("https://picasaweb.google.com/data/feed/api/user/#{picasa_uid}/albumid/#{picasa_album_id}").to_xml
+    photos = []
+    photo_data.elements.each('entry'){|a|
+    }
+=end
+  end
+
+  # add a comment to the given picasa photo
+  # note: picasa_photo_url looks like this:
+  # https://picasaweb.google.com/data/entry/api/user/userID/albumid/albumID/photoid/photoID #?kind=comment
+  # this is what picasa gives us as the native photo id
+  def self.add_comment(user, picasa_photo_url, comment_text)
+    return nil if user.picasa_identity.nil?
+    # the ruby_picasa gem doesn't do post requests, so we're using the gdata gem instead
+    picasa = GData::Client::Photos.new
+    picasa.authsub_token = user.picasa_identity.token
+    # the url for posting a comment is the same as the url that identifiess the pic, *except* that it's /feed/ instead of /entry/. wtf.
+    picasa_photo_url.sub!('entry','feed') 
+    post_data = <<-EOF
+    <entry xmlns='http://www.w3.org/2005/Atom'>
+      <content>#{comment_text}</content>
+      <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#comment"/>
+    </entry>
+    EOF
+    #picasa.post("https://picasaweb.google.com/data/feed/api/photoid/#{picasa_photo_id}", post_data)
+    picasa.post(picasa_photo_url, post_data)
+  end
+
 end

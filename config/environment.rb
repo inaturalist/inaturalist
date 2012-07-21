@@ -116,6 +116,7 @@ Rails::Initializer.run do |config|
   # config.gem "koala"
   config.gem "preferences"
   config.gem 'mail_view'
+  config.gem 'gdata'
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

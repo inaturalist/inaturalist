@@ -51,13 +51,11 @@
     flickr: {
       title: 'Flickr', 
       url: '/flickr/photo_fields', 
-      contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends'], ["Public photos", 'public', {searchable:true}]]}
-              /*
+      contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends'], ["Public photos", 'public', {searchable:true}]]},
     picasa: {
       title: 'Picasa', 
       url: '/picasa/photo_fields', 
       contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends'], ["Public photos", 'public', {searchable:true}]]}
-      */
   }
   $('.photo_inviter').each(function() {
     // The photo_fields endpoint needs to know the auth token and the index for the field

@@ -4,7 +4,7 @@
   <ul>
     <% if !current_user.has_provider_auth(@provider) %>
       <li class="clear">
-        <%= link_to "Connect to #{@provider.capitalize}", auth_url_for(@provider), :class => "providerlink #{@provider} button" %>
+        <%= link_to "Connect to #{@provider.capitalize}", (@auth_url || auth_url_for(@provider)), :class => "providerlink #{@provider} button" %>
       </li>
     <% end %>
   </ul>

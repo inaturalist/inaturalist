@@ -223,6 +223,23 @@
 
     }
 
+    $(".picasaAlbums .album", wrapper).live('click', function() {
+      var aid = $(this).attr('data-aid'); // $(this).data('aid') doesn't work because of ridiculous type conversion
+      try {
+        updateSource({
+          url: '/picasa/album/'+aid,
+          object_id: $(this).closest('.picasaAlbums').data('friend_id')
+          });
+      } catch(e) {
+        $.fn.photoSelector.changeBaseUrl(
+          wrapper, 
+          '/picasa/album/' + aid, 
+          'user', //contextSelect.val(), 
+          $(this).closest('.picasaAlbums').data('friend_id'));
+      }
+      return false;
+    });
+
     $(".facebookAlbums .album", wrapper).live('click', function() {
       try {
         updateSource({
@@ -237,7 +254,7 @@
           $(this).closest('.facebookAlbums').data('friend_id'));
       }
       return false;
-    })
+    });
 
     $(".facebookGroups .group", wrapper).live('click', function() {
       try {

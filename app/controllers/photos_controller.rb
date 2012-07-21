@@ -76,7 +76,7 @@ class PhotosController < ApplicationController
       @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
     end
     @projects = current_user.projects.all(:limit => 100, :order => :title)
-    if request.post?
+    if request.post? # submitting the inviter form
       if !params[:comment].include?("{{INVITE_LINK}}")
         flash[:notice] = "You need to include the {{INVITE_LINK}} placeholder in your comment!"
         return
@@ -89,7 +89,10 @@ class PhotosController < ApplicationController
       flickr_photos = (params[:flickr_photos] || [])
       flickr_photo_ids = (flickr_photos.is_a?(Hash) && flickr_photos.has_key?('0') ? flickr_photos['0'] : [])
 
-      if (fb_photo_ids.empty? && flickr_photo_ids.empty?)
+      picasa_photos = (params[:picasa_photos] || [])
+      picasa_photo_urls = (picasa_photos.is_a?(Hash) && picasa_photos.has_key?('0') ? picasa_photos['0'] : [])
+
+      if (fb_photo_ids.empty? && flickr_photo_ids.empty? && picasa_photo_urls.empty?)
         flash[:notice] = "You need to select at least one photo!"
         return
       end
@@ -105,7 +108,6 @@ class PhotosController < ApplicationController
       }
 
       get_flickraw unless flickr_photo_ids.empty?
-      #logger.debug(flickr.to_yaml)
       flickr_photo_ids.each{|flickr_photo_id|
         invite_params[:flickr_photo_id] = flickr_photo_id
         flickr.photos.comments.addComment(
@@ -115,6 +117,16 @@ class PhotosController < ApplicationController
           :comment_text => params[:comment].gsub("{{INVITE_LINK}}", flickr_accept_invite_url(invite_params))
         )
       }
+
+      picasa_photo_urls.each{|picasa_photo_url|
+        invite_params[:picasa_photo_id] = picasa_photo_url
+        PicasaPhoto.add_comment(
+          current_user, 
+          picasa_photo_url, 
+          params[:comment].gsub("{{INVITE_LINK}}", picasa_accept_invite_url(invite_params))
+        )
+      }
+
       flash[:notice] = "Your invites have been sent!"
       #render :text => 'ok' and return
     end
