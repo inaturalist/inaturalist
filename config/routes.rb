@@ -24,6 +24,9 @@ ActionController::Routing::Routes.draw do |map|
   
   map.help '/help', :controller => 'help'
   
+  # this doesn't work. :-/
+  # map.connect "/auth/picasa", Picasa.authorization_url("/picasa/authorize")
+
   map.with_options :controller => "provider_authorizations" do |pa|
     pa.omniauth_failure "/auth/failure", :action => "failure"
     pa.connect '/auth/:provider', :action => 'blank'
@@ -39,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.flickr_accept_invite "/flickr/invite", :controller => "photos", :action => "invite", :provider => "flickr"
   map.fb_accept_invite "/facebook/invite", :controller => "photos", :action => "invite", :provider => "facebook"
   map.photo_inviter "/photos/inviter", :controller => "photos", :action => "inviter" #, :provider => "facebook"
+
 
   # Special controller routes
   

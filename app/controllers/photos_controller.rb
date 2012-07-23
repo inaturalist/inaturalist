@@ -53,9 +53,10 @@ class PhotosController < ApplicationController
     end
   end
 
+  # this is the action for *accepting* an invite (e.g. coming from a url posted as a flickr/fb/picasa photo comment)
+  # params should include '#{flickr || facebook || picasa}_photo_id' and whatever else you want to add
+  # to the observation, e.g. taxon_id, project_id, etc
   def invite
-    # params should include '#{flickr || facebook}_photo_id' and whatever else you want to add
-    # to the observation, e.g. taxon_id, project_id, etc
     invite_params = params
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
     provider = invite_params.delete(:provider)
@@ -64,7 +65,13 @@ class PhotosController < ApplicationController
       @project = Project.find_by_id(params[:project_id].to_i)
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     else
-      redirect_to "/auth/#{provider}"
+      # we're not using omniauth for picasa, so it needs a special auth url.  
+      if provider=='picasa'
+        session[:return_to] = Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) 
+        redirect_to signup_url and return
+      else
+        redirect_to "/auth/#{provider}"
+      end
     end
   end
 

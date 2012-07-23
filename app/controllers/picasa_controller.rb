@@ -23,6 +23,7 @@ class PicasaController < ApplicationController
       return redirect_to :action => "options"
     end
     
+    logger.debug(@picasa.user.inspect)
     @picasa_identity = PicasaIdentity.find_or_initialize_by_user_id(current_user.id)
     @picasa_identity.token = @picasa.token
     @picasa_user = @picasa.user('default')
@@ -63,6 +64,12 @@ class PicasaController < ApplicationController
     if !session[:return_to].blank?
       @landing_path = session[:return_to]
       session[:return_to] = nil
+    end
+    # registering via an invite link in a picasa comment. see /photos/invite
+    if session[:invite_params]
+      invite_params = session[:invite_params]
+      session[:invite_params] = nil
+      @landing_path = new_observation_url(invite_params)
     end
     redirect_to (@landing_path || {:action => "options"})
   end

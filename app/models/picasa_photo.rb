@@ -161,7 +161,7 @@ class PicasaPhoto < Photo
     # the ruby_picasa gem doesn't do post requests, so we're using the gdata gem instead
     picasa = GData::Client::Photos.new
     picasa.authsub_token = user.picasa_identity.token
-    # the url for posting a comment is the same as the url that identifiess the pic, *except* that it's /feed/ instead of /entry/. wtf.
+    # the url for posting a comment is the same as the url that identifies the pic, *except* that it's /feed/ instead of /entry/. wtf.
     picasa_photo_url.sub!('entry','feed') 
     post_data = <<-EOF
     <entry xmlns='http://www.w3.org/2005/Atom'>
@@ -169,7 +169,6 @@ class PicasaPhoto < Photo
       <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#comment"/>
     </entry>
     EOF
-    #picasa.post("https://picasaweb.google.com/data/feed/api/photoid/#{picasa_photo_id}", post_data)
     picasa.post(picasa_photo_url, post_data)
   end
 
