@@ -67,8 +67,12 @@ class PhotosController < ApplicationController
     else
       # we're not using omniauth for picasa, so it needs a special auth url.  
       if provider=='picasa'
-        session[:return_to] = Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) 
-        redirect_to signup_url and return
+        if current_user.nil?
+          session[:return_to] = Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) 
+          redirect_to signup_url and return
+        else
+          redirect_to Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) and return
+        end
       else
         redirect_to "/auth/#{provider}"
       end
