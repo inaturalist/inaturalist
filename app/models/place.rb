@@ -140,6 +140,12 @@ class Place < ActiveRecord::Base
     "lng: #{longitude}, parent_id: #{parent_id}>"
   end
   
+  def validate
+    if !id.blank? && id == parent_id
+      errors.add(:parent_id, "cannot be the same as the place itself")
+    end
+  end
+  
   def place_type_name
     PLACE_TYPES[place_type]
   end

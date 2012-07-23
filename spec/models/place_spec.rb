@@ -23,6 +23,18 @@ describe Place, "creation" do
   end
 end
 
+describe Place, "updating" do
+  before(:each) do
+    @place = Place.make
+  end
+  
+  it "should not have itself as a parent" do
+    @place.parent_id = @place.id
+    @place.should_not be_valid
+    @place.errors.on(:parent_id).should_not be_blank
+  end
+end
+
 describe Place, "import by WOEID" do
   before(:each) do
     @woeid = '28337864';
