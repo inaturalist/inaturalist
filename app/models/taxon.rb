@@ -354,7 +354,7 @@ class Taxon < ActiveRecord::Base
         ["iconic_taxon_id = ?", iconic_taxon_id],
         conditions
       )
-      Taxon.send_later(:set_iconic_taxon_for_observations_of, id)
+      Taxon.send_later(:set_iconic_taxon_for_observations_of, id, :dj_priority => 1)
     end
     true
   end
@@ -638,7 +638,7 @@ class Taxon < ActiveRecord::Base
   def update_listed_taxa
     return true if ancestry.blank?
     return true if ancestry_callbacks_disabled?
-    Taxon.send_later(:update_listed_taxa_for, id, ancestry_was)
+    Taxon.send_later(:update_listed_taxa_for, id, ancestry_was, :dj_priority => 1)
     true
   end
   
