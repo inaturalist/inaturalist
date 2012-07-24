@@ -138,18 +138,16 @@ class PicasaPhoto < Photo
     options[:start_index] ||= 1
     return [] unless user.picasa_identity
     picasa = user.picasa_client
-    album_data = picasa.album(picasa_album_id.to_s, {:max_results=>options[:max_results], :start_index=>options[:start_index]})  # this also fetches photo data
-
+    # to access a friend's album, you need the full url rather than just album id. grrr.
+    if options[:picasa_user_id]  
+      picasa_album_url = "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
+    end
+    album_data = picasa.album((picasa_album_url || picasa_album_id.to_s), 
+                              {:max_results=>options[:max_results], 
+                               :start_index=>options[:start_index]})  # this also fetches photo data
     photos = album_data.photos.map{|pp| 
       PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
     }
-=begin
-    picasa_uid = (picasa_user_id || user.picasa_identity.picasa_user_id)
-    photo_data = picasa_client.get("https://picasaweb.google.com/data/feed/api/user/#{picasa_uid}/albumid/#{picasa_album_id}").to_xml
-    photos = []
-    photo_data.elements.each('entry'){|a|
-    }
-=end
   end
 
   # add a comment to the given picasa photo

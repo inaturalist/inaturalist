@@ -23,7 +23,6 @@ class PicasaController < ApplicationController
       return redirect_to :action => "options"
     end
     
-    logger.debug(@picasa.user.inspect)
     @picasa_identity = PicasaIdentity.find_or_initialize_by_user_id(current_user.id)
     @picasa_identity.token = @picasa.token
     @picasa_user = @picasa.user('default')
@@ -60,7 +59,7 @@ class PicasaController < ApplicationController
     
     @picasa_identity.save
     
-    flash[:notice] = "Congrats, your iNaturalist and Picasa accunts have been linked!"
+    flash[:notice] = "Congrats, your iNaturalist and Picasa accounts have been linked!"
     if !session[:return_to].blank?
       @landing_path = session[:return_to]
       session[:return_to] = nil
@@ -98,50 +97,65 @@ class PicasaController < ApplicationController
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return
     end
-    #picasa_client = GData::Client::Photos.new
-    #picasa_client.authsub_token = pi.token
-    @albums = picasa_albums(current_user)
-=begin
-    #if context=='user'
-      album_data = picasa_client.get("https://picasaweb.google.com/data/feed/api/user/#{pi.picasa_user_id}").to_xml
-      @albums = []
-      album_data.elements.each('entry'){|a|
-        @albums << {
-          'aid' => a.elements['gphoto:id'].text, 
-          'name' => a.elements['title'].text,
-          'cover_photo_src' => a.elements['media:group'].elements['media:thumbnail'].attributes['url']
-        }
-      }
-=end
-      #@albums = picasa_albums(current_user)
+    if context=='user'
+      @albums = picasa_albums(current_user)
       render :partial => 'picasa/albums' and return
-    #end
-
+    elsif context=='friends'
+      @friend_id = params[:object_id]
+      @friend_id = nil if @friend_id=='null'
+      if @friend_id.nil?  # if context is friends, but no friend id specified, we want to show the friend selector
+        @friends = picasa_friends(current_user)
+        render :partial => 'picasa/friends' and return
+      else
+        @albums = picasa_albums(current_user, @friend_id)
+        friend_data = current_user.picasa_client.user(@friend_id)
+        @friend_name = friend_data.author.name 
+        render :partial => 'picasa/albums' and return
+      end
+    elsif context='public'
+      picasa = current_user.picasa_client
+      search_params = {}
+      per_page = params[:limit] ? params[:limit].to_i : 10
+      search_params[:max_results] = per_page
+      search_params[:start_index] = (params[:page] || 1).to_i * per_page - per_page + 1
+      search_params[:thumbsize] = RubyPicasa::Photo::VALID.join(',')
+      
+      if results = picasa.search(params[:q], search_params)
+        @photos = results.photos.map do |api_response|
+          next unless api_response.is_a?(RubyPicasa::Photo)
+          PicasaPhoto.new_from_api_response(api_response, :user => current_user)
+        end.compact
+      end
+    end
+    
+    respond_to do |format|
+      format.html do
+        render :partial => 'photos/photo_list_form', 
+               :locals => {
+                 :photos => @photos, 
+                 :index => params[:index],
+                 :synclink_base => @synclink_base,
+                 :local_photos => false
+               }
+      end
+    end
   end
 
   # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
-    #limit = (params[:limit] || 10).to_i
-    #offset = ((params[:page] || 1).to_i - 1) * limit
     @friend_id = params[:object_id] unless params[:object_id]=='null'
     if @friend_id
-      friend_data = current_user.facebook_api.get_object(@friend_id)
-      @friend_name = friend_data['first_name']
+      friend_data = current_user.picasa_client.user(@friend_id)
+      @friend_name = friend_data.author.name 
     end
-    per_page = params[:limit] ? params[:limit].to_i : 10
+    per_page = (params[:limit] ? params[:limit].to_i : 10)
     search_params = {
       :max_results => per_page,
       :start_index => ((params[:page] || 1).to_i * per_page - per_page + 1),
       :picasa_user_id => @friend_id
     }
     @photos = PicasaPhoto.get_photos_from_album(current_user, params[:id], search_params) 
-=begin
-    @photos = current_user.facebook_api.get_connections(params[:id], 'photos', 
-        :limit => limit, :offset => offset).map do |fp|
-      FacebookPhoto.new_from_api_response(fp)
-    end
-=end
-    # sync doesn't work with facebook! they strip exif metadata from photos. :(
+
     #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|
       format.html do
@@ -207,27 +221,13 @@ class PicasaController < ApplicationController
 
   protected 
 
-=begin
+  # fetch picasa albums
+  # user is used to authenticate the request
+  # picasa_user_id specifies the picasa user whose albums to fetch
+  # (if nil, it fetches the authenticating user's albums)
   def picasa_albums(user, picasa_user_id=nil)
     return [] unless user.picasa_identity
-    picasa_client = user.picasa_api
-    picasa_uid = (picasa_user_id || user.picasa_identity.picasa_user_id)
-    album_data = picasa_client.get("https://picasaweb.google.com/data/feed/api/user/#{picasa_uid}").to_xml
-    albums = []
-    album_data.elements.each('entry'){|a|
-      albums << {
-        'aid' => a.elements['gphoto:id'].text, 
-        'name' => a.elements['title'].text,
-        'cover_photo_src' => a.elements['media:group'].elements['media:thumbnail'].attributes['url']
-      }
-    }
-    return albums
-  end
-=end
-
-  def picasa_albums(user, picasa_user_id=nil)
-    return [] unless user.picasa_identity
-    picasa = user.picasa_client #Picasa.new(user.picasa_identity.token)
+    picasa = user.picasa_client 
     user_data = picasa.user(picasa_user_id) 
     albums = []
     user_data.albums.reject{|a| a.numphotos==0}.each{|a|
@@ -238,6 +238,22 @@ class PicasaController < ApplicationController
       }
     }
     return albums
+  end
+
+  def picasa_friends(user)
+    return [] unless user.picasa_identity
+    picasa = GData::Client::Photos.new
+    picasa.authsub_token = user.picasa_identity.token
+    contacts_data = picasa.get("http://picasaweb.google.com/data/feed/api/user/default/contacts").to_xml 
+    friends = []
+    contacts_data.elements.each('entry'){|e|
+      friends << {
+        'id' => e.elements['gphoto:user'].text, # this is a feed url that id's the photo
+        'name' => e.elements['gphoto:nickname'].text,
+        'pic_url' => e.elements['gphoto:thumbnail'].text
+      }
+    }
+    return friends
   end
 
 end
