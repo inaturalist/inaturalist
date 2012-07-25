@@ -395,7 +395,7 @@
   // Hit the server for photos
   $.fn.photoSelector.queryPhotos = function(q, wrapper, options) {
     // cancel any existing requests to avoid race condition
-    if (typeof ajax!='undefined') { console.log('aborting');ajax.abort(); }
+    if (typeof ajax!='undefined') { ajax.abort(); }
 
     var options = $.extend({}, 
       $.fn.photoSelector.defaults, 
@@ -453,8 +453,6 @@
         if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
       }
     });
-    console.log('after:');
-    console.log(ajax);
     
     return false;
   };
