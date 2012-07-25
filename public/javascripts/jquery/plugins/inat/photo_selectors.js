@@ -228,14 +228,14 @@
       try {
         updateSource({
           url: '/picasa/album/'+aid,
-          object_id: $(this).closest('.picasaAlbums').data('friend_id')
+          object_id: $(this).closest('.picasaAlbums').attr('data-friend_id')
           });
       } catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           '/picasa/album/' + aid, 
           'user', //contextSelect.val(), 
-          $(this).closest('.picasaAlbums').data('friend_id'));
+          $(this).closest('.picasaAlbums').attr('data-friend_id'));
       }
       return false;
     });
@@ -243,15 +243,15 @@
     $(".facebookAlbums .album", wrapper).live('click', function() {
       try {
         updateSource({
-          url: '/facebook/album/'+$(this).data('aid'),
-          object_id: $(this).closest('.facebookAlbums').data('friend_id')
+          url: '/facebook/album/'+$(this).attr('data-aid'),
+          object_id: $(this).closest('.facebookAlbums').attr('data-friend_id')
           });
       } catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
-          '/facebook/album/' + $(this).data('aid'), 
+          '/facebook/album/' + $(this).attr('data-aid'), 
           'user', //contextSelect.val(), 
-          $(this).closest('.facebookAlbums').data('friend_id'));
+          $(this).closest('.facebookAlbums').attr('data-friend_id'));
       }
       return false;
     });
@@ -260,26 +260,26 @@
       try {
         updateSource({
           url: '/facebook/group/',
-          object_id: $(this).data('group_id')
+          object_id: $(this).attr('data-group_id')
           });
       } catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           '/facebook/group/', 
           'group', //contextSelect.val(), 
-          $(this).data('group_id'));
+          $(this).attr('data-group_id'));
       }
       return false;
     })
   
     $('.back_to_albums').live('click', function(){
-      try { updateSource({ object_id: $(this).data('friend_id') }); } 
+      try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           urlSelect.val(), 
           'user', //contextSelect.val(), 
-          $(this).data('friend_id'));
+          $(this).attr('data-friend_id'));
       }
       return false;
     });
@@ -291,26 +291,26 @@
     });
 
     $('.back_to_groups').live('click', function(){
-      try { updateSource({ object_id: $(this).data('group_id') }); } 
+      try { updateSource({ object_id: $(this).attr('data-group_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           urlSelect.val(), 
           'groups', //contextSelect.val(), 
-          $(this).data('group_id'));
+          $(this).attr('data-group_id'));
       }
       return false;
     });
 
     // friend selector
     $('.friendSelector .friend').live('click', function(){
-      try { updateSource({ object_id: $(this).data('friend_id') }); } 
+      try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
       catch(e) {
         $.fn.photoSelector.changeBaseUrl(
           wrapper, 
           urlSelect.val(), 
           'user', // contextSelect.val(), 
-          $(this).data('friend_id'));
+          $(this).attr('data-friend_id'));
       }
       return false;
     });
@@ -404,15 +404,16 @@
     var existing = $(wrapper).find('.photoSelectorPhotos input:checked').parent().clone();
     
     // Set loading status
+    var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
     var loading = $('<center><span class="loading status inlineblock">Loading...</span></center>')
-      .css('margin-top', $(wrapper).height() / 2)
-    $(wrapper).shades('open', {
+      .css('margin-top', ($photoSelectorPhotos.height() / 2)-20)
+    $photoSelectorPhotos.shades('open', {
       css: {'background-color': 'white', 'opacity': 0.7}, 
       content: loading
     })
     
     // Fetch new fields
-    $(wrapper).find('.photoSelectorPhotos').load(
+    $photoSelectorPhotos.load(
       baseURL, 
       $.param(params),
       function(responseText, textStatus, XMLHttpRequest) {
@@ -428,7 +429,7 @@
         
         // Re-insert the checkbox parents
         if (existing && existing.length > 0) {
-          $(wrapper).find('.photoSelectorPhotos').prepend('<hr />').prepend(existing).prepend("<h4>Selected photos</h4>");
+          $photoSelectorPhotos.prepend('<hr />').prepend(existing).prepend("<h4>Selected photos</h4>");
           //$(wrapper).find('.photoSelectorPhotos').append('<hr />').append("<h4>Selected photos</h4>").append(existing);
         }
         
@@ -441,7 +442,7 @@
         }
         
         // Unset loading status
-        $(wrapper).shades('close')
+        $photoSelectorPhotos.shades('close')
         
         if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
       }

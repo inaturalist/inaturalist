@@ -29,7 +29,9 @@
 .photoSelectorAlbums .album td:last-child {
   border-left:0;
 }
-/*.photoSelectorPhotos {*/
+.photoSelectorPhotos {
+  min-height: 100px;
+}
 .photoSelector {
   border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;
 }

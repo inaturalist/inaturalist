@@ -230,13 +230,15 @@ class PicasaController < ApplicationController
     picasa = user.picasa_client 
     user_data = picasa.user(picasa_user_id) 
     albums = []
-    user_data.albums.reject{|a| a.numphotos==0}.each{|a|
-      albums << {
-        'aid' => a.id,
-        'name' => a.title,
-        'cover_photo_src' => a.photos.first.url
+    unless user_data.nil?
+      user_data.albums.reject{|a| a.numphotos==0}.each{|a|
+        albums << {
+          'aid' => a.id,
+          'name' => a.title,
+          'cover_photo_src' => a.photos.first.url
+        }
       }
-    }
+    end
     return albums
   end
 
