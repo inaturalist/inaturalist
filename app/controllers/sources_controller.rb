@@ -1,5 +1,5 @@
 class SourcesController < ApplicationController
-  before_filter :login_required
+  before_filter :login_required, :except => [:index, :show]
   before_filter :load_source, :only => [:show, :edit, :update, :destroy]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
   
