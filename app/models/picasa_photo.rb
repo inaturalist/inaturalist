@@ -161,6 +161,8 @@ class PicasaPhoto < Photo
     picasa.authsub_token = user.picasa_identity.token
     # the url for posting a comment is the same as the url that identifies the pic, *except* that it's /feed/ instead of /entry/. wtf.
     picasa_photo_url.sub!('entry','feed') 
+    # gdata barfs unless you escape ampersands in urls
+    comment_text.gsub!('&', '&amp;') 
     post_data = <<-EOF
     <entry xmlns='http://www.w3.org/2005/Atom'>
       <content>#{comment_text}</content>
