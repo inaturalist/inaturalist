@@ -232,7 +232,7 @@ class Place < ActiveRecord::Base
     place = Place.new_from_geo_planet(ydn_place)
     place.parent = options[:parent]
     
-    unless options[:ignore_ancestors] || ydn_place.ancestors.blank?
+    unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
       logger.debug "[DEBUG] Saving ancestors..."
       ydn_place.ancestors.reverse_each do |ydn_ancestor|
