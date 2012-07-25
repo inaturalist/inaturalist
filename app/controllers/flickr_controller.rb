@@ -184,11 +184,10 @@ class FlickrController < ApplicationController
         search_params['user_id'] = @friend_id
       elsif context=='public'
         search_params['license'] = '1,2,3,4,5,6'
-        search_params['text'] = params[:q]
       end
       search_params['auth_token'] = current_user.flickr_identity.token
       search_params['per_page'] = params[:limit] ||= 10
-      #search_params['text'] = params[:q]
+      search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
       search_params['extras'] = 'date_upload,owner_name,url_sq'
       search_params['sort'] = 'relevance'

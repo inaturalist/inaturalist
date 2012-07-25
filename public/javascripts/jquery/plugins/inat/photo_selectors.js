@@ -137,6 +137,7 @@
       // this is called when you change either the source <select> or context <select>
       function updateSource(sourceOptions){
         $searchWrapper.hide();
+        $searchInput.val('');
         var newSource = sources[currentSource]; 
         sourceOptions = (sourceOptions || {});
         sourceOptions['url'] = (sourceOptions.url || newSource.url);
