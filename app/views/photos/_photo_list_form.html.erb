@@ -31,7 +31,7 @@
     <%- 
       native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
       #thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.source_url(:thumb)
-      thumb_url = photo.is_a?(Photo) ? photo.thumb_url : (photo.try(:url_sq) || photo.source_url(:thumb))
+      thumb_url = (photo.try(:thumb_url) || photo.try(:square_url) || photo.try(:source_url, :thumb))
       next unless thumb_url
       prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
       unique_id = serial_id
@@ -71,6 +71,7 @@
       <label for="<%= input_id %>">
         <%= image_tag(thumb_url, :alt=>'Image') %>
       </label>
+      <span class='view_photo'><%= link_to("View original", photo.native_page_url, :target=>'_blank') %></span>
     </div>
   <% end %>
 <% end %>

@@ -195,7 +195,7 @@ class FlickrController < ApplicationController
 
       #logger.info(search_params.to_yaml)
       get_flickraw
-      @photos = flickr.photos.search(search_params)
+      @photos = flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
     end
 
 =begin

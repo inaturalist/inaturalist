@@ -35,7 +35,10 @@
 .photoSelector {
   border:1px solid #eee;border-radius:10px;padding:10px;margin-right:10px;
 }
-
+.photoSelector .view_photo {
+  display: block;
+  text-align: right;
+}
 .photoSelector .friendSelector ul,
 .photoSelector .friendSelector li {
   list-style-type: none;
