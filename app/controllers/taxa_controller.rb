@@ -131,7 +131,10 @@ class TaxaController < ApplicationController
         @amphibiaweb = amphibiaweb_description?
         @try_amphibiaweb = try_amphibiaweb?
         
-        @children = @taxon.children.all(:include => :taxon_names).sort_by{|c| c.name}
+        @children = @taxon.children.all(
+          :include => :taxon_names, 
+          :conditions => {:is_active => @taxon.is_active}
+        ).sort_by{|c| c.name}
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
         @iconic_taxa = Taxon::ICONIC_TAXA
         

@@ -297,6 +297,7 @@ class Taxon < ActiveRecord::Base
   named_scope :on_list, lambda {|list|
     {:include => [:listed_taxa], :conditions => ["listed_taxa.list_id = ?", list]}
   }
+  named_scope :active, {:conditions => {:is_active => true}}
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719171324) do
+ActiveRecord::Schema.define(:version => 20120725194234) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -722,7 +722,7 @@ ActiveRecord::Schema.define(:version => 20120719171324) do
     t.integer  "conservation_status_source_id"
     t.boolean  "locked",                                :default => false, :null => false
     t.integer  "conservation_status_source_identifier"
-    t.boolean  "is_active",                             :default => true
+    t.boolean  "is_active",                             :default => true,  :null => false
   end
 
   add_index "taxa", ["ancestry"], :name => "index_taxa_on_ancestry"
