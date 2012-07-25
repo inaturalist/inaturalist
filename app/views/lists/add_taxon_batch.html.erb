@@ -41,8 +41,7 @@
 <% end -%>
 
 <% content_for(:extrajs) do %>
-  <%= javascript_include_tag "jquery/plugins/jquery.scrollTo-min.js",
-                             'jquery/plugins/jquery.string.1.0' %>
+  <%= javascript_include_tag 'jquery/plugins/jquery.string.1.0' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#new_listed_taxon').show();

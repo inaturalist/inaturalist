@@ -5,6 +5,7 @@ var TaxonBrowser = {
     $('form.taxon_search_form', context).submit(TaxonBrowser.handleFormSubmits);
     TaxonBrowser.addTips();
     $('.loading:first', context).hide();
+    $('#taxon_browser #taxon_list').shades('close')
   },
   
   addTips: function(context) {
@@ -13,26 +14,34 @@ var TaxonBrowser = {
   },
 
   handleFormSubmits: function(e) {
-    $('#taxon_browser .loading:first').show();
-    var params = $(this).serialize() + 
-      '&partial=browse' +
-      '&authenticity_token=' + $('meta[name=csrf-token]').attr('content')
-    $.get($(this).attr('action'), params, function(data, status) {
-      $('#taxon_browser').html(data)
-      TaxonBrowser.ajaxify()
-    });
+    TaxonBrowser.request($(this).attr('action'), $(this).serializeObject())
     return false;
   },
 
   handleSearchClicks: function(e) {
-    $('#taxon_browser .loading:first').show();
-    // don't make the extra params an object literal.  That will force a POST 
-    // request, which will screw up the pagination links
-    var params = {partial: 'browse', js_link: true, authenticity_token: $('meta[name=csrf-token]').attr('content')}
-    $('#taxon_browser').load($(this).attr('href'), params, function() {
+    TaxonBrowser.request($(this).attr('href'))
+    return false
+  },
+
+  request: function(href, params) {
+    $('#taxon_browser').parents('.dialog:first').scrollTo(0,0)
+
+    $('#taxon_browser #taxon_list').shades('open', {
+      css: {'background-color': 'white'}, 
+      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">Loading...</span></center>'
+    })
+
+    var oldReq = $('#taxon_browser').data('lastRequest')
+    if (oldReq) { oldReq.abort() }
+    params = $.param($.extend({}, params, {
+      partial: 'browse',
+      authenticity_token: $('meta[name=csrf-token]').attr('content')
+    }))
+    var req = $.get(href, params, function(data, status) {
+      $('#taxon_browser').html(data)
       TaxonBrowser.ajaxify()
     })
-    return false
+    $('#taxon_browser').data('lastRequest', req)
   },
 
   handleTaxonQtip: function() {

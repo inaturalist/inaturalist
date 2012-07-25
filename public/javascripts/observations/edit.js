@@ -29,23 +29,25 @@ $(document).ready(function() {
   
   // Setup taxon browser
   $('body').append(
-    $('<div id="taxonchooser" class="clear modalbox dialog"></div>').append(
+    $('<div id="taxonchooser" class="clear dialog"></div>').append(
       $('<div id="taxon_browser" class="clear"></div>').append(
         $('<div class="loading status">Loading...</div>')
       )
     ).hide()
-  );
+  )
   
-  $('#taxonchooser').jqm({
-    onShow: function(h) {
-      h.w.fadeIn(500);
-      if (h.w.find('#taxon_browser > .loading').length == 1) {
-        h.w.find('#taxon_browser').load(
-          '/taxa/search?partial=browse&js_link=true',
-          {}, function() {TaxonBrowser.ajaxify()});
-      }
+  $('#taxonchooser').dialog({
+    autoOpen: false,
+    width: $(window).width() * 0.8,
+    height: $(window).height() * 0.8,
+    title: 'Browse all species',
+    modal:true,
+    minWidth:1000,
+    open: function(event, ui) {
+      $('#taxon_browser').load('/taxa/search?partial=browse&js_link=true', function() {TaxonBrowser.ajaxify()})
     }
-  });
+  })
+
   $('.observation_field_chooser').chooser({
     collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
     resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
@@ -114,8 +116,8 @@ $(document).ready(function() {
 })
 
 function handleTaxonClick(e, taxon) {
-  $.fn.simpleTaxonSelector.selectTaxon($('.simpleTaxonSelector:first'), taxon);
-  $('#taxonchooser').jqmHide();
+  $.fn.simpleTaxonSelector.selectTaxon($('.simpleTaxonSelector:first'), taxon)
+  $('#taxonchooser').dialog('close')
 }
 
 function afterFindPlaces() {

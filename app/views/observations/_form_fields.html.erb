@@ -21,7 +21,7 @@
       </div>
       
       <div class="field">
-        <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
+        <%= link_to_function "Browse all species", "$('#taxonchooser').dialog('open')" %>
       </div>
       
       <div class="field<%= ' error' if observation.errors.on(:observed_on) && !observation.errors.on(:observed_on).empty? %>">
