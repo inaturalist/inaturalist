@@ -50,7 +50,7 @@ class Identification < ActiveRecord::Base
   
   # Update the observation if you're adding an ID to your own obs
   def update_observation
-    return false unless observation
+    return true unless observation
     return true unless self.user_id == self.observation.user_id
     return true if @skip_observation
 
