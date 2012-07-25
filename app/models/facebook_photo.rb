@@ -83,6 +83,11 @@ class FacebookPhoto < Photo
     return photos
   end
 
+  def self.add_comment(user, fb_photo_id, comment_text)
+    return nil if user.facebook_api.nil?
+    user.facebook_api.put_comment(fb_photo_id, comment_text)
+  end
+
 #  
 #  # Try to extract known taxa from the tags of a flickr photo
 #  def to_taxa(options = {})

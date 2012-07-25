@@ -87,6 +87,7 @@ class PhotosController < ApplicationController
       @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
     end
     @projects = current_user.projects.all(:limit => 100, :order => :title)
+
     if request.post? # submitting the inviter form
       if !params[:comment].include?("{{INVITE_LINK}}")
         flash[:notice] = "You need to include the {{INVITE_LINK}} placeholder in your comment!"
@@ -108,24 +109,25 @@ class PhotosController < ApplicationController
         return
       end
       
+      # invite_params should include '#{flickr || facebook || picasa}_photo_id' and (optional) taxon_id and project_id
       invite_params = {:taxon_id => params[:taxon_id], :project_id=>params[:project_id]}
       invite_params.delete_if { |k, v| v.nil? || v.empty? }
 
       fb_photo_ids.each{|fb_photo_id|
         invite_params[:facebook_photo_id] = fb_photo_id
-        # invite_params should include '#{flickr || facebook}_photo_id' and whatever else you want to add
-        # to the observation, e.g. taxon_id, project_id, etc
-        current_user.facebook_api.put_comment(fb_photo_id, params[:comment].gsub("{{INVITE_LINK}}", fb_accept_invite_url(invite_params)))
+        FacebookPhoto.add_comment(
+          current_user, 
+          fb_photo_id, 
+          params[:comment].gsub("{{INVITE_LINK}}", fb_accept_invite_url(invite_params))
+        )
       }
 
-      get_flickraw unless flickr_photo_ids.empty?
       flickr_photo_ids.each{|flickr_photo_id|
         invite_params[:flickr_photo_id] = flickr_photo_id
-        flickr.photos.comments.addComment(
-          :user_id => current_user.flickr_identity.flickr_user_id, 
-          :auth_token => current_user.flickr_identity.token,
-          :photo_id => flickr_photo_id, 
-          :comment_text => params[:comment].gsub("{{INVITE_LINK}}", flickr_accept_invite_url(invite_params))
+        FlickrPhoto.add_comment(
+          current_user,
+          flickr_photo_id,
+          params[:comment].gsub("{{INVITE_LINK}}", flickr_accept_invite_url(invite_params))
         )
       }
 
@@ -139,7 +141,6 @@ class PhotosController < ApplicationController
       }
 
       flash[:notice] = "Your invites have been sent!"
-      #render :text => 'ok' and return
     end
   end
   
