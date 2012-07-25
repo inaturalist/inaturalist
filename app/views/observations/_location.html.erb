@@ -24,7 +24,7 @@
 <% unless places.blank? -%>
   <div>
     <label>Places:</label>
-    <%= places.map{|place| link_to(place.code || place.name, place, :title => place.display_name)}.join(', ') %>
+    <%= places.map{|place| link_to(place.code || place.name, place, :title => place.display_name)}.join(', ').html_safe %>
   </div>
 <% end -%>
 <% if show_observation_coordinates?(observation) %>
