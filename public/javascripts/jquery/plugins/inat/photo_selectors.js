@@ -390,8 +390,13 @@
     $.fn.photoSelector.queryPhotos($(wrapper).find('.photoSelectorSearchField').val(), wrapper);
   };
   
+  var ajax; // store ajax request so we can cancel it below if need be
+
   // Hit the server for photos
   $.fn.photoSelector.queryPhotos = function(q, wrapper, options) {
+    // cancel any existing requests to avoid race condition
+    if (typeof ajax!='undefined') { console.log('aborting');ajax.abort(); }
+
     var options = $.extend({}, 
       $.fn.photoSelector.defaults, 
       $(wrapper).data('photoSelectorOptions'), 
@@ -413,10 +418,11 @@
     })
     
     // Fetch new fields
-    $photoSelectorPhotos.load(
-      baseURL, 
-      $.param(params),
-      function(responseText, textStatus, XMLHttpRequest) {
+    ajax = $.ajax({
+      url: baseURL, 
+      data: $.param(params),
+      complete: function(response, textStatus, XMLHttpRequest) {
+        $photoSelectorPhotos.html(response.responseText);
         // Remove fields with identical values to the extracted checkboxes
         var existingValues = $(existing).find('input').map(function() {
           return $(this).val();
@@ -446,7 +452,9 @@
         
         if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
       }
-    );
+    });
+    console.log('after:');
+    console.log(ajax);
     
     return false;
   };
