@@ -444,7 +444,8 @@ ul.leafylist li li:first-child {
 
 /* Navigation */
 .pagination a,
-.pagination span {
+.pagination span,
+.pagination em {
   border: 1px solid #ccc;
   padding: 1px 5px;
 }

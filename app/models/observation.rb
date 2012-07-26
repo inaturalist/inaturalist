@@ -540,7 +540,7 @@ class Observation < ActiveRecord::Base
   # Return a time from observed_on and time_observed_at
   #
   def datetime
-    if observed_on && errors.on(:observed_on).blank?
+    if observed_on && errors[:observed_on].blank?
       if time_observed_at
         Time.mktime(observed_on.year, 
                     observed_on.month, 
