@@ -88,14 +88,16 @@ function loadingClickForLink() {
 }
 
 $('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function() {
+  $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
   $(this).addClass('disabled description').val(txt)
   var link = this
   
   if (!$(this).attr('data-loading-click-bound')) {
-    $(this).parents('form').bind('ajax:success', function() {
+    $(this).parents('form').bind('ajax:complete', function() {
       $(link).attr('disabled', false).removeClass('disabled description')
+      $(link).val($(link).data('original-value'))
     })
     $(this).attr('data-loading-click-bound', true)
   }

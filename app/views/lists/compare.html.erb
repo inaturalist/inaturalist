@@ -45,12 +45,21 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
     $('#sidebar').fixedFollower();
-  });
+    $('.seenit form').bind('ajax:success', function(event, json, status) {
+      afterTaxonAdded(json)
+    }).bind('ajax:error', function(event, request, settings) {
+      afterTaxonAddedFailure(request)
+    })
+  })
   
   function afterTaxonAdded(jsonStr) {
-    try {
-      var json = eval("(" + jsonStr + ")");
-    } catch (e) {};
+    if (typeof(jsonStr) == 'str') {
+      try {
+        var json = eval("(" + jsonStr + ")");
+      } catch (e) {};
+    } else {
+      var json = jsonStr
+    }
     
     // Append html to the list
     $('#seenit_'+json.instance.taxon_id).replaceWith(
@@ -131,17 +140,16 @@
           <% elsif list.editable_by?(current_user) %>
             <div id="seenit_<%= taxon.id %>" class="seenit">
               <%- lt = ListedTaxon.new(:list => list, :taxon => taxon) -%>
-              <% remote_form_for(lt, 
-                :url => listed_taxa_path(lt, :format => 'json'),
-                :loading  => "$('#listed_taxon_submit_#{lt.taxon_id}').hide(); $('#listed_taxon_loading_#{lt.taxon_id}').show();",
-                :complete => "$('#listed_taxon_submit_#{lt.taxon_id}').show(); $('#listed_taxon_loading_#{lt.taxon_id}').hide();",
-                :success  => "afterTaxonAdded(request);",
-                :failure  => "afterTaxonAddedFailure(request);") do |f| %>
+              <%= form_for(lt, 
+                :remote => true,
+                :html => {"data-type" => "json"}
+              ) do |f| %>
                 <%= f.hidden_field :list_id %>
                 <%= f.hidden_field :taxon_id %>
                 <%= f.submit("Add to #{list.id == current_user.life_list_id ? 'your life list!' : list.title}", 
-                  :id => "listed_taxon_submit_#{lt.taxon_id}", :class => 'button') %>
-                <%= image_tag('spinner.gif', :id => "listed_taxon_loading_#{lt.taxon_id}", :style => 'display: none') %>
+                  :id => "listed_taxon_submit_#{lt.taxon_id}", 
+                  :class => 'button',
+                  "data-loading-click" => "Adding...") %>
               <% end %>
             </div>
           <% else %>
@@ -154,7 +162,7 @@
     </div>    
   <% end %>
   <% if @pairs.empty? %>
-    Looks like neither have any taxa!
+    <div class="description nocontent">Looks like neither have any taxa!</div>
   <% end %>
   
   <div class="column span-17">
