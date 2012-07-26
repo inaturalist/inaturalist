@@ -18,7 +18,8 @@ class User < ActiveRecord::Base
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
-  MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same]
+  attr_accessor   :preferred_photo_license
+  MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same, :preferred_photo_license]
   
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true

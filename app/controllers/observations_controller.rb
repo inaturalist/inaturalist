@@ -330,6 +330,14 @@ class ObservationsController < ApplicationController
     end
     sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
     sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
+              
+    if params[:welcome]
+      @welcome = true
+      @cc = false
+      if params[:flickr_photo_id] && current_user.flickr_identity
+        @cc = true if  @flickr_photo.creative_commons?
+      end
+    end
     
     # this should happen AFTER photo syncing so params can override attrs 
     # from the photo
@@ -469,6 +477,7 @@ class ObservationsController < ApplicationController
     self.current_user.observations << @observations
     
     create_project_observations
+    update_user_account
     
     # check for errors
     errors = false
@@ -1831,6 +1840,20 @@ class ObservationsController < ApplicationController
        flash[:error] = "Your observations couldn't be added to that " + 
          "project: #{errors.to_sentence}"
      end
+  end
+  
+  def update_user_account
+    account_params = params[:user]
+    current_user.update_attributes(account_params)
+    #if current_user.email.nil?
+    #  unless current_user.update_attributes(:email => params[:email])
+    #    errors = (errors + current_user.errors.full_messages).uniq
+    #  end
+    #  
+    #  unless errors.blank?
+    #    flash[:error] = "Trouble saving your email"
+    #  end
+    #end
   end
   
   def render_observations_partial(partial)
