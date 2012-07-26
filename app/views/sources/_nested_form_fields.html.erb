@@ -17,15 +17,15 @@
     :label => label_text,
     :placeholder => "Type source title...", 
     :class => "existing", 
-    "data-chooser-default-sources" => sources.to_json(:methods => [:html]).html_safe
+    "data-chooser-default-sources" => sources.to_json(:methods => [:html])
   }
   if source
-    chooser_options["data-chooser-chosen"] = source.to_json(:methods => [:html]).html_safe
+    chooser_options["data-chooser-chosen"] = source.to_json(:methods => [:html])
   end
 -%>
 <% if f.object.send(assoc_name) -%>
   <%- edit_source_fields = capture do %>
-    <% f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
+    <%= f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
       <%= s.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
       <%= s.text_field :in_text, :description => "e.g. Greene, 2000" %>
       <%= s.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>
@@ -43,7 +43,7 @@
 <%- new_source_fields = capture do %>
   <fieldset>
     <legend>New Source</legend>
-    <% f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
+    <%= f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
       <%= s.hidden_field :user_id, :value => current_user.id %>
       <%= s.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
       <%= s.text_field :in_text, :description => "e.g. Greene, 2000" %>

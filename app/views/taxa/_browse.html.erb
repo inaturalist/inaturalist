@@ -198,27 +198,6 @@
         </ul>
       </div>
     </div>
-    <!-- <div class="column span-8">
-      <div class="facet">
-        <h3>Where did you see it?</h3>
-        <% form_remote_tag :url => {:action => "find_places"}, 
-            :update => "find_places", 
-            :loading => 
-              "$('#place_q_submit').hide();" +
-              "$('#place_q_loading').show();",
-            :complete => 
-              "$('#place_q_submit').show();" +
-              "$('#place_q_loading').hide();" + 
-              "if (typeof(afterFindPlaces) == 'function') afterFindPlaces();",
-            :html => {:class => "clear buttonrow"} do %>
-          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
-          <input type="text" name="q" value="" id="place_q" class="text" />
-          <input type="submit" value="Search" class="button" id="place_q_submit" />
-          <div id="place_q_loading" class="loading status inter" style="display:none">&nbsp;</div>
-        <% end %>
-        <div id="find_places"></div>
-      </div>
-    </div> -->
     <div class="last column span-5">
       <div class="facet">
         <h3>What color was it?</h3>
