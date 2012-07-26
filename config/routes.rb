@@ -341,6 +341,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :taxon_changes, :requirements => { :id => id_param_pattern } do |taxon_change|
     taxon_change.resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
   end
+  map.resources :taxon_schemes, :only => [:index]
+  
   map.connect 'taxon_changes/taxon_change_taxa', :controller => 'taxon_change_taxa'
   map.resources :taxon_splits, :controller => :taxon_changes
   map.resources :taxon_merges, :controller => :taxon_changes

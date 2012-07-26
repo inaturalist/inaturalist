@@ -1,0 +1,62 @@
+<%-
+  taxon ||= object || @taxon
+  photo ||= taxon.photos.first
+  taxon_range ||= taxon.taxon_ranges_without_geom.first
+  swaps = if @swaps_by_taxon_id
+    @swaps_by_taxon_id[taxon.id].try(:clone) || []
+  else
+    taxon.taxon_swaps + 
+      taxon.taxon_change_taxa.all(
+        :include => :taxon_change, 
+        :conditions => "taxon_changes.type = 'TaxonSwap'").map{|tct| tct.taxon_change}
+  end
+-%>
+
+<div class="taxon_change">
+  <table border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <td>
+        <div>
+          <% image_and_content taxon_image(taxon), :image_size => 75 do %>
+            <% link_to taxon, :class => "taxon #{taxon.rank}" do %>
+              <span class="sciname"><%= taxon.name %></span>
+            <% end -%>
+            
+            <div class="stacked">
+              <%= link_to taxon.observations_count, observations_path(:taxon_id => taxon.id) %> Obs
+              <%= "<span class='meta'>|</span> #{taxon.conservation_status_code}" unless taxon.conservation_status.nil? %>
+              <%= "<span class='meta'>|</span> #{link_to 'Range', taxon_path(taxon, :anchor => 'taxon_range')}" if taxon_range %>
+              <%= taxon.is_active ? "| <span class='active'>Active</span>" : "| <span class='inactive'>Inactive</span>" %>
+            </div>
+            
+            <div class="meta">
+              <div class="small description">
+                <% for taxon_scheme in taxon.taxon_schemes %>
+                  <%= taxon_scheme.title  %><br/>
+                <% end %>
+                
+                <% unless swaps.blank? -%>
+                  <label>Synonyms</label>
+                  <ul>
+                    <% for swap in swaps %> 
+                      <%- aka_taxon = swap.opposite_taxon_from(taxon) -%>
+                      <% for aka_scheme in aka_taxon.taxon_schemes %>
+                        <li>
+                          <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %>
+                          <div class="meta">
+                            <%= aka_scheme.title %>
+                          </div>
+                          <%= link_to "View change", taxon_change_path(swap) %>
+                        </li>
+                      <% end %>
+                    <% end %>
+                  </ul>
+                <% end -%>
+              </div>
+            </div>
+          <% end -%>
+        <div>
+      </td>
+    </tr>
+  </table>
+</div>
