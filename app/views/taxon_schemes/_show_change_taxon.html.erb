@@ -1,0 +1,48 @@
+<%- 
+  taxon_change ||= object || @taxon_change
+  case taxon_change.class.name when "TaxonDrop"
+    left_taxa = [taxon_change.taxon]
+  else
+    case taxon_change.taxon.is_active when true
+      left_taxa = taxon_change.taxa
+      right_taxa = [taxon_change.taxon]  
+    when false
+      left_taxa = [taxon_change.taxon]
+      right_taxa = taxon_change.taxa
+    end
+  end
+-%>
+
+<div class="taxon_change">
+  <table border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <td>
+        <ul class="change_taxon">
+          <% for change_taxon in left_taxa %>
+            <li>
+              <%= render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
+            </li>
+          <% end %>
+        </ul>
+      </td>
+      <td class="mergetype">
+        <% case taxon_change.class.name when "TaxonDrop" %>
+          <%= link_to "dropped (read more)", taxon_change_path(taxon_change) %>
+        <% else %>
+          <%= link_to "instead of", taxon_change_path(taxon_change) %>
+        <% end %>
+      </td>
+      <td>
+        <ul class="change_taxon">
+          <% unless taxon_change.class.name == "TaxonDrop" %>
+            <% for change_taxon in right_taxa %>
+              <li>
+                <%= render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
