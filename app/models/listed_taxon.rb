@@ -111,6 +111,9 @@ class ListedTaxon < ActiveRecord::Base
   validate :not_on_a_comprehensive_check_list, :on => :create
   validate :absent_only_if_not_confirming_observations
   validate :preserve_absense_if_not_on_a_comprehensive_list
+  validate :list_rules_pass
+  validate :taxon_matches_observation
+  validate :check_list_editability
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
@@ -129,29 +132,6 @@ class ListedTaxon < ActiveRecord::Base
   
   def to_plain_s
     "#{taxon.default_name.name} on #{list.title}"
-  end
-  
-  def validate
-    # don't bother if validates_presence_of(:taxon) has already failed
-    if errors.on(:taxon).blank?
-      list.rules.each do |rule|
-        errors.add(taxon.to_plain_s, "is not #{rule.terms}") unless rule.validates?(taxon)
-      end
-    end
-    
-    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
-      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
-    end
-    
-    if list.is_a?(CheckList)
-      if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
-        errors.add(:user, "must be the list creator or a curator")
-      end
-    else
-      CHECK_LIST_FIELDS.each do |field|
-        errors.add(field, "can only be set for check lists") unless send(field).blank?
-      end
-    end
   end
   
   def not_on_a_comprehensive_check_list
@@ -199,6 +179,33 @@ class ListedTaxon < ActiveRecord::Base
     return true if existing_comprehensive_listed_taxon
     errors.add(:occurrence_status_level, "can't be changed from absent if this taxon is not on the comprehensive list of #{existing_comprehensive_list.taxon.name}")
     true
+  end
+
+  def list_rules_pass
+    # don't bother if validates_presence_of(:taxon) has already failed
+    if !errors.include?(:taxon)
+      list.rules.each do |rule|
+        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
+      end
+    end
+  end
+
+  def taxon_matches_observation
+    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
+      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
+    end
+  end
+
+  def check_list_editability
+    if list.is_a?(CheckList)
+      if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
+        errors.add(:user, "must be the list creator or a curator")
+      end
+    else
+      CHECK_LIST_FIELDS.each do |field|
+        errors.add(field, "can only be set for check lists") unless send(field).blank?
+      end
+    end
   end
   
   def set_ancestor_taxon_ids
