@@ -6,13 +6,13 @@ class ActiveRecord::Base
     has_many_reflections = self.class.reflections.select{|k,v| v.macro == :has_many}
     has_many_reflections.each do |k, reflection|
       # Avoid those pesky :through relats
-      next unless reflection.klass.column_names.include?(reflection.primary_key_name)
+      next unless reflection.klass.column_names.include?(reflection.foreign_key)
       reflection.klass.update_all(
-        ["#{reflection.primary_key_name} = ?", id], 
-        ["#{reflection.primary_key_name} = ?", reject.id]
+        ["#{reflection.foreign_key} = ?", id], 
+        ["#{reflection.foreign_key} = ?", reject.id]
       )
       if reflection.klass.respond_to?(:merge_duplicates)
-        reflection.klass.merge_duplicates(reflection.primary_key_name => id)
+        reflection.klass.merge_duplicates(reflection.foreign_key => id)
       end
     end
   end
