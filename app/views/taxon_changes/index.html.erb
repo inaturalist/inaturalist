@@ -69,10 +69,7 @@
     </fieldset>
     
     <%= f.select :change_group, @change_groups, :include_blank => "None", :selected => @change_group %>
-<<<<<<< HEAD
     <%= f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => "None", :selected => @taxon_scheme.try(:id) %>
-=======
->>>>>>> 789f5abd9704842c82bd3e830f27449e01969cc5
     <%= f.select :committed, %w(Yes No), :include_blank => "Either", :selected => @committed %>
     <%= f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => "Any", :selected => @iconic_taxon.try(:read_attribute, :id) %>
     <%= f.text_field :taxon_id,  :value => @taxon ? @taxon.id : nil, :placeholder => "Type taxon name" %>
