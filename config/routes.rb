@@ -157,6 +157,7 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/range.:format' => 'taxa#range', :as => :taxon_range_geom
   match 'taxa/auto_complete_name' => 'taxa#auto_complete_name'
   match 'taxa/occur_in' => 'taxa#occur_in'
+  match '/taxa/curation' => 'taxa#curation', :as => :curate_taxa
   match "taxa/*q" => 'taxa#try_show'
   
   resources :sources, :only => [:index, :show]

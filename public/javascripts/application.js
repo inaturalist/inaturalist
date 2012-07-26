@@ -69,22 +69,37 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
-  var loading = $(this).clone()
-  loading.unbind()
-  loading.attr('onclick', 'return false;')
-  loading
-    .attr('id', '')
-    .addClass('loadingclick')
-    .css('padding-left', '25px')
-    .html(txt)
-  loading.click(function(e){
-    e.preventDefault()
-    return false
-  })
-  if (txt == '') {
-    loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
+  var loading = $(this).siblings('.loadingclick:first')
+  if (loading.length == 0) {
+    loading = $(this).clone()
+    loading.unbind()
+    loading.attr('onclick', 'return false;')
+    loading
+      .attr('id', '')
+      .addClass('loadingclick')
+      .css('padding-left', '25px')
+      .html(txt)
+    loading.click(function(e){
+      e.preventDefault()
+      return false
+    })
+    if (txt == '') {
+      loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
+    }
+    $(this).before(loading)
   }
-  $(this).hide().before(loading)
+  $(this).hide()
+  $(loading).show()
+
+  var link = this
+  if (!$(this).attr('data-loading-click-bound')) {
+    $(this).bind('ajax:complete', function() {
+      // $(link).attr('disabled', false).removeClass('disabled description')
+      $(link).show()
+      loading.hide()
+    })
+    $(this).attr('data-loading-click-bound', true)
+  }
 }
 
 $('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function() {
