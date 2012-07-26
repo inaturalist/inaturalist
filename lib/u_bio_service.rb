@@ -7,9 +7,6 @@
 # to decode them when you get them back.  Maybe I'll write some custom methods
 # that do this later...
 #
-class UBioAuthorizationError < StandardError; end
-class UBioConnectionError < StandardError; end
-
 class UBioService < MetaService
   def initialize(key_code)
     unless key_code
@@ -102,3 +99,5 @@ class UBioService < MetaService
     end
   end
 end
+class UBioAuthorizationError < StandardError; end
+class UBioConnectionError < StandardError; end

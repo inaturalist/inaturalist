@@ -18,7 +18,7 @@
   taxon_class << " #{extra_class}" if extra_class
   include_full_name ||= false
   taxon_name_str = if include_full_name
-    taxon_name_str ||= render('shared/taxon', :object => taxon) 
+    taxon_name_str ||= render(:partial => 'shared/taxon', :object => taxon) 
   else
     taxon.default_name.name
   end

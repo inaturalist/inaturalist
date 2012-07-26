@@ -1,4 +1,3 @@
-#
 # Ratatosk
 #
 # Ratatosk is a facade for dealing with taxa from external name providers.  It
@@ -175,11 +174,15 @@ module Ratatosk
         end
         new_taxon.set_scientific_taxon_name
         new_taxon.move_to_child_of(graft_point)
-        if !new_taxon.valid? && new_taxon.errors.on(:ancestry).to_s =~ /locked/
-          msg = "it failed to graft to #{graft_point.name}, which "
-          msg += taxon.locked? ? "is locked. " : "descends from a locked taxon. "
-          msg += "Please merge or delete, or edit and add it if it's legit."
-          new_taxon.flags.create(:flag => msg)
+        unless new_taxon.valid?
+          if new_taxon.errors[:ancestry].to_s =~ /locked/
+            msg = "it failed to graft to #{graft_point.name}, which "
+            msg += taxon.locked? ? "is locked. " : "descends from a locked taxon. "
+            msg += "Please merge or delete, or edit and add it if it's legit."
+            new_taxon.flags.create(:flag => msg)
+          else
+            raise RatatoskGraftError, "New taxon had errors: #{new_taxon.errors.full_messages.to_sentence}"
+          end
         end
         graft_point = new_taxon
       end
