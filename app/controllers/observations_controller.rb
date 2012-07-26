@@ -1845,15 +1845,6 @@ class ObservationsController < ApplicationController
   def update_user_account
     account_params = params[:user]
     current_user.update_attributes(account_params)
-    #if current_user.email.nil?
-    #  unless current_user.update_attributes(:email => params[:email])
-    #    errors = (errors + current_user.errors.full_messages).uniq
-    #  end
-    #  
-    #  unless errors.blank?
-    #    flash[:error] = "Trouble saving your email"
-    #  end
-    #end
   end
   
   def render_observations_partial(partial)
