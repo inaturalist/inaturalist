@@ -37,8 +37,8 @@ class CatalogueOfLife
   end
 
   def method_missing(method, *args)
-    params = *args
-    unless params.is_a? Hash and not params.empty?
+    params = args.try(:first)
+    unless params.is_a?(Hash) && !params.blank?
       raise "Catalogue of Life arguments must be a Hash"
     end
     request(method, *args)

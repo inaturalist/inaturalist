@@ -174,7 +174,7 @@ module Ratatosk
 
       def initialize(api_key=nil)
         api_key ||= UBIO_KEY
-        @service = UBioService.new(api_key)
+        @service = ::UBioService.new(api_key)
         
         # List of classifications from uBio we like. To fetch an updated list
         # of all available classifications, try this:
@@ -378,7 +378,7 @@ module Ratatosk
 
       def initialize(hxml, params = {})
         @np = params.delete(:np)
-        @service = @np.service rescue UBioService.new(UBIO_KEY)
+        @service = @np.service rescue ::UBioService.new(UBIO_KEY)
         @adaptee = Taxon.new(params)
         @hxml = hxml
         taxon.name = get_name
@@ -434,7 +434,7 @@ module Ratatosk
 
       def initialize(hxml, params = {})
         @np = params.delete(:np)
-        @service = @np.service rescue UBioService.new(UBIO_KEY)
+        @service = @np.service rescue ::UBioService.new(UBIO_KEY)
         @hxml = hxml
         @adaptee = TaxonName.new(params)
         

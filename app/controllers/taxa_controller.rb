@@ -780,20 +780,15 @@ class TaxaController < ApplicationController
   
   
   def graft
-    if @taxon.name_provider.blank?
-      @error_message = "Sorry, you can only automatically graft taxa that " + 
-        "were imported from an external name provider."
-    else
-      begin
-        lineage = Ratatosk.graft(@taxon)
-      rescue Timeout::Error => e
-        @error_message = e.message
-      rescue RatatoskGraftError => e
-        @error_message = e.message
-      end
-      @taxon.reload
-      @error_message = "Graft failed" unless @taxon.grafted?
+    begin
+      lineage = Ratatosk.graft(@taxon)
+    rescue Timeout::Error => e
+      @error_message = e.message
+    rescue RatatoskGraftError => e
+      @error_message = e.message
     end
+    @taxon.reload
+    @error_message ||= "Graft failed" unless @taxon.grafted?
     
     respond_to do |format|
       format.html do
