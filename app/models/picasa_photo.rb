@@ -131,7 +131,6 @@ class PicasaPhoto < Photo
     picasa_photo
   end
 
-  #def self.get_photos_from_album(user, picasa_album_id, picasa_user_id=nil)
   def self.get_photos_from_album(user, picasa_album_id, options={})
     options[:picasa_user_id] ||= nil
     options[:max_results] ||= 10

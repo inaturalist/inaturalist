@@ -87,7 +87,6 @@
     var $searchInput = $('<input type="text" class="text" placeholder="Search" />').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
-    //$searchInput.attr('id', 'photoSelectorSearchField');
     $searchInput.attr('name', 'photoSelectorSearchField');
     if (typeof(options.defaultQuery) != 'undefined') {
       $searchInput.val(options.defaultQuery);
@@ -112,7 +111,6 @@
       if (!options.skipLocal) {
         urls.push({
           title: "your hard drive",
-          //url: '/photos/local_photo_fields?context=user'
           url: '/photos/local_photo_fields'
         })
       }
@@ -151,7 +149,6 @@
             // show search field
             $searchWrapper.show();
           } else {
-        //    $searchWrapper.val('');
             $searchWrapper.hide();
           }
         }

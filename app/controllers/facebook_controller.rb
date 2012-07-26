@@ -24,8 +24,6 @@ class FacebookController < ApplicationController
     end
   end
 
-  # Return an HTML fragment containing a list of the user's fb albums
-  #def albums
   def photo_fields
     context = params[:context] || 'user'
     if current_user.facebook_api.nil?
@@ -61,7 +59,7 @@ class FacebookController < ApplicationController
         end
       end
     rescue Koala::Facebook::APIError => e
-      raise e #unless e.message =~ /OAuthException/
+      raise e unless e.message =~ /OAuthException/
       @reauthorization_needed = true
       []
     end
@@ -101,18 +99,15 @@ class FacebookController < ApplicationController
   def group
     limit = (params[:limit] || 10).to_i
     page = (params[:page] || 1).to_i
-    #offset = ((params[:page] || 1).to_i - 1) * limit
     @group_id = params[:object_id] unless params[:object_id]=='null'
     @photos = FacebookPhoto.fetch_from_fb_group(@group_id, current_user, {:limit => limit, :page => page})
-    # sync doesn't work with facebook! they strip exif metadata from photos. :(
-    #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|
       format.html do
         render :partial => 'photos/photo_list_form', 
                :locals => {
                  :photos => @photos, 
                  :index => params[:index],
-                 :synclink_base => nil, #@synclink_base,
+                 :synclink_base => nil, 
                  :local_photos => false
                }
       end

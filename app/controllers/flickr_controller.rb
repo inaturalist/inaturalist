@@ -191,58 +191,10 @@ class FlickrController < ApplicationController
       search_params['page'] = params[:page] ||= 1
       search_params['extras'] = 'date_upload,owner_name,url_sq'
       search_params['sort'] = 'relevance'
-
-      #logger.info(search_params.to_yaml)
       get_flickraw
       @photos = flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
     end
 
-=begin
-
-    @flickr = get_net_flickr
-    search_params = {}
-    
-    # If this is for a user, set the auth token
-    case params[:context]
-    when 'user'
-      @flickr.auth.token = current_user.flickr_identity.token
-      search_params['user_id'] = @user.flickr_identity.flickr_user_id
-      
-    # Otherwise, make sure we're only searching CC'd photos
-    else
-      search_params['license'] = '1,2,3,4,5,6'
-    end
-
-    logger.info(@flickr)
-    
-    # Try to look up a photo id
-    @photos = []
-    if params[:q].to_i != 0 && params[:q].to_i > 10000
-      if fp = @flickr.photos.get_info(params[:q])
-        if params[:context] == 'user' && 
-            fp.owner == current_user.flickr_identity.flickr_user_id
-          @photos = [fp]
-        end
-      end
-    else
-      search_params['per_page'] = params[:limit] ||= 10
-      search_params['text'] = params[:q]
-      search_params['page'] = params[:page] ||= 1
-      search_params['extras'] = 'date_upload,owner_name'
-      search_params['sort'] = 'relevance'
-      begin
-        @photos = @flickr.photos.search(search_params)
-      rescue Net::Flickr::APIError => e
-        raise e # unless e.message =~ /Invalid auth token/
-        @reauthorization_needed = true
-        Rails.logger.error "[ERROR #{Time.now}] #{e}"
-      rescue Net::HTTPFatalError => e
-        Rails.logger.error "[ERROR #{Time.now}] #{e}"
-        @photos = []
-      end
-    end
-=end
-    
     # Determine whether we should include synclinks
     @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     

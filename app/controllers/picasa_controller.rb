@@ -156,64 +156,15 @@ class PicasaController < ApplicationController
     }
     @photos = PicasaPhoto.get_photos_from_album(current_user, params[:id], search_params) 
 
-    #@synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|
       format.html do
         render :partial => 'photos/photo_list_form', 
                :locals => {
                  :photos => @photos, 
                  :index => params[:index],
-                 :synclink_base => nil, #@synclink_base,
+                 :synclink_base => nil, 
                  :local_photos => false,
                  :organized_by_album => true
-               }
-      end
-    end
-  end
-
-  def old_photo_fields
-    token = if logged_in? && current_user.picasa_identity
-      current_user.picasa_identity.token
-    else
-      nil
-    end
-    picasa = Picasa.new(token)
-    search_params = {}
-    
-    # If this is for a user, set the auth token
-    case params[:context]
-    when 'user'
-      search_params[:user_id] = current_user.picasa_identity.picasa_user_id
-      
-    # Otherwise, make sure we're only searching CC'd photos
-    else
-      # search_params['license'] = '1,2,3,4,5,6'
-      # Picasa doesn't allow CC filtering through its API yet...
-      return
-    end
-    
-    per_page = params[:limit] ? params[:limit].to_i : 10
-    search_params[:max_results] = per_page
-    search_params[:start_index] = (params[:page] || 1).to_i * per_page - per_page + 1
-    search_params[:thumbsize] = RubyPicasa::Photo::VALID.join(',')
-    
-    if results = picasa.search(params[:q], search_params)
-      @photos = results.photos.map do |api_response|
-        next unless api_response.is_a?(RubyPicasa::Photo)
-        PicasaPhoto.new_from_api_response(api_response, :user => current_user)
-      end.compact
-    end
-    
-    @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
-    
-    respond_to do |format|
-      format.html do
-        render :partial => 'photos/photo_list_form', 
-               :locals => {
-                 :photos => @photos, 
-                 :index => params[:index],
-                 :synclink_base => @synclink_base,
-                 :local_photos => false
                }
       end
     end

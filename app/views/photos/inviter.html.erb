@@ -8,12 +8,6 @@
   You can also pre-select a taxon and project for the new observation.
 </p>
 
-<!--
-<div class="stacked">
-  <textarea class="text" style="width: 100%; height: 1.2em; font-size: 175%"><%= @invite_url %></textarea>
-</div>
--->
-
 <% form_tag(url_for, {:method => :post, :class => "photo_inviter_form"}) do %>
   
   <div class='photo_inviter'></div>
@@ -55,15 +49,13 @@
       title: 'Flickr', 
       url: '/flickr/photo_fields', 
       contexts: [
-        //["Your photos", 'user'], 
         ["Your friends' photos", 'friends'], 
         ["Public photos", 'public', {searchable:true}]]},
     picasa: {
       title: 'Picasa', 
       url: '/picasa/photo_fields', 
       contexts: [
-        //["Your photos", 'user'], 
-        ["Your friends' photos", 'friends'], 
+//        ["Your friends' photos", 'friends'], 
         ["Public photos", 'public', {searchable:true}]]}
   }
   $('.photo_inviter').each(function() {
@@ -74,10 +66,7 @@
         authenticity_token: authenticity_token,
         index: 0,
         limit: 24,
-        //synclink_base: window.location.href,
       },
-      //baseURL: DEFAULT_PHOTO_IDENTITY_URL,
-      //urls: PHOTO_IDENTITY_URLS,
       sources: PHOTO_SOURCES,
       defaultSource: '<%= (@default_source || "flickr") %>',
       defaultContext: '<%= (@default_context || "public") %>',
