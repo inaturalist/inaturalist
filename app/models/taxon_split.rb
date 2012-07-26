@@ -15,8 +15,8 @@ class TaxonSplit < TaxonChange
         Rails.logger.error "[ERROR #{Time.now}] Failed to split observations of #{taxon} into #{new_taxon}: new taxon has no range"
         next
       end
-      ids = Observation.of(taxon).in_taxon_range(taxon_range).all(:select => "id").map{|o| o.id}
-      Observation.update_all(["taxon_id = ?", taxon_id], ["id IN (?)", ids])
+      the_ids = Observation.of(taxon).in_taxons_range(new_taxon).map{|o| o.id}
+      Observation.update_all(["taxon_id = ?", new_taxon.id], ["id IN (?)", the_ids])
     end
   end
 

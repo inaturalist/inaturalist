@@ -57,7 +57,7 @@
         <ul class="change_taxon">
           <% for change_taxon in left_taxa %>
             <li>
-              <%= render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
+              <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
             </li>
           <% end %>
         </ul>
@@ -80,7 +80,7 @@
           <% unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage" %>
             <% for change_taxon in right_taxa %>
               <li>
-                <%= render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
+                <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
               </li>
             <% end %>
           <% end %>
