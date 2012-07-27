@@ -37,6 +37,7 @@ EOS
   opt :test, "Don't actually touch the db", :short => "-t", :type => :boolean
 end
 
+#unless eol_collection_url = "http://eol.org/api/collections/1.0/14791"
 unless eol_collection_url = ARGV[0]
   puts "You must specify the URL of an EOL collection of EOL collections"
   exit(0)
@@ -62,10 +63,10 @@ eol_collection_ids.each do |eol_collection_id|
   taxa_removed = []         #in the project_list as a listed_taxa but no longer in the eol collection
   taxa_added = []    #in the eol collection so added to the the project_list as a listed_taxa
   taxa_missing = []  #in the eol collection but not added because it doesn't exist as a taxon in iNat (make manually)
+  url = "http://eol.org/api/collections/1.0/#{eol_collection_id}/?per_page=1000"
+  puts url
   begin
     #Get the collection
-    url = "http://eol.org/api/collections/1.0/#{eol_collection_id}/?per_page=1000"
-    puts url
     unless response = Net::HTTP.get_response(URI.parse(url))
       puts "\tcouldn't access Collection #{eol_collection_id} on EOL"
       next
@@ -145,68 +146,102 @@ eol_collection_ids.each do |eol_collection_id|
   
   collection_item_dwc_names = []
   
-  col.xpath('//collection_items/item[object_type/text() = "TaxonConcept"]').each do |node|
-    list_item = TaxonName.strip_author(node.at('name').text)
-    collection_item_dwc_names << list_item
-    annotation = node.at('annotation').try(:text)
-    puts "\t name: #{list_item}"
-    
-    #Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
-    existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
-      "taxon_names.lexicon = ? AND taxon_names.name = ? AND listed_taxa.taxon_id IN (?)",
-      TaxonName::SCIENTIFIC_NAMES,
-      list_item.strip,
-      listed_taxa_taxon_ids
-    ])
-    if existing
-      puts "\t\t#{list_item} already on #{the_list}, updating..."
-      existing.update_attributes(:description => annotation)
-      listed_taxa_taxon_ids.delete(existing.taxon_id)
+  all_taxon_concepts = [col.xpath('//collection_items/item[object_type/text() = "TaxonConcept"]')]
+  proceed = true
+  i=2
+  while proceed
+    url = "http://eol.org/api/collections/1.0/#{eol_collection_id}/?per_page=1000&page=#{i}"
+    puts url
+    #Get the collection
+    unless response = Net::HTTP.get_response(URI.parse(url))
+      puts "\tcouldn't access Collection #{eol_collection_id} on EOL"
+      next
+    end
+    col2 = Nokogiri::XML(response.body)
+    taxon_concepts = col2.xpath('//collection_items/item[object_type/text() = "TaxonConcept"]')
+    if taxon_concepts.count == 0
+      proceed = false
     else
-      #find the taxon to make a listed taxon
-      taxon = Taxon.single_taxon_for_name(list_item)
-      taxon ||= Taxon.find_by_name(list_item.strip)
-      taxon = nil if taxon && taxon.taxon_names.detect{|tn| tn.name == list_item}.blank?
-      unless taxon
-        external_names = Ratatosk.find(list_item)
-        if match = external_names.detect{|en| en.name == list_item}
-          match.save unless opts[:test]
-          taxon = match.taxon
-          if taxon.valid? && !taxon.new_record?
-            puts "\t\tImported new taxon: #{taxon}"
-            taxon.send_later(:graft) unless opts[:test]
-          else
-            puts "\t\tFailed to import #{taxon}: #{taxon.errors.full_messages.to_sentence}"
+      all_taxon_concepts << taxon_concepts
+    end
+    i+=1
+  end
+  
+  all_taxon_concepts.each do |taxon_concepts|
+    taxon_concepts.each do |node|
+      list_item = TaxonName.strip_author(node.at('name').text)
+      collection_item_dwc_names << list_item
+      annotation = node.at('annotation').try(:text)
+      puts "\t name: #{list_item}"
+      
+      #Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
+      existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
+        "taxon_names.lexicon = ? AND taxon_names.name = ? AND listed_taxa.taxon_id IN (?)",
+        TaxonName::SCIENTIFIC_NAMES,
+        list_item.strip,
+        listed_taxa_taxon_ids
+      ])
+      if existing
+        puts "\t\t#{list_item} already on #{the_list}, updating..."
+        existing.update_attributes(:description => annotation)
+        listed_taxa_taxon_ids.delete(existing.taxon_id)
+      else
+        #find the taxon to make a listed taxon
+        taxon = Taxon.single_taxon_for_name(list_item)
+        taxon ||= Taxon.find_by_name(list_item.strip)
+        taxon = nil if taxon && taxon.taxon_names.detect{|tn| tn.name == list_item}.blank?
+        unless taxon
+          begin
+            external_names = Ratatosk.find(list_item)
+          rescue Timeout::Error => exc
+            puts "\t\tFailed to import #{taxon}: #{exc.message}"
             taxon = nil
           end
+          if external_names
+            if match = external_names.detect{|en| en.name == list_item}
+              match.save unless opts[:test]
+              taxon = match.taxon
+              if taxon.valid? && !taxon.new_record?
+                puts "\t\tImported new taxon: #{taxon}"
+                taxon.send_later(:graft) unless opts[:test]
+              else
+                puts "\t\tFailed to import #{taxon}: #{taxon.errors.full_messages.to_sentence}"
+                taxon = nil
+              end
+            end
+          end
         end
-      end
       
-      unless taxon
-        rank = case list_item.split.size
-        when 1 then "genus"
-        when 2 then "species"
-        else "subspecies"
+        unless taxon
+          rank = case list_item.split.size
+          when 1 then "genus"
+          when 2 then "species"
+          else "subspecies"
+          end
+          taxon = Taxon.new(
+            :name => list_item,
+            :rank => rank,
+            :creator_id => the_user.id,
+            :updater_id => the_user.id
+          )
+          taxon.save unless opts[:test]
+          puts "\t\tCreated new taxon: #{taxon}"
+          taxon.send_later(:graft) unless opts[:test]
         end
-        taxon = Taxon.new(:name => list_item, :rank => rank)
-        taxon.save unless opts[:test]
-        puts "\t\tCreated new taxon: #{taxon}"
-        taxon.send_later(:graft) unless opts[:test]
-      end
-      
-      lt = ListedTaxon.new(:taxon_id => taxon.id, :list_id => the_list.id, :manually_added => true)
-      lt.save unless opts[:test]
-      #Record the taxon we just created a listed_taxon for under 'taxa_added'
-      listed_taxa_taxon_ids.reject!{ |taxon_id| taxon_id == taxon.id }
-      if lt.valid?
-        puts "\t\tCreated #{lt} for #{list_item}"
-        taxa_added << taxon.name
-      else
-        puts "\t\tFailed to create #{lt} for #{list_item}: #{lt.errors.full_messages.to_sentence}"
+        
+        lt = ListedTaxon.new(:taxon_id => taxon.id, :list_id => the_list.id, :manually_added => true)
+        lt.save unless opts[:test]
+        #Record the taxon we just created a listed_taxon for under 'taxa_added'
+        listed_taxa_taxon_ids.reject!{ |taxon_id| taxon_id == taxon.id }
+        if lt.valid?
+          puts "\t\tCreated #{lt} for #{list_item}"
+          taxa_added << taxon.name
+        else
+          puts "\t\tFailed to create #{lt} for #{list_item}: #{lt.errors.full_messages.to_sentence}"
+        end
       end
     end
   end
-    
   # Anything left on listed_taxa_taxon_ids doesn't exist on the EOL 
   # collection so the iNat listed_taxon will be destroyed IFF there's a rule 
   # specifying that obs must be on the list
