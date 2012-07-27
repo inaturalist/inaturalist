@@ -10,35 +10,70 @@
 
 <%- content_for(:extracss) do %>
 <%= stylesheet_link_tag 'taxon_schemes' %>
+<style type="text/css" media="screen">
+  .ui-chooser-choice {max-width:190px;}
+  .scheme_taxon {margin-bottom: 10px; width: 310px;}
+  form .text {width:200px;}
+</style>
 <% end %>
+
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    window.taxon = <%= @taxon.to_json(:methods => [:html]) %>
+    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]) %>
+    $(document).ready(function() {
+      $('#filters_taxon_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+        defaultSources: defaultTaxa,
+        chosen: taxon
+      })
+    })
+  </script>
+<%- end -%>
 
 <h2><%= @title %></h2>
 
-<% if @taxa.empty? %>
-  <p class="description">No taxa match those criteria</p>
-<% else %>
-  <ul>
-    <% for taxon in @active_taxa -%>
-      <%= render :partial => 'scheme_taxon', :object => taxon %>
+<div class="column span-6">
+  <% form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
+    
+    <%= f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => "None", :selected => @taxon_scheme.try(:id) %>
+    <%= f.text_field :taxon_id,  :value => @parent ? @parent.id : nil, :label => "Genus", :placeholder => "Type genus name" %>
+    <%= f.submit "Filter", :class => "default button", "data-loading-click" => "Filtering..." %>
+  <% end -%>
+</div>
+
+<div class="last column span-18">
+  <% if @taxa.empty? %>
+    <% if @genus_only = true %>
+      <p class="description">Genera only please</p>
+    <% else %>
+      <p class="description">No taxa match those criteria</p>
     <% end %>
-    <% for taxon_change in @taxon_changes -%>
-      <%= render :partial => 'show_change_taxon', :object => taxon_change %>
-    <% end %>
-  </ul>
-  <% if @orphaned_taxa.count > 0 %> 
-    <h3>Inactive <%= @taxon_scheme.title %> <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" =>  @parent.id %></i> not directly connected to active taxa</h3>
+  <% else %>
     <ul>
-      <% for taxon in @orphaned_taxa -%>
+      <% for taxon in @active_taxa -%>
         <%= render :partial => 'scheme_taxon', :object => taxon %>
       <% end %>
-    </ul>
-  <% end %>
-  <% if @missing_taxa.count > 0 %>
-    <h3>Active <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" => @parent.id %></i> not directly connected to <%= @taxon_scheme.title %> <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" =>   @parent.id %></i></h3>
-    <ul>
-      <% for taxon in @missing_taxa -%>
-        <%= render :partial => 'scheme_taxon', :object => taxon %>
+      <% for taxon_change in @taxon_changes -%>
+        <%= render :partial => 'show_change_taxon', :object => taxon_change %>
       <% end %>
     </ul>
+    <% if @orphaned_taxa.count > 0 %> 
+      <h3>Inactive <%= @taxon_scheme.title %> <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" =>  @parent.id %></i> not directly connected to active taxa</h3>
+      <ul>
+        <% for taxon in @orphaned_taxa -%>
+          <%= render :partial => 'scheme_taxon', :object => taxon %>
+        <% end %>
+      </ul>
+    <% end %>
+    <% if @missing_taxa.count > 0 %>
+      <h3>Active <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" => @parent.id %></i> not directly connected to <%= @taxon_scheme.title %> <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" =>   @parent.id %></i></h3>
+      <ul>
+        <% for taxon in @missing_taxa -%>
+          <%= render :partial => 'scheme_taxon', :object => taxon %>
+        <% end %>
+      </ul>
+    <% end %>
   <% end %>
-<% end %>
+</div>

@@ -1,18 +1,22 @@
 class TaxonSchemesController < ApplicationController
   
   def index
-    unless params[:parent_id] && params[:taxon_scheme_id]
+    @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
+    @genus_only = false
+    filter_params = params[:filters] || params
+    @parent = Taxon.find_by_id(filter_params[:taxon_id].to_i) unless filter_params[:taxon_id].blank?
+    @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
+    if @parent.nil?
       @taxa = []
       return
     end
-    parent_id = params[:parent_id]
-    taxon_scheme_id = params[:taxon_scheme_id]
-    unless @parent = Taxon.find_by_id(parent_id)
+    if @taxon_scheme.nil?
       @taxa = []
       return
     end
-    unless @taxon_scheme = TaxonScheme.find_by_id(taxon_scheme_id)
+    if @parent.rank != "genus"
       @taxa = []
+      @genus_only = true
       return
     end
     @active_taxa = @parent.children.all(
