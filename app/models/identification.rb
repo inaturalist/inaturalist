@@ -158,7 +158,7 @@ class Identification < ActiveRecord::Base
     return false if frozen?
     o = options[:observation] || observation
     return false if o.user_id == user_id
-    !is_agreement?
+    !is_agreement?(options)
   end
   
   #

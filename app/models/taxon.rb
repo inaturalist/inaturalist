@@ -1101,8 +1101,15 @@ class Taxon < ActiveRecord::Base
     sorted = Taxon.sort_by_ancestry(taxa.compact)
     return if sorted.blank?
     return sorted.first if sorted.size == 1
-    return unless sorted.first.ancestor_of?(sorted.last)
-    sorted.first
+    if sorted.first.ancestor_of?(sorted.last)
+      sorted.first
+    elsif sorted.select{|taxon| taxon.grafted?}.size == 1
+      sorted.detect{|taxon| taxon.grafted?}
+    elsif sorted.select{|taxon| taxon.grafted?}.size == 0
+      sorted.first
+    else
+      nil
+    end
   end
   
   def self.default_json_options

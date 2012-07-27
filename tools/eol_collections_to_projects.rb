@@ -193,7 +193,7 @@ eol_collection_ids.each do |eol_collection_id|
         unless taxon
           begin
             external_names = Ratatosk.find(list_item)
-          rescue Timeout::Error => exc
+          rescue Timeout::Error, StandardError, Exception => exc
             puts "\t\tFailed to import #{taxon}: #{exc.message}"
             taxon = nil
           end

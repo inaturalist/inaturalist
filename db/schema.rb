@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.string   "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "queue"
   end
 
   create_table "deleted_users", :force => true do |t|
@@ -356,12 +357,12 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
     t.string   "quality_grade",                                                                   :default => "casual"
+    t.point    "geom",                             :limit => nil
     t.string   "user_agent"
     t.string   "positioning_method"
     t.string   "positioning_device"
     t.boolean  "out_of_range"
     t.string   "license"
-    t.point    "geom",                             :limit => nil
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -811,8 +812,8 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.integer       "range_file_size"
     t.text          "description"
     t.integer       "source_id"
-    t.integer       "source_identifier"
     t.multi_polygon "geom",               :limit => nil
+    t.integer       "source_identifier"
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true
