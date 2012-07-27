@@ -147,6 +147,21 @@ describe Identification, "creation" do
     o.reload
     o.quality_grade.should == Observation::RESEARCH_GRADE
   end
+
+  it "should update observation quality grade after disagreement" do
+    o = make_research_grade_observation
+    o.should be_research_grade
+    i = Identification.make(:observation => o)
+    Identification.make(:observation => o, :taxon => i.taxon)
+    o.reload
+    o.should_not be_research_grade
+    o.owners_identification.destroy
+    o.reload
+    o.owners_identification.should be_blank
+    Identification.make(:user => o.user, :observation => o, :taxon => i.taxon)
+    o.reload
+    o.should be_research_grade
+  end
 end
 
 describe Identification, "deletion" do
