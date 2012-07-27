@@ -1,0 +1,33 @@
+ul.scheme_taxon {
+  list-style: none;
+  margin: 0;
+}
+ul.change_taxon {
+  list-style: none;
+  margin: 0;
+}
+.active {color: #6E8B21;}
+.inactive {color: #777;}
+
+.scheme_taxon .taxon {
+  font-family: Georgia, serif;
+  font-size: 140%;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  display:block;
+}
+.change_taxon .taxon {
+  font-family: Georgia, serif;
+  font-size: 140%;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  display:block;
+}
+.mergetype {font-weight:bold;text-align:center;}
+.taxon_scheme table {width: 100%;}
+.taxon_scheme .image_and_content .image {text-align:center;}
+.taxon_scheme .image_and_content .image img {max-width: 75px;}
+
+.taxon_change table {width: 100%;}
+.taxon_change .image_and_content .image {text-align:center;}
+.taxon_change .image_and_content .image img {max-width: 75px;}

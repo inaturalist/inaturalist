@@ -16,6 +16,7 @@ class TaxonSchemesController < ApplicationController
       return
     end
     @active_taxa = @parent.children.all(
+      :order => "name",
       :joins => 
         "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
         "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
@@ -23,11 +24,13 @@ class TaxonSchemesController < ApplicationController
     )
     
     inat_taxa = @parent.children.all(
+      :order => "name",
       :conditions => ["rank = 'species' AND is_active = 'true'"]
     )
     @missing_taxa = (inat_taxa - @active_taxa)
     
     inactive_taxa = @parent.children.all(
+      :order => "name",
       :joins => 
         "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
         "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",

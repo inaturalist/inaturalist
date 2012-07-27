@@ -15,7 +15,7 @@
 <% else %>
   <ul>
     <% for taxon in @active_taxa -%>
-      <%= render :partial => 'show_taxon', :object => taxon %>
+      <%= render :partial => 'scheme_taxon', :object => taxon %>
     <% end %>
     <% for taxon_change in @taxon_changes -%>
       <%= render :partial => 'show_change_taxon', :object => taxon_change %>
@@ -25,15 +25,15 @@
     <h3>Inactive <%= @taxon_scheme.title %> <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" =>  @parent.id %></i> not directly connected to active taxa</h3>
     <ul>
       <% for taxon in @orphaned_taxa -%>
-        <%= render :partial => 'show_taxon', :object => taxon %>
+        <%= render :partial => 'scheme_taxon', :object => taxon %>
       <% end %>
     </ul>
   <% end %>
-  <% if @orphaned_taxa.count > 0 %>
+  <% if @missing_taxa.count > 0 %>
     <h3>Active <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" => @parent.id %></i> not directly connected to <%= @taxon_scheme.title %> <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" =>   @parent.id %></i></h3>
     <ul>
       <% for taxon in @missing_taxa -%>
-        <%= render :partial => 'show_taxon', :object => taxon %>
+        <%= render :partial => 'scheme_taxon', :object => taxon %>
       <% end %>
     </ul>
   <% end %>
