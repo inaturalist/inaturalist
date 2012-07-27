@@ -146,6 +146,8 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places
   match 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   match 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
+  match 'taxa/tag_flickr_photos', :via => :post
+  match 'taxa/flickr_photos_tagged'
   match 'taxa/tag_flickr_photos_from_observations', :via => :post
   match 'taxa/search' => 'taxa#search', :as => :search_taxa
   match 'taxa/search.:format' => 'taxa#search', :as => :formatted_search_taxa

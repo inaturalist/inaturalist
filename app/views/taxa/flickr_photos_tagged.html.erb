@@ -62,7 +62,28 @@
     .common      { color: #CF6; }
   </style>
 <%- end -%>
-
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.tag .controls a')
+        .bind('ajax:before', function() {
+          $(this).hide()
+          $(this).siblings('.loading').show()
+        })
+        .bind('ajax:success', function() {
+          console.log("[DEBUG] success, this:", this)
+          $(this).parents('.tag:first').fadeOut(function() {
+            $(this).remove()
+          })
+        })
+        .bind('ajax:error', function() {
+          $(this).show()
+          $(this).siblings('.loading').hide()
+          alert('There was a problem removing that tag.')
+        })
+    })
+  </script>
+<%- end -%>
 <div id="pageheader">
   <div class="toolset" style="float: right">
     <%= link_to "Tag more photos", flickr_tagger_path, :class => 'readmore' %>
@@ -114,23 +135,11 @@
                 <li id="tag_<%= tag.id %>" class="tag <%= dup_class %>">
                   <span class="raw"><%= tag.raw %></span>
                   <span class="controls">
-                    <%= link_to_remote "&times;", 
-                      :url => {:controller => 'flickr', :action => 'remove_tag', 
-                        :id => tag.id, :format => 'json'},
-                      :script => false,
-                      :loading => 
-                        "$('#remove_tag_link_#{tag.id}').hide();" +
-                        "$('#tag_#{tag.id} .loading').show();",
-                      :success => 
-                        "$('#tag_#{tag.id}').fadeOut('normal', function() { $(this).remove(); });",
-                      :failure => 
-                        "$('#remove_tag_link_#{tag.id}').show();" +
-                        "alert('There was a problem removing that tag.');" +
-                        "$('#tag_#{tag.id} .loading').hide();",
-                      :html => {
-                        :id => "remove_tag_link_#{tag.id}",
-                        :title => 'Remove tag'
-                      }
+                    <%= link_to "&times;".html_safe, {:controller => 'flickr', :action => 'remove_tag', :id => tag.id, :format => 'json'},
+                      "data-type" => 'json',
+                      :remote => true,
+                      :id => "remove_tag_link_#{tag.id}",
+                      :title => 'Remove tag'
                     %>
                     <%= image_tag 'spinner-small.gif', :class => 'loading', :style => 'display: none' %>
                   </span>
