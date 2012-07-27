@@ -8,6 +8,10 @@
   <%= strip_tags(@title) %>
 <% end %>
 
+<%- content_for(:extracss) do %>
+<%= stylesheet_link_tag 'taxon_schemes' %>
+<% end %>
+
 <h2><%= @title %></h2>
 
 <% if @taxa.empty? %>
