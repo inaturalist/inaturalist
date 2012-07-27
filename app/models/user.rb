@@ -301,9 +301,9 @@ class User < ActiveRecord::Base
   def self.authenticate(login, password)
     return nil if login.blank? || password.blank?
     u = find_in_state :first, :active, :conditions => ["lower(login) = ?", login.downcase]
-    u ||= find_in_state :first, :active, :conditions => {:email => login}
+    u ||= find_in_state :first, :active, :conditions => ["lower(email) = ?", login.downcase]
     u ||= find_in_state :first, :pending, :conditions => ["lower(login) = ?", login.downcase]
-    u ||= find_in_state :first, :pending, :conditions => {:email => login}
+    u ||= find_in_state :first, :pending, :conditions => ["lower(email) = ?", login.downcase]
     u && u.authenticated?(password) ? u : nil
   end
 
