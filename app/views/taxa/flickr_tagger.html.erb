@@ -61,7 +61,7 @@
         authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
         limit: 16
       }
-    });
+    })
     
     $('#tags').data('selected', false);
     $('#tags').click(function() {
@@ -69,16 +69,28 @@
         $(this).select();
         $('#tags').data('selected', true);
       }
-    });
+    })
     
     $('#tags').blur(function() {
       $(this).data('selected', false)
-    });
+    })
     
     $('input[name=tagstyle]').each(function() {
-      $(this).click(updateTagInput);
-    });
-  });
+      $(this).click(updateTagInput)
+    })
+
+    $('#taxon form')
+      .bind('ajax:before', function() {
+        $('#tag_loading_status').show()
+        $('#tagform .checkboxes .tagcol').remove()
+        $('#tags').val('')
+      })
+      .bind('ajax:complete', function(e, json, status) {
+        updateTagCheckboxes(json)
+        updateTagInput()
+        $('#tag_loading_status').hide()
+      })
+  })
   
   function updateTagCheckboxes(request) {
     var json = eval('(' + request.responseText + ')');
@@ -142,9 +154,7 @@
 
 <div class="column span-24">
   <div id="taxon" class="clear chosen">
-    <% form_remote_tag :url => url_for(:format => 'json'),
-      :loading => "$('#tag_loading_status').show(); $('#tagform .checkboxes .tagcol').remove(); $('#tags').val('')",
-      :complete => "updateTagCheckboxes(request); updateTagInput(); $('#tag_loading_status').hide()" do %>
+    <%= form_tag url_for(:format => 'json'), :remote => true, "data-type" => "json" do %>
       <div class="clear boxheader">
         <span class="title">Choose a taxon</span>
       </div>

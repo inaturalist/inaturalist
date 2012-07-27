@@ -214,10 +214,9 @@ class FlickrController < ApplicationController
   
   # Delete a tag from a Flickr photo using the current users auth
   def remove_tag
-    get_flickraw
+    flickr = get_flickraw
     begin
-      flickr.photos.removeTag(:auth_token => current_user.flickr_identity.token, 
-        :tag_id => params[:tag_id] || params[:id])
+      flickr.photos.removeTag(:tag_id => params[:tag_id] || params[:id])
     rescue Exception => e
       @error = e
     end
@@ -225,7 +224,7 @@ class FlickrController < ApplicationController
     respond_to do |format|
       format.json do
         unless @error
-          render :status => 200, :json => "Tag removed."
+          render :json => nil
         else
           render :status => :unprocessable_entity, :json => @error
         end
