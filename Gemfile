@@ -5,9 +5,11 @@ gem 'rails'
 gem 'aasm'
 gem 'bborn-acts_as_taggable_on_steroids', :git => 'git://github.com/samoli/acts_as_taggable_on_steroids.git', :require => 'acts_as_taggable'
 gem 'ancestry'
+gem 'aws-sdk'
 gem 'bluecloth'
 gem 'capistrano'
 gem 'chronic'
+gem 'daemons'
 gem 'daemon-spawn'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
@@ -25,7 +27,6 @@ gem 'GeoRuby', :require => 'geo_ruby'
 gem 'google_analytics'
 # gem 'hoptoad_notifier'
 gem 'htmlentities'
-gem 'machinist'
 gem 'memcache-client'
 gem 'mocha'
 gem 'nokogiri'
@@ -42,12 +43,14 @@ gem 'rest-client', :require => 'rest_client'
 gem 'right_aws'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
-gem 'spatial_adapter'
+gem 'spatial_adapter', :git => 'git://github.com/Empact/spatial_adapter.git' # until fragility updates the gemspec
 gem 'thinking-sphinx', '2.0.10'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'will_paginate'
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
 
 group :test, :development do
-  gem "rspec-rails" #, "~> 2.0.1"
+  gem "database_cleaner"
+  gem "machinist"
+  gem "rspec-rails"
 end
