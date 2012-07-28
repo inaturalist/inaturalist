@@ -1,13 +1,13 @@
 require 'machinist/active_record'
-require 'sham'
+# require 'sham'
 require 'faker'
 
-Sham.name { Faker::Name.name }
-Sham.login { Faker::Internet.user_name.gsub(/\W/, '') }
-Sham.email { Faker::Internet.email }
-Sham.title { Faker::Lorem.sentence }
-Sham.body  { Faker::Lorem.paragraph }
-Sham.url { "http://#{Faker::Internet.domain_name}" }
+# Sham.name { Faker::Name.name }
+# Sham.login { Faker::Internet.user_name.gsub(/\W/, '') }
+# Sham.email { Faker::Internet.email }
+# Sham.title { Faker::Lorem.sentence }
+# Sham.body  { Faker::Lorem.paragraph }
+# Sham.url { "http://#{Faker::Internet.domain_name}" }
 
 CheckList.blueprint do
   place
@@ -15,7 +15,7 @@ end
 
 Comment.blueprint do
   user
-  body { Sham.body }
+  body { Faker::Lorem.paragraph }
 end
 
 Friendship.blueprint do
@@ -36,7 +36,7 @@ end
 
 List.blueprint do
   user
-  title { Sham.title }
+  title { Faker::Lorem.sentence }
 end
 
 LifeList.blueprint do
@@ -52,19 +52,19 @@ LocalPhoto.blueprint do
 end
 
 Observation.blueprint do
-  user
+  user { User.make! }
 end
 
 ObservationField.blueprint do
-  name { Sham.title }
-  datatype 'text'
+  name { Faker::Lorem.sentence }
+  datatype {'text'}
   user
 end
 
 ObservationFieldValue.blueprint do
   observation
   observation_field
-  value "foo"
+  value {"foo"}
 end
 
 ObservationPhoto.blueprint do
@@ -78,7 +78,7 @@ Photo.blueprint do
 end
 
 Place.blueprint do
-  name { Sham.title }
+  name { Faker::Lorem.sentence }
   latitude { rand(90) }
   longitude { rand(180) }
 end
@@ -86,8 +86,8 @@ end
 Post.blueprint do
   user
   parent { user }
-  title { Sham.title }
-  body { Sham.body }
+  title { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
   published_at { Time.now }
 end
 
@@ -97,7 +97,7 @@ end
 
 Project.blueprint do
   user
-  title { Sham.title }
+  title { Faker::Lorem.sentence }
 end
 
 ProjectList.blueprint do
@@ -121,7 +121,7 @@ QualityMetric.blueprint do
 end
 
 Role.blueprint do
-  name { Sham.title }
+  name { Faker::Lorem.sentence }
 end
 
 Role.blueprint(:admin) do
@@ -129,29 +129,29 @@ Role.blueprint(:admin) do
 end
 
 Source.blueprint do
-  title { Sham.title }
+  title { Faker::Lorem.sentence }
 end
 
 Taxon.blueprint do
-  name { Sham.name }
+  name { Faker::Name.name }
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
 end
 
 Taxon.blueprint(:species) do
-  rank "species"
+  rank {"species"}
 end
 
 Taxon.blueprint(:threatened) do
   conservation_status Taxon::IUCN_ENDANGERED
-  rank "species"
   is_active { true }
+  rank {"species"}
 end
 
 TaxonLink.blueprint do
   user
   taxon
-  url { Sham.url }
-  site_title { Sham.title }
+  url { "http://#{Faker::Internet.domain_name}" }
+  site_title { Faker::Lorem.sentence }
 end
 
 TaxonPhoto.blueprint do
@@ -160,7 +160,7 @@ TaxonPhoto.blueprint do
 end
 
 TaxonName.blueprint do
-  name { Sham.name }
+  name { Faker::Name.name }
   taxon
 end
 
@@ -176,14 +176,12 @@ Update.blueprint do
 end
 
 User.blueprint do
-  login { Sham.login }
-  email { Sham.email }
-  name { Sham.name }
-  salt "9dadb9a490337c3e23dbc9bd20b08af841da4512"
-  crypted_password "4ed912738a4c0facedbdfd4fd1db8c9245d93e40" # 'monkey'
-  created_at 5.days.ago.to_s(:db)
-  activated_at { 1.day.ago }
-  state "active"
-  time_zone "Pacific Time (US & Canada)"
+  login { Faker::Internet.user_name.gsub(/[W\.]/, '') }
+  email { Faker::Internet.email }
+  name { Faker::Name.name }
+  password { "monkey" }
+  created_at { 5.days.ago.to_s(:db) }
+  state { "active" }
+  time_zone { "Pacific Time (US & Canada)" }
 end
 

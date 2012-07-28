@@ -17,13 +17,35 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
-  config.mock_with :rspec
+  #
+  # == Notes
+  #
+  # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+  
+  config.before(:all) do
+    begin
+      ActiveRecord::Base.connection.execute("ALTER TABLE place_geometries DROP CONSTRAINT enforce_srid_geom")
+    rescue ActiveRecord::StatementInvalid 
+      # already dropped
+    end
+    begin
+      ActiveRecord::Base.connection.execute("ALTER TABLE observations DROP CONSTRAINT enforce_srid_geom")
+    rescue ActiveRecord::StatementInvalid 
+      # already dropped
+    end
+  end
+
 end
