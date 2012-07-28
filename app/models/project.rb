@@ -28,7 +28,7 @@ class Project < ActiveRecord::Base
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
   
   validates_length_of :title, :within => 1..85
-  validates_presence_of :user_id
+  validates_presence_of :user
   
   scope :featured, where("featured_at IS NOT NULL")
   scope :near_point, lambda {|latitude, longitude|
