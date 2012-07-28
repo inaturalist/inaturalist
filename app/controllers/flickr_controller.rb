@@ -152,9 +152,11 @@ class FlickrController < ApplicationController
   #             (makes names like flickr_photos[:index][])
   def photo_fields
     context = (params[:context] || 'user')
-    if current_user.flickr_identity.nil?
+    flickr_pa = current_user.has_provider_auth('flickr')
+    if (flickr_pa.nil? || (params[:require_write] && flickr_pa.scope!='write')) # we need write permissions for flickr commenting
       @reauthorization_needed = true
       @provider = 'flickr'
+      @url_options = {:scope => 'write'}
       uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
       uri.query_values ||= {}
       uri.query_values = uri.query_values.merge({:source => @provider, :context => context})
