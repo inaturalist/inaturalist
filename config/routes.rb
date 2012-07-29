@@ -161,6 +161,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :projects
   map.resources :project_assets, :except => [:index, :show]
   map.resources :custom_projects, :except => [:index, :show]
+  map.resources :project_invitations
   
   map.person_by_login 'people/:login', 
                       :controller => 'users',

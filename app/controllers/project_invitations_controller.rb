@@ -1,5 +1,20 @@
 class ProjectInvitationsController < ApplicationController
   
+  def index
+    @project_invitations = ProjectInvitation.all(
+      :include => [:observation],
+      :conditions => ["observations.user_id = ?",current_user.id],
+      :limit => 10,
+      :order => "project_invitations.id DESC"
+    )
+    @invitations_by_you = ProjectInvitation.all(
+      :include => [:observation],
+      :conditions => ["user_id = ?",current_user.id],
+      :limit => 10,
+      :order => "project_invitations.id DESC"
+    ).group_by(&:project)
+  end
+  
   def create
     unless logged_in? && current_user.project_users.find_by_project_id(params[:project_id])
       flash[:error] = "You don't have permission to invite that observation."
