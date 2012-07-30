@@ -56,7 +56,7 @@ class Identification < ActiveRecord::Base
     end
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.send_later(:update_taxa_obs_and_observed_taxa_count_after_update_observation, observation.id, self.user_id)
+    ProjectUser.delay.update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -73,7 +73,7 @@ class Identification < ActiveRecord::Base
     
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil)
-    ProjectUser.send_later(:update_taxa_obs_and_observed_taxa_count_after_update_observation, observation.id, self.user_id)
+    ProjectUser.delay.update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -91,7 +91,7 @@ class Identification < ActiveRecord::Base
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
     return true if self.observation.id.blank?
-    Identification.send_later(:run_update_curator_identification, self)
+    Identification.delay.run_update_curator_identification(self)
     true
   end
   
@@ -116,20 +116,20 @@ class Identification < ActiveRecord::Base
   def notify_observer
     if self.observation.user_id != self.user_id && 
         !self.observation.user.email.blank? && self.observation.user.prefers_identification_email_notification?
-      Emailer.send_later(:deliver_identification_notification, self)
+      Emailer.delay.deliver_identification_notification(self)
     end
     true
   end
   
   def expire_caches
-    Identification.send_later(:expire_caches, self.id)
+    Identification.delay.expire_caches(self.id)
     true
   end
   
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    Identification.send_later(:run_revisit_curator_identification, self.observation_id, self.user_id)
+    Identification.delay.run_revisit_curator_identification(self.observation_id, self.user_id)
     true
   end
   
@@ -185,9 +185,9 @@ class Identification < ActiveRecord::Base
     ident.observation.project_observations.each do |po|
       if ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
         po.update_attributes(:curator_identification_id => ident.id)
-        ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, po.project_id, obs.user_id)
-        ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, po.project_id, obs.user_id)
-        Project.send_later(:update_observed_taxa_count, po.project_id)
+        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay.update_observed_taxa_count(po.project_id)
       end
     end
   end
@@ -211,9 +211,9 @@ class Identification < ActiveRecord::Base
         unless other_curator_id
           po.update_attributes(:curator_identification_id => nil)
         end
-        ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, po.project_id, obs.user_id)
-        ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, po.project_id, obs.user_id)
-        Project.send_later(:update_observed_taxa_count, po.project_id)
+        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay.update_observed_taxa_count(po.project_id)
       end
     end
   end

@@ -142,9 +142,9 @@ Taxon.blueprint(:species) do
 end
 
 Taxon.blueprint(:threatened) do
-  conservation_status Taxon::IUCN_ENDANGERED
-  is_active { true }
+  conservation_status {Taxon::IUCN_ENDANGERED}
   rank {"species"}
+  is_active { true }
 end
 
 TaxonLink.blueprint do
@@ -176,7 +176,11 @@ Update.blueprint do
 end
 
 User.blueprint do
-  login { Faker::Internet.user_name.gsub(/[W\.]/, '') }
+  login { 
+    s = Faker::Internet.user_name.gsub(/[W\.]/, '')
+    s = User.suggest_login(s) if s.size < User::MIN_LOGIN_SIZE
+    s
+  }
   email { Faker::Internet.email }
   name { Faker::Name.name }
   password { "monkey" }

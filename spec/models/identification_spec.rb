@@ -249,12 +249,13 @@ describe Identification, "deletion" do
     o = make_research_grade_observation
     Delayed::Job.delete_all
     stamp = Time.now
-    o.identifications.by(o.user).first.destroy
+    o.owners_identification.destroy
     Delayed::Job.delete_all
     
     Identification.make!(:user => o.user, :observation => o, :taxon => Taxon.make!)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    pattern = /LOAD;ProjectList\nmethod\: \:refresh_with_observation\n/
+
+    pattern = /ProjectList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
     # puts job.handler.inspect
@@ -267,7 +268,7 @@ describe Identification, "deletion" do
     o.identifications.by(o.user).first.destroy
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     
-    pattern = /LOAD;CheckList\nmethod\: \:refresh_with_observation\n/
+    pattern = /CheckList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
     # puts job.handler.inspect
@@ -283,7 +284,7 @@ describe Identification, "deletion" do
     o.reload
     o.quality_grade.should == Observation::RESEARCH_GRADE
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
-    pattern = /LOAD;CheckList\nmethod\: \:refresh_with_observation\n/
+    pattern = /CheckList.*refresh_with_observation/m
     job = jobs.detect{|j| j.handler =~ pattern}
     job.should_not be_blank
     # puts job.handler.inspect
