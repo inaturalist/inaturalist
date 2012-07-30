@@ -1091,7 +1091,7 @@ class Taxon < ActiveRecord::Base
     name = name[/.+\((.+?)\)/, 1] if name =~ /.+\(.+?\)/
     name = name.gsub(/\sss?p\.?\s*$/, '')
     taxon_names = TaxonName.all(:limit => 5, :include => :taxon, :conditions => [
-      "lower(name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase])
+      "lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase])
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     if taxa.blank?

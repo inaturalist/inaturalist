@@ -511,7 +511,7 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def to_json(options = {})
+  def as_json(options = {})
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
     options[:methods] ||= []
@@ -527,7 +527,11 @@ class Observation < ActiveRecord::Base
       options[:methods] << :coordinates_obscured
       options[:methods].uniq!
     end
-    super(options).gsub(/<script.*script>/i, "")
+    h = super(options)
+    h.each do |k,v|
+      h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
+    end
+    h
   end
   
   def to_xml(options = {})
@@ -699,7 +703,7 @@ class Observation < ActiveRecord::Base
     LifeList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :dj_priority => 1)
-      
+     
     ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :dj_priority => 1)
