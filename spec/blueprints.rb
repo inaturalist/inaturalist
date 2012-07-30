@@ -154,7 +154,6 @@ Taxon.blueprint(:threatened) do
   conservation_status {Taxon::IUCN_ENDANGERED}
   rank {"species"}
   is_active { true }
-  rank {"species"}
 end
 
 TaxonLink.blueprint do
