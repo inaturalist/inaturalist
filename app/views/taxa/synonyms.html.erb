@@ -1,0 +1,58 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Synonyms" %>
+<%- end -%>
+<h2><%= @title %></h2>
+
+<div id="controls">
+  <% form_for :filters, :builder => DefaultFormBuilder, :html => {:class => "inline", :method => :get} do |f| %>
+    <%= f.select :iconic_taxon, 
+      options_for_select(Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, @iconic_taxon.to_i), 
+      :include_blank => "None", :multiple => true %>
+    <%= f.select :rank, options_for_select(Taxon::RANKS, @rank), :include_blank => "None" %>
+    <%= f.submit "Filter" %>
+  <% end -%>
+</div>
+
+<table>
+  <% for name, taxa in @synonyms_by_name %>
+    <tr>
+      <th><%= name %></th>
+      <td>
+        <% if !taxa.blank? %>
+        <% for taxon in taxa.sort_by{|t| t.id} %>
+          <%- schemes = taxon.taxon_schemes -%>
+          <div class="taxon_links nobr">
+            <%= render :partial => "shared/taxon", :object => taxon, :locals => { :include_id => true, :link_url => taxon } %>
+            <span class="small meta">
+              <% unless schemes.blank? -%>
+                (<%= schemes.map{|s| link_to(s.title, taxon_schemes_path(:taxon_scheme_id => s))}.join(', ') %>)
+              <% end -%>
+              <%= link_to "Changes", taxon_changes_path(:taxon_id => taxon.id) %>
+              |
+              <%= link_to "Edit", edit_taxon_path(taxon) %>
+              |
+              <%= link_to "Merge", merge_taxon_path(taxon, 
+                :taxon_id => taxa.size == 2 ? taxa.detect{|t| t.id != taxon.id} : nil) %>
+            </span>
+          </div>
+        <% end %>
+      <% else %>
+        <td>No taxa</td>
+      <% end %>
+      </td>
+      <td id="<%= dom_id(name, 'actions') %>">
+        <% if taxa.size == 2 -%>
+          <%= link_to_remote "Merge now (keep first)", 
+            {:url => formatted_merge_taxon_path(taxa.last, :format => :json, :taxon_id => taxa.first), 
+                        :method => :post, 
+                        :confirm => "Are you sure?",
+                        :datatype => "json",
+                        :complete => "$('##{dom_id(name, 'actions')}').html($('<span>Merged</span>').addClass('success status'))"},
+            {"data-loading-click" => "Merging..."} %>
+        <% end -%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @taxa %>

@@ -222,11 +222,11 @@ class Taxon < ActiveRecord::Base
       ON o.taxon_id=#{Taxon.table_name}.#{Taxon.primary_key}
       """ }}
   
-  named_scope :iconic_taxa, :conditions => "is_iconic = true",
+  named_scope :iconic_taxa, :conditions => "taxa.is_iconic = true",
     :include => [:taxon_names]
   
   named_scope :of_rank, lambda {|rank|
-    {:conditions => ["rank = ?", rank]}
+    {:conditions => ["taxa.rank = ?", rank]}
   }
   
   named_scope :locked, :conditions => {:locked => true}
@@ -273,6 +273,7 @@ class Taxon < ActiveRecord::Base
   }
   
   named_scope :self_and_descendants_of, lambda{|taxon|
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     conditions = taxon.descendant_conditions
     conditions[0] += " OR taxa.id = ?"
     conditions << taxon

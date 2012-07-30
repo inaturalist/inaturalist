@@ -10,12 +10,12 @@ class TaxaController < ApplicationController
   include TaxaHelper
   include Shared::WikipediaModule
   
-  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation]
+  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms]
   before_filter :login_required, :only => [:edit_photos, :update_photos, 
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
     :flickr_photos_tagged, :add_places]
   before_filter :curator_required, :only => [:new, :create, :edit, :update,
-    :destroy, :curation, :refresh_wikipedia_summary, :merge]
+    :destroy, :curation, :refresh_wikipedia_summary, :merge, :synonyms]
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
@@ -816,15 +816,11 @@ class TaxaController < ApplicationController
           render :text => msg, :status => :unprocessable_entity, :layout => false
           return
         end
+        format.json { render :json => {:error => msg} }
       end
     end
     
-    if request.post? && params[:commit] == "Merge"
-      unless @keeper
-        flash[:error] = "You must select a taxon to merge with."
-        return redirect_to :action => "merge", :id => @taxon
-      end
-      
+    if request.post? && @keeper
       if @taxon.id == @keeper_id
         flash[:error] = "Can't merge a taxon with itself."
         return redirect_to :action => "merge", :id => @taxon
@@ -834,7 +830,10 @@ class TaxaController < ApplicationController
       flash[:notice] = "#{@taxon.name} (#{@taxon.id}) merged into " + 
         "#{@keeper.name} (#{@keeper.id}).  #{@taxon.name} (#{@taxon.id}) " + 
         "has been deleted."
-      redirect_to @keeper
+      respond_to do |format|
+        format.html { redirect_back_or_default(@keeper) }
+        format.json { render :json => @keeper }
+      end
       return
     end
     
@@ -843,6 +842,7 @@ class TaxaController < ApplicationController
       format.js do
         render :partial => "taxa/merge"
       end
+      format.json { render :json => @keeper }
     end
   end
   
@@ -858,6 +858,28 @@ class TaxaController < ApplicationController
     life = Taxon.find_by_name('Life')
     @ungrafted = Taxon.roots.paginate(:conditions => ["id != ?", life], 
       :page => 1, :per_page => 100, :include => [:taxon_names])
+  end
+
+  def synonyms
+    filters = params[:filters] || {}
+    @iconic_taxon = filters[:iconic_taxon]
+    @rank = filters[:rank]
+
+    scope = Taxon.active.scoped({})
+    scope = scope.self_and_descendants_of(@iconic_taxon) unless @iconic_taxon.blank?
+    scope = scope.of_rank(@rank) unless @rank.blank?
+    @taxa = scope.paginate(
+      :page => params[:page], 
+      :per_page => 100,
+      :order => "rank_level",
+      :joins => "LEFT OUTER JOIN taxa t ON t.name = taxa.name",
+      :conditions => ["t.id IS NOT NULL AND t.id != taxa.id AND t.is_active = ?", true]
+    )
+    @synonyms = Taxon.active.all(
+      :conditions => ["name IN (?)", @taxa.map{|t| t.name}], 
+      :include => [:taxon_names, :taxon_schemes]
+    )
+    @synonyms_by_name = @synonyms.group_by{|t| t.name}
   end
   
   def flickr_tagger    
