@@ -97,7 +97,7 @@ class PicasaController < ApplicationController
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return
     end
-    if context=='user'
+    if context=='user' && (params[:q].nil? && params[:q].empty?) # search is blank, so show all albums
       @albums = picasa_albums(current_user)
       render :partial => 'picasa/albums' and return
     elsif context=='friends'
@@ -112,13 +112,16 @@ class PicasaController < ApplicationController
         @friend_name = friend_data.author.name 
         render :partial => 'picasa/albums' and return
       end
-    elsif context='public'
+    else # context='public' or context='user' with a search query
       picasa = current_user.picasa_client
       search_params = {}
       per_page = params[:limit] ? params[:limit].to_i : 10
       search_params[:max_results] = per_page
       search_params[:start_index] = (params[:page] || 1).to_i * per_page - per_page + 1
       search_params[:thumbsize] = RubyPicasa::Photo::VALID.join(',')
+      if context=='user'
+        search_params[:user_id] = current_user.picasa_identity.picasa_user_id
+      end
       
       if results = picasa.search(params[:q], search_params)
         @photos = results.photos.map do |api_response|

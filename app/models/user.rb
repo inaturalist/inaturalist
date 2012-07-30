@@ -239,14 +239,6 @@ class User < ActiveRecord::Base
     return nil unless picasa_identity
     return Picasa.new(self.picasa_identity.token)
   end
-=begin
-  def picasa_api
-    return nil unless picasa_identity
-    @picasa_api = GData::Client::Photos.new
-    @picasa_api.authsub_token = self.picasa_identity.token
-    return @picasa_api
-  end
-=end
 
   # returns a koala object to make (authenticated) facebook api calls
   # e.g. @facebook_api.get_object('me')
