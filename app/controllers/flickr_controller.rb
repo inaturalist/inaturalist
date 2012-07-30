@@ -151,22 +151,19 @@ class FlickrController < ApplicationController
   #   index:    index to use if these inputs are part of a form subcomponent
   #             (makes names like flickr_photos[:index][])
   def photo_fields
-    @flickr = get_flickraw
-    search_params = {}
-    
-    # If this is for a user, set the auth token
-    case params[:context]
-    when 'user'
-      search_params[:auth_token] = current_user.flickr_identity.token
-      search_params[:user_id] = current_user.flickr_identity.flickr_user_id
-    # Otherwise, make sure we're only searching CC'd photos
-    else
-      search_params['license'] = '1,2,3,4,5,6'
+    context = (params[:context] || 'user')
+    flickr_pa = current_user.has_provider_auth('flickr')
+    if (flickr_pa.nil? || (params[:require_write] && flickr_pa.scope!='write')) # we need write permissions for flickr commenting
+      @reauthorization_needed = true
+      @provider = 'flickr'
+      @url_options = {:scope => 'write'}
+      uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
+      uri.query_values ||= {}
+      uri.query_values = uri.query_values.merge({:source => @provider, :context => context})
+      session[:return_to] = uri.to_s 
+      render(:partial => "photos/auth") and return
     end
-
-    
     # Try to look up a photo id
-    @photos = []
     if params[:q].to_i != 0 && params[:q].to_i > 10000
       if fp = @flickr.photos.get_info(params[:q])
         if params[:context] == 'user' && 
@@ -175,25 +172,31 @@ class FlickrController < ApplicationController
         end
       end
     else
+      @friend_id = params[:object_id]
+      @friend_id = nil if @friend_id=='null'
+
+      search_params = {}
+      if context=='user'
+        search_params['user_id'] = current_user.flickr_identity.flickr_user_id
+      elsif context=='friends'
+        if @friend_id.nil? # if context is friends, but no friend id specified, we want to show the friend selector
+          @friends = flickr_friends
+          render :partial => 'flickr/friends' and return
+        end
+        search_params['user_id'] = @friend_id
+      elsif context=='public'
+        search_params['license'] = '1,2,3,4,5,6'
+      end
+      search_params['auth_token'] = current_user.flickr_identity.token
       search_params['per_page'] = params[:limit] ||= 10
       search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
-      search_params['extras'] = 'date_upload,owner_name'
-      search_params['sort'] = 'relevance' unless search_params[:user_id]
-      begin
-        @photos = @flickr.photos.search(search_params).map do |fp|
-          FlickrPhoto.new_from_flickraw(fp, :user => current_user, :skip_sizes => true)
-        end
-      rescue Net::Flickr::APIError => e
-        raise e unless e.message =~ /Invalid auth token/
-        @reauthorization_needed = true
-        Rails.logger.error "[ERROR #{Time.now}] #{e}"
-      rescue Net::HTTPFatalError => e
-        Rails.logger.error "[ERROR #{Time.now}] #{e}"
-        @photos = []
-      end
+      search_params['extras'] = 'date_upload,owner_name,url_sq'
+      search_params['sort'] = 'relevance'
+      get_flickraw
+      @photos = flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
     end
-    
+
     # Determine whether we should include synclinks
     @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     
@@ -219,7 +222,7 @@ class FlickrController < ApplicationController
       end
     end
   end
-  
+
   # This is the endpoint which allows a user to manager their flickr account
   # settings.  They use this endpoint after they have already gone through the
   # signup process.
@@ -314,22 +317,13 @@ class FlickrController < ApplicationController
     redirect_to "/auth/flickr"
   end
   
-  def create_invite
-    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
-    if params[:project_id]
-      @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
-    end
-    @flick_photo_id = params[:flickr_photo_id]
-    @invite_url = url_for(:action => "invite", :taxon_id => @taxon.try(:id), 
-      :project_id => @project.try(:id), :flickr_photo_id => @flickr_photo_id)
-    if logged_in?
-      @projects = current_user.projects.all(:limit => 100, :order => :title)
-    end
-  end
-  
   private
   def ensure_has_no_flickr_identity
     redirect_to(:action => 'options') and return if current_user.flickr_identity
+  end
+
+  def flickr_friends
+    flickr.contacts.getList(:auth_token=>current_user.flickr_identity.token)
   end
 
 end

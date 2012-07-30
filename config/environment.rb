@@ -23,6 +23,8 @@ FlickRawOptions = {
 }
 DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
 
+gem "omniauth", "= 0.2.6"
+gem 'koala', "= 1.1.0"
 require "omniauth"
 require 'koala'
 Rails::Initializer.run do |config|
@@ -91,7 +93,7 @@ Rails::Initializer.run do |config|
   config.gem "mocha"
   config.gem "paperclip"
   config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
-  config.gem "flickraw"
+  config.gem "flickraw" #, :version => "0.9.6"
   config.gem 'rest-client', :lib => 'rest_client'
   config.gem 'hoptoad_notifier'
   config.gem "carlosparamio-geoplanet", :lib => 'geoplanet', :source => "http://gems.github.com/"
@@ -114,6 +116,7 @@ Rails::Initializer.run do |config|
   # config.gem "koala"
   config.gem "preferences"
   config.gem 'mail_view'
+  config.gem 'gdata'
   
   # Set default time zone to UTC
   config.time_zone = 'UTC'

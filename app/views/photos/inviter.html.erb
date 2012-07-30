@@ -1,0 +1,78 @@
+<% content_for(:extrajs) do %>
+  <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
+<% end %>
+<h2>Invite other photographers to iNaturalist</h2>
+<p class="description">
+  You can make it super easy for people on Facebook and Flickr to add their photos as iNat
+  observations. Just leave a comment including this special invite URL below.
+  You can also pre-select a taxon and project for the new observation.
+</p>
+
+<% form_tag(url_for, {:method => :post, :class => "photo_inviter_form"}) do %>
+  
+  <div class='photo_inviter'></div>
+  <label for="taxonchooser">Automatically ID the new obs as</label>
+  <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
+  &nbsp;
+  <label for="taxonchooser">Automatically add to project</label>
+  <%= text_field_tag :project_id, @project.try(:id), :class => "chooser text", :id => "projectchooser", :placeholder => "Type project name..." %>
+  <div class='invite_comment'>
+    <label>Add a comment (don't forget to include the {{INVITE_LINK}} placeholder):</label>
+    <br />
+    <%= text_area_tag :comment, Photo::DEFAULT_INVITE_COMMENT, :class=>'text' %>
+  </div>
+  <%= submit_tag("Send invite", :class => 'default button') %>
+<% end -%>
+
+
+<script type="text/javascript" charset="utf-8">
+  $('#taxonchooser').chooser({
+    queryParam: 'q',
+    collectionUrl: 'http://'+window.location.host + '/taxa/search.json',
+    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json'
+  })
+  $('#projectchooser').chooser({
+    queryParam: 'q',
+    collectionUrl: 'http://'+window.location.host + '/projects/search.json',
+    resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
+    defaultSources: <%= @projects.to_json %>
+  })
+  var PHOTO_SOURCES = {
+    facebook: {
+      title: 'Facebook', 
+      url: '/facebook/photo_fields', 
+      contexts: [
+        //["Your photos", 'user'], 
+        ["Your friends' photos", 'friends'], 
+        ["Your groups' photos", 'groups']]},
+    flickr: {
+      title: 'Flickr', 
+      url: '/flickr/photo_fields', 
+      contexts: [
+        ["Your friends' photos", 'friends'], 
+        ["Public photos", 'public', {searchable:true}]]},
+    picasa: {
+      title: 'Picasa', 
+      url: '/picasa/photo_fields', 
+      contexts: [
+//        ["Your friends' photos", 'friends'], 
+        ["Public photos", 'public', {searchable:true}]]}
+  }
+  $('.photo_inviter').each(function() {
+    // The photo_fields endpoint needs to know the auth token and the index for the field
+    var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
+    var options = {
+      urlParams: {
+        authenticity_token: authenticity_token,
+        index: 0,
+        limit: 24,
+        require_write: true
+      },
+      sources: PHOTO_SOURCES,
+      defaultSource: '<%= (@default_source || "flickr") %>',
+      defaultContext: '<%= (@default_context || "public") %>',
+      skipLocal: true
+    }
+    $(this).photoSelector(options)
+  })
+</script>

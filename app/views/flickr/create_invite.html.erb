@@ -1,3 +1,6 @@
+<% content_for(:extrajs) do %>
+  <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
+<% end %>
 <h2>Invite Flickr Photos to iNaturalist</h2>
 <p class="description">
   You can make it super easy for people on Flickr to add their photos as iNat
@@ -17,6 +20,9 @@
   <%= text_field_tag :project_id, @project.try(:id), :class => "chooser text", :id => "projectchooser", :placeholder => "Type project name..." %>
   
   <%= submit_tag "Regenerate URL" %>
+
+  <div class='observation_photos'>
+  </div>
 <% end -%>
 
 
@@ -31,5 +37,40 @@
     collectionUrl: 'http://'+window.location.host + '/projects/search.json',
     resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
     defaultSources: <%= @projects.to_json %>
+  })
+    var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields", //?context=user",
+        PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]
+        //PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields?context=user'},{title: 'Flickr', url: '/flickr/photo_fields?context=user'}]
+
+$('.observation_photos').each(function() {
+    var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
+/*
+    if (window.location.href.match(/\/observations\/new/)) {
+      var index = 0
+    } else {
+      var index = window.location.href.match(/\/observations\/(\d+)/)[1]
+    }
+*/
+    // The photo_fields endpoint needs to know the auth token and the index
+    // for the field
+    var options = {
+      urlParams: {
+        authenticity_token: authenticity_token,
+        index: 0,
+        limit: 15,
+        synclink_base: window.location.href,
+        context: 'user'
+      }
+    }
+    if (DEFAULT_PHOTO_IDENTITY_URL) {
+      options.baseURL = DEFAULT_PHOTO_IDENTITY_URL
+    } else {
+      options.baseURL = '/photos/local_photo_fields' //?context=user'
+      options.queryOnLoad = false
+    }
+    if (PHOTO_IDENTITY_URLS && PHOTO_IDENTITY_URLS.length > 0) {
+      options.urls = PHOTO_IDENTITY_URLS
+    }
+    $(this).photoSelector(options)
   })
 </script>
