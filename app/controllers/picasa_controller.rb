@@ -97,7 +97,7 @@ class PicasaController < ApplicationController
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return
     end
-    if context=='user' && (params[:q].nil? && params[:q].empty?) # search is blank, so show all albums
+    if context=='user' && params[:q].blank? # search is blank, so show all albums
       @albums = picasa_albums(current_user)
       render :partial => 'picasa/albums' and return
     elsif context=='friends'
@@ -131,6 +131,8 @@ class PicasaController < ApplicationController
       end
     end
     
+    @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
+
     respond_to do |format|
       format.html do
         render :partial => 'photos/photo_list_form', 
@@ -158,7 +160,7 @@ class PicasaController < ApplicationController
       :picasa_user_id => @friend_id
     }
     @photos = PicasaPhoto.get_photos_from_album(current_user, params[:id], search_params) 
-
+    @synclink_base = params[:synclink_base] unless params[:synclink_base].blank?
     respond_to do |format|
       format.html do
         render :partial => 'photos/photo_list_form', 
