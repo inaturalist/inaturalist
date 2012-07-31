@@ -1,20 +1,24 @@
 class TaxonSchemesController < ApplicationController
   
   def index
+    @taxon_schemes = TaxonScheme.paginate(:page => params[:page])  
+  end
+
+  def show
+    @taxon_scheme = TaxonScheme.find_by_id(params[:id].to_i)
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     @genus_only = false
     filter_params = params[:filters] || params
     @parent = Taxon.find_by_id(filter_params[:taxon_id].to_i) unless filter_params[:taxon_id].blank?
-    @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
-    if @parent.nil?
-      @taxa = []
-      return
+    parent_ids = @taxon_scheme.taxa.all(:limit => 1000, :select => "DISTINCT ancestry").map do |t|
+      t.ancestry.split('/')[-2..-1]
+    end.flatten.uniq
+    @genera = []
+    parent_ids.in_groups_of(100) do |ids|
+      @genera += Taxon.of_rank('genus').all(:conditions => ["id IN (?)", ids.compact])
     end
-    if @taxon_scheme.nil?
-      @taxa = []
-      return
-    end
-    if @parent.rank != "genus"
+    
+    if @parent.blank? || @parent.rank != "genus"
       @taxa = []
       @genus_only = true
       return
