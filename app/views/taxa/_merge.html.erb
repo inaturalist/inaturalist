@@ -2,7 +2,10 @@
   <tr>
     <th>&nbsp;</th>
     <th>Taxon to keep</th>
-    <th>Taxon to delete</th>
+    <th>
+      <%= link_to "Keep this taxon", merge_taxon_path(@keeper, :taxon_id => @taxon.id), :class => "small right" %>
+      Taxon to delete
+    </th>
   </tr>
   
   <tr>
@@ -21,6 +24,26 @@
       <td>
         <%= taxon_image taxon %>
         <%= render :partial => "shared/taxon", :object => taxon %>
+      </td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <th>Schemes</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <% for taxon_scheme in taxon.taxon_schemes %>
+          <div><%= link_to taxon_scheme.title, taxon_scheme %></div>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <th>Sources</th>
+    <% for taxon in [@keeper, @taxon] %>
+      <td>
+        <%= citation_for taxon.source %>
       </td>
     <% end %>
   </tr>
