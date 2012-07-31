@@ -23,10 +23,31 @@
     These observations pass the project rules and haven't yet been contributed or invited.
   </p>
   
-  <div class="observations table">
-    <%= render :partial => 'observations/observations_table_header' %>
-    <%= render(:partial => "observations/cached_component", :collection => @observations) %>
-  </div>
+  <table border="0" cellspacing="5" cellpadding="5">
+    <tbody>
+      <% for observation in @observations %>
+        <tr>
+          <td>
+            <div class="observations table">
+              <%= render(:partial => "observations/cached_component", :object => observation) %>
+            </div>
+          </td>
+          <td>
+            <%= link_to "invite",
+              { :controller => 'project_invitations',
+                :action => 'create',
+                :project_id => @project.id,
+                :observation_id => observation.id,
+                :user_id => current_user.id },
+              :method => :post,
+              :class => "glaucous button",
+              "data-loading-click" => "inviting..." %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   
   <%= will_paginate @observations %>
 <% end %>
+
