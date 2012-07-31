@@ -330,14 +330,8 @@ class ObservationsController < ApplicationController
     end
     sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
     sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
-              
-    if params[:welcome]
-      @welcome = true
-      @cc = false
-      if params[:flickr_photo_id] && current_user.flickr_identity
-        @cc = true if  @flickr_photo.creative_commons?
-      end
-    end
+      
+    @welcome = params[:welcome]
     
     # this should happen AFTER photo syncing so params can override attrs 
     # from the photo

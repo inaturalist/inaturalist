@@ -78,7 +78,7 @@ class ProviderAuthorizationsController < ApplicationController
       if @provider_authorization && @provider_authorization.created_at > 15.minutes.ago
         flash[:notice] = "Welcome to iNaturalist! If these options look good, " + 
           "click \"Save observation\" below and you'll be good to go!"
-        invite_params.merge(:welcome => true)
+        invite_params.merge!(:welcome => true)
       end
       @landing_path = new_observation_url(invite_params)
     end
