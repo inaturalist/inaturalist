@@ -50,6 +50,14 @@ unless the_user
   exit(0)
 end
 
+eol_source = Source.find_by_in_text('EOL')
+eol_source ||= Source.create(
+  :in_text => 'EOL',
+  :citation => "Encyclopedia of Life. Available from http://www.eol.org.",
+  :url => "http://www.eol.org",
+  :title => 'Encyclopedia of Life'
+)
+
 #Get the Collections in the iNaturalist Collection from EOL
 unless response = Net::HTTP.get_response(URI.parse(eol_collection_url))
   puts "couldn't access iNat Collection on EOL"
@@ -119,7 +127,9 @@ eol_collection_ids.each do |eol_collection_id|
       io = open(URI.parse(logo_url))
       project.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
     end
-    unless opts[:test]
+    if opts[:test]
+      project.build_project_list
+    else
       if project.save
         if opts[:header] || opts[:css]
           cp = project.build_custom_project
@@ -170,6 +180,7 @@ eol_collection_ids.each do |eol_collection_id|
   all_taxon_concepts.each do |taxon_concepts|
     taxon_concepts.each do |node|
       list_item = TaxonName.strip_author(node.at('name').text)
+      object_id = node.at(:object_id).text
       collection_item_dwc_names << list_item
       annotation = node.at('annotation').try(:text)
       puts "\t name: #{list_item}"
@@ -222,7 +233,11 @@ eol_collection_ids.each do |eol_collection_id|
             :name => list_item,
             :rank => rank,
             :creator_id => the_user.id,
-            :updater_id => the_user.id
+            :updater_id => the_user.id,
+            :source_url => "http://eol.org/pages/#{object_id}",
+            :source_identifier => object_id,
+            :source => eol_source,
+            :name_provider => "EOL"
           )
           taxon.save unless opts[:test]
           puts "\t\tCreated new taxon: #{taxon}"
@@ -233,7 +248,7 @@ eol_collection_ids.each do |eol_collection_id|
         lt.save unless opts[:test]
         #Record the taxon we just created a listed_taxon for under 'taxa_added'
         listed_taxa_taxon_ids.reject!{ |taxon_id| taxon_id == taxon.id }
-        if lt.valid?
+        if opts[:test] || lt.valid?
           puts "\t\tCreated #{lt} for #{list_item}"
           taxa_added << taxon.name
         else
