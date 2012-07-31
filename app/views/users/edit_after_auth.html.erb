@@ -6,7 +6,12 @@
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('.time_zone_select').selectLocalTimeZone();
+      $('#all').click(
+        function() {
+          $('#check').find('input[type=checkbox]').attr('checked', !$('#check').find('input[type=checkbox]').attr('checked'));
+        });
     })
+    
   </script>
 <%- end -%>
 <div class="column prepend-4 span-8">
@@ -18,14 +23,25 @@
     <%= error_messages_for :display_user %>
     <%= f.text_field :login, :label => "Please confirm your iNat username", :class => "text", :required => true %>
     <%= f.text_field :email, :class => "text", :required => true %>
+    <%= f.password_field :password, :class => 'text', :description => "Generate a password to access this account from the iNaturalist iPhone or Android apps, or make one later after signing up."%>
+    <%= f.password_field :password_confirmation, :class => 'text' %>
+    
     <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
       :label => "Your default time zone",
       :description => "All your observations will default to this time zone unless you specify otherwise.",
       :class => 'select'}) %>
-    <%= f.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY,
-      :label => "Yes, license my observations so scientists can use my data!", 
-      :label_after => true,
-      :description => "Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like." %>
+    <input type="checkbox" id="all" />
+    <span class="label">
+      <label for="all">Yes, license my photos and observations so scientists can use my data!</label>
+    </span>
+    <div class="description">Using a <strong>Creative Commons Attribution-NonCommercial</strong> license makes it easier for researchers to use your data.  You can choose different licenses after signing up if you like.</div>
     <%= f.submit "Save &amp; continue...", :class => "default button" %>
+    <div id="check" style="visibility:hidden">
+      <%= f.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY_NC,
+        :label => false %>
+      <%= f.check_box :preferred_photo_license, {:checked => true}, Observation::CC_BY_NC, 
+        :label => false %>
+    </div>
   <% end %>
 </div>
+
