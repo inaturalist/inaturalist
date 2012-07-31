@@ -12,7 +12,7 @@ ActionController::Dispatcher.middleware.use OmniAuth::Builder do #if you are usi
     provider :twitter, INAT_CONFIG["twitter"]["key"] , INAT_CONFIG["twitter"]["secret"]
   end
   if INAT_CONFIG["facebook"]
-    opts = {:scope => 'email,offline_access,publish_stream,user_location,user_photos'}
+    opts = {:scope => 'email,offline_access,publish_stream,user_location,user_photos,friends_photos,user_groups,read_stream'}
     opts[:client_options] = {:ssl => {:ca_path => "/etc/ssl/certs"}} if File.exists?("/etc/ssl/certs")
     #opts[:client_options] = {:ssl => {:ca_file => Rails.root.join('config/ca-bundle.crt').to_s}} #if File.exists?("/etc/ssl/certs")
     provider :facebook, FACEBOOK_CONFIG["app_id"], FACEBOOK_CONFIG["app_secret"], opts

@@ -45,7 +45,8 @@ class ProviderAuthorizationsController < ApplicationController
       auth_info["user_info"]["image"] = "http://graph.facebook.com/#{auth_info["uid"]}/picture?type=large"
     when 'flickr'
       # construct the url for the user's flickr buddy icon
-      nsid = auth_info['extra']['user_hash']['nsid']
+      #nsid = auth_info['extra']['user_hash']['nsid']
+      nsid = auth_info['uid']
       flickr_info = flickr.people.getInfo(:user_id=>nsid) # we make this api call to get the icon-farm and icon-server
       iconfarm = flickr_info['iconfarm']
       iconserver = flickr_info['iconserver']

@@ -8,6 +8,13 @@
   organized_by_album ||= false
 -%>
 
+<% if organized_by_album %>
+  <a href='#' class="back_to_albums" <%= "data-friend_id='#{@friend_id}'" if @friend_id %>>&laquo; Back to <%= (@friend_name ? "#{@friend_name}'s" : "your") %> albums</a>
+<% elsif @friend_id %>
+  <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
+<% elsif @group_id %>
+  <a href='#' class="back_to_groups" data-group_id="<%= @group_id %>">&laquo; Back to groups</a>
+<% end %>
 <% if @reauthorization_needed -%>
   <p class="notice ui">
     Flickr needs to confirm that you want your account connected to iNat.
@@ -15,16 +22,16 @@
   </p>
 <% elsif photos.blank? && !local_photos %>
   <div class="description" style="clear: both">
+    <br />
     We didn't find any photos using the search terms you provided.
   </div>
 <% else %>
-  <% if organized_by_album %>
-    <label><a href='#' class="back_to_albums">&laquo; Back to albums</a></label><br />
-  <% end %>
+  <h4>Select one or more photos</h4>
   <% photos.each do |photo| %>
     <%- 
       native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
-      thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.source_url(:thumb)
+      #thumb_url = photo.is_a?(Photo) ? photo.thumb_url : photo.source_url(:thumb)
+      thumb_url = (photo.try(:thumb_url) || photo.try(:square_url) || photo.try(:source_url, :thumb))
       next unless thumb_url
       prefix = photo.is_a?(Photo) ? photo.class.to_s.underscore : 'flickr_photo'
       unique_id = serial_id
@@ -62,8 +69,9 @@
       <% end %>
 
       <label for="<%= input_id %>">
-        <%= image_tag(thumb_url) %>
+        <%= image_tag(thumb_url, :alt=>'Image') %>
       </label>
+      <span class='small view_photo'><%= link_to("View original", photo.native_page_url, :target=>'_blank') %></span>
     </div>
   <% end %>
 <% end %>

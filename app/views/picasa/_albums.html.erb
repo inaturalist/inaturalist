@@ -1,10 +1,10 @@
-<div class='photoSelectorAlbums facebookAlbums' <%= "data-friend_id='#{@friend_id}'" if @friend_id %>>
+<div class='photoSelectorAlbums picasaAlbums' <%= "data-friend_id='#{@friend_id}'" if @friend_id %>>
   <% if @friend_name %>
     <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
   <% end %>
   <% if @albums.empty? %>
     <br />
-    <p class="meta ui">We can't find any albums from Facebook.</p>
+    <p class="meta ui">We can't find any albums from Picasa.</p>
   <% else %>
     <h4>Select one of <%= (@friend_name ? "#{@friend_name}'s" : 'your') %> albums</h4>
     <table>

@@ -4,6 +4,8 @@ class PhotosController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_photo, :only => [:show, :update]
   before_filter :require_owner, :only => [:update]
+  before_filter :login_required, :only => [:inviter]
+  before_filter :return_here, :only => [:show, :invite, :inviter]
   
   def show
     @size = params[:size]
@@ -52,9 +54,10 @@ class PhotosController < ApplicationController
     end
   end
 
+  # this is the action for *accepting* an invite (e.g. coming from a url posted as a flickr/fb/picasa photo comment)
+  # params should include '#{flickr || facebook || picasa}_photo_id' and whatever else you want to add
+  # to the observation, e.g. taxon_id, project_id, etc
   def invite
-    # params should include '#{flickr || facebook}_photo_id' and whatever else you want to add
-    # to the observation, e.g. taxon_id, project_id, etc
     invite_params = params
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
     provider = invite_params.delete(:provider)
@@ -63,7 +66,82 @@ class PhotosController < ApplicationController
       @project = Project.find_by_id(params[:project_id].to_i)
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     else
-      redirect_to "/auth/#{provider}"
+      # we're not using omniauth for picasa, so it needs a special auth url.  
+      if provider=='picasa'
+        if current_user.nil?
+          session[:return_to] = Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) 
+          redirect_to signup_url and return
+        else
+          redirect_to Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) and return
+        end
+      else
+        redirect_to "/auth/#{provider}"
+      end
+    end
+  end
+
+  def inviter
+    @default_source = params[:source]
+    @default_context = params[:context]
+    @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
+    if params[:project_id]
+      @project = Project.find(params[:project_id]) rescue Project.find_by_id(params[:project_id].to_i)
+    end
+    @projects = current_user.projects.all(:limit => 100, :order => :title)
+
+    if request.post? # submitting the inviter form
+      if !params[:comment].include?("{{INVITE_LINK}}")
+        flash[:notice] = "You need to include the {{INVITE_LINK}} placeholder in your comment!"
+        return
+      end
+
+      # params[:facebook_photos] looks like {"0" => ['fb_photo_id_1','fb_photo_id_2'],...} to accomodate multiple photo-selectors on the same page
+      fb_photos = (params[:facebook_photos] || [])
+      fb_photo_ids = (fb_photos.is_a?(Hash) && fb_photos.has_key?('0') ? fb_photos['0'] : [])
+      
+      flickr_photos = (params[:flickr_photos] || [])
+      flickr_photo_ids = (flickr_photos.is_a?(Hash) && flickr_photos.has_key?('0') ? flickr_photos['0'] : [])
+
+      picasa_photos = (params[:picasa_photos] || [])
+      picasa_photo_urls = (picasa_photos.is_a?(Hash) && picasa_photos.has_key?('0') ? picasa_photos['0'] : [])
+
+      if (fb_photo_ids.empty? && flickr_photo_ids.empty? && picasa_photo_urls.empty?)
+        flash[:notice] = "You need to select at least one photo!"
+        return
+      end
+      
+      # invite_params should include '#{flickr || facebook || picasa}_photo_id' and (optional) taxon_id and project_id
+      invite_params = {:taxon_id => params[:taxon_id], :project_id=>params[:project_id]}
+      invite_params.delete_if { |k, v| v.nil? || v.empty? }
+
+      fb_photo_ids.each{|fb_photo_id|
+        invite_params[:facebook_photo_id] = fb_photo_id
+        FacebookPhoto.add_comment(
+          current_user, 
+          fb_photo_id, 
+          params[:comment].gsub("{{INVITE_LINK}}", fb_accept_invite_url(invite_params))
+        )
+      }
+
+      flickr_photo_ids.each{|flickr_photo_id|
+        invite_params[:flickr_photo_id] = flickr_photo_id
+        FlickrPhoto.add_comment(
+          current_user,
+          flickr_photo_id,
+          params[:comment].gsub("{{INVITE_LINK}}", flickr_accept_invite_url(invite_params))
+        )
+      }
+
+      picasa_photo_urls.each{|picasa_photo_url|
+        invite_params[:picasa_photo_id] = picasa_photo_url
+        PicasaPhoto.add_comment(
+          current_user, 
+          picasa_photo_url, 
+          params[:comment].gsub("{{INVITE_LINK}}", picasa_accept_invite_url(invite_params))
+        )
+      }
+
+      flash[:notice] = "Your invites have been sent!"
     end
   end
   

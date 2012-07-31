@@ -235,6 +235,11 @@ class User < ActiveRecord::Base
     friends.exists?(user)
   end
   
+  def picasa_client
+    return nil unless picasa_identity
+    return Picasa.new(self.picasa_identity.token)
+  end
+
   # returns a koala object to make (authenticated) facebook api calls
   # e.g. @facebook_api.get_object('me')
   # see koala docs for available methods: https://github.com/arsduo/koala
@@ -352,7 +357,7 @@ class User < ActiveRecord::Base
     end
     u
   end
-  
+
   protected
 
   # given a requested login, will try to find existing users with that login

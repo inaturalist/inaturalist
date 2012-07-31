@@ -1,0 +1,14 @@
+<% @url_options ||= {} %>
+<div id="providercol" class="stacked">
+  <h4>First, connect your <%= @provider.capitalize %> account to iNaturalist:</h4>
+  <br />
+  <ul>
+    <li class="clear">
+      <%= link_to "Connect to #{@provider.capitalize}", (@auth_url || auth_url_for(@provider, @url_options)), :class => "providerlink #{@provider} button" %>
+    </li>
+  </ul>
+  <p class="ui description">
+    Connecting your iNat account to accounts on other sites will allow you
+    to import photos and login to iNat using your credentials from those sites.
+  </p>
+</div>

@@ -416,6 +416,14 @@ module ApplicationHelper
       nil
     end
   end
+
+  def flickr_buddyicon(iconfarm,iconserver,nsid)
+    if iconserver.to_i > 0
+      return "http://farm#{iconfarm}.staticflickr.com/#{iconserver}/buddyicons/#{nsid}.jpg"
+    else
+      return "http://www.flickr.com/images/buddyicon.gif"
+    end
+  end
   
   def helptip_for(id, options = {}, &block)
     tip_id = "#{id}_tip"

@@ -187,4 +187,16 @@ class FlickrPhoto < Photo
     end
     taxa.compact
   end
+
+  def self.add_comment(user, flickr_photo_id, comment_text)
+    return nil if user.flickr_identity.nil?
+    flickr = FlickRaw::Flickr.new
+    flickr.photos.comments.addComment(
+      :user_id => user.flickr_identity.flickr_user_id, 
+      :auth_token => user.flickr_identity.token,
+      :photo_id => flickr_photo_id, 
+      :comment_text => comment_text
+    )
+  end
+
 end
