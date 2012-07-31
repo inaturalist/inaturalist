@@ -180,11 +180,11 @@ class TaxonName < ActiveRecord::Base
   def self.strip_author(name)
     name = name.gsub(' hor ', ' ')
     name = name.gsub(' de ', ' ')
-    name = name.gsub(/\(.*?\)/, '')
+    name = name.gsub(/\(.*?\).*/, '')
     name = name.gsub(/\[.*?\]/, '')
     name = name.gsub(/[\w\.,]+\s+\d+.*/, '')
     name = name.gsub(/\w[\.,]+.*/, '')
     name = name.gsub(/\s+[A-Z].*/, '')
-    name
+    name.strip
   end
 end
