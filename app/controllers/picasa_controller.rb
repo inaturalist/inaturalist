@@ -97,7 +97,7 @@ class PicasaController < ApplicationController
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return
     end
-    if context=='user' && (params[:q].nil? && params[:q].empty?) # search is blank, so show all albums
+    if context=='user' && (params[:q].nil? || params[:q].empty?) # search is blank, so show all albums
       @albums = picasa_albums(current_user)
       render :partial => 'picasa/albums' and return
     elsif context=='friends'
