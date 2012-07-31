@@ -164,12 +164,11 @@ ActionController::Routing::Routes.draw do |map|
     p.formatted_project_stats 'projects/:id/stats.:format', :action => 'stats'
     p.browse_projects 'projects/browse', :action => 'browse'
     p.project_summary 'projects/:id/summary', :action => 'summary'
-    p.project_invitations 'projects/:id/invitations', :action => 'invitations'
+    p.invitations 'projects/:id/invitations', :action => 'invitations'
   end
   map.resources :projects
   map.resources :project_assets, :except => [:index, :show]
   map.resources :custom_projects, :except => [:index, :show]
-  map.resources :project_invitations
   
   map.person_by_login 'people/:login', 
                       :controller => 'users',
@@ -240,7 +239,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :comments
   map.comments_by_login 'comments/user/:login', :controller => 'comments', 
     :action => 'user', :requirements => { :login => simplified_login_regex }
-  map.resources :project_invitations, :except => [:index, :show]
+  map.resources :project_invitations, :except => [:show]
   map.with_options :controller => 'project_invitations' do |project_invitation|
     project_invitation.accept_project_invitation 'project_invitation/:id/accept', :action => 'accept', :conditions => {:method => :post}
   end
