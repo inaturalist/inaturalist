@@ -421,6 +421,48 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def invitations
+    joins = "LEFT OUTER JOIN project_observations po ON po.observation_id = observations.id " +
+    "LEFT OUTER JOIN project_invitations pi ON pi.observation_id = observations.id"
+    conditions = ["(pi.id IS NULL OR pi.project_id != #{@project.id}) AND (po.id IS NULL OR po.project_id != #{@project.id})"]
+
+    @project.project_observation_rules.each do |rule|
+      if rule.operator == "in_taxon?"
+        taxon_id = rule.operand_id
+        taxon = Taxon.find_by_id(taxon_id)
+        joins += " JOIN taxa ON taxa.id = observations.taxon_id"
+        conditions[0] += " AND (observations.taxon_id = #{taxon.id} OR taxa.ancestry LIKE ?)"
+        conditions << "#{taxon.ancestry}/#{taxon.id}%"
+      end
+      if rule.operator == "observed_in_place?"
+        place_id = rule.operand_id
+        joins += " JOIN place_geometries ON place_geometries.place_id = #{place_id}"
+        conditions[0] += " AND (" +
+          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
+          ")"
+      end
+      if rule.operator == "on_list?"
+        list_id = @project.project_list.id
+        joins += " JOIN listed_taxa ON listed_taxa.list_id = #{list_id}"
+        conditions[0] += " AND observations.taxon_id = listed_taxa.taxon_id"
+      end
+      if rule.operator == "identified?"
+        conditions[0] += " AND observations.taxon_id IS NOT NULL"
+      end
+      if rule.operator == "georeferenced?"
+        conditions[0] += " AND latitude IS NOT NULL AND longitude IS NOT NULL"
+      end
+    end
+    @observations = Observation.paginate(
+      :page => params[:page],
+      :select => "DISTINCT (observations.id), observations.*",
+      :joins => joins,
+      :conditions => conditions,
+      :order => "id DESC"
+    )
+  end
+  
   def add
     unless @observation = Observation.find_by_id(params[:observation_id])
       flash[:error] = "That observation doesn't exist."

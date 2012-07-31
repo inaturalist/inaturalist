@@ -1,0 +1,32 @@
+<%- content_for(:title) do -%>
+  <%= @title = "#{h truncate(@project.title, :length => 85)} Invitations" %>
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    
+    .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+      width: 185px;
+      height: 185px;
+    }
+  </style>
+<%- end -%>
+
+<h2><%= link_to truncate(@project.title, :length => 85), project_path %> suitable observations</h2>
+
+<% if @observations.empty? %>
+  <p class="description">
+    No observations suitable for this project that haven't yet been contributed or invited.
+  </p>
+<% else %>
+  <p class="description">
+    These observations pass the project rules and haven't yet been contributed or invited.
+  </p>
+  
+  <div class="observations table">
+    <%= render :partial => 'observations/observations_table_header' %>
+    <%= render(:partial => "observations/cached_component", :collection => @observations) %>
+  </div>
+  
+  <%= will_paginate @observations %>
+<% end %>
