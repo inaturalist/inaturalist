@@ -182,6 +182,11 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> Stats", project_stats_path(@project), :class => "navlink" %>
       </li>
+      <% if @project.curated_by?(current_user) -%>
+        <li>
+          <%= link_to "<span class='lead'>&raquo;</span> Invite Observations", invitations_path(@project), :class => "navlink" %>
+        </li>
+      <% end -%>
     <% end -%>
   </ul>
   
