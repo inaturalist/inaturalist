@@ -79,8 +79,10 @@ class FacebookPhoto < Photo
     group_feed_photo_ids = group_feed_photo_attachments.map{|a| a['attachment']['media'][0]['photo']['fbid']}
     fb_photos = user.facebook_api.get_objects(group_feed_photo_ids) # return hash like {"photo1_id"=>{photo1_data}, ...}
     return [] if fb_photos.is_a?(Array) and fb_photos.empty?
-    photos = fb_photos.values.map{|fp| FacebookPhoto.new_from_api_response(fp) }
-    return photos
+    fb_photos.values.map{|fp| FacebookPhoto.new_from_api_response(fp) }
+  rescue Koala::Facebook::APIError => e
+    Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    []
   end
 
   def self.add_comment(user, fb_photo_id, comment_text)

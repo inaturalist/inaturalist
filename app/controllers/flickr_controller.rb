@@ -194,7 +194,10 @@ class FlickrController < ApplicationController
         search_params['user_id'] = @friend_id
       elsif context == 'public'
         search_params['license'] = @license_numbers
-        search_params['safe_search'] = 1 if params[:q].blank?
+        if params[:q].blank?
+          search_params['safe_search'] = 1
+          params[:q] = "nature"
+        end
       end
       search_params['auth_token'] = current_user.flickr_identity.token
       search_params['per_page'] = params[:limit] ||= 10
