@@ -123,11 +123,16 @@ class PicasaController < ApplicationController
         search_params[:user_id] = current_user.picasa_identity.picasa_user_id
       end
       
-      if results = picasa.search(params[:q], search_params)
-        @photos = results.photos.map do |api_response|
-          next unless api_response.is_a?(RubyPicasa::Photo)
-          PicasaPhoto.new_from_api_response(api_response, :user => current_user)
-        end.compact
+      begin
+        if results = picasa.search(params[:q], search_params)
+          @photos = results.photos.map do |api_response|
+            next unless api_response.is_a?(RubyPicasa::Photo)
+            PicasaPhoto.new_from_api_response(api_response, :user => current_user)
+          end.compact
+        end
+      rescue RubyPicasa::PicasaError => e
+        # Ruby Picasa seems to have a bug in which it won't recognize a feed element with no content, e.g. a search with no results
+        raise e unless e.message =~ /Unknown feed type/
       end
     end
     
