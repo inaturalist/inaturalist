@@ -1837,8 +1837,7 @@ class ObservationsController < ApplicationController
   end
   
   def update_user_account
-    account_params = params[:user]
-    current_user.update_attributes(account_params)
+    current_user.update_attributes(params[:user]) unless params[:user].blank?
   end
   
   def render_observations_partial(partial)
