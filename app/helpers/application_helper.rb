@@ -311,7 +311,7 @@ module ApplicationHelper
   def compact(&block)
     content = capture(&block)
     content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
-    concat content
+    concat content.html_safe
   end
   
   def color_pluralize(num, singular)
@@ -602,9 +602,9 @@ module ApplicationHelper
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added an observation"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added an observation".html_safe
       else
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
       end
     when "Observation", "ListedTaxon"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
@@ -627,11 +627,11 @@ module ApplicationHelper
       end
       s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))}"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
-      s
+      s.html_safe
     when "Post"
-      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}"
+      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
-      "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}"
+      "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
     else
       "update"
     end
