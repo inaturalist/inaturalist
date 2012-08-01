@@ -184,7 +184,7 @@
               <div class="updateheader meta stacked">
                 <div class="right small">
                   <abbr class="compact date" title="<%= updates.last.sort_by_date.iso8601 %>"><%= compact_date(updates.last.sort_by_date) %></abbr>
-                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>", edit_subscription_by_resource_path(resource_type, resource_id), 
+                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe, edit_subscription_by_resource_path(resource_type, resource_id), 
                     :class => "subscriptionsettings" %>
                 </div>
                 <%= update_tagline_for(updates.last, :count => updates.size) %>
