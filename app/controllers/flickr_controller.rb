@@ -152,6 +152,15 @@ class FlickrController < ApplicationController
   #             (makes names like flickr_photos[:index][])
   def photo_fields
     get_flickraw
+    if params[:licenses].blank?
+      @license_numbers = [1,2,3,4,5,6].join(',')
+    elsif params[:licenses] == 'any'
+      @license_numbers = nil
+    else
+      @licenses = params[:licenses]
+      @licenses = @licenses.split(',') if @licenses.is_a?(String)
+      @license_numbers = @licenses.map {|code| Photo.license_number_for_code(code)}.join(',')
+    end
     context = (params[:context] || 'public')
     flickr_pa = current_user.has_provider_auth('flickr')
     if params[:require_write] && flickr_pa.try(:scope) != 'write' # we need write permissions for flickr commenting
@@ -175,16 +184,17 @@ class FlickrController < ApplicationController
       @friend_id = nil if @friend_id=='null'
 
       search_params = {}
-      if context=='user'
+      if context == 'user'
         search_params['user_id'] = current_user.flickr_identity.flickr_user_id
-      elsif context=='friends'
+      elsif context == 'friends'
         if @friend_id.nil? # if context is friends, but no friend id specified, we want to show the friend selector
           @friends = flickr_friends
           render :partial => 'flickr/friends' and return
         end
         search_params['user_id'] = @friend_id
-      elsif context=='public'
-        search_params['license'] = '1,2,3,4,5,6'
+      elsif context == 'public'
+        search_params['license'] = @license_numbers
+        search_params['safe_search'] = 1 if params[:q].blank?
       end
       search_params['auth_token'] = current_user.flickr_identity.token
       search_params['per_page'] = params[:limit] ||= 10
