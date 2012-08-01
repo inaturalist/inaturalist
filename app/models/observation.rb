@@ -696,17 +696,17 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+    List.delay.refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true,
-      :dj_priority => 1)
-    LifeList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :priority => 1)
+    LifeList.delay.refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :dj_priority => 1)
+      :priority => 1)
      
-    ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+    ProjectList.delay.refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :dj_priority => 1)
+      :priority => 1)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -718,12 +718,12 @@ class Observation < ActiveRecord::Base
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
-    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+    CheckList.delay.refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
       :new => id_was.blank?,
-      :dj_priority => 1)
+      :priority => 1)
     true
   end
   
@@ -735,13 +735,13 @@ class Observation < ActiveRecord::Base
   def refresh_lists_after_destroy
     return if @skip_refresh_lists
     return unless taxon
-    List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+    List.delay.refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true,
-      :dj_priority => 1)
-    LifeList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+      :priority => 1)
+    LifeList.delay.refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :dj_priority => 1)
+      :priority => 1)
     true
   end
   
@@ -937,9 +937,9 @@ class Observation < ActiveRecord::Base
     observation.set_quality_grade(:force => true)
     observation.save
     if observation.quality_grade_changed?
-      CheckList.send_later(:refresh_with_observation, observation.id, 
+      CheckList.delay.refresh_with_observation(observation.id, 
         :taxon_id => observation.taxon_id, 
-        :dj_priority => 1)
+        :priority => 1)
     end
     observation.quality_grade
   end
