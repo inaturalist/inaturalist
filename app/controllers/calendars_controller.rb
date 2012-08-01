@@ -40,20 +40,18 @@ class CalendarsController < ApplicationController
     ).sort_by{|lt| lt.ancestry.to_s + '/' + lt.id.to_s}
     
     unless @observations.blank?
-      place_name_counts_conditions = [
+      scope = Observation.where([
         "ST_Intersects(observations.geom, place_geometries.geom) " +
         "AND places.id = place_geometries.place_id " + 
         "AND places.place_type NOT IN (?) " +
         "AND observations.user_id = ? ",
         [Place::PLACE_TYPE_CODES['Country'], Place::PLACE_TYPE_CODES['State']],
         @selected_user
-      ]
-      place_name_counts_conditions = Observation.merge_conditions(place_name_counts_conditions, 
-        Observation.conditions_for_date("observations.observed_on", @date))
-      @place_name_counts = Observation.count(
+      ])
+      scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
+      @place_name_counts = scope.count(
         :from => "observations, places, place_geometries", 
-        :group => "(places.display_name || '-' || places.id)",
-        :conditions => place_name_counts_conditions)
+        :group => "(places.display_name || '-' || places.id)")
       @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @observations.first.observed_on], :order => "observed_on DESC")
       @next = @selected_user.observations.first(:conditions => ["observed_on > ?", @observations.first.observed_on], :order => "observed_on ASC")
     end
