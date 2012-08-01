@@ -15,11 +15,12 @@
 
 <table>
   <% for name, taxa in @synonyms_by_name %>
+    <%- taxa = taxa.sort_by{|t| t.id} -%>
     <tr>
       <th><%= name %></th>
       <td>
         <% if !taxa.blank? %>
-        <% for taxon in taxa.sort_by{|t| t.id} %>
+        <% for taxon in taxa %>
           <%- schemes = taxon.taxon_schemes -%>
           <div class="taxon_links nobr">
             <%= render :partial => "shared/taxon", :object => taxon, :locals => { :include_id => true, :link_url => taxon } %>

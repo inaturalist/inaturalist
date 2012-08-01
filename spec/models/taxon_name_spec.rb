@@ -84,6 +84,7 @@ describe TaxonName, "strip_author" do
       ["Macrozamia dyeri", "Macrozamia dyeri (F. Muell.) C. A. Gardner"],
       ["Dacrydium gracile", "Dacrydium gracile de Laub."],
       ["Polystichum minimum", "Polystichum minimum (Y.T.Hsieh) comb. ined."],
+      ["Stelis macrophylla", "Stelis macrophylla (Kunth) ined."],
       ["Bromheadia finlaysoniana", "Bromheadia finlaysoniana (Lindl.) & Miq."],
       ["Pleopeltis pleopeltidis", "Pleopeltis pleopeltidis (Fée) de la Sota"],
       ["Oncidium schunkeanum", "Oncidium schunkeanum Campacci & Cath."],
