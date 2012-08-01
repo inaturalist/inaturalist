@@ -55,7 +55,7 @@ class FacebookController < ApplicationController
   rescue Koala::Facebook::APIError => e
     raise e unless e.message =~ /OAuthException/
     @reauthorization_needed = true
-    reauthorize
+    authorize
   end
 
   private
