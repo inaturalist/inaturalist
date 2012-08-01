@@ -250,7 +250,7 @@ class ListedTaxon < ActiveRecord::Base
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
     unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
-      list.send_later(:sync_with_parent, :dj_priority => 1)
+      list.delay.sync_with_parent(:priority => 1)
     end
     true
   end
@@ -277,7 +277,7 @@ class ListedTaxon < ActiveRecord::Base
     if @force_update_cache_columns
       # this should have already happened in update_cache_columns
     else
-      ListedTaxon.send_later(:update_cache_columns_for, id, :dj_priority => 1)
+      ListedTaxon.delay.update_cache_columns_for(id, :priority => 1)
     end
     true
   end

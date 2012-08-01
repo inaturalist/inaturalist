@@ -136,7 +136,7 @@ class LifeList < List
       Taxon.to_s, [taxon.id, taxon.ancestor_ids].flatten.compact
     ]) do |list_rule|
       next unless list_rule.list.is_a?(LifeList)
-      LifeList.send_later(:add_taxa_from_observations, list_rule.list, :taxa => [taxon.id], :dj_priority => 1)
+      LifeList.delay.add_taxa_from_observations(list_rule.list, :taxa => [taxon.id], :priority => 1)
     end
   end
   
