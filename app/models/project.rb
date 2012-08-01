@@ -17,8 +17,8 @@ class Project < ActiveRecord::Base
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
   
-  # has_friendly_id :title, :use_slug => true, 
-  #   :reserved_words => ProjectsController.action_methods.to_a
+  extend FriendlyId
+  friendly_id :title, :use => :history, :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
