@@ -25,45 +25,49 @@ class FacebookController < ApplicationController
   end
 
   def photo_fields
-    context = params[:context] || 'user'
-    if current_user.facebook_api.nil?
+    @context = params[:context] || 'user'
+    if current_user.facebook_identity.blank?
+      return authorize
+    elsif current_user.facebook_api.blank?
       @reauthorization_needed = true
-      @provider = 'facebook'
-      uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
-      uri.query_values ||= {}
-      uri.query_values = uri.query_values.merge({:source => @provider, :context => context})
-      session[:return_to] = uri.to_s 
-      render(:partial => "photos/auth") and return
+      return authorize
     end
-    begin
-      if context=='user'
-        @albums = facebook_albums(current_user)
-        render :partial => 'facebook/albums' and return
-      elsif context=='groups'
-        if @group_id.nil?  # if context is groups, but no group id specified, we want to show the group selector
-          @groups = facebook_groups(current_user)
-          render :partial => 'facebook/groups' and return
-        else
-        end
-      elsif context=='friends'
-        @friend_id = params[:object_id]
-        @friend_id = nil if @friend_id=='null'
-        if @friend_id.nil?  # if context is friends, but no friend id specified, we want to show the friend selector
-          @friends = facebook_friends(current_user)
-          render :partial => 'facebook/friends' and return
-        else
-          @albums = facebook_albums(current_user, @friend_id)
-          friend_data = current_user.facebook_api.get_object(@friend_id)
-          @friend_name = friend_data['first_name']
-          render :partial => 'facebook/albums'
-        end
+      
+    if @context == 'groups'
+      @groups = facebook_groups(current_user)
+      render :partial => 'facebook/groups' and return
+    elsif @context == 'friends'
+      @friend_id = params[:object_id]
+      @friend_id = nil if @friend_id == 'null'
+      if @friend_id.blank?  # if context is friends, but no friend id specified, we want to show the friend selector
+        @friends = facebook_friends(current_user)
+        render :partial => 'facebook/friends' and return
+      else
+        @albums = facebook_albums(current_user, @friend_id)
+        friend_data = current_user.facebook_api.get_object(@friend_id)
+        @friend_name = friend_data['first_name']
+        render :partial => 'facebook/albums'
       end
-    rescue Koala::Facebook::APIError => e
-      raise e unless e.message =~ /OAuthException/
-      @reauthorization_needed = true
-      []
+    else # assume @context == 'user'
+      @albums = facebook_albums(current_user)
+      render :partial => 'facebook/albums' and return
     end
+  rescue Koala::Facebook::APIError => e
+    raise e unless e.message =~ /OAuthException/
+    @reauthorization_needed = true
+    reauthorize
   end
+
+  private
+  def authorize
+    @provider = 'facebook'
+    uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
+    uri.query_values ||= {}
+    uri.query_values = uri.query_values.merge({:source => @provider, :context => @context})
+    session[:return_to] = uri.to_s 
+    render(:partial => "photos/auth")
+  end
+  public
 
   # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
@@ -120,7 +124,7 @@ class FacebookController < ApplicationController
   def facebook_albums(user, friend_id=nil)
     return [] unless user.facebook_api
     album_data = user.facebook_api.get_connections(friend_id || 'me','albums', :limit => 0)
-    album_data.reject{|a| a['count'].nil? || a['count'] < 1}.map do |a|
+    album_data.reject{|a| a['count'].blank? || a['count'] < 1}.map do |a|
       {
         'aid' => a['id'],
         'name' => a['name'],

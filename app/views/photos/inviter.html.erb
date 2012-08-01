@@ -1,7 +1,16 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Invite other photographers to iNaturalist" %>  
+<%- end -%>
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
 <% end %>
-<h2>Invite other photographers to iNaturalist</h2>
+<%- content_for(:extracss) do -%>
+  <style type="text/css">
+    ul .providerlink, ul .button.providerlink {width:auto;}
+  </style>
+<%- end -%>
+
+<h2><%= @title %></h2>
 <p class="description">
   You can make it super easy for people on Facebook and Flickr to add their photos as iNat
   observations. Just leave a comment including this special invite URL below.
@@ -28,8 +37,8 @@
 <script type="text/javascript" charset="utf-8">
   $('#taxonchooser').chooser({
     queryParam: 'q',
-    collectionUrl: 'http://'+window.location.host + '/taxa/search.json',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json'
+    collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
   })
   $('#projectchooser').chooser({
     queryParam: 'q',

@@ -1,10 +1,23 @@
-<% @url_options ||= {} %>
+<%-
+  @url_options ||= {}
+  msg = if @reauthorization_needed
+    "iNat needs you to authorize more permissions from #{@provider.capitalize} to proceed:"
+  else
+    "First, connect your #{@provider.capitalize} account to iNaturalist:"
+  end
+
+  link_text = if @reauthorization_needed
+    "Authorize permissions from #{@provider.capitalize}"
+  else
+    "Connect to #{@provider.capitalize}"
+  end
+-%>
 <div id="providercol" class="stacked">
-  <h4>First, connect your <%= @provider.capitalize %> account to iNaturalist:</h4>
+  <h4><%= msg %></h4>
   <br />
   <ul>
     <li class="clear">
-      <%= link_to "Connect to #{@provider.capitalize}", (@auth_url || auth_url_for(@provider, @url_options)), :class => "providerlink #{@provider} button" %>
+      <%= link_to link_text, (@auth_url || auth_url_for(@provider, @url_options)), :class => "providerlink #{@provider} button" %>
     </li>
   </ul>
   <p class="ui description">
