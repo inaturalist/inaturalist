@@ -164,7 +164,7 @@ class FlickrController < ApplicationController
     context = (params[:context] || 'public')
     flickr_pa = current_user.has_provider_auth('flickr')
     if params[:require_write] && flickr_pa.try(:scope) != 'write' # we need write permissions for flickr commenting
-      @reauthorization_needed = true
+      @reauthorization_needed = true if flickr_pa
       @provider = 'flickr'
       @url_options = {:scope => 'write'}
       uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
@@ -199,7 +199,7 @@ class FlickrController < ApplicationController
           params[:q] = "nature"
         end
       end
-      search_params['auth_token'] = current_user.flickr_identity.token
+      search_params['auth_token'] = current_user.flickr_identity.token if current_user.flickr_identity
       search_params['per_page'] = params[:limit] ||= 10
       search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
