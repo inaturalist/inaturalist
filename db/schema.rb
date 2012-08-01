@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704055118) do
+ActiveRecord::Schema.define(:version => 20120801204921) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -153,6 +154,20 @@ ActiveRecord::Schema.define(:version => 20120704055118) do
     t.string   "flickr_user_id"
     t.string   "secret"
   end
+
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -559,14 +574,14 @@ ActiveRecord::Schema.define(:version => 20120704055118) do
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
     t.string   "project_type"
-    t.string   "cached_slug"
+    t.string   "slug"
     t.integer  "observed_taxa_count", :default => 0
     t.datetime "featured_at"
     t.string   "source_url"
     t.string   "tracking_codes"
   end
 
-  add_index "projects", ["cached_slug"], :name => "index_projects_on_cached_slug", :unique => true
+  add_index "projects", ["slug"], :name => "index_projects_on_cached_slug", :unique => true
   add_index "projects", ["source_url"], :name => "index_projects_on_source_url"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
@@ -616,18 +631,6 @@ ActiveRecord::Schema.define(:version => 20120704055118) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
-  end
-
-  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
-  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "sources", :force => true do |t|
     t.string   "in_text"
