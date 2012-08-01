@@ -151,9 +151,10 @@ class FlickrController < ApplicationController
   #   index:    index to use if these inputs are part of a form subcomponent
   #             (makes names like flickr_photos[:index][])
   def photo_fields
-    context = (params[:context] || 'user')
+    get_flickraw
+    context = (params[:context] || 'public')
     flickr_pa = current_user.has_provider_auth('flickr')
-    if (flickr_pa.nil? || (params[:require_write] && flickr_pa.scope!='write')) # we need write permissions for flickr commenting
+    if params[:require_write] && flickr_pa.try(:scope) != 'write' # we need write permissions for flickr commenting
       @reauthorization_needed = true
       @provider = 'flickr'
       @url_options = {:scope => 'write'}
@@ -163,13 +164,11 @@ class FlickrController < ApplicationController
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return
     end
+
     # Try to look up a photo id
     if params[:q].to_i != 0 && params[:q].to_i > 10000
-      if fp = @flickr.photos.get_info(params[:q])
-        if params[:context] == 'user' && 
-            fp.owner == current_user.flickr_identity.flickr_user_id
-          @photos = [fp]
-        end
+      if fp = flickr.photos.getInfo(:photo_id => params[:q])
+        @photos = [FlickrPhoto.new_from_api_response(fp)]
       end
     else
       @friend_id = params[:object_id]
@@ -193,7 +192,6 @@ class FlickrController < ApplicationController
       search_params['page'] = params[:page] ||= 1
       search_params['extras'] = 'date_upload,owner_name,url_sq'
       search_params['sort'] = 'relevance'
-      get_flickraw
       @photos = flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
     end
 

@@ -387,13 +387,12 @@
     $(wrapper).data('photoSelectorOptions', options);
     $.fn.photoSelector.queryPhotos($(wrapper).find('.photoSelectorSearchField').val(), wrapper);
   };
-  
-  var ajax; // store ajax request so we can cancel it below if need be
 
   // Hit the server for photos
   $.fn.photoSelector.queryPhotos = function(q, wrapper, options) {
     // cancel any existing requests to avoid race condition
-    if (typeof ajax!='undefined') { ajax.abort(); }
+    var ajax = $(wrapper).data('ajax')
+    if (typeof ajax != 'undefined') { ajax.abort(); }
 
     var options = $.extend({}, 
       $.fn.photoSelector.defaults, 
@@ -410,6 +409,7 @@
     var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
     var loading = $('<center><span class="loading status inlineblock">Loading...</span></center>')
       .css('margin-top', ($photoSelectorPhotos.height() / 2)-20)
+    $photoSelectorPhotos.data('previous-overflow', $photoSelectorPhotos.css('overflow'));
     $photoSelectorPhotos.css('overflow','hidden').shades('open', {
       css: {'background-color': 'white', 'opacity': 0.7}, 
       content: loading
@@ -445,11 +445,13 @@
         }
         
         // Unset loading status
-        $photoSelectorPhotos.css('overflow','auto').shades('close')
+        $photoSelectorPhotos.shades('close')
+        $photoSelectorPhotos.css('overflow', $photoSelectorPhotos.data('previous-overflow'));
         
         if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
       }
-    });
+    })
+    $(wrapper).data('ajax', ajax)
     
     return false;
   };
