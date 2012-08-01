@@ -300,7 +300,7 @@ class Taxon < ActiveRecord::Base
         update_listed_taxa
         update_life_lists
         update_obs_iconic_taxa
-        Observation.send_later(:update_stats_for_observations_of, id, :dj_priority => 2)
+        Observation.delay.update_stats_for_observations_of(id, :priority => 2)
       end
       set_iconic_taxon
     end
@@ -349,7 +349,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def set_wikipedia_summary_later
-    send_later(:set_wikipedia_summary, :dj_priority => 2) if wikipedia_title_changed?
+    delay.set_wikipedia_summary(:priority => 2) if wikipedia_title_changed?
     true
   end
   
@@ -648,7 +648,7 @@ class Taxon < ActiveRecord::Base
     if ListRule.exists?([
         "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
         Taxon.to_s, ids])
-      LifeList.send_later(:update_life_lists_for_taxon, self, :dj_priority => 1)
+      LifeList.delay.update_life_lists_for_taxon(self, :priority => 1)
     end
     true
   end
@@ -691,7 +691,6 @@ class Taxon < ActiveRecord::Base
       return Nokogiri::HTML::DocumentFragment.parse(sum).to_s
     end
     
-    # send_later(:set_wikipedia_summary, :dj_priority => 2)
     delay.set_wikipedia_summary(:priority => 2)
     nil
   end
@@ -769,8 +768,8 @@ class Taxon < ActiveRecord::Base
       end
     end
     
-    LifeList.send_later(:update_life_lists_for_taxon, self, :dj_priority => 1)
-    Taxon.send_later(:update_listed_taxa_for, self, reject.ancestry, :dj_priority => 1)
+    LifeList.delay.update_life_lists_for_taxon(self, :priority => 1)
+    Taxon.delay.update_listed_taxa_for(self, reject.ancestry. :priority => 1)
     
     flags.each do |flag|
       flag.destroy unless flag.valid?
@@ -874,7 +873,7 @@ class Taxon < ActiveRecord::Base
       "#{base_class.ancestry_column} = regexp_replace(#{base_class.ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
       descendant_conditions
     )
-    Taxon.send_later(:update_descendants_with_new_ancestry, id, child_ancestry, :dj_priority => 1)
+    Taxon.delay.update_descendants_with_new_ancestry(id, child_ancestry, :priority => 1)
     true
   end
   
@@ -904,7 +903,7 @@ class Taxon < ActiveRecord::Base
   def apply_orphan_strategy
     return if ancestry_callbacks_disabled?
     return if new_record?
-    Taxon.send_later(:apply_orphan_strategy, child_ancestry, :dj_priority => 1)
+    Taxon.delay.apply_orphan_strategy(child_ancestry, :priority => 1)
   end
   
   def self.apply_orphan_strategy(child_ancestry_was)
