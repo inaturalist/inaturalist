@@ -43,7 +43,7 @@
       <%-
         links = []
         if !@project.terms.blank? || !@project.project_observation_rules.blank? || !@project.project_user_rules.blank?
-          links << link_to("Terms &amp; Rules", project_terms_path(@project), :class => "ui")
+          links << link_to("Terms &amp; Rules".html_safe, project_terms_path(@project), :class => "ui")
         end
         if @project.editable_by?(current_user)
           links << link_to("Edit project", edit_project_path(@project), :class => "ui description")
@@ -111,7 +111,7 @@
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
-      <%= link_to "<span class='lead'>&raquo;</span> Observations / Map", project_observations_path(@project), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> Observations / Map".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
@@ -133,13 +133,13 @@
          </span>
         <% end -%>
       <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> Checklist", list_path(@project.project_list), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> Checklist".html_safe, list_path(@project.project_list), :class => "navlink" %>
     </li>
     <li>
       <% if @project.contest? -%>
-        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors", project_contributors_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors".html_safe, project_contributors_path(@project), :class => "navlink" %>
       <% else %>
-        <%= link_to "<span class='lead'>&raquo;</span> Members", project_members_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Members".html_safe, project_members_path(@project), :class => "navlink" %>
       <% end -%>
       <div class="inner">
         <% if @project.contest? && !@project_users.blank? && !@top_observers.blank? -%>
@@ -180,7 +180,7 @@
     </li>
     <% if logged_in? -%>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span> Stats", project_stats_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Stats".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
       <% if @project.curated_by?(current_user) -%>
         <li>
