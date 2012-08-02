@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   before_filter :login_from_param
   
   PER_PAGES = [10,30,50,100]
+  HEADER_VERSION = 8
   
   private
   
