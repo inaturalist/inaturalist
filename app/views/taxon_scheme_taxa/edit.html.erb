@@ -1,0 +1,11 @@
+<%- content_for(:title) do -%>
+  <%- @title = capture do %>
+    Editing Scheme for <%= link_to @taxon.name, @taxon %>
+  <%- end -%>
+  <%= strip_tags(@title) %>
+<%- end -%>
+
+<%= render :partial => 'form_head' %>
+
+<h2><%= @title %></h2>
+<%= render :partial => 'form' %>

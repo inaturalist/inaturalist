@@ -1,0 +1,22 @@
+<%- content_for(:title) do -%>
+  <%- @title = capture do %>
+    Schemes including <%= link_to @taxon.name, @taxon %>
+  <%- end -%>
+  <%= strip_tags(@title) %>
+<%- end -%>
+
+<h2><%= @title %></h2>
+
+<ul>
+  <% for scheme_taxon in @scheme_taxa %>
+    <li>
+      <%= scheme_taxon.taxon_scheme.title %>
+      <% if logged_in? && current_user.is_curator? -%>
+        <%= link_to "edit", edit_taxon_scheme_taxon_path(scheme_taxon), :class => 'small description' %>
+      <% end -%>
+    </li>
+  <% end %>
+</ul>
+<% if logged_in? && current_user.is_curator? -%>
+  <%= link_to "Add to a scheme", new_taxon_taxon_scheme_taxon_path(@taxon), :class => 'readmore' %>
+<% end -%>

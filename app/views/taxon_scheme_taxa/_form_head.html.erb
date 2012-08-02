@@ -1,0 +1,22 @@
+<%- content_for(:extracss) do %>
+  <%= stylesheet_link_tag 'taxon_schemes' %>
+  <style type="text/css" media="screen">
+    .ui-chooser-choice {max-width:190px;}
+    .scheme_taxon {margin-bottom: 10px; width: 310px;}
+    form .text {width:200px;}
+</style>
+<% end %>
+
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+     $(document).ready(function() {
+      $('#filters_taxon_scheme_id').change(function() {
+        var form = $(this).parents('form:first'),
+            oldAction = form.attr('action'),
+            newAction = oldAction.replace(/\d+/, $(this).val())
+        console.log("[DEBUG] newAction:", newAction)
+        form.attr('action', newAction)
+      })
+    })
+  </script>
+<%- end -%>
