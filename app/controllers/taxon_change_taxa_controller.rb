@@ -36,6 +36,7 @@ class TaxonChangeTaxaController < ApplicationController
   end
   
   def destroy
+    @taxon_change_taxon = TaxonChangeTaxon.find(params[:id])
     if @taxon_change_taxon.destroy
       flash[:notice] = "Taxon change taxon was deleted."
     else

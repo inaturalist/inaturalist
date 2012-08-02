@@ -405,6 +405,7 @@
       Source: unknown
     <% end %>
     
+    | <%= link_to "Schemes", taxon_schemes_path(@taxon) %>
     | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
     <% if logged_in? -%>
       | <%= link_to "Map", taxon_map_path(@taxon) %>

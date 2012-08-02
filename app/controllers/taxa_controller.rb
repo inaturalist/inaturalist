@@ -509,6 +509,11 @@ class TaxaController < ApplicationController
     render :text => "You're offline."
   end
   
+  def schemes
+    @taxon = Taxon.find_by_id(params[:id].to_i)
+    @scheme_taxa = TaxonSchemeTaxon.all(:conditions => {:taxon_id => @taxon.id})
+  end
+  
   def map
     @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
     @bing_key = INAT_CONFIG['bing'].try(:[], 'key')

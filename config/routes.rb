@@ -253,6 +253,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :taxa, :requirements => { :id => id_param_pattern } do |taxon|
     # taxon.resources :names, :controller => :taxon_names
     taxon.resources :taxon_names, :controller => :taxon_names, :shallow => true
+    taxon.resources :taxon_scheme_taxa, :controller => :taxon_scheme_taxa, :shallow => true
     taxon.resources :flags
   end
   map.with_options :controller => 'taxa' do |taxa|
@@ -275,6 +276,7 @@ ActionController::Routing::Routes.draw do |map|
     taxa.taxon_observation_photos 'taxa/:id/observation_photos', :action => 'observation_photos'
     taxa.taxon_map 'taxa/:id/map', :action => 'map'
     taxa.taxon_range_geom 'taxa/:id/range.:format', :action => 'range'
+    taxa.taxon_schemes 'taxa/:id/schemes', :action => 'schemes'
   end
   
   map.connect 'taxa/auto_complete_name', :controller => 'taxa',
@@ -352,6 +354,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :taxon_schemes, :only => [:index, :show]
   
   map.connect 'taxon_changes/taxon_change_taxa', :controller => 'taxon_change_taxa'
+  map.connect 'taxon/taxon_scheme_taxa', :controller => 'taxon_scheme_taxa'
   map.resources :taxon_splits, :controller => :taxon_changes
   map.resources :taxon_merges, :controller => :taxon_changes
   map.resources :taxon_swaps, :controller => :taxon_changes
