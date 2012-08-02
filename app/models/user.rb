@@ -238,7 +238,7 @@ class User < ActiveRecord::Base
   
   def picasa_client
     return nil unless picasa_identity
-    return Picasa.new(self.picasa_identity.token)
+    @picasa_client ||= Picasa.new(self.picasa_identity.token)
   end
 
   # returns a koala object to make (authenticated) facebook api calls

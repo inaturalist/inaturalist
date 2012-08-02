@@ -97,10 +97,10 @@ class PicasaController < ApplicationController
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return
     end
-    if context=='user' && params[:q].blank? # search is blank, so show all albums
+    if context == 'user' && params[:q].blank? # search is blank, so show all albums
       @albums = picasa_albums(current_user)
       render :partial => 'picasa/albums' and return
-    elsif context=='friends'
+    elsif context == 'friends'
       @friend_id = params[:object_id]
       @friend_id = nil if @friend_id=='null'
       if @friend_id.nil?  # if context is friends, but no friend id specified, we want to show the friend selector
@@ -124,15 +124,19 @@ class PicasaController < ApplicationController
       end
       
       begin
-        if results = picasa.search(params[:q], search_params)
-          @photos = results.photos.map do |api_response|
-            next unless api_response.is_a?(RubyPicasa::Photo)
-            PicasaPhoto.new_from_api_response(api_response, :user => current_user)
-          end.compact
+        Timeout::timeout(10) do
+          if results = picasa.search(params[:q], search_params)
+            @photos = results.photos.map do |api_response|
+              next unless api_response.is_a?(RubyPicasa::Photo)
+              PicasaPhoto.new_from_api_response(api_response, :user => current_user)
+            end.compact
+          end
         end
       rescue RubyPicasa::PicasaError => e
         # Ruby Picasa seems to have a bug in which it won't recognize a feed element with no content, e.g. a search with no results
         raise e unless e.message =~ /Unknown feed type/
+      rescue Timeout::Error => e
+        @timeout = e
       end
     end
     
@@ -188,17 +192,17 @@ class PicasaController < ApplicationController
   # (if nil, it fetches the authenticating user's albums)
   def picasa_albums(user, picasa_user_id=nil)
     return [] unless user.picasa_identity
-    picasa = user.picasa_client 
+    picasa = user.picasa_client
     user_data = picasa.user(picasa_user_id) 
     albums = []
     unless user_data.nil?
-      user_data.albums.reject{|a| a.numphotos==0}.each{|a|
+      user_data.albums.select{|a| a.numphotos > 0}.each do |a|
         albums << {
           'aid' => a.id,
           'name' => a.title,
-          'cover_photo_src' => a.photos.first.url
+          'cover_photo_src' => a.thumbnails.first.url
         }
-      }
+      end
     end
     return albums
   end

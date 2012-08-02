@@ -410,6 +410,7 @@
     var loading = $('<center><span class="loading status inlineblock">Loading...</span></center>')
       .css('margin-top', ($photoSelectorPhotos.height() / 2)-20)
     $photoSelectorPhotos.data('previous-overflow', $photoSelectorPhotos.css('overflow'));
+    $photoSelectorPhotos.scrollTo(0,0)
     $photoSelectorPhotos.css('overflow','hidden').shades('open', {
       css: {'background-color': 'white', 'opacity': 0.7}, 
       content: loading

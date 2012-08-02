@@ -142,11 +142,12 @@ class PicasaPhoto < Photo
       picasa_album_url = "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
     end
     album_data = picasa.album((picasa_album_url || picasa_album_id.to_s), 
-                              {:max_results=>options[:max_results], 
-                               :start_index=>options[:start_index]})  # this also fetches photo data
-    photos = album_data.photos.map{|pp| 
+      :max_results => options[:max_results], 
+      :start_index => options[:start_index],
+      :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
+    photos = album_data.photos.map do |pp|
       PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
-    }
+    end
   end
 
   # add a comment to the given picasa photo
