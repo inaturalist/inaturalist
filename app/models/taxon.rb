@@ -783,7 +783,7 @@ class Taxon < ActiveRecord::Base
     end
     
     LifeList.send_later(:update_life_lists_for_taxon, self, :dj_priority => 1)
-    Taxon.send_later(:update_listed_taxa_for, self, :dj_priority => 1)
+    Taxon.send_later(:update_listed_taxa_for, self, reject.ancestry, :dj_priority => 1)
     
     flags.each do |flag|
       flag.destroy unless flag.valid?
