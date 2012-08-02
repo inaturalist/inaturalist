@@ -20,6 +20,10 @@
     Flickr needs to confirm that you want your account connected to iNat.
     <%= link_to "Confirm now", ProviderAuthorization::AUTH_URLS['Flickr'], :class => "readmore" %>
   </p>
+<% elsif @timeout %>
+  <p class="error ui">
+    Request to the photo provider timed out.  Please try again later.
+  </p>
 <% elsif photos.blank? && !local_photos %>
   <div class="description" style="clear: both">
     <br />
