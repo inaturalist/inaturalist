@@ -15,7 +15,7 @@ class TaxonChangesController < ApplicationController
     @change_group = filter_params[:change_group] unless filter_params[:change_group].blank?
     @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
     
-    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.sort
+    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     
     scope = TaxonChange.scoped({})
@@ -65,6 +65,7 @@ class TaxonChangesController < ApplicationController
   end
   
   def new
+    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
     @taxon_change = TaxonChange.new
   end
   
@@ -81,6 +82,7 @@ class TaxonChangesController < ApplicationController
   end
   
   def edit
+    @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
   end
 
   def update
