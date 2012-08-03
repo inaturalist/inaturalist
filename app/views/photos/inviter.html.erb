@@ -81,7 +81,8 @@
       sources: PHOTO_SOURCES,
       defaultSource: '<%= (@default_source || "flickr") %>',
       defaultContext: '<%= (@default_context || "public") %>',
-      skipLocal: true
+      skipLocal: true,
+      defaultQuery: <%= params[:q].to_json %>
     }
     $(this).photoSelector(options)
   })

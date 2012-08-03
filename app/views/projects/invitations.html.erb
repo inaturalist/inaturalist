@@ -9,12 +9,21 @@
       width: 185px;
       height: 185px;
     }
+    .observations.mini .observation {border: 0 transparent;}
+    .row {border-bottom: 1px solid #eee;}
+    .observations.mini .place {white-space: nowrap; overflow:hidden;}
   </style>
 <%- end -%>
 
-<h2><%= link_to truncate(@project.title, :length => 85), project_path %> suitable observations</h2>
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <%= link_to "Invite photos from other sites", photo_inviter_path(:project_id => @project), :class => "right readmore" %>
+    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  <h2><%= link_to truncate(@project.title, :length => 85), project_path %> suitable observations</h2>
+</div>
 
-<% if @observations.empty? %>
+<% if @observations.blank? %>
   <p class="description">
     No observations suitable for this project that haven't yet been contributed or invited.
   </p>
@@ -22,39 +31,36 @@
   <p class="description">
     These observations pass the project rules and haven't yet been contributed or invited.
   </p>
-  
-  <table border="0" cellspacing="5" cellpadding="5">
-    <tbody>
-      <% for observation in @observations %>
-        <tr>
-          <td>
-            <div class="observations table">
-              <%= render(:partial => "observations/cached_component", :object => observation) %>
-            </div>
-          </td>
-          <td>
-            <% if current_user.id == observation.user_id %>
-              <%= link_to "add", 
-                add_project_observation_path(@project, :observation_id => observation.id),
-                "data-loading-click" => "Adding...",
-                :method => :post,
-                :class => "glaucous button" %>
-            <% else %>
-              <%= link_to "invite",
-                { :controller => 'project_invitations',
-                  :action => 'create',
-                  :project_id => @project.id,
-                  :observation_id => observation.id,
-                  :user_id => current_user.id },
-                :method => :post,
-                :class => "glaucous button",
-                "data-loading-click" => "inviting..." %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+
+  <div class="clear column span-24">
+    <% for observation in @observations %>
+      <div class="stacked row <%= cycle('first', 'last') %> column span-12">
+        <div class="mini observations">
+          <%= render :partial => "observations/cached_component", :object => observation %>
+        </div>
+
+        <div style="text-align:center;" class="stacked inline buttonrow">
+          <% if current_user.id == observation.user_id %>
+            <%= link_to "Add to project", 
+              add_project_observation_path(@project, :observation_id => observation.id),
+              "data-loading-click" => "Adding...",
+              :method => :post,
+              :class => "glaucous button" %>
+          <% else %>
+            <%= link_to "Invite to project",
+              { :controller => 'project_invitations',
+                :action => 'create',
+                :project_id => @project.id,
+                :observation_id => observation.id,
+                :user_id => current_user.id },
+              :method => :post,
+              :class => "glaucous inline button",
+              "data-loading-click" => "Inviting..." %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
   
   <%= will_paginate @observations %>
 <% end %>
