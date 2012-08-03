@@ -114,6 +114,9 @@ class PhotosController < ApplicationController
       invite_params = {:taxon_id => params[:taxon_id], :project_id=>params[:project_id]}
       invite_params.delete_if { |k, v| v.nil? || v.empty? }
 
+      @errors = {}
+      @successful_ids = []
+
       fb_photo_ids.each{|fb_photo_id|
         invite_params[:facebook_photo_id] = fb_photo_id
         FacebookPhoto.add_comment(
@@ -121,15 +124,22 @@ class PhotosController < ApplicationController
           fb_photo_id, 
           params[:comment].gsub("{{INVITE_LINK}}", fb_accept_invite_url(invite_params))
         )
+        @successful_ids += [fb_photo_id]
       }
 
       flickr_photo_ids.each{|flickr_photo_id|
         invite_params[:flickr_photo_id] = flickr_photo_id
-        FlickrPhoto.add_comment(
-          current_user,
-          flickr_photo_id,
-          params[:comment].gsub("{{INVITE_LINK}}", flickr_accept_invite_url(invite_params))
-        )
+        begin
+          FlickrPhoto.add_comment(
+            current_user,
+            flickr_photo_id,
+            params[:comment].gsub("{{INVITE_LINK}}", flickr_accept_invite_url(invite_params))
+          )
+          @successful_ids += [flickr_photo_id]
+        rescue FlickRaw::FailedResponse => e
+          raise e unless e.message =~ /Insufficient permission to comment/
+          @errors[flickr_photo_id] = "photo doesn't allow comments"
+        end
       }
 
       picasa_photo_urls.each{|picasa_photo_url|
@@ -139,9 +149,11 @@ class PhotosController < ApplicationController
           picasa_photo_url, 
           params[:comment].gsub("{{INVITE_LINK}}", picasa_accept_invite_url(invite_params))
         )
+        @successful_ids += [picasa_photo_url]
       }
-
-      flash[:notice] = "Your invites have been sent!"
+      success_msg = "successfully sent #{@successful_ids.size} invite#{'s' if @successful_ids.size != 1}" unless @successful_ids.blank?
+      error_msg = "failed to send #{@errors.size} invite#{'s' if @errors.size != 1}: #{@errors.map{|id, msg| [id, msg].join(': ')}}" unless @errors.blank?
+      flash[:notice] = [success_msg, error_msg].compact.join(', ').capitalize
     end
   end
   

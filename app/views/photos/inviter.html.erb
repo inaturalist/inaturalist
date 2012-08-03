@@ -30,7 +30,7 @@
     <br />
     <%= text_area_tag :comment, Photo::DEFAULT_INVITE_COMMENT, :class=>'text' %>
   </div>
-  <%= submit_tag("Send invite", :class => 'default button') %>
+  <%= submit_tag("Send invite", :class => 'default button', "data-loading-click" => "Sending...") %>
 <% end -%>
 
 
