@@ -166,6 +166,9 @@ class ProjectsController < ApplicationController
   
   def members
     @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "users.login ASC")
+    @admin = @project.user
+    @curators = @project.project_users.curators.all(:limit => 500, :include => :user).map{|pu| pu.user}
+    @managers = @project.project_users.managers.all(:limit => 500, :include => :user).map{|pu| pu.user}
   end
   
   def observed_taxa_count
