@@ -236,8 +236,7 @@ eol_collection_ids.each do |eol_collection_id|
             :updater_id => the_user.id,
             :source_url => "http://eol.org/pages/#{object_id}",
             :source_identifier => object_id,
-            :source => eol_source,
-            :name_provider => "EOL"
+            :source => eol_source
           )
           taxon.save unless opts[:test]
           puts "\t\tCreated new taxon: #{taxon}"

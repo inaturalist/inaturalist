@@ -194,7 +194,7 @@ module Ratatosk
       end
       
       # retrieve the Name Provider used to find this taxon
-      name_provider = @name_providers.first if (taxon.name_provider.blank? || taxon.name_provider == "EOL" || taxon.name_provider == "IUCN")
+      name_provider = @name_providers.first if (taxon.name_provider.blank?)
       name_provider ||= @name_providers.detect do |np|
         np.class.name == taxon.name_provider || np.class.name.split('::').last == taxon.name_provider
       end
