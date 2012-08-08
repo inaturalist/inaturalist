@@ -425,64 +425,22 @@ class ProjectsController < ApplicationController
   end
   
   def invitations
-    options = {
-      :page => params[:page],
-      :include => [:project_invitations, :project_observations],
-      :select => "DISTINCT (observations.id), observations.*",
-      :order => "id DESC"
-    }
-    
-    @project.project_observation_rules.each do |rule|
-      if rule.operator == "in_taxon?"
-        taxon_id = rule.operand_id
-        taxon = Taxon.find_by_id(taxon_id)
-        options[:joins] = "JOIN taxa ON taxa.id = observations.taxon_id"
-        options[:conditions] = ["(observations.taxon_id = #{taxon.id} OR taxa.ancestry LIKE ?)", "#{taxon.ancestry}/#{taxon.id}%"]
-      end
-      if rule.operator == "observed_in_place?"
-        place_id = rule.operand_id
-        if options.include? :conditions
-          options[:joins] += " JOIN place_geometries ON place_geometries.place_id = #{place_id}"
-          options[:conditions][0] += " AND (" +
-            "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-            "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-            ")"
-        else
-          options[:joins] = "JOIN place_geometries ON place_geometries.place_id = #{place_id}"
-          options[:conditions] = ["(" +
-            "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-            "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-            ")"]
-        end
-      end
-      if rule.operator == "on_list?"
-        list_id = @project.project_list.id
-        if options.include? :conditions
-          options[:joins] += " JOIN listed_taxa ON listed_taxa.list_id = #{list_id}"
-          options[:conditions][0] += " AND observations.taxon_id = listed_taxa.taxon_id"
-        else
-          options[:joins] = "JOIN listed_taxa ON listed_taxa.list_id = #{list_id}"
-          options[:conditions] = [" AND observations.taxon_id = listed_taxa.taxon_id"]
-        end
-      end
-      if rule.operator == "identified?"
-        if options.include? :conditions
-          options[:conditions][0] += " AND observations.taxon_id IS NOT NULL"
-        else
-          options[:conditions] = [" AND observations.taxon_id IS NOT NULL"]
-        end
-      end
-      if rule.operator == "georeferenced?"
-        if options.include? :conditions
-          options[:conditions][0] += " AND latitude IS NOT NULL AND longitude IS NOT NULL"
-        else
-          options[:conditions] = [" AND latitude IS NOT NULL AND longitude IS NOT NULL"]
-        end
-      end
+    scope = @project.observations_matching_rules
+    existing_scope = Observation.in_projects([@project]).scoped({})
+    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project])
+
+    if params[:by] == "you"
+      scope = scope.by(current_user)
+      existing_scope = existing_scope.by(current_user)
+      invited_scope = invited_scope.by(current_user)
     end
-    @observations = Observation.paginate(options)
-    @observations = @observations.reject{|obs| obs.project_observations.map{|po| po.project_id}.include? @project.id }
-    @observations = @observations.reject{|obs| obs.project_invitations.map{|pi| pi.project_id}.include? @project.id }
+
+    scope_sql = scope.construct_finder_sql({})
+    existing_scope_sql = existing_scope.construct_finder_sql({})
+    invited_scope_sql = invited_scope.construct_finder_sql({})
+
+    sql = "(#{scope_sql}) EXCEPT ((#{existing_scope_sql}) UNION (#{invited_scope_sql}))"
+    @observations = Observation.paginate_by_sql(sql, :page => params[:page])
   end
   
   def add
@@ -508,8 +466,13 @@ class ProjectsController < ApplicationController
       @project_invitation.destroy
     end
     
-    flash[:notice] = "Observation added to the project \"#{@project.title}\""
-    redirect_back_or_default(@project)
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Observation added to the project \"#{@project.title}\""
+        redirect_back_or_default(@project)
+      end
+      format.json { render :json => @project_observation }
+    end
   end
   
   def remove

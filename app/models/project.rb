@@ -119,6 +119,27 @@ class Project < ActiveRecord::Base
     return false if tracking_codes.blank?
     tracking_codes.split(',').map{|c| c.strip}.include?(code)
   end
+
+  def observations_matching_rules
+    scope = Observation.scoped({})
+    project_observation_rules.each do |rule|
+      case rule.operator
+      when "in_taxon?" 
+        scope = scope.of(rule.operand)
+      when "observed_in_place?"
+        scope = scope.in_place(rule.operand)
+      when "on_list?"
+        scope = scope.scoped(
+          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}", 
+          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      when "identified?"
+        scope = scope.scoped(:conditions => "taxon_id IS NOT NULL")
+      when "georeferenced"
+        scope = scope.scoped(:conditions => "geom IS NOT NULL")
+      end
+    end
+    scope
+  end
   
   def self.default_json_options
     {

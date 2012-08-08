@@ -33,8 +33,13 @@ class ProjectInvitationsController < ApplicationController
       flash[:error] = "There was a problem adding your observation"
       redirect_to :back and return
     end
-    flash[:notice] = "Observation invited"
-    redirect_to :back and return
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Observation invited"
+        redirect_to :back and return
+      end
+      format.json { render :json => @project_invitation }
+    end
   end
   
   def accept
