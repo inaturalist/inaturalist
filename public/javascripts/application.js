@@ -106,6 +106,7 @@ $('input[data-loading-click][type=text], input[data-loading-click][type=submit]'
   $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
+  $(this).data('original-value', $(this).val())
   $(this).addClass('disabled description').val(txt)
   var link = this
   

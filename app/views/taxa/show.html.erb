@@ -467,6 +467,10 @@
         .live('ajax:success', function(event, json, status) {
           $(this).siblings('.status').html('Removed!').removeClass('loading')
         })
+        
+      $('#place_selector_paste form').live('ajax:success', function(event, json, status) {
+        $(this).siblings('.places').html(json.map(function(place) { return place.html }).join(' '))
+      })
     })
   </script>
 <% end -%>
