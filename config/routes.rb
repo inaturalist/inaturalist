@@ -136,6 +136,7 @@ Inaturalist::Application.routes.draw do
     resources :taxon_names
     resources :flags
     get 'description' => 'taxa#describe', :on => :member, :as => :describe
+    post 'update_photos' => 'taxa#update_photos', :as => :update_taxon_photos
   end
   resources :taxon_names
   # match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
@@ -144,7 +145,6 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
   match 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
   match 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
-  match 'taxa/:id/update_photos' => 'taxa#update_photos', :as => :update_taxon_photos
   match 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
   match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places
   match 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
