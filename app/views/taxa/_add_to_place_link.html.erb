@@ -19,12 +19,6 @@
         :method => :delete,
         "data-type" => 'json',
         :confirm => "Are you sure you want to remove this taxon from #{place.name}'s checklist?",
-        # :loading => 
-        #   "$('##{dom_id place, 'remove_status'}').show();" +
-        #   "$('##{dom_id(place, 'remove_link')}').hide();",
-        # :failure => 
-        #   "$('##{dom_id(place, 'remove_link')}').hide();",
-        # :success => "$('##{dom_id place, 'remove_status'}').html('Removed!').removeClass('loading')",
         :id => dom_id(place, 'remove_link'),
         :class => "last button delete pale remove_link",
         :style => 'float: right; margin: 0' %>
