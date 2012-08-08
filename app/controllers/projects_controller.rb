@@ -425,45 +425,64 @@ class ProjectsController < ApplicationController
   end
   
   def invitations
-    joins = "LEFT OUTER JOIN project_observations po ON po.observation_id = observations.id " +
-    "LEFT OUTER JOIN project_invitations pi ON pi.observation_id = observations.id"
-    conditions = ["(pi.id IS NULL OR pi.project_id != #{@project.id}) AND (po.id IS NULL OR po.project_id != #{@project.id})"]
-
+    options = {
+      :page => params[:page],
+      :include => [:project_invitations, :project_observations],
+      :select => "DISTINCT (observations.id), observations.*",
+      :order => "id DESC"
+    }
+    
     @project.project_observation_rules.each do |rule|
       if rule.operator == "in_taxon?"
         taxon_id = rule.operand_id
         taxon = Taxon.find_by_id(taxon_id)
-        joins += " JOIN taxa ON taxa.id = observations.taxon_id"
-        conditions[0] += " AND (observations.taxon_id = #{taxon.id} OR taxa.ancestry LIKE ?)"
-        conditions << "#{taxon.ancestry}/#{taxon.id}%"
+        options[:joins] = "JOIN taxa ON taxa.id = observations.taxon_id"
+        options[:conditions] = ["(observations.taxon_id = #{taxon.id} OR taxa.ancestry LIKE ?)", "#{taxon.ancestry}/#{taxon.id}%"]
       end
       if rule.operator == "observed_in_place?"
         place_id = rule.operand_id
-        joins += " JOIN place_geometries ON place_geometries.place_id = #{place_id}"
-        conditions[0] += " AND (" +
-          "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-          "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
-          ")"
+        if options.include? :conditions
+          options[:joins] += " JOIN place_geometries ON place_geometries.place_id = #{place_id}"
+          options[:conditions][0] += " AND (" +
+            "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+            "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
+            ")"
+        else
+          options[:joins] = "JOIN place_geometries ON place_geometries.place_id = #{place_id}"
+          options[:conditions] = ["(" +
+            "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+            "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))" +
+            ")"]
+        end
       end
       if rule.operator == "on_list?"
         list_id = @project.project_list.id
-        joins += " JOIN listed_taxa ON listed_taxa.list_id = #{list_id}"
-        conditions[0] += " AND observations.taxon_id = listed_taxa.taxon_id"
+        if options.include? :conditions
+          options[:joins] += " JOIN listed_taxa ON listed_taxa.list_id = #{list_id}"
+          options[:conditions][0] += " AND observations.taxon_id = listed_taxa.taxon_id"
+        else
+          options[:joins] = "JOIN listed_taxa ON listed_taxa.list_id = #{list_id}"
+          options[:conditions] = [" AND observations.taxon_id = listed_taxa.taxon_id"]
+        end
       end
       if rule.operator == "identified?"
-        conditions[0] += " AND observations.taxon_id IS NOT NULL"
+        if options.include? :conditions
+          options[:conditions][0] += " AND observations.taxon_id IS NOT NULL"
+        else
+          options[:conditions] = [" AND observations.taxon_id IS NOT NULL"]
+        end
       end
       if rule.operator == "georeferenced?"
-        conditions[0] += " AND latitude IS NOT NULL AND longitude IS NOT NULL"
+        if options.include? :conditions
+          options[:conditions][0] += " AND latitude IS NOT NULL AND longitude IS NOT NULL"
+        else
+          options[:conditions] = [" AND latitude IS NOT NULL AND longitude IS NOT NULL"]
+        end
       end
     end
-    @observations = Observation.paginate(
-      :page => params[:page],
-      :select => "DISTINCT (observations.id), observations.*",
-      :joins => joins,
-      :conditions => conditions,
-      :order => "id DESC"
-    )
+    @observations = Observation.paginate(options)
+    @observations = @observations.reject{|obs| obs.project_observations.map{|po| po.project_id}.include? @project.id }
+    @observations = @observations.reject{|obs| obs.project_invitations.map{|pi| pi.project_id}.include? @project.id }
   end
   
   def add
