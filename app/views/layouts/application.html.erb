@@ -31,7 +31,7 @@
   </head>
 <body>
   <% unless @headless -%>
-    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => 8) do %>
+    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION) do %>
       <%= render :partial => 'shared/header' %>
     <% end %>
   <% end -%>

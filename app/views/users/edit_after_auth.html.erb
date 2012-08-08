@@ -1,18 +1,6 @@
 <%- content_for(:title) do -%>
   Confirm your info
 <%- end -%>
-
-<%- content_for(:extrajs) do -%>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('.time_zone_select').selectLocalTimeZone()
-      $('#license_all').click(function() {
-        $('#check input[type=checkbox]').click()
-      })
-    })
-    
-  </script>
-<%- end -%>
 <div class="column prepend-4 span-8">
   <img src="/images/bird.png" width="300" height="239" />
 </div>
@@ -29,23 +17,10 @@
       :label => "Your default time zone",
       :description => "All your observations will default to this time zone unless you specify otherwise.",
       :class => 'select'}) %>
-    <input type="checkbox" id="license_all" checked="checked"/>
-    <span class="label">
-      <label for="license_all">Yes, license my photos and observations so scientists can use my data!</label>
-    </span>
-    <div class="stacked description">
-      Check this box if you want apply a
-      <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-      to your photos. You can choose a different license or remove the license
-      later, but this is the best license for sharing with researchers.
-    </div>
+
+    <%= render :partial => 'users/license_fields', :locals => {:builder => f} %>
+
     <%= f.submit "Save &amp; continue...", :class => "default button" %>
-    <div id="check" style="display:none;">
-      <%= f.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY_NC,
-        :label => false %>
-      <%= f.check_box :preferred_photo_license, {:checked => true}, Observation::CC_BY_NC, 
-        :label => false %>
-    </div>
   <% end %>
 </div>
 

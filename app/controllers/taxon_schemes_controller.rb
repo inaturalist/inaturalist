@@ -10,9 +10,12 @@ class TaxonSchemesController < ApplicationController
     @genus_only = false
     filter_params = params[:filters] || params
     @parent = Taxon.find_by_id(filter_params[:taxon_id].to_i) unless filter_params[:taxon_id].blank?
-    parent_ids = @taxon_scheme.taxa.all(:limit => 1000, :select => "DISTINCT ancestry").map do |t|
+    parent_ids = @taxon_scheme.taxa.all(
+        :limit => 1000, 
+        :select => "DISTINCT ancestry", 
+        :conditions => "ancestry IS NOT NULL").map do |t|
       t.ancestry.split('/')[-2..-1]
-    end.flatten.uniq
+    end.flatten.uniq.compact
     @genera = []
     parent_ids.in_groups_of(100) do |ids|
       @genera += Taxon.of_rank('genus').all(:conditions => ["id IN (?)", ids.compact])

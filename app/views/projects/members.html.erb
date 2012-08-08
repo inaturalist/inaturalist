@@ -134,23 +134,61 @@
     
     <div class="last column span-8">
       <div class="quiet box">
-        <h3>Roles</h3>
-        <h4>Curators</h4>
-        <p>
-          Curators can remove observations from the project and their
-          identifications are shown alongside the observations on
-          project-specific views.
-        </p>
-        
-        <h4>Managers</h4>
-        <p>
-          Managers can do everything curators can do as well as editing project settings.
-        </p>
-        
-        <h4>Admin</h4>
-        <p>
-          The admin is the person who created the project.
-        </p>
+        <div class="stacked">
+          <h3>Curators</h3>
+          <p class="ui">
+            Curators can remove observations from the project and their
+            identifications are shown alongside the observations on project-
+            specific views. Curators can also see the true coordinates of
+            private and obscured contributions to this project.
+          </p>
+          <% if !@curators.blank? %>
+            <ul class="clear plain">
+              <% for user in @curators %>
+                <li class="stacked">
+                  <%= link_to user_image(user, :size => "thumb"), person_path(user.login) %>
+                  <%= link_to_user user %>
+                </li>
+              <% end %>
+            </ul>
+          <%- else -%>
+            <div class="nocontent">No curators set</div>
+          <% end %>
+        </div>
+
+        <div class="stacked">
+          <h3>Managers</h3>
+          <p class="ui">
+            Managers can do everything curators can do as well as editing project settings.
+          </p>
+
+          <% if !@managers.blank? %>
+            <ul class="clear plain">
+              <% for user in @managers %>
+                <li class="stacked">
+                  <%= link_to user_image(user, :size => "thumb"), person_path(user.login) %>
+                  <%= link_to_user user %>
+                </li>
+              <% end %>
+            </ul>
+          <%- else -%>
+            <div class="nocontent">No managers set</div>
+          <% end %>
+        </div>
+
+        <div class="stacked">
+          <h3>Admin</h3>
+          <p class="ui">
+            The admin is the person who created the project. They can do everything managers and curators can do, as well as delete the project.
+          </p>
+
+          <ul class="clear plain">
+            <li class="stacked">
+              <%= link_to user_image(@admin, :size => "thumb"), person_path(@admin.login) %>
+              <%= link_to_user @admin %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   <% end -%>

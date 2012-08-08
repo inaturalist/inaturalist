@@ -68,6 +68,9 @@
           // yuk. ideally should just call updateSource, but can't cause of scope issues
           var defaultSourceData = options.sources[options.defaultSource];
           $.fn.photoSelector.changeBaseUrl(wrapper, defaultSourceData.url, options.defaultContext);
+          if (typeof(options.defaultQuery) == 'string') {
+            $.fn.photoSelector.queryPhotos(options.defaultQuery, wrapper)
+          }
         } catch(e) {
           var q = '';
           if (typeof(options.defaultQuery) == 'string') {

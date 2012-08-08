@@ -34,7 +34,7 @@ Some notes:
   check_box_name ||= false
   check_box_checked ||= false
   top ||= false
-  css_class = "observation #{cycle('odd', 'even')}"
+  css_class = "observation"
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
   if observation.research_grade?
     css_class += ' research_grade'
