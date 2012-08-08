@@ -672,6 +672,7 @@ class TaxaController < ApplicationController
     @listed_taxa = @places.map do |place| 
       place.check_list.add_taxon(@taxon, :user_id => current_user.id)
     end.select{|p| p.valid?}
+    Rails.logger.debug "[DEBUG] @listed_taxa: #{@listed_taxa.inspect}"
     @listed_taxa_by_place_id = @listed_taxa.index_by{|lt| lt.place_id}
   end
   
