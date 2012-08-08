@@ -1,6 +1,6 @@
 <%- taxon_change ||= @taxon_change -%>
 <% taxon_change_type = taxon_change.class.name %>
-<% form_for(taxon_change) do |f| %>
+<% form_for(taxon_change, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
   <%= error_messages_for :taxon_change %>
   
   <% if taxon_change.new_record? -%>
@@ -66,7 +66,7 @@
     </fieldset>
   <% end -%>
   
-  <fieldset class="column span-24">
+  <fieldset id="source" class="column span-24">
     <legend>Source</legend>
     <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
   </fieldset>

@@ -194,7 +194,7 @@ module Ratatosk
       end
       
       # retrieve the Name Provider used to find this taxon
-      name_provider = @name_providers.first if taxon.name_provider.blank?
+      name_provider = @name_providers.first if (taxon.name_provider.blank? || taxon.name_provider == "EOL" || taxon.name_provider == "IUCN")
       name_provider ||= @name_providers.detect do |np|
         np.class.name == taxon.name_provider || np.class.name.split('::').last == taxon.name_provider
       end
@@ -233,7 +233,7 @@ module Ratatosk
       
       ancestor_phylum = name_provider.get_phylum_for(lineage.first, lineage)
       lineage.each do |ancestor|
-        # puts "\t[DEBUG] Inspecting ancestor: #{ancestor}"
+         puts "\t[DEBUG] Inspecting ancestor: #{ancestor}"
         
         existing_homonyms = if ancestor.new_record?
           Taxon.all(:conditions => ["name = ?", ancestor.name])
@@ -241,13 +241,13 @@ module Ratatosk
           Taxon.all(:conditions => ["id != ? AND name = ?", ancestor.id, ancestor.name])
         end
         
-        # puts "\t\t[DEBUG] Found homonyms: #{existing_homonyms.join(', ')}"
+         puts "\t\t[DEBUG] Found homonyms: #{existing_homonyms.join(', ')}"
         
         if existing_homonyms.size == 1 && 
             %w"kingdom phylum".include?(existing_homonyms.first.rank)
           graft_point = existing_homonyms.first
           lineage = new_lineage
-          # puts "\t\t\t[DEBUG] Found a homonymous kingdom/phylum: #{graft_point}"
+           puts "\t\t\t[DEBUG] Found a homonymous kingdom/phylum: #{graft_point}"
           break
         end
         
@@ -256,20 +256,20 @@ module Ratatosk
         end.first
         
         if graft_point
-          # puts "\t\t\t[DEBUG] Found a homonymous taxon: #{graft_point}"
+           puts "\t\t\t[DEBUG] Found a homonymous taxon: #{graft_point}"
           lineage = new_lineage
           break
         end
         
         new_lineage << ancestor
       end
-      # puts "\t\t[DEBUG] GAARRGGHH graft_point pre default: #{graft_point}"
+       puts "\t\t[DEBUG] GAARRGGHH graft_point pre default: #{graft_point}"
       graft_point ||= Taxon.find_by_name('Life') rescue Taxon.root
       [graft_point, lineage.compact]
     end
     
     def find_existing_taxon(taxon_adapter, name_provider = nil)
-      # puts "[DEBUG] Looking for an existing taxon"
+       puts "[DEBUG] Looking for an existing taxon"
       name_provider ||= NameProviders.const_get(taxon_adapter.name_provider).new
       if phylum = name_provider.get_phylum_for(taxon_adapter)
         existing_phylum = Taxon.find(:first, :conditions => [
