@@ -187,9 +187,9 @@ eol_collection_ids.each do |eol_collection_id|
       
       #Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
       existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
-        "taxon_names.lexicon = ? AND taxon_names.name = ? AND listed_taxa.taxon_id IN (?)",
+        "taxon_names.lexicon = ? AND LOWER(taxon_names.name) = ? AND listed_taxa.taxon_id IN (?)",
         TaxonName::SCIENTIFIC_NAMES,
-        list_item.strip,
+        list_item.strip.downcase,
         listed_taxa_taxon_ids
       ])
       if existing
