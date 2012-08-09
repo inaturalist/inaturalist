@@ -30,7 +30,7 @@
     <%= hidden_field_tag :resource_id, resource.id %>
     <nobr>
       <% if resource.is_a?(Place) -%>
-        <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'></span>Settings", edit_subscription_by_resource_url(resource.class.to_s, resource.id), 
+        <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'></span>Settings".html_safe, edit_subscription_by_resource_url(resource.class.to_s, resource.id), 
           :class => "subscriptionsettings" %>
       <% else %>
         <%= link_to_function "Unsubscribe", "$(this).parents('form:first').submit()" %>

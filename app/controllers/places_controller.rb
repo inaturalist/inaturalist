@@ -154,16 +154,11 @@ class PlacesController < ApplicationController
     end
     
     respond_to do |format|
-      format.json { render :json => @ydn_places }
-      format.js do
-        render :update do |page|
-          if @places.blank?
-            page.alert "No matching places found."
-          else
-            page << "addPlaces(#{@places.to_json})"
-            page['places'].replace_html :partial => 'create_external_place_links'
-          end
+      format.json do
+        @places.each_with_index do |place, i|
+          @places[i].html = view_context.render_in_format(:html, :partial => "create_external_place_link", :object => place, :locals => {:i => i})
         end
+        render :json => @places.to_json(:methods => [:html])
       end
     end
   end

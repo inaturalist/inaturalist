@@ -13,8 +13,7 @@
             :class => "taxonchooser text" %>
           <%= f.hidden_field(:taxon_id, 
             :alt => (subscription.taxon ? 
-              content_tag(:span, subscription.taxon.name, 
-                :class => "taxon sciname #{subscription.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[subscription.taxon.iconic_taxon_id].try(:name)}") : nil),
+              "<span class='taxon sciname #{subscription.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[subscription.taxon.iconic_taxon_id].try(:name)}'>#{subscription.taxon.name}</span>" : nil),
             :rel => (subscription.taxon ? taxon_image_url(subscription.taxon) : nil)) %>
         </div>
       <% end -%>

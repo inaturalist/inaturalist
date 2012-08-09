@@ -624,7 +624,7 @@ class TaxaController < ApplicationController
           :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES["Country"]]).compact
       when 'us_states'
         if @us = Place.find_by_name("United States")
-          @us.children.all(:order => "name", :include => :parent).compact
+          @us.children.all(:order => "name").compact
         else
           []
         end
