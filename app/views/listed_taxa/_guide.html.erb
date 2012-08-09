@@ -109,7 +109,7 @@
         <!-- <div class="right map" data-taxon-id="<%= taxon.id %>" data-taxon-range-kml="<%=  %>"></div> -->
         <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
         <div class="stacked">
-          <%= taxon.wikipedia_summary %>
+          <%= raw taxon.wikipedia_summary %>
           <%= link_to "Read the full Wikipedia description", taxon, :class => "readmore" %>
         </div>
         <div class="stacked">

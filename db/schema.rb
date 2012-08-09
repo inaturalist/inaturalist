@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120801204921) do
+ActiveRecord::Schema.define(:version => 20120808224842) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -477,8 +477,10 @@ ActiveRecord::Schema.define(:version => 20120801204921) do
     t.boolean  "delta",                                             :default => false
     t.integer  "user_id"
     t.string   "source_filename"
+    t.string   "ancestry"
   end
 
+  add_index "places", ["ancestry"], :name => "index_places_on_ancestry"
   add_index "places", ["bbox_area"], :name => "index_places_on_bbox_area"
   add_index "places", ["check_list_id"], :name => "index_places_on_check_list_id"
   add_index "places", ["latitude", "longitude"], :name => "index_places_on_latitude_and_longitude"

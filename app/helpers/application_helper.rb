@@ -1,9 +1,17 @@
 # Methods added to this helper will be available to all templates in the application.
 # require 'recaptcha'
-module ApplicationHelper  
-  def gmap_include_tag(key = nil)
-    key ||= Ym4r::GmPlugin::ApiKey.get
-    "<script src=\"http://maps.google.com/maps?file=api&v=2&key=#{Ym4r::GmPlugin::ApiKey.get}\" type=\"text/javascript\"></script>".html_safe
+module ApplicationHelper
+  include Ambidextrous
+  
+  def gmap_include_tag(key = false)
+    tag = if key
+      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
+      (key) + '" type="text/javascript"></script>'
+    else
+      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
+      (Ym4r::GmPlugin::ApiKey.get)  + '" type="text/javascript"></script>'
+    end
+    tag.html_safe
   end
   
   def num2letterID(num)
@@ -446,7 +454,7 @@ module ApplicationHelper
         content_tag(:span, name, :class => "month")
       end
     end
-    content_tag(:div, html, :class => 'monthgraph graph')
+    content_tag(:div, html.html_safe, :class => 'monthgraph graph')
   end
   
   def catch_and_release(&block)
