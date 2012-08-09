@@ -51,7 +51,7 @@ end
 
 <div class="column span-16">
   <h3>Preview</h3>
-  <%= @widget_code = "<iframe width=\"100%\" height=\"600\" scrolling=\"auto\" src=\"#{place_guide_widget_url(@place)}\"></iframe>" -%>
+  <%= @widget_code = "<iframe width=\"100%\" height=\"600\" scrolling=\"auto\" src=\"#{place_guide_widget_url(@place)}\"></iframe>".html_safe -%>
 </div>
 <div class="last column span-8">
   <h3>Configure</h3>

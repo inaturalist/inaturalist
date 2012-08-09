@@ -53,7 +53,7 @@
         <% end -%>
       </span>
     <% end -%>
-    <%= after_image if after_image %>
+    <%= after_image.html_safe if after_image %>
   </div>
   <% if more_images -%>
     <div class="moreimages">
@@ -99,7 +99,7 @@
     <% unless hide_wikipedia_summary -%>
       <div class="wikipedia_summary">
         <% if summary = taxon.wikipedia_summary -%>
-          <%= summary %>
+          <%= summary.html_safe %>
           <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
         <% else %>
           <span class="description">
