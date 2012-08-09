@@ -414,9 +414,18 @@ class TaxaController < ApplicationController
     @q = params[:q] || params[:term]
     @taxon_names = TaxonName.paginate(
       :page => params[:page], 
-      :include => [:taxon],
+      :include => {:taxon => :taxon_names},
       :conditions => ["lower(name) LIKE ?", "#{@q.to_s.downcase}%"]
     )
+    exact_matches = []
+    @taxon_names.each_with_index do |taxon_name, i|
+      next unless taxon_name.name.downcase.strip == @q.to_s.downcase.strip
+      exact_matches << @taxon_names.delete_at(i)
+    end
+    if exact_matches.blank?
+      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, :conditions => ["lower(name) = ?", @q.to_s.downcase])
+    end
+    @taxon_names.unshift(*exact_matches)
     @taxa = @taxon_names.map do |taxon_name|
       taxon = taxon_name.taxon
       taxon.html = render_to_string(:partial => "chooser.html.erb", 
