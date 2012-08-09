@@ -342,6 +342,14 @@ describe Taxon, "tags_to_taxa" do
     taxa.should include(@Animalia)
     taxa.should include(@Aves)
   end
+
+  it "should not find inactive taxa" do
+    active_taxon = Taxon.make
+    inactive_taxon = Taxon.make(:name => active_taxon.name, :is_active => false)
+    taxa = Taxon.tags_to_taxa([active_taxon.name])
+    taxa.should include(active_taxon)
+    taxa.should_not include(inactive_taxon)
+  end
 end
 
 describe Taxon, "merging" do

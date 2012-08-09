@@ -988,7 +988,8 @@ class Taxon < ActiveRecord::Base
       end
     end.compact
     scope = scope.scoped(:conditions => ["lower(taxon_names.name) IN (?)", names])
-    taxon_names = scope.all
+    taxon_names = scope.all(:conditions => ["taxa.is_active = ?", true])
+    taxon_names = scope.all if taxon_names.blank?
     taxon_names.map{|tn| tn.taxon}.compact
   end
   
