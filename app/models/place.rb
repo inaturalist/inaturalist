@@ -296,7 +296,7 @@ class Place < ActiveRecord::Base
   # Create a CheckList associated with this place
   def create_default_check_list
     self.create_check_list(:place => self)
-    save(false)
+    save(:validate => false)
     unless check_list.valid?
       logger.info "[INFO] Failed to create a default check list on " + 
         "creation of #{self}: " + 
@@ -350,7 +350,7 @@ class Place < ActiveRecord::Base
       self.nelng = geom.envelope.upper_corner.x
     end
     calculate_bbox_area
-    save(false)
+    save(:validate => false)
   end
   
   #
@@ -525,6 +525,9 @@ class Place < ActiveRecord::Base
       save_geom(mergee.place_geometry.geom)
     end
     
+    # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
+    mergee.reload
+
     mergee.destroy
     self.save
     self
