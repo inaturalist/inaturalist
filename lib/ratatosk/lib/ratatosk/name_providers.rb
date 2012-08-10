@@ -1,4 +1,4 @@
-require 'ratatosk/model_adapter'
+require ::File.expand_path('../model_adapter',  __FILE__)
 
 #require the name providers
 require 'ratatosk/name_providers/catalogue_of_life'
