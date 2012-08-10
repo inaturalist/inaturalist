@@ -1,9 +1,11 @@
-<% if object.is_a?(ListedTaxon) -%>
-  <%- line = object.taxon.name %>
-  <%- other = object -%>
-<% else %>
-  <%- line, other = object || [nil, nil] -%>
-<% end -%>
+<%-
+  if add_taxon_batch_line.is_a?(ListedTaxon) 
+    line = add_taxon_batch_line.taxon.name
+    other = add_taxon_batch_line 
+  else
+    line, other = add_taxon_batch_line || [nil, nil] 
+  end 
+-%>
 
 <%- 
   row_class = if other.is_a?(ListedTaxon)
