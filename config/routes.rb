@@ -73,8 +73,8 @@ Inaturalist::Application.routes.draw do
   match 'observations/add_nearby' => 'observations#add_nearby', :as => :add_nearby_observations
   match 'observations/:id/edit_photos' => 'observations#edit_photos', :as => :edit_observation_photos
   match 'observations/:id/update_photos' => 'observations#update_photos', :as => :update_observation_photos
-  match 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => /\w[^\.,\/]+/ }
-  match 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => /\w[^\.,\/]+/ }, :via => :get
+  match 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
+  match 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }, :via => :get
   match 'observations/project/:id.:format' => 'observations#project', :as => :project_observations
   match 'observations/project/:id.all.:format' => 'observations#project_all', :as => :all_project_observations
@@ -89,7 +89,7 @@ Inaturalist::Application.routes.draw do
   match 'projects/search' => 'projects#search', :as => :project_search
   match 'projects/search.:format' => 'projects#search', :as => :formatted_project_search
   match 'project/:id/terms' => 'projects#terms', :as => :project_terms
-  match 'projects/user/:login' => 'projects#by_login', :as => :projects_by_login, :constraints => { :login => /\w[^\.,\/]+/ }
+  match 'projects/user/:login' => 'projects#by_login', :as => :projects_by_login, :constraints => { :login => simplified_login_regex }
   match 'projects/:id/members' => 'projects#members', :as => :project_members
   match 'projects/:id/contributors' => 'projects#contributors', :as => :project_contributors
   match 'projects/:id/contributors.:format' => 'projects#contributors', :as => :formatted_project_contributors
@@ -106,9 +106,9 @@ Inaturalist::Application.routes.draw do
   resources :projects
   resources :project_assets, :except => [:index, :show]
   resources :custom_projects, :except => [:index, :show]
-  match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => /\w[^\.,\/]+/ }
-  match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => /\w[^\.,\/]+/ }, :followers => 'followers'
-  match 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => /\w[^\.,\/]+/ }, :following => 'following'
+  match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
+  match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
+  match 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
   resources :lists, :constraints => { :id => id_param_pattern }
   match 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa, :via => :get
   match 'lists/:id/taxa.:format' => 'lists#taxa', :as => :formatted_list_taxa, :via => :get
@@ -119,7 +119,7 @@ Inaturalist::Application.routes.draw do
   resources :check_lists
   resources :project_lists
   resources :listed_taxa
-  match 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => /\w[^\.,\/]+/ }
+  match 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }
   match 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }, :via => :delete
   match 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }, :via => :post
@@ -128,6 +128,7 @@ Inaturalist::Application.routes.draw do
   match 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
   resources :comments
+  match 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
   resources :project_invitations, :except => [:index, :show]
   match 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation, :via => :post
   match 'taxa/names' => 'taxon_names#index'
@@ -177,7 +178,7 @@ Inaturalist::Application.routes.draw do
     :constraints => { :login => simplified_login_regex }
   
   resources :identifications
-  match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => /\w[^\.,\/]+/ }, :via => :get
+  match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   match 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post
   resources :taxon_links, :except => [:show, :index]

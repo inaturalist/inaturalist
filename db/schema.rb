@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808224842) do
+ActiveRecord::Schema.define(:version => 20120810053551) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -921,6 +921,8 @@ ActiveRecord::Schema.define(:version => 20120808224842) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "suspended_at"
+    t.string   "suspension_reason"
   end
 
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"

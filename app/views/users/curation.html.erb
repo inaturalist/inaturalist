@@ -91,7 +91,7 @@
       <th>login</th>
       <th>id</th>
       <th>created_at</th>
-      <th>activated_at</th>
+      <th>confirmed_at</th>
       <th>obs</th>
       <th>IDs</th>
       <th>comments</th>
@@ -101,7 +101,7 @@
         <td><%= link_to user.login, url_for(:id => user.id) %></td>
         <td><%= user.id %></td>
         <td><%= user.created_at %></td>
-        <td><%= user.activated_at %></td>
+        <td><%= user.confirmed_at %></td>
         <td><%= link_to user.observations_count, observations_by_login_path(user.login) %></td>
         <td><%= link_to user.identifications_count, identifications_by_login_path(user.login) %></td>
         <td><%= link_to @comment_counts_by_user_id[user.id].to_i, comments_by_login_path(user.login) %></td>
