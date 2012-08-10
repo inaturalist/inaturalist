@@ -49,6 +49,8 @@ Inaturalist::Application.routes.draw do
   match 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }, :method => :delete
   match 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   resources :photos, :only => [:show, :update]
+  match 'picasa/unlink' => 'picasa#unlink', :method => :delete
+
   resources :observation_photos, :only => :create
   match 'flickr/photos.:format' => 'flickr#photos', :via => :get
   resources :observations, :constraints => { :id => id_param_pattern } do
@@ -72,7 +74,7 @@ Inaturalist::Application.routes.draw do
   match 'observations/nearby' => 'observations#nearby', :as => :nearby_observations
   match 'observations/add_nearby' => 'observations#add_nearby', :as => :add_nearby_observations
   match 'observations/:id/edit_photos' => 'observations#edit_photos', :as => :edit_observation_photos
-  match 'observations/:id/update_photos' => 'observations#update_photos', :as => :update_observation_photos
+  match 'observations/:id/update_photos' => 'observations#update_photos', :as => :update_observation_photos, :via => :post
   match 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
   match 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }, :via => :get
@@ -146,7 +148,7 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/children.:format' => 'taxa#children', :as => :formatted_taxon_children
   match 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
   match 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
-  match 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
+  match 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors, :via => :put
   match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places
   match 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   match 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
