@@ -26,11 +26,6 @@ class TaxaController < ApplicationController
   before_filter :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
-  # verify :method => :post, :only => [:create, :update_photos, 
-  #     :tag_flickr_photos, :tag_flickr_photos_from_observations],
-  #   :redirect_to => { :action => :index }
-  # verify :method => :put, :only => [ :update, :update_colors ],
-  #   :redirect_to => { :action => :index }
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
   
   GRID_VIEW = "grid"
