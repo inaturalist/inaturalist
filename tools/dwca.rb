@@ -9,14 +9,27 @@ Usage:
 
   script/runner dwca.rb
 
-will output licensed observations to public/observations/dwca.zip
+will output licensed observations to public/observations/dwca.zip.
 
-where [options] are:
+  script/runner tools/dwca.rb -f public/observations/calflora.dwca.zip -t 123635 -p 14
+
+will output licensed observations of taxon 123635 from place 14 to calflora.dwca.zip
+  
+  script/runner tools/dwca.rb \
+    -f public/taxa/eol_media.dwca.zip \
+    --core taxon \
+    --extensions EolMedia \
+    --photo-licenses CC-BY CC-BY-NC CC-BY-SA CC-BY-NC-SA
+
+will output taxon records with the EolMedia extension from a limited set of photo 
+licenses.
+
+Options:
 EOS
   opt :path, "Path to archive", :type => :string, :short => "-f", :default => "public/observations/dwca.zip"
   opt :place, "Only export observations from this place", :type => :string, :short => "-p"
   opt :taxon, "Only export observations of this taxon", :type => :string, :short => "-t"
-  opt :core, "Core type. Default: occurrence.", :type => :string, :short => "-c", :default => "occurrence"
+  opt :core, "Core type. Options: occurrence, taxon. Default: occurrence.", :type => :string, :short => "-c", :default => "occurrence"
   opt :extensions, "Extensions to include. Options: EolMedia", :type => :strings, :short => "-x"
   opt :metadata, "Path to metadata template. Default: observations/gbif.eml.erb. \"skip\" will skip EML file generation.", :type => :string, :short => "-m", :default => "observations/gbif.eml.erb"
   opt :descriptor, "Path to descriptor template. Default: observations/gbif.descriptor.builder", :type => :string, :short => "-r", :default => "observations/gbif.descriptor.builder"
@@ -31,6 +44,7 @@ end
 puts "Found place: #{@place}" if opts[:debug]
 @taxon = Taxon.find_by_id(opts[:taxon].to_i) || Taxon.find_by_name(opts[:taxon])
 puts "Found taxon: #{@taxon}" if opts[:debug]
+puts "Photo licenses: #{@opts[:photo_licenses].inspect}" if opts[:debug]
 
 # Create a Darwin Core Archive from iNat observations
 class Metadata < FakeView
