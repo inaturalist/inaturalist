@@ -1,4 +1,4 @@
-require 'ratatosk/model_adapter'
+require ::File.expand_path('../model_adapter',  __FILE__)
 
 class TaxonNameAdapterError < StandardError; end
 class TaxonAdapterError < StandardError; end

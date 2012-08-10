@@ -16,7 +16,7 @@
 # information.
 #
 
-require 'ratatosk/name_providers'
+require ::File.expand_path('../ratatosk/name_providers',  __FILE__)
 
 class RatatoskGraftError < StandardError; end
 
