@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
   
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :encryptor => :restful_authentication_sha1
   
@@ -300,12 +300,6 @@ class User < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     LifeList.send_later(:reload_from_observations, life_list_id)
-  end
-  
-  # vestigial from restful auth
-  # TODO make this work with Devise Suspendable
-  def active?
-    true
   end
   
   def self.query(params={}) 
