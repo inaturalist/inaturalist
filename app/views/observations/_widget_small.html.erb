@@ -8,7 +8,7 @@
     <% end %>
   <% end %>
   <% for observation in @observations %>
-    <% link_to observation_url(observation), :class => "inat-observation-image", :target => (target ? "_blank" : nil) do %>
+    <%= link_to observation_url(observation), :class => "inat-observation-image", :target => (target ? "_blank" : nil) do %>
       <% if obs_img_url = observation_image_url(observation) -%>
         <%= image_tag obs_img_url, :border => 0 %>
       <% else %>

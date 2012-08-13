@@ -241,7 +241,7 @@
       <h4><%= link_to "Blog Widget", :controller => "observations", :action => "widget" %></h4>
       <p class="description">
         Show off your recent observations on your own blog or website!
-        <%= link_to "Get started &raquo;", :controller => "observations", :action => "widget" %>
+        <%= link_to "Get started &raquo;".html_safe, :controller => "observations", :action => "widget" %>
       </p>
     </div>
   </div>
