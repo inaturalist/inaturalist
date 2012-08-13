@@ -801,9 +801,10 @@ class ObservationsController < ApplicationController
 
   # Edit a batch of observations
   def edit_batch
+    observation_ids = params[:o].is_a?(String) ? params[:o].split(',') : []
     @observations = Observation.all(
       :conditions => [
-        "id in (?) AND user_id = ?", params[:o].split(','), current_user])
+        "id in (?) AND user_id = ?", observation_ids, current_user])
     @observations.map do |o|
       if o.coordinates_obscured?
         o.latitude = o.private_latitude
