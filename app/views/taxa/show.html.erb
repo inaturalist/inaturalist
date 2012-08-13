@@ -439,6 +439,9 @@
            )
           })
         })
+        .bind('ajax:error', function() {
+          alert('Error updating colors')
+        })
       
       $('#place_selector_search form, #place_selector_paste form')
         .live('ajax:before', function() {
@@ -648,7 +651,6 @@
             <%= form_for @taxon, 
                 :url => {:action => 'update_colors', :id => @taxon, :format => 'js'},
                 :remote => true do |f| %>
-              <%#= f.collection_select :color_ids, Color.all, :id, :value, {:include_blank => true}, :multiple => true %>
               <% for color in Color.all %>
                 <div class="color_field <%= color.value %>">
                   <%= check_box_tag "taxon[color_ids][]", color.id, 

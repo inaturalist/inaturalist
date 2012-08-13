@@ -759,16 +759,13 @@ class TaxaController < ApplicationController
           render :text => "Colors updated."
         end
       else
+        msg = "There were some problems saving those colors: #{@taxon.errors.full_messages.join(', ')}"
         format.html do
-          flash[:error] = "There was a problem saving those colors: " +
-            @taxon.errors.full_messages.join(', ')
+          flash[:error] = msg
           redirect_to @taxon
         end
         format.js do
-          render :update do |page|
-            page.alert "There were some problems saving those colors: " +
-              @taxon.errors.full_messages.join(', ')
-          end
+          render :text => msg, :status => :unprocessable_entity
         end
       end
     end

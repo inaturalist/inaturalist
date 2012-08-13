@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= strip_tags(@pagetitle = "Add Taxon Batch to #{link_to(@list.title, @list)}") %>
+  <%= strip_tags(@pagetitle = "Add Taxon Batch to #{link_to(@list.title, @list)}".html_safe) %>
 <%- end -%>
 <% content_for(:extracss) do %>
   <%= render :partial => 'lists/show_css' %>
@@ -44,10 +44,19 @@
   <%= javascript_include_tag 'jquery/plugins/jquery.string.1.0' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('#new_listed_taxon').show();
-      window.todo = <%= @lines_taxa.map{|l,o| l if o.blank?}.compact.in_groups_of(50).reverse.to_json.html_safe %>;
-      loadNextBatch();
-    });
+      $('#new_listed_taxon').show()
+      window.todo = <%= @lines_taxa.map{|l,o| l if o.blank?}.compact.in_groups_of(@batch_size).reverse.to_json.html_safe %>
+      loadNextBatch()
+    })
+
+    $('table .actions form')
+      .live('ajax:success', function(event, json, status, request) {
+        $(this).parents('tr:first').replaceWith(json.html)
+      })
+      .live('ajax:error', function(event, request, settings) {
+        var json = eval('(' + request.responseText + ')')
+        alert(json.full_messages)
+      })
     
     function loadNextBatch() {
       var batch = todo.pop();
@@ -56,9 +65,16 @@
           type: "post",
           url: '<%= url_for %>',
           data: {names: batch.join("\n"), authenticity_token: $('meta[name=csrf-token]').attr('content')},
-          dataType: "script",
+          dataType: "json",
           success: function(data, textStatus, XMLHttpRequest) {
-            loadNextBatch();
+            $.each(data, function() {
+              if ($('#'+this.parameterized_name)) {
+                $('#'+this.parameterized_name).replaceWith(this.html)
+              } else {
+                $('#nametable').append(this.html)
+              }
+            })
+            loadNextBatch()
           }
         });
       };
@@ -74,7 +90,7 @@
   <h2><%= @pagetitle %></h2>
 </div>
 
-<table border="0">
+<table id="#nametable" border="0">
   <tr>
     <th class="linecol">Name entered</th>
     <th class="statuscol">Status</th>
