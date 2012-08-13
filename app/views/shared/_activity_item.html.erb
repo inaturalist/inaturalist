@@ -6,9 +6,11 @@
 -%>
 <div id="<%= id_for(item) %>" class="<%= item.class.name.humanize.underscore %> item clear stacked">
   <div class="item_user column">
-    <%= link_to(
-      image_tag(item.user.icon.url(:thumb), :class => 'usericon'),
-      person_path(item.user)) %>
+    <% if user -%>
+      <%= link_to(
+        image_tag(item.user.icon.url(:thumb), :class => 'usericon'),
+        person_path(item.user)) %>
+    <% end -%>
   </div>
   <div class="item_content last column">
     <%- if item.is_a? Identification %>
