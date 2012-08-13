@@ -195,8 +195,10 @@ module Shared::ListsModule
     return redirect_to(@list) unless params[:names]
     @added_taxa = []
     @lines = params[:names].split("\n").to_a.map{|n| n.strip.gsub(/\s+/, " ")}.delete_if(&:blank?)
+    @max = 1000
+    @batch_size = 50
     
-    if @lines.size > 1000
+    if @lines.size > @max
       flash[:notice] = "Sorry, you can only add 1000 at a time."
       return redirect_to(@list)
     end
@@ -206,7 +208,7 @@ module Shared::ListsModule
     @lines.each_with_index do |name, i|
       
       # If we're past 50, just add nil and assume we'll deal with it later
-      if i > 50
+      if i > @batch_size
         @lines_taxa << [name, nil]
         next
       end
@@ -230,19 +232,16 @@ module Shared::ListsModule
     
     respond_to do |format|
       format.html { render :template => "lists/add_taxon_batch" }
-      format.js do
-        render :update do |page|
-          @lines_taxa.each do |line, other|
-            break if other.nil?
-            if page[line.parameterize]
-              page.replace line.parameterize, 
-                :partial => "lists/add_taxon_batch_line", 
-                :object => [line, other]
-            else
-              page.alert("Added #{line}")
-            end
-          end
+      format.json do
+        json = @lines_taxa.map do |name, item|
+          {
+            :name => name,
+            :parameterized_name => name.parameterize,
+            :item => item, 
+            :html => view_context.render_in_format(:html, :partial => "lists/add_taxon_batch_line", :object => [name, item])
+          }
         end
+        render :json => json
       end
     end
   end
