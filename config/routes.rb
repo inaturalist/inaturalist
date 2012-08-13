@@ -184,7 +184,7 @@ Inaturalist::Application.routes.draw do
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   match 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post
   resources :taxon_links, :except => [:show, :index]
-  resources :places
+  
   match 'places/:id/widget' => 'places#widget', :as => :place_widget, :via => :get
   match 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget, :via => :get
   match '/places/find_external' => 'places#find_external', :as => :find_external
@@ -194,8 +194,9 @@ Inaturalist::Application.routes.draw do
   match 'places/geometry/:id.:format' => 'places#geometry', :as => :place_geometry, :via => :get
   match 'places/guide/:id' => 'places#guide', :as => :place_guide, :via => :get
   match 'places/cached_guide/:id' => 'places#cached_guide', :as => :cached_place_guide, :via => :get
-  match 'places/autocomplete' => 'places#autocomplete', :as => :autocomplete
-  match 'places/autocomplete.:format' => 'places#autocomplete', :as => :formatted_autocomplete
+  match 'places/autocomplete' => 'places#autocomplete', :as => :places_autocomplete
+  resources :places
+  
   match '/guide' => 'places#guide', :as => :guide
   resources :flags
   match '/admin' => 'admin#index', :as => :admin

@@ -10,7 +10,7 @@
   <% for observation in @observations %>
     <tr class="inat-observation">
       <td class="inat-observation-image" valign="top" align="center">
-        <% link_to observation_url(observation), :target => (target == "blank" ? "_blank" : nil) do %>
+        <%= link_to observation_url(observation), :target => (target == "blank" ? "_blank" : nil) do %>
           <% if obs_img_url = observation_image_url(observation) -%>
             <%= image_tag obs_img_url, :border => 0 %>
           <% else %>

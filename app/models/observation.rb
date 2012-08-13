@@ -309,8 +309,8 @@ class Observation < ActiveRecord::Base
   scope :recently_added, order("observations.id DESC")
   
   # TODO: Make this work for any SQL order statement, including multiple cols
-  scope :order_by, lambda { |order_by|
-    pieces = order_by.split
+  scope :order_by, lambda { |order_sql|
+    pieces = order_sql.split
     order_by = pieces[0]
     order = pieces[1] || 'ASC'
     extra = [pieces[2..-1]].flatten.join(' ')

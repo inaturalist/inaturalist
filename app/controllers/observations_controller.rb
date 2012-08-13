@@ -1059,11 +1059,6 @@ class ObservationsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js do
-        render :update do |page|
-          page.replace_html "widget_preview_and_code", :partial => "widget_preview_and_code"
-        end
-      end
     end
   end
   
