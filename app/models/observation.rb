@@ -1193,7 +1193,7 @@ class Observation < ActiveRecord::Base
     if taxon_id_changed? && taxon.blank?
       update_out_of_range
     elsif latitude_changed? || private_latitude_changed? || taxon_id_changed?
-      send_later(:update_out_of_range)
+      delay.update_out_of_range
     end
     true
   end

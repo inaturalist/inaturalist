@@ -297,7 +297,7 @@ class ProjectsController < ApplicationController
       redirect_to project_members_path(@project)
       return
     end
-    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
+    Project.delay.delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     if @project_user.destroy
       flash[:notice] = "Removed project user"
       redirect_to project_members_path(@project)
@@ -377,9 +377,9 @@ class ProjectsController < ApplicationController
     
     
     unless @project_user.role == nil
-      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
+      Project.delay.update_curator_idents_on_remove_curator(@project.id, @project_user.user.id)
     end
-    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
+    Project.delay.delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     @project_user.destroy
     
     respond_to do |format|

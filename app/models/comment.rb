@@ -23,7 +23,7 @@ class Comment < ActiveRecord::Base
   def deliver_notification
     return true unless parent.respond_to?(:user_id) && parent.user_id != user_id && 
       parent.user && !parent.user.email.blank? && parent.user.prefers_comment_email_notification?
-    Emailer.send_later(:deliver_comment_notification, self)
+    Emailer.delay.deliver_comment_notification(self)
     true
   end
   

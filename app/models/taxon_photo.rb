@@ -10,7 +10,7 @@ class TaxonPhoto < ActiveRecord::Base
   validates_associated :photo
   
   def destroy_orphan_photo
-    Photo.send_later(:destroy_orphans, photo_id)
+    Photo.delay.destroy_orphans(photo_id)
     true
   end
   

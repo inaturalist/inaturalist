@@ -26,23 +26,23 @@ class ProjectObservation < ActiveRecord::Base
   
   def refresh_project_list
     return true if observation.taxon_id.blank?
-    Project.send_later(:refresh_project_list, project_id, 
+    Project.delay.refresh_project_list(project_id, 
       :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
     true
   end
   
   def update_observations_counter_cache_later
-    ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, observation.user_id)
+    ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
   
   def update_taxa_counter_cache_later
-    ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, observation.user_id)
+    ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
   
   def update_project_observed_taxa_counter_cache_later
-    Project.send_later(:update_observed_taxa_count, project_id)
+    Project.delay.update_observed_taxa_count(project_id)
   end
 
   def to_csv_column(column)

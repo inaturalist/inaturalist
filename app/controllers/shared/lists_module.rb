@@ -79,9 +79,9 @@ module Shared::ListsModule
           # no job id, no job, let's get this party started
           Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
           job = if @view == "taxonomic"
-            @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.taxonomic.csv", :taxonomic => true)
+            @list.delay.generate_csv(:path => "public/lists/#{@list.to_param}.taxonomic.csv", :taxonomic => true)
           else
-            @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
+            @list.delay.generate_csv(:path => "public/lists/#{@list.to_param}.csv")
           end
           Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
         end

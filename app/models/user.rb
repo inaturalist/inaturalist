@@ -299,7 +299,7 @@ class User < ActiveRecord::Base
     reject.friendships.all(:conditions => ["friend_id = ?", id]).each{|f| f.destroy}
     merge_has_many_associations(reject)
     reject.destroy
-    LifeList.send_later(:reload_from_observations, life_list_id)
+    LifeList.delay.reload_from_observations(life_list_id)
   end
   
   def self.query(params={}) 
