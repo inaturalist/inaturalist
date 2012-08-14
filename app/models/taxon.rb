@@ -601,18 +601,23 @@ class Taxon < ActiveRecord::Base
     ancestors.find(:first, :conditions => "rank = 'phylum'")
   end
   
+  validate :taxon_cant_be_its_own_ancestor
+  validate :can_only_be_featured_if_photos
+  validate :validate_locked
 
-  def validate
-    if !new_record? && parent_id == id
-      errors.add(self.name, "can't be its own parent")
-    end
+  def taxon_cant_be_its_own_ancestor
     if ancestor_ids.include?(id)
       errors.add(self.name, "can't be its own ancestor")
     end
+  end
+
+  def can_only_be_featured_if_photos
     if !featured_at.blank? && taxon_photos.blank?
       errors.add(:featured_at, "can only be set if the taxon has photos")
     end
-    
+  end
+
+  def validate_locked
     if !@skip_locks && ancestry_changed? && (locked_ancestor = ancestors.locked.first)
       errors.add(:ancestry, "includes a locked taxon (#{locked_ancestor}), " +
         "so this cannot be added as a descendent.  Either unlock the " + 
@@ -778,7 +783,7 @@ class Taxon < ActiveRecord::Base
     LifeList.delay.update_life_lists_for_taxon(self, :priority => 1)
     Taxon.delay.update_listed_taxa_for(self, reject.ancestry. :priority => 1)
     
-    flags.each do |flag|
+    flags(:reload => true).each do |flag|
       flag.destroy unless flag.valid?
     end
     

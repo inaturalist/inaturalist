@@ -6,14 +6,12 @@ require File.dirname(__FILE__) + '/../spec_helper'
 include AuthenticatedTestHelper
 
 describe User do
-  fixtures :users
-
   describe 'being created' do
     before do
       @user = nil
       @creating_user = lambda do
         @user = create_user
-        violated "#{@user.errors.full_messages.to_sentence}" if @user.new_record?
+        puts "[ERROR] #{@user.errors.full_messages.to_sentence}" if @user.new_record?
       end
     end
 
@@ -21,22 +19,16 @@ describe User do
       @creating_user.should change(User, :count).by(1)
     end
 
-    it 'initializes #activation_code' do
+    it 'initializes confirmation_token' do
       @creating_user.call
       @user.reload
-      @user.activation_code.should_not be_nil
-    end
-
-    it 'starts in pending state' do
-      @creating_user.call
-      @user.reload
-      @user.should be_pending
+      @user.confirmation_token.should_not be_blank
     end
     
     it 'should create a life list' do
       @creating_user.call
       @user.reload
-      @user.life_list.should_not be_nil
+      @user.life_list.should_not be_blank
     end
     
     it 'should create a life list that is among this users lists' do
@@ -46,9 +38,9 @@ describe User do
     end
     
     it "should enforce unique login regardless of a case" do
-      u1 = User.make(:login => 'foo')
+      u1 = User.make!(:login => 'foo')
       lambda {
-        User.make(:login => 'FOO')
+        User.make!(:login => 'FOO')
       }.should raise_error(ActiveRecord::RecordInvalid)
     end
   end
@@ -60,12 +52,12 @@ describe User do
   it 'requires login' do
     lambda do
       u = create_user(:login => nil)
-      u.errors.on(:login).should_not be_nil
+      u.errors[:login].should_not be_blank
     end.should_not change(User, :count)
     
     lambda do
       u = create_user(:login => "")
-      u.errors.on(:login).should_not be_nil
+      u.errors[:login].should_not be_blank
     end.should_not change(User, :count)
   end
 
@@ -74,7 +66,7 @@ describe User do
       it "'#{login_str}'" do
         lambda do
           u = create_user(:login => login_str)
-          u.errors.on(:login).should     be_nil
+          u.errors[:login].should     be_blank
         end.should change(User, :count).by(1)
       end
     end
@@ -88,7 +80,7 @@ describe User do
       it "'#{login_str}'" do
         lambda do
           u = create_user(:login => login_str)
-          u.errors.on(:login).should_not be_nil
+          u.errors[:login].should_not be_blank
         end.should_not change(User, :count)
       end
     end
@@ -97,21 +89,21 @@ describe User do
   it 'requires password' do
     lambda do
       u = create_user(:password => nil)
-      u.errors.on(:password).should_not be_nil
+      u.errors[:password].should_not be_blank
     end.should_not change(User, :count)
   end
 
   it 'requires password confirmation' do
     lambda do
-      u = create_user(:password_confirmation => nil)
-      u.errors.on(:password_confirmation).should_not be_nil
+      u = create_user(:password_confirmation => "")
+      u.errors[:password].should_not be_blank
     end.should_not change(User, :count)
   end
 
   it 'requires email' do
     lambda do
       u = create_user(:email => nil)
-      u.errors.on(:email).should_not be_nil
+      u.errors[:email].should_not be_blank
     end.should_not change(User, :count)
   end
 
@@ -124,7 +116,7 @@ describe User do
       it "'#{email_str}'" do
         lambda do
           u = create_user(:email => email_str)
-          u.errors.on(:email).should     be_nil
+          u.errors[:email].should     be_blank
         end.should change(User, :count).by(1)
       end
     end
@@ -139,7 +131,7 @@ describe User do
       it "'#{email_str}'" do
         lambda do
           u = create_user(:email => email_str)
-          u.errors.on(:email).should_not be_nil
+          u.errors[:email].should_not be_blank
         end.should_not change(User, :count)
       end
     end
@@ -152,7 +144,7 @@ describe User do
       it "'#{name_str}'" do
         lambda do
           u = create_user(:name => name_str)
-          u.errors.on(:name).should     be_nil
+          u.errors[:name].should     be_blank
         end.should change(User, :count).by(1)
       end
     end
@@ -164,142 +156,100 @@ describe User do
       it "'#{name_str}'" do
         lambda do
           u = create_user(:name => name_str)
-          u.errors.on(:name).should_not be_nil
+          u.errors[:name].should_not be_blank
         end.should_not change(User, :count)
       end
     end
   end
 
   it 'resets password' do
-    users(:quentin).update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    User.authenticate('quentin', 'new password').should == users(:quentin)
+    user = User.make!
+    user.update_attributes(:password => 'new password', :password_confirmation => 'new password')
+    User.authenticate(user.login, 'new password').should == user
   end
 
   it 'does not rehash password' do
-    users(:quentin).update_attributes(:login => 'quentin2')
-    User.authenticate('quentin2', 'monkey').should == users(:quentin)
+    pw = "fooosdgsg"
+    user = User.make!(:password => pw, :password_confirmation => pw)
+    user.update_attributes(:login => 'quentin2')
+    User.authenticate('quentin2', pw).should == user
   end
 
-  #
-  # Authentication
-  #
+  describe "authentication" do
+    before(:each) do
+      @pw = "fooosdgsg"
+      @user = User.make!(:password => @pw, :password_confirmation => @pw)
+    end
 
-  it 'authenticates user' do
-    User.authenticate('quentin', 'monkey').should == users(:quentin)
-  end
+    it 'authenticates user' do
+      User.authenticate(@user.login, @pw).should == @user
+    end
 
-  it "doesn't authenticate user with bad password" do
-    User.authenticate('quentin', 'invalid_password').should be_nil
-  end
+    it "doesn't authenticate user with bad password" do
+      User.authenticate(@user.login, 'invalid_password').should be_blank
+    end
 
- if REST_AUTH_SITE_KEY.blank?
-   # old-school passwords
-   it "authenticates a user against a hard-coded old-style password" do
-     User.authenticate('old_password_holder', 'test').should == users(:old_password_holder)
-   end
- else
-   it "doesn't authenticate a user against a hard-coded old-style password" do
-     User.authenticate('old_password_holder', 'test').should be_nil
-   end
-
-   # New installs should bump this up and set REST_AUTH_DIGEST_STRETCHES to give a 10ms encrypt time or so
-   desired_encryption_expensiveness_ms = 0.1
-   it "takes longer than #{desired_encryption_expensiveness_ms}ms to encrypt a password" do
-     test_reps = 100
-     start_time = Time.now; test_reps.times{ User.authenticate('quentin', 'monkey'+rand.to_s) }; end_time   = Time.now
-     auth_time_ms = 1000 * (end_time - start_time)/test_reps
-     auth_time_ms.should > desired_encryption_expensiveness_ms
-   end
- end
-
-  #
-  # Authentication
-  #
-
-  it 'sets remember token' do
-    users(:quentin).remember_me
-    users(:quentin).remember_token.should_not be_nil
-    users(:quentin).remember_token_expires_at.should_not be_nil
-  end
-
-  it 'unsets remember token' do
-    users(:quentin).remember_me
-    users(:quentin).remember_token.should_not be_nil
-    users(:quentin).forget_me
-    users(:quentin).remember_token.should be_nil
-  end
-
-  it 'remembers me for one week' do
-    before = 6.days.from_now.utc
-    users(:quentin).remember_me_for 1.week
-    after = 8.days.from_now.utc
-    
-    users(:quentin).remember_token.should_not be_nil
-    users(:quentin).remember_token_expires_at.should_not be_nil
-    users(:quentin).remember_token_expires_at.between?(before, after).should be_true
-  end
-
-  it 'remembers me until one week' do
-    time = 1.week.from_now
-    users(:quentin).remember_me_until time
-    users(:quentin).remember_token.should_not be_nil
-    users(:quentin).remember_token_expires_at.should_not be_nil
-    users(:quentin).remember_token_expires_at.to_i.should === time.to_i
-  end
-
-  it 'remembers me default two weeks' do
-    Time.use_zone(users(:quentin).time_zone) do
-      before = 13.days.from_now.utc
-      users(:quentin).remember_me
-      after = 15.days.from_now.utc
-      users(:quentin).remember_token.should_not be_nil
-      users(:quentin).remember_token_expires_at.should_not be_nil
-      users(:quentin).remember_token_expires_at.between?(before, after).should be_true
+    it 'does not authenticate suspended user' do
+      @user.suspend!
+      User.authenticate(@user.login, @pw).should_not == @user
     end
   end
 
-  it 'registers passive user' do
-    user = create_user(:password => nil, :password_confirmation => nil)
-    user.should be_passive
-    user.update_attributes(:password => 'new password', :password_confirmation => 'new password')
-    user.register!
-    user.should be_pending
+  describe "remembering" do
+    before(:each) do
+      @user = User.make!
+    end
+
+    it 'sets remember token' do
+      @user.remember_me!
+      @user.remember_token.should_not be_blank
+      @user.remember_expires_at.should_not be_blank
+    end
+
+    it 'unsets remember token' do
+      @user.remember_me!
+      @user.remember_token.should_not be_blank
+      @user.forget_me!
+      @user.remember_token.should be_blank
+    end
+
+    it 'remembers me default two weeks' do
+      Time.use_zone(@user.time_zone) do
+        before = 13.days.from_now.utc
+        @user.remember_me!
+        after = 15.days.from_now.utc
+        @user.remember_token.should_not be_blank
+        @user.remember_expires_at.should_not be_blank
+        @user.remember_expires_at.between?(before, after).should be_true
+      end
+    end
   end
 
   it 'suspends user' do
-    users(:quentin).suspend!
-    users(:quentin).should be_suspended
-  end
-
-  it 'does not authenticate suspended user' do
-    users(:quentin).suspend!
-    User.authenticate('quentin', 'monkey').should_not == users(:quentin)
-  end
-
-  it 'deletes user' do
-    users(:quentin).deleted_at.should be_nil
-    users(:quentin).delete!
-    users(:quentin).deleted_at.should_not be_nil
-    users(:quentin).should be_deleted
+    user = User.make!
+    user.suspend!
+    user.should be_suspended
   end
   
   describe "deletion" do
+    before do
+      @user = User.make!
+    end
+
     it "should create a deleted user" do
-      user = User.make
-      user.destroy
+      @user.destroy
       deleted_user = DeletedUser.last
       deleted_user.should_not be_blank
-      deleted_user.user_id.should == user.id
-      deleted_user.login.should == user.login
-      deleted_user.email.should == user.email
+      deleted_user.user_id.should == @user.id
+      deleted_user.login.should == @user.login
+      deleted_user.email.should == @user.email
     end
   end
 
   describe "being unsuspended" do
-    fixtures :users
 
     before do
-      @user = users(:quentin)
+      @user = User.make!
       @user.suspend!
     end
 
@@ -308,23 +258,23 @@ describe User do
       @user.should be_active
     end
 
-    it 'reverts to passive state if activation_code and activated_at are nil' do
-      User.update_all :activation_code => nil, :activated_at => nil
-      @user.reload.unsuspend!
-      @user.should be_passive
-    end
+    # it 'reverts to passive state if activation_code and activated_at are nil' do
+    #   User.update_all :activation_code => nil, :activated_at => nil
+    #   @user.reload.unsuspend!
+    #   @user.should be_passive
+    # end
 
-    it 'reverts to pending state if activation_code is set and activated_at is nil' do
-      User.update_all :activation_code => 'foo-bar', :activated_at => nil
-      @user.reload.unsuspend!
-      @user.should be_pending
-    end
+    # it 'reverts to pending state if activation_code is set and activated_at is nil' do
+    #   User.update_all :activation_code => 'foo-bar', :activated_at => nil
+    #   @user.reload.unsuspend!
+    #   @user.should be_pending
+    # end
   end
   
   describe "licenses" do
     it "should update existing observations if requested" do
-      u = User.make
-      o = Observation.make(:user => u)
+      u = User.make!
+      o = Observation.make!(:user => u)
       u.preferred_observation_license = Observation::CC_BY
       u.update_attributes(:make_observation_licenses_same => true)
       o.reload
@@ -332,8 +282,8 @@ describe User do
     end
     
     it "should update existing photo if requested" do
-      u = User.make
-      p = LocalPhoto.make(:user => u)
+      u = User.make!
+      p = LocalPhoto.make!(:user => u)
       u.preferred_photo_license = Observation::CC_BY
       u.update_attributes(:make_photo_licenses_same => true)
       p.reload
@@ -343,27 +293,33 @@ describe User do
 
   protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
-    record.register! if record.valid?
-    record
+    opts = {
+      :login => 'quire', 
+      :email => 'quire@example.com', 
+      :password => 'quire69', 
+      :password_confirmation => 'quire69'
+    }.merge(options)
+    u = User.new(opts)
+    u.save
+    u
   end
 end
 
 
 describe User, "merge" do
   before(:each) do
-    @keeper = User.make
-    @reject = User.make
+    @keeper = User.make!
+    @reject = User.make!
   end
   it "should move observations" do
-    o = Observation.make(:user => @reject)
+    o = Observation.make!(:user => @reject)
     @keeper.merge(@reject)
     o.reload
     o.user_id.should == @keeper.id
   end
   
   it "should merge life lists" do
-    t = Taxon.make
+    t = Taxon.make!
     @reject.life_list.add_taxon(t)
     @keeper.merge(@reject)
     @keeper.reload
@@ -371,7 +327,7 @@ describe User, "merge" do
   end
   
   it "should remove self frienships" do
-    f = Friendship.make(:user => @reject, :friend => @keeper)
+    f = Friendship.make!(:user => @reject, :friend => @keeper)
     @keeper.merge(@reject)
     Friendship.find_by_id(f.id).should be_blank
     @keeper.friendships.map(&:friend_id).should_not include(@keeper.id)

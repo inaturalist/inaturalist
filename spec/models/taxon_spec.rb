@@ -32,7 +32,7 @@ describe Taxon, "creation" do
   
   before(:each) do
     load_test_taxa
-    @taxon = Taxon.make(:name => 'Pseudacris imaginarius', :rank => 'species')
+    @taxon = Taxon.make!(:name => 'Pseudacris imaginarius', :rank => 'species')
   end
   
   it "should set an iconic taxon if this taxon was grafted" do
@@ -116,12 +116,12 @@ describe Taxon, "updating" do
   # end
   
   it "should not destroy photos that have observations" do
-    t = Taxon.make
-    o = Observation.make
-    p = Photo.make
+    t = Taxon.make!
+    o = Observation.make!
+    p = Photo.make!
     t.photos << p
     o.photos << p
-    t.photos = [Photo.make]
+    t.photos = [Photo.make!]
     o.reload
     o.photos.should_not be_blank
   end
@@ -224,7 +224,7 @@ describe Taxon, "set_iconic_taxon_for_observations_of" do
   end
   
   it "should set the iconic taxon for observations of descendant taxa" do
-    obs = Observation.make(:taxon => @Calypte_anna)
+    obs = Observation.make!(:taxon => @Calypte_anna)
     @Calypte_anna.iconic_taxon.name.should == @Aves.name
     obs.iconic_taxon.name.should == @Calypte_anna.iconic_taxon.name
     @Calypte.update_attributes(:iconic_taxon => @Amphibia)
@@ -240,7 +240,7 @@ describe Taxon, "set_iconic_taxon_for_observations_of" do
     @Aves.should be_is_iconic
     @Chordata.should_not be_is_iconic
     @Calypte_anna.iconic_taxon_id.should be(@Aves.id)
-    obs = Observation.make(:taxon => @Calypte_anna)
+    obs = Observation.make!(:taxon => @Calypte_anna)
     obs.iconic_taxon_id.should be(@Aves.id)
     @Chordata.update_attributes(:iconic_taxon => @Plantae)
     Taxon.set_iconic_taxon_for_observations_of(@Chordata)
@@ -265,22 +265,22 @@ end
 describe Taxon, "unique name" do
 
   it "should be the default_name by default" do
-    taxon = Taxon.make
+    taxon = Taxon.make!
     taxon.unique_name.should == taxon.default_name.name.downcase
   end
   
   it "should be the scientific name if the common name is already another taxon's unique name" do
-    taxon = Taxon.make
-    common_name = TaxonName.make(:name => "Most Awesome Radicalbird", 
+    taxon = Taxon.make!
+    common_name = TaxonName.make!(:name => "Most Awesome Radicalbird", 
       :taxon => taxon, 
       :lexicon => TaxonName::LEXICONS[:ENGLISH])
     taxon.save
     taxon.reload
     taxon.unique_name.should == taxon.common_name.name.downcase
     
-    new_taxon = Taxon.make(:name => "Ballywickia purhiensis", 
+    new_taxon = Taxon.make!(:name => "Ballywickia purhiensis", 
       :rank => 'species')
-    new_taxon.taxon_names << TaxonName.make(
+    new_taxon.taxon_names << TaxonName.make!(
       :name => taxon.common_name.name, 
       :lexicon => TaxonName::LEXICONS[:ENGLISH]
     )
@@ -289,14 +289,14 @@ describe Taxon, "unique name" do
   end
   
   it "should be nil if all else fails" do
-    taxon = Taxon.make # unique name should be the common name
-    common_name = TaxonName.make(
+    taxon = Taxon.make! # unique name should be the common name
+    common_name = TaxonName.make!(
       :taxon => taxon, 
       :lexicon => TaxonName::LEXICONS[:ENGLISH])
     
-    other_taxon = new_taxon = Taxon.make(:name => taxon.name) # unique name should be the sciname
-    new_taxon = Taxon.make(:name => taxon.name)
-    new_common_name = TaxonName.make(:name => common_name.name,
+    other_taxon = new_taxon = Taxon.make!(:name => taxon.name) # unique name should be the sciname
+    new_taxon = Taxon.make!(:name => taxon.name)
+    new_common_name = TaxonName.make!(:name => common_name.name,
       :taxon => new_taxon, 
       :lexicon => TaxonName::LEXICONS[:ENGLISH])
     
@@ -309,17 +309,17 @@ describe Taxon, "unique name" do
   end
   
   it "should work if there are synonyms in different lexicons" do
-    taxon = Taxon.make
-    name1 = TaxonName.make(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    name2 = TaxonName.make(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    taxon = Taxon.make!
+    name1 = TaxonName.make!(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    name2 = TaxonName.make!(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:SPANISH])
     taxon.reload
     taxon.unique_name.should_not be_blank
     taxon.unique_name.should == "foo"
   end
   
   it "should not contain punctuation" do
-    taxon = Taxon.make
-    TaxonName.make(:taxon => taxon, :name => "St. Gerome's Radical Snake", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    taxon = Taxon.make!
+    TaxonName.make!(:taxon => taxon, :name => "St. Gerome's Radical Snake", :lexicon => TaxonName::LEXICONS[:ENGLISH])
     taxon.reload
     taxon.unique_name.should_not match(/[\.\'\?\!\\\/]/)
   end
@@ -356,7 +356,7 @@ describe Taxon, "merging" do
   
   before(:each) do
     load_test_taxa
-    @keeper = Taxon.make(
+    @keeper = Taxon.make!(
       :name => 'Calypte imaginarius',
       :rank => 'species'
     )
@@ -409,7 +409,7 @@ describe Taxon, "merging" do
   
   it "should move the reject's observations to the keeper" do
     2.times do
-      Observation.make(:taxon => @reject)
+      Observation.make!(:taxon => @reject)
     end
     rejected_observations = @reject.observations.all
     rejected_observations.should_not be_empty
@@ -422,7 +422,7 @@ describe Taxon, "merging" do
   
   it "should move the reject's listed_taxa to the keeper" do
     3.times do
-      ListedTaxon.make(:taxon => @reject)
+      ListedTaxon.make!(:taxon => @reject)
     end
     rejected_listed_taxa = @reject.listed_taxa.all
     rejected_listed_taxa.should_not be_empty
@@ -434,9 +434,9 @@ describe Taxon, "merging" do
   end
   
   it "should move the reject's list_rules to the keeper" do
-    rule = ListRule.make(:operand => @Amphibia, :operator => "in_taxon?")
+    rule = ListRule.make!(:operand => @Amphibia, :operator => "in_taxon?")
     reject = rule.operand
-    keeper = reject.clone
+    keeper = Taxon.make
     keeper.name = "Amphibia2"
     keeper.unique_name = "Amphibia2"
     keeper.save
@@ -449,7 +449,7 @@ describe Taxon, "merging" do
   
   it "should move the reject's identifications to the keeper" do
     3.times do
-      Identification.make(:taxon => @reject)
+      Identification.make!(:taxon => @reject)
     end
     rejected_identifications = @reject.identifications.all
     rejected_identifications.should_not be_empty
@@ -462,7 +462,7 @@ describe Taxon, "merging" do
   
   it "should move the reject's taxon_links to the keeper" do
     3.times do
-      TaxonLink.make(:taxon => @reject)
+      TaxonLink.make!(:taxon => @reject)
     end
     rejected_taxon_links = @reject.taxon_links.all
     rejected_taxon_links.should_not be_empty
@@ -475,7 +475,7 @@ describe Taxon, "merging" do
   
   it "should move the reject's taxon_photos to the keeper" do
     3.times do
-      TaxonPhoto.make(:taxon => @reject)
+      TaxonPhoto.make!(:taxon => @reject)
     end
     rejected_taxon_photos = @reject.taxon_photos.all
     rejected_taxon_photos.should_not be_empty
@@ -498,7 +498,7 @@ describe Taxon, "merging" do
   
   it "should delete duplicate taxon_names from the reject" do
     old_sciname = @reject.scientific_name
-    @keeper.taxon_names << old_sciname.clone
+    @keeper.taxon_names << old_sciname.dup
     @keeper.merge(@reject)
     TaxonName.find_by_id(old_sciname.id).should be_nil
   end
@@ -511,15 +511,15 @@ describe Taxon, "merging" do
   end
   
   it "should not create duplicate listed taxa" do
-    lt1 = ListedTaxon.make(:taxon => @keeper)
-    lt2 = ListedTaxon.make(:taxon => @reject, :list => lt1.list)
+    lt1 = ListedTaxon.make!(:taxon => @keeper)
+    lt2 = ListedTaxon.make!(:taxon => @reject, :list => lt1.list)
     @keeper.merge(@reject)
     lt1.list.listed_taxa.count(:conditions => {:taxon_id => @keeper.id}).should == 1
   end
   
   it "should set iconic taxa on children" do
-    reject = Taxon.make
-    child = Taxon.make(:parent => reject)
+    reject = Taxon.make!
+    child = Taxon.make!(:parent => reject)
     child.iconic_taxon_id.should_not == @keeper.iconic_taxon_id
     child.iconic_taxon_id.should == reject.iconic_taxon_id
     @keeper.merge(reject)
@@ -543,12 +543,12 @@ describe Taxon, "merging" do
   end
   
   it "should delete invalid flags" do
-    u = User.make
+    u = User.make!
     @keeper.flags.create(:user => u, :flag => "foo")
     @reject.flags.create(:user => u, :flag => "foo")
     @keeper.merge(@reject)
     @keeper.reload
-    @keeper.flags.size.should be(1)
+    @keeper.flags.size.should eq(1)
   end
 end
 
@@ -559,7 +559,7 @@ describe Taxon, "moving" do
   end
   
   it "should update the iconic taxon of observations" do
-    obs = Observation.make(:taxon => @Calypte_anna)
+    obs = Observation.make!(:taxon => @Calypte_anna)
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     taxon.move_to_child_of(@Amphibia)
@@ -570,7 +570,7 @@ describe Taxon, "moving" do
   end
   
   it "should queue a job to set iconic taxon on observations of descendants" do
-    obs = Observation.make(:taxon => @Calypte_anna)
+    obs = Observation.make!(:taxon => @Calypte_anna)
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     Delayed::Job.delete_all
@@ -581,7 +581,7 @@ describe Taxon, "moving" do
   end
   
   it "should not raise an exception if the new parent doesn't exist" do
-    taxon = Taxon.make
+    taxon = Taxon.make!
     bad_id = Taxon.last.id + 1
     lambda {
       taxon.parent_id = bad_id
@@ -617,17 +617,17 @@ end
 describe Taxon do
   describe "featuring" do
     it "should fail if no photos" do
-      taxon = Taxon.make
+      taxon = Taxon.make!
       taxon.featured_at = Time.now
       taxon.photos.should be_blank
       taxon.valid?
-      taxon.errors.on(:featured_at).should_not be_blank
+      taxon.errors[:featured_at].should_not be_blank
     end
   end
   
   describe "conservation status" do
     it "should set conervation_status_source to IUCN by default" do
-      taxon = Taxon.make
+      taxon = Taxon.make!
       taxon.conservation_status_source.should be_blank
       taxon.update_attributes(:conservation_status => Taxon::IUCN_VULNERABLE)
       taxon.conservation_status_source.should_not be_blank
@@ -635,7 +635,7 @@ describe Taxon do
     end
     
     it "should define boolean methods" do
-      taxon = Taxon.make(:conservation_status => Taxon::IUCN_VULNERABLE)
+      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_VULNERABLE)
       taxon.should be_iucn_vulnerable
       taxon.should_not be_iucn_extinct
     end
@@ -643,8 +643,8 @@ describe Taxon do
   
   describe "locking" do
     it "should cause grafting descendents to fail" do
-      taxon = Taxon.make(:locked => true)
-      child = Taxon.make
+      taxon = Taxon.make!(:locked => true)
+      child = Taxon.make!
       child.parent.should_not be(taxon)
       child.update_attribute(:parent, taxon)
       child.parent.should_not be(taxon)
@@ -658,7 +658,7 @@ end
 describe Taxon, "grafting" do
   before(:each) do
     load_test_taxa
-    @graftee = Taxon.make(:rank => "species")
+    @graftee = Taxon.make!(:rank => "species")
   end
   
   it "should set iconic taxa on children" do
@@ -669,7 +669,7 @@ describe Taxon, "grafting" do
   end
   
   it "should set iconic taxa on descendants" do
-    taxon = Taxon.make(:name => "Craptaculous", :parent => @graftee)
+    taxon = Taxon.make!(:name => "Craptaculous", :parent => @graftee)
     puts
     puts "starting test, created taxon: #{taxon}, ancestry: #{taxon.ancestry}, iconic_taxon_id: #{taxon.iconic_taxon_id.inspect}"
     @graftee.update_attributes(:parent => @Pseudacris)

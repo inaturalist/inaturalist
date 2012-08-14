@@ -18,6 +18,10 @@ Comment.blueprint do
   body { Faker::Lorem.paragraph }
 end
 
+FlickrIdentity.blueprint do
+  user { User.make! }
+end
+
 Friendship.blueprint do
   user { User.make }
   friend { User.make }
@@ -26,25 +30,25 @@ end
 Identification.blueprint do
   user { User.make }
   observation { Observation.make }
-  taxon { Taxon.make }
+  taxon { Taxon.make! }
 end
 
 ListedTaxon.blueprint do
-  list { List.make }
-  taxon { Taxon.make }
+  list { List.make! }
+  taxon { Taxon.make! }
 end
 
 List.blueprint do
-  user { User.make }
+  user { User.make! }
   title { Faker::Lorem.sentence }
 end
 
 LifeList.blueprint do
-  user { User.make }
+  user { User.make! }
 end
 
 ListRule.blueprint do
-  list { List.make }
+  list { List.make! }
 end
 
 LocalPhoto.blueprint do
@@ -148,24 +152,24 @@ Taxon.blueprint(:threatened) do
 end
 
 TaxonLink.blueprint do
-  user { User.make }
-  taxon { Taxon.make }
+  user { User.make! }
+  taxon { Taxon.make! }
   url { "http://#{Faker::Internet.domain_name}" }
   site_title { Faker::Lorem.sentence }
 end
 
 TaxonPhoto.blueprint do
-  taxon { Taxon.make }
+  taxon { Taxon.make! }
   photo { Photo.make }
 end
 
 TaxonName.blueprint do
   name { Faker::Name.name }
-  taxon { Taxon.make }
+  taxon { Taxon.make! }
 end
 
 TaxonRange.blueprint do
-  taxon { Taxon.make }
+  taxon { Taxon.make! }
   source { Source.make }
 end
 
@@ -178,7 +182,7 @@ end
 User.blueprint do
   login { 
     s = Faker::Internet.user_name.gsub(/[W\.]/, '')
-    s = User.suggest_login(s) if s.size < User::MIN_LOGIN_SIZE
+    s = User.suggest_login(s) if s.size < User::MIN_LOGIN_SIZE || User.where(:login => s).exists?
     s
   }
   email { Faker::Internet.email }

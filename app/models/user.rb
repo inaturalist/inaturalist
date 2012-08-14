@@ -146,10 +146,14 @@ class User < ActiveRecord::Base
     order("? ?", sort_by, sort_dir)
   }
   scope :curators, includes(:roles).where("roles.name = 'curator'")
-  scope :active, where("state = 'active'")
+  scope :active, where("suspended_at IS NULL")
   
   def icon_url_provided?
     !self.icon_url.blank?
+  end
+
+  def active?
+    !suspended?
   end
 
   def download_remote_icon
@@ -313,18 +317,15 @@ class User < ActiveRecord::Base
   end
   
   def self.find_for_authentication(conditions = {})
-    where("login = ?", conditions[:email]).first || 
-    where("email = ?", conditions[:email]).first
+    s = conditions[:email].to_s.downcase
+    active.where("lower(login) = ? OR lower(email) = ?", s, s).first
   end
   
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
+  # http://stackoverflow.com/questions/6724494
   def self.authenticate(login, password)
-    return nil if login.blank? || password.blank?
-    u = find_in_state :first, :active, :conditions => ["lower(login) = ?", login.downcase]
-    u ||= find_in_state :first, :active, :conditions => ["lower(email) = ?", login.downcase]
-    u ||= find_in_state :first, :pending, :conditions => ["lower(login) = ?", login.downcase]
-    u ||= find_in_state :first, :pending, :conditions => ["lower(email) = ?", login.downcase]
-    u && u.authenticated?(password) ? u : nil
+    user = User.find_for_authentication(:email => login)
+    return nil if user.blank?
+    user.valid_password?(password) ? user : nil
   end
 
   # create a user using 3rd party provider credentials (via omniauth)

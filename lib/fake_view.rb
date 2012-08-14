@@ -4,7 +4,8 @@ class FakeView < ActionView::Base
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::AssetTagHelper
   include ActionView::Helpers::UrlHelper
-  include ActionController::UrlWriter
+  # include ActionController::UrlWriter
+  include Rails.application.routes.url_helpers
   include ApplicationHelper
 
   @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
@@ -20,11 +21,15 @@ class FakeView < ActionView::Base
 
   def initialize
     super
-    self.view_paths = [File.join(RAILS_ROOT, 'app/views')]
+    self.view_paths = [File.join(Rails.root, 'app/views')]
   end
   
   def self.method_missing(method, *args)
     @@fake_view ||= self.new
     @@fake_view.send(method, *args)
+  end
+
+  def self.default_url_options
+    @@default_url_options
   end
 end
