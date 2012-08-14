@@ -121,7 +121,9 @@ class LifeList < List
     # Note: this should use find_each, but due to a bug in rails < 3,
     # conditions in find_each get applied to scopes utilized by anything
     # further up the call stack, causing bugs.
-    list.owner.observations.all(
+    scope = list.owner.observations.scoped({})
+    scope = scope.of(list.rule_taxon) if list.rule_taxon
+    scope.all(
         :select => 'DISTINCT ON(observations.taxon_id) observations.id, observations.taxon_id', 
         :conditions => conditions).each do |observation|
       list.add_taxon(observation.taxon_id, :last_observation_id => observation.id)
