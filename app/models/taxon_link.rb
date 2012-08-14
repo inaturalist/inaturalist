@@ -15,17 +15,24 @@ class TaxonLink < ActiveRecord::Base
   }
   
   TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES]"
+
+  validate :url_can_only_have_name_or_genus_species
+  validate :url_cant_have_genus_without_species
+  validate :url_cant_have_species_without_genus
   
-  def validate
-    if !self.url.blank? && self.url =~ /\[NAME\]/ && 
-        (self.url =~ /\[GENUS\]/ || self.url =~ /\[SPECIES\]/)
+  def url_can_only_have_name_or_genus_species
+    if url.to_s =~ /\[NAME\]/ && (url.to_s =~ /\[GENUS\]/ || url.to_s =~ /\[SPECIES\]/)
       self.errors.add(:url, "can only have [NAME] or [GENUS]/[SPECIES]")
     end
-    
+  end
+  
+  def url_cant_have_genus_without_species
     if !self.url.blank? && self.url =~ /\[GENUS\]/ && self.url !~ /\[SPECIES\]/
       self.errors.add(:url, "can't have [GENUS] without [SPECIES]")
     end
-    
+  end
+  
+  def url_cant_have_species_without_genus  
     if !self.url.blank? && self.url =~ /\[SPECIES\]/ && self.url !~ /\[GENUS\]/
       self.errors.add(:url, "can't have [SPECIES] without [GENUS]")
     end

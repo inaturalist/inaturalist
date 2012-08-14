@@ -2,8 +2,6 @@ class ProjectUser < ActiveRecord::Base
   
   belongs_to :project
   belongs_to :user
-  has_many :project_observations, :through => :project, :include => [:observation], 
-    :conditions => 'observations.user_id = #{user_id}'
   
   after_save :check_role
   before_destroy :prevent_owner_from_leaving
@@ -14,6 +12,10 @@ class ProjectUser < ActiveRecord::Base
   ROLES.each do |role|
     const_set role.upcase, role
     scope role.pluralize, where(:role => role)
+  end
+
+  def project_observations
+    project.project_observations.includes(:observation).where("observations.user_id = ?", user_id).scoped
   end
   
   def prevent_owner_from_leaving
