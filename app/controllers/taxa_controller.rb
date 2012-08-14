@@ -1204,7 +1204,7 @@ class TaxaController < ApplicationController
     
     # graft in the background
     @external_taxa.each do |external_taxon|
-      external_taxon.send_later(:graft) unless external_taxon.grafted?
+      external_taxon.delay.graft unless external_taxon.grafted?
     end
     
     @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|

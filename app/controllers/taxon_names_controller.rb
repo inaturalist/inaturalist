@@ -54,7 +54,7 @@ class TaxonNamesController < ApplicationController
           # graft in the background at a lower priority than the parent proc
           unless @external_taxon_names.empty?
             @external_taxon_names.map(&:taxon).each do |taxon|
-              taxon.send_later(:graft) unless taxon.grafted?
+              taxon.delay.graft unless taxon.grafted?
             end
           end
         rescue Timeout::Error => e
