@@ -42,10 +42,6 @@ class FlickrController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js do
-        @i = params[:i] || 1
-        render
-      end
       format.json { render :json => @photos.to_json }
     end
   end

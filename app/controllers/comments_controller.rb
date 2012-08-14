@@ -82,7 +82,10 @@ class CommentsController < ApplicationController
         end
         redirect_to_parent
       end
-      format.js
+      format.json do
+        @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        render :json => @comment.to_json(:methods => [:html])
+      end
     end
   end
   
