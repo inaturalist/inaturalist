@@ -680,9 +680,9 @@
         <%= link_to "About the taxobox &raquo;", "http://en.wikipedia.org/wiki/Template:Taxobox" %>
       <%- end -%>
       <script type="text/javascript" charset="utf-8">
-        $('#taxoboxlink').qtip($.extend(QTIP_DEFAULTS, {
-          show: {when: 'click'},
-          hide: {when: 'unfocus'},
+        $('#taxoboxlink').qtip($.extend(true, {}, QTIP_DEFAULTS, {
+          show: {event: 'click'},
+          hide: {event: 'unfocus'},
           content: "<%= escape_javascript(taxobox_content) %>"
         }));
       </script>
