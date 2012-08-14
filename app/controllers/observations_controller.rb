@@ -597,7 +597,7 @@ class ObservationsController < ApplicationController
         # Destroy old photos.  ObservationPhotos seem to get removed by magic
         doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
         unless doomed_photo_ids.blank?
-          Photo.send_later(:destroy_orphans, doomed_photo_ids)
+          Photo.delay.destroy_orphans(doomed_photo_ids)
         end
       end
       
@@ -1579,7 +1579,7 @@ class ObservationsController < ApplicationController
     return true if @observations.blank?
     taxa = @observations.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
-    List.send_later(:refresh_for_user, current_user, :taxa => taxa.map(&:id))
+    List.delay.refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true
   end
   

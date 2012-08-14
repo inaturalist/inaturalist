@@ -124,7 +124,7 @@ class UsersController < ApplicationController
     unless @user.project_users.blank? #remove any curator id's this user might have made
       @user.project_users.each do |pu|
         unless pu.role.nil?
-          Project.send_later(:update_curator_idents_on_remove_curator, pu.project_id, @user.id)
+          Project.delay.update_curator_idents_on_remove_curator(pu.project_id, @user.id)
         end
       end
     end

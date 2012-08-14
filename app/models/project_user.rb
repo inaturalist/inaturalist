@@ -65,9 +65,9 @@ class ProjectUser < ActiveRecord::Base
   def check_role
     return true unless role_changed?
     if role_was.blank?
-      Project.send_later(:update_curator_idents_on_make_curator, project_id, id)
+      Project.delay.update_curator_idents_on_make_curator(project_id, id)
     elsif role.blank?
-      Project.send_later(:update_curator_idents_on_remove_curator, project_id, id)
+      Project.delay.update_curator_idents_on_remove_curator(project_id, id)
     end
     true
   end
