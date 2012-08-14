@@ -566,7 +566,7 @@ module ApplicationHelper
             else
               link_to(image_tag("#{code}_small.png"), url) + " "
             end
-            c + link_to("some rights reserved", url)
+            c.html_safe + link_to("some rights reserved", url)
           end
         end
       end
