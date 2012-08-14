@@ -61,16 +61,14 @@ class CheckList < List
   end
   
   def sync_with_parent(options = {})
-    conditions = ["place_id = ?", place_id]
+    scope = ListedTaxon.includes(:taxon).where("place_id = ?", place_id).scoped
     unless options.delete(:force)
       time_since_last_sync = options.delete(:time_since_last_sync) || 1.hour.ago
-      conditions = ListedTaxon.merge_conditions(conditions, 
-        ["listed_taxa.created_at > ?", time_since_last_sync])
+      scope = scope.where("listed_taxa.created_at > ?", time_since_last_sync)
     end
     return unless self.place.parent_id
     parent_check_list = self.place.parent.check_list
-    Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, conditions: #{conditions.inspect}"
-    ListedTaxon.do_in_batches(:include => [:taxon], :conditions => conditions) do |lt|
+    scope.find_each do |lt|
       Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, working on #{lt}"
       if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
         Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, taxon already on parent list, skipping..."
@@ -99,7 +97,7 @@ class CheckList < List
     scope = Taxon.intersecting_place(place).scoped({})
     scope = scope.descendants_of(ancestor) if ancestor
     scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
-      send_later(:add_taxon, taxon.id, :taxon_range_id => taxon.taxon_range_id, 
+      delay.add_taxon(taxon.id, :taxon_range_id => taxon.taxon_range_id, 
         :skip_update_cache_columns => options[:sskip_update_cache_columns],
         :skip_sync_with_parent => options[:skip_sync_with_parent])
     end

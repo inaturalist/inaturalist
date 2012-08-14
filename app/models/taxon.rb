@@ -343,7 +343,7 @@ class Taxon < ActiveRecord::Base
         ["iconic_taxon_id = ?", iconic_taxon_id],
         conditions
       )
-      Taxon.send_later(:set_iconic_taxon_for_observations_of, id, :dj_priority => 1)
+      Taxon.delay.set_iconic_taxon_for_observations_of(id, :priority => 1)
     end
     true
   end
@@ -388,10 +388,10 @@ class Taxon < ActiveRecord::Base
   def update_observations_with_conservation_status_change
     return true unless conservation_status_changed?
     if threatened?
-      Observation.send_later(:obscure_coordinates_for_observations_of, id)
+      Observation.delay.obscure_coordinates_for_observations_of(id)
     elsif !conservation_status_was.blank? && conservation_status_was >= IUCN_NEAR_THREATENED && 
         conservation_status_was < IUCN_EXTINCT_IN_THE_WILD
-      Observation.send_later(:unobscure_coordinates_for_observations_of, id)
+      Observation.delay.unobscure_coordinates_for_observations_of(id)
     end
     true
   end
@@ -625,7 +625,7 @@ class Taxon < ActiveRecord::Base
   def update_listed_taxa
     return true if ancestry.blank?
     return true if ancestry_callbacks_disabled?
-    Taxon.send_later(:update_listed_taxa_for, id, ancestry_was, :dj_priority => 1)
+    Taxon.delay.update_listed_taxa_for(id, ancestry_was, :priority => 1)
     true
   end
   

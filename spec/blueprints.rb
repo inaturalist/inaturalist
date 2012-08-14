@@ -10,45 +10,45 @@ require 'faker'
 # Sham.url { "http://#{Faker::Internet.domain_name}" }
 
 CheckList.blueprint do
-  place
+  place { Place.make! }
 end
 
 Comment.blueprint do
-  user
+  user { User.make }
   body { Faker::Lorem.paragraph }
 end
 
 Friendship.blueprint do
-  user
-  friend
+  user { User.make }
+  friend { User.make }
 end
 
 Identification.blueprint do
-  user
-  observation
-  taxon
+  user { User.make }
+  observation { Observation.make }
+  taxon { Taxon.make }
 end
 
 ListedTaxon.blueprint do
-  list
-  taxon
+  list { List.make }
+  taxon { Taxon.make }
 end
 
 List.blueprint do
-  user
+  user { User.make }
   title { Faker::Lorem.sentence }
 end
 
 LifeList.blueprint do
-  user
+  user { User.make }
 end
 
 ListRule.blueprint do
-  list
+  list { List.make }
 end
 
 LocalPhoto.blueprint do
-  user
+  user { User.make }
 end
 
 Observation.blueprint do
@@ -58,22 +58,22 @@ end
 ObservationField.blueprint do
   name { Faker::Lorem.sentence }
   datatype {'text'}
-  user
+  user { User.make }
 end
 
 ObservationFieldValue.blueprint do
-  observation
-  observation_field
+  observation { Observation.make }
+  observation_field { ObservationField.make }
   value {"foo"}
 end
 
 ObservationPhoto.blueprint do
-  observation
-  photo
+  observation { Observation.make }
+  photo { Photo.make }
 end
 
 Photo.blueprint do
-  user
+  user { User.make }
   native_photo_id { rand(1000) }
 end
 
@@ -84,7 +84,7 @@ Place.blueprint do
 end
 
 Post.blueprint do
-  user
+  user { User.make }
   parent { user }
   title { Faker::Lorem.sentence }
   body { Faker::Lorem.paragraph }
@@ -96,27 +96,27 @@ Post.blueprint(:draft) do
 end
 
 Project.blueprint do
-  user
+  user { User.make }
   title { Faker::Lorem.sentence }
 end
 
 ProjectList.blueprint do
-  project
+  project { Project.make }
 end
 
 ProjectUser.blueprint do
-  user
-  project
+  user { User.make }
+  project { Project.make }
 end
 
 ProjectObservation.blueprint do
-  observation
-  project
+  observation { Observation.make }
+  project { Project.make }
 end
 
 QualityMetric.blueprint do
-  user
-  observation
+  user { User.make }
+  observation { Observation.make }
   metric { QualityMetric::METRICS.first }
 end
 
@@ -125,7 +125,7 @@ Role.blueprint do
 end
 
 Role.blueprint(:admin) do
-  name User::JEDI_MASTER_ROLE
+  name { User::JEDI_MASTER_ROLE }
 end
 
 Source.blueprint do
@@ -148,29 +148,29 @@ Taxon.blueprint(:threatened) do
 end
 
 TaxonLink.blueprint do
-  user
-  taxon
+  user { User.make }
+  taxon { Taxon.make }
   url { "http://#{Faker::Internet.domain_name}" }
   site_title { Faker::Lorem.sentence }
 end
 
 TaxonPhoto.blueprint do
-  taxon
-  photo
+  taxon { Taxon.make }
+  photo { Photo.make }
 end
 
 TaxonName.blueprint do
   name { Faker::Name.name }
-  taxon
+  taxon { Taxon.make }
 end
 
 TaxonRange.blueprint do
-  taxon
-  source
+  taxon { Taxon.make }
+  source { Source.make }
 end
 
 Update.blueprint do
-  subscriber
+  subscriber { User.make }
   resource { Observation.make }
   notifier { Comment.make(:parent => self.resource) }
 end
