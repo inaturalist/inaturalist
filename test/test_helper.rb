@@ -33,6 +33,4 @@ class ActiveSupport::TestCase
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
   self.use_instantiated_fixtures  = false
-  
-  setup { Sham.reset }
 end
