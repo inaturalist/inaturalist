@@ -4,9 +4,9 @@ class FlickrPhoto < Photo
   Photo.descendent_classes << self
   
   validates_presence_of :native_photo_id
-  validate :validate_photo_belongs_to_user
+  validate :user_owns_photo
 
-  def validate_photo_belongs_to_user
+  def user_owns_photo
     if user
       @api_response ||= FlickrPhoto.get_api_response(native_photo_id, :user => user)
       fp_flickr_user_id = @api_response.owner.nsid

@@ -37,17 +37,18 @@ class Photo < ActiveRecord::Base
     7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"}
   }
   LICENSE_NUMBERS = LICENSE_INFO.keys
+
+  validate :licensed_if_no_user
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
   end
   
-  def validate
+  def licensed_if_no_user
     if user.blank? && self.license == 0
       errors.add(
         :license, 
-        "must be a Creative Commons license if the photo wasn't added by " +
-        "an iNaturalist user using their linked Flickr account.")
+        "must be a Creative Commons license if the photo wasn't added by an iNaturalist user.")
     end
   end
   
