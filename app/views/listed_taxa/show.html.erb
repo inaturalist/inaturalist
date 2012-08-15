@@ -1,7 +1,7 @@
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
     <%= iconic_taxon_image @taxon, :style => "vertical-align: middle" %>
-    <% link_to @taxon do %>
+    <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
     on
