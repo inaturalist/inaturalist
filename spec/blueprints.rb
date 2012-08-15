@@ -88,8 +88,8 @@ Place.blueprint do
 end
 
 Post.blueprint do
-  user { User.make }
-  parent { user }
+  user { User.make! }
+  parent { self.user }
   title { Faker::Lorem.sentence }
   body { Faker::Lorem.paragraph }
   published_at { Time.now }

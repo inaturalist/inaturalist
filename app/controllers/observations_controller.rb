@@ -1012,7 +1012,7 @@ class ObservationsController < ApplicationController
     swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
     nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
     @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
-      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude",
+      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude, time_observed_at",
       :include => [:user, :photos], :limit => 500, :order => "id DESC")
     
     respond_to do |format|

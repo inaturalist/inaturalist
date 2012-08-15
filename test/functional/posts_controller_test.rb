@@ -1,11 +1,12 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   def test_show
     o = make_observation_of_threatened
     assert !o.latitude.blank?
     assert !o.private_latitude.blank?
-    p = Post.make(:user => o.user)
+    p = Post.make!(:user => o.user, :parent => o.user)
     p.observations << o
     
     get :show, :id => p.id, :login => p.user.login
