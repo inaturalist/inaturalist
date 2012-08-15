@@ -108,7 +108,7 @@ Some notes:
       </span>
     <% else %>
       <span class="taxon">
-        <%= link_to "(Something&hellip;)", observation %>
+        <%= link_to "(Something&hellip;)".html_safe, observation %>
       </span>
     <% end %>
     <!-- <span class="button detailsctrl">Show Details</span> -->

@@ -268,7 +268,7 @@ Taxa &middot; All Species
         <% end %>
       </div>
       <h3>
-        <% link_to iconic_taxon do %>
+        <%= link_to iconic_taxon do %>
           <%= render :partial => 'shared/taxon', :object => iconic_taxon %>
         <% end %>
       </h3>
@@ -283,7 +283,7 @@ Taxa &middot; All Species
     <% for observation in @recent %>
     <p>
       <%= link_to taxon_image(observation.taxon, :size => "small"), observation.taxon %>
-      <% link_to(observation.taxon) do %>
+      <%= link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>
       <span class="description date">on <%= observation.observed_on.to_s(:long) %></span>
