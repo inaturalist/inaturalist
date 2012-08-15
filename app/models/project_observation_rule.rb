@@ -6,8 +6,9 @@ class ProjectObservationRule < Rule
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
   
   before_save :clear_operand
-  
-  def validate
+  validate :operand_present
+
+  def operand_present
     if OPERAND_OPERATORS.include?(operator)
       if operand.blank? || !operand.is_a?(Object.const_get(OPERAND_OPERATORS_CLASSES[operator]))
         errors.add_to_base("Must select a " + 

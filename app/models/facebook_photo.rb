@@ -4,16 +4,17 @@ class FacebookPhoto < Photo
   Photo.descendent_classes << self
   
   validates_presence_of :native_photo_id
+  validate :owned_by_user?
+
+  def owned_by_user?
+    errors.add(:user, "doesn't own that photo") unless owned_by?(user)
+  end
 
   def owned_by?(user)
     fbp_json = FacebookPhoto.get_api_response(self.native_photo_id, {:user=>user})
     return false unless user && fbp_json
     return false if user.facebook_identity.blank? || (fbp_json['from']['id'] != user.facebook_identity.provider_uid)
     true
-  end
-
-  def validate
-    owned_by?(user)
   end
 
   def self.get_api_response(native_photo_id, options = {})

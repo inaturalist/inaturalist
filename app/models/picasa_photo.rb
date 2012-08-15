@@ -4,16 +4,9 @@ class PicasaPhoto < Photo
   Photo.descendent_classes << self
   
   validates_presence_of :native_photo_id
+  validate :user_owns_photo
   
-  def validate
-    if user.blank? && self.license == 0
-      errors.add(
-        :license, 
-        "must be a Creative Commons license if the photo wasn't added by " +
-        "an iNaturalist user using their linked Picasa account.")
-    end
-    
-    # Check to make sure the user owns the flickr photo
+  def user_owns_photo
     if self.user
       unless native_username == self.user.picasa_identity.picasa_user_id
         errors.add(:user, "must own the photo on Picasa.")
