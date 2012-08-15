@@ -32,7 +32,7 @@
         <%= link_to truncate(h(comment.parent.list.title), :length => 85), comment.parent.list %>
       </div>
       <%= iconic_taxon_image comment.parent.taxon, :style => "vertical-align: middle" %>
-      <% link_to comment.parent.taxon do %>
+      <%= link_to comment.parent.taxon do %>
         <%= render :partial => "shared/taxon", :object => comment.parent.taxon %>
       <% end %>
       <%= link_to comment.parent.taxon, comment.parent %> 

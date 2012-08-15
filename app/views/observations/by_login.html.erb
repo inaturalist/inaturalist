@@ -306,7 +306,7 @@ Observations by <%= h @login %>
         <%= link_to_function "Flickr Tagger", "flickrTagger()", :id => "flickr_tagger_button", :class => "minor button",
           :title => "Add taxonomic tags to the Fickr photos associated with the selected observations." %>
         <% unless @project_users.blank? -%>
-          <% link_to_toggle_menu "Add to project", :id => "add_to_project_button", :class => "minor button",
+          <%= link_to_toggle_menu "Add to project", :id => "add_to_project_button", :class => "minor button",
               :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} do %>
             <ul>
               <% for project_user in @project_users %>
