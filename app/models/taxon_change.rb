@@ -8,6 +8,7 @@ class TaxonChange < ActiveRecord::Base
   
   validates_presence_of :taxon_id
   accepts_nested_attributes_for :source
+  accepts_nested_attributes_for :taxon_change_taxa
   
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id",

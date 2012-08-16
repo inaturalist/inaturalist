@@ -77,6 +77,7 @@ class TaxonChangesController < ApplicationController
       flash[:notice] = 'Taxon Change was successfully created.'
       redirect_to :action => 'show', :id => @taxon_change
     else
+      @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
       render :action => 'new'
     end
   end
