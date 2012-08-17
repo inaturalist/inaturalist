@@ -210,12 +210,13 @@
     <% if @taxon.root? -%>
       <%= link_to 'Back to All Species', taxa_path, :class => 'back crumb' %>
     <% else %>
-      <%= link_to "Back to #{render(:partial => "shared/taxon")}", @taxon, :class => 'back crumb' %>
+      <%= link_to "Back to #{render(:partial => "shared/taxon")}".html_safe, @taxon, :class => 'back crumb' %>
     <% end -%>
   </div>
 
   <div id="zoomlinks" class="right">
-    <%= link_to_function "Zoom to <strong>#{render(:partial => "shared/taxon")}</strong>", "window.st.onClick(#{@taxon.id})", :class => "inter" %>
+    <%= link_to_function "Zoom to <strong>#{render(:partial => "shared/taxon")}</strong>".html_safe, "window.st.onClick(#{@taxon.id})",
+      :class => "inter" %>
     <span class="inter">|</span>
     <% for taxon in @iconic_taxa %>
       <%= link_to_function iconic_taxon_image(taxon, :size => 20), 

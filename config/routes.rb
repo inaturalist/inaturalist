@@ -143,6 +143,9 @@ Inaturalist::Application.routes.draw do
     member do
       post 'update_photos', :as => "update_photos_for"
     end
+    collection do
+      get 'tree'
+    end
   end
   resources :taxon_names
   # match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon
@@ -182,8 +185,8 @@ Inaturalist::Application.routes.draw do
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
   
-  resources :identifications
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
+  resources :identifications
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   match 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post
   resources :taxon_links, :except => [:show, :index]

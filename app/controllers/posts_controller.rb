@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
-    @posts = @display_user.posts.published.paginate(:all, :page => params[:page] || 1, 
+    @posts = @display_user.posts.published.paginate(:page => params[:page] || 1, 
       :per_page => 10, :order => "published_at DESC")
     
     # Grab the monthly counts of all posts to show archives
