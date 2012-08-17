@@ -51,8 +51,7 @@ module ObservationsHelper
     
     if !observation.place_guess.blank?
       if observation.latitude.blank?
-        observation.place_guess + 
-        " (#{google_search_link}, #{osm_search_link})".html_safe
+        "#{observation.place_guess} (#{google_search_link}, #{osm_search_link})".html_safe
       else
         place_guess = if observation.lat_lon_in_place_guess? && coordinate_truncation
           "<nobr>#{display_lat},</nobr> <nobr>#{display_lon}</nobr>"
