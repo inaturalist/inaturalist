@@ -3,7 +3,7 @@
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2>Are you sure you want to join <%= h @project.title %>?</h2>
 </div>
@@ -23,7 +23,7 @@
       <div class="column span-3">
         <%= link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr" %>
         <br/>
-        <%= link_to("<span class='count'>#{project_curator.user.observations.count}</span> observations", observations_by_login_path(project_curator.user.login)) %>
+        <%= link_to("<span class='count'>#{project_curator.user.observations.count}</span> observations".html_safe, observations_by_login_path(project_curator.user.login)) %>
       </div>
     </div>
   <% end %>

@@ -380,17 +380,17 @@ module ApplicationHelper
   end
   
   def truncate_with_more(text, options = {})
-    more = options.delete(:more) || " ...more &darr;"
-    less = options.delete(:less) || " less &uarr;"
+    more = options.delete(:more) || " ...more &darr;".html_safe
+    less = options.delete(:less) || " less &uarr;".html_safe
     truncated = truncate(text, options)
-    return truncated if text == truncated
+    return truncated.html_safe if text == truncated
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(morelink)
-    wrapper = content_tag(:div, truncated, :class => "truncated")
+    wrapper = content_tag(:div, truncated.to_s.html_safe, :class => "truncated")
     
     lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()", 
       :class => "nobr ui")
@@ -398,13 +398,13 @@ module ApplicationHelper
     last_node = untruncated.children.last || untruncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(lesslink)
-    untruncated = content_tag(:div, untruncated.to_s, :class => "untruncated", 
+    untruncated = content_tag(:div, untruncated.to_s.html_safe, :class => "untruncated", 
       :style => "display: none")
     wrapper + untruncated
   rescue RuntimeError => e
     raise e unless e.message =~ /error parsing fragment/
     HoptoadNotifier.notify(e, :request => request, :session => session)
-    text
+    text.html_safe
   end
   
   def native_url_for_photo(photo)

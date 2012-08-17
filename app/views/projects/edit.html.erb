@@ -3,7 +3,7 @@
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2><%= @title %></h2>
 </div>
