@@ -48,7 +48,7 @@
 
 <div id="pageheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo; Back to #{@place.name}", @place, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo; Back to #{@place.name}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2>Editing <%=h @place.name %></h2>
 </div>

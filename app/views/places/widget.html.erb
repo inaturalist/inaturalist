@@ -43,7 +43,7 @@ end
       For a widget showing recent observations from <%= @place.name %>, check out the
       <%= link_to "observations widget", observations_widget_url(:place_id => @place), :class => "readmore" %>
     </div>
-    <strong><%= link_to "&laquo #{@place.name}", @place, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{@place.name}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>

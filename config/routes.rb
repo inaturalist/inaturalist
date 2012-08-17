@@ -78,8 +78,8 @@ Inaturalist::Application.routes.draw do
   match 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
   match 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }, :via => :get
-  match 'observations/project/:id.:format' => 'observations#project', :as => :project_observations
-  match 'observations/project/:id.all.:format' => 'observations#project_all', :as => :all_project_observations
+  match 'observations/project/:id' => 'observations#project', :as => :project_observations
+  match 'observations/project/:id.all' => 'observations#project_all', :as => :all_project_observations
   match 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
   match 'projects/:id/join' => 'projects#join', :as => :join_project
@@ -139,7 +139,10 @@ Inaturalist::Application.routes.draw do
     resources :taxon_names
     resources :flags
     get 'description' => 'taxa#describe', :on => :member, :as => :describe
-    post 'update_photos' => 'taxa#update_photos', :as => :update_taxon_photos
+    # post 'update_photos'
+    member do
+      post 'update_photos', :as => "update_photos_for"
+    end
   end
   resources :taxon_names
   # match 'taxa/:id/description' => 'taxa#describe', :as => :describe_taxon

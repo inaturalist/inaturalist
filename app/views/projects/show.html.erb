@@ -62,7 +62,7 @@
   </div><!-- /#breadcrumbs -->
   
   <% if @custom_project && !@custom_project.head.blank? -%>
-    <%= @custom_project.head %>
+    <%= @custom_project.head.html_safe %>
   <% else %>
     <h2>
       <% if @logo_image -%>

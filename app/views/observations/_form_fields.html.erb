@@ -159,7 +159,7 @@
         
         <div>
           <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
-            <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;",
+            <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;".html_safe,
               "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
                 "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
               ").join('&');" +

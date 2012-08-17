@@ -578,7 +578,9 @@ class ProjectsController < ApplicationController
   end
   
   def ensure_current_project_url
-    return redirect_to @project, :status => :moved_permanently if request.path != project_path(@project)
+    if request.path != project_path(@project)
+      return redirect_to @project, :status => :moved_permanently
+    end
   end
   
   def load_project_user

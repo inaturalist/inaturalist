@@ -1,9 +1,9 @@
 <%- content_for(:title) do -%>
-  <%= @title = "#{h truncate(@project.title, :length => 85)} Terms &amp; Rules" %>
+  <%= @title = "#{h truncate(@project.title, :length => 85)} Terms &amp; Rules".html_safe %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2>
@@ -41,5 +41,5 @@
 <% end -%>
 
 <div class="breadcrumbs">
-  <strong><%= link_to "&laquo #{h @project.title}", @project, :class => 'crumb' %></strong>
+  <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
 </div><!-- /#breadcrumbs -->

@@ -213,7 +213,7 @@
           <% end %>
         </ul>
 
-        <%= link_to "Create a new check list for #{h(@place.name)} &raquo;", new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
+        <%= link_to "Create a new check list for #{h(@place.name)} &raquo;".html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
       </div>
     </div>
   </div><!-- /sidebar -->

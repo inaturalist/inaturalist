@@ -755,8 +755,8 @@ class TaxaController < ApplicationController
     respond_to do |format|
       if @taxon.save
         format.html { redirect_to @taxon }
-        format.js do
-          render :text => "Colors updated."
+        format.json do
+          render :json => @taxon
         end
       else
         msg = "There were some problems saving those colors: #{@taxon.errors.full_messages.join(', ')}"
@@ -764,8 +764,8 @@ class TaxaController < ApplicationController
           flash[:error] = msg
           redirect_to @taxon
         end
-        format.js do
-          render :text => msg, :status => :unprocessable_entity
+        format.json do
+          render :json => {:errors => msg}, :status => :unprocessable_entity
         end
       end
     end

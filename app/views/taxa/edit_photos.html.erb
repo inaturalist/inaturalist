@@ -11,13 +11,13 @@
   
   <div class="tabs">
     <ul>
-      <li><%= link_to "<span>From Flickr</span>", "#flickr_taxon_photos" %></li>
-      <li><%= link_to "<span>From iNat observations</span>", "#inat_obs_taxon_photos" %></li>
-      <li><%= link_to "<span>From EOL</span>", "#eol_taxon_photos" %></li>
+      <li><%= link_to "<span>From Flickr</span>".html_safe, "#flickr_taxon_photos" %></li>
+      <li><%= link_to "<span>From iNat observations</span>".html_safe, "#inat_obs_taxon_photos" %></li>
+      <li><%= link_to "<span>From EOL</span>".html_safe, "#eol_taxon_photos" %></li>
     </ul>
     
 		<div id="eol_taxon_photos">
-      <%= form_tag({:action => 'update_photos'}) do %>
+      <%= form_tag(update_photos_for_taxon_path(@taxon)) do %>
         <div class="taxon_photos clear">
           <%= render :partial => "photos/photo_list_form", :locals => { 
             :photos => @taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo},

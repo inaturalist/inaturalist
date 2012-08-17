@@ -29,7 +29,7 @@
     } %>
   </div>
   
-  <%= link_to "View observations &raquo;", observations_path(:taxon_id => @taxon), 
+  <%= link_to "View observations &raquo;".html_safe, observations_path(:taxon_id => @taxon), 
     :id => "obslink",
     :class => "iconified full button inlineblock stacked " %>
   
