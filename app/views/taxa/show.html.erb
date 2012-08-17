@@ -901,7 +901,7 @@
         <% end %>
         <% if @taxon_links.size > 4 -%>
           <li style="padding: 0; border: 0;">
-            <%= link_to_toggle_menu "More" do %>
+            <% link_to_toggle_menu "More" do %>
               <ul>
                 <%- @taxon_links[4..-1].each do |taxon_link| -%>
                   <li class="taxon_link">
