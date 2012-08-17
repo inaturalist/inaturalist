@@ -44,7 +44,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   # Override to get better attrs in there
   def time_zone_select(method, priority_zones = nil, options = {}, html_options = {})
     html_options[:class] = "#{html_options[:class]} time_zone_select"
-    zone_options = ""
+    zone_options = "".html_safe
     selected = options.delete(:selected)
     model = options.delete(:model) || ActiveSupport::TimeZone
     zones = model.all
@@ -65,11 +65,11 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if priority_zones.is_a?(Regexp)
         priority_zones = model.all.find_all {|z| z =~ priority_zones}
       end
-      zone_options += convert_zones.call(priority_zones, selected)
-      zone_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
+      zone_options += convert_zones.call(priority_zones, selected).html_safe
+      zone_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n".html_safe
       zones = zones.reject { |z| priority_zones.include?( z ) }
     end
-    zone_options += convert_zones.call(zones, selected)
+    zone_options += convert_zones.call(zones, selected).html_safe
     tag = INatInstanceTag.new(
       object_name, method, self, options.delete(:object)
     ).to_select_tag_with_option_tags(zone_options, options, html_options)

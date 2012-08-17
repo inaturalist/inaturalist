@@ -201,7 +201,7 @@ module ApplicationHelper
         html += hidden_field_tag key, value
       end
     end
-    html
+    html.html_safe
   end
   
   # def link_to(*args)

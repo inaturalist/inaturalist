@@ -116,7 +116,7 @@
         </div>
         
         <div class="last column span-18">
-          <%= link_to_function "<span class='helptip'></span> About these licenses", 
+          <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
