@@ -28,7 +28,7 @@
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar", calendar_path(@login), :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar".html_safe, calendar_path(@login), :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>

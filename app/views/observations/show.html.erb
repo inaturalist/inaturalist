@@ -718,16 +718,16 @@
             <ul class="plain small stacked">
               <li>
                 <% if @observation.taxon.species_or_lower? -%>
-                  <%= link_to "View other <nobr>#{default_taxon_name(@observation.taxon.parent)} &raquo;</nobr>", 
+                  <%= link_to "View other <nobr>#{default_taxon_name(@observation.taxon.parent)} &raquo;</nobr>".html_safe, 
                     {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon.parent_id, :places => place.id} %>
                 <% else %>
-                  <%= link_to "View other <nobr>#{default_taxon_name(@observation.taxon)} &raquo;</nobr>", 
+                  <%= link_to "View other <nobr>#{default_taxon_name(@observation.taxon)} &raquo;</nobr>".html_safe, 
                     {:controller => "taxa", :action => "search", :taxon_id => @observation.taxon_id, :places => place.id} %>
                 <% end -%>
               </li>
               <li>
                 <%- it = Taxon::ICONIC_TAXA_BY_ID[@observation.taxon.iconic_taxon_id] -%>
-                <%= link_to "View other <nobr>#{default_taxon_name(it)} &raquo;</nobr>", 
+                <%= link_to "View other <nobr>#{default_taxon_name(it)} &raquo;</nobr>".html_safe, 
                   {:controller => "taxa", :action => "search", :taxon_id => it.id, :places => place.id} %>
               </li>
             </ul>
