@@ -53,7 +53,7 @@
     :link_image => true,
     :extra_class => "inlineblock",
     :hide_wikipedia_summary => true,
-    :after_image => month_stats + upperright
+    :after_image => month_stats.to_s + upperright.to_s
   } %>
 
   <% if obs = listed_taxon.first_observation -%>
