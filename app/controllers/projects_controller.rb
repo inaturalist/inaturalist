@@ -435,9 +435,9 @@ class ProjectsController < ApplicationController
       invited_scope = invited_scope.by(current_user)
     end
 
-    scope_sql = scope.construct_finder_sql({})
-    existing_scope_sql = existing_scope.construct_finder_sql({})
-    invited_scope_sql = invited_scope.construct_finder_sql({})
+    scope_sql = scope.to_sql
+    existing_scope_sql = existing_scope.to_sql
+    invited_scope_sql = invited_scope.to_sql
 
     sql = "(#{scope_sql}) EXCEPT ((#{existing_scope_sql}) UNION (#{invited_scope_sql}))"
     @observations = Observation.paginate_by_sql(sql, :page => params[:page])

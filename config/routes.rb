@@ -33,6 +33,7 @@ Inaturalist::Application.routes.draw do
   match "/eol/photo_fields" => "eol#photo_fields"
   match '/flickr/invite' => 'photos#invite', :provider => 'flickr'
   match '/facebook/invite' => 'photos#invite', :provider => 'facebook'
+  match "/photos/inviter" => "photos#inviter", :as => :photo_inviter
   resources :announcements
   match '/users/dashboard' => 'users#dashboard', :as => :dashboard
   match '/users/curation' => 'users#curation', :as => :curate_users
@@ -105,6 +106,7 @@ Inaturalist::Application.routes.draw do
   match 'projects/:id/stats' => 'projects#stats', :as => :project_stats
   match 'projects/:id/stats.:format' => 'projects#stats', :as => :formatted_project_stats
   match 'projects/browse' => 'projects#browse', :as => :browse_projects
+  match 'projects/:id/invitations' => 'projects#invitations', :as => :invitations
   resources :projects
   resources :project_assets, :except => [:index, :show]
   resources :custom_projects, :except => [:index, :show]
@@ -138,6 +140,8 @@ Inaturalist::Application.routes.draw do
   resources :taxa, :constraints => { :id => id_param_pattern } do
     resources :taxon_names
     resources :flags
+    resources :taxon_names, :controller => :taxon_names, :shallow => true
+    resources :taxon_scheme_taxa, :controller => :taxon_scheme_taxa, :shallow => true
     get 'description' => 'taxa#describe', :on => :member, :as => :describe
     # post 'update_photos'
     member do
@@ -214,6 +218,17 @@ Inaturalist::Application.routes.draw do
   resources :subscriptions, :only => [:index, :edit, :create, :update, :destroy]
   match 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription, :via => :delete
   match 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
+
+  resources :taxon_changes, :constraints => { :id => id_param_pattern } do
+    resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
+  end
+  resources :taxon_schemes, :only => [:index, :show]
+  
+  resources :taxon_splits, :controller => :taxon_changes
+  resources :taxon_merges, :controller => :taxon_changes
+  resources :taxon_swaps, :controller => :taxon_changes
+  resources :taxon_drops, :controller => :taxon_changes
+  resources :taxon_stages, :controller => :taxon_changes
   
   match '/:controller(/:action(/:id))'
 end

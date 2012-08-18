@@ -995,8 +995,7 @@ class ObservationsController < ApplicationController
   def selector
     search_params, find_options = get_search_params(params)
 
-    @observations = Observation.latest.query(search_params).paginate(
-      :all, find_options)
+    @observations = Observation.latest.query(search_params).paginate(find_options)
       
     respond_to do |format|
       format.html { render :layout => false, :partial => 'selector'}
