@@ -296,6 +296,7 @@ class Observation < ActiveRecord::Base
       "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
       taxon
     )
+  }
   
   scope :at_or_below_rank, lambda {|rank| 
     rank_level = Taxon::RANK_LEVELS[rank]

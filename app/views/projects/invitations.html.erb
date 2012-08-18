@@ -15,6 +15,20 @@
   </style>
 <%- end -%>
 
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.invite_button').bind('ajax:success', function() {
+        $(this).replaceWith($('<span>Invited</span>').addClass('inter success status'))
+      })
+
+      $('.add_button').bind('ajax:success', function() {
+        $(this).replaceWith($('<span>Added</span>').addClass('inter success status'))
+      })
+    })
+  </script>
+<%- end -%>
+
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
     <%= link_to "Invite photos from other sites", photo_inviter_path(:project_id => @project), :class => "right readmore" %>
@@ -47,26 +61,25 @@
 
         <div style="text-align:center;" class="stacked inline buttonrow" id="<%= dom_id(observation, 'buttons') %>">
           <% if current_user.id == observation.user_id %>
-            <%= link_to_remote "Add to project", 
-              :url => add_project_observation_path(@project, :observation_id => observation.id),
+            <%= link_to "Add to project", 
+              add_project_observation_path(@project, :observation_id => observation.id),
+              :remote => true,
               :datatype => :json,
-              :success => "$('##{dom_id(observation, 'buttons')} .button').replaceWith($('<span>Added</span>').addClass('inter success status'))",
               :method => :post,
-              :html => {"data-loading-click" => "Adding...", :class => "glaucous button"} %>
+              "data-loading-click" => "Adding...", 
+              :class => "glaucous button add_button" %>
           <% else %>
-            <%= link_to_remote "Invite to project",
-              :url => { :controller => 'project_invitations',
+            <%= link_to "Invite to project",
+              url_for(:controller => 'project_invitations',
                 :action => 'create',
                 :project_id => @project.id,
                 :observation_id => observation.id,
-                :user_id => current_user.id },
+                :user_id => current_user.id),
+              :remote => true,
               :method => :post,
               :datatype => :json,
-              :success => "$('##{dom_id(observation, 'buttons')} .button').replaceWith($('<span>Invited</span>').addClass('inter success status'))",
-              :html => {
-                :class => "glaucous inline button",
-                "data-loading-click" => "Inviting..."
-              } %>
+              :class => "glaucous inline button invite_button",
+              "data-loading-click" => "Inviting..." %>
           <% end %>
         </div>
       </div>

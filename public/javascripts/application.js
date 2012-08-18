@@ -93,8 +93,8 @@ function loadingClickForLink() {
 
   var link = this
   if (!$(this).attr('data-loading-click-bound')) {
-    $(this).bind('ajax:complete', function() {
-      // $(link).attr('disabled', false).removeClass('disabled description')
+    // this *should* bind complete but that doesn't seem to be working with the current
+    $(this).bind('ajax:success', function() {
       $(link).show()
       loading.hide()
     })

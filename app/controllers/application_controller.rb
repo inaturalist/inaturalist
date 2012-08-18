@@ -134,7 +134,7 @@ class ApplicationController < ActionController::Base
         ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)
       ie_needs_return_to = true
     end
-    if (ie_needs_return_to || request.format.html?) && !params.keys.include?('partial')
+    if (ie_needs_return_to || request.format.blank? || request.format.html?) && !params.keys.include?('partial')
       session[:return_to] = request.fullpath
     end
     true

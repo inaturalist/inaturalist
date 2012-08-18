@@ -109,7 +109,7 @@ class FlickrController < ApplicationController
       search_params['extras'] = 'date_upload,owner_name,url_sq'
       search_params['sort'] = 'relevance'
       begin
-        @photos = @flickr.photos.search(search_params)
+        @photos = @flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
       rescue FlickRaw::FailedResponse => e
         raise e unless e.message =~ /Invalid auth token/
         @reauthorization_needed = true
