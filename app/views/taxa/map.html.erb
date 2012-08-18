@@ -73,7 +73,7 @@
   <%= link_to_function "collapse/expand", "toggleLegend()", :id => "togglecollapse", :class => "ui-icon ui-icon-arrow-1-sw" %>
   <% if @taxon -%>
     <div class="breadcrumbs nobr">
-      <%- link_to @taxon, :class => "back crumb" do %>
+      <%= link_to @taxon, :class => "back crumb" do %>
         Back to
         <%= render :partial => "shared/taxon", :object => @taxon, :locals => {:link => false} %>
       <% end %>
@@ -155,7 +155,7 @@
   <div id="legendfooter" class="clear small meta">
     <a href="/" title="<%= APP_CONFIG[:site_name] %>"><img src="/images/logo-mini.png" alt="iNaturalist logo" class="left" style="width: 75px"></a>
     <div class="last right column">
-      <%= link_to_function "<span class='ui-icon ui-icon-help inlineblock'>help</span>About this map", 
+      <%= link_to_function "<span class='ui-icon ui-icon-help inlineblock'>help</span>About this map".html_safe, 
         "$('#maphelp').dialog({modal: true, title: 'About This Map', width: 500})", 
         :class => "helplink right" %>
     </div>

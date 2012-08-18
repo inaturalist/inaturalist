@@ -33,7 +33,7 @@
     <% unless photos.empty? %>
       <div class="description">Creative Commons Flickr photos tagged "<%= taxon.name %>."</div>
       <div>
-        <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>", photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+        <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
           View all photos tagged "<%=h taxon.name %>" on 
           <nobr>Flickr &raquo;</nobr>
@@ -46,7 +46,7 @@
     <h3 class="description">
       No Creative Commons Flickr Photos Tagged "<%= taxon.name %>"
     </h3>
-    <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>", photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+    <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
     <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
       View all photos tagged "<%=h taxon.name %>" on <nobr>Flickr &raquo;</nobr>
     </a><br/>
@@ -71,7 +71,7 @@
       <% end %>
     </div>
     <div class="description">
-      <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>", photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+      <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
       <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
         View all photos tagged "<%=h taxon.name %>" on <nobr>Flickr &raquo;</nobr>
       </a>

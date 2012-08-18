@@ -741,8 +741,8 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
   create_table "taxon_change_taxa", :force => true do |t|
     t.integer  "taxon_change_id"
     t.integer  "taxon_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "taxon_change_taxa", ["taxon_change_id"], :name => "index_taxon_change_taxa_on_taxon_change_id"
@@ -754,8 +754,8 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
     t.integer  "source_id"
     t.integer  "user_id"
     t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.date     "committed_on"
     t.string   "change_group"
   end
@@ -829,8 +829,8 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
   create_table "taxon_scheme_taxa", :force => true do |t|
     t.integer  "taxon_scheme_id"
     t.integer  "taxon_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "taxon_scheme_taxa", ["taxon_id"], :name => "index_taxon_scheme_taxa_on_taxon_id"
@@ -840,8 +840,8 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
     t.string   "title"
     t.text     "description"
     t.integer  "source_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "taxon_schemes", ["source_id"], :name => "index_taxon_schemes_on_source_id"

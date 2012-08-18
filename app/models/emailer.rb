@@ -3,6 +3,12 @@ class Emailer < ActionMailer::Base
   helper :observations
   helper :taxa
   helper :users
+
+  default :from =>     "#{APP_CONFIG[:site_name]} <#{APP_CONFIG[:noreply_email]}>",
+          :reply_to => APP_CONFIG[:noreply_email],
+          :subject =>  "[#{APP_CONFIG[:site_name]}] ",
+          :sent_on =>  Time.now
+
   
   def invite(address, params, current_user) 
     setup_email
@@ -66,19 +72,24 @@ class Emailer < ActionMailer::Base
   def project_invitation_notification(project_invitation)
     return unless project_invitation
     return if project_invitation.observation.user.prefers_no_email
-    setup_email
-    recipients project_invitation.observation.user.email
+    # setup_email
+    # recipients project_invitation.observation.user.email
     obs_str = project_invitation.observation.to_plain_s(:no_user => true, 
       :no_time => true, :no_place_guess => true)
-    @subject << "#{project_invitation.user.login} invited your " + 
+    @subject = "[#{APP_CONFIG[:site_name]}] #{project_invitation.user.login} invited your " + 
       "observation of #{project_invitation.observation.species_guess} " + 
       "to #{project_invitation.project.title}"
-    @body = {
-      :project => project_invitation.project,
-      :observation => project_invitation.observation,
-      :user => project_invitation.observation.user,
-      :inviter => project_invitation.user
-    }
+    # @body = {
+    #   :project => project_invitation.project,
+    #   :observation => project_invitation.observation,
+    #   :user => project_invitation.observation.user,
+    #   :inviter => project_invitation.user
+    # }
+    @project = project_invitation.project
+    @observation = project_invitation.observation
+    @user = project_invitation.observation.user
+    @inviter = project_invitation.user
+    mail(:to => project_invitation.observation.user.email, :subject => @subject)
   end
   
   def updates_notification(user, updates)

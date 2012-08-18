@@ -19,7 +19,7 @@
   </div>
 <%- end -%>
 <%= render :partial => 'map_header', :locals => {
-  :title => "Observations for #{link_to h(@project.title), @project}",
+  :title => "Observations for #{link_to h(@project.title), @project}".html_safe,
   :before => before,
   :control_span => 11
 } %>
