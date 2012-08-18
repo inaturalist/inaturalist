@@ -5,16 +5,22 @@ class Array
     geomcol = first.class.columns.detect{|c| c.is_a?(SpatialAdapter::SpatialColumn)}
     return to_json unless geomcol
     data = {:type => "FeatureCollection"}
-    # only = options[:only] ? options[:only].map(&:to_s) : []
-    # methods = options[:methods] ? options[:methods].map(&:to_s) : []
-    # properties = ((klass.column_names || only) - [geomcol.name] + methods)
     data[:features] = map do |item|
       {
         :geometry => item.send(geomcol.name),
-        # :properties => properties.map{|p| {p => item.send(p)}}
         :properties => item
       }
     end
     data.to_json(options)
+  end
+end
+
+# Override the as_json method in all Geometry sublcasses to putput a hash, not a json string
+GeoRuby::SimpleFeatures::Geometry.subclasses.each do |klass|
+  klass.class_eval do
+    define_method(:as_json) do |options|
+      options ||= {}
+      {:type => self.class.to_s.split('::').last, :coordinates => self.to_coordinates}.as_json(options)
+    end
   end
 end
