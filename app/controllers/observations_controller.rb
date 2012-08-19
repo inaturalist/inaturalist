@@ -435,10 +435,8 @@ class ObservationsController < ApplicationController
       return
     end
     
-    Rails.logger.debug "[DEBUG] params[:observations]: #{params[:observations].inspect}"
     @observations = params[:observations].map do |fieldset_index, observation|
       observation.delete('fieldset_index') if observation[:fieldset_index]
-      Rails.logger.debug "[DEBUG] observation: #{observation.inspect}"
       o = Observation.new(observation)
       o.user = current_user
       o.user_agent = request.user_agent

@@ -176,7 +176,7 @@ module HasSubscribers
       callback_method = options[:with] || :notify_subscribers_of
       send callback_type do |record|
         if options[:queue_if].blank? || options[:queue_if].call(record)
-          record.send_later(callback_method, subscribable_association)
+          record.delay.send(callback_method, subscribable_association)
         end
       end
     end

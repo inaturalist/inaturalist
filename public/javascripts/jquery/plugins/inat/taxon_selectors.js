@@ -202,9 +202,9 @@
     if (typeof(options.taxonIDField) != 'undefined') {
       return $(options.taxonIDField);
     };
-    var taxon_id = $(wrapper).next('input[name="taxon_id"]:first');
+    var taxon_id = $(wrapper).siblings('input[name="taxon_id"]:first');
     if ($(taxon_id).length == 0) {
-      taxon_id = $(wrapper).next('input[name*="[taxon_id]"]:first');
+      taxon_id = $(wrapper).siblings('input[name*="[taxon_id]"]:first');
     };
     return taxon_id;
   }

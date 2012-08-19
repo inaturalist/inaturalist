@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       :order => "id DESC",
       :group => "parent_id"
     }
-    @paging_comments = Comment.scoped({})
+    @paging_comments = Comment.scoped
     @paging_comments = @paging_comments.by(current_user) if logged_in? && params[:mine]
     @paging_comments = @paging_comments.paginate(find_options)
     @comments = Comment.find(@paging_comments.map{|c| c.id}, :include => :user, :order => "id desc")

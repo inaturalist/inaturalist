@@ -117,7 +117,7 @@ class Project < ActiveRecord::Base
   end
 
   def observations_matching_rules
-    scope = Observation.scoped({})
+    scope = Observation.scoped
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?" 

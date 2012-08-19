@@ -328,7 +328,7 @@ class Observation < ActiveRecord::Base
   }
   
   def self.identifications(agreement)
-    scope = Observation.scoped({})
+    scope = Observation.scoped
     scope = scope.includes(:identifications)
     case agreement
     when 'most_agree'
@@ -415,9 +415,9 @@ class Observation < ActiveRecord::Base
   def self.near_place(place)
     place = Place.find_by_id(place) unless place.is_a?(Place)
     if place.swlat
-      Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped({})
+      Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped
     else
-      Observation.near_point(place.latitude, place.longitude).scoped({})
+      Observation.near_point(place.latitude, place.longitude).scoped
     end
   end
   
@@ -426,7 +426,7 @@ class Observation < ActiveRecord::Base
   # May be worth looking into squirrel or some other rails friendly search add on
   #
   def self.query(params = {})
-    scope = self.scoped({})
+    scope = self.scoped
     
     # support bounding box queries
      if (!params[:swlat].blank? && !params[:swlng].blank? && 

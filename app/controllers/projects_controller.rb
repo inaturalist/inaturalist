@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
         end
       end
       format.json do
-        scope = Project.scoped({})
+        scope = Project.scoped
         scope = scope.featured if params[:featured]
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
         scope = scope.from_source_url(params[:source]) if params[:source]
@@ -426,7 +426,7 @@ class ProjectsController < ApplicationController
   
   def invitations
     scope = @project.observations_matching_rules
-    existing_scope = Observation.in_projects([@project]).scoped({})
+    existing_scope = Observation.in_projects([@project]).scoped
     invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project])
 
     if params[:by] == "you"

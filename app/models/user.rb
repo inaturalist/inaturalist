@@ -307,7 +307,7 @@ class User < ActiveRecord::Base
   end
   
   def self.query(params={}) 
-    scope = self.scoped({})
+    scope = self.scoped
     if params[:sort_by] && params[:sort_dir]
       scope.order(params[:sort_by], params[:sort_dir])
     elsif params[:sort_by]

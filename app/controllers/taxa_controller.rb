@@ -861,7 +861,7 @@ class TaxaController < ApplicationController
     @iconic_taxon = filters[:iconic_taxon]
     @rank = filters[:rank]
 
-    scope = Taxon.active.scoped({})
+    scope = Taxon.active.scoped
     scope = scope.self_and_descendants_of(@iconic_taxon) unless @iconic_taxon.blank?
     scope = scope.of_rank(@rank) unless @rank.blank?
     @taxa = scope.paginate(

@@ -136,6 +136,11 @@ Source.blueprint do
   title { Faker::Lorem.sentence }
 end
 
+Subscription.blueprint do
+  resource { Observation.make! }
+  user { User.make! }
+end
+
 Taxon.blueprint do
   name { Faker::Name.name }
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
