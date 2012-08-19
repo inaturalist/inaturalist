@@ -13,7 +13,7 @@ module Shared::GuideModule
       end
       is_filter_param && !is_blank
     }].symbolize_keys
-    @scope = Taxon.of_rank(Taxon::SPECIES).scoped({})
+    @scope = Taxon.of_rank(Taxon::SPECIES).scoped
     
     if block_given?
       @scope = yield(@scope)

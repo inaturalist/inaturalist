@@ -39,7 +39,7 @@
                  "{title: '#{service}', url: '/#{service.downcase}/photo_fields?context=user'}"
                end
              -%>
-             urls: [<%= urls.join(', ') %>],
+             urls: [<%= urls.join(', ').html_safe %>],
            <% end -%>
            urlParams: {
              authenticity_token: authenticity_token,

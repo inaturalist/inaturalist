@@ -109,9 +109,10 @@ class Update < ActiveRecord::Base
   end
   
   def self.email_updates_to_user(subscriber, start_time, end_time)
+    user = subscriber
     user = User.find_by_id(subscriber.to_i) unless subscriber.is_a?(User)
     user ||= User.find_by_login(subscriber)
-    return unless user
+    return unless user.is_a?(User)
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
@@ -123,7 +124,7 @@ class Update < ActiveRecord::Base
       !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
     end.compact
     return if updates.blank?
-    Emailer.deliver_updates_notification(user, updates)
+    Emailer.updates_notification(user, updates).deliver
     true
   end
   

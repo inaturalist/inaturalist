@@ -112,7 +112,6 @@ class FlickrPhoto < Photo
     # Setup the observation
     observation = Observation.new
     observation.user = self.user if self.user
-    # observation.photos << self
     observation.observation_photos.build(:photo => self)
     observation.description = fp.description
     observation.observed_on_string = fp.dates.taken

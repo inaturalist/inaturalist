@@ -50,7 +50,7 @@ class TaxonSchemesController < ApplicationController
     @taxon_changes = []
     @orphaned_taxa = []
     inactive_taxa.each do |taxon|
-      scope = TaxonChange.scoped({})
+      scope = TaxonChange.scoped
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
         :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
