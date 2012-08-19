@@ -49,3 +49,9 @@ RSpec.configure do |config|
   end
 
 end
+
+def without_delay
+  Delayed::Worker.delay_jobs = false
+  yield
+  Delayed::Worker.delay_jobs = true
+end

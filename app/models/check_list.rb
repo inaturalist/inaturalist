@@ -94,7 +94,7 @@ class CheckList < List
     if options[:ancestor] && ancestor.blank?
       return nil
     end
-    scope = Taxon.intersecting_place(place).scoped({})
+    scope = Taxon.intersecting_place(place).scoped
     scope = scope.descendants_of(ancestor) if ancestor
     scope.find_each(:select => "taxa.*, taxon_ranges.id AS taxon_range_id") do |taxon|
       delay.add_taxon(taxon.id, :taxon_range_id => taxon.taxon_range_id, 

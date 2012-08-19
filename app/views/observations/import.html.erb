@@ -25,10 +25,10 @@
       
       $('#photos').photoSelector({
         <%- if @default_photo_identity_url -%>
-          baseURL: <%= @default_photo_identity_url.inspect %>,
+          baseURL: <%= @default_photo_identity_url.inspect.html_safe %>,
         <%- end -%>
         <%- unless @photo_identity_urls.blank? %>
-          urls: [<%= @photo_identity_urls.join(', ') %>],
+          urls: [<%= @photo_identity_urls.join(', ').html_safe %>],
         <% end -%>
         skipLocal: true,
         urlParams: {
