@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
   before_save :whitelist_licenses
   after_save :update_observation_licenses
   after_save :update_photo_licenses
-  after_create :create_life_list, :signup_for_incomplete_community_goals
+  after_create :create_life_list
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -411,10 +411,6 @@ class User < ActiveRecord::Base
     life_list = LifeList.create(:user => self)
     self.life_list = life_list
     self.save
-  end
-  
-  def signup_for_incomplete_community_goals
-    goals << Goal.for('community').incomplete.find(:all)
   end
   
   def create_deleted_user
