@@ -15,6 +15,8 @@ class TaxonChange < ActiveRecord::Base
     "LEFT OUTER JOIN taxa t1 ON taxon_changes.taxon_id = t1.id",
     "LEFT OUTER JOIN taxa t2 ON tct.taxon_id = t2.id"
   ]
+
+  TYPES = %w(TaxonChange TaxonMerge TaxonSplit TaxonSwap TaxonDrop TaxonStage)
   
   named_scope :types, lambda {|types|
     {:conditions => ["type IN (?)", types]}

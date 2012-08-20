@@ -2,7 +2,8 @@
   <style type="text/css">
     .taxon_change_taxon input.text {width: 300px;}
     textarea {width: auto;}
-    fieldset.span-8 {width:274px; min-height: 136px;}
+    fieldset.span-8 {width:274px; min-height: 145px;}
+    fieldset.span-16 {width:594px; min-height: 145px;}
     fieldset.span-12 {width:434px; min-height: 245px;}
   </style>
 <%- end -%>
@@ -34,14 +35,10 @@
       </fieldset>
     <% end %>
 
-    <fieldset id="source" class="column span-8">
-      <legend>Source</legend>
+    <fieldset id="sourcing" class="last column span-<%= taxon_change.new_record? ? '16' : '24' %>">
+      <legend>Sourcing</legend>
       <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
-    </fieldset>
-    
-    <fieldset class="last column span-8">
-      <legend>Group</legend>
-      <%= f.select :change_group, @change_groups, :include_blank => "None", :selected => taxon_change.try(:change_group), :label => false %>
+      <%= f.select :change_group, @change_groups, :include_blank => "None", :selected => taxon_change.try(:change_group) %>
     </fieldset>
   </div>
 
@@ -82,13 +79,11 @@
           </legend>
         <% end %>
         <div class="clear">
-          <%= render :partial => "taxon_change_taxa/nested_form_fields", 
-            :collection => taxon_change.taxon_change_taxa
+          <%= render :partial => "taxon_change_taxa/nested_form_fields", :collection => taxon_change.taxon_change_taxa
           %>
         </div>
         
         <% if taxon_change.new_record? -%>
-          After you create this taxon change then edit it to add input/output taxa.
           <%- tct_form_fields = capture do -%>
             <% f.fields_for :taxon_change_taxa, taxon_change.taxon_change_taxa.build, :builder => DefaultFormBuilder do |tct| %>
               <div class="taxon_change_taxon">

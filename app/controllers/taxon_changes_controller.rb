@@ -70,8 +70,13 @@ class TaxonChangesController < ApplicationController
   end
   
   def create
-    model = params[:taxon_change].delete(:type).constantize
-    @taxon_change = model.new(params[:taxon_change])
+    unless change_params = get_change_params
+      flash[:error] = "No changes specified"
+      redirect_back_or_default(taxon_changes_url)
+      return
+    end
+    model = change_params.delete(:type).constantize
+    @taxon_change = model.new(change_params)
     @taxon_change.user = current_user
     if @taxon_change.save
       flash[:notice] = 'Taxon Change was successfully created.'
@@ -87,7 +92,11 @@ class TaxonChangesController < ApplicationController
   end
 
   def update
-    change_params = params[:taxon_change] ||= params[:taxon_split] ||= params[:taxon_merge]
+    unless change_params = get_change_params
+      flash[:error] = "No changes specified"
+      redirect_back_or_default(@taxon_change)
+      return
+    end
     if @taxon_change.update_attributes(change_params)
       flash[:notice] = 'Taxon Change was successfully updated.'
       redirect_to taxon_change_path(@taxon_change)
@@ -128,5 +137,10 @@ class TaxonChangesController < ApplicationController
         :source]
     )
   end
-  
+
+  def get_change_params
+    change_params = params[:taxon_change]
+    TaxonChange::TYPES.each {|type| change_params ||= params[type.underscore]}
+    change_params
+  end
 end
