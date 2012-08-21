@@ -480,13 +480,16 @@ describe Observation, "species_guess parsing" do
   end
 
   it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
-    taxon = Taxon.make!(:rank => "species", :name => "Spirolobicus bananaensis")
+    taxon = Taxon.make!(:rank => "species", :parent => Taxon.make!, :name => "Spirolobicus bananaensis")
     child = Taxon.make!(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
-    taxon2 = Taxon.make!(:rank => "species")
+    taxon2 = Taxon.make!(:rank => "species", :parent => Taxon.make!)
     common_name = "Spiraled Banana Shrew"
     TaxonName.make!(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
     TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
     TaxonName.make!(:taxon => taxon2, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    child.ancestors.should include(taxon)
+    child.ancestors.should_not include(taxon2)
+    Taxon.includes(:taxon_names).where("taxon_names.name = ?", common_name).count.should eq(3)
     @observation.taxon = nil
     @observation.species_guess = common_name
     @observation.save
