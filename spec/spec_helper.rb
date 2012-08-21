@@ -5,6 +5,8 @@ require 'rspec/rails'
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 
+include MakeHelpers
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
@@ -36,15 +38,13 @@ RSpec.configure do |config|
   end
   
   config.before(:all) do
-    begin
-      ActiveRecord::Base.connection.execute("ALTER TABLE place_geometries DROP CONSTRAINT enforce_srid_geom")
-    rescue ActiveRecord::StatementInvalid 
-      # already dropped
-    end
-    begin
-      ActiveRecord::Base.connection.execute("ALTER TABLE observations DROP CONSTRAINT enforce_srid_geom")
-    rescue ActiveRecord::StatementInvalid 
-      # already dropped
+    [PlaceGeometry, Observation, TaxonRange].each do |klass|
+      begin
+        Rails.logger.debug "[DEBUG] dropping enforce_srid_geom on place_geometries"
+        ActiveRecord::Base.connection.execute("ALTER TABLE #{klass.table_name} DROP CONSTRAINT enforce_srid_geom")
+      rescue ActiveRecord::StatementInvalid 
+        # already dropped
+      end
     end
   end
 

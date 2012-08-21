@@ -11,6 +11,7 @@ INAT_CONFIG = YAML.load(File.open(File.expand_path('../config.yml', __FILE__)))[
 # flickr api keys - these need to be set before Flickraw gets included
 FLICKR_API_KEY = INAT_CONFIG['flickr']['FLICKR_API_KEY']
 FLICKR_SHARED_SECRET = INAT_CONFIG['flickr']['FLICKR_SHARED_SECRET']
+DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
