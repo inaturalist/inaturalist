@@ -265,7 +265,7 @@ end
 describe Taxon, "unique name" do
 
   it "should be the default_name by default" do
-    taxon = Taxon.make!
+    taxon = Taxon.make!(:name => "I am galactus")
     taxon.unique_name.should == taxon.default_name.name.downcase
   end
   
@@ -344,8 +344,8 @@ describe Taxon, "tags_to_taxa" do
   end
 
   it "should not find inactive taxa" do
-    active_taxon = Taxon.make
-    inactive_taxon = Taxon.make(:name => active_taxon.name, :is_active => false)
+    active_taxon = Taxon.make!
+    inactive_taxon = Taxon.make!(:name => active_taxon.name, :is_active => false)
     taxa = Taxon.tags_to_taxa([active_taxon.name])
     taxa.should include(active_taxon)
     taxa.should_not include(inactive_taxon)
