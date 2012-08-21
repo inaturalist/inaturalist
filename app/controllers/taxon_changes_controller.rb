@@ -113,7 +113,7 @@ class TaxonChangesController < ApplicationController
       redirect_to :back and return
     end
     
-    TaxonChange.send_later(:commit_taxon_change, taxon_change_id, :dj_priority => 2)
+    TaxonChange.delay(:priority => 2).commit_taxon_change(taxon_change_id)
     
     flash[:notice] = "Taxon change committed!"
     redirect_to :back and return
