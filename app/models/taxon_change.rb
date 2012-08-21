@@ -84,15 +84,15 @@ class TaxonChange < ActiveRecord::Base
     case taxon_change.class.name when 'TaxonSplit'
       Taxon.update_all({:is_active => false},["id = ?", taxon_change.taxon_id])
       Taxon.update_all({:is_active => true},["id in (?)", taxon_change.taxon_change_taxa.map{|tct| tct.taxon_id}])
-      TaxonSplit.send_later(:update_observations_later, taxon_change.id, :dj_priority => 2)
+      TaxonSplit.delay(:priority => 2).update_observations_later(taxon_change.id)
     when 'TaxonMerge'
       Taxon.update_all({:is_active => false},["id in (?)", taxon_change.taxon_change_taxa.map{|tct| tct.taxon_id}])
       Taxon.update_all({:is_active => true},["id = ?", taxon_change.taxon_id])
-      TaxonMerge.send_later(:update_observations_later, taxon_change.id, :dj_priority => 2)
+      TaxonMerge.delay(:priority => 2).update_observations_later(taxon_change.id)
     when 'TaxonSwap'
       Taxon.update_all({:is_active => false},["id in (?)", taxon_change.taxon_change_taxa.map{|tct| tct.taxon_id}])
       Taxon.update_all({:is_active => true},["id = ?", taxon_change.taxon_id])
-      TaxonSwap.send_later(:update_observations_later, taxon_change.id, :dj_priority => 2)
+      TaxonSwap.delay(:priority => 2).update_observations_later(taxon_change.id)
     when 'TaxonDrop'
       Taxon.update_all({:is_active => false},["id = ?", taxon_change.taxon_id])
     when 'TaxonStage'

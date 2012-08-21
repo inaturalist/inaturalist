@@ -698,7 +698,7 @@ class TaxaController < ApplicationController
     @taxon.photos = photos
     @taxon.save
     unless photos.count == 0
-      Taxon.delay.update_ancestor_photos(@taxon.id, photos.first.id, :priority => 2)
+      Taxon.delay(:priority => 2).update_ancestor_photos(@taxon.id, photos.first.id)
     end
     flash[:notice] = "Taxon photos updated!"
     redirect_to taxon_path(@taxon)
