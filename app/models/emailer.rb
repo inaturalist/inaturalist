@@ -10,17 +10,14 @@ class Emailer < ActionMailer::Base
           :reply_to => APP_CONFIG[:noreply_email]
   
   def invite(address, params, current_user) 
-    setup_email
     Invite.create(:user => current_user, :invite_address => address)
-    content_type "text/plain"
-    recipients address
-    @subject << "#{params[:sender_name]} wants you to join them on iNaturalist" 
-    @body = {
-      :personal_message => params[:personal_message], 
-      :sending_user => params[:sender_name], 
-      :current_user => current_user
-    }
-    template "invite_send" 
+    @subject = "#{SUBJECT_PREFIX} #{params[:sender_name]} wants you to join them on iNaturalist" 
+    @personal_message = params[:personal_message]
+    @sending_user = params[:sender_name]
+    @current_user = current_user
+    mail(:to => address) do |format|
+      format.text
+    end
   end
   
   def project_invitation_notification(project_invitation)
