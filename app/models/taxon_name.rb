@@ -23,7 +23,7 @@ class TaxonName < ActiveRecord::Base
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
-  after_destroy {|name| name.taxon.delay.update_unique_name(:priority => 1) if name.taxon}
+  after_destroy {|name| name.taxon.delay(:priority => 1).update_unique_name if name.taxon}
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
