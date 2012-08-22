@@ -5,6 +5,7 @@
 #
 class NewZealandOrganismsRegister
   ENDPOINT = 'http://data.nzor.org.nz/'.freeze
+  NAME_SEARCH_ENDPOINT = 'http://data.nzor.org.nz/names/search'.freeze
 
   attr_reader :timeout
 
@@ -19,7 +20,7 @@ class NewZealandOrganismsRegister
   #
   def request(method, args = {})
     params = args
-    url    = ENDPOINT + "?" + 
+    url    = NAME_SEARCH_ENDPOINT + "?format=xml&" + 
              params.map {|k,v| "#{k}=#{v}"}.join('&')
     uri    = URI.encode(url.gsub("'", '*'))
     response = nil
@@ -27,7 +28,7 @@ class NewZealandOrganismsRegister
       timed_out = Timeout::timeout(@timeout) do
         puts "DEBUG: requesting " + uri # test
         response  = Net::HTTP.get_response(URI.parse(uri))
-        # puts response.body
+        puts response.body
       end
     rescue Timeout::Error
       raise Timeout::Error, 

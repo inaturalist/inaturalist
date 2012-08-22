@@ -10,18 +10,16 @@ describe "a name provider", :shared => true do
   end
   
   it "should have a #get_lineage_for method" do
-    pending
     @np.should respond_to(:get_lineage_for)
   end
   
   it "should have a #get_phylum_for method" do
-    pending
     @np.should respond_to(:get_phylum_for)
   end
   
   it "should not return more than 10 results by default for #find" do
-    pending
-    loons = @np.find('loon')
+    binding.pry
+    loons = @np.find('tree')
     loons.size.should <= 10
   end
   
