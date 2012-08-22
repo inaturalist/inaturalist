@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810053551) do
+ActiveRecord::Schema.define(:version => 20120821195023) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "current",        :default => true
   end
 
   add_index "identifications", ["observation_id", "created_at"], :name => "index_identifications_on_observation_id_and_created_at"

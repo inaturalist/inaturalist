@@ -382,7 +382,6 @@ a .taxon:hover {
 }
 
 .taxon .othernames {
-  font-size: 80%;
   color: #888;
   line-height: 1.1;
 }
@@ -1150,6 +1149,10 @@ table .numeric { text-align: center; }
   *display:inline;
   float:none;
 }
+
+.item_content .outdated {opacity: 0.5;}
+.item_content .outdated:hover {opacity: 1;}
+.item_content .outdated .identification_body .user_and_taxon { text-decoration: line-through; }
 .item_content .identification_body { margin-top: 7px; }
 .item_content .identification_image img{width:32px;vertical-align:middle;}
 .item_content .identification{padding:0.5em;background-color:#eee;margin-bottom:0.5em;}

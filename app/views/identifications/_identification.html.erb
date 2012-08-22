@@ -10,6 +10,7 @@
   if identification.user_id == observation.user_id
     identification_classes += ' owners'
   end
+  identification_classes += " #{identification.current? ? 'current' : 'outdated'}"
   hide_actions ||= false
   extra ||= nil
 -%>
@@ -18,15 +19,17 @@
     <%= link_to taxon_image(taxon), taxon %>
   </div>
   <div class="identification_body">
-    <% if logged_in? && identification.user_id == current_user.id %>
-      <strong>Your</strong>
-    <% else %>
-      <%= link_to("#{user.login}'s", person_path(user)) %>
-    <% end %>
-    ID:
-    <%= render :partial => 'shared/taxon', 
-               :locals => { :taxon => taxon,
-                            :link_url => taxon } %>
+    <span class="user_and_taxon">
+      <% if is_me?(user) %>
+        <strong>Your</strong>
+      <% else %>
+        <%= link_to("#{user.login}'s", person_path(user)) %>
+      <% end %>
+      ID:
+      <%= render :partial => 'shared/taxon', 
+                 :locals => { :taxon => taxon,
+                              :link_url => taxon } %>
+    </span>
     <% unless hide_actions -%>
       <% if logged_in? && identification.user_id != current_user.id %>
         <span class="agree button">
@@ -37,7 +40,7 @@
                :taxon_id => identification.taxon_id },
              :method => :post -%></span>
       <% end %>
-      <% if logged_in? && identification.user_id == current_user.id %>
+      <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
         <span class="button"><%= link_to "Remove", identification_path(identification), 
             :method => :delete,
             "data-loading-click" => "Removing...",

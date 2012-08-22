@@ -108,12 +108,10 @@ class IdentificationsController < ApplicationController
   # Agree with an identification
   def agree
     @observation = Observation.find_by_id(params[:observation_id])
-    @old_identification = @observation.identifications.find(:first,
-      :conditions => ["user_id = ?", current_user.id])
+    @old_identification = @observation.identifications.by(current_user).current.last
     if @old_identification && @old_identification.taxon_id == params[:taxon_id].to_i
       @identification = @old_identification
     else
-      @old_identification.destroy if @old_identification
       @identification = Identification.new(
         :user => current_user,
         :taxon_id => params[:taxon_id].to_i,

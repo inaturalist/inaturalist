@@ -189,30 +189,31 @@ class ObservationsController < ApplicationController
         # always display the time in the zone in which is was observed
         Time.zone = @observation.user.time_zone
                 
-        @identifications = @observation.identifications.all(:include => [:user, {:taxon => :photos}])
-        @owners_identification = @identifications.detect do |ident|
+        @identifications = @observation.identifications.includes(:user, :taxon => :photos)
+        @current_identifications = @identifications.select{|o| o.current?}
+        @owners_identification = @current_identifications.detect do |ident|
           ident.user_id == @observation.user_id
         end
         if logged_in?
-          @viewers_identification = @identifications.detect do |ident|
+          @viewers_identification = @current_identifications.detect do |ident|
             ident.user_id == current_user.id
           end
         end
         
-        @identifications_by_taxon = @identifications.select do |ident|
+        @current_identifications_by_taxon = @current_identifications.select do |ident|
           ident.user_id != ident.observation.user_id
         end.group_by{|i| i.taxon}
-        @identifications_by_taxon = @identifications_by_taxon.sort_by do |row|
+        @current_identifications_by_taxon = @current_identifications_by_taxon.sort_by do |row|
           row.last.size
         end.reverse
         
         if logged_in?
           # Make sure the viewer's ID is first in its group
-          @identifications_by_taxon.each_with_index do |pair, i|
+          @current_identifications_by_taxon.each_with_index do |pair, i|
             if pair.last.map(&:user_id).include?(current_user.id)
               pair.last.delete(@viewers_identification)
               identifications = [@viewers_identification] + pair.last
-              @identifications_by_taxon[i] = [pair.first, identifications]
+              @current_identifications_by_taxon[i] = [pair.first, identifications]
             end
           end
           
