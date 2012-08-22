@@ -409,14 +409,6 @@
           <%= link_to "Sign in", login_path %>
           or <%= link_to "sign up", signup_path %>
           to add identifications.
-        <% elsif @viewers_identification -%>
-          <div class="notice">
-            You've already added an identification, and you can only add one.
-            <span>
-              <%= link_to "Remove your existing ID?", identification_path(@viewers_identification), 
-                :method => :delete %>
-            </span>
-          </div>
         <% else %>
           <%- new_identification = Identification.new(:user => current_user, :observation => @observation) -%>
           <%= form_for new_identification do |f| %>
@@ -450,7 +442,7 @@
       </div>
     <% end %>
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">
-      <% for taxon, identifications in @identifications_by_taxon %>
+      <% for taxon, identifications in @current_identifications_by_taxon %>
         <div class="identification_group">
           <%= render :partial => "identifications/identification", :locals => { :identification => identifications.first }%>
           <% if identifications.size == 2 %>

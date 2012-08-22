@@ -1304,8 +1304,8 @@ class Observation < ActiveRecord::Base
       num_agreements    = 0
       num_disagreements = 0
     else
-      num_agreements    = idents.select{|ident| ident.is_agreement?(:observation => self)}.size
-      num_disagreements = idents.select{|ident| ident.is_disagreement?(:observation => self)}.size
+      num_agreements    = idents.select{|ident| ident.current? && ident.is_agreement?(:observation => self)}.size
+      num_disagreements = idents.select{|ident| ident.current? && ident.is_disagreement?(:observation => self)}.size
     end
     
     # Kinda lame, but Observation#get_quality_grade relies on these numbers

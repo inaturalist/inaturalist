@@ -1225,3 +1225,18 @@ describe Observation, "places" do
     inside.places.should include(place)
   end
 end
+
+describe Observation, "update_stats" do
+  it "should not consider outdated observations as agreements" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    old_ident = Identification.make!(:observation => o, :taxon => o.taxon)
+    new_ident = Identification.make!(:observation => o, :user => old_ident.user)
+    o.reload
+    o.update_stats
+    o.reload
+    old_ident.reload
+    old_ident.should_not be_current
+    o.num_identification_agreements.should eq(0)
+    o.num_identification_disagreements.should eq(1)
+  end
+end

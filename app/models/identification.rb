@@ -6,17 +6,18 @@ class Identification < ActiveRecord::Base
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
-  validates_uniqueness_of :user_id, :scope => :observation_id, 
-                          :message => "can only identify an observation once"
+  validate :uniqueness_of_current, :on => :update
   
-  after_create  :update_observation, 
+  after_create  :update_other_identifications,
+                :update_observation, 
                 :increment_user_counter_cache, 
                 :expire_caches
                 
   after_save    :update_obs_stats, 
                 :update_curator_identification
                 
-  after_destroy :revisit_curator_identification, 
+  after_destroy :set_last_identification_as_current,
+                :revisit_curator_identification, 
                 :decrement_user_counter_cache, 
                 :update_observation_after_destroy,
                 :update_obs_stats,
@@ -34,14 +35,35 @@ class Identification < ActiveRecord::Base
     includes(:observation).where("observation.user_id = ?", user)
   }
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
-  
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
+  scope :current, where(:current => true)
+  scope :outdated, where(:current => false)
   
   def to_s
     "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"
   end
+
+  # Validations ###############################################################
+
+  def uniqueness_of_current
+    return true unless observation && user_id
+    return true unless current?
+    current_ident = observation.identifications.by(user_id).current.last
+    if current_ident && current_ident.id != id && current_ident.created_at > created_at
+      errors.add(:current, "can't be set when a newer current identification exists for this user")
+    end
+    true
+  end
   
   # Callbacks ###############################################################
+
+  def update_other_identifications
+    Identification.update_all(
+      ["current = ?", false],
+      ["observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id]
+    )
+    true
+  end
   
   # Update the observation if you're adding an ID to your own obs
   def update_observation
@@ -64,6 +86,11 @@ class Identification < ActiveRecord::Base
     return true unless self.observation
     return true unless self.observation.user_id == self.user_id
     return true if @skip_observation
+
+    if last_current = observation.identifications.current.by(user_id).order("id ASC").last
+      last_current.update_observation
+      return true
+    end
     
     # update the species_guess
     species_guess = observation.species_guess
@@ -115,6 +142,14 @@ class Identification < ActiveRecord::Base
   
   def expire_caches
     Identification.delay.expire_caches(self.id)
+    true
+  end
+
+  def set_last_identification_as_current
+    last_outdated = observation.identifications.outdated.by(user_id).order("id ASC").last
+    if last_outdated
+      Identification.update_all(["current = ?", true], ["id = ?", last_outdated])
+    end
     true
   end
   
@@ -174,38 +209,42 @@ class Identification < ActiveRecord::Base
   
   def self.run_update_curator_identification(ident)
     obs = ident.observation
-    ident.observation.project_observations.each do |po|
-      if ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
-        po.update_attributes(:curator_identification_id => ident.id)
-        ProjectUser.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.update_observed_taxa_count(po.project_id)
+    current_ident = if ident.current?
+      ident
+    else
+      obs.identifications.by(ident.user_id).current.order("id asc").last
+    end
+    obs.project_observations.each do |po|
+      if current_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+        po.update_attributes(:curator_identification_id => current_ident.try(:id))
+        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay.update_observed_taxa_count(po.project_id)
       end
     end
   end
   
   def self.run_revisit_curator_identification(observation_id, user_id)
-    unless obs = Observation.find_by_id(observation_id)
-      return
-    end
-    unless usr = User.find_by_id(user_id)
-      return
-    end
+    return unless obs = Observation.find_by_id(observation_id)
+    return unless usr = User.find_by_id(user_id)
     obs.project_observations.each do |po|
-      if usr.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]]) #The ident that was deleted is owned by user who is a curator of a project that that obs belongs to
-        other_curator_id = false
-        po.observation.identifications.each do |other_ident| #that project observation has other identifications that belong to users who are curators use those
-          if other_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+      other_curator_conditions = ["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]]
+      # The ident that was deleted is owned by user who is a curator of a project that that obs belongs to
+      if usr.project_users.exists?(other_curator_conditions)
+        other_curator_ident = nil
+
+        # that project observation has other identifications that belong to users who are curators use those
+        po.observation.identifications.current.each do |other_ident|
+          if other_curator_ident = other_ident.user.project_users.exists?(other_curator_conditions)
             po.update_attributes(:curator_identification_id => other_ident.id)
-            other_curator_id = true
+            break
           end
         end
-        unless other_curator_id
-          po.update_attributes(:curator_identification_id => nil)
-        end
-        ProjectUser.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        ProjectUser.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
-        Project.update_observed_taxa_count(po.project_id)
+
+        po.update_attributes(:curator_identification_id => nil) unless other_curator_ident
+        ProjectUser.delay.update_observations_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
+        Project.delay.update_observed_taxa_count(po.project_id)
       end
     end
   end

@@ -23,16 +23,24 @@ describe Identification, "creation" do
     @id.valid?
     @id.errors[:observation].should_not be_blank
   end
-  
-  it "should not let you identify the same observation twice" do
-    @id = Identification.make!
-    bad_identification = Identification.new(
-      :user => @id.user,
-      :observation => @id.observation,
-      :taxon => Taxon.make!
-    )
-    bad_identification.valid?
-    bad_identification.errors[:user].should_not be(nil)
+
+  it "should make older identifications not current" do
+    old_ident = Identification.make!
+    new_ident = Identification.make!(:observation => old_ident.observation, :user => old_ident.user)
+    new_ident.should be_valid
+    new_ident.should be_current
+    old_ident.reload
+    old_ident.should_not be_current
+  end
+
+  it "should not allow 2 current observations per user" do
+    ident1 = Identification.make!
+    idend2 = Identification.make!(:user => ident1.user, :observation => ident1.observation)
+    ident1.reload
+    ident1.should_not be_current
+    ident1.update_attributes(:current => true)
+    ident1.should_not be_valid
+    ident1.errors[:current].should_not be_blank
   end
   
   it "should add a taxon to its observation if it's the observer's identification" do
@@ -72,6 +80,18 @@ describe Identification, "creation" do
       Identification.make!(:observation => obs, :taxon => taxon)
       obs.reload
     }.to change(obs, :num_identification_agreements).by(1)
+  end
+
+  it "should increment the observations num_identification_agreements if this is an agreement and there are outdated idents" do
+    taxon = Taxon.make!
+    obs = Observation.make!(:taxon => taxon)
+    old_ident = Identification.make!(:observation => obs, :taxon => taxon)
+    obs.reload
+    obs.num_identification_agreements.should eq(1)
+    obs.reload
+    Identification.make!(:observation => obs, :user => old_ident.user)
+    obs.reload
+    obs.num_identification_agreements.should eq(0)
   end
   
   it "should increment the observations num_identification_disagreements if this is an disagreement" do
@@ -163,6 +183,8 @@ describe Identification, "creation" do
     o.reload
     o.should be_research_grade
   end
+
+  # it "should set curator_identification"
 end
 
 describe Identification, "deletion" do
@@ -290,7 +312,7 @@ describe Identification, "deletion" do
     # puts job.handler.inspect
   end
   
-  it "should nilify curator_identification_id on project observations" do
+  it "should nilify curator_identification_id on project observations if no other current identification" do
     o = Observation.make!
     p = Project.make!
     pu = ProjectUser.make!(:user => o.user, :project => p)
@@ -303,5 +325,47 @@ describe Identification, "deletion" do
     i.destroy
     po.reload
     po.curator_identification_id.should be_blank
+  end
+
+  it "should set curator_identification_id on project observations to last current identification" do
+    o = Observation.make!
+    p = Project.make!
+    pu = ProjectUser.make!(:user => o.user, :project => p)
+    po = ProjectObservation.make!(:observation => o, :project => p)
+    i1 = Identification.make!(:user => p.user, :observation => o)
+    Identification.run_update_curator_identification(i1)
+    i2 = Identification.make!(:user => p.user, :observation => o)
+    Identification.run_update_curator_identification(i2)
+    po.reload
+    po.curator_identification_id.should == i2.id
+    i2.destroy
+    Identification.run_revisit_curator_identification(o.id, i2.user_id)
+    po.reload
+    po.curator_identification_id.should == i1.id
+  end
+
+  it "should set the user's last identification as current" do
+    ident1 = Identification.make!
+    ident2 = Identification.make!(:observation => ident1.observation, :user => ident1.user)
+    ident3 = Identification.make!(:observation => ident1.observation, :user => ident1.user)
+    ident2.reload
+    ident2.should_not be_current
+    ident3.destroy
+    ident2.reload
+    ident2.should be_current
+    ident1.reload
+    ident1.should_not be_current
+  end
+
+  it "should set observation taxon to that of last current ident for owner" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    ident1 = o.owners_identification
+    ident2 = Identification.make!(:observation => o, :user => o.user)
+    ident3 = Identification.make!(:observation => o, :user => o.user)
+    o.reload
+    o.taxon_id.should eq(ident3.taxon_id)
+    ident3.destroy
+    o.reload
+    o.taxon_id.should eq(ident2.taxon_id)
   end
 end
