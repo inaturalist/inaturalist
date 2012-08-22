@@ -218,7 +218,6 @@ Observations by <%= h @login %>
         iNaturalist.restfulDelete("<%= url_for(:action => 'delete_batch') %>", {
           plural: true,
           data: {
-            authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
             o: obs_ids.join(',')
           }, 
           complete: function() {
