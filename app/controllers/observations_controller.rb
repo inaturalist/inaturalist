@@ -561,7 +561,7 @@ class ObservationsController < ApplicationController
     unique_user_ids = @observations.map(&:user_id).uniq
     if unique_user_ids.size > 1 || unique_user_ids.first != observation_user.id && !current_user.has_role?(:admin)
       flash[:error] = "You don't have permission to edit that observation."
-      return redirect_to (@observation || observations_path)
+      return redirect_to(@observation || observations_path)
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
