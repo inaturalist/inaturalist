@@ -199,4 +199,38 @@ class FlickrPhoto < Photo
     )
   end
 
+  def self.repair(find_options = {})
+    puts "[INFO #{Time.now}] starting FlickrPhoto.repair"
+    find_options[:include] ||= {:user => :flickr_identity}
+    flickr = FlickRaw::Flickr.new
+    updated = 0
+    destroyed = 0
+    start_time = Time.now
+    FlickrPhoto.do_in_batches(find_options) do |p|
+      begin
+        sizes = flickr.photos.getSizes(
+          :photo_id => p.native_photo_id, 
+          :auth_token => p.user ? p.user.flickr_identity.token : nil
+        )
+        p.square_url    = sizes.detect{|s| s.label == 'Square'}.try(:source)
+        p.thumb_url     = sizes.detect{|s| s.label == 'Thumbnail'}.try(:source)
+        p.small_url     = sizes.detect{|s| s.label == 'Small'}.try(:source)
+        p.medium_url    = sizes.detect{|s| s.label == 'Medium'}.try(:source)
+        p.large_url     = sizes.detect{|s| s.label == 'Large'}.try(:source)
+        p.original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
+        if p.changed?
+          puts "[DEBUG] updated #{p}, changed: #{p.changed.join(', ')}"
+          p.save
+          updated += 1
+        end
+      rescue FlickRaw::FailedResponse => e
+        raise e unless e.message =~ /Photo not found/
+        puts "[DEBUG] destroyed #{p}"
+        p.destroy
+        destroyed += 1
+      end
+    end
+    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{Time.now - start_time}s"
+  end
+
 end
