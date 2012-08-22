@@ -78,7 +78,7 @@
           <% end %>
         </div>
       <% end %>
-      <% if @flickr_photo && @flickr_photo.copyrighted? %>
+      <% if (@flickr_photo && @flickr_photo.copyrighted?) || @facebook_photo || @picasa_photo %>
         <div class="clear stacked notice">
           <% fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
             <%= fu.check_box :preferred_photo_license, {:checked => true}, Observation::CC_BY_NC,
