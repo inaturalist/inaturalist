@@ -60,6 +60,7 @@ module Ratatosk
       # Initialize with an Hpricot object of a single CoL XML response
       #
       def initialize(hxml, params = {})
+        binding.pry
         @adaptee = TaxonName.new(params)
         @hxml = hxml
         taxon_name.name = @hxml.at('name').inner_text
@@ -90,14 +91,15 @@ module Ratatosk
       protected
 
       def get_lexicon
-        lex = if @hxml.at_xpath('rank')
-          TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
-        elsif hxml.at('//language')
-          @hxml.at('//language').inner_text.downcase
-        else
-          nil
-        end
-        lex == 'unspecified' ? nil : lex
+        lex = case @hxml.at('Class')
+          when "Scientific Name"
+            "Scientific Names"
+          when "Vernacular Name"
+            @hxml.at("Language")
+          else
+            nil
+          end
+        lex
       end
 
       def get_is_valid

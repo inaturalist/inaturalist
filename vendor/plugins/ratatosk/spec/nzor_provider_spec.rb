@@ -18,17 +18,15 @@ describe "a name provider", :shared => true do
   end
   
   it "should not return more than 10 results by default for #find" do
-    binding.pry
     loons = @np.find('tree')
     loons.size.should <= 10
   end
   
   it "should include a TaxonName that EXACTLY matches the query for #find" do
-    pending
-    taxon_names = @np.find('Pseudacris crucifer')
+    taxon_names = @np.find('Amphioxi')
     taxon_names.map do |tn| 
       tn.name
-    end.include?('Pseudacris crucifer').should be(true)
+    end.include?('Amphioxi').should be(true)
   end
   
   it "should get 'Chordata' as the phylum for 'Homo sapiens'" do
@@ -84,6 +82,69 @@ describe "a name provider", :shared => true do
     end
   end
 end
+describe "a Taxon adapter", :shared => true do
+  
+  it "should have a name" do
+    #TODO the partial name is "Homo sapiens"... the full name is "Homo sapiens Linnaeus, 1758"
+    #which should it be?
+#    @adapter.name.should == 'Homo sapiens'
+    @adapter.name.should == 'Homo sapiens Linnaeus, 1758'
+  end
+
+  it "should return a rank" do
+    @adapter.rank.should == 'species'
+  end
+  
+  it "should have a source" do
+    binding.pry
+    @adapter.source.should_not be(nil)
+  end
+  
+  it "should have a source identifier" do
+    pending
+    @adapter.source_identifier.should_not be(nil)
+  end
+  
+  it "should have a source URL" do
+    pending
+    @adapter.source_url.should_not be(nil)
+  end
+  
+  it "should save like a Taxon" do
+    pending
+    Taxon.find_by_name('Homo sapiens').should be(nil)
+    a = @adapter.save
+    puts "DEBUG: @adapter.errors: #{@adapter.errors.full_messages.join(', ')}" unless @adapter.valid?
+    @adapter.new_record?.should_not be(true)
+    @adapter.name.should == 'Homo sapiens'
+  end
+  
+  it "should have the same name before and after saving" do
+    pending
+    @adapter.save
+    puts "DEBUG: @adapter.errors: #{@adapter.errors.full_messages.join(', ')}" unless @adapter.valid?
+    Taxon.find(@adapter.id).name.should == @adapter.name
+  end
+  
+  it "should have a working #to_json method" do
+    pending
+    lambda { @adapter.to_json }.should_not raise_error
+  end
+  
+  it "should only have one scientific name after saving" do
+    pending
+    @adapter.save
+    @adapter.reload
+    @adapter.taxon_names.select{|n| n.name == @adapter.name}.size.should be(1)
+  end
+  
+  it "should have a unique name after saving" do
+    pending
+    @adapter.save
+    @adapter.reload
+    @adapter.unique_name.should_not be_nil
+  end
+end
 ######## Class Specs ########################################################
 
 describe Ratatosk::NameProviders::NZORNameProvider do
@@ -91,5 +152,27 @@ describe Ratatosk::NameProviders::NZORNameProvider do
 
   before(:all) do
     @np = Ratatosk::NameProviders::NZORNameProvider.new
+  end
+end
+describe Ratatosk::NameProviders::NZORTaxonAdapter do
+  fixtures :sources
+  it_should_behave_like "a Taxon adapter"
+  
+  before(:all) do    
+    @hxml = NewZealandOrganismsRegister.new.search(:query => 'Homo sapiens')
+  end
+  
+  before(:each) do 
+    # make absolutely sure the db is empty
+    [TaxonName.find(:all, :conditions => "name like 'Homo sapiens%'")].flatten.compact.each do |tn|
+      # tn.taxon.destroy
+      tn.destroy
+    end
+    
+    [Taxon.find(:all, :conditions => "name like 'Homo sapiens%'")].flatten.compact.each do |t|
+      t.destroy
+    end
+    
+    @adapter = Ratatosk::NameProviders::NZORTaxonAdapter.new(@hxml)
   end
 end

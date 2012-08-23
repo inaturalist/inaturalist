@@ -36,3 +36,28 @@ unless inat = Source.find_by_title('iNaturalist')
   )
   inat.save
 end
+
+unless nzor = Source.find_by_title('New Zealand Organisms Register')
+  puts "Creating source for NZOR..."
+  nzor = Source.new(
+    :in_text => 'New Zealand Organisms Register',
+    :citation => 'NZOR. <http://data.nzor.org.nz/>.',
+    :url => 'http://data.nzor.org.nz',
+    :title => 'New Zealand Organisms Register'
+  )
+  nzor.save
+end
+
+%w(Birds Fungi Herpetofauna Invertebrates Mammals Plants Other).each do |kingdom|
+  name = "NZBRN #{kingdom}"
+  unless source = Source.find_by_title(name)
+    puts "Creating source for #{name}..."
+    source = Source.new(
+      :in_text => name,
+      :citation => "#{name}. <http://www.nzbrn.org.nz/#{kingdom.downcase}/>.",
+      :url => "http://www.nzbrn.org.nz/#{kingdom.downcase}/",
+      :title => name
+    )
+    source.save
+  end
+end

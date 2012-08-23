@@ -28,7 +28,6 @@ class NewZealandOrganismsRegister
       timed_out = Timeout::timeout(@timeout) do
         puts "DEBUG: requesting " + uri # test
         response  = Net::HTTP.get_response(URI.parse(uri))
-        puts response.body
       end
     rescue Timeout::Error
       raise Timeout::Error, 
