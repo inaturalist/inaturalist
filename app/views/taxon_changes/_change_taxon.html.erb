@@ -42,7 +42,7 @@
     
     <div class="meta">
       <div class="small description">
-        <% for taxon_scheme in change_taxon.taxon_schemes %>
+        <% for taxon_scheme in change_taxon.taxon_schemes.compact %>
           <%= taxon_scheme.title  %><br/>
         <% end %>
         
