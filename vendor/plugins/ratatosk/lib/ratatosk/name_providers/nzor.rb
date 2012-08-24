@@ -44,7 +44,7 @@ module Ratatosk
       def initialize(hxml, params = {})
         @adaptee = TaxonName.new(params)
         @hxml = hxml
-        taxon_name.name = @hxml.at('FullName').inner_text
+        taxon_name.name = @hxml.at('AcceptedName/PartialName').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
         taxon_name.source = Source.find_by_title('New Zealand Organisms Register')
@@ -135,7 +135,7 @@ module Ratatosk
       def initialize(hxml, params = {})
         @adaptee = Taxon.new(params)
         @hxml = hxml
-        @adaptee.name               = @hxml.at('FullName').inner_text
+        @adaptee.name               = @hxml.at('AcceptedName/PartialName').inner_text
         @adaptee.rank               = @hxml.at('Rank').inner_text.downcase
         @adaptee.source             = Source.find_by_title('New Zealand Organisms Register')
         @adaptee.source_identifier  = @hxml.at('NameId').inner_text
