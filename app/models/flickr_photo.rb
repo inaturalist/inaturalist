@@ -200,11 +200,12 @@ class FlickrPhoto < Photo
   end
 
   def self.repair(find_options = {})
-    puts "[INFO #{Time.now}] starting FlickrPhoto.repair"
+    puts "[INFO #{Time.now}] starting FlickrPhoto.repair, options: #{find_options.inspect}"
     find_options[:include] ||= {:user => :flickr_identity}
     flickr = FlickRaw::Flickr.new
     updated = 0
     destroyed = 0
+    invalids = 0
     start_time = Time.now
     FlickrPhoto.do_in_batches(find_options) do |p|
       begin
@@ -224,13 +225,19 @@ class FlickrPhoto < Photo
           updated += 1
         end
       rescue FlickRaw::FailedResponse => e
-        raise e unless e.message =~ /Photo not found/
-        puts "[DEBUG] destroyed #{p}"
-        p.destroy
-        destroyed += 1
+        if e.message =~ /Photo not found/
+          puts "[DEBUG] destroyed #{p}"
+          p.destroy
+          destroyed += 1
+        elsif e.message =~ /Invalid auth token/
+          puts "[DEBUG] invalid auth token #{p}"
+          invalids += 1
+        else
+          raise e
+        end
       end
     end
-    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{Time.now - start_time}s"
+    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{Time.now - start_time}s"
   end
 
 end
