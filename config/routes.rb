@@ -78,6 +78,7 @@ ActionController::Routing::Routes.draw do |map|
   #
   
   map.local_photo_fields 'photos/local_photo_fields', :controller => 'photos', :action => 'local_photo_fields'
+  map.photo_repair "/photos/:id/repair", :controller => "photos", :action => "repair", :method => :put
   map.resources :photos, :only => [:show, :update]
   map.resources :observation_photos, :only => [:create, :update, :show]
   map.connect   'flickr/photos.:format',

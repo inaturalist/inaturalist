@@ -9,6 +9,7 @@ module BatchTools
       def do_in_batches(options = {}, &block)
         batch_size = options.delete(:batch_size) || 1000
         count_options = options.reject {|k,v| k.to_s == 'order'}
+        sleep_time = options.delete(:sleep)
         if count_options[:select]
           if distinct = count_options[:select][/DISTINCT \(.+?\)/, 0]
             count_options[:select] = distinct
@@ -31,13 +32,14 @@ module BatchTools
           # puts msg
           Rails.logger.info msg
           work_on_batch(batch, batch_size, options, &block)
+          sleep(sleep_time) if sleep_time
         end
       end
       
       # Like do in batches put prints progress to stdout
       def script_do_in_batches(options = {}, &block)
         start = Time.now
-        count_options = options.reject {|k,v| %w(order select).include?(k.to_s)}
+        count_options = options.reject {|k,v| %w(order select batch_size sleep).include?(k.to_s)}
         item_count = count(count_options)
         iteration = 1
         do_in_batches(options) do |record|

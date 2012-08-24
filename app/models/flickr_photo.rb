@@ -188,6 +188,42 @@ class FlickrPhoto < Photo
     taxa.compact
   end
 
+  def repair
+    errors = {}
+    begin
+      sizes = flickr.photos.getSizes(
+        :photo_id => native_photo_id, 
+        :auth_token => user ? user.flickr_identity.token : nil
+      )
+      square_url    = sizes.detect{|s| s.label == 'Square'}.try(:source)
+      thumb_url     = sizes.detect{|s| s.label == 'Thumbnail'}.try(:source)
+      small_url     = sizes.detect{|s| s.label == 'Small'}.try(:source)
+      medium_url    = sizes.detect{|s| s.label == 'Medium'}.try(:source)
+      large_url     = sizes.detect{|s| s.label == 'Large'}.try(:source)
+      original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
+      if changed?
+        puts "[DEBUG] updated #{self}, changed: #{changed.join(', ')}"
+        save
+      end
+    rescue FlickRaw::FailedResponse => e
+      if e.message =~ /Photo not found/
+        errors[:photo_missing_from_flickr] = "photo not found #{self}"
+      elsif e.message =~ /Invalid auth token/
+        errors[:flickr_authorization_missing] = "invalid auth token #{self}"
+      else
+        raise e
+      end
+    rescue NoMethodError => e
+      raise e unless e.message =~ /token/
+      errors[:flickr_authorization_missing] = "missing FlickrIdentity for #{user}"
+    end
+
+    if errors[:photo_missing_from_flickr] || (errors[:flickr_authorization_missing] && orphaned?)
+      destroy
+    end
+    [self, errors]
+  end
+
   def self.add_comment(user, flickr_photo_id, comment_text)
     return nil if user.flickr_identity.nil?
     flickr = FlickRaw::Flickr.new
@@ -201,40 +237,22 @@ class FlickrPhoto < Photo
 
   def self.repair(find_options = {})
     puts "[INFO #{Time.now}] starting FlickrPhoto.repair, options: #{find_options.inspect}"
-    find_options[:include] ||= {:user => :flickr_identity}
+    find_options[:include] ||= [{:user => :flickr_identity}, :taxon_photos, :observation_photos]
+    find_options[:batch_size] ||= 100
+    find_options[:sleep] ||= 10
     flickr = FlickRaw::Flickr.new
     updated = 0
     destroyed = 0
     invalids = 0
     start_time = Time.now
-    FlickrPhoto.do_in_batches(find_options) do |p|
-      begin
-        sizes = flickr.photos.getSizes(
-          :photo_id => p.native_photo_id, 
-          :auth_token => p.user ? p.user.flickr_identity.token : nil
-        )
-        p.square_url    = sizes.detect{|s| s.label == 'Square'}.try(:source)
-        p.thumb_url     = sizes.detect{|s| s.label == 'Thumbnail'}.try(:source)
-        p.small_url     = sizes.detect{|s| s.label == 'Small'}.try(:source)
-        p.medium_url    = sizes.detect{|s| s.label == 'Medium'}.try(:source)
-        p.large_url     = sizes.detect{|s| s.label == 'Large'}.try(:source)
-        p.original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
-        if p.changed?
-          puts "[DEBUG] updated #{p}, changed: #{p.changed.join(', ')}"
-          p.save
-          updated += 1
-        end
-      rescue FlickRaw::FailedResponse => e
-        if e.message =~ /Photo not found/
-          puts "[DEBUG] destroyed #{p}"
-          p.destroy
-          destroyed += 1
-        elsif e.message =~ /Invalid auth token/
-          puts "[DEBUG] invalid auth token #{p}"
-          invalids += 1
-        else
-          raise e
-        end
+    FlickrPhoto.script_do_in_batches(find_options) do |p|
+      repaired, errors = p.repair
+      if errors.blank?
+        updated += 1
+      else
+        puts "[DEBUG] #{errors.values.to_sentence}"
+        destroyed += 1 if repaired.frozen?
+        invalids += 1 if errors[:flickr_authorization_missing]
       end
     end
     puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{Time.now - start_time}s"
