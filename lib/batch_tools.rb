@@ -8,7 +8,7 @@ module BatchTools
     module ClassMethods
       def do_in_batches(options = {}, &block)
         batch_size = options.delete(:batch_size) || 1000
-        count_options = options.reject {|k,v| k.to_s == 'order'}
+        count_options = options.reject {|k,v| %w(order batch_size sleep).include?(k.to_s)}
         sleep_time = options.delete(:sleep)
         if count_options[:select]
           if distinct = count_options[:select][/DISTINCT \(.+?\)/, 0]

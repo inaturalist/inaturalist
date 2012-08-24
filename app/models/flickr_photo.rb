@@ -191,16 +191,22 @@ class FlickrPhoto < Photo
   def repair
     errors = {}
     begin
-      sizes = flickr.photos.getSizes(
-        :photo_id => native_photo_id, 
-        :auth_token => user ? user.flickr_identity.token : nil
-      )
-      square_url    = sizes.detect{|s| s.label == 'Square'}.try(:source)
-      thumb_url     = sizes.detect{|s| s.label == 'Thumbnail'}.try(:source)
-      small_url     = sizes.detect{|s| s.label == 'Small'}.try(:source)
-      medium_url    = sizes.detect{|s| s.label == 'Medium'}.try(:source)
-      large_url     = sizes.detect{|s| s.label == 'Large'}.try(:source)
-      original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
+      sizes = []
+      begin
+        sizes = flickr.photos.getSizes(
+          :photo_id => native_photo_id, 
+          :auth_token => user ? user.flickr_identity.token : nil
+        )
+      rescue FlickRaw::FailedResponse => e
+        raise e unless e.message =~ /Invalid auth token/
+        sizes = flickr.photos.getSizes(:photo_id => native_photo_id)
+      end
+      self.square_url    = sizes.detect{|s| s.label == 'Square'}.try(:source)
+      self.thumb_url     = sizes.detect{|s| s.label == 'Thumbnail'}.try(:source)
+      self.small_url     = sizes.detect{|s| s.label == 'Small'}.try(:source)
+      self.medium_url    = sizes.detect{|s| s.label == 'Medium'}.try(:source)
+      self.large_url     = sizes.detect{|s| s.label == 'Large'}.try(:source)
+      self.original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
       if changed?
         puts "[DEBUG] updated #{self}, changed: #{changed.join(', ')}"
         save
@@ -208,8 +214,6 @@ class FlickrPhoto < Photo
     rescue FlickRaw::FailedResponse => e
       if e.message =~ /Photo not found/
         errors[:photo_missing_from_flickr] = "photo not found #{self}"
-      elsif e.message =~ /Invalid auth token/
-        errors[:flickr_authorization_missing] = "invalid auth token #{self}"
       else
         raise e
       end
@@ -251,8 +255,14 @@ class FlickrPhoto < Photo
         updated += 1
       else
         puts "[DEBUG] #{errors.values.to_sentence}"
-        destroyed += 1 if repaired.frozen?
-        invalids += 1 if errors[:flickr_authorization_missing]
+        if repaired.frozen?
+          destroyed += 1 
+          puts "[DEBUG] destroyed #{repaired}"
+        end
+        if errors[:flickr_authorization_missing]
+          invalids += 1
+          puts "[DEBUG] authorization missing #{repaired}"
+        end
       end
     end
     puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{Time.now - start_time}s"
