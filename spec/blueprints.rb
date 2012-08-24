@@ -104,13 +104,13 @@ ProjectList.blueprint do
   project
 end
 
-ProjectUser.blueprint do
-  user
+ProjectObservation.blueprint do
+  observation
   project
 end
 
-ProjectObservation.blueprint do
-  observation
+ProjectUser.blueprint do
+  user
   project
 end
 

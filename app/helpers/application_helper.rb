@@ -621,7 +621,15 @@ module ApplicationHelper
           @update_cache[:users][notifier.user_id]
         end
         notifier_user = notifier.user
+        notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
       end
+
+      resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
+
+      if notifier.is_a?(ProjectInvitation)
+        return "#{notifier_user_link} invited your #{resource_link} to a project"
+      end
+
       s = if update.notification == "activity" && notifier_user
         notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
         "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))} " + 
@@ -629,7 +637,7 @@ module ApplicationHelper
       else
         s = "New activity on "
       end
-      s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))}"
+      s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s
     when "Post"

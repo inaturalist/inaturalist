@@ -49,16 +49,7 @@ module HasSubscribers
       @@notifies_subscribers_of_options ||= {}
       @@notifies_subscribers_of_options[subscribable_association.to_sym] = options.merge(:dj_priority => 1)
       
-      callback_type = case options[:on]
-      when :update then :after_update
-      else :after_create
-      end
-      callback_method = options[:with] || :notify_subscribers_of
-      send callback_type do |record|
-        if options[:queue_if].blank? || options[:queue_if].call(record)
-          record.send_later(callback_method, subscribable_association)
-        end
-      end
+      create_callback(subscribable_association, options)
       
       if Object.const_defined?(subscribable_association.to_s.classify) && 
           (klass = Object.const_get(subscribable_association.to_s.classify)) && 
@@ -75,6 +66,25 @@ module HasSubscribers
         }
       end
       
+      after_destroy do |record|
+        Update.delete_all(["notifier_type = ? AND notifier_id = ?", to_s, record.id])
+      end
+    end
+
+    # Generates one-time update for the user associated with a related object
+    def notifies_owner_of(subscribable_association, options = {})
+      unless self.included_modules.include?(HasSubscribers::InstanceMethods)
+        include HasSubscribers::InstanceMethods
+      end
+
+      options[:with] ||= :notify_owner_of
+      options[:notification] ||= to_s.underscore
+
+      cattr_accessor :notifies_owner_of_options
+      self.notifies_owner_of_options ||= {}
+      self.notifies_owner_of_options[subscribable_association.to_sym] = options.merge(:dj_priority => 1)
+
+      create_callback(subscribable_association, options)
       after_destroy do |record|
         Update.delete_all(["notifier_type = ? AND notifier_id = ?", to_s, record.id])
       end
@@ -157,11 +167,35 @@ module HasSubscribers
         end
       end
     end
+
+    def create_callback(subscribable_association, options = {})
+      callback_type = case options[:on]
+      when :update then :after_update
+      else :after_create
+      end
+      callback_method = options[:with] || :notify_subscribers_of
+      send callback_type do |record|
+        if options[:queue_if].blank? || options[:queue_if].call(record)
+          record.send_later(callback_method, subscribable_association)
+        end
+      end
+    end
   end
   
   module InstanceMethods
     def notify_subscribers_of(subscribable_association)
       self.class.send(:notify_subscribers_with, self, subscribable_association)
+    end
+
+    def notify_owner_of(association)
+      options = self.class.notifies_owner_of_options[association.to_sym]
+      Update.create(
+        :subscriber => send(association).user,
+        :resource => send(association),
+        :notifier => self,
+        :notification => options[:notification]
+      )
+      true
     end
   end
 end

@@ -10,7 +10,7 @@
 
 <h3>About this Project</h3>
 <div class="description">
-  <%= formatted_user_text @project.description %>
+  <%= formatted_user_text(@project.description).gsub(/\<a /, '<a target="_blank" ') %>
 </div>
 
 <h3>Project Curators</h3>
@@ -36,7 +36,7 @@ Please be aware that project curators will be able to see any private or obscure
 <% unless @project.terms.blank? -%>
   <h3>Terms</h3>
   <div class="stacked description">
-    <%= formatted_user_text @project.terms %>
+    <%= formatted_user_text(@project.terms).gsub(/\<a /, '<a target="_blank" ') %>
   </div>
 <% end -%>
 

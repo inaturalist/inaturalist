@@ -20,9 +20,16 @@
         :observation => observation,
         :user => user
       } %>
+    <% elsif item.is_a? ProjectInvitation %>
+      <p>Please add this observation to</p>
+      <%= render :partial => "project_invitations/project_invitation", 
+        :object => item,
+        :locals => { 
+          :observation => observation,
+          :truncation_length => 48 } %>
     <%- end -%>
     
-    <% unless item.body.blank? -%>
+    <% if item.respond_to?(:body) && !item.body.blank? -%>
       <div class="readable body"><%= formatted_user_text(item.body) %></div>
     <% end -%>
     
