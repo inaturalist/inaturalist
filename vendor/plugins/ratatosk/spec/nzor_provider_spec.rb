@@ -88,7 +88,7 @@ describe "a Taxon adapter", :shared => true do
     #TODO the partial name is "Homo sapiens"... the full name is "Homo sapiens Linnaeus, 1758"
     #which should it be?
 #    @adapter.name.should == 'Homo sapiens'
-    @adapter.name.should == 'Homo sapiens Linnaeus, 1758'
+    @adapter.name.should == 'Homo sapiens'
   end
 
   it "should return a rank" do
@@ -96,22 +96,18 @@ describe "a Taxon adapter", :shared => true do
   end
   
   it "should have a source" do
-    binding.pry
     @adapter.source.should_not be(nil)
   end
   
   it "should have a source identifier" do
-    pending
     @adapter.source_identifier.should_not be(nil)
   end
   
   it "should have a source URL" do
-    pending
     @adapter.source_url.should_not be(nil)
   end
   
   it "should save like a Taxon" do
-    pending
     Taxon.find_by_name('Homo sapiens').should be(nil)
     a = @adapter.save
     puts "DEBUG: @adapter.errors: #{@adapter.errors.full_messages.join(', ')}" unless @adapter.valid?
@@ -120,7 +116,6 @@ describe "a Taxon adapter", :shared => true do
   end
   
   it "should have the same name before and after saving" do
-    pending
     @adapter.save
     puts "DEBUG: @adapter.errors: #{@adapter.errors.full_messages.join(', ')}" unless @adapter.valid?
     Taxon.find(@adapter.id).name.should == @adapter.name
