@@ -43,8 +43,10 @@ module Ratatosk
       #
       def initialize(hxml, params = {})
         @adaptee = TaxonName.new(params)
+        @service = NewZealandOrganismsRegister.new
         @hxml = hxml
-        taxon_name.name = @hxml.at('AcceptedName/PartialName').inner_text
+        binding.pry
+        taxon_name.name = @hxml.at('PartialName').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
         taxon_name.source = Source.find_by_title('New Zealand Organisms Register')
@@ -121,6 +123,14 @@ module Ratatosk
       end
 
       def comname_taxon
+        binding.pry
+        begin
+          NZORTaxonAdapter.new(@service.lsid(@hxml.at('NameId'))).taxon
+        rescue
+          logger.error("Error in NZORTaxonNameAdapter#comname_taxon while " + 
+            "running @service.lsid(#{@hxml.at('NameId')}): #{e}")
+          raise NameProviderError, e.message
+        end
       end
       def sciname_taxon
       end

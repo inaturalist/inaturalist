@@ -12,6 +12,23 @@ class NewZealandOrganismsRegister
   def initialize(timeout=5)
     @timeout = timeout
   end
+
+  #creates an xml response off the NZOR NameID
+  def lsid(nzor_name_id)
+    url    = ENDPOINT + "/names/" +nzor_name_id+"?format=xml" 
+    response = nil
+    begin
+      timed_out = Timeout::timeout(@timeout) do
+        puts "DEBUG: requesting " + uri # test
+        response  = Net::HTTP.get_response(URI.parse(uri))
+      end
+    rescue Timeout::Error
+      raise Timeout::Error, 
+            "NZOR didn't respond within #{timeout} seconds."
+    end
+    Nokogiri::XML(response.body)
+  end
+
   #
   # Sends a request to a NZOR function, and returns an Nokogiri object of the 
   # xml response.  There's really only the search method right now.
