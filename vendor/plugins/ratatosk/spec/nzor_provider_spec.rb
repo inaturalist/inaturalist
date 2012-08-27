@@ -28,11 +28,15 @@ describe "a name provider", :shared => true do
       tn.name
     end.include?('Amphioxi').should be(true)
   end
+  it "should include a TaxonName that has the correct lexicon" do
+    taxon_name = @np.find('Amphioxi').first
+    taxon_name.lexicon.should == 'Scientific Names'
+  end
   
   it "should get 'Chordata' as the phylum for 'Homo sapiens'" do
-    pending
     taxon = @np.find('Homo sapiens').first.taxon
     phylum = @np.get_phylum_for(taxon)
+    #phylum should be a NZORTaxonAdapter
     phylum.should_not be_nil
     phylum.name.should == 'Chordata'
   end

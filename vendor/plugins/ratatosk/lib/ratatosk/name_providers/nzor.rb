@@ -3,7 +3,7 @@ require 'ratatosk/model_adapter'
 module Ratatosk
   module NameProviders
     #
-    # Concrete strategy for getting names from the Catalogue of Life
+    # Concrete strategy for getting names from NZOR
     #
     class NZORNameProvider
       def initialize
@@ -15,7 +15,9 @@ module Ratatosk
         unless hxml.errors.blank?
           raise NameProviderError, "Failed to parse the response from the New Zealand Organisms Register"
         end
-        hxml.search('//Results').map do |r|
+        #iterate over each of the search results building up a TaxonNameAdapter for each one.
+        #this is different from what the catalogue of life seems to do
+        hxml.at('Results').children.map do |r|
           NZORTaxonNameAdapter.new(r)
         end
       end
@@ -27,11 +29,30 @@ module Ratatosk
       # Kingdom or an existing saved Taxon that is already in our local tree.
       #
       def get_lineage_for(taxon)
+        # If taxon was already fetched with classification data, use that
+        #TODO use historically cached info
+        if taxon.class != Taxon && taxon.hxml && taxon.hxml.at('ClassificationHierarchy')
+          hxml = taxon.hxml
+        else
+          hxml = @service.get_taxon_for_nzor_id(:nzor_id => taxon.source_id)
+        end
+        lineage = [] #don't put the taxon in there to begin with as it is a part of the classification hierarchy
+
+        # walk UP the CoL lineage creating new taxa
+        [hxml.at('ClassificationHierarchy').children].flatten.reverse_each do |ancestor_hxml|
+          lineage << NZORTaxonAdapter.new(ancestor_hxml)
+        end
+        lineage.compact
       end
 
       # Gets the phylum name for this taxon.
       def get_phylum_for(taxon, lineage = nil)
+        #lineage should be an array of NZORTaxonAdapters - sorted species->kingdom
         binding.pry
+        lineage ||= get_lineage_for(taxon)
+        phylum = lineage.select{|t| t.rank && t.rank.downcase == 'phylum'}.first
+        phylum ||= lineage.last.phylum
+        phylum
       end
     end
     class NZORTaxonNameAdapter
@@ -45,7 +66,6 @@ module Ratatosk
         @adaptee = TaxonName.new(params)
         @service = NewZealandOrganismsRegister.new
         @hxml = hxml
-        binding.pry
         taxon_name.name = @hxml.at('PartialName').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
@@ -72,8 +92,8 @@ module Ratatosk
 
       #todo, check if it's always Scientific or English, and whether this has an effect'
       def get_lexicon
-        if @hxml.at('Class').inner_text == 'Scientific Names'
-          'Scientific Name'
+        if @hxml.at('Class').inner_text == 'Scientific Name'
+          'Scientific Names'
         else
           'English'
         end
@@ -86,6 +106,8 @@ module Ratatosk
       # TODO confirm that this assumption is correct .. should there only be one result?
       #
       def get_is_valid
+        return true
+#TODO what is actually valid? maybe if there are no results?
         !@hxml.at('Name/AcceptedName/NameId').nil? &&  (@hxml.at('Name/AcceptedName/NameId').inner_text == @hxml.at('Name/NameId').inner_text)
       end
 
@@ -123,9 +145,8 @@ module Ratatosk
       end
 
       def comname_taxon
-        binding.pry
         begin
-          NZORTaxonAdapter.new(@service.lsid(@hxml.at('NameId'))).taxon
+          NZORTaxonAdapter.new(@service.get_taxon_for_nzor_id(:nzor_id => @hxml.at('NameId').inner_text)).taxon
         rescue
           logger.error("Error in NZORTaxonNameAdapter#comname_taxon while " + 
             "running @service.lsid(#{@hxml.at('NameId')}): #{e}")
@@ -145,7 +166,7 @@ module Ratatosk
       def initialize(hxml, params = {})
         @adaptee = Taxon.new(params)
         @hxml = hxml
-        @adaptee.name               = @hxml.at('AcceptedName/PartialName').inner_text
+        @adaptee.name               = @hxml.at('PartialName').inner_text
         @adaptee.rank               = @hxml.at('Rank').inner_text.downcase
         @adaptee.source             = Source.find_by_title('New Zealand Organisms Register')
         @adaptee.source_identifier  = @hxml.at('NameId').inner_text

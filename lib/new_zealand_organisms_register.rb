@@ -14,8 +14,8 @@ class NewZealandOrganismsRegister
   end
 
   #creates an xml response off the NZOR NameID
-  def lsid(nzor_name_id)
-    url    = ENDPOINT + "/names/" +nzor_name_id+"?format=xml" 
+  def get_taxon_for_nzor_id(params)
+    uri    = ENDPOINT + "/names/" +params[:nzor_id]+"?format=xml" 
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
@@ -23,7 +23,7 @@ class NewZealandOrganismsRegister
         response  = Net::HTTP.get_response(URI.parse(uri))
       end
     rescue Timeout::Error
-      raise Timeout::Error, 
+      raise Timeout::Error,
             "NZOR didn't respond within #{timeout} seconds."
     end
     Nokogiri::XML(response.body)
