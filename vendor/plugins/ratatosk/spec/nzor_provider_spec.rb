@@ -42,16 +42,16 @@ describe "a name provider", :shared => true do
   end
   
   it "should get 'Magnoliophyta' as the phylum for 'Quercus agrifolia'" do
-    pending
     taxon = @np.find('Quercus agrifolia').first.taxon
     phylum = @np.get_phylum_for(taxon)
     phylum.should_not be_nil
-    phylum.name.should == 'Magnoliophyta'
+    #TODO NZOR has a different value for this.
+# this is what the original was    phylum.name.should == 'Magnoliophyta'
+    phylum.name.should == 'Spermatophyta'
   end
   
-  it "should get 'Mollusca' as the phylum for 'Hermissenda crassicornis'" do
-    pending
-    taxon = @np.find('Hermissenda crassicornis').first.taxon
+  it "should get 'Mollusca' as the phylum for 'Paua'" do
+    taxon = @np.find('Paua').first.taxon
     phylum = @np.get_phylum_for(taxon)
     phylum.should_not be_nil
     phylum.name.should == 'Mollusca'
@@ -60,12 +60,11 @@ describe "a name provider", :shared => true do
   
   # Some more specific tests. These might seem extraneous, but I find they
   # help find unexpected bugs
-  it "should return the parent of 'Thamnophis atratus' as 'Thamnophis', not 'Squamata'" do
-    pending
-    results = @np.find('Thamnophis atratus')
-    that = results.select {|n| n.name == 'Thamnophis atratus'}.first
+  it "should return the parent of 'Paua' as 'Haliotis'" do
+    results = @np.find('Paua')
+    that = results.select {|n| n.name == 'Paua'}.first
     lineage = @np.get_lineage_for(that.taxon)
-    lineage[1].name.should == 'Thamnophis'
+    lineage[1].name.should == 'Haliotis'
   end
   
   it "should graft 'dragonflies' to a lineage including Odonata" do
