@@ -48,7 +48,6 @@ module Ratatosk
       # Gets the phylum name for this taxon.
       def get_phylum_for(taxon, lineage = nil)
         #lineage should be an array of NZORTaxonAdapters - sorted species->kingdom
-        binding.pry
         lineage ||= get_lineage_for(taxon)
         phylum = lineage.select{|t| t.rank && t.rank.downcase == 'phylum'}.first
         phylum ||= lineage.last.phylum
@@ -95,7 +94,7 @@ module Ratatosk
         if @hxml.at('Class').inner_text == 'Scientific Name'
           'Scientific Names'
         else
-          'English'
+          'english'
         end
       end
 
@@ -126,7 +125,7 @@ module Ratatosk
         if is_sciname? and is_valid?
           taxon = NZORTaxonAdapter.new(@hxml)
         else
-          taxon = is_comname? ? comname_taxon : sciname_taxon
+          taxon = NZORTaxonAdapter.new(accepted_name_hxml)
         end
         # This is necessary because calling save here runs the validations,
         # sees that the Taxon is new and declares the lexion validation ok,
@@ -134,27 +133,20 @@ module Ratatosk
         # creating another taxon name, and then this taxon name gets
         # created, resulting in duplicate, invalid taxon names.
         taxon.skip_new_taxon_name = true
-        
+
         taxon
       end
 
-      def is_accepted_sciname?
-      end
-
-      def accepted_name
-      end
-
-      def comname_taxon
-        begin
-          NZORTaxonAdapter.new(@service.get_taxon_for_nzor_id(:nzor_id => @hxml.at('NameId').inner_text)).taxon
-        rescue
-          logger.error("Error in NZORTaxonNameAdapter#comname_taxon while " + 
-            "running @service.lsid(#{@hxml.at('NameId')}): #{e}")
-          raise NameProviderError, e.message
+      #returns the xml for the accepted name related to this common/english/vernacular TaxonName
+      def accepted_name_hxml
+        #get the accepted (scientific) name for this taxon
+        accepted_nzor_id = hxml.at('Concepts').at('ToConcept').at('NameId')
+        unless accepted_nzor_id
+          raise NameProviderError, "Failed to get a taxon for the common name from NZOR"
         end
+        @service.get_taxon_for_nzor_id(:nzor_id => accepted_nzor_id.inner_text)
       end
-      def sciname_taxon
-      end
+
     end
     class NZORTaxonAdapter
       include ModelAdapter

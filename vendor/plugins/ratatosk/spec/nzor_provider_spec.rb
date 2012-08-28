@@ -142,6 +142,123 @@ describe "a Taxon adapter", :shared => true do
 end
 ######## Class Specs ########################################################
 
+describe "a TaxonName adapter", :shared => true do
+  
+  it "should return a name" do
+    @adapter.name.should == 'Cabbage tree'
+  end
+  
+  it "should be valid (like all common names)" do
+    @adapter.is_valid?.should be(true)
+  end
+  
+  it "should set the lexicon for 'Cabbage tree' to 'english'" do
+    @adapter.lexicon.should == 'english'
+  end
+  
+  it "should set the lexicon for a scientific name" do
+    name = @np.find('Amphioxi').first
+    name.lexicon.should == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+  end
+  
+  it "should have a source" do
+    @adapter.source.should_not be(nil)
+  end
+  
+  it "should have a source identifier" do
+    @adapter.source_identifier.should_not be(nil)
+  end
+  
+  it "should have a source URL" do
+    @adapter.source_url.should_not be(nil)
+  end
+  
+  it "should set a taxon" do
+    @adapter.taxon.should_not be(nil)
+    @adapter.taxon.name.should == 'Cordyline' #this is the scientific name for a cabbage tree
+  end
+  
+  it "should have a name_provider set to '#{@np.class.name.split('::').last}" do
+    @adapter.name_provider.should == @np.class.name.split('::').last
+  end
+  
+  it "should save like a TaxonName" do
+    puts @adapter.errors.full_messages unless @adapter.valid?
+    @adapter.save
+    @adapter.reload
+    @adapter.new_record?.should be(false)
+  end
+  
+  it "should be the same before and after saving" do
+    @adapter.save
+    # puts "DEBUG: @adapter.errors: #{@adapter.errors.full_messages.join(', ')}"
+    post = TaxonName.find(@adapter.id)
+    %w"name lexicon is_valid source source_identifier source_url taxon name_provider".each do |att|
+      post.send(att).should == @adapter.send(att)
+    end
+  end
+  
+  # Note that this can depend on the name provider. For instance, Hyla
+  # crucifer would NOT pass this test from uBio as of 2008-06-26
+  it "should correctly fill in the is_valid field" do
+    bad_name = 'Zigadenus fremontii'
+    a = @np.find(bad_name)
+    taxon_name = a.detect {|n| n.name == bad_name}
+    taxon_name.name.should == bad_name
+    # puts "taxon_name.hxml: #{taxon_name.hxml}"
+    taxon_name.is_valid.should be(false)
+  end
+  
+  it "should always set is_valid to true for single sci names" do
+    name = "Geum triflorum"
+    a = @np.find(name)
+    taxon_name = a.select {|n| n.name == name}.first
+    taxon_name.name.should == name
+    taxon_name.is_valid.should be(true)
+  end
+  
+  it "should have a working #to_json method" do
+    lambda { @adapter.to_json }.should_not raise_error
+  end
+  
+end
+describe Ratatosk::NameProviders::NZORTaxonNameAdapter do
+  fixtures :sources
+  it_should_behave_like "a TaxonName adapter"
+  
+  before(:all) do
+    @np = Ratatosk::NameProviders::NZORNameProvider.new
+    @hxml = NewZealandOrganismsRegister.new.search(:query => 'Cabbage Tree').at('Results')
+  end
+  
+  before(:each) do
+    # make absolutely sure the db is empty
+    [TaxonName.find_by_name('Cabbage Tree')].flatten.compact.each do |tn|
+      tn.destroy
+      tn.taxon.destroy if tn.taxon
+    end
+
+    @adapter = Ratatosk::NameProviders::NZORTaxonNameAdapter.new(@hxml)
+  end
+=begin
+  #TODO do these
+  it "should set the taxon of a valid sciname to have the same name" do
+    name = "Gerres"
+    a = @np.find(name).detect{|n| n.lexicon == TaxonName::LEXICONS[:SCIENTIFIC_NAMES] && n.name == name}
+    return unless a
+    a.is_valid.should be(true)
+    a.taxon.name.should == name
+  end
+  
+  it "should set the lexicon correctly for 'i'iwi" do
+    name = "'i'iwi"
+    results = @np.find(name)
+    results.select{|tn| tn.name.downcase == name.downcase}.each do |tn|
+      tn.lexicon.should_not == TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
+    end
+  end
+=end  
+end
 describe Ratatosk::NameProviders::NZORNameProvider do
   it_should_behave_like "a name provider"
 
