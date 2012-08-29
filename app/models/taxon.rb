@@ -123,6 +123,7 @@ class Taxon < ActiveRecord::Base
     'super-family'    => 'superfamily',
     'sub-family'      => 'subfamily',
     'gen'             => 'genus',
+    'subgenus'             => 'genus',
     'sp'              => 'species',
     'infraspecies'    => 'subspecies',
     'ssp'             => 'subspecies',
