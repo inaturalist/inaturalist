@@ -55,9 +55,11 @@ module Ratatosk
     def initialize(params = {})
       @name_providers = params[:name_providers]
       @name_providers ||= [
-        NameProviders::ColNameProvider.new,
-        NameProviders::UBioNameProvider.new
+        NameProviders::NZORNameProvider.new
       ]
+        # removing the catalogue of life and ubio
+        #NameProviders::ColNameProvider.new,
+        #NameProviders::UBioNameProvider.new
     end
 
     def to_s
@@ -203,7 +205,6 @@ module Ratatosk
       if name_provider.nil?
         raise RatatoskGraftError, "Couldn't graft that taxon without a name provider"
       end
-      
       begin
         lineage = name_provider.get_lineage_for(taxon)
       rescue NameProviderError => e

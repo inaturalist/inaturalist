@@ -67,20 +67,18 @@ describe "a name provider", :shared => true do
     lineage[1].name.should == 'Haliotis'
   end
 
-  it "should graft 'dragonflies' to a lineage including Odonata" do
-    pending
-    dflies = @np.find('dragonflies').select {|n| n.name == 'dragonflies'}.first
-    unless dflies.nil?
-      grafted_lineage = @np.get_lineage_for(dflies.taxon)
-      grafted_lineage.map(&:name).include?('Odonata').should be(true)
+  it "should graft 'Cabbage tree' to a lineage including Spermatophyta" do
+    cabbage_trees = @np.find('Cabbage tree').select {|n| n.name == 'Cabbage tree'}.first
+    unless cabbage_trees.nil?
+      grafted_lineage = @np.get_lineage_for(cabbage_trees.taxon)
+      grafted_lineage.map(&:name).include?('Spermatophyta').should be(true)
     end
   end
 
   it "should graft 'roaches' to a lineage including Insecta" do
-    pending
-    roaches = @np.find('roaches').select {|n| n.name == 'roaches'}.first
-    unless roaches.nil?
-      grafted_lineage = @np.get_lineage_for(roaches.taxon)
+    weta = @np.find('Weta').select {|n| n.name == 'Weta'}.first
+    unless weta.nil?
+      grafted_lineage = @np.get_lineage_for(weta.taxon)
       grafted_lineage.map(&:name).include?('Insecta').should be(true)
     end
   end

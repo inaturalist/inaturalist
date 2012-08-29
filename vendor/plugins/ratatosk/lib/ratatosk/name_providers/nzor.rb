@@ -29,18 +29,20 @@ module Ratatosk
       # Kingdom or an existing saved Taxon that is already in our local tree.
       #
       def get_lineage_for(taxon)
+        puts "DEBUG #{__method__} "
         # If taxon was already fetched with classification data, use that
         #TODO use historically cached info
         if taxon.class != Taxon && taxon.hxml && taxon.hxml.at('ClassificationHierarchy')
           hxml = taxon.hxml
         else
-          hxml = @service.get_taxon_for_nzor_id(:nzor_id => taxon.source_id)
+          hxml = @service.get_taxon_for_nzor_id(:nzor_id => taxon.source_identifier)
         end
-        lineage = [] #don't put the taxon in there to begin with as it is a part of the classification hierarchy
+        lineage = [taxon] #don't put the taxon in there to begin with as it is a part of the classification hierarchy
 
-        # walk UP the CoL lineage creating new taxa
-        [hxml.at('ClassificationHierarchy').children].flatten.reverse_each do |ancestor_hxml|
-          lineage << NZORTaxonAdapter.new(ancestor_hxml)
+        # walk UP the NZOR lineage creating new taxa
+        hxml.at('ClassificationHierarchy').children.reverse_each do |ancestor_hxml|
+          temp_taxon = NZORTaxonAdapter.new(ancestor_hxml)
+          lineage << temp_taxon unless taxon.source_identifier == temp_taxon.source_identifier
         end
         lineage.compact
       end
@@ -70,7 +72,7 @@ module Ratatosk
         taxon_name.is_valid = get_is_valid
         taxon_name.source = Source.find_by_title('New Zealand Organisms Register')
         taxon_name.source_identifier = @hxml.at('NameId').inner_text
-        taxon_name.source_url = 'hello' #@hxml.at('url').inner_text
+        taxon_name.source_url = 'http://data.nzor.org.nz/names/' + @hxml.at('NameId').inner_text
         taxon_name.taxon = taxon
         taxon_name.name_provider = "NZORNameProvider"
       end
@@ -103,10 +105,15 @@ module Ratatosk
       # is equal to the nameID of the actual result then we are valid.
       #
       # TODO confirm that this assumption is correct .. should there only be one result?
+      # does this also have to do with synonyms - need test data
+      #
+      # FROM ken-ichi
+      # a)  returns true for Common (English / Vernacular) names.
+      # b)  returns true for Scientific names _if_ they are the accepted name
+      # c)  returns false if it's a Synonym for a scientific name.
       #
       def get_is_valid
-        return true
-#TODO what is actually valid? maybe if there are no results?
+        return true if is_comname?
         !@hxml.at('Name/AcceptedName/NameId').nil? &&  (@hxml.at('Name/AcceptedName/NameId').inner_text == @hxml.at('Name/NameId').inner_text)
       end
 
@@ -115,7 +122,7 @@ module Ratatosk
       # #TODO check if this is a valid assumption
       #
       def is_comname?
-        @hxml.at('Class').inner_text == 'Vernacular Name'
+        @hxml.at('Class').inner_text == 'Vernacular Name' || @hxml.at('Class').inner_text == 'English'
       end
       def is_sciname?
         @hxml.at('Class').inner_text == 'Scientific Name'
@@ -162,7 +169,7 @@ module Ratatosk
         @adaptee.rank               = @hxml.at('Rank').inner_text.downcase
         @adaptee.source             = Source.find_by_title('New Zealand Organisms Register')
         @adaptee.source_identifier  = @hxml.at('NameId').inner_text
-        @adaptee.source_url         = @hxml.at('NameId').inner_text
+        @adaptee.source_url         = 'http://data.nzor.org.nz/names/' + @hxml.at('NameId').inner_text
         @adaptee.name_provider      = "NZORNameProvider"
       end
     end
