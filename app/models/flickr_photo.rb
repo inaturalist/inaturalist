@@ -191,15 +191,14 @@ class FlickrPhoto < Photo
   def repair
     errors = {}
     begin
-      sizes = []
-      begin
-        sizes = flickr.photos.getSizes(
+      sizes = begin
+        flickr.photos.getSizes(
           :photo_id => native_photo_id, 
           :auth_token => user ? user.flickr_identity.token : nil
         )
       rescue FlickRaw::FailedResponse => e
         raise e unless e.message =~ /Invalid auth token/
-        sizes = flickr.photos.getSizes(:photo_id => native_photo_id)
+        flickr.photos.getSizes(:photo_id => native_photo_id)
       end
       self.square_url    = sizes.detect{|s| s.label == 'Square'}.try(:source)
       self.thumb_url     = sizes.detect{|s| s.label == 'Thumbnail'}.try(:source)
