@@ -163,8 +163,14 @@ module Ratatosk
       # Initialize with a Nokogiri object of a single CoL XML response
       #
       def initialize(hxml, params = {})
-        @adaptee = Taxon.new(params)
         @hxml = hxml
+        existing = Taxon.find(:first, :conditions => {:source_id => Source.find_by_title('New Zealand Organisms Register').id, :source_identifier => @hxml.at('NameId').inner_text})
+        @adaptee = if existing.present?
+          existing
+        else
+          Taxon.new(params)
+        end
+
         @adaptee.name               = @hxml.at('PartialName').inner_text
         @adaptee.rank               = @hxml.at('Rank').inner_text.downcase
         @adaptee.source             = Source.find_by_title('New Zealand Organisms Register')

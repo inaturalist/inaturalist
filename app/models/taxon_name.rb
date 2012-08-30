@@ -10,6 +10,10 @@ class TaxonName < ActiveRecord::Base
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
+  validates_uniqueness_of :source_identifier,
+                          :scope => [:source_id],
+                          :message => "already exists"
+
   #TODO is the validates uniqueness correct?  Allows duplicate TaxonNames to be created with same 
   #source_url but different taxon_ids
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
