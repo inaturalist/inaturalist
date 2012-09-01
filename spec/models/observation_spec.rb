@@ -1174,3 +1174,30 @@ describe Observation, "license" do
     o.license.should be_blank
   end
 end
+
+describe Observation, "places" do
+  it "should work across the date line" do
+    wkt = <<-WKT
+      MULTIPOLYGON(((-152.09473 20.81363,-169.49708
+      28.00992,-177.44019 30.24388,-179.52485 28.65781,141.65771
+      25.45121,140.95458 18.32115,140.95458 10.02078,-170.39795
+      -16.45927,-168.81592 -16.88025,-158.18116 0.44823,-152.09473
+      20.81363)),((-152.09473 20.81363,-169.49708 28.00992,-177.44019
+      30.24388,-179.52485 28.65781,141.65771 25.45121,140.95458
+      18.32115,140.95458 10.02078,-170.39795 -16.45927,-168.81592
+      -16.88025,-158.18116 0.44823,-152.09473 20.81363)),((-152.09473
+      20.81363,-169.49708 28.00992,-177.44019 30.24388,-179.52485
+      28.65781,141.65771 25.45121,140.95458 18.32115,140.95458
+      10.02078,-170.39795 -16.45927,-168.81592 -16.88025,-158.18116
+      0.44823,-152.09473 20.81363)))      
+    WKT
+    place = Place.make
+    place.save_geom(MultiPolygon.from_ewkt(wkt))
+    place.reload
+    inside = Observation.make(:latitude => place.latitude, :longitude => place.longitude)
+    inside.should be_georeferenced
+    outside = Observation.make(:latitude => 24, :longitude => 92)
+    outside.places.should_not include(place)
+    inside.places.should include(place)
+  end
+end
