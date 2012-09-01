@@ -49,6 +49,7 @@ Inaturalist::Application.routes.draw do
   match 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }, :method => :post
   match 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }, :method => :delete
   match 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
+  match '/photos/:id/repair' => "photos#repair", :as => :photo_repair, :via => :put
   resources :photos, :only => [:show, :update]
   match 'picasa/unlink' => 'picasa#unlink', :method => :delete
 
