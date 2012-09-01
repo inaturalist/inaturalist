@@ -106,6 +106,9 @@ class CheckList < List
   end
   
   def add_observed_taxa
+    # TODO remove this when we move to GEOGRAPHIES and our dateline woes have (hopefully) ended
+    return if place.straddles_date_line?
+
     options = {
       :select => "DISTINCT ON (observations.taxon_id) observations.*",
       :order => "observations.taxon_id",
@@ -281,20 +284,8 @@ class CheckList < List
   end
   
   def self.get_current_place_ids_to_refresh(observation, options = {})
-    observation_id = observation.try(:id) || options[:observation_id]
-    place_ids = if observation && observation.georeferenced?
-      conditions = if observation.coordinates_obscured?
-        "ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude))"
-      else
-        "ST_Intersects(place_geometries.geom, observations.geom)"
-      end
-      PlaceGeometry.all(:select => "place_geometries.id, place_id",
-        :joins => "JOIN observations ON observations.id = #{observation_id}",
-        :conditions => conditions).map{|pg| pg.place_id}
-    else
-      []
-    end
-    place_ids.compact.uniq
+    return [] unless observation
+    observation.places.map{|p| p.id}
   end
   
   def self.get_old_place_ids_to_refresh(observation, options = {})

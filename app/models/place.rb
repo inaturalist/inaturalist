@@ -101,7 +101,6 @@ class Place < ActiveRecord::Base
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   
   named_scope :containing_lat_lng, lambda {|lat, lng|
-    # {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", lat, lat, lng, lng]}
     {:joins => :place_geometry, :conditions => ["ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat]}
   }
 

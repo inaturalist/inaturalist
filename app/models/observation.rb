@@ -1406,7 +1406,7 @@ class Observation < ActiveRecord::Base
   end
   
   def places
-    return nil unless georeferenced?
+    return [] unless georeferenced?
     lat = private_latitude || latitude
     lon = private_longitude || longitude
     candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area}
