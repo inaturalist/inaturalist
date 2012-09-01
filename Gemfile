@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails'
+gem 'rake', '0.8.7' # ubuntu seems to freak with the most recent version
 
 gem 'aasm'
 gem 'airbrake'
@@ -30,6 +31,7 @@ gem 'nofxx-georuby'
 gem 'google_analytics'
 # gem 'hoptoad_notifier'
 gem 'htmlentities'
+gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'memcache-client'
 gem 'mocha'
