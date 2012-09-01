@@ -20,7 +20,7 @@ Inaturalist::Application.configure do
   # just comment this out and Rails will serve the files
 
   # Set the logger to roll over monthly
-  config.logger = Logger.new("#{Rails.root}/log/#{ENV['Rails.env']}.log", 10, 10485760)
+  config.logger = Logger.new("#{Rails.root}/log/#{Rails.env}.log", 10, 10485760)
 
   # Use a different cache store in production
   config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
