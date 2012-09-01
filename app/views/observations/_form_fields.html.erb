@@ -204,12 +204,11 @@
           <% end -%>
           <div class="inline buttonrow">
             <label>Add a field</label>
-            <%= content_tag :input, "",
-              :name => "observation_field",
-              :class => "observation_field_chooser",
-              :type => :text,
-              :placeholder => "Start typing field name...",
-              "data-chooser-default-sources" => @observation_fields.to_json.html_safe %>
+            <input name="observation_field" 
+                   class="observation_field_chooser" 
+                   type="text" 
+                   placeholder="Start typing field name..."
+                   data-chooser-default-sources='<%= @observation_fields.to_json.gsub(/[']/, '&apos;').html_safe %>'>
             <%= link_to_function "Add a field", "newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
             <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
           </div>
