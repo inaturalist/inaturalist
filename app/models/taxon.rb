@@ -729,11 +729,10 @@ class Taxon < ActiveRecord::Base
     if query_results && parsed && !query_results.at('page')['missing']
       coder = HTMLEntities.new
       summary = coder.decode(parsed)
-      
-      hxml = Hpricot(summary)
+      hxml = Nokogiri::HTML(summary)
       hxml.search('table').remove
       hxml.search('div').remove
-      summary = (hxml.at('p') || hxml.at('//')).inner_html.to_s
+      summary = (hxml.at('p') || hxml).inner_html.to_s
       
       sanitizer = HTML::WhiteListSanitizer.new
       summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
