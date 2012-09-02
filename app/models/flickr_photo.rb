@@ -87,21 +87,16 @@ class FlickrPhoto < Photo
   # the URLs.
   #
   def sync
-    fp = self.api_response || FlickrPhoto.get_api_response(self.native_photo_id, :user => self.user)
-    old_urls = [self.square_url, self.thumb_url, self.small_url, 
-                self.medium_url, self.large_url, self.original_url]
-    new_urls = [fp.source_url(:square), fp.source_url(:thumb), 
-                fp.source_url(:small), fp.source_url(:medium), 
-                fp.source_url(:large), fp.source_url(:original)]
-    if old_urls != new_urls
-      self.square_url    = fp.source_url(:square)
-      self.thumb_url     = fp.source_url(:thumb)
-      self.small_url     = fp.source_url(:small)
-      self.medium_url    = fp.source_url(:medium)
-      self.large_url     = fp.source_url(:large)
-      self.original_url  = fp.source_url(:original)
-      self.save
-    end
+    f = FlickrPhoto.flickraw_for_user(user)
+    sizes = f.photos.getSizes(:photo_id => native_photo_id)
+    sizes = sizes.index_by{|s| s.label}
+    self.square_url   = sizes['Square'].source rescue nil
+    self.thumb_url    = sizes['Thumbnail'].source rescue nil
+    self.small_url    = sizes['Small'].source rescue nil
+    self.medium_url   = sizes['Medium'].source rescue nil
+    self.large_url    = sizes['Large'].source rescue nil
+    self.original_url = sizes['Original'].source rescue nil
+    save
   end
   
   def to_observation  
