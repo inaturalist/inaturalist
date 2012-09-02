@@ -152,7 +152,7 @@
         $.ajax({
           url: $(this).attr('href'),
           dataType: 'json',
-          type: $(this).attr('data-method'),
+          type: $(this).attr('data-http-method'),
           data: {authenticity_token: $('meta[name=csrf-token]').attr('content')},
           success: function(data, status) {
             if (data.error) {
