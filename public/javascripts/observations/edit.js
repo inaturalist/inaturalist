@@ -149,8 +149,8 @@ function fieldify(observationField) {
     }
     
     $(this).addClass('fieldified')
-    var input = $('.value_field input', this),
-        currentField = observationField || $.parseJSON($(input).attr('data-json'))
+    var input = $('.value_field input', this)
+    var currentField = observationField || $.parseJSON($(input).attr('data-json'))
     if (!currentField) return
     currentField.recordId = currentField.recordId || currentField.id
     

@@ -39,7 +39,7 @@
   <% end -%>
   
   <% if flash[:notice] || flash[:alert] %>
-  <p id="flash" class="notice"><%= flash[:notice] || flash[:alert] %></p> 
+  <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
   <% end %>
   
   <% if flash[:error] %>
