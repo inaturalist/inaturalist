@@ -695,7 +695,7 @@ class ObservationsController < ApplicationController
     @observation.destroy
     respond_to do |format|
       flash[:notice] = "Observation was deleted."
-      format.html { redirect_to(observations_by_login_path(@user.login)) }
+      format.html { redirect_to(observations_by_login_path(current_user.login)) }
       format.xml  { head :ok }
     end
   end
@@ -1211,10 +1211,8 @@ class ObservationsController < ApplicationController
     #      create Photo obj and put in array
     # 4. return array
     photos = []
-    existing = photo_class.all(
-      :include => :user,
-      :conditions => ["native_photo_id IN (?)", photo_list.uniq]
-    ).index_by{|p| p.native_photo_id}
+    native_photo_ids = photo_list.map{|p| p.to_s}.uniq
+    existing = photo_class.includes(:user).where("native_photo_id IN (?)", native_photo_ids).index_by{|p| p.native_photo_id}
     
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]

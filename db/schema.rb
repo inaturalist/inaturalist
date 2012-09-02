@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120810053551) do
+ActiveRecord::Schema.define(:version => 20120902210558) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -427,6 +427,7 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
     t.integer  "file_file_size"
     t.boolean  "file_processing"
     t.boolean  "mobile",            :default => false
+    t.datetime "file_updated_at"
   end
 
   add_index "photos", ["native_photo_id"], :name => "index_flickr_photos_on_flickr_native_photo_id"
@@ -821,6 +822,7 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
     t.integer       "source_id"
     t.multi_polygon "geom",               :limit => nil
     t.integer       "source_identifier"
+    t.datetime      "range_updated_at"
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true
@@ -922,6 +924,7 @@ ActiveRecord::Schema.define(:version => 20120810053551) do
     t.datetime "remember_created_at"
     t.datetime "suspended_at"
     t.string   "suspension_reason"
+    t.datetime "icon_updated_at"
   end
 
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"
