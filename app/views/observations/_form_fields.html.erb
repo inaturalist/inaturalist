@@ -169,7 +169,7 @@
 
           <% unless observation.photos.empty? || observation.new_record? -%>
             <br/>
-            <%= link_to "Re-order photos &raquo;", edit_observation_photos_path(observation) %>
+            <%= link_to "Re-order photos &raquo;".html_safe, edit_observation_photos_path(observation) %>
           <% end -%>
         </div>
       </div>
@@ -185,7 +185,7 @@
               <%= ofv.hidden_field :observation_field_id, :class => "observation_field_id" %>
               <%= ofv.text_field :value, :label => h(ofv.object.observation_field.try(:name).try(:capitalize)), 
                 :description => h(ofv.object.observation_field.try(:description)),
-                "data-json" => ofv.object.observation_field.to_json.html_safe %>
+                "data-json" => ofv.object.observation_field.to_json %>
               <%= ofv.hidden_field "_destroy" %>
               <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')" %>
             </div>
@@ -208,7 +208,7 @@
                    class="observation_field_chooser" 
                    type="text" 
                    placeholder="Start typing field name..."
-                   data-chooser-default-sources='<%= @observation_fields.to_json.gsub(/[']/, '&apos;').html_safe %>'>
+                   data-chooser-default-sources="<%= @observation_fields.to_json %>">
             <%= link_to_function "Add a field", "newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
             <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
           </div>

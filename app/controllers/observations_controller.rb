@@ -1605,8 +1605,7 @@ class ObservationsController < ApplicationController
         @observation.photos[@observation.photos.size] = @facebook_photo
       end
       unless @observation.new_record?
-        flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
-          "<a href=\"#{url_for}\">Undo?</a>"
+        flash.now[:notice] = "<strong>Preview</strong> of synced observation.  <a href=\"#{url_for}\">Undo?</a>"
       end
     else
       flash.now[:error] = "Sorry, we didn't find that photo."
