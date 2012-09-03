@@ -431,7 +431,7 @@ $.fn.shades = function(e, options) {
 
 $.fn.showInlineBlock = function() {
   var opts = {}
-  if ($.browser.msie) {
+  if ($.browser.msie && $.browser.version < 8) {
     opts.zoom = 1
     opts.display = 'inline'
     opts['*display'] = 'inline'
