@@ -16,9 +16,12 @@
         </div>
       <% end %>
       <% if @observation_photos -%>
-        <% existing_observation_photo = @observation_photos.detect do |op|
-          observation.photos.map(&:native_photo_id).include?(op.photo.native_photo_id)
-        end %>
+        <% 
+          existing_observation_photo = @observation_photos.detect do |op|
+            native_photo_ids = observation.observation_photos.map{|op| op.photo.native_photo_id}
+            native_photo_ids.include?(op.photo.native_photo_id)
+          end
+        %>
         <% if existing_observation_photo -%>
           <div class="clear notice existing_obs_notice">
             <%= image_tag existing_observation_photo.photo.thumb_url %>
