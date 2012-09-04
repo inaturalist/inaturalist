@@ -53,6 +53,7 @@ $(document).ready(function() {
     resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
     afterSelect: function(item) {
       $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()
+      $('.observation_field_chooser').chooser('clear')
     }
   })
   
@@ -175,15 +176,21 @@ function fieldify(observationField) {
       $(input).hide()
       $(input).after(select)
       select.change()
+      select.focus()
     } else if (currentField.datatype == 'numeric') {
       var newInput = input.clone()
       newInput.attr('type', 'number')
       input.after(newInput)
       input.remove()
+      newInput.focus()
     } else if (currentField.datatype == 'date') {
       $(input).iNatDatepicker({constrainInput: true})
+      input.focus()
     } else if (currentField.datatype == 'time') {
       $(input).timepicker({})
+      input.focus()
+    } else {
+      input.focus()
     }
   })
 }

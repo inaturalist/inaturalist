@@ -5,7 +5,7 @@
   <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')", :class => "right" %>
   <%= ofv.hidden_field :observation_field_id, :class => "observation_field_id" %>
   <div class="labeldesc">
-    <label><%= h(ofv.object.observation_field.try(:name).try(:capitalize)) %></label>
+    <label><%= h(ofv.object.observation_field.try(:name)) %></label>
   </div>
   <div class="ofv_input stacked">
     <%= ofv.text_field :value, 
