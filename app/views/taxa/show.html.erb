@@ -358,6 +358,18 @@
                 iNaturalist.modalCenter(h.w)
               }
             });
+            
+            $(h.w).find('#wikimedia_taxon_photos .taxon_photos').photoSelector({
+              baseURL: '<%= wikimedia_photo_fields_url %>',
+              urlParams: {
+                taxon_id: '<%= @taxon.id %>',
+                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                limit: 15
+              },
+              afterQueryPhotos: function() {
+                iNaturalist.modalCenter(h.w)
+              }
+            });
             $(h.w).find('.tabs').tabs()
           }
         });

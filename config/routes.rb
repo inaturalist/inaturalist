@@ -35,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.edit_after_auth "/users/edit_after_auth", :controller => "users", :action => "edit_after_auth"
 
+  map.wikimedia_photo_fields "/wikimedia/photo_fields", :controller => "wikimedia", :action => "photo_fields"
   map.eol_photo_fields "/eol/photo_fields", :controller => "eol", :action => "photo_fields"
   #map.connect "/facebook/photo_fields", :controller => "facebook", :action => "albums"
   map.connect "/facebook/photo_fields", :controller => "facebook", :action => "photo_fields"
