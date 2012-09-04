@@ -8,7 +8,7 @@ class Friendship < ActiveRecord::Base
   auto_subscribes :user, :to => :friend
   
   def no_self_love
-    errors.add_to_base("Cannot be a friend of yourself. Hopefully you already are.") unless friend_id != user_id
+    errors[:base] << "Cannot be a friend of yourself. Hopefully you already are." unless friend_id != user_id
   end
 
 end

@@ -11,9 +11,9 @@ class ProjectObservationRule < Rule
   def operand_present
     if OPERAND_OPERATORS.include?(operator)
       if operand.blank? || !operand.is_a?(Object.const_get(OPERAND_OPERATORS_CLASSES[operator]))
-        errors.add_to_base("Must select a " + 
+        errors[:base] << "Must select a " + 
           OPERAND_OPERATORS_CLASSES[operator].underscore.humanize.downcase + 
-          " for that rule.")
+          " for that rule."
       end
     end
   end

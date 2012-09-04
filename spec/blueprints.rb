@@ -118,6 +118,11 @@ ProjectObservation.blueprint do
   project { Project.make }
 end
 
+ProjectObservationRule.blueprint do
+  ruler { Project.make }
+  operator { "identified?" }
+end
+
 QualityMetric.blueprint do
   user { User.make }
   observation { Observation.make }
