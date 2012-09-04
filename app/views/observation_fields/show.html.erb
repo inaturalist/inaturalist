@@ -20,6 +20,12 @@
     <b>Datatype:</b>
     <%=h @observation_field.datatype %>
   </div>
+  <% unless @observation_field.allowed_values.blank? -%>
+    <div class="meta ui">
+      <b>Allowed values:</b>
+      <%= @observation_field.allowed_values.split('|').join(', ') %>
+    </div>
+  <% end -%>
   <div class="meta ui">
     <b>Created by:</b>
     <%= link_to user_image(@observation_field.user), @observation_field.user %>

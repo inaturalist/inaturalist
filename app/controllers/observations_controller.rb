@@ -356,7 +356,11 @@ class ObservationsController < ApplicationController
       @observation.species_guess =  params[:taxon_name]
     end
     
-    @observation_fields = ObservationField.all(:order => "id DESC", :limit => 5)
+    @observation_fields = ObservationField.
+      joins(:observation_field_values => {:observation => :user}).
+      where("users.id = ?", current_user).
+      limit(10).
+      order("observation_field_values.id DESC")
     
     respond_to do |format|
       format.html do
@@ -418,7 +422,11 @@ class ObservationsController < ApplicationController
     end
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
-    @observation_fields = ObservationField.all(:order => "id DESC", :limit => 5)
+    @observation_fields = ObservationField.
+      includes(:observation_field_values => {:observation => :user}).
+      where("users.id = ?", current_user).
+      limit(10).
+      order("observation_field_values.id DESC")
   end
 
   # POST /observations

@@ -113,7 +113,7 @@ $(document).ready(function() {
     $(this).photoSelector(options)
   })
   
-  fieldify()
+  fieldify({focus: false})
 })
 
 function handleTaxonClick(e, taxon) {
@@ -137,10 +137,12 @@ function newObservationField(markup) {
   }
   
   $('.observation_fields').append(markup)
-  fieldify(currentField)
+  fieldify({observationField: currentField})
 }
 
-function fieldify(observationField) {
+function fieldify(options) {
+  options = options || {}
+  options.focus = typeof(options.focus) == 'undefined' ? true : options.focus
   $('.observation_field').not('.fieldified').each(function() {
     var lastName = $('.observation_field.fieldified:last input').attr('name')
     if (lastName) {
@@ -151,7 +153,7 @@ function fieldify(observationField) {
     
     $(this).addClass('fieldified')
     var input = $('.ofv_input input.text', this)
-    var currentField = observationField || $.parseJSON($(input).attr('data-json'))
+    var currentField = options.observationField || $.parseJSON($(input).attr('data-json'))
     if (!currentField) return
     currentField.recordId = currentField.recordId || currentField.id
     
@@ -176,20 +178,20 @@ function fieldify(observationField) {
       $(input).hide()
       $(input).after(select)
       select.change()
-      select.focus()
+      if (options.focus) { select.focus() }
     } else if (currentField.datatype == 'numeric') {
       var newInput = input.clone()
       newInput.attr('type', 'number')
       input.after(newInput)
       input.remove()
-      newInput.focus()
+      if (options.focus) { newInput.focus() }
     } else if (currentField.datatype == 'date') {
       $(input).iNatDatepicker({constrainInput: true})
-      input.focus()
+      if (options.focus) { input.focus() }
     } else if (currentField.datatype == 'time') {
       $(input).timepicker({})
-      input.focus()
-    } else {
+      if (options.focus) { input.focus() }
+    } else if (options.focus) {
       input.focus()
     }
   })
