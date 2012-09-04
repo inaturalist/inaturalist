@@ -66,7 +66,10 @@ form .species_guess_field { margin-bottom: 0px; }
 .photoSelectorControls .findbutton { margin-right: 0; }
 
 .observation_field { border-bottom: 1px solid #eee; padding-bottom:10px;}
+.observation_field {padding-left: 210px; position: relative;}
+.observation_field .labeldesc {width: 200px; position:absolute; left: 0; top: 0;}
 .observation_field.disabled {opacity: 0.5;}
+
 #morefields .buttonrow .button, #morefields .buttonrow label { padding-top: 4px; padding-bottom:3px;vertical-align:top;}
 #morefields {margin-bottom:20px;}
 

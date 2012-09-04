@@ -149,14 +149,14 @@ function fieldify(observationField) {
     }
     
     $(this).addClass('fieldified')
-    var input = $('.value_field input', this)
+    var input = $('.ofv_input input.text', this)
     var currentField = observationField || $.parseJSON($(input).attr('data-json'))
     if (!currentField) return
     currentField.recordId = currentField.recordId || currentField.id
     
     $(this).attr('id', 'observation_field_'+currentField.recordId)
-    $('.value_field label', this).html(currentField.name)
-    $('.value_field .description', this).html(currentField.description)
+    $('.labeldesc label', this).html(currentField.name)
+    $('.description', this).html(currentField.description)
     $('.observation_field_id', this).val(currentField.recordId)
     $('input', this).each(function() {
       var newName = $(this).attr('name')

@@ -13,7 +13,7 @@
       'vertical-align': 'middle'
     })
     options = options || {}
-    options = $.extend({
+    options = $.extend({}, {
       showOn: 'both',
       buttonImage: "/images/silk/date.png",
       buttonImageOnly: true,

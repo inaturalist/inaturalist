@@ -412,7 +412,8 @@
     var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
     var loading = $('<center><span class="loading status inlineblock">Loading...</span></center>')
       .css('margin-top', ($photoSelectorPhotos.height() / 2)-20)
-    $photoSelectorPhotos.data('previous-overflow', $photoSelectorPhotos.css('overflow'));
+    $photoSelectorPhotos.data('previous-overflow-x', $photoSelectorPhotos.css('overflow-x'));
+    $photoSelectorPhotos.data('previous-overflow-y', $photoSelectorPhotos.css('overflow-y'));
     $photoSelectorPhotos.scrollTo(0,0)
     $photoSelectorPhotos.css('overflow','hidden').shades('open', {
       css: {'background-color': 'white', 'opacity': 0.7}, 
@@ -450,7 +451,8 @@
         
         // Unset loading status
         $photoSelectorPhotos.shades('close')
-        $photoSelectorPhotos.css('overflow', $photoSelectorPhotos.data('previous-overflow'));
+        $photoSelectorPhotos.css('overflow-x', $photoSelectorPhotos.data('previous-overflow-x'));
+        $photoSelectorPhotos.css('overflow-y', $photoSelectorPhotos.data('previous-overflow-y'));
         
         if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
       }
