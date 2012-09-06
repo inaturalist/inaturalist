@@ -36,7 +36,7 @@ class ObservationsController < ApplicationController
                             :nearby,
                             :widget,
                             :project]
-  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy]
+  before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
@@ -580,6 +580,7 @@ class ObservationsController < ApplicationController
     # Convert the params to a hash keyed by ID.  Yes, it's weird
     hashed_params = Hash[*params[:observations].to_a.flatten]
     errors = false
+    extra_msg = nil
     @observations.each do |observation|      
       # Update the flickr photos
       # Note: this ignore photos thing is a total hack and should only be
@@ -613,6 +614,16 @@ class ObservationsController < ApplicationController
       unless observation.update_attributes(hashed_params[observation.id.to_s])
         errors = true
       end
+
+      if !errors && params[:project_id] && !observation.project_observations.where(:project_id => params[:project_id]).exists?
+        @project ||= Project.find(params[:project_id])
+        project_observation = ProjectObservation.create(:project_id => params[:project_id], :observation => observation)
+        extra_msg = if project_observation.valid?
+          "Successfully added to #{@project.title}"
+        else
+          "Failed to add to #{@project.title}: #{project_observation.errors.full_messages.to_sentence}"
+        end
+      end
     end
 
     respond_to do |format|
@@ -640,7 +651,7 @@ class ObservationsController < ApplicationController
         format.json { render :json => msg, :status => :gone }
       else
         format.html do
-          flash[:notice] = 'Observation(s) was successfully updated.'
+          flash[:notice] = "Observation(s) was successfully updated. #{extra_msg}"
           if @observations.size == 1
             redirect_to observation_path(@observations.first)
           else
@@ -1204,6 +1215,16 @@ class ObservationsController < ApplicationController
     @default_taxa = [@default_taxa, @taxon].flatten.compact
   end
 
+  def fields
+    @project = Project.find(params[:project_id]) rescue nil
+    @observation_fields = if @project
+      @project.observation_fields
+    else
+      ObservationField.where("id IN (?)", params[:observation_fields])
+    end
+    render :layout => false
+  end
+
 ## Protected / private actions ###############################################
   private
   
@@ -1749,7 +1770,7 @@ class ObservationsController < ApplicationController
   end
   
   def load_observation
-    render_404 unless @observation = Observation.find_by_id(params[:id], 
+    render_404 unless @observation = Observation.find_by_id(params[:id] || params[:observation_id], 
       :include => [
         :photos, 
         {:taxon => [:taxon_names]},

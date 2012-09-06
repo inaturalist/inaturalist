@@ -174,33 +174,52 @@
         </div>
       </div>
     </div>
-    
-    <% if is_admin? -%>
-      <div id="morefields" class="admin column span-24">
-        <h3>More fields</h3>
-        <div class="observation_fields">
-          <%= o.fields_for :observation_field_values do |ofv| %>
+  
+    <fieldset id="morefields">
+      <legend>More fields</legend>
+      <div class="observation_fields">
+        <%= o.fields_for :observation_field_values do |ofv| %>
+          <%= render 'observation_field_row', :builder => ofv %>
+        <% end -%>
+      </div>
+      <div>
+        <%- new_ofv_fields = capture do %>
+          <%= o.fields_for :observation_field_values, o.object.observation_field_values.build do |ofv| %>
             <%= render 'observation_field_row', :builder => ofv %>
           <% end -%>
-        </div>
-        <div>
-          <%- new_ofv_fields = capture do %>
-            <%= o.fields_for :observation_field_values, o.object.observation_field_values.build do |ofv| %>
-              <%= render 'observation_field_row', :builder => ofv %>
-            <% end -%>
-          <% end -%>
-          <div class="inline buttonrow">
-            <label>Add a field</label>
-            <input name="observation_field" 
-                   class="observation_field_chooser" 
-                   type="text" 
-                   placeholder="Start typing field name..."
-                   data-chooser-default-sources="<%= @observation_fields.to_json %>">
-            <%= link_to_function "Add a field", "newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
-            <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
-          </div>
+        <% end -%>
+        <div class="inline buttonrow">
+          <label>Add a field</label>
+          <input name="observation_field" 
+                 class="observation_field_chooser" 
+                 type="text" 
+                 placeholder="Start typing field name..."
+                 data-chooser-default-sources="<%= @observation_fields.to_json %>">
+          <%= link_to_function "Add a field", "$(this).parents('fieldset:first').newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
+          <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
         </div>
       </div>
+    </fieldset>
+
+    <% if @project && !@project.project_observation_fields.blank? -%>
+      <fieldset id="projectobservationfields" class="stacked">
+        <legend>Fields for <%= @project.title %></legend>
+        <div class="observation_fields">
+          <% @project.project_observation_fields.each do |pof| %>
+            <%= o.fields_for(:observation_field_values, 
+              o.object.observation_field_values.build(:observation_field => pof.observation_field)
+            ) do |ofv| %>
+              <%= render 'observation_field_row', 
+                :builder => ofv, 
+                :removable => false, 
+                :required => pof.required %>
+            <% end -%>
+          <% end -%>
+        </div>
+        <% if @project.project_observation_fields.detect{|pof| pof.required?} -%>
+          <div class="required">* required</div>
+        <% end -%>
+      </fieldset>
     <% end -%>
     
   </div>

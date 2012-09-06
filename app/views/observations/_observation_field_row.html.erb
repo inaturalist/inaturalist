@@ -1,17 +1,29 @@
-<%- ofv ||= builder -%>
+<%- 
+  ofv ||= builder
+  removable ||= removable.nil?
+  required ||= false
+-%>
 <div id="<%= ofv.object.observation_field ? dom_id(ofv.object.observation_field) : nil %>"
     class="observation_field stacked clear">
-  <%= ofv.hidden_field "_destroy" %>
-  <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')", :class => "right" %>
+  <% if removable -%>
+    <%= ofv.hidden_field "_destroy" %>
+    <%= link_to_function "Remove", 
+      "$(this).prev().val(1); $(this).parents('.observation_field').slideUp().attr('id', '')", 
+      :class => "right" %>
+  <% end -%>
   <%= ofv.hidden_field :observation_field_id, :class => "observation_field_id" %>
   <div class="labeldesc">
     <label><%= h(ofv.object.observation_field.try(:name)) %></label>
+    <% if required -%>
+      <span class="required">*</span>
+    <% end -%>
   </div>
   <div class="ofv_input stacked">
     <%= ofv.text_field :value, 
       :class => "text",
       :label => h(ofv.object.observation_field.try(:name).try(:capitalize)), 
       :description => h(ofv.object.observation_field.try(:description)),
+      :required => required,
       "data-json" => ofv.object.observation_field.to_json %>
   </div>
   <div class="description"><%= h(ofv.object.observation_field.try(:description)) %></div>

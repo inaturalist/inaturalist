@@ -27,3 +27,8 @@ describe ObservationField, "validation" do
     of.allowed_values.should == "hey|now"
   end
 end
+
+describe ObservationField, "destruction" do
+  it "should not be possible if assosiated projects exist"
+  it "should not be possible if assosiated observations exist"
+end

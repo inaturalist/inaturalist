@@ -62,6 +62,7 @@ Inaturalist::Application.routes.draw do
   match 'flickr/photos.:format' => 'flickr#photos', :via => :get
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
+    get 'fields', :as => 'extra_fields'
   end
 
   match 'observations/identotron' => 'observations#identotron', :as => :identotron

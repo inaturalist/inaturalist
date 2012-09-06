@@ -38,7 +38,7 @@
 <%- end -%>
 
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css" %>
+  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields' %>
   <style type="text/css" media="screen">  
     .identification_form_wrapper{background-color:#eee;padding:10px;}
     .identification_form_wrapper input.text{width:236px;margin-top:0;}
@@ -70,9 +70,10 @@
 <% end %>
 <% content_for(:extrajs) do %>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <%= javascript_include_tag('jquery/plugins/jqModal',
+  <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
-                             'inaturalist/map3') %>
+                             'observations/observation_fields',
+                             'inaturalist/map3' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -180,6 +181,51 @@
         .bind('ajax:before', function() {
           $('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()})
         })
+
+      $('#project_menu .addlink').bind('ajax:before', function() {
+        var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+        loading.width($(this).width())
+        loading.height($(this).height())
+        loading.css({backgroundPosition: 'center center'})
+        $(this).hide()
+        $(this).after(loading)
+      }).bind('ajax:success', function(e, json, status) {
+        $(this).siblings('.loadingclick').remove()
+        $('#removelink_project_'+json.project_id).show()
+      }).bind('ajax:error', function(e, xhr, error, status) {
+        $(this).siblings('.loadingclick').remove()
+        $(this).show()
+        var json = $.parseJSON(xhr.responseText)
+        // TODO if error response includes stuff about obs fields, open a dialog and fill it with html from an endpoint that takes obs id and (a proj ID OR a obs field ID). This endpoint can be used for other users adding stuff too, later
+        if (json.error.match(/observation field/)) {
+          var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+          dialog.load('/observations/'+window.observation.id+'/fields?project_id='+$(this).data('project-id'), function() {
+            $(this).observationFieldsForm()
+            $(this).centerDialog()
+          })
+          dialog.dialog({
+            modal: true,
+            title: 'Project observation fields',
+            width: 600,
+            minHeight: 400
+          })
+        } else {
+          alert(json.error)
+        }
+      })
+      $('#project_menu .removelink').bind('ajax:before', function() {
+        var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
+        loading.width($(this).width())
+        loading.height($(this).height())
+        loading.css({backgroundPosition: 'center center'})
+        $(this).hide()
+        $(this).after(loading)
+      }).bind('ajax:success', function(e, json, status) {
+        $(this).siblings('.loadingclick').remove()
+        $('#addlink_project_'+json.project_id).show()
+      }).bind('ajax:error', function(e, xhr, error, status) {
+        alert(xhr.responseText)
+      })
     });
   </script>
 <% end %>
@@ -243,19 +289,24 @@
           <ul>
             <% for project in @projects %>
               <li class="inline buttonrow">
-                <% if @project_observations_by_project_id[project.id] -%>
-                  <%= link_to "remove", 
-                    remove_project_observation_path(project, :observation_id => @observation.id),
-                    :method => :delete,
-                    :confirm => "Are you sure you want to remove this observation from #{h project.title}?",
-                    :class => "pale button" %>
-                <% else %>
-                  <%= link_to "add", 
-                    add_project_observation_path(project, :observation_id => @observation.id),
-                    "data-loading-click" => "Adding...",
-                    :method => :post,
-                    :class => "glaucous button" %>
-                <% end -%>
+                <%= link_to "remove", 
+                  remove_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  :method => :delete,
+                  "data-type" => "json",
+                  :confirm => "Are you sure you want to remove this observation from #{h project.title}?",
+                  :class => "removelink pale button",
+                  :id => dom_id(project, "removelink"),
+                  :style => @project_observations_by_project_id[project.id] ? nil : 'display:none' %>
+                <%= link_to "add", 
+                  add_project_observation_path(project, :observation_id => @observation.id),
+                  :remote => true,
+                  "data-type" => "json",
+                  "data-project-id" => project.id,
+                  :method => :post,
+                  :id => dom_id(project, "addlink"),
+                  :class => "addlink glaucous button",
+                  :style => @project_observations_by_project_id[project.id] ? 'display:none' : nil %>
                 <%= link_to h(project.title), project, :class => "inter" %>
               </li>
             <% end %>

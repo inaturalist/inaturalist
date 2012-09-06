@@ -108,6 +108,11 @@ ProjectList.blueprint do
   project { Project.make }
 end
 
+ProjectObservationField.blueprint do
+  project { Project.make }
+  observation_field { ObservationField.make }
+end
+
 ProjectUser.blueprint do
   user { User.make }
   project { Project.make }

@@ -1,7 +1,9 @@
 <% content_for(:title) do %>Editing Observation <%= @observation.id %><% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'taxa', 
-    'taxon_browser', "observations/edit" %>
+                          'taxon_browser', 
+                          'observations/observation_fields',
+                          "observations/edit" %>
   <style type="text/css" media="screen">
     #batchlink{text-align:right;}
     textarea{width:239px;margin:0;}
@@ -23,6 +25,7 @@
                              "jquery/plugins/jquery.latLonSelector.js",
                              "jquery/plugins/jqModal",
                              "taxon_browser",
+                             "observations/observation_fields",
                              "observations/edit" %>
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>

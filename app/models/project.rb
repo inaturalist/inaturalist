@@ -10,6 +10,8 @@ class Project < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :project_assets, :dependent => :destroy
   has_one :custom_project, :dependent => :destroy
+  has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project
+  has_many :observation_fields, :through => :project_observation_fields
   
   before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
@@ -26,6 +28,7 @@ class Project < ActiveRecord::Base
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
+  accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
   validates_length_of :title, :within => 1..85
   validates_presence_of :user

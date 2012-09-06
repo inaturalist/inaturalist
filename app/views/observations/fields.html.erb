@@ -1,0 +1,20 @@
+<%= form_for @observation do |o| %>
+  <% if @project -%>
+    <%= hidden_field_tag :project_id, @project.id %>
+    <% @project.project_observation_fields.each do |pof| %>
+      <%- 
+        ofv_object = @observation.observation_field_values.detect{|ofv| ofv.observation_field_id == pof.observation_field_id}
+        ofv_object ||= o.object.observation_field_values.build(:observation_field => pof.observation_field)
+      -%>
+      <%= o.fields_for(:observation_field_values, ofv_object) do |ofv| %>
+        <%= render 'observation_field_row', 
+          :builder => ofv, 
+          :removable => false, 
+          :required => pof.required %>
+      <% end -%>
+    <% end -%>
+  <% end -%>
+  <div class="buttonrow clear">
+    <%= o.submit "Save fields", "data-loading-click" => "Saving...", :class => "default button" %>
+  </div>
+<% end -%>

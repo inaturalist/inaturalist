@@ -101,6 +101,10 @@ class ProjectObservation < ActiveRecord::Base
     return false if observation.taxon.blank?
     list.listed_taxa.detect{|lt| lt.taxon_id == observation.taxon_id}
   end
+
+  def has_observation_field?(observation_field)
+    observation.observation_field_values.where(:observation_field_id => observation_field).exists?
+  end
   
   ##### Static ##############################################################
   def self.to_csv(project_observations, options = {})

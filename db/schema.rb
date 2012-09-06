@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929003044) do
+ActiveRecord::Schema.define(:version => 20120904064231) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -541,6 +541,16 @@ ActiveRecord::Schema.define(:version => 20120929003044) do
   end
 
   add_index "project_invitations", ["observation_id"], :name => "index_project_invitations_on_observation_id"
+
+  create_table "project_observation_fields", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "observation_field_id"
+    t.boolean  "required"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  add_index "project_observation_fields", ["project_id", "observation_field_id"], :name => "pof_projid_ofid"
 
   create_table "project_observations", :force => true do |t|
     t.integer  "project_id"

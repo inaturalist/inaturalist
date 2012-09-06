@@ -1,7 +1,8 @@
 class ProjectObservationRule < Rule
   OPERAND_OPERATORS_CLASSES = {
     "observed_in_place?" => "Place",
-    "in_taxon?" => "Taxon"
+    "in_taxon?" => "Taxon",
+    "has_observation_field?" => "ObservationField"
   }
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
   
@@ -26,8 +27,11 @@ class ProjectObservationRule < Rule
   
   def terms
     if operator == "observed_in_place?" && operand
-      return "must be observed in #{send(:operand).display_name}"
+      "must be observed in #{send(:operand).display_name}"
+    elsif operator == "has_observation_field?" && operand
+      "must have observation field '#{operand.name}' filled out"
+    else
+      super
     end
-    super
   end
 end

@@ -444,25 +444,45 @@ class ProjectsController < ApplicationController
   end
   
   def add
+    error_msg = nil
     unless @observation = Observation.find_by_id(params[:observation_id])
-      flash[:error] = "That observation doesn't exist."
-      redirect_back_or_default(@project)
-      return
+      error_msg = "That observation doesn't exist."
     end
-    if @project_observation = ProjectObservation.first(:conditions => { :project_id => @project.id, :observation_id => @observation.id })
-      flash[:error] = "The observation was already added to that project."
-      redirect_back_or_default(@project)
-      return
+
+    if @project_observation = ProjectObservation.where(
+        :project_id => @project.id, :observation_id => @observation.id).first
+      error_msg = "The observation was already added to that project."
     end
+
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
+    
     unless @project_observation.valid?
-      flash[:error] = "There were problems adding your observation to this project: " + 
+      error_msg = "There were problems adding your observation to this project: " + 
         @project_observation.errors.full_messages.to_sentence
-      redirect_back_or_default(@project)
+    end
+
+    if error_msg
+      respond_to do |format|
+        format.html do
+          flash[:error] = error_msg
+          redirect_back_or_default(@project)
+        end
+        format.json do
+          json = {
+            :error => error_msg,
+            :errors => @project_observation.errors.full_messages
+          }
+          if @project_observation.errors.full_messages.to_sentence =~ /observation field/
+            json[:observation_fields] = @project.project_observation_fields.as_json(:include => :observation_field)
+          end
+          render :status => :unprocessable_entity, :json => json
+        end
+      end
       return
     end
     
-    if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => @observation.id})
+    if @project_invitation = ProjectInvitation.where(
+        :project_id => @project.id, :observation_id => @observation.id).first
       @project_invitation.destroy
     end
     
@@ -476,22 +496,38 @@ class ProjectsController < ApplicationController
   end
   
   def remove
+    error_msg = nil
     unless @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
-      flash[:error] = "That observation hasn't been added this project."
-      redirect_back_or_default(@project)
-      return
+      error_msg = "That observation hasn't been added this project."
     end
     
     unless @project_observation.observation.user_id == current_user.id || (@project_user && @project_user.is_curator?)
-      flash[:error] = "You can't remove other people's observations."
-      redirect_back_or_default(@project)
+      error_msg = "You can't remove other people's observations."
+    end
+
+    if error_msg
+      respond_to do |format|
+        format.html do
+          flash[:error] = error_msg
+          redirect_back_or_default(@project)
+        end
+        format.json { render :status => :unprocessable_entity, :json => {
+          :error => error_msg
+        }}
+      end
       return
     end
     
     @project_observation.destroy
-    flash[:notice] = "Observation removed from the project \"#{@project.title}\""
-    redirect_back_or_default(@project)
-    return
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Observation removed from the project \"#{@project.title}\""
+        redirect_back_or_default(@project)
+      end
+      format.json do
+        render :json => @project_observation
+      end
+    end
   end
   
   def add_batch

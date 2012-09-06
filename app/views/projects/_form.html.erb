@@ -9,8 +9,10 @@
     .description_field textarea,.terms_field textarea{width:450px;}
     #place_q,#taxon_q{width:300px;}
     .observationrules{clear:left;}
+    .project_observation_field .title {font-weight:bold;}
   </style>
 <%- end -%>
+<%= javascript_include_tag "observations/observation_fields" %>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
     function rulify() {
@@ -53,6 +55,74 @@
       })
       $('.operator_field select').change()
     }
+
+    function newProjectObservationField(markup) {
+      var currentField = $('.observation_field_chooser').chooser('selected')
+      if (!currentField || typeof(currentField) == 'undefined') {
+        alert('Please choose a field type')
+        return
+      }
+      if ($('#observation_field_'+currentField.recordId).length > 0) {
+        alert('You already have a field for that type')
+        return
+      }
+      
+      $('.project_observation_fields').append(markup)
+      fieldify({observationField: currentField})
+    }
+
+    function fieldify(options) {
+      options = options || {}
+      $('.project_observation_field').not('.fieldified').each(function() {
+        console.log("[DEBUG] fieldifying: ", this)
+        var lastName = $('.project_observation_field.fieldified:last input').attr('name')
+        if (lastName) {
+          console.log("[DEBUG] lastName:", lastName)
+          var index = parseInt(lastName.match(/project_observation_fields_attributes\]\[(\d+)\]/)[1]) + 1
+        } else {
+          var index = 0
+        }
+        console.log("[DEBUG] index: ", index)
+        
+        $(this).addClass('fieldified')
+        var input = $('.ofv_input input.text', this)
+        var currentField = options.observationField || $.parseJSON($(this).attr('data-json'))
+        if (!currentField) return
+        currentField.recordId = currentField.recordId || currentField.id
+        
+        $(this).attr('id', 'observation_field_'+currentField.recordId)
+        $('.title', this).html(currentField.name)
+        if (currentField.allowed_values && currentField.allowed_values.length > 0) {
+          $('.allowed span', this).html(currentField.allowed_values)
+          $('.allowed', this).show()
+        } else {
+          $('.allowed', this).hide()
+        }
+        $('.description', this).html(currentField.description)
+        $('.editlink', this).attr('href', '/observation_fields/'+currentField.id+'/edit')
+        $('input[name*="observation_field_id"]', this).val(currentField.recordId)
+        $('input', this).each(function() {
+          var newName = $(this).attr('name')
+            .replace(
+              /project_observation_fields_attributes\]\[(\d+)\]/, 
+              'project_observation_fields_attributes]['+index+']')
+          $(this).attr('name', newName)
+        })
+      })
+    }
+
+    $(document).ready(function() {
+      $('.observation_field_chooser').chooser({
+        collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
+        resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
+        afterSelect: function(item) {
+          $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()
+          $('.observation_field_chooser').chooser('clear')
+        }
+      })
+      $('#createfieldbutton').click(ObservationFields.newObservationFieldButtonHandler)
+      fieldify()
+    })
   </script>
 <%- end -%>
 <%- project ||= @project -%>
@@ -210,6 +280,36 @@
       <%= f.text_field :source_url, :description => "URL / identifier of a project derived from some external resource" %>
     </fieldset>
   <% end -%>
+
+  <fieldset>
+    <legend>Observation fields</legend>
+    <p class="description">
+      Suggest or require that contributors fill out these fields for the observations they add to your project.
+    </p>
+
+    <ul class="project_observation_fields">
+      <%= f.fields_for :project_observation_fields do |pof| %>
+        <%= render 'project_observation_field_row', :builder => pof %>
+      <% end -%>
+    </ul>
+    <div>
+      <%- new_pof_fields = capture do %>
+        <%= f.fields_for :project_observation_fields, f.object.project_observation_fields.build do |pof| %>
+          <%= render 'project_observation_field_row', :builder => pof %>
+        <% end -%>
+      <% end -%>
+      <div class="inline buttonrow">
+        <label>Add a field</label>
+        <input name="observation_field" 
+               class="observation_field_chooser" 
+               type="text" 
+               placeholder="Start typing field name..."
+               data-chooser-default-sources="<%= @observation_fields.to_json %>">
+        <%= link_to_function "Add a field", "newProjectObservationField('#{escape_javascript(new_pof_fields)}')", :class => "button addfieldbutton" %>
+        <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+      </div>
+    </div>
+  </fieldset>
 
   <div class="buttons">
     <%= f.submit project.new_record? ? "Create" : "Save", :class => "default button", "data-loading-click" => "Saving..." %>

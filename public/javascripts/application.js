@@ -102,7 +102,7 @@ function loadingClickForLink() {
   }
 }
 
-$('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function() {
+function loadingClickForButton() {
   $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
@@ -117,10 +117,18 @@ $('input[data-loading-click][type=text], input[data-loading-click][type=submit]'
     })
     $(this).attr('data-loading-click-bound', true)
   }
-  
-  $(this).parents('form').submit(function() {
-    $(link).attr('disabled', true)
-  })
+  $(link).attr('disabled', true)
+}
+
+$('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function(clickEvent) {
+  var button = this
+  if ($(this).parents('form').length > 0) {
+    $(this).parents('form').submit(function(e) {
+      loadingClickForButton.apply(button)
+    })
+  } else {
+    loadingClickForButton.apply(button)
+  }
 })
 
 $('[data-autosubmit]').live('change', function() {
@@ -785,4 +793,12 @@ $.fn.serializeObject = function() {
         }
     });
     return o;
+}
+
+$.fn.centerDialog = function() {
+  var newHeight = $(':first', this).height() + 60
+  var maxHeight = $(window).height() * 0.8
+  if (newHeight > maxHeight) { newHeight = maxHeight };
+  $(this).dialog('option', 'height', newHeight)
+  $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
 }
