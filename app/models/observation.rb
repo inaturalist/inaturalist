@@ -681,6 +681,19 @@ class Observation < ActiveRecord::Base
     
     true
   end
+
+  # Override nested obs field values attributes setter to ensure that field
+  # values get added even if existing field values have been destroyed (e.g.
+  # two windows)
+  def observation_field_values_attributes=(attributes)
+    attributes.each do |k,v|
+      next if v["id"].blank?
+      unless ObservationFieldValue.where("id = ?", v["id"]).exists?
+        attributes[k].delete("id")
+      end
+    end
+    assign_nested_attributes_for_collection_association(:observation_field_values, attributes, mass_assignment_options)
+  end
   
   #
   # Update the user's lists with changes to this observation's taxon

@@ -1240,3 +1240,45 @@ describe Observation, "update_stats" do
     o.num_identification_disagreements.should eq(1)
   end
 end
+
+describe Observation, "nested observation_field_values" do
+  it "should create a new record if ID set but existing not found" do
+    ofv = ObservationFieldValue.make!
+    of = ofv.observation_field
+    o = ofv.observation
+    attrs = {
+      "observation_field_values_attributes" => {
+        "0" => {
+          "_destroy" => "false", 
+          "observation_field_id" => ofv.observation_field_id, 
+          "value" => ofv.value,
+          "id" => ofv.id
+        }
+      }
+    }
+    ofv.destroy
+    lambda { o.update_attributes(attrs) }.should_not raise_error(ActiveRecord::RecordNotFound)
+    o.reload
+    o.observation_field_values.last.observation_field_id.should eq(of.id)
+  end
+
+  it "should remove records if ID set but existing not found" do
+    ofv = ObservationFieldValue.make!
+    of = ofv.observation_field
+    o = ofv.observation
+    attrs = {
+      "observation_field_values_attributes" => {
+        "0" => {
+          "_destroy" => "true", 
+          "observation_field_id" => ofv.observation_field_id, 
+          "value" => ofv.value,
+          "id" => ofv.id
+        }
+      }
+    }
+    ofv.destroy
+    lambda { o.update_attributes(attrs) }.should_not raise_error(ActiveRecord::RecordNotFound)
+    o.reload
+    o.observation_field_values.should be_blank
+  end
+end

@@ -66,8 +66,8 @@ ObservationField.blueprint do
 end
 
 ObservationFieldValue.blueprint do
-  observation { Observation.make }
-  observation_field { ObservationField.make }
+  observation { Observation.make! }
+  observation_field { ObservationField.make! }
   value {"foo"}
 end
 
