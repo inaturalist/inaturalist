@@ -202,6 +202,7 @@
           dialog.load('/observations/'+window.observation.id+'/fields?project_id='+$(this).data('project-id'), function() {
             $(this).observationFieldsForm()
             $(this).centerDialog()
+            $('form:has(input[required])', this).submit(checkFormForRequiredFields)
           })
           dialog.dialog({
             modal: true,

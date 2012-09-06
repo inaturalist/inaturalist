@@ -52,10 +52,10 @@ $(document).ready(function() {
   
   $('.observation_photos').each(function() {
     var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
-    if (window.location.href.match(/\/observations\/new/)) {
-      var index = 0
-    } else {
+    if (window.location.href.match(/\/observations\/(\d+)/)) {
       var index = window.location.href.match(/\/observations\/(\d+)/)[1]
+    } else {
+      var index = 0
     }
     // The photo_fields endpoint needs to know the auth token and the index
     // for the field
