@@ -330,6 +330,25 @@ $(document).ready(function() {
   }).bind('ajax:error', function(xhr, status, error) {
     alert(error)
   })
+
+  // force browsers that don't support HTML5's required attribute to recognize it
+  $('form:has(input[required])').submit(function(e) {
+    var inputs = $('input[required]:visible').filter(function() { return !$(this).val() })
+    if (inputs.length == 0) {
+      return true
+    }
+    inputs.css({'border-color': 'DeepPink'})
+      .qtip({
+        content: 'This field is required',
+        style: {
+          classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-required'
+        }
+      }).qtip('show')
+    e.preventDefault()
+    e.stopImmediatePropagation()
+    $(window).scrollTo(inputs[0])
+    return false
+  })
 })
 
 function checkDelayedLink(url) {

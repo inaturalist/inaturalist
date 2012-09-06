@@ -1209,3 +1209,9 @@ ul.plain {list-style:none;margin:0;padding:0}
 .small.photo {max-width:240px;}
 .medium.photo {max-width:500px;}
 .large.photo {max-width:1024px;}
+
+.ui-tooltip-required .ui-tooltip-content,
+.ui-tooltip-required .ui-tooltip-titlebar {
+  color: white;
+  background-color: deeppink;
+}
