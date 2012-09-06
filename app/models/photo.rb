@@ -157,6 +157,12 @@ class Photo < ActiveRecord::Base
     return false if user.blank?
     user.id == user_id || observations.exists?(:user_id => user.id)
   end
+
+  def orphaned?
+    observation_photos_exist = observation_photos.loaded? ? observation_photos.size > 0 : observation_photos.exists?
+    taxon_photos_exist = taxon_photos.loaded? ? taxon_photos.size > 0 : taxon_photos.exists?
+    !observation_photos_exist && !taxon_photos_exist
+  end
   
   # Retrieve info about a photo from its native source given its native id.  
   # Should be implemented by descendents
@@ -175,9 +181,7 @@ class Photo < ActiveRecord::Base
     photos = Photo.all(:conditions => ["id IN (?)", [ids].flatten])
     return if photos.blank?
     photos.each do |photo|
-      if !photo.observation_photos.exists? && !photo.taxon_photos.exists?
-        photo.destroy
-      end
+      photo.destroy if photo.orphaned?
     end
   end
   

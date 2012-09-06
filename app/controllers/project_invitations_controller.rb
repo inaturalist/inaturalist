@@ -61,12 +61,13 @@ class ProjectInvitationsController < ApplicationController
     unless @project_observation.valid?
       flash[:error] = "There were problems adding your observation to this project: " + 
         @project_observation.errors.full_messages.to_sentence
-      redirect_to :back and return
+      redirect_back_or_default(@project_observation.observation)
+      return
     end
     
     @project_invitation.destroy
     flash[:notice] = "Observation added to the project \"#{@project_invitation.project.title}\""
-    redirect_to :back
+    redirect_back_or_default(@project_observation.observation)
   end
   
   def destroy

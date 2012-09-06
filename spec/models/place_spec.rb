@@ -150,6 +150,5 @@ describe Place, "bbox_contains_lat_lng?" do
     place.bbox_contains_lat_lng?(0.5, -179.5).should be_true
     place.bbox_contains_lat_lng?(0, 0).should be_false
   end
-  
 end
 

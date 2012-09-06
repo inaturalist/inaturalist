@@ -29,6 +29,12 @@
                          :locals => { :taxon => notifier.taxon,
                                       :link_url => taxon_url(notifier.taxon) } %>
             </div>
+          <% elsif notifier.is_a?(ProjectInvitation) %>
+            <p>
+              Please add this to <strong><%= notifier.project.title %></strong>
+              <br/>
+              <%= link_to "View invitation", resource %>
+            </p>
           <% end -%>
           <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
             Posted by 

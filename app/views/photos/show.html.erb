@@ -84,6 +84,12 @@
                 </li>
               <% end -%>
             </ul>
+
+            <% if @photo.is_a?(FlickrPhoto) && is_curator? -%>
+              <span class="button">
+                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, :confirm => "This might delete the photo if it was deleted from Flickr or the owner has revoked permission.  Proceed?" %>
+              </span>
+            <% end -%>
           </td>
         </tr>
       </table>

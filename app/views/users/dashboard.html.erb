@@ -60,6 +60,7 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3', "d3.min", 'calendars' %>
   <script type="text/javascript" charset="utf-8">
+    var CACHED_AT = new Date(<%= Time.now.to_i * 1000 %>)
     $(document).ready(function() {
       $('#tabs').tabs({
         show: function(event, ui) {
@@ -81,7 +82,9 @@
       
       $('.subscriptionsettings').subscriptionSettings()
       $('abbr.timeago').timeago()
-      $('#flash').hide()
+      if ((new Date()).getTime() - CACHED_AT.getTime() > 5000) {
+        $('#flash').hide()
+      }
       var dayInSeconds = 24 * 60 * 60,
           now = new Date(),
           monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']

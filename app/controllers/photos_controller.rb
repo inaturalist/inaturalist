@@ -2,7 +2,7 @@ class PhotosController < ApplicationController
   MOBILIZED = [:show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  before_filter :load_photo, :only => [:show, :update]
+  before_filter :load_photo, :only => [:show, :update, :repair]
   before_filter :require_owner, :only => [:update]
   before_filter :login_required, :only => [:inviter]
   before_filter :return_here, :only => [:show, :invite, :inviter]
@@ -154,6 +154,24 @@ class PhotosController < ApplicationController
       success_msg = "successfully sent #{@successful_ids.size} invite#{'s' if @successful_ids.size != 1}" unless @successful_ids.blank?
       error_msg = "failed to send #{@errors.size} invite#{'s' if @errors.size != 1}: #{@errors.map{|id, msg| [id, msg].join(': ')}}" unless @errors.blank?
       flash[:notice] = [success_msg, error_msg].compact.join(', ').capitalize
+    end
+  end
+
+  def repair
+    unless @photo.is_a?(FlickrPhoto)
+      Rails.logger.debug "[DEBUG] @photo: #{@photo}"
+      flash[:error] = "Repair only works for Flickr photos"
+      redirect_back_or_default(@photo)
+      return
+    end
+
+    repaired, errors = @photo.repair
+    if repaired.frozen?
+      flash[:error] = "Photo destroyed b/c it was deleted from Flickr or iNat no longer has permission to view it"
+      redirect_back_or_default(@photo.taxa.first || @photos.observations.first)
+    else
+      flash[:notice] = "Photo URLs repaired"
+      redirect_back_or_default(@photo)
     end
   end
   

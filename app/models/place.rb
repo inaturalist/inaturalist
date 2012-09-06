@@ -101,8 +101,16 @@ class Place < ActiveRecord::Base
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   
   named_scope :containing_lat_lng, lambda {|lat, lng|
-    # {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", lat, lat, lng, lng]}
     {:joins => :place_geometry, :conditions => ["ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat]}
+  }
+
+  named_scope :bbox_containing_lat_lng, lambda {|lat, lng|
+    {:conditions => [
+      "(swlng > 0 AND nelng < 0 AND swlat <= ? AND nelat >= ? AND (swlng <= ? OR nelng >= ?)) " +
+      "OR (swlng * nelng >= 0 AND swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?)", 
+      lat, lat, lng, lng,
+      lat, lat, lng, lng
+    ]}
   }
   
   named_scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
@@ -331,12 +339,19 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
-    self.latitude = geom.envelope.center.y
     self.longitude = geom.envelope.center.x
+    self.latitude = geom.envelope.center.y
     self.swlat = geom.envelope.lower_corner.y
-    self.swlng = geom.envelope.lower_corner.x
     self.nelat = geom.envelope.upper_corner.y
-    self.nelng = geom.envelope.upper_corner.x
+    if geom.spans_dateline?
+      self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
+      self.swlng = geom.envelope.upper_corner.x
+      self.nelng = geom.envelope.lower_corner.x
+    else
+      # self.longitude = geom.envelope.center.x
+      self.swlng = geom.envelope.lower_corner.x
+      self.nelng = geom.envelope.upper_corner.x
+    end
     calculate_bbox_area
     save(false)
   end
