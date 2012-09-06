@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725194234) do
+ActiveRecord::Schema.define(:version => 20120906014934) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -830,6 +830,7 @@ ActiveRecord::Schema.define(:version => 20120725194234) do
     t.integer  "taxon_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source_identifier"
   end
 
   add_index "taxon_scheme_taxa", ["taxon_id"], :name => "index_taxon_scheme_taxa_on_taxon_id"

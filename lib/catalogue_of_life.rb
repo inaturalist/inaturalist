@@ -4,7 +4,7 @@
 # You have been warned.
 #
 class CatalogueOfLife
-  ENDPOINT = 'http://www.catalogueoflife.org/annual-checklist/2010/webservice'.freeze
+  ENDPOINT = 'http://www.catalogueoflife.org/annual-checklist/webservice'.freeze
 
   attr_reader :timeout
 

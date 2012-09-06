@@ -179,7 +179,7 @@ class Taxon < ActiveRecord::Base
   IUCN_EXTINCT = 70
   IUCN_STATUS_NAMES = %w(not_evaluated data_deficient least_concern
     near_threatened vulnerable endangered critically_endangered
-    extinct_in_the_wild extinct domestic)
+    extinct_in_the_wild extinct)
   IUCN_STATUS_CODES = {
     "not_evaluated"         => "NE",
     "data_deficient"        => "DD",
