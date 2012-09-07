@@ -17,9 +17,7 @@ class WikimediaController < ApplicationController
     end
     
     begin
-      @photos = WikimediaPhoto.api_response_from_taxon_name(taxon_name).map do |wp|
-        WikimediaPhoto.new_from_api_response(wp)
-      end
+      @photos = WikimediaPhoto.search_wikimedia_for_taxon(taxon_name)
     rescue
       @photos = []
     end

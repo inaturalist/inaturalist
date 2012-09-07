@@ -4,9 +4,9 @@ class WikimediaPhoto < Photo
   Photo.descendent_classes << self
   
   #return an Wikimedia api response based on a taxon_name
-  def self.api_response_from_taxon_name(taxon_name, options = {})
+  def self.search_wikimedia_for_taxon(taxon_name, options = {})
     wm = WikimediaService.new
-    api_response = []
+    wikimedia_photos = []
     begin
       query_results = wm.query(
         :titles => taxon_name,
@@ -51,46 +51,65 @@ class WikimediaPhoto < Photo
         end
       end
     end
-    #"http://commons.wikimedia.org/w/api.php?prop=imageinfo&titles=#{filenames.join("|")}&action=query&format=xml&iiprop=timestamp|user|userid|comment|parsedcomment|url|size|dimensions|sha1|mime|thumbmime|mediatype|metadata|archivename|bitdepth"
-    metadata_query_results = wm.query(
-      :prop => 'imageinfo',
-      :titles => filenames.join("|"),
-      :iiprop => 'timestamp|user|userid|comment|parsedcomment|url|size|dimensions|sha1|mime|thumbmime|mediatype|metadata|archivename|bitdepth'
-    )
-    metadata_query_results.at('pages').children.each do |child|
-      file_name = child.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
-      width = child.at('ii').attributes['width'].to_s.to_i
-      md5_hash = Digest::MD5.hexdigest(file_name)
-      image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
-      large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}"
-      medium_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}"
-      small_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}"
-      square_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}"
-      thumb_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}"
-      native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
-      api_response << {
-        :large_url => large_url,
-        :medium_url => medium_url,
-        :small_url => small_url,
-        :thumb_url => thumb_url,
-        :native_photo_id => file_name,
-        :square_url => thumb_url,
-        :original_url => image_url,
-        :native_page_url => native_page_url
-      }
+    begin
+      metadata_query_results = wm.query(
+        :prop => 'imageinfo',
+        :titles => filenames.join("|"),
+        :iiprop => 'timestamp|user|userid|comment|parsedcomment|url|size|dimensions|sha1|mime|thumbmime|mediatype|metadata|archivename|bitdepth'
+      )
+    rescue Timeout::Error => e
+      metadata_query_results = nil
     end
-    return api_response
+    unless metadata_query_results .nil?
+      metadata_query_results.at('pages').children.each do |child|
+        file_name = child.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
+        width = child.at('ii').attributes['width'].to_s.to_i
+        md5_hash = Digest::MD5.hexdigest(file_name)
+        image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
+        large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}"
+        medium_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}"
+        small_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}"
+        square_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}"
+        thumb_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}"
+        native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
+        options = {}
+          options.update(
+          :large_url => large_url,
+          :medium_url => medium_url,
+          :small_url => small_url,
+          :thumb_url => thumb_url,
+          :native_photo_id => file_name,
+          :square_url => square_url,
+          :original_url => image_url,
+          :native_page_url => native_page_url
+        )
+        wikimedia_photos << WikimediaPhoto.new(options)
+      end
+      return wikimedia_photos
+    else
+      return nil
+    end
   end
   
   def self.get_api_response(file_name)
-    doc = Nokogiri::HTML(open("http://commons.wikimedia.org/w/index.php?title=File:#{file_name}", 'User-Agent' => 'ruby'))
-    if doc.at('#fileinfotpl_aut')
-      author = doc.at('#fileinfotpl_aut').parent.elements.last.inner_text
+    api_response = Nokogiri::HTML(open("http://commons.wikimedia.org/w/index.php?title=File:#{file_name}", 'User-Agent' => 'ruby'))
+    return api_response
+  end
+  
+  def self.new_from_api_response(api_response, options = {})
+    return nil if api_response.nil?
+    if file_name = api_response.at('#firstHeading').children[0].children[0].inner_text
+      file_name = file_name.strip.gsub(/\s/, '_').split("File:")[1]
+    else
+      return nil
+    end
+    if api_response.at('#fileinfotpl_aut')
+      author = api_response.at('#fileinfotpl_aut').parent.elements.last.inner_text
     else
       author = "anonymous"
     end
-    license = doc.search('.licensetpl_short').inner_text
-    width = doc.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i 
+    license = api_response.search('.licensetpl_short').inner_text
+    width = api_response.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i 
     md5_hash = Digest::MD5.hexdigest(file_name)
     image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
     if 1024 > width
@@ -128,42 +147,25 @@ class WikimediaPhoto < Photo
       license_code = 4
     end
     if (license_code == nil) || (author == "anonymous" && ([1,2,3,4,5,6].include? license_code))
-      api_response = nil
+      return nil
     else
-      api_response = {
+      options = {}
+      options.update(
         :large_url => large_url,
         :medium_url => medium_url,
         :small_url => small_url,
         :thumb_url => thumb_url,
         :native_photo_id => file_name,
-        :square_url => thumb_url,
+        :square_url => square_url,
         :original_url => image_url,
         :native_page_url => native_page_url,
         :native_username => author,
         :native_realname => author,
-        :license =>  license_code
-      }
+        :license => license_code
+      )
+      wikimedia_photo = WikimediaPhoto.new(options)
+      return wikimedia_photo
     end
-    return api_response
   end
   
-  def self.new_from_api_response(api_response, options = {})
-    return nil if api_response.nil?
-    options.update(
-      :large_url => api_response[:large_url],
-      :medium_url => api_response[:medium_url],
-      :small_url => api_response[:small_url],
-      :thumb_url => api_response[:thumb_url],
-      :native_photo_id => api_response[:native_photo_id],
-      :square_url => api_response[:square_url],
-      :original_url => api_response[:original_url],
-      :native_page_url => api_response[:native_page_url],
-      :native_username => api_response[:native_username],
-      :native_realname => api_response[:native_realname],
-      :license => api_response[:license]
-    )
-    wikimedia_photo = WikimediaPhoto.new(options)
-    wikimedia_photo
-  end
-
 end
