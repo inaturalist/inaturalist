@@ -10,10 +10,11 @@ Inaturalist::Application.routes.draw do
   match '/home' => 'users#dashboard', :as => :home
   match '/home.:format' => 'users#dashboard', :as => :formatted_home
   
-  devise_for :users
+  devise_for :users, :controllers => {:sessions => 'users/sessions'}
   devise_scope :user do
-    get "login", :to => "devise/sessions#new"
-    get "logout", :to => "devise/sessions#destroy"
+    get "login", :to => "users/sessions#new"
+    get "logout", :to => "users/sessions#destroy"
+    post "session", :to => "users/sessions#create", :as => "user_session"
   end
   match '/register' => 'users#create', :as => :register, :via => :post
   match '/signup'   => 'users#new', :as => :signup
