@@ -20,12 +20,37 @@ class WikimediaPhoto < Photo
     unless query_results.blank?
       raw = query_results.at('images')
       filenames = []
-      raw.children.each do |child|
-        filename = child.attributes["title"].value
-        filenames << filename.strip.gsub(/\s/, '_') if filename.split(".").last.upcase == "JPG"
+      unless raw.nil?
+        raw.children.each do |child|
+          filename = child.attributes["title"].value
+          filenames << filename.strip.gsub(/\s/, '_') if filename.split(".").last.upcase == "JPG"
+        end
+      else
+        w = WikipediaService.new
+        t = Taxon.find_by_name(taxon_name)
+        begin
+          query_results = w.query(
+            :titles => t.wikipedia_title.blank? ? t.name : t.wikipedia_title,
+            :redirects => '',
+            :prop => 'revisions',
+            :rvprop => 'content'
+          )
+        rescue Timeout::Error => e
+          query_results = nil
+        end
+        unless query_results .nil?
+          raw = query_results.at('page')
+          unless raw.blank?
+            if taxobox = raw.to_s[/\{\{[^\|^\}]*Taxobox(.*)\}\}/im, 1]
+              image_title = taxobox[/image\s*=\s*([^\|^\}]*)/i, 1]
+              unless image_title.blank?
+                filenames << "File:"+image_title.strip.gsub(/\s/, '_')
+              end
+            end
+          end
+        end
       end
     end
-    
     #"http://commons.wikimedia.org/w/api.php?prop=imageinfo&titles=#{filenames.join("|")}&action=query&format=xml&iiprop=timestamp|user|userid|comment|parsedcomment|url|size|dimensions|sha1|mime|thumbmime|mediatype|metadata|archivename|bitdepth"
     metadata_query_results = wm.query(
       :prop => 'imageinfo',
@@ -65,12 +90,24 @@ class WikimediaPhoto < Photo
       author = "anonymous"
     end
     license = doc.search('.licensetpl_short').inner_text
-    width = doc.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i
+    width = doc.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i 
     md5_hash = Digest::MD5.hexdigest(file_name)
     image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
-    large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}"
-    medium_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{500 > width ? width : 500}px-#{file_name}"
-    small_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{240 > width ? width : 240}px-#{file_name}"
+    if 1024 > width
+      large_url = image_url
+    else
+      large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/1024px-#{file_name}"  
+    end
+    if 500 > width
+      medium_url = image_url
+    else
+      medium_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/500px-#{file_name}"
+    end
+    if 240 > width
+      small_url = image_url
+    else
+      small_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/240px-#{file_name}"
+    end
     square_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}"
     thumb_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}"
     native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
