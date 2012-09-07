@@ -424,7 +424,7 @@
     <% end -%>
     
     <% unless @observation.observation_field_values.blank? -%>
-      <div class="observation_fields description admin">
+      <div class="observation_fields description">
         <% for ofv in @observation.observation_field_values %>
           <div class="observation_field_value">
             <label data-tip="<%=h ofv.observation_field.description %>" data-tip-width="auto">

@@ -557,7 +557,7 @@ class ProjectsController < ApplicationController
       
     end
     
-    @unique_errors = @errors.values.uniq.to_sentence
+    @unique_errors = @errors.values.flatten.uniq.to_sentence
     
     if @observations.empty?
       flash[:error] = "You must specify at least one observation to add the project \"#{@project.title}\""
