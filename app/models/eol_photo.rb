@@ -18,7 +18,7 @@ class EolPhoto < Photo
       photo_count = photo_data_objects.count      
       (0..(photo_count-1)).each do |child|
         #get the data object id and username
-        photo_data_object = photo_data_objects[child].inner_text
+        eol_photo_id = photo_data_objects[child].inner_text
         #EOL API makes it really hard to find this in an array - since we don't display licensing
         #in photo_fields I'm setting it to nil
         native_username = nil
@@ -44,7 +44,7 @@ class EolPhoto < Photo
           :medium_url => image_url,
           :small_url => image_url,
           :thumb_url => thumb_url,
-          :native_photo_id => photo_data_object,
+          :native_photo_id => eol_photo_id,
           :square_url => thumb_url,
           :original_url => image_url,
           :native_page_url => native_page_url,
@@ -96,7 +96,7 @@ class EolPhoto < Photo
         :native_photo_id => photo_id,
         :square_url => thumb_url,
         :original_url => image_url,
-        :native_page_url => "http://eol.org/pages/#{eol_page_xml.search('//dc:identifier').first.inner_text}/overview",
+        :native_page_url => "http://eol.org/data_objects/#{photo_id}",
         :native_username => native_username,
         :native_realname => native_username,
         :license =>  license_code
