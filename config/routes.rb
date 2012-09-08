@@ -10,15 +10,15 @@ Inaturalist::Application.routes.draw do
   match '/home' => 'users#dashboard', :as => :home
   match '/home.:format' => 'users#dashboard', :as => :formatted_home
   
-  devise_for :users, :controllers => {:sessions => 'users/sessions'}
+  devise_for :users, :controllers => {:sessions => 'users/sessions', :registrations => 'users/registrations'}
   devise_scope :user do
     get "login", :to => "users/sessions#new"
     get "logout", :to => "users/sessions#destroy"
     post "session", :to => "users/sessions#create", :as => "user_session"
+    get "signup", :to => "users/registrations#new"
+    get "users/new", :to => "users/registrations#new", :as => "new_user"
   end
   match '/register' => 'users#create', :as => :register, :via => :post
-  match '/signup'   => 'users#new', :as => :signup
-  
   
   match '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
   match '/forgot_password' => 'passwords#new', :as => :forgot_password
@@ -41,7 +41,7 @@ Inaturalist::Application.routes.draw do
   match '/users/updates_count' => 'users#updates_count', :as => :updates_count
   match '/users/new_updates' => 'users#new_updates', :as => :new_updates
   
-  resources :users
+  resources :users, :except => [:new, :create]
   # resource :session
   # resources :passwords
   resources :people, :controller => :users

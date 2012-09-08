@@ -1,7 +1,6 @@
 <%= error_messages_for :user, 
       :header_message => "Oops.",
       :message => "There were some problems with the following fields:" %>
-
 <%= form_for :user, :url => users_path, :builder => DefaultFormBuilder, :html => { :id => 'signup_form' } do |f| -%>
   <%= f.text_field :login, :class => 'text', :autocorrect => "off", :autocapitalize => "off", :label => "Login / username" %>
   <%= f.text_field :email, :class => 'text', :autocorrect => "off", :autocapitalize => "off", :type => "email" %>
