@@ -1,0 +1,32 @@
+<%- content_for(:title) do -%>
+  Sign up!
+<%- end -%>
+<% content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    #signup_form .formError {display: inline;}
+    .providerlink, .button.providerlink { width: 140px; }
+  </style>
+<% end -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+      $('.time_zone_select').selectLocalTimeZone();
+    })
+  </script>
+<%- end -%>
+<div class="column prepend-2 span-8">
+  <img src="/images/bird.png" width="300" height="239" />
+  
+  <div style="margin: 20px 0 0 80px">
+    <div style="margin-bottom: 0.5em;">
+      <label>Or you can...</label>
+    </div>
+    <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
+      <%= link_to "Sign in with #{provider.capitalize}", url, :class => "button providerlink #{provider.downcase}" %>
+    <%- end -%>
+  </div>
+</div>
+<div class="column span-12 append-2 last">
+  <h2>Join iNaturalist!</h2>
+  <%= render :partial => 'users/new_form' %>
+</div>

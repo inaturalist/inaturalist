@@ -145,13 +145,13 @@
 
           <p>Here are some things you can do in the meantime:</p>
           <ul class="readable leafylist">
-            <% unless @user.flickr_identity %>
+            <% unless current_user.flickr_identity %>
               <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
             <% end %>
-            <li><%= link_to "Browse your observations", observations_by_login_path(@user.login) %></li>
+            <li><%= link_to "Browse your observations", observations_by_login_path(current_user.login) %></li>
             <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
             <li><%= link_to "Explore everyone's observations", observations_path %></li>
-            <li><%= link_to "Check out your Life List", lists_by_login_path(@user.login) %></li>
+            <li><%= link_to "Check out your Life List", lists_by_login_path(current_user.login) %></li>
           </ul>
         <% else %>
           <p class="description">

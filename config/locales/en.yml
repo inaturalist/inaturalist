@@ -4,6 +4,8 @@
 en:
   hello: "Hello world"
   devise:
+    registrations:
+      signed_up: "Welcome to iNaturalist!  Please check for your confirmation email, but feel free to start cruising the site."
     failure:
       user:
         suspended: "Your account has been suspended"
