@@ -16,10 +16,9 @@ class WikimediaCommonsPhoto < Photo
     rescue Timeout::Error => e
       query_results = nil
     end
-    file_names = []
+    filenames = []
     unless query_results.blank?
       raw = query_results.at('images')
-      filenames = []
       unless raw.blank?
         raw.children.each do |child|
           filename = child.attributes["title"].value
