@@ -20,7 +20,7 @@
       <li class="native_page_url">
         <%- photographer_name = (photo.native_realname || photo.native_username) -%>
         <% unless photo.native_page_url.blank? -%>
-          <%= link_to "View original #{'by '+photographer_name if !photographer_name.blank?} on #{photo_source}", 
+          <%= link_to "View original #{'by '+photographer_name if !photographer_name.blank?} on #{photo.source_title}", 
             photo.native_page_url %>
         <% end -%>
       </li>

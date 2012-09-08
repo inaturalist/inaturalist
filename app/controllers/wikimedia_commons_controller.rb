@@ -1,8 +1,8 @@
-class WikimediaController < ApplicationController
+class WikimediaCommonsController < ApplicationController
   before_filter :return_here, :only => [:options]
   before_filter :login_required
 
-  # Return an HTML fragment containing checkbox inputs for Wikimedia photos.
+  # Return an HTML fragment containing checkbox inputs for Wikimedia Commons photos.
   # Params:
   #   taxon_id:        a taxon_id
   #   q:        a search param
@@ -16,11 +16,7 @@ class WikimediaController < ApplicationController
       taxon_name = alt_taxon_name
     end
     
-    begin
-      @photos = WikimediaPhoto.search_wikimedia_for_taxon(taxon_name)
-    rescue
-      @photos = []
-    end
+    @photos = WikimediaCommonsPhoto.search_wikimedia_for_taxon(taxon_name) || []
     
     render :partial => 'photos/photo_list_form', :locals => {
       :photos => @photos, 

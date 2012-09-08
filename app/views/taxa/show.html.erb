@@ -360,7 +360,7 @@
             });
             
             $(h.w).find('#wikimedia_taxon_photos .taxon_photos').photoSelector({
-              baseURL: '<%= wikimedia_photo_fields_url %>',
+              baseURL: '<%= wikimedia_commons_photo_fields_url %>',
               urlParams: {
                 taxon_id: '<%= @taxon.id %>',
                 authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),

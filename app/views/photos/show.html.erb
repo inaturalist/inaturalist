@@ -44,7 +44,7 @@
         <% unless @photo.is_a?(LocalPhoto) -%>
           <tr>
             <th>Source</th>
-            <td><%= @photo.class.to_s.gsub(/Photo$/, '') %></td>
+            <td><%= @photo.source_title %></td>
           </tr>
           <tr>
             <th>Original</th>

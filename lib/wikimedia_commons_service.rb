@@ -1,4 +1,4 @@
-class WikimediaService < MetaService
+class WikimediaCommonsService < MetaService
   def initialize(options = {})
     super(options)
     @endpoint = 'http://commons.wikimedia.org/w/api.php?'
