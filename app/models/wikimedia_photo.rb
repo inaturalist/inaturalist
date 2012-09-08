@@ -146,26 +146,22 @@ class WikimediaPhoto < Photo
     elsif license.downcase.include? "cc-by"
       license_code = 4
     end
-    if (license_code == nil) || (author == "anonymous" && ([1,2,3,4,5,6].include? license_code))
-      return nil
-    else
-      options = {}
-      options.update(
-        :large_url => large_url,
-        :medium_url => medium_url,
-        :small_url => small_url,
-        :thumb_url => thumb_url,
-        :native_photo_id => file_name,
-        :square_url => square_url,
-        :original_url => image_url,
-        :native_page_url => native_page_url,
-        :native_username => author,
-        :native_realname => author,
-        :license => license_code
-      )
-      wikimedia_photo = WikimediaPhoto.new(options)
-      return wikimedia_photo
-    end
+    options = {}
+    options.update(
+      :large_url => large_url,
+      :medium_url => medium_url,
+      :small_url => small_url,
+      :thumb_url => thumb_url,
+      :native_photo_id => file_name,
+      :square_url => square_url,
+      :original_url => image_url,
+      :native_page_url => native_page_url,
+      :native_username => author,
+      :native_realname => author,
+      :license => license_code
+    )
+    wikimedia_photo = WikimediaPhoto.new(options)
+    return wikimedia_photo
   end
   
 end
