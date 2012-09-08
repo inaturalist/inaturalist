@@ -15,7 +15,7 @@
         <%= render :partial => 'taxa/nophoto', :object => taxon %>
       <% else %>
         <div class="stacked">
-          <%= link_to image_tag(photos[0].medium_url), photos[0].becomes(Photo) %>
+          <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo) %>
           <div class="meta">
             Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
           </div>
@@ -133,7 +133,7 @@
       <div id="<%= dom_id(listed_taxon, 'photostab') %>" class="photostab">
         <% for photo in photos %>
           <div class="inlineblock">
-            <%= link_to image_tag(photo.medium_url, :class => "medium photo"), photo.becomes(Photo) %>
+            <%= link_to image_tag(photo.try_methods(:medium_url, :small_url), :class => "medium photo"), photo.becomes(Photo) %>
             <div class="meta">
               Photo: <%= link_to photo.attribution, native_url_for_photo(photo) %>
             </div>

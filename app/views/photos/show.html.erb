@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag "taxa" %>
   <style type="text/css" media="screen">
     th, td { vertical-align: top;}
+    .photocell {min-width: 500px;}
   </style>
 <%- end -%>
 
@@ -12,8 +13,14 @@
 
 <table>
   <tr>
-    <td>
-      <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
+    <td class="photocell">
+      <% if @photo.send("#{@size}_url") -%>
+        <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
+      <% else %>
+        <div class="nocontent meta">
+          No photo of that size.
+        </div>
+      <% end -%>
     </td>
     
     <td style="width: 100%">

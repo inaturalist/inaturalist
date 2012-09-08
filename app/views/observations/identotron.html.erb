@@ -227,7 +227,7 @@
         <%- photos = @observation.observation_photos.sort_by{|o| o.id}.map{|o| o.photo} -%>
         <% unless photos.blank? -%>
           <div class="stacked">
-            <%= link_to image_tag(photos[0].medium_url), photos[0].becomes(Photo), :class => "zoomable",
+            <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo), :class => "zoomable",
               :title => "Photo #{photos[0].id}, #{photos[0].attribution}" %>
           </div>
           <% for photo in photos[1..-1] %>

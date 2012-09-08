@@ -10,6 +10,7 @@ class PhotosController < ApplicationController
   def show
     @size = params[:size]
     @size = "medium" if !%w(small medium large original).include?(@size)
+    @size = "small" if @photo.send("#{@size}_url").blank?
     respond_to do |format|
       format.html do
         if params[:partial]

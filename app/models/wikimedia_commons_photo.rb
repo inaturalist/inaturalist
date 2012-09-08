@@ -61,6 +61,7 @@ class WikimediaCommonsPhoto < Photo
       nil
     end
     return if metadata_query_results.blank?
+    return if metadata_query_results.at('pages').blank?
     metadata_query_results.at('pages').children.each do |child|
       file_name = child.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
       width = child.at('ii').attributes['width'].to_s.to_i

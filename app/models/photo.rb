@@ -70,9 +70,9 @@ class Photo < ActiveRecord::Base
     elsif (o = observations.first)
       o.user.name || o.user.login
     else
-      "anonymous Flickr user"
+      "anonymous"
     end
-    "#{license_short} #{name}"
+    "(#{license_short}) #{name}"
   end
   
   def license_short
