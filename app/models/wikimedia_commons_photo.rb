@@ -63,7 +63,11 @@ class WikimediaCommonsPhoto < Photo
     return if metadata_query_results.at('pages').blank?
     metadata_query_results.at('pages').children.each do |child|
       file_name = child.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
-      width = child.at('ii').attributes['width'].to_s.to_i
+      begin
+        width = child.try.at('ii').attributes['width'].to_s.to_i
+      rescue
+        next
+      end
       md5_hash = Digest::MD5.hexdigest(file_name)
       image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
       large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}"
