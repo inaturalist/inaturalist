@@ -61,6 +61,7 @@ class WikimediaCommonsPhoto < Photo
     end
     return if metadata_query_results.blank?
     return if metadata_query_results.at('pages').blank?
+    return if metadata_query_results.at('pages').children.first['missing']
     metadata_query_results.at('pages').children.each do |child|
       file_name = child.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
       begin
