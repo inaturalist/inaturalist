@@ -417,7 +417,6 @@
       Source: unknown
     <% end %>
     
-    | <%= link_to "Schemes", taxon_schemes_path(@taxon) %>
     | <%= link_to "Permalink", url_for(@taxon), :title => "Name-based URLs might change, but this won't." %>
     <% if logged_in? -%>
       | <%= link_to "Map", taxon_map_path(@taxon) %>
@@ -672,7 +671,13 @@
     <h3>Extras</h3>
     
     <p class="ui">
-      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>", taxon_changes_path(:taxon_id => @taxon) %>
+      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>", taxon_changes_path(:taxon_id => @taxon),
+        "data-tip" => "View the history of this taxon on iNat, e.g. splits, merges, etc." %>
+    </p>
+
+    <p class="ui">
+      <%= link_to "Taxon <nobr>schemes &raquo;</nobr>", taxon_schemes_path(@taxon), 
+        "data-tip" => "Schemes are sets of taxa recognized by different authorities." %>
     </p>
     
     <p class="ui">

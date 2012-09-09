@@ -19,7 +19,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos, :range]
+    :observation_photos, :range, :schemes]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   
@@ -519,7 +519,6 @@ class TaxaController < ApplicationController
   end
   
   def schemes
-    @taxon = Taxon.find_by_id(params[:id].to_i)
     @scheme_taxa = TaxonSchemeTaxon.all(:conditions => {:taxon_id => @taxon.id})
   end
   
