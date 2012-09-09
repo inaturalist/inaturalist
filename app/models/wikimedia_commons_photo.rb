@@ -7,49 +7,27 @@ class WikimediaCommonsPhoto < Photo
   def self.search_wikimedia_for_taxon(taxon_name, options = {})
     wm = WikimediaCommonsService.new
     wikimedia_photos = []
-    begin
-      query_results = wm.query(
+    query_results = begin
+      wm.query(
         :titles => taxon_name,
         :redirects => '',
         :imlimit => '100',
         :prop => 'images')
     rescue Timeout::Error => e
-      query_results = nil
+      nil
     end
-    filenames = []
-    unless query_results.blank?
-      raw = query_results.at('images')
-      unless raw.blank?
-        raw.children.each do |child|
-          filename = child.attributes["title"].value
-          filenames << filename.strip.gsub(/\s/, '_') if filename.split(".").last.upcase == "JPG"
-        end
-      else
-        w = WikipediaService.new
-        return unless t = Taxon.find_by_name(taxon_name)
-        begin
-          query_results = w.query(
-            :titles => t.wikipedia_title.blank? ? t.name : t.wikipedia_title,
-            :redirects => '',
-            :prop => 'revisions',
-            :rvprop => 'content'
-          )
-        rescue Timeout::Error => e
-          query_results = nil
-        end
-        unless query_results .nil?
-          raw = query_results.at('page')
-          unless raw.blank?
-            if taxobox = raw.to_s[/\{\{[^\|^\}]*Taxobox(.*)\}\}/im, 1]
-              image_title = taxobox[/image\s*=\s*([^\|^\}]*)/i, 1]
-              unless image_title.blank?
-                filenames << "File:"+image_title.strip.gsub(/\s/, '_')
-              end
-            end
-          end
-        end
+    return unless query_results
+    raw = query_results.at('images')
+    filenames = if raw.blank?
+      [wikipedia_image_filename_for_taxon(taxon_name)]
+    else
+      raw.children.map do |child|
+        filename = child.attributes["title"].value
+        # filename.split(".").last.upcase == "JPG" ? filename.strip.gsub(/\s/, '_') : nil
+        ext = filename.split(".").last.upcase.downcase
+        %w(jpg jpef png gif).include?(ext) ? filename.strip.gsub(/\s/, '_') : nil
       end
-    end
+    end.compact
     metadata_query_results = begin
       wm.query(
         :prop => 'imageinfo',
@@ -62,13 +40,9 @@ class WikimediaCommonsPhoto < Photo
     return if metadata_query_results.blank?
     return if metadata_query_results.at('pages').blank?
     return if metadata_query_results.at('pages').children.first['missing']
-    metadata_query_results.at('pages').children.each do |child|
-      file_name = child.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
-      begin
-        width = child.try.at('ii').attributes['width'].to_s.to_i
-      rescue
-        next
-      end
+    metadata_query_results.at('pages').children.each do |page|
+      file_name = page.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
+      width = page.at('ii')['width'].to_i
       md5_hash = Digest::MD5.hexdigest(file_name)
       image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
       large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}"
@@ -89,6 +63,25 @@ class WikimediaCommonsPhoto < Photo
       )
     end
     wikimedia_photos
+  end
+
+  def self.wikipedia_image_filename_for_title(title)
+    w = WikipediaService.new
+    query_results = begin
+      w.query(
+        :titles => t.wikipedia_title.blank? ? t.name : t.wikipedia_title,
+        :redirects => '',
+        :prop => 'revisions',
+        :rvprop => 'content'
+      )
+    rescue Timeout::Error => e
+      nil
+    end
+    return if query_results.blank?
+    return unless raw = query_results.at('page')
+    return unless taxobox = raw.to_s[/\{\{[^\|^\}]*Taxobox(.*)\}\}/im, 1]
+    return unless image_title = taxobox[/image\s*=\s*([^\|^\}]*)/i, 1]
+    "File:"+image_title.strip.gsub(/\s/, '_')
   end
   
   def self.get_api_response(file_name)

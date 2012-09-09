@@ -1,5 +1,12 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe WikimediaCommonsPhoto, "search_wikimedia_for_taxon" do
+  it "should work" do
+    photos = WikimediaCommonsPhoto.search_wikimedia_for_taxon('Homo sapiens')
+    photos.should_not be_blank
+  end
+end
+
 describe WikimediaCommonsPhoto, "new_from_api_response" do
   it "should retrieve author when available" do
     r = WikimediaCommonsPhoto.get_api_response('Dendronotus_iris.jpg')

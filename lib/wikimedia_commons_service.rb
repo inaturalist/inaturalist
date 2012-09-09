@@ -4,6 +4,5 @@ class WikimediaCommonsService < MetaService
     @endpoint = 'http://commons.wikimedia.org/w/api.php?'
     @method_param = 'action'
     @default_params = { :format => 'xml' }
-    @debug = true
   end
 end
