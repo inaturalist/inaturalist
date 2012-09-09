@@ -159,8 +159,9 @@ class Photo < ActiveRecord::Base
   end
 
   def best_url(size = "medium")
+    size = size.to_s
     sizes = %w(original large medium small thumb square)
-    size = "medium" unless sizes.include?(size.to_s)
+    size = "medium" unless sizes.include?(size)
     size_index = sizes.index(size)
     methods = sizes[size_index.to_i..-1].map{|s| "#{s}_url"} + ['original']
     try_methods(*methods)

@@ -223,7 +223,7 @@ module ApplicationHelper
   end
   
   def modal_image(photo, params = {})
-    size = params.delete(:size)
+    size = params[:size]
     img_url ||= photo.best_url(size)
     link_options = params.merge(:rel => photo_path(photo, :partial => 'photo'))
     link_options[:class] ||= ''
