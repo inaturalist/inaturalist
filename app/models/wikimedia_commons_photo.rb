@@ -19,7 +19,9 @@ class WikimediaCommonsPhoto < Photo
     return unless query_results
     raw = query_results.at('images')
     filenames = if raw.blank?
-      [wikipedia_image_filename_for_taxon(taxon_name)]
+      taxon = Taxon.find_by_name(taxon_name)
+      title = taxon.try(:wikipedia_title) || taxon_name
+      [wikipedia_image_filename_for_title(taxon_name)]
     else
       raw.children.map do |child|
         filename = child.attributes["title"].value
@@ -69,7 +71,7 @@ class WikimediaCommonsPhoto < Photo
     w = WikipediaService.new
     query_results = begin
       w.query(
-        :titles => t.wikipedia_title.blank? ? t.name : t.wikipedia_title,
+        :titles => title,
         :redirects => '',
         :prop => 'revisions',
         :rvprop => 'content'
