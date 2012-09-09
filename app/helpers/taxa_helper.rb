@@ -70,7 +70,7 @@ module TaxaHelper
   
   def taxon_image_url(taxon, params = {})
     return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.photos.blank?
-    size = params[:size] ? "#{params[:size]}_url" : 'square_url'
+    size = params[:size].blank? ? 'square' : params[:size]
     photo = taxon.default_photo
     photo.best_url(size)
   end
