@@ -194,6 +194,7 @@ class Observation < ActiveRecord::Base
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
               :set_license,
+              :trim_user_agent,
               :update_identifications
   
   before_update :set_quality_grade
@@ -1243,6 +1244,12 @@ class Observation < ActiveRecord::Base
     return true if license_changed? && license.blank?
     self.license ||= user.preferred_observation_license
     self.license = nil unless LICENSE_CODES.include?(license)
+    true
+  end
+
+  def trim_user_agent
+    return true if user_agent.blank?
+    self.user_agent = user_agent[0..254]
     true
   end
   

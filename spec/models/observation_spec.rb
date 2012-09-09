@@ -238,6 +238,18 @@ describe Observation, "creation" do
       o.quality_grade.should == Observation::CASUAL_GRADE
     end
   end
+
+  it "should trim to the user_agent to 255 char" do
+    user_agent = <<-EOT
+      Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR
+      1.0.3705; .NET CLR 1.1.4322; Media Center PC 4.0; .NET CLR 2.0.50727;
+      .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152;
+      .NET CLR 3.5.30729; PeoplePal 7.0; PeoplePal 7.3; .NET4.0C; .NET4.0E;
+      OfficeLiveConnector.1.5; OfficeLivePatch.1.3) w:PACBHO60
+    EOT
+    o = Observation.make(:user_agent => user_agent)
+    o.user_agent.size.should be < 256
+  end
 end
 
 describe Observation, "updating" do
