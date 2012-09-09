@@ -25,7 +25,6 @@ class WikimediaCommonsPhoto < Photo
     else
       raw.children.map do |child|
         filename = child.attributes["title"].value
-        # filename.split(".").last.upcase == "JPG" ? filename.strip.gsub(/\s/, '_') : nil
         ext = filename.split(".").last.upcase.downcase
         %w(jpg jpef png gif).include?(ext) ? filename.strip.gsub(/\s/, '_') : nil
       end
