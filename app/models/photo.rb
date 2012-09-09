@@ -157,6 +157,14 @@ class Photo < ActiveRecord::Base
   def source_title
     self.class.to_s.gsub(/Photo$/, '').underscore.humanize.titleize
   end
+
+  def best_url(size = "medium")
+    sizes = %w(original large medium small thumb square)
+    size = "medium" unless sizes.include?(size.to_s)
+    size_index = sizes.index(size)
+    methods = sizes[size_index.to_i..-1].map{|s| "#{s}_url"} + ['original']
+    try_methods(*methods)
+  end
   
   # Retrieve info about a photo from its native source given its native id.  
   # Should be implemented by descendents
