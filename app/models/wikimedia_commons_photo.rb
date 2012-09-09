@@ -98,6 +98,8 @@ class WikimediaCommonsPhoto < Photo
     author = if api_response.at('#fileinfotpl_aut')
       author_elt = api_response.at('#fileinfotpl_aut').parent.elements.last
       author_elt.elements.size > 0 ? author_elt.elements.first.inner_text : author_elt.inner_text
+    elsif api_response.at('.licensetpl_attr')
+      api_response.at('.licensetpl_attr').inner_text
     else
       "anonymous"
     end

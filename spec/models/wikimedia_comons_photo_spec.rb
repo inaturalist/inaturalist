@@ -14,6 +14,12 @@ describe WikimediaCommonsPhoto, "new_from_api_response" do
     wp.native_realname.should == 'Daniel Hershman'
   end
 
+  it "should retrieve author from license block" do
+    r = WikimediaCommonsPhoto.get_api_response('Cercidium_floridum_flower.jpg')
+    wp = WikimediaCommonsPhoto.new_from_api_response(r)
+    wp.native_realname.should == 'Stan Shebs'
+  end
+
   it "should retrieve license" do
     r = WikimediaCommonsPhoto.get_api_response('Timema_californicum_(Santa_Lucia_Range,_California).jpg')
     wp = WikimediaCommonsPhoto.new_from_api_response(r)
