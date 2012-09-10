@@ -88,7 +88,7 @@ class WikimediaCommonsPhoto < Photo
   end
   
   def self.get_api_response(file_name)
-    Nokogiri::HTML(open("http://commons.wikimedia.org/w/index.php?title=File:#{file_name}", 'User-Agent' => 'ruby'))
+    Nokogiri::HTML(open("http://commons.wikimedia.org/w/index.php?title=File:#{file_name}", 'User-Agent' => 'iNaturalist'))
   end
   
   def self.new_from_api_response(api_response, options = {})
@@ -100,7 +100,11 @@ class WikimediaCommonsPhoto < Photo
     end
     author = if api_response.at('#fileinfotpl_aut')
       author_elt = api_response.at('#fileinfotpl_aut').parent.elements.last
-      author_elt.elements.size > 0 ? author_elt.elements.first.inner_text : author_elt.inner_text
+      if author_elt.elements.size > 0
+        author_elt.elements.search('a, span').first.try(:inner_text) || author_elt.inner_text
+      else
+        author_elt.inner_text
+      end
     elsif api_response.at('.licensetpl_attr')
       api_response.at('.licensetpl_attr').inner_text
     else
