@@ -269,29 +269,18 @@ module Ratatosk
     end
     
     def find_existing_taxon(taxon_adapter, name_provider = nil)
-      # puts "[DEBUG] Looking for an existing taxon"
       name_provider ||= NameProviders.const_get(taxon_adapter.name_provider).new
-      if phylum = name_provider.get_phylum_for(taxon_adapter)
-        existing_phylum = Taxon.find(:first, :conditions => [
-          "name = ? AND rank = 'phylum'", phylum.name
+      existing_phylum = if (phylum = name_provider.get_phylum_for(taxon_adapter))
+        Taxon.first(:conditions => [
+          "lower(name) = ? AND rank = 'phylum'", phylum.name.downcase
         ])
-      else
-        existing_phylum = nil
       end
 
-      existing_taxon = nil
       if existing_phylum
-        # puts "[DEBUG] Found existing phylum: #{existing_phylum}"
-        existing_taxon = existing_phylum.descendants.first(
-          :conditions => ["name = ?", taxon_adapter.name])
+        existing_phylum.descendants.first(:conditions => ["lower(name) = ?", taxon_adapter.name.downcase])
       else
-        existing_taxon = Taxon.first(
-          :conditions => ["name = ?", taxon_adapter.name])
+        Taxon.first(:conditions => ["lower(name) = ?", taxon_adapter.name.downcase])
       end
-
-      # puts "[DEBUG] Found existing taxon: #{existing_taxon}"
-
-      existing_taxon
     end
     
     protected
