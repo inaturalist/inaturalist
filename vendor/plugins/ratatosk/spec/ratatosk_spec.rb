@@ -63,9 +63,8 @@ describe Ratatosk, "searching" do
   end
   
   it "should return valid names that STAY valid" do
-    results = Ratatosk.find('coyote')
+    results = Ratatosk.find('Canis latrans')
     results.each do |name|
-      # name.new_record?.should_not be(true)
       name.save
       unless name.valid?
         puts "[DEBUG] #{name} was invalid: #{name.errors.full_messages.join(', ')}"
@@ -73,8 +72,9 @@ describe Ratatosk, "searching" do
           puts "[DEBUG] #{name.taxon} was invalid: #{name.taxon.errors.full_messages.join(', ')}"
         end
       end
+      name.should be_valid
       name.reload
-      name.valid?.should be(true)
+      name.should be_valid
     end
     
     names = TaxonName.find(:all, :conditions => {:name => 'coyote'})

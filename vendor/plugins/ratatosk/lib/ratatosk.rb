@@ -54,12 +54,13 @@ module Ratatosk
 
     def initialize(params = {})
       @name_providers = params[:name_providers]
+      # include all name providers by default, starting with the most taxonomically 
+      # and geographically general
       @name_providers ||= [
+        NameProviders::ColNameProvider.new,
+        NameProviders::UBioNameProvider.new,
         NameProviders::NZORNameProvider.new
       ]
-        # removing the catalogue of life and ubio
-        #NameProviders::ColNameProvider.new,
-        #NameProviders::UBioNameProvider.new
     end
 
     def to_s
