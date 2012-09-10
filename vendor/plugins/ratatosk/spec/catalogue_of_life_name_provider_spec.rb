@@ -1,20 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 require File.dirname(__FILE__) + '/name_provider_example_groups'
 
-# inject a fixture check into CoL service wrapper.  Need to stop making HTTP requests in tests
-class CatalogueOfLife
-  def search(options = {})
-    fname = "search_" + options.keys.sort_by(&:to_s).map{|k| "#{k}_#{options[k].gsub(/\W/, '_')}"}.flatten.join('_')
-    fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/catalogue_of_life/#{fname}.xml")
-    # puts "[DEBUG] fixture_path: #{fixture_path}"
-    if File.exists?(fixture_path)
-      Nokogiri::XML(open(fixture_path))
-    else
-      super(options)
-    end
-  end
-end
-
 describe Ratatosk::NameProviders::ColNameProvider do
   it_should_behave_like "a name provider"
 

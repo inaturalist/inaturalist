@@ -52,15 +52,28 @@ module Ratatosk
   class Ratatosk
     attr_reader :name_providers
 
+    # Create a new Ratatosk instance
+    #
+    # * [name_providers] array of NameProvider instances to use as providers.  Can also be specified as an array of prefixes, e.g. ['col', 'ubio']
     def initialize(params = {})
-      @name_providers = params[:name_providers]
+      @name_providers = if params[:name_providers] && !params[:name_providers].first.respond_to?(:get_lineage_for)
+        params[:name_providers].map do |prefix|
+          if class_name = NameProviders.constants.detect{|c| c.downcase == "#{prefix}nameprovider"}
+            NameProviders.const_get(class_name).new
+          end
+        end.compact
+      else
+        params[:name_providers]
+      end
       # include all name providers by default, starting with the most taxonomically 
       # and geographically general
-      @name_providers ||= [
-        NameProviders::ColNameProvider.new,
-        NameProviders::UBioNameProvider.new,
-        NameProviders::NZORNameProvider.new
-      ]
+      if @name_providers.blank?
+        @name_providers = [
+          NameProviders::ColNameProvider.new,
+          NameProviders::UBioNameProvider.new,
+          NameProviders::NZORNameProvider.new
+        ]
+      end
     end
 
     def to_s

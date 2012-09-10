@@ -145,13 +145,13 @@ class TaxonName < ActiveRecord::Base
   end
   
   def self.find_external(q, options = {})
-    ratatosk = case options[:src]
-    when 'ubio'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
-    when 'col'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
-    when 'nzor'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::NZORNameProvider.new])
+    src = options[:src]
+    ratatosk = if INAT_CONFIG['ratatosk'] && INAT_CONFIG['ratatosk']['name_providers']
+      if INAT_CONFIG['ratatosk']['name_providers'].include?(src.to_s.downcase)
+        Ratatosk::Ratatosk.new('name_providers' => [src])
+      else
+        Ratatosk::Ratatosk.new('name_providers' => INAT_CONFIG['ratatosk']['name_providers'])
+      end
     else
       Ratatosk
     end

@@ -32,6 +32,12 @@ describe Ratatosk::Ratatosk, "creation" do
     ratatosk.name_providers.size.should == 1
     ratatosk.name_providers.should include(col_name_provider)
   end
+
+  it "shold accept an array of name provider prefixes as a param" do
+    ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col, :ubio])
+    ratatosk.name_providers.first.should be_a(Ratatosk::NameProviders::ColNameProvider)
+    ratatosk.name_providers.last.should be_a(Ratatosk::NameProviders::UBioNameProvider)
+  end
 end
 
 describe Ratatosk, "searching" do

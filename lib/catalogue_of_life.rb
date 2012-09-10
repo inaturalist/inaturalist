@@ -18,15 +18,12 @@ class CatalogueOfLife
   # TODO: handle bad responses!
   #
   def request(method, args = {})
-    params = args
-    url    = ENDPOINT + "?" + 
-             params.map {|k,v| "#{k}=#{v}"}.join('&')
-    uri    = URI.encode(url)
+    uri = CatalogueOfLife.url_for_request(method, args)
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
         # puts "DEBUG: requesting " + uri # test
-        response  = Net::HTTP.get_response(URI.parse(uri))
+        response  = Net::HTTP.get_response(uri)
         # puts response.body
       end
     rescue Timeout::Error
@@ -42,5 +39,11 @@ class CatalogueOfLife
       raise "Catalogue of Life arguments must be a Hash"
     end
     request(method, *args)
+  end
+
+  def self.url_for_request(method, args = {})
+    params = args
+    url = ENDPOINT + "?" + params.map {|k,v| "#{k}=#{v}"}.join('&')
+    URI.parse(URI.encode(url))
   end
 end
