@@ -21,7 +21,7 @@ class CatalogueOfLife
     params = args
     url    = ENDPOINT + "?" + 
              params.map {|k,v| "#{k}=#{v}"}.join('&')
-    uri    = URI.encode(url.gsub("'", '*'))
+    uri    = URI.encode(url)
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do

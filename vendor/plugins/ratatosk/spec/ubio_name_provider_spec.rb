@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require 'name_provider_example_groups'
+require File.dirname(__FILE__) + '/name_provider_example_groups'
 
 describe Ratatosk::NameProviders::UBioNameProvider do
   it_should_behave_like "a name provider"

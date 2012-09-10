@@ -1,11 +1,33 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require 'name_provider_example_groups'
+require File.dirname(__FILE__) + '/name_provider_example_groups'
+
+# inject a fixture check into CoL service wrapper.  Need to stop making HTTP requests in tests
+class CatalogueOfLife
+  def search(options = {})
+    fname = "search_" + options.keys.sort_by(&:to_s).map{|k| "#{k}_#{options[k].gsub(/\W/, '_')}"}.flatten.join('_')
+    fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/catalogue_of_life/#{fname}.xml")
+    # puts "[DEBUG] fixture_path: #{fixture_path}"
+    if File.exists?(fixture_path)
+      Nokogiri::XML(open(fixture_path))
+    else
+      super(options)
+    end
+  end
+end
 
 describe Ratatosk::NameProviders::ColNameProvider do
   it_should_behave_like "a name provider"
 
   before(:all) do
     @np = Ratatosk::NameProviders::ColNameProvider.new
+  end
+
+  it "should return a currently accepted taxon when queried for an invalid synonym" do
+    results = @np.find('Hyla crucifer')
+    tn = results.first
+    t = tn.taxon
+    tn.should_not be_is_valid
+    t.taxon.name.should == 'Pseudacris crucifer'
   end
 end
 
@@ -36,7 +58,7 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
     a.taxon.name.should == name
   end
 
-  it "should set the lexicon correctly for 'i'iwi" do
+  it "should set the lexicon correctly for iiwi" do
     name = "'i'iwi"
     results = @np.find(name)
     results.select{|tn| tn.name.downcase == name.downcase}.each do |tn|

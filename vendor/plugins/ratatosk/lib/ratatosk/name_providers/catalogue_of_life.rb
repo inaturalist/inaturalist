@@ -7,7 +7,7 @@ module Ratatosk
     #
     class ColNameProvider
       def initialize
-        @service = CatalogueOfLife.new
+        @service = CatalogueOfLife.new(10)
       end
 
       def find(name)
@@ -89,6 +89,10 @@ module Ratatosk
       
       protected
 
+      def service
+        @service ||= CatalogueOfLife.new(10)
+      end
+
       def get_lexicon
         lex = if @hxml.at_xpath('rank')
           TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
@@ -130,15 +134,27 @@ module Ratatosk
       end
 
       def is_accepted_sciname?
-        accepted_name.nil?
+        accepted_name == name
       end
 
       def accepted_name
-        accepted_name_hxml.at_xpath('name').inner_text rescue nil
+        if accepted_name_hxml
+          accepted_name_hxml.at_xpath('name').try(:inner_text)
+        else
+          name
+        end
       end
 
       def accepted_name_hxml
-        @accepted_name_hxml ||= @hxml.at_xpath('accepted_name')
+        return @accepted_name_hxml unless @accepted_name_hxml.blank?
+        xml = @hxml.at_xpath('accepted_name')
+        @accepted_name_hxml = if xml.blank? || xml.elements.blank?
+          if accepted_synonym_id = @hxml.at(:url).inner_text.to_s[/(\d+)\/synonym\/\d+/, 1]
+            service.search(:id => accepted_synonym_id, :response => 'full')
+          end
+        else
+          xml
+        end
       end
     end
 

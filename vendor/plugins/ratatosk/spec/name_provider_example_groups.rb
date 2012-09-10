@@ -12,7 +12,7 @@ describe "a name provider", :shared => true do
   end
 
   it "should not return more than 10 results by default for #find" do
-    loons = @np.find('loon')
+    loons = @np.find('Sceloporus')
     loons.size.should <= 10
   end
 
