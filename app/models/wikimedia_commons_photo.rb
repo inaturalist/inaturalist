@@ -45,6 +45,7 @@ class WikimediaCommonsPhoto < Photo
     metadata_query_results.at('pages').children.each do |page|
       file_name = page.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
       next if file_name.blank?
+      next unless page.at('ii') && page.at('ii')['width']
       width = page.at('ii')['width'].to_i
       md5_hash = Digest::MD5.hexdigest(file_name)
       image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
