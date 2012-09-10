@@ -69,7 +69,8 @@ class Taxon < ActiveRecord::Base
                                       "taxon's parent"
   validates_uniqueness_of :source_identifier,
                           :scope => [:source_id],
-                          :message => "already exists"
+                          :message => "already exists",
+                          :allow_blank => true
   
   NAME_PROVIDER_TITLES = {
     'ColNameProvider' => 'Catalogue of Life',
