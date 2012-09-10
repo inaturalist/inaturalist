@@ -19,7 +19,7 @@ class Photo < ActiveRecord::Base
   cattr_accessor :descendent_classes
   cattr_accessor :remote_descendent_classes
   
-  before_save :set_license
+  before_save :set_license, :trim_fields
   after_save :update_default_license,
              :update_all_licenses
   
@@ -58,6 +58,13 @@ class Photo < ActiveRecord::Base
     return true unless license.blank?
     return true unless user
     self.license = Photo.license_number_for_code(user.preferred_photo_license)
+    true
+  end
+
+  def trim_fields
+    %w(native_realname native_username).each do |c|
+      self.send("#{c}=", read_attribute(c).to_s[0..254]) if read_attribute(c)
+    end
     true
   end
   
