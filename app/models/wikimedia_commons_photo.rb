@@ -40,9 +40,11 @@ class WikimediaCommonsPhoto < Photo
     end
     return if metadata_query_results.blank?
     return if metadata_query_results.at('pages').blank?
-    return if metadata_query_results.at('pages').children.first['missing']
+    first_page = metadata_query_results.at('pages').children.first
+    return if first_page['missing'] || first_page['invalid']
     metadata_query_results.at('pages').children.each do |page|
       file_name = page.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
+      next if file_name.blank?
       width = page.at('ii')['width'].to_i
       md5_hash = Digest::MD5.hexdigest(file_name)
       image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
