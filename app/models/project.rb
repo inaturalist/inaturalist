@@ -34,7 +34,7 @@ class Project < ActiveRecord::Base
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f
-    join(
+    joins(
       "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
       "INNER JOIN places ON places.id = rules.operand_id"
     ).
