@@ -154,7 +154,7 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
-    return render(:file => "#{Rails.root}/public/404.html", :status => 404)
+    return render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false)
   end
   
   #
