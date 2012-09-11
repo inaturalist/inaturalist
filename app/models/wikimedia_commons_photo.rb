@@ -45,6 +45,7 @@ class WikimediaCommonsPhoto < Photo
     metadata_query_results.at('pages').children.each do |page|
       file_name = page.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
       next if file_name.blank?
+      next unless page.at('ii') && page.at('ii')['width']
       width = page.at('ii')['width'].to_i - 1
       md5_hash = Digest::MD5.hexdigest(file_name)
       image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
@@ -88,7 +89,7 @@ class WikimediaCommonsPhoto < Photo
   end
   
   def self.get_api_response(file_name)
-    Nokogiri::HTML(open("http://commons.wikimedia.org/w/index.php?title=File:#{file_name}", 'User-Agent' => 'ruby'))
+    Nokogiri::HTML(open("http://commons.wikimedia.org/w/index.php?title=File:#{file_name}", 'User-Agent' => 'iNaturalist'))
   end
   
   def self.new_from_api_response(api_response, options = {})
@@ -100,7 +101,11 @@ class WikimediaCommonsPhoto < Photo
     end
     author = if api_response.at('#fileinfotpl_aut')
       author_elt = api_response.at('#fileinfotpl_aut').parent.elements.last
-      author_elt.elements.size > 0 ? author_elt.elements.first.inner_text : author_elt.inner_text
+      if author_elt.elements.size > 0
+        author_elt.elements.search('a, span').first.try(:inner_text) || author_elt.inner_text
+      else
+        author_elt.inner_text
+      end
     elsif api_response.at('.licensetpl_attr')
       api_response.at('.licensetpl_attr').inner_text
     else

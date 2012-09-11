@@ -32,6 +32,12 @@ describe Ratatosk::Ratatosk, "creation" do
     ratatosk.name_providers.size.should == 1
     ratatosk.name_providers.should include(col_name_provider)
   end
+
+  it "shold accept an array of name provider prefixes as a param" do
+    ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col, :ubio])
+    ratatosk.name_providers.first.should be_a(Ratatosk::NameProviders::ColNameProvider)
+    ratatosk.name_providers.last.should be_a(Ratatosk::NameProviders::UBioNameProvider)
+  end
 end
 
 describe Ratatosk, "searching" do
@@ -63,9 +69,8 @@ describe Ratatosk, "searching" do
   end
   
   it "should return valid names that STAY valid" do
-    results = Ratatosk.find('coyote')
+    results = Ratatosk.find('Canis latrans')
     results.each do |name|
-      # name.new_record?.should_not be(true)
       name.save
       unless name.valid?
         puts "[DEBUG] #{name} was invalid: #{name.errors.full_messages.join(', ')}"
@@ -73,8 +78,9 @@ describe Ratatosk, "searching" do
           puts "[DEBUG] #{name.taxon} was invalid: #{name.taxon.errors.full_messages.join(', ')}"
         end
       end
+      name.should be_valid
       name.reload
-      name.valid?.should be(true)
+      name.should be_valid
     end
     
     names = TaxonName.find(:all, :conditions => {:name => 'coyote'})

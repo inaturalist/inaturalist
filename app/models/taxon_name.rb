@@ -10,6 +10,13 @@ class TaxonName < ActiveRecord::Base
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
+  validates_uniqueness_of :source_identifier,
+                          :scope => [:source_id],
+                          :message => "already exists",
+                          :allow_blank => true
+
+  #TODO is the validates uniqueness correct?  Allows duplicate TaxonNames to be created with same 
+  #source_url but different taxon_ids
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
@@ -138,11 +145,13 @@ class TaxonName < ActiveRecord::Base
   end
   
   def self.find_external(q, options = {})
-    ratatosk = case options[:src]
-    when 'ubio'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
-    when 'col'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
+    src = options[:src]
+    ratatosk = if INAT_CONFIG['ratatosk'] && INAT_CONFIG['ratatosk']['name_providers']
+      if INAT_CONFIG['ratatosk']['name_providers'].include?(src.to_s.downcase)
+        Ratatosk::Ratatosk.new('name_providers' => [src])
+      else
+        Ratatosk::Ratatosk.new('name_providers' => INAT_CONFIG['ratatosk']['name_providers'])
+      end
     else
       Ratatosk
     end
