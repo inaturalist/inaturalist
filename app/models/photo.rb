@@ -40,6 +40,12 @@ class Photo < ActiveRecord::Base
   LICENSE_INFO.each do |code, info|
     const_set info[:code].upcase.gsub(/\-/, '_'), code
   end
+
+  SQUARE = 75
+  THUMB = 100
+  SMALL = 240
+  MEDIUM = 500
+  LARGE = 1024
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"

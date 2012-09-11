@@ -43,4 +43,11 @@ describe WikimediaCommonsPhoto, "new_from_api_response" do
     wp = WikimediaCommonsPhoto.new_from_api_response(r)
     wp.native_realname.should == 'anonymous'
   end
+
+  it "should have square and thumb urls even if the photo is tiny" do
+    r = WikimediaCommonsPhoto.get_api_response('Altamira_Yellowthroat_(Geothlypis_flavovelata)_male.jpg')
+    wp = WikimediaCommonsPhoto.new_from_api_response(r)
+    wp.square_url.should_not be_blank
+    wp.thumb_url.should_not be_blank
+  end
 end

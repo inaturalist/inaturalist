@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
       format.html do
         if params[:partial]
           partial = params[:partial] || 'photo'
-          render :layout => false, :partial => partial, :object => @photo
+          render :layout => false, :partial => partial, :object => @photo, :size => @size
           return
         end
         @taxa = @photo.taxa.all(:limit => 100)

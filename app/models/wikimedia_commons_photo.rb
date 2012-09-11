@@ -46,7 +46,7 @@ class WikimediaCommonsPhoto < Photo
       file_name = page.attributes['title'].value.strip.gsub(/\s/, '_').split("File:")[1]
       next if file_name.blank?
       next unless page.at('ii') && page.at('ii')['width']
-      width = page.at('ii')['width'].to_i - 1
+      width = page.at('ii')['width'].to_i
       md5_hash = Digest::MD5.hexdigest(file_name)
       image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
       large_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{1024 > width ? width : 1024}px-#{file_name}"
@@ -94,46 +94,14 @@ class WikimediaCommonsPhoto < Photo
   
   def self.new_from_api_response(api_response, options = {})
     return if api_response.blank?
-    if file_name = api_response.at('#firstHeading').children[0].children[0].inner_text
-      file_name = file_name.strip.gsub(/\s/, '_').split("File:")[1]
-    else
-      return nil
-    end
-    author = if api_response.at('#fileinfotpl_aut')
-      author_elt = api_response.at('#fileinfotpl_aut').parent.elements.last
-      if author_elt.elements.size > 0
-        author_elt.elements.search('a, span').first.try(:inner_text) || author_elt.inner_text
-      else
-        author_elt.inner_text
-      end
-    elsif api_response.at('.licensetpl_attr')
-      api_response.at('.licensetpl_attr').inner_text
-    else
-      "anonymous"
-    end
+    return unless file_name = api_response.at('#firstHeading').children[0].children[0].inner_text
+    file_name = file_name.strip.gsub(/\s/, '_').split("File:")[1]
+
+    photo = WikimediaCommonsPhoto.new
+    photo.native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
+
     license = api_response.search('.licensetpl_short').inner_text
-    width = api_response.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i - 1
-    md5_hash = Digest::MD5.hexdigest(file_name)
-    image_url = "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
-    large_url = if width > 1024
-      "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/1024px-#{file_name}"  
-    elsif width > 500
-      "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{width}px-#{file_name}"
-    end
-    medium_url = if width > 500
-      "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/500px-#{file_name}"
-    elsif width > 240
-      "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{width}px-#{file_name}"
-    end
-    small_url = if width > 240
-      "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/240px-#{file_name}"
-    elsif width > 100
-      "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{width}px-#{file_name}"
-    end
-    square_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{100 > width ? width : 100}px-#{file_name}"
-    thumb_url = "http://upload.wikimedia.org/wikipedia/commons/thumb/#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}/#{75 > width ? width : 75}px-#{file_name}"
-    native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
-    license_code = if (license.downcase.include? "public domain") || (license.downcase.include? "pd")
+    photo.license = if (license.downcase.include? "public domain") || (license.downcase.include? "pd")
       Photo::PD
     elsif license.downcase.include? "cc-by-nc-sa"
       Photo::CC_BY_NC_SA
@@ -148,20 +116,41 @@ class WikimediaCommonsPhoto < Photo
     elsif license.downcase.include? "cc-by"
       Photo::CC_BY
     end
-    return if license_code.blank?
-    WikimediaCommonsPhoto.new(
-      :large_url => large_url,
-      :medium_url => medium_url,
-      :small_url => small_url,
-      :thumb_url => thumb_url,
-      :native_photo_id => file_name,
-      :square_url => square_url,
-      :original_url => image_url,
-      :native_page_url => native_page_url,
-      :native_username => author,
-      :native_realname => author,
-      :license => license_code
-    )
+    return if photo.license.blank?
+
+    author = if api_response.at('#fileinfotpl_aut')
+      author_elt = api_response.at('#fileinfotpl_aut').parent.elements.last
+      if author_elt.elements.size > 0
+        author_elt.elements.search('a, span').first.try(:inner_text) || author_elt.inner_text
+      else
+        author_elt.inner_text
+      end
+    elsif api_response.at('.licensetpl_attr')
+      api_response.at('.licensetpl_attr').inner_text
+    else
+      "anonymous"
+    end
+    photo.native_username = author
+    photo.native_realname = author
+
+    width = api_response.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i
+    md5_hash = Digest::MD5.hexdigest(file_name)
+    url_base = "http://upload.wikimedia.org/wikipedia/commons"
+    url_identifier = "#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
+    photo.original_url = "#{url_base}/#{url_identifier}"
+    %w(large medium).each do |size_name|
+      size = Photo.const_get(size_name.upcase)
+      if width > size
+        photo.send("#{size_name}_url=", "#{url_base}/thumb/#{url_identifier}/#{size}px-#{file_name}")
+      elsif width == size
+        photo.send("#{size_name}_url=", photo.original_url)
+      end
+    end
+    %w(small square thumb).each do |size_name|
+      size = Photo.const_get(size_name.upcase)
+      photo.send("#{size_name}_url=", "#{url_base}/thumb/#{url_identifier}/#{[size, width-1].min}px-#{file_name}")
+    end
+    photo
   end
   
 end
