@@ -157,7 +157,7 @@ class UsersController < ApplicationController
     @q = params[:q].to_s
     if logged_in? && !@q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
-      if @q =~ Authentication.email_regex
+      if @q =~ Devise.email_regexp
         find_options[:conditions] = ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
         find_options[:conditions] = ["lower(name) LIKE ?", wildcard_q]
