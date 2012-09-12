@@ -269,8 +269,8 @@
                              'modal_image',
                              "jquery/plugins/inat/photo_selectors.js" %>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap' %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -363,7 +363,7 @@
             $(h.w).find('#flickr_taxon_photos .taxon_photos').photoSelector({
               defaultQuery: '<%= @taxon.name %>',
               urlParams: {
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -374,7 +374,7 @@
             $(h.w).find('#inat_obs_taxon_photos .taxon_photos').photoSelector({
               baseURL: '<%= taxon_observation_photos_url(@taxon) %>',
               urlParams: {
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -386,7 +386,7 @@
               baseURL: '<%= eol_photo_fields_url %>',
               urlParams: {
                 taxon_id: '<%= @taxon.id %>',
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -398,7 +398,7 @@
               baseURL: '<%= wikimedia_commons_photo_fields_url %>',
               urlParams: {
                 taxon_id: '<%= @taxon.id %>',
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {

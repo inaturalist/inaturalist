@@ -32,6 +32,7 @@ Inaturalist::Application.routes.draw do
   match '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
   match '/facebook/photo_fields' => 'facebook#albums'
   match "/eol/photo_fields" => "eol#photo_fields"
+  match '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   match '/flickr/invite' => 'photos#invite', :provider => 'flickr'
   match '/facebook/invite' => 'photos#invite', :provider => 'facebook'
   match "/photos/inviter" => "photos#inviter", :as => :photo_inviter
