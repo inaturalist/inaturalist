@@ -40,7 +40,9 @@ class ProjectsController < ApplicationController
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
         scope = scope.from_source_url(params[:source]) if params[:source]
         @projects = scope.paginate(:page => params[:page], :per_page => 100)
-        opts = Project.default_json_options.merge(:include => :project_list)
+        opts = Project.default_json_options.merge(:include => [
+          :project_list, 
+          {:project_observation_fields => :observation_field}])
         opts[:methods] << :project_observations_count
         render :json => @projects.to_json(opts)
       end
@@ -154,7 +156,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        project_options = Project.default_json_options.update(:include => :project_list)
+        project_options = Project.default_json_options.update(:include => [:project_list, {:project_observation_fields => :observation_field}])
         project_options[:methods] << :project_observation_rule_terms
         render :json => @project_users.to_json(:include => {
           :user => {:only => :login},
@@ -601,7 +603,15 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render :json => @projects.to_json(:methods => [:icon_url], :include => :project_list)
+        render :json => @projects.to_json(
+          :methods => [:icon_url], 
+          :include => [
+            :project_list, 
+            {
+              :project_observation_fields => {:include => :observation_field}
+            }
+          ]
+        )
       end
     end
   end
