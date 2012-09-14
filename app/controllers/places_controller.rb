@@ -341,7 +341,7 @@ class PlacesController < ApplicationController
   
   def geometry_from_messy_kml(kml)
     geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
-    Hpricot.XML(kml).search('Polygon').each do |hpoly|
+    Nokogiri::XML(kml).search('Polygon').each do |hpoly|
       geometry << GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
     end
     geometry.empty? ? nil : geometry
