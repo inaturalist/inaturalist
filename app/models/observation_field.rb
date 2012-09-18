@@ -49,4 +49,10 @@ class ObservationField < ActiveRecord::Base
     end
     true
   end
+
+  def self.default_json_options
+    {
+      :methods => [:created_at_utc, :updated_at_utc]
+    }
+  end
 end

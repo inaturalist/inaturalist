@@ -22,4 +22,13 @@ class ProjectObservationField < ActiveRecord::Base
     ).each(&:destroy)
     true
   end
+
+  def self.default_json_options
+    {
+      :methods => [:created_at_utc, :updated_at_utc],
+      :include => {
+        :observation_field => ObservationField.default_json_options
+      }
+    }
+  end
 end
