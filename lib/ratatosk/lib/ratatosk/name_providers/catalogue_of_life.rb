@@ -65,7 +65,7 @@ module Ratatosk
         taxon_name.name = @hxml.at('name').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
-        taxon_name.source = Source.find_by_title('Catalogue of Life')
+        taxon_name.source = Source.find_by_title("Catalogue of Life: 2012 Annual Checklist")
         taxon_name.source_identifier = @hxml.at('//id').inner_text
         taxon_name.source_url = @hxml.at('url').inner_text
         taxon_name.taxon = taxon
@@ -171,7 +171,7 @@ module Ratatosk
         @hxml = hxml
         @adaptee.name               = @hxml.at('name').inner_text
         @adaptee.rank               = @hxml.at('rank').inner_text.downcase
-        @adaptee.source             = Source.find_by_title('Catalogue of Life')
+        @adaptee.source             = Source.find_by_title("Catalogue of Life: 2012 Annual Checklist")
         @adaptee.source_identifier  = @hxml.at('id').inner_text
         @adaptee.source_url         = @hxml.at('url').inner_text
         @adaptee.name_provider      = "ColNameProvider"
