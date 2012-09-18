@@ -181,7 +181,7 @@ class FlickrPhoto < Photo
       # to all tags
       tags = api_response.tags.values.map(&:raw)
       machine_tags = tags.select{|t| t =~ /taxonomy\:/}
-      taxa = Taxon.tags_to_taxa(machine_tags) unless machine_tags.blank?
+      taxa = Taxon.tags_to_taxa(machine_tags, options) unless machine_tags.blank?
       taxa ||= Taxon.tags_to_taxa(tags, options)
       taxa
     end

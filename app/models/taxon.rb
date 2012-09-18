@@ -985,6 +985,7 @@ class Taxon < ActiveRecord::Base
   def self.tags_to_taxa(tags, options = {})
     scope = TaxonName.scoped(:include => [:taxon])
     scope = scope.scoped(:conditions => {:lexicon => options[:lexicon]}) if options[:lexicon]
+    scope = scope.scoped(:conditions => ["taxon_names.is_valid = ?", true]) if options[:valid]
     names = tags.map do |tag|
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
         name.downcase
