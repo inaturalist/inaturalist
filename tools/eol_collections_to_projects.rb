@@ -116,7 +116,7 @@ eol_collection_ids.each do |eol_collection_id|
     project.title = project_name
     project.source_url = collection_url if project.source_url.blank?
     project.description = col.at('description').try(:text)
-    project.save
+    project.save unless opts[:test]
   else
     project = Project.new(
       :user_id => the_user.id, 
@@ -132,7 +132,7 @@ eol_collection_ids.each do |eol_collection_id|
     if opts[:test]
       project.build_project_list
     else
-      if project.save
+      if !opts[:test] && project.save
         if opts[:header] || opts[:css]
           cp = project.build_custom_project
           if opts[:header] && tpl = (open(opts[:header]).read rescue nil)
@@ -154,7 +154,7 @@ eol_collection_ids.each do |eol_collection_id|
   #so we can later see if any of these listed_taxa aren't on the collection anymore
   #and must be removed
   the_list = project.project_list
-  listed_taxa_taxon_ids = the_list.listed_taxa.map{|lt| lt.taxon_id}
+  listed_taxa_taxon_ids = the_list.listed_taxa.all(:select => "id, taxon_id").map{|lt| lt.taxon_id}
   
   collection_item_dwc_names = []
   
@@ -187,16 +187,15 @@ eol_collection_ids.each do |eol_collection_id|
       annotation = node.at('annotation').try(:text)
       puts "\t name: #{list_item}"
       
-      #Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
+      # Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
       existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
-        "taxon_names.lexicon = ? AND LOWER(taxon_names.name) = ? AND listed_taxa.taxon_id IN (?)",
+        "taxon_names.lexicon = ? AND LOWER(taxon_names.name) = ?",
         TaxonName::SCIENTIFIC_NAMES,
-        list_item.strip.downcase,
-        listed_taxa_taxon_ids
+        list_item.strip.downcase
       ])
       if existing
         puts "\t\t#{list_item} already on #{the_list}, updating..."
-        existing.update_attributes(:description => annotation)
+        existing.update_attributes(:description => annotation) unless opts[:test]
         listed_taxa_taxon_ids.delete(existing.taxon_id)
       else
         #find the taxon to make a listed taxon
@@ -240,9 +239,15 @@ eol_collection_ids.each do |eol_collection_id|
             :source_identifier => object_id,
             :source => eol_source
           )
-          taxon.save unless opts[:test]
-          puts "\t\tCreated new taxon: #{taxon}"
-          taxon.send_later(:graft) unless opts[:test]
+          unless opts[:test]
+            if taxon.save
+              puts "\t\tCreated new taxon: #{taxon}"
+              taxon.send_later(:graft)
+            else
+              puts "\t\tFailed to create taxon: #{taxon.errors.full_messages.to_sentence}"
+              next
+            end
+          end
         end
         
         lt = ListedTaxon.new(:taxon_id => taxon.id, :list_id => the_list.id, :manually_added => true)
