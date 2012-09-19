@@ -462,36 +462,45 @@
         alert("Google couldn't find '" + q + "'");
         return;
       }
+
+      // try to choose a result that actually contains the query
+      var result = results[0],
+          re = new RegExp(q, 'gi')
+      for (var i = 0; i < results.length; i++) {
+        if (results[i].formatted_address.match(re)) {
+          result = results[i]
+          break
+        }
+      }
       
-      var result = results[0]
-      
-      if (results[0].geometry.location_type == google.maps.GeocoderLocationType.ROOFTOP) {
+      if (result.geometry.location_type == google.maps.GeocoderLocationType.ROOFTOP) {
         marker = getMarker.call(self, {exact: true})
         setExact.call(self, true)
       }
-      var point = results[0].geometry.location
-      marker.setPosition(point);
-
-      $.fn.latLonSelector._map.setCenter(point);
-      $.fn.latLonSelector._map.fitBounds(results[0].geometry.viewport)
+      
+      var point = result.geometry.location,
+          viewport = result.geometry.viewport || result.geometry.bounds
+      
+      marker.setPosition(point)
+      $.fn.latLonSelector._map.fitBounds(viewport)
+      $.fn.latLonSelector._map.setCenter(point)
       
       $.fn.latLonSelector.updateFormLatLon(
         marker.getPosition().lat(), 
         marker.getPosition().lng()
       )
       
-      var bounds = result.geometry.bounds || result.geometry.viewport
-      if (bounds) {
+      if (viewport) {
         var dNorthEast = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              bounds.getNorthEast().lat(), bounds.getNorthEast().lng()),
+              viewport.getNorthEast().lat(), viewport.getNorthEast().lng()),
             dSouthWest = iNaturalist.Map.distanceInMeters(point.lat(), point.lng(), 
-              bounds.getSouthWest().lat(), bounds.getSouthWest().lng()),
+              viewport.getSouthWest().lat(), viewport.getSouthWest().lng()),
             accuracy = Math.max(dNorthEast, dSouthWest)
         $.fn.latLonSelector.setAccuracy(accuracy, {lat: point.lat(), lng: point.lng()})
         $.fn.latLonSelector.updateFormAccuracy(accuracy, {positioningMethod: 'google', positioningDevice: 'google'})
       }
-    });
-  };
+    })
+  }
   
   $.fn.latLonSelector.updateAccuracyWithGeocoderResult = function(result) {
     var d = iNaturalist.Map.distanceInMeters(

@@ -11,9 +11,7 @@ Usage:
   script/runner tools/eol_collections_to_projects.rb <EOL collection url>
 
 The script:
-   1) makes projects for collections if they don't already exist but doesn't
-     automatically add the icon, descripton, terms, or custom header - that
-     would be nice
+   1) makes projects for collections if they don't already exist
    2) adds listed_taxa to the list for the project for taxa in the EOL 
       collection
    3) removes any listed_taxa on the list for the project for taxa that 
@@ -21,10 +19,6 @@ The script:
    4) records the names of taxa in the EOL collection that aren't represented 
       by any iNat taxon_names (these taxa or taxon_names will be manually
       added)
-
-Improvements:
-  How would I automatically create the project_icon from the EOL logo_url?
-  More elegant way for stripping author of EOL Sci Name?
 
 Options:
 EOS
@@ -58,12 +52,20 @@ eol_source ||= Source.create(
   :title => 'Encyclopedia of Life'
 )
 
-#Get the Collections in the iNaturalist Collection from EOL
-unless response = Net::HTTP.get_response(URI.parse(eol_collection_url))
+# Get the Collections in the iNaturalist Collection from EOL
+response = Net::HTTP.get_response(URI.parse(eol_collection_url))
+unless response.is_a?(Net::HTTPOK)
   puts "couldn't access iNat Collection on EOL"
-  break
+  exit(0)
 end
+
 doc = Nokogiri::XML(response.body)
+
+if error_elt = doc.at('error')
+  puts "Error retrieving collection: #{error_elt.inner_text}"
+  exit(0)
+end
+
 eol_collection_ids = doc.xpath('//object_id[../object_type/text() = "Collection"]').map(&:text)
 eol_collection_ids.each do |eol_collection_id|
   # sleep(5)
@@ -123,7 +125,7 @@ eol_collection_ids.each do |eol_collection_id|
       :description => col.at('description').try(:text),
       :project_type => "contest")
     project.project_observation_rules.build(:operator => "on_list?")
-    if logo_url
+    unless logo_url.blank?
       io = open(URI.parse(logo_url))
       project.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
     end
@@ -264,7 +266,7 @@ eol_collection_ids.each do |eol_collection_id|
       thelt = the_list.listed_taxa.first(:conditions => { :taxon_id => lt_taxon_id } )
       thelt.destroy unless opts[:test]
       # Record the taxon we just destroyed the listed_taxon for under 'taxa_removed'
-      taxa_removed << Taxon.find_by_id(lt_taxon_id).name
+      taxa_removed << (Taxon.find_by_id(lt_taxon_id).try(:name) || lt_taxon_id)
       puts "\tRemoved #{thelt} with taxon_id #{lt_taxon_id} which is no longer in the collection"
     end
   end
@@ -293,9 +295,12 @@ eol_collection_ids.each do |eol_collection_id|
   puts
 end
 
-Project.all(:conditions => "source_url LIKE 'http://eol.org/collections%'").each do |p|
-  unless p.source_url =~ /collections\/(#{eol_collection_ids.join('|')})$/
-    p.destroy unless opts[:test]
-    puts "Destroyed #{p}, no longer an EOL iNat collection"
+# Delete EOL projects that aren't in the response.  Skip if response was blank, which was probably erroneous.
+unless eol_collection_ids.blank?
+  Project.all(:conditions => "source_url LIKE 'http://eol.org/collections%'").each do |p|
+    unless p.source_url =~ /collections\/(#{eol_collection_ids.join('|')})$/
+      p.destroy unless opts[:test]
+      puts "Destroyed #{p}, no longer an EOL iNat collection"
+    end
   end
 end
