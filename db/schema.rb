@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904064231) do
+ActiveRecord::Schema.define(:version => 20120919201617) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -548,6 +548,7 @@ ActiveRecord::Schema.define(:version => 20120904064231) do
     t.boolean  "required"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+    t.integer  "position"
   end
 
   add_index "project_observation_fields", ["project_id", "observation_field_id"], :name => "pof_projid_ofid"
@@ -846,8 +847,8 @@ ActiveRecord::Schema.define(:version => 20120904064231) do
   create_table "taxon_scheme_taxa", :force => true do |t|
     t.integer  "taxon_scheme_id"
     t.integer  "taxon_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "source_identifier"
   end
 

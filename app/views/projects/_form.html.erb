@@ -9,7 +9,11 @@
     .description_field textarea,.terms_field textarea{width:450px;}
     #place_q,#taxon_q{width:300px;}
     .observationrules{clear:left;}
+    .project_observation_fields {list-style: none;margin-left:0;}
+    li.project_observation_field {position: relative; margin-left:0; padding-left: 20px; cursor: move;}
     .project_observation_field .title {font-weight:bold;}
+    .project_observation_field .ui-icon {position:absolute; left: 0;top: 0;}
+    .sortabletarget { height: 100px; border: 2px dashed #ccc;}
   </style>
 <%- end -%>
 <%= javascript_include_tag "observations/observation_fields" %>
@@ -74,15 +78,12 @@
     function fieldify(options) {
       options = options || {}
       $('.project_observation_field').not('.fieldified').each(function() {
-        console.log("[DEBUG] fieldifying: ", this)
         var lastName = $('.project_observation_field.fieldified:last input').attr('name')
         if (lastName) {
-          console.log("[DEBUG] lastName:", lastName)
           var index = parseInt(lastName.match(/project_observation_fields_attributes\]\[(\d+)\]/)[1]) + 1
         } else {
           var index = 0
         }
-        console.log("[DEBUG] index: ", index)
         
         $(this).addClass('fieldified')
         var input = $('.ofv_input input.text', this)
@@ -109,6 +110,13 @@
           $(this).attr('name', newName)
         })
       })
+      updateProjectObservationFieldPositions()
+    }
+
+    function updateProjectObservationFieldPositions() {
+      $('.project_observation_fields li').each(function() {
+        $('input[name*="position"]', this).val($('li', $(this).parent()).index(this))
+      })
     }
 
     $(document).ready(function() {
@@ -122,6 +130,12 @@
       })
       $('#createfieldbutton').click(ObservationFields.newObservationFieldButtonHandler)
       fieldify()
+      $('.project_observation_fields').sortable({
+        placeholder: 'sortabletarget',
+        update: function(event, ui) {
+          updateProjectObservationFieldPositions()
+        }
+      })
     })
   </script>
 <%- end -%>

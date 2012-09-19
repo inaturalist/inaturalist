@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :project_assets, :dependent => :destroy
   has_one :custom_project, :dependent => :destroy
-  has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project
+  has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
   has_many :observation_fields, :through => :project_observation_fields
   
   before_save :strip_title
