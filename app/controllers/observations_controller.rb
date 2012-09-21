@@ -637,7 +637,12 @@ class ObservationsController < ApplicationController
           end
         end
         format.xml  { render :xml => @observations.collect(&:errors), :status => :unprocessable_entity }
-        format.json { render :json => @observations.collect(&:errors), :status => :unprocessable_entity }
+        format.json do
+          render :status => :unprocessable_entity, :json => {
+            :error => @observations.map{|o| o.errors.full_messages.to_sentence}.to_sentence,
+            :errors => @observations.collect(&:errors)
+          }
+        end
       elsif @observations.empty?
         msg = if params[:id]
           "That observation no longer exists."

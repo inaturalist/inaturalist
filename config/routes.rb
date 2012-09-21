@@ -4,7 +4,7 @@ Inaturalist::Application.routes.draw do
 
   root :to => 'welcome#index'
 
-  resources :observation_field_values
+  resources :observation_field_values, :only => [:create, :update, :destroy]
   resources :observation_fields
   match '/' => 'welcome#index'
   match '/home' => 'users#dashboard', :as => :home
@@ -117,6 +117,7 @@ Inaturalist::Application.routes.draw do
   match 'projects/:id/invitations' => 'projects#invitations', :as => :invitations
   resources :projects
   resources :project_assets, :except => [:index, :show]
+  resources :project_observations, :only => [:create, :destroy]
   resources :custom_projects, :except => [:index, :show]
   match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'

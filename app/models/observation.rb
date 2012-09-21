@@ -516,6 +516,10 @@ class Observation < ActiveRecord::Base
   def as_json(options = {})
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
+    options[:include] = options[:include].is_a?(Hash) ? [options[:include]] : [options[:include]].flatten.compact
+    if !options[:include].include?(:observation_field_values) && observation_field_values.exists?
+      options[:include] << :observation_field_values
+    end
     options[:methods] ||= []
     options[:methods] << :time_observed_at_utc
     viewer = options[:viewer]
@@ -684,15 +688,20 @@ class Observation < ActiveRecord::Base
 
   # Override nested obs field values attributes setter to ensure that field
   # values get added even if existing field values have been destroyed (e.g.
-  # two windows)
+  # two windows). Also updating existing OFV of same OF name if id not 
+  # specified
   def observation_field_values_attributes=(attributes)
-    attributes.each do |k,v|
-      next if v["id"].blank?
-      unless ObservationFieldValue.where("id = ?", v["id"]).exists?
-        attributes[k].delete("id")
+    attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
+    attr_array.each_with_index do |v,i|
+      if v["id"].blank?
+        if existing = observation_field_values.where(:observation_field_id => v["name"]).first
+          attr_array[i]["id"] = existing.id
+        end
+      elsif !ObservationFieldValue.where("id = ?", v["id"]).exists?
+        attr_array[i].delete("id")
       end
     end
-    assign_nested_attributes_for_collection_association(:observation_field_values, attributes, mass_assignment_options)
+    assign_nested_attributes_for_collection_association(:observation_field_values, attr_array, mass_assignment_options)
   end
   
   #

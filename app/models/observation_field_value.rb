@@ -2,11 +2,10 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation
   belongs_to :observation_field
   
+  before_validation :strip_value
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   validates_presence_of :value
   validates_presence_of :observation_field_id
-  
-  before_validation :strip_value
   validate :validate_observation_field_datatype
   validate :validate_observation_field_allowed_values
   
