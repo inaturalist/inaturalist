@@ -42,7 +42,8 @@ class ProjectsController < ApplicationController
         @projects = scope.paginate(:page => params[:page], :per_page => 100)
         opts = Project.default_json_options.merge(:include => [
           :project_list, 
-          {:project_observation_fields => :observation_field}])
+          {:project_observation_fields => ProjectObservationField.default_json_options}
+        ])
         opts[:methods] << :project_observations_count
         render :json => @projects.to_json(opts)
       end
