@@ -6,6 +6,10 @@ describe ProjectObservationField, "creation" do
     pof.project.project_observation_rules.should_not be_blank
     pof.project.project_observation_rules.last.operator.should eq('has_observation_field?')
   end
+  it "should not create a project observation rule if not required" do
+    pof = ProjectObservationField.make!
+    pof.project.project_observation_rules.should be_blank
+  end
 end
 
 describe ProjectObservationField, "destruction" do

@@ -8,6 +8,7 @@ class ProjectObservationField < ActiveRecord::Base
   after_destroy :destroy_project_rule
 
   def create_project_rule
+    return true unless required?
     project.project_observation_rules.create(
       :operator => "has_observation_field?", 
       :operand => observation_field)
