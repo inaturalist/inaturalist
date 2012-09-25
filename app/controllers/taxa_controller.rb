@@ -1116,6 +1116,13 @@ class TaxaController < ApplicationController
     elsif params[:name]
       @qparams[:name] = params[:name]
       find_options[:conditions] = [ "name = ?", params[:name] ]
+    elsif params[:names]
+      names = if params[:names].is_a?(String)
+        params[:names].split(',')
+      else
+        params[:names]
+      end
+      find_options[:conditions] = ["taxon_names.name IN (?)", names]
     else
       find_options[:conditions] = ["is_iconic = ?", true]
       find_options[:order] = :ancestry
@@ -1124,10 +1131,8 @@ class TaxaController < ApplicationController
       @qparams[:limit] = params[:limit]
       find_options[:limit] = params[:limit]
     else
-      params[:page_size] ||= 10
-      params[:page] ||= 1
-      find_options[:page] = params[:page]
-      find_options[:per_page] = params[:page_size]
+      find_options[:page] = params[:page] || 1
+      find_options[:per_page] = params[:per_page]
     end
     if params[:all_names] == 'true'
       @qparams[:all_names] = params[:all_names]
