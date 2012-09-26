@@ -120,6 +120,7 @@ class Photo < ActiveRecord::Base
     photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true)
     photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES) if photo_taxa.blank?
     photo_taxa = to_taxa if photo_taxa.blank?
+    return if photo_taxa.blank?
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
   end
