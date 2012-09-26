@@ -106,6 +106,7 @@ Inaturalist::Application.routes.draw do
   match 'projects/:id/make_curator/:project_user_id' => 'projects#make_curator', :as => :make_curator
   match 'projects/:id/remove_curator/:project_user_id' => 'projects#remove_curator', :as => :remove_curator
   match 'projects/:id/remove_project_user/:project_user_id' => 'projects#remove_project_user', :as => :remove_project_user
+  match 'projects/:id/change_role/:project_user_id' => 'projects#change_role', :as => :change_project_user_role, :via => :post
   match 'projects/:id/stats' => 'projects#stats', :as => :project_stats
   match 'projects/:id/stats.:format' => 'projects#stats', :as => :formatted_project_stats
   match 'projects/browse' => 'projects#browse', :as => :browse_projects
