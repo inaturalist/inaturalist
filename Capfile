@@ -33,6 +33,7 @@ namespace :deploy do
     symlink_cache
     # symlink_observation_tiles
     symlink_sphinx
+    # bundler_install
     sphinx_configure
   end
   
@@ -70,7 +71,11 @@ namespace :deploy do
   task :symlink_smtp_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/smtp.yml #{latest_release}/config/smtp.yml"
   end
-  
+
+  # desc "Rnu bundle install"
+  # task :bundler_install, :hosts => "#{domain}" do
+  #   run "cd #{latest_release} && bundle install"
+  # end
   desc "Create a symlink to a copy of sphinx.yml that is outside the repos."
   task :symlink_sphinx_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/sphinx.yml #{latest_release}/config/sphinx.yml"

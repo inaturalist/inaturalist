@@ -38,10 +38,14 @@ role :app, domain
 role :web, domain
 role :db,  domain, :primary => true
 
+set :rvm_ruby_string, 'default'
+set :rvm_type, :system
 
-Dir[File.join(File.dirname(__FILE__), '..', 'vendor', 'gems')].each do |vendored_notifier|
-  $: << File.join(vendored_notifier, 'lib')
-end
+# Dir[File.join(File.dirname(__FILE__), '..', 'vendor', 'gems')].each do |vendored_notifier|
+#   $: << File.join(vendored_notifier, 'lib')
+# end
 
 require './config/boot'
 require 'airbrake/capistrano'
+require "rvm/capistrano"
+require "bundler/capistrano"

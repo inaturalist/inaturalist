@@ -47,6 +47,7 @@ gem 'rest-client', :require => 'rest_client'
 gem 'right_aws'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
+gem 'rvm-capistrano'
 gem 'spatial_adapter', :git => 'git://github.com/Empact/spatial_adapter.git' # until fragility updates the gemspec
 gem 'thinking-sphinx', '2.0.10'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
