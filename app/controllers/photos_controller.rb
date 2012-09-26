@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   before_filter :mobilized, :only => MOBILIZED
   before_filter :load_photo, :only => [:show, :update, :repair]
   before_filter :require_owner, :only => [:update]
-  before_filter :login_required, :only => [:inviter]
+  before_filter :authenticate_user!, :only => [:inviter]
   before_filter :return_here, :only => [:show, :invite, :inviter]
   
   def show
