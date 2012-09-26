@@ -155,6 +155,14 @@ class User < ActiveRecord::Base
   def active?
     !suspended?
   end
+  
+  # This is a dangerous override in that it doesn't call super, thereby
+  # ignoring the results of all the devise modules like confirmable. We do
+  # this b/c we want all users to be able to sign in, even if unconfirmed, but
+  # not if suspended.
+  def active_for_authentication?
+    active?
+  end
 
   def download_remote_icon
     io = open(URI.parse(self.icon_url))

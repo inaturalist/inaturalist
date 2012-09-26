@@ -22,7 +22,6 @@ class ProviderAuthorizationsController < ApplicationController
 
   def create
     auth_info = request.env['omniauth.auth']
-    # Rails.logger.debug "[DEBUG] auth_info: #{JSON.pretty_generate(auth_info.as_json)}"
     
     case auth_info["provider"]
     when 'facebook'
@@ -72,7 +71,6 @@ class ProviderAuthorizationsController < ApplicationController
       end
       @landing_path = new_observation_url(invite_params)
     end
-    
     redirect_to @landing_path || home_url
   end
   
@@ -83,7 +81,6 @@ class ProviderAuthorizationsController < ApplicationController
   end
   
   def get_session_omniauth_scope
-    Rails.logger.debug "[DEBUG] session[omniauth_#{request.env['omniauth.strategy'].name}_scope]: #{session["omniauth_#{request.env['omniauth.strategy'].name}_scope"]}"
     session["omniauth_#{request.env['omniauth.strategy'].name}_scope"]
   end
   
@@ -117,7 +114,7 @@ class ProviderAuthorizationsController < ApplicationController
   
   def update_existing_provider_authorization(auth_info)
     sign_in @provider_authorization.user
-    current_user.remember_me!
+    @provider_authorization.user.remember_me
     @provider_authorization.update_with_auth_info(auth_info)
     flash[:notice] = "Welcome back!"
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
