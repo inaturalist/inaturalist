@@ -210,7 +210,7 @@ module TaxaHelper
         $('##{element_id}').removeClass('loading status');
       });
     JS
-    html += content_tag(:script, js, :type => "text/javascript")
+    html += content_tag(:script, js.html_safe, :type => "text/javascript")
     html
   end
   

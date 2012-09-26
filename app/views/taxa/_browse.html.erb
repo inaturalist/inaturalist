@@ -219,7 +219,7 @@
             <%= link_to "search this taxon", url_for_params(:taxon_id => taxon.id, :without => :q), :rel => "nofollow", :class => "right", :rel => "nofollow" %>
             <h3>
               <%- 
-                link_txt = render('shared/taxon', :object => taxon)
+                link_txt = render(:partial => 'shared/taxon', :object => taxon)
                 taxon_json = nil
               -%>
               <% if js_link -%>
