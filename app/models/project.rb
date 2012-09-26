@@ -206,7 +206,7 @@ class Project < ActiveRecord::Base
   end
   
   def self.update_observed_taxa_count(project_id)
-    project = Project.find_by_id(project_id)
+    return unless project = Project.find_by_id(project_id)
     observed_taxa_count = project.project_list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
     project.update_attributes(:observed_taxa_count => observed_taxa_count)
   end
