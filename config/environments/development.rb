@@ -25,12 +25,18 @@ Inaturalist::Application.configure do
   ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
   config.action_mailer.delivery_method = :test
 
-# # Uncomment these to test caching
-# config.cache_store = :file_store, RAILS_ROOT + "/tmp/cache"
-config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
-# config.action_controller.perform_caching             = true
-# config.action_view.cache_template_loading            = true
-# config.cache_classes = true
+  # Uncomment to test mail delivery
+  # Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.default :charset => "utf-8"
+
+  # # Uncomment these to test caching
+  # config.cache_store = :file_store, RAILS_ROOT + "/tmp/cache"
+  config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
+  # config.action_controller.perform_caching             = true
+  # config.action_view.cache_template_loading            = true
+  # config.cache_classes = true
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
