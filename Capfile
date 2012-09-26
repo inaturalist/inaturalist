@@ -39,7 +39,6 @@ namespace :deploy do
   
   after "deploy:restart" do
     cleanup
-    sphinx_restart
     chgrp_to_user
   end
 
@@ -249,20 +248,23 @@ end
 namespace :delayed_job do
   desc "Start delayed_job process" 
   task :start, :roles => :app do
-    run "cd #{current_path}; script/delayed_job start" 
+    run "cd #{current_path}; RAILS_ENV=production script/delayed_job start" 
   end
 
   desc "Stop delayed_job process" 
   task :stop, :roles => :app do
-    run "cd #{current_path}; script/delayed_job stop" 
+    run "cd #{current_path}; RAILS_ENV=production script/delayed_job stop" 
   end
 
   desc "Restart delayed_job process" 
   task :restart, :roles => :app do
-    run "cd #{current_path}; script/delayed_job restart" 
+    run "cd #{current_path}; RAILS_ENV=production script/delayed_job restart" 
   end
 end
 
 after "deploy:start", "delayed_job:start" 
 after "deploy:stop", "delayed_job:stop" 
 after "deploy:restart", "delayed_job:restart"
+
+# since this seems to fail, we do it after restarting DJ, which seems more important
+after "deploy:restart", "sphinx_restart"
