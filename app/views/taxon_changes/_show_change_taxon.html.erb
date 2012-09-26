@@ -1,5 +1,5 @@
 <%- 
-  taxon_change ||= object || @taxon_change
+  taxon_change ||= show_change_taxon || @taxon_change
   left_taxa, right_taxa = [], []
   case taxon_change.class.name when "TaxonDrop"
     left_taxa = [taxon_change.taxon]
