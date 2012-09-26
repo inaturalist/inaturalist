@@ -20,7 +20,7 @@
 
     <%= render :partial => 'users/license_fields', :locals => {:builder => f} %>
 
-    <%= f.submit "Save &amp; continue...", :class => "default button" %>
+    <%= f.submit "Save &amp; continue...".html_safe, :class => "default button" %>
   <% end %>
 </div>
 

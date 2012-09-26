@@ -155,7 +155,7 @@ class User < ActiveRecord::Base
   def active?
     !suspended?
   end
-  
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
@@ -340,7 +340,7 @@ class User < ActiveRecord::Base
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
   def self.create_from_omniauth(auth_info)
-    email = auth_info["user_info"].try(:[], "email")
+    email = auth_info["info"].try(:[], "email")
     email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
     if email && u = User.find_by_email(email)
@@ -348,19 +348,19 @@ class User < ActiveRecord::Base
       return u
     end
     autogen_login = User.suggest_login(
-      auth_info["user_info"]["nickname"] || 
-      auth_info["user_info"]["first_name"] || 
-      auth_info["user_info"]["name"])
+      auth_info["info"]["nickname"] || 
+      auth_info["info"]["first_name"] || 
+      auth_info["info"]["name"])
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
     autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
     u = User.new(
       :login => autogen_login,
       :email => email,
-      :name => auth_info["user_info"]["name"],
+      :name => auth_info["info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw,
-      :icon_url => auth_info["user_info"]["image"]
+      :icon_url => auth_info["info"]["image"]
     )
     if u
       u.skip_email_validation = true

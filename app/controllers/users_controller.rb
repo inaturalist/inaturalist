@@ -288,6 +288,7 @@ class UsersController < ApplicationController
     
     if @display_user.update_attributes(params[:user])
       flash[:notice] = 'Your profile was successfully updated!'
+      sign_in @display_user, :bypass => true
       redirect_back_or_default(person_by_login_path(:login => current_user.login))
     else
       @display_user.login = @display_user.login_was unless @display_user.errors[:login].blank?
