@@ -39,7 +39,9 @@
   </h2>
 
   <p class="meta ui">
-    <%= taxon_change.description %><br/>
+    <div class="meta stacked">
+      <%= taxon_change.description.html_safe %>
+    </div>
     <% if taxon_change.source && taxon_change.source.url %>
       Source: <%= link_to h(truncate(taxon_change.source.title, :length => 40)), taxon_change.source.url %>
     <% elsif taxon_change.source %>

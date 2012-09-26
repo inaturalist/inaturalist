@@ -1,6 +1,10 @@
 class TaxonSwap < TaxonChange
-  has_one :old_taxon, :through => :taxon_change_taxa, :source => :taxon
+  has_many :old_taxa, :through => :taxon_change_taxa, :source => :taxon
   
+  def old_taxon
+    old_taxa.first
+  end
+
   def self.update_observations_later(taxon_change_id)
     unless taxon_swap = TaxonSwap.find_by_id(taxon_change_id)
       return

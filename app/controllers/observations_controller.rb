@@ -1564,6 +1564,7 @@ class ObservationsController < ApplicationController
     end
     @observations
   rescue ThinkingSphinx::ConnectionError
+    Rails.logger.error "[ERROR #{Time.now}] Failed to connect to sphinx, falling back to db"
     get_paginated_observations(search_params, find_options)
   end
   

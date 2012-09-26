@@ -32,8 +32,8 @@
 
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
-    window.taxon = <%= @taxon.to_json(:methods => [:html]) %>
-    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]) %>
+    window.taxon = <%= @taxon.to_json(:methods => [:html]).html_safe %>
+    window.defaultTaxa = <%= @default_taxa.to_json(:methods => [:html]).html_safe %>
     $(document).ready(function() {
       $('#filters_taxon_id').chooser({
         collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
@@ -56,7 +56,7 @@
 <h2><%= @title %></h2>
 
 <div class="column span-6">
-  <% form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
+  <%= form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
     <fieldset id="change_types" class="">
       <legend>Change Types</legend>
       <% %w(split merge swap stage drop).each do |type| %>
