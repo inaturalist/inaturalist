@@ -1070,6 +1070,7 @@ class ObservationsController < ApplicationController
     
     @observations ||= Observation.latest.paginate(:page => params[:page])
     
+    request.format = :mobile
     respond_to do |format|
       format.mobile
     end
@@ -1077,6 +1078,7 @@ class ObservationsController < ApplicationController
   
   def add_nearby
     @observation = current_user.observations.build(:time_zone => current_user.time_zone)
+    request.format = :mobile
     respond_to do |format|
       format.mobile
     end
@@ -1759,10 +1761,7 @@ class ObservationsController < ApplicationController
             :user => {:login => observation.user.login}
           }
         }
-
-        @template.template_format = :html
-        item[:html] = render_to_string(:partial => partial, :object => observation)
-        @template.template_format = :json
+        item[:html] = view_context.render_in_format(:html, :partial => partial, :object => observation)
         item
       end
       render :json => data

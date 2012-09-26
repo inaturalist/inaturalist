@@ -253,7 +253,7 @@ class Observation < ActiveRecord::Base
     planetary_radius = PLANETARY_RADIUS / 1000 # km
     radius_degrees = radius / (2*Math::PI*planetary_radius) * 360.0
     
-    where("ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees)
+    where("ST_Distance(ST_SetSRID(ST_Point(?,?), -1), ST_SetSRID(geom, -1)) <= ?", lng.to_f, lat.to_f, radius_degrees)
   }
   
   # Has_property scopes
