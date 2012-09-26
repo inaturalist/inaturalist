@@ -53,6 +53,7 @@ class Project < ActiveRecord::Base
   PROJECT_TYPES = [CONTEST_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
+  validates_uniqueness_of :title
   
   def to_s
     "<Project #{id} #{title}>"
