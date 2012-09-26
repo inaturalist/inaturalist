@@ -1298,7 +1298,7 @@ class TaxaController < ApplicationController
   def ensure_flickr_write_permission
     @provider_authorization = current_user.provider_authorizations.first(:conditions => {:provider_name => 'flickr'})
     if @provider_authorization.blank? || @provider_authorization.scope != 'write'
-      session[:return_to] = request.get? ? request.request_uri : request.env['HTTP_REFERER']
+      session[:return_to] = request.get? ? request.fullpath : request.env['HTTP_REFERER']
       redirect_to auth_url_for('flickr', :scope => 'write')
       return false
     end

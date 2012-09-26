@@ -1802,7 +1802,7 @@ class ObservationsController < ApplicationController
         :snippet => "iNaturalist Feed for Everyone", 
         :description => "iNaturalist Feed for Everyone", 
         :name => "iNaturalist Feed for Everyone", 
-        :href => "#{root_url}#{request.request_uri}".gsub(/kml_type=network_link/, '')
+        :href => "#{root_url}#{request.fullpath}".gsub(/kml_type=network_link/, '')
       }
       render :layout => false, :action => 'network_link'
       return
