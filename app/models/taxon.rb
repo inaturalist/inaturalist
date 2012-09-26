@@ -232,7 +232,7 @@ class Taxon < ActiveRecord::Base
   
   scope :iconic_taxa, where("taxa.is_iconic = true").includes(:taxon_names)
   scope :of_rank, lambda {|rank| where("taxa.rank = ?", rank)}
-  scope :locked, where(:locked => true)
+  scope :is_locked, where(:locked => true)
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:taxon_ranges).where("ST_Intersects(taxon_ranges.geom, ST_Point(?, ?))", lng, lat)
   }
@@ -618,7 +618,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def validate_locked
-    if !@skip_locks && ancestry_changed? && (locked_ancestor = ancestors.locked.first)
+    if !@skip_locks && ancestry_changed? && (locked_ancestor = self.ancestors.is_locked.first)
       errors.add(:ancestry, "includes a locked taxon (#{locked_ancestor}), " +
         "so this cannot be added as a descendent.  Either unlock the " + 
         "locked taxon or merge this taxon with an existing one.")

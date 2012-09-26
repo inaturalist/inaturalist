@@ -229,7 +229,7 @@ class TaxaController < ApplicationController
     @taxon.creator = current_user
     if @taxon.save
       flash[:notice] = 'Taxon was successfully created.'
-      if locked_ancestor = @taxon.ancestors.locked.first
+      if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
           "locked taxon (<a href='/taxa/#{locked_ancestor.id}'>" + 
           "#{locked_ancestor.name}</a>).  Please consider merging this " + 
@@ -255,7 +255,7 @@ class TaxaController < ApplicationController
     return unless presave
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = 'Taxon was successfully updated.'
-      if locked_ancestor = @taxon.ancestors.locked.first
+      if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
           "locked taxon (<a href='/taxa/#{locked_ancestor.id}'>" + 
           "#{locked_ancestor.name}</a>).  Please consider merging this " + 
@@ -672,7 +672,6 @@ class TaxaController < ApplicationController
     @listed_taxa = @places.map do |place| 
       place.check_list.add_taxon(@taxon, :user_id => current_user.id)
     end.select{|p| p.valid?}
-    Rails.logger.debug "[DEBUG] @listed_taxa: #{@listed_taxa.inspect}"
     @listed_taxa_by_place_id = @listed_taxa.index_by{|lt| lt.place_id}
   end
   
@@ -773,7 +772,7 @@ class TaxaController < ApplicationController
   
   def graft
     begin
-      lineage = Ratatosk.graft(@taxon)
+      lineage = ratatosk.graft(@taxon)
     rescue Timeout::Error => e
       @error_message = e.message
     rescue RatatoskGraftError => e
@@ -1094,7 +1093,6 @@ class TaxaController < ApplicationController
       return redirect_to :action => 'search', :q => name
     else
       return_here
-      Rails.logger.debug "[DEBUG] showing #{@taxon}"
       show
     end
   end

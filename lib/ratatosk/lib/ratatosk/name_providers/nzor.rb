@@ -1,5 +1,3 @@
-require 'ratatosk/model_adapter'
-
 module Ratatosk
   module NameProviders
     #

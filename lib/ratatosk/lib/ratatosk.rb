@@ -55,9 +55,11 @@ module Ratatosk
     #
     # * [name_providers] array of NameProvider instances to use as providers.  Can also be specified as an array of prefixes, e.g. ['col', 'ubio']
     def initialize(params = {})
+      Rails.logger.debug "[DEBUG] params[:name_providers]: #{params[:name_providers].inspect}"
       @name_providers = if params[:name_providers] && !params[:name_providers].first.respond_to?(:get_lineage_for)
+        Rails.logger.debug "[DEBUG] NameProviders.constants: #{NameProviders.constants}"
         params[:name_providers].map do |prefix|
-          if class_name = NameProviders.constants.detect{|c| c.downcase == "#{prefix}nameprovider"}
+          if class_name = NameProviders.constants.detect{|c| c.to_s.downcase == "#{prefix}NameProvider".downcase}
             NameProviders.const_get(class_name).new
           end
         end.compact

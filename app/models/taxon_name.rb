@@ -13,7 +13,10 @@ class TaxonName < ActiveRecord::Base
   validates_uniqueness_of :source_identifier,
                           :scope => [:source_id],
                           :message => "already exists",
-                          :allow_blank => true
+                          :allow_blank => true,
+                          :unless => Proc.new {|taxon_name|
+                            taxon_name.source && taxon_name.source.title =~ /Catalogue of Life/
+                          }
 
   #TODO is the validates uniqueness correct?  Allows duplicate TaxonNames to be created with same 
   #source_url but different taxon_ids
@@ -145,21 +148,12 @@ class TaxonName < ActiveRecord::Base
   end
   
   def self.find_external(q, options = {})
-    src = options[:src]
-    ratatosk = if INAT_CONFIG['ratatosk'] && INAT_CONFIG['ratatosk']['name_providers']
-      if INAT_CONFIG['ratatosk']['name_providers'].include?(src.to_s.downcase)
-        Ratatosk::Ratatosk.new('name_providers' => [src])
-      else
-        Ratatosk::Ratatosk.new('name_providers' => INAT_CONFIG['ratatosk']['name_providers'])
-      end
-    else
-      Ratatosk
-    end
+    r = ratatosk(options)
     
     # fetch names and save them
-    ratatosk.find(q).map do |ext_name|
+    r.find(q).map do |ext_name|
       unless ext_name.valid?
-        if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
+        if existing_taxon = r.find_existing_taxon(ext_name.taxon)
           ext_name.taxon = existing_taxon
         end
       end

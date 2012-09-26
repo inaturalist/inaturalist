@@ -25,3 +25,16 @@ class Object
     nil
   end
 end
+
+def ratatosk(options = {})
+  src = options[:src]
+  if INAT_CONFIG['ratatosk'] && INAT_CONFIG['ratatosk']['name_providers']
+    if INAT_CONFIG['ratatosk']['name_providers'].include?(src.to_s.downcase)
+      Ratatosk::Ratatosk.new(:name_providers => [src])
+    else
+      @@ratatosk ||= Ratatosk::Ratatosk.new(:name_providers => INAT_CONFIG['ratatosk']['name_providers'])
+    end
+  else
+    Ratatosk
+  end
+end
