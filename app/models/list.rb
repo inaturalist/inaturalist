@@ -72,7 +72,7 @@ class List < ActiveRecord::Base
       # re-apply list rules to the listed taxa
       listed_taxon.save
       unless listed_taxon.valid?
-        logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
         listed_taxon.destroy
       end
@@ -249,7 +249,7 @@ class List < ActiveRecord::Base
     end
     
     target_lists.each do |list|
-      logger.debug "[DEBUG] refreshing #{list}..."
+      Rails.logger.debug "[DEBUG] refreshing #{list}..."
       list.refresh(options)
     end
     true

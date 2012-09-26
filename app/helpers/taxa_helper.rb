@@ -178,7 +178,7 @@ module TaxaHelper
     root = jit_taxon_node(ancestors.first)
     previous_node = root
     ancestors[1..-1].each do |ancestor|
-      logger.debug "[DEBUG] Trying to place #{ancestor} among the children of #{previous_node[:name]}..."
+      Rails.logger.debug "[DEBUG] Trying to place #{ancestor} among the children of #{previous_node[:name]}..."
       ancestor_node = jit_taxon_node(ancestor)
       # Replace the child with a child with its own children
       previous_node[:children].each_with_index do |child, i|

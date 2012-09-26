@@ -21,7 +21,7 @@ module Shared::WikipediaModule
         filter_wikipedia_content
       end
     rescue Timeout::Error => e
-      logger.info "[INFO] Wikipedia API call failed: #{e.message}"
+      Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
     end
     
     respond_to do |format|

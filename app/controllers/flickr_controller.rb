@@ -161,8 +161,8 @@ class FlickrController < ApplicationController
         @flickr_url = auth_url_for('flickr')
       end
     rescue FlickRaw::FailedResponse => e
-      logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
-      HoptoadNotifier.notify(e, :request => request, :session => session)
+      Rails.logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
+      Airbrake.notify(e, :request => request, :session => session)
       flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
                        "squid ate your Flickr info.  You can contact us at " +
                        "#{APP_CONFIG[:help_email]} if you still can't get this " +

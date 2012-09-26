@@ -190,7 +190,7 @@ class CheckList < List
       listed_taxon.force_update_cache_columns = true
       listed_taxon.save
       if !listed_taxon.valid?
-        logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
         listed_taxon.destroy
       elsif listed_taxon.auto_removable_from_check_list?
@@ -203,7 +203,7 @@ class CheckList < List
   def self.sync_check_lists_with_parents(options = {})
     time_since_last_sync = options[:time_since_last_sync] || 1.hour.ago
     start_time = Time.now
-    logger.info "[INFO] Starting CheckList.sync_check_lists_with_parents " + 
+    Rails.logger.info "[INFO] Starting CheckList.sync_check_lists_with_parents " + 
       "at #{start_time}..."
 
     ListedTaxon.all(
@@ -219,7 +219,7 @@ class CheckList < List
     end
     parent_check_list.update_attribute(:last_synced_at, Time.now)
 
-    logger.info "[INFO] Finished CheckList.sync_check_lists_with_parents " + 
+    Rails.logger.info "[INFO] Finished CheckList.sync_check_lists_with_parents " + 
       "at #{Time.now} (#{Time.now - start_time}s)"
   end
   

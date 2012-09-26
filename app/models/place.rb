@@ -231,7 +231,7 @@ class Place < ActiveRecord::Base
     begin
       ydn_place = GeoPlanet::Place.new(woeid.to_i)
     rescue GeoPlanet::NotFound => e
-      logger.error "[ERROR] #{e.class}: #{e.message}"
+      Rails.logger.error "[ERROR] #{e.class}: #{e.message}"
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
@@ -239,14 +239,12 @@ class Place < ActiveRecord::Base
     
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
-      logger.debug "[DEBUG] Saving ancestors..."
       ydn_place.ancestors.reverse_each do |ydn_ancestor|
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(
           ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, 
           :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor
-        logger.debug "[DEBUG] \t\tSaved #{ancestor}."
         place.parent = ancestors.last
       end
     end
@@ -298,7 +296,7 @@ class Place < ActiveRecord::Base
     self.create_check_list(:place => self)
     save(:validate => false)
     unless check_list.valid?
-      logger.info "[INFO] Failed to create a default check list on " + 
+      Rails.logger.info "[INFO] Failed to create a default check list on " + 
         "creation of #{self}: " + 
         check_list.errors.full_messages.join(', ')
     end

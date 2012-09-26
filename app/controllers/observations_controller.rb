@@ -1616,13 +1616,13 @@ class ObservationsController < ApplicationController
       fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id])
       @flickr_photo = FlickrPhoto.new_from_flickraw(fp, :user => current_user)
     rescue FlickRaw::FailedResponse => e
-      logger.debug "[DEBUG] FlickRaw failed to find photo " +
+      Rails.logger.debug "[DEBUG] FlickRaw failed to find photo " +
         "#{params[:flickr_photo_id]}: #{e}\n#{e.backtrace.join("\n")}"
       @flickr_photo = nil
     rescue Timeout::Error => e
       flash.now[:error] = "Sorry, Flickr isn't responding at the moment."
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      HoptoadNotifier.notify(e, :request => request, :session => session)
+      Airbrake.notify(e, :request => request, :session => session)
       return
     end
     if fp && @flickr_photo && @flickr_photo.valid?
@@ -1667,11 +1667,11 @@ class ObservationsController < ApplicationController
     rescue Timeout::Error => e
       flash.now[:error] = "Sorry, Picasa isn't responding at the moment."
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      HoptoadNotifier.notify(e, :request => request, :session => session)
+      Airbrake.notify(e, :request => request, :session => session)
       return
     end
     unless api_response
-      logger.debug "[DEBUG] Failed to find Picasa photo for #{params[:picasa_photo_id]}"
+      Rails.logger.debug "[DEBUG] Failed to find Picasa photo for #{params[:picasa_photo_id]}"
       return
     end
     @picasa_photo = PicasaPhoto.new_from_api_response(api_response, :user => current_user)

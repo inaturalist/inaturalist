@@ -38,7 +38,6 @@ class TaxonNamesController < ApplicationController
     @status = nil
     if params[:include_external]
       if params[:force_external] or (@taxon_names.empty? and params[:q])
-        logger.info("DEBUG: Making an external lookup...")
         begin
           @external_taxon_names = TaxonName.find_external(params[:q])
           @taxon_names += @external_taxon_names

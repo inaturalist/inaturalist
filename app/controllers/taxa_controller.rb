@@ -485,7 +485,6 @@ class TaxaController < ApplicationController
       end[0..(limit-1)]
     rescue Timeout::Error => e
       Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      # HoptoadNotifier.notify(e, :request => request, :session => session)
       @photos = @taxon.photos
     end
     if params[:partial]
@@ -1192,7 +1191,7 @@ class TaxaController < ApplicationController
     return unless logged_in?
     return unless params[:force_external] || (params[:include_external] && @taxa.blank?)
     @external_taxa = []
-    logger.info("DEBUG: Making an external lookup...")
+    Rails.logger.info("DEBUG: Making an external lookup...")
     begin
       ext_names = TaxonName.find_external(params[:q], :src => params[:external_src])
     rescue Timeout::Error, NameProviderError => e

@@ -570,8 +570,8 @@ class Taxon < ActiveRecord::Base
           :sort => 'relevance'
         ).map{|fp| fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
       rescue FlickRaw::FailedResponse => e
-        logger.error "EXCEPTION RESCUE: #{e}"
-        logger.error e.backtrace.join("\n\t")
+        Rails.logger.error "EXCEPTION RESCUE: #{e}"
+        Rails.logger.error e.backtrace.join("\n\t")
       end
     end
     flickr_ids = chosen_photos.map{|p| p.native_photo_id}
@@ -723,7 +723,7 @@ class Taxon < ActiveRecord::Base
         w.parse(:page => raw['title']).at('text').try(:inner_text)
       end
     rescue Timeout::Error => e
-      logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
+      Rails.logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
     end
   
     if query_results && parsed && !query_results.at('page')['missing']
@@ -769,7 +769,7 @@ class Taxon < ActiveRecord::Base
     reject_taxon_names.each do |taxon_name|
       taxon_name.reload
       unless taxon_name.valid?
-        logger.info "[INFO] Destroying #{taxon_name} while merging taxon " + 
+        Rails.logger.info "[INFO] Destroying #{taxon_name} while merging taxon " + 
           "#{reject.id} into taxon #{id}: #{taxon_name.errors.full_messages.to_sentence}"
         taxon_name.destroy 
         next
@@ -787,7 +787,7 @@ class Taxon < ActiveRecord::Base
     end
     
     reject.reload
-    logger.info "[INFO] Merged #{reject} into #{self}"
+    Rails.logger.info "[INFO] Merged #{reject} into #{self}"
     reject.destroy
   end
   
@@ -1004,9 +1004,9 @@ class Taxon < ActiveRecord::Base
     num_rejects = 0
     for name in duplicate_counts.keys
       taxa = Taxon.all(:conditions => ["name = ?", name])
-      logger.info "[INFO] Found #{taxa.size} duplicates for #{name}: #{taxa.map(&:id).join(', ')}"
+      Rails.logger.info "[INFO] Found #{taxa.size} duplicates for #{name}: #{taxa.map(&:id).join(', ')}"
       taxa.group_by(&:parent_id).each do |parent_id, child_taxa|
-        logger.info "[INFO] Found #{child_taxa.size} duplicates within #{parent_id}: #{child_taxa.map(&:id).join(', ')}"
+        Rails.logger.info "[INFO] Found #{child_taxa.size} duplicates within #{parent_id}: #{child_taxa.map(&:id).join(', ')}"
         next unless child_taxa.size > 1
         child_taxa = child_taxa.sort_by(&:id)
         keeper = child_taxa.shift
@@ -1016,7 +1016,7 @@ class Taxon < ActiveRecord::Base
       end
     end
     
-    logger.info "[INFO] Finished Taxon.find_duplicates.  Kept #{num_keepers}, removed #{num_rejects}."
+    Rails.logger.info "[INFO] Finished Taxon.find_duplicates.  Kept #{num_keepers}, removed #{num_rejects}."
   end
   
   def self.rebuild_without_callbacks
