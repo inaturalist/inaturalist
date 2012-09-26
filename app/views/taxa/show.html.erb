@@ -269,8 +269,8 @@
                              'modal_image',
                              "jquery/plugins/inat/photo_selectors.js" %>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap' %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap' %>
   
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
@@ -284,6 +284,41 @@
           $('#taxon_range_map').taxonMap('fit')
         }
       })
+      
+      $('.list_selector_row .addlink')
+        .bind('ajax:beforeSend', function() {
+          $(this).hide()
+          $(this).nextAll('.loading').show()
+        })
+        .bind('ajax:complete', function() {
+          $(this).nextAll('.loading').hide()
+        })
+        .bind('ajax:success', function() {
+          $(this).siblings('.removelink').show()
+          $(this).parents('.list_selector_row').addClass('added')
+        })
+        .bind('ajax:error', function(event, jqXHR, ajaxSettings, thrownError) {
+          $(this).show()
+          var json = eval('(' + jqXHR.responseText + ')')
+          var errorStr = 'Heads up: ' + json.errors
+          alert(errorStr)
+        })
+        
+      $('.list_selector_row .removelink')
+        .bind('ajax:beforeSend', function() {
+          $(this).hide()
+          $(this).nextAll('.loading').show()
+        })
+        .bind('ajax:complete', function() {
+          $(this).nextAll('.loading').hide()
+        })
+        .bind('ajax:success', function() {
+          $(this).siblings('.addlink').show()
+          $(this).parents('.list_selector_row').removeClass('added')
+        })
+        .bind('ajax:error', function(event, jqXHR, ajaxSettings, thrownError) {
+          $(this).show()
+        })
       
       <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()
@@ -328,7 +363,7 @@
             $(h.w).find('#flickr_taxon_photos .taxon_photos').photoSelector({
               defaultQuery: '<%= @taxon.name %>',
               urlParams: {
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -339,19 +374,19 @@
             $(h.w).find('#inat_obs_taxon_photos .taxon_photos').photoSelector({
               baseURL: '<%= taxon_observation_photos_url(@taxon) %>',
               urlParams: {
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {
                 iNaturalist.modalCenter(h.w)
               }
             });
-            
+
             $(h.w).find('#eol_taxon_photos .taxon_photos').photoSelector({
               baseURL: '<%= eol_photo_fields_url %>',
               urlParams: {
                 taxon_id: '<%= @taxon.id %>',
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -363,7 +398,7 @@
               baseURL: '<%= wikimedia_commons_photo_fields_url %>',
               urlParams: {
                 taxon_id: '<%= @taxon.id %>',
-                authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+                authenticity_token: $('meta[name=csrf-token]').attr('content'),
                 limit: 15
               },
               afterQueryPhotos: function() {
@@ -394,7 +429,64 @@
           });
         <% end %>
       <% end %>
-    });
+      
+      $('#edit_colors_dialog form')
+        .bind('ajax:before', function() {
+          $('#edit_colors .button').hide()
+          $('#edit_colors .loading').show()
+        })
+        .bind('ajax:complete', function() {
+          $('#edit_colors .button').show()
+          $('#edit_colors .loading').hide()
+        })
+        .bind('ajax:success', function() {
+          $('#colorboxen .color').remove()
+          $('#colors .notice').remove()
+          $('#colors .description').remove()
+          $('#edit_colors input:checked').each(function() {
+           $('#colorboxen').append(
+             $('<div>&nbsp;</div>').css({
+               'background-color': $(this).attr('alt')
+             }).addClass('color').attr('title', $(this).attr('alt'))
+           )
+          })
+        })
+        .bind('ajax:error', function() {
+          alert('Error updating colors')
+        })
+      
+      $('#place_selector_search form, #place_selector_paste form')
+        .live('ajax:before', function() {
+          $('.loading', this).show()
+        })
+        .live('ajax:complete', function() {
+          $('.loading', this).hide()
+        })
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.place_selector_places').html(json.map(function(place) { return place.html }).join(' '))
+        })
+      
+      $('.add_to_place_link .add_link, .add_to_place_link .remove_link')
+        .live('ajax:before', function() {
+          $(this).siblings('.status').show()
+          $(this).hide()
+        })
+        .live('ajax:error', function(event, request, settings) {
+          $(this).hide()
+        })
+      $('.add_to_place_link .add_link')
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.status').html('Added!').removeClass('loading').addClass('success')
+        })
+      $('.add_to_place_link .remove_link')
+        .live('ajax:success', function(event, json, status) {
+          $(this).siblings('.status').html('Removed!').removeClass('loading')
+        })
+        
+      $('#place_selector_paste form').live('ajax:success', function(event, json, status) {
+        $(this).siblings('.places').html(json.map(function(place) { return place.html }).join(' '))
+      })
+    })
   </script>
 <% end -%>
 
@@ -402,7 +494,7 @@
   <span class="breadcrumbs">
     <%= link_to 'All Species', taxa_path, :class => 'back crumb' %>
     <% for iconic_taxon in Taxon::ICONIC_TAXA %>
-      <%= link_to "&nbsp;", iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
+      <%= link_to "&nbsp;".html_safe, iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
         :title => Taxon::ICONIC_TAXON_NAMES[iconic_taxon.name] %>
     <% end %>
   </span>
@@ -421,7 +513,7 @@
     <% if logged_in? -%>
       | <%= link_to "Map", taxon_map_path(@taxon) %>
     <% end -%>
-    <% if logged_in? and @user.is_curator? %>
+    <% if logged_in? and current_user.is_curator? %>
       | <strong><%= link_to "Edit", edit_taxon_path(@taxon) %></strong>
     <% end %>
     <% if @taxon.flagged? %>
@@ -558,7 +650,7 @@
       <% end -%>
       <div id="colorboxen">
         <% for color in @colors %>
-          <%= link_to "&nbsp;", {:controller => "taxa", :action => "search", :colors => color.id},
+          <%= link_to "&nbsp;".html_safe, {:controller => "taxa", :action => "search", :colors => color.id},
             :class => "color", :style => "background-color: #{color.value}", :title => color.value, 
             :rel => "nofollow" %>
         <% end %>
@@ -567,27 +659,9 @@
         <div id="edit_colors">
           <%= link_to_toggle "Edit colors", "#edit_colors_dialog" %>
           <div id="edit_colors_dialog" style="display: none">
-            <% remote_form_for @taxon, 
-                :url => {:action => 'update_colors', :id => @taxon, :format => 'js'},
-                :datatype => 'text',
-                :loading => 
-                  "$('#edit_colors .button').hide();" +
-                  "$('#edit_colors .loading').show()",
-                :complete => 
-                 "$('#edit_colors .button').show();" +
-                 "$('#edit_colors .loading').hide();",
-                :success => 
-                  "$('#colorboxen .color').remove();" +
-                  "$('#colors .notice').remove();" +
-                  "$('#colors .description').remove();" +
-                  "$('#edit_colors input:checked').each(function() {" +
-                    "$('#colorboxen').append(" +
-                      "$('<div>&nbsp;</div>').css({" +
-                        "'background-color': $(this).attr('alt')" +
-                      "}).addClass('color').attr('title', $(this).attr('alt'))" +
-                    ");" +
-                  "});" do |f| %>
-              <%#= f.collection_select :color_ids, Color.all, :id, :value, {:include_blank => true}, :multiple => true %>
+            <%= form_for @taxon, 
+                :url => {:action => 'update_colors', :id => @taxon, :format => 'json'},
+                :remote => true do |f| %>
               <% for color in Color.all %>
                 <div class="color_field <%= color.value %>">
                   <%= check_box_tag "taxon[color_ids][]", color.id, 
@@ -657,10 +731,10 @@
         <% if @places.blank? -%>
           <div class="notice">
             Do you know where this species lives?
-            <strong><%= link_to_function "Add it to a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+            <strong><%= link_to_function "Add it to a place &raquo;".html_safe, "$('#add_to_place_dialog').jqmShow()" %></strong>
           </div>
         <% else %>
-          <strong><%= link_to_function "Add a place &raquo;", "$('#add_to_place_dialog').jqmShow()" %></strong>
+          <strong><%= link_to_function "Add a place &raquo;".html_safe, "$('#add_to_place_dialog').jqmShow()" %></strong>
         <% end -%>
         <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
       <% end -%>
@@ -671,30 +745,30 @@
     <h3>Extras</h3>
     
     <p class="ui">
-      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>", taxon_changes_path(:taxon_id => @taxon),
+      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>".html_safe, taxon_changes_path(:taxon_id => @taxon),
         "data-tip" => "View the history of this taxon on iNat, e.g. splits, merges, etc." %>
     </p>
 
     <p class="ui">
-      <%= link_to "Taxon <nobr>schemes &raquo;</nobr>", taxon_schemes_path(@taxon), 
+      <%= link_to "Taxon <nobr>schemes &raquo;</nobr>".html_safe, taxon_schemes_path(@taxon), 
         "data-tip" => "Schemes are sets of taxa recognized by different authorities." %>
     </p>
     
     <p class="ui">
-      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;", 
+      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;".html_safe, 
         flickr_tagger_path(:taxon_id => @taxon.id) %>
     </p>
     
     <p class="ui">
-      <%= link_to "Flickr invite link &raquo;", 
+      <%= link_to "Flickr invite link &raquo;".html_safe, 
         url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
     </p>
     
     <p class="ui">
-      <%= link_to_function "Wikipedia taxobox &raquo;", "return false;", :id => "taxoboxlink" %>
+      <%= link_to_function "Wikipedia taxobox &raquo;".html_safe, "return false;", :id => "taxoboxlink" %>
       <%- taxobox_content = capture do -%>
         <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>
-        <%= link_to "About the taxobox &raquo;", "http://en.wikipedia.org/wiki/Template:Taxobox" %>
+        <%= link_to "About the taxobox &raquo;".html_safe, "http://en.wikipedia.org/wiki/Template:Taxobox" %>
       <%- end -%>
       <script type="text/javascript" charset="utf-8">
         $('#taxoboxlink').qtip($.extend(true, {}, QTIP_DEFAULTS, {
@@ -706,18 +780,18 @@
     </p>
     
     <p class="ui">
-      <%= link_to "Tree Browser &raquo;", {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
+      <%= link_to "Tree Browser &raquo;".html_safe, {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
         :rel => "nofollow" %>
     </p>
     
     <p class="ui">
-      <%= link_to "Search descendant taxa &raquo;", 
+      <%= link_to "Search descendant taxa &raquo;".html_safe, 
         {:controller => "taxa", :action => "search", :taxon_id => @taxon, :view => TaxaController::LIST_VIEW},
         :rel => "nofollow" %>
     </p>
     
     <p class="ui">
-      <%= link_to "Embed a widget for this taxon on your website &raquo;", observations_widget_path(:taxon_id => @taxon), 
+      <%= link_to "Embed a widget for this taxon on your website &raquo;".html_safe, observations_widget_path(:taxon_id => @taxon), 
         :rel => "nofollow" %>
     </p>
     
@@ -862,7 +936,7 @@
         <% end %>
         <% if logged_in? -%>
           <li class="description" style="padding-right: 0">
-            <%= link_to "Add a link &raquo;", new_taxon_link_path(:taxon_id => @taxon.id) %>
+            <%= link_to "Add a link &raquo;".html_safe, new_taxon_link_path(:taxon_id => @taxon.id) %>
           </li>
         <% end -%>
       </ul>
@@ -897,7 +971,7 @@
               </div>
             <% end -%>
             <% if logged_in? && current_user.is_curator? -%>
-              <%= link_to "Edit range &raquo;", edit_taxon_range_path(@taxon_range) %>
+              <%= link_to "Edit range &raquo;".html_safe, edit_taxon_range_path(@taxon_range) %>
             <% end -%>
           <% else %>
             No range data available.

@@ -2,8 +2,6 @@ class ProjectUser < ActiveRecord::Base
   
   belongs_to :project
   belongs_to :user
-  has_many :project_observations, :through => :project, :include => [:observation], 
-    :conditions => 'observations.user_id = #{user_id}'
   
   after_save :check_role
   before_destroy :prevent_owner_from_leaving
@@ -13,7 +11,11 @@ class ProjectUser < ActiveRecord::Base
   ROLES = %w(curator manager)
   ROLES.each do |role|
     const_set role.upcase, role
-    named_scope role.pluralize, :conditions => {:role => role}
+    scope role.pluralize, where(:role => role)
+  end
+
+  def project_observations
+    project.project_observations.includes(:observation).where("observations.user_id = ?", user_id).scoped
   end
   
   def prevent_owner_from_leaving
@@ -65,9 +67,9 @@ class ProjectUser < ActiveRecord::Base
   def check_role
     return true unless role_changed?
     if role_was.blank?
-      Project.send_later(:update_curator_idents_on_make_curator, project_id, id)
+      Project.delay.update_curator_idents_on_make_curator(project_id, id)
     elsif role.blank?
-      Project.send_later(:update_curator_idents_on_remove_curator, project_id, id)
+      Project.delay.update_curator_idents_on_remove_curator(project_id, id)
     end
     true
   end

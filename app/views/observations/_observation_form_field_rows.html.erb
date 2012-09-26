@@ -1,24 +1,27 @@
 <% observations ||= @observations -%>
 <% observations.each_with_index do |observation, i| %>
   <% i = observation.id unless observation.new_record? -%>
-  <% fields_for("observations[]", observation, :index => i) do |o| %>
+  <%= fields_for("observations[]", observation, :index => i) do |o| %>
     <div class="column span-24 observation" <%= "id='observation-#{observation.id}'" unless observation.new_record? %>>
       <% unless observation.errors.empty? %>
-      <div class="errorcol last column span-21 prepend-1 append-2">
-        <div class="error">
-          <strong>There were some problems saving this observation:</strong>
-          <ul>
-            <% for error in observation.errors %>
-            <li><%= error.first.humanize %> <%= error.last %></li>
-            <% end %>
-          </ul>
+        <div class="errorcol last column span-21 prepend-1 append-2">
+          <div class="error">
+            <strong>There were some problems saving this observation:</strong>
+            <ul>
+              <% for error in observation.errors %>
+              <li><%= error.first.humanize %> <%= error.last %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
-      </div>
       <% end %>
       <% if @observation_photos -%>
-        <% existing_observation_photo = @observation_photos.detect do |op|
-          observation.photos.map(&:native_photo_id).include?(op.photo.native_photo_id)
-        end %>
+        <% 
+          existing_observation_photo = @observation_photos.detect do |op|
+            native_photo_ids = observation.observation_photos.map{|op| op.photo.native_photo_id}
+            native_photo_ids.include?(op.photo.native_photo_id)
+          end
+        %>
         <% if existing_observation_photo -%>
           <div class="clear notice existing_obs_notice">
             <%= image_tag existing_observation_photo.photo.thumb_url %>
@@ -38,7 +41,7 @@
             <%- alt_name = capture do -%>
               <%= render :partial => "shared/taxon", :locals => { :taxon => observation.taxon, :no_common => true } -%>
             <%- end -%>
-            <%= o.hidden_field(:taxon_id, :alt => alt_name, :rel => taxon_image_url(observation.taxon)) %>
+            <%= o.hidden_field(:taxon_id, :alt => alt_name.html_safe.gsub(/"/, "'"), :rel => taxon_image_url(observation.taxon)) %>
           <%- else -%>
             <%= o.hidden_field(:taxon_id) %>
           <% end -%>
@@ -49,9 +52,8 @@
           </div>
         </div>
         <div class="column span-7">
-          <%= o.text_field(:observed_on_string, 
-                           :class => 'text observed_on_string') %>
-              <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+          <%= o.text_field(:observed_on_string, :class => 'text observed_on_string') %>
+          <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
         </div>
         <div class="column span-7">
           <%= o.text_field(:place_guess, :class => 'text place_guess') %>
@@ -85,7 +87,17 @@
               or
               <div class="deletelink">
                 <span class="loading status" style="display: none">Deleting...</span>
-                <%= link_to_function('Delete', "iNaturalist.restfulDelete('#{observation_path(observation)}', {data: {authenticity_token: encodeURIComponent(#{form_authenticity_token.inspect})}, complete: function() {$('#observation-#{observation.id}').fadeOut('normal', function() {$(this).remove()});}}, this);") %>
+                <%= link_to_function 'Delete', 
+                  "iNaturalist.restfulDelete('#{observation_path(observation)}', {" + 
+                    "data: {" + 
+                      "authenticity_token: encodeURIComponent(#{form_authenticity_token.inspect.html_safe})" + 
+                    "}, " + 
+                    "complete: function() {" + 
+                      "$('#observation-#{observation.id}').fadeOut('normal', function() {" + 
+                        "$(this).remove()" + 
+                      "});" + 
+                    "}" + 
+                  "}, this);" %>
               </div>
             <% end -%>
           </div>
@@ -143,7 +155,7 @@
             </a>
             <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
               <%= render :partial => "photos/photo_list_form", :locals => { 
-                :photos => observation.photos,
+                :photos => observation.observation_photos.map(&:photo),
                 :index => i,
                 :checked => true,
                 :local_photos => @default_photo_identity.blank?

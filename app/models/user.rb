@@ -1,15 +1,11 @@
-require 'digest/sha1'
-require 'open-uri'
-
 class User < ActiveRecord::Base
   
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
   
-  include Authentication
-  include Authentication::ByPassword
-  include Authentication::ByCookieToken
-  include Authorization::AasmRoles
+  devise :database_authenticatable, :registerable, :suspendable,
+         :recoverable, :rememberable, :confirmable, :validatable, 
+         :encryptable, :encryptor => :restful_authentication_sha1
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
   attr_accessor :skip_email_validation
@@ -102,7 +98,7 @@ class User < ActiveRecord::Base
   before_save :whitelist_licenses
   after_save :update_observation_licenses
   after_save :update_photo_licenses
-  after_create :create_life_list, :signup_for_incomplete_community_goals
+  after_create :create_life_list
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -113,18 +109,30 @@ class User < ActiveRecord::Base
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
+  
+  # Regexes from restful_authentication
+  login_regex       = /\A[A-z][\w\-_]+\z/                          # ASCII, strict
+  bad_login_message = "use only letters, numbers, and -_ please.".freeze
+  name_regex        = /\A[^[:cntrl:]\\<>\/&]*\z/              # Unicode, permissive
+  bad_name_message  = "avoid non-printing characters and \\&gt;&lt;&amp;/ please.".freeze
+  email_name_regex  = '[\w\.%\+\-]+'.freeze
+  domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
+  domain_tld_regex  = '(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)'.freeze
+  email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
+  bad_email_message = "should look like an email address.".freeze
+  
   validates_length_of       :login,    :within => MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  validates_format_of       :login,    :with => login_regex, :message => bad_login_message
 
-  validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
+  validates_format_of       :name,     :with => name_regex,  :message => bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100, :allow_blank => true
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
   # you can also force skipping email validation by setting u.skip_email_validation=true before you save
   # (this option is necessary because the User is created before the associated ProviderAuthorization)
   validates_presence_of     :email,    :unless => Proc.new{|u| (u.skip_email_validation || (u.provider_authorizations.count > 0))}
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message, :allow_blank => true
+  validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
   validates_length_of       :email,    :within => 6..100, :allow_blank => true #r@a.wk
   validates_uniqueness_of   :email,    :allow_blank => true
 
@@ -133,14 +141,19 @@ class User < ActiveRecord::Base
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :icon, :description, :time_zone, :icon_url
   
-  named_scope :order, Proc.new { |sort_by, sort_dir|
+  scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
-    {:order => ("%s %s" % [sort_by, sort_dir])}
+    order("? ?", sort_by, sort_dir)
   }
-  named_scope :curators, :include => [:roles], :conditions => "roles.name = 'curator'"
+  scope :curators, includes(:roles).where("roles.name = 'curator'")
+  scope :active, where("suspended_at IS NULL")
   
   def icon_url_provided?
     !self.icon_url.blank?
+  end
+
+  def active?
+    !suspended?
   end
 
   def download_remote_icon
@@ -290,11 +303,11 @@ class User < ActiveRecord::Base
     reject.friendships.all(:conditions => ["friend_id = ?", id]).each{|f| f.destroy}
     merge_has_many_associations(reject)
     reject.destroy
-    LifeList.send_later(:reload_from_observations, life_list_id)
+    LifeList.delay.reload_from_observations(life_list_id)
   end
   
   def self.query(params={}) 
-    scope = self.scoped({})
+    scope = self.scoped
     if params[:sort_by] && params[:sort_dir]
       scope.order(params[:sort_by], params[:sort_dir])
     elsif params[:sort_by]
@@ -303,14 +316,16 @@ class User < ActiveRecord::Base
     scope
   end
   
-  # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
+  def self.find_for_authentication(conditions = {})
+    s = conditions[:email].to_s.downcase
+    active.where("lower(login) = ? OR lower(email) = ?", s, s).first
+  end
+  
+  # http://stackoverflow.com/questions/6724494
   def self.authenticate(login, password)
-    return nil if login.blank? || password.blank?
-    u = find_in_state :first, :active, :conditions => ["lower(login) = ?", login.downcase]
-    u ||= find_in_state :first, :active, :conditions => ["lower(email) = ?", login.downcase]
-    u ||= find_in_state :first, :pending, :conditions => ["lower(login) = ?", login.downcase]
-    u ||= find_in_state :first, :pending, :conditions => ["lower(email) = ?", login.downcase]
-    u && u.authenticated?(password) ? u : nil
+    user = User.find_for_authentication(:email => login)
+    return nil if user.blank?
+    user.valid_password?(password) ? user : nil
   end
 
   # create a user using 3rd party provider credentials (via omniauth)
@@ -330,7 +345,7 @@ class User < ActiveRecord::Base
       auth_info["user_info"]["name"])
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
-    autogen_pw = ActiveSupport::SecureRandom.base64(6) # autogenerate a random password (or else validation fails)
+    autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
     u = User.new(
       :login => autogen_login,
       :email => email,
@@ -343,8 +358,7 @@ class User < ActiveRecord::Base
       u.skip_email_validation = true
       u.skip_registration_email = true
       begin
-        u.register!
-        u.activate!
+        u.save!
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /unique constraint/
         suggestion = User.suggest_login(u.login)
@@ -397,10 +411,6 @@ class User < ActiveRecord::Base
     life_list = LifeList.create(:user => self)
     self.life_list = life_list
     self.save
-  end
-  
-  def signup_for_incomplete_community_goals
-    goals << Goal.for('community').incomplete.find(:all)
   end
   
   def create_deleted_user

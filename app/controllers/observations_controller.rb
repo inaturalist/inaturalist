@@ -15,7 +15,7 @@ class ObservationsController < ApplicationController
     :if => Proc.new {|c| !c.request.format.html? }
   cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
   
-  rescue_from ActionController::UnknownAction do
+  rescue_from ::AbstractController::ActionNotFound  do
     unless @selected_user = User.find_by_login(params[:action])
       return render_404
     end
@@ -23,7 +23,7 @@ class ObservationsController < ApplicationController
   end
   
   before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :login_required, 
+  before_filter :authenticate_user!, 
                 :except => [:explore,
                             :index,
                             :of,
@@ -225,10 +225,10 @@ class ObservationsController < ApplicationController
         
         @places = @observation.places
         
-        @project_observations = @observation.project_observations.all(:limit => 100)
+        @project_observations = @observation.project_observations.limit(100).to_a
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
         if logged_in?
-          @project_invitations = @observation.project_invitations.all(:limit => 100)
+          @project_invitations = @observation.project_invitations.limit(100).to_a
           @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
         end
         
@@ -240,7 +240,9 @@ class ObservationsController < ApplicationController
         end.map{|op| op.photo}
         
         if @observation.observed_on
-          @day_observations = Observation.by(@observation.user).on(@observation.observed_on).paginate(:page => 1, :per_page => 14, :include => [:photos])
+          @day_observations = Observation.by(@observation.user).on(@observation.observed_on).
+            includes(:photos).
+            paginate(:page => 1, :per_page => 14)
         end
         
         if logged_in?
@@ -593,7 +595,7 @@ class ObservationsController < ApplicationController
         # Destroy old photos.  ObservationPhotos seem to get removed by magic
         doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
         unless doomed_photo_ids.blank?
-          Photo.send_later(:destroy_orphans, doomed_photo_ids)
+          Photo.delay.destroy_orphans(doomed_photo_ids)
         end
       end
       
@@ -693,7 +695,7 @@ class ObservationsController < ApplicationController
     @observation.destroy
     respond_to do |format|
       flash[:notice] = "Observation was deleted."
-      format.html { redirect_to(observations_by_login_path(@user.login)) }
+      format.html { redirect_to(observations_by_login_path(current_user.login)) }
       format.xml  { head :ok }
     end
   end
@@ -841,10 +843,8 @@ class ObservationsController < ApplicationController
         :user => current_user, :photo_class => klass)
     end.flatten.compact
     @observations = photos.map{|p| p.to_observation}
-    @observation_photos = ObservationPhoto.all(
-      :conditions => ["photos.native_photo_id IN (?)", photos.map(&:native_photo_id)],
-      :include => [:photo, :observation]
-    )
+    @observation_photos = ObservationPhoto.includes(:photo, :observation).
+      where("photos.native_photo_id IN (?)", photos.map(&:native_photo_id))
     @step = 2
     render :template => 'observations/new_batch'
   rescue Timeout::Error => e
@@ -991,8 +991,7 @@ class ObservationsController < ApplicationController
   def selector
     search_params, find_options = get_search_params(params)
 
-    @observations = Observation.latest.query(search_params).paginate(
-      :all, find_options)
+    @observations = Observation.latest.query(search_params).paginate(find_options)
       
     respond_to do |format|
       format.html { render :layout => false, :partial => 'selector'}
@@ -1008,7 +1007,7 @@ class ObservationsController < ApplicationController
     swlng, swlat = merc.from_pixel_to_ll([x * tile_size, (y+1) * tile_size], zoom)
     nelng, nelat = merc.from_pixel_to_ll([(x+1) * tile_size, y * tile_size], zoom)
     @observations = Observation.in_bounding_box(swlat, swlng, nelat, nelng).all(
-      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude",
+      :select => "id, species_guess, latitude, longitude, user_id, description, private_latitude, private_longitude, time_observed_at",
       :include => [:user, :photos], :limit => 500, :order => "id DESC")
     
     respond_to do |format|
@@ -1054,11 +1053,6 @@ class ObservationsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js do
-        render :update do |page|
-          page.replace_html "widget_preview_and_code", :partial => "widget_preview_and_code"
-        end
-      end
     end
   end
   
@@ -1215,10 +1209,8 @@ class ObservationsController < ApplicationController
     #      create Photo obj and put in array
     # 4. return array
     photos = []
-    existing = photo_class.all(
-      :include => :user,
-      :conditions => ["native_photo_id IN (?)", photo_list.uniq]
-    ).index_by{|p| p.native_photo_id}
+    native_photo_ids = photo_list.map{|p| p.to_s}.uniq
+    existing = photo_class.includes(:user).where("native_photo_id IN (?)", native_photo_ids).index_by{|p| p.native_photo_id}
     
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]
@@ -1580,7 +1572,7 @@ class ObservationsController < ApplicationController
     return true if @observations.blank?
     taxa = @observations.select(&:skip_refresh_lists).map(&:taxon).uniq.compact
     return true if taxa.blank?
-    List.send_later(:refresh_for_user, current_user, :taxa => taxa.map(&:id))
+    List.delay.refresh_for_user(current_user, :taxa => taxa.map(&:id))
     true
   end
   
@@ -1609,8 +1601,7 @@ class ObservationsController < ApplicationController
         @observation.photos[@observation.photos.size] = @facebook_photo
       end
       unless @observation.new_record?
-        flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
-          "<a href=\"#{url_for}\">Undo?</a>"
+        flash.now[:notice] = "<strong>Preview</strong> of synced observation.  <a href=\"#{url_for}\">Undo?</a>"
       end
     else
       flash.now[:error] = "Sorry, we didn't find that photo."
@@ -1622,8 +1613,7 @@ class ObservationsController < ApplicationController
   def sync_flickr_photo
     flickr = get_flickraw
     begin
-      fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id], 
-        :auth_token => current_user.flickr_identity.token)
+      fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id])
       @flickr_photo = FlickrPhoto.new_from_flickraw(fp, :user => current_user)
     rescue FlickRaw::FailedResponse => e
       logger.debug "[DEBUG] FlickRaw failed to find photo " +
@@ -1638,7 +1628,7 @@ class ObservationsController < ApplicationController
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
       sync_attrs = %w(description species_guess taxon_id observed_on 
-        observed_on_string latitude longitude place_guess)
+        observed_on_string latitude longitude place_guess map_scale)
       unless params[:flickr_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:flickr_sync_attrs]
       end

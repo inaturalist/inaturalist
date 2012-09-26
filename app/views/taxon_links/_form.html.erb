@@ -19,14 +19,14 @@
     });
   </script>
 <%- end -%>
-<% form_for(@taxon_link, :html => {:class => 'taxon_link_form'}) do |f| %>
+<%= form_for(@taxon_link, :html => {:class => 'taxon_link_form'}) do |f| %>
   <div class="column span-15 append-1">
     <div id="show_for_descendent_taxa_field" class="field right">
       <%= f.check_box :show_for_descendent_taxa %>
       <%= f.label :show_for_descendent_taxa %>
     </div>
     <div id="url_field" class="field">
-      <%= f.label :url, 'URL <span class="required">*</span>' %>
+      <%= f.label :url, 'URL <span class="required">*</span>'.html_safe %>
       <%= f.text_field :url, :class => 'text' %>
       <%= f.error_message_on :url, "URL " %>
     </div>
@@ -42,7 +42,7 @@
       <label for="species_guess">Taxon <span class="required">*</span></label>
       <% if @taxon -%>
         <%= text_field_tag :species_guess, default_taxon_name(@taxon), :class => 'text' %>
-        <%= f.hidden_field :taxon_id, :alt => render(:partial => 'shared/taxon') %>
+        <%= f.hidden_field :taxon_id %>
       <% else %>
         <%= text_field_tag :species_guess, '', :class => 'text' %>
         <%= f.hidden_field :taxon_id %>

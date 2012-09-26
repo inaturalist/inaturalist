@@ -11,11 +11,10 @@ class Comment < ActiveRecord::Base
   notifies_subscribers_of :parent, :notification => "activity", :include_owner => true
   auto_subscribes :user, :to => :parent
   
-  named_scope :by, lambda {|user| 
-    {:conditions => ["comments.user_id = ?", user]}}
+  scope :by, lambda {|user| where("comments.user_id = ?", user)}
+  scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
   
-  named_scope :since, lambda {|datetime|
-    {:conditions => ["comments.created_at > DATE(?)", datetime]}}
+  attr_accessor :html
   
   def formatted_body
     BlueCloth::new(self.body).to_html
@@ -24,7 +23,7 @@ class Comment < ActiveRecord::Base
   def deliver_notification
     return true unless parent.respond_to?(:user_id) && parent.user_id != user_id && 
       parent.user && !parent.user.email.blank? && parent.user.prefers_comment_email_notification?
-    Emailer.send_later(:deliver_comment_notification, self)
+    Emailer.delay.deliver_comment_notification(self)
     true
   end
   

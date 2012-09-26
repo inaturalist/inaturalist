@@ -7,7 +7,7 @@
     $(document).ready(function() {
       $('#observation_selector').observationSelector({
         urlParams: { 
-          authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
+          authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
           include: "<%= @post.observation_ids.join(',') %>",
           user_id: <%= current_user.id %>
         }
@@ -22,7 +22,7 @@
     }
   </style>
 <% end -%>
-<% form_for(post, :html => {:class => 'post_form'}) do |f| %>
+<%= form_for(post, :html => {:class => 'post_form'}) do |f| %>
   <div class="column span-13 append-1">
     <%= error_messages_for :post %>
     <div class="field">

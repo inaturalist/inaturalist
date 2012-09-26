@@ -52,11 +52,11 @@
 </div>
 
 <div class="column span-11 append-1">
-  <% form_tag(:action => 'invite_send') do %>
+  <%= form_tag(:action => 'invite_send') do %>
   
   <div class="clear field">
     <%= label :email, :sender_name, 'From' %>
-    <%= text_field(:email, :sender_name, :value => current_user.login, :class => 'text') %>
+    <%= text_field(:email, :sender_name, :value => @sending_user_real_name, :class => 'text') %>
   </div>
   
   <div class="clear field">
@@ -106,7 +106,7 @@
     </p>
     
     <p>
-      - <span class="preview_sender_name"><%= current_user.login %></span>
+      - <span class="preview_sender_name"><%= @sending_user_real_name %></span>
     </p>
   </div>
 </div>

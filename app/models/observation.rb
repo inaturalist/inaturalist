@@ -62,18 +62,18 @@ class Observation < ActiveRecord::Base
   
   LICENSES = [
     ["CC-BY", "Attribution", "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."],
-    ["CC-BY-NC", "Attribution-NonCommercial", "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don’t have to license their derivative works on the same terms."],
+    ["CC-BY-NC", "Attribution-NonCommercial", "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don't have to license their derivative works on the same terms."],
     ["CC-BY-SA", "Attribution-ShareAlike", "This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. All new works based on yours will carry the same license, so any derivatives will also allow commercial use."],
     ["CC-BY-ND", "Attribution-NoDerivs", "This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you."],
     ["CC-BY-NC-SA", "Attribution-NonCommercial-ShareAlike", "This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms."],
-    ["CC-BY-NC-ND", "Attribution-NonCommercial-NoDerivs", "This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can’t change them in any way or use them commercially."]
+    ["CC-BY-NC-ND", "Attribution-NonCommercial-NoDerivs", "This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can't change them in any way or use them commercially."]
   ]
   LICENSE_CODES = LICENSES.map{|row| row.first}
   LICENSES.each do |code, name, description|
     const_set code.gsub(/\-/, '_'), code
   end
   PREFERRED_LICENSES = [CC_BY, CC_BY_NC]
-
+  
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
@@ -120,7 +120,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has photos(:id), :as => :has_photos, :type => :boolean
+    has photos(:id), :as => :has_photos #, :type => :boolean
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -146,7 +146,7 @@ class Observation < ActiveRecord::Base
       :as => :identifications_some_agree, :type => :boolean
     has "num_identification_agreements < num_identification_disagreements",
       :as => :identifications_most_disagree, :type => :boolean
-    has project_observations(:project_id), :as => :projects, :type => :multi
+    has project_observations(:project_id), :as => :projects #, :type => :multi
     set_property :delta => :delayed
   end
   
@@ -156,7 +156,7 @@ class Observation < ActiveRecord::Base
     fake_latitude fake_longitude num_identification_agreements 
     num_identification_disagreements identifications_most_agree 
     identifications_some_agree identifications_most_disagree projects)
-
+  
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
     :reject_if => lambda { |attrs| attrs[:value].blank? }
@@ -207,53 +207,45 @@ class Observation < ActiveRecord::Base
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
-  # Activity updates
-  # after_save :update_activity_update
-  # before_destroy :delete_activity_update
-  
   ##
   # Named scopes
   # 
   
   # Area scopes
-  named_scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
+  scope :in_bounding_box, lambda { |swlat, swlng, nelat, nelng|
     if swlng.to_f > 0 && nelng.to_f < 0
-      {:conditions => ['latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)',
-                        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f]}
+      where('latitude > ? AND latitude < ? AND (longitude > ? OR longitude < ?)', 
+        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
     else
-      {:conditions => ['latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?',
-                        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f]}
+      where('latitude > ? AND latitude < ? AND longitude > ? AND longitude < ?', 
+        swlat.to_f, nelat.to_f, swlng.to_f, nelng.to_f)
     end
   } do
     def distinct_taxon
-      all(:group => "taxon_id", :conditions => "taxon_id IS NOT NULL", :include => :taxon)
+      group("taxon_id").where("taxon_id IS NOT NULL").includes(:taxon)
     end
   end
   
-  named_scope :in_place, lambda {|place|
+  scope :in_place, lambda {|place|
     place_id = place.is_a?(Place) ? place.id : place.to_i
-    {
-      :joins => "JOIN place_geometries ON place_geometries.place_id = #{place_id}",
-      :conditions => [
-        "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
-      ]
-    }
+    joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
+    where(
+      "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+      "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+    )
   }
   
-  named_scope :in_taxons_range, lambda {|taxon|
+  scope :in_taxons_range, lambda {|taxon|
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
-    {
-      :joins => "JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}",
-      :conditions => [
-        "(observations.private_latitude IS NULL AND ST_Intersects(taxon_ranges.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(taxon_ranges.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
-      ]
-    }
+    joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
+    where(
+      "(observations.private_latitude IS NULL AND ST_Intersects(taxon_ranges.geom, observations.geom)) OR " +
+      "(observations.private_latitude IS NOT NULL AND ST_Intersects(taxon_ranges.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+    )
   }
   
   # possibly radius in kilometers
-  named_scope :near_point, Proc.new { |lat, lng, radius|
+  scope :near_point, Proc.new { |lat, lng, radius|
     lat = lat.to_f
     lng = lng.to_f
     radius = radius.to_f
@@ -261,88 +253,66 @@ class Observation < ActiveRecord::Base
     planetary_radius = PLANETARY_RADIUS / 1000 # km
     radius_degrees = radius / (2*Math::PI*planetary_radius) * 360.0
     
-    {:conditions => ["ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees]}
-    
-    # # The following attempts to utilize the spatial index by restricting to a 
-    # # bounding box.  It doesn't seem to be a speed improvement given the 
-    # # current number of obs, but maybe later...  Note that it's messed up 
-    # # around the poles
-    # box_xmin = lng - radius_degrees
-    # box_ymin = lat - radius_degrees
-    # box_xmax = lng + radius_degrees
-    # box_ymax = lat + radius_degrees
-    # box_xmin = 180 - (box_xmin * -1 - 180) if box_xmin < -180
-    # box_ymin = -90 if box_ymin < -90
-    # box_xmax = -180 + box_max - 180 if box_xmax > 180
-    # box_ymax = 90 if box_ymin > 90
-    # 
-    # {:conditions => [
-    #   "geom && 'BOX3D(? ?, ? ?)'::box3d AND ST_Distance(ST_Point(?,?), geom) <= ?", 
-    #   box_xmin, box_ymin, box_xmax, box_ymax,
-    #   lng.to_f, lat.to_f, radius_degrees]}
+    where("ST_Distance(ST_Point(?,?), geom) <= ?", lng.to_f, lat.to_f, radius_degrees)
   }
   
   # Has_property scopes
-  named_scope :has_taxon, lambda { |taxon_id|
+  scope :has_taxon, lambda { |taxon_id|
     if taxon_id.nil?
-    then return {:conditions => "taxon_id IS NOT NULL"}
-    else {:conditions => ["taxon_id IN (?)", taxon_id]}
+      where("taxon_id IS NOT NULL")
+    else
+      where("taxon_id IN (?)", taxon_id)
     end
   }
-  named_scope :has_iconic_taxa, lambda { |iconic_taxon_ids|
+  scope :has_iconic_taxa, lambda { |iconic_taxon_ids|
     iconic_taxon_ids = [iconic_taxon_ids].flatten # make array if single
     if iconic_taxon_ids.include?(nil)
-      {:conditions => [
+      where(
         "observations.iconic_taxon_id IS NULL OR observations.iconic_taxon_id IN (?)", 
-        iconic_taxon_ids]}
+        iconic_taxon_ids
+      )
     elsif !iconic_taxon_ids.empty?
-      {:conditions => [
-        "observations.iconic_taxon_id IN (?)", iconic_taxon_ids]}
+      where("observations.iconic_taxon_id IN (?)", iconic_taxon_ids)
     end
   }
   
-  named_scope :has_geo, :conditions => ["latitude IS NOT NULL AND longitude IS NOT NULL"]
-  named_scope :has_id_please, :conditions => ["id_please IS TRUE"]
-  named_scope :has_photos, 
-              :select => "DISTINCT observations.*",
-              :joins => "JOIN observation_photos AS _op ON _op.observation_id = observations.id ",
-              :conditions => ['_op.id IS NOT NULL']
-  named_scope :has_quality_grade, lambda {|quality_grade|
+  scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
+  scope :has_id_please, where("id_please IS TRUE")
+  scope :has_photos, 
+    select("DISTINCT observations.*").
+    joins("JOIN observation_photos AS _op ON _op.observation_id = observations.id").
+    where('_op.id IS NOT NULL')
+  scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
-    {:conditions => ["quality_grade = ?", quality_grade]}
+    where("quality_grade = ?", quality_grade)
   }
   
   # Find observations by a taxon object.  Querying on taxa columns forces 
   # massive joins, it's a bit sluggish
-  named_scope :of, lambda { |taxon|
+  scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
-    return {:conditions => "1 = 2"} unless taxon
-    {
-      :joins => :taxon,
-      :conditions => [
-        "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
-        taxon
-      ]
-    }
+    return where("1 = 2") unless taxon
+    joins(:taxon).where(
+      "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
+      taxon
+    )
   }
   
-  named_scope :at_or_below_rank, lambda {|rank| 
+  scope :at_or_below_rank, lambda {|rank| 
     rank_level = Taxon::RANK_LEVELS[rank]
-    {:joins => [:taxon], :conditions => ["taxa.rank_level <= ?", rank_level]}
+    joins(:taxon).where("taxa.rank_level <= ?", rank_level)
   }
   
   # Find observations by user
-  named_scope :by, lambda { |user| 
-    {:conditions => ["observations.user_id = ?", user]}
-  }
+  scope :by, lambda { |user| where("observations.user_id = ?", user)}
   
   # Order observations by date and time observed
-  named_scope :latest, :order => "observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST"
-  named_scope :recently_added, :order => "observations.id DESC"
+  scope :latest, order("observed_on DESC NULLS LAST, time_observed_at DESC NULLS LAST")
+  scope :recently_added, order("observations.id DESC")
   
   # TODO: Make this work for any SQL order statement, including multiple cols
-  named_scope :order_by, lambda { |order|
-    pieces = order.split
+  scope :order_by, lambda { |order_sql|
+    pieces = order_sql.split
     order_by = pieces[0]
     order = pieces[1] || 'ASC'
     extra = [pieces[2..-1]].flatten.join(' ')
@@ -350,100 +320,70 @@ class Observation < ActiveRecord::Base
     options = {}
     case order_by
     when 'observed_on'
-      options[:order] = "observed_on #{order} #{extra}, " + 
-                        "time_observed_at #{order} #{extra}"
+      order "observed_on #{order} #{extra}, time_observed_at #{order} #{extra}"
     when 'created_at'
-      options[:order] = "observations.created_at #{order} #{extra}"
+      order "observations.created_at #{order} #{extra}"
     else
-      options[:order] = "#{order_by} #{order} #{extra}"
+      order "#{order_by} #{order} #{extra}"
     end
-    options
   }
   
-  named_scope :identifications, lambda { |agreement|
-    limited_scope = {:include => :identifications}
+  def self.identifications(agreement)
+    scope = Observation.scoped
+    scope = scope.includes(:identifications)
     case agreement
     when 'most_agree'
-      limited_scope[:conditions] = "num_identification_agreements > num_identification_disagreements"
+      scope.where("num_identification_agreements > num_identification_disagreements")
     when 'some_agree'
-      limited_scope[:conditions] = "num_identification_agreements > 0"
+      scope.where("num_identification_agreements > 0")
     when 'most_disagree'
-      limited_scope[:conditions] = "num_identification_agreements < num_identification_disagreements"
+      scope.where("num_identification_agreements < num_identification_disagreements")
     end
-    limited_scope
-  }
+  end
   
   # Time based named scopes
-  named_scope :created_after, lambda { |time|
-    {:conditions => ['created_at >= ?', time]}
-  }
+  scope :created_after, lambda { |time| where('created_at >= ?', time)}
+  scope :created_before, lambda { |time| where('created_at <= ?', time)}
+  scope :updated_after, lambda { |time| where('updated_at >= ?', time)}
+  scope :updated_before, lambda { |time| where('updated_at <= ?', time)}
+  scope :observed_after, lambda { |time| where('time_observed_at >= ?', time)}
+  scope :observed_before, lambda { |time| where('time_observed_at <= ?', time)}
+  scope :in_month, lambda {|month| where("EXTRACT(MONTH FROM observed_on) = ?", month)}
   
-  named_scope :created_before, lambda { |time|
-    {:conditions => ['created_at <= ?', time]}
-  }
-  
-  named_scope :updated_after, lambda { |time|
-    {:conditions => ['updated_at >= ?', time]}
-  }
-  
-  named_scope :updated_before, lambda { |time|
-    {:conditions => ['updated_at <= ?', time]}
-  }
-  
-  named_scope :observed_after, lambda { |time|
-    {:conditions => ['time_observed_at >= ?', time]}
-  }
-  
-  named_scope :observed_before, lambda { |time|
-    {:conditions => ['time_observed_at <= ?', time]}
-  }
-  
-  named_scope :in_month, lambda {|month|
-    {:conditions => ["EXTRACT(MONTH FROM observed_on) = ?", month]}
-  }
-  
-  named_scope :in_projects, lambda { |projects|
+  scope :in_projects, lambda { |projects|
     projects = projects.split(',') if projects.is_a?(String)
     # NOTE using :include seems to trigger an erroneous eager load of 
     # observations that screws up sorting kueda 2011-07-22
-    {
-      :joins => [:project_observations],
-      :conditions => ["project_observations.project_id IN (?)", projects]
-    }
+    joins(:project_observations).where("project_observations.project_id IN (?)", projects)
   }
   
-  named_scope :on, lambda {|date|
-    {:conditions => Observation.conditions_for_date(:observed_on, date)}
-  }
+  scope :on, lambda {|date| where(Observation.conditions_for_date(:observed_on, date)) }
   
-  named_scope :created_on, lambda {|date|
-    {:conditions => Observation.conditions_for_date("observations.created_at", date)}
-  }
+  scope :created_on, lambda {|date| where(Observation.conditions_for_date("observations.created_at", date))}
   
-  named_scope :out_of_range, :conditions => {:out_of_range => true}
-  named_scope :in_range, :conditions => {:out_of_range => false}
-  named_scope :license, lambda {|license|
+  scope :out_of_range, where(:out_of_range => true)
+  scope :in_range, where(:out_of_range => false)
+  scope :license, lambda {|license|
     if license == 'none'
-      {:conditions => "observations.license IS NULL"}
+      where("observations.license IS NULL")
     elsif LICENSE_CODES.include?(license)
-      {:conditions => {:license => license}}
+      where(:license => license)
     else
-      {:conditions => "observations.license IS NOT NULL"}
+      where("observations.license IS NOT NULL")
     end
   }
   
-  named_scope :photo_license, lambda {|license|
+  scope :photo_license, lambda {|license|
     license = license.to_s
-    opts = {:joins => :photos}
+    scope = joins(:photos).scoped
     license_number = Photo.license_number_for_code(license)
-    opts[:conditions] = if license == 'none'
-      "photos.license = 0"
+    if license == 'none'
+      scope.where("photos.license = 0")
     elsif LICENSE_CODES.include?(license)
-      ["photos.license = ?", license_number]
+      scope.where("photos.license = ?", license_number)
     else
-      "photos.license > 0"
+      scope.where("photos.license > 0")
     end
-    opts
   }
   
   def self.conditions_for_date(column, date)
@@ -469,16 +409,16 @@ class Observation < ActiveRecord::Base
       end
       [conditions.join(' AND '), *values]
     else
-      ["1 = 2"]
+      "1 = 2"
     end
   end
   
   def self.near_place(place)
     place = Place.find_by_id(place) unless place.is_a?(Place)
     if place.swlat
-      Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped({})
+      Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped
     else
-      Observation.near_point(place.latitude, place.longitude).scoped({})
+      Observation.near_point(place.latitude, place.longitude).scoped
     end
   end
   
@@ -487,7 +427,7 @@ class Observation < ActiveRecord::Base
   # May be worth looking into squirrel or some other rails friendly search add on
   #
   def self.query(params = {})
-    scope = self.scoped({})
+    scope = self.scoped
     
     # support bounding box queries
      if (!params[:swlat].blank? && !params[:swlng].blank? && 
@@ -572,7 +512,7 @@ class Observation < ActiveRecord::Base
     time_observed_at.try(:utc)
   end
   
-  def to_json(options = {})
+  def as_json(options = {})
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
     options[:methods] ||= []
@@ -588,7 +528,11 @@ class Observation < ActiveRecord::Base
       options[:methods] << :coordinates_obscured
       options[:methods].uniq!
     end
-    super(options).gsub(/<script.*script>/i, "")
+    h = super(options)
+    h.each do |k,v|
+      h[k] = v.gsub(/<script.*script>/i, "") if v.is_a?(String)
+    end
+    h
   end
   
   def to_xml(options = {})
@@ -596,12 +540,12 @@ class Observation < ActiveRecord::Base
     options[:except] += [:private_latitude, :private_longitude, :private_positional_accuracy, :geom]
     super(options)
   end
-
+  
   #
   # Return a time from observed_on and time_observed_at
   #
   def datetime
-    if observed_on && errors.on(:observed_on).blank?
+    if observed_on && errors[:observed_on].blank?
       if time_observed_at
         Time.mktime(observed_on.year, 
                     observed_on.month, 
@@ -753,17 +697,14 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return if target_taxa.empty?
     
-    List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :skip_subclasses => true,
-      :dj_priority => 1)
-    LifeList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :dj_priority => 1)
-      
-    ProjectList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :dj_priority => 1)
+      :skip_subclasses => true)
+    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+     
+    ProjectList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -775,12 +716,11 @@ class Observation < ActiveRecord::Base
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
-    CheckList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+    CheckList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
-      :new => id_was.blank?,
-      :dj_priority => 1)
+      :new => id_was.blank?)
     true
   end
   
@@ -792,13 +732,11 @@ class Observation < ActiveRecord::Base
   def refresh_lists_after_destroy
     return if @skip_refresh_lists
     return unless taxon
-    List.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
+    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :skip_subclasses => true,
-      :dj_priority => 1)
-    LifeList.send_later(:refresh_with_observation, id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :dj_priority => 1)
+      :skip_subclasses => true)
+    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     true
   end
   
@@ -867,7 +805,7 @@ class Observation < ActiveRecord::Base
     self.time_zone ||= 'UTC'
     true
   end
-
+  
   #
   # Cast lat and lon so they will (hopefully) pass the numericallity test
   #
@@ -876,7 +814,7 @@ class Observation < ActiveRecord::Base
     # self.longitude = longitude.to_f unless longitude.blank?
     true
   end  
-
+  
   #
   # Force time_observed_at into the time zone
   #
@@ -935,7 +873,7 @@ class Observation < ActiveRecord::Base
            :limit => args[0]).include?(observation)
     end
   end
-
+  
   #
   # Checks whether this observation has been flagged
   #
@@ -994,9 +932,7 @@ class Observation < ActiveRecord::Base
     observation.set_quality_grade(:force => true)
     observation.save
     if observation.quality_grade_changed?
-      CheckList.send_later(:refresh_with_observation, observation.id, 
-        :taxon_id => observation.taxon_id, 
-        :dj_priority => 1)
+      CheckList.delay(:priority => 1).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
   end
@@ -1147,13 +1083,13 @@ class Observation < ActiveRecord::Base
   # Make sure the observation is not in the future.
   #
   def must_be_in_the_past
-
+  
     unless observed_on.nil? || observed_on <= Date.today
       errors.add(:observed_on, "can't be in the future")
     end
     true
   end
-
+  
   #
   # Make sure the observation resolves to a single day.  Right now we don't
   # store ambiguity...
@@ -1257,7 +1193,7 @@ class Observation < ActiveRecord::Base
     if taxon_id_changed? && taxon.blank?
       update_out_of_range
     elsif latitude_changed? || private_latitude_changed? || taxon_id_changed?
-      send_later(:update_out_of_range)
+      delay.update_out_of_range
     end
     true
   end
@@ -1303,16 +1239,16 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  def update_attributes(attributes)
-    # hack around a weird android bug, should be removeable after any release post-March 2012
-    attributes.delete(:iconic_taxon_name)
-    
-    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    end
-    super(attributes)
-  end
+  # def update_attributes(attributes)
+  #   # hack around a weird android bug, should be removeable after any release post-March 2012
+  #   attributes.delete(:iconic_taxon_name)
+  #   
+  #   MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+  #     self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+  #     self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+  #   end
+  #   super(attributes)
+  # end
   
   def license_name
     return nil if license.blank?
@@ -1326,7 +1262,8 @@ class Observation < ActiveRecord::Base
   include ObservationsHelper
   include ActionView::Helpers::SanitizeHelper
   include ActionView::Helpers::TextHelper
-  include ActionController::UrlWriter
+  # include ActionController::UrlWriter
+  include Rails.application.routes.url_helpers
   
   def image_url
     observation_image_url(self, :size => "medium")

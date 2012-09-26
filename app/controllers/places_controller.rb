@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   include Shared::WikipediaModule
   include Shared::GuideModule
   
-  before_filter :login_required, :except => [:index, :show, :search, 
+  before_filter :authenticate_user!, :except => [:index, :show, :search, 
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide,
     :cached_guide, :guide_widget]
   before_filter :return_here, :only => [:show]
@@ -154,16 +154,11 @@ class PlacesController < ApplicationController
     end
     
     respond_to do |format|
-      format.json { render :json => @ydn_places }
-      format.js do
-        render :update do |page|
-          if @places.blank?
-            page.alert "No matching places found."
-          else
-            page << "addPlaces(#{@places.to_json})"
-            page['places'].replace_html :partial => 'create_external_place_links'
-          end
+      format.json do
+        @places.each_with_index do |place, i|
+          @places[i].html = view_context.render_in_format(:html, :partial => "create_external_place_link", :object => place, :locals => {:i => i})
         end
+        render :json => @places.to_json(:methods => [:html])
       end
     end
   end
@@ -346,7 +341,7 @@ class PlacesController < ApplicationController
   
   def geometry_from_messy_kml(kml)
     geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
-    Hpricot.XML(kml).search('Polygon').each do |hpoly|
+    Nokogiri::XML(kml).search('Polygon').each do |hpoly|
       geometry << GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
     end
     geometry.empty? ? nil : geometry

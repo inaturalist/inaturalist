@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  acts_as_tree
+  has_ancestry
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   has_many :check_lists, :dependent => :destroy
@@ -100,46 +100,43 @@ class Place < ActiveRecord::Base
   end
   PLACE_TYPE_CODES = PLACE_TYPES.invert
   
-  named_scope :containing_lat_lng, lambda {|lat, lng|
-    {:joins => :place_geometry, :conditions => ["ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat]}
+  scope :containing_lat_lng, lambda {|lat, lng|
+    joins(:place_geometry).where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat)
   }
 
-  named_scope :bbox_containing_lat_lng, lambda {|lat, lng|
-    {:conditions => [
+  scope :bbox_containing_lat_lng, lambda {|lat, lng|
+    where(
       "(swlng > 0 AND nelng < 0 AND swlat <= ? AND nelat >= ? AND (swlng <= ? OR nelng >= ?)) " +
       "OR (swlng * nelng >= 0 AND swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?)", 
       lat, lat, lng, lng,
       lat, lat, lng, lng
-    ]}
+    )
   }
   
-  named_scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
-    {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", swlat, nelat, swlng, nelng]}
+  scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
+    where("swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", swlat, nelat, swlng, nelng)
   }
   
   # This can be very expensive.  Use sparingly, or scoped.
-  named_scope :intersecting_taxon, lambda{|taxon|
+  scope :intersecting_taxon, lambda{|taxon|
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
-    {
-      :joins => 
-        "JOIN place_geometries ON place_geometries.place_id = places.id " + 
-        "JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}",
-      :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
-    }
+    joins("JOIN place_geometries ON place_geometries.place_id = places.id").
+    joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
+    where("ST_Intersects(place_geometries.geom, taxon_ranges.geom)")
   }
   
-  named_scope :place_type, lambda{|place_type|
+  scope :place_type, lambda {|place_type|
     place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
     place_type = place_type.to_i
-    {:conditions => {:place_type => place_type}}
+    where(:place_type => place_type)
   }
   
-  named_scope :place_types, lambda{|place_types|
+  scope :place_types, lambda {|place_types|
     place_types = place_types.map do |place_type|
       place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
       place_type.to_i
     end
-    {:conditions => ["place_type IN (?)", place_types]}
+    where("place_type IN (?)", place_types)
   }
   
   def to_s
@@ -164,7 +161,7 @@ class Place < ActiveRecord::Base
   
   # Wrap the attr call to set it if unset (or if :reload => true)
   def display_name(options = {})
-    return super unless super.blank? || options[:reload]
+    return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
     ancestor_names = self.ancestors.select do |a|
       %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
@@ -299,7 +296,7 @@ class Place < ActiveRecord::Base
   # Create a CheckList associated with this place
   def create_default_check_list
     self.create_check_list(:place => self)
-    save(false)
+    save(:validate => false)
     unless check_list.valid?
       logger.info "[INFO] Failed to create a default check list on " + 
         "creation of #{self}: " + 
@@ -353,7 +350,7 @@ class Place < ActiveRecord::Base
       self.nelng = geom.envelope.upper_corner.x
     end
     calculate_bbox_area
-    save(false)
+    save(:validate => false)
   end
   
   #
@@ -528,6 +525,9 @@ class Place < ActiveRecord::Base
       save_geom(mergee.place_geometry.geom)
     end
     
+    # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
+    mergee.reload
+
     mergee.destroy
     self.save
     self

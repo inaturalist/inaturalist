@@ -12,7 +12,7 @@
   <textarea class="text" style="width: 100%; height: 1.2em; font-size: 175%"><%= @invite_url %></textarea>
 </div>
 
-<% form_tag url_for, :method => :get do %>
+<%= form_tag url_for, :method => :get do %>
   <label for="taxonchooser">Automatically ID the new obs as</label>
   <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => "Type species name..." %>
   &nbsp;
@@ -36,7 +36,7 @@
     queryParam: 'q',
     collectionUrl: 'http://'+window.location.host + '/projects/search.json',
     resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
-    defaultSources: <%= @projects.to_json %>
+    defaultSources: <%= @projects.to_json.html_safe %>
   })
     var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields", //?context=user",
         PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]

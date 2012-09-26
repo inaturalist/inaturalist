@@ -68,7 +68,7 @@
       :class => "selected" %>
     <form method="get" id="placechooser" class="buttonrow smallbuttons inline">
       <label for="place_name">Place name</label>
-      <input type="text" name="place_id" value="" id="place_id" placeholder="Type place name" data-json='<%= @place.to_json %>'/>
+      <input type="text" name="place_id" value="" id="place_id" placeholder="Type place name" data-json='<%= @place.to_json.html_safe %>'/>
       <input type="submit" value="Generate Widget" disabled="true" class="disabled default button"/>
       <%= link_to_function "cancel", "$('#placechooser').hide(); $('#placechooserlink').show()", :class => "cancellink" %>
     </form>
@@ -150,7 +150,7 @@
         <input type="radio" name="layout" <%= 'checked="checked"' if @layout == 'small' %> value="small" id="layout_small"> <label for="layout_small">grid</label>
       </div>
 
-      <%= submit_tag "Configure &raquo;", :class => "button" %>
+      <%= submit_tag "Configure &raquo;".html_safe, :class => "button" %>
     </form>
   </div>
 

@@ -1,4 +1,5 @@
 <%
+  identification ||= @identification
   taxon ||= identification.taxon
   observation ||= identification.observation
   user ||= identification.user
@@ -11,7 +12,6 @@
   end
   hide_actions ||= false
   extra ||= nil
-  remote_actions ||= false
 -%>
 <div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>">
   <div class="identification_image">
@@ -29,37 +29,19 @@
                             :link_url => taxon } %>
     <% unless hide_actions -%>
       <% if logged_in? && identification.user_id != current_user.id %>
-        <span class="agree button"><%- if remote_actions -%>
-          <%= link_to_remote "Agree?", 
-             :url => {
-               :controller => 'identifications',
-               :action => 'agree',
-               :observation_id => identification.observation_id,
-               :taxon_id => identification.taxon_id },
-             :method => :post,
-             :loading => "$('##{id_for(identification)} .agree').text('').addClass('small pale inline loading status').removeClass('button').append('Loading...')",
-             :success => "$('##{id_for(identification)} .agree').remove()" -%>
-        <%- else -%>
+        <span class="agree button">
           <%= link_to "Agree?", {
                :controller => 'identifications',
                :action => 'agree',
                :observation_id => identification.observation_id,
                :taxon_id => identification.taxon_id },
-             :method => :post -%>
-        <%- end -%></span>
+             :method => :post -%></span>
       <% end %>
       <% if logged_in? && identification.user_id == current_user.id %>
-        <span class="button"><%- if remote_actions -%>
-          <%= link_to_remote "Remove", 
-             :url => identification_path(identification), 
-             :method => :delete,
-             :loading => "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" -%>
-        <%- else -%>
-          <%= link_to "Remove", identification_path(identification), 
+        <span class="button"><%= link_to "Remove", identification_path(identification), 
             :method => :delete,
-            :onclick => 
-              "$('##{id_for(identification)} .delete').text('').addClass('small inline loading status').removeClass('button').append('Removing...')" -%>
-        <%- end -%></span>
+            "data-loading-click" => "Removing...",
+            :class => "removelink" -%></span>
       <% end %>
     <% end -%>
     

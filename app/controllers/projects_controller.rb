@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     :if => Proc.new {|c| c.request.format.widget?}
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
-  before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
+  before_filter :authenticate_user!, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
         end
       end
       format.json do
-        scope = Project.scoped({})
+        scope = Project.scoped
         scope = scope.featured if params[:featured]
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
         scope = scope.from_source_url(params[:source]) if params[:source]
@@ -297,7 +297,7 @@ class ProjectsController < ApplicationController
       redirect_to project_members_path(@project)
       return
     end
-    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
+    Project.delay.delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     if @project_user.destroy
       flash[:notice] = "Removed project user"
       redirect_to project_members_path(@project)
@@ -377,9 +377,9 @@ class ProjectsController < ApplicationController
     
     
     unless @project_user.role == nil
-      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
+      Project.delay.update_curator_idents_on_remove_curator(@project.id, @project_user.user.id)
     end
-    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
+    Project.delay.delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     @project_user.destroy
     
     respond_to do |format|
@@ -426,7 +426,7 @@ class ProjectsController < ApplicationController
   
   def invitations
     scope = @project.observations_matching_rules
-    existing_scope = Observation.in_projects([@project]).scoped({})
+    existing_scope = Observation.in_projects([@project]).scoped
     invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project])
 
     if params[:by] == "you"
@@ -435,9 +435,9 @@ class ProjectsController < ApplicationController
       invited_scope = invited_scope.by(current_user)
     end
 
-    scope_sql = scope.construct_finder_sql({})
-    existing_scope_sql = existing_scope.construct_finder_sql({})
-    invited_scope_sql = invited_scope.construct_finder_sql({})
+    scope_sql = scope.to_sql
+    existing_scope_sql = existing_scope.to_sql
+    invited_scope_sql = invited_scope.to_sql
 
     sql = "(#{scope_sql}) EXCEPT ((#{existing_scope_sql}) UNION (#{invited_scope_sql}))"
     @observations = Observation.paginate_by_sql(sql, :page => params[:page])
@@ -578,7 +578,9 @@ class ProjectsController < ApplicationController
   end
   
   def ensure_current_project_url
-    return redirect_to @project, :status => :moved_permanently unless @project.friendly_id_status.best?
+    if request.path != project_path(@project)
+      return redirect_to @project, :status => :moved_permanently
+    end
   end
   
   def load_project_user

@@ -13,13 +13,13 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
-    var DATES = <%= @dates.to_json %>
+    var DATES = <%= @dates.to_json.html_safe %>
     $(document).ready(function() {
       <% for date in @dates %>
         var map = iNaturalist.Map.createMap({
           div: "map-<%= date %>"
         })
-        map.addObservations(<%= @observations_by_date_by_taxon_id[date].values.flatten.to_json(:include => [:iconic_taxon]) %>)
+        map.addObservations(<%= @observations_by_date_by_taxon_id[date].values.flatten.to_json(:include => [:iconic_taxon]).html_safe %>)
         map.zoomToObservations()
       <% end -%>
     })
@@ -28,7 +28,7 @@
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar", calendar_path(@login), :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar".html_safe, calendar_path(@login), :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>

@@ -40,7 +40,7 @@
 
 <div class="pageheader">
   <span class="breadcrumbs">
-    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>", 
+    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>".html_safe, 
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
   <h2>Merge <em><%= @taxon.name %></em></h2>
@@ -51,7 +51,7 @@
   </p>
 </div>
 
-<% form_tag merge_taxon_path(@taxon), :class => "clear buttons" do %>
+<%= form_tag merge_taxon_path(@taxon), :class => "clear buttons" do %>
   <%= text_field_tag :keeper_name, @taxon.name, :class => "text" %>
   <%= hidden_field_tag :taxon_id, @keeper ? @keeper.id : nil %>
   <%= submit_tag "Merge", :disabled => true, :class => "default button", 

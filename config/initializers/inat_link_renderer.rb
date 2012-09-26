@@ -1,4 +1,4 @@
-class INatLinkRenderer < WillPaginate::LinkRenderer
+class INatLinkRenderer < WillPaginate::ActionView::LinkRenderer 
   def rel_value(page)
     "nofollow"
   end

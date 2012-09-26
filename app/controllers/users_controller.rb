@@ -1,5 +1,5 @@
 class UsersController < ApplicationController  
-  before_filter :login_required, :except => [:index, :show, :new, :create, :activate, :relationships]
+  before_filter :authenticate_user!, :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :edit, :update, :relationships, :add_role, :remove_role]
   before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
@@ -124,7 +124,7 @@ class UsersController < ApplicationController
     unless @user.project_users.blank? #remove any curator id's this user might have made
       @user.project_users.each do |pu|
         unless pu.role.nil?
-          Project.send_later(:update_curator_idents_on_remove_curator, pu.project_id, @user.id)
+          Project.delay.update_curator_idents_on_remove_curator(pu.project_id, @user.id)
         end
       end
     end
@@ -157,7 +157,7 @@ class UsersController < ApplicationController
     @q = params[:q].to_s
     if logged_in? && !@q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
-      if @q =~ Authentication.email_regex
+      if @q =~ Devise.email_regexp
         find_options[:conditions] = ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
         find_options[:conditions] = ["lower(name) LIKE ?", wildcard_q]

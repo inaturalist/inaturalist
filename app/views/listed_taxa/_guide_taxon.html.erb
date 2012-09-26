@@ -1,5 +1,5 @@
 <%-
-  listed_taxon ||= object || @listed_taxon
+  listed_taxon ||= guide_taxon || @listed_taxon
   taxon ||= listed_taxon.taxon
 -%>
 <%- month_stats = capture do %>
@@ -53,7 +53,7 @@
     :link_image => true,
     :extra_class => "inlineblock",
     :hide_wikipedia_summary => true,
-    :after_image => month_stats + upperright
+    :after_image => month_stats.to_s + upperright.to_s
   } %>
 
   <% if obs = listed_taxon.first_observation -%>

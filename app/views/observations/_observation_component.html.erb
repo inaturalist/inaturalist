@@ -108,7 +108,7 @@ Some notes:
       </span>
     <% else %>
       <span class="taxon">
-        <%= link_to "(Something&hellip;)", observation %>
+        <%= link_to "(Something&hellip;)".html_safe, observation %>
       </span>
     <% end %>
     <!-- <span class="button detailsctrl">Show Details</span> -->
@@ -192,7 +192,7 @@ Some notes:
     <%- if observation.id_please? %>
       <ul>
         <li class="last">
-          <%= link_to "ID<span class='full'> Please</span>!", observation, :class => "id_please_notice", 
+          <%= link_to "ID<span class='full'> Please</span>!".html_safe, observation, :class => "id_please_notice", 
             "data-tip" => "#{observation.user.login} would like some help identifying this!",
             "data-tip-show-delay" => 1000 %>
         </li>
@@ -200,7 +200,7 @@ Some notes:
     <%- elsif observation.research_grade? %>
       <ul>
         <li class="last">
-          <%= link_to "R<span class='full'>esearch </span>G<span class='full'>rade</span>", observation_url(observation, :anchor => "data_quality_assessment"), 
+          <%= link_to "R<span class='full'>esearch </span>G<span class='full'>rade</span>".html_safe, observation_url(observation, :anchor => "data_quality_assessment"), 
             :class => "research_grade_notice", 
             "data-tip" => "\"Research grade\" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.",
             "data-tip-show-delay" => 1000 %>

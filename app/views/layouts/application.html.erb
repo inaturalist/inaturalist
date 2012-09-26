@@ -11,8 +11,8 @@
     <title><%= APP_CONFIG[:site_name] %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= render :partial => 'shared/common_stylesheets'%>
-    <%= javascript_include_tag 'jquery/jquery-1.5.1.min', 
-                               'jquery/jquery-ui-1.8.11.min.js', 
+    <%= javascript_include_tag 'jquery/jquery-1.7.2.min', 
+                               'jquery/jquery-ui-1.8.21.min.js', 
                                "iso8601",
                                "jquery/plugins/jquery.qtip2.min", 
                                "jquery/plugins/jquery.multiselect.min", 
@@ -23,6 +23,7 @@
                                "jquery/plugins/inat/taxon_selectors.js",
                                "jquery/plugins/jquery.timeago.js",
                                "jquery/plugins/jquery.scrollTo-min.js",
+                               'rails',
                                'application', 
                                'inaturalist' %>
     <%= csrf_meta_tag %>
@@ -36,9 +37,9 @@
       <%= render :partial => 'shared/header' %>
     <% end %>
   <% end -%>
-
-  <% if flash[:notice] %>
-  <p id="flash" class="notice"><%= flash[:notice] %></p> 
+  
+  <% if flash[:notice] || flash[:alert] %>
+  <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
   <% end %>
   
   <% if flash[:error] %>

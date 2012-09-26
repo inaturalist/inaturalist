@@ -18,7 +18,7 @@ module Ruler
         return if send(association).blank?
         rules = send(association).send("#{self.class.to_s.underscore.singularize}_rules")
         rules.each do |rule|
-          errors.add_to_base("Didn't pass rule: #{rule.terms}") unless rule.validates?(self)
+          errors[:base] << "Didn't pass rule: #{rule.terms}" unless rule.validates?(self)
         end
       end
       validate validation_method_name

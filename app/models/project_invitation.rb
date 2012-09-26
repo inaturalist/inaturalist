@@ -3,7 +3,7 @@ class ProjectInvitation < ActiveRecord::Base
   belongs_to :observation
   belongs_to :user
   validates_presence_of :project_id, :observation_id, :user_id
-  validate_on_create :invited_by_project_member?
+  validate :invited_by_project_member?, :on => :create
   after_destroy :expire_caches
   validate :must_not_be_a_project_observation
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already invited to this project"

@@ -5,7 +5,7 @@
   end
   options = [['one of your lists...', 0]] + lists.map{|l| [l.title, l.id]}
 -%>
-<% form_tag compare_lists_path(@list), :method => :get do %>
+<%= form_tag compare_lists_path(@list), :method => :get do %>
   <label for="with">Compare with</label>
   <%= select_tag :with, options_for_select(options, :disabled  => 0, :selected => 0), 
     :onchange => "$(this).parents('form').submit()" %>

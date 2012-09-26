@@ -69,33 +69,51 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
-  var loading = $(this).clone()
-  loading.unbind()
-  loading.attr('onclick', 'return false;')
-  loading
-    .attr('id', '')
-    .addClass('loadingclick')
-    .css('padding-left', '25px')
-    .html(txt)
-  loading.click(function(e){
-    e.preventDefault()
-    return false
-  })
-  if (txt == '') {
-    loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
+  var loading = $(this).siblings('.loadingclick:first')
+  if (loading.length == 0) {
+    loading = $(this).clone()
+    loading.unbind()
+    loading.attr('onclick', 'return false;')
+    loading
+      .attr('id', '')
+      .addClass('loadingclick')
+      .css('padding-left', '25px')
+      .html(txt)
+    loading.click(function(e){
+      e.preventDefault()
+      return false
+    })
+    if (txt == '') {
+      loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
+    }
+    $(this).before(loading)
   }
-  $(this).hide().before(loading)
+  $(this).hide()
+  $(loading).show()
+
+  var link = this
+  if (!$(this).attr('data-loading-click-bound')) {
+    // this *should* bind complete but that doesn't seem to be working with the current
+    $(this).bind('ajax:success', function() {
+      $(link).show()
+      loading.hide()
+    })
+    $(this).attr('data-loading-click-bound', true)
+  }
 }
 
 $('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function() {
+  $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
+  $(this).data('original-value', $(this).val())
   $(this).addClass('disabled description').val(txt)
   var link = this
   
   if (!$(this).attr('data-loading-click-bound')) {
-    $(this).parents('form').bind('ajax:success', function() {
+    $(this).parents('form').bind('ajax:complete', function() {
       $(link).attr('disabled', false).removeClass('disabled description')
+      $(link).val($(link).data('original-value'))
     })
     $(this).attr('data-loading-click-bound', true)
   }
@@ -233,6 +251,77 @@ $(document).ready(function() {
     }
     return false
   })
+  
+  $('.commentpreviewbutton').click(function() {
+    var button = this
+    $.ajax($(this).attr('href'), {
+      type: 'POST',
+      data: $(this).parents('form').serialize() + '&preview=true',
+      dataType: 'json',
+      beforeSend: function() {
+        $(button).hide()
+        $(button).nextAll('.loading').show()
+      }
+    })
+    .done(function(data) {
+      $(button).show()
+      $(button).nextAll('.loading').hide()
+      var html = data.html || data.body || ''
+      html = '<div class="dialog">'+html+'</div>'
+      $(html).dialog({modal: true, title: 'Preview'})
+    })
+    return false
+  })
+  
+  $('.identificationform')
+    .bind('ajax:before', function() {
+      $('.default.button', this).hide()
+      $('.loading', this).show()
+    })
+    .bind('ajax:complete', function() {
+      $('.default.button', this).show()
+      $('.loading', this).hide()
+    })
+    .bind('ajax:success', function(event, json, status) {
+      $(this).parents('.identification_form_wrapper:first').fadeOut()
+      $(this).parents('.identifications').find('.identifications-list').append(json.html)
+      $(this).parents('.identifications').find('.identifications-list .identification:last').addClass('stacked')
+    })
+    .bind('ajax:error', function(event, request, settings) {
+      var json = eval('(' + request.responseText + ')')
+      if (json.errors) {
+        var errors = json.errors.join(', ')
+        alert('Failed to save identification: ' + errors)
+      }
+    })
+    
+  $('.friend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.unfriend_link').fadeIn()
+    })
+  })
+  $('.unfriend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.friend_link').fadeIn()
+    })
+  })
+  
+  $('.commentform').bind('ajax:before', function() {
+    $(this).siblings('.loading').show()
+    $(this).hide()
+  }).bind('ajax:complete', function() {
+    $(this).siblings('.loading').hide()
+    $(this).show()
+    $('input[type=submit]', this).val('Save comment').attr('disabled', false)
+  }).bind('ajax:success', function(e, json, status) {
+    $('textarea', this).val('')
+    var wrapper = $(this).parents('.comments_wrapper:first')
+    wrapper.find('.comments').show()
+    wrapper.find('.noresults').hide()
+    wrapper.find('.comments').append(json.html)
+  }).bind('ajax:error', function(xhr, status, error) {
+    alert(error)
+  })
 })
 
 function checkDelayedLink(url) {
@@ -342,7 +431,7 @@ $.fn.shades = function(e, options) {
 
 $.fn.showInlineBlock = function() {
   var opts = {}
-  if ($.browser.msie) {
+  if ($.browser.msie && $.browser.version < 8) {
     opts.zoom = 1
     opts.display = 'inline'
     opts['*display'] = 'inline'

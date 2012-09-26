@@ -1,8 +1,8 @@
 # Filters added to this controller will be run for all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
-  include AuthenticatedSystem
-  include RoleRequirementSystem
+  # include AuthenticatedSystem
+  # include RoleRequirementSystem
   include Ambidextrous
   
   has_mobile_fu
@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
   
   helper :all # include all helpers, all the time
   protect_from_forgery
-  filter_parameter_logging :password, :password_confirmation
-  before_filter :login_from_cookie, :get_user, :set_time_zone
+  before_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :user_logging
@@ -21,7 +20,30 @@ class ApplicationController < ActionController::Base
   PER_PAGES = [10,30,50,100]
   HEADER_VERSION = 8
   
+  alias :logged_in? :user_signed_in?
+  
   private
+  
+  # Store the URI of the current request in the session.
+  #
+  # We can return to this location by calling #redirect_back_or_default.
+  def store_location
+    session[:return_to] = request.fullpath
+  end
+
+  # Redirect to the URI stored by the most recent store_location call or
+  # to the passed default.  Set an appropriately modified
+  #   after_filter :store_location, :only => [:index, :new, :show, :edit]
+  # for any controller you want to be bounce-backable.
+  def redirect_back_or_default(default)
+    back_url = session[:return_to] # || request.env['HTTP_REFERER']
+    if back_url && ![request.path, request.url].include?(back_url)
+      redirect_to(back_url)
+    else
+      redirect_to default
+    end
+    session[:return_to] = nil
+  end
   
   #
   # Update an ActiveRecord conditions array with new conditions
@@ -60,15 +82,9 @@ class ApplicationController < ActionController::Base
   def get_user
     @user = self.current_user if logged_in?
   end
-  
-  def get_net_flickr
-    Net::Flickr.authorize(FLICKR_API_KEY, FLICKR_SHARED_SECRET)
-  end
 
   def get_flickraw
-    FlickRaw.api_key = FLICKR_API_KEY
-    FlickRaw.shared_secret = FLICKR_SHARED_SECRET
-    flickr
+    current_user ? FlickrPhoto.flickraw_for_user(current_user) : flickr
   end
   
   def flickr_required
@@ -90,7 +106,7 @@ class ApplicationController < ActionController::Base
   def curator_required
     unless logged_in? && current_user.is_curator?
       flash[:notice] = "Only curators can access that page."
-      if session[:return_to] == request.request_uri
+      if session[:return_to] == request.fullpath
         redirect_to root_url
       else
         redirect_back_or_default(root_url)
@@ -118,8 +134,8 @@ class ApplicationController < ActionController::Base
         ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)
       ie_needs_return_to = true
     end
-    if (ie_needs_return_to || request.format.html?) && !params.keys.include?('partial')
-      session[:return_to] = request.request_uri
+    if (ie_needs_return_to || request.format.blank? || request.format.html?) && !params.keys.include?('partial')
+      session[:return_to] = request.fullpath
     end
     true
   end
@@ -138,7 +154,7 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
-    return render(:file => "#{RAILS_ROOT}/public/404.html", :status => 404)
+    return render(:file => "#{Rails.root}/public/404.html", :status => 404, :layout => false)
   end
   
   #
@@ -294,7 +310,7 @@ class ApplicationController < ActionController::Base
     return true unless params[:auth_provider]
     return true unless request.get?
     if logged_in?
-      uri_pieces = request.request_uri.split('?')
+      uri_pieces = request.fullpath.split('?')
       param_pieces = uri_pieces[1].split('&')
       param_pieces.delete_if {|p| p =~ /^auth_provider/}
       redirect_to [uri_pieces[0], param_pieces.join('&')].join('?')
@@ -315,7 +331,7 @@ module Rubaidh # :nodoc:
     def add_google_analytics_code
       return if logged_in? && current_user.has_role?(User::JEDI_MASTER_ROLE)
       
-      code = google_analytics_code(request)
+      code = google_analytics_code
       return if code.blank?
       response.body.gsub! '</body>', code + '</body>' if response.body.respond_to?(:gsub!)
     end

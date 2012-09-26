@@ -186,7 +186,7 @@ Taxa &middot; All Species
       <div id="desccol">
         <center id="featurednav">
           <% if i > 0 -%>
-            <%= link_to_function "&larr;", 
+            <%= link_to_function "&larr;".html_safe, 
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{i-1}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{i-1}', {axis: 'x'})",
@@ -195,14 +195,14 @@ Taxa &middot; All Species
             <span class="navarr">&larr;</span>
           <% end -%>
           <% @featured_taxa.size.times do |n| %>
-            <%= link_to_function "&middot", 
+            <%= link_to_function "&middot;".html_safe, 
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{n}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{n}', {axis: 'x'})",
               :class => "navdot_#{n} navdot #{'selected' if n == i}" %>
           <% end %>
           <% if i < @featured_taxa.size - 1 -%>
-            <%= link_to_function "&rarr;", 
+            <%= link_to_function "&rarr;".html_safe, 
               "$('.navdot').removeClass('selected');" +
               "$('.navdot_#{i+1}').addClass('selected');" +
               "$('#featured').scrollTo('#featured_taxon_#{i+1}', {axis: 'x'})",
@@ -212,8 +212,8 @@ Taxa &middot; All Species
           <% end -%>
         </center>
         <div class="readable">
-          <%= taxon.wikipedia_summary %>
-          <%= link_to "Learn more &raquo;", taxon, :class => "nobr" %>
+          <%= sanitize(taxon.wikipedia_summary.html_safe) %>
+          <%= link_to "Learn more &raquo;".html_safe, taxon, :class => "nobr" %>
         </div>
       </div>
 
@@ -231,7 +231,7 @@ Taxa &middot; All Species
             <%= link_to "View", observation %>
             <% if taxon.observations_count > 1 %>
               |
-              <%= link_to "View all #{pluralize(taxon.observations_count, 'observation')} &raquo;", 
+              <%= link_to "View all #{pluralize(taxon.observations_count, 'observation')} &raquo;".html_safe, 
                 observations_path(:taxon_id => taxon) %>
             <% end %>
           </div>
@@ -239,7 +239,7 @@ Taxa &middot; All Species
           <br/>
           <p>
             Seen one?
-            <%= link_to "Add an observation &raquo;", new_observation_path(:taxon_id => taxon), :rel => "nofollow" %>
+            <%= link_to "Add an observation &raquo;".html_safe, new_observation_path(:taxon_id => taxon), :rel => "nofollow" %>
           </p>
         <% end -%>
       </div>
@@ -268,7 +268,7 @@ Taxa &middot; All Species
         <% end %>
       </div>
       <h3>
-        <% link_to iconic_taxon do %>
+        <%= link_to iconic_taxon do %>
           <%= render :partial => 'shared/taxon', :object => iconic_taxon %>
         <% end %>
       </h3>
@@ -283,7 +283,7 @@ Taxa &middot; All Species
     <% for observation in @recent %>
     <p>
       <%= link_to taxon_image(observation.taxon, :size => "small"), observation.taxon %>
-      <% link_to(observation.taxon) do %>
+      <%= link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>
       <span class="description date">on <%= observation.observed_on.to_s(:long) %></span>

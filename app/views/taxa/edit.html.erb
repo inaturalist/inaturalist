@@ -6,7 +6,7 @@ Editing <%= @taxon.name %>
 
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">
-    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>", 
+    <%= link_to "Back to Viewing <i>#{@taxon.name}</i>".html_safe, 
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
   <h2>Editing <i><%= @taxon.name %></i></h2>

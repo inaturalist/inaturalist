@@ -46,17 +46,18 @@ class Photo < ActiveRecord::Base
   SMALL = 240
   MEDIUM = 500
   LARGE = 1024
+
+  validate :licensed_if_no_user
   
   def to_s
     "<#{self.class} id: #{id}, user_id: #{user_id}>"
   end
   
-  def validate
+  def licensed_if_no_user
     if user.blank? && self.license == 0
       errors.add(
         :license, 
-        "must be a Creative Commons license if the photo wasn't added by " +
-        "an iNaturalist user who took the photo")
+        "must be a Creative Commons license if the photo wasn't added by an iNaturalist user.")
     end
   end
   

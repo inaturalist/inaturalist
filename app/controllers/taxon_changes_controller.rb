@@ -18,7 +18,7 @@ class TaxonChangesController < ApplicationController
     @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     
-    scope = TaxonChange.scoped({})
+    scope = TaxonChange.scoped
     if @committed == 'Yes'
       scope = scope.committed
     elsif @committed == 'No'
@@ -122,7 +122,7 @@ class TaxonChangesController < ApplicationController
       redirect_to :back and return
     end
     
-    TaxonChange.send_later(:commit_taxon_change, taxon_change_id, :dj_priority => 2)
+    TaxonChange.delay(:priority => 2).commit_taxon_change(taxon_change_id)
     
     flash[:notice] = "Taxon change committed!"
     redirect_to :back and return

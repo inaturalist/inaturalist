@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :login_required, :except => :index
+  before_filter :authenticate_user!, :except => :index
   before_filter :admin_required, :only => [:user]
   # before_filter :owner_required, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       :order => "id DESC",
       :group => "parent_id"
     }
-    @paging_comments = Comment.scoped({})
+    @paging_comments = Comment.scoped
     @paging_comments = @paging_comments.by(current_user) if logged_in? && params[:mine]
     @paging_comments = @paging_comments.paginate(find_options)
     @comments = Comment.find(@paging_comments.map{|c| c.id}, :include => :user, :order => "id desc")
@@ -56,11 +56,15 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
+    @comment.user ||= current_user
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
       format.mobile { respond_to_create }
-      format.js
+      format.json do
+        @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        render :json => @comment.to_json(:methods => [:html])
+      end
     end
   end
   
@@ -78,7 +82,10 @@ class CommentsController < ApplicationController
         end
         redirect_to_parent
       end
-      format.js
+      format.json do
+        @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        render :json => @comment.to_json(:methods => [:html])
+      end
     end
   end
   

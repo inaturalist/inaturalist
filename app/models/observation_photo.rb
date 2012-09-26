@@ -7,14 +7,14 @@ class ObservationPhoto < ActiveRecord::Base
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade
   
   def destroy_orphan_photo
-    Photo.send_later(:destroy_orphans, photo_id)
+    Photo.delay.destroy_orphans(photo_id)
     true
   end
   
   # Might be better to do this with DJ...
   def set_observation_quality_grade
     return true unless observation
-    Observation.send_later(:set_quality_grade, observation.id)
+    Observation.delay.set_quality_grade(observation.id)
     true
   end
   

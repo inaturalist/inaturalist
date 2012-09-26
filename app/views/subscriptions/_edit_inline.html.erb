@@ -2,7 +2,7 @@
 <ul class="edit_subscription_inline">
   <% if @resource.is_a?(Place) && subscription -%>
     <li>
-      <% form_for subscription, :builder => DefaultFormBuilder do |f| %>
+      <%= form_for subscription, :builder => DefaultFormBuilder do |f| %>
         <div class="field">
           <div>
             <label>Only receive updates about this taxon</label>
@@ -13,8 +13,7 @@
             :class => "taxonchooser text" %>
           <%= f.hidden_field(:taxon_id, 
             :alt => (subscription.taxon ? 
-              content_tag(:span, subscription.taxon.name, 
-                :class => "taxon sciname #{subscription.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[subscription.taxon.iconic_taxon_id].try(:name)}") : nil),
+              "<span class='taxon sciname #{subscription.taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[subscription.taxon.iconic_taxon_id].try(:name)}'>#{subscription.taxon.name}</span>" : nil),
             :rel => (subscription.taxon ? taxon_image_url(subscription.taxon) : nil)) %>
         </div>
       <% end -%>
@@ -22,7 +21,7 @@
   <% end -%>
   <li class="createdestroy">
     <%- new_subscription = Subscription.new(:user => current_user, :resource => @resource) %>
-    <% form_for new_subscription, :html => {
+    <%= form_for new_subscription, :html => {
       :class => "subscribe",
       :style => "#{'display:none;' if subscription}"
     } do |f| %>
@@ -32,7 +31,7 @@
       <%= link_to_function "Subscribe to this #{@resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
     <% end -%>
 
-    <% form_tag delete_subscription_url(@resource.class.to_s, @resource.id), 
+    <%= form_tag delete_subscription_url(@resource.class.to_s, @resource.id), 
         :method => :delete, 
         :class => 'unsubscribe', 
         :style => "#{'display:none;' unless subscription}" do %>

@@ -21,9 +21,9 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @place.to_json %>,
+    var PLACE = <%= @place.to_json.html_safe %>,
         PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect %>,
-        OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon) %>,
+        OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect %>
   </script>
 <%- end -%>
@@ -43,7 +43,7 @@
       <%-
         links = []
         if !@project.terms.blank? || !@project.project_observation_rules.blank? || !@project.project_user_rules.blank?
-          links << link_to("Terms &amp; Rules", project_terms_path(@project), :class => "ui")
+          links << link_to("Terms &amp; Rules".html_safe, project_terms_path(@project), :class => "ui")
         end
         if @project.editable_by?(current_user)
           links << link_to("Edit project", edit_project_path(@project), :class => "ui description")
@@ -56,13 +56,13 @@
           links << link_to("Join this project", join_project_path(@project), :class => "ui")
         end
       -%>
-      <%= links.join(" | ") unless links.blank? %>
+      <%= links.join(" | ").html_safe unless links.blank? %>
     </span>
-    <strong><%= link_to "&laquo Projects", projects_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo Projects".html_safe, projects_path, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <% if @custom_project && !@custom_project.head.blank? -%>
-    <%= @custom_project.head %>
+    <%= @custom_project.head.html_safe %>
   <% else %>
     <h2>
       <% if @logo_image -%>
@@ -111,7 +111,7 @@
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
-      <%= link_to "<span class='lead'>&raquo;</span> Observations / Map", project_observations_path(@project), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> Observations / Map".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
@@ -133,13 +133,13 @@
          </span>
         <% end -%>
       <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> Checklist", list_path(@project.project_list), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> Checklist".html_safe, list_path(@project.project_list), :class => "navlink" %>
     </li>
     <li>
       <% if @project.contest? -%>
-        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors", project_contributors_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors".html_safe, project_contributors_path(@project), :class => "navlink" %>
       <% else %>
-        <%= link_to "<span class='lead'>&raquo;</span> Members", project_members_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Members".html_safe, project_members_path(@project), :class => "navlink" %>
       <% end -%>
       <div class="inner">
         <% if @project.contest? && !@project_users.blank? && !@top_observers.blank? -%>
@@ -180,11 +180,11 @@
     </li>
     <% if logged_in? -%>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span> Stats", project_stats_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Stats".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
       <% if @project.curated_by?(current_user) -%>
         <li>
-          <%= link_to "<span class='lead'>&raquo;</span> Invite observations", invitations_path(@project), :class => "navlink" %>
+          <%= link_to "<span class='lead'>&raquo;</span> Invite observations".html_safe, invitations_path(@project), :class => "navlink" %>
         </li>
       <% end -%>
     <% end -%>

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonName, 'creation' do
@@ -63,14 +64,14 @@ describe TaxonName, 'creation' do
   end
   
   it "should not allow synonyms within a lexicon" do
-    taxon = Taxon.make
-    name1 = TaxonName.make(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    taxon = Taxon.make!
+    name1 = TaxonName.make!(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
     name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
     name2.should_not be_valid
   end
   
   it "should strip html" do
-    tn = TaxonName.make(:name => "Foo <i>")
+    tn = TaxonName.make!(:name => "Foo <i>")
     tn.name.should == 'Foo'
   end
 end

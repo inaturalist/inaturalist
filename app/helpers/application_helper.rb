@@ -4,13 +4,14 @@ module ApplicationHelper
   include Ambidextrous
   
   def gmap_include_tag(key = false)
-    unless key
-      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
-      (Ym4r::GmPlugin::ApiKey.get)  + '" type="text/javascript"></script>'
-    else 
+    tag = if key
       '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
       (key) + '" type="text/javascript"></script>'
+    else
+      '<script src="http://maps.google.com/maps?file=api&v=2&key=' +
+      (Ym4r::GmPlugin::ApiKey.get)  + '" type="text/javascript"></script>'
     end
+    tag.html_safe
   end
   
   def num2letterID(num)
@@ -79,36 +80,33 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    unfriend_link = link_to_remote "Stop following #{potential_friend.login}", 
-      :url => url_options.merge(:remove_friend_id => potential_friend.id), 
-      :datatype => "json",
-      :method => :put,
-      :loading => 
-        "$('##{dom_id(potential_friend, 'unfriend_link')}').fadeOut(function() { $('##{dom_id(potential_friend, 'friend_link')}').fadeIn() });",
-      :html => html_options.merge(
+    unfriend_link = link_to "Stop following #{potential_friend.login}", 
+      url_options.merge(:remove_friend_id => potential_friend.id), 
+      html_options.merge(
+        :remote => true,
+        :datatype => "json",
+        :method => :put,
         :id => dom_id(potential_friend, 'unfriend_link'),
-        :style => already_friends ? "" : "display:none")
-    friend_link = link_to_remote "Follow #{potential_friend.login}", 
-      :url => url_options.merge(:friend_id => potential_friend.id), 
-      :method => :put,
-      :datatype => "json",
-      :loading => 
-        "$('##{dom_id(potential_friend, 'friend_link')}').fadeOut(function() { $('##{dom_id(potential_friend, 'unfriend_link')}').fadeIn() });",
-      :html => html_options.merge(
+        :class => "unfriend_link",
+        :style => already_friends ? "" : "display:none"
+      )
+    friend_link = link_to "Follow #{potential_friend.login}", 
+      url_options.merge(:friend_id => potential_friend.id), 
+      html_options.merge(
+        :remote => true,
+        :method => :put,
+        :datatype => "json",
         :id => dom_id(potential_friend, 'friend_link'),
-        :style => (!already_friends && user != potential_friend) ? "" : "display:none")
+        :class => "friend_link",
+        :style => (!already_friends && user != potential_friend) ? "" : "display:none"
+      )
     
-    content_tag :span, friend_link + unfriend_link, :class => "friend_button"
+    content_tag :span, (friend_link + unfriend_link).html_safe, :class => "friend_button"
   end
   
   def char_wrap(text, len)
     return text if text.size < len
-    bits = text.split
-    if bits.size == 1
-      "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}"
-    else
-      bits.map{|b| char_wrap(b, len)}.join(' ')
-    end
+    "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}".html_safe
   end
   
   # Generate an id for an object for us in views, e.g. an observation with id 
@@ -203,7 +201,7 @@ module ApplicationHelper
         html += hidden_field_tag key, value
       end
     end
-    html
+    html.html_safe
   end
   
   # def link_to(*args)
@@ -247,38 +245,44 @@ module ApplicationHelper
     
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
-    
-    text = auto_link(markdown(simple_format(sanitize(text))))
+    text = sanitize(text)
+    text = simple_format(text)
+    text = markdown(text)
+    text = auto_link(text.html_safe).html_safe
     
     # Ensure all tags are closed
-    Nokogiri::HTML::DocumentFragment.parse(text).to_s
+    Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
+  end
+  
+  def markdown(text)
+    BlueCloth::new(text).to_html
   end
   
   def render_in_format(format, *args)
-    old_format = @template.template_format
-    @template.template_format = format
+    old_formats = formats
+    self.formats = [format]
     html = render(*args)
-    @template.template_format = old_format
+    self.formats = old_formats
     html
   end
   
   def in_format(format)
-    old_format = @template.template_format
-    @template.template_format = format
+    old_formats = formats
+    self.formats = [format]
     yield
-    @template.template_format = old_format
+    self.formats = old_formats
   end
   
   def taxonomic_taxon_list(taxa, options = {}, &block)
     taxa.each do |taxon, children|
-      concat "<li class='#{options[:class]}'>"
+      concat "<li class='#{options[:class]}'>".html_safe
       yield taxon
       unless children.blank?
-        concat "<ul>"
+        concat "<ul>".html_safe
         taxonomic_taxon_list(children, options, &block)
-        concat "</ul>"
+        concat "</ul>".html_safe
       end
-      concat "</li>"
+      concat "</li>".html_safe
     end
   end
   
@@ -313,7 +317,7 @@ module ApplicationHelper
   def compact(&block)
     content = capture(&block)
     content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
-    concat content
+    concat content.html_safe
   end
   
   def color_pluralize(num, singular)
@@ -376,17 +380,17 @@ module ApplicationHelper
   end
   
   def truncate_with_more(text, options = {})
-    more = options.delete(:more) || " ...more &darr;"
-    less = options.delete(:less) || " less &uarr;"
+    more = options.delete(:more) || " ...more &darr;".html_safe
+    less = options.delete(:less) || " less &uarr;".html_safe
     truncated = truncate(text, options)
-    return truncated if text == truncated
+    return truncated.html_safe if text == truncated
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(morelink)
-    wrapper = content_tag(:div, truncated, :class => "truncated")
+    wrapper = content_tag(:div, truncated.to_s.html_safe, :class => "truncated")
     
     lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()", 
       :class => "nobr ui")
@@ -394,13 +398,13 @@ module ApplicationHelper
     last_node = untruncated.children.last || untruncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(lesslink)
-    untruncated = content_tag(:div, untruncated.to_s, :class => "untruncated", 
+    untruncated = content_tag(:div, untruncated.to_s.html_safe, :class => "untruncated", 
       :style => "display: none")
     wrapper + untruncated
   rescue RuntimeError => e
     raise e unless e.message =~ /error parsing fragment/
     HoptoadNotifier.notify(e, :request => request, :session => session)
-    text
+    text.html_safe
   end
   
   def native_url_for_photo(photo)
@@ -448,7 +452,7 @@ module ApplicationHelper
         content_tag(:span, name, :class => "month")
       end
     end
-    content_tag(:div, html, :class => 'monthgraph graph')
+    content_tag(:div, html.html_safe, :class => 'monthgraph graph')
   end
   
   def catch_and_release(&block)
@@ -562,12 +566,12 @@ module ApplicationHelper
             else
               link_to(image_tag("#{code}_small.png"), url) + " "
             end
-            c + link_to("some rights reserved", url)
+            c.html_safe + link_to("some rights reserved", url)
           end
         end
       end
     end
-    content_tag :span, s, :class => "rights verticalmiddle"
+    content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
   end
   
   def url_for_license(code)
@@ -604,9 +608,9 @@ module ApplicationHelper
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added an observation"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added an observation".html_safe
       else
-        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations"
+        "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
       end
     when "Observation", "ListedTaxon"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
@@ -637,11 +641,11 @@ module ApplicationHelper
       end
       s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
-      s
+      s.html_safe
     when "Post"
-      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}"
+      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
-      "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}"
+      "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
     else
       "update"
     end

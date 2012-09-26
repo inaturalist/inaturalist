@@ -57,24 +57,24 @@
 <div id="maincol">
   <div id="controls" class="clear buttonrow smallbuttons">
     <div id="filters">
-      <%- form_tag url_for, :method => :get, :class => "searchfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "searchfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= text_field_tag :q, @q, :class => "text", :placeholder => "Search for species", :id => "searchFilter" %>
           <%= submit_tag "Search", :class => "glaucous button" %>
-          <%= link_to "&times;", url_for_params(:without => [:q]), :class => "pale button", :style => "#{'display:none' if @q.blank?}", :title => "Clear search" %>
+          <%= link_to "&times;".html_safe, url_for_params(:without => [:q]), :class => "pale button", :style => "#{'display:none' if @q.blank?}", :title => "Clear search" %>
         </div>
       <% end %>
 
-      <%- form_tag url_for, :method => :get, :class => "colorfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "colorfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:colors, :page] %>
           <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorsFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
-          <%= link_to "&times;", url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear color filters" %>
+          <%= link_to "&times;".html_safe, url_for_params(:without => [:colors]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear color filters" %>
         </div>
       <% end %>
       
-      <%- form_tag url_for, :method => :get, :class => "establishmentfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "establishmentfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:establishment_means, :page] %>
           <%-
@@ -82,11 +82,11 @@
           -%>
           <%= select_tag "establishment_means", options_for_select(options, @establishment_means), :id => "establishmentFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
-          <%= link_to "&times;", url_for_params(:without => [:establishment_means]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
+          <%= link_to "&times;".html_safe, url_for_params(:without => [:establishment_means]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
         </div>
       <% end %>
       
-      <%- form_tag url_for, :method => :get, :class => "conservationfilter inlineblock" do %>
+      <%= form_tag url_for, :method => :get, :class => "conservationfilter inlineblock" do %>
         <div class="inline buttonrow">
           <%= hidden_fields_for_params :without => [:conservation_status, :page] %>
           <%-
@@ -94,7 +94,7 @@
           -%>
           <%= select_tag "conservation_status", options_for_select(options, @conservation_status), :id => "conservationFilter", :class => "inlineblock" %>
           <%= submit_tag "Filter", :class => "glaucous button" %>
-          <%= link_to "&times;", url_for_params(:without => [:conservation_status]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
+          <%= link_to "&times;".html_safe, url_for_params(:without => [:conservation_status]), :class => "pale button", :style => "#{'display:none' if @colors.blank?}", :title => "Clear" %>
         </div>
       <% end %>
     </div>

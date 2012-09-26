@@ -11,7 +11,7 @@
       <% if @geometry %>
         // loading pre-existing geom
         <% for geom in @geometry %>
-          var polygon = <%= Ym4r::GmPlugin::GPolygonEncoded.from_georuby(geom, "#f33f00", 5, 1, "#ff0000", 0.2).to_javascript %>;
+          var polygon = <%= Ym4r::GmPlugin::GPolygonEncoded.from_georuby(geom, "#f33f00", 5, 1, "#ff0000", 0.2).to_javascript.html_safe %>;
           drawingMap.addOverlay(polygon);
           if (typeof(drawingMap._shapes) == 'undefined') drawingMap._shapes = [];
           drawingMap._shapes.push(polygon);

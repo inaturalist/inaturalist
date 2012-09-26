@@ -1,5 +1,5 @@
 <%- 
-  o = object || @observation
+  o = quality_metrics || @observation
   quality_metrics = @quality_metrics || []
   user_quality_metrics = @user_quality_metrics || []
 -%>
@@ -27,21 +27,21 @@
       <tr>
         <td>Date?</td>
         <td>
-          <%= o.observed_on? ? '<span class="good">yes</span>' : 'no' %>
+          <%= o.observed_on? ? '<span class="good">yes</span>'.html_safe : 'no' %>
         </td>
       </tr>
 
       <tr>
         <td>Georeferenced?</td>
         <td>
-          <%= o.georeferenced? ? '<span class="good">yes</span>' : 'no' %>
+          <%= o.georeferenced? ? '<span class="good">yes</span>'.html_safe : 'no' %>
         </td>
       </tr>
 
       <tr>
         <td>Photo?</td>
         <td>
-          <%= o.photos.exists? ? '<span class="good">yes</span>' : 'no' %>
+          <%= o.photos.exists? ? '<span class="good">yes</span>'.html_safe : 'no' %>
         </td>
       </tr>
 

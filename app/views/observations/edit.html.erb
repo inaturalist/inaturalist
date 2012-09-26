@@ -25,8 +25,8 @@
                              "taxon_browser",
                              "observations/edit" %>
   <script type="text/javascript" charset="utf-8">
-    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json %>
-    var PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',') %>]
+    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>
+    var PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>]
   </script>
 <% end %>
 <div id="pageheader" class="column span-24">
@@ -37,7 +37,7 @@
 </div>
 
 <div class="column span-24">
-  <% form_for(@observation, :html => {:class => 'observationform', :multipart => true}) do %>
+  <%= form_for(@observation, :html => {:class => 'observationform', :multipart => true}) do %>
     <%= render(:partial => 'form_fields', :locals => {
       :observation => @observation,
       :i => @observation.id

@@ -108,7 +108,7 @@
       if ($(taxon_id).val() != '') {
         // If the taxon_id input has an alt set, use that as the matched 
         // status.  Otherwise, look it up.
-        if ($(taxon_id).attr('alt') != '') {
+        if ($(taxon_id).attr('alt') && $(taxon_id).attr('alt') != '') {
           $.fn.simpleTaxonSelector.setStatus(wrapper, 'matched', $(taxon_id).attr('alt'));
         } else {
           $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', 'Loading...');
@@ -202,9 +202,9 @@
     if (typeof(options.taxonIDField) != 'undefined') {
       return $(options.taxonIDField);
     };
-    var taxon_id = $(wrapper).next('input[name="taxon_id"]:first');
+    var taxon_id = $(wrapper).siblings('input[name="taxon_id"]:first');
     if ($(taxon_id).length == 0) {
-      taxon_id = $(wrapper).next('input[name*="[taxon_id]"]:first');
+      taxon_id = $(wrapper).siblings('input[name*="[taxon_id]"]:first');
     };
     return taxon_id;
   }

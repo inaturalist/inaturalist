@@ -44,7 +44,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   # Override to get better attrs in there
   def time_zone_select(method, priority_zones = nil, options = {}, html_options = {})
     html_options[:class] = "#{html_options[:class]} time_zone_select"
-    zone_options = ""
+    zone_options = "".html_safe
     selected = options.delete(:selected)
     model = options.delete(:model) || ActiveSupport::TimeZone
     zones = model.all
@@ -65,11 +65,11 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if priority_zones.is_a?(Regexp)
         priority_zones = model.all.find_all {|z| z =~ priority_zones}
       end
-      zone_options += convert_zones.call(priority_zones, selected)
-      zone_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
+      zone_options += convert_zones.call(priority_zones, selected).html_safe
+      zone_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n".html_safe
       zones = zones.reject { |z| priority_zones.include?( z ) }
     end
-    zone_options += convert_zones.call(zones, selected)
+    zone_options += convert_zones.call(zones, selected).html_safe
     tag = INatInstanceTag.new(
       object_name, method, self, options.delete(:object)
     ).to_select_tag_with_option_tags(zone_options, options, html_options)
@@ -88,7 +88,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if options[:field_name] == 'radio_button'
         label_field = [label_field, options[:field_value]].compact.join('_').gsub(/\W/, '').downcase
       end
-      label_tag = label(label_field, options[:label], :class => options[:label_class])
+      label_tag = label(label_field, options[:label].to_s.html_safe, :class => options[:label_class])
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end
@@ -105,9 +105,9 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     end
     
     if block_given?
-      @template.concat @template.content_tag(:div, content, wrapper_options)
+      @template.concat @template.content_tag(:div, content.html_safe, wrapper_options)
     else
-      @template.content_tag(:div, content, wrapper_options)
+      @template.content_tag(:div, content.html_safe, wrapper_options)
     end
   end
   

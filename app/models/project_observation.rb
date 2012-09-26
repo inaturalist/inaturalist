@@ -2,8 +2,8 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :project
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"
-  validates_presence_of :project_id, :observation_id
-  validate_on_create :observed_by_project_member?
+  validates_presence_of :project, :observation
+  validate :observed_by_project_member?, :on => :create
   validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?]
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
@@ -26,23 +26,23 @@ class ProjectObservation < ActiveRecord::Base
   
   def refresh_project_list
     return true if observation.taxon_id.blank?
-    Project.send_later(:refresh_project_list, project_id, 
+    Project.delay.refresh_project_list(project_id, 
       :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
     true
   end
   
   def update_observations_counter_cache_later
-    ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, observation.user_id)
+    ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
   
   def update_taxa_counter_cache_later
-    ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, observation.user_id)
+    ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
   
   def update_project_observed_taxa_counter_cache_later
-    Project.send_later(:update_observed_taxa_count, project_id)
+    Project.delay.update_observed_taxa_count(project_id)
   end
 
   def to_csv_column(column)

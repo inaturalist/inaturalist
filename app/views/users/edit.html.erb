@@ -39,7 +39,7 @@
 </div>
 
 <div class="column span-18">
-  <% form_for(current_user, :url => person_path(current_user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+  <%= form_for(current_user, :url => person_path(current_user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
     <%= error_messages_for :current_user %>
     <div class="column span-18 stacked">
       <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon left') %>
@@ -116,7 +116,7 @@
         </div>
         
         <div class="last column span-18">
-          <%= link_to_function "<span class='helptip'></span> About these licenses", 
+          <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
@@ -159,12 +159,13 @@
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= link_to "Disconnect #{provider.capitalize}", omniauth_disconnect_path(provider.downcase),
+            <%= button_to "Disconnect #{provider.capitalize}", omniauth_disconnect_path(provider.downcase),
               :class => "providerlink #{provider.downcase} disabled button", :method => "delete" %>
           </li>
         <% else %>
           <li class="clear">
-            <%= link_to "Connect to #{provider.capitalize}", auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
+            <%= link_to "Connect to #{provider.capitalize}", auth_url_for(provider.downcase), 
+              :class => "providerlink #{provider.downcase} button" %>
           </li>
         <% end %>
       <% end %>
@@ -185,8 +186,8 @@
   <%= separator %>
   
   <div class="clear box">
-    <%= link_to_toggle current_user.crypted_password ? "Change your password" : "Set a password", "#passwordform", :class => "ui" %>
-    <% form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
+    <%= link_to_toggle current_user.encrypted_password ? "Change your password" : "Set a password", "#passwordform", :class => "ui" %>
+    <%= form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
         <%= label(:password, 'New Password') %>
         <%= password_field_tag(:password, '', :class => 'text') %>
@@ -201,6 +202,7 @@
       </div>
     <% end %>
   </div>
-  <%= link_to "Delete your account", current_user, :method => :delete, :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
+  <%= button_to "Delete your account", current_user, :method => :delete, 
+    :confirm => "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go.", 
     :class => "minor delete button" %>
 </div><!-- end side col -->

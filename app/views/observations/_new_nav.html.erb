@@ -1,12 +1,10 @@
-    <div id="newobsnav" class="readable">
-      <span class="meta">Add:</span>
-      <% links = [
-        ['new', link_to("Single Observation", new_observation_path, :title => "Add a single observation.")],
-        ['new_batch', link_to("Batch", new_observation_batch_path, :title => "Add several observations at once.")],
-        ['add_from_list', link_to("From List", add_observations_from_list_path, :title => "Add observations by checking off species from a list.")],
-        ['import', link_to("Import", import_observations_path, :title => "Import observations from a photo provider or a file on your computer.")]
-      ].reject {|action, link| controller.action_name == action} -%>
-      <% for piece in links.map(&:last).join(' <span class="meta">&middot;</span> ') %>
-        <%= piece %>
-      <% end %>
-    </div>
+<div id="newobsnav" class="readable">
+  <span class="meta">Add:</span>
+  <% links = [
+    ['new', link_to("Single Observation", new_observation_path, :title => "Add a single observation.")],
+    ['new_batch', link_to("Batch", new_observation_batch_path, :title => "Add several observations at once.")],
+    ['add_from_list', link_to("From List", add_observations_from_list_path, :title => "Add observations by checking off species from a list.")],
+    ['import', link_to("Import", import_observations_path, :title => "Import observations from a photo provider or a file on your computer.")]
+  ].reject {|action, link| controller.action_name == action} -%>
+  <%= links.map(&:last).join(' <span class="meta">&middot;</span> ').html_safe %>
+</div>

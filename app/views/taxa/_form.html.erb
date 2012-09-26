@@ -1,16 +1,13 @@
 <%- taxon ||= @taxon -%>
-<% form_for(taxon) do |f| %>
+<%= form_for(taxon) do |f| %>
   <%= error_messages_for :taxon %>
-  
-  <%#= f.label :colors %>
-  <%#= f.collection_select :color_ids, Color.all, :id, :value, {:include_blank => true}, :multiple => true %>
   <div class="last column span-24">
     <div class="column span-8">
-        <%= f.label :name, 'Name <span class="required">*</span>' %><br/>
-        <%= f.text_field :name, :class => "text" %>
+      <%= f.label :name, 'Name <span class="required">*</span>'.html_safe %><br/>
+      <%= f.text_field :name, :class => "text" %>
     </div>
     <div class="column span-8">
-      <%= f.label 'Rank <span class="required">*</span>' %><br/>
+      <%= f.label :rank, 'Rank <span class="required">*</span>'.html_safe %><br/>
       <%= f.text_field :rank, :class => "text" %>
     </div>
     
@@ -44,7 +41,7 @@
       <% unless taxon.new_record? -%>
         <div class="column span-5">
           <label>Graft</label><br/>
-          <%= link_to "Graft <i>#{taxon.name}</i>", graft_taxon_path(taxon), :class => "button" %>
+          <%= link_to "Graft <i>#{taxon.name}</i>".html_safe, graft_taxon_path(taxon), :class => "button" %>
         </div>
         <div class="last column span-6 description">
           Grafting attempts to insert this taxon into our taxonomic tree,
@@ -143,17 +140,19 @@
           <span id="wikipedia_summary" class="description">No summary has been set.</span>
         <% end -%>
         <% unless @taxon.new_record? -%>
-          <strong><%= link_to_remote "refresh", 
-            :url => {:action => 'refresh_wikipedia_summary', :id => taxon},
-            :loading => "$('#summary_refresh').hide(); $('#summary_refresh_loading').show()",
-            :complete => 
-              "$('#summary_refresh').show(); " + 
-              "$('#summary_refresh_loading').hide();",
-            :success => "$('#wikipedia_summary').html(request)",
-            :error => "alert(request.responseText)",
-            :datatype => :html,
-            :html => { :id => 'summary_refresh'} %></strong>
-          <span id="summary_refresh_loading" class="eee loading status" style="display: none">Loading...</span>
+          <strong><%= link_to "refresh", {:action => 'refresh_wikipedia_summary', :id => taxon},
+            :remote => "true",
+            :method => :post,
+            "data-loading-click" => true,
+            :id => 'summary_refresh'
+          %></strong>
+          <script type="text/javascript">
+            $('#summary_refresh').bind('ajax:success', function(e, html, status) {
+              $('#wikipedia_summary').html(request)
+            }).bind('ajax:error', function(event, request, settings) {
+              alert(request.responseText)
+            })
+          </script>
         <% end -%>
       </blockquote>
       <span class="description">
@@ -166,37 +165,6 @@
   
   <fieldset class="last column span-11">
     <legend>Source</legend>
-    <!-- <div class="description">
-      Please cite the published source of this taxon.
-    </div>
-    <% unless taxon.source -%>
-      <h3>Add a new source</h3>
-      <%- @taxon.source = Source.new -%>
-    <% end -%>
-    <% fields_for taxon.source do |s| %>
-      <div class="column span-7">
-        <p class="ui">
-          <%= s.label :title %><br/>
-          <%= s.text_field :title %>
-        </p>
-        <p class="ui">
-          <%= s.label :in_text %><br/>
-          <%= s.text_field :in_text %>
-        </p>
-        <p class="ui">
-          <%= s.label :url %><br/>
-          <%= s.text_field :url %>
-        </p>
-      </div>
-      
-      <div class="column span-10">
-        <p class="ui">
-          <%= s.label :citation %><br/>
-          <%= s.text_area :citation %>
-        </p>
-      </div>
-    <% end %>
-     -->
     <% unless taxon.source_identifier.blank? -%>
       <div class="last column span-7">
         <div class="description ui">

@@ -54,8 +54,8 @@
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @place.to_json %>,
-        FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>
+    var PLACE = <%= @place.to_json.html_safe %>,
+        FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect.html_safe %>
     $(document).ready(function() {
       TaxonGuide.init('#taxa')
       $('#sidecol').addClass('floating').css({padding: 10, zIndex: 2, backgroundColor: 'white'}).hide()

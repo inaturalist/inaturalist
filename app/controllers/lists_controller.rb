@@ -177,6 +177,9 @@ class ListsController < ApplicationController
         format.js do
           render :text => 'Taxon removed from list.'
         end
+        format.json do
+          render :json => @listed_taxon
+        end
       else
         format.html do
           flash[:error] = "Could't find that taxon."
@@ -185,6 +188,9 @@ class ListsController < ApplicationController
         format.js do
           render :status => :unprocessable_entity, 
             :text => "That taxon isn't in this list."
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => "That taxon isn't in this list."}
         end
       end
     end
@@ -204,7 +210,7 @@ class ListsController < ApplicationController
   
   def refresh
     delayed_task(@list.refresh_cache_key) do
-      job = @list.send_later(:refresh, :skip_update_cache_columns => true)
+      job = @list.delay.refresh(:skip_update_cache_columns => true)
       Rails.cache.write(@list.refresh_cache_key, job.id)
       job
     end

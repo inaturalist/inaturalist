@@ -56,7 +56,7 @@
   </script>
 <%- end -%>
 <%- project ||= @project -%>
-<% form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
+<%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
   
   <%= f.text_field :title, :required => true %>
@@ -102,14 +102,14 @@
   <!-- <fieldset class="userrules">
     <legend>New User Rules</legend>
     
-    <% f.fields_for :project_user_rules do |pu| %>
+    <%= f.fields_for :project_user_rules do |pu| %>
       <div>
         <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
         <%= pu.hidden_field :_destroy, :class => "destroyer" %>
         <%= link_to_function "remove", "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
       </div>
     <% end %>
-    <% f.fields_for :project_user_rules, [Rule.new] do |pu| %>
+    <%= f.fields_for :project_user_rules, [Rule.new] do |pu| %>
       <div>
         <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => "Choose a rule" %>
         <%= link_to_function "add another", "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
@@ -127,7 +127,7 @@
     </p>
     
     <ul>
-      <% f.fields_for :project_observation_rules do |por| %>
+      <%= f.fields_for :project_observation_rules do |por| %>
         <li>
           <%= por.object.terms %>
           <%= por.hidden_field :_destroy, :class => "destroyer" %>
@@ -140,7 +140,7 @@
     
     <%- new_rule_field = capture do %>
       <fieldset id="new_project_observation_rule">
-        <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
+        <%= f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
           <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
             :include_blank => "Choose a rule",
             :label => "Rule: must be..." %>

@@ -1,5 +1,5 @@
 <%- 
-  observation ||= object || @observation
+  observation ||= location || @observation
   inline_edit ||= false
   places ||= nil
   if places && !observation.coordinates_viewable_by?(current_user)
@@ -7,7 +7,7 @@
   end
 -%>
 <label>Location:</label>
-<%= observation_place_guess observation %>
+<%= observation_place_guess(observation).html_safe %>
 <% if observation.out_of_range? -%>
   <strong class="out_of_range nobr">
     <span class="ui-icon ui-icon-alert inlineblock"></span>
@@ -24,7 +24,7 @@
 <% unless places.blank? -%>
   <div>
     <label>Places:</label>
-    <%= places.map{|place| link_to(place.code || place.name, place, :title => place.display_name)}.join(', ') %>
+    <%= places.map{|place| link_to(place.code || place.name, place, :title => place.display_name)}.join(', ').html_safe %>
   </div>
 <% end -%>
 <% if show_observation_coordinates?(observation) %>
@@ -78,7 +78,7 @@
         </div>
       </div>
       <% if inline_edit && is_me?(observation.user) -%>
-        <%- form_for observation, :html => {:style => "display:none;"} do |f| %>
+        <%= form_for observation, :html => {:style => "display:none;"} do |f| %>
           <%= f.label :geoprivacy, "Geoprivacy: " %>
           <%= f.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
           <%= hidden_field_tag :ignore_photos, true %>

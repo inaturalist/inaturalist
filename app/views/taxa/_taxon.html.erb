@@ -1,5 +1,5 @@
 <%- 
-  taxon ||= object || @taxon
+  taxon ||= @taxon
   js_link ||= false
   no_ids ||= false
   image_options ||= {}
@@ -18,14 +18,14 @@
   taxon_class << " #{extra_class}" if extra_class
   include_full_name ||= false
   taxon_name_str = if include_full_name
-    taxon_name_str ||= render('shared/taxon', :object => taxon) 
+    taxon_name_str ||= render(:partial => 'shared/taxon', :object => taxon) 
   else
     taxon.default_name.name
   end
   more_images ||= false
   
   if js_link
-    taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon)
+    taxon_json ||= taxon_to_json(taxon, :iconic_taxon => iconic_taxon).html_safe
   end
   photo ||= taxon.taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
   after_image ||= nil
@@ -53,7 +53,7 @@
         <% end -%>
       </span>
     <% end -%>
-    <%= after_image if after_image %>
+    <%= after_image.html_safe if after_image %>
   </div>
   <% if more_images -%>
     <div class="moreimages">
@@ -99,7 +99,7 @@
     <% unless hide_wikipedia_summary -%>
       <div class="wikipedia_summary">
         <% if summary = taxon.wikipedia_summary -%>
-          <%= summary %>
+          <%= summary.html_safe %>
           <span class="small description">(From <%= link_to "Wikipedia", "http://wikipedia.org/wiki/#{taxon.name}" %>)</span>
         <% else %>
           <span class="description">

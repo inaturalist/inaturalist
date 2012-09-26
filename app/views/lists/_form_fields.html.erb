@@ -1,5 +1,5 @@
 <%- optionscol ||= nil -%>
-<%- list ||= object ||= @list -%>
+<%- list ||= form_fields ||= @list -%>
 <div class="column span-12">
   <%= f.text_field :title, :class => 'text' %>
   <%= f.text_area :description %>

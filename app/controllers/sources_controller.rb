@@ -1,11 +1,11 @@
 class SourcesController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :load_source, :only => [:show, :edit, :update, :destroy]
   before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
   
   def index
     @q = params[:q] || params[:term]
-    scope = Source.scoped({})
+    scope = Source.scoped
     scope = scope.scoped(:conditions => ["lower(title) LIKE ?", "#{@q.downcase}%"]) unless @q.blank?
     @sources = scope.paginate(:page => params[:page])
     respond_to do |format|

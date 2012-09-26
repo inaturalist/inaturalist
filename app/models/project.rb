@@ -17,8 +17,8 @@ class Project < ActiveRecord::Base
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
   
-  has_friendly_id :title, :use_slug => true, 
-    :reserved_words => ProjectsController.action_methods.to_a
+  extend FriendlyId
+  friendly_id :title, :use => :history, :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
@@ -28,24 +28,20 @@ class Project < ActiveRecord::Base
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
   
   validates_length_of :title, :within => 1..85
-  validates_presence_of :user_id
+  validates_presence_of :user
   
-  named_scope :featured, {:conditions => "featured_at IS NOT NULL"}
-  named_scope :near_point, lambda {|latitude, longitude|
+  scope :featured, where("featured_at IS NOT NULL")
+  scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f
-    {
-      :joins => [
-        "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
-        "INNER JOIN places ON places.id = rules.operand_id"
-      ],
-      :conditions => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude})) < 5",
-      :order => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))"
-    }
+    joins(
+      "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
+      "INNER JOIN places ON places.id = rules.operand_id"
+    ).
+    where("ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
+    order("ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
-  named_scope :from_source_url, lambda {|url|
-    {:conditions => {:source_url => url}}
-  }
+  scope :from_source_url, lambda {|url| where(:source_url => url) }
   
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
@@ -121,7 +117,7 @@ class Project < ActiveRecord::Base
   end
 
   def observations_matching_rules
-    scope = Observation.scoped({})
+    scope = Observation.scoped
     project_observation_rules.each do |rule|
       case rule.operator
       when "in_taxon?" 
@@ -162,8 +158,8 @@ class Project < ActiveRecord::Base
           project_user.user_id]) do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
-      ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   
@@ -190,8 +186,8 @@ class Project < ActiveRecord::Base
     project.project_observations.find_each(find_options) do |po|
       curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
-      ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   

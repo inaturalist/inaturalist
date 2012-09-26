@@ -8,7 +8,7 @@
     <li class="subnavwrapper observationstab">
       <div class="clear subnavtab">
         <%= link_to "Observations", observations_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
@@ -18,7 +18,7 @@
         <% end -%>
         <li><%= link_to "ID Please", id_please_path %></li>
         <li class="formwrapper">
-          <% form_tag(observations_path, :method => :get, :class => 'clear buttonrow') do %>
+          <%= form_tag(observations_path, :method => :get, :class => 'clear buttonrow') do %>
             <%= text_field_tag 'q', params[:q], 
               :id => 'header_observations_q', :class => 'text',
               :placeholder => 'Search obs...' %>
@@ -30,7 +30,7 @@
     <li class="subnavwrapper taxatab">
       <div class="clear subnavtab">
         <%= link_to "Species", taxa_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
@@ -41,7 +41,7 @@
           </li>
         <% end %>
         <li class="formwrapper">
-          <% form_tag({:controller => 'taxa', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
+          <%= form_tag({:controller => 'taxa', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
             <%= text_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '',
               :placeholder => 'Search taxa...' %>
             <input type="submit" class="button" value="&nbsp;" />
@@ -53,7 +53,7 @@
     <li class="subnavwrapper projectstab">
       <div class="clear subnavtab">
         <%= link_to "Projects", projects_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
@@ -70,7 +70,7 @@
           </li>
         <% end -%>
         <li class="formwrapper">
-          <% form_tag({:controller => 'projects', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
+          <%= form_tag({:controller => 'projects', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
             <%= text_field_tag 'q', params[:q], :id => 'header_projects_q', :class => 'text', :value => '',
               :placeholder => 'Search projects...' %>
             <input type="submit" class="button" value="&nbsp;" />
@@ -82,13 +82,13 @@
     <li class="subnavwrapper placestab">
       <div class="clear subnavtab">
         <%= link_to "Places", places_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>
       <ul class="subnav" style="display: none">
         <li class="formwrapper">
-          <% form_tag({:controller => 'places', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
+          <%= form_tag({:controller => 'places', :action => 'search'}, :method => :get, :class => 'clear buttonrow') do %>
             <%= text_field_tag 'q', params[:q], :id => 'header_places_q', :class => 'text', :value => '',
               :placeholder => 'Search places...' %>
             <input type="submit" class="button" value="&nbsp;" />
@@ -114,7 +114,7 @@
     </li>
     <li id="updatesnav" class="subnavwrapper">
       <div class="clear subnavtab">
-        <%= link_to "<span class='ui-icon ui-icon-comment'></span><span class='count'>0</span>", 
+        <%= link_to "<span class='ui-icon ui-icon-comment'></span><span class='count'>0</span>".html_safe, 
           home_path, 
           :id => "headerupdatesnotice",
           :class => "updates" %>
@@ -126,7 +126,7 @@
     <li class="subnavwrapper">
       <div class="clear subnavtab">
         <%= link_to "Dashboard", home_path %>
-        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;", 
+        <%= link_to_function "#{image_tag('toggle_arrow_down.png')}&nbsp;".html_safe, 
           "toggleHeaderSubnav(this)",
           :class => 'subnavlink' %>
       </div>

@@ -44,22 +44,20 @@ class ListedTaxon < ActiveRecord::Base
                           :scope => :list_id, 
                           :message => "is already in this list"
   
-  named_scope :by_user, lambda {|user| 
-    {:include => :list, :conditions => ["lists.user_id = ?", user]}
-  }
+  scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
   
-  named_scope :order_by, lambda {|order_by|
+  scope :order_by, lambda {|order_by|
     case order_by
     when "alphabetical"
-      {:include => [:taxon], :order => "taxa.name ASC"}
+      includes(:taxon).order("taxa.name ASC")
     when "taxonomic"
-      {:include => [:taxon], :order => "taxa.ancestry ASC, taxa.id ASC"}
+      includes(:taxon).order("taxa.ancestry ASC, taxa.id ASC")
     else
       {} # default to id asc ordering
     end
   }
   
-  named_scope :confirmed, :conditions => "last_observation_id IS NOT NULL"
+  scope :confirmed, where("last_observation_id IS NOT NULL")
   
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
@@ -110,9 +108,12 @@ class ListedTaxon < ActiveRecord::Base
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
-  validate_on_create :not_on_a_comprehensive_check_list
+  validate :not_on_a_comprehensive_check_list, :on => :create
   validate :absent_only_if_not_confirming_observations
   validate :preserve_absense_if_not_on_a_comprehensive_list
+  validate :list_rules_pass
+  validate :taxon_matches_observation
+  validate :check_list_editability
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
@@ -131,29 +132,6 @@ class ListedTaxon < ActiveRecord::Base
   
   def to_plain_s
     "#{taxon.default_name.name} on #{list.title}"
-  end
-  
-  def validate
-    # don't bother if validates_presence_of(:taxon) has already failed
-    if errors.on(:taxon).blank?
-      list.rules.each do |rule|
-        errors.add(taxon.to_plain_s, "is not #{rule.terms}") unless rule.validates?(taxon)
-      end
-    end
-    
-    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
-      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
-    end
-    
-    if list.is_a?(CheckList)
-      if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
-        errors.add(:user, "must be the list creator or a curator")
-      end
-    else
-      CHECK_LIST_FIELDS.each do |field|
-        errors.add(field, "can only be set for check lists") unless send(field).blank?
-      end
-    end
   end
   
   def not_on_a_comprehensive_check_list
@@ -202,6 +180,33 @@ class ListedTaxon < ActiveRecord::Base
     errors.add(:occurrence_status_level, "can't be changed from absent if this taxon is not on the comprehensive list of #{existing_comprehensive_list.taxon.name}")
     true
   end
+
+  def list_rules_pass
+    # don't bother if validates_presence_of(:taxon) has already failed
+    if !errors.include?(:taxon)
+      list.rules.each do |rule|
+        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
+      end
+    end
+  end
+
+  def taxon_matches_observation
+    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
+      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
+    end
+  end
+
+  def check_list_editability
+    if list.is_a?(CheckList)
+      if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
+        errors.add(:user, "must be the list creator or a curator")
+      end
+    else
+      CHECK_LIST_FIELDS.each do |field|
+        errors.add(field, "can only be set for check lists") unless send(field).blank?
+      end
+    end
+  end
   
   def set_ancestor_taxon_ids
     unless taxon.ancestry.blank?
@@ -245,7 +250,7 @@ class ListedTaxon < ActiveRecord::Base
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
     unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
-      list.send_later(:sync_with_parent, :dj_priority => 1)
+      list.delay(:priority => 1).sync_with_parent
     end
     true
   end
@@ -272,7 +277,7 @@ class ListedTaxon < ActiveRecord::Base
     if @force_update_cache_columns
       # this should have already happened in update_cache_columns
     else
-      ListedTaxon.send_later(:update_cache_columns_for, id, :dj_priority => 1)
+      ListedTaxon.delay(:priority => 1).update_cache_columns_for(id)
     end
     true
   end
@@ -290,7 +295,10 @@ class ListedTaxon < ActiveRecord::Base
     last_observation_id = nil
     unless ids.blank?
       first_observation_id = ids.min
-      last_observation_id = Observation.latest.first(:select => "id, observed_on, time_observed_at", :conditions => ["id IN (?)", ids]).try(:id)
+      last_observation_id = Observation.latest.first(
+        :select => "id, observed_on, time_observed_at", 
+        :conditions => ["id IN (?)", ids]
+      ).try(:id)
     end
     total = counts.map{|k,v| v}.sum
     month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')

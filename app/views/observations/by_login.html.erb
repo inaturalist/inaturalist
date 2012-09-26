@@ -86,7 +86,7 @@ Observations by <%= h @login %>
       var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
     
       var observations = <%= @observations.to_json(:viewer => current_user, 
-        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -190,7 +190,7 @@ Observations by <%= h @login %>
         if (options.method == "post") {
           var form = $('<form method="post" style="display:none"></form>').attr('action', baseURL).append(
             $('<input type="hidden" name="o">').val(obs_ids.join(',')),
-            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token %>')
+            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token.html_safe %>')
           );
           $('body').append(form);
           $(form).submit();
@@ -287,7 +287,7 @@ Observations by <%= h @login %>
 
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
-    <% if @user && @user.login == @login -%>
+    <% if is_me?(@selected_user) -%>
       <%= link_to "Add Observations", new_observation_path, 
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function("Batch Edit", "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
@@ -333,7 +333,7 @@ Observations by <%= h @login %>
       :class => "inter#{' open' if @filters_open} minor button") %>
   </div>
   <div id="filters" class="clear"<% unless @filters_open %> style="display: none"<% end %>>
-    <% form_tag observations_by_login_path(@login), :method => :get do -%>
+    <%= form_tag observations_by_login_path(@login), :method => :get do -%>
       <%= render :partial => 'filter_fields', :locals => {
         :selected_taxa => @iconic_taxa
       } %>
@@ -361,7 +361,7 @@ Observations by <%= h @login %>
   <div id="pagination">
     <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
-      <% form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
+      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
         <%= f.label :per_page %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
