@@ -144,7 +144,7 @@ def make_occurrence_data
       ")"
   end
   
-  FasterCSV.open(tmp_path, 'w') do |csv|
+  CSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Observation.do_in_batches(find_options) do |o|
       next unless o.user.prefers_gbif_sharing?
@@ -185,7 +185,7 @@ def make_taxon_data
     find_options[:conditions] += @taxon.descendant_conditions[1..-1]
   end
   
-  FasterCSV.open(tmp_path, 'w') do |csv|
+  CSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Taxon.do_in_batches(find_options) do |t|
       DarwinCore::Taxon.adapt(t)
@@ -233,7 +233,7 @@ def make_eol_media_data
       ")"
   end
   
-  FasterCSV.open(tmp_path, 'w') do |csv|
+  CSV.open(tmp_path, 'w') do |csv|
     csv << headers
     Photo.do_in_batches(find_options) do |t|
       EolMedia.adapt(t)

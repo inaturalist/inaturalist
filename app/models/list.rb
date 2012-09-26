@@ -168,7 +168,7 @@ class List < ActiveRecord::Base
     end
     
     ancestor_cache = {}
-    FasterCSV.open(tmp_path, 'w') do |csv|
+    CSV.open(tmp_path, 'w') do |csv|
       csv << headers
       ListedTaxon.do_in_batches(find_options) do |lt|
         row = []

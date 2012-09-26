@@ -756,7 +756,7 @@ class ObservationsController < ApplicationController
     row_num = 0
     
     begin
-      FasterCSV.parse(csv) do |row|
+      CSV.parse(csv) do |row|
         next if row.blank?
         row = row.map{|item| Iconv.iconv('UTF8', 'LATIN1', item).to_s.strip}
         obs = Observation.new(
@@ -789,7 +789,7 @@ class ObservationsController < ApplicationController
           break
         end
       end
-    rescue FasterCSV::MalformedCSVError => e
+    rescue CSV::MalformedCSVError => e
       flash[:error] = <<-EOT
         Your CSV had a formatting problem. Try removing any strange
         characters and unclosed quotes, and if the problem persists, please

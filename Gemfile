@@ -20,7 +20,6 @@ gem 'devise-encryptable'
 gem 'devise_suspendable'
 gem 'dynamic_form'
 gem 'faker'
-gem 'fastercsv'
 gem 'flickraw'
 gem "friendly_id", "~> 4.0.1"
 gem 'geoplanet'

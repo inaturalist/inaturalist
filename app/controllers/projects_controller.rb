@@ -415,7 +415,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do 
-        csv_text = FasterCSV.generate(:headers => true) do |csv|
+        csv_text = CSV.generate(:headers => true) do |csv|
           csv << @headers
           @data.each {|row| csv << row}
         end

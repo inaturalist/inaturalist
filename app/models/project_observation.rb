@@ -117,7 +117,7 @@ class ProjectObservation < ActiveRecord::Base
     project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code)
     columns += project_columns
     headers += project_columns.map{|c| c.to_s.humanize}
-    FasterCSV.generate do |csv|
+    CSV.generate do |csv|
       csv << headers
       project_observations.each do |project_observation|
         csv << columns.map {|column| project_observation.to_csv_column(column)}
