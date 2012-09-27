@@ -366,22 +366,14 @@ class User < ActiveRecord::Base
       :password_confirmation => autogen_pw,
       :icon_url => auth_info["info"]["image"]
     )
-    if u
-      u.skip_email_validation = true
-      u.skip_registration_email = true
-      begin
-        u.save!
-      rescue ActiveRecord::StatementInvalid => e
-        raise e unless e.message =~ /unique constraint/
-        suggestion = User.suggest_login(u.login)
-        Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-        u.login = suggestion
-        u.register! unless u.pending?
-        u.activate!
-      end
-      u.add_provider_auth(auth_info)
-      # TODO: do something useful with location?  -> time zone, perhaps
+    u.skip_email_validation = true
+    u.skip_registration_email = true
+    unless u.save
+      suggestion = User.suggest_login(u.login)
+      Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
+      u.update_attributes(:login => suggestion)
     end
+    u.add_provider_auth(auth_info)
     u
   end
 
