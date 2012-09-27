@@ -147,10 +147,19 @@
       <div class="buttons">
         <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text",
           :placeholder => "Type taxon name and click lookup" %>
+        <%-
+          alt_attr = if @observations_taxon
+            css_class =  [
+                'taxon', 
+                'sciname', 
+                @observations_taxon.rank, 
+                Taxon::ICONIC_TAXA_BY_ID[@observations_taxon.iconic_taxon_id].try(:name)
+              ].compact.join(' ')
+            "<span class='#{css_class}'>#{@observations_taxon.name}</span>"
+          end
+        -%>
         <%= hidden_field_tag :taxon_id, @observations_taxon.try(:id) || @observations_taxon_id,
-          :alt => (@observations_taxon ? 
-            content_tag(:span, @observations_taxon.name, 
-              :class => "taxon sciname #{@observations_taxon.rank} #{Taxon::ICONIC_TAXA_BY_ID[@observations_taxon.iconic_taxon_id].try(:name)}") : nil),
+          :alt => alt_attr,
           :rel => (@observations_taxon ? taxon_image_url(@observations_taxon) : nil) %>
       </div>
     </div>

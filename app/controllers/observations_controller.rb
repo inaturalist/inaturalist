@@ -7,12 +7,13 @@ class ObservationsController < ApplicationController
     :cache_path => Proc.new {|c| c.params}, 
     :if => Proc.new {|c| 
       c.session.blank? && # make sure they're logged out
+      c.request.format && # make sure format corresponds to a known mime type
       (c.request.format.geojson? || c.request.format.widget? || c.request.format.kml?) && 
       c.request.url.size < 250}
   caches_action :of,
     :expires_in => 1.day,
     :cache_path => Proc.new {|c| c.params},
-    :if => Proc.new {|c| !c.request.format.html? }
+    :if => Proc.new {|c| c.request.format != :html }
   cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
   
   rescue_from ::AbstractController::ActionNotFound  do
@@ -140,7 +141,7 @@ class ObservationsController < ApplicationController
   end
   
   def of
-    if request.format.html?
+    if request.format == :html
       redirect_to observations_path(:taxon_id => params[:id])
       return
     end
@@ -169,7 +170,7 @@ class ObservationsController < ApplicationController
   # GET /observations/1
   # GET /observations/1.xml
   def show
-    if request.format.html? && 
+    if request.format == :html && 
         params[:partial] == "cached_component" && 
         fragment_exist?(@observation.component_cache_key(:for_owner => @observation.user_id == current_user.try(:id)))
       return render(:partial => params[:partial], :object => @observation,
@@ -1296,7 +1297,7 @@ class ObservationsController < ApplicationController
       find_options[:limit] = 200
     end
     
-    unless request.format.html?
+    unless request.format && request.format.html?
       find_options[:include] = [{:taxon => :taxon_names}, {:observation_photos => :photo}, :user]
     end
     
@@ -1436,7 +1437,7 @@ class ObservationsController < ApplicationController
     sphinx_options[:with] = {}
     
     if sphinx_options[:page] && sphinx_options[:page].to_i > 50
-      if request.format.html?
+      if request.format && request.format.html?
         flash.now[:notice] = "Heads up: observation search can only load up to 50 pages"
       end
       sphinx_options[:page] = 50
