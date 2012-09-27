@@ -6,7 +6,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 include AuthenticatedTestHelper
 
 describe User do
-  describe 'being created' do
+  describe 'creation' do
     before do
       @user = nil
       @creating_user = lambda do
@@ -42,6 +42,19 @@ describe User do
       lambda {
         User.make!(:login => 'FOO')
       }.should raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should require email under normal circumstances" do
+      u = User.make
+      u.email = nil
+      u.should_not be_valid
+    end
+    
+    it "should allow skipping email validation" do
+      u = User.make
+      u.email = nil
+      u.skip_email_validation = true
+      u.should be_valid
     end
   end
 
