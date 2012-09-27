@@ -10,7 +10,13 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
     respond_with resource do |format|
-      format.html { redirect_to after_sign_in_path_for(resource) }
+      format.html do
+        if session[:return_to]
+          redirect_to session[:return_to]
+        else
+          redirect_to after_sign_in_path_for(resource)
+        end
+      end
 
       # for reasons that are unclear iPhone requests for /sessions.json are 
       # considered mobile, even though request.format is text/html, which also 
