@@ -30,7 +30,7 @@ Inaturalist::Application.routes.draw do
   match '/auth/:provider/callback' => 'provider_authorizations#create', :as => :omniauth_callback
   match '/auth/:provider/disconnect' => 'provider_authorizations#destroy', :as => :omniauth_disconnect, :method => 'delete'
   match '/users/edit_after_auth' => 'users#edit_after_auth', :as => :edit_after_auth
-  match '/facebook/photo_fields' => 'facebook#albums'
+  match '/facebook/photo_fields' => 'facebook#photo_fields'
   match "/eol/photo_fields" => "eol#photo_fields"
   match '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   match '/flickr/invite' => 'photos#invite', :provider => 'flickr'

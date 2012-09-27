@@ -53,7 +53,7 @@ class FacebookPhoto < Photo
     fbp_json = self.api_response || FacebookPhoto.get_api_response(self.native_photo_id, :user => self.user)
     observation = Observation.new
     observation.user = self.user if self.user
-    observation.photos << self
+    observation.observation_photos.build(:photo => self)
     observation.description = fbp_json["name"]
     #observation.observed_on_string = fp.taken.to_s(:long)
     #observation.munge_observed_on_with_chronic
