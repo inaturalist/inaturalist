@@ -197,7 +197,7 @@ class ApplicationController < ActionController::Base
     if logged_in? && @places.blank?
       if ydn_places = GeoPlanet::Place.search(params[:q], :count => 5)
         new_places = ydn_places.map {|p| Place.import_by_woeid(p.woeid)}
-        @places = Place.paginate(new_places.map(&:id).compact, :page => 1)
+        @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
     @places.compact!
