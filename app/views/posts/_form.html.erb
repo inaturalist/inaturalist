@@ -22,17 +22,14 @@
     }
   </style>
 <% end -%>
-<%= form_for(post, :html => {:class => 'post_form'}) do |f| %>
+<%= form_for(post, :builder => DefaultFormBuilder, :html => {:class => 'post_form'}) do |f| %>
   <div class="column span-13 append-1">
     <%= error_messages_for :post %>
-    <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title, :class => 'text' %>
-    </div>
-
-    <div class="field">
-      <%= f.label :body %>
-      <%= f.text_area :body %>
+    <%= f.text_field :title %>
+    <%= f.text_area :body %>
+    <div class="stacked small meta">
+      <strong>Allowed HTML:</strong>
+      <%= Post::ALLOWED_TAGS.to_a.sort.join(', ') %>
     </div>
     
     <%= f.hidden_field :user_id %>

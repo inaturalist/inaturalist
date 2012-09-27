@@ -13,6 +13,15 @@ class Post < ActiveRecord::Base
   
   scope :published, where("published_at IS NOT NULL")
   scope :unpublished, where("published_at IS NULL")
+
+  ALLOWED_TAGS = %w(
+    a abbr acronym b blockquote br cite code dl dt em embed h1 h2 h3 h4 h5 h6 hr i
+    iframe img li object ol p param pre small strong sub sup tt ul
+  )
+
+  ALLOWED_ATTRIBUTES = %w(
+    href src width height alt cite title class name xml:lang abbr value
+  )
   
   def skip_update_for_draft
     @skip_update = true if draft?

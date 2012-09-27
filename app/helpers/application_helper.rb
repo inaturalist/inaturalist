@@ -237,7 +237,7 @@ module ApplicationHelper
     )
   end
   
-  def formatted_user_text(text)
+  def formatted_user_text(text, options = {})
     return text if text.blank?
     
     # make sure attributes are quoted correctly
@@ -245,9 +245,8 @@ module ApplicationHelper
     
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
-    text = sanitize(text)
-    text = simple_format(text)
-    text = markdown(text)
+    text = sanitize(text, options)
+    text = simple_format(text, {}, :sanitize => false)
     text = auto_link(text.html_safe).html_safe
     
     # Ensure all tags are closed
