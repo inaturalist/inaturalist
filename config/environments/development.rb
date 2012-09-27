@@ -13,11 +13,6 @@ Inaturalist::Application.configure do
   config.consider_all_requests_local       = true
   # config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
-  
-  # Uncomment these to test caching
-  # ActionController::Base.cache_store = :file_store, Rails.root + "/tmp/cache"
-  # config.action_controller.perform_caching             = true
-  # config.action_view.cache_template_loading            = true
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
@@ -33,10 +28,11 @@ Inaturalist::Application.configure do
 
   # # Uncomment these to test caching
   # config.cache_store = :file_store, RAILS_ROOT + "/tmp/cache"
-  config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
+  config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
+
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 

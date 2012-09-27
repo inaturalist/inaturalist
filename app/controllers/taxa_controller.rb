@@ -1,10 +1,10 @@
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format.geojson?}
   caches_action :show, :expires_in => 1.day, :if => Proc.new {|c| 
-    c.session.blank? || c.session[:user_id].blank?
+    c.session.blank? || c.session['warden.user.user.key'].blank?
   }
   caches_action :describe, :expires_in => 1.day, :if => Proc.new {|c| 
-    c.session.blank? || c.session[:user_id].blank?
+    c.session.blank? || c.session['warden.user.user.key'].blank?
   }
   
   include TaxaHelper
