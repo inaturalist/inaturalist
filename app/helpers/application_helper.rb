@@ -655,9 +655,9 @@ module ApplicationHelper
   end
   
   def commas_and(list)
-    return list.first.to_s if list.size == 1
-    return list.join(' and ') if list.size == 2
-    "#{list[0..-2].join(', ')}, and #{list.last}"
+    return list.first.to_s.html_safe if list.size == 1
+    return list.join(' and ').html_safe if list.size == 2
+    "#{list[0..-2].join(', ')}, and #{list.last}".html_safe
   end
   
   def update_cached(record, association)
