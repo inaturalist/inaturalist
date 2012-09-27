@@ -73,7 +73,7 @@ class FacebookController < ApplicationController
   def album
     limit = (params[:limit] || 10).to_i
     offset = ((params[:page] || 1).to_i - 1) * limit
-    @friend_id = params[:object_id] unless params[:object_id]=='null'
+    @friend_id = params[:object_id] unless params[:object_id] == 'null'
     if @friend_id
       friend_data = current_user.facebook_api.get_object(@friend_id)
       @friend_name = friend_data['first_name']

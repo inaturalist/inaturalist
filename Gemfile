@@ -4,6 +4,7 @@ gem 'rails'
 gem 'rake', '0.8.7' # ubuntu seems to freak with the most recent version
 
 gem 'aasm'
+gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake'
 gem 'bborn-acts_as_taggable_on_steroids', :git => 'git://github.com/samoli/acts_as_taggable_on_steroids.git', :require => 'acts_as_taggable'
 gem 'ancestry'

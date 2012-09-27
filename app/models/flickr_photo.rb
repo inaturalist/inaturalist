@@ -190,7 +190,7 @@ class FlickrPhoto < Photo
 
   def self.add_comment(user, flickr_photo_id, comment_text)
     return nil if user.flickr_identity.nil?
-    flickr = FlickRaw::Flickr.new
+    flickr = FlickrPhoto.flickraw_for_user(user)
     flickr.photos.comments.addComment(
       :user_id => user.flickr_identity.flickr_user_id, 
       :auth_token => user.flickr_identity.token,

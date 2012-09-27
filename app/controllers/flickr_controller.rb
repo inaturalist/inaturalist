@@ -235,7 +235,10 @@ class FlickrController < ApplicationController
     invite_params[:flickr_photo_id] ||= request.env['HTTP_REFERER'].to_s[/flickr.com\/photos\/[^\/]+\/(\d+)/,1]
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
     session[:invite_params] = invite_params
-    redirect_to "/auth/flickr"
+    pa = if logged_in?
+      current_user.provider_authorizations.where(:provider_name => :flickr)
+    end
+    redirect_to auth_url_for(:flickr, :scope => pa.try(:scope))
   end
   
   private

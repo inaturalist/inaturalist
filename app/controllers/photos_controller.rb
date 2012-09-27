@@ -68,7 +68,7 @@ class PhotosController < ApplicationController
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     else
       # we're not using omniauth for picasa, so it needs a special auth url.  
-      if provider=='picasa'
+      if provider == 'picasa'
         if current_user.nil?
           session[:return_to] = Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) 
           redirect_to signup_url and return
@@ -76,7 +76,10 @@ class PhotosController < ApplicationController
           redirect_to Picasa.authorization_url(url_for(:controller => "picasa", :action => "authorize")) and return
         end
       else
-        redirect_to "/auth/#{provider}"
+        pa = if logged_in?
+          current_user.provider_authorizations.where(:provider_name => provider).first
+        end
+        redirect_to auth_url_for(:flickr, :scope => pa.try(:scope))
       end
     end
   end

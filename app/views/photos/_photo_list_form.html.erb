@@ -9,7 +9,7 @@
 -%>
 
 <% if organized_by_album %>
-  <a href='#' class="back_to_albums" <%= "data-friend_id='#{@friend_id}'" if @friend_id %>>&laquo; Back to <%= (@friend_name ? "#{@friend_name}'s" : "your") %> albums</a>
+  <a href='#' class="back_to_albums" <%= "data-friend_id='#{@friend_id}'".html_safe if @friend_id %>>&laquo; Back to <%= (@friend_name ? "#{@friend_name}'s" : "your") %> albums</a>
 <% elsif @friend_id %>
   <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
 <% elsif @group_id %>

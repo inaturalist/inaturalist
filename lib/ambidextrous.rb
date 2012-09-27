@@ -13,7 +13,7 @@ module Ambidextrous
   end
   
   def auth_url_for(provider, options = {})
-    provider = provider.downcase
+    provider = provider.to_s.downcase
     openid_urls = {
       "google" => "https://www.google.com/accounts/o8/id",
       "yahoo" => "https://me.yahoo.com"

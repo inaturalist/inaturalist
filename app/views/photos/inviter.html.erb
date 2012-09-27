@@ -17,7 +17,7 @@
   You can also pre-select a taxon and project for the new observation.
 </p>
 
-<% form_tag(url_for, {:method => :post, :class => "photo_inviter_form"}) do %>
+<%= form_tag(url_for, {:method => :post, :class => "photo_inviter_form"}) do %>
   
   <div class='photo_inviter'></div>
   <label for="taxonchooser">Automatically ID the new obs as</label>
@@ -44,7 +44,7 @@
     queryParam: 'q',
     collectionUrl: 'http://'+window.location.host + '/projects/search.json',
     resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
-    defaultSources: <%= @projects.to_json %>
+    defaultSources: <%= @projects.to_json.html_safe %>
   })
   var PHOTO_SOURCES = {
     facebook: {
@@ -82,7 +82,7 @@
       defaultSource: '<%= (@default_source || "flickr") %>',
       defaultContext: '<%= (@default_context || "public") %>',
       skipLocal: true,
-      defaultQuery: <%= params[:q].to_json %>
+      defaultQuery: <%= params[:q].to_json.html_safe %>
     }
     $(this).photoSelector(options)
   })
