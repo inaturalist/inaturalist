@@ -21,7 +21,7 @@
         <%= f.hidden_field(:taxon_id) %>
       <% end -%>
 
-      <%= fields_for check_list.taxon || :taxon, :builder => DefaultFormBuilder do |t| %>
+      <%= fields_for :taxon, check_list.taxon, :builder => DefaultFormBuilder do |t| %>
         <%= t.text_field :name, :label => 'Add a higher-level taxon (e.g. "birds")' %>
       <% end %>
       

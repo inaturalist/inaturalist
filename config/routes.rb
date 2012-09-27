@@ -126,9 +126,9 @@ Inaturalist::Application.routes.draw do
   match 'lists/:id.:view_type.:format' => 'lists#show',
     :as => 'list_show_formatted_view',
     :requirements => { :id => id_param_pattern }
-  resources :life_lists
+  resources :life_lists, :controller => :lists
   resources :check_lists
-  resources :project_lists
+  resources :project_lists, :controller => :lists
   resources :listed_taxa
   match 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }
   match 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
