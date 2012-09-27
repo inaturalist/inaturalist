@@ -1,11 +1,11 @@
 class TaxonSchemesController < ApplicationController
+  before_filter :load_taxon_scheme, :except => [:index]
   
   def index
     @taxon_schemes = TaxonScheme.paginate(:page => params[:page])  
   end
 
   def show
-    @taxon_scheme = TaxonScheme.find_by_id(params[:id].to_i)
     @taxon_schemes = TaxonScheme.all(:limit => 100).sort_by{|ts| ts.title}
     @genus_only = false
     filter_params = params[:filters] || params
@@ -86,6 +86,13 @@ class TaxonSchemesController < ApplicationController
         @swaps_by_taxon_id[taxon.id] << swap
       end
     end
+  end
+
+  private
+  def load_taxon_scheme
+    render_404 unless @taxon_scheme = TaxonScheme.find_by_id(params[:id], 
+      :include => [:source]
+    )
   end
     
 end

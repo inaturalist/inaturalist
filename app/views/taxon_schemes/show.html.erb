@@ -21,8 +21,8 @@
 
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
-    window.taxon = <%= @parent.to_json(:methods => [:html]) %>
-    window.defaultTaxa = <%= @genera.to_json(:only => [:id, :name]) %>
+    window.taxon = <%= @parent.to_json(:methods => [:html]).html_safe %>
+    window.defaultTaxa = <%= @genera.to_json(:only => [:id, :name]).html_safe %>
     $(document).ready(function() {
       $('#filters_taxon_id').chooser({
         collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
@@ -34,7 +34,6 @@
         var form = $(this).parents('form:first'),
             oldAction = form.attr('action'),
             newAction = oldAction.replace(/\d+/, $(this).val())
-        console.log("[DEBUG] newAction:", newAction)
         form.attr('action', newAction)
       })
     })

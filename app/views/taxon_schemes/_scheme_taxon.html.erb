@@ -18,15 +18,25 @@
       <td>
         <div id="scheme_taxon_<%= taxon.id %>" class="scheme_taxon clear" data-taxon-id="<%= taxon.id %>">
           <% image_and_content taxon_image(taxon), :image_size => 75 do %>
-            <% link_to taxon, :class => "taxon #{taxon.rank}" do %>
+            <%= link_to taxon, :class => "taxon #{taxon.rank}" do %>
               <span class="sciname"><%= taxon.name %></span>
             <% end -%>
             
             <div class="stacked">
               <%= link_to taxon.observations_count, observations_path(:taxon_id => taxon.id) %> Obs
-              <%= "<span class='meta'>|</span> #{taxon.conservation_status_code}" unless taxon.conservation_status.nil? %>
-              <%= "<span class='meta'>|</span> #{link_to 'Range', taxon_path(taxon, :anchor => 'taxon_range')}" if taxon_range %>
-              <%= taxon.is_active ? "| <span class='active'>Active</span>" : "| <span class='inactive'>Inactive</span>" %>
+              <% unless taxon.conservation_status.blank? -%>
+                <span class='meta'>|</span>
+                <%= taxon.conservation_status_code %>
+              <% end -%>
+              <% if taxon_range -%>
+                <span class='meta'>|</span>
+                <%= link_to 'Range', taxon_path(taxon, :anchor => 'taxon_range') %>
+              <% end -%>
+              <% if taxon.is_active? -%>
+                | <span class='active'>Active</span>
+              <% else %>
+                | <span class='inactive'>Inactive</span>
+              <% end -%>
               <% if taxon.flagged? %>
                 | <span id="flaggings_heads_up" class="description">
                 Flagged for curation.
