@@ -57,6 +57,14 @@ describe Observation, "creation" do
     zone = ActiveSupport::TimeZone[@observation.time_zone]
     zone.formatted_offset.should == "-05:00"
   end
+
+  it "should parse datetime like September 27, 2012 8:09:50 AM GMT+01:00" do
+    o = Observation.make!(:observed_on_string => "September 27, 2012 8:09:50 AM GMT+01:00")
+    o.time_observed_at.in_time_zone(o.time_zone).hour.should be(8)
+    zone = ActiveSupport::TimeZone[o.time_zone]
+    zone.formatted_offset.should == "+01:00"
+    o.observed_on.day.should be(27)
+  end
   
   it "should parse a time zone from a code" do
     @observation.observed_on_string = 'October 30, 2008 10:31PM EST'

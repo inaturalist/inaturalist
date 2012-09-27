@@ -577,10 +577,11 @@ class Observation < ActiveRecord::Base
       return true
     end
     date_string = observed_on_string.strip
-    tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/
-    tz_offset_pattern = /([+-]\d{4})$/
-    tz_js_offset_pattern = /(GMT)?[+-]\d{4}/
-    tz_failed_abbrev_pattern = /\((GMT|HSP)-\d+:\d+\)/
+    tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/ # ends with (PDT)
+    tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
+    tz_js_offset_pattern = /(GMT)?[+-]\d{4}/ # contains GMT-0800
+    tz_colon_offset_pattern = /(GMT|HSP)([+-]\d+:\d+)/ # contains (GMT-08:00)
+    tz_failed_abbrev_pattern = /\(#{tz_colon_offset_pattern}\)/
     
     if date_string =~ /#{tz_js_offset_pattern} #{tz_failed_abbrev_pattern}/
       date_string = date_string.sub(tz_failed_abbrev_pattern, '').strip
@@ -596,6 +597,9 @@ class Observation < ActiveRecord::Base
     elsif (offset = date_string[tz_js_offset_pattern, 1]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f / 100])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
+      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && (parsed_time_zone = ActiveSupport::TimeZone[offset.to_f])
+      date_string = date_string.sub(tz_colon_offset_pattern, '')
       self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     end
     
