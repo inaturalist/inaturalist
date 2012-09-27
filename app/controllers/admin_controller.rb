@@ -57,8 +57,8 @@ class AdminController < ApplicationController
       flash[:error] = "That user doesn't exist"
       redirect_back_or_default(:index)
     end
-    logout_keeping_session!
-    self.current_user = user
+    sign_out :user
+    sign_in user
     
     flash[:notice] = "Logged in as #{user.login}. Be careful, and remember to log out when you're done."
     redirect_to root_path
