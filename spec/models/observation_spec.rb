@@ -248,7 +248,7 @@ describe Observation, "creation" do
       .NET CLR 3.5.30729; PeoplePal 7.0; PeoplePal 7.3; .NET4.0C; .NET4.0E;
       OfficeLiveConnector.1.5; OfficeLivePatch.1.3) w:PACBHO60
     EOT
-    o = Observation.make(:user_agent => user_agent)
+    o = Observation.make!(:user_agent => user_agent)
     o.user_agent.size.should be < 256
   end
 end
