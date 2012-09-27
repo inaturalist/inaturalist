@@ -462,11 +462,11 @@ module ApplicationHelper
   def citation_for(record)
     return 'unknown' if record.blank?
     if record.is_a?(Source)
-      html = h(record.citation || [record.title, record.in_text, record.url].join(', '))
+      html = record.citation || [record.title, record.in_text, record.url].join(', ')
       if record.editable_by?(current_user)
-        html += " " + link_to("edit source", edit_source_path(record), :class => "nobr small")
+        html += " " + link_to("edit source", edit_source_path(record), :class => "nobr small").html_safe
       end
-      html
+      html.html_safe
     else
       render :partial => "#{record.class.to_s.underscore.pluralize}/citation", :object => record
     end

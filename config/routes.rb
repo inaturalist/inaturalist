@@ -182,7 +182,7 @@ Inaturalist::Application.routes.draw do
   match '/taxa/curation' => 'taxa#curation', :as => :curate_taxa
   match "taxa/*q" => 'taxa#try_show'
   
-  resources :sources, :only => [:index, :show]
+  resources :sources, :except => [:new, :create]
   match 'journal' => 'posts#browse', :as => :journals
   match 'journal/:login' => 'posts#index', :as => :journal_by_login, :constraints => { :login => simplified_login_regex }
   match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }

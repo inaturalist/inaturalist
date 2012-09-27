@@ -21,7 +21,7 @@
   taxon_change ||= @taxon_change
   taxon_change_type = taxon_change.class.name
 -%>
-<% form_for(taxon_change, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+<%= form_for(taxon_change, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
   <%= error_messages_for :taxon_change %>
   
   <div class="column span-24">

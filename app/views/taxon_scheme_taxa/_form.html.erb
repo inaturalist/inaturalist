@@ -1,4 +1,4 @@
-<% form_for(@taxon_scheme_taxon, 
+<%= form_for(@taxon_scheme_taxon, 
     :url => @taxon_scheme_taxon.new_record? ? taxon_taxon_scheme_taxa_path(@taxon_scheme || @taxon_scheme_taxon.taxon) : @taxon_scheme_taxon) do |n| %>
   <%= error_messages_for :taxon_scheme_taxon %>
   
