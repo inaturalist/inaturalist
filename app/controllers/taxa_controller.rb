@@ -733,13 +733,13 @@ class TaxaController < ApplicationController
     rescue Timeout::Error => e
       error_text = e.message
     end
-    unless summary.blank?
-      render :text => summary
-    else
+    if summary.blank?
       error_text ||= "Could't retrieve the Wikipedia " + 
         "summary for #{@taxon.name}.  Make sure there is actually a " + 
         "corresponding article on Wikipedia."
       render :status => 404, :text => error_text
+    else
+      render :text => summary
     end
   end
   

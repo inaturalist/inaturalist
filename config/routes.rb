@@ -150,6 +150,7 @@ Inaturalist::Application.routes.draw do
     # post 'update_photos'
     member do
       post 'update_photos', :as => "update_photos_for"
+      post 'refresh_wikipedia_summary', :as => "refresh_wikipedia_summary_for"
     end
     collection do
       get 'tree'
