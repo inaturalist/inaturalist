@@ -139,9 +139,10 @@ class PostsController < ApplicationController
   def get_archives
     @archives = @display_user.posts.published.count(
       :group => "TO_CHAR(published_at, 'YYYY MM Month')")
-    @archives = @archives.to_a.reverse.map do |month_str, count|
+    @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
     end
+
   end
   
   def load_display_user_by_login
