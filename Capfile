@@ -267,4 +267,4 @@ after "deploy:stop", "delayed_job:stop"
 after "deploy:restart", "delayed_job:restart"
 
 # since this seems to fail, we do it after restarting DJ, which seems more important
-after "deploy:restart", "sphinx_restart"
+after "deploy:restart", "deploy:sphinx_restart"

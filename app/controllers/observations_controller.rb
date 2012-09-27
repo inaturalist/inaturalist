@@ -75,7 +75,7 @@ class ObservationsController < ApplicationController
         cache_params[:page] ||= 1
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
         Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
-          get_paginated_observations(search_params, find_options)
+          get_paginated_observations(search_params, find_options).to_a
         end
       else
         get_paginated_observations(search_params, find_options)
@@ -1414,9 +1414,12 @@ class ObservationsController < ApplicationController
         Observation.query(search_params).search(@q, find_options).compact
       end
     end
-    @observations ||= Observation.query(search_params).paginate(find_options)
+    if @observations.blank?
+      @observations = Observation.query(search_params).paginate(find_options)
+    end
     @observations
   rescue ThinkingSphinx::ConnectionError
+    Rails.logger.error "[ERROR #{Time.now}] ThinkingSphinx::ConnectionError, hitting the db"
     find_options.delete(:class)
     find_options.delete(:classes)
     find_options.delete(:raise_on_stale)
