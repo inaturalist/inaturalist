@@ -13,7 +13,8 @@ class Place < ActiveRecord::Base
   validates_presence_of :latitude, :longitude
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
-  validates_uniqueness_of :name, :scope => :parent_id
+  validates_uniqueness_of :name, :scope => :ancestry
+  validate :validate_parent_is_not_self
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -145,8 +146,8 @@ class Place < ActiveRecord::Base
     "lng: #{longitude}, parent_id: #{parent_id}>"
   end
   
-  def validate
-    if !id.blank? && id == parent_id
+  def validate_parent_is_not_self
+    if !id.blank? && id == ancestor_ids.last
       errors.add(:parent_id, "cannot be the same as the place itself")
     end
   end

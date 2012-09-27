@@ -57,8 +57,8 @@ module MakeHelpers
   end
   
   def make_project_invitation(options = {})
-    pu = ProjectUser.make
-    o = Observation.make
+    pu = ProjectUser.make!
+    o = Observation.make!
     pi = ProjectInvitation.create!(options.merge(:user => pu.user, :project => pu.project, :observation => o))
     pi
   end

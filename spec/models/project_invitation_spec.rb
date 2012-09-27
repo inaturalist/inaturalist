@@ -10,7 +10,7 @@ describe ProjectInvitation, "creation" do
 end
 
 describe ProjectInvitation, "notify_owner_of" do
-  it "shoudl generate an update for the observer" do
+  it "should generate an update for the observer" do
     pi = make_project_invitation
     lambda {
       pi.notify_owner_of(:observation)

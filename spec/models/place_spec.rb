@@ -25,13 +25,13 @@ end
 
 describe Place, "updating" do
   before(:each) do
-    @place = Place.make
+    @place = Place.make!
   end
   
   it "should not have itself as a parent" do
-    @place.parent_id = @place.id
+    @place.parent = @place
     @place.should_not be_valid
-    @place.errors.on(:parent_id).should_not be_blank
+    @place.errors[:parent_id].should_not be_blank
   end
 end
 

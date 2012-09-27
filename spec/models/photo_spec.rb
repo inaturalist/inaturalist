@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Photo, "creation" do
-  it "shoudl not allow native_realname to be too big" do
+  it "should not allow native_realname to be too big" do
     txt = <<-TXT
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -11,7 +11,7 @@ describe Photo, "creation" do
       occaecat cupidatat non proident, sunt in culpa qui officia deserunt
       mollit anim id est laborum. 
     TXT
-    p = Photo.make(:native_realname => txt, :native_username => txt)
+    p = Photo.make!(:native_realname => txt, :native_username => txt)
     p.native_realname.size.should be < 256
     p.native_username.size.should be < 256
   end
