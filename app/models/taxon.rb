@@ -568,7 +568,7 @@ class Taxon < ActiveRecord::Base
           :license => '1,2,3,4,5,6', # CC licenses
           :extras => 'date_upload,owner_name,url_s,url_t,url_s,url_m,url_l,url_o,owner_name,license',
           :sort => 'relevance'
-        ).map{|fp| fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
+        ).map{|fp| fp.respond_to?(:url_s) && fp.url_s ? FlickrPhoto.new_from_api_response(fp) : nil}.compact
       rescue FlickRaw::FailedResponse => e
         Rails.logger.error "EXCEPTION RESCUE: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
