@@ -1,4 +1,4 @@
-<%- taxon_change_taxon ||= object -%>
+<%- taxon_change_taxon ||= nested_form_fields -%>
 <%- taxon_change ||= taxon_change_taxon.taxon_change -%>
 <%- fields_for "taxon_change_taxa[]", taxon_change_taxon, :builder => DefaultFormBuilder do |n| -%>
   <%= render :partial => "shared/taxon", :object => taxon_change_taxon.taxon, 

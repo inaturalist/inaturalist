@@ -1,5 +1,5 @@
 <%-
-  taxon ||= object || @taxon
+  taxon ||= scheme_taxon || @taxon
   photo ||= taxon.photos.first
   taxon_range ||= taxon.taxon_ranges_without_geom.first
   swaps = if @swaps_by_taxon_id
