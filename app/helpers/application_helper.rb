@@ -116,7 +116,7 @@ module ApplicationHelper
   end
 
   def is_me?(user = @selected_user)
-    logged_in? && (user.id == current_user.id)
+    logged_in? && (user.try(:id) == current_user.id)
   end
   
   def is_not_me?(user = @selected_user)
