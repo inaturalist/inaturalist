@@ -8,7 +8,7 @@ This script is meant to keep the EOL projects on iNaturalist in sync with the
 EOL collections in an EOL collection (yes, EOL has collections of collections)
 
 Usage:
-  script/runner tools/eol_collections_to_projects.rb <EOL collection url>
+  rails runner tools/eol_collections_to_projects.rb <EOL collection url>
 
 The script:
    1) makes projects for collections if they don't already exist
@@ -215,7 +215,7 @@ eol_collection_ids.each do |eol_collection_id|
               taxon = match.taxon
               if taxon.valid? && !taxon.new_record?
                 puts "\t\tImported new taxon: #{taxon}"
-                taxon.send_later(:graft) unless opts[:test]
+                taxon.delay.graft unless opts[:test]
               else
                 puts "\t\tFailed to import #{taxon}: #{taxon.errors.full_messages.to_sentence}"
                 taxon = nil

@@ -50,6 +50,7 @@ gem 'rvm-capistrano'
 gem 'spatial_adapter', :git => 'git://github.com/Empact/spatial_adapter.git' # until fragility updates the gemspec
 gem 'thinking-sphinx', '2.0.10'
 gem 'tlsmail'
+gem 'trollop'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem "watu_table_builder", :require => "table_builder"
 gem 'will_paginate'

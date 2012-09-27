@@ -7,15 +7,15 @@ Exports a Darwin Core Archive from observations.  Archives will be gzip'd tarbal
 
 Usage:
 
-  script/runner dwca.rb
+  rails runner dwca.rb
 
 will output licensed observations to public/observations/dwca.zip.
 
-  script/runner tools/dwca.rb -f public/observations/calflora.dwca.zip -t 123635 -p 14
+  rails runner tools/dwca.rb -f public/observations/calflora.dwca.zip -t 123635 -p 14
 
 will output licensed observations of taxon 123635 from place 14 to calflora.dwca.zip
   
-  script/runner tools/dwca.rb \
+  rails runner tools/dwca.rb \
     -f public/taxa/eol_media.dwca.zip \
     --core taxon \
     --extensions EolMedia \
