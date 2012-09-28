@@ -87,3 +87,7 @@ OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
 
 # apparently we still need this for static maps
 Ym4r::GmPlugin::ApiKey.key = YAML.load_file("#{::Rails.root}/config/gmaps_api_key.yml")[Rails.env]
+
+# force encoding
+Encoding.default_internal = Encoding::UTF_8
+Encoding.default_external = Encoding::UTF_8
