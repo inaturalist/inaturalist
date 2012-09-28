@@ -58,7 +58,7 @@
   <div class="breadcrumbs">
     <strong><%= link_to "Places", places_path, :class => 'crumb' %></strong>
     <span class="description">&gt;</span>
-    <% @place.ancestors.reverse_each do |ancestor| %>
+    <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
         <%= ancestor.name %>
         <span class="small description">(<%= ancestor.place_type_name %>)</span>
