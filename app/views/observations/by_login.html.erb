@@ -352,7 +352,7 @@ Observations by <%= h @login %>
   <% if @observations.empty? %>
     <div id="no_obs_message" class="description">
       No matching observations.
-      <% if @user and @user.login == @login %>
+      <% if logged_in? && current_user.login == @login %>
       <%= link_to 'Add Observations', new_observation_path, 
                   :class => 'default inline button' %>
       <% end %>
