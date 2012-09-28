@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PicasaPhoto < Photo
   
   Photo.descendent_classes ||= []

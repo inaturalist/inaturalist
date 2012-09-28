@@ -1,3 +1,4 @@
+#encoding: utf-8
 module TaxaHelper
   include ActionView::Helpers::AssetTagHelper
   
@@ -65,7 +66,7 @@ module TaxaHelper
     end
     image_params[:class] ||= ""
     image_params[:class] += " #{params[:size]} photo" if params[:size]
-    image_tag(taxon_image_url(taxon, params), image_params)
+    image_tag(taxon_image_url(taxon, params), image_params).force_encoding('utf-8')
   end
   
   def taxon_image_url(taxon, params = {})
@@ -86,7 +87,7 @@ module TaxaHelper
     params[:class] = params[:class] ? "#{params[:class]} iconic" : 'iconic'
     params[:title] ||= Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.try(:name)]
     params[:alt] ||= Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.try(:name)]
-    image_tag(path, params)
+    image_tag(path, params).force_encoding('utf-8')
   end
   
   #

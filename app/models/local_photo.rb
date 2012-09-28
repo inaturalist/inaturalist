@@ -1,3 +1,4 @@
+#encoding: utf-8
 class LocalPhoto < Photo
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self

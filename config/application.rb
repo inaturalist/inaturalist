@@ -1,6 +1,3 @@
-# Specifies gem version of Rails to use when vendor/rails is not present
-# RAILS_GEM_VERSION = '2.3.8' unless defined? RAILS_GEM_VERSION
-
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'

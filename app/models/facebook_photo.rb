@@ -1,3 +1,4 @@
+#encoding: utf-8
 class FacebookPhoto < Photo
   
   Photo.descendent_classes ||= []

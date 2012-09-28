@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Taxon < ActiveRecord::Base
   # Sometimes you don't want to make a new taxon name with a taxon, like when
   # you're saving a new taxon name with a new associated taxon. Hence, this.

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class TaxonName < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :source
