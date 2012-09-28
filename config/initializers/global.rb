@@ -38,3 +38,15 @@ def ratatosk(options = {})
     Ratatosk
   end
 end
+
+class String
+  def sanitize_encoding
+    begin
+      blank?
+    rescue ArgumentError => e
+      raise e unless e.message =~ /invalid byte sequence in UTF-8/
+      return encode('utf-8', 'iso-8859-1')
+    end
+    self
+  end
+end

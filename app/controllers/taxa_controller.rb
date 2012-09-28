@@ -1,3 +1,4 @@
+#encoding: utf-8
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
   caches_action :show, :expires_in => 1.day, :if => Proc.new {|c| 
@@ -281,7 +282,7 @@ class TaxaController < ApplicationController
   # /taxa/browse?q=bird&places=1,2&colors=4,5
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
   def search
-    @q = params[:q].to_s
+    @q = params[:q] = params[:q].to_s.sanitize_encoding
     match_mode = :all
     
     # Wrap the query in modifiers to ensure exact matches show first
@@ -1024,7 +1025,7 @@ class TaxaController < ApplicationController
   
   # Try to find a taxon from urls like /taxa/Animalia or /taxa/Homo_sapiens
   def try_show
-    name, format = params[:q].split('_').join(' ').split('.')
+    name, format = params[:q].to_s.sanitize_encoding.split('_').join(' ').split('.')
     request.format = format if request.format.blank? && !format.blank?
     name = name.to_s.downcase
     
