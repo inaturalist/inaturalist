@@ -1,5 +1,5 @@
 class TaxaController < ApplicationController
-  caches_page :range, :if => Proc.new {|c| c.request.format.geojson?}
+  caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
   caches_action :show, :expires_in => 1.day, :if => Proc.new {|c| 
     c.session.blank? || c.session['warden.user.user.key'].blank?
   }
@@ -44,7 +44,7 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_taxa unless request.format.html?
+    find_taxa unless request.format == :html
     
     begin
       @taxa.try(:total_entries)
@@ -569,7 +569,7 @@ class TaxaController < ApplicationController
   end
   
   def range
-    @taxon_range = if request.format.geojson?
+    @taxon_range = if request.format == :geojson
       @taxon.taxon_ranges.simplified.first
     else
       @taxon.taxon_ranges.first

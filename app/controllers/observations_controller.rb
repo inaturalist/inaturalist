@@ -454,7 +454,7 @@ class ObservationsController < ApplicationController
     
     if params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
       # JSON conditions is a bit of a hack to accomodate mobile clients
-      unless params[:accept_terms] || request.format.json?
+      unless params[:accept_terms] || request.format == :json
         msg = "You need check that you agree to the project terms before joining the project"
         @project = Project.find_by_id(params[:project_id])
         @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
@@ -1093,7 +1093,7 @@ class ObservationsController < ApplicationController
       return
     end
     
-    unless request.format.mobile?
+    unless request.format == :mobile
       search_params, find_options = get_search_params(params)
       search_params[:projects] = @project.id
       if search_params[:q].blank?

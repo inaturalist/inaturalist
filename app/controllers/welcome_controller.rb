@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
   caches_action :index, :expires_in => 15.minutes, :if => Proc.new {|c|
     !c.send(:logged_in?) && 
     c.send(:flash).blank? && 
-    !c.request.format.mobile?
+    c.request.format != :mobile
   }
   
   def index

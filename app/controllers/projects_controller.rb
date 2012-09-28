@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   caches_action :observed_taxa_count, :contributors,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format.widget?}
+    :if => Proc.new {|c| c.request.format == :widget}
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
   before_filter :authenticate_user!, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]

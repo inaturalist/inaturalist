@@ -10,7 +10,7 @@ class ListsController < ApplicationController
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
-  caches_page :show, :if => Proc.new {|c| c.request.format.csv?}
+  caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
   
   LIST_SORTS = %w"id title"
   LIST_ORDERS = %w"asc desc"
