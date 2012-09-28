@@ -704,7 +704,7 @@ class Taxon < ActiveRecord::Base
       return Nokogiri::HTML::DocumentFragment.parse(sum).to_s
     end
     
-    delay(:priority => 2).set_wikipedia_summary
+    delay(:priority => 2).set_wikipedia_summary unless new_record?
     nil
   end
   
