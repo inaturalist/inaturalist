@@ -367,7 +367,7 @@ class User < ActiveRecord::Base
       :icon_url => auth_info["info"]["image"]
     )
     u.skip_email_validation = true
-    u.skip_registration_email = true
+    u.skip_confirmation!
     unless u.save
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
