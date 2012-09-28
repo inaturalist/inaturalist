@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ObservationsController < ApplicationController
   caches_page :tile_points
   

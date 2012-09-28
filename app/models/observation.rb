@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Observation < ActiveRecord::Base
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Photo < ActiveRecord::Base
   # comment that's posted to invite someone to upload that photo to inat
   # {{INVITE_LINK}} gets replaced with the url

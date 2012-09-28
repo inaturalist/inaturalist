@@ -54,18 +54,6 @@ module Inaturalist
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password, :password_confirmation]
   end
-  
-  # require 'geoplanet'
-  # require 'geoip'
-  # require 'net-flickr/lib/net/flickr'
-  # require 'catalogue_of_life'
-  # require 'ubio'
-  # require 'model_tips'
-  # require 'meta_service'
-  # require 'wikipedia_service'
-  # require 'batch_tools'
-  # require 'georuby_extra'
-  # 
 
 end
 
