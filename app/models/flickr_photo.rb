@@ -29,6 +29,9 @@ class FlickrPhoto < Photo
   def self.get_api_response(native_photo_id, options = {})
     f = options[:user] ? flickraw_for_user(options[:user]) : flickr
     f.photos.getInfo(:photo_id => native_photo_id)
+  rescue FlickRaw::FailedResponse => e
+    raise e unless e.message =~ /Invalid auth token/
+    flickr.photos.getInfo(:photo_id => native_photo_id)
   end
   
   def self.new_from_api_response(api_response, options = {})
