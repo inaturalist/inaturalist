@@ -213,8 +213,9 @@ module Shared::ListsModule
         next
       end
       
-      taxon_names = TaxonName.paginate(:page => 1, :include => :taxon,
-        :conditions => ["lower(name) = ?", name.to_s.downcase])
+      taxon_names = TaxonName.includes(:taxon).
+        where("lower(taxon_names.name) = ?", name.to_s.downcase).
+        page(1)
       case taxon_names.size
       when 0
         @lines_taxa << [name, "not found"]
