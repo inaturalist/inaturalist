@@ -13,7 +13,7 @@ class Place < ActiveRecord::Base
   validates_presence_of :latitude, :longitude
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
-  validates_uniqueness_of :name, :scope => :ancestry
+  validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
   validate :validate_parent_is_not_self
   
   has_subscribers :to => {
@@ -236,6 +236,12 @@ class Place < ActiveRecord::Base
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
+    if place.valid?
+      place.save
+    else
+      Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+      return
+    end
     place.parent = options[:parent]
     
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
