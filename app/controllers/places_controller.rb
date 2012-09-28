@@ -31,7 +31,22 @@ class PlacesController < ApplicationController
       end
       
       format.json do
-        render :json => Place.search((params[:q] || params[:term]).to_s)
+        scope = Place.scoped
+        if params[:q] || params[:term]
+          q = (params[:q] || params[:term]).to_s.sanitize_encoding
+          scope = scope.dbsearch(q)
+        end
+        # render :json => Place.search((params[:q] || params[:term]).to_s)
+        if !params[:place_type].blank?
+          scope = scope.place_type(params[:place_type])
+        elsif !params[:place_types].blank?
+          scope = scope.place_types(params[:place_types])
+        end
+        scope = scope.listing_taxon(params[:taxon]) unless params[:taxon].blank?
+        per_page = params[:per_page].to_i
+        per_page = 200 if per_page > 200
+        per_page = 30 if per_page < 1
+        render :json => scope.paginate(:page => params[:page], :per_page => per_page).to_a
       end
     end
   end

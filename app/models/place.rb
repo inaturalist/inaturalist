@@ -100,6 +100,11 @@ class Place < ActiveRecord::Base
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
   PLACE_TYPE_CODES = PLACE_TYPES.invert
+  PLACE_TYPES.each do |code, type|
+    PLACE_TYPE_CODES[type.downcase] = code
+  end
+
+  scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
   scope :containing_lat_lng, lambda {|lat, lng|
     joins(:place_geometry).where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat)
@@ -124,6 +129,19 @@ class Place < ActiveRecord::Base
     joins("JOIN place_geometries ON place_geometries.place_id = places.id").
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
     where("ST_Intersects(place_geometries.geom, taxon_ranges.geom)")
+  }
+
+  scope :listing_taxon, lambda {|taxon|
+    taxon_id = if taxon.is_a?(Taxon)
+      taxon
+    elsif taxon.to_i == 0
+      Taxon.single_taxon_for_name(taxon)
+    else
+      taxon
+    end
+    select("DISTINCT places.id, places.*").
+    joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").
+    where("listed_taxa.taxon_id = ?", taxon_id)
   }
   
   scope :place_type, lambda {|place_type|
@@ -563,5 +581,13 @@ class Place < ActiveRecord::Base
   
   def self.guide_cache_key(id)
     "place_guide_#{id}"
+  end
+  
+  def as_json(options = {})
+    options[:methods] ||= []
+    options[:methods] << :place_type_name
+    options[:except] ||= []
+    options[:except] += [:source_filename, :delta, :bbox_area]
+    super(options)
   end
 end
