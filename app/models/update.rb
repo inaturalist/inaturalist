@@ -59,6 +59,10 @@ class Update < ActiveRecord::Base
         # get the resource that has all this activity
         resource = update_cache[resource_type.underscore.pluralize.to_sym][resource_id] if update_cache
         resource ||= Object.const_get(resource_type).find_by_id(resource_id)
+        if resource.blank?
+          Rails.logger.error "[ERROR #{Time.now}] couldn't find resource #{resource_type} #{resource_id}, first update: #{batch.first}"
+          next
+        end
         
         # get the associations on that resource that generate activity updates
         activity_assocs = resource.class.notifying_associations.select do |assoc, assoc_options|
