@@ -171,10 +171,10 @@
       <% else %>
         <%= link_to "Unsuspend user", unsuspend_user_path(@user) %>
       <% end %>
-      |
     <% end -%>
     
     <% if current_user.is_curator? && !@user.is_admin? -%>
+      |
       <% if @user.is_curator? %>
         <%= link_to "Remove curator status", remove_role_path(@user, :role => "curator"), :method => :delete %>
       <% else %>

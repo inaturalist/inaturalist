@@ -11,7 +11,7 @@
       <% for user_attr in User.column_names %>
         <tr>
           <th><%= user_attr %></th>
-          <td><%= @display_user.send(user_attr) %></td>
+          <td><%= @display_user.send(user_attr).to_s.html_safe %></td>
         </tr>
       <% end %>
     </table>
