@@ -1,9 +1,20 @@
 <%- content_for(:title) do -%>
   <%= @title = "Observation field: #{@observation_field.name}" %>
 <%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css">
+    td.observations {width:80%;}
+    td.observations.mini .observation {border-bottom: 0 transparent;}
+  </style>
+<%- end -%>
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
+      <% if @observation_field.editable_by?(current_user) %>
+        <span class="right">
+          <%= link_to 'Edit field', edit_observation_field_path(@observation_field), :class => "ui description" %>
+        </span>
+      <% end -%>
       <%= link_to 'Back to observation fields', observation_fields_path, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   </div>
@@ -35,16 +46,27 @@
 
 <h3>Observations specifying this field</h3>
 
-<div class="mini observations">
-  <% if @observations.blank? -%>
-    <div class="meta noresults">
-      No observations yet.
-    </div>
-  <% else %>
-    <%= render :partial => "observations/cached_component", :collection => @observations %>
-  <% end -%>
-</div>
+<% if @observations.blank? -%>
+  <div class="meta noresults">
+    No observations yet.
+  </div>
+<% else %>
+  <table width="100%">
+    <tr>
+      <th>Observation</th>
+      <th><%= @observation_field.name %></th>
+    </tr>
+    <% for ofv in @observation_field_values %>
+    <tr>
+      <td class="mini observations">
+        <%= render "observations/cached_component", :observation => ofv.observation %>
+      </td>
+      <td>
+        <%= observation_field_value_for(ofv) %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+<% end -%>
 
 <%= will_paginate @observation_field_values %>
-
-<%= link_to 'Edit', edit_observation_field_path(@observation_field) if @observation_field.editable_by?(current_user) %>
