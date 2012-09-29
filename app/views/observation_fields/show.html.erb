@@ -37,7 +37,7 @@
 
 <div class="mini observations">
   <% if @observations.blank? -%>
-    <div class="noresults">
+    <div class="meta noresults">
       No observations yet.
     </div>
   <% else %>
@@ -47,4 +47,4 @@
 
 <%= will_paginate @observation_field_values %>
 
-<%= link_to 'Edit', edit_observation_field_path(@observation_field) %>
+<%= link_to 'Edit', edit_observation_field_path(@observation_field) if @observation_field.editable_by?(current_user) %>

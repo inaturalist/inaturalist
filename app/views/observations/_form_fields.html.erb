@@ -225,6 +225,7 @@
                  data-chooser-default-sources="<%= @observation_fields.to_json %>">
           <%= link_to_function "Add a field", "$(this).parents('fieldset:first').newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
           <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+          <%= link_to "View all fields", observation_fields_path, :class => "inter", :target => "_blank" %>
         </div>
       </div>
     </fieldset>

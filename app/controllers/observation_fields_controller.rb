@@ -24,7 +24,7 @@ class ObservationFieldsController < ApplicationController
       format.html do
         @observation_field_values = ObservationFieldValue.paginate(:page => params[:page], 
           :include => [:observation],
-          :conditions => {:observation_field_id => @observation_field})
+          :conditions => {:observation_field_id => @observation_field}).to_a
         @observations = @observation_field_values.map{|ofv| ofv.observation}
       end
       format.json  { render :json => @observation_field }
@@ -97,7 +97,7 @@ class ObservationFieldsController < ApplicationController
   end
   
   def owner_or_curator_required
-    unless @observation_field.user_id == current_user.id || current_user.is_curator?
+    unless @observation_field.editable_by?(current_user)
       flash[:error] = "You don't have permission to do that"
       redirect_back_or_default observation_fields_path
     end

@@ -18,9 +18,13 @@
     <td><%=h link_to observation_field.name, observation_field %></td>
     <td><%=h observation_field.datatype %></td>
     <td><%=h observation_field.description %></td>
-    <% if logged_in? && (current_user.id == observation_field.id || current_user.is_curator?) -%>
+    <% if observation_field.editable_by?(current_user) -%>
       <td><%= link_to 'Edit', edit_observation_field_path(observation_field) %></td>
-      <td><%= link_to 'Destroy', observation_field, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td>
+        <%= link_to 'Delete', observation_field, 
+          :confirm => 'Are you sure? Other people may be using this field too.', 
+          :method => :delete %>
+      </td>
     <% end -%>
   </tr>
 <% end %>

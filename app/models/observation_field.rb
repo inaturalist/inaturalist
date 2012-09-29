@@ -50,6 +50,10 @@ class ObservationField < ActiveRecord::Base
     true
   end
 
+  def editable_by?(u)
+    u && (u.id == user_id || u.is_curator?)
+  end
+
   def self.default_json_options
     {
       :methods => [:created_at_utc, :updated_at_utc]
