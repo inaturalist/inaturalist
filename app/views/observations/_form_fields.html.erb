@@ -200,7 +200,23 @@
     <% end -%>
 
     <fieldset id="morefields">
-      <legend>More fields</legend>
+      <legend>
+        More fields
+        <% helptip_for "observation_fields" do %>
+          <p>
+            Observation fields are extra pieces of data associated with an
+            observation, like number of individuals observed, habitat
+            description, or whatever you want! Projects can also specify fields
+            they'd like you to fill out.
+          </p>
+
+          <p>
+            <strong>Note:</strong> If you'd like to
+            create a field, check to see if someone else has already made it to
+            avoid duplication.
+          </p>
+        <% end -%>
+      </legend>
       <div class="observation_fields">
         <%= o.fields_for :observation_field_values do |ofv| %>
           <%- if @project && ofv.object && @project.project_observation_fields.detect{|pof| pof.observation_field_id == ofv.object.observation_field_id}

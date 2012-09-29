@@ -53,6 +53,7 @@ var ObservationFields = {
         })
         return false
       })
+      $(this).centerDialog()
     })
     return false
   },

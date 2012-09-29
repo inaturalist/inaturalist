@@ -823,7 +823,7 @@ $.fn.serializeObject = function() {
 }
 
 $.fn.centerDialog = function() {
-  var newHeight = $(':first', this).height() + 60
+  var newHeight = $(':first', this).height() + 100
   var maxHeight = $(window).height() * 0.8
   if (newHeight > maxHeight) { newHeight = maxHeight };
   $(this).dialog('option', 'height', newHeight)
