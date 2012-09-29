@@ -528,7 +528,11 @@ class Observation < ActiveRecord::Base
   def as_json(options = {})
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
-    options[:include] = options[:include].is_a?(Hash) ? [options[:include]] : [options[:include]].flatten.compact
+    options[:include] = if options[:include].is_a?(Hash)
+      options[:include].map{|k,v| {k => v}}
+    else
+      [options[:include]].flatten.compact
+    end
     options[:methods] ||= []
     options[:methods] << :time_observed_at_utc
     viewer = options[:viewer]
