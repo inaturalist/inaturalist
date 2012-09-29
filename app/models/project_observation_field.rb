@@ -4,8 +4,12 @@ class ProjectObservationField < ActiveRecord::Base
   validates :project, :presence => true
   validates :observation_field, :presence => true
 
-  after_save :create_project_rule
+  after_save :update_project_rule
   after_destroy :destroy_project_rule
+
+  def update_project_rule
+    required ? create_project_rule : destroy_project_rule
+  end
 
   def create_project_rule
     return true unless required?
