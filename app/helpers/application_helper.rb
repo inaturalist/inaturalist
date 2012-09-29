@@ -665,5 +665,17 @@ module ApplicationHelper
     end
     cached ||= record.send(association)
   end
+
+  def observation_field_value_for(ofv)
+    if ofv.observation_field.datatype == "taxon"
+      if taxon = Taxon.find_by_id(ofv.value)
+        render "shared/taxon", :taxon => taxon, :link_url => taxon
+      else
+        "unknown"
+      end
+    else
+      ofv.value
+    end
+  end
   
 end

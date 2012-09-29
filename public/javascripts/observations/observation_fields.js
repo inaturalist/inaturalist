@@ -109,6 +109,14 @@ var ObservationFields = {
       } else if (currentField.datatype == 'time') {
         $(input).timepicker({})
         if (options.focus) { input.focus() }
+      } else if (currentField.datatype == 'taxon') {
+        var newInput = input.clone()
+        newInput.attr('name', 'taxon_name')
+        input.after(newInput)
+        input.hide()
+        $(newInput).simpleTaxonSelector({
+          taxonIDField: input
+        })
       } else if (options.focus) {
         input.focus()
       }

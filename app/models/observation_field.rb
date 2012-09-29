@@ -14,7 +14,7 @@ class ObservationField < ActiveRecord::Base
   validate :allowed_values_has_pipes
   
   # TYPES = %w(text numeric date time datetime location)
-  TYPES = %w(text numeric date time)
+  TYPES = %w(text numeric date time taxon)
   
   def strip_name
     self.name = name.strip unless name.blank?

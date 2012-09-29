@@ -430,7 +430,7 @@
             <label data-tip="<%=h ofv.observation_field.description %>" data-tip-width="auto">
               <%= ofv.observation_field.name.capitalize %>:
             </label>
-            <%=h ofv.value %>
+            <%= observation_field_value_for(ofv) %>
             <span class="extra">
               <%= link_to "Details", ofv.observation_field, :class => "readmore" %>
             </span>
