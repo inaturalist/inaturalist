@@ -54,9 +54,17 @@ class ObservationField < ActiveRecord::Base
     u && (u.id == user_id || u.is_curator?)
   end
 
+  def normalized_name
+    ObservationField.normalize_name(name)
+  end
+
   def self.default_json_options
     {
       :methods => [:created_at_utc, :updated_at_utc]
     }
+  end
+
+  def self.normalize_name(name)
+    name.gsub(/field\:/, '').gsub(/(%20|\+)/, ' ').downcase
   end
 end

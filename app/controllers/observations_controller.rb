@@ -268,6 +268,7 @@ class ObservationsController < ApplicationController
         render :json => @observation.to_json(
           :methods => [:user_login, :iconic_taxon_name],
           :include => {
+            :observation_field_values => {},
             :project_observations => {
               :include => {
                 :project => {
@@ -529,7 +530,8 @@ class ObservationsController < ApplicationController
         else
           if @observations.size == 1 && is_iphone_app_2?
             render :json => @observations[0].to_json(:methods => [:user_login, :iconic_taxon_name], :include => {
-              :taxon => Taxon.default_json_options
+              :taxon => Taxon.default_json_options,
+              :observation_field_values => {}
             })
           else
             render :json => @observations.to_json(:methods => [:user_login, :iconic_taxon_name])
@@ -671,6 +673,7 @@ class ObservationsController < ApplicationController
               :methods => [:user_login, :iconic_taxon_name],
               :include => {
                 :taxon => Taxon.default_json_options,
+                :observation_field_values => {},
                 :project_observations => {
                   :include => {
                     :project => {
@@ -1419,6 +1422,25 @@ class ObservationsController < ApplicationController
     if search_params[:on].to_s =~ /^\d{4}/
       @observed_on = search_params[:on]
       @observed_on_year, @observed_on_month, @observed_on_day = @observed_on.split('-').map{|d| d.to_i}
+    end
+
+    # observation fields
+    ofv_params = search_params.select{|k,v| k =~ /^field\:/}
+    unless ofv_params.blank?
+      @ofv_params = {}
+      ofv_params.each do |k,v|
+        @ofv_params[k] = {
+          :normalized_name => ObservationField.normalize_name(k),
+          :value => v
+        }
+      end
+      observation_fields = ObservationField.where("lower(name) IN (?)", @ofv_params.map{|k,v| v[:normalized_name]})
+      @ofv_params.each do |k,v|
+        v[:observation_field] = observation_fields.detect do |of|
+          v[:normalized_name] == ObservationField.normalize_name(of.name)
+        end
+      end
+      search_params[:ofv_params] = @ofv_params
     end
     
     @filters_open = 

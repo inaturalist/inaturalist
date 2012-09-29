@@ -669,7 +669,9 @@ module ApplicationHelper
   def observation_field_value_for(ofv)
     if ofv.observation_field.datatype == "taxon"
       if taxon = Taxon.find_by_id(ofv.value)
-        render "shared/taxon", :taxon => taxon, :link_url => taxon
+        content_tag :span, :class => "taxon_links" do
+          render "shared/taxon", :taxon => taxon, :link_url => taxon
+        end
       else
         "unknown"
       end

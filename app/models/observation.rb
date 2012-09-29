@@ -386,6 +386,13 @@ class Observation < ActiveRecord::Base
       scope.where("photos.license > 0")
     end
   }
+
+  scope :has_observation_field, lambda{|*args|
+    field, value = args
+    scope = includes(:observation_field_values).where("observation_field_values.observation_field_id = ?", field)
+    scope = scope.where("observation_field_values.value = ?", value) unless value.blank?
+    scope
+  }
   
   def self.conditions_for_date(column, date)
     year, month, day = date.to_s.split('-').map do |d|
@@ -472,6 +479,9 @@ class Observation < ActiveRecord::Base
     scope = scope.in_range if params[:out_of_range] == 'false'
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
+    params[:ofv_params].each do |k,v|
+      scope = scope.has_observation_field(v[:observation_field], v[:value])
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()
@@ -517,9 +527,6 @@ class Observation < ActiveRecord::Base
     # don't use delete here, it will just remove the option for all 
     # subsequent records in an array
     options[:include] = options[:include].is_a?(Hash) ? [options[:include]] : [options[:include]].flatten.compact
-    if !options[:include].include?(:observation_field_values) && observation_field_values.exists?
-      options[:include] << :observation_field_values
-    end
     options[:methods] ||= []
     options[:methods] << :time_observed_at_utc
     viewer = options[:viewer]
