@@ -22,9 +22,12 @@ class ObservationFieldsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @observation_field_values = ObservationFieldValue.paginate(:page => params[:page], 
-          :include => [:observation],
-          :conditions => {:observation_field_id => @observation_field}).to_a
+        @value = params[:value] || "any"
+        scope = ObservationFieldValue.includes(:observation).
+          where(:observation_field_id => @observation_field).
+          scoped
+        scope = scope.where("value = ?", @value) unless @value == "any"
+        @observation_field_values = scope.page(params[:page])
         @observations = @observation_field_values.map{|ofv| ofv.observation}
       end
       format.json  { render :json => @observation_field }

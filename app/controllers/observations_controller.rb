@@ -1454,7 +1454,8 @@ class ObservationsController < ApplicationController
       !@quality_grade.blank? ||
       !@out_of_range.blank? ||
       !@observed_on.blank? ||
-      !@place.blank?
+      !@place.blank? ||
+      !@ofv_params.blank?
     @filters_open = search_params[:filters_open] == 'true' if search_params.has_key?(:filters_open)
     
     [search_params, find_options]

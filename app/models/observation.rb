@@ -479,8 +479,10 @@ class Observation < ActiveRecord::Base
     scope = scope.in_range if params[:out_of_range] == 'false'
     scope = scope.license(params[:license]) unless params[:license].blank?
     scope = scope.photo_license(params[:photo_license]) unless params[:photo_license].blank?
-    params[:ofv_params].each do |k,v|
-      scope = scope.has_observation_field(v[:observation_field], v[:value])
+    unless params[:ofv_params].blank?
+      params[:ofv_params].each do |k,v|
+        scope = scope.has_observation_field(v[:observation_field], v[:value])
+      end
     end
     
     # return the scope, we can use this for will_paginate calls like:

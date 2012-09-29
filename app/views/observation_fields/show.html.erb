@@ -44,7 +44,24 @@
   </div>
 </div>
 
-<h3>Observations specifying this field</h3>
+<% if @observation_field.allowed_values.to_s.size > 0 -%>
+  <div class="right meta">
+    <strong>Values:</strong>
+    <%= @observation_field.allowed_values.split('|').unshift("any").map do |v| 
+      if @value == v
+        "<strong>#{v}</strong>"
+      else
+        link_to v, url_for(:value => v)
+      end 
+    end.join(' | ').html_safe %>
+  </div>
+<% end -%>
+<h3>
+  Observations specifying this field
+  <% if @value != "any" -%>
+    with "<%= @value %>"
+  <% end -%>
+</h3>
 
 <% if @observations.blank? -%>
   <div class="meta noresults">
@@ -67,6 +84,9 @@
     </tr>
   <% end %>
   </table>
+  <%= link_to "View more search options", 
+    observations_path("field:#{@observation_field.normalized_name}" => (@value == 'any' ? '' : @value)),
+    :class => "readmore" %>
 <% end -%>
 
 <%= will_paginate @observation_field_values %>
