@@ -55,6 +55,7 @@ module TaxaHelper
     if taxon.blank? || taxon.photos.blank?
       return iconic_taxon_image(taxon, params)
     end
+    params[:size] ||= "square"
     image_params = params.merge(:alt => default_taxon_name(taxon))
     unless taxon.photos.blank?
       image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
@@ -64,8 +65,7 @@ module TaxaHelper
     [:id, :class, :style, :alt, :title, :width, :height].each do |attr_name|
       image_params[attr_name] = params.delete(attr_name) if params[attr_name]
     end
-    image_params[:class] ||= ""
-    image_params[:class] += " #{params[:size]} photo" if params[:size]
+    image_params[:class] = "#{image_params[:class]} #{params[:size]} photo".strip
     image_tag(taxon_image_url(taxon, params), image_params).force_encoding('utf-8')
   end
   

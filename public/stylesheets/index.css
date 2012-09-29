@@ -1157,7 +1157,7 @@ table .numeric { text-align: center; }
 .item_content .outdated:hover {opacity: 1;}
 .item_content .outdated .identification_body .user_and_taxon { text-decoration: line-through; }
 .item_content .identification_body { margin-top: 7px; }
-.item_content .identification_image img{width:32px;vertical-align:middle;}
+.item_content .identification_image img{width:32px; height: 32px; vertical-align:middle;}
 .item_content .identification{padding:0.5em;background-color:#eee;margin-bottom:0.5em;}
 .item_content p{margin-bottom:0.5em;}
 
@@ -1204,6 +1204,7 @@ table .numeric { text-align: center; }
 }
 
 ul.plain {list-style:none;margin:0;padding:0}
+.square.photo {max-width: 75px;}
 .small.photo {max-width:240px;}
 .medium.photo {max-width:500px;}
 .large.photo {max-width:1024px;}
