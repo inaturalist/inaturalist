@@ -694,6 +694,8 @@ a.csvlink{background-image:url(/images/silk/table.png);}
   color: #36C;
 }
 
+.modal_image_link.square {width: 75px; height: 75px; overflow: hidden;}
+.modal_image_link.square img.image {position:relative; left: 50%; margin-left: -37px; min-height: 75px; min-width: 75px;}
 
 /* Taxon Selectors */
 .simpleTaxonSelector .matches {

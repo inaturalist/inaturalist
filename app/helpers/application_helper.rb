@@ -224,13 +224,12 @@ module ApplicationHelper
     size = params[:size]
     img_url ||= photo.best_url(size)
     link_options = params.merge(:rel => photo_path(photo, :partial => 'photo'))
-    link_options[:class] ||= ''
-    link_options[:class] += ' modal_image_link'
+    link_options[:class] = "#{link_options[:class]} modal_image_link #{size}".strip
     link_to(
       image_tag(img_url,
         :title => photo.attribution,
         :id => "photo_#{photo.id}",
-        :class => 'image') + 
+        :class => "image #{size}") + 
       image_tag('silk/magnifier.png', :class => 'zoom_icon'),
       photo.native_page_url,
       link_options
