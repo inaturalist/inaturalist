@@ -95,10 +95,11 @@ class User < ActiveRecord::Base
   has_many :updates, :foreign_key => :subscriber_id
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
+  before_validation :strip_name
   before_save :whitelist_licenses
   after_save :update_observation_licenses
   after_save :update_photo_licenses
-  after_create :create_life_list
+  after_create :create_default_life_list
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -113,8 +114,6 @@ class User < ActiveRecord::Base
   # Regexes from restful_authentication
   login_regex       = /\A[A-z][\w\-_]+\z/                          # ASCII, strict
   bad_login_message = "use only letters, numbers, and -_ please.".freeze
-  name_regex        = /\A[^[:cntrl:]\\<>\/&]*\z/              # Unicode, permissive
-  bad_name_message  = "avoid non-printing characters and \\&gt;&lt;&amp;/ please.".freeze
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
   domain_tld_regex  = '(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|jobs|museum)'.freeze
@@ -125,7 +124,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login
   validates_format_of       :login,    :with => login_regex, :message => bad_login_message
 
-  validates_format_of       :name,     :with => name_regex,  :message => bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100, :allow_blank => true
 
   validates_format_of       :email,    :with => email_regex, :message => bad_email_message, :allow_blank => true
@@ -172,6 +170,12 @@ class User < ActiveRecord::Base
     io = open(URI.parse(self.icon_url))
     self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
     rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+  end
+
+  def strip_name
+    return true unless name
+    self.name = name.gsub(/[\s\n\t]+/, ' ').strip
+    true
   end
   
   def whitelist_licenses
@@ -377,8 +381,6 @@ class User < ActiveRecord::Base
     u
   end
 
-  protected
-
   # given a requested login, will try to find existing users with that login
   # and suggest handle2, handle3, handle4, etc if the login's taken
   # to prevent namespace clashes (e.g. i register with twitter @joe but 
@@ -405,16 +407,10 @@ class User < ActiveRecord::Base
     (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
   end  
   
-  def make_activation_code
-    self.deleted_at = nil
-    self.activation_code = self.class.make_token
-  end
-  
-  # Everything below here was added for iNaturalist
-  def create_life_list
-    life_list = LifeList.create(:user => self)
-    self.life_list = life_list
-    self.save
+  def create_default_life_list
+    create_life_list(:user => self)
+    save
+    true
   end
   
   def create_deleted_user
