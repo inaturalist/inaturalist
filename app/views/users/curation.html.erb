@@ -14,6 +14,23 @@
           <td><%= @display_user.send(user_attr).to_s.html_safe %></td>
         </tr>
       <% end %>
+      <tr>
+        <th>Recent user agents</th>
+        <td>
+          <% if !@observations.blank? %>
+            <ul>
+              <% for observation in @observations %>
+                <% next if observation.user_agent.blank? %>
+                <li>
+                  <%= observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            No observations to check
+          <% end %>
+        </td>
+      </tr>
     </table>
   </div>
   

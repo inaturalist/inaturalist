@@ -310,6 +310,8 @@ class UsersController < ApplicationController
       @display_user ||= User.find_by_email(params[:id])
       if @display_user.blank?
         flash[:error] = "Couldn't find a user matching #{params[:id]}"
+      else
+        @observations = @display_user.observations.order("id desc").limit(10)
       end
     end
   end
