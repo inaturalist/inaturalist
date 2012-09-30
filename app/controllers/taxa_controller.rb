@@ -1226,12 +1226,12 @@ class TaxaController < ApplicationController
     
     begin
       flickr.photos.addTags(:photo_id => flickr_photo_id, :tags => tags)
-    rescue FlickRaw::FailedResponse => e
-      if e.message =~ /Insufficient permissions/
-        auth_url = FlickRaw.auth_url :perms => 'write'
-        flash[:error] = "iNat can't add tags to your photos until " + 
+    rescue FlickRaw::FailedResponse, FlickRaw::OAuthClient::FailedResponse => e
+      if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
+        auth_url = auth_url_for('flickr', :scope => 'write')
+        flash[:error] = ("iNat can't add tags to your photos until " + 
           "Flickr knows you've given us permission.  " + 
-          "<a href=\"#{auth_url}\">Click here to authorize iNat to add tags</a>."
+          "<a href=\"#{auth_url}\">Click here to authorize iNat to add tags</a>.").html_safe
       else
         flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
       end
