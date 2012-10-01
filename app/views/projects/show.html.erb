@@ -194,7 +194,7 @@
   <%= truncate_with_more formatted_user_text(@project.description), :length => 400 %>
   
   <% if @custom_project && !@custom_project.side.blank? -%>
-    <%= @custom_project.side %>
+    <%=raw @custom_project.side %>
   <% end -%>
   
   <div id="fblike" class="stacked">
