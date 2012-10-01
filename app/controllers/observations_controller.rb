@@ -987,8 +987,9 @@ class ObservationsController < ApplicationController
   
   # shows observations in need of an ID
   def id_please
+    params[:order_by] ||= "created_at"
+    params[:order] ||= "desc"
     search_params, find_options = get_search_params(params)
-    search_params.update(:order_by => 'created_at DESC')
     find_options.update(
       :per_page => 10,
       :include => [
@@ -1401,9 +1402,10 @@ class ObservationsController < ApplicationController
     @license = search_params[:license]
     @photo_license = search_params[:photo_license]
     
-    if search_params[:order_by] && ORDER_BY_FIELDS.include?(search_params[:order_by])
+    search_params[:order_by] = "created_at" if search_params[:order_by] == "observations.id"
+    if ORDER_BY_FIELDS.include?(search_params[:order_by].to_s)
       @order_by = search_params[:order_by]
-      @order = if search_params[:order] && %w"asc desc".include?(search_params[:order].downcase)
+      @order = if %w(asc desc).include?(search_params[:order].to_s.downcase)
         search_params[:order]
       else
         'desc'
