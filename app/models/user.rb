@@ -408,7 +408,12 @@ class User < ActiveRecord::Base
   end  
   
   def create_default_life_list
-    create_life_list(:user => self)
+    return true if life_list
+    if existing = lists.includes(:rules).where("list_rules.id IS NULL").first
+      self.life_list = existing
+    else
+      create_life_list(:user => self)
+    end
     save
     true
   end
