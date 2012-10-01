@@ -5,9 +5,9 @@
       <%= render :partial => "shared/taxon" %>
     <% end %>
     on
-    <%= link_to truncate(h(@list.title), :length => 85), @list %>
+    <%= link_to truncate(@list.title, :length => 85), @list %>
   <% end -%>
-  <%= strip_tags @title %>
+  <%= strip_tags(@title).html_safe %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "lists", "jquery/ui.tabs" %>

@@ -183,6 +183,7 @@ Inaturalist::Application.routes.draw do
   match 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   match 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
   match 'taxa/:id/map' => 'taxa#map', :as => :taxon_map
+  match 'taxa/map' => 'taxa#map', :as => :taxa_map
   match 'taxa/:id/range.:format' => 'taxa#range', :as => :taxon_range_geom
   match 'taxa/auto_complete_name' => 'taxa#auto_complete_name'
   match 'taxa/occur_in' => 'taxa#occur_in'

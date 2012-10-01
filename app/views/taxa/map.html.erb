@@ -1,14 +1,14 @@
+<%- @title = capture do %>
+  Map for
+  <% if @taxon -%>
+    <%=raw link_to @taxon.name, @taxon %>
+  <% elsif @taxa %>
+    <%=raw @taxa.map {|t| link_to(t.name, t)}.join(', ') %>
+  <% else %>
+    Taxa
+  <% end -%>
+<%- end -%>
 <%- content_for(:title) do -%>
-  <%- @title = capture do %>
-    Map for
-    <% if @taxon -%>
-      <%= link_to @taxon.name, @taxon %>
-    <% elsif @taxa %>
-      <%= @taxa.map {|t| link_to(t.name, t)} %>
-    <% else %>
-      Taxa
-    <% end -%>
-  <%- end -%>
   <%= strip_tags(@title) %>
 <%- end -%>
 
