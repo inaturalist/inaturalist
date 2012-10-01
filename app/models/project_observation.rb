@@ -32,11 +32,13 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def update_observations_counter_cache_later
+    return true unless observation
     ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
   
   def update_taxa_counter_cache_later
+    return true unless observation
     ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
