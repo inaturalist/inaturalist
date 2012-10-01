@@ -5,17 +5,18 @@ module Ratatosk
     #
     class ColNameProvider
       cattr_accessor :source
+      citation = <<-EOT
+        Bisby F., Roskov Y., Culham A., Orrell T., Nicolson D., Paglinawan
+        L., Bailly N., Appeltans W., Kirk P., Bourgoin T., Baillargeon G.,
+        Ouvrard D., eds (2012). Species 2000 & ITIS Catalogue of Life,
+        2012 Annual Checklist. Digital resource at
+        www.catalogueoflife.org/col/. Species 2000: Reading, UK.
+      EOT
       SOURCE = Source.find_by_title("Catalogue of Life: 2012 Annual Checklist") || Source.create(
         :title => "Catalogue of Life: 2012 Annual Checklist",
         :in_text => "Bisby et al., 2012",
         :url => "http://www.catalogueoflife.org/annual-checklist/2012",
-        :citation => <<-EOT
-          Bisby F., Roskov Y., Culham A., Orrell T., Nicolson D., Paglinawan
-          L., Bailly N., Appeltans W., Kirk P., Bourgoin T., Baillargeon G.,
-          Ouvrard D., eds (2012). Species 2000 & ITIS Catalogue of Life,
-          2012 Annual Checklist. Digital resource at
-          www.catalogueoflife.org/col/. Species 2000: Reading, UK.
-        EOT
+        :citation => citation.gsub(/[\s\n]+/m, ' ')
       )
 
       def initialize
@@ -40,16 +41,18 @@ module Ratatosk
       #
       def get_lineage_for(taxon)
         # If taxon was already fetched with classification data, use that
-        if taxon.class != Taxon && taxon.hxml && taxon.hxml.at('classification')
-          hxml = taxon.hxml
-        else
-          hxml = @service.search(:id => taxon.source_identifier, :response => 'full' )
+        hxml = if taxon.class != Taxon && taxon.hxml && taxon.hxml.at('classification')
+          taxon.hxml
+        elsif !taxon.source_identifier.blank?
+          @service.search(:id => taxon.source_identifier, :response => 'full' )
         end
         lineage = [taxon]
 
-        # walk UP the CoL lineage creating new taxa
-        [hxml.search('classification/taxon')].flatten.reverse_each do |ancestor_hxml|
-          lineage << ColTaxonAdapter.new(ancestor_hxml)
+        if hxml
+          # walk UP the CoL lineage creating new taxa
+          [hxml.search('classification/taxon')].flatten.reverse_each do |ancestor_hxml|
+            lineage << ColTaxonAdapter.new(ancestor_hxml)
+          end
         end
         lineage.compact
       end

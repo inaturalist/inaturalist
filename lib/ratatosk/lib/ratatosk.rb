@@ -132,11 +132,12 @@ module Ratatosk
             # If the name was invalid b/c its taxon was saved first, and the
             # taxon made a TaxonName from its own scientific name already,
             # just use that scientific name
-            # puts "[DEBUG] #{name} was invalid: #{name.errors.full_messages.to_sentence}"
             if name.taxon.valid?
-              # puts "name.taxon.taxon_names: #{name.taxon.taxon_names.inspect}"
-              name = TaxonName.first(:conditions => ["name = ? AND taxon_id = ?", name.name, name.taxon_id])
-              name ||= name.taxon.taxon_names.detect{|tn| tn.name == name.name}
+              name = if existing = TaxonName.where("name = ? AND taxon_id = ?", name.name, name.taxon_id).first
+                existing
+              else
+                name.taxon.taxon_names.detect{|tn| tn.name == name.name}
+              end
             
             # If the taxon was invalid, try to see if something similar has 
             # already been saved
@@ -176,6 +177,7 @@ module Ratatosk
       # Return an empty lineage if this has already been grafted
       return [] if lineage.first.parent == lineage.last
       return [] if lineage.size == 1 && lineage.first.grafted?
+      return [] if lineage.size == 1 && lineage.first == graft_point
 
       # puts "[DEBUG] Grafting [#{lineage.map(&:to_s).join(', ')}] to #{graft_point}..."
 

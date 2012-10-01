@@ -18,7 +18,6 @@ describe Ratatosk::NameProviders::ColNameProvider do
 end
 
 describe Ratatosk::NameProviders::ColTaxonNameAdapter do
-  fixtures :sources
   it_should_behave_like "a TaxonName adapter"
 
   before(:all) do
@@ -55,7 +54,6 @@ describe Ratatosk::NameProviders::ColTaxonNameAdapter do
 end
 
 describe Ratatosk::NameProviders::ColTaxonAdapter do
-  fixtures :sources
   it_should_behave_like "a Taxon adapter"
 
   before(:all) do

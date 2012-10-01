@@ -8,6 +8,10 @@ class Source < ActiveRecord::Base
   validates_presence_of :title
   
   attr_accessor :html
+
+  def to_s
+    "<Source #{id}: #{title}>"
+  end
   
   def user_name
     user.try(&:login) || "unknown"

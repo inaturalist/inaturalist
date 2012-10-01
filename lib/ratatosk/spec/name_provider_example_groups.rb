@@ -1,4 +1,4 @@
-describe "a name provider", :shared => true do
+shared_examples_for "a name provider" do
   it "should have a #find method" do
     @np.should respond_to(:find)
   end
@@ -71,7 +71,7 @@ describe "a name provider", :shared => true do
   end
 end
 
-describe "a Taxon adapter", :shared => true do
+shared_examples_for "a Taxon adapter" do
 
   it "should have a name" do
     @adapter.name.should == 'Homo sapiens'
@@ -124,7 +124,7 @@ describe "a Taxon adapter", :shared => true do
   end
 end
 
-describe "a TaxonName adapter", :shared => true do
+shared_examples_for "a TaxonName adapter" do
 
   it "should return a name" do
     @adapter.name.should == 'Western Bluebird'
@@ -172,10 +172,10 @@ describe "a TaxonName adapter", :shared => true do
   end
 
   it "should be the same before and after saving" do
-    @adapter.save
+    @adapter.save!
     # puts "DEBUG: @adapter.errors: #{@adapter.errors.full_messages.join(', ')}"
     post = TaxonName.find(@adapter.id)
-    %w"name lexicon is_valid source source_identifier source_url taxon name_provider".each do |att|
+    %w"name lexicon is_valid source_id source_identifier source_url taxon name_provider".each do |att|
       post.send(att).should == @adapter.send(att)
     end
   end
