@@ -45,14 +45,8 @@
         <% else %>
           <li><%= link_to "Make curator", add_role_path(@display_user, :role => "curator"), :method => :post %></li>
         <% end %>
-        <% unless @display_user.active? -%>
-          <li>
-            <%= link_to "Activate user", {:controller => "users", :action => "activate", :activation_code => @display_user.activation_code}, 
-              :confirm => "Are you sure you want to activate this account?" %>
-          </li>
-        <% end -%>
         <li>
-          <% if @display_user.active? || @display_user.pending? %>
+          <% if @display_user.active? %>
             <%= link_to "Suspend user", suspend_user_path(@display_user) %>
           <% else %>
             <%= link_to "Unsuspend user", unsuspend_user_path(@display_user) %>

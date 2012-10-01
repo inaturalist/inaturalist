@@ -73,13 +73,13 @@ class UsersController < ApplicationController
   def suspend
      @user.suspend! 
      flash[:notice] = "The user #{@user.login} has been suspended"
-     redirect_to users_path
+     redirect_back_or_default(@user)
   end
    
   def unsuspend
     @user.unsuspend! 
     flash[:notice] = "The user #{@user.login} has been unsuspended"
-    redirect_to users_path
+    redirect_back_or_default(@user)
   end
   
   def add_role
@@ -116,10 +116,6 @@ class UsersController < ApplicationController
     end
     redirect_to :back
   end
-  
-  # There's no page here to update or destroy a user.  If you add those, be
-  # smart -- make sure you check that the visitor is authorized to do so, that they
-  # supply their old password along with a new one to update it, etc.
   
   def destroy
     unless @user.project_users.blank? #remove any curator id's this user might have made
