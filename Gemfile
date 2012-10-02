@@ -55,7 +55,8 @@ gem 'trollop'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem "watu_table_builder", :require => "table_builder"
 gem 'will_paginate'
-gem 'whenever', :require => false, :git => "git://github.com/kueda/whenever.git"
+# gem 'whenever', :require => false, :git => "git://github.com/kueda/whenever.git"
+gem 'whenever', :require => false
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
 
 group :test, :development do

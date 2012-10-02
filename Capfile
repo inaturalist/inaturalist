@@ -19,6 +19,10 @@ namespace :deploy do
     copy_sphinx
   end
 
+  after "deploy:finalize_update" do
+    symlink_whenever_schedule
+  end
+
   after "deploy:update_code" do
     symlink_config
     symlink_db_config
@@ -31,7 +35,6 @@ namespace :deploy do
     symlink_attachments
     symlink_cache
     symlink_sphinx
-    symlink_whenever_schedule
     sphinx_configure
   end
   
@@ -81,7 +84,7 @@ namespace :deploy do
 
   desc "Create a symlink to whenever scheule"
   task :symlink_whenever_schedule, :hosts => "#{domain}" do
-    run "test -e #{inat_config_shared_path}/schdule.rb && ln -s #{inat_config_shared_path}/schdule.rb #{latest_release}/config/schedule.rb"
+    run "test -e #{inat_config_shared_path}/schedule.rb && ln -s #{inat_config_shared_path}/schedule.rb #{latest_release}/config/schedule.rb"
   end  
   
   desc "Symlink to the common attachments dir"

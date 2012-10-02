@@ -48,6 +48,8 @@ set :rvm_type, :system
 require './config/boot'
 require 'airbrake/capistrano'
 require "rvm/capistrano"
+
+set :bundle_flags,    "--deployment"
 require "bundler/capistrano"
 
 set :whenever_command, "bundle exec whenever"
