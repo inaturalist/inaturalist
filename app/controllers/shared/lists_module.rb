@@ -24,8 +24,8 @@ module Shared::ListsModule
 
         if @q = params[:q]
           @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-          @find_options[:conditions] = List.merge_conditions(
-            @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+          @find_options[:conditions] = update_conditions(
+            @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
         end
 
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
