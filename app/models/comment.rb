@@ -20,13 +20,6 @@ class Comment < ActiveRecord::Base
     BlueCloth::new(self.body).to_html
   end
   
-  def deliver_notification
-    return true unless parent.respond_to?(:user_id) && parent.user_id != user_id && 
-      parent.user && !parent.user.email.blank? && parent.user.prefers_comment_email_notification?
-    Emailer.delay.deliver_comment_notification(self)
-    true
-  end
-  
   def update_parent_counter_cache
     if parent && parent.class.column_names.include?("comments_count")
       parent.update_attribute(:comments_count, parent.comments.count)

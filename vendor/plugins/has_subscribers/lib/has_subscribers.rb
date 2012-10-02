@@ -74,6 +74,7 @@ module HasSubscribers
       
       after_destroy do |record|
         Update.delete_all(["notifier_type = ? AND notifier_id = ?", to_s, record.id])
+        true
       end
     end
 

@@ -1,6 +1,11 @@
 load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 load 'config/deploy'
 
+# http://stackoverflow.com/a/1662001/720268
+def remote_file_exists?(full_path)
+  'true' ==  capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
+end
+
 task :bork do
   puts "DEBUG: deploy_to: #{deploy_to}"
 end
@@ -82,7 +87,10 @@ namespace :deploy do
 
   desc "Create a symlink to whenever scheule"
   task :symlink_whenever_schedule, :hosts => "#{domain}" do
-    run "test -e #{inat_config_shared_path}/schedule.rb && ln -s #{inat_config_shared_path}/schedule.rb #{latest_release}/config/schedule.rb"
+    # run "test -e #{inat_config_shared_path}/schedule.rb && ln -s #{inat_config_shared_path}/schedule.rb #{latest_release}/config/schedule.rb"
+    if remote_file_exists?("#{inat_config_shared_path}/schedule.rb")
+      run "ln -s #{inat_config_shared_path}/schedule.rb #{latest_release}/config/schedule.rb"
+    end
   end  
   
   desc "Symlink to the common attachments dir"
