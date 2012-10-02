@@ -171,7 +171,7 @@ class PhotosController < ApplicationController
 
     url = @photo.taxa.first || @photo.observations.first || '/'
     repaired, errors = @photo.repair
-    if repaired.frozen?
+    if repaired.destroyed?
       flash[:error] = "Photo destroyed b/c it was deleted from Flickr or iNat no longer has permission to view it"
       redirect_back_or_default(url)
     else
