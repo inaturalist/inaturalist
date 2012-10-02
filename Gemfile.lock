@@ -13,6 +13,14 @@ GIT
     preferences (0.5.0)
 
 GIT
+  remote: git://github.com/kueda/whenever.git
+  revision: 10a451205523ad6071d327924294ad6f813ba288
+  specs:
+    whenever (0.7.4)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
+
+GIT
   remote: git://github.com/modyo/ym4r_gm.git
   revision: dc681ef29e26fca208ce0695d722eb55b9555ff8
   specs:
@@ -350,5 +358,6 @@ DEPENDENCIES
   trollop
   ts-delayed-delta
   watu_table_builder
+  whenever!
   will_paginate
   ym4r_gm!

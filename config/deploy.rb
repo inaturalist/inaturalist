@@ -49,3 +49,5 @@ require './config/boot'
 require 'airbrake/capistrano'
 require "rvm/capistrano"
 require "bundler/capistrano"
+require "whenever/capistrano"
+
