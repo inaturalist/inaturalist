@@ -22,6 +22,7 @@ module HasSubscribers
       after_destroy do |record|
         Update.delete_all(["resource_type = ? AND resource_id = ?", to_s, record.id])
         Subscription.delete_all(["resource_type = ? AND resource_id = ?", to_s, record.id])
+        true
       end
     end
     

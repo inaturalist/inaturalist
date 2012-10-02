@@ -770,8 +770,8 @@ class Observation < ActiveRecord::Base
   # this taxon should have their last_observation reset.
   #
   def refresh_lists_after_destroy
-    return if @skip_refresh_lists
-    return unless taxon
+    return true if @skip_refresh_lists
+    return true unless taxon
     List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true)
