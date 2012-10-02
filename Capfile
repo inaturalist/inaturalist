@@ -29,9 +29,7 @@ namespace :deploy do
     symlink_gmap_api_key
     symlink_smtp_config
     symlink_sphinx_config
-    symlink_geoip_config
     symlink_s3_config
-    symlink_newrelic_config # temp
     symlink_attachments
     symlink_cache
     symlink_sphinx
