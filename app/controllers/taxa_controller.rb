@@ -100,7 +100,13 @@ class TaxaController < ApplicationController
       end
       format.json do
         @taxa = Taxon::ICONIC_TAXA if @taxa.blank? && params[:q].blank?
-        render :json => @taxa.to_json(Taxon.default_json_options)
+        options = Taxon.default_json_options
+        options[:include].merge!(
+          :iconic_taxon => {:only => [:id, :name]}, 
+          :taxon_names => {:only => [:id, :name, :lexicon]}
+        )
+        options[:methods] += [:common_name, :image_url, :default_name]
+        render :json => @taxa.to_json(options)
       end
     end
   end
@@ -1120,7 +1126,8 @@ class TaxaController < ApplicationController
       else
         params[:names]
       end
-      find_options[:conditions] = ["taxon_names.name IN (?)", names]
+      taxon_names = TaxonName.where("name IN (?)", names).limit(100)
+      find_options[:conditions] = ["taxa.id IN (?)", taxon_names.map(&:taxon_id).uniq]
     else
       find_options[:conditions] = ["is_iconic = ?", true]
       find_options[:order] = :ancestry
