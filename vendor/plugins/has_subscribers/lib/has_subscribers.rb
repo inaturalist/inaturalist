@@ -4,7 +4,7 @@ module HasSubscribers
   end
   
   module ClassMethods
-    # designate that a class has subscribers
+    # Tell a class that it has subscribers
     # :to => {:notofying_association => options}
     #   this is a way to explicitly decalre a notifying association.  This 
     #   will happen automatically from notifies_subscribers_of in most cases, 
@@ -26,8 +26,8 @@ module HasSubscribers
     end
     
     # 
-    # Model generates updates for subscribers of an association. For example,
-    # a Common notifies_subscribers_of :blog_post.
+    # Tell a model to generate updates for subscribers of an association. For 
+    # example, a Comment notifies_subscribers_of :blog_post.
     # 
     # Configuration options:
     # * <tt>:on</tt> - event that triggers notification. Values: update or 
@@ -39,6 +39,11 @@ module HasSubscribers
     #   if a comment was going to generate updates for subscribers to its
     #   parent blog post, the arguments would be comment, blog_post,
     #   subscription, and this block would get called for every subscription.
+    # * <tt>:queue_if</tt> - block to decide whether to queue a record for 
+    #   update generation. The :if block determines whether the record
+    #   generates an update, but that still happens in a Delayed::Job.
+    #   :queue_if determines whether that job gets delayed in the first place. 
+    #   Takes the record as its arg.
     #
     def notifies_subscribers_of(subscribable_association, options = {})
       unless self.included_modules.include?(HasSubscribers::InstanceMethods)
