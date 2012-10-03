@@ -530,22 +530,21 @@ class TaxaController < ApplicationController
       load_single_taxon_map_data(@taxon)
     end
     
-    @taxa = if params[:taxa].is_a?(Array)
+    taxon_ids = if params[:taxa].is_a?(Array)
       params[:taxa]
     elsif params[:taxa].is_a?(String)
       params[:taxa].split(',')
     end
     
-    if @taxa
-      @taxa = Taxon.all(:conditions => ["id IN (?)", @taxa.map{|t| t.to_i}], :limit => 20)
+    if taxon_ids
+      @taxa = Taxon.all(:conditions => ["id IN (?)", taxon_ids.map{|t| t.to_i}], :limit => 20)
       @taxon_ranges = TaxonRange.without_geom.all(:conditions => ["taxon_id IN (?)", @taxa]).group_by(&:taxon_id)
-      @taxa_data = @taxa.map do |taxon|
-        {
-          :id => taxon.id,
+      @taxa_data = taxon_ids.map do |taxon_id|
+        next unless taxon = @taxa.detect{|t| t.id == taxon_id.to_i}
+        taxon.as_json(:only => [:id, :name, :is_active]).merge(
           :range_url => @taxon_ranges[taxon.id] ? taxon_range_geom_url(taxon.id, :format => "geojson") : nil, 
           :observations_url => taxon.observations.exists? ? observations_of_url(taxon, :format => "geojson") : nil,
-          :name => taxon.name
-        }
+        )
       end
       
       @bounds = if !@taxon_ranges.blank?

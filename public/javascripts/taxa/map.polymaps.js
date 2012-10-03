@@ -420,6 +420,7 @@ function loadLayersForTaxa(taxa) {
     })
     var nameContent = addIds ? taxon.name + ' ' + taxon.id : taxon.name
     var label = $('<label></label>').attr('for', inputId).html(nameContent)
+    if (taxon.is_active == false) {label.addClass('inactive').attr("title", "Inacive taxon concept")};
     var link = $('<a></a>').attr('href', '/taxa/'+taxon.id).html('(view)').addClass('small')
     var li = $('<li></li>').append(input, ' ', symbol, ' ', label, ' ', link)
     $('#legend ul').append(li)
