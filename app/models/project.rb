@@ -140,10 +140,14 @@ class Project < ActiveRecord::Base
     end
     scope
   end
+
+  def cached_slug
+    slug
+  end
   
   def self.default_json_options
     {
-      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place],
+      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place, :cached_slug, :slug],
       :except => [:tracking_codes]
     }
   end

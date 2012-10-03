@@ -637,7 +637,7 @@ class ProjectsController < ApplicationController
   end
   
   def ensure_current_project_url
-    fmt = request.format ? request.format.to_sym : nil
+    fmt = request.format && request.format != :html ? request.format.to_sym : nil
     if request.path != project_path(@project, :format => fmt)
       return redirect_to project_path(@project, :format => fmt), :status => :moved_permanently
     end
