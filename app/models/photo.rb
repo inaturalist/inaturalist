@@ -87,7 +87,7 @@ class Photo < ActiveRecord::Base
     else
       "anonymous"
     end
-    "(#{license_short}) #{name}"
+    license_short =~ /\(/ ? "#{license_short} #{name}" : "(#{license_short}) #{name}"
   end
   
   def license_short
