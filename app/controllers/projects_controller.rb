@@ -86,7 +86,12 @@ class ProjectsController < ApplicationController
       end
       
       format.json do
-        render :json => @project
+        opts = Project.default_json_options.merge(:include => [
+          :project_list, 
+          {:project_observation_fields => ProjectObservationField.default_json_options}
+        ])
+        opts[:methods] << :project_observations_count
+        render :json => @project.as_json(opts)
       end
     end
   end
@@ -632,8 +637,9 @@ class ProjectsController < ApplicationController
   end
   
   def ensure_current_project_url
-    if request.path != project_path(@project)
-      return redirect_to @project, :status => :moved_permanently
+    fmt = request.format ? request.format.to_sym : nil
+    if request.path != project_path(@project, :format => fmt)
+      return redirect_to project_path(@project, :format => fmt), :status => :moved_permanently
     end
   end
   
