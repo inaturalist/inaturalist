@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # include RoleRequirementSystem
   include Ambidextrous
   
-  has_mobile_fu :ignore_formats => [:tablet]
+  has_mobile_fu :ignore_formats => [:tablet, :json]
   around_filter :catch_missing_mobile_templates
   
   helper :all # include all helpers, all the time
