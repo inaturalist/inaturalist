@@ -1,6 +1,4 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  has_mobile_fu
-  
   def create
     build_resource
 
