@@ -163,10 +163,11 @@ class FlickrController < ApplicationController
     rescue FlickRaw::FailedResponse => e
       Rails.logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
       Airbrake.notify(e, :request => request, :session => session)
-      flash[:notice] = "Ack! Something went horribly wrong, like a giant " + 
-                       "squid ate your Flickr info.  You can contact us at " +
-                       "#{APP_CONFIG[:help_email]} if you still can't get this " +
-                       "working.  Error: #{e.message}"
+      flash[:notice] = <<-EOT
+        Ack! Something went wrong connecting to Flickr. You might try unlinking 
+        and re-linking your account. You can contact us at 
+        #{APP_CONFIG[:help_email]} if that doesn't work.  Error: #{e.message}
+      EOT
     end
   end
   
