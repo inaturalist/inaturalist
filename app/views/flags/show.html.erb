@@ -9,6 +9,7 @@
       display: inline;
       padding: 2px;
     }
+    td {vertical-align: middle;}
   </style>
 <% end -%>
 
@@ -42,11 +43,11 @@
       end
       %></td>
     <td class="buttonrow">
-      <%= form_for(@flag, :action=>"update") do |f| %>
-        <%= f.text_field :comment, :class => 'text' %>
-        <%= f.hidden_field :resolver_id, :value => @user.id %>
+      <%= form_for(@flag, :action => "update") do |f| %>
+        <%= f.text_field :comment, :class => 'text inline' %>
+        <%= f.hidden_field :resolver_id, :value => current_user.id %>
         <%= f.hidden_field :resolved, :value => true %>
-        <%= f.submit 'Resolve with comment', :class => 'button' %>
+        <%= f.submit 'Resolve with comment', :class => 'inline button' %>
       <% end %>
     </td>
   </tr>

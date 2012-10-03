@@ -1,5 +1,5 @@
 <label for="flickr_photo_search_<%= i %>">Did you put any photos on Flickr?</label>
-<% unless @user.flickr_identity %>
+<% unless current_user.flickr_identity %>
 <div>
   <br/>
   <span>We currently support Flickr for image hosting and hope to add other image hosts shortly.</span>
