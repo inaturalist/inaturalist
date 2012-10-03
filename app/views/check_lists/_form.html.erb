@@ -16,7 +16,7 @@
         <%- alt_name = capture do -%>
           <%= render :partial => "shared/taxon", :locals => { :taxon => check_list.taxon, :no_common => true } -%>
         <%- end -%>
-        <%= f.hidden_field(:taxon_id, :alt => alt_name, :rel => taxon_image_url(check_list.taxon)) %>
+        <%= f.hidden_field(:taxon_id, :alt => alt_name.html_safe.gsub(/"/, "'"), :rel => taxon_image_url(check_list.taxon)) %>
       <%- else -%>
         <%= f.hidden_field(:taxon_id) %>
       <% end -%>
