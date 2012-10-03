@@ -38,7 +38,7 @@ Inaturalist::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'inaturalist.org' }
+  config.action_mailer.default_url_options = { :host => 'www.inaturalist.org' }
   smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
   ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path)
   Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
