@@ -374,7 +374,7 @@ protected
     begin
       @user = User.find(params[:id])
     rescue
-      @user = User.find_by_login(params[:id])
+      @user = User.where("lower(login) = ?", params[:id].to_s.downcase).first
       render_404 if @user.blank?
     end
   end
