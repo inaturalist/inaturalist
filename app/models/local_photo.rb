@@ -8,14 +8,18 @@ class LocalPhoto < Photo
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
-    record.mobile? ? "-auto-orient" : nil
+    record.mobile? ? "-auto-orient -strip" : "-strip"
   }
   
   has_attached_file :file, 
     :styles => {
-      :original => "2048x2048>",
-      :large => "1024x1024>", :medium => "500x500>", :small => "240x240>", 
-      :thumb => "100x100>", :square => "75x75#" },
+      :original => {:geometry => "2048x2048>",  :auto_orient => false },
+      :large    => {:geometry => "1024x1024>",  :auto_orient => false },
+      :medium   => {:geometry => "500x500>",    :auto_orient => false },
+      :small    => {:geometry => "240x240>",    :auto_orient => false },
+      :thumb    => {:geometry => "100x100>",    :auto_orient => false },
+      :square   => {:geometry => "75x75#",      :auto_orient => false }
+    },
     :convert_options => {
       :large  => image_convert_options,
       :medium => image_convert_options,
