@@ -786,6 +786,7 @@ class Observation < ActiveRecord::Base
   #
   def keep_old_taxon_id
     @old_observation_taxon_id = taxon_id_was if taxon_id_changed?
+    true
   end
   
   #
