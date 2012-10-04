@@ -74,9 +74,11 @@ class ProjectsController < ApplicationController
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.all(:limit => 100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
-        @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
+        @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
         if @place = @project.rule_place
-          @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+          if @project.prefers_place_boundary_visible
+            @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+          end
         end
         
         if params[:iframe]
