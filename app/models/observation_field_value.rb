@@ -43,9 +43,11 @@ class ObservationFieldValue < ActiveRecord::Base
   
   def validate_observation_field_allowed_values
     return true if observation_field.allowed_values.blank?
-    allowed_values = observation_field.allowed_values.split('|')
-    unless allowed_values.include?(value)
-      errors.add(:value, "must be #{allowed_values[0..-2].map{|v| "#{v}, "}}or #{allowed_values.last}")
+    values = observation_field.allowed_values.split('|')
+    unless values.include?(value)
+      errors.add(:value, 
+        "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end
   end
+
 end

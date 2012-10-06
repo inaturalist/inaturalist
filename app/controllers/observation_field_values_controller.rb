@@ -4,6 +4,15 @@ class ObservationFieldValuesController < ApplicationController
   
   def create
     @observation_field_value = ObservationFieldValue.new(params[:observation_field_value])
+    if !@observation_field_value.valid?
+      if existing = ObservationFieldValue.where(
+          "observation_field_id = ? AND observation_id = ?", 
+          @observation_field_value.observation_field_id, 
+          @observation_field_value.observation_id).first
+        @observation_field_value = existing
+        @observation_field_value.attributes = params[:observation_field_value]
+      end
+    end
     
     respond_to do |format|
       if @observation_field_value.save
