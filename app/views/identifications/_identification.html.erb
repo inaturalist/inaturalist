@@ -3,6 +3,7 @@
   taxon ||= identification.taxon
   observation ||= identification.observation
   user ||= identification.user
+  viewers_identification ||= @viewers_identification
   identification_classes = ''
   if logged_in? && identification.user_id == current_user.id
     identification_classes += ' yours'
@@ -31,7 +32,7 @@
                               :link_url => taxon } %>
     </span>
     <% unless hide_actions -%>
-      <% if logged_in? && identification.user_id != current_user.id %>
+      <% if logged_in? && identification.user_id != current_user.id && (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
         <span class="agree button">
           <%= link_to "Agree?", {
                :controller => 'identifications',
