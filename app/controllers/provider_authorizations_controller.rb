@@ -87,13 +87,18 @@ class ProviderAuthorizationsController < ApplicationController
   def create_provider_authorization(auth_info)
     email = auth_info.try(:[], 'info').try(:[], 'email')
     email ||= auth_info.try(:[], 'extra').try(:[], 'user_hash').try(:[], 'email')
+
+    existing_user = current_user
+    existing_user ||= User.where("lower(email) = ?", email.downcase).first unless email.blank?
+    if auth_info['provider'] == 'flickr' && !auth_info['uid'].blank?
+      existing_user ||= User.includes(:flickr_identity).where("flickr_identities.flickr_user_id = ?", auth_info['uid']).first
+    end
     
     # if logged in or user with this email exists, link provider to existing inat user
-    if current_user || (!email.blank? && user = User.find_by_email(email))
-      sign_in(user) unless logged_in?
+    if existing_user
+      sign_in(existing_user) unless logged_in?
       @provider_authorization = current_user.add_provider_auth(auth_info)
-      provider_name = auth_info['provider'].capitalize unless auth_info['provider']=='open_id'
-      flash[:notice] = "You've successfully linked your #{provider_name} account."
+      flash[:notice] = "You've successfully linked your #{@provider_authorization.provider.to_s.capitalize} account."
       
     # create a new inat user and link provider to that user
     else
