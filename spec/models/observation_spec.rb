@@ -460,6 +460,18 @@ describe Observation, "destruction" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /List.*refresh_with_observation/m}.should_not be_blank
   end
+
+  it "should delete associated updates" do
+    subscriber = User.make!
+    user = User.make!
+    s = Subscription.make!(:user => subscriber, :resource => user)
+    o = Observation.make(:user => user)
+    without_delay { o.save! }
+    update = Update.where(:subscriber_id => subscriber).last
+    update.should_not be_blank
+    o.destroy
+    Update.find_by_id(update.id).should be_blank
+  end
 end
 
 describe Observation, "species_guess parsing" do

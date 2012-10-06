@@ -20,8 +20,8 @@ module HasSubscribers
       self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
       
       after_destroy do |record|
-        Update.delete_all(["resource_type = ? AND resource_id = ?", to_s, record.id])
-        Subscription.delete_all(["resource_type = ? AND resource_id = ?", to_s, record.id])
+        Update.delete_all(["resource_type = ? AND resource_id = ?", record.class.name, record.id])
+        Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.name, record.id])
         true
       end
     end
@@ -73,7 +73,7 @@ module HasSubscribers
       end
       
       after_destroy do |record|
-        Update.delete_all(["notifier_type = ? AND notifier_id = ?", to_s, record.id])
+        Update.delete_all(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
         true
       end
     end
@@ -93,7 +93,7 @@ module HasSubscribers
 
       create_callback(subscribable_association, options)
       after_destroy do |record|
-        Update.delete_all(["notifier_type = ? AND notifier_id = ?", to_s, record.id])
+        Update.delete_all(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
       end
     end
     
@@ -124,7 +124,7 @@ module HasSubscribers
       after_destroy do |record|
         resource = options[:to] ? record.send(options[:to]) : record
         Subscription.delete_all(:user_id => record.send(subscriber).id, 
-          :resource_type => resource.class.to_s, :resource_id => resource.id)
+          :resource_type => resource.class.name, :resource_id => resource.id)
       end
     end
     
