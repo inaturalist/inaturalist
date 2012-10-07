@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PlacesController < ApplicationController
   include Shared::WikipediaModule
   include Shared::GuideModule
@@ -357,7 +358,20 @@ class PlacesController < ApplicationController
   def geometry_from_messy_kml(kml)
     geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
     Nokogiri::XML(kml).search('Polygon').each do |hpoly|
-      geometry << GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
+      poly = GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
+
+      # make absolutely sure there are no z coordinates. iNat is strictly 2D, 
+      # so PostGIS will raise db exception if you try to save z
+      poly.rings.each_with_index do |r,i|
+        poly.rings[i].points.each_with_index do |p,j|
+          poly.rings[i].points[j].z = nil
+          poly.rings[i].points[j].with_z = false
+        end
+        poly.rings[i].with_z = false
+      end
+      poly.with_z = false
+
+      geometry << poly
     end
     geometry.empty? ? nil : geometry
   end

@@ -340,8 +340,7 @@ class Place < ActiveRecord::Base
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e
-      puts "[ERROR] \tCouldn't save #{self.place_geometry}: " + 
-        e.message[0..200]
+      Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
     end
   end
   
