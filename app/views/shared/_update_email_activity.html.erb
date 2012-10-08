@@ -2,6 +2,7 @@
   resource = update_email_activity || resource
   updates ||= []
   class_name = resource.class.to_s.underscore
+  viewing_user = current_user rescue @user
 -%>
 
 <div class="updatecontent">
@@ -38,7 +39,7 @@
           <% end -%>
           <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
             Posted by 
-            <%= link_to(truncate(notifier.user_id == @user.id ? "you" : notifier.user.login, :length => 20), 
+            <%= link_to(truncate(notifier.user_id == viewing_user.id ? "you" : notifier.user.login, :length => 20), 
               person_url(notifier.user)) %>
             <span class="when">
               <span class="date"><%= time_ago_in_words(notifier.created_at) %></span> ago
