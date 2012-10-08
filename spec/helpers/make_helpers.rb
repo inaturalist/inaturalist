@@ -62,6 +62,12 @@ module MakeHelpers
     pi = ProjectInvitation.create!(options.merge(:user => pu.user, :project => pu.project, :observation => o))
     pi
   end
+
+  def make_project_observation(options = {})
+    pu = ProjectUser.make!
+    o = Observation.make!(:user => pu.user)
+    ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
+  end
   
   # creating the tree is a bit tricky
   def load_test_taxa

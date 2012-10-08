@@ -34,11 +34,13 @@ end
 
 describe Project, "update_curator_idents_on_make_curator" do
   before(:each) do
-    @project = Project.make!
+    @project_user = ProjectUser.make!
+    @project = @project_user.project
+    @observation = Observation.make!(:user => @project_user.user)
   end
   
   it "should set curator_identification_id on existing project observations" do
-    po = ProjectObservation.make!(:project => @project)
+    po = ProjectObservation.make!(:project => @project, :observation => @observation)
     c = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
     po.curator_identification_id.should be_blank
     ident = Identification.make!(:user => c.user, :observation => po.observation)
@@ -51,16 +53,18 @@ end
 describe Project, "update_curator_idents_on_remove_curator" do
   before(:each) do
     @project = Project.make!
-    @project_observation = ProjectObservation.make!(:project => @project)
-    @project_user = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
-    Identification.make!(:user => @project_user.user, :observation => @project_observation.observation)
-    Project.update_curator_idents_on_make_curator(@project.id, @project_user.id)
+    @project_user = ProjectUser.make!(:project => @project)
+    @observation = Observation.make!(:user => @project_user.user)
+    @project_observation = ProjectObservation.make!(:project => @project, :observation => @observation)
+    @project_user_curator = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
+    Identification.make!(:user => @project_user_curator.user, :observation => @project_observation.observation)
+    Project.update_curator_idents_on_make_curator(@project.id, @project_user_curator.id)
     @project_observation.reload
   end
   
   it "should remove curator_identification_id on existing project observations if no other curator idents" do
-    @project_user.update_attributes(:role => nil)
-    Project.update_curator_idents_on_remove_curator(@project.id, @project_user.user_id)
+    @project_user_curator.update_attributes(:role => nil)
+    Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
     @project_observation.reload
     @project_observation.curator_identification_id.should be_blank
   end
@@ -69,16 +73,16 @@ describe Project, "update_curator_idents_on_remove_curator" do
     pu = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
     ident = Identification.make!(:observation => @project_observation.observation, :user => pu.user)
     
-    @project_user.update_attributes(:role => nil)
-    Project.update_curator_idents_on_remove_curator(@project.id, @project_user.user_id)
+    @project_user_curator.update_attributes(:role => nil)
+    Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
     
     @project_observation.reload
     @project_observation.curator_identification_id.should == ident.id
   end
   
   it "should work for deleted users" do
-    user_id = @project_user.user_id
-    @project_user.user.destroy
+    user_id = @project_user_curator.user_id
+    @project_user_curator.user.destroy
     Project.update_curator_idents_on_remove_curator(@project.id, user_id)
     @project_observation.reload
     @project_observation.curator_identification_id.should be_blank

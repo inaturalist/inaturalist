@@ -22,6 +22,7 @@ class ProjectObservation < ActiveRecord::Base
   def observed_by_project_member?
     unless project.project_users.exists?(:user_id => observation.user_id)
       errors.add(:observation_id, "must belong to a member of the project")
+      return false
     end
     true
   end
