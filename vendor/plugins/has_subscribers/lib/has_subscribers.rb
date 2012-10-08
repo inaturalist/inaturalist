@@ -45,15 +45,18 @@ module HasSubscribers
     #   generates an update, but that still happens in a Delayed::Job.
     #   :queue_if determines whether that job gets delayed in the first place. 
     #   Takes the record as its arg.
+    # * <tt>:priority</tt> - DJ priority at which to run the notification
     #
     def notifies_subscribers_of(subscribable_association, options = {})
       unless self.included_modules.include?(HasSubscribers::InstanceMethods)
         include HasSubscribers::InstanceMethods
       end
+
+      options[:priority] ||= 1
       
       cattr_accessor :notifies_subscribers_of_options
       @@notifies_subscribers_of_options ||= {}
-      @@notifies_subscribers_of_options[subscribable_association.to_sym] = options.merge(:dj_priority => 1)
+      @@notifies_subscribers_of_options[subscribable_association.to_sym] = options
       
       create_callback(subscribable_association, options)
       
@@ -86,10 +89,11 @@ module HasSubscribers
 
       options[:with] ||= :notify_owner_of
       options[:notification] ||= to_s.underscore
+      options[:priority] ||= 1
 
       cattr_accessor :notifies_owner_of_options
       self.notifies_owner_of_options ||= {}
-      self.notifies_owner_of_options[subscribable_association.to_sym] = options.merge(:dj_priority => 1)
+      self.notifies_owner_of_options[subscribable_association.to_sym] = options
 
       create_callback(subscribable_association, options)
       after_destroy do |record|
@@ -183,7 +187,7 @@ module HasSubscribers
       callback_method = options[:with] || :notify_subscribers_of
       send callback_type do |record|
         if options[:queue_if].blank? || options[:queue_if].call(record)
-          record.delay(:priority => 1).send(callback_method, subscribable_association)
+          record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
         end
       end
     end
