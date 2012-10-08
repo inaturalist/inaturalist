@@ -48,21 +48,14 @@ describe Taxon, "creation" do
     @taxon.taxon_names.should_not be_empty
     @taxon.taxon_names.map(&:name).should include(@taxon.name)
   end
-  
-  # it "should NOT create a DUPLICATE taxon name with the same name after save" do
-  #   @new_taxon = Taxon.new(:name => 'Homo imaginarius', :rank => 'species')
-  #   @new_taxon.taxon_names << TaxonName.new(
-  #     :name => 'Pseudacris imaginarius',
-  #     :is_valid => true
-  #   )
-  #   
-  #   @new_taxon.save
-  #   @new_taxon.reload
-  #   
-  #   @new_taxon.taxon_names.select do |tn| 
-  #     tn.name == @new_taxon.name
-  #   end.size.should be(1)
-  # end
+
+  it "should create a taxon name with the same name after save even if invalid on source_identifier" do
+    source_identifier = "foo"
+    source = Source.make!
+    existing = TaxonName.make!(:source => source, :source_identifier => source_identifier)
+    t = Taxon.make!(:source => source, :source_identifier => source_identifier)
+    t.taxon_names.map(&:name).should include(t.name)
+  end
   
   it "should capitalize its name" do
     taxon = Taxon.new(:name => 'balderdash', :rank => 'genus')

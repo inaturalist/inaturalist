@@ -387,6 +387,10 @@ class Taxon < ActiveRecord::Base
     end
     tn.lexicon = TaxonName::LEXICONS[:SCIENTIFIC_NAMES]
     tn.is_valid = true
+
+    if !tn.valid? && !tn.errors[:source_identifier].blank?
+      tn.source_identifier = nil
+    end
     
     self.taxon_names << tn
     true
