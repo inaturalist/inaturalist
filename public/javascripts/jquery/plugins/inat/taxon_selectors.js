@@ -103,7 +103,7 @@
     $(wrapper).append(status);
     
     // Recognize previously selected taxon, lookup unassociated name
-    if ($(input).val() && $(taxon_id).val() && ($(input).val() != '' || $(taxon_id).val() != '')) {
+    if ($(input).val() && ($(input).val() != '' || $(taxon_id).val() != '')) {
       // if both are set, lookup the taxon
       if ($(taxon_id).val() != '') {
         // If the taxon_id input has an alt set, use that as the matched 
