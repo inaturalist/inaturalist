@@ -15,6 +15,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   
   inflect.plural /^(.*)([Ff])ugus$/i, '\1\2ungi'
   inflect.singular /^(.*)([Ff])ungi$/i, '\1\2ungus'
+  inflect.singular /^(.*)([Ff])ungus$/i, '\1\2ungus'
   
   inflect.plural /^(.*)([Oo])ctopus$/i, '\1\2ctopi'
   inflect.singular /^(.*)([Oo])ctopi$/i, '\1\2ctopus'
