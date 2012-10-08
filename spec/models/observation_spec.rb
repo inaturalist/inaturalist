@@ -99,9 +99,8 @@ describe Observation, "creation" do
   end
   
   it "should not have an identification if taxon is not known" do
-    @observation.taxon = nil
-    @observation.save
-    @observation.identifications.empty?.should be(true)
+    o = Observation.make!
+    o.identifications.to_a.should be_blank
   end
   
   it "should have an identification that maches the taxon" do
@@ -268,29 +267,15 @@ describe Observation, "updating" do
       :observed_on_string => 'yesterday at 1pm', 
       :time_zone => 'UTC')
   end
-  
-  it "should destroy the owner's identifications if the taxon has been removed" do
-    @observation.identifications.select do |ident|
-      ident.user_id == @observation.user_id
-    end.empty?.should_not be(true)
-    @observation.taxon_id = nil
-    @observation.save
-    @observation.reload
-    @observation.identifications.select do |ident|
-      ident.user_id == observation.user_id
-    end.empty?.should be(true)
-  end
-  
-  it "should replace the owner's identification if the taxon has changed" do
+
+  it "should not destroy the owner's old identification if the taxon has changed" do
     t1 = Taxon.make!
     t2 = Taxon.make!
     o = Observation.make!(:taxon => t1)
     old_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
     o.update_attributes(:taxon => t2)
     o.reload
-    new_owners_ident = o.identifications.detect{|ident| ident.user_id == o.user_id}
-    new_owners_ident.should_not be_blank
-    new_owners_ident.id.should_not be(old_owners_ident.id)
+    Identification.find_by_id(old_owners_ident.id).should_not be_blank
   end
 
   # # Handled by DJ
@@ -351,7 +336,8 @@ describe Observation, "updating" do
   
   it "should queue refresh jobs for associated project lists if the taxon changed" do
     o = Observation.make!(:taxon => Taxon.make!)
-    po = ProjectObservation.make!(:observation => o)
+    pu = ProjectUser.make!(:user => o.user)
+    po = ProjectObservation.make!(:observation => o, :project => pu.project)
     Delayed::Job.delete_all
     stamp = Time.now
     o.update_attributes(:taxon => Taxon.make!)
