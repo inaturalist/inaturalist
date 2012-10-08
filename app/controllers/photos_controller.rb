@@ -101,13 +101,13 @@ class PhotosController < ApplicationController
 
       # params[:facebook_photos] looks like {"0" => ['fb_photo_id_1','fb_photo_id_2'],...} to accomodate multiple photo-selectors on the same page
       fb_photos = (params[:facebook_photos] || [])
-      fb_photo_ids = (fb_photos.is_a?(Hash) && fb_photos.has_key?('0') ? fb_photos['0'] : [])
+      fb_photo_ids = (fb_photos.is_a?(Hash) && fb_photos.has_key?('0') ? fb_photos['0'] : []).uniq
       
       flickr_photos = (params[:flickr_photos] || [])
-      flickr_photo_ids = (flickr_photos.is_a?(Hash) && flickr_photos.has_key?('0') ? flickr_photos['0'] : [])
+      flickr_photo_ids = (flickr_photos.is_a?(Hash) && flickr_photos.has_key?('0') ? flickr_photos['0'] : []).uniq
 
       picasa_photos = (params[:picasa_photos] || [])
-      picasa_photo_urls = (picasa_photos.is_a?(Hash) && picasa_photos.has_key?('0') ? picasa_photos['0'] : [])
+      picasa_photo_urls = (picasa_photos.is_a?(Hash) && picasa_photos.has_key?('0') ? picasa_photos['0'] : []).uniq
 
       if (fb_photo_ids.empty? && flickr_photo_ids.empty? && picasa_photo_urls.empty?)
         flash[:notice] = "You need to select at least one photo!"
@@ -141,8 +141,11 @@ class PhotosController < ApplicationController
           )
           @successful_ids += [flickr_photo_id]
         rescue FlickRaw::FailedResponse => e
-          raise e unless e.message =~ /Insufficient permission to comment/
-          @errors[flickr_photo_id] = "photo doesn't allow comments"
+          if e.message =~ /Insufficient permission to comment/
+            @errors[flickr_photo_id] = "photo doesn't allow comments"
+          else
+            @errors[flickr_photo_id] = "couldn't add comment: #{e.message}"
+          end
         end
       }
 
