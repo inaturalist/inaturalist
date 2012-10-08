@@ -543,6 +543,16 @@ describe Taxon, "merging" do
     @keeper.reload
     @keeper.flags.size.should eq(1)
   end
+
+  it "should remove duplicate schemes" do
+    ts = TaxonScheme.make!
+    t1 = Taxon.make!
+    t1.taxon_schemes << ts
+    t2 = Taxon.make!
+    t2.taxon_schemes << ts
+    t1.merge(t2)
+    t1.taxon_schemes.size.should eq(1)
+  end
 end
 
 describe Taxon, "moving" do

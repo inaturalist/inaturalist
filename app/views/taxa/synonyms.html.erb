@@ -35,7 +35,7 @@
             <%= render :partial => "shared/taxon", :object => taxon, :locals => { :include_id => true, :link_url => taxon } %>
             <span class="small meta">
               <% unless schemes.blank? -%>
-                (<%= schemes.map{|s| link_to(s.title, taxon_schemes_path(:taxon_scheme_id => s))}.join(', ') %>)
+                (<%= schemes.map{|s| link_to(s.title, taxon_schemes_path(:taxon_scheme_id => s))}.join(', ').html_safe %>)
               <% end -%>
               <%= link_to "Changes", taxon_changes_path(:taxon_id => taxon.id) %>
               |

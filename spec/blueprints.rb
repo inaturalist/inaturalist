@@ -188,6 +188,11 @@ TaxonRange.blueprint do
   source { Source.make }
 end
 
+TaxonScheme.blueprint do
+  title { Faker::Lorem.sentence }
+  source { Source.make! }
+end
+
 Update.blueprint do
   subscriber { User.make }
   resource { Observation.make }
@@ -207,4 +212,3 @@ User.blueprint do
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
 end
-

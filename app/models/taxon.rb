@@ -787,8 +787,10 @@ class Taxon < ActiveRecord::Base
     LifeList.delay(:priority => 1).update_life_lists_for_taxon(self)
     Taxon.delay(:priority => 1).update_listed_taxa_for(self, reject.ancestry)
     
-    flags(:reload => true).each do |flag|
-      flag.destroy unless flag.valid?
+    %w(flags taxon_scheme_taxa).each do |association|
+      send(association, :reload => true).each do |associate|
+        associate.destroy unless associate.valid?
+      end
     end
     
     reject.reload
