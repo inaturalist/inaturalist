@@ -160,6 +160,7 @@ Inaturalist::Application.routes.draw do
     end
     collection do
       get 'tree'
+      get 'synonyms'
     end
   end
   resources :taxon_names

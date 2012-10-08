@@ -1,6 +1,15 @@
 <%- content_for(:title) do -%>
   <%= @title = "Synonyms" %>
 <%- end -%>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.mergenowlink').bind('ajax:complete', function() {
+        $(this).parents('td:first').html($('<span>Merged</span>').addClass('success status'))
+      })
+    })
+  </script>
+<%- end -%>
 <h2><%= @title %></h2>
 
 <div id="controls">
@@ -41,15 +50,16 @@
         <td>No taxa</td>
       <% end %>
       </td>
-      <td id="<%= dom_id(name, 'actions') %>">
+      <td>
         <% if taxa.size == 2 -%>
-          <%= link_to_remote "Merge now (keep first)", 
-            {:url => formatted_merge_taxon_path(taxa.last, :format => :json, :taxon_id => taxa.first), 
-                        :method => :post, 
-                        :confirm => "Are you sure?",
-                        :datatype => "json",
-                        :complete => "$('##{dom_id(name, 'actions')}').html($('<span>Merged</span>').addClass('success status'))"},
-            {"data-loading-click" => "Merging..."} %>
+          <%= link_to "Merge now (keep first)", 
+            formatted_merge_taxon_path(taxa.last, :format => :json, :taxon_id => taxa.first), 
+            :method => :post, 
+            :confirm => "Are you sure?",
+            :datatype => "json",
+            :remote => true,
+            :class => "mergenowlink",
+            "data-loading-click" => "Merging..." %>
         <% end -%>
       </td>
     </tr>
