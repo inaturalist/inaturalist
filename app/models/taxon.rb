@@ -1115,12 +1115,25 @@ class Taxon < ActiveRecord::Base
     sorted = Taxon.sort_by_ancestry(taxa.compact)
     return if sorted.blank?
     return sorted.first if sorted.size == 1
+
+    # if there's a single branch of matches, e.g. Homo and Homo sapiens, 
+    # choose the most conservative, highest rank taxon
     if sorted.first.ancestor_of?(sorted.last)
       sorted.first
+
+    # if only one result is grafted, choose that
     elsif sorted.select{|taxon| taxon.grafted?}.size == 1
       sorted.detect{|taxon| taxon.grafted?}
+
+    # if none are grafted, choose the first
     elsif sorted.select{|taxon| taxon.grafted?}.size == 0
       sorted.first
+
+    # if the names are synonymous and share the same parent, choose the first active concept
+    elsif taxon_names.map(&:name).uniq.size == 1 && taxa.map(&:parent_id).uniq.size == 1
+      sorted.detect{|taxon| taxon.is_active?}
+
+    # else assume there are >1 legit synonyms and refuse to make a decision
     else
       nil
     end
