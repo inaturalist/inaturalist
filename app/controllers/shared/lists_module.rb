@@ -71,22 +71,33 @@ module Shared::ListsModule
       end
       
       format.csv do
-        job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
-        job = Delayed::Job.find_by_id(job_id)
-        if job
-          # Still working
-        else
-          # no job id, no job, let's get this party started
-          Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
-          job = if @view == "taxonomic"
-            @list.delay.generate_csv(:path => "public/lists/#{@list.to_param}.taxonomic.csv", :taxonomic => true)
+        path_for_taxonomic_csv = "public/lists/#{@list.to_param}.taxonomic.csv"
+        path_for_normal_csv = "public/lists/#{@list.to_param}.csv"
+        if @list.listed_taxa.count < 1000
+          path = if @view == "taxonomic"
+            @list.generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
           else
-            @list.delay.generate_csv(:path => "public/lists/#{@list.to_param}.csv")
+            @list.generate_csv(:path => path_for_normal_csv)
           end
-          Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+          render :file => path
+        else
+          job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
+          job = Delayed::Job.find_by_id(job_id)
+          if job
+            # Still working
+          else
+            # no job id, no job, let's get this party started
+            Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
+            job = if @view == "taxonomic"
+              @list.delay.generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
+            else
+              @list.delay.generate_csv(:path => path_for_normal_csv)
+            end
+            Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+          end
+          prevent_caching
+          render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
         end
-        prevent_caching
-        render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
       end
       
       format.json do
