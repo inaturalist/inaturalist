@@ -3,7 +3,7 @@ class ListedTaxaController < ApplicationController
   before_filter :load_listed_taxon, :except => [:index, :create]
   cache_sweeper :listed_taxon_sweeper, :only => [:create, :update, :destroy]
   
-  SHOW_PARTIALS = %w(place_tip guide)
+  SHOW_PARTIALS = %w(place_tip guide batch_edit_row)
 
   def index
     redirect_to lists_path
@@ -58,8 +58,13 @@ class ListedTaxaController < ApplicationController
       end
       return
     end
+
+    opts = params[:listed_taxon] || {}
+    opts[:user_id] = current_user.id
+    opts[:manually_added] = true
+    opts.delete(:taxon_id)
     
-    @listed_taxon = @list.add_taxon(@taxon, :user_id => current_user.id, :manually_added => true)
+    @listed_taxon = @list.add_taxon(@taxon, opts)
     
     respond_to do |format|
       format.html do
@@ -73,7 +78,7 @@ class ListedTaxaController < ApplicationController
         redirect_to list_path(@listed_taxon.list)
       end
       format.json do
-        partial = 'lists/' + (params[:partial] || 'listed_taxon') + ".html.erb"
+        partial = 'lists/' + (params[:partial] || 'listed_taxon')
         if @listed_taxon.valid?
           render(:json => {
             :instance => @listed_taxon,
@@ -82,7 +87,7 @@ class ListedTaxaController < ApplicationController
               :iconic_taxon => @listed_taxon.taxon.iconic_taxon,
               :place => @listed_taxon.place
             },
-            :html => render_to_string(
+            :html => view_context.render_in_format(:html,
               :partial => partial, 
               :object => @listed_taxon,
               :locals => {:listed_taxon => @listed_taxon, :seenit => true}
@@ -111,12 +116,29 @@ class ListedTaxaController < ApplicationController
     end
     
     listed_taxon = params[:listed_taxon] || {}
-    if @listed_taxon.update_attributes(listed_taxon.merge(:updater_id => current_user.id))
-      flash[:notice] = "Listed taxon updated"
-      redirect_to :back
-    else
-      flash[:error] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
-      render :action => :show
+
+    respond_to do |format|
+      if @listed_taxon.update_attributes(listed_taxon.merge(:updater_id => current_user.id))
+        format.html do
+          flash[:notice] = "Listed taxon updated"
+          redirect_to :back
+        end
+        format.json do
+          if params[:partial] && SHOW_PARTIALS.include?(params[:partial])
+            @listed_taxon.html = view_context.render_in_format(:html, :partial => "lists/#{params[:partial]}", 
+              :object => @listed_taxon)
+          end
+          render :json => @listed_taxon, :json => @listed_taxon.to_json(:methods => [:errors, :html])
+        end
+      else
+        format.html do
+          flash[:error] = "There were problems updating that listed taxon: #{@listed_taxon.errors.full_messages.to_sentence}"
+          render :action => :show
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => @listed_taxon.as_json(:methods => [:errors])
+        end
+      end
     end
   end
 
@@ -124,9 +146,16 @@ class ListedTaxaController < ApplicationController
     @listed_taxon = ListedTaxon.find_by_id(params[:id], :include => :list)
     
     unless @listed_taxon && @listed_taxon.removable_by?(current_user)
-      flash[:notice] = "Sorry, you don't have permission to delete from " + 
-        "this list."
-      return redirect_to lists_path
+      msg = "Sorry, you don't have permission to delete from this list."
+      respond_to do |format|
+        format.html do
+          flash[:notice] = msg
+          return redirect_to lists_path
+        end
+        format.json do
+          render :json => {:error => msg}
+        end
+      end
     end
     
     @listed_taxon.destroy

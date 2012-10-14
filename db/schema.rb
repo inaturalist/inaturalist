@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929003044) do
+ActiveRecord::Schema.define(:version => 20121011181051) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -154,6 +154,38 @@ ActiveRecord::Schema.define(:version => 20120929003044) do
     t.string   "flickr_user_id"
     t.string   "secret"
   end
+
+  create_table "flow_task_resources", :force => true do |t|
+    t.integer  "flow_task_id"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.string   "type"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.text     "extra"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "flow_task_resources", ["flow_task_id", "type"], :name => "index_flow_task_resources_on_flow_task_id_and_type"
+  add_index "flow_task_resources", ["resource_type", "resource_id"], :name => "index_flow_task_resources_on_resource_type_and_resource_id"
+
+  create_table "flow_tasks", :force => true do |t|
+    t.string   "type"
+    t.string   "options"
+    t.string   "command"
+    t.string   "error"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.integer  "user_id"
+    t.string   "redirect_url"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "flow_tasks", ["user_id"], :name => "index_flow_tasks_on_user_id"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug"

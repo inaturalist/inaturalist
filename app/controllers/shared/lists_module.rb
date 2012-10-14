@@ -136,6 +136,32 @@ module Shared::ListsModule
   def edit
     @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
   end
+
+  def batch_edit
+    if params[:flow_task_id] && @flow_task = FlowTask.find_by_id(params[:flow_task_id])
+      @flow_task_outputs = @flow_task.outputs.order(:id)
+      @listed_taxa_by_id = ListedTaxon.includes(:taxon => :taxon_names).
+        where("id IN (?)", @flow_task_outputs.map(&:resource_id).compact).
+        index_by(&:id)
+      @listed_taxa = []
+      @flow_task_outputs.each do |ft|
+        lt = @listed_taxa_by_id[ft.resource_id]
+        unless lt
+          name, description, occurrence_status, establishment_means = ft.extra[:row] if ft.extra
+          lt = ListedTaxon.new(
+            :list => @list, 
+            :description => description,
+            :occurrence_status_level => ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status],
+            :establishment_means => establishment_means,
+            :extra => ft.extra
+          )
+        end
+        @listed_taxa << lt
+      end
+    else
+      @listed_taxa = @list.listed_taxa.includes(:taxon => :taxon_names).page(params[:page]).per_page(200)
+    end
+  end
   
   def create
     # Sometimes STI can be annoying...
@@ -306,6 +332,7 @@ module Shared::ListsModule
   
   def load_list
     @list = List.find_by_id(params[:id].to_i)
+    @list ||= List.find_by_id(params[:list_id].to_i)
     render_404 && return unless @list
     true
   end

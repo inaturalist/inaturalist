@@ -224,7 +224,9 @@ input[type='submit'].link:hover {
 
 .buttonrow.smallbuttons .button,
 .buttonrow.smallbuttons input.text,
-.buttonrow.smallbuttons label {
+.buttonrow.smallbuttons label
+.buttonrow.smallbuttons .inter,
+.buttonrow.smallbuttons.inline .inter {
   padding: 1px 3px;
   font-size: 100%;
   margin-bottom: 0;

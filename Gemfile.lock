@@ -13,6 +13,17 @@ GIT
     preferences (0.5.0)
 
 GIT
+  remote: git://github.com/kueda/riparian.git
+  revision: a459bfe905d9239c96573506e88140c326133d97
+  specs:
+    riparian (0.4.0)
+      activesupport (> 3.0.0)
+      delayed_job
+      paperclip
+      rails (> 3.0.0)
+      rdoc
+
+GIT
   remote: git://github.com/modyo/ym4r_gm.git
   revision: dc681ef29e26fca208ce0695d722eb55b9555ff8
   specs:
@@ -104,7 +115,7 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
     chronic (0.7.0)
-    cocaine (0.3.0)
+    cocaine (0.4.0)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
     database_cleaner (0.8.0)
@@ -139,6 +150,7 @@ GEM
     google_analytics (1.1.5)
       actionpack
       activesupport
+    haml (3.1.7)
     hashie (1.2.0)
     highline (1.6.14)
     hike (1.2.1)
@@ -202,13 +214,13 @@ GEM
     omniauth-twitter (0.0.9)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.3.0)
-    paperclip (3.2.0)
+    paperclip (3.3.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-      cocaine (>= 0.0.2)
+      cocaine (~> 0.4.0)
       mime-types
-    pg (0.12.2)
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -276,7 +288,7 @@ GEM
     thor (0.16.0)
     tilt (1.3.3)
     tlsmail (0.0.1)
-    treetop (1.4.10)
+    treetop (1.4.11)
       polyglot
       polyglot (>= 0.3.1)
     trollop (2.0)
@@ -322,6 +334,7 @@ DEPENDENCIES
   friendly_id (~> 4.0.1)
   geoplanet
   google_analytics
+  haml
   htmlentities
   koala
   machinist
@@ -346,6 +359,7 @@ DEPENDENCIES
   right_aws
   right_http_connection
   rinku
+  riparian!
   rspec-rails
   rvm-capistrano
   spatial_adapter!

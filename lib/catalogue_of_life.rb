@@ -18,7 +18,7 @@ class CatalogueOfLife
   # TODO: handle bad responses!
   #
   def request(method, args = {})
-    uri = CatalogueOfLife.url_for_request(method, args)
+    uri = self.class.url_for_request(method, args)
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do

@@ -32,7 +32,7 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   after_save :update_cache_columns_for_check_list
-  after_save :expire_caches
+  after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
@@ -70,6 +70,7 @@ class ListedTaxon < ActiveRecord::Base
     20 => "doubtful",
     10 => "absent"
   }
+  OCCURRENCE_STATUS_LEVELS_BY_NAME = OCCURRENCE_STATUS_LEVELS.invert
   OCCURRENCE_STATUSES = OCCURRENCE_STATUS_LEVELS.values
   OCCURRENCE_STATUS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   OCCURRENCE_STATUS_DESCRIPTIONS["present" ] =  "occurs in the area"
@@ -119,7 +120,9 @@ class ListedTaxon < ActiveRecord::Base
   
   attr_accessor :skip_sync_with_parent,
                 :skip_update_cache_columns,
-                :force_update_cache_columns
+                :force_update_cache_columns,
+                :extra,
+                :html
   
   def ancestry
     taxon_ancestor_ids
@@ -135,6 +138,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def not_on_a_comprehensive_check_list
+    return true unless taxon
     return true unless list.is_a?(CheckList)
     return true if first_observation_id || last_observation_id
     target_place = place || list.place
@@ -268,6 +272,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_cache_columns
+    return unless taxon_id
     self.first_observation_id, self.last_observation_id, self.observations_count, self.observations_month_counts = cache_columns
   end
   
@@ -430,7 +435,7 @@ class ListedTaxon < ActiveRecord::Base
   def expire_caches
     return true unless place_id
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(guide_taxon_cache_key)
+    ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
     true
   end

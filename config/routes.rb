@@ -1,4 +1,12 @@
 Inaturalist::Application.routes.draw do
+  # Riparian routes
+  resources :flow_tasks do
+    member do
+      get :run
+    end
+  end
+
+
   id_param_pattern = %r(\d+([\w\-\%]*))
   simplified_login_regex = /\w[^\.,\/]+/  
 
@@ -122,7 +130,9 @@ Inaturalist::Application.routes.draw do
   match 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
   match 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
   match 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
-  resources :lists, :constraints => { :id => id_param_pattern }
+  resources :lists, :constraints => { :id => id_param_pattern } do
+    get 'batch_edit'
+  end
   match 'lists/:id/taxa' => 'lists#taxa', :as => :list_taxa, :via => :get
   match 'lists/:id/taxa.:format' => 'lists#taxa', :as => :formatted_list_taxa, :via => :get
   match 'lists/:id.:view_type.:format' => 'lists#show',

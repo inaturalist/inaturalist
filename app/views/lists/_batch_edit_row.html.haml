@@ -1,0 +1,37 @@
+- lt ||= batch_edit_row
+- name, description, occurrence_status, establishment_means = lt.extra[:row] if lt.extra
+- error = lt.extra[:error] if lt.extra
+- css_class = ["listed_taxon_row", (error ? "error" : nil), (lt.new_record? ? "new_listed_taxon_row" : nil)].compact.join(" ")
+%tbody{"data-listed-taxon-id" => lt.id, "data-list-id" => @list.id, :class => css_class}
+  %tr
+    = form_for lt do |f|
+      %td.check
+        = check_box_tag :check
+        = f.hidden_field :list_id
+      %td.taxon
+        - if lt.new_record?
+          = text_field_tag :taxon_name, name, :class => "taxon_name text", :disabled => true
+          = f.hidden_field :taxon_id, :class => "text"
+          %div
+            = link_to_function "Look up name", "$(this).parent().siblings('.taxon_name').attr('disabled', false).simpleTaxonSelector(); $(this).hide()"
+        - else
+          = render "shared/taxon", :taxon => lt.taxon, :link_url => lt
+      %td.desc= f.text_area :description, :class => "text"
+      %td.occurrence_status
+        = f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse, :include_blank => "unknown"
+      %td.establishment_means
+        = f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS, :include_blank => "unknown"
+      %td.actions.inline.buttonrow.smallbuttons.nobr
+        = link_to_function lt.new_record? ? "Add" : "Update", "saveListedTaxon.apply(this)", :class => "button savelink"
+        - if lt.new_record?
+          = link_to_function "Remove", "$(this).parents('.listed_taxon_row:first').fadeOut(function() { $(this).remove()})",
+            :class => "last inter removelink"
+        - else
+          = link_to "Remove", lt, :method => :delete, 
+            :remote => true, 
+            "data-type" => "json",
+            :confirm => "Are you sure you want to remove this taxon from the list?", 
+            :class => "last inter removelink"
+  %tr.message
+    %td{:colspan => 6}
+      = error
