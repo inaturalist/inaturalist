@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :except => :index
   before_filter :admin_required, :only => [:user]
-  # before_filter :owner_required, :only => [:edit, :update, :destroy]
+  before_filter :owner_required, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
   MOBILIZED = [:edit]
@@ -128,8 +128,17 @@ class CommentsController < ApplicationController
   
   def owner_required
     unless logged_in? && (is_admin? || current_user.id == @comment.user_id)
-      flash[:error] = "You don't have permission to do that"
-      return redirect_to @comment
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @comment
+        end
+        format.json do
+          render :json => {:error => msg}
+        end
+      end
+      return 
     end
   end
 end

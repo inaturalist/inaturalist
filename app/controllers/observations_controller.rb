@@ -727,6 +727,7 @@ class ObservationsController < ApplicationController
       flash[:notice] = "Observation was deleted."
       format.html { redirect_to(observations_by_login_path(current_user.login)) }
       format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 

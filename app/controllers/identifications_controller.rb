@@ -100,6 +100,7 @@ class IdentificationsController < ApplicationController
         redirect_to observation
       end
       format.js { render :status => :ok, :json => nil }
+      format.json { render :status => :ok, :json => nil }
     end
   end
   
