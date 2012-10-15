@@ -33,4 +33,15 @@ module Shared::SweepersModule
       expire_listed_taxon(lt)
     end
   end
+
+  def expire_taxon(taxon)
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
+    Observation.delay(:priority => 1).expire_components_for(taxon.id)
+    expire_listed_taxa(taxon)
+    expire_fragment(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo")
+    expire_action(:controller => 'taxa', :action => 'show', :id => taxon.id)
+    expire_action(:controller => 'taxa', :action => 'show', :id => taxon.to_param)
+    Rails.cache.delete(taxon.photos_cache_key)
+  end
 end

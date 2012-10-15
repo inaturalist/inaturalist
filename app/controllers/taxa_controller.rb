@@ -698,12 +698,19 @@ class TaxaController < ApplicationController
   
   def update_photos
     photos = retrieve_photos
+    errors = photos.map do |p|
+      p.valid? ? nil : p.errors.full_messages
+    end.flatten.compact
     @taxon.photos = photos
     @taxon.save
     unless photos.count == 0
       Taxon.delay(:priority => 2).update_ancestor_photos(@taxon.id, photos.first.id)
     end
-    flash[:notice] = "Taxon photos updated!"
+    if errors.blank?
+      flash[:notice] = "Taxon photos updated!"
+    else
+      flash[:error] = "Some of those photos couldn't be saved: #{errors.to_sentence.downcase}"
+    end
     redirect_to taxon_path(@taxon)
   rescue Errno::ETIMEDOUT
     flash[:error] = "Request timed out!"

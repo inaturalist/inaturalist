@@ -120,8 +120,10 @@ class WikimediaCommonsPhoto < Photo
       Photo::CC_BY_ND
     elsif license.downcase.include? "cc-by"
       Photo::CC_BY
+    elsif license.downcase.include? "gfdl"
+      Photo::GFDL
     end
-    return if photo.license.blank?
+    return photo if photo.license.blank?
 
     author = if api_response.at('#fileinfotpl_aut')
       author_elt = api_response.at('#fileinfotpl_aut').parent.elements.last

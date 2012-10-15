@@ -32,6 +32,12 @@ describe WikimediaCommonsPhoto, "new_from_api_response" do
     wp.license.should == Photo::PD
   end
 
+  it "should recognize GFDL images" do
+    r = WikimediaCommonsPhoto.get_api_response('Circus_maurus.jpg')
+    wp = WikimediaCommonsPhoto.new_from_api_response(r)
+    wp.license.should == Photo::GFDL
+  end
+
   it "should not retrieve sizes that don't exist" do
     r = WikimediaCommonsPhoto.get_api_response('Doriopsilla_albopunctata.jpg')
     wp = WikimediaCommonsPhoto.new_from_api_response(r)

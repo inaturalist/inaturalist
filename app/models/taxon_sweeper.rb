@@ -3,13 +3,7 @@ class TaxonSweeper < ActionController::Caching::Sweeper
   include Shared::SweepersModule
   
   def after_update(taxon)
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    return unless taxon
-    Observation.delay(:priority => 1).expire_components_for(taxon.id)
-    expire_listed_taxa(taxon)
-    expire_fragment(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo")
-    expire_action(:controller => 'taxa', :action => 'show', :id => taxon.id)
-    expire_action(:controller => 'taxa', :action => 'show', :id => taxon.to_param)
+    expire_taxon(taxon)
   end
   
   def after_destroy(taxon)

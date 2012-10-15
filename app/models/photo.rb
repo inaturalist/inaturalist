@@ -35,7 +35,8 @@ class Photo < ActiveRecord::Base
     4 => {:code => Observation::CC_BY,        :short => "CC BY",        :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/3.0/"},
     5 => {:code => Observation::CC_BY_SA,     :short => "CC BY-SA",     :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/3.0/"},
     6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/3.0/"},
-    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"}
+    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"},
+    8 => {:code => "GFDL",                    :short => "GFDL",         :name => "GNU Free Documentation License", :url => "http://www.gnu.org/copyleft/fdl.html"}
   }
   LICENSE_NUMBERS = LICENSE_INFO.keys
   LICENSE_INFO.each do |code, info|
@@ -55,10 +56,10 @@ class Photo < ActiveRecord::Base
   end
   
   def licensed_if_no_user
-    if user.blank? && self.license == 0
+    if user.blank? && (license == COPYRIGHT || license.blank?)
       errors.add(
         :license, 
-        "must be a Creative Commons license if the photo wasn't added by an iNaturalist user.")
+        "must be set if the photo wasn't added by an iNat user.")
     end
   end
   
@@ -87,7 +88,13 @@ class Photo < ActiveRecord::Base
     else
       "anonymous"
     end
-    license_short =~ /\(/ ? "#{license_short} #{name}" : "(#{license_short}) #{name}"
+    if license_code == PD
+      "#{name}, #{license_name}"
+    elsif open_licensed?
+      "(c) #{name}, some rights reserved (#{license_short})"
+    else
+      "(c) #{name}, all rights reserved"
+    end
   end
   
   def license_short
@@ -112,6 +119,10 @@ class Photo < ActiveRecord::Base
   
   def creative_commons?
     license.to_i > COPYRIGHT && license.to_i < NO_COPYRIGHT
+  end
+
+  def open_licensed?
+    license.to_i > COPYRIGHT && license != PD
   end
   
   # Try to choose a single taxon for this photo.  Only works if class has 

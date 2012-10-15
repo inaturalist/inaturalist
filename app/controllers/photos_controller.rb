@@ -6,6 +6,8 @@ class PhotosController < ApplicationController
   before_filter :require_owner, :only => [:update]
   before_filter :authenticate_user!, :only => [:inviter]
   before_filter :return_here, :only => [:show, :invite, :inviter]
+
+  cache_sweeper :photo_sweeper, :only => [:update, :repair]
   
   def show
     @size = params[:size]
