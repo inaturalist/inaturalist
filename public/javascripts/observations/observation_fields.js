@@ -95,7 +95,7 @@ var ObservationFields = {
         select.change(function() { input.val($(this).val()) })
         $(input).hide()
         $(input).after(select)
-        select.change()
+        select.val(input.val())
         if (options.focus) { select.focus() }
       } else if (currentField.datatype == 'numeric') {
         var newInput = input.clone()
