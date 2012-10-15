@@ -1443,6 +1443,7 @@ class ObservationsController < ApplicationController
           v[:normalized_name] == ObservationField.normalize_name(of.name)
         end
       end
+      @ofv_params.delete_if{|k,v| v[:observation_field].blank?}
       search_params[:ofv_params] = @ofv_params
     end
     
