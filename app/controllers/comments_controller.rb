@@ -127,7 +127,7 @@ class CommentsController < ApplicationController
   end
   
   def owner_required
-    unless logged_in? && (is_admin? || current_user.id == @comment.user_id)
+    unless logged_in? && (current_user.is_admin? || current_user.id == @comment.user_id)
       msg = "You don't have permission to do that"
       respond_to do |format|
         format.html do
