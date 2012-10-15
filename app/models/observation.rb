@@ -339,6 +339,8 @@ class Observation < ActiveRecord::Base
       scope.where("num_identification_agreements > 0")
     when 'most_disagree'
       scope.where("num_identification_agreements < num_identification_disagreements")
+    else
+      scope
     end
   end
   
@@ -456,7 +458,7 @@ class Observation < ActiveRecord::Base
         end
       end
     end
-    scope = scope.identifications(params[:identifications]) if (params[:identifications])
+    scope = scope.identifications(params[:identifications]) if params[:identifications]
     scope = scope.has_iconic_taxa(params[:iconic_taxa]) if params[:iconic_taxa]
     scope = scope.order_by(params[:order_by]) if params[:order_by]
     
