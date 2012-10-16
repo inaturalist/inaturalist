@@ -391,8 +391,10 @@ class Observation < ActiveRecord::Base
 
   scope :has_observation_field, lambda{|*args|
     field, value = args
-    scope = includes(:observation_field_values).where("observation_field_values.observation_field_id = ?", field)
-    scope = scope.where("observation_field_values.value = ?", value) unless value.blank?
+    join_name = "ofv_#{field.is_a?(ObservationField) ? field.id : field}"
+    scope = joins("LEFT OUTER JOIN observation_field_values #{join_name} ON #{join_name}.observation_id = observations.id").
+      where("#{join_name}.observation_field_id = ?", field)
+    scope = scope.where("#{join_name}.value = ?", value) unless value.blank?
     scope
   }
   
