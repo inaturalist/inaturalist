@@ -1107,7 +1107,7 @@ class Taxon < ActiveRecord::Base
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     if taxa.blank?
       begin
-        taxa = Taxon.search(name).to_a
+        taxa = Taxon.search(name).select{|t| t.taxon_names.detect{|tn| tn.name =~ /#{name}/}}
       rescue Riddle::ConnectionError => e
         return
       end
