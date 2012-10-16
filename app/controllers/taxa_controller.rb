@@ -1133,7 +1133,7 @@ class TaxaController < ApplicationController
         params[:names]
       end
       taxon_names = TaxonName.where("name IN (?)", names).limit(100)
-      find_options[:conditions] = ["taxa.id IN (?)", taxon_names.map(&:taxon_id).uniq]
+      find_options[:conditions] = ["taxa.is_active = ? AND taxa.id IN (?)", true, taxon_names.map(&:taxon_id).uniq]
     else
       find_options[:conditions] = ["is_iconic = ?", true]
       find_options[:order] = :ancestry
