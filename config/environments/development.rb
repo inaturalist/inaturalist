@@ -27,7 +27,7 @@ Inaturalist::Application.configure do
 
   # # Uncomment these to test caching
   # config.cache_store = :file_store, RAILS_ROOT + "/tmp/cache"
-  config.action_controller.perform_caching             = true
+  # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true
   config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
