@@ -27,6 +27,9 @@
     #countitem {text-align: center;}
     ol {margin-right: 0;}
     .userstats {font-size:0.7em;}
+    <% if !params[:bgcolor].blank? && !%w(white fff ffffff).include?(params[:bgcolor].to_s.downcase) %>
+      body {background-color: #<%=h params[:bgcolor] %>;}
+    <% end -%>
   </style>
 <%- end -%>
 
