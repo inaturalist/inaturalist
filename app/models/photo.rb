@@ -35,7 +35,7 @@ class Photo < ActiveRecord::Base
     4 => {:code => Observation::CC_BY,        :short => "CC BY",        :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/3.0/"},
     5 => {:code => Observation::CC_BY_SA,     :short => "CC BY-SA",     :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/3.0/"},
     6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/3.0/"},
-    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"},
+    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain", :url => "http://en.wikipedia.org/wiki/Public_domain"},
     8 => {:code => "GFDL",                    :short => "GFDL",         :name => "GNU Free Documentation License", :url => "http://www.gnu.org/copyleft/fdl.html"}
   }
   LICENSE_NUMBERS = LICENSE_INFO.keys
@@ -88,8 +88,8 @@ class Photo < ActiveRecord::Base
     else
       "anonymous"
     end
-    if license_code == PD
-      "#{name}, #{license_name}"
+    if license == PD
+      "#{name}, no known copyright restrictions (#{license_name})"
     elsif open_licensed?
       "(c) #{name}, some rights reserved (#{license_short})"
     else
