@@ -1,0 +1,29 @@
+<%-
+  o ||= builder if defined?(builder)
+  observation_fields ||= @observation_fields
+-%>
+<div class="observation_fields_form_fields">
+  <div class="observation_fields">
+    <%= o.fields_for :observation_field_values do |ofv| %>
+      <%= render 'observation_field_row', :builder => ofv %>
+    <% end -%>
+  </div>
+  <div>
+    <%- new_ofv_fields = capture do %>
+      <%= o.fields_for :observation_field_values, o.object.observation_field_values.build do |ofv| %>
+        <%= render 'observation_field_row', :builder => ofv %>
+      <% end -%>
+    <% end -%>
+    <div class="inline buttonrow">
+      <label>Add a field</label>
+      <input name="observation_field" 
+             class="observation_field_chooser" 
+             type="text" 
+             placeholder="Start typing field name..."
+             data-chooser-default-sources="<%= observation_fields.to_json %>">
+      <%= link_to_function "Add a field", "$(this).parents('.observation_fields_form_fields:first').newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
+      <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+      <%= link_to "View all fields", observation_fields_path, :class => "inter", :target => "_blank" %>
+    </div>
+  </div>
+</div>
