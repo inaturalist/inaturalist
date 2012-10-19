@@ -36,10 +36,10 @@ class PostsController < ApplicationController
         render_404 and return
       end
     end
-    @previous = @post.user.posts.published.find(:first, 
+    @previous = @parent.posts.published.find(:first, 
       :conditions => ["published_at < ?", @post.published_at],
       :order => "published_at DESC")
-    @next = @post.user.posts.published.find(:first, 
+    @next = @parent.posts.published.find(:first, 
       :conditions => ["published_at > ?", @post.published_at],
       :order => "published_at ASC")
     @observations = @post.observations.order_by('observed_on')
