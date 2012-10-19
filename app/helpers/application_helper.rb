@@ -627,7 +627,7 @@ module ApplicationHelper
       resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
 
       if notifier.is_a?(ProjectInvitation)
-        return "#{notifier_user_link} invited your #{resource_link} to a project"
+        return "#{notifier_user_link} invited your #{resource_link} to a project".html_safe
       end
 
       s = if update.notification == "activity" && notifier_user

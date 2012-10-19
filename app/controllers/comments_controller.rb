@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :except => :index
   before_filter :admin_required, :only => [:user]
+  before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
@@ -36,7 +37,6 @@ class CommentsController < ApplicationController
   end
   
   def show
-    @comment = Comment.find(params[:id])
     redirect_to_parent
   end
   
@@ -45,7 +45,6 @@ class CommentsController < ApplicationController
   end
   
   def edit
-    @comment = Comment.find(params[:id])
     respond_to do |format|
       format.html
       format.mobile do
@@ -69,7 +68,6 @@ class CommentsController < ApplicationController
   end
   
   def update
-    @comment = Comment.find(params[:id])
     @comment.attributes = params[:comment]
     @comment.save unless params[:preview]
     respond_to do |format|
@@ -90,7 +88,6 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-    @comment = Comment.find(params[:id])
     parent = @comment.parent
     @comment.destroy
     respond_to do |format|
@@ -124,6 +121,10 @@ class CommentsController < ApplicationController
         @comment.errors.full_messages.join(', ')
     end
     redirect_to_parent
+  end
+
+  def load_comment
+    render_404 unless @comment = Comment.find_by_id(params[:id] || params[:comment_id])
   end
   
   def owner_required

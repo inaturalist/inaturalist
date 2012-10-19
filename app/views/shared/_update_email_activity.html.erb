@@ -14,6 +14,7 @@
           @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
         end
         notifier ||= update.notifier
+        next unless notifier
       -%>
       <tr>
         <td valign="top" style="padding-right:10px;">
