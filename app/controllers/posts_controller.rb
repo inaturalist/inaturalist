@@ -63,7 +63,10 @@ class PostsController < ApplicationController
     if @post.save
       if @post.published_at
         flash[:notice] = "Post published!"
-        redirect_to journal_post_path(@post.user.login, @post)
+        #redirect_to (journal_post_path(@post.user.login, @post)
+        redirect_to (@post.parent.is_a?(Project) ?
+                     project_journal_post_path(@post.parent.slug, @post) :
+                     journal_post_path(@post.user.login, @post))
       else
         flash[:notice] = "Draft saved!"
         redirect_to edit_post_path(@post)
