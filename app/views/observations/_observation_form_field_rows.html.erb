@@ -1,4 +1,5 @@
 <% observations ||= @observations -%>
+
 <% observations.each_with_index do |observation, i| %>
   <% i = observation.id unless observation.new_record? -%>
   <%= fields_for("observations[]", observation, :index => i) do |o| %>
@@ -9,7 +10,7 @@
             <strong>There were some problems saving this observation:</strong>
             <ul>
               <% for error in observation.errors %>
-              <li><%= error.first.humanize %> <%= error.last %></li>
+              <li><%= error %></li>
               <% end %>
             </ul>
           </div>
@@ -138,7 +139,7 @@
               </div>
               <div class="last column span-20">
                 <label>More fields</label><br/>
-                <%= render 'observation_field_form_fields', :builder => o %>
+                <%= render 'observation_field_form_fields', :builder => o, :index => i %>
               </div>
             </div>
           </div>

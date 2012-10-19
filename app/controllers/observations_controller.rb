@@ -567,7 +567,7 @@ class ObservationsController < ApplicationController
     @observations = Observation.all(
       :conditions => [
         "id IN (?) AND user_id = ?", 
-        params[:observations].map(&:first),
+        params[:observations].map{|k,v| k},
         observation_user
       ]
     )

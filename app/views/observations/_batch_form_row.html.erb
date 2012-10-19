@@ -75,22 +75,22 @@
         <div class="last column prepend-1 span-21">
           <%= link_to_toggle "More fields", "#morebatchcontrols" %>
           <div id="morebatchcontrols" style="display:none;">
-            <table class="plain">
+            <table>
               <tr class="inline buttonrow">
                 <td><label>Tags</label></td>
                 <td><%= o.text_field :tag_list, :class => "text" %></td>
-                <td><%= link_to_function "Apply &darr;".html_safe, "applyBatch(['tag_list'])", :class => "default button" %></td>
+                <td><%= link_to_function "Apply tags &darr;".html_safe, "applyBatch(['tag_list'])", :class => "default button" %></td>
               </tr>
               <tr class="inline buttonrow">
                 <td><%= o.label :geoprivacy, "Geoprivacy" %></td>
                 <td><%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %></td>
-                <td><%= link_to_function "Apply &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+                <td><%= link_to_function "Apply geoprivacy &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
               </tr>
               <tr>
                 <td colspan="2">
                   <%= render 'observation_field_form_fields', :builder => o %>
                 </td>
-                <td class="inline buttonrow"><%= link_to_function "Apply &darr;".html_safe, "batchObservationFields()", :class => "default button nobr" %></td>
+                <td class="inline buttonrow"><%= link_to_function "Apply fields &darr;".html_safe, "batchObservationFields()", :class => "default button nobr" %></td>
               </tr>
             </table>
           </div>

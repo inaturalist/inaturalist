@@ -25,6 +25,7 @@ function batchObservationFields() {
       var existing = $('[data-observation-field-id='+fieldId+']', container).get(0)
       if (!existing) {
         $(container).append(newField)
+        existing = newField
       }
       var val = $('.ofv_value_field', this).val()
       $('.ofv_value_field', existing).val(val)
@@ -37,7 +38,7 @@ function batchObservationFields() {
         $(this).attr('id', $(this).attr('id').replace(/\d+_value/, index+'_value'))
       }
       if ($(this).attr('name')) {
-        $(this).attr('name', $(this).attr('name').replace(/\[\d+?\]/, '['+index+']'))
+        $(this).attr('name', $(this).attr('name').replace(/observation\[/, 'observations['+index+']['))
       }
     })
   })
