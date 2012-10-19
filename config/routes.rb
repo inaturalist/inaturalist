@@ -123,6 +123,8 @@ Inaturalist::Application.routes.draw do
   match 'projects/:id/stats.:format' => 'projects#stats', :as => :formatted_project_stats
   match 'projects/browse' => 'projects#browse', :as => :browse_projects
   match 'projects/:id/invitations' => 'projects#invitations', :as => :invitations
+  match 'projects/:project_id/journal/new' => 'posts#new'
+  match 'projects/:project_id/journal' => 'posts#index'
   resources :projects
   resources :project_assets, :except => [:index, :show]
   resources :project_observations, :only => [:create, :destroy]

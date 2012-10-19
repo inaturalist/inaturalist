@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_display_user_by_login, :except => [:browse, :create]
+  before_filter :load_display_user_by_login, :except => [:browse, :create, :new]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
@@ -45,8 +45,11 @@ class PostsController < ApplicationController
   end
   
   def new
-    @post = Post.new(:parent => current_user, :user => current_user)
-    @recent_observations = current_user.observations.latest.all(
+    # if params include a project_id, parent is the project.  otherwise, parent is current_user.
+    @project = Project.find(params[:project_id]) unless params[:project_id].nil?
+    parent = (@project || current_user) 
+    @post = Post.new(:parent => parent, :user => current_user)
+    @observations = parent.observations.latest.all(
       :limit => 10, :include => [:taxon, :photos])
   end
   

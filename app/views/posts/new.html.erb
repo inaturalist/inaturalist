@@ -6,7 +6,11 @@
 <% end -%>
 <div id="pageheader" class="column span-24">
   <div class="breadcrumbs">
-    <% if current_user and current_user.login == @post.user.login %>
+    <% if !@project.nil? %>
+    <%= link_to "Back to #{@project.title}'s journal", 
+                journal_by_login_path(current_user.login),
+                :class => 'back crumb' %>
+    <% elsif current_user and current_user.login == @post.user.login %>
     <%= link_to 'Back to your journal', 
                 journal_by_login_path(current_user.login),
                 :class => 'back crumb' %>

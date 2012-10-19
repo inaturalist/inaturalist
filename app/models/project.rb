@@ -12,6 +12,9 @@ class Project < ActiveRecord::Base
   has_one :custom_project, :dependent => :destroy
   has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
   has_many :observation_fields, :through => :project_observation_fields
+
+  #has_many :posts, :dependent => :destroy
+  has_many :journal_posts, :class_name => Post.to_s, :as => :parent, :dependent => :destroy
   
   before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
