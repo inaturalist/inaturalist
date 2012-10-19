@@ -1,0 +1,13 @@
+<%-
+  model_name ||= controller.class.to_s.underscore.humanize.split.first
+  title ||= ("#{@parent_display_name}'s ") + model_name
+  before ||= nil
+  after ||= nil
+  after_title ||= nil
+-%>
+<div id="pageheader" class="column span-24">
+  <%= before %>
+  <%= link_to image_tag(project.icon.url(:thumb), :alt => "#{h(project.title)} icon", :class => 'projecticon'), project %>
+    <h2><%= title %><%= after_title %></h2>
+  <%= after %>
+</div>

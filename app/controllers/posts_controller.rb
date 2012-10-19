@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
-  before_filter :load_display_user_by_login, :except => [:browse, :create, :new]
+  #before_filter :load_display_user_by_login, :except => [:browse, :create, :new]
+  before_filter :load_parent, :except => [:browse, :create]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
-    @posts = @display_user.posts.published.paginate(:page => params[:page] || 1, 
+    @posts = @parent.posts.published.paginate(:page => params[:page] || 1, 
       :per_page => 10, :order => "published_at DESC")
     
     # Grab the monthly counts of all posts to show archives
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
   end
   
   def show
-    if params[:login].blank?
+    if (params[:login].blank? && params[:project_id].blank?)
       redirect_to journal_post_path(@display_user.login, @post)
       return
     end
@@ -46,16 +47,14 @@ class PostsController < ApplicationController
   
   def new
     # if params include a project_id, parent is the project.  otherwise, parent is current_user.
-    @project = Project.find(params[:project_id]) unless params[:project_id].nil?
-    parent = (@project || current_user) 
-    @post = Post.new(:parent => parent, :user => current_user)
-    @observations = parent.observations.latest.all(
+    @post = Post.new(:parent => @parent, :user => current_user)
+    @observations = @parent.observations.latest.all(
       :limit => 10, :include => [:taxon, :photos])
   end
   
   def create
     @post = Post.new(params[:post])
-    @post.parent = current_user
+    @post.parent ||= current_user
     @display_user = current_user
     @post.published_at = Time.now if params[:commit] == 'Publish'
     if params[:observations]
@@ -140,7 +139,7 @@ class PostsController < ApplicationController
   private
   
   def get_archives
-    @archives = @display_user.posts.published.count(
+    @archives = @parent.posts.published.count(
       :group => "TO_CHAR(published_at, 'YYYY MM Month')")
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
@@ -148,12 +147,23 @@ class PostsController < ApplicationController
 
   end
   
-  def load_display_user_by_login
-    @display_user = User.find_by_login(params[:login])
-    @display_user ||= @post.user if @post
-    render_404 and return unless @display_user
-    @selected_user = @display_user
-    @login = @selected_user.login
+  def load_parent
+    if params[:login]
+      @display_user = User.find_by_login(params[:login])
+      @display_user ||= @post.user if @post
+    elsif params[:project_id]
+      @display_project = Project.find(params[:project_id])
+    end
+    @parent = (@display_user || @display_project)
+    render_404 and return if @parent.nil?
+    if @parent.is_a?(Project)
+      @parent_display_name = @parent.title 
+      @parent_slug = @parent.slug
+    else
+      @parent_display_name = @parent.login
+      @selected_user = @display_user
+      @parent_slug = @login = @selected_user.login
+    end
     true
   end
   
