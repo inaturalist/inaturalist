@@ -87,6 +87,25 @@
 <div class="column span-16">
   <div id="map" class="stacked"></div>
   
+  <div id="journal">
+    <h3>
+      Recent Journal Posts
+      <%= link_to "View all", project_journal_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
+    </h3>
+    <% if @project_journal_posts.blank? -%>
+      <div class="description noresults">
+        No journal posts have been added to this project yet.
+      </div>
+    <% else %>
+      <div class="mini observations">
+        <% for project_journal_post in @project_journal_posts %>
+          <%= render :partial => 'posts/post', :locals => { :post => project_journal_post } %>
+        <% end %>
+      </div>
+      <%= link_to "More journal posts", project_journal_path(@project),
+        :class => "readmore" %>
+    <% end %>
+  </div>
   <div id="observations">
     <h3>
       Recent Observations
@@ -134,6 +153,9 @@
         <% end -%>
       <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> Checklist".html_safe, list_path(@project.project_list), :class => "navlink" %>
+    </li>
+    <li>
+      <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
       <% if @project.contest? -%>

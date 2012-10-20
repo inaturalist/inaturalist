@@ -124,7 +124,6 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:notice] = "Journal post deleted."
-    #redirect_to journal_by_login_path(@post.user.login)
     redirect_to (@post.parent.is_a?(Project) ?
                  project_journal_path(@post.parent.slug) :
                  journal_by_login_path(@post.user.login))
@@ -188,10 +187,13 @@ class PostsController < ApplicationController
   end
   
   def author_required
-    unless logged_in? && @post.user.id == current_user.id
-      flash[:notice] = "Only the author of this post can do that.  " + 
-                       "Don't be evil."
-      redirect_to journal_by_login_path(@display_user.login)
+    if !((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
+        !(logged_in? && @post.user.id == current_user.id))
+        flash[:notice] = "Only the author of this post can do that.  " + 
+                         "Don't be evil."
+      redirect_to (@post.parent.is_a?(Project) ?
+                   project_journal_path(@post.parent.slug) :
+                   journal_by_login_path(@post.user.login))
     end
   end
 end

@@ -1,6 +1,7 @@
 <%- truncate_length ||= nil %>
+<%- @parent ||= post.parent %>
 <%- post_url = (@parent.is_a?(Project) ?
-                project_journal_post_path(@parent_slug, post) :
+                project_journal_post_path(@parent.slug, post) :
                 journal_post_path(post.user.login, post))
 %>
 <div id="post-<%= post.id %>" class="post">
