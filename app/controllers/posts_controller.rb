@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
   #before_filter :load_display_user_by_login, :except => [:browse, :create, :new]
-  before_filter :load_parent, :except => [:browse, :create, :update]
+  before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
@@ -124,7 +124,10 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:notice] = "Journal post deleted."
-    redirect_to journal_by_login_path(@post.user.login)
+    #redirect_to journal_by_login_path(@post.user.login)
+    redirect_to (@post.parent.is_a?(Project) ?
+                 project_journal_path(@post.parent.slug) :
+                 journal_by_login_path(@post.user.login))
   end
   
   def archives    
