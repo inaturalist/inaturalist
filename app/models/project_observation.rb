@@ -69,7 +69,7 @@ class ProjectObservation < ActiveRecord::Base
         nil
       end
     else
-      observation.send(column) rescue send(column)
+      observation.send(column) rescue send(column) rescue nil
     end
   end
   

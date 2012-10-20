@@ -662,7 +662,7 @@ class Observation < ActiveRecord::Base
         "was not recognized, some working examples are: yesterday, 3 years " +
         "ago, 5/27/1979, 1979-05-27 05:00. " +
         "(<a href='http://chronic.rubyforge.org/'>others</a>)")
-      return
+      return true
     end
     
     # don't store relative observed_on_strings, or they will change
@@ -739,7 +739,7 @@ class Observation < ActiveRecord::Base
     ].compact.uniq
     
     # Don't refresh all the lists if nothing changed
-    return if target_taxa.empty?
+    return true if target_taxa.empty?
     
     List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
@@ -794,21 +794,6 @@ class Observation < ActiveRecord::Base
   end
   
   #
-  # This is the hook used to check each observation to see if it may apply
-  # to a system based goal. It does so by collecting all of the user's
-  # current goals, including global goals and checking to see if the
-  # observation passes each rule established by the goal. If it does, the
-  # goal is recorded as a contribution in the goal_contributions table.
-  #
-  def update_goal_contributions
-    user.goal_participants_for_incomplete_goals.each do |participant|
-      participant.goal.validate_and_add_contribution(self, participant)
-    end
-    true
-  end
-  
-  
-  #
   # Remove any instructional text that may have been submitted with the form.
   #
   def scrub_instructions_before_save
@@ -824,12 +809,13 @@ class Observation < ActiveRecord::Base
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon
-    return unless self.taxon_id_changed?
+    return true unless self.taxon_id_changed?
     if taxon
       self.iconic_taxon_id ||= taxon.iconic_taxon_id
     else
       self.iconic_taxon_id = nil
     end
+    true
   end
   
   #
@@ -864,8 +850,8 @@ class Observation < ActiveRecord::Base
   # Force time_observed_at into the time zone
   #
   def set_time_in_time_zone
-    return if time_observed_at.blank? || time_zone.blank?
-    return unless time_observed_at_changed? || time_zone_changed?
+    return true if time_observed_at.blank? || time_zone.blank?
+    return true unless time_observed_at_changed? || time_zone_changed?
     
     # Render the time as a string
     time_s = time_observed_at_before_type_cast
@@ -878,6 +864,7 @@ class Observation < ActiveRecord::Base
     time_s += " #{offset_s}"
     
     self.time_observed_at = Time.parse(time_s)
+    true
   end
   
   
