@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
   #before_filter :load_display_user_by_login, :except => [:browse, :create, :new]
-  before_filter :load_parent, :except => [:browse, :create]
+  before_filter :load_parent, :except => [:browse, :create, :update]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
@@ -63,13 +63,14 @@ class PostsController < ApplicationController
     if @post.save
       if @post.published_at
         flash[:notice] = "Post published!"
-        #redirect_to (journal_post_path(@post.user.login, @post)
         redirect_to (@post.parent.is_a?(Project) ?
                      project_journal_post_path(@post.parent.slug, @post) :
                      journal_post_path(@post.user.login, @post))
       else
         flash[:notice] = "Draft saved!"
-        redirect_to edit_post_path(@post)
+        redirect_to (@post.parent.is_a?(Project) ?
+                     edit_project_journal_post_path(@post.parent.slug, @post) :
+                     edit_journal_post_path(@post.user.login, @post))
       end
     else
       render :action => :new
@@ -77,7 +78,8 @@ class PostsController < ApplicationController
   end
     
   def edit
-    @observations = @post.observations.all(:include => [:taxon, :photos])
+    @observations = @parent.observations.all(:include => [:taxon, :photos])
+    @preview = params[:preview]
   end
   
   def update
@@ -90,23 +92,29 @@ class PostsController < ApplicationController
         :conditions => ["id IN (?)", params[:observations]])
     end
     if params[:commit] == 'Preview'
-      @post.attributes = params[:post]
-      @preview = @post
-      @observations ||= @post.observations.all(:include => [:taxon, :photos])
-      return render(:action => 'edit')
+      if @post.update_attributes(params[:post])
+        redirect_to (@post.parent.is_a?(Project) ?
+                     edit_project_journal_post_path(@post.parent.slug, @post, :preview => true) :
+                     edit_journal_post_path(@post.user.login, @post, :preview => true)) and return
+      end
     end
     
     # This will actually perform the updates / deletions, so it needs to 
     # happen after preview rendering
+    # AG: actually, i don't think this actually runs after preview rendering...
     @post.observations = @observations if @observations
     
     if @post.update_attributes(params[:post])
       if @post.published_at
         flash[:notice] = "Post published!"
-        redirect_to journal_post_path(@post.user.login, @post)
+        redirect_to (@post.parent.is_a?(Project) ?
+                     project_journal_post_path(@post.parent.slug, @post) :
+                     journal_post_path(@post.user.login, @post))
       else
         flash[:notice] = "Draft saved!"
-        redirect_to edit_post_path(@post)
+        redirect_to (@post.parent.is_a?(Project) ?
+                     edit_project_journal_post_path(@post.parent.slug, @post) :
+                     edit_journal_post_path(@post.user.login, @post))
       end
     else
       render :action => :edit
