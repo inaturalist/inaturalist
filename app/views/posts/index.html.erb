@@ -10,27 +10,7 @@
   </style>
 <% end -%>
 
-<% if @parent.is_a?(Project) %>
-  <%- tools = capture do -%>
-    <% if @display_project.editable_by?(current_user) %>
-      <div id="tools" class="buttonrow">
-        <%= link_to "New Post", new_project_journal_post_path(@parent_slug), 
-                    :id => "newpostbutton", :class => "default button"%>
-      </div>
-    <% end %>
-  <% end %>
-  <%= render :partial => "shared/by_project_header", :locals => { :after => tools, :model_name => "Journal", :project => @parent } %>
-<% else # parent is not a project %>
-  <%- tools = capture do -%>
-    <% if logged_in? && current_user.login == @parent_display_name -%>
-      <div id="tools" class="buttonrow">
-        <%= link_to "New Post", new_journal_post_path(@parent_slug), 
-                    :id => "newpostbutton", :class => "default button"%>
-      </div>
-    <% end -%>
-  <% end %>
-  <%= render :partial => "shared/by_login_header", :locals => { :after => tools, :model_name => "Journal" } %>
-<% end %>
+<%= render :partial => "posts/header" %>
 
 <div id="postscol" class="column span-16 append-1">
   <div id="postdates" class="posts_by_date">

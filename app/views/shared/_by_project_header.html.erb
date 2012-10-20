@@ -9,5 +9,7 @@
   <%= before %>
   <%= link_to image_tag(project.icon.url(:thumb), :alt => "#{h(project.title)} icon", :class => 'projecticon'), project %>
     <h2><%= title %><%= after_title %></h2>
+  <%= render :partial => 'projects/subnav', 
+             :locals => { :user => @selected_user } %>
   <%= after %>
 </div>

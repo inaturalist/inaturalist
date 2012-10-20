@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%=h @display_user.login %>'s Journal &middot; Archives for <%= @target_date.strftime('%B %Y') %>
+  <%=h @parent_display_name %>'s Journal &middot; Archives for <%= @target_date.strftime('%B %Y') %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
@@ -10,40 +10,8 @@
   </style>
 <% end -%>
 
-<div id="pageheader" class="column span-24">
-  <div class="breadcrumbs">
-    <% if current_user and current_user.login == @display_user.login %>
-    <%= link_to 'Back to your journal', 
-                journal_by_login_path(current_user.login),
-                :class => 'back crumb' %>
-    <% else %>
-    <%= link_to "Back to #{@display_user.login}'s journal", 
-                journal_by_login_path(@display_user.login),
-                :class => 'back crumb' %>
-    <% end %>
-  </div><!-- /#breadcrumbs -->
-  <%= link_to(
-    image_tag(@display_user.icon.url(:thumb), :class => 'usericon'),
-    person_path(@display_user)) %>
-  
-  <h2>
-    <% if current_user and current_user.login == @display_user.login %>
-      Your
-    <% else %>
-      <%= @display_user.login %>'s
-    <% end %>
-    Journal
-  </h2>
-  <%= render :partial => 'users/subnav', 
-             :locals => { :user => @display_user } %>
-  
-  <% if logged_in? && current_user.login == @display_user.login -%>
-    <div id="tools" class="buttonrow">
-      <%= link_to "New Post", new_journal_post_path(@display_user.login), 
-                  :id => "newpostbutton", :class => "default button"%>
-    </div>
-  <% end -%>
-</div>
+
+<%= render :partial => "posts/header", :locals => { :include_breadcrumbs => true } %>
 
 <div id="postscol" class="column span-16 append-1">
   <h2 class="title">Journal Archives for <%= @target_date.strftime('%B %Y') %></h2>

@@ -1,0 +1,15 @@
+<ul id="subnav" class="clear">
+  <li>
+    <%= link_to "Project Home", project_path(@display_project.slug), :class => "#{'active' if current_page?(:controller => "users", :action => "dashboard")}" %>
+  </li>
+  <li>
+    <%= link_to 'Project Observations', project_observations_path(@display_project), 
+      :id => "observations_link", 
+      :class => "#{'active' if current_page?(:controller => :observations, :action => :by_login)}" %>
+  </li>
+  <li>
+    <%= link_to 'Project Journal', project_journal_path(@display_project), 
+      :id => "journal_link",
+      :class => "#{'active' if request.fullpath =~ /\/journal/}" %>
+  </li>
+</ul>

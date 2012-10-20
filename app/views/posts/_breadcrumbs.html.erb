@@ -1,0 +1,15 @@
+<div class="breadcrumbs">
+  <% if @parent.is_a?(Project) %>
+  <%= link_to "Back to #{@display_project.title}'s journal", 
+              project_journal_path(@parent_slug),
+              :class => 'back crumb' %>
+  <% elsif current_user and current_user.login == @display_user.login %>
+  <%= link_to 'Back to your journal', 
+              journal_by_login_path(current_user.login),
+              :class => 'back crumb' %>
+  <% else %>
+  <%= link_to "Back to #{@display_user.login}'s journal", 
+              journal_by_login_path(@display_user.login),
+              :class => 'back crumb' %>
+  <% end %>
+</div><!-- /#breadcrumbs -->

@@ -121,7 +121,7 @@ class PostsController < ApplicationController
   
   def archives    
     @target_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
-    @posts = @display_user.posts.paginate(
+    @posts = @parent.posts.paginate(
       :page => params[:page] || 1,
       :per_page => 10,
       :conditions => [

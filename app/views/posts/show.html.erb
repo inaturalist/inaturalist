@@ -89,22 +89,8 @@
   </script>
 <% end -%>
 <div id="pageheader" class="column span-24">
-  <div class="breadcrumbs">
-    <% if @parent.is_a?(Project) %>
-    <%= link_to "Back to #{@parent_display_name}'s journal", 
-                project_journal_path(@parent_slug),
-                :class => 'back crumb' %>
-    <% elsif current_user and current_user.login == @post.user.login %>
-    <%= link_to 'Back to your journal', 
-                journal_by_login_path(current_user.login),
-                :class => 'back crumb' %>
-    <% else %>
-    <%= link_to "Back to #{@post.user.login}'s journal", 
-                journal_by_login_path(@post.user.login),
-                :class => 'back crumb' %>
-    <% end %>
-  </div><!-- /#breadcrumbs -->
-  
+  <%= render :partial => 'posts/breadcrumbs' %>
+
   <% if @parent.is_a?(Project) %>
     <%= render :partial => 'shared/prevnext', :locals => {
       :prev_item => @previous,
