@@ -211,7 +211,12 @@ class UsersController < ApplicationController
         Date.today.month, Date.today.year
         ])
     respond_to do |format|
-      format.html
+      format.html do
+        @subscriptions = current_user.subscriptions.includes(:resource).
+          where("resource_type in ('Place', 'Taxon')").
+          order("subscriptions.id DESC").
+          limit(5)
+      end
       format.mobile
     end
   end

@@ -1,0 +1,30 @@
+%h2
+  New
+  = @type.humanize.downcase
+  subscription
+
+= form_for @subscription, :builder => DefaultFormBuilder do |f|
+  = f.hidden_field :resource_type, :value => @type.camelcase
+  = f.text_field :resource_id, :placeholder => "Choose a place", :required => true
+  = f.text_field :taxon_id, :placeholder => "Choose a taxon (optional)"
+  .inline.stacked.buttonrow
+    = f.submit "Save", :class => "default button"
+  .required * Required
+
+:javascript
+  window.defaultTaxa = #{Taxon::ICONIC_TAXA.to_json(:methods => [:html]).html_safe}
+
+  if ($('#subscription_resource_type').val() == 'Place') {
+    $('#subscription_resource_id').chooser({
+      collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+      resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+      afterSelect: function(item) {
+        $('#subscription_resource_type').val('Place')
+      }
+    })
+  }
+  $('#subscription_taxon_id').chooser({
+    collectionUrl: 'http://'+window.location.host + '/taxa/autocomplete.json',
+    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=chooser',
+    defaultSources: defaultTaxa
+  })

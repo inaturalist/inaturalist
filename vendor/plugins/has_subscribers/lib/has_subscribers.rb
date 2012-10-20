@@ -18,6 +18,8 @@ module HasSubscribers
       
       cattr_accessor :notifying_associations
       self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
+
+      Subscription.subscribable_classes << to_s
       
       after_destroy do |record|
         Update.delete_all(["resource_type = ? AND resource_id = ?", record.class.name, record.id])
