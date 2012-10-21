@@ -1280,3 +1280,32 @@ describe Observation, "nested observation_field_values" do
     o.observation_field_values.should be_blank
   end
 end
+
+describe Observation, "taxon updates" do
+  it "should generate an update" do
+    t = Taxon.make!
+    s = Subscription.make!(:resource => t)
+    o = Observation.make(:taxon => t)
+    without_delay do
+      o.save!
+    end
+    u = Update.last
+    u.should_not be_blank
+    u.notifier.should eq(o)
+    u.subscriber.should eq(s.user)
+  end
+
+  it "should generate an update for descendent taxa" do
+    t1 = Taxon.make!
+    t2 = Taxon.make!(:parent => t1)
+    s = Subscription.make!(:resource => t1)
+    o = Observation.make(:taxon => t2)
+    without_delay do
+      o.save!
+    end
+    u = Update.last
+    u.should_not be_blank
+    u.notifier.should eq(o)
+    u.subscriber.should eq(s.user)
+  end
+end

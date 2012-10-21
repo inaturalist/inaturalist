@@ -793,6 +793,12 @@
       <%= link_to "Embed a widget for this taxon on your website &raquo;".html_safe, observations_widget_path(:taxon_id => @taxon), 
         :rel => "nofollow" %>
     </p>
+
+    <% if logged_in? -%>
+      <p class="ui">
+        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @taxon } %>
+      </p>
+    <% end -%>
     
   </div>
   

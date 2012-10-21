@@ -577,7 +577,7 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    options[:style] = "vertical-align:middle; #{options[:style]}"
+    options[:style] = "max-width: 48px; vertical-align:middle; #{options[:style]}"
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
@@ -593,6 +593,8 @@ module ApplicationHelper
       image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
     when "Place"
       image_tag("#{root_url}images/icon-maps.png", options)
+    when "Taxon"
+      taxon_image(resource, options.merge(:size => "square", :width => 48))
     else
       image_tag("#{root_url}images/logo-grey-32px.png", options)
     end
@@ -644,6 +646,14 @@ module ApplicationHelper
       "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
       "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
+    when "Taxon"
+      name = render( 
+        :partial => "shared/taxon", 
+        :object => resource,
+        :locals => {
+          :link_url => (options[:skip_links] == true ? nil : resource)
+        })
+      "New observations of #{name}".html_safe
     else
       "update"
     end

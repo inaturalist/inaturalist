@@ -1,6 +1,9 @@
 <%- 
   subscription ||= @subscription
   resource ||= subscription.resource
+  subscription ||= if resource && logged_in?
+    current_user.subscriptions.where(:resource_type => resource.class.to_s, :resource_id => resource.id).first
+  end
 -%>
 <div class="meta subscription">
   <%- new_subscription = Subscription.new(:user => current_user, :resource => resource) %>

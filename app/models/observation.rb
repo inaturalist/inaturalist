@@ -15,6 +15,13 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
+  notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
+    :queue_if => lambda {|observation| !observation.taxon_id.blank? },
+    :if => lambda {|observation, taxon, subscription|
+      return true if observation.taxon_id == taxon.id
+      return false if observation.taxon.blank?
+      observation.taxon.ancestor_ids.include?(subscription.resource_id)
+    }
   acts_as_taggable
   acts_as_flaggable
   
@@ -1410,6 +1417,10 @@ class Observation < ActiveRecord::Base
           Place::PLACE_TYPE_CODES['County'],
           Place::PLACE_TYPE_CODES['Open Space']].include?(p.place_type)
     end
+  end
+
+  def taxon_and_ancestors
+    taxon ? taxon.self_and_ancestors.to_a : []
   end
   
   def mobile?

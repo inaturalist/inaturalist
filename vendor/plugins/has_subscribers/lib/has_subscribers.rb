@@ -138,7 +138,7 @@ module HasSubscribers
       options = @@notifies_subscribers_of_options[subscribable_association.to_sym]
       notifier = find_by_id(notifier) unless notifier.is_a?(self)
       has_many_reflections    = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
-      belongs_to_reflections  = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
+      belongs_to_reflections  = reflections.select{|k,v| v.macro == :belongs_to}.map{|k,v| k.to_s}
       has_one_reflections     = reflections.select{|k,v| v.macro == :has_one}.map{|k,v| k.to_s}
       
       notification ||= options[:notification] || "create"
@@ -161,7 +161,7 @@ module HasSubscribers
           if options[:if]
             next unless options[:if].call(notifier, subscribable, subscription)
           end
-          
+
           Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
             :notification => notification)
         end
