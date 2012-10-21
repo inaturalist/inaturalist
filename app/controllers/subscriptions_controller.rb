@@ -19,6 +19,9 @@ class SubscriptionsController < ApplicationController
     @type = "place" unless Subscription.subscribable_classes.map(&:underscore).include?(@type)
     resource_type = @type.camelcase
     @subscription = Subscription.new(:user => current_user, :type => resource_type)
+    if params[:partial] && params[:partial] == "form"
+      render :partial => params[:partial], :layout => false
+    end
   end
 
   def edit

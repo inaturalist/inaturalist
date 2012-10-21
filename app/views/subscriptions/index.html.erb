@@ -34,12 +34,13 @@
               <% name = subscription.resource.try_methods(:to_plain_s, :login, :name, :title, :to_s) %>
               <%= link_to name, subscription.resource %>
             </td>
-            <td class="nobr">
+            <td class="nobr meta">
               <% if subscription.resource_type == "Place" -%>
                 <%= link_to "edit", edit_subscription_url(subscription) %>
+                |
               <% end -%>
-              <%= link_to "delete", subscription_url(subscription), :method => "delete", 
-                :confirm => "Are you sure you want to delete this?" %>
+              <%= link_to "unsubscribe", subscription_url(subscription), :method => "delete", 
+                :confirm => "Are you sure you want to unsubscribe from this?" %>
             </td>
           </tr>
         <% end %>

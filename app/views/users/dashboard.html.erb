@@ -106,6 +106,25 @@
         }
         $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
       })
+
+      $('#new_subscription_link').click(function() {
+        var dialog = $('#new_subscription_dialog')
+        if (dialog.length == 0) {
+          dialog = $('<div></div>')
+            .addClass('dialog').html('<div class="loading status">Loading...</div>')
+            .attr('id', 'new_subscription_dialog')
+          $(document).append(dialog)
+        }
+        dialog.load($(this).attr('href'), {partial: 'form'}, function() {
+          $(this).centerDialog()
+          $('form:has(input[required])', this).submit(checkFormForRequiredFields)
+        })
+        dialog.dialog({
+          modal: true,
+          title: 'Subscribe to a new place/taxon'
+        })
+        return false
+      })
     })
   </script>
 <%- end -%>
@@ -239,35 +258,42 @@
 
       <%= separator %>
 
-      <% if is_admin? -%>
-        <div class="stacked admin">
-          <h3>Your subscriptions</h3>
-          <ul style="margin-bottom: 5px">
-            <% if @subscriptions.blank? %>
-              <div class="nocontent meta">You don't have any place subscriptions</div>
-            <% else %>
-              <% for subscription in @subscriptions %>
-                <li>
-                  <%= link_to subscription.resource.name, subscription.resource %>
-                  <nobr class="meta">
-                    <% if subscription.taxon -%>
-                      (<%= subscription.taxon.name %>)
-                    <% end -%>
-                    <%= link_to "edit", edit_subscription_path(subscription), :class => "small" %>
-                    |
-                    <%= link_to "delete", subscription_url(subscription), :method => "delete", 
-                      :confirm => "Are you sure you want to delete this?",
-                      :class => "small" %>
-                  </nobr>
-                </li>
-              <% end %>
-            <% end -%>
-          </ul>
-          <%= link_to "Add a place subscription", new_subscription_path(:type => "place"), :class => "readmore" %>
-          <%= link_to "Manage all of your subscriptions", subscriptions_path, :class => "readmore" %>
-        </div>
-        <%= separator %>
-      <% end -%>
+      <div class="stacked">
+        <h3>
+          Your subscriptions
+          <% helptip_for "subscriptions" do %>
+            Subscribe to places to receive updates about new observations made
+            there.  Updates from people you follow and things you've commented
+            on are also managed through subscriptions, so if you want to see
+            what you're subscribed to and unsubscribe from things, you can
+            click "Manage all of your subscriptions" below.  You should also
+            be able to unsubscribe from anything on the site by viewing it's
+            page.
+          <% end -%>
+        </h3>
+
+        <ul style="margin-bottom: 5px">
+          <% if @subscriptions.blank? %>
+            <div class="nocontent meta">You don't have any place subscriptions</div>
+          <% else %>
+            <% for subscription in @subscriptions %>
+              <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
+                <%= link_to subscription.resource.name, subscription.resource %>
+                <nobr class="meta">
+                  <% if subscription.taxon -%>
+                    (<%= subscription.taxon.name %>)
+                  <% end -%>
+                  <%= link_to "edit", edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
+                </nobr>
+              </li>
+            <% end %>
+          <% end -%>
+        </ul>
+        <%= link_to "Add a place subscription", new_subscription_path(:type => "place"), 
+          :id => "new_subscription_link", :class => "readmore" %>
+        <%= link_to "Manage all of your subscriptions", subscriptions_path, :class => "readmore" %>
+      </div>
+      <%= separator %>
 
       <h3>Extras</h3>
 
