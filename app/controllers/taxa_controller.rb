@@ -1103,6 +1103,7 @@ class TaxaController < ApplicationController
     unless @taxon
       return redirect_to :action => 'search', :q => name
     else
+      params.delete(:q)
       return_here
       show
     end
