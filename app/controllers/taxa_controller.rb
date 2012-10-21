@@ -413,11 +413,10 @@ class TaxaController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term]
-    @taxon_names = TaxonName.paginate(
-      :page => params[:page], 
-      :include => {:taxon => :taxon_names},
-      :conditions => ["lower(name) LIKE ?", "#{@q.to_s.downcase}%"]
-    )
+    @taxon_names = TaxonName.includes(:taxon => :taxon_names).
+      where("lower(name) LIKE ?", "#{@q.to_s.downcase}%").
+      limit(30).
+      sort_by{|tn| tn.taxon.ancestry || ''}
     exact_matches = []
     @taxon_names.each_with_index do |taxon_name, i|
       next unless taxon_name.name.downcase.strip == @q.to_s.downcase.strip
@@ -426,10 +425,10 @@ class TaxaController < ApplicationController
     if exact_matches.blank?
       exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, :conditions => ["lower(name) = ?", @q.to_s.downcase])
     end
-    @taxon_names.unshift(*exact_matches)
+    @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
       taxon = taxon_name.taxon
-      taxon.html = render_to_string(:partial => "chooser.html.erb", 
+      taxon.html = view_context.render_in_format(:html, :partial => "chooser.html.erb", 
         :object => taxon, :comname => taxon_name.is_scientific_names? ? nil : taxon_name)
       taxon
     end

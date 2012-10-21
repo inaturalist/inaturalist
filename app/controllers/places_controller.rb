@@ -181,15 +181,16 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    @places = Place.paginate(:page => params[:page], 
-      :conditions => ["lower(display_name) LIKE ?", "#{@q.to_s.downcase}%"])
+    scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").limit(30).scoped
+    scope = scope.with_geom if params[:with_geom]
+    @places = scope.sort_by(&:bbox_area).reverse
     respond_to do |format|
       format.html do
         render :layout => false, :partial => 'autocomplete' 
       end
       format.json do
         @places.each_with_index do |place, i|
-          @places[i].html = render_to_string(:partial => 'places/autocomplete_item.html.erb', :object => place)
+          @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item.html.erb', :object => place)
         end
         render :json => @places.to_json(:methods => [:html])
       end

@@ -11,7 +11,7 @@
 
   if ($('#subscription_resource_type').val() == 'Place') {
     $('#subscription_resource_id').chooser({
-      collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+      collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
       resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
       afterSelect: function(item) {
         $('#subscription_resource_type').val('Place')

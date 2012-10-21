@@ -278,7 +278,7 @@
           <% else %>
             <% for subscription in @subscriptions %>
               <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
-                <%= link_to subscription.resource.name, subscription.resource %>
+                <%= link_to subscription.resource.try_methods(:display_name, :name, :title), subscription.resource %>
                 <nobr class="meta">
                   <% if subscription.taxon -%>
                     (<%= subscription.taxon.name %>)
