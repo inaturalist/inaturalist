@@ -48,9 +48,10 @@ class UsersController < ApplicationController
 
   # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
   def activate
-    sign_out(:user) unless logged_in? && current_user.is_admin?
-    user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
+    user = current_user
     case
+    when user && user.suspended?
+      redirect_back_or_default('/')
     when (!params[:activation_code].blank?) && user && !user.confirmed?
       user.confirm!
       flash[:notice] = "Your #{APP_CONFIG[:site_name]} account has been verified! Please sign in to continue."
