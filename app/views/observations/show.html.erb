@@ -38,7 +38,7 @@
 <%- end -%>
 
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields' %>
+  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors' %>
   <style type="text/css" media="screen">  
     .identification_form_wrapper{background-color:#eee;padding:10px;}
     .identification_form_wrapper input.text{width:236px;margin-top:0;}
@@ -66,6 +66,10 @@
     .id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
     #day_observations img {width: 32px; margin-bottom: 5px;}
     .quality_assessment {width:100%;}
+    .photoSelectorSelected {float: right; width: 175px;}
+    .photoSelectorResults {float: left; width: 525px; padding-right: 10px; margin-right: 10px; border-right: 1px solid #eee;}
+    .photo .synclink { float: right; }
+    .photoSelector {border: 0 transparent; padding:0; min-width: 725px;}
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -73,9 +77,14 @@
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              'observations/observation_fields',
-                             'inaturalist/map3' %>
+                             'inaturalist/map3',
+                             "jquery/plugins/inat/photo_selectors.js" %>
   
   <script type="text/javascript" charset="utf-8">
+    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
+        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
+        PHOTO_SOURCES = <%= @photo_sources.to_json.html_safe %>,
+        DEFAULT_PHOTO_SOURCE = <%= @default_photo_source.to_json.html_safe %>
     $(document).ready(function() {
       // setup the map if one is needed
       window.observation = <%= @observation.to_json(:viewer => current_user, 
@@ -196,7 +205,6 @@
         $(this).siblings('.loadingclick').remove()
         $(this).show()
         var json = $.parseJSON(xhr.responseText)
-        // TODO if error response includes stuff about obs fields, open a dialog and fill it with html from an endpoint that takes obs id and (a proj ID OR a obs field ID). This endpoint can be used for other users adding stuff too, later
         if (json.error.match(/observation field/)) {
           var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
           dialog.load('/observations/'+window.observation.id+'/fields?project_id='+$(this).data('project-id'), function() {
@@ -228,6 +236,48 @@
         alert(xhr.responseText)
       })
     });
+
+    $('#add_more_photos_link').live('click', function() {
+      var dialogId = "add_more_photos_dialog",
+          dialog = $('#'+dialogId)
+      if (dialog.length == 0) {
+        dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+        dialog.attr('id', dialogId)
+        dialog.load('/observations/'+window.observation.id+'/edit?partial=add_photos', function() {
+          // photo selector
+          var authenticity_token = $('meta[name=csrf-token]').attr('content')
+          var index = window.location.href.match(/\/observations\/(\d+)/)[1]
+          // The photo_fields endpoint needs to know the auth token and the index
+          // for the field
+          var options = {
+            urlParams: {
+              authenticity_token: authenticity_token,
+              index: index,
+              limit: 18,
+              synclink_base: window.location.href
+            },
+            sources: PHOTO_SOURCES,
+            defaultSource: DEFAULT_PHOTO_SOURCE,
+            afterQueryPhotos: function() {
+              if (!$(dialog).hasClass('dialogcentered')) {
+                $(dialog).centerDialog()
+                $(dialog).addClass('dialogcentered')
+              }
+            }
+          }
+          $('.observation_photos', this).photoSelector(options)
+        })
+        dialog.dialog({
+          modal: true,
+          title: 'Add photos to this observation',
+          width: 760,
+          minHeight: 300
+        })
+      } else {
+        $(dialog).dialog('open')
+      }
+      return false
+    })
   </script>
 <% end %>
 
@@ -366,6 +416,12 @@
             mixed licenses
           <% end -%>
         </div>
+
+        <% if is_me?(@observation.user) -%>
+          <div class="meta">
+            <%= link_to "Add more photos", edit_observation_path, :id => "add_more_photos_link" %>
+          </div>
+        <% end -%>
       </div>
     <%- end -%>
     
