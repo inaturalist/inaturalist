@@ -147,8 +147,13 @@
           // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
           //sourceOptions['context'] = newSource.defaultContext;
         } else {
-          sourceOptions['context'] = newSource.$contextWrapper.find('select').val();
-          if (newSource.$contextWrapper.find("option:selected").data('searchable')) {
+          var currentContextName = newSource.$contextWrapper.find('select').val()
+          sourceOptions['context'] = currentContextName
+          for (var i = 0; i < newSource.contexts.length; i++) {
+            var currentContext = newSource.contexts[i]
+            if (newSource.contexts[i][0] == currentContextName) break
+          }
+          if (currentContext && currentContext[currentContext.length-1].searchable) {
             // show search field
             $searchWrapper.show();
           } else {
@@ -193,11 +198,15 @@
             if (searchable) { $contextOption.data('searchable', true); } 
             if ((typeof options.defaultContext != 'undefined') && (options.defaultContext==context[1])) { // default context
               $contextOption.attr('selected','selected');
-              if (searchable) { $searchWrapper.show(); }
+              if (searchable) { $searchWrapper.show() }
             }
             $contextSelect.append($contextOption);
           });
           $contextWrapper.append($contextSelect);
+        } else if (sourceData.contexts.length == 1) {
+          var context = sourceData.contexts[0],
+              searchable = (context[2] && context[2].searchable)
+          if (searchable) { $searchWrapper.show() }
         }
         sources[sourceKey].$contextWrapper = $contextWrapper;
         $allContextWrappers.push($contextWrapper);
@@ -406,7 +415,9 @@
     var baseURL = options.baseURL;
     
     // Pull out parents of existing checked inputs
-    var existing = $(wrapper).find('.photoSelectorPhotos input:checked').parent().clone();
+    if (!$(wrapper).data('photoSelectorExisting')) {
+      $(wrapper).data('photoSelectorExisting', $(wrapper).find('.photoSelectorPhotos input:checked').parent().clone())
+    }
     
     // Set loading status
     var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
@@ -424,22 +435,27 @@
     ajax = $.ajax({
       url: baseURL, 
       data: $.param(params),
-      complete: function(response, textStatus, XMLHttpRequest) {
-        $photoSelectorPhotos.html(response.responseText);
+      success: function(response, textStatus, xhr) {
+        $photoSelectorPhotos.html(response);
         // Remove fields with identical values to the extracted checkboxes
+        var existing = $(wrapper).data('photoSelectorExisting')
         var existingValues = $(existing).find('input').map(function() {
-          return $(this).val();
-        });
-        $(this).find('input').each(function() {
+          return $(this).val()
+        })
+        $('input', $photoSelectorPhotos).each(function() {
           if ($.inArray($(this).val(), existingValues) != -1) {
-            $(this).parent().remove();
-          };
-        });
+            $(this).parent().remove()
+          }
+        })
         
         // Re-insert the checkbox parents
         if (existing && existing.length > 0) {
-          $photoSelectorPhotos.prepend('<hr />').prepend(existing).prepend("<h4>Selected photos</h4>");
+          $photoSelectorPhotos.children().wrapAll('<div class="photoSelectorResults"></div>')
+          var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>').html("<h4>Selected photos</h4>")
+          selectedPhotosWrapper.append(existing)
+          $photoSelectorPhotos.prepend(selectedPhotosWrapper)
         }
+        $(wrapper).data('photoSelectorExisting', null)
         
         if (options.baseURL.match(/local_photo/)) {
           $(wrapper).find('.photoSelectorControls .button, .photoSelectorControls .text').hide();
@@ -454,7 +470,8 @@
         $photoSelectorPhotos.css('overflow-x', $photoSelectorPhotos.data('previous-overflow-x'));
         $photoSelectorPhotos.css('overflow-y', $photoSelectorPhotos.data('previous-overflow-y'));
         
-        if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options);
+        if (typeof(options.afterQueryPhotos) == "function") options.afterQueryPhotos(q, wrapper, options)
+        return true
       }
     })
     $(wrapper).data('ajax', ajax)

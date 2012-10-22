@@ -42,7 +42,7 @@ class ObservationsController < ApplicationController
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list, :new, :project]
   before_filter :curator_required, :only => [:curation]
-  before_filter :load_photo_identities, :only => [:new, :new_batch,       
+  before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
@@ -63,6 +63,7 @@ class ObservationsController < ApplicationController
     'species_guess' => 'species name'
   }
   PARTIALS = %w(cached_component observation_component observation mini)
+  EDIT_PARTIALS = %w(add_photos)
 
   # GET /observations
   # GET /observations.xml
@@ -428,6 +429,11 @@ class ObservationsController < ApplicationController
       where("users.id = ?", current_user).
       limit(10).
       order("observation_field_values.id DESC")
+
+    if params[:partial] && EDIT_PARTIALS.include?(params[:partial])
+      return render(:partial => params[:partial], :object => @observation,
+        :layout => false)
+    end
   end
 
   # POST /observations
@@ -1780,11 +1786,20 @@ class ObservationsController < ApplicationController
       @default_photo_identity = current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
     end
     if params[:facebook_photo_id]
-      @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /facebook/i}
+      if @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /facebook/i}
+        @default_photo_source = 'facebook'
+      end
     elsif params[:flickr_photo_id]
-      @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /flickr/i}
+      if @default_photo_identity = @photo_identities.detect{|pi| pi.to_s =~ /flickr/i}
+        @default_photo_source = 'flickr'
+      end
     end
     @default_photo_identity ||= @photo_identities.first
+    @default_photo_source ||= if @default_photo_identity && @default_photo_identity.class.name =~ /Identity/
+      @default_photo_identity.class.name.underscore.humanize.downcase.split.first
+    elsif @default_photo_identity
+      "facebook"
+    end
     
     @default_photo_identity_url = nil
     @photo_identity_urls = @photo_identities.map do |identity|
@@ -1796,6 +1811,20 @@ class ObservationsController < ApplicationController
       url = "/#{provider_name.downcase}/photo_fields?context=user"
       @default_photo_identity_url = url if identity == @default_photo_identity
       "{title: '#{provider_name.capitalize}', url: '#{url}'}"
+    end
+    @photo_sources = @photo_identities.inject({}) do |memo, ident| 
+      if ident.respond_to?(:source_options)
+        memo[ident.class.name.underscore.humanize.downcase.split.first] = ident.source_options
+      else
+        memo[:facebook] = {
+          :title => 'Facebook', 
+          :url => '/facebook/photo_fields', 
+          :contexts => [
+            ["Your photos", 'user']
+          ]
+        }
+      end
+      memo
     end
   end
   
