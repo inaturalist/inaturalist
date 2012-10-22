@@ -107,14 +107,14 @@
         $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
       })
 
-      $('#new_subscription_link').click(function() {
-        var dialog = $('#new_subscription_dialog')
-        if (dialog.length == 0) {
-          dialog = $('<div></div>')
-            .addClass('dialog').html('<div class="loading status">Loading...</div>')
-            .attr('id', 'new_subscription_dialog')
-          $(document).append(dialog)
-        }
+      $('#new_place_subscription_link, #new_taxon_subscription_link').click(function() {
+        var dialogId = 'new_subscription_dialog'
+        var dialog = $('#'+dialogId)
+        if (dialog.length != 0) {$(dialog).remove()};
+        dialog = $('<div></div>')
+          .attr('id', dialogId)
+          .addClass('dialog').html('<div class="loading status">Loading...</div>')
+        $(document).append(dialog)
         dialog.load($(this).attr('href'), {partial: 'form'}, function() {
           $(this).centerDialog()
           $('form:has(input[required])', this).submit(checkFormForRequiredFields)
@@ -272,25 +272,36 @@
           <% end -%>
         </h3>
 
-        <ul style="margin-bottom: 5px">
+        <ul style="margin-bottom: 5px" class="plain">
           <% if @subscriptions.blank? %>
-            <div class="nocontent meta">You don't have any place subscriptions</div>
+            <div class="nocontent meta">You don't have any place or taxon subscriptions</div>
           <% else %>
-            <% for subscription in @subscriptions %>
-              <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
-                <%= link_to subscription.resource.try_methods(:display_name, :name, :title), subscription.resource %>
-                <nobr class="meta">
-                  <% if subscription.taxon -%>
-                    (<%= subscription.taxon.name %>)
-                  <% end -%>
-                  <%= link_to "edit", edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
-                </nobr>
+            <% for resource_type, subscriptions in @subscriptions.group_by(&:resource_type) %>
+              <li>
+                <span class="meta"><%= resource_type.humanize.pluralize %></span>
+                <ul style="margin-bottom: 5px">
+                  <% for subscription in subscriptions %>
+                    <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
+                      <%= link_to subscription.resource.try_methods(:display_name, :name, :title), subscription.resource %>
+                      <nobr class="meta">
+                        <% if subscription.taxon -%>
+                          (<%= subscription.taxon.name %>)
+                        <% end -%>
+                        <%= link_to "edit", edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
+                      </nobr>
+                    </li>
+                  <% end %>
+                </ul>
               </li>
             <% end %>
           <% end -%>
         </ul>
-        <%= link_to "Add a place subscription", new_subscription_path(:type => "place"), 
-          :id => "new_subscription_link", :class => "readmore" %>
+        <div>
+          Add a
+          <%= link_to "place subscription", new_subscription_path(:type => "place"), :id => "new_place_subscription_link" %>
+          |
+          <%= link_to "taxon subscription", new_subscription_path(:type => "taxon"), :id => "new_taxon_subscription_link" %>
+        </div>
         <%= link_to "Manage all of your subscriptions", subscriptions_path, :class => "readmore" %>
       </div>
       <%= separator %>
