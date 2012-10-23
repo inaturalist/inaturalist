@@ -856,8 +856,8 @@ describe Observation do
       o.should be_coordinates_obscured
       o.obscure_coordinates
       o.reload
-      o.latitude.to_f.should == lat
-      o.private_latitude.to_f.should == private_lat
+      o.latitude.to_f.should == lat.to_f
+      o.private_latitude.to_f.should == private_lat.to_f
     end
     
     it "should not affect already coordinates of a protected taxon" do
@@ -912,6 +912,7 @@ describe Observation do
       o.should be_coordinates_obscured
       o.latitude.should be_blank
     end
+
   end
   
   describe "obscure_coordinates_for_observations_of" do
@@ -1008,6 +1009,16 @@ describe Observation do
       o.reload
       o.should be_coordinates_obscured
       o.latitude.should be_blank
+    end
+  end
+
+  describe "obscure_coordinates_for_threatened_taxa" do
+    it "should not unobscure previously obscured observations of threatened taxa" do
+      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make!(:latitude => 38, :longitude => -122, :taxon => taxon)
+      o.should be_coordinates_obscured
+      o.obscure_coordinates_for_threatened_taxa
+      o.should be_coordinates_obscured
     end
   end
   

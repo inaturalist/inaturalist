@@ -1026,13 +1026,13 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    if !taxon.blank? && 
-        taxon.species_or_lower? &&
-        georeferenced? && 
-        !coordinates_obscured? &&
-        (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+    obscuring_needed_for_taxon = taxon && 
+      taxon.species_or_lower? && 
+      (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+
+    if obscuring_needed_for_taxon && georeferenced? && !coordinates_obscured?
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
-    elsif geoprivacy.blank?
+    elsif geoprivacy.blank? && !obscuring_needed_for_taxon
       unobscure_coordinates
     end
     true
