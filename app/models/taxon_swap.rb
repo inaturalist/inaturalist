@@ -4,17 +4,6 @@ class TaxonSwap < TaxonChange
   def old_taxon
     old_taxa.first
   end
-
-  def self.update_observations_later(taxon_change_id)
-    unless taxon_swap = TaxonSwap.find_by_id(taxon_change_id)
-      return
-    end
-    taxon_swap.update_observations
-  end
-  
-  def update_observations
-    Observation.update_all(["taxon_id = ?", taxon_id], ["taxon_id = ?", old_taxon_id])
-  end
   
   def opposite_taxon_from(subject_taxon)
     if subject_taxon.id == taxon_id
@@ -22,6 +11,53 @@ class TaxonSwap < TaxonChange
     else
       taxon
     end
+  end
+  
+  def commit_taxon_change
+    self.committed_on = Time.now
+    self.save
+    end_taxon = self.taxon
+    start_taxon = self.old_taxon
+    start_taxon.is_active = "false"
+    start_taxon.save
+    
+    #duplicate photos
+    start_taxon.photos.each {|photo| photo.taxa << end_taxon}
+    
+    #duplicate iucn_status
+    end_taxon.conservation_status = start_taxon.conservation_status
+    end_taxon.conservation_status_source_id = start_taxon.conservation_status_source_id
+    end_taxon.conservation_status_source_identifier = start_taxon.conservation_status_source_identifier
+    
+    #duplicate taxon_names
+    start_taxon.taxon_names.all.each do |taxon_name|
+      taxon_name.reload
+      unless taxon_name.valid?
+        Rails.logger.info "[INFO] Destroying #{taxon_name} while committing taxon change " +
+          "#{self.id}: #{taxon_name.errors.full_messages.to_sentence}"
+        taxon_name.destroy
+        next
+      end
+      new_taxon_name = taxon_name.dup
+      new_taxon_name.taxon_id = end_taxon.id
+      new_taxon_name.is_valid = false if taxon_name.is_scientific_names? && taxon_name.is_valid?
+      new_taxon_name.save
+    end
+    
+    #duplicate taxon_range
+    start_taxon.taxon_ranges.each do |taxon_range|
+      new_taxon_range = taxon_range.dup
+      new_taxon_range.taxon_id = end_taxon.id
+      new_taxon_range.save
+    end
+    
+    #duplicate colors
+    end_taxon.colors << start_taxon.colors if end_taxon.colors.blank?
+    
+    #send_updates(start_taxon)
+    
+    end_taxon.is_active = "true"
+    end_taxon.save
   end
   
 end

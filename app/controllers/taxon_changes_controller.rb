@@ -116,13 +116,17 @@ class TaxonChangesController < ApplicationController
   end
   
   def commit_taxon_change
-    taxon_change_id = params[:taxon_change_id]
-    unless TaxonChange.first(:conditions => {:id => taxon_change_id, :committed_on => nil})
+    unless @taxon_change = TaxonChange.find(params[:id])
+      flash[:error] = "That taxon change doesn't exist."
+      redirect_to :back and return
+    end
+    unless @taxon_change.committed_on.nil?
       flash[:error] = "This taxonomic change was already committed!"
       redirect_to :back and return
     end
     
-    TaxonChange.delay(:priority => 2).commit_taxon_change(taxon_change_id)
+    #TaxonChange.delay(:priority => 2).commit_taxon_change(taxon_change_id)
+    @taxon_change.commit_taxon_change
     
     flash[:notice] = "Taxon change committed!"
     redirect_to :back and return
