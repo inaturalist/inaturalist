@@ -1410,6 +1410,11 @@ class Observation < ActiveRecord::Base
     # for obscured coordinates only return default place types that weren't
     # made by users. This is not ideal, but hopefully will get around honey
     # pots.
+    system_places(:places => all_places)
+  end
+
+  def system_places(options = {})
+    all_places = options[:places] || places
     all_places.select do |p| 
       p.user_id.blank? &&
         [Place::PLACE_TYPE_CODES['Country'],

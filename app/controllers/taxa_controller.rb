@@ -20,7 +20,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos, :range, :schemes]
+    :observation_photos, :range, :schemes, :tip]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   
@@ -223,6 +223,14 @@ class TaxaController < ApplicationController
       end
       format.node { render :json => jit_taxon_node(@taxon) }
     end
+  end
+
+  def tip
+    @observation = Observation.find_by_id(params[:observation_id]) if params[:observation_id]
+    if @observation
+      @places = @observation.system_places
+    end
+    render :layout => false
   end
 
   def new
