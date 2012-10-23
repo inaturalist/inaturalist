@@ -10,7 +10,7 @@ describe ObservationPhoto, "creation" do
   end
   
   it "should update user_id on photo" do
-    p = Photo.make!(:user => nil)
+    p = Photo.make!(:user => nil, :license => Photo::CC_BY)
     p.user.should be_blank
     o = Observation.make!
     op = ObservationPhoto.make!(:photo => p, :observation => o)
