@@ -1775,7 +1775,7 @@ class ObservationsController < ApplicationController
   end
   
   def load_photo_identities
-    if !logged_in? || @observation.user_id != current_user.id
+    unless logged_in?
       @photo_identity_urls = []
       @photo_identities = []
       return true
