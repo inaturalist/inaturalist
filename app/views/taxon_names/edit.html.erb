@@ -16,6 +16,8 @@
 <% if @taxon_name.creator -%>
   <div class="clear description">
     Created by <%= link_to @taxon_name.creator.login, @taxon_name.creator %> at <%= @taxon_name.created_at.to_s(:long) %><br/>
-    Updated by <%= link_to @taxon_name.updater.login, @taxon_name.updater %> at <%= @taxon_name.updated_at.to_s(:long) %>
+    <% if @taxon_name.updater -%>
+      Updated by <%= link_to @taxon_name.updater.login, @taxon_name.updater %> at <%= @taxon_name.updated_at.to_s(:long) %>
+    <% end -%>
   </div>
 <% end -%>
