@@ -425,9 +425,11 @@ class ProjectsController < ApplicationController
     
     @headers = ['year/month', 'new users', 'new observations', 'unique observers']
     @data = []
-    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.sort.reverse.each do |key|
-      @data << [key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
+    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
+      display_key = key.gsub(/\-(\d)$/, "-0\\1")
+      @data << [display_key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
     end
+    @data.sort_by!(&:first).reverse!
     
     respond_to do |format|
       format.html
