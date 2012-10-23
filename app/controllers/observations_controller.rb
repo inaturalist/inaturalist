@@ -1775,6 +1775,11 @@ class ObservationsController < ApplicationController
   end
   
   def load_photo_identities
+    if !logged_in? || @observation.user_id != current_user.id
+      @photo_identity_urls = []
+      @photo_identities = []
+      return true
+    end
     @photo_identities = Photo.descendent_classes.map do |klass|
       assoc_name = klass.to_s.underscore.split('_').first + "_identity"
       current_user.send(assoc_name) if current_user.respond_to?(assoc_name)
