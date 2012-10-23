@@ -97,7 +97,9 @@ class Taxon < ActiveRecord::Base
     'tribe'        => 25,
     'subtribe'     => 24,
     'genus'        => 20,
+    'genushybrid'  => 20,
     'species'      => 10,
+    'hybrid'       => 10,
     'subspecies'   => 5,
     'variety'      => 5,
     'form'         => 5
@@ -635,7 +637,7 @@ class Taxon < ActiveRecord::Base
   #
   def species_or_lower?
     return false if rank.blank?
-    %w"species subspecies variety infraspecies".include?(rank.downcase)
+    %w"species hybrid subspecies variety infraspecies".include?(rank.downcase)
   end
   
   # Updated the "cached" ancestor values in all listed taxa with this taxon
