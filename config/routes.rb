@@ -167,6 +167,7 @@ Inaturalist::Application.routes.draw do
       post 'update_photos', :as => "update_photos_for"
       post 'refresh_wikipedia_summary', :as => "refresh_wikipedia_summary_for"
       get 'schemes', :as => "schemes_for"
+      get 'tip'
     end
     collection do
       get 'tree'
@@ -238,7 +239,7 @@ Inaturalist::Application.routes.draw do
   match '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
   match '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date
   
-  resources :subscriptions, :only => [:index, :edit, :create, :update, :destroy]
+  resources :subscriptions, :only => [:index, :new, :edit, :create, :update, :destroy]
   match 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription, :via => :delete
   match 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
 

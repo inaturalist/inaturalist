@@ -1,5 +1,6 @@
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag 'observations/batch', 
+  <%= stylesheet_link_tag 'observations/observation_fields',
+                          'observations/batch', 
                           'observations/new' %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
@@ -10,7 +11,8 @@
                              "jquery/plugins/jquery.latLonSelector.js",
                              'inaturalist/map3',
                              "observations/new_batch.js",
-                             "observations/edit_batch.js" %>
+                             "observations/edit_batch.js",
+                             "observations/observation_fields.js" %>
    <script type="text/javascript" charset="utf-8">
      $(document).ready(function() {
        $('.observation_photos').each(function() {

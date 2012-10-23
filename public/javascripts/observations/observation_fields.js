@@ -1,11 +1,12 @@
 $.fn.observationFieldsForm = function(options) {
   $(this).each(function() {
+    var that = this
     $('.observation_field_chooser', this).chooser({
       collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
       resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
       afterSelect: function(item) {
-        $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()
-        $('.observation_field_chooser').chooser('clear')
+        $('.observation_field_chooser', that).parents('.ui-chooser:first').next('.button').click()
+        $('.observation_field_chooser', that).chooser('clear')
       }
     })
     
@@ -44,7 +45,7 @@ var ObservationFields = {
           data: $(this).serialize(),
           dataType: 'json'
         })
-        .done(function(data, textStatus, XMLHttpRequest) {
+        .done(function(data, textStatus, req) {
           $(dialog).dialog('close')
           $('.observation_field_chooser').chooser('selectItem', data)
         })
@@ -62,7 +63,8 @@ var ObservationFields = {
     options = options || {}
     options.focus = typeof(options.focus) == 'undefined' ? true : options.focus
     $('.observation_field').not('.fieldified').each(function() {
-      var lastName = $('.observation_field.fieldified:last input').attr('name')
+      var lastName = $(this).siblings('.fieldified:last').find('input').attr('name')
+      console.log("[DEBUG] lastName: ", lastName)
       if (lastName) {
         var index = parseInt(lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)[1]) + 1
       } else {
@@ -76,6 +78,7 @@ var ObservationFields = {
       currentField.recordId = currentField.recordId || currentField.id
       
       $(this).attr('id', 'observation_field_'+currentField.recordId)
+      $(this).attr('data-observation-field-id', currentField.recordId)
       $('.labeldesc label', this).html(currentField.name)
       $('.description', this).html(currentField.description)
       $('.observation_field_id', this).val(currentField.recordId)
@@ -114,6 +117,7 @@ var ObservationFields = {
         newInput.attr('name', 'taxon_name')
         input.after(newInput)
         input.hide()
+        $(newInput).removeClass('ofv_value_field')
         $(newInput).simpleTaxonSelector({
           taxonIDField: input
         })

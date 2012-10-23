@@ -26,7 +26,6 @@ gem "friendly_id", "~> 4.0.1"
 gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
 gem 'geoplanet'
 gem 'nofxx-georuby'
-gem 'google_analytics'
 gem 'haml'
 gem 'htmlentities'
 gem 'koala'

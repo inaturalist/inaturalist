@@ -305,10 +305,11 @@ module ApplicationHelper
   def image_and_content(image, options = {}, &block)
     image_size = options.delete(:image_size) || 48
     content = capture(&block)
-    image_wrapper = content_tag(:div, image, :class => "image", :style => "width: #{image_size}px; position: absolute; left: 0; top: 0;")
+    image_wrapper = content_tag(:div, image, :class => "image", :style => "width: #{image_size}px; position: absolute; left: 0; top: 0; text-align:center;")
     options[:class] = "image_and_content #{options[:class]}".strip
-    options[:style] = "#{options[:style]}; padding-left: #{image_size.to_i + 10}px; position: relative; min-height: #{image_size}px;"
-    concat content_tag(:div, image_wrapper + content, options)
+    options[:style] = "#{options[:style]}; padding-left: #{image_size.to_i + 10}px; position: relative;"
+    options[:style] += "min-height: #{image_size}px;" unless options[:square] == false
+    content_tag(:div, image_wrapper + content, options)
   end
   
   # remove unecessary whitespace btwn divs
@@ -476,9 +477,13 @@ module ApplicationHelper
     iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
     iconic_taxon_name = iconic_taxon.try(:name) || 'Unknown'
     url = taxon_path(taxon, options.delete(:url_params) || {})
+    taxon_name = options[:sciname] ? taxon.name : default_taxon_name(taxon)
+    if options[:sciname]
+      options[:class] = "#{options[:class]} sciname".strip
+    end
     content_tag :span, :class => "taxon #{iconic_taxon_name} #{taxon.rank}" do
       link_to(iconic_taxon_image(taxon, :size => 15), url, options) + " " +
-      link_to(default_taxon_name(taxon), url, options)
+      link_to(taxon_name, url, options)
     end
   end
   
@@ -577,7 +582,7 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    options[:style] = "vertical-align:middle; #{options[:style]}"
+    options[:style] = "max-width: 48px; vertical-align:middle; #{options[:style]}"
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
@@ -593,6 +598,8 @@ module ApplicationHelper
       image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
     when "Place"
       image_tag("#{root_url}images/icon-maps.png", options)
+    when "Taxon"
+      taxon_image(resource, options.merge(:size => "square", :width => 48))
     else
       image_tag("#{root_url}images/logo-grey-32px.png", options)
     end
@@ -644,6 +651,14 @@ module ApplicationHelper
       "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
       "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
+    when "Taxon"
+      name = render( 
+        :partial => "shared/taxon", 
+        :object => resource,
+        :locals => {
+          :link_url => (options[:skip_links] == true ? nil : resource)
+        })
+      "New observations of #{name}".html_safe
     else
       "update"
     end

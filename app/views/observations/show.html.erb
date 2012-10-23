@@ -38,7 +38,7 @@
 <%- end -%>
 
 <% content_for(:extracss) do %>
-  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields' %>
+  <%= stylesheet_link_tag 'identifications', 'observations/show', "jquery/ui.tabs.css", 'observations/observation_fields', 'jquery/plugins/inat/photo_selectors' %>
   <style type="text/css" media="screen">  
     .identification_form_wrapper{background-color:#eee;padding:10px;}
     .identification_form_wrapper input.text{width:236px;margin-top:0;}
@@ -66,6 +66,10 @@
     .id_please_notice.box { padding: 5px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;}
     #day_observations img {width: 32px; margin-bottom: 5px;}
     .quality_assessment {width:100%;}
+    .photoSelectorSelected {float: right; width: 175px;}
+    .photoSelectorResults {float: left; width: 525px; padding-right: 10px; margin-right: 10px; border-right: 1px solid #eee;}
+    .photo .synclink { float: right; }
+    .photoSelector {border: 0 transparent; padding:0; min-width: 725px;}
   </style>
 <% end %>
 <% content_for(:extrajs) do %>
@@ -73,161 +77,18 @@
   <%= javascript_include_tag 'jquery/plugins/jqModal',
                              'modal_image',
                              'observations/observation_fields',
-                             'inaturalist/map3' %>
+                             'inaturalist/map3',
+                             "jquery/plugins/inat/photo_selectors.js",
+                             "observations/show" %>
   
   <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      // setup the map if one is needed
-      window.observation = <%= @observation.to_json(:viewer => current_user, 
-        :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
-        :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>;
-      if ((observation.latitude && observation.longitude) || (observation.private_latitude && observation.private_longitude)) {
-        window.map = iNaturalist.Map.createMap({
-          lat: 40.714, 
-          lng: -98.262, 
-          zoom: <%= @observation.map_scale || 3 %>, 
-          controls: 'small'
-        });
-        map.addObservation(observation, {clickable: false, showAccuracy: true});
-        var center = new google.maps.LatLng(
-          observation.private_latitude || observation.latitude, 
-          observation.private_longitude || observation.longitude);
-        map.setCenter(center);
-        google.maps.event.addListenerOnce(map, 'idle', function() {
-          if (observation._circle) {
-            map.fitBounds(map.getBounds().union(observation._circle.getBounds()))
-          }
-          google.maps.event.trigger(map, 'zoom_changed')
-        })
-        
-        $(window).load(function() {
-          var newWidth = $('#where-and-photos').width() - $("#photos").width()
-          newWidth -= 11;
-          var newHeight = $('#photos .first img').height()
-          $('#where').width(newWidth)
-          $('#map').width(newWidth)
-          if (newHeight) {
-            $('#map').height(newHeight)
-          }
-          if (map && observation) {
-            google.maps.event.trigger(map, 'resize')
-            map.setCenter(center)
-          }
-        })
-      }
-      
-      $('.identification_form_wrapper input.text').simpleTaxonSelector({
-        buttonText: 'Find',
-        afterSelect: function(wrapper) {
-          var button = $(wrapper).parents('.identification_form_wrapper').find('.default.button');
-          $(button).removeClass('disabled').attr('disabled', null);
-          $(button).focus();
-        },
-        afterUnselect: function(wrapper) {
-          var button = $(wrapper).parents('.identification_form_wrapper').find('.default.button');
-          $(button).addClass('disabled').attr('disabled', 'disabled');
-        }
-      });
-
-      // Disable the submit button by default
-      $('.identification_form_wrapper .default.button').addClass('disabled').attr('disabled', 'disabled');
-      $('#new_identification_form .default.button').addClass('disabled').attr('disabled', 'disabled');
-      
-      $('#new_identification_form .species_guess').simpleTaxonSelector({
-        buttonText: 'Find',
-        afterSelect: function(wrapper) {
-          var button = $('#new_identification_form').find('.default.button');
-          $(button).removeClass('disabled').attr('disabled', null);
-        },
-        afterUnselect: function(wrapper) {
-          var button = $('#new_identification_form').find('.default.button');
-          $(button).addClass('disabled').attr('disabled', 'disabled');
-        }
-      });
-      
-      $('#forms').tabs();
-      
-      $('.quality_assessment .quality_metric_vote_link').live('click', function(e) {
-        e.preventDefault()
-        var tr = $(this).parents('tr.quality_metric')
-        $.ajax({
-          url: $(this).attr('href'),
-          dataType: 'json',
-          type: $(this).attr('data-http-method'),
-          data: {authenticity_token: $('meta[name=csrf-token]').attr('content')},
-          success: function(data, status) {
-            if (data.error) {
-              alert(data.error)
-            } else if (data.html) {
-              tr.replaceWith(data.html)
-            }
-          }
-        })
-      })
-      
-      $('a[rel=alternate]').each(function() {
-        $(this).css({
-          background: "url(http://www.google.com/s2/u/0/favicons?domain=" + this.hostname + ") left center no-repeat",
-          "padding": "1px 0 1px 20px"
-        })
-      })
-      
-      $('#added_to_id_please .button')
-        .bind('ajax:before', function() {
-          $('#added_to_id_please').fadeOut(function() {$('#need_id_help').fadeIn()})
-        })
-        
-      $('#need_id_help .button')
-        .bind('ajax:before', function() {
-          $('#need_id_help').fadeOut(function() {$('#added_to_id_please').fadeIn()})
-        })
-
-      $('#project_menu .addlink').bind('ajax:before', function() {
-        var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-        loading.width($(this).width())
-        loading.height($(this).height())
-        loading.css({backgroundPosition: 'center center'})
-        $(this).hide()
-        $(this).after(loading)
-      }).bind('ajax:success', function(e, json, status) {
-        $(this).siblings('.loadingclick').remove()
-        $('#removelink_project_'+json.project_id).show()
-      }).bind('ajax:error', function(e, xhr, error, status) {
-        $(this).siblings('.loadingclick').remove()
-        $(this).show()
-        var json = $.parseJSON(xhr.responseText)
-        // TODO if error response includes stuff about obs fields, open a dialog and fill it with html from an endpoint that takes obs id and (a proj ID OR a obs field ID). This endpoint can be used for other users adding stuff too, later
-        if (json.error.match(/observation field/)) {
-          var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
-          dialog.load('/observations/'+window.observation.id+'/fields?project_id='+$(this).data('project-id'), function() {
-            $(this).observationFieldsForm()
-            $(this).centerDialog()
-            $('form:has(input[required])', this).submit(checkFormForRequiredFields)
-          })
-          dialog.dialog({
-            modal: true,
-            title: 'Project observation fields',
-            width: 600,
-            minHeight: 400
-          })
-        } else {
-          alert(json.error)
-        }
-      })
-      $('#project_menu .removelink').bind('ajax:before', function() {
-        var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
-        loading.width($(this).width())
-        loading.height($(this).height())
-        loading.css({backgroundPosition: 'center center'})
-        $(this).hide()
-        $(this).after(loading)
-      }).bind('ajax:success', function(e, json, status) {
-        $(this).siblings('.loadingclick').remove()
-        $('#addlink_project_'+json.project_id).show()
-      }).bind('ajax:error', function(e, xhr, error, status) {
-        alert(xhr.responseText)
-      })
-    });
+    var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
+        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
+        PHOTO_SOURCES = <%= @photo_sources.to_json.html_safe %>,
+        DEFAULT_PHOTO_SOURCE = <%= @default_photo_source.to_json.html_safe %>,
+        OBSERVATION = <%= @observation.to_json(:viewer => current_user, 
+          :force_coordinate_visibility => @observation.coordinates_viewable_by?(current_user),
+          :include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>
   </script>
 <% end %>
 
@@ -366,6 +227,12 @@
             mixed licenses
           <% end -%>
         </div>
+
+        <% if is_me?(@observation.user) -%>
+          <div class="meta">
+            <%= link_to "Add more photos", edit_observation_path, :id => "add_more_photos_link" %>
+          </div>
+        <% end -%>
       </div>
     <%- end -%>
     

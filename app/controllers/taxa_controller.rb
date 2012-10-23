@@ -20,7 +20,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos, :range, :schemes]
+    :observation_photos, :range, :schemes, :tip]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   
@@ -225,6 +225,14 @@ class TaxaController < ApplicationController
     end
   end
 
+  def tip
+    @observation = Observation.find_by_id(params[:observation_id]) if params[:observation_id]
+    if @observation
+      @places = @observation.system_places
+    end
+    render :layout => false
+  end
+
   def new
     @taxon = Taxon.new
   end
@@ -413,11 +421,10 @@ class TaxaController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term]
-    @taxon_names = TaxonName.paginate(
-      :page => params[:page], 
-      :include => {:taxon => :taxon_names},
-      :conditions => ["lower(name) LIKE ?", "#{@q.to_s.downcase}%"]
-    )
+    @taxon_names = TaxonName.includes(:taxon => :taxon_names).
+      where("lower(name) LIKE ?", "#{@q.to_s.downcase}%").
+      limit(30).
+      sort_by{|tn| tn.taxon.ancestry || ''}
     exact_matches = []
     @taxon_names.each_with_index do |taxon_name, i|
       next unless taxon_name.name.downcase.strip == @q.to_s.downcase.strip
@@ -426,10 +433,10 @@ class TaxaController < ApplicationController
     if exact_matches.blank?
       exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, :conditions => ["lower(name) = ?", @q.to_s.downcase])
     end
-    @taxon_names.unshift(*exact_matches)
+    @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
       taxon = taxon_name.taxon
-      taxon.html = render_to_string(:partial => "chooser.html.erb", 
+      taxon.html = view_context.render_in_format(:html, :partial => "chooser.html.erb", 
         :object => taxon, :comname => taxon_name.is_scientific_names? ? nil : taxon_name)
       taxon
     end
@@ -1104,6 +1111,7 @@ class TaxaController < ApplicationController
     unless @taxon
       return redirect_to :action => 'search', :q => name
     else
+      params.delete(:q)
       return_here
       show
     end

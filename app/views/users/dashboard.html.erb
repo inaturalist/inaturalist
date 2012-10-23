@@ -106,6 +106,25 @@
         }
         $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
       })
+
+      $('#new_place_subscription_link, #new_taxon_subscription_link').click(function() {
+        var dialogId = 'new_subscription_dialog'
+        var dialog = $('#'+dialogId)
+        if (dialog.length != 0) {$(dialog).remove()};
+        dialog = $('<div></div>')
+          .attr('id', dialogId)
+          .addClass('dialog').html('<div class="loading status">Loading...</div>')
+        $(document).append(dialog)
+        dialog.load($(this).attr('href'), {partial: 'form'}, function() {
+          $(this).centerDialog()
+          $('form:has(input[required])', this).submit(checkFormForRequiredFields)
+        })
+        dialog.dialog({
+          modal: true,
+          title: 'Subscribe to a new place/taxon'
+        })
+        return false
+      })
     })
   </script>
 <%- end -%>
@@ -228,6 +247,7 @@
     </div>
 
     <div id="rightcol" class="last column span-8">
+      <%= link_to "Add observations", new_observation_path, :id => "obsbutton", :class => "default button" %>
 
       <div id="calendar" class="clear stacked">
         <%= render :partial => "calendars/calendar", :locals => { 
@@ -235,6 +255,56 @@
           :month_name => "Your #{Date::MONTHNAMES[Date.today.month]} Observations" } %>
         <%= link_to "View your calendar", calendar_path(current_user.login), :class => "readmore" %>
       </div>
+
+      <%= separator %>
+
+      <div class="stacked">
+        <h3>
+          Your subscriptions
+          <% helptip_for "subscriptions" do %>
+            Subscribe to places to receive updates about new observations made
+            there.  Updates from people you follow and things you've commented
+            on are also managed through subscriptions, so if you want to see
+            what you're subscribed to and unsubscribe from things, you can
+            click "Manage all of your subscriptions" below.  You should also
+            be able to unsubscribe from anything on the site by viewing it's
+            page.
+          <% end -%>
+        </h3>
+
+        <ul style="margin-bottom: 5px" class="plain">
+          <% if @subscriptions.blank? %>
+            <div class="nocontent meta">You don't have any place or taxon subscriptions</div>
+          <% else %>
+            <% for resource_type, subscriptions in @subscriptions.group_by(&:resource_type) %>
+              <li>
+                <span class="meta"><%= resource_type.humanize.pluralize %></span>
+                <ul style="margin-bottom: 5px">
+                  <% for subscription in subscriptions %>
+                    <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
+                      <%= link_to subscription.resource.try_methods(:display_name, :name, :title), subscription.resource %>
+                      <nobr class="meta">
+                        <% if subscription.taxon -%>
+                          (<%= subscription.taxon.name %>)
+                        <% end -%>
+                        <%= link_to "edit", edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
+                      </nobr>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          <% end -%>
+        </ul>
+        <div>
+          Add a
+          <%= link_to "place subscription", new_subscription_path(:type => "place"), :id => "new_place_subscription_link" %>
+          |
+          <%= link_to "taxon subscription", new_subscription_path(:type => "taxon"), :id => "new_taxon_subscription_link" %>
+        </div>
+        <%= link_to "Manage all of your subscriptions", subscriptions_path, :class => "readmore" %>
+      </div>
+      <%= separator %>
 
       <h3>Extras</h3>
 

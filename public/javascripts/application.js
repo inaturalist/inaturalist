@@ -778,12 +778,19 @@ $.fn.subscriptionSettings = function() {
             $(this).fadeOut(function() {
               $(this).siblings('form').fadeIn()
             })
-            var data = $(this).serialize() + '&format=json'
+            var data = $(this).serialize() + '&format=json',
+                resourceType = $('input[name*=resource_type]', this).val(),
+                resourceId = $('input[name*=resource_id]', this).val()
             $.ajax({
               url: $(this).attr('action'),
               type: 'post',
               data: data
             })
+            if ($(this).hasClass('unsubscribe')) {
+              $('.subscription_for_'+resourceType+'_'+resourceId).addClass('unsubscribed')
+            } else {
+              $('.subscription_for_'+resourceType+'_'+resourceId).removeClass('unsubscribed')
+            }
             return false
           })
         }

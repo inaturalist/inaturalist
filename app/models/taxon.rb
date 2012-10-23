@@ -72,6 +72,10 @@ class Taxon < ActiveRecord::Base
                           :scope => [:source_id],
                           :message => "already exists",
                           :allow_blank => true
+
+  has_subscribers :to => {
+    :observations => {:notification => "new_observations", :include_owner => false}
+  }
   
   NAME_PROVIDER_TITLES = {
     'ColNameProvider' => 'Catalogue of Life',

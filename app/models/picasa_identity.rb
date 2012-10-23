@@ -5,4 +5,14 @@ class PicasaIdentity < ActiveRecord::Base
   def set_token_created_at
     self.token_created_at = (token.blank? ? nil : Time.now) if token_changed?
   end
+
+  def source_options
+    {
+      :title => 'Picasa', 
+      :url => '/picasa/photo_fields', 
+      :contexts => [
+        ["Your photos", 'user', {:searchable => true}]
+      ]
+    }
+  end
 end

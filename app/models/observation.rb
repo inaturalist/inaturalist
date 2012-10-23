@@ -15,6 +15,13 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
+  notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
+    :queue_if => lambda {|observation| !observation.taxon_id.blank? },
+    :if => lambda {|observation, taxon, subscription|
+      return true if observation.taxon_id == taxon.id
+      return false if observation.taxon.blank?
+      observation.taxon.ancestor_ids.include?(subscription.resource_id)
+    }
   acts_as_taggable
   acts_as_flaggable
   
@@ -662,7 +669,7 @@ class Observation < ActiveRecord::Base
         "was not recognized, some working examples are: yesterday, 3 years " +
         "ago, 5/27/1979, 1979-05-27 05:00. " +
         "(<a href='http://chronic.rubyforge.org/'>others</a>)")
-      return
+      return true
     end
     
     # don't store relative observed_on_strings, or they will change
@@ -739,7 +746,7 @@ class Observation < ActiveRecord::Base
     ].compact.uniq
     
     # Don't refresh all the lists if nothing changed
-    return if target_taxa.empty?
+    return true if target_taxa.empty?
     
     List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
@@ -794,21 +801,6 @@ class Observation < ActiveRecord::Base
   end
   
   #
-  # This is the hook used to check each observation to see if it may apply
-  # to a system based goal. It does so by collecting all of the user's
-  # current goals, including global goals and checking to see if the
-  # observation passes each rule established by the goal. If it does, the
-  # goal is recorded as a contribution in the goal_contributions table.
-  #
-  def update_goal_contributions
-    user.goal_participants_for_incomplete_goals.each do |participant|
-      participant.goal.validate_and_add_contribution(self, participant)
-    end
-    true
-  end
-  
-  
-  #
   # Remove any instructional text that may have been submitted with the form.
   #
   def scrub_instructions_before_save
@@ -824,12 +816,13 @@ class Observation < ActiveRecord::Base
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon
-    return unless self.taxon_id_changed?
+    return true unless self.taxon_id_changed?
     if taxon
       self.iconic_taxon_id ||= taxon.iconic_taxon_id
     else
       self.iconic_taxon_id = nil
     end
+    true
   end
   
   #
@@ -864,8 +857,8 @@ class Observation < ActiveRecord::Base
   # Force time_observed_at into the time zone
   #
   def set_time_in_time_zone
-    return if time_observed_at.blank? || time_zone.blank?
-    return unless time_observed_at_changed? || time_zone_changed?
+    return true if time_observed_at.blank? || time_zone.blank?
+    return true unless time_observed_at_changed? || time_zone_changed?
     
     # Render the time as a string
     time_s = time_observed_at_before_type_cast
@@ -878,6 +871,7 @@ class Observation < ActiveRecord::Base
     time_s += " #{offset_s}"
     
     self.time_observed_at = Time.parse(time_s)
+    true
   end
   
   
@@ -1032,13 +1026,13 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    if !taxon.blank? && 
-        taxon.species_or_lower? &&
-        georeferenced? && 
-        !coordinates_obscured? &&
-        (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+    obscuring_needed_for_taxon = taxon && 
+      taxon.species_or_lower? && 
+      (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+
+    if obscuring_needed_for_taxon && georeferenced? && !coordinates_obscured?
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
-    elsif geoprivacy.blank?
+    elsif geoprivacy.blank? && !obscuring_needed_for_taxon
       unobscure_coordinates
     end
     true
@@ -1416,6 +1410,11 @@ class Observation < ActiveRecord::Base
     # for obscured coordinates only return default place types that weren't
     # made by users. This is not ideal, but hopefully will get around honey
     # pots.
+    system_places(:places => all_places)
+  end
+
+  def system_places(options = {})
+    all_places = options[:places] || places
     all_places.select do |p| 
       p.user_id.blank? &&
         [Place::PLACE_TYPE_CODES['Country'],
@@ -1423,6 +1422,10 @@ class Observation < ActiveRecord::Base
           Place::PLACE_TYPE_CODES['County'],
           Place::PLACE_TYPE_CODES['Open Space']].include?(p.place_type)
     end
+  end
+
+  def taxon_and_ancestors
+    taxon ? taxon.self_and_ancestors.to_a : []
   end
   
   def mobile?

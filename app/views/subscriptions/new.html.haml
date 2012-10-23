@@ -1,0 +1,4 @@
+= content_for :title do
+  = @title = "New #{@type.humanize.downcase} subscription"
+%h2= @title
+= render 'form'

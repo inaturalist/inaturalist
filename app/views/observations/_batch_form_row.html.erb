@@ -1,95 +1,102 @@
 <% closed ||= false -%>
-  <div id="batchform" class="clear<% if closed %> closed<% end %>">
-    <% new_obs = Observation.new(:time_zone => current_user.time_zone) %>
-    <%= form_for(new_obs, :html => {:class => 'observationform'}) do |o| %>
-      <div class="column span-24 observation">
-        <div class="column prepend-1 span-23" style="margin-bottom: 0.25em">
-          <h3 style="display: inline">
-            <%= link_to_function 'Batch Operations', 
-              "if ($('#batch_form_fields:visible').length == 0) { $('#batch_form_fields').slideDown(); }" +
-              "else { $('#batch_form_fields').hide(); }" + "$('#batchform').toggleClass('closed')" 
-            %>
-          </h3>
-          <span class="description">Apply these settings to all the observations below.</span>
+<div id="batchform" class="clear<% if closed %> closed<% end %>">
+  <% new_obs = Observation.new(:time_zone => current_user.time_zone) %>
+  <%= form_for(new_obs, :html => {:class => 'observationform'}) do |o| %>
+    <div class="column span-24 observation">
+      <div class="column prepend-1 span-23" style="margin-bottom: 0.25em">
+        <h3 style="display: inline">
+          <%= link_to_function 'Batch Operations', 
+            "if ($('#batch_form_fields:visible').length == 0) { $('#batch_form_fields').slideDown(); }" +
+            "else { $('#batch_form_fields').hide(); }" + "$('#batchform').toggleClass('closed')" 
+          %>
+        </h3>
+        <span class="description">Apply these settings to all the observations below.</span>
+      </div>
+      <div id="batch_form_fields"<% if closed %>style="display: none"<% end %>>
+        <div class="column span-1">
+          &nbsp;
         </div>
-        <div id="batch_form_fields"<% if closed %>style="display: none"<% end %>>
-          <div class="column span-1">
-            &nbsp;
+        <div class="column span-7">
+          <%= o.text_field(:species_guess, :class => 'text species_guess') %>
+          <%= o.hidden_field(:taxon_id) %>
+        </div>
+        <div class="column span-7">
+          <%= o.text_field(:observed_on_string, :class => 'text observed_on_string') %>
+          <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+        </div>
+        <div class="last column span-7">
+          <%= o.text_field(:place_guess, :class => 'text place_guess') %>
+          <div id="coordinates" class="latlonfields status">
+            <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
+            <%= o.text_field(:latitude, :class => 'latitude text') %>
+
+            <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
+            <%= o.text_field(:longitude, :class => 'longitude text') %>
+            
+            <div>
+              <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock", "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
+              <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock') %>
+              <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
+              <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
+            </div>
+
+            <span class="button">
+              <%= link_to_function("edit", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
+              <%= link_to_function("hide", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
+            </span>
+          </div>
+          <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
+          <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
+          <%= o.hidden_field(:positioning_device, :class => 'positioning_device') %>
+        </div>
+        
+        
+        <div class="last column prepend-1 span-21">
+          <div class="column span-7">
+            <div class="clear batchcontrols">
+              <%= link_to_function("&darr; Apply &darr;".html_safe, "batchTaxon()",
+                :id => 'apply_batch_taxon_button', :class => 'default button') %>
+            </div>
           </div>
           <div class="column span-7">
-            <%= o.text_field(:species_guess, :class => 'text species_guess') %>
-            <%= o.hidden_field(:taxon_id) %>
-          </div>
-          <div class="column span-7">
-            <%= o.text_field(:observed_on_string, :class => 'text observed_on_string') %>
-            <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+            <div class="clear batchcontrols">
+              <%= link_to_function("&darr; Apply &darr;".html_safe, "applyBatch(['observed_on_string', 'time_zone'])", :id => 'apply_batch_observed_on_button', :class => 'default button') %>
+            </div>
           </div>
           <div class="last column span-7">
-            <%= o.text_field(:place_guess, :class => 'text place_guess') %>
-            <div id="coordinates" class="latlonfields status">
-              <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
-              <%= o.text_field(:latitude, :class => 'latitude text') %>
-
-              <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
-              <%= o.text_field(:longitude, :class => 'longitude text') %>
-              
-              <div>
-                <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock", "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
-                <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock') %>
-                <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
-                <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
-              </div>
-
-              <span class="button">
-                <%= link_to_function("edit", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).next().show(); return false;") %>
-                <%= link_to_function("hide", "$('#coordinates').toggleClass('status'); $(this).hide(); $(this).prev().show(); return false;", :style => 'display: none') %>
-              </span>
-            </div>
-            <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
-            <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
-            <%= o.hidden_field(:positioning_device, :class => 'positioning_device') %>
-          </div>
-          
-          
-          <div class="last column prepend-1 span-21">
-            <div class="column span-7">
-              <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;".html_safe, "batchTaxon()",
-                  :id => 'apply_batch_taxon_button', :class => 'default button') %>
-              </div>
-            </div>
-            <div class="column span-7">
-              <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;".html_safe, "applyBatch(['observed_on_string', 'time_zone'])", :id => 'apply_batch_observed_on_button', :class => 'default button') %>
-              </div>
-            </div>
-            <div class="last column span-7">
-              <div class="clear batchcontrols">
-                <%= link_to_function("&darr; Apply &darr;".html_safe, 
-                  "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact', 'positional_accuracy', 'positioning_method', 'positioning_device'])", 
-                  :id => 'apply_batch_place_button', :class => 'default button') %>
-              </div>
+            <div class="clear batchcontrols">
+              <%= link_to_function("&darr; Apply &darr;".html_safe, 
+                "applyBatch(['place_guess', 'latitude', 'longitude', 'map_scale', 'location_is_exact', 'positional_accuracy', 'positioning_method', 'positioning_device'])", 
+                :id => 'apply_batch_place_button', :class => 'default button') %>
             </div>
           </div>
-          
-          <div class="last column prepend-1 span-21">
-            <%= link_to_toggle "More fields", "#morebatchcontrols" %>
-            <div id="morebatchcontrols" style="display:none;">
-              <table class="plain">
-                <tr class="inline buttonrow">
-                  <td><label>Tags</label></td>
-                  <td><%= o.text_field :tag_list, :class => "text" %></td>
-                  <td><%= link_to_function "Apply &darr;".html_safe, "applyBatch(['tag_list'])", :class => "default button" %></td>
-                </tr>
-                <tr class="inline buttonrow">
-                  <td><%= o.label :geoprivacy, "Geoprivacy" %></td>
-                  <td><%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %></td>
-                  <td><%= link_to_function "Apply &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
-                </tr>
-              </table>
-            </div>
+        </div>
+        
+        <div class="last column prepend-1 span-21">
+          <%= link_to_toggle "More fields", "#morebatchcontrols" %>
+          <div id="morebatchcontrols" style="display:none;">
+            <table>
+              <tr class="inline buttonrow">
+                <td><label>Tags</label></td>
+                <td><%= o.text_field :tag_list, :class => "text" %></td>
+                <td><%= link_to_function "Apply tags &darr;".html_safe, "applyBatch(['tag_list'])", :class => "default button" %></td>
+              </tr>
+              <tr class="inline buttonrow">
+                <td><%= o.label :geoprivacy, "Geoprivacy" %></td>
+                <td><%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %></td>
+                <td><%= link_to_function "Apply geoprivacy &darr;".html_safe, "applyBatch(['geoprivacy'])", :class => "default button" %></td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <%= render 'observation_field_form_fields', :builder => o %>
+                </td>
+                <td class="inline buttonrow"><%= link_to_function "Apply fields &darr;".html_safe, "batchObservationFields()", :class => "default button nobr" %></td>
+              </tr>
+            </table>
           </div>
-        </div><!-- end #batchFormFields -->
-      </div>
-    <% end %>
-  </div>
+        </div>
+      </div><!-- end #batchFormFields -->
+    </div>
+  <% end %>
+</div>
+  

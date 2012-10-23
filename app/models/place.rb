@@ -157,6 +157,8 @@ class Place < ActiveRecord::Base
     end
     where("place_type IN (?)", place_types)
   }
+
+  scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 

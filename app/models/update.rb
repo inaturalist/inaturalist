@@ -138,7 +138,7 @@ class Update < ActiveRecord::Base
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
       :comment => [:user, :parent],
       :listed_taxon => [{:list => :user}, {:taxon => [:photos, :taxon_names]}],
-      :taxon => [:taxon_names, {:taxon_photos => :photos}]
+      :taxon => [:taxon_names, {:taxon_photos => :photo}]
     }
     update_cache = {}
     [Comment, Identification, Observation, ListedTaxon, Post, User, Taxon].each do |klass|
