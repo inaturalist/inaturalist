@@ -159,7 +159,7 @@ $(document).ready(function() {
       style: {
         width: 500
       },
-      show: {delay: 500, solo: true},
+      show: {delay: 1000, solo: true},
       hide: {event: 'mouseleave unfocus', delay: 500},
       content: {
         text: '<span class="loading status">Loading...</span>',
