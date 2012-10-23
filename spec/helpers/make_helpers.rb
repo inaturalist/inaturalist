@@ -22,20 +22,22 @@ module MakeHelpers
     list
   end
   
-  def make_observation_of_threatened
-    Observation.make!(
+  def make_observation_of_threatened(options = {})
+    Observation.make!(options.merge(
       :latitude => 38.333, :longitude => -122.111,
       :taxon => Taxon.make!(:threatened),
       :created_at => Time.now.to_date
-    )
+    ))
   end
   
   # It's important that the lat & lon don't show up in the date when doing 
   # simple regex tests
-  def make_private_observation
-    Observation.make!(:latitude => 38.888, :longitude => -122.222, 
+  def make_private_observation(options = {})
+    Observation.make!(options.merge(
+      :latitude => 38.888, :longitude => -122.222, 
       :geoprivacy => Observation::PRIVATE, 
-      :created_at => Time.now.to_date)
+      :created_at => Time.now.to_date
+    ))
   end
   
   def make_research_grade_observation(options = {})
