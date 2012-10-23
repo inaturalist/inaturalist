@@ -248,7 +248,7 @@ class FlickrController < ApplicationController
   end
 
   def flickr_friends
-    flickr.contacts.getList(:auth_token=>current_user.flickr_identity.token)
+    get_flickraw.contacts.getList
   end
 
 end
