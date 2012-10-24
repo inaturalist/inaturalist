@@ -76,7 +76,7 @@ module Shared::GuideModule
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     @grid = params[:grid]
-    @grid = "fluid" unless %w(grid fluid).include?(@grid)
+    @grid = "grid" unless %w(grid fluid).include?(@grid)
     @size = params[:size]
     @size = "medium" unless %w(small medium).include?(@size)
     @labeled = params[:labeled]

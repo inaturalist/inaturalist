@@ -301,6 +301,30 @@ var TaxonGuide = {
       if (typeof(PLACE) != 'undefined' && PLACE) {
         title += ' in ' + PLACE.display_name
       }
+
+      $('#taxa').not('.fluid').find('.taxonimage img', this).not('.iconic').not('._centered').load(function() {
+        if ($(this).width() > $(this).height()) {
+          $(this).css({
+            height: $(this).parent().height(), 
+            maxWidth: 'none'
+          })
+          $(this).addClass('_centered').css({
+            left: '50%', 
+            marginLeft: '-' + ($(this).width() / 2) + 'px'
+          })
+        } else {
+          $(this).css({
+            width: $(this).parent().width(), 
+            maxHeight: 'none'
+          })
+          $(this).addClass('_centered').css({
+            top: '50%', 
+            marginTop: '-' + ($(this).height() / 2) + 'px'
+          })
+        }
+        
+      })
+
       $(dialog).dialog({
         autoOpen: false,
         width: '90%',
