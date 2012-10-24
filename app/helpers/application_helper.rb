@@ -588,7 +588,7 @@ module ApplicationHelper
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
-      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
+      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"

@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   preference :observation_license, :string
   preference :photo_license, :string
   
-  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification)
+  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :destroy
