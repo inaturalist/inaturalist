@@ -36,6 +36,7 @@ class ListedTaxon < ActiveRecord::Base
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
+  before_destroy :set_old_list
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
@@ -122,7 +123,8 @@ class ListedTaxon < ActiveRecord::Base
                 :skip_update_cache_columns,
                 :force_update_cache_columns,
                 :extra,
-                :html
+                :html,
+                :old_list
   
   def ancestry
     taxon_ancestor_ids
@@ -220,12 +222,16 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
+
+  def set_old_list
+    @old_list = self.list
+  end
   
   # Update the counter cache in users.
   def update_user_life_list_taxa_count
-    if self.list.user && self.list.user.life_list_id == self.list_id
-      User.update_all("life_list_taxa_count = #{self.list.listed_taxa.count}", 
-        "id = #{self.list.user_id}")
+    l = self.list || @old_list
+    if l && l.user && l.user.life_list_id == self.list_id
+      User.update_all("life_list_taxa_count = #{l.listed_taxa.count}", "id = #{l.user_id}")
     end
     true
   end

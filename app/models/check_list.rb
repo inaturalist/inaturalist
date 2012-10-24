@@ -8,7 +8,7 @@ class CheckList < List
   
   before_validation :set_title
   before_create :set_last_synced_at, :create_taxon_list_rule
-  after_save :mark_non_comprehensive_listed_taxa_as_absent
+  # after_save :mark_non_comprehensive_listed_taxa_as_absent
   
   validates_presence_of :place_id
   validates_uniqueness_of :taxon_id, :scope => :place_id, :allow_nil => true,
@@ -16,6 +16,10 @@ class CheckList < List
   
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
+
+  def to_s
+    "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
+  end
   
   def editable_by?(user)
     user && (self.user == user || user.is_curator?)
@@ -160,6 +164,8 @@ class CheckList < List
     SQL
   end
   
+  # not sure why I originally added this.  Doesn't make sense for taxa on non-comprehensive list 
+  # to be "absent," since they're obviously present if they're on the comprehensive list.
   def mark_non_comprehensive_listed_taxa_as_absent
     return true unless comprehensive_changed?
     return true unless comprehensive?

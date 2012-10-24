@@ -12,7 +12,7 @@ class CheckListsController < ApplicationController
   
   def show
     @place = @list.place
-    @other_check_lists = @place.check_lists.paginate(:page => 1)
+    @other_check_lists = @place.check_lists.limit(1000)
     @other_check_lists.delete_if {|l| l.id == @list.id}
     
     # If this is a place's default check list, load ALL the listed taxa

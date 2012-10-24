@@ -689,3 +689,13 @@ describe Taxon, "grafting" do
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
 end
+
+describe Taxon, "single_taxon_for_name" do
+  it "should find varities" do
+    name = "Abies magnifica var. magnifica"
+    t = Taxon.make!(:name => name, :rank => Taxon::VARIETY)
+    t.should be_variety
+    t.name.should eq("Abies magnifica magnifica")
+    Taxon.single_taxon_for_name(name).should eq(t)
+  end
+end

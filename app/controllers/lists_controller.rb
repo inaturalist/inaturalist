@@ -294,7 +294,7 @@ class ListsController < ApplicationController
         return false
       end
     else
-      unless @list.user.id == current_user.id || current_user.is_admin?
+      unless @list.user_id == current_user.id || current_user.is_admin?
         flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
         redirect_back_or_default('/')
         return false

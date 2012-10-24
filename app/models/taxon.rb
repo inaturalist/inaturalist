@@ -475,8 +475,8 @@ class Taxon < ActiveRecord::Base
     ancestor_ids.include?(target_id)
   end
   
-  def graft
-    Ratatosk.graft(self)
+  def graft(options = {})
+    ratatosk.graft(self, options)
   end
   
   def grafted?
@@ -640,8 +640,8 @@ class Taxon < ActiveRecord::Base
   # Determine whether this taxon is at or below the rank of species
   #
   def species_or_lower?
-    return false if rank.blank?
-    %w"species hybrid subspecies variety infraspecies".include?(rank.downcase)
+    return false if rank_level.blank?
+    rank_level <= SPECIES_LEVEL
   end
   
   # Updated the "cached" ancestor values in all listed taxa with this taxon
@@ -1103,12 +1103,14 @@ class Taxon < ActiveRecord::Base
     Taxon.find_by_sql(sql)
   end
   
-  def self.single_taxon_for_name(name)
+  def self.single_taxon_for_name(name, options = {})
     return if PROBLEM_NAMES.include?(name.downcase)
     name = name[/.+\((.+?)\)/, 1] if name =~ /.+\(.+?\)/
-    name = name.gsub(/\sss?p\.?\s*$/, '')
-    taxon_names = TaxonName.all(:limit => 5, :include => :taxon, :conditions => [
-      "lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase])
+    name = Taxon.remove_rank_from_name(name)
+    scope = TaxonName.limit(10).includes(:taxon).
+      where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
+    scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
+    taxon_names = scope.all
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     if taxa.blank?

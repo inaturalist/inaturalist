@@ -463,6 +463,7 @@ module ApplicationHelper
     if record.is_a?(Source)
       html = record.citation || [record.title, record.in_text, record.url].join(', ')
       if record.editable_by?(current_user)
+        html += " (" + link_to("link", record.url) + ")" unless record.url.blank?
         html += " " + link_to("edit source", edit_source_path(record), :class => "nobr small").html_safe
       end
       html.html_safe
