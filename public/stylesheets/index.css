@@ -378,9 +378,14 @@ a .taxon:hover {
 .genus .sciname,
 .sciname.genus,
 .sciname.species,
-.sciname.infraspecies {
+.sciname.infraspecies,
+.sciname.subspecies,
+.sciname.variety,
+.sciname.hybrid {
   font-style: italic;
 }
+
+.sciname .rank {font-style: normal;}
 
 .taxon .othernames {
   font-size: 80%;

@@ -5,7 +5,14 @@
   comname ||= common_taxon_name(taxon).try(:name)
   no_common ||= false
   if taxon.species_or_lower?
-    sciname = '<span class="sciname"><i>%s</i></span>' % taxon.name
+    pieces = taxon.name.split
+    sciname = if taxon.variety?
+      "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
+    elsif taxon.subspecies?
+      "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">ssp.</span> #{pieces[2..-1].join(' ')}</span>"
+    else
+      "<span class=\"sciname\">#{taxon.name}</span>"
+    end
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name}</span>"
   else
