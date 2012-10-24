@@ -209,7 +209,7 @@
                 <%= 
                   begin
                     render :partial => "#{resource.class.to_s.underscore.pluralize}/update_#{notification}", 
-                      :object => resource, :locals => {:updates => updates}
+                      :object => resource, :locals => {:updates => updates, :resource => resource}
                   rescue ActionView::MissingTemplate, Errno::ENOENT
                     "#{resource_type} #{notification}"
                   end

@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :browse]
   before_filter :load_post, :only => [:show, :edit, :update, :destroy]
-  #before_filter :load_display_user_by_login, :except => [:browse, :create, :new]
   before_filter :load_parent, :except => [:browse, :create, :update, :destroy]
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
@@ -187,7 +186,7 @@ class PostsController < ApplicationController
   end
   
   def author_required
-    if !((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
+    if ((@post.parent.is_a?(Project) && !@post.parent.editable_by?(current_user)) ||
         !(logged_in? && @post.user.id == current_user.id))
         flash[:notice] = "Only the author of this post can do that.  " + 
                          "Don't be evil."
