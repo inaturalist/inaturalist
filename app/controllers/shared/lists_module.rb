@@ -365,8 +365,7 @@ module Shared::ListsModule
       # TODO: somehow make the following not cause a filesort...
       :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     }
-    if params[:taxon]
-      @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
+    if params[:taxon] && @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
       @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"]
       
