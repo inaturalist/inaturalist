@@ -60,7 +60,6 @@ class FlowTasksController < ApplicationController
   # repeatedly to check progress
   # Key is required, and a block that assigns a new Delayed::Job to @job
   def delayed_progress(key)
-    Rails.logger.debug "[DEBUG] key: #{key}"
     @tries = params[:tries].to_i
     if @tries > 20
       @status = @error

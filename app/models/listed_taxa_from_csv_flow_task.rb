@@ -1,13 +1,13 @@
 class ListedTaxaFromCsvFlowTask < FlowTask
   def run
     outputs.each(&:destroy)
-    list_input = inputs.detect{|input| input.resource_type == "List"}
+    list_input = inputs.detect{|input| input.resource.is_a?(List)}
     file_input = inputs.detect{|input| input.file.exists?}
     CSV.foreach(file_input.file.path) do |row|
       next if row.blank?
       taxon_name, description, occurrence_status, establishment_means = row
       next if taxon_name.blank?
-      if @list.is_a?(CheckList)
+      if list_input.resource.is_a?(CheckList)
         occurrence_status_level = ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status]
         establishment_means = ListedTaxon::ESTABLISHMENT_MEANS.include?(establishment_means) ? establishment_means : nil
       else
