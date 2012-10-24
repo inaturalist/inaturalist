@@ -11,8 +11,9 @@ class PostsController < ApplicationController
     # Grab the monthly counts of all posts to show archives
     get_archives
     
-    if logged_in? && @display_user == current_user
-      @drafts = @display_user.posts.unpublished.all(
+    if (logged_in? && @display_user == current_user) ||
+       (logged_in? && @parent.is_a?(Project) && @parent.editable_by?(current_user))
+      @drafts = @parent.posts.unpublished.all(
         :order => "created_at DESC")
     end
     
