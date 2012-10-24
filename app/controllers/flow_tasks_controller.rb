@@ -1,5 +1,6 @@
 class FlowTasksController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :admin_required, :only => [:index]
   before_filter :load_flow_task, :only => [:show, :destroy, :run]
   before_filter :require_owner, :only => [:destroy, :run]
   
