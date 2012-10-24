@@ -1,0 +1,26 @@
+<%- project = resource -%>
+<table border="0" cellspacing="0" cellpadding="0">
+  <% updates.each do |update| %>
+    <% 
+      post = update.notifier 
+      the_post_url = project_journal_post_url(:project_id => project.id, :id => post.id)
+    %>
+    <tr>
+      <td width="75" align="center" valign="top" style="<%= 'padding-right: 10px;' %> padding-bottom: 10px; max-width:75px;">
+        <%= link_to(update_image_for(update), the_post_url) %>
+      </td>
+      <td>
+        <%= link_to(h(post.title), the_post_url) %>
+        <div class="readable body"><%= formatted_user_text(truncate(post.body, :length => 200)) %></div>
+        <div class="meta">
+          Posted by <%= link_to(truncate(you_or_login(post.user), :length => 20), person_url(project.user.login)) %>
+          <span class="when">
+            <abbr class="date timeago" title="<%= project.created_at.iso8601 %>"><%= time_ago_in_words(project.created_at) %> ago</abbr>
+          </span> | 
+          <%= link_to("View post", the_post_url) %>
+          <br />
+          <br />
+      </td>
+    </tr>
+  <% end %>
+</table>

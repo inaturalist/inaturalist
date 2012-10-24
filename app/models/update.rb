@@ -124,6 +124,7 @@ class Update < ActiveRecord::Base
     updates = Update.all(:limit => 100, :conditions => [
       "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
     updates.delete_if do |u| 
+      !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
       !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
     end.compact

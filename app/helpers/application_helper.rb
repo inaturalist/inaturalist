@@ -588,7 +588,7 @@ module ApplicationHelper
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
-      image_tag(resource.icon.url(:thumb), options)
+      image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
@@ -645,7 +645,7 @@ module ApplicationHelper
     when "Project"
       project = resource
       post = notifier
-      "#{options[:skip_links] ? project.title : link_to(project.title, project_journal_post_path(:project_id=>project.id, :id=>post.id))} wrote a new journal post.".html_safe
+      "#{options[:skip_links] ? project.title : link_to(project.title, project_journal_post_url(:project_id=>project.id, :id=>post.id))} wrote a new journal post.".html_safe
     when "Project"
       "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
