@@ -242,7 +242,7 @@ eol_collection_ids.each do |eol_collection_id|
           unless opts[:test]
             if taxon.save
               puts "\t\tCreated new taxon: #{taxon}"
-              taxon.send_later(:graft)
+              taxon.delay.graft_silently
             else
               puts "\t\tFailed to create taxon: #{taxon.errors.full_messages.to_sentence}"
               next
