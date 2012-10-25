@@ -215,7 +215,7 @@ eol_collection_ids.each do |eol_collection_id|
               taxon = match.taxon
               if taxon.valid? && !taxon.new_record?
                 puts "\t\tImported new taxon: #{taxon}"
-                taxon.delay.graft unless opts[:test]
+                taxon.delay.graft_silently unless opts[:test]
               else
                 puts "\t\tFailed to import #{taxon}: #{taxon.errors.full_messages.to_sentence}"
                 taxon = nil

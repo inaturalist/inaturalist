@@ -478,6 +478,12 @@ class Taxon < ActiveRecord::Base
   def graft(options = {})
     ratatosk.graft(self, options)
   end
+
+  def graft_silently(options = {})
+    graft(options)
+  rescue RatatoskGraftError, Timeout::Error, NameProviderError => e
+    Rails.logger.error "[ERROR #{Time.now}] Failed to graft #{self}: #{e}"
+  end
   
   def grafted?
     return false if new_record? # New records haven't been grafted
