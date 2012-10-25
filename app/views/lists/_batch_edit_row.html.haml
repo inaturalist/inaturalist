@@ -1,4 +1,5 @@
 - lt ||= batch_edit_row
+- list ||= @list || lt.list
 - name, description, occurrence_status, establishment_means = lt.extra[:row] if lt.extra
 - error = lt.extra[:error] if lt.extra
 - css_class = ["listed_taxon_row", (error ? "error" : nil), (lt.new_record? ? "new_listed_taxon_row" : nil)].compact.join(" ")
@@ -18,9 +19,11 @@
           = render "shared/taxon", :taxon => lt.taxon, :link_url => lt
       %td.desc= f.text_area :description, :class => "text"
       %td.occurrence_status
-        = f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse, :include_blank => "unknown"
+        - if list.is_a?(CheckList)
+          = f.select :occurrence_status_level, ListedTaxon::OCCURRENCE_STATUS_LEVELS.invert.to_a.sort_by(&:last).reverse, :include_blank => "unknown"
       %td.establishment_means
-        = f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS, :include_blank => "unknown"
+        - if list.is_a?(CheckList)
+          = f.select :establishment_means, ListedTaxon::ESTABLISHMENT_MEANS, :include_blank => "unknown"
       %td.actions.inline.buttonrow.smallbuttons.nobr
         = link_to_function lt.new_record? ? "Add" : "Update", "saveListedTaxon.apply(this)", :class => "button savelink"
         - if lt.new_record?
