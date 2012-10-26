@@ -16,9 +16,9 @@
       <%= link_to(h(post.title), the_post_path) %>
       <div class="readable body"><%= formatted_user_text(truncate(post.body, :length => 200)) %></div>
       <div class="meta">
-        Posted by <%= link_to(truncate(you_or_login(post.user), :length => 20), person_path(project.user.login)) %>
+        Posted by <%= link_to(truncate(you_or_login(post.user), :length => 20), person_path(post.user.login)) %>
         <span class="when">
-          <abbr class="date timeago" title="<%= project.created_at.iso8601 %>"><%= time_ago_in_words(project.created_at) %> ago</abbr>
+          <abbr class="date timeago" title="<%= post.created_at.iso8601 %>"><%= time_ago_in_words(post.created_at) %> ago</abbr>
         </span> | 
         <%= link_to "View post", the_post_path %>
 

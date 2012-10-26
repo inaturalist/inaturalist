@@ -92,11 +92,17 @@ class PostsController < ApplicationController
         :conditions => ["id IN (?)", params[:observations]])
     end
     if params[:commit] == 'Preview'
+      @post.attributes = params[:post]
+      @preview = @post
+      @observations ||= @post.observations.all(:include => [:taxon, :photos])
+      return render(:action => 'edit')
+=begin
       if @post.update_attributes(params[:post])
         redirect_to (@post.parent.is_a?(Project) ?
                      edit_project_journal_post_path(@post.parent.slug, @post, :preview => true) :
                      edit_journal_post_path(@post.user.login, @post, :preview => true)) and return
       end
+=end
     end
     
     # This will actually perform the updates / deletions, so it needs to 

@@ -1,11 +1,14 @@
 class Post < ActiveRecord::Base
   has_subscribers
-  notifies_subscribers_of :parent, 
-    #:queue_if => lambda{|post,parent,subscription| 
+  notifies_subscribers_of :parent, {
+    :on => [:update, :create],
     :queue_if => lambda{|post| 
-      (post.parent_type == "Project" && !post.draft?)
+      (post.parent_type == "Project" &&
+       !post.draft? &&
+       !Update.where(:notifier_type => "Post", :notifier_id => post.id).exists?)
     },
     :notification => "created_project_post"
+  }
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
