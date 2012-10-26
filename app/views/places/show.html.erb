@@ -96,7 +96,13 @@
       </p>
       
       <% if logged_in? -%>
-        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+        <% if @place_geometry -%>
+          <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+        <% else %>
+          <div class="meta">
+            Subscriptions aren't available for places without boundaries.
+          </div>
+        <% end -%>
       <% end -%>
     <% end -%>
     <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
