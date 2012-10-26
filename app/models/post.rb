@@ -1,11 +1,15 @@
 class Post < ActiveRecord::Base
   has_subscribers
   notifies_subscribers_of :parent, {
-    :on => [:update, :create],
+    :on => [:update, :create], # new post => draft => publish triggers :update;  new post => publish trigers :create
     :queue_if => lambda{|post| 
-      (post.parent_type == "Project" &&
-       !post.draft? &&
-       !Update.where(:notifier_type => "Post", :notifier_id => post.id).exists?)
+      existing_updates = Update.where(:notifier_type => "Post", :notifier_id => post.id)
+      # destroy existing updates if user *unpublishes* a post
+      if !existing_updates.blank? && post.draft? 
+        existing_updates.destroy_all
+        return false
+      end
+      return (post.parent_type == "Project" && !post.draft? && existing_updates.blank?)
     },
     :notification => "created_project_post"
   }

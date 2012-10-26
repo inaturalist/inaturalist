@@ -48,7 +48,6 @@ module HasSubscribers
     # * <tt>:priority</tt> - DJ priority at which to run the notification
     #
     def notifies_subscribers_of(subscribable_association, options = {})
-      logger.info("\n\n#{options.inspect}\n\n")
       unless self.included_modules.include?(HasSubscribers::InstanceMethods)
         include HasSubscribers::InstanceMethods
       end
