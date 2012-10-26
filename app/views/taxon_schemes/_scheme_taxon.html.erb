@@ -17,7 +17,7 @@
     <tr>
       <td>
         <div id="scheme_taxon_<%= taxon.id %>" class="scheme_taxon clear" data-taxon-id="<%= taxon.id %>">
-          <% image_and_content taxon_image(taxon), :image_size => 75 do %>
+          <%= image_and_content taxon_image(taxon), :image_size => 75 do %>
             <%= link_to taxon, :class => "taxon #{taxon.rank}" do %>
               <span class="sciname"><%= taxon.name %></span>
             <% end -%>

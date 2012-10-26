@@ -46,8 +46,8 @@
         ID
       </div>
       <div class="boxbody ui-helper-clearfix">
-        <% image_and_content link_to(user_image(@observation.user, :size => "thumb"), @observation.user) do %>
-          <% image_and_content taxon_image(@observation.taxon) do %>
+        <%= image_and_content link_to(user_image(@observation.user, :size => "thumb"), @observation.user) do %>
+          <%= image_and_content taxon_image(@observation.taxon) do %>
             <div class="stacked">
               <%= @observation.species_guess || "Unknown" %>
             </div>

@@ -96,7 +96,7 @@
     <ol class="readable">
       <% for project_user in @top_observers %>
         <li class="stacked">
-          <% image_and_content link_to(image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
+          <%= image_and_content link_to(image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
               observations_by_login_path(project_user.user.login),
               :alt => h(project_user.user.login),
               :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}") do %>

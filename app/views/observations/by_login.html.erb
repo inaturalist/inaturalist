@@ -273,7 +273,7 @@ Observations by <%= h @login %>
     <ul>
       <% for o in @proj_obs_errors_obs %>
         <li class="clear stacked">
-          <% image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
+          <%= image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
             <%= link_to o.to_plain_s(:user => false), o %>
             <div>
               <%= @proj_obs_errors[:errors][o.id].join("<br/>") %>
