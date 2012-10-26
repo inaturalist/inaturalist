@@ -33,7 +33,7 @@ class Post < ActiveRecord::Base
   )
 
   ALLOWED_ATTRIBUTES = %w(
-    href src width height alt cite title class name xml:lang abbr value
+    href src width height alt cite title class name xml:lang abbr value align
   )
   
   def skip_update_for_draft

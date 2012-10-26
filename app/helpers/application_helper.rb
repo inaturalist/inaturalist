@@ -653,9 +653,19 @@ module ApplicationHelper
     when "Project"
       project = resource
       post = notifier
-      "#{options[:skip_links] ? project.title : link_to(project.title, project_journal_post_url(:project_id=>project.id, :id=>post.id))} wrote a new post.".html_safe
-    when "Project"
-      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
+      title = if options[:skip_links]
+        project.title
+      else
+        link_to(project.title, project_journal_post_url(:project_id => project.id, :id => post.id))
+      end
+      article = if options[:count] && options[:count].to_i == 1
+        "a"
+      else
+        options[:count]
+      end
+      "#{title} wrote #{article} new post#{'s' if options[:count].to_i > 1}".html_safe
+    # when "Project"
+    #   "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
       "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
     when "Taxon"

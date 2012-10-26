@@ -30,7 +30,7 @@
 .updatewithimage .updatecontent {float: left; width: 420px;}
 .updatewithimage .updatecontent .photos.attribute {display:none;}
 
-.item_content {max-width: 475px;}
+.item_content, .item_content img {max-width: 475px;}
 .item_content .identification {
   padding: 5px;
   background-color: #EEE;

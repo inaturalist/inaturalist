@@ -13,8 +13,11 @@
       <% end -%>
     </div>
     <div class="post_content last column item_content">
-      <%= link_to(h(post.title), the_post_path) %>
-      <div class="readable body"><%= formatted_user_text(truncate(post.body, :length => 200)) %></div>
+      <h4><%= link_to(h(post.title), the_post_path) %></h4>
+      <div class="readable body clear">
+        <%= truncate_with_more(formatted_user_text(post.body, 
+          :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES), :length => 500) %>
+      </div>
       <div class="meta">
         Posted by <%= link_to(truncate(you_or_login(post.user), :length => 20), person_path(post.user.login)) %>
         <span class="when">
