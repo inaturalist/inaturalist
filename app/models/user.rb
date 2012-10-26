@@ -46,28 +46,6 @@ class User < ActiveRecord::Base
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
   has_many :photos, :dependent => :destroy
-  has_many :goal_participants, :dependent => :destroy
-  has_many :goals, :through => :goal_participants
-  has_many :incomplete_goals,
-           :source =>  :goal,
-           :through => :goal_participants,
-           :conditions => ["goal_participants.goal_completed = 0 " + 
-                           "AND goals.completed = 0 " +
-                           "AND (goals.ends_at IS NULL " +
-                           "OR goals.ends_at > ?)", Time.now]
-  has_many :completed_goals,
-           :source => :goal,
-           :through => :goal_participants,
-           :conditions => "goal_participants.goal_completed = 1 " +
-                          "OR goals.completed = 1"
-  has_many :goal_participants_for_incomplete_goals,
-           :class_name => "GoalParticipant",
-           :include => :goal,
-           :conditions => ["goal_participants.goal_completed = 0 " + 
-                           "AND goals.completed = 0 " +
-                           "AND (goals.ends_at IS NULL " +
-                           "OR goals.ends_at > ?)", Time.now]
-  has_many :goal_contributions, :through => :goal_participants
   
   has_many :posts, :dependent => :destroy
   has_many :journal_posts, :class_name => Post.to_s, :as => :parent

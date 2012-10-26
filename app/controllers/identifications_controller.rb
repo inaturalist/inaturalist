@@ -6,7 +6,7 @@ class IdentificationsController < ApplicationController
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
     
   def show
-    redirect_to @identification.observation
+    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
   end
   
   def by_login

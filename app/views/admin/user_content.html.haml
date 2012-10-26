@@ -1,0 +1,61 @@
+- content_for :title do
+  - @title = capture do
+    Manage content by
+    = link_to @display_user.login, @display_user
+    = surround '(', ')' do
+      = @klass.name.pluralize
+  = strip_tags(@title)
+
+- content_for :extrajs do
+  = javascript_include_tag 'jquery/plugins/jquery.labelize'
+  :javascript
+    function deleteSelected() {
+      if (confirm("Are you sure you want to delete those records?")) {
+        $('#deleteform').submit()
+      }
+    }
+    $(document).ready(function() {
+      $('tr').labelize()
+    })
+
+%h2= @title
+
+.column.span-4
+  %ul.leftmenu
+    - for klass in @class_names.sort
+      %li= link_to klass.underscore.humanize.pluralize, url_for(:type => klass.underscore.pluralize), :class => @type == klass.underscore.pluralize ? "active" : nil
+.last.column.span-20
+  #controls
+    = link_to_function "Select all", "$('form input[type=checkbox]').prop('checked', true)"
+    |
+    = link_to_function "Select none", "$('form input[type=checkbox]').prop('checked', false)"
+    |
+    = link_to_function "Delete selected".html_safe, "deleteSelected()"
+  = form_tag destroy_user_content_path(@display_user.id, @type), :method => :delete, :id => "deleteform" do
+    %table
+      %tr
+        %th
+        %th id
+        %th title / name
+        %th body
+        %th created at
+        %th updated at
+        %th actions
+      - for record in @records
+        %tr
+          %td= check_box_tag "ids[]", record.id
+          %td= record.id
+          %td
+            - name = record.try_methods(:title, :name, :species_guess, :to_s)
+            - linkable_record = record.becomes(record.class.base_class)
+            = link_to(name, record) rescue link_to(name, linkable_record) rescue name
+          %td= record.try_methods(:body, :description, :remarks)
+          %td= record.created_at
+          %td= record.created_at
+          %td
+            - begin
+              = link_to("view", record)
+              = link_to "delete", record, :method => :delete, :confirm => "Are you sure you want to delete this?"
+            - rescue
+  - if @records.respond_to?(:total_pages)
+    = will_paginate @records

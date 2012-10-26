@@ -5,6 +5,7 @@ class AdminController < ApplicationController
   
   before_filter :authenticate_user!
   before_filter :admin_required
+  before_filter :return_here, :only => [:stats, :index, :user_content]
   
   def stats
     @observation_weeks = Observation.count(
@@ -51,6 +52,20 @@ class AdminController < ApplicationController
   
   def index
   end
+
+  def user_content
+    return unless load_user_content_info
+    @records = @display_user.send("#{@klass.name.underscore.pluralize}").page(params[:page]) rescue []
+  end
+
+  def destroy_user_content
+    return unless load_user_content_info
+    @records = @display_user.send("#{@klass.name.underscore.pluralize}").
+      where("id IN (?)", params[:ids] || [])
+    @records.each(&:destroy)
+    flash[:notice] = "Deleted #{@records.size} #{@type}"
+    redirect_back_or_default(admin_user_content_path(@display_user.id, @type))
+  end
   
   def login_as
     unless user = User.find_by_id(params[:id] || [params[:user_id]])
@@ -64,4 +79,36 @@ class AdminController < ApplicationController
     redirect_to root_path
   end
   
+
+  private
+  def load_user_content_info
+    user_id = params[:id] || params[:user_id]
+    @display_user = User.find_by_id(user_id)
+    @display_user ||= User.find_by_login(user_id)
+    @display_user ||= User.find_by_email(user_id)
+    unless @display_user
+      flash[:error] = "User #{user_id} doesn't exist"
+      redirect_back_or_default(:action => "index")
+      return false
+    end
+
+    @type = params[:type] || "observations"
+    @klass = Object.const_get(@type.camelcase.singularize) rescue nil
+    @klass = nil unless @klass.try(:base_class).try(:superclass) == ActiveRecord::Base
+    unless @klass
+      flash[:error] = "#{params[:type]} doesn't exist"
+      redirect_back_or_default(:action => "index")
+      return false
+    end
+
+    @class_names = []
+    has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
+    has_many_reflections.each do |k, reflection|
+      # Avoid those pesky :through relats
+      next unless reflection.klass.column_names.include?(reflection.foreign_key)
+      @class_names << reflection.klass.name
+    end
+    @class_names.uniq!
+    true
+  end
 end

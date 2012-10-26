@@ -213,8 +213,8 @@ Inaturalist::Application.routes.draw do
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
   
-  match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   resources :identifications
+  match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   match 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post
   resources :taxon_links, :except => [:show, :index]
@@ -233,7 +233,9 @@ Inaturalist::Application.routes.draw do
   
   match '/guide' => 'places#guide', :as => :guide
   resources :flags
-  match '/admin' => 'admin#index', :as => :admin
+  match 'admin' => 'admin#index', :as => :admin
+  match 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
+  match 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content", :via => :delete
   resources :taxon_ranges, :except => [:index, :show]
   match '/calendar/:login' => 'calendars#index', :as => :calendar
   match '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
