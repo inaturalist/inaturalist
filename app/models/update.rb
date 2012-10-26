@@ -139,10 +139,11 @@ class Update < ActiveRecord::Base
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
       :comment => [:user, :parent],
       :listed_taxon => [{:list => :user}, {:taxon => [:photos, :taxon_names]}],
-      :taxon => [:taxon_names, {:taxon_photos => :photo}]
+      :taxon => [:taxon_names, {:taxon_photos => :photo}],
+      :post => [:user, :parent]
     }
     update_cache = {}
-    [Comment, Identification, Observation, ListedTaxon, Post, User, Taxon].each do |klass|
+    [Comment, Identification, Observation, ListedTaxon, Post, Project, User, Taxon].each do |klass|
       ids = []
       updates.each do |u|
         ids << u.notifier_id if u.notifier_type == klass.to_s

@@ -26,7 +26,6 @@ Inaturalist::Application.configure do
   # config.action_mailer.default :charset => "utf-8"
 
   # # Uncomment these to test caching
-  # config.cache_store = :file_store, RAILS_ROOT + "/tmp/cache"
   # config.action_controller.perform_caching             = true
   # config.action_view.cache_template_loading            = true
   # config.cache_classes = true

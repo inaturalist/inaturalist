@@ -57,8 +57,8 @@ module HasSubscribers
       options[:priority] ||= 1
       
       cattr_accessor :notifies_subscribers_of_options
-      @@notifies_subscribers_of_options ||= {}
-      @@notifies_subscribers_of_options[subscribable_association.to_sym] = options
+      self.notifies_subscribers_of_options ||= {}
+      self.notifies_subscribers_of_options[subscribable_association.to_sym] = options
       
       create_callback(subscribable_association, options)
       
@@ -135,7 +135,7 @@ module HasSubscribers
     end
     
     def notify_subscribers_with(notifier, subscribable_association)
-      options = @@notifies_subscribers_of_options[subscribable_association.to_sym]
+      options = self.notifies_subscribers_of_options[subscribable_association.to_sym]
       notifier = find_by_id(notifier) unless notifier.is_a?(self)
       has_many_reflections    = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
       belongs_to_reflections  = reflections.select{|k,v| v.macro == :belongs_to}.map{|k,v| k.to_s}
