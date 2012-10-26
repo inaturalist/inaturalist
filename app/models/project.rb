@@ -12,13 +12,19 @@ class Project < ActiveRecord::Base
   has_one :custom_project, :dependent => :destroy
   has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
   has_many :observation_fields, :through => :project_observation_fields
+
+  has_many :posts, :as => :parent, :dependent => :destroy
   
   before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
   
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
-  
+
+  has_subscribers :to => {
+    :posts => {:notification => "created_project_post"}
+  }
+
   extend FriendlyId
   friendly_id :title, :use => :history, :reserved_words => ProjectsController.action_methods.to_a
   

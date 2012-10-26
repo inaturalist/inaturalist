@@ -593,6 +593,8 @@ module ApplicationHelper
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options.merge(:alt => "#{resource.login} icon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
+    when "Project"
+      image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
@@ -611,6 +613,7 @@ module ApplicationHelper
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
     resource ||= update.resource
+    notifier ||= update.notifier
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
@@ -623,7 +626,6 @@ module ApplicationHelper
       notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
         @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
       end
-      notifier ||= update.notifier
       if notifier.respond_to?(:user)
         notifier_user = if @update_cache && @update_cache[:users]
           @update_cache[:users][notifier.user_id]
@@ -648,7 +650,11 @@ module ApplicationHelper
       s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s.html_safe
-    when "Post"
+    when "Project"
+      project = resource
+      post = notifier
+      "#{options[:skip_links] ? project.title : link_to(project.title, project_journal_post_url(:project_id=>project.id, :id=>post.id))} wrote a new post.".html_safe
+    when "Project"
       "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
       "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe

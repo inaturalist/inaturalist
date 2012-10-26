@@ -146,8 +146,8 @@ form .field .description { margin-bottom: 0.5em;}
 /* Page Headers */
 #pageheader{margin-bottom:10px;}
 #pageheader h2{margin-bottom:0;line-height:1.2;}
-#pageheader a .usericon{float:left;margin-right:10px;border:2px solid white;}
-#pageheader .usericon:hover{border-color:#ddd;}
+#pageheader a .projecticon, #pageheader a .usericon{ float:left;margin-right:10px;border:2px solid white; }
+#pageheader .projecticon:hover, #pageheader .usericon:hover {border-color:#ddd;}
 #pageheader .breadcrumbs{margin-bottom:5px;}
 
 img.mini.usericon {

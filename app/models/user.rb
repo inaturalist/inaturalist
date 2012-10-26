@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   attr_accessor   :preferred_photo_license
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same, :preferred_photo_license]
   
+  preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
   preference :identification_email_notification, :boolean, :default => true
   preference :no_email, :boolean, :default => false
@@ -28,7 +29,7 @@ class User < ActiveRecord::Base
   preference :observation_license, :string
   preference :photo_license, :string
   
-  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification)
+  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :destroy

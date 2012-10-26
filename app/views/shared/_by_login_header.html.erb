@@ -10,7 +10,6 @@
   <%= link_to(
     image_tag(@selected_user.icon.url(:thumb), :class => 'usericon'),
     person_by_login_path(@selected_user.login)) %>
-  
   <h2><%= title %><%= after_title %></h2>
   <%= render :partial => 'users/subnav', 
              :locals => { :user => @selected_user } %>

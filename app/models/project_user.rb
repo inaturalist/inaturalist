@@ -2,6 +2,7 @@ class ProjectUser < ActiveRecord::Base
   
   belongs_to :project
   belongs_to :user
+  auto_subscribes :user, :to => :project
   
   after_save :check_role
   before_destroy :prevent_owner_from_leaving

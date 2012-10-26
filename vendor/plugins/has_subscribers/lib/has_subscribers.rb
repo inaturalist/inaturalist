@@ -182,14 +182,18 @@ module HasSubscribers
     end
 
     def create_callback(subscribable_association, options = {})
-      callback_type = case options[:on]
+      callback_types = case options[:on]
+      when [:update, :create] then [:after_update, :after_create]
       when :update then :after_update
       else :after_create
       end
       callback_method = options[:with] || :notify_subscribers_of
-      send callback_type do |record|
-        if options[:queue_if].blank? || options[:queue_if].call(record)
-          record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
+      callback_types = [callback_types] unless callback_types.is_a?(Array)
+      callback_types.each do |callback_type|
+        send callback_type do |record|
+          if options[:queue_if].blank? || options[:queue_if].call(record)
+            record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
+          end
         end
       end
     end
