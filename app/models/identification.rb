@@ -1,4 +1,5 @@
 class Identification < ActiveRecord::Base
+  acts_as_flaggable
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon
@@ -41,6 +42,10 @@ class Identification < ActiveRecord::Base
   
   def to_s
     "<Identification #{id} observation_id: #{observation_id} taxon_id: #{taxon_id} user_id: #{user_id}"
+  end
+
+  def to_plain_s(options = {})
+    "Identification #{id} by #{user.login}"
   end
 
   # Validations ###############################################################

@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  acts_as_flaggable
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   
@@ -15,6 +16,14 @@ class Comment < ActiveRecord::Base
   scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
   
   attr_accessor :html
+
+  def to_s
+    "<Comment #{id} user_id: #{user_id} parent_type: #{parent_type} parent_id: #{parent_id}>"
+  end
+
+  def to_plain_s(options = {})
+    "Comment #{id}"
+  end
   
   def formatted_body
     BlueCloth::new(self.body).to_html
@@ -25,5 +34,13 @@ class Comment < ActiveRecord::Base
       parent.update_attribute(:comments_count, parent.comments.count)
     end
     true
+  end
+
+  def deletable_by?(deleting_user)
+    return false if deleting_user.blank?
+    return true if deleting_user.id == user_id
+    return true if deleting_user.id == parent.try_methods(:user_id)
+    return true if deleting_user.is_curator? || deleting_user.is_admin?
+    false
   end
 end

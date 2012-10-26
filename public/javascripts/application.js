@@ -836,3 +836,25 @@ $.fn.centerDialog = function() {
   $(this).dialog('option', 'height', newHeight)
   $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
 }
+
+$('.flaglink').live('click', function() {
+  $('#flagdialog').remove()
+  var dialog = $('<div></div>').attr('id', 'flagdialog')
+    .addClass('dialog')
+    .html('<div class="loading status">Loading...</div>')
+  dialog.load($(this).attr('href'), "partial=dialog", function() {
+    $(this).centerDialog()
+    $('input[type=radio]', this).change(function() {
+      if ($(this).val() == 'other') {
+        $(this).parents('.dialog:first').find('textarea').show()
+        $(this).parents('.dialog:first').centerDialog()
+      } else {
+        $(this).parents('.dialog:first').find('textarea').hide()
+        $(this).parents('.dialog:first').centerDialog()
+      }
+    })
+  })
+  $(document.body).append(dialog)
+  dialog.dialog({modal: true, title: "Flag an item"})
+  return false
+})

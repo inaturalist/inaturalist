@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!, :except => :index
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
-  before_filter :owner_required, :only => [:edit, :update, :destroy]
+  before_filter :owner_required, :only => [:edit, :update]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
   MOBILIZED = [:edit]
@@ -88,6 +88,20 @@ class CommentsController < ApplicationController
   end
   
   def destroy
+    unless @comment.deletable_by?(current_user)
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @comment
+        end
+        format.json do
+          render :json => {:error => msg}
+        end
+      end
+      return
+    end
+
     parent = @comment.parent
     @comment.destroy
     respond_to do |format|

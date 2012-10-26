@@ -150,7 +150,9 @@ Inaturalist::Application.routes.draw do
   match 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  resources :comments
+  resources :comments do
+    resources :flags
+  end
   match 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
   resources :project_invitations, :except => [:index, :show]
   match 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation, :via => :post
@@ -213,7 +215,9 @@ Inaturalist::Application.routes.draw do
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
   
-  resources :identifications
+  resources :identifications do
+    resources :flags
+  end
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   match 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post

@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :edit, :update, :relationships, :add_role, :remove_role]
-  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
-  before_filter :admin_required, :only => [:suspend, :unsuspend, :curation]
+  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy, :suspend, :unsuspend]
+  before_filter :admin_required, :only => [:curation]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
   MOBILIZED = [:show, :dashboard, :new, :create]
@@ -217,6 +217,10 @@ class UsersController < ApplicationController
           where("resource_type in ('Place', 'Taxon')").
           order("subscriptions.id DESC").
           limit(5)
+        if current_user.is_curator? || current_user.is_admin?
+          @flags = Flag.order("id desc").where("resolved = ?", false).limit(5)
+          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5)
+        end
       end
       format.mobile
     end

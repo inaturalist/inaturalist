@@ -1,5 +1,4 @@
 class Flag < ActiveRecord::Base
-  serialize :flag
   belongs_to :flaggable, :polymorphic => true
   
   # NOTE: Flags belong to a user
@@ -8,7 +7,7 @@ class Flag < ActiveRecord::Base
   
   # A user can flag a specific flaggable with a specific flag once
   validates_presence_of :flag
-  validates_uniqueness_of :user_id, :scope => [:flaggable_id, :flaggable_type, :flag]
+  validates_uniqueness_of :user_id, :scope => [:flaggable_id, :flaggable_type, :flag], :message => "has already flagged that item."
   validates_presence_of :resolver, :if => Proc.new {|f| f.resolved? }
   validate :flaggable_type_valid
   

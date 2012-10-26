@@ -1,0 +1,35 @@
+= form_for @flag, :builder => DefaultFormBuilder do |f|
+  - unless @flags.blank?
+    .notice.box
+      %strong Heads up:
+      this
+      = @object.class.name.underscore.humanize.downcase
+      has already been flagged by
+      %ul
+        - @flags.each do |flag|
+          %li
+            = surround '', ':' do
+              = link_to user_image(flag.user), flag.user
+              = link_to_user flag.user
+            = flag.flag
+            - unless flag.comment.blank?
+              = surround '"', '"' do
+                = flag.comment
+  = f.hidden_field :flaggable_type
+  = f.hidden_field :flaggable_id
+  = f.radio_button :flag, "spam", 
+    :label => "spam",
+    :label_after => true, 
+    :description => "Commercial solicitation, links to nowhere, etc."
+  = f.radio_button :flag, "inappropriate", 
+    :label => "offensive / inappropriate",
+    :label_after => true, 
+    :description => "Misleading or illegal content, racial or ethnic slugs, etc."
+  = f.radio_button :flag, "other",
+    :label => "other",
+    :label_after => true, 
+    :description => "Some other reason you can explain below."
+
+  = text_area_tag :flag_explanation, "", :placeholder => "Reason you're flagging this item.", 
+    :style => "display:none;"
+  = f.submit "Save flag", "data-loading-click" => "Saving...", :class => "default button"

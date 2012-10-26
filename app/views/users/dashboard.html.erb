@@ -3,57 +3,6 @@
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
-  <style type="text/css" media="screen">
-    .update {position:relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-    .updateresource {width: 48px; position: absolute; text-align:center;left: 0; top:0;}
-    .updateresource img {max-width: 48px;}
-    .updateheader {padding-top: 5px;}
-    .updatebody {margin-left: 56px;}
-    .updateimage { width: 100px; float:left; margin-right: 10px;}
-    .updateimage img { max-width: 100px; }
-    .updatewithimage .updatecontent {float: left; width: 420px;}
-    .updatewithimage .updatecontent .photos.attribute {display:none;}
-    
-    .item_content {max-width: 475px;}
-    .item_content .identification {
-      padding: 5px;
-      background-color: #EEE;
-      margin-bottom: 5px;
-    }
-    
-    .activity.update:before {
-      content: ' ';
-      display:block;
-      position:absolute;
-      left:-21px;
-      top: 5px;
-      width:16px;
-      height: 16px;
-      background-position: -128px -96px;
-      background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);
-      z-index:1;
-    }
-    .new.activity.update:before {
-      background-image: url(/images/jquery-ui/ui-icons_cd0a0a_256x240.png);
-    }
-    
-    .stub { opacity: 0.5; }
-    .stub:hover { opacity: 1; }
-    
-    .observations.mini .observation:last-child {border: 0 transparent;}
-    #calendar .calendar {float: none; width: 100%;}
-    
-    #explore .observations.grid .observation {margin: 0 2px 5px 0;}
-    #explore .observations.medium.grid .observation, 
-    #explore .observations.medium.grid .photos, 
-    #explore .observations.medium.grid .photos a, 
-    #explore .observations.medium.grid .icon {
-      width: 153px;
-      height: 153px;
-    }
-    
-    #comments .commentitem { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 10px;}
-  </style>
 <% end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -255,6 +204,72 @@
           :month_name => "Your #{Date::MONTHNAMES[Date.today.month]} Observations" } %>
         <%= link_to "View your calendar", calendar_path(current_user.login), :class => "readmore" %>
       </div>
+
+      <% if current_user.is_curator? -%>
+        <div id="curatorbox" class="box">
+          <h3>
+            Curation
+            <% helptip_for "curation" do %>
+              You're a site curator, which means you've volunteered to help
+              curate our data and monitor content. Please don't feel obliged
+              to deal with all these issues, but if you have the time to check
+              some of them out, we'd appreciate all the help we can get. If
+              you have any questions about curating content or don't want to
+              be a curator anymore, please contact us at 
+              <%= link_to APP_CONFIG[:help_email], "mailto:#{APP_CONFIG[:help_email]}" %>.
+            <% end -%>
+          </h3>
+          <% unless @flags.blank? -%>
+            <h4>
+              Flags
+              <% helptip_for "flags" do %>
+                These are items people on the site have flagged for curation.
+                Spam comments should be deleted and users who add spam should
+                be suspended (go to their profile page and click "Suspend
+                user" in the lower right to prevent them from logging in).
+                Other flagged items should only be deleted if they are clearly
+                hateful, illegal, etc. Rudness, offensive language, etc,
+                should be handled with a polite comment. Repeat offenders
+                should be reported to a site admin or <%=
+                APP_CONFIG[:help_email] %>.
+              <% end -%>
+            </h4>
+            <ul>
+              <% for flag in @flags %>
+                <li>
+                  <%= render :partial => "flags/flag", :object => flag %>
+                </li>
+              <% end %>
+            </ul>
+          <% end -%>
+
+          <% unless @ungrafted_taxa.blank? -%>
+            <h4>
+              Ungrafted taxa
+                <% helptip_for "flags" do %>
+                  These are taxa that iNat couldn't automatically add to our
+                  taxonomic tree for some reason. You can add them to the tree
+                  by editing the taxon and choosing a parent record. For
+                  example, the parent of <i>Homo sapiens</i> would be the
+                  genus <i>Homo</i>. You might also want to check for synonymous 
+                  taxa and merge them.
+                <% end -%>
+              </h4>
+            </h4>
+            <ul>
+              <% for taxon in @ungrafted_taxa %>
+                <li>
+                  <%= link_to_taxon taxon %>
+                  <%= link_to "edit", edit_taxon_path(taxon) %>
+                </li>
+              <% end %>
+            </ul>
+          <% end -%>
+
+          <%= link_to "Curate taxa", curate_taxa_path %> |
+          <%= link_to "Create a new taxon", new_taxon_path %>
+        </div>
+      <% end -%>
 
       <%= separator %>
 
