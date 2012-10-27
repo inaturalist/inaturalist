@@ -221,7 +221,7 @@ Inaturalist::Application.routes.draw do
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
   
-  resources :identifications do
+  resources :identifications, :constraints => { :id => id_param_pattern } do
     resources :flags
   end
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get

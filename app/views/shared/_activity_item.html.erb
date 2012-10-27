@@ -42,7 +42,9 @@
       <span class="comment_actions">
         <%-
           pieces = []
-          pieces << link_to("Edit", edit_comment_path(item)) if is_me?(item.user) && item.is_a?(Comment)
+          if is_me?(item.user)
+            pieces << link_to("Edit", item.is_a?(Comment) ? edit_comment_path(item) : edit_identification_path(item))
+          end
           if item.respond_to?(:deletable_by?) && item.deletable_by?(current_user) || is_me?(item.user)
             pieces << link_to("Delete", item, 
                         :confirm => "Are you sure you want to delete this?", 
