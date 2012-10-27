@@ -90,7 +90,7 @@
   <% unless @project_journal_posts.blank? %>
     <div id="journal">
       <h3>
-        Recent Journal Posts
+        Recent Posts
         <%= link_to "View all", project_journal_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
       </h3>
       <% if @project_journal_posts.blank? -%>
@@ -157,7 +157,7 @@
       <%= link_to "<span class='lead'>&raquo;</span> Checklist".html_safe, list_path(@project.project_list), :class => "navlink" %>
     </li>
     <li>
-      <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> Posts".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
       <% if @project.contest? -%>
