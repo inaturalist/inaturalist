@@ -6,9 +6,9 @@
   no_common ||= false
   if taxon.species_or_lower?
     pieces = taxon.name.split
-    sciname = if taxon.variety?
+    sciname = if taxon.variety? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
-    elsif taxon.subspecies?
+    elsif taxon.subspecies? && pieces.size == 3
       "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">ssp.</span> #{pieces[2..-1].join(' ')}</span>"
     else
       "<span class=\"sciname\">#{taxon.name}</span>"
