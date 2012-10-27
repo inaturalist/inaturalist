@@ -1,4 +1,4 @@
-<%= form_for @observation do |f| %>
+<%= form_for @observation, :html => {:multipart => true} do |f| %>
   <%= f.hidden_field :species_guess %>
   <div class="observation_photos stacked">
     <%= render :partial => "photos/photo_list_form", :locals => { 
