@@ -1,5 +1,8 @@
 class TaxonDrop < TaxonChange
   
+  def add_output_taxon(t)
+  end
+
   def commit_taxon_change
     self.committed_on = Time.now
     self.save

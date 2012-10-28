@@ -1,5 +1,6 @@
 class TaxonChangesController < ApplicationController
   before_filter :curator_required, :except => [:index, :show]
+  before_filter :admin_required, :only => [:commit_taxon_change]
   before_filter :load_taxon_change, :except => [:index, :new, :create]
   
   def index
@@ -66,7 +67,13 @@ class TaxonChangesController < ApplicationController
   
   def new
     @change_groups = TaxonChange.all(:select => "change_group", :group => "change_group").map{|tc| tc.change_group}.compact.sort
-    @taxon_change = TaxonChange.new
+    @klass = Object.const_get(params[:type]) rescue nil
+    @klass = TaxonChange if @klass.blank? || @klass.superclass != TaxonChange
+    @taxon_change = @klass.new
+    @input_taxa = Taxon.where("id in (?)", params[:input_taxon_ids])
+    @output_taxa = Taxon.where("id in (?)", params[:output_taxon_ids])
+    @input_taxa.each {|t| @taxon_change.add_input_taxon(t)} unless @input_taxa.blank?
+    @output_taxa.each {|t| @taxon_change.add_output_taxon(t)} unless @output_taxa.blank?
   end
   
   def create

@@ -7,8 +7,11 @@
                              "jquery/plugins/jqModal",
                              "taxon_browser" %>
   <script type="text/javascript" charset="utf-8">
+    var TAXON = <%= @taxon.to_json.html_safe %>
     $(document).ready(function() {
       $('#keeper_name').simpleTaxonSelector({
+        isActive: 'any',
+        includeID: true,
         afterSelect: function() {
           $('#confirm').html('<div class="loading status">Loading comparison...</div>')
           $('#confirm').load('<%= url_for(:id => @taxon, :format => "js") %>', "taxon_id="+$('#taxon_id').val(), function(responseText, status, request) {
@@ -16,13 +19,21 @@
               $(this).html('<div class="padded error status">'+responseText+'</div>')
             }
           })
-          $('#submitbutton').attr('disabled', false).removeClass('disabled');
+          $('#submitbutton, #swapbutton').attr('disabled', false).removeClass('disabled');
         },
         afterUnselect: function() {
-          $('#submitbutton').attr('disabled', true).addClass('disabled');
+          $('#submitbutton, #swapbutton').attr('disabled', true).addClass('disabled');
         }
-      });
-    });
+      })
+    })
+
+    function makeTaxonSwap() {
+      var keeperId = TAXON.id,
+          rejectId = $('#taxon_id').val()
+      if (!keeperId || !rejectId) return false
+      window.location = '/taxon_changes/new?type=TaxonSwap&input_taxon_ids[]='+rejectId+'&output_taxon_ids[]='+keeperId
+      return false
+    }
   </script>
 <%- end -%>
 
@@ -58,6 +69,9 @@
     :id => "submitbutton",
     "data-loading-click" => "Merging...",
     :confirm => "Are you sure you want to delete #{@taxon.name} (#{@taxon.id}) and move all its associates?" %>
+  <%= link_to_function "Make a TaxonSwap instead?", "makeTaxonSwap()", 
+    :id => "swapbutton",
+    :class => "button disabled" %>
 <% end %>
 
 <div id="confirm" class="clear"></div>

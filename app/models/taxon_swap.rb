@@ -12,6 +12,14 @@ class TaxonSwap < TaxonChange
       taxon
     end
   end
+
+  def add_input_taxon(t)
+    self.taxon_change_taxa.build(:taxon => t)
+  end
+
+  def add_output_taxon(t)
+    self.taxon = t
+  end
   
   def commit_taxon_change
     self.committed_on = Time.now

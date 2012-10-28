@@ -72,6 +72,16 @@ class TaxonChange < ActiveRecord::Base
   def committed?
     !committed_on.blank?
   end
+
+  # Override in subclasses that use self.taxon_change_taxa as the input
+  def add_input_taxon(taxon)
+    self.taxon = taxon
+  end
+
+  # Override in subclasses that use self.taxon as the output
+  def add_output_taxon(taxon)
+    self.taxon_change_taxa.build(:taxon => taxon)
+  end
   
   def self.commit_taxon_change(taxon_change_id)
     unless taxon_change = TaxonChange.find_by_id(taxon_change_id)

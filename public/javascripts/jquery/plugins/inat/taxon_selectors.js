@@ -165,7 +165,7 @@
         list.append(
           $('<li></li>').append(
             $('<a href="#"></a>').append(
-              $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, {taxon: taxon})
+              $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, $.extend(true, options, {taxon: taxon}))
             ).click(function() {
               $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
               return false;
@@ -317,11 +317,11 @@
 
     // Set the status
     if (taxon.common_name) {
-      var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.common_name, {taxon: taxon});
+      var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.common_name, $.extend(true, options, {taxon: taxon}));
     } else if (taxon.default_name) {
-      var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, {taxon: taxon});
+      var message = $.fn.simpleTaxonSelector.taxonNameToS(taxon.default_name, $.extend(true, options, {taxon: taxon}));
     } else {
-      var message = $.fn.simpleTaxonSelector.taxonToS(taxon);
+      var message = $.fn.simpleTaxonSelector.taxonToS(taxon, options);
     }
     $.fn.simpleTaxonSelector.setStatus(wrapper, 'matched', message);
     
@@ -340,7 +340,7 @@
   };
   
   $.fn.simpleTaxonSelector.taxonNameToS = function(name, options) {
-    var options = $.extend({}, options);
+    var options = $.extend({}, options)
     var taxon = typeof(name.taxon) == 'undefined' ? options.taxon : name.taxon
     var formatted = $('<span class="taxon"></span>');
     if (taxon.iconic_taxon && typeof(taxon.iconic_taxon) != 'undefined') {
@@ -348,7 +348,7 @@
     } else {
       formatted.addClass('Unknown');
     }
-    var formattedSciName = $.fn.simpleTaxonSelector.taxonToS(taxon, {skipClasses: true});
+    var formattedSciName = $.fn.simpleTaxonSelector.taxonToS(taxon, $.extend(true, options, {skipClasses: true}));
     if (name.lexicon == 'Scientific Names') {
       if (name.is_valid) {
         $(formatted).append(formattedSciName);
@@ -356,7 +356,7 @@
         $(formatted).append(name['name'] + ' (=');
         $(formatted).append(formattedSciName);
         $(formatted).append(')');
-      };
+      }
     }
     else {
       $(formatted).append(name['name'] + ' (');
@@ -389,9 +389,14 @@
         formatted.addClass('Unknown');
       }
     }
+    if (options.includeID) { formatted.append(' ' + taxon.id) }
+    if (options.isActive == 'any') {
+      formatted.addClass(taxon.is_active ? 'active' : 'inactive')
+      if (taxon.is_active == false) formatted.append(' [inactive]')
+    }
     
     return $(formatted).get(0);
-  };
+  }
   
   $.fn.simpleTaxonSelector.styles = {};
   $.fn.simpleTaxonSelector.styles.statuses = {};

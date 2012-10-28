@@ -13,13 +13,18 @@
       var index = $('#new_taxon_change_taxa').children().length
       markup = markup.replace(/taxon_change_taxa_attributes\]\[0\]/g, "taxon_change_taxa_attributes]["+index+"]")
       $('#new_taxon_change_taxa').append(markup)
-      $('#new_taxon_change_taxa input.text:last').simpleTaxonSelector()
+      $('#new_taxon_change_taxa input.text:last').simpleTaxonSelector({
+        isActive: 'any',
+        includeID: true
+      })
     }
     $(document).ready(function() {
       $('.taxon_change_taxon').each(function() {
         var taxonIDField = $('input[name*="[taxon_id]"]', this).get(0)
         $('input.text', this).simpleTaxonSelector({
-          taxonIDField: taxonIDField
+          taxonIDField: taxonIDField,
+          isActive: 'any',
+          includeID: true
         })
       })
     })
@@ -35,17 +40,32 @@
   <div class="column span-24">
     <% if taxon_change.new_record? -%>
       <fieldset class="column span-8">
-        <legend>Type</legend>
-        <%= f.radio_button :type, 'TaxonSplit', { :checked => true }, :label_after => true, :label => "split" %>
-        <%= f.radio_button :type, 'TaxonMerge', :label_after => true, :label => "merge" %>
-        <%= f.radio_button :type, 'TaxonSwap', :label_after => true, :label => "swap" %>
-        <%= f.radio_button :type, 'TaxonDrop', :label_after => true, :label => "drop" %>
-        <%= f.radio_button :type, 'TaxonStage', :label_after => true, :label => "stage" %>
+        <legend>
+          Type
+          <% helptip_for "type" do %>
+            Choose what kind of change you're creating.
+          <% end -%>
+        </legend>
+        <%= f.radio_button :type, 'TaxonSplit', { :checked => true }, :label_after => true, :label => "split",
+          :description => "Old taxon split into multiple new taxa" %>
+        <%= f.radio_button :type, 'TaxonMerge', :label_after => true, :label => "merge",
+          :description => "Several old taxa lumped into one new taxon" %>
+        <%= f.radio_button :type, 'TaxonSwap', :label_after => true, :label => "swap",
+          :description => "1-to-1 name change" %>
+        <%= f.radio_button :type, 'TaxonDrop', :label_after => true, :label => "drop",
+          :description => "Taxon concept completely invalid, maintained for historical purposes or partner compatability" %>
+        <%= f.radio_button :type, 'TaxonStage', :label_after => true, :label => "stage",
+          :description => "Prepare an inactive concept for release as part of a change group" %>
       </fieldset>
     <% end %>
 
     <fieldset id="sourcing" class="last column span-<%= taxon_change.new_record? ? '16' : '24' %>">
-      <legend>Sourcing</legend>
+      <legend>
+        Sourcing
+        <% helptip_for "source" do %>
+          Please add a citation for this change.
+        <% end -%>
+      </legend>
       <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
       <%= f.select :change_group, @change_groups, :include_blank => "None", :selected => taxon_change.try(:change_group) %>
     </fieldset>
