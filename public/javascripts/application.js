@@ -554,7 +554,6 @@ $.fn.centerInContainer = function(options) {
   options = options || {}
   var containerSelector = options.container || ':first'
   $(this).not('.centeredInContainer').each(function() {
-    if ($(this)) {};
     var containerWidth = $(this).parents(containerSelector).width(),
         containerHeight = $(this).parents(containerSelector).height(),
         w = $(this).naturalWidth(),

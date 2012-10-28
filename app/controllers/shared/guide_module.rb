@@ -57,11 +57,16 @@ module Shared::GuideModule
       @scope = @scope.has_conservation_status(@conservation_status)
     end
     
-    @taxa = @scope.paginate( 
-      :select => "DISTINCT ON (ancestry, taxa.id) taxa.*",
-      :include => [:taxon_names, {:taxon_photos => :photo}],
-      :order => @order,
-      :page => params[:page], :per_page => 50)
+    page = (params[:page] || 1).to_i
+    per_page = 50
+    offset = (page - 1) * per_page
+    @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*").
+      includes(:taxon_names, {:taxon_photos => :photo})
+    total_entries = @scope.count
+    @scope = @scope.order(@order).limit(per_page).offset(offset)
+    @taxa = WillPaginate::Collection.create(page, per_page, total_entries) do |pager|
+      pager.replace(@scope.to_a)
+    end
     @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
     
     @partial = params[:partial]
