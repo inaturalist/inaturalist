@@ -100,8 +100,26 @@ class Update < ActiveRecord::Base
     puts msg
     user_ids.each do |subscriber_id|
       delivery_start_time = Time.now
-      Rails.logger.info "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
-      if email_updates_to_user(subscriber_id, start_time, end_time)
+      msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
+      Rails.logger.info msg
+      puts msg
+      email_sent = begin
+        email_updates_to_user(subscriber_id, start_time, end_time)
+      rescue Net::SMTPServerBusy => e
+        sleep(2)
+        begin
+          email_updates_to_user(subscriber_id, start_time, end_time)
+        rescue Net::SMTPServerBusy => e
+          msg =  "[ERROR #{Time.now}] daily updates emailer couldn't deliver to #{subscriber_id} (Net::SMTPServerBusy): #{e.message}"
+          Rails.logger.error msg
+          puts msg
+          next
+        end
+      end
+      if email_sent
+        msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} sent"
+        Rails.logger.info msg
+        puts msg
         delivery_times << (Time.now - delivery_start_time)
         email_count += 1
       end
@@ -120,7 +138,6 @@ class Update < ActiveRecord::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
-    # return unless user.admin? # testing
     updates = Update.all(:limit => 100, :conditions => [
       "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
     updates.delete_if do |u| 
