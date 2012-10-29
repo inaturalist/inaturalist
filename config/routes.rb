@@ -257,6 +257,7 @@ Inaturalist::Application.routes.draw do
 
   resources :taxon_changes, :constraints => { :id => id_param_pattern } do
     resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
+    put :commit
   end
   resources :taxon_schemes, :only => [:index, :show]
   
@@ -265,7 +266,7 @@ Inaturalist::Application.routes.draw do
   resources :taxon_swaps, :controller => :taxon_changes
   resources :taxon_drops, :controller => :taxon_changes
   resources :taxon_stages, :controller => :taxon_changes
-  match 'taxon_swaps/:id/commit_taxon_change' => 'taxon_changes#commit_taxon_change', :as => :commit_taxon_change, :via => :post
+  # match 'taxon_swaps/:id/commit_taxon_change' => 'taxon_changes#commit_taxon_change', :as => :commit_taxon_change, :via => :post
   
   if Rails.env.development?
     mount EmailerPreview => 'mail_view'

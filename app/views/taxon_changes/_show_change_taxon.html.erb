@@ -23,9 +23,9 @@
   <% if taxon_change.committed_on.blank? && is_admin? %>
     <div class="right inline buttonrow">
       <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
-      <%= link_to "Commit", commit_taxon_change_path(taxon_change.id),
+      <%= link_to "Commit", taxon_change_commit_path(taxon_change),
         :confirm => "Are you sure you want to commit this change?",
-        :method => :post,
+        :method => :put,
         :class => "glaucous inline button",
         "data-loading-click" => "Committing..." %>
     </div>

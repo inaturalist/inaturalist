@@ -166,6 +166,11 @@ Taxon.blueprint(:threatened) do
   is_active { true }
 end
 
+TaxonDrop.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
 TaxonLink.blueprint do
   user { User.make! }
   taxon { Taxon.make! }
@@ -176,6 +181,11 @@ end
 TaxonPhoto.blueprint do
   taxon { Taxon.make! }
   photo { Photo.make }
+end
+
+TaxonMerge.blueprint do
+  source { Source.make! }
+  user { User.make! }
 end
 
 TaxonName.blueprint do
@@ -191,6 +201,21 @@ end
 TaxonScheme.blueprint do
   title { Faker::Lorem.sentence }
   source { Source.make! }
+end
+
+TaxonSplit.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonStage.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonSwap.blueprint do
+  source { Source.make! }
+  user { User.make! }
 end
 
 Update.blueprint do

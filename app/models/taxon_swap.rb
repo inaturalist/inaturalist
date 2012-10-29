@@ -14,31 +14,40 @@ class TaxonSwap < TaxonChange
   end
 
   def add_input_taxon(t)
-    self.taxon_change_taxa.build(:taxon => t)
+    self.taxon_change_taxa.build(:taxon => t, :taxon_change => self)
   end
 
   def add_output_taxon(t)
     self.taxon = t
   end
+
+  def input_taxa
+    taxa
+  end
+
+  def output_taxa
+    [taxon]  
+  end
+
+  def input_taxon
+    taxa.first
+  end
+
+  def output_taxon
+    taxon
+  end
   
-  def commit_taxon_change
-    self.committed_on = Time.now
-    self.save
-    end_taxon = self.taxon
-    start_taxon = self.old_taxon
-    start_taxon.is_active = "false"
-    start_taxon.save
+  def commit
+    # duplicate photos
+    input_taxon.photos.each {|photo| photo.taxa << output_taxon}
     
-    #duplicate photos
-    start_taxon.photos.each {|photo| photo.taxa << end_taxon}
+    # duplicate iucn_status
+    output_taxon.conservation_status = input_taxon.conservation_status
+    output_taxon.conservation_status_source_id = input_taxon.conservation_status_source_id
+    output_taxon.conservation_status_source_identifier = input_taxon.conservation_status_source_identifier
     
-    #duplicate iucn_status
-    end_taxon.conservation_status = start_taxon.conservation_status
-    end_taxon.conservation_status_source_id = start_taxon.conservation_status_source_id
-    end_taxon.conservation_status_source_identifier = start_taxon.conservation_status_source_identifier
-    
-    #duplicate taxon_names
-    start_taxon.taxon_names.all.each do |taxon_name|
+    # duplicate taxon_names
+    input_taxon.taxon_names.each do |taxon_name|
       taxon_name.reload
       unless taxon_name.valid?
         Rails.logger.info "[INFO] Destroying #{taxon_name} while committing taxon change " +
@@ -47,25 +56,24 @@ class TaxonSwap < TaxonChange
         next
       end
       new_taxon_name = taxon_name.dup
-      new_taxon_name.taxon_id = end_taxon.id
+      new_taxon_name.taxon_id = output_taxon.id
       new_taxon_name.is_valid = false if taxon_name.is_scientific_names? && taxon_name.is_valid?
       new_taxon_name.save
     end
     
-    #duplicate taxon_range
-    start_taxon.taxon_ranges.each do |taxon_range|
-      new_taxon_range = taxon_range.dup
-      new_taxon_range.taxon_id = end_taxon.id
-      new_taxon_range.save
+    # duplicate taxon_range
+    if output_taxon.taxon_ranges.count == 0
+      input_taxon.taxon_ranges.each do |taxon_range|
+        new_taxon_range = taxon_range.dup
+        new_taxon_range.taxon_id = output_taxon.id
+        new_taxon_range.save
+      end
     end
     
-    #duplicate colors
-    end_taxon.colors << start_taxon.colors if end_taxon.colors.blank?
+    # duplicate colors
+    output_taxon.colors << input_taxon.colors if output_taxon.colors.blank?
     
-    #send_updates(start_taxon)
-    
-    end_taxon.is_active = "true"
-    end_taxon.save
+    super
   end
   
 end

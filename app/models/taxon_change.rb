@@ -80,34 +80,22 @@ class TaxonChange < ActiveRecord::Base
 
   # Override in subclasses that use self.taxon as the output
   def add_output_taxon(taxon)
-    self.taxon_change_taxa.build(:taxon => taxon)
+    self.taxon_change_taxa.build(:taxon => taxon, :taxon_change => self)
   end
-  
-  def self.commit_taxon_change(taxon_change_id)
-    unless taxon_change = TaxonChange.find_by_id(taxon_change_id)
-      return
-    end
-    unless taxon_change.committed_on.nil?
-      return
-    end
-    TaxonChange.update_all(["committed_on = ?", Time.now],["id = ?", taxon_change.id])
-    case taxon_change.class.name when 'TaxonSplit'
-      Taxon.update_all({:is_active => false},["id = ?", taxon_change.taxon_id])
-      Taxon.update_all({:is_active => true},["id in (?)", taxon_change.taxon_change_taxa.map{|tct| tct.taxon_id}])
-      TaxonSplit.delay(:priority => 2).update_observations_later(taxon_change.id)
-    when 'TaxonMerge'
-      Taxon.update_all({:is_active => false},["id in (?)", taxon_change.taxon_change_taxa.map{|tct| tct.taxon_id}])
-      Taxon.update_all({:is_active => true},["id = ?", taxon_change.taxon_id])
-      TaxonMerge.delay(:priority => 2).update_observations_later(taxon_change.id)
-    when 'TaxonSwap'
-      Taxon.update_all({:is_active => false},["id in (?)", taxon_change.taxon_change_taxa.map{|tct| tct.taxon_id}])
-      Taxon.update_all({:is_active => true},["id = ?", taxon_change.taxon_id])
-      TaxonSwap.delay(:priority => 2).update_observations_later(taxon_change.id)
-    when 'TaxonDrop'
-      Taxon.update_all({:is_active => false},["id = ?", taxon_change.taxon_id])
-    when 'TaxonStage'
-      Taxon.update_all({:is_active => true},["id = ?", taxon_change.taxon_id])
-    end
+
+  def input_taxa
+    [taxon]
+  end
+
+  def output_taxa
+    taxa
+  end
+
+  # Override in subclasses
+  def commit
+    input_taxa.each {|t| t.update_attribute(:is_active, false)}
+    output_taxa.each {|t| t.update_attribute(:is_active, true)}
+    update_attribute(:committed_on, Time.now)
   end
 
 end

@@ -122,26 +122,22 @@ class TaxonChangesController < ApplicationController
     redirect_to :action => 'index'
   end
   
-  def commit_taxon_change
-    unless @taxon_change = TaxonChange.find(params[:id])
-      flash[:error] = "That taxon change doesn't exist."
-      redirect_to :back and return
-    end
-    unless @taxon_change.committed_on.nil?
+  def commit
+    if @taxon_change.committed?
       flash[:error] = "This taxonomic change was already committed!"
-      redirect_to :back and return
+      redirect_back_or_default(taxon_changes_path)
+      return
     end
     
-    #TaxonChange.delay(:priority => 2).commit_taxon_change(taxon_change_id)
-    @taxon_change.commit_taxon_change
+    @taxon_change.commit
     
     flash[:notice] = "Taxon change committed!"
-    redirect_to :back and return
+    redirect_back_or_default(taxon_changes_path)
   end
   
   private
   def load_taxon_change
-    render_404 unless @taxon_change = TaxonChange.find_by_id(params[:id], 
+    render_404 unless @taxon_change = TaxonChange.find_by_id(params[:id] || params[:taxon_change_id], 
       :include => [
         {:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
         {:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
