@@ -12,7 +12,10 @@ class FlickrPhoto < Photo
       @api_response ||= FlickrPhoto.get_api_response(native_photo_id, :user => user)
       fp_flickr_user_id = @api_response.owner.nsid
       
-      if user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
+      if user.flickr_identity.blank? && self.observations.by(user).exists?
+        # assume the user used to have a FlickrIdentity and used it to import this photo, 
+        # but has since removed the FlickrIdentity
+      elsif user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
         errors.add(:user, "must own the photo on Flickr.")
       end
     end
