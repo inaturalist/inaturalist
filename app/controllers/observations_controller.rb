@@ -511,7 +511,8 @@ class ObservationsController < ApplicationController
               :map_scale => o.map_scale,
               :positional_accuracy => o.positional_accuracy,
               :positioning_method => o.positioning_method,
-              :positioning_device => o.positioning_device
+              :positioning_device => o.positioning_device,
+              :project_id => params[:project_id]
           elsif @observations.size == 1
             redirect_to observation_path(@observations.first)
           else

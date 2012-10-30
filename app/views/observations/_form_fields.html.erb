@@ -188,7 +188,7 @@
           <% @project.project_observation_fields.each do |pof| %>
             <%-
               observation_field_value = o.object.observation_field_values.detect{|ofv| ofv.observation_field_id == pof.observation_field_id}
-              observation_field_value ||= o.object.observation_field_values.build(:observation_field => pof.observation_field)
+              observation_field_value ||= ObservationFieldValue.new(:observation_field => pof.observation_field, :observation => o.object)
             -%>
             <%= o.fields_for(:observation_field_values, observation_field_value) do |ofv| %>
               <%= render 'observation_field_row', 
