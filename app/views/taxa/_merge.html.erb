@@ -1,119 +1,128 @@
-<table width="100%" border="0" cellspacing="5" cellpadding="5">
-  <tr>
-    <th>&nbsp;</th>
-    <th>Taxon to keep</th>
-    <th>
-      <%= link_to "Keep this taxon", merge_taxon_path(@keeper, :taxon_id => @taxon.id), :class => "small right" %>
-      Taxon to delete
-    </th>
-  </tr>
-  
-  <tr>
-    <th>ID</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <%= taxon.id %>
-        <span class="meta">(created at <%= taxon.created_at %>)</span>
-      </td>
-    <% end %>
-  </tr>
-  
-  <tr>
-    <th>Name</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <%= taxon_image taxon %>
-        <%= render :partial => "shared/taxon", :object => taxon %>
-      </td>
-    <% end %>
-  </tr>
+<% if @taxon_change -%>
+  <div class="notice box">
+    <strong>Heads up:</strong> there is already a 
+    <%= link_to @taxon_change.class.name.underscore.humanize.downcase, @taxon_change %>
+    involving these two taxa.
+    <%= link_to "View #{@taxon_change.class.name.underscore.humanize.downcase}", @taxon_change, :class => "readmore" %>
+  </div>
+<% else %>
+  <table width="100%" border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <th>&nbsp;</th>
+      <th>Taxon to keep</th>
+      <th>
+        <%= link_to "Keep this taxon", merge_taxon_path(@keeper, :taxon_id => @taxon.id), :class => "small right" %>
+        Taxon to delete
+      </th>
+    </tr>
+    
+    <tr>
+      <th>ID</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <%= taxon.id %>
+          <span class="meta">(created at <%= taxon.created_at %>)</span>
+        </td>
+      <% end %>
+    </tr>
+    
+    <tr>
+      <th>Name</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <%= taxon_image taxon %>
+          <%= render :partial => "shared/taxon", :object => taxon %>
+        </td>
+      <% end %>
+    </tr>
 
-  <tr>
-    <th>Schemes</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <% for taxon_scheme in taxon.taxon_schemes %>
-          <div><%= link_to taxon_scheme.title, taxon_scheme %></div>
-        <% end %>
-      </td>
-    <% end %>
-  </tr>
+    <tr>
+      <th>Schemes</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <% for taxon_scheme in taxon.taxon_schemes %>
+            <div><%= link_to taxon_scheme.title, taxon_scheme %></div>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
 
-  <tr>
-    <th>Sources</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <%= citation_for taxon.source %>
-      </td>
-    <% end %>
-  </tr>
-  
-  <tr>
-    <th>Associations</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <ul>
-          <li><%= pluralize taxon.observations_count, "observation" %></li>
-          <li><%= pluralize taxon.listed_taxa_count, "listed taxon" %></li>
-          <li><%= pluralize taxon.identifications.count, "identification" %></li>
-          <li><%= pluralize taxon.taxon_links.count, "taxon_link" %></li>
-        </ul>
-      </td>
-    <% end %>
-  </tr>
-  
-  <tr>
-    <th>Photos</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <% for photo in taxon.photos %>
-          <%= image_tag photo.thumb_url %>
-        <% end %>
-      </td>
-    <% end %>
-  </tr>
-  
-  <tr>
-    <th>Places</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <ul>
-          <% for place in taxon.places %>
-            <li><%= link_to place.display_name, place %></li>
+    <tr>
+      <th>Sources</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <%= citation_for taxon.source %>
+        </td>
+      <% end %>
+    </tr>
+    
+    <tr>
+      <th>Associations</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <ul>
+            <li><%= pluralize taxon.observations_count, "observation" %></li>
+            <li><%= pluralize taxon.listed_taxa_count, "listed taxon" %></li>
+            <li><%= pluralize taxon.identifications.count, "identification" %></li>
+            <li><%= pluralize taxon.taxon_links.count, "taxon_link" %></li>
+          </ul>
+        </td>
+      <% end %>
+    </tr>
+    
+    <tr>
+      <th>Photos</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <% for photo in taxon.photos %>
+            <%= image_tag photo.thumb_url %>
           <% end %>
-        </ul>
-      </td>
-    <% end %>
-  </tr>
-  
-  <tr>
-    <th>All Names</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <ul>
-          <% for taxon_name in taxon.taxon_names %>
-            <li><%= render :partial => "shared/taxon_name", :object => taxon_name %></li>
-          <% end %>
-        </ul>
-      </td>
-    <% end %>
-  </tr>
-  
-  <tr>
-    <th>Classification</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <%= render :partial => 'classification_list', :object => taxon %>
-      </td>
-    <% end %>
-  </tr>
-  
-  <tr>
-    <th>Colors</th>
-    <% for taxon in [@keeper, @taxon] %>
-      <td>
-        <%= taxon.colors.blank? ? "&nbsp;" : taxon.colors.map(&:value).join(', ') %>
-      </td>
-    <% end %>
-  </tr>
-</table>
+        </td>
+      <% end %>
+    </tr>
+    
+    <tr>
+      <th>Places</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <ul>
+            <% for place in taxon.places %>
+              <li><%= link_to place.display_name, place %></li>
+            <% end %>
+          </ul>
+        </td>
+      <% end %>
+    </tr>
+    
+    <tr>
+      <th>All Names</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <ul>
+            <% for taxon_name in taxon.taxon_names %>
+              <li><%= render :partial => "shared/taxon_name", :object => taxon_name %></li>
+            <% end %>
+          </ul>
+        </td>
+      <% end %>
+    </tr>
+    
+    <tr>
+      <th>Classification</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <%= render :partial => 'classification_list', :object => taxon %>
+        </td>
+      <% end %>
+    </tr>
+    
+    <tr>
+      <th>Colors</th>
+      <% for taxon in [@keeper, @taxon] %>
+        <td>
+          <%= taxon.colors.blank? ? "&nbsp;" : taxon.colors.map(&:value).join(', ') %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+<% end -%>

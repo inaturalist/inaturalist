@@ -853,6 +853,8 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
+        @taxon_change = TaxonChange.input_taxon(@taxon).output_taxon(@keeper).first
+        @taxon_change ||= TaxonChange.input_taxon(@keeper).output_taxon(@taxon).first
         render :partial => "taxa/merge"
       end
       format.json { render :json => @keeper }
