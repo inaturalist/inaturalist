@@ -588,7 +588,8 @@ module ApplicationHelper
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
     resource ||= update.resource
-    case update.resource_type
+    resource = update.resource.flaggable if update.resource_type == "Flag"
+    case resource.class.name
     when "User"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options.merge(:alt => "#{resource.login} icon"))
     when "Observation"
@@ -602,9 +603,9 @@ module ApplicationHelper
     when "Place"
       image_tag("#{root_url}images/icon-maps.png", options)
     when "Taxon"
-      taxon_image(resource, options.merge(:size => "square", :width => 48))
+      taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     else
-      image_tag("#{root_url}images/logo-grey-32px.png", options)
+      image_tag("#{root_url}images/logo-cccccc-20px.png", options)
     end
   end
   
@@ -613,7 +614,14 @@ module ApplicationHelper
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
     resource ||= update.resource
+    notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
+      @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
+    end
     notifier ||= update.notifier
+    if notifier.respond_to?(:user)
+      notifier_user = update_cached(notifier, :user)
+      notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
+    end
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
@@ -621,32 +629,15 @@ module ApplicationHelper
       else
         "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
       end
-    when "Observation", "ListedTaxon"
+    when "Observation", "ListedTaxon", "Post"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
-      notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
-        @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
-      end
-      if notifier.respond_to?(:user)
-        notifier_user = if @update_cache && @update_cache[:users]
-          @update_cache[:users][notifier.user_id]
-        end
-        notifier_user = notifier.user
-        notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
-      end
-
       resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
 
       if notifier.is_a?(ProjectInvitation)
         return "#{notifier_user_link} invited your #{resource_link} to a project".html_safe
       end
 
-      s = if update.notification == "activity" && notifier_user
-        notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
-        "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))} " + 
-        "added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong> to "
-      else
-        s = "New activity on "
-      end
+      s = activity_snippet(update, notifier, notifier_user, options)
       s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s.html_safe
@@ -676,8 +667,25 @@ module ApplicationHelper
           :link_url => (options[:skip_links] == true ? nil : resource)
         })
       "New observations of #{name}".html_safe
+    when "Flag"
+      noun = "a flag for #{resource.flaggable.try_methods(:name, :title, :to_plain_s)}"
+      if notifier.is_a?(Flag)
+        "#{notifier.resolver.login} resolved #{noun}"
+      else
+        "#{activity_snippet(update, notifier, notifier_user, options)} #{noun}".html_safe
+      end
     else
       "update"
+    end
+  end
+
+  def activity_snippet(update, notifier, notifier_user, options = {})
+    if update.notification == "activity" && notifier_user
+      notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
+      "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))} " + 
+      "added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong> to "
+    else
+      s = "New activity on "
     end
   end
   

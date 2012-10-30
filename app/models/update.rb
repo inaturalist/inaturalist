@@ -73,7 +73,7 @@ class Update < ActiveRecord::Base
         activity_assocs.each do |assoc, assoc_options|
           # this is going to lazy load assoc's of the associate (e.g. a comment's user) which might not be ideal
           resource.send(assoc).each do |associate|
-            unless batch.detect{|u| u.notifier == associate}
+            unless batch.detect{|u| u.notifier_type == associate.class.name && u.notifier_id == associate.id}
               batch << Update.new(:resource => resource, :notifier => associate, :notification => "activity")
             end
           end
@@ -157,10 +157,24 @@ class Update < ActiveRecord::Base
       :comment => [:user, :parent],
       :listed_taxon => [{:list => :user}, {:taxon => [:photos, :taxon_names]}],
       :taxon => [:taxon_names, {:taxon_photos => :photo}],
-      :post => [:user, :parent]
+      :post => [:user, :parent],
+      :flag => [:resolver],
+      :project => [],
+      :project_invitation => [:project, :user]
     }
     update_cache = {}
-    [Comment, Identification, Observation, ListedTaxon, Post, Project, User, Taxon].each do |klass|
+    [
+      Comment, 
+      Flag, 
+      Identification, 
+      ListedTaxon, 
+      Observation, 
+      Post, 
+      Project, 
+      ProjectInvitation, 
+      Taxon,
+      User
+    ].each do |klass|
       ids = []
       updates.each do |u|
         ids << u.notifier_id if u.notifier_type == klass.to_s

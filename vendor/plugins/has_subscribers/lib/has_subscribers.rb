@@ -104,7 +104,7 @@ module HasSubscribers
     end
     
     #
-    # Subscribe am associated user to an associated object when this record is
+    # Subscribe an associated user to an associated object when this record is
     # created. For example, you might auto-subscribe a comment user to the
     # blog post they commented on UNLESS they authored the blog post:
     # 
@@ -116,7 +116,9 @@ module HasSubscribers
     #   subscription. Takes the record and the subscribable as args.
     #
     def auto_subscribes(subscriber, options = {})
-      after_create do |record|
+      callback_method = options[:on] == :update ? :after_update : :after_create
+      
+      send(callback_method) do |record|
         resource = options[:to] ? record.send(options[:to]) : record
         if options[:if].blank? || options[:if].call(record, resource)
           Subscription.create(:user => record.send(subscriber), :resource => resource)
@@ -145,11 +147,15 @@ module HasSubscribers
       
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
-        if options[:include_owner] && subscribable.respond_to?(:user) && subscribable.user_id != notifier.user_id
+        puts "[DEBUG] options: #{options.inspect}"
+        if options[:include_owner] && subscribable.respond_to?(:user) && (subscribable == notifier || subscribable.user_id != notifier.user_id)
           owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
+            puts "[DEBUG] creating update for owner"
+            Rails.logger.debug "[DEBUG] creating update"
             Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
               :notification => notification)
+            Rails.logger.debug "[DEBUG] done creating update"
           end
         end
         
@@ -167,10 +173,14 @@ module HasSubscribers
         end
       }
       
+      puts "[DEBUG] subscribable_association: #{subscribable_association}"
       if has_many_reflections.include?(subscribable_association.to_s)
         notifier.send(subscribable_association).find_each(&updater_proc)
       elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
         updater_proc.call(notifier.send(subscribable_association))
+      elsif subscribable_association == :self
+        puts "[DEBUG] subscribable_association == :self, updater_proc.call(#{notifier})"
+        updater_proc.call(notifier)
       else
         subscribable = notifier.send(subscribable_association)
         if subscribable.is_a?(Enumerable)

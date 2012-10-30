@@ -646,15 +646,7 @@ ul.leafylist li li:first-child {
 
 /* Comments */
 #new_comment #comment_body{width:100%;height:150px;}
-.comment{padding:10px;}
-#new-comment{position:relative;}
 #new-comment textarea{margin-top:0;}
-#new-comment .meta{position:absolute;left:0;}
-.comment .meta{float:left;width:110px;margin-right:10px;}
-.comment .body{padding-left:120px;}
-.comment.preview .body{padding-left:0;}
-.comment .body ul{font-family:Georgia,serif;font-size:125%;}
-.comment .body img{max-width:100%;height:auto;}
 
 .item.comment {padding:0;}
 .item.comment .meta {float:none; width:auto; margin:0;}

@@ -22,18 +22,9 @@
   </p>
 </div>
 
-<ul class="readable">
+<ul>
   <% if @flags.empty? %>
     <li class="quiet description">No flags at this time!</li>
-  <% end %>
-  
-  <% if logged_in? && current_user.is_curator? %>
-    <%= render :partial => "flag_list", :locals => { :flags => @flags } %>
-  <% else %>
-    <% for flag in @flags %>
-      <li>
-       "<%= flag.flag %>"
-      </li>
-    <% end %>
-  <% end %>
+  <% end %>  
+  <%= render :partial => "flag_list", :locals => { :flags => @flags } %>
 </ul>

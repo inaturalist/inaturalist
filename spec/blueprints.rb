@@ -18,6 +18,11 @@ Comment.blueprint do
   body { Faker::Lorem.paragraph }
 end
 
+Flag.blueprint do
+  user { User.make! }
+  flag { Faker::Name.name }
+end
+
 FlickrIdentity.blueprint do
   user { User.make! }
 end

@@ -21,10 +21,13 @@
   because 
   "<%= flag.flag %>"
   <span class="small meta ui">
-    <%= link_to "resolve", flag %> |
-    <%= link_to "delete", flag, 
-      :confirm => "Are you sure you want to delete this flag?", 
-      :method => :delete %>
+    <%= link_to is_curator? ? "Resolve" : "Details", flag %>
+    <% if is_me?(flag.user) || is_curator? -%>
+      |
+      <%= link_to "Delete", flag, 
+        :confirm => "Are you sure you want to delete this flag?", 
+        :method => :delete %>
+    <% end -%>
   </span>
 </div>
 <% if flag.resolved? && !flag.comment.blank? -%>
