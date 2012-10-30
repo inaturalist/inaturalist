@@ -13,6 +13,7 @@
   if taxon_change
     swaps.delete_if{|swap| swap.id == taxon_change.id}
   end
+  show_change_links ||= false
 -%>
 
 <div id="change_taxon_<%= change_taxon.id %>" class="change_taxon clear" data-taxon-id="<%= change_taxon.id %>">
@@ -75,6 +76,18 @@
         <% end -%>
       </div>
     </div>
+
+    <% if show_change_links && taxon_change && @type -%>
+      <div class="meta buttonrow smallbuttons">
+        <%- input_names = taxon_change.input_taxa.map{|t| "#{t.name} #{t.id}"} -%>
+        <%= link_to "Change your matching #{@type.humanize.downcase} to this taxon", 
+          taxon_change_commit_records_path(taxon_change.id, @type, change_taxon.id),
+          :method => :put, 
+          :confirm => "Are you sure you want to change all your #{@type.humanize.downcase} of #{commas_and input_names} to #{change_taxon.name} #{change_taxon.id}?",
+          :class => "glaucous button",
+          "data-loading-click" => "Updating..." %>
+      </div>
+    <% end -%>
   <% end -%>
 </div>
 

@@ -695,7 +695,7 @@ class Observation < ActiveRecord::Base
     return true unless taxon_id_changed?
     owners_ident = identifications.where(:user_id => user_id).order("id asc").last
     
-    # If there's a taxon we need to make ure the owner's ident agrees
+    # If there's a taxon we need to make sure the owner's ident agrees
     if taxon && (owners_ident.blank? || owners_ident.taxon_id != taxon.id)
       # If the owner doesn't have an identification for this obs, make one
       owners_ident = self.identifications.build(:user => user, :taxon => taxon, :observation => self)
@@ -1478,6 +1478,24 @@ class Observation < ActiveRecord::Base
       ctrl = ActionController::Base.new
       ctrl.expire_fragment(o.component_cache_key)
       ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
+    end
+  end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.by(options[:user]) if options[:user]
+    scope = scope.where("observations.id IN (?)", options[:records]) if options[:records]
+    scope.find_in_batches do |batch|
+      obs_ids = batch.map(&:id)
+      user_ids = batch.map(&:user_id).uniq
+      # Observation.update_all(["taxon_id = ?", taxon.id], ["id IN (?)", obs_ids])
+      user_ids.each do |user_id|
+        Identification.update_all(
+          ["taxon_id = ?", taxon.id], 
+          ["taxon_id IN (?) AND user_id = ? AND observation_id IN (?)", input_taxon_ids, user_id, obs_ids])
+      end
+      batch.each {|o| o.update_attributes(:taxon_id => taxon.id)}
     end
   end
   

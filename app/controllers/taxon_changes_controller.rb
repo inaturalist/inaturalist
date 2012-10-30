@@ -2,6 +2,7 @@ class TaxonChangesController < ApplicationController
   before_filter :curator_required, :except => [:index, :show]
   before_filter :admin_required, :only => [:commit_taxon_change]
   before_filter :load_taxon_change, :except => [:index, :new, :create]
+  before_filter :return_here, :only => [:index, :show, :new, :edit, :commit_for_user] 
   
   def index
     filter_params = params[:filters] || params
@@ -134,6 +135,83 @@ class TaxonChangesController < ApplicationController
     flash[:notice] = "Taxon change committed!"
     redirect_back_or_default(taxon_changes_path)
   end
+
+  def commit_for_user
+    if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
+      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluraize.downcase}"
+      redirect_back_or_default(@taxon_change)
+      return
+    end
+    load_user_content_info
+    @counts = {}
+    @class_names.each do |class_name|
+      klass = begin
+        Object.const_get(class_name)
+      rescue
+        @counts[class_name] = 0
+        next
+      end
+      @counts[class_name] = current_user.send("#{klass.name.underscore.pluralize}").
+        where("taxon_id IN (?)", @taxon_change.input_taxa).
+        count
+    end
+    @records = current_user.send("#{@klass.name.underscore.pluralize}").scoped
+    @records = @records.where("taxon_id IN (?)", @taxon_change.input_taxa).page(params[:page])
+  end
+
+  def commit_records
+    if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
+      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluraize.downcase}"
+      redirect_back_or_default(@taxon_change)
+      return
+    end
+    load_user_content_info
+
+    if params[:record_id]
+      @record = current_user.send("#{@klass.name.underscore.pluralize}").where("id = ?", params[:record_id]).first
+      unless @record
+        flash[:error] = "Couldn't find that record"
+        redirect_back_or_default(@taxon_change)
+        return
+      end
+      @records = [@record]
+    elsif params[:record_ids]
+      @records = current_user.send("#{@klass.name.underscore.pluralize}").where("id IN (?)", params[:record_ids]).to_a
+      if @records.blank?
+        flash[:error] = "Couldn't find any of those records"
+        redirect_back_or_default(@taxon_change)
+        return
+      end
+    end
+
+    @taxon = Taxon.find_by_id(params[:taxon_id])
+    @taxon = nil unless @taxon_change.output_taxa.include?(@taxon)
+    unless @taxon
+      flash[:error] = "That taxon isn't an option"
+      redirect_back_or_default(@taxon_change)
+      return
+    end
+
+    if @records.blank?
+      if @klass.respond_to?(:update_for_taxon_change)
+        @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user)
+      else
+        @klass.update_all(
+          ["taxon_id = ?", @taxon.id], 
+          ["user_id = ? AND taxon_id IN (?)", current_user, @taxon_change.input_taxa.map(&:id)])
+      end
+    else
+      if @klass.respond_to?(:update_for_taxon_change)
+        @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user, :records => @records)
+      else
+        @klass.update_all(
+          ["taxon_id = ?", @taxon.id], 
+          ["user_id = ? AND id IN (?)", current_user, @records.map(&:id)])
+      end
+    end
+    flash[:notice] = "Records updated"
+    redirect_back_or_default(@taxon_change)
+  end
   
   private
   def load_taxon_change
@@ -149,5 +227,26 @@ class TaxonChangesController < ApplicationController
     change_params = params[:taxon_change]
     TaxonChange::TYPES.each {|type| change_params ||= params[type.underscore]}
     change_params
+  end
+
+  def load_user_content_info
+    @class_names = []
+    has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
+    has_many_reflections.each do |k, reflection|
+      # Avoid those pesky :through relats
+      next unless reflection.klass.column_names.include?(reflection.foreign_key)
+      next unless reflection.klass.column_names.include?('taxon_id')
+      @class_names << reflection.klass.name
+    end
+    @class_names.uniq!
+    @type = params[:type] || "observations"
+    @klass = Object.const_get(@type.camelcase.singularize) rescue nil
+    @klass = nil unless @klass.try(:base_class).try(:superclass) == ActiveRecord::Base
+    @klass = nil unless @class_names.include?(@klass.name)
+    unless @klass
+      flash[:error] = "#{params[:type]} doesn't exist"
+      redirect_back_or_default(:action => "index")
+      return false
+    end
   end
 end

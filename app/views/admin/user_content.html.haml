@@ -51,7 +51,7 @@
             = link_to(name, record) rescue link_to(name, linkable_record) rescue name
           %td= record.try_methods(:body, :description, :remarks)
           %td= record.created_at
-          %td= record.created_at
+          %td= record.updated_at
           %td
             - begin
               = link_to("view", record)

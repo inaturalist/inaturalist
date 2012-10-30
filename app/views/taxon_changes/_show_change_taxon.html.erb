@@ -17,25 +17,34 @@
   end
   left_taxa.compact!
   right_taxa.compact!
+  hide_buttons ||= false
+  hide_title ||= false
+  show_change_links ||= false
 -%>
 
 <div class="taxon_change">
-  <% if taxon_change.committed_on.blank? && is_admin? %>
+  <% unless hide_buttons -%>
     <div class="right inline buttonrow">
-      <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
-      <%= link_to "Commit", taxon_change_commit_path(taxon_change),
-        :confirm => "Are you sure you want to commit this change?",
-        :method => :put,
-        :class => "glaucous inline button",
-        "data-loading-click" => "Committing..." %>
+      <% if !taxon_change.committed? && is_admin? %>
+        <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
+        <%= link_to "Commit", taxon_change_commit_path(taxon_change),
+          :confirm => "Are you sure you want to commit this change?",
+          :method => :put,
+          :class => "glaucous inline button",
+          "data-loading-click" => "Committing..." %>
+      <% end %>
+      <%= link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "glaucous inline button" %>
     </div>
-  <% end %>
-  <h2>
-    <%= link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change) %>
-    (<%= taxon_change.committed_on.nil? ? "Draft" : "Committed on #{taxon_change.committed_on}" %>)
-  </h2>
+  <% end -%>
 
-  <p class="meta ui">
+  <% unless hide_title -%>
+    <h2>
+      <%= link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change) %>
+      (<%= taxon_change.committed_on.nil? ? "Draft" : "Committed on #{taxon_change.committed_on}" %>)
+    </h2>
+  <% end -%>
+
+  <div class="meta ui stacked">
     <div class="meta stacked">
       <%= taxon_change.description.html_safe %>
     </div>
@@ -48,10 +57,10 @@
     <% else %>
       Source: unknown
     <% end %>
-    <% if taxon_change.change_group %>
+    <% unless taxon_change.change_group.blank? %>
       | Group: <%= taxon_change.change_group %>
     <% end %>
-  </p>
+  </div>
 
   <table border="0" cellspacing="5" cellpadding="5">
     <tr>
@@ -82,7 +91,9 @@
           <% unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage" %>
             <% for change_taxon in right_taxa %>
               <li>
-                <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
+                <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {
+                  :taxon_change => taxon_change,
+                  :show_change_links => show_change_links } %>
               </li>
             <% end %>
           <% end %>

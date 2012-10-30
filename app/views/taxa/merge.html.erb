@@ -28,8 +28,8 @@
     })
 
     function makeTaxonSwap() {
-      var keeperId = TAXON.id,
-          rejectId = $('#taxon_id').val()
+      var rejectId = TAXON.id,
+          keeperId = $('#taxon_id').val()
       if (!keeperId || !rejectId) return false
       window.location = '/taxon_changes/new?type=TaxonSwap&input_taxon_ids[]='+rejectId+'&output_taxon_ids[]='+keeperId
       return false

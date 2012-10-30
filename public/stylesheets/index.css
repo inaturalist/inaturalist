@@ -1261,6 +1261,9 @@ ul.plain {list-style:none;margin:0;padding:0}
 }
 .leftmenu li a.active { background-color: white; }
 .leftmenu li a:hover { background-color: #fafafa; }
+.leftmenu .count.right {
+  margin: 5px 10px 0 0;
+}
 .unsubscribed {text-decoration: line-through;}
 
 .dialog .new_flag textarea {width:250px; height: 50px;}

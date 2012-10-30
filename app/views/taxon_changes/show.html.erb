@@ -10,7 +10,12 @@
 </style>
 <% end %>
 
-<%= render :partial => 'show_change_taxon', :object => @taxon_change %>
+<div id="pageheader">
+  <div class="breadcrumbs">
+    <strong><%= link_to "&laquo Back to taxon changes".html_safe, taxon_changes_path, :class => 'crumb' %></strong>
+  </div>
+  <%= render :partial => 'show_change_taxon', :object => @taxon_change %>
+</div>
 
 <div id="mapwrapper" class="stacked">
   <iframe width="100%" height="600" class="stacked" src="<%= taxa_map_url(:taxa => [@taxon_change.taxon, @taxon_change.taxa].flatten.compact.map{|t| t.id})%>">
