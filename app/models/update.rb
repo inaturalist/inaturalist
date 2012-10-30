@@ -106,7 +106,7 @@ class Update < ActiveRecord::Base
       email_sent = begin
         email_updates_to_user(subscriber_id, start_time, end_time)
       rescue Net::SMTPServerBusy => e
-        sleep(2)
+        sleep(5)
         begin
           email_updates_to_user(subscriber_id, start_time, end_time)
         rescue Net::SMTPServerBusy => e
