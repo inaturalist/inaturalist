@@ -5,6 +5,7 @@ class TaxonChange < ActiveRecord::Base
   belongs_to :source
   has_many :comments, :as => :parent, :dependent => :destroy
   belongs_to :user
+  belongs_to :committer, :class_name => 'User'
 
   has_subscribers
   after_update :notify_users_of_input_taxa_later

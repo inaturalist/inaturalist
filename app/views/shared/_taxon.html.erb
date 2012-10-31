@@ -22,6 +22,7 @@
   end
   include_id ||= false
   sciname += " #{taxon.id}" if include_id
+  sciname += " [inactive]" unless taxon.is_active?
 
   include_parens ||= true unless include_parens == false
   link_url ||= nil

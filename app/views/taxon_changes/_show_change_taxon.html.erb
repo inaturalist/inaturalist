@@ -49,18 +49,27 @@
     <div class="meta stacked">
       <%= taxon_change.description.html_safe %>
     </div>
-    <% if taxon_change.source && taxon_change.source.url %>
-      Source: <%= link_to h(truncate(taxon_change.source.title, :length => 40)), taxon_change.source.url %>
-    <% elsif taxon_change.source %>
-      Source: <%= taxon_change.source.title %>
-    <% elsif taxon_change.user %>
-      Added by <%= link_to h(taxon_change.user.login), taxon_change.user %>
-    <% else %>
-      Source: unknown
+    <div class="meta">
+      <label>Source:</label>
+      <% if taxon_change.source && taxon_change.source.url %>
+         <%= link_to h(truncate(taxon_change.source.title, :length => 40)), taxon_change.source.url %>
+      <% elsif taxon_change.source %>
+        <%= taxon_change.source.title %>
+      <% else %>
+        unknown
+      <% end %>
+      <% unless taxon_change.change_group.blank? %>
+      | <label>Group:</label> <%= taxon_change.change_group %>
     <% end %>
-    <% unless taxon_change.change_group.blank? %>
-      | Group: <%= taxon_change.change_group %>
-    <% end %>
+    </div>
+    <% if taxon_change.user %>
+      <label>Added by</label> <%= link_to taxon_change.user.login, taxon_change.user %>
+      on <%= taxon_change.created_at.to_date %>
+    <% end -%>
+    <% if taxon_change.committed? && taxon_change.committer %>
+      | <label>Committed by</label> <%= link_to taxon_change.committer.login, taxon_change.committer %>
+      on <%= taxon_change.committed_on %>
+    <% end -%>
   </div>
 
   <table border="0" cellspacing="5" cellpadding="5">

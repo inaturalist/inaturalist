@@ -677,7 +677,15 @@ module ApplicationHelper
         "#{activity_snippet(update, notifier, notifier_user, options)} #{noun}".html_safe
       end
     when "TaxonChange"
-      "#{resource.class.name.underscore.humanize} affecting #{commas_and resource.input_taxa.map(&:name)}"
+      notifier_user = update_cached(resource, :committer)
+      if notifier_user
+        notifier_class_name = resource.class.name.underscore.humanize.downcase
+        subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
+        object = "#{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong>"
+        "#{subject} committed #{object} affecting #{commas_and resource.input_taxa.map(&:name)}".html_safe
+      else
+        "#{resource.class.name.underscore.humanize} affecting #{commas_and resource.input_taxa.map(&:name)}"
+      end
     else
       "update"
     end

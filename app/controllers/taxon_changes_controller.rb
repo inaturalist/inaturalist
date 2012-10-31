@@ -131,6 +131,7 @@ class TaxonChangesController < ApplicationController
       return
     end
     
+    @taxon_change.committer = current_user
     @taxon_change.commit
     
     flash[:notice] = "Taxon change committed!"
