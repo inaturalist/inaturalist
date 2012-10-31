@@ -1,4 +1,7 @@
-<%- subscription ||= @subscription %>
+<%- 
+  subscription ||= @subscription
+  resource = @resource || subscription.resource
+%>
 <ul class="edit_subscription_inline">
   <% if @resource.is_a?(Place) && subscription -%>
     <li>
