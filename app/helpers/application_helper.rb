@@ -672,7 +672,8 @@ module ApplicationHelper
     when "Flag"
       noun = "a flag for #{resource.flaggable.try_methods(:name, :title, :to_plain_s)}"
       if notifier.is_a?(Flag)
-        "#{notifier.resolver.login} resolved #{noun}"
+        subject = options[:skip_links] ? notifier.resolver.login : link_to(notifier.resolver.login, person_url(notifier.resolver))
+        "#{subject} resolved #{noun}".html_safe
       else
         "#{activity_snippet(update, notifier, notifier_user, options)} #{noun}".html_safe
       end

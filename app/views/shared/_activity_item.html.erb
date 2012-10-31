@@ -36,6 +36,10 @@
           :truncation_length => 48 } %>
     <% elsif item.is_a? Flag %>
       <div class="stacked body">
+        <div class="stacked">
+          <span class="meta">Originally flagged by</span>
+          <%= link_to item.user.login, item.user %>: "<%= item.flag %>"
+        </div>
         <span class="meta">Flag marked as</span> <strong>resolved</strong>.
         <% unless item.comment.blank? %>
           <span class="meta"><%= item.resolver.login %> said,</span>
