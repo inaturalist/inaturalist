@@ -269,7 +269,7 @@ class Taxon < ActiveRecord::Base
     end
   }
   
-  scope :has_photos, includes(:photos).where("photos.id IS NOT NULL")
+  scope :has_photos, joins(:taxon_photos).where("taxon_photos.id IS NOT NULL")
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
   scope :self_and_descendants_of, lambda{|taxon|
