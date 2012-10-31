@@ -5,6 +5,9 @@ class TaxonChange < ActiveRecord::Base
   belongs_to :source
   has_many :comments, :as => :parent, :dependent => :destroy
   belongs_to :user
+
+  has_subscribers
+  after_update :notify_users_of_input_taxa_later
   
   validates_presence_of :taxon_id
   accepts_nested_attributes_for :source
@@ -91,11 +94,48 @@ class TaxonChange < ActiveRecord::Base
     taxa
   end
 
+  def verb_phrase
+    "#{self.class.name.underscore.split('_')[1..-1].join(' ').downcase}"
+  end
+
   # Override in subclasses
   def commit
     input_taxa.each {|t| t.update_attribute(:is_active, false)}
     output_taxa.each {|t| t.update_attribute(:is_active, true)}
     update_attribute(:committed_on, Time.now)
+  end
+
+  def notify_users_of_input_taxa_later
+    return true unless committed_on_changed? && committed?
+    delay(:priority => 1).notify_users_of_input_taxa
+    true
+  end
+
+  def notify_users_of_input_taxa
+    # return true unless committed_on_changed? && committed?
+    taxon_ids = input_taxa.map(&:id)
+    return true if taxon_ids.blank?
+    has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
+    user_ids = Set.new
+    has_many_reflections.map do |k, reflection|
+      # Avoid those pesky :through relats
+      next unless reflection.klass.column_names.include?(reflection.foreign_key)
+      next unless reflection.klass.column_names.include?('taxon_id')
+      user_ids += User.select("users.id").
+        joins(reflection.name).
+        where("#{reflection.table_name}.taxon_id IN (#{taxon_ids.join(',')})").
+        map(&:id)
+    end.compact
+    user_ids.to_a.in_groups_of(500) do |batch|
+      User.where("id IN (?)", batch.compact).each do |user|
+        Update.create(
+          :resource => self, 
+          :notifier => self,
+          :subscriber => user, 
+          :notification => "committed")
+      end
+    end
+    true
   end
 
 end

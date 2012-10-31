@@ -604,6 +604,8 @@ module ApplicationHelper
       image_tag("#{root_url}images/icon-maps.png", options)
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
+    when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
+      image_tag("#{root_url}images/#{resource.class.name.underscore}-aaaaaa-48px.png", options)
     else
       image_tag("#{root_url}images/logo-cccccc-20px.png", options)
     end
@@ -674,6 +676,8 @@ module ApplicationHelper
       else
         "#{activity_snippet(update, notifier, notifier_user, options)} #{noun}".html_safe
       end
+    when "TaxonChange"
+      "#{resource.class.name.underscore.humanize} affecting #{commas_and resource.input_taxa.map(&:name)}"
     else
       "update"
     end

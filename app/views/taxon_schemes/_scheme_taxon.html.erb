@@ -3,12 +3,7 @@
   photo ||= taxon.photos.first
   taxon_range ||= taxon.taxon_ranges_without_geom.first
   swaps = if @swaps_by_taxon_id
-    @swaps_by_taxon_id[taxon.id].try(:clone) || []
-  else
-    taxon.taxon_swaps + 
-      taxon.taxon_change_taxa.all(
-        :include => :taxon_change, 
-        :conditions => "taxon_changes.type = 'TaxonSwap'").map{|tct| tct.taxon_change}
+    @swaps_by_taxon_id[taxon.id] || []
   end
 -%>
 
@@ -52,9 +47,11 @@
             
             <div class="meta">
               <div class="small description">
-                <% for taxon_scheme in taxon.taxon_schemes %>
-                  <%= taxon_scheme.title  %><br/>
-                <% end %>
+                <%- schemes = taxon.taxon_schemes.compact -%>
+                <% unless schemes.blank? -%>
+                  <label>Schemes:</label>
+                  <%= schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe %>
+                <% end -%>
                 
                 <% unless swaps.blank? -%>
                   <label>Synonyms</label>

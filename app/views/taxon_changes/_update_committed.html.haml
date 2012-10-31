@@ -1,0 +1,24 @@
+- taxon_change ||= update_committed
+%table
+  %tr
+    %td
+      - for taxon in taxon_change.input_taxa
+        = image_and_content taxon_image(taxon), :image_size => 75, :class => "stacked" do
+          = render "shared/taxon", :taxon => taxon
+    %td
+      %strong
+        = taxon_change.verb_phrase
+    %td
+      - for taxon in taxon_change.output_taxa
+        = image_and_content taxon_image(taxon), :image_size => 75, :class => "stacked" do
+          = render "shared/taxon", :taxon => taxon
+
+= taxon_change.description
+
+%p.ui
+  You're being updated aobut this change because you have some content 
+  related to these taxa that you may want to update.
+
+= link_to "View details", taxon_change, :class => "readmore"
+&nbsp;
+= link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"

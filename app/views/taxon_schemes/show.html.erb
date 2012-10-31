@@ -57,7 +57,7 @@
     <% else %>
       <p class="description">No taxa match those criteria</p>
     <% end %>
-  <% else %>
+  <% elsif !@active_taxa.blank? %>
     <ul>
       <% for taxon in @active_taxa -%>
         <%= render :partial => 'scheme_taxon', :object => taxon %>
@@ -82,5 +82,8 @@
         <% end %>
       </ul>
     <% end %>
+  <% else %>
+    <%= render :partial => 'scheme_taxon', :collection => @taxa %>
+    <%= will_paginate @taxa %>
   <% end %>
 </div>

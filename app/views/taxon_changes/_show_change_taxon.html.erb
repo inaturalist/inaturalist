@@ -28,7 +28,7 @@
       <% if !taxon_change.committed? && is_admin? %>
         <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
         <%= link_to "Commit", taxon_change_commit_path(taxon_change),
-          :confirm => "Are you sure you want to commit this change?",
+          :confirm => "Are you sure you want to commit this change? This cannot be undone.",
           :method => :put,
           :class => "glaucous inline button",
           "data-loading-click" => "Committing..." %>
@@ -39,6 +39,7 @@
 
   <% unless hide_title -%>
     <h2>
+      <%= link_to image_tag("#{taxon_change.class.name.underscore}-aaaaaa-48px.png", :style => "vertical-align:middle;"), taxon_change %>
       <%= link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change) %>
       (<%= taxon_change.committed_on.nil? ? "Draft" : "Committed on #{taxon_change.committed_on}" %>)
     </h2>
@@ -68,7 +69,7 @@
         <ul class="change_taxon">
           <% for change_taxon in left_taxa %>
             <li>
-              <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
+              <%= render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>
             </li>
           <% end %>
         </ul>
@@ -91,7 +92,7 @@
           <% unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage" %>
             <% for change_taxon in right_taxa %>
               <li>
-                <%= render :partial => 'change_taxon', :object => change_taxon, :locals => {
+                <%= render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {
                   :taxon_change => taxon_change,
                   :show_change_links => show_change_links } %>
               </li>

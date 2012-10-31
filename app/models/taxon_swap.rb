@@ -36,6 +36,10 @@ class TaxonSwap < TaxonChange
   def output_taxon
     taxon
   end
+
+  def verb_phrase
+    "replaced with"
+  end
   
   def commit
     # duplicate photos

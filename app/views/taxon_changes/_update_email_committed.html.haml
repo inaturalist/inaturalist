@@ -1,0 +1,32 @@
+- taxon_change = update_email_committed || taxon_change
+%table
+  %tr
+    %td{:style => "vertical-align:top;"}
+      %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
+        - for taxon in taxon_change.input_taxa
+          %tr
+            %td{:style => "vertical-align:top;padding-right:5px;"}
+              %center= link_to taxon_image(taxon), taxon
+            %td{:style => "vertical-align:top;padding-right:5px;"}
+              %i= link_to taxon.name, taxon
+    %td{:style => "vertical-align:top;padding-right:5px;"}
+      %strong
+        = taxon_change.verb_phrase
+    %td{:style => "vertical-align:top;"}
+      %table
+        - for taxon in taxon_change.output_taxa
+          %tr
+            %td{:style => "vertical-align:top;padding-right:5px;"}
+              %center= link_to taxon_image(taxon), taxon
+            %td{:style => "vertical-align:top;"}
+              %i= link_to taxon.name, taxon
+
+= taxon_change.description
+
+%p
+  You're being updated aobut this change because you have some content 
+  related to these taxa that you may want to update.
+
+= link_to "View details", taxon_change, :class => "readmore"
+&nbsp;
+= link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"

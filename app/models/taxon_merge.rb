@@ -21,6 +21,10 @@ class TaxonMerge < TaxonChange
     taxon
   end
 
+  def verb_phrase
+    "merged into"
+  end
+
   def commit
     input_taxa.each do |input_taxon|
       #duplicate photos

@@ -53,24 +53,33 @@
     
     <div class="meta">
       <div class="small description">
-        <% for taxon_scheme in change_taxon.taxon_schemes.compact %>
-          <%= taxon_scheme.title  %><br/>
-        <% end %>
+        <%- schemes = change_taxon.taxon_schemes.compact -%>
+        <% unless schemes.blank? -%>
+          <label>Schemes:</label>
+          <%= schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe %>
+        <% end -%>
         
         <% unless swaps.blank? -%>
           <label>Synonyms</label>
           <ul>
             <% for swap in swaps %> 
               <%- aka_taxon = swap.opposite_taxon_from(change_taxon) -%>
-              <% for aka_scheme in aka_taxon.taxon_schemes %>
+              <% if aka_taxon.taxon_schemes.blank? -%>
                 <li>
-                  <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %>
-                  <div class="meta">
-                    <%= aka_scheme.title %>
-                  </div>
+                  <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %><br/>
                   <%= link_to "View change", taxon_change_path(swap) %>
                 </li>
-              <% end %>
+              <% else %>
+                <% for aka_scheme in aka_taxon.taxon_schemes %>
+                  <li>
+                    <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %>
+                    <div class="meta">
+                      <%= aka_scheme.title %>
+                    </div>
+                    <%= link_to "View change", taxon_change_path(swap) %>
+                  </li>
+                <% end %>
+              <% end -%>
             <% end %>
           </ul>
         <% end -%>

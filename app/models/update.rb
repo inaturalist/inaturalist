@@ -5,6 +5,7 @@ class Update < ActiveRecord::Base
   belongs_to :resource_owner, :class_name => "User"
   
   validates_uniqueness_of :notifier_id, :scope => [:notifier_type, :subscriber_id, :notification]
+  validates_presence_of :resource, :notifier, :subscriber
   
   before_create :set_resource_owner
   after_create :expire_caches
@@ -51,7 +52,7 @@ class Update < ActiveRecord::Base
     updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
       resource_type, resource_id, notification = key
       batch = batch.sort_by{|u| u.sort_by_date}
-      if options[:hour_groups] && "created_observations new_observations".include?(notification) && batch.size > 1
+      if options[:hour_groups] && "created_observations new_observations".include?(notification.to_s) && batch.size > 1
         batch.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
           grouped_updates << [key, hour_updates]
         end
@@ -160,10 +161,11 @@ class Update < ActiveRecord::Base
       :post => [:user, :parent],
       :flag => [:resolver],
       :project => [],
-      :project_invitation => [:project, :user]
+      :project_invitation => [:project, :user],
+      :taxon_change => [:taxon, {:taxon_change_taxa => [:taxon]}, :user]
     }
     update_cache = {}
-    [
+    klasses = [
       Comment, 
       Flag, 
       Identification, 
@@ -173,8 +175,11 @@ class Update < ActiveRecord::Base
       Project, 
       ProjectInvitation, 
       Taxon,
+      TaxonChange,
       User
-    ].each do |klass|
+    ]
+    klasses += TaxonChange::TYPES.map{|t| Object.const_get(t) rescue nil}.compact
+    klasses.each do |klass|
       ids = []
       updates.each do |u|
         ids << u.notifier_id if u.notifier_type == klass.to_s

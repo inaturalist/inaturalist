@@ -22,8 +22,11 @@ class TaxonSchemesController < ApplicationController
     end
     
     if @parent.blank? || @parent.rank != "genus"
-      @taxa = []
-      @genus_only = true
+      @taxa = @taxon_scheme.taxa.page(params[:page])
+      @active_taxa = []
+      @taxon_changes = []
+      @orphaned_taxa = []
+      @missing_taxa = []
       return
     end
     @active_taxa = @parent.children.all(
