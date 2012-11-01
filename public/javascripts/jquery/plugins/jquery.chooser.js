@@ -94,6 +94,13 @@
           self.selectItem($(self).data('previous'), {blurring: true})
         }
       })
+      markup.input.bind('autocompleteopen', function(e, ui) {
+        // lame hack aaround weird display bug
+        if (!$(e.currentTarget).is(':visible')) {
+          markup.input.autocomplete( "close" )
+          return
+        }
+      })
       
       markup.chooseButton.click(function() {
         // close if already visible
@@ -213,7 +220,6 @@
         wrapper: $('<div class="inlineblock ui-chooser"></div>').attr('id', originalInput.attr('id') + '_chooser'),
         input: $('<input type="text"/>')
           .addClass(this.options.inputClass)
-          .attr('id', 'existing_source_id')
           .attr('placeholder', originalInput.attr('placeholder')),
         choice: $('<div></div>')
           .addClass(this.options.choiceClass)
