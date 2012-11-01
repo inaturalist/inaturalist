@@ -6,6 +6,7 @@ class ObservationField < ActiveRecord::Base
   
   validates_uniqueness_of :name
   validates_presence_of :name
+  validates_length_of :allowed_values, :maximum => 512, :allow_blank => true
   
   before_validation :strip_tags
   before_validation :strip_name
