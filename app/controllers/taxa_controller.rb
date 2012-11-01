@@ -828,7 +828,13 @@ class TaxaController < ApplicationController
         "#{@keeper.name} (#{@keeper.id}).  #{@taxon.name} (#{@taxon.id}) " + 
         "has been deleted."
       respond_to do |format|
-        format.html { redirect_back_or_default(@keeper) }
+        format.html do
+          if session[:return_to].to_s =~ /#{@taxon.id}/
+            redirect_to @keeper
+          else
+            redirect_back_or_default(@keeper)
+          end
+        end
         format.json { render :json => @keeper }
       end
       return

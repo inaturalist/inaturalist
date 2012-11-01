@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031200130) do
+ActiveRecord::Schema.define(:version => 20121101180101) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -352,7 +352,7 @@ ActiveRecord::Schema.define(:version => 20121031200130) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "allowed_values"
+    t.string   "allowed_values", :limit => 512
   end
 
   add_index "observation_fields", ["name"], :name => "index_observation_fields_on_name"

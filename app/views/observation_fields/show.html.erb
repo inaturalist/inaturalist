@@ -47,13 +47,21 @@
 <% if @observation_field.allowed_values.to_s.size > 0 -%>
   <div class="right meta">
     <strong>Values:</strong>
-    <%= @observation_field.allowed_values.split('|').unshift("any").map do |v| 
-      if @value == v
-        "<strong>#{v}</strong>"
-      else
-        link_to v, url_for(:value => v)
-      end 
-    end.join(' | ').html_safe %>
+    <% if @observation_field.allowed_values.size < 100 -%>
+      <%= @observation_field.allowed_values.split('|').unshift("any").map do |v| 
+        if @value == v
+          "<strong>#{v}</strong>"
+        else
+          link_to v, url_for(:value => v)
+        end 
+      end.join(' | ').html_safe %>
+    <% else %>
+      <%= form_tag url_for, :class => "inline", :method => :get do %>
+        <%= hidden_fields_for_params(:without => [:value, :utf8]) %>
+        <%= select_tag :value, options_for_select(@observation_field.allowed_values.split('|').unshift("any"), params[:value] || "any"), 
+          "data-autosubmit" => true %>
+      <% end -%>
+    <% end -%>
   </div>
 <% end -%>
 <h3>

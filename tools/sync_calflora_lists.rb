@@ -127,7 +127,6 @@ end
 
 def find_external_taxon_for(name)
   taxon = nil
-  # normalized_name = Taxon.remove_rank_from_name(name)
   puts "\t\t\tSearching external providers for #{name}..."
   if matches = ratatosk.find(name)
     puts "\t\t\tFound #{matches.size} matches"

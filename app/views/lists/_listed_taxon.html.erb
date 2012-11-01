@@ -48,7 +48,7 @@
     
     <% if listed_taxon.occurrence_status || listed_taxon.establishment_means -%>
       <div class="occurrence description">
-        <label>Occurrence: </label>
+        <label>Status: </label>
         <%= [listed_taxon.occurrence_status, listed_taxon.establishment_means].compact.join(' / ') %>
       </div>
     <% end -%>

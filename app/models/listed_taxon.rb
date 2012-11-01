@@ -40,7 +40,7 @@ class ListedTaxon < ActiveRecord::Base
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
-  validates_presence_of :list, :taxon
+  validates_presence_of :list_id, :taxon_id
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
                           :message => "is already in this list"
