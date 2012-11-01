@@ -1924,10 +1924,11 @@ class ObservationsController < ApplicationController
     tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []
      @observations.each do |observation|
-       po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code)
-       unless po.save
-         errors = (errors + po.errors.full_messages).uniq
-       end
+        next if observation.new_record?
+        po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code)
+        unless po.save
+          errors = (errors + po.errors.full_messages).uniq
+        end
      end
      
      unless errors.blank?

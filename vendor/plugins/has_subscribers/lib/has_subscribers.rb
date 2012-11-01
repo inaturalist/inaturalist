@@ -147,15 +147,11 @@ module HasSubscribers
       
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
-        puts "[DEBUG] options: #{options.inspect}"
         if options[:include_owner] && subscribable.respond_to?(:user) && (subscribable == notifier || subscribable.user_id != notifier.user_id)
           owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
-            puts "[DEBUG] creating update for owner"
-            Rails.logger.debug "[DEBUG] creating update"
             Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
               :notification => notification)
-            Rails.logger.debug "[DEBUG] done creating update"
           end
         end
         
@@ -173,13 +169,11 @@ module HasSubscribers
         end
       }
       
-      puts "[DEBUG] subscribable_association: #{subscribable_association}"
       if has_many_reflections.include?(subscribable_association.to_s)
         notifier.send(subscribable_association).find_each(&updater_proc)
       elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
         updater_proc.call(notifier.send(subscribable_association))
       elsif subscribable_association == :self
-        puts "[DEBUG] subscribable_association == :self, updater_proc.call(#{notifier})"
         updater_proc.call(notifier)
       else
         subscribable = notifier.send(subscribable_association)

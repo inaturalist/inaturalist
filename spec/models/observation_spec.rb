@@ -458,6 +458,13 @@ describe Observation, "destruction" do
     o.destroy
     Update.find_by_id(update.id).should be_blank
   end
+
+  it "should delete associated project observations" do
+    po = make_project_observation
+    o = po.observation
+    o.destroy
+    ProjectObservation.find_by_id(po.id).should be_blank
+  end
 end
 
 describe Observation, "species_guess parsing" do
