@@ -304,9 +304,12 @@ var TaxonGuide = {
       if (typeof(PLACE) != 'undefined' && PLACE) {
         title += ' in ' + PLACE.display_name
       }
-
-      $('#taxa').not('.fluid').find('.taxonimage img', this).not('.iconic').not('.centeredInContainer').each(function() {
+      
+      $('#taxa').not('.fluid').find('.taxonimage img', this).not('.iconic').not('.centeredInContainer').waypoint(function() {
         $(this).centerInContainer({container: '.taxonimage:first'})
+      }, {
+        offset: '100%',
+        triggerOnce: true
       })
 
       $(dialog).dialog({
