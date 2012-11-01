@@ -183,7 +183,7 @@ class PlacesController < ApplicationController
     @q = params[:q] || params[:term] || params[:item]
     scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").limit(30).scoped
     scope = scope.with_geom if params[:with_geom]
-    @places = scope.sort_by(&:bbox_area).reverse
+    @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
     respond_to do |format|
       format.html do
         render :layout => false, :partial => 'autocomplete' 

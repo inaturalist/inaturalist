@@ -46,7 +46,7 @@ class PicasaPhoto < Photo
       begin
         places = Place.search(:geo => [latrads,lonrads], :order => "@geodist asc", :limit => 5)
         places = places.compact.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
-        places = places.sort_by(&:bbox_area)
+        places = places.sort_by{|p| p.bbox_area || 0}
         if place = places.first
           observation.place_guess = place.display_name
         end
