@@ -107,6 +107,7 @@ class Observation < ActiveRecord::Base
   has_many :observation_field_values, :dependent => :destroy, :order => "id asc"
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
+  has_and_belongs_to_many :posts
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names

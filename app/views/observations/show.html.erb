@@ -526,6 +526,19 @@
       </div>
     <%= separator %>
   <% end -%>
+
+  <% unless @posts.blank? -%>
+    <h3>Journal Posts</h3>
+    <ul class="plain">
+      <% for post in @posts %>
+        <li>
+          <span class="date meta"><%= post.published_at.to_date.to_s(:plain_time) %></span>
+          <%= link_to truncate(post.title, :length => 40), post %>
+        </li>
+      <% end %>
+    </ul>
+    <%= separator %>
+  <% end -%>
   
   <div id="data_quality_assessment">
     <h3>

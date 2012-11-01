@@ -254,6 +254,7 @@ class ObservationsController < ApplicationController
         end
         
         @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
+        @posts = @observation.posts.published.limit(50)
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,
