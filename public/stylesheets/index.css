@@ -1259,3 +1259,16 @@ ul.plain {list-style:none;margin:0;padding:0}
 .unsubscribed {text-decoration: line-through;}
 
 .dialog .new_flag textarea {width:250px; height: 50px;}
+
+.colorfield { padding: 1px 5px; margin-right: 5px; border-radius: 5px;}
+.colorfield.black   { color: lightgrey;  border: 1px solid transparent; background-color: black;}
+.colorfield.white   { color: grey;       border: 1px solid #eee; background-color: white;}
+.colorfield.red     { color: lightpink;  border: 1px solid transparent; background-color: red;}
+.colorfield.green   { color: lightgreen; border: 1px solid transparent; background-color: green;}
+.colorfield.blue    { color: lightblue;  border: 1px solid transparent; background-color: blue;}
+.colorfield.purple  { color: violet;     border: 1px solid transparent; background-color: purple;}
+.colorfield.yellow  { color: goldenrod;  border: 1px solid transparent; background-color: yellow;}
+.colorfield.grey    { color: lightgrey;  border: 1px solid transparent; background-color: grey;}
+.colorfield.orange  { color: chocolate;  border: 1px solid transparent; background-color: orange;}
+.colorfield.brown   { color: peru;       border: 1px solid transparent; background-color: saddlebrown;}
+.colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}

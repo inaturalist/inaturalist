@@ -634,18 +634,22 @@
 
   <% if @taxon.species_or_lower? -%>
     <div id="colors" class="clear">
-      <h3>Colors</h3>
-      <% if @colors.blank?-%>
+      <h3>
+        Guide Colors
         <% if logged_in? -%>
-          <div class="notice">
-            This species has no colors! Help improve species searches by telling
-            us what color this is!
-          </div>
-        <% else -%>
-          <div class="description">
-            No colors selected.
-          </div>
+          <% helptip_for :colors do %>
+            Color categories for this species, as if you were going to place it
+            in a field guide sorted by color. Please don't list every color on
+            the organism, just the prominent ones. For flowering plants please
+            use flower color.  Please leave blank for colors that wouldn't be
+            useful in categorization, like brown mammals and green ferns.
+          <% end -%>
         <% end -%>
+      </h3>
+      <% if @colors.blank?-%>
+        <div class="description">
+          No colors selected.
+        </div>
       <% end -%>
       <div id="colorboxen">
         <% for color in @colors %>
@@ -678,11 +682,6 @@
               </div>
             <% end %>
           </div>
-          <% if @colors.blank? -%>
-            <script type="text/javascript" charset="utf-8">
-              $('#edit_colors_dialog').prev('.togglelink').click();
-            </script>
-          <% end -%>
         </div>
       <% end -%>
     </div>

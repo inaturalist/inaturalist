@@ -134,14 +134,9 @@ $(document).ready(function() {
   $('.listed_taxon_row').setupListedTaxonRow()
 
   $.waypoints.settings.scrollThrottle = 30;
-  // $('#wrapper').waypoint(function(event, direction) {
-  //   // $('.top').toggleClass('hidden', direction === "up");
-  // }, {
-  //   offset: '-100%'
-  // }).find
   $('thead').waypoint(function(event, direction) {
-    $(this).toggleClass('sticky', direction === "down");
-    event.stopPropagation();
-  });
+    $(this).toggleClass('sticky', direction === "down")
+    event.stopPropagation()
+  })
 
 })
