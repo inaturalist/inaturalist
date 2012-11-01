@@ -185,22 +185,25 @@
           } else {
             $('#taxa .comprehensive_notice').remove()
           }
-          $('#taxa').imagesLoaded(function() {
-            $('#taxa .map').taxonMap({
+          $('#taxa .map').waypoint(function() {
+            if ($(this).data('taxonMap')) return
+            $(this).taxonMap({
               observationsJsonUrl: false,
               preserveViewport: true,
               latitude:  observation ? observation.latitude : null,
               longitude: observation ? observation.longitude : null
             })
             if (observation) {
-              $('#taxa .map').each(function() {
-                $(this).data('taxonMap').addObservation(observation)
-                if (observation.latitude) {
-                  $(this).data('taxonMap').setCenter(new google.maps.LatLng(observation.latitude, observation.longitude))
-                }
-              })
+              $(this).data('taxonMap').addObservation(observation)
+              if (observation.latitude) {
+                $(this).data('taxonMap').setCenter(new google.maps.LatLng(observation.latitude, observation.longitude))
+              }
             }
+          }, {
+            triggerOnce: true,
+            offset: '100%'
           })
+
           if (observation) {
             $('#taxa .headercol').each(function() {
               var taxonId = $(this).parents('.listed_taxon:first').attr('data-taxon-id')
