@@ -99,7 +99,7 @@ class Observation < ActiveRecord::Base
            :as => :contribution,
            :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_many :identifications, :dependent => :delete_all
+  has_many :identifications, :dependent => :destroy
   has_many :project_observations, :dependent => :destroy
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
