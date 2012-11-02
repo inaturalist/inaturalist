@@ -322,6 +322,7 @@ class ObservationsController < ApplicationController
           @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
         end
         @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
+        @kml_assets = @project.project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
       end
     end
     options[:time_zone] = current_user.time_zone

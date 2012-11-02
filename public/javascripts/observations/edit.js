@@ -14,6 +14,12 @@ $(document).ready(function() {
         }
       })
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null) {
+      for (var i=0; i < KML_ASSET_URLS.length; i++) {
+        lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i])
+        map.addOverlay('KML Layer', lyr)
+      }
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
     }
     $('.place_guess').latLonSelector({
       mapDiv: $('#map').get(0),
