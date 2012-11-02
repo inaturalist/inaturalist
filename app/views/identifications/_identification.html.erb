@@ -39,7 +39,8 @@
                :action => 'agree',
                :observation_id => identification.observation_id,
                :taxon_id => identification.taxon_id },
-             :method => :post -%></span>
+             :method => :post,
+             "data-loading-click" => "Agreeing..." -%></span>
       <% end %>
       <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
         <span class="button"><%= link_to "Remove", identification_path(identification), 
