@@ -10,9 +10,9 @@
 <ul>
   <% for scheme_taxon in @scheme_taxa %>
     <li>
-      <%= scheme_taxon.taxon_scheme.title %>,
-      <%= scheme_taxon.source_identifier %>
-      <% if logged_in? && current_user.is_curator? -%>
+      <%= link_to scheme_taxon.taxon_scheme.title, scheme_taxon.taxon_scheme %>
+      <%= "(#{scheme_taxon.source_identifier})" unless scheme_taxon.source_identifier.blank? %>
+      <% if is_curator? -%>
         <%= link_to "edit", edit_taxon_scheme_taxon_path(scheme_taxon), :class => 'small description' %>
       <% end -%>
     </li>
