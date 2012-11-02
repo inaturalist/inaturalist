@@ -46,9 +46,11 @@
   <% end -%>
 
   <div class="meta ui stacked">
-    <div class="meta stacked">
-      <%= taxon_change.description.html_safe %>
-    </div>
+    <% unless taxon_change.description.blank? -%>
+      <div class="meta stacked ui">
+        <%= formatted_user_text taxon_change.description %>
+      </div>
+    <% end -%>
     <div class="meta">
       <label>Source:</label>
       <% if taxon_change.source && taxon_change.source.url %>

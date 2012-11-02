@@ -13,10 +13,11 @@
         = image_and_content taxon_image(taxon), :image_size => 75, :class => "stacked" do
           = render "shared/taxon", :taxon => taxon
 
-= taxon_change.description
+.ui
+  = formatted_user_text taxon_change.description
 
 %p.ui
-  You're being updated about this change because you have some content 
+  You're being notified about this change because you have some content 
   related to these taxa that you may want to update.
 
 = link_to "View details", taxon_change, :class => "readmore"
