@@ -121,13 +121,14 @@
             %>
           </legend>
         <% end %>
-        <div class="clear">
-          <%= render :partial => "taxon_change_taxa/nested_form_fields", :collection => taxon_change.taxon_change_taxa
-          %>
-        </div>
         
         <%= f.fields_for :taxon_change_taxa, :builder => DefaultFormBuilder do |tct| %> 
           <div class="taxon_change_taxon">
+            <%= tct.hidden_field :taxon_change_id %>
+            <%= tct.hidden_field "_destroy" %>
+            <%= link_to_function "Remove", 
+              "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
+              :class => "right" %>
             <% tct.form_field :taxon_name do %>
               <input type="text" class="text"/>
               <%= tct.hidden_field :taxon_id %>
@@ -135,23 +136,24 @@
             <% end -%>
           </div>
         <% end -%>
-        <% if taxon_change.new_record? -%>
-          <%- tct_form_fields = capture do -%>
-            <%= f.fields_for :taxon_change_taxa, taxon_change.taxon_change_taxa.build, :builder => DefaultFormBuilder do |tct| %>
-              <div class="taxon_change_taxon">
-                <% tct.form_field :taxon_name do %>
-                  <input type="text" class="text"/>
-                  <%= tct.hidden_field :taxon_id %>
-                  <%= tct.hidden_field :nested %>
-                <% end -%>
-              </div>
-            <% end -%>
+        <%- tct_form_fields = capture do -%>
+          <%= f.fields_for :taxon_change_taxa, taxon_change.taxon_change_taxa.build, :builder => DefaultFormBuilder do |tct| %>
+            <div class="taxon_change_taxon">
+              <%= tct.hidden_field :taxon_change_id %>
+              <%= tct.hidden_field "_destroy" %>
+              <%= link_to_function "Remove", 
+                "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
+                :class => "right" %>
+              <% tct.form_field :taxon_name do %>
+                <input type="text" class="text"/>
+                <%= tct.hidden_field :taxon_id %>
+                <%= tct.hidden_field :nested %>
+              <% end -%>
+            </div>
           <% end -%>
-          <div id="new_taxon_change_taxa"></div>
-          <%= link_to_function "Add a taxon", "addTaxonChangeTaxonField('#{escape_javascript(tct_form_fields)}')" %>
-        <% else -%>
-          <%= link_to "add a new taxon", new_taxon_change_taxon_change_taxon_path(taxon_change), :class => 'readmore' %>
-        <% end %>
+        <% end -%>
+        <div id="new_taxon_change_taxa"></div>
+        <%= link_to_function "Add a taxon", "addTaxonChangeTaxonField('#{escape_javascript(tct_form_fields)}')" %>
       </fieldset>
     <% end -%>
   </div>
