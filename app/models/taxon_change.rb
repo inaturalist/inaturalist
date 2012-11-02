@@ -139,4 +139,11 @@ class TaxonChange < ActiveRecord::Base
     true
   end
 
+  def editable_by?(u)
+    return false if u.blank?
+    return true if u.is_curator?
+    return true if u.id == user_id
+    false
+  end
+
 end

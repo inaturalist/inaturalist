@@ -25,13 +25,15 @@
 <div class="taxon_change">
   <% unless hide_buttons -%>
     <div class="right inline buttonrow">
-      <% if !taxon_change.committed? && is_admin? %>
+      <% if taxon_change.editable_by?(current_user) %>
         <%= link_to "edit taxon change", edit_taxon_change_path(taxon_change), :class => "pale inline button" %>
-        <%= link_to "Commit", taxon_change_commit_path(taxon_change),
-          :confirm => "Are you sure you want to commit this change? This cannot be undone.",
-          :method => :put,
-          :class => "glaucous inline button",
-          "data-loading-click" => "Committing..." %>
+        <% unless taxon_change.committed? -%>
+          <%= link_to "Commit", taxon_change_commit_path(taxon_change),
+            :confirm => "Are you sure you want to commit this change? This cannot be undone.",
+            :method => :put,
+            :class => "glaucous inline button",
+            "data-loading-click" => "Committing..." %>
+        <% end -%>
       <% end %>
       <%= link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "glaucous inline button" %>
     </div>
@@ -54,14 +56,14 @@
     <div class="meta">
       <label>Source:</label>
       <% if taxon_change.source && taxon_change.source.url %>
-         <%= link_to h(truncate(taxon_change.source.title, :length => 40)), taxon_change.source.url %>
+         <%= link_to truncate(taxon_change.source.title, :length => 40), taxon_change.source.url %>
       <% elsif taxon_change.source %>
         <%= taxon_change.source.title %>
       <% else %>
         unknown
       <% end %>
       <% unless taxon_change.change_group.blank? %>
-      | <label>Group:</label> <%= taxon_change.change_group %>
+      | <label>Group:</label> <%= link_to taxon_change.change_group, taxon_changes_path(:change_group => taxon_change.change_group) %>
     <% end %>
     </div>
     <% if taxon_change.user %>
