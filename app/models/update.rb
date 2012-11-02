@@ -58,7 +58,9 @@ class Update < ActiveRecord::Base
         end
       elsif notification == "activity" && !options[:skip_past_activity]
         # get the resource that has all this activity
-        resource = update_cache[resource_type.underscore.pluralize.to_sym][resource_id] if update_cache
+        resource = if update_cache && update_cache[resource_type.underscore.pluralize.to_sym]
+          update_cache[resource_type.underscore.pluralize.to_sym][resource_id]
+        end
         resource ||= Object.const_get(resource_type).find_by_id(resource_id)
         if resource.blank?
           Rails.logger.error "[ERROR #{Time.now}] couldn't find resource #{resource_type} #{resource_id}, first update: #{batch.first}"
@@ -154,6 +156,7 @@ class Update < ActiveRecord::Base
   def self.eager_load_associates(updates, options = {})
     includes = options[:includes] || {
       :observation => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
+      :observation_field => [:user],
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
       :comment => [:user, :parent],
       :listed_taxon => [{:list => :user}, {:taxon => [:photos, :taxon_names]}],
@@ -171,6 +174,7 @@ class Update < ActiveRecord::Base
       Identification, 
       ListedTaxon, 
       Observation, 
+      ObservationField,
       Post, 
       Project, 
       ProjectInvitation, 

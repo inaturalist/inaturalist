@@ -98,3 +98,9 @@
 <% end -%>
 
 <%= will_paginate @observation_field_values %>
+
+<%= separator %>
+
+<div class="column span-12">
+  <%= render :partial => "comments/comments", :object => @observation_field %>
+</div>

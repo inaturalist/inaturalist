@@ -606,6 +606,8 @@ module ApplicationHelper
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
       image_tag("#{root_url}images/#{resource.class.name.underscore}-aaaaaa-48px.png", options)
+    when "ObservationField"
+      image_tag("#{root_url}images/notebook-icon-color-155px-shadow.jpg", options)
     else
       image_tag("#{root_url}images/logo-cccccc-20px.png", options)
     end
@@ -641,6 +643,14 @@ module ApplicationHelper
 
       s = activity_snippet(update, notifier, notifier_user, options)
       s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
+      s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
+      s.html_safe
+    when "ObservationField"
+      class_name = update.resource.class.to_s.underscore.humanize.downcase
+      resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))      
+      s = activity_snippet(update, notifier, notifier_user, options)
+      # s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
+      s += "#{resource_link} <strong>\"#{truncate(update.resource.name, :length => 30)}\"</strong>"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s.html_safe
     when "Project"
