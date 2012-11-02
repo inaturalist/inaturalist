@@ -176,6 +176,7 @@ module Ratatosk
       graft_point, lineage = graft_point_and_lineage(taxon, options)
 
       # Return an empty lineage if this has already been grafted
+      return [] if lineage.blank?
       return [] if lineage.first.parent == lineage.last
       return [] if lineage.size == 1 && lineage.first.grafted?
       return [] if lineage.size == 1 && lineage.first == graft_point
