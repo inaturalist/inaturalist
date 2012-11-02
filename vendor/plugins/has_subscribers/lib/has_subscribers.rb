@@ -124,6 +124,13 @@ module HasSubscribers
           Subscription.create(:user => record.send(subscriber), :resource => resource)
         end
       end
+
+      attr_accessor :auto_subscriber
+
+      before_destroy do |record|
+        record.auto_subscriber = record.send(subscriber)
+        true
+      end
       
       # this is potentially weird b/c there might be other reasons you're
       # subscribed to something, and this will remove the subscription anyway.
@@ -131,8 +138,14 @@ module HasSubscribers
       # auto_subscribing object generates a subscription...
       after_destroy do |record|
         resource = options[:to] ? record.send(options[:to]) : record
-        Subscription.delete_all(:user_id => record.send(subscriber).id, 
-          :resource_type => resource.class.name, :resource_id => resource.id)
+        user = record.auto_subscriber || record.send(subscriber)
+        if user
+          Subscription.delete_all(:user_id => user.id, 
+            :resource_type => resource.class.name, :resource_id => resource.id)
+        else
+          Rails.logger.error "[ERROR #{Time.now}] Couldn't delete auto subscription for #{record}"
+        end
+        true
       end
     end
     

@@ -10,8 +10,6 @@ class Flag < ActiveRecord::Base
       !flag.new_record? && flag.comment_changed?
     }
   auto_subscribes :resolver, :on => :update, :if => Proc.new {|record, resource|
-    puts "[DEBUG] record.resolved_changed?: #{record.resolved_changed?}"
-    puts "[DEBUG] record.resolver: #{record.resolver}"
     record.resolved_changed? && !record.resolver.blank? && 
       !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
   }
