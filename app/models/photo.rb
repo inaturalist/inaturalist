@@ -129,7 +129,7 @@ class Photo < ActiveRecord::Base
   # implemented to_taxa
   def to_taxon
     return unless respond_to?(:to_taxa)
-    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true)
+    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)
     photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES) if photo_taxa.blank?
     photo_taxa = to_taxa if photo_taxa.blank?
     return if photo_taxa.blank?

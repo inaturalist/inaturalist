@@ -999,9 +999,9 @@ class Taxon < ActiveRecord::Base
   
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
-    scope = TaxonName.scoped(:include => [:taxon])
-    scope = scope.scoped(:conditions => {:lexicon => options[:lexicon]}) if options[:lexicon]
-    scope = scope.scoped(:conditions => ["taxon_names.is_valid = ?", true]) if options[:valid]
+    scope = TaxonName.includes(:taxon).scoped
+    scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
+    scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
         name.downcase
@@ -1013,7 +1013,7 @@ class Taxon < ActiveRecord::Base
     end.compact
     scope = scope.where("lower(taxon_names.name) IN (?)", names)
     taxon_names = scope.where("taxa.is_active = ?", true).all
-    taxon_names = scope.all if taxon_names.blank?
+    taxon_names = scope.all if taxon_names.blank? && options[:active] != true
     taxon_names.map{|tn| tn.taxon}.compact
   end
   
