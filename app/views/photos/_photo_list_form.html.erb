@@ -52,7 +52,7 @@
         checked, 
         {:id => input_id, :class => "checkbox"} %>
 
-      <% if synclink_base && synclink_uri = URI.parse(synclink_base) %>
+      <% if synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil) %>
         <% 
           if synclink_uri.query.blank?
             synclink_uri.query = "#{prefix}_id=#{native_photo_id}"
