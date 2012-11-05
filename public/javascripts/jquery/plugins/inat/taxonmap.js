@@ -12,7 +12,11 @@
   
   function setup(elt, options) {
     var options = $.extend({}, options)
-    options.taxonId = options.taxonId || $(elt).attr('data-taxon-id')
+    if (options.taxon) {
+      options.taxonId = options.taxon.id
+    } else {
+      options.taxonId = options.taxonId || $(elt).attr('data-taxon-id')
+    }
     if (!options.taxonId) { return }
     options.latitude = options.latitude || $(elt).attr('data-latitude')
     options.longitude = options.longitude || $(elt).attr('data-longitude')
