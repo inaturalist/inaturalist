@@ -119,11 +119,12 @@ class CommentsController < ApplicationController
   def redirect_to_parent
     if @comment.parent.is_a?(Post)
       post = @comment.parent
-      if post.parent.is_a?(Project)
-        redirect_to (post.parent.is_a?(Project) ?
-                     project_journal_post_path(post.parent.slug, @comment.parent) :
-                     journal_post_path(post.user.login, @comment.parent))
+      url = if post.parent.is_a?(Project)
+        project_journal_post_path(post.parent.slug, @comment.parent, :anchor => "comment-#{@comment.id}")
+      else
+        journal_post_path(post.user.login, @comment.parent, :anchor => "comment-#{@comment.id}")
       end
+      redirect_to(url)
     else
       redirect_to(url_for(@comment.parent) + "#comment-#{@comment.id}")
     end
@@ -132,12 +133,9 @@ class CommentsController < ApplicationController
   def respond_to_create
     if @comment.valid?
       flash[:notice] = "Your comment was saved."
-      if params[:return_to]
-        return redirect_to(params[:return_to])
-      end
+      return redirect_to(params[:return_to]) unless params[:return_to].blank?
     else
-      flash[:error] = "We had trouble saving your comment: " +
-        @comment.errors.full_messages.join(', ')
+      flash[:error] = "We had trouble saving your comment: #{@comment.errors.full_messages.join(', ')}"
     end
     redirect_to_parent
   end
