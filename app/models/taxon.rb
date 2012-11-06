@@ -259,6 +259,14 @@ class Taxon < ActiveRecord::Base
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id").
     where("ST_Contains(place_geometries.geom, taxon_ranges.geom)")
   }
+
+  scope :observed_in_place, lambda {|place|
+    place_id = place.is_a?(Place) ? place.id : place.to_i 
+    joins(:observations).
+    joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
+    where("ST_Contains(place_geometries.geom, observations.geom)").
+    select("DISTINCT ON (taxa.id) taxa.*")
+  }
   
   scope :colored, lambda {|colors|
     colors = [colors] unless colors.is_a?(Array)
