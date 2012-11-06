@@ -1208,7 +1208,17 @@ class ObservationsController < ApplicationController
     
     respond_to do |format|
       format.csv do
-        render :text => ProjectObservation.to_csv(@project.project_observations.all, :user => current_user)
+        records = @project.project_observations.includes(
+          {:curator_identification => [:taxon, :user]},
+          :observation => [
+            :photos,
+            :observation_field_values, 
+            :tags,
+            {:taxon => :taxon_names},
+            :user
+          ]
+        )
+        send_data ProjectObservation.to_csv(records, :user => current_user, :project => @project), :type => :csv
       end
     end
   end
