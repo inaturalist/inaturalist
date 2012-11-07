@@ -258,7 +258,7 @@ Inaturalist::Application.routes.draw do
 
   resources :taxon_changes, :constraints => { :id => id_param_pattern } do
     resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
-    put :commit
+    post :commit
     get :commit_for_user
     put 'commit_record/:type/:record_id/to/:taxon_id' => 'taxon_changes#commit_records', :as => :commit_record
     put 'commit_records/:type/(to/:taxon_id)' => 'taxon_changes#commit_records', :as => :commit_records
