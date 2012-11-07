@@ -1248,8 +1248,14 @@ class ObservationsController < ApplicationController
     @project = Project.find(params[:project_id]) rescue nil
     @observation_fields = if @project
       @project.observation_fields
-    else
+    elsif params[:observation_fields]
       ObservationField.where("id IN (?)", params[:observation_fields])
+    else
+      @observation_fields = ObservationField.
+        includes(:observation_field_values => {:observation => :user}).
+        where("users.id = ?", current_user).
+        limit(10).
+        order("observation_field_values.id DESC")
     end
     render :layout => false
   end
