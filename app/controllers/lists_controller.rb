@@ -6,7 +6,8 @@ class ListsController < ApplicationController
   :cached_guide, :guide_widge, :batch_edit]  
   before_filter :load_list, :except => [:index, :new, :create, :by_login]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon, :add_taxon_batch, :reload_from_observations, :batch_edit]
+    :remove_taxon, :reload_from_observations]
+  before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   

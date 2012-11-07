@@ -385,6 +385,10 @@ module Shared::ListsModule
   def require_editor
     @list.editable_by?(current_user)
   end
+
+  def require_listed_taxa_editor
+    @list.listed_taxa_editable_by?(current_user)
+  end
   
   def load_listed_taxon_photos
     # override

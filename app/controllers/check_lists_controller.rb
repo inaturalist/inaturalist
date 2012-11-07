@@ -3,7 +3,8 @@ class CheckListsController < ApplicationController
   
   before_filter :authenticate_user!, :except => [:index, :show, :taxa]
   before_filter :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
-  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon, :add_taxon_batch, :batch_edit]
+  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
+  before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
   before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
   before_filter :load_find_options, :only => [:show]
   
