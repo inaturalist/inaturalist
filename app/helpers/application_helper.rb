@@ -163,6 +163,15 @@ module ApplicationHelper
     html += content_tag(:div, capture(&block), :id => menu_id, :class => "menu", :style => "display: none")
     concat content_tag(:div, html, wrapper_options)
   end
+
+  def link_to_dialog(title, options = {}, &block)
+    options[:title] ||= title
+    options[:modal] ||= true
+    id = title.gsub(/\W/, '').underscore
+    dialog = content_tag(:div, capture(&block), :class => "dialog", :style => "display:none", :id => "#{id}_dialog")
+    link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})")
+    dialog + link
+  end
   
   # Generate a URL based on the current params hash, overriding existing values
   # withthe hash passed in.  To remove existing values, specify them with

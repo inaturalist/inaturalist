@@ -242,6 +242,41 @@
 <%- end -%>
 
 <div id="pageheader">
+  <div class="right">
+    <%= link_to_dialog "Identotron help", :width => 600 do %>
+      
+      The Identotron is a tool to help you identify observations based on
+      iNat's check list data.  Given a higher level taxon and a place (e.g.
+      mammals of India), iNat will look for check lists entries matching that
+      taxon in that place, kind of like a dynamic field guide to the entire
+      planet. Most iNat check lists are works in progress, but if there's one
+      that is comprehensive, i.e. it lists <em>all</em> the representatives of
+      its taxon in a place, the Identotron will show a notice.
+
+      <table style="width:100%">
+        <tr>
+          <td width="30%">
+            <div class="quiet box">
+              Filter by place, taxon, and color using the controls.
+            </div>
+
+            <div class="quiet box">
+              Check out what the observation you're trying to identify looks like.
+            </div>
+          </td>
+          <td width="70%">
+            <div class="success status comprehensive_notice stacked">
+              If matches come from a comprehensive list a green bar will show here.
+            </div>
+
+            <div class="quiet box" style="height:200px;">
+              Matching species will show up here. The maps will show a range if iNat has one for that species.
+            </div>
+          </td>
+        </tr>
+      </table>
+    <% end -%>
+  </div>
   <% if @observation -%>
     <div class="breadcrumbs">
       <%= link_to 'Back to observation', @observation, :class => 'back crumb' %>
