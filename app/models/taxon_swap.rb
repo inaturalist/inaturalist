@@ -43,7 +43,13 @@ class TaxonSwap < TaxonChange
   
   def commit
     # duplicate photos
-    input_taxon.photos.each {|photo| photo.taxa << output_taxon}
+    input_taxon.taxon_photos.sort_by(&:id).each do |taxon_photo|
+      begin
+        output_taxon.photos << taxon_photo.photo
+      rescue ActiveRecord::RecordInvalid => e
+        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{photo} to #{output_taxon}: #{e}"
+      end
+    end
     
     # duplicate iucn_status
     output_taxon.conservation_status = input_taxon.conservation_status

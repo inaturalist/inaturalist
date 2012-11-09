@@ -28,7 +28,13 @@ class TaxonMerge < TaxonChange
   def commit
     input_taxa.each do |input_taxon|
       #duplicate photos
-      input_taxon.photos.each {|photo| photo.taxa << output_taxon}
+      input_taxon.taxon_photos.sort_by(&:id).each do |taxon_photo|
+        begin
+          output_taxon.photos << taxon_photo.photo
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error "[ERROR #{Time.now}] Failed to add #{photo} to #{output_taxon}: #{e}"
+        end
+      end
       
       #duplicate taxon_names
       input_taxon.taxon_names.each do |taxon_name|
