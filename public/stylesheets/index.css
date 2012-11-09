@@ -735,6 +735,8 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 .simpleTaxonSelector .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
 .simpleTaxonSelector .taxon.Chromista        { color: #993300;  background-image: url('/images/iconic_taxa/chromista-15px.png'); }
 
+.simpleTaxonSelector .matches .taxon {cursor: pointer;}
+
 .taxon_links .taxon {
   padding-left: 25px;
   background-repeat: no-repeat;
