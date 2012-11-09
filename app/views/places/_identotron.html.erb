@@ -17,6 +17,13 @@
     <h3>
       <%= render :partial => "shared/taxon", :object => taxon, :locals => {:link_url => url_for(taxon)} %>
     </h3>
+    <% unless taxon.is_active? -%>
+      <div class="notice box">
+        This taxon is <strong>inactive</strong>. This means iNaturalist's curators have replaced 
+        it with a more taxonomically current concept.
+        <%= link_to "View taxon changes", taxon_changes_path(:taxon_id => taxon), :class => "readmore" %>
+      </div>
+    <% end -%>
   </div>
   <div class="photos column span-9">
     <% if photos.blank? -%>

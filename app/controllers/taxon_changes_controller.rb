@@ -34,14 +34,12 @@ class TaxonChangesController < ApplicationController
     scope = scope.source(@source) if @source
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
     
-    @taxon_changes = scope.paginate(
-      :page => params[:page],
-      :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
-      :include => [
-        {:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        {:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        :source]
-    )
+    @taxon_changes = scope.page(params[:page]).
+      select("DISTINCT (taxon_changes.id), taxon_changes.*").
+      includes(:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
+      includes(:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
+      includes(:source).
+      order("taxon_changes.id DESC")
     @taxa = @taxon_changes.map{|tc| [tc.taxa, tc.taxon]}.flatten
     @swaps = TaxonSwap.all(
       :include => [
