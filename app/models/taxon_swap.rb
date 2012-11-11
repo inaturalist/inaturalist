@@ -47,7 +47,7 @@ class TaxonSwap < TaxonChange
       begin
         output_taxon.photos << taxon_photo.photo
       rescue ActiveRecord::RecordInvalid => e
-        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{photo} to #{output_taxon}: #{e}"
+        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{taxon_photo} to #{output_taxon}: #{e}"
       end
     end
     
