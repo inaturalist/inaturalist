@@ -1,10 +1,7 @@
 <%- comment ||= @comment -%>
 <%- include_user_image ||= false -%>
 <div id="comment-<%= comment.id %>" class="comment clear<%= ' preview' if params[:preview] %>">
-  <% if params[:preview] -%>
-    <%= link_to_function "&times;", "$('#comment_preview').jqmHide();", :class => 'close corner' %>
-    <strong><%=t :comment_preview %></strong>
-  <% else %>
+  <% unless params[:preview] -%>
     <div class="meta">
       <% if include_user_image -%>
         <%= link_to(image_tag(comment.user.icon.url(:thumb), :class => 'usericon'), comment.user) %>
@@ -17,14 +14,18 @@
       <% end -%>
       <%- if !params[:preview] && 
             logged_in? && 
-            current_user.login == comment.user.login && 
+            comment.deletable_by?(current_user) &&
             !comment.new_record? -%>
         <div class="comment_actions">
-          (<%= link_to "Edit", edit_comment_path(comment) %> |
-          <%= link_to "Delete", comment, 
-                      :confirm => t(:you_sure_delete_comment?), 
-                      :method => :delete, 
-                      :id => "delete_comment_#{comment.id}_button" %>)
+          <%-
+            pieces = []
+            pieces << link_to("Edit", edit_comment_path(comment)) if comment.user_id == current_user.id
+            pieces << link_to("Delete", comment, 
+                        :confirm => t(:you_sure_delete_comment?), 
+                        :method => :delete, 
+                        :id => "delete_comment_#{comment.id}_button")
+          -%>
+          (<%= pieces.join(" | ") %>)
         </div>
       <%- end -%>
     </div>

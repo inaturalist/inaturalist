@@ -8,9 +8,10 @@ class TaxonPhoto < ActiveRecord::Base
   after_destroy :expire_caches
   
   validates_associated :photo
+  validates_uniqueness_of :photo_id, :scope => [:taxon_id], :message => "has already been added to that taxon"
   
   def destroy_orphan_photo
-    Photo.send_later(:destroy_orphans, photo_id)
+    Photo.delay.destroy_orphans(photo_id)
     true
   end
   

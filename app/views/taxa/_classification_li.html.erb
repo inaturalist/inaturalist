@@ -1,5 +1,5 @@
 <%- 
-  taxon ||= object || @taxon 
+  taxon ||= classification_li || @taxon 
   taxon_class = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id].try(:name)
   link_method ||= lambda {|taxon| taxon.name == "Life" ? taxa_path : taxon_path(taxon)}
   url ||= link_method.call(taxon)

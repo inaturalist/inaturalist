@@ -20,7 +20,7 @@
     <div class="box clear">
       <% for user in @existing_users %>
         <div class="column span-7">
-          <% image_and_content user_image(user, :size => "thumb"), :class => "stacked", :image_size => 48 do %>
+          <%= image_and_content user_image(user, :size => "thumb"), :class => "stacked", :image_size => 48 do %>
             <strong><%= link_to user.login, user %></strong>
             <div class="description"><%= user.email %></div>
             <div class="small inline buttonrow">

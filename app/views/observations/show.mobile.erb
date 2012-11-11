@@ -6,7 +6,7 @@
     .photos .main img {margin-bottom: 5px;}
     .other_photos {float:none;display:inline;}
     .taxon .othernames {display:block;}
-    .identification img {max-width:48px;}
+    .identification img, .identification img.square.photo {max-width:48px;}
     .identification .button {margin:0 0 0 10px; float:right; text-align:center;}
     .buttonrow.inline .prevlink {float:left;}
     .buttonrow.inline .nextlink {float:right;}
@@ -46,8 +46,8 @@
         ID
       </div>
       <div class="boxbody ui-helper-clearfix">
-        <% image_and_content link_to(user_image(@observation.user, :size => "thumb"), @observation.user) do %>
-          <% image_and_content taxon_image(@observation.taxon) do %>
+        <%= image_and_content link_to(user_image(@observation.user, :size => "thumb"), @observation.user) do %>
+          <%= image_and_content taxon_image(@observation.taxon) do %>
             <div class="stacked">
               <%= @observation.species_guess || "Unknown" %>
             </div>

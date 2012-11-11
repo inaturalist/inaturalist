@@ -86,15 +86,12 @@
       </p>
 
       <div id="place_selector">
-        <% form_remote_tag :url => {:action => :find_external}, 
-            :loading => "$('#loading_status').show()",
-            :complete => "$('#loading_status').hide()" do %>
+        <%= form_tag url_for(:action => :find_external), :remote => true, "data-type" => "json" do %>
           <div class="clear buttonrow">
             <%= text_field_tag :q, '', :class => 'inter text' %>
-            <%= submit_tag t(:search), :class => 'button' %>
+            <%= submit_tag t(:search), :class => 'button', "data-loading-click" => true %>
           </div>
         <% end %>
-        <div id="loading_status" class="loading status" style="display: none"> <%= t(:searching) %></div>
         <ul id="places" style="margin: 0"></ul>
       </div>
     </div>
@@ -114,7 +111,7 @@
     </div>
     <div class="last column span-8">
       <h3><%= t(:give_it_some_detail) %></h3>
-      <% form_for @place, :builder => DefaultFormBuilder do |f| %>
+      <%= form_for @place, :builder => DefaultFormBuilder do |f| %>
         <%= f.text_field :name, :class => 'text', :required => true %>
         <%= f.text_field :parent_id, :placeholder => "Type place name", :style => "width: 300px" %>
         <%= f.text_field :latitude, :class => 'text', :required => true %>

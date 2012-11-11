@@ -1,3 +1,6 @@
+<% content_for(:extrajs) do %>
+  <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
+<% end %>
 <h2><%=t :invite_flickr_photos %></h2>
 <p class="description">
  <%=t :invite_your_friends_description %>
@@ -7,7 +10,7 @@
   <textarea class="text" style="width: 100%; height: 1.2em; font-size: 175%"><%= @invite_url %></textarea>
 </div>
 
-<% form_tag url_for, :method => :get do %>
+<%= form_tag url_for, :method => :get do %>
   <label for="taxonchooser"><%=t :automatically_id_new %></label>
   <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => t(:type_species_name) %>
   &nbsp;
@@ -15,6 +18,9 @@
   <%= text_field_tag :project_id, @project.try(:id), :class => "chooser text", :id => "projectchooser", :placeholder => t(:type_project_name) %>
   
   <%= submit_tag t(:regenerate_url) %>
+
+  <div class='observation_photos'>
+  </div>
 <% end -%>
 
 
@@ -28,6 +34,41 @@
     queryParam: 'q',
     collectionUrl: 'http://'+window.location.host + '/projects/search.json',
     resourceUrl: 'http://'+window.location.host + '/projects/{{id}}.json',
-    defaultSources: <%= @projects.to_json %>
+    defaultSources: <%= @projects.to_json.html_safe %>
+  })
+    var DEFAULT_PHOTO_IDENTITY_URL = "/facebook/photo_fields", //?context=user",
+        PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields'},{title: 'Flickr', url: '/flickr/photo_fields'}]
+        //PHOTO_IDENTITY_URLS = [{title: 'Facebook', url: '/facebook/photo_fields?context=user'},{title: 'Flickr', url: '/flickr/photo_fields?context=user'}]
+
+$('.observation_photos').each(function() {
+    var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
+/*
+    if (window.location.href.match(/\/observations\/new/)) {
+      var index = 0
+    } else {
+      var index = window.location.href.match(/\/observations\/(\d+)/)[1]
+    }
+*/
+    // The photo_fields endpoint needs to know the auth token and the index
+    // for the field
+    var options = {
+      urlParams: {
+        authenticity_token: authenticity_token,
+        index: 0,
+        limit: 15,
+        synclink_base: window.location.href,
+        context: 'user'
+      }
+    }
+    if (DEFAULT_PHOTO_IDENTITY_URL) {
+      options.baseURL = DEFAULT_PHOTO_IDENTITY_URL
+    } else {
+      options.baseURL = '/photos/local_photo_fields' //?context=user'
+      options.queryOnLoad = false
+    }
+    if (PHOTO_IDENTITY_URLS && PHOTO_IDENTITY_URLS.length > 0) {
+      options.urls = PHOTO_IDENTITY_URLS
+    }
+    $(this).photoSelector(options)
   })
 </script>

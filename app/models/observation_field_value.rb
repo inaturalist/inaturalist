@@ -2,11 +2,11 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation
   belongs_to :observation_field
   
+  before_validation :strip_value
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   validates_presence_of :value
   validates_presence_of :observation_field_id
-  
-  before_validation :strip_value
+  validates_length_of :value, :maximum => 256
   validate :validate_observation_field_datatype
   validate :validate_observation_field_allowed_values
   
@@ -44,9 +44,11 @@ class ObservationFieldValue < ActiveRecord::Base
   
   def validate_observation_field_allowed_values
     return true if observation_field.allowed_values.blank?
-    allowed_values = observation_field.allowed_values.split('|')
-    unless allowed_values.include?(value)
-      errors.add(:value, "must be #{allowed_values[0..-2].map{|v| "#{v}, "}}or #{allowed_values.last}")
+    values = observation_field.allowed_values.split('|')
+    unless values.include?(value)
+      errors.add(:value, 
+        "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end
   end
+
 end

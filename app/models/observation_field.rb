@@ -2,9 +2,15 @@ class ObservationField < ActiveRecord::Base
   belongs_to :user
   has_many :observation_field_values, :dependent => :destroy
   has_many :observations, :through => :observation_field_values
+  has_many :project_observation_fields, :dependent => :destroy
+  has_many :comments, :as => :parent, :dependent => :destroy
+  has_subscribers :to => {
+    :comments => {:notification => "activity", :include_owner => true}
+  }
   
   validates_uniqueness_of :name
   validates_presence_of :name
+  validates_length_of :allowed_values, :maximum => 512, :allow_blank => true
   
   before_validation :strip_tags
   before_validation :strip_name
@@ -13,7 +19,7 @@ class ObservationField < ActiveRecord::Base
   validate :allowed_values_has_pipes
   
   # TYPES = %w(text numeric date time datetime location)
-  TYPES = %w(text numeric date time)
+  TYPES = %w(text numeric date time taxon)
   
   def strip_name
     self.name = name.strip unless name.blank?
@@ -47,5 +53,23 @@ class ObservationField < ActiveRecord::Base
       errors.add(:allowed_values, "must have multiple values separated by pipes")
     end
     true
+  end
+
+  def editable_by?(u)
+    u && (u.id == user_id || u.is_curator?)
+  end
+
+  def normalized_name
+    ObservationField.normalize_name(name)
+  end
+
+  def self.default_json_options
+    {
+      :methods => [:created_at_utc, :updated_at_utc]
+    }
+  end
+
+  def self.normalize_name(name)
+    name.gsub(/field\:/, '').gsub(/(%20|\+)/, ' ').downcase
   end
 end

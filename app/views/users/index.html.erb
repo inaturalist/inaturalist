@@ -23,7 +23,7 @@
       <div class="right inline smallbuttons buttonrow">
         <%= link_to t(:invite_someone_to_inat), emailer_invite_path, :class => "inter" %>
         <span class="meta inter">or</span>
-        <% form_tag(people_path, :method => :get, :class => "last") do %>
+        <%= form_tag(people_path, :method => :get, :class => "last") do %>
           <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email), :style => "width: 150px;" %>
           <%= submit_tag t(:search), :class => 'last default button' %>
         <% end %>
@@ -81,7 +81,7 @@
                   by 
                   <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
                 <%- when 'Post' %>
-                  made a <%= link_to t(:journal_post), post_path(update.user.login, update) %>
+                  made a <%= link_to t(:journal_post), journal_post_path(update.user.login, update) %>
                 <%- when 'Comment' %>
                   <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
                   <strong>commented</strong> on

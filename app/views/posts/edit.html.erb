@@ -1,30 +1,29 @@
 <% content_for(:title) do -%>
-  <%= t(:x_journal_editing, :user => "#{@post.user.login}") %> "<%= @post.title %>"
+  <%= t(:x_journal_editing, :user => @parent_display_name) %> Journal &middot; Editing "<%= @post.title %>"
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "observations", "posts" %>
 <% end -%>
 <div id="pageheader" class="column span-24">
   <div class="breadcrumbs">
-    <% if current_user and current_user.login == @post.user.login %>
-    <%= link_to t(:back_to_your_journal), 
-                journal_by_login_path(current_user.login),
-                :class => 'back crumb' %>
-    <% else %>
-    <%= link_to t(:back_to_x_journal, :user => "#{@post.user.login}"), 
-                journal_by_login_path(@post.user.login),
-                :class => 'back crumb' %>
-    <% end %>
+    <strong><%= link_to "&laquo Back to post".html_safe, @post, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
-  
   <h2><%= t(:editing) %> "<%= @post.title %>"</h2>
+  <div class="meta">
+    Post from
+    <% if @post.parent.is_a?(Project) -%>
+      <%= link_to @post.parent.title, @post.parent %>'s journal
+    <% else %>
+      <%= link_to "your journal", journal_by_login_path(current_user.login) %>
+    <% end -%>
+  </div>
 </div>
 
 <div class="column span-24">
   <% if @preview -%>
     <div id="preview" class="box">
-      <h3><%=t(:preview)%></h3>
-      <%= render :partial => "post", :locals => { :post => @preview } %>
+      <h3><%=t :preview %></h3>
+      <%= render :partial => "post", :locals => { :post => @post } %>
     </div>
   <% end -%>
 

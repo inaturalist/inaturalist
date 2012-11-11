@@ -30,7 +30,7 @@
     :next_url => @next ? calendar_date_path(@login, @next.observed_on.year, @next.observed_on.month, @next.observed_on.day) : nil
   } %>
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar", calendar_path(@login), :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo Back to #{possessive(@selected_user)} calendar".html_safe, calendar_path(@login), :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>

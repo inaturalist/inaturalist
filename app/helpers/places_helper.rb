@@ -30,6 +30,7 @@ module PlacesHelper
   def google_static_map_for_place_url(place, options = {})
     url_for_options = {
       :host => 'maps.google.com',
+      :port => '',
       :controller => 'maps/api/staticmap',
       :center => "#{place.latitude},#{place.longitude}",
       :zoom => 15,

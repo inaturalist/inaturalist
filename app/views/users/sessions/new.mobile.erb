@@ -1,0 +1,25 @@
+<%- content_for(:title) do -%>
+  <%= t(:log_in) %>
+<%- end -%>
+<%= form_tag user_session_path do %>
+  <p class="ui">
+    <%= label_tag 'login', t(:username_or_email) %><br/>
+    <%= text_field_tag 'login', @login, {:class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off"} %>
+  </p>
+
+  <p class="ui">
+    <%= label_tag 'password', t(:password) %><br/>
+    <%= password_field_tag 'password', nil, {:class => "text", :tabindex => 2} %>
+  </p>
+
+  <p class="ui">
+    <%= check_box_tag 'remember_me', '1', t(:remember_me) %>
+    <%= label_tag 'remember_me', t(:remember_me) %>
+  </p>
+
+  <p><%= submit_tag t(:sing_in_exclamation), :class => "default button", :style => "float: none;" %></p>
+
+<% end -%>
+
+<p class="ui" style="text-align:center;"><%= link_to t(:forgot_your_password), forgot_password_path %></p>
+<p class="ui" style="text-align:center;"><%= link_to t(:start_new_account), new_user_path %></p>

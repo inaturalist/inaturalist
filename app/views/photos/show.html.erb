@@ -2,9 +2,10 @@
   <%= @title = t(:photoid_photoattribution, :photoid => "#{@photo.id}", :photoattribution => "#{@photo.attribution}" ) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "taxa", "observations" %>
+  <%= stylesheet_link_tag "taxa" %>
   <style type="text/css" media="screen">
     th, td { vertical-align: top;}
+    .photocell {min-width: 500px;}
   </style>
 <%- end -%>
 
@@ -12,8 +13,14 @@
 
 <table>
   <tr>
-    <td>
-      <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
+    <td class="photocell">
+      <% if @photo.send("#{@size}_url") -%>
+        <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
+      <% else %>
+        <div class="nocontent meta">
+          No photo of that size.
+        </div>
+      <% end -%>
     </td>
     
     <td style="width: 100%">
@@ -42,7 +49,7 @@
         <% unless @photo.is_a?(LocalPhoto) -%>
           <tr>
             <th><%=t :source %></th>
-            <td><%= @photo.class.to_s.gsub(/Photo$/, '') %></td>
+            <td><%= @photo.source_title %></td>
           </tr>
           <tr>
             <th><%= :original %></th>
@@ -82,6 +89,12 @@
                 </li>
               <% end -%>
             </ul>
+
+            <% if @photo.is_a?(FlickrPhoto) && is_curator? -%>
+              <span class="button">
+                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, :confirm => "This might delete the photo if it was deleted from Flickr or the owner has revoked permission.  Proceed?" %>
+              </span>
+            <% end -%>
           </td>
         </tr>
       </table>

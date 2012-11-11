@@ -39,10 +39,13 @@ class ProviderAuthorization < ActiveRecord::Base
     photo_identity = case provider_name
     when "flickr"
       return if user.flickr_identity
+      return unless auth_info
+      
       user.create_flickr_identity(
-        :flickr_user_id => provider_uid || @auth_info.try(:[], "extra").try(:[], "user_hash").try(:[], "nsid"),
-        :flickr_username => @auth_info.try(:[], "extra").try(:[], "user_hash").try(:[], "username"),
+        :flickr_user_id => provider_uid || auth_info['uid'],
+        :flickr_username => auth_info['name'],
         :token => token,
+        :secret => auth_info['credentials']['secret'],
         :token_created_at => Time.now
       )
     else
@@ -60,9 +63,12 @@ class ProviderAuthorization < ActiveRecord::Base
   def update_photo_identities
     return unless token
     return unless provider_name == "flickr"
-    return unless user.flickr_identity
-    return if user.flickr_identity.token == token
-    user.flickr_identity.update_attribute(:token, token)
+    return unless fi = user.flickr_identity
+    fi.token = token
+    secret = auth_info.try(:[], 'credentials').try(:[], 'secret')
+    fi.secret = secret unless secret.blank?
+    fi.save
+    true
   end
   
   def update_with_auth_info(auth_info)

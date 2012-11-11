@@ -1,5 +1,5 @@
 <%-
-  identification ||= object
+  identification ||= box
   observation ||= @observation
   skip_body ||= false
 -%>
@@ -9,8 +9,8 @@
     ID
   </div>
   <div class="boxbody ui-helper-clearfix">
-    <% image_and_content link_to(user_image(identification.user, :size => "thumb"), identification.user) do %>
-      <% image_and_content link_to(taxon_image(identification.taxon), identification.taxon) do %>
+    <%= image_and_content link_to(user_image(identification.user, :size => "thumb"), identification.user) do %>
+      <%= image_and_content link_to(taxon_image(identification.taxon), identification.taxon) do %>
         <% if logged_in? && identification.user_id != current_user.id -%>
           <%= link_to "Agree?", {
                :controller => 'identifications',

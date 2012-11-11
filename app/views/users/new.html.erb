@@ -14,20 +14,19 @@
     })
   </script>
 <%- end -%>
-<div class="column prepend-4 span-8">
+<div class="column prepend-2 span-8">
   <img src="/images/bird.png" width="300" height="239" />
   
   <div style="margin: 20px 0 0 80px">
     <div style="margin-bottom: 0.5em;">
-
-        <label><%= t(:or_you_can) %></label>
+      <label><%= t(:or_you_can) %></label>
     </div>
     <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
       <%= link_to t(:sign_in_with_provider, :provider => "#{provider}"), url, :class => "button providerlink #{provider.downcase}" %>
     <%- end -%>
   </div>
 </div>
-<div class="column span-10 append-2 last">
-  <h2><%= t(:join_inat) %></h2>
+<div class="column span-12 append-2 last">
+  <h2><%= :join_inaturalist! %></h2>
   <%= render :partial => 'new_form' %>
 </div>

@@ -1,0 +1,19 @@
+<%- content_for(:title) do -%>
+  <%= @title = "Taxon Schemes" %>
+<%- end -%>
+
+<h2><%= @title %></h2>
+
+<% if !@taxon_schemes.blank? %>
+  <% for taxon_scheme in @taxon_schemes %>
+    <div class="stacked">
+      <h3><%= link_to taxon_scheme.title, taxon_scheme %></h3>
+      <div class="description"><%= auto_link taxon_scheme.description %></div>
+      <%= link_to "View details", taxon_scheme, :class => "readmore" %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="nocontent">No taxon schemes</div>
+<% end %>
+
+<%= will_paginate @taxon_schemes %>

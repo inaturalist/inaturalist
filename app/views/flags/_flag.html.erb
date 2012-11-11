@@ -1,5 +1,4 @@
-<%- 
-  flag ||= object 
+<%-  
   flaggable = flag.flaggable
   flaggable_class = flaggable.class
 -%>
@@ -11,21 +10,24 @@
   <% end -%>
   <%= link_to t(:flagged), flag, :action=>"show" %>
   <%= 
-    if flaggable.methods.include?("user")
-      link_to "#{flaggable.user.login}'s'", :controller => "users", :action => "show", :id => flaggable.user_id 
+    if flaggable.respond_to?(:user)
+      link_to "#{flaggable.user.login}'s", :controller => "users", :action => "show", :id => flaggable.user_id 
     else
       t(:the)
     end
   %>
-  <%= flaggable_class.name %>
-  <%= link_to flaggable.to_plain_s, flaggable %> 
+  <%= flaggable_class.name.humanize.downcase %>
+  <%= link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s) %> 
   <%=t :because %> 
   "<%= flag.flag %>"
   <span class="small meta ui">
-    <%= link_to t(:resolve), flag %> |
-    <%= link_to t(:delete), flag, 
-      :confirm => t(:you_sure_delete_flag?), 
-      :method => :delete %>
+    <%= link_to is_curator? ? t(:resolve) : "Details", flag %>
+    <% if is_me?(flag.user) || is_curator? -%>
+      |
+      <%= link_to t(:delete), flag, 
+        :confirm => t(:you_sure_delete_flag?), 
+        :method => :delete %>
+    <% end -%>
   </span>
 </div>
 <% if flag.resolved? && !flag.comment.blank? -%>

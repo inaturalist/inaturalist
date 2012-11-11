@@ -32,34 +32,33 @@ class ListedTaxon < ActiveRecord::Base
   before_save :set_user_id
   before_save :set_source_id
   after_save :update_cache_columns_for_check_list
-  after_save :expire_caches
+  after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
+  before_destroy :set_old_list
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
-  validates_presence_of :list, :taxon
+  validates_presence_of :list_id, :taxon_id
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
                           :message => "is already in this list"
   
-  named_scope :by_user, lambda {|user| 
-    {:include => :list, :conditions => ["lists.user_id = ?", user]}
-  }
+  scope :by_user, lambda {|user| includes(:list).where("lists.user_id = ?", user)}
   
-  named_scope :order_by, lambda {|order_by|
+  scope :order_by, lambda {|order_by|
     case order_by
     when "alphabetical"
-      {:include => [:taxon], :order => "taxa.name ASC"}
+      includes(:taxon).order("taxa.name ASC")
     when "taxonomic"
-      {:include => [:taxon], :order => "taxa.ancestry ASC, taxa.id ASC"}
+      includes(:taxon).order("taxa.ancestry ASC, taxa.id ASC")
     else
       {} # default to id asc ordering
     end
   }
   
-  named_scope :confirmed, :conditions => "last_observation_id IS NOT NULL"
+  scope :confirmed, where("last_observation_id IS NOT NULL")
   
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
@@ -72,6 +71,7 @@ class ListedTaxon < ActiveRecord::Base
     20 => "doubtful",
     10 => "absent"
   }
+  OCCURRENCE_STATUS_LEVELS_BY_NAME = OCCURRENCE_STATUS_LEVELS.invert
   OCCURRENCE_STATUSES = OCCURRENCE_STATUS_LEVELS.values
   OCCURRENCE_STATUS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   OCCURRENCE_STATUS_DESCRIPTIONS["present" ] =  "occurs in the area"
@@ -110,15 +110,21 @@ class ListedTaxon < ActiveRecord::Base
   
   validates_inclusion_of :occurrence_status_level, :in => OCCURRENCE_STATUS_LEVELS.keys, :allow_blank => true
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
-  validate_on_create :not_on_a_comprehensive_check_list
+  validate :not_on_a_comprehensive_check_list, :on => :create
   validate :absent_only_if_not_confirming_observations
   validate :preserve_absense_if_not_on_a_comprehensive_list
+  validate :list_rules_pass
+  validate :taxon_matches_observation
+  validate :check_list_editability
   
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
   
   attr_accessor :skip_sync_with_parent,
                 :skip_update_cache_columns,
-                :force_update_cache_columns
+                :force_update_cache_columns,
+                :extra,
+                :html,
+                :old_list
   
   def ancestry
     taxon_ancestor_ids
@@ -133,30 +139,8 @@ class ListedTaxon < ActiveRecord::Base
     "#{taxon.default_name.name} on #{list.title}"
   end
   
-  def validate
-    # don't bother if validates_presence_of(:taxon) has already failed
-    if errors.on(:taxon).blank?
-      list.rules.each do |rule|
-        errors.add(taxon.to_plain_s, "is not #{rule.terms}") unless rule.validates?(taxon)
-      end
-    end
-    
-    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
-      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
-    end
-    
-    if list.is_a?(CheckList)
-      if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
-        errors.add(:user, "must be the list creator or a curator")
-      end
-    else
-      CHECK_LIST_FIELDS.each do |field|
-        errors.add(field, "can only be set for check lists") unless send(field).blank?
-      end
-    end
-  end
-  
   def not_on_a_comprehensive_check_list
+    return true unless taxon
     return true unless list.is_a?(CheckList)
     return true if first_observation_id || last_observation_id
     target_place = place || list.place
@@ -202,6 +186,33 @@ class ListedTaxon < ActiveRecord::Base
     errors.add(:occurrence_status_level, "can't be changed from absent if this taxon is not on the comprehensive list of #{existing_comprehensive_list.taxon.name}")
     true
   end
+
+  def list_rules_pass
+    # don't bother if validates_presence_of(:taxon) has already failed
+    if !errors.include?(:taxon)
+      list.rules.each do |rule|
+        errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
+      end
+    end
+  end
+
+  def taxon_matches_observation
+    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
+      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
+    end
+  end
+
+  def check_list_editability
+    if list.is_a?(CheckList)
+      if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
+        errors.add(:user, "must be the list creator or a curator")
+      end
+    else
+      CHECK_LIST_FIELDS.each do |field|
+        errors.add(field, "can only be set for check lists") unless send(field).blank?
+      end
+    end
+  end
   
   def set_ancestor_taxon_ids
     unless taxon.ancestry.blank?
@@ -211,12 +222,16 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
+
+  def set_old_list
+    @old_list = self.list
+  end
   
   # Update the counter cache in users.
   def update_user_life_list_taxa_count
-    if self.list.user && self.list.user.life_list_id == self.list_id
-      User.update_all("life_list_taxa_count = #{self.list.listed_taxa.count}", 
-        "id = #{self.list.user_id}")
+    l = self.list || @old_list
+    if l && l.user && l.user.life_list_id == self.list_id
+      User.update_all("life_list_taxa_count = #{l.listed_taxa.count}", "id = #{l.user_id}")
     end
     true
   end
@@ -245,7 +260,7 @@ class ListedTaxon < ActiveRecord::Base
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
     unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
-      list.send_later(:sync_with_parent, :dj_priority => 1)
+      list.delay(:priority => 1).sync_with_parent
     end
     true
   end
@@ -263,6 +278,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_cache_columns
+    return unless taxon_id
     self.first_observation_id, self.last_observation_id, self.observations_count, self.observations_month_counts = cache_columns
   end
   
@@ -272,7 +288,7 @@ class ListedTaxon < ActiveRecord::Base
     if @force_update_cache_columns
       # this should have already happened in update_cache_columns
     else
-      ListedTaxon.send_later(:update_cache_columns_for, id, :dj_priority => 1)
+      ListedTaxon.delay(:priority => 1).update_cache_columns_for(id)
     end
     true
   end
@@ -290,7 +306,10 @@ class ListedTaxon < ActiveRecord::Base
     last_observation_id = nil
     unless ids.blank?
       first_observation_id = ids.min
-      last_observation_id = Observation.latest.first(:select => "id, observed_on, time_observed_at", :conditions => ["id IN (?)", ids]).try(:id)
+      last_observation_id = Observation.latest.first(
+        :select => "id, observed_on, time_observed_at", 
+        :conditions => ["id IN (?)", ids]
+      ).try(:id)
     end
     total = counts.map{|k,v| v}.sum
     month_counts = counts.map{|k,v| k ? "#{k}-#{v}" : nil}.compact.sort.join(',')
@@ -407,11 +426,11 @@ class ListedTaxon < ActiveRecord::Base
   # slow and memory intensive, so it should only be run from a script.
   def self.update_all_taxon_attributes
     start_time = Time.now
-    logger.info "[INFO] Starting ListedTaxon.update_all_taxon_attributes..."
+    Rails.logger.info "[INFO] Starting ListedTaxon.update_all_taxon_attributes..."
     Taxon.do_in_batches(:conditions => "listed_taxa_count IS NOT NULL") do |taxon|
       taxon.update_listed_taxa
     end
-    logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +
+    Rails.logger.info "[INFO] Finished ListedTaxon.update_all_taxon_attributes " +
       "(#{Time.now - start_time}s)"
   end
   
@@ -422,7 +441,7 @@ class ListedTaxon < ActiveRecord::Base
   def expire_caches
     return true unless place_id
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment(guide_taxon_cache_key)
+    ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
     true
   end

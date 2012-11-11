@@ -1,0 +1,91 @@
+<%- content_for(:title) do -%>
+  <%= @title = "#{h truncate(@project.title, :length => 85)} Invitations" %>
+<%- end -%>
+
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    
+    .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+      width: 185px;
+      height: 185px;
+    }
+    .observations.mini .observation {border: 0 transparent;}
+    .row {border-bottom: 1px solid #eee;}
+    .observations.mini .place {white-space: nowrap; overflow:hidden;}
+  </style>
+<%- end -%>
+
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.invite_button').bind('ajax:success', function() {
+        $(this).replaceWith($('<span>Invited</span>').addClass('inter success status'))
+      })
+
+      $('.add_button').bind('ajax:success', function() {
+        $(this).replaceWith($('<span>Added</span>').addClass('inter success status'))
+      })
+    })
+  </script>
+<%- end -%>
+
+<div id="pageheader" class="clear">
+  <div class="breadcrumbs">
+    <%= link_to "Invite photos from other sites", photo_inviter_path(:project_id => @project), :class => "right readmore" %>
+    <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
+  </div><!-- /#breadcrumbs -->
+  <h2><%= link_to truncate(@project.title, :length => 85), project_path %> suitable observations</h2>
+</div>
+
+<% if @observations.blank? %>
+  <p class="description">
+    No observations suitable for this project that haven't yet been contributed or invited.
+  </p>
+<% else %>
+  <p class="description">
+    These observations pass the project rules and haven't yet been contributed or invited.
+  </p>
+
+  <div class="stacked ui">
+    Showing observations by <strong><%= params[:by] == "you" ? "you" : "everyone" %></strong>
+    <%- opposite = params[:by] == "you" ? "everyone" : "you" -%>
+    <%= link_to "Show observations by #{opposite}", {:by => opposite}, :class => "small" %>
+  </div>
+
+  <div class="clear column span-24">
+    <% for observation in @observations %>
+      <div class="stacked row <%= cycle('first', 'last') %> column span-12">
+        <div class="mini observations">
+          <%= render :partial => "observations/cached_component", :object => observation %>
+        </div>
+
+        <div style="text-align:center;" class="stacked inline buttonrow" id="<%= dom_id(observation, 'buttons') %>">
+          <% if current_user.id == observation.user_id %>
+            <%= link_to "Add to project", 
+              add_project_observation_path(@project, :observation_id => observation.id),
+              :remote => true,
+              :datatype => :json,
+              :method => :post,
+              "data-loading-click" => "Adding...", 
+              :class => "glaucous button add_button" %>
+          <% else %>
+            <%= link_to "Invite to project",
+              url_for(:controller => 'project_invitations',
+                :action => 'create',
+                :project_id => @project.id,
+                :observation_id => observation.id,
+                :user_id => current_user.id),
+              :remote => true,
+              :method => :post,
+              :datatype => :json,
+              :class => "glaucous inline button invite_button",
+              "data-loading-click" => "Inviting..." %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <%= will_paginate @observations %>
+<% end %>
+

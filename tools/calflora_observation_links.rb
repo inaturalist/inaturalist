@@ -8,7 +8,7 @@ Calflora.
 
 Usage:
 
-  script/runner tools/calflora_observation_links.rb
+  rails runner tools/calflora_observation_links.rb
 
 where [options] are:
 EOS

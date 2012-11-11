@@ -1,5 +1,5 @@
 class TaxonLinksController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   before_filter :load_taxon_link, :except => [:new, :create, :index]
   
   # NOTE: show and index should be deleted when we upgrade past Rails 2.2,

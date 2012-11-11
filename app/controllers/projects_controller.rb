@@ -3,10 +3,10 @@ class ProjectsController < ApplicationController
   caches_action :observed_taxa_count, :contributors,
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format.widget?}
+    :if => Proc.new {|c| c.request.format == :widget}
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
-  before_filter :login_required, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
+  before_filter :authenticate_user!, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
@@ -35,12 +35,15 @@ class ProjectsController < ApplicationController
         end
       end
       format.json do
-        scope = Project.scoped({})
+        scope = Project.scoped
         scope = scope.featured if params[:featured]
         scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
         scope = scope.from_source_url(params[:source]) if params[:source]
         @projects = scope.paginate(:page => params[:page], :per_page => 100)
-        opts = Project.default_json_options.merge(:include => :project_list)
+        opts = Project.default_json_options.merge(:include => [
+          :project_list, 
+          {:project_observation_fields => ProjectObservationField.default_json_options}
+        ])
         opts[:methods] << :project_observations_count
         render :json => @projects.to_json(opts)
       end
@@ -67,13 +70,17 @@ class ProjectsController < ApplicationController
             :observation => :iconic_taxon,
             :curator_identification => [:user, :taxon]
           }, :order => "id DESC")
+        @project_journal_posts = @project.posts.published.paginate(:page => params[:page] || 1, 
+          :per_page => 1, :order => "published_at DESC")
         @observations = @project_observations.map(&:observation)
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.all(:limit => 100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
-        @kml_assets = @project_assets.select{|pa| pa.asset_content_type == "application/vnd.google-earth.kml+xml"}
+        @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
         if @place = @project.rule_place
-          @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+          if @project.prefers_place_boundary_visible
+            @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+          end
         end
         
         if params[:iframe]
@@ -83,7 +90,12 @@ class ProjectsController < ApplicationController
       end
       
       format.json do
-        render :json => @project
+        opts = Project.default_json_options.merge(:include => [
+          :project_list, 
+          {:project_observation_fields => ProjectObservationField.default_json_options}
+        ])
+        opts[:methods] << :project_observations_count
+        render :json => @project.as_json(opts)
       end
     end
   end
@@ -154,7 +166,14 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        project_options = Project.default_json_options.update(:include => :project_list)
+        project_options = Project.default_json_options.update(
+          :include => [
+            :project_list, 
+            {
+              :project_observation_fields => ProjectObservationField.default_json_options
+            }
+          ]
+        )
         project_options[:methods] << :project_observation_rule_terms
         render :json => @project_users.to_json(:include => {
           :user => {:only => :login},
@@ -166,6 +185,9 @@ class ProjectsController < ApplicationController
   
   def members
     @project_users = @project.project_users.paginate(:page => params[:page], :include => :user, :order => "users.login ASC")
+    @admin = @project.user
+    @curators = @project.project_users.curators.all(:limit => 500, :include => :user).map{|pu| pu.user}
+    @managers = @project.project_users.managers.all(:limit => 500, :include => :user).map{|pu| pu.user}
   end
   
   def observed_taxa_count
@@ -294,7 +316,7 @@ class ProjectsController < ApplicationController
       redirect_to project_members_path(@project)
       return
     end
-    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
+    Project.delay.delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     if @project_user.destroy
       flash[:notice] = "Removed project user"
       redirect_to project_members_path(@project)
@@ -374,9 +396,9 @@ class ProjectsController < ApplicationController
     
     
     unless @project_user.role == nil
-      Project.send_later(:update_curator_idents_on_remove_curator, @project.id, @project_user.user.id)
+      Project.delay.update_curator_idents_on_remove_curator(@project.id, @project_user.user.id)
     end
-    Project.send_later(:delete_project_observations_on_leave_project, @project.id, @project_user.user.id)
+    Project.delay.delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     @project_user.destroy
     
     respond_to do |format|
@@ -405,14 +427,16 @@ class ProjectsController < ApplicationController
     
     @headers = ['year/month', 'new users', 'new observations', 'unique observers']
     @data = []
-    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.sort.reverse.each do |key|
-      @data << [key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
+    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
+      display_key = key.gsub(/\-(\d)$/, "-0\\1")
+      @data << [display_key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
     end
+    @data.sort_by!(&:first).reverse!
     
     respond_to do |format|
       format.html
       format.csv do 
-        csv_text = FasterCSV.generate(:headers => true) do |csv|
+        csv_text = CSV.generate(:headers => true) do |csv|
           csv << @headers
           @data.each {|row| csv << row}
         end
@@ -421,50 +445,110 @@ class ProjectsController < ApplicationController
     end
   end
   
+  def invitations
+    scope = @project.observations_matching_rules
+    existing_scope = Observation.in_projects([@project]).scoped
+    invited_scope = Observation.scoped(:joins => :project_invitations, :conditions => ["project_invitations.project_id = ?", @project])
+
+    if params[:by] == "you"
+      scope = scope.by(current_user)
+      existing_scope = existing_scope.by(current_user)
+      invited_scope = invited_scope.by(current_user)
+    end
+
+    scope_sql = scope.to_sql
+    existing_scope_sql = existing_scope.to_sql
+    invited_scope_sql = invited_scope.to_sql
+
+    sql = "(#{scope_sql}) EXCEPT ((#{existing_scope_sql}) UNION (#{invited_scope_sql}))"
+    @observations = Observation.paginate_by_sql(sql, :page => params[:page])
+  end
+  
   def add
+    error_msg = nil
     unless @observation = Observation.find_by_id(params[:observation_id])
-      flash[:error] = "That observation doesn't exist."
-      redirect_back_or_default(@project)
-      return
+      error_msg = "That observation doesn't exist."
     end
-    if @project_observation = ProjectObservation.first(:conditions => { :project_id => @project.id, :observation_id => @observation.id })
-      flash[:error] = "The observation was already added to that project."
-      redirect_back_or_default(@project)
-      return
+
+    if @project_observation = ProjectObservation.where(
+        :project_id => @project.id, :observation_id => @observation.id).first
+      error_msg = "The observation was already added to that project."
     end
+
     @project_observation = ProjectObservation.create(:project => @project, :observation => @observation)
+    
     unless @project_observation.valid?
-      flash[:error] = "There were problems adding your observation to this project: " + 
+      error_msg = "There were problems adding your observation to this project: " + 
         @project_observation.errors.full_messages.to_sentence
-      redirect_back_or_default(@project)
+    end
+
+    if error_msg
+      respond_to do |format|
+        format.html do
+          flash[:error] = error_msg
+          redirect_back_or_default(@project)
+        end
+        format.json do
+          json = {
+            :error => error_msg,
+            :errors => @project_observation.errors.full_messages
+          }
+          if @project_observation.errors.full_messages.to_sentence =~ /observation field/
+            json[:observation_fields] = @project.project_observation_fields.as_json(:include => :observation_field)
+          end
+          render :status => :unprocessable_entity, :json => json
+        end
+      end
       return
     end
     
-    if @project_invitation = ProjectInvitation.first(:conditions => {:project_id => @project.id, :observation_id => @observation.id})
+    if @project_invitation = ProjectInvitation.where(
+        :project_id => @project.id, :observation_id => @observation.id).first
       @project_invitation.destroy
     end
     
-    flash[:notice] = "Observation added to the project \"#{@project.title}\""
-    redirect_back_or_default(@project)
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Observation added to the project \"#{@project.title}\""
+        redirect_back_or_default(@project)
+      end
+      format.json { render :json => @project_observation.to_json(:include => {:project => {:include => :project_observation_fields}}) }
+    end
   end
   
   def remove
+    error_msg = nil
     unless @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
-      flash[:error] = "That observation hasn't been added this project."
-      redirect_back_or_default(@project)
-      return
+      error_msg = "That observation hasn't been added this project."
     end
     
     unless @project_observation.observation.user_id == current_user.id || (@project_user && @project_user.is_curator?)
-      flash[:error] = "You can't remove other people's observations."
-      redirect_back_or_default(@project)
+      error_msg = "You can't remove other people's observations."
+    end
+
+    if error_msg
+      respond_to do |format|
+        format.html do
+          flash[:error] = error_msg
+          redirect_back_or_default(@project)
+        end
+        format.json { render :status => :unprocessable_entity, :json => {
+          :error => error_msg
+        }}
+      end
       return
     end
     
     @project_observation.destroy
-    flash[:notice] = "Observation removed from the project \"#{@project.title}\""
-    redirect_back_or_default(@project)
-    return
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Observation removed from the project \"#{@project.title}\""
+        redirect_back_or_default(@project)
+      end
+      format.json do
+        render :json => @project_observation
+      end
+    end
   end
   
   def add_batch
@@ -494,7 +578,7 @@ class ProjectsController < ApplicationController
       
     end
     
-    @unique_errors = @errors.values.uniq.to_sentence
+    @unique_errors = @errors.values.flatten.uniq.to_sentence
     
     if @observations.empty?
       flash[:error] = "You must specify at least one observation to add the project \"#{@project.title}\""
@@ -538,7 +622,15 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render :json => @projects.to_json(:methods => [:icon_url], :include => :project_list)
+        render :json => @projects.to_json(
+          :methods => [:icon_url], 
+          :include => [
+            :project_list, 
+            {
+              :project_observation_fields => {:include => :observation_field}
+            }
+          ]
+        )
       end
     end
   end
@@ -551,7 +643,10 @@ class ProjectsController < ApplicationController
   end
   
   def ensure_current_project_url
-    return redirect_to @project, :status => :moved_permanently unless @project.friendly_id_status.best?
+    fmt = request.format && request.format != :html ? request.format.to_sym : nil
+    if request.path != project_path(@project, :format => fmt)
+      return redirect_to project_path(@project, :format => fmt), :status => :moved_permanently
+    end
   end
   
   def load_project_user

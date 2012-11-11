@@ -25,7 +25,7 @@
 </div>
 
 <div id="batchcol" class="column span-24">
-  <% form_tag(
+  <%= form_tag(
     {:controller => 'observations', :action => 'update'}, 
     :multipart => true,
     :class => 'observationform') do %>

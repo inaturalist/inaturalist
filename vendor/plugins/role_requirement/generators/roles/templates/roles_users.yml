@@ -1,3 +1,0 @@
-admin_is_admin:
-  <%=users_foreign_key%>: <%= next_user_id %> # admin
-  <%=roles_foreign_key%>: 1 # admin role

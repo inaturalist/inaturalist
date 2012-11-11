@@ -1,0 +1,80 @@
+<%-
+  taxon ||= scheme_taxon || @taxon
+  photo ||= taxon.photos.first
+  taxon_range ||= taxon.taxon_ranges_without_geom.first
+  swaps = if @swaps_by_taxon_id
+    @swaps_by_taxon_id[taxon.id] || []
+  end
+-%>
+
+<div class="taxon_scheme">
+  <table border="0" cellspacing="5" cellpadding="5">
+    <tr>
+      <td>
+        <div id="scheme_taxon_<%= taxon.id %>" class="scheme_taxon clear" data-taxon-id="<%= taxon.id %>">
+          <%= image_and_content taxon_image(taxon), :image_size => 75 do %>
+            <%= link_to taxon, :class => "taxon #{taxon.rank}" do %>
+              <span class="sciname"><%= taxon.name %></span>
+            <% end -%>
+            
+            <div class="stacked">
+              <%= link_to taxon.observations_count, observations_path(:taxon_id => taxon.id) %> Obs
+              <% unless taxon.conservation_status.blank? -%>
+                <span class='meta'>|</span>
+                <%= taxon.conservation_status_code %>
+              <% end -%>
+              <% if taxon_range -%>
+                <span class='meta'>|</span>
+                <%= link_to 'Range', taxon_path(taxon, :anchor => 'taxon_range') %>
+              <% end -%>
+              <% if taxon.is_active? -%>
+                | <span class='active'>Active</span>
+              <% else %>
+                | <span class='inactive'>Inactive</span>
+              <% end -%>
+              <% if taxon.flagged? %>
+                | <span id="flaggings_heads_up" class="description">
+                Flagged for curation.
+                <%= link_to "View flags", taxon_flags_path(taxon), :class => 'readmore', 
+                  :title => "See something wrong with this taxon?  Let the curators know." %>
+                </span>
+              <% else %>
+                <% if logged_in? %>
+                | <%= link_to "Flag for curation", new_taxon_flag_path(taxon), :id => "flag_this" %>
+                <% end %>
+              <% end %>
+            </div>
+            
+            <div class="meta">
+              <div class="small description">
+                <%- schemes = taxon.taxon_schemes.compact -%>
+                <% unless schemes.blank? -%>
+                  <label>Schemes:</label>
+                  <%= schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe %>
+                <% end -%>
+                
+                <% unless swaps.blank? -%>
+                  <label>Synonyms</label>
+                  <ul>
+                    <% for swap in swaps %> 
+                      <%- aka_taxon = swap.opposite_taxon_from(taxon) -%>
+                      <li>
+                        <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %>
+                        <% for aka_scheme in aka_taxon.taxon_schemes %>
+                          <div class="meta">
+                            <%= aka_scheme.title %>
+                          </div>
+                        <% end %>
+                        <%= link_to "View change", taxon_change_path(swap) %>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% end -%>
+              </div>
+            </div>
+          <% end -%>
+        <div>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -21,10 +21,10 @@
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @place.to_json %>,
-        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect %>,
-        OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon) %>,
-        KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect %>
+    var PLACE = <%= @place.to_json.html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect.html_safe %>,
+        OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
+        KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
   </script>
 <%- end -%>
 
@@ -43,10 +43,10 @@
       <%-
         links = []
         if !@project.terms.blank? || !@project.project_observation_rules.blank? || !@project.project_user_rules.blank?
-          links << link_to( t(:terms_and_rules), project_terms_path(@project), :class=> "ui")
+          links << link_to(t(:terms_and_rules).html_safe, project_terms_path(@project), :class => "ui")
         end
-        if logged_in? && current_user.id == @project.user_id
-          links << link_to( t(:edit_project), edit_project_path(@project), :class => "ui description")
+        if @project.editable_by?(current_user)
+          links << link_to(t(:edit_project), edit_project_path(@project), :class => "ui description")
         end
         if @project_user && @project_user.user_id != @project.user_id
           links << link_to( t(:leave_this_project) , leave_project_path(@project), :method => :post, :class => "ui description",
@@ -56,13 +56,13 @@
           links << link_to( t(:join_project), join_project_path(@project), :class => "ui")
         end
       -%>
-      <%= links.join(" | ") unless links.blank? %>
+      <%= links.join(" | ").html_safe unless links.blank? %>
     </span>
-    <strong><%= link_to "&laquo " + t(:projects), projects_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo; #{t(:projects)}".html_safe, projects_path, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <% if @custom_project && !@custom_project.head.blank? -%>
-    <%= @custom_project.head %>
+    <%= @custom_project.head.html_safe %>
   <% else %>
     <h2>
       <% if @logo_image -%>
@@ -87,6 +87,23 @@
 <div class="column span-16">
   <div id="map" class="stacked"></div>
   
+  <% unless @project_journal_posts.blank? %>
+    <div id="journal" class="quiet box">
+      <% if @project_journal_posts.blank? -%>
+        <div class="description noresults">
+          No journal posts have been added to this project yet.
+        </div>
+      <% else %>
+        <div class="stacked">
+          <% for project_journal_post in @project_journal_posts %>
+            <%= render :partial => 'posts/post', :locals => { :post => project_journal_post } %>
+          <% end %>
+        </div>
+        <%= link_to "More journal posts", project_journal_path(@project),
+          :class => "readmore" %>
+      <% end %>
+    </div>
+  <% end %>
   <div id="observations">
     <h3>
       <%=t :recent_observations %>
@@ -111,11 +128,11 @@
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
-      <%= link_to "<span class='lead'>&raquo;</span> "+ t(:observations_map), project_observations_path(@project), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
-        <%= link_to(t(:atom), project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to(t(:kml),  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
-        <%= link_to(t(:csv),  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>  
+        <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
+        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
+        <%= link_to("CSV",  project_observations_path(@project, :format => 'csv'),  :class => 'csvlink', :rel => "nofollow") %>  
         <% if @project.curated_by?(current_user) -%>
           / <%= link_to(t(:all_csv),  all_project_observations_path(@project, :format => 'csv'), :class => 'csvlink', :rel => "nofollow") %>
         <% end -%>
@@ -123,9 +140,9 @@
     </li>
     <li>
       <% if @project.prefers_count_from_list? -%>
-      <span class="right" style="margin: 4px 10px 0 10px">
-        <span class="count"><%= @observed_taxa_count %></span> of <span class="count"><%= @project.project_list.listed_taxa.count %></span> taxa observed
-      </span>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @observed_taxa_count %></span> of <span class="count"><%= @project.project_list.listed_taxa.count %></span> taxa observed
+        </span>
       <% else -%>
        <% if @observed_taxa_count.to_i > 0 -%>
          <span class="right" style="margin: 4px 10px 0 10px">
@@ -133,27 +150,30 @@
          </span>
         <% end -%>
       <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> "+t(:checklist), list_path(@project.project_list), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list), :class => "navlink" %>
+    </li>
+    <li>
+      <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
       <% if @project.contest? -%>
-        <%= link_to "<span class='lead'>&raquo;</span> "+t(:top_contributors), project_contributors_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:top_contributors)}".html_safe, project_contributors_path(@project), :class => "navlink" %>
       <% else %>
-        <%= link_to "<span class='lead'>&raquo;</span> "+ t(:members), project_members_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:members)}".html_safe, project_members_path(@project), :class => "navlink" %>
       <% end -%>
       <div class="inner">
         <% if @project.contest? && !@project_users.blank? && !@top_observers.blank? -%>
           <ol class="readable">
-            <% for project_user in @top_observers  %>
+            <% for project_user in @top_observers[0..2] %>
               <li>
                 <div class="clear">
                   <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
                     observations_by_login_path(project_user.user.login),
                     :alt => h(project_user.user.login),
-                    :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+                    :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" -%>
                   <div>
-                    <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project,project_user) %>
-                  <div>
+                    <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
+                  </div>
                   <div class="small ui">
                     <span class="count"><%= project_user.taxa_count %></span> species,
                     <span class="count"><%= project_user.observations_count %></span> observations
@@ -180,8 +200,13 @@
     </li>
     <% if logged_in? -%>
       <li>
-        <%= link_to "<span class='lead'>&raquo;</span> "+t(:stats), project_stats_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
+      <% if @project.curated_by?(current_user) -%>
+        <li>
+          <%= link_to "<span class='lead'>&raquo;</span> Invite observations".html_safe, invitations_path(@project), :class => "navlink" %>
+        </li>
+      <% end -%>
     <% end -%>
   </ul>
   
@@ -189,7 +214,7 @@
   <%= truncate_with_more formatted_user_text(@project.description), :length => 400 %>
   
   <% if @custom_project && !@custom_project.side.blank? -%>
-    <%= @custom_project.side %>
+    <%=raw @custom_project.side %>
   <% end -%>
   
   <div id="fblike" class="stacked">

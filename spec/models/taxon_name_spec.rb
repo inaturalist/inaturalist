@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonName, 'creation' do
@@ -63,14 +64,34 @@ describe TaxonName, 'creation' do
   end
   
   it "should not allow synonyms within a lexicon" do
-    taxon = Taxon.make
-    name1 = TaxonName.make(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    taxon = Taxon.make!
+    name1 = TaxonName.make!(:taxon => taxon, :name => "foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
     name2 = TaxonName.new(:taxon => taxon, :name => "Foo", :lexicon => TaxonName::LEXICONS[:ENGLISH])
     name2.should_not be_valid
   end
   
   it "should strip html" do
-    tn = TaxonName.make(:name => "Foo <i>")
+    tn = TaxonName.make!(:name => "Foo <i>")
     tn.name.should == 'Foo'
+  end
+end
+
+describe TaxonName, "strip_author" do
+  it "should work" do
+    [
+      ["Larix kaempferi", "Larix kaempferi (Lamb.) Carriére"],
+      ["Libocedrus bidwillii", "Libocedrus bidwillii Hook. f."],
+      ["Macrozamia conferta", "Macrozamia conferta D. L. Jones & P. I. Forst."],
+      ["Macrozamia dyeri", "Macrozamia dyeri (F. Muell.) C. A. Gardner"],
+      ["Dacrydium gracile", "Dacrydium gracile de Laub."],
+      ["Polystichum minimum", "Polystichum minimum (Y.T.Hsieh) comb. ined."],
+      ["Stelis macrophylla", "Stelis macrophylla (Kunth) ined."],
+      ["Bromheadia finlaysoniana", "Bromheadia finlaysoniana (Lindl.) & Miq."],
+      ["Pleopeltis pleopeltidis", "Pleopeltis pleopeltidis (Fée) de la Sota"],
+      ["Oncidium schunkeanum", "Oncidium schunkeanum Campacci & Cath."],
+      ["Astragalus albispinus esfandiarii", "Astragalus albispinus esfandiarii"]
+    ].each do |stripped, name|
+      TaxonName.strip_author(name).should == stripped
+    end
   end
 end

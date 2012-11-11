@@ -1,0 +1,25 @@
+<%- 
+  builder ||= project_observation_field_row
+  pof = builder.object
+  observation_field ||= pof.observation_field
+-%>
+<li class="project_observation_field lined" data-json="<%= observation_field.to_json %>">
+  <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+  <div class="title"><%= observation_field.name if observation_field %></div>
+  <div class="description"><%= observation_field.description if observation_field %></div>
+  <div class="allowed meta">
+    <label>Allowed values:</label>
+    <span><%= observation_field.allowed_values if observation_field %></span>
+  </div>
+  <%= builder.hidden_field :project_id %>
+  <%= builder.hidden_field :observation_field_id %>
+  <%= builder.check_box :required, :label_after => true %>
+  <%= builder.hidden_field :position %>
+  <div class="small">
+    <%= builder.hidden_field "_destroy" %>
+    <%= link_to_function "Remove", "$(this).prev().val(1); $(this).parents('.project_observation_field').slideUp().attr('id', '')" %>
+    |
+    <%= link_to "Edit field", observation_field ? edit_observation_field_url(observation_field) : '', :target => "_blank", :class => "editlink" %>
+    <span class="small meta">Fields can only be edited by the people who created them and site curators.</span>
+  </div>
+</li>

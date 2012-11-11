@@ -319,7 +319,7 @@ module DarwinCore
       end
 
       def order
-        taxon.order.try(:name) if taxon
+        taxon.find_order.try(:name) if taxon
       end
 
       def family

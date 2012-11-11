@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= t(:x_journal_middot, :user => "#{@post.user.login}") %> <%= @post.title %>
+  <%= t(:x_journal_middot, :user => @parent_display_name) %> <%= @post.title %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "lists" %>
@@ -80,7 +80,7 @@
     $(document).ready(function() {
       if ($('#map').length > 0) {
         var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
-        var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+        var observations = <%= @observations.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
         map.addObservations(observations);
         map.zoomToObservations();
         $('#map').hide();
@@ -89,24 +89,23 @@
   </script>
 <% end -%>
 <div id="pageheader" class="column span-24">
-  <div class="breadcrumbs">
-    <% if current_user and current_user.login == @post.user.login %>
-    <%= link_to t(:back_to_your_journal), 
-                journal_by_login_path(current_user.login),
-                :class => 'back crumb' %>
-    <% else %>
-    <%= link_to t(:back_to_x_journal, :user => "#{@post.user.login}"), 
-                journal_by_login_path(@post.user.login),
-                :class => 'back crumb' %>
-    <% end %>
-  </div><!-- /#breadcrumbs -->
-  
-  <%= render :partial => 'shared/prevnext', :locals => {
-    :prev_item => @previous,
-    :prev_url => @previous ? journal_post_path(@previous.user.login, @previous) : '',
-    :next_item => @next,
-    :next_url => @next ? journal_post_path(@next.user.login, @next) : ''
-  } %>
+  <%= render :partial => 'posts/breadcrumbs' %>
+
+  <% if @parent.is_a?(Project) %>
+    <%= render :partial => 'shared/prevnext', :locals => {
+      :prev_item => @previous,
+      :prev_url => @previous ? project_journal_post_path(@parent_slug, @previous) : '',
+      :next_item => @next,
+      :next_url => @next ? project_journal_post_path(@parent_slug, @next) : ''
+    } %>
+  <% else %>
+    <%= render :partial => 'shared/prevnext', :locals => {
+      :prev_item => @previous,
+      :prev_url => @previous ? journal_post_path(@previous.user.login, @previous) : '',
+      :next_item => @next,
+      :next_url => @next ? journal_post_path(@next.user.login, @next) : ''
+    } %>
+  <% end %>
   
   <h2>
     <% if @post.published_at -%>
@@ -115,12 +114,22 @@
     <%= @post.title %>
   </h2>
   
-  <% if logged_in? && current_user.id == @post.user_id -%>
+  <% if (@parent.is_a?(Project) && logged_in? && @display_project.editable_by?(current_user)) %>
     <div id="tools" class="buttonrow">
-      <%= link_to t(:edit), edit_post_path(@post.user.login, @post), 
+      <%= link_to t(:edit), edit_project_journal_post_path(:project_id => @parent_slug, :id => @post.id), 
                   :id => "edit_post_button", :class => "button" %>
       <%= link_to t(:delete), post_path(@post.user.login, @post), 
                   :confirm => t(:are_you_sure_delete_post), 
+                  :method => :delete, 
+                  :id => "delete_post_button", 
+                  :class => "minor delete button" %>
+    </div>
+  <% elsif logged_in? && current_user.id == @post.user_id -%>
+    <div id="tools" class="buttonrow">
+      <%= link_to "Edit", edit_journal_post_path(:login => @parent_slug, :id => @post.id), 
+                  :id => "edit_post_button", :class => "button" %>
+      <%= link_to "Delete", post_path(@post), 
+                  :confirm => "Are you sure you want to delete this post?", 
                   :method => :delete, 
                   :id => "delete_post_button", 
                   :class => "minor delete button" %>
@@ -130,7 +139,7 @@
 
 <div class="column span-14 append-1">
   <div class="post">
-    <%= formatted_user_text(@post.body) %>
+    <%= formatted_user_text(@post.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES) %>
   </div>
   
   <div id="postmeta" class="description">

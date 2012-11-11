@@ -1,9 +1,23 @@
-<h2> <%= t(:sources) %></h2>
-<table>
+<%- content_for(:title) do -%>
+  <%= @title = t(:sources) %>
+<%- end -%>
+
+<form method="get" class="inline buttonrow right">
+  <input type="text" name="q" value="<%= @q %>" id="search" class="text" placeholder="Search sources">
+  <input type="submit" value="Search" class="inline default button">
+</form>
+
+<h2><%= @title %></h2>
+<p class="description">
+  Sources track the origin of external data incorporated into iNat, usually in the form of a citation.
+</p>
+
+<table width="100%">
   <tr>
     <th>id</th>
     <th>title</th>
     <th>details</th>
+    <th>actions</th>
   </tr>
   <% for source in @sources %>
     <tr>
@@ -17,6 +31,13 @@
           <% end %>
         </dl>
       </td>
+      <td>
+        <%= link_to "show", source %>
+        <% if source.editable_by?(current_user) %>
+          <%= link_to "edit", edit_source_path(source) %>
+        <% end -%>
+      </td>
     </tr>
   <% end %>
 </table>
+<%= will_paginate @sources %>

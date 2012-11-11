@@ -7,7 +7,7 @@ Create ObservationLinks for observations that have been integrated into GBIF.
 
 Usage:
 
-  script/runner tools/gbig_observation_links.rb
+  rails runner tools/gbif_observation_links.rb
 
 where [options] are:
 EOS

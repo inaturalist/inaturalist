@@ -1,3 +1,3 @@
 <% @photos.each do |photo| %>
-<%= link_to image_tag(photo.source_url(:square)), photo.source_url(:medium) %>
+<%= link_to image_tag(FlickRaw.url_s(photo)), FlickRaw.url(photo) %>
 <% end %>

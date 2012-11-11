@@ -1,5 +1,5 @@
 class TaxonNamesController < ApplicationController
-  before_filter :login_required, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy]
   before_filter :load_taxon, :except => [:index]
   before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy]
@@ -38,28 +38,11 @@ class TaxonNamesController < ApplicationController
     @status = nil
     if params[:include_external]
       if params[:force_external] or (@taxon_names.empty? and params[:q])
-        logger.info("DEBUG: Making an external lookup...")
         begin
-          @external_taxon_names = [] # Ratatosk.find(params[:q])
-          ratatosk = Ratatosk::Ratatosk.new
-          ratatosk.find(params[:q]).each do |ext_name|
-            if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
-              ext_name.taxon = existing_taxon
-            end
-            ext_name.save
-            @external_taxon_names << ext_name if ext_name.valid?
-          end
+          @external_taxon_names = TaxonName.find_external(params[:q])
           @taxon_names += @external_taxon_names
-          
-          # graft in the background at a lower priority than the parent proc
-          unless @external_taxon_names.empty?
-            @external_taxon_names.map(&:taxon).each do |taxon|
-              taxon.send_later(:graft) unless taxon.grafted?
-            end
-          end
         rescue Timeout::Error => e
-          if @taxon_names.empty? and 
-             not @taxon_names.map {|tn| tn.taxon}.include? nil
+          if @taxon_names.empty? && !@taxon_names.map{|tn| tn.taxon}.include?(nil)
             @status = e.message
           end
         end

@@ -7,8 +7,13 @@ module Ambidextrous
   MOBILE_APP_USER_AGENT_PATTERNS = [IPHONE_APP_USER_AGENT_PATTERNS, ANDROID_APP_USER_AGENT_PATTERN].flatten
   
   protected
+  
+  def logged_in?
+    user_signed_in?
+  end
+  
   def auth_url_for(provider, options = {})
-    provider = provider.downcase
+    provider = provider.to_s.downcase
     openid_urls = {
       "google" => "https://www.google.com/accounts/o8/id",
       "yahoo" => "https://me.yahoo.com"

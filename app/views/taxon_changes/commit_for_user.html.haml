@@ -1,0 +1,95 @@
+- content_for :title do
+  = @title = "Commit Taxon Change #{@taxon_change.id} for #{current_user.login}"
+
+- content_for :extracss do
+  = stylesheet_link_tag 'taxon_changes', 'observations', 'identifications'
+  :css
+    table {width: 100%;}
+    td {vertical-align: top;}
+    .observations.mini .observation {border: 0 transparent;}
+    .change_taxon {margin-bottom: 10px; width: 440px;}
+- content_for :extrajs do
+  = javascript_include_tag 'jquery/plugins/jquery.labelize'
+  :javascript
+    $(document).ready(function() {
+      $('tr').labelize()
+      $('#changeform').submit(function() {
+        if ($('#changeform input:checked').length == 0) {
+          alert('Please choose some records')
+          $('#changeform [name=taxon_id]').val('')
+          return false
+        }
+        if (confirm("Are you sure you want to change those records?")) {
+          return true
+        } else {
+          $('#changeform [name=taxon_id]').val('')
+          return false
+        }
+      })
+    })
+
+#pageheader.clear
+  .breadcrumbs
+    %strong
+      = link_to "&laquo Back to taxon change".html_safe, @taxon_change, :class => 'crumb'
+  %h2= @title
+.description
+
+
+.column.span-24
+  = render 'show_change_taxon', :taxon_change => @taxon_change, :hide_buttons => true, :hide_title => true, :show_change_links => true
+  %h3
+    Your content related to
+    = commas_and @taxon_change.input_taxa.map{|t| "<i>#{t.name} #{t.id}</i>"}
+.column.span-4
+  %ul.leftmenu
+    - for klass in @class_names.sort
+      %li
+        .right.count= @counts[klass]
+        = link_to klass.underscore.humanize.pluralize, url_for(:type => klass.underscore.pluralize), :class => @type == klass.underscore.pluralize ? "active" : nil
+.column.last.span-20
+  = form_tag taxon_change_commit_records_path(@taxon_change.id, @type), :method => :put, :id => "changeform" do
+    #controls
+      = link_to_function "Select all", "$('form input[type=checkbox]').prop('checked', true)"
+      |
+      = link_to_function "Select none", "$('form input[type=checkbox]').prop('checked', false)"
+      |
+      -# - if @taxon_change.output_taxa.size == 1
+      -#   - t = @taxon_change.output_taxa.first
+      -#   = link_to_function "Change selected to #{t.name} #{t.id}", "$(this).parents('form:first').submit()",
+      -#     "data-loading-click" => "Updating..."
+      -# - else
+      Change selected to
+      %select{:name => :taxon_id, "data-autosubmit" => true}
+        %option{:value => ""} Choose a taxon
+        - for taxon in @taxon_change.output_taxa
+          %option{:value => taxon.id}
+            = taxon.name
+            = taxon.id
+    %table
+      %tr
+        %th
+        %th item
+        %th actions
+      - for record in @records
+        %tr
+          %td= check_box_tag "record_ids[]", record.id
+          %td
+            - if record.is_a?(Observation)
+              .observations.mini
+                = render "observations/cached_component", :observation => record
+            - elsif record.is_a?(Identification)
+              = render "identifications/identification_with_observation", :identification => record
+            - else
+              = link_to record.try_methods(:to_plain_s, :to_s), record
+          %td
+            - for taxon in @taxon_change.output_taxa
+              .clear.smallbuttons.buttonrow.stacked
+                = link_to "Change to #{taxon.name} #{taxon.id}", taxon_change_commit_record_path(@taxon_change, @type, record.id, taxon.id), 
+                  :method => :put,
+                  :class => "glaucous button",
+                  :confirm => "Are you sure you want to update this observation?",
+                  "data-loading-click" => "Updating..."
+  - if @records.respond_to?(:total_pages)
+    = will_paginate @records
+

@@ -1,93 +1,102 @@
 require 'machinist/active_record'
-require 'sham'
+# require 'sham'
 require 'faker'
 
-Sham.name { Faker::Name.name }
-Sham.login { Faker::Internet.user_name.gsub(/\W/, '') }
-Sham.email { Faker::Internet.email }
-Sham.title { Faker::Lorem.sentence }
-Sham.body  { Faker::Lorem.paragraph }
-Sham.url { "http://#{Faker::Internet.domain_name}" }
+# Sham.name { Faker::Name.name }
+# Sham.login { Faker::Internet.user_name.gsub(/\W/, '') }
+# Sham.email { Faker::Internet.email }
+# Sham.title { Faker::Lorem.sentence }
+# Sham.body  { Faker::Lorem.paragraph }
+# Sham.url { "http://#{Faker::Internet.domain_name}" }
 
 CheckList.blueprint do
-  place
+  place { Place.make! }
 end
 
 Comment.blueprint do
-  user
-  body { Sham.body }
+  user { User.make }
+  body { Faker::Lorem.paragraph }
+end
+
+Flag.blueprint do
+  user { User.make! }
+  flag { Faker::Name.name }
+end
+
+FlickrIdentity.blueprint do
+  user { User.make! }
 end
 
 Friendship.blueprint do
-  user
-  friend
+  user { User.make }
+  friend { User.make }
 end
 
 Identification.blueprint do
-  user
-  observation
-  taxon
+  user { User.make }
+  observation { Observation.make }
+  taxon { Taxon.make! }
 end
 
 ListedTaxon.blueprint do
-  list
-  taxon
+  list { List.make! }
+  taxon { Taxon.make! }
 end
 
 List.blueprint do
-  user
-  title { Sham.title }
+  user { User.make! }
+  title { Faker::Lorem.sentence }
 end
 
 LifeList.blueprint do
-  user
+  user { User.make! }
 end
 
 ListRule.blueprint do
-  list
+  list { List.make! }
 end
 
 LocalPhoto.blueprint do
-  user
+  user { User.make }
 end
 
 Observation.blueprint do
-  user
+  user { User.make! }
 end
 
 ObservationField.blueprint do
-  name { Sham.title }
-  datatype 'text'
-  user
+  name { Faker::Lorem.sentence }
+  datatype {'text'}
+  user { User.make }
 end
 
 ObservationFieldValue.blueprint do
-  observation
-  observation_field
-  value "foo"
+  observation { Observation.make! }
+  observation_field { ObservationField.make! }
+  value {"foo"}
 end
 
 ObservationPhoto.blueprint do
-  observation
-  photo
+  observation { Observation.make }
+  photo { Photo.make }
 end
 
 Photo.blueprint do
-  user
+  user { User.make }
   native_photo_id { rand(1000) }
 end
 
 Place.blueprint do
-  name { Sham.title }
+  name { Faker::Lorem.sentence }
   latitude { rand(90) }
   longitude { rand(180) }
 end
 
 Post.blueprint do
-  user
-  parent { user }
-  title { Sham.title }
-  body { Sham.body }
+  user { User.make! }
+  parent { self.user }
+  title { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
   published_at { Time.now }
 end
 
@@ -96,93 +105,140 @@ Post.blueprint(:draft) do
 end
 
 Project.blueprint do
-  user
-  title { Sham.title }
+  user { User.make }
+  title { Faker::Lorem.sentence }
 end
 
 ProjectList.blueprint do
-  project
+  project { Project.make }
+end
+
+ProjectObservationField.blueprint do
+  project { Project.make }
+  observation_field { ObservationField.make }
 end
 
 ProjectUser.blueprint do
-  user
-  project
+  user { User.make }
+  project { Project.make }
 end
 
 ProjectObservation.blueprint do
-  observation
-  project
+  observation { Observation.make }
+  project { Project.make }
+end
+
+ProjectObservationRule.blueprint do
+  ruler { Project.make }
+  operator { "identified?" }
 end
 
 QualityMetric.blueprint do
-  user
-  observation
+  user { User.make }
+  observation { Observation.make }
   metric { QualityMetric::METRICS.first }
 end
 
 Role.blueprint do
-  name { Sham.title }
+  name { Faker::Lorem.sentence }
 end
 
 Role.blueprint(:admin) do
-  name User::JEDI_MASTER_ROLE
+  name { User::JEDI_MASTER_ROLE }
 end
 
 Source.blueprint do
-  title { Sham.title }
+  title { Faker::Lorem.sentence }
+end
+
+Subscription.blueprint do
+  resource { Observation.make! }
+  user { User.make! }
 end
 
 Taxon.blueprint do
-  name { Sham.name }
+  name { Faker::Name.name }
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
 end
 
 Taxon.blueprint(:species) do
-  rank "species"
+  rank {"species"}
 end
 
 Taxon.blueprint(:threatened) do
-  conservation_status Taxon::IUCN_ENDANGERED
-  rank "species"
+  conservation_status {Taxon::IUCN_ENDANGERED}
+  rank {"species"}
+  is_active { true }
+end
+
+TaxonDrop.blueprint do
+  source { Source.make! }
+  user { User.make! }
 end
 
 TaxonLink.blueprint do
-  user
-  taxon
-  url { Sham.url }
-  site_title { Sham.title }
+  user { User.make! }
+  taxon { Taxon.make! }
+  url { "http://#{Faker::Internet.domain_name}" }
+  site_title { Faker::Lorem.sentence }
 end
 
 TaxonPhoto.blueprint do
-  taxon
-  photo
+  taxon { Taxon.make! }
+  photo { Photo.make }
+end
+
+TaxonMerge.blueprint do
+  source { Source.make! }
+  user { User.make! }
 end
 
 TaxonName.blueprint do
-  name { Sham.name }
-  taxon
+  name { Faker::Name.name }
+  taxon { Taxon.make! }
 end
 
 TaxonRange.blueprint do
-  taxon
-  source
+  taxon { Taxon.make! }
+  source { Source.make }
+end
+
+TaxonScheme.blueprint do
+  title { Faker::Lorem.sentence }
+  source { Source.make! }
+end
+
+TaxonSplit.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonStage.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonSwap.blueprint do
+  source { Source.make! }
+  user { User.make! }
 end
 
 Update.blueprint do
-  subscriber
+  subscriber { User.make }
   resource { Observation.make }
   notifier { Comment.make(:parent => self.resource) }
 end
 
 User.blueprint do
-  login { Sham.login }
-  email { Sham.email }
-  name { Sham.name }
-  salt "9dadb9a490337c3e23dbc9bd20b08af841da4512"
-  crypted_password "4ed912738a4c0facedbdfd4fd1db8c9245d93e40" # 'monkey'
-  created_at 5.days.ago.to_s(:db)
-  activated_at { 1.day.ago }
-  state "active"
-  time_zone "Pacific Time (US & Canada)"
+  login { 
+    s = Faker::Internet.user_name.gsub(/[W\.]/, '')
+    s = User.suggest_login(s) if s.size < User::MIN_LOGIN_SIZE || User.where(:login => s).exists?
+    s
+  }
+  email { Faker::Internet.email }
+  name { Faker::Name.name }
+  password { "monkey" }
+  created_at { 5.days.ago.to_s(:db) }
+  state { "active" }
+  time_zone { "Pacific Time (US & Canada)" }
 end
-

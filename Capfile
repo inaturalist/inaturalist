@@ -1,6 +1,11 @@
 load 'deploy' if respond_to?(:namespace) # cap2 differentiator
 load 'config/deploy'
 
+# http://stackoverflow.com/a/1662001/720268
+def remote_file_exists?(full_path)
+  'true' ==  capture("if [ -e #{full_path} ]; then echo 'true'; fi").strip
+end
+
 task :bork do
   puts "DEBUG: deploy_to: #{deploy_to}"
 end
@@ -17,7 +22,10 @@ namespace :deploy do
     create_attachments
     create_cache
     copy_sphinx
-    copy_geoip_config
+  end
+
+  after "deploy:finalize_update" do
+    symlink_whenever_schedule
   end
 
   after "deploy:update_code" do
@@ -26,19 +34,15 @@ namespace :deploy do
     symlink_gmap_api_key
     symlink_smtp_config
     symlink_sphinx_config
-    symlink_geoip_config
     symlink_s3_config
-    symlink_newrelic_config # temp
     symlink_attachments
     symlink_cache
-    # symlink_observation_tiles
     symlink_sphinx
     sphinx_configure
   end
   
   after "deploy:restart" do
     cleanup
-    sphinx_restart
     chgrp_to_user
   end
 
@@ -70,27 +74,24 @@ namespace :deploy do
   task :symlink_smtp_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/smtp.yml #{latest_release}/config/smtp.yml"
   end
-  
+
   desc "Create a symlink to a copy of sphinx.yml that is outside the repos."
   task :symlink_sphinx_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/sphinx.yml #{latest_release}/config/sphinx.yml"
-  end
-  
-  desc "Create a symlink to a copy of geoip.yml that is outside the repos."
-  task :symlink_geoip_config, :hosts => "#{domain}" do
-    run "ln -s #{inat_config_shared_path}/geoip.yml #{latest_release}/config/geoip.yml"
   end
   
   desc "Create a symlink to a copy of s3.yml that is outside the repos."
   task :symlink_s3_config, :hosts => "#{domain}" do
     run "ln -s #{inat_config_shared_path}/s3.yml #{latest_release}/config/s3.yml"
   end
-  
-  # temp
-  desc "Create a symlink to a copy of newrelic.yml that is outside the repos."
-  task :symlink_newrelic_config, :hosts => "#{domain}" do
-    run "ln -s #{inat_config_shared_path}/newrelic.yml #{latest_release}/config/newrelic.yml"
-  end
+
+  desc "Create a symlink to whenever scheule"
+  task :symlink_whenever_schedule, :hosts => "#{domain}" do
+    # run "test -e #{inat_config_shared_path}/schedule.rb && ln -s #{inat_config_shared_path}/schedule.rb #{latest_release}/config/schedule.rb"
+    if remote_file_exists?("#{inat_config_shared_path}/schedule.rb")
+      run "ln -s #{inat_config_shared_path}/schedule.rb #{latest_release}/config/schedule.rb"
+    end
+  end  
   
   desc "Symlink to the common attachments dir"
   task :symlink_attachments, :hosts => "#{domain}" do
@@ -233,31 +234,29 @@ namespace :deploy do
     run "test -d #{shared_path}/system/db || mkdir #{shared_path}/system/db"
     run "test -d #{shared_path}/system/db/sphinx || mkdir #{shared_path}/system/db/sphinx"
   end
-
-  desc "Copy geoip.yml.example to shared directory as geoip.yml if not exists"
-  task :copy_geoip_config, :hosts => "#{domain}" do
-    run "test -e #{inat_config_shared_path}/geoip.yml || cp #{latest_release}/config/geoip.yml.example #{inat_config_shared_path}/geoip.yml"
-  end
 end
 
 # DelayedJob
 namespace :delayed_job do
   desc "Start delayed_job process" 
   task :start, :roles => :app do
-    run "cd #{current_path}; script/delayed_job start production" 
+    run "cd #{current_path}; RAILS_ENV=production script/delayed_job start" 
   end
 
   desc "Stop delayed_job process" 
   task :stop, :roles => :app do
-    run "cd #{current_path}; script/delayed_job stop production" 
+    run "cd #{current_path}; RAILS_ENV=production script/delayed_job stop" 
   end
 
   desc "Restart delayed_job process" 
   task :restart, :roles => :app do
-    run "cd #{current_path}; script/delayed_job restart production" 
+    run "cd #{current_path}; RAILS_ENV=production script/delayed_job restart" 
   end
 end
 
 after "deploy:start", "delayed_job:start" 
 after "deploy:stop", "delayed_job:stop" 
 after "deploy:restart", "delayed_job:restart"
+
+# since this seems to fail, we do it after restarting DJ, which seems more important
+after "deploy:restart", "deploy:sphinx_restart"

@@ -1,0 +1,26 @@
+<%- 
+  pi ||= project_invitation
+  observation ||= pi.observation
+  truncation_length ||= (is_me?(observation.user) || is_me?(pi.user) || curator_of?(pi.project) ? 16 : 31)
+-%>
+<div class="notice box clear inline buttonrow">
+  <span class="inter">
+    <%= image_tag pi.project.icon.url(:mini), :width => 16, :height => 16, :style => "vertical-align: middle" %>
+    <%= link_to truncate(h(pi.project.title), :length => truncation_length), pi.project %>
+  </span>
+  <nobr class="inlineblock right">
+    <% if is_me?(observation.user) -%>
+      <%= link_to "accept", accept_project_invitation_path(pi),
+        :method => :post,
+        :class => "glaucous button",
+        "data-loading-click" => "" %>
+    <% end -%>
+    <% if is_me?(observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
+      <%= link_to (is_me?(observation.user) ? "ignore" : "uninvite"), pi,
+        :method => :delete,
+        :confirm => "Are you sure you want to remove this invitation?",
+        :class => "pale button",
+        "data-loading-click" => "" %>
+    <% end -%>
+  </nobr>
+</div>

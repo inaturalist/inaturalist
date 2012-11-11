@@ -72,7 +72,7 @@ class List < ActiveRecord::Base
       # re-apply list rules to the listed taxa
       listed_taxon.save
       unless listed_taxon.valid?
-        logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
+        Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
           "destroyed: #{listed_taxon.errors.full_messages.join(', ')}"
         listed_taxon.destroy
       end
@@ -146,7 +146,7 @@ class List < ActiveRecord::Base
   
   def generate_csv(options = {})
     controller = options[:controller] || FakeView.new
-    attrs = %w(taxon_name occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at)
+    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at)
     ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
     headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"
@@ -168,7 +168,7 @@ class List < ActiveRecord::Base
     end
     
     ancestor_cache = {}
-    FasterCSV.open(tmp_path, 'w') do |csv|
+    CSV.open(tmp_path, 'w') do |csv|
       csv << headers
       ListedTaxon.do_in_batches(find_options) do |lt|
         row = []
@@ -249,7 +249,7 @@ class List < ActiveRecord::Base
     end
     
     target_lists.each do |list|
-      logger.debug "[DEBUG] refreshing #{list}..."
+      Rails.logger.debug "[DEBUG] refreshing #{list}..."
       list.refresh(options)
     end
     true

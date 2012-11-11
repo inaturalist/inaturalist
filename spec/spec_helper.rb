@@ -1,54 +1,20 @@
-# This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# from the project root directory.
+# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
-require 'spec/autorun'
-require 'spec/rails'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 
-include AuthenticatedTestHelper
 include MakeHelpers
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-Spec::Runner.configure do |config|
-  # If you're not using ActiveRecord you should remove these
-  # lines, delete config/database.yml and disable :active_record
-  # in your config/boot.rb
-  config.use_transactional_fixtures = true
-  # config.use_transactional_fixtures = false
-  config.use_instantiated_fixtures  = false
-  config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
-  
-  # Custom ClassMatchers
-  config.include ClassMatchers
-
-  # == Fixtures
-  #
-  # You can declare fixtures for each example_group like this:
-  #   describe "...." do
-  #     fixtures :table_a, :table_b
-  #
-  # Alternatively, if you prefer to declare them only once, you can
-  # do so right here. Just uncomment the next line and replace the fixture
-  # names with your fixtures.
-  #
-  # config.global_fixtures = :table_a, :table_b
-  #
-  # If you declare global fixtures, be aware that they will be declared
-  # for all of your examples, even those that don't use them.
-  #
-  # You can also declare which fixtures to use (for example fixtures for test/fixtures):
-  #
-  # config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
-  #
+RSpec.configure do |config|
   # == Mock Framework
   #
-  # RSpec uses it's own mocking framework by default. If you prefer to
-  # use mocha, flexmock or RR, uncomment the appropriate line:
+  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
   #
   # config.mock_with :mocha
   # config.mock_with :flexmock
@@ -57,20 +23,35 @@ Spec::Runner.configure do |config|
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
   
   config.before(:all) do
-    Sham.reset(:before_all)
-    begin
-      ActiveRecord::Base.connection.execute("ALTER TABLE place_geometries DROP CONSTRAINT enforce_srid_geom")
-    rescue ActiveRecord::StatementInvalid 
-      # already dropped
-    end
-    begin
-      ActiveRecord::Base.connection.execute("ALTER TABLE observations DROP CONSTRAINT enforce_srid_geom")
-    rescue ActiveRecord::StatementInvalid 
-      # already dropped
+    [PlaceGeometry, Observation, TaxonRange].each do |klass|
+      begin
+        Rails.logger.debug "[DEBUG] dropping enforce_srid_geom on place_geometries"
+        ActiveRecord::Base.connection.execute("ALTER TABLE #{klass.table_name} DROP CONSTRAINT enforce_srid_geom")
+      rescue ActiveRecord::StatementInvalid 
+        # already dropped
+      end
     end
   end
-  config.before(:each)   { Sham.reset(:before_each) }
 
+end
+
+def without_delay
+  Delayed::Worker.delay_jobs = false
+  yield
+  Delayed::Worker.delay_jobs = true
 end

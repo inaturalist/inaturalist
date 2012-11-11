@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag "observations" %>
 <%- end -%>
 <h2>
-  <% image_and_content link_to(user_image(@selected_user, :size => "thumb"), @selected_user) do %>
+  <%= image_and_content link_to(user_image(@selected_user, :size => "thumb"), @selected_user) do %>
     <%= @title %>
   <% end -%>
 </h2>

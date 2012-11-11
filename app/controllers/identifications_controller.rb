@@ -1,12 +1,12 @@
 class IdentificationsController < ApplicationController
-  before_filter :login_required, :except => [:by_login]
+  before_filter :authenticate_user!, :except => [:by_login]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :load_identification, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
     
   def show
-    redirect_to @identification.observation
+    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
   end
   
   def by_login
@@ -44,6 +44,7 @@ class IdentificationsController < ApplicationController
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
     end
+    
     respond_to do |format|
       if @identification.save
         format.html do
@@ -53,7 +54,11 @@ class IdentificationsController < ApplicationController
           end
           redirect_to @identification.observation and return
         end
-        format.js
+        
+        format.json do
+          @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
+          render :json => @identification.to_json(:methods => [:html]).html_safe
+        end
       else
         format.html do
           flash[:error] = "There was a problem saving your identification: " +
@@ -63,7 +68,10 @@ class IdentificationsController < ApplicationController
           end
           redirect_to @identification.observation and return
         end
-        format.js { render :action => 'creation_error.js.rjs' }
+        
+        format.json do
+          render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages }
+        end
       end
     end
   end
@@ -91,7 +99,8 @@ class IdentificationsController < ApplicationController
         flash[:notice] = "Identification deleted."
         redirect_to observation
       end
-      format.js
+      format.js { render :status => :ok, :json => nil }
+      format.json { render :status => :ok, :json => nil }
     end
   end
   
@@ -100,12 +109,10 @@ class IdentificationsController < ApplicationController
   # Agree with an identification
   def agree
     @observation = Observation.find_by_id(params[:observation_id])
-    @old_identification = @observation.identifications.find(:first,
-      :conditions => ["user_id = ?", current_user.id])
+    @old_identification = @observation.identifications.by(current_user).current.last
     if @old_identification && @old_identification.taxon_id == params[:taxon_id].to_i
       @identification = @old_identification
     else
-      @old_identification.destroy if @old_identification
       @identification = Identification.new(
         :user => current_user,
         :taxon_id => params[:taxon_id].to_i,
@@ -117,11 +124,16 @@ class IdentificationsController < ApplicationController
       if @identification.save
         format.html { agree_respond_to_html }
         format.mobile { agree_respond_to_html }
-        format.js
+        format.json do
+          @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
+          render :json => @identification.to_json(:methods => [:html])
+        end
       else
         format.html { agree_respond_to_html_failure }
         format.mobile { agree_respond_to_html_failure }
-        format.js { render :action => 'agreement_error.js.rjs' }
+        format.json do
+          render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages }
+        end
       end
     end
   end

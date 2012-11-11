@@ -1,14 +1,18 @@
-<%- remote ||= false -%>
-<%- unique_id ||= "new_comment_form-#{comment.parent.id}" -%>
+<%- 
+  remote ||= false
+  comment ||= comment_form || @comment
+  unique_id ||= "new_comment_form-#{comment.parent_id}"
+-%>
 <div class="clear">
   <% if logged_in? %>
     <% if remote -%>
       <div id="<%= unique_id %>-loading" class="loading status" style="display:none">Saving...</div>
-      <% remote_form_for(comment, 
-        :loading => "$('##{unique_id}-loading').show(); $('##{unique_id}').hide()",
-        :success => "$('##{unique_id}-loading').hide(); $('##{unique_id}').show(); $('##{unique_id} textarea').val('')",
+      <%= form_for(comment, 
+        :remote => true,
         :html => {
-          :id => "#{unique_id}"
+          :id => unique_id,
+          :class => "commentform",
+          "data-type" => "json"
         }) do |f| %>
         <%= render :partial => 'comments/comment_form_fields', :locals => {
           :f => f, 
@@ -17,7 +21,7 @@
         } %>
       <% end %>
     <% else -%>
-      <% form_for(comment) do |f| %>
+      <%= form_for(comment) do |f| %>
         <%= render :partial => 'comments/comment_form_fields', :locals => {
           :f => f, 
           :comment => comment,

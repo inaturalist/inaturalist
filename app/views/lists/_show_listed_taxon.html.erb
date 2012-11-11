@@ -1,5 +1,5 @@
 <%- 
-  listed_taxon ||= object || @listed_taxon
+  listed_taxon ||= show_listed_taxon || @listed_taxon
   list ||= @list || listed_taxon.list
   prepend ||= nil
 -%>

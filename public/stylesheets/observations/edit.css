@@ -23,7 +23,7 @@ input.place_guess { width: 336px; }
 
 #map { height: 433px; }
 
-#mapcontainer .description {position:absolute; top: 50%; left: 50%; margin-left: -100px; margin-top: -10px; width: 200px; z-index:10000; background-color:black; color: #eee; padding: 5px; border-radius: 10px; text-align:center;}
+#mapcontainer .description {position:absolute; top: 50%; left: 50%; margin-left: -100px; margin-top: -10px; width: 200px; z-index:1000; background-color:black; color: #eee; padding: 5px; border-radius: 10px; text-align:center;}
 
 .latlonfields {
   position: relative;
@@ -65,8 +65,5 @@ form .species_guess_field { margin-bottom: 0px; }
 .photo .synclink { float: right; }
 .photoSelectorControls .findbutton { margin-right: 0; }
 
-.observation_field { border-bottom: 1px solid #eee; padding-bottom:10px;}
-.observation_field.disabled {opacity: 0.5;}
-#morefields .buttonrow .button, #morefields .buttonrow label { padding-top: 4px; padding-bottom:3px;vertical-align:top;}
-#morefields {margin-bottom:20px;}
-
+#taxonchooser {margin-left: 0;}
+fieldset {width: 910px;}

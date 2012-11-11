@@ -3,7 +3,7 @@
 # memory every time you want to work with a place is expensive.
 class PlaceGeometry < ActiveRecord::Base
   belongs_to :place
-  named_scope :without_geom, {:select => (column_names - ['geom']).join(', ')}
+  scope :without_geom, select((column_names - ['geom']).join(', '))
   
   after_save :refresh_place_check_list
   
@@ -21,8 +21,8 @@ class PlaceGeometry < ActiveRecord::Base
   end
   
   def refresh_place_check_list
-    self.place.check_list.send_later(:refresh, :dj_priority => 1) unless new_record?
-    self.place.check_list.send_later(:add_observed_taxa, :dj_priority => 1)
+    self.place.check_list.delay(:priority => 1).refresh unless new_record?
+    self.place.check_list.delay(:priority => 1).add_observed_taxa
     true
   end
 end

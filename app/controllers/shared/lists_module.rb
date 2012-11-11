@@ -24,8 +24,8 @@ module Shared::ListsModule
 
         if @q = params[:q]
           @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-          @find_options[:conditions] = List.merge_conditions(
-            @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+          @find_options[:conditions] = update_conditions(
+            @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
         end
 
         @listed_taxa ||= @list.listed_taxa.paginate(@find_options)
@@ -71,22 +71,33 @@ module Shared::ListsModule
       end
       
       format.csv do
-        job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
-        job = Delayed::Job.find_by_id(job_id)
-        if job
-          # Still working
-        else
-          # no job id, no job, let's get this party started
-          Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
-          job = if @view == "taxonomic"
-            @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.taxonomic.csv", :taxonomic => true)
+        path_for_taxonomic_csv = "public/lists/#{@list.to_param}.taxonomic.csv"
+        path_for_normal_csv = "public/lists/#{@list.to_param}.csv"
+        if @list.listed_taxa.count < 1000
+          path = if @view == "taxonomic"
+            @list.generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
           else
-            @list.send_later(:generate_csv, :path => "public/lists/#{@list.to_param}.csv")
+            @list.generate_csv(:path => path_for_normal_csv)
           end
-          Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+          render :file => path
+        else
+          job_id = Rails.cache.read(@list.generate_csv_cache_key(:view => @view))
+          job = Delayed::Job.find_by_id(job_id)
+          if job
+            # Still working
+          else
+            # no job id, no job, let's get this party started
+            Rails.cache.delete(@list.generate_csv_cache_key(:view => @view))
+            job = if @view == "taxonomic"
+              @list.delay.generate_csv(:path => path_for_taxonomic_csv, :taxonomic => true)
+            else
+              @list.delay.generate_csv(:path => path_for_normal_csv)
+            end
+            Rails.cache.write(@list.generate_csv_cache_key(:view => @view), job.id, :expires_in => 1.hour)
+          end
+          prevent_caching
+          render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
         end
-        prevent_caching
-        render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
       end
       
       format.json do
@@ -124,6 +135,32 @@ module Shared::ListsModule
   # GET /lists/1/edit
   def edit
     @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?'}
+  end
+
+  def batch_edit
+    if params[:flow_task_id] && @flow_task = FlowTask.find_by_id(params[:flow_task_id])
+      @flow_task_outputs = @flow_task.outputs.order(:id)
+      @listed_taxa_by_id = ListedTaxon.includes(:taxon => :taxon_names).
+        where("id IN (?)", @flow_task_outputs.map(&:resource_id).compact).
+        index_by(&:id)
+      @listed_taxa = []
+      @flow_task_outputs.each do |ft|
+        lt = @listed_taxa_by_id[ft.resource_id]
+        unless lt
+          name, description, occurrence_status, establishment_means = ft.extra[:row] if ft.extra
+          lt = ListedTaxon.new(
+            :list => @list, 
+            :description => description,
+            :occurrence_status_level => ListedTaxon::OCCURRENCE_STATUS_LEVELS_BY_NAME[occurrence_status],
+            :establishment_means => establishment_means,
+            :extra => ft.extra
+          )
+        end
+        @listed_taxa << lt
+      end
+    else
+      @listed_taxa = @list.listed_taxa.includes(:taxon => :taxon_names).page(params[:page]).per_page(200)
+    end
   end
   
   def create
@@ -195,8 +232,10 @@ module Shared::ListsModule
     return redirect_to(@list) unless params[:names]
     @added_taxa = []
     @lines = params[:names].split("\n").to_a.map{|n| n.strip.gsub(/\s+/, " ")}.delete_if(&:blank?)
+    @max = 1000
+    @batch_size = 50
     
-    if @lines.size > 1000
+    if @lines.size > @max
       flash[:notice] = "Sorry, you can only add 1000 at a time."
       return redirect_to(@list)
     end
@@ -206,13 +245,14 @@ module Shared::ListsModule
     @lines.each_with_index do |name, i|
       
       # If we're past 50, just add nil and assume we'll deal with it later
-      if i > 50
+      if i > @batch_size
         @lines_taxa << [name, nil]
         next
       end
       
-      taxon_names = TaxonName.paginate(:page => 1, :include => :taxon,
-        :conditions => ["lower(name) = ?", name.to_s.downcase])
+      taxon_names = TaxonName.includes(:taxon).
+        where("lower(taxon_names.name) = ?", name.to_s.downcase).
+        page(1)
       case taxon_names.size
       when 0
         @lines_taxa << [name, "not found"]
@@ -230,19 +270,16 @@ module Shared::ListsModule
     
     respond_to do |format|
       format.html { render :template => "lists/add_taxon_batch" }
-      format.js do
-        render :update do |page|
-          @lines_taxa.each do |line, other|
-            break if other.nil?
-            if page[line.parameterize]
-              page.replace line.parameterize, 
-                :partial => "lists/add_taxon_batch_line", 
-                :object => [line, other]
-            else
-              page.alert("Added #{line}")
-            end
-          end
+      format.json do
+        json = @lines_taxa.map do |name, item|
+          {
+            :name => name,
+            :parameterized_name => name.parameterize,
+            :item => item, 
+            :html => view_context.render_in_format(:html, :partial => "lists/add_taxon_batch_line", :object => [name, item])
+          }
         end
+        render :json => json
       end
     end
   end
@@ -295,6 +332,7 @@ module Shared::ListsModule
   
   def load_list
     @list = List.find_by_id(params[:id].to_i)
+    @list ||= List.find_by_id(params[:list_id].to_i)
     render_404 && return unless @list
     true
   end
@@ -327,8 +365,7 @@ module Shared::ListsModule
       # TODO: somehow make the following not cause a filesort...
       :order => "taxon_ancestor_ids || '/' || listed_taxa.taxon_id"
     }
-    if params[:taxon]
-      @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
+    if params[:taxon] && @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
       @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"]
       
@@ -347,6 +384,10 @@ module Shared::ListsModule
   
   def require_editor
     @list.editable_by?(current_user)
+  end
+
+  def require_listed_taxa_editor
+    @list.listed_taxa_editable_by?(current_user)
   end
   
   def load_listed_taxon_photos

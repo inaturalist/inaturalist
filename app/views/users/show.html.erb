@@ -50,7 +50,7 @@
             <%= t(:do_you_study_nematodes_worlds_foremost_expert_barnacle) %>
           </div>
           
-          <%- form_for @selected_user, :html => {:style => "display: none"} do |f| %>
+          <%= form_for @selected_user, :html => {:style => "display: none"} do |f| %>
             <%= f.text_area :description, :style => "width: 590px; height: 100px;", :placeholder => t(:describe_your_interest_in_nature), :class => "stacked" %>
             <div class="actions">
               <%= f.submit t(:save), :class => "default button", "data-loading-click" => true %>
@@ -59,7 +59,8 @@
           <% end %>
         </div>
       <% else %>
-        <%= @user.login + " " + t(:is_a_naturalist) %>
+        <%= @user.login %>
+		<%= t(:is_a_naturalist) %>
       <% end -%>
     <% else %>
       <%= formatted_user_text(@user.description) %>
@@ -87,7 +88,7 @@
             <div class="column span-3">
               <%= link_to friend.login, person_by_login_path(friend.login), :class => "readable nobr" %>
               <br/>
-              <%= link_to("<span class='count'>#{friend.observations.count}</span> "+t(:observations), observations_by_login_path(friend.login)) %>
+              <%= link_to("<span class='count'>#{friend.observations.count}</span>#{t(:observations)}".html_safe, observations_by_login_path(friend.login)) %>
             </div>
           </div>
         <% end %>
@@ -154,34 +155,34 @@
   
   <% if is_me?(@user) %>
     <ul class="readable leafylist">
-      <li><%= link_to t(:edit_account_settings_and_profile), edit_person_path(current_user) -%></li>
+      <li><%= link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user) -%></li>
     </ul>
   <% end %>
 
 </div>
 
-<% if logged_in? && @user.id != current_user.id && (current_user.is_admin? || current_user.is_curator?) %>
+<% if logged_in? && (current_user.is_admin? || current_user.is_curator?) %>
   <div class="right clear ui description">
-    <% if current_user.is_admin? -%>
-      <% if @user.active? %>
-        <%= link_to t(:suspend_user), suspend_user_path(@user) %>
-      <% else %>
-        <%= link_to t(:unsuspend_user), unsuspend_user_path(@user) %>
-      <% end %>
-      |
-    <% end -%>
-    
-    <% if current_user.is_curator? && !@user.is_admin? -%>
-      <% if @user.is_curator? %>
-        <%= link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete %>
-      <% else %>
-        <%= link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post %>
-      <% end %>
-    <% end -%>
-    
-    <% if is_admin? -%>
-      |
-      <%= link_to "Curate user", curate_users_path(:id => @user.id) %>
-    <% end -%>
+    <%-
+      pieces = []
+      if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
+        pieces << if @user.active?
+          link_to(t(:suspend_user), suspend_user_path(@user))
+        else
+          link_to(t(:unsuspend_user), unsuspend_user_path(@user))
+        end
+      end
+
+      if current_user.is_curator? && !@user.is_admin?
+        pieces << if @user.is_curator?
+          link_to(t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete)
+        else
+          link_to(t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post)
+        end
+      end
+
+      pieces << link_to("Curate user", curate_users_path(:id => @user.id)) if is_admin?
+    -%>
+    <%= pieces.join(" | ").html_safe %>
   </div>
 <% end %>

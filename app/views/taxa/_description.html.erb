@@ -21,8 +21,8 @@
   <% else %>
     <div id="wikipedia_description">
       <p>
-        <%= @taxon.wikipedia_summary unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
-        <span id="description_loading_status" class="loading status" style="display:none"><%= t(:loading_full_description, :taxon => @taxon.name) %></span>
+        <%= @taxon.wikipedia_summary.html_safe unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
+        <span id="description_loading_status" class="loading status" style="display:none"><%=t :loading_full_description %></span>
       </p>
     </div>
     <div id="nodescription" style="display: none">

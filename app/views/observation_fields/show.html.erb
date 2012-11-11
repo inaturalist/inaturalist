@@ -1,9 +1,20 @@
 <%- content_for(:title) do -%>
   <%= @title = t(:observation_field)+": #{@observation_field.name}" %>
 <%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css">
+    td.observations {width:80%;}
+    td.observations.mini .observation {border-bottom: 0 transparent;}
+  </style>
+<%- end -%>
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
+      <% if @observation_field.editable_by?(current_user) %>
+        <span class="right">
+          <%= link_to 'Edit field', edit_observation_field_path(@observation_field), :class => "ui description" %>
+        </span>
+      <% end -%>
       <%= link_to t(:back_to_observation_fields), observation_fields_path, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   </div>
@@ -20,6 +31,12 @@
     <b><%=t :datatype %>:</b>
     <%=h @observation_field.datatype %>
   </div>
+  <% unless @observation_field.allowed_values.blank? -%>
+    <div class="meta ui">
+      <b>Allowed values:</b>
+      <%= @observation_field.allowed_values.split('|').join(', ') %>
+    </div>
+  <% end -%>
   <div class="meta ui">
     <b><%=t :created_by %>:</b>
     <%= link_to user_image(@observation_field.user), @observation_field.user %>
@@ -27,18 +44,63 @@
   </div>
 </div>
 
-<h3><%=t :observations_specifying_this_field %></h3>
-
-<div class="mini observations">
-  <% if @observations.blank? -%>
-    <div class="noresults">
-      <%=t :no_observations_yet %>
-    </div>
-  <% else %>
-    <%= render :partial => "observations/cached_component", :collection => @observations %>
+<% if @observation_field.allowed_values.to_s.size > 0 -%>
+  <div class="right meta">
+    <strong>Values:</strong>
+    <% if @observation_field.allowed_values.size < 100 -%>
+      <%= @observation_field.allowed_values.split('|').unshift("any").map do |v| 
+        if @value == v
+          "<strong>#{v}</strong>"
+        else
+          link_to v, url_for(:value => v)
+        end 
+      end.join(' | ').html_safe %>
+    <% else %>
+      <%= form_tag url_for, :class => "inline", :method => :get do %>
+        <%= hidden_fields_for_params(:without => [:value, :utf8]) %>
+        <%= select_tag :value, options_for_select(@observation_field.allowed_values.split('|').unshift("any"), params[:value] || "any"), 
+          "data-autosubmit" => true %>
+      <% end -%>
+    <% end -%>
+  </div>
+<% end -%>
+<h3>
+  <%=t :observations_specifying_this_field %>
+  <% if @value != "any" -%>
+    with "<%= @value %>"
   <% end -%>
-</div>
+</h3>
+
+<% if @observations.blank? -%>
+  <div class="meta noresults">
+    <%=t :no_observations_yet %>
+  </div>
+<% else %>
+  <table width="100%">
+    <tr>
+      <th>Observation</th>
+      <th><%= @observation_field.name %></th>
+    </tr>
+    <% for ofv in @observation_field_values %>
+    <tr>
+      <td class="mini observations">
+        <%= render "observations/cached_component", :observation => ofv.observation %>
+      </td>
+      <td>
+        <%= observation_field_value_for(ofv) %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+  <%= link_to "View more search options", 
+    observations_path("field:#{@observation_field.normalized_name}" => (@value == 'any' ? '' : @value)),
+    :class => "readmore" %>
+<% end -%>
 
 <%= will_paginate @observation_field_values %>
 
-<%= link_to t(:edit), edit_observation_field_path(@observation_field) %>
+<%= separator %>
+
+<div class="column span-12">
+  <%= render :partial => "comments/comments", :object => @observation_field %>
+</div>

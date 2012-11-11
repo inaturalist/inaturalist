@@ -1,5 +1,5 @@
 <%- 
-  place ||= @place || object
+  place ||= @place || add_to_place_link
   taxon ||= @taxon
   listed_taxon = @listed_taxa_by_place_id ? @listed_taxa_by_place_id[place.id] : nil
   skip_map ||= false
@@ -14,40 +14,27 @@
   <% end -%>
   <% if listed_taxon -%>
     <% if listed_taxon.removable_by?(current_user) -%>
-      <%= link_to_remote t(:remove), :url => listed_taxon_path(listed_taxon), 
+      <%= link_to t(:remove), listed_taxon_path(listed_taxon), 
+        :remote => true,
         :method => :delete,
-        :datatype => 'json',
-        :confirm => t(:are_you_sure_remove_taxon_from_place, :place => "#{place.name}"),
-        :loading => 
-          "$('##{dom_id place, 'remove_status'}').show();" +
-          "$('##{dom_id(place, 'remove_link')}').hide();",
-        :failure => 
-          "$('##{dom_id(place, 'remove_link')}').hide();",
-        :success => "$('##{dom_id place, 'remove_status'}').html('Removed!').removeClass('loading')",
-        :html => {
-          :id => dom_id(place, 'remove_link'),
-          :class => "last button delete pale",
-          :style => 'float: right; margin: 0'
-        } %>
-      <span id="<%= dom_id place, 'remove_status' %>" class="inter status loading right" style="display:none"><%= t(:removing) %></span>
+        "data-type" => 'json',
+        :confirm => "Are you sure you want to remove this taxon from #{place.name}'s checklist?",
+        :id => dom_id(place, 'remove_link'),
+        :class => "last button delete pale remove_link",
+        :style => 'float: right; margin: 0' %>
+      <span id="<%= dom_id place, 'remove_status' %>" class="inter status loading right" style="display:none">Removing...</span>
     <% else %>
       <div class="last right pale disabled button">added</div>
     <% end -%>
   <% else %>
-    <%= link_to_remote t(:add_to_checklist), :url => listed_taxa_path, 
-      :datatype => 'json',
-      :with => "'#{{ :taxon_id => taxon.id, :place_id => place.id }.to_query}'", 
-      :loading => 
-        "$('##{dom_id place, 'add_status'}').show();" +
-        "$('##{dom_id(place, 'add_link')}').hide();",
-      :failure => 
-        "$('##{dom_id(place, 'add_link')}').hide();",
-      :success => "$('##{dom_id place, 'add_status'}').html('Added!').removeClass('loading').addClass('success');",
-      :html => {
-        :id => dom_id(place, 'add_link'),
-        :class => "last button pale right",
-        :style => 'float: right; margin: 0'
-      } %>
+    <%= link_to t(:add_to_checklist), listed_taxa_path,
+      :remote => true,
+      :method => :post,
+      "data-type" => 'json',
+      "data-params" => "#{{ :taxon_id => taxon.id, :place_id => place.id }.to_query}", 
+      :id => dom_id(place, 'add_link'),
+      :class => "last button pale right add_link",
+      :style => 'float: right; margin: 0;' %>
     <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none"><%= t(:adding) %></span>
   <% end -%>
 

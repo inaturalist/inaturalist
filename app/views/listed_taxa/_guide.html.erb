@@ -1,5 +1,5 @@
 <%-
-  listed_taxon ||= object || @listed_taxon
+  listed_taxon ||= guide || @listed_taxon
   list ||= @list || listed_taxon.list
   place ||= listed_taxon.place
   taxon ||= listed_taxon.taxon
@@ -15,7 +15,7 @@
         <%= render :partial => 'taxa/nophoto', :object => taxon %>
       <% else %>
         <div class="stacked">
-          <%= link_to image_tag(photos[0].medium_url), photos[0].becomes(Photo) %>
+          <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo) %>
           <div class="meta">
             <%=t :photo %>: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
           </div>
@@ -109,7 +109,7 @@
         <!-- <div class="right map" data-taxon-id="<%= taxon.id %>" data-taxon-range-kml="<%=  %>"></div> -->
         <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
         <div class="stacked">
-          <%= taxon.wikipedia_summary %>
+          <%= raw taxon.wikipedia_summary %>
           <%= link_to t(:read_the_full_wikipedia), taxon, :class => "readmore" %>
         </div>
         <div class="stacked">
@@ -133,7 +133,7 @@
       <div id="<%= dom_id(listed_taxon, 'photostab') %>" class="photostab">
         <% for photo in photos %>
           <div class="inlineblock">
-            <%= link_to image_tag(photo.medium_url, :class => "medium photo"), photo.becomes(Photo) %>
+            <%= link_to image_tag(photo.try_methods(:medium_url, :small_url), :class => "medium photo"), photo.becomes(Photo) %>
             <div class="meta">
               <%=t :photo %>: <%= link_to photo.attribution, native_url_for_photo(photo) %>
             </div>

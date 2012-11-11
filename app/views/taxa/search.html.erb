@@ -16,7 +16,7 @@
               taxa_path,
               :class => 'back crumb' %>
 </span>
-<h2><%= t(:search_results_for) %><span class="description"><%= params[:q] %></span></h2>
+<h2><%= t(:search_results_for) %> <span class="description"><%= params[:q] %></span></h2>
 
 <%= render :partial => 'search_form' %>
 
@@ -42,7 +42,7 @@
         <%= t(:sorry_how_about_we_try_repeat) %>
       </p>
       <div class="column span-6">
-        <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
+        <%= form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
           <label for="q">
             <%= t(:search_catalogue_of_life) %>
           </label>
@@ -54,13 +54,23 @@
         <% end %>
       </div>
       <div class="column span-6">
-        <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
-          <label for="q"> <%= t(:search_ubio) %></label>
+        <%= form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
+          <label for="q"><%=t :search %> <a href="http://www.ubio.org">uBio</a></label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>
           <input type="hidden" name="force_external" value="true"/>
           <input type="hidden" name="external_src" value="ubio"/>
           <input type="submit" class="button" value="<%= t(:search_ubio_raquo)%>"/>
+        <% end %>
+      </div>
+      <div class="column span-6">
+        <% form_tag taxa_path, :method => :get, :class => 'clear buttonrow' do %>
+          <label for="q">Search <a href="http://data.nzor.org.nz">NZOR</a></label>
+          <%= text_field_tag 'q', params[:q], :class => 'text' %>
+          <input type="hidden" name="all_names" value="true"/>
+          <input type="hidden" name="force_external" value="true"/>
+          <input type="hidden" name="external_src" value="nzor"/>
+          <input type="submit" class="button" value="Search NZOR &raquo;"/>
         <% end %>
       </div>
     </div>

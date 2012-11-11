@@ -18,17 +18,17 @@
 <% end -%>
 <% content_for(:extrajs) do -%>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
-  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+  <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect.html_safe};" if protect_against_forgery? %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       $('#tabs').tabs();
       
       $('#photos').photoSelector({
         <%- if @default_photo_identity_url -%>
-          baseURL: <%= @default_photo_identity_url.inspect %>,
+          baseURL: <%= @default_photo_identity_url.inspect.html_safe %>,
         <%- end -%>
         <%- unless @photo_identity_urls.blank? %>
-          urls: [<%= @photo_identity_urls.join(', ') %>],
+          urls: [<%= @photo_identity_urls.join(', ').html_safe %>],
         <% end -%>
         skipLocal: true,
         urlParams: {
@@ -62,7 +62,7 @@
     
     <div id="photo_import">
       <% if current_user.flickr_identity || current_user.picasa_identity || current_user.facebook_identity %>      
-        <% form_tag({:action => 'import_photos'}) do %>
+        <%= form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
             <%=t :select_photos_from_your_photo_stream %>
@@ -86,7 +86,7 @@
       </div>
       
       <div class="box">
-        <% form_tag(new_observation_batch_csv_path, 
+        <%= form_tag(new_observation_batch_csv_path, 
             :id => 'new_batch_form', 
             :class => 'clear observationform', 
             :multipart => true) do %>

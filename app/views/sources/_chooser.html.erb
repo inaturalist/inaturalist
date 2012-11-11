@@ -1,4 +1,4 @@
-<%- source ||= object -%>
+<%- source ||= chooser -%>
 <strong><%= source.title %></strong>
 <div class="small">
   <%= [source.in_text, source.url, "added #{source.created_at}"].delete_if{|s| s.blank?}.join(', ') %>

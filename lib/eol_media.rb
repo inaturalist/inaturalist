@@ -65,7 +65,7 @@ class EolMedia
     end
     
     def accessURI
-      large_url
+      try_methods(:original_url, :large_url, :medium_url, :small_url)
     end
     
     def thumbnailURL

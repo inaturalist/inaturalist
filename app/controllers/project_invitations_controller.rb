@@ -1,5 +1,20 @@
 class ProjectInvitationsController < ApplicationController
   
+  def index
+    @project_invitations = ProjectInvitation.all(
+      :include => [:observation],
+      :conditions => ["observations.user_id = ?",current_user.id],
+      :limit => 10,
+      :order => "project_invitations.id DESC"
+    )
+    @invitations_by_you = ProjectInvitation.all(
+      :include => [:observation],
+      :conditions => ["user_id = ?",current_user.id],
+      :limit => 10,
+      :order => "project_invitations.id DESC"
+    ).group_by(&:project)
+  end
+  
   def create
     unless logged_in? && current_user.project_users.find_by_project_id(params[:project_id])
       flash[:error] = "You don't have permission to invite that observation."
@@ -18,8 +33,13 @@ class ProjectInvitationsController < ApplicationController
       flash[:error] = "There was a problem adding your observation"
       redirect_to :back and return
     end
-    flash[:notice] = "Observation invited"
-    redirect_to :back and return
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Observation invited"
+        redirect_to :back and return
+      end
+      format.json { render :json => @project_invitation }
+    end
   end
   
   def accept
@@ -41,12 +61,13 @@ class ProjectInvitationsController < ApplicationController
     unless @project_observation.valid?
       flash[:error] = "There were problems adding your observation to this project: " + 
         @project_observation.errors.full_messages.to_sentence
-      redirect_to :back and return
+      redirect_back_or_default(@project_observation.observation)
+      return
     end
     
     @project_invitation.destroy
     flash[:notice] = "Observation added to the project \"#{@project_invitation.project.title}\""
-    redirect_to :back
+    redirect_back_or_default(@project_observation.observation)
   end
   
   def destroy

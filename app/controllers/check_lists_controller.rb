@@ -1,10 +1,11 @@
 class CheckListsController < ApplicationController
   include Shared::ListsModule
   
-  before_filter :login_required, :except => [:index, :show, :taxa]
-  before_filter :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa]
-  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon, :add_taxon_batch]
-  before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy]
+  before_filter :authenticate_user!, :except => [:index, :show, :taxa]
+  before_filter :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
+  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
+  before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
+  before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
   before_filter :load_find_options, :only => [:show]
   
   # Not supporting any of these just yet
@@ -12,7 +13,7 @@ class CheckListsController < ApplicationController
   
   def show
     @place = @list.place
-    @other_check_lists = @place.check_lists.paginate(:page => 1)
+    @other_check_lists = @place.check_lists.limit(1000)
     @other_check_lists.delete_if {|l| l.id == @list.id}
     
     # If this is a place's default check list, load ALL the listed taxa
@@ -31,8 +32,8 @@ class CheckListsController < ApplicationController
       # so we can search items in other checklists for this place
       if @q = params[:q]
         @search_taxon_ids = Taxon.search_for_ids(@q, :per_page => 1000)
-        @find_options[:conditions] = List.merge_conditions(
-          @find_options[:conditions], ["listed_taxa.taxon_id IN (?)", @search_taxon_ids])
+        @find_options[:conditions] = update_conditions(
+          @find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
       end
       
       @listed_taxa = ListedTaxon.paginate(@find_options)

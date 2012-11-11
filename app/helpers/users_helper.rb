@@ -49,7 +49,7 @@ module UsersHelper
     content_text      = options.delete(:content_text)
     content_text    ||= user.send(options.delete(:content_method))
     options[:title] ||= user.send(options.delete(:title_method))
-    link_to h(content_text), user_path(user), options
+    link_to h(content_text), person_path(user.login), options
   end
 
   #
@@ -119,7 +119,7 @@ module UsersHelper
   
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
-    if method_exists?(:logged_in?) && logged_in? && method_exists?(:current_user) && current_user == user
+    if method_exists?(:user_signed_in?) && logged_in? && method_exists?(:current_user) && current_user == user
       capitalize_it ? 'You' : 'you'
     else
       user.login

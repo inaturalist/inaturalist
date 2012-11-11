@@ -18,7 +18,7 @@
     <%= render :partial => 'link_to_flickr', :locals => {:flickr_url => @flickr_url} -%>
     <span class="inter">or</span>
     <%= link_to t(:no_link_flickr), 
-                { :controller => 'observations', :action => @user.login },
+                { :controller => 'observations', :action => current_user.login },
                 :class => 'button' %>
   </div>
 </div>

@@ -3,63 +3,13 @@
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
-  <style type="text/css" media="screen">
-    .update {position:relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-    .updateresource {width: 48px; position: absolute; text-align:center;left: 0; top:0;}
-    .updateresource img {max-width: 48px;}
-    .updateheader {padding-top: 5px;}
-    .updatebody {margin-left: 56px;}
-    .updateimage { width: 100px; float:left; margin-right: 10px;}
-    .updateimage img { max-width: 100px; }
-    .updatewithimage .updatecontent {float: left; width: 420px;}
-    .updatewithimage .updatecontent .photos.attribute {display:none;}
-    
-    .item_content {max-width: 475px;}
-    .item_content .identification {
-      padding: 5px;
-      background-color: #EEE;
-      margin-bottom: 5px;
-    }
-    
-    .activity.update:before {
-      content: ' ';
-      display:block;
-      position:absolute;
-      left:-21px;
-      top: 5px;
-      width:16px;
-      height: 16px;
-      background-position: -128px -96px;
-      background-image: url(/images/jquery-ui/ui-icons_888888_256x240.png);
-      z-index:1;
-    }
-    .new.activity.update:before {
-      background-image: url(/images/jquery-ui/ui-icons_cd0a0a_256x240.png);
-    }
-    
-    .stub { opacity: 0.5; }
-    .stub:hover { opacity: 1; }
-    
-    .observations.mini .observation:last-child {border: 0 transparent;}
-    #calendar .calendar {float: none; width: 100%;}
-    
-    #explore .observations.grid .observation {margin: 0 2px 5px 0;}
-    #explore .observations.medium.grid .observation, 
-    #explore .observations.medium.grid .photos, 
-    #explore .observations.medium.grid .photos a, 
-    #explore .observations.medium.grid .icon {
-      width: 153px;
-      height: 153px;
-    }
-    
-    #comments .commentitem { border-bottom: 1px solid #eee; margin-bottom: 10px; padding-bottom: 10px;}
-  </style>
 <% end -%>
 
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= javascript_include_tag 'inaturalist/map3', "d3.min", 'calendars' %>
   <script type="text/javascript" charset="utf-8">
+    var CACHED_AT = new Date(<%= Time.now.to_i * 1000 %>)
     $(document).ready(function() {
       $('#tabs').tabs({
         show: function(event, ui) {
@@ -81,21 +31,49 @@
       
       $('.subscriptionsettings').subscriptionSettings()
       $('abbr.timeago').timeago()
-      $('#flash').hide()
+      if ((new Date()).getTime() - CACHED_AT.getTime() > 5000) {
+        $('#flash').hide()
+      }
       var dayInSeconds = 24 * 60 * 60,
           now = new Date(),
           monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+      
+      var elt = $('abbr.compact.date:first')
+      var dateString = $(elt).attr('title').split('T')[0],
+          timeString = $(elt).attr('title').split('T')[1],
+          d = new Date(Date.parse($(elt).attr('title')))
+
       $('abbr.compact.date').each(function() {
         var dateString = $(this).attr('title').split('T')[0],
             timeString = $(this).attr('title').split('T')[1],
-            d = new Date($(this).attr('title'))
-        if (!timeString.indexOf(':')) { return }
+            d = new Date(Date.parse($(elt).attr('title')))
+        if (!timeString.indexOf(':') || typeof(d) != 'object') { return }
         if (now.getFullYear() == d.getFullYear() &&
             now.getMonth() == d.getMonth() &&
             now.getDate() == d.getDate()) {
           return 
         }
         $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
+      })
+
+      $('#new_place_subscription_link, #new_taxon_subscription_link').click(function() {
+        var dialogId = 'new_subscription_dialog'
+        var dialog = $('#'+dialogId)
+        if (dialog.length != 0) {$(dialog).remove()};
+        dialog = $('<div></div>')
+          .attr('id', dialogId)
+          .addClass('dialog').html('<div class="loading status">Loading...</div>')
+        $(document).append(dialog)
+        var data = 'partial=form&authenticity_token=' + $('meta[name=csrf-token]').attr('content')
+        dialog.load($(this).attr('href'), data, function() {
+          $(this).centerDialog()
+          $('form:has(input[required])', this).submit(checkFormForRequiredFields)
+        })
+        dialog.dialog({
+          modal: true,
+          title: 'Subscribe to a new place/taxon'
+        })
+        return false
       })
     })
   </script>
@@ -136,13 +114,13 @@
 
           <p>Here are some things you can do in the meantime:</p>
           <ul class="readable leafylist">
-            <% unless @user.flickr_identity %>
+            <% unless current_user.flickr_identity %>
               <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
             <% end %>
-            <li><%= link_to "Browse your observations", observations_by_login_path(@user.login) %></li>
+            <li><%= link_to "Browse your observations", observations_by_login_path(current_user.login) %></li>
             <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
             <li><%= link_to "Explore everyone's observations", observations_path %></li>
-            <li><%= link_to "Check out your Life List", lists_by_login_path(@user.login) %></li>
+            <li><%= link_to "Check out your Life List", lists_by_login_path(current_user.login) %></li>
           </ul>
         <% else %>
           <p class="description">
@@ -175,7 +153,7 @@
               <div class="updateheader meta stacked">
                 <div class="right small">
                   <abbr class="compact date" title="<%= updates.last.sort_by_date.iso8601 %>"><%= compact_date(updates.last.sort_by_date) %></abbr>
-                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>", edit_subscription_by_resource_path(resource_type, resource_id), 
+                  <%= link_to "<span class='ui-icon inlineblock ui-icon-gear'>Settings</span>".html_safe, edit_subscription_by_resource_path(resource_type, resource_id), 
                     :class => "subscriptionsettings" %>
                 </div>
                 <%= update_tagline_for(updates.last, :count => updates.size) %>
@@ -199,8 +177,8 @@
               <% else %>
                 <%= 
                   begin
-                    render :partial => "#{resource.class.to_s.underscore.pluralize}/update_#{notification}", 
-                      :object => resource, :locals => {:updates => updates}
+                    render :partial => "#{resource_type.underscore.pluralize}/update_#{notification}", 
+                      :object => resource, :locals => {:updates => updates, :resource => resource}
                   rescue ActionView::MissingTemplate, Errno::ENOENT
                     "#{resource_type} #{notification}"
                   end
@@ -219,6 +197,7 @@
     </div>
 
     <div id="rightcol" class="last column span-8">
+      <%= link_to "Add observations", new_observation_path, :id => "obsbutton", :class => "default button" %>
 
       <div id="calendar" class="clear stacked">
         <%= render :partial => "calendars/calendar", :locals => { 
@@ -227,12 +206,128 @@
         <%= link_to "View your calendar", calendar_path(current_user.login), :class => "readmore" %>
       </div>
 
+      <% if current_user.is_curator? -%>
+        <div id="curatorbox" class="box">
+          <h3>
+            Curation
+            <% helptip_for "curation" do %>
+              You're a site curator, which means you've volunteered to help
+              curate our data and monitor content. Please don't feel obliged
+              to deal with all these issues, but if you have the time to check
+              some of them out, we'd appreciate all the help we can get. If
+              you have any questions about curating content or don't want to
+              be a curator anymore, please contact us at 
+              <%= link_to APP_CONFIG[:help_email], "mailto:#{APP_CONFIG[:help_email]}" %>.
+            <% end -%>
+          </h3>
+          <% unless @flags.blank? -%>
+            <h4>
+              Flags
+              <% helptip_for "flags" do %>
+                These are items people on the site have flagged for curation.
+                Spam comments should be deleted and users who add spam should
+                be suspended (go to their profile page and click "Suspend
+                user" in the lower right to prevent them from logging in).
+                Other flagged items should only be deleted if they are clearly
+                hateful, illegal, etc. Rudness, offensive language, etc,
+                should be handled with a polite comment. Repeat offenders
+                should be reported to a site admin or <%=
+                APP_CONFIG[:help_email] %>.
+              <% end -%>
+            </h4>
+            <ul>
+              <% for flag in @flags %>
+                <li>
+                  <%= render :partial => "flags/flag", :object => flag %>
+                </li>
+              <% end %>
+            </ul>
+          <% end -%>
+
+          <% unless @ungrafted_taxa.blank? -%>
+            <h4>
+              Ungrafted taxa
+                <% helptip_for "flags" do %>
+                  These are taxa that iNat couldn't automatically add to our
+                  taxonomic tree for some reason. You can add them to the tree
+                  by editing the taxon and choosing a parent record. For
+                  example, the parent of <i>Homo sapiens</i> would be the
+                  genus <i>Homo</i>. You might also want to check for synonymous 
+                  taxa and merge them.
+                <% end -%>
+              </h4>
+            </h4>
+            <ul>
+              <% for taxon in @ungrafted_taxa %>
+                <li>
+                  <%= link_to_taxon taxon %>
+                  <%= link_to "edit", edit_taxon_path(taxon) %>
+                </li>
+              <% end %>
+            </ul>
+          <% end -%>
+
+          <%= link_to "Curate taxa", curate_taxa_path %> |
+          <%= link_to "Create a new taxon", new_taxon_path %>
+        </div>
+      <% end -%>
+
+      <%= separator %>
+
+      <div class="stacked">
+        <h3>
+          Your subscriptions
+          <% helptip_for "subscriptions" do %>
+            Subscribe to places to receive updates about new observations made
+            there.  Updates from people you follow and things you've commented
+            on are also managed through subscriptions, so if you want to see
+            what you're subscribed to and unsubscribe from things, you can
+            click "Manage all of your subscriptions" below.  You should also
+            be able to unsubscribe from anything on the site by viewing it's
+            page.
+          <% end -%>
+        </h3>
+
+        <ul style="margin-bottom: 5px" class="plain">
+          <% if @subscriptions.blank? %>
+            <div class="nocontent meta">You don't have any place or taxon subscriptions</div>
+          <% else %>
+            <% for resource_type, subscriptions in @subscriptions.group_by(&:resource_type) %>
+              <li>
+                <span class="meta"><%= resource_type.humanize.pluralize %></span>
+                <ul style="margin-bottom: 5px">
+                  <% for subscription in subscriptions %>
+                    <li class="subscription_for_<%= [subscription.resource_type, subscription.resource_id].join('_') %>">
+                      <%= link_to subscription.resource.try_methods(:display_name, :name, :title), subscription.resource %>
+                      <nobr class="meta">
+                        <% if subscription.taxon -%>
+                          (<%= subscription.taxon.name %>)
+                        <% end -%>
+                        <%= link_to "edit", edit_subscription_path(subscription), :class => "small subscriptionsettings" %>
+                      </nobr>
+                    </li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          <% end -%>
+        </ul>
+        <div>
+          Add a
+          <%= link_to "place subscription", new_subscription_path(:type => "place"), :id => "new_place_subscription_link" %>
+          |
+          <%= link_to "taxon subscription", new_subscription_path(:type => "taxon"), :id => "new_taxon_subscription_link" %>
+        </div>
+        <%= link_to "Manage all of your subscriptions", subscriptions_path, :class => "readmore" %>
+      </div>
+      <%= separator %>
+
       <h3>Extras</h3>
 
       <h4><%= link_to "Blog Widget", :controller => "observations", :action => "widget" %></h4>
       <p class="description">
         Show off your recent observations on your own blog or website!
-        <%= link_to "Get started &raquo;", :controller => "observations", :action => "widget" %>
+        <%= link_to "Get started &raquo;".html_safe, :controller => "observations", :action => "widget" %>
       </p>
     </div>
   </div>

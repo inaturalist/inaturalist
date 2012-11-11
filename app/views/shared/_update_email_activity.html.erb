@@ -1,7 +1,8 @@
 <%-
-  resource = object || resource
+  resource = update_email_activity || resource
   updates ||= []
   class_name = resource.class.to_s.underscore
+  viewing_user = current_user rescue @user
 -%>
 
 <div class="updatecontent">
@@ -13,6 +14,12 @@
           @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
         end
         notifier ||= update.notifier
+        next unless notifier
+        user = if notifier.is_a?(Flag)
+          update_cached(notifier, :resolver)
+        elsif notifier.respond_to?(:user)
+          update_cached(notifier, :user)
+        end
       -%>
       <tr>
         <td valign="top" style="padding-right:10px;">
@@ -24,16 +31,30 @@
           <% elsif notifier.is_a?(Identification) %>
             <div style="margin-bottom:10px;">
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
-              <span><%= notifier.user.login %>'s ID:</span>
+              <span><%= user.login %>'s ID:</span>
               <%= render :partial => 'shared/taxon', 
                          :locals => { :taxon => notifier.taxon,
                                       :link_url => taxon_url(notifier.taxon) } %>
             </div>
+          <% elsif notifier.is_a?(ProjectInvitation) %>
+            <p>
+              Please add this to <strong><%= notifier.project.title %></strong>
+              <br/>
+              <%= link_to "View invitation", resource %>
+            </p>
+          <% elsif notifier.is_a? Flag %>
+            <div class="stacked body">
+              <span class="meta">Flag marked as</span> <strong>resolved</strong>.
+              <% unless notifier.comment.blank? %>
+                <span class="meta"><%= notifier.resolver.login %> said,</span>
+                "<%= notifier.comment %>"
+              <% end -%>
+            </div>
           <% end -%>
           <div style="color:#aaaaaa;font-size:smaller;margin-bottom:10px;">
             Posted by 
-            <%= link_to(truncate(notifier.user_id == @user.id ? "you" : notifier.user.login, :length => 20), 
-              person_url(notifier.user)) %>
+            <%= link_to(truncate(user.id == viewing_user.id ? "you" : user.login, :length => 20), 
+              person_url(user)) %>
             <span class="when">
               <span class="date"><%= time_ago_in_words(notifier.created_at) %></span> ago
             </span>

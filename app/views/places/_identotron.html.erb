@@ -1,5 +1,5 @@
 <%-
-  taxon ||= object || @taxon
+  taxon ||= identotron || @taxon
   listed_taxon ||=  @listed_taxon
   if listed_taxon
     list ||= @list || listed_taxon.list
@@ -9,7 +9,7 @@
   taxon_range ||= TaxonRange.without_geom.first(:conditions => ["taxon_id = ?", taxon])
   map_tag_attrs = setup_map_tag_attrs(taxon, :place => place, :taxon_range => taxon_range)
   obs_url = observations_path(:place_id => listed_taxon.try(:place_id), :taxon_id => taxon.id)
-  photos = taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}
+  photos = taxon.taxon_photos.sort_by{|tp| tp.id}.map{|tp| tp.photo}.compact
   dialog_url = listed_taxon_url(listed_taxon) if listed_taxon
 -%>
 <div class="clear listed_taxon stacked" href="<%= dialog_url %>" data-taxon-id="<%= taxon.id %>">
@@ -17,13 +17,21 @@
     <h3>
       <%= render :partial => "shared/taxon", :object => taxon, :locals => {:link_url => url_for(taxon)} %>
     </h3>
+    <% unless taxon.is_active? -%>
+      <div class="notice box">
+        This taxon is <strong>inactive</strong>. This means iNaturalist's curators have replaced 
+        it with a more taxonomically current concept.
+        <%= link_to "View taxon changes", taxon_changes_path(:taxon_id => taxon), :class => "readmore" %>
+      </div>
+    <% end -%>
   </div>
   <div class="photos column span-9">
     <% if photos.blank? -%>
       <%= render :partial => 'taxa/nophoto', :object => taxon %>
     <% else %>
       <div class="stacked">
-        <%= link_to image_tag(photos[0].medium_url), photos[0].becomes(Photo), :class => "zoomable",
+        <%= link_to image_tag(photos[0].try_methods(:medium_url, :large_url, :small_url)), photos[0].becomes(Photo), 
+          :class => "zoomable",
           :title => t(:photo_photoid_photoattribution, :photoid => "#{photos[0].id}", :photoattribution => "#{photos[0].attribution}") %>
         <div class="meta">
           Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>

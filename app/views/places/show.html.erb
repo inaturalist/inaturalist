@@ -2,7 +2,7 @@
   <%= @place.display_name %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "taxa", "observations", "taxa/guide", "barchart", "places/show" %>
+  <%= stylesheet_link_tag "taxa", "taxa/guide", "barchart", "places/show", "guide" %>
   <!--[if lte IE 7]>
     <%= stylesheet_link_tag 'observations-ie' %>
     <style type="text/css" media="screen">
@@ -26,17 +26,17 @@
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <script type="text/javascript" charset="utf-8">
-    var PLACE = <%= @place.to_json %>,
-        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? ''.inspect : place_geometry_url(@place, :format => "kml").inspect %>,
-        WIKIPEDIA_DESCRIPTION_URL = <%= url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect %>,
-        FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect %>,
-        NEARBY_PLACES = <%= @nearby_places.to_json %>,
-        INSIDE_PLACES = <%= @inside_places.to_json %>,
-        TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect %>
+    var PLACE = <%= @place.to_json.html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? ''.inspect.html_safe : place_geometry_url(@place, :format => "kml").inspect.html_safe %>,
+        WIKIPEDIA_DESCRIPTION_URL = <%= url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect.html_safe %>,
+        FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect.html_safe %>,
+        NEARBY_PLACES = <%= @nearby_places.to_json.html_safe %>,
+        INSIDE_PLACES = <%= @inside_places.to_json.html_safe %>,
+        TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect.html_safe %>
   </script>
   <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 
-    "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min",
-    "jquery/plugins/jquery.scrollTo-min.js", "taxon_guide", "places/show" %>
+    "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min", 
+    "taxon_guide", "places/show", 'jquery/plugins/waypoints.min' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       var script = document.createElement("script")
@@ -58,7 +58,7 @@
   <div class="breadcrumbs">
     <strong><%= link_to t(:places), places_path, :class => 'crumb' %></strong>
     <span class="description">&gt;</span>
-    <% @place.ancestors.reverse_each do |ancestor| %>
+    <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
         <%= ancestor.name %>
         <span class="small description">(<%= ancestor.place_type_name %>)</span>
@@ -96,7 +96,13 @@
       </p>
       
       <% if logged_in? -%>
-        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+        <% if @place_geometry -%>
+          <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+        <% else %>
+          <div class="meta">
+            Subscriptions aren't available for places without boundaries.
+          </div>
+        <% end -%>
       <% end -%>
     <% end -%>
     <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
@@ -115,7 +121,7 @@
         </div>
       </div>
       
-      <%- wikipedia_url = "http://es.wikipedia.org/wiki/#{@place.wikipedia_name}" -%>
+      <%- wikipedia_url = "http://en.wikipedia.org/wiki/#{@place.wikipedia_name}" -%>
       <div class="last column span-15">
         <h3><%= link_to "Wikipedia", wikipedia_url %> <%= t(:desription) %></h3>
         <div class="wikipedia_description">

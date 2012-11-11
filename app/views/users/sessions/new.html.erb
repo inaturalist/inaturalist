@@ -1,0 +1,51 @@
+<%- content_for(:title) do -%>
+  <%= t(:sign_in) %>
+<%- end -%>
+<%- content_for(:extracss) do -%>
+  <style type="text/css" media="screen">
+    .providerlink, .button.providerlink { width: 140px; }
+  </style>
+<%- end -%>
+<div class="column span-8 prepend-2">
+  <img src="/images/bird.png" width="300" height="239" />
+</div>
+<div class="column span-7">
+  
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :builder => DefaultFormBuilder, :html => {:class => "clear"}) do |f| %>
+    <%= f.text_field :email, :label => t(:username_or_email), :class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off" %>
+    <%= f.password_field :password, :class => "text", :tabindex => 2 %>
+
+    <% if devise_mapping.rememberable? -%>
+      <%= f.check_box :remember_me, :label_after => true %>
+    <% end -%>
+    
+    <div class="clear buttonrow">
+      <%= f.submit t(:sing_in_exclamation), :class => "default button" %>
+      <span class="small inter ui nobr description" style="line-height: 1.6">
+        or
+        <%= link_to t(:start_new_account), new_user_path, :class => "readmore" %>
+      </span>
+    </div>
+  <% end %>
+  
+  <p class="ui">
+    <%= link_to t(:forgot_your_password), new_password_path(resource_name) %><br />
+  </p>
+  
+</div>
+
+<div class="last column span-6">
+  <div class="clear stacked">
+    <div style="margin-bottom: 0.5em;">
+      <label> <%= t(:or_you_can) %></label>
+    </div>
+    <%- ProviderAuthorization::AUTH_URLS.each do |provider, url| -%>
+      <%= link_to t(:sign_in_with_provider, :provider => provider.capitalize), url, :class => "button providerlink #{provider.downcase}" %>
+    <%- end -%>
+  </div>
+  
+  <%= link_to_toggle t(:if_you_already_have_inat_account), "#already" %>
+  <p id="already" class="ui description" style="display: none;">
+    <%= t(:and_you_havent_linked) %>
+  </p>
+</div>

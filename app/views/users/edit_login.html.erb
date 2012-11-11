@@ -6,7 +6,7 @@
 </div>
 <div class="column span-8 append-4 last">
 
-  <% form_for(current_user, :url => person_path(current_user)) do |f| %>
+  <%= form_for(current_user, :url => person_path(current_user)) do |f| %>
     <p class="ui">
       <%= label_tag 'login', t(:pick_a_username) %><br/>
       <%= f.text_field(:login) %>

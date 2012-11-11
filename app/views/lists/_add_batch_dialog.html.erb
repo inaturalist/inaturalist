@@ -1,10 +1,36 @@
 <div id="add_batch_dialog" style="display: none" class="modalbox dialog">
   <span class="close corner">&times;</span>
-  <h2 class="header"><%=t :add_a_batch_of_taxa %></h2>
-  <p class="description"><%=t :paste_in_a_bunch_of_names %></p>
-  <% form_tag :action => 'add_taxon_batch', :id => @list do %>
-    <label for="names"><%=t :names %></label>
-    <%= text_area_tag :names, '', :style => 'width: 580px' %>
-    <%= submit_tag t(:add_taxa), :class => 'default button', "data-loading-click" => t(:adding) %>
-  <% end %>
+
+  <div class="clear stacked">
+    <h2 class="header"><%=t :add_a_batch_of_taxa %></h2>
+    <p class="description"><%=t :paste_in_a_bunch_of_names %></p>
+    <%= form_tag :action => 'add_taxon_batch', :id => @list do %>
+      <label for="names"><%=t :names %></label>
+      <%= text_area_tag :names, '', :style => 'width: 580px; height:200px;' %>
+      <%= submit_tag t(:add_taxa), :class => 'default button', "data-loading-click" => t(:adding) %>
+    <% end %>
+  </div>
+  
+  <h3>Or upload via CSV</h3>
+  <p class="meta ui">
+    File should be in the following format: taxon name, description<% if @list.is_a?(CheckList) %>, occurrence status, establishment means<% end %>. CSV should not contain a header row.
+    <% if @list.is_a?(CheckList) %>
+      <br/>Allowed occurrence status values: <%= ListedTaxon::OCCURRENCE_STATUSES.join(', ') %>
+      <br/>Allowed establish means values: <%= ListedTaxon::ESTABLISHMENT_MEANS.join(', ') %>
+    <% end -%>
+  </p>
+
+  <%= form_for ListedTaxaFromCsvFlowTask.new, :url => flow_tasks_url do |f| %>
+    <%= f.hidden_field :redirect_url, :value => list_batch_edit_url(@list) %>
+    <%= f.fields_for :inputs, f.object.inputs.build(:resource => @list) do |fi| %>
+      <%= fi.hidden_field :resource_type %>
+      <%= fi.hidden_field :resource_id %>
+    <% end -%>
+    <%= f.fields_for :inputs, f.object.inputs.build do |fi| %>
+      <div class="clear stacked">
+        <%= fi.file_field :file %>
+      </div>
+    <% end -%>
+    <%= f.submit "Upload CSV", :class => "default button" %>
+  <% end -%>
 </div>

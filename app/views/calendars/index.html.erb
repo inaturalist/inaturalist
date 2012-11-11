@@ -18,9 +18,9 @@
 <%= render :partial => 'shared/by_login_header', :locals => {:title => @title} %>
 
 <div class="column span-24 yearnav">
-  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}", :year => @year - 1 %></h2>
+  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1 %></h2>
   <% if @year < Date.today.year -%>
-    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;", :year => @year + 1 %></h2>
+    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1 %></h2>
   <% end -%>
   <h2 style="text-align: center;">
     <%= @year %>
@@ -39,9 +39,9 @@
 </div>
 
 <div class="column span-24 yearnav">
-  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}", :year => @year - 1 %></h2>
+  <h2 class="left"><%= link_to "&lsaquo; #{@year - 1}".html_safe, :year => @year - 1 %></h2>
   <% if @year < Date.today.year -%>
-    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;", :year => @year + 1 %></h2>
+    <h2 class="right"><%= link_to "#{@year + 1} &rsaquo;".html_safe, :year => @year + 1 %></h2>
   <% end -%>
   <h2 style="text-align: center;">
     <form method="get">

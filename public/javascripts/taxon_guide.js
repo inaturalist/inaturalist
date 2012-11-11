@@ -1,11 +1,14 @@
 var TaxonGuide = {
   IGNORE_PARAMS: ['test', 
+    'utf8',
     'size',
     'grid',
     'labeled',
     'bgcolor',
     'multiselect_colorsFilter', 
     'multiselect_colorsFilter[]', 
+    'multiselect_colorchooser',
+    'multiselect_colorchooser[]',
     'multiselect_conservationFilter', 
     'multiselect_establishmentFilter'],
   OVERRIDE_EXISTING: 0,
@@ -301,6 +304,14 @@ var TaxonGuide = {
       if (typeof(PLACE) != 'undefined' && PLACE) {
         title += ' in ' + PLACE.display_name
       }
+      
+      $('#taxa').not('.fluid').find('.taxonimage img', this).not('.iconic').not('.centeredInContainer').waypoint(function() {
+        $(this).centerInContainer({container: '.taxonimage:first'})
+      }, {
+        offset: '100%',
+        triggerOnce: true
+      })
+
       $(dialog).dialog({
         autoOpen: false,
         width: '90%',
@@ -320,12 +331,8 @@ var TaxonGuide = {
         if ($(dialog).html() == '') {
           $(dialog).append($('<span class="loading status">Loading...</span>'))
           $(dialog).load($(this).attr('href') + '?partial=guide', function(foo) {
-            var dialog = $('#'+dialogId),
-                newHeight = $(':first', dialog).height() + 60,
-                maxHeight = $(window).height() * 0.8
-            if (newHeight > maxHeight) { newHeight = maxHeight };
-            $(this).dialog('option', 'height', newHeight)
-            $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
+            var dialog = $('#'+dialogId)
+            $(dialog).centerDialog()
             $('.map', this).taxonMap()
             $('.side .photos a', this).has('img').click(function() {
               $(this).parents('.listed_taxon_guide').find('.tabs').tabs('select', 1)

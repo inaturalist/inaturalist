@@ -1,14 +1,5 @@
 # Be sure to restart your server when you modify this file.
 
-# Add new inflection rules using the following format 
-# (all these examples are active by default):
-# Inflector.inflections do |inflect|
-#   inflect.plural /^(ox)$/i, '\1en'
-#   inflect.singular /^(ox)en/i, '\1'
-#   inflect.irregular 'person', 'people'
-#   inflect.uncountable %w( fish sheep )
-# end
-
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural /^(.*)([Tt])axon$/i, '\1\2axa'
   inflect.singular /^(.*)([Tt])axa$/i, '\1\2axon'
@@ -24,6 +15,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   
   inflect.plural /^(.*)([Ff])ugus$/i, '\1\2ungi'
   inflect.singular /^(.*)([Ff])ungi$/i, '\1\2ungus'
+  inflect.singular /^(.*)([Ff])ungus$/i, '\1\2ungus'
   
   inflect.plural /^(.*)([Oo])ctopus$/i, '\1\2ctopi'
   inflect.singular /^(.*)([Oo])ctopi$/i, '\1\2ctopus'

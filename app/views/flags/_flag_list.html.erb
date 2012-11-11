@@ -5,19 +5,10 @@
       <li class="quiet description"><%=t :no_flags %></li>
     <% end %>
 
-    <%# Username flagged user's model model_string because  %>
-    <% if current_user.is_curator? %>
-      <% for flag in flags %>
-        <li>
-          <%= render :partial => 'flag', :object => flag %>
-        </li>
-      <% end %>
-    <% else %>
-      <% for flag in flags %>
-        <li>
-         "<%= flag.flag %>"
-        </li>
-      <% end %>
+    <% for flag in flags %>
+      <li>
+        <%= render :partial => 'flag', :object => flag %>
+      </li>
     <% end %>
   </ul>
 

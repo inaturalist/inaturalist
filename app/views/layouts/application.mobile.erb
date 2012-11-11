@@ -16,9 +16,11 @@
       'jquery/jquery-ui-1.8.11.min.js', 
       'jquery/plugins/jquery.chooser', 
       "jquery/plugins/jquery.qtip2.min", 
+      'rails',
       'application', 
       'inaturalist', 
       'mobile' %>
+    <%= csrf_meta_tag %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
     <%= yield :extrahead %>

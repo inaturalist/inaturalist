@@ -11,9 +11,26 @@
       <% for user_attr in User.column_names %>
         <tr>
           <th><%= user_attr %></th>
-          <td><%= @display_user.send(user_attr) %></td>
+          <td><%= @display_user.send(user_attr).to_s.html_safe %></td>
         </tr>
       <% end %>
+      <tr>
+        <th>Recent user agents</th>
+        <td>
+          <% if !@observations.blank? %>
+            <ul>
+              <% for observation in @observations %>
+                <% next if observation.user_agent.blank? %>
+                <li>
+                  <%= observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            No observations to check
+          <% end %>
+        </td>
+      </tr>
     </table>
   </div>
   
@@ -24,29 +41,26 @@
     <div class="box">
       <ul>
         <% if @display_user.is_curator? %>
-          <li><%= link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete %></li>
+          <li><%= link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete %></li>
         <% else %>
-          <li><%= link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post %></li>
+          <li><%= link_to t(:make_curator), add_role_path(@display_user, :role => "curator"), :method => :post %></li>
         <% end %>
-        <% unless @display_user.active? -%>
-          <li>
-            <%= link_to t(:activate_user), {:controller => "users", :action => "activate", :activation_code => @display_user.activation_code}, 
-              :confirm => t(:are_you_sure_want_activate_account) %>
-          </li>
-        <% end -%>
         <li>
-          <% if @display_user.active? || @display_user.pending? %>
+          <% if @display_user.active? %>
             <%= link_to "Suspend user", suspend_user_path(@display_user) %>
           <% else %>
             <%= link_to "Unsuspend user", unsuspend_user_path(@display_user) %>
           <% end %>
         </li>
         <li>
-          <%= link_to t(:delete_user), @user, :method => :delete, :confirm => t(:are_you_really_sure_want_delete_this_user) %>
+          <%= link_to t(:delete_user), @display_user, :method => :delete, :confirm => t(:are_you_really_sure_want_delete_this_user) %>
         </li>
         
         <li>
           <%= link_to "Log in as #{@display_user.login}", :controller => "admin", :action => "login_as", :id => @display_user.id %>
+        </li>
+        <li>
+          <strong><%= link_to "Manage / delete content", admin_user_content_path(@display_user.id) %></strong>
         </li>
       </ul>
     </div>
@@ -91,7 +105,7 @@
       <th>login</th>
       <th>id</th>
       <th>created_at</th>
-      <th>activated_at</th>
+      <th>confirmed_at</th>
       <th>obs</th>
       <th>IDs</th>
       <th>comments</th>
@@ -101,7 +115,7 @@
         <td><%= link_to user.login, url_for(:id => user.id) %></td>
         <td><%= user.id %></td>
         <td><%= user.created_at %></td>
-        <td><%= user.activated_at %></td>
+        <td><%= user.confirmed_at %></td>
         <td><%= link_to user.observations_count, observations_by_login_path(user.login) %></td>
         <td><%= link_to user.identifications_count, identifications_by_login_path(user.login) %></td>
         <td><%= link_to @comment_counts_by_user_id[user.id].to_i, comments_by_login_path(user.login) %></td>

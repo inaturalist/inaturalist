@@ -34,7 +34,7 @@ Some notes:
   check_box_name ||= false
   check_box_checked ||= false
   top ||= false
-  css_class = "observation #{cycle('odd', 'even')}"
+  css_class = "observation"
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
   if observation.research_grade?
     css_class += ' research_grade'
@@ -108,7 +108,7 @@ Some notes:
       </span>
     <% else %>
       <span class="taxon">
-        <%= link_to t(:something), observation %>
+        <%= link_to "#{t(:something)}...", observation %>
       </span>
     <% end %>
     <!-- <span class="button detailsctrl">Show Details</span> -->
@@ -164,7 +164,7 @@ Some notes:
     <% unless observation.tags.empty? %>
       <h4 class="label"><%=t :tags %></h4>
       <div class="description">
-        <%= observation.tags.map {|t| link_to(t.name, observations_path(:q => t.name, :search_on => "tags")) }.join(', ') %>
+        <%=raw observation.tags.map {|t| link_to(t.name, observations_path(:q => t.name, :search_on => "tags")) }.join(', ') %>
       </div>
     <% end %>
   </div>
@@ -192,15 +192,15 @@ Some notes:
     <%- if observation.id_please? %>
       <ul>
         <li class="last">
-          <%= link_to t(:full_id_please!), observation, :class => "id_please_notice", 
-            "data-tip" => t(:observation_would_like_some_help, :user=>"#{observation.user.login}" ),
+          <%= link_to "ID<span class='full'> Please</span>!".html_safe, observation, :class => "id_please_notice", 
+            "data-tip" => t(:observation_would_like_some_help, :user => observation.user.login),
             "data-tip-show-delay" => 1000 %>
         </li>
       </ul>
     <%- elsif observation.research_grade? %>
       <ul>
         <li class="last">
-          <%= link_to raw( t(:research_grade) ), observation_url(observation, :anchor => "data_quality_assessment"), 
+          <%= link_to "R<span class='full'>esearch </span>G<span class='full'>rade</span>".html_safe, observation_url(observation, :anchor => "data_quality_assessment"), 
             :class => "research_grade_notice", 
             "data-tip" => t(:research_grade_observations_have),
             "data-tip-show-delay" => 1000 %>

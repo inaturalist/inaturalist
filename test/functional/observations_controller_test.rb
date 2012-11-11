@@ -1,18 +1,20 @@
-require File.dirname(__FILE__) + '/../test_helper'
+# require 'test_helper'
+require File.expand_path(File.dirname(__FILE__) + "/../test_helper")
 
 class ObservationsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
   
   def test_index_finds_observations_by_taxon_name
-    taxon = Taxon.make
-    observation = Observation.make(:taxon => taxon)
+    taxon = Taxon.make!
+    observation = Observation.make!(:taxon => taxon)
     get :index, :format => 'json', :taxon_name => taxon.name
     assert_match /id.*?#{observation.id}/, @response.body
     assert_equal 1, assigns(:observations).map(&:taxon_id).uniq.size
   end
   
   def test_index_finds_observations_when_taxon_name_is_blank
-    taxon = Taxon.make
-    observation = Observation.make(:taxon => taxon)
+    taxon = Taxon.make!
+    observation = Observation.make!(:taxon => taxon)
     get :index, :format => 'json', :taxon_name => ''
     assert_match /id.*?#{observation.id}/, @response.body
   end
@@ -60,8 +62,9 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   
   def test_coordinates_obscured_for_threatened_for_project
-    o = make_observation_of_threatened
-    p = Project.make
+    p = Project.make!
+    pu = ProjectUser.make!(:project => p)
+    o = make_observation_of_threatened(:user => pu.user)
     p.observations << o
     get :project, :id => p.id
     assert_private_coordinates_obscured(o)
@@ -121,8 +124,9 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   
   def test_geoprivacy_private_hides_coordinates_for_project
-    o = make_private_observation
-    p = Project.make
+    p = Project.make!
+    pu = ProjectUser.make!(:project => p)
+    o = make_private_observation(:user => pu.user)
     p.observations << o
     get :project, :id => p.id
     assert_private_coordinates_hidden(o)
@@ -138,7 +142,7 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   
   def test_geoprivacy_obscured_obscured_coordinates_for_show
-    o = Observation.make(:latitude => 38.222, :longitude => -122.333, :geoprivacy => Observation::OBSCURED)
+    o = Observation.make!(:latitude => 38.222, :longitude => -122.333, :geoprivacy => Observation::OBSCURED)
     get :show, :id => o.id
     assert_private_coordinates_obscured(o)
   end

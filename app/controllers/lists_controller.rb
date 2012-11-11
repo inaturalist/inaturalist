@@ -2,14 +2,16 @@ class ListsController < ApplicationController
   include Shared::ListsModule
   include Shared::GuideModule
 
-  before_filter :login_required, :except => [:index, :show, :by_login, :taxa]  
+  before_filter :authenticate_user!, :except => [:index, :show, :by_login, :taxa, :guide,
+  :cached_guide, :guide_widge, :batch_edit]  
   before_filter :load_list, :except => [:index, :new, :create, :by_login]
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
-    :remove_taxon, :add_taxon_batch, :reload_from_observations]
+    :remove_taxon, :reload_from_observations]
+  before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]
   before_filter :load_find_options, :only => [:show]
   before_filter :load_user_by_login, :only => :by_login
   
-  caches_page :show, :if => Proc.new {|c| c.request.format.csv?}
+  caches_page :show, :if => Proc.new {|c| c.request.format == :csv}
   
   LIST_SORTS = %w"id title"
   LIST_ORDERS = %w"asc desc"
@@ -176,6 +178,9 @@ class ListsController < ApplicationController
         format.js do
           render :text => 'Taxon removed from list.'
         end
+        format.json do
+          render :json => @listed_taxon
+        end
       else
         format.html do
           flash[:error] = "Could't find that taxon."
@@ -184,6 +189,9 @@ class ListsController < ApplicationController
         format.js do
           render :status => :unprocessable_entity, 
             :text => "That taxon isn't in this list."
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => "That taxon isn't in this list."}
         end
       end
     end
@@ -203,7 +211,7 @@ class ListsController < ApplicationController
   
   def refresh
     delayed_task(@list.refresh_cache_key) do
-      job = @list.send_later(:refresh, :skip_update_cache_columns => true)
+      job = @list.delay.refresh(:skip_update_cache_columns => true)
       Rails.cache.write(@list.refresh_cache_key, job.id)
       job
     end
@@ -287,7 +295,7 @@ class ListsController < ApplicationController
         return false
       end
     else
-      unless @list.user.id == current_user.id || current_user.is_admin?
+      unless @list.user_id == current_user.id || current_user.is_admin?
         flash[:notice] = "Only the owner of this list can do that.  Don't be evil."
         redirect_back_or_default('/')
         return false

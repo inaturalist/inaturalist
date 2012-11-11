@@ -1,8 +1,9 @@
 <%- js_link ||= nil -%>
-<% form_tag({}, :method => :get, :class => 'clear buttonrow taxon_search_form') do %>
+<%= form_tag({}, :method => :get, :class => 'clear buttonrow taxon_search_form') do %>
   <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
   <label for="q"><%= t(:search) %></label>
   <%= hidden_field_tag :view, @view %>
+  <%= hidden_field_tag :is_active, @is_active %>
   <%= text_field_tag 'q', params[:q], :class => 'text' %>
   <input type="submit" class="default button" value="Go" />
   <%= link_to t(:clear), url_for_params(:without => :q), :class => 'delete button' %>
@@ -27,7 +28,7 @@
     
     <% unless @colors.blank? %>
       <span class="description">| </span>
-      <%= @colors.map{|c| content_tag(:span, c.value, :class => "color #{c.value}")}.join(', ') %>
+      <%= @colors.map{|c| content_tag(:span, c.value, :class => "color #{c.value}")}.join(', ').html_safe %>
     <% end %>
   </div>
   
@@ -61,14 +62,14 @@
         <% if @iconic_taxa.blank? -%>
           <%= link_to_toggle t(:taxonomic_groups), "#iconic_taxa", :class => 'open' %>
         <% else %>
-          <%= link_to t(:all_taxonomic_groups), url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow" %>
+          <%= link_to t(:all_taxonomic_groups).html_safe, url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow" %>
         <% end -%>
       </strong>
       <div id="iconic_taxa">
         <% for iconic_taxon in @faceted_iconic_taxa %>
           <%- selected = @iconic_taxa_ids && @iconic_taxa_ids.include?(iconic_taxon.id) -%>
           <div class="facet_value<%= ' selected' if selected %>">
-            <%= link_to('&times;', url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow", :class => 'right description') if selected %>
+            <%= link_to('&times;'.html_safe, url_for_params(:without => [:iconic_taxa, :page]), :rel => "nofollow", :class => 'right description') if selected %>
             <%= link_to default_taxon_name(iconic_taxon, :use_iconic_taxon_display_name => true), 
               url_for_params(:iconic_taxa => iconic_taxon.id, :without => :page), 
               :rel => "nofollow",
@@ -86,7 +87,7 @@
         <% if @colors.blank? -%>
           <%= link_to_toggle t(:colors), "#colors", :class => 'open' %>
         <% else %>
-          <%= link_to t(:all_colors), url_for_params(:without => [:colors, :page]), :rel => "nofollow" %>
+          <%= link_to t(:all_colors).html_safe, url_for_params(:without => [:colors, :page]), :rel => "nofollow" %>
         <% end -%>
       </strong>
       <div id="colors">
@@ -95,7 +96,7 @@
           <div class="<%= color.value %> facet_value<%= ' selected' if selected %>">
             <% if selected %>
               <% if @color_ids.size > 1 -%>
-                <%= link_to('&times;', 
+                <%= link_to('&times;'.html_safe, 
                   url_for_params(
                     :colors => @color_ids.reject {|cid| cid == color.id}.join(','),
                     :without => :page
@@ -103,12 +104,12 @@
                   :rel => "nofollow", 
                   :class => 'right description') %>
               <% else %>
-                <%= link_to('&times;', url_for_params(:without => [:colors, :page]), :rel => "nofollow", :class => 'right description') %>
+                <%= link_to('&times;'.html_safe, url_for_params(:without => [:colors, :page]), :rel => "nofollow", :class => 'right description') %>
               <% end -%>
             <% elsif @color_ids %>
               <%= link_to "+", url_for_params(:colors => (@color_ids + [color.id]).uniq.join(','), :without => :page), :rel => "nofollow", :class => 'right' %>
             <% end %>
-            <%= link_to "&nbsp;", url_for_params(:colors => color.id, :without => :page), :rel => "nofollow", :class => 'icon' %>
+            <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow", :class => 'icon' %>
             <%= link_to color.value, url_for_params(:colors => color.id, :without => :page), :rel => "nofollow" %>
             (<span class="count"><%= number_with_delimiter @facets[:colors][color.id] %></span>)
           </div>
@@ -123,7 +124,7 @@
         <% if @places.blank? -%>
           <%= link_to_toggle t(:places), "#places", :class => 'open' %>
         <% else %>
-          <%= link_to t(:all_places), url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
+          <%= link_to t(:all_places).html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow" %>
         <% end -%>
       </strong>
 
@@ -132,7 +133,7 @@
           <% for place in @faceted_places %>
             <%- selected = @place_ids && @place_ids.include?(place.id) -%>
             <li class="facet_value<%= ' selected' if selected %>">
-              <%= link_to('&times;', url_for_params(:without => [:page, :places]), :rel => "nofollow", :class => 'right description') if selected %>
+              <%= link_to('&times;'.html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow", :class => 'right description') if selected %>
               <%= link_to place_name_and_type(place), url_for_params(:places => place.id, :without => [:page, :places]), :rel => "nofollow" %>
               (<span class="count"><%= number_with_delimiter @facets[:places][place.id] %></span>)
             </li>
@@ -148,7 +149,7 @@
           <% for place in @places %>
             <li>
               <div class="facet_value selected">
-                <%= link_to('&times;', url_for_params(:without => [:page, :places]), :rel => "nofollow", :class => 'right description') %>
+                <%= link_to('&times;'.html_safe, url_for_params(:without => [:page, :places]), :rel => "nofollow", :class => 'right description') %>
                 <%= place_name_and_type place %>
                 (<span class="count"><%= number_with_delimiter @facets[:places][place.id] %></span>)
               </div>
@@ -172,6 +173,12 @@
 
       </ul>
     </div>
+  <% end -%>
+
+  <% if @is_active == "any" -%>
+    <%= link_to "Only show active taxa", url_for_params(:is_active => true, :without => [:page]) %>
+  <% else %>
+    <%= link_to "Show active and inactive taxa", url_for_params(:is_active => "any", :without => [:page]) %>
   <% end -%>
 </div>
 
@@ -197,34 +204,13 @@
         </ul>
       </div>
     </div>
-    <!-- <div class="column span-8">
-      <div class="facet">
-        <h3><%= t(:where_did_you_see_it) %></h3>
-        <% form_remote_tag :url => {:action => "find_places"}, 
-            :update => "find_places", 
-            :loading => 
-              "$('#place_q_submit').hide();" +
-              "$('#place_q_loading').show();",
-            :complete => 
-              "$('#place_q_submit').show();" +
-              "$('#place_q_loading').hide();" + 
-              "if (typeof(afterFindPlaces) == 'function') afterFindPlaces();",
-            :html => {:class => "clear buttonrow"} do %>
-          <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
-          <input type="text" name="q" value="" id="place_q" class="text" />
-          <input type="submit" value="Search" class="button" id="place_q_submit" />
-          <div id="place_q_loading" class="loading status inter" style="display:none">&nbsp;</div>
-        <% end %>
-        <div id="find_places"></div>
-      </div>
-    </div> -->
     <div class="last column span-5">
       <div class="facet">
         <h3><%= t(:what_color_was_it) %></h3>
         <ul id="colors_facet">
           <% for color in @all_colors %>
             <li class="facet_value <%= color.value %>">
-              <%= link_to "&nbsp;", url_for_params(:colors => color.id), :rel => "nofollow", :class => 'icon' %>
+              <%= link_to "&nbsp;".html_safe, url_for_params(:colors => color.id), :rel => "nofollow", :class => 'icon' %>
               <%= link_to color.value, url_for_params(:colors => color.id), :rel => "nofollow" %>
             </li>
           <% end %>
@@ -239,11 +225,11 @@
             <%= link_to t(:search_this_taxon), url_for_params(:taxon_id => taxon.id, :without => :q), :rel => "nofollow", :class => "right", :rel => "nofollow" %>
             <h3>
               <%- 
-                link_txt = render('shared/taxon', :object => taxon)
+                link_txt = render(:partial => 'shared/taxon', :object => taxon)
                 taxon_json = nil
               -%>
               <% if js_link -%>
-                <%- taxon_json = taxon_to_json(taxon, :iconic_taxon => Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] || taxon.iconic_taxon) -%>
+                <%- taxon_json = taxon_to_json(taxon, :iconic_taxon => Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id] || taxon.iconic_taxon).html_safe -%>
                 <%= link_to_function link_txt, "handleTaxonClick(event, #{taxon_json})" %>
               <% else %>
                 <%= link_to link_txt, taxon %>
@@ -279,10 +265,10 @@
         <%= t(:sorry_how_about_we_try_repeat) %>
       </p>
       <div class="column span-6">
-        <% form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
+        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
           <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
           <label for="q">
-            <%=t (:search) %><a href="http://www.catalogueoflife.org"><%= t(:catalogue_of_life) %></a>
+            <%=t (:search) %> <a href="http://www.catalogueoflife.org">Catalogue of Life</a>
           </label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>
@@ -292,7 +278,7 @@
         <% end %>
       </div>
       <div class="column span-6">
-        <% form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
+        <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
           <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
           <label for="q"><%= t(:search)  %> <a href="http://www.ubio.org">uBio</a></label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>

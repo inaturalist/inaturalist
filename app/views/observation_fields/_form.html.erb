@@ -1,4 +1,4 @@
-<% form_for @observation_field, :builder => DefaultFormBuilder do |f| %>
+<%= form_for @observation_field, :builder => DefaultFormBuilder do |f| %>
   <%= f.error_messages %>
 
   <%= f.text_field :name, :required => true %>

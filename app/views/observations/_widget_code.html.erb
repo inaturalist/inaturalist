@@ -32,20 +32,19 @@
       <% unless place || taxon || project %>
         <td class="inat-user-image">
           <%- img_url = base_url + current_user.icon.url(:thumb) -%>
-          <%= link_to image_tag(img_url, :class => 'usericon'), 
-            observations_by_login_url(current_user.login), :border => 0 %>
+          <%= link_to image_tag(img_url, :class => 'usericon'), observations_by_login_url(current_user.login), :border => 0 %>
         </td>
       <% end %>
       <td class="inat-user-body"<%= ' colspan="2"' if place %>>
         <strong>
           <% if place -%>
-            <%= link_to t(:view_more_observations_near, :place => "#{place.name}" ), place_url(place) %>
+            <%= link_to "View more observations near #{place.name} on <nobr>iNaturalist &raquo;</nobr>".html_safe, place_url(place) %>
           <% elsif taxon -%>
-            <%= link_to  t(:view_more_observations_of, :taxon =>"#{taxon.name}"), taxon_url(taxon) %>
+            <%= link_to "View more observations of #{taxon.name} on <nobr>iNaturalist &raquo;</nobr>".html_safe, taxon_url(taxon) %>
           <% elsif project -%>
-            <%= link_to  t(:view_more_observations_from, :project => "#{project.title}" ), project_observations_url(project.id) %>
+            <%= link_to "View more observations from #{project.title} on <nobr>iNaturalist &raquo;</nobr>".html_safe, project_observations_url(project.id) %>
           <% else %>
-            <%= link_to  t(:view_more_user_observations, :user =>"#{current_user.login}"), 
+            <%= link_to "View #{current_user.login}'s <nobr>observations &raquo;</nobr>".html_safe, 
               observations_by_login_url(current_user.login) %>
           <% end -%>
         </strong>

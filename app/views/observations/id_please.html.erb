@@ -42,7 +42,6 @@
     
     .comment {
       padding: 0;
-      padding-left: 13px;
     }
     .comment .meta {
       float: none;
@@ -132,18 +131,66 @@
                              
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $('.observation .details').show();
+      $('.observation .details').show()
       
       $('.identification_form_wrapper input.text').simpleTaxonSelector({
         buttonText: 'Find',
         afterSelect: function(wrapper) {
           $(wrapper).parents('form').find('.default.button').removeClass('disabled').attr('disabled', null);
         }
-      });
+      })
 
       // Disable the submit button by default
-      $('.identification_form_wrapper .default.button').addClass('disabled').attr('disabled', 'disabled');
-    });
+      $('.identification_form_wrapper .default.button').addClass('disabled').attr('disabled', 'disabled')
+      
+      $('.agree.button a').click(function() {
+        var that = this
+        $.ajax($(this).attr('href'), {
+          type: 'POST',
+          dataType: 'JSON',
+          beforeSend: function() {
+            $(that).hide()
+            var loading = $('<span>Loading...</span>').addClass('small pale inline loading status')
+            $(that).parents('.agree:first').append(loading)
+          }
+        }).always(function() {
+          $(that).show()
+          $(that).siblings('.loading').remove()
+        }).done(function(json, status, xhr) {
+          var idents = $(that).parents('.identifications:first')
+          var oldIdent = idents.find('.identification.yours')
+          idents.find('.identifications-list').prepend(json.html)
+          $('.identification .removelink', idents).data('remote', true)
+          if (oldIdent) oldIdent.remove()
+          $(that).parents('.identifications:first').find('.identification_form_wrapper').hide()
+        }).fail(function(event, request, settings) {
+          var json = eval('(' + request.responseText + ')')
+          if (json.errors) {
+            var errors = json.errors.join(', ')
+            alert('Failed to save identification: ' + errors)
+          }
+        })
+        return false
+      })
+      
+      $('.identificationform').bind('ajax:success', function() {
+        $('.identification .removelink').data('remote', true)
+      })
+      
+      $('.identification .removelink').data('remote', true)
+      $('.identification .removelink').live('ajax:before', function() {
+        var ident = $(this).parents('.identification:first')
+        var identifications = $(this).parents('.identifications:first')
+        ident.fadeOut(function() {
+          ident.remove()
+          identifications.find('.identification_form_wrapper').fadeIn()
+        })
+      })
+      
+      $('.removeform').bind('ajax:before', function() {
+        $(this).parents('.observation:first').slideUp('normal', function() {$(this).remove();})
+      })
+    })
   </script>
 
 <% end %>
@@ -191,7 +238,7 @@
         :class => "inter#{' open' if @filters_open}") %>
     </div>
     <div id="filters" class="clear"<% unless @filters_open %> style="display: none"<% end %>>
-      <% form_tag id_please_path, :method => :get do -%>
+      <%= form_tag id_please_path, :method => :get do -%>
         <%= render :partial => 'filter_fields', :locals => {
           :selected_taxa => @iconic_taxa
         } %>
@@ -256,7 +303,7 @@
               zoom: 4,
               controls: 'none'});
             observation_<%= observation.id %>_map.addObservation(
-              <%= observation.to_json(:include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}) %>, 
+              <%= observation.to_json(:include => {:user => {:only => :login}, :taxon => {}, :iconic_taxon => {}}).html_safe %>, 
               {clickable: false});
           </script>
         <% end %>
@@ -284,7 +331,7 @@
              class="identification_form_wrapper">
           <strong><%=t :suggest_an_id %></strong>
           <%= render :partial => 'identifications/identification_form',
-                     :locals => { :observation => observation, :remote_actions => true }%>
+                     :locals => { :observation => observation } %>
         </div>
         <%- if viewers_ident -%>
           <script type="text/javascript" charset="utf-8">
@@ -297,7 +344,7 @@
         <div id="identifications-list-<%= observation.id %>" class="identifications-list">
           <% if viewers_ident -%>
             <%= render :partial => 'identifications/identification',
-                       :locals => { :identification => viewers_ident, :remote_actions => true } %>
+                       :locals => { :identification => viewers_ident } %>
           <% end -%>
           
           <% unless other_idents.empty? -%>
@@ -306,19 +353,14 @@
               :class => 'toggle_button') %>
             <div class="other_ids" style="display: none">
               <%= render :partial => "identifications/identification", 
-                :collection => other_idents, 
-                :locals => {
-                  :remote_actions => true
-                } %>
+                :collection => other_idents %>
             </div>
           <% end -%>
         </div>
       </div>
       
       <% if logged_in? && current_user == observation.user -%>
-        <% remote_form_for(observation,
-          :loading => "$('#observation-#{observation.id}').slideUp('normal', function() {$(this).remove();})"
-        ) do |f| -%>
+        <%= form_for(observation, :remote => true, :html => {:class => "removeform"}) do |f| -%>
           <input type="hidden" name="observation[id_please]" value="false"/>
           <input type="hidden" name="ignore_photos" value="true"/>
           <%= f.submit t(:remove_from_id_please?), :class => 'minor button remove' %>
@@ -332,7 +374,7 @@
         <% else %>
           <%= link_to_function("Show #{pluralize(observation.comments.size, 'comment')}", 
             "$(this).next('.comments').toggle(); $(this).toggleClass('open')",
-            :class => 'toggle_button') %>
+            :class => 'toggle_button commentstoggle') %>
           <div class="comments" style="display: none">
             <%= render :partial => "comments/comment",
                        :collection => observation.comments.all %>

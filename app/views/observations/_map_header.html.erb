@@ -44,10 +44,8 @@
   
   <div class="last column span-24">
     <div id="filters" class="clear" style="<% unless @filters_open %>display: none<% end %>">
-      <% form_tag url_for, :method => :get do -%>
-        <%= render :partial => 'filter_fields', :locals => {
-          :selected_taxa => @iconic_taxa
-        } %>
+      <%= form_tag url_for, :method => :get do -%>
+        <%= render :partial => 'filter_fields', :locals => {:selected_taxa => @iconic_taxa } %>
       <% end -%>
     </div>
   </div>

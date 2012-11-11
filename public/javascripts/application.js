@@ -69,40 +69,66 @@ $('a[data-loading-click], input[data-loading-click][type=radio], input[data-load
 function loadingClickForLink() {
   var txt = $(this).attr('data-loading-click')
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Loading...' }
-  var loading = $(this).clone()
-  loading.unbind()
-  loading.attr('onclick', 'return false;')
-  loading
-    .attr('id', '')
-    .addClass('loadingclick')
-    .css('padding-left', '25px')
-    .html(txt)
-  loading.click(function(e){
-    e.preventDefault()
-    return false
-  })
-  if (txt == '') {
-    loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
+  var loading = $(this).siblings('.loadingclick:first')
+  if (loading.length == 0) {
+    loading = $(this).clone()
+    loading.unbind()
+    loading.attr('onclick', 'return false;')
+    loading
+      .attr('id', '')
+      .addClass('loadingclick')
+      .css('padding-left', '25px')
+      .html(txt)
+    loading.click(function(e){
+      e.preventDefault()
+      return false
+    })
+    if (txt == '') {
+      loading.find('span').html(".").css('visibility', 'hidden').css('width', '0px')
+    }
+    $(this).before(loading)
   }
-  $(this).hide().before(loading)
+  $(this).hide()
+  $(loading).show()
+
+  var link = this
+  if (!$(this).attr('data-loading-click-bound')) {
+    // this *should* bind complete but that doesn't seem to be working with the current
+    $(this).bind('ajax:success', function() {
+      $(link).show()
+      loading.hide()
+    })
+    $(this).attr('data-loading-click-bound', true)
+  }
 }
 
-$('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function() {
+function loadingClickForButton() {
+  $(this).data('original-value', $(this).val())
   var txt = $.trim($(this).attr('data-loading-click'))
   if ($.trim($(this).attr('data-loading-click')) == 'true') { txt = 'Saving...' }
+  $(this).data('original-value', $(this).val())
   $(this).addClass('disabled description').val(txt)
   var link = this
   
   if (!$(this).attr('data-loading-click-bound')) {
-    $(this).parents('form').bind('ajax:success', function() {
+    $(this).parents('form').bind('ajax:complete', function() {
       $(link).attr('disabled', false).removeClass('disabled description')
+      $(link).val($(link).data('original-value'))
     })
     $(this).attr('data-loading-click-bound', true)
   }
-  
-  $(this).parents('form').submit(function() {
-    $(link).attr('disabled', true)
-  })
+  $(link).attr('disabled', true)
+}
+
+$('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function(clickEvent) {
+  var button = this
+  if ($(this).parents('form').length > 0) {
+    $(this).parents('form').submit(function(e) {
+      loadingClickForButton.apply(button)
+    })
+  } else {
+    loadingClickForButton.apply(button)
+  }
 })
 
 $('[data-autosubmit]').live('change', function() {
@@ -233,7 +259,107 @@ $(document).ready(function() {
     }
     return false
   })
+  
+  $('.commentpreviewbutton').click(function() {
+    var button = this
+    $.ajax($(this).attr('href'), {
+      type: 'POST',
+      data: $(this).parents('form').serialize() + '&preview=true',
+      dataType: 'json',
+      beforeSend: function() {
+        $(button).hide()
+        $(button).nextAll('.loading').show()
+      }
+    })
+    .done(function(data) {
+      $(button).show()
+      $(button).nextAll('.loading').hide()
+      var html = data.html || data.body || ''
+      html = '<div class="dialog">'+html+'</div>'
+      $(html).dialog({modal: true, title: 'Preview'})
+    })
+    return false
+  })
+  
+  $('.identificationform')
+    .bind('ajax:before', function() {
+      $('.default.button', this).hide()
+      $('.loading', this).show()
+    })
+    .bind('ajax:complete', function() {
+      $('.default.button', this).show()
+      $('.loading', this).hide()
+    })
+    .bind('ajax:success', function(event, json, status) {
+      $(this).parents('.identification_form_wrapper:first').fadeOut()
+      $(this).parents('.identifications').find('.identifications-list').append(json.html)
+      $(this).parents('.identifications').find('.identifications-list .identification:last').addClass('stacked')
+    })
+    .bind('ajax:error', function(event, request, settings) {
+      var json = eval('(' + request.responseText + ')')
+      if (json.errors) {
+        var errors = json.errors.join(', ')
+        alert('Failed to save identification: ' + errors)
+      }
+    })
+    
+  $('.friend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.unfriend_link').fadeIn()
+    })
+  })
+  $('.unfriend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.friend_link').fadeIn()
+    })
+  })
+  
+  $('.commentform').bind('ajax:before', function() {
+    $(this).siblings('.loading').show()
+    $(this).hide()
+  }).bind('ajax:complete', function() {
+    $(this).siblings('.loading').hide()
+    $(this).show()
+    $('input[type=submit]', this).val('Save comment').attr('disabled', false)
+  }).bind('ajax:success', function(e, json, status) {
+    $('textarea', this).val('')
+    var wrapper = $(this).parents('.comments_wrapper:first')
+    wrapper.find('.comments').show()
+    wrapper.find('.noresults').hide()
+    wrapper.find('.comments').append(json.html)
+  }).bind('ajax:error', function(xhr, status, error) {
+    alert(error)
+  })
+
+  // force browsers that don't support HTML5's required attribute to recognize it
+  $('form:has(input[required])').submit(checkFormForRequiredFields)
+
+  $('.item .item_content').width(function() { return $(this).parent().width() - 58 })
 })
+
+function checkFormForRequiredFields(e) {
+  var inputs = $('input[required]:visible').filter(function() { return !$(this).val() })
+  if (inputs.length == 0) {
+    return true
+  }
+  var viewport = $(this).parents('.ui-dialog-content:first').get(0) || false
+  var container = $(this).parents('.ui-dialog-content:first').get(0) || document.body
+  inputs.css({'border-color': 'DeepPink'})
+    .qtip({
+      content: 'This field is required',
+      style: {
+        classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-required'
+      },
+      position: {
+        viewport: viewport ? $(viewport) : false,
+        container: $(container)
+      }
+    }).qtip('show')
+  e.preventDefault()
+  e.stopImmediatePropagation()
+  $(window).scrollTo(inputs[0])
+  return false
+}
 
 function checkDelayedLink(url) {
   if (window.delayedLinkTries > 20) {
@@ -342,7 +468,7 @@ $.fn.shades = function(e, options) {
 
 $.fn.showInlineBlock = function() {
   var opts = {}
-  if ($.browser.msie) {
+  if ($.browser.msie && $.browser.version < 8) {
     opts.zoom = 1
     opts.display = 'inline'
     opts['*display'] = 'inline'
@@ -430,7 +556,6 @@ $.fn.centerInContainer = function(options) {
   options = options || {}
   var containerSelector = options.container || ':first'
   $(this).not('.centeredInContainer').each(function() {
-    if ($(this)) {};
     var containerWidth = $(this).parents(containerSelector).width(),
         containerHeight = $(this).parents(containerSelector).height(),
         w = $(this).naturalWidth(),
@@ -654,12 +779,19 @@ $.fn.subscriptionSettings = function() {
             $(this).fadeOut(function() {
               $(this).siblings('form').fadeIn()
             })
-            var data = $(this).serialize() + '&format=json'
+            var data = $(this).serialize() + '&format=json',
+                resourceType = $('input[name*=resource_type]', this).val(),
+                resourceId = $('input[name*=resource_id]', this).val()
             $.ajax({
               url: $(this).attr('action'),
               type: 'post',
               data: data
             })
+            if ($(this).hasClass('unsubscribe')) {
+              $('.subscription_for_'+resourceType+'_'+resourceId).addClass('unsubscribed')
+            } else {
+              $('.subscription_for_'+resourceType+'_'+resourceId).removeClass('unsubscribed')
+            }
             return false
           })
         }
@@ -672,3 +804,58 @@ $.fn.subscriptionSettings = function() {
     $(this).click(function() {return false})
   })
 }
+
+// http://www.shamasis.net/2009/09/fast-algorithm-to-find-unique-items-in-javascript-array/
+Array.prototype.unique = function() {
+  var o = {}, i, l = this.length, r = [];
+  for(i=0; i<l;i+=1) o[this[i]] = this[i];
+  for(i in o) r.push(o[i]);
+  return r;
+}
+
+// http://stackoverflow.com/questions/1184624/convert-form-data-to-js-object-with-jquery
+$.fn.serializeObject = function() {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+}
+
+$.fn.centerDialog = function() {
+  var newHeight = $(':first', this).height() + 100
+  var maxHeight = $(window).height() * 0.8
+  if (newHeight > maxHeight) { newHeight = maxHeight };
+  $(this).dialog('option', 'height', newHeight)
+  $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
+}
+
+$('.flaglink').live('click', function() {
+  $('#flagdialog').remove()
+  var dialog = $('<div></div>').attr('id', 'flagdialog')
+    .addClass('dialog')
+    .html('<div class="loading status">Loading...</div>')
+  dialog.load($(this).attr('href'), "partial=dialog", function() {
+    $(this).centerDialog()
+    $('input[type=radio]', this).change(function() {
+      if ($(this).val() == 'other') {
+        $(this).parents('.dialog:first').find('textarea').show()
+        $(this).parents('.dialog:first').centerDialog()
+      } else {
+        $(this).parents('.dialog:first').find('textarea').hide()
+        $(this).parents('.dialog:first').centerDialog()
+      }
+    })
+  })
+  $(document.body).append(dialog)
+  dialog.dialog({modal: true, title: "Flag an item"})
+  return false
+})

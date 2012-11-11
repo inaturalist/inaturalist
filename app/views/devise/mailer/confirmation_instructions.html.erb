@@ -1,0 +1,26 @@
+<%= link_to image_tag("http://inaturalist.org/images/logo-bird-200px.png", :align => "right", :border => 0), root_url %>
+<p><%= t(:welcome_comma) %> <%= @resource.login %>!</p>
+
+<p>
+<%= t(:your_inat_account_has_been_activated, :inat => "#{link_to t(:initiative_name), root_url}") %>
+  <%= t(:thanks_for_signing_up) %>
+  Please take a second to
+  <%= link_to 'confirm your account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>.
+</p>
+
+<p><%= t(:wondering_what_to_do_next) %></p>
+
+<ul>
+  <li><%= link_to t(:read_our_getting_started_guide), url_for(:controller => "help", :action => "getting_started", :only_path => false) %></li>
+  <li><%= link_to t(:add_an_observation), new_observation_url %></li>
+  <li><%= link_to t(:fill_out_your_profile), edit_user_url(@resource) %></li>
+  <li>
+    <%= link_to t(:find_some_people_to_follow), people_url %>
+    <%= t(:or) %>
+    <%= link_to t(:invite_your_friends), emailer_invite_url %>
+  </li>
+</ul>
+
+<p>
+<%= t(:if_you_have_any_trouble_with_the_site_check_out, :help => "#{link_to 'help section', help_url}") %>
+</p>

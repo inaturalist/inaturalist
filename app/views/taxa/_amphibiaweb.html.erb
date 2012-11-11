@@ -6,16 +6,16 @@
         <% unless section == 'description' -%>
           <h3><%= section.humanize.capitalize %></h3>
         <% end -%>
-        <%= section_content.strip.split('<p>').compact.map{|para| "<p>#{para}</p>"} %>
+        <%= section_content.strip.split('<p>').compact.map{|para| "<p>#{para}</p>"}.join.html_safe %>
       <% end %>
 
       <% for section in %w(refs) %>
         <%- next if (section_content = @xml.at(section).try(:inner_text)).blank? %>
         <h3><%= section.humanize.capitalize %></h3>
-        <%= section_content.strip.split('<p>').compact.map{|para| "<p class=\"ui\">#{para}</p>"} %>
+        <%= section_content.strip.split('<p>').compact.map{|para| "<p class=\"ui\">#{para}</p>"}.join.html_safe %>
       <% end %>
     <% end %>
-    <%- content = @xml.at('lannoo').try(:inner_text) if content.strip.blank? -%>
+    <%- content = @xml.at('lannoo').try(:inner_text) if content.to_s.strip.blank? -%>
     <% if content.to_s.strip.blank? -%>
       <p class="description">
         <% t(:amphibiaweb_doesnt_have_info_about_species) %>
@@ -30,7 +30,7 @@
         }
       </script>
     <% else %>
-      <%= content %>
+      <%=raw content %>
     <% end -%>
   </div>
 

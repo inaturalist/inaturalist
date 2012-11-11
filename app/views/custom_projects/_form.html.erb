@@ -5,7 +5,7 @@
   </style>
 <%- end -%>
 
-<% form_for(@custom_project, :builder => DefaultFormBuilder) do |f| %>
+<%= form_for(@custom_project, :builder => DefaultFormBuilder) do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :project_id %>
   <div class="quiet box">

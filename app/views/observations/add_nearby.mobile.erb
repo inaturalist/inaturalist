@@ -2,9 +2,9 @@
   <%=t :add_an_observation %>
 <% end -%>
 
-<% form_for @observation, :builder => DefaultFormBuilder do |o| %>
+<%= form_for @observation, :builder => DefaultFormBuilder do |o| %>
   <%= o.text_field :species_guess, :label => t(:what_did_you_see?), :placeholder => t(:species_name) %>
-  <%= o.check_box :id_please, :label_after => true, :label => t(:full_id_please?) %>
+  <%= o.check_box :id_please, :label_after => true, :label => t(:request_id_help) %>
   <%= o.text_area :description, :placeholder => t(:brief_description_of_what_you_saw) %>
   <% o.form_field :observed_on_string, :label => t(:date_time) do %>
     <input type="datetime-local" id="observation_observed_on_string" name="observation[observed_on_string]" class="text" value="<%= Time.now %>"/>

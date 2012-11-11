@@ -8,7 +8,7 @@
 <%- end -%>
 <div id="pageheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo "+t(:projects), projects_path, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo; #{t(:projects)}".html_safe, projects_path, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2>Search Projects</h2>
 </div>
@@ -31,7 +31,7 @@
         <%= image_tag project.icon.url(:mini) %>
         <%= link_to h(project.title), project %>
         <span class="description">
-          <%= truncate strip_tags(h(project.description)), :length => 100 %>
+          <%= truncate strip_tags(project.description), :length => 100 %>
         </span>
       </div>
     <% end %>

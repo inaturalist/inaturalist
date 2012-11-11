@@ -1,13 +1,27 @@
 class SubscriptionsController < ApplicationController
-  before_filter :login_required
+  before_filter :authenticate_user!
   before_filter :load_subscription, :except => [:new, :create, :index, :edit]
   before_filter :require_owner, :except => [:new, :create, :index, :edit]
+  before_filter :return_here, :only => [:index]
   
   def index
-    @subscriptions = current_user.subscriptions.paginate(
-      :page => params[:page], 
-      :include => :resource,
-      :order => "subscriptions.id desc")
+    @type = params[:type]
+    @type = "place" unless Subscription.subscribable_classes.map(&:underscore).include?(@type)
+    resource_type = @type.camelcase
+    @subscriptions = current_user.subscriptions.includes(:resource).
+      where("resource_type = ?", resource_type).
+      order("subscriptions.id desc").
+      page(params[:page])
+  end
+
+  def new
+    @type = params[:type]
+    @type = "place" unless Subscription.subscribable_classes.map(&:underscore).include?(@type)
+    resource_type = @type.camelcase
+    @subscription = Subscription.new(:user => current_user, :type => resource_type)
+    if params[:partial] && params[:partial] == "form"
+      render :partial => params[:partial], :layout => false
+    end
   end
 
   def edit
@@ -47,7 +61,7 @@ class SubscriptionsController < ApplicationController
         msg = "Failed to create subscription: #{@subscription.errors.full_messages.to_sentence}"
         format.html do
           flash[:error] = msg
-          return redirect_back_or_default(@subscription.resource)
+          return redirect_back_or_default(@subscription.resource || '/')
         end
         format.json do
           render :status => :unprocessable_entity, :json => {:error => msg}

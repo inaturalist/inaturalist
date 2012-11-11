@@ -9,6 +9,7 @@
       display: inline;
       padding: 2px;
     }
+    td {vertical-align: middle;}
   </style>
 <% end -%>
 
@@ -18,15 +19,14 @@
   <tr>
     <th>Created</th>
     <th>Object</th>
-    <th>Reason</th>
     <th>Flagger</th>
+    <th>Reason</th>
     <th>Resolved By</th>
     <th>Resolve Comment</th>
   </tr>
   <tr>
     <td><%= @flag.created_at %></td>
     <td><%= link_to @object.to_plain_s, @object %></td>
-    <td><%= h @flag.flag %></td>
     <td>
       <% if @flag.user -%>
         <%= link_to h(@flag.user.login), @flag.user %>
@@ -34,6 +34,7 @@
         iNat
       <% end -%>
     </td>
+    <td><%= h @flag.flag %></td>
     <td><%= 
       unless @flag.resolver.nil? 
         link_to h(@flag.resolver.login), @flag.resolver
@@ -42,12 +43,20 @@
       end
       %></td>
     <td class="buttonrow">
-      <% form_for(@flag, :action=>"update") do |f| %>
-        <%= f.text_field :comment, :class => 'text' %>
-        <%= f.hidden_field :resolver_id, :value => @user.id %>
-        <%= f.hidden_field :resolved, :value => true %>
-        <%= f.submit 'Resolve with comment', :class => 'button' %>
-      <% end %>
+      <% if is_curator? -%>
+        <%= form_for(@flag, :action => "update") do |f| %>
+          <%= f.text_field :comment, :class => 'text inline' %>
+          <%= f.hidden_field :resolver_id, :value => current_user.id %>
+          <%= f.hidden_field :resolved, :value => true %>
+          <%= f.submit 'Resolve with comment', :class => 'inline button' %>
+        <% end %>
+      <% else %>
+        <%= @flag.comment %>
+      <% end -%>
     </td>
   </tr>
 </table>
+
+<div class="column span-12">
+  <%= render :partial => 'comments/comments', :locals => { :parent => @flag } %>
+</div>

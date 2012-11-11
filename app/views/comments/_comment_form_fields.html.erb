@@ -7,23 +7,14 @@
 </div>
 <div class="buttonrow">
   <%= submit_tag t(:save_comment), :class => 'default button', 'data-loading-click' => true %>
-  <%= link_to_remote t(:preview), 
-    :url => comment.new_record? ? comments_path : comment_path(comment), 
-    :loading => 
-      "$('##{unique_id}-preview').hide();" +
-      "$('##{unique_id}-preview_loading').show();",
-    :complete => 
-      "$('##{unique_id}-preview').show();" + 
-      "$('##{unique_id}-preview_loading').hide();",
-    :with => "$(this).parents('form').serialize() + '&preview=true'", 
-    :html => {
-      :id => "#{unique_id}-preview",
-      :class => 'button previewbutton'
-    } %>
+  <%= link_to t(:preview), 
+    comment.new_record? ? comments_path : comment_path(comment), 
+    :id => "#{unique_id}-preview",
+    :class => 'button previewbutton commentpreviewbutton' %>
   <div id="<%= unique_id %>-preview_loading" class="loading status inter" style="display:none"><%=t :previewing %></div>
   <%- unless comment.new_record? -%>
     <span class="inter description">or</span>
-    <%- cancel_url = comment.parent.is_a?(Post) ? post_path(comment.parent.user.login, comment.parent) : url_for(comment.parent) %>
+    <%- cancel_url = comment.parent.is_a?(Post) ? journal_post_path(comment.parent.user.login, comment.parent) : url_for(comment.parent) %>
     <%= link_to t(:cancel), "#{cancel_url}#comment-#{comment.id}", :class => 'button' %>
   <%- end -%>
 </div>

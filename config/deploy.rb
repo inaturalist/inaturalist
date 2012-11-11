@@ -38,9 +38,19 @@ role :app, domain
 role :web, domain
 role :db,  domain, :primary => true
 
+set :rvm_ruby_string, 'default'
+set :rvm_type, :system
 
-Dir[File.join(File.dirname(__FILE__), '..', 'vendor', 'gems', 'hoptoad_notifier-*')].each do |vendored_notifier|
-  $: << File.join(vendored_notifier, 'lib')
-end
+# Dir[File.join(File.dirname(__FILE__), '..', 'vendor', 'gems')].each do |vendored_notifier|
+#   $: << File.join(vendored_notifier, 'lib')
+# end
 
-require 'hoptoad_notifier/capistrano'
+require './config/boot'
+require 'airbrake/capistrano'
+require "rvm/capistrano"
+
+set :bundle_flags,    "--deployment"
+require "bundler/capistrano"
+
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"

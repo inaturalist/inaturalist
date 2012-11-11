@@ -39,7 +39,7 @@
 </div>
 
 <div class="column span-18">
-  <% form_for(current_user, :url => person_path(current_user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
+  <%= form_for(current_user, :url => person_path(current_user), :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
     <%= error_messages_for :current_user %>
     <div class="column span-18 stacked">
       <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon left') %>
@@ -109,8 +109,8 @@
         </div>
         
         <div class="last column span-18">
-        <%= link_to_function "<span class='helptip'></span> #{t(:about_these_licenses)}", 
-          "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 't(:about_the_cc_licenses)' })" %>
+          <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
+            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
               <% for code, name, description in Observation::LICENSES %>
@@ -132,7 +132,6 @@
             <%= t(:license_descriptions_and_images) %>
             &copy; <%= Date.today.year %> <%= t(:cc_used_under_a) %> <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons &mdash; Attribution 3.0 Unported
               &mdash; CC BY 3.0"><%= t(:cc_attribution_license) %></a>
-            (!yey, autocontenido!)
           </p>
         </div>
       </div>
@@ -152,12 +151,13 @@
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
         <% if current_user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= link_to t(:disconnect_provider, :provider => "#{provider}"), omniauth_disconnect_path(provider.downcase), 
+            <%= button_to t(:disconnect_provider, :provider => provider.capitalize), omniauth_disconnect_path(provider.downcase),
               :class => "providerlink #{provider.downcase} disabled button", :method => "delete" %>
           </li>
         <% else %>
           <li class="clear">
-            <%= link_to t(:connect_to_provider, :provider => "#{provider}"), auth_url_for(provider.downcase), :class => "providerlink #{provider.downcase} button" %>
+            <%= link_to t(:connect_to_provider, :provider => provider.capitalize), auth_url_for(provider.downcase), 
+              :class => "providerlink #{provider.downcase} button" %>
           </li>
         <% end %>
       <% end %>
@@ -177,11 +177,11 @@
   <%= separator %>
   
   <div class="clear box">
-    <%= link_to_toggle t(:change_your_password), "#passwordform", :class => "ui" %>
-    <% form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
+    <%= link_to_toggle current_user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
+    <%= form_for(current_user, :html => {:id => "passwordform", :style => "display:none"}) do %>
       <div class="stacked">
-        <%= label(:current_password, t(:current_password)) %>
-        <%= password_field_tag(:current_password, '', :class => 'text') %>
+        <%= label(:password, 'New Password') %>
+        <%= password_field_tag(:password, '', :class => 'text') %>
       </div>
       <div class="stacked">
         <%= label(:password_confirmation, t(:confirm_new_password)) %>
@@ -193,6 +193,7 @@
       </div>
     <% end %>
   </div>
-  <%= link_to t(:delete_your_account), current_user, :method => :delete, :confirm => t(:are_you_sure_want_delete_account), 
+  <%= button_to t(:delete_your_account), current_user, :method => :delete, 
+    :confirm => t(:are_you_sure_want_delete_account), 
     :class => "minor delete button" %>
 </div><!-- end side col -->

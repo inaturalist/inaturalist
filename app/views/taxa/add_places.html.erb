@@ -15,31 +15,30 @@
     <ul>
       <li><a href="#place_selector_search"><span><%=t(:search)%></span></a></li>
       <li><a href="#place_selector_paste"><span><%=t(:paste)%></span></a></li>
-      <li><%= link_to "<span>#{t(:countries)}</span>", add_taxon_places_path(@taxon, :tab => "countries") %></li>
-      <li><%= link_to "<span>#{t(:US_states)}</span>", add_taxon_places_path(@taxon, :tab => "us_states") %></li>
+      <li><%= link_to "<span>#{t(:countries)}</span>".html_safe, add_taxon_places_path(@taxon, :tab => "countries") %></li>
+      <li><%= link_to "<span>#{t(:US_states)}</span>".html_safe, add_taxon_places_path(@taxon, :tab => "us_states") %></li>
     </ul>
     
     <div id="place_selector_search">
-      <% form_remote_tag :url => {:controller => 'taxa', :action => 'add_places'},
-          :loading => "$('##{dom_id @taxon, 'place_selector_loading'}').show()",
-          :complete => "$('##{dom_id @taxon, 'place_selector_loading'}').hide()" do %>
+      <%= form_tag url_for(:controller => 'taxa', :action => 'add_places'),
+          :method => :post,
+          :remote => true do %>
         <div class="clear buttonrow">
           <%= text_field_tag :q, '', :class => 'text', :id => dom_id(@taxon, 'place_selector_q') %>
-          <%= submit_tag t(:find_places), :class => 'button', :id => dom_id(@taxon, 'place_selector_q') %>
+          <%= submit_tag t(:find_places), :class => 'button', :id => dom_id(@taxon, 'place_selector_q'),
+            "data-loading=-click" => "Searching..."%>
         </div>
       <% end %>
-      <div id="<%= dom_id @taxon, 'place_selector_loading' %>" class="loading status" style="display: none"><%= t(:searching) %></div>
-      <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0"></ul>
+      <ul id="<%= dom_id(@taxon, 'place_selector_places') %>" style="margin: 0" class="place_selector_places"></ul>
     </div>
     
     <div id="place_selector_paste">
       <p class="description"><%= t(:paste_in_a_comma_separated_list) %></p>
-      <% form_remote_tag :url => add_taxon_places_path(@taxon),
-          :loading => "$('##{dom_id @taxon, 'place_selector_paste_loading'}').show()",
-          :complete => "$('##{dom_id @taxon, 'place_selector_paste_loading'}').hide()" do %>
+      <%= form_tag add_taxon_places_path(@taxon),
+          :method => :post,
+          :remote => true do %>
         <textarea name="paste_places" class="stacked"></textarea>
-        <%= submit_tag t(:add_countries), :class => "default button" %>
-        <div id="<%= dom_id @taxon, 'place_selector_paste_loading' %>" class="loading status minor button" style="display: none"><%= t(:adding) %></div>
+        <%= submit_tag "Add Countries", :class => "default button", "data-loading-click" => t(:adding) %>
       <% end %>
       <ul id="<%= dom_id(@taxon, 'place_selector_paste_places') %>" class="places">
         <li class="description" style="list-style: none">
@@ -47,9 +46,5 @@
         </li>
       </ul>
     </div>
-    
-    <!-- <div id="place_selector_map">
-      map
-    </div> -->
   </div>
 </div>

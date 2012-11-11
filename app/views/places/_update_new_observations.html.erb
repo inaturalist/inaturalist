@@ -1,12 +1,11 @@
 <%-
-  place = object || resource
+  place = update_new_observations || resource
   updates ||= []
   observations = if @update_cache && @update_cache[:observations]
     updates.map{|u| @update_cache[:observations][u.notifier_id]}
   else
     updates.map{|u| u.notifier}
-  end
-  default_observation = observations.first
+  end.compact
 -%>
 
 <div class="updatecontent">

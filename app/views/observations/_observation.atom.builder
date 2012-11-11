@@ -8,7 +8,7 @@ feed.entry(observation) do |entry|
     photo_content = observation.photos.map do |p|
       image_tag(p.thumb_url)
     end.join(' ')
-    content += content_tag(:p, photo_content)
+    content += content_tag(:p, photo_content.html_safe)
   end
   content += auto_link(simple_format(observation.description)) if observation.description
   entry.content(content, :type => 'html')

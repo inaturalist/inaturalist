@@ -9,7 +9,6 @@
 # keys.
 
 require 'rubygems'
-require 'fastercsv'
 require 'fileutils'
 require 'open3'
 
@@ -68,7 +67,7 @@ system cmd
 
 puts "Building lookup..."
 existing_lookup = {}
-FasterCSV.foreach(existing_fname, :headers => %w(list_id taxon_id)) do |row|
+CSV.foreach(existing_fname, :headers => %w(list_id taxon_id)) do |row|
   existing_lookup[row['taxon_id']] ||= []
   existing_lookup[row['taxon_id']] << row['list_id']
 end
@@ -76,10 +75,10 @@ end
 puts "Filtering input..."
 new_fname = "new-#{start.to_i}.csv"
 leftovers_fname = "leftovers-#{start.to_i}.csv"
-new_csv = FasterCSV.open(new_fname, 'w')
-leftovers_csv = FasterCSV.open(leftovers_fname, 'w')
+new_csv = CSV.open(new_fname, 'w')
+leftovers_csv = CSV.open(leftovers_fname, 'w')
 count = 0
-FasterCSV.foreach(input_path) do |row|
+CSV.foreach(input_path) do |row|
   next if row.nil? || row.size == 0
   list_id, taxon_id = row
   if existing_lookup[taxon_id] && existing_lookup[taxon_id].detect{|id| id == list_id}
@@ -113,7 +112,7 @@ puts
 puts "UPDATING EXISTING..."
 existing_count = %x{wc -l #{leftovers_fname}}.split.first.to_i
 i = 0
-FasterCSV.foreach(leftovers_fname, :headers => %w(list_id taxon_id place_id taxon_range_id establishment_means)) do |row|
+CSV.foreach(leftovers_fname, :headers => %w(list_id taxon_id place_id taxon_range_id establishment_means)) do |row|
   puts "#{i} of #{existing_count}"
   run_sql <<-SQL
     UPDATE listed_taxa SET taxon_range_id = #{row['taxon_range_id']}

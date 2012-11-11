@@ -1,8 +1,13 @@
 <%- content_for(:title) do -%>
   <%= @title = t(:new_observation_field) %>
 <%- end -%>
-<h2><%= @title %></h2>
+<div class="pageheader">
+  <div class="breadcrumbs">
+    <%= link_to 'Back to observation fields', observation_fields_path, :class => "back crumb" %>
+  </div>
+  <h2><%= @title %></h2>
+</div>
 
 <%= render :partial => 'form' %>
 
-<%= link_to t(:back), observation_fields_path %>
+<%= link_to t(:cancel), observation_fields_path, :class => "button" %>

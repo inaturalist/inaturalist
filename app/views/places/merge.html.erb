@@ -38,13 +38,13 @@
       
       window.placeMap = iNaturalist.Map.createMap({
         div: 'place_map', controls: 'small'});
-      window.placeMap.addPlace(<%= @place.to_json %>);
+      window.placeMap.addPlace(<%= @place.to_json.html_safe %>);
       window.placeMap.zoomToPlaces();
       
       window.mergeTargetMap = iNaturalist.Map.createMap({
         div: 'merge_target_map', controls: 'small'});
       <% if @merge_target %>
-        window.mergeTargetMap.addPlace(<%= @merge_target.to_json %>);
+        window.mergeTargetMap.addPlace(<%= @merge_target.to_json.html_safe %>);
         window.mergeTargetMap.zoomToPlaces();
       <% end %>
     });
@@ -53,7 +53,7 @@
 
 <div id="pageheader">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo; Back to #{@place.name}", @place, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo; Back to #{@place.name}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2><%= t(:merging_places) %></h2>
   <p class="description">
@@ -61,7 +61,7 @@
   </p>
 </div>
 
-<% form_tag do %>
+<%= form_tag do %>
 <table width="100%">
   <thead>
     <tr class="fake">
@@ -75,7 +75,7 @@
       <th><%= link_to h(@place.name), @place %></th>
       <th><%= t(:what_to_keep) %></th>
       <th>
-        <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="Type a place name" data-json="<%= @merge_target.to_json(:methods => [:place_type_name]) %>">
+        <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="Type a place name" data-json="<%= @merge_target.to_json(:methods => [:place_type_name]).html_safe %>">
       </th>
     </tr>
   </thead>

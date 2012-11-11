@@ -2,8 +2,8 @@ class ProjectObservation < ActiveRecord::Base
   belongs_to :project
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"
-  validates_presence_of :project_id, :observation_id
-  validate_on_create :observed_by_project_member?
+  validates_presence_of :project, :observation
+  validate :observed_by_project_member?, :on => :create
   validates_rules_from :project, :rule_methods => [:observed_in_place?, :georeferenced?, :identified?, :in_taxon?, :on_list?]
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
   
@@ -20,32 +20,38 @@ class ProjectObservation < ActiveRecord::Base
   after_destroy :update_project_observed_taxa_counter_cache_later
   
   def observed_by_project_member?
-    return false if project.blank? || observation.blank?
-    project.project_users.exists?(:user_id => observation.user_id)
+    unless project.project_users.exists?(:user_id => observation.user_id)
+      errors.add(:observation_id, "must belong to a member of the project")
+      return false
+    end
+    true
   end
   
   def refresh_project_list
-    return true if observation.taxon_id.blank?
-    Project.send_later(:refresh_project_list, project_id, 
+    return true if observation.blank? || observation.taxon_id.blank?
+    Project.delay.refresh_project_list(project_id, 
       :taxa => [observation.taxon_id], :add_new_taxa => id_was.nil?)
     true
   end
   
   def update_observations_counter_cache_later
-    ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, observation.user_id)
+    return true unless observation
+    ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
   
   def update_taxa_counter_cache_later
-    ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, observation.user_id)
+    return true unless observation
+    ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, observation.user_id)
     true
   end
   
   def update_project_observed_taxa_counter_cache_later
-    Project.send_later(:update_observed_taxa_count, project_id)
+    Project.delay.update_observed_taxa_count(project_id)
   end
 
-  def to_csv_column(column)
+  def to_csv_column(column, options = {})
+    p = options[:project] || project
     case column
     when "curator_ident_taxon_id"
       curator_identification.try(:taxon_id)
@@ -64,7 +70,11 @@ class ProjectObservation < ActiveRecord::Base
         nil
       end
     else
-      observation.send(column) rescue send(column)
+      if observation_field = p.observation_fields.detect{|of| of.name == column}
+        observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)
+      else
+        observation.send(column) rescue send(column) rescue nil
+      end
     end
   end
   
@@ -101,6 +111,10 @@ class ProjectObservation < ActiveRecord::Base
     return false if observation.taxon.blank?
     list.listed_taxa.detect{|lt| lt.taxon_id == observation.taxon_id}
   end
+
+  def has_observation_field?(observation_field)
+    observation.observation_field_values.where(:observation_field_id => observation_field).exists?
+  end
   
   ##### Static ##############################################################
   def self.to_csv(project_observations, options = {})
@@ -114,13 +128,19 @@ class ProjectObservation < ActiveRecord::Base
     end
     columns -= except
     headers = columns.map{|c| Observation.human_attribute_name(c)}
+
     project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code)
     columns += project_columns
     headers += project_columns.map{|c| c.to_s.humanize}
-    FasterCSV.generate do |csv|
+
+    ofv_columns = project.observation_fields.map(&:name)
+    columns += ofv_columns
+    headers += ofv_columns
+
+    CSV.generate do |csv|
       csv << headers
       project_observations.each do |project_observation|
-        csv << columns.map {|column| project_observation.to_csv_column(column)}
+        csv << columns.map {|column| project_observation.to_csv_column(column, :project => project)}
       end
     end
   end

@@ -1,16 +1,27 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
   <style type="text/css" media="screen">
-    .title_field,.description_field{margin-right:20px;}
-    .description_field,.terms_field,.title_field{float:left;width:465px;}
+    .title_field,.description_field,.project_type_field{margin-right:20px;}
+    .description_field,
+    .terms_field,
+    .title_field, 
+    .preference_fields, 
+    .project_type_field{float:left;width:465px;}
     .project_icon_field{float:left;width:225px;}
     .description_field,.project_type_field{clear:left;}
     .title_field input{width:390px;}
     .description_field textarea,.terms_field textarea{width:450px;}
     #place_q,#taxon_q{width:300px;}
     .observationrules{clear:left;}
+    .project_observation_fields {list-style: none;margin-left:0;}
+    .new_observation_field .field {width:auto;}
+    li.project_observation_field {position: relative; margin-left:0; padding-left: 20px; cursor: move;}
+    .project_observation_field .title {font-weight:bold;}
+    .project_observation_field .ui-icon {position:absolute; left: 0;top: 0;}
+    .sortabletarget { height: 100px; border: 2px dashed #ccc;}
   </style>
 <%- end -%>
+<%= javascript_include_tag "observations/observation_fields" %>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
     function rulify() {
@@ -45,15 +56,98 @@
         } else {
           $('#place_selector').hide()
         }
+        if ($(this).val() == 'in_taxon?') {
+          $('#taxon_selector').show()
+        } else {
+          $('#taxon_selector').hide()
+        }
       })
       $('.operator_field select').change()
     }
+
+    function newProjectObservationField(markup) {
+      var currentField = $('.observation_field_chooser').chooser('selected')
+      if (!currentField || typeof(currentField) == 'undefined') {
+        alert('Please choose a field type')
+        return
+      }
+      if ($('#observation_field_'+currentField.recordId).length > 0) {
+        alert('You already have a field for that type')
+        return
+      }
+      
+      $('.project_observation_fields').append(markup)
+      fieldify({observationField: currentField})
+    }
+
+    function fieldify(options) {
+      options = options || {}
+      $('.project_observation_field').not('.fieldified').each(function() {
+        var lastName = $('.project_observation_field.fieldified:last input').attr('name')
+        if (lastName) {
+          var index = parseInt(lastName.match(/project_observation_fields_attributes\]\[(\d+)\]/)[1]) + 1
+        } else {
+          var index = 0
+        }
+        
+        $(this).addClass('fieldified')
+        var input = $('.ofv_input input.text', this)
+        var currentField = options.observationField || $.parseJSON($(this).attr('data-json'))
+        if (!currentField) return
+        currentField.recordId = currentField.recordId || currentField.id
+        
+        $(this).attr('id', 'observation_field_'+currentField.recordId)
+        $('.title', this).html(currentField.name)
+        if (currentField.allowed_values && currentField.allowed_values.length > 0) {
+          $('.allowed span', this).html(currentField.allowed_values)
+          $('.allowed', this).show()
+        } else {
+          $('.allowed', this).hide()
+        }
+        $('.description', this).html(currentField.description)
+        $('.editlink', this).attr('href', '/observation_fields/'+currentField.id+'/edit')
+        $('input[name*="observation_field_id"]', this).val(currentField.recordId)
+        $('input', this).each(function() {
+          var newName = $(this).attr('name')
+            .replace(
+              /project_observation_fields_attributes\]\[(\d+)\]/, 
+              'project_observation_fields_attributes]['+index+']')
+          $(this).attr('name', newName)
+        })
+      })
+      updateProjectObservationFieldPositions()
+    }
+
+    function updateProjectObservationFieldPositions() {
+      $('.project_observation_fields li').each(function() {
+        $('input[name*="position"]', this).val($('li', $(this).parent()).index(this))
+      })
+    }
+
+    $(document).ready(function() {
+      $('.observation_field_chooser').chooser({
+        collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
+        resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
+        afterSelect: function(item) {
+          $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()
+          $('.observation_field_chooser').chooser('clear')
+        }
+      })
+      $('#createfieldbutton').click(ObservationFields.newObservationFieldButtonHandler)
+      fieldify()
+      $('.project_observation_fields').sortable({
+        placeholder: 'sortabletarget',
+        update: function(event, ui) {
+          updateProjectObservationFieldPositions()
+        }
+      })
+    })
   </script>
 <%- end -%>
 <%- project ||= @project -%>
-<% form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
+<%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
   <%= f.error_messages %>
-
+  
   <%= f.text_field :title, :required => true %>
   
   <% f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
@@ -97,14 +191,14 @@
   <!-- <fieldset class="userrules">
     <legend><%= t(:new_user_rules) %></legend>
     
-    <% f.fields_for :project_user_rules do |pu| %>
+    <%= f.fields_for :project_user_rules do |pu| %>
       <div>
         <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
         <%= pu.hidden_field :_destroy, :class => "destroyer" %>
         <%= link_to_function t(:remove), "$(this).parent().fadeTo('fast', 0.5); $(this).parent().find('.destroyer').val(true)" %>
       </div>
     <% end %>
-    <% f.fields_for :project_user_rules, [Rule.new] do |pu| %>
+    <%= f.fields_for :project_user_rules, [Rule.new] do |pu| %>
       <div>
         <%= pu.select :operator, ProjectUser::RULE_METHODS, :include_blank => t(:choose_rule) %>
         <%= link_to_function t(:add_another), "$(this).parent().clone().appendTo($(this).parents('fieldset'))" %>
@@ -115,12 +209,11 @@
   <fieldset class="observationrules">
     <legend><%=t :new_observation_rules %></legend>
     <p class="description">
-    
       <%= raw t(:observation_rules_description) %> 
     </p>
     
     <ul>
-      <% f.fields_for :project_observation_rules do |por| %>
+      <%= f.fields_for :project_observation_rules do |por| %>
         <li>
           <%= por.object.terms %>
           <%= por.hidden_field :_destroy, :class => "destroyer" %>
@@ -133,7 +226,7 @@
     
     <%- new_rule_field = capture do %>
       <fieldset id="new_project_observation_rule">
-        <% f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
+        <%= f.fields_for :project_observation_rules, [Rule.new] do |pu| %>
           <%= pu.select :operator, ProjectObservation::RULE_METHODS.map{|m| [m.to_s.humanize.gsub('?', '').downcase, m]}, 
             :include_blank => t(:choose_rule),
             :label => t(:rule_must_be) %>
@@ -204,10 +297,40 @@
     </fieldset>
   <% end -%>
 
+  <fieldset>
+    <legend>Observation fields</legend>
+    <p class="description">
+      Suggest or require that contributors fill out these fields for the observations they add to your project.
+    </p>
+
+    <ul class="project_observation_fields">
+      <%= f.fields_for :project_observation_fields do |pof| %>
+        <%= render 'project_observation_field_row', :builder => pof %>
+      <% end -%>
+    </ul>
+    <div>
+      <%- new_pof_fields = capture do %>
+        <%= f.fields_for :project_observation_fields, f.object.project_observation_fields.build do |pof| %>
+          <%= render 'project_observation_field_row', :builder => pof %>
+        <% end -%>
+      <% end -%>
+      <div class="inline buttonrow">
+        <label>Add a field</label>
+        <input name="observation_field" 
+               class="observation_field_chooser" 
+               type="text" 
+               placeholder="Start typing field name..."
+               data-chooser-default-sources="<%= @observation_fields.to_json %>">
+        <%= link_to_function "Add a field", "newProjectObservationField('#{escape_javascript(new_pof_fields)}')", :class => "button addfieldbutton" %>
+        <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+      </div>
+    </div>
+  </fieldset>
+
   <div class="buttons">
-    <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button" %>
+    <%= f.submit project.new_record? ? t(:create) : t(:save), :class => "default button", "data-loading-click" => "Saving..." %>
     <%= link_to t(:cancel), projects_path, :class => "button" %>
-    <% unless project.new_record? -%>
+    <% if @project_user && @project_user.is_admin? && !project.new_record? -%>
       <%= link_to t(:delete_project), project, :method => :delete, 
         :confirm => t(:you_sure_delete_project?),
         :class => "minor delete button" %>

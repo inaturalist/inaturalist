@@ -27,7 +27,7 @@
   <%= render :partial => "identifications/identification", :locals => { 
     :identification => @identification,
     :hide_actions => true } %>
-  <% form_for @identification do |f| %>
+  <%= form_for @identification do |f| %>
     <div class="field body_field">
       <%= f.label :body, 'Remarks' %>
       <%= f.text_area :body %>

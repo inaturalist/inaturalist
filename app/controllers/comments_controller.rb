@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
-  before_filter :login_required, :except => :index
+  before_filter :authenticate_user!, :except => :index
   before_filter :admin_required, :only => [:user]
-  # before_filter :owner_required, :only => [:edit, :update, :destroy]
+  before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
+  before_filter :owner_required, :only => [:edit, :update]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
   MOBILIZED = [:edit]
@@ -15,7 +16,7 @@ class CommentsController < ApplicationController
       :order => "id DESC",
       :group => "parent_id"
     }
-    @paging_comments = Comment.scoped({})
+    @paging_comments = Comment.scoped
     @paging_comments = @paging_comments.by(current_user) if logged_in? && params[:mine]
     @paging_comments = @paging_comments.paginate(find_options)
     @comments = Comment.find(@paging_comments.map{|c| c.id}, :include => :user, :order => "id desc")
@@ -36,7 +37,6 @@ class CommentsController < ApplicationController
   end
   
   def show
-    @comment = Comment.find(params[:id])
     redirect_to_parent
   end
   
@@ -45,7 +45,6 @@ class CommentsController < ApplicationController
   end
   
   def edit
-    @comment = Comment.find(params[:id])
     respond_to do |format|
       format.html
       format.mobile do
@@ -56,16 +55,19 @@ class CommentsController < ApplicationController
   
   def create
     @comment = Comment.new(params[:comment])
+    @comment.user ||= current_user
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
       format.mobile { respond_to_create }
-      format.js
+      format.json do
+        @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        render :json => @comment.to_json(:methods => [:html])
+      end
     end
   end
   
   def update
-    @comment = Comment.find(params[:id])
     @comment.attributes = params[:comment]
     @comment.save unless params[:preview]
     respond_to do |format|
@@ -78,12 +80,28 @@ class CommentsController < ApplicationController
         end
         redirect_to_parent
       end
-      format.js
+      format.json do
+        @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        render :json => @comment.to_json(:methods => [:html])
+      end
     end
   end
   
   def destroy
-    @comment = Comment.find(params[:id])
+    unless @comment.deletable_by?(current_user)
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @comment
+        end
+        format.json do
+          render :json => {:error => msg}
+        end
+      end
+      return
+    end
+
     parent = @comment.parent
     @comment.destroy
     respond_to do |format|
@@ -100,7 +118,13 @@ class CommentsController < ApplicationController
   private
   def redirect_to_parent
     if @comment.parent.is_a?(Post)
-      redirect_to journal_post_path(@comment.parent.user.login, @comment.parent)
+      post = @comment.parent
+      url = if post.parent.is_a?(Project)
+        project_journal_post_path(post.parent.slug, @comment.parent, :anchor => "comment-#{@comment.id}")
+      else
+        journal_post_path(post.user.login, @comment.parent, :anchor => "comment-#{@comment.id}")
+      end
+      redirect_to(url)
     else
       redirect_to(url_for(@comment.parent) + "#comment-#{@comment.id}")
     end
@@ -109,20 +133,30 @@ class CommentsController < ApplicationController
   def respond_to_create
     if @comment.valid?
       flash[:notice] = "Your comment was saved."
-      if params[:return_to]
-        return redirect_to(params[:return_to])
-      end
+      return redirect_to(params[:return_to]) unless params[:return_to].blank?
     else
-      flash[:error] = "We had trouble saving your comment: " +
-        @comment.errors.full_messages.join(', ')
+      flash[:error] = "We had trouble saving your comment: #{@comment.errors.full_messages.join(', ')}"
     end
     redirect_to_parent
   end
+
+  def load_comment
+    render_404 unless @comment = Comment.find_by_id(params[:id] || params[:comment_id])
+  end
   
   def owner_required
-    unless logged_in? && (is_admin? || current_user.id == @comment.user_id)
-      flash[:error] = "You don't have permission to do that"
-      return redirect_to @comment
+    unless logged_in? && (current_user.is_admin? || current_user.id == @comment.user_id)
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @comment
+        end
+        format.json do
+          render :json => {:error => msg}
+        end
+      end
+      return 
     end
   end
 end

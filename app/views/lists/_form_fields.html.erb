@@ -1,5 +1,5 @@
 <%- optionscol ||= nil -%>
-<%- list ||= object ||= @list -%>
+<%- list ||= form_fields ||= @list -%>
 <div class="column span-12">
   <%= f.text_field :title, :class => 'text' %>
   <%= f.text_area :description %>
@@ -24,7 +24,7 @@
           </p>
 
           <div class="field">
-            <label for="taxon_input_1"><%=t :add_higher_level_taxon %></label>
+            <label for="taxon_input_1"><%=t :add_higher_level_taxon %></label><br/>
             <input type="text" name="taxon_name" id="taxon_input_1" class="text" />
             <input type="hidden" name="taxa[][taxon_id]" value="" id="taxa_1"/>
           </div>

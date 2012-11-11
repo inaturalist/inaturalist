@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 describe CheckList do
   
   before(:each) do
-    @check_list = CheckList.make(:taxon => Taxon.make)
+    @check_list = CheckList.make!(:taxon => Taxon.make!)
   end
   
   it "should have one and only place" do
@@ -37,7 +37,7 @@ describe CheckList, "refresh_with_observation" do
     @place = Place.make(:name => "foo to the bar")
     @place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     @check_list = @place.check_list
-    @taxon = Taxon.make(:rank => Taxon::SPECIES)
+    @taxon = Taxon.make!(:rank => Taxon::SPECIES)
   end
   
   it "should update last observation" do
@@ -59,7 +59,7 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should update observations count" do
-    t = Taxon.make(:rank => Taxon::SPECIES)
+    t = Taxon.make!(:rank => Taxon::SPECIES)
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => t)
     lt = @check_list.add_taxon(t)
     lt.observations_count.should be(0)
@@ -69,7 +69,7 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should update observations month counts" do
-    t = Taxon.make(:rank => Taxon::SPECIES)
+    t = Taxon.make!(:rank => Taxon::SPECIES)
     o = make_research_grade_observation(
       :latitude => @place.latitude, :longitude => @place.longitude, 
       :taxon => t, :observed_on_string => "2011-10-01")
@@ -89,7 +89,7 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should not add listed taxa for casual observations" do
-    o = Observation.make(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
+    o = Observation.make!(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
     @check_list.taxon_ids.should_not include(@taxon.id)
     CheckList.refresh_with_observation(o)
     @check_list.reload
@@ -138,7 +138,7 @@ describe CheckList, "refresh_with_observation" do
     lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
     lt.should_not be_auto_removable_from_check_list
     
-    o.taxon = Taxon.make
+    o.taxon = Taxon.make!
     o.save
     CheckList.refresh_with_observation(o, :taxon_id => o.taxon_id, :taxon_id_was => @taxon.id)
     @check_list.reload
@@ -149,7 +149,7 @@ describe CheckList, "refresh_with_observation" do
   
   it "should not remove listed taxa if added by a user" do
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
-    @check_list.add_taxon(@taxon, :user => User.make)
+    @check_list.add_taxon(@taxon, :user => User.make!)
     CheckList.refresh_with_observation(o)
     @check_list.reload
     @check_list.taxon_ids.should include(@taxon.id)
@@ -162,7 +162,7 @@ describe CheckList, "refresh_with_observation" do
   
   it "should not add to a non-default list" do
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
-    l = CheckList.make(:place => @check_list.place)
+    l = CheckList.make!(:place => @check_list.place)
     CheckList.refresh_with_observation(o)
     l.reload
     l.taxon_ids.should_not include(@taxon.id)
@@ -170,7 +170,7 @@ describe CheckList, "refresh_with_observation" do
   
   it "should not remove listed taxa if non-default list" do
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
-    l = CheckList.make(:place => @check_list.place)
+    l = CheckList.make!(:place => @check_list.place)
     l.add_taxon(@taxon)
     l.reload
     l.taxon_ids.should include(@taxon.id)
@@ -209,7 +209,7 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should update old listed taxa which this observation confirmed" do
-    other_place = Place.make(:name => "other place")
+    other_place = Place.make!(:name => "other place")
     other_place.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"))
     o = make_research_grade_observation(:latitude => other_place.latitude, 
       :longitude => other_place.longitude, :taxon => @taxon)
@@ -259,7 +259,7 @@ describe CheckList, "refresh_with_observation" do
     lt.last_observation_id.should_not be(o.id)
     lt.observations_count.should be(3)
     
-    o.update_attributes(:taxon => Taxon.make)
+    o.update_attributes(:taxon => Taxon.make!)
     CheckList.refresh_with_observation(o, :taxon_id_was => @taxon.id)
     lt = @check_list.listed_taxa.find_by_taxon_id(@taxon.id)
     lt.should_not be_blank
@@ -267,7 +267,7 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should not remove taxa just because obs obscured" do
-    p = Place.make
+    p = Place.make!
     p.save_geom(MultiPolygon.from_ewkt("MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))"))
     o = make_research_grade_observation(:latitude => p.latitude, :longitude => p.longitude)
     CheckList.refresh_with_observation(o)
@@ -279,18 +279,18 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should not remove taxa for new observations" do
-    t = Taxon.make(:species)
+    t = Taxon.make!(:species)
     lt = @check_list.add_taxon(t)
     lt.should be_auto_removable_from_check_list
-    o = Observation.make(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
+    o = Observation.make!(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
     CheckList.refresh_with_observation(o, :new => true)
     @check_list.reload
     @check_list.taxon_ids.should include(o.taxon_id)
   end
   
   it "should add new taxa even if ancestors have already been added to this place" do
-    parent = Taxon.make(:rank => Taxon::GENUS)
-    child = Taxon.make(:rank => Taxon::SPECIES, :parent => parent)
+    parent = Taxon.make!(:rank => Taxon::GENUS)
+    child = Taxon.make!(:rank => Taxon::SPECIES, :parent => parent)
     @place.check_list.add_taxon(parent)
     @place.taxon_ids.should include(parent.id)
     
@@ -301,8 +301,8 @@ describe CheckList, "refresh_with_observation" do
   end
   
   it "should add the species along with infraspecies" do
-    species = Taxon.make(:rank => Taxon::SPECIES)
-    subspecies = Taxon.make(:rank => Taxon::SUBSPECIES, :parent => species)
+    species = Taxon.make!(:rank => Taxon::SPECIES)
+    subspecies = Taxon.make!(:rank => Taxon::SUBSPECIES, :parent => species)
     o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => subspecies)
     CheckList.refresh_with_observation(o)
     @place.reload
@@ -312,11 +312,11 @@ end
 
 describe CheckList, "sync_with_parent" do
   it "should add taxa to the parent" do
-    parent_place = Place.make
+    parent_place = Place.make!
     parent_list = parent_place.check_list
-    place = Place.make(:parent => parent_place)
+    place = Place.make!(:parent => parent_place)
     list = place.check_list
-    taxon = Taxon.make
+    taxon = Taxon.make!
     
     list.add_taxon(taxon.id)
     list.taxon_ids.should include(taxon.id)
@@ -328,22 +328,22 @@ end
 
 describe CheckList, "updating to comprehensive" do
   before(:each) do
-    @parent = Taxon.make
-    @taxon = Taxon.make(:parent => @parent)
-    @place = Place.make
+    @parent = Taxon.make!
+    @taxon = Taxon.make!(:parent => @parent)
+    @place = Place.make!
   end
   
   it "should mark listed taxa of descendant taxa from other check lists for this place as absent" do
     lt = @place.check_list.add_taxon(@taxon)
     lt.should_not be_absent
     
-    l = CheckList.make(:place => @place, :taxon => @parent, :comprehensive => true)
+    l = CheckList.make!(:place => @place, :taxon => @parent, :comprehensive => true)
     lt.reload
     lt.should be_absent
   end
   
   it "should mark listed taxa of descendant taxa from other check lists for this place as absent if they are on this list" do
-    l = CheckList.make(:place => @place, :taxon => @parent)
+    l = CheckList.make!(:place => @place, :taxon => @parent)
     l.add_taxon(@taxon)
     l.taxon_ids.should include(@taxon.id)
     

@@ -1,7 +1,6 @@
 <div id="mobilenav" class="open">
-  <%= link_to_function "&laquo; Nav", "showMobileNav()", :id => "show_mobile_nav_link", :class => "topcontrol", :style => "display: none" %>
-  <%#= link_to_function "&darr;", "$('.gotonav').toggle()", :id => "goto_nav_link", :class => "topcontrol" %>
-  <%= link_to_function "&times;", "hideMobileNav()", :id => "hide_mobile_nav_link", :class => "topcontrol" %>
+  <%= link_to_function "&laquo; Nav".html_safe, "showMobileNav()", :id => "show_mobile_nav_link", :class => "topcontrol", :style => "display: none" %>
+  <%= link_to_function "&times;".html_safe, "hideMobileNav()", :id => "hide_mobile_nav_link", :class => "topcontrol" %>
 
   <% if @order == ListedTaxon::ALPHABETICAL_ORDER -%>
     <div id="alphanav" class="gotonav">

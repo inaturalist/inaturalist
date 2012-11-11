@@ -10,15 +10,23 @@ class Project < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :project_assets, :dependent => :destroy
   has_one :custom_project, :dependent => :destroy
+  has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
+  has_many :observation_fields, :through => :project_observation_fields
+
+  has_many :posts, :as => :parent, :dependent => :destroy
   
   before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
   
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
-  
-  has_friendly_id :title, :use_slug => true, 
-    :reserved_words => ProjectsController.action_methods.to_a
+
+  has_subscribers :to => {
+    :posts => {:notification => "created_project_post"}
+  }
+
+  extend FriendlyId
+  friendly_id :title, :use => :history, :reserved_words => ProjectsController.action_methods.to_a
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
@@ -26,26 +34,23 @@ class Project < ActiveRecord::Base
   # For some reason these don't work here
   # accepts_nested_attributes_for :project_user_rules, :allow_destroy => true
   # accepts_nested_attributes_for :project_observation_rules, :allow_destroy => true
+  accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
   
   validates_length_of :title, :within => 1..85
-  validates_presence_of :user_id
+  validates_presence_of :user
   
-  named_scope :featured, {:conditions => "featured_at IS NOT NULL"}
-  named_scope :near_point, lambda {|latitude, longitude|
+  scope :featured, where("featured_at IS NOT NULL")
+  scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f
-    {
-      :joins => [
-        "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
-        "INNER JOIN places ON places.id = rules.operand_id"
-      ],
-      :conditions => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude})) < 5",
-      :order => "ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))"
-    }
+    joins(
+      "INNER JOIN rules ON rules.ruler_type = 'Project' AND rules.operand_type = 'Place' AND rules.ruler_id = projects.id",
+      "INNER JOIN places ON places.id = rules.operand_id"
+    ).
+    where("ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
+    order("ST_Distance(ST_Point(places.longitude, places.latitude), ST_Point(#{longitude}, #{latitude}))")
   }
-  named_scope :from_source_url, lambda {|url|
-    {:conditions => {:source_url => url}}
-  }
+  scope :from_source_url, lambda {|url| where(:source_url => url) }
   
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#" },
@@ -57,6 +62,7 @@ class Project < ActiveRecord::Base
   PROJECT_TYPES = [CONTEST_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
+  validates_uniqueness_of :title
   
   def to_s
     "<Project #{id} #{title}>"
@@ -119,10 +125,35 @@ class Project < ActiveRecord::Base
     return false if tracking_codes.blank?
     tracking_codes.split(',').map{|c| c.strip}.include?(code)
   end
+
+  def observations_matching_rules
+    scope = Observation.scoped
+    project_observation_rules.each do |rule|
+      case rule.operator
+      when "in_taxon?" 
+        scope = scope.of(rule.operand)
+      when "observed_in_place?"
+        scope = scope.in_place(rule.operand)
+      when "on_list?"
+        scope = scope.scoped(
+          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}", 
+          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      when "identified?"
+        scope = scope.scoped(:conditions => "taxon_id IS NOT NULL")
+      when "georeferenced"
+        scope = scope.scoped(:conditions => "geom IS NOT NULL")
+      end
+    end
+    scope
+  end
+
+  def cached_slug
+    slug
+  end
   
   def self.default_json_options
     {
-      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place],
+      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place, :cached_slug, :slug],
       :except => [:tracking_codes]
     }
   end
@@ -141,8 +172,8 @@ class Project < ActiveRecord::Base
           project_user.user_id]) do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
-      ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   
@@ -169,8 +200,8 @@ class Project < ActiveRecord::Base
     project.project_observations.find_each(find_options) do |po|
       curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
       po.update_attributes(:curator_identification => curator_ident)
-      ProjectUser.send_later(:update_observations_counter_cache_from_project_and_user, project_id, po.observation.user_id)
-      ProjectUser.send_later(:update_taxa_counter_cache_from_project_and_user, project_id, po.observation.user_id)
+      ProjectUser.delay.update_observations_counter_cache_from_project_and_user(project_id, po.observation.user_id)
+      ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(project_id, po.observation.user_id)
     end
   end
   
@@ -189,7 +220,7 @@ class Project < ActiveRecord::Base
   end
   
   def self.update_observed_taxa_count(project_id)
-    project = Project.find_by_id(project_id)
+    return unless project = Project.find_by_id(project_id)
     observed_taxa_count = project.project_list.listed_taxa.count(:conditions => "last_observation_id IS NOT NULL")
     project.update_attributes(:observed_taxa_count => observed_taxa_count)
   end

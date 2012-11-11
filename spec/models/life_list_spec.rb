@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe List, "reload_from_observations" do
   before(:each) do
-    @taxon = Taxon.make
-    @child = Taxon.make(:parent => @taxon)
+    @taxon = Taxon.make!
+    @child = Taxon.make!(:parent => @taxon)
     @list = make_life_list_for_taxon(@taxon)
     @list.should be_valid
   end
@@ -11,12 +11,12 @@ describe List, "reload_from_observations" do
   it "should destroy listed taxa where the taxon doesn't match the observation taxon" do
     user = @list.user
     listed_taxon = make_listed_taxon_of_taxon(@child)
-    obs = Observation.make(:user => user, :taxon => @child)
+    obs = Observation.make!(:user => user, :taxon => @child)
     List.refresh_for_user(user, :taxa => [obs.taxon], :skip_update => true)
     @list.reload
     @list.taxon_ids.should include(@child.id)
   
-    new_child = Taxon.make(:parent => @taxon)
+    new_child = Taxon.make!(:parent => @taxon)
     obs.update_attributes(:taxon => new_child)
     @list.reload
     @list.taxon_ids.should_not include(new_child.id)
@@ -38,8 +38,8 @@ end
 describe LifeList do
   describe "refresh" do
     it "should destroy unobserved taxa if you ask nicely" do
-      list = LifeList.make
-      list.taxa << Taxon.make
+      list = LifeList.make!
+      list.taxa << Taxon.make!
       list.taxa.count.should be(1)
       list.refresh(:destroy_unobserved => true)
       list.reload
@@ -50,15 +50,15 @@ end
 
 describe List, "refresh_with_observation" do
   before(:each) do
-    @parent = Taxon.make
-    @list = LifeList.make
+    @parent = Taxon.make!
+    @list = LifeList.make!
     @list.build_taxon_rule(@parent)
     @list.save!
   end
   
   it "should add new taxa to the list" do
-    t = Taxon.make(:parent => @parent)
-    o = Observation.make(:user => @list.user, :taxon => t)
+    t = Taxon.make!(:parent => @parent)
+    o = Observation.make!(:user => @list.user, :taxon => t)
     @list.taxon_ids.should_not include(t.id)
     LifeList.refresh_with_observation(o)
     @list.reload
@@ -66,9 +66,9 @@ describe List, "refresh_with_observation" do
   end
   
   it "should add the species if a subspecies was observed" do
-    species = Taxon.make(:parent => @parent, :rank => Taxon::SPECIES)
-    subspecies = Taxon.make(:parent => species, :rank => Taxon::SUBSPECIES)
-    o = Observation.make(:user => @list.user, :taxon => subspecies)
+    species = Taxon.make!(:parent => @parent, :rank => Taxon::SPECIES)
+    subspecies = Taxon.make!(:parent => species, :rank => Taxon::SUBSPECIES)
+    o = Observation.make!(:user => @list.user, :taxon => subspecies)
     @list.taxon_ids.should_not include(species.id)
     LifeList.refresh_with_observation(o)
     @list.reload
@@ -76,8 +76,8 @@ describe List, "refresh_with_observation" do
   end
   
   it "should remove listed taxa that weren't manually added" do
-    t = Taxon.make(:parent => @parent)
-    o = Observation.make(:user => @list.user, :taxon => t)
+    t = Taxon.make!(:parent => @parent)
+    o = Observation.make!(:user => @list.user, :taxon => t)
     @list.taxon_ids.should_not include(t.id)
     LifeList.refresh_with_observation(o)
     @list.reload
@@ -90,12 +90,12 @@ describe List, "refresh_with_observation" do
   end
   
   it "should keep listed taxa that were manually added" do
-    t = Taxon.make(:parent => @parent)
+    t = Taxon.make!(:parent => @parent)
     @list.add_taxon(t, :manually_added => true)
     @list.reload
     @list.taxon_ids.should include(t.id)
     
-    o = Observation.make(:user => @list.user, :taxon => t)
+    o = Observation.make!(:user => @list.user, :taxon => t)
     LifeList.refresh_with_observation(o)
     o.destroy
     LifeList.refresh_with_observation(o.id, :created_at => o.created_at, :taxon_id => o.taxon_id, :user_id => o.user_id)
@@ -104,9 +104,9 @@ describe List, "refresh_with_observation" do
   end
   
   it "should keep listed taxa with observations" do
-    t = Taxon.make(:parent => @parent)
-    o1 = Observation.make(:user => @list.user, :taxon => t)
-    o2 = Observation.make(:user => @list.user, :taxon => t)
+    t = Taxon.make!(:parent => @parent)
+    o1 = Observation.make!(:user => @list.user, :taxon => t)
+    o2 = Observation.make!(:user => @list.user, :taxon => t)
     LifeList.refresh_with_observation(o2)
     
     o2.destroy
@@ -116,9 +116,9 @@ describe List, "refresh_with_observation" do
   end
   
   it "should remove taxa when taxon changed" do
-    t1 = Taxon.make(:parent => @parent)
-    t2 = Taxon.make(:parent => @parent)
-    o = Observation.make(:user => @list.user, :taxon => t1)
+    t1 = Taxon.make!(:parent => @parent)
+    t2 = Taxon.make!(:parent => @parent)
+    o = Observation.make!(:user => @list.user, :taxon => t1)
     LifeList.refresh_with_observation(o)
     @list.taxon_ids.should include(t1.id)
     

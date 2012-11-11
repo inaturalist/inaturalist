@@ -1,31 +1,26 @@
 <%- content_for(:title) do -%>
   <%= t(:confirm_your_info) %>
 <%- end -%>
-
-<%- content_for(:extrajs) do -%>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('.time_zone_select').selectLocalTimeZone();
-    })
-  </script>
-<%- end -%>
 <div class="column prepend-4 span-8">
   <img src="/images/bird.png" width="300" height="239" />
 </div>
-<div class="column span-8 append-4 last">
+<div class="column span-12 last">
 
-  <% form_for current_user, :builder => DefaultFormBuilder do |f| %>
+  <%= form_for current_user, :builder => DefaultFormBuilder do |f| %>
     <%= error_messages_for :display_user %>
     <%= f.text_field :login, :label => t(:please_confirm_your_inat_username), :class => "text", :required => true %>
     <%= f.text_field :email, :class => "text", :required => true %>
+    <%= f.password_field :password, :class => 'text', :description => "Create a password to access this account from the iNaturalist iPhone or Android apps, or make one later after signing up." %>
+    <%= f.password_field :password_confirmation, :class => 'text' %>
+    
     <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
       :label => t(:your_default_time_zone),
       :description => t(:all_your_observations_will_default_this_time_zone),
       :class => 'select'}) %>
-    <%= f.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY,
-      :label => t(:yes_license_my_observations_so_scientists_can_use), 
-      :label_after => true,
-      :description => t(:using_cc_license_makes_easier_use_your_data) %>
-    <%= f.submit t(:save_and_continue), :class => "default button" %>
+
+    <%= render :partial => 'users/license_fields', :locals => {:builder => f} %>
+
+    <%= f.submit t(:save_and_continue).html_safe, :class => "default button" %>
   <% end %>
 </div>
+

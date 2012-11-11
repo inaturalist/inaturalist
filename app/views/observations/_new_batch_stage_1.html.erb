@@ -1,5 +1,5 @@
 <div class="column prepend-3 span-16 append-7">
-  <% form_tag(new_observation_batch_path, :id => 'new_batch_form', :class => 'observationform') do %>
+  <%= form_tag(new_observation_batch_path, :id => 'new_batch_form', :class => 'observationform') do %>
   <div class="column span-16 field">
     <div class="column span-6">
       <h3><label for="taxa"><em>What</em> did you see?</label></h3>
@@ -51,7 +51,7 @@
 
   <div class="column span-16">
     <div id="observation_form_links" class="buttonrow">
-      <%= submit_tag "Next &raquo;", :class => 'default button', "data-loading-click" => "Creating observations..." -%>
+      <%= submit_tag "Next &raquo;".html_safe, :class => 'default button', "data-loading-click" => "Creating observations..." -%>
     </div>
   </div>
   <% end %>

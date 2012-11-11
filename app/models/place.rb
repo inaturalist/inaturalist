@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  acts_as_tree
+  has_ancestry
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy
   has_many :check_lists, :dependent => :destroy
@@ -13,7 +13,8 @@ class Place < ActiveRecord::Base
   validates_presence_of :latitude, :longitude
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
-  validates_uniqueness_of :name, :scope => :parent_id
+  validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
+  validate :validate_parent_is_not_self
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -99,45 +100,76 @@ class Place < ActiveRecord::Base
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
   end
   PLACE_TYPE_CODES = PLACE_TYPES.invert
+  PLACE_TYPES.each do |code, type|
+    PLACE_TYPE_CODES[type.downcase] = code
+  end
+
+  scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
-  named_scope :containing_lat_lng, lambda {|lat, lng|
-    # {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", lat, lat, lng, lng]}
-    {:joins => :place_geometry, :conditions => ["ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat]}
+  scope :containing_lat_lng, lambda {|lat, lng|
+    joins(:place_geometry).where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lng, lat)
+  }
+
+  scope :bbox_containing_lat_lng, lambda {|lat, lng|
+    where(
+      "(swlng > 0 AND nelng < 0 AND swlat <= ? AND nelat >= ? AND (swlng <= ? OR nelng >= ?)) " +
+      "OR (swlng * nelng >= 0 AND swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?)", 
+      lat, lat, lng, lng,
+      lat, lat, lng, lng
+    )
   }
   
-  named_scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
-    {:conditions => ["swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", swlat, nelat, swlng, nelng]}
+  scope :containing_bbox, lambda {|swlat, swlng, nelat, nelng|
+    where("swlat <= ? AND nelat >= ? AND swlng <= ? AND nelng >= ?", swlat, nelat, swlng, nelng)
   }
   
   # This can be very expensive.  Use sparingly, or scoped.
-  named_scope :intersecting_taxon, lambda{|taxon|
+  scope :intersecting_taxon, lambda{|taxon|
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon.to_i
-    {
-      :joins => 
-        "JOIN place_geometries ON place_geometries.place_id = places.id " + 
-        "JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}",
-      :conditions => "ST_Intersects(place_geometries.geom, taxon_ranges.geom)"
-    }
+    joins("JOIN place_geometries ON place_geometries.place_id = places.id").
+    joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = #{taxon_id}").
+    where("ST_Intersects(place_geometries.geom, taxon_ranges.geom)")
+  }
+
+  scope :listing_taxon, lambda {|taxon|
+    taxon_id = if taxon.is_a?(Taxon)
+      taxon
+    elsif taxon.to_i == 0
+      Taxon.single_taxon_for_name(taxon)
+    else
+      taxon
+    end
+    select("DISTINCT places.id, places.*").
+    joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").
+    where("listed_taxa.taxon_id = ?", taxon_id)
   }
   
-  named_scope :place_type, lambda{|place_type|
+  scope :place_type, lambda {|place_type|
     place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
     place_type = place_type.to_i
-    {:conditions => {:place_type => place_type}}
+    where(:place_type => place_type)
   }
   
-  named_scope :place_types, lambda{|place_types|
+  scope :place_types, lambda {|place_types|
     place_types = place_types.map do |place_type|
       place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
       place_type.to_i
     end
-    {:conditions => ["place_type IN (?)", place_types]}
+    where("place_type IN (?)", place_types)
   }
+
+  scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
     "place_type_name: #{place_type_name}, lat: #{latitude}, " +
     "lng: #{longitude}, parent_id: #{parent_id}>"
+  end
+  
+  def validate_parent_is_not_self
+    if !id.blank? && id == ancestor_ids.last
+      errors.add(:parent_id, "cannot be the same as the place itself")
+    end
   end
   
   def place_type_name
@@ -150,7 +182,7 @@ class Place < ActiveRecord::Base
   
   # Wrap the attr call to set it if unset (or if :reload => true)
   def display_name(options = {})
-    return super unless super.blank? || options[:reload]
+    return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
     ancestor_names = self.ancestors.select do |a|
       %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
@@ -220,22 +252,26 @@ class Place < ActiveRecord::Base
     begin
       ydn_place = GeoPlanet::Place.new(woeid.to_i)
     rescue GeoPlanet::NotFound => e
-      logger.error "[ERROR] #{e.class}: #{e.message}"
+      Rails.logger.error "[ERROR] #{e.class}: #{e.message}"
       return nil
     end
     place = Place.new_from_geo_planet(ydn_place)
+    if place.valid?
+      place.save
+    else
+      Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
+      return
+    end
     place.parent = options[:parent]
     
-    unless options[:ignore_ancestors] || ydn_place.ancestors.blank?
+    unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
-      logger.debug "[DEBUG] Saving ancestors..."
       ydn_place.ancestors.reverse_each do |ydn_ancestor|
         next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(
           ydn_ancestor.placetype_code)
         ancestor = Place.import_by_woeid(ydn_ancestor.woeid, 
           :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor
-        logger.debug "[DEBUG] \t\tSaved #{ancestor}."
         place.parent = ancestors.last
       end
     end
@@ -285,9 +321,9 @@ class Place < ActiveRecord::Base
   # Create a CheckList associated with this place
   def create_default_check_list
     self.create_check_list(:place => self)
-    save(false)
+    save(:validate => false)
     unless check_list.valid?
-      logger.info "[INFO] Failed to create a default check list on " + 
+      Rails.logger.info "[INFO] Failed to create a default check list on " + 
         "creation of #{self}: " + 
         check_list.errors.full_messages.join(', ')
     end
@@ -306,8 +342,7 @@ class Place < ActiveRecord::Base
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e
-      puts "[ERROR] \tCouldn't save #{self.place_geometry}: " + 
-        e.message[0..200]
+      Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
     end
   end
   
@@ -325,14 +360,21 @@ class Place < ActiveRecord::Base
   # Update this place's bbox from a geometry.  Note this skips validations, 
   # but explicitly recalculates the bbox area
   def update_bbox_from_geom(geom)
-    self.latitude = geom.envelope.center.y
     self.longitude = geom.envelope.center.x
+    self.latitude = geom.envelope.center.y
     self.swlat = geom.envelope.lower_corner.y
-    self.swlng = geom.envelope.lower_corner.x
     self.nelat = geom.envelope.upper_corner.y
-    self.nelng = geom.envelope.upper_corner.x
+    if geom.spans_dateline?
+      self.longitude = geom.envelope.center.x + 180*(geom.envelope.center.x > 0 ? -1 : 1)
+      self.swlng = geom.envelope.upper_corner.x
+      self.nelng = geom.envelope.lower_corner.x
+    else
+      # self.longitude = geom.envelope.center.x
+      self.swlng = geom.envelope.lower_corner.x
+      self.nelng = geom.envelope.upper_corner.x
+    end
     calculate_bbox_area
-    save(false)
+    save(:validate => false)
   end
   
   #
@@ -507,6 +549,9 @@ class Place < ActiveRecord::Base
       save_geom(mergee.place_geometry.geom)
     end
     
+    # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
+    mergee.reload
+
     mergee.destroy
     self.save
     self
@@ -537,5 +582,13 @@ class Place < ActiveRecord::Base
   
   def self.guide_cache_key(id)
     "place_guide_#{id}"
+  end
+  
+  def as_json(options = {})
+    options[:methods] ||= []
+    options[:methods] << :place_type_name
+    options[:except] ||= []
+    options[:except] += [:source_filename, :delta, :bbox_area]
+    super(options)
   end
 end

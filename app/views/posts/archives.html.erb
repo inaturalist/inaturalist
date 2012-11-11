@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%=h t(:x_journal_archives_for_y, :user => "#{@display_user.login}") %> <%=l @target_date %>
+  <%= t(:x_journal_archives_for_y, :user => @display_user.login) %>  <%= @target_date.strftime('%B %Y') %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
@@ -10,43 +10,11 @@
   </style>
 <% end -%>
 
-<div id="pageheader" class="column span-24">
-  <div class="breadcrumbs">
-    <% if current_user and current_user.login == @display_user.login %>
-    <%= link_to t(:back_to_your_journal), 
-                journal_by_login_path(current_user.login),
-                :class => 'back crumb' %>
-    <% else %>
-    <%= link_to t(:back_to_x_journal, :user => "#{@display_user.login}", 
-                journal_by_login_path(@display_user.login),
-                :class => 'back crumb' %>
-    <% end %>
-  </div><!-- /#breadcrumbs -->
-  <%= link_to(
-    image_tag(@display_user.icon.url(:thumb), :class => 'usericon'),
-    person_path(@display_user)) %>
-  
-  <h2>
-    <% if current_user and current_user.login == @display_user.login %>
-      <%= t(:your) %>
-    <% else %>
-      <%= t(:user_s, :user => "#{@display_user.login}") %>
-    <% end %>
-    <%= t(:journal) %>
-  </h2>
-  <%= render :partial => 'users/subnav', 
-             :locals => { :user => @display_user } %>
-  
-  <% if logged_in? && current_user.login == @display_user.login -%>
-    <div id="tools" class="buttonrow">
-      <%= link_to t(:new_post), new_post_path(@display_user.login), 
-                  :id => "newpostbutton", :class => "default button"%>
-    </div>
-  <% end -%>
-</div>
+
+<%= render :partial => "posts/header", :locals => { :include_breadcrumbs => true } %>
 
 <div id="postscol" class="column span-16 append-1">
-  <h2 class="title"><%= t(:journal_archives_for) l @target_date %></h2>
+  <h2 class="title"><%= t(:journal_archives_for) %> <%= @target_date.strftime('%B %Y') %></h2>
   <div id="postdates" class="posts_by_date">
     <%= render :partial => 'posts_by_date' %>
     

@@ -78,7 +78,7 @@
 
             <div class="attr readable description">
               <%= truncate(strip_tags(list.description), :length => 75) %>
-              <%= link_to t(:view) +" &raquo;", list_path(list), :style => "white-space: nowrap" %>
+              <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
             </div>
 
             <div class="barchart">
@@ -106,7 +106,7 @@
   </div>
   
   <% if logged_in? -%>
-    <% form_for :preferences, :url => url_for do |f| %>
+    <%= form_for :preferences, :url => url_for do |f| %>
       <%= f.label :per_page %>
       <%= f.select :per_page, ApplicationController::PER_PAGES, {}, 
         :onchange => "$(this).parents('form:first').submit()" %>

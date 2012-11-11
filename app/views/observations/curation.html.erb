@@ -32,10 +32,10 @@
       <%= link_to t(:edit_the_observation), 
                   edit_observation_path(:id=>flagging.flaggable_id), :class => 'button' %>
       <span class="inter">or</span>
-      <% form_for(flagging, 
+      <%= form_for(flagging, 
                   :action=>"update") do |f| %>
         <%= f.text_field :comment, :class => 'text' %>
-        <%= f.hidden_field :resolver_id, :value => @user.id %>
+        <%= f.hidden_field :resolver_id, :value => current_user.id %>
         <%= f.hidden_field :resolved, :value => true %>
         <%= f.submit t(:resolve_this_flag), :class => 'button' %>
       <% end # form_for %>

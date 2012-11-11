@@ -1,11 +1,18 @@
 <%-
-  taxon ||= object || @taxon
+  taxon ||= @taxon
   include_article ||= false
   singular ||= false
   comname ||= common_taxon_name(taxon).try(:name)
   no_common ||= false
   if taxon.species_or_lower?
-    sciname = '<span class="sciname"><i>%s</i></span>' % taxon.name
+    pieces = taxon.name.split
+    sciname = if taxon.variety? && pieces.size == 3
+      "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
+    elsif taxon.subspecies? && pieces.size == 3
+      "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">ssp.</span> #{pieces[2..-1].join(' ')}</span>"
+    else
+      "<span class=\"sciname\">#{taxon.name}</span>"
+    end
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name}</span>"
   else
@@ -13,6 +20,9 @@
     rank = content_tag(:span, t(rank), :class => 'rank')
     sciname = "#{rank} <span class=\"sciname\">#{taxon.name}</span>"
   end
+  include_id ||= false
+  sciname += " #{taxon.id}" if include_id
+  sciname += " [inactive]" unless taxon.is_active?
 
   include_parens ||= true unless include_parens == false
   link_url ||= nil
@@ -20,9 +30,7 @@
 
   taxon_class = "taxon taxon-#{taxon.id}"
   taxon_class << " #{taxon.rank.downcase}" if taxon.rank
-  if @iconic_taxa && (iconic_taxon = @iconic_taxa.detect {|it| it.id == taxon.iconic_taxon_id})
-    taxon_class << " #{iconic_taxon.name}"
-  elsif iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
+  if iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
     taxon_class << " #{iconic_taxon.name}"
   end
 -%>
@@ -34,9 +42,9 @@
   <% end -%>
   <span class="<%= taxon_class %>">
     <% if link_url %>
-      <%= link_to sciname, link_url %>
+      <%= link_to sciname.html_safe, link_url %>
     <% else %>
-      <%= sciname %>
+      <%= sciname.html_safe %>
     <% end %>
   </span>
 <% else %>
@@ -57,9 +65,9 @@
   </span>
   <span class="othernames">
     <% if include_parens %>
-      (<%= sciname %>)
+      (<%= sciname.html_safe %>)
     <% else %>
-      <%= sciname %>
+      <%= sciname.html_safe %>
     <% end %>
   </span>
 </span>

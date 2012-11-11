@@ -1,13 +1,14 @@
+#encoding: utf-8
 class PlacesController < ApplicationController
   include Shared::WikipediaModule
   include Shared::GuideModule
   
-  before_filter :login_required, :except => [:index, :show, :search, 
+  before_filter :authenticate_user!, :except => [:index, :show, :search, 
     :wikipedia, :taxa, :children, :autocomplete, :geometry, :guide,
     :cached_guide, :guide_widget]
   before_filter :return_here, :only => [:show]
   before_filter :load_place, :only => [:show, :edit, :update, :destroy, 
-    :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget]
+    :children, :taxa, :geometry, :cached_guide, :guide_widget, :widget, :merge]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:search]
   before_filter :editor_required, :only => [:edit, :update, :destroy]
   
@@ -31,7 +32,22 @@ class PlacesController < ApplicationController
       end
       
       format.json do
-        render :json => Place.search((params[:q] || params[:term]).to_s)
+        scope = Place.scoped
+        if params[:q] || params[:term]
+          q = (params[:q] || params[:term]).to_s.sanitize_encoding
+          scope = scope.dbsearch(q)
+        end
+        # render :json => Place.search((params[:q] || params[:term]).to_s)
+        if !params[:place_type].blank?
+          scope = scope.place_type(params[:place_type])
+        elsif !params[:place_types].blank?
+          scope = scope.place_types(params[:place_types])
+        end
+        scope = scope.listing_taxon(params[:taxon]) unless params[:taxon].blank?
+        per_page = params[:per_page].to_i
+        per_page = 200 if per_page > 200
+        per_page = 30 if per_page < 1
+        render :json => scope.paginate(:page => params[:page], :per_page => per_page).to_a
       end
     end
   end
@@ -154,31 +170,27 @@ class PlacesController < ApplicationController
     end
     
     respond_to do |format|
-      format.json { render :json => @ydn_places }
-      format.js do
-        render :update do |page|
-          if @places.blank?
-            page.alert "No matching places found."
-          else
-            page << "addPlaces(#{@places.to_json})"
-            page['places'].replace_html :partial => 'create_external_place_links'
-          end
+      format.json do
+        @places.each_with_index do |place, i|
+          @places[i].html = view_context.render_in_format(:html, :partial => "create_external_place_link", :object => place, :locals => {:i => i})
         end
+        render :json => @places.to_json(:methods => [:html])
       end
     end
   end
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    @places = Place.paginate(:page => params[:page], 
-      :conditions => ["lower(display_name) LIKE ?", "#{@q.to_s.downcase}%"])
+    scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").limit(30).scoped
+    scope = scope.with_geom if params[:with_geom]
+    @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
     respond_to do |format|
       format.html do
         render :layout => false, :partial => 'autocomplete' 
       end
       format.json do
         @places.each_with_index do |place, i|
-          @places[i].html = render_to_string(:partial => 'places/autocomplete_item.html.erb', :object => place)
+          @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item.html.erb', :object => place)
         end
         render :json => @places.to_json(:methods => [:html])
       end
@@ -186,7 +198,6 @@ class PlacesController < ApplicationController
   end
   
   def merge
-    @place = Place.find_by_id(params[:id].to_i)
     @merge_target = Place.find_by_id(params[:with].to_i)
     
     if request.post?
@@ -295,7 +306,7 @@ class PlacesController < ApplicationController
       end
       
       if @filter_params.blank?
-        scope = scope.has_photos
+        # scope = scope.has_photos
         @order = "listed_taxa.observations_count DESC, listed_taxa.id ASC"
       end
       scope
@@ -347,8 +358,21 @@ class PlacesController < ApplicationController
   
   def geometry_from_messy_kml(kml)
     geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
-    Hpricot.XML(kml).search('Polygon').each do |hpoly|
-      geometry << GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
+    Nokogiri::XML(kml).search('Polygon').each do |hpoly|
+      poly = GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
+
+      # make absolutely sure there are no z coordinates. iNat is strictly 2D, 
+      # so PostGIS will raise db exception if you try to save z
+      poly.rings.each_with_index do |r,i|
+        poly.rings[i].points.each_with_index do |p,j|
+          poly.rings[i].points[j].z = nil
+          poly.rings[i].points[j].with_z = false
+        end
+        poly.rings[i].with_z = false
+      end
+      poly.with_z = false
+
+      geometry << poly
     end
     geometry.empty? ? nil : geometry
   end

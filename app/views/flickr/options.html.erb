@@ -5,7 +5,7 @@
 
 <!-- options info -->
 <div class="column span-13">
-<% if @user.flickr_identity -%>
+<% if current_user.flickr_identity -%>
   <% if @photos %>
     <p>
       <% @photos.each do |photo| -%>
@@ -23,6 +23,10 @@
 <h3><%=t :not_linked_flickr %></h3>
 <p class="description">
   <%=t :linked_flickr_howto %> <%= link_to t(:flickr_tagger), flickr_tagger_path %>.
+  To connect Flickr with iNat, click the link on the right and sign into
+  Flickr.com. Flickr will ask you if you want to give iNaturalist permission
+  to <strong>read</strong> from your Flickr account and will then send you
+  back here.
 </p>
 <p class="description">
   <%=t :linked_flickr_password %>
@@ -36,9 +40,9 @@
 <hr/>
 
 <p><!-- auto import from flickr into your queue -->
-<% if @user.flickr_identity && @user.flickr_identity.auto_import %>
+<% if current_user.flickr_identity && current_user.flickr_identity.auto_import %>
 <!-- You currently have your iNaturalist account setup to import from your Flickr account automatically. -->
-<% elsif @user.flickr_identity && !@user.flickr_identity.auto_import %>
+<% elsif current_user.flickr_identity && !current_user.flickr_identity.auto_import %>
 <!-- You currently do not have your iNaturalist account setup to import from your Flickr account. -->
 <% end %>
 </p>
@@ -47,7 +51,7 @@
 <!-- options actions-->
 <div class="column span-7 last">
 <p>
-<% if @user.flickr_identity %>
+<% if current_user.flickr_identity %>
 <%= button_to t(:hate_me_flickr), 
   {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'delete button' %>
 <% else %>

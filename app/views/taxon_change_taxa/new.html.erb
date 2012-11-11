@@ -1,0 +1,11 @@
+<% content_for(:title) do -%>
+  New Taxon Change Taxon <%= @taxon_change.id %>
+<% end -%>
+
+<%= render :partial => 'form_head' %>
+
+<h2>
+  New Taxon Change Taxon <%= @taxon_change.id %>
+</h2>
+
+<%= render :partial => 'form' %>

@@ -1,9 +1,9 @@
 <%- 
-  list ||= object ||= @list
+  list ||= form ||= @list
   optionscol ||= nil
 -%>
 <%= error_messages_for :list %>
-<% form_for list.becomes(List), :builder => DefaultFormBuilder do |f| -%>
+<%= form_for list.becomes(List), :builder => DefaultFormBuilder do |f| -%>
   <%= render :partial => 'form_fields', :locals => {:f => f} %>
 
   <div class="column span-24">

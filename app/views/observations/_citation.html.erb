@@ -1,3 +1,3 @@
-<%- observation = object || @observation -%>
+<%- observation = citation || @observation -%>
 <%=t :observation %>: <%= observation.to_plain_s %>
-<%= link_to "View", observation, :class => "readmore" %>
+<%= link_to t(:view), observation, :class => "readmore" %>

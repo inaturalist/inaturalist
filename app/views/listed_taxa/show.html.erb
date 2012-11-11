@@ -1,13 +1,13 @@
 <%- content_for(:title) do -%>
   <%- @title = capture do %>
     <%= iconic_taxon_image @taxon, :style => "vertical-align: middle" %>
-    <% link_to @taxon do %>
+    <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
     <%=t :on %>
-    <%= link_to truncate(h(@list.title), :length => 85), @list %>
+    <%= link_to truncate(@list.title, :length => 85), @list %>
   <% end -%>
-  <%= strip_tags @title %>
+  <%= strip_tags(@title).html_safe %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "lists", "jquery/ui.tabs" %>
@@ -47,7 +47,7 @@
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{@list.title}", @list, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{@list.title}".html_safe, @list, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>
@@ -142,8 +142,8 @@
   
   <% if @listed_taxon.removable_by?(current_user) -%>
     <p class="ui description" style="margin-top: 10px">
-      <%= link_to "Remove from #{h(@list.title)}", @listed_taxon, :method => :delete, 
-        :confirm => t(:you_sure_remove_taxon_from?, :list=>"#{h(@list.title)}"),
+      <%= link_to "Remove from #{@list.title}", @listed_taxon, :method => :delete, 
+        :confirm => t(:you_sure_remove_taxon_from?, :list => @list.title),
         :class => "small description" %>
     </p>
   <% end -%>
@@ -168,7 +168,7 @@
   </div>
   
   <% if @list.listed_taxa_editable_by?(current_user) -%>
-    <% form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
+    <%= form_for @listed_taxon, :builder => DefaultFormBuilder, :html => {
         :id => dom_id(@listed_taxon, "edit_description"), :class => "clear box listed_taxon_form", :style => "display: none"} do |f| %>
       <%= f.text_area :description, :label => description_name.capitalize,
         :placeholder => t(:add_notes_about_this_taxon) %>

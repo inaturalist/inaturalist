@@ -1,3 +1,4 @@
+#encoding: utf-8
 class TaxonName < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :source
@@ -10,13 +11,23 @@ class TaxonName < ActiveRecord::Base
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
+  validates_uniqueness_of :source_identifier,
+                          :scope => [:source_id],
+                          :message => "already exists",
+                          :allow_blank => true,
+                          :unless => Proc.new {|taxon_name|
+                            taxon_name.source && taxon_name.source.title =~ /Catalogue of Life/
+                          }
+
+  #TODO is the validates uniqueness correct?  Allows duplicate TaxonNames to be created with same 
+  #source_url but different taxon_ids
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
-  after_destroy {|name| name.taxon.send_later(:update_unique_name) if name.taxon}
+  after_destroy {|name| name.taxon.delay(:priority => 1).update_unique_name if name.taxon}
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
@@ -138,19 +149,12 @@ class TaxonName < ActiveRecord::Base
   end
   
   def self.find_external(q, options = {})
-    ratatosk = case options[:src]
-    when 'ubio'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::UBioNameProvider.new])
-    when 'col'
-      Ratatosk::Ratatosk.new(:name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
-    else
-      Ratatosk
-    end
+    r = ratatosk(options)
     
     # fetch names and save them
-    ratatosk.find(q).map do |ext_name|
+    r.find(q).map do |ext_name|
       unless ext_name.valid?
-        if existing_taxon = ratatosk.find_existing_taxon(ext_name.taxon)
+        if existing_taxon = r.find_existing_taxon(ext_name.taxon)
           ext_name.taxon = existing_taxon
         end
       end
@@ -178,11 +182,13 @@ class TaxonName < ActiveRecord::Base
   end
   
   def self.strip_author(name)
-    name = name.gsub(/\(.*?\)/, '')
+    name = name.gsub(' hor ', ' ')
+    name = name.gsub(' de ', ' ')
+    name = name.gsub(/\(.*?\).*/, '')
     name = name.gsub(/\[.*?\]/, '')
     name = name.gsub(/[\w\.,]+\s+\d+.*/, '')
     name = name.gsub(/\w[\.,]+.*/, '')
     name = name.gsub(/\s+[A-Z].*/, '')
-    name
+    name.strip
   end
 end

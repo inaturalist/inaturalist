@@ -1,9 +1,11 @@
-<% if object.is_a?(ListedTaxon) -%>
-  <%- line = object.taxon.name %>
-  <%- other = object -%>
-<% else %>
-  <%- line, other = object || [nil, nil] -%>
-<% end -%>
+<%-
+  if add_taxon_batch_line.is_a?(ListedTaxon) 
+    line = add_taxon_batch_line.taxon.name
+    other = add_taxon_batch_line 
+  else
+    line, other = add_taxon_batch_line || [nil, nil] 
+  end 
+-%>
 
 <%- 
   row_class = if other.is_a?(ListedTaxon)
@@ -14,7 +16,7 @@
     ""
   end
 -%>
-<% content_tag :tr, :id => line.parameterize, :class => row_class do %>
+<%= content_tag :tr, :id => line.parameterize, :class => row_class do %>
   <td><%= line %></td>
   <td>
     <% case other.class.to_s when "ListedTaxon" %>
@@ -40,30 +42,25 @@
                 "taxonIDField: '##{line.parameterize}_taxon_id'," +
                 "inputWidth: 445," +
                 "afterSelect: function() {" + 
-                  "$('##{line.parameterize}_add').attr('disabled', '').removeClass('disabled');" +
+                  "$('##{line.parameterize}_add').attr('disabled', false).removeClass('disabled');" +
                 "}" + 
               "});" +
               "$(this).hide();",
               :class => "button" %>
           </div>
 
-          <% form_remote_for ListedTaxon.new(:list => @list), 
-              :url => listed_taxa_path(:format => 'json', :method => :post),
-              :success => "try {" +
-                "var json = eval('(' + request + ')'); " + 
-                "$('##{line.parameterize}').replaceWith(json.html);" +
-                "} catch(e) {};",
-              :failure => 
-                "var json = eval('(' + request.responseText + ')'); alert(json.full_messages);",
-              :complete => 
-                "$('##{line.parameterize} .actions form .loading.status').hide();" +
-                "$('##{line.parameterize} .actions form .button').show();" do |f| %>
+          <%= form_for ListedTaxon.new(:list => @list), 
+              :url => listed_taxa_path(:format => 'json'),
+              :method => :post,
+              :remote => true,
+              :html => {
+                "data-type" => "json"
+              } do |f| %>
             <%= f.hidden_field :list_id %>
             <%= hidden_field_tag :partial, "add_taxon_batch_line" %>
             <%= f.hidden_field :taxon_id, :id => "#{line.parameterize}_taxon_id" %>
             <%= f.submit t(:add_to_list), :disabled => true, :id => "#{line.parameterize}_add", 
               :class => "disabled default button", "data-loading-click" => "Adding..." %>
-            <!-- <span class="loading status inter" style="display: none">Adding...</span> -->
           <% end %>
         </div>
         

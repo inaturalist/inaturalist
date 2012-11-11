@@ -1,12 +1,12 @@
 class EmailerController < ApplicationController
 
-  before_filter :login_required
+  before_filter :authenticate_user!
 
   def invite
     from = "#{APP_CONFIG[:site_name]} <#{APP_CONFIG[:noreply_email]}>"
     subject = "#REAL NAME wants you to join them on iNaturalist"
     @sending_user = current_user
-    @sending_user_real_name = "YOUR REAL NAME"
+    @sending_user_real_name = current_user.name.blank? ? current_user.login : current_user.name.split.first
     @observations = Observation.by(current_user.id).first(10)
   end
 
@@ -18,7 +18,7 @@ class EmailerController < ApplicationController
     end
     
     emails_allowed = 60 - current_user.invites.count(:conditions => ["created_at >= ?", 30.days.ago])
-    addresses = params[:email][:addresses].to_s.split(',').map(&:strip).select{|e| e =~ Authentication.email_regex}
+    addresses = params[:email][:addresses].to_s.split(',').map(&:strip).select{|e| e =~ Devise.email_regexp}
     @existing_users = User.all(:conditions => ["email IN (?)", addresses])
     @existing_invites = Invite.all(:conditions => ["invite_address IN (?)", addresses])
     
@@ -30,7 +30,7 @@ class EmailerController < ApplicationController
     @invited = @invited[0..emails_allowed].try(:sort) || []
     
     @invited.each do |address|
-      Emailer.deliver_invite(address, params[:email], current_user)
+      Emailer.invite(address, params[:email], current_user).deliver
     end
   end
 end

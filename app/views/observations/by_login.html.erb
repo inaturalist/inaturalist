@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for(:extracss) do %>
-<%= stylesheet_link_tag 'observations', 'observations/by_login', 'observations/filters' %>
+<%= stylesheet_link_tag 'observations/by_login', 'observations/filters' %>
 <style type="text/css" media="screen">
   .observations.table .header.user,
   .observations.table .observation .attribute.user {
@@ -50,6 +50,8 @@
     margin-bottom: -1px;
   }
   
+  #map { margin-bottom: 5px; }
+  
 </style>
 <!--[if lte IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie', 'observations-ie' %>
@@ -76,7 +78,7 @@
     <% end -%>
     function initialize() {
       // create a Google Map instance
-      var map = window.map = iNaturalist.Map.createMap({lat: 9.793177, lng: -83.971242, zoom: 8});
+      var map = window.map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
     
       // Create a basic icon and a 'new' icon
       // Note the convient color syntax
@@ -84,11 +86,11 @@
       var newObsIcon = iNaturalist.Map.createObservationIcon({color: "DeepPink"});
     
       var observations = <%= @observations.to_json(:viewer => current_user, 
-        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>;
+        :include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>;
       
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+      
       $.each(observations, function(o) {
         var o = this;
         if ((o.latitude && o.longitude) || (o.private_latitude && o.private_longitude)) {
@@ -188,7 +190,7 @@
         if (options.method == "post") {
           var form = $('<form method="post" style="display:none"></form>').attr('action', baseURL).append(
             $('<input type="hidden" name="o">').val(obs_ids.join(',')),
-            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token %>')
+            $('<input type="hidden" name="authenticity_token">').val('<%= form_authenticity_token.html_safe %>')
           );
           $('body').append(form);
           $(form).submit();
@@ -216,7 +218,6 @@
         iNaturalist.restfulDelete("<%= url_for(:action => 'delete_batch') %>", {
           plural: true,
           data: {
-            authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect %>),
             o: obs_ids.join(',')
           }, 
           complete: function() {
@@ -272,7 +273,7 @@
     <ul>
       <% for o in @proj_obs_errors_obs %>
         <li class="clear stacked">
-          <% image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
+          <%= image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
             <%= link_to o.to_plain_s(:user => false), o %>
             <div>
               <%= @proj_obs_errors[:errors][o.id].join("<br/>") %>
@@ -286,7 +287,7 @@
 
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
-    <% if @user && @user.login == @login -%>
+    <% if is_me?(@selected_user) -%>
       <%= link_to t(:add_observations_), new_observation_path, 
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
@@ -332,7 +333,7 @@
       :class => "inter#{' open' if @filters_open} minor button") %>
   </div>
   <div id="filters" class="clear"<% unless @filters_open %> style="display: none"<% end %>>
-    <% form_tag observations_by_login_path(@login), :method => :get do -%>
+    <%= form_tag observations_by_login_path(@login), :method => :get do -%>
       <%= render :partial => 'filter_fields', :locals => {
         :selected_taxa => @iconic_taxa
       } %>
@@ -351,8 +352,8 @@
   <% if @observations.empty? %>
     <div id="no_obs_message" class="description">
       <%=t :no_matching_observations %>
-      <% if @user and @user.login == @login %>
-      <%= link_to t(:add_observations_), new_observation_path, 
+      <% if logged_in? && current_user.login == @login %>
+      <%= link_to 'Add Observations', new_observation_path, 
                   :class => 'default inline button' %>
       <% end %>
     </div>
@@ -360,8 +361,8 @@
   <div id="pagination">
     <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
-      <% form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
-        <%= f.label t(:per_page) %>
+      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
+        <%= f.label :per_page %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
@@ -396,9 +397,9 @@
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to(t(:atom), observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params),     :class => 'atomlink', :rel => "nofollow") %>
-      <%= link_to(t(:kml),  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params),  :class => 'kmllink', :rel => "nofollow") %>
-      <%= link_to(t(:csv),  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params),      :class => 'csvlink', :rel => "nofollow") %>
+      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params),     :class => 'atomlink', :rel => "nofollow") %>
+      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params),  :class => 'kmllink', :rel => "nofollow") %>
+      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params),      :class => 'csvlink', :rel => "nofollow") %>
       
     </span>
   </div>

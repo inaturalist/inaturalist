@@ -40,7 +40,7 @@
      // Load in some observations
       var observations = [];
       <% for obs in @observations %>
-      observations.push(<%= obs.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }) %>);
+        observations.push(<%= obs.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>)
       <% end %>
 
       // build a simple sidebar for the map
@@ -143,15 +143,14 @@
 
 <% if @announcement -%>
   <div class="column span-24">
-    <%= @announcement.body %>
+    <%= @announcement.body.html_safe %>
   </div>
 <% end -%>
 
 <div class="column prepend-2 span-7">
     <h3 class="description"><%=t :recent_additions %></h3>
   <div id="observations" class="compact mini observations date-added">
-    <%= render(:partial => 'observations/cached_component', 
-               :collection => @observations) %>
+    <%= render(:partial => 'observations/cached_component', :collection => @observations) %>
   </div>
   <p><%= link_to( t(:more), observations_path(:order_by => 'created_at', :order => 'desc'), :class => 'readmore') %></p>
 </div>

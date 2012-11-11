@@ -1,19 +1,21 @@
+#encoding: utf-8
 class FacebookPhoto < Photo
   
   Photo.descendent_classes ||= []
   Photo.descendent_classes << self
   
   validates_presence_of :native_photo_id
+  validate :owned_by_user?
+
+  def owned_by_user?
+    errors.add(:user, "doesn't own that photo") unless owned_by?(user)
+  end
 
   def owned_by?(user)
     fbp_json = FacebookPhoto.get_api_response(self.native_photo_id, {:user=>user})
     return false unless user && fbp_json
     return false if user.facebook_identity.blank? || (fbp_json['from']['id'] != user.facebook_identity.provider_uid)
     true
-  end
-
-  def validate
-    owned_by?(user)
   end
 
   def self.get_api_response(native_photo_id, options = {})
@@ -52,12 +54,42 @@ class FacebookPhoto < Photo
     fbp_json = self.api_response || FacebookPhoto.get_api_response(self.native_photo_id, :user => self.user)
     observation = Observation.new
     observation.user = self.user if self.user
-    observation.photos << self
+    observation.observation_photos.build(:photo => self)
     observation.description = fbp_json["name"]
     #observation.observed_on_string = fp.taken.to_s(:long)
     #observation.munge_observed_on_with_chronic
     observation.time_zone = observation.user.time_zone if observation.user
     observation
+  end
+
+  # Get all the photos posted to the feed of the specified facebook group
+  def self.fetch_from_fb_group(fb_group_id, user, options={})
+    options[:limit] ||= 10
+    options[:page] ||= 1
+    limit = (options[:limit] || 10).to_i
+    offset = ((options[:page] || 1).to_i - 1) * limit
+    # this query gets the feed items from this group
+    group_feed = user.facebook_api.fql_query("SELECT attachment 
+                                              FROM stream 
+                                              WHERE source_id=#{fb_group_id}
+                                              LIMIT 5000")
+
+    # filter out feed items that don't have a photo attached
+    group_feed_photo_attachments = group_feed.delete_if{|f| f['attachment'].nil? || f['attachment']['fb_object_type']!='photo'}
+    # pagination
+    group_feed_photo_attachments = group_feed_photo_attachments[offset..(offset+limit-1)]
+    group_feed_photo_ids = group_feed_photo_attachments.map{|a| a['attachment']['media'][0]['photo']['fbid']}
+    fb_photos = user.facebook_api.get_objects(group_feed_photo_ids) # return hash like {"photo1_id"=>{photo1_data}, ...}
+    return [] if fb_photos.is_a?(Array) and fb_photos.empty?
+    fb_photos.values.map{|fp| FacebookPhoto.new_from_api_response(fp) }
+  rescue Koala::Facebook::APIError => e
+    Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    []
+  end
+
+  def self.add_comment(user, fb_photo_id, comment_text)
+    return nil if user.facebook_api.nil?
+    user.facebook_api.put_comment(fb_photo_id, comment_text)
   end
 
 #  
@@ -77,4 +109,5 @@ class FacebookPhoto < Photo
 #    end
 #    taxa.compact
 #  end
+  
 end
