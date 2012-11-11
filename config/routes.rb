@@ -215,7 +215,7 @@ Inaturalist::Application.routes.draw do
   match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
   match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => simplified_login_regex }
   match 'journal/:login/:id/edit' => 'posts#edit', :as => :edit_journal_post
-  resources :posts
+  resources :posts, :except => [:index]
   resources :posts,
     :as => 'journal_posts',
     :path => "/journal/:login",
