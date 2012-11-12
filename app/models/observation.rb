@@ -156,6 +156,7 @@ class Observation < ActiveRecord::Base
     has "num_identification_agreements < num_identification_disagreements",
       :as => :identifications_most_disagree, :type => :boolean
     has project_observations(:project_id), :as => :projects #, :type => :multi
+    has observation_field_values(:observation_field_id), :as => :observation_fields
     set_property :delta => :delayed
   end
   
