@@ -347,7 +347,16 @@ class ObservationsController < ApplicationController
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
         :positional_accuracy, :positioning_device, :positioning_method,
         :observed_on_string].each do |obs_attr|
-      @observation.send("#{obs_attr}=", params[obs_attr]) unless params[obs_attr].blank?
+      next if params[obs_attr].blank?
+      # sync_photo indicates that the user clicked sync photo, so presumably they'd 
+      # like the photo attrs to override the URL
+      # invite links are the other case, in which URL params *should* override the 
+      # photo attrs b/c the person who made the invite link chose a taxon or something
+      if params[:sync_photo]
+        @observation.send("#{obs_attr}=", params[obs_attr]) if @observation.send(obs_attr).blank?
+      else
+        @observation.send("#{obs_attr}=", params[obs_attr])
+      end
     end
     if @taxon
       @observation.taxon = @taxon
