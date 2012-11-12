@@ -111,7 +111,7 @@ module Ratatosk
                                 :object => namebank_id)
             new_taxon = UBioTaxonAdapter.new(rdf)
           rescue UBioConnectionError => e
-            taxon.logger.error("Error while running get_lineage_for(#{taxon}): #{e}")
+            taxon.logger.error("Error while running get_lineage_for(#{taxon}): #{e}") if taxon.logger
             raise NameProviderError, e.message
           rescue StandardError => e
             raise NameProviderError, "uBio bonked: #{e}"
