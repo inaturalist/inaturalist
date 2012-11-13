@@ -1487,17 +1487,9 @@ class Observation < ActiveRecord::Base
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids).scoped
     scope = scope.by(options[:user]) if options[:user]
-    scope = scope.where("observations.id IN (?)", options[:records]) if options[:records]
-    scope.find_in_batches do |batch|
-      obs_ids = batch.map(&:id)
-      user_ids = batch.map(&:user_id).uniq
-      # Observation.update_all(["taxon_id = ?", taxon.id], ["id IN (?)", obs_ids])
-      user_ids.each do |user_id|
-        Identification.update_all(
-          ["taxon_id = ?", taxon.id], 
-          ["taxon_id IN (?) AND user_id = ? AND observation_id IN (?)", input_taxon_ids, user_id, obs_ids])
-      end
-      batch.each {|o| o.update_attributes(:taxon_id => taxon.id)}
+    scope = scope.where("observations.id IN (?)", options[:records]) unless options[:records].blank?
+    scope.find_each do |observation|
+      observation.update_attributes(:taxon => taxon)
     end
   end
   

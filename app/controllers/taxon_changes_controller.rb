@@ -192,24 +192,37 @@ class TaxonChangesController < ApplicationController
       return
     end
 
-    if @records.blank?
-      if @klass.respond_to?(:update_for_taxon_change)
-        @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user)
-      else
-        @klass.update_all(
-          ["taxon_id = ?", @taxon.id], 
-          ["user_id = ? AND taxon_id IN (?)", current_user, @taxon_change.input_taxa.map(&:id)])
-      end
+    updated = 0
+    not_updated = 0
+    errors = []
+
+    if @klass.respond_to?(:update_for_taxon_change)
+      @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user, :records => @records)
     else
-      if @klass.respond_to?(:update_for_taxon_change)
-        @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user, :records => @records)
-      else
-        @klass.update_all(
-          ["taxon_id = ?", @taxon.id], 
-          ["user_id = ? AND id IN (?)", current_user, @records.map(&:id)])
+      records = @records 
+      records ||= current_user.send("#{@klass.name.underscore.pluralize}").
+        where("taxon_id IN (?)", @taxon_change.input_taxa).scoped
+      block = Proc.new do |record|
+        record.update_attributes(:taxon => @taxon)
+        if record.valid?
+          updated += 1
+        else
+          not_updated += 1
+          errors += record.errors.full_messages
+        end
+      end
+      begin
+        records.find_each(&block)
+      rescue NoMethodError
+        records.each(&block)
       end
     end
-    flash[:notice] = "Records updated"
+    errors.uniq!
+    if errors.blank?
+      flash[:notice] = "Records updated"
+    else
+      flash[:error] = "#{not_updated} record(s) failed to update: #{errors.to_sentence.downcase}"
+    end
     redirect_back_or_default(@taxon_change)
   end
   
@@ -231,8 +244,10 @@ class TaxonChangesController < ApplicationController
 
   def load_user_content_info
     @class_names = []
+    skip_reflections = %w(identifications)
     has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
     has_many_reflections.each do |k, reflection|
+      next if skip_reflections.include?(k.to_s)
       # Avoid those pesky :through relats
       next unless reflection.klass.column_names.include?(reflection.foreign_key)
       next unless reflection.klass.column_names.include?('taxon_id')

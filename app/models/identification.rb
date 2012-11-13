@@ -253,6 +253,16 @@ class Identification < ActiveRecord::Base
       end
     end
   end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = Identification.where("identifications.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.where(:user_id => options[:user]) if options[:user]
+    scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
+    scope.find_each do |ident|
+      Identification.create(:observation => ident.observation, :taxon => taxon, :user => ident.user)
+    end
+  end
   
   # /Static #################################################################
   
