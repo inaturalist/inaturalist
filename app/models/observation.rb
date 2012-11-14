@@ -750,13 +750,13 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return true if target_taxa.empty?
     
-    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true)
-    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
      
-    ProjectList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     
     # Reset the instance var so it doesn't linger around
@@ -769,7 +769,7 @@ class Observation < ActiveRecord::Base
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
-    CheckList.delay(:priority => 2).refresh_with_observation(id, :taxon_id => taxon_id, 
+    CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
@@ -785,10 +785,10 @@ class Observation < ActiveRecord::Base
   def refresh_lists_after_destroy
     return true if @skip_refresh_lists
     return true unless taxon
-    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true)
-    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     true
   end
@@ -973,7 +973,7 @@ class Observation < ActiveRecord::Base
     observation.set_quality_grade(:force => true)
     observation.save
     if observation.quality_grade_changed?
-      CheckList.delay(:priority => 2).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+      CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
   end

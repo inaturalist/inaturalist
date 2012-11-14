@@ -109,7 +109,7 @@ class TaxonChange < ActiveRecord::Base
 
   def notify_users_of_input_taxa_later
     return true unless committed_on_changed? && committed?
-    delay(:priority => 1).notify_users_of_input_taxa
+    delay(:priority => NOTIFICATION_PRIORITY).notify_users_of_input_taxa
     true
   end
 

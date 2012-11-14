@@ -83,7 +83,7 @@ class Identification < ActiveRecord::Base
     end
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.delay(:priority => 1).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -105,7 +105,7 @@ class Identification < ActiveRecord::Base
     
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil)
-    ProjectUser.delay(:priority => 1).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -123,7 +123,7 @@ class Identification < ActiveRecord::Base
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
     return true if self.observation.id.blank?
-    Identification.delay(:priority => 1).run_update_curator_identification(self)
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(self)
     true
   end
   
@@ -161,7 +161,7 @@ class Identification < ActiveRecord::Base
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    Identification.delay(:priority => 1).run_revisit_curator_identification(self.observation_id, self.user_id)
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_revisit_curator_identification(self.observation_id, self.user_id)
     true
   end
   
