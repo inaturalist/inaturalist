@@ -662,6 +662,7 @@ class Taxon < ActiveRecord::Base
   def update_listed_taxa
     return true if ancestry.blank?
     return true if ancestry_callbacks_disabled?
+    return true unless ancestry_changed?
     Taxon.delay(:priority => 1).update_listed_taxa_for(id, ancestry_was)
     true
   end
@@ -685,7 +686,9 @@ class Taxon < ActiveRecord::Base
     if ListRule.exists?([
         "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
         Taxon.to_s, ids])
-      LifeList.delay(:priority => 1).update_life_lists_for_taxon(self)
+      unless Delayed::Job.where("handler LIKE '%update_life_lists_for_taxon%id: ''#{id}''%'").exists?
+        LifeList.delay(:priority => 1).update_life_lists_for_taxon(self)
+      end
     end
     true
   end
