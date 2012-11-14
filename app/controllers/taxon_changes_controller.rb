@@ -196,27 +196,15 @@ class TaxonChangesController < ApplicationController
     not_updated = 0
     errors = []
 
-    if @klass.respond_to?(:update_for_taxon_change)
-      @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user, :records => @records)
-    else
-      records = @records 
-      records ||= current_user.send("#{@klass.name.underscore.pluralize}").
-        where("taxon_id IN (?)", @taxon_change.input_taxa).scoped
-      block = Proc.new do |record|
-        record.update_attributes(:taxon => @taxon)
-        if record.valid?
-          updated += 1
-        else
-          not_updated += 1
-          errors += record.errors.full_messages
-        end
-      end
-      begin
-        records.find_each(&block)
-      rescue NoMethodError
-        records.each(&block)
+    @taxon_change.update_records_of_class(@klass, @taxon, :user => current_user, :records => @records) do |record|
+      if record.valid?
+        updated += 1
+      else
+        not_updated += 1
+        errors += record.errors.full_messages
       end
     end
+
     errors.uniq!
     if errors.blank?
       flash[:notice] = "Records updated"

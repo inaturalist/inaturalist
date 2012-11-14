@@ -261,6 +261,7 @@ class Identification < ActiveRecord::Base
     scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
     scope.find_each do |ident|
       Identification.create(:observation => ident.observation, :taxon => taxon, :user => ident.user)
+      yield(ident) if block_given?
     end
   end
   

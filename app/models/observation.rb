@@ -1483,13 +1483,14 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+  def self.update_for_taxon_change(taxon_change, taxon, options = {}, &block)
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids).scoped
     scope = scope.by(options[:user]) if options[:user]
     scope = scope.where("observations.id IN (?)", options[:records]) unless options[:records].blank?
     scope.find_each do |observation|
       observation.update_attributes(:taxon => taxon)
+      yield(observation) if block_given?
     end
   end
   
