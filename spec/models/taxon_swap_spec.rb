@@ -112,6 +112,33 @@ describe TaxonSwap, "commit_records" do
       @swap.commit_records
     }.should change(Update, :count).by(1)
   end
+
+  it "should should update check listed taxa" do
+    tr = TaxonRange.make!(:taxon => @input_taxon)
+    cl = CheckList.make!
+    lt = ListedTaxon.make!(:list => cl, :taxon => @input_taxon, :taxon_range => tr)
+    @swap.commit_records
+    lt.reload
+    lt.taxon.should eq(@output_taxon)
+  end
+
+  it "should add new identifications" do
+    ident = Identification.make!(:taxon => @input_taxon)
+    @swap.commit_records
+    ident.reload
+    ident.should_not be_current
+    new_ident = ident.observation.identifications.by(ident.user).order("id asc").last
+    new_ident.should_not eq(ident)
+    new_ident.taxon.should eq(@output_taxon)
+  end
+
+  it "should not update existing identifications" do
+    ident = Identification.make!(:taxon => @input_taxon)
+    @swap.commit_records
+    ident.reload
+    ident.should_not be_current
+    ident.taxon.should_not eq(@output_taxon)
+  end
 end
 
 def prepare_swap

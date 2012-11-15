@@ -259,9 +259,12 @@ class Identification < ActiveRecord::Base
     scope = Identification.where("identifications.taxon_id IN (?)", input_taxon_ids).scoped
     scope = scope.where(:user_id => options[:user]) if options[:user]
     scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.where(options[:conditions]) if options[:conditions]
+    scope = scope.includes(options[:include]) if options[:include]
+    scope = scope.where("identifications.created_at < ?", Time.now)
     scope.find_each do |ident|
-      Identification.create(:observation => ident.observation, :taxon => taxon, :user => ident.user)
-      yield(ident) if block_given?
+      new_ident = Identification.create(:observation => ident.observation, :taxon => taxon, :user => ident.user)
+      yield(new_ident) if block_given?
     end
   end
   

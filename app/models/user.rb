@@ -47,6 +47,9 @@ class User < ActiveRecord::Base
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
+  has_many :identifications_for_others, :class_name => "Identification", 
+    :include => [:observation],
+    :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
   
   has_many :posts, :dependent => :destroy

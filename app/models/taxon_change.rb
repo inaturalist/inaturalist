@@ -114,20 +114,22 @@ class TaxonChange < ActiveRecord::Base
     return if input_taxa.blank?
     Rails.logger.info "[INFO #{Time.now}] starting commit_records for #{self}"
     notified_user_ids = []
-    associations_to_update = %w(observations listed_taxa taxon_links)
-    has_many_reflections = Taxon.reflections.select do |k,v| 
-      associations_to_update.include?(k.to_s)
+    associations_to_update = %w(observations listed_taxa taxon_links identifications)
+    has_many_reflections = associations_to_update.map do |a| 
+      Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
       reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa).find_each do |record|
         notification_needed = record.respond_to?(:user) && record.user && (!automatable? || !record.user.prefers_automatic_taxonomic_changes?)
-        if notification_needed && !notified_user_ids.include?(record.user.id)
-          Update.create(
-            :resource => self,
-            :notifier => self,
-            :subscriber => record.user, 
-            :notification => "committed")
-          notified_user_ids << record.user.id
+        if notification_needed
+          unless notified_user_ids.include?(record.user.id)
+            Update.create(
+              :resource => self,
+              :notifier => self,
+              :subscriber => record.user, 
+              :notification => "committed")
+            notified_user_ids << record.user.id
+          end
         elsif automatable?
           update_records_of_class(record.class, output_taxon, :records => [record])
         end
@@ -145,8 +147,10 @@ class TaxonChange < ActiveRecord::Base
     records = if options[:records]
       options[:records]
     else
-      scope = klass.send(@klass.name.underscore.pluralize).where("taxon_id IN (?)", input_taxa).scoped
+      scope = klass.send(@klass.name.underscore.pluralize).where("#{klass.table_name}.taxon_id IN (?)", input_taxa).scoped
       scope = scope.where("user_id = ?", options[:user]) if options[:user]
+      scope = scope.where(options[:conditions]) if options[:conditions]
+      scope = scope.includes(options[:include]) if options[:include]
       scope
     end
     proc = Proc.new do |record|
