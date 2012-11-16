@@ -11,9 +11,9 @@
         <td> <%= t(:community_supported_id) %></td>
         <td>
           <% if o.community_supported_id? %>
-            <span class="good">yes</span>
+            <span class="good"><%=t :yes %></span>
           <% else %>
-            no
+            <%=t :no %>
           <% end -%>
           <div class="small meta">
             <%= o.num_identification_agreements == 1 ? t(:n_person_agrees, :amount=>"#{o.num_identification_agreements}") : t(:n_people_agrees, :amount=>"#{o.num_identification_agreements}")  %>

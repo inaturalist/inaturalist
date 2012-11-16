@@ -597,7 +597,7 @@
   <% end -%>
   
   <div class="rights stacked meta">
-    <%= t(:observation_rights, :rights => "#{rights @observation}") %>
+    <%= t(:observation_rights_html, :rights => rights(@observation)) %>
     <% if is_me? @observation.user -%>
       <span class="button">
         <%= link_to_function t(:edit), "$('#editlicense').dialog({modal:true, width:'auto', title: 'Edit license'})" %>

@@ -66,10 +66,10 @@ class Observation < ActiveRecord::Base
   LICENSES = [
     ["CC-BY", :cc_by_name, :cc_by_description],
     ["CC-BY-NC", :cc_by_nc_name, :cc_by_nc_description],
-    ["CC-BY-SA", :cc_by_sa_name,:cc_by_sa_description],
+    ["CC-BY-SA", :cc_by_sa_name, :cc_by_sa_description],
     ["CC-BY-ND", :cc_by_nd_name, :cc_by_nd_description],
-    ["CC-BY-NC-SA",:cc_by_nc_sa_name,:cc_by_nc_sa_description],
-    ["CC-BY-NC-ND", :cc_by_nc_nd_name,:cc_by_nc_nd_description]
+    ["CC-BY-NC-SA",:cc_by_nc_sa_name, :cc_by_nc_sa_description],
+    ["CC-BY-NC-ND", :cc_by_nc_nd_name, :cc_by_nc_nd_description]
   ]
   LICENSE_CODES = LICENSES.map{|row| row.first}
   LICENSES.each do |code, name, description|

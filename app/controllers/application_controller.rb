@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   before_filter :user_logging
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
+  before_filter :set_locale
   
   PER_PAGES = [10,30,50,100]
   HEADER_VERSION = 8
@@ -29,6 +30,10 @@ class ApplicationController < ActionController::Base
   # We can return to this location by calling #redirect_back_or_default.
   def store_location
     session[:return_to] = request.fullpath
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   # Redirect to the URI stored by the most recent store_location call or

@@ -68,6 +68,7 @@ FlickRaw.shared_secret = FLICKR_SHARED_SECRET
 
 # General settings
 SITE_NAME = INAT_CONFIG['general']['SITE_NAME']
+SITE_NAME_SHORT = INAT_CONFIG['general']['SITE_NAME_SHORT'] || SITE_NAME
 OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
 
 # apparently we still need this for static maps

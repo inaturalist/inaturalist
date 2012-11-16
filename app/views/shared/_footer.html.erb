@@ -1,20 +1,24 @@
 <div id="footer" class="clear">
-  <div id="footer_text" class="stacked">
+  <div class="meta stacked">
+    <span class="meta"><%=t :follow_us %></span>
+    <%=raw [
+      link_to('Twitter', INAT_CONFIG['twitter'].try(:[], 'url')),
+      link_to('Facebook', INAT_CONFIG['facebook'].try(:[], 'url'))
+    ].join('  <span class="meta">&amp;</span> ') %>
+    <span class="meta">|&nbsp; <%= t(:mobile_apps_for) %></span>
+    <a href="http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8">iPhone</a>
+    <span class="meta">&amp;</span>
+    <a href="https://market.android.com/details?id=org.inaturalist.android">Android</a>
+    |
+    Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>open source software
+  </div>
+
+  <div class="meta">
     <a href="/about"><%=t :about %> <%= SITE_NAME %></a> &nbsp;
     <a href="/help"><%=t :help %></a> &nbsp;
     <a href="<%= INAT_CONFIG['feedback_url'] %>"><%=t :feedback %></a> &nbsp;
     <a href="/terms.html"><%=t :terms_service %></a> &nbsp;
     <a href="/privacy.html"><%=t :privacy%></a> &nbsp;
-    <span class="description">|&nbsp; <%=t :follow_us %></span>
-    <%= [
-      link_to('Twitter', INAT_CONFIG['twitter'].try(:[], 'url')),
-      link_to('Facebook', INAT_CONFIG['facebook'].try(:[], 'url'))
-    ].join('  <span class="description">&amp;</span> ') %>
-  </div>
-  <div class="meta">
-    Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> open source software
-  </div>
-  <div>
   </div>
 </div>
 <%- if is_mobile_device? && @mobilized -%>
