@@ -43,8 +43,8 @@
     <%= error_messages_for :current_user %>
     <div class="column span-18 stacked">
       <%= image_tag(current_user.icon.url(:thumb), :class => 'usericon left') %>
-      <%= f.file_field(:icon, :label => 'Icon/Photo', :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
-      <%= link_to_function('change', "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
+      <%= f.file_field(:icon, :label => t(:icon_slash_photo), :class => 'text', :style => 'display: none', :accept => "image/jpg,image/jpeg,image/png,image/gif") %>
+      <%= link_to_function(t(:change), "$('#user_icon').show(); $(this).hide()", :class => 'button inlineblock') %>
     </div>
     <div class="column span-9">
       <%= f.text_field(:email, :class => "text", :required => true) %>
@@ -59,31 +59,31 @@
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
     <div id="preferencescol" class="column span-9 stacked">
-      <h3>Email Settings</h3>
+      <h3><%= t :email_settings %></h3>
       <div id="notificationpreferences" class="stacked">
         <label><%=t :receive_email_notifications_when_people_leave_you %></label>
         <% for attr_name in User::NOTIFICATION_PREFERENCES %>
           <%= f.check_box "prefers_#{attr_name}", 
-            :label => attr_name.humanize.capitalize.gsub(/ email notification/, '').pluralize, 
+            :label => t(attr_name.gsub(/_email_notification/, '').pluralize).mb_chars.capitalize, 
             :label_after => true %>
         <% end %>
       </div>
       
       <div class="stacked">
-        <label>Or if you just don't want any email...</label>
+        <label><%= t :or_if_you_dont_want_email %></label>
         <%= f.check_box "prefers_no_email", 
-          :label => "Don't send me any email!", 
+          :label => t(:dont_send_me_email), 
           :label_after => true %>
       </div>
     </div>
 
     <div class="last column span-9 stacked">
-      <h3>Taxon Change Settings</h3>
+      <h3><%= t :taxon_change_settings %></h3>
       <div class="stacked">
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
           :label => "Automatically update my content for taxon changes", 
           :label_after => true,
-          :description => "When taxa are merged or renamed on iNat, your observations, listed taxa, identifications, etc. will be automatically updated to the new taxa if the change is unambiguous. If you opt out or the change is ambiguous (e.g. a split), you will receive an update about the change linking to a tool you can use to manually update your content if you choose." %>
+          :description => t('views.users.edit.taxon_change_desc') %>
       </div>
     </div>
     
@@ -91,9 +91,9 @@
       <div id="licenses" class="stacked">
         <h3><%= t(:licensing) %></h3>
         <p class="ui description">
-          <%= t(:licensing_your_content_gives_other_people_legal_right_to_use) %>
+          <%= t('views.users.edit.licensing_desc_html') %>
           <%= link_to_function t(:learn_what_these_licenses_mean), 
-            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: t(:about_the_cc_licenses)})" %>
+            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
         </p>
         
         <div class="column span-9 verticalmiddle licensechoices">
@@ -120,7 +120,7 @@
         
         <div class="last column span-18">
           <%= link_to_function "<span class='helptip'></span> About these licenses".html_safe, 
-            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: 'About Creative Commons licenses'})" %>
+            "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
           <div id="aboutlicenses" class="dialog" style="display:none">
             <div class="column span-18 verticalmiddle">
               <% for code, name, description in Observation::LICENSES %>
@@ -142,6 +142,7 @@
             <%= t(:license_descriptions_and_images) %>
             &copy; <%= Date.today.year %> <%= t(:cc_used_under_a) %> <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons &mdash; Attribution 3.0 Unported
               &mdash; CC BY 3.0"><%= t(:cc_attribution_license) %></a>
+            (<%= t :so_meta! %>)
           </p>
         </div>
       </div>
