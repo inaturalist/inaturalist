@@ -347,7 +347,16 @@ class ObservationsController < ApplicationController
     [:latitude, :longitude, :place_guess, :location_is_exact, :map_scale,
         :positional_accuracy, :positioning_device, :positioning_method,
         :observed_on_string].each do |obs_attr|
-      @observation.send("#{obs_attr}=", params[obs_attr]) unless params[obs_attr].blank?
+      next if params[obs_attr].blank?
+      # sync_photo indicates that the user clicked sync photo, so presumably they'd 
+      # like the photo attrs to override the URL
+      # invite links are the other case, in which URL params *should* override the 
+      # photo attrs b/c the person who made the invite link chose a taxon or something
+      if params[:sync_photo]
+        @observation.send("#{obs_attr}=", params[obs_attr]) if @observation.send(obs_attr).blank?
+      else
+        @observation.send("#{obs_attr}=", params[obs_attr])
+      end
     end
     if @taxon
       @observation.taxon = @taxon
@@ -1635,19 +1644,44 @@ class ObservationsController < ApplicationController
         [search_params[:projects]].flatten
       end
     end
+
+    unless search_params[:ofv_params].blank?
+      ofs = search_params[:ofv_params].map do |k,v|
+        v[:observation_field].blank? ? nil : v[:observation_field].id
+      end.compact
+      sphinx_options[:with][:observation_fields] = ofs unless ofs.blank?
+    end
     
     # Sanitize query
     q = sanitize_sphinx_query(@q)
     
     # Field-specific searches
-    if @search_on
+    obs_ids = if @search_on
       sphinx_options[:conditions] ||= {}
       # not sure why sphinx chokes on slashes when searching on attributes...
       sphinx_options[:conditions][@search_on.to_sym] = q.gsub(/\//, '')
-      @observations = Observation.search(find_options.merge(sphinx_options))
+      Observation.search_for_ids(find_options.merge(sphinx_options))
     else
-      @observations = Observation.search(q, find_options.merge(sphinx_options))
+      Observation.search_for_ids(q, find_options.merge(sphinx_options))
     end
+    @observations = Observation.where("observations.id in (?)", obs_ids).
+      order_by(search_params[:order_by]).
+      includes(find_options[:include]).scoped
+
+    # lame hacks
+    unless search_params[:ofv_params].blank?
+      search_params[:ofv_params].each do |k,v|
+        next unless of = v[:observation_field]
+        next if v[:value].blank?
+        v[:observation_field].blank? ? nil : v[:observation_field].id
+        @observations = @observations.has_observation_field(of.id, v[:value])
+      end
+    end
+
+    @observations = WillPaginate::Collection.create(obs_ids.current_page, obs_ids.per_page, obs_ids.total_entries) do |pager|
+      pager.replace(@observations.to_a)
+    end
+
     begin
       @observations.total_entries
     rescue ThinkingSphinx::SphinxError, Riddle::OutOfBoundsError => e

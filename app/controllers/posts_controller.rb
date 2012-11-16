@@ -172,7 +172,7 @@ class PostsController < ApplicationController
       @parent = @display_project
     end
     @display_user ||= @post.user if @post
-    @parent ||= @post.parent
+    @parent ||= @post.parent if @post
     render_404 && return if @parent.blank?
     if @parent.is_a?(Project)
       @parent_display_name = @parent.title 

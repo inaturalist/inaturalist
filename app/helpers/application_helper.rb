@@ -133,7 +133,7 @@ module ApplicationHelper
   
   def curator_of?(project)
    return false unless logged_in?
-   current_user.project_users.first(:conditions => {:project_id => project.id, :role => 'curator'})
+   current_user.project_users.where(:project_id => project).where("role IN ('manager', 'curator')").exists?
   end
   
   def member_of?(project)

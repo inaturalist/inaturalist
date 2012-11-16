@@ -1,7 +1,7 @@
 <% content_for(:title) do %> <%= t(:edit_your_account_and_profile) %><% end %>
 <% content_for(:extracss) do %>
 <style type="text/css" media="screen">
-  textarea{width:330px;}
+  textarea{width:690px; height: 200px;}
   .usericon{float:left;margin-right:1em;border:2px solid #ddd;}
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
@@ -55,12 +55,13 @@
         {:selected => current_user.time_zone}, 
         {:class => 'select', :description => t(:all_your_observations_will_default_to_this_time_zone)}) %>
     </div>
-    <div class="column span-9">
+    <div class="last column span-18">
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
     </div>
-    <div id="preferencescol" class="last column span-9">
-      <div class="stacked">
-        <label><%= t(:receive_email_notifications_when_people_leave_you)%></label>
+    <div id="preferencescol" class="column span-9 stacked">
+      <h3>Email Settings</h3>
+      <div id="notificationpreferences" class="stacked">
+        <label><%=t :receive_email_notifications_when_people_leave_you %></label>
         <% for attr_name in User::NOTIFICATION_PREFERENCES %>
           <%= f.check_box "prefers_#{attr_name}", 
             :label => attr_name.humanize.capitalize.gsub(/ email notification/, '').pluralize, 
@@ -74,7 +75,16 @@
           :label => "Don't send me any email!", 
           :label_after => true %>
       </div>
-      
+    </div>
+
+    <div class="last column span-9 stacked">
+      <h3>Taxon Change Settings</h3>
+      <div class="stacked">
+        <%= f.check_box "prefers_automatic_taxonomic_changes", 
+          :label => "Automatically update my content for taxon changes", 
+          :label_after => true,
+          :description => "When taxa are merged or renamed on iNat, your observations, listed taxa, identifications, etc. will be automatically updated to the new taxa if the change is unambiguous. If you opt out or the change is ambiguous (e.g. a split), you will receive an update about the change linking to a tool you can use to manually update your content if you choose." %>
+      </div>
     </div>
     
     <div class="column span-18">
@@ -189,7 +199,7 @@
       </div>
       
       <div class="clear">
-      <%= submit_tag(t(:change_password), :class => 'button') %>
+        <%= submit_tag(t(:change_password), :class => 'button') %>
       </div>
     <% end %>
   </div>

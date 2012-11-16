@@ -171,6 +171,11 @@ Taxon.blueprint(:threatened) do
   is_active { true }
 end
 
+TaxonChange.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
 TaxonDrop.blueprint do
   source { Source.make! }
   user { User.make! }

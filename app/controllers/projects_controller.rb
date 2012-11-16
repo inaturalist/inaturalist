@@ -517,16 +517,14 @@ class ProjectsController < ApplicationController
   end
   
   def remove
-    error_msg = nil
-    unless @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
-      error_msg = "That observation hasn't been added this project."
-    end
-    
-    unless @project_observation.observation.user_id == current_user.id || (@project_user && @project_user.is_curator?)
-      error_msg = "You can't remove other people's observations."
+    @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
+    error_msg = if @project_observation.blank?
+      "That observation hasn't been added this project."
+    elsif @project_observation.observation.user_id != current_user.id && (@project_user.blank? || !@project_user.is_curator?)
+      "You can't remove other people's observations."
     end
 
-    if error_msg
+    unless error_msg.blank?
       respond_to do |format|
         format.html do
           flash[:error] = error_msg

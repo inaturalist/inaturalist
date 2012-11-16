@@ -2,12 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSwap, "commit" do
   before(:each) do
-    @input_taxon = Taxon.make!
-    @output_taxon = Taxon.make!
-    @swap = TaxonSwap.make
-    @swap.add_input_taxon(@input_taxon)
-    @swap.add_output_taxon(@output_taxon)
-    @swap.save!
+    prepare_swap
   end
 
   it "should duplicate conservation status" do
@@ -57,9 +52,15 @@ describe TaxonSwap, "commit" do
     @output_taxon.colors.count.should eq(1)
   end
 
-  it "should generate updates for observers of the old taxon"
-  it "should generate updates for identifiers of the old taxon"
-  it "should generate updates for listers of the old taxon"
+  # it "should generate updates for observers of the old taxon"
+  # it "should generate updates for identifiers of the old taxon"
+  # it "should generate updates for listers of the old taxon"
+  it "should queue a job to commit records" do
+    Delayed::Job.delete_all
+    @swap.commit
+    Delayed::Job.all.select{|j| j.handler =~ /commit_records/m}.should_not be_blank
+  end
+
   it "should mark the input taxon as inactive" do
     @swap.commit
     @input_taxon.reload
@@ -71,4 +72,80 @@ describe TaxonSwap, "commit" do
     @output_taxon.reload
     @output_taxon.should be_is_active
   end
+end
+
+describe TaxonSwap, "commit_records" do
+  before(:each) { prepare_swap }
+
+  it "should update records" do
+    obs = Observation.make!(:taxon => @input_taxon)
+    @swap.commit_records
+    obs.reload
+    obs.taxon.should eq(@output_taxon)
+  end
+
+  it "should generate updates for people who don't want automation" do
+    u = User.make!(:prefers_automatic_taxonomic_changes => false)
+    u.prefers_automatic_taxonomic_changes?.should_not be_true
+    o = Observation.make!(:taxon => @input_taxon, :user => u)
+    lambda {
+      @swap.commit_records
+    }.should change(Update, :count).by(1)
+  end
+
+  it "should not update records for people who don't want automation" do
+    u = User.make!(:prefers_automatic_taxonomic_changes => false)
+    u.prefers_automatic_taxonomic_changes?.should_not be_true
+    o = Observation.make!(:taxon => @input_taxon, :user => u)
+    @swap.commit_records
+    o.reload
+    o.taxon.should_not eq(@output_taxon)
+  end
+
+  it "should not generate more than one update per user" do
+    u = User.make!(:prefers_automatic_taxonomic_changes => false)
+    u.prefers_automatic_taxonomic_changes?.should_not be_true
+    2.times do
+      o = Observation.make!(:taxon => @input_taxon, :user => u)
+    end
+    lambda {
+      @swap.commit_records
+    }.should change(Update, :count).by(1)
+  end
+
+  it "should should update check listed taxa" do
+    tr = TaxonRange.make!(:taxon => @input_taxon)
+    cl = CheckList.make!
+    lt = ListedTaxon.make!(:list => cl, :taxon => @input_taxon, :taxon_range => tr)
+    @swap.commit_records
+    lt.reload
+    lt.taxon.should eq(@output_taxon)
+  end
+
+  it "should add new identifications" do
+    ident = Identification.make!(:taxon => @input_taxon)
+    @swap.commit_records
+    ident.reload
+    ident.should_not be_current
+    new_ident = ident.observation.identifications.by(ident.user).order("id asc").last
+    new_ident.should_not eq(ident)
+    new_ident.taxon.should eq(@output_taxon)
+  end
+
+  it "should not update existing identifications" do
+    ident = Identification.make!(:taxon => @input_taxon)
+    @swap.commit_records
+    ident.reload
+    ident.should_not be_current
+    ident.taxon.should_not eq(@output_taxon)
+  end
+end
+
+def prepare_swap
+  @input_taxon = Taxon.make!
+  @output_taxon = Taxon.make!
+  @swap = TaxonSwap.make
+  @swap.add_input_taxon(@input_taxon)
+  @swap.add_output_taxon(@output_taxon)
+  @swap.save!
 end

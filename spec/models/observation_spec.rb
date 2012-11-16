@@ -1327,3 +1327,32 @@ describe Observation, "taxon updates" do
     u.subscriber.should eq(s.user)
   end
 end
+
+describe Observation, "update_for_taxon_change" do
+  before(:each) do
+    @taxon_swap = TaxonSwap.make
+    @input_taxon = Taxon.make!
+    @output_taxon = Taxon.make!
+    @taxon_swap.add_input_taxon(@input_taxon)
+    @taxon_swap.add_output_taxon(@output_taxon)
+    @taxon_swap.save!
+    @obs_of_input = Observation.make!(:taxon => @input_taxon)
+  end
+
+  it "should add new identifications" do
+    @obs_of_input.identifications.size.should eq(1)
+    @obs_of_input.identifications.first.taxon.should eq(@input_taxon)
+    Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
+    @obs_of_input.reload
+    @obs_of_input.identifications.size.should eq(2)
+    @obs_of_input.identifications.detect{|i| i.taxon_id == @output_taxon.id}.should_not be_blank
+  end
+
+  it "should not update old identifications" do
+    old_ident = @obs_of_input.identifications.first
+    old_ident.taxon.should eq(@input_taxon)
+    Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
+    old_ident.reload
+    old_ident.taxon.should eq(@input_taxon)
+  end
+end

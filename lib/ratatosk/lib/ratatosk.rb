@@ -191,7 +191,7 @@ module Ratatosk
         unless new_taxon.valid?
           msg = "Failed to graft #{new_taxon} because it was invalid: " + 
             new_taxon.errors.full_messages.join(', ')
-          new_taxon.logger.error "[ERROR] #{msg}"
+          new_taxon.logger.error "[ERROR] #{msg}" if new_taxon.logger
           raise RatatoskGraftError, msg
         end
         new_taxon.set_scientific_taxon_name

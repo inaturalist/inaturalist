@@ -8,7 +8,7 @@ class TaxonChange < ActiveRecord::Base
   belongs_to :committer, :class_name => 'User'
 
   has_subscribers
-  after_update :notify_users_of_input_taxa_later
+  after_update :commit_records_later
   
   validates_presence_of :taxon_id
   accepts_nested_attributes_for :source
@@ -107,36 +107,70 @@ class TaxonChange < ActiveRecord::Base
     update_attribute(:committed_on, Time.now)
   end
 
-  def notify_users_of_input_taxa_later
-    return true unless committed_on_changed? && committed?
-    delay(:priority => 1).notify_users_of_input_taxa
-    true
-  end
-
-  def notify_users_of_input_taxa
-    # return true unless committed_on_changed? && committed?
-    taxon_ids = input_taxa.map(&:id)
-    return true if taxon_ids.blank?
-    has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
-    user_ids = Set.new
-    has_many_reflections.map do |k, reflection|
-      # Avoid those pesky :through relats
-      next unless reflection.klass.column_names.include?(reflection.foreign_key)
-      next unless reflection.klass.column_names.include?('taxon_id')
-      user_ids += User.select("users.id").
-        joins(reflection.name).
-        where("#{reflection.table_name}.taxon_id IN (#{taxon_ids.join(',')})").
-        map(&:id)
-    end.compact
-    user_ids.to_a.in_groups_of(500) do |batch|
-      User.where("id IN (?)", batch.compact).each do |user|
-        Update.create(
-          :resource => self, 
-          :notifier => self,
-          :subscriber => user, 
-          :notification => "committed")
+  # For all records with a taxon association affected by this change, update the record if 
+  # possible / desired by its owner, or generate an update for the owner notifying them of 
+  # the change
+  def commit_records
+    return if input_taxa.blank?
+    Rails.logger.info "[INFO #{Time.now}] starting commit_records for #{self}"
+    notified_user_ids = []
+    associations_to_update = %w(observations listed_taxa taxon_links identifications)
+    has_many_reflections = associations_to_update.map do |a| 
+      Taxon.reflections.detect{|k,v| k.to_s == a}
+    end
+    has_many_reflections.each do |k, reflection|
+      reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa).find_each do |record|
+        notification_needed = record.respond_to?(:user) && record.user && (!automatable? || !record.user.prefers_automatic_taxonomic_changes?)
+        if notification_needed
+          unless notified_user_ids.include?(record.user.id)
+            Update.create(
+              :resource => self,
+              :notifier => self,
+              :subscriber => record.user, 
+              :notification => "committed")
+            notified_user_ids << record.user.id
+          end
+        elsif automatable?
+          update_records_of_class(record.class, output_taxon, :records => [record])
+        end
       end
     end
+    Rails.logger.info "[INFO #{Time.now}] finished commit_records for #{self}"
+  end
+
+  # Change all records associated with input taxa to use the selected taxon
+  def update_records_of_class(klass, taxon, options = {}, &block)
+    if klass.respond_to?(:update_for_taxon_change)
+      klass.update_for_taxon_change(self, taxon, options, &block)
+      return
+    end
+    records = if options[:records]
+      options[:records]
+    else
+      scope = klass.send(@klass.name.underscore.pluralize).where("#{klass.table_name}.taxon_id IN (?)", input_taxa).scoped
+      scope = scope.where("user_id = ?", options[:user]) if options[:user]
+      scope = scope.where(options[:conditions]) if options[:conditions]
+      scope = scope.includes(options[:include]) if options[:include]
+      scope
+    end
+    proc = Proc.new do |record|
+      record.update_attributes(:taxon => taxon)
+      yield(record) if block_given?
+    end
+    if records.respond_to?(:find_each)
+      records.find_each(&proc)
+    else
+      records.each(&proc)
+    end
+  end
+
+  def automatable?
+    output_taxa.size == 1
+  end
+
+  def commit_records_later
+    return true unless committed_on_changed? && committed?
+    delay(:priority => NOTIFICATION_PRIORITY).commit_records
     true
   end
 

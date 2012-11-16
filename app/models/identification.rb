@@ -83,7 +83,7 @@ class Identification < ActiveRecord::Base
     end
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon_id => taxon_id, :iconic_taxon_id => taxon.iconic_taxon_id)
-    ProjectUser.delay(:priority => 1).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -105,7 +105,7 @@ class Identification < ActiveRecord::Base
     
     observation.skip_identifications = true
     observation.update_attributes(:species_guess => species_guess, :taxon => nil, :iconic_taxon_id => nil)
-    ProjectUser.delay(:priority => 1).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
+    ProjectUser.delay(:priority => INTEGRITY_PRIORITY).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, self.user_id)
     true
   end
   
@@ -123,7 +123,7 @@ class Identification < ActiveRecord::Base
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
     return true if self.observation.id.blank?
-    Identification.delay(:priority => 1).run_update_curator_identification(self)
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(self)
     true
   end
   
@@ -161,7 +161,7 @@ class Identification < ActiveRecord::Base
   # Revise the project_observation curator_identification_id if the
   # a curator's identification is deleted to be nil or that of another curator
   def revisit_curator_identification
-    Identification.delay(:priority => 1).run_revisit_curator_identification(self.observation_id, self.user_id)
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_revisit_curator_identification(self.observation_id, self.user_id)
     true
   end
   
@@ -251,6 +251,20 @@ class Identification < ActiveRecord::Base
         ProjectUser.delay.update_taxa_counter_cache_from_project_and_user(po.project_id, obs.user_id)
         Project.delay.update_observed_taxa_count(po.project_id)
       end
+    end
+  end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = Identification.where("identifications.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.where(:user_id => options[:user]) if options[:user]
+    scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.where(options[:conditions]) if options[:conditions]
+    scope = scope.includes(options[:include]) if options[:include]
+    scope = scope.where("identifications.created_at < ?", Time.now)
+    scope.find_each do |ident|
+      new_ident = Identification.create(:observation => ident.observation, :taxon => taxon, :user => ident.user)
+      yield(new_ident) if block_given?
     end
   end
   
