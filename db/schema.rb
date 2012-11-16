@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121115043256) do
+ActiveRecord::Schema.define(:version => 20121116214553) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -680,7 +680,7 @@ ActiveRecord::Schema.define(:version => 20121115043256) do
 
   create_table "sources", :force => true do |t|
     t.string   "in_text"
-    t.text     "citation"
+    t.string   "citation",   :limit => 512
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
