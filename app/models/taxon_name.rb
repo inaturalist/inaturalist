@@ -12,7 +12,7 @@ class TaxonName < ActiveRecord::Base
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
   validates_uniqueness_of :source_identifier,
-                          :scope => [:source_id],
+                          :scope => [:taxon_id, :source_id],
                           :message => "already exists",
                           :allow_blank => true,
                           :unless => Proc.new {|taxon_name|
