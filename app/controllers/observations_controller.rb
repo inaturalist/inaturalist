@@ -800,14 +800,14 @@ class ObservationsController < ApplicationController
 
     @observations = []
     @hasInvalid = false
-    csv = params[:upload][:datafile]
+    csv = params[:upload][:datafile].read
     max_rows = 100
     row_num = 0
     
     begin
       CSV.parse(csv) do |row|
         next if row.blank?
-        row = row.map{|item| Iconv.iconv('UTF8', 'LATIN1', item).to_s.strip}
+        row = row.map{|item| item.to_s.encode('UTF-8').strip}
         obs = Observation.new(
           :user => current_user,
           :species_guess => row[0],
@@ -1416,7 +1416,7 @@ class ObservationsController < ApplicationController
           :conditions => taxon_name_conditions).try(:taxon)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
-        taxon_name_conditions[1] = Iconv.iconv('UTF8', 'LATIN1', @observations_taxon_name)
+        taxon_name_conditions[1] = @observations_taxon_name.encode('UTF-8')
         @observations_taxon = TaxonName.first(:include => includes, 
           :conditions => taxon_name_conditions).try(:taxon)
       end

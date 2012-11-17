@@ -172,7 +172,7 @@ class TaxonName < ActiveRecord::Base
       taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
     rescue ActiveRecord::StatementInvalid => e
       raise e unless e.message =~ /invalid byte sequence/
-      conditions[:name] = Iconv.iconv('UTF8', 'LATIN1', name).first
+      conditions[:name] = name.encode('UTF-8')
       taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
     end
     unless options[:iconic_taxa].blank?
