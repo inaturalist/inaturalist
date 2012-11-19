@@ -60,6 +60,7 @@ class LocalPhoto < Photo
     styles = %w(original large medium small thumb square)
     updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
     updates += styles.map {|s| file.url(s)}
+    updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'"
     Photo.update_all(updates, ["id = ?", id])
     true
   end
@@ -80,6 +81,10 @@ class LocalPhoto < Photo
   def set_native_photo_id
     update_attribute(:native_photo_id, id)
     true
+  end
+
+  def source_title
+    SITE_NAME
   end
   
 end
