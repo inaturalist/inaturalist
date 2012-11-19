@@ -276,7 +276,11 @@ $(document).ready(function() {
       $(button).nextAll('.loading').hide()
       var html = data.html || data.body || ''
       html = '<div class="dialog">'+html+'</div>'
-      $(html).dialog({modal: true, title: 'Preview'})
+      $(html).dialog({
+        modal: true, 
+        title: 'Preview',
+        width: $(window).width() * 0.7
+      })
     })
     return false
   })
