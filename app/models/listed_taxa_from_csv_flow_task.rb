@@ -47,7 +47,7 @@ class ListedTaxaFromCsvFlowTask < FlowTask
     utf_content = if content.encoding.name == 'UTF-8'
       # if Ruby thinks it's UTF-8 but it obviously isn't, we'll assume it's LATIN1
       content.force_encoding('ISO-8859-1')
-      ontent.encode('UTF-8')
+      content.encode('UTF-8')
     else
       # otherwise we try to coerce it into UTF-8
       content.encode('UTF-8')
