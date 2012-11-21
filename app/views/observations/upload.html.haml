@@ -1,3 +1,5 @@
+- content_for :title do
+  = @title = "Observation Photo Uploader"
 - content_for :extrajs do
   :plain
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -26,7 +28,7 @@
     .observation .positional_accuracy_field input.text {width: 80px; font-size: smaller;}
 
 #pageheader
-  %h2 Observation Photo Uploader
+  %h2= @title
 = form_tag "/observations/photo.json", :multipart => true, :id => "fileupload", :remote => true do
   %p.description
     Create observations by uploading photos to iNat. When you upload iNat will try to extract GPS coordinates and date/time from the photo.
@@ -60,3 +62,8 @@
           = link_to "Save", "", :class => "savebutton button default", :style => "display:none"
           = link_to_function "Remove from batch", "$(this).parents('.observation:first').fadeOut(function() { $(this).remove() })", :class => "removebutton pale button"
           = link_to "Delete", "", :class => "deletebutton delete button", :style => "display:none"
+.small.meta
+  This tool is experimental, so please 
+  = link_to "report any problems", APP_CONFIG[:help_email]
+  you may have. It will probably only work in modern, standards-compliant browsers like
+  = commas_and [["Safari", "http://www.apple.com/safari/"], ["Chrome", "https://www.google.com/intl/en/chrome/browser/"], ["Firefox", "http://www.mozilla.org/en-US/firefox"]].map{|n,u| link_to n, u}
