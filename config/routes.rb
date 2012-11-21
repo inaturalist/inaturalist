@@ -71,6 +71,10 @@ Inaturalist::Application.routes.draw do
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
+    collection do
+      get :upload
+      post :photo
+    end
   end
 
   match 'observations/identotron' => 'observations#identotron', :as => :identotron

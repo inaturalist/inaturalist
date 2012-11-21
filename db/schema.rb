@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121116214553) do
+ActiveRecord::Schema.define(:version => 20121119073505) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -460,6 +460,7 @@ ActiveRecord::Schema.define(:version => 20121116214553) do
     t.boolean  "file_processing"
     t.boolean  "mobile",            :default => false
     t.datetime "file_updated_at"
+    t.text     "metadata"
   end
 
   add_index "photos", ["native_photo_id"], :name => "index_flickr_photos_on_flickr_native_photo_id"

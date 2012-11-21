@@ -20,6 +20,7 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'devise_suspendable'
 gem 'dynamic_form'
+gem 'exifr'
 gem 'faker'
 gem 'flickraw'
 gem "friendly_id", "~> 4.0.1"

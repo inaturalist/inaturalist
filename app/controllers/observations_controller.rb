@@ -569,7 +569,12 @@ class ObservationsController < ApplicationController
     end
     
     # Handle the case of a single obs
-    params[:observations] = [[params[:id], params[:observation]]] if params[:observation]
+    if params[:observation]
+      params[:observations] = [[params[:id], params[:observation]]]
+    elsif params[:id] && params[:observations]
+      params[:observations] = [[params[:id], params[:observations][0]]]
+    end
+      
     
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|
@@ -581,7 +586,7 @@ class ObservationsController < ApplicationController
       end
       return
     end
-    
+
     @observations = Observation.all(
       :conditions => [
         "id IN (?) AND user_id = ?", 
@@ -742,8 +747,10 @@ class ObservationsController < ApplicationController
   def destroy
     @observation.destroy
     respond_to do |format|
-      flash[:notice] = "Observation was deleted."
-      format.html { redirect_to(observations_by_login_path(current_user.login)) }
+      format.html do
+        flash[:notice] = "Observation was deleted."
+        redirect_to(observations_by_login_path(current_user.login))
+      end
       format.xml  { head :ok }
       format.json  { head :ok }
     end
@@ -1269,6 +1276,28 @@ class ObservationsController < ApplicationController
     render :layout => false
   end
 
+  def photo
+    @observations = []
+    unless params[:files].blank?
+      params[:files].each_with_index do |file, i|
+        lp = LocalPhoto.new(:file => file, :user => current_user)
+        o = lp.to_observation
+        if params[:observations] && obs_params = params[:observations][i]
+          obs_params.each do |k,v|
+            o.send("#{k}=", v) unless v.blank?
+          end
+        end
+        o.save
+        @observations << o
+      end
+    end
+    respond_to do |format|
+      format.json do
+        render_observations_to_json
+      end
+    end
+  end
+
 ## Protected / private actions ###############################################
   private
   
@@ -1309,6 +1338,7 @@ class ObservationsController < ApplicationController
       # Create a new one if one doesn't already exist
       unless photo
         photo = if photo_class == LocalPhoto
+          Rails.logger.info "[INFO #{Time.now}] adding new file"
           LocalPhoto.new(:file => photo_id, :user => current_user)
         else
           api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
@@ -1929,7 +1959,7 @@ class ObservationsController < ApplicationController
           :photos => {
             :methods => [:license_code, :attribution],
             :except => [:original_url, :file_processing, :file_file_size, 
-              :file_content_type, :file_file_name, :mobile]
+              :file_content_type, :file_file_name, :mobile, :metadata]
           }
         }
       )

@@ -55,6 +55,18 @@ class LocalPhoto < Photo
     self.native_username = user.login
     true
   end
+
+  def file=(data)
+    start_time = Time.now
+    self.file.assign(data)
+    if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
+      begin
+        self.metadata = exif.to_hash
+      rescue EXIFR::MalformedImage => e
+        Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{@attachment.instance}: #{e}"
+      end
+    end
+  end
   
   def set_urls
     styles = %w(original large medium small thumb square)
@@ -85,6 +97,31 @@ class LocalPhoto < Photo
 
   def source_title
     SITE_NAME
+  end
+
+  def to_observation(options = {})
+    o = Observation.new(:user => user)
+    o.observation_photos.build(:photo => self)
+    if metadata
+      unless metadata[:gps_latitude].blank?
+        o.latitude = metadata[:gps_latitude].to_f
+        if metadata[:gps_latitude_ref].to_s == 'S' && o.latitude > 0
+          o.latitude = o.latitude * -1
+        end
+      end
+      unless metadata[:gps_longitude].blank?
+        o.longitude = metadata[:gps_longitude].to_f
+        if metadata[:gps_longitude_ref].to_s == 'W' && o.longitude > 0
+          o.longitude = o.longitude * -1
+        end
+      end
+      if capture_time = metadata[:date_time_original] || metadata[:date_time_digitized]
+        o.observed_on_string = capture_time.to_s
+        o.observed_on = capture_time.to_date
+        o.time_observed_at = capture_time
+      end
+    end
+    o
   end
   
 end

@@ -208,7 +208,7 @@ Some notes:
       </ul>
     <% end -%>
     <ul class="editview">
-      <% if logged_in? && current_user.id == observation.user_id -%>
+      <% if logged_in? && current_user.id == observation.user_id && !observation.new_record? -%>
         <li class="editlink"><%= link_to "Edit", edit_observation_path(observation) %></li>
       <% end -%>
       <li class="last viewlink">
