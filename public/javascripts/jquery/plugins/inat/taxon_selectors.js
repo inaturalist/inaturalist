@@ -6,8 +6,12 @@
     var options = $.extend({}, $.fn.simpleTaxonSelector.defaults, options);
     if (typeof(options.inputWidth) == "undefined") {
       options.inputWidth = $(this).outerWidth();
-    };
-    options.inputHeight = $(this).outerHeight();
+    }
+    if (jQuery.browser.mozilla) {
+      options.inputHeight = $(this).height();
+    } else {
+      options.inputHeight = $(this).outerHeight();
+    }
     
     var instances = [];
     this.each(function() {

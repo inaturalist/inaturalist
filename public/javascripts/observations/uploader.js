@@ -59,6 +59,7 @@ $(document).ready(function() {
 })
 
 function addFile(data) {
+  console.log("[DEBUG] addFile for: ", data)
   var file = data.files[0]
   var wrapper = $('.observation.template:first').clone().removeClass('template')
   $('#fileupload .observations').append(wrapper)
@@ -68,14 +69,14 @@ function addFile(data) {
     $(this).parents('.observation').data('filedata').submit()
     return false
   })
+  wrapper.fadeIn()
+  $('.species_guess_field input:first', wrapper).simpleTaxonSelector({
+    taxonIDField: $('input[name*=taxon_id]:first', wrapper)
+  })
+  $('.observed_on_string_field input:first', wrapper).iNatDatepicker()
+  $('.place_guess_field input.text:first', wrapper).latLonSelector()
   loadImage(file, function(img) {
     $('.photocol', wrapper).append(img)
-    wrapper.fadeIn()
-    $('.species_guess_field input', wrapper).simpleTaxonSelector({
-      taxonIDField: $('input[name*=taxon_id]:first', wrapper)
-    })
-    $('.observed_on_string_field input', wrapper).iNatDatepicker()
-    $('.place_guess_field input.text', wrapper).latLonSelector()
   }, {
     maxWidth: $('.photocol').width()
   })
