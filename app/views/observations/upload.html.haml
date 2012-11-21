@@ -21,11 +21,18 @@
     textarea {height: 50px; width: 330px;}
     .observation .field input.text {width: 325px;}
     .observation {padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee;}
-    .latitude_field .label, .longitude_field .label, .positional_accuracy_field .label { display: inline-block; }
-    .latitude_field, .longitude_field, .positional_accuracy_field { display: inline-block; }
+    .latitude_field .label, 
+    .longitude_field .label, 
+    .positional_accuracy_field .label,
+    .latitude_field, 
+    .longitude_field, 
+    .positional_accuracy_field,
+    .geoprivacy_field,
+    .geoprivacy_field .label { display: inline-block; }
     .observation .latitude_field input.text,
     .observation .longitude_field input.text,
     .observation .positional_accuracy_field input.text {width: 80px; font-size: smaller;}
+    form .id_please_field {margin-bottom:0.2em;}
 
 #pageheader
   %h2= @title
@@ -45,7 +52,10 @@
         = fields_for "observations[]", Observation.new, :builder => DefaultFormBuilder do |f|
           = hidden_field_tag :ignore_photos, true
           .column.span-9
-            = f.text_field :species_guess, :label => "What did you see?", :placeholder => "Type a name and click LOOKUP"
+            .right
+              = f.check_box :id_please, :label_after => true, :label => "ID Please!"
+            %label What did you see?
+            = f.text_field :species_guess, :label => false, :placeholder => "Type a name and click LOOKUP"
             = f.hidden_field :taxon_id
             = f.text_area :description, :label => false, :placeholder => "Brief description of what you observed"
           .last.column.span-9
@@ -57,6 +67,7 @@
             = f.text_field :positional_accuracy, :label => "Acc", :placeholder => "Positional accuracy", :class => 'positional_accuracy text inlineblock', "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it."
             = f.hidden_field :positioning_method, :class => 'positioning_method text inlineblock', :disabled => true
             = f.hidden_field :positioning_device, :class => 'positioning_device', :disabled => true
+            = f.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open"
         .column.span-20.actions.last.inline.buttonrow
           = link_to "Upload", "", :class => "uploadbutton button default"
           = link_to "Save", "", :class => "savebutton button default", :style => "display:none"

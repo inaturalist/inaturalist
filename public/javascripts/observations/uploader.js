@@ -24,7 +24,12 @@ $(document).ready(function() {
       //   console.log("[DEBUG] start e: ", e)
       // },
       submit: function(e, data) {
-        data.formData = $(':input', data.context).serializeArray()
+        if ($('.id_please_field input:checked', data.context).length == 0) {
+          var params = $(':input', data.context).not('.id_please_field input:visible').serializeArray()
+        } else {
+          var params = $(':input', data.context).not('.id_please_field input[type=hidden]').serializeArray()
+        }
+        data.formData = params
         $(data.context).addClass('uploading')
         $(data.context).loadingShades('Uploading...')
       },
@@ -59,7 +64,6 @@ $(document).ready(function() {
 })
 
 function addFile(data) {
-  console.log("[DEBUG] addFile for: ", data)
   var file = data.files[0]
   var wrapper = $('.observation.template:first').clone().removeClass('template')
   $('#fileupload .observations').append(wrapper)
@@ -84,8 +88,12 @@ function addFile(data) {
 
 $('.observation .savebutton').live('click', function() {
   var container = $(this).parents('.observation:first'),
-      data = container.find(':input').serialize(),
       observation = container.data('observation')
+  if ($('.id_please_field input:checked', container).length == 0) {
+    var params = $(':input', container).not('.id_please_field input:visible').serialize()
+  } else {
+    var params = $(':input', container).not('.id_please_field input[type=hidden]').serialize()
+  }
   if (observation) {
     var url = '/observations/'+observation.id,
         method = 'PUT'
@@ -95,7 +103,7 @@ $('.observation .savebutton').live('click', function() {
   }
   $.ajax(url, {
     type: method,
-    data: data,
+    data: params,
     dataType: 'json',
     beforeSend: function() {
       container.loadingShades('Saving...')
