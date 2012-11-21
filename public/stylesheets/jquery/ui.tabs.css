@@ -26,9 +26,10 @@
 .ui-tabs .ui-tabs-nav li {
   border: 1px solid #ccc;
   border-bottom: 0 none;
-  margin: 0 5px -1px 5px;
+  margin: 0 5px 0px 5px;
   background-color: #efefef;
 }
+.ui-tabs .ui-tabs-nav li.ui-tabs-active { padding-bottom: 1px; }
 .ui-tabs .ui-tabs-nav li:hover{background-color:#f6f6f6;}
 .ui-tabs li.ui-tabs-selected,
 .ui-tabs li.ui-tabs-selected:hover{background-color:white;}
