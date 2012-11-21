@@ -43,12 +43,12 @@
         = fields_for "observations[]", Observation.new, :builder => DefaultFormBuilder do |f|
           = hidden_field_tag :ignore_photos, true
           .column.span-9
-            = f.text_field :species_guess, :label => "What did you see?"
+            = f.text_field :species_guess, :label => "What did you see?", :placeholder => "Type a name and click LOOKUP"
             = f.hidden_field :taxon_id
             = f.text_area :description, :label => false, :placeholder => "Brief description of what you observed"
           .last.column.span-9
             = f.text_field :observed_on_string, :label => "When did you see it?", :placeholder => "Type date/time or use the calendar"
-            = f.text_field :place_guess, :label => "Where were you?", :placeholder => "Place you made the observation, hit ENTER to search"
+            = f.text_field :place_guess, :label => "Where were you?", :placeholder => "Type a place name and click SEARCH to search"
             = f.text_field :latitude, :placeholder => "Latitude", :label => "Lat"
             = f.text_field :longitude, :placeholder => "Longitude", :label => "Lon"
             = f.hidden_field :map_scale, :class => 'map_scale'
