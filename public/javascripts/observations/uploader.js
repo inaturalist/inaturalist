@@ -31,7 +31,7 @@ $(document).ready(function() {
         }
         data.formData = params
         $(data.context).addClass('uploading')
-        $(data.context).loadingShades('Uploading...')
+        $(data.context).loadingShades('Uploading')
       },
       fail: function(e, data) {
         alert('Upload failed: ' + data.errorThrown)
@@ -48,8 +48,8 @@ $(document).ready(function() {
         }
         $(data.context).data('observation', obs)
         $('.description_field textarea', data.context).val(obs.description)
-        $('.latitude_field input', data.context).val(obs.latitude).change()
-        $('.longitude_field input', data.context).val(obs.longitude).change()
+        $('.latitude_field input', data.context).val(obs.latitude)
+        $('.longitude_field input', data.context).val(obs.longitude)
         $('.observed_on_string_field input', data.context).val(obs.observed_on_string)
         
         $('.uploadbutton', data.context).hide()
@@ -106,7 +106,7 @@ $('.observation .savebutton').live('click', function() {
     data: params,
     dataType: 'json',
     beforeSend: function() {
-      container.loadingShades('Saving...')
+      container.loadingShades('Saving')
     }
   }).done(function(data) {
   }).always(function() {
@@ -130,7 +130,7 @@ $('.observation .deletebutton').live('click', function() {
     data: data,
     dataType: 'json',
     beforeSend: function() {
-      container.loadingShades('Deleting...')
+      container.loadingShades('Deleting')
     }
   }).done(function(data) {
     container.slideUp(function() { 

@@ -18,7 +18,7 @@
 - content_for :extracss do
   :css
     .template-upload td {vertical-align: middle;}
-    textarea {height: 50px; width: 330px;}
+    textarea {height: 70px; width: 330px;}
     .observation .field input.text {width: 325px;}
     .observation {padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee;}
     .latitude_field .label, 
@@ -70,11 +70,11 @@
             = f.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open"
         .column.span-20.actions.last.inline.buttonrow
           = link_to "Upload", "", :class => "uploadbutton button default"
-          = link_to "Save", "", :class => "savebutton button default", :style => "display:none"
+          = link_to "Update", "", :class => "savebutton button default", :style => "display:none"
           = link_to_function "Remove from batch", "$(this).parents('.observation:first').fadeOut(function() { $(this).remove() })", :class => "removebutton pale button"
           = link_to "Delete", "", :class => "deletebutton delete button", :style => "display:none"
 .small.meta
   This tool is experimental, so please 
-  = link_to "report any problems", APP_CONFIG[:help_email]
+  = link_to "report any problems", "mailto:#{APP_CONFIG[:help_email]}"
   you may have. It will probably only work in modern, standards-compliant browsers like
   = commas_and [["Safari", "http://www.apple.com/safari/"], ["Chrome", "https://www.google.com/intl/en/chrome/browser/"], ["Firefox", "http://www.mozilla.org/en-US/firefox"]].map{|n,u| link_to n, u}
