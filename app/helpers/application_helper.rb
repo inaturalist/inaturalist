@@ -742,7 +742,7 @@ module ApplicationHelper
     if ofv.observation_field.datatype == "taxon"
       if taxon = Taxon.find_by_id(ofv.value)
         content_tag(:span, "&nbsp;".html_safe, 
-            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.downcase} selected") + 
+            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.to_s.downcase} selected") + 
           render("shared/taxon", :taxon => taxon, :link_url => taxon)
       else
         "unknown"
