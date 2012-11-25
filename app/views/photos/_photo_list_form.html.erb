@@ -66,8 +66,8 @@
         <%= link_to "Sync?", synclink_url, :class => "small synclink", 
           :title => "Import date, time, location, description, and taxonomic information from this photo.",
           :confirm => "Are you sure you want to sync this " + 
-            "observation's data with this Flickr photo?  You will lose " +
-            "changes you've made to this form, but you will be able to " +
+            "observation's data with this #{photo.is_a?(LocalPhoto) ? 'photo' : photo.class.name.underscore.humanize}? " + 
+            "You will lose changes you've made to this form, but you will be able to " +
             "revert to your saved copy." %>
       <% end %>
 

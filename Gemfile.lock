@@ -325,6 +325,8 @@ GEM
       aaronh-chronic (>= 0.3.9)
       activesupport (>= 2.3.4)
     will_paginate (3.0.3)
+    xmp (0.2.0)
+      nokogiri (~> 1.5.0)
     ym4r (0.6.1)
 
 PLATFORMS
@@ -393,4 +395,5 @@ DEPENDENCIES
   watu_table_builder
   whenever
   will_paginate
+  xmp
   ym4r_gm!

@@ -414,7 +414,7 @@
     var chosenTaxonName = taxon.default_name
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
-      if (tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
+      if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
         chosenTaxonName = tn
         break
       }

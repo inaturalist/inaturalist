@@ -62,6 +62,17 @@ class LocalPhoto < Photo
     if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(data.path)
       begin
         self.metadata = exif.to_hash
+        xmp = XMP.parse(exif)
+        if xmp && xmp.respond_to?(:dc) && !xmp.dc.blank?
+          self.metadata[:dc] = {}
+          xmp.dc.attributes.each do |dcattr|
+            begin
+              self.metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
+            rescue ArgumentError
+              # XMP does this for some DC attributes, not sure why
+            end
+          end
+        end
       rescue EXIFR::MalformedImage => e
         Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{@attachment.instance}: #{e}"
       end
@@ -115,13 +126,37 @@ class LocalPhoto < Photo
           o.longitude = o.longitude * -1
         end
       end
+      if o.georeferenced?
+        o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
+      end
       if capture_time = metadata[:date_time_original] || metadata[:date_time_digitized]
         o.observed_on_string = capture_time.to_s
         o.observed_on = capture_time.to_date
         o.time_observed_at = capture_time
       end
+      unless metadata[:dc].blank?
+        o.taxon = to_taxon
+        if o.taxon
+          tags = to_tags.map(&:downcase)
+          o.species_guess = o.taxon.taxon_names.detect{|tn| tags.include?(tn.name.downcase)}.try(:name)
+        elsif !metadata[:dc][:title].blank?
+          o.species_guess = metadata[:dc][:title].to_sentence.strip
+        end
+        o.description = metadata[:dc][:description].to_sentence unless metadata[:dc][:description].blank?
+      end
     end
     o
+  end
+
+  def to_tags
+    return [] if metadata.blank? || metadata[:dc].blank?
+    [metadata[:dc][:title], metadata[:dc][:subject]].flatten.compact.map(&:strip)
+  end
+
+  def to_taxa(options = {})
+    tags = to_tags
+    return [] if tags.blank?
+    Taxon.tags_to_taxa(tags, options).compact
   end
   
 end

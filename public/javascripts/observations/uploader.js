@@ -20,9 +20,6 @@ $(document).ready(function() {
           data.submit()
         })
       },
-      // start: function(e) {
-      //   console.log("[DEBUG] start e: ", e)
-      // },
       submit: function(e, data) {
         if ($('.id_please_field input:checked', data.context).length == 0) {
           var params = $(':input', data.context).not('.id_please_field input:visible').serializeArray()
@@ -43,14 +40,16 @@ $(document).ready(function() {
       done: function(e, data) {
         var json = data.jqXHR.responseJSON || jQuery.parseJSON(data.jqXHR.responseText)
         var obs = json[0]
+        $('.species_guess input', data.context).val(obs.species_guess)
         if (obs.taxon) {
-          $.fn.simpleTaxonSelector.selectTaxon($('.species_guess_field input', data.context), obs.taxon)
+          $.fn.simpleTaxonSelector.selectTaxon($('.species_guess_field input', data.context).parents('.simpleTaxonSelector:first'), obs.taxon)
         }
         $(data.context).data('observation', obs)
         $('.description_field textarea', data.context).val(obs.description)
         $('.latitude_field input', data.context).val(obs.latitude)
         $('.longitude_field input', data.context).val(obs.longitude)
         $('.observed_on_string_field input', data.context).val(obs.observed_on_string)
+        $('.place_guess_field input', data.context).val(obs.place_guess)
         
         $('.uploadbutton', data.context).hide()
         // $('.removebutton', data.context).hide()
@@ -79,6 +78,14 @@ function addFile(data) {
   })
   $('.observed_on_string_field input:first', wrapper).iNatDatepicker()
   $('.place_guess_field input.text:first', wrapper).latLonSelector()
+  $('input:checkbox', wrapper).each(function() {
+    var originalID = $(this).attr('id'),
+        originalIDNumber = originalID.split('_')[1] || '',
+        newIDNumber = serialID(),
+        newID = originalID.replace('_'+originalIDNumber+'_', '_'+newIDNumber+'_')
+    $(this).attr('id', newID)
+    $(this).parents('.field:first').find('label:first').attr('for', newID)
+  })
   loadImage(file, function(img) {
     $('.photocol', wrapper).append(img)
   }, {

@@ -53,7 +53,7 @@
           = hidden_field_tag :ignore_photos, true
           .column.span-9
             .right
-              = f.check_box :id_please, :label_after => true, :label => "ID Please!"
+              = f.check_box :id_please, :label_after => true, :label => "ID Please!", :id => "observation_#{serial_id}_id_please"
             %label What did you see?
             = f.text_field :species_guess, :label => false, :placeholder => "Type a name and click LOOKUP"
             = f.hidden_field :taxon_id

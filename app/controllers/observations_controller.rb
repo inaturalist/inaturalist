@@ -64,6 +64,8 @@ class ObservationsController < ApplicationController
   }
   PARTIALS = %w(cached_component observation_component observation mini)
   EDIT_PARTIALS = %w(add_photos)
+  PHOTO_SYNC_ATTRS = [:description, :species_guess, :taxon_id, :observed_on,
+    :observed_on_string, :latitude, :longitude, :place_guess]
 
   # GET /observations
   # GET /observations.xml
@@ -339,6 +341,7 @@ class ObservationsController < ApplicationController
     end
     sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
     sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
+    sync_local_photo if params[:local_photo_id]
       
     @welcome = params[:welcome]
     
@@ -435,6 +438,7 @@ class ObservationsController < ApplicationController
     end
     sync_flickr_photo if params[:flickr_photo_id]
     sync_picasa_photo if params[:picasa_photo_id]
+    sync_local_photo if params[:local_photo_id]
     @observation_fields = ObservationField.
       includes(:observation_field_values => {:observation => :user}).
       where("users.id = ?", current_user).
@@ -1293,7 +1297,20 @@ class ObservationsController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        render_observations_to_json
+        render_observations_to_json(:include => {
+          :taxon => {
+            :only => [:name, :id, :rank, :rank_level, :is_iconic], 
+            :methods => [:default_name, :image_url, :iconic_taxon_name, :conservation_status_name],
+            :include => {
+              :iconic_taxon => {
+                :only => [:id, :name]
+              },
+              :taxon_names => {
+                :only => [:id, :name, :lexicon]
+              }
+            }
+          }
+        })
       end
     end
   end
@@ -1837,8 +1854,7 @@ class ObservationsController < ApplicationController
     
     if @picasa_photo && @picasa_photo.valid?
       @picasa_observation = @picasa_photo.to_observation
-      sync_attrs = [:description, :species_guess, :taxon_id, :observed_on,
-        :observed_on_string, :latitude, :longitude, :place_guess]
+      sync_attrs = PHOTO_SYNC_ATTRS
       unless params[:picasa_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:picasa_sync_attrs]
       end
@@ -1854,6 +1870,35 @@ class ObservationsController < ApplicationController
         "<a href=\"#{url_for}\">Undo?</a>"
     else
       flash.now[:error] = "Sorry, we didn't find that photo."
+    end
+  end
+
+  def sync_local_photo
+    unless @local_photo = Photo.find_by_id(params[:local_photo_id])
+      flash.now[:error] = "That photo doesn't exist."
+      return
+    end
+    if @local_photo.metadata.blank?
+      flash.now[:error] = "Sorry, we don't have any metadata for that photo that we can use to set observation properties."
+      return
+    end
+    o = @local_photo.to_observation
+    PHOTO_SYNC_ATTRS.each do |sync_attr|
+      @observation.send("#{sync_attr}=", o.send(sync_attr)) unless o.send(sync_attr).blank?
+    end
+
+    unless @observation.photos.detect {|p| p.id == @local_photo.id}
+      @observation.photos[@observation.photos.size] = @local_photo
+    end
+    
+    unless @observation.new_record?
+      flash.now[:notice] = "<strong>Preview</strong> of synced observation.  " +
+        "<a href=\"#{url_for}\">Undo?</a>"
+    end
+    
+    if @existing_photo_observation = @local_photo.observations.where("observations.id != ?", @observation).first
+      msg = "Heads up: this photo is already associated with <a target='_blank' href='#{url_for(@existing_photo_observation)}'>another observation</a>"
+      flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
     end
   end
   
@@ -1951,18 +1996,19 @@ class ObservationsController < ApplicationController
       end
       render :json => data
     else
-      render :json => @observations.to_json(
-        :methods => [:short_description, :user_login, :iconic_taxon_name],
-        :include => {
-          :iconic_taxon => {:only => [:id, :name, :rank, :rank_level, :ancestry]},
-          :user => {:only => :login},
-          :photos => {
-            :methods => [:license_code, :attribution],
-            :except => [:original_url, :file_processing, :file_file_size, 
-              :file_content_type, :file_file_name, :mobile, :metadata]
-          }
-        }
-      )
+      opts = options
+      opts[:methods] ||= []
+      opts[:methods] += [:short_description, :user_login, :iconic_taxon_name]
+      opts[:methods].uniq!
+      opts[:include] ||= {}
+      opts[:include][:iconic_taxon] ||= {:only => [:id, :name, :rank, :rank_level, :ancestry]}
+      opts[:include][:user] ||= {:only => :login}
+      opts[:include][:photos] ||= {
+        :methods => [:license_code, :attribution],
+        :except => [:original_url, :file_processing, :file_file_size, 
+          :file_content_type, :file_file_name, :mobile, :metadata]
+      }
+      render :json => @observations.to_json(opts)
     end
   end
   

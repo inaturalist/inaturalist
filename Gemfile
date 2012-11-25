@@ -62,6 +62,7 @@ gem 'will_paginate'
 # gem 'whenever', :require => false, :git => "git://github.com/kueda/whenever.git"
 gem 'whenever', :require => false
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
+gem 'xmp'
 
 group :test, :development do
   gem "database_cleaner"

@@ -887,3 +887,8 @@ $('.flaglink').live('click', function() {
   dialog.dialog({modal: true, title: "Flag an item"})
   return false
 })
+
+function serialID() {
+  window._serialID = window._serialID ? window._serialID + 1 : 1
+  return window._serialID
+}
