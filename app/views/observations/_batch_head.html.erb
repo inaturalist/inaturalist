@@ -13,43 +13,36 @@
                              "observations/new_batch.js",
                              "observations/edit_batch.js",
                              "observations/observation_fields.js" %>
-   <script type="text/javascript" charset="utf-8">
-     $(document).ready(function() {
-       $('.observation_photos').each(function() {
-         // The photo_fields endpoint needs to know the auth token and the index
-         // for the field
-         var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
-         var index = $.string(index_str).gsub(/[^\d]*/, '').str;
-         var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val();
-         $(this).photoSelector({
-           <%- if @default_photo_identity && @default_photo_identity.is_a?(FlickrIdentity) -%>
-             baseURL: '/flickr/photo_fields?context=user',
-           <%- elsif @default_photo_identity && @default_photo_identity.is_a?(PicasaIdentity) -%>
-             baseURL: '/picasa/photo_fields?context=user',
-           <% else %>
-             baseURL: '/photos/local_photo_fields?context=user',
-             queryOnLoad: false,
-           <%- end -%>
-           <%- unless @photo_identities.blank? %>
-             <%- 
-               urls = @photo_identities.map do |identity|
-                 service = if identity.is_a?(ProviderAuthorization)
-                   identity.provider_name.capitalize
-                 else
-                   identity.class.to_s.underscore.split('_').first.capitalize
-                 end
-                 "{title: '#{service}', url: '/#{service.downcase}/photo_fields?context=user'}"
-               end
-             -%>
-             urls: [<%= urls.join(', ').html_safe %>],
-           <% end -%>
+  <script type="text/javascript" charset="utf-8">
+    var DEFAULT_BASE_URL = <%= @default_photo_identity_url.inspect.html_safe %>,
+        PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>]
+    $(document).ready(function() {
+      $('.observation_photos').each(function() {
+        // The photo_fields endpoint needs to know the auth token and the index
+        // for the field
+        var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name'),
+            index = $.string(index_str).gsub(/[^\d]*/, '').str,
+            authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val(),
+            photoClass = $('.photo:first', this).data('photo-class'),
+            baseURL = DEFAULT_BASE_URL,
+            queryOnLoad = true
+        if (photoClass == 'LocalPhoto') {
+          baseURL = '/photos/local_photo_fields?context=user'
+          queryOnLoad = false
+        } else if (photoClass) {
+          baseURL = '/'+photoClass.replace(/Photo$/, '').toLowerCase() + '/photo_fields?context=user'
+        }
+        $(this).photoSelector({
+           baseURL: baseURL,
+           queryOnLoad: queryOnLoad,
+           urls: PHOTO_IDENTITY_URLS,
            urlParams: {
              authenticity_token: authenticity_token,
              index: index,
              limit: 16
            }
-         });
-       });
-     });
-   </script>
+        })
+      })
+    })
+  </script>
 <%- end -%>
