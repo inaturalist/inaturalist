@@ -156,7 +156,7 @@ class PicasaController < ApplicationController
 
   # Return an HTML fragment containing photos in the album with the given fb native album id (i.e., params[:id])
   def album
-    @friend_id = params[:object_id] unless params[:object_id]=='null'
+    @friend_id = params[:object_id] unless (params[:object_id] == 'null' || params[:object_id].blank?)
     if @friend_id
       friend_data = current_user.picasa_client.user(@friend_id)
       @friend_name = friend_data.author.name 
