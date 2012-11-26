@@ -308,7 +308,6 @@ ActiveRecord::Schema.define(:version => 20121119073505) do
   add_index "listed_taxa", ["last_observation_id", "list_id"], :name => "index_listed_taxa_on_last_observation_id_and_list_id"
   add_index "listed_taxa", ["list_id", "taxon_ancestor_ids", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i"
   add_index "listed_taxa", ["list_id", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_id"
-  add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["place_id", "observations_count"], :name => "index_listed_taxa_on_place_id_and_observations_count"
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
   add_index "listed_taxa", ["source_id"], :name => "index_listed_taxa_on_source_id"

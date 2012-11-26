@@ -319,7 +319,7 @@ class ObservationsController < ApplicationController
         Project.find_by_id(params[:project_id].to_i)
       end
       if @project
-        @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
+        @project_curators = @project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
         if @place = @project.rule_place
           @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
         end
