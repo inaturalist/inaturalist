@@ -20,6 +20,7 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'devise_suspendable'
 gem 'dynamic_form'
+gem 'exifr'
 gem 'faker'
 gem 'flickraw'
 gem "friendly_id", "~> 4.0.1"
@@ -61,6 +62,7 @@ gem 'will_paginate'
 # gem 'whenever', :require => false, :git => "git://github.com/kueda/whenever.git"
 gem 'whenever', :require => false
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
+gem 'xmp'
 
 group :test, :development do
   gem "database_cleaner"

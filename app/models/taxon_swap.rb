@@ -43,7 +43,13 @@ class TaxonSwap < TaxonChange
   
   def commit
     # duplicate photos
-    input_taxon.photos.each {|photo| photo.taxa << output_taxon}
+    input_taxon.taxon_photos.sort_by(&:id).each do |taxon_photo|
+      begin
+        output_taxon.photos << taxon_photo.photo
+      rescue ActiveRecord::RecordInvalid => e
+        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{taxon_photo} to #{output_taxon}: #{e}"
+      end
+    end
     
     # duplicate iucn_status
     output_taxon.conservation_status = input_taxon.conservation_status
@@ -62,7 +68,10 @@ class TaxonSwap < TaxonChange
       new_taxon_name = taxon_name.dup
       new_taxon_name.taxon_id = output_taxon.id
       new_taxon_name.is_valid = false if taxon_name.is_scientific_names? && taxon_name.is_valid?
-      new_taxon_name.save
+      unless new_taxon_name.save
+        Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{taxon_name}: " + 
+          new_taxon_name.errors.full_messages.to_sentence
+      end
     end
     
     # duplicate taxon_range
@@ -70,7 +79,10 @@ class TaxonSwap < TaxonChange
       input_taxon.taxon_ranges.each do |taxon_range|
         new_taxon_range = taxon_range.dup
         new_taxon_range.taxon_id = output_taxon.id
-        new_taxon_range.save
+        unless new_taxon_range.save
+          Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{taxon_range}: " +
+            new_taxon_range.errors.full_messages.to_sentence
+        end
       end
     end
     

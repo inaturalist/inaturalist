@@ -10,6 +10,13 @@ FLICKR_API_KEY = INAT_CONFIG['flickr']['FLICKR_API_KEY']
 FLICKR_SHARED_SECRET = INAT_CONFIG['flickr']['FLICKR_SHARED_SECRET']
 DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
 
+# DelayedJob priorities
+USER_PRIORITY = 0               # response to user action, should happen ASAP w/o bogging down a web proc
+NOTIFICATION_PRIORITY = 1       # notifies user of something, not ASAP, but soon
+USER_INTEGRITY_PRIORITY = 2     # maintains data integrity for stuff user's care about
+INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, needs to happen, eventually
+OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
+
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)

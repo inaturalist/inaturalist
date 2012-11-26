@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   preference :gbif_sharing, :boolean, :default => true
   preference :observation_license, :string
   preference :photo_license, :string
+  preference :automatic_taxonomic_changes, :boolean, :default => true
   
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
@@ -46,6 +47,9 @@ class User < ActiveRecord::Base
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
+  has_many :identifications_for_others, :class_name => "Identification", 
+    :include => [:observation],
+    :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
   
   has_many :posts, :dependent => :destroy

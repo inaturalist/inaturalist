@@ -315,7 +315,6 @@ span.button {
   color: blue;
   text-decoration: underline;
   font-size: smaller;
-  margin: 0 0.5em;
   cursor: pointer;
 }
 
@@ -580,6 +579,9 @@ ul.leafylist li li:first-child {
   -webkit-box-shadow: 0px 1px 2px #888;
   -moz-box-shadow: 0px 1px 2px #888;
   box-shadow: 0px 1px 2px #888;
+  max-height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .button_toggle_menu .menu { top: 31px; }
@@ -732,6 +734,8 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 .simpleTaxonSelector .taxon.Mammalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-15px.png'); }
 .simpleTaxonSelector .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
 .simpleTaxonSelector .taxon.Chromista        { color: #993300;  background-image: url('/images/iconic_taxa/chromista-15px.png'); }
+
+.simpleTaxonSelector .matches .taxon {cursor: pointer;}
 
 .taxon_links .taxon {
   padding-left: 25px;

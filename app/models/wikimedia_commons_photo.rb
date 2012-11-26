@@ -104,6 +104,7 @@ class WikimediaCommonsPhoto < Photo
 
     photo = WikimediaCommonsPhoto.new
     photo.native_page_url = "http://commons.wikimedia.org/wiki/File:#{file_name}"
+    photo.native_photo_id = file_name
 
     license = api_response.search('.licensetpl_short').inner_text
     photo.license = if (license.downcase.include? "public domain") || (license.downcase.include? "pd")

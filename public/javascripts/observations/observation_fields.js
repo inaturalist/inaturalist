@@ -10,7 +10,7 @@ $.fn.observationFieldsForm = function(options) {
       }
     })
     
-    $('#morefields .addfieldbutton', this).hide()
+    $('.addfieldbutton', this).hide()
     $('#createfieldbutton', this).click(ObservationFields.newObservationFieldButtonHandler)
     ObservationFields.fieldify({focus: false})
   })

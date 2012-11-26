@@ -212,7 +212,7 @@ Taxa &middot; All Species
           <% end -%>
         </center>
         <div class="readable">
-          <%= sanitize(taxon.wikipedia_summary.html_safe) %>
+          <%= sanitize(taxon.wikipedia_summary.to_s.html_safe) %>
           <%= link_to "Learn more &raquo;".html_safe, taxon, :class => "nobr" %>
         </div>
       </div>

@@ -136,7 +136,8 @@ class LifeList < List
       Taxon.to_s, [taxon.id, taxon.ancestor_ids].flatten.compact
     ]) do |list_rule|
       next unless list_rule.list.is_a?(LifeList)
-      LifeList.delay(:priority => 1).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
+      next if Delayed::Job.where("handler LIKE '%add_taxa_from_observations%id: ''#{list_rule.list_id}''%'").exists?
+      LifeList.delay(:priority => INTEGRITY_PRIORITY).add_taxa_from_observations(list_rule.list, :taxa => [taxon.id])
     end
   end
   

@@ -50,7 +50,8 @@ class ProjectObservation < ActiveRecord::Base
     Project.delay.update_observed_taxa_count(project_id)
   end
 
-  def to_csv_column(column)
+  def to_csv_column(column, options = {})
+    p = options[:project] || project
     case column
     when "curator_ident_taxon_id"
       curator_identification.try(:taxon_id)
@@ -69,7 +70,11 @@ class ProjectObservation < ActiveRecord::Base
         nil
       end
     else
-      observation.send(column) rescue send(column) rescue nil
+      if observation_field = p.observation_fields.detect{|of| of.name == column}
+        observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)
+      else
+        observation.send(column) rescue send(column) rescue nil
+      end
     end
   end
   
@@ -123,13 +128,19 @@ class ProjectObservation < ActiveRecord::Base
     end
     columns -= except
     headers = columns.map{|c| Observation.human_attribute_name(c)}
+
     project_columns = %w(curator_ident_taxon_id curator_ident_taxon_name curator_ident_user_id curator_ident_user_login tracking_code)
     columns += project_columns
     headers += project_columns.map{|c| c.to_s.humanize}
+
+    ofv_columns = project.observation_fields.map(&:name)
+    columns += ofv_columns
+    headers += ofv_columns
+
     CSV.generate do |csv|
       csv << headers
       project_observations.each do |project_observation|
-        csv << columns.map {|column| project_observation.to_csv_column(column)}
+        csv << columns.map {|column| project_observation.to_csv_column(column, :project => project)}
       end
     end
   end

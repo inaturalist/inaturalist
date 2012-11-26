@@ -133,7 +133,7 @@ module ApplicationHelper
   
   def curator_of?(project)
    return false unless logged_in?
-   current_user.project_users.first(:conditions => {:project_id => project.id, :role => 'curator'})
+   current_user.project_users.where(:project_id => project).where("role IN ('manager', 'curator')").exists?
   end
   
   def member_of?(project)
@@ -162,6 +162,15 @@ module ApplicationHelper
     html = link_to_toggle(link_text, "##{menu_id}", options)
     html += content_tag(:div, capture(&block), :id => menu_id, :class => "menu", :style => "display: none")
     concat content_tag(:div, html, wrapper_options)
+  end
+
+  def link_to_dialog(title, options = {}, &block)
+    options[:title] ||= title
+    options[:modal] ||= true
+    id = title.gsub(/\W/, '').underscore
+    dialog = content_tag(:div, capture(&block), :class => "dialog", :style => "display:none", :id => "#{id}_dialog")
+    link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})")
+    dialog + link
   end
   
   # Generate a URL based on the current params hash, overriding existing values
@@ -733,7 +742,7 @@ module ApplicationHelper
     if ofv.observation_field.datatype == "taxon"
       if taxon = Taxon.find_by_id(ofv.value)
         content_tag(:span, "&nbsp;".html_safe, 
-            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.downcase} selected") + 
+            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.to_s.downcase} selected") + 
           render("shared/taxon", :taxon => taxon, :link_url => taxon)
       else
         "unknown"

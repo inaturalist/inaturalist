@@ -112,22 +112,20 @@ $(document).ready(function() {
   }).bind('ajax:success', function(e, json, status) {
     $(this).siblings('.loadingclick').remove()
     $('#removelink_project_'+json.project_id).show()
+    if (json.project && json.project.project_observation_fields && json.project.project_observation_fields.length > 0) {
+      showObservationFieldsDialog({
+        url: '/observations/'+window.observation.id+'/fields?project_id='+json.project_id,
+        title: 'Project observation fields for ' + json.project.title
+      })
+    }
   }).bind('ajax:error', function(e, xhr, error, status) {
     $(this).siblings('.loadingclick').remove()
     $(this).show()
     var json = $.parseJSON(xhr.responseText)
     if (json.error.match(/observation field/)) {
-      var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
-      dialog.load('/observations/'+window.observation.id+'/fields?project_id='+$(this).data('project-id'), function() {
-        $(this).observationFieldsForm()
-        $(this).centerDialog()
-        $('form:has(input[required])', this).submit(checkFormForRequiredFields)
-      })
-      dialog.dialog({
-        modal: true,
-        title: 'Project observation fields',
-        width: 600,
-        minHeight: 400
+      showObservationFieldsDialog({
+        url: '/observations/'+window.observation.id+'/fields?project_id='+$(this).data('project-id'),
+        title: 'Project observation fields'
       })
     } else {
       alert(json.error)
@@ -174,6 +172,24 @@ $(document).ready(function() {
   })
 
 })
+
+function showObservationFieldsDialog(options) {
+  options = options || {}
+  var url = options.url || '/observations/'+window.observation.id+'/fields',
+      title = options.title || 'Observation fields'
+  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+  dialog.load(url, function() {
+    $(this).observationFieldsForm()
+    $(this).centerDialog()
+    $('form:has(input[required])', this).submit(checkFormForRequiredFields)
+  })
+  dialog.dialog({
+    modal: true,
+    title: title,
+    width: 600,
+    minHeight: 400
+  })
+}
 
 $('#add_more_photos_link').live('click', function() {
   var dialogId = "add_more_photos_dialog",

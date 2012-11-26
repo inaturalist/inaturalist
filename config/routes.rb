@@ -63,7 +63,7 @@ Inaturalist::Application.routes.draw do
   match 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }, :method => :delete
   match 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   match '/photos/:id/repair' => "photos#repair", :as => :photo_repair, :via => :put
-  resources :photos, :only => [:show, :update]
+  resources :photos, :only => [:show, :update, :destroy]
   match 'picasa/unlink' => 'picasa#unlink', :method => :delete
 
   resources :observation_photos, :only => :create
@@ -71,6 +71,10 @@ Inaturalist::Application.routes.draw do
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
+    collection do
+      get :upload
+      post :photo
+    end
   end
 
   match 'observations/identotron' => 'observations#identotron', :as => :identotron
@@ -215,7 +219,7 @@ Inaturalist::Application.routes.draw do
   match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
   match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => simplified_login_regex }
   match 'journal/:login/:id/edit' => 'posts#edit', :as => :edit_journal_post
-  resources :posts
+  resources :posts, :except => [:index]
   resources :posts,
     :as => 'journal_posts',
     :path => "/journal/:login",

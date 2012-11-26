@@ -67,7 +67,7 @@
             :checked => true } %>
         </div>
         <div class="buttonrow">
-          <%= submit_tag 'Save photos', :class => 'default button' %>
+          <%= submit_tag 'Save photos', :class => 'default button', "data-loading-click" => "Saving..." %>
           <%= link_to_function 'Cancel', 'return false;', :class => 'button close' %>
         </div>
       <% end %>

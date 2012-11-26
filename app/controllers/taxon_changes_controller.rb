@@ -34,14 +34,12 @@ class TaxonChangesController < ApplicationController
     scope = scope.source(@source) if @source
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
     
-    @taxon_changes = scope.paginate(
-      :page => params[:page],
-      :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
-      :include => [
-        {:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        {:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]},
-        :source]
-    )
+    @taxon_changes = scope.page(params[:page]).
+      select("DISTINCT (taxon_changes.id), taxon_changes.*").
+      includes(:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
+      includes(:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
+      includes(:source).
+      order("taxon_changes.id DESC")
     @taxa = @taxon_changes.map{|tc| [tc.taxa, tc.taxon]}.flatten
     @swaps = TaxonSwap.all(
       :include => [
@@ -144,21 +142,14 @@ class TaxonChangesController < ApplicationController
       redirect_back_or_default(@taxon_change)
       return
     end
-    load_user_content_info
+    return unless load_user_content_info
     @counts = {}
-    @class_names.each do |class_name|
-      klass = begin
-        Object.const_get(class_name)
-      rescue
-        @counts[class_name] = 0
-        next
-      end
-      @counts[class_name] = current_user.send("#{klass.name.underscore.pluralize}").
-        where("taxon_id IN (?)", @taxon_change.input_taxa).
+    @reflections.each do |reflection|
+      @counts[reflection.name.to_s] = current_user.send(reflection.name).
+        where("#{reflection.table_name}.taxon_id IN (?)", @taxon_change.input_taxa).
         count
     end
-    @records = current_user.send("#{@klass.name.underscore.pluralize}").scoped
-    @records = @records.where("taxon_id IN (?)", @taxon_change.input_taxa).page(params[:page])
+    @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.taxon_id IN (?)", @taxon_change.input_taxa).page(params[:page])
   end
 
   def commit_records
@@ -167,10 +158,10 @@ class TaxonChangesController < ApplicationController
       redirect_back_or_default(@taxon_change)
       return
     end
-    load_user_content_info
+    return unless load_user_content_info
 
     if params[:record_id]
-      @record = current_user.send("#{@klass.name.underscore.pluralize}").where("id = ?", params[:record_id]).first
+      @record = current_user.send(@reflection.name).where("#{@reflection.table_name}.id = ?", params[:record_id]).first
       unless @record
         flash[:error] = "Couldn't find that record"
         redirect_back_or_default(@taxon_change)
@@ -178,7 +169,7 @@ class TaxonChangesController < ApplicationController
       end
       @records = [@record]
     elsif params[:record_ids]
-      @records = current_user.send("#{@klass.name.underscore.pluralize}").where("id IN (?)", params[:record_ids]).to_a
+      @record = current_user.send(@reflection.name).where("id IN (?)", params[:record_ids]).to_a
       if @records.blank?
         flash[:error] = "Couldn't find any of those records"
         redirect_back_or_default(@taxon_change)
@@ -194,24 +185,31 @@ class TaxonChangesController < ApplicationController
       return
     end
 
-    if @records.blank?
-      if @klass.respond_to?(:update_for_taxon_change)
-        @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user)
+    updated = 0
+    not_updated = 0
+    errors = []
+
+    opts = {
+      :user => current_user, 
+      :records => @records,
+      :conditions => @reflection.options[:conditions],
+      :include => @reflection.options[:include]
+    }
+    @taxon_change.update_records_of_class(@reflection.klass, @taxon, opts) do |record|
+      if record.valid?
+        updated += 1
       else
-        @klass.update_all(
-          ["taxon_id = ?", @taxon.id], 
-          ["user_id = ? AND taxon_id IN (?)", current_user, @taxon_change.input_taxa.map(&:id)])
-      end
-    else
-      if @klass.respond_to?(:update_for_taxon_change)
-        @klass.update_for_taxon_change(@taxon_change, @taxon, :user => current_user, :records => @records)
-      else
-        @klass.update_all(
-          ["taxon_id = ?", @taxon.id], 
-          ["user_id = ? AND id IN (?)", current_user, @records.map(&:id)])
+        not_updated += 1
+        errors += record.errors.full_messages
       end
     end
-    flash[:notice] = "Records updated"
+
+    errors.uniq!
+    if errors.blank?
+      flash[:notice] = "Records updated"
+    else
+      flash[:error] = "#{not_updated} record(s) failed to update: #{errors.to_sentence.downcase}"
+    end
     redirect_back_or_default(@taxon_change)
   end
   
@@ -232,23 +230,23 @@ class TaxonChangesController < ApplicationController
   end
 
   def load_user_content_info
-    @class_names = []
+    @reflections = []
+    skip_reflections = %w(identifications update_subscriptions lists life_lists)
     has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
     has_many_reflections.each do |k, reflection|
+      next if skip_reflections.include?(k.to_s)
       # Avoid those pesky :through relats
       next unless reflection.klass.column_names.include?(reflection.foreign_key)
       next unless reflection.klass.column_names.include?('taxon_id')
-      @class_names << reflection.klass.name
+      @reflections << reflection
     end
-    @class_names.uniq!
     @type = params[:type] || "observations"
-    @klass = Object.const_get(@type.camelcase.singularize) rescue nil
-    @klass = nil unless @klass.try(:base_class).try(:superclass) == ActiveRecord::Base
-    @klass = nil unless @class_names.include?(@klass.name)
-    unless @klass
-      flash[:error] = "#{params[:type]} doesn't exist"
+    @reflection = @reflections.detect{|r| r.name.to_s == @type}
+    if @reflection.blank?
+      flash[:error] = "#{@type} isn't a valid type"
       redirect_back_or_default(:action => "index")
       return false
     end
+    true
   end
 end

@@ -26,7 +26,7 @@ class PicasaPhoto < Photo
     # Setup the observation
     observation = Observation.new
     observation.user = self.user if self.user
-    observation.photos << self
+    observation.observation_photos.build(:photo => self, :observation => observation)
     observation.description = api_response.description
     if timestamp = api_response.exif_time || api_response.timestamp
       observation.observed_on_string = Time.at(timestamp / 1000).to_s(:long)

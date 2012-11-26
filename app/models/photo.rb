@@ -11,6 +11,7 @@ class Photo < ActiveRecord::Base
   has_many :taxa, :through => :taxon_photos
   
   attr_accessor :api_response
+  serialize :metadata
   
   # licensing extras
   attr_accessor :make_license_default
@@ -184,6 +185,12 @@ class Photo < ActiveRecord::Base
     size_index = sizes.index(size)
     methods = sizes[size_index.to_i..-1].map{|s| "#{s}_url"} + ['original']
     try_methods(*methods)
+  end
+
+  def as_json(options = {})
+    options[:except] ||= []
+    options[:except] << :metadata
+    super(options)
   end
   
   # Retrieve info about a photo from its native source given its native id.  

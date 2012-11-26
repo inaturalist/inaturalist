@@ -160,6 +160,28 @@ describe ProjectObservation, "in_taxon?" do
   # end
 end
 
+describe ProjectObservation, "to_csv" do
+  it "should include headers for project observation fields" do
+    pof = ProjectObservationField.make!
+    of = pof.observation_field
+    p = pof.project
+    po = make_project_observation(:project => p)
+    ProjectObservation.to_csv([po]).to_s.should =~ /#{of.name}/
+  end
+
+  it "should include values for project observation fields" do
+    pof = ProjectObservationField.make!
+    of = pof.observation_field
+    p = pof.project
+    po = make_project_observation(:project => p)
+    ofv = ObservationFieldValue.make!(:observation => po.observation, :observation_field => of, :value => "foo")
+    csv = ProjectObservation.to_csv([po])
+    rows = CSV.parse(csv)
+    ofv_index = rows[0].index(of.name)
+    rows[1][ofv_index].should eq(ofv.value)
+  end
+end
+
 def setup_project_and_user
   @project_user = ProjectUser.make!
   @project = @project_user.project

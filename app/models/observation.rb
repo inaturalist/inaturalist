@@ -156,6 +156,7 @@ class Observation < ActiveRecord::Base
     has "num_identification_agreements < num_identification_disagreements",
       :as => :identifications_most_disagree, :type => :boolean
     has project_observations(:project_id), :as => :projects #, :type => :multi
+    has observation_field_values(:observation_field_id), :as => :observation_fields
     set_property :delta => :delayed
   end
   
@@ -749,13 +750,13 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return true if target_taxa.empty?
     
-    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true)
-    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
      
-    ProjectList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     
     # Reset the instance var so it doesn't linger around
@@ -768,7 +769,7 @@ class Observation < ActiveRecord::Base
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
-    CheckList.delay(:priority => 2).refresh_with_observation(id, :taxon_id => taxon_id, 
+    CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
@@ -784,10 +785,10 @@ class Observation < ActiveRecord::Base
   def refresh_lists_after_destroy
     return true if @skip_refresh_lists
     return true unless taxon
-    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true)
-    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     true
   end
@@ -972,7 +973,7 @@ class Observation < ActiveRecord::Base
     observation.set_quality_grade(:force => true)
     observation.save
     if observation.quality_grade_changed?
-      CheckList.delay(:priority => 2).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+      CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
   end
@@ -1482,21 +1483,14 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+  def self.update_for_taxon_change(taxon_change, taxon, options = {}, &block)
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids).scoped
     scope = scope.by(options[:user]) if options[:user]
-    scope = scope.where("observations.id IN (?)", options[:records]) if options[:records]
-    scope.find_in_batches do |batch|
-      obs_ids = batch.map(&:id)
-      user_ids = batch.map(&:user_id).uniq
-      # Observation.update_all(["taxon_id = ?", taxon.id], ["id IN (?)", obs_ids])
-      user_ids.each do |user_id|
-        Identification.update_all(
-          ["taxon_id = ?", taxon.id], 
-          ["taxon_id IN (?) AND user_id = ? AND observation_id IN (?)", input_taxon_ids, user_id, obs_ids])
-      end
-      batch.each {|o| o.update_attributes(:taxon_id => taxon.id)}
+    scope = scope.where("observations.id IN (?)", options[:records]) unless options[:records].blank?
+    scope.find_each do |observation|
+      observation.update_attributes(:taxon => taxon)
+      yield(observation) if block_given?
     end
   end
   

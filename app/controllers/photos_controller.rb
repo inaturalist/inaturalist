@@ -2,9 +2,9 @@ class PhotosController < ApplicationController
   MOBILIZED = [:show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  before_filter :load_photo, :only => [:show, :update, :repair]
-  before_filter :require_owner, :only => [:update]
-  before_filter :authenticate_user!, :only => [:inviter]
+  before_filter :load_photo, :only => [:show, :update, :repair, :destroy]
+  before_filter :require_owner, :only => [:update, :destroy]
+  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy]
   before_filter :return_here, :only => [:show, :invite, :inviter]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
@@ -55,6 +55,13 @@ class PhotosController < ApplicationController
                }
       end
     end
+  end
+
+  def destroy
+    resource = @photo.observations.first || @photo.taxa.first
+    @photo.destroy
+    flash[:notice] = "Photo deleted"
+    redirect_back_or_default(resource || '/')
   end
 
   # this is the action for *accepting* an invite (e.g. coming from a url posted as a flickr/fb/picasa photo comment)

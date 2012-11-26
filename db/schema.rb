@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121101180101) do
+ActiveRecord::Schema.define(:version => 20121119073505) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -305,10 +305,10 @@ ActiveRecord::Schema.define(:version => 20121101180101) do
 
   add_index "listed_taxa", ["created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["first_observation_id"], :name => "index_listed_taxa_on_first_observation_id"
-  add_index "listed_taxa", ["last_observation_id"], :name => "index_listed_taxa_on_last_observation_id"
+  add_index "listed_taxa", ["last_observation_id", "list_id"], :name => "index_listed_taxa_on_last_observation_id_and_list_id"
   add_index "listed_taxa", ["list_id", "taxon_ancestor_ids", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i"
   add_index "listed_taxa", ["list_id", "taxon_id"], :name => "index_listed_taxa_on_list_id_and_taxon_id"
-  add_index "listed_taxa", ["list_id"], :name => "index_listed_taxa_on_list_id_and_lft"
+  add_index "listed_taxa", ["place_id", "created_at"], :name => "index_listed_taxa_on_place_id_and_created_at"
   add_index "listed_taxa", ["place_id", "observations_count"], :name => "index_listed_taxa_on_place_id_and_observations_count"
   add_index "listed_taxa", ["place_id", "taxon_id"], :name => "index_listed_taxa_on_place_id_and_taxon_id"
   add_index "listed_taxa", ["source_id"], :name => "index_listed_taxa_on_source_id"
@@ -464,6 +464,7 @@ ActiveRecord::Schema.define(:version => 20121101180101) do
     t.boolean  "file_processing"
     t.boolean  "mobile",            :default => false
     t.datetime "file_updated_at"
+    t.text     "metadata"
   end
 
   add_index "photos", ["native_photo_id"], :name => "index_flickr_photos_on_flickr_native_photo_id"
@@ -685,7 +686,7 @@ ActiveRecord::Schema.define(:version => 20121101180101) do
 
   create_table "sources", :force => true do |t|
     t.string   "in_text"
-    t.text     "citation"
+    t.string   "citation",   :limit => 512
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -14,7 +14,7 @@
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <%-
-     description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary
+     description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary(:refresh_if_blank => true)
      og_description = description
      og_description = "(Photo: #{@photos.first.attribution}) #{og_description}" unless @photos.blank?
   -%>

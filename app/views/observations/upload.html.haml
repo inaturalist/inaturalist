@@ -1,0 +1,80 @@
+- content_for :title do
+  = @title = "Observation Photo Uploader"
+- content_for :extrajs do
+  :plain
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  = javascript_include_tag "http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"
+  = javascript_include_tag "http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"
+  = javascript_include_tag "http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"
+  = javascript_include_tag "http://blueimp.github.com/cdn/js/bootstrap.min.js"
+  = javascript_include_tag "http://blueimp.github.com/Bootstrap-Image-Gallery/js/bootstrap-image-gallery.min.js"
+  = javascript_include_tag "jquery/plugins/jquery.iframe-transport"
+  = javascript_include_tag "jquery/plugins/jquery.fileupload"
+  = javascript_include_tag "jquery/plugins/jquery.fileupload-fp"
+  = javascript_include_tag "jquery/plugins/inat/datepicker"
+  = javascript_include_tag "jquery/plugins/jquery.latLonSelector"
+  = javascript_include_tag 'inaturalist/map3'
+  = javascript_include_tag "observations/uploader"
+- content_for :extracss do
+  :css
+    .template-upload td {vertical-align: middle;}
+    textarea {height: 70px; width: 330px;}
+    .observation .field input.text {width: 325px;}
+    .observation {padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee;}
+    .latitude_field .label, 
+    .longitude_field .label, 
+    .positional_accuracy_field .label,
+    .latitude_field, 
+    .longitude_field, 
+    .positional_accuracy_field,
+    .geoprivacy_field,
+    .geoprivacy_field .label { display: inline-block; }
+    .observation .latitude_field input.text,
+    .observation .longitude_field input.text,
+    .observation .positional_accuracy_field input.text {width: 80px; font-size: smaller;}
+    form .id_please_field {margin-bottom:0.2em;}
+
+#pageheader
+  %h2= @title
+= form_tag "/observations/photo.json", :multipart => true, :id => "fileupload", :remote => true do
+  %p.description
+    Create observations by uploading photos to iNat. When you upload iNat will try to extract GPS coordinates and date/time from the photo.
+    To get started,
+    %em drag and drop photos onto this window
+    or
+    = file_field_tag "files[]", :multiple => true, :style => "display:none", :id => "filefield"
+    %em
+      = link_to_function "choose files from your computer", "$('#filefield').click()"
+  .observations
+    .observation.template.stacked.column.span-24{:style => "display:none"}
+      .photocol.column.span-6
+      .last.column.span-18
+        = fields_for "observations[]", Observation.new, :builder => DefaultFormBuilder do |f|
+          = hidden_field_tag :ignore_photos, true
+          .column.span-9
+            .right
+              = f.check_box :id_please, :label_after => true, :label => "ID Please!", :id => "observation_#{serial_id}_id_please"
+            %label What did you see?
+            = f.text_field :species_guess, :label => false, :placeholder => "Type a name and click LOOKUP"
+            = f.hidden_field :taxon_id
+            = f.text_area :description, :label => false, :placeholder => "Brief description of what you observed"
+          .last.column.span-9
+            = f.text_field :observed_on_string, :label => "When did you see it?", :placeholder => "Type date/time or use the calendar"
+            = f.text_field :place_guess, :label => "Where were you?", :placeholder => "Type a place name and click SEARCH to search"
+            = f.text_field :latitude, :placeholder => "Latitude", :label => "Lat"
+            = f.text_field :longitude, :placeholder => "Longitude", :label => "Lon"
+            = f.hidden_field :map_scale, :class => 'map_scale'
+            = f.text_field :positional_accuracy, :label => "Acc", :placeholder => "Positional accuracy", :class => 'positional_accuracy text inlineblock', "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it."
+            = f.hidden_field :positioning_method, :class => 'positioning_method text inlineblock', :disabled => true
+            = f.hidden_field :positioning_device, :class => 'positioning_device', :disabled => true
+            = f.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open"
+        .column.span-20.actions.last.inline.buttonrow
+          = link_to "Upload", "", :class => "uploadbutton button default"
+          = link_to "Update", "", :class => "savebutton button default", :style => "display:none"
+          = link_to_function "Remove from batch", "$(this).parents('.observation:first').fadeOut(function() { $(this).remove() })", :class => "removebutton pale button"
+          = link_to "Delete", "", :class => "deletebutton delete button", :style => "display:none"
+.small.meta
+  This tool is experimental, so please 
+  = link_to "report any problems", "mailto:#{APP_CONFIG[:help_email]}"
+  you may have. It will probably only work in modern, standards-compliant browsers like
+  = commas_and [["Safari", "http://www.apple.com/safari/"], ["Chrome", "https://www.google.com/intl/en/chrome/browser/"], ["Firefox", "http://www.mozilla.org/en-US/firefox"]].map{|n,u| link_to n, u}

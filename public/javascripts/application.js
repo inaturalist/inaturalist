@@ -276,7 +276,11 @@ $(document).ready(function() {
       $(button).nextAll('.loading').hide()
       var html = data.html || data.body || ''
       html = '<div class="dialog">'+html+'</div>'
-      $(html).dialog({modal: true, title: 'Preview'})
+      $(html).dialog({
+        modal: true, 
+        title: 'Preview',
+        width: $(window).width() * 0.7
+      })
     })
     return false
   })
@@ -466,6 +470,29 @@ $.fn.shades = function(e, options) {
   }
 }
 
+$.fn.loadingShades = function(e, options) {
+  options = options || {}
+  if (e && e == 'close') {
+    $(this).shades(e, options)
+  } else {
+    var txt = e || 'Loading...',
+        msg = '<div class="loadingShadesMsg"><span class="loading bigloading status inlineblock">'+txt+'...</span></div>'
+    options = $.extend(true, options, {
+      css: {'background-color': 'white'}, 
+      content: msg
+    })
+    $(this).shades('open', options)
+    var status = $('.shades .loading.status', this)
+    status.css({
+      position: 'absolute', 
+      top: '50%', 
+      left: '50%', 
+      marginTop: (-1 * status.outerHeight() / 2) + 'px',
+      marginLeft: (-1 * status.outerWidth() / 2) + 'px'
+    })
+  }
+}
+
 $.fn.showInlineBlock = function() {
   var opts = {}
   if ($.browser.msie && $.browser.version < 8) {
@@ -556,8 +583,9 @@ $.fn.centerInContainer = function(options) {
   options = options || {}
   var containerSelector = options.container || ':first'
   $(this).not('.centeredInContainer').each(function() {
-    var containerWidth = $(this).parents(containerSelector).width(),
-        containerHeight = $(this).parents(containerSelector).height(),
+    var container = $(this).parents(containerSelector),
+        containerWidth = container.width(),
+        containerHeight = container.height(),
         w = $(this).naturalWidth(),
         h = $(this).naturalHeight()
     if (w > h) {
@@ -859,3 +887,8 @@ $('.flaglink').live('click', function() {
   dialog.dialog({modal: true, title: "Flag an item"})
   return false
 })
+
+function serialID() {
+  window._serialID = window._serialID ? window._serialID + 1 : 1
+  return window._serialID
+}

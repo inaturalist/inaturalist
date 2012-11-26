@@ -64,7 +64,8 @@
           .attr('id', dialogId)
           .addClass('dialog').html('<div class="loading status">Loading...</div>')
         $(document).append(dialog)
-        dialog.load($(this).attr('href'), {partial: 'form'}, function() {
+        var data = 'partial=form&authenticity_token=' + $('meta[name=csrf-token]').attr('content')
+        dialog.load($(this).attr('href'), data, function() {
           $(this).centerDialog()
           $('form:has(input[required])', this).submit(checkFormForRequiredFields)
         })

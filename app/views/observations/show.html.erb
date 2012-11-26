@@ -230,7 +230,7 @@
 
         <% if is_me?(@observation.user) -%>
           <div class="meta">
-            <%= link_to "Add more photos", edit_observation_path, :id => "add_more_photos_link" %>
+            <span class="button"><%= link_to "Add more photos", edit_observation_path, :id => "add_more_photos_link" %></span>
           </div>
         <% end -%>
       </div>
@@ -309,6 +309,9 @@
           </div>
         <% end %>
       </div>
+    <% end -%>
+    <% if is_me?(@observation.user) -%>
+      <span class="button"><%= link_to_function "Add/edit more fields", "showObservationFieldsDialog()" %></span>
     <% end -%>
     
     <%= separator %>
