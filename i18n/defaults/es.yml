@@ -31,9 +31,9 @@ es:
     - viernes
     - sábado
     formats:
-      default: ! '%d/%m/%Y'
-      long: ! '%d de %B de %Y'
-      short: ! '%d de %b'
+      default: '%d/%m/%Y'
+      long: '%d de %B de %Y'
+      short: '%d de %b'
     month_names:
     -
     - enero
@@ -78,16 +78,16 @@ es:
         other: más de %{count} años
       x_days:
         one: 1 día
-        other: ! '%{count} días'
+        other: "%{count} días"
       x_minutes:
         one: 1 minuto
-        other: ! '%{count} minutos'
+        other: "%{count} minutos"
       x_months:
         one: 1 mes
-        other: ! '%{count} meses'
+        other: "%{count} meses"
       x_seconds:
         one: 1 segundo
-        other: ! '%{count} segundos'
+        other: "%{count} segundos"
     prompts:
       day: Día
       hour: Hora
@@ -96,7 +96,7 @@ es:
       second: Segundos
       year: Año
   errors: &errors
-    format: ! '%{attribute} %{message}'
+    format: "%{attribute} %{message}"
     messages:
       accepted: debe ser aceptado
       blank: no puede estar en blanco
@@ -114,16 +114,16 @@ es:
       not_a_number: no es un número
       not_an_integer: debe ser un entero
       odd: debe ser impar
-      record_invalid: ! 'La validación falló: %{errors}'
+      record_invalid: "La validación falló: %{errors}"
       taken: ya está en uso
-      too_long: es demasiado largo (%{count} caracteres máximo)
-      too_short: es demasiado corto (%{count} caracteres mínimo)
-      wrong_length: no tiene la longitud correcta (%{count} caracteres exactos)
+      too_long: "es demasiado largo (%{count} caracteres máximo)"
+      too_short: "es demasiado corto (%{count} caracteres mínimo)"
+      wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
     template:
-      body: ! 'Se encontraron problemas con los siguientes campos:'
+      body: "Se encontraron problemas con los siguientes campos:"
       header:
-        one: No se pudo guardar este/a %{model} porque se encontró 1 error
-        other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
+        one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
+        other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
   helpers:
     select:
       prompt: Por favor seleccione
@@ -135,21 +135,21 @@ es:
     currency:
       format:
         delimiter: .
-        format: ! '%n %u'
+        format: '%n %u'
         precision: 2
-        separator: ! ','
+        separator: ','
         significant: false
         strip_insignificant_zeros: false
         unit: €
     format:
       delimiter: .
       precision: 3
-      separator: ! ','
+      separator: ','
       significant: false
       strip_insignificant_zeros: false
     human:
       decimal_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           billion: mil millones
           million: millón
@@ -163,7 +163,7 @@ es:
         significant: true
         strip_insignificant_zeros: true
       storage_units:
-        format: ! '%n %u'
+        format: '%n %u'
         units:
           byte:
             one: Byte
@@ -180,15 +180,15 @@ es:
         delimiter: ''
   support:
     array:
-      last_word_connector: ! ', y '
-      two_words_connector: ! ' y '
-      words_connector: ! ', '
+      last_word_connector: ', y '
+      two_words_connector: ' y '
+      words_connector: ', '
   time:
     am: am
     formats:
-      default: ! '%d de %B'
-      long: ! '%d de %B de %Y'
-      short: ! '%d/%m/%Y'
+      default: '%d de %B'
+      long: '%d de %B de %Y'
+      short: '%d/%m/%Y'
     pm: pm
 # Estas son las traducciones para la applicación
 #shared: 
@@ -227,12 +227,10 @@ es:
   life!: la vida
   record!: ¡Comparta!
   welcome!: ¡Bienvenidos!
-  add_observations!: Observaciones
   add_observation: Agregar observación
   about: Acerca de
-  "to": El <a href="http://www.inbio.ac.cr" target="_blank">INBio</a>
-  more: Más
-  welcome_message: lo invita a utilizar este portal de información sobre biodiversidad, en el que podrá compartir lo que observa en la naturaleza, aprender de ella e intercambiar información con otros ciudadanos naturalistas. 
+  # "to": El <a href="http://www.inbio.ac.cr" target="_blank">INBio</a>
+  # more: Más
   recent_additions: Registros recientes
   learn_more: Aprenda más
   sign_up!: ¡Regístrese!
@@ -457,7 +455,7 @@ es:
   email_addresses_to_receive_invites: Direcciones de correo para recibir invitaciones
   email_addresses_description: Direcciones de correo separadas por coma, límite 60 cada 30 días.
   personal_message: Mensaje personal
-  personal_message_description: ¡A nadie le gusta recibir correos desde una máquina! ¿Por qué no le deja saber a sus amigos por qué les está invitando?
+  personal_message_description: ¡A nadie le gusta recibir correos desde una máquina¿Por qué no le deja saber a sus amigos por qué les está invitando?
   send_the_invites: Enviar las invitaciones
   preview_your_message: Vista previa de su mensaje
   hi: Hola.
@@ -562,7 +560,7 @@ es:
   linked_flickr_automaticaly: Tome en cuenta también que si ingresa a «Bioexplorador» a treavés de Flickr, automáticamente volveremos a vincular sus cuentas de «Bioexplorador» y Flickr. Parece razonable que si usted usa Flickr deseará poder importar fotos de Flickr, ¿verdad?
   flickr_tagger: Etiquetador de Flickr
   hate_me_flickr: Desvincular sus cuentas de Flickr e «Bioexplorador»
-  able_to_connect_flickr: ¡Muy bien! Pudimos vincular su cuenta de Flickr.
+  able_to_connect_flickr: ¡Muy bienPudimos vincular su cuenta de Flickr.
   your_should_recognize: Usted debería reconocer algunas de estas fotos
   flickr_youre_all_set: Ya está listo para comenzar a explorar «Bioexplorador»
   get_started_with_site: Comience con «Bioexplorador»
@@ -570,7 +568,7 @@ es:
   help_faq: Ayuda / Preguntas frecuentes
   feedback_group: Grupo de retroalimentación
   back_to_help: Regresar a Ayuda
-  # hi_and_welcome_to: ¡Hola y bienvenido a «Bioexplorador»! Esta guía le mostrará algunas de las características principales del sitio.
+  # hi_and_welcome_to: ¡Hola y bienvenido a «Bioexplorador»Esta guía le mostrará algunas de las características principales del sitio.
   photos: fotos
   # observations_lie_at_the_core: Las observaciones son el punto medular de «Bioexplorador». Una observación es básicamente una especia que usted observó, una hora y un lugar.
   adding_observations: Agregar observaciones
@@ -581,8 +579,8 @@ es:
   # and_choose_a_matching_taxon: y seleccione un taxón de la lista que concuerde. Si no termina con algo como
   # your_observation_wont_get: su observación no será asociada con otras observaciones de esta especie y su lista de vida no será actualizada.
   # if_inat_cant_find_taxon: Si «Bioexplorador» no puede encontrar un taxón que concuerde con el nombre que usted ingrese en nuestra base de datos, usted verá algo como
-  # if_you_really_dont_know_what: Si no sabe realmente lo que vió, ¡no hay problema! Si lo sabe, debería hacer click <fuerte class="ui">Buscar proveedores externos de nombres</fuerte>. Esto le indicará a «Bioexplorador» que busque el nombre en algunas bases de datos taxonómicos externas y que trate de importar lo que encuentre.
-  # those_are_the_basics_of: ¡Esas son las bases para agregar observaciones! Hay muchas otras cosas que puede hacer, como buscar y filtrar sus observaciones o modificarlas como un grupo, pero esto debería ser auto explicativo.
+  # if_you_really_dont_know_what: Si no sabe realmente lo que vió, ¡no hay problemaSi lo sabe, debería hacer click <fuerte class="ui">Buscar proveedores externos de nombres</fuerte>. Esto le indicará a «Bioexplorador» que busque el nombre en algunas bases de datos taxonómicos externas y que trate de importar lo que encuentre.
+  # those_are_the_basics_of: ¡Esas son las bases para agregar observacionesHay muchas otras cosas que puede hacer, como buscar y filtrar sus observaciones o modificarlas como un grupo, pero esto debería ser auto explicativo.
   photos_next: "Fotos &rarr;"
   start_adding_observations: Comience a agregar observaciones
   # photo_integration: Integración de fotos
@@ -610,7 +608,7 @@ es:
   # if_your_search_comes_up: Si su búsqueda regresa vacía, debería ver algunas cajas de búsqueda para repetir la búsqueda a través de nuestros proveedores externos de nombres
   # if_they_know_about: Si ellos saben el nombre, «Bioexplorador» importará y guardará los datos.
   help_out!: ¡Ayúdenos!
-  # you_can_help_make_our: ¡Usted puede ayudar a que nuestras páginas de especies sean más útiles agregando datos!  Aquí hay algunas formas en las que puede ayudar
+  # you_can_help_make_our: ¡Usted puede ayudar a que nuestras páginas de especies sean más útiles agregando datos Aquí hay algunas formas en las que puede ayudar
   # search_for_new_taxa: buscar nuevos taxones
   # add_common_names_for: agregar nombres comunes a taxones existentes
   # add_colors: agregar colores
@@ -728,7 +726,7 @@ es:
   show: Mostrar
   this_list_only_accepts_taxa_that_are: Esta lista acepta solamente taxones que son
   loading_taxa_from_your: Cargando taxones de sus observaciones...
-  you_havent_observed_any_species: ¡Usted no ha observado ninguna especie para enlistar todavía! Pruebe
+  you_havent_observed_any_species: ¡Usted no ha observado ninguna especie para enlistar todavíaPruebe
   adding_some_observations: agregando algunas observaciones
   or_just_adding_species_using: o solamente agregando especies usando el formulario en esta página.
   no_results_matching: No hay resultados que concuerden
@@ -844,14 +842,14 @@ es:
   view_all_photocount_photos: "Ver todas las %{photo_count} fotos"
   project_curator_id: Identificación del curador del proyecto
   view_observation: Ver observaciones
-  youve_seen_it_want_to:  ¡Lo ha visto! ¿Desea
+  youve_seen_it_want_to:  ¡Lo ha visto¿Desea
   add_an_observation?: agregar una observación?
   adding_observation: Adding observation
   observation_added: Observation added
   seen_it?: Seen it?
   add_to_your_life_list: Add to your life list
   adding_to_your_life_list: Adding to your life list
-  life_list_updated_we_also_saved_a: ¡Lista de vida actualizada! También guardamos una observación vacía para este taxón.
+  life_list_updated_we_also_saved_a: ¡Lista de vida actualizadaTambién guardamos una observación vacía para este taxón.
   doh_something_went_wrong: Algo salió mal.
   no_observations: no hay observaciones
   something_: Algo
@@ -885,7 +883,8 @@ es:
   this_will_try_to_add_tags_to_your_flickr: Esto tratará de agregar etiquetas a sus fotos de fotos. ¿Desea continuar?
   recent_observations_by: "Observaciones recientes por %{login} (Atom)"
   the_following_observations_could: "Las observaciones siguientes no se pudieron agregar a %{link}"
-  add_observations_: Agregar observaciones
+  add_observations: Agregar observaciones
+  add_observations!: ¡Agregar observaciones!
   batch_edit: Modificar grupo
   stop_editing: Detener modificación
   edit_selected: Modificar seleccionados
@@ -897,7 +896,6 @@ es:
   delete_selected: Eliminar seleccionados
   search: Búsqueda
   no_matching_observations: No hay observaciones que concuerden
-  add_observations_: Agregar observaciones
   widget: Widget
   there_were_errors: Hubo errores.
   observation_curation: Curación de observación
@@ -997,7 +995,7 @@ es:
   observations_for_project: "Observaciones para %{project}"
 #Passwords: 
   forgot_your_password: ¿Olvidó su contraseña?
-  thats_okay_we_forget: ¡No hay problema! Nosotros también olvidamos las nuestras. Envíenos el correo electrónico que usó para crear su cuenta y le enviaremos un vínculo para restablecer su contraseña.
+  thats_okay_we_forget: ¡No hay problemaNosotros también olvidamos las nuestras. Envíenos el correo electrónico que usó para crear su cuenta y le enviaremos un vínculo para restablecer su contraseña.
   we_couldnt_find_a_user: No pudimos encontrar un usuario con esa dirección de correo.
   reset_your_password: Restablecer su contraseña
   please_enter_a_new_pass: Por favor digite una nueva contraseña y confírmela.
@@ -1006,7 +1004,7 @@ es:
   submit: Enviar
 #Photos: 
   add_your_photo_to: "Agregar su foto a %{project}"
-  inaturalist_is_an_online_community: ¡«Bioexplorador» es una comunidad en línea para naturalistas! Al agregar su foto podrá ayudar a los investigadores a aprender más sobre
+  inaturalist_is_an_online_community: ¡«Bioexplorador» es una comunidad en línea para naturalistasAl agregar su foto podrá ayudar a los investigadores a aprender más sobre
   the: el
   this_species: esta especie
   and_help_the_inaturalist_community_grow: y ayudar a que la comunidad «Bioexplorador» crezca.
@@ -1034,7 +1032,7 @@ es:
   are_you_sure_unlink_picasa: ¿Está seguro que desea desvincular su cuenta de Picasa?
   link_your_picasa_account: Vincule su cuenta de Picasa
 #Places: 
-  import: importar
+  import: Importar
   show_kml: Mostrar KML
   save: Guardar
   cancel: Cancelar
@@ -1046,15 +1044,15 @@ es:
   no_matching_species: No hay especies que concuerden
   photoid_photoattribution: "Foto %{photoid}, %{photoattribution}"
   inaturalist_places: Lugares «Bioexplorador»
-  the_world_is_full_of_interesting_places: El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina! Lugares «Bioexplorador» le permite buscar vida de todas partes del planeta. ¡Comience a explorar!
+  the_world_is_full_of_interesting_places: El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquinaLugares «Bioexplorador» le permite buscar vida de todas partes del planeta. ¡Comience a explorar!
   find_new_place_to_explore: ¡Encontrar un nuevo lugar para explorar!
   about_places: Acerca de Lugares
-  the_world_is_full_of_interesting_places_short: El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina! 
+  the_world_is_full_of_interesting_places_short: El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina
   inaturalist_places_are_way_record_what_lives_where: Lugares «Bioexplorador» es una forma de registrar qué vive dónde. Si usted busca una especie en particular, sabrá dónde buscar. Cada lugar tiene una lista de verificación para regisrar todas las especies que se encuentran allí, para que pueda también ser útil para buscar cosas que usted encontró en sitios particulares.
   species_from_around_the_world: Especies de todo el mundo
   each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las especies que «Bioexplorador» conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en «Bioexplorador». Usted puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla.
   localized_species_accounts: Cuentas de especies localizadas
-  view_photos_ranges_observations_more: ¡Vea fotos, rangos de especies, observaciones de «Bioexplorador» y más! Hemos recopilado información de muchas fuentes diferentes y las hemos combinado para dar un corto resumen de cada especie en cada lugar.
+  view_photos_ranges_observations_more: ¡Vea fotos, rangos de especies, observaciones de «Bioexplorador» y másHemos recopilado información de muchas fuentes diferentes y las hemos combinado para dar un corto resumen de cada especie en cada lugar.
   click_the_map_to_jump_new_place: Haga clic en el mapa para moverse a un lugar nuevo
   blue_icons_represent_political_units: Los íconos azules representan unidades políticas como países, estados, provincias, países y afines, mientras que los íconos verdes representan diferentes tipos de espacios abiertos pareques, reservas). Si hace un acercamiento, podrá ver más lugares pequeños.
   you_can_help_out_by: Usted puede ayudar al
@@ -1253,6 +1251,7 @@ es:
   home: Inicio
   your_observations: Sus observaciones
   view_non_mobile_site: Ver el sitio que no es para móviles
+  account: Cuenta
   sign_out: Salir
   about_inaturalist: Acerca de «Bioexplorador»
   feedback: Retroalimentación
@@ -1318,7 +1317,7 @@ es:
   what_color_was_it: ¿De qué color era?
   search_this_taxon: buscar este taxón
   not_seeing_what_looking_for: ¿No ve lo que está buscando?
-  sorry_how_about_we_try_repeat: ¡Lo sentimos! ¿Por qué no tratamos de repetir su búsqueda en algunas de nuestras bases de datos o nombres de especies? Si encontramos algo, lo guardaremos para que pueda encontrarlo la próxima vez.
+  sorry_how_about_we_try_repeat: ¡Lo sentimos¿Por qué no tratamos de repetir su búsqueda en algunas de nuestras bases de datos o nombres de especies? Si encontramos algo, lo guardaremos para que pueda encontrarlo la próxima vez.
   catalogue_of_life: ' Catálogo de la Vida'
   still_working_on_classifying_taxon: Todavía trabajamos en la clasificación de este taxón. Vuelva a revisar más adelante.
   more: Más…
@@ -1332,7 +1331,7 @@ es:
   resolve: Resolver
   recently_resolved: Resueltos recientemente
   unfragted_taxa: Taxones sin injertar
-  w00t_no_unfragted_taxa: ¡Hurra! ¡No hay taxones sin injertar!
+  w00t_no_unfragted_taxa: ¡Hurra¡No hay taxones sin injertar!
   showing_one_to: Mostrando 1 - 
   are_you_sure_delete_this: ¿Está seguro que desea eliminar esto? Tal vez debería revisar si tiene observaciones o taxones primero.
   grafting: Injertando...
@@ -1485,7 +1484,7 @@ es:
   flag_for_curation: Marcar para curación.
   global_conservation_status: Estado de conservación global
   add_a_name: Agregar un nombre
-  this_species_has_no_colors: ¡Esta especie no tiene colores! ¡Ayude a mejorar las búsquedas de especies informándonos de qué color es esta!
+  this_species_has_no_colors: ¡Esta especie no tiene colores¡Ayude a mejorar las búsquedas de especies informándonos de qué color es esta!
   no_colors_selected: No hay colores seleccionados
   edit_colors: Modificar colores
   save_colors: Guardar colores
@@ -1814,7 +1813,7 @@ es:
   home_faq: FAQ
 # help
   welcome_help_message: |
-    Hola!  Si apenas estas empezando a usar «Bioexplorador», te invitamos a revisar 
+    Hola Si apenas estas empezando a usar «Bioexplorador», te invitamos a revisar 
     nuestra guía en: %{getting_started} para que conozcas algunas de las características
     y funciones de nuestra página.  Si tienes alguna duda, por favor da click en 
     Preguntas Frecuentes. 
@@ -1859,7 +1858,7 @@ es:
   #         a los demás miembros de la comunidad a identificar sus observaciones.  
   #         So sabes codificar y quieres ayudar a mejorar ciertas funciones, 
   #         <a href="http://github.com/inaturalist/inaturalist" title="inaturalist's 
-  #         inaturalist at master - GitHub">haz un fork del proyecto en GitHub!</a>! 
+  #         inaturalist at master - GitHub">haz un fork del proyecto en GitHub!</a>
   # how_do_i_contact_inaturalist?: ¿Cómo puedo contactar a «Bioexplorador»?
   you_can_contact_us_at_: 'Nos puedes contactar en <a href="mailto:%{help_email}" >%{help_email}</a>'
   what_are_admins_and_curators?: ¿Qué son los adminstradores y los curadores?

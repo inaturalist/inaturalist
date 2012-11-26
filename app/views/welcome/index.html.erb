@@ -124,16 +124,14 @@
     <div id="more">
     <h2><%=t :welcome! %></h2>
       <p>
-        <%=t :to %>
-        <%= image_tag('logo-small.gif') %>
-        <%= raw t(:welcome_message) %>
+        <%= t('views.welcome.index.welcome_message_html', :image => image_tag('logo-small.gif')) %>
       </p>
 
       <a href="/about" id="learnmore" class="button">
           <%=t :learn_more %>  &raquo;
       </a>
       <% if logged_in? %>
-          <%= link_to t('add_observation'), new_observation_path, :id => 'addobs', :class => 'button default', :rel => "nofollow" %>
+          <%= link_to t('add_observations'), new_observation_path, :id => 'addobs', :class => 'button default', :rel => "nofollow" %>
       <% else %>
       <%= link_to t(:sign_up!), signup_url, :id => 'signup', :class => 'button default' %>
       <% end %>
