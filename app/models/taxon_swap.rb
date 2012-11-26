@@ -68,7 +68,10 @@ class TaxonSwap < TaxonChange
       new_taxon_name = taxon_name.dup
       new_taxon_name.taxon_id = output_taxon.id
       new_taxon_name.is_valid = false if taxon_name.is_scientific_names? && taxon_name.is_valid?
-      new_taxon_name.save
+      unless new_taxon_name.save
+        Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{taxon_name}: " + 
+          new_taxon_name.errors.full_messages.to_sentence
+      end
     end
     
     # duplicate taxon_range
@@ -76,7 +79,10 @@ class TaxonSwap < TaxonChange
       input_taxon.taxon_ranges.each do |taxon_range|
         new_taxon_range = taxon_range.dup
         new_taxon_range.taxon_id = output_taxon.id
-        new_taxon_range.save
+        unless new_taxon_range.save
+          Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{taxon_range}: " +
+            new_taxon_range.errors.full_messages.to_sentence
+        end
       end
     end
     

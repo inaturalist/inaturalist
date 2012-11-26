@@ -6,8 +6,12 @@
     var options = $.extend({}, $.fn.simpleTaxonSelector.defaults, options);
     if (typeof(options.inputWidth) == "undefined") {
       options.inputWidth = $(this).outerWidth();
-    };
-    options.inputHeight = $(this).outerHeight();
+    }
+    if (jQuery.browser.mozilla) {
+      options.inputHeight = $(this).height();
+    } else {
+      options.inputHeight = $(this).outerHeight();
+    }
     
     var instances = [];
     this.each(function() {
@@ -103,7 +107,7 @@
     $(wrapper).append(status);
     
     // Recognize previously selected taxon, lookup unassociated name
-    if ($(input).val() != '' || $(taxon_id).val() != '') {
+    if (($(input).val() && $(input).val() != '') || ($(taxon_id).val() && $(taxon_id).val() != '')) {
       // if both are set, lookup the taxon
       if ($(taxon_id).val() != '') {
         // If the taxon_id input has an alt set, use that as the matched 
@@ -410,7 +414,7 @@
     var chosenTaxonName = taxon.default_name
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
-      if (tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
+      if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
         chosenTaxonName = tn
         break
       }

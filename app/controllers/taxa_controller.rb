@@ -1046,7 +1046,7 @@ class TaxaController < ApplicationController
         taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
       rescue ActiveRecord::StatementInvalid, PGError => e
         raise e unless e.message =~ /invalid byte sequence/ || e.message =~ /incomplete multibyte character/
-        name = Iconv.iconv('UTF8', 'LATIN1', name).first
+        name = name.encode('UTF-8')
         taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
       end
       @taxon = taxa.first if taxa.size == 1
@@ -1058,7 +1058,7 @@ class TaxaController < ApplicationController
         taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
-        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        name = name.encode('UTF-8')
         taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       end
       @taxon = taxa.first if taxa.size == 1
@@ -1070,7 +1070,7 @@ class TaxaController < ApplicationController
         taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
-        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        name = name.encode('UTF-8')
         taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       end
       if taxon_names.size == 1

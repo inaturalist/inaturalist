@@ -464,7 +464,7 @@ iNaturalist.Map.createMap = function(options) {
   // map.overlayMapTypes.insertAt(0, iNaturalist.Map.buildObservationsMapType(map))
   
   return map;
-};
+}
 
 // The following code should be abstracted out a bit more
 iNaturalist.Map.createPlaceIcon = function(options) {

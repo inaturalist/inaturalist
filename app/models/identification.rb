@@ -37,6 +37,7 @@ class Identification < ActiveRecord::Base
   }
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
+  scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
   scope :current, where(:current => true)
   scope :outdated, where(:current => false)
   
@@ -256,7 +257,7 @@ class Identification < ActiveRecord::Base
 
   def self.update_for_taxon_change(taxon_change, taxon, options = {})
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
-    scope = Identification.where("identifications.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = Identification.current.where("identifications.taxon_id IN (?)", input_taxon_ids).scoped
     scope = scope.where(:user_id => options[:user]) if options[:user]
     scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
     scope = scope.where(options[:conditions]) if options[:conditions]

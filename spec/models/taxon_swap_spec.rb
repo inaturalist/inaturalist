@@ -139,6 +139,14 @@ describe TaxonSwap, "commit_records" do
     ident.should_not be_current
     ident.taxon.should_not eq(@output_taxon)
   end
+
+  it "should only add one new identification per observer" do
+    obs = Observation.make!(:taxon => @input_taxon)
+    ident = obs.owners_identification
+    @swap.commit_records
+    ident.reload
+    ident.observation.identifications.by(ident.user).of(@output_taxon).count.should eq(1)
+  end
 end
 
 def prepare_swap
