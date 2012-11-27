@@ -1,6 +1,4 @@
 en:
-  observation: Observation
-  observations: Observations
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
@@ -19,11 +17,34 @@ en:
     <a href="http://picasaweb.google.com">Picasa</a>, y
     <a href="http://facebook.com">Facebook</a>
     para tus imágenes.
-  make_curator: Make curator
-  a_community_for_naturalist: A Community for Naturalists
   a_default_taxon_name_will_automatically_created: |
     A default taxon name will automatically be created from the scientific name attribute of this taxon. 
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
+  x_followers:
+    one: '1 follower'
+    other: '%{count} followers'
+  x_identifications:
+    one: '1 identification'
+    other: '%{count} identifications'
+  x_lists:
+    one: '1 list'
+    other: '%{count} list'
+  x_journal_posts:
+    one: '1 journal post'
+    other: '%{count} journal posts'
+  x_people:
+    one: '1 person'
+    other: '%{count} people'
+  x_species:
+    one: '1 species'
+    other: '%{count} species'
+  # invite_your_friends: Invite Your Friends to Join iNaturalist
+  # invite_your_friends_description: You can make it super easy for people on Flickr to add their photos as iNat observations. Just leave a comment including this special invite URL below.  You can also pre-select a taxon and project for the new observation.
+  # life_lists_automatically_fill: What do you want to list?
+  # linked_flickr_howto: In order to authorize your Flickr account to work with iNaturalist, you need to click on the button to the right and either create a Flickr account or sign into Flickr.com. Flickr will ask you if you want to give iNaturalist permission to read from your Flickr account and will then redirect you back to us.
+  # linked_flickr_howto: To connect Flickr Flickr will ask you if you want to give iNaturalist permission to <strong>read</strong> from your Flickr account and will then send you back here. We also ask for <strong>write</strong> permission so you can add taxonomic tags back to your Flickr photos using the with iNat, click the link on the right and sign into Flickr.com.  
+  # linked_flickr_password: We will never ask you for your Flickr password (but Flickr might, check the url that the button sends you and make sure it's Flickr.com). We will also won't change your Flickr data unless you want us to. We're the good guys!
+  a_community_for_naturalist: A Community for Naturalists
   a_few_points_to_make_things_clear: "A few points to make things a bit clearer:"
   a_greasemonkey_script: a Greasemonkey script
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
@@ -143,6 +164,7 @@ en:
   and_you_havent_linked: "...and you haven't linked one of these external accounts, you should sign in through iNat first, then edit your profile and link your account from there. Otherwise iNat may not be able to tell that the two accounts are connected and try to create a new account for you instead!"
   animals: Animals
   announcements: Announcements
+  any: any
   apply_darr: "Apply &darr;"
   apply_these_settings_to_all: Apply these settings to all the observations below.
   archives: Archives
@@ -586,14 +608,12 @@ en:
   invite_someone_to: "Invite someone to %{name}!"
   invite_to_project: Invite to project
   invite_your_friends: invite your friends
-  # invite_your_friends: Invite Your Friends to Join iNaturalist
   invite_your_friends_description: Help make iNaturalist a bigger, better community by inviting your friends to join!
-  # invite_your_friends_description: You can make it super easy for people on Flickr to add their photos as iNat observations. Just leave a comment including this special invite URL below.  You can also pre-select a taxon and project for the new observation.
   invited: invited
   invited_to_the_following_projects: "Invited to the following projects:"
   is_a: 'is a'
-  is_an: 'is an'
   is_a_naturalist: is a naturalist!
+  is_an: 'is an'
   is_not_following_anyone: is not following anyone.
   is_the_organism_wild: "Is the organism wild/naturalized?"
   is_this_observation_ofensive?: Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?
@@ -630,7 +650,6 @@ en:
   life!: Life!
   life_list_updated_we_also_saved_a: Life list updated! We also saved a blank observation of this taxon.
   life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
-  # life_lists_automatically_fill: What do you want to list?
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
   link_or_unlink_your_picasa_account: Link or unlink your Picasa account
@@ -649,10 +668,7 @@ en:
   linked_flickr_automaticaly: Also, keep in mind that if you log in to iNat via Flickr, we will automatically re-link your iNat and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?
   linked_flickr_description:  Keeping your iNaturalist account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want iNaturalist and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link iNaturalist to.
   linked_flickr_hotwo: You can activate your Flickr account with iNaturalist to add photos by clicking on this link.
-  # linked_flickr_howto: In order to authorize your Flickr account to work with iNaturalist, you need to click on the button to the right and either create a Flickr account or sign into Flickr.com. Flickr will ask you if you want to give iNaturalist permission to read from your Flickr account and will then redirect you back to us.
-  # linked_flickr_howto: To connect Flickr Flickr will ask you if you want to give iNaturalist permission to <strong>read</strong> from your Flickr account and will then send you back here. We also ask for <strong>write</strong> permission so you can add taxonomic tags back to your Flickr photos using the with iNat, click the link on the right and sign into Flickr.com.  
   linked_flickr_password: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
-  # linked_flickr_password: We will never ask you for your Flickr password (but Flickr might, check the url that the button sends you and make sure it's Flickr.com). We will also won't change your Flickr data unless you want us to. We're the good guys!
   linked_flickr_photo_copy: <strong>We will never store copies of your photos or change your Flickr data (unless you ask us to), ever.</strong> We care too much about birds, bugs and slugs to want to mess with your information!
   list: List
   listed_taxon: Listed taxon
@@ -691,6 +707,7 @@ en:
   main_content: Main content
   main_content_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   make_curator: Make curator
+  make_curator: Make curator
   make_it_a_life_list?: Make it a life list?
   make_new_place: Make a new place
   make_one: make one
@@ -715,6 +732,8 @@ en:
   more_fields: More fields
   more_info: "More info:"
   more_observations: More observations
+  most_agree: most agree
+  most_disagree: most disagree
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
   n_person_agrees: "%{amount} person agrees"
@@ -811,6 +830,7 @@ en:
   not_yet: Not yet
   obscured: Obscured
   obscured_description: "Public coordinates shown as a random point within 10KM of the true coordinates. True coordinates are only visible to you and the curators of projects to which you add the observation."
+  observation: Observation
   observation_added: Observation added.
   observation_by: "Observation by %{user} on %{date}"
   observation_calendar_for: "Observation Calendar for %{user} in %{year}"
@@ -822,6 +842,7 @@ en:
   observation_rights_html: "Observation %{rights}"
   observation_rules_description: "You can choose rules to determine what observations can be added to this project, like limiting observations to a certain place. Note&#58; limiting to places currently relies on iNat Places, and can only limit observations to the smallest rectangle that surrounds a place."
   observation_would_like_some_help: "%{user} would like some help identifying this!"
+  observations: Observations
   observations_by_everyone: Observations by everyone
   observations_by_user: "Observations by %{user}"
   observations_circle_have_their_radii_scaled: Observation circles have their radii scaled proportionally to their positional accuracy. Observations without positional accuracy data are shown at the minimum size.
@@ -942,12 +963,12 @@ en:
   project_curator_id: Project curator ID
   project_curators: Project Curators
   project_icon: Project icon
+  project_invitations: 'Project invitations'
+  project_journal_posts: 'Project journal posts'
   project_list: Project List
   project_rules: Project Rules
   projects: Projects
   projects_description:  Projects are a way to pool your observations with other people on iNat.  Whether you're interested in starting a citizen science project or just keeping tabs on the birds in a nearby park with your local birding club, Projects are the way to go.
-  project_invitations: 'Project invitations'
-  project_journal_posts: 'Project journal posts'
   projects_you_admin: Projects You Admin
   projects_youve_joined: Projects You've Joined
   provider_authorizations: Provider Authorizations
@@ -1044,6 +1065,7 @@ en:
   search_ubio_raquo: "Search uBio &raquo;"
   search_your_photos: Search your photos
   searching: "Searching..."
+  second_person_possessive_singular: "Your %{noun}"
   see_something_wrong_with_taxon: See something wrong with this taxon?  Let the curators know.
   seen_it?: Seen it?
   seen_one: Seen one?
@@ -1077,6 +1099,7 @@ en:
   sing_in_exclamation: Sign in!
   single_observation: Single Observation
   so_meta!: so meta!
+  some_agree: some agree
   some_people: Some people
   some_rights_reserved: some rights reserved
   something: Something
@@ -1183,6 +1206,7 @@ en:
   theres_also: there's also 
   they_already_have_iNat_accounts: ...they already have iNat accounts
   they_have_been_invited: ...they've already been invited
+  third_person_possessive_singular: "%{object_phrase}'s %{noun}"
   this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
   this_is_more_convenient_way_find_parent: This is a more convenient way to find a parent ID. It's the parent ID that actually gets saved.
@@ -1321,10 +1345,10 @@ en:
   we_support_flickr: We currently support Flickr for image hosting and hope to add other image hosts shortly.
   wed: Wed
   welcome!: Welcome!
-  welcome_login: "Welcome, %{login}"
   welcome: welcome
   welcome_back: Welcome back
   welcome_comma: Welcome, 
+  welcome_login: "Welcome, %{login}"
   welcome_message: where you can <strong>record</strong> what you see in nature, <strong>meet</strong> other nature lovers, and <strong>learn</strong> about the natural world.
   welcome_to_inat: Welcome to iNaturlaist!
   were_currently_down_for: We're currently down for 
@@ -1351,30 +1375,12 @@ en:
   would_you_like_to: . Would you like to
   x_admin: "%{login} Admins"
   x_doesnt: "%{login} doesn't"
-  x_followers:
-    one: '1 follower'
-    other: '%{count} followers'
   x_hasnt: "%{login} hasn't"
-  x_identifications:
-    one: '1 identification'
-    other: '%{count} identifications'
-  x_lists:
-    one: '1 list'
-    other: '%{count} list'
   x_journal: "%{user}'s Journal"
   x_journal_archives_for_y: "%{user}'s Journal &middot; Archives for"
   x_journal_editing: "%{user}'s Journal &middot; Editing"
   x_journal_middot: "%{user}'s Journal &middot;"
   x_journal_new_post: "%{user}'s Journal &middot; New Post"
-  x_journal_posts:
-    one: '1 journal post'
-    other: '%{count} journal posts'
-  x_people:
-    one: '1 person'
-    other: '%{count} people'
-  x_species:
-    one: '1 species'
-    other: '%{count} species'
   yes: yes
   yes_find_them!: Yes, find them!
   yes_i_want_to_join: Yes, I want to join

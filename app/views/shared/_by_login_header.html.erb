@@ -1,6 +1,10 @@
 <%-
   model_name ||= controller.class.to_s.underscore.humanize.split.first
-  title ||= (is_me?(@selected_user) ? t(:your) : t(:user_s, :user => "#{@login}", :model_name => "#{t(model_name.intern)}") )
+  title ||= if is_me?(@selected_user)
+    t(:second_person_possessive_singular, :noun => t(model_name.downcase).titleize)
+  else
+    t(:third_person_possessive_singular, :noun => t(model_name.downcase).titleize, :object_phrase => @login)
+  end
   before ||= nil
   after ||= nil
   after_title ||= nil
