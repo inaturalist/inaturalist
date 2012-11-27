@@ -13,7 +13,11 @@
 
 <div class="last column span-20">
   <p>
-  <%= t(:welcome_help_message_help, :getting_started => "#{link_to :getting_started, :action => "getting_started"}") %>
+  <%=t 'views.help.index.welcome_message_html', 
+    :url => url_for(:action => "getting_started"), 
+    :site_name => SITE_NAME,
+    :getting_started => t(:getting_started),
+    :feedback_url => APP_CONFIG[:feedback_url] %>
   </p>
   
   <h3><%=t :faq %></h3>
@@ -23,37 +27,37 @@
       <%=t :general %>
     </h4>
     <ol>
-      <li><a href="#general1"><%=t :what_is_inaturalist? %></a></li>
-      <li><a href="#general2"><%=t :who_is_behind_inaturalist? %></a></li>
-      <li><a href="#general3"><%=t :what_technologies_does_the_project_use? %></a></li>
-      <li><a href="#general4"><%=t :what_can_i_do_to_help_inaturalist? %></a></li>
-      <li><a href="#general5"><%=t :how_do_i_contact_inaturalist? %></a></li>
-      <li><a href="#general6"><%=t :what_are_admins_and_curators? %></a></li>
-      <li><a href="#inappropriate"><%=t :what_is_considered_inappropriate_content? %></a></li>
+      <li><a href="#general1"><%=t 'views.help.index.what_is_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general2"><%=t 'views.help.index.who_is_behind_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general3"><%=t 'views.help.index.what_technologies_does_the_project_use?' %></a></li>
+      <li><a href="#general4"><%=t 'views.help.index.what_can_i_do_to_help_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general5"><%=t 'views.help.index.how_do_i_contact_inaturalist?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#general6"><%=t 'views.help.index.what_are_admins_and_curators?' %></a></li>
+      <li><a href="#inappropriate"><%=t 'views.help.index.what_is_considered_inappropriate_content?' %></a></li>
     </ol>
     <h4>
       <%=t :observations %>
     </h4>
     <ol>
-      <li><a href="#observations1"><%=t :what_is_an_observation? %></a></li>
-      <li><a href="#observations2"><%=t :why_doesnt_inaturalist_recognize_the_name_ive_entered? %></a></li>
-      <li><a href="#observations3"><%=t :how_can_i_get_help_identifying_what_i_saw? %></a></li>
-      <li><a href="#observations4"><%=t :what_does_it_mean_to_link_inaturalist_to_my_flickr_account? %></a></li>
-      <li><a href="#observations5"><%=t :can_i_add_photos_without_a_flickr_account? %></a></li>
-      <li><a href="#observations6"><%=t :what_are_tags? %></a></li>
-      <li><a href="#observations7"><%=t :can_i_include_my_observations_on_my_blog? %></a></li>
-      <li><a href="#observations8"><%=t :what_kind_of_photos_should_i_attach %></a></li>
-      <li><a href="#geoprivacy"><%=t :what_is_geoprivacy? %></a></li>
-      <li><a href="#obscured"><%=t :what_is_does_it_mean_for %></a></li>
-      <li><a href="#quality"><%=t :what_is_the_quality_assessment %></a></li>
+      <li><a href="#observations1"><%=t 'views.help.index.what_is_an_observation?' %></a></li>
+      <li><a href="#observations2"><%=t 'views.help.index.why_doesnt_inaturalist_recognize_the_name_ive_entered?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#observations3"><%=t 'views.help.index.how_can_i_get_help_identifying_what_i_saw?' %></a></li>
+      <li><a href="#observations4"><%=t 'views.help.index.what_does_it_mean_to_link_inaturalist_to_my_flickr_account?', :site_name => SITE_NAME %></a></li>
+      <li><a href="#observations5"><%=t 'views.help.index.can_i_add_photos_without_a_flickr_account?' %></a></li>
+      <li><a href="#observations6"><%=t 'views.help.index.what_are_tags?' %></a></li>
+      <li><a href="#observations7"><%=t 'views.help.index.can_i_include_my_observations_on_my_blog?', :site_name => SITE_NAME_SHORT %></a></li>
+      <li><a href="#observations8"><%=t 'views.help.index.what_kind_of_photos_should_i_attach' %></a></li>
+      <li><a href="#geoprivacy"><%=t 'views.help.index.what_is_geoprivacy?' %></a></li>
+      <li><a href="#obscured"><%=t 'views.help.index.what_is_does_it_mean_for' %></a></li>
+      <li><a href="#quality"><%=t 'views.help.index.what_is_the_quality_assessment' %></a></li>
     </ol>
 
     <h4>
       <%=t :lists %>
     </h4>
     <ol>
-      <li><a href="#lists1"><%=t :what_is_a_life_list? %></a></li>
-      <li><a href="#lists2"><%=t :i_observed_a_species %></a></li>
+      <li><a href="#lists1"><%=t 'views.help.index.what_is_a_life_list?' %></a></li>
+      <li><a href="#lists2"><%=t 'views.help.index.i_observed_a_species' %></a></li>
     </ol>
   </div>
        
@@ -62,50 +66,51 @@
   </h4>
   <ol>
     <li>
-      <h5><a name="general1"><%=t :what_is_inaturalist? %></a></h5>
+      <h5><a name="general1"><%=t 'views.help.index.what_is_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-        <%=t :inaturalist_provides_a_place_to %>
+        <%=t 'views.help.index.inaturalist_provides_a_place_to', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="general2"><%=t :who_is_behind_inaturalist? %></a></h5>
+      <h5><a name="general2"><%=t 'views.help.index.who_is_behind_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-      <%=t :inaturalist_was_originally_the_masterss_final %>
+        <%=t 'views.help.index.inaturalist_was_originally_the_masters_final_html', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="general3"><%=t :what_technologies_does_the_project_use? %></a></h5>
+      <h5><a name="general3"><%=t 'views.help.index.what_technologies_does_the_project_use?' %></a></h5>
       <p>
-      <%=t :inaturalist_is_built_using %> 
+        <%=t 'views.help.index.inaturalist_is_built_using_html', :site_name => SITE_NAME_SHORT %> 
       </p>
     </li>
     <li>
-      <h5><a name="general4"><%=t :what_can_i_do_to_help_inaturalist? %></a></h5>
+      <h5><a name="general4"><%=t 'views.help.index.what_can_i_do_to_help_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-      <%=t :you_can_help_inaturalist_by_giving_us_your_feedback %>
+        <%=t 'views.help.index.you_can_help_inaturalist_by_giving_us_your_feedback_html', :site_name => SITE_NAME, :feedback_url => APP_CONFIG[:feedback_url] %>
       </p>
     </li>
     <li>
-      <h5><a name="general5"><%=t :how_do_i_contact_inaturalist? %></a></h5>
+      <h5><a name="general5"><%=t 'views.help.index.how_do_i_contact_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-      <%=t :you_can_contact_us_at_, :help_email => "#{APP_CONFIG[:help_email]}" %>
+        <%=t 'views.help.index.you_can_contact_us_at_html', :help_email => APP_CONFIG[:help_email] %>
       </p>
     </li>
     
     <a name="curators"></a>
     <li>
-      <h5><a name="general6"><%=t :what_are_admins_and_curators? %></a></h5>
+      <h5><a name="general6"><%=t 'views.help.index.what_are_admins_and_curators?' %></a></h5>
       <p>
-      <%=t :inat_admins_are_the_people_who %>
+        <%=t 'views.help.index.inat_admins_are_the_people_who', :site_name => SITE_NAME_SHORT %>
       </p>
       <p>
-        <%=t :curators_are_inat_users_who_volunteer_to %>      </p>
+        <%=t 'views.help.index.curators_are_inat_users_who_volunteer_to_html', :site_name => SITE_NAME_SHORT, :help_email => APP_CONFIG[:help_email] %>
+      </p>
     </li>
     
     <li>
-      <h5><a name="inappropriate"><%=t :what_is_considered_inappropriate_content? %></a></h5>
+      <h5><a name="inappropriate"><%=t 'views.help.index.what_is_considered_inappropriate_content?' %></a></h5>
       <p>
-        <%=t :you_know_it_when_you_see_it %>
+        <%=t 'views.help.index.you_know_it_when_you_see_it_html' %>
       </p>
     </li>
   </ol>
@@ -115,90 +120,93 @@
   </h4>
   <ol>
     <li>
-      <h5><a name="observations1"><%=t :what_is_an_observation? %></a></h5>
+      <h5><a name="observations1"><%=t 'views.help.index.what_is_an_observation?' %></a></h5>
       <p>
-      <%=t :an_observation_is_the_what_where_and_when %>
+        <%=t 'views.help.index.an_observation_is_the_what_where_and_when_html', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="observations2"><%=t :why_doesnt_inaturalist_recognize_the_name_ive_entered? %></a></h5>
+      <h5><a name="observations2"><%=t 'views.help.index.why_doesnt_inaturalist_recognize_the_name_ive_entered?', :site_name => SITE_NAME %></a></h5>
       <p>
-      <%=t :inaturalist_has_name_information_for_mammals %> 
+        <%=t 'views.help.index.inaturalist_has_name_information_for_mammals', :site_name => SITE_NAME %> 
       </p>
     </li>
     <li>
-      <h5><a name="observations3"><%=t :how_can_i_get_help_identifying_what_i_saw? %></a></h5>
+      <h5><a name="observations3"><%=t 'views.help.index.how_can_i_get_help_identifying_what_i_saw?' %></a></h5>
       <p>
-        <%=t :check_the_id_please_checkbox_when %>       </p>
-    </li>
-    <li>
-      <h5><a name="observations4"><%=t :what_does_it_mean_to_link_inaturalist_to_my_flickr_account? %></a></h5>
-      <p>
-        <%=t :inaturalist_can_link_directly_to_the_flickr_photo_service %>      </p>
-    </li>
-    <li>
-      <h5><a name="observations5"><%=t :can_i_add_photos_without_a_flickr_account? %></a></h5>
-      <p>
-        <%=t :we_also_support_picasa %></a>
-      </p>
-      <p>
-       <%=t :we_also_support_uploading_photos %>
+        <%=t 'views.help.index.check_the_id_please_checkbox_when_html', :url => id_please_url %>
       </p>
     </li>
     <li>
-      <h5><a name="observations6"><%=t :what_are_tags? %></a></h5>
+      <h5><a name="observations4"><%=t 'views.help.index.what_does_it_mean_to_link_inaturalist_to_my_flickr_account?', :site_name => SITE_NAME %></a></h5>
       <p>
-        <%=t :tags_are_keywords_you_can_add_to_an %>
+        <%=t 'views.help.index.inaturalist_can_link_directly_to_the_flickr_photo_service', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="observations7"><%=t :can_i_include_my_observations_on_my_blog? %></a></h5>
+      <h5><a name="observations5"><%=t 'views.help.index.can_i_add_photos_without_a_flickr_account?' %></a></h5>
       <p>
-        <%=t :sure_check_out_our_widget %></a>.
+        <%=t 'views.help.index.we_also_support_picasa_html', :url => url_for(:controller => :picasa, :action => 'options') %></a>
+      </p>
+      <p>
+        <%=t 'views.help.index.we_also_support_uploading_photos', :site_name => SITE_NAME %>
       </p>
     </li>
     <li>
-      <h5><a name="observations8"><%=t :what_kind_of_photos_should_i_attach %></a></h5>
+      <h5><a name="observations6"><%=t 'views.help.index.what_are_tags?' %></a></h5>
       <p>
-      <%=t :photos_attached_to_observations_should_be %>
+        <%=t 'views.help.index.tags_are_keywords_you_can_add_to_an_html' %>
+      </p>
+    </li>
+    <li>
+      <h5><a name="observations7"><%=t 'views.help.index.can_i_include_my_observations_on_my_blog?', :site_name => SITE_NAME %></a></h5>
+      <p>
+        <%=t 'views.help.index.sure_check_out_our_widget_html', :url => observations_widget_url %>
+      </p>
+    </li>
+    <li>
+      <h5><a name="observations8"><%=t 'views.help.index.what_kind_of_photos_should_i_attach' %></a></h5>
+      <p>
+        <%=t 'views.help.index.photos_attached_to_observations_should_be' %>
       </p>
       
       <p>
-      <%=t :please_do_not_upload_pictures_you_didnt_take %>
+        <%=t 'views.help.index.please_do_not_upload_pictures_you_didnt_take_html' %>
       </p>
     </li>
     
     <li>
-      <h5><a name="geoprivacy"><%=t :what_is_geoprivacy? %></a></h5>
+      <h5><a name="geoprivacy"><%=t 'views.help.index.what_is_geoprivacy?' %></a></h5>
       <p>
-        <%=t :geoprivacy_is_a_setting_you_can %>       </p>
+        <%=t 'views.help.index.geoprivacy_is_a_setting_you_can' %>       </p>
       <dl class="readable">
         <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-          <dt><%= privacy || "open" %></dt>
-          <dd><%= description %></dd>
+          <dt><%= t(privacy || "open").downcase %></dt>
+          <dd><%=t description %></dd>
         <% end %>
       </dl>
       <p>
-      <%=t :note_that_curators_of %>
+        <%=t 'views.help.index.note_that_curators_of' %>
       </p>
     </li>
     
     <li>
-      <h5><a name="obscured"><%=t :what_is_does_it_mean_for %> </a></h5>
+      <h5><a name="obscured"><%=t 'views.help.index.what_is_does_it_mean_for' %> </a></h5>
       <p>
-      <%=t :when_coordinates_are_obscured_it_means_that %>
+        <%=t 'views.help.index.when_coordinates_are_obscured_it_means_that', :km => Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000 %>
       </p>
       
       <p>
-      <%=t :coordinates_are_obscured_for_all_taxa %>
+        <%=t 'views.help.index.coordinates_are_obscured_for_all_taxa', :site_name => SITE_NAME_SHORT %>
       </p>
       
       <p>
-        <%=t :you_can_also_obscure_the_coordinates %>       </p>
+        <%=t 'views.help.index.you_can_also_obscure_the_coordinates_html' %>
+      </p>
     </li>
     
     <li>
-      <h5><a name="quality"><%=t :what_is_the_quality_assessment %></a></h5>
+      <h5><a name="quality"><%=t 'views.help.index.what_is_the_quality_assessment' %></a></h5>
       <%= render :partial => 'quality_metrics/quality_assessment_help' %>
     </li>
   </ol>
@@ -218,59 +226,42 @@
       </p>
       
       <dl>
-        <dt>List</dt>
-        <dd><p>Just a simple list of taxa with no special behavior.</p></dd>
+        <dt><%=t :list %></dt>
+        <dd><p><%=t 'views.help.index.just_a_simple_list' %></p></dd>
         
         <dt>Life List</dt>
         <dd>
           <p>
-            Automatically updates based on your observations. Everyone on iNat
-            has a default life list that contains every species that person has
-            observed. If you delete an observation or change your ID, the
-            species will get removed. You can also manually add taxa to your
-            life list just like you can with an ordinary list. The species you
-            add manually won't get removed if you observe them and then delete
-            the observation.
+            <%=t 'views.help.index.automatically_updates_based_on_your_observations' %>
           </p>
           <p>
-            You can also make additional life lists for specific groups of
-            organisms, like a life list of birds, or a life list of milkweeds.
+            <%=t 'views.help.index.you_can_also_make_additional_life_lists' %>
           </p>
         </dd>
         
-        <dt>Project List</dt>
+        <dt><%=t :project_list %></dt>
         <dd>
           <p>
-            A project list belongs to a project and lists all the taxa
-            observed by members of that project. Project lists can also be
-            populated manually by the admin of that project, and can be used
-            to restrict project contributions to taxa that are on the list.
+            <%=t 'views.help.index.a_project_list_belongs' %>
           </p>
         </dd>
         
-        <dt>Check List</dt>
+        <dt><%=t 'views.help.index.check_list' %></dt>
         <dd>
           <p>
-            A check list is a list of taxa that occur in a place. Every place
-            has a default check list, and whenever an observation is made
-            within the place's boundaries <em>and</em> it has achieved
-            research-grade status, the species observed will get automatically
-            added to the place's check list.
+            <%=t 'views.help.index.a_check_list_is_html' %>
           </p>
           
           <p>
-            iNat users can also add additional check lists to places, but
-            these check lists are not automatically updated. They mainly
-            provide a way for people to bring in outside sources of data or
-            just list things based on their own experience.
+            <%=t 'views.help.index.inat_users_can_also', :site_name => SITE_NAME_SHORT %>
           </p>
         </dd>
       </dl>
     </li>
     <li>
-      <h5><a name="lists2"><%=t :i_observed_a_species %></a></h5>
+      <h5><a name="lists2"><%=t 'views.help.index.i_observed_a_species' %></a></h5>
       <p>
-      <%=t :while_the_life_list_is_automatically_populated %>
+        <%=t 'views.help.index.while_the_life_list_is_automatically_populated', :site_name => SITE_NAME_SHORT %>
       </p>
     </li>
   </ol>

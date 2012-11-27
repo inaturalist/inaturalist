@@ -2,152 +2,11 @@ es:
   observations:
     one: 1 observación
     other: '%{count} observaciones'
-  # inaturalist_provides_a_place_to: |
-  #   «Bioexplorador» es un lugar donde puedes guardar y organizar tus hallazgos naturales, 
-  #   conocer a otros entusiastas de la naturaleza y aprender más sobre el mundo natural.  
-  #   Alienta la participación de una amplia variedad de entusiastas de la naturaleza, 
-  #   incluyendo (pero no exclusivamente) ecologistas, cazadores, pajarólogos, excursionistas,
-  #   recolectores de hongos, pescadores y guarda parques.  Al conectar todas estas distintas 
-  #   percepciones y habilidades en cuanto al mundo natural, «Bioexplorador» espera crear una 
-  #   extensa conciencia en las comunidades sobre la biodiversidad local y promover una 
-  #   mayor exploración del entorno local. 
-  # inaturalist_was_originally_the_masterss_final: |
-  #   «Bioexplorador» fue creado originalmente como el proyecto final de maestría
-  #   de Nathan Agrin, Jessica Kline, y Ken-ichi Ueda en la Universidad de 
-  #   Berkeley:<a href="http://www.ischool.berkeley.edu"> Escuela de información</a>.
-  #   Actualmente, Ken-ichi mantiene el proyecto, con apoyo y consejos ocasionales de Nate. 
-  #   El software basado en este proyecto fue extendido por desarrolladores de 
-  #   <a href="http://www.inbio.ac.cr/">INBio</a> para soportar el idioma español e ir creando una 
-  #   comunidad de desarrolladores a nivel nacional.
-  # you_can_help_inaturalist_by_giving_us_your_feedback: |
-  #         Puedes ayudar a «Bioexplorador» al darnos tu opinión y comentarios; 
-  #         unirte a nuestro <a href="http://groups.google.com/group/inaturalist">Grupo de Google</a>
-  #         e inscribirte para recibir estudios de usos, reportes y solicitar nuevas funciones.
-  #         También puedes ayudar a  «Bioexplorador» al agregar tus observaciones y ayudar
-  #         a los demás miembros de la comunidad a identificar sus observaciones.  
-  #         So sabes codificar y quieres ayudar a mejorar ciertas funciones, 
-  #         <a href="http://github.com/inaturalist/inaturalist" title="inaturalist's 
-  #         inaturalist at master - GitHub">haz un fork del proyecto en GitHub!</a>
-  while_the_life_list_is_automatically_populated: |
-          Aun cuando la lista de vida se genera automáticamente a partir de
-          observaciones agregadas, las especies no serán agregadas a esta 
-          lista si «Bioexplorador» no reconoce el nombre que has usado.  Te 
-          recomendamos intentar usar nombres alternativos que podamos reconocer.
-  # photos_attached_to_observations_should_be: | 
-  #         Las fotos que adjuntes en tus observaciones deberían de ser del individuo 
-  #         que observaste en el momento que fue visto.  Si grabas la observación de un 
-  #         árbol, y vuelves al día siguiente a tomarle una foto, por favor agrega una 
-  #         nueva observación para la foto, porque representa al árbol en un momento 
-  #         diferente a tu entrada anterior.
-  # please_do_not_upload_pictures_you_didnt_take: | 
-  #         Por favor <em>no subas fotos que no hayas tomado tú mismo</em>, al menos que tengas
-  #         autorización del fotógrafo o fotógrafa.  Es ilegal publicar trabajos con derechos
-  #         de autor sin tener algún tipo de permiso por el artista o dueño de la fotografía,
-  #         y todos los fotógrafos tienen derechos de autor sobre sus fotografías por omisión.
-  #         Si la foto es de algo que tú observaste y alguien más el tomo, pero tienes su
-  #         permiso para publicarla, debes anotar también el nombre del fotógrafo o fotógrafa
-  #         en la descripción de la observación.
-  # what_is_geoprivacy?: ¿Qué es la geoprivacidad?
-  # geoprivacy_is_a_setting_you_can: |
-  #         La geoprivacidad es un ajuste que puedes agregar a tus observaciones 
-  #         que controla la manera en que las coordenadas espaciales (latitud y 
-  #         longitud) son expuestas.  Estas son las opciones: 
-  # note_that_curators_of: | 
-  #         Toma en cuenta que los curadores de proyectos individuales siempre ven 
-  #         tus coordenadas, sin importar tus ajustes de geoprivacidad, por lo que si
-  #         te preocupas por quién tiene tus coordenadas, debes asegurarte de confiar 
-  #         en los curadores con los que participas en los proyectos.
-  # what_is_does_it_mean_for: ¿Qué significa que una observación sea obscura?
-  # when_coordinates_are_obscured_it_means_that: |
-  #       Cuando las coordinadas son obscuras significa que un punto al azar dentro de 
-  #       10mk a la redonda de tus coordenadas reales es mostrado públicamente
-  #       (por ejemplo, en la página de inicio, la pagina de observaciones, y páginas
-  #       de proyectos), mientras tus coordenadas reales solamente son visibles cuand
-  #       o estás viendo tus propias observaciones (por ejemplo, en el proyecto 
-  #       individual y la lista de tus propias observaciones). Toma en cuenta que los
-  #       curadores que has agregado a tus observaciones también pueden ver tus 
-  #       coordenadas verdaderas.  Las coordenadas obscuras siempre serán mostradas
-  #       con una marca circular sin raíces en mapas y retroalimentación geoespacial.
-  # coordinates_are_obscured_for_all_taxa: | 
-  #         Las coordinadas son obscurecidas automáticamente para toda la información 
-  #         taxonómica que se encuentre "CERCA DE AMENAZA" o peor, de acuerdo a la
-  #         lista roja de la IUCN.  Alguna información taxonómica puede ser considerada
-  #         en peligro para otras autoridades de conservación, y alguna puede ser 
-  #         simplemente marcada como en peligro por los curadores de«Bioexplorador»si ellos 
-  #         creen que necesita ser protegida.
-  # you_can_also_obscure_the_coordinates: | 
-  #         También puedes obscurecer las coordenadas de tus propias observaciones
-  #         sin importar la información taxonómica.  Ver <a href="#geoprivacy">geoprivacidada</a>.
-  # inaturalist_has_name_information_for_mammals:  |
-  #         «Bioexplorador» tiene información de nombres para mamíferos, pájaros, reptiles
-  #         y anfibios, y continuamente agregamos nuevos nombres a nuestra base de datos. 
-  #         Si no reconocemos un nombre en particular, intenta nombres alternativos que
-  #         podamos reconocer y agrega el nombre original a las etiquetas o espacios 
-  #         descriptivos. 
-  # how_can_i_get_help_identifying_what_i_saw?: ¿Cómo puedo recibir ayuda para identificar lo que vi? 
-  # check_the_id_please_checkbox_when: | 
-  #         Marca la casilla que dice "ID por favor" cuando agregues/edites tus observaciones y
-  #         tu observación aparecerá en <a href="http://bioexplorador.inbio.ac.cr/observations/id_please" 
-  #         title="ID por favor">ID por favor </a>
-  # what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: ¿Qué significa enlazar «Bioexplorador» con mi cuenta de Flickr? 
-  # inaturalist_can_link_directly_to_the_flickr_photo_service: | 
-  #         «Bioexplorador» puede enlazarse directamente al servicio de fotos Flickr
-  #         para que puedas agregar tus fotos de Flickr a tus observaciones.  Cuando
-  #         aceptas enlazar tu cuenta Flickr, simplemente estas enlazando dos cuentas;
-  #         esto no nos permite accesar tu cuenta en Flickr ni tenemos tu contraseña,
-  #         tampoco te pedimos los derechos de autor ni nos estás cediendo el derecho 
-  #         de usar cualquiera de tus fotos en cosas que no quieres.
-  # can_i_add_photos_without_a_flickr_account?: ¿Puedo agregar fotos sin tener cuenta de Flickr?
-  # we_also_support_picasa: 'También puedes usar Picasa: <a href="http://bioexplorador.inbio.ac.cr/picasa/options">Configura tu cuenta en Picasa &raquo; </a>'
-  # we_also_support_uploading_photos: |
-  #         También puedes subir tus fotos directamente a «Bioexplorador», pero puede resultar un poco lento,
-  #         así que solamente permitimos subir una foto a la vez.  Usar Flickr o Picasa es 
-  #         probablemente mucho más rápido si ya utilizas sus servicios.
-  # inat_admins_are_the_people_who: |
-  #        «Bioexplorador»admins son quienes dirigen el sitio.  Tienen acceso directo al 
-  #         código subyacente de la página, a la base de datos y pueden cambiar
-  #         lo que sea del sitio.  
-  # curators_are_inat_users_who_volunteer_to: |
-  #         Los curadores son usuarios de«Bioexplorador»que voluntariamente nos ayudan a 
-  #         mantener nuestra información taxonómica actualizada.  Si estas interesado
-  #         en convertirte en curador, por favor <a href="mailto:%{help_email}" >
-  #         contáctanos</a>.  Los curadores también pueden subir a otros usuarios 
-  #         a la categoría de curadores.  Por favor, solo asciende a personas en las
-  #         que confíes y que sepas que en realidad tienen conocimientos taxonómicos.
-  # what_is_considered_inappropriate_content?: ¿Qué es considerado contenido inapropiado?
-  # you_know_it_when_you_see_it: | 
-  #         <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio">Lo sabes en cuanto lo ves</a>,
-  #         verdad?  Cosas que violan la sección 2 de nuestros Términos y Condiciones es
-  #         definitivamente inapropiado y merece ser marcado o notificar a los admins al
-  #         respecto.  Maneras más sutiles de grosería también son inoportunas y mal visto,
-  #         pero probablemente no los borremos. Observaciones sobre mascotas, animales 
-  #         captivos, humanos y otros organismos de los cuales otros naturalistas probablemente
-  #         no estén interesados también son aceptados (después de todo son seres vivos).  
-  #         Observaciones de cosas que no son organismos son un difíciles de definir y 
-  #         hasta el momento de verlos podrá tomarse una decisión al respecto.  Cosas 
-  #         que claramente no tengan nada que ver con la naturaleza, como el almuerzo 
-  #         de alguien merecen ser marcados y podrán ser borrados, sin embargo evidencia 
-  #         de contaminación o disturbios pueden ser interesantes y probablemente no 
-  #         sean borrados.
-  inaturalist_is_built_using: |
-          «Bioexplorador» ha sido creado utilizando <a
-          href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a
-          href="http://mysql.com/">MySQL</a>, <a
-          href="http://jquery.com/">jQuery</a> and <a
-          href="http://code.google.com/apis/maps//">Google Maps</a>, and <a
-          href="http://flickr.com/">Flickr</a>. Además utiliza  <a
-          href="http://www.catalogueoflife.org">el Catálogo de</a> y
-          <a href="http://ubio.org/">uBio</a>  para información taxonómica.
   we_also_support: |
             Tambien tenemos conexión con <a href="http://flickr.com">Flickr</a>,
             <a href="http://picasaweb.google.com">Picasa</a>, y
             <a href="http://facebook.com">Facebook</a>
             para tus imágenes.
-  welcome_help_message: |
-    Hola Si apenas estas empezando a usar «Bioexplorador», te invitamos a revisar 
-    nuestra guía en: %{getting_started} para que conozcas algunas de las características
-    y funciones de nuestra página.  Si tienes alguna duda, por favor da click en 
-    Preguntas Frecuentes.
   you_think_observation_inacurate: |
     Si usted piensa que esta observación es inexacta, por favor, agregue una 
     identificación, participen en la sección de calidad de datos, o describa 
@@ -173,7 +32,6 @@ es:
   # dt_life_lists:  <dt>Listas de vida</dt> <dd> Las lista de vida se llenan automáticamente con base en sus observaciones y un conjunto de reglas y también se pueden agregar manualmente. Por el momento, la única regla que tenemos es si una especie está o no en un taxón de nivel más alto. Entonces usted puede hacer una lista de vida de todos los mamíferos que haya visto al asociarlos con el tazón <a href="/taxa/Mammalia">Mammalia</a>. Todos en «Bioexplorador» tienen una lista de vida por defecto, la cual registra todos los taxones que hayan visto.  </dd>
   # dt_lists:  <dt>Listas</dt> <dd> Las listas ordinarias son listas arbitrarias de taxones que puede crear. Tal vez le gustaría mantener una lista de especies que desea ver, o de aves que no ha visto en su jardín.  </dd>
   # hi_and_welcome_to: ¡Hola y bienvenido a «Bioexplorador»Esta guía le mostrará algunas de las características principales del sitio.
-  # how_do_i_contact_inaturalist?: ¿Cómo puedo contactar a «Bioexplorador»?
   # if_inat_cant_find_taxon: Si «Bioexplorador» no puede encontrar un taxón que concuerde con el nombre que usted ingrese en nuestra base de datos, usted verá algo como
   # if_they_know_about: Si ellos saben el nombre, «Bioexplorador» importará y guardará los datos.
   # if_you_really_dont_know_what: Si no sabe realmente lo que vió, ¡no hay problemaSi lo sabe, debería hacer click <fuerte class="ui">Buscar proveedores externos de nombres</fuerte>. Esto le indicará a «Bioexplorador» que busque el nombre en algunas bases de datos taxonómicos externas y que trate de importar lo que encuentre.
@@ -194,8 +52,6 @@ es:
   # those_are_the_basics_of: ¡Esas son las bases para agregar observacionesHay muchas otras cosas que puede hacer, como buscar y filtrar sus observaciones o modificarlas como un grupo, pero esto debería ser auto explicativo.
   # we_dont_host_photos_at: 'No alojamos fotos en «Bioexplorador», pero sí permitimos que usted asocie sus observaciones con fotos de <a href="http: //www.flickr.com/">Flickr</a> or <a href="http: //picasaweb.google.com/">Picasa</a>. If you use either of those services, you canVincule su accounts and always see a list of your most recent photos when adding new observations.'
   # we_import_our_taxonomic_data: Importamos nuestros datos taxonómicos de algunas bases de datos taxonómicos externas, incluyendo el Catálogo de Vida y uBio. Algunos de nuestros taxones también han sido ingresados manualmente y cualquier usuario puede agregar nombres nuevos para los taxones. Si no puede encontrar un taxón o un nombre, pruebe
-  # what_are_tags?: ¿Qué son las etiquetas? 
-  # what_kind_of_photos_should_i_attach: ¿Qué tipo de fotos debo adjuntar a las observaciones? ¿Puedo agregar fotos que yo no tomé? 
   # you_can_also_add_flickr: También puede agregar etiquetas de Flickr cuando modifique una observación o grupos de observaciones.
   # you_can_always_add_new: Siempre puede agregar observaciones nuevas haciendo clic en la flechita arriba a la derecha de la página y usando el menú desplegable.
   # you_can_help_make_our: ¡Usted puede ayudar a que nuestras páginas de especies sean más útiles agregando datos Aquí hay algunas formas en las que puede ayudar
@@ -318,7 +174,6 @@ es:
   alphabetical_order: Orden alfabético
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb no tiene ninguna información de esta especie.
   amphibiaweb_taxonomy: Taxonomía de AmphibiaWeb
-  an_observation_is_the_what_where_and_when: Una observación es el ¿Qué? ¿Dónde? Y ¿Cuándo? De un descubrimiento en la naturaleza.   «Bioexplorador» provee de un espacio para agregar esta información junto con texto, fotos y etiquetas asociadas. «Bioexplorador» alienta la tomar nota de todos los descubrimientos en la naturaleza, ya sea que se trate de especies identificadas o narraciones descriptivas más simples. (En «Bioexplorador» la misma lagartija puede ser descrita como “Lagartija cornuda del desierto” al igual que como “Lagartija misteriosa del Valle de la Muerte”
   and_filling_in_check_list:  ¡y llenar listas de verificación de los lugares que conoce!
   and_help_the_inaturalist_community_grow: y ayudar a que la comunidad «Bioexplorador» crezca.
   and_make_some_new: y haga nuevos
@@ -410,7 +265,6 @@ es:
   by_submittedby: "por %{submittedby}"
   by_you: Por usted
   calendar: Calendario
-  can_i_include_my_observations_on_my_blog?: ¿Puedo incluir mis observaciones de «Bioexplorador» en mi página web o blog?
   can_you_help_your_friends_id_these: ¿Puedes ayudar a identificar estas observaciones?
   cancel: Cancelar
   casual: casual
@@ -721,7 +575,6 @@ es:
   hide_details: ocultar detalles
   home: Inicio
   home_faq: FAQ
-  i_observed_a_species: Observé una especie, ¿por qué no aparece en mi lista de vida?
   i_something_i:  <i>Algo...</i>
   icon: Ícono
   id_please!: ¡ayuda por favor!
@@ -1335,13 +1188,11 @@ es:
   Superfamily: Superfamilia
   Superorder: Superorder
   Supertribe: Supertribu
-  # sure_check_out_our_widget: Claro, revisa nuestro <a href="http://bioexplorador.inbio.ac.cr/observations/widget" title="Observations Widget">Widget de observaciones</a>.
   surround_any_cells_containing_commas: Envuelva las celdas que contengan comas con comillas dobles
   suspend_user: Suspender usuario
   sync: ¿Sincronizar?
   table: Tabla
   tags: Etiquetas
-  tags_are_keywords_you_can_add_to_an: Las etiquetas son palabras clave que puedes agregar a tus observaciones para hacerlas más fáciles de encontrar.  Por ejemplo, si una barracuda te siguió en un viaje de buceo en Puntarenas, puedes agregar etiquetar la observación como “barracuda, de miedo, buceo, vacaciones, Puntarenas”.
   take_me_facebook: ¡Sí, lléveme a Facebook!
   take_me_flickr!: ¡Sí, lléveme a Flickr!
   taxa: Taxones
@@ -1545,17 +1396,12 @@ es:
   welcome_to_inat: ¡Bienvenido a «Bioexplorador»!
   were_currently_down_for: Estamos fuera de servicio por
   what: Qué
-  what_are_admins_and_curators?: ¿Qué son los adminstradores y los curadores?
-  what_can_i_do_to_help_inaturalist?: "¿Que puedo hacer para ayudar a «Bioexplorador»?"
   what_color_was_it: ¿De qué color era?
   what_did_you_see: ¿Qué fue lo que vio?
   what_did_you_see?: ¿Qué vio usted?
   what_do_you_think: ¿Qué le parece?
-  what_is_a_life_list?: ¿Qué es una lista de vida? 
   what_is_an_observation?: ¿Qué es una observación?
   # what_is_inaturalist?: ¿Qué es «Bioexplorador»?
-  what_is_the_quality_assessment: ¿Cuál es la valoración de calidad y como se pueden calificar las observaciones para obtener el grado de "investigación"? 
-  what_technologies_does_the_project_use?: ¿En qué tecnologías y fuentes de información se basa el proyecto?
   what_to_keep: Qué mantener
   what_want_to_list?: ¿Qué desea colocar en la lista?
   when: Cuando
@@ -1563,7 +1409,6 @@ es:
   where: Donde
   where_did_you_see_it: ¿Dónde lo vio?
   where_were_you?: ¿Dónde estaba usted?
-  why_doesnt_inaturalist_recognize_the_name_ive_entered?: ¿Porqué «Bioexplorador» no reconoce el nombre que digité?
   widget: Widget
   widget_code: Código de widget
   wikipedia_entry: Registro de Wikipedia
@@ -1592,7 +1437,6 @@ es:
   you_can_accept_invitations: Puede aceptar la invitación aquí.
   you_can_change_your_new_passwd_after_logging_in: Puede cambiar su nueva contraseña después de ingresar aquí
   you_can_choose_observations_associated: Puede seleccionar observaciones para asociar con este artículo del diario.
-  you_can_contact_us_at_: 'Nos puedes contactar en <a href="mailto:%{help_email}" >%{help_email}</a>'
   you_can_help_out_by: Usted puede ayudar al
   you_can_see_these_coordinates_because: Usted puede ver estas coordenadas porque usted cura uno de los proyectos a los cuales se agregó esta observación.
   you_can_sign_free_at: Usted puede registrar una cuenta gratis con «Bioexplorador» en
