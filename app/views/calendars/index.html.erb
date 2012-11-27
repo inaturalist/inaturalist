@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = t(:observation_calendar_for, :user=>"#{@login}", :year=>"#{@year}") %>
+  <%= @title = t(:observation_calendar_for, :user => @login, :year => @year) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">

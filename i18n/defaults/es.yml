@@ -137,6 +137,7 @@ es:
   all_your_observations_will_default_to_this_time_zone: Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario.
   allow_any: permitir alguna
   alphabetical_order: Orden alfabético
+  amphibians: anfibios
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb no tiene ninguna información de esta especie.
   amphibiaweb_taxonomy: Taxonomía de AmphibiaWeb
   and_choose_a_matching_taxon: y seleccione un taxón de la lista que concuerde. Si no termina con algo como
@@ -151,6 +152,7 @@ es:
   apply_darr: "Aplicar &darr;"
   apply_these_settings_to_all: Aplicar estas configuraciones a todas las observaciones abajo
   april: Abril
+  arachnids: arácnidos
   archives: Archivos
   are_you_really_sure_want_delete_this_user: ¿Está verdaderamente seguro que desea eliminar este usuario y todo su contenido?
   are_you_sure: ¿Está seguro?
@@ -203,8 +205,11 @@ es:
   back_to_taxon: "Regresar a %{defaulttaxon}"
   back_to_this: "Regresar a %{place}"
   back_to_viewing: Regresar a ver <i>{taxon}</i>
+  back_to_x: "Regresar a %{noun}"
+  back_to_x_calendar: "Regrese a calendario de %{user}"
   back_to_x_journal: "Regresar al diario de %{user}"
   back_to_x_observations: "Volver a las observaciones de %{user}"
+  back_to_your_calendar: "Regrese a su calendario"
   back_to_your_journal: Regresar a su diario
   back_to_your_observations: Regresar a sus observaciones
   back_to_your_observatios: Regresar a sus observaciones
@@ -216,6 +221,7 @@ es:
   because: porque
   before_importing_photos: antes de importar fotos.
   bg_color: Color BG
+  birds: aves
   blog_widget: Widget del blog
   blue_icons_represent_political_units: Los íconos azules representan unidades políticas como países, estados, provincias, países y afines, mientras que los íconos verdes representan diferentes tipos de espacios abiertos pareques, reservas). Si hace un acercamiento, podrá ver más lugares pequeños.
   body: Cuerpo
@@ -508,6 +514,7 @@ es:
   from_list: De la lista
   full_id_please!: ¡Ayuda con nombre científico!
   full_id_please?: ¿Ayuda con nombre científico?
+  fungi: fungi
   general: General
   generally_these_come_from_uicn_red_list: Vienen generalmente de la Lista Roja de UICN y si vienen de otro lugar se adherirán a las categorías de UICN.
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para sus fotos de Flickr.
@@ -598,6 +605,7 @@ es:
   inaturalist_places: Lugares «Bioexplorador»
   inaturalist_places_are_way_record_what_lives_where: Lugares «Bioexplorador» es una forma de registrar qué vive dónde. Si usted busca una especie en particular, sabrá dónde buscar. Cada lugar tiene una lista de verificación para regisrar todas las especies que se encuentran allí, para que pueda también ser útil para buscar cosas que usted encontró en sitios particulares.
   info: Información
+  insects: insectos
   inspired_by_the_flickr_group: 'Inspirado por el grupo Flickr <a href="http://flickr.com/groups/idplease/">Identificador por favor</a>, este es un lugar para colocar observaciones de cosas que usted no sabe ¡y ayudar a que otras personas identifiquen criaturas misteriosas!'
   invite: invitar 
   invite_flickr_photos: Invitar las fotos de Flickr a «Bioexplorador»
@@ -634,6 +642,7 @@ es:
   jump_to_letter: Saltar a letra
   june: Junio
   just_added!: ¡Se acaba de agregar!
+  kelp_diatoms_and_allies: "algas, diatomeas, y aliados"
   Kingdom: Reino
   last_confirmed_observation: Última observación confirmada
   last_inat_observation: Última observación «Bioexplorador»
@@ -723,6 +732,7 @@ es:
   make_sure_the_default_photo_looks_good: Asegúrese de que la foto por defecto se vea bien en tamaño grande.
   make_taxonomic_flickr_tags_for_taxon_raquo: "Hacer etiquetas taxonómicas de Flickr para este taxón &raquo;"
   make_this_your_default_license: "Hacer ésta %{type} su licencia por defecto"
+  mammals: mamíferos
   manually_create_new_place: Crear un Lugar nuevo manualmente
   map: Mapa
   map_for: Mapa para
@@ -736,6 +746,7 @@ es:
   merging: Combinando
   merging_places: Combinar Lugares
   mobile_view_available: Vista para teléfonos móviles disponible
+  mollusks: moluscos
   mon: Lun
   month: Mes
   months_ago: "hace %{text}"
@@ -840,12 +851,12 @@ es:
   not_on_this_list: No está en esta lista.
   not_seeing_what_looking_for: ¿No ve lo que está buscando?
   not_yet: Todavía no
+  noun_by_you: "%{noun} por usted"
   november: Noviembre
   obscured: Difusa
   obscured_description: Coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas . Las coordenadas reales sólo son visibles para usted y los curadores de los proyectos a la que se agrega la observación.
   observation: observación
   observation_added: Observation added
-  observation_by: "Observación de %{user} el %{date}"
   observation_calendar_for: "Calendario de observaciones para %{user} en %{year}"
   observation_curation: Curación de observación
   observation_date: Fecha
@@ -858,6 +869,8 @@ es:
   observations: Observaciones
   observations_by_everyone: Observaciones de todos
   observations_by_user: "Observaciones de %{user}"
+  observations_by_user_on_date: "Observación de %{user} en %{date}"
+  observations_by_you_on_date: "Observación de usted en %{date}"
   observations_circle_have_their_radii_scaled: Los círculos de observación tienen su radios a escala proporcional a su exactitud posicional. Los datos de observaciones sin exactitud posicional se muestran en el tamaño mínimo.
   observations_confirmed: Observaciones (confirmadas)
   observations_for_project: "Observaciones para %{project}"
@@ -913,6 +926,7 @@ es:
   or_you_can: O usted puede...
   order: Orden
   order_by: Ordenar por
+  other_animals: otros animales
   other_annimals: Otros animales
   out_of_range: Fuera del rango
   owner: Propietario
@@ -951,6 +965,7 @@ es:
   place_notes: Colocar notas
   placement: Colocación
   places: Lugares
+  plants: plantas
   please_be_aware_project_curators: Tenga en cuenta que los curadores del proyecto podrán ver cualquier ubicación privada u oculta agregada a este proyecto.
   please_be_aware_that_project_curators: Tenga en cuenta que los curadores del proyecto podrán ver ubicaciones privadas u ocultas de las observaciones agregadas a este proyecto.
   please_be_careful_particulary_when: Tenga cuidado, especialmente al eliminar taxones. Si un taxón tiene observaciones, identificadores, taxones enlistados, u otros asociados, por favor
@@ -991,6 +1006,7 @@ es:
   projects_description: Los proyectos son una forma de agrupar sus observaciones con otras personas en «Bioexplorador».  Ya sea que a usted le interese comenzar un proyecto científico ciudadano o solamente mantener registros de las aves de un parque cercano con su club de observación local, la forma de hacerlo es con Proyectos.
   projects_you_admin: Proyectos que usted administra
   projects_youve_joined: Proyectos a los que se ha unido
+  protozoans: protozoos
   provider_authorizations: Autorizaciones de proveedores
   public_coordinates_obscured_by: "Coordenadas públicas ocultas por %{distance}KM"
   publish: Publicar
@@ -999,6 +1015,7 @@ es:
   range: Rango
   rank: rango
   rank_restrictions: Clasificar las restricciones
+  ray_finned_fishes: peces con aletas radiadas
   re_order_photos: "Reordenar fotos &raquo;"
   read_our_getting_started_guide: lee nuestra Guía de Inicio
   read_the_full_wikipedia:  Leer toda la descripción de Wikipedia
@@ -1030,6 +1047,7 @@ es:
   remove_your_existing_id?: Eliminar la identificación existente?
   removing: Eliminando...
   replace_parentesis: (reemplazar)
+  reptiles: reptiles
   request_id_help: Solicitar ayuda para identificar
   request_password: Solicitar contraseña
   required_columns_in_order: Columnas requeridas en orden
