@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   preference :observation_license, :string
   preference :photo_license, :string
   preference :automatic_taxonomic_changes, :boolean, :default => true
+  preference :observations_view, :string
   
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
@@ -411,6 +412,12 @@ class User < ActiveRecord::Base
       :observations_count => observations_count
     )
     true
+  end
+
+  def self.default_json_options
+    {
+      :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip]
+    }
   end
 
 end

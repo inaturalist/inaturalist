@@ -50,6 +50,7 @@ function showMapView() {
   }
   alterLinkParams({view: 'map'});
   $('#view_input').val('map');
+  setPreference('observations_view', 'map')
 }
 
 function showTableView() {
@@ -66,6 +67,7 @@ function showTableView() {
   $('#mapobservations').addClass('table');
   alterLinkParams({view: 'table'});
   $('#view_input').val('table');
+  setPreference('observations_view', 'table')
 }
 
 // Alters the href of all links using the passed in params. So if you have

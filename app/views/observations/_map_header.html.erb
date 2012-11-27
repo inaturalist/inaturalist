@@ -4,7 +4,7 @@
   before ||= nil
   after ||= nil
   @iconic_taxa ||= []
-  @view = params[:view] ||= 'map'
+  @view ||= params[:view] || 'map'
   @filters_open ||= false
   title_span ||= 12
   control_span ||= 12
