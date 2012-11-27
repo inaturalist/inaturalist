@@ -1,219 +1,4 @@
 en:
-  date:
-    abbr_day_names:
-    - Sun
-    - Mon
-    - Tue
-    - Wed
-    - Thu
-    - Fri
-    - Sat
-    abbr_month_names:
-    - 
-    - Jan
-    - Feb
-    - Mar
-    - Apr
-    - May
-    - Jun
-    - Jul
-    - Aug
-    - Sep
-    - Oct
-    - Nov
-    - Dec
-    day_names:
-    - Sunday
-    - Monday
-    - Tuesday
-    - Wednesday
-    - Thursday
-    - Friday
-    - Saturday
-    formats:
-      default: ! '%Y-%m-%d'
-      long: ! '%B %d, %Y'
-      short: ! '%b %d'
-    month_names:
-    - 
-    - January
-    - February
-    - March
-    - April
-    - May
-    - June
-    - July
-    - August
-    - September
-    - October
-    - November
-    - December
-    order:
-    - :year
-    - :month
-    - :day
-  datetime:
-    distance_in_words:
-      about_x_hours:
-        one: about 1 hour
-        other: about %{count} hours
-      about_x_months:
-        one: about 1 month
-        other: about %{count} months
-      about_x_years:
-        one: about 1 year
-        other: about %{count} years
-      almost_x_years:
-        one: almost 1 year
-        other: almost %{count} years
-      half_a_minute: half a minute
-      less_than_x_minutes:
-        one: less than a minute
-        other: less than %{count} minutes
-      less_than_x_seconds:
-        one: less than 1 second
-        other: less than %{count} seconds
-      over_x_years:
-        one: over 1 year
-        other: over %{count} years
-      x_days:
-        one: 1 day
-        other: ! '%{count} days'
-      x_minutes:
-        one: 1 minute
-        other: ! '%{count} minutes'
-      x_months:
-        one: 1 month
-        other: ! '%{count} months'
-      x_seconds:
-        one: 1 second
-        other: ! '%{count} seconds'
-    prompts:
-      day: Day
-      hour: Hour
-      minute: Minute
-      month: Month
-      second: Seconds
-      year: Year
-  errors: &errors
-    format: ! '%{attribute} %{message}'
-    messages:
-      accepted: must be accepted
-      blank: can't be blank
-      confirmation: doesn't match confirmation
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      odd: must be odd
-      record_invalid: ! 'Validation failed: %{errors}'
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is 1 character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is 1 character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be 1 character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: ! 'There were problems with the following fields:'
-      header:
-        one: 1 error prohibited this %{model} from being saved
-        other: ! '%{count} errors prohibited this %{model} from being saved'
-  helpers:
-    select:
-      prompt: Please select
-    submit:
-      create: Create %{model}
-      submit: Save %{model}
-      update: Update %{model}
-  number:
-    currency:
-      format:
-        delimiter: ! ','
-        format: ! '%u%n'
-        precision: 2
-        separator: .
-        significant: false
-        strip_insignificant_zeros: false
-        unit: $
-    format:
-      delimiter: ! ','
-      precision: 3
-      separator: .
-      significant: false
-      strip_insignificant_zeros: false
-    human:
-      decimal_units:
-        format: ! '%n %u'
-        units:
-          billion: Billion
-          million: Million
-          quadrillion: Quadrillion
-          thousand: Thousand
-          trillion: Trillion
-          unit: ''
-      format:
-        delimiter: ''
-        precision: 3
-        significant: true
-        strip_insignificant_zeros: true
-      storage_units:
-        format: ! '%n %u'
-        units:
-          byte:
-            one: Byte
-            other: Bytes
-          gb: GB
-          kb: KB
-          mb: MB
-          tb: TB
-    percentage:
-      format:
-        delimiter: ''
-    precision:
-      format:
-        delimiter: ''
-  support:
-    array:
-      last_word_connector: ! ', and '
-      two_words_connector: ! ' and '
-      words_connector: ! ', '
-  time:
-    am: am
-    formats:
-      default: ! '%a, %d %b %Y %H:%M:%S %z'
-      long: ! '%B %d, %Y %H:%M'
-      short: ! '%d %b %H:%M'
-    pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
-  activerecord:
-    errors:
-      <<: *errors
-    attributes:
-      project:
-        title: Title 
-        project_icon: Project icon
-        project_type: Project type
-        prefers_count_from_list: Prefers count from list
-        description: Description
-        terms: Terms
-      flag:
-        reason: Reason
-        flag: Flag
   observation: Observation
   observations: Observations
   x_observations:
@@ -241,18 +26,18 @@ en:
     looking for answers, please 
     <a href="http://groups.google.com/group/inaturalist" title="iNaturalist | Google Groups">post your question to our Google Group</a>.
   inaturalist_provides_a_place_to: |
-          iNaturalist provides a place to record and organize nature findings,
-          meet other nature enthusiasts, and learn about the natural world. It
-          encourages the participation of a wide variety of nature
-          enthusiasts, including, but not exclusive to, hikers, hunters,
-          birders, beach combers, mushroom foragers, park rangers, ecologists,
-          and fishermen. Through connecting these different perceptions and
-          expertise of the natural world, iNaturalist hopes to create
-          extensive community awareness of local biodiversity and promote
-          further exploration of local environments.
+    iNaturalist provides a place to record and organize nature findings,
+    meet other nature enthusiasts, and learn about the natural world. It
+    encourages the participation of a wide variety of nature
+    enthusiasts, including, but not exclusive to, hikers, hunters,
+    birders, beach combers, mushroom foragers, park rangers, ecologists,
+    and fishermen. Through connecting these different perceptions and
+    expertise of the natural world, iNaturalist hopes to create
+    extensive community awareness of local biodiversity and promote
+    further exploration of local environments.
   who_is_behind_inaturalist: Who is behind iNaturalist?
   inaturalist_was_originally_the_masterss_final: |
-          iNaturalist was originally the Master'ss Final Project of Nathan Agrin,
+          iNaturalist was originally the Master's final project of Nathan Agrin,
           Jessica Kline, and Ken-ichi Ueda at UC Berkeley's 
           <a href="http://www.ischool.berkeley.edu">School of Information</a>.
           Currently Ken-ichi maintains the project, with occasional help
@@ -383,8 +168,10 @@ en:
           regardless of what the taxon is.  See <a href="#geoprivacy">geoprivacy</a> above.
   what_is_the_quality_assessment: What is the quality assessment and how do observations qualify to become "research" grade?
   what_is_a_life_list: What is a life list?
-  is_a_list_of_every_species_that_you_have_seen: A life list is a list of every species that you have seen. Every iNaturalist user has a life list and these lists are automatically populated from the observations added to iNaturalist.
-  i_observed_a_species: I observed a species, why isn't it showing up in my life list?
+  is_a_list_of_every_species_that_you_have_seen: |
+    A life list is a list of every species that you have seen. Every iNaturalist user has a life 
+    list and these lists are automatically populated from the observations added to iNaturalist.
+  i_observed_a_species: "I observed a species, why isn't it showing up in my life list?"
   while_the_life_list_is_automatically_populated: |
           While the life list is automatically populated from added
           observations, the species will not be added to this list if
@@ -392,7 +179,9 @@ en:
           trying alternative names that we might recognize.
   make_curator: Make curator
   a_community_for_naturalist: A Community for Naturalists
-  a_default_taxon_name_will_automatically_created: A default taxon name will automatically be created from the scientific name attribute of this taxon. When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
+  a_default_taxon_name_will_automatically_created: |
+    A default taxon name will automatically be created from the scientific name attribute of this taxon. 
+    When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_few_points_to_make_things_clear: "A few points to make things a bit clearer:"
   a_greasemonkey_script: a Greasemonkey script
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
@@ -1795,7 +1584,7 @@ en:
   your_inat_account_has_been_activated: "Your %{inat} account has been activated."
   your_inat_account_has_been_activated_plain: Your iNaturalist account has been activated. Thanks for signing up!
   your_new_password_is: Your new password is
-  your_observation_wont_get: your observation won't get associated with other observations of this species, and your life list won't get updated.
+  your_observation_wont_get: "your observation won't get associated with other observations of this species, and your life list won't get updated."
   your_observations: Your observations
   your_picasa_account: Your Picasa Account
   your_picasa_account_info: Your Picasa Account Information
