@@ -1,7 +1,4 @@
 en:
-  x_observations:
-    one: "1 observation"
-    other: "%{count} observations"
   licensing_your_content: |
     Licensing your content gives others the legal right to use it if
     they stick to the terms of the license. iNat uses your Creative
@@ -32,6 +29,9 @@ en:
   x_journal_posts:
     one: '1 journal post'
     other: '%{count} journal posts'
+  x_observations:
+    one: "1 observation"
+    other: "%{count} observations"
   x_people:
     one: '1 person'
     other: '%{count} people'
