@@ -93,7 +93,7 @@ class ObservationsController < ApplicationController
       
       format.html do
         @iconic_taxa ||= []
-        @view = params[:view] ||= 'map'
+        @view = params[:view] || current_user.try(:preferred_observations_view) || 'map'
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           return render_observations_partial(partial)
         end

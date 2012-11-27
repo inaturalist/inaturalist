@@ -892,3 +892,18 @@ function serialID() {
   window._serialID = window._serialID ? window._serialID + 1 : 1
   return window._serialID
 }
+
+function setPreference(pref, value) {
+  var url = $('#usersubnav .profile_link:first').attr('href')
+  if (!url || !pref || !value) { return }
+  var data = {
+    authenticity_token: $('meta[name=csrf-token]').attr('content'),
+    _method: 'PUT'
+  }
+  data['user[preferred_'+pref+']'] = value
+  $.ajax(url, {
+    type: 'POST',
+    data: data,
+    dataType: 'json',    
+  })
+}
