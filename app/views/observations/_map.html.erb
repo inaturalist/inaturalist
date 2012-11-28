@@ -1,7 +1,7 @@
 <%-
   observations ||= @observations
   @iconic_taxa ||= []
-  @view = params[:view] ||= 'map'
+  @view ||= params[:view] || 'map'
   observations_html ||= nil
 -%>
 <% content_for(:extrajs) do %>

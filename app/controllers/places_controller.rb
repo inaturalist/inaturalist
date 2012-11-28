@@ -32,7 +32,12 @@ class PlacesController < ApplicationController
       end
       
       format.json do
-        scope = Place.scoped
+        @ancestor = Place.find_by_id(params[:ancestor_id].to_i) unless params[:ancestor_id].blank?
+        scope = if @ancestor
+          @ancestor.descendants.scoped
+        else
+          Place.scoped
+        end
         if params[:q] || params[:term]
           q = (params[:q] || params[:term]).to_s.sanitize_encoding
           scope = scope.dbsearch(q)

@@ -339,6 +339,9 @@ $(document).ready(function() {
   $('form:has(input[required])').submit(checkFormForRequiredFields)
 
   $('.item .item_content').width(function() { return $(this).parent().width() - 58 })
+  $('.identification:visible .identification_body').width(function() { 
+    return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 20
+  })
 })
 
 function checkFormForRequiredFields(e) {
@@ -891,4 +894,19 @@ $('.flaglink').live('click', function() {
 function serialID() {
   window._serialID = window._serialID ? window._serialID + 1 : 1
   return window._serialID
+}
+
+function setPreference(pref, value) {
+  var url = $('#usersubnav .profile_link:first').attr('href')
+  if (!url || !pref || !value) { return }
+  var data = {
+    authenticity_token: $('meta[name=csrf-token]').attr('content'),
+    _method: 'PUT'
+  }
+  data['user[preferred_'+pref+']'] = value
+  $.ajax(url, {
+    type: 'POST',
+    data: data,
+    dataType: 'json',    
+  })
 }

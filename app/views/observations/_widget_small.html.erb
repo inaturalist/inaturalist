@@ -1,7 +1,10 @@
 <%- target ||= nil -%>
 <%- default_image ||= nil -%>
 <%- silence ||= nil -%>
-<div class="inat-widget-small">
+<div data-current-page="<%= @observations.current_page.to_i %>" 
+       data-per-page="<%= @observations.per_page %>" 
+       data-total-entries="<%= @observations.total_entries %>"
+       data-total-pages="<%= @observations.total_pages %>">
   <% if @observations.size == 0 %>
     <% unless silence == "true" %>
       <span class="inat-value">no observations</span>

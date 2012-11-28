@@ -3,6 +3,7 @@ class Identification < ActiveRecord::Base
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon
+  belongs_to :taxon_change
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
@@ -264,7 +265,8 @@ class Identification < ActiveRecord::Base
     scope = scope.includes(options[:include]) if options[:include]
     scope = scope.where("identifications.created_at < ?", Time.now)
     scope.find_each do |ident|
-      new_ident = Identification.create(:observation => ident.observation, :taxon => taxon, :user => ident.user)
+      new_ident = Identification.create(:observation => ident.observation, :taxon => taxon, 
+        :user => ident.user, :taxon_change => taxon_change)
       yield(new_ident) if block_given?
     end
   end

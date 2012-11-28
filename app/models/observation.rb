@@ -1462,9 +1462,9 @@ class Observation < ActiveRecord::Base
   
   def owners_identification
     if identifications.loaded?
-      identifications.detect {|ident| ident.user_id == user_id}
+      identifications.detect {|ident| ident.user_id == user_id && ident.current?}
     else
-      identifications.first(:conditions => {:user_id => user_id})
+      identifications.current.by(user_id).last
     end
   end
   
@@ -1488,8 +1488,9 @@ class Observation < ActiveRecord::Base
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids).scoped
     scope = scope.by(options[:user]) if options[:user]
     scope = scope.where("observations.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.includes(:user)
     scope.find_each do |observation|
-      observation.update_attributes(:taxon => taxon)
+      Identification.create(:user => observation.user, :observation => observation, :taxon => taxon, :taxon_change => taxon_change)
       yield(observation) if block_given?
     end
   end

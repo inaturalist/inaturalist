@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121119073505) do
+ActiveRecord::Schema.define(:version => 20121128022641) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -256,10 +256,12 @@ ActiveRecord::Schema.define(:version => 20121119073505) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "current",        :default => true
+    t.boolean  "current",         :default => true
+    t.integer  "taxon_change_id"
   end
 
   add_index "identifications", ["observation_id", "created_at"], :name => "index_identifications_on_observation_id_and_created_at"
+  add_index "identifications", ["taxon_change_id"], :name => "index_identifications_on_taxon_change_id"
   add_index "identifications", ["user_id", "created_at"], :name => "index_identifications_on_user_id_and_created_at"
 
   create_table "invites", :force => true do |t|

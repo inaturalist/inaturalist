@@ -6,7 +6,7 @@
   :css
     table {width: 100%;}
     td {vertical-align: top;}
-    .observations.mini .observation {border: 0 transparent;}
+    .observations.mini .observation {border: 0 transparent; padding: 0;}
     .change_taxon {margin-bottom: 10px; width: 440px;}
 - content_for :extrajs do
   = javascript_include_tag 'jquery/plugins/jquery.labelize'
@@ -79,7 +79,11 @@
               .observations.mini
                 = render "observations/cached_component", :observation => record
             - elsif record.is_a?(Identification)
-              = render "identifications/identification_with_observation", :identification => record
+              .column.span-14
+                .column.span-7.observations.mini
+                  = render "observations/cached_component", :observation => record.observation
+                .last.column.span-7
+                  = render "identifications/identification", :identification => record
             - else
               = link_to record.try_methods(:to_plain_s, :to_s), record
           %td
@@ -88,8 +92,7 @@
                 = link_to "Change to #{taxon.name} #{taxon.id}", taxon_change_commit_record_path(@taxon_change, @type, record.id, taxon.id), 
                   :method => :put,
                   :class => "glaucous button",
-                  :confirm => "Are you sure you want to update this observation?",
+                  :confirm => "Are you sure you want to update this #{record.class.name.underscore.humanize.downcase}?",
                   "data-loading-click" => "Updating..."
   - if @records.respond_to?(:total_pages)
     = will_paginate @records
-

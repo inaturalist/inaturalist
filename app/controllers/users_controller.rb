@@ -293,15 +293,29 @@ class UsersController < ApplicationController
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
     if @display_user.update_attributes(params[:user])
-      flash[:notice] = 'Your profile was successfully updated!'
       sign_in @display_user, :bypass => true
-      redirect_back_or_default(person_by_login_path(:login => current_user.login))
+      respond_to do |format|
+        format.html do
+          flash[:notice] = 'Your profile was successfully updated!'
+          redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        end
+        format.json do
+          render :json => @display_user.to_json(User.default_json_options)
+        end
+      end
     else
       @display_user.login = @display_user.login_was unless @display_user.errors[:login].blank?
-      if request.env['HTTP_REFERER'] =~ /edit_after_auth/
-        render :action => 'edit_after_auth', :login => @original_user.login
-      else
-        render :action => 'edit', :login => @original_user.login
+      respond_to do |format|
+        format.html do
+          if request.env['HTTP_REFERER'] =~ /edit_after_auth/
+            render :action => 'edit_after_auth', :login => @original_user.login
+          else
+            render :action => 'edit', :login => @original_user.login
+          end
+        end
+        format.json do
+          render :json => {:errors => @display_user.errors}, :status => :unprocessable_entity
+        end
       end
     end
   end

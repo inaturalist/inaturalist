@@ -53,8 +53,14 @@
     <%= extra if extra %>
     
     <% unless taxon.is_active -%>
-      <span class="small">
+      <span class="small meta">
         (<%= link_to "inactive taxon", taxon_changes_path(:taxon_id => taxon.id) -%>)
+      </small>
+    <% end -%>
+
+    <% if tc = identification.taxon_change -%>
+      <span class="small meta nobr">
+        Added as part of a <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
       </small>
     <% end -%>
   </div>

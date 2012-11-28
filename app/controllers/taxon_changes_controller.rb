@@ -132,7 +132,7 @@ class TaxonChangesController < ApplicationController
     @taxon_change.committer = current_user
     @taxon_change.commit
     
-    flash[:notice] = "Taxon change committed!"
+    flash[:notice] = "Taxon change committed! Records that can be automatically updated will be changed soon."
     redirect_back_or_default(taxon_changes_path)
   end
 
