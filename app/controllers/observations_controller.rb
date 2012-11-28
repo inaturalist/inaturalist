@@ -818,7 +818,23 @@ class ObservationsController < ApplicationController
     begin
       CSV.parse(csv) do |row|
         next if row.blank?
-        row = row.map{|item| item.to_s.encode('UTF-8').strip}
+        row = row.map do |item|
+          if item.blank?
+            nil
+          else
+            begin
+              item.to_s.encode('UTF-8').strip
+            rescue Encoding::UndefinedConversionError => e
+              problem = e.message[/"(.+)" from/, 1]
+              begin
+                item.to_s.gsub(problem, '').encode('UTF-8').strip
+              rescue Encoding::UndefinedConversionError => e
+                # If there's more than one encoding issue, just bail
+                ''
+              end
+            end
+          end
+        end
         obs = Observation.new(
           :user => current_user,
           :species_guess => row[0],
