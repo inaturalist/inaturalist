@@ -132,6 +132,13 @@ describe TaxonSwap, "commit_records" do
     new_ident.taxon.should eq(@output_taxon)
   end
 
+  it "should add new identifications with taxon change set" do
+    ident = Identification.make!(:taxon => @input_taxon)
+    @swap.commit_records
+    new_ident = ident.observation.identifications.by(ident.user).order("id asc").last
+    new_ident.taxon_change.should eq(@swap)
+  end
+
   it "should not update existing identifications" do
     ident = Identification.make!(:taxon => @input_taxon)
     @swap.commit_records

@@ -4,6 +4,7 @@ class TaxonChange < ActiveRecord::Base
   has_many :taxa, :through => :taxon_change_taxa
   belongs_to :source
   has_many :comments, :as => :parent, :dependent => :destroy
+  has_many :identifications, :dependent => :nullify
   belongs_to :user
   belongs_to :committer, :class_name => 'User'
 
