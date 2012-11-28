@@ -59,8 +59,8 @@
     <% end -%>
 
     <% if tc = identification.taxon_change -%>
-      <span class="small meta">
-        (Added as part of a <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>)
+      <span class="small meta nobr">
+        Added as part of a <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
       </small>
     <% end -%>
   </div>
