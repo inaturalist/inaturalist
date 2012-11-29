@@ -814,6 +814,7 @@ class ObservationsController < ApplicationController
     csv = params[:upload][:datafile].read
     max_rows = 100
     row_num = 0
+    @rows = []
     
     begin
       CSV.parse(csv) do |row|
@@ -859,6 +860,7 @@ class ObservationsController < ApplicationController
         obs.tag_list = row[6]
         @hasInvalid ||= !obs.valid?
         @observations << obs
+        @rows << row
         row_num += 1
         if row_num >= max_rows
           flash[:notice] = "You have a beehive of observations!<br /> We can only take your first #{max_rows} observations in every CSV"
@@ -1371,8 +1373,7 @@ class ObservationsController < ApplicationController
       # Create a new one if one doesn't already exist
       unless photo
         photo = if photo_class == LocalPhoto
-          Rails.logger.info "[INFO #{Time.now}] adding new file"
-          LocalPhoto.new(:file => photo_id, :user => current_user)
+          LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
         else
           api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
           if api_response
