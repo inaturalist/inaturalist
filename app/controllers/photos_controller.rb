@@ -70,7 +70,7 @@ class PhotosController < ApplicationController
   def invite
     invite_params = params
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
-    provider = invite_params.delete(:provider)
+    provider = invite_params.delete(:provider) || request.fullpath[/\/(.+)\/invite/, 1]
     session[:invite_params] = invite_params
     if request.user_agent =~ /facebookexternalhit/ || params[:test]
       @project = Project.find_by_id(params[:project_id].to_i)
@@ -88,7 +88,12 @@ class PhotosController < ApplicationController
         pa = if logged_in?
           current_user.provider_authorizations.where(:provider_name => provider).first
         end
-        redirect_to auth_url_for(:flickr, :scope => pa.try(:scope))
+        opts = if pa && !pa.scope.blank?
+          {:scope => pa.scope}
+        else
+          {}
+        end
+        redirect_to auth_url_for(provider, opts)
       end
     end
   end
