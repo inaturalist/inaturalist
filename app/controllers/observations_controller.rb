@@ -814,11 +814,28 @@ class ObservationsController < ApplicationController
     csv = params[:upload][:datafile].read
     max_rows = 100
     row_num = 0
+    @rows = []
     
     begin
       CSV.parse(csv) do |row|
         next if row.blank?
-        row = row.map{|item| item.to_s.encode('UTF-8').strip}
+        row = row.map do |item|
+          if item.blank?
+            nil
+          else
+            begin
+              item.to_s.encode('UTF-8').strip
+            rescue Encoding::UndefinedConversionError => e
+              problem = e.message[/"(.+)" from/, 1]
+              begin
+                item.to_s.gsub(problem, '').encode('UTF-8').strip
+              rescue Encoding::UndefinedConversionError => e
+                # If there's more than one encoding issue, just bail
+                ''
+              end
+            end
+          end
+        end
         obs = Observation.new(
           :user => current_user,
           :species_guess => row[0],
@@ -843,6 +860,7 @@ class ObservationsController < ApplicationController
         obs.tag_list = row[6]
         @hasInvalid ||= !obs.valid?
         @observations << obs
+        @rows << row
         row_num += 1
         if row_num >= max_rows
           flash[:notice] = "You have a beehive of observations!<br /> We can only take your first #{max_rows} observations in every CSV"
@@ -1355,8 +1373,7 @@ class ObservationsController < ApplicationController
       # Create a new one if one doesn't already exist
       unless photo
         photo = if photo_class == LocalPhoto
-          Rails.logger.info "[INFO #{Time.now}] adding new file"
-          LocalPhoto.new(:file => photo_id, :user => current_user)
+          LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
         else
           api_response ||= photo_class.get_api_response(photo_id, :user => current_user)
           if api_response
@@ -2051,18 +2068,21 @@ class ObservationsController < ApplicationController
     return unless @project_user && @project_user.valid?
     tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])
     errors = []
-     @observations.each do |observation|
-        next if observation.new_record?
-        po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code)
-        unless po.save
-          errors = (errors + po.errors.full_messages).uniq
-        end
-     end
+    @observations.each do |observation|
+      next if observation.new_record?
+      po = @project.project_observations.build(:observation => observation, :tracking_code => tracking_code)
+      unless po.save
+        errors = (errors + po.errors.full_messages).uniq
+      end
+    end
      
-     unless errors.blank?
-       flash[:error] = "Your observations couldn't be added to that " + 
-         "project: #{errors.to_sentence}"
-     end
+    if !errors.blank?
+      if request.format.html?
+        flash[:error] = "Your observations couldn't be added to that project: #{errors.to_sentence}"
+      else
+        Rails.logger.error "[ERROR #{Time.now}] Failed to add #{@observations.size} obs to #{@project}: #{errors.to_sentence}"
+      end
+    end
   end
   
   def update_user_account

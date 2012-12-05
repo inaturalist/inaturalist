@@ -42,9 +42,9 @@ Inaturalist::Application.routes.draw do
   match "/eol/photo_fields" => "eol#photo_fields"
   match '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   
-  match '/flickr/invite' => 'photos#invite', :provider => 'flickr', :as => :flickr_accept_invite
-  match '/facebook/invite' => 'photos#invite', :provider => 'facebook', :as => :fb_accept_invite
-  match '/picasa/invite' => 'photos#invite', :provider => 'facebook', :as => :picasa_accept_invite
+  match '/flickr/invite' => 'photos#invite', :as => :flickr_accept_invite
+  match '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
+  match '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
 
   match "/photos/inviter" => "photos#inviter", :as => :photo_inviter
   resources :announcements

@@ -473,5 +473,19 @@ class ListedTaxon < ActiveRecord::Base
       end
     end
   end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.where(:user_id => options[:user]) if options[:user]
+    scope = scope.where("listed_taxa.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.where(options[:conditions]) if options[:conditions]
+    scope = scope.includes(options[:include]) if options[:include]
+    scope.find_each do |lt|
+      lt.force_update_cache_columns = true
+      lt.update_attributes(:taxon => taxon)
+      yield(record) if block_given?
+    end
+  end
   
 end

@@ -84,13 +84,12 @@ class FlickrController < ApplicationController
       end
     else
       @friend_id = params[:object_id]
-      @friend_id = nil if @friend_id=='null'
-
+      @friend_id = nil if @friend_id == 'null'
       search_params = {}
       if context == 'user'
         search_params['user_id'] = current_user.flickr_identity.flickr_user_id
       elsif context == 'friends'
-        if @friend_id.nil? # if context is friends, but no friend id specified, we want to show the friend selector
+        if @friend_id.blank? # if context is friends, but no friend id specified, we want to show the friend selector
           @friends = flickr_friends
           render :partial => 'flickr/friends' and return
         end

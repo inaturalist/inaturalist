@@ -146,21 +146,27 @@
   
   <fieldset class="last column span-11">
     <legend><%= t(:source) %></legend>
-    <% unless taxon.source_identifier.blank? -%>
+    <% if taxon.name_provider.nil? || !taxon.creator_id.nil? -%>
       <div class="last column span-7">
-        <div class="description ui">
-          <%= t(:this_taxon_was_originally_imported_from) %>
-        </div>
-        <p class="ui">
-          <%= f.label :source_identifier %><br/>
-          <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
-        </p>
-
-        <p class="ui">
-          <%= f.label :source_url %><br/>
-          <%= f.text_field :source_url, :disabled => true, :class => "text" %>
-        </p>
+        <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
       </div>
+    <% else %>
+      <% unless taxon.source_identifier.blank? -%>
+        <div class="last column span-7">
+          <div class="description ui">
+            <%= t(:this_taxon_was_originally_imported_from) %>:
+          </div>
+          <p class="ui">
+            <%= f.label :source_identifier %><br/>
+            <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
+          </p>
+          
+          <p class="ui">
+            <%= f.label :source_url %><br/>
+            <%= f.text_field :source_url, :disabled => true, :class => "text" %>
+          </p>
+        </div>
+      <% end -%>
     <% end -%>
   </fieldset>
 

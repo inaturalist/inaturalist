@@ -21,10 +21,15 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
-          place_types = [Place::PLACE_TYPE_CODES['Country']]
-          places = Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-            :conditions => ["place_type IN (?)", place_types])
+        place = Place.find_by_id(INAT_CONFIG['place_id']) unless INAT_CONFIG['place_id'].blank?
+        key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
+        place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
+          places = if place
+            place.children.select('id').order("RANDOM()").limit(50)
+          else
+            Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
+              :conditions => ["place_type IN (?)", [Place::PLACE_TYPE_CODES['Country']]])
+          end
           places.map{|p| p.id}
         end
         place_ids = place_ids.sort_by{rand}[0..4]

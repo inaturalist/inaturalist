@@ -4,6 +4,7 @@ class TaxonChange < ActiveRecord::Base
   has_many :taxa, :through => :taxon_change_taxa
   belongs_to :source
   has_many :comments, :as => :parent, :dependent => :destroy
+  has_many :identifications, :dependent => :nullify
   belongs_to :user
   belongs_to :committer, :class_name => 'User'
 
@@ -134,6 +135,16 @@ class TaxonChange < ActiveRecord::Base
           update_records_of_class(record.class, output_taxon, :records => [record])
         end
       end
+    end
+    [input_taxa, output_taxa].flatten.compact.each do |taxon|
+      Taxon.update_all(
+        [
+          "observations_count = ?, listed_taxa_count = ?", 
+          Observation.where(:taxon_id => taxon).count, 
+          ListedTaxon.where(:taxon_id => taxon).count
+        ],
+        ["id = ?", taxon.id]
+      )
     end
     Rails.logger.info "[INFO #{Time.now}] finished commit_records for #{self}"
   end

@@ -38,6 +38,7 @@ class Taxon < ActiveRecord::Base
   has_and_belongs_to_many :colors
   
   accepts_nested_attributes_for :conservation_status_source
+  accepts_nested_attributes_for :source
   
   define_index do
     indexes :name
@@ -1136,7 +1137,7 @@ class Taxon < ActiveRecord::Base
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     if taxa.blank?
       begin
-        taxa = Taxon.search(name).select{|t| t.taxon_names.detect{|tn| tn.name =~ /#{name}/}}
+        taxa = Taxon.search(name).compact.select{|t| t.taxon_names.detect{|tn| tn.name =~ /#{name}/}}
       rescue Riddle::ConnectionError => e
         return
       end

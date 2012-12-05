@@ -501,8 +501,10 @@
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
       <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source_url %>
+    <% elsif @taxon.source && @taxon.source.url %>
+      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source.url %>
     <% elsif @taxon.source %>
-      <%= t(:source)%>: <%= @taxon.source.title %>
+      Source: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source %>
     <% elsif @taxon.creator %>
       <%= t(:added_by) %> <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>

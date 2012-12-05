@@ -339,6 +339,9 @@ $(document).ready(function() {
   $('form:has(input[required])').submit(checkFormForRequiredFields)
 
   $('.item .item_content').width(function() { return $(this).parent().width() - 58 })
+  $('.identification:visible .identification_body').width(function() { 
+    return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 20
+  })
 })
 
 function checkFormForRequiredFields(e) {

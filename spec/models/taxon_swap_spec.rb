@@ -132,6 +132,22 @@ describe TaxonSwap, "commit_records" do
     new_ident.taxon.should eq(@output_taxon)
   end
 
+  it "should add new identifications with taxon change set" do
+    ident = Identification.make!(:taxon => @input_taxon)
+    @swap.commit_records
+    new_ident = ident.observation.identifications.by(ident.user).order("id asc").last
+    new_ident.taxon_change.should eq(@swap)
+  end
+
+  it "should add new identifications for owner with taxon change set" do
+    obs = Observation.make!(:taxon => @input_taxon)
+    ident = Identification.make!(:taxon => @input_taxon, :observation => obs)
+    @swap.commit_records
+    obs.reload
+    new_ident = obs.owners_identification
+    new_ident.taxon_change.should eq(@swap)
+  end
+
   it "should not update existing identifications" do
     ident = Identification.make!(:taxon => @input_taxon)
     @swap.commit_records
@@ -146,6 +162,18 @@ describe TaxonSwap, "commit_records" do
     @swap.commit_records
     ident.reload
     ident.observation.identifications.by(ident.user).of(@output_taxon).count.should eq(1)
+  end
+
+  it "should set counter caches correctly" do
+    3.times { Observation.make!(:taxon => @input_taxon) }
+    @input_taxon.reload
+    @input_taxon.observations_count.should eq(3)
+    @output_taxon.observations_count.should eq(0)
+    @swap.commit_records
+    @input_taxon.reload
+    @output_taxon.reload
+    @input_taxon.observations_count.should eq(0)
+    @output_taxon.observations_count.should eq(3)
   end
 end
 

@@ -17,7 +17,9 @@ config/tilestache.cfg
 log/*
 cache/
 db/sphinx/
+Capfile
 config/*.sphinx.conf
+config/deploy.rb
 *.DS_Store
 config/*.mapnik.xml
 config/*.ogr.vrt

@@ -462,6 +462,18 @@ iNaturalist.Map.createMap = function(options) {
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   map._observationsTileServer = options.observationsTileServer
   // map.overlayMapTypes.insertAt(0, iNaturalist.Map.buildObservationsMapType(map))
+
+  if (options.bounds) {
+    if (typeof(options.bounds.getCenter) == 'function') {
+      map.setBounds(options.bounds)
+    } else {
+      var bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(options.bounds.swlat, options.bounds.swlng),
+        new google.maps.LatLng(options.bounds.nelat, options.bounds.nelng)
+      )
+      map.fitBounds(bounds)
+    }
+  }
   
   return map;
 }
