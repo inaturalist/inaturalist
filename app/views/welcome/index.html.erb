@@ -27,6 +27,7 @@
 
   <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
+    var BOUNDS = <%=raw INAT_CONFIG['bounds'].to_json %>
     $(document).ready(function(){
       
      // show some created_at dates
@@ -34,7 +35,8 @@
      $('div.observed_on h4.label').text('Observed');
      $('div.created_at').show();
 
-     var map = iNaturalist.Map.createMap({lat: 40.714, lng: -98.262, zoom: 3});
+     var opts = BOUNDS ? {bounds: BOUNDS} : {lat: 40.714, lng: -98.262, zoom: 3}
+     var map = iNaturalist.Map.createMap(opts);
      map.overviewMapControl = true;
 
      // Load in some observations
@@ -91,7 +93,7 @@
         }
       });
       
-      map.fitBounds(bounds)
+      if (!BOUNDS) { map.fitBounds(bounds) }
     });
   </script>
 <% end %>

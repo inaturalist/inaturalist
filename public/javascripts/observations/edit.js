@@ -4,7 +4,8 @@ $(document).ready(function() {
   try {
     var map = iNaturalist.Map.createMap({
       div: $('#map').get(0),
-      mapTypeId: google.maps.MapTypeId.HYBRID
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      bounds: BOUNDS
     })
     if (typeof(PLACE) != 'undefined' && PLACE) {
       map.setPlace(PLACE, {
