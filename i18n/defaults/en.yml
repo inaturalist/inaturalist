@@ -44,6 +44,7 @@ en:
   # linked_flickr_howto: In order to authorize your Flickr account to work with iNaturalist, you need to click on the button to the right and either create a Flickr account or sign into Flickr.com. Flickr will ask you if you want to give iNaturalist permission to read from your Flickr account and will then redirect you back to us.
   # linked_flickr_howto: To connect Flickr Flickr will ask you if you want to give iNaturalist permission to <strong>read</strong> from your Flickr account and will then send you back here. We also ask for <strong>write</strong> permission so you can add taxonomic tags back to your Flickr photos using the with iNat, click the link on the right and sign into Flickr.com.  
   # linked_flickr_password: We will never ask you for your Flickr password (but Flickr might, check the url that the button sends you and make sure it's Flickr.com). We will also won't change your Flickr data unless you want us to. We're the good guys!
+  a: a
   a_community_for_naturalist: A Community for Naturalists
   a_few_points_to_make_things_clear: "A few points to make things a bit clearer:"
   a_greasemonkey_script: a Greasemonkey script
@@ -165,6 +166,7 @@ en:
   and_you_havent_linked: "...and you haven't linked one of these external accounts, you should sign in through iNat first, then edit your profile and link your account from there. Otherwise iNat may not be able to tell that the two accounts are connected and try to create a new account for you instead!"
   animals: Animals
   announcements: Announcements
+  an: an
   any: any
   apply_darr: "Apply &darr;"
   apply_these_settings_to_all: Apply these settings to all the observations below.
@@ -572,7 +574,7 @@ en:
   if_they_know_about: If they know about the name, iNat will import and save the data.
   if_this_is_a_cientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
-  if_you_already_have_inat_account: "If you already have an iNat account..."
+  if_you_already_have_an_account: "If you already have %{article} %{site_name} account..."
   if_you_have_any_trouble_with_the_site_check_out: 'If you have any trouble with the site, please check out our %{help} or post a message to our <a href="http://groups.google.com/group/inaturalist">Google Group</a>.'
   if_you_have_trouble_with_the_site: "If you have any trouble with the site, please check out our help section:"
   if_you_really_dont_know_what: "If you really don't know what you saw, that's fine! If you do know, you should click <strong class='ui'>Search external name providers</strong>. This will ask iNat to search some external taxonomic databases for the name and try to import anything it finds."
@@ -732,6 +734,7 @@ en:
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
   merging: Merging
   merging_places: Merging Places
+  mobile_apps_for: Mobile apps for
   mobile_view_available: Mobile view available
   mollusks: mollusks
   mon: Mon
@@ -957,6 +960,7 @@ en:
   posted_by: Posted by
   posted_on: Posted on
   posts: Posts
+  powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> open source software'
   preview: Preview
   preview_personal_message:  "I'd like you to join me on %{site}, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!"
   preview_your_message: Preview your message
