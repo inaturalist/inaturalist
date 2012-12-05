@@ -126,7 +126,8 @@
     <div id="more">
       <h2>Welcome!</h2>
       <p>
-        to <img src="/images/logo-small.gif">,
+        to
+        <%= image_tag INAT_CONFIG['logo'] || 'logo-small.gif', :alt => SITE_NAME %>,
         where you can <strong>record</strong> what you see in nature,
         <strong>meet</strong> other nature lovers, and
         <strong>learn</strong> about the natural world.

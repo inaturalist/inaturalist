@@ -2,7 +2,7 @@
   <ul id="mainnav" class="navtabs">
     <li>
       <a href="/" title="<%= APP_CONFIG[:site_name] %>" class="logolink">
-        <img src="/images/logo-small.gif" alt="iNaturalist logo" />
+        <%= image_tag INAT_CONFIG['logo'] || 'logo-small.gif', :alt => SITE_NAME, :width => 118 %>
       </a>
     </li>
     <li class="subnavwrapper observationstab">

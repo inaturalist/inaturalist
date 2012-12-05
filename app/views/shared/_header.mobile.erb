@@ -6,5 +6,6 @@
   <% end -%>
   <a href="/" title="<%= APP_CONFIG[:site_name] %>" class="logolink">
     <img src="/images/logo-small.gif" alt="iNaturalist logo" width="118" height="22"/>
+    <%= image_tag INAT_CONFIG['logo'] || 'logo-small.gif', :alt => SITE_NAME, :width => 118 %>
   </a>
 </div>
