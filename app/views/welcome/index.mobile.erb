@@ -13,7 +13,7 @@
 <% end %>
 
 <% unless logged_in? -%>
-  <%= t(:welcome_to_inat) %>
+  <%= t(:welcome_to_inat, :site_name => SITE_NAME) %>
 <% end -%>
 
 <ul id="quicklinks" style="width: 100%">

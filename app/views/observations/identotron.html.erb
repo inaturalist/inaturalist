@@ -177,7 +177,7 @@
                 $('<div class="success status comprehensive_notice stacked"></div>').append(
                   "<strong><%=t :comprehensive_list %>: </strong>",
                   link,
-                  $('<span class="helptip right"></span>').attr('rel', '<%=t :inat_believes_this_is_a_complete_listing %>')
+                  $('<span class="helptip right"></span>').attr('rel', '<%=t :inat_believes_this_is_a_complete_listing, :site_name => SITE_NAME_SHORT %>')
                 )
               )
               buildHelpTips()

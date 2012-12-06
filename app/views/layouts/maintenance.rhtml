@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
-    <title><%=t :inaturalist_is_catching_some_zs %></title>
+    <title><%=t :inaturalist_is_catching_some_zs, :site_name => SITE_NAME %></title>
     <style type="text/css" media="screen">
       body {
         margin: 0;
@@ -18,14 +18,14 @@
   <body>
     <center>
       <h1>
-        <%=t :inaturalist_is_catching_some_zs %>
+        <%=t :inaturalist_is_catching_some_zs, :site_name => SITE_NAME %>
       </h1>
       <p>
        <%=t :were_currently_down_for %> <%= reason ? reason : "maintenance" %> as of
         <span class="datetime"><%=l Time.now %></span>.
       </p>
       <p>
-        <%=t :inat_will_be_back_on %> 
+        <%=t :inat_will_be_back_on, :site_name => SITE_NAME_SHORT %> 
         <span class="datetime"><%= deadline ? "by #{deadline}" : "shortly" %></span>.
       </p>
     </center><!-- rock on, center tag! -->

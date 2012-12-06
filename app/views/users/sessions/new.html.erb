@@ -48,6 +48,6 @@
     :article => %w(a e i o u).include?(SITE_NAME_SHORT[0]) ? t(:an) : t(:a), 
     :site_name => SITE_NAME_SHORT), "#already" %>
   <p id="already" class="ui description" style="display: none;">
-    <%= t(:and_you_havent_linked) %>
+    <%= t(:and_you_havent_linked, :site_name => SITE_NAME_SHORT) %>
   </p>
 </div>

@@ -65,7 +65,7 @@
         <%= form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
-            <%=t :select_photos_from_your_photo_stream %>
+            <%=t :select_photos_from_your_photo_stream, :site_name => SITE_NAME %>
           </div>
           <div id="photos" class="clear stacked"></div>
           <%= submit_tag(t(:import_photos), :class => 'default button', "data-loading-click" => t(:importing)) %>

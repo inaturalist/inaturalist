@@ -602,7 +602,7 @@
 <div class="column span-4 aka">
   <h3>
     <%= t(:classification) %>
-    <div class="description"><%=t :within_inaturalist %></div>
+    <div class="description"><%=t :within_inaturalist, :site_name => SITE_NAME %></div>
   </h3>
   
   <%= render :partial => 'classification_list' %>

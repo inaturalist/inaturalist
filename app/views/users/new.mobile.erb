@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = t(:join_inat) %>
+  <%= @title = t(:join_inat, :site_name => SITE_NAME_SHORT) %>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">

@@ -15,12 +15,12 @@
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="<%= t(:inaturalist_places) %>"/> 
+  <meta property="og:title" content="<%= t(:inaturalist_places, :site_name => SITE_NAME) %>"/> 
   <meta property="og:image" content="<%= image_url('place_preview.jpg') %>"/> 
   <meta property="og:site_name" content="iNaturalist"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
-  <meta property="og:description" name="description" content=" <%= t(:the_world_is_full_of_interesting_places) %>" /> 
+  <meta property="og:description" name="description" content=" <%= t(:the_world_is_full_of_interesting_places, :site_name => SITE_NAME) %>" /> 
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -110,7 +110,7 @@
     </p>
 
     <p>
-      <%= t(:inaturalist_places_are_way_record_what_lives_where) %>
+      <%= t(:inaturalist_places_are_way_record_what_lives_where, :site_name => SITE_NAME) %>
     </p>
     
     <div class="column span-5">
@@ -119,14 +119,14 @@
     <div class="last column span-11">
       <h3> <%= t(:species_from_around_the_world) %> </h3>
       <p>
-      	<%= t(:each_place_displays_all_species_inat_knows) %>
+      	<%= t(:each_place_displays_all_species_inat_knows, :site_name => SITE_NAME) %>
       </p>
     </div>
     
     <div class="column span-11">
       <h3> <%= t(:localized_species_accounts) %> </h3>
       <p>
-      	<%= t(:view_photos_ranges_observations_more) %>
+      	<%= t(:view_photos_ranges_observations_more, :site_name => SITE_NAME_SHORT) %>
       </p>
     </div>
     <div class="last column span-5">

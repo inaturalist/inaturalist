@@ -29,7 +29,7 @@ es:
   able_to_connect_flickr: ¡Muy bienPudimos vincular su cuenta de Flickr.
   about: Acerca de
   about_life!: Acerca de la vida!
-  about_inaturalist: Acerca de «Bioexplorador»
+  about_inaturalist: "Acerca de %{site_name}"
   about_places: Acerca de Lugares
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
   about_the_taxobox_raquo: "Acerca de la ficha de taxón &raquo;"
@@ -105,7 +105,7 @@ es:
   add_to_project: Agregar a proyecto
   add_to_your_life_list: Add to your life list
   add_to_your_list: Agregar a su lista
-  add_your_own_observations_at: Agregar sus propias observaciones en «Bioexplorador»
+  add_your_own_observations_at: "Agregar sus propias observaciones en %{site_name}"
   add_your_photo: Agregar su foto
   add_your_photo_to: "Agregar su foto a %{project}"
   added: Agregado el
@@ -145,10 +145,10 @@ es:
   an: una
   and_choose_a_matching_taxon: y seleccione un taxón de la lista que concuerde. Si no termina con algo como
   and_filling_in_check_list:  ¡y llenar listas de verificación de los lugares que conoce!
-  and_help_the_inaturalist_community_grow: y ayudar a que la comunidad «Bioexplorador» crezca.
+  and_help_the_inaturalist_community_grow: "y ayudar a que la comunidad %{site_name} crezca."
   and_make_some_new: y haga nuevos
   and_other_taxa:  "&amp; Otros Taxones"
-  and_you_havent_linked:  ...y no la ha ligado a una de estas cuentas externas, debería ingresar a través de «Bioexplorador» primero, luego modificar su perfil y vincular su cuenta desde ahí. ¡De otra forma «Bioexplorador» no puede darse cuenta de que ambas cuentas están conectadas y en lugar de eso tratar de crear una cuenta para usted!
+  and_you_havent_linked:  "...y no la ha ligado a una de estas cuentas externas, debería ingresar a través de %{site_name} primero, luego modificar su perfil y vincular su cuenta desde ahí. ¡De otra forma %{site_name} no puede darse cuenta de que ambas cuentas están conectadas y en lugar de eso tratar de crear una cuenta para usted!"
   animals: Animales
   announcements: Anuncios
   any: Cualquiera
@@ -280,7 +280,7 @@ es:
   cheklist_places_are_places_with_contain_taxon: 'Los "Lugares con lista de verificación" son lugares con listas de verificación que contienen este taxón.'
   child_taxa: Taxones hijos
   choose_a_list_above: Seleccionar una lista arriba
-  choose_cc_licensed_photos: 'Encontrar fotos con licencia de <a href="http: //creativecommons.org/">CC</a> en Flickr o seleccionarlas de sus observaciones en «Bioexplorador». Trate de seleccionar imágenes que <em>muestren características de diagnóstico</em> y <em>se vean bien como íconos</em>.  La <em>primera aparece por defecto</em>.'
+  choose_cc_licensed_photos_html: 'Encontrar fotos con licencia de <a href="http: //creativecommons.org/">CC</a> en Flickr o seleccionarlas de sus observaciones en %{site_name}. Trate de seleccionar imágenes que <em>muestren características de diagnóstico</em> y <em>se vean bien como íconos</em>.  La <em>primera aparece por defecto</em>.'
   choose_from_your_lists: Seleccionar de sus listas
   choose_good_default_photos: seleccionar buenas fotos por defecto del grupo de fotos de Creative Commons en Flickr
   choose_photos_for_this_taxon: Seleccionar fotos para este taxón
@@ -323,7 +323,7 @@ es:
   connected_accounts: Cuentas vinculadas
   connecting_flickr: Conectándose a Flickr... 
   connecting_to_facebook: Conectándose a Facebook...
-  connecting_your_inat_account_to_accounts_other_sites: Conectar su cuenta de «Bioexplorador» con cuentas en otros sitios le permitirá ingresar a «Bioexplorador» usando sus credenciales de esos sitios.
+  connecting_your_inat_account_to_accounts_other_sites: "Conectar su cuenta de %{site_name} con cuentas en otros sitios le permitirá ingresar a %{site_name} usando sus credenciales de esos sitios."
   conservation_status: Estado de conservación
   contain_all_descendants?: ¿Esta lista de verificación contiene todos los descendientes de este taxón que se producen aquí?
   contest_projects_description: Los proyectos del concurso clasificarán la base de contribuyentes de acuerdo con cuántas especies únicas hayan observado.
@@ -364,6 +364,7 @@ es:
   date_time: Fecha/Hora
   day: Día
   december: Diciembre
+  default_invite_comment: "La gran foto! Usted debe enviar a %{site_name}: {{INVITE_LINK}}"
   default_observation_license: "Licencia para sus observaciones:"
   default_photo_license: "Licencia para sus fotos:"
   delete: Eliminar
@@ -396,10 +397,7 @@ es:
   download: Descargar
   download_csv: Descargar CSV
   draft: ¡BORRADOR!
-  dt_check_lists: '<dt>Listas de verificación</dt> <dd> Las listas de verificación representan todos los taxones que se presentan dentro de un lugar en particular. A diferencia de las listas ordinarias y las listas de vida, las listas de verificación puede modificarlas cualquier persona de «Bioexplorador». Ya que los lugares pueden contener otros lugares (por ejemplo:  Connecticut es un estado de los Estados Unidos), las listas de verificación automáticamente se actualizan con cambios de contenido en los lugares. Entonces si yo agrego "Northern Cardinal" a la lista de verificación de Connecticut, se agregará a la lista de verificación de EE.UU. también. Los lugares también pueden tener varias listas de verificación para los diferentes taxones (por ejemplo:  "Plantas de Australia") que usan reglas taxonóicas como listas de vida.  </dd>'
-  dt_life_lists:  <dt>Listas de vida</dt> <dd> Las lista de vida se llenan automáticamente con base en sus observaciones y un conjunto de reglas y también se pueden agregar manualmente. Por el momento, la única regla que tenemos es si una especie está o no en un taxón de nivel más alto. Entonces usted puede hacer una lista de vida de todos los mamíferos que haya visto al asociarlos con el tazón <a href="/taxa/Mammalia">Mammalia</a>. Todos en «Bioexplorador» tienen una lista de vida por defecto, la cual registra todos los taxones que hayan visto.  </dd>
-  dt_lists:  <dt>Listas</dt> <dd> Las listas ordinarias son listas arbitrarias de taxones que puede crear. Tal vez le gustaría mantener una lista de especies que desea ver, o de aves que no ha visto en su jardín.  </dd>
-  each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las especies que «Bioexplorador» conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en «Bioexplorador». Usted puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla.
+  each_place_displays_all_species_inat_knows: "Cada página de lugar muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Usted puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla."
   edit: Modificar
   edit_a_batch_of_observations: Modificar un grupo de observaciones
   edit_account_settings_and_profile:  Modificar la cuenta y perfil
@@ -453,7 +451,7 @@ es:
   extinct: EXTINTO
   extras: Extras
   facebook_account_information: Información de su cuenta de Facebook
-  facebook_confirmation: Facebook desea confirmar que usted desea conectar su cuenta a «Bioexplorador».
+  facebook_confirmation: Facebook desea confirmar que usted desea conectar su cuenta a %{site_name}.
   facebook_options: Opciones de Facebook
   false: Falso.
   Family: Familia
@@ -477,8 +475,8 @@ es:
   find_places: Encontrar Lugares
   find_some_people_to_follow: encuentra personas que desea seguir
   find_species: Encontrar especies
-  first_confirmed_inat_observation: Primera observación «Bioexplorador» confirmada
-  first_inat_observation: Primera observación «Bioexplorador»
+  first_confirmed_inat_observation: "Primera observación %{site_name} confirmada"
+  first_inat_observation: "Primera observación %{site_name}"
   first_observer: Primer observador
   flag_description: Marcar este contenido para hacer saber a los curadores que algo no anda bien.
   flag_for_curation: Marcar para curación.
@@ -488,19 +486,19 @@ es:
   flagged: marcado
   flagged_for_curation: Marcado para curación.
   flagger: Marcador
-  flags_explanation: "Los usuarios de «Bioexplorador» marcan cosas cuando encuentran algo que no está bien. Aquí hay algunos problemas que los curadores no han resuelto todavía. Los usuarios han marcado este %{thing} porque"
+  flags_explanation: "Los usuarios de %{site_name} marcan cosas cuando encuentran algo que no está bien. Aquí hay algunos problemas que los curadores no han resuelto todavía. Los usuarios han marcado este %{thing} porque"
   flags_for: Marcas para
   flickr_account_information: Información de su cuenta de Flickr
   flickr_description: Flickr es un servicio de alojamiento de fotos en línea, tal vez ya usted lo conozca.
   flickr_identity: Identidad de Flickr
   flickr_invite_link_raquo: "Vínculo de invitación a Flickr &raquo;"
-  flickr_needs_to_confirm: Flickr debe confirmar que usted desea conectar su cuenta con «Bioexplorador».
+  flickr_needs_to_confirm: "Flickr debe confirmar que usted desea conectar su cuenta con %{site_name}."
   flickr_photo: Foto de Flickr
   flickr_photos: Fotos de Flickr
   flickr_style: Al estilo de Flickr
   flickr_tagger: Etiquetador de Flickr
   flickr_tags: Etiquetas de Flickr
-  flickr_youre_all_set: Ya está listo para comenzar a explorar «Bioexplorador»
+  flickr_youre_all_set: "Ya está listo para comenzar a explorar %{site_name}"
   follow_us: Síganos en
   follow_us_on: Síganos en
   follow_user: "Seguir a %{user}"
@@ -512,9 +510,7 @@ es:
   fri: vie
   from: de
   from_anywhere_change: de cualquier lugar (<span class="button">change</span>)
-  from_flickr:  <span>Desde Flickr</span>
   from_in_this_place: de este lugar
-  from_inat_observations:  <span>De observaciones en «Bioexplorador»</span>
   from_list: De la lista
   full_id_please!: ¡Ayuda con nombre científico!
   full_id_please?: ¿Ayuda con nombre científico?
@@ -528,7 +524,6 @@ es:
   georeferenced: ¿Geo referenciado?
   get_current_position: Obtener posición actual
   get_started_raquo: "Comience &raquo;"
-  get_started_with_site: Comience con «Bioexplorador»
   getting_started: Cómo Empezar
   give_it_some_detail: ¡Colóquele algún detalle!
   global_conservation_status: Estado de conservación global
@@ -540,8 +535,8 @@ es:
   grid: cuadrícula
   guess_description: Estimación / Descripción
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
-  hate_me_facebook: Desvincular sus cuentas de Facebook e «Bioexplorador»
-  hate_me_flickr: Desvincular sus cuentas de Flickr e «Bioexplorador»
+  hate_me_facebook: "Desvincular sus cuentas de Facebook e %{site_name}"
+  hate_me_flickr: "Desvincular sus cuentas de Flickr e %{site_name}"
   heads_up: Aviso
   heads_up_this_observation_has_been_flagged: "ATENCIÓN: esta observación a sido marcada."
   heads_up_this_taxon_locked_users_cant_add_descendants: <strong>Aviso.</strong> este taxón está bloqueado, lo cual significa que la mayoría de los usuarios no pueden agregarle descendientes al importar datos. Los curadores sí pueden hacerlo al editar los taxones y escoger un padre, pero por favor considere combinar los taxones en lugar de ello.
@@ -555,7 +550,6 @@ es:
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
   here_are_some_things_you_can_do_meantime: Aquí hay algunas cosas que puede hacer mientras tanto
   hi: Hola.
-  hi_and_welcome_to: ¡Hola y bienvenido a «Bioexplorador»Esta guía le mostrará algunas de las características principales del sitio.
   hide_details: ocultar detalles
   home: Inicio
   home_faq: FAQ
@@ -569,14 +563,11 @@ es:
   identifications_by: "Identificaciones por %{user}"
   identotron:  Identotron
   ids_made_for_others: Identificaciones hechas para otros
-  if_inat_cant_find_taxon: Si «Bioexplorador» no puede encontrar un taxón que concuerde con el nombre que usted ingrese en nuestra base de datos, usted verá algo como
-  if_they_know_about: Si ellos saben el nombre, «Bioexplorador» importará y guardará los datos.
   if_this_is_a_cientific_name: Si este es un nombre científico, ¿está aceptado actualmente?
   if_this_link_will_apply_to_descendant: Si este vínculo aplicará a los taxones descendientes, puede usar sus plantillas de etiquetas para llenar el nombre del taxón en la URL
   if_you_already_have_an_account: Si usted ya tiene una cuenta de %{site_name}...
   if_you_have_any_trouble_with_the_site_check_out: 'Si tuviera algún problema con el sitio, por favor revise nuestro %{help} o escriba un mensaje a nuestro <a href="http: //groups.google.com/group/inaturalist">Google Group</a>.'
   if_you_have_trouble_with_the_site: Si tuviera algún problema con el sitio, por favor revise nuestra sección de ayuda
-  if_you_really_dont_know_what: Si no sabe realmente lo que vió, ¡no hay problemaSi lo sabe, debería hacer click <fuerte class="ui">Buscar proveedores externos de nombres</fuerte>. Esto le indicará a «Bioexplorador» que busque el nombre en algunas bases de datos taxonómicos externas y que trate de importar lo que encuentre.
   if_you_use: Si usted usa
   if_your_search_comes_up: Si su búsqueda regresa vacía, debería ver algunas cajas de búsqueda para repetir la búsqueda a través de nuestros proveedores externos de nombres
   ignore: Ignorar
@@ -597,46 +588,42 @@ es:
   in_order_to_login_and_using_site_visit_url: Con el fin de ingresar y comenzar a utilizar el sitio debe visitar esta url para activar su cuenta
   in_the_past: en el pasado
   in_the_past_week: durante la semana pasada
-  inat_account_action:  "«Bioexplorador»&#58; Account&#58; %{action_name}"
-  inat_believes_this_is_a_complete_listing:  «Bioexplorador» cree que este es un listado completo de este taxón en este lugar.
-  inat_can_also_help_you_add: «Bioexplorador» también puede ayudarle a agregar etiquetas taxonómicas a sus fotos de Flickr usando la
-  inat_user_profile:  "«Bioexplorador»:  perfil de %{user}"
-  inat_will_be_back_on:  «Bioexplorador» volverá a estar en sus pies/alas/aletas/tentáculos/pseudópodos
-  inaturalist_is_an_online_community: ¡«Bioexplorador» es una comunidad en línea para naturalistasAl agregar su foto podrá ayudar a los investigadores a aprender más sobre
-  inaturalist_is_catching_some_zs:  «Bioexplorador» está captando algunas Zs
-  inaturalist_matinains_a_big: «Bioexplorador» mantiene una gran base de datos de especies y otros taxones y tenemos páginas individuales para cada uno, mostrando fotos de Flickr, observaciones, nuestra clasificación y una descripción de Wikipedia. Aquí está la página para
-  inaturalist_observations_by: "«Bioexplorador» &#58; Observaciones por %{login}"
-  inaturalist_places: Lugares «Bioexplorador»
-  inaturalist_places_are_way_record_what_lives_where: Lugares «Bioexplorador» es una forma de registrar qué vive dónde. Si usted busca una especie en particular, sabrá dónde buscar. Cada lugar tiene una lista de verificación para regisrar todas las especies que se encuentran allí, para que pueda también ser útil para buscar cosas que usted encontró en sitios particulares.
+  inat_account_action:  "%{site_name} &#58; Account &#58; %{action_name}"
+  inat_believes_this_is_a_complete_listing: "%{site_name} cree que este es un listado completo de este taxón en este lugar."
+  inat_user_profile:  "%{site_name}:  perfil de %{user}"
+  inat_will_be_back_on:  "%{site_name} volverá a estar en sus pies/alas/aletas/tentáculos/pseudópodos"
+  inaturalist_is_an_online_community: "%{site_name} es una comunidad en línea para naturalistas Al agregar su foto podrá ayudar a los investigadores a aprender más sobre"
+  inaturalist_is_catching_some_zs:  "%{site_name} está captando algunas Zs"
+  inaturalist_matinains_a_big: "%{site_name} mantiene una gran base de datos de especies y otros taxones y tenemos páginas individuales para cada uno, mostrando fotos de Flickr, observaciones, nuestra clasificación y una descripción de Wikipedia. Aquí está la página para"
+  inaturalist_observations_by: "%{site_name} &#58; Observaciones por %{login}"
+  inaturalist_places: "Lugares %{site_name}"
+  inaturalist_places_are_way_record_what_lives_where: "Lugares %{site_name} es una forma de registrar qué vive dónde. Si usted busca una especie en particular, sabrá dónde buscar. Cada lugar tiene una lista de verificación para regisrar todas las especies que se encuentran allí, para que pueda también ser útil para buscar cosas que usted encontró en sitios particulares."
   info: Información
   insects: insectos
   inspired_by_the_flickr_group: 'Inspirado por el grupo Flickr <a href="http://flickr.com/groups/idplease/">Identificador por favor</a>, este es un lugar para colocar observaciones de cosas que usted no sabe ¡y ayudar a que otras personas identifiquen criaturas misteriosas!'
   invite: invitar 
-  invite_flickr_photos: Invitar las fotos de Flickr a «Bioexplorador»
+  invite_flickr_photos: "Invitar las fotos de Flickr a %{site_name}"
   invite_more: Invitar más gente
   invite_noun: invitación(es)
   invite_someone_to: "¡Invita a alguien a %{name}!"
   invite_to_project: Invitar al proyecto
   invite_your_friends: Invita a sus amigos
-  invite_your_friends: Invitar a sus amigos a unirse a «Bioexplorador»
-  invite_your_friends_description: Usted puede facilitar que otras personas agreguen sus fotos en Flickr como observaciones «Bioexplorador». Sólo déjeles un comentario incluyendo este vínculo de invitación especial.  También puede preseleccionar un taxón y proyecto para la observación nueva.
-  invite_your_friends_description: ¡Ayude a que «Bioexplorador» sea una comunidad más grande y mejor invitando a sus amigos!
+  invite_your_friends_description: "¡Ayude a que %{site_name} sea una comunidad más grande y mejor invitando a sus amigos!"
   invited: invitado
   invited_to_the_following_projects: "Esta invitado a los siguientes proyectos:"
   is_a: es un
-  is_a_list_of_every_species_that_you_have_seen: Una lista de vida es una lista de todas las especies que has visto.  Cada usuario de «Bioexplorador» tiene una lista de vida, las cuales se generan automáticamente de las observaciones agregadas a «Bioexplorador».
-  is_a_naturalist: es Bioexplorador(a)!
+  is_a_naturalist: es un naturalista!
   is_an: es un
   is_not_following_anyone: No esta siguiendo a nadie
   is_the_organism_wild: ¿Es el organismo salvaje? 
-  is_this_observation_offensive?: ¿es esta observación <a href="/help#inappropriate">inapropiada</a>, spam u ofensiva? 
+  is_this_observation_offensive_html: '¿es esta observación <a href="/help#inappropriate">inapropiada</a>, spam u ofensiva?'
   is_this_place_a_duplicate: ¿Este lugar está duplicado? 
   it_has: Tiene
   it_instead: en vez de eso.
   its_important_that_you: Es importante que haga click
   january: Enero
   join_and: "Únase y"
-  join_inat: ¡Únete a «Bioexplorador»!
+  join_inat: "¡Únete a %{site_name}!"
   join_project: Unirse a este proyecto
   joined_any_projects: se ha unido a ningún proyecto
   journal: Diario
@@ -649,7 +636,7 @@ es:
   kelp_diatoms_and_allies: "algas, diatomeas, y aliados"
   Kingdom: Reino
   last_confirmed_observation: Última observación confirmada
-  last_inat_observation: Última observación «Bioexplorador»
+  last_inat_observation: "Última observación %{site_name}"
   last_seen: Visto por última vez
   latitude:  latitud
   latitude: Latitud
@@ -662,8 +649,7 @@ es:
   leave_this_project: Salir de este proyecto
   license_descriptions_and_images: Descripción de las licenciaas y sus respectivas imágenes 
   licensing: Licencias
-  licensing_your_content_gives_other_people_legal_right_to_use: 'Hacer una licencia para su contenido le da a otras personas el derecho legal de usarlo sin pedir su permiso si se apegan a los términos de la licencia. «Bioexplorador» usa su licencia de contenido Creative Commons-para compartir con sus socios de datos como <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organización internacional, inter-gubernamental que recopila y distribuye información sobre biodiversidad alrededor del mundo.'
-  licensing_your_content_gives_others_legal: Hacer uso de una licencia sobre el contenido generado por usted les da a otros el derecho de usarlos, siempre y cuando, se apeguen a los términos de la licencia. «Bioexplorador» usa una licencia de Creative Commons para compartir datos con otras iniciativas como
+  licensing_your_content_gives_others_legal: "Hacer uso de una licencia sobre el contenido generado por usted les da a otros el derecho de usarlos, siempre y cuando, se apeguen a los términos de la licencia. %{site_name} usa una licencia de Creative Commons para compartir datos con otras iniciativas como"
   life!: la vida
   life_list_updated_we_also_saved_a: ¡Lista de vida actualizadaTambién guardamos una observación vacía para este taxón.
   life_lists_automatically_fill: Las listas de vida se llenan automáticamente con nuevos taxones conforme usted los observa y pueden restringirse a taxones padres de nivel más alto, por ejemplo, una lista de vida de aves en la familia de los cuervos (Corvidae).
@@ -671,26 +657,23 @@ es:
   link_or_unlink_your_facebook_account: Vincular o desvincular su cuenta de Facebook
   link_or_unlink_your_flickr_account: Vincular o desvincular su cuenta de Flickr
   link_or_unlink_your_picasa_account: Vincular o desvincular su cuenta de Picasa
-  link_to_flickr: Vincule su cuenta de Flickr con «Bioexplorador» para poder agregar fotos de sus observaciones.
+  link_your_flickr_account_with_inat_so: "Vincule su cuenta de Flickr con %{site_name} para poder agregar fotos de sus observaciones."
   link_your_facebook_account: Vincule su cuenta de Facebook
   link_your_flickr_account: Vincule su cuenta de Flickr
-  link_your_flickr_account_to_inat: Vincule su cuenta de Flickr con «Bioexplorador»
-  link_your_flickr_account_with_iNat: Vincule su cuenta de Flickr con «Bioexplorador»
+  link_your_flickr_account_with_inat: "Vincule su cuenta de Flickr con %{site_name}"
   link_your_picasa_account: Vincule su cuenta de Picasa
-  linked_facebook: Su cuenta de «Bioexplorador» está actualmente ligada con su cuenta de Facebook.
-  linked_facebook_automaticaly: Tome en cuenta también que si usted ingresa a «Bioexplorador» a través de Facebook, automáticamente volveremos a vincular sus cuentas de «Bioexplorador» y Facebook. Nos parece razonable que si usted utiliza Facebook desea poder importar sus fotos de Facebook, ¿verdad?
-  linked_facebook_description: Mantener su cuenta de «Bioexplorador» ligada a su cuenta de Facebook le permite agregar varias fotos a sus observaciones. Por supuesto que si desea desligar sus cuentas de «Bioexplorador» y Facebook no lo impediremos, solamente no podrá agregar fotos. Algunas veces será lo mejor, como cuando se crea una cuenta nueva de Facebook que desea ligar a «Bioexplorador».
-  linked_facebook_howto: Para conectar Facebook con «Bioexplorador», haga clic en el vínculo de la derecha e ingrese a Facebook.com.  
-  linked_facebook_password: Nunca le perdiremos su contraseña de Facebook (pero Facebook podría hacerlo, confirme que la dirección a la que el botón le envía sea Facebook.com). Tampoco cambiaremos sus datos de Facebook a menos que usted quiera. ¡Somos de los buenos!
-  linked_flickr: Su cuenta de «Bioexplorador» está vinculada actualmente con su cuenta de Flickr.
-  linked_flickr_automaticaly: Tome en cuenta también que si ingresa a «Bioexplorador» a treavés de Flickr, automáticamente volveremos a vincular sus cuentas de «Bioexplorador» y Flickr. Parece razonable que si usted usa Flickr deseará poder importar fotos de Flickr, ¿verdad?
-  linked_flickr_description: Mantener su cuenta de «Bioexplorador» vinculada con su cuenta de Flickr le permite agregar varias fotos a sus observaciones. Por supuesto, si alguna vez desea desvincular sus cuentas de «Bioexplorador» y Flickr, no le detendremos, solamente no podrá agregar fotos. A veces esto es lo mejor, como cuando crea una cuente nueva de Flickr que desea vincular con «Bioexplorador».
-  linked_flickr_hotwo:  Puede activar su cuenta de Flickr con «Bioexplorador» para agregar fotos al hacer clic en este vínculo.
-  linked_flickr_howto: Con el fin de autorizar a su cuenta en Flickr a funcionar con «Bioexplorador», debe hacer clic en el botón a la derecha y crear una cuenta con Flickr o ingresar a Flickr.com. Flickr le preguntará si desea dar permiso a «Bioexplorador» para leer en su cuenta de Flickr y luego redirigirle de nuevo a nosotros.
-  linked_flickr_howto: Para conectarse con Flickr, Flickr le preguntará si desea dar permiso a «Bioexplorador» para <strong>leer</fuerte> de su cuenta de Flickr y luego redirigirle aquí. También pedimos permiso para <strong>escribir</fuerte> para que pueda agregar etiquetas taxonómicas a sus fotos de Flickr que use con «Bioexplorador», haga clic en el vínculo a la derecha e ingrese a Flickr.com.  
-  linked_flickr_password:  <strong>Nunca le pediremos su contraseña de Flickr</fuerte> (pero Flickr podría pedírselo, verifique que la dirección a la que el botón le envía sea Flickr.com).
+  linked_facebook: "Su cuenta de %{site_name} está actualmente ligada con su cuenta de Facebook."
+  linked_facebook_automatically: "Tome en cuenta también que si usted ingresa a %{site_name} a través de Facebook, automáticamente volveremos a vincular sus cuentas de %{site_name} y Facebook. Nos parece razonable que si usted utiliza Facebook desea poder importar sus fotos de Facebook, ¿verdad?"
+  linked_facebook_description: Mantener su cuenta de %{site_name} ligada a su cuenta de Facebook le permite agregar varias fotos a sus observaciones. Por supuesto que si desea desligar sus cuentas de %{site_name} y Facebook no lo impediremos, solamente no podrá agregar fotos. Algunas veces será lo mejor, como cuando se crea una cuenta nueva de Facebook que desea ligar a %{site_name}.
+  linked_facebook_howto: "Para conectar Facebook con %{site_name}, haga clic en el vínculo de la derecha e ingrese a Facebook.com."
+  linked_facebook_password: "Nunca le perdiremos su contraseña de Facebook (pero Facebook podría hacerlo, confirme que la dirección a la que el botón le envía sea Facebook.com). Tampoco cambiaremos sus datos de Facebook a menos que usted quiera."
+  linked_flickr: "Su cuenta de %{site_name} está vinculada actualmente con su cuenta de Flickr."
+  linked_flickr_automaticaly: "Tome en cuenta también que si ingresa a %{site_name} a treavés de Flickr, automáticamente volveremos a vincular sus cuentas de %{site_name} y Flickr. Parece razonable que si usted usa Flickr deseará poder importar fotos de Flickr, ¿verdad?"
+  linked_flickr_description: "Mantener su cuenta de %{site_name} vinculada con su cuenta de Flickr le permite agregar varias fotos a sus observaciones. Por supuesto, si alguna vez desea desvincular sus cuentas de %{site_name} y Flickr, no le detendremos, solamente no podrá agregar fotos. A veces esto es lo mejor, como cuando crea una cuente nueva de Flickr que desea vincular con %{site_name}."
+  linked_flickr_hotwo:  "Puede activar su cuenta de Flickr con %{site_name} para agregar fotos al hacer clic en este vínculo."
+  linked_flickr_password_html:  "<strong>Nunca le pediremos su contraseña de Flickr</strong> (pero Flickr podría pedírselo, verifique que la dirección a la que el botón le envía sea Flickr.com)."
   linked_flickr_password: "Nunca le pediremos su contraseña con Flickr (pero Flickr podría pedírsela; revise la dirección a la que el botón le dirige y asegúrese de que es Flickr.com). Tampoco cambiaremos sus datos de Flickr a menos que usted quiera. ¡Somos de los buenos!"
-  linked_flickr_photo_copy:  <strong>Nunca guardaremos copias de sus fotos o cambiaremos sus datos de Flickr (a menos que usted nos lo pida).</fuerte> ¡Nos importan mucho las aves, insectos y babosas para querer meternos con su información!
+  linked_flickr_photo_copy_html: "<strong>Nunca guardaremos copias de sus fotos o cambiaremos sus datos de Flickr (a menos que usted nos lo pida).</strong> ¡Nos importan mucho las aves, insectos y babosas para querer meternos con su información!"
   list: Lista
   list: Lista completa
   list: Lista de proyectos
@@ -726,7 +709,7 @@ es:
   lookup: Buscar
   lookup_noun: Búsqueda
   lookup_user_rarr: "Buscar usuario &rarr;"
-  mail_disclaimer: "«Bioexplorador» no permitirá que sus usuarios le envíen más invitaciones a través de nuestro invitador. Por favor reporte el abuso de invitaciones a %{site}."
+  mail_disclaimer: "%{site_name} no permitirá que sus usuarios le envíen más invitaciones a través de nuestro invitador. Por favor reporte el abuso de invitaciones a %{site}."
   main_content: Contenido principal
   main_content_description:   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   make_curator: Hacer curador
@@ -819,7 +802,7 @@ es:
   no_matching_species: No hay especies que concuerden
   no_matching_users: No hay usuarios que concuerden
   no_members_yet: No hay miembros todavía
-  no_more_mail_from_site: ¿No desea recibir más correos del sitio de «Bioexplorador»? Edita tu configuración de Correo en
+  no_more_mail_from_site: "¿No desea recibir más correos del sitio de %{site_name}? Edita tu configuración de Correo en"
   no_more_updates: ¡No hay más actualizaciones!
   no_nearby_observations: No hay observaciones cercanas.
   no_observations: no hay observaciones
@@ -851,8 +834,8 @@ es:
   not_finding_play_you_want?: ¿No encuentra el lugar que quiere?
   not_finding_what_looking_for: ¿No encuentra lo que está buscando?
   not_just_creative_common_licensed_parentesis: (no solamente licencias de Creative Commons)
-  not_linked_facebook: Su cuenta de «Bioexplorador» ya no está ligada con su cuenta de Facebook.
-  not_linked_flickr: Su cuenta de «Bioexplorador» no está vinculada con su cuenta de Flickr 
+  not_linked_facebook: "Su cuenta de %{site_name} ya no está ligada con su cuenta de Facebook."
+  not_linked_flickr: "Su cuenta de %{site_name} no está vinculada con su cuenta de Flickr "
   not_logged_in: No ha iniciado sesión
   not_on_this_list: No está en esta lista.
   not_seeing_what_looking_for: ¿No ve lo que está buscando?
@@ -870,7 +853,7 @@ es:
   observation_fields: Campos de observación
   observation_fields_are_additional: Los campos de observación son campos de datos adicionales que se pueden agregar a las observaciones.
   observation_rights: "Observación %{rights}"
-  observation_rules_description: "Usted puede seleccionar reglas para determinar cuáles observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar determinado. Nota&#58; limitar a lugares se basa actualmente en «Bioexplorador» Places y sólo puede limitar las observaciones al rectángulo más pequeño que rodea un lugar."
+  observation_rules_description: "Usted puede seleccionar reglas para determinar cuáles observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar determinado. Nota&#58; limitar a lugares se basa actualmente en %{site_name} Places y sólo puede limitar las observaciones al rectángulo más pequeño que rodea un lugar."
   observation_would_like_some_help: "¡A %{user} le gustaría un poco de ayuda para identificar esto!"
   observations: Observaciones
   observations_by_everyone: Observaciones de todos
@@ -887,11 +870,10 @@ es:
   observations_have_had_their_coordinates: "Las coordenadas de las observaciones han sido desplazadas a un punto al azar dentro de %{km} Km., ya sea porque el taxón está amenazado o porque el observador eligió ocultar las coordenadas."
   observations_it_may_take_a_few:  observaciones. Esto podría tardar unos minutos. 
   observations_last500: Observaciones (últimas 500)
-  observations_lie_at_the_core: Las observaciones son el punto medular de «Bioexplorador». Una observación es básicamente una especia que usted observó, una hora y un lugar.
   observations_map: Observaciones / Mapa
   observations_needing_curation: Observaciones que necesitan curación
   observations_obscured: Observaciones (ocultas)
-  observations_on_inat_check_list:  observaciones en «Bioexplorador». Los lugares con lista de verificación que han sido confirmados tienen al menos 1 observación confirmada dentro de sus límites.
+  observations_on_inat_check_list: "observaciones en %{site_name}. Los lugares con lista de verificación que han sido confirmados tienen al menos 1 observación confirmada dentro de sus límites."
   observations_per_month: Observaciones / Mes
   observations_saved: Observación(es) guardadas!
   observations_specifying_this_field: Observaciones que especifican este campo
@@ -956,7 +938,6 @@ es:
   photo_by_id_attribution: "foto %{id}, %{attribution}"
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_integration: Integración de fotos
-  photo_selector: Seleccionador de fotos de «Bioexplorador»
   photoid_photoattribution: "Foto %{photoid}, %{photoattribution}"
   photos: fotos
   photos_next: "Fotos &rarr;"
@@ -965,7 +946,7 @@ es:
   picasa_identity: Identidad de Picasa
   pick_a_username: Elegir nombre de usuario
   place: Lugar
-  place_added_to_inat_by: Lugar agregado a «Bioexplorador» por
+  place_added_to_inat_by: "Lugar agregado a %{site_name} por"
   place_guess: Estimación de lugar
   place_name: Colocar nombre
   place_notes: Colocar notas
@@ -976,7 +957,7 @@ es:
   please_be_aware_that_project_curators: Tenga en cuenta que los curadores del proyecto podrán ver ubicaciones privadas u ocultas de las observaciones agregadas a este proyecto.
   please_be_careful_particulary_when: Tenga cuidado, especialmente al eliminar taxones. Si un taxón tiene observaciones, identificadores, taxones enlistados, u otros asociados, por favor
   please_cite_the_published_source_of_taxon: Por favor mencione la fuente publicada de este taxón.
-  please_confirm_your_inat_username: Por favor confirme su nombre de usuario con «Bioexplorador»
+  please_confirm_your_inat_username: "Por favor confirme su nombre de usuario con %{site_name}"
   please_enter_a_new_pass: Por favor digite una nueva contraseña y confírmela.
   please_hold_on_while_the_file: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
   plural_species: Especies
@@ -1120,9 +1101,11 @@ es:
   select_all: Seleccionar todo
   select_an_album: Seleccionar un álbum
   select_none: No seleccionar ninguno
-  select_photos_from_your_photo_stream: Seleccionar fotos de Photostream para convertirlas en observaciones en «Bioexplorador». Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas.
+  select_photos_from_your_photo_stream: "Seleccionar fotos de Photostream para convertirlas en observaciones en %{site_name}. Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas."
   selected_taxon: Taxón seleccionado
   send: enviada(s)
+  sending: Enviando...
+  send_invite: Enviar invitación
   send_invites_to: Enviar invitaciones a
   send_the_invites: Enviar las invitaciones
   separate_values_with_a_pipe: Valores separados por barras, por ejemplo "1-5|6-10|muchos" o "sí|no|tal vez"
@@ -1161,7 +1144,6 @@ es:
   sources: Fuentes
   sources_youve_added: Fuentes que usted ha agregado
   species: Especie
-  species_and_other_taxa: Especies y otros taxones en «Bioexplorador»
   species_from_around_the_world: Especies de todo el mundo
   species_guess: Estimación especial
   species_guide: Guía de especies
@@ -1244,7 +1226,6 @@ es:
   the_following_lists: las siguientes listas
   the_following_observations_could: "Las observaciones siguientes no se pudieron agregar a %{link}"
   the_following_photos_have_been_tagged: Las siguientes fotos han sido etiquetadas
-  the_inat_community_agrees_with: la comunidad «Bioexplorador» <strong> está de acuerdo con la identificación de un observador</strong>, toda vez que una identificación "en acuerdo" es la que concuerda exactamente o es un taxón hijo de la identificación del observador. Por ejemplo, si Scott dice que es un mamífero y Ken-ichi dice que es un <em>Homo sapiens</em>, entonces Ken-ichi está de acuerdo con Scott.
   the_list: la lista
   the_name_of_the_taxon_including_space: El nombre del taxón, incluyendo el espacio para las especies e infraespecies.<br/><br/> <strong>Ejemplo. </strong><br/>
   the_observation_form_looks: El formulario de observación es así
@@ -1255,8 +1236,8 @@ es:
   the_people_of_inat: La gente de %{site_name}
   the_project: el proyecto
   the_title_of_the_wikipedia_article_we_use: 'El título del artículo de Wikipedia que usamos para la descripción. Si la URL de Wikipedia es <code>http: //en.wikipedia.org/wiki/Bird</code>, entonces este valor debe ser <code>Ave</code>. Si se deja en blanco, entonces se usa el nombre científico de este taxón (normalmente funciona).'
-  the_world_is_full_of_interesting_places: El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquinaLugares «Bioexplorador» le permite buscar vida de todas partes del planeta. ¡Comience a explorar!
-  the_world_is_full_of_interesting_places_short: El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina
+  the_world_is_full_of_interesting_places: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquinaLugares %{site_name} le permite buscar vida de todas partes del planeta. ¡Comience a explorar!"
+  the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. ¡Algunas están en el otro lado del mundo, mientras que otras están a la vuelta de la esquina"
   there_isnt_no_wikipedia_page_matching: No hay página en Wikipedia que concuerde
   there_isnt_wikipedia_article_perhaps: No hay página en Wikipedia que concuerde
   there_were_errors: Hubo errores.
@@ -1264,7 +1245,7 @@ es:
   there_were_some_problems_with: Hubo algunos problemas con su archivo CSV.  Por favor revise las filas erróneas. Por supuesto que el problema pudo también haber sido nuestro. Si ese es el caso, por favor háganoslo saber
   there_were_some_problems_with_fields: Hubo algunos problemas con los siguientes campos
   theres_also: también hay
-  they_already_have_iNat_accounts: ...ellos ya son Bioexploradores o Bioexploradoras
+  they_already_have_iNat_accounts: "...que ya tienen cuentas %{site_name}"
   they_have_been_invited: ...ellos ya han sido invitados.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con base en su
@@ -1272,7 +1253,7 @@ es:
   this_is_more_convenient_way_find_parent: Esta es una forma más conveniente de encontrar un Identificador padre. El Identificador padre el que realmente queda guardado.
   this_list_is_empty!: ¡Esta lista está vacía!
   this_list_only_accepts_taxa_that_are: Esta lista acepta solamente taxones que son
-  this_observation_lies_outside_the: Esta observación está fuera del rango que «Bioexplorador» tiene para esta especia. Esto podría significar que el rango de «Bioexplorador» está equivocado, la identificación está equivocada, una ocurrencia errante o una expansión del rango.
+  this_observation_lies_outside_the: "Esta observación está fuera del rango que %{site_name} tiene para esta especia. Esto podría significar que el rango de %{site_name} está equivocado, la identificación está equivocada, una ocurrencia errante o una expansión del rango."
   this_photo_is_already_associated: Esta foto ya está asociada con una de sus observaciones.
   this_species: esta especie
   this_species_has_no_colors: ¡Esta especie no tiene colores¡Ayude a mejorar las búsquedas de especies informándonos de qué color es esta!
@@ -1289,7 +1270,7 @@ es:
   to_add_comments: para agregar comentarios.
   to_add_identifications: a agregar identificaciones.
   to_add_ids: para agregar identificaciones
-  to_include_your_picassa_with_inat: Para incluir sus fotos de Picasa fotos con sus observaciones «Bioexplorador», haga clic en el botón a la derecha para vincular ambas cuentas. Será dirigido a Google, donde se le preguntará si autoriza esta conexión
+  to_include_your_picassa_with_inat: "Para incluir sus fotos de Picasa fotos con sus observaciones %{site_name}, haga clic en el botón a la derecha para vincular ambas cuentas. Será dirigido a Google, donde se le preguntará si autoriza esta conexión"
   to_tag_your_flickr_from_here: para etiqutar sus fotos de Flickr desde aquí sin cortar y pegar.
   to_the_bat_cave: A la Bati-cueva!
   to_update: actualización
@@ -1365,10 +1346,6 @@ es:
   view_leaderboard: Ver clasificación
   view_license: Ver licencia
   view_lists: Ver las Listas
-  view_more_observations_from: "Ver más observaciones de %{project} en <nobr>«Bioexplorador» &raquo;</nobr>"
-  view_more_observations_near: "Ver más observaciones cerca de %{place} en <nobr>«Bioexplorador» &raquo;</nobr>"
-  view_more_observations_of: "Ver más observaciones de %{taxon} en <nobr>«Bioexplorador» &raquo;</nobr>"
-  view_more_user_observations: "Ver %{current_user.login}&#39;s <nobr>observaciones &raquo;</nobr>"
   view_nbsp: "Ver &nbsp;"
   view_non_mobile_site: Ver el sitio que no es para móviles
   view_observation: Ver observación
@@ -1380,7 +1357,7 @@ es:
   view_original_by: "Ver original %{by} en %{photo}"
   view_original_ccD_photo: "Ver foto original copiada en Flickr por %{owner}"
   view_other_taxa: "Ver otros <nobr> %{taxon_name} &raquo;</nobr>"
-  view_photos_ranges_observations_more: ¡Vea fotos, rangos de especies, observaciones de «Bioexplorador» y másHemos recopilado información de muchas fuentes diferentes y las hemos combinado para dar un corto resumen de cada especie en cada lugar.
+  view_photos_ranges_observations_more: "¡Vea fotos, rangos de especies, observaciones de %{site_name} y másHemos recopilado información de muchas fuentes diferentes y las hemos combinado para dar un corto resumen de cada especie en cada lugar."
   view_taxon_page: Ver página del taxón
   view_taxon_page_for: Ver página del taxón para este lugar
   view_terms: Ver los términos
@@ -1403,7 +1380,6 @@ es:
   we_couldnt_find_a_user: No pudimos encontrar un usuario con esa dirección de correo.
   we_currently_support_flickr_for_image_hosting: Actualmente tenemos compatibilidad con Flickr en almacenamiento de imágenes.
   we_didnt_find_any_photos: No encontramos fotos usando los términos de búsqueda brindados
-  we_dont_host_photos_at: 'No alojamos fotos en «Bioexplorador», pero sí permitimos que usted asocie sus observaciones con fotos de <a href="http: //www.flickr.com/">Flickr</a> or <a href="http: //picasaweb.google.com/">Picasa</a>. If you use either of those services, you canVincule su accounts and always see a list of your most recent photos when adding new observations.'
   we_had_trouble_saving_comment: "Tuvimos problemas guardando el comentario:"
   we_import_our_taxonomic_data: Importamos nuestros datos taxonómicos de algunas bases de datos taxonómicos externas, incluyendo el Catálogo de Vida y uBio. Algunos de nuestros taxones también han sido ingresados manualmente y cualquier usuario puede agregar nombres nuevos para los taxones. Si no puede encontrar un taxón o un nombre, pruebe
   we_know_is_inconvenience_but_will_allow_grow: "Sabemos que esto es un inconveniente, pero nuestro nuevo sistema de autorización permitirá que %{sitename} crezca mejor en el futuro y le brinde mayor seguridad."
@@ -1415,7 +1391,7 @@ es:
   welcome_comma: Bienvenido,
   welcome_login: "Bienvenido %{login}"
   welcome_noun: Bienvenida
-  welcome_to_inat: ¡Bienvenido a «Bioexplorador»!
+  welcome_to_inat: "¡Bienvenido a %{site_name}!"
   were_currently_down_for: Estamos fuera de servicio por
   what: Qué
   what_color_was_it: ¿De qué color era?
@@ -1423,7 +1399,6 @@ es:
   what_did_you_see?: ¿Qué vio usted?
   what_do_you_think: ¿Qué le parece?
   what_is_an_observation?: ¿Qué es una observación?
-  what_is_inaturalist?: ¿Qué es «Bioexplorador»?
   what_to_keep: Qué mantener
   what_want_to_list?: ¿Qué desea colocar en la lista?
   when: Cuando
@@ -1436,7 +1411,7 @@ es:
   wikipedia_entry: Registro de Wikipedia
   wikipedia_taxobox_raquo: "Ficha de taxón en Wikipedia &raquo;"
   with: con
-  within_inaturalist: Dentro de Bioexplorador
+  within_inaturalist: "Dentro de %{site_name}"
   wondering_what_to_do_next: ¿Se pregunta qué hacer ahora? Por qué no
   would_you_like_to:  . ¿Le gustaría
   x_admin:  "%{login} Administrador"
@@ -1464,17 +1439,17 @@ es:
   you_can_help_make_our: ¡Usted puede ayudar a que nuestras páginas de especies sean más útiles agregando datos Aquí hay algunas formas en las que puede ayudar
   you_can_help_out_by: Usted puede ayudar al
   you_can_see_these_coordinates_because: Usted puede ver estas coordenadas porque usted cura uno de los proyectos a los cuales se agregó esta observación.
-  you_can_sign_free_at: Usted puede registrar una cuenta gratis con «Bioexplorador» en
+  you_can_sign_free_at: "Usted puede registrar una cuenta gratis con %{site_name} en"
   you_dont: Usted no
   you_have_logget_out: Usted se ha desconectado, vuelva pronto
   you_havent: Usted no ha
   you_havent_left_any_comments_recently: No ha dejado comentarios recientemente. ¡Déjele una nota a alguien!
-  you_havent_linked_your_inaturalist_picasa_account: Usted no ha vinculado su cuenta de «Bioexplorador» con su cuenta de Picasa account todavía
+  you_havent_linked_your_inaturalist_picasa_account: "Usted no ha vinculado su cuenta de %{site_name} con su cuenta de Picasa account todavía"
   you_havent_observed_any_species: ¡Usted no ha observado ninguna especie para enlistar todavíaPruebe
   you_need_to_have_linked_flickr_account: Debe tener una cuenta de Flickr vinculada para etiquetar sus fotos.
   you_need_to_select_some_observations_first: Debe seleccionar algunas observaciones primero.
-  you_retain_full_copyright: Usted mantiene todos los derechos de autor sobre su contenido aparte de aquellos derechos concedidos a «Bioexplorador» en nuestros Términos de Servicio
-  you_retain_full_copyright_over_your_content: Usted retiene derechos de autor totales sobre su contenido aparte de aquellos derechos otorgados a «Bioexplorador» en nuestros Términos de Servicio.
+  you_retain_full_copyright: "Usted mantiene todos los derechos de autor sobre su contenido aparte de aquellos derechos concedidos a %{site_name} en nuestros Términos de Servicio"
+  you_retain_full_copyright_over_your_content: "Usted retiene derechos de autor totales sobre su contenido aparte de aquellos derechos otorgados a %{site_name} en nuestros Términos de Servicio."
   you_sure_delete_asset?: ¿Está seguro que desea eliminar este activo?
   you_sure_delete_check_list: ¿Está seguro que desea eliminar esta lista? Algunas personas podrían haber aportado mucho trabajo a ella...
   you_sure_delete_comment?: ¿Está seguro de que quiere borrar el comentario?
@@ -1491,7 +1466,6 @@ es:
   youll_need_to_link: Deberá vincular
   your: Usted
   your_comment_was_saved: Su comentario ha sido guardado.
-  your_dashboard_helps_keep_track_people_doing: 'Su tablero de instrumentos le ayuda a llevar un control de lo que las personas están haciendo en «Bioexplorador». Para seguir las actualizaciones de alguien, haga clic en el vínculo <strong> "Seguir [nombre]" </fuerte> en el encabezado cuando visualice sus observaciones o perfil.'
   your_default_time_zone: Su zona horaria actual
   your_drafts: Sus borradores
   your_flickr_account: su cuenta de Flickr
@@ -1499,7 +1473,6 @@ es:
   your_home: Su página de inicio
   your_identification: Su identificación
   your_inat_account_has_been_activated: "Su cuenta %{inat} ha sido activada."
-  your_inat_account_has_been_activated_plain: Su cuenta de «Bioexplorador» ha sido activada. ¡Gracias por registrarse!
   your_new_password_is: Su nueva contraseña es
   your_observation_wont_get: su observación no será asociada con otras observaciones de esta especie y su lista de vida no será actualizada.
   your_observations: Sus observaciones
@@ -1513,7 +1486,7 @@ es:
   youre_following: usted está siguiendo
   youre_not_following_anyone: Usted no sigue a nadie. Seguir a otros naturalistas le permitirá llevar un control de sus observaciones más recientes. Averigüe lo que la gente está
   youve_already_added_an_identification: ya agregó una identificación, y sólo puede agregar una
-  youve_linked_your_inaturalist_picasa_account: Usted ha vinculado su cuenta de «Bioexplorador» con su cuenta de Picasa. Esto le permitirá asociar sus fotos de Picasa con sus observaciones de «Bioexplorador».
+  youve_linked_your_inaturalist_picasa_account: "Usted ha vinculado su cuenta de %{site_name} con su cuenta de Picasa. Esto le permitirá asociar sus fotos de Picasa con sus observaciones de %{site_name}."
   youve_seen_it_want_to:  ¡Lo ha visto¿Desea
   zoom_to_taxon_name: "Acercar a %{taxonname}"
   zoom_to_x: "Ir a %{x}"

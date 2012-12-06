@@ -11,22 +11,22 @@
       <% end -%>
     </p>
     <p>
-      <%=t :linked_facebook %>
+      <%=t :linked_facebook, :site_name => SITE_NAME %>
     </p>
     <p>
-      <%=t :linked_facebook_description %>
+      <%=t :linked_facebook_description, :site_name => SITE_NAME %>
     </p>
   <% else -%>
-    <h3><%=t :not_linked_facebook %></h3>
+    <h3><%=t :not_linked_facebook, :site_name => SITE_NAME_SHORT %></h3>
     <p class="description">
-      <%=t :linked_facebook_howto %>
+      <%=t :linked_facebook_howto, :site_name => SITE_NAME_SHORT %>
     </p>
     <p class="description">
       <%=t :linked_facebook_password %>
     </p>
 
     <p class="description">
-      <%=t :linked_facebook_automaticaly %>
+      <%=t :linked_facebook_automaticaly, :site_name => SITE_NAME_SHORT %>
     </p>
   <% end -%>
 
@@ -37,7 +37,7 @@
 <div class="column span-10 last">
   <p>
   <% if current_user.facebook_identity %>
-    <%= link_to t(:hate_me_facebook), 
+    <%= link_to t(:hate_me_facebook, :site_name => SITE_NAME), 
       omniauth_disconnect_path('facebook'), :class => 'delete button', 
       :style=>'font-size:13px;', :method => 'delete' %>
   <% else %>

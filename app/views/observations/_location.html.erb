@@ -14,7 +14,7 @@
     <%=t :out_of_range %>!
     <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
     <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
-      <%=t :this_observation_lies_outside_the %> 
+      <%=t :this_observation_lies_outside_the, :site_name => SITE_NAME_SHORT %> 
       <%= link_to t(:view_the_range), taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
     </div>
   </strong>

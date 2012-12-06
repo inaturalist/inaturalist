@@ -11,7 +11,7 @@
     <%= formatted_user_text @project.description %>
   <% else %>
     <p>
-      <%_ t(:inaturalist_is_an_online_community)
+      <%_ t(:inaturalist_is_an_online_community, :site_name => SITE_NAME)
       <% if @taxon -%>
         <% if @taxon.species_or_lower? && @taxon.common_name && @taxon.common_name.to_s !~/'/ -%>
           <%= t(:the) %>
@@ -20,7 +20,7 @@
       <% else %>
         <%= t(>this_species) %>
       <% end -%>
-      <%= t(:and_help_the_inaturalist_community_grow) %>
+      <%= t(:and_help_the_inaturalist_community_grow, :site_name => site_name) %>
     </p>
   <% end -%>
 <% end %>

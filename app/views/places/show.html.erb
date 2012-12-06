@@ -138,7 +138,7 @@
 
 <div class="meta right">
   <% if @place.user -%>
-    <%= t(:place_added_to_inat_by) %>
+    <%= t(:place_added_to_inat_by, :site_name => SITE_NAME_SHORT) %>
     <%= link_to user_image(@place.user), @place.user %>
     <%= link_to you_or_login(@place.user), @place.user %>
     on

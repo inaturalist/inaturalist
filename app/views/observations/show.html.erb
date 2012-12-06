@@ -628,7 +628,7 @@
     </div>
   <% else %>
     <p class="description ui">
-     <%= raw t(:is_this_observation_offensive?) %>
+      <%= t(:is_this_observation_offensive_html) %>
       <%= link_to t(:flag_this_observation), new_observation_flag_path(@observation), :id => "flag_this", :rel => "nofollow" %>
     </p>
     <p class="description ui">

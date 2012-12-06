@@ -14,13 +14,13 @@
     </p>
   <% end %>
 <p>
-  <%=t :linked_flickr %>
+  <%=t :linked_flickr, :site_name => SITE_NAME %>
 </p>
 <p>
- <%=t :linked_flickr_description %>
+  <%=t :linked_flickr_description, :site_name => SITE_NAME %>
 </p>
 <% else -%>
-<h3><%=t :not_linked_flickr %></h3>
+<h3><%=t :not_linked_flickr, :site_name => SITE_NAME_SHORT %></h3>
 <p class="description">
   <%=t :linked_flickr_howto %> <%= link_to t(:flickr_tagger), flickr_tagger_path %>.
   To connect Flickr with iNat, click the link on the right and sign into
@@ -29,7 +29,7 @@
   back here.
 </p>
 <p class="description">
-  <%=t :linked_flickr_password %>
+  <%=t :linked_flickr_password_html %>
 </p>
 
 <p class="description">
@@ -52,7 +52,7 @@
 <div class="column span-7 last">
 <p>
 <% if current_user.flickr_identity %>
-<%= button_to t(:hate_me_flickr), 
+<%= button_to t(:hate_me_flickr, :site_name => SITE_NAME), 
   {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'delete button' %>
 <% else %>
 <%= render :partial => 'link_to_flickr', :locals => {:flickr_url => @flickr_url} -%>

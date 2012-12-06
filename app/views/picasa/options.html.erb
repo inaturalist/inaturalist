@@ -13,13 +13,13 @@
     </div>
 
     <p>
-    <%= t(:youve_linked_your_inaturalist_picasa_account) %>
+    <%= t(:youve_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME) %>
     </p>
   <% else %>
     <p>
-     <%= t(:you_havent_linked_your_inaturalist_picasa_account) %></p>
+     <%= t(:you_havent_linked_your_inaturalist_picasa_account, :site_name => SITE_NAME_SHORT) %></p>
     <p class="description">
-      <%= t(:to_include_your_picassa_with_inat) %>
+      <%= t(:to_include_your_picassa_with_inat, :site_name => SITE_NAME_SHORT) %>
     </p>
   <% end -%>
 </div>
