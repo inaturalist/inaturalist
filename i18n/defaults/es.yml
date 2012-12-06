@@ -28,6 +28,7 @@ es:
   a_greasemonkey_script: un script de Greasemonkey
   able_to_connect_flickr: ¡Muy bienPudimos vincular su cuenta de Flickr.
   about: Acerca de
+  about_life!: Acerca de la vida!
   about_inaturalist: Acerca de «Bioexplorador»
   about_places: Acerca de Lugares
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
@@ -459,7 +460,8 @@ es:
   faq: Preguntas Frecuentes
   favorite_taxa: taxones favoritos
   favorites: Favoritos
-  featured: ¿Presentado?
+  featured: Presentado
+  featured?: ¿Presentado?
   february: Febrero
   feedback: Retroalimentación
   feedback_group: Grupo de retroalimentación
@@ -1007,7 +1009,7 @@ es:
   project_list: Lista de Proyectos
   project_rules: Reglas del Proyecto
   projects: Proyectos
-  projects_description: Los proyectos son una forma de agrupar sus observaciones con otras personas en «Bioexplorador».  Ya sea que a usted le interese comenzar un proyecto científico ciudadano o solamente mantener registros de las aves de un parque cercano con su club de observación local, la forma de hacerlo es con Proyectos.
+  projects_description: Los proyectos son una forma de agrupar sus observaciones con otras personas en %{site_name}.  Ya sea que a usted le interese comenzar un proyecto científico ciudadano o solamente mantener registros de las aves de un parque cercano con su club de observación local, la forma de hacerlo es con Proyectos.
   projects_you_admin: Proyectos que usted administra
   projects_youve_joined: Proyectos a los que se ha unido
   protozoans: protozoos
@@ -1030,7 +1032,7 @@ es:
   recent_observations: Observaciones recientes
   recent_observations_by: "Observaciones recientes por %{login} (Atom)"
   recent_updates: Actualizaciones recientes
-  recentlt_active: Activo recientemente
+  recently_active: Activo recientemente
   recently_created: Creados recientemente
   recently_observed: Observados recientemente
   recently_resolved: Resueltos recientemente
@@ -1434,7 +1436,6 @@ es:
   with: con
   within_inaturalist: Dentro de Bioexplorador
   wondering_what_to_do_next: ¿Se pregunta qué hacer ahora? Por qué no
-  world!: Su país
   would_you_like_to:  . ¿Le gustaría
   x_admin:  "%{login} Administrador"
   x_doesnt:  "%{login} no"
@@ -1506,6 +1507,7 @@ es:
   your_site_account_has_been_created: "Su cuenta de %{site} ha sido creada."
   your_sure_delete_list?: ¿Está seguro que desea eliminar esta lista?
   your_sure_delete_taxon_from_list?: "¿Está seguro que desea eliminar %{taxon} de esta lista?"
+  your_world!: Su país
   youre_following: usted está siguiendo
   youre_not_following_anyone: Usted no sigue a nadie. Seguir a otros naturalistas le permitirá llevar un control de sus observaciones más recientes. Averigüe lo que la gente está
   youve_already_added_an_identification: ya agregó una identificación, y sólo puede agregar una
