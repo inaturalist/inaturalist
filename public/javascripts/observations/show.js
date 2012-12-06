@@ -176,7 +176,7 @@ $(document).ready(function() {
 function showObservationFieldsDialog(options) {
   options = options || {}
   var url = options.url || '/observations/'+window.observation.id+'/fields',
-      title = options.title || 'Observation fields'
+      title = I18n.t(options.title || 'observation_fields')
   var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
   dialog.load(url, function() {
     $(this).observationFieldsForm()
