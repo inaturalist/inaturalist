@@ -200,7 +200,7 @@ Some notes:
     <%- elsif observation.research_grade? %>
       <ul>
         <li class="last">
-          <%= link_to "R<span class='full'>esearch </span>G<span class='full'>rade</span>".html_safe, observation_url(observation, :anchor => "data_quality_assessment"), 
+          <%= link_to t(:research_grade_expandable_html), observation_url(observation, :anchor => "data_quality_assessment"), 
             :class => "research_grade_notice", 
             "data-tip" => t(:research_grade_observations_have),
             "data-tip-show-delay" => 1000 %>

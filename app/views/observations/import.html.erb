@@ -35,8 +35,8 @@
           authenticity_token: AUTH_TOKEN,
           limit: 24
         }
-      });
-    });
+      })
+    })
   </script>
 <% end -%>
 <div id="pageheader" class="column span-24">
@@ -93,7 +93,7 @@
           <div class="buttonrow">
             <label for="upload_file">Upload CSV file</label>
             <%= file_field 'upload', 'datafile', :class => 'text' %>
-            <%= submit_tag t(:upload), :class => 'default button', "data-loading-click" => "Importing..." %>
+            <%= submit_tag t(:upload), :class => 'default button', "data-loading-click" => t(:importing) %>
           </div>
         <% end %>
       </div>

@@ -863,7 +863,7 @@ class ObservationsController < ApplicationController
         @rows << row
         row_num += 1
         if row_num >= max_rows
-          flash[:notice] = "You have a beehive of observations!<br /> We can only take your first #{max_rows} observations in every CSV"
+          flash[:notice] = t(:too_many_observations_csv, :max_rows => max_rows)
           break
         end
       end

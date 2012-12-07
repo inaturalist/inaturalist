@@ -272,6 +272,7 @@ es:
   check_lists_individual_taxa: 'Listas de verificación para taxones individuales que viven aquí, por ejemplo "Aves de %{place}".'
   check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_your_life_list: Revise su Lista de Vida
+  change_types: Cambiar tipos
   checklist: Lista de comprobación
   checklist_places: Lugares con lista de verificación
   checklist_places_absent: Lugares con lista de verificación (ausentes)
@@ -532,7 +533,7 @@ es:
   graft: Injertar
   grafting: Injertando...
   grafting_attemps_to_insert_this_taxon: Al injertar se trata de insertar este taxón en nuestro árbol taxonómico, encontrar un taxón padre existente o crear todos los taxones necesarios en el medio con el fin de adjuntarlo a un taxón de más alto nivel existente.
-  grid: cuadrícula
+  grid: Cuadrícula
   guess_description: Estimación / Descripción
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
   hate_me_facebook: "Desvincular sus cuentas de Facebook e %{site_name}"
@@ -651,6 +652,8 @@ es:
   licensing: Licencias
   licensing_your_content_gives_others_legal: "Hacer uso de una licencia sobre el contenido generado por usted les da a otros el derecho de usarlos, siempre y cuando, se apeguen a los términos de la licencia. %{site_name} usa una licencia de Creative Commons para compartir datos con otras iniciativas como"
   life!: la vida
+  life_list_first: vida primera lista
+  life_list_firsts: primicias de lista
   life_list_updated_we_also_saved_a: ¡Lista de vida actualizadaTambién guardamos una observación vacía para este taxón.
   life_lists_automatically_fill: Las listas de vida se llenan automáticamente con nuevos taxones conforme usted los observa y pueden restringirse a taxones padres de nivel más alto, por ejemplo, una lista de vida de aves en la familia de los cuervos (Corvidae).
   life_lists_automatically_fill: ¿Qué desea enlistar?
@@ -675,8 +678,6 @@ es:
   linked_flickr_password: "Nunca le pediremos su contraseña con Flickr (pero Flickr podría pedírsela; revise la dirección a la que el botón le dirige y asegúrese de que es Flickr.com). Tampoco cambiaremos sus datos de Flickr a menos que usted quiera. ¡Somos de los buenos!"
   linked_flickr_photo_copy_html: "<strong>Nunca guardaremos copias de sus fotos o cambiaremos sus datos de Flickr (a menos que usted nos lo pida).</strong> ¡Nos importan mucho las aves, insectos y babosas para querer meternos con su información!"
   list: Lista
-  list: Lista completa
-  list: Lista de proyectos
   listed_taxon: Taxón listado
   listing_announcement: Anuncio de lista
   listing_announcements: Listado de anuncios
@@ -684,6 +685,7 @@ es:
   listing_project_assets: Listado de posesiones del Proyecto
   listing_taxa: Lista de taxones
   listing_taxon_names: Listando nombres de taxones
+  lists: Lista
   lists: Listas
   lists_are_lists_of_species: Las listas son listas de especies (u otros taxones), como una lista de vida de todas las aves que ha visto o una lista de sus salamandras favoritas. Esas <em>no</em> son listas de observaciones.
   lists_come_in_three: Las listas vienen en tres variedades
@@ -939,7 +941,7 @@ es:
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_integration: Integración de fotos
   photoid_photoattribution: "Foto %{photoid}, %{photoattribution}"
-  photos: fotos
+  photos: Fotos
   photos_next: "Fotos &rarr;"
   photos_size: "%{amount} fotos"
   Phylum: Filo
@@ -1003,7 +1005,7 @@ es:
   range: Rango
   rank: rango
   rank_restrictions: Clasificar las restricciones
-  ray_finned_fishes: peces con aletas radiadas
+  ray_finned_fishes: actinopterigios
   re_order_photos: "Reordenar fotos &raquo;"
   read_our_getting_started_guide: lee nuestra Guía de Inicio
   read_the_full_wikipedia:  Leer toda la descripción de Wikipedia
@@ -1042,6 +1044,7 @@ es:
   research: investigación
   research_grade:  "Investigación"
   research_grade: grado de investigación
+  research_grade_expandable_html: "G<span class='full'>rado de </span>I<span class='full'>nvestigación</span>"
   research_grade_observations_have: 'Las observaciones de "grado de investigación" tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad. Haga clic para ver la evaluación de la calidad de LOS datos.'
   research_quality: Calidad de la investigación
   reset_your_password: Restablecer su contraseña
@@ -1203,6 +1206,7 @@ es:
   taxon_search_results_for: Resultados de búsqueda de Taxón para
   taxon_to_delete: Taxón a eliminar
   taxon_to_keep: Taxón a mantener
+  taxonomic_changes: Cambios taxonómicos
   taxonomic_groups: Grupos Taxonómicos
   taxonomic_order: Orden taxonómico
   taxonomic_tags_for_flickr: Etiquetas Taxonómicas para Flickr
@@ -1276,6 +1280,7 @@ es:
   to_update: actualización
   to_updates: actualizaciones
   today: Hoy
+  too_many_observations_csv: "Sólo podemos tomar tus primeras %{max_rows} observaciones en cada archivo CSV"
   tools: Herramientas
   top_5_identifiers: Los 5 identificadores más altos
   top_contributors: Mayores contribuyentes
@@ -1332,6 +1337,7 @@ es:
   Variety: Variedad
   view: Ver
   view_all: Ver todo
+  view_all_n: "Ver todas las %{n}"
   view_all_members: Ver todos los miembros
   view_all_observations: "Ver todo %{observation}"
   view_all_observations: Ver todas las observaciones

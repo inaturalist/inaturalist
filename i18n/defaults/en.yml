@@ -273,6 +273,7 @@ en:
   cc_used_under_a: "Creative Commons, used under a "
   change_icon: Change icon
   change_password: Change Password
+  change_types: Change types
   change_visibility_of: Change visibility of spatial coordinates?
   change_your_password: Change Your Password
   check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
@@ -536,7 +537,7 @@ en:
   graft: Graft
   grafting: "Grafting..."
   grafting_attemps_to_insert_this_taxon: Grafting attempts to insert this taxon into our taxonomic tree, finding an existing parent taxon or creating all the necessary in-between taxa in order to attach it to an existing higher level taxon.
-  grid: grid
+  grid: Grid
   guess_description: Guess / Description
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
   hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
@@ -1027,6 +1028,7 @@ en:
   required_columns_in_order: Required columns in order
   research: research
   research_grade: research grade
+  research_grade_expandable_html: "R<span class='full'>esearch </span>G<span class='full'>rade</span>"
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_quality: Research quality
   reserach_grade: Research Grade
@@ -1175,6 +1177,7 @@ en:
   taxon_search_results_for: Taxon Search results for 
   taxon_to_delete: Taxon to delete
   taxon_to_keep: Taxon to keep
+  taxonomic_changes: Taxonomic changes
   taxonomic_groups: Taxonomic Groups
   taxonomic_order: Taxonomic Order
   taxonomic_tags_for_flickr: Taxonomic Tags for Flickr
@@ -1246,6 +1249,7 @@ en:
   to_tag_your_flickr_from_here: to tag your Flickr photos from here without cutting and pasting.
   to_the_bat_cave: To the Bat Cave!
   today: Today
+  too_many_observations_csv: "You have a beehive of observations!<br /> We can only take your first %{max_rows} observations in every CSV"
   tools: Tools
   top_5_identifiers: Top 5 identifiers
   top_contributors: Top contributors
@@ -1300,6 +1304,7 @@ en:
   valid_interrogation: Valid?
   view: View
   view_all: View all
+  view_all_n: "View all %{n}"
   view_all_members: View all members
   view_all_observations: View all observations
   view_all_photocount_photos: "View all %{photo_count} photos"

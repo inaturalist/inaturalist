@@ -60,7 +60,7 @@
             <div class="taxon %>">
               <span class="iconic_taxon_sprite selected <%= Taxon::ICONIC_TAXA_BY_ID[id].name.downcase %>"></span>
               <%= count %>
-              <%= t(default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize).downcase.html_safe %>
+              <%= t(default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize.gsub(/\W/, '_')).downcase.html_safe %>
             </div>
           <% end -%>
         </div>
@@ -103,7 +103,9 @@
           <div class="bigun">
             <div class="inner">
               <div class="count"><%= number_with_delimiter(@life_list_firsts.size) %></div>
-              <div class="meta label">life list first<%= 's' unless @life_list_firsts.size == 1 %></div>
+              <div class="meta label">
+                <%=t @life_list_firsts.size == 1 ? :life_list_first : :life_list_firsts %>
+              </div>
             </div>
           </div>
         </div>
@@ -124,7 +126,7 @@
             </div>
             <% if @life_list_firsts.size > 5 -%>
               <div class="buttonrow smallbuttons">
-                <%= link_to_function "View all #{@life_list_firsts.size}", 
+                <%= link_to_function t(:view_all_n, :n => @life_list_firsts.size), 
                   "$('#life_list_first_dialog').dialog({modal: true, width: 'auto', title: 'Life List Firsts'})",
                   :class => "small inline glaucous button" %>
               </div>
