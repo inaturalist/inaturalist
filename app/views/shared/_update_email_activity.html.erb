@@ -40,7 +40,7 @@
             <p>
               Please add this to <strong><%= notifier.project.title %></strong>
               <br/>
-              <%= link_to "View invitation", resource %>
+              <%= link_to "View invitation", observation_url(resource) %>
             </p>
           <% elsif notifier.is_a? Flag %>
             <div class="stacked body">
