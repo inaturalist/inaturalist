@@ -359,7 +359,6 @@ Observations by <%= h @login %>
     </div>
   <% end %>
   <div id="pagination">
-    <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
       <%= form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
         <%= f.label :per_page %>

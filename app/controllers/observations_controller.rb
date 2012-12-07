@@ -71,6 +71,7 @@ class ObservationsController < ApplicationController
   # GET /observations.xml
   def index
     @update = params[:update] # this is ONLY for RJS calls.  Lame.  Sorry.
+    @prefs = current_preferences
     
     search_params, find_options = get_search_params(params)
     
