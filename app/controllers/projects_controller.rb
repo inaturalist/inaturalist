@@ -636,6 +636,53 @@ class ProjectsController < ApplicationController
     redirect_back_or_default(@project)
     return
   end
+
+  def add_matching
+    unless @project.users.where("users.id = ?", current_user).exists?
+      msg = "You must be a member of this project to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default(@project)
+        end
+        format.json { render :json => {:error => msg} }
+      end
+      return
+    end
+
+    added = 0
+    failed = 0
+    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
+    scope = @project.observations_matching_rules.by(current_user).includes(:taxon, :project_observations).scoped
+    scope = scope.of(@taxon) if @taxon
+    scope.find_each do |observation|
+      next if observation.project_observations.detect{|po| po.project_id == @project.id}
+      pi = ProjectObservation.new(:observation => observation, :project => @project)
+      if pi.save
+        added += 1
+      else
+        failed += 1
+      end
+    end
+
+    msg = if added == 0 && failed > 0
+      "Failed to add all #{failed} matching observation(s). Try adding observatuibs individually to see error messages"
+    elsif failed > 0
+      "Added #{added} matching observation(s), failed to add #{failed}. Try adding the rest individually to see error messages."
+    else
+      "Added #{added} matching observation(s)."
+    end
+
+    respond_to do |format|
+      format.html do
+        flash[:notice] = msg
+        redirect_back_or_default(@project)
+      end
+      format.json do
+        render :json => {:msg => msg}
+      end
+    end
+  end
   
   def search
     if @q = params[:q]
