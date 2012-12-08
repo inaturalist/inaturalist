@@ -109,6 +109,12 @@ Project.blueprint do
   title { Faker::Lorem.sentence }
 end
 
+ProjectInvitation.blueprint do
+  user { User.make! }
+  project { Project.make! }
+  observation { Observation.make! }
+end
+
 ProjectList.blueprint do
   project { Project.make }
 end

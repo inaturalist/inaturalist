@@ -3,23 +3,37 @@
   observation ||= pi.observation
   truncation_length ||= (is_me?(observation.user) || is_me?(pi.user) || curator_of?(pi.project) ? 16 : 31)
 -%>
-<div class="notice box clear inline buttonrow">
+<div class="notice box clear inline buttonrow project_invitation">
   <span class="inter">
     <%= image_tag pi.project.icon.url(:mini), :width => 16, :height => 16, :style => "vertical-align: middle" %>
     <%= link_to truncate(h(pi.project.title), :length => truncation_length), pi.project %>
   </span>
   <nobr class="inlineblock right">
+    <span class="inter plain status" style="display:none">Added!</span>
     <% if is_me?(observation.user) -%>
-      <%= link_to "accept", accept_project_invitation_path(pi),
+      <%= link_to "accept", add_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
+        :remote => true,
         :method => :post,
-        :class => "glaucous button",
-        "data-loading-click" => "" %>
+        "data-type" => "json",
+        "data-project-id" => pi.project_id,
+        "data-observation-id" => pi.observation_id,
+        :class => "glaucous button acceptlink" %>
+      <%= link_to "remove", remove_project_observation_url(pi.project_id, :observation_id => pi.observation_id),
+        :remote => true,
+        :method => :post,
+        "data-type" => "json",
+        "data-project-id" => pi.project_id,
+        "data-observation-id" => pi.observation_id,
+        :class => "glaucous button removelink",
+        :style => "display:none" %>
     <% end -%>
     <% if is_me?(observation.user) || is_me?(pi.user)  || curator_of?(pi.project) -%>
       <%= link_to (is_me?(observation.user) ? "ignore" : "uninvite"), pi,
+        :remote => true,
         :method => :delete,
+        "data-type" => "json",
         :confirm => "Are you sure you want to remove this invitation?",
-        :class => "pale button",
+        :class => "pale button ignorelink",
         "data-loading-click" => "" %>
     <% end -%>
   </nobr>

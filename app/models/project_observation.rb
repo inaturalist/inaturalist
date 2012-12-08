@@ -18,6 +18,8 @@ class ProjectObservation < ActiveRecord::Base
   
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
+
+  after_create :destroy_project_invitations
   
   def observed_by_project_member?
     unless project.project_users.exists?(:user_id => observation.user_id)
@@ -48,6 +50,11 @@ class ProjectObservation < ActiveRecord::Base
   
   def update_project_observed_taxa_counter_cache_later
     Project.delay.update_observed_taxa_count(project_id)
+  end
+
+  def destroy_project_invitations
+    observation.project_invitations.where(:project_id => project).each(&:destroy)
+    true
   end
 
   def to_csv_column(column, options = {})

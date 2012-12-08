@@ -338,7 +338,19 @@ class ProjectsController < ApplicationController
       respond_to_join(:notice => "You're already a member of this project!")
       return
     end
-    return unless request.post?
+    unless request.post?
+      respond_to do |format|
+        format.html do
+          if partial = params[:partial]
+            render :layout => false, :partial => "projects/#{partial}"
+          else
+            # just render the default
+          end
+        end
+        format.json { render :json => @project }
+      end
+      return
+    end
     
     @project_user = @project.project_users.create(:user => current_user)
     unless @observation
@@ -507,7 +519,8 @@ class ProjectsController < ApplicationController
         format.json do
           json = {
             :error => error_msg,
-            :errors => @project_observation.errors.full_messages
+            :errors => @project_observation.errors.full_messages,
+            :project_observation => @project_observation
           }
           if @project_observation.errors.full_messages.to_sentence =~ /observation field/
             json[:observation_fields] = @project.project_observation_fields.as_json(:include => :observation_field)
@@ -516,11 +529,6 @@ class ProjectsController < ApplicationController
         end
       end
       return
-    end
-    
-    if @project_invitation = ProjectInvitation.where(
-        :project_id => @project.id, :observation_id => @observation.id).first
-      @project_invitation.destroy
     end
     
     respond_to do |format|

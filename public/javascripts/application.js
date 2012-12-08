@@ -910,3 +910,25 @@ function setPreference(pref, value) {
     dataType: 'json',    
   })
 }
+
+$('.project_invitation .acceptlink').live('ajax:success', function() {
+  $(this).hide()
+  $(this).siblings('.ignorelink').hide()
+  $(this).siblings('.removelink').show()
+  $(this).siblings('.status').html("Added!").show().addClass('success')
+  $(this).parents('.box:first').removeClass('notice')
+})
+$('.project_invitation .removelink').live('ajax:success', function() {
+  $(this).hide()
+  $(this).siblings('.acceptlink').show()
+  $(this).siblings('.status').html("Removed").show().removeClass('success')
+  $(this).parents('.box:first').addClass('notice')
+})
+$('.project_invitation .ignorelink').live('ajax:success', function() {
+  var item = $(this).parents('.item:first').get(0),
+      update = $(this).parents('.update:first').get(0),
+      project_invitation = $(this).parents('.project_invitation:first').get(0),
+      target = item || update || project_invitation
+  $(target).slideUp()
+})
+

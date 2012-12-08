@@ -311,7 +311,7 @@
       </div>
     <% end -%>
     <% if is_me?(@observation.user) -%>
-      <span class="button"><%= link_to_function "Add/edit more fields", "showObservationFieldsDialog()" %></span>
+      <span class="button"><%= link_to_function "Add/edit more fields", "ObservationFields.showObservationFieldsDialog()" %></span>
     <% end -%>
     
     <%= separator %>
