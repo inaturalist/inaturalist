@@ -128,6 +128,11 @@
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
+      <% if @observations_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @observations_count %></span> observations
+        </span>
+      <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> Observations / Map".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
@@ -153,9 +158,19 @@
       <%= link_to "<span class='lead'>&raquo;</span> Checklist".html_safe, list_path(@project.project_list), :class => "navlink" %>
     </li>
     <li>
+      <% if @journal_post_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @journal_post_count %></span> posts
+        </span>
+      <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
+      <% if @members_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @members_count %></span> members
+        </span>
+      <% end -%>
       <% if @project.contest? -%>
         <%= link_to "<span class='lead'>&raquo;</span> Top Contributors".html_safe, project_contributors_path(@project), :class => "navlink" %>
       <% else %>
@@ -202,11 +217,13 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> Stats".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <% if @project.curated_by?(current_user) -%>
-        <li>
+      <li>
+        <% if @project.curated_by?(current_user) -%>
           <%= link_to "<span class='lead'>&raquo;</span> Invite observations".html_safe, invitations_path(@project), :class => "navlink" %>
-        </li>
-      <% end -%>
+        <% else %>
+          <%= link_to "<span class='lead'>&raquo;</span> Add from your observations".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+        <% end -%>
+      </li>
     <% end -%>
   </ul>
   

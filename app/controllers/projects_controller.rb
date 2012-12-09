@@ -62,6 +62,9 @@ class ProjectsController < ApplicationController
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
+        @observations_count = @project.project_observations.count
+        @journal_posts_count = @project.posts.count
+        @members_count = @project.project_users.count
         @observed_taxa_count = @project.observed_taxa_count
         @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
@@ -456,6 +459,18 @@ class ProjectsController < ApplicationController
       invited_scope = invited_scope.by(current_user)
     end
 
+    if params[:on_list] == "yes"
+      scope = scope.scoped(
+        :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+        :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      existing_scope = existing_scope.scoped(
+          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      invited_scope = invited_scope.scoped(
+            :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+            :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+    end
+    
     scope_sql = scope.to_sql
     existing_scope_sql = existing_scope.to_sql
     invited_scope_sql = invited_scope.to_sql

@@ -34,7 +34,37 @@
     <%= link_to "Invite photos from other sites", photo_inviter_path(:project_id => @project), :class => "right readmore" %>
     <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
-  <h2><%= link_to truncate(@project.title, :length => 85), project_path %> suitable observations</h2>
+  <h2>
+    <% unless @project.curated_by?(current_user) -%>
+      Your
+    <% end %>
+    <%= link_to truncate(@project.title, :length => 85), project_path %> suitable observations
+  </h2>
+</div>
+
+<% if @project_user.blank? %>
+<p class="notice">
+  You have to <%= link_to "join this project", join_project_path(@project) %> before you can contribute your observations.
+</p>
+<% end %>
+
+<p class="description">
+  Filtering observations that pass the project rules and haven't yet been contributed
+  <% if @project.curated_by?(current_user) -%>
+    or invited.
+  <% end %>
+  (these aren't necessarily relevant to this project, please check the <%= link_to "project terms &amp; rules".html_safe, project_terms_path(@project) %> for more information)
+</p>
+
+<div class="stacked ui">
+  <% if @project.curated_by?(current_user) -%>
+    Showing observations by <strong><%= params[:by] == "you" ? "you" : "everyone" %></strong>
+    <%- opposite = params[:by] == "you" ? "everyone" : "you" -%>
+    <%= link_to "Show observations by #{opposite}", {:by => opposite, :on_list => params[:on_list]}, :class => "small" %> and 
+  <% end %>
+  <strong><%= params[:on_list] == "yes" ? "filtering" : "not filtering" %></strong> by project list
+  <%- list_opposite = params[:on_list] == "yes" ? "no" : "yes" -%>
+  <%= link_to "#{list_opposite == "no" ? "Don't filter" : "Filter"} by project list", {:on_list => list_opposite, :by => params[:by]}, :class => "small" %>
 </div>
 
 <% if @observations.blank? %>
@@ -42,16 +72,6 @@
     No observations suitable for this project that haven't yet been contributed or invited.
   </p>
 <% else %>
-  <p class="description">
-    These observations pass the project rules and haven't yet been contributed or invited.
-  </p>
-
-  <div class="stacked ui">
-    Showing observations by <strong><%= params[:by] == "you" ? "you" : "everyone" %></strong>
-    <%- opposite = params[:by] == "you" ? "everyone" : "you" -%>
-    <%= link_to "Show observations by #{opposite}", {:by => opposite}, :class => "small" %>
-  </div>
-
   <div class="clear column span-24">
     <% for observation in @observations %>
       <div class="stacked row <%= cycle('first', 'last') %> column span-12">
@@ -60,26 +80,28 @@
         </div>
 
         <div style="text-align:center;" class="stacked inline buttonrow" id="<%= dom_id(observation, 'buttons') %>">
-          <% if current_user.id == observation.user_id %>
-            <%= link_to "Add to project", 
-              add_project_observation_path(@project, :observation_id => observation.id),
-              :remote => true,
-              :datatype => :json,
-              :method => :post,
-              "data-loading-click" => "Adding...", 
-              :class => "glaucous button add_button" %>
-          <% else %>
-            <%= link_to "Invite to project",
-              url_for(:controller => 'project_invitations',
-                :action => 'create',
-                :project_id => @project.id,
-                :observation_id => observation.id,
-                :user_id => current_user.id),
-              :remote => true,
-              :method => :post,
-              :datatype => :json,
-              :class => "glaucous inline button invite_button",
-              "data-loading-click" => "Inviting..." %>
+          <% unless @project_user.blank? %>
+            <% if current_user.id == observation.user_id %>
+              <%= link_to "Add to project", 
+                add_project_observation_path(@project, :observation_id => observation.id),
+                :remote => true,
+                :datatype => :json,
+                :method => :post,
+                "data-loading-click" => "Adding...", 
+                :class => "glaucous button add_button" %>
+            <% else %>
+              <%= link_to "Invite to project",
+                url_for(:controller => 'project_invitations',
+                  :action => 'create',
+                  :project_id => @project.id,
+                  :observation_id => observation.id,
+                  :user_id => current_user.id),
+                :remote => true,
+                :method => :post,
+                :datatype => :json,
+                :class => "glaucous inline button invite_button",
+                "data-loading-click" => "Inviting..." %>
+            <% end %>
           <% end %>
         </div>
       </div>
