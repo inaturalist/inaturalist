@@ -62,7 +62,8 @@ class ProjectsController < ApplicationController
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
-        @observations_count = @project.project_observations.count
+        @observations_count = @current_user.observations.count if @current_user
+        @project_observations_count = @project.project_observations.count
         @journal_posts_count = @project.posts.count
         @members_count = @project.project_users.count
         @observed_taxa_count = @project.observed_taxa_count

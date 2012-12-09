@@ -128,9 +128,9 @@
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
-      <% if @observations_count.to_i > 0 -%>
+      <% if @project_observations_count.to_i > 0 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @observations_count %></span> observations
+          <span class="count"><%= @project_observations_count %></span> observations
         </span>
       <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> Observations / Map".html_safe, project_observations_path(@project), :class => "navlink" %>
@@ -166,7 +166,7 @@
       <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
-      <% if @members_count.to_i > 0 -%>
+      <% if @members_count.to_i > 1 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
           <span class="count"><%= @members_count %></span> members
         </span>
@@ -221,7 +221,9 @@
         <% if @project.curated_by?(current_user) -%>
           <%= link_to "<span class='lead'>&raquo;</span> Invite observations".html_safe, invitations_path(@project), :class => "navlink" %>
         <% else %>
-          <%= link_to "<span class='lead'>&raquo;</span> Add from your observations".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+          <% if @observations_count.to_i > 0 %>
+            <%= link_to "<span class='lead'>&raquo;</span> Add from your observations".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+          <% end -%>
         <% end -%>
       </li>
     <% end -%>
