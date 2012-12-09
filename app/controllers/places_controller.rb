@@ -71,6 +71,16 @@ class PlacesController < ApplicationController
   
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    @observations = Observation.paginate(
+      :joins => ["JOIN place_geometries ON place_geometries.place_id = #{@place.id}"],
+      :conditions => [
+        "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))"
+      ],
+      :include => [{:taxon => :taxon_names}],
+      :per_page => 30,
+      :page => params[:page]
+    )
     # if logged_in?
     #   scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
     #   @listed_taxa_count = scope.count
