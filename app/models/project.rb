@@ -111,6 +111,15 @@ class Project < ActiveRecord::Base
   def project_observation_rule_terms
     project_observation_rules.map{|por| por.terms}.join('|')
   end
+
+  def matching_project_observation_rule_terms
+    matching_project_observation_rules.map{|por| por.terms}.join('|')
+  end
+
+  def matching_project_observation_rules
+    matching_operators = %w(in_taxon? observed_in_place? on_list? identified? georeferenced?)
+    project_observation_rules.select{|rule| matching_operators.include?(rule.operator)}
+  end
   
   def project_observations_count
     project_observations.count
@@ -130,7 +139,7 @@ class Project < ActiveRecord::Base
     scope = Observation.scoped
     project_observation_rules.each do |rule|
       case rule.operator
-      when "in_taxon?" 
+      when "in_taxon?"
         scope = scope.of(rule.operand)
       when "observed_in_place?"
         scope = scope.in_place(rule.operand)

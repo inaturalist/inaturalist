@@ -40,25 +40,9 @@
       <% end -%>
     </nobr>
   </div>
-  <% if is_me?(observation.user) && (project.project_observation_rules.count > 0 || observation.taxon_id) -%>
+  <% if is_me?(observation.user) && (project.matching_project_observation_rules.count > 0 || observation.taxon_id) -%>
     <div class="clear right project_invitation_extra">
-      <% if project.project_observation_rules.count > 0 -%>
-        <span class="button">
-          <%= link_to "Add all your matching obs. to this project", add_matching_to_project_url(pi.project_id), 
-            :method => :post, 
-            :confirm => "Are you sure? This could take a minute if you have a lot of observations.", 
-            :class => "add_matching_link",
-            "data-loading-click" => "Adding..." %>
-        </span>
-      <% elsif observation.taxon_id %>
-        <span class="button">
-          <%= link_to "Add all your matching obs. of this taxon to this project", add_matching_to_project_url(pi.project_id, :taxon_id => observation.taxon_id), 
-            :method => :post, 
-            :confirm => "Are you sure? This could take a minute if you have a lot of observations.", 
-            :class => "add_matching_link",
-            "data-loading-click" => "Adding..." %>
-        </span>
-      <% end -%>
+      <%= render 'project_invitations/import_button', :project => project, :taxon_id => observation.taxon_id %>
     </div>
   <% end -%>
 </div>

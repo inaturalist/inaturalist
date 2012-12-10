@@ -105,14 +105,9 @@
     </div>
   <% end %>
   <div id="observations">
-    <% if logged_in? && @project_user && @project.project_observation_rules.count > 0 -%>
+    <% if logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
       <div class="right add_matching_link inlineblock">
-        <span class="button">
-          <%= link_to "Import your observations".html_safe, add_matching_to_project_url(@project), 
-            :method => :post, 
-            :confirm => "Are you sure? This could take a minute if you have a lot of observations.", 
-            "data-loading-click" => "Adding..." %>
-        </span>
+        <%= render 'project_invitations/import_button' %>
       </div>
     <% end -%>
     <h3>
