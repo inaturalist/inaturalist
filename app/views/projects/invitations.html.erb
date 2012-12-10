@@ -53,18 +53,19 @@
   <% if @project.curated_by?(current_user) -%>
     or invited.
   <% end %>
-  (these aren't necessarily relevant to this project, please check the <%= link_to "project terms &amp; rules".html_safe, project_terms_path(@project) %> for more information)
+  These aren't necessarily relevant to this project. Please check the <%= link_to "project terms &amp; rules".html_safe, project_terms_path(@project) %> for more information.
 </p>
 
 <div class="stacked ui">
   <% if @project.curated_by?(current_user) -%>
     Showing observations by <strong><%= params[:by] == "you" ? "you" : "everyone" %></strong>
     <%- opposite = params[:by] == "you" ? "everyone" : "you" -%>
-    <%= link_to "Show observations by #{opposite}", {:by => opposite, :on_list => params[:on_list]}, :class => "small" %> and 
+    <%= link_to "(Show observations by #{opposite})", {:by => opposite, :on_list => params[:on_list]}, :class => "small" %>
+    |
   <% end %>
-  <strong><%= params[:on_list] == "yes" ? "filtering" : "not filtering" %></strong> by project list
+  <strong><%= params[:on_list] == "yes" ? "Filtering" : "Not filtering" %></strong> by project list
   <%- list_opposite = params[:on_list] == "yes" ? "no" : "yes" -%>
-  <%= link_to "#{list_opposite == "no" ? "Don't filter" : "Filter"} by project list", {:on_list => list_opposite, :by => params[:by]}, :class => "small" %>
+  <%= link_to "(#{list_opposite == "no" ? "Don't filter" : "Filter"} by project list)", {:on_list => list_opposite, :by => params[:by]}, :class => "small" %>
 </div>
 
 <% if @observations.blank? %>
