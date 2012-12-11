@@ -30,6 +30,7 @@
   <script type="text/javascript" charset="utf-8">
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>
     var PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>]
+    var BOUNDS = <%=raw INAT_CONFIG['bounds'].to_json %>
   </script>
 <% end %>
 <div id="pageheader" class="column span-24">
