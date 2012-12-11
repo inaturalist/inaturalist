@@ -372,6 +372,12 @@ class TaxaController < ApplicationController
     end
     
     do_external_lookups
+
+    if !@taxa.blank? && exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
+      if exact_index > 0
+        @taxa.unshift @taxa.delete_at(exact_index)
+      end
+    end
     
     respond_to do |format|
       format.html do
