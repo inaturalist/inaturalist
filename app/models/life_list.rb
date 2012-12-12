@@ -158,11 +158,11 @@ class LifeList < List
   
   def self.repair_observed(list)
     ListedTaxon.do_in_batches(
-        :include => :last_observation, 
+        :include => [{:last_observation => :taxon}, :taxon], 
         :conditions => [
           "list_id = ? AND observations.id IS NOT NULL AND observations.taxon_id != listed_taxa.taxon_id",
           list.id]) do |lt|
-      lt.destroy
+      lt.destroy unless lt.last_observation.taxon.descendant_of?(lt.taxon)
     end
   end
   
