@@ -123,7 +123,7 @@
       <script type="text/javascript" charset="utf-8">
         $('.observationcontrols').observationControls('medium')
       </script>
-     <%= will_paginate @observations, :renderer => INatLinkRenderer %>
+      <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place), :class => "readmore" %>
     <% end -%>
   </div>
   
