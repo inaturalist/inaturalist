@@ -646,12 +646,13 @@ class ObservationsController < ApplicationController
       end
 
       if !errors && params[:project_id] && !observation.project_observations.where(:project_id => params[:project_id]).exists?
-        @project ||= Project.find(params[:project_id])
-        project_observation = ProjectObservation.create(:project_id => params[:project_id], :observation => observation)
-        extra_msg = if project_observation.valid?
-          "Successfully added to #{@project.title}"
-        else
-          "Failed to add to #{@project.title}: #{project_observation.errors.full_messages.to_sentence}"
+        if @project ||= Project.find(params[:project_id])
+          project_observation = ProjectObservation.create(:project => @project, :observation => observation)
+          extra_msg = if project_observation.valid?
+            "Successfully added to #{@project.title}"
+          else
+            "Failed to add to #{@project.title}: #{project_observation.errors.full_messages.to_sentence}"
+          end
         end
       end
     end

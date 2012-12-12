@@ -981,6 +981,10 @@ class Taxon < ActiveRecord::Base
   def photo_url
     photos.blank? ? nil : image_url
   end
+
+  def all_names
+    taxon_names.map(&:name)
+  end
   
   # Static ##################################################################
   

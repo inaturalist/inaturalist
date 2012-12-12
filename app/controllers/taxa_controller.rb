@@ -372,6 +372,12 @@ class TaxaController < ApplicationController
     end
     
     do_external_lookups
+
+    if !@taxa.blank? && exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
+      if exact_index > 0
+        @taxa.unshift @taxa.delete_at(exact_index)
+      end
+    end
     
     respond_to do |format|
       format.html do
@@ -395,7 +401,7 @@ class TaxaController < ApplicationController
         options = Taxon.default_json_options
         options[:include].merge!(
           :iconic_taxon => {:only => [:id, :name]}, 
-          :taxon_names => {:only => [:id, :name, :lexicon]}
+          :taxon_names => {:only => [:id, :name, :lexicon, :is_valid]}
         )
         options[:methods] += [:common_name, :image_url, :default_name]
         render :json => @taxa.to_json(options)

@@ -419,6 +419,14 @@
       }
     }
 
+    // find valid match
+    for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
+      var tn = taxon.taxon_names[i]
+      if (tn && q && tn.is_valid && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
+        return tn
+      }
+    }
+
     // find match
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
