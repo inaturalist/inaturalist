@@ -20,6 +20,10 @@ class ProjectObservation < ActiveRecord::Base
   after_destroy :update_project_observed_taxa_counter_cache_later
 
   after_create :destroy_project_invitations
+
+  def to_s
+    "<ProjectObservation project_id: #{project_id}, observation_id: #{observation_id}>"
+  end
   
   def observed_by_project_member?
     unless project.project_users.exists?(:user_id => observation.user_id)
