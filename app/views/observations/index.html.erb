@@ -24,6 +24,7 @@ Observations by Everyone
 <div id="pagination" class="last column span-24">
   <% if logged_in? -%>
     <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
+      <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
       <%= f.label :per_page %>
       <%= f.select :per_page, ApplicationController::PER_PAGES, 
         {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
