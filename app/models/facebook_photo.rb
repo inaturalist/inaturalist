@@ -18,15 +18,25 @@ class FacebookPhoto < Photo
     true
   end
 
-  def self.get_api_response(native_photo_id, options = {})
-    return nil unless (options[:user] && options[:user].facebook_api)
-    options[:user].facebook_api.get_object(native_photo_id) || nil # api returns 'false' if photo not found
-  end
-
   # facebook doesn't provide a square image
   # so for now, just return the thumbnail image
   def square_url
     thumb_url
+  end
+
+  def repair
+    fp = FacebookPhoto.get_api_response(native_photo_id, :user => user)
+    errors = {}
+    [:large_url, :medium_url, :small_url, :thumb_url].each_with_index do |img_size, i|
+      send("#{img_size}=", fp['images'][i]['source'])
+    end
+    save
+    [self, errors]
+  end
+
+  def self.get_api_response(native_photo_id, options = {})
+    return nil unless (options[:user] && options[:user].facebook_api)
+    options[:user].facebook_api.get_object(native_photo_id) || nil # api returns 'false' if photo not found
   end
 
   def self.new_from_api_response(api_response, options = {})
