@@ -190,7 +190,7 @@ class PhotosController < ApplicationController
     repaired, errors = @photo.repair
     if repaired.destroyed?
       flash[:error] = "Photo destroyed b/c it was deleted from the external site or iNat no longer has permission to view it"
-      redirect_back_or_default(url)
+      redirect_to url
     else
       flash[:notice] = "Photo URLs repaired"
       redirect_back_or_default(@photo)
