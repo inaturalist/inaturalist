@@ -304,7 +304,15 @@ class TaxaController < ApplicationController
       q = @q
     else
       q = sanitize_sphinx_query(@q)
-      q = "^#{q}$ | #{q}"
+
+      # for some reason 1-term queries don't return an exact match first if enclosed 
+      # in quotes, so we only use them for multi-term queries
+      q = if q =~ /\s/
+        "\"^#{q}$\" | #{q}"
+      else
+        "^#{q}$ | #{q}"
+      end
+
       match_mode = :extended
     end
     drill_params = {}
