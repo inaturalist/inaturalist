@@ -418,6 +418,10 @@ class ListedTaxon < ActiveRecord::Base
   def taxon_name
     taxon.name
   end
+
+  def taxon_common_name
+    taxon.common_name.try(:name)
+  end
   
   def user_login
     user.try(:login)
