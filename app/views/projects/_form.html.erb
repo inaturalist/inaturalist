@@ -26,7 +26,7 @@
   <script type="text/javascript" charset="utf-8">
     function rulify() {
       $('#new_operand_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
         resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('new_operand_id').attr('data-json') + ')'),
         afterSelect: function(item) {
@@ -237,7 +237,7 @@
           <div id="place_selector">
             <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => "Type place name", :label => "Choose a place" %>
             <span class="description">
-              Not finding the place you want?
+              Place must have a boundary defined. Not finding the place you want?
               <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
             </span>
           </div>
