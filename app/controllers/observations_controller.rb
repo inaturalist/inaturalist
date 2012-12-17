@@ -485,28 +485,13 @@ class ObservationsController < ApplicationController
       o
     end
     
-    if params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
-      # JSON conditions is a bit of a hack to accomodate mobile clients
-      unless params[:accept_terms] || request.format == :json
-        msg = "You need check that you agree to the project terms before joining the project"
-        @project = Project.find_by_id(params[:project_id])
-        @project_curators = @project.project_users.all(:conditions => {:role => "curator"})
-        respond_to do |format|
-          format.html do
-            flash[:error] = msg
-            render :action => 'new'
-          end
-          format.json do
-            render :json => {:errors => msg}, :status => :unprocessable_entity
-          end
-        end
-        return
-      end
-    end
-    
     self.current_user.observations << @observations
     
-    create_project_observations
+    if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
+      flash[:error] = "But we didn't add this observation to the #{Project.find_by_id(params[:project_id]).title} project because you didn't agree to the project terms."
+    else
+      create_project_observations
+    end
     update_user_account
     
     # check for errors

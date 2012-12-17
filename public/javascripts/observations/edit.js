@@ -85,6 +85,20 @@ $(document).ready(function() {
     }
     $(this).photoSelector(options)
   })
+  
+  if ($('#accept_terms').length != 0) {
+    $("input[type=submit].default").attr("exception", "true");
+    $('.observationform').submit(function() {
+      if (!$('input[type=checkbox]#accept_terms').is(':checked')){
+        var c = confirm("You didn't agree to the project's terms, this will still save the observation " +
+                      "to iNaturalist, but it won't be added to the project. Is this what you want?"
+        );
+        if (!c){
+          return false;
+        }
+      }
+    });
+  }
 })
 
 function handleTaxonClick(e, taxon) {

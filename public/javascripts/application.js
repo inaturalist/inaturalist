@@ -123,9 +123,11 @@ function loadingClickForButton() {
 $('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function(clickEvent) {
   var button = this
   if ($(this).parents('form').length > 0) {
-    $(this).parents('form').submit(function(e) {
-      loadingClickForButton.apply(button)
-    })
+    if ($(this).attr("exception") != "true") {
+      $(this).parents('form').submit(function(e) {
+        loadingClickForButton.apply(button)
+      })
+    }
   } else {
     loadingClickForButton.apply(button)
   }
