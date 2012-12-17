@@ -340,7 +340,7 @@ $(document).ready(function() {
   // force browsers that don't support HTML5's required attribute to recognize it
   $('form:has(input[required])').submit(checkFormForRequiredFields)
 
-  $('.item .item_content').width(function() { return $(this).parent().width() - 58 })
+  $('body.browser .item .item_content').width(function() { return $(this).parent().width() - 58 })
   $('.identification:visible .identification_body').width(function() { 
     return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 20
   })

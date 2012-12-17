@@ -31,7 +31,7 @@
     <%= yield :extracss %>
     <%= yield :extrajs %>
   </head>
-<body>
+<body class="browser">
   <% unless @headless -%>
     <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => SITE_NAME) do %>
       <%= render :partial => 'shared/header' %>
