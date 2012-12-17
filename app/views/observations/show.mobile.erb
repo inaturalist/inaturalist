@@ -70,7 +70,7 @@
   <% unless @observation.tags.blank? %>
     <div id="tags" class="description">
       <label>Tags:</label>
-        <%= @observation.tags.map{|tag| 
+        <%=raw @observation.tags.map{|tag| 
           link_to(h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags"))
         }.join(', ') %>
     </div>
