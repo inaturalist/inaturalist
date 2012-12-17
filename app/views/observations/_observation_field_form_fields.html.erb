@@ -1,5 +1,6 @@
 <%-
   o ||= builder if defined?(builder)
+  index ||= nil
   observation_fields ||= @observation_fields
 -%>
 <div class="observation_fields_form_fields">
@@ -11,8 +12,14 @@
   </div>
   <div>
     <%- new_ofv_fields = capture do %>
-      <%= o.fields_for :observation_field_values, o.object.observation_field_values.build do |ofv| %>
-        <%= render 'observation_field_row', :builder => ofv %>
+      <% if index -%>
+        <%= fields_for "observations[#{index}][observation_field_values_attributes][]", o.object.observation_field_values.build do |ofv| %>
+          <%= render 'observation_field_row', :builder => ofv %>
+        <% end -%>
+      <% else %>
+        <%= o.fields_for :observation_field_values, o.object.observation_field_values.build do |ofv| %>
+          <%= render 'observation_field_row', :builder => ofv %>
+        <% end -%>
       <% end -%>
     <% end -%>
     <div class="inline buttonrow">
