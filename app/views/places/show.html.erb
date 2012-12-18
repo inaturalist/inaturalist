@@ -90,22 +90,30 @@
   </ul>
   
   <div id="guidetab">
-    <%- extra = capture do -%>
-      <p class="ui">
-        <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
-      </p>
-      
-      <% if logged_in? -%>
-        <% if @place_geometry -%>
-          <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
-        <% else %>
-          <div class="meta">
-            Subscriptions aren't available for places without boundaries.
-          </div>
+    <% if @place.check_list -%>
+      <%- extra = capture do -%>
+        <p class="ui">
+          <%= link_to "View check list page", @place.check_list, :class => "readmore" %>
+        </p>
+        
+        <% if logged_in? -%>
+          <% if @place_geometry -%>
+            <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+          <% else %>
+            <div class="meta">
+              Subscriptions aren't available for places without boundaries.
+            </div>
+          <% end -%>
         <% end -%>
       <% end -%>
+      <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
+    <% else %>
+      <div class="readable nocontent">
+        This place has no check list, so there is no guide<% if @place_geometry %>, but you can still
+        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+        <% end %>
+      </div>
     <% end -%>
-    <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
   </div><!-- end guidetab -->
   
   <div id="observationstab">

@@ -17,6 +17,11 @@ describe Place, "creation" do
   it "should create a default check_list" do
     @place.check_list.should_not be_nil
   end
+
+  it "should not create a default check list if not preferred" do
+    p = Place.make!(:prefers_check_lists => false)
+    p.check_list.should be_blank
+  end
   
   it "should have no default type" do
     @place.place_type_name.should be_blank

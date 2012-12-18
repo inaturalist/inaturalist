@@ -213,8 +213,14 @@ class FlickrPhoto < Photo
     updated = 0
     destroyed = 0
     invalids = 0
+    skipped = 0
     start_time = Time.now
     FlickrPhoto.script_do_in_batches(find_options) do |p|
+      r = Net::HTTP.get_response(URI.parse(p.medium_url))
+      unless r.code_type == Net::HTTPBadRequest
+        skipped += 1
+        next
+      end
       repaired, errors = p.repair
       if errors.blank?
         updated += 1
@@ -230,7 +236,7 @@ class FlickrPhoto < Photo
         end
       end
     end
-    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{Time.now - start_time}s"
+    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{skipped} skipped, #{Time.now - start_time}s"
   end
 
 end

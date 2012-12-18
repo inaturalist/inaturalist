@@ -898,7 +898,7 @@ class Taxon < ActiveRecord::Base
         place_types(%w(Country State County)).
         intersecting_taxon(self).
         find_each(:select => "places.id, place_type, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
-      place.check_list.add_taxon(self, :taxon_range_id => place.taxon_range_id)
+      place.check_list.try(:add_taxon, self, :taxon_range_id => place.taxon_range_id)
     end
   end
   

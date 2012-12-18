@@ -58,7 +58,9 @@
     <%= error_messages_for :place %>
     <%= f.text_field :name, :required => true, :class => 'text' %>
     <%= f.text_field :display_name, :class => 'text' %>
+    <%= f.text_field :code, :class => 'text', :description => "Short code for this place, e.g. US for the United States" %>
     <%= f.select :place_type, Place::PLACE_TYPE_CODES.sort, :include_blank => "Unknown", :class => 'select' %>
+    <%= f.check_box :prefers_check_lists, :label_after => true, :label => "Check lists allowed?" %>
     
     <div class="last column span-11">
       <div class="column span-5 append-1">
