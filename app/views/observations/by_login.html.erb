@@ -359,15 +359,14 @@
     </div>
   <% end %>
   <div id="pagination">
-    <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
-      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
+      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
+        <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
         <%= f.label :per_page %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
     <% end -%>
-    
     <%= will_paginate @observations, :renderer => INatLinkRenderer %>
   </div>
 </div>

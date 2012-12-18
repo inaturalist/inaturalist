@@ -311,7 +311,7 @@
       </div>
     <% end -%>
     <% if is_me?(@observation.user) -%>
-      <span class="button"><%= link_to_function "Add/edit more fields", "showObservationFieldsDialog()" %></span>
+      <span class="button"><%= link_to_function "Add/edit more fields", "ObservationFields.showObservationFieldsDialog()" %></span>
     <% end -%>
     
     <%= separator %>
@@ -456,7 +456,7 @@
         !@project_invitations.blank? || 
         (logged_in? && is_not_me?(@observation.user) && !@projects.blank?) -%>
     <%= separator %>
-    <div id="projects" class="stacked">
+    <div id="projects" class="clear stacked">
       <h3><%=t :projects %></h3>
       <% unless @project_observations.blank? -%>
         <% for po in @project_observations %>
@@ -482,7 +482,7 @@
         <% for pi in @project_invitations %>
           <%= render :partial => 'project_invitations/project_invitation', :object => pi, :locals => {:observation => @observation} %>
         <% end %>
-        <%= link_to "manage your project invitations", project_invitations_path %>
+        <%= link_to "Manage your project invitations", project_invitations_path, :class => "right readmore" %>
       <% end %>
     </div>
     

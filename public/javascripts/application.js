@@ -338,7 +338,7 @@ $(document).ready(function() {
   // force browsers that don't support HTML5's required attribute to recognize it
   $('form:has(input[required])').submit(checkFormForRequiredFields)
 
-  $('.item .item_content').width(function() { return $(this).parent().width() - 58 })
+  $('body.browser .item .item_content').width(function() { return $(this).parent().width() - 58 })
   $('.identification:visible .identification_body').width(function() { 
     return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 20
   })
@@ -910,3 +910,25 @@ function setPreference(pref, value) {
     dataType: 'json',    
   })
 }
+
+$('.project_invitation .acceptlink').live('ajax:success', function() {
+  $(this).hide()
+  $(this).siblings('.ignorelink').hide()
+  $(this).siblings('.removelink').show()
+  $(this).siblings('.status').html("Added!").show().addClass('success')
+  $(this).parents('.box:first').removeClass('notice')
+})
+$('.project_invitation .removelink').live('ajax:success', function() {
+  $(this).hide()
+  $(this).siblings('.acceptlink').show()
+  $(this).siblings('.status').html("Removed").show().removeClass('success')
+  $(this).parents('.box:first').addClass('notice')
+})
+$('.project_invitation .ignorelink').live('ajax:success', function() {
+  var item = $(this).parents('.item:first').get(0),
+      update = $(this).parents('.update:first').get(0),
+      project_invitation = $(this).parents('.project_invitation:first').get(0),
+      target = item || update || project_invitation
+  $(target).slideUp()
+})
+

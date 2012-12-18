@@ -110,26 +110,13 @@ $(document).ready(function() {
     $(this).hide()
     $(this).after(loading)
   }).bind('ajax:success', function(e, json, status) {
+    var projectId = $(this).data('project-id') || json.project_id
     $(this).siblings('.loadingclick').remove()
-    $('#removelink_project_'+json.project_id).show()
-    if (json.project && json.project.project_observation_fields && json.project.project_observation_fields.length > 0) {
-      showObservationFieldsDialog({
-        url: '/observations/'+window.observation.id+'/fields?project_id='+json.project_id,
-        title: 'Project observation fields for ' + json.project.title
-      })
-    }
+    $(this).siblings('.removelink').show()
+    $(this).hide()
   }).bind('ajax:error', function(e, xhr, error, status) {
     $(this).siblings('.loadingclick').remove()
     $(this).show()
-    var json = $.parseJSON(xhr.responseText)
-    if (json.error.match(/observation field/)) {
-      showObservationFieldsDialog({
-        url: '/observations/'+window.observation.id+'/fields?project_id='+$(this).data('project-id'),
-        title: 'Project observation fields'
-      })
-    } else {
-      alert(json.error)
-    }
   })
   $('#project_menu .removelink').bind('ajax:before', function() {
     var loading = $('<div>&nbsp;</div>').addClass('loadingclick inter')
@@ -140,9 +127,10 @@ $(document).ready(function() {
     $(this).after(loading)
   }).bind('ajax:success', function(e, json, status) {
     $(this).siblings('.loadingclick').remove()
-    $('#addlink_project_'+json.project_id).show()
+    $(this).siblings('.addlink').show()
+    $(this).hide()
   }).bind('ajax:error', function(e, xhr, error, status) {
-    alert(xhr.responseText)
+    // alert(xhr.responseText)
   })
 
   $('.identification').each(function() {
@@ -172,24 +160,6 @@ $(document).ready(function() {
   })
 
 })
-
-function showObservationFieldsDialog(options) {
-  options = options || {}
-  var url = options.url || '/observations/'+window.observation.id+'/fields',
-      title = I18n.t(options.title || 'observation_fields')
-  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
-  dialog.load(url, function() {
-    $(this).observationFieldsForm()
-    $(this).centerDialog()
-    $('form:has(input[required])', this).submit(checkFormForRequiredFields)
-  })
-  dialog.dialog({
-    modal: true,
-    title: title,
-    width: 600,
-    minHeight: 400
-  })
-}
 
 $('#add_more_photos_link').live('click', function() {
   var dialogId = "add_more_photos_dialog",

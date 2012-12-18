@@ -220,7 +220,7 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 'lizard', 'gall']
+  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 'lizard', 'gall', 'pinecone', 'larva']
   
   scope :observed_by, lambda {|user|
     sql = <<-SQL
@@ -980,6 +980,10 @@ class Taxon < ActiveRecord::Base
   
   def photo_url
     photos.blank? ? nil : image_url
+  end
+
+  def all_names
+    taxon_names.map(&:name)
   end
   
   # Static ##################################################################

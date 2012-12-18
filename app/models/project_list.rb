@@ -39,6 +39,7 @@ class ProjectList < LifeList
         po.project_id = #{project_id} AND
         (
           o.taxon_id = #{lt.taxon_id} OR 
+          t.ancestry = '#{ancestry_clause}' OR
           t.ancestry LIKE '#{ancestry_clause}/%'
         )
       GROUP BY #{sql_key}

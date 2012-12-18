@@ -27,7 +27,7 @@
     <div class="stacked last column span-23">
       <div class="column span-12">
         <%= f.label :parent_id, 'Parent ID' %><br/>
-        <%= f.text_field :parent_id, :class => 'text' %><br/>
+        <%= f.text_field :parent_id, :value => taxon.parent_id, :class => 'text' %><br/>
 
         <%= label_tag :parent_name %><br/>
         <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : '', :id => 'parent_name', :class => 'text' %>

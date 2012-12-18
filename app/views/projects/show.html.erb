@@ -105,6 +105,11 @@
     </div>
   <% end %>
   <div id="observations">
+    <% if logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
+      <div class="right add_matching_link inlineblock">
+        <%= render 'project_invitations/import_button' %>
+      </div>
+    <% end -%>
     <h3>
       <%=t :recent_observations %>
       <%= link_to t(:view_all), project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
@@ -128,7 +133,12 @@
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
-      <%= link_to "<span class='lead'>&raquo;</span> #{t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
+      <% if @project_observations_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @project_observations_count %></span> observations
+        </span>
+      <% end -%>
+      <%= link_to "<span class='lead'>&raquo;</span> ${t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
@@ -153,9 +163,19 @@
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:checklist)}".html_safe, list_path(@project.project_list), :class => "navlink" %>
     </li>
     <li>
+      <% if @journal_post_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @journal_post_count %></span> posts
+        </span>
+      <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
+      <% if @members_count.to_i > 1 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @members_count %></span> members
+        </span>
+      <% end -%>
       <% if @project.contest? -%>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:top_contributors)}".html_safe, project_contributors_path(@project), :class => "navlink" %>
       <% else %>
@@ -202,11 +222,15 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t(:stats)}".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <% if @project.curated_by?(current_user) -%>
-        <li>
+      <li>
+        <% if @project.curated_by?(current_user) -%>
           <%= link_to "<span class='lead'>&raquo;</span> Invite observations".html_safe, invitations_path(@project), :class => "navlink" %>
-        </li>
-      <% end -%>
+        <% else %>
+          <% if @observations_count.to_i > 0 %>
+            <%= link_to "<span class='lead'>&raquo;</span> Add from your observations".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+          <% end -%>
+        <% end -%>
+      </li>
     <% end -%>
   </ul>
   

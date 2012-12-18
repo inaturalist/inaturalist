@@ -62,6 +62,10 @@ class ProjectsController < ApplicationController
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
+        @observations_count = @current_user.observations.count if @current_user
+        @project_observations_count = @project.project_observations.count
+        @journal_posts_count = @project.posts.count
+        @members_count = @project.project_users.count
         @observed_taxa_count = @project.observed_taxa_count
         @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
@@ -334,7 +338,19 @@ class ProjectsController < ApplicationController
       respond_to_join(:notice => "You're already a member of this project!")
       return
     end
-    return unless request.post?
+    unless request.post?
+      respond_to do |format|
+        format.html do
+          if partial = params[:partial]
+            render :layout => false, :partial => "projects/#{partial}"
+          else
+            # just render the default
+          end
+        end
+        format.json { render :json => @project }
+      end
+      return
+    end
     
     @project_user = @project.project_users.create(:user => current_user)
     unless @observation
@@ -456,6 +472,18 @@ class ProjectsController < ApplicationController
       invited_scope = invited_scope.by(current_user)
     end
 
+    if params[:on_list] == "yes"
+      scope = scope.scoped(
+        :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+        :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      existing_scope = existing_scope.scoped(
+          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      invited_scope = invited_scope.scoped(
+            :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+            :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+    end
+    
     scope_sql = scope.to_sql
     existing_scope_sql = existing_scope.to_sql
     invited_scope_sql = invited_scope.to_sql
@@ -491,7 +519,8 @@ class ProjectsController < ApplicationController
         format.json do
           json = {
             :error => error_msg,
-            :errors => @project_observation.errors.full_messages
+            :errors => @project_observation.errors.full_messages,
+            :project_observation => @project_observation
           }
           if @project_observation.errors.full_messages.to_sentence =~ /observation field/
             json[:observation_fields] = @project.project_observation_fields.as_json(:include => :observation_field)
@@ -500,11 +529,6 @@ class ProjectsController < ApplicationController
         end
       end
       return
-    end
-    
-    if @project_invitation = ProjectInvitation.where(
-        :project_id => @project.id, :observation_id => @observation.id).first
-      @project_invitation.destroy
     end
     
     respond_to do |format|
@@ -611,6 +635,53 @@ class ProjectsController < ApplicationController
     flash[:notice] = "Observations removed from the project \"#{@project.title}\""
     redirect_back_or_default(@project)
     return
+  end
+
+  def add_matching
+    unless @project.users.where("users.id = ?", current_user).exists?
+      msg = "You must be a member of this project to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default(@project)
+        end
+        format.json { render :json => {:error => msg} }
+      end
+      return
+    end
+
+    added = 0
+    failed = 0
+    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
+    scope = @project.observations_matching_rules.by(current_user).includes(:taxon, :project_observations).scoped
+    scope = scope.of(@taxon) if @taxon
+    scope.find_each do |observation|
+      next if observation.project_observations.detect{|po| po.project_id == @project.id}
+      pi = ProjectObservation.new(:observation => observation, :project => @project)
+      if pi.save
+        added += 1
+      else
+        failed += 1
+      end
+    end
+
+    msg = if added == 0 && failed > 0
+      "Failed to add all #{failed} matching observation(s). Try adding observatuibs individually to see error messages"
+    elsif failed > 0
+      "Added #{added} matching observation(s), failed to add #{failed}. Try adding the rest individually to see error messages."
+    else
+      "Added #{added} matching observation(s)."
+    end
+
+    respond_to do |format|
+      format.html do
+        flash[:notice] = msg
+        redirect_back_or_default(@project)
+      end
+      format.json do
+        render :json => {:msg => msg}
+      end
+    end
   end
   
   def search

@@ -3,13 +3,46 @@
 # For external services, follow the link in the note to go to the signup
 # page for the service.
 # 
-# The keys are all set to the length of a valid key, and the range of
-# acceptable characters. 
+# Optional configurations have been commented out
 base: &base
     general:
-        SITE_NAME: yoursite.org
-    default_locale: es
-    feedback_url: http://groups.google.com/group/inaturalist
+        # name of the site, used extensively within the app
+        SITE_NAME: YourSite
+
+        # shortened version of the name
+        # SITE_NAME_SHORT: YS
+
+        # site contact, mainly just used for GBIF archive generation
+        # contact:
+        #     first_name: Your
+        #     last_name: Name
+        #     organization: YourSite
+        #     position: co-director
+        #     address: 4 Privet Dr.
+        #     city: Little Whinging
+        #     admin_area: Surrey
+        #     postal_code: 94618
+        #     country: UK
+        #     phone: xxx-xxx-xxx
+        #     email: you@yoursite.com
+        #     url: http://www.yoursite.com
+
+    # header logo, should be 118x22
+    # logo: 'conabio-logo.png'
+
+    # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
+    # logo_icon_square_big: 'conabio-square-big.png'
+
+    # default bounds for most maps, including /observations/new and the home page. Defaults to the whole world
+    # bounds:
+    #   swlat: 13.667338
+    #   swlng: -117.773438
+    #   nelat: 32.916485
+    #   nelng: -86.484375
+
+    # default place ID for place filters. Presently only used on /places, but use may be expanded
+    # place_id: 6793
+
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
@@ -22,10 +55,6 @@ base: &base
         #http://www.google.com/analytics/sign_up.html
         tracker_id: UA-090909-9
         domain_name: yoursite.org
-    re_captcha:
-        #https://admin.recaptcha.net/accounts/login/?next=/recaptcha/createsite/
-        RCC_PUB: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az
-        RCC_PRIV: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az
     ubio:
         #http://www.ubio.org/index.php?pagename=form
         UBIO_KEY: 09af09af09af09af09af09af09af09af09af09af   

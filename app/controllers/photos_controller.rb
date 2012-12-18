@@ -179,9 +179,9 @@ class PhotosController < ApplicationController
   end
 
   def repair
-    unless @photo.is_a?(FlickrPhoto)
+    unless @photo.respond_to?(:repair)
       Rails.logger.debug "[DEBUG] @photo: #{@photo}"
-      flash[:error] = "Repair only works for Flickr photos"
+      flash[:error] = "Repair doesn't work for that kind of photo"
       redirect_back_or_default(@photo)
       return
     end
@@ -189,8 +189,8 @@ class PhotosController < ApplicationController
     url = @photo.taxa.first || @photo.observations.first || '/'
     repaired, errors = @photo.repair
     if repaired.destroyed?
-      flash[:error] = "Photo destroyed b/c it was deleted from Flickr or iNat no longer has permission to view it"
-      redirect_back_or_default(url)
+      flash[:error] = "Photo destroyed b/c it was deleted from the external site or iNat no longer has permission to view it"
+      redirect_to url
     else
       flash[:notice] = "Photo URLs repaired"
       redirect_back_or_default(@photo)

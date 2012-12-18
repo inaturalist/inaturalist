@@ -17,6 +17,12 @@ describe ProjectObservation, "creation" do
     jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
     jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
   end
+
+  it "should destroy project invitations for its project and observation" do
+    pi = ProjectInvitation.make!(:project => @project, :observation => @observation)
+    make_project_observation(:observation => @observation, :project => @project)
+    ProjectInvitation.find_by_id(pi.id).should be_blank
+  end
 end
 
 describe ProjectObservation, "destruction" do

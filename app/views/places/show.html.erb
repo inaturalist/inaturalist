@@ -85,7 +85,7 @@
   </div>
   <ul>
     <li><a href="#guidetab"><span>Species Guide</span></a></li>
-    <li><a href="<%= observations_url(:place_id => @place, :per_page => 50, :partial => "cached_component") %>" rel="<%= observations_url(:place_id => @place) %>" title="observationstab"><span>Observations</span></a></li>
+    <li><a href="#observationstab"><span>Observations</span></a></li>
     <li><a href="#abouttab"><span>About <%= @place.name %></span></a></li>
   </ul>
   
@@ -108,8 +108,23 @@
     <%= render :partial => 'guides/guide', :locals => {:extra => extra} %>
   </div><!-- end guidetab -->
   
-  <div id="observationstab" class="observations table">
-    <div class="loading status">Loading...</div>
+  <div id="observationstab">
+    <% if @observations.blank? -%>
+      <div class="description noresults">
+        nothing
+      </div>
+    <% else %>
+      <div class="stacked observationcontrols"></div>
+      <div class="medium observations grid">
+        <% compact do %>
+          <%= render :partial => "observations/cached_component", :collection => @observations.map{|o| o}.compact %>
+        <% end -%>
+      </div>
+      <script type="text/javascript" charset="utf-8">
+        $('.observationcontrols').observationControls('medium')
+      </script>
+      <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place), :class => "readmore" %>
+    <% end -%>
   </div>
   
   <div id="abouttab">

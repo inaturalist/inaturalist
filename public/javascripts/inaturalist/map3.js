@@ -10,8 +10,7 @@
  */
 
 // requires GoogleMap classes
-if (!google && !google.maps)
- throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
+if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
 
 // extend parts of the Google Marker class
 google.maps.Marker.prototype.observation_id = null;

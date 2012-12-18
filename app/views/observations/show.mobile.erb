@@ -69,8 +69,8 @@
   <h3><%=t :details %></h3>
   <% unless @observation.tags.blank? %>
     <div id="tags" class="description">
-      <label><%=t :tags %></label>
-        <%= @observation.tags.map{|tag| 
+      <label><%=t :tags %>:</label>
+        <%=raw @observation.tags.map{|tag| 
           link_to(h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags"))
         }.join(', ') %>
     </div>

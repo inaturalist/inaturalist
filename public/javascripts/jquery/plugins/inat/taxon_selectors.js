@@ -411,15 +411,32 @@
   }
 
   $.fn.simpleTaxonSelector.chosenTaxonNameFor = function(q, taxon) {
-    var chosenTaxonName = taxon.default_name
+    // find exact match
+    for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
+      var tn = taxon.taxon_names[i]
+      if (tn && q && tn.name.toLowerCase() == q.toLowerCase()) {
+        return tn
+      }
+    }
+
+    // find valid match
+    for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
+      var tn = taxon.taxon_names[i]
+      if (tn && q && tn.is_valid && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
+        return tn
+      }
+    }
+
+    // find match
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        chosenTaxonName = tn
-        break
+        return tn
       }
     }
-    return chosenTaxonName
+
+    // default to default name
+    return taxon.default_name
   }
   
   $.fn.simpleTaxonSelector.styles = {};

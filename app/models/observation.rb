@@ -1437,6 +1437,8 @@ class Observation < ActiveRecord::Base
     return "unknown" unless user_agent
     if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
       "iNaturalist Android App"
+    elsif user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
+      "Fishtagger iPhone App"
     elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
       "iNaturalist iPhone App"
     else
@@ -1446,7 +1448,9 @@ class Observation < ActiveRecord::Base
   
   def device_url
     return unless user_agent
-    if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
+    if user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
+      "http://itunes.apple.com/us/app/fishtagger/id582724178?mt=8"
+    elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
       "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
     elsif user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
       "https://market.android.com/details?id=org.inaturalist.android"

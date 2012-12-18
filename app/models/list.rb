@@ -146,7 +146,7 @@ class List < ActiveRecord::Base
   
   def generate_csv(options = {})
     controller = options[:controller] || FakeView.new
-    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at)
+    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation last_observation url created_at updated_at taxon_common_name)
     ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
     headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"

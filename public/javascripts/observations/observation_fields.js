@@ -64,7 +64,6 @@ var ObservationFields = {
     options.focus = typeof(options.focus) == 'undefined' ? true : options.focus
     $('.observation_field').not('.fieldified').each(function() {
       var lastName = $(this).siblings('.fieldified:last').find('input').attr('name')
-      console.log("[DEBUG] lastName: ", lastName)
       if (lastName) {
         var index = parseInt(lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)[1]) + 1
       } else {
@@ -125,5 +124,110 @@ var ObservationFields = {
         input.focus()
       }
     })
+  },
+
+  showObservationFieldsDialog: function(options) {
+    options = options || {}
+    var url = options.url || '/observations/'+window.observation.id+'/fields',
+        title = options.title || 'Observation fields',
+        originalInput = options.originalInput
+    var dialog = $('#obsfielddialog')
+    if (dialog.length == 0) {
+      dialog = $('<div id="obsfielddialog"></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+    }
+    dialog.load(url, function() {
+      var diag = this
+      $(this).observationFieldsForm()
+      $(this).centerDialog()
+      $('form:has(input[required])', this).submit(checkFormForRequiredFields)
+
+      if (originalInput) {
+        var form = $('form', this)
+        $(form).submit(function() {
+          var ajaxOptions = {
+            url: $(form).attr('action'),
+            type: $(form).attr('method'),
+            data: $(form).serialize(),
+            dataType: 'json'
+          }
+          $.ajax(ajaxOptions).done(function() {
+            $.rails.fire($(originalInput), 'ajax:success')
+            $(diag).dialog('close')
+          }).fail(function() {
+            alert('Failed to add to project')
+          })
+          return false
+        })
+      }
+    })
+    dialog.dialog({
+      modal: true,
+      title: title,
+      width: 600,
+      minHeight: 400
+    })
   }
 }
+
+// the following stuff doesn't have too much to do with observation fields, but it's at least tangentially related
+function showJoinProjectDialog(projectId, options) {
+  options = options || {}
+  var url = options.url || '/projects/'+projectId+'/join?partial=join',
+      title = options.title || 'Join project',
+      originalInput = options.originalInput
+  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+  dialog.load(url, function() {
+    // ajaxify join
+    var button = $('.default.button', this),
+        diag = this
+    button.click(function(e) {
+      var joinUrl = $(this).attr('href')
+      $.post(joinUrl).done(function() {
+        $(diag).dialog('close')
+        if (originalInput) {
+          $(originalInput).click()
+        }
+      }).fail(function() {
+        alert('Failed to join project')
+      })
+      return false
+    })
+  })
+  dialog.dialog({
+    modal: true,
+    title: title,
+    width: 600,
+    minHeight: 400
+  })
+}
+
+$(document).ready(function() {
+  $('#project_menu .addlink, .project_invitation .acceptlink').bind('ajax:success', function(e, json, status) {
+    var observationId = (json && json.observation_id) || $(this).data('observation-id') || window.observation.id
+    if (json && json.project && json.project.project_observation_fields && json.project.project_observation_fields.length > 0) {
+      ObservationFields.showObservationFieldsDialog({
+        url: '/observations/'+observationId+'/fields?project_id='+json.project_id,
+        title: 'Project observation fields for ' + json.project.title,
+        originalInput: this
+      })
+    }
+  }).bind('ajax:error', function(e, xhr, error, status) {
+    var json = $.parseJSON(xhr.responseText),
+        projectId = json.project_observation.project_id || $(this).data('project-id'),
+        observationId = json.project_observation.observation_id || $(this).data('observation-id') || window.observation.id
+    if (json.error.match(/observation field/)) {
+      ObservationFields.showObservationFieldsDialog({
+        url: '/observations/'+observationId+'/fields?project_id='+projectId,
+        title: 'Project observation fields',
+        originalInput: this
+      })
+    } else if (json.error.match(/must belong to a member/)) {
+      showJoinProjectDialog(projectId, {originalInput: this})
+    } else {
+      alert(json.error)
+    }
+  })
+  $('#project_menu .removelink, .project_invitation .removelink').bind('ajax:error', function(e, xhr, error, status) {
+    alert(xhr.responseText)
+  })
+})

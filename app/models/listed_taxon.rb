@@ -25,8 +25,8 @@ class ListedTaxon < ActiveRecord::Base
   belongs_to :source # if added b/c of a published source
   
   before_validation :nilify_blanks
+  before_validation :set_ancestor_taxon_ids
   before_validation :update_cache_columns
-  before_create :set_ancestor_taxon_ids
   before_create :set_place_id
   before_create :set_updater_id
   before_save :set_user_id
@@ -215,6 +215,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_ancestor_taxon_ids
+    return true unless taxon
     unless taxon.ancestry.blank?
       self.taxon_ancestor_ids = taxon.ancestry
     else
@@ -416,6 +417,10 @@ class ListedTaxon < ActiveRecord::Base
   
   def taxon_name
     taxon.name
+  end
+
+  def taxon_common_name
+    taxon.common_name.try(:name)
   end
   
   def user_login

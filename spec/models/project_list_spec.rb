@@ -33,5 +33,30 @@ describe ProjectList, "refresh_with_observation" do
     pl.taxon_ids.should_not include(t1.id)
     pl.taxon_ids.should include(t2.id)
   end
+
+  it "should confirm a species when a subspecies was observed" do
+    species = Taxon.make!(:rank => "species")
+    subspecies = Taxon.make!(:rank => "subspecies", :parent => species)
+    p = Project.make!
+    pl = p.project_list
+    lt = pl.add_taxon(species, :user => p.user, :manually_added => true)
+    po = make_project_observation(:project => p, :taxon => subspecies)
+    Delayed::Worker.new(:quiet => true).work_off
+    lt.reload
+    lt.last_observation.should eq(po.observation)
+  end
 end
 
+describe ProjectList, "reload_from_observations" do
+  it "should not delete manually added taxa when descendant taxa have been observed" do
+    p = Project.make!
+    pl = p.project_list
+    species = Taxon.make!(:rank => "species")
+    subspecies = Taxon.make!(:rank => "subspecies", :parent => species)
+    lt = pl.add_taxon(species, :manually_added => true, :user => p.user)
+    po = make_project_observation(:project => p, :taxon => subspecies)
+    Delayed::Worker.new(:quiet => true).work_off
+    ProjectList.reload_from_observations(pl)
+    ListedTaxon.find_by_id(lt.id).should_not be_blank
+  end
+end
