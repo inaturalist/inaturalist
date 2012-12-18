@@ -689,7 +689,7 @@ class TaxaController < ApplicationController
     end
     
     @listed_taxa = @places.map do |place| 
-      place.check_list.add_taxon(@taxon, :user_id => current_user.id)
+      place.check_list.try(:add_taxon, @taxon, :user_id => current_user.id)
     end.select{|p| p.valid?}
     @listed_taxa_by_place_id = @listed_taxa.index_by{|lt| lt.place_id}
   end

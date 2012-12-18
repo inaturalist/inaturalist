@@ -19,6 +19,8 @@ class Place < ActiveRecord::Base
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
   }
+
+  preference :check_lists, :boolean, :default => true
   
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
@@ -320,6 +322,7 @@ class Place < ActiveRecord::Base
   
   # Create a CheckList associated with this place
   def create_default_check_list
+    return true unless prefers_check_lists
     self.create_check_list(:place => self)
     save(:validate => false)
     unless check_list.valid?
@@ -327,6 +330,7 @@ class Place < ActiveRecord::Base
         "creation of #{self}: " + 
         check_list.errors.full_messages.join(', ')
     end
+    true
   end
   
   # Update the associated place_geometry or create a new one
