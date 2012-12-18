@@ -51,16 +51,6 @@
       :multipart => true,
       :class => 'observationform') do %>
     
-    <% if @project && !member_of?(@project)%>
-      <div class="stacked">
-        <%= check_box_tag :accept_terms %>
-        <span class="notice"><%=t :agree_to_the_project_terms %> <%= link_to_function t(:view_terms), 
-          "$('#terms').dialog({modal: true, title: 'Project Terms', width: 600})", :class => "readmore" %></span>
-        <br />
-        <br />
-      </div>
-    <% end %>
-       
     <div class="clear">
       <% @observations.each_with_index do |observation, i| %>
         <%= render(:partial => 'form_fields', :locals => {
@@ -73,9 +63,11 @@
     <% if @welcome %>
       <% if current_user.email.blank? %>
         <div class="clear stacked notice">
-          <% fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
-            <%= fu.text_field :email, :label => "Email address for comments and other feedback", 
-              :description => "Add your email to get feedback on your observation from the community. If you'd rather not share it, please check back soon!",
+          <%= fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
+            <%= fu.label :email, 'Email address for comments and other feedback',
+              "data-tip" => "Add your email to get feedback on your observation from the community. If you'd rather not share it, please check back soon!"
+            %>
+            <%= fu.text_field :email, 
               :type => "email",
               :placeholder => "Your email address" %>
           <% end %>
@@ -83,18 +75,28 @@
       <% end %>
       <% if (@flickr_photo && @flickr_photo.copyrighted?) || @facebook_photo || @picasa_photo %>
         <div class="clear stacked notice">
-          <% fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
-            <%= fu.check_box :preferred_photo_license, {:checked => true}, Observation::CC_BY_NC,
+          <%= fields_for current_user, :builder => DefaultFormBuilder do |fu| %>
+            <%= fu.label :email, "Yes, license my photos so scientists can use my data!",
               :label_after => true,
-              :label => "Yes, license my photos so scientists can use my data!",
-              :description => 
-                "Check this box if you want apply a " + 
-                "<a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a> " +
-                "to your photos. You can choose a different license or remove the license later, but this is the best license " +
-                "for sharing with researchers." %>
+              "data-tip" => "Check this box if you want apply a " + 
+              "<a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a> " +
+              "to your photos. You can choose a different license or remove the license later, but this is the best license " +
+              "for sharing with researchers."
+            %>
+            <%= fu.check_box :preferred_photo_license, {:checked => true}, Observation::CC_BY_NC %>
           <% end %>
         </div>
       <% end %>
+    <% end %>
+    
+    <% if @project && !member_of?(@project)%>
+      <div class="stacked" id="accept_terms">
+        <%= check_box_tag :accept_terms %>
+        <span class="notice">Agree to the project terms <%= link_to_function "View terms", 
+          "$('#terms').dialog({modal: true, title: 'Project Terms', width: 600})", :class => "readmore" %></span>
+        <br />
+        <br />
+      </div>
     <% end %>
     
     <%= hidden_field_tag(:project_id, @project.id) if @project %>
