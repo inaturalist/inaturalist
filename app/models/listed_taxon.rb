@@ -489,7 +489,7 @@ class ListedTaxon < ActiveRecord::Base
     scope.find_each do |lt|
       lt.force_update_cache_columns = true
       lt.update_attributes(:taxon => taxon)
-      yield(record) if block_given?
+      yield(lt) if block_given?
     end
   end
   

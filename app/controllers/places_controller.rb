@@ -47,13 +47,20 @@ class PlacesController < ApplicationController
           q = (params[:q] || params[:term]).to_s.sanitize_encoding
           scope = scope.dbsearch(q)
         end
-        # render :json => Place.search((params[:q] || params[:term]).to_s)
         if !params[:place_type].blank?
           scope = scope.place_type(params[:place_type])
         elsif !params[:place_types].blank?
           scope = scope.place_types(params[:place_types])
         end
-        scope = scope.listing_taxon(params[:taxon]) unless params[:taxon].blank?
+        unless params[:taxon].blank?
+          if !params[:place_type].blank? && params[:place_type].downcase == 'continent'
+            country_scope = Place.place_types(['country']).listing_taxon(params[:taxon])
+            continent_ids = country_scope.select("ancestry").map(&:parent_id)
+            scope = scope.where("places.id IN (?)", continent_ids)
+          else
+            scope = scope.listing_taxon(params[:taxon])
+          end
+        end
         per_page = params[:per_page].to_i
         per_page = 200 if per_page > 200
         per_page = 30 if per_page < 1

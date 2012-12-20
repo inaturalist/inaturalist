@@ -346,10 +346,11 @@ with a script tag, e.g. <pre>&lt;script src="http://www.inaturalist.org/observat
         <dd>Type of place to retrieve</dd>
         <dd>
           <label>Allowed values:</label>
-          Undefined | Street Segment | Street | Intersection | Street | Town | State | County | Local Administrative Area | Country | Island | Airport | Drainage | Land Feature | Miscellaneous | Nationality | Supername | Point of Interest | Region | Colloquial | Zone | Historical State | Historical County | Continent | Estate | Historical Town | Aggregate | Open Space
+          Aggregate | Airport | Colloquial | Continent | Country | County | Drainage | Estate | Historical County | Historical State | Historical Town | Intersection | Island | Land Feature | Local Administrative Area | Miscellaneous | Nationality | Open Space | Point of Interest | Region | State | Street | Street | Street Segment | Supername | Town | Undefined | Zone
         </dd>
         <dt>taxon</dt>
-        <dd>Retrieve places with this taxon on their check lists. Can be specified as an ID or a name, though vernacular names may yield unpredictable results.</dd>
+        <dd>          Retrieve places with this taxon on their check lists. Can be specified as an ID or a name, though vernacular names may yield unpredictable results.
+          Note that this gets a bit weird for continents, since they don't have check lists: continents will not be returned *unless* place_type=continent.</dd>
         <dd>
           <label>Allowed values:</label>
           Taxon ID or name
