@@ -28,8 +28,8 @@ es:
   a_greasemonkey_script: un script de Greasemonkey
   able_to_connect_flickr: ¡Muy bienPudimos vincular su cuenta de Flickr.
   about: Acerca de
-  about_life!: Acerca de la vida!
   about_inaturalist: "Acerca de %{site_name}"
+  about_life!: Acerca de la vida!
   about_places: Acerca de Lugares
   about_the_cc_licenses: Acerca de las licencias de Creative Commons
   about_the_taxobox_raquo: "Acerca de la ficha de taxón &raquo;"
@@ -225,12 +225,15 @@ es:
   before_importing_photos: antes de importar fotos.
   bg_color: Color BG
   birds: aves
+  black: negro
   blog_widget: Widget del blog
+  blue: azul
   blue_icons_represent_political_units: Los íconos azules representan unidades políticas como países, estados, provincias, países y afines, mientras que los íconos verdes representan diferentes tipos de espacios abiertos pareques, reservas). Si hace un acercamiento, podrá ver más lugares pequeños.
   body: Cuerpo
   breadcrumbs:  Breadcrumbs
   breadcrumbs_description: Esto reemplazará al h1 y los ajustes por defecto de la acción, asegúrese de incluirlos si son importantes para este proyecto.
   brief_description_of_what_you_saw: Descripción breve de lo que vio
+  brown: marrón
   browse_all_projects: Buscar todos los proyectos
   browse_all_species: Examinar todas las especies
   browse_projects: Examinar proyectos
@@ -261,6 +264,7 @@ es:
   cc_used_under_a: Creative Commons, usada bajo una
   change_icon: Cambiar ícono
   change_password: Cambiar su contraseña
+  change_types: Cambiar tipos
   change_visibility_of: ¿Camibar la visibilidad de las coordenadas espaciales?
   change_your_password: Cambiar su contraseña
   check_here_to_autoload_description: Marque aquí para auto cargar la descripción desde Wikipedia. Podría querer desmarcarlo cuando el nombre científico de un taxón también es una palabra no científica o una falta de ortografía común, como "Parus".
@@ -272,7 +276,6 @@ es:
   check_lists_individual_taxa: 'Listas de verificación para taxones individuales que viven aquí, por ejemplo "Aves de %{place}".'
   check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_your_life_list: Revise su Lista de Vida
-  change_types: Cambiar tipos
   checklist: Lista de comprobación
   checklist_places: Lugares con lista de verificación
   checklist_places_absent: Lugares con lista de verificación (ausentes)
@@ -347,6 +350,7 @@ es:
   created_on: Creado el
   creating_your_account: Creando su cuenta...
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetadas en Flickr
+  critically_endangered: en peligro crítico
   css_description: Esto se incluirá después de todas las otras css en la página.
   curate_observations: Curar observaciones
   curate_taxa: Curar taxones
@@ -358,6 +362,7 @@ es:
   custom_project_fields: Campos de proyecto personalizados
   darr_apply_darr:  "&darr; Aplicar &darr;"
   dashboard: Cuadro de mandos
+  data_deficient: datos insuficientes
   data_quality_assessment: Evaluación de la calidad de datos
   datatype: Tipo de datos
   date_added: Fecha en que se agregó
@@ -439,6 +444,7 @@ es:
   embed_place_widget: integrar widget de lugar
   embed_widget_project: Insertar un widget para este proyecto en su página web
   end: Final
+  endangered: en peligro
   establishment_means: Medio de establecimiento
   establishment_means_describes_how: 'El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más información en terminología</a>.'
   everyone_journal_posts: Articulos en todos los diarios
@@ -450,6 +456,8 @@ es:
   explore_everyones_observations: Explore las observaciones de todos
   extinct:  EXTINTO
   extinct: EXTINTO
+  extinct: extinto
+  extinct_in_the_wild: extint en estado silvestre
   extras: Extras
   facebook_account_information: Información de su cuenta de Facebook
   facebook_confirmation: Facebook desea confirmar que usted desea conectar su cuenta a %{site_name}.
@@ -533,6 +541,9 @@ es:
   graft: Injertar
   grafting: Injertando...
   grafting_attemps_to_insert_this_taxon: Al injertar se trata de insertar este taxón en nuestro árbol taxonómico, encontrar un taxón padre existente o crear todos los taxones necesarios en el medio con el fin de adjuntarlo a un taxón de más alto nivel existente.
+  gray: gris
+  green: verde
+  grey: gris
   grid: Cuadrícula
   guess_description: Estimación / Descripción
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
@@ -622,6 +633,7 @@ es:
   it_has: Tiene
   it_instead: en vez de eso.
   its_important_that_you: Es importante que haga click
+  iucn_red_list_status: Lista Roja de la UICN estado
   january: Enero
   join_and: "Únase y"
   join_inat: "¡Únete a %{site_name}!"
@@ -646,6 +658,7 @@ es:
   learn_more: Aprenda más
   learn_more_raquo: "Saber más &raquo;"
   learn_what_these_licenses_mean: Aprenda lo que estas licencias significan
+  least_concern: preocupación menor
   leave_a_comment: Dejar un comentario
   leave_this_project: Salir de este proyecto
   license_descriptions_and_images: Descripción de las licenciaas y sus respectivas imágenes 
@@ -660,10 +673,10 @@ es:
   link_or_unlink_your_facebook_account: Vincular o desvincular su cuenta de Facebook
   link_or_unlink_your_flickr_account: Vincular o desvincular su cuenta de Flickr
   link_or_unlink_your_picasa_account: Vincular o desvincular su cuenta de Picasa
-  link_your_flickr_account_with_inat_so: "Vincule su cuenta de Flickr con %{site_name} para poder agregar fotos de sus observaciones."
   link_your_facebook_account: Vincule su cuenta de Facebook
   link_your_flickr_account: Vincule su cuenta de Flickr
   link_your_flickr_account_with_inat: "Vincule su cuenta de Flickr con %{site_name}"
+  link_your_flickr_account_with_inat_so: "Vincule su cuenta de Flickr con %{site_name} para poder agregar fotos de sus observaciones."
   link_your_picasa_account: Vincule su cuenta de Picasa
   linked_facebook: "Su cuenta de %{site_name} está actualmente ligada con su cuenta de Facebook."
   linked_facebook_automatically: "Tome en cuenta también que si usted ingresa a %{site_name} a través de Facebook, automáticamente volveremos a vincular sus cuentas de %{site_name} y Facebook. Nos parece razonable que si usted utiliza Facebook desea poder importar sus fotos de Facebook, ¿verdad?"
@@ -674,8 +687,8 @@ es:
   linked_flickr_automaticaly: "Tome en cuenta también que si ingresa a %{site_name} a treavés de Flickr, automáticamente volveremos a vincular sus cuentas de %{site_name} y Flickr. Parece razonable que si usted usa Flickr deseará poder importar fotos de Flickr, ¿verdad?"
   linked_flickr_description: "Mantener su cuenta de %{site_name} vinculada con su cuenta de Flickr le permite agregar varias fotos a sus observaciones. Por supuesto, si alguna vez desea desvincular sus cuentas de %{site_name} y Flickr, no le detendremos, solamente no podrá agregar fotos. A veces esto es lo mejor, como cuando crea una cuente nueva de Flickr que desea vincular con %{site_name}."
   linked_flickr_hotwo:  "Puede activar su cuenta de Flickr con %{site_name} para agregar fotos al hacer clic en este vínculo."
-  linked_flickr_password_html:  "<strong>Nunca le pediremos su contraseña de Flickr</strong> (pero Flickr podría pedírselo, verifique que la dirección a la que el botón le envía sea Flickr.com)."
   linked_flickr_password: "Nunca le pediremos su contraseña con Flickr (pero Flickr podría pedírsela; revise la dirección a la que el botón le dirige y asegúrese de que es Flickr.com). Tampoco cambiaremos sus datos de Flickr a menos que usted quiera. ¡Somos de los buenos!"
+  linked_flickr_password_html:  "<strong>Nunca le pediremos su contraseña de Flickr</strong> (pero Flickr podría pedírselo, verifique que la dirección a la que el botón le envía sea Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>Nunca guardaremos copias de sus fotos o cambiaremos sus datos de Flickr (a menos que usted nos lo pida).</strong> ¡Nos importan mucho las aves, insectos y babosas para querer meternos con su información!"
   list: Lista
   listed_taxon: Taxón listado
@@ -692,7 +705,7 @@ es:
   load: Cargar
   loading: Cargando...
   loading_flikr_photos: Cargando fotos de Flickr...
-  loading_full_description: "Cargando la descripción completa... No hay un artículo ni una redirección en Wikipedia titulado <i>%{taxon}</i>. Talvez podría:"
+  loading_full_description_html: "Cargando la descripción completa... No hay un artículo ni una redirección en Wikipedia titulado <i>%{taxon}</i>. Talvez podría:"
   loading_more_photos: Cargando más fotos...
   loading_observations: Cargando observaciones...
   loading_tags: Cargando etiquetas...
@@ -717,7 +730,7 @@ es:
   make_curator: Hacer curador
   make_it_a_life_list?: ¿Hacer una lista de vida?
   make_new_place: Hacer un lugar nuevo
-  make_one: ¿hacer uno?
+  make_one: ¿Hacer uno?
   make_sure_the_default_photo_looks_good: Asegúrese de que la foto por defecto se vea bien en tamaño grande.
   make_taxonomic_flickr_tags_for_taxon_raquo: "Hacer etiquetas taxonómicas de Flickr para este taxón &raquo;"
   make_this_your_default_license: "Hacer ésta %{type} su licencia por defecto"
@@ -746,11 +759,11 @@ es:
   more_observations: Más observaciones
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
+  n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas concuerdan"
   n_people_disagrees: "%{amount} personas no concuerdan "
   n_person_agrees: "%{amount} persona concuerda"
   n_person_disagrees: "%{amount} persona no concuerda"
-  n_ago: "hace %{n}"
   name: Nombre
   name_entered: Nombre ingresado
   name_keys:  "[NOMBRE]"
@@ -759,6 +772,7 @@ es:
   names: Nombres
   nav:  Nav
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  near_threatened: casi amenazado
   nearby_observations: Observaciones cercanas
   need_id_help?: ¿Necesita ayuda con la identificación?
   new_announcement: Nuevo anuncio
@@ -832,6 +846,7 @@ es:
   no_wikipedia_page_for_taxon: No hay página en Wikipedia para este taxón. 
   none: Ninguno
   none_of_the_people_you_follow_have_updates: ¡Ninguna de las personas que usted sigue ha hecho actualizaciones todavía!
+  not_evaluated: no evaluado
   not_findig_what_you_want: ¿No encuentra lo que desea?
   not_finding_play_you_want?: ¿No encuentra el lugar que quiere?
   not_finding_what_looking_for: ¿No encuentra lo que está buscando?
@@ -914,6 +929,7 @@ es:
   or_just_adding_species_using: o solamente agregando especies usando el formulario en esta página.
   or_post_message_to_google_group: o envíe un mensaje a nuestro Grupo en Google
   or_you_can: O usted puede...
+  orange: naranja
   order: Orden
   order_by: Ordenar por
   other_animals: otros animales
@@ -947,6 +963,7 @@ es:
   Phylum: Filo
   picasa_identity: Identidad de Picasa
   pick_a_username: Elegir nombre de usuario
+  pink: rosa
   place: Lugar
   place_added_to_inat_by: "Lugar agregado a %{site_name} por"
   place_guess: Estimación de lugar
@@ -1000,6 +1017,7 @@ es:
   provider_authorizations: Autorizaciones de proveedores
   public_coordinates_obscured_by: "Coordenadas públicas ocultas por %{distance}KM"
   publish: Publicar
+  purple: púrpura
   quality_grade: Grado de calidad
   quality_grade_colon: "Grado de calidad:" 
   range: Rango
@@ -1021,6 +1039,7 @@ es:
   recently_observed: Observados recientemente
   recently_resolved: Resueltos recientemente
   record!: ¡Comparta!
+  red: rojo
   redo_search_in_map_area: Rehacer la búsqueda tomando en cuenta solo el área mostrada por el mapa
   refresh: Refrescar
   regenerate_url: Regenerar URL
@@ -1058,8 +1077,8 @@ es:
   rules_amp_formating: "Reglas &amp; Formato"
   rules_for_adding_observations: Reglas para agregar observaciones
   rules_for_becoming_a_member: Reglas para ser miembro
-  sat: sáb
   Sat: Sap
+  sat: sáb
   save: Guardar
   save_all: Guardar todo
   save_and_add_another: Guardar y agregar otro
@@ -1107,10 +1126,10 @@ es:
   select_photos_from_your_photo_stream: "Seleccionar fotos de Photostream para convertirlas en observaciones en %{site_name}. Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas."
   selected_taxon: Taxón seleccionado
   send: enviada(s)
-  sending: Enviando...
   send_invite: Enviar invitación
   send_invites_to: Enviar invitaciones a
   send_the_invites: Enviar las invitaciones
+  sending: Enviando...
   separate_values_with_a_pipe: Valores separados por barras, por ejemplo "1-5|6-10|muchos" o "sí|no|tal vez"
   september: Septiembre
   set_license: Fijar licencia
@@ -1337,12 +1356,12 @@ es:
   Variety: Variedad
   view: Ver
   view_all: Ver todo
-  view_all_n: "Ver todas las %{n}"
   view_all_members: Ver todos los miembros
+  view_all_n: "Ver todas las %{n}"
   view_all_observations: "Ver todo %{observation}"
   view_all_observations: Ver todas las observaciones
   view_all_photocount_photos: "Ver todas las %{photo_count} fotos"
-  view_all_photos_tagged_taxon: "Ver todas las fotos etiquetadas %{taxon} en <nobr>Flickr &raquo;</nobr>"
+  view_all_photos_tagged_taxon_html: "Ver todas las fotos etiquetadas %{taxon} en <nobr>Flickr &raquo;</nobr>"
   view_all_your_projects: Ver todos sus proyectos
   view_check_list_page: Ver página de lista de verificación
   view_details: Ver detalles
@@ -1376,6 +1395,7 @@ es:
   view_x_from_x: "Ver %{day_observations} de %{observed_on}"
   view_your_life_lists: Ver su lista de vida
   view_your_observations: Ver sus observaciones
+  vulnerable: vulnerable
   w00t_no_unfragted_taxa: ¡Hurra¡No hay taxones sin injertar!
   w_photos_only: con fotos solamente
   wait_file_generation: Por favor espere mientras se genera el archivo. Puede tomar algunos minutos para listas grandes.
@@ -1412,6 +1432,7 @@ es:
   where: Donde
   where_did_you_see_it: ¿Dónde lo vio?
   where_were_you?: ¿Dónde estaba usted?
+  white: blanco
   widget: Widget
   widget_code: Código de widget
   wikipedia_entry: Registro de Wikipedia
@@ -1429,6 +1450,7 @@ es:
   x_journal_middot: "Diario de %{user} &middot;"
   x_journal_new_post: "Diario de %{user} &middot; Nuevo ingreso"
   year: Año
+  yellow: amarillo
   yes: sí
   yes_find_them!: ¡Sí, encuéntrelas!
   yes_i_want_to_join: Sí, deseo unirme
@@ -1496,3 +1518,5 @@ es:
   youve_seen_it_want_to:  ¡Lo ha visto¿Desea
   zoom_to_taxon_name: "Acercar a %{taxonname}"
   zoom_to_x: "Ir a %{x}"
+  you_sure_delete_taxon_from_list?: "¿Está seguro que desea eliminar %{taxon} de esta lista?"
+

@@ -125,10 +125,13 @@ class TaxonName < ActiveRecord::Base
     
     language_name = language_for_locale || 'english'
     locale_names = common_names.select {|n| n.lexicon.to_s.downcase == language_name}
+    engnames = common_names.select {|n| n.is_english?}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
     
     if locale_names.length > 0
       locale_names.first
+    elsif engnames.length > 0
+      engnames.first
     elsif unknames.length > 0
       unknames.first
     else

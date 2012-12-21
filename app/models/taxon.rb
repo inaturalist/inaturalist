@@ -741,7 +741,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def set_wikipedia_summary
-    w = WikipediaService.new
+    w = WikipediaService.new(:locale => 'en')
     summary = query_results = parsed = nil
     begin
       query_results = w.query(

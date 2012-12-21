@@ -35,7 +35,7 @@
       <div>
         <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-          <%= t(:view_all_photos_tagged_taxon, :taxon =>h(taxon.name) ) %>
+          <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
           <nobr>Flickr &raquo;</nobr>
         </a>
       </div>
@@ -73,7 +73,7 @@
     <div class="description">
       <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
       <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-        <%= t(:view_all_photos_tagged_taxon, :taxon =>h(taxon.name) ) %>
+        <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
       </a>
     </div>
   <% end %>

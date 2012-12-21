@@ -31,7 +31,7 @@
       <% if taxon.threatened? -%>
         <div class="blob conservation_status <%= taxon.conservation_status_name %>"
             title="<%= taxon.conservation_status_name %>" 
-            data-tip="<%=t :iucn_red_list_status %> <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"
+            data-tip="<%=t :iucn_red_list_status %>: <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"
             data-tip-style-classes="ui-tooltip-<%= taxon.conservation_status_name %> ui-tooltip-shadow"
             data-tip-position-at="bottom center">
           <strong><%= taxon.conservation_status_code %></strong>

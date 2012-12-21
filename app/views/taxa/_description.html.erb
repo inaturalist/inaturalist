@@ -22,12 +22,12 @@
     <div id="wikipedia_description">
       <p>
         <%= @taxon.wikipedia_summary.html_safe unless @taxon.wikipedia_summary.blank? || @taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/) %>
-        <span id="description_loading_status" class="loading status" style="display:none"><%=t :loading_full_description %></span>
+        <span id="description_loading_status" class="loading status" style="display:none"><%=t :loading_full_description_html, :taxon => @taxon.name %></span>
       </p>
     </div>
     <div id="nodescription" style="display: none">
-      <h3 class='description noresults'><%= t(:there_isnt_wikipedia_article_perhaps, :taxon => "#{@taxon.name}") %>
-      <a href='http://en.wikipedia.org/wiki/<%= @taxon.name %>'><%= t(:make_one) %></a>?</h3>
+      <h3 class='description noresults'><%= t(:there_isnt_wikipedia_article_perhaps, :taxon => @taxon.name) %>
+      <a href='http://en.wikipedia.org/wiki/<%= @taxon.name %>'><%= t(:make_one) %></a></h3>
     </div>
   <% end %>
 </div>

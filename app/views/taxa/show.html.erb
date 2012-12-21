@@ -650,7 +650,7 @@
       </h3>
       <% if @colors.blank?-%>
         <div class="description">
-          %= t(:no_colors_selected) %>.
+          <%= t(:no_colors_selected) %>.
         </div>
       <% end -%>
       <div id="colorboxen">
@@ -674,7 +674,7 @@
                     :id => "color_ids_#{color.value}",
                     :class => 'checkbox',
                     :alt => color.value %>
-                  <%= label :color_ids, color.value %>
+                  <%= label :color_ids, t(color.value) %>
                 </div>
               <% end %>
               <%= hidden_field_tag "taxon[color_ids][]", '' %>
