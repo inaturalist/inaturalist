@@ -323,7 +323,7 @@ class Place < ActiveRecord::Base
   # Create a CheckList associated with this place
   def check_default_check_list
     if place_type == PLACE_TYPE_CODES['Continent']
-      prefers_check_lists = false
+      self.prefers_check_lists = false
     end
     if prefers_check_lists && check_list.blank?
       self.create_check_list(:place => self)
