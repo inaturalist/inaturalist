@@ -15,6 +15,7 @@ class ListRule < ActiveRecord::Base
   # Tests whether a taxon passes this rule or not.
   #
   def validates?(taxon)
+    return false if taxon.blank?
     taxon.send(self.operator, self.operand)
   rescue ArgumentError => e
     raise e unless e.message =~ /wrong number of arguments/

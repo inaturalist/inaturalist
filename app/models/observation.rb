@@ -76,6 +76,42 @@ class Observation < ActiveRecord::Base
     const_set code.gsub(/\-/, '_'), code
   end
   PREFERRED_LICENSES = [CC_BY, CC_BY_NC]
+  CSV_COLUMNS = [
+    "id", 
+    "species_guess",
+    "scientific_name", 
+    "common_name", 
+    "iconic_taxon_name",
+    "taxon_id",
+    "id_please",
+    "num_identification_agreements",
+    "num_identification_disagreements",
+    "observed_on_string",
+    "observed_on", 
+    "time_observed_at",
+    "time_zone",
+    "place_guess",
+    "latitude", 
+    "longitude",
+    "positional_accuracy",
+    "private_latitude",
+    "private_longitude",
+    "private_positional_accuracy",
+    "geoprivacy",
+    "positioning_method",
+    "positioning_device",
+    "out_of_range",
+    "user_id", 
+    "user_login",
+    "created_at",
+    "updated_at",
+    "quality_grade",
+    "license",
+    "url", 
+    "image_url", 
+    "tag_list",
+    "description",
+  ]
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -1492,6 +1528,34 @@ class Observation < ActiveRecord::Base
       Identification.create(:user => observation.user, :observation => observation, :taxon => taxon, :taxon_change => taxon_change)
       yield(observation) if block_given?
     end
+  end
+
+  def self.generate_csv_for(record, options = {})
+    fname = options[:fname] || "#{record.to_param}-observations.csv"
+    fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
+    tmp_path = File.join(Dir::tmpdir, fname)
+    FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
+
+    columns = CSV_COLUMNS
+    if record.is_a?(User) && record != options[:user]
+      columns = columns.select{|c| c !~ /^private_/} unless record == options[:user]
+    end
+    columns -= %w(user_id user_login) if record.is_a?(User)
+    CSV.open(tmp_path, 'w') do |csv|
+      csv << columns
+      record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
+        csv << columns.map{|c| observation.send(c)}
+      end
+    end
+    FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
+    if tmp_path != fpath
+      FileUtils.mv tmp_path, fpath
+    end
+    fpath
+  end
+
+  def self.generate_csv_for_cache_key(record, options = {})
+    "#{record.class.name.underscore}_#{record.id}"
   end
   
 end

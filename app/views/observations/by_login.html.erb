@@ -381,8 +381,11 @@
 
 <div class="last column span-24">
   <div id="feeds" class="small ui description">
-    <% if logged_in? && current_user.id == @selected_user.id -%>
-      <%= link_to t(:widget), observations_widget_path %> |
+    <% if is_me?(@selected_user) -%>
+      <span>
+        Embed:
+        <%= link_to t(:widget), observations_widget_path %>
+      </span>
     <% end -%>
     
     <span class="feeds">
@@ -396,10 +399,21 @@
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params),     :class => 'atomlink', :rel => "nofollow") %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params),  :class => 'kmllink', :rel => "nofollow") %>
-      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params),      :class => 'csvlink', :rel => "nofollow") %>
-      
+      <%= link_to("Atom", observations_by_login_feed_path(@login, :format => 'atom', :params => feed_params),
+        :class => 'atomlink', :rel => "nofollow") %>
+      <%= link_to("KML",  observations_by_login_feed_path(@login, :format => 'kml', :params => kml_feed_params),
+        :class => 'kmllink', :rel => "nofollow") %>
     </span>
+
+    <% if is_me?(@selected_user) -%>
+      <span class="feeds">
+        Downlowd:
+        <%= link_to "CSV", observations_by_login_all_url(@login, :format => 'csv'), 
+          :class => "delayedlink csvlink", 
+          "data-delayed-link-msg" => 
+            "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",
+          :rel => "nofollow" %>
+      </span>
+    <% end -%>
   </div>
 </div>
