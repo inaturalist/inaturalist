@@ -72,6 +72,13 @@
           <a href="<%= observation_url(listed_taxon.last_observation) %>">
             <%= one_line_observation listed_taxon.last_observation, :skip => %w(user taxon) %>
           </a>
+          <% if list.is_a?(CheckList) -%>
+            <span class="button"><%= link_to "(View all)", observations_url(:place_id => list.place_id, :taxon_id => listed_taxon.taxon_id) %></span>
+          <% elsif list.is_a?(ProjectList) %>
+            <span class="button"><%= link_to "(View all)", project_observations_url(list.project_id, :taxon_id => listed_taxon.taxon_id) %></span>
+          <% elsif list.user %>
+            <span class="button"><%= link_to "(View all)", observations_by_login_url(list.user.login, :taxon_id => listed_taxon.taxon_id) %></span>
+          <% end -%>
         </span>
         |
       <% end %>
