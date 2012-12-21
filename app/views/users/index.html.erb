@@ -44,7 +44,7 @@
   </div>
   
   <div id="activecol" class="last column span-6">
-    <% cache "recently_active", :expires_in => 5.minutes, :action_suffix => "#{SITE_NAME_SHORT}_#{I18n.locale}" do %>
+    <% cache "recently_active_#{SITE_NAME_SHORT}_#{I18n.locale}", :expires_in => 5.minutes do %>
       <div id="active" class="box">
         <h2><%= t(:recently_active) %></h2>
         <% if @updates.blank? -%>
