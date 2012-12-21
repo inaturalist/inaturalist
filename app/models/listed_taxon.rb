@@ -189,7 +189,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def list_rules_pass
     # don't bother if validates_presence_of(:taxon) has already failed
-    if !errors.include?(:taxon)
+    if !errors.include?(:taxon) && taxon
       list.rules.each do |rule|
         errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
       end
