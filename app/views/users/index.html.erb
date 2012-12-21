@@ -44,9 +44,9 @@
   </div>
   
   <div id="activecol" class="last column span-6">
-    <% cache "recently_active", :expires_in => 5.minutes do %>
+    <% cache "recently_active", :expires_in => 5.minutes, :action_suffix => "#{SITE_NAME_SHORT}_#{I18n.locale}" do %>
       <div id="active" class="box">
-        <h2><%= t(:recentlt_active) %></h2>
+        <h2><%= t(:recently_active) %></h2>
         <% if @updates.blank? -%>
           <div class="meta">
             <%= t(:no_recent_activity) %>
@@ -67,7 +67,7 @@
                 <%- case update.class.name -%>
                 <%- when 'Observation' %>
                   added an
-                  <%= link_to t(:observation), update %> of
+                  <%= link_to t(:observation).downcase, update %> of
                   <% if update.taxon -%>
                     <%= update.species_guess =~ /^[aeiou]/i ? 'an' : 'a' %>
                     <%= link_to update.species_guess, update.taxon %>
@@ -77,11 +77,11 @@
                 <%- when 'Identification' %>
                   added an <strong>ID</strong>
                   to an
-                  <%= link_to t(:observation), update.observation %>
+                  <%= link_to t(:observation).downcase, update.observation %>
                   by 
                   <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
                 <%- when 'Post' %>
-                  made a <%= link_to t(:journal_post), journal_post_path(update.user.login, update) %>
+                  made a <%= link_to t(:journal_post).downcase, journal_post_path(update.user.login, update) %>
                 <%- when 'Comment' %>
                   <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
                   <strong>commented</strong> on
