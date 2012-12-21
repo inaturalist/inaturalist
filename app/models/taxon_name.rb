@@ -123,15 +123,27 @@ class TaxonName < ActiveRecord::Base
     return nil if common_names.blank?
     common_names = common_names.sort_by(&:id)
     
-    engnames = common_names.select {|n| n.is_english?}
+    language_name = language_for_locale || 'english'
+    locale_names = common_names.select {|n| n.lexicon.to_s.downcase == language_name}
     unknames = common_names.select {|n| n.lexicon == 'unspecified'}
     
-    if engnames.length > 0
-      engnames.first
+    if locale_names.length > 0
+      locale_names.first
     elsif unknames.length > 0
       unknames.first
     else
       common_names.first
+    end
+  end
+
+  def self.language_for_locale(locale = nil)
+    locale ||= I18n.locale
+    lang_code = locale.to_s.split('-').first.downcase
+    case lang_code
+    when 'es' then return 'spanish'
+    when 'fr' then return 'french'
+    else
+      return 'english'
     end
   end
   
