@@ -4,6 +4,7 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   
   def after_create(observation)
     expire_taxon_caches_for_observation(observation)
+    expire_page observations_by_login_all_path(observation.user.login, :format => 'csv')
     true
   end
   
@@ -11,6 +12,7 @@ class ObservationSweeper < ActionController::Caching::Sweeper
     expire_observation_components(observation)
     expire_taxon_caches_for_observation(observation)
     observation.listed_taxa.each {|lt| expire_listed_taxon(lt) }
+    expire_page observations_by_login_all_path(observation.user.login, :format => 'csv')
     true
   end
   
@@ -18,6 +20,7 @@ class ObservationSweeper < ActionController::Caching::Sweeper
     expire_observation_components(observation)
     expire_taxon_caches_for_observation(observation)
     observation.listed_taxa.each {|lt| expire_listed_taxon(lt) }
+    expire_page observations_by_login_all_path(observation.user.login, :format => 'csv')
     true
   end 
   

@@ -96,6 +96,7 @@ Inaturalist::Application.routes.draw do
   match 'observations/:id/edit_photos' => 'observations#edit_photos', :as => :edit_observation_photos
   match 'observations/:id/update_photos' => 'observations#update_photos', :as => :update_observation_photos, :via => :post
   match 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
+  match 'observations/:login.all' => 'observations#by_login_all', :as => :observations_by_login_all, :constraints => { :login => simplified_login_regex }
   match 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }, :via => :get
   match 'observations/project/:id' => 'observations#project', :as => :project_observations

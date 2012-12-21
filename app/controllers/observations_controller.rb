@@ -1,6 +1,7 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
   caches_page :tile_points
+  caches_page :by_login_all, :if => Proc.new {|c| c.request.format == :csv}
   
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :index, :by_login, :project,
@@ -24,7 +25,7 @@ class ObservationsController < ApplicationController
     by_login
   end
   
-  before_filter :load_user_by_login, :only => [:by_login]
+  before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :authenticate_user!, 
                 :except => [:explore,
                             :index,
@@ -1017,6 +1018,28 @@ class ObservationsController < ApplicationController
         end
       end
       
+    end
+  end
+
+  def by_login_all
+    path_for_csv = "public/observations/#{@selected_user.login}.all.csv"
+    if @selected_user.observations.count < 1000
+      Observation.generate_csv_for(@selected_user, :path => path_for_csv)
+      render :file => path
+    else
+      cache_key = Observation.generate_csv_for_cache_key(@selected_user)
+      job_id = Rails.cache.read(cache_key)
+      job = Delayed::Job.find_by_id(job_id)
+      if job
+        # Still working
+      else
+        # no job id, no job, let's get this party started
+        Rails.cache.delete(cache_key)
+        job = Observation.delay.generate_csv_for(@selected_user, :path => path_for_csv, :user => current_user)
+        Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
+      end
+      prevent_caching
+      render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
     end
   end
   
