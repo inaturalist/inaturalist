@@ -129,6 +129,7 @@ class TaxaController < ApplicationController
           return redirect_to(:action => 'index')
         end
         
+        @wikipedia = WikipediaService.new
         @amphibiaweb = amphibiaweb_description?
         @try_amphibiaweb = try_amphibiaweb?
         

@@ -8,10 +8,10 @@
           <option value="wikipedia" <%= 'selected' if !@amphibiaweb %>>Wikipedia</option>
         </select>
       </form>
-      <a href="http://en.wikipedia.org/wiki/<%= @taxon.name %>" class="ui wikipedia externallink"><%= t(:view_on_wikipedia) %> &rarr;</a>
+      <a href="<%= @wikipedia.url_for_title(@taxon.name) %>" class="ui wikipedia externallink"><%= t(:view_on_wikipedia) %> &rarr;</a>
       <a href="http://amphibiaweb.org/cgi-bin/amphib_query?where-scientific_name=<%= @taxon.name.split[0] %>+<%= @taxon.name.split[1] %>" class="ui amphibiaweb externallink"><%= t(:view_on_amphibiaweb) %> &rarr;</a>
     <% else %>
-      <a href="http://en.wikipedia.org/wiki/<%= @taxon.name %>">Wikipedia</a>
+      <a href="<%= @wikipedia.url_for_title(@taxon.name) %>">Wikipedia</a>
     <% end -%>
   </h3>
   <% unless @taxon.auto_description? %>
@@ -27,7 +27,9 @@
     </div>
     <div id="nodescription" style="display: none">
       <h3 class='description noresults'><%= t(:there_isnt_wikipedia_article_perhaps, :taxon => @taxon.name) %>
-      <a href='http://en.wikipedia.org/wiki/<%= @taxon.name %>'><%= t(:make_one) %></a></h3>
+      <% if @wikipedia -%>
+        <a href="<%= @wikipedia.url_for_title(@taxon.name) %>"><%= t(:make_one) %></a></h3>
+      <% end -%>
     </div>
   <% end %>
 </div>

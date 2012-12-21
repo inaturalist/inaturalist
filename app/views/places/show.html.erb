@@ -61,7 +61,7 @@
     <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
         <%= ancestor.name %>
-        <span class="small description">(<%= ancestor.place_type_name %>)</span>
+        <span class="small description">(<%=t ancestor.place_type_name %>)</span>
       <%- end -%>
       <%= link_to link_txt, ancestor, :class => 'crumb' %>
       <span class="description">&gt;</span>
@@ -70,23 +70,23 @@
   <div id="map" style="width: 100%; height: 100px"></div>
   <h2>
     <%= link_to h(@place.display_name), @place %>
-    <span class="small description"><%= @place.place_type_name %></span>
+    <span class="small description"><%=t @place.place_type_name %></span>
   </h2>
   <div id="placephotos"></div>
 </div>
 
 <div id="maintabs">
   <div id="metalinks" class="meta right">
-    <%= link_to "embed place widget", place_widget_path(@place), :rel => "nofollow" %>
+    <%= link_to t(:embed_place_widget), place_widget_path(@place), :rel => "nofollow" %>
     <% if @place.editable_by?(current_user) -%>
       |
-      <%= link_to "edit place", edit_place_path(@place), :rel => "nofollow" %>
+      <%= link_to t(:edit_place), edit_place_path(@place), :rel => "nofollow" %>
     <% end -%>
   </div>
   <ul>
-    <li><a href="#guidetab"><span>Species Guide</span></a></li>
-    <li><a href="#observationstab"><span>Observations</span></a></li>
-    <li><a href="#abouttab"><span>About <%= @place.name %></span></a></li>
+    <li><a href="#guidetab"><span><%=t :species_guide %></span></a></li>
+    <li><a href="#observationstab"><span><%=t :observations %></span></a></li>
+    <li><a href="#abouttab"><span><%=t :about_x, :x => @place.name %></span></a></li>
   </ul>
   
   <div id="guidetab">
@@ -144,7 +144,7 @@
         </div>
       </div>
       
-      <%- wikipedia_url = "http://en.wikipedia.org/wiki/#{@place.wikipedia_name}" -%>
+      <%- wikipedia_url = @wikipedia.url_for_title(@place.wikipedia_name) -%>
       <div class="last column span-15">
         <h3><%= link_to "Wikipedia", wikipedia_url %> <%= t(:desription) %></h3>
         <div class="wikipedia_description">
