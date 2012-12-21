@@ -353,7 +353,7 @@ module ApplicationHelper
       txt += if o.observed_on.blank?
         "in the past "
       else
-        "on #{o.observed_on.to_s(:long)} "
+        "on #{o.observed_on.strftime("%d %b %Y")} "
       end
     end
     unless skip.include?(:place_guess)
