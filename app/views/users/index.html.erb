@@ -2,28 +2,28 @@
   <%= t(:people) %>
 <% end %>
 <% content_for(:extracss) do %>
-<style type="text/css" media="screen">
-  table {width: 100%;}
-  td .usericon{vertical-align:middle;}
-  td{vertical-align:middle;}
-  td .description{display:block;}
-  #active .usericon{float:left;}
-  #active .attr{display:block;padding-left:58px;color:#888;}
-  #active .attr strong{font-weight:normal;color:#333;}
-  #active .attr.login{font-size:120%;}
-  #active .user{border-bottom:1px solid #ddd;padding-bottom:1em;margin-bottom:1em;}
-  #letter_nav{font-size:100%;margin-bottom:1em;text-align:left;}
-  #invite{float:right;}
-  #invite .button{margin-right:0;}
-</style>
+  <style type="text/css" media="screen">
+    #most_observations h3, #most_species h3, #most_identifications h3 {margin-bottom:0;}
+  </style>
+  <%= stylesheet_link_tag 'users' %>
 <% end %>
+<%- content_for(:extrajs) do -%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.userimagelink').imagesLoaded(function() {
+        $('.userimage', this).centerInContainer()
+      })
+      $('abbr.timeago').timeago()
+    })
+  </script>
+<%- end -%>
 <div class="container">  
   <div id="pageheader" class="column span-24">
     <% if logged_in? -%>
       <div class="right inline smallbuttons buttonrow">
         <%= link_to t(:invite_someone_to, :name => SITE_NAME_SHORT), emailer_invite_path, :class => "inter" %>
         <span class="meta inter">or</span>
-        <%= form_tag(people_path, :method => :get, :class => "last") do %>
+        <%= form_tag(search_people_path, :method => :get, :class => "last") do %>
           <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email), :style => "width: 150px;" %>
           <%= submit_tag t(:search), :class => 'last default button' %>
         <% end %>
@@ -31,76 +31,154 @@
     <% end -%>
     <h2><%= t(:the_people_of_inat, :site_name => SITE_NAME) %></h2>
   </div>
-  
-  <div class="column span-17 append-1">
-    <div id="letter_nav" class="pagination">
-      <%= link_to "All", url_for(), :class => "#{'current' unless @letter}" %>
-      <%- for letter in @alphabet -%>
-        <%- css_class = "#{'current' if letter == @letter}" -%>
-        <%= link_to letter.upcase, url_for(:letter => letter), :class => css_class -%>
-      <%- end -%>
-    </div>
-    <%= render :partial => 'table' %>
-  </div>
-  
-  <div id="activecol" class="last column span-6">
-    <% cache "recently_active_#{SITE_NAME_SHORT}_#{I18n.locale}", :expires_in => 5.minutes do %>
-      <div id="active" class="box">
-        <h2><%= t(:recently_active) %></h2>
-        <% if @updates.blank? -%>
-          <div class="meta">
-            <%= t(:no_recent_activity) %>
-          </div>
-        <% else %>
-          <% for user, updates in @updates %>
-            <%- next unless user -%>
-            <div class="clear readable user">
-              <%= link_to(
-                image_tag(user.icon.url(:thumb), :class => 'usericon'),
-                observations_by_login_path(user.login)) %>
-              <span class="login attr">
-                <%= link_to char_wrap(h(user.login), 16), observations_by_login_path(user.login) %>
-              </span>
 
-              <span class="update attr">
-                <%- update = updates.first -%>
-                <%- case update.class.name -%>
-                <%- when 'Observation' %>
-                  added an
-                  <%= link_to t(:observation).downcase, update %> of
-                  <% if update.taxon -%>
-                    <%= update.species_guess =~ /^[aeiou]/i ? 'an' : 'a' %>
-                    <%= link_to update.species_guess, update.taxon %>
-                  <% else %>
-                    something
-                  <% end -%>
-                <%- when 'Identification' %>
-                  added an <strong>ID</strong>
-                  to an
-                  <%= link_to t(:observation).downcase, update.observation %>
-                  by 
-                  <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
-                <%- when 'Post' %>
-                  made a <%= link_to t(:journal_post).downcase, journal_post_path(update.user.login, update) %>
-                <%- when 'Comment' %>
-                  <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
-                  <strong>commented</strong> on
-                  <%= class_name =~ /^[aeiou]/i ? 'an' : 'a' %>
-                  <% if update.parent.is_a? Post -%>
-                    <%= link_to class_name, journal_post_path(update.parent.user.login, update.parent) %>
-                  <% else %>
-                    <%= link_to class_name, update.parent %>
-                  <% end -%>
-                  <% if update.parent.user -%>
-                    by <%= link_to char_wrap(h(update.parent.user.login), 18), observations_by_login_path(update.parent.user.login) %>
-                  <% end -%>
-                <% end %>
-                on <%= update.created_at.to_s(:long) %>
-              </span>
+  <div id="recent" class="column span-24 stacked">
+    <% cache "recently_active", :expires_in => 5.minutes do %>
+      <h3>
+        <span class="right meta ui small">
+          Updated
+          <abbr class="date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>
+        </span>
+        Recently Active
+      </h3>
+      <% if @updates.blank? %>
+        <div class="noresults meta">No recent activity</div>
+      <% else %>
+        <% @updates.compact.each_with_index do |update,i| %>
+          <div class="usercol column span-6 <%= 'last' if i % 4 == 3 %>">
+            <%= link_to user_image(update.user, :size => "medium", :class => "userimage"), update.user, :class => :userimagelink %>
+            <div class="blurb">
+              <%= link_to_user update.user, :class => "userlink" %>
+              <%- case update.class.name -%>
+              <%- when 'Observation' %>
+                added an
+                <%= link_to "observation", update %> of
+                <% if update.taxon -%>
+                  <%= update.species_guess =~ /^[aeiou]/i ? 'an' : 'a' %>
+                  <%= link_to update.species_guess, update.taxon %>
+                <% else %>
+                  something
+                <% end -%>
+              <%- when 'Identification' %>
+                added an <strong>ID</strong>
+                to an
+                <%= link_to 'observation', update.observation %>
+                by 
+                <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
+              <%- when 'Post' %>
+                made a <%= link_to "journal post", journal_post_path(update.user.login, update) %>
+              <%- when 'Comment' %>
+                <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
+                <strong>commented</strong> on
+                <%= class_name =~ /^[aeiou]/i ? 'an' : 'a' %>
+                <% if update.parent.is_a? Post -%>
+                  <%= link_to class_name, journal_post_path(update.parent.user.login, update.parent) %>
+                <% else %>
+                  <%= link_to class_name, update.parent %>
+                <% end -%>
+                <% if update.parent.user -%>
+                  by <%= link_to char_wrap(h(update.parent.user.login), 18), observations_by_login_path(update.parent.user.login) %>
+                <% end -%>
+              <% end %>
+              <abbr class="date timeago" title="<%= update.created_at.iso8601 %>"><%= time_ago_in_words(update.created_at) %> ago</abbr>
             </div>
-          <% end %>
-        <% end -%>
+          </div>
+        <% end %>
+      <% end %>
+    <% end -%>
+  </div>
+
+  <div id="most_observations" class="column span-8">
+    <% cache @most_observations_key, :expires_in => 1.day do %>
+      <h3>Most Observations This Month</h3>
+      <div class="stacked meta">
+        Updated daily
+        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
       </div>
+
+      <ol>
+        <% if !@most_observations.blank? %>
+          <% for user, count in @most_observations %>
+            <li class="stacked">
+              <%= image_and_content user_image(user, :size => 'thumb') do %>
+                <div>
+                  <%= link_to_user user, :class => "large" %>
+                </div>
+                <%= link_to observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do %>
+                  <span class="count"><%= count %></span>
+                  <%= count == 1 ? 'observation' : 'observations' %>
+                <% end -%>
+              <% end -%>
+            </li>
+          <% end %>
+        <% else %>
+          <div class="nocontent meta">No observations yet this month</div>
+        <% end %>
+      </ol>
+
+      <div class="meta">
+        Observations <em>observed</em> this month, not added this month. Get outside!
+      </div>
+    <% end -%>
+  </div>
+
+  <div id="most_species" class="column span-8">
+    <% cache @most_species_key, :expires_in => 1.day do %>
+      <h3>Most Species This Month</h3>
+      <div class="stacked meta">
+        Updated daily
+        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
+      </div>
+
+      <ol>
+        <% if !@most_species.blank? %>
+          <% for user, count in @most_species %>
+            <li class="stacked">
+              <%= image_and_content user_image(user, :size => 'thumb') do %>
+                <div>
+                  <%= link_to_user user, :class => "large" %>
+                </div>
+                <%= link_to observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do %>
+                  <span class="count"><%= count %></span>
+                  species
+                <% end -%>
+              <% end -%>
+            </li>
+          <% end %>
+        <% else %>
+          <div class="nocontent meta">No observations yet this month</div>
+        <% end %>
+      </ol>
+    <% end -%>
+  </div>
+
+  <div id="most_identifications" class="column span-8 last">
+    <% cache @most_identifications_key, :expires_in => 1.day do %>
+      <h3>Most Identifications This Month</h3>
+      <div class="stacked meta">
+        Updated daily
+        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
+      </div>
+
+      <ol>
+        <% if !@most_identifications.blank? %>
+          <% for user, count in @most_identifications %>
+            <li class="stacked">
+              <%= image_and_content user_image(user, :size => 'thumb') do %>
+                <div>
+                  <%= link_to_user user, :class => "large" %>
+                </div>
+                <%= link_to identifications_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do %>
+                  <span class="count"><%= count %></span>
+                  <%= count == 1 ? 'identification' : 'identifications' %>
+                <% end -%>
+              <% end -%>
+            </li>
+          <% end %>
+        <% else %>
+          <div class="nocontent meta">No identifications yet this month</div>
+        <% end %>
+      </ol>
     <% end -%>
   </div>
 </div>

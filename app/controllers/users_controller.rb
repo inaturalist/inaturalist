@@ -135,39 +135,79 @@ class UsersController < ApplicationController
   
   def index
     unless fragment_exist?("recently_active")
-      update_find_options = {
-        :limit => 10, 
-        :order => "id DESC",
-        :conditions => ["created_at > ?", 1.week.ago],
-        :include => :user
-      }
-      @updates = [
-        Observation.all(update_find_options),
-        Identification.all(update_find_options),
-        Post.published.all(update_find_options),
-        Comment.all(update_find_options)
-      ].flatten.sort{|a,b| b.created_at <=> a.created_at}.group_by(&:user)
+      @updates = []
+      [Observation, Identification, Post, Comment].each do |klass|
+        @updates += klass.limit(10).
+          order("#{klass.table_name}.id DESC").
+          where("#{klass.table_name}.created_at > ?", 1.week.ago).
+          includes(:user)
+      end
+      hash = {}
+      @updates.sort_by(&:created_at).each do |record|
+        hash[record.user_id] = record
+      end
+      @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    find_options = {
-      :page => params[:page] || 1, :order => 'login'
-    }
+    @most_species_key = "most_observations"
+    unless fragment_exist?("most_observations")
+      counts = Observation.group(:user_id).
+        where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).
+        where("EXTRACT(MONTH FROM observed_on) = ?", Time.now.month).
+        count.to_a.sort_by(&:last).reverse[0..4]
+      users = User.where("id IN (?)", counts.map(&:first))
+      @most_observations = counts.inject({}) do |memo, item|
+        memo[users.detect{|u| u.id == item.first}] = item.last
+        memo
+      end
+    end
+
+    @most_species_key = "most_species"
+    unless fragment_exist?(@most_species_key)
+      counts = Observation.group(:user_id, :taxon_id).
+        joins(:taxon).
+        where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).
+        where("EXTRACT(MONTH FROM observed_on) = ?", Time.now.month).
+        where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).
+        count.to_a.sort_by(&:last).reverse
+      users = User.where("id IN (?)", counts.map{|item| item[0][0]})
+      @most_species = counts.inject({}) do |memo, item|
+        memo[users.detect{|u| u.id == item[0][0]}] ||= 0
+        memo[users.detect{|u| u.id == item[0][0]}] += item.last
+        memo
+      end.to_a
+      @most_species = @most_species[0..4]
+    end
+
+    @most_identifications_key = "most_identifications"
+    unless fragment_exist?(@most_identifications_key)
+      counts = Identification.group(:user_id).
+        where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year).
+        where("EXTRACT(MONTH FROM created_at) = ?", Time.now.month).
+        count.to_a.sort_by(&:last).reverse[0..4]
+      users = User.where("id IN (?)", counts.map(&:first))
+      @most_identifications = counts.inject({}) do |memo, item|
+        memo[users.detect{|u| u.id == item.first}] = item.last
+        memo
+      end
+    end
+  end
+
+  def search
+    scope = User.active.order('login').scoped
     @q = params[:q].to_s
     if logged_in? && !@q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
-      if @q =~ Devise.email_regexp
-        find_options[:conditions] = ["email = ?", @q]
+      conditions = if @q =~ Devise.email_regexp
+        ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
-        find_options[:conditions] = ["lower(name) LIKE ?", wildcard_q]
+        ["lower(name) LIKE ?", wildcard_q]
       else
-        find_options[:conditions] = ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
+        ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
       end
+      scope = scope.where(conditions)
     end
-    @alphabet = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    if (@letter = params[:letter]) && @alphabet.include?(@letter.downcase)
-      find_options.update(:conditions => ["login LIKE ?", "#{params[:letter].first}%"])
-    end
-    @users = User.active.paginate(find_options)
+    @users = scope.page(params[:page])
     counts_for_users
   end
   
