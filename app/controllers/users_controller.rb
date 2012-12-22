@@ -149,7 +149,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @most_species_key = "most_observations"
+    @most_species_key = "most_observations_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?("most_observations")
       counts = Observation.group(:user_id).
         where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).
@@ -162,7 +162,7 @@ class UsersController < ApplicationController
       end
     end
 
-    @most_species_key = "most_species_1"
+    @most_species_key = "most_species_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?(@most_species_key)
       counts = Observation.group(:user_id, :taxon_id).
         joins(:taxon).
@@ -179,7 +179,7 @@ class UsersController < ApplicationController
       @most_species = @most_species.sort_by(&:last).reverse[0..4]
     end
 
-    @most_identifications_key = "most_identifications_1"
+    @most_identifications_key = "most_identifications_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?(@most_identifications_key)
       counts = Identification.group("identifications.user_id").
         joins(:observation).
