@@ -37,7 +37,7 @@
       <h3>
         <span class="right meta ui small">
           Updated
-          <abbr class="date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>
+          <abbr class="date timeago" title="<%= Time.now.getutc.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>
         </span>
         Recently Active
       </h3>
@@ -93,7 +93,7 @@
       <h3>Most Observations This Month</h3>
       <div class="stacked meta">
         Updated daily
-        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
+        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.getutc.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
       </div>
 
       <ol>
@@ -127,7 +127,7 @@
       <h3>Most Species This Month</h3>
       <div class="stacked meta">
         Updated daily
-        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
+        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.getutc.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
       </div>
 
       <ol>
@@ -157,7 +157,7 @@
       <h3>Most Identifications This Month</h3>
       <div class="stacked meta">
         Updated daily
-        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
+        (<abbr class="meta ui stacked date timeago" title="<%= Time.now.getutc.iso8601 %>" data-foo="<%= Time.now.getutc.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
       </div>
 
       <ol>
