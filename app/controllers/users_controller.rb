@@ -149,7 +149,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @most_species_key = "most_observations"
+    @most_species_key = "most_observations_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?("most_observations")
       counts = Observation.group(:user_id).
         where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).
@@ -162,7 +162,7 @@ class UsersController < ApplicationController
       end
     end
 
-    @most_species_key = "most_species"
+    @most_species_key = "most_species_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?(@most_species_key)
       counts = Observation.group(:user_id, :taxon_id).
         joins(:taxon).
@@ -173,18 +173,22 @@ class UsersController < ApplicationController
       users = User.where("id IN (?)", counts.map{|item| item[0][0]})
       @most_species = counts.inject({}) do |memo, item|
         memo[users.detect{|u| u.id == item[0][0]}] ||= 0
-        memo[users.detect{|u| u.id == item[0][0]}] += item.last
+        memo[users.detect{|u| u.id == item[0][0]}] += 1
         memo
       end.to_a
-      @most_species = @most_species[0..4]
+      @most_species = @most_species.sort_by(&:last).reverse[0..4]
     end
 
-    @most_identifications_key = "most_identifications"
+    @most_identifications_key = "most_identifications_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?(@most_identifications_key)
-      counts = Identification.group(:user_id).
-        where("EXTRACT(YEAR FROM created_at) = ?", Time.now.year).
-        where("EXTRACT(MONTH FROM created_at) = ?", Time.now.month).
-        count.to_a.sort_by(&:last).reverse[0..4]
+      counts = Identification.group("identifications.user_id").
+        joins(:observation).
+        where("identifications.user_id != observations.user_id").
+        where("EXTRACT(YEAR FROM identifications.created_at) = ?", Time.now.year).
+        where("EXTRACT(MONTH FROM identifications.created_at) = ?", Time.now.month).
+        order('count_all desc').
+        limit(5).
+        count.to_a #.sort_by(&:last).reverse[0..4]
       users = User.where("id IN (?)", counts.map(&:first))
       @most_identifications = counts.inject({}) do |memo, item|
         memo[users.detect{|u| u.id == item.first}] = item.last

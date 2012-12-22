@@ -168,7 +168,7 @@
                 <div>
                   <%= link_to_user user, :class => "large" %>
                 </div>
-                <%= link_to identifications_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do %>
+                <%= link_to identifications_by_login_path(user.login) do %>
                   <span class="count"><%= count %></span>
                   <%= count == 1 ? 'identification' : 'identifications' %>
                 <% end -%>
