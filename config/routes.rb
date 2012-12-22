@@ -56,7 +56,11 @@ Inaturalist::Application.routes.draw do
   resources :users, :except => [:new, :create]
   # resource :session
   # resources :passwords
-  resources :people, :controller => :users
+  resources :people, :controller => :users do
+    collection do
+      get :search
+    end
+  end
   match '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   match '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   match 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }, :method => :post

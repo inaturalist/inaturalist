@@ -595,11 +595,15 @@ $.fn.centerInContainer = function(options) {
         h = $(this).naturalHeight()
     if (w > h) {
       var width = containerHeight / h * w
-      $(this).css({height: containerHeight, maxWidth: 'none'})
-      $(this).css({top: 0, left: '50%', marginLeft: '-' + (width / 2) + 'px'})
+      $(this).css({height: containerHeight, maxWidth: 'none', position:'absolute'})
+      $(this).css({
+        top: 0, 
+        left: '50%', 
+        marginLeft: '-' + (width / 2) + 'px'
+      })
     } else if (w < h) {
       var height = containerWidth / w * h
-      $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
+      $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none', position: 'absolute'})
       $(this).css({left: 0, top: '50%', marginTop: '-' + (height / 2) + 'px'})
     } else if (w == 0 && h == 0) {
       var that = this
