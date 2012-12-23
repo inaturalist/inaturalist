@@ -1,31 +1,15 @@
 <%- 
   project ||= @project
   taxon_id ||= nil
-  rules = project.matching_project_observation_rule_terms.gsub(/must have/, 'has').gsub(/must be/, '').split('|').join("\n * ")
 -%>
 <% if project.matching_project_observation_rules.count > 0 -%>
   <span class="button">
     <%= link_to "Add all your matching obs. to this project", add_matching_to_project_url(project.id), 
-      :method => :post, 
-      :confirm => "Are you sure? This will add all of your observations that match these rules: \n\n * #{rules}\n\n This could take a minute if you have a lot of observations.", 
-      :class => "add_matching_link",
-      "data-loading-click" => "Adding..." %>
+      :class => "add_matching_link" %>
   </span>
 <% elsif taxon_id %>
   <span class="button">
-    <%-
-      msg = "Are you sure? This will add all of your observations of this taxon"
-      msg += if rules.blank?
-        ". "
-      else
-        " that match these rules: \n\n * #{rules}\n\n "
-      end
-      msg += "This could take a minute if you have a lot of observations"
-    -%>
     <%= link_to "Add all your matching obs. of this taxon to this project", add_matching_to_project_url(project.id, :taxon_id => taxon_id), 
-      :method => :post, 
-      :confirm => msg, 
-      :class => "add_matching_link",
-      "data-loading-click" => "Adding..." %>
+      :class => "add_matching_link" %>
   </span>
 <% end -%>

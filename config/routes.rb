@@ -140,6 +140,7 @@ Inaturalist::Application.routes.draw do
   resources :projects do
     member do
       post :add_matching, :as => :add_matching_to
+      get :preview_matching, :as => :preview_matching_for
     end
   end
   resources :project_assets, :except => [:index, :show]

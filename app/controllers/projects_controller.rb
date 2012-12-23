@@ -637,6 +637,15 @@ class ProjectsController < ApplicationController
     return
   end
 
+  def preview_matching
+    @observations = scope_for_add_matching.page(1).per_page(10)
+    if @project_user
+      render :layout => false
+    else
+      render :unprocessable_entity
+    end
+  end
+
   def add_matching
     unless @project.users.where("users.id = ?", current_user).exists?
       msg = "You must be a member of this project to do that"
@@ -652,10 +661,7 @@ class ProjectsController < ApplicationController
 
     added = 0
     failed = 0
-    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
-    scope = @project.observations_matching_rules.by(current_user).includes(:taxon, :project_observations).scoped
-    scope = scope.of(@taxon) if @taxon
-    scope.find_each do |observation|
+    scope_for_add_matching.find_each do |observation|
       next if observation.project_observations.detect{|po| po.project_id == @project.id}
       pi = ProjectObservation.new(:observation => observation, :project => @project)
       if pi.save
@@ -666,11 +672,11 @@ class ProjectsController < ApplicationController
     end
 
     msg = if added == 0 && failed > 0
-      "Failed to add all #{failed} matching observation(s). Try adding observatuibs individually to see error messages"
+      "Failed to add all #{failed} matching observation(s) to #{@project.title}. Try adding observations individually to see error messages"
     elsif failed > 0
-      "Added #{added} matching observation(s), failed to add #{failed}. Try adding the rest individually to see error messages."
+      "Added #{added} matching observation(s) to #{@project.title}, failed to add #{failed}. Try adding the rest individually to see error messages."
     else
-      "Added #{added} matching observation(s)."
+      "Added #{added} matching observation(s) to #{@project.title}"
     end
 
     respond_to do |format|
@@ -705,6 +711,17 @@ class ProjectsController < ApplicationController
   end
   
   private
+
+  def scope_for_add_matching
+    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
+    scope = @project.observations_matching_rules.
+      by(current_user).
+      includes(:taxon, :project_observations).
+      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project).
+      scoped
+    scope = scope.of(@taxon) if @taxon
+    scope
+  end
   
   def load_project
     @project = Project.find(params[:id]) rescue nil

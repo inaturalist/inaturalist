@@ -49,6 +49,10 @@
 <% end -%>
 
 <div class="clear buttonrow">
-  <%= link_to "Yes, I want to join", @observation ? join_project_path(@project, :observation_id => @observation.id) : join_project_path(@project), :method => :post, :class => "default button" %>
+  <%= link_to "Yes, I want to join", 
+    @observation ? join_project_path(@project, :observation_id => @observation.id) : join_project_path(@project), 
+    :method => :post, 
+    :class => "default button",
+    "data-loading-click" => "Joining..." %>
   <%= link_to "Cancel", @project, :class => "button" %>
 </div>

@@ -170,37 +170,6 @@ var ObservationFields = {
 }
 
 // the following stuff doesn't have too much to do with observation fields, but it's at least tangentially related
-function showJoinProjectDialog(projectId, options) {
-  options = options || {}
-  var url = options.url || '/projects/'+projectId+'/join?partial=join',
-      title = options.title || 'Join project',
-      originalInput = options.originalInput
-  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
-  dialog.load(url, function() {
-    // ajaxify join
-    var button = $('.default.button', this),
-        diag = this
-    button.click(function(e) {
-      var joinUrl = $(this).attr('href')
-      $.post(joinUrl).done(function() {
-        $(diag).dialog('close')
-        if (originalInput) {
-          $(originalInput).click()
-        }
-      }).fail(function() {
-        alert('Failed to join project')
-      })
-      return false
-    })
-  })
-  dialog.dialog({
-    modal: true,
-    title: title,
-    width: 600,
-    minHeight: 400
-  })
-}
-
 $(document).ready(function() {
   $('#project_menu .addlink, .project_invitation .acceptlink').bind('ajax:success', function(e, json, status) {
     var observationId = (json && json.observation_id) || $(this).data('observation-id') || window.observation.id
