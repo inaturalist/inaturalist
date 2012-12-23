@@ -52,12 +52,13 @@ $(document).ready(function() {
         $('.place_guess_field input', data.context).val(obs.place_guess)
         
         $('.uploadbutton', data.context).hide()
-        // $('.removebutton', data.context).hide()
-        $('.savebutton', data.context).show()
         $('.deletebutton', data.context).show()
         $('.deletebutton', data.context).after(
           $('<a target="_blank" class="readmore inter">View observation</a>').attr('href', '/observations/'+obs.id)
         )
+        $(':input', data.context).change(function() {
+          $('.savebutton', data.context).show()
+        })
       }
   })
 })
@@ -74,7 +75,13 @@ function addFile(data) {
   })
   wrapper.fadeIn()
   $('.species_guess_field input:first', wrapper).simpleTaxonSelector({
-    taxonIDField: $('input[name*=taxon_id]:first', wrapper)
+    taxonIDField: $('input[name*=taxon_id]:first', wrapper),
+    afterSelect: function() {
+      $('.savebutton', wrapper).show()
+    },
+    afterUnselect: function() {
+      $('.savebutton', wrapper).show()
+    }
   })
   $('.observed_on_string_field input:first', wrapper).iNatDatepicker()
   $('.place_guess_field input.text:first', wrapper).latLonSelector()
@@ -116,6 +123,7 @@ $('.observation .savebutton').live('click', function() {
       container.loadingShades('Saving')
     }
   }).done(function(data) {
+    $('.savebutton', container).hide()
   }).always(function() {
     container.shades('close')
   })
