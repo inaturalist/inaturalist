@@ -2,7 +2,7 @@
 .usercol {overflow: hidden; position:relative; margin-bottom:10px;}
 .userlink {display:block; font-size: 150%; color:white; z-index:1;}
 .blurb {
-  color:white;
+  color:#eee;
   position:absolute;
   bottom: 0;
   left:0;
@@ -26,3 +26,6 @@
   /* For IE 8*/
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
 }
+
+.usercol .blurb a {color: white; font-weight: bold;}
+.usercol .blurb a:hover {text-decoration: underline;}

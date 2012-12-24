@@ -472,11 +472,10 @@ protected
     SQL
     rows = ActiveRecord::Base.connection.execute(sql)
     users = User.where("id IN (?)", rows.map{|r| r['user_id']})
-    most_species = rows.inject([]) do |memo, row|
+    rows.inject([]) do |memo, row|
       memo << [users.detect{|u| u.id == row['user_id'].to_i}, row['count_all']]
       memo
     end
-    most_species.sort_by(&:last).reverse[0..4]
   end
 
   def most_identifications(options = {})
