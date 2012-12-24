@@ -137,7 +137,7 @@ class UsersController < ApplicationController
     unless fragment_exist?("recently_active")
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
-        @updates += klass.limit(10).
+        @updates += klass.limit(30).
           order("#{klass.table_name}.id DESC").
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
           includes(:user)
@@ -149,51 +149,14 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @most_species_key = "most_observations_#{I18n.locale}_#{SITE_NAME}_1"
-    unless fragment_exist?("most_observations")
-      counts = Observation.group(:user_id).
-        where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).
-        where("EXTRACT(MONTH FROM observed_on) = ?", Time.now.month).
-        count.to_a.sort_by(&:last).reverse[0..4]
-      users = User.where("id IN (?)", counts.map(&:first))
-      @most_observations = counts.inject({}) do |memo, item|
-        memo[users.detect{|u| u.id == item.first}] = item.last
-        memo
-      end
-    end
-
-    @most_species_key = "most_species_#{I18n.locale}_#{SITE_NAME}_1"
-    unless fragment_exist?(@most_species_key)
-      counts = Observation.group(:user_id, :taxon_id).
-        joins(:taxon).
-        where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).
-        where("EXTRACT(MONTH FROM observed_on) = ?", Time.now.month).
-        where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL).
-        count.to_a.sort_by(&:last).reverse
-      users = User.where("id IN (?)", counts.map{|item| item[0][0]})
-      @most_species = counts.inject({}) do |memo, item|
-        memo[users.detect{|u| u.id == item[0][0]}] ||= 0
-        memo[users.detect{|u| u.id == item[0][0]}] += 1
-        memo
-      end.to_a
-      @most_species = @most_species.sort_by(&:last).reverse[0..4]
-    end
-
-    @most_identifications_key = "most_identifications_#{I18n.locale}_#{SITE_NAME}_1"
-    unless fragment_exist?(@most_identifications_key)
-      counts = Identification.group("identifications.user_id").
-        joins(:observation).
-        where("identifications.user_id != observations.user_id").
-        where("EXTRACT(YEAR FROM identifications.created_at) = ?", Time.now.year).
-        where("EXTRACT(MONTH FROM identifications.created_at) = ?", Time.now.month).
-        order('count_all desc').
-        limit(5).
-        count.to_a #.sort_by(&:last).reverse[0..4]
-      users = User.where("id IN (?)", counts.map(&:first))
-      @most_identifications = counts.inject({}) do |memo, item|
-        memo[users.detect{|u| u.id == item.first}] = item.last
-        memo
-      end
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}"
+    unless fragment_exist?(@leaderboard_key)
+      @most_observations = most_observations(:per => 'month')
+      @most_species = most_species(:per => 'month')
+      @most_identifications = most_identifications(:per => 'month')
+      @most_observations_year = most_observations(:per => 'year')
+      @most_species_year = most_species(:per => 'year')
+      @most_identifications_year = most_identifications(:per => 'year')
     end
   end
 
@@ -467,6 +430,72 @@ protected
       o.photos.first.try(:square_url)
     when ""
       nil
+    end
+  end
+
+  def most_observations(options = {})
+    per = options[:per] || 'month'
+    scope = Observation.group(:user_id).
+      where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).scoped
+    if per == 'month'
+      scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", Time.now.month)
+    end
+    counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
+    users = User.where("id IN (?)", counts.map(&:first))
+    counts.inject({}) do |memo, item|
+      memo[users.detect{|u| u.id == item.first}] = item.last
+      memo
+    end
+  end
+
+  def most_species(options = {})
+    per = options[:per] || 'month'
+    date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{Time.now.year}"
+    date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{Time.now.month}" if per == 'month'
+    sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (
+          SELECT
+            DISTINCT ON (o.taxon_id) o.user_id
+          FROM
+            observations o
+              JOIN taxa t ON o.taxon_id = t.id
+            WHERE
+              t.rank_level <= 10 AND
+              #{date_clause}
+        ) as o
+      GROUP BY o.user_id
+      ORDER BY count_all desc
+      LIMIT 5
+    SQL
+    rows = ActiveRecord::Base.connection.execute(sql)
+    users = User.where("id IN (?)", rows.map{|r| r['user_id']})
+    most_species = rows.inject([]) do |memo, row|
+      memo << [users.detect{|u| u.id == row['user_id'].to_i}, row['count_all']]
+      memo
+    end
+    most_species.sort_by(&:last).reverse[0..4]
+  end
+
+  def most_identifications(options = {})
+    per = options[:per] || 'month'
+    scope = Identification.group("identifications.user_id").
+      joins(:observation).
+      where("identifications.user_id != observations.user_id").
+      where("EXTRACT(YEAR FROM identifications.created_at) = ?", Time.now.year).
+      order('count_all desc').
+      limit(5).scoped
+    if per == 'month'
+      scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", Time.now.month)
+    end
+    counts = scope.count.to_a
+    users = User.where("id IN (?)", counts.map(&:first))
+    counts.inject({}) do |memo, item|
+      memo[users.detect{|u| u.id == item.first}] = item.last
+      memo
     end
   end
     
