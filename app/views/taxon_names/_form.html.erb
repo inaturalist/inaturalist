@@ -67,7 +67,7 @@
   </p>
   
   <div class="clear buttonrow">
-    <%= n.submit t(:save), :class => 'default button' %>
+    <%= n.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving) %>
     <%= link_to t(:cancel), @taxon || @taxon_name.taxon, :class => 'button' %>
     <%- unless @taxon_name.new_record? -%>
       <%= link_to 'Delete', @taxon_name,

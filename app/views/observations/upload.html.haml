@@ -70,7 +70,7 @@
             = f.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open"
         .column.span-20.actions.last.inline.buttonrow
           = link_to "Upload", "", :class => "uploadbutton button default"
-          = link_to "Update", "", :class => "savebutton button default", :style => "display:none"
+          = link_to "Update", "", :class => "savebutton button default", :style => "display:none" #, :disabled => true
           = link_to_function "Remove from batch", "$(this).parents('.observation:first').fadeOut(function() { $(this).remove() })", :class => "removebutton pale button"
           = link_to "Delete", "", :class => "deletebutton delete button", :style => "display:none"
 .small.meta
