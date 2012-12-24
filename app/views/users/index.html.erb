@@ -98,13 +98,23 @@
       <div class="column span-24 stacked">
         <%= render 'leaderboard_column', :noun => 'observations', :time_unit => 'month', :data => @most_observations, :extra => "<div class='meta'>Observations <em>observed</em> this month, not added this month. Get outside!</div>".html_safe %>
         <%= render 'leaderboard_column', :noun => 'species', :time_unit => 'month', :data => @most_species %>
-        <%= render 'leaderboard_column', :noun => 'identifications', :time_unit => 'month', :data => @most_identifications, :last => true %>
+        <%= render 'leaderboard_column', 
+          :noun => 'identifications', 
+          :time_unit => 'month', 
+          :data => @most_identifications, 
+          :last => true,
+          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? 'identification' : 'identifications'}".html_safe, observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")))} %>
       </div>
 
       <div class="column span-24">
         <%= render 'leaderboard_column', :noun => 'observations', :time_unit => 'year', :data => @most_observations_year %>
         <%= render 'leaderboard_column', :noun => 'species', :time_unit => 'year', :data => @most_species_year %>
-        <%= render 'leaderboard_column', :noun => 'identifications', :time_unit => 'year', :data => @most_identifications_year, :last => true %>
+        <%= render 'leaderboard_column', 
+          :noun => 'identifications', 
+          :time_unit => 'year', 
+          :data => @most_identifications_year, 
+          :last => true,
+          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? 'identification' : 'identifications'}".html_safe, observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")))} %>
       </div>
     </div>
   <% end -%>
