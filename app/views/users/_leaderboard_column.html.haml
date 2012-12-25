@@ -1,6 +1,7 @@
 - extra ||= nil
 - span ||= 8
 - last ||= false
+- sub ||= nil
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
     Most
@@ -18,9 +19,12 @@
           = image_and_content user_image(user, :size => 'thumb') do
             %div
               = link_to_user user, :class => "large"
-            = link_to observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do
-              %span.count= count
-              = count == 1 ? noun.singularize : noun.pluralize
+            - if sub
+              = sub.call(user, count)
+            - else
+              = link_to observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do
+                %span.count= count
+                = count == 1 ? noun.singularize : noun.pluralize
     - else
       .nocontent.meta
         No

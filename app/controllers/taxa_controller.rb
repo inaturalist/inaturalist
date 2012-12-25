@@ -140,9 +140,6 @@ class TaxaController < ApplicationController
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
         @iconic_taxa = Taxon::ICONIC_TAXA
         
-        @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
-        @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
-        
         @check_listed_taxa = ListedTaxon.paginate(:page => 1,
           :include => [:place, :list],
           :conditions => ["place_id IS NOT NULL AND taxon_id = ?", @taxon]
@@ -162,6 +159,26 @@ class TaxaController < ApplicationController
             ]
           )
         end
+
+        @taxon_links = if @taxon.species_or_lower?
+          # fetch all relevant links
+          TaxonLink.for_taxon(@taxon).includes(:taxon)
+        else
+          # fetch links without species only
+          TaxonLink.for_taxon(@taxon).where(:species_only => false).includes(:taxon)
+        end
+        tl_place_ids = @taxon_links.map(&:place_id).compact
+        if !tl_place_ids.blank? && !@places.blank?
+          # fetch listed taxa for this taxon with places matching the links
+          place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => @taxon)
+
+          # remove links that have a place_id set but don't have a corresponding listed taxon
+          @taxon_links.reject! do |tl|
+            tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+          end
+        end
+        @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
+
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
         
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
@@ -176,7 +193,7 @@ class TaxaController < ApplicationController
               current_user, @taxon
           ])
           @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
-          @current_user_lists = current_user.lists.all(:include => [:rules])
+          @current_user_lists = current_user.lists.includes(:rules)
           @lists_rejecting_taxon = @current_user_lists.select do |list|
             if list.is_a?(LifeList)
               list.rules.map {|rule| rule.validates?(@taxon)}.include?(false)

@@ -149,7 +149,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_1"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -458,13 +458,12 @@ protected
         count(*) AS count_all
       FROM
         (
-          SELECT
-            DISTINCT ON (o.taxon_id) o.user_id
+          SELECT DISTINCT o.taxon_id, o.user_id
           FROM
             observations o
               JOIN taxa t ON o.taxon_id = t.id
-            WHERE
-              t.rank_level <= 10 AND
+          WHERE
+            t.rank_level <= 10 AND
               #{date_clause}
         ) as o
       GROUP BY o.user_id
@@ -473,11 +472,10 @@ protected
     SQL
     rows = ActiveRecord::Base.connection.execute(sql)
     users = User.where("id IN (?)", rows.map{|r| r['user_id']})
-    most_species = rows.inject([]) do |memo, row|
+    rows.inject([]) do |memo, row|
       memo << [users.detect{|u| u.id == row['user_id'].to_i}, row['count_all']]
       memo
     end
-    most_species.sort_by(&:last).reverse[0..4]
   end
 
   def most_identifications(options = {})
