@@ -104,11 +104,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       "#{label_content} #{description} #{content}"
     end
     
-    if block_given?
-      @template.concat @template.content_tag(:div, content.html_safe, wrapper_options)
-    else
-      @template.content_tag(:div, content.html_safe, wrapper_options)
-    end
+    @template.content_tag(:div, content.html_safe, wrapper_options)
   end
   
 end

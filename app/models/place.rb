@@ -5,6 +5,7 @@ class Place < ActiveRecord::Base
   has_many :check_lists, :dependent => :destroy
   has_many :listed_taxa
   has_many :taxa, :through => :listed_taxa
+  has_many :taxon_links, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
   
   before_save :calculate_bbox_area

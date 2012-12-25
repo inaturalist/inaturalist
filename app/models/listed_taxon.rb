@@ -131,8 +131,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def to_s
-    "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
-    "list_id: #{self.list_id}>"
+    "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id} list_id: #{self.list_id} place_id: #{place_id}>"
   end
   
   def to_plain_s

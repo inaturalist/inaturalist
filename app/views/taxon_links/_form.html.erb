@@ -1,55 +1,47 @@
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'observations' %>
   <style type="text/css" media="screen">
-    form.taxon_link_form .field label{display:block;margin-bottom:0.25em;}
-    form.taxon_link_form .buttonrow{clear:both;}
-    input.text{margin-top:0;}
-    #url_field input.text,
-    #species_field input.text{width:575px;}
-    #site_title_field{float:left;}
-    #show_for_descendent_taxa_field{margin:0;}
-    #show_for_descendent_taxa_field label{display:inline;}
-    #species_field{clear:left;}
+    .field .text {width: 575px;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
+    var PLACE = <%= @taxon_link.place.to_json.html_safe %>
+    function toggleSpeciesOnly() {
+      if ($('#taxon_link_show_for_descendent_taxa').prop('checked')) $('.species_only_field').show()
+      else $('.species_only_field').hide()
+    }
     $(document).ready(function() {
-      $('#species_guess').simpleTaxonSelector();
-    });
+      $('#species_guess').simpleTaxonSelector()
+      $('#taxon_link_place_id').chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: PLACE
+      })
+      toggleSpeciesOnly()
+      $('#taxon_link_show_for_descendent_taxa').click(toggleSpeciesOnly)
+    })
   </script>
 <%- end -%>
-<%= form_for(@taxon_link, :html => {:class => 'taxon_link_form'}) do |f| %>
-  <div class="column span-15 append-1">
-    <div id="show_for_descendent_taxa_field" class="field right">
-      <%= f.check_box :show_for_descendent_taxa %>
-      <%= f.label :show_for_descendent_taxa %>
-    </div>
-    <div id="url_field" class="field">
-      <%= f.label :url, 'URL <span class="required">*</span>'.html_safe %>
-      <%= f.text_field :url, :class => 'text' %>
-      <%= f.error_message_on :url, "URL " %>
-    </div>
+<div class="column span-15 append-1">
+  <%= form_for @taxon_link, :builder => DefaultFormBuilder, :html => {:class => 'taxon_link_form'} do |f| %>
+    <%= f.text_field :url, :label => "URL", :required => true %>
+    <%= f.text_field :site_title %>
 
+    <%= f.form_field :taxon, :required => true do %>
+      <%= text_field_tag :species_guess, '', :class => "text" %>
+      <%= f.hidden_field :taxon_id %>
+    <% end -%>
 
-    <div id="site_title_field" class="field">
-      <%= f.label :site_title %>
-      <%= f.text_field :site_title, :class => 'text' %>
-      <%= f.error_message_on :site_title, "Site title " %>
-    </div>
+    <%= f.text_field :place_id, :placeholder => "Start typing a place name", 
+      :description => "Set a place if this link only applies to taxa from a certain place. Leave it blank if it applies to taxa all around the world." %>
 
-    <div id="species_field" class="field">
-      <label for="species_guess">Taxon <span class="required">*</span></label>
-      <% if @taxon -%>
-        <%= text_field_tag :species_guess, default_taxon_name(@taxon), :class => 'text' %>
-        <%= f.hidden_field :taxon_id %>
-      <% else %>
-        <%= text_field_tag :species_guess, '', :class => 'text' %>
-        <%= f.hidden_field :taxon_id %>
-      <% end -%>
-      <%= f.error_message_on :taxon_id, "Taxon " %>
-    </div>
-    
+    <%= f.check_box :show_for_descendent_taxa, :label_after => true %>
+    <%= f.check_box :species_only, :label_after => true, :label => "Only show for species, subspecies, varieties, etc.",
+      :wrapper_options => {:style => "display:none"} %>
+
+    <div class="required stacked">* required field</div>
+
     <div class="buttonrow">
       <%= f.submit "Save", :class => "default button" %>
       <%= link_to "Cancel", @taxon_link.taxon, :class => "button" %>
@@ -59,32 +51,32 @@
           :class => "minor button delete" %>
       <% end -%>
     </div>
-  </div>
-  
-  <div class="last column span-8">
-    <div id="help_field" class="description field" >
-      If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
-      <dl>
-        <dt>[NAME]</dt>
-        <dd>
-          The name of the taxon, including the space for species and infraspecies.<br/><br/>
-          <strong>Example:</strong><br/>
-          <code>http://tolweb.org/[NAME]</code> -> 
-          <code>http://tolweb.org/Homo%20sapiens</code>
-        </dd><br/>
+  <% end -%>
+</div>
 
-        <dt>[GENUS] / [SPECIES]</dt>
-        <dd>
-          Use this if the URL needs to have the genus and species separated in
-          a particular way. If the taxon is not a species or infraspecies,
-          everything between [GENUS] and [SPECIES] will get replaced by the
-          taxon name, so use sparingly. <br/><br/>
+<div class="last column span-8">
+  <div id="help_field" class="description field" >
+    If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
+    <dl>
+      <dt>[NAME]</dt>
+      <dd>
+        The name of the taxon, including the space for species and infraspecies.<br/><br/>
+        <strong>Example:</strong><br/>
+        <code>http://tolweb.org/[NAME]</code> -> 
+        <code>http://tolweb.org/Homo%20sapiens</code>
+      </dd><br/>
 
-          <strong>Example:</strong><br/>
-          <code>http://site.com/?g=[GENUS]&amp;s=[SPECIES]</code> -> 
-          <code>http://site.com/?g=Homo&amp;s=sapiens</code>
-        </dd>
-      </dl>
-    </div>
+      <dt>[GENUS] / [SPECIES]</dt>
+      <dd>
+        Use this if the URL needs to have the genus and species separated in
+        a particular way. If the taxon is not a species or infraspecies,
+        everything between [GENUS] and [SPECIES] will get replaced by the
+        taxon name, so use sparingly. <br/><br/>
+
+        <strong>Example:</strong><br/>
+        <code>http://site.com/?g=[GENUS]&amp;s=[SPECIES]</code> -> 
+        <code>http://site.com/?g=Homo&amp;s=sapiens</code>
+      </dd>
+    </dl>
   </div>
-<% end %>
+</div>

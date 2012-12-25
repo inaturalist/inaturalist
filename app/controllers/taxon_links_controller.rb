@@ -1,11 +1,10 @@
 class TaxonLinksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_taxon_link, :except => [:new, :create, :index]
-  
-  # NOTE: show and index should be deleted when we upgrade past Rails 2.2,
-  # where we can use map.resources :taxon_links, :except => [:index, :show]
-  def show; redirect_to @taxon_link.taxon; end
-  def index; redirect_to taxa_path; end
+
+  def index
+    @taxon_links = TaxonLink.order("taxon_links.id DESC").includes(:taxon, :place).page(params[:page])
+  end
   
   def new
     @taxon = Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]

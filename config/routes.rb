@@ -242,7 +242,7 @@ Inaturalist::Application.routes.draw do
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   match 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post
-  resources :taxon_links, :except => [:show, :index]
+  resources :taxon_links, :except => [:show]
   
   match 'places/:id/widget' => 'places#widget', :as => :place_widget, :via => :get
   match 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget, :via => :get

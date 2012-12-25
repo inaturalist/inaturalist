@@ -1,6 +1,7 @@
 class TaxonLink < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :user
+  belongs_to :place
   validates_format_of :url, :with => URI.regexp, 
     :message => "should look like a URL, e.g. http://inaturalist.org"
   validates_presence_of :taxon_id
@@ -8,10 +9,17 @@ class TaxonLink < ActiveRecord::Base
   before_save :set_site_title
   
   scope :for_taxon, lambda {|taxon|
-    where(
-      "taxon_id = ? OR (show_for_descendent_taxa = TRUE and taxon_id IN (?))", 
-      taxon, taxon.ancestors.map(&:id)
-    )
+    if taxon.species_or_lower?
+      where(
+        "taxon_id = ? OR (show_for_descendent_taxa = TRUE AND taxon_id IN (?))", 
+        taxon, taxon.ancestor_ids
+      )
+    else
+      where(
+        "(show_for_descendent_taxa = ? AND species_only = ? AND taxon_id IN (?)) OR (show_for_descendent_taxa = FALSE AND taxon_id = ?)",
+        true, false, [taxon.ancestor_ids, taxon.id].flatten, taxon
+      )
+    end
   }
   
   TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES]"
@@ -19,6 +27,10 @@ class TaxonLink < ActiveRecord::Base
   validate :url_can_only_have_name_or_genus_species
   validate :url_cant_have_genus_without_species
   validate :url_cant_have_species_without_genus
+
+  def to_s
+    "<TaxonLink #{id} taxon_id: #{taxon_id}, place_id: #{place_id}, user_id: #{user_id}>"
+  end
   
   def url_can_only_have_name_or_genus_species
     if url.to_s =~ /\[NAME\]/ && (url.to_s =~ /\[GENUS\]/ || url.to_s =~ /\[SPECIES\]/)
