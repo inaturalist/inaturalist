@@ -1,4 +1,6 @@
 Inaturalist::Application.routes.draw do
+  wiki_root '/pages'
+
   # Riparian routes
   resources :flow_tasks do
     member do

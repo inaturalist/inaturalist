@@ -43,6 +43,12 @@ base: &base
     # default place ID for place filters. Presently only used on /places, but use may be expanded
     # place_id: 6793
 
+    # URL where visitors can learn more about the site
+    about_url: /pages/about
+
+    # URL where visitors can get help using the site
+    help_url: /pages/help
+
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af

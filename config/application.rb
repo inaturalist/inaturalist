@@ -84,3 +84,6 @@ Ym4r::GmPlugin::ApiKey.key = YAML.load_file("#{::Rails.root}/config/gmaps_api_ke
 # force encoding
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
+
+Irwi.config.formatter = Irwi::Formatters::BlueCloth.new
+
