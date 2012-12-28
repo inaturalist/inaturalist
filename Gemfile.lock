@@ -13,6 +13,17 @@ GIT
     preferences (0.5.0)
 
 GIT
+  remote: git://github.com/alno/irwi.git
+  revision: df0c21c14b330c6e5aef60e343593d9dcf92f99e
+  specs:
+    irwi (0.4.2)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      diff-lcs (>= 1.1.2)
+      rails_autolink (>= 1.0)
+
+GIT
   remote: git://github.com/dwaite/gdata.git
   revision: fae93bd449d44044dbd0d565946b6ba0e21cb772
   specs:
@@ -261,6 +272,8 @@ GEM
       activesupport (= 3.2.8)
       bundler (~> 1.0)
       railties (= 3.2.8)
+    rails_autolink (1.0.9)
+      rails (~> 3.1)
     railties (3.2.8)
       actionpack (= 3.2.8)
       activesupport (= 3.2.8)
@@ -360,6 +373,7 @@ DEPENDENCIES
   geoplanet
   haml
   htmlentities
+  irwi!
   koala
   machinist
   mail_view!
