@@ -406,7 +406,7 @@ class TaxaController < ApplicationController
         end
 
       # otherwise try and hit the db directly. Sphinx doesn't always seem to behave properly
-      elsif exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).first
+      elsif params[:per_page].to_i <= 1 && exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).first
         @taxa.unshift exact
       end
     end
