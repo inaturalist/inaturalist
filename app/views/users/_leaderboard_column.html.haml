@@ -23,7 +23,7 @@
             - if sub
               = sub.call(user, count)
             - else
-              = link_to observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do
+              = link_to observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year) do
                 %span.count= count
                 = count == 1 ? noun.singularize : noun.pluralize
     - else
