@@ -39,6 +39,7 @@ class Identification < ActiveRecord::Base
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
+  scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
   scope :current, where(:current => true)
   scope :outdated, where(:current => false)
   

@@ -61,6 +61,7 @@ Inaturalist::Application.routes.draw do
   resources :people, :controller => :users do
     collection do
       get :search
+      get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
   end
   match '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }

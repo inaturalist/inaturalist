@@ -2,6 +2,7 @@
 - span ||= 8
 - last ||= false
 - sub ||= nil
+- date ||= @date || Date.today
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
     Most
@@ -9,9 +10,9 @@
     in
     - case time_unit
     - when 'month'
-      = Time.now.strftime('%B %Y')
+      = date.strftime('%B %Y')
     - else
-      = Time.now.year
+      = date.year
   %ol
     - if !data.blank?
       - for user, count in data
@@ -29,5 +30,6 @@
       .nocontent.meta
         No
         = noun
-        yet this month
+        this
+        = time_unit
   = extra

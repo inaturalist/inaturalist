@@ -149,7 +149,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_1"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_2"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -157,6 +157,25 @@ class UsersController < ApplicationController
       @most_observations_year = most_observations(:per => 'year')
       @most_species_year = most_species(:per => 'year')
       @most_identifications_year = most_identifications(:per => 'year')
+    end
+  end
+
+  def leaderboard
+    @year = (params[:year] || Time.now.year).to_i
+    @month = (params[:month] || Time.now.month).to_i
+    @date = Date.parse("#{@year}-#{@month}-01")
+    @time_unit = params[:month].blank? ? 'year' : 'month'
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_#{@year}_#{@month}"
+    unless fragment_exist?(@leaderboard_key)
+      if params[:month].blank?
+        @most_observations = most_observations(:per => 'year', :year => @year)
+        @most_species = most_species(:per => 'year', :year => @year)
+        @most_identifications = most_identifications(:per => 'year', :year => @year)
+      else
+        @most_observations = most_observations(:per => 'month', :year => @year, :month => @month)
+        @most_species = most_species(:per => 'month', :year => @year, :month => @month)
+        @most_identifications = most_identifications(:per => 'month', :year => @year, :month => @month)
+      end
     end
   end
 
@@ -435,10 +454,12 @@ protected
 
   def most_observations(options = {})
     per = options[:per] || 'month'
+    year = options[:year] || Time.now.year
+    month = options[:month] || Time.now.month
     scope = Observation.group(:user_id).
-      where("EXTRACT(YEAR FROM observed_on) = ?", Time.now.year).scoped
+      where("EXTRACT(YEAR FROM observed_on) = ?", year).scoped
     if per == 'month'
-      scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", Time.now.month)
+      scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
     end
     counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
     users = User.where("id IN (?)", counts.map(&:first))
@@ -450,8 +471,10 @@ protected
 
   def most_species(options = {})
     per = options[:per] || 'month'
-    date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{Time.now.year}"
-    date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{Time.now.month}" if per == 'month'
+    year = options[:year] || Time.now.year
+    month = options[:month] || Time.now.month
+    date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
+    date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
     sql = <<-SQL
       SELECT
         o.user_id,
@@ -480,14 +503,16 @@ protected
 
   def most_identifications(options = {})
     per = options[:per] || 'month'
+    year = options[:year] || Time.now.year
+    month = options[:month] || Time.now.month
     scope = Identification.group("identifications.user_id").
       joins(:observation).
       where("identifications.user_id != observations.user_id").
-      where("EXTRACT(YEAR FROM identifications.created_at) = ?", Time.now.year).
+      where("EXTRACT(YEAR FROM identifications.created_at) = ?", year).
       order('count_all desc').
       limit(5).scoped
     if per == 'month'
-      scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", Time.now.month)
+      scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
     end
     counts = scope.count.to_a
     users = User.where("id IN (?)", counts.map(&:first))
