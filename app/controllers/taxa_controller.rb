@@ -398,9 +398,16 @@ class TaxaController < ApplicationController
     
     do_external_lookups
 
-    if !@taxa.blank? && exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
-      if exact_index > 0
-        @taxa.unshift @taxa.delete_at(exact_index)
+    if !@taxa.blank?
+      # if there's an exact match among the hits, make sure it's first
+      if exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
+        if exact_index > 0
+          @taxa.unshift @taxa.delete_at(exact_index)
+        end
+
+      # otherwise try and hit the db directly. Sphinx doesn't always seem to behave properly
+      elsif exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).first
+        @taxa.unshift exact
       end
     end
     
