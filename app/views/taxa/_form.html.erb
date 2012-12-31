@@ -179,11 +179,13 @@
           <p class="ui">
             <%= f.label :source_identifier %><br/>
             <%= f.text_field :source_identifier, :disabled => true, :class => "text" %>
+            <div class="description">Unique identifier of this taxon in the source database.</div>
           </p>
           
           <p class="ui">
             <%= f.label :source_url %><br/>
             <%= f.text_field :source_url, :disabled => true, :class => "text" %>
+            <div class="description">URL of this taxon on the source's website</div>
           </p>
         </div>
       <% end -%>
@@ -195,6 +197,10 @@
 		<%= label_tag 'Active?' %><br/>
     <%= f.radio_button :is_active, true.to_s %> <%= f.label :is_active_true, 'True' %>
     <%= f.radio_button :is_active, false %>  <%= f.label :is_active_false, 'False' %>
+    <div class="description">
+      Inactive taxon concepts are either taxonomically outdated or being staged for a a taxon change. 
+      Outdated concepts are kept to maintain history and compatability with some partner sites.
+    </div>
   </fieldset>
 
   <fieldset class="column span-24">
