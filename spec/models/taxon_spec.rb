@@ -343,6 +343,22 @@ describe Taxon, "tags_to_taxa" do
     taxa.should include(active_taxon)
     taxa.should_not include(inactive_taxon)
   end
+
+  it "should work for sp" do
+    taxa = Taxon.tags_to_taxa(['Calypte sp'])
+    taxa.should include(@Calypte)
+  end
+
+  it "should work for sp." do
+    taxa = Taxon.tags_to_taxa(['Calypte sp.'])
+    taxa.should include(@Calypte)
+  end
+
+  it "should not strip out sp from Spizella" do
+    t = Taxon.make!(:name => 'Spizella')
+    taxa = Taxon.tags_to_taxa(['Spizella'])
+    taxa.should include(t)
+  end
 end
 
 describe Taxon, "merging" do
