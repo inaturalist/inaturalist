@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227214513) do
+ActiveRecord::Schema.define(:version => 20121230210148) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -984,6 +984,15 @@ ActiveRecord::Schema.define(:version => 20121227214513) do
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["observations_count"], :name => "index_users_on_observations_count"
   add_index "users", ["state"], :name => "index_users_on_state"
+
+  create_table "wiki_page_attachments", :force => true do |t|
+    t.integer  "page_id",                           :null => false
+    t.string   "wiki_page_attachment_file_name"
+    t.string   "wiki_page_attachment_content_type"
+    t.integer  "wiki_page_attachment_file_size"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
 
   create_table "wiki_page_versions", :force => true do |t|
     t.integer  "page_id",    :null => false

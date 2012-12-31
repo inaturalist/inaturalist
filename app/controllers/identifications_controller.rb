@@ -10,12 +10,14 @@ class IdentificationsController < ApplicationController
   end
   
   def by_login
-    @identifications = @selected_user.identifications.for_others.paginate(
-      :page => params[:page],
-      :per_page => 20,
-      :include => [:observation, :taxon],
-      :order => "identifications.created_at DESC"
-    )
+    scope = @selected_user.identifications.for_others.
+      includes(:observation, :taxon).
+      order("identifications.created_at DESC").
+      scoped
+    unless params[:on].blank?
+      scope = scope.on(params[:on])
+    end
+    @identifications = scope.page(params[:page]).per_page(20)
     @identifications_by_obs_id = @identifications.index_by(&:observation_id)
     @observations = @identifications.collect(&:observation)
     @other_ids = Identification.all(

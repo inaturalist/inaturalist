@@ -129,7 +129,7 @@
             <%= link_to_function "Remove", 
               "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
               :class => "right" %>
-            <% tct.form_field :taxon_name do %>
+            <%= tct.form_field :taxon_name do %>
               <input type="text" class="text"/>
               <%= tct.hidden_field :taxon_id %>
               <%= tct.hidden_field :nested %>
@@ -144,7 +144,7 @@
               <%= link_to_function "Remove", 
                 "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
                 :class => "right" %>
-              <% tct.form_field :taxon_name do %>
+              <%= tct.form_field :taxon_name do %>
                 <input type="text" class="text"/>
                 <%= tct.hidden_field :taxon_id %>
                 <%= tct.hidden_field :nested %>

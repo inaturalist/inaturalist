@@ -2,6 +2,7 @@
 - span ||= 8
 - last ||= false
 - sub ||= nil
+- date ||= @date || Date.today
 %div{:class => "column span-#{span} #{'last' if last}"}
   %h4
     Most
@@ -9,9 +10,9 @@
     in
     - case time_unit
     - when 'month'
-      = Time.now.strftime('%B %Y')
+      = date.strftime('%B %Y')
     - else
-      = Time.now.year
+      = date.year
   %ol
     - if !data.blank?
       - for user, count in data
@@ -22,12 +23,13 @@
             - if sub
               = sub.call(user, count)
             - else
-              = link_to observations_by_login_path(user.login, :on => Time.now.strftime("%Y-%m")) do
+              = link_to observations_by_login_path(user.login, :on => time_unit == 'month' ? date.strftime("%Y-%m") : date.year) do
                 %span.count= count
                 = count == 1 ? noun.singularize : noun.pluralize
     - else
       .nocontent.meta
         No
         = noun
-        yet this month
+        this
+        = time_unit
   = extra
