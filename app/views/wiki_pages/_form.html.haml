@@ -10,10 +10,15 @@
     = f.text_field :title, :label => wt('Title')
     = f.text_area :content, :label => wt('Content')
     = f.text_field :comment, :label => wt('Comment on this change (optional)')
-    %input.submit{:name => "save", :type => "submit", :value => wt('Save page'), :class => "button default", "data-loading-click" => "Saving..."}
-    %input.submit{:name => "preview", :type => "submit", :value => wt('Preview'), :class => "button"}
-    %input.submit{:name => "cancel", :type => "submit", :value => wt('Cancel'), :class => "button"}
-  = wiki_page_attachments(@page)
+    .clear.inline.buttonrow.stacked
+      %input.submit{:name => "save", :type => "submit", :value => wt('Save page'), :class => "button default", "data-loading-click" => "Saving..."}
+      %input.submit{:name => "preview", :type => "submit", :value => wt('Preview'), :class => "button"}
+      %input.submit{:name => "cancel", :type => "submit", :value => wt('Cancel'), :class => "button"}
+
+  %h3 Attachments
+  .attachments
+    = wiki_page_attachments(@page)
+
 .last.column.span-8
   .quiet.box
     %h3 Formatting
