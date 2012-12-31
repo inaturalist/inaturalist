@@ -94,7 +94,7 @@
               <% end -%>
             </ul>
             
-            <% if @photo.respond_to?(:repair) && is_curator? -%>
+            <% if @photo.respond_to?(:repair) && (is_me?(@photo.user) || is_curator?) -%>
               <span class="button">
                 <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?" %>
               </span>
