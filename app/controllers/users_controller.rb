@@ -149,7 +149,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_2"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_3"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -160,7 +160,7 @@ class UsersController < ApplicationController
     end
 
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
-    unless fragment_exist?(@leaderboard_key)
+    unless fragment_exist?(@curators_key)
       @curators = User.curators.all(:limit => 500)
       @curated_taxa_counts = Taxon.where("creator_id IN (?)", @curators).group(:creator_id).count
       @curated_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
