@@ -158,6 +158,13 @@ class UsersController < ApplicationController
       @most_species_year = most_species(:per => 'year')
       @most_identifications_year = most_identifications(:per => 'year')
     end
+
+    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
+    unless fragment_exist?(@leaderboard_key)
+      @curators = User.curators.all(:limit => 500)
+      @curated_taxa_counts = Taxon.where("creator_id IN (?)", @curators).group(:creator_id).count
+      @curated_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
+    end
   end
 
   def leaderboard
