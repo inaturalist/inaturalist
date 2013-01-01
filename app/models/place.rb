@@ -9,7 +9,7 @@ class Place < ActiveRecord::Base
   has_one :place_geometry, :dependent => :destroy
   
   before_save :calculate_bbox_area
-  after_create :check_default_check_list
+  after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
   validates_length_of :name, :within => 2..500, 

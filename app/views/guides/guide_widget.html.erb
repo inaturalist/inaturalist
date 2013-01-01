@@ -98,7 +98,13 @@
   </script>
 <% end %>
 <div class="ui-widget-content" style="border: 0px solid transparent;">
-  <%= render :partial => 'guides/guide', :locals => {:size => @size, :grid => @grid, :labeled => @labeled} %>
+  <% if @place && @place.check_list.blank? -%>
+    <div class="readable nocontent">
+      This place has no check list, so there is no guide.
+    </div>
+  <% else %>
+    <%= render :partial => 'guides/guide', :locals => {:size => @size, :grid => @grid, :labeled => @labeled} %>
+  <% end -%>
 </div>
 
 <div id="logo" class="small meta inlineblock">
