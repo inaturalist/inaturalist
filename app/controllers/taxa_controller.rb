@@ -167,13 +167,17 @@ class TaxaController < ApplicationController
           TaxonLink.for_taxon(@taxon).where(:species_only => false).includes(:taxon)
         end
         tl_place_ids = @taxon_links.map(&:place_id).compact
-        if !tl_place_ids.blank? && !@places.blank?
-          # fetch listed taxa for this taxon with places matching the links
-          place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => @taxon)
+        if !tl_place_ids.blank? # && !@places.blank?
+          if @places.blank?
+            @taxon_links.reject! {|tl| tl.place_id}
+          else
+            # fetch listed taxa for this taxon with places matching the links
+            place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => @taxon)
 
-          # remove links that have a place_id set but don't have a corresponding listed taxon
-          @taxon_links.reject! do |tl|
-            tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+            # remove links that have a place_id set but don't have a corresponding listed taxon
+            @taxon_links.reject! do |tl|
+              tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+            end
           end
         end
         @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
