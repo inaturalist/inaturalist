@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
   }
-  scope :curators, includes(:roles).where("roles.name = 'curator'")
+  scope :curators, includes(:roles).where("roles.name IN ('curator', 'admin')")
   scope :active, where("suspended_at IS NULL")
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider

@@ -161,9 +161,10 @@ class UsersController < ApplicationController
 
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?(@curators_key)
-      @curators = User.curators.all(:limit => 500)
-      @curated_taxa_counts = Taxon.where("creator_id IN (?)", @curators).group(:creator_id).count
-      @curated_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
+      @curators = User.curators.limit(500).reject(&:is_admin?)
+      @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
+      @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
+      @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
     end
   end
 
