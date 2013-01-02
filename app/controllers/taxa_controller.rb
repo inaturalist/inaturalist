@@ -402,7 +402,7 @@ class TaxaController < ApplicationController
     
     do_external_lookups
 
-    if !@taxa.blank?
+    unless @taxa.blank?
       # if there's an exact match among the hits, make sure it's first
       if exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
         if exact_index > 0
@@ -410,7 +410,7 @@ class TaxaController < ApplicationController
         end
 
       # otherwise try and hit the db directly. Sphinx doesn't always seem to behave properly
-      elsif params[:per_page].to_i <= 1 && exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).first
+      elsif params[:page].to_i <= 1 && (exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase.strip).first)
         @taxa.unshift exact
       end
     end
