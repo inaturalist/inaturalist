@@ -255,7 +255,7 @@ class TaxaController < ApplicationController
   end
 
   def new
-    @taxon = Taxon.new
+    @taxon = Taxon.new(:name => params[:name])
   end
 
   def create

@@ -290,6 +290,12 @@
           <input type="submit" class="button" value="Search uBio &raquo;"/>
         <% end %>
       </div>
+      <% if is_curator? -%>
+        <div class="column span-6">
+          <label>Still no luck?</label>
+          <%= link_to "Create a new taxon", new_taxon_path(:name => params[:q]) %>
+        </div>
+      <% end -%>
     </div>
   </div>
 <% end -%>
