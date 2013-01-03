@@ -132,9 +132,18 @@
         <% @curators.each_with_index do |user, i| %>
           <div class="column span-6 <%= 'last' if i % 4 == 3 %>">
             <%= image_and_content user_image(user, :size => 'thumb'), :class => "stacked left" do %>
-              <div><%= link_to_user user %></div>
-              <span class="count"><%= @curated_taxa_counts[user.id].to_i %></span> taxa added<br/>
-              <span class="count"><%= @curated_flag_counts[user.id].to_i %></span> flags resolved
+              <div class="large"><%= link_to_user user %></div>
+              <%- [
+                  [@updated_taxa_counts[user.id].to_i, "taxon", "curated"],
+                  [@taxon_change_counts[user.id].to_i, "taxon change", "added"],
+                  [@resolved_flag_counts[user.id].to_i, "flag", "resolved"]
+                ].each do |count, noun, verb| -%>
+                <div>
+                  <span class="count"><%= count %></span>
+                  <%= count == 1 ? noun : noun.pluralize %>
+                  <%= verb %>
+                </div>
+              <% end -%>
             <% end -%>
           </div>
         <% end %>

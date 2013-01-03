@@ -563,7 +563,7 @@ class Taxon < ActiveRecord::Base
       taxon_photo.destroy unless new_photos.detect{|p| p.id == taxon_photo.photo_id}
     end
     new_photos.each do |photo|
-      taxon_photos.create(:photo => photo) unless photos.detect{|p| p.id == photo.id}
+      taxon_photos.build(:photo => photo) unless photos.detect{|p| p.id == photo.id}
     end
   end
   

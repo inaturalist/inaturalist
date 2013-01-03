@@ -88,6 +88,7 @@ class FlickrController < ApplicationController
       search_params = {}
       if context == 'user'
         search_params['user_id'] = current_user.flickr_identity.flickr_user_id
+        @friend_id = nil
       elsif context == 'friends'
         if @friend_id.blank? # if context is friends, but no friend id specified, we want to show the friend selector
           @friends = flickr_friends

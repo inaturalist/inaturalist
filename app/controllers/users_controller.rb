@@ -149,7 +149,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_2"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_3"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -160,10 +160,11 @@ class UsersController < ApplicationController
     end
 
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
-    unless fragment_exist?(@leaderboard_key)
-      @curators = User.curators.all(:limit => 500)
-      @curated_taxa_counts = Taxon.where("creator_id IN (?)", @curators).group(:creator_id).count
-      @curated_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
+    unless fragment_exist?(@curators_key)
+      @curators = User.curators.limit(500).reject(&:is_admin?)
+      @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
+      @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
+      @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
     end
   end
 
@@ -252,7 +253,7 @@ class UsersController < ApplicationController
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ?", false).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5)
+          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5).active
         end
       end
       format.mobile

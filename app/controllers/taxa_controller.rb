@@ -168,13 +168,17 @@ class TaxaController < ApplicationController
           TaxonLink.for_taxon(@taxon).where(:species_only => false).includes(:taxon)
         end
         tl_place_ids = @taxon_links.map(&:place_id).compact
-        if !tl_place_ids.blank? && !@places.blank?
-          # fetch listed taxa for this taxon with places matching the links
-          place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => @taxon)
+        if !tl_place_ids.blank? # && !@places.blank?
+          if @places.blank?
+            @taxon_links.reject! {|tl| tl.place_id}
+          else
+            # fetch listed taxa for this taxon with places matching the links
+            place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => @taxon)
 
-          # remove links that have a place_id set but don't have a corresponding listed taxon
-          @taxon_links.reject! do |tl|
-            tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+            # remove links that have a place_id set but don't have a corresponding listed taxon
+            @taxon_links.reject! do |tl|
+              tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+            end
           end
         end
         @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
@@ -252,7 +256,7 @@ class TaxaController < ApplicationController
   end
 
   def new
-    @taxon = Taxon.new
+    @taxon = Taxon.new(:name => params[:name])
   end
 
   def create
@@ -399,7 +403,7 @@ class TaxaController < ApplicationController
     
     do_external_lookups
 
-    if !@taxa.blank?
+    unless @taxa.blank?
       # if there's an exact match among the hits, make sure it's first
       if exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
         if exact_index > 0
@@ -407,7 +411,7 @@ class TaxaController < ApplicationController
         end
 
       # otherwise try and hit the db directly. Sphinx doesn't always seem to behave properly
-      elsif params[:per_page].to_i <= 1 && exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase).first
+      elsif params[:page].to_i <= 1 && (exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase.strip).first)
         @taxa.unshift exact
       end
     end
@@ -830,7 +834,7 @@ class TaxaController < ApplicationController
       @error_message = e.message
     end
     @taxon.reload
-    @error_message ||= "Graft failed" unless @taxon.grafted?
+    @error_message ||= "Graft failed. Please graft manually by editing the taxon." unless @taxon.grafted?
     
     respond_to do |format|
       format.html do
@@ -842,6 +846,13 @@ class TaxaController < ApplicationController
           render :status => :unprocessable_entity, :text => @error_message
         else
           render :text => "Taxon grafted to #{@taxon.parent.name}"
+        end
+      end
+      format.json do
+        if @error_message
+          render :status => :unprocessable_entity, :json => {:error => @error_message}
+        else
+          render :json => {:msg => "Taxon grafted to #{@taxon.parent.name}"}
         end
       end
     end
@@ -909,7 +920,7 @@ class TaxaController < ApplicationController
       :conditions => "resolved = true AND flaggable_type = 'Taxon'",
       :order => "flags.id desc")
     life = Taxon.find_by_name('Life')
-    @ungrafted = Taxon.roots.paginate(:conditions => ["id != ?", life], 
+    @ungrafted = Taxon.roots.active.paginate(:conditions => ["id != ?", life], 
       :page => 1, :per_page => 100, :include => [:taxon_names])
   end
 

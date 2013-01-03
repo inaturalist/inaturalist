@@ -72,7 +72,7 @@
     </div>
     
     <%= f.text_field :woeid %>
-    <%= f.text_field :parent_id, :placeholder => "Type place name" %>
+    <%= f.text_field :parent_id, :placeholder => "Type place name", "data-chooser-chosen" => @place.parent.to_json %>
     
     <div class="field">
       <%= link_to_function t(:show_kml), "$('#kmlfield').show(); $('#kmlfieldlink').hide();", :id => "kmlfieldlink" %>
@@ -83,7 +83,7 @@
     </div>
     
     <div class="clear buttonrow">
-      <%= f.submit t(:save), :class => 'default button' %>
+      <%= f.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving) %>
       <%= link_to t(:cancel), @place, :class => 'button' %>
       <%= link_to t(:delete), @place, :method => :delete, 
         :confirm => t(:are_you_sure_delete_this_place), 

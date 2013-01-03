@@ -56,6 +56,11 @@ describe User do
       u.skip_email_validation = true
       u.should be_valid
     end
+
+    it "should set the URI" do
+      u = User.make!
+      u.uri.should eq(FakeView.user_url(u))
+    end
   end
 
   #

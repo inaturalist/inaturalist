@@ -182,7 +182,7 @@ class PhotosController < ApplicationController
     unless @photo.respond_to?(:repair)
       Rails.logger.debug "[DEBUG] @photo: #{@photo}"
       flash[:error] = "Repair doesn't work for that kind of photo"
-      redirect_back_or_default(@photo)
+      redirect_back_or_default(@photo.becomes(Photo))
       return
     end
 
@@ -193,7 +193,7 @@ class PhotosController < ApplicationController
       redirect_to url
     else
       flash[:notice] = "Photo URLs repaired"
-      redirect_back_or_default(@photo)
+      redirect_back_or_default(@photo.becomes(Photo))
     end
   end
   
@@ -208,7 +208,7 @@ class PhotosController < ApplicationController
   def require_owner
     unless logged_in? && @photo.editable_by?(current_user)
       flash[:error] = "You don't have permission to do that"
-      return redirect_to @photo
+      return redirect_to @photo.becomes(Photo)
     end
   end
 

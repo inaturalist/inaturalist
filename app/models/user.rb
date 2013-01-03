@@ -84,6 +84,7 @@ class User < ActiveRecord::Base
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_create :create_default_life_list
+  after_create :set_uri
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -123,7 +124,7 @@ class User < ActiveRecord::Base
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
   }
-  scope :curators, includes(:roles).where("roles.name = 'curator'")
+  scope :curators, includes(:roles).where("roles.name IN ('curator', 'admin')")
   scope :active, where("suspended_at IS NULL")
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
@@ -304,6 +305,13 @@ class User < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     LifeList.delay.reload_from_observations(life_list_id)
+  end
+
+  def set_uri
+    if uri.blank?
+      User.update_all(["uri = ?", FakeView.user_url(id)], ["id = ?", id])
+    end
+    true
   end
   
   def self.query(params={}) 

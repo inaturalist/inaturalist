@@ -245,6 +245,7 @@ class Observation < ActiveRecord::Base
              :update_out_of_range_later,
              :update_default_license,
              :update_all_licenses
+  after_create :set_uri
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
@@ -1270,6 +1271,13 @@ class Observation < ActiveRecord::Base
           taxon_id, id, buffer_degrees]
       ) > 0
     end
+  end
+
+  def set_uri
+    if uri.blank?
+      Observation.update_all(["uri = ?", FakeView.observation_url(id)], ["id = ?", id])
+    end
+    true
   end
   
   def update_default_license

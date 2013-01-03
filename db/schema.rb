@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230210148) do
+ActiveRecord::Schema.define(:version => 20130102225500) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -414,6 +414,7 @@ ActiveRecord::Schema.define(:version => 20121230210148) do
     t.string   "positioning_device"
     t.boolean  "out_of_range"
     t.string   "license"
+    t.string   "uri"
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -421,6 +422,7 @@ ActiveRecord::Schema.define(:version => 20121230210148) do
   add_index "observations", ["out_of_range"], :name => "index_observations_on_out_of_range"
   add_index "observations", ["quality_grade"], :name => "index_observations_on_quality_grade"
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
+  add_index "observations", ["uri"], :name => "index_observations_on_uri"
   add_index "observations", ["user_id", "observed_on", "time_observed_at"], :name => "index_observations_user_datetime"
   add_index "observations", ["user_id"], :name => "index_observations_on_user_id"
 
@@ -976,6 +978,7 @@ ActiveRecord::Schema.define(:version => 20121230210148) do
     t.datetime "suspended_at"
     t.string   "suspension_reason"
     t.datetime "icon_updated_at"
+    t.string   "uri"
   end
 
   add_index "users", ["identifications_count"], :name => "index_users_on_identifications_count"
@@ -984,6 +987,7 @@ ActiveRecord::Schema.define(:version => 20121230210148) do
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["observations_count"], :name => "index_users_on_observations_count"
   add_index "users", ["state"], :name => "index_users_on_state"
+  add_index "users", ["uri"], :name => "index_users_on_uri"
 
   create_table "wiki_page_attachments", :force => true do |t|
     t.integer  "page_id",                           :null => false
