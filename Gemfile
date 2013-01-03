@@ -56,6 +56,7 @@ gem 'thinking-sphinx', '2.0.10'
 gem 'tlsmail'
 gem 'trollop'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
+gem 'twitter'
 gem "watu_table_builder", :require => "table_builder"
 gem 'will_paginate'
 # gem 'whenever', :require => false, :git => "git://github.com/kueda/whenever.git"

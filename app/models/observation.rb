@@ -523,7 +523,8 @@ class Observation < ActiveRecord::Base
     s
   end
 
-  def to_facebook_s
+  # returns a string for sharing on social media (fb, twitter)
+  def to_share_s
     return self.to_plain_s({:no_user=>true})
   end
   

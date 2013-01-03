@@ -75,7 +75,8 @@ class ProviderAuthorization < ActiveRecord::Base
     @auth_info = auth_info
     return unless auth_info["credentials"] # open_id (google, yahoo, etc) doesn't provide a token
     token = auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]
-    update_attribute(:token, token)
+    secret = auth_info["credentials"]["secret"]
+    update_attributes({:token => token, :secret => secret})
     update_photo_identities
   end
 

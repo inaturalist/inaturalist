@@ -298,8 +298,34 @@ class User < ActiveRecord::Base
     fb_api.put_wall_post('', {'name' => 'iNaturalist.org',
                               'link' => obs.url.gsub('localhost:3000','74.207.251.143'),
                               'caption' => "I posted an observation to iNaturalist.org!",
-                              'description' => obs.to_plain_s(:no_user=>true), 
+                              'description' => obs.to_share_s,
                               'picture' => obs.image_url})
+  end
+
+  # returns a Twitter object to make (authenticated) api calls
+  # see twitter gem docs for available methods: https://github.com/sferik/twitter
+  def twitter_api
+    return nil unless twitter_identity
+    @twitter_api ||= Twitter::Client.new(
+      :oauth_token => twitter_identity.token,
+      :oauth_token_secret => twitter_identity.secret
+    )
+  end
+
+  # returns nil or the twitter ProviderAuthorization
+  def twitter_identity
+    @twitter_identity ||= has_provider_auth('twitter')
+  end
+
+  def post_observation_to_twitter(obs)
+    twit_api = self.twitter_api
+    return nil unless twit_api
+    obs_image_url = obs.image_url
+    if obs_image_url.nil?
+      twit_api.update(obs.to_share_s)
+    else
+      twit_api.update_with_media(obs.to_share_s, open(obs_image_url))
+    end
   end
   
   def update_observation_licenses

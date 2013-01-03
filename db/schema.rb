@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011181051) do
+ActiveRecord::Schema.define(:version => 20130103065755) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -614,6 +614,7 @@ ActiveRecord::Schema.define(:version => 20121011181051) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "scope"
+    t.string   "secret"
   end
 
   add_index "provider_authorizations", ["user_id"], :name => "index_provider_authorizations_on_user_id"
