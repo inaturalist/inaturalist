@@ -493,8 +493,9 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         unless errors
+          prefs = current_preferences
           # post observations to facebook
-          if current_user.facebook_identity
+          if prefs['share_observations_on_facebook'] && current_user.facebook_identity
             @observations.each{|obs| current_user.post_observation_to_facebook(obs) }
           end
           flash[:notice] = params[:success_msg] || "Observation(s) saved!"

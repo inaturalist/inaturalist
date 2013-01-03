@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
   preference :gbif_sharing, :boolean, :default => true
   preference :observation_license, :string
   preference :photo_license, :string
+
+  preference :share_observations_on_facebook, :boolean, :default => true
+
+  SHARING_PREFERENCES = %w(share_observations_on_facebook)
   
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
