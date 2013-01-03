@@ -833,7 +833,7 @@ class TaxaController < ApplicationController
       @error_message = e.message
     end
     @taxon.reload
-    @error_message ||= "Graft failed" unless @taxon.grafted?
+    @error_message ||= "Graft failed. Please graft manually by editing the taxon." unless @taxon.grafted?
     
     respond_to do |format|
       format.html do
@@ -845,6 +845,13 @@ class TaxaController < ApplicationController
           render :status => :unprocessable_entity, :text => @error_message
         else
           render :text => "Taxon grafted to #{@taxon.parent.name}"
+        end
+      end
+      format.json do
+        if @error_message
+          render :status => :unprocessable_entity, :json => {:error => @error_message}
+        else
+          render :json => {:msg => "Taxon grafted to #{@taxon.parent.name}"}
         end
       end
     end
@@ -912,7 +919,7 @@ class TaxaController < ApplicationController
       :conditions => "resolved = true AND flaggable_type = 'Taxon'",
       :order => "flags.id desc")
     life = Taxon.find_by_name('Life')
-    @ungrafted = Taxon.roots.paginate(:conditions => ["id != ?", life], 
+    @ungrafted = Taxon.roots.active.paginate(:conditions => ["id != ?", life], 
       :page => 1, :per_page => 100, :include => [:taxon_names])
   end
 

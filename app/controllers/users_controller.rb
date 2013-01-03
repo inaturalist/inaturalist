@@ -253,7 +253,7 @@ class UsersController < ApplicationController
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ?", false).limit(5)
-          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5)
+          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5).active
         end
       end
       format.mobile
