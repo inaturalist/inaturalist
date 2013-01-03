@@ -493,6 +493,10 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         unless errors
+          # post observations to facebook
+          if current_user.facebook_identity
+            @observations.each{|obs| current_user.post_observation_to_facebook(obs) }
+          end
           flash[:notice] = params[:success_msg] || "Observation(s) saved!"
           if params[:commit] == "Save and add another"
             o = @observations.first

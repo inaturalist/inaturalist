@@ -522,6 +522,10 @@ class Observation < ActiveRecord::Base
     s += " by #{self.user.try(:login)}" unless options[:no_user]
     s
   end
+
+  def to_facebook_s
+    return self.to_plain_s({:no_user=>true})
+  end
   
   def time_observed_at_utc
     time_observed_at.try(:utc)

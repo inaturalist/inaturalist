@@ -287,6 +287,16 @@ class User < ActiveRecord::Base
   def facebook_token
     facebook_identity.try(:token)
   end
+
+  def post_observation_to_facebook(obs)
+    fb_api = self.facebook_api
+    return nil unless fb_api
+    fb_api.put_wall_post('', {'name' => 'iNaturalist.org',
+                              'link' => obs.url.gsub('localhost:3000','74.207.251.143'),
+                              'caption' => "I posted an observation to iNaturalist.org!",
+                              'description' => obs.to_plain_s(:no_user=>true), 
+                              'picture' => obs.image_url})
+  end
   
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
