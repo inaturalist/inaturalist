@@ -496,7 +496,11 @@ class ObservationsController < ApplicationController
           prefs = current_preferences
           # post observations to facebook
           if prefs['share_observations_on_facebook'] && current_user.facebook_identity
-            @observations.each{|obs| current_user.post_observation_to_facebook(obs) }
+            @observations.each{|obs| current_user.share_observation_on_facebook(obs) }
+          end
+          # post observations to twitter
+          if prefs['share_observations_on_twitter'] && current_user.twitter_identity
+            @observations.each{|obs| current_user.share_observation_on_twitter(obs) }
           end
           flash[:notice] = params[:success_msg] || "Observation(s) saved!"
           if params[:commit] == "Save and add another"

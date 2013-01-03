@@ -30,8 +30,9 @@ class User < ActiveRecord::Base
   preference :photo_license, :string
 
   preference :share_observations_on_facebook, :boolean, :default => true
+  preference :share_observations_on_twitter, :boolean, :default => true
 
-  SHARING_PREFERENCES = %w(share_observations_on_facebook)
+  SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
@@ -292,7 +293,7 @@ class User < ActiveRecord::Base
     facebook_identity.try(:token)
   end
 
-  def post_observation_to_facebook(obs)
+  def share_observation_on_facebook(obs)
     fb_api = self.facebook_api
     return nil unless fb_api
     fb_api.put_wall_post('', {'name' => 'iNaturalist.org',
@@ -317,7 +318,7 @@ class User < ActiveRecord::Base
     @twitter_identity ||= has_provider_auth('twitter')
   end
 
-  def post_observation_to_twitter(obs)
+  def share_observation_on_twitter(obs)
     twit_api = self.twitter_api
     return nil unless twit_api
     obs_image_url = obs.image_url
