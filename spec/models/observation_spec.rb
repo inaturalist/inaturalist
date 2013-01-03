@@ -258,6 +258,19 @@ describe Observation, "creation" do
     o = Observation.make!(:user_agent => user_agent)
     o.user_agent.size.should be < 256
   end
+
+  it "should set the URI" do
+    o = Observation.make!
+    o.reload
+    o.uri.should eq(FakeView.observation_url(o))
+  end
+
+  it "should not set the URI if already set" do
+    uri = "http://www.somewhereelse.com/users/4"
+    o = Observation.make!(:uri => uri)
+    o.reload
+    o.uri.should eq(uri)
+  end
 end
 
 describe Observation, "updating" do
