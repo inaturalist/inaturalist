@@ -16,11 +16,13 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('.grafting_link')
-        .bind('ajax:success', function(e, response, status) {
-          $(this).text(response).addClass('success')
+        .bind('ajax:success', function(e, json, status) {
+          $(this).text(json.msg).addClass('success status')
         })
         .bind('ajax:error', function(event, request, settings) {
-          alert(request.responseText)
+          var json = $.parseJSON(request.responseText)
+          if (json) { alert(json.error) }
+          else { alert('Something went wrong') }
         })
     })
   </script>
@@ -110,14 +112,15 @@
         |
         <span class="button"> <%= link_to 'merge', merge_taxon_path(taxon) %></span>
         |
-        <span class="button"> <%= link_to 'delete', taxon, :method => :delete, :confirm => "Are you sure you want to delete this? You should probably check to see if it has observations or listed taxa first." %></span>
+        <span class="button"> <%= link_to 'add taxon change', new_taxon_change_path("input_taxon_ids[]" => taxon.id, :type => "TaxonSwap") %></span>
         |
         <span class="button">
-          <%= link_to 'graft', graft_taxon_path(taxon), 
+          <%= link_to 'graft', graft_taxon_path(taxon, :format => 'json'), 
             :id => "grafting_link_#{taxon.id}",
             :class => "grafting_link",
             :remote => true,
             :method => 'post',
+            "data-type" => 'json',
             "data-loading-click" => "Grafting..."
            %>
         </span>
