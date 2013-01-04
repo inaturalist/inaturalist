@@ -507,6 +507,10 @@ class Observation < ActiveRecord::Base
         scope = scope.has_observation_field(v[:observation_field], v[:value])
       end
     end
+
+    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+      scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
+    end
     
     # return the scope, we can use this for will_paginate calls like:
     # Observation.query(params).paginate()

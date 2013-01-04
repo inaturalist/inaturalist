@@ -49,6 +49,13 @@ base: &base
     # URL where visitors can get help using the site
     help_url: /pages/help
 
+    # filter observations in public places to ones contributed by this site
+    # this filters by the uri column in observations, which in turns uses the
+    # URL of the observation, which should be unique to each site instance. If
+    # your URL is foo.inaturalist.org, then your observations will be fitlered
+    # to URIs like http://foo.inaturalist.org/%
+    # site_only_observations: false
+
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
