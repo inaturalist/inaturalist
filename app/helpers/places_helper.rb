@@ -81,4 +81,14 @@ module PlacesHelper
       tag_options
     )
   end
+
+  def place_geometry_kml_url(options = {})
+    place = options[:place] || @place
+    place_geometry = options[:place_geometry] || @place
+    if place_geometry.blank?
+      ''.html_safe
+    else
+      "#{place_geometry_url(place, :format => "kml")}?#{place_geometry.updated_at.to_i}".html_safe
+    end
+  end
 end

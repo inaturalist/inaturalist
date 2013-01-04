@@ -19,7 +19,7 @@
     var DEFAULT_PHOTO_IDENTITY_URL = <%= @default_photo_identity_url.to_json.html_safe %>,
         PHOTO_IDENTITY_URLS = [<%= @photo_identity_urls.join(',').html_safe %>],
         PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect.html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
         KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : '[]' %>,
         BOUNDS = <%=raw INAT_CONFIG['bounds'].to_json %>
   </script>
