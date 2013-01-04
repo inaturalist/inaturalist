@@ -22,7 +22,7 @@
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
     var PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
+        PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
         OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
   </script>

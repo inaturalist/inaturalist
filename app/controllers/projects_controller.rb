@@ -58,7 +58,7 @@ class ProjectsController < ApplicationController
   
   def show
     respond_to do |format|
-      format.any(:html, :mobile) do
+      format.html do
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
