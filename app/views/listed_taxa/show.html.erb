@@ -38,7 +38,7 @@
         },
         load: function(event, ui) {
           $(ui.panel).append(
-            $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
+            $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
           )
         }
       })
@@ -197,7 +197,7 @@
     -%>
     <ul>
       <li><%= link_to content_tag(:span, "Comments"), '#comments' %></li>
-      <li><%= link_to content_tag(:span, obs_tab_txt), obs_url, :rel => obs_url, :title => "observations" %></li>
+      <li><%= link_to content_tag(:span, obs_tab_txt), obs_url, :title => "observations" %></li>
     </ul>
     <div id="comments">
       <%= render :partial => "comments/comments", :object => @listed_taxon %>

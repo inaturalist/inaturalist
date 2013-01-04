@@ -27,4 +27,4 @@
       =  @observation_counts[user.id] == 1 ? "observation" : "observations"
 
 .column.span-24
-  = will_paginate @users
+  = will_paginate @users, :renderer => INatLinkRenderer

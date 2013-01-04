@@ -101,7 +101,7 @@
       <ul>
         <li><%= link_to "Info", "##{dom_id(listed_taxon, 'infotab')}" %></li>
         <li><%= link_to "All photos", "##{dom_id(listed_taxon, 'photostab')}" %></li>
-        <li><%= link_to "Observations", obs_url, :rel => obs_url, :title => dom_id(listed_taxon, 'observationstab') %></li>
+        <li><%= link_to "Observations", obs_url, :title => dom_id(listed_taxon, 'observationstab') %></li>
       </ul>
 
       <div id="<%= dom_id(listed_taxon, 'infotab') %>">

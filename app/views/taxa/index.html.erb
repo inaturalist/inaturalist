@@ -232,7 +232,7 @@ Taxa &middot; All Species
             <% if taxon.observations_count > 1 %>
               |
               <%= link_to "View all #{pluralize(taxon.observations_count, 'observation')} &raquo;".html_safe, 
-                observations_path(:taxon_id => taxon) %>
+                observations_path(:taxon_id => taxon), :rel => "nofollow" %>
             <% end %>
           </div>
         <% else %>

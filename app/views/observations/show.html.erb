@@ -299,11 +299,13 @@
             </label>
             <%= observation_field_value_for(ofv) %>
             <span class="extra small">
-              <%= link_to "Observations w/ field", observations_path("field:#{ofv.observation_field.normalized_name}" => "") %>
+              <%= link_to "Observations w/ field", observations_path("field:#{ofv.observation_field.normalized_name}" => ""),
+                :rel => "nofollow" %>
               <% if ofv.value.to_s.size < 30 -%>
                 |
                 <%= link_to "Observations w/ #{ofv.observation_field.name}=#{ofv.value}", 
-                  observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value) -%>
+                  observations_path("field:#{ofv.observation_field.normalized_name}" => ofv.value),
+                  :rel => "nofollow" -%>
               <%- end -%>
             </span>
           </div>

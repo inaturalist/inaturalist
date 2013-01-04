@@ -164,7 +164,7 @@ Some notes:
     <% unless observation.tags.empty? %>
       <h4 class="label">Tags</h4>
       <div class="description">
-        <%=raw observation.tags.map {|t| link_to(t.name, observations_path(:q => t.name, :search_on => "tags")) }.join(', ') %>
+        <%=raw observation.tags.map {|t| link_to(t.name, observations_path(:q => t.name, :search_on => "tags"), :rel => "nofollow") }.join(', ') %>
       </div>
     <% end %>
   </div>

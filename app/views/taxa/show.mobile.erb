@@ -31,7 +31,8 @@
   
   <%= link_to "View observations &raquo;".html_safe, observations_path(:taxon_id => @taxon), 
     :id => "obslink",
-    :class => "iconified full button inlineblock stacked " %>
+    :class => "iconified full button inlineblock stacked ",
+    :rel => "nofollow" %>
   
   <% if !@siblings.blank? -%>
     <div class="siblings">

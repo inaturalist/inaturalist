@@ -496,6 +496,19 @@ module ApplicationHelper
       link_to(taxon_name, url, options)
     end
   end
+
+  def link_to(*args, &block)
+    unless block_given?
+      body, url, options = args
+      if url_for(url) =~ /\?/
+        options ||= {}
+        options[:rel] = "nofollow" unless options[:rel].to_s =~ /nofollow/
+      end
+      super(body, url, options)
+    else
+      super
+    end
+  end
   
   def loading(content = nil, options = {})
     content ||= "Loading..."

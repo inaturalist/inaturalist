@@ -156,7 +156,7 @@
   <div id="observations" class="compact mini observations date-added">
     <%= render(:partial => 'observations/cached_component', :collection => @observations) %>
   </div>
-  <p><%= link_to("More", observations_path(:order_by => 'created_at', :order => 'desc'), :class => 'readmore') %></p>
+  <p><%= link_to("More", observations_path(:order_by => 'created_at', :order => 'desc'), :class => 'readmore', :rel => "nofollow") %></p>
 </div>
 <div class="last column span-14 append-1">
   <div id="map"></div>
