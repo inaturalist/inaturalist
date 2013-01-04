@@ -139,8 +139,12 @@ class PicasaPhoto < Photo
       :max_results => options[:max_results], 
       :start_index => options[:start_index],
       :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
-    photos = album_data.photos.map do |pp|
-      PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
+    photos = if album_data
+      album_data.photos.map do |pp|
+        PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
+      end
+    else
+      []
     end
   end
 
