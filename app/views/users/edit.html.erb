@@ -59,17 +59,19 @@
       <%= f.text_area(:description, :label => "Tell everyone a little about yourself") %>
     </div>
     <div id="preferencescol" class="last column span-9">
-      <div id="observationsharingpreferences" class="stacked">
-        <label>Automatically share your observations on</label>
-        <% for attr_name in User::SHARING_PREFERENCES %>
-          <%- service = attr_name.gsub(/share_observations_on_/, '') %>
-          <%- if current_user.has_provider_auth(service) %>
-            <%= f.check_box "prefers_#{attr_name}", 
-              :label => service.capitalize, 
-              :label_after => true %>
+      <%- unless current_user.provider_authorizations.blank? %>
+        <div id="observationsharingpreferences" class="stacked">
+          <label>Automatically share your observations on</label>
+          <% for attr_name in User::SHARING_PREFERENCES %>
+            <%- service = attr_name.gsub(/share_observations_on_/, '') %>
+            <%- if current_user.has_provider_auth(service) %>
+              <%= f.check_box "prefers_#{attr_name}", 
+                :label => service.capitalize, 
+                :label_after => true %>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <div id="notificationpreferences" class="stacked">
         <label>Receive email notifications when people leave you</label>
         <% for attr_name in User::NOTIFICATION_PREFERENCES %>
