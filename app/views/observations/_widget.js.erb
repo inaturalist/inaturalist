@@ -17,7 +17,7 @@ try {
     <% end %>
     
     <% if params[:layout] == 'small' %>
-      document.write('<%= escape_javascript(render(:partial => "widget_small.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')).html_safe %>')
+      document.write('<%= escape_javascript(render_in_format(:html ,:partial => "widget_small.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')).html_safe %>')
     <% else %>
       document.write('<%= escape_javascript(render_in_format(:html, :partial => "widget.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')).html_safe %>')
     <% end %>

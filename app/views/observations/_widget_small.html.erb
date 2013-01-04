@@ -4,7 +4,8 @@
 <div data-current-page="<%= @observations.current_page.to_i %>" 
        data-per-page="<%= @observations.per_page %>" 
        data-total-entries="<%= @observations.total_entries %>"
-       data-total-pages="<%= @observations.total_pages %>">
+       data-total-pages="<%= @observations.total_pages %>" 
+       class="inat-widget-small">
   <% if @observations.size == 0 %>
     <% unless silence == "true" %>
       <span class="inat-value">no observations</span>
@@ -29,4 +30,5 @@
       <% end -%>
     <% end %>
   <% end %>
+  <div style="visibility:hidden; clear:both; height:0;">&nbsp;</div>
 </div>
