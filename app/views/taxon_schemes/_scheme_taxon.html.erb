@@ -18,7 +18,7 @@
             <% end -%>
             
             <div class="stacked">
-              <%= link_to taxon.observations_count, observations_path(:taxon_id => taxon.id) %> Obs
+              <%= link_to taxon.observations_count, observations_path(:taxon_id => taxon.id), :rel => "nofollow" %> Obs
               <% unless taxon.conservation_status.blank? -%>
                 <span class='meta'>|</span>
                 <%= taxon.conservation_status_code %>

@@ -890,11 +890,11 @@
         <% end -%>
       
       <% if logged_in? -%>
-        <%= link_to t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
+        <%= link_to t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore', :rel => "nofollow" %>
         <br/>
         <%= link_to t(:view_your_observations), observations_by_login_path(current_user.login, :taxon_id => @taxon.id), :class => 'readmore' %>
       <% else %>
-        <%= link_to t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
+        <%= link_to  t(:view_all_observations), observations_path(:taxon_id => @taxon.id), :class => 'readmore', :rel => "nofollow" %>
       <% end -%>
     </div>
     

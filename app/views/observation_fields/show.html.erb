@@ -94,6 +94,7 @@
   </table>
   <%= link_to "View more search options", 
     observations_path("field:#{@observation_field.normalized_name}" => (@value == 'any' ? '' : @value)),
+    :rel => "nofollow",
     :class => "readmore" %>
 <% end -%>
 

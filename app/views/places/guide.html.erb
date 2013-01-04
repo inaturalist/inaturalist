@@ -7,7 +7,7 @@
   </div>
   <h2>
     Guide to
-    <%= @place ? link_to(@place.name, @place) : link_to(@coords.inspect, observations_path(:swlat => params[:swlat], :swlng => params[:swlng], :nelat => params[:nelat], :nelng => params[:nelng])) %>
+    <%= @place ? link_to(@place.name, @place) : link_to(@coords.inspect, observations_path(:swlat => params[:swlat], :swlng => params[:swlng], :nelat => params[:nelat], :nelng => params[:nelng]), :rel => "nofollow") %>
   </h2>
 </div>
 
