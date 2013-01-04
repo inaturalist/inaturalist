@@ -63,9 +63,11 @@
         <label>Automatically share your observations on</label>
         <% for attr_name in User::SHARING_PREFERENCES %>
           <%- service = attr_name.gsub(/share_observations_on_/, '') %>
-          <%= f.check_box "prefers_#{attr_name}", 
-            :label => service.capitalize, 
-            :label_after => true %>
+          <%- if current_user.has_provider_auth(service) %>
+            <%= f.check_box "prefers_#{attr_name}", 
+              :label => service.capitalize, 
+              :label_after => true %>
+          <% end %>
         <% end %>
       </div>
       <div id="notificationpreferences" class="stacked">
