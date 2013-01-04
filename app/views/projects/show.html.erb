@@ -95,12 +95,23 @@
         </div>
       <% else %>
         <div class="stacked">
-          <% for project_journal_post in @project_journal_posts %>
-            <%= render :partial => 'posts/post', :locals => { :post => project_journal_post } %>
-          <% end %>
+          <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first } %>
         </div>
-        <%= link_to "More journal posts", project_journal_path(@project),
-          :class => "readmore" %>
+        
+        <% if @project_journal_posts.size > 1 -%>
+          <div class="stacked">
+            <label>Recent posts</label>
+            <ul class="plain">
+              <% for post in @project_journal_posts[1..-1] %>
+                <li>
+                  <span class="date meta"><%= post.published_at.to_date.strftime('%b %d') %></span>
+                  <%= link_to truncate(post.title, :length => 100), project_journal_post_path(@project, post) %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <%= link_to "More journal posts", project_journal_path(@project), :class => "readmore" %>
+        <% end -%>
       <% end %>
     </div>
   <% end %>

@@ -1748,6 +1748,10 @@ class ObservationsController < ApplicationController
       end
     end
 
+    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+      @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")
+    end
+
     @observations = WillPaginate::Collection.create(obs_ids.current_page, obs_ids.per_page, obs_ids.total_entries) do |pager|
       pager.replace(@observations.to_a)
     end

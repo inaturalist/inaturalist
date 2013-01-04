@@ -74,8 +74,7 @@ class ProjectsController < ApplicationController
             :observation => :iconic_taxon,
             :curator_identification => [:user, :taxon]
           }, :order => "id DESC")
-        @project_journal_posts = @project.posts.published.paginate(:page => params[:page] || 1, 
-          :per_page => 1, :order => "published_at DESC")
+        @project_journal_posts = @project.posts.published.order("published_at DESC").limit(4)
         @observations = @project_observations.map(&:observation)
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.all(:limit => 100)
