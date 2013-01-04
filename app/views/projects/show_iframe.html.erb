@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
     var PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect.html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
         OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
     $(document).ready(function() {
