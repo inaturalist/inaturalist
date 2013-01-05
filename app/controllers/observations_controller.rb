@@ -80,6 +80,7 @@ class ObservationsController < ApplicationController
       @observations = if perform_caching
         cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
         cache_params[:page] ||= 1
+        cache_params[:site_name] = SITE_NAME if INAT_CONFIG['site_only_observations']
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
         Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
           get_paginated_observations(search_params, find_options).to_a
