@@ -97,7 +97,8 @@ class TaxonSchemesController < ApplicationController
       :joins => 
         "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
         "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
-      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme]
+      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme],
+      :limit => 200
     )
     @taxon_changes = []
     inactive_taxa.each do |taxon|
@@ -122,7 +123,8 @@ class TaxonSchemesController < ApplicationController
       :joins => 
         "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
         "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
-      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme]
+      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme],
+      :limit => 200
     )
     @orphaned_taxa = []
     inactive_taxa.each do |taxon|
