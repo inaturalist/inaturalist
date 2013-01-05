@@ -1,10 +1,11 @@
 <% content_for(:title) do %>
   <% @title = capture do %>
     <% if @parent && @taxon_scheme -%>
-      <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" => @parent.id %></i>
-      in <%= @taxon_scheme.title %>
+      <h2><i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" => @parent.id %></i>
+      in <%= @taxon_scheme.title %></h2>
     <% else %>
-      <%= @taxon_scheme.title %>
+      <h2><%= @taxon_scheme.title %></h2>
+      <p class="description">Showing all taxa in the scheme. Filter by a genus for more details</p>
     <% end -%>
   <% end -%>
   <%= strip_tags(@title) %>
@@ -40,7 +41,7 @@
   </script>
 <%- end -%>
 
-<h2><%= @title %></h2>
+<%= @title %>
 
 <div class="column span-6">
   <%= form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
@@ -57,7 +58,7 @@
     <% else %>
       <p class="description">No taxa match those criteria</p>
     <% end %>
-  <% elsif !@active_taxa.blank? %>
+  <% elsif !@active_taxa.blank? || !@taxon_changes.blank? || !@orphaned_taxa.blank? %>
     <ul>
       <% for taxon in @active_taxa -%>
         <%= render :partial => 'scheme_taxon', :object => taxon %>
