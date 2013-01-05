@@ -14,8 +14,10 @@ class WelcomeController < ApplicationController
      'placement = \'welcome/index\' AND ? BETWEEN "start" AND "end"', Time.now.utc])
     scope = Observation.has_geo.has_photos.includes(:observation_photos => :photo).
       limit(4).order("observations.id DESC").scoped
-    if INAT_CONFIG['site_only_observations']
-      scope = scope.where("observations.uri LIKE ?", "#{root_url}%")
+    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+      scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
+    elsif (site_bounds = INAT_CONFIG['bounds']) && params[:swlat].blank?
+      scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
     end
     @observations = scope
     respond_to do |format|
