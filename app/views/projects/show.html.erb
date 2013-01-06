@@ -116,7 +116,7 @@
     </div>
   <% end %>
   <div id="observations">
-    <% if logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
+    <% if false && logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
       <div class="right add_matching_link inlineblock">
         <%= render 'project_invitations/import_button' %>
       </div>
