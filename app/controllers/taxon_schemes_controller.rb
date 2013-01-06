@@ -57,7 +57,7 @@ class TaxonSchemesController < ApplicationController
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
         :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
-        :conditions => ["type IN ('TaxonDrop') OR t1.is_active = ? OR t2.is_active = ?", true, true]
+        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
       )
       if taxon_change
         @taxon_changes << taxon_change
@@ -90,7 +90,57 @@ class TaxonSchemesController < ApplicationController
       end
     end
   end
-
+  
+  def mapped_inactive_taxa
+    inactive_taxa = Taxon.all(
+      :order => "name",
+      :joins => 
+        "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
+        "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
+      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme],
+      :limit => 200
+    )
+    @taxon_changes = []
+    inactive_taxa.each do |taxon|
+      scope = TaxonChange.scoped
+      scope = scope.taxon(taxon)
+      taxon_change = scope.first(
+        :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
+        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
+      )
+      if taxon_change
+        @taxon_changes << taxon_change
+        taxa_involved = [taxon_change.taxon,taxon_change.taxon_change_taxa.map{|tct| tct.taxon}].flatten
+      end
+    end
+    @taxon_changes = @taxon_changes.flatten.uniq
+    return
+  end
+  
+  def orphaned_inactive_taxa
+    inactive_taxa = Taxon.all(
+      :order => "name",
+      :joins => 
+        "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
+        "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
+      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme],
+      :limit => 200
+    )
+    @orphaned_taxa = []
+    inactive_taxa.each do |taxon|
+      scope = TaxonChange.scoped
+      scope = scope.taxon(taxon)
+      taxon_change = scope.first(
+        :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
+        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
+      )
+      unless taxon_change
+        @orphaned_taxa << taxon
+      end
+    end
+    return
+  end
+  
   private
   def load_taxon_scheme
     render_404 unless @taxon_scheme = TaxonScheme.find_by_id(params[:id], 

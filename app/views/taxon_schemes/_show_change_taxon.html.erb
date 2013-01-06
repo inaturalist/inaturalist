@@ -26,15 +26,28 @@
         </ul>
       </td>
       <td class="mergetype">
-        <% case taxon_change.class.name when "TaxonDrop" %>
-          <%= link_to "dropped (read more)", taxon_change_path(taxon_change) %>
-        <% else %>
-          <%= link_to "instead of", taxon_change_path(taxon_change) %>
-        <% end %>
+        <% if taxon_change.committed_on.nil? && taxon_change.class.name == "TaxonSwap" %>
+          <% string = "Will be replacing" %>
+        <% elsif !taxon_change.committed_on.nil? && taxon_change.class.name == "TaxonSwap" %>
+          <% string = "Was replaced with" %>
+        <% elsif taxon_change.committed_on.nil? && taxon_change.class.name == "TaxonSplit" %>
+          <% string = "Will be split from" %>
+        <% elsif !taxon_change.committed_on.nil? && taxon_change.class.name == "TaxonSplit" %>
+          <% string = "Was split into" %>
+        <% elsif taxon_change.committed_on.nil? && taxon_change.class.name == "TaxonMerge" %>
+          <% string = "Will be merged from" %>
+        <% elsif !taxon_change.committed_on.nil? && taxon_change.class.name == "TaxonMerge" %>
+          <% string = "Was merged into" %>
+        <% elsif taxon_change.class.name == "TaxonStage" %>
+          <% string = "Will be staged" %>
+        <% else taxon_change.class.name == "TaxonDrop" %>
+          <% string = "Was dropped" %>
+        <% end %>   
+        <%= link_to string, taxon_change_path(taxon_change) %>
       </td>
       <td>
         <ul class="change_taxon">
-          <% unless taxon_change.class.name == "TaxonDrop" %>
+          <% unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage"%>
             <% for change_taxon in right_taxa %>
               <li>
                 <%= render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change} %>

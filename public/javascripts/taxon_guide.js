@@ -356,7 +356,7 @@ var TaxonGuide = {
                   )
                 } else {
                   $(ui.panel).append(
-                    $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
+                    $('<a rel="nofollow">View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
                   )
                 }
               }

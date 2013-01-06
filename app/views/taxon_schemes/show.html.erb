@@ -1,10 +1,11 @@
 <% content_for(:title) do %>
   <% @title = capture do %>
     <% if @parent && @taxon_scheme -%>
-      <i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" => @parent.id %></i>
-      in <%= @taxon_scheme.title %>
+      <h2><i><%= link_to @parent.name, taxon_path(@parent), "data-taxon-id" => @parent.id %></i>
+      in <%= @taxon_scheme.title %></h2>
     <% else %>
-      <%= @taxon_scheme.title %>
+      <h2><%= @taxon_scheme.title %></h2>
+      <p class="description">Showing all taxa in the scheme. Filter by a genus for more details</p>
     <% end -%>
   <% end -%>
   <%= strip_tags(@title) %>
@@ -16,6 +17,10 @@
     .ui-chooser-choice {max-width:190px;}
     .scheme_taxon {margin-bottom: 10px; width: 310px;}
     form .text {width:200px;}
+    .inactive_taxa_links {
+        width: 200px;
+        padding: 10px;
+    }
 </style>
 <% end %>
 
@@ -40,14 +45,26 @@
   </script>
 <%- end -%>
 
-<h2><%= @title %></h2>
+<%= @title %>
 
 <div class="column span-6">
+  <div class="inactive_taxa_links">
+    <%= link_to "Show mapped inactive taxa".html_safe, mapped_inactive_taxa_path(@taxon_scheme), :class => "navlink" %>
+    <% helptip_for "tags" do %>
+      Display all inactive taxa in this scheme that are mapped to other taxa through taxon changes.
+    <% end -%>
+    <%= link_to "Show orphaned inactive taxa".html_safe, orphaned_inactive_taxa_path(@taxon_scheme), :class => "navlink" %>
+    <% helptip_for "tags" do %>
+      Display all inactive taxa in this scheme that are not linked to other taxa through taxon changes.
+    <% end -%>
+  </div>
+  
   <%= form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
     <%= f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => "None", :selected => @taxon_scheme.try(:id) %>
     <%= f.text_field :taxon_id,  :value => @parent ? @parent.id : nil, :label => "Genus", :placeholder => "Type genus name" %>
     <%= f.submit "Filter", :class => "default button", "data-loading-click" => "Filtering..." %>
   <% end -%>
+    
 </div>
 
 <div class="last column span-18">
@@ -57,7 +74,7 @@
     <% else %>
       <p class="description">No taxa match those criteria</p>
     <% end %>
-  <% elsif !@active_taxa.blank? %>
+  <% elsif !@active_taxa.blank? || !@taxon_changes.blank? || !@orphaned_taxa.blank? %>
     <ul>
       <% for taxon in @active_taxa -%>
         <%= render :partial => 'scheme_taxon', :object => taxon %>
