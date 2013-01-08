@@ -1,7 +1,25 @@
 es:
+  x_followers:
+    one: '1 seguidore'
+    other: '%{count} seguidores'
+  x_identifications:
+    one: '1 identificación'
+    other: '%{count} identificaciones'
+  x_lists:
+    one: '1 lista'
+    other: '%{count} listas'
+  x_journal_posts:
+    one: '1 entrada de diario'
+    other: '%{count} entradas de diario'
   x_observations:
     one: 1 observación
     other: '%{count} observaciones'
+  x_people:
+    one: '1 persona'
+    other: '%{count} personas'
+  x_species:
+    one: '1 especies'
+    other: '%{count} especies'
   we_also_support: |
             Tambien tenemos conexión con <a href="http://flickr.com">Flickr</a>,
             <a href="http://picasaweb.google.com">Picasa</a>, y
@@ -1415,6 +1433,7 @@ es:
   we_support_flickr: Somos compatibles con Flickr en alojamiento de imágenes y esperamos agregar otros alojamientos de imágenes en poco tiempo.
   wed: mié
   welcome!: ¡Bienvenidos!
+  welcome_comma!: ¡Bienvenido,
   welcome: Bienvenido
   welcome_back: Bienvenido de vuelta
   welcome_comma: Bienvenido,
@@ -1522,4 +1541,8 @@ es:
   zoom_to_taxon_name: "Acercar a %{taxonname}"
   zoom_to_x: "Ir a %{x}"
   you_sure_delete_taxon_from_list?: "¿Está seguro que desea eliminar %{taxon} de esta lista?"
-
+  your_dashboard_helps_you: "Su Cuadro de mandos ayuda a mantener un registro de lo que está haciendo la gente en NaturaLista. Para seguir las actualizaciones de alguien, haga clic en el 'Seguir a [nombre]' link en la cabecera cuando se ven sus observaciones o perfil."
+  find_some_people_to_follow: "Encontrar a algunas personas a seguir"
+  here_are_some_things_you_can_do_in_the_meantime: "Aquí hay algunas cosas que usted puede hacer mientras tanto"
+  none_of_the_people_you_follow_have_any_updates_yet: "¡Ninguna de las personas que siguen han hecho ninguna actualización todavía!"
+  
