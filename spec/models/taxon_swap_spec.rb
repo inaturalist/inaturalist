@@ -164,6 +164,14 @@ describe TaxonSwap, "commit_records" do
     ident.observation.identifications.by(ident.user).of(@output_taxon).count.should eq(1)
   end
 
+  it "should not queue job to generate updates for new identifications" do
+    obs = Observation.make!(:taxon => @input_taxon)
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @swap.commit_records
+    Delayed::Job.where("created_at >= ?", stamp).detect{|j| j.handler =~ /notify_subscribers_of/}.should be_blank
+  end
+
   it "should set counter caches correctly" do
     3.times { Observation.make!(:taxon => @input_taxon) }
     @input_taxon.reload
