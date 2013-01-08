@@ -28,22 +28,15 @@
   <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
     var BOUNDS = <%=raw INAT_CONFIG['bounds'].to_json %>
-    $(document).ready(function(){
-      
-     // show some created_at dates
-     $('div.created_at h4.label').text('Added');
-     $('div.observed_on h4.label').text('Observed');
-     $('div.created_at').show();
+    $(document).ready(function() {      
+      // show some created_at dates
+      $('div.created_at h4.label').text('Added');
+      $('div.observed_on h4.label').text('Observed');
+      $('div.created_at').show();
 
-     var opts = BOUNDS ? {bounds: BOUNDS} : {lat: 40.714, lng: -98.262, zoom: 3}
-     var map = iNaturalist.Map.createMap(opts);
-     map.overviewMapControl = true;
-
-     // Load in some observations
-      var observations = [];
-      <% for obs in @observations %>
-        observations.push(<%= obs.to_json(:include => { :user => { :only => :login }, :taxon => {}, :iconic_taxon => {} }).html_safe %>)
-      <% end %>
+      var opts = BOUNDS ? {bounds: BOUNDS} : {lat: 40.714, lng: -98.262, zoom: 3}
+      var map = iNaturalist.Map.createMap(opts);
+      map.overviewMapControl = true;
 
       // build a simple sidebar for the map
       var obsList = $('#last-five');
@@ -52,7 +45,7 @@
       var letter_counter = 0;
       var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       var bounds = new google.maps.LatLngBounds();
-      $.each(observations, function() {
+      $.each(window.observations, function() {
         var o = this;
         if (typeof(o.latitude) != 'undefined' && typeof(o.longitude) != 'undefined') {
           // Add the obs to the map
@@ -154,7 +147,12 @@
 <div class="column prepend-2 span-7">
   <h3 class="description">Recent additions</h3>
   <div id="observations" class="compact mini observations date-added">
-    <%= render(:partial => 'observations/cached_component', :collection => @observations) %>
+    <% cache @observations_cache_key, :expires_in => 5.minutes do %>
+      <%= render(:partial => 'observations/cached_component', :collection => @observations) %>
+      <script type="text/javascript">
+        window.observations = <%= @observations.to_json.html_safe %>
+      </script>
+    <% end -%>
   </div>
   <p><%= link_to("More", observations_path(:order_by => 'created_at', :order => 'desc'), :class => 'readmore', :rel => "nofollow") %></p>
 </div>
