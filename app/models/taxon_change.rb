@@ -121,17 +121,15 @@ class TaxonChange < ActiveRecord::Base
     end
     has_many_reflections.each do |k, reflection|
       reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa).find_each do |record|
-        notification_needed = record.respond_to?(:user) && record.user && (!automatable? || !record.user.prefers_automatic_taxonomic_changes?)
-        if notification_needed
-          unless notified_user_ids.include?(record.user.id)
-            Update.create(
-              :resource => self,
-              :notifier => self,
-              :subscriber => record.user, 
-              :notification => "committed")
-            notified_user_ids << record.user.id
-          end
-        elsif automatable?
+        unless notified_user_ids.include?(record.user.id)
+          Update.create(
+            :resource => self,
+            :notifier => self,
+            :subscriber => record.user, 
+            :notification => "committed")
+          notified_user_ids << record.user.id
+        end
+        if automatable? && record.user.prefers_automatic_taxonomic_changes?
           update_records_of_class(record.class, output_taxon, :records => [record])
         end
       end
