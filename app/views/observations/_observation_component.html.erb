@@ -114,7 +114,7 @@ Some notes:
     <!-- <span class="button detailsctrl">Show Details</span> -->
   </div>
   <div class="user attribute">
-    <h4 class="label"><%=t :observer %></h4>
+    <h4 class="label"><%=t :observer_short %></h4>
     <%= link_to(observation.user.login, observations_by_login_path(observation.user.login)) %>
   </div>
   <div class="observed_on attribute">
@@ -192,7 +192,7 @@ Some notes:
     <%- if observation.id_please? %>
       <ul>
         <li class="last">
-          <%= link_to "ID<span class='full'> Please</span>!".html_safe, observation, :class => "id_please_notice", 
+          <%= link_to t(:id_please_expandable_html), observation, :class => "id_please_notice", 
             "data-tip" => t(:observation_would_like_some_help, :user => observation.user.login),
             "data-tip-show-delay" => 1000 %>
         </li>
