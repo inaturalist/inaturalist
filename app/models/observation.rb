@@ -321,7 +321,6 @@ class Observation < ActiveRecord::Base
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
   scope :has_photos, 
-    select("DISTINCT observations.*").
     joins("JOIN observation_photos AS _op ON _op.observation_id = observations.id").
     where('_op.id IS NOT NULL')
   scope :has_quality_grade, lambda {|quality_grade|
@@ -364,7 +363,7 @@ class Observation < ActiveRecord::Base
     when 'observed_on'
       order "observed_on #{order} #{extra}, time_observed_at #{order} #{extra}"
     when 'created_at'
-      order "observations.created_at #{order} #{extra}"
+      order "observations.id #{order} #{extra}"
     else
       order "#{order_by} #{order} #{extra}"
     end
