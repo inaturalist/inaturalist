@@ -84,6 +84,15 @@ describe TaxonSwap, "commit_records" do
     obs.taxon.should eq(@output_taxon)
   end
 
+  it "should generate updates for people who DO want automation" do
+    u = User.make!(:prefers_automatic_taxonomic_changes => true)
+    u.prefers_automatic_taxonomic_changes?.should be_true
+    o = Observation.make!(:taxon => @input_taxon, :user => u)
+    lambda {
+      @swap.commit_records
+    }.should change(Update, :count).by(1)
+  end
+
   it "should generate updates for people who don't want automation" do
     u = User.make!(:prefers_automatic_taxonomic_changes => false)
     u.prefers_automatic_taxonomic_changes?.should_not be_true

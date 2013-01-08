@@ -17,9 +17,20 @@
   = formatted_user_text taxon_change.description
 
 %p.ui
-  You're being notified about this change because you have some content 
-  related to these taxa that you may want to update.
-
+  Taxon changes represent changes to iNaturalist's taxonomy. Most of the time iNat will automatically 
+  keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
+  to let you know when and how your data is changing.
+  - if taxon_change.automatable?
+    - if current_user.prefers_automatic_taxonomic_changes?
+      Since this change is unambiguous, your content will be updated automatically. If you'd prefer to perform these updates yourself in the future, you can 
+      = surround '', '.' do
+        = link_to "alter your taxon change settings", edit_user_path(current_user)
+    - else
+      If you'd prefer to have iNat update your content automatically in the future, you can
+      = surround '', '.' do
+        = link_to "alter your taxon change settings", edit_user_path(current_user)
+  - else
+    iNat cannot update your content automatically for this change.
 = link_to "View details", taxon_change, :class => "readmore"
 &nbsp;
 = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"
