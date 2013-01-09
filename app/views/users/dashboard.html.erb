@@ -39,22 +39,24 @@
           monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       
       var elt = $('abbr.compact.date:first')
-      var dateString = $(elt).attr('title').split('T')[0],
-          timeString = $(elt).attr('title').split('T')[1],
-          d = new Date(Date.parse($(elt).attr('title')))
-
-      $('abbr.compact.date').each(function() {
-        var dateString = $(this).attr('title').split('T')[0],
-            timeString = $(this).attr('title').split('T')[1],
+      if (elt.length > 0) {
+        var dateString = $(elt).attr('title').split('T')[0],
+            timeString = $(elt).attr('title').split('T')[1],
             d = new Date(Date.parse($(elt).attr('title')))
-        if (!timeString.indexOf(':') || typeof(d) != 'object') { return }
-        if (now.getFullYear() == d.getFullYear() &&
-            now.getMonth() == d.getMonth() &&
-            now.getDate() == d.getDate()) {
-          return 
-        }
-        $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
-      })
+
+        $('abbr.compact.date').each(function() {
+          var dateString = $(this).attr('title').split('T')[0],
+              timeString = $(this).attr('title').split('T')[1],
+              d = new Date(Date.parse($(elt).attr('title')))
+          if (!timeString.indexOf(':') || typeof(d) != 'object') { return }
+          if (now.getFullYear() == d.getFullYear() &&
+              now.getMonth() == d.getMonth() &&
+              now.getDate() == d.getDate()) {
+            return 
+          }
+          $(this).html(monthNames[d.getMonth()] + ' ' + d.getDate())
+        })
+      }
 
       $('#new_place_subscription_link, #new_taxon_subscription_link').click(function() {
         var dialogId = 'new_subscription_dialog'
