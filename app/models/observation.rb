@@ -326,6 +326,7 @@ class Observation < ActiveRecord::Base
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
   scope :has_photos, 
+    select("DISTINCT observations.*").
     joins("JOIN observation_photos AS _op ON _op.observation_id = observations.id").
     where('_op.id IS NOT NULL')
   scope :has_quality_grade, lambda {|quality_grade|
