@@ -30,8 +30,8 @@
     var BOUNDS = <%=raw INAT_CONFIG['bounds'].to_json %>
     $(document).ready(function() {      
       // show some created_at dates
-      $('div.created_at h4.label').text('Added');
-      $('div.observed_on h4.label').text('Observed');
+      $('div.created_at h4.label').text(I18n.t('date_added'));
+      $('div.observed_on h4.label').text(I18n.t('observation_date'));
       $('div.created_at').show();
 
       var opts = BOUNDS ? {bounds: BOUNDS} : {lat: 40.714, lng: -98.262, zoom: 3}
