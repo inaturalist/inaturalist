@@ -92,16 +92,13 @@ class TaxonSchemesController < ApplicationController
   end
   
   def mapped_inactive_taxa
-    inactive_taxa = Taxon.all(
-      :order => "name",
-      :joins => 
-        "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
-        "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
-      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme],
-      :limit => 200
-    )
+    @inactive_taxa = Taxon.order('name').
+         joins("JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id").
+         joins("JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id").
+         where("is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme).
+         page(params[:page]).per_page(100)
     @taxon_changes = []
-    inactive_taxa.each do |taxon|
+    @inactive_taxa.each do |taxon|
       scope = TaxonChange.scoped
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
@@ -118,16 +115,13 @@ class TaxonSchemesController < ApplicationController
   end
   
   def orphaned_inactive_taxa
-    inactive_taxa = Taxon.all(
-      :order => "name",
-      :joins => 
-        "JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id " +
-        "JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id",
-      :conditions => ["is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme],
-      :limit => 200
-    )
+    @inactive_taxa = Taxon.order('name').
+         joins("JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id").
+         joins("JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id").
+         where("is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme).
+         page(params[:page]).per_page(100)
     @orphaned_taxa = []
-    inactive_taxa.each do |taxon|
+    @inactive_taxa.each do |taxon|
       scope = TaxonChange.scoped
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
