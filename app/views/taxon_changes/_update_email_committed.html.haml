@@ -1,4 +1,5 @@
 - taxon_change = update_email_committed || taxon_change
+- user = updates.first.subscriber
 %table
   %tr
     %td{:style => "vertical-align:top;"}
@@ -24,9 +25,17 @@
 = taxon_change.description
 
 %p
-  You're being notified about this change because you have some content 
-  related to these taxa that you may want to update.
-
+  Taxon changes represent changes to iNaturalist's taxonomy. Most of the time iNat will automatically 
+  keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
+  to let you know when and how your data is changing.
+  - if taxon_change.automatable?
+    - if user.prefers_automatic_taxonomic_changes?
+      Your content related to these taxa will be updated automatically.
+    - else
+      You have some content related to these taxa that you may want to update.
+  - else
+    iNat cannot update your content automatically for this change.
 = link_to "View details", taxon_change, :class => "readmore"
-&nbsp;
-= link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"
+- if !taxon_change.automatable? || !user.prefers_automatic_taxonomic_changes?
+  &nbsp;
+  = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"

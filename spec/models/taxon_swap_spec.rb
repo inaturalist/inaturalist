@@ -84,6 +84,15 @@ describe TaxonSwap, "commit_records" do
     obs.taxon.should eq(@output_taxon)
   end
 
+  it "should generate updates for people who DO want automation" do
+    u = User.make!(:prefers_automatic_taxonomic_changes => true)
+    u.prefers_automatic_taxonomic_changes?.should be_true
+    o = Observation.make!(:taxon => @input_taxon, :user => u)
+    lambda {
+      @swap.commit_records
+    }.should change(Update, :count).by(1)
+  end
+
   it "should generate updates for people who don't want automation" do
     u = User.make!(:prefers_automatic_taxonomic_changes => false)
     u.prefers_automatic_taxonomic_changes?.should_not be_true
@@ -162,6 +171,14 @@ describe TaxonSwap, "commit_records" do
     @swap.commit_records
     ident.reload
     ident.observation.identifications.by(ident.user).of(@output_taxon).count.should eq(1)
+  end
+
+  it "should not queue job to generate updates for new identifications" do
+    obs = Observation.make!(:taxon => @input_taxon)
+    Delayed::Job.delete_all
+    stamp = Time.now
+    @swap.commit_records
+    Delayed::Job.where("created_at >= ?", stamp).detect{|j| j.handler =~ /notify_subscribers_of/}.should be_blank
   end
 
   it "should set counter caches correctly" do

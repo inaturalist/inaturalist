@@ -28,7 +28,8 @@ class Identification < ActiveRecord::Base
   attr_accessor :skip_observation
   attr_accessor :html
   
-  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true
+  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
+    :queue_if => lambda {|ident| ident.taxon_change_id.blank?}
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }

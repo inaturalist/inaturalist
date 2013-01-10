@@ -364,7 +364,7 @@ class Observation < ActiveRecord::Base
     when 'observed_on'
       order "observed_on #{order} #{extra}, time_observed_at #{order} #{extra}"
     when 'created_at'
-      order "observations.created_at #{order} #{extra}"
+      order "observations.id #{order} #{extra}"
     else
       order "#{order_by} #{order} #{extra}"
     end
