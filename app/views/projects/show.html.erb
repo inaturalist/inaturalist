@@ -146,10 +146,10 @@
     <li>
       <% if @project_observations_count.to_i > 0 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @project_observations_count %></span> observations
+          <span class="count"><%= @project_observations_count %></span> <%= t(:observations).to_s.downcase %>
         </span>
       <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> ${t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t(:observations_map)}".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
         <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
@@ -179,12 +179,12 @@
           <span class="count"><%= @journal_post_count %></span> posts
         </span>
       <% end -%>
-      <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
+      <%= link_to "<span class='lead'>&raquo;</span> #{t :journal}".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
       <% if @members_count.to_i > 1 -%>
         <span class="right" style="margin: 4px 10px 0 10px">
-          <span class="count"><%= @members_count %></span> members
+          <span class="count"><%= @members_count %></span> <%= t(:members).to_s.downcase %>
         </span>
       <% end -%>
       <% if @project.contest? -%>
