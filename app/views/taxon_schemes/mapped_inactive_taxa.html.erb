@@ -27,4 +27,5 @@
       <%= render :partial => 'show_change_taxon', :object => taxon_change %>
     <% end %>
   </ul>
+  <%= will_paginate @inactive_taxa %>
 </div>
