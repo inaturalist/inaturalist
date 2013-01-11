@@ -39,7 +39,7 @@
             <span class="inat-value"><%= link_to observation.user.login, observations_by_login_url(observation.user.login), :target => (target == "blank" ? "_blank" : nil) %></span><br/>
           <% end -%>
           <% unless observation.observed_on.blank? -%>
-            <span class="inat-label"><%=t :date %>: </span>
+            <span class="inat-label"><%=t :observation_date %>: </span>
             <span class="inat-value"><%= observation.observed_on.to_s(:short) %> <%= observation.observed_on.year %></span><br/>
           <% end -%>
           <% unless observation.place_guess.blank? %>

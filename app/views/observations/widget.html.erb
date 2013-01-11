@@ -102,7 +102,8 @@
         <input type="hidden" name="taxon_id" value="<%= @taxon.id if @taxon %>"/>
       <%end -%>
       <% if @project -%>
-        <input type="text" id="project_title" value="<%= @project.title if @project %>"/>
+        <label>Project</label><br/>
+        <%= link_to @project.title, @project %>
         <input type="hidden" name="project_id" value="<%= @project.id if @project %>"/>
       <%end -%>
 
