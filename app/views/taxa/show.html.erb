@@ -611,7 +611,12 @@
     <h3><%= t(:all_names) %></h3>
     <ul>
       <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
-        <%- lexicon = lexicon.blank? ? 'Unknown' : lexicon.capitalize %>
+        <%- 
+          lexicon = lexicon.blank? ? 'Unknown' : lexicon.capitalize
+          if taxon_names.size > 1 && (default_name = taxon_names.detect{|tn| tn.name == @taxon.name})
+            taxon_names = [taxon_names.delete(default_name), taxon_names.sort_by(&:name)].flatten
+          end
+        -%>
         <li>
           <span class="description"><%= lexicon %></span>
           <ul class="taxon_names">
