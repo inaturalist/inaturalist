@@ -25,19 +25,32 @@
                    :include_parens => false, 
                    :link_url => link_method.call(taxon) } %>
     </strong>
-    <ul>
-      <%= render :partial => 'taxa/classification_li', :collection => children[0..9], :locals => {
-        :link_method => link_method
-      } %>
-    </ul>
-          
-    <% if children.size > 10 -%>
-      <%= link_to_toggle "More...", "#more_children" %>
-      <ul id="more_children" style="display:none">
-        <%= render :partial => 'taxa/classification_li', :collection => children[10..-1], :locals => {
+    
+    <% if taxon.rank == 'species' %>
+      <ul id="subspecies" class="details" style="display:none">
+        <%= render :partial => 'taxa/classification_li', :collection => children[0..-1], :locals => {
           :link_method => link_method
         } %>
       </ul>
+      <span class="button">
+        <%= link_to_function "show subspecies", "$(this).parent().siblings('.details').slideDown(); $(this).hide().next().show();" %>
+        <%= link_to_function "hide subspecies", "$(this).parent().siblings('.details').slideUp();   $(this).hide().prev().show();", :style => "display:none" %>
+      </span>
+    <% else %>
+      <ul>
+        <%= render :partial => 'taxa/classification_li', :collection => children[0..9], :locals => {
+          :link_method => link_method
+        } %>
+      </ul>
+          
+      <% if children.size > 10 -%>
+        <%= link_to_toggle "More...", "#more_children" %>
+        <ul id="more_children" style="display:none">
+          <%= render :partial => 'taxa/classification_li', :collection => children[10..-1], :locals => {
+            :link_method => link_method
+          } %>
+        </ul>
+      <% end -%>
     <% end -%>
   </li>
 </ul>

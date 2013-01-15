@@ -1,0 +1,125 @@
+<div class="details" style="display:none">
+  <% if @taxon.species_or_lower? -%>
+    <div id="places" class="clear">
+      <h3>
+        Places
+        <% if @check_listed_taxa.total_entries > @check_listed_taxa.size -%>
+          <span class="small description"><%= @check_listed_taxa.size %> of <%= @check_listed_taxa.total_entries %></span>
+        <% end -%>
+      </h3>
+    
+      <% if @us_states -%>
+        <span class="description">US states:</span>
+        <%= google_charts_map_for_places(@us_states, {:chs => '150x75'}) %>
+      <% elsif !@countries.blank? %>
+        <span class="description">Countries:</span>
+        <%= google_charts_map_for_places(@countries, {:chs => '150x75'}) %>
+      <% end -%>
+    
+      <% if @check_listed_taxa.blank? -%>
+        <% unless logged_in? %><div class="description">No places selected.</div><% end %>
+      <% else %>
+        <ul id="places_list">
+          <% for lt in @sorted_check_listed_taxa %>
+            <li>
+              <%= link_to lt.place.display_name, lt.place %>
+              <% if logged_in? && lt.editable_by?(current_user) -%>
+                <%= link_to("edit", lt, :class => "small description editlink") %>
+              <% end -%>
+              
+              <% if %w(introduced naturalised managed).include?(lt.establishment_means) -%>
+                <div class="small description"><%= lt.establishment_means %></div>
+              <% elsif lt.establishment_means == 'invasive' %>
+                <div class="small description" style="color: deeppink">invasive</div>
+              <% end -%>
+            </li>
+          <% end %>
+        </ul>
+      <% end -%>
+    
+      <% if logged_in? -%>
+        <% if @places.blank? -%>
+          <div class="notice">
+            Do you know where this species lives?
+            <strong><%= link_to_function "Add it to a place &raquo;".html_safe, "$('#add_to_place_dialog').jqmShow()" %></strong>
+          </div>
+        <% else %>
+          <strong><%= link_to_function "Add a place &raquo;".html_safe, "$('#add_to_place_dialog').jqmShow()" %></strong>
+        <% end -%>
+        <div id="add_to_place_dialog" class="modalbox dialog" style="display:none"></div>
+      <% end -%>
+    </div>
+  <% end %>
+
+  <div id="extras">
+    <h3>Extras</h3>
+    
+    <p class="ui">
+      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>".html_safe, taxon_changes_path(:taxon_id => @taxon),
+        "data-tip" => "View the history of this taxon on iNat, e.g. splits, merges, etc." %>
+    </p>
+  
+    <p class="ui">
+      <%= link_to "Taxon <nobr>schemes &raquo;</nobr>".html_safe, schemes_for_taxon_path(@taxon), 
+        "data-tip" => "Schemes are sets of taxa recognized by different authorities." %>
+    </p>
+    
+    <p class="ui">
+      <%= link_to "Make taxonomic Flickr tags for this taxon &raquo;".html_safe, 
+        flickr_tagger_path(:taxon_id => @taxon.id) %>
+    </p>
+    
+    <p class="ui">
+      <%= link_to "Flickr invite link &raquo;".html_safe, 
+        url_for(:controller => "flickr", :action => "create_invite", :taxon_id => @taxon.id) %>
+    </p>
+    
+    <p class="ui">
+      <%= link_to_function "Wikipedia taxobox &raquo;".html_safe, "return false;", :id => "taxoboxlink" %>
+      <%- taxobox_content = capture do -%>
+        <pre><%= render(:partial => 'wikipedia_taxobox', :object => @taxon).strip %></pre>
+        <%= link_to "About the taxobox &raquo;".html_safe, "http://en.wikipedia.org/wiki/Template:Taxobox" %>
+      <%- end -%>
+      <script type="text/javascript" charset="utf-8">
+        $('#taxoboxlink').qtip($.extend(true, {}, QTIP_DEFAULTS, {
+          show: {event: 'click'},
+          hide: {event: 'unfocus'},
+          content: "<%= escape_javascript(taxobox_content) %>"
+        }));
+      </script>
+    </p>
+    
+    <p class="ui">
+      <%= link_to "Tree Browser &raquo;".html_safe, {:controller => "taxa", :action => "tree", :taxon_id => @taxon},
+        :rel => "nofollow" %>
+    </p>
+    
+    <p class="ui">
+      <%= link_to "Search descendant taxa &raquo;".html_safe, 
+        {:controller => "taxa", :action => "search", :taxon_id => @taxon, :view => TaxaController::LIST_VIEW},
+        :rel => "nofollow" %>
+    </p>
+    
+    <p class="ui">
+      <%= link_to "Embed a widget for this taxon on your website &raquo;".html_safe, observations_widget_path(:taxon_id => @taxon), 
+        :rel => "nofollow" %>
+    </p>
+    
+    <% if logged_in? -%>
+      <p class="ui">
+        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @taxon } %>
+      </p>
+    <% end -%>
+    
+  </div>
+</div>
+
+<div class="summary inlineblock">
+  <label><%= 'Places &' if @taxon.species_or_lower? %> Extras</label>
+</div>
+
+<span class="button">
+  <%= link_to_function "show", "$(this).parent().siblings('.summary').hide().siblings('.details').slideDown(); $(this).hide().next().show();" %>
+  <%= link_to_function "hide", "$(this).parent().siblings('.summary').show().siblings('.details').slideUp();   $(this).hide().prev().show();", :style => "display:none" %>
+</span>
+
