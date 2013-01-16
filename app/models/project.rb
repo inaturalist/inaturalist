@@ -59,7 +59,8 @@ class Project < ActiveRecord::Base
     :default_url => "/attachment_defaults/general/:style.png"
   
   CONTEST_TYPE = 'contest'
-  PROJECT_TYPES = [CONTEST_TYPE]
+  OBS_CONTEST_TYPE = 'observation contest'
+  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
@@ -84,7 +85,7 @@ class Project < ActiveRecord::Base
   end
   
   def contest?
-    project_type == CONTEST_TYPE
+     PROJECT_TYPES.include? project_type
   end
   
   def editable_by?(user)
