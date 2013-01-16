@@ -700,7 +700,7 @@ class ProjectsController < ApplicationController
   
   def search
     if @q = params[:q]
-      @projects = Project.paginate(:page => params[:page], :conditions => ["lower(title) LIKE ?", "%#{@q.downcase}%"])
+      @projects = Project.search(@q, :page => params[:page])
     end
     respond_to do |format|
       format.html

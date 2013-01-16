@@ -27,12 +27,16 @@
 <% else %>
   <div class="clear projects">
     <% for project in @projects %>
-      <div class="project">
-        <%= image_tag project.icon.url(:mini) %>
-        <%= link_to h(project.title), project %>
-        <span class="description">
-          <%= truncate strip_tags(project.description), :length => 100 %>
-        </span>
+      <div class="column span-24 stacked">
+        <div class="column span-2">
+          <%= link_to image_tag(project.icon.url(:span2)), project %>
+        </div>
+        <div class="column span-22 last">
+          <h4><%= link_to project.title, project %></h4>
+          <div class="meta">
+            <%= truncate strip_tags(project.description), :length => 300 %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>

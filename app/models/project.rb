@@ -64,6 +64,12 @@ class Project < ActiveRecord::Base
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
+
+  define_index do
+    indexes :title
+    indexes :description
+    set_property :delta => :delayed
+  end
   
   def to_s
     "<Project #{id} #{title}>"
