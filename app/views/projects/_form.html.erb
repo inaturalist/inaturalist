@@ -170,7 +170,7 @@
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
   
   <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
-    :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
+    :description => "'Contest' projects will display a leader board ranking contributors by the number of unique species observed while 'Observation Contest' projects display leader boards ranking contributors by the number of observations" %>
   
   <div class="preference_fields">
     <%= f.check_box :prefers_count_from_list, 

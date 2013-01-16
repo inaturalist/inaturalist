@@ -37,6 +37,12 @@
       No members yet.
     </div>
   <% else %>
+    <div class="stacked ui">
+      Sorting by <strong><%= params[:sort] == "observation+contest" ? "observations" : "species" %></strong>
+      <%- opposite = params[:sort] == "observation+contest" ? "contest" : "observation+contest" -%>
+      <%- opposite_string = params[:sort] == "observation+contest" ? "species" : "observations" -%>
+      <%= link_to "(Sort by #{opposite_string})", {:sort => opposite}, :class => "small" %>
+    </div>
     <table>
     <% for project_user in @contributors %>
       <tr>

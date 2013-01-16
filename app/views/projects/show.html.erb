@@ -188,7 +188,7 @@
         </span>
       <% end -%>
       <% if @project.contest? -%>
-        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors".html_safe, project_contributors_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors".html_safe, project_contributors_path(@project, {:sort => @project.project_type} ), :class => "navlink" %>
       <% else %>
         <%= link_to "<span class='lead'>&raquo;</span> Members".html_safe, project_members_path(@project), :class => "navlink" %>
       <% end -%>
