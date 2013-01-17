@@ -1,0 +1,16 @@
+<% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
+
+<%# see /app/assets/javascripts for this - added manually instead of via gem since we're not using the asset pipeline - JY %>
+<%= content_for :extrajs do %>
+<% javascript_include_tag :cocoon %>
+<% end %>
+
+<h2>New assessment</h2>
+
+  <div class="column span-12 first">
+
+      Taxon assessments are documents assessing the current status of a species, usually conservation status. For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
+
+  </div>
+  
+<%= render :partial => 'form' %>

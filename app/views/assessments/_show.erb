@@ -1,0 +1,86 @@
+<% if params[:iframe].present? %>
+  <% content_for(:extrajs) do %>
+    <script>
+      $(document).ready(function(){
+         $('a.edit-button').attr('target', '_blank');
+      });
+    </script>
+  <% end %>
+<% end %>
+
+<% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
+<%# JY: This JS is used to show the extra comments on assessment sections %>
+<% content_for :extrajs do %>
+    <script>
+      $(document).ready(function(){
+        $('.assessment-section-comments-remainder').css('display', 'none');
+
+        $('.assessment-section-comments-show-remainder-button').toggle(function(){
+          $(this).text('Show Fewer Comments');
+          $(this).parent().find('.assessment-section-comments-remainder').slideDown();
+        }, function() {
+          $(this).text('Show All Comments');
+          $(this).parent().find('.assessment-section-comments-remainder').slideUp();
+        });
+      });
+    </script>
+<% end %>
+
+     
+  <div class="column span-24 assessment-show <%= 'assessment-iframe' if params[:iframe].present? %> ">
+
+    <%= link_to "<< Back to #{@assessment.project.title}", project_path(@assessment.project) if params[:iframe].blank? && params[:preview].blank? %>
+
+    <% if (@assessment.project.editable_by?(current_user)) && params[:iframe].blank?  && params[:preview].blank? %>
+      <%= link_to 'edit', edit_assessment_path(@assessment), :class => 'edit-button' %>
+    <% end %>
+
+    <% if params[:iframe].blank? %>
+      <%= render :partial => "shared/by_project_header", :locals => { :model_name => "Assessment", :project => @assessment.project} %>
+    <% else %>
+      <%= link_to 'View On iNaturalist', assessment_path(@assessment), :class => 'edit-button' %>
+      <h3>
+        <%= @assessment.display_name %>
+        Assessment
+      </h3>
+    <% end %>
+
+
+    <div class="clear"></div>
+
+    <div class="page-section">
+
+      <label for="description">
+        Description
+      </label>
+      <p>
+        <%= @assessment.description %>
+      </p>
+
+      <% if @assessment.completed_at %>
+        <label for="completed_at">
+          Completed At
+        </label>
+        <p>
+          <%= @assessment.completed_at || '<i>Not Completed</i>'.html_safe %>
+        </p>
+      <% end %>
+
+    </div>
+
+    <%= render :partial => 'asssessment_sections_toc', :locals => {:assessment => @assessment} %>
+
+    <div class="actions buttons">
+    </div>
+    
+  </div>
+
+  <div class="column span-24 <%= 'assessment-iframe' if params[:iframe].present? %>">   
+    <%= render :partial => 'asssessment_sections', :locals => {:assessment => @assessment} %>
+  </div>
+
+  <% if params[:iframe].blank?  && params[:preview].blank? %>
+    <div class="column span-24 <%= 'assessment-iframe' if params[:iframe].present? %>">   
+      <%= render :partial => 'embed_iframe', :locals => {:assessment => @assessment} %>
+    </div>
+  <% end %>

@@ -87,6 +87,8 @@ class ProjectsController < ApplicationController
           end
         end
         
+        @project_assessments = Assessment.where(:project_id => @project.id).where('completed_at IS null')
+
         if params[:iframe]
           @headless = @footless = true
           render :action => "show_iframe"

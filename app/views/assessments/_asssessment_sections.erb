@@ -1,0 +1,12 @@
+
+    <% if assessment.sections.blank? -%>
+      <div class="description noresults">
+        No sections have been added to this assessments yet.
+      </div>
+    <% else %>
+      <div class="mini observations">
+        <% @assessment.sections.each do |section| %>
+          <%= render :partial => 'assessment_sections/show', :locals => {:section => section} %>
+        <% end %>
+      </div>
+    <% end %>

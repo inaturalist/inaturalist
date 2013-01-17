@@ -1,0 +1,11 @@
+<span class="assessment-section-list-item">
+	<%
+	link_text = <<EOT
+			<span class="ui-icon ui-icon-comment inlineblock"> </span>
+			#{section.comments.count}
+EOT
+%>
+
+	<%= link_to section.display_title, project_assessment_path(section.assessment.project, section.assessment, :anchor => section.to_param), :class => 'assessment-section-list-item-name' %>
+	<%= link_to link_text.html_safe, project_assessment_path(section.assessment.project, section.assessment, :anchor => section.to_param), :class => 'assessment-section-list-item-comment-count' %>
+</span>

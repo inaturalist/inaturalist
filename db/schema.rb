@@ -11,13 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102225500) do
+ActiveRecord::Schema.define(:version => 20130108182802) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
     t.datetime "start"
     t.datetime "end"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "assessment_sections", :force => true do |t|
+    t.integer  "assessment_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "assessments", :force => true do |t|
+    t.integer  "taxon_id"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,13 +67,13 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
   create_table "counties_simplified", :id => false, :force => true do |t|
     t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",     :limit => nil
+    t.multi_polygon "geom",     :limit => nil, :srid => 0
   end
 
   create_table "counties_simplified_01", :force => true do |t|
     t.integer       "place_geometry_id"
     t.integer       "place_id"
-    t.multi_polygon "geom",              :limit => nil, :null => false
+    t.multi_polygon "geom",              :limit => nil, :null => false, :srid => 0
   end
 
   add_index "counties_simplified_01", ["geom"], :name => "index_counties_simplified_01_on_geom", :spatial => true
@@ -64,25 +83,25 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
   create_table "counties_simplified_1", :id => false, :force => true do |t|
     t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",     :limit => nil
+    t.multi_polygon "geom",     :limit => nil, :srid => 0
   end
 
   create_table "countries_large_polygons", :id => false, :force => true do |t|
     t.integer  "id"
     t.integer  "place_id"
-    t.geometry "geom",     :limit => nil
+    t.geometry "geom",     :limit => nil, :srid => 0
   end
 
   create_table "countries_simplified", :id => false, :force => true do |t|
     t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",     :limit => nil
+    t.multi_polygon "geom",     :limit => nil, :srid => 0
   end
 
   create_table "countries_simplified_1", :force => true do |t|
     t.integer       "place_geometry_id"
     t.integer       "place_id"
-    t.multi_polygon "geom",              :limit => nil, :null => false
+    t.multi_polygon "geom",              :limit => nil, :null => false, :srid => 0
   end
 
   add_index "countries_simplified_1", ["geom"], :name => "index_countries_simplified_1_on_geom", :spatial => true
@@ -408,13 +427,13 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
     t.integer  "private_positional_accuracy"
     t.string   "geoprivacy"
     t.string   "quality_grade",                                                                   :default => "casual"
-    t.point    "geom",                             :limit => nil
     t.string   "user_agent"
     t.string   "positioning_method"
     t.string   "positioning_device"
     t.boolean  "out_of_range"
     t.string   "license"
     t.string   "uri"
+    t.point    "geom",                             :limit => nil,                                                       :srid => 0
   end
 
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
@@ -486,8 +505,8 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
     t.string        "source_identifier"
     t.datetime      "created_at"
     t.datetime      "updated_at"
-    t.multi_polygon "geom",              :limit => nil, :null => false
     t.string        "source_filename"
+    t.multi_polygon "geom",              :limit => nil, :null => false, :srid => 0
   end
 
   add_index "place_geometries", ["geom"], :name => "index_place_geometries_on_geom", :spatial => true
@@ -698,19 +717,19 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
   create_table "states_large_polygons", :id => false, :force => true do |t|
     t.integer  "id"
     t.integer  "place_id"
-    t.geometry "geom",     :limit => nil
+    t.geometry "geom",     :limit => nil, :srid => 0
   end
 
   create_table "states_simplified", :id => false, :force => true do |t|
     t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",     :limit => nil
+    t.multi_polygon "geom",     :limit => nil, :srid => 0
   end
 
   create_table "states_simplified_1", :id => false, :force => true do |t|
     t.integer       "id"
     t.integer       "place_id"
-    t.multi_polygon "geom",     :limit => nil
+    t.multi_polygon "geom",     :limit => nil, :srid => 0
   end
 
   add_index "states_simplified_1", ["geom"], :name => "index_states_simplified_1_on_geom", :spatial => true
@@ -873,9 +892,9 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
     t.integer       "range_file_size"
     t.text          "description"
     t.integer       "source_id"
-    t.multi_polygon "geom",               :limit => nil
     t.integer       "source_identifier"
     t.datetime      "range_updated_at"
+    t.multi_polygon "geom",               :limit => nil, :srid => 0
   end
 
   add_index "taxon_ranges", ["geom"], :name => "index_taxon_ranges_on_geom", :spatial => true

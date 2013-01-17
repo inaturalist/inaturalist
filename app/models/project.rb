@@ -14,7 +14,9 @@ class Project < ActiveRecord::Base
   has_many :observation_fields, :through => :project_observation_fields
 
   has_many :posts, :as => :parent, :dependent => :destroy
-  
+
+  has_many :assessments
+    
   before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
   

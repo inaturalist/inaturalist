@@ -1,0 +1,16 @@
+<div class="project_assessment">
+  <p>
+  	<div class="assessment-taxon-listing">
+  	  <%= taxon_image(assessment.taxon) %>
+      <div class="assessment-section-list">
+    	  <h3>
+    	    <%= link_to assessment.display_name, project_assessment_path(assessment.project, assessment) %>
+    	  </h3>
+  	    <% assessment.sections.each do |section| %>
+      	    <%= render :partial => 'assessment_sections/listing', :locals => {:section => section} %>
+    	  <% end %>
+  	</div>
+    </div>
+  </p>
+</div>
+<div class="assessment-listing-seperator"></div>
