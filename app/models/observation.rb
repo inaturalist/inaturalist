@@ -1418,6 +1418,7 @@ class Observation < ActiveRecord::Base
     return [] unless georeferenced?
     lat = private_latitude || latitude
     lon = private_longitude || longitude
+    acc = private_positional_accuracy || positional_accuracy
     candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area}
 
     # at present we use PostGIS GEOMETRY types, which are a bit stupid about
@@ -1425,7 +1426,7 @@ class Observation < ActiveRecord::Base
     # Converting to the GEOGRAPHY type would solve this, in theory.
     # Unfrotinately this does NOT solve the problem of failing to select 
     # legit geoms that cross the dateline. GEOGRAPHY would solve that too.
-    candidates.select{|p| p.bbox_contains_lat_lng?(lat, lon)}
+    candidates.select{|p| p.bbox_contains_lat_lng_acc?(lat, lon, acc)}
   end
   
   def public_places
