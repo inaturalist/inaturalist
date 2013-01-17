@@ -22,20 +22,13 @@ class TaxonLink < ActiveRecord::Base
     end
   }
   
-  TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES]"
-
-  validate :url_can_only_have_name_or_genus_species
+  TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES] [RANK] [NAME_WITH_RANK]"
+  
   validate :url_cant_have_genus_without_species
   validate :url_cant_have_species_without_genus
 
   def to_s
     "<TaxonLink #{id} taxon_id: #{taxon_id}, place_id: #{place_id}, user_id: #{user_id}>"
-  end
-  
-  def url_can_only_have_name_or_genus_species
-    if url.to_s =~ /\[NAME\]/ && (url.to_s =~ /\[GENUS\]/ || url.to_s =~ /\[SPECIES\]/)
-      self.errors.add(:url, "can only have [NAME] or [GENUS]/[SPECIES]")
-    end
   end
   
   def url_cant_have_genus_without_species
@@ -52,7 +45,9 @@ class TaxonLink < ActiveRecord::Base
   
   # Fill in the template values for the URL given a taxon
   def url_for_taxon(taxon)
-    new_url = self.url.sub('[NAME]', taxon.name)
+    new_url = url.sub('[NAME]', taxon.name)
+    new_url = new_url.sub('[RANK]', taxon.rank)
+    new_url = new_url.sub('[NAME_WITH_RANK]', taxon.name_with_rank)
     if taxon.species_or_lower? && pieces = taxon.name.split
       new_url.sub!('[GENUS]', pieces.first)
       new_url.sub!('[SPECIES]', pieces[1] || '')
