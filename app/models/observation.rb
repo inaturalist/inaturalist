@@ -62,7 +62,8 @@ class Observation < ActiveRecord::Base
       "to which you add the observation.",
     PRIVATE => "Coordinates completely hidden from public maps, true " + 
       "coordinates only visible to you and the curators of projects to " + 
-      "which you add the observation.",
+      "which you add the observation. Observations with private " + 
+      "coordinates will still be used to verify place check lists.",
   }
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
