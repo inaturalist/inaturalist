@@ -1185,7 +1185,7 @@ class Taxon < ActiveRecord::Base
             :photo => {
               :methods => [:license_code, :attribution],
               :except => [:original_url, :file_processing, :file_file_size, 
-                :file_content_type, :file_file_name, :mobile]
+                :file_content_type, :file_file_name, :mobile, :metadata]
             }
           }
         }

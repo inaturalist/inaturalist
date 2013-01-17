@@ -192,6 +192,19 @@ describe TaxonSwap, "commit_records" do
     @input_taxon.observations_count.should eq(0)
     @output_taxon.observations_count.should eq(3)
   end
+
+  it "should be copacetic with content with a blank user" do
+    l = CheckList.make!
+    l.update_attributes(:user => nil)
+    l.user.should be_blank
+    lt = ListedTaxon.make!(:taxon => @input_taxon, :list => l)
+    lt.update_attributes(:user => nil)
+    lt.user.should be_blank
+    @swap.commit_records
+    lt.reload
+    @output_taxon.reload
+    lt.taxon_id.should eq(@output_taxon.id)
+  end
 end
 
 def prepare_swap
