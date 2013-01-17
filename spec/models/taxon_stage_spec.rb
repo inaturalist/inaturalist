@@ -11,8 +11,8 @@ describe TaxonStage, "commit" do
   end
 end
 
-describe TaxonSplit, "commit_records" do
-  before(:each) { prepare_split }
+describe TaxonStage, "commit_records" do
+  before(:each) { prepare_stage }
   it "should do no harm" do
     @stage.commit_records
   end
