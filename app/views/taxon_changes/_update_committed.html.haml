@@ -3,34 +3,35 @@
   %tr
     %td
       - for taxon in taxon_change.input_taxa
-        = image_and_content taxon_image(taxon), :image_size => 75, :class => "stacked" do
-          = render "shared/taxon", :taxon => taxon
+        = image_and_content link_to(taxon_image(taxon), taxon), :image_size => 75, :class => "stacked" do
+          = render "shared/taxon", :taxon => taxon, :link_url => taxon
     %td
       %strong
         = taxon_change.verb_phrase
     %td
       - for taxon in taxon_change.output_taxa
-        = image_and_content taxon_image(taxon), :image_size => 75, :class => "stacked" do
-          = render "shared/taxon", :taxon => taxon
+        = image_and_content link_to(taxon_image(taxon), taxon), :image_size => 75, :class => "stacked" do
+          = render "shared/taxon", :taxon => taxon, :link_url => taxon
 
 .ui
   = formatted_user_text taxon_change.description
 
-%p.ui
-  Taxon changes represent changes to iNaturalist's taxonomy. Most of the time iNat will automatically 
-  keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
-  to let you know when and how your data is changing.
-  - if taxon_change.automatable?
-    - if current_user.prefers_automatic_taxonomic_changes?
-      Since this change is unambiguous, your content will be updated automatically. If you'd prefer to perform these updates yourself in the future, you can 
-      = surround '', '.' do
-        = link_to "alter your taxon change settings", edit_user_path(current_user)
+.stacked
+  = helptip "About taxon changes" do
+    Taxon changes represent changes to iNaturalist's taxonomy. Most of the time iNat will automatically 
+    keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
+    to let you know when and how your data is changing.
+    - if taxon_change.automatable?
+      - if current_user.prefers_automatic_taxonomic_changes?
+        Since this change is unambiguous, your content will be updated automatically. If you'd prefer to perform these updates yourself in the future, you can 
+        = surround '', '.' do
+          = link_to "alter your taxon change settings", edit_user_path(current_user)
+      - else
+        If you'd prefer to have iNat update your content automatically in the future, you can
+        = surround '', '.' do
+          = link_to "alter your taxon change settings", edit_user_path(current_user)
     - else
-      If you'd prefer to have iNat update your content automatically in the future, you can
-      = surround '', '.' do
-        = link_to "alter your taxon change settings", edit_user_path(current_user)
-  - else
-    iNat cannot update your content automatically for this change.
+      iNat cannot update your content automatically for this change.
 = link_to "View details", taxon_change, :class => "readmore"
 &nbsp;
 = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"

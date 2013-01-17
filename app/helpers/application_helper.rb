@@ -441,6 +441,13 @@ module ApplicationHelper
     html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
     concat html
   end
+
+  def helptip(text, options = {}, &block)
+    tip_id = "tip_#{serial_id}"
+    html = content_tag(:span, text, :class => "#{options[:class]} #{tip_id}_target helptip helptiptext", :rel => "##{tip_id}")
+    html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
+    html
+  end
   
   def month_graph(counts, options = {})
     return '' if counts.blank?
