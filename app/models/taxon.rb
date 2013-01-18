@@ -530,6 +530,23 @@ class Taxon < ActiveRecord::Base
   def common_name
     TaxonName.choose_common_name(taxon_names)
   end
+
+  def name_with_rank
+    if rank_level < SPECIES_LEVEL
+      r = case rank
+        when SUBSPECIES then "ssp."
+        when VARIETY then "var."
+        when FORM then "f."
+        else rank
+      end
+      pieces = name.split
+      "#{pieces[0..-2].join(' ')} #{r} #{pieces.last}"
+    elsif species?
+      name
+    else
+      "#{rank.capitalize} #{name}"
+    end
+  end
   
   #
   # Create a scientific taxon name matching this taxon's name if one doesn't

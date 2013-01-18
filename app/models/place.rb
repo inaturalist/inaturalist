@@ -584,11 +584,32 @@ class Place < ActiveRecord::Base
   def bbox_contains_lat_lng?(lat, lng)
     return false if lat.blank? || lng.blank?
     return nil unless swlng && swlat && nelat && nelng
-    if swlng.to_f > 0 && nelng.to_f < 0
+    if straddles_date_line?
       lat > swlat && lat < nelat && (lng > swlng || lng < nelng)
     else
       lat > swlat && lat < nelat && lng > swlng && lng < nelng
     end
+  end
+
+  def bbox_contains_lat_lng_acc?(lat, lng, acc)
+    f = RGeo::Geographic.simple_mercator_factory
+    bbox = f.polygon(
+      f.linear_ring([
+        f.point(swlng, swlat),
+        f.point(swlng, nelat),
+        f.point(nelng, nelat),
+        f.point(nelng, swlat),
+        f.point(swlng, swlat)
+      ])
+    )
+    pt = f.point(lng,lat)
+
+    # buffer the point to make a circle if accuracy set. Note that the method
+    # takes accuracy in meters, not sure if it makes a conversion to degrees
+    # with latitude in mind.
+    pt = pt.buffer(acc) if acc.to_f > 0
+
+    bbox.contains?(pt)
   end
   
   def self.guide_cache_key(id)

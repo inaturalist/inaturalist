@@ -288,6 +288,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rgeo (0.3.20)
     riddle (1.5.3)
     right_aws (3.0.4)
       right_http_connection (>= 1.2.5)
@@ -396,6 +397,7 @@ DEPENDENCIES
   rails
   rake (= 0.8.7)
   rest-client
+  rgeo
   right_aws
   right_http_connection
   rinku

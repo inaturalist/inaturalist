@@ -22,12 +22,6 @@ describe TaxonLink, "creation" do
     TaxonLink.for_taxon(@child_taxon).should include(@taxon_link_for_tol)
   end
   
-  it "should not allow both [GENUS]/[SPECIES] and [NAME] in the url" do
-    @taxon_link_for_tol.url = "http://tolweb.org/[GENUS]_[SPECIES]_[NAME]"
-    @taxon_link_for_tol.should_not be_valid
-    @taxon_link_for_tol.errors[:url].should_not be_blank
-  end
-  
   it "should not allow a URL with ONLY [GENUS]" do
     @taxon_link_for_tol.url = "http://tolweb.org/[GENUS]"
     @taxon_link_for_tol.should_not be_valid
@@ -66,7 +60,9 @@ describe TaxonLink, "creation" do
 end
 
 describe TaxonLink, "url_for_taxon" do
-  
+  before(:all) do
+    load_test_taxa
+  end
   before(:each) do
     @taxon_link_with_genus_species = TaxonLink.make!(
       :show_for_descendent_taxa => true,
@@ -82,28 +78,34 @@ describe TaxonLink, "url_for_taxon" do
   end
   
   it "should fill in [GENUS]" do
-    taxon = Taxon.make!(:name => "Pseudacris regilla", :rank => "species", :rank_level => Taxon::RANK_LEVELS["species"])
-    @taxon_link_with_genus_species.url_for_taxon(taxon).should =~ /Pseudacris/
+    @taxon_link_with_genus_species.url_for_taxon(@Pseudacris_regilla).should =~ /Pseudacris/
   end
   
   it "should fill in [SPECIES]" do
-    taxon = Taxon.make!(:name => "Pseudacris regilla", :rank => "species", :rank_level => Taxon::RANK_LEVELS["species"])
-    @taxon_link_with_genus_species.url_for_taxon(taxon).should =~ /regilla/
+    @taxon_link_with_genus_species.url_for_taxon(@Pseudacris_regilla).should =~ /regilla/
   end
 
   it "should fill in [GENUS] and [SPECIES]" do
-    taxon = Taxon.make!(:name => "Pseudacris regilla", :rank => "species", :rank_level => Taxon::RANK_LEVELS["species"])
-    @taxon_link_with_genus_species.url_for_taxon(taxon).should == "http://tolweb.org/Pseudacris_regilla"
+    @taxon_link_with_genus_species.url_for_taxon(@Pseudacris_regilla).should == "http://tolweb.org/Pseudacris_regilla"
   end
   
   it "should fill in [NAME]" do
-    taxon = Taxon.make!(:name => "Pseudacris", :rank => "genus", :rank_level => Taxon::RANK_LEVELS["genus"])
-    @taxon_link_with_name.url_for_taxon(taxon).should == "http://tolweb.org/Pseudacris"
+    @taxon_link_with_name.url_for_taxon(@Pseudacris).should == "http://tolweb.org/Pseudacris"
   end
   
   it "should fill in the taxon name when only [GENUS] and [SPECIES]" do
-    taxon = Taxon.make!(:name => "Pseudacris", :rank => "genus", :rank_level => Taxon::RANK_LEVELS["genus"])
-    @taxon_link_with_genus_species.url_for_taxon(taxon).should == "http://tolweb.org/Pseudacris"
+    @taxon_link_with_genus_species.url_for_taxon(@Pseudacris).should == "http://tolweb.org/Pseudacris"
+  end
+
+  it "should fill in [RANK]" do
+    tl = TaxonLink.make!(:url => "http://www.foo.net/[RANK]/[NAME]", :site_title => "foo")
+    tl.url_for_taxon(@Pseudacris_regilla).should eq("http://www.foo.net/species/Pseudacris regilla")
+  end
+
+  it "should fill in [NAME_WITH_RANK]" do
+    t = Taxon.make!(:name => "Ensatina eschscholtzii xanthoptica", :rank => Taxon::SUBSPECIES)
+    tl = TaxonLink.make!(:url => "http://www.foo.net/[NAME_WITH_RANK]", :site_title => "foo")
+    tl.url_for_taxon(t).should eq("http://www.foo.net/Ensatina eschscholtzii ssp. xanthoptica")
   end
   
   it "should not alter a URL without template variables" do
