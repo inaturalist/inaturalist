@@ -2,7 +2,11 @@
   Add an Observation
 <% end -%>
 
-<%= form_for @observation, :builder => DefaultFormBuilder do |o| %>
+<%= form_for @observation, :builder => DefaultFormBuilder, :html => {:multipart => true} do |o| %>
+  <div id="photos" class="clear stacked">
+    <label>Add a photo</label><br/>
+    <%= file_field_tag "local_photos[0][]", :accept => "image/jpg,image/jpeg,image/png,image/gif" %>
+  </div>
   <%= o.text_field :species_guess, :label => "What did you see?", :placeholder => "Species name" %>
   <%= o.check_box :id_please, :label_after => true, :label => "Request ID help" %>
   <%= o.text_area :description, :placeholder => "Brief description of what you saw" %>
@@ -22,6 +26,11 @@
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
+  if(/(iPhone|iPad|iPod)\sOS\s[6789]/.test(navigator.userAgent) || /Android [456789]/.test(navigator.userAgent)) {
+    $('#photos').show()
+  } else {
+    $('#photos').hide()
+  }
   function setLocation(loc) {
     $('#observation_latitude').val(loc.coords.latitude)
     $('#observation_longitude').val(loc.coords.longitude)

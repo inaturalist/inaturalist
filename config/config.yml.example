@@ -56,6 +56,9 @@ base: &base
     # to URIs like http://foo.inaturalist.org/%
     # site_only_observations: false
 
+    # iOS app ID. Used to display header notice about app in mobile views
+    # ios_app_id: 421397028
+
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
