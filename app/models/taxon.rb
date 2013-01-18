@@ -143,6 +143,7 @@ class Taxon < ActiveRecord::Base
     'subsp'           => 'subspecies',
     'trinomial'       => 'subspecies',
     'var'             => 'variety',
+    'fo'              => 'form',
     'unranked'        => nil
   }
   
@@ -532,7 +533,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def name_with_rank
-    if rank_level < SPECIES_LEVEL
+    if rank_level && rank_level < SPECIES_LEVEL
       r = case rank
         when SUBSPECIES then "ssp."
         when VARIETY then "var."
