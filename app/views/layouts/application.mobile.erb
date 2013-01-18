@@ -11,7 +11,7 @@
     <title><%= APP_CONFIG[:site_name] %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= stylesheet_link_tag 'blueprint/plugins/buttons/buttons' %>
-    <%= stylesheet_link_tag 'index', 'jquery-ui', 'jquery/ui.tabs', 'mobile' %>
+    <%= stylesheet_link_tag 'index', 'jquery-ui', 'jquery/ui.tabs', 'observations', 'mobile' %>
     <% if is_android_app? -%>
       <%= stylesheet_link_tag "black" %>
     <% end -%>

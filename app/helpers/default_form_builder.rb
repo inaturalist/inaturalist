@@ -7,7 +7,9 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   
   helpers.each do |name|
     define_method(name) do |field, *args|
-      options = if args[-2].is_a?(Hash)
+      options = if name.to_s == "select"
+        args.last
+      elsif args[-2].is_a?(Hash)
         args.pop
       elsif args.last.is_a?(Hash)
         args.last

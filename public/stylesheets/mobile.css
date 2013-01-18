@@ -52,6 +52,7 @@ h2 {margin: 0 0 0.5em;}
   input[type=button],
   input[type=text],
   input[type=password],
+  select,
   textarea{width:450px !important;}
   .button.full { width:450px; }
   .iconified.button.full { width:428px; }
@@ -70,11 +71,16 @@ h2 {margin: 0 0 0.5em;}
   input[type=button],
   input[type=text],
   input[type=password],
+  select,
   textarea{width:290px !important;}
   .button.full { width:290px; }
   .iconified.button.full { width:268px; }
   .comment.item .item_content {width:250px;}
 }
+
+.observations.infowindow .observation { width: 260px;}
+.observations.infowindow .observation .full { display:none;}
+
 .comment.item {white-space: nowrap;}
 .comment.item .item_user { vertical-align: top; margin-right:5px;}
 .comment.item .item_user, .comment.item .item_content {white-space: normal; display:inline-block; float:none;}
