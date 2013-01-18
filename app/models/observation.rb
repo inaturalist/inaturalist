@@ -1420,7 +1420,8 @@ class Observation < ActiveRecord::Base
     # Converting to the GEOGRAPHY type would solve this, in theory.
     # Unfrotinately this does NOT solve the problem of failing to select 
     # legit geoms that cross the dateline. GEOGRAPHY would solve that too.
-    candidates.select{|p| p.bbox_contains_lat_lng_acc?(lat, lon, acc)}
+    # candidates.select{|p| p.bbox_contains_lat_lng_acc?(lat, lon, acc)}
+    candidates.select{|p| p.bbox_contains_lat_lng?(lat, lon)}
   end
   
   def public_places
