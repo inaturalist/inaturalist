@@ -22,6 +22,7 @@
     <%= link_to_function t(:stop_updating_position), "stopGetLocation()", :class => "pale button", :style => "display:none", :id => "stoppositionbutton" %>
     <%= link_to_function t(:map), "viewMap()", :class => "button", :style => "display:none", :id => "mapbutton" %>
   </div>
+  <%= o.select :geoprivacy, Observation::GEOPRIVACIES, {:include_blank => "open"}, {:class => "select full"} %>
   <%= submit_tag t(:save_observation), :class => "default button", "data-loading-click" => t(:saving) %>
 <% end %>
 
