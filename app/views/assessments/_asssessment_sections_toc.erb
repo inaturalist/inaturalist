@@ -1,7 +1,7 @@
     <% if assessment.sections.blank? -%>
     <% else %>
       <div class="page-section">
-        <label>Table of Contents </label>
+        <label>Table of contents </label>
         <br/>
         <% @assessment.sections.each do |section| %>
           <a href="#<%= section.to_param %>">

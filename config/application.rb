@@ -28,15 +28,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module Inaturalist
   class Application < Rails::Application
 
-
-    # JY: Temp
-
-    config.generators do |g|
-      g.view_specs false
-      g.helper_specs false
-    end
-
-
+    config.active_record.whitelist_attributes = true
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

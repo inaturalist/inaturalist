@@ -152,7 +152,6 @@ Inaturalist::Application.routes.draw do
       post :add_matching, :as => :add_matching_to
       get :preview_matching, :as => :preview_matching_for
     end
-    # Assessments
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
   end
 

@@ -3,6 +3,11 @@
   They will automatically be included in application.css.
 */
 
+.new-assessment-link {
+  font-size: 14px !important;
+  float: right;
+}
+
 .assessment-taxon-listing {
   clear:both;
 }
@@ -18,7 +23,13 @@
 }
 
 .assessment-taxon-listing img {
-  padding-right: 10px;
+
+}
+
+.assessment-taxon-image-holder {
+  text-align: center;
+  width: 75px;
+  display: inline-block;
   float: left;
 }
 
@@ -27,13 +38,13 @@
 }
 
 .assessment-section-list {
-  float:left;
-  width: 580px;
+  float: left;
+  width: 520px;
 }
 
 .assessment-section-list-item {
   font-size: 12px;
-  width: 185px;
+  width: 90px;
   display: inline-block;
 }
 
@@ -51,14 +62,10 @@
   display: block;
 }
 
-.assessment-iframe-embed-code {
-}
-
 .assessment-iframe {
   width: 350px;
   clear: both;
 }
-
 
 input.assessment-section-field-title {
   width: 100%;  
@@ -69,7 +76,6 @@ textarea.assessment-section-field-body {
   width: 100%;  
 }
 
-
-
-
-
+.iframe-embed-code-container {
+  height: 100px;
+}

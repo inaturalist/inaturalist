@@ -110,7 +110,9 @@
         <%= render 'project_invitations/import_button' %>
       </div>
     <% end -%>
-    <%= render :partial => 'project_assessments' %>
+
+    <%= render :partial => 'project_assessments' if @project.project_type == Project::ASSESSMENT_TYPE %>
+
     <h3>
       Recent Observations
       <%= link_to "View all", project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>

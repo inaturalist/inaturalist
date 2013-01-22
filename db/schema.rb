@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108182802) do
+ActiveRecord::Schema.define(:version => 20130116165914) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -27,9 +27,12 @@ ActiveRecord::Schema.define(:version => 20130108182802) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
+
+  add_index "assessment_sections", ["assessment_id"], :name => "index_assessment_sections_on_assessment_id"
+  add_index "assessment_sections", ["user_id"], :name => "index_assessment_sections_on_user_id"
 
   create_table "assessments", :force => true do |t|
     t.integer  "taxon_id"
@@ -40,6 +43,10 @@ ActiveRecord::Schema.define(:version => 20130108182802) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assessments", ["project_id"], :name => "index_assessments_on_project_id"
+  add_index "assessments", ["taxon_id"], :name => "index_assessments_on_taxon_id"
+  add_index "assessments", ["user_id"], :name => "index_assessments_on_user_id"
 
   create_table "colors", :force => true do |t|
     t.string "value"

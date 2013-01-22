@@ -1,7 +1,9 @@
 <div class="project_assessment">
   <p>
   	<div class="assessment-taxon-listing">
-  	  <%= taxon_image(assessment.taxon) %>
+      <div class="assessment-taxon-image-holder">
+    	  <%= taxon_image(assessment.taxon) %>
+      </div>
       <div class="assessment-section-list">
     	  <h3>
     	    <%= link_to assessment.display_name, project_assessment_path(assessment.project, assessment) %>

@@ -22,11 +22,24 @@
         $(html).dialog({
           modal: true, 
           title: 'Preview',
-          width: $(window).width() * 0.7
+          width: '980px'
         })
       })
       return false
     });
+
+  $(document).ready(function(){
+    $('#cocoon-sections').bind('cocoon:after-insert', function(e, inserted_item) {
+          $(inserted_item).css('display', 'none');
+          $(inserted_item).slideDown();
+    });
+    $('#cocoon-sections').bind('cocoon:before-remove', function(e, removed_item) {
+        $(this).data('remove-timeout', 1000);
+        removed_item.slideUp();
+    });
+  });
+
+
   });
 </script>
 <% end %>
@@ -36,15 +49,6 @@
   <div class="assessment-preview-content">
     <%= render :partial => 'show', :locals => { :assessment => @assessment } %>
   </div>
-  <script>
-    $(document).ready(function(){
-      $('.assessment-preview-content').dialog({
-        modal: true, 
-        title: 'Assessment Preview',
-        width: $(window).width() * 0.7
-      });
-    });
-  </script>
 <% end %>
 
 <%= form_for(@assessment, :builder => DefaultFormBuilder, :html => {:class => 'assessment_form'}) do |f| %>
@@ -99,22 +103,22 @@
 
   <div class="column span-24 first last">
     <h3> Assessment sections </h3>
-    <%= f.fields_for :sections do |section_form| %>
-      <%= render 'section_fields', :f => section_form %>
-    <% end %>
-    <div>
-      <%= link_to_add_association 'Add Another Section', f, :sections %>
-    </div>
+    <div id="cocoon-sections">
+      <%= f.fields_for :sections do |section_form| %>
+        <%= render 'section_fields', :f => section_form %>
+      <% end %>
+      <div>
+        <%= link_to_add_association 'Add another section', f, :sections %>
+      </div>
 
-    <div class="actions buttons">
-      <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => "default button" %>
-      <%= link_to 'Cancel', project_path(@assessment.project), :class => "button" %>
-      <%= link_to 'Delete', assessment_path(@assessment), :confirm => "Are you sure you want to delete the assessment?", :method => :delete, :class => "button" unless f.object.new_record? %>
-      <a href="#" class="button assessment-preview-button">Preview</a>
-
+      <div class="actions buttons">
+        <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => "default button" %>
+        <%= link_to 'Cancel', project_path(@assessment.project), :class => "button" %>
+        <%= link_to 'Delete', assessment_path(@assessment), :confirm => "Are you sure you want to delete the assessment?", :method => :delete, :class => "button" unless f.object.new_record? %>
+        <a href="#" class="button assessment-preview-button">Preview</a>
+      </div>
     </div>
 
   </div>
 <% end %>
-
 

@@ -3,13 +3,13 @@ class Assessment < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :taxon
 
+  attr_accessible :taxon_id, :project_id, :description, :sections_attributes, :user_id
+
   validates_presence_of :project, :user, :taxon
 
   has_many :sections, :foreign_key => 'assessment_id', :class_name => "AssessmentSection", :dependent => :destroy
   accepts_nested_attributes_for :sections, :allow_destroy => true
   validates_associated :sections
-
-  attr_accessible :taxon_id, :project_id, :description, :sections_attributes, :user_id
 
   def taxon_name
      self.taxon.present? ? self.taxon.name : '<i>No Taxon</i>'.html_safe

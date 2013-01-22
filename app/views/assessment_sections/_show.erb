@@ -9,6 +9,8 @@
 		<%= section.body %>
 	</p>
 
+  <% if params[:preview].blank? # don't show comments for preview %>
+
 	<div class="assessment-section-comments">
 		<div class="assessment-section-comments-teaser">
 		    <% section.comments.each_with_index do |comment, index| %>
@@ -37,4 +39,7 @@
 				} %>
 			</div>
 	</div>
+	
+  <% end # comments for preview %>
+
 </p>

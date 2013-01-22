@@ -1,3 +1,6 @@
+<%- content_for(:title) do -%>
+  <%=h @parent_display_name %>'s assessments
+<%- end -%>
 <% if params[:iframe].present? %>
   <% content_for(:extrajs) do %>
     <script>
@@ -25,13 +28,12 @@
       });
     </script>
 <% end %>
-
      
   <div class="column span-24 assessment-show <%= 'assessment-iframe' if params[:iframe].present? %> ">
 
     <%= link_to "<< Back to #{@assessment.project.title}", project_path(@assessment.project) if params[:iframe].blank? && params[:preview].blank?%>
 
-    <% if (@assessment.project.editable_by?(current_user)) && params[:iframe].blank? %>
+    <% if @assessment.project.project_users.find_by_user_id(current_user.id).is_curator? && params[:iframe].blank? %>
       <%= link_to 'edit', edit_assessment_path(@assessment), :class => 'edit-button' %>
     <% end %>
 

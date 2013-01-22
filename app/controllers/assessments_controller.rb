@@ -2,6 +2,7 @@ class AssessmentsController < ApplicationController
 
   def new
     project = Project.find_by_slug(params[:project_id])
+
     if ! (project.curated_by? current_user)
       flash[:error] = "Only the project admins and curators can create new assessments on this project."
       redirect_to project
@@ -15,6 +16,7 @@ class AssessmentsController < ApplicationController
 
   def create
     project = Project.find(params[:assessment][:project_id])
+
     if ! (project.curated_by? current_user)
       flash[:error] = "Only the project admins and curators can create new assessments on this project."
       redirect_to project
@@ -22,8 +24,9 @@ class AssessmentsController < ApplicationController
     end
 
     @assessment = Assessment.new(params[:assessment].merge(:user_id => current_user.id))
-    @assessment.sections.build if @assessment.sections == []
+    @assessment.project = project
 
+    @assessment.sections.build if @assessment.sections == []
     @assessment.sections.map {|section| section.user = current_user }
 
     if @assessment.completed_at.blank? && params['completed'].present?
@@ -98,7 +101,7 @@ class AssessmentsController < ApplicationController
     @project = Project.find_by_slug(params[:project_id])
     @parent_display_name = @project.title
     @uncompleted_assessments = Assessment.where(:project_id => @project.id).where("completed_at IS NULL")
-    @completed_assessments = Assessment.where(:project_id => @project.id).where("completed_at IS NOT NULL").paginate( :page => params[:page], :per_page => 5)
+    @completed_assessments = Assessment.where(:project_id => @project.id).where("completed_at IS NOT NULL").paginate( :page => params[:page])
   end
 
 
