@@ -23,15 +23,15 @@
       <% end -%>
     <% end -%>
     <div class="inline buttonrow">
-      <label>Add a field</label>
+      <label><%=t :add_a_field %></label>
       <input name="observation_field" 
              class="observation_field_chooser" 
              type="text" 
-             placeholder="Start typing field name..."
+             placeholder="<%=t :start_typing_field_name %>"
              data-chooser-default-sources="<%= observation_fields.to_json %>">
       <%= link_to_function "Add a field", "$(this).parents('.observation_fields_form_fields:first').newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
-      <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
-      <%= link_to "View all fields", observation_fields_path, :class => "inter", :target => "_blank" %>
+      <%= link_to t(:create_a_new_field), new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
+      <%= link_to t(:view_all_n, :n => t(:fields)), observation_fields_path, :class => "inter", :target => "_blank" %>
     </div>
   </div>
 </div>

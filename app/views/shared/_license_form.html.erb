@@ -31,7 +31,7 @@
   <% end %>
   <div class="column span-9">
     <%= f.radio_button :license, no_license_value, :label => t(:no_license_all_rights_reserved), :label_after => true,
-      :description => t(:you_retain_full_copyright) %>
+      :description => t(:you_retain_full_copyright, :site_name => SITE_NAME) %>
   </div>
   
   <div class="column span-18 inline buttonrow">

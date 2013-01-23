@@ -22,7 +22,7 @@
     <%= render "observations/observation_field_form_fields", :builder => o %>
   <% end -%>
   <%= hidden_field_tag :ignore_photos, 'true' %>
-  <div class="required stacked">* required</div>
+  <div class="required stacked">* <%=t :required %></div>
   <div class="buttonrow clear">
     <%= o.submit t(:save_fields), "data-loading-click" => t(:saving), :class => "default button" %>
   </div>

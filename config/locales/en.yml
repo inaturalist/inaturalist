@@ -83,10 +83,12 @@ en:
   add_common_names_for: add common names for existing taxa
   add_countries: Add Countries
   add_custom_project_fields: Add custom project fields
+  add_edit_more_fields: Add/edit more fields
   add_description: "Add %{description_name}"
   add_higher_level_taxon: Add a higher-level taxon (e.g. "birds")
   add_id: Add ID
   add_it_to_place_raquo: "Add it to a place &raquo;"
+  add_more_photos: Add more photos
   add_new_lexicon: Add new lexicon
   add_new_observations: Add new observations
   add_new_photos_by_their_ids: Add new photos by their Flickr IDs (must be Creative Commons!)
@@ -106,6 +108,7 @@ en:
   add_observations_project: Add obsertions to this project
   add_one: Add one!
   add_photos: add photos
+  add_photos_to_this_observation: Add photos to this observation
   add_several_observations_at_once: Add several observations at once.
   add_some_now: Add some now
   add_taxa: Add taxa
@@ -145,6 +148,7 @@ en:
   all_names: All Names
   all_photos: All photos
   all_places: "&laquo; All Places"
+  all_rights_reserved: all rights reserved
   all_taxonomic_groups: "&laquo; All Taxonomic Groups"
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
@@ -154,6 +158,7 @@ en:
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb doesn't have any information about this species.
   amphibiaweb_taxonomy: AmphibiaWeb Taxonomy
   an: an
+  and: and
   and_choose_a_matching_taxon: and choose a matching taxon from the list.  If you don't end up with something like
   and_help_the_inaturalist_community_grow: "and help the %{site_name} community grow."
   and_make_some_new: and make some new
@@ -475,6 +480,7 @@ en:
   feedback: Feedback
   feedback_group: Feedback Group
   feeds_for_current_filters: Feeds for Current Filters
+  fields: fields
   fill_out_your_profile: fill out your profile
   filling_out_checklist_for_place: filling out checklists for places you know well
   filling_out_your_profile: filling out your profile
@@ -939,7 +945,7 @@ en:
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
   photo: "Photo %{photoid}, %{photoattribution}"
   photo: Photo
-  photo: Photo?
+  photo?: Photo?
   photo_atrribution: "Photo %{attribution}"
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_hosting_accounts: Photo Hosting Accounts
@@ -1044,6 +1050,7 @@ en:
   reptiles: reptiles
   request_id_help: Request ID help
   request_password: Request Password
+  required: required
   required_columns_in_order: Required columns in order
   research: research
   research_grade: research grade
@@ -1142,7 +1149,7 @@ en:
   something_went_wrong_adding: Something went wrong adding that species to your list
   something_went_wrong_updating: Something went wrong updating your list!
   somewhere_on_earth: somewhere on Earth
-  sorry_how_about_we_try_repeat: Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time.
+  sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
   source: Source
   source_unknown: "Source &#59; unknown"
   sources: Sources
@@ -1176,6 +1183,9 @@ en:
   submit: Submit
   submit_comment: Submit comment
   submitted: Submitted
+  subscribe_to_x_from_this_y_html: |
+    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribe</a>
+    to %{x} from this %{y}.
   suggest_an_id: Suggest an ID
   sun: Sun
   surround_any_cells_containing_commas: Surround any cells containing commas with double quotes

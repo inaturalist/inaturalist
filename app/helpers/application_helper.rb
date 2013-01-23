@@ -563,7 +563,7 @@ module ApplicationHelper
       user_name = record.user.login if user_name.blank?
       s = "&copy; #{user_name}"
       if record.license.blank?
-        s += "#{separator}all rights reserved"
+        s += "#{separator}#{t(:all_rights_reserved)}"
       else
         s += separator
         s += content_tag(:span) do
@@ -588,7 +588,7 @@ module ApplicationHelper
         end
 
         if record.copyrighted?
-          s += "#{separator}all rights reserved"
+          s += "#{separator}#{t(:all_rights_reserved)}"
         elsif record.creative_commons?
           s += separator
           code = Photo.license_code_for_number(record.license)
@@ -747,8 +747,8 @@ module ApplicationHelper
   
   def commas_and(list)
     return list.first.to_s.html_safe if list.size == 1
-    return list.join(' and ').html_safe if list.size == 2
-    "#{list[0..-2].join(', ')}, and #{list.last}".html_safe
+    return list.join(" #{t :and} ").html_safe if list.size == 2
+    "#{list[0..-2].join(', ')}, #{t :and} #{list.last}".html_safe
   end
   
   def update_cached(record, association)

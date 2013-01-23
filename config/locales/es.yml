@@ -102,9 +102,11 @@ es:
   add_countries: "Agregar países"
   add_custom_project_fields: "Agregar campos de proyecto personalizados"
   add_description: "Agregar %{description_name}"
+  add_edit_more_fields: "Añadir/editar más campos"
   add_higher_level_taxon: "Agregar un taxón de más alto nivel (por ejemplo \"pájaros\")"
   add_id: "Agregar identificador"
   add_it_to_place_raquo: "Agregarla a un lugar &raquo;"
+  add_more_photos: "Añadir más fotos"
   add_new_lexicon: "Agregar léxico nuevo"
   add_new_observations: "Agregue observaciones nuevas"
   add_new_photos_by_their_ids: "Agregar nuevas fotos por sus Identificadores de Flickr (¡Deben ser de Creative Commons!)"
@@ -124,6 +126,7 @@ es:
   add_observations_project: "Agregar observaciones a este proyecto"
   add_one: "¡Agregar uno!"
   add_photos: "Agregar fotos"
+  add_photos_to_this_observation: "Añadir fotos a esta observación"
   add_several_observations_at_once: "Agregar varias observaciones de una sola vez"
   add_some_now: "Agregar algunas ahora"
   add_taxa: "Agregar taxones"
@@ -165,6 +168,7 @@ es:
   all_names: "Todos los nombres"
   all_photos: "Todas las fotos"
   all_places: "&laquo; Todos los lugares"
+  all_rights_reserved: "todos los derechos reservados"
   all_taxonomic_groups: "&laquo; Todos los Grupos Taxonómicos"
   all_your_observations_will_default_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
   all_your_observations_will_default_to_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
@@ -174,6 +178,7 @@ es:
   amphibiaweb_doesnt_have_info_about_species: "AmphibiaWeb no tiene ninguna información de esta especie."
   amphibiaweb_taxonomy: "Taxonomía de AmphibiaWeb"
   an: una
+  and: "y"
   and_choose_a_matching_taxon: "y seleccione un taxón de la lista que concuerde. Si no termina con algo como"
   and_help_the_inaturalist_community_grow: "y ayudar a que la comunidad %{site_name} crezca."
   and_make_some_new: "y haga nuevos"
@@ -670,6 +675,7 @@ es:
   feedback: Retroalimentación
   feedback_group: "Grupo de retroalimentación"
   feeds_for_current_filters: "Fuentes para los filtros actuales"
+  fields: campos
   fill_out_your_profile: "completa su perfil"
   filling_out_checklist_for_place: "llenar las listas de verificación de los lugares que usted conoce bien"
   filling_out_your_profile: "completar su perfil"
@@ -1315,6 +1321,7 @@ es:
   reptiles: reptiles
   request_id_help: "Solicitar ayuda para identificar"
   request_password: "Solicitar contraseña"
+  required: obligatorio
   required_columns_in_order: "Columnas requeridas en orden"
   research: investigación
   research_grade: "grado de investigación"
@@ -1449,6 +1456,7 @@ es:
   submit: Enviar
   submit_comment: "Enviar comentario"
   submitted: Enviado
+  subscribe_to_x_from_this_y_html: "<a href=\"#\" onclick=\"$(this).parents('form:first').submit(); return false;\">Suscribirse</a> a %{x} de estas %{y}."
   suggest_an_id: "Sugerir un identificador"
   sun: dom
   support: 
