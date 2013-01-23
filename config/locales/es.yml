@@ -45,42 +45,6 @@ es:
   acquaintances: conocidos
   actions: Acciones
   activate_user: "Activar usuario"
-  activemodel: 
-    errors: 
-      format: ""
-      messages: 
-        accepted: "debe ser aceptado"
-        blank: ""
-        confirmation: ""
-        empty: ""
-        equal_to: ""
-        even: ""
-        exclusion: ""
-        greater_than: ""
-        greater_than_or_equal_to: ""
-        inclusion: ""
-        invalid: ""
-        less_than: ""
-        less_than_or_equal_to: ""
-        not_a_number: "no es un número"
-        not_an_integer: ""
-        odd: ""
-        record_invalid: ""
-        taken: ""
-        too_long: 
-          one: ""
-          other: ""
-        too_short: 
-          one: ""
-          other: ""
-        wrong_length: 
-          one: ""
-          other: ""
-      template: 
-        body: ""
-        header: 
-          one: ""
-          other: ""
   activerecord: 
     attributes: 
       flag: 
@@ -110,35 +74,6 @@ es:
         invitation_email_notification: "Invitaciones a proyectos"
         name: Nombre
         time_zone: "Zona horaria"
-    errors: 
-      format: ""
-      messages: 
-        accepted: ""
-        blank: ""
-        confirmation: ""
-        empty: ""
-        equal_to: ""
-        even: ""
-        exclusion: ""
-        greater_than: ""
-        greater_than_or_equal_to: ""
-        inclusion: ""
-        invalid: ""
-        less_than: ""
-        less_than_or_equal_to: ""
-        not_a_number: "no es un número"
-        not_an_integer: ""
-        odd: ""
-        record_invalid: ""
-        taken: ""
-        too_long: 
-          one: ""
-          other: ""
-        too_short: 
-          one: ""
-          other: ""
-        wrong_length: 
-          one: ""
     preferences: 
       per_page: "Registros por página"
   add: Agregar
@@ -173,7 +108,7 @@ es:
   add_new_lexicon: "Agregar léxico nuevo"
   add_new_observations: "Agregue observaciones nuevas"
   add_new_photos_by_their_ids: "Agregar nuevas fotos por sus Identificadores de Flickr (¡Deben ser de Creative Commons!)"
-  add_new_place: "Agregar un Lugar nuevo"
+  add_new_place: "Agregar un lugar nuevo"
   add_new_rule: "Agregar nueva regla"
   add_new_source: "Agregar una nueva fuente"
   add_new_taxon_name: "agregar un nuevo nombre de taxón"
@@ -211,7 +146,6 @@ es:
   added_identifications_to: "agregó identificaciones a las observaciones de nadie."
   added_on: "Agregado el"
   adding: Agregando...
-  adding_new_places: "agregar lugares nuevos"
   adding_observation: "Adding observation"
   adding_observations: "Agregar observaciones"
   adding_some_observations: "agregando algunas observaciones"
@@ -241,7 +175,6 @@ es:
   amphibiaweb_taxonomy: "Taxonomía de AmphibiaWeb"
   an: una
   and_choose_a_matching_taxon: "y seleccione un taxón de la lista que concuerde. Si no termina con algo como"
-  and_filling_in_check_list: "¡y llenar listas de verificación de los lugares que conoce!"
   and_help_the_inaturalist_community_grow: "y ayudar a que la comunidad %{site_name} crezca."
   and_make_some_new: "y haga nuevos"
   and_other_taxa: "&amp; Otros Taxones"
@@ -325,7 +258,7 @@ es:
   black: negro
   blog_widget: "Widget del blog"
   blue: azul
-  blue_icons_represent_political_units: "Los íconos azules representan unidades políticas como países, estados, provincias, países y afines, mientras que los íconos verdes representan diferentes tipos de espacios abiertos pareques, reservas). Si hace un acercamiento, podrá ver más lugares pequeños."
+  blue_icons_represent_political_units: "Los íconos azules representan unidades políticas como países, estados y afines, mientras que los íconos verdes representan diferentes tipos de espacios abiertos parques y reservas. Si haces un acercamiento, podrás ver lugares más pequeños."
   body: Cuerpo
   breadcrumbs: Breadcrumbs
   breadcrumbs_description: "Esto reemplazará al h1 y los ajustes por defecto de la acción, asegúrese de incluirlos si son importantes para este proyecto."
@@ -461,6 +394,102 @@ es:
   data_deficient: "datos insuficientes"
   data_quality_assessment: "Evaluación de la calidad de datos"
   datatype: "Tipo de datos"
+  date: 
+    abbr_day_names: 
+      - dom
+      - lun
+      - mar
+      - mié
+      - jue
+      - vie
+      - sáb
+    abbr_month_names: 
+      - ~
+      - ene
+      - feb
+      - mar
+      - abr
+      - may
+      - jun
+      - jul
+      - ago
+      - sep
+      - oct
+      - nov
+      - dic
+    day_names: 
+      - domingo
+      - lunes
+      - martes
+      - miércoles
+      - jueves
+      - viernes
+      - sábado
+    formats: 
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+    month_names: 
+      - ~
+      - enero
+      - febrero
+      - marzo
+      - abril
+      - mayo
+      - junio
+      - julio
+      - agosto
+      - septiembre
+      - octubre
+      - noviembre
+      - diciembre
+    order: 
+      - !ruby/symbol day
+      - !ruby/symbol month
+      - !ruby/symbol year
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "alrededor de 1 hora"
+        other: "alrededor de %{count} horas"
+      about_x_months: 
+        one: "alrededor de 1 mes"
+        other: "alrededor de %{count} meses"
+      about_x_years: 
+        one: "alrededor de 1 año"
+        other: "alrededor de %{count} años"
+      almost_x_years: 
+        one: "casi 1 año"
+        other: "casi %{count} años"
+      half_a_minute: "medio minuto"
+      less_than_x_minutes: 
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      less_than_x_seconds: 
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      over_x_years: 
+        one: "más de 1 año"
+        other: "más de %{count} años"
+      x_days: 
+        one: "1 día"
+        other: "%{count} días"
+      x_minutes: 
+        one: "1 minuto"
+        other: "%{count} minutos"
+      x_months: 
+        one: "1 mes"
+        other: "%{count} meses"
+      x_seconds: 
+        one: "1 segundo"
+        other: "%{count} segundos"
+    prompts: 
+      day: Día
+      hour: Hora
+      minute: Minutos
+      month: Mes
+      second: Segundos
+      year: Año
   day: Día
   december: Diciembre
   default_invite_comment: "La gran foto! Usted debe enviar a %{site_name}: {{INVITE_LINK}}"
@@ -482,6 +511,50 @@ es:
   description_tags_more: "Descripción, Etiquetas, &amp; Más"
   destroy: Destruir
   details: Detalles
+  devise: 
+    confirmations: 
+      confirmed: "Tu cuenta fue confirmada. Has iniciado sesión."
+      send_instructions: "Recibirás instrucciones para confirmar tu cuenta en tu email en unos minutos."
+      send_paranoid_instructions: "Si tu email existe en el sistema, recibirás instrucciones para confirmar tu cuenta en tu email en unos minutos."
+    failure: 
+      already_authenticated: "Ya iniciaste sesión."
+      inactive: "Tu cuenta aun no ha sido activada."
+      invalid: "Email o contraseña inválidos."
+      invalid_token: "Token de autentificación inválido."
+      locked: "Tu cuente está bloqueada."
+      timeout: "Tu sesión ha expirado. Inicia sesión nuevamente."
+      unauthenticated: "Tienes que registrarte o iniciar sesión antes de continuar."
+      unconfirmed: "Tienes que confirmar tu cuenta antes de continuar."
+    mailer: 
+      confirmation_instructions: 
+        subject: "Instrucciones de confirmación"
+      reset_password_instructions: 
+        subject: "Instrucciones de cambio de contraseña"
+      unlock_instructions: 
+        subject: "Instrucciones de desbloqueo"
+    omniauth_callbacks: 
+      failure: "No pudimos autentificar tu cuenta de %{kind} por la siguiente razón: %{reason}."
+      success: "Te autentificaste correctamente con tu cuenta de %{kind}."
+    passwords: 
+      send_instructions: "Recibirás un email con instrucciones para reiniciar tu contraseña en unos minutos."
+      send_paranoid_instructions: "Si tu email existe en el sistema, recibirás instrucciones para recuperar tu contraseña en él"
+      updated: "Tu contraseña fue cambiada correctamente. Has iniciado sesión."
+      updated_not_active: "Tu contraseña fue cambiada correctamente."
+    registrations: 
+      destroyed: "Adiós, tu cuenta ha sido eliminada. Esperamos verte de vuelta pronto!"
+      signed_up: "Bienvenido! Te has registrado correctamente."
+      signed_up_but_inactive: "Te has registrado correctamente, pero tu cuenta aun no ha sido activada."
+      signed_up_but_locked: "Te has registrado correctamente, pero tu cuenta está bloqueada."
+      signed_up_but_unconfirmed: "Te hemos enviado un email con instrucciones para que confirmes tu cuenta."
+      update_needs_confirmation: "Actualizaste tu cuenta correctamente, pero tenemos que revalidar tu email. Revisa tu correo para confirmar la dirección."
+      updated: "Actualizaste tu cuenta correctamente."
+    sessions: 
+      signed_in: "Iniciaste sesión correctamente."
+      signed_out: "Cerraste sesión correctamente."
+    unlocks: 
+      send_instructions: "Recibirás un email con instrucciones para desbloquear tu cuenta en unos minutos"
+      send_paranoid_instructions: "Si tu cuenta existe, recibirás instrucciones para desbloquear tu cuenta en unos minutos"
+      unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
   did_not_send_invitations_because: "No les enviamos invitaciones a tus amigos y amigas pues:"
   did_you_photos_flickr?: "¿Ha colocado fotos en Flickr?"
   disagree: "en desacuerdo"
@@ -537,6 +610,42 @@ es:
   embed_widget_project: "Insertar un widget para este proyecto en su página web"
   end: Final
   endangered: "en peligro"
+  errors: 
+    format: "%{attribute} %{message}"
+    messages: 
+      accepted: "debe ser aceptado"
+      already_confirmed: "ya fue confirmada. Intenta ingresar."
+      blank: "no puede estar en blanco"
+      confirmation: "no coincide con la confirmación"
+      empty: "no puede estar vacío"
+      equal_to: "debe ser igual a %{count}"
+      even: "debe ser par"
+      exclusion: "está reservado"
+      expired: "ha expirado, por favor pide una nueva"
+      greater_than: "debe ser mayor que %{count}"
+      greater_than_or_equal_to: "debe ser mayor que o igual a %{count}"
+      inclusion: "no está incluido en la lista"
+      invalid: "no es válido"
+      less_than: "debe ser menor que %{count}"
+      less_than_or_equal_to: "debe ser menor que o igual a %{count}"
+      not_a_number: "no es un número"
+      not_an_integer: "debe ser un entero"
+      not_found: "no encontrado"
+      not_locked: "no ha sido bloqueada"
+      not_saved: 
+        one: "Ha habido 1 error:"
+        other: "Han habido %{count} errores:"
+      odd: "debe ser impar"
+      record_invalid: "La validación falló: %{errors}"
+      taken: "ya está en uso"
+      too_long: "es demasiado largo (%{count} caracteres máximo)"
+      too_short: "es demasiado corto (%{count} caracteres mínimo)"
+      wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
+    template: 
+      body: "Se encontraron problemas con los siguientes campos:"
+      header: 
+        one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
+        other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
   establishment_means: "Medio de establecimiento"
   establishment_means_describes_how: "El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href=\"http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información en terminología</a>."
   everyone_journal_posts: "Articulos en todos los diarios"
@@ -610,7 +719,12 @@ es:
   from_list: "De la lista"
   full_id_please!: "¡Ayuda con nombre científico!"
   full_id_please?: "¿Ayuda con nombre científico?"
-  fungi: fungi
+  fungi: 
+    one: hongo
+    other: hongos
+  fungus: 
+    one: hongo
+    other: hongos
   general: General
   generally_these_come_from_uicn_red_list: "Vienen generalmente de la Lista Roja de UICN y si vienen de otro lugar se adherirán a las categorías de UICN."
   generate_taxonomic_tags_for_flickr: "Generar etiquetas taxonómicas para sus fotos de Flickr."
@@ -955,6 +1069,53 @@ es:
   not_yet: "Todavía no"
   noun_by_you: "%{noun} por usted"
   november: Noviembre
+  number: 
+    currency: 
+      format: 
+        delimiter: "."
+        format: "%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: €
+    format: 
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human: 
+      decimal_units: 
+        format: "%n %u"
+        units: 
+          billion: "mil millones"
+          million: millón
+          quadrillion: "mil billones"
+          thousand: mil
+          trillion: billón
+          unit: ""
+      format: 
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units: 
+        format: "%n %u"
+        units: 
+          byte: 
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage: 
+      format: 
+        delimiter: ""
+    precision: 
+      format: 
+        delimiter: ""
   obscured: Difusa
   obscured_description: "Coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas . Las coordenadas reales sólo son visibles para usted y los curadores de los proyectos a la que se agrega la observación."
   observation: observación
@@ -972,8 +1133,8 @@ es:
   observations: Observaciones
   observations_by_everyone: "Observaciones de todos"
   observations_by_user: "Observaciones de %{user}"
-  observations_by_user_on_date: "Observación de %{user} en %{date}"
-  observations_by_you_on_date: "Observación de usted en %{date}"
+  observations_by_user_on_date: "Observaciones de %{user} en %{date}"
+  observations_by_you_on_date: "Observaciones de usted en %{date}"
   observations_circle_have_their_radii_scaled: "Los círculos de observación tienen su radios a escala proporcional a su exactitud posicional. Los datos de observaciones sin exactitud posicional se muestran en el tamaño mínimo."
   observations_confirmed: "Observaciones (confirmadas)"
   observations_for_project: "Observaciones para %{project}"
@@ -1108,7 +1269,7 @@ es:
   projects_description: "Los proyectos son una forma de agrupar sus observaciones con otras personas en %{site_name}.  Ya sea que a usted le interese comenzar un proyecto científico ciudadano o solamente mantener registros de las aves de un parque cercano con su club de observación local, la forma de hacerlo es con Proyectos."
   projects_you_admin: "Proyectos que usted administra"
   projects_youve_joined: "Proyectos a los que se ha unido"
-  protozoans: protozoos
+  protozoans: protozoarios
   provider_authorizations: "Autorizaciones de proveedores"
   public_coordinates_obscured_by: "Coordenadas públicas ocultas por %{distance}KM"
   publish: Publicar
@@ -1118,7 +1279,7 @@ es:
   range: Rango
   rank: rango
   rank_restrictions: "Clasificar las restricciones"
-  ray_finned_fishes: actinopterigios
+  ray_finned_fishes: "peces con aletas radiadas"
   re_order_photos: "Reordenar fotos &raquo;"
   read_our_getting_started_guide: "lee nuestra Guía de Inicio"
   read_the_full_wikipedia: "Leer toda la descripción de Wikipedia"
@@ -1377,6 +1538,13 @@ es:
   this_will_update_all_last_observations: "Esto actualizará todas las observaciones recientes y agregará nuevos taxones de"
   those_are_the_basics_of: "¡Esas son las bases para agregar observacionesHay muchas otras cosas que puede hacer, como buscar y filtrar sus observaciones o modificarlas como un grupo, pero esto debería ser auto explicativo."
   thu: jue
+  time: 
+    am: am
+    formats: 
+      default: "%d %b %Y %H:%M:%S %Z"
+      long: "%d de %B de %Y"
+      short: "%d/%m/%Y"
+    pm: pm
   titled_favorites_and_the_most_recent_additions: "titulados \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
   to_add_comments: "para agregar comentarios."
   to_add_identifications: "a agregar identificaciones."
@@ -1387,7 +1555,7 @@ es:
   to_update: actualización
   to_updates: actualizaciones
   today: Hoy
-  too_many_observations_csv: "Sólo podemos tomar tus primeras %{max_rows} observaciones en cada archivo CSV"
+  too_many_observations_csv: "¡Tienes demasiadas observaciones! Solo podemos incluir las primeras %{max_rows} observaciones de cada archivo CSV"
   tools: Herramientas
   top_5_identifiers: "Los 5 identificadores más altos"
   top_contributors: "Mayores contribuyentes"
@@ -1467,7 +1635,7 @@ es:
   view_original_by: "Ver original %{by} en %{photo}"
   view_original_ccD_photo: "Ver foto original copiada en Flickr por %{owner}"
   view_other_taxa: "Ver otros <nobr> %{taxon_name} &raquo;</nobr>"
-  view_photos_ranges_observations_more: "¡Vea fotos, rangos de especies, observaciones de %{site_name} y másHemos recopilado información de muchas fuentes diferentes y las hemos combinado para dar un corto resumen de cada especie en cada lugar."
+  view_photos_ranges_observations_more: "¡Ve fotos, distribuciones de especies, observaciones de %{site_name} y más. Hemos recopilado información de muchas fuentes diferentes y las hemos combinado para proporcionar un breve resumen de cada especie en cada lugar."
   view_taxon_page: "Ver página del taxón"
   view_taxon_page_for: "Ver página del taxón para este lugar"
   view_terms: "Ver los términos"
@@ -1692,6 +1860,12 @@ es:
             observaciones %{site_name}. Sólo déjeles un comentario incluyendo este 
             vínculo de invitación especial.  También puede preseleccionar un taxón y 
             proyecto para la observación nueva.
+    places: 
+      index: 
+        adding_new_places: "la adición de nuevos lugares "
+        confirming_identifications: "la confirmación de identificaciones"
+        filling_out_checklists: "la actualización de listas de verificación para los lugares que conoces bien"
+        you_can_help_out_by: "Usted puede ayudar a mejorar nuestros datos de lugares mediante"
     users: 
       edit: 
         licensing_desc_html: ""
@@ -1799,7 +1973,6 @@ es:
   you_can_change_your_new_passwd_after_logging_in: "Puede cambiar su nueva contraseña después de ingresar aquí"
   you_can_choose_observations_associated: "Puede seleccionar observaciones para asociar con este artículo del diario."
   you_can_help_make_our: "¡Usted puede ayudar a que nuestras páginas de especies sean más útiles agregando datos Aquí hay algunas formas en las que puede ayudar"
-  you_can_help_out_by: "Usted puede ayudar al"
   you_can_see_these_coordinates_because: "Usted puede ver estas coordenadas porque usted cura uno de los proyectos a los cuales se agregó esta observación."
   you_can_sign_free_at: "Usted puede registrar una cuenta gratis con %{site_name} en"
   you_dont: "Usted no"

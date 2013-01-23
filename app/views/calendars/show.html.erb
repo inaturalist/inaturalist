@@ -1,8 +1,8 @@
 <%- content_for(:title) do -%>
   <%= @title = if is_me?(@selected_user)
-    t(:observations_by_you_on_date, :date => Date.parse(@date).to_s(:long))
+    t(:observations_by_you_on_date, :date => l(Date.parse(@date), :format => :long))
   else
-    t(:observations_by_user_on_date, :user => @selected_user.login, :date => Date.parse(@date).to_s(:long))
+    t(:observations_by_user_on_date, :user => @selected_user.login, :date => l(Date.parse(@date), :format => :long))
   end %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
@@ -35,7 +35,7 @@
   } %>
   <div class="breadcrumbs">
     <strong>
-      <%= link_to "&laquo #{t :back_to_x, :noun => possessive_noun(@selected_user, 'calendar').downcase}".html_safe, 
+      <%= link_to "&laquo #{t :back_to_x, :noun => possessive_noun(@selected_user, t(:calendar)).downcase}".html_safe, 
         calendar_path(@login), :class => 'crumb' %>
     </strong>
   </div><!-- /#breadcrumbs -->
@@ -60,7 +60,7 @@
             <div class="taxon %>">
               <span class="iconic_taxon_sprite selected <%= Taxon::ICONIC_TAXA_BY_ID[id].name.downcase %>"></span>
               <%= count %>
-              <%= t(default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize.gsub(/\W/, '_')).downcase.html_safe %>
+              <%= t(default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).downcase.pluralize, :count => count).downcase.html_safe %>
             </div>
           <% end -%>
         </div>

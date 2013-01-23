@@ -146,14 +146,12 @@
   <div class="last column span-8">
     <div class="clear box">
       <p>
-        <%= t(:you_can_help_out_by) %>
-        <%= link_to t(:adding_new_places), new_place_path, :rel => "nofollow" %>
-        <%= t(:and_filling_in_check_list) %>
+        <%=t 'views.places.index.you_can_help_out_by' %>
       </p>
       <ul class="readable leafylist">
-        <li><%= link_to t(:adding_new_places), new_place_path, :rel => "nofollow" %></li>
-        <li><%= link_to t(:confirming_identifications), observations_path %> <%= t(:by_adding_ids_to_observations) %> </li>
-        <li><%= t(:filling_out_checklist_for_place) %></li>
+        <li><%= link_to t('views.places.index.adding_new_places'), new_place_path, :rel => "nofollow" %></li>
+        <li><%= t 'views.places.index.confirming_identifications' %> </li>
+        <li><%= t('views.places.index.filling_out_checklists') %></li>
       </ul>
       <div style="margin: 20px 0; text-align: center;">
         <%= link_to t(:add_new_place), new_place_path, :class => 'inline button readmore right', :rel => "nofollow" %>

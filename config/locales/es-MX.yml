@@ -2,7 +2,63 @@
 es-MX: 
   about_life!: "acerca de la vida!"
   add_observations!: "¡Agrega observaciones!"
+  back_to_x: "Regresa a %{noun}"
+  click_the_map_to_jump_new_place: "Haz clic en el mapa para moverte a un lugar nuevo"
+  devise: 
+    confirmations: 
+      confirmed: "Su cuenta fue confirmada exitosamente, usted ha sido ingresado al sistema."
+      send_instructions: "Usted recibirá un correo electrónico con instrucciones sobre como confirmar su cuenta en unos minutos."
+      send_paranoid_instructions: "Si su correo electrónico existe en nuestra base de datos, usted recibirá un correo con instrucciones sobre como confirmar su cuenta en unos minutos."
+    failure: 
+      already_authenticated: "Ya está dentro del sistema."
+      inactive: "Su cuenta aún no ha sido activada."
+      invalid: "Correo o contraseña invalidos."
+      invalid_token: "Ficha de autenticación invalida."
+      locked: "Su eucnta está bloqueada."
+      timeout: "Su sesión ha expirado, por favor ingrese nuevamente para continuar."
+      unauthenticated: "Necesita ingresar o registrarse para continuar."
+      unconfirmed: "Debe confirmar su cuenta para continuar."
+    mailer: 
+      confirmation_instructions: 
+        subject: "Instrucciones de Confirmación"
+      reset_password_instructions: 
+        subject: "Instrucciones de reinicio de contraseña"
+      unlock_instructions: 
+        subject: "Instrucciones de desbloqueo"
+    omniauth_callbacks: 
+      failure: "No se le pudo autorizar en %{kind} debido a \"%{reason}\"."
+      success: "Exitosamente autorizado desde la cuenta %{kind}."
+    passwords: 
+      send_instructions: "Recibirá un correo electrónico con instrucciones sobre como reiniciar su contraseña en unos minutos."
+      send_paranoid_instructions: "Si su correo electrónico existe en nuestra base de datos, usted recibirá un enlace para reiniciar su contraseña en unos minutos."
+      updated: "Su contraseña fue cambiada exitosamente y ha sido ingresado al sistema."
+      updated_not_active: "Su contraseña se cambió exitosamente."
+    registrations: 
+      destroyed: "¡Hasta luego! Su cuenta fue cancelada con éxito, esperamos verle de nuevo pronto. Gracias."
+      inactive_signed_up: "Se ha registrado exitosamente, sin embargo, debido a que su cuenta esta %{reason}."
+      reasons: 
+        inactive: inactiva
+        locked: bloqueada
+        unconfirmed: "sin confirmar"
+      signed_up: "¡Bienvenido! Ha ingresado al sistema exitosamente."
+      updated: "Usted actualizó su cuenta exitosamente."
+    sessions: 
+      signed_in: "Ingreso exitoso."
+      signed_out: "Usted ha salido del sistema."
+    unlocks: 
+      send_instructions: "Recibirá un correo electrónico con instrucciones sobre como desbloquear su cuenta en unos minutos."
+      send_paranoid_instructions: "Si su cuenta existe, usted recibirá un correo electrónico con instrucciones sobre como desbloquear su cuenta en unos minutos."
+      unlocked: "Su cuenta fue exitosamente desbloqueada, usted ha sido ingresado al sistema."
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
+  errors: 
+    messages: 
+      already_confirmed: "ya está confirmada, por favor intente ingresar"
+      expired: "ha expirado, por favor pida uno nuevo"
+      not_found: "no encontrado"
+      not_locked: "no está bloqueada"
+      not_saved: 
+        one: "1 error evitó que este %{resource} fuera guardado:"
+        other: "%{count} errores evitaron que este %{resource} fuera guardado:"
   explore!: ¡Descubre
   follow_us: "Síguenos en"
   follow_us_on: "Síguenos en"
@@ -10,15 +66,19 @@ es-MX:
   learn!: ¡Aprende
   learn_more: "Aprende más"
   localized_species_accounts: "Contenidos de especies"
-  observations_by_you_on_date: "Observación de tú en %{date}"
+  observations_by_you_on_date: "Tus observaciones en %{date}"
   projects_description: "Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}. Ya sea que a te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club de observadores locales, la forma de hacerlo es con Proyectos."
   record!: ¡Comparte!
+  second_person_possessive_singular: "tú %{noun}"
   sign_up: Regístrate
   sign_up!: ¡Regístrate!
   species: Especies
   species_from_around_the_world: "Especies de todo el mundo"
   the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina!"
   views: 
+    places: 
+      index: 
+        you_can_help_out_by: "Puedes ayudar a mejorar nuestros datos de lugares mediante"
     welcome: 
       index: 
         welcome_message_html: |
