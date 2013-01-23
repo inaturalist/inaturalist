@@ -7,6 +7,13 @@ GIT
       activerecord (>= 2.2.2)
 
 GIT
+  remote: git://github.com/JayTeeSF/translate.git
+  revision: 164f9ef6c51ca238c92ae4bb32d098693558f363
+  specs:
+    translate-rails3 (0.2.3)
+      ya2yaml (~> 0.30)
+
+GIT
   remote: git://github.com/Titinux/preferences.git
   revision: b5f1de0ff10ba90c4986eae19da9c09e622d6b6b
   specs:
@@ -341,6 +348,7 @@ GEM
     will_paginate (3.0.3)
     xmp (0.2.0)
       nokogiri (~> 1.5.0)
+    ya2yaml (0.31)
     ym4r (0.6.1)
 
 PLATFORMS
@@ -407,10 +415,12 @@ DEPENDENCIES
   spatial_adapter!
   thinking-sphinx (= 2.0.10)
   tlsmail
+  translate-rails3!
   trollop
   ts-delayed-delta
   watu_table_builder
   whenever
   will_paginate
   xmp
+  ya2yaml
   ym4r_gm!
