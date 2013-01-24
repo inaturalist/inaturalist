@@ -3,7 +3,10 @@
 <%- end -%>
 <% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
 
-<%= link_to "<< Back to #{@assessment.project.title}", project_path(@assessment.project) if params[:iframe].blank? && params[:preview].blank? %>
+<% if params[:iframe].blank? && params[:preview].blank? %>
+  <%= link_to "Back to #{@assessment.project.title} assessments", project_assessments_path(@assessment.project), 
+    :class => "back crumb" %>
+<% end -%>
 
 <h2>New assessment</h2>
   

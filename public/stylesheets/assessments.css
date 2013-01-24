@@ -3,39 +3,7 @@
   They will automatically be included in application.css.
 */
 
-.new-assessment-link {
-  font-size: 14px !important;
-  float: right;
-}
-
-.assessment-taxon-listing {
-  clear:both;
-}
-
-.assessment-listing-seperator {
-  clear: both;
-  display: block;
-}
-
-.assessment-taxon-listing h3 {
-  margin-bottom: 0;
-  line-height: 1;
-}
-
-.assessment-taxon-listing img {
-
-}
-
-.assessment-taxon-image-holder {
-  text-align: center;
-  width: 75px;
-  display: inline-block;
-  float: left;
-}
-
-.assessment-taxon-list {
-  float: left;
-}
+.new-assessment-link {float: right; margin-top: 3px;}
 
 .assessment-section-list {
   float: left;
@@ -43,17 +11,18 @@
 }
 
 .assessment-section-list-item {
-  font-size: 12px;
-  width: 90px;
-  display: inline-block;
+  border-left: 1px solid #ccc;
+  margin-left: 10px;
+  padding-left: 10px;
 }
-
-.assessment-section-list-item a.assessment-section-list-item-name {
-  text-decoration: underline;
+.assessment-section-list-item.first {
+  border-left: 0 transparent;
+  margin-left: 0px;
+  padding-left: 0px;
 }
 
 .assessment-show .page-section {
-  border: 1px solid #000;
+  border: 1px solid #ccc;
   padding: 10px 20px 10px 10px;
 }
 
@@ -78,4 +47,11 @@ textarea.assessment-section-field-body {
 
 .iframe-embed-code-container {
   height: 100px;
+  width: 610px;
 }
+.assessment-section-comments {margin-left: 20px; padding-left: 20px; border-left: 2px solid #eee;}
+.assessment-section {margin-bottom: 20px;}
+.nophoto {padding: 30px; text-align: center;}
+.medium.photo {max-width: 310px;}
+.assessment-taxon-listing {border-bottom: 1px solid #eee;padding-bottom: 10px;}
+.assessment_form .nested-fields {padding-bottom: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;}

@@ -107,7 +107,7 @@
       <%= f.fields_for :sections do |section_form| %>
         <%= render 'section_fields', :f => section_form %>
       <% end %>
-      <div>
+      <div class="stacked">
         <%= link_to_add_association 'Add another section', f, :sections %>
       </div>
 

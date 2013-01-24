@@ -122,7 +122,12 @@
       </div>
     <% end -%>
 
-    <%= render :partial => 'project_assessments' if @project.project_type == Project::ASSESSMENT_TYPE %>
+    <% if @project.project_type == Project::ASSESSMENT_TYPE -%>
+      <div class="stacked">
+        <%= render :partial => 'project_assessments' %>
+        <%= separator %>
+      </div>
+    <% end -%>
 
     <h3>
       Recent Observations

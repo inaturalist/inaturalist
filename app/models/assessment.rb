@@ -9,14 +9,16 @@ class Assessment < ActiveRecord::Base
   accepts_nested_attributes_for :sections, :allow_destroy => true
   validates_associated :sections
 
+  scope :complete, where("completed_at IS NOT NULL")
+  scope :incomplete, where("completed_at IS NULL")
+
   def taxon_name
-     self.taxon.present? ? self.taxon.name : '<i>No Taxon</i>'.html_safe
+     taxon.present? ? taxon.name : '<i>No Taxon</i>'.html_safe
   end
 
   def display_name
-	   taxon_name = self.taxon_name
-	   taxon_scientific_name = self.taxon.present? ? self.taxon.scientific_name : ''
-	   "#{taxon_name} #{self.created_at.strftime('%Y')} <i>#{taxon_scientific_name}</i>".html_safe 
+	   taxon_scientific_name = taxon.present? ? taxon.name : ''
+	   "<i>#{taxon_name}</i> #{self.created_at.strftime('%Y')}".html_safe 
   end
 
   def to_param

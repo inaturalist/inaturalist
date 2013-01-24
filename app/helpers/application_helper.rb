@@ -254,10 +254,9 @@ module ApplicationHelper
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
     text = sanitize(text, options)
-    text = simple_format(text, {}, :sanitize => false)
-
+    text = compact(text) if options[:compact]
+    text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -323,10 +322,10 @@ module ApplicationHelper
   end
   
   # remove unecessary whitespace btwn divs
-  def compact(&block)
-    content = capture(&block)
-    content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
-    concat content.html_safe
+  def compact(content = nil, &block)
+    content = capture(&block) if block_given?
+    content.gsub!(/\>[\n\s]+\</, '><')
+    block_given? ? concat(content.html_safe) : content.html_safe
   end
   
   def color_pluralize(num, singular)

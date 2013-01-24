@@ -90,7 +90,7 @@ class ProjectsController < ApplicationController
           end
         end
         
-        @project_assessments = Assessment.where(:project_id => @project.id).where('completed_at IS null')
+        @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
 
         if params[:iframe]
           @headless = @footless = true

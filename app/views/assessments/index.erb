@@ -7,7 +7,7 @@
 
 <div class="column span-24">
 
-  <%= link_to "Add an assessment", new_project_assessment_path(@project), :class => "readmore new-assessment-link", :style => "font-size: 60%; margin-left: 5px" if @project.curated_by?(current_user) %>
+  <%= link_to("Add an assessment", new_project_assessment_path(@project), :class => "readmore new-assessment-link") if @project.curated_by?(current_user) %>
 
   <% if params[:page] == '1' || params[:page].blank? %>
     <h3>
@@ -22,11 +22,9 @@
         No assessments have been added to this project yet.
       </div>
     <% else %>
-      <div class="mini observations">
-        <% for project_assessment in @uncompleted_assessments %>
-          <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment} %>
-        <% end %>
-      </div>
+      <% for project_assessment in @uncompleted_assessments %>
+        <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment} %>
+      <% end %>
     <% end %>
   <% end %>
 
