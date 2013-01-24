@@ -6,7 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
-        redirect_to home_path
+        if session[:return_to_for_new_user]
+          redirect_to session[:return_to_for_new_user]
+        else
+          redirect_to home_path
+        end
         return
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?

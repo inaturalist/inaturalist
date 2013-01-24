@@ -322,6 +322,16 @@ class ApplicationController < ActionController::Base
     redirect_to url if url
     true
   end
+
+  # When a user tries to load a page that requires login, we assume they want
+  # to land there after signing up. See RegistrationsController for the
+  # redirect.
+  def authenticate_user!(*args)
+    if request.get? && !logged_in?
+      session[:return_to_for_new_user] = request.fullpath
+    end
+    super
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

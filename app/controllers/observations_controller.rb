@@ -26,6 +26,8 @@ class ObservationsController < ApplicationController
   end
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
+  before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
+    :import, :add_from_list, :new, :project]
   before_filter :authenticate_user!, 
                 :except => [:explore,
                             :index,
@@ -40,8 +42,6 @@ class ObservationsController < ApplicationController
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
-    :import, :add_from_list, :new, :project]
   before_filter :curator_required, :only => [:curation]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
