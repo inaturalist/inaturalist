@@ -6,7 +6,9 @@
 	</h3>
 
 	<p>
-		<%= section.body %>
+
+    <%= formatted_user_text(section.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES) %>
+
 	</p>
 
   <% if params[:preview].blank? # don't show comments for preview %>

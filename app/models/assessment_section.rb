@@ -4,8 +4,6 @@ class AssessmentSection < ActiveRecord::Base
 
   default_scope order('id ASC')
 
-  attr_accessible :title, :body, :user_id
-
 	validates_presence_of :user, :title, :body # , :assessment
 
   has_many :comments, :as => :parent, :dependent => :destroy

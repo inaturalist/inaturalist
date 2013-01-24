@@ -31,7 +31,7 @@
      
   <div class="column span-24 assessment-show <%= 'assessment-iframe' if params[:iframe].present? %> ">
 
-    <%= link_to "<< Back to #{@assessment.project.title}", project_path(@assessment.project) if params[:iframe].blank? && params[:preview].blank?%>
+    <%= link_to "&raquo;&raquo; Back to #{@assessment.project.title}", project_path(@assessment.project) if params[:iframe].blank? && params[:preview].blank?%>
 
     <% if @assessment.project.project_users.find_by_user_id(current_user.id).is_curator? && params[:iframe].blank? %>
       <%= link_to 'edit', edit_assessment_path(@assessment), :class => 'edit-button' %>
@@ -56,7 +56,9 @@
         Description
       </label>
       <p>
-        <%= @assessment.description %>
+
+    <%= formatted_user_text(@assessment.description, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES) %>
+
       </p>
 
       <% if @assessment.completed_at %>

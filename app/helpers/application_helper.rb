@@ -255,7 +255,8 @@ module ApplicationHelper
     text = text.gsub(/<\\?p>/, "\n\n")
     text = sanitize(text, options)
     text = simple_format(text, {}, :sanitize => false)
-    text = auto_link(text.html_safe).html_safe
+
+    text = auto_link(text.html_safe, :sanitize => false).html_safe
     
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
@@ -606,7 +607,7 @@ module ApplicationHelper
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
     when "AssessmentSection"
-      image_tag("#{root_url}#{resource.project.icon.url(:thumb)}", options)
+      image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
