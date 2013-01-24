@@ -12,9 +12,9 @@ class Project < ActiveRecord::Base
   has_one :custom_project, :dependent => :destroy
   has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
   has_many :observation_fields, :through => :project_observation_fields
-
   has_many :posts, :as => :parent, :dependent => :destroy
-  
+  has_many :assessments
+    
   before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
   
@@ -60,7 +60,8 @@ class Project < ActiveRecord::Base
   
   CONTEST_TYPE = 'contest'
   OBS_CONTEST_TYPE = 'observation contest'
-  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE]
+  ASSESSMENT_TYPE = 'assessment'
+  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title

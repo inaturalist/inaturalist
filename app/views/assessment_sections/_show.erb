@@ -1,0 +1,47 @@
+<p>
+	<h3>
+		<a name="<%= section.to_param %>">
+			<%= section.title %>
+		</a>
+	</h3>
+
+	<p>
+
+    <%= formatted_user_text(section.body, :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES) %>
+
+	</p>
+
+  <% if params[:preview].blank? # don't show comments for preview %>
+
+	<div class="assessment-section-comments">
+		<div class="assessment-section-comments-teaser">
+		    <% section.comments.each_with_index do |comment, index| %>
+		      <%= render :partial => 'shared/activity_item', :object => comment if index <= 2 %>
+		    <% end %>
+		<div>
+
+		<% if section.comments.count > 2 %>
+			<a class="assessment-section-comments-show-remainder-button">
+				Show All Comments
+			</a>
+			<div class="assessment-section-comments-remainder">
+			    <% section.comments.each_with_index do |comment, index| %>
+			      <%= render :partial => 'shared/activity_item', :object => comment if index > 2 %>
+			    <% end %>
+			</div>
+		<% end %>
+	</div>
+	<div class="comment_section">
+		<a onclick="$(this).parent().find('.new_comment_form').toggle();"><span>Add a Comment</span></a>
+
+			<div class="new_comment_form" style="display:none;">
+				<%= render :partial => 'comments/comment_form', :locals => { 
+				  :comment => Comment.new(:parent => section, 
+				                          :user => logged_in? ? current_user : nil)
+				} %>
+			</div>
+	</div>
+	
+  <% end # comments for preview %>
+
+</p>

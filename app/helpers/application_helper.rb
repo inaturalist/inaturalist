@@ -255,7 +255,8 @@ module ApplicationHelper
     text = text.gsub(/<\\?p>/, "\n\n")
     text = sanitize(text, options)
     text = simple_format(text, {}, :sanitize => false)
-    text = auto_link(text.html_safe).html_safe
+
+    text = auto_link(text.html_safe, :sanitize => false).html_safe
     
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
@@ -625,6 +626,8 @@ module ApplicationHelper
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+    when "AssessmentSection"
+      image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
@@ -662,7 +665,7 @@ module ApplicationHelper
       else
         "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
       end
-    when "Observation", "ListedTaxon", "Post"
+    when "Observation", "ListedTaxon", "Post", "AssessmentSection"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
       resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
 

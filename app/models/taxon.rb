@@ -30,6 +30,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
+  has_many :assessments
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'

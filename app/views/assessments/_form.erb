@@ -1,0 +1,124 @@
+<%= content_for :extrajs do %>
+<% javascript_include_tag :cocoon %>
+<% end %>
+<%= content_for :extrajs do %>
+<script>
+  $(document).ready(function(){
+
+    $('.assessment-preview-button').click(function(){
+      var button = this
+      $.ajax($(this).parents('form').attr('action'), {
+        type: 'POST',
+        data: $(this).parents('form').serialize() + '&preview=true',
+        dataType: 'html',
+        beforeSend: function() {
+          $(button).hide()
+          $(button).nextAll('.loading').show()
+        }
+      }).done(function(data) {
+        $(button).show()
+        $(button).nextAll('.loading').hide()
+        var html = '<div class="dialog">'+data+'</div>'
+        $(html).dialog({
+          modal: true, 
+          title: 'Preview',
+          width: '980px'
+        })
+      })
+      return false
+    });
+
+  $(document).ready(function(){
+    $('#cocoon-sections').bind('cocoon:after-insert', function(e, inserted_item) {
+          $(inserted_item).css('display', 'none');
+          $(inserted_item).slideDown();
+    });
+    $('#cocoon-sections').bind('cocoon:before-remove', function(e, removed_item) {
+        $(this).data('remove-timeout', 1000);
+        removed_item.slideUp();
+    });
+  });
+
+
+  });
+</script>
+<% end %>
+
+<% if params[:commit] == 'Preview' %>
+  <% params[:commit] = 'Create' %>
+  <div class="assessment-preview-content">
+    <%= render :partial => 'show', :locals => { :assessment => @assessment } %>
+  </div>
+<% end %>
+
+<%= form_for(@assessment, :builder => DefaultFormBuilder, :html => {:class => 'assessment_form'}) do |f| %>
+  <div class="column span-24 first last">
+    <%= error_messages_for :assessment %>
+  </div>
+
+  <div class="column span-12 first">
+    <%= f.text_area :description %>
+    <div class="stacked small meta">
+      <strong>Allowed HTML:</strong>
+      <%= Post::ALLOWED_TAGS.to_a.sort.join(', ') %>
+    </div>
+  </div>
+
+  <div class="column span-12 last">
+    <label for="project">
+      Project
+    </label>
+    <p>
+      <%= @assessment.project.title %>
+    </p>
+    
+    <label for="taxon">
+      Taxon
+    </label>
+
+    <script>
+        $(document).ready(function() {
+          $('#species_guess').simpleTaxonSelector();
+        });
+    </script>
+    <div class="simpleTaxonSelector" >
+      <input id="species_guess" type="text" class="text" style="width: 400px;" />
+      <%= f.hidden_field :taxon_id, :id => 'taxon_id' %>
+    </div>
+
+    <%= f.hidden_field :project_id, :value => @assessment.project.id %>
+
+    <p>
+    </p>
+
+    <label for="completed">
+      Completed
+    </label>
+    <p>
+      <%= check_box_tag("completed", "yes", @assessment.completed_at.present?) %>
+      Assessment has been completed
+    </p>
+
+  </div>
+
+  <div class="column span-24 first last">
+    <h3> Assessment sections </h3>
+    <div id="cocoon-sections">
+      <%= f.fields_for :sections do |section_form| %>
+        <%= render 'section_fields', :f => section_form %>
+      <% end %>
+      <div>
+        <%= link_to_add_association 'Add another section', f, :sections %>
+      </div>
+
+      <div class="actions buttons">
+        <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => "default button" %>
+        <%= link_to 'Cancel', project_path(@assessment.project), :class => "button" %>
+        <%= link_to 'Delete', assessment_path(@assessment), :confirm => "Are you sure you want to delete the assessment?", :method => :delete, :class => "button" unless f.object.new_record? %>
+        <a href="#" class="button assessment-preview-button">Preview</a>
+      </div>
+    </div>
+
+  </div>
+<% end %>
+

@@ -1,0 +1,10 @@
+<%- content_for(:title) do -%>
+  New assessment
+<%- end -%>
+<% content_for(:extracss) { stylesheet_link_tag "assessments" } %>
+
+<%= link_to "<< Back to #{@assessment.project.title}", project_path(@assessment.project) if params[:iframe].blank? && params[:preview].blank? %>
+
+<h2>New assessment</h2>
+  
+<%= render :partial => 'form' %>
