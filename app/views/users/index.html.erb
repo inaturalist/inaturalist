@@ -43,7 +43,8 @@
       <% else %>
         <% @updates.compact.each_with_index do |update,i| %>
           <div class="usercol column span-6 <%= 'last' if i % 4 == 3 %>">
-            <%= link_to user_image(update.user, :size => "medium", :class => "userimage"), update.user, :class => :userimagelink %>
+            <%= link_to user_image(update.user, :size => "medium", :class => "userimage"), update.user, 
+              :class => :userimagelink %>
             <div class="blurb">
               <%= link_to_user update.user, :class => "userlink" %>
               <%- case update.class.name -%>
@@ -61,7 +62,7 @@
                 to an
                 <%= link_to 'observation', update.observation %>
                 by 
-                <%= link_to char_wrap(h(update.observation.user.login), 18), observations_by_login_path(update.observation.user.login) %>
+                <%= link_to char_wrap(h(update.observation.user.login), 50), observations_by_login_path(update.observation.user.login) %>
               <%- when 'Post' %>
                 made a <%= link_to "journal post", journal_post_path(update.user.login, update) %>
               <%- when 'Comment' %>
@@ -74,7 +75,7 @@
                   <%= link_to class_name, update.parent %>
                 <% end -%>
                 <% if update.parent.user -%>
-                  by <%= link_to char_wrap(h(update.parent.user.login), 18), observations_by_login_path(update.parent.user.login) %>
+                  by <%= link_to char_wrap(h(update.parent.user.login), 50), observations_by_login_path(update.parent.user.login) %>
                 <% end -%>
               <% end %>
               <abbr class="date timeago" title="<%= update.created_at.iso8601 %>"><%= time_ago_in_words(update.created_at) %> ago</abbr>
