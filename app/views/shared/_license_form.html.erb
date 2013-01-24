@@ -15,7 +15,8 @@
   <% for code, name, description in Observation::LICENSES %>
     <%- value = record.is_a?(Photo) ? Photo.license_number_for_code(code) : code -%>
     <div class="column span-9 <%= cycle '', 'last' %>">
-      <%= f.radio_button :license, value, 
+      <%= f.radio_button :license, value,
+        :id => "license_#{value.parameterize}",
         :label => "#{image_tag("#{code}.png")} #{name} #{'(your default)' if record.user.send("preferred_#{record.class.to_s.underscore}_license") == code}", 
         :label_after => true %>
       <div class="stacked description">
