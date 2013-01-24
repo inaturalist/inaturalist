@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
-  attr_accessor   :preferred_photo_license
-  MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same, :preferred_photo_license]
+  attr_accessible :make_observation_licenses_same, 
+                  :make_photo_licenses_same, 
+                  :preferred_photo_license, 
+                  :preferred_observation_license
   
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
@@ -284,14 +286,6 @@ class User < ActiveRecord::Base
     return true unless number
     Photo.update_all(["license = ?", number], ["user_id = ?", id])
     true
-  end
-  
-  def update_attributes(attributes)
-    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    end
-    super(attributes)
   end
   
   def merge(reject)
