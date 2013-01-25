@@ -87,6 +87,15 @@ describe CheckList, "refresh_with_observation" do
     @check_list.reload
     @check_list.taxon_ids.should include(@taxon.id)
   end
+
+  it "should not add duplicate listed taxa" do
+    o = make_research_grade_observation(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
+    @check_list.add_taxon(@taxon)
+    @check_list.taxon_ids.should include(@taxon.id)
+    CheckList.refresh_with_observation(o)
+    @check_list.reload
+    @check_list.listed_taxa.where(:taxon_id => o.taxon_id).size.should eq(1)
+  end
   
   it "should not add listed taxa for casual observations" do
     o = Observation.make!(:latitude => @place.latitude, :longitude => @place.longitude, :taxon => @taxon)
@@ -323,6 +332,17 @@ describe CheckList, "sync_with_parent" do
     list.sync_with_parent
     parent_list.reload
     parent_list.taxon_ids.should include(taxon.id)
+  end
+
+  it "should work if parent doesn't have a check list" do
+    parent = Place.make!(:prefers_check_lists => false)
+    place = Place.make!(:parent => parent)
+    list = place.check_list
+    taxon = Taxon.make!
+    list.add_taxon(taxon)
+    assert_nothing_raised do
+      list.sync_with_parent
+    end
   end
 end
 

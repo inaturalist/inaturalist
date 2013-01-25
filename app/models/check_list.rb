@@ -70,8 +70,8 @@ class CheckList < List
       time_since_last_sync = options.delete(:time_since_last_sync) || 1.hour.ago
       scope = scope.where("listed_taxa.created_at > ?", time_since_last_sync)
     end
-    return unless self.place.parent_id
-    parent_check_list = self.place.parent.check_list
+    return if self.place.parent.blank?
+    return unless parent_check_list = self.place.parent.check_list
     scope.find_each do |lt|
       Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, working on #{lt}"
       if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
