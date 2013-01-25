@@ -1,30 +1,19 @@
 class AssessmentsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show, :show_section]
+  before_filter :load_assessment, :only => [:edit, :update, :destroy, :show]
+  before_filter :load_project
+  before_filter :project_curator_required, :except => [:index, :show, :show_section]
 
   def new
-    project = Project.find_by_slug(params[:project_id])
-
-    if ! (project.curated_by? current_user)
-      flash[:error] = "Only the project admins and curators can create new assessments on this project."
-      redirect_to project
-      return
-    end
-
     @assessment = Assessment.new
-    @assessment.project = project
+    @assessment.project = @project
     @assessment.sections.build
   end
 
   def create
-    project = Project.find(params[:assessment][:project_id])
-
-    if ! (project.curated_by? current_user)
-      flash[:error] = "Only the project admins and curators can create new assessments on this project."
-      redirect_to project
-      return
-    end
-
-    @assessment = Assessment.new(params[:assessment].merge(:user_id => current_user.id))
-    @assessment.project = project
+    @assessment = Assessment.new(params[:assessment])
+    @assessment.user ||= current_user
+    @assessment.project = @project
 
     @assessment.sections.build if @assessment.sections == []
     @assessment.sections.map {|section| section.user = current_user }
@@ -54,21 +43,13 @@ class AssessmentsController < ApplicationController
   end
 
   def update
-    @assessment = Assessment.find(params[:id])
     @parent_display_name = @assessment.taxon_name
-
-    if ! @assessment.project.curated_by? current_user
-      redirect_to @assessment, :notice => "You must be a curator, admin, or owner to edit this assessment."
-      return
-    end
-
     if @assessment.completed_at.blank? && params['completed'].present?
       @assessment.completed_at = Time.now
     end
     if @assessment.completed_at.present? && params['completed'].blank?
       @assessment.completed_at = nil
     end
-
     if params[:preview]
       @assessment.assign_attributes(params[:assessment])
       @headless = @footless = true
@@ -89,16 +70,13 @@ class AssessmentsController < ApplicationController
     if params[:iframe]
       @headless = @footless = true
     end
-    @assessment = Assessment.find(params[:id])
     @parent_display_name = @assessment.taxon_name
   end
 
   def edit
-     @assessment = Assessment.find(params[:id])
   end
 
   def index
-    @project = Project.find_by_slug(params[:project_id])
     @parent_display_name = @project.title
     respond_to do |format|
       format.html do
@@ -111,7 +89,7 @@ class AssessmentsController < ApplicationController
         @assessments = if params[:complete] = 'true'
           @assessments.complete
         elsif params[:complete] = 'false'
-          @assessments.complete
+          @assessments.incomplete
         end
         render :json => @assessments
       end
@@ -120,15 +98,6 @@ class AssessmentsController < ApplicationController
 
 
   def destroy
-    @assessment = Assessment.find(params[:id])
-    @project = @assessment.project
-    if ! @assessment.project.curated_by? current_user
-      redirect_to @assessment, :notice => "You must be a curator, admin, or owner to delete this assessment."
-      return
-    end
-
-    # unless @project.deletable_by?(current_user)
-    #  msg = "You don't have permission to do that"
     @assessment.destroy
     redirect_to(@assessment.project, :notice => 'Assessment was deleted.')
   end
@@ -140,6 +109,27 @@ class AssessmentsController < ApplicationController
     redirect_to assessment_section_path(@project), :anchor => 'fragment_identifier'
   end
 
+  private
+
+  def load_project
+    @project = Project.find(params[:project_id]) rescue nil
+    @project ||= Project.find_by_id(params[:assessment][:project_id]) unless params[:assessment].blank?
+    @project ||= @assessment.project if @assessment
+    render_404 unless @project
+    true
+  end
+  
+  def project_curator_required
+    unless @project.curated_by?(current_user)
+      flash[:error] = "You don't have permission to edit that project."
+      return redirect_to @project
+    end
+    true
+  end
+
+  def load_assessment
+    @assessment = Assessment.find(params[:id]) rescue nil
+    render_404 unless @assessment
+  end
+
 end # class
-
-

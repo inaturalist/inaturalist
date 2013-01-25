@@ -1,6 +1,6 @@
 <div class="assessment-section">
   <h3>
-    <a name="<%= section.to_param %>">
+    <a href="#<%= section.to_param %>">
       <%= section.title %>
     </a>
   </h3>
@@ -18,23 +18,24 @@
       <% if section.comments.count == 0 -%>
         <div class="stacked meta">No comments yet</div>
       <% else %>
-        <div class="assessment-section-comments-teaser">
-          <% section.comments[0..2].each do |comment| %>
-            <%= render :partial => 'shared/activity_item', :object => comment %>
-          <% end %>
-        </div>
-
         <% if section.comments.count > 3 %>
           <div class="stacked">
             <%- remaining = section.comments.count - 3 %>
-            <%= link_to_toggle "Show #{pluralize remaining, 'more comment'}", "##{dom_id(section, 'more_comments')}" %>
+            <%= link_to_toggle "Show #{pluralize remaining, 'older comment'}", "##{dom_id(section, 'more_comments')}" %>
             <div id="<%= dom_id(section, 'more_comments') %>" class="assessment-section-comments-remainder">
-              <% section.comments.each_with_index do |comment, index| %>
-                <%= render :partial => 'shared/activity_item', :object => comment if index > 2 %>
+              <% section.comments.sort {|a,b| a.created_at <=> b.created_at }.each_with_index do |comment, index| %>
+                <%= render :partial => 'shared/activity_item', :object => comment if index < (section.comments.count - 3) %>
               <% end %>
             </div>
           </div>
         <% end %>
+        
+        <div class="assessment-section-comments-teaser">
+          <% section.comments.sort {|a,b| a.created_at <=> b.created_at }[(section.comments.count - 3)..(section.comments.count - 1)].each do |comment| %>
+            <%= render :partial => 'shared/activity_item', :object => comment %>
+          <% end %>
+        </div>
+
       <% end -%>
 
       <div class="comment_section">
