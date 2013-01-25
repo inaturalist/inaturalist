@@ -52,12 +52,12 @@ module TaxaHelper
   # otherwise the iconic taxon icon.
   #
   def taxon_image(taxon, params = {})
-    if taxon.blank? || taxon.photos.blank?
+    if taxon.blank? || taxon.default_photo.blank?
       return iconic_taxon_image(taxon, params)
     end
     params[:size] ||= "square"
     image_params = params.merge(:alt => default_taxon_name(taxon))
-    unless taxon.photos.blank?
+    unless taxon.default_photo.blank?
       image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
     end
     image_params[:title] = image_params[:alt]
@@ -70,7 +70,7 @@ module TaxaHelper
   end
   
   def taxon_image_url(taxon, params = {})
-    return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.photos.blank?
+    return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.default_photo.blank?
     size = params[:size].blank? ? 'square' : params[:size]
     photo = taxon.default_photo
     photo.best_url(size)

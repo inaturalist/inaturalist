@@ -310,6 +310,7 @@ class Taxon < ActiveRecord::Base
     includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
   scope :active, where(:is_active => true)
+  scope :inactive, where(:is_active => false)
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
@@ -943,11 +944,12 @@ class Taxon < ActiveRecord::Base
   end
   
   def default_photo
-    if taxon_photos.loaded?
+    @default_photo ||= if taxon_photos.loaded?
       taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
     else
       taxon_photos.first(:include => [:photo], :order => "taxon_photos.id ASC").try(:photo)
     end
+    @default_photo
   end
   
   def self.update_descendants_with_new_ancestry(taxon, child_ancestry_was)
