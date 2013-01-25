@@ -310,6 +310,7 @@ describe Identification, "deletion" do
     o.reload
     o.quality_grade.should == Observation::CASUAL_GRADE
     stamp = Time.now
+    Delayed::Job.delete_all
     Identification.make!(:taxon => o.taxon, :observation => o)
     o.reload
     o.quality_grade.should == Observation::RESEARCH_GRADE

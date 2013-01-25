@@ -22,6 +22,7 @@ class QualityMetric < ActiveRecord::Base
     return true unless observation
     new_quality_grade = observation.get_quality_grade
     Observation.update_all(["quality_grade = ?", new_quality_grade], ["id = ?", observation_id])
+    return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{observation.id}\n%'").exists?
     CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(observation.id, 
       :taxon_id => observation.taxon_id)
     true

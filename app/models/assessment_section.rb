@@ -1,5 +1,5 @@
 class AssessmentSection < ActiveRecord::Base
-	belongs_to :assessment #, :foreign_key => 'assessment_id', :class_name => "Assessment"
+	belongs_to :assessment
 	belongs_to :user
 
   default_scope order('id ASC')
