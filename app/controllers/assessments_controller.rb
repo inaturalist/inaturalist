@@ -100,8 +100,22 @@ class AssessmentsController < ApplicationController
   def index
     @project = Project.find_by_slug(params[:project_id])
     @parent_display_name = @project.title
-    @uncompleted_assessments = Assessment.where(:project_id => @project.id).where("completed_at IS NULL")
-    @completed_assessments = Assessment.where(:project_id => @project.id).where("completed_at IS NOT NULL").paginate( :page => params[:page])
+    respond_to do |format|
+      format.html do
+        @uncompleted_assessments = Assessment.where(:project_id => @project.id).incomplete
+        @completed_assessments = Assessment.where(:project_id => @project.id).complete.
+          paginate(:page => params[:page])
+      end
+      format.json do
+        @assessments = @project.assessments.page(params[:page]).per_page(100)
+        @assessments = if params[:complete] = 'true'
+          @assessments.complete
+        elsif params[:complete] = 'false'
+          @assessments.complete
+        end
+        render :json => @assessments
+      end
+    end
   end
 
 
