@@ -107,7 +107,7 @@
           <h4>Default observation license</h4>
           <% for code, name, description in Observation::LICENSES %>
             <%= f.radio_button :preferred_observation_license, code, 
-              :id => "preferred_observation_license_#{code.parameterize}",
+              :id => "preferred_observation_license_#{code.to_s.parameterize}",
               :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_observation_license, nil, :label => "No license (all rights reserved)", :label_after => true,
@@ -119,6 +119,7 @@
           <h4>Default photo license</h4>
           <% for code, name, description in Observation::LICENSES %>
             <%= f.radio_button :preferred_photo_license, code, 
+              :id => "preferred_photo_license_#{code.to_s.parameterize}",
               :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_photo_license, nil, :label => "No license  (all rights reserved)", :label_after => true,
