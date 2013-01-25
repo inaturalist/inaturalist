@@ -111,7 +111,7 @@ class AssessmentsController < ApplicationController
         @assessments = if params[:complete] = 'true'
           @assessments.complete
         elsif params[:complete] = 'false'
-          @assessments.complete
+          @assessments.incomplete
         end
         render :json => @assessments
       end
