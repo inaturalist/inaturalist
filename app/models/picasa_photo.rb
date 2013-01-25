@@ -103,6 +103,14 @@ class PicasaPhoto < Photo
       native_username = api_response.user
       native_realname = api_response.nickname
     end
+    license = case api_response.license.try(:url)
+    when /by\//       then Photo.license_number_for_code(Observation::CC_BY)
+    when /by-nc\//    then Photo.license_number_for_code(Observation::CC_BY_NC)
+    when /by-sa\//    then Photo.license_number_for_code(Observation::CC_BY_SA)
+    when /by-nd\//    then Photo.license_number_for_code(Observation::CC_BY_ND)
+    when /by-nc-sa\// then Photo.license_number_for_code(Observation::CC_BY_NC_SA)
+    when /by-nc-nd\// then Photo.license_number_for_code(Observation::CC_BY_NC_ND)
+    end
     options.update(
       :user            => options[:user],
       :native_photo_id => api_response.link('self').href,
@@ -115,7 +123,7 @@ class PicasaPhoto < Photo
       :native_page_url => api_response.link('alternate').href,
       :native_username => native_username,
       :native_realname => native_realname,
-      :license         => api_response.license
+      :license         => license
     )
     picasa_photo = PicasaPhoto.new(options)
     if !picasa_photo.native_username && matches = picasa_photo.native_photo_id.match(/user\/(.+?)\//)
@@ -132,8 +140,8 @@ class PicasaPhoto < Photo
     return [] unless user.picasa_identity
     picasa = user.picasa_client
     # to access a friend's album, you need the full url rather than just album id. grrr.
-    if options[:picasa_user_id]  
-      picasa_album_url = "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
+    picasa_album_url = if options[:picasa_user_id]  
+      "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
     end
     album_data = picasa.album((picasa_album_url || picasa_album_id.to_s), 
       :max_results => options[:max_results], 
