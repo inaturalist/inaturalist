@@ -1,0 +1,57 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.new-assessment-link {float: right; margin-top: 3px;}
+
+.assessment-section-list {
+  float: left;
+  width: 520px;
+}
+
+.assessment-section-list-item {
+  border-left: 1px solid #ccc;
+  margin-left: 10px;
+  padding-left: 10px;
+}
+.assessment-section-list-item.first {
+  border-left: 0 transparent;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.assessment-show .page-section {
+  border: 1px solid #ccc;
+  padding: 10px 20px 10px 10px;
+}
+
+.assessment-show .edit-button {
+  float: right;
+  display: block;
+}
+
+.assessment-iframe {
+  width: 350px;
+  clear: both;
+}
+
+input.assessment-section-field-title {
+  width: 100%;  
+}
+
+textarea.assessment-section-field-body {
+  height: 140px;
+  width: 100%;  
+}
+
+.iframe-embed-code-container {
+  height: 100px;
+  width: 610px;
+}
+.assessment-section-comments {margin-left: 20px; padding-left: 20px; border-left: 2px solid #eee;}
+.assessment-section {margin-bottom: 20px;}
+.nophoto {padding: 30px; text-align: center;}
+.medium.photo {max-width: 310px;}
+.assessment-taxon-listing {border-bottom: 1px solid #eee;padding-bottom: 10px;}
+.assessment_form .nested-fields {padding-bottom: 20px; border-bottom: 1px solid #eee; margin-bottom: 20px;}

@@ -90,6 +90,8 @@ class ProjectsController < ApplicationController
           end
         end
         
+        @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
+
         if params[:iframe]
           @headless = @footless = true
           render :action => "show_iframe"

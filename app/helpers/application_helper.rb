@@ -254,9 +254,9 @@ module ApplicationHelper
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
     text = sanitize(text, options)
-    text = simple_format(text, {}, :sanitize => false)
-    text = auto_link(text.html_safe).html_safe
-    
+    text = compact(text) if options[:compact]
+    text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
+    text = auto_link(text.html_safe, :sanitize => false).html_safe
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -322,10 +322,10 @@ module ApplicationHelper
   end
   
   # remove unecessary whitespace btwn divs
-  def compact(&block)
-    content = capture(&block)
-    content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
-    concat content.html_safe
+  def compact(content = nil, &block)
+    content = capture(&block) if block_given?
+    content.gsub!(/\>[\n\s]+\</, '><')
+    block_given? ? concat(content.html_safe) : content.html_safe
   end
   
   def color_pluralize(num, singular)
@@ -625,6 +625,8 @@ module ApplicationHelper
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+    when "AssessmentSection"
+      image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
@@ -662,7 +664,7 @@ module ApplicationHelper
       else
         "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
       end
-    when "Observation", "ListedTaxon", "Post"
+    when "Observation", "ListedTaxon", "Post", "AssessmentSection"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
       resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
 

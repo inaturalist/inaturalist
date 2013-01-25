@@ -1,6 +1,8 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+//= require cocoon
+
 function num2letterID(num) {
     // Takes an positive integer and translates it into a unique letter ID.
     // Examples: 0 -> A, 25 -> Z, 26 -> AA, 27 -> AB, 51 -> AZ, 52 -> BA.

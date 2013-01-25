@@ -12,6 +12,7 @@ gem 'aws-sdk'
 gem 'bluecloth'
 gem 'capistrano'
 gem 'chronic'
+gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'
 gem 'delayed_job'
@@ -73,3 +74,4 @@ group :test, :development do
   gem "machinist"
   gem "rspec-rails"
 end
+

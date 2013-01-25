@@ -121,6 +121,14 @@
         <%= render 'project_invitations/import_button' %>
       </div>
     <% end -%>
+
+    <% if @project.project_type == Project::ASSESSMENT_TYPE -%>
+      <div class="stacked">
+        <%= render :partial => 'project_assessments' %>
+        <%= separator %>
+      </div>
+    <% end -%>
+
     <h3>
       <%=t :recent_observations %>
       <%= link_to t(:view_all), project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
