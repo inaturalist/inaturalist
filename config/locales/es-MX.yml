@@ -1,8 +1,77 @@
 --- 
 es-MX: 
-  about_life!: "acerca de la vida!"
+  Edit_license: "Edita la licencia"
+  US_states: "Estados de Estados Unidos"
+  a: a
+  a_community_for_naturalist: "Una comunidad para NaturaListas"
+  a_default_taxon_name_will_automatically_created: |-
+      Del nombre científico atribuido a este taxón automáticamente se creará un nombre de taxón predeterminado.
+      Cuando hayas salvado el nuevo taxón, podrás añadiro otros nombres (nombres comunes, nombres científicos desactualizados, etc.).
+  a_few_points_to_make_things_clear: "Algunos puntos para aclarar las cosas"
+  a_greasemonkey_script: "Un guión (script) de Greasemonkey"
+  able_to_connect_flickr: "¡Excelente! Pudimos enlazarnos a tu cuenta de Flickr."
+  about: Acerca
+  about_inaturalist: "Acerca {site_name}"
+  about_life!: "¡Acerca de la vida!"
+  about_places: "Acerca de Lugares"
+  about_the_cc_licenses: "Acerca de las licencias de Creative Commons"
+  about_the_taxobox_raquo: "Acerca de ???"
+  about_these_licenses: "Acerca de estas licencias"
+  about_this_map: "Acerca de este Mapa"
+  about_this_project: "Acerca de este Proyecto"
+  about_x: "Acerca %{x}"
+  accuracy: Precisión
+  accuracy_meters: "Precisión (metros)"
+  acquaintances: Conocidos
+  actions: Acciones
+  activate_user: "Activa al usuario"
+  activemodel: 
+    errors: 
+      format: "%{attribute} %{message}"
+      messages: 
+        accepted: "Debe ser aceptado"
+        blank: "No puede quedarse vacío"
+        confirmation: "No coincide con la confirmación"
+        empty: "No puede estar vacío"
+        equal_to: "Debe ser igual a %{count}"
+        even: "Debe ser par"
+        exclusion: "Está reservado"
+        greater_than: "Debe ser mayor que %{count}"
+        greater_than_or_equal_to: "Debe ser mayor o igual a %{count}"
+        inclusion: "No está incluido en la lista"
+        invalid: "Es inválido"
+        less_than: "Debe ser menor que %{count}"
+        less_than_or_equal_to: "Debe ser menor que o igual a %{count}"
+        not_a_number: "No es un número"
+        not_an_integer: "Debe ser un número entero"
+        odd: "Debe ser número impar"
+        record_invalid: "La validación falló: %{errors}"
+        taken: "Ya ha sido utilizado"
+        too_long: 
+          one: "Es demasiado largo (el máximo es un carácter}"
+          other: "Es demasiado largo (el máximo son %{count} caracteres)"
+        too_short: 
+          one: "Es demasiado corto (el mínimo es 1 carácter)"
+          other: "es demasiado corto (el mínimo son %{count} carácteres)"
+        wrong_length: 
+          one: "La longitud está equivocada (debe ser un carácter)"
+          other: "La longitud está equivocada (deben ser %{count} caracteres)"
+      template: 
+        body: "Hubo problemas con los siguientes campos:"
+        header: 
+          one: "Un error no permitió que este %{model} se guardara"
+          other: "% {count} errores no permitieron que este %{model} se guardara"
+  activerecord: 
+    errors: 
+      messages: 
+        accepted: "Debe ser aceptado"
+      template: 
+        header: 
+          one: "Un error no permitió que este %{model} se guardara"
+          other: "% {count} errores no permitieron que este %{model} se guardara"
   add_observations!: "¡Agrega observaciones!"
   back_to_x: "Regresa a %{noun}"
+  clear_search: "Limpia la búsqueda"
   click_the_map_to_jump_new_place: "Haz clic en el mapa para moverte a un lugar nuevo"
   devise: 
     confirmations: 
@@ -52,30 +121,160 @@ es-MX:
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
   errors: 
     messages: 
+      accepted: "Debe ser aceptado"
       already_confirmed: "ya está confirmada, por favor intente ingresar"
       expired: "ha expirado, por favor pida uno nuevo"
       not_found: "no encontrado"
       not_locked: "no está bloqueada"
       not_saved: 
-        one: "1 error evitó que este %{resource} fuera guardado:"
-        other: "%{count} errores evitaron que este %{resource} fuera guardado:"
+        one: "Un error no permitió que este %{resource} se guardara:"
+        other: "%{count} errores evitaron que este %{resource} se guardara:"
+    template: 
+      header: 
+        one: "Un error no permitió que este %{model} se guardara"
+        other: "%{count} errores evitaron que este %{resource} se guardara:"
   explore!: ¡Descubre
+  faker: 
+    name: 
+      title: 
+        level: 
+          - Soluciones
+          - Programa
+          - Marca
+          - Seguridad
+          - Investigación
+          - Mercadotecnia
+          - Directivos
+          - Implementación
+          - Integración
+          - Funcionalidad
+          - Respuesta
+          - Paradigma
+          - Tácticas
+          - Identidad
+          - Mercados
+          - Grupo
+          - División
+          - Aplicaciones
+          - Optimización
+          - Operaciones
+          - Infraestructura
+          - Intranet
+          - Comunicaciones
+          - Web
+          - Marca
+          - Calidad
+          - Seguridad
+          - Movilidad
+          - Cuentas
+          - Datos
+          - Creativo
+          - Configuración
+          - Responsabilidad
+          - Interacciones
+          - Facores
+          - Usabilidad
+          - Métricas
   follow_us: "Síguenos en"
   follow_us_on: "Síguenos en"
-  inaturalist_places_are_way_record_what_lives_where: "Lugares en %{site_name} es una forma de registrar qué vive dónde. Si buscas una especie en particular, sabrás dónde buscarla. Cada lugar tiene una lista para registrar todas las especies que allí viven, para que puedan también ser útiles para buscar especies que encontraste en sitios particulares."
+  if_your_search_comes_up: "Si la búsqueda resulta vacía, debes ver los íconos de búsqueda para repetirla a través de nuestros proveedores externos:"
+  inaturalist_is_an_online_community: "%{site_name} es una comunidad en línea para naturalistas. Al añadir tu foto, puedes ayudar a los investigadores a conocer más sobre "
+  inaturalist_places_are_way_record_what_lives_where: "Lugares en %{site_name} es una forma de registrar quién vive en dónde. Si buscas una especie en particular, sabrás dónde buscarla. Cada lugar tiene una lista para registrar todas las especies que allí viven, que pueden también ser útiles para buscar especies que encontraste en sitios particulares."
   learn!: ¡Aprende
   learn_more: "Aprende más"
+  life_list_updated_we_also_saved_a: "¡Tu Lista de Vida ha sido actualizada! También guardamos una observación en blanco para este taxón."
   localized_species_accounts: "Contenidos de especies"
+  merging: Fucionando
+  merging_places: "Fusionando Lugares"
+  mobile_apps_for: "Aplicaciones móviles para"
+  mollusks: Moluscos
+  mon: Lun
+  month: Mes
+  more: Mas
+  more_fields: "Mas campos"
+  more_info: "Más información"
+  more_observations: "Más observaciones"
+  most_agree: "La mayoría está de acuerdo"
+  most_disagree: "La mayoría no está de acuerdo"
+  n_people_disagrees: "%{amount} personas no están de acuerdo"
+  n_person_agrees: "%{amount} personas están de acuerdo"
+  n_person_disagrees: "%{amount} personas no están de acuerdo"
+  name: Nombre
+  name_entered: "Nombre incluido"
+  names: Nombres
+  nav_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  near_threatened: "Casi amenazada"
+  nearby_observations: "Observaciones cercanas"
+  need_id_help?: "¿Necesitas ayuda para la identificación?"
+  new_announcement: "Nuevo anuncio"
+  new_check_list: "Nueva lista de comprobación"
+  new_check_list_for: "Crea una nueva lista de comprobación para %{place} &raquo;"
+  new_list: "Nueva lista"
+  new_members: "Nuevos miembros..."
+  new_observation_field: "Nuevo campo de observación"
+  new_observation_rules: "Nuevas reglas de observación"
+  new_observations: "Nuevas observaciones..."
+  new_password: "Nueva contraseña"
+  new_project: "Nuevo Proyecto"
+  new_source: "Nueva fuente"
+  new_taxon_link: "Nuevo enlace de taxón"
+  new_taxon_name: "Nuevo nombre de taxón"
   observations_by_you_on_date: "Tus observaciones en %{date}"
+  observations_saved: "Observación guardada"
   projects_description: "Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}. Ya sea que a te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club de observadores locales, la forma de hacerlo es con Proyectos."
   record!: ¡Comparte!
+  redo_search_in_map_area: "Vuelve a realizar la búsqueda en el área del mapa"
+  research: Investigación
+  research_grade: "Grado de investigación"
+  research_grade_expandable_html: "G<span class='full'>rado</span>de I<span class='full'>nvestigación</span>"
+  research_grade_observations_have: "Las observaciones con \"Grado de Investigación\" tienen fecha, foto, coordenadas y una comunidad que apoya la identificación. Pícale para ver la evaluación de calidad de los datos."
+  research_quality: "Calidad de investigación"
+  reserach_grade: "Grado de Investigación"
+  search: Búsqueda
+  search_all_fields: "Busca en todos los campos"
+  search_by_name_or_email: "Busca por nombre o correo electrónico"
+  search_catalogue_of_life: "Busca <a href=\"http://www.catalogueoflife.org\">Catalogue of Life</a>"
+  search_catalogue_of_life_raquo: "Busca Catalogue of Life &raquo;"
+  search_creative_commons_photos_on_flickr: "Busca fotos en Flickr con Licencia Creative Commons. Si seleccionas alguna, ¡deja un comentario de agradecimiento!\n"
+  search_descendant_taxa_raquo: "Busca en los taxa descendientes &raquo;"
+  search_for_new_taxa: "Busca nuevos taxa"
+  search_for_place_to_import_from_yahoo: "Busca algún lugar en Yahoo para importar"
+  search_for_species: "Busca una especie"
+  search_list: "Lista de búsqueda"
+  search_obs: "Busca Observaciones"
+  search_places: "Busca Lugares"
+  search_projects: "Busca Proyectos"
+  search_results_for: "Busca Resultados de"
+  search_taxa: "Busca taxa"
+  search_this_taxon: "Busca este taxón"
+  search_ubio: "Busca'<a href=\"http://www.ubio.org\">uBio</a>'"
+  search_ubio_raquo: "Busca uBio &raquo;"
+  search_your_photos: "Busca tus fotos"
+  searching: Buscando
   second_person_possessive_singular: "tú %{noun}"
+  share_your_observation_with_researchers_by: "Comparte tu observación con investigadores de "
   sign_up: Regístrate
   sign_up!: ¡Regístrate!
+  sorry_how_about_we_try_repeat: "¡Disculpas! ¿Que tal si intentamos la búsqueda en otras bases de datos de nombres de especies? Si encontramos algo, lo guardaremos para que lo encuentres la próxima vez."
   species: Especies
   species_from_around_the_world: "Especies de todo el mundo"
+  species_search: "Búsqueda de especies"
+  taxon_search: "Búsqueda de Taxón"
+  taxon_search_results_for: "Resultados de la búsqueda de taxón para"
+  the_data_quality_assessment_is: "La evaluación de calidad de los datos es una síntesis de la precisión de una observación. Todas las observaciones empiezan como <strong>\"Grado Casual\"</strong> y alcanzan <strong>\"Grado de Investigación\"</strong> cuando"
   the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina!"
+  this_species_has_no_colors: "¡Esta especie no tiene colores! ¡Ayúdanos a mejorar las búsquedas de especies incluyendo su color!"
+  those_are_the_basics_of: "¡Esas son las bases para añadir observaciones! Hay muchas otras cosas que puedes hacer, como buscar y filtrar tus observaciones o editarlas en grupo, pero son fáciles de entender cuando las practicas."
+  using_cc_license_makes_easier_use_your_data: "El uso de licencias de <strong>Creative Commons </strong> facilita la utilización de tu información por  los investigadores . Puedes escoger una licencia distinta después de haberte registrado.\n"
   views: 
+    help: 
+      index: 
+        a_check_list_is_html: |
+            Una lista de comprobación es una lista de un grupo de especies que viven en un lugar.
+            Cada lugar tiene una lista de comprobación asignada y cuando se hace una observación 
+            dentro de las fronteras del lugar <em>y</em> ha obtenido el estatus de Grado de Investigación, 
+            la especie observada será añadida automáticamente a la lista de comprobación del lugar.
+        what_is_the_quality_assessment: "¿Cual es la evaluación de calidad y como se convierten las observaciones en \"Grado de Investigación\"?"
     places: 
       index: 
         you_can_help_out_by: "Puedes ayudar a mejorar nuestros datos de lugares mediante"
@@ -86,5 +285,7 @@ es-MX:
             biodiversidad en el que podrás compartir lo que observas en la 
             naturaleza, aprender de ella e intercambiar información con otros 
             ciudadanos naturalistas.
+  we_didnt_find_any_photos: "No encontramos ninguna foto utilizando los términos de búsqueda proporcionados."
   welcome!: ¡Bienvenido!
+  your_comment_was_saved: "Tu contenido fue guardado"
   your_world!: "tú país!"
