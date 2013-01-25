@@ -14,29 +14,36 @@
 
   <% if params[:preview].blank? # don't show comments for preview %>
     <div class="assessment-section-comments">
-      <h4>Comments</h4>
+      <h4>Comments on <%= section.title %></h4>
       <% if section.comments.count == 0 -%>
         <div class="stacked meta">No comments yet</div>
       <% else %>
         <div class="assessment-section-comments-teaser">
-          <% section.comments.each_with_index do |comment, index| %>
-            <%= render :partial => 'shared/activity_item', :object => comment if index <= 2 %>
+          <% section.comments[0..2].each do |comment| %>
+            <%= render :partial => 'shared/activity_item', :object => comment %>
           <% end %>
         </div>
 
-        <% if section.comments.count > 2 %>
-          <a class="assessment-section-comments-show-remainder-button">Show All Comments</a>
-          <div class="assessment-section-comments-remainder">
-            <% section.comments.each_with_index do |comment, index| %>
-              <%= render :partial => 'shared/activity_item', :object => comment if index > 2 %>
-            <% end %>
+        <% if section.comments.count > 3 %>
+          <div class="stacked">
+            <%- remaining = section.comments.count - 3 %>
+            <%= link_to_toggle "Show #{pluralize remaining, 'more comment'}", "##{dom_id(section, 'more_comments')}" %>
+            <div id="<%= dom_id(section, 'more_comments') %>" class="assessment-section-comments-remainder">
+              <% section.comments.each_with_index do |comment, index| %>
+                <%= render :partial => 'shared/activity_item', :object => comment if index > 2 %>
+              <% end %>
+            </div>
           </div>
         <% end %>
       <% end -%>
 
       <div class="comment_section">
-        <a onclick="$(this).parent().find('.new_comment_form').toggle();"><span>Add a Comment</span></a>
-        <div class="new_comment_form" style="display:none;">
+        <a onclick="$(this).parent().find('.new_comment_form').toggle();">
+          <span class='ui-icon ui-icon-circle-plus inlineblock'></span>
+          Add a Comment
+        </a>
+        <%#= link_to_toggle "Add a comment", "##{dom_id(section, 'new_comment')}" %>
+        <div id="<%= dom_id(section, 'new_comment') %>" class="new_comment_form" style="display:none;">
           <%= render :partial => 'comments/comment_form', :locals => { 
             :comment => Comment.new(:parent => section, 
                                     :user => logged_in? ? current_user : nil)
