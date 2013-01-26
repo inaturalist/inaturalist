@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   before_filter :login_from_param
   before_filter :set_locale
   
-  PER_PAGES = [10,30,50,100]
+  PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 9
   
   alias :logged_in? :user_signed_in?
