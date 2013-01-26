@@ -65,14 +65,30 @@ es-MX:
     errors: 
       messages: 
         accepted: "Debe ser aceptado"
+        inclusion: "No está incluido en la lista"
       template: 
         header: 
           one: "Un error no permitió que este %{model} se guardara"
           other: "% {count} errores no permitieron que este %{model} se guardara"
+  add_obs_from_a_link: "Añade observación de la lista %{link}"
+  add_obs_from_a_list: "Añade observaciones de una lista"
   add_observations!: "¡Agrega observaciones!"
+  add_observations_by_checking_off: "Añade observaciones marcando las especies de una lista"
+  add_observations_from_list: "Añade observaciones de una lista"
+  add_to_checklist: "Añade a lista de comprobación"
+  add_to_list: "Añade a lista"
+  add_to_your_life_list: "¡Añade a tu lista de vida!"
+  add_to_your_list: "Añade a tu lista"
+  adding_to_your_life_list: "Añadiendo a tu lista de vida"
+  are_you_sure_delete_this: "¿Estás seguro que quieres borrar esto? Deberías primero revisar si hay observaciones o taxa enlistados."
   back_to_x: "Regresa a %{noun}"
+  check_list_individual_taxa: "Revisa las listas para taxa específícos que viven aqui, por ejemplo \"Aves de %{place}\"."
+  check_lists_for: "Otras listas de comprobación para %{place}"
+  check_out_your_life_list: "Revisa tu lista de vida"
+  checklist: "Lista de comprobación"
   clear_search: "Limpia la búsqueda"
   click_the_map_to_jump_new_place: "Haz clic en el mapa para moverte a un lugar nuevo"
+  create_a_list: "Crea una lista"
   devise: 
     confirmations: 
       confirmed: "Su cuenta fue confirmada exitosamente, usted ha sido ingresado al sistema."
@@ -124,6 +140,7 @@ es-MX:
       accepted: "Debe ser aceptado"
       already_confirmed: "ya está confirmada, por favor intente ingresar"
       expired: "ha expirado, por favor pida uno nuevo"
+      inclusion: "No está incluido en la lista"
       not_found: "no encontrado"
       not_locked: "no está bloqueada"
       not_saved: 
@@ -134,52 +151,13 @@ es-MX:
         one: "Un error no permitió que este %{model} se guardara"
         other: "%{count} errores evitaron que este %{resource} se guardara:"
   explore!: ¡Descubre
-  faker: 
-    name: 
-      title: 
-        level: 
-          - Soluciones
-          - Programa
-          - Marca
-          - Seguridad
-          - Investigación
-          - Mercadotecnia
-          - Directivos
-          - Implementación
-          - Integración
-          - Funcionalidad
-          - Respuesta
-          - Paradigma
-          - Tácticas
-          - Identidad
-          - Mercados
-          - Grupo
-          - División
-          - Aplicaciones
-          - Optimización
-          - Operaciones
-          - Infraestructura
-          - Intranet
-          - Comunicaciones
-          - Web
-          - Marca
-          - Calidad
-          - Seguridad
-          - Movilidad
-          - Cuentas
-          - Datos
-          - Creativo
-          - Configuración
-          - Responsabilidad
-          - Interacciones
-          - Facores
-          - Usabilidad
-          - Métricas
   follow_us: "Síguenos en"
   follow_us_on: "Síguenos en"
   if_your_search_comes_up: "Si la búsqueda resulta vacía, debes ver los íconos de búsqueda para repetirla a través de nuestros proveedores externos:"
   inaturalist_is_an_online_community: "%{site_name} es una comunidad en línea para naturalistas. Al añadir tu foto, puedes ayudar a los investigadores a conocer más sobre "
   inaturalist_places_are_way_record_what_lives_where: "Lugares en %{site_name} es una forma de registrar quién vive en dónde. Si buscas una especie en particular, sabrás dónde buscarla. Cada lugar tiene una lista para registrar todas las especies que allí viven, que pueden también ser útiles para buscar especies que encontraste en sitios particulares."
+  is_a_naturalist: "¡es un NaturaLista!"
+  iucn_red_list_status: "estatus en la Lista Roja de UICN"
   learn!: ¡Aprende
   learn_more: "Aprende más"
   life_list_updated_we_also_saved_a: "¡Tu Lista de Vida ha sido actualizada! También guardamos una observación en blanco para este taxón."
