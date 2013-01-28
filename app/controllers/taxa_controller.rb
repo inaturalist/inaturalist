@@ -180,6 +180,7 @@ class TaxaController < ApplicationController
             end
           end
         end
+        @taxon_links.uniq!{|tl| tl.url}
         @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
 
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
