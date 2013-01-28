@@ -80,7 +80,7 @@ class ObservationsController < ApplicationController
       @observations = if perform_caching
         cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
         cache_params[:page] ||= 1
-        cache_params[:site_name] = SITE_NAME if INAT_CONFIG['site_only_observations']
+        cache_params[:site_name] = SITE_NAME if CONFIG.get(:site_only_observations)
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
         Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
           get_paginated_observations(search_params, find_options).to_a
@@ -860,7 +860,7 @@ class ObservationsController < ApplicationController
       flash[:error] = <<-EOT
         Your CSV had a formatting problem. Try removing any strange
         characters and unclosed quotes, and if the problem persists, please
-        <a href="mailto:#{APP_CONFIG[:help_email]}">email us</a> the file and we'll
+        <a href="mailto:#{CONFIG.get(:help_email)}">email us</a> the file and we'll
         figure out the problem.
       EOT
       redirect_to :action => 'import'
@@ -1749,7 +1749,7 @@ class ObservationsController < ApplicationController
       end
     end
 
-    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+    if CONFIG.get(:site_only_observations) && params[:site].blank?
       @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")
     end
 

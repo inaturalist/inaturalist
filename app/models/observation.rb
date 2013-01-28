@@ -509,9 +509,9 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+    if CONFIG.get(:site_only_observations) && params[:site].blank?
       scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
-    elsif (site_bounds = INAT_CONFIG['bounds']) && params[:swlat].blank?
+    elsif (site_bounds = CONFIG.get(:bounds)) && params[:swlat].blank?
       scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
     end
     

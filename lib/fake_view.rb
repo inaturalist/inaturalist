@@ -8,7 +8,7 @@ class FakeView < ActionView::Base
   include Rails.application.routes.url_helpers
   include ApplicationHelper
 
-  @@default_url_options = {:host => APP_CONFIG[:site_url].sub("http://", '')}
+  @@default_url_options = {:host => CONFIG.get(:site_url).sub("http://", '')}
   
   def method_missing(method, *args)
     # hack around those pesky protected url methods

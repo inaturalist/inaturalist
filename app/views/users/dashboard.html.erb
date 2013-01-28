@@ -219,7 +219,7 @@
               some of them out, we'd appreciate all the help we can get. If
               you have any questions about curating content or don't want to
               be a curator anymore, please contact us at 
-              <%= link_to APP_CONFIG[:help_email], "mailto:#{APP_CONFIG[:help_email]}" %>.
+              <%= link_to CONFIG.get(:help_email), "mailto:#{CONFIG.get(:help_email)}" %>.
             <% end -%>
           </h3>
           <% unless @flags.blank? -%>
@@ -234,7 +234,7 @@
                 hateful, illegal, etc. Rudness, offensive language, etc,
                 should be handled with a polite comment. Repeat offenders
                 should be reported to a site admin or <%=
-                APP_CONFIG[:help_email] %>.
+                CONFIG.get(:help_email) %>.
               <% end -%>
             </h4>
             <ul>
