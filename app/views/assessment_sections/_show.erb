@@ -15,23 +15,24 @@
   <% if params[:preview].blank? # don't show comments for preview %>
     <div class="assessment-section-comments">
       <h4>Comments on <%= section.title %></h4>
-      <% if section.comments.count == 0 -%>
+      <%- section_comments_count = section.comments.count %>
+      <% if section_comments_count == 0 -%>
         <div class="stacked meta">No comments yet</div>
       <% else %>
-        <% if section.comments.count > 3 %>
+        <% if section_comments_count > 3 %>
           <div class="stacked">
-            <%- remaining = section.comments.count - 3 %>
+            <%- remaining = section_comments_count - 3 %>
             <%= link_to_toggle "Show #{pluralize remaining, 'older comment'}", "##{dom_id(section, 'more_comments')}" %>
             <div id="<%= dom_id(section, 'more_comments') %>" class="assessment-section-comments-remainder">
               <% section.comments.sort {|a,b| a.created_at <=> b.created_at }.each_with_index do |comment, index| %>
-                <%= render :partial => 'shared/activity_item', :object => comment if index < (section.comments.count - 3) %>
+                <%= render :partial => 'shared/activity_item', :object => comment if index < (section_comments_count - 3) %>
               <% end %>
             </div>
           </div>
         <% end %>
         
         <div class="assessment-section-comments-teaser">
-          <% section.comments.sort {|a,b| a.created_at <=> b.created_at }[(section.comments.count - 3)..(section.comments.count - 1)].each do |comment| %>
+          <% section.comments.sort {|a,b| a.created_at <=> b.created_at }[((section_comments_count - 3) < 0 ? 0 : (section_comments_count - 3))..(section_comments_count - 1)].each do |comment| %>
             <%= render :partial => 'shared/activity_item', :object => comment %>
           <% end %>
         </div>
