@@ -77,8 +77,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   has_subscribers
-  has_many :subscriptions
-  has_many :updates, :foreign_key => :subscriber_id
+  has_many :subscriptions, :dependent => :destroy
+  has_many :updates, :foreign_key => :subscriber_id, :dependent => :destroy
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name
