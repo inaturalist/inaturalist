@@ -117,7 +117,7 @@ module TaxaHelper
     else
       nil
     end
-    path = APP_CONFIG[:site_url]
+    path = CONFIG.get(:site_url)
     path += '/images/iconic_taxa/'
     if iconic_taxon
       path += iconic_taxon.name.downcase

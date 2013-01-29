@@ -24,8 +24,8 @@ class PlaceSweeper < ActionController::Caching::Sweeper
   
   def expire_tiles(place)    
     # Expire page-cached tile_points JSON
-    Rails.logger.info "[INFO #{Time.now}] INAT_CONFIG['tile_servers']['tilestache_public_path']: #{INAT_CONFIG['tile_servers']['tilestache_public_path']}"
-    return true unless stache_path = INAT_CONFIG['tile_servers']['tilestache_public_path']
+    Rails.logger.info "[INFO #{Time.now}] CONFIG.get(:tile_servers, :tilestache_public_path): #{CONFIG.get(:tile_servers, :tilestache_public_path)}"
+    return true unless stache_path = CONFIG.get(:tile_servers, :tilestache_public_path)
     Rails.logger.info "[INFO #{Time.now}] place.latitude: #{place.latitude}, place.longitude: #{place.longitude}"
     return true unless place.latitude? && place.longitude?
     SPHERICAL_MERCATOR.levels.times do |zoom|

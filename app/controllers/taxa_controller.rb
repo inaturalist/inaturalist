@@ -566,8 +566,8 @@ class TaxaController < ApplicationController
   end
   
   def map
-    @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
-    @bing_key = INAT_CONFIG['bing'].try(:[], 'key')
+    @cloudmade_key = CONFIG.get(:cloudmade).try(:[], 'key')
+    @bing_key = CONFIG.get(:bing).try(:[], 'key')
     
     if @taxon = Taxon.find_by_id(params[:id].to_i)
       load_single_taxon_map_data(@taxon)

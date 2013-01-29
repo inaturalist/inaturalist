@@ -4,10 +4,10 @@ class Emailer < ActionMailer::Base
   helper :taxa
   helper :users
 
-  SUBJECT_PREFIX = "[#{APP_CONFIG[:site_name]}]"
+  SUBJECT_PREFIX = "[#{CONFIG.get(:site_name)}]"
 
-  default :from =>     "#{APP_CONFIG[:site_name]} <#{APP_CONFIG[:noreply_email]}>",
-          :reply_to => APP_CONFIG[:noreply_email]
+  default :from =>     "#{CONFIG.get(:site_name)} <#{CONFIG.get(:noreply_email)}>",
+          :reply_to => CONFIG.get(:noreply_email)
   
   def invite(address, params, current_user) 
     Invite.create(:user => current_user, :invite_address => address)

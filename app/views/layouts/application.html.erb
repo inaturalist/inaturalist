@@ -8,7 +8,7 @@
     <% if logged_in? && @provider_authorizations -%>
       <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider}.join(',') %>">
     <% end -%>
-    <title><%= APP_CONFIG[:site_name] %> &middot; <%= yield :title %></title>
+    <title><%= CONFIG.get(:site_name) %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= javascript_include_tag 'jquery/jquery-1.8.3.min', 

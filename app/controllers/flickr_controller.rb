@@ -166,7 +166,7 @@ class FlickrController < ApplicationController
       flash[:notice] = <<-EOT
         Ack! Something went wrong connecting to Flickr. You might try unlinking 
         and re-linking your account. You can contact us at 
-        #{APP_CONFIG[:help_email]} if that doesn't work.  Error: #{e.message}
+        #{CONFIG.get(:help_email)} if that doesn't work.  Error: #{e.message}
       EOT
     end
   end

@@ -54,7 +54,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
     when (!params[:activation_code].blank?) && user && !user.confirmed?
       user.confirm!
-      flash[:notice] = "Your #{APP_CONFIG[:site_name]} account has been verified! Please sign in to continue."
+      flash[:notice] = "Your #{CONFIG.get(:site_name)} account has been verified! Please sign in to continue."
       if logged_in? && current_user.is_admin?
         redirect_back_or_default('/')
       else

@@ -1,6 +1,6 @@
-<% if INAT_CONFIG['google_webmaster'] && !INAT_CONFIG['google_webmaster']['verification'].blank? -%>
+<% if CONFIG.get(:google_webmaster) && !CONFIG.get(:google_webmaster, :verification).blank? -%>
   <%- content_for(:extrahead) do -%>
-    <meta name="google-site-verification" content="<%= INAT_CONFIG['google_webmaster']['verification'] %>" />
+    <meta name="google-site-verification" content="<%= CONFIG.get(:google_webmaster, :verification) %>" />
   <%- end -%>
 <% end -%>
 <% content_for(:title) do %>
@@ -27,7 +27,7 @@
 
   <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
-    var BOUNDS = <%=raw INAT_CONFIG['bounds'].to_json %>
+    var BOUNDS = <%=raw CONFIG.get(:bounds).to_json %>
     $(document).ready(function() {      
       // show some created_at dates
       $('div.created_at h4.label').text('Added');
@@ -120,13 +120,13 @@
       <h2>Welcome!</h2>
       <p>
         to
-        <%= image_tag INAT_CONFIG['logo'] || 'logo-small.gif', :alt => SITE_NAME %>,
+        <%= image_tag CONFIG.get(:logo), :alt => SITE_NAME %>,
         where you can <strong>record</strong> what you see in nature,
         <strong>meet</strong> other nature lovers, and
         <strong>learn</strong> about the natural world.
       </p>
 
-      <a href="<%= INAT_CONFIG['about_url'] %>" id="learnmore" class="button">
+      <a href="<%= CONFIG.get(:about_url) %>" id="learnmore" class="button">
         Learn More &raquo;
       </a>
       <% if logged_in? %>
