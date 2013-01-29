@@ -139,16 +139,17 @@ class TaxaController < ApplicationController
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
         @iconic_taxa = Taxon::ICONIC_TAXA
         
-        @check_listed_taxa = ListedTaxon.paginate(:page => 1,
-          :include => [:place, :list],
-          :conditions => ["place_id IS NOT NULL AND taxon_id = ?", @taxon]
-        )
+        @check_listed_taxa = ListedTaxon.page(1).
+          select("min(listed_taxa.id) AS id, listed_taxa.place_id, listed_taxa.taxon_id, listed_taxa.list_id, min(establishment_means) AS establishment_means").
+          includes(:place, :list).
+          group(:place_id, :taxon_id, :list_id).
+          where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
         @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.place_type || 0}.reverse
-        @places = @check_listed_taxa.map{|lt| lt.place}
+        @places = @check_listed_taxa.map{|lt| lt.place}.uniq{|p| p.id}
         @countries = @taxon.places.all(
           :select => "places.id, place_type, code",
           :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
-        )
+        ).uniq{|p| p.id}
         if @countries.size == 1 && @countries.first.code == 'US'
           @us_states = @taxon.places.all(
             :select => "places.id, place_type, code",
@@ -156,7 +157,7 @@ class TaxaController < ApplicationController
               "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
               @countries.first.id
             ]
-          )
+          ).uniq{|p| p.id}
         end
 
         @taxon_links = if @taxon.species_or_lower?
