@@ -1584,7 +1584,7 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      @observations = Observation.query(search_params).paginate(find_options)
+      @observations = Observation.query(search_params).includes(:photos).paginate(find_options)
     end
     @observations
   rescue ThinkingSphinx::ConnectionError
@@ -2029,6 +2029,9 @@ class ObservationsController < ApplicationController
       opts[:methods] += [:short_description, :user_login, :iconic_taxon_name]
       opts[:methods].uniq!
       opts[:include] ||= {}
+      opts[:include][:taxon] ||= {
+        :only => [:id, :name, :rank, :ancestry]
+      }
       opts[:include][:iconic_taxon] ||= {:only => [:id, :name, :rank, :rank_level, :ancestry]}
       opts[:include][:user] ||= {:only => :login}
       opts[:include][:photos] ||= {
