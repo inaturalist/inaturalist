@@ -7,9 +7,9 @@
         - for taxon in taxon_change.input_taxa
           %tr
             %td{:style => "vertical-align:top;padding-right:5px;"}
-              %center= link_to taxon_image(taxon), taxon
+              %center= link_to taxon_image(taxon), taxon_url(taxon)
             %td{:style => "vertical-align:top;padding-right:5px;"}
-              %i= link_to taxon.name, taxon
+              %i= link_to taxon.name, taxon_url(taxon)
     %td{:style => "vertical-align:top;padding-right:5px;"}
       %strong
         = taxon_change.verb_phrase
@@ -18,9 +18,9 @@
         - for taxon in taxon_change.output_taxa
           %tr
             %td{:style => "vertical-align:top;padding-right:5px;"}
-              %center= link_to taxon_image(taxon), taxon
+              %center= link_to taxon_image(taxon), taxon_url(taxon)
             %td{:style => "vertical-align:top;"}
-              %i= link_to taxon.name, taxon
+              %i= link_to taxon.name, taxon_url(taxon)
 
 = taxon_change.description
 
@@ -35,7 +35,7 @@
       You have some content related to these taxa that you may want to update.
   - else
     iNat cannot update your content automatically for this change.
-= link_to "View details", taxon_change, :class => "readmore"
+= link_to "View details", taxon_change_url(taxon_change), :class => "readmore"
 - if !taxon_change.automatable? || !user.prefers_automatic_taxonomic_changes?
   &nbsp;
-  = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"
+  = link_to "Update your content", taxon_change_commit_for_user_url(taxon_change), :class => "readmore"
