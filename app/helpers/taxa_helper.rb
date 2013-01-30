@@ -244,4 +244,13 @@ module TaxaHelper
     else nil
     end
   end
+  
+  def taxon_range_kml_url(options = {})
+    taxon_range = options[:taxon_range] || @taxon_range
+    if taxon_range.blank?
+      ''.html_safe
+    else
+      "#{root_url.gsub(/\/$/, "")}#{taxon_range.range.url}?#{taxon_range.updated_at.to_i}".html_safe
+    end
+  end
 end

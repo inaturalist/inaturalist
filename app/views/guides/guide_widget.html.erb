@@ -81,7 +81,11 @@
       )
       
       $('a').live('click', function() {
-        if ($(this).attr('href').indexOf(window.location.href) >= 0) {
+        if (!$(this).attr('href') || 
+            $(this).attr('href').indexOf('#') == 0 ||
+            $(this).hasClass('ui-tabs-anchor') ||
+            $(this).attr('href') == '' ||
+            $(this).attr('href').indexOf(window.location.href) >= 0) {
           return true
         } else {
           parent.location = $(this).attr('href')

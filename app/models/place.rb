@@ -97,7 +97,8 @@ class Place < ActiveRecord::Base
   }
   GEO_PLANET_PLACE_TYPE_CODES = GEO_PLANET_PLACE_TYPES.invert
   INAT_PLACE_TYPES = {
-    100 => 'Open Space'
+    100 => 'Open Space',
+    101 => 'Territory'
   }
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)

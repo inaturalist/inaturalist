@@ -81,6 +81,7 @@ class ObservationsController < ApplicationController
         cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
         cache_params[:page] ||= 1
         cache_params[:site_name] = SITE_NAME if INAT_CONFIG['site_only_observations']
+        cache_params[:bounds] = INAT_CONFIG['bounds'] if INAT_CONFIG['bounds']
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
         Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
           get_paginated_observations(search_params, find_options).to_a
@@ -1584,7 +1585,7 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      @observations = Observation.query(search_params).paginate(find_options)
+      @observations = Observation.query(search_params).includes(:photos).paginate(find_options)
     end
     @observations
   rescue ThinkingSphinx::ConnectionError
@@ -2029,6 +2030,9 @@ class ObservationsController < ApplicationController
       opts[:methods] += [:short_description, :user_login, :iconic_taxon_name]
       opts[:methods].uniq!
       opts[:include] ||= {}
+      opts[:include][:taxon] ||= {
+        :only => [:id, :name, :rank, :ancestry]
+      }
       opts[:include][:iconic_taxon] ||= {:only => [:id, :name, :rank, :rank_level, :ancestry]}
       opts[:include][:user] ||= {:only => :login}
       opts[:include][:photos] ||= {
