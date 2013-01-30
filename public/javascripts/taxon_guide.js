@@ -344,6 +344,8 @@ var TaxonGuide = {
               $('.listed_taxon_guide', this).addClass('compact')
               google.maps.event.trigger($('.map', this).data('taxonMap'), 'resize')
             }
+
+            $('.comments', this).hide()
             
             $('.tabs', this).tabs({
               ajaxOptions: {
