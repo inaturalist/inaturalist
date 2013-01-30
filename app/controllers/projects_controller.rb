@@ -702,7 +702,7 @@ class ProjectsController < ApplicationController
   
   def search
     if @q = params[:q]
-      @projects = Project.search(@q, :page => params[:page]).compact
+      @projects = Project.search(@q, :page => params[:page])
     end
     respond_to do |format|
       format.html
