@@ -113,7 +113,7 @@ class Project < ActiveRecord::Base
   end
   
   def icon_url
-    icon.file? ? "#{CONFIG.get(:site_url)}#{icon.url(:span2)}" : nil
+    icon.file? ? "#{CONFIG.site_url}#{icon.url(:span2)}" : nil
   end
   
   def project_observation_rule_terms

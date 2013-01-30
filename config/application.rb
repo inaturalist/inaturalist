@@ -9,8 +9,8 @@ require File.expand_path('../config', __FILE__)
 CONFIG = InatConfig.new(File.expand_path('../config.yml', __FILE__))
 
 # flickr api keys - these need to be set before Flickraw gets included
-FLICKR_API_KEY = CONFIG.get(:flickr, :key)
-FLICKR_SHARED_SECRET = CONFIG.get(:flickr, :shared_secret)
+FLICKR_API_KEY = CONFIG.flickr.key
+FLICKR_SHARED_SECRET = CONFIG.flickr.shared_secret
 DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
 
 # DelayedJob priorities
@@ -70,18 +70,18 @@ end
 ActiveRecord::Base.include_root_in_json = false
 
 ### API KEYS ###
-UBIO_KEY = CONFIG.get(:ubio, :key)
+UBIO_KEY = CONFIG.ubio.key
 
 # Yahoo Developer Network
-YDN_APP_ID = CONFIG.get(:yahoo_dev_network, :app_id)
+YDN_APP_ID = CONFIG.yahoo_dev_network.app_id
 GeoPlanet.appid = YDN_APP_ID
 
 FlickRaw.api_key = FLICKR_API_KEY
 FlickRaw.shared_secret = FLICKR_SHARED_SECRET
 
 # General settings
-SITE_NAME = CONFIG.get(:site_name)
-OBSERVATIONS_TILE_SERVER = CONFIG.get(:tile_servers, :observations)
+SITE_NAME = CONFIG.site_name
+OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 
 # apparently we still need this for static maps
 #Ym4r::GmPlugin::ApiKey.key = YAML.load_file("#{::Rails.root}/config/gmaps_api_key.yml")[Rails.env]

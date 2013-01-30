@@ -1,15 +1,15 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   require 'openid/store/filesystem' 
-  if CONFIG.get(:twitter)
-    provider :twitter, CONFIG.get(:twitter, :key) , CONFIG.get(:twitter, :secret)
+  if CONFIG.twitter
+    provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
   end
-  if fb_cfg = CONFIG.get(:facebook)
+  if fb_cfg = CONFIG.facebook
     opts = {:scope => 'email,offline_access,publish_stream,user_location,user_photos,friends_photos,user_groups,read_stream'}
     opts[:client_options] = {:ssl => {:ca_path => "/etc/ssl/certs"}} if File.exists?("/etc/ssl/certs")
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
   
-  if CONFIG.get(:flickr)
+  if CONFIG.flickr
     FLICKR_SETUP = lambda do |env|
       request = Rack::Request.new(env)
       scope = request.params['scope'] if ProviderAuthorization::ALLOWED_SCOPES.include?(request.params['scope'].to_s)

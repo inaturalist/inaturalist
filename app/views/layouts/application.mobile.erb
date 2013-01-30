@@ -5,10 +5,10 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name="viewport" content="width=device-width; initial-scale=1.0; user-scalable=<%= @user_scalable.blank? ? '1' : @user_scalable %>" />
-    <% if CONFIG.get(:ios_app_id) && !@headless -%>
-      <meta name="apple-itunes-app" content="app-id=<%= CONFIG.get(:ios_app_id) %>">
+    <% if CONFIG.ios_app_id && !@headless -%>
+      <meta name="apple-itunes-app" content="app-id=<%= CONFIG.ios_app_id %>">
     <% end -%>
-    <title><%= CONFIG.get(:site_name) %> &middot; <%= yield :title %></title>
+    <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= stylesheet_link_tag 'blueprint/plugins/buttons/buttons' %>
     <%= stylesheet_link_tag 'index', 'jquery-ui', 'jquery/ui.tabs', 'observations', 'mobile' %>

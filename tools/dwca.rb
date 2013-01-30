@@ -50,9 +50,9 @@ puts "Photo licenses: #{@opts[:photo_licenses].inspect}" if opts[:debug]
 class Metadata < FakeView
   def initialize(options = {})
     super()
-    @contact = CONFIG.get(:contact) || {}
-    @creator = CONFIG.get(:creator) || @contact || {}
-    @metadata_provider = CONFIG.get(:metadata_provider) || @contact || {}
+    @contact = CONFIG.contact || {}
+    @creator = CONFIG.creator || @contact || {}
+    @metadata_provider = CONFIG.metadata_provider || @contact || {}
     scope = Observation.scoped({})
     if options[:quality] == "research"
       scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
