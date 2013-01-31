@@ -254,7 +254,7 @@ module ApplicationHelper
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
     text = sanitize(text, options)
-    text = compact(text) if options[:compact]
+    text = compact(text, :all_tags => true) if options[:compact]
     text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
     # Ensure all tags are closed
@@ -322,9 +322,13 @@ module ApplicationHelper
   end
   
   # remove unecessary whitespace btwn divs
-  def compact(content = nil, &block)
+  def compact(content = nil, options = {}, &block)
     content = capture(&block) if block_given?
-    content.gsub!(/\>[\n\s]+\</, '><')
+    if options[:all_tags]
+      content.gsub!(/\>[\n\s]+\</, '><')
+    else
+      content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
+    end
     block_given? ? concat(content.html_safe) : content.html_safe
   end
   
