@@ -126,6 +126,7 @@ es-MX:
   add_another: "Añade otra"
   add_another_flag: "Añade otra advertencia"
   add_another_photo: "Añade otra foto"
+  add_asset: "Añade recurso"
   add_batch: "Añade un grupo"
   add_colors: "Añade colores"
   add_comment: "Añade un comentario"
@@ -208,13 +209,21 @@ es-MX:
   amphibiaweb_taxonomy: "Taxonomía de AmphibiaWeb"
   an: un
   and: "y"
+  and_choose_a_matching_taxon: "Y escoge un taxón que corresponda de la lista. Si no terminas con algo como"
+  and_help_the_inaturalist_community_grow: "y ayuda a que la comunidad de %{site_name} crezca."
+  and_make_some_new: "y has algunas nuevas"
+  and_other_taxa: "&amp; otros taxa"
+  and_you_havent_linked: "...y no has enlazado una de estas cuentas externas. Primero debes entrar a través de %{site_name}, editar tu perfil y enlazar tu cuenta desde ahí.  De otra forma el %{site_name} no entenderá que las dos cuentas están conectadas y ¡tratará de crearte una nueva cuenta!"
   animals: Animales
   announcements: Anuncios
+  any: Cualquiera
+  apply_darr: "Aplica &darr;"
   apply_these_settings_to_all: "Aplica esta configuración a las observaciones siguientes."
   arachnids: Arácnidos
   archives: Archivos
   are_you_really_sure_want_delete_this_user: "¿Estás totalmente seguro que quieres borrar a este usuario y todo su contenido?"
   are_you_sure?: "¿Estás seguro?"
+  are_you_sure_delete_asset: "¿Estás seguro que quieres borrar este recurso?"
   are_you_sure_delete_obervation_from_project: "¿Estás seguro que quieres remover esta observación del %{project}?"
   are_you_sure_delete_post: "¿Estás seguro que quieres borrar esta nota?"
   are_you_sure_delete_taxon_move_associates: "¿Estás seguro que quieres borrar el %{taxonname} (%{taxonid}) y mover a todos sus asociados?"
@@ -237,9 +246,11 @@ es-MX:
   aside_from_extraordinary_circumstances: "A menos que haya circunstancias extraordinarias, nunca te preguntaremos tu contraseña."
   associations: Asociaciones
   at: en
+  at_any_time_change: "en cualquier tiempo (<span class=\"botón\">cambia</span>)"
   atom: Átomo
   automatic_descriptions_have_been_disabled: "Las descripciones automáticas para este taxón han sido desconectadas."
   automatically_add_to_project: "Añade al proyecto automáticamente"
+  automatically_id_new: "Automáticamente identifica la nueva observación como"
   back: Regresar
   back_to: "Regresar a"
   back_to_albums: "De regreso"
@@ -269,16 +280,30 @@ es-MX:
   batch: Grupo
   batch_edit: "Edita grupo"
   batch_operations: "Operaciones de grupo"
+  beacuse_we_recently_changed_auth_system: "Debido a que recientemente cambiamos nuestro sistema de identificación de usuarios, fue necesario volver a cargar tu contraseña."
   because: Porque
   before_importing_photos: "Antes de importar las fotos"
+  bg_color: "Color BG"
   birds: Aves
   black: Negro
+  blog_widget: "Widget de blog"
+  blue: Azul
+  blue_icons_represent_political_units: "Los íconos azules representan unidades políticas como países, estados y afines. Los íconos verdes representan diferentes tipos de espacios abiertos parques y reservas. Si haces un acercamiento, podrás ver lugares más pequeños."
+  body: Cuerpo
+  breadcrumbs: Ruta
+  brief_description_of_what_you_saw: "Describe brevemente lo que viste"
   brown: Café
   browse_all_projects: "Échale un ojo a los proyectos"
   browse_all_species: "Échale un ojo a todas las especies"
   browse_projects: "Échale un ojo a los proyectos"
   browse_your_observations: "Échale un ojo a tus observaciones"
+  by: Por
+  by_adding_ids_to_observations: "Añadiendo identificación a las observaciones"
+  by_editedby: "por  %{editedby}"
+  by_submittedby: "por  %{submittedby}"
+  by_you: Tus
   calendar: Calendario
+  can_you_help_your_friends_id_these: "¿Puedes ayudar a tus amigos a identificar éstas?"
   cancel: Cancelar
   casual: Casual
   catalogue_of_life: "Catalogue of Life"
@@ -289,18 +314,137 @@ es-MX:
   cc_by_nc_sa_name: "Atribución - No Comercial Compartir bajo la Misma Licencia"
   cc_by_nd_name: "Atribución - Sin obras derivadas"
   cc_by_sa_name: "Atribución - Compartir bajo la misma licencia"
+  cc_used_under_a: "Creative Commons, utilizado bajo una "
+  change_icon: "Cambia ícono"
+  change_password: "Cambia contraseña"
+  change_types: "Cambia tipos"
+  change_visibility_of: "¿Cambia la visibilidad de las coordenadas espaciales?"
+  change_your_password: "Cambia tu contraseña"
+  check_it_out: Revísalo
   check_list_individual_taxa: "Revisa las listas para taxa específícos que viven aqui, por ejemplo \"Aves de %{place}\"."
+  check_list_source: "Fuente<span class=\"meta\">(opcional)</span>"
   check_lists_for: "Otras listas de comprobación para %{place}"
+  check_out_my_observations_at: "Si deseas, puedes ver mis observaciones en"
   check_out_your_life_list: "Revisa tu lista de vida"
   checklist: "Lista de comprobación"
+  checklist_places: "Lista de lugares"
+  checklist_places_absent: "Lista de lugares (ausente)"
+  checklist_places_confirmed: "Lista de lugares (confirmados)"
+  checklist_places_introduced: "Lista de lugares (introducidos)"
+  cheklist_places_are_places_with_contain_taxon: "\"Listas de lugares\" son lugares con listas de comprobación que contienen este taxón."
+  child_taxa: "Taxa subordinado"
+  choose_a_list_above: "Escoge una lista de las anteriores."
+  choose_from_your_lists: "Escoge de tus listas"
+  choose_good_default_photos: "Escoge buenas fotos predeterminadas para el grupo de fotos de Flickr con Creative Commons"
+  choose_photos_for_this_taxon: "Escoge fotos para este taxón"
+  choose_photos_to_tag_from_photostream: "Selecciona fotos para etiquetarlas de tu galería"
+  choose_place: "Escoge un lugar"
+  choose_rule: "Escoge una regla"
+  choose_tags: "Escoge etiquetas"
+  choose_taxon: "Escoge un taxón"
+  choose_your_username: "Escoge tu nombre de usuario"
+  classification: Clasificación
+  clear: Limpiar
+  clear_color_filters: "Quita los filtros de colores"
   clear_search: "Limpia la búsqueda"
+  click_on_map_to_draw_shape_around_place: "Selecciona un lugar en el mapa para dibujar una forma alrededor del lugar"
+  click_on_the_map_to: "Selecciona el mapa para poner tu observación"
   click_the_map_to_jump_new_place: "Haz clic en el mapa para moverte a un lugar nuevo"
+  collapse_days: "Colapsa los días"
+  collapse_updates: "Colapsa las actualizaciones"
+  colors: Colores
+  comma_separated_please: "Separados por una coma, por favor"
+  comment_preview: "Vista previa del comentario"
+  comments: Comentarios
+  comments_and_identifications: "Comentarios e identificaciones"
+  comments_by_me: "Mis comentarios"
+  comments_youve_made_with_others: "Comentarios que has hecho (con/Otros)<br/><span class=\"description\">durante la semana pasada</span>"
+  community_supported_id: "¿Hay una identificación apoyada por la comunidad?"
+  compare_with: "Compara con"
+  comparing: Comparando
+  comparing_list_to_list: "Comparando  %{list1} con %{list2}"
+  comparing_observations_from: "Comparando %{user} observaciones de %{dates}"
+  comprehensive_list: "Lista exhaustiva"
+  confirm_membership: "Confirma membresía"
+  confirm_new_password: "Confirma la nueva contraseña"
+  confirm_now: "Confirma ahora"
+  confirm_your_info: "Confirma tu información"
+  confirmed_observations_are: "Las observaciones confirmadas son"
+  confirming_identifications: "Confirmando identificaciones"
+  connect_to_provider: "Conecta a  %{provider}"
+  connected_accounts: "Cuentas conectadas"
+  connecting_flickr: "Conectando a Flickr"
   connecting_to_facebook: "Conectando a Facebook..."
+  connecting_your_inat_account_to_accounts_other_sites: "Al conectar tu cuenta de %{site_name} a cuentas de otros sitios podrás registrarte en %{site_name} usando tus credenciales de esos sitios. \n"
+  conservation_status: "Estado de conservación"
+  contributions_from: "Contribuciones de "
+  contributors_to_project: "Contribuciones a %{project}"
+  coordinates_private: "(coordenadas privadas)"
+  copy_and_paste_this_into_your_own_html: "Copia y pega esto en tu propio HTML."
+  couldnt_log_you_in_x: "No pudimos ingresarte como  '%{x}'"
+  countries: Países
+  create: Crea
   create_a_list: "Crea una lista"
+  create_a_new_field: "Crea un nuevo campo"
+  create_a_new_place: "Crea un nuevo lugar"
+  create_an_account: "Crea una cuenta"
+  create_new_taxon: "Crea un nuevo taxón"
+  create_observations: "Crea observaciones"
+  created: Creado
+  created_by: "Creado por"
+  created_on: "Creado el"
+  creating_your_account: "Creando tu cuenta..."
+  creative_commons_flickr_tagged: "Fotos de Flickr etiquetadas con Creative Commons"
+  critically_endangered: "Críticamente amenazada"
+  csv: CSV
+  curate_observations: "Revisa observaciones"
+  curate_taxa: "Revisa taxa"
+  curate_users: "Revisa usuarios"
+  curating: Curando
+  curator: Curador
+  current_password: "Contraseña actual"
+  darr_apply_darr: "&darr; Applicar &darr;"
   dashboard: Tablero
+  data_deficient: "con datos deficientes"
+  data_quality_assessment: "Evaluación de calidad de los datos"
+  datatype: "Tipo de datos"
+  date: Fecha
+  date?: ¿Fecha?
+  date_added: "Fecha añadida"
+  date_observed: "Fecha de la observación"
+  date_time: Fecha/Hora
   datetime: 
     distance_in_words: 
+      about_x_hours: 
+        one: "cerca de una hora"
+        other: "cerca de %{count} horas"
+      about_x_months: 
+        one: "cerca de un mes"
+        other: "cerca de %{count} meses"
+      about_x_years: 
+        one: "cerca de un año"
+        other: "cerca de %{count} años"
+      almost_x_years: 
+        one: "casi un año"
+        other: "casi %{count} años"
+      half_a_minute: "medio minuto"
+      less_than_x_minutes: 
+        one: "menos de un minuto"
+        other: "menos de %{count} minutos"
+      less_than_x_seconds: 
+        one: "menos de un segundo"
+        other: "menos de %{count} segundos"
+      over_x_years: 
+        one: "más de un año"
+        other: "mas de %{count} años"
+      x_days: 
+        one: "un día"
+        other: "%{count} días"
+      x_minutes: 
+        one: "un minuto"
+        other: "%{count} minutos"
       x_months: 
+        one: "Un mes"
         other: "%{count} meses"
       x_seconds: 
         one: "Un segundo"
@@ -312,12 +456,17 @@ es-MX:
       month: Mes
       second: Segundos
       year: Año
+  default_invite_comment: "¡Excelente foto! Debes subirla a  %{site_name}: {{INVITE_LINK}}"
+  default_observation_license: "Licencia predeterminada de observación"
+  default_photo_license: "Licencia predeterminada de foto"
   delete: Borra
   delete_icon?: "¿Borras el ícono?"
   delete_project: "Borra este proyecto"
+  delete_selected: "Borra seleccionado"
   delete_this_name: "Borra este nombre"
   delete_user: "Borra este usuario"
   delete_your_account: "Borra tu cuenta"
+  descendant_taxa: "Taxa descendientes"
   describe_purpose: "Describe el propósito de este proyecto"
   describe_your_interest_in_nature: "¡Describe tu interés en la naturaleza!"
   description: Descripción
@@ -383,6 +532,7 @@ es-MX:
   does_the_location_seem_accurate: "¿Parece precisa la ubicación?"
   doesnt_have_default_photo: "Todavía no tiene foto predeterminada"
   dont_send_me_email: "¡No me envíen correo electrónico!"
+  dont_use_double_quotes: "No uses \"entre comillas\" en ningún lado"
   download: Descarga
   download_csv: "Descarga CSV"
   draft: ¡BORRADOR!
@@ -413,10 +563,23 @@ es-MX:
   editing_observation_field: "Editando campo de observación"
   editing_observation_id: "Editando observación %{obs_id}"
   editing_project: "Editando %{project}"
+  editing_taxon_link: "Edita el enlace de taxón"
+  editing_taxon_name: "Edita el nombre del taxón"
+  editing_taxon_range: "Edita la distribución del taxón"
+  editing_this: "Editando %{elem}"
+  email_addresses_description: "correos electrónicos separados por coma. El límite son 60 cada 30 días."
+  email_addresses_to_receive_invites: "Correos electrónicos que recibirán invitación"
+  embed_place_widget: "Incluye el widget del lugar"
+  embed_widget_project: "Incluye el widget para este proyecto en tu sitio web"
+  end: Fin
+  endangered: "En peligro"
   errors: 
+    dynamic_format: "%{message}"
+    format: "%{attribute} %{message}"
     messages: 
       accepted: "Debe ser aceptado"
       already_confirmed: "ya está confirmada, por favor intente ingresar"
+      blank: "No puede quedarse vacío"
       expired: "ha expirado, por favor pida uno nuevo"
       less_than: "Debe ser menor que %{count}"
       not_found: "no encontrado"
@@ -424,20 +587,68 @@ es-MX:
       not_saved: 
         one: "Un error no permitió que este %{resource} se guardara:"
         other: "%{count} errores evitaron que este %{resource} se guardara:"
+      too_short: 
+        other: "Es demasiado corto (mínimo es %{count} carácteres)"
       wrong_length: 
         one: "La longitud está equivocada (debe ser un carácter)"
         other: "La longitud está equivocada (deben ser %{count} caracteres)"
     template: 
+      body: "Hubo problemas con los siguientes campos:"
       header: 
         one: "Un error no permitió que este %{model} se guardara"
         other: "%{count} errores evitaron que este %{resource} se guardara:"
+  establishment_means_describes_how: "Medios de establecimiento describe como el taxón se estableció en un área. Ve el DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más infromación sobre terminología</a>."
+  exact_coordinates_obscured_for: "Las coordenadas exactas están oscurecidas para la vista de especies amenazadas por el público"
   existing_flags: "Advertencias presentes"
+  expand_days: "Expande días"
+  expand_updates: "Expande fechas"
   explore!: ¡Descubre
+  explore_everyones_observations: "Explora las observaciones de todos"
+  extinct: Extinto
+  extinct_in_the_wild: "Extinto en vida silvestre"
+  extras: Extras
   facebook_account_information: "Información de tu cuenta de Facebook"
   facebook_confirmation: "Facebook quiere confirmar que quieres conectar tu cuenta a %{site_name}."
   facebook_options: "Opciones de Facebook"
   faker: 
     address: 
+      building_number: 
+        - "#####"
+        - "####"
+        - "###"
+      city: 
+        - "#{city_prefix} #{Name.first_name}#{city_suffix}"
+        - "#{city_prefix} #{Name.first_name}"
+        - "#{Name.first_name}#{city_suffix}"
+        - "#{Name.last_name}#{city_suffix}"
+      city_prefix: 
+        - Norte
+        - Este
+        - Oeste
+        - Sur
+        - Nuevo
+        - Lago
+        - Puerto
+      city_suffix: 
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
       country: 
         - Afganistán
         - Albania
@@ -684,6 +895,11 @@ es-MX:
         - ""
         - ""
         - ""
+      default_country: 
+        - "Estados Unidos de América"
+      postcode: 
+        - "#####"
+        - "#####-####"
       secondary_address: 
         - ""
         - ""
@@ -1041,6 +1257,27 @@ es-MX:
         - ""
         - ""
         - ""
+      name: 
+        - "#{Name.last_name} #{suffix}"
+        - "#{Name.last_name}-#{Name.last_name}"
+        - "#{Name.last_name}, #{Name.last_name} and #{Name.last_name}"
+      suffix: 
+        - Inc
+        - "and Sons"
+        - LLC
+        - Group
+    internet: 
+      domain_suffix: 
+        - com
+        - biz
+        - info
+        - name
+        - net
+        - org
+      free_email: 
+        - gmail.com
+        - yahoo.com
+        - hotmail.com
     lorem: 
       supplemental: 
         - ""
@@ -1634,6 +1871,256 @@ es-MX:
         - ""
         - ""
         - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+      words: 
         - ""
         - ""
         - ""
@@ -5368,6 +5855,13 @@ es-MX:
         - ""
         - ""
         - ""
+      name: 
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
       title: 
         job: 
           - Supervisor
@@ -6067,6 +6561,8 @@ es-MX:
   thanks_for_signing_up: "¡Gracias por inscribirte!"
   thanks_for_using: "Gracias por usar"
   that_will_insert_a_link_to: "que insertará un enlace en esta herramienta en cada página de fotos de Flickr"
+  thats_okay_we_forget: "¡No hay problema! Nosotros también olvidamos la nuestra. Envíanos la dirección de correo electrónico que usaste para crear tu cuenta y te enviaremos un enlace para volver a cargar tu contraseña."
+  the: El
   the_data_quality_assessment_is: "La evaluación de calidad de los datos es una síntesis de la precisión de una observación. Todas las observaciones empiezan como <strong>\"Grado casual\"</strong> y alcanzan <strong>\"Grado de Investigación\"</strong> cuando"
   the_following_lists: "Las siguientes listas"
   the_following_observations_could: "Las siguientes observaciones no se pudieron añadir a %{link}"
@@ -6079,20 +6575,49 @@ es-MX:
   the_past: "El pasado"
   the_people_of_inat: "La gente de NaturaLista"
   the_project: "El proyecto"
+  the_world_is_full_of_interesting_places: "l mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina! %{site_name} Lugares te deja explorar la vida alrededor del planeta ¡Empieza a explorar!"
   the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina!"
   there_is_no_wikipedia_page_matching: "No hay página de Wikipedia que coincida"
   there_were_errors: "Hubo errores."
   there_were_some_problems_saving_this_observation: "Hubo problemas para guardar esta observación."
   there_were_some_problems_with_fields: "Hubo algunos problemas con los siguientes campos:"
+  theres_also: "También hay"
+  they_already_have_iNat_accounts: "...ya tienen cuentas de %{site_name}"
+  they_have_been_invited: "...ya han sido invitados"
+  third_person_possessive_singular: "%{object_phrase} %{noun}"
   this_is_a_life_list_of: "Esta es la lista de vida de"
   this_list_is_empty!: "¡Esta lista está vacía!"
   this_list_only_accepts_taxa_that_are: "Esta lista solo acepta taxa que son"
   this_photo_is_already_associated: "Esta fotos ya está asociada con una de tus observaciones."
   this_species: "Esta especie"
   this_species_has_no_colors: "¡Esta especie no tiene colores! ¡Ayúdanos a mejorar las búsquedas de especies incluyendo su color!"
+  this_will_try_to_add_tags_to_your_flickr: "Esto intentará añadir etiquetas a tus fotos de Flickr. ¿Continuas?"
+  this_will_update_all_last_observations: "Esto actualizará todas las últimas observaciones y añadirá nuevos taxa de"
   those_are_the_basics_of: "¡Esas son las bases para añadir observaciones! Hay muchas otras cosas que puedes hacer, como buscar y filtrar tus observaciones o editarlas en grupo, pero son fáciles de entender cuando las practicas."
+  thu: Jue
+  time: 
+    am: am
+    formats: 
+      default: "%b. %d, %A %H:%M:%S %z"
+      long: "%B %d, %A %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
   titled_favorites_and_the_most_recent_additions: "titulado \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
+  to: "a "
+  to_add_comments: "para añadir comentarios"
   to_add_identifications: "para añadir identificaciones"
+  to_tag_your_flickr_from_here: "para etiquetar tus fotos de Flickr desde aquí sin cortar y pegar"
+  to_the_bat_cave: "¡A la baticueva!"
+  today: Hoy
+  tools: Herramientas
+  top_5_identifiers: "Los 5 identificadores principales"
+  top_contributors: "Los principales contribuyentes"
+  total: Total
+  total_members: "Total de miembros"
+  total_observations: "Total de observaciones"
+  total_unique_observers: "Total de observadores únicos"
+  total_users: "Total de usuarios,"
+  tree_browser: "Navegador del árbol"
   username: "Nombre de usuario"
   username_or_email: "Nombre de usuario o correo electónico"
   users: Usuarios
@@ -6129,6 +6654,7 @@ es-MX:
   view_user_observations: "Ve las observaciones de %{user}"
   view_x_from_x: "Ve las %{day_observations} de %{observed_on}"
   view_your_life_list: "Ve tu lista de vida"
+  view_your_life_lists: "Ver tu lista de especies de vida"
   view_your_observations: "Ve tus observaciones"
   views: 
     help: 
@@ -6141,14 +6667,33 @@ es-MX:
         can_i_add_photos_without_a_flickr_account?: "¿Puedo añadir fotos sin tener una cuenta en Flicker?"
         can_i_include_my_observations_on_my_blog?: "¿Puedo añadir mis observaciones de %{site_name} en mi propio sitio web?"
         how_can_i_get_help_identifying_what_i_saw?: "¿Cómo puedo obtener ayuda para identificar algún organismo que vi?"
+        inaturalist_provides_a_place_to: "%{site_name} es un espacio para registrar y organizar observaciones de la naturaleza, para conocer a otros entusiastas y para aprender sobre la naturaleza de México y el mundo. Este espacio promueve la participación de una amplia variedad de entusiastas de la naturaleza como excursionistas, observadores de aves, colectores de hongos, guías turísticos, scouts, alumnos, maestros, pescadores, agricultores, biólogos y ecólogos. El objetivo de %{site_name} es crear conciencia en las comunidades sobre la biodiversidad y promover la exploración de los ambientes locales. "
+        note_that_curators_of: "Los curadores de proyectos individuales siempre pueden ver las coordenadas a pesar de tu control de privacidad, así que si te preocupa quien tiene acceso a las coordenadas debes de asegurarte que confías en los curadores del proyecto en el que participas."
+        welcome_message_help: "Hola, si eres nuevo en %{site_name}, revisa la página <%= link_to \"empezando \", :action => \"empezando \" %>para que conozcas algunas de las características del sitio. Si tienes alguna pregunta sobre el sitio, échale un ojo a las preguntas frecuentes descritas abajo. Si no encuentras la respuesta a tus preguntas, incluye tu consulta en nuestro <a href=\"http://groups.google.com/group/inaturalist\" title=\"%{site_name} | Google Groups\">Grupo Google</a>."
+        welcome_message_html: "Hola, si eres nuevo en %{site_name}, revisa la página <%= link_to \"empezando \", :action => \"empezando \" %>para que conozcas algunas de las características del sitio. Si tienes alguna pregunta sobre el sitio, échale un ojo a las preguntas frecuentes descritas abajo. Si no encuentras la respuesta a tus preguntas, incluye tu consulta en nuestro <a href=\"http://groups.google.com/group/inaturalist\" title=\"%{site_name} | Google Groups\">Grupo Google</a>."
+        what_are_admins_and_curators?: "¿Qué son los administradores y los curadores?"
+        what_are_tags?: "¿Qué son las etiquetas?"
         what_can_i_do_to_help_inaturalist?: "¿Qué puedo hacer para ayudar al %{site_name}?"
         what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: "¿Qué significa enlazar al %{site_name} con mi cuenta de Flicker?"
         what_is_a_life_list?: "¿Qué es una lista de vida?"
         what_is_an_observation?: "¿Qué es una observación?"
         what_is_considered_inappropriate_content?: "¿Qué se considera contenido inapropiado?"
+        what_is_does_it_mean_for: "¿Qué significa que una observación esté obscurecida?"
+        what_is_geoprivacy?: "¿Qué es la privacidad geográfica?"
+        what_is_inaturalist?: "¿Qué es %{site_name}?"
         what_is_the_quality_assessment: "¿Cual es la evaluación de calidad y como se convierten las observaciones en \"Grado de investigación\"?"
+        what_kind_of_photos_should_i_attach: "¿Qué tipo de fotos puede agregar en mis observaciones? ¿Puedo agregar fotos que yo no tomé?"
+        what_technologies_does_the_project_use?: "¿Qué tecnologías y fuentes de datos utiliza este proyecto?"
+        when_coordinates_are_obscured_it_means_that: "Cuando las coordenadas están oscurecidas quiere decir que el público puede ver un punto al azar dentro de %{km} km de las coordenadas verdaderas (por ejemplo, en la página de inicio, en la página de observaciones y en las páginas de proyectos), mientras que las coordenadas verdaderas solo son visibles cuando tú estás viendo tus propias observaciones (por ejemplo, en las páginas de proyectos individuales y en la lista de tus propias observaciones). Los curadores de los proyectos a los que has añadido tu observación también pueden ver las coordenadas verdaderas. Las coordenadas oscurecidas se simbolizan mediante el marcador circular sin tallo sobre los mapas y en productos geoespaciales."
+        who_is_behind_inaturalist: "¿Quién está detrás de %{site_name}?"
+        who_is_behind_inaturalist?: "¿Quién está detrás de %{site_name}?"
+        you_can_also_obscure_the_coordinates_html: "También puedes oscurecer las coordenadas de tus propias observaciones independientemente de la especie. Ver <a href=\"#geoprivacy\">privacidad geográfica</a> ."
+    photos: 
+      inviter: 
+        invite_other_photographers_to_inat: "Invita a otros fotógrafos a %{site_name}"
     places: 
       index: 
+        adding_new_places: "Añadiendo nuevos lugares"
         you_can_help_out_by: "Puedes ayudar a mejorar nuestros datos de lugares mediante"
     welcome: 
       index: 
