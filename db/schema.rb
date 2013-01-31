@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131001533) do
+ActiveRecord::Schema.define(:version => 20130131061500) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -442,8 +442,10 @@ ActiveRecord::Schema.define(:version => 20130131001533) do
     t.string   "license"
     t.string   "uri"
     t.integer  "photos_count",                                                                    :default => 0
+    t.integer  "comments_count",                                                                  :default => 0
   end
 
+  add_index "observations", ["comments_count"], :name => "index_observations_on_comments_count"
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
   add_index "observations", ["observed_on", "time_observed_at"], :name => "index_observations_on_observed_on_and_time_observed_at"
   add_index "observations", ["out_of_range"], :name => "index_observations_on_out_of_range"
