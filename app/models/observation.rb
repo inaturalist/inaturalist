@@ -160,7 +160,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has photos(:id), :as => :has_photos #, :type => :boolean
+    has :photos_count, :as => :has_photos
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -320,10 +320,7 @@ class Observation < ActiveRecord::Base
   
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
-  scope :has_photos, 
-    select("DISTINCT observations.*").
-    joins("JOIN observation_photos AS _op ON _op.observation_id = observations.id").
-    where('_op.id IS NOT NULL')
+  scope :has_photos, where("photos_count > 0")
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     where("quality_grade = ?", quality_grade)
@@ -335,7 +332,7 @@ class Observation < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
     joins(:taxon).where(
-      "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
+      "taxa.id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
       taxon
     )
   }
@@ -909,7 +906,7 @@ class Observation < ActiveRecord::Base
   end
   
   def num_identifications_by_others
-    identifications.select{|i| i.user_id != user_id}.size
+    num_identification_agreements + num_identification_disagreements
   end
   
   ##### Rules ###############################################################

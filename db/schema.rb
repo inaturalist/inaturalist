@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130116225224) do
+ActiveRecord::Schema.define(:version => 20130131061500) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -441,11 +441,15 @@ ActiveRecord::Schema.define(:version => 20130116225224) do
     t.boolean  "out_of_range"
     t.string   "license"
     t.string   "uri"
+    t.integer  "photos_count",                                                                    :default => 0
+    t.integer  "comments_count",                                                                  :default => 0
   end
 
+  add_index "observations", ["comments_count"], :name => "index_observations_on_comments_count"
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
   add_index "observations", ["observed_on", "time_observed_at"], :name => "index_observations_on_observed_on_and_time_observed_at"
   add_index "observations", ["out_of_range"], :name => "index_observations_on_out_of_range"
+  add_index "observations", ["photos_count"], :name => "index_observations_on_photos_count"
   add_index "observations", ["quality_grade"], :name => "index_observations_on_quality_grade"
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
   add_index "observations", ["uri"], :name => "index_observations_on_uri"
