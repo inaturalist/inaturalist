@@ -166,7 +166,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has :photos_count, :as => :has_photos
+    has :photos_count, :as => :has_photos, :type => :integer
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
