@@ -62,26 +62,28 @@ Some notes:
   <div class="photos attribute">
     <h4 class="label">Photos</h4>
     <div class="photolist clear">
-      <%- 
-        photos = observation.observation_photos.sort_by{|op| 
-          op.position || observation.photos.size + op.id.to_i
-        }.map{|op| op.photo}.compact
-        photo = photos.first
-      %>
-      <% if photo %>
-        <%= link_to image_tag(photo.square_url,
-          "data-square-url" => photo.square_url,
-          "data-small-url" => photo.small_url,
-          "data-medium-url" => photo.medium_url
-        ), observation, :class => 'flickr photo'%>
-        <% if photos.size > 1 -%>
-          <%= link_to "#{photos.size} photos", observation, :class => 'readmore' %>
-        <% end -%>
-      <% else %>
+      <% if observation.photos_count == 0 -%>
         <div class="photo nophoto description">
           No photos
         </div>
-      <% end %>
+      <% else %>
+        <%- 
+          photos = observation.observation_photos.sort_by{|op| 
+            op.position || observation.photos.size + op.id.to_i
+          }.map{|op| op.photo}.compact
+          photo = photos.first
+        %>
+        <% if photo %>
+          <%= link_to image_tag(photo.square_url,
+            "data-square-url" => photo.square_url,
+            "data-small-url" => photo.small_url,
+            "data-medium-url" => photo.medium_url
+          ), observation, :class => 'flickr photo'%>
+          <% if photos.size > 1 -%>
+            <%= link_to "#{photos.size} photos", observation, :class => 'readmore' %>
+          <% end -%>
+        <% end %>
+      <% end -%>
     </div>
   </div>
   <div class="readable species_guess attribute">
