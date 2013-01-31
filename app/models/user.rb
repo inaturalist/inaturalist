@@ -395,7 +395,7 @@ class User < ActiveRecord::Base
   
   def create_default_life_list
     return true if life_list
-    new_life_list = if existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first
+    new_life_list = if (existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
       self.life_list = existing
     else
       LifeList.create(:user => self)
