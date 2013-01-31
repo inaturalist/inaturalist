@@ -580,14 +580,35 @@ es-MX:
       accepted: "Debe ser aceptado"
       already_confirmed: "ya está confirmada, por favor intente ingresar"
       blank: "No puede quedarse vacío"
+      confirmation: "No coincide con la confirmación"
+      confirmation_period_expired: "Necesita ser confirmado dentro de %{period}, por favor solicita uno nuevo "
+      empty: "No puede estar vacío"
+      equal_to: "Debe ser igual a %{count}"
+      even: "Debe ser par"
+      exclusion: "Está reservado"
       expired: "ha expirado, por favor pida uno nuevo"
+      greater_than: "Debe ser mayor que %{count}"
+      greater_than_or_equal_to: "Debe ser mayor o igual a %{count}"
+      in_between: "Debe estar entre %{min} y %{max}"
+      inclusion: "No está incluido en esta lista"
+      invalid: "es inválido"
       less_than: "Debe ser menor que %{count}"
+      less_than_or_equal_to: "Debe ser menor o igual a %{count}"
+      not_a_number: "No es un número"
+      not_an_integer: "Debe ser un número entero"
       not_found: "no encontrado"
       not_locked: "no está bloqueada"
       not_saved: 
         one: "Un error no permitió que este %{resource} se guardara:"
         other: "%{count} errores evitaron que este %{resource} se guardara:"
+      odd: "Debe ser número impar"
+      record_invalid: "Falló la validación: %{errors}"
+      taken: "Ya ha sido tomado"
+      too_long: 
+        one: "Es demasiado largo (máximo es un carácter)"
+        other: "Es demasiado largo (máximo es %{count} caracteres)"
       too_short: 
+        one: "Es demasiado corto (mínimo es un carácter)"
         other: "Es demasiado corto (mínimo es %{count} carácteres)"
       wrong_length: 
         one: "La longitud está equivocada (debe ser un carácter)"
@@ -597,6 +618,7 @@ es-MX:
       header: 
         one: "Un error no permitió que este %{model} se guardara"
         other: "%{count} errores evitaron que este %{resource} se guardara:"
+  establishment_means: "Medio de establecimiento"
   establishment_means_describes_how: "Medios de establecimiento describe como el taxón se estableció en un área. Ve el DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más infromación sobre terminología</a>."
   exact_coordinates_obscured_for: "Las coordenadas exactas están oscurecidas para la vista de especies amenazadas por el público"
   existing_flags: "Advertencias presentes"
@@ -5862,7 +5884,48 @@ es-MX:
         - ""
         - ""
         - ""
+      prefix: 
+        - Sr.
+        - Sra.
+        - ""
+        - Srita.
+        - Dr.
+      suffix: 
+        - Jr.
+        - Sr.
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
       title: 
+        descriptor: 
+          - ""
+          - ""
+          - Directo
+          - ""
+          - Dinámica
+          - Futuro
+          - Producto
+          - Nacional
+          - ""
+          - ""
+          - ""
+          - Global
+          - ""
+          - ""
+          - Dinámico
+          - Internacional
+          - ""
+          - ""
+          - Interno
+          - Humano
+          - ""
+          - ""
         job: 
           - Supervisor
           - Asociado
@@ -5927,6 +5990,29 @@ es-MX:
           - Facores
           - Usabilidad
           - Métricas
+    phone_number: 
+      formats: 
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+        - ""
+  find_species: "Encontrar especie"
   flag_description: "Advierte a los curadores que hay algo erróneo en este contenido"
   flag_for_curation: "Advertencia para curación"
   flag_it!: "¡Incluye una advertencia!"
@@ -6028,6 +6114,13 @@ es-MX:
   its_important_that_you: "Es importante que hagas click"
   iucn_red_list_status: "estatus en la Lista Roja de UICN"
   january: Enero
+  join_inat: "¡Únete a %{site_name}!"
+  join_project: "Únete a este proyecto"
+  joined_any_projects: "únete a cualquier proyecto"
+  journal: Diario
+  journal_archives_for: "Archivos de Diario para "
+  journal_post: "Nota de Diario"
+  just_added!: "¡Recientemente añadido!"
   kelp_diatoms_and_allies: "Kelp, diatomeas y parientes"
   kml: KML
   last_confirmed_observation: "Última observación confirmada"
@@ -6039,7 +6132,9 @@ es-MX:
   learn_more: "Aprende más"
   learn_more_raquo: "Aprende más &raquo;"
   learn_what_these_licenses_mean: "Aprende el significado de estas licencias"
+  least_concern: "Preocupación menor"
   leave_a_comment: "Deja un comentario"
+  leave_this_project: "Sal de este proyecto"
   license_descriptions_and_images: "Descripción de licencias y de imágenes"
   licensing: Licencias
   life!: ¡Vida!
@@ -6063,6 +6158,7 @@ es-MX:
   listing_announcement: "Enlistando noticias"
   listing_announcements: "Enlistando noticias"
   listing_lists: "Enlistando listas"
+  listing_project_assets: "Enlistando los recursos del proyecto"
   listing_taxa: "Enlistando taxa"
   listing_taxon_names: "Enlistando los nombres de los taxones"
   lists: Listas
@@ -6081,12 +6177,15 @@ es-MX:
   location: Ubicación
   location_is_exact: "La ubicación es exacta"
   log_in: "Empieza la sesión"
+  logged_in_as: "Inicia sesión como"
   login_slash_username: "Login / nombre de usuario"
   longitude: Longitude
   looks_like_neither_have!: "¡Parece que ninguno tiene taxa!"
   lookup: Busca
   lookup_user_rarr: "Busca usario &rarr,"
   main_content: "Contenido principal"
+  main_content_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n"
+  make_curator: "Conviértelo en curador"
   make_new_place: "Crea un nuevo lugar"
   make_sure_the_default_photo_looks_good: "Asegúrate que la foto predeterminada se vea bien de tamaño grande."
   make_taxonomic_flickr_tags_for_taxon_raquo: "Crea etiquetas taxonómicas de Flickr para este taxón &raquo;"
@@ -6107,6 +6206,7 @@ es-MX:
   mollusks: Moluscos
   mon: Lun
   month: Mes
+  months_ago: "Hace %{text} "
   more: Mas
   more_fields: "Mas campos"
   more_info: "Más información"
@@ -6121,6 +6221,7 @@ es-MX:
   name_entered: "Nombre incluido"
   name_llaves: "[Nombre]"
   name_of_the_place_you: "Nombre del lugar donde se realizó la observación"
+  named_based_url_might_change: "El nombre basado en el URL puede cambiar, pero este no."
   names: Nombres
   nav: Nav
   nav_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -6132,16 +6233,21 @@ es-MX:
   new_check_list_for: "Crea una nueva lista de comprobación para %{place} &raquo;"
   new_custom_field_for: "Nuevo campo para"
   new_flag_for: "Nuevas advertencias por"
+  new_journal_posts: "Nueva nota de Diario"
   new_list: "Nueva lista"
   new_members: "Nuevos miembros..."
   new_observation_field: "Nuevo campo de observación"
   new_observation_rules: "Nuevas reglas de observación"
   new_observations: "Nuevas observaciones..."
   new_password: "Nueva contraseña"
+  new_post: "Nueva nota"
   new_project: "Nuevo Proyecto"
+  new_project_asset: "Nuevo recurso de proyecto"
+  new_project_asset_for: "Nuevo recurso de proyecto para"
   new_source: "Nueva fuente"
   new_taxon_link: "Nuevo enlace de taxón"
   new_taxon_name: "Nuevo nombre de taxón"
+  new_taxon_name_for: "Nuevo nombre de especie o grupo (taxón) para"
   new_taxon_range: "Distribución del nuevo taxón"
   new_user_rules: "Nuevas reglas de usuario"
   new_users_week: "Nuevos usuarios / Semana"
@@ -6558,16 +6664,22 @@ es-MX:
   tell_the_world_a_little_about_yourself: "Platícale al mundo un poco sobre tí"
   terms: Condiciones
   terms_amd_rules: "Términos &amp; Reglas"
+  terms_new_users: "Condiciones a las que nuevos usuarios deben estar de acuerdo antes de unirse a este proyecto."
+  terms_of_service: "Condiciones de servicio"
+  terms_service: "Condiciones de servicio"
   thanks_for_signing_up: "¡Gracias por inscribirte!"
   thanks_for_using: "Gracias por usar"
   that_will_insert_a_link_to: "que insertará un enlace en esta herramienta en cada página de fotos de Flickr"
   thats_okay_we_forget: "¡No hay problema! Nosotros también olvidamos la nuestra. Envíanos la dirección de correo electrónico que usaste para crear tu cuenta y te enviaremos un enlace para volver a cargar tu contraseña."
   the: El
+  the_community_agrees_location_doesnt: "La comunidad está de acuerdo que  <strong>la ubicación no parece precisa</strong> (por ejemplo, monos en la mitad del océano, hipopótamos en los edificios de oficinas, etc.)\n"
+  the_community_agrees_organism_isnt: "La comunidad está de acuerdo que <strong>el organismo es silvestre / naturalizado</strong> (por ejemplo, está cautivo o es cultivado por humanos, o es un marciano inteligente)"
   the_data_quality_assessment_is: "La evaluación de calidad de los datos es una síntesis de la precisión de una observación. Todas las observaciones empiezan como <strong>\"Grado casual\"</strong> y alcanzan <strong>\"Grado de Investigación\"</strong> cuando"
   the_following_lists: "Las siguientes listas"
   the_following_observations_could: "Las siguientes observaciones no se pudieron añadir a %{link}"
   the_following_photos_have_been_tagged: "Las siguientes fotos han sido etiquetadas:"
   the_list: "La lista"
+  the_name_of_the_taxon_including_space: "El nombre de la especie o grupo (taxón), incluyendo el espacio para especies e infraespecies. <br/><br/> <strong>Ejemplo:</strong><br/>"
   the_observation_form_looks: "La forma de la observación es así:"
   the_observation_has_date: "La observación  <strong>tiene una fecha</strong>"
   the_observation_has_photo: "La observación  <strong>tiene una foto</strong>"
@@ -6578,6 +6690,7 @@ es-MX:
   the_world_is_full_of_interesting_places: "l mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina! %{site_name} Lugares te deja explorar la vida alrededor del planeta ¡Empieza a explorar!"
   the_world_is_full_of_interesting_places_short: "El mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina!"
   there_is_no_wikipedia_page_matching: "No hay página de Wikipedia que coincida"
+  there_isnt_wiki_article: "No existe un artículo de Wikipedia o redirecciona titulado '<i>%{taxon}</i>'. Quizá quieras"
   there_were_errors: "Hubo errores."
   there_were_some_problems_saving_this_observation: "Hubo problemas para guardar esta observación."
   there_were_some_problems_with_fields: "Hubo algunos problemas con los siguientes campos:"
@@ -6585,12 +6698,18 @@ es-MX:
   they_already_have_iNat_accounts: "...ya tienen cuentas de %{site_name}"
   they_have_been_invited: "...ya han sido invitados"
   third_person_possessive_singular: "%{object_phrase} %{noun}"
+  this_is_a_cached_summary_based_on: "Hay un resumen guardado sobre esta especie o grupo (taxón) basado en su "
   this_is_a_life_list_of: "Esta es la lista de vida de"
   this_list_is_empty!: "¡Esta lista está vacía!"
   this_list_only_accepts_taxa_that_are: "Esta lista solo acepta taxa que son"
+  this_observation_lies_outside_the: "Esta observación está fuera del rango de distribución %{site_name} para esta especie. Esto puede significar  que la distribución de %{site_name} está equivocada, la identificación está equivocada, es una ocurrencia de un individuo vagabundo o ¡es una expansión de la distribución!"
   this_photo_is_already_associated: "Esta fotos ya está asociada con una de tus observaciones."
   this_species: "Esta especie"
   this_species_has_no_colors: "¡Esta especie no tiene colores! ¡Ayúdanos a mejorar las búsquedas de especies incluyendo su color!"
+  this_taxon_has_no_default_photo: "¡Esta especie o grupo (taxón) no tiene foto predeterminada!"
+  this_taxon_name_was_originally_imported: "El nombre de esta especie o grupo (taxón) fue originalmente importado de un proveedor externo de nombres:"
+  this_taxon_was_originally_imported_from: "Esta especie o grupo (taxón) fue importado originalmente de un proveedor externo de nombres"
+  this_tool_will_add_tags: "herramienta. Esta herramienta añadirá etiquetas a tus fotos para todos los nombres comunes y científicos de la especie (taxón) que observaste, y los nombres de los grupos en los que está incluida. Si tu observación es de un "
   this_will_try_to_add_tags_to_your_flickr: "Esto intentará añadir etiquetas a tus fotos de Flickr. ¿Continuas?"
   this_will_update_all_last_observations: "Esto actualizará todas las últimas observaciones y añadirá nuevos taxa de"
   those_are_the_basics_of: "¡Esas son las bases para añadir observaciones! Hay muchas otras cosas que puedes hacer, como buscar y filtrar tus observaciones o editarlas en grupo, pero son fáciles de entender cuando las practicas."
@@ -6618,6 +6737,35 @@ es-MX:
   total_unique_observers: "Total de observadores únicos"
   total_users: "Total de usuarios,"
   tree_browser: "Navegador del árbol"
+  tree_browser_raquo: "Navegador del árbol &raquo;"
+  try_adding_species_form: "Intenta añadir algunas especies utilizando la forma en esta página."
+  try_wikipedia: "¿Prueba Wikipedia?"
+  tue: Mar
+  type_place_name: "Escribe el nombre del lugar"
+  type_project_name: "Escribe el nombre del proyecto"
+  type_source_title: "Escribe el título de la fuente..."
+  type_species_name: "Escribe el nombre de la especie..."
+  type_taxon_name: "Escribe el nombre de la especie o grupo (taxón)"
+  uicn_red_list_status: "Estatus en la Lista Roja de la UICN"
+  unclassified: "Sin clasificar"
+  uninvite: "cancela invitación"
+  unique_observers: "Observaciones únicas en los pasados 3 meses,"
+  unknown: Desconocido
+  unlink_your_picasa_account: "Desenlaza tu cuenta Picasa"
+  unpublish: "Cancela publicación"
+  unsuspend_user: "Cancela suspensión a usuario"
+  update: Actualización
+  update_existing_observations_with_new_license: "Actualiza las observaciones existentes con una nueva selección de licencia"
+  update_existing_photos_with_new_license: "Actualiza fotos existentes con una nueva selección de licencia"
+  update_past: "Actualiza las pasadas %{type}"
+  update_photos: "Actualiza fotos"
+  updated: Actualizado
+  updated_by: "Actualizado por"
+  upload: Cargar
+  user_commented_on: "El %{user} comentó sobre tu %{title} %{time}"
+  user_follows: "%{user} sigue a"
+  user_hasnt: "El %{user} no ha "
+  user_invite_observation_to_project: "A %{user} le gustaría invitar tu observación  \"%{observation}\" al proyecto %{project}."
   username: "Nombre de usuario"
   username_or_email: "Nombre de usuario o correo electónico"
   users: Usuarios
@@ -6702,8 +6850,43 @@ es-MX:
             biodiversidad en el que podrás compartir lo que observas en la 
             naturaleza, aprender de ella e intercambiar información con otros 
             ciudadanos naturalistas.
+  wait_file_generation: "Por favor, espera mientras se genera el archivo. Puede tomar un par de minutos para listas grandes."
+  want_to_add_one: "¿Quieres añadir una?"
+  want_to_show_off_some_of_your_favorite_taxa: "¿Quieres presumir tus grupos (taxa) favoritos aquí?"
+  we_also_support: |-
+      Tambien tenemos conexión con <a href="http://flickr.com">Flickr</a>, 
+      <a href="http://picasaweb.google.com">Picasa</a>, y 
+      <a href="http://facebook.com">Facebook</a> 
+      para tus imágenes.
+  we_can_only_understand_csv_in: "Solamente podemos entender CSV en el siguiente formato"
+  we_care_privacy: "¡Nos preocupamos por tu privacidad!"
+  we_couldnt_find_a_user: "No pudimos encontrar a un usuario con esa dirección de correo electrónico."
+  we_currently_support_flickr_for_image_hosting: "Actualmente usamos Flickr para hospedar imágenes"
   we_didnt_find_any_photos: "No encontramos ninguna foto utilizando los términos de búsqueda proporcionados."
+  we_had_trouble_saving_comment: "Tuvimos problemas para guardar ese comentario:"
+  wed: Mier
+  welcome: Bienvenido
   welcome!: ¡Bienvenido!
+  welcome_back: "Bienvenido de regreso"
+  welcome_comma: "Bienvenido,"
+  welcome_comma!: "Bienvenido,"
+  welcome_login: "Bienvenido, %{login}"
+  welcome_to_inat: "¡Bienvenido a %{site_name}!"
+  what: Qué
+  what_color_was_it: "¿De qué color era?"
+  what_did_you_see: "¿Qué fue lo que viste?"
+  what_did_you_see?: "¿Qué fue lo que viste?"
+  what_do_you_think: "¿Que piensas?"
+  what_to_keep: "Qué mantener"
+  what_want_to_list?: "¿Que quieres enlistar?"
+  when: Cuándo
+  when_did_you_see_it?: "¿Cuándo lo viste?"
+  where: Dónde
+  where_did_you_see_it: "¿Dónde lo viste?"
+  where_were_you?: "¿Dónde estabas?"
+  white: Blanco
+  widget: Widget
+  widget_code: "Código widget"
   you_can_sign_free_at: "Puedes obtener una cuenta %{site_name} gratis en"
   you_need_to_have_linked_flickr_account: "Necesitas tener enlazada tu cuenta Flickr para etiquetar tus fotos."
   you_need_to_select_some_observations_first: "Primero, necesitas seleccionar algunas observaciones."
