@@ -267,7 +267,7 @@ class ApplicationController < ActionController::Base
     end
     
     if logged_in?
-      current_user.save
+      current_user.save if current_user.preferences_changed?
       current_user.preferences
     else
       session[:preferences] = prefs
