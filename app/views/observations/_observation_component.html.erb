@@ -36,7 +36,7 @@ Some notes:
   top ||= false
   css_class = "observation"
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
-  if observation.research_grade?
+  if observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
   elsif observation.id_please
     css_class += ' id_please'
@@ -69,7 +69,7 @@ Some notes:
       <% else %>
         <%- 
           photos = observation.observation_photos.sort_by{|op| 
-            op.position || observation.photos.size + op.id.to_i
+            op.position || observation.photos_count + op.id.to_i
           }.map{|op| op.photo}.compact
           photo = photos.first
         %>
@@ -171,13 +171,13 @@ Some notes:
     <% end %>
   </div>
   <div class="actions attribute">
-    <% if observation.comments.count > 0 || observation.num_identifications_by_others > 0 -%>
+    <% if observation.comments_count > 0 || observation.num_identifications_by_others > 0 -%>
       <ul class="counts">
-        <% if observation.comments.count > 0 -%>
+        <% if observation.comments_count > 0 -%>
           <li class="comments_count">
             <a href="<%= url_for(observation) %>">
-              <span class="count"><%= observation.comments.count %></span>
-              <span class="ui-icon ui-icon-comment inlineblock">comment<%= 's' if observation.comments.count != 1 %></span>
+              <span class="count"><%= observation.comments_count %></span>
+              <span class="ui-icon ui-icon-comment inlineblock">comment<%= 's' if observation.comments_count != 1 %></span>
             </a>
           </li>
         <% end -%>
@@ -199,7 +199,7 @@ Some notes:
             "data-tip-show-delay" => 1000 %>
         </li>
       </ul>
-    <%- elsif observation.research_grade? %>
+    <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>
       <ul>
         <li class="last">
           <%= link_to "R<span class='full'>esearch </span>G<span class='full'>rade</span>".html_safe, observation_url(observation, :anchor => "data_quality_assessment"), 
