@@ -138,7 +138,7 @@ class User < ActiveRecord::Base
   end
   
   def icon_url_provided?
-    !self.icon_url.blank?
+    !self.icon.present? && !self.icon_url.blank?
   end
 
   def active?
@@ -155,8 +155,13 @@ class User < ActiveRecord::Base
 
   def download_remote_icon
     io = open(URI.parse(self.icon_url))
-    self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
-    rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Timeout::timeout(10) do
+      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    end
+    true
+  rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Rails.logger.error "[ERROR #{Time.now}] Failed to download_remote_icon for #{id}: #{e}"
+    true
   end
 
   def strip_name
@@ -395,7 +400,7 @@ class User < ActiveRecord::Base
   
   def create_default_life_list
     return true if life_list
-    new_life_list = if existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first
+    new_life_list = if (existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
       self.life_list = existing
     else
       LifeList.create(:user => self)
