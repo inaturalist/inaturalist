@@ -33,6 +33,7 @@ class TaxonRange < ActiveRecord::Base
   end
   
   def create_kml_attachment
+    return unless geom
     builder = Nokogiri::XML::Builder.new do |xml|
       xml.kml('xmlns' => 'http://earth.google.com/kml/2.1') do
         xml.Document {

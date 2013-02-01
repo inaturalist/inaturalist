@@ -9,6 +9,19 @@ require 'faker'
 # Sham.body  { Faker::Lorem.paragraph }
 # Sham.url { "http://#{Faker::Internet.domain_name}" }
 
+Assessment.blueprint do
+  taxon { Taxon.make! }
+  user { User.make! }
+  project { Project.make! }
+end
+
+AssessmentSection.blueprint do
+  assessment { Assessment.make! }
+  user { User.make! }
+  title { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
+end
+
 CheckList.blueprint do
   place { Place.make! }
 end

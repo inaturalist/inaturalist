@@ -10,6 +10,10 @@ class Subscription < ActiveRecord::Base
   cattr_accessor :subscribable_classes
   @@subscribable_classes ||= []
 
+  def to_s
+    "<Subscription #{id} user: #{user_id} resource: #{resource_type} #{resource_id}>"
+  end
+
   def has_unviewed_updates_from(notifier)
     Update.exists?([
       "subscriber_id = ? AND notifier_type = ? AND notifier_id = ? AND viewed_at IS NULL",
