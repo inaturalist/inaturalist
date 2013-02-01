@@ -45,10 +45,14 @@ class TaxonRange < ActiveRecord::Base
         }
       end
     end
-    tmp_path = self.range.path
+    #tmp_path = File.join(Dir::tmpdir, "temp.kml")
+    tmp_path = File.join("/Users/loarie/rails_projects/inaturalist/", "temp.kml")
     f = File.open(tmp_path, "w")
     f.write(builder.to_xml)
     f.close
+    file = File.open(tmp_path, "r")
+    self.range = file
+    self.save
   end
   
 end
