@@ -26,19 +26,6 @@ class InatConfig
     @config = HashWithIndifferentAccess.new(@config)
   end
 
-  def get(*keys)
-    value = @config
-    begin
-      keys.each do |key|
-        value = value.fetch(key)
-      end
-    rescue KeyError => error
-      Rails.logger.error "Missing config values: #{keys.join(':')}"
-      value = nil
-    end
-    value
-  end
-
   def to_hash
     @config
   end
@@ -53,7 +40,7 @@ class InatConfig
     elsif @config.class.method_defined? method_id
       @config.send(method_id, *args, &block)
     else
-      super
+      nil
     end
   end
 end
