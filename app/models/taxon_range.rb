@@ -31,4 +31,24 @@ class TaxonRange < ActiveRecord::Base
       errors.add(:geom, " must have more than 2 points")
     end
   end
+  
+  def create_kml_attachment
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.kml('xmlns' => 'http://earth.google.com/kml/2.1') do
+        xml.Document {
+          xml.Placemark {
+            xml.name
+            xml.description
+            xml.styleUrl "http://www.inaturalist.org/stylesheets/index.kml#taxon_range"
+            xml << self.geom.as_kml
+          }
+        }
+      end
+    end
+    tmp_path = self.range.path
+    f = File.open(tmp_path, "w")
+    f.write(builder.to_xml)
+    f.close
+  end
+  
 end
