@@ -2,43 +2,51 @@
 # You must replace these values with ones tailored to your own site.
 # For external services, follow the link in the note to go to the signup
 # page for the service.
-# 
-# Optional configurations have been commented out
+
 base: &base
-    general:
-        # name of the site, used extensively within the app
-        SITE_NAME: YourSite
 
-        # shortened version of the name
-        # SITE_NAME_SHORT: YS
+    # url of the site
+    site_url: http://www.yoursite.com
 
-        # site contact, mainly just used for GBIF archive generation
-        # contact:
-        #     first_name: Your
-        #     last_name: Name
-        #     organization: YourSite
-        #     position: co-director
-        #     address: 4 Privet Dr.
-        #     city: Little Whinging
-        #     admin_area: Surrey
-        #     postal_code: 94618
-        #     country: UK
-        #     phone: xxx-xxx-xxx
-        #     email: you@yoursite.com
-        #     url: http://www.yoursite.com
+    # name of the site, used extensively within the app
+    site_name: YourSite
+
+    # shortened version of the name
+    site_name_short: YS
+
+    # Email addresses
+    admin_email: admin@yoursite.com
+    noreply_email: no-reply@yoursite.com
+    help_email: help@yoursite.com
+    info_email: info@yoursite.com
+
+    # site contact, mainly just used for GBIF archive generation
+    # contact:
+    #     first_name: Your
+    #     last_name: Name
+    #     organization: YourSite
+    #     position: co-director
+    #     address: 4 Privet Dr.
+    #     city: Little Whinging
+    #     admin_area: Surrey
+    #     postal_code: 94618
+    #     country: UK
+    #     phone: xxx-xxx-xxx
+    #     email: you@yoursite.com
+    #     url: http://www.yoursite.com
 
     # header logo, should be 118x22
-    # logo: 'conabio-logo.png'
+    logo: logo-small.gif
 
     # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
-    # logo_icon_square_big: 'conabio-square-big.png'
+    logo_icon_square_big: bird.png
 
     # default bounds for most maps, including /observations/new and the home page. Defaults to the whole world
     # bounds:
-    #   swlat: 13.667338
-    #   swlng: -117.773438
-    #   nelat: 32.916485
-    #   nelng: -86.484375
+    #     swlat: 13.667338
+    #     swlng: -117.773438
+    #     nelat: 32.916485
+    #     nelng: -86.484375
 
     # default place ID for place filters. Presently only used on /places, but use may be expanded
     # place_id: 6793
@@ -54,7 +62,7 @@ base: &base
     # URL of the observation, which should be unique to each site instance. If
     # your URL is foo.inaturalist.org, then your observations will be fitlered
     # to URIs like http://foo.inaturalist.org/%
-    # site_only_observations: false
+    site_only_observations: false
 
     # iOS app ID. Used to display header notice about app in mobile views
     # ios_app_id: 421397028
@@ -63,71 +71,81 @@ base: &base
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af
         REST_AUTH_DIGEST_STRETCHES: 10
+
     rails:
-        #Issue {rake secret} to get a new one
+        # Issue {rake secret} to get a new one
         session_key: _yoursite_session
         secret: 09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af
+
     google_analytics:
-        #http://www.google.com/analytics/sign_up.html
+        # http://www.google.com/analytics/sign_up.html
         tracker_id: UA-090909-9
         domain_name: yoursite.org
+
     ubio:
-        #http://www.ubio.org/index.php?pagename=form
-        UBIO_KEY: 09af09af09af09af09af09af09af09af09af09af   
+        # http://www.ubio.org/index.php?pagename=form
+        key: 09af09af09af09af09af09af09af09af09af09af
+
     yahoo_dev_network:
-        #first need Yahoo account: https://edit.yahoo.com/registration
-        #then need to sign up for Yahoo Developers Network app interface:
-        #https://developer.apps.yahoo.com/wsregapp/
-        YDN_APP_ID: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
-    hoptoad:
-        # http://www.hoptoadapp.com/
+        # first need Yahoo account: https://edit.yahoo.com/registration
+        # then need to sign up for Yahoo Developers Network app interface:
+        # https://developer.apps.yahoo.com/wsregapp/
+        app_id: 09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09
+
+    airbrake:
+        # https://airbrake.io/
         api_key: 09af09af09af09af09af09af09af09af09af09af
+
     tile_servers:
-        # EXPERIMENTAL: These endpoints should return map tiles when hit with 
-        # requests like /{Z}/{X}/{Y}.png.  
+        # EXPERIMENTAL: These endpoints should return map tiles when hit with
+        # requests like /{Z}/{X}/{Y}.png.
         # See http://bitbucket.org/springmeyer/tilelite/
         observations: 'http://localhost:8000'
         tilestache: 'http://localhost:8080'
-    noreply_email: 'no-reply@yoursite.org'
-    google_webmaster:
-      verification: abiglongkey
-    s3_bucket: 'yourbucketname'
-    memcached: 'localhost'
-    facebook:
-      app_id: 00000000000
-      app_secret: 09af09af09af09af09af09af09af09af09af09af
-    twitter:
-      key: 09af09af09af09af09af09af09af09af09af09af
-      secret: 09af09af09af09af09af09af09af09af09af09af
-    cloudmade:
-      key: 09af09af09af09af09af09af09af09af09af09af
-    bing:
-      # http://www.bingmapsportal.com/
-      key: 09af09af09af09af09af09af09af09af09af09af
 
-    # Ratatosk is an internal library for looking up external taxonomy info. 
-    # By default it uses all registered name providers, but you can 
+    google_webmaster:
+        verification: abiglongkey
+
+    s3_bucket: 'yourbucketname'
+
+    memcached: 'localhost'
+
+    facebook:
+        app_id: 00000000000
+        app_secret: 09af09af09af09af09af09af09af09af09af09af
+
+    twitter:
+        key: 09af09af09af09af09af09af09af09af09af09af
+        secret: 09af09af09af09af09af09af09af09af09af09af
+
+    cloudmade:
+        key: 09af09af09af09af09af09af09af09af09af09af
+
+    bing:
+        # http://www.bingmapsportal.com/
+        key: 09af09af09af09af09af09af09af09af09af09af
+
+    flickr:
+        # http://www.flickr.com/services/api/keys/apply/
+        key: 09af09af09af09af09af09af09af09af
+        shared_secret: 09af09af09af09af
+
+    # Ratatosk is an internal library for looking up external taxonomy info.
+    # By default it uses all registered name providers, but you can
     # configure it here to use a subset
     # ratatosk:
-    #   name_providers: [col, ubio]
+    #     name_providers: [col, ubio]
+
+
+    metadata_provider:
+
+    creator:
 
 development:
     <<: *base
-    flickr:
-        #http://www.flickr.com/services/api/keys/apply/
-        FLICKR_API_KEY: 09af09af09af09af09af09af09af09af
-        FLICKR_SHARED_SECRET: 09af09af09af09af
 
 test:
     <<: *base
-    flickr:
-        #http://www.flickr.com/services/api/keys/apply/
-        FLICKR_API_KEY: 09af09af09af09af09af09af09af09af
-        FLICKR_SHARED_SECRET: 09af09af09af09af
 
 production:
     <<: *base
-    flickr:
-        #http://www.flickr.com/services/api/keys/apply/
-        FLICKR_API_KEY: 09af09af09af09af09af09af09af09af
-        FLICKR_SHARED_SECRET: 09af09af09af09af

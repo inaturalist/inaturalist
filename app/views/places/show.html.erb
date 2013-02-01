@@ -20,7 +20,7 @@
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <meta property="og:description" name="description" content="Learn about the species that live in <%= @place.display_name %>!"/> 
-  <meta property="og:image" content="<%= URI.join(root_url, path_to_image(INAT_CONFIG['logo_icon_square_big'] || "bird.png")) %>"/> 
+  <meta property="og:image" content="<%= URI.join(root_url, path_to_image(CONFIG.logo_icon_square_big)) %>"/> 
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -32,7 +32,7 @@
         FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect.html_safe %>,
         NEARBY_PLACES = <%= @nearby_places.to_json.html_safe %>,
         INSIDE_PLACES = <%= @inside_places.to_json.html_safe %>,
-        TILESTACHE_SERVER = <%= INAT_CONFIG['tile_servers']['tilestache'].inspect.html_safe %>
+        TILESTACHE_SERVER = <%= CONFIG.tile_servers.tilestache.inspect.html_safe %>
   </script>
   <%= javascript_include_tag 'inaturalist/map3', "jquery/plugins/inat/taxonmap", 
     "jquery/plugins/jquery.ba-bbq.min", "jquery/plugins/jquery.infinitescroll.min", 

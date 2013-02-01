@@ -118,7 +118,7 @@
     <li>
       <h5><a name="general5">How do I contact iNaturalist?</a></h5>
       <p>
-        You can contact us at <a href="mailto:<%= APP_CONFIG[:help_email] %>"><%= APP_CONFIG[:help_email] %></a>
+        You can contact us at <a href="mailto:<%= CONFIG.help_email %>"><%= CONFIG.help_email %></a>
       </p>
     </li>
     
@@ -133,7 +133,7 @@
       <p>
         Curators are iNat users who volunteer to help keep our taxonomic data
         up to date. If you're interested in becoming a curator, please 
-        <a href="mailto:<%= APP_CONFIG[:help_email] %>">contact us</a>. Curators can
+        <a href="mailto:<%= CONFIG.help_email %>">contact us</a>. Curators can
         also promote other users to curator status. Please only promote people
         you trust and that you know to have some taxonomic knowledge.
       </p>
@@ -180,7 +180,7 @@
       <p>
         Check the "ID Please" checkbox when adding / editing your
         observation and your observation will appear in
-        <a href="http://inaturalist.org/observations/id_please" title="<%= APP_CONFIG[:site_name] %> &middot; ID Please!">ID Please</a>.
+        <a href="http://inaturalist.org/observations/id_please" title="<%= CONFIG.site_name %> &middot; ID Please!">ID Please</a>.
       </p>
     </li>
     <li>

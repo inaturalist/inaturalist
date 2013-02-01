@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place = Place.find_by_id(INAT_CONFIG['place_id']) unless INAT_CONFIG['place_id'].blank?
+        place = Place.find_by_id(CONFIG.place_id) unless CONFIG.place_id.blank?
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
         place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
           places = if place
