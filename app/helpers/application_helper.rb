@@ -299,7 +299,7 @@ module ApplicationHelper
     url = if request
       "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
     else
-      "#{APP_CONFIG[:site_url]}#{user.icon.url(size || :mini)}"
+      "#{CONFIG.site_url}#{user.icon.url(size || :mini)}"
     end
     image_tag(url, options.merge(:style => style))
   end
@@ -748,7 +748,7 @@ module ApplicationHelper
   end
   
   def url_for_resource_with_host(resource)
-    "#{APP_CONFIG[:site_url]}#{url_for(resource)}"
+    "#{CONFIG.site_url}#{url_for(resource)}"
   end
   
   def commas_and(list)

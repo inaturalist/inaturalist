@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :user_logging
+  after_filter :user_request_logging
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
   before_filter :set_locale
@@ -153,6 +154,12 @@ class ApplicationController < ActionController::Base
   def user_logging
     return true unless logged_in?
     Rails.logger.info "  User: #{current_user.login} #{current_user.id}"
+  end
+
+  def user_request_logging
+    msg = "Finished #{request.method} #{request.path} from #{request.ip}"
+    msg += " for user: #{current_user.login} #{current_user.id}" if logged_in?
+    Rails.logger.info msg
   end
   
   #

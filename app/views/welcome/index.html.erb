@@ -1,6 +1,6 @@
-<% if INAT_CONFIG['google_webmaster'] && !INAT_CONFIG['google_webmaster']['verification'].blank? -%>
+<% if CONFIG.google_webmaster && !CONFIG.google_webmaster.verification.blank? -%>
   <%- content_for(:extrahead) do -%>
-    <meta name="google-site-verification" content="<%= INAT_CONFIG['google_webmaster']['verification'] %>" />
+    <meta name="google-site-verification" content="<%= CONFIG.google_webmaster.verification %>" />
   <%- end -%>
 <% end -%>
 <% content_for(:title) do %>
@@ -27,7 +27,7 @@
 
   <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
-    var BOUNDS = <%=raw INAT_CONFIG['bounds'].to_json %>
+    var BOUNDS = <%=raw CONFIG.bounds.to_json %>
     $(document).ready(function() {      
       // show some created_at dates
       $('div.created_at h4.label').text(I18n.t('date_added'));
@@ -119,10 +119,10 @@
     <div id="more">
     <h2><%=t :welcome! %></h2>
       <p>
-        <%= t('views.welcome.index.welcome_message_html', :image => image_tag(INAT_CONFIG['logo'] || 'logo-small.gif', :alt => SITE_NAME)) %>
+        <%= t('views.welcome.index.welcome_message_html', :image => image_tag(CONFIG.logo, :alt => CONFIG.site_name)) %>
       </p>
 
-      <a href="<%= INAT_CONFIG['about_url'] %>" id="learnmore" class="button">
+      <a href="<%= CONFIG.about_url %>" id="learnmore" class="button">
         <%=t :learn_more %> &raquo;
       </a>
       <% if logged_in? %>

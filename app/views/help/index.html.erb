@@ -92,7 +92,7 @@
     <li>
       <h5><a name="general5"><%=t 'views.help.index.how_do_i_contact_inaturalist?', :site_name => SITE_NAME %></a></h5>
       <p>
-        <%=t 'views.help.index.you_can_contact_us_at_html', :help_email => APP_CONFIG[:help_email] %>
+        <%=t 'views.help.index.you_can_contact_us_at_html', :help_email => CONFIG.help_email %>
       </p>
     </li>
     
@@ -103,7 +103,7 @@
         <%=t 'views.help.index.inat_admins_are_the_people_who', :site_name => SITE_NAME_SHORT %>
       </p>
       <p>
-        <%=t 'views.help.index.curators_are_inat_users_who_volunteer_to_html', :site_name => SITE_NAME_SHORT, :help_email => APP_CONFIG[:help_email] %>
+        <%=t 'views.help.index.curators_are_inat_users_who_volunteer_to_html', :site_name => CONFIG.site_name_short, :help_email => CONFIG.help_email %>
       </p>
     </li>
     

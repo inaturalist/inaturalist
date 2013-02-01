@@ -2,8 +2,8 @@
   <div class="meta stacked">
     <span class="meta"><%=t :follow_us %></span>
     <%=raw [
-      link_to('Twitter', INAT_CONFIG['twitter'].try(:[], 'url')),
-      link_to('Facebook', INAT_CONFIG['facebook'].try(:[], 'url'))
+      link_to('Twitter', CONFIG.twitter.try(:url)),
+      link_to('Facebook', CONFIG.facebook.try(:url))
     ].join('  <span class="meta">&amp;</span> ') %>
     <span class="meta">|&nbsp; <%= t(:mobile_apps_for) %></span>
     <a href="http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8">iPhone</a>

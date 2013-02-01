@@ -113,7 +113,7 @@ class Project < ActiveRecord::Base
   end
   
   def icon_url
-    icon.file? ? "#{APP_CONFIG[:site_url]}#{icon.url(:span2)}" : nil
+    icon.file? ? "#{CONFIG.site_url}#{icon.url(:span2)}" : nil
   end
   
   def project_observation_rule_terms
@@ -156,9 +156,9 @@ class Project < ActiveRecord::Base
           :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}", 
           :conditions => "observations.taxon_id = listed_taxa.taxon_id")
       when "identified?"
-        scope = scope.scoped(:conditions => "taxon_id IS NOT NULL")
+        scope = scope.scoped(:conditions => "observations.taxon_id IS NOT NULL")
       when "georeferenced"
-        scope = scope.scoped(:conditions => "geom IS NOT NULL")
+        scope = scope.scoped(:conditions => "observations.geom IS NOT NULL")
       end
     end
     scope

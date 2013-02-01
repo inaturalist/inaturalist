@@ -24,7 +24,7 @@ Inaturalist::Application.configure do
   config.active_record.logger = nil
 
   # Use a different cache store in production
-  config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
+  config.cache_store = :mem_cache_store, CONFIG.memcached
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -53,7 +53,7 @@ Inaturalist::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  if INAT_CONFIG['google_analytics'] && INAT_CONFIG['google_analytics']['tracker_id']
-    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => INAT_CONFIG['google_analytics']['tracker_id']
+  if CONFIG.google_analytics && CONFIG.google_analytics.tracker_id
+    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => CONFIG.google_analytics.tracker_id
   end
 end

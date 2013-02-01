@@ -21,8 +21,8 @@ class TaxonRange < ActiveRecord::Base
     :url => "/attachments/:class/:id.:extension"
     # :storage => :s3,
     # :s3_credentials => "#{Rails.root}/config/s3.yml",
-    # :s3_host_alias => INAT_CONFIG['s3_bucket'],
-    # :bucket => INAT_CONFIG['s3_bucket'],
+    # :s3_host_alias => CONFIG.s3_bucket,
+    # :bucket => CONFIG.s3_bucket,
     # :path => "taxon_ranges/:id.:extension",
     # :url => ":s3_alias_url"
   
@@ -31,4 +31,27 @@ class TaxonRange < ActiveRecord::Base
       errors.add(:geom, " must have more than 2 points")
     end
   end
+  
+  def create_kml_attachment
+    builder = Nokogiri::XML::Builder.new do |xml|
+      xml.kml('xmlns' => 'http://earth.google.com/kml/2.1') do
+        xml.Document {
+          xml.Placemark {
+            xml.name
+            xml.description
+            xml.styleUrl "http://www.inaturalist.org/stylesheets/index.kml#taxon_range"
+            xml << self.geom.as_kml
+          }
+        }
+      end
+    end
+    tmp_path = File.join(Dir::tmpdir, "temp.kml")
+    f = File.open(tmp_path, "w")
+    f.write(builder.to_xml)
+    f.close
+    file = File.open(tmp_path, "r")
+    self.range = file
+    self.save
+  end
+  
 end

@@ -75,6 +75,6 @@
           = link_to "Delete", "", :class => "deletebutton delete button", :style => "display:none"
 .small.meta
   This tool is experimental, so please 
-  = link_to "report any problems", "mailto:#{APP_CONFIG[:help_email]}"
+  = link_to "report any problems", "mailto:#{CONFIG.get(:help_email)}"
   you may have. It will probably only work in modern, standards-compliant browsers like
   = commas_and [["Safari", "http://www.apple.com/safari/"], ["Chrome", "https://www.google.com/intl/en/chrome/browser/"], ["Firefox", "http://www.mozilla.org/en-US/firefox"]].map{|n,u| link_to n, u}

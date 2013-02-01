@@ -160,7 +160,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has :photos_count, :as => :has_photos
+    has :photos_count, :as => :has_photos, :type => :integer
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -500,9 +500,9 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+    if CONFIG.site_only_observations && params[:site].blank?
       scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
-    elsif (site_bounds = INAT_CONFIG['bounds']) && params[:swlat].blank?
+    elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?
       scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
     end
     

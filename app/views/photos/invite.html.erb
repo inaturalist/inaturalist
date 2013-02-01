@@ -3,7 +3,7 @@
   @img = if @project && @project.icon.file?
     image_url @project.icon.url(:span2)
   else
-    image_url INAT_CONFIG['logo_icon_square_big'] || "bird.png"
+    image_url CONFIG.logo_icon_square_big
   end
 -%>
 <%- @description = capture do %>
@@ -47,5 +47,5 @@
 
 <p>
   <%- url = url_for(params.reject{|k,v| k.to_s == 'test'}.merge(:only_path => false)) -%>
-  <%= link_to t(add_your_photo), url, :class => "default button" %>
+  <%= link_to t(:add_your_photo), url, :class => "default button" %>
 </p>
