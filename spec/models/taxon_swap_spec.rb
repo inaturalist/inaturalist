@@ -1,5 +1,28 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe TaxonSwap, "destruction" do
+  before(:each) do
+    prepare_swap
+  end
+
+  it "should destroy updates" do
+    Observation.make!(:taxon => @input_taxon)
+    without_delay { @swap.commit }
+    @swap.updates.to_a.should_not be_blank
+    old_id = @swap.id
+    @swap.destroy
+    Update.where(:resource_type => "TaxonSwap", :resource_id => old_id).to_a.should be_blank
+  end
+
+  it "should destroy subscriptions" do
+    s = Subscription.make!(:resource => @swap)
+    @swap.destroy
+    dead_s = Subscription.find_by_id(s.id)
+    Rails.logger.debug "[DEBUG] dead_s: #{dead_s}"
+    dead_s.should be_blank
+  end
+end
+
 describe TaxonSwap, "commit" do
   before(:each) do
     prepare_swap
