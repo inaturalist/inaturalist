@@ -26,7 +26,9 @@ class ObservationPhoto < ActiveRecord::Base
   end
 
   def set_observation_photos_count
-    Observation.update_all(["photos_count = ?", observation.observation_photos(:reload => true).count], ["id = ?", observation])
+    if o = Observation.find_by_id(observation_id)
+      Observation.update_all(["photos_count = ?", o.observation_photos.count], ["id = ?", o.id])
+    end
     true
   end
   
