@@ -94,6 +94,13 @@
           self.selectItem($(self).data('previous'), {blurring: true})
         }
       })
+      markup.input.bind('autocompleteopen', function(e, ui) {
+        // lame hack aaround weird display bug
+        if (!$(e.currentTarget).is(':visible')) {
+          markup.input.autocomplete( "close" )
+          return
+        }
+      })
       
       markup.chooseButton.click(function() {
         // close if already visible
@@ -174,9 +181,9 @@
         $(this.markup.choice).html(item.label || item.html).showInlineBlock()
         $(this.markup.chooseButton).showInlineBlock()
         $(this.markup.clearButton)
-          .height(this.markup.choice.outerHeight())
+          .height(this.markup.choice.outerHeight()-2)
         $(this.markup.chooseButton)
-          .height(this.markup.choice.outerHeight())
+          .height(this.markup.choice.outerHeight()-2)
         $('.ui-icon', this.markup.clearButton)
           .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
         $('.ui-icon', this.markup.chooseButton)
@@ -213,7 +220,6 @@
         wrapper: $('<div class="inlineblock ui-chooser"></div>').attr('id', originalInput.attr('id') + '_chooser'),
         input: $('<input type="text"/>')
           .addClass(this.options.inputClass)
-          .attr('id', 'existing_source_id')
           .attr('placeholder', originalInput.attr('placeholder')),
         choice: $('<div></div>')
           .addClass(this.options.choiceClass)

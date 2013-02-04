@@ -12,7 +12,10 @@ class FlickrPhoto < Photo
       @api_response ||= FlickrPhoto.get_api_response(native_photo_id, :user => user)
       fp_flickr_user_id = @api_response.owner.nsid
       
-      if user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
+      if user.flickr_identity.blank? && self.observations.by(user).exists?
+        # assume the user used to have a FlickrIdentity and used it to import this photo, 
+        # but has since removed the FlickrIdentity
+      elsif user.flickr_identity.blank? || fp_flickr_user_id != user.flickr_identity.flickr_user_id
         errors.add(:user, "must own the photo on Flickr.")
       end
     end
@@ -210,8 +213,14 @@ class FlickrPhoto < Photo
     updated = 0
     destroyed = 0
     invalids = 0
+    skipped = 0
     start_time = Time.now
     FlickrPhoto.script_do_in_batches(find_options) do |p|
+      r = Net::HTTP.get_response(URI.parse(p.medium_url))
+      unless r.code_type == Net::HTTPBadRequest
+        skipped += 1
+        next
+      end
       repaired, errors = p.repair
       if errors.blank?
         updated += 1
@@ -227,7 +236,7 @@ class FlickrPhoto < Photo
         end
       end
     end
-    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{Time.now - start_time}s"
+    puts "[INFO #{Time.now}] finished FlickrPhoto.repair, #{updated} updated, #{destroyed} destroyed, #{invalids} invalid, #{skipped} skipped, #{Time.now - start_time}s"
   end
 
 end

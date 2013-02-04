@@ -3,7 +3,7 @@
   <%= @pagetitle = "Nearby Observations" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "observations" %>
+  <%#= stylesheet_link_tag "observations" %>
   <style type="text/css" media="screen">
     .observations { list-style: none; padding: 0;}
     .observations.mini .user .label,
@@ -12,62 +12,26 @@
     .observations.mini .place .label {
       font-size: 75%;
     }
-    
-    #pageheader {
-      margin: 0 0 5px 0;
-      padding-bottom: 3px;
-      border-bottom: 1px solid #ccc;
-    }
-    
-    #pageheader strong {
-      display: inline-block;
-      margin-top: 5px;
-    }
+    .observations.infowindow .details {display:none !important;}
+    .left_bottom_control {width:95px; text-align: left;}
     
     #map {
       height: 325px;
     }
     
-    #controls .button {
-      font-size: 80%;
-      padding: 5px;
-      margin: 0 0 0 5px;
-      border-bottom: 1px solid #ccc; 
-      -webkit-border-bottom-right-radius: 0;
-      -webkit-border-bottom-left-radius: 0;
-      background-color: #f6f6f6;;
-    }
-    
-    #controls .button.open {
-      background-color: white;
-      border-bottom: 1px solid white; 
-    }
-    
     #mapcontainer { position: relative; }
-    #maploading {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -10px;
-      margin-left: -100px;
-      width: 200px;
-      background-color: #eee;
-      padding: 5px;
-      -webkit-border-radius: 5px;
-      -webkit-box-shadow: 0px 2px 5px #666;
-    }
   </style>
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
-  <%= gmap_include_tag %>
-  <%= javascript_include_tag 'inaturalist/map2' %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <%= javascript_include_tag 'inaturalist/map3' %>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
       // Setup gmap
       window.map = iNaturalist.Map.createMap({controls: false, observationsTileServer: '<%= OBSERVATIONS_TILE_SERVER %>'});
-      map.addControl(new MobileZoomControl());
-      map.addControl(new MobileMapTypeControl());
+      map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(new NearMeControl(map));
+      map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(new SearchMapControl(map));
       
       // Get location from device
       if (typeof(navigator.geolocation) != "undefined") {
@@ -75,15 +39,16 @@
       } else {
         getCurrentPositionFailure();
       }
-    });
+      $('.tabs').tabs()
+    })
     
     function getCurrentPositionSuccess(location) {
-      window.scrollTo(0, $('#pageheader').offset().top - 5);
+      window.scrollTo(0, $('.tabs').offset().top - 5);
       getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "") %>'+
         '&lat='+location.coords.latitude+'&lng='+location.coords.longitude, {
           lat: location.coords.latitude,
           lon: location.coords.longitude
-        });
+        })
     }
     
     function getCurrentPositionFailure() {
@@ -101,7 +66,7 @@
     function getObs(url, options) {
       var options = $.extend({}, options);
       
-      $('#maploading').show();
+      $('#map').loadingShades()
       window.map.removeObservations();
       
       $.ajax({
@@ -121,125 +86,78 @@
           $('#observations').html(html);
           $('#observations .details').show();
           window.map.addObservations(observations);
-          window.map.zoomToObservations();
           
           if (options.lat && options.lon) {
-            var centerPt = new GLatLng(options.lat, options.lon);
+            var centerPt = new google.maps.LatLng(options.lat, options.lon);
             var bounds = map.getObservationBounds();
             bounds.extend(centerPt);
-            map.setZoom(map.getBoundsZoomLevel(bounds));
-            window.map.setCenter(centerPt);
+            map.fitBounds(bounds)
             if (window.centerMarker) {
-              window.centerMarker.setLatLng(centerPt);
+              window.centerMarker.setPosition(centerPt);
             } else {
               window.centerMarker = window.map.createMarker(options.lat, options.lon, {
                 icon: iNaturalist.Map.createPlaceIcon()
               });
-              window.map.addOverlay(window.centerMarker);
+              window.centerMarker.setMap(window.map)
             }
           }
-          
-          $('#maploading').hide();
+          $('#map').shades('close')
         },
         error: function(request, status, error) {
           $('#noobservations').show();
           $('#observations .loading').hide();
         }
-      });
+      })
     }
     
-    function MobileZoomControl() {};
-    MobileZoomControl.prototype = new GControl();
-    MobileZoomControl.prototype.initialize = function(map) {
-      var buttonStyle = {
-        width: '40px',
-        height: '40px',
-        display: 'block',
-        'font-size': '40px',
-        'line-height': 0.9,
-        'text-align': 'center',
-        'margin': '0 0 5px 0',
-        'clear': 'left',
-        '-webkit-box-shadow': '0px 2px 5px #666',
-        'padding': '0'
-      }
-      var zoomIn = $('<a class="button">+</a>').css(buttonStyle).click(function() {map.zoomIn()});
-      var zoomOut = $('<a class="button">-</a>').css(buttonStyle).click(function() {map.zoomOut()});
-      var panel = $('<div></div>').append(zoomIn, zoomOut);
-      var panelElt = $(panel).get(0);
-      map.getContainer().appendChild(panelElt);
-      return panelElt;
-    }
-    MobileZoomControl.prototype.getDefaultPosition = function() {
-      return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(5, 5));
-    }
-    
-    function MobileMapTypeControl() {};
-    MobileMapTypeControl.prototype = new GControl();
-    MobileMapTypeControl.prototype.initialize = function(map) {
-      var buttonStyle = {
-        'font-size': "10px",
-        padding: '5px',
-        '-webkit-box-shadow': '0px 2px 5px #666',
-      }
-      var satellite = $('<a class="button">satellite</a>').css(buttonStyle);
-      var terrain = $('<a class="button">terrain</a>').css(buttonStyle).hide();
-      $(terrain).click(function() {
-        map.setMapType(G_PHYSICAL_MAP);
-        $(satellite).show();
-        $(this).hide();
-      });
-      $(satellite).click(function() {
-        map.setMapType(G_HYBRID_MAP);
-        $(terrain).show();
-        $(this).hide();
-      });
-      var refresh = $('<a class="button">search map</a>').css(buttonStyle).click(function() {
-        var center = window.map.getCenter();
-        getObs('<%= observations_path(:format => "json", :partial => "cached_component", :q => "") %>'+
-            '&lat='+center.lat()+'&lng='+center.lng(), {
-          lat: center.lat(),
-          lon: center.lng()
-        });
-      });
-      var current = $('<a class="button">near me</a>').css(buttonStyle).click(function() {
+    var NearMeControl = function(map) {
+      var controlDiv = document.createElement('DIV')
+      controlDiv.style.padding = '5px';
+      var controlUI = $('<div><span class="inlineblock ui-icon ui-icon-pin-s"></span> Near me</div>').addClass('gmapv3control overlaycontrol left_bottom_control')
+      controlUI.click(function() {
+        $('#map').loadingShades()
         navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure)
-      });
-      
-      var panel = $('<div></div>');
-      if (navigator.geolocation) panel.append(current);
-      panel.append(refresh, terrain, satellite);
-      
-      var panelElt = $(panel).get(0);
-      map.getContainer().appendChild(panelElt);
-      return panelElt;
+      })
+      controlDiv.appendChild(controlUI.get(0))
+      this.div = controlDiv
+      this.map = map
+      return controlDiv
     }
-    MobileMapTypeControl.prototype.getDefaultPosition = function() {
-      return new GControlPosition(G_ANCHOR_TOP_RIGHT, new GSize(5, 5));
-    };
-    
-    
+
+    var SearchMapControl = function(map) {
+      var controlDiv = document.createElement('DIV')
+      controlDiv.style.padding = '5px';
+      var controlUI = $('<div><span class="inlineblock ui-icon ui-icon-refresh"></span> Search map</div>').addClass('gmapv3control overlaycontrol left_bottom_control')
+      controlUI.click(function() {
+        $('#map').loadingShades()
+        var center = window.map.getCenter(),
+            sw = map.getBounds().getSouthWest(),
+            ne = map.getBounds().getNorthEast(),
+            url = '/observations.json?partial=cached_component&q=""&swlat='+sw.lat()+'&swlng='+sw.lng()+'&nelat='+ne.lat()+'&nelng='+ne.lng()
+        getObs(url)
+      })
+      controlDiv.appendChild(controlUI.get(0))
+      this.div = controlDiv
+      this.map = map
+      return controlDiv
+    }
   </script>
 <%- end -%>
 
-<div id="pageheader">
-  <span id="controls" class="right">
-    <%= link_to_function "Map", "$('#mapcontainer').show(); $('#observations').hide(); $('#controls .button').toggleClass('open')", :class => "button open" %>
-    <%= link_to_function "List", "$('#mapcontainer').hide(); $('#observations').show(); $('#controls .button').toggleClass('open')", :class => "button" %>
-  </span>
-  <strong><%= @pagetitle %></strong>
-</div>
+<div class="tabs">
+  <ul>
+    <li><a href="#mapcontainer"><span>Nearby observations map</span></a></li>
+    <li><a href="#observations"><span>List</span></a></li>
+  </ul>
 
-<div id="mapcontainer">
-  <div id="map"></div>
-  <div id="maploading"><span class="loading status eee">Loading observations...</span></div>
-</div>
+  <div id="mapcontainer">
+    <div id="map"></div>
+  </div>
 
-<div id="observations" class="mini observations" style="display: none">
-  <div class="loading status">
-    Loading...
+  <div id="observations" class="mini observations">
+    <div class="loading status">
+      Loading...
+    </div>
+    <div id="noobservations" class="meta" style="display: none">No nearby observations.</div>
   </div>
 </div>
-
-<div id="noobservations" class="meta" style="display: none">No nearby observations.</div>
-

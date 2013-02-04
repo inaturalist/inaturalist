@@ -3,7 +3,7 @@
 <% content_for(:extrajs) do -%>
   <%= javascript_include_tag 'jquery/plugins/jquery.labelize',
                              "jquery/plugins/inat/observation_selectors" %>
-  <% unless post.parent_type=='Project' %>
+  <% unless post.parent_type == 'Project' %>
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
         $('#observation_selector').observationSelector({
@@ -59,7 +59,7 @@
     </div>
   </div>
   
-  <% unless post.parent_type=='Project' %>
+  <% unless post.parent_type == 'Project' %>
     <div class="last column span-10">
       <div class="field">
         <label>Observations</label>

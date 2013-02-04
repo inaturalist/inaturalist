@@ -1,21 +1,35 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
-require 'yaml'
-INAT_CONFIG = YAML.load(File.open(File.expand_path('../config.yml', __FILE__)))[Rails.env]
+# load InatConfig class
+require File.expand_path('../config', __FILE__)
+
+CONFIG = InatConfig.new(File.expand_path('../config.yml', __FILE__))
 
 # flickr api keys - these need to be set before Flickraw gets included
-FLICKR_API_KEY = INAT_CONFIG['flickr']['FLICKR_API_KEY']
-FLICKR_SHARED_SECRET = INAT_CONFIG['flickr']['FLICKR_SHARED_SECRET']
+FLICKR_API_KEY = CONFIG.flickr.key
+FLICKR_SHARED_SECRET = CONFIG.flickr.shared_secret
 DEFAULT_SRID = -1 # nofxx-georuby defaults to 4326.  Ugh.
+
+# DelayedJob priorities
+USER_PRIORITY = 0               # response to user action, should happen ASAP w/o bogging down a web proc
+NOTIFICATION_PRIORITY = 1       # notifies user of something, not ASAP, but soon
+USER_INTEGRITY_PRIORITY = 2     # maintains data integrity for stuff user's care about
+INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, needs to happen, eventually
+OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+# require custom logger that includes PIDs
+require File.expand_path('../../lib/better_logger', __FILE__)
+
 module Inaturalist
   class Application < Rails::Application
+
+    config.active_record.whitelist_attributes = false
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -57,21 +71,21 @@ end
 ActiveRecord::Base.include_root_in_json = false
 
 ### API KEYS ###
-UBIO_KEY = INAT_CONFIG['ubio']['UBIO_KEY']
+UBIO_KEY = CONFIG.ubio.key
 
 # Yahoo Developer Network
-YDN_APP_ID = INAT_CONFIG['yahoo_dev_network']['YDN_APP_ID']
+YDN_APP_ID = CONFIG.yahoo_dev_network.app_id
 GeoPlanet.appid = YDN_APP_ID
 
 FlickRaw.api_key = FLICKR_API_KEY
 FlickRaw.shared_secret = FLICKR_SHARED_SECRET
 
 # General settings
-SITE_NAME = INAT_CONFIG['general']['SITE_NAME']
-OBSERVATIONS_TILE_SERVER = INAT_CONFIG['tile_servers']['observations']
+SITE_NAME = CONFIG.site_name
+OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 
 # apparently we still need this for static maps
-Ym4r::GmPlugin::ApiKey.key = YAML.load_file("#{::Rails.root}/config/gmaps_api_key.yml")[Rails.env]
+#Ym4r::GmPlugin::ApiKey.key = YAML.load_file("#{::Rails.root}/config/gmaps_api_key.yml")[Rails.env]
 
 # force encoding
 Encoding.default_internal = Encoding::UTF_8

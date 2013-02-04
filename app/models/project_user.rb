@@ -20,7 +20,7 @@ class ProjectUser < ActiveRecord::Base
   end
   
   def prevent_owner_from_leaving
-    raise "The owner of a project can't leave the project" if project.user_id == user_id
+    raise "The owner of a project can't leave the project" if project && project.user_id == user_id
   end
   
   def has_time_zone?
@@ -68,9 +68,9 @@ class ProjectUser < ActiveRecord::Base
   def check_role
     return true unless role_changed?
     if role_was.blank?
-      Project.delay.update_curator_idents_on_make_curator(project_id, id)
+      Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_make_curator(project_id, id)
     elsif role.blank?
-      Project.delay.update_curator_idents_on_remove_curator(project_id, id)
+      Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_curator_idents_on_remove_curator(project_id, id)
     end
     true
   end

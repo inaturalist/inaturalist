@@ -14,10 +14,13 @@ config/smtp.yml
 config/sphinx.yml
 config/settings.yml
 config/tilestache.cfg
+config/schedule.rb
 log/*
 cache/
 db/sphinx/
+Capfile
 config/*.sphinx.conf
+config/deploy.rb
 *.DS_Store
 config/*.mapnik.xml
 config/*.ogr.vrt
@@ -35,3 +38,4 @@ public/attachments
 GeoLiteCity.dat
 .vagrant
 vendor/plugins/ratatosk/spec/debug.log
+*~

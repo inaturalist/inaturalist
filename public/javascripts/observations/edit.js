@@ -4,7 +4,8 @@ $(document).ready(function() {
   try {
     var map = iNaturalist.Map.createMap({
       div: $('#map').get(0),
-      mapTypeId: google.maps.MapTypeId.HYBRID
+      mapTypeId: google.maps.MapTypeId.HYBRID,
+      bounds: BOUNDS
     })
     if (typeof(PLACE) != 'undefined' && PLACE) {
       map.setPlace(PLACE, {
@@ -13,6 +14,12 @@ $(document).ready(function() {
           $.fn.latLonSelector.handleMapClick(e)
         }
       })
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null) {
+      for (var i=0; i < KML_ASSET_URLS.length; i++) {
+        lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i])
+        map.addOverlay('KML Layer', lyr)
+      }
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
     }
     $('.place_guess').latLonSelector({
@@ -48,7 +55,7 @@ $(document).ready(function() {
     }
   })
 
-  $(document.body).observationFieldsForm()
+  $('.observation_fields_form_fields').observationFieldsForm()
   
   $('.observation_photos').each(function() {
     var authenticity_token = $(this).parents('form').find('input[name=authenticity_token]').val()
@@ -78,6 +85,20 @@ $(document).ready(function() {
     }
     $(this).photoSelector(options)
   })
+  
+  if ($('#accept_terms').length != 0) {
+    $("input[type=submit].default").attr("exception", "true");
+    $('.observationform').submit(function() {
+      if (!$('input[type=checkbox]#accept_terms').is(':checked')){
+        var c = confirm("You didn't agree to the project's terms, this will still save the observation " +
+                      "to iNaturalist, but it won't be added to the project. Is this what you want?"
+        );
+        if (!c){
+          return false;
+        }
+      }
+    });
+  }
 })
 
 function handleTaxonClick(e, taxon) {

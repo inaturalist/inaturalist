@@ -33,7 +33,8 @@
     .identotron_taxa .headercol .taxon .othernames { display: inline; }
     .photos .nophoto {padding: 50px; text-align: center; background-color: #eee;}
     #controls .ui-chooser { vertical-align: top; }
-    #observation {background-color:white; box-shadow: #aaa 0px 1px 10px; border-radius: 10px; padding:10px; z-index:100;}
+    #controls .text, #controls select {display:block; width: 275px; margin-bottom: 10px;}
+    #observationbox, #controlsbox {background-color:white; box-shadow: #aaa 0px 1px 10px; border-radius: 10px; padding:10px; z-index:100;}
     #observation .observation {border: 0 transparent;}
     .comprehensive_notice { padding: 5px 10px; box-shadow: #aaa 0px 1px 3px; border-radius: 5px;}
     .identotron_taxa .listed_taxon {
@@ -41,6 +42,9 @@
       padding-bottom:10px;
       border-bottom: 1px solid #eee;
     }
+    .identotron_taxa .map { background: #eee url(/images/spinner-small-on_eeeeee.gif) center center no-repeat; }
+    .sticky {position:fixed; top: 10px;}
+    #side {width:310px;}
   </style>
 <%- end -%>
 
@@ -50,8 +54,9 @@
                              'modal_image',
                              "jquery/plugins/jquery.ba-bbq.min", 
                              'inaturalist/map3', 
+                             'taxon_guide',
                              "jquery/plugins/inat/taxonmap",
-                             "jquery/plugins/inat/fixed_follower.js" %>
+                             'jquery/plugins/waypoints.min' %>
     
   <script type="text/javascript" charset="utf-8">
     window.taxon = <%= @taxon.to_json(:methods => [:html]).html_safe %>
@@ -65,7 +70,11 @@
     var REPLACE_EXISTING = 2
     
     $(document).ready(function() {
-      $('#observation').fixedFollower()
+      $.waypoints.settings.scrollThrottle = 30;
+      $('#side').waypoint(function(event, direction) {
+        $(this).toggleClass('sticky', direction === "down")
+        event.stopPropagation()
+      })
       var currentState = $.deparam.fragment()
       $('#placechooser').chooser({
         collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
@@ -79,15 +88,30 @@
         defaultSources: defaultTaxa,
         chosen: currentState.taxon ? taxon : null
       })
+      $('#controls select[multiple]').val(currentState.colors)
+      $('#controls select[multiple]').multiselect({
+        header: false,
+        noneSelectedText: "None",
+        selectedText: function(selected, total, elts) {
+          if (selected > 2) {
+            return '<strong>'+selected+' colors</strong>'
+          }
+          var html = ''
+          for (var i=0; i < elts.length; i++) {
+            html += '<span class="colorfield '+elts[i].value+'">'+elts[i].value+'</span>'
+          }
+          return html
+        }
+      })
       
       $('#controls').submit(function() {
-        var state = $.deparam.querystring($(this).serialize())
+        var state = $.deparam.querystring(TaxonGuide.cleanParamString($(this).serialize()))
         delete state.page
         $.bbq.pushState(state, REPLACE_EXISTING)
         return false
       })
       
-      $('#placechooser, #taxonchooser').change(function() {
+      $('#placechooser, #taxonchooser, #colorchooser').change(function() {
         $(this).parents('form:first').submit()
       })
       $('#guidesearch').keypress(function(e) {
@@ -161,19 +185,26 @@
           } else {
             $('#taxa .comprehensive_notice').remove()
           }
-          $('#taxa .map').taxonMap({
-            observationsJsonUrl: false,
-            preserveViewport: true,
-            latitude:  observation ? observation.latitude : null,
-            longitude: observation ? observation.longitude : null
-          })
-          if (observation) {
-            $('#taxa .map').each(function() {
+          $('#taxa .map').waypoint(function() {
+            if ($(this).data('taxonMap')) return
+            $(this).taxonMap({
+              observationsJsonUrl: false,
+              preserveViewport: true,
+              latitude:  observation ? observation.latitude : null,
+              longitude: observation ? observation.longitude : null
+            })
+            if (observation) {
               $(this).data('taxonMap').addObservation(observation)
               if (observation.latitude) {
                 $(this).data('taxonMap').setCenter(new google.maps.LatLng(observation.latitude, observation.longitude))
               }
-            })
+            }
+          }, {
+            triggerOnce: true,
+            offset: '100%'
+          })
+
+          if (observation) {
             $('#taxa .headercol').each(function() {
               var taxonId = $(this).parents('.listed_taxon:first').attr('data-taxon-id')
               $(this).prepend(
@@ -211,6 +242,41 @@
 <%- end -%>
 
 <div id="pageheader">
+  <div class="right">
+    <%= link_to_dialog "Identotron help", :width => 600 do %>
+      
+      The Identotron is a tool to help you identify observations based on
+      iNat's check list data.  Given a higher level taxon and a place (e.g.
+      mammals of India), iNat will look for check lists entries matching that
+      taxon in that place, kind of like a dynamic field guide to the entire
+      planet. Most iNat check lists are works in progress, but if there's one
+      that is comprehensive, i.e. it lists <em>all</em> the representatives of
+      its taxon in a place, the Identotron will show a notice.
+
+      <table style="width:100%">
+        <tr>
+          <td width="30%">
+            <div class="quiet box">
+              Filter by place, taxon, and color using the controls.
+            </div>
+
+            <div class="quiet box">
+              Check out what the observation you're trying to identify looks like.
+            </div>
+          </td>
+          <td width="70%">
+            <div class="success status comprehensive_notice stacked">
+              If matches come from a comprehensive list a green bar will show here.
+            </div>
+
+            <div class="quiet box" style="height:200px;">
+              Matching species will show up here. The maps will show a range if iNat has one for that species.
+            </div>
+          </td>
+        </tr>
+      </table>
+    <% end -%>
+  </div>
   <% if @observation -%>
     <div class="breadcrumbs">
       <%= link_to 'Back to observation', @observation, :class => 'back crumb' %>
@@ -221,38 +287,58 @@
 </div>
 
 <div class="column span-8 append-1">
-  <% if @observation -%>
-    <div id="observation">
-      <div class="photos">
-        <%- photos = @observation.observation_photos.sort_by{|o| o.id}.map{|o| o.photo} -%>
-        <% unless photos.blank? -%>
-          <div class="stacked">
-            <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo), :class => "zoomable",
-              :title => "Photo #{photos[0].id}, #{photos[0].attribution}" %>
-          </div>
-          <% for photo in photos[1..-1] %>
-            <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => "Photo #{photo.id}, #{photo.attribution}" %>
-          <% end %>
-        <% end -%>
-      </div>
-      <div class="observations mini">
-        <%= render :partial => "observations/cached_component", :object => @observation %>
-      </div>
-      
+  <div id="side">
+    <div class="stacked" id="controlsbox">
+      <%= link_to_function "Hide", "$(this).siblings('form').slideToggle(); $(this).text(function() { return $(this).text() == 'Hide' ? 'Show' : 'Hide'})", :class => "right" %>
+      <h3>Controls</h3>
+      <%= form_tag url_for, :method => :get, :id => "controls" do %>
+        <div class="field">
+          <label>Search</label><br/>
+          <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => "Search species" %>
+        </div>
+        <div class="field">
+          <label>Place</label><br/>
+          <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => "Type place name" %>
+        </div>
+        <div class="field">
+          <label>Taxon</label><br/>
+          <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => "Type taxon name" %>
+        </div>
+        <div class="field">
+          <label>Colors</label><br/>
+          <%= select_tag "colors[]", options_for_select(Color.all.map(&:value).sort, :selected => @colors), :multiple => true, :id => "colorchooser" %>
+        </div>
+        <%= submit_tag "Filter", :class => "glaucous button" %>
+      <% end -%>
     </div>
-  <% end -%>
+    <% if @observation -%>
+      <div id="observationbox">
+        <%= link_to_function "Hide", "$(this).siblings('#observation').slideToggle(); $(this).text(function() { return $(this).text() == 'Hide' ? 'Show' : 'Hide'})", :class => "right" %>
+        <h3>Observation</h3>
+        <div id="observation">
+          <div class="photos">
+            <%- photos = @observation.observation_photos.sort_by{|o| o.id}.map{|o| o.photo} -%>
+            <% unless photos.blank? -%>
+              <div class="stacked">
+                <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo), :class => "zoomable",
+                  :title => "Photo #{photos[0].id}, #{photos[0].attribution}" %>
+              </div>
+              <% for photo in photos[1..-1] %>
+                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => "Photo #{photo.id}, #{photo.attribution}" %>
+              <% end %>
+            <% end -%>
+          </div>
+          <div class="observations mini">
+            <%= render :partial => "observations/cached_component", :object => @observation %>
+          </div>
+        </div>
+      </div>
+    <% end -%>
+  </div>
   &nbsp;
 </div>
 
 <div class="last column span-15">
-  <div class="stacked">
-    <%= form_tag url_for, :method => :get, :id => "controls", :class => "inline buttonrow" do %>
-      <%= text_field_tag :q, @q, :id => "guidesearch", :class => "text", :placeholder => "Search" %>
-      <%= text_field_tag :place, "", :id => "placechooser", :class => "text", :placeholder => "Type place name" %>
-      <%= text_field_tag :taxon, "", :id => "taxonchooser", :class => "text", :placeholder => "Type taxon name" %>
-      <%= submit_tag "Filter", :class => "glaucous button" %>
-    <% end -%>
-  </div>
   <div id="listed_taxa">
     <div id="taxa" class="clear taxa fluid medium grid">
     </div>

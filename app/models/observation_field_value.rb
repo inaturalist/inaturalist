@@ -6,6 +6,7 @@ class ObservationFieldValue < ActiveRecord::Base
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   validates_presence_of :value
   validates_presence_of :observation_field_id
+  validates_length_of :value, :maximum => 256
   validate :validate_observation_field_datatype
   validate :validate_observation_field_allowed_values
   

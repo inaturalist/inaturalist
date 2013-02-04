@@ -5,7 +5,13 @@
   <%= n.hidden_field :taxon_id %>
   
   <p class="ui">
+    <%= n.label :taxon_scheme_id, 'Taxon Scheme' %>
+    <br/>
     <%= n.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :selected => @taxon_scheme_taxon.try(:taxon_scheme_id) %>
+    <br />
+    <%= n.label :source_identifier, 'Source Identifier' %>
+    <br/>
+    <%= n.text_field :source_identifier, :class => 'text', :id => "taxon_scheme_taxon_id" %><br/>
   </p>
 
   <div class="clear buttonrow">

@@ -2,9 +2,9 @@ class PhotosController < ApplicationController
   MOBILIZED = [:show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
-  before_filter :load_photo, :only => [:show, :update, :repair]
-  before_filter :require_owner, :only => [:update]
-  before_filter :authenticate_user!, :only => [:inviter]
+  before_filter :load_photo, :only => [:show, :update, :repair, :destroy]
+  before_filter :require_owner, :only => [:update, :destroy]
+  before_filter :authenticate_user!, :only => [:inviter, :update, :destroy]
   before_filter :return_here, :only => [:show, :invite, :inviter]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
@@ -57,13 +57,20 @@ class PhotosController < ApplicationController
     end
   end
 
+  def destroy
+    resource = @photo.observations.first || @photo.taxa.first
+    @photo.destroy
+    flash[:notice] = "Photo deleted"
+    redirect_back_or_default(resource || '/')
+  end
+
   # this is the action for *accepting* an invite (e.g. coming from a url posted as a flickr/fb/picasa photo comment)
   # params should include '#{flickr || facebook || picasa}_photo_id' and whatever else you want to add
   # to the observation, e.g. taxon_id, project_id, etc
   def invite
     invite_params = params
     [:controller,:action].each{|k| invite_params.delete(k)}  # so, later on, new_observation_url(invite_params) doesn't barf
-    provider = invite_params.delete(:provider)
+    provider = invite_params.delete(:provider) || request.fullpath[/\/(.+)\/invite/, 1]
     session[:invite_params] = invite_params
     if request.user_agent =~ /facebookexternalhit/ || params[:test]
       @project = Project.find_by_id(params[:project_id].to_i)
@@ -81,7 +88,12 @@ class PhotosController < ApplicationController
         pa = if logged_in?
           current_user.provider_authorizations.where(:provider_name => provider).first
         end
-        redirect_to auth_url_for(:flickr, :scope => pa.try(:scope))
+        opts = if pa && !pa.scope.blank?
+          {:scope => pa.scope}
+        else
+          {}
+        end
+        redirect_to auth_url_for(provider, opts)
       end
     end
   end
@@ -167,21 +179,21 @@ class PhotosController < ApplicationController
   end
 
   def repair
-    unless @photo.is_a?(FlickrPhoto)
+    unless @photo.respond_to?(:repair)
       Rails.logger.debug "[DEBUG] @photo: #{@photo}"
-      flash[:error] = "Repair only works for Flickr photos"
-      redirect_back_or_default(@photo)
+      flash[:error] = "Repair doesn't work for that kind of photo"
+      redirect_back_or_default(@photo.becomes(Photo))
       return
     end
 
     url = @photo.taxa.first || @photo.observations.first || '/'
     repaired, errors = @photo.repair
     if repaired.destroyed?
-      flash[:error] = "Photo destroyed b/c it was deleted from Flickr or iNat no longer has permission to view it"
-      redirect_back_or_default(url)
+      flash[:error] = "Photo destroyed b/c it was deleted from the external site or iNat no longer has permission to view it"
+      redirect_to url
     else
       flash[:notice] = "Photo URLs repaired"
-      redirect_back_or_default(@photo)
+      redirect_back_or_default(@photo.becomes(Photo))
     end
   end
   
@@ -196,7 +208,7 @@ class PhotosController < ApplicationController
   def require_owner
     unless logged_in? && @photo.editable_by?(current_user)
       flash[:error] = "You don't have permission to do that"
-      return redirect_to @photo
+      return redirect_to @photo.becomes(Photo)
     end
   end
 

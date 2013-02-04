@@ -17,6 +17,12 @@ describe ProjectObservation, "creation" do
     jobs.select{|j| j.handler =~ /\:update_observations_counter_cache/}.should_not be_blank
     jobs.select{|j| j.handler =~ /\:update_taxa_counter_cache/}.should_not be_blank
   end
+
+  it "should destroy project invitations for its project and observation" do
+    pi = ProjectInvitation.make!(:project => @project, :observation => @observation)
+    make_project_observation(:observation => @observation, :project => @project)
+    ProjectInvitation.find_by_id(pi.id).should be_blank
+  end
 end
 
 describe ProjectObservation, "destruction" do
@@ -158,6 +164,28 @@ describe ProjectObservation, "in_taxon?" do
   #   po.observation.taxon.should be_blank
   #   po.should_not be_in_taxon(@taxon)
   # end
+end
+
+describe ProjectObservation, "to_csv" do
+  it "should include headers for project observation fields" do
+    pof = ProjectObservationField.make!
+    of = pof.observation_field
+    p = pof.project
+    po = make_project_observation(:project => p)
+    ProjectObservation.to_csv([po]).to_s.should =~ /#{of.name}/
+  end
+
+  it "should include values for project observation fields" do
+    pof = ProjectObservationField.make!
+    of = pof.observation_field
+    p = pof.project
+    po = make_project_observation(:project => p)
+    ofv = ObservationFieldValue.make!(:observation => po.observation, :observation_field => of, :value => "foo")
+    csv = ProjectObservation.to_csv([po])
+    rows = CSV.parse(csv)
+    ofv_index = rows[0].index(of.name)
+    rows[1][ofv_index].should eq(ofv.value)
+  end
 end
 
 def setup_project_and_user

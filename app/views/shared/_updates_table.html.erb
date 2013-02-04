@@ -33,7 +33,7 @@
               render_in_format :html, :partial => "shared/update_email_activity", :object => resource, :locals => {:updates => updates}
             else
               begin
-                render_in_format :html, :partial => "#{resource.class.to_s.underscore.pluralize}/update_email_#{notification}", 
+                render_in_format :html, :partial => "#{resource_type.underscore.pluralize}/update_email_#{notification}", 
                   :object => resource, :locals => {:updates => updates, :resource => resource}
               rescue ActionView::MissingTemplate, Errno::ENOENT
                 "#{resource_type} #{notification}"

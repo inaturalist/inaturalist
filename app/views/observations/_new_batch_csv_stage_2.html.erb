@@ -27,19 +27,21 @@
     </div>
     <div class="column span-24">
       <div id="observation_form_links" class="buttonrow">
-        <%= submit_tag "Save All", :class => 'default button' -%>
+        <%= submit_tag "Save All", :class => 'default button', 'data-loading-click' => 'Saving...' -%>
       </div>
     </div>
   <% else %>
-    <div class="column span-24 headers">
+    <div class="column span-24">
+      <div class="error">
         There were some problems with your CSV file. 
         Please revise the failed rows. Of course the problem could always be 
         on our side. If that is the case, please let us know.
-    </div>
-    <%= render :partial => 'observations/observation_csv_parse_errors' %>
-    <div class="column span-24">
-      <div id="observation_form_links" class="buttonrow">
-        <%= link_to "Back to Import", :action => 'import' -%>
+      </div>
+      <%= render :partial => 'observations/observation_csv_parse_errors' %>
+      <div class="column span-24">
+        <div id="observation_form_links" class="buttonrow">
+          <%= link_to "Back to Import", :action => 'import' -%>
+        </div>
       </div>
     </div>
   <% end %>

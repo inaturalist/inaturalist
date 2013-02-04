@@ -188,7 +188,7 @@
           <% @project.project_observation_fields.each do |pof| %>
             <%-
               observation_field_value = o.object.observation_field_values.detect{|ofv| ofv.observation_field_id == pof.observation_field_id}
-              observation_field_value ||= o.object.observation_field_values.build(:observation_field => pof.observation_field)
+              observation_field_value ||= ObservationFieldValue.new(:observation_field => pof.observation_field, :observation => o.object)
             -%>
             <%= o.fields_for(:observation_field_values, observation_field_value) do |ofv| %>
               <%= render 'observation_field_row', 
@@ -222,33 +222,7 @@
           </p>
         <% end -%>
       </legend>
-      <div class="observation_fields">
-        <%= o.fields_for :observation_field_values do |ofv| %>
-          <%- if @project && ofv.object && @project.project_observation_fields.detect{|pof| pof.observation_field_id == ofv.object.observation_field_id}
-              next
-            end
-          -%>
-          <%= render 'observation_field_row', :builder => ofv %>
-        <% end -%>
-      </div>
-      <div>
-        <%- new_ofv_fields = capture do %>
-          <%= o.fields_for :observation_field_values, o.object.observation_field_values.build do |ofv| %>
-            <%= render 'observation_field_row', :builder => ofv %>
-          <% end -%>
-        <% end -%>
-        <div class="inline buttonrow">
-          <label>Add a field</label>
-          <input name="observation_field" 
-                 class="observation_field_chooser" 
-                 type="text" 
-                 placeholder="Start typing field name..."
-                 data-chooser-default-sources="<%= @observation_fields.to_json %>">
-          <%= link_to_function "Add a field", "$(this).parents('fieldset:first').newObservationField('#{escape_javascript(new_ofv_fields)}')", :class => "button addfieldbutton" %>
-          <%= link_to "Create a new field", new_observation_field_path, :id => "createfieldbutton", :class => "button" %>
-          <%= link_to "View all fields", observation_fields_path, :class => "inter", :target => "_blank" %>
-        </div>
-      </div>
+      <%= render "observation_field_form_fields", :builder => o %>
     </fieldset>
     
   </div>

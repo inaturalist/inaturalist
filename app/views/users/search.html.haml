@@ -1,0 +1,30 @@
+= content_for :extracss do
+  = stylesheet_link_tag 'users'
+= content_for(:extrajs) do
+  :javascript
+    $(document).ready(function() {
+      $('.userimagelink').imagesLoaded(function() {
+        $('.userimage', this).centerInContainer()
+      })
+    })
+#pageheader.span-24.column
+  %span.breadcrumbs
+    = link_to "Back to people", people_path, :class => 'back crumb'
+  .right.inline.smallbuttons.buttonrow
+    = link_to "Invite someone to iNat!", emailer_invite_path, :class => "inter"
+    %span.meta.inter or
+    = form_tag(search_people_path, :method => :get, :class => "last") do
+      = text_field_tag :q, @q, :class => 'text', :placeholder => "Search by name or email", :style => "width: 150px;"
+      = submit_tag 'Search', :class => 'last default button'
+  %h2 Search for users
+
+- @users.each_with_index do |user,i|
+  %div{:class => "usercol column span-6 #{'last' if i % 4 == 3}"}
+    = link_to user_image(user, :size => "medium", :class => "userimage"), user, :class => "userimagelink"
+    .blurb
+      = link_to_user user, :class => "userlink"
+      %span.count= @observation_counts[user.id] || 0
+      =  @observation_counts[user.id] == 1 ? "observation" : "observations"
+
+.column.span-24
+  = will_paginate @users, :renderer => INatLinkRenderer

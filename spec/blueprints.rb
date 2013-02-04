@@ -9,6 +9,19 @@ require 'faker'
 # Sham.body  { Faker::Lorem.paragraph }
 # Sham.url { "http://#{Faker::Internet.domain_name}" }
 
+Assessment.blueprint do
+  taxon { Taxon.make! }
+  user { User.make! }
+  project { Project.make! }
+end
+
+AssessmentSection.blueprint do
+  assessment { Assessment.make! }
+  user { User.make! }
+  title { Faker::Lorem.sentence }
+  body { Faker::Lorem.paragraph }
+end
+
 CheckList.blueprint do
   place { Place.make! }
 end
@@ -16,6 +29,11 @@ end
 Comment.blueprint do
   user { User.make }
   body { Faker::Lorem.paragraph }
+end
+
+Flag.blueprint do
+  user { User.make! }
+  flag { Faker::Name.name }
 end
 
 FlickrIdentity.blueprint do
@@ -104,6 +122,12 @@ Project.blueprint do
   title { Faker::Lorem.sentence }
 end
 
+ProjectInvitation.blueprint do
+  user { User.make! }
+  project { Project.make! }
+  observation { Observation.make! }
+end
+
 ProjectList.blueprint do
   project { Project.make }
 end
@@ -166,6 +190,16 @@ Taxon.blueprint(:threatened) do
   is_active { true }
 end
 
+TaxonChange.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonDrop.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
 TaxonLink.blueprint do
   user { User.make! }
   taxon { Taxon.make! }
@@ -176,6 +210,11 @@ end
 TaxonPhoto.blueprint do
   taxon { Taxon.make! }
   photo { Photo.make }
+end
+
+TaxonMerge.blueprint do
+  source { Source.make! }
+  user { User.make! }
 end
 
 TaxonName.blueprint do
@@ -191,6 +230,21 @@ end
 TaxonScheme.blueprint do
   title { Faker::Lorem.sentence }
   source { Source.make! }
+end
+
+TaxonSplit.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonStage.blueprint do
+  source { Source.make! }
+  user { User.make! }
+end
+
+TaxonSwap.blueprint do
+  source { Source.make! }
+  user { User.make! }
 end
 
 Update.blueprint do

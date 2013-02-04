@@ -1,15 +1,16 @@
 $.fn.observationFieldsForm = function(options) {
   $(this).each(function() {
+    var that = this
     $('.observation_field_chooser', this).chooser({
       collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
       resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
       afterSelect: function(item) {
-        $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()
-        $('.observation_field_chooser').chooser('clear')
+        $('.observation_field_chooser', that).parents('.ui-chooser:first').next('.button').click()
+        $('.observation_field_chooser', that).chooser('clear')
       }
     })
     
-    $('#morefields .addfieldbutton', this).hide()
+    $('.addfieldbutton', this).hide()
     $('#createfieldbutton', this).click(ObservationFields.newObservationFieldButtonHandler)
     ObservationFields.fieldify({focus: false})
   })
@@ -44,7 +45,7 @@ var ObservationFields = {
           data: $(this).serialize(),
           dataType: 'json'
         })
-        .done(function(data, textStatus, XMLHttpRequest) {
+        .done(function(data, textStatus, req) {
           $(dialog).dialog('close')
           $('.observation_field_chooser').chooser('selectItem', data)
         })
@@ -62,7 +63,7 @@ var ObservationFields = {
     options = options || {}
     options.focus = typeof(options.focus) == 'undefined' ? true : options.focus
     $('.observation_field').not('.fieldified').each(function() {
-      var lastName = $('.observation_field.fieldified:last input').attr('name')
+      var lastName = $(this).siblings('.fieldified:last').find('input').attr('name')
       if (lastName) {
         var index = parseInt(lastName.match(/observation_field_values_attributes\]\[(\d+)\]/)[1]) + 1
       } else {
@@ -76,6 +77,7 @@ var ObservationFields = {
       currentField.recordId = currentField.recordId || currentField.id
       
       $(this).attr('id', 'observation_field_'+currentField.recordId)
+      $(this).attr('data-observation-field-id', currentField.recordId)
       $('.labeldesc label', this).html(currentField.name)
       $('.description', this).html(currentField.description)
       $('.observation_field_id', this).val(currentField.recordId)
@@ -114,6 +116,7 @@ var ObservationFields = {
         newInput.attr('name', 'taxon_name')
         input.after(newInput)
         input.hide()
+        $(newInput).removeClass('ofv_value_field')
         $(newInput).simpleTaxonSelector({
           taxonIDField: input
         })
@@ -121,5 +124,79 @@ var ObservationFields = {
         input.focus()
       }
     })
+  },
+
+  showObservationFieldsDialog: function(options) {
+    options = options || {}
+    var url = options.url || '/observations/'+window.observation.id+'/fields',
+        title = options.title || 'Observation fields',
+        originalInput = options.originalInput
+    var dialog = $('#obsfielddialog')
+    if (dialog.length == 0) {
+      dialog = $('<div id="obsfielddialog"></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+    }
+    dialog.load(url, function() {
+      var diag = this
+      $(this).observationFieldsForm()
+      $(this).centerDialog()
+      $('form:has(input[required])', this).submit(checkFormForRequiredFields)
+
+      if (originalInput) {
+        var form = $('form', this)
+        $(form).submit(function() {
+          var ajaxOptions = {
+            url: $(form).attr('action'),
+            type: $(form).attr('method'),
+            data: $(form).serialize(),
+            dataType: 'json'
+          }
+          $.ajax(ajaxOptions).done(function() {
+            $.rails.fire($(originalInput), 'ajax:success')
+            $(diag).dialog('close')
+          }).fail(function() {
+            alert('Failed to add to project')
+          })
+          return false
+        })
+      }
+    })
+    dialog.dialog({
+      modal: true,
+      title: title,
+      width: 600,
+      minHeight: 400
+    })
   }
 }
+
+// the following stuff doesn't have too much to do with observation fields, but it's at least tangentially related
+$(document).ready(function() {
+  $('#project_menu .addlink, .project_invitation .acceptlink').bind('ajax:success', function(e, json, status) {
+    var observationId = (json && json.observation_id) || $(this).data('observation-id') || window.observation.id
+    if (json && json.project && json.project.project_observation_fields && json.project.project_observation_fields.length > 0) {
+      ObservationFields.showObservationFieldsDialog({
+        url: '/observations/'+observationId+'/fields?project_id='+json.project_id,
+        title: 'Project observation fields for ' + json.project.title,
+        originalInput: this
+      })
+    }
+  }).bind('ajax:error', function(e, xhr, error, status) {
+    var json = $.parseJSON(xhr.responseText),
+        projectId = json.project_observation.project_id || $(this).data('project-id'),
+        observationId = json.project_observation.observation_id || $(this).data('observation-id') || window.observation.id
+    if (json.error.match(/observation field/)) {
+      ObservationFields.showObservationFieldsDialog({
+        url: '/observations/'+observationId+'/fields?project_id='+projectId,
+        title: 'Project observation fields',
+        originalInput: this
+      })
+    } else if (json.error.match(/must belong to a member/)) {
+      showJoinProjectDialog(projectId, {originalInput: this})
+    } else {
+      alert(json.error)
+    }
+  })
+  $('#project_menu .removelink, .project_invitation .removelink').bind('ajax:error', function(e, xhr, error, status) {
+    alert(xhr.responseText)
+  })
+})

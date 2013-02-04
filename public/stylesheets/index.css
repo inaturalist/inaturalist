@@ -25,6 +25,7 @@ p img{margin:0;float:none;}
 tfoot, tfoot td { font-style: normal; font-weight: bold; }
 .small{margin-bottom:0; line-height: 1.4;}
 .large{margin-bottom:0; line-height: 2;}
+pre, code {margin: 0;}
 
 /* Container Types */
 .wide.container {
@@ -135,6 +136,7 @@ form .field{margin-bottom:10px;}
 form .field .description { margin-bottom: 0.5em;}
 .label .fieldWithErrors{display:inline;}
 .stacked{margin-bottom:10px;}
+.unstacked{margin-bottom:0px;}
 .lined {padding-bottom: 10px; margin-bottom:10px; border-bottom: 1px solid #eee;}
 .fieldWithErrors {
   padding: 2px;
@@ -315,7 +317,6 @@ span.button {
   color: blue;
   text-decoration: underline;
   font-size: smaller;
-  margin: 0 0.5em;
   cursor: pointer;
 }
 
@@ -378,9 +379,14 @@ a .taxon:hover {
 .genus .sciname,
 .sciname.genus,
 .sciname.species,
-.sciname.infraspecies {
+.sciname.infraspecies,
+.sciname.subspecies,
+.sciname.variety,
+.sciname.hybrid {
   font-style: italic;
 }
+
+.sciname .rank {font-style: normal;}
 
 .taxon .othernames {
   font-size: 80%;
@@ -575,6 +581,9 @@ ul.leafylist li li:first-child {
   -webkit-box-shadow: 0px 1px 2px #888;
   -moz-box-shadow: 0px 1px 2px #888;
   box-shadow: 0px 1px 2px #888;
+  max-height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .button_toggle_menu .menu { top: 31px; }
@@ -641,20 +650,13 @@ ul.leafylist li li:first-child {
 
 /* Comments */
 #new_comment #comment_body{width:100%;height:150px;}
-.comment{padding:10px;}
-#new-comment{position:relative;}
 #new-comment textarea{margin-top:0;}
-#new-comment .meta{position:absolute;left:0;}
-.comment .meta{float:left;width:110px;margin-right:10px;}
-.comment .body{padding-left:120px;}
-.comment.preview .body{padding-left:0;}
-.comment .body ul{font-family:Georgia,serif;font-size:125%;}
-.comment .body img{max-width:100%;height:auto;}
-.comment .comment_actions{font-size:90%;}
 
 .item.comment {padding:0;}
 .item.comment .meta {float:none; width:auto; margin:0;}
 .item.comment .body{padding-left:0;}
+.item .comment_actions {display:none;}
+.item:hover .comment_actions {display:inline;}
 
 #pageheader #tools{margin-top:0.5em;}
 .count { color: #74AC00; }
@@ -734,6 +736,8 @@ a.csvlink{background-image:url(/images/silk/table.png);}
 .simpleTaxonSelector .taxon.Mammalia         { color: #1E90FF;  background-image: url('/images/iconic_taxa/mammalia-15px.png'); }
 .simpleTaxonSelector .taxon.Actinopterygii   { color: #1E90FF;  background-image: url('/images/iconic_taxa/actinopterygii-15px.png'); }
 .simpleTaxonSelector .taxon.Chromista        { color: #993300;  background-image: url('/images/iconic_taxa/chromista-15px.png'); }
+
+.simpleTaxonSelector .matches .taxon {cursor: pointer;}
 
 .taxon_links .taxon {
   padding-left: 25px;
@@ -888,6 +892,15 @@ form.inline .label {
 .helptip:hover {
   background: url(/images/silk/help.png) no-repeat;
 }
+.helptip.helptiptext {
+  top: 0;
+  width: auto;
+  height: auto;
+  padding-left: 20px;
+  color: #777;
+  cursor: pointer;
+}
+.helptip.helptiptext:hover {color: #36c;}
 
 .flag.resolved {
   text-decoration: line-through;
@@ -1174,7 +1187,7 @@ table .numeric { text-align: center; }
 .item_content .outdated .identification_body .user_and_taxon { text-decoration: line-through; }
 .item_content .identification_body { margin-top: 7px; }
 .item_content .identification_image img{width:32px; height: 32px; vertical-align:middle;}
-.item_content .identification{padding:0.5em;background-color:#eee;margin-bottom:0.5em;}
+.item_content .identification{padding:5px;background-color:#eee;margin-bottom:0.5em;}
 .item_content p{margin-bottom:0.5em;}
 
 .alert, .alert:hover {background-color: #cd0a0a; color: white; }
@@ -1230,3 +1243,52 @@ ul.plain {list-style:none;margin:0;padding:0}
   color: white;
   background-color: deeppink;
 }
+.leftmenu {
+  padding: 5px 0;
+  margin: 0;
+  background-color: #eee;
+}
+.leftmenu li {
+  list-style: none;
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+.leftmenu,
+.leftmenu li a {
+  border-top-left-radius: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -moz-border-radius-topleft: 10px;
+  border-bottom-left-radius: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+}
+.leftmenu li a {
+  display:block;
+  padding: 5px 10px;
+}
+.leftmenu li a.active { background-color: white; }
+.leftmenu li a:hover { background-color: #fafafa; }
+.leftmenu .count.right {
+  margin: 5px 10px 0 0;
+}
+.unsubscribed {text-decoration: line-through;}
+
+.dialog .new_flag textarea {width:250px; height: 50px;}
+
+.colorfield { padding: 1px 5px; margin-right: 5px; border-radius: 5px;}
+.colorfield.black   { color: lightgrey;  border: 1px solid transparent; background-color: black;}
+.colorfield.white   { color: grey;       border: 1px solid #eee; background-color: white;}
+.colorfield.red     { color: lightpink;  border: 1px solid transparent; background-color: red;}
+.colorfield.green   { color: lightgreen; border: 1px solid transparent; background-color: green;}
+.colorfield.blue    { color: lightblue;  border: 1px solid transparent; background-color: blue;}
+.colorfield.purple  { color: violet;     border: 1px solid transparent; background-color: purple;}
+.colorfield.yellow  { color: goldenrod;  border: 1px solid transparent; background-color: yellow;}
+.colorfield.grey    { color: lightgrey;  border: 1px solid transparent; background-color: grey;}
+.colorfield.orange  { color: chocolate;  border: 1px solid transparent; background-color: orange;}
+.colorfield.brown   { color: peru;       border: 1px solid transparent; background-color: saddlebrown;}
+.colorfield.pink    { color: deeppink;   border: 1px solid transparent; background-color: pink;}
+
+.project_invitation_extra {margin-top: 1px;}
+.project_invitation .box {margin: 0;}
+.wiki_page_actions {list-style: none;margin:0;}
+.wiki_page_actions li {display:inline; margin-left: 5px;}

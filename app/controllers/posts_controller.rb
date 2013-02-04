@@ -5,16 +5,15 @@ class PostsController < ApplicationController
   before_filter :author_required, :only => [:edit, :update, :destroy]
   
   def index
-    @posts = @parent.posts.published.paginate(:page => params[:page] || 1, 
-      :per_page => 10, :order => "published_at DESC")
+    scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
+    @posts = scope.published.page(params[:page]).per_page(10).order("published_at DESC")
     
     # Grab the monthly counts of all posts to show archives
     get_archives
     
     if (logged_in? && @display_user == current_user) ||
        (logged_in? && @parent.is_a?(Project) && @parent.editable_by?(current_user))
-      @drafts = @parent.posts.unpublished.all(
-        :order => "created_at DESC")
+      @drafts = scope.unpublished.order("created_at DESC")
     end
     
     respond_to do |format|
@@ -48,8 +47,6 @@ class PostsController < ApplicationController
   def new
     # if params include a project_id, parent is the project.  otherwise, parent is current_user.
     @post = Post.new(:parent => @parent, :user => current_user)
-    @observations = @parent.observations.latest.all(
-      :limit => 10, :include => [:taxon, :photos])
   end
   
   def create
@@ -78,7 +75,6 @@ class PostsController < ApplicationController
   end
     
   def edit
-    @observations = @parent.observations.all(:include => [:taxon, :photos])
     @preview = params[:preview]
   end
   
@@ -157,8 +153,9 @@ class PostsController < ApplicationController
   
   private
   
-  def get_archives
-    @archives = @parent.posts.published.count(
+  def get_archives(options = {})
+    scope = @parent.is_a?(User) ? @parent.journal_posts.scoped : @parent.posts.scoped
+    @archives = scope.published.count(
       :group => "TO_CHAR(published_at, 'YYYY MM Month')")
     @archives = @archives.to_a.sort_by(&:first).reverse.map do |month_str, count|
       [month_str.split, count].flatten
@@ -169,12 +166,14 @@ class PostsController < ApplicationController
   def load_parent
     if params[:login]
       @display_user = User.find_by_login(params[:login])
-      @display_user ||= @post.user if @post
+      @parent = @display_user
     elsif params[:project_id]
       @display_project = Project.find(params[:project_id])
+      @parent = @display_project
     end
-    @parent = (@display_user || @display_project)
-    render_404 and return if @parent.nil?
+    @display_user ||= @post.user if @post
+    @parent ||= @post.parent if @post
+    render_404 && return if @parent.blank?
     if @parent.is_a?(Project)
       @parent_display_name = @parent.title 
       @parent_slug = @parent.slug

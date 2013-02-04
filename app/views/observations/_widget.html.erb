@@ -1,23 +1,32 @@
 <%- target ||= nil -%>
 <%- default_image ||= nil -%>
 <%- silence ||= nil -%>
-<table>
+<table data-current-page="<%= @observations.current_page.to_i %>" 
+       data-per-page="<%= @observations.per_page %>" 
+       data-total-entries="<%= @observations.total_entries %>"
+       data-total-pages="<%= @observations.total_pages %>">
   <% if @observations.size == 0 %>
     <% unless silence == "true" %>
       <span class="inat-value">no observations</span>
     <% end %>
   <% end %>
   <% for observation in @observations %>
+    <%-
+      img_opts = {
+        :border => 0,
+        :title => observation.to_plain_s
+      }
+    -%>
     <tr class="inat-observation">
       <td class="inat-observation-image" valign="top" align="center">
         <%= link_to observation_url(observation), :target => (target == "blank" ? "_blank" : nil) do %>
           <% if obs_img_url = observation_image_url(observation) -%>
-            <%= image_tag obs_img_url, :border => 0 %>
+            <%= image_tag obs_img_url, img_opts %>
           <% else %>
             <% if default_image %>
-              <%= image_tag(image_url(default_image)) %>
+              <%= image_tag(image_url(default_image), img_opts) %>
             <% else %>
-              <%= iconic_taxon_image(observation.iconic_taxon, :border => 0) %>
+              <%= iconic_taxon_image(observation.iconic_taxon, img_opts) %>
             <% end -%>
           <% end -%>
         <% end %>

@@ -22,8 +22,11 @@ class TaxonSchemesController < ApplicationController
     end
     
     if @parent.blank? || @parent.rank != "genus"
-      @taxa = []
-      @genus_only = true
+      @taxa = @taxon_scheme.taxa.page(params[:page])
+      @active_taxa = []
+      @taxon_changes = []
+      @orphaned_taxa = []
+      @missing_taxa = []
       return
     end
     @active_taxa = @parent.children.all(
@@ -54,7 +57,7 @@ class TaxonSchemesController < ApplicationController
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
         :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
-        :conditions => ["type IN ('TaxonDrop') OR t1.is_active = ? OR t2.is_active = ?", true, true]
+        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
       )
       if taxon_change
         @taxon_changes << taxon_change
@@ -87,7 +90,51 @@ class TaxonSchemesController < ApplicationController
       end
     end
   end
-
+  
+  def mapped_inactive_taxa
+    @inactive_taxa = Taxon.order('name').
+         joins("JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id").
+         joins("JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id").
+         where("is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme).
+         page(params[:page]).per_page(100)
+    @taxon_changes = []
+    @inactive_taxa.each do |taxon|
+      scope = TaxonChange.scoped
+      scope = scope.taxon(taxon)
+      taxon_change = scope.first(
+        :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
+        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
+      )
+      if taxon_change
+        @taxon_changes << taxon_change
+        taxa_involved = [taxon_change.taxon,taxon_change.taxon_change_taxa.map{|tct| tct.taxon}].flatten
+      end
+    end
+    @taxon_changes = @taxon_changes.flatten.uniq
+    return
+  end
+  
+  def orphaned_inactive_taxa
+    @inactive_taxa = Taxon.order('name').
+       joins("JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id").
+       joins("JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id").
+       where("is_active = ? AND rank = 'species' AND ts.id = ?", false, @taxon_scheme).
+       includes({:taxon_photos => :photo}, :taxon_ranges_without_geom, :flags, {:taxon_scheme_taxa => :taxon_scheme}).
+       page(params[:page]).per_page(100)
+    @orphaned_taxa = []
+    inactive_taxon_ids = @inactive_taxa.map(&:id)
+    changes = TaxonChange.includes(:taxon_change_taxa).
+      where(
+        "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)", 
+        inactive_taxon_ids, inactive_taxon_ids
+      )
+    @orphaned_taxa = @inactive_taxa.reject do |t|
+      changes.detect do |tc|
+        tc.taxon_id == t.id || tc.taxon_change_taxa.detect{|tct| tct.taxon_id == t.id}
+      end
+    end
+  end
+  
   private
   def load_taxon_scheme
     render_404 unless @taxon_scheme = TaxonScheme.find_by_id(params[:id], 

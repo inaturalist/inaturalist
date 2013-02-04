@@ -5,8 +5,9 @@ class FlagsController < ApplicationController
   before_filter :load_flag, :only => [:show, :edit, :destroy, :update]
   
   # put the parameters for the foreign keys here
-  FLAG_MODELS = ["Observation","Taxon","Post"]
-  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id"]
+  FLAG_MODELS = ["Observation", "Taxon", "Post", "Comment", "Identification"]
+  FLAG_MODELS_ID = ["observation_id","taxon_id","post_id", "comment_id", "identification_id"]
+  PARTIALS = %w(dialog)
 
   def index
     @object = @model.find(params[@param])
@@ -23,7 +24,13 @@ class FlagsController < ApplicationController
   def new
     @flag = Flag.new(params[:flag])
     @object = @model.find(params[@param])
+    @flag.flaggable ||= @object
+    @flag.flag ||= "spam" if @object && !@object.is_a?(Taxon)
     @flags = @object.flags.all(:include => :user, :conditions => {:resolved => false})
+    if PARTIALS.include?(params[:partial])
+      render :layout => false, :partial => params[:partial]
+      return
+    end
   end
   
   def create
@@ -31,25 +38,34 @@ class FlagsController < ApplicationController
     create_options[:user_id] = current_user.id
     @object = @model.find_by_id(params[:flag][:flaggable_id])
     unless @object
-      flash[:error] = "Can't flag an objec that doesn't exist"
+      flash[:error] = "Can't flag an object that doesn't exist"
       redirect_to root_path
     end
     
-    flag = @object.flags.build(create_options)
-    if flag.save
-      flash[:notice] = "Your flagging was saved.  Thanks!"
-    else
-      flash[:error] = "We had a problem saving your flagging."
+    @flag = @object.flags.build(create_options)
+    if @flag.flag == "other" && !params[:flag_explanation].blank?
+      @flag.flag = params[:flag_explanation]
     end
-    redirect_to @object
+    if @flag.save
+      flash[:notice] = "Flag saved.  Thanks!"
+    else
+      flash[:error] = "We had a problem flagging that item: #{@flag.errors.full_messages.to_sentence.downcase}"
+    end
+    if @object.is_a?(Comment)
+      redirect_to @object.parent
+    elsif @object.is_a?(Identification)
+      redirect_to @object.observation
+    else
+      redirect_to @object
+    end
   end
   
   def update
     respond_to do |format|
       if @flag.update_attributes(params[:flag])
-        flash[:notice] = "Your flag was saved."
+        flash[:notice] = "Flag saved."
       else
-        flash[:notice] = "We had a problem saving your flag: #{@flag.errors.full_messages.to_sentence}"
+        flash[:notice] = "We had a problem saving that flag: #{@flag.errors.full_messages.to_sentence}"
       end
       format.html do 
         redirect_back_or_default(@flag)
@@ -61,14 +77,14 @@ class FlagsController < ApplicationController
   def destroy
     @flag.destroy
     respond_to do |format|
-      format.html { redirect_to(admin_path) }
+      format.html { redirect_back_or_default(admin_path) }
     end
   end
   
   private
   
   def load_flag
-    @flag = Flag.find_by_id(params[:id], :include => [:user, :resolver])
+    render_404 unless @flag = Flag.find_by_id(params[:id] || params[:flag_id], :include => [:user, :resolver])
   end
   
   def set_model
@@ -76,9 +92,12 @@ class FlagsController < ApplicationController
       if FLAG_MODELS_ID.include? key
         @param = key
         object_name = key.split("_id")[0]
-        @model = eval(object_name.capitalize)
+        @model = eval(object_name.camelcase)
         return
       end
+    end
+    if (@model ||= Object.const_get(params[:flag][:flaggable_type]) rescue nil)
+      return
     end
     flash[:notice] = "You can't flag that"
     redirect_to observations_path

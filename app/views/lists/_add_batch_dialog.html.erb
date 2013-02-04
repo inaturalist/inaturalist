@@ -10,29 +10,27 @@
       <%= submit_tag 'Add taxa', :class => 'default button', "data-loading-click" => "Adding..." %>
     <% end %>
   </div>
+  
+  <h3>Or upload via CSV</h3>
+  <p class="meta ui">
+    File should be in the following format: taxon name, description<% if @list.is_a?(CheckList) %>, occurrence status, establishment means<% end %>. CSV should not contain a header row.
+    <% if @list.is_a?(CheckList) %>
+      <br/>Allowed occurrence status values: <%= ListedTaxon::OCCURRENCE_STATUSES.join(', ') %>
+      <br/>Allowed establish means values: <%= ListedTaxon::ESTABLISHMENT_MEANS.join(', ') %>
+    <% end -%>
+  </p>
 
-  <% if is_admin? -%>
-    <div class="admin">
-      <h3>Or upload via CSV</h3>
-      <p class="meta ui">
-        File should be in the following format: taxon name, description, occurrence status, establishment means.
-        <br/>Allowed occurrence status values: <%= ListedTaxon::OCCURRENCE_STATUSES.join(', ') %>
-        <br/>Allowed establish means values: <%= ListedTaxon::ESTABLISHMENT_MEANS.join(', ') %>
-      </p>
-
-      <%= form_for ListedTaxaFromCsvFlowTask.new, :url => flow_tasks_url do |f| %>
-        <%= f.hidden_field :redirect_url, :value => list_batch_edit_url(@list) %>
-        <%= f.fields_for :inputs, f.object.inputs.build(:resource => @list) do |fi| %>
-          <%= fi.hidden_field :resource_type %>
-          <%= fi.hidden_field :resource_id %>
-        <% end -%>
-        <%= f.fields_for :inputs, f.object.inputs.build do |fi| %>
-          <div class="clear stacked">
-            <%= fi.file_field :file %>
-          </div>
-        <% end -%>
-        <%= f.submit "Upload CSV", :class => "default button" %>
-      <% end -%>
-    </div>
+  <%= form_for ListedTaxaFromCsvFlowTask.new, :url => flow_tasks_url do |f| %>
+    <%= f.hidden_field :redirect_url, :value => list_batch_edit_url(@list) %>
+    <%= f.fields_for :inputs, f.object.inputs.build(:resource => @list) do |fi| %>
+      <%= fi.hidden_field :resource_type %>
+      <%= fi.hidden_field :resource_id %>
+    <% end -%>
+    <%= f.fields_for :inputs, f.object.inputs.build do |fi| %>
+      <div class="clear stacked">
+        <%= fi.file_field :file %>
+      </div>
+    <% end -%>
+    <%= f.submit "Upload CSV", :class => "default button" %>
   <% end -%>
 </div>

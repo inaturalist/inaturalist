@@ -17,7 +17,7 @@
 <% end -%>
 
 <ul id="quicklinks" style="width: 100%">
-  <li><%= link_to "Nearby observations", nearby_observations_path, :id => "nearbylink", :class => "inlineblock button fullportrait" %></li>
+  <li><%= link_to "Nearby observations", nearby_observations_path, :id => "nearbylink", :class => "inlineblock button fullportrait", :rel => "nofollow" %></li>
   <li><%= link_to "Add an observation", add_nearby_observations_path, :id => "addobslink", :class => "inlineblock button fullportrait" %></li>
   <% if logged_in? -%>
     <li><%= link_to "Add observations from a list", add_observations_from_list_path, :id => "addfromlistlink", :class => "button inlineblock fullportrait" %></li>

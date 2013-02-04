@@ -57,11 +57,18 @@ module Shared::GuideModule
       @scope = @scope.has_conservation_status(@conservation_status)
     end
     
-    @taxa = @scope.paginate( 
-      :select => "DISTINCT ON (ancestry, taxa.id) taxa.*",
-      :include => [:taxon_names, {:taxon_photos => :photo}],
-      :order => @order,
-      :page => params[:page], :per_page => 50)
+    page = (params[:page] || 1).to_i
+    per_page = 50
+    offset = (page - 1) * per_page
+    # @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*").
+    #   includes(:taxon_names, {:taxon_photos => :photo})
+    @scope = @scope.select("DISTINCT ON (ancestry, taxa.id) taxa.*")
+    total_entries = @scope.count
+    @paged_scope = @scope.order(@order).limit(per_page).offset(offset)
+    @paged_scope = @paged_scope.has_photos if @filter_params.blank?
+    @taxa = WillPaginate::Collection.create(page, per_page, total_entries) do |pager|
+      pager.replace(@paged_scope.to_a)
+    end
     @taxa_by_taxon_id = @taxa.index_by{|t| t.id}
     
     @partial = params[:partial]
@@ -76,7 +83,7 @@ module Shared::GuideModule
     browsing_taxa.delete_if{|t| t.name == "Life"}
     @arranged_taxa = Taxon.arrange_nodes(browsing_taxa)
     @grid = params[:grid]
-    @grid = "fluid" unless %w(grid fluid).include?(@grid)
+    @grid = "grid" unless %w(grid fluid).include?(@grid)
     @size = params[:size]
     @size = "medium" unless %w(small medium).include?(@size)
     @labeled = params[:labeled]

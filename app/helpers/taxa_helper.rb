@@ -52,12 +52,12 @@ module TaxaHelper
   # otherwise the iconic taxon icon.
   #
   def taxon_image(taxon, params = {})
-    if taxon.blank? || taxon.photos.blank?
+    if taxon.blank? || taxon.default_photo.blank?
       return iconic_taxon_image(taxon, params)
     end
     params[:size] ||= "square"
     image_params = params.merge(:alt => default_taxon_name(taxon))
-    unless taxon.photos.blank?
+    unless taxon.default_photo.blank?
       image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
     end
     image_params[:title] = image_params[:alt]
@@ -70,7 +70,7 @@ module TaxaHelper
   end
   
   def taxon_image_url(taxon, params = {})
-    return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.photos.blank?
+    return iconic_taxon_image_url(taxon, params) if taxon.blank? || taxon.default_photo.blank?
     size = params[:size].blank? ? 'square' : params[:size]
     photo = taxon.default_photo
     photo.best_url(size)
@@ -117,7 +117,7 @@ module TaxaHelper
     else
       nil
     end
-    path = APP_CONFIG[:site_url]
+    path = CONFIG.site_url
     path += '/images/iconic_taxa/'
     if iconic_taxon
       path += iconic_taxon.name.downcase
@@ -145,6 +145,7 @@ module TaxaHelper
   end
   
   def common_taxon_name(taxon)
+    return nil if taxon.blank?
     TaxonName.choose_common_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names
     )
@@ -241,6 +242,15 @@ module TaxaHelper
     when "Fungi" then "FF1493"
     when "Protozoa" then "691776"
     else nil
+    end
+  end
+  
+  def taxon_range_kml_url(options = {})
+    taxon_range = options[:taxon_range] || @taxon_range
+    if taxon_range.blank?
+      ''.html_safe
+    else
+      "#{root_url.gsub(/\/$/, "")}#{taxon_range.range.url}?#{taxon_range.updated_at.to_i}".html_safe
     end
   end
 end

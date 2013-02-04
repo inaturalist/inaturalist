@@ -1,6 +1,8 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+//= require cocoon
+
 function num2letterID(num) {
     // Takes an positive integer and translates it into a unique letter ID.
     // Examples: 0 -> A, 25 -> Z, 26 -> AA, 27 -> AB, 51 -> AZ, 52 -> BA.
@@ -93,8 +95,7 @@ function loadingClickForLink() {
 
   var link = this
   if (!$(this).attr('data-loading-click-bound')) {
-    // this *should* bind complete but that doesn't seem to be working with the current
-    $(this).bind('ajax:success', function() {
+    $(this).bind('ajax:complete', function() {
       $(link).show()
       loading.hide()
     })
@@ -123,9 +124,11 @@ function loadingClickForButton() {
 $('input[data-loading-click][type=text], input[data-loading-click][type=submit]').live('click', function(clickEvent) {
   var button = this
   if ($(this).parents('form').length > 0) {
-    $(this).parents('form').submit(function(e) {
-      loadingClickForButton.apply(button)
-    })
+    if ($(this).attr("exception") != "true") {
+      $(this).parents('form').submit(function(e) {
+        loadingClickForButton.apply(button)
+      })
+    }
   } else {
     loadingClickForButton.apply(button)
   }
@@ -276,7 +279,11 @@ $(document).ready(function() {
       $(button).nextAll('.loading').hide()
       var html = data.html || data.body || ''
       html = '<div class="dialog">'+html+'</div>'
-      $(html).dialog({modal: true, title: 'Preview'})
+      $(html).dialog({
+        modal: true, 
+        title: 'Preview',
+        width: $(window).width() * 0.7
+      })
     })
     return false
   })
@@ -333,6 +340,13 @@ $(document).ready(function() {
 
   // force browsers that don't support HTML5's required attribute to recognize it
   $('form:has(input[required])').submit(checkFormForRequiredFields)
+
+  $('body.browser .item .item_content').width(function() { return $(this).parent().width() - 58 })
+  $('.identification:visible .identification_body').width(function() { 
+    return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 20
+  })
+
+  $('.add_matching_link').attr('confirm', null).data('confirm', null)
 })
 
 function checkFormForRequiredFields(e) {
@@ -464,6 +478,29 @@ $.fn.shades = function(e, options) {
   }
 }
 
+$.fn.loadingShades = function(e, options) {
+  options = options || {}
+  if (e && e == 'close') {
+    $(this).shades(e, options)
+  } else {
+    var txt = e || 'Loading...',
+        msg = '<div class="loadingShadesMsg"><span class="loading bigloading status inlineblock">'+txt+'...</span></div>'
+    options = $.extend(true, options, {
+      css: {'background-color': 'white'}, 
+      content: msg
+    })
+    $(this).shades('open', options)
+    var status = $('.shades .loading.status', this)
+    status.css({
+      position: 'absolute', 
+      top: '50%', 
+      left: '50%', 
+      marginTop: (-1 * status.outerHeight() / 2) + 'px',
+      marginLeft: (-1 * status.outerWidth() / 2) + 'px'
+    })
+  }
+}
+
 $.fn.showInlineBlock = function() {
   var opts = {}
   if ($.browser.msie && $.browser.version < 8) {
@@ -554,18 +591,22 @@ $.fn.centerInContainer = function(options) {
   options = options || {}
   var containerSelector = options.container || ':first'
   $(this).not('.centeredInContainer').each(function() {
-    if ($(this)) {};
-    var containerWidth = $(this).parents(containerSelector).width(),
-        containerHeight = $(this).parents(containerSelector).height(),
+    var container = $(this).parents(containerSelector),
+        containerWidth = container.width(),
+        containerHeight = container.height(),
         w = $(this).naturalWidth(),
         h = $(this).naturalHeight()
     if (w > h) {
       var width = containerHeight / h * w
-      $(this).css({height: containerHeight, maxWidth: 'none'})
-      $(this).css({top: 0, left: '50%', marginLeft: '-' + (width / 2) + 'px'})
+      $(this).css({height: containerHeight, maxWidth: 'none', position:'absolute'})
+      $(this).css({
+        top: 0, 
+        left: '50%', 
+        marginLeft: '-' + (width / 2) + 'px'
+      })
     } else if (w < h) {
       var height = containerWidth / w * h
-      $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none'})
+      $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none', position: 'absolute'})
       $(this).css({left: 0, top: '50%', marginTop: '-' + (height / 2) + 'px'})
     } else if (w == 0 && h == 0) {
       var that = this
@@ -778,12 +819,19 @@ $.fn.subscriptionSettings = function() {
             $(this).fadeOut(function() {
               $(this).siblings('form').fadeIn()
             })
-            var data = $(this).serialize() + '&format=json'
+            var data = $(this).serialize() + '&format=json',
+                resourceType = $('input[name*=resource_type]', this).val(),
+                resourceId = $('input[name*=resource_id]', this).val()
             $.ajax({
               url: $(this).attr('action'),
               type: 'post',
               data: data
             })
+            if ($(this).hasClass('unsubscribe')) {
+              $('.subscription_for_'+resourceType+'_'+resourceId).addClass('unsubscribed')
+            } else {
+              $('.subscription_for_'+resourceType+'_'+resourceId).removeClass('unsubscribed')
+            }
             return false
           })
         }
@@ -828,4 +876,119 @@ $.fn.centerDialog = function() {
   if (newHeight > maxHeight) { newHeight = maxHeight };
   $(this).dialog('option', 'height', newHeight)
   $(this).dialog('option', 'position', {my: 'center', at: 'center', of: $(window)})
+}
+
+$('.flaglink').live('click', function() {
+  $('#flagdialog').remove()
+  var dialog = $('<div></div>').attr('id', 'flagdialog')
+    .addClass('dialog')
+    .html('<div class="loading status">Loading...</div>')
+  dialog.load($(this).attr('href'), "partial=dialog", function() {
+    $(this).centerDialog()
+    $('input[type=radio]', this).change(function() {
+      if ($(this).val() == 'other') {
+        $(this).parents('.dialog:first').find('textarea').show()
+        $(this).parents('.dialog:first').centerDialog()
+      } else {
+        $(this).parents('.dialog:first').find('textarea').hide()
+        $(this).parents('.dialog:first').centerDialog()
+      }
+    })
+  })
+  $(document.body).append(dialog)
+  dialog.dialog({modal: true, title: "Flag an item"})
+  return false
+})
+
+function serialID() {
+  window._serialID = window._serialID ? window._serialID + 1 : 1
+  return window._serialID
+}
+
+function setPreference(pref, value) {
+  var url = $('#usersubnav .profile_link:first').attr('href')
+  if (!url || !pref || !value) { return }
+  var data = {
+    authenticity_token: $('meta[name=csrf-token]').attr('content'),
+    _method: 'PUT'
+  }
+  data['user[preferred_'+pref+']'] = value
+  $.ajax(url, {
+    type: 'POST',
+    data: data,
+    dataType: 'json',    
+  })
+}
+
+$('.project_invitation .acceptlink').live('ajax:success', function() {
+  $(this).hide()
+  $(this).siblings('.ignorelink').hide()
+  $(this).siblings('.removelink').show()
+  $(this).siblings('.status').html("Added!").show().addClass('success')
+  $(this).parents('.box:first').removeClass('notice')
+})
+$('.project_invitation .removelink').live('ajax:success', function() {
+  $(this).hide()
+  $(this).siblings('.acceptlink').show()
+  $(this).siblings('.status').html("Removed").show().removeClass('success')
+  $(this).parents('.box:first').addClass('notice')
+})
+$('.project_invitation .ignorelink').live('ajax:success', function() {
+  var item = $(this).parents('.item:first').get(0),
+      update = $(this).parents('.update:first').get(0),
+      project_invitation = $(this).parents('.project_invitation:first').get(0),
+      target = item || update || project_invitation
+  $(target).slideUp()
+})
+
+$('.add_matching_link').live('click', function(e) {
+  var link = this,
+      url = $(this).attr('href').replace(/add_matching/, 'preview_matching'),
+      projectId = url.match(/projects\/(.+?)\/preview_matching/)[1]
+  e.preventDefault()
+  e.stopImmediatePropagation()
+  $('#add_matching_link_dialog').remove()
+  var dialog = $('<div></div>').attr('id', 'add_matching_link_dialog')
+    .addClass('dialog')
+    .html('<div class="loading status">Loading...</div>')
+  $.ajax({url: url, type: 'get'})
+    .success(function(data) { dialog.html(data) })
+    .fail(function() {
+      dialog.dialog('close')
+      showJoinProjectDialog(projectId, {originalInput: link})
+    })
+  $(document.body).append(dialog)
+  dialog.dialog({modal: true, title: "Add matching observations to project", width: 400, height: 400})
+  return false  
+})
+
+function showJoinProjectDialog(projectId, options) {
+  options = options || {}
+  var url = options.url || '/projects/'+projectId+'/join?partial=join',
+      title = options.title || 'Join project',
+      originalInput = options.originalInput
+  var dialog = $('<div></div>').addClass('dialog').html('<div class="loading status">Loading...</div>')
+  dialog.load(url, function() {
+    // ajaxify join
+    var button = $('.default.button', this),
+        diag = this
+    button.click(function(e) {
+      var joinUrl = $(this).attr('href')
+      $.post(joinUrl).done(function() {
+        $(diag).dialog('close')
+        if (originalInput) {
+          $(originalInput).click()
+        }
+      }).fail(function() {
+        alert('Failed to join project')
+      })
+      return false
+    })
+  })
+  dialog.dialog({
+    modal: true,
+    title: title,
+    width: 600,
+    minHeight: 400
+  })
 }

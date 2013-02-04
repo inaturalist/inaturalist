@@ -30,6 +30,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
+  has_many :assessments
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -38,6 +39,7 @@ class Taxon < ActiveRecord::Base
   has_and_belongs_to_many :colors
   
   accepts_nested_attributes_for :conservation_status_source
+  accepts_nested_attributes_for :source
   
   define_index do
     indexes :name
@@ -72,6 +74,10 @@ class Taxon < ActiveRecord::Base
                           :scope => [:source_id],
                           :message => "already exists",
                           :allow_blank => true
+
+  has_subscribers :to => {
+    :observations => {:notification => "new_observations", :include_owner => false}
+  }
   
   NAME_PROVIDER_TITLES = {
     'ColNameProvider' => 'Catalogue of Life',
@@ -97,7 +103,9 @@ class Taxon < ActiveRecord::Base
     'tribe'        => 25,
     'subtribe'     => 24,
     'genus'        => 20,
+    'genushybrid'  => 20,
     'species'      => 10,
+    'hybrid'       => 10,
     'subspecies'   => 5,
     'variety'      => 5,
     'form'         => 5
@@ -128,7 +136,7 @@ class Taxon < ActiveRecord::Base
     'super-family'    => 'superfamily',
     'sub-family'      => 'subfamily',
     'gen'             => 'genus',
-    'subgenus'             => 'genus',
+    'subgenus'        => 'genus',
     'sp'              => 'species',
     'infraspecies'    => 'subspecies',
     'ssp'             => 'subspecies',
@@ -136,6 +144,7 @@ class Taxon < ActiveRecord::Base
     'subsp'           => 'subspecies',
     'trinomial'       => 'subspecies',
     'var'             => 'variety',
+    'fo'              => 'form',
     'unranked'        => nil
   }
   
@@ -213,7 +222,7 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 'lizard', 'gall']
+  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 'lizard', 'gall', 'pinecone', 'larva']
   
   scope :observed_by, lambda {|user|
     sql = <<-SQL
@@ -253,6 +262,14 @@ class Taxon < ActiveRecord::Base
     joins("JOIN taxon_ranges ON taxon_ranges.taxon_id = taxa.id").
     where("ST_Contains(place_geometries.geom, taxon_ranges.geom)")
   }
+
+  scope :observed_in_place, lambda {|place|
+    place_id = place.is_a?(Place) ? place.id : place.to_i 
+    joins(:observations).
+    joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
+    where("ST_Contains(place_geometries.geom, observations.geom)").
+    select("DISTINCT ON (taxa.id) taxa.*")
+  }
   
   scope :colored, lambda {|colors|
     colors = [colors] unless colors.is_a?(Array)
@@ -263,7 +280,7 @@ class Taxon < ActiveRecord::Base
     end
   }
   
-  scope :has_photos, includes(:photos).where("photos.id IS NOT NULL")
+  scope :has_photos, joins(:taxon_photos).where("taxon_photos.id IS NOT NULL")
   scope :among, lambda {|ids| where("taxa.id IN (?)", ids)}
   
   scope :self_and_descendants_of, lambda{|taxon|
@@ -293,6 +310,7 @@ class Taxon < ActiveRecord::Base
     includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
   scope :active, where(:is_active => true)
+  scope :inactive, where(:is_active => false)
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
@@ -307,7 +325,9 @@ class Taxon < ActiveRecord::Base
         update_listed_taxa
         update_life_lists
         update_obs_iconic_taxa
-        Observation.delay(:priority => 2).update_stats_for_observations_of(id)
+        unless Delayed::Job.where("handler LIKE '%update_stats_for_observations_of%- #{id}%'").exists?
+          Observation.delay(:priority => INTEGRITY_PRIORITY).update_stats_for_observations_of(id)
+        end
       end
       set_iconic_taxon
     end
@@ -350,13 +370,13 @@ class Taxon < ActiveRecord::Base
         ["iconic_taxon_id = ?", iconic_taxon_id],
         conditions
       )
-      Taxon.delay(:priority => 1).set_iconic_taxon_for_observations_of(id)
+      Taxon.delay(:priority => USER_INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)
     end
     true
   end
   
   def set_wikipedia_summary_later
-    delay(:priority => 2).set_wikipedia_summary if wikipedia_title_changed?
+    delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if wikipedia_title_changed?
     true
   end
   
@@ -469,8 +489,14 @@ class Taxon < ActiveRecord::Base
     ancestor_ids.include?(target_id)
   end
   
-  def graft
-    Ratatosk.graft(self)
+  def graft(options = {})
+    ratatosk.graft(self, options)
+  end
+
+  def graft_silently(options = {})
+    graft(options)
+  rescue RatatoskGraftError, Timeout::Error, NameProviderError => e
+    Rails.logger.error "[ERROR #{Time.now}] Failed to graft #{self}: #{e}"
   end
   
   def grafted?
@@ -507,6 +533,23 @@ class Taxon < ActiveRecord::Base
   def common_name
     TaxonName.choose_common_name(taxon_names)
   end
+
+  def name_with_rank
+    if rank_level && rank_level < SPECIES_LEVEL
+      r = case rank
+        when SUBSPECIES then "ssp."
+        when VARIETY then "var."
+        when FORM then "f."
+        else rank
+      end
+      pieces = name.split
+      "#{pieces[0..-2].join(' ')} #{r} #{pieces.last}"
+    elsif species?
+      name
+    else
+      "#{rank.capitalize} #{name}"
+    end
+  end
   
   #
   # Create a scientific taxon name matching this taxon's name if one doesn't
@@ -540,7 +583,7 @@ class Taxon < ActiveRecord::Base
       taxon_photo.destroy unless new_photos.detect{|p| p.id == taxon_photo.photo_id}
     end
     new_photos.each do |photo|
-      taxon_photos.create(:photo => photo) unless photos.detect{|p| p.id == photo.id}
+      taxon_photos.build(:photo => photo) unless photos.detect{|p| p.id == photo.id}
     end
   end
   
@@ -634,15 +677,16 @@ class Taxon < ActiveRecord::Base
   # Determine whether this taxon is at or below the rank of species
   #
   def species_or_lower?
-    return false if rank.blank?
-    %w"species subspecies variety infraspecies".include?(rank.downcase)
+    return false if rank_level.blank?
+    rank_level <= SPECIES_LEVEL
   end
   
   # Updated the "cached" ancestor values in all listed taxa with this taxon
   def update_listed_taxa
     return true if ancestry.blank?
     return true if ancestry_callbacks_disabled?
-    Taxon.delay(:priority => 1).update_listed_taxa_for(id, ancestry_was)
+    return true unless ancestry_changed?
+    Taxon.delay(:priority => INTEGRITY_PRIORITY).update_listed_taxa_for(id, ancestry_was)
     true
   end
   
@@ -665,7 +709,9 @@ class Taxon < ActiveRecord::Base
     if ListRule.exists?([
         "operator LIKE 'in_taxon%' AND operand_type = ? AND operand_id IN (?)", 
         Taxon.to_s, ids])
-      LifeList.delay(:priority => 1).update_life_lists_for_taxon(self)
+      unless Delayed::Job.where("handler LIKE '%update_life_lists_for_taxon%id: ''#{id}''%'").exists?
+        LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
+      end
     end
     true
   end
@@ -708,7 +754,9 @@ class Taxon < ActiveRecord::Base
       return Nokogiri::HTML::DocumentFragment.parse(sum).to_s
     end
     
-    delay(:priority => 2).set_wikipedia_summary unless new_record?
+    if !new_record? && options[:refresh_if_blank] && !Delayed::Job.where("handler LIKE '%set_wikipedia_summary%id: ''#{id}''%'").exists?
+      delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary
+    end
     nil
   end
   
@@ -784,8 +832,8 @@ class Taxon < ActiveRecord::Base
       end
     end
     
-    LifeList.delay(:priority => 1).update_life_lists_for_taxon(self)
-    Taxon.delay(:priority => 1).update_listed_taxa_for(self, reject.ancestry)
+    LifeList.delay(:priority => INTEGRITY_PRIORITY).update_life_lists_for_taxon(self)
+    Taxon.delay(:priority => INTEGRITY_PRIORITY).update_listed_taxa_for(self, reject.ancestry)
     
     %w(flags taxon_scheme_taxa).each do |association|
       send(association, :reload => true).each do |associate|
@@ -870,7 +918,7 @@ class Taxon < ActiveRecord::Base
         place_types(%w(Country State County)).
         intersecting_taxon(self).
         find_each(:select => "places.id, place_type, check_list_id, taxon_ranges.id AS taxon_range_id", :include => :check_list) do |place|
-      place.check_list.add_taxon(self, :taxon_range_id => place.taxon_range_id)
+      place.check_list.try(:add_taxon, self, :taxon_range_id => place.taxon_range_id)
     end
   end
   
@@ -891,16 +939,17 @@ class Taxon < ActiveRecord::Base
       "#{base_class.ancestry_column} = regexp_replace(#{base_class.ancestry_column}, '^#{old_ancestry}', '#{new_ancestry}')", 
       descendant_conditions
     )
-    Taxon.delay(:priority => 1).update_descendants_with_new_ancestry(id, child_ancestry)
+    Taxon.delay(:priority => INTEGRITY_PRIORITY).update_descendants_with_new_ancestry(id, child_ancestry)
     true
   end
   
   def default_photo
-    if taxon_photos.loaded?
+    @default_photo ||= if taxon_photos.loaded?
       taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
     else
       taxon_photos.first(:include => [:photo], :order => "taxon_photos.id ASC").try(:photo)
     end
+    @default_photo
   end
   
   def self.update_descendants_with_new_ancestry(taxon, child_ancestry_was)
@@ -921,7 +970,7 @@ class Taxon < ActiveRecord::Base
   def apply_orphan_strategy
     return if ancestry_callbacks_disabled?
     return if new_record?
-    Taxon.delay(:priority => 1).apply_orphan_strategy(child_ancestry)
+    Taxon.delay(:priority => INTEGRITY_PRIORITY).apply_orphan_strategy(child_ancestry)
   end
   
   def self.apply_orphan_strategy(child_ancestry_was)
@@ -952,6 +1001,10 @@ class Taxon < ActiveRecord::Base
   
   def photo_url
     photos.blank? ? nil : image_url
+  end
+
+  def all_names
+    taxon_names.map(&:name)
   end
   
   # Static ##################################################################
@@ -987,21 +1040,21 @@ class Taxon < ActiveRecord::Base
   
   # Convert an array of strings to taxa
   def self.tags_to_taxa(tags, options = {})
-    scope = TaxonName.scoped(:include => [:taxon])
-    scope = scope.scoped(:conditions => {:lexicon => options[:lexicon]}) if options[:lexicon]
-    scope = scope.scoped(:conditions => ["taxon_names.is_valid = ?", true]) if options[:valid]
+    scope = TaxonName.includes(:taxon).scoped
+    scope = scope.where(:lexicon => options[:lexicon]) if options[:lexicon]
+    scope = scope.where("taxon_names.is_valid = ?", true) if options[:valid]
     names = tags.map do |tag|
       if name = tag.match(/^taxonomy:\w+=(.*)/).try(:[], 1)
         name.downcase
       else
-        name = tag.downcase
+        name = tag.downcase.strip.gsub(/ sp\.?$/, '')
         next if PROBLEM_NAMES.include?(name)
         name
       end
     end.compact
     scope = scope.where("lower(taxon_names.name) IN (?)", names)
     taxon_names = scope.where("taxa.is_active = ?", true).all
-    taxon_names = scope.all if taxon_names.blank?
+    taxon_names = scope.all if taxon_names.blank? && options[:active] != true
     taxon_names.map{|tn| tn.taxon}.compact
   end
   
@@ -1097,17 +1150,19 @@ class Taxon < ActiveRecord::Base
     Taxon.find_by_sql(sql)
   end
   
-  def self.single_taxon_for_name(name)
+  def self.single_taxon_for_name(name, options = {})
     return if PROBLEM_NAMES.include?(name.downcase)
     name = name[/.+\((.+?)\)/, 1] if name =~ /.+\(.+?\)/
-    name = name.gsub(/\sss?p\.?\s*$/, '')
-    taxon_names = TaxonName.all(:limit => 5, :include => :taxon, :conditions => [
-      "lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase])
+    name = Taxon.remove_rank_from_name(name)
+    scope = TaxonName.limit(10).includes(:taxon).
+      where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
+    scope = scope.where(options[:ancestor].descendant_conditions) if options[:ancestor]
+    taxon_names = scope.all
     return taxon_names.first.taxon if taxon_names.size == 1
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     if taxa.blank?
       begin
-        taxa = Taxon.search(name).to_a
+        taxa = Taxon.search(name).compact.select{|t| t.taxon_names.detect{|tn| tn.name =~ /#{name}/}}
       rescue Riddle::ConnectionError => e
         return
       end
@@ -1151,7 +1206,7 @@ class Taxon < ActiveRecord::Base
             :photo => {
               :methods => [:license_code, :attribution],
               :except => [:original_url, :file_processing, :file_file_size, 
-                :file_content_type, :file_file_name, :mobile]
+                :file_content_type, :file_file_name, :mobile, :metadata]
             }
           }
         }

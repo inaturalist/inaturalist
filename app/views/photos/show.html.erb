@@ -6,6 +6,8 @@
   <style type="text/css" media="screen">
     th, td { vertical-align: top;}
     .photocell {min-width: 500px;}
+    .mini.observations .observation {border: 0 transparent;}
+    th {border-bottom: 1px solid #DDD;}
   </style>
 <%- end -%>
 
@@ -91,14 +93,24 @@
                 </li>
               <% end -%>
             </ul>
-
-            <% if @photo.is_a?(FlickrPhoto) && is_curator? -%>
+            
+            <% if @photo.respond_to?(:repair) && (is_me?(@photo.user) || is_curator?) -%>
               <span class="button">
-                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, :confirm => "This might delete the photo if it was deleted from Flickr or the owner has revoked permission.  Proceed?" %>
+                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?" %>
               </span>
             <% end -%>
           </td>
         </tr>
+        <% if is_me?(@photo.user) -%>
+          <tr>
+            <th>Actions</th>
+            <td>
+              <%= link_to "Delete photo", @photo.becomes(Photo), :method => :delete, 
+                :confirm => "Are you sure you want to delete this photo?", "data-loading-click" => "Deleting...", 
+                :class => "delete button" %>
+            </td>
+          </tr>
+        <% end -%>
       </table>
     </td>
   </tr>

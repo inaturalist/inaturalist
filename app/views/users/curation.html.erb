@@ -59,6 +59,9 @@
         <li>
           <%= link_to "Log in as #{@display_user.login}", :controller => "admin", :action => "login_as", :id => @display_user.id %>
         </li>
+        <li>
+          <strong><%= link_to "Manage / delete content", admin_user_content_path(@display_user.id) %></strong>
+        </li>
       </ul>
     </div>
     <%- extra = capture do -%>

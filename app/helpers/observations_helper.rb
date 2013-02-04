@@ -1,6 +1,6 @@
 module ObservationsHelper
   def observation_image_url(observation, params = {})
-    return nil if observation.photos.empty?
+    return nil if observation.observation_photos.blank?
     size = params[:size] ? "#{params[:size]}_url" : 'square_url'
     photo = observation.observation_photos.sort_by do |op|
       op.position || observation.observation_photos.size + op.id.to_i

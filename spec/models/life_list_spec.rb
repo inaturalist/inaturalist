@@ -131,3 +131,16 @@ describe List, "refresh_with_observation" do
     @list.taxon_ids.should_not include(t1.id)
   end
 end
+
+describe LifeList, "update_life_lists_for_taxon" do
+  it "should not queue jobs if they already exist" do
+    t = Taxon.make!
+    l = make_life_list_for_taxon(t)
+    Delayed::Job.delete_all
+    lambda {
+      2.times do
+        LifeList.update_life_lists_for_taxon(t)
+      end
+    }.should change(Delayed::Job, :count).by(1)
+  end
+end

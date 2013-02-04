@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
-  attr_accessor   :preferred_photo_license
-  MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same, :preferred_photo_license]
+  attr_accessible :make_observation_licenses_same, 
+                  :make_photo_licenses_same, 
+                  :preferred_photo_license, 
+                  :preferred_observation_license
   
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
@@ -28,12 +30,12 @@ class User < ActiveRecord::Base
   preference :gbif_sharing, :boolean, :default => true
   preference :observation_license, :string
   preference :photo_license, :string
-
   preference :share_observations_on_facebook, :boolean, :default => true
   preference :share_observations_on_twitter, :boolean, :default => true
-
-  SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
+  preference :automatic_taxonomic_changes, :boolean, :default => true
+  preference :observations_view, :string
   
+  SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
@@ -51,29 +53,10 @@ class User < ActiveRecord::Base
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
+  has_many :identifications_for_others, :class_name => "Identification", 
+    :include => [:observation],
+    :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
-  has_many :goal_participants, :dependent => :destroy
-  has_many :goals, :through => :goal_participants
-  has_many :incomplete_goals,
-           :source =>  :goal,
-           :through => :goal_participants,
-           :conditions => ["goal_participants.goal_completed = 0 " + 
-                           "AND goals.completed = 0 " +
-                           "AND (goals.ends_at IS NULL " +
-                           "OR goals.ends_at > ?)", Time.now]
-  has_many :completed_goals,
-           :source => :goal,
-           :through => :goal_participants,
-           :conditions => "goal_participants.goal_completed = 1 " +
-                          "OR goals.completed = 1"
-  has_many :goal_participants_for_incomplete_goals,
-           :class_name => "GoalParticipant",
-           :include => :goal,
-           :conditions => ["goal_participants.goal_completed = 0 " + 
-                           "AND goals.completed = 0 " +
-                           "AND (goals.ends_at IS NULL " +
-                           "OR goals.ends_at > ?)", Time.now]
-  has_many :goal_contributions, :through => :goal_participants
   
   has_many :posts, :dependent => :destroy
   has_many :journal_posts, :class_name => Post.to_s, :as => :parent
@@ -97,8 +80,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   has_subscribers
-  has_many :subscriptions
-  has_many :updates, :foreign_key => :subscriber_id
+  has_many :subscriptions, :dependent => :destroy
+  has_many :updates, :foreign_key => :subscriber_id, :dependent => :destroy
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name
@@ -106,6 +89,7 @@ class User < ActiveRecord::Base
   after_save :update_observation_licenses
   after_save :update_photo_licenses
   after_create :create_default_life_list
+  after_create :set_uri
   after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
@@ -145,7 +129,7 @@ class User < ActiveRecord::Base
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
   }
-  scope :curators, includes(:roles).where("roles.name = 'curator'")
+  scope :curators, includes(:roles).where("roles.name IN ('curator', 'admin')")
   scope :active, where("suspended_at IS NULL")
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
@@ -157,7 +141,7 @@ class User < ActiveRecord::Base
   end
   
   def icon_url_provided?
-    !self.icon_url.blank?
+    !self.icon.present? && !self.icon_url.blank?
   end
 
   def active?
@@ -174,8 +158,13 @@ class User < ActiveRecord::Base
 
   def download_remote_icon
     io = open(URI.parse(self.icon_url))
-    self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
-    rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Timeout::timeout(10) do
+      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    end
+    true
+  rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Rails.logger.error "[ERROR #{Time.now}] Failed to download_remote_icon for #{id}: #{e}"
+    true
   end
 
   def strip_name
@@ -343,14 +332,6 @@ class User < ActiveRecord::Base
     true
   end
   
-  def update_attributes(attributes)
-    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    end
-    super(attributes)
-  end
-  
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
@@ -362,6 +343,13 @@ class User < ActiveRecord::Base
     merge_has_many_associations(reject)
     reject.destroy
     LifeList.delay.reload_from_observations(life_list_id)
+  end
+
+  def set_uri
+    if uri.blank?
+      User.update_all(["uri = ?", FakeView.user_url(id)], ["id = ?", id])
+    end
+    true
   end
   
   def self.query(params={}) 
@@ -451,12 +439,12 @@ class User < ActiveRecord::Base
   
   def create_default_life_list
     return true if life_list
-    if existing = lists.includes(:rules).where("list_rules.id IS NULL").first
+    new_life_list = if (existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
       self.life_list = existing
     else
-      create_life_list(:user => self)
+      LifeList.create(:user => self)
     end
-    save
+    User.update_all(["life_list_id = ?", new_life_list], ["id = ?", self])
     true
   end
   
@@ -470,6 +458,12 @@ class User < ActiveRecord::Base
       :observations_count => observations_count
     )
     true
+  end
+
+  def self.default_json_options
+    {
+      :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip]
+    }
   end
 
 end

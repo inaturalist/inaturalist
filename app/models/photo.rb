@@ -11,6 +11,7 @@ class Photo < ActiveRecord::Base
   has_many :taxa, :through => :taxon_photos
   
   attr_accessor :api_response
+  serialize :metadata
   
   # licensing extras
   attr_accessor :make_license_default
@@ -35,7 +36,7 @@ class Photo < ActiveRecord::Base
     4 => {:code => Observation::CC_BY,        :short => "CC BY",        :name => "Attribution License", :url => "http://creativecommons.org/licenses/by/3.0/"},
     5 => {:code => Observation::CC_BY_SA,     :short => "CC BY-SA",     :name => "Attribution-ShareAlike License", :url => "http://creativecommons.org/licenses/by-sa/3.0/"},
     6 => {:code => Observation::CC_BY_ND,     :short => "CC BY-ND",     :name => "Attribution-NoDerivs License", :url => "http://creativecommons.org/licenses/by-nd/3.0/"},
-    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain, no known copyright restrictions", :url => "http://flickr.com/commons/usage/"},
+    7 => {:code => "PD",                      :short => "PD",           :name => "Public domain", :url => "http://en.wikipedia.org/wiki/Public_domain"},
     8 => {:code => "GFDL",                    :short => "GFDL",         :name => "GNU Free Documentation License", :url => "http://www.gnu.org/copyleft/fdl.html"}
   }
   LICENSE_NUMBERS = LICENSE_INFO.keys
@@ -88,8 +89,8 @@ class Photo < ActiveRecord::Base
     else
       "anonymous"
     end
-    if license_code == PD
-      "#{name}, #{license_name}"
+    if license == PD
+      "#{name}, no known copyright restrictions (#{license_name})"
     elsif open_licensed?
       "(c) #{name}, some rights reserved (#{license_short})"
     else
@@ -129,7 +130,7 @@ class Photo < ActiveRecord::Base
   # implemented to_taxa
   def to_taxon
     return unless respond_to?(:to_taxa)
-    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true)
+    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)
     photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES) if photo_taxa.blank?
     photo_taxa = to_taxa if photo_taxa.blank?
     return if photo_taxa.blank?
@@ -184,6 +185,12 @@ class Photo < ActiveRecord::Base
     size_index = sizes.index(size)
     methods = sizes[size_index.to_i..-1].map{|s| "#{s}_url"} + ['original']
     try_methods(*methods)
+  end
+
+  def as_json(options = {})
+    options[:except] ||= []
+    options[:except] << :metadata
+    super(options)
   end
   
   # Retrieve info about a photo from its native source given its native id.  

@@ -14,15 +14,15 @@ button.button {
   padding: 7px 10px 7px 7px;
   font-family: "Trebuchet MS", Arial, sans-serif;
   font-size: 110%;
-  
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   border:1px solid #dedede;
   text-decoration:none;
   font-weight:bold;
   cursor:pointer;
   color: #36C;
   background-color: white;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 
 input.button:hover {
@@ -224,7 +224,7 @@ input[type='submit'].link:hover {
 
 .buttonrow.smallbuttons .button,
 .buttonrow.smallbuttons input.text,
-.buttonrow.smallbuttons label
+.buttonrow.smallbuttons label,
 .buttonrow.smallbuttons .inter,
 .buttonrow.smallbuttons.inline .inter {
   padding: 1px 3px;

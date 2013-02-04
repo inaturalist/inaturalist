@@ -10,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
     respond_with resource do |format|
-      format.html do
+      format.any(:html, :mobile) do
         if session[:return_to]
           redirect_to session[:return_to]
         else

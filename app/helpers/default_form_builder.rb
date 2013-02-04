@@ -7,7 +7,9 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
   
   helpers.each do |name|
     define_method(name) do |field, *args|
-      options = if args[-2].is_a?(Hash)
+      options = if name.to_s == "select"
+        args.last
+      elsif args[-2].is_a?(Hash)
         args.pop
       elsif args.last.is_a?(Hash)
         args.last
@@ -88,7 +90,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       if options[:field_name] == 'radio_button'
         label_field = [label_field, options[:field_value]].compact.join('_').gsub(/\W/, '').downcase
       end
-      label_tag = label(label_field, options[:label].to_s.html_safe, :class => options[:label_class])
+      label_tag = label(label_field, options[:label].to_s.html_safe, :class => options[:label_class], :for => options[:id])
       if options[:required]
         label_tag += content_tag(:span, " *", :class => 'required')
       end
@@ -104,11 +106,7 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       "#{label_content} #{description} #{content}"
     end
     
-    if block_given?
-      @template.concat @template.content_tag(:div, content.html_safe, wrapper_options)
-    else
-      @template.content_tag(:div, content.html_safe, wrapper_options)
-    end
+    @template.content_tag(:div, content.html_safe, wrapper_options)
   end
   
 end

@@ -22,7 +22,7 @@
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
     var PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect.html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
         OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
   </script>
@@ -88,27 +88,47 @@
   <div id="map" class="stacked"></div>
   
   <% unless @project_journal_posts.blank? %>
-    <div id="journal">
-      <h3>
-        Recent Posts
-        <%= link_to "View all", project_journal_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
-      </h3>
+    <div id="journal" class="quiet box">
       <% if @project_journal_posts.blank? -%>
         <div class="description noresults">
           No journal posts have been added to this project yet.
         </div>
       <% else %>
-        <div class="mini observations">
-          <% for project_journal_post in @project_journal_posts %>
-            <%= render :partial => 'posts/post', :locals => { :post => project_journal_post } %>
-          <% end %>
+        <div class="stacked">
+          <%= render :partial => 'posts/post', :locals => { :post => @project_journal_posts.first } %>
         </div>
-        <%= link_to "More journal posts", project_journal_path(@project),
-          :class => "readmore" %>
+        
+        <% if @project_journal_posts.size > 1 -%>
+          <div class="stacked">
+            <label>Recent posts</label>
+            <ul class="plain">
+              <% for post in @project_journal_posts[1..-1] %>
+                <li>
+                  <span class="date meta"><%= post.published_at.to_date.strftime('%b %d') %></span>
+                  <%= link_to truncate(post.title, :length => 100), project_journal_post_path(@project, post) %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <%= link_to "More journal posts", project_journal_path(@project), :class => "readmore" %>
+        <% end -%>
       <% end %>
     </div>
   <% end %>
   <div id="observations">
+    <% if false && logged_in? && @project_user && @project.matching_project_observation_rules.count > 0 -%>
+      <div class="right add_matching_link inlineblock">
+        <%= render 'project_invitations/import_button' %>
+      </div>
+    <% end -%>
+
+    <% if @project.project_type == Project::ASSESSMENT_TYPE -%>
+      <div class="stacked">
+        <%= render :partial => 'project_assessments' %>
+        <%= separator %>
+      </div>
+    <% end -%>
+
     <h3>
       Recent Observations
       <%= link_to "View all", project_observations_path(@project), :class => "ui readmore", :style => "font-size: 60%; margin-left: 5px" %>
@@ -132,6 +152,11 @@
 <div class="last column span-8">
   <ul id="projectnav" class="stacked quiet box">
     <li>
+      <% if @project_observations_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @project_observations_count %></span> observations
+        </span>
+      <% end -%>
       <%= link_to "<span class='lead'>&raquo;</span> Observations / Map".html_safe, project_observations_path(@project), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
@@ -157,11 +182,21 @@
       <%= link_to "<span class='lead'>&raquo;</span> Checklist".html_safe, list_path(@project.project_list), :class => "navlink" %>
     </li>
     <li>
-      <%= link_to "<span class='lead'>&raquo;</span> Posts".html_safe, project_journal_path(@project), :class => "navlink" %>
+      <% if @journal_post_count.to_i > 0 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @journal_post_count %></span> posts
+        </span>
+      <% end -%>
+      <%= link_to "<span class='lead'>&raquo;</span> Journal".html_safe, project_journal_path(@project), :class => "navlink" %>
     </li>
     <li>
+      <% if @members_count.to_i > 1 -%>
+        <span class="right" style="margin: 4px 10px 0 10px">
+          <span class="count"><%= @members_count %></span> members
+        </span>
+      <% end -%>
       <% if @project.contest? -%>
-        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors".html_safe, project_contributors_path(@project), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> Top Contributors".html_safe, project_contributors_path(@project, {:sort => @project.project_type} ), :class => "navlink" %>
       <% else %>
         <%= link_to "<span class='lead'>&raquo;</span> Members".html_safe, project_members_path(@project), :class => "navlink" %>
       <% end -%>
@@ -206,11 +241,15 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> Stats".html_safe, project_stats_path(@project), :class => "navlink" %>
       </li>
-      <% if @project.curated_by?(current_user) -%>
-        <li>
+      <li>
+        <% if @project.curated_by?(current_user) -%>
           <%= link_to "<span class='lead'>&raquo;</span> Invite observations".html_safe, invitations_path(@project), :class => "navlink" %>
-        </li>
-      <% end -%>
+        <% else %>
+          <% if @observations_count.to_i > 0 %>
+            <%= link_to "<span class='lead'>&raquo;</span> Add from your observations".html_safe, invitations_path(@project, :params => {:by => "you"}), :class => "navlink" %>
+          <% end -%>
+        <% end -%>
+      </li>
     <% end -%>
   </ul>
   

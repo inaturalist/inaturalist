@@ -8,7 +8,7 @@ class CheckList < List
   
   before_validation :set_title
   before_create :set_last_synced_at, :create_taxon_list_rule
-  after_save :mark_non_comprehensive_listed_taxa_as_absent
+  # after_save :mark_non_comprehensive_listed_taxa_as_absent
   
   validates_presence_of :place_id
   validates_uniqueness_of :taxon_id, :scope => :place_id, :allow_nil => true,
@@ -16,6 +16,10 @@ class CheckList < List
   
   # TODO: the following should work through list rules
   # validates_uniqueness_of :taxon_id, :scope => :place_id
+
+  def to_s
+    "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
+  end
   
   def editable_by?(user)
     user && (self.user == user || user.is_curator?)
@@ -66,8 +70,8 @@ class CheckList < List
       time_since_last_sync = options.delete(:time_since_last_sync) || 1.hour.ago
       scope = scope.where("listed_taxa.created_at > ?", time_since_last_sync)
     end
-    return unless self.place.parent_id
-    parent_check_list = self.place.parent.check_list
+    return if self.place.parent.blank?
+    return unless parent_check_list = self.place.parent.check_list
     scope.find_each do |lt|
       Rails.logger.info "[INFO #{Time.now}] syncing check list #{id} with parent #{parent_check_list.id}, working on #{lt}"
       if parent_check_list.listed_taxa.exists?(:taxon_id => lt.taxon_id)
@@ -160,6 +164,8 @@ class CheckList < List
     SQL
   end
   
+  # not sure why I originally added this.  Doesn't make sense for taxa on non-comprehensive list 
+  # to be "absent," since they're obviously present if they're on the comprehensive list.
   def mark_non_comprehensive_listed_taxa_as_absent
     return true unless comprehensive_changed?
     return true unless comprehensive?

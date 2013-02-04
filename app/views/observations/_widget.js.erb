@@ -13,17 +13,17 @@ try {
   
   <% unless @observations_taxon.nil?  and ( !params[:taxon_id].nil? or !params[:taxon_name].nil? ) %>
     <% if params[:show_header] == 'true' %>
-      document.write('<%= escape_javascript(render(:partial => "widget_header.html").gsub(/\n\s*/, '')).html_safe %>')
+      document.write('<%= escape_javascript(render_in_format(:html, :partial => "widget_header.html").gsub(/\n\s*/, '')).html_safe %>')
     <% end %>
     
     <% if params[:layout] == 'small' %>
-      document.write('<%= escape_javascript(render(:partial => "widget_small.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')).html_safe %>')
+      document.write('<%= escape_javascript(render_in_format(:html ,:partial => "widget_small.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')).html_safe %>')
     <% else %>
       document.write('<%= escape_javascript(render_in_format(:html, :partial => "widget.html", :locals => {:show_user => show_user, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]}).gsub(/\n\s*/, '')).html_safe %>')
     <% end %>
     
     <% if params[:show_footer] == 'true' %>
-      document.write('<%= escape_javascript(render(:partial => "widget_footer.html").gsub(/\n\s*/, '')).html_safe %>')
+      document.write('<%= escape_javascript(render_in_format(:html, :partial => "widget_footer.html").gsub(/\n\s*/, '')).html_safe %>')
     <% end %>
   <% end %>
   

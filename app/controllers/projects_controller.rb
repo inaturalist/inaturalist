@@ -58,20 +58,27 @@ class ProjectsController < ApplicationController
   
   def show
     respond_to do |format|
-      format.any(:html, :mobile) do
+      format.html do
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
+        @observations_count = @current_user.observations.count if @current_user
+        @project_observations_count = @project.project_observations.count
+        @journal_posts_count = @project.posts.count
+        @members_count = @project.project_users.count
         @observed_taxa_count = @project.observed_taxa_count
-        @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
+        if @project.project_type == "observation contest"
+          @top_observers = @project.project_users.all(:order => "observations_count desc, taxa_count desc", :limit => 10, :conditions => "observations_count > 0")
+        else
+          @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
+        end
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
         @project_observations = @project.project_observations.paginate(:page => 1, 
           :include => {
             :observation => :iconic_taxon,
             :curator_identification => [:user, :taxon]
           }, :order => "id DESC")
-        @project_journal_posts = @project.posts.published.paginate(:page => params[:page] || 1, 
-          :per_page => 1, :order => "published_at DESC")
+        @project_journal_posts = @project.posts.published.order("published_at DESC").limit(4)
         @observations = @project_observations.map(&:observation)
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.all(:limit => 100)
@@ -83,6 +90,8 @@ class ProjectsController < ApplicationController
           end
         end
         
+        @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
+
         if params[:iframe]
           @headless = @footless = true
           render :action => "show_iframe"
@@ -203,8 +212,13 @@ class ProjectsController < ApplicationController
   end
   
   def contributors
-    @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
-    @top_contributors = @project.project_users.all(:order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+    if params[:sort] == "observation+contest"
+      @contributors = @project.project_users.paginate(:page => params[:page], :order => "observations_count DESC, taxa_count DESC", :conditions => "observations_count > 0")
+      @top_contributors = @project.project_users.all(:order => "observations_count DESC, taxa_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+    else
+      @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
+      @top_contributors = @project.project_users.all(:order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+    end
     respond_to do |format|
       format.html do
       end
@@ -334,7 +348,19 @@ class ProjectsController < ApplicationController
       respond_to_join(:notice => "You're already a member of this project!")
       return
     end
-    return unless request.post?
+    unless request.post?
+      respond_to do |format|
+        format.html do
+          if partial = params[:partial]
+            render :layout => false, :partial => "projects/#{partial}"
+          else
+            # just render the default
+          end
+        end
+        format.json { render :json => @project }
+      end
+      return
+    end
     
     @project_user = @project.project_users.create(:user => current_user)
     unless @observation
@@ -427,9 +453,11 @@ class ProjectsController < ApplicationController
     
     @headers = ['year/month', 'new users', 'new observations', 'unique observers']
     @data = []
-    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.sort.reverse.each do |key|
-      @data << [key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
+    (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
+      display_key = key.gsub(/\-(\d)$/, "-0\\1")
+      @data << [display_key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
     end
+    @data.sort_by!(&:first).reverse!
     
     respond_to do |format|
       format.html
@@ -454,6 +482,18 @@ class ProjectsController < ApplicationController
       invited_scope = invited_scope.by(current_user)
     end
 
+    if params[:on_list] == "yes"
+      scope = scope.scoped(
+        :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+        :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      existing_scope = existing_scope.scoped(
+          :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+          :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+      invited_scope = invited_scope.scoped(
+            :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{@project.project_list.id}", 
+            :conditions => "observations.taxon_id = listed_taxa.taxon_id")
+    end
+    
     scope_sql = scope.to_sql
     existing_scope_sql = existing_scope.to_sql
     invited_scope_sql = invited_scope.to_sql
@@ -489,7 +529,8 @@ class ProjectsController < ApplicationController
         format.json do
           json = {
             :error => error_msg,
-            :errors => @project_observation.errors.full_messages
+            :errors => @project_observation.errors.full_messages,
+            :project_observation => @project_observation
           }
           if @project_observation.errors.full_messages.to_sentence =~ /observation field/
             json[:observation_fields] = @project.project_observation_fields.as_json(:include => :observation_field)
@@ -500,31 +541,24 @@ class ProjectsController < ApplicationController
       return
     end
     
-    if @project_invitation = ProjectInvitation.where(
-        :project_id => @project.id, :observation_id => @observation.id).first
-      @project_invitation.destroy
-    end
-    
     respond_to do |format|
       format.html do
         flash[:notice] = "Observation added to the project \"#{@project.title}\""
         redirect_back_or_default(@project)
       end
-      format.json { render :json => @project_observation }
+      format.json { render :json => @project_observation.to_json(:include => {:project => {:include => :project_observation_fields}}) }
     end
   end
   
   def remove
-    error_msg = nil
-    unless @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
-      error_msg = "That observation hasn't been added this project."
-    end
-    
-    unless @project_observation.observation.user_id == current_user.id || (@project_user && @project_user.is_curator?)
-      error_msg = "You can't remove other people's observations."
+    @project_observation = @project.project_observations.find_by_observation_id(params[:observation_id])
+    error_msg = if @project_observation.blank?
+      "That observation hasn't been added this project."
+    elsif @project_observation.observation.user_id != current_user.id && (@project_user.blank? || !@project_user.is_curator?)
+      "You can't remove other people's observations."
     end
 
-    if error_msg
+    unless error_msg.blank?
       respond_to do |format|
         format.html do
           flash[:error] = error_msg
@@ -612,10 +646,63 @@ class ProjectsController < ApplicationController
     redirect_back_or_default(@project)
     return
   end
+
+  def preview_matching
+    @observations = scope_for_add_matching.page(1).per_page(10)
+    if @project_user
+      render :layout => false
+    else
+      render :unprocessable_entity
+    end
+  end
+
+  def add_matching
+    unless @project.users.where("users.id = ?", current_user).exists?
+      msg = "You must be a member of this project to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_back_or_default(@project)
+        end
+        format.json { render :json => {:error => msg} }
+      end
+      return
+    end
+
+    added = 0
+    failed = 0
+    scope_for_add_matching.find_each do |observation|
+      next if observation.project_observations.detect{|po| po.project_id == @project.id}
+      pi = ProjectObservation.new(:observation => observation, :project => @project)
+      if pi.save
+        added += 1
+      else
+        failed += 1
+      end
+    end
+
+    msg = if added == 0 && failed > 0
+      "Failed to add all #{failed} matching observation(s) to #{@project.title}. Try adding observations individually to see error messages"
+    elsif failed > 0
+      "Added #{added} matching observation(s) to #{@project.title}, failed to add #{failed}. Try adding the rest individually to see error messages."
+    else
+      "Added #{added} matching observation(s) to #{@project.title}"
+    end
+
+    respond_to do |format|
+      format.html do
+        flash[:notice] = msg
+        redirect_back_or_default(@project)
+      end
+      format.json do
+        render :json => {:msg => msg}
+      end
+    end
+  end
   
   def search
     if @q = params[:q]
-      @projects = Project.paginate(:page => params[:page], :conditions => ["lower(title) LIKE ?", "%#{@q.downcase}%"])
+      @projects = Project.search(@q, :page => params[:page])
     end
     respond_to do |format|
       format.html
@@ -634,6 +721,17 @@ class ProjectsController < ApplicationController
   end
   
   private
+
+  def scope_for_add_matching
+    @taxon = Taxon.find_by_id(params[:taxon_id]) unless params[:taxon_id].blank?
+    scope = @project.observations_matching_rules.
+      by(current_user).
+      includes(:taxon, :project_observations).
+      where("project_observations.id IS NULL OR project_observations.project_id != ?", @project).
+      scoped
+    scope = scope.of(@taxon) if @taxon
+    scope
+  end
   
   def load_project
     @project = Project.find(params[:id]) rescue nil

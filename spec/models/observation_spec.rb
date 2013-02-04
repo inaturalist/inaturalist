@@ -258,6 +258,19 @@ describe Observation, "creation" do
     o = Observation.make!(:user_agent => user_agent)
     o.user_agent.size.should be < 256
   end
+
+  it "should set the URI" do
+    o = Observation.make!
+    o.reload
+    o.uri.should eq(FakeView.observation_url(o))
+  end
+
+  it "should not set the URI if already set" do
+    uri = "http://www.somewhereelse.com/users/4"
+    o = Observation.make!(:uri => uri)
+    o.reload
+    o.uri.should eq(uri)
+  end
 end
 
 describe Observation, "updating" do
@@ -333,7 +346,7 @@ describe Observation, "updating" do
     obs.reload
     obs.iconic_taxon.should be_blank
   end
-  
+
   it "should queue refresh jobs for associated project lists if the taxon changed" do
     o = Observation.make!(:taxon => Taxon.make!)
     pu = ProjectUser.make!(:user => o.user)
@@ -354,6 +367,41 @@ describe Observation, "updating" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.should_not be_blank
+  end
+
+  it "should only queue one job to refresh life lists if taxon changed" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:taxon => Taxon.make!)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size.should eq(1)
+  end
+
+  it "should only queue one job to refresh project lists if taxon changed" do
+    po = make_project_observation(:taxon => Taxon.make!)
+    o = po.observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:taxon => Taxon.make!)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size.should eq(1)
+  end
+
+  it "should only queue one check list refresh job" do
+    o = make_research_grade_observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:latitude => o.latitude + 1)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size.should eq(1)
   end
   
   it "should queue refresh job for check lists if the taxon changed" do
@@ -457,6 +505,13 @@ describe Observation, "destruction" do
     update.should_not be_blank
     o.destroy
     Update.find_by_id(update.id).should be_blank
+  end
+
+  it "should delete associated project observations" do
+    po = make_project_observation
+    o = po.observation
+    o.destroy
+    ProjectObservation.find_by_id(po.id).should be_blank
   end
 end
 
@@ -642,7 +697,7 @@ describe Observation, "named scopes" do
   end
   
   it "should find observations with photos" do
-    @pos.photos << FlickrPhoto.new(:native_photo_id => 1)
+    ObservationPhoto.make!(:observation => @pos)
     obs = Observation.has_photos.all
     obs.should include(@pos)
     obs.should_not include(@neg)
@@ -821,6 +876,15 @@ describe Observation do
       observations = Observation.paginate(:page => 1, :per_page => 2, :order => "id desc")
       observations.to_json.should_not match(/private_latitude/)
     end
+
+    it "should not be included in by_login_all csv generated for others" do
+      observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      Observation.make!
+      path = Observation.generate_csv_for(observation.user)
+      txt = open(path).read
+      txt.should_not match(/private_latitude/)
+      txt.should_not match(/#{observation.private_latitude}/)
+    end
   end
   
   describe "obscure_coordinates" do
@@ -856,8 +920,8 @@ describe Observation do
       o.should be_coordinates_obscured
       o.obscure_coordinates
       o.reload
-      o.latitude.to_f.should == lat
-      o.private_latitude.to_f.should == private_lat
+      o.latitude.to_f.should == lat.to_f
+      o.private_latitude.to_f.should == private_lat.to_f
     end
     
     it "should not affect already coordinates of a protected taxon" do
@@ -912,6 +976,7 @@ describe Observation do
       o.should be_coordinates_obscured
       o.latitude.should be_blank
     end
+
   end
   
   describe "obscure_coordinates_for_observations_of" do
@@ -1008,6 +1073,16 @@ describe Observation do
       o.reload
       o.should be_coordinates_obscured
       o.latitude.should be_blank
+    end
+  end
+
+  describe "obscure_coordinates_for_threatened_taxa" do
+    it "should not unobscure previously obscured observations of threatened taxa" do
+      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      o = Observation.make!(:latitude => 38, :longitude => -122, :taxon => taxon)
+      o.should be_coordinates_obscured
+      o.obscure_coordinates_for_threatened_taxa
+      o.should be_coordinates_obscured
     end
   end
   
@@ -1278,5 +1353,63 @@ describe Observation, "nested observation_field_values" do
     lambda { o.update_attributes(attrs) }.should_not raise_error(ActiveRecord::RecordNotFound)
     o.reload
     o.observation_field_values.should be_blank
+  end
+end
+
+describe Observation, "taxon updates" do
+  it "should generate an update" do
+    t = Taxon.make!
+    s = Subscription.make!(:resource => t)
+    o = Observation.make(:taxon => t)
+    without_delay do
+      o.save!
+    end
+    u = Update.last
+    u.should_not be_blank
+    u.notifier.should eq(o)
+    u.subscriber.should eq(s.user)
+  end
+
+  it "should generate an update for descendent taxa" do
+    t1 = Taxon.make!
+    t2 = Taxon.make!(:parent => t1)
+    s = Subscription.make!(:resource => t1)
+    o = Observation.make(:taxon => t2)
+    without_delay do
+      o.save!
+    end
+    u = Update.last
+    u.should_not be_blank
+    u.notifier.should eq(o)
+    u.subscriber.should eq(s.user)
+  end
+end
+
+describe Observation, "update_for_taxon_change" do
+  before(:each) do
+    @taxon_swap = TaxonSwap.make
+    @input_taxon = Taxon.make!
+    @output_taxon = Taxon.make!
+    @taxon_swap.add_input_taxon(@input_taxon)
+    @taxon_swap.add_output_taxon(@output_taxon)
+    @taxon_swap.save!
+    @obs_of_input = Observation.make!(:taxon => @input_taxon)
+  end
+
+  it "should add new identifications" do
+    @obs_of_input.identifications.size.should eq(1)
+    @obs_of_input.identifications.first.taxon.should eq(@input_taxon)
+    Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
+    @obs_of_input.reload
+    @obs_of_input.identifications.size.should eq(2)
+    @obs_of_input.identifications.detect{|i| i.taxon_id == @output_taxon.id}.should_not be_blank
+  end
+
+  it "should not update old identifications" do
+    old_ident = @obs_of_input.identifications.first
+    old_ident.taxon.should eq(@input_taxon)
+    Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
+    old_ident.reload
+    old_ident.taxon.should eq(@input_taxon)
   end
 end

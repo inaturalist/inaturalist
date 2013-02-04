@@ -116,6 +116,8 @@
         <%= f.text_field :parent_id, :placeholder => "Type place name", :style => "width: 300px" %>
         <%= f.text_field :latitude, :class => 'text', :required => true %>
         <%= f.text_field :longitude, :class => 'text', :required => true %>
+        <%= f.select :place_type, Place::PLACE_TYPE_CODES.sort, :include_blank => "Unknown", :class => 'select' %>
+        <%= f.check_box :prefers_check_lists, :label_after => true, :label => "Check lists allowed?" %>
         <input type="hidden" id="place_geometry" name="kml"/>
         <%= f.submit 'Save Place', :class => 'default button' %>
       <% end %>

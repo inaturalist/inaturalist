@@ -21,6 +21,13 @@ describe Project, "creation" do
     project = Project.make!(:title => " zomg spaces ")
     project.title.should == 'zomg spaces'
   end
+
+  it "should validate uniqueness of title" do
+    p1 = Project.make!
+    p2 = Project.make(:title => p1.title)
+    p2.should_not be_valid
+    p2.errors[:title].should_not be_blank
+  end
 end
 
 describe Project, "destruction" do

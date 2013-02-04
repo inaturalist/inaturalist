@@ -1,7 +1,7 @@
 <%-
   observations ||= @observations
   @iconic_taxa ||= []
-  @view = params[:view] ||= 'map'
+  @view ||= params[:view] || 'map'
   observations_html ||= nil
 -%>
 <% content_for(:extrajs) do %>
@@ -85,7 +85,6 @@
     #mapobservations.mini{float:left;width:300px;height:520px;overflow:auto;}
   </style>
 <% end %>
-
 <div class="column span-24">
   <div class="observations map"<% unless @view && @view == 'map' %> style="display: none"<% end %>>
     <div id="map"></div>

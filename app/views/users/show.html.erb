@@ -163,28 +163,28 @@
 
 </div>
 
-<% if logged_in? && @user.id != current_user.id && (current_user.is_admin? || current_user.is_curator?) %>
+<% if logged_in? && (current_user.is_admin? || current_user.is_curator?) %>
   <div class="right clear ui description">
-    <% if current_user.is_admin? -%>
-      <% if @user.active? %>
-        <%= link_to "Suspend user", suspend_user_path(@user) %>
-      <% else %>
-        <%= link_to "Unsuspend user", unsuspend_user_path(@user) %>
-      <% end %>
-    <% end -%>
-    
-    <% if current_user.is_curator? && !@user.is_admin? -%>
-      |
-      <% if @user.is_curator? %>
-        <%= link_to "Remove curator status", remove_role_path(@user, :role => "curator"), :method => :delete %>
-      <% else %>
-        <%= link_to "Make curator", add_role_path(@user, :role => "curator"), :method => :post %>
-      <% end %>
-    <% end -%>
-    
-    <% if is_admin? -%>
-      |
-      <%= link_to "Curate user", curate_users_path(:id => @user.id) %>
-    <% end -%>
+    <%-
+      pieces = []
+      if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
+        pieces << if @user.active?
+          link_to("Suspend user", suspend_user_path(@user))
+        else
+          link_to("Unsuspend user", unsuspend_user_path(@user))
+        end
+      end
+
+      if current_user.is_curator? && !@user.is_admin?
+        pieces << if @user.is_curator?
+          link_to("Remove curator status", remove_role_path(@user, :role => "curator"), :method => :delete)
+        else
+          link_to("Make curator", add_role_path(@user, :role => "curator"), :method => :post)
+        end
+      end
+
+      pieces << link_to("Curate user", curate_users_path(:id => @user.id)) if is_admin?
+    -%>
+    <%= pieces.join(" | ").html_safe %>
   </div>
 <% end %>

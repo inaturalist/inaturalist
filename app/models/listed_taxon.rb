@@ -25,8 +25,8 @@ class ListedTaxon < ActiveRecord::Base
   belongs_to :source # if added b/c of a published source
   
   before_validation :nilify_blanks
+  before_validation :set_ancestor_taxon_ids
   before_validation :update_cache_columns
-  before_create :set_ancestor_taxon_ids
   before_create :set_place_id
   before_create :set_updater_id
   before_save :set_user_id
@@ -36,10 +36,11 @@ class ListedTaxon < ActiveRecord::Base
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :delta_index_taxon
+  before_destroy :set_old_list
   after_destroy :update_user_life_list_taxa_count
   after_destroy :expire_caches
   
-  validates_presence_of :list, :taxon
+  validates_presence_of :list_id, :taxon_id
   validates_uniqueness_of :taxon_id, 
                           :scope => :list_id, 
                           :message => "is already in this list"
@@ -122,15 +123,15 @@ class ListedTaxon < ActiveRecord::Base
                 :skip_update_cache_columns,
                 :force_update_cache_columns,
                 :extra,
-                :html
+                :html,
+                :old_list
   
   def ancestry
     taxon_ancestor_ids
   end
   
   def to_s
-    "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id}, " + 
-    "list_id: #{self.list_id}>"
+    "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id} list_id: #{self.list_id} place_id: #{place_id}>"
   end
   
   def to_plain_s
@@ -187,7 +188,7 @@ class ListedTaxon < ActiveRecord::Base
 
   def list_rules_pass
     # don't bother if validates_presence_of(:taxon) has already failed
-    if !errors.include?(:taxon)
+    if !errors.include?(:taxon) && taxon
       list.rules.each do |rule|
         errors.add(:base, "#{taxon.to_plain_s} is not #{rule.terms}") unless rule.validates?(taxon)
       end
@@ -195,8 +196,13 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def taxon_matches_observation
-    if last_observation && !(taxon_id == last_observation.taxon_id || taxon.ancestor_of?(last_observation.taxon) || last_observation.taxon.ancestor_of?(taxon))
-      errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
+    if last_observation
+      if last_observation.taxon_id.blank? || !(
+          taxon_id == last_observation.taxon_id || 
+          taxon.ancestor_of?(last_observation.taxon) || 
+          last_observation.taxon.ancestor_of?(taxon))
+        errors.add(:taxon_id, "must be the same as the last observed taxon, #{last_observation.taxon.try(:to_plain_s)}")
+      end
     end
   end
 
@@ -213,6 +219,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def set_ancestor_taxon_ids
+    return true unless taxon
     unless taxon.ancestry.blank?
       self.taxon_ancestor_ids = taxon.ancestry
     else
@@ -220,12 +227,16 @@ class ListedTaxon < ActiveRecord::Base
     end
     true
   end
+
+  def set_old_list
+    @old_list = self.list
+  end
   
   # Update the counter cache in users.
   def update_user_life_list_taxa_count
-    if self.list.user && self.list.user.life_list_id == self.list_id
-      User.update_all("life_list_taxa_count = #{self.list.listed_taxa.count}", 
-        "id = #{self.list.user_id}")
+    l = self.list || @old_list
+    if l && l.user && l.user.life_list_id == self.list_id
+      User.update_all("life_list_taxa_count = #{l.listed_taxa.count}", "id = #{l.user_id}")
     end
     true
   end
@@ -254,7 +265,7 @@ class ListedTaxon < ActiveRecord::Base
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
     unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
-      list.delay(:priority => 1).sync_with_parent
+      list.delay(:priority => INTEGRITY_PRIORITY).sync_with_parent
     end
     true
   end
@@ -282,7 +293,7 @@ class ListedTaxon < ActiveRecord::Base
     if @force_update_cache_columns
       # this should have already happened in update_cache_columns
     else
-      ListedTaxon.delay(:priority => 1).update_cache_columns_for(id)
+      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY).update_cache_columns_for(id)
     end
     true
   end
@@ -411,6 +422,10 @@ class ListedTaxon < ActiveRecord::Base
   def taxon_name
     taxon.name
   end
+
+  def taxon_common_name
+    taxon.common_name.try(:name)
+  end
   
   def user_login
     user.try(:login)
@@ -465,6 +480,20 @@ class ListedTaxon < ActiveRecord::Base
       rejects.each do |reject|
         lt.merge(reject)
       end
+    end
+  end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.where(:user_id => options[:user]) if options[:user]
+    scope = scope.where("listed_taxa.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.where(options[:conditions]) if options[:conditions]
+    scope = scope.includes(options[:include]) if options[:include]
+    scope.find_each do |lt|
+      lt.force_update_cache_columns = true
+      lt.update_attributes(:taxon => taxon)
+      yield(lt) if block_given?
     end
   end
   

@@ -6,7 +6,7 @@ class SourcesController < ApplicationController
   def index
     @q = params[:q] || params[:term]
     scope = Source.scoped
-    scope = scope.scoped(:conditions => ["lower(title) LIKE ?", "#{@q.downcase}%"]) unless @q.blank?
+    scope = scope.scoped(:conditions => ["lower(title) LIKE ?", "%#{@q.downcase}%"]) unless @q.blank?
     @sources = scope.paginate(:page => params[:page])
     respond_to do |format|
       format.html

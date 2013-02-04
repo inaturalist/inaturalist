@@ -133,7 +133,7 @@ module ApplicationHelper
   
   def curator_of?(project)
    return false unless logged_in?
-   current_user.project_users.first(:conditions => {:project_id => project.id, :role => 'curator'})
+   current_user.project_users.where(:project_id => project).where("role IN ('manager', 'curator')").exists?
   end
   
   def member_of?(project)
@@ -162,6 +162,15 @@ module ApplicationHelper
     html = link_to_toggle(link_text, "##{menu_id}", options)
     html += content_tag(:div, capture(&block), :id => menu_id, :class => "menu", :style => "display: none")
     concat content_tag(:div, html, wrapper_options)
+  end
+
+  def link_to_dialog(title, options = {}, &block)
+    options[:title] ||= title
+    options[:modal] ||= true
+    id = title.gsub(/\W/, '').underscore
+    dialog = content_tag(:div, capture(&block), :class => "dialog", :style => "display:none", :id => "#{id}_dialog")
+    link = link_to_function(title, "$('##{id}_dialog').dialog(#{options.to_json})")
+    dialog + link
   end
   
   # Generate a URL based on the current params hash, overriding existing values
@@ -245,9 +254,9 @@ module ApplicationHelper
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
     text = sanitize(text, options)
-    text = simple_format(text, {}, :sanitize => false)
-    text = auto_link(text.html_safe).html_safe
-    
+    text = compact(text, :all_tags => true) if options[:compact]
+    text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
+    text = auto_link(text.html_safe, :sanitize => false).html_safe
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -290,7 +299,7 @@ module ApplicationHelper
     url = if request
       "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
     else
-      "#{APP_CONFIG[:site_url]}#{user.icon.url(size || :mini)}"
+      "#{CONFIG.site_url}#{user.icon.url(size || :mini)}"
     end
     image_tag(url, options.merge(:style => style))
   end
@@ -305,17 +314,22 @@ module ApplicationHelper
   def image_and_content(image, options = {}, &block)
     image_size = options.delete(:image_size) || 48
     content = capture(&block)
-    image_wrapper = content_tag(:div, image, :class => "image", :style => "width: #{image_size}px; position: absolute; left: 0; top: 0;")
+    image_wrapper = content_tag(:div, image, :class => "image", :style => "width: #{image_size}px; position: absolute; left: 0; top: 0; text-align:center;")
     options[:class] = "image_and_content #{options[:class]}".strip
-    options[:style] = "#{options[:style]}; padding-left: #{image_size.to_i + 10}px; position: relative; min-height: #{image_size}px;"
-    concat content_tag(:div, image_wrapper + content, options)
+    options[:style] = "#{options[:style]}; padding-left: #{image_size.to_i + 10}px; position: relative;"
+    options[:style] += "min-height: #{image_size}px;" unless options[:square] == false
+    content_tag(:div, image_wrapper + content, options)
   end
   
   # remove unecessary whitespace btwn divs
-  def compact(&block)
-    content = capture(&block)
-    content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
-    concat content.html_safe
+  def compact(content = nil, options = {}, &block)
+    content = capture(&block) if block_given?
+    if options[:all_tags]
+      content.gsub!(/\>[\n\s]+\</, '><')
+    else
+      content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
+    end
+    block_given? ? concat(content.html_safe) : content.html_safe
   end
   
   def color_pluralize(num, singular)
@@ -343,7 +357,7 @@ module ApplicationHelper
       txt += if o.observed_on.blank?
         "in the past "
       else
-        "on #{o.observed_on.to_s(:long)} "
+        "on #{o.observed_on.strftime("%d %b %Y")} "
       end
     end
     unless skip.include?(:place_guess)
@@ -431,6 +445,13 @@ module ApplicationHelper
     html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
     concat html
   end
+
+  def helptip(text, options = {}, &block)
+    tip_id = "tip_#{serial_id}"
+    html = content_tag(:span, text, :class => "#{options[:class]} #{tip_id}_target helptip helptiptext", :rel => "##{tip_id}")
+    html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
+    html
+  end
   
   def month_graph(counts, options = {})
     return '' if counts.blank?
@@ -462,6 +483,7 @@ module ApplicationHelper
     if record.is_a?(Source)
       html = record.citation || [record.title, record.in_text, record.url].join(', ')
       if record.editable_by?(current_user)
+        html += " (" + link_to("link", record.url) + ")" unless record.url.blank?
         html += " " + link_to("edit source", edit_source_path(record), :class => "nobr small").html_safe
       end
       html.html_safe
@@ -476,9 +498,26 @@ module ApplicationHelper
     iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
     iconic_taxon_name = iconic_taxon.try(:name) || 'Unknown'
     url = taxon_path(taxon, options.delete(:url_params) || {})
+    taxon_name = options[:sciname] ? taxon.name : default_taxon_name(taxon)
+    if options[:sciname]
+      options[:class] = "#{options[:class]} sciname".strip
+    end
     content_tag :span, :class => "taxon #{iconic_taxon_name} #{taxon.rank}" do
       link_to(iconic_taxon_image(taxon, :size => 15), url, options) + " " +
-      link_to(default_taxon_name(taxon), url, options)
+      link_to(taxon_name, url, options)
+    end
+  end
+
+  def link_to(*args, &block)
+    unless block_given?
+      body, url, options = args
+      if url_for(url) =~ /\?/
+        options ||= {}
+        options[:rel] = "nofollow" unless options[:rel].to_s =~ /nofollow/
+      end
+      super(body, url, options)
+    else
+      super
     end
   end
   
@@ -577,26 +616,35 @@ module ApplicationHelper
   end
   
   def update_image_for(update, options = {})
-    options[:style] = "vertical-align:middle; #{options[:style]}"
+    options[:style] = "max-width: 48px; vertical-align:middle; #{options[:style]}"
     resource = if @update_cache && @update_cache[update.resource_type.underscore.pluralize.to_sym]
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
     resource ||= update.resource
-    case update.resource_type
+    resource = update.resource.flaggable if update.resource_type == "Flag"
+    case resource.class.name
     when "User"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options.merge(:alt => "#{resource.login} icon"))
     when "Observation"
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+    when "AssessmentSection"
+      image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
       image_tag("#{root_url}#{resource.user.icon.url(:thumb)}", options)
     when "Place"
       image_tag("#{root_url}images/icon-maps.png", options)
+    when "Taxon"
+      taxon_image(resource, {:size => "square", :width => 48}.merge(options))
+    when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
+      image_tag("#{root_url}images/#{resource.class.name.underscore}-aaaaaa-48px.png", options)
+    when "ObservationField"
+      image_tag("#{root_url}images/notebook-icon-color-155px-shadow.jpg", options)
     else
-      image_tag("#{root_url}images/logo-grey-32px.png", options)
+      image_tag("#{root_url}images/logo-cccccc-20px.png", options)
     end
   end
   
@@ -605,7 +653,14 @@ module ApplicationHelper
       @update_cache[update.resource_type.underscore.pluralize.to_sym][update.resource_id]
     end
     resource ||= update.resource
+    notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
+      @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
+    end
     notifier ||= update.notifier
+    if notifier.respond_to?(:user)
+      notifier_user = update_cached(notifier, :user)
+      notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
+    end
     case update.resource_type
     when "User"
       if options[:count].to_i == 1
@@ -613,50 +668,87 @@ module ApplicationHelper
       else
         "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
       end
-    when "Observation", "ListedTaxon"
+    when "Observation", "ListedTaxon", "Post", "AssessmentSection"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
-      notifier = if @update_cache && @update_cache[update.notifier_type.underscore.pluralize.to_sym]
-        @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
-      end
-      if notifier.respond_to?(:user)
-        notifier_user = if @update_cache && @update_cache[:users]
-          @update_cache[:users][notifier.user_id]
-        end
-        notifier_user = notifier.user
-        notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
-      end
-
       resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
 
       if notifier.is_a?(ProjectInvitation)
-        return "#{notifier_user_link} invited your #{resource_link} to a project"
+        return "#{notifier_user_link} invited your #{resource_link} to a project".html_safe
       end
 
-      s = if update.notification == "activity" && notifier_user
-        notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
-        "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))} " + 
-        "added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong> to "
-      else
-        s = "New activity on "
-      end
+      s = activity_snippet(update, notifier, notifier_user, options)
       s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
+      s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
+      s.html_safe
+    when "ObservationField"
+      class_name = update.resource.class.to_s.underscore.humanize.downcase
+      resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))      
+      s = activity_snippet(update, notifier, notifier_user, options)
+      # s += "#{class_name =~ /^[aeiou]/i ? 'an' : 'a'} #{resource_link}"
+      s += "#{resource_link} <strong>\"#{truncate(update.resource.name, :length => 30)}\"</strong>"
       s += " by #{you_or_login(update.resource_owner)}" if update.resource_owner
       s.html_safe
     when "Project"
       project = resource
       post = notifier
-      "#{options[:skip_links] ? project.title : link_to(project.title, project_journal_post_url(:project_id=>project.id, :id=>post.id))} wrote a new post.".html_safe
-    when "Project"
-      "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
+      title = if options[:skip_links]
+        project.title
+      else
+        link_to(project.title, project_journal_post_url(:project_id => project.id, :id => post.id))
+      end
+      article = if options[:count] && options[:count].to_i == 1
+        "a"
+      else
+        options[:count]
+      end
+      "#{title} wrote #{article} new post#{'s' if options[:count].to_i > 1}".html_safe
+    # when "Project"
+    #   "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
       "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
+    when "Taxon"
+      name = render( 
+        :partial => "shared/taxon", 
+        :object => resource,
+        :locals => {
+          :link_url => (options[:skip_links] == true ? nil : resource)
+        })
+      "New observations of #{name}".html_safe
+    when "Flag"
+      noun = "a flag for #{resource.flaggable.try_methods(:name, :title, :to_plain_s)}"
+      if notifier.is_a?(Flag)
+        subject = options[:skip_links] ? notifier.resolver.login : link_to(notifier.resolver.login, person_url(notifier.resolver))
+        "#{subject} resolved #{noun}".html_safe
+      else
+        "#{activity_snippet(update, notifier, notifier_user, options)} #{noun}".html_safe
+      end
+    when "TaxonChange"
+      notifier_user = update_cached(resource, :committer)
+      if notifier_user
+        notifier_class_name = resource.class.name.underscore.humanize.downcase
+        subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
+        object = "#{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong>"
+        "#{subject} committed #{object} affecting #{commas_and resource.input_taxa.map(&:name)}".html_safe
+      else
+        "#{resource.class.name.underscore.humanize} affecting #{commas_and resource.input_taxa.map(&:name)}"
+      end
     else
       "update"
     end
   end
+
+  def activity_snippet(update, notifier, notifier_user, options = {})
+    if update.notification == "activity" && notifier_user
+      notifier_class_name = notifier.class.to_s.underscore.humanize.downcase
+      "#{options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))} " + 
+      "added #{notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'} <strong>#{notifier_class_name}</strong> to "
+    else
+      s = "New activity on "
+    end
+  end
   
   def url_for_resource_with_host(resource)
-    "#{APP_CONFIG[:site_url]}#{url_for(resource)}"
+    "#{CONFIG.site_url}#{url_for(resource)}"
   end
   
   def commas_and(list)
@@ -676,7 +768,7 @@ module ApplicationHelper
     if ofv.observation_field.datatype == "taxon"
       if taxon = Taxon.find_by_id(ofv.value)
         content_tag(:span, "&nbsp;".html_safe, 
-            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.downcase} selected") + 
+            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.to_s.downcase} selected") + 
           render("shared/taxon", :taxon => taxon, :link_url => taxon)
       else
         "unknown"

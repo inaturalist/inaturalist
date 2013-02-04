@@ -20,7 +20,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :observation_photos, :range, :schemes]
+    :observation_photos, :range, :schemes, :tip]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
   
@@ -139,19 +139,17 @@ class TaxaController < ApplicationController
         @ancestors = @taxon.ancestors.all(:include => :taxon_names)
         @iconic_taxa = Taxon::ICONIC_TAXA
         
-        @taxon_links = TaxonLink.for_taxon(@taxon).all(:include => :taxon)
-        @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
-        
-        @check_listed_taxa = ListedTaxon.paginate(:page => 1,
-          :include => [:place, :list],
-          :conditions => ["place_id IS NOT NULL AND taxon_id = ?", @taxon]
-        )
+        @check_listed_taxa = ListedTaxon.page(1).
+          select("min(listed_taxa.id) AS id, listed_taxa.place_id, listed_taxa.taxon_id, min(listed_taxa.list_id) AS list_id, min(establishment_means) AS establishment_means").
+          includes(:place, :list).
+          group(:place_id, :taxon_id).
+          where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
         @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.place_type || 0}.reverse
-        @places = @check_listed_taxa.map{|lt| lt.place}
+        @places = @check_listed_taxa.map{|lt| lt.place}.uniq{|p| p.id}
         @countries = @taxon.places.all(
           :select => "places.id, place_type, code",
           :conditions => ["place_type = ?", Place::PLACE_TYPE_CODES['Country']]
-        )
+        ).uniq{|p| p.id}
         if @countries.size == 1 && @countries.first.code == 'US'
           @us_states = @taxon.places.all(
             :select => "places.id, place_type, code",
@@ -159,8 +157,33 @@ class TaxaController < ApplicationController
               "place_type = ? AND parent_id = ?", Place::PLACE_TYPE_CODES['State'], 
               @countries.first.id
             ]
-          )
+          ).uniq{|p| p.id}
         end
+
+        @taxon_links = if @taxon.species_or_lower?
+          # fetch all relevant links
+          TaxonLink.for_taxon(@taxon).includes(:taxon)
+        else
+          # fetch links without species only
+          TaxonLink.for_taxon(@taxon).where(:species_only => false).includes(:taxon)
+        end
+        tl_place_ids = @taxon_links.map(&:place_id).compact
+        if !tl_place_ids.blank? # && !@places.blank?
+          if @places.blank?
+            @taxon_links.reject! {|tl| tl.place_id}
+          else
+            # fetch listed taxa for this taxon with places matching the links
+            place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => @taxon)
+
+            # remove links that have a place_id set but don't have a corresponding listed taxon
+            @taxon_links.reject! do |tl|
+              tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+            end
+          end
+        end
+        @taxon_links.uniq!{|tl| tl.url}
+        @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
+
         @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
         
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
@@ -175,7 +198,7 @@ class TaxaController < ApplicationController
               current_user, @taxon
           ])
           @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
-          @current_user_lists = current_user.lists.all(:include => [:rules])
+          @current_user_lists = current_user.lists.includes(:rules)
           @lists_rejecting_taxon = @current_user_lists.select do |list|
             if list.is_a?(LifeList)
               list.rules.map {|rule| rule.validates?(@taxon)}.include?(false)
@@ -225,8 +248,16 @@ class TaxaController < ApplicationController
     end
   end
 
+  def tip
+    @observation = Observation.find_by_id(params[:observation_id]) if params[:observation_id]
+    if @observation
+      @places = @observation.system_places
+    end
+    render :layout => false
+  end
+
   def new
-    @taxon = Taxon.new
+    @taxon = Taxon.new(:name => params[:name])
   end
 
   def create
@@ -296,7 +327,15 @@ class TaxaController < ApplicationController
       q = @q
     else
       q = sanitize_sphinx_query(@q)
-      q = "\"^#{q}$\" | #{q}"
+
+      # for some reason 1-term queries don't return an exact match first if enclosed 
+      # in quotes, so we only use them for multi-term queries
+      q = if q =~ /\s/
+        "\"^#{q}$\" | #{q}"
+      else
+        "^#{q}$ | #{q}"
+      end
+
       match_mode = :extended
     end
     drill_params = {}
@@ -334,43 +373,27 @@ class TaxaController < ApplicationController
     per_page = params[:per_page] ? params[:per_page].to_i : 24
     per_page = 100 if per_page > 100
     
-    unless @q.blank? && drill_params.blank?
-      page = params[:page] ? params[:page].to_i : 1
-      @facets = Taxon.facets(q, :page => page, :per_page => per_page,
-        :with => drill_params, 
-        :include => [:taxon_names, :photos],
-        :field_weights => {:name => 2},
-        :match_mode => match_mode)
+    page = params[:page] ? params[:page].to_i : 1
+    @facets = Taxon.facets(q, :page => page, :per_page => per_page,
+      :with => drill_params, 
+      :include => [:taxon_names, :photos],
+      :field_weights => {:name => 2},
+      :match_mode => match_mode)
 
-      if @facets[:iconic_taxon_id]
-        @faceted_iconic_taxa = Taxon.all(
-          :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
-          :include => [:taxon_names, :photos]
-        )
-        @faceted_iconic_taxa = Taxon.sort_by_ancestry(@faceted_iconic_taxa)
-        @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
-      end
-
-      if @facets[:colors]
-        @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
-        @faceted_colors_by_id = @faceted_colors.index_by(&:id)
-      end
-
-      # if @facets[:places]
-      #   @faceted_places = if @places.blank?
-      #     Place.all(:order => "name", :conditions => [
-      #       "id in (?) AND place_type = ?", @facets[:places].keys[0..50], Place::PLACE_TYPE_CODES['Country']
-      #     ])
-      #   else
-      #     Place.all(:order => "name", :conditions => [
-      #       "id in (?) AND parent_id IN (?)", 
-      #       @facets[:places].keys, @places.map(&:id)
-      #     ])
-      #   end
-      #   @faceted_places_by_id = @faceted_places.index_by(&:id)
-      # end
-      @taxa = @facets.for(drill_params)
+    if @facets[:iconic_taxon_id]
+      @faceted_iconic_taxa = Taxon.all(
+        :conditions => ["id in (?)", @facets[:iconic_taxon_id].keys],
+        :include => [:taxon_names, :photos]
+      )
+      @faceted_iconic_taxa = Taxon.sort_by_ancestry(@faceted_iconic_taxa)
+      @faceted_iconic_taxa_by_id = @faceted_iconic_taxa.index_by(&:id)
     end
+
+    if @facets[:colors]
+      @faceted_colors = Color.all(:conditions => ["id in (?)", @facets[:colors].keys])
+      @faceted_colors_by_id = @faceted_colors.index_by(&:id)
+    end
+    @taxa = @facets.for(drill_params)
     
     begin
       @taxa.blank?
@@ -380,6 +403,19 @@ class TaxaController < ApplicationController
     end
     
     do_external_lookups
+
+    unless @taxa.blank?
+      # if there's an exact match among the hits, make sure it's first
+      if exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
+        if exact_index > 0
+          @taxa.unshift @taxa.delete_at(exact_index)
+        end
+
+      # otherwise try and hit the db directly. Sphinx doesn't always seem to behave properly
+      elsif params[:page].to_i <= 1 && (exact = Taxon.where("lower(name) = ?", params[:q].to_s.downcase.strip).first)
+        @taxa.unshift exact
+      end
+    end
     
     respond_to do |format|
       format.html do
@@ -403,7 +439,7 @@ class TaxaController < ApplicationController
         options = Taxon.default_json_options
         options[:include].merge!(
           :iconic_taxon => {:only => [:id, :name]}, 
-          :taxon_names => {:only => [:id, :name, :lexicon]}
+          :taxon_names => {:only => [:id, :name, :lexicon, :is_valid]}
         )
         options[:methods] += [:common_name, :image_url, :default_name]
         render :json => @taxa.to_json(options)
@@ -413,11 +449,19 @@ class TaxaController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term]
-    @taxon_names = TaxonName.paginate(
-      :page => params[:page], 
-      :include => {:taxon => :taxon_names},
-      :conditions => ["lower(name) LIKE ?", "#{@q.to_s.downcase}%"]
-    )
+    @is_active = if params[:is_active] == "true" || params[:is_active].blank?
+      true
+    elsif params[:is_active] == "false"
+      false
+    else
+      params[:is_active]
+    end
+
+    scope = TaxonName.includes(:taxon => :taxon_names).
+      where("lower(taxon_names.name) LIKE ?", "#{@q.to_s.downcase}%").
+      limit(30).scoped
+    scope = scope.where("taxa.is_active = ?", @is_active) unless @is_active == "any"
+    @taxon_names = scope.sort_by{|tn| tn.taxon.ancestry || ''}
     exact_matches = []
     @taxon_names.each_with_index do |taxon_name, i|
       next unless taxon_name.name.downcase.strip == @q.to_s.downcase.strip
@@ -426,10 +470,10 @@ class TaxaController < ApplicationController
     if exact_matches.blank?
       exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, :conditions => ["lower(name) = ?", @q.to_s.downcase])
     end
-    @taxon_names.unshift(*exact_matches)
+    @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
       taxon = taxon_name.taxon
-      taxon.html = render_to_string(:partial => "chooser.html.erb", 
+      taxon.html = view_context.render_in_format(:html, :partial => "chooser.html.erb", 
         :object => taxon, :comname => taxon_name.is_scientific_names? ? nil : taxon_name)
       taxon
     end
@@ -523,8 +567,8 @@ class TaxaController < ApplicationController
   end
   
   def map
-    @cloudmade_key = INAT_CONFIG['cloudmade'].try(:[], 'key')
-    @bing_key = INAT_CONFIG['bing'].try(:[], 'key')
+    @cloudmade_key = CONFIG.cloudmade.key
+    @bing_key = CONFIG.bing.key
     
     if @taxon = Taxon.find_by_id(params[:id].to_i)
       load_single_taxon_map_data(@taxon)
@@ -675,7 +719,7 @@ class TaxaController < ApplicationController
     end
     
     @listed_taxa = @places.map do |place| 
-      place.check_list.add_taxon(@taxon, :user_id => current_user.id)
+      place.check_list.try(:add_taxon, @taxon, :user_id => current_user.id)
     end.select{|p| p.valid?}
     @listed_taxa_by_place_id = @listed_taxa.index_by{|lt| lt.place_id}
   end
@@ -704,7 +748,7 @@ class TaxaController < ApplicationController
     @taxon.photos = photos
     @taxon.save
     unless photos.count == 0
-      Taxon.delay(:priority => 2).update_ancestor_photos(@taxon.id, photos.first.id)
+      Taxon.delay(:priority => INTEGRITY_PRIORITY).update_ancestor_photos(@taxon.id, photos.first.id)
     end
     if errors.blank?
       flash[:notice] = "Taxon photos updated!"
@@ -791,7 +835,7 @@ class TaxaController < ApplicationController
       @error_message = e.message
     end
     @taxon.reload
-    @error_message ||= "Graft failed" unless @taxon.grafted?
+    @error_message ||= "Graft failed. Please graft manually by editing the taxon." unless @taxon.grafted?
     
     respond_to do |format|
       format.html do
@@ -803,6 +847,13 @@ class TaxaController < ApplicationController
           render :status => :unprocessable_entity, :text => @error_message
         else
           render :text => "Taxon grafted to #{@taxon.parent.name}"
+        end
+      end
+      format.json do
+        if @error_message
+          render :status => :unprocessable_entity, :json => {:error => @error_message}
+        else
+          render :json => {:msg => "Taxon grafted to #{@taxon.parent.name}"}
         end
       end
     end
@@ -837,7 +888,13 @@ class TaxaController < ApplicationController
         "#{@keeper.name} (#{@keeper.id}).  #{@taxon.name} (#{@taxon.id}) " + 
         "has been deleted."
       respond_to do |format|
-        format.html { redirect_back_or_default(@keeper) }
+        format.html do
+          if session[:return_to].to_s =~ /#{@taxon.id}/
+            redirect_to @keeper
+          else
+            redirect_back_or_default(@keeper)
+          end
+        end
         format.json { render :json => @keeper }
       end
       return
@@ -846,6 +903,8 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html
       format.js do
+        @taxon_change = TaxonChange.input_taxon(@taxon).output_taxon(@keeper).first
+        @taxon_change ||= TaxonChange.input_taxon(@keeper).output_taxon(@taxon).first
         render :partial => "taxa/merge"
       end
       format.json { render :json => @keeper }
@@ -862,7 +921,7 @@ class TaxaController < ApplicationController
       :conditions => "resolved = true AND flaggable_type = 'Taxon'",
       :order => "flags.id desc")
     life = Taxon.find_by_name('Life')
-    @ungrafted = Taxon.roots.paginate(:conditions => ["id != ?", life], 
+    @ungrafted = Taxon.roots.active.paginate(:conditions => ["id != ?", life], 
       :page => 1, :per_page => 100, :include => [:taxon_names])
   end
 
@@ -1047,7 +1106,7 @@ class TaxaController < ApplicationController
         taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2) unless @taxon
       rescue ActiveRecord::StatementInvalid, PGError => e
         raise e unless e.message =~ /invalid byte sequence/ || e.message =~ /incomplete multibyte character/
-        name = Iconv.iconv('UTF8', 'LATIN1', name).first
+        name = name.encode('UTF-8')
         taxa = Taxon.all(:conditions => ["unique_name = ?", name], :limit => 2)
       end
       @taxon = taxa.first if taxa.size == 1
@@ -1059,7 +1118,7 @@ class TaxaController < ApplicationController
         taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2) unless @taxon
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
-        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        name = name.encode('UTF-8')
         taxa = Taxon.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       end
       @taxon = taxa.first if taxa.size == 1
@@ -1071,7 +1130,7 @@ class TaxaController < ApplicationController
         taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       rescue ActiveRecord::StatementInvalid => e
         raise e unless e.message =~ /invalid byte sequence/
-        name = Iconv.iconv('UTF8', 'LATIN1', name)
+        name = name.encode('UTF-8')
         taxon_names = TaxonName.all(:conditions => ["lower(name) = ?", name], :limit => 2)
       end
       if taxon_names.size == 1
@@ -1104,6 +1163,7 @@ class TaxaController < ApplicationController
     unless @taxon
       return redirect_to :action => 'search', :q => name
     else
+      params.delete(:q)
       return_here
       show
     end
@@ -1133,7 +1193,7 @@ class TaxaController < ApplicationController
         params[:names]
       end
       taxon_names = TaxonName.where("name IN (?)", names).limit(100)
-      find_options[:conditions] = ["taxa.id IN (?)", taxon_names.map(&:taxon_id).uniq]
+      find_options[:conditions] = ["taxa.is_active = ? AND taxa.id IN (?)", true, taxon_names.map(&:taxon_id).uniq]
     else
       find_options[:conditions] = ["is_iconic = ?", true]
       find_options[:order] = :ancestry
@@ -1219,7 +1279,7 @@ class TaxaController < ApplicationController
     
     # graft in the background
     @external_taxa.each do |external_taxon|
-      external_taxon.delay.graft unless external_taxon.grafted?
+      external_taxon.delay.graft_silently unless external_taxon.grafted?
     end
     
     @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|

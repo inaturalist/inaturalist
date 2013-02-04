@@ -13,17 +13,18 @@
   if taxon_change
     swaps.delete_if{|swap| swap.id == taxon_change.id}
   end
+  show_change_links ||= false
 -%>
 
 <div id="change_taxon_<%= change_taxon.id %>" class="change_taxon clear" data-taxon-id="<%= change_taxon.id %>">
-  <% image_and_content taxon_image(change_taxon), :image_size => 75 do %>
+  <%= image_and_content taxon_image(change_taxon), :image_size => 75 do %>
     <%= link_to change_taxon, :class => "taxon #{change_taxon.rank}" do %>
       <span class="sciname"><%= change_taxon.name %></span>
       <%= change_taxon.id %>
     <% end -%>
     
     <div class="stacked">
-      <%= link_to change_taxon.observations_count, observations_path(:taxon_id => change_taxon.id) %> Obs
+      <%= link_to change_taxon.observations_count, observations_path(:taxon_id => change_taxon.id), :rel => "nofollow" %> Obs
       <% unless change_taxon.conservation_status.blank? %>
         <span class='meta'>|</span>
         <%= change_taxon.conservation_status_code %>
@@ -52,29 +53,50 @@
     
     <div class="meta">
       <div class="small description">
-        <% for taxon_scheme in change_taxon.taxon_schemes.compact %>
-          <%= taxon_scheme.title  %><br/>
-        <% end %>
+        <%- schemes = change_taxon.taxon_schemes.compact -%>
+        <% unless schemes.blank? -%>
+          <label>Schemes:</label>
+          <%= schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe %>
+        <% end -%>
         
         <% unless swaps.blank? -%>
           <label>Synonyms</label>
           <ul>
             <% for swap in swaps %> 
               <%- aka_taxon = swap.opposite_taxon_from(change_taxon) -%>
-              <% for aka_scheme in aka_taxon.taxon_schemes %>
+              <% if aka_taxon.taxon_schemes.blank? -%>
                 <li>
-                  <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %>
-                  <div class="meta">
-                    <%= aka_scheme.title %>
-                  </div>
+                  <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %><br/>
                   <%= link_to "View change", taxon_change_path(swap) %>
                 </li>
-              <% end %>
+              <% else %>
+                <% for aka_scheme in aka_taxon.taxon_schemes %>
+                  <li>
+                    <%= link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon %>
+                    <div class="meta">
+                      <%= aka_scheme.title %>
+                    </div>
+                    <%= link_to "View change", taxon_change_path(swap) %>
+                  </li>
+                <% end %>
+              <% end -%>
             <% end %>
           </ul>
         <% end -%>
       </div>
     </div>
+
+    <% if show_change_links && taxon_change && @type -%>
+      <div class="meta buttonrow smallbuttons">
+        <%- input_names = taxon_change.input_taxa.map{|t| "#{t.name} #{t.id}"} -%>
+        <%= link_to "Change your matching #{@type.humanize.downcase} to this taxon", 
+          taxon_change_commit_records_path(taxon_change.id, @type, change_taxon.id),
+          :method => :put, 
+          :confirm => "Are you sure you want to change all your #{@type.humanize.downcase} of #{commas_and input_names} to #{change_taxon.name} #{change_taxon.id}?",
+          :class => "glaucous button",
+          "data-loading-click" => "Updating..." %>
+      </div>
+    <% end -%>
   <% end -%>
 </div>
 

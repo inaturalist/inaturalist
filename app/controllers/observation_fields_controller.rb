@@ -25,6 +25,7 @@ class ObservationFieldsController < ApplicationController
         @value = params[:value] || "any"
         scope = ObservationFieldValue.includes(:observation).
           where(:observation_field_id => @observation_field).
+          order("observation_field_values.id DESC").
           scoped
         scope = scope.where("value = ?", @value) unless @value == "any"
         @observation_field_values = scope.page(params[:page])

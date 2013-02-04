@@ -1,5 +1,6 @@
 class FlowTasksController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :admin_required, :only => [:index]
   before_filter :load_flow_task, :only => [:show, :destroy, :run]
   before_filter :require_owner, :only => [:destroy, :run]
   
@@ -60,7 +61,6 @@ class FlowTasksController < ApplicationController
   # repeatedly to check progress
   # Key is required, and a block that assigns a new Delayed::Job to @job
   def delayed_progress(key)
-    Rails.logger.debug "[DEBUG] key: #{key}"
     @tries = params[:tries].to_i
     if @tries > 20
       @status = @error

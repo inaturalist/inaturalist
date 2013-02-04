@@ -14,7 +14,7 @@
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <%-
-     description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary
+     description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary(:refresh_if_blank => true)
      og_description = description
      og_description = "(Photo: #{@photos.first.attribution}) #{og_description}" unless @photos.blank?
   -%>
@@ -501,8 +501,10 @@
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
       Source: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source_url %>
+    <% elsif @taxon.source && @taxon.source.url %>
+      Source: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source.url %>
     <% elsif @taxon.source %>
-      Source: <%= @taxon.source.title %>
+      Source: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source %>
     <% elsif @taxon.creator %>
       Added by <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>
@@ -609,7 +611,12 @@
     <h3>All Names</h3>
     <ul>
       <% for lexicon, taxon_names in @taxon.taxon_names.group_by(&:lexicon) %>
-        <%- lexicon = lexicon.blank? ? 'Unknown' : lexicon.capitalize %>
+        <%- 
+          lexicon = lexicon.blank? ? 'Unknown' : lexicon.capitalize
+          if taxon_names.size > 1 && (default_name = taxon_names.detect{|tn| tn.name == @taxon.name})
+            taxon_names = [taxon_names.delete(default_name), taxon_names.sort_by(&:name)].flatten
+          end
+        -%>
         <li>
           <span class="description"><%= lexicon %></span>
           <ul class="taxon_names">
@@ -634,18 +641,22 @@
 
   <% if @taxon.species_or_lower? -%>
     <div id="colors" class="clear">
-      <h3>Colors</h3>
-      <% if @colors.blank?-%>
+      <h3>
+        Guide Colors
         <% if logged_in? -%>
-          <div class="notice">
-            This species has no colors! Help improve species searches by telling
-            us what color this is!
-          </div>
-        <% else -%>
-          <div class="description">
-            No colors selected.
-          </div>
+          <% helptip_for :colors do %>
+            Color categories for this species, as if you were going to place it
+            in a field guide sorted by color. Please don't list every color on
+            the organism, just the prominent ones. For flowering plants please
+            use flower color.  Please leave blank for colors that wouldn't be
+            useful in categorization, like brown mammals and green ferns.
+          <% end -%>
         <% end -%>
+      </h3>
+      <% if @colors.blank?-%>
+        <div class="description">
+          No colors selected.
+        </div>
       <% end -%>
       <div id="colorboxen">
         <% for color in @colors %>
@@ -678,11 +689,6 @@
               </div>
             <% end %>
           </div>
-          <% if @colors.blank? -%>
-            <script type="text/javascript" charset="utf-8">
-              $('#edit_colors_dialog').prev('.togglelink').click();
-            </script>
-          <% end -%>
         </div>
       <% end -%>
     </div>
@@ -793,6 +799,12 @@
       <%= link_to "Embed a widget for this taxon on your website &raquo;".html_safe, observations_widget_path(:taxon_id => @taxon), 
         :rel => "nofollow" %>
     </p>
+
+    <% if logged_in? -%>
+      <p class="ui">
+        <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @taxon } %>
+      </p>
+    <% end -%>
     
   </div>
   
@@ -886,11 +898,11 @@
         <% end -%>
       
       <% if logged_in? -%>
-        <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
+        <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore', :rel => "nofollow" %>
         <br/>
         <%= link_to "View your observations", observations_by_login_path(current_user.login, :taxon_id => @taxon.id), :class => 'readmore' %>
       <% else %>
-        <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore' %>
+        <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore', :rel => "nofollow" %>
       <% end -%>
     </div>
     
@@ -953,7 +965,7 @@
       <div id="taxon_range">
         <div id="taxon_range_map" style="width: 790px; height: 488px"
           data-taxon-id="<%= @taxon.id %>"
-          data-taxon-range-kml="<%= (root_url.gsub(/\/$/, "") + @taxon_range.range.url) if @taxon_range %>"
+          data-taxon-range-kml="<%= taxon_range_kml_url if @taxon_range %>"
           data-gbif-kml="http://data.gbif.org/ws/rest/occurrence/list?coordinatestatus=true&maxresults=500&coordinateissues=false&scientificname=<%= @taxon_gbif %>&format=kml"></div>
         <div class="ui description">
           <% if @taxon_range -%>

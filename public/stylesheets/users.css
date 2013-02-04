@@ -1,0 +1,31 @@
+.userimagelink {display:block; width:230px; height:230px;}
+.usercol {overflow: hidden; position:relative; margin-bottom:10px;}
+.userlink {display:block; font-size: 150%; color:white; z-index:1;}
+.blurb {
+  color:#eee;
+  position:absolute;
+  bottom: 0;
+  left:0;
+  padding:10px;
+  width:210px;
+  background-color: rgb(0, 0, 0);
+  /* RGBa with 0.6 opacity */
+  background-color: rgba(0, 0, 0, 0.3);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+
+.blurb:hover {
+  background-color: rgb(0, 0, 0);
+  /* RGBa with 0.6 opacity */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* For IE 5.5 - 7*/
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  /* For IE 8*/
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+}
+
+.usercol .blurb a {color: white; font-weight: bold;overflow:hidden;}
+.usercol .blurb a:hover {text-decoration: underline;}

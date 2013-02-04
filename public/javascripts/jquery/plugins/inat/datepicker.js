@@ -19,6 +19,7 @@
       buttonImageOnly: true,
       showButtonPanel: true,
       showAnim: 'fadeIn',
+      yearRange: "c-100:c+0",
       maxDate: '+0d',
       constrainInput: false,
       firstDay: 0,

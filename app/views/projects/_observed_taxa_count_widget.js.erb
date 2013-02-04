@@ -3,6 +3,6 @@ try {
   if (msg) {
     msg.style.visibility = 'visible';
   }
-  document.write('<%= escape_javascript(render(:partial => "observed_taxa_count_widget.html").gsub(/\n\s*/, '')).html_safe %>')
+  document.write('<%= escape_javascript(render_in_format(:html, :partial => "observed_taxa_count_widget.html").gsub(/\n\s*/, '')).html_safe %>')
   
 } catch (e) {}

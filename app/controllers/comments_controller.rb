@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!, :except => :index
   before_filter :admin_required, :only => [:user]
-  before_filter :owner_required, :only => [:edit, :update, :destroy]
+  before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
+  before_filter :owner_required, :only => [:edit, :update]
   cache_sweeper :comment_sweeper, :only => [:create, :destroy]
   
   MOBILIZED = [:edit]
@@ -36,7 +37,6 @@ class CommentsController < ApplicationController
   end
   
   def show
-    @comment = Comment.find(params[:id])
     redirect_to_parent
   end
   
@@ -45,7 +45,6 @@ class CommentsController < ApplicationController
   end
   
   def edit
-    @comment = Comment.find(params[:id])
     respond_to do |format|
       format.html
       format.mobile do
@@ -69,7 +68,6 @@ class CommentsController < ApplicationController
   end
   
   def update
-    @comment = Comment.find(params[:id])
     @comment.attributes = params[:comment]
     @comment.save unless params[:preview]
     respond_to do |format|
@@ -90,7 +88,20 @@ class CommentsController < ApplicationController
   end
   
   def destroy
-    @comment = Comment.find(params[:id])
+    unless @comment.deletable_by?(current_user)
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to @comment
+        end
+        format.json do
+          render :json => {:error => msg}
+        end
+      end
+      return
+    end
+
     parent = @comment.parent
     @comment.destroy
     respond_to do |format|
@@ -108,11 +119,12 @@ class CommentsController < ApplicationController
   def redirect_to_parent
     if @comment.parent.is_a?(Post)
       post = @comment.parent
-      if post.parent.is_a?(Project)
-        redirect_to (post.parent.is_a?(Project) ?
-                     project_journal_post_path(post.parent.slug, @comment.parent) :
-                     journal_post_path(post.user.login, @comment.parent))
+      url = if post.parent.is_a?(Project)
+        project_journal_post_path(post.parent.slug, @comment.parent, :anchor => "comment-#{@comment.id}")
+      else
+        journal_post_path(post.user.login, @comment.parent, :anchor => "comment-#{@comment.id}")
       end
+      redirect_to(url)
     else
       redirect_to(url_for(@comment.parent) + "#comment-#{@comment.id}")
     end
@@ -121,14 +133,15 @@ class CommentsController < ApplicationController
   def respond_to_create
     if @comment.valid?
       flash[:notice] = "Your comment was saved."
-      if params[:return_to]
-        return redirect_to(params[:return_to])
-      end
+      return redirect_to(params[:return_to]) unless params[:return_to].blank?
     else
-      flash[:error] = "We had trouble saving your comment: " +
-        @comment.errors.full_messages.join(', ')
+      flash[:error] = "We had trouble saving your comment: #{@comment.errors.full_messages.join(', ')}"
     end
     redirect_to_parent
+  end
+
+  def load_comment
+    render_404 unless @comment = Comment.find_by_id(params[:id] || params[:comment_id])
   end
   
   def owner_required

@@ -19,15 +19,12 @@ Inaturalist::Application.configure do
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
-  # Set the logger to roll over
-  config.logger = Logger.new("#{Rails.root}/log/#{Rails.env}.log", 10, 10485760)
-
   # Not sure why this is necessary, but settings the custom logger above 
   # seems to cause ActiveRecord to log db statements
   config.active_record.logger = nil
 
   # Use a different cache store in production
-  config.cache_store = :mem_cache_store, INAT_CONFIG["memcached"]
+  config.cache_store = :mem_cache_store, CONFIG.memcached
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -56,7 +53,7 @@ Inaturalist::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  if INAT_CONFIG['google_analytics'] && INAT_CONFIG['google_analytics']['tracker_id']
-    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => INAT_CONFIG['google_analytics']['tracker_id']
+  if CONFIG.google_analytics && CONFIG.google_analytics.tracker_id
+    config.middleware.use "Rack::GoogleAnalytics", :web_property_id => CONFIG.google_analytics.tracker_id
   end
 end

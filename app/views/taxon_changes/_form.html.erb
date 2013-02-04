@@ -13,41 +13,84 @@
       var index = $('#new_taxon_change_taxa').children().length
       markup = markup.replace(/taxon_change_taxa_attributes\]\[0\]/g, "taxon_change_taxa_attributes]["+index+"]")
       $('#new_taxon_change_taxa').append(markup)
-      $('#new_taxon_change_taxa input.text:last').simpleTaxonSelector()
+      $('#new_taxon_change_taxa input.text:last').simpleTaxonSelector({
+        isActive: 'any',
+        includeID: true
+      })
     }
+    $(document).ready(function() {
+      $('.taxon_change_taxon').each(function() {
+        var taxonIDField = $('input[name*="[taxon_id]"]', this).get(0)
+        $('input.text', this).simpleTaxonSelector({
+          taxonIDField: taxonIDField,
+          isActive: 'any',
+          includeID: true
+        })
+      })
+    })
   </script>
 <%- end -%>
 <%- 
   taxon_change ||= @taxon_change
   taxon_change_type = taxon_change.class.name
 -%>
+
 <%= form_for(taxon_change, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f| %>
   <%= error_messages_for :taxon_change %>
   
   <div class="column span-24">
+    <% if taxon_change.committed? -%>
+      <div class="alert box clear">
+        <strong>This taxon change has been committed!</strong>
+        Please don't edit the taxa.  Editing other fields is ok.
+      </div>  
+    <% end -%>
     <% if taxon_change.new_record? -%>
       <fieldset class="column span-8">
-        <legend>Type</legend>
-        <%= f.radio_button :type, 'TaxonSplit', { :checked => true }, :label_after => true, :label => "split" %>
-        <%= f.radio_button :type, 'TaxonMerge', :label_after => true, :label => "merge" %>
-        <%= f.radio_button :type, 'TaxonSwap', :label_after => true, :label => "swap" %>
-        <%= f.radio_button :type, 'TaxonDrop', :label_after => true, :label => "drop" %>
+        <legend>
+          Type
+          <% helptip_for "type" do %>
+            Choose what kind of change you're creating.
+          <% end -%>
+        </legend>
+        <%= f.radio_button :type, 'TaxonSplit', { :checked => true }, :label_after => true, :label => "split",
+          :description => "Old taxon split into multiple new taxa" %>
+        <%= f.radio_button :type, 'TaxonMerge', :label_after => true, :label => "merge",
+          :description => "Several old taxa lumped into one new taxon" %>
+        <%= f.radio_button :type, 'TaxonSwap', :label_after => true, :label => "swap",
+          :description => "1-to-1 name change" %>
+        <%= f.radio_button :type, 'TaxonDrop', :label_after => true, :label => "drop",
+          :description => "Taxon concept completely invalid, maintained for historical purposes or partner compatability" %>
+        <%= f.radio_button :type, 'TaxonStage', :label_after => true, :label => "stage",
+          :description => "Prepare an inactive concept for release as part of a change group" %>
       </fieldset>
     <% end %>
 
     <fieldset id="sourcing" class="last column span-<%= taxon_change.new_record? ? '16' : '24' %>">
-      <legend>Sourcing</legend>
-      <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
+      <legend>
+        Sourcing
+        <% helptip_for "source" do %>
+          Please add a citation for this change.
+        <% end -%>
+      </legend>
+      <div class="stacked">
+        <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
+      </div>
+
       <%= f.select :change_group, @change_groups, :include_blank => "None", :selected => taxon_change.try(:change_group) %>
+      <%- new_change_group_field = capture do %>
+        <%= f.text_field :change_group, :description => "Label to group a batch of taxon changes" %>
+      <% end -%>
+      <%= link_to_function "Add a new change group", "$('.change_group_field').replaceWith('#{escape_javascript new_change_group_field}'); $(this).remove()" %>
     </fieldset>
   </div>
 
   <div class="column span-24">
     <fieldset class="column span-12">
       <% if taxon_change.new_record? -%>
-        <legend>Input taxon (or output taxon for merge)</legend>
+        <legend>Single taxon (input for split/drop/stage, output for merge/swap)</legend>
       <% else %>
-        <legend><%= taxon_change_type == 'TaxonMerge' ? "Output taxon" : "Input taxon" %></legend>
+        <legend><%= taxon_change_type == 'TaxonSplit' ? "Input taxon" : "Output taxon" %></legend>
       <% end %>
     
       <%= f.label :taxon_id, 'Taxon ID' %><br/>
@@ -65,41 +108,52 @@
     <% if taxon_change.new_record? || taxon_change_type == "TaxonSplit" || taxon_change_type == "TaxonMerge" || taxon_change_type == "TaxonSwap" %>
       <fieldset class="last column span-12">
         <% if taxon_change.new_record? -%>
-          <legend>Output taxa or taxon (for split or swap) otherwise input taxa (for merge)</legend>
+          <legend>Multiple taxa (input for swap/merge, output for split)</legend>
         <% else %>
           <legend>
             <%= 
               case taxon_change_type
               when 'TaxonSplit' then "Output taxa"
               when 'TaxonMerge' then "Input taxa"
-              when 'TaxonSwap' then "Output taxon"
+              when 'TaxonSwap' then "Input taxon"
               else ''
               end
             %>
           </legend>
         <% end %>
-        <div class="clear">
-          <%= render :partial => "taxon_change_taxa/nested_form_fields", :collection => taxon_change.taxon_change_taxa
-          %>
-        </div>
         
-        <% if taxon_change.new_record? -%>
-          <%- tct_form_fields = capture do -%>
-            <% f.fields_for :taxon_change_taxa, taxon_change.taxon_change_taxa.build, :builder => DefaultFormBuilder do |tct| %>
-              <div class="taxon_change_taxon">
-                <% tct.form_field :taxon_name do %>
-                  <input type="text" class="text"/>
-                  <%= tct.hidden_field :taxon_id %>
-                  <%= tct.hidden_field :nested %>
-                <% end -%>
-              </div>
+        <%= f.fields_for :taxon_change_taxa, :builder => DefaultFormBuilder do |tct| %> 
+          <div class="taxon_change_taxon">
+            <%= tct.hidden_field :taxon_change_id %>
+            <%= tct.hidden_field "_destroy" %>
+            <%= link_to_function "Remove", 
+              "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
+              :class => "right" %>
+            <%= tct.form_field :taxon_name do %>
+              <input type="text" class="text"/>
+              <%= tct.hidden_field :taxon_id %>
+              <%= tct.hidden_field :nested %>
             <% end -%>
+          </div>
+        <% end -%>
+        <%- tct_form_fields = capture do -%>
+          <%= f.fields_for :taxon_change_taxa, taxon_change.taxon_change_taxa.build, :builder => DefaultFormBuilder do |tct| %>
+            <div class="taxon_change_taxon">
+              <%= tct.hidden_field :taxon_change_id %>
+              <%= tct.hidden_field "_destroy" %>
+              <%= link_to_function "Remove", 
+                "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
+                :class => "right" %>
+              <%= tct.form_field :taxon_name do %>
+                <input type="text" class="text"/>
+                <%= tct.hidden_field :taxon_id %>
+                <%= tct.hidden_field :nested %>
+              <% end -%>
+            </div>
           <% end -%>
-          <div id="new_taxon_change_taxa"></div>
-          <%= link_to_function "Add a taxon", "addTaxonChangeTaxonField('#{escape_javascript(tct_form_fields)}')" %>
-        <% else -%>
-          <%= link_to "add a new taxon", new_taxon_change_taxon_change_taxon_path(taxon_change), :class => 'readmore' %>
-        <% end %>
+        <% end -%>
+        <div id="new_taxon_change_taxa"></div>
+        <%= link_to_function "Add a taxon", "addTaxonChangeTaxonField('#{escape_javascript(tct_form_fields)}')" %>
       </fieldset>
     <% end -%>
   </div>

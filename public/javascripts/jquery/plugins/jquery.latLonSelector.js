@@ -3,6 +3,23 @@
     var options = $.extend({}, $.fn.latLonSelector.defaults, options);
     $.fn.latLonSelector._options = options;
     
+    if ($('#latLonSelector').length == 0) {
+      setupMap(options)
+    }
+    
+    // Setup each input
+    $(this).each(function() {
+      setup(this, options);
+    });
+    
+    // If embedded map, show the wrapper on the first input
+    if (typeof(options.mapDiv) != 'undefined') {
+      $.fn.latLonSelector.showMap($(this).get(0));
+      $.fn.latLonSelector.hideMap($(this).get(0));
+    };
+  }
+
+  function setupMap(options) {
     // Insert a SINGLE map div at the bottom of the page    
     var wrapper = $('<div id="latLonSelector"></div>');
     if (typeof(options.mapDiv) == 'undefined') {
@@ -141,18 +158,7 @@
       $('<label for="latLonSelectorExactFlag">Exact location</label>').hide()
     );
     $(wrapper).append(dataControls);
-    
-    // Setup each input
-    $(this).each(function() {
-      setup(this, options);
-    });
-    
-    // If embedded map, show the wrapper on the first input
-    if (typeof(options.mapDiv) != 'undefined') {
-      $.fn.latLonSelector.showMap($(this).get(0));
-      $.fn.latLonSelector.hideMap($(this).get(0));
-    };
-  };
+  }
   
   function setup(input, options) {
     // Give it some class
@@ -243,6 +249,14 @@
     if ($(field).length == 0) {
       field = $(context).parent().find(tagName+'[name*="['+name+']"]:first');
     };
+
+    // hack!
+    if ($(field).length == 0) {
+      field = $(context).parents('.observation:first').find(tagName+'[name="'+name+'"]:first');
+    }
+    if ($(field).length == 0) {
+      field = $(context).parents('.observation:first').find(tagName+'[name*="['+name+']"]:first');
+    }
     
     // Try to find within the same form
     if ($(field).length == 0) {
@@ -250,7 +264,7 @@
     }
     if ($(field).length == 0) {
       field = $(context).parents('form').find(tagName+'[name*="['+name+']"]:first');
-    };
+    }
     
     return field;
   }
@@ -354,8 +368,10 @@
     var isExact = isExact || $('#latLonSelector').find(
                               '#latLonSelectorExactFlag:checked').length == 1;
     var locExactField = findFormField(input, 'location_is_exact');
-    $(locExactField).val(isExact);
-    $(locExactField).get(0).checked = isExact;
+    if ($(locExactField).get(0)) {
+      $(locExactField).val(isExact);
+      $(locExactField).get(0).checked = isExact;
+    }
   };
   
   $.fn.latLonSelector.updateFormAccuracy = function(accuracy, options) {
@@ -405,7 +421,7 @@
     };
     
     // Get marker, exact or approx based on exactField
-    var isExact = $(exactField).get(0).checked == true;
+    var isExact = $(exactField).get(0) ? $(exactField).get(0).checked == true : true;
     var marker = getMarker({exact: isExact});
     setExact(isExact)
     

@@ -1,0 +1,15 @@
+<%- 
+  project ||= @project
+  taxon_id ||= nil
+-%>
+<% if project.matching_project_observation_rules.count > 0 -%>
+  <span class="button">
+    <%= link_to "Add all your matching obs. to this project", add_matching_to_project_url(project.id), 
+      :class => "add_matching_link" %>
+  </span>
+<% elsif taxon_id %>
+  <span class="button">
+    <%= link_to "Add all your matching obs. of this taxon to this project", add_matching_to_project_url(project.id, :taxon_id => taxon_id), 
+      :class => "add_matching_link" %>
+  </span>
+<% end -%>

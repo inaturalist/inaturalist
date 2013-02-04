@@ -1,3 +1,4 @@
+#encoding: utf-8
 # Ratatosk
 #
 # Ratatosk is a facade for dealing with taxa from external name providers.  It
@@ -34,9 +35,9 @@ module Ratatosk
     #
     # Alias for Ratatosk::Ratatosk#graft
     #
-    def graft(taxon)
+    def graft(taxon, options = {})
       @ratatosk ||= Ratatosk.new
-      @ratatosk.graft(taxon)
+      @ratatosk.graft(taxon, options)
     end
     
     #
@@ -165,16 +166,17 @@ module Ratatosk
     # existing taxon in our tree, saving any new members of this branch and
     # attaching it to the existing taxon (the graft point).
     #
-    def graft(taxon)
+    def graft(taxon, options = {})
       # puts "[DEBUG] Grafting #{taxon}..."
       # if this is an adapter of some kind, just get the underlying Taxon
       # object. It will smooth the way with nested_set...
       taxon = taxon.taxon unless taxon.is_a? Taxon
       raise RatatoskGraftError, "Can't graft unsaved taxa" if taxon.new_record?
 
-      graft_point, lineage = graft_point_and_lineage(taxon)
+      graft_point, lineage = graft_point_and_lineage(taxon, options)
 
       # Return an empty lineage if this has already been grafted
+      return [] if lineage.blank?
       return [] if lineage.first.parent == lineage.last
       return [] if lineage.size == 1 && lineage.first.grafted?
       return [] if lineage.size == 1 && lineage.first == graft_point
@@ -189,7 +191,7 @@ module Ratatosk
         unless new_taxon.valid?
           msg = "Failed to graft #{new_taxon} because it was invalid: " + 
             new_taxon.errors.full_messages.join(', ')
-          new_taxon.logger.error "[ERROR] #{msg}"
+          new_taxon.logger.error "[ERROR] #{msg}" if new_taxon.logger
           raise RatatoskGraftError, msg
         end
         new_taxon.set_scientific_taxon_name
@@ -210,9 +212,9 @@ module Ratatosk
       lineage
     end
     
-    def graft_point_and_lineage(taxon)
+    def graft_point_and_lineage(taxon, options = {})
       # Try a simple polynom lookup first
-      if parent = polynom_parent(taxon.name)
+      if parent = polynom_parent(taxon.name, options)
         return [parent, [taxon]]
       end
       
@@ -312,10 +314,18 @@ module Ratatosk
     # sapiens" (a binom) or "Ensatina eschscholtzii xanthoptica" (a trinom). 
     # Returns nil if none found or if not a polynom.
     #
-    def polynom_parent(name)
-      parent_name = name.split[0..-2].join(' ')
+    def polynom_parent(name, options = {})
+      parent_name = if name =~ /\s+×\s+/
+        name.split.first
+      else
+        name.split[0..-2].join(' ')
+      end
       return nil if parent_name.blank?
-      Taxon.find_by_name(parent_name)
+      if options[:ancestor]
+        Taxon.where(options[:ancestor].descendant_conditions).where("name = ?", parent_name).first
+      else
+        Taxon.find_by_name(parent_name)
+      end
     end
   end # class Ratatosk
 end # module Ratatosk

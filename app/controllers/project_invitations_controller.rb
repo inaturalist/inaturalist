@@ -72,16 +72,31 @@ class ProjectInvitationsController < ApplicationController
   
   def destroy
     unless @project_invitation = ProjectInvitation.find(params[:id])
-      flash[:error] = "That project invitation doesn't exist."
-      redirect_to :back and return
+      @error = "That project invitation doesn't exist."
     end
+
     unless @project_invitation.observation.user_id == current_user.id || @project_invitation.user_id == current_user.id || ProjectUser.first(:conditions => {:project_id => @project_invitation.project_id, :user_id => current_user.id , :role => "curator"})
-      flash[:error] = "You don't have permission to remove that project invitation."
-      redirect_to :back and return
+      @error = "You don't have permission to remove that project invitation."
+    end
+
+    if @error
+      respond_to do |format|
+        format.html do
+          flash[:error] = @error
+          redirect_back_or_default('/')
+        end
+        format.json { render :json => {:error => @error} }
+      end
+      return
     end
     
     @project_invitation.destroy
-    flash[:notice] = "Invitation to the project \"#{@project_invitation.project.title}\" removed"
-    redirect_to :back
+    respond_to do |format|
+      format.html do
+        flash[:notice] = "Invitation to the project \"#{@project_invitation.project.title}\" removed"
+        redirect_back_or_default('/')
+      end
+      format.json { render :json => @project_invitation }
+    end
   end
 end

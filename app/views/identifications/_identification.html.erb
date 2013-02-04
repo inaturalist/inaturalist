@@ -15,7 +15,7 @@
   hide_actions ||= false
   extra ||= nil
 -%>
-<div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>">
+<div id="<%= id_for(identification) %>" class="clear identification <%= identification_classes %>" data-taxon-id="<%= taxon.id if taxon %>">
   <div class="identification_image">
     <%= link_to taxon_image(taxon), taxon %>
   </div>
@@ -39,7 +39,8 @@
                :action => 'agree',
                :observation_id => identification.observation_id,
                :taxon_id => identification.taxon_id },
-             :method => :post -%></span>
+             :method => :post,
+             "data-loading-click" => "Agreeing..." -%></span>
       <% end %>
       <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
         <span class="button"><%= link_to "Remove", identification_path(identification), 
@@ -52,8 +53,14 @@
     <%= extra if extra %>
     
     <% unless taxon.is_active -%>
-      <span class="small">
+      <span class="small meta">
         (<%= link_to "inactive taxon", taxon_changes_path(:taxon_id => taxon.id) -%>)
+      </small>
+    <% end -%>
+
+    <% if tc = identification.taxon_change -%>
+      <span class="small meta nobr">
+        Added as part of a <%= link_to tc.class.name.underscore.humanize.downcase, taxon_change_path(tc) -%>
       </small>
     <% end -%>
   </div>

@@ -5,6 +5,7 @@ class Update < ActiveRecord::Base
   belongs_to :resource_owner, :class_name => "User"
   
   validates_uniqueness_of :notifier_id, :scope => [:notifier_type, :subscriber_id, :notification]
+  validates_presence_of :resource, :notifier, :subscriber
   
   before_create :set_resource_owner
   after_create :expire_caches
@@ -51,13 +52,15 @@ class Update < ActiveRecord::Base
     updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
       resource_type, resource_id, notification = key
       batch = batch.sort_by{|u| u.sort_by_date}
-      if options[:hour_groups] && "created_observations new_observations".include?(notification) && batch.size > 1
+      if options[:hour_groups] && "created_observations new_observations".include?(notification.to_s) && batch.size > 1
         batch.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
           grouped_updates << [key, hour_updates]
         end
       elsif notification == "activity" && !options[:skip_past_activity]
         # get the resource that has all this activity
-        resource = update_cache[resource_type.underscore.pluralize.to_sym][resource_id] if update_cache
+        resource = if update_cache && update_cache[resource_type.underscore.pluralize.to_sym]
+          update_cache[resource_type.underscore.pluralize.to_sym][resource_id]
+        end
         resource ||= Object.const_get(resource_type).find_by_id(resource_id)
         if resource.blank?
           Rails.logger.error "[ERROR #{Time.now}] couldn't find resource #{resource_type} #{resource_id}, first update: #{batch.first}"
@@ -73,7 +76,7 @@ class Update < ActiveRecord::Base
         activity_assocs.each do |assoc, assoc_options|
           # this is going to lazy load assoc's of the associate (e.g. a comment's user) which might not be ideal
           resource.send(assoc).each do |associate|
-            unless batch.detect{|u| u.notifier == associate}
+            unless batch.detect{|u| u.notifier_type == associate.class.name && u.notifier_id == associate.id}
               batch << Update.new(:resource => resource, :notifier => associate, :notification => "activity")
             end
           end
@@ -100,8 +103,26 @@ class Update < ActiveRecord::Base
     puts msg
     user_ids.each do |subscriber_id|
       delivery_start_time = Time.now
-      Rails.logger.info "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
-      if email_updates_to_user(subscriber_id, start_time, end_time)
+      msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
+      Rails.logger.info msg
+      puts msg
+      email_sent = begin
+        email_updates_to_user(subscriber_id, start_time, end_time)
+      rescue Net::SMTPServerBusy => e
+        sleep(5)
+        begin
+          email_updates_to_user(subscriber_id, start_time, end_time)
+        rescue Net::SMTPServerBusy => e
+          msg =  "[ERROR #{Time.now}] daily updates emailer couldn't deliver to #{subscriber_id} (Net::SMTPServerBusy): #{e.message}"
+          Rails.logger.error msg
+          puts msg
+          next
+        end
+      end
+      if email_sent
+        msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} sent"
+        Rails.logger.info msg
+        puts msg
         delivery_times << (Time.now - delivery_start_time)
         email_count += 1
       end
@@ -120,7 +141,6 @@ class Update < ActiveRecord::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return unless user.active? # email verified
-    # return unless user.admin? # testing
     updates = Update.all(:limit => 100, :conditions => [
       "subscriber_id = ? AND created_at BETWEEN ? AND ?", user.id, start_time, end_time])
     updates.delete_if do |u| 
@@ -136,13 +156,34 @@ class Update < ActiveRecord::Base
   def self.eager_load_associates(updates, options = {})
     includes = options[:includes] || {
       :observation => [:user, {:taxon => :taxon_names}, :iconic_taxon, :photos],
+      :observation_field => [:user],
       :identification => [:user, {:taxon => [:taxon_names, :photos]}, {:observation => :user}],
       :comment => [:user, :parent],
       :listed_taxon => [{:list => :user}, {:taxon => [:photos, :taxon_names]}],
-      :taxon => [:taxon_names, {:taxon_photos => :photos}]
+      :taxon => [:taxon_names, {:taxon_photos => :photo}],
+      :post => [:user, :parent],
+      :flag => [:resolver],
+      :project => [],
+      :project_invitation => [:project, :user],
+      :taxon_change => [:taxon, {:taxon_change_taxa => [:taxon]}, :user]
     }
     update_cache = {}
-    [Comment, Identification, Observation, ListedTaxon, Post, User, Taxon].each do |klass|
+    klasses = [
+      Comment, 
+      Flag, 
+      Identification, 
+      ListedTaxon, 
+      Observation, 
+      ObservationField,
+      Post, 
+      Project, 
+      ProjectInvitation, 
+      Taxon,
+      TaxonChange,
+      User
+    ]
+    klasses += TaxonChange::TYPES.map{|t| Object.const_get(t) rescue nil}.compact
+    klasses.each do |klass|
       ids = []
       updates.each do |u|
         ids << u.notifier_id if u.notifier_type == klass.to_s

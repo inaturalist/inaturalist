@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :edit, :update, :relationships, :add_role, :remove_role]
-  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy]
-  before_filter :admin_required, :only => [:suspend, :unsuspend, :curation]
+  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy, :suspend, :unsuspend]
+  before_filter :admin_required, :only => [:curation]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
   MOBILIZED = [:show, :dashboard, :new, :create]
@@ -48,12 +48,13 @@ class UsersController < ApplicationController
 
   # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
   def activate
-    sign_out(:user) unless logged_in? && current_user.is_admin?
-    user = User.find_by_activation_code(params[:activation_code]) unless params[:activation_code].blank?
+    user = current_user
     case
+    when user && user.suspended?
+      redirect_back_or_default('/')
     when (!params[:activation_code].blank?) && user && !user.confirmed?
       user.confirm!
-      flash[:notice] = "Your #{APP_CONFIG[:site_name]} account has been verified! Please sign in to continue."
+      flash[:notice] = "Your #{CONFIG.site_name} account has been verified! Please sign in to continue."
       if logged_in? && current_user.is_admin?
         redirect_back_or_default('/')
       else
@@ -134,39 +135,73 @@ class UsersController < ApplicationController
   
   def index
     unless fragment_exist?("recently_active")
-      update_find_options = {
-        :limit => 10, 
-        :order => "id DESC",
-        :conditions => ["created_at > ?", 1.week.ago],
-        :include => :user
-      }
-      @updates = [
-        Observation.all(update_find_options),
-        Identification.all(update_find_options),
-        Post.published.all(update_find_options),
-        Comment.all(update_find_options)
-      ].flatten.sort{|a,b| b.created_at <=> a.created_at}.group_by(&:user)
+      @updates = []
+      [Observation, Identification, Post, Comment].each do |klass|
+        @updates += klass.limit(30).
+          order("#{klass.table_name}.id DESC").
+          where("#{klass.table_name}.created_at > ?", 1.week.ago).
+          includes(:user)
+      end
+      hash = {}
+      @updates.sort_by(&:created_at).each do |record|
+        hash[record.user_id] = record
+      end
+      @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    find_options = {
-      :page => params[:page] || 1, :order => 'login'
-    }
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_3"
+    unless fragment_exist?(@leaderboard_key)
+      @most_observations = most_observations(:per => 'month')
+      @most_species = most_species(:per => 'month')
+      @most_identifications = most_identifications(:per => 'month')
+      @most_observations_year = most_observations(:per => 'year')
+      @most_species_year = most_species(:per => 'year')
+      @most_identifications_year = most_identifications(:per => 'year')
+    end
+
+    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
+    unless fragment_exist?(@curators_key)
+      @curators = User.curators.limit(500).reject(&:is_admin?)
+      @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
+      @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
+      @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
+    end
+  end
+
+  def leaderboard
+    @year = (params[:year] || Time.now.year).to_i
+    @month = (params[:month] || Time.now.month).to_i
+    @date = Date.parse("#{@year}-#{@month}-01")
+    @time_unit = params[:month].blank? ? 'year' : 'month'
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_#{@year}_#{@month}"
+    unless fragment_exist?(@leaderboard_key)
+      if params[:month].blank?
+        @most_observations = most_observations(:per => 'year', :year => @year)
+        @most_species = most_species(:per => 'year', :year => @year)
+        @most_identifications = most_identifications(:per => 'year', :year => @year)
+      else
+        @most_observations = most_observations(:per => 'month', :year => @year, :month => @month)
+        @most_species = most_species(:per => 'month', :year => @year, :month => @month)
+        @most_identifications = most_identifications(:per => 'month', :year => @year, :month => @month)
+      end
+    end
+  end
+
+  def search
+    scope = User.active.order('login').scoped
     @q = params[:q].to_s
     if logged_in? && !@q.blank?
       wildcard_q = @q.size == 1 ? "#{@q}%" : "%#{@q.downcase}%"
-      if @q =~ Devise.email_regexp
-        find_options[:conditions] = ["email = ?", @q]
+      conditions = if @q =~ Devise.email_regexp
+        ["email = ?", @q]
       elsif @q =~ /\w+\s+\w+/
-        find_options[:conditions] = ["lower(name) LIKE ?", wildcard_q]
+        ["lower(name) LIKE ?", wildcard_q]
       else
-        find_options[:conditions] = ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
+        ["lower(login) LIKE ? OR lower(name) LIKE ?", wildcard_q, wildcard_q]
       end
+      scope = scope.where(conditions)
     end
-    @alphabet = %w"a b c d e f g h i j k l m n o p q r s t u v w x y z"
-    if (@letter = params[:letter]) && @alphabet.include?(@letter.downcase)
-      find_options.update(:conditions => ["login LIKE ?", "#{params[:letter].first}%"])
-    end
-    @users = User.active.paginate(find_options)
+    @users = scope.page(params[:page])
     counts_for_users
   end
   
@@ -211,7 +246,16 @@ class UsersController < ApplicationController
         Date.today.month, Date.today.year
         ])
     respond_to do |format|
-      format.html
+      format.html do
+        @subscriptions = current_user.subscriptions.includes(:resource).
+          where("resource_type in ('Place', 'Taxon')").
+          order("subscriptions.id DESC").
+          limit(5)
+        if current_user.is_curator? || current_user.is_admin?
+          @flags = Flag.order("id desc").where("resolved = ?", false).limit(5)
+          @ungrafted_taxa = Taxon.order("id desc").where("ancestry IS NULL").limit(5).active
+        end
+      end
       format.mobile
     end
   end
@@ -283,15 +327,29 @@ class UsersController < ApplicationController
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     
     if @display_user.update_attributes(params[:user])
-      flash[:notice] = 'Your profile was successfully updated!'
       sign_in @display_user, :bypass => true
-      redirect_back_or_default(person_by_login_path(:login => current_user.login))
+      respond_to do |format|
+        format.html do
+          flash[:notice] = 'Your profile was successfully updated!'
+          redirect_back_or_default(person_by_login_path(:login => current_user.login))
+        end
+        format.json do
+          render :json => @display_user.to_json(User.default_json_options)
+        end
+      end
     else
       @display_user.login = @display_user.login_was unless @display_user.errors[:login].blank?
-      if request.env['HTTP_REFERER'] =~ /edit_after_auth/
-        render :action => 'edit_after_auth', :login => @original_user.login
-      else
-        render :action => 'edit', :login => @original_user.login
+      respond_to do |format|
+        format.html do
+          if request.env['HTTP_REFERER'] =~ /edit_after_auth/
+            render :action => 'edit_after_auth', :login => @original_user.login
+          else
+            render :action => 'edit', :login => @original_user.login
+          end
+        end
+        format.json do
+          render :json => {:errors => @display_user.errors}, :status => :unprocessable_entity
+        end
       end
     end
   end
@@ -399,6 +457,76 @@ protected
       o.photos.first.try(:square_url)
     when ""
       nil
+    end
+  end
+
+  def most_observations(options = {})
+    per = options[:per] || 'month'
+    year = options[:year] || Time.now.year
+    month = options[:month] || Time.now.month
+    scope = Observation.group(:user_id).
+      where("EXTRACT(YEAR FROM observed_on) = ?", year).scoped
+    if per == 'month'
+      scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
+    end
+    counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
+    users = User.where("id IN (?)", counts.map(&:first))
+    counts.inject({}) do |memo, item|
+      memo[users.detect{|u| u.id == item.first}] = item.last
+      memo
+    end
+  end
+
+  def most_species(options = {})
+    per = options[:per] || 'month'
+    year = options[:year] || Time.now.year
+    month = options[:month] || Time.now.month
+    date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
+    date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
+    sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (
+          SELECT DISTINCT o.taxon_id, o.user_id
+          FROM
+            observations o
+              JOIN taxa t ON o.taxon_id = t.id
+          WHERE
+            t.rank_level <= 10 AND
+              #{date_clause}
+        ) as o
+      GROUP BY o.user_id
+      ORDER BY count_all desc
+      LIMIT 5
+    SQL
+    rows = ActiveRecord::Base.connection.execute(sql)
+    users = User.where("id IN (?)", rows.map{|r| r['user_id']})
+    rows.inject([]) do |memo, row|
+      memo << [users.detect{|u| u.id == row['user_id'].to_i}, row['count_all']]
+      memo
+    end
+  end
+
+  def most_identifications(options = {})
+    per = options[:per] || 'month'
+    year = options[:year] || Time.now.year
+    month = options[:month] || Time.now.month
+    scope = Identification.group("identifications.user_id").
+      joins(:observation).
+      where("identifications.user_id != observations.user_id").
+      where("EXTRACT(YEAR FROM identifications.created_at) = ?", year).
+      order('count_all desc').
+      limit(5).scoped
+    if per == 'month'
+      scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
+    end
+    counts = scope.count.to_a
+    users = User.where("id IN (?)", counts.map(&:first))
+    counts.inject({}) do |memo, item|
+      memo[users.detect{|u| u.id == item.first}] = item.last
+      memo
     end
   end
     

@@ -20,9 +20,6 @@
 
   <% unless taxon_name.source_identifier.blank? -%>
     <div class="column span-8">
-      <div class="description">
-        This taxon name was originally imported from an external name provider:
-      </div>
       <p class="ui">
         <%= n.label :name_provider %><br/>
         <%= n.text_field :name_provider, :disabled => true, :class => "text" %>
@@ -35,6 +32,9 @@
       <p class="ui">
         <%= n.label :source_identifier %><br/>
         <%= n.text_field :source_identifier, :disabled => true, :class => "text" %>
+      </p>
+      <p class="ui meta">
+        This taxon name was originally imported from an external name provider
       </p>
     </div>
   <%- end -%>

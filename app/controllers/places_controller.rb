@@ -21,10 +21,15 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place_ids = Rails.cache.fetch('random_place_ids', :expires_in => 15.minutes) do
-          place_types = [Place::PLACE_TYPE_CODES['Country']]
-          places = Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
-            :conditions => ["place_type IN (?)", place_types])
+        place = Place.find_by_id(CONFIG.place_id) unless CONFIG.place_id.blank?
+        key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
+        place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
+          places = if place
+            place.children.select('id').order("RANDOM()").limit(50)
+          else
+            Place.all(:select => "id", :order => "RANDOM()", :limit => 50, 
+              :conditions => ["place_type IN (?)", [Place::PLACE_TYPE_CODES['Country']]])
+          end
           places.map{|p| p.id}
         end
         place_ids = place_ids.sort_by{rand}[0..4]
@@ -32,18 +37,30 @@ class PlacesController < ApplicationController
       end
       
       format.json do
-        scope = Place.scoped
+        @ancestor = Place.find_by_id(params[:ancestor_id].to_i) unless params[:ancestor_id].blank?
+        scope = if @ancestor
+          @ancestor.descendants.scoped
+        else
+          Place.scoped
+        end
         if params[:q] || params[:term]
           q = (params[:q] || params[:term]).to_s.sanitize_encoding
           scope = scope.dbsearch(q)
         end
-        # render :json => Place.search((params[:q] || params[:term]).to_s)
         if !params[:place_type].blank?
           scope = scope.place_type(params[:place_type])
         elsif !params[:place_types].blank?
           scope = scope.place_types(params[:place_types])
         end
-        scope = scope.listing_taxon(params[:taxon]) unless params[:taxon].blank?
+        unless params[:taxon].blank?
+          if !params[:place_type].blank? && params[:place_type].downcase == 'continent'
+            country_scope = Place.place_types(['country']).listing_taxon(params[:taxon])
+            continent_ids = country_scope.select("ancestry").map(&:parent_id)
+            scope = scope.where("places.id IN (?)", continent_ids)
+          else
+            scope = scope.listing_taxon(params[:taxon])
+          end
+        end
         per_page = params[:per_page].to_i
         per_page = 200 if per_page > 200
         per_page = 30 if per_page < 1
@@ -61,6 +78,17 @@ class PlacesController < ApplicationController
   
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+    @observations = Observation.all(
+      :joins => ["JOIN place_geometries ON place_geometries.place_id = #{@place.id}"],
+      :conditions => [
+        "((observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
+        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))) AND " +
+        "observations.observed_on IS NOT NULL"
+      ],
+      :include => [{:taxon => :taxon_names}],
+      :limit => 100,
+      :order => "observed_on DESC"
+    )
     # if logged_in?
     #   scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
     #   @listed_taxa_count = scope.count
@@ -181,15 +209,16 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    @places = Place.paginate(:page => params[:page], 
-      :conditions => ["lower(display_name) LIKE ?", "#{@q.to_s.downcase}%"])
+    scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").limit(30).scoped
+    scope = scope.with_geom if params[:with_geom]
+    @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
     respond_to do |format|
       format.html do
         render :layout => false, :partial => 'autocomplete' 
       end
       format.json do
         @places.each_with_index do |place, i|
-          @places[i].html = render_to_string(:partial => 'places/autocomplete_item.html.erb', :object => place)
+          @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item.html.erb', :object => place)
         end
         render :json => @places.to_json(:methods => [:html])
       end
@@ -305,7 +334,7 @@ class PlacesController < ApplicationController
       end
       
       if @filter_params.blank?
-        scope = scope.has_photos
+        # scope = scope.has_photos
         @order = "listed_taxa.observations_count DESC, listed_taxa.id ASC"
       end
       scope

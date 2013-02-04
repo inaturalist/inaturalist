@@ -273,7 +273,7 @@ Observations by <%= h @login %>
     <ul>
       <% for o in @proj_obs_errors_obs %>
         <li class="clear stacked">
-          <% image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
+          <%= image_and_content observation_image(o, :style => "max-width: 48px; margin: 0 auto; display:block;") do %>
             <%= link_to o.to_plain_s(:user => false), o %>
             <div>
               <%= @proj_obs_errors[:errors][o.id].join("<br/>") %>
@@ -359,15 +359,14 @@ Observations by <%= h @login %>
     </div>
   <% end %>
   <div id="pagination">
-    <% Rails.logger.debug "[DEBUG] @prefs: #{@prefs.inspect}" %>
     <% if logged_in? -%>
-      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left"} do |f| %>
+      <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
+        <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
         <%= f.label :per_page %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
     <% end -%>
-    
     <%= will_paginate @observations, :renderer => INatLinkRenderer %>
   </div>
 </div>
@@ -382,25 +381,39 @@ Observations by <%= h @login %>
 
 <div class="last column span-24">
   <div id="feeds" class="small ui description">
-    <% if logged_in? && current_user.id == @selected_user.id -%>
-      <%= link_to "Widget", observations_widget_path %> |
+    <% if is_me?(@selected_user) -%>
+      <span>
+        Embed:
+        <%= link_to "Widget", observations_widget_path %>
+      </span>
     <% end -%>
     
     <span class="feeds">
       Feeds:
       <%- 
-        feed_params = params.reject do |key,value|
+        feed_params = request.query_parameters.reject do |key,value|
           ObservationsController::REJECTED_FEED_PARAMS.include?(key)
         end
-        kml_feed_params = params.reject do |key,value|
+        kml_feed_params = request.query_parameters.reject do |key,value|
           ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format=>'atom', :params => feed_params),     :class => 'atomlink', :rel => "nofollow") %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format=>'kml', :params => kml_feed_params),  :class => 'kmllink', :rel => "nofollow") %>
-      <%= link_to("CSV",  observations_by_login_feed_path(@login, :format=>'csv', :params => feed_params),      :class => 'csvlink', :rel => "nofollow") %>
-      
+      <%= link_to("Atom", observations_by_login_feed_path(@login, :format => 'atom', :params => feed_params),
+        :class => 'atomlink') %>
+      <%= link_to("KML",  observations_by_login_feed_path(@login, :format => 'kml', :params => kml_feed_params),
+        :class => 'kmllink') %>
     </span>
+
+    <% if is_me?(@selected_user) -%>
+      <span class="feeds">
+        Downlowd:
+        <%= link_to "CSV", observations_by_login_all_url(@login, :format => 'csv'), 
+          :class => "delayedlink csvlink", 
+          "data-delayed-link-msg" => 
+            "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",
+          :rel => "nofollow" %>
+      </span>
+    <% end -%>
   </div>
 </div>

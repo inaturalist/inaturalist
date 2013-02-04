@@ -10,8 +10,7 @@
  */
 
 // requires GoogleMap classes
-if (!google && !google.maps)
- throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
+if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
 
 // extend parts of the Google Marker class
 google.maps.Marker.prototype.observation_id = null;
@@ -147,6 +146,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   
 google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
+  if (this.observations[observation.id]) {
+    this.observations[observation.id].setMap(null)
+  }
   delete this.observations[observation.id];
 };
   
@@ -162,9 +164,10 @@ google.maps.Map.prototype.removeObservations = function(observations) {
   var map = this;
   if (typeof(observations) == "undefined") {
     $.each(map.observations, function(k,v) {
-      map.removeMarker(v);
-      delete map.observations[k];
-      delete map.observationBounds;
+      map.removeMarker(v)
+      v.setMap(null)
+      delete map.observations[k]
+      delete map.observationBounds
     });
   } else {
     $.each(observations, function() {
@@ -462,9 +465,21 @@ iNaturalist.Map.createMap = function(options) {
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
   map._observationsTileServer = options.observationsTileServer
   // map.overlayMapTypes.insertAt(0, iNaturalist.Map.buildObservationsMapType(map))
+
+  if (options.bounds) {
+    if (typeof(options.bounds.getCenter) == 'function') {
+      map.setBounds(options.bounds)
+    } else {
+      var bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(options.bounds.swlat, options.bounds.swlng),
+        new google.maps.LatLng(options.bounds.nelat, options.bounds.nelng)
+      )
+      map.fitBounds(bounds)
+    }
+  }
   
   return map;
-};
+}
 
 // The following code should be abstracted out a bit more
 iNaturalist.Map.createPlaceIcon = function(options) {

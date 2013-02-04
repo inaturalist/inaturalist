@@ -26,7 +26,7 @@
   <script type="text/javascript" charset="utf-8">
     function rulify() {
       $('#new_operand_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
         resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
         chosen: eval('(' + $('new_operand_id').attr('data-json') + ')'),
         afterSelect: function(item) {
@@ -150,7 +150,7 @@
   
   <%= f.text_field :title, :required => true %>
   
-  <% f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
+  <%= f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
     <% if project.icon.file? -%>
       <%= image_tag(project.icon.url(:thumb), :class => "left") %>
       <div>
@@ -170,7 +170,7 @@
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
   
   <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
-    :description => "Contest projects will rank contributors base on how many unique species they've observed." %>
+    :description => "'Contest' projects will display a leader board ranking contributors by the number of unique species observed while 'Observation Contest' projects display leader boards ranking contributors by the number of observations" %>
   
   <div class="preference_fields">
     <%= f.check_box :prefers_count_from_list, 
@@ -237,7 +237,7 @@
           <div id="place_selector">
             <%= pu.text_field :operand_id, :id => "new_operand_id", :placeholder => "Type place name", :label => "Choose a place" %>
             <span class="description">
-              Not finding the place you want?
+              Place must have a boundary defined. Not finding the place you want?
               <%= link_to "Make a new place", new_place_path, :class => "readmore", :target => "_blank" %>
             </span>
           </div>

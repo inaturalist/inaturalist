@@ -1,0 +1,81 @@
+- if params[:preview]
+  .column.span-24
+    .wiki_content.preview.stacked.clear
+      %h3 Preview
+      = wiki_content @page.content
+.column.span-16
+  = wiki_page_form :builder => DefaultFormBuilder do |f|
+    = f.hidden_field :previous_version_number, :value => f.object.last_version_number
+    = hidden_field_tag :path, @page.path
+    = f.text_field :title, :label => wt('Title')
+    = f.text_area :content, :label => wt('Content')
+    = f.text_field :comment, :label => wt('Comment on this change (optional)')
+    .clear.inline.buttonrow.stacked
+      %input.submit{:name => "save", :type => "submit", :value => wt('Save page'), :class => "button default", "data-loading-click" => "Saving..."}
+      %input.submit{:name => "preview", :type => "submit", :value => wt('Preview'), :class => "button"}
+      %input.submit{:name => "cancel", :type => "submit", :value => wt('Cancel'), :class => "button"}
+
+  %h3 Attachments
+  .attachments
+    = wiki_page_attachments(@page)
+
+.last.column.span-8
+  .quiet.box
+    %h3 Formatting
+    HTML and
+    = link_to "Markdown", "http://daringfireball.net/projects/markdown/syntax"
+    formatting are supported. Here's a quick summary:
+
+    %table
+      %tr
+        %th Code
+        %th{:width => "100%"} Output
+      %tr
+        %td
+          %code
+            [[internal link]]
+        %td
+          = link_to 'internal link', wiki_page_url('internal link')
+      %tr
+        %td
+          %code
+            [external link](http://bitly.com/)
+        %td
+          <a href="http://bitly.com/">external link</a>
+      %tr
+        %td
+          %pre *italic*
+        %td
+          %em italic
+      %tr
+        %td
+          %pre __bold__
+        %td
+          %strong bold
+      %tr
+        %td
+          %pre __*bold italic*__
+        %td
+          %strong bold italic
+      %tr
+        %td
+          %code \*asterisks\* and \_underscores\_
+        %td
+          %strong *asterisks* and _underscores_
+      %tr
+        %td
+          %code {{nav title1, title2, title3}}
+        %td
+          This will insert a navigation box with links to the comma-separated titles. If you're viewing one of those pages, that link will be set as current.
+
+    There are also a number of CSS classes that you may want to use. You can use iNat's CSS grid system by creating DIVs of class 
+    %code column
+    and setting column widths with classes like
+    %code span-8
+    or
+    %code span-20.
+    You can also float things the
+    %code right
+    and
+    %code left
+    classes.

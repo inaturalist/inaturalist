@@ -7,19 +7,27 @@
   </div>
   <h2>
     Guide to
-    <%= @place ? link_to(@place.name, @place) : link_to(@coords.inspect, observations_path(:swlat => params[:swlat], :swlng => params[:swlng], :nelat => params[:nelat], :nelng => params[:nelng])) %>
+    <%= @place ? link_to(@place.name, @place) : link_to(@coords.inspect, observations_path(:swlat => params[:swlat], :swlng => params[:swlng], :nelat => params[:nelat], :nelng => params[:nelng]), :rel => "nofollow") %>
   </h2>
 </div>
 
-<div id="taxa" class="clear taxa <%= @view %>">
-  <% for taxon in @taxa %>
-    <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
-      :include_full_name => true,
-      :image_options => {:size => 'medium'},
-      :link_name => true,
-      :link_image => true,
-      :extra_class => cycle('first', '', 'last'),
-    } %>
-  <% end %>
-</div>
-<%= will_paginate @taxa, :renderer => INatLinkRenderer %>
+<% if @place.check_list -%>
+  <div id="taxa" class="clear taxa <%= @view %>">
+    <% for taxon in @taxa %>
+      <%= render :partial => "taxa/taxon", :object => taxon, :locals => {
+        :include_full_name => true,
+        :image_options => {:size => 'medium'},
+        :link_name => true,
+        :link_image => true,
+        :extra_class => cycle('first', '', 'last'),
+      } %>
+    <% end %>
+  </div>
+  <%= will_paginate @taxa, :renderer => INatLinkRenderer %>
+<% else %>
+  <div class="readable nocontent">
+    This place has no check list, so there is no guide<% if @place_geometry %>, but you can still
+    <%= render :partial => 'subscriptions/subscription', :locals => {:resource => @place } %>
+    <% end %>
+  </div>
+<% end -%>

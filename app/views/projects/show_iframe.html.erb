@@ -7,7 +7,7 @@
   <%= javascript_include_tag 'inaturalist/map3', 'projects/show' %>
   <script type="text/javascript" charset="utf-8">
     var PLACE = <%= @place.to_json.html_safe %>,
-        PLACE_GEOMETRY_KML_URL = <%= @place_geometry.blank? ? 'null' : place_geometry_url(@place, :format => "kml").inspect.html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%=raw place_geometry_kml_url.inspect %>,
         OBSERVATIONS = <%= @observations.to_json(:include => :iconic_taxon).html_safe %>,
         KML_ASSET_URLS = <%= @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe %>
     $(document).ready(function() {
@@ -27,6 +27,9 @@
     #countitem {text-align: center;}
     ol {margin-right: 0;}
     .userstats {font-size:0.7em;}
+    <% if !params[:bgcolor].blank? && !%w(white fff ffffff).include?(params[:bgcolor].to_s.downcase) %>
+      body {background-color: #<%=h params[:bgcolor] %>;}
+    <% end -%>
   </style>
 <%- end -%>
 
@@ -54,7 +57,7 @@
         <% end -%>
       </li>
       <li id="logoitem" class="item inlineblock">
-        <a href="<%= root_url %>" title="<%= APP_CONFIG[:site_name] %>" class="logolink">
+        <a href="<%= root_url %>" title="<%= CONFIG.site_name %>" class="logolink">
           <img src="/images/inat-logo-pb.png" alt="Powered by iNaturalist.org" />
         </a>
       </li>
@@ -93,7 +96,7 @@
     <ol class="readable">
       <% for project_user in @top_observers %>
         <li class="stacked">
-          <% image_and_content link_to(image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
+          <%= image_and_content link_to(image_tag(project_user.user.icon.url(:thumb), :class => 'usericon left'),
               observations_by_login_path(project_user.user.login),
               :alt => h(project_user.user.login),
               :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}") do %>

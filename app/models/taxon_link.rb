@@ -1,6 +1,7 @@
 class TaxonLink < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :user
+  belongs_to :place
   validates_format_of :url, :with => URI.regexp, 
     :message => "should look like a URL, e.g. http://inaturalist.org"
   validates_presence_of :taxon_id
@@ -8,22 +9,26 @@ class TaxonLink < ActiveRecord::Base
   before_save :set_site_title
   
   scope :for_taxon, lambda {|taxon|
-    where(
-      "taxon_id = ? OR (show_for_descendent_taxa = TRUE and taxon_id IN (?))", 
-      taxon, taxon.ancestors.map(&:id)
-    )
+    if taxon.species_or_lower?
+      where(
+        "taxon_id = ? OR (show_for_descendent_taxa = TRUE AND taxon_id IN (?))", 
+        taxon, taxon.ancestor_ids
+      )
+    else
+      where(
+        "(show_for_descendent_taxa = ? AND species_only = ? AND taxon_id IN (?)) OR (show_for_descendent_taxa = FALSE AND taxon_id = ?)",
+        true, false, [taxon.ancestor_ids, taxon.id].flatten, taxon
+      )
+    end
   }
   
-  TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES]"
-
-  validate :url_can_only_have_name_or_genus_species
+  TEMPLATE_TAGS = %w"[NAME] [GENUS] [SPECIES] [RANK] [NAME_WITH_RANK]"
+  
   validate :url_cant_have_genus_without_species
   validate :url_cant_have_species_without_genus
-  
-  def url_can_only_have_name_or_genus_species
-    if url.to_s =~ /\[NAME\]/ && (url.to_s =~ /\[GENUS\]/ || url.to_s =~ /\[SPECIES\]/)
-      self.errors.add(:url, "can only have [NAME] or [GENUS]/[SPECIES]")
-    end
+
+  def to_s
+    "<TaxonLink #{id} taxon_id: #{taxon_id}, place_id: #{place_id}, user_id: #{user_id}>"
   end
   
   def url_cant_have_genus_without_species
@@ -40,7 +45,9 @@ class TaxonLink < ActiveRecord::Base
   
   # Fill in the template values for the URL given a taxon
   def url_for_taxon(taxon)
-    new_url = self.url.sub('[NAME]', taxon.name)
+    new_url = url.sub('[NAME]', taxon.name)
+    new_url = new_url.sub('[RANK]', taxon.rank)
+    new_url = new_url.sub('[NAME_WITH_RANK]', taxon.name_with_rank)
     if taxon.species_or_lower? && pieces = taxon.name.split
       new_url.sub!('[GENUS]', pieces.first)
       new_url.sub!('[SPECIES]', pieces[1] || '')

@@ -4,7 +4,7 @@
   <% else %>
     <%= link_to("Sign in", new_user_session_path, :class => "right") %>
   <% end -%>
-  <a href="/" title="<%= APP_CONFIG[:site_name] %>" class="logolink">
-    <img src="/images/logo-small.gif" alt="iNaturalist logo" width="118" height="22"/>
+  <a href="/" title="<%= CONFIG.site_name %>" class="logolink">
+    <%= image_tag CONFIG.logo, :alt => SITE_NAME, :width => 118 %>
   </a>
 </div>

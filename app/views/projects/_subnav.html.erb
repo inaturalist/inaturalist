@@ -12,4 +12,9 @@
       :id => "journal_link",
       :class => "#{'active' if request.fullpath =~ /\/journal/}" %>
   </li>
+  <li>
+    <%= link_to 'Project Assessments', project_assessments_path(@display_project), 
+      :id => "assessments_link",
+      :class => "#{'active' if request.fullpath =~ /\/assessments/}" %>
+  </li>
 </ul>

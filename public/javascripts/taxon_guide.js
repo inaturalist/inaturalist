@@ -1,11 +1,14 @@
 var TaxonGuide = {
   IGNORE_PARAMS: ['test', 
+    'utf8',
     'size',
     'grid',
     'labeled',
     'bgcolor',
     'multiselect_colorsFilter', 
     'multiselect_colorsFilter[]', 
+    'multiselect_colorchooser',
+    'multiselect_colorchooser[]',
     'multiselect_conservationFilter', 
     'multiselect_establishmentFilter'],
   OVERRIDE_EXISTING: 0,
@@ -301,6 +304,14 @@ var TaxonGuide = {
       if (typeof(PLACE) != 'undefined' && PLACE) {
         title += ' in ' + PLACE.display_name
       }
+      
+      $('#taxa').not('.fluid').find('.taxonimage img', this).not('.iconic').not('.centeredInContainer').waypoint(function() {
+        $(this).centerInContainer({container: '.taxonimage:first'})
+      }, {
+        offset: '100%',
+        triggerOnce: true
+      })
+
       $(dialog).dialog({
         autoOpen: false,
         width: '90%',
@@ -333,6 +344,8 @@ var TaxonGuide = {
               $('.listed_taxon_guide', this).addClass('compact')
               google.maps.event.trigger($('.map', this).data('taxonMap'), 'resize')
             }
+
+            $('.comments', this).hide()
             
             $('.tabs', this).tabs({
               ajaxOptions: {
@@ -345,7 +358,7 @@ var TaxonGuide = {
                   )
                 } else {
                   $(ui.panel).append(
-                    $('<a>View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('rel'))
+                    $('<a rel="nofollow">View more</a>').addClass('readmore').attr('href', $(ui.tab).attr('href'))
                   )
                 }
               }

@@ -15,13 +15,16 @@ module HasSubscribers
       
       has_many :update_subscriptions, :class_name => "Subscription", :as => :resource
       has_many :subscribers, :through => :update_subscriptions, :source => :user
+      has_many :updates, :as => :resource
       
       cattr_accessor :notifying_associations
       self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
+
+      Subscription.subscribable_classes << to_s
       
       after_destroy do |record|
-        Update.delete_all(["resource_type = ? AND resource_id = ?", record.class.name, record.id])
-        Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.name, record.id])
+        Update.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
+        Subscription.delete_all(["resource_type = ? AND resource_id = ?", record.class.base_class.name, record.id])
         true
       end
     end
@@ -55,8 +58,8 @@ module HasSubscribers
       options[:priority] ||= 1
       
       cattr_accessor :notifies_subscribers_of_options
-      @@notifies_subscribers_of_options ||= {}
-      @@notifies_subscribers_of_options[subscribable_association.to_sym] = options
+      self.notifies_subscribers_of_options ||= {}
+      self.notifies_subscribers_of_options[subscribable_association.to_sym] = options
       
       create_callback(subscribable_association, options)
       
@@ -76,7 +79,7 @@ module HasSubscribers
       end
       
       after_destroy do |record|
-        Update.delete_all(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
+        Update.delete_all(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
         true
       end
     end
@@ -102,7 +105,7 @@ module HasSubscribers
     end
     
     #
-    # Subscribe am associated user to an associated object when this record is
+    # Subscribe an associated user to an associated object when this record is
     # created. For example, you might auto-subscribe a comment user to the
     # blog post they commented on UNLESS they authored the blog post:
     # 
@@ -114,11 +117,20 @@ module HasSubscribers
     #   subscription. Takes the record and the subscribable as args.
     #
     def auto_subscribes(subscriber, options = {})
-      after_create do |record|
+      callback_method = options[:on] == :update ? :after_update : :after_create
+      
+      send(callback_method) do |record|
         resource = options[:to] ? record.send(options[:to]) : record
         if options[:if].blank? || options[:if].call(record, resource)
           Subscription.create(:user => record.send(subscriber), :resource => resource)
         end
+      end
+
+      attr_accessor :auto_subscriber
+
+      before_destroy do |record|
+        record.auto_subscriber = record.send(subscriber)
+        true
       end
       
       # this is potentially weird b/c there might be other reasons you're
@@ -127,23 +139,29 @@ module HasSubscribers
       # auto_subscribing object generates a subscription...
       after_destroy do |record|
         resource = options[:to] ? record.send(options[:to]) : record
-        Subscription.delete_all(:user_id => record.send(subscriber).id, 
-          :resource_type => resource.class.name, :resource_id => resource.id)
+        user = record.auto_subscriber || record.send(subscriber)
+        if user
+          Subscription.delete_all(:user_id => user.id, 
+            :resource_type => resource.class.name, :resource_id => resource.id)
+        else
+          Rails.logger.error "[ERROR #{Time.now}] Couldn't delete auto subscription for #{record}"
+        end
+        true
       end
     end
     
     def notify_subscribers_with(notifier, subscribable_association)
-      options = @@notifies_subscribers_of_options[subscribable_association.to_sym]
+      options = self.notifies_subscribers_of_options[subscribable_association.to_sym]
       notifier = find_by_id(notifier) unless notifier.is_a?(self)
       has_many_reflections    = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
-      belongs_to_reflections  = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
+      belongs_to_reflections  = reflections.select{|k,v| v.macro == :belongs_to}.map{|k,v| k.to_s}
       has_one_reflections     = reflections.select{|k,v| v.macro == :has_one}.map{|k,v| k.to_s}
       
       notification ||= options[:notification] || "create"
       
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
-        if options[:include_owner] && subscribable.respond_to?(:user) && subscribable.user_id != notifier.user_id
+        if options[:include_owner] && subscribable.respond_to?(:user) && (subscribable == notifier || subscribable.user_id != notifier.user_id)
           owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
             Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
@@ -159,7 +177,7 @@ module HasSubscribers
           if options[:if]
             next unless options[:if].call(notifier, subscribable, subscription)
           end
-          
+
           Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
             :notification => notification)
         end
@@ -169,6 +187,8 @@ module HasSubscribers
         notifier.send(subscribable_association).find_each(&updater_proc)
       elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
         updater_proc.call(notifier.send(subscribable_association))
+      elsif subscribable_association == :self
+        updater_proc.call(notifier)
       else
         subscribable = notifier.send(subscribable_association)
         if subscribable.is_a?(Enumerable)

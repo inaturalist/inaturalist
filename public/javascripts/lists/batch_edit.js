@@ -22,12 +22,14 @@ $.fn.selectRows = function(checked) {
   $('.meta .count').html(checked ? this.length : 0)
 }
 
-function incrementLoadingStatus() {
+function incrementLoadingStatus(options) {
+  options = options || {}
   var status = $('.bigloading.status').text(),
-      matches = status.match(/Saving (\d+) of (\d+)/),
+      matches = status.match(/ (\d+) of (\d+)/),
       current = parseInt(matches[1]),
-      total = matches[2]
-  $('.bigloading.status').text("Saving " + (current + 1) + " of " + total + "...")
+      total = matches[2],
+      verb = options.verb || "Saving"
+  $('.bigloading.status').text(verb + " " + (current + 1) + " of " + total + "...")
 }
 
 function saveListedTaxon(options) {
@@ -36,6 +38,17 @@ function saveListedTaxon(options) {
       params = container.find(':input').serialize(),
       listedTaxonId = $(container).data('listed-taxon-id'),
       listId = $(container).data('list-id')
+  var nextMethod = function() {
+    if (options.chain) {
+      var link = container.next().has('input[type=checkbox]:checked').find('.savelink').get(0)
+      if (link) {
+        incrementLoadingStatus()
+        saveListedTaxon.apply(link, [options])
+      } else {
+        $('table').shades('close')
+      }
+    }
+  }
   if (listedTaxonId && listedTaxonId != '') {
     params += '&_method=PUT'
     url = '/listed_taxa/'+listedTaxonId
@@ -61,14 +74,8 @@ function saveListedTaxon(options) {
     }
 
     var row = newRow || container
-    if (row && options.chain) {
-      var link = $(row).next().has('input[type=checkbox]:checked').find('.savelink').get(0)
-      if (link) {
-        incrementLoadingStatus()
-        saveListedTaxon.apply(link, [options])
-      } else {
-        $('table').shades('close')
-      }
+    if (row) {
+      nextMethod()
     }
   }, 'json').error(function(xhr) {
     var json = eval('(' + xhr.responseText + ')')
@@ -84,17 +91,56 @@ function saveListedTaxon(options) {
     }
     container.find('.message td').html(errors)
     container.effect('highlight', {color: 'lightpink'}, 1000)
+    nextMethod()
+  })
+}
+
+function deleteListedTaxon(options) {
+  var options = options || {}
+  var container = $(this).parents('.listed_taxon_row:first'),
+      params = container.find(':input').serialize(),
+      listedTaxonId = $(container).data('listed-taxon-id'),
+      listId = $(container).data('list-id')
+  var nextMethod = function() {
     if (options.chain) {
       var link = container.next().has('input[type=checkbox]:checked').find('.savelink').get(0)
       if (link) {
-        incrementLoadingStatus()
-        saveListedTaxon.apply(link, [options])
+        incrementLoadingStatus({verb: 'Deleting'})
+        deleteListedTaxon.apply(link, [options])
       } else {
         $('table').shades('close')
       }
     }
+  }
+  if (listedTaxonId && listedTaxonId != '') {
+    params += '&_method=DELETE'
+    url = '/listed_taxa/'+listedTaxonId
+  } else {
+    container.hide()
+    nextMethod()
+    container.remove()
+    return
+  }
+  $.post(url, params, function(data, status) {
+    container.hide()
+    nextMethod()
+    container.remove()
+  }, 'json').error(function(xhr) {
+    var json = eval('(' + xhr.responseText + ')')
+    container.removeClass('success')
+    container.addClass('error')
+    if (json.full_messages) {
+      errors = json.full_messages
+    } else {
+      var errors = ""
+      for (var key in json.errors) {
+        errors += key.replace(/_/, ' ') + ' ' + json.errors[key]
+      }
+    }
+    container.find('.message td').html(errors)
+    container.effect('highlight', {color: 'lightpink'}, 1000)
+    nextMethod()
   })
-
 }
 
 function applyOccurrenceStatus() {
@@ -121,12 +167,14 @@ function saveSelected() {
 
 function removeSelected() {
   if (confirm('Are you sure you want to remove these taxa?')) {
-    $('.new_listed_taxon_row').has('input[type=checkbox]:checked').remove()
-    $('tr').has('input[type=checkbox]:checked').find('.removelink').each(function() {
-      $(this).data('confirm', false)
-      $(this).click()
+    $selection = $('tr').has('input[type=checkbox]:checked')
+    var msg = "Deleting 1 of " + $selection.length + "..."
+    $('table').shades('open', {
+      css: {'background-color': 'white'}, 
+      content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">'+msg+'</span></center>'
     })
-    $('.meta .count').html(0)
+    var link = $selection.find('.removelink:first').get(0)
+    deleteListedTaxon.apply(link, [{chain: true}])
   }
 }
 
@@ -134,14 +182,9 @@ $(document).ready(function() {
   $('.listed_taxon_row').setupListedTaxonRow()
 
   $.waypoints.settings.scrollThrottle = 30;
-  // $('#wrapper').waypoint(function(event, direction) {
-  //   // $('.top').toggleClass('hidden', direction === "up");
-  // }, {
-  //   offset: '-100%'
-  // }).find
   $('thead').waypoint(function(event, direction) {
-    $(this).toggleClass('sticky', direction === "down");
-    event.stopPropagation();
-  });
+    $(this).toggleClass('sticky', direction === "down")
+    event.stopPropagation()
+  })
 
 })

@@ -1,6 +1,9 @@
-<%- subscription ||= @subscription %>
+<%- 
+  subscription ||= @subscription
+  resource = @resource || subscription.resource
+%>
 <ul class="edit_subscription_inline">
-  <% if @resource.is_a?(Place) && subscription -%>
+  <% if resource.is_a?(Place) && subscription -%>
     <li>
       <%= form_for subscription, :builder => DefaultFormBuilder do |f| %>
         <div class="field">
@@ -20,7 +23,7 @@
     </li>
   <% end -%>
   <li class="createdestroy">
-    <%- new_subscription = Subscription.new(:user => current_user, :resource => @resource) %>
+    <%- new_subscription = Subscription.new(:user => current_user, :resource => resource) %>
     <%= form_for new_subscription, :html => {
       :class => "subscribe",
       :style => "#{'display:none;' if subscription}"
@@ -28,16 +31,16 @@
       <%= f.hidden_field :resource_type %>
       <%= f.hidden_field :resource_id %>
       <%= f.hidden_field :user_id %>
-      <%= link_to_function "Subscribe to this #{@resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
+      <%= link_to_function "Subscribe to this #{resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
     <% end -%>
 
-    <%= form_tag delete_subscription_url(@resource.class.to_s, @resource.id), 
+    <%= form_tag delete_subscription_url(resource.class.to_s, resource.id), 
         :method => :delete, 
         :class => 'unsubscribe', 
         :style => "#{'display:none;' unless subscription}" do %>
-      <%= hidden_field_tag :resource_type, @resource.class.to_s %>
-      <%= hidden_field_tag :resource_id, @resource.id %>
-      <%= link_to_function "Unsubscribe from this #{@resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
+      <%= hidden_field_tag :resource_type, resource.class.to_s %>
+      <%= hidden_field_tag :resource_id, resource.id %>
+      <%= link_to_function "Unsubscribe from this #{resource.class.to_s.underscore.humanize.downcase}", "$(this).parents('form:first').submit()" %>
     <% end -%>
   </li>
 </ul>

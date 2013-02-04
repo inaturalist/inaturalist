@@ -36,7 +36,7 @@ Some notes:
   top ||= false
   css_class = "observation"
   css_class += ' longdesc' if !observation.description.blank? && observation.description.size > 200
-  if observation.research_grade?
+  if observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
   elsif observation.id_please
     css_class += ' id_please'
@@ -62,26 +62,28 @@ Some notes:
   <div class="photos attribute">
     <h4 class="label">Photos</h4>
     <div class="photolist clear">
-      <%- 
-        photos = observation.observation_photos.sort_by{|op| 
-          op.position || observation.photos.size + op.id.to_i
-        }.map{|op| op.photo}.compact
-        photo = photos.first
-      %>
-      <% if photo %>
-        <%= link_to image_tag(photo.square_url,
-          "data-square-url" => photo.square_url,
-          "data-small-url" => photo.small_url,
-          "data-medium-url" => photo.medium_url
-        ), observation, :class => 'flickr photo'%>
-        <% if photos.size > 1 -%>
-          <%= link_to "#{photos.size} photos", observation, :class => 'readmore' %>
-        <% end -%>
-      <% else %>
+      <% if observation.photos_count == 0 -%>
         <div class="photo nophoto description">
           No photos
         </div>
-      <% end %>
+      <% else %>
+        <%- 
+          photos = observation.observation_photos.sort_by{|op| 
+            op.position || observation.photos_count + op.id.to_i
+          }.map{|op| op.photo}.compact
+          photo = photos.first
+        %>
+        <% if photo %>
+          <%= link_to image_tag(photo.square_url,
+            "data-square-url" => photo.square_url,
+            "data-small-url" => photo.small_url,
+            "data-medium-url" => photo.medium_url
+          ), observation, :class => 'flickr photo'%>
+          <% if photos.size > 1 -%>
+            <%= link_to "#{photos.size} photos", observation, :class => 'readmore' %>
+          <% end -%>
+        <% end %>
+      <% end -%>
     </div>
   </div>
   <div class="readable species_guess attribute">
@@ -164,18 +166,18 @@ Some notes:
     <% unless observation.tags.empty? %>
       <h4 class="label">Tags</h4>
       <div class="description">
-        <%=raw observation.tags.map {|t| link_to(t.name, observations_path(:q => t.name, :search_on => "tags")) }.join(', ') %>
+        <%=raw observation.tags.map {|t| link_to(t.name, observations_path(:q => t.name, :search_on => "tags"), :rel => "nofollow") }.join(', ') %>
       </div>
     <% end %>
   </div>
   <div class="actions attribute">
-    <% if observation.comments.count > 0 || observation.num_identifications_by_others > 0 -%>
+    <% if observation.comments_count > 0 || observation.num_identifications_by_others > 0 -%>
       <ul class="counts">
-        <% if observation.comments.count > 0 -%>
+        <% if observation.comments_count > 0 -%>
           <li class="comments_count">
             <a href="<%= url_for(observation) %>">
-              <span class="count"><%= observation.comments.count %></span>
-              <span class="ui-icon ui-icon-comment inlineblock">comment<%= 's' if observation.comments.count != 1 %></span>
+              <span class="count"><%= observation.comments_count %></span>
+              <span class="ui-icon ui-icon-comment inlineblock">comment<%= 's' if observation.comments_count != 1 %></span>
             </a>
           </li>
         <% end -%>
@@ -197,7 +199,7 @@ Some notes:
             "data-tip-show-delay" => 1000 %>
         </li>
       </ul>
-    <%- elsif observation.research_grade? %>
+    <%- elsif observation.quality_grade == Observation::RESEARCH_GRADE %>
       <ul>
         <li class="last">
           <%= link_to "R<span class='full'>esearch </span>G<span class='full'>rade</span>".html_safe, observation_url(observation, :anchor => "data_quality_assessment"), 
@@ -208,7 +210,7 @@ Some notes:
       </ul>
     <% end -%>
     <ul class="editview">
-      <% if logged_in? && current_user.id == observation.user_id -%>
+      <% if logged_in? && current_user.id == observation.user_id && !observation.new_record? -%>
         <li class="editlink"><%= link_to "Edit", edit_observation_path(observation) %></li>
       <% end -%>
       <li class="last viewlink">

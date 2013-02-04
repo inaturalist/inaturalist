@@ -21,6 +21,20 @@ describe FlickrPhoto, "creation" do
   end
 end
 
+describe FlickrPhoto, "updating" do
+  before(:each) do
+    setup_flickr_stuff
+  end
+
+  it "should be valid if flickr identity blank but past observations exist" do
+    o = Observation.make!(:user => @user)
+    o.photos << @cc_flickr_photo
+    @user.flickr_identity.destroy
+    @cc_flickr_photo.reload
+    @cc_flickr_photo.should be_valid
+  end
+end
+
 describe FlickrPhoto, "to_observation" do
   before(:all) do
     load_test_taxa

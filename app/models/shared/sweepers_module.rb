@@ -37,7 +37,7 @@ module Shared::SweepersModule
   def expire_taxon(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.delay(:priority => 1).expire_components_for(taxon.id)
+    Observation.delay(:priority => USER_INTEGRITY_PRIORITY).expire_components_for(taxon.id)
     expire_listed_taxa(taxon)
     expire_fragment(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo")
     expire_action(:controller => 'taxa', :action => 'show', :id => taxon.id)

@@ -5,10 +5,11 @@ class Place < ActiveRecord::Base
   has_many :check_lists, :dependent => :destroy
   has_many :listed_taxa
   has_many :taxa, :through => :listed_taxa
+  has_many :taxon_links, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
   
   before_save :calculate_bbox_area
-  after_create :create_default_check_list
+  after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
   validates_length_of :name, :within => 2..500, 
@@ -19,6 +20,8 @@ class Place < ActiveRecord::Base
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
   }
+
+  preference :check_lists, :boolean, :default => true
   
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
@@ -94,7 +97,8 @@ class Place < ActiveRecord::Base
   }
   GEO_PLANET_PLACE_TYPE_CODES = GEO_PLANET_PLACE_TYPES.invert
   INAT_PLACE_TYPES = {
-    100 => 'Open Space'
+    100 => 'Open Space',
+    101 => 'Territory'
   }
   PLACE_TYPES = GEO_PLANET_PLACE_TYPES.merge(INAT_PLACE_TYPES).delete_if do |k,v|
     Place::REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(k)
@@ -157,6 +161,8 @@ class Place < ActiveRecord::Base
     end
     where("place_type IN (?)", place_types)
   }
+
+  scope :with_geom, joins(:place_geometry).where("place_geometries.id IS NOT NULL")
   
   def to_s
     "<Place id: #{id}, name: #{name}, woeid: #{woeid}, " + 
@@ -317,14 +323,22 @@ class Place < ActiveRecord::Base
   end
   
   # Create a CheckList associated with this place
-  def create_default_check_list
-    self.create_check_list(:place => self)
-    save(:validate => false)
-    unless check_list.valid?
-      Rails.logger.info "[INFO] Failed to create a default check list on " + 
-        "creation of #{self}: " + 
-        check_list.errors.full_messages.join(', ')
+  def check_default_check_list
+    if place_type == PLACE_TYPE_CODES['Continent']
+      self.prefers_check_lists = false
     end
+    if prefers_check_lists && check_list.blank?
+      self.create_check_list(:place => self)
+      save(:validate => false)
+      unless check_list.valid?
+        Rails.logger.info "[INFO] Failed to create a default check list on " + 
+          "creation of #{self}: " + 
+          check_list.errors.full_messages.join(', ')
+      end
+    else
+      # TODO destroy existing check lists?
+    end
+    true
   end
   
   # Update the associated place_geometry or create a new one
@@ -571,11 +585,32 @@ class Place < ActiveRecord::Base
   def bbox_contains_lat_lng?(lat, lng)
     return false if lat.blank? || lng.blank?
     return nil unless swlng && swlat && nelat && nelng
-    if swlng.to_f > 0 && nelng.to_f < 0
+    if straddles_date_line?
       lat > swlat && lat < nelat && (lng > swlng || lng < nelng)
     else
       lat > swlat && lat < nelat && lng > swlng && lng < nelng
     end
+  end
+
+  def bbox_contains_lat_lng_acc?(lat, lng, acc)
+    f = RGeo::Geographic.simple_mercator_factory
+    bbox = f.polygon(
+      f.linear_ring([
+        f.point(swlng, swlat),
+        f.point(swlng, nelat),
+        f.point(nelng, nelat),
+        f.point(nelng, swlat),
+        f.point(swlng, swlat)
+      ])
+    )
+    pt = f.point(lng,lat)
+
+    # buffer the point to make a circle if accuracy set. Note that the method
+    # takes accuracy in meters, not sure if it makes a conversion to degrees
+    # with latitude in mind.
+    pt = pt.buffer(acc) if acc.to_f > 0
+
+    bbox.contains?(pt)
   end
   
   def self.guide_cache_key(id)

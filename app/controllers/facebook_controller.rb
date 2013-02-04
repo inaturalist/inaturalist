@@ -38,7 +38,7 @@ class FacebookController < ApplicationController
       render :partial => 'facebook/groups' and return
     elsif @context == 'friends'
       @friend_id = params[:object_id]
-      @friend_id = nil if @friend_id == 'null'
+      @friend_id = nil if @friend_id == 'null' || @friend_id.blank?
       if @friend_id.blank?  # if context is friends, but no friend id specified, we want to show the friend selector
         @friends = facebook_friends(current_user)
         render :partial => 'facebook/friends' and return
@@ -73,7 +73,7 @@ class FacebookController < ApplicationController
   def album
     limit = (params[:limit] || 10).to_i
     offset = ((params[:page] || 1).to_i - 1) * limit
-    @friend_id = params[:object_id] unless params[:object_id] == 'null'
+    @friend_id = params[:object_id] unless (params[:object_id] == 'null' || params[:object_id].blank?)
     if @friend_id
       friend_data = current_user.facebook_api.get_object(@friend_id)
       @friend_name = friend_data['first_name']

@@ -5,7 +5,14 @@
   comname ||= common_taxon_name(taxon).try(:name)
   no_common ||= false
   if taxon.species_or_lower?
-    sciname = '<span class="sciname"><i>%s</i></span>' % taxon.name
+    pieces = taxon.name.split
+    sciname = if taxon.variety? && pieces.size == 3
+      "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">var.</span> #{pieces[2..-1].join(' ')}</span>"
+    elsif taxon.subspecies? && pieces.size == 3
+      "<span class=\"sciname #{taxon.rank}\">#{pieces[0..1].join(' ')} <span class=\"rank\">ssp.</span> #{pieces[2..-1].join(' ')}</span>"
+    else
+      "<span class=\"sciname\">#{taxon.name}</span>"
+    end
   elsif taxon.root?
     sciname = "<span class=\"sciname\">#{taxon.name}</span>"
   else
@@ -15,6 +22,7 @@
   end
   include_id ||= false
   sciname += " #{taxon.id}" if include_id
+  sciname += " [inactive]" unless taxon.is_active?
 
   include_parens ||= true unless include_parens == false
   link_url ||= nil

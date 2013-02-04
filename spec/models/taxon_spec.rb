@@ -343,6 +343,22 @@ describe Taxon, "tags_to_taxa" do
     taxa.should include(active_taxon)
     taxa.should_not include(inactive_taxon)
   end
+
+  it "should work for sp" do
+    taxa = Taxon.tags_to_taxa(['Calypte sp'])
+    taxa.should include(@Calypte)
+  end
+
+  it "should work for sp." do
+    taxa = Taxon.tags_to_taxa(['Calypte sp.'])
+    taxa.should include(@Calypte)
+  end
+
+  it "should not strip out sp from Spizella" do
+    t = Taxon.make!(:name => 'Spizella')
+    taxa = Taxon.tags_to_taxa(['Spizella'])
+    taxa.should include(t)
+  end
 end
 
 describe Taxon, "merging" do
@@ -687,5 +703,28 @@ describe Taxon, "grafting" do
     @graftee.update_attributes(:parent => @Pseudacris)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
+  end
+end
+
+describe Taxon, "single_taxon_for_name" do
+  it "should find varities" do
+    name = "Abies magnifica var. magnifica"
+    t = Taxon.make!(:name => name, :rank => Taxon::VARIETY)
+    t.should be_variety
+    t.name.should eq("Abies magnifica magnifica")
+    Taxon.single_taxon_for_name(name).should eq(t)
+  end
+end
+
+describe Taxon, "update_life_lists" do
+  it "should not queue jobs if they already exist" do
+    t = Taxon.make!
+    l = make_life_list_for_taxon(t)
+    Delayed::Job.delete_all
+    lambda {
+      2.times do
+        t.update_life_lists
+      end
+    }.should change(Delayed::Job, :count).by(1)
   end
 end

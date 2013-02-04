@@ -1,5 +1,10 @@
 <%= form_for @observation do |o| %>
   <% if @project -%>
+    <div class="notice box">
+      <strong><%= @project.title %></strong>
+      would like you to fill out these fields.  Fields marked as "required" must 
+      be filled out before you can add an observation to this project. Other fields are optional.
+    </div>
     <%= hidden_field_tag :project_id, @project.id %>
     <% @project.project_observation_fields.each do |pof| %>
       <%- 
@@ -9,10 +14,12 @@
       <%= o.fields_for(:observation_field_values, ofv_object) do |ofv| %>
         <%= render 'observation_field_row', 
           :builder => ofv, 
-          :removable => false, 
+          :removable => !pof.required, 
           :required => pof.required %>
       <% end -%>
     <% end -%>
+  <% else %>
+    <%= render "observations/observation_field_form_fields", :builder => o %>
   <% end -%>
   <%= hidden_field_tag :ignore_photos, 'true' %>
   <div class="required stacked">* required</div>

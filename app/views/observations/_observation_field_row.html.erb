@@ -2,9 +2,15 @@
   ofv ||= builder
   removable ||= removable.nil?
   required ||= false
+  attrs = {
+    :class => "observation_field stacked clear"
+  }
+  if ofv.object.observation_field
+    attrs[:id] = dom_id(ofv.object.observation_field)
+    attrs['data-observation-field-id'] = ofv.object.observation_field_id
+  end
 -%>
-<div id="<%= ofv.object.observation_field ? dom_id(ofv.object.observation_field) : nil %>"
-    class="observation_field stacked clear">
+<%= content_tag :div, attrs do %>
   <% if removable -%>
     <%= ofv.hidden_field "_destroy" %>
     <%= link_to_function "Remove", 
@@ -20,11 +26,11 @@
   </div>
   <div class="ofv_input stacked">
     <%= ofv.text_field :value, 
-      :class => "text",
+      :class => "text ofv_value_field",
       :label => h(ofv.object.observation_field.try(:name).try(:capitalize)), 
       :description => h(ofv.object.observation_field.try(:description)),
       :required => required,
       "data-json" => ofv.object.observation_field.to_json %>
   </div>
   <div class="description"><%= h(ofv.object.observation_field.try(:description)) %></div>
-</div>
+<% end -%>

@@ -10,6 +10,6 @@ try {
     }
   <% end %>
   
-  document.write('<%= escape_javascript(render(:partial => "widget.html").gsub(/\n\s*/, '')).html_safe %>')
+  document.write('<%= escape_javascript(render_in_format(:html, :partial => "widget.html").gsub(/\n\s*/, '')).html_safe %>')
   
 } catch (e) {}

@@ -201,14 +201,14 @@
     <div id="other_check_lists_wrapper">
       <h3>
         <%= link_to_toggle "Other Check Lists for #{h(@place.name)}", '#other_check_lists', 
-          :id => 'otherlistslink', :class => 'open' %>
+          :id => 'otherlistslink', :class => 'closed' %>
       </h3>
-      <div id="other_check_lists">
+      <div id="other_check_lists" style="display:none">
         <p class="ui description">
           Check lists for individual taxa that live here, e.g. "Birds of <%= h(@place.name) %>".
         </p>
         <ul>
-          <% for list in @other_check_lists %>
+          <% for list in @other_check_lists.sort_by{|l| l.title.downcase} %>
             <li><%= link_to h(list.title), list %></li>
           <% end %>
         </ul>

@@ -1,0 +1,8 @@
+= content_for :title do
+  = @title = "#{@page.title} does not exist"
+%h2= wt @title
+.nocontent
+  - if is_curator?
+    =(wt 'There is no such page', :default => 'There is no such page. Do you want to <a href="%{new_url}">create it</a>?', :new_url => wiki_page_new_path ).html_safe
+  - else
+    =(wt 'There is no such page', :default => 'There is no such page.' ).html_safe

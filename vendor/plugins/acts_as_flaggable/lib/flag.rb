@@ -1,14 +1,27 @@
 class Flag < ActiveRecord::Base
-  serialize :flag
   belongs_to :flaggable, :polymorphic => true
+
+  has_subscribers :to => {
+    :comments => {:notification => "activity", :include_owner => true},
+  }
+  notifies_subscribers_of :self, :notification => "activity", :include_owner => true,
+    :on => :update,
+    :queue_if => Proc.new {|flag|
+      !flag.new_record? && flag.comment_changed?
+    }
+  auto_subscribes :resolver, :on => :update, :if => Proc.new {|record, resource|
+    record.resolved_changed? && !record.resolver.blank? && 
+      !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
+  }
   
   # NOTE: Flags belong to a user
   belongs_to :user
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
+  has_many :comments, :as => :parent, :dependent => :destroy
   
   # A user can flag a specific flaggable with a specific flag once
   validates_presence_of :flag
-  validates_uniqueness_of :user_id, :scope => [:flaggable_id, :flaggable_type, :flag]
+  validates_uniqueness_of :user_id, :scope => [:flaggable_id, :flaggable_type, :flag], :message => "has already flagged that item."
   validates_presence_of :resolver, :if => Proc.new {|f| f.resolved? }
   validate :flaggable_type_valid
   

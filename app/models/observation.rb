@@ -15,6 +15,13 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
     }
+  notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
+    :queue_if => lambda {|observation| !observation.taxon_id.blank? },
+    :if => lambda {|observation, taxon, subscription|
+      return true if observation.taxon_id == taxon.id
+      return false if observation.taxon.blank?
+      observation.taxon.ancestor_ids.include?(subscription.resource_id)
+    }
   acts_as_taggable
   acts_as_flaggable
   
@@ -55,7 +62,8 @@ class Observation < ActiveRecord::Base
       "to which you add the observation.",
     PRIVATE => "Coordinates completely hidden from public maps, true " + 
       "coordinates only visible to you and the curators of projects to " + 
-      "which you add the observation.",
+      "which you add the observation. Observations with private " + 
+      "coordinates will still be used to verify place check lists.",
   }
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
@@ -74,6 +82,42 @@ class Observation < ActiveRecord::Base
     const_set code.gsub(/\-/, '_'), code
   end
   PREFERRED_LICENSES = [CC_BY, CC_BY_NC]
+  CSV_COLUMNS = [
+    "id", 
+    "species_guess",
+    "scientific_name", 
+    "common_name", 
+    "iconic_taxon_name",
+    "taxon_id",
+    "id_please",
+    "num_identification_agreements",
+    "num_identification_disagreements",
+    "observed_on_string",
+    "observed_on", 
+    "time_observed_at",
+    "time_zone",
+    "place_guess",
+    "latitude", 
+    "longitude",
+    "positional_accuracy",
+    "private_latitude",
+    "private_longitude",
+    "private_positional_accuracy",
+    "geoprivacy",
+    "positioning_method",
+    "positioning_device",
+    "out_of_range",
+    "user_id", 
+    "user_login",
+    "created_at",
+    "updated_at",
+    "quality_grade",
+    "license",
+    "url", 
+    "image_url", 
+    "tag_list",
+    "description",
+  ]
   
   belongs_to :user, :counter_cache => true
   belongs_to :taxon, :counter_cache => true
@@ -92,7 +136,7 @@ class Observation < ActiveRecord::Base
            :as => :contribution,
            :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_many :identifications, :dependent => :delete_all
+  has_many :identifications, :dependent => :destroy
   has_many :project_observations, :dependent => :destroy
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
@@ -100,6 +144,7 @@ class Observation < ActiveRecord::Base
   has_many :observation_field_values, :dependent => :destroy, :order => "id asc"
   has_many :observation_fields, :through => :observation_field_values
   has_many :observation_links
+  has_and_belongs_to_many :posts
   
   define_index do
     indexes taxon.taxon_names.name, :as => :names
@@ -121,7 +166,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has photos(:id), :as => :has_photos #, :type => :boolean
+    has :photos_count, :as => :has_photos, :type => :integer
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -148,6 +193,7 @@ class Observation < ActiveRecord::Base
     has "num_identification_agreements < num_identification_disagreements",
       :as => :identifications_most_disagree, :type => :boolean
     has project_observations(:project_id), :as => :projects #, :type => :multi
+    has observation_field_values(:observation_field_id), :as => :observation_fields
     set_property :delta => :delayed
   end
   
@@ -205,6 +251,7 @@ class Observation < ActiveRecord::Base
              :update_out_of_range_later,
              :update_default_license,
              :update_all_licenses
+  after_create :set_uri
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists
   
@@ -279,10 +326,7 @@ class Observation < ActiveRecord::Base
   
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
-  scope :has_photos, 
-    select("DISTINCT observations.*").
-    joins("JOIN observation_photos AS _op ON _op.observation_id = observations.id").
-    where('_op.id IS NOT NULL')
+  scope :has_photos, where("photos_count > 0")
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     where("quality_grade = ?", quality_grade)
@@ -294,7 +338,7 @@ class Observation < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
     joins(:taxon).where(
-      "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
+      "taxa.id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
       taxon
     )
   }
@@ -323,7 +367,7 @@ class Observation < ActiveRecord::Base
     when 'observed_on'
       order "observed_on #{order} #{extra}, time_observed_at #{order} #{extra}"
     when 'created_at'
-      order "observations.created_at #{order} #{extra}"
+      order "observations.id #{order} #{extra}"
     else
       order "#{order_by} #{order} #{extra}"
     end
@@ -391,37 +435,12 @@ class Observation < ActiveRecord::Base
 
   scope :has_observation_field, lambda{|*args|
     field, value = args
-    scope = includes(:observation_field_values).where("observation_field_values.observation_field_id = ?", field)
-    scope = scope.where("observation_field_values.value = ?", value) unless value.blank?
+    join_name = "ofv_#{field.is_a?(ObservationField) ? field.id : field}"
+    scope = joins("LEFT OUTER JOIN observation_field_values #{join_name} ON #{join_name}.observation_id = observations.id").
+      where("#{join_name}.observation_field_id = ?", field)
+    scope = scope.where("#{join_name}.value = ?", value) unless value.blank?
     scope
   }
-  
-  def self.conditions_for_date(column, date)
-    year, month, day = date.to_s.split('-').map do |d|
-      d = d.blank? ? nil : d.to_i
-      d == 0 ? nil : d
-    end
-    if date.to_s =~ /^\d{4}/ && year && month && day
-      ["#{column}::DATE = ?", "#{year}-#{month}-#{day}"]
-    elsif year || month || day
-      conditions, values = [[],[]]
-      if year
-        conditions << "EXTRACT(YEAR FROM #{column}) = ?"
-        values << year
-      end
-      if month
-        conditions << "EXTRACT(MONTH FROM #{column}) = ?"
-        values << month
-      end
-      if day
-        conditions << "EXTRACT(DAY FROM #{column}) = ?"
-        values << day
-      end
-      [conditions.join(' AND '), *values]
-    else
-      "1 = 2"
-    end
-  end
   
   def self.near_place(place)
     place = Place.find_by_id(place) unless place.is_a?(Place)
@@ -485,6 +504,12 @@ class Observation < ActiveRecord::Base
       params[:ofv_params].each do |k,v|
         scope = scope.has_observation_field(v[:observation_field], v[:value])
       end
+    end
+
+    if CONFIG.site_only_observations && params[:site].blank?
+      scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
+    elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?
+      scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
     end
     
     # return the scope, we can use this for will_paginate calls like:
@@ -665,7 +690,7 @@ class Observation < ActiveRecord::Base
         "was not recognized, some working examples are: yesterday, 3 years " +
         "ago, 5/27/1979, 1979-05-27 05:00. " +
         "(<a href='http://chronic.rubyforge.org/'>others</a>)")
-      return
+      return true
     end
     
     # don't store relative observed_on_strings, or they will change
@@ -691,7 +716,7 @@ class Observation < ActiveRecord::Base
     return true unless taxon_id_changed?
     owners_ident = identifications.where(:user_id => user_id).order("id asc").last
     
-    # If there's a taxon we need to make ure the owner's ident agrees
+    # If there's a taxon we need to make sure the owner's ident agrees
     if taxon && (owners_ident.blank? || owners_ident.taxon_id != taxon.id)
       # If the owner doesn't have an identification for this obs, make one
       owners_ident = self.identifications.build(:user => user, :taxon => taxon, :observation => self)
@@ -742,16 +767,21 @@ class Observation < ActiveRecord::Base
     ].compact.uniq
     
     # Don't refresh all the lists if nothing changed
-    return if target_taxa.empty?
+    return true if target_taxa.empty?
     
-    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :skip_subclasses => true)
-    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
-     
-    ProjectList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+    unless Delayed::Job.where("handler LIKE '%''List%refresh_with_observation% #{id}\n%'").exists?
+      List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
+        :skip_subclasses => true)
+    end
+    unless Delayed::Job.where("handler LIKE '%LifeList%refresh_with_observation% #{id}\n%'").exists?
+      LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+    end
+    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_observation% #{id}\n%'").exists?
+      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+    end
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -763,7 +793,8 @@ class Observation < ActiveRecord::Base
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
-    CheckList.delay(:priority => 2).refresh_with_observation(id, :taxon_id => taxon_id, 
+    return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
+    CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
@@ -779,10 +810,10 @@ class Observation < ActiveRecord::Base
   def refresh_lists_after_destroy
     return true if @skip_refresh_lists
     return true unless taxon
-    List.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
       :skip_subclasses => true)
-    LifeList.delay(:priority => 1).refresh_with_observation(id, :taxon_id => taxon_id, 
+    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
     true
   end
@@ -795,21 +826,6 @@ class Observation < ActiveRecord::Base
     @old_observation_taxon_id = taxon_id_was if taxon_id_changed?
     true
   end
-  
-  #
-  # This is the hook used to check each observation to see if it may apply
-  # to a system based goal. It does so by collecting all of the user's
-  # current goals, including global goals and checking to see if the
-  # observation passes each rule established by the goal. If it does, the
-  # goal is recorded as a contribution in the goal_contributions table.
-  #
-  def update_goal_contributions
-    user.goal_participants_for_incomplete_goals.each do |participant|
-      participant.goal.validate_and_add_contribution(self, participant)
-    end
-    true
-  end
-  
   
   #
   # Remove any instructional text that may have been submitted with the form.
@@ -827,12 +843,13 @@ class Observation < ActiveRecord::Base
   # Set the iconic taxon if it hasn't been set
   #
   def set_iconic_taxon
-    return unless self.taxon_id_changed?
+    return true unless self.taxon_id_changed?
     if taxon
       self.iconic_taxon_id ||= taxon.iconic_taxon_id
     else
       self.iconic_taxon_id = nil
     end
+    true
   end
   
   #
@@ -867,8 +884,8 @@ class Observation < ActiveRecord::Base
   # Force time_observed_at into the time zone
   #
   def set_time_in_time_zone
-    return if time_observed_at.blank? || time_zone.blank?
-    return unless time_observed_at_changed? || time_zone_changed?
+    return true if time_observed_at.blank? || time_zone.blank?
+    return true unless time_observed_at_changed? || time_zone_changed?
     
     # Render the time as a string
     time_s = time_observed_at_before_type_cast
@@ -881,6 +898,7 @@ class Observation < ActiveRecord::Base
     time_s += " #{offset_s}"
     
     self.time_observed_at = Time.parse(time_s)
+    true
   end
   
   
@@ -899,7 +917,7 @@ class Observation < ActiveRecord::Base
   end
   
   def num_identifications_by_others
-    identifications.select{|i| i.user_id != user_id}.size
+    num_identification_agreements + num_identification_disagreements
   end
   
   ##### Rules ###############################################################
@@ -979,8 +997,8 @@ class Observation < ActiveRecord::Base
     return unless observation = Observation.find_by_id(id)
     observation.set_quality_grade(:force => true)
     observation.save
-    if observation.quality_grade_changed?
-      CheckList.delay(:priority => 2).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+    if observation.quality_grade_changed? && !Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
+      CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
   end
@@ -1035,13 +1053,13 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    if !taxon.blank? && 
-        taxon.species_or_lower? &&
-        georeferenced? && 
-        !coordinates_obscured? &&
-        (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+    obscuring_needed_for_taxon = taxon && 
+      taxon.species_or_lower? && 
+      (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
+
+    if obscuring_needed_for_taxon && georeferenced? && !coordinates_obscured?
       obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
-    elsif geoprivacy.blank?
+    elsif geoprivacy.blank? && !obscuring_needed_for_taxon
       unobscure_coordinates
     end
     true
@@ -1274,6 +1292,13 @@ class Observation < ActiveRecord::Base
       ) > 0
     end
   end
+
+  def set_uri
+    if uri.blank?
+      Observation.update_all(["uri = ?", FakeView.observation_url(id)], ["id = ?", id])
+    end
+    true
+  end
   
   def update_default_license
     return true unless [true, "1", "true"].include?(@make_license_default)
@@ -1287,16 +1312,16 @@ class Observation < ActiveRecord::Base
     true
   end
   
-  # def update_attributes(attributes)
-  #   # hack around a weird android bug, should be removeable after any release post-March 2012
-  #   attributes.delete(:iconic_taxon_name)
-  #   
-  #   MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-  #     self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-  #     self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-  #   end
-  #   super(attributes)
-  # end
+  def update_attributes(attributes)
+    # hack around a weird android bug
+    attributes.delete(:iconic_taxon_name)
+    
+    # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+    #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+    #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+    # end
+    super(attributes)
+  end
   
   def license_name
     return nil if license.blank?
@@ -1401,6 +1426,7 @@ class Observation < ActiveRecord::Base
     return [] unless georeferenced?
     lat = private_latitude || latitude
     lon = private_longitude || longitude
+    acc = private_positional_accuracy || positional_accuracy
     candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area}
 
     # at present we use PostGIS GEOMETRY types, which are a bit stupid about
@@ -1408,7 +1434,7 @@ class Observation < ActiveRecord::Base
     # Converting to the GEOGRAPHY type would solve this, in theory.
     # Unfrotinately this does NOT solve the problem of failing to select 
     # legit geoms that cross the dateline. GEOGRAPHY would solve that too.
-    candidates.select{|p| p.bbox_contains_lat_lng?(lat, lon)}
+    candidates.select{|p| p.bbox_contains_lat_lng_acc?(lat, lon, acc)}
   end
   
   def public_places
@@ -1419,6 +1445,11 @@ class Observation < ActiveRecord::Base
     # for obscured coordinates only return default place types that weren't
     # made by users. This is not ideal, but hopefully will get around honey
     # pots.
+    system_places(:places => all_places)
+  end
+
+  def system_places(options = {})
+    all_places = options[:places] || places
     all_places.select do |p| 
       p.user_id.blank? &&
         [Place::PLACE_TYPE_CODES['Country'],
@@ -1426,6 +1457,10 @@ class Observation < ActiveRecord::Base
           Place::PLACE_TYPE_CODES['County'],
           Place::PLACE_TYPE_CODES['Open Space']].include?(p.place_type)
     end
+  end
+
+  def taxon_and_ancestors
+    taxon ? taxon.self_and_ancestors.to_a : []
   end
   
   def mobile?
@@ -1440,6 +1475,8 @@ class Observation < ActiveRecord::Base
     return "unknown" unless user_agent
     if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
       "iNaturalist Android App"
+    elsif user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
+      "Fishtagger iPhone App"
     elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
       "iNaturalist iPhone App"
     else
@@ -1449,7 +1486,9 @@ class Observation < ActiveRecord::Base
   
   def device_url
     return unless user_agent
-    if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
+    if user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
+      "http://itunes.apple.com/us/app/fishtagger/id582724178?mt=8"
+    elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
       "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
     elsif user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
       "https://market.android.com/details?id=org.inaturalist.android"
@@ -1460,9 +1499,9 @@ class Observation < ActiveRecord::Base
   
   def owners_identification
     if identifications.loaded?
-      identifications.detect {|ident| ident.user_id == user_id}
+      identifications.detect {|ident| ident.user_id == user_id && ident.current?}
     else
-      identifications.first(:conditions => {:user_id => user_id})
+      identifications.current.by(user_id).last
     end
   end
   
@@ -1479,6 +1518,46 @@ class Observation < ActiveRecord::Base
       ctrl.expire_fragment(o.component_cache_key)
       ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
     end
+  end
+
+  def self.update_for_taxon_change(taxon_change, taxon, options = {}, &block)
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids).scoped
+    scope = scope.by(options[:user]) if options[:user]
+    scope = scope.where("observations.id IN (?)", options[:records]) unless options[:records].blank?
+    scope = scope.includes(:user)
+    scope.find_each do |observation|
+      Identification.create(:user => observation.user, :observation => observation, :taxon => taxon, :taxon_change => taxon_change)
+      yield(observation) if block_given?
+    end
+  end
+
+  def self.generate_csv_for(record, options = {})
+    fname = options[:fname] || "#{record.to_param}-observations.csv"
+    fpath = options[:path] || File.join(options[:dir] || Dir::tmpdir, fname)
+    tmp_path = File.join(Dir::tmpdir, fname)
+    FileUtils.mkdir_p File.dirname(tmp_path), :mode => 0755
+
+    columns = CSV_COLUMNS
+    if record.is_a?(User) && record != options[:user]
+      columns = columns.select{|c| c !~ /^private_/} unless record == options[:user]
+    end
+    columns -= %w(user_id user_login) if record.is_a?(User)
+    CSV.open(tmp_path, 'w') do |csv|
+      csv << columns
+      record.observations.includes(:taxon, {:observation_field_values => :observation_field}).find_each do |observation|
+        csv << columns.map{|c| observation.send(c)}
+      end
+    end
+    FileUtils.mkdir_p File.dirname(fpath), :mode => 0755
+    if tmp_path != fpath
+      FileUtils.mv tmp_path, fpath
+    end
+    fpath
+  end
+
+  def self.generate_csv_for_cache_key(record, options = {})
+    "#{record.class.name.underscore}_#{record.id}"
   end
   
 end

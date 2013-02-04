@@ -12,6 +12,7 @@ gem 'aws-sdk'
 gem 'bluecloth'
 gem 'capistrano'
 gem 'chronic'
+gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'
 gem 'delayed_job'
@@ -20,17 +21,19 @@ gem 'devise'
 gem 'devise-encryptable'
 gem 'devise_suspendable'
 gem 'dynamic_form'
+gem 'exifr'
 gem 'faker'
 gem 'flickraw'
 gem "friendly_id", "~> 4.0.1"
 gem 'gdata', :git => 'git://github.com/dwaite/gdata.git'
 gem 'geoplanet'
 gem 'nofxx-georuby'
-gem 'google_analytics'
 gem 'haml'
 gem 'htmlentities'
+gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
+gem 'mechanize'
 gem 'memcache-client'
 gem 'mocha'
 gem 'mobile-fu', :git => 'https://github.com/kueda/mobile-fu.git'
@@ -46,6 +49,7 @@ gem 'pg'
 gem 'preferences', :git => 'git://github.com/Titinux/preferences.git'
 gem 'rack-google_analytics'
 gem 'rest-client', :require => 'rest_client'
+gem 'rgeo'
 gem 'right_aws'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
@@ -62,9 +66,11 @@ gem 'will_paginate'
 # gem 'whenever', :require => false, :git => "git://github.com/kueda/whenever.git"
 gem 'whenever', :require => false
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
+gem 'xmp'
 
 group :test, :development do
   gem "database_cleaner"
   gem "machinist"
   gem "rspec-rails"
 end
+

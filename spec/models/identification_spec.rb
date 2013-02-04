@@ -184,6 +184,14 @@ describe Identification, "creation" do
     o.should be_research_grade
   end
 
+  it "should obscure the observation's coordinates if the taxon is threatened" do
+    o = Observation.make!(:latitude => 1, :longitude => 1)
+    o.should_not be_coordinates_obscured
+    i = Identification.make!(:taxon => Taxon.make!(:threatened), :observation => o, :user => o.user)
+    o.reload
+    o.should be_coordinates_obscured
+  end
+
   # it "should set curator_identification"
 end
 
@@ -302,6 +310,7 @@ describe Identification, "deletion" do
     o.reload
     o.quality_grade.should == Observation::CASUAL_GRADE
     stamp = Time.now
+    Delayed::Job.delete_all
     Identification.make!(:taxon => o.taxon, :observation => o)
     o.reload
     o.quality_grade.should == Observation::RESEARCH_GRADE

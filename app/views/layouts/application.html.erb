@@ -8,11 +8,11 @@
     <% if logged_in? && @provider_authorizations -%>
       <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider}.join(',') %>">
     <% end -%>
-    <title><%= APP_CONFIG[:site_name] %> &middot; <%= yield :title %></title>
+    <title><%= CONFIG.site_name %> &middot; <%= yield :title %></title>
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <%= render :partial => 'shared/common_stylesheets'%>
-    <%= javascript_include_tag 'jquery/jquery-1.7.2.min', 
-                               'jquery/jquery-ui-1.8.21.min.js', 
+    <%= javascript_include_tag 'jquery/jquery-1.8.3.min', 
+                               'jquery/jquery-ui-1.9.1.min', 
                                "iso8601",
                                "jquery/plugins/jquery.qtip2.min", 
                                "jquery/plugins/jquery.multiselect.min", 
@@ -31,9 +31,9 @@
     <%= yield :extracss %>
     <%= yield :extrajs %>
   </head>
-<body>
+<body class="browser">
   <% unless @headless -%>
-    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION) do %>
+    <% cache(:controller => 'welcome', :action => 'header', :for => logged_in? ? current_user.id : nil, :version => ApplicationController::HEADER_VERSION, :site_name => SITE_NAME) do %>
       <%= render :partial => 'shared/header' %>
     <% end %>
   <% end -%>

@@ -1,0 +1,34 @@
+= content_for :title do
+  = @title = "Leaderboard for #{@time_unit == 'month' ? @date.strftime("%B %Y") : @year}"
+- cache @leaderboard_key, :expires_in => 1.day do
+  #pageheader
+    .right.meta.ui
+      Updated daily
+      = surround '(', ')' do
+        %abbr.meta.ui.stacked.date.timeago{"data-now" => Time.now.getutc.iso8601, :title => Time.now.getutc.iso8601}>
+          = time_ago_in_words(Time.now)
+          ago
+    .breadcrumbs
+      %strong
+        = link_to "&laquo; Back to people".html_safe, people_path, :class => "crumb"
+    %h2
+      = @title
+  .column.span-24.stacked
+    = render 'leaderboard_column', :noun => 'observations', :time_unit => @time_unit, :data => @most_observations, :extra => "<div class='meta'>Observations <em>observed</em> this #{@time_unit}, not added this #{@time_unit}. Get outside!</div>".html_safe
+    = render 'leaderboard_column', :noun => 'species', :time_unit => @time_unit, :data => @most_species
+    = render 'leaderboard_column', :noun => 'identifications',
+      :time_unit => @time_unit,
+      :data => @most_identifications,
+      :last => true,
+      :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? 'identification' : 'identifications'}".html_safe, identifications_by_login_path(user.login, :on => @time_unit == 'year' ? @year : "#{@year}-#{@month}"))}
+.column.span-24
+  - if @time_unit == 'year'
+    %strong.left= link_to "‹ #{@year - 1}".html_safe, :year => @year - 1
+    - if @year < Date.today.year
+      %strong.right= link_to "#{@year + 1} ›".html_safe, :year => @year + 1
+  - else
+    - prev_date = @date - 1.month
+    - next_date = @date + 1.month
+    %strong.left= link_to "‹ #{prev_date.strftime('%B %Y')}".html_safe, :year => prev_date.year, :month => prev_date.month
+    - unless next_date > Date.today
+      %strong.right= link_to "#{next_date.strftime('%B %Y')} ›".html_safe, :year => next_date.year, :month => next_date.month

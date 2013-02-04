@@ -12,7 +12,7 @@ class TaxonName < ActiveRecord::Base
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
   validates_uniqueness_of :source_identifier,
-                          :scope => [:source_id],
+                          :scope => [:taxon_id, :source_id],
                           :message => "already exists",
                           :allow_blank => true,
                           :unless => Proc.new {|taxon_name|
@@ -27,7 +27,7 @@ class TaxonName < ActiveRecord::Base
   end
   after_create {|name| name.taxon.set_scientific_taxon_name}
   after_save :update_unique_names
-  after_destroy {|name| name.taxon.delay(:priority => 1).update_unique_name if name.taxon}
+  after_destroy {|name| name.taxon.delay(:priority => OPTIONAL_PRIORITY).update_unique_name if name.taxon}
   
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
@@ -172,7 +172,7 @@ class TaxonName < ActiveRecord::Base
       taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
     rescue ActiveRecord::StatementInvalid => e
       raise e unless e.message =~ /invalid byte sequence/
-      conditions[:name] = Iconv.iconv('UTF8', 'LATIN1', name).first
+      conditions[:name] = name.encode('UTF-8')
       taxon_names = TaxonName.all(:conditions => conditions, :limit => 10, :include => :taxon)
     end
     unless options[:iconic_taxa].blank?

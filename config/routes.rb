@@ -1,4 +1,7 @@
 Inaturalist::Application.routes.draw do
+  
+  wiki_root '/pages'
+
   # Riparian routes
   resources :flow_tasks do
     member do
@@ -42,9 +45,9 @@ Inaturalist::Application.routes.draw do
   match "/eol/photo_fields" => "eol#photo_fields"
   match '/wikimedia_commons/photo_fields' => 'wikimedia_commons#photo_fields'
   
-  match '/flickr/invite' => 'photos#invite', :provider => 'flickr', :as => :flickr_accept_invite
-  match '/facebook/invite' => 'photos#invite', :provider => 'facebook', :as => :fb_accept_invite
-  match '/picasa/invite' => 'photos#invite', :provider => 'facebook', :as => :picasa_accept_invite
+  match '/flickr/invite' => 'photos#invite', :as => :flickr_accept_invite
+  match '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
+  match '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
 
   match "/photos/inviter" => "photos#inviter", :as => :photo_inviter
   resources :announcements
@@ -56,14 +59,19 @@ Inaturalist::Application.routes.draw do
   resources :users, :except => [:new, :create]
   # resource :session
   # resources :passwords
-  resources :people, :controller => :users
+  resources :people, :controller => :users do
+    collection do
+      get :search
+      get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
+    end
+  end
   match '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   match '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   match 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }, :method => :post
   match 'users/:id/remove_role' => 'users#remove_role', :as => :remove_role, :constraints => { :id => /\d+/ }, :method => :delete
   match 'photos/local_photo_fields' => 'photos#local_photo_fields', :as => :local_photo_fields
   match '/photos/:id/repair' => "photos#repair", :as => :photo_repair, :via => :put
-  resources :photos, :only => [:show, :update]
+  resources :photos, :only => [:show, :update, :destroy]
   match 'picasa/unlink' => 'picasa#unlink', :method => :delete
 
   resources :observation_photos, :only => :create
@@ -71,6 +79,10 @@ Inaturalist::Application.routes.draw do
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
+    collection do
+      get :upload
+      post :photo
+    end
   end
 
   match 'observations/identotron' => 'observations#identotron', :as => :identotron
@@ -92,6 +104,7 @@ Inaturalist::Application.routes.draw do
   match 'observations/:id/edit_photos' => 'observations#edit_photos', :as => :edit_observation_photos
   match 'observations/:id/update_photos' => 'observations#update_photos', :as => :update_observation_photos, :via => :post
   match 'observations/:login' => 'observations#by_login', :as => :observations_by_login, :constraints => { :login => simplified_login_regex }
+  match 'observations/:login.all' => 'observations#by_login_all', :as => :observations_by_login_all, :constraints => { :login => simplified_login_regex }
   match 'observations/:login.:format' => 'observations#by_login', :as => :observations_by_login_feed, :constraints => { :login => simplified_login_regex }, :via => :get
   match 'observations/tile_points/:zoom/:x/:y.:format' => 'observations#tile_points', :as => :observation_tile_points, :constraints => { :zoom => /\d+/, :y => /\d+/, :x => /\d+/ }, :via => :get
   match 'observations/project/:id' => 'observations#project', :as => :project_observations
@@ -128,7 +141,21 @@ Inaturalist::Application.routes.draw do
   match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post
   match 'projects/:project_id/journal/:id/edit' => 'posts#edit', :as => :edit_project_journal_post
   match 'projects/:project_id/journal/archives/:year/:month' => 'posts#archives', :as => :project_journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/ }
-  resources :projects
+
+  resources :assessment_sections, :only => [:show] 
+  resources :assessments, :only => [:new, :create, :show, :edit, :update, :destroy] do
+    resources :assessment_sections, :only => [:new, :create, :show, :edit, :update] 
+  end
+
+  resources :projects do
+    member do
+      post :add_matching, :as => :add_matching_to
+      get :preview_matching, :as => :preview_matching_for
+    end
+    resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
+  end
+
+
   resources :project_assets, :except => [:index, :show]
   resources :project_observations, :only => [:create, :destroy]
   resources :custom_projects, :except => [:index, :show]
@@ -155,7 +182,9 @@ Inaturalist::Application.routes.draw do
   match 'lists/:id/reload_from_observations' => 'lists#reload_from_observations', :as => :list_reload_from_observations, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/refresh' => 'lists#refresh', :as => :list_refresh, :constraints => { :id => /\d+([\w\-\%]*)/ }
   match 'lists/:id/generate_csv' => 'lists#generate_csv', :as => :list_generate_csv, :constraints => { :id => /\d+([\w\-\%]*)/ }
-  resources :comments
+  resources :comments do
+    resources :flags
+  end
   match 'comments/user/:login' => 'comments#user', :as => :comments_by_login, :constraints => { :login => simplified_login_regex }
   resources :project_invitations, :except => [:index, :show]
   match 'project_invitation/:id/accept' => 'project_invitations#accept', :as => :accept_project_invitation, :via => :post
@@ -172,6 +201,7 @@ Inaturalist::Application.routes.draw do
       post 'update_photos', :as => "update_photos_for"
       post 'refresh_wikipedia_summary', :as => "refresh_wikipedia_summary_for"
       get 'schemes', :as => "schemes_for"
+      get 'tip'
     end
     collection do
       get 'tree'
@@ -212,17 +242,20 @@ Inaturalist::Application.routes.draw do
   match 'journal/:login/archives/' => 'posts#archives', :as => :journal_archives, :constraints => { :login => simplified_login_regex }
   match 'journal/:login/archives/:year/:month' => 'posts#archives', :as => :journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/, :login => simplified_login_regex }
   match 'journal/:login/:id/edit' => 'posts#edit', :as => :edit_journal_post
-  resources :posts
+  resources :posts, :except => [:index]
   resources :posts,
     :as => 'journal_posts',
     :path => "/journal/:login",
     :constraints => { :login => simplified_login_regex }
   
+  resources :identifications, :constraints => { :id => id_param_pattern } do
+    resources :flags
+  end
+  match 'identifications/agree' => 'identifications#agree', :via => :post
   match 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }, :via => :get
-  resources :identifications
   match 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   match 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send, :via => :post
-  resources :taxon_links, :except => [:show, :index]
+  resources :taxon_links, :except => [:show]
   
   match 'places/:id/widget' => 'places#widget', :as => :place_widget, :via => :get
   match 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget, :via => :get
@@ -238,27 +271,35 @@ Inaturalist::Application.routes.draw do
   
   match '/guide' => 'places#guide', :as => :guide
   resources :flags
-  match '/admin' => 'admin#index', :as => :admin
+  match 'admin' => 'admin#index', :as => :admin
+  match 'admin/user_content/:id/(:type)', :to => 'admin#user_content', :as => "admin_user_content"
+  match 'admin/destroy_user_content/:id/:type', :to => 'admin#destroy_user_content', :as => "destroy_user_content", :via => :delete
   resources :taxon_ranges, :except => [:index, :show]
   match '/calendar/:login' => 'calendars#index', :as => :calendar
   match '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
   match '/calendar/:login/:year/:month/:day' => 'calendars#show', :as => :calendar_date
   
-  resources :subscriptions, :only => [:index, :edit, :create, :update, :destroy]
+  resources :subscriptions, :only => [:index, :new, :edit, :create, :update, :destroy]
   match 'subscriptions/:resource_type/:resource_id' => "subscriptions#destroy", :as => :delete_subscription, :via => :delete
   match 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
 
   resources :taxon_changes, :constraints => { :id => id_param_pattern } do
     resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
+    put :commit
+    get :commit_for_user
+    put 'commit_record/:type/:record_id/to/:taxon_id' => 'taxon_changes#commit_records', :as => :commit_record
+    put 'commit_records/:type/(to/:taxon_id)' => 'taxon_changes#commit_records', :as => :commit_records
   end
   resources :taxon_schemes, :only => [:index, :show]
+  match 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
+  match 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
   resources :taxon_splits, :controller => :taxon_changes
   resources :taxon_merges, :controller => :taxon_changes
   resources :taxon_swaps, :controller => :taxon_changes
   resources :taxon_drops, :controller => :taxon_changes
   resources :taxon_stages, :controller => :taxon_changes
-
+  
   if Rails.env.development?
     mount EmailerPreview => 'mail_view'
   end

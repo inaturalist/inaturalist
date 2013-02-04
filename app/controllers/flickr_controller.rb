@@ -84,13 +84,13 @@ class FlickrController < ApplicationController
       end
     else
       @friend_id = params[:object_id]
-      @friend_id = nil if @friend_id=='null'
-
+      @friend_id = nil if @friend_id == 'null'
       search_params = {}
       if context == 'user'
         search_params['user_id'] = current_user.flickr_identity.flickr_user_id
+        @friend_id = nil
       elsif context == 'friends'
-        if @friend_id.nil? # if context is friends, but no friend id specified, we want to show the friend selector
+        if @friend_id.blank? # if context is friends, but no friend id specified, we want to show the friend selector
           @friends = flickr_friends
           render :partial => 'flickr/friends' and return
         end
@@ -166,7 +166,7 @@ class FlickrController < ApplicationController
       flash[:notice] = <<-EOT
         Ack! Something went wrong connecting to Flickr. You might try unlinking 
         and re-linking your account. You can contact us at 
-        #{APP_CONFIG[:help_email]} if that doesn't work.  Error: #{e.message}
+        #{CONFIG.help_email} if that doesn't work.  Error: #{e.message}
       EOT
     end
   end
@@ -248,7 +248,7 @@ class FlickrController < ApplicationController
   end
 
   def flickr_friends
-    flickr.contacts.getList(:auth_token=>current_user.flickr_identity.token)
+    get_flickraw.contacts.getList
   end
 
 end
