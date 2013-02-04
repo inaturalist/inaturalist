@@ -3,7 +3,7 @@
   msg = if @reauthorization_needed
     "iNat needs you to authorize more permissions from #{@provider.capitalize} to proceed:"
   else
-    "First, connect your #{@provider.capitalize} account to iNaturalist:"
+    "First, connect your #{@provider.capitalize} account to #{CONFIG.site_name}:"
   end
 
   link_text = if @reauthorization_needed
@@ -21,7 +21,7 @@
     </li>
   </ul>
   <p class="ui description">
-    Connecting your iNat account to accounts on other sites will allow you
-    to import photos and login to iNat using your credentials from those sites.
+    Connecting your <%= CONFIG.site_name_short %> account to accounts on other sites will allow you
+    to import photos and login to <%= CONFIG.site_name_short %> using your credentials from those sites.
   </p>
 </div>

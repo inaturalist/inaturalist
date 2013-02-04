@@ -14,20 +14,20 @@
     </p>
   <% end %>
 <p>
-  Your iNaturalist account is currently linked to your Flickr account.
+  Your <%= CONFIG.site_name %> account is currently linked to your Flickr account.
 </p>
 <p>
-  Keeping your iNaturalist account linked to your Flickr account allows you to
+  Keeping your <%= CONFIG.site_name %> account linked to your Flickr account allows you to
   add multiple photos to your observations.  Of course, if you ever want
-  iNaturalist and Flickr to break up, we won't stop you, you just won't be
+  <%= CONFIG.site_name %> and Flickr to break up, we won't stop you, you just won't be
   able to add photos. Sometimes this might be for the best, like if you create
-  a new Flickr account that you want to link iNaturalist to.
+  a new Flickr account that you want to link <%= CONFIG.site_name %> to.
 </p>
 <% else -%>
-<h3>Your iNaturalist account is not linked to your Flickr account :(</h3>
+<h3>Your <%= CONFIG.site_name %> account is not linked to your Flickr account :(</h3>
 <p class="description">
-  To connect Flickr with iNat, click the link on the right and sign into
-  Flickr.com. Flickr will ask you if you want to give iNaturalist permission
+  To connect Flickr with <%= CONFIG.site_name_short %>, click the link on the right and sign into
+  Flickr.com. Flickr will ask you if you want to give <%= CONFIG.site_name %> permission
   to <strong>read</strong> from your Flickr account and will then send you
   back here.
 </p>
@@ -38,8 +38,8 @@
 </p>
 
 <p class="description">
-  Also, keep in mind that if you log in to iNat via Flickr, we will
-  automatically re-link your iNat and Flickr accounts. Seems reasonable that
+  Also, keep in mind that if you log in to <%= CONFIG.site_name_short %> via Flickr, we will
+  automatically re-link your <%= CONFIG.site_name_short %> and Flickr accounts. Seems reasonable that
   if you use Flickr you'll want to be able to import Flickr photos, right?
 </p>
 <% end -%>
@@ -59,7 +59,7 @@
 <div class="column span-7 last">
 <p>
 <% if current_user.flickr_identity %>
-<%= button_to 'Unlink your Flickr and iNaturalist Accounts', 
+<%= button_to "Unlink your Flickr and #{CONFIG.site_name} Accounts", 
   {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'delete button' %>
 <% else %>
 <%= render :partial => 'link_to_flickr', :locals => {:flickr_url => @flickr_url} -%>

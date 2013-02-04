@@ -169,7 +169,7 @@
             <div class="compactfieldcontent" style="display: none">
               <span>We currently support Flickr for image hosting.</span>
               <%= link_to "You can activate your Flickr account with " + 
-                          "iNaturalist to add photos by clicking on this link.",
+                          "#{CONFIG.site_name} to add photos by clicking on this link.",
                           :controller => 'flickr',
                           :action => 'link' %>
             </div>

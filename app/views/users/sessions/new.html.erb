@@ -44,11 +44,11 @@
     <%- end -%>
   </div>
   
-  <%= link_to_toggle "If you already have an iNat account...", "#already" %>
+  <%= link_to_toggle "If you already have an #{CONFIG.site_name_short} account...", "#already" %>
   <p id="already" class="ui description" style="display: none;">
     ...and you haven't linked one of these
-    external accounts, you should sign in through iNat first, then edit your
-    profile and link your account from there. Otherwise iNat may not be able
+    external accounts, you should sign in through <%= CONFIG.site_name_short %> first, then edit your
+    profile and link your account from there. Otherwise <%= CONFIG.site_name_short %> may not be able
     to tell that the two accounts are connected and try to create a new
     account for you instead!
   </p>

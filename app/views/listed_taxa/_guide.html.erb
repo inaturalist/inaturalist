@@ -49,7 +49,7 @@
     
     <% if listed_taxon.first_observation -%>
       <p class="ui description">
-        First confirmed iNat observation
+        First confirmed <%= CONFIG.site_name_short %> observation
         <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
         by 
         <%= link_to user_image(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>

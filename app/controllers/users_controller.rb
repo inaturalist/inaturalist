@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      flash[:notice] = "Welcome to iNaturalist!  Please check for your confirmation email, but feel free to start cruising the site."
+      flash[:notice] = "Welcome to #{CONFIG.site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
       self.current_user = @user
       @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
       redirect_back_or_default(dashboard_path)
@@ -127,7 +127,7 @@ class UsersController < ApplicationController
       end
     end
     @user.destroy
-    flash[:notice] = "#{@user.login} removed from iNaturalist"
+    flash[:notice] = "#{@user.login} removed from #{CONFIG.site_name}"
     redirect_to users_path
   end
   

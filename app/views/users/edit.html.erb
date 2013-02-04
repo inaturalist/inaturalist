@@ -83,7 +83,7 @@
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
           :label => "Automatically update my content for taxon changes", 
           :label_after => true,
-          :description => "When taxa are merged or renamed on iNat, your observations, listed taxa, identifications, etc. will be automatically updated to the new taxa if the change is unambiguous. If you opt out or the change is ambiguous (e.g. a split), you will receive an update about the change linking to a tool you can use to manually update your content if you choose." %>
+          :description => "When taxa are merged or renamed on #{CONFIG.site_name_short}, your observations, listed taxa, identifications, etc. will be automatically updated to the new taxa if the change is unambiguous. If you opt out or the change is ambiguous (e.g. a split), you will receive an update about the change linking to a tool you can use to manually update your content if you choose." %>
       </div>
     </div>
     
@@ -93,7 +93,7 @@
         <p class="ui description">
           Licensing your content gives other people the legal right to use it
           without asking your permission if they stick to the terms of the
-          license. iNat uses your Creative Commons-licensed content to share
+          license. <%= CONFIG.site_name_short %> uses your Creative Commons-licensed content to share
           with data partners like
           the <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> 
           (GBIF), an international, inter-governmental organization that
@@ -111,7 +111,7 @@
               :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_observation_license, nil, :label => "No license (all rights reserved)", :label_after => true,
-            :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
+            :description => "You retain full copyright over your content aside from those rights granted to #{CONFIG.site_name_short} in our Terms of Service." %>
           <%= f.check_box :make_observation_licenses_same, :label => "Update existing observations with new license choices", :label_after => true %>
         </div>
         
@@ -123,7 +123,7 @@
               :label => "#{image_tag("#{code}.png")} #{name}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_photo_license, nil, :label => "No license  (all rights reserved)", :label_after => true,
-            :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
+            :description => "You retain full copyright over your content aside from those rights granted to #{CONFIG.site_name_short} in our Terms of Service." %>
           <%= f.check_box :make_photo_licenses_same, :label => "Update existing photos with new license choices", :label_after => true %>
         </div>
         
@@ -183,8 +183,8 @@
       <% end %>
     </ul>
     <p class="ui description">
-      Connecting your iNat account to accounts on other sites will allow you
-      to login to iNat using your credentials from those sites.
+      Connecting your <%= CONFIG.site_name_short %> account to accounts on other sites will allow you
+      to login to <%= CONFIG.site_name_short %> using your credentials from those sites.
     </p>
   </div>
   

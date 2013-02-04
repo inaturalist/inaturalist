@@ -117,7 +117,7 @@
           <p>Here are some things you can do in the meantime:</p>
           <ul class="readable leafylist">
             <% unless current_user.flickr_identity %>
-              <li><%= link_to 'Link your Flickr Account to iNaturalist', :controller => 'flickr', :action => 'link' %></li>
+              <li><%= link_to "Link your Flickr Account to #{CONFIG.site_name}", :controller => 'flickr', :action => 'link' %></li>
             <% end %>
             <li><%= link_to "Browse your observations", observations_by_login_path(current_user.login) %></li>
             <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
@@ -250,7 +250,7 @@
             <h4>
               Ungrafted taxa
                 <% helptip_for "flags" do %>
-                  These are taxa that iNat couldn't automatically add to our
+                  These are taxa that <%= CONFIG.site_name_short %> couldn't automatically add to our
                   taxonomic tree for some reason. You can add them to the tree
                   by editing the taxon and choosing a parent record. For
                   example, the parent of <i>Homo sapiens</i> would be the

@@ -128,9 +128,9 @@ class ObservationsController < ApplicationController
       
       format.kml do
         render_observations_to_kml(
-          :snippet => "iNaturalist Feed for Everyone", 
-          :description => "iNaturalist Feed for Everyone", 
-          :name => "iNaturalist Feed for Everyone"
+          :snippet => "#{CONFIG.site_name} Feed for Everyone", 
+          :description => "#{CONFIG.site_name} Feed for Everyone", 
+          :name => "#{CONFIG.site_name} Feed for Everyone"
         )
       end
       
@@ -1000,9 +1000,9 @@ class ObservationsController < ApplicationController
       
       format.kml do
         render_observations_to_kml(
-          :snippet => "iNaturalist Feed for User: #{@selected_user.login}",
-          :description => "iNaturalist Feed for User: #{@selected_user.login}",
-          :name => "iNaturalist Feed for User: #{@selected_user.login}"
+          :snippet => "#{CONFIG.site_name} Feed for User: #{@selected_user.login}",
+          :description => "#{CONFIG.site_name} Feed for User: #{@selected_user.login}",
+          :name => "#{CONFIG.site_name} Feed for User: #{@selected_user.login}"
         )
       end
 
@@ -1220,7 +1220,7 @@ class ObservationsController < ApplicationController
       format.kml do
         render_observations_to_kml(
           :snippet => "#{@project.title.html_safe} Observations", 
-          :description => "Observations feed for the iNaturalist project '#{@project.title.html_safe}'", 
+          :description => "Observations feed for the #{CONFIG.site_name} project '#{@project.title.html_safe}'", 
           :name => "#{@project.title.html_safe} Observations"
         )
       end
@@ -2061,9 +2061,9 @@ class ObservationsController < ApplicationController
       @net_hash = {
         :id => "AllObs", 
         :link_id =>"AllObs", 
-        :snippet => "iNaturalist Feed for Everyone", 
-        :description => "iNaturalist Feed for Everyone", 
-        :name => "iNaturalist Feed for Everyone", 
+        :snippet => "#{CONFIG.site_name} Feed for Everyone", 
+        :description => "#{CONFIG.site_name} Feed for Everyone", 
+        :name => "#{CONFIG.site_name} Feed for Everyone", 
         :href => "#{root_url}#{request.fullpath}".gsub(/kml_type=network_link/, '')
       }
       render :layout => false, :action => 'network_link'

@@ -2,7 +2,7 @@
 <p>Welcome, <%= @resource.login %>!</p>
 
 <p>
-  Your <%= link_to "iNaturalist", root_url %> account has been activated.
+  Your <%= link_to CONFIG.site_name, root_url %> account has been activated.
   Thanks for signing up! Please take a second to
   <%= link_to 'confirm your account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>.
 </p>
