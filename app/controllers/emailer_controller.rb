@@ -4,7 +4,7 @@ class EmailerController < ApplicationController
 
   def invite
     from = "#{CONFIG.site_name} <#{CONFIG.noreply_email}>"
-    subject = "#REAL NAME wants you to join them on iNaturalist"
+    subject = "#REAL NAME wants you to join them on #{CONFIG.site_name}"
     @sending_user = current_user
     @sending_user_real_name = current_user.name.blank? ? current_user.login : current_user.name.split.first
     @observations = Observation.by(current_user.id).first(10)

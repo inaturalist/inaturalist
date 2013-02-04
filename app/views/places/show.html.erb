@@ -16,7 +16,7 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @place.display_name %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <meta property="og:description" name="description" content="Learn about the species that live in <%= @place.display_name %>!"/> 
@@ -162,7 +162,7 @@
 
 <div class="meta right">
   <% if @place.user -%>
-    Place added to iNat by 
+    Place added to <%= CONFIG.site_name_short %> by 
     <%= link_to user_image(@place.user), @place.user %>
     <%= link_to you_or_login(@place.user), @place.user %>
     on

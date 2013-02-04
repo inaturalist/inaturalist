@@ -15,12 +15,12 @@
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="iNaturalist Places"/> 
+  <meta property="og:title" content="<%= CONFIG.site_name %> Places"/> 
   <meta property="og:image" content="<%= image_url('place_preview.jpg') %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
-  <meta property="og:description" name="description" content="The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street! iNaturalist Places let you browse life from around the planet.  Start exploring!"/> 
+  <meta property="og:description" name="description" content="The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street! <%= CONFIG.site_name %> Places let you browse life from around the planet.  Start exploring!"/> 
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -112,7 +112,7 @@
     </p>
 
     <p>
-      iNaturalist Places are a way to record what lives where. If you're
+      <%= CONFIG.site_name %> Places are a way to record what lives where. If you're
       looking for a particular species, you'll know where to search. Each
       place has a check list to record all the species that occur there, so
       they can also be useful for looking up things you've found at particular
@@ -125,7 +125,7 @@
     <div class="last column span-11">
       <h3>Species from around the world</h3>
       <p>
-        Each place page displays all the species iNat knows about from
+        Each place page displays all the species <%= CONFIG.site_name_short %> knows about from
         that place, including information about their abundance, conservation
         status, and who was first to observe that species from that place on
         iNat. You can filter the species by taxonomic group, color,
@@ -136,7 +136,7 @@
     <div class="column span-11">
       <h3>Localized species accounts</h3>
       <p>
-        View photos, species ranges, iNat observations, and more! We've
+        View photos, species ranges, <%= CONFIG.site_name_short %> observations, and more! We've
         assembled information from many different sources and combined them
         for a quick summary of each species in each place.
       </p>

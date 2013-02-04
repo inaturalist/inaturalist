@@ -16,7 +16,7 @@
   <h3>Did not send invites to the following because...</h3>
   
   <% if @existing_users.size > 0 -%>
-    <h4>...they already have iNat accounts</h4>
+    <h4>...they already have <%= CONFIG.site_name_short %> accounts</h4>
     <div class="box clear">
       <% for user in @existing_users %>
         <div class="column span-7">

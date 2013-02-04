@@ -21,7 +21,7 @@
     <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <% if @observation.description.blank? %>
@@ -615,7 +615,7 @@
         <div class="column span-18 verticalmiddle licensechoices">
           <p class="ui description">
             Licensing your content gives others the legal right to use it if
-            they stick to the terms of the license. iNat uses your Creative
+            they stick to the terms of the license. <%= CONFIG.site_name_short %> uses your Creative
             Commons-licensed content to share with data partners like the 
             <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
             (GBIF).

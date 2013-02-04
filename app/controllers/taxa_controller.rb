@@ -113,7 +113,7 @@ class TaxaController < ApplicationController
 
   def show
     if params[:entry] == 'widget'
-      flash[:notice] = "Welcome to iNat! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
+      flash[:notice] = "Welcome to #{CONFIG.site_name_short}! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
     end
     @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
@@ -761,7 +761,7 @@ class TaxaController < ApplicationController
     redirect_back_or_default(taxon_path(@taxon))
   rescue Koala::Facebook::APIError => e
     raise e unless e.message =~ /OAuthException/
-    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to iNat."
+    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to #{CONFIG.site_name_short}."
     redirect_back_or_default(taxon_path(@taxon))
   end
   
@@ -1302,9 +1302,9 @@ class TaxaController < ApplicationController
     rescue FlickRaw::FailedResponse, FlickRaw::OAuthClient::FailedResponse => e
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
-        flash[:error] = ("iNat can't add tags to your photos until " + 
+        flash[:error] = ("#{CONFIG.site_name_short} can't add tags to your photos until " + 
           "Flickr knows you've given us permission.  " + 
-          "<a href=\"#{auth_url}\">Click here to authorize iNat to add tags</a>.").html_safe
+          "<a href=\"#{auth_url}\">Click here to authorize #{CONFIG.site_name_short} to add tags</a>.").html_safe
       else
         flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
       end

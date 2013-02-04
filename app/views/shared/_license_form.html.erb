@@ -32,7 +32,7 @@
   <% end %>
   <div class="column span-9">
     <%= f.radio_button :license, no_license_value, :label => "No license  (all rights reserved)", :label_after => true,
-      :description => "You retain full copyright over your content aside from those rights granted to iNat in our Terms of Service." %>
+      :description => "You retain full copyright over your content aside from those rights granted to #{CONFIG.site_name_short} in our Terms of Service." %>
   </div>
   
   <div class="column span-18 inline buttonrow">
