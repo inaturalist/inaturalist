@@ -285,11 +285,9 @@ class User < ActiveRecord::Base
   def share_observation_on_facebook(obs)
     fb_api = self.facebook_api
     return nil unless fb_api
-    fb_api.put_wall_post('', {'name' => 'iNaturalist.org',
-                              'link' => obs.url.gsub('localhost:3000','74.207.251.143'),
-                              'caption' => "I posted an observation to iNaturalist.org!",
-                              'description' => obs.to_share_s,
-                              'picture' => obs.image_url})
+    fb_api.put_connections("me", 
+                           "inatdev:observe", 
+                           :observation => obs.url.gsub('localhost:3000','74.207.251.143'))
   end
 
   # returns a Twitter object to make (authenticated) api calls

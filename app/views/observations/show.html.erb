@@ -14,16 +14,19 @@
 <% end -%>
 
 <%- content_for(:extrahead) do -%>
+  <meta property="og:type" content="inatdev:observation" />
   <meta property="og:title" content="<%= @observation.to_plain_s(:verb => true, :no_time => true) %>"/> 
   <% if !@photos.blank? -%>
     <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
   <% elsif @observation.taxon %>
     <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
   <% end -%>
+  <meta property="og:determiner" content="auto" /> 
   <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
   <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="inatdev:organism_name" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" />
+  <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
   <% if @observation.description.blank? %>
     <meta property="og:description" content="<%= html_attributize @observation.to_plain_s %>"/> 
   <% else %>
