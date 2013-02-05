@@ -468,7 +468,8 @@ class TaxaController < ApplicationController
       exact_matches << @taxon_names.delete_at(i)
     end
     if exact_matches.blank?
-      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, :conditions => ["lower(name) = ?", @q.to_s.downcase])
+      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, 
+        :conditions => ["lower(taxon_names.name) = ?", @q.to_s.downcase])
     end
     @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
