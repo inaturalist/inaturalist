@@ -223,9 +223,9 @@
             image_tag(observation.user.icon.url(:thumb), :class => 'usericon left'),
             person_by_login_path(observation.user.login)) %>
           <%= link_to observation.user.login, person_path(observation.user) %>
-          observed one
+          <%= t(:observed_one) %>
           <%= observation.observed_on? ? t(:at).." #{observation.observed_on.to_s(:long)}" : t(:in_the_past) -%>
-          <%= observation.place_guess.blank? ? t(:somewhere_on_earth) : " t(:in) #{observation.place_guess}" %>.
+          <%= observation.place_guess.blank? ? t(:somewhere_on_earth) : " #{t(:in)} #{observation.place_guess}" %>.
 
           <div>
             <%= link_to t(:view), observation %>
@@ -286,7 +286,7 @@
       <%= link_to(observation.taxon) do %>
         <%= render :partial => 'shared/taxon', :object => observation.taxon %>
       <% end %>
-      <span class="description date"><%=t :on %> <%= observation.observed_on.to_s(:long) %></span>
+      <span class="description date"><%= t(:on_) %> <%= observation.observed_on.to_s(:long) %></span>
     </p>
     <% end %>
   </div>

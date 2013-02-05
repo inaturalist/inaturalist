@@ -116,23 +116,23 @@ class TaxonSchemesController < ApplicationController
   
   def orphaned_inactive_taxa
     @inactive_taxa = Taxon.order('name').
-       joins("JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id").
-       joins("JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id").
-       where("is_active = ? AND rank = 'species' AND ts.id = ?", false, @taxon_scheme).
-       includes({:taxon_photos => :photo}, :taxon_ranges_without_geom, :flags, {:taxon_scheme_taxa => :taxon_scheme}).
-       page(params[:page]).per_page(100)
+         joins("JOIN taxon_scheme_taxa tst ON  tst.taxon_id = taxa.id").
+         joins("JOIN taxon_schemes ts ON ts.id = tst.taxon_scheme_id").
+         where("is_active = 'false' AND rank = 'species' AND ts.id = ?", @taxon_scheme).
+         page(params[:page]).per_page(100)
     @orphaned_taxa = []
-    inactive_taxon_ids = @inactive_taxa.map(&:id)
-    changes = TaxonChange.includes(:taxon_change_taxa).
-      where(
-        "taxon_changes.taxon_id IN (?) OR taxon_change_taxa.taxon_id IN (?)", 
-        inactive_taxon_ids, inactive_taxon_ids
+    @inactive_taxa.each do |taxon|
+      scope = TaxonChange.scoped
+      scope = scope.taxon(taxon)
+      taxon_change = scope.first(
+        :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
+        :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
       )
-    @orphaned_taxa = @inactive_taxa.reject do |t|
-      changes.detect do |tc|
-        tc.taxon_id == t.id || tc.taxon_change_taxa.detect{|tct| tct.taxon_id == t.id}
+      unless taxon_change
+        @orphaned_taxa << taxon
       end
     end
+    return
   end
   
   private
