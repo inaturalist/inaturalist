@@ -20,4 +20,5 @@ if caller.last =~ /delayed_job/
 
   # log AR calls to the log file
   ActiveRecord::Base.logger = Delayed::Worker.logger
+  Rails.logger = Delayed::Worker.logger
 end

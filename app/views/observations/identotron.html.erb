@@ -246,10 +246,10 @@
     <%= link_to_dialog "Identotron help", :width => 600 do %>
       
       The Identotron is a tool to help you identify observations based on
-      iNat's check list data.  Given a higher level taxon and a place (e.g.
-      mammals of India), iNat will look for check lists entries matching that
+      <%= CONFIG.site_name_short %>'s check list data.  Given a higher level taxon and a place (e.g.
+      mammals of India), <%= CONFIG.site_name_short %> will look for check lists entries matching that
       taxon in that place, kind of like a dynamic field guide to the entire
-      planet. Most iNat check lists are works in progress, but if there's one
+      planet. Most <%= CONFIG.site_name_short %> check lists are works in progress, but if there's one
       that is comprehensive, i.e. it lists <em>all</em> the representatives of
       its taxon in a place, the Identotron will show a notice.
 
@@ -270,7 +270,7 @@
             </div>
 
             <div class="quiet box" style="height:200px;">
-              Matching species will show up here. The maps will show a range if iNat has one for that species.
+              Matching species will show up here. The maps will show a range if <%= CONFIG.site_name_short %> has one for that species.
             </div>
           </td>
         </tr>

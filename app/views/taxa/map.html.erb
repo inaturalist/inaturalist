@@ -153,7 +153,7 @@
   </div>
       
   <div id="legendfooter" class="clear small meta">
-    <a href="/" title="<%= CONFIG.site_name %>"><img src="/images/logo-mini.png" alt="iNaturalist logo" class="left" style="width: 75px"></a>
+    <a href="/" title="<%= CONFIG.site_name %>"><img src="/images/logo-mini.png" alt="#{CONFIG.site_name} logo" class="left" style="width: 75px"></a>
     <div class="last right column">
       <%= link_to_function "<span class='ui-icon ui-icon-help inlineblock'>help</span>About this map".html_safe, 
         "$('#maphelp').dialog({modal: true, title: '#{t(:about_this_map)}', width: 500})", 

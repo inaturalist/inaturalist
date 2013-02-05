@@ -10,7 +10,7 @@
     <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <%-
@@ -751,7 +751,7 @@
     
     <p class="ui">
       <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>".html_safe, taxon_changes_path(:taxon_id => @taxon),
-        "data-tip" => "View the history of this taxon on iNat, e.g. splits, merges, etc." %>
+        "data-tip" => "View the history of this taxon on <%= CONFIG.site_name_short %>, e.g. splits, merges, etc." %>
     </p>
 
     <p class="ui">

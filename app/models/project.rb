@@ -16,13 +16,15 @@ class Project < ActiveRecord::Base
   has_many :assessments, :dependent => :destroy
     
   before_save :strip_title
-  after_create :add_owner_as_project_user, :create_the_project_list
+  after_create :create_the_project_list
+  after_save :add_owner_as_project_user
   
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
 
   has_subscribers :to => {
-    :posts => {:notification => "created_project_post"}
+    :posts => {:notification => "created_project_post"},
+    :project_users => {:notification => "curator_change"}
   }
 
   extend FriendlyId
@@ -82,7 +84,10 @@ class Project < ActiveRecord::Base
   end
   
   def add_owner_as_project_user
-    first_user = self.project_users.create(:user => user, :role => "manager")
+    return true unless user_id_changed?
+    pu = project_users.where(:user_id => user_id).first
+    pu ||= self.project_users.create(:user => user)
+    pu.update_attributes(:role => ProjectUser::MANAGER)
     true
   end
   

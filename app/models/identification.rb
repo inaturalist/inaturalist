@@ -1,3 +1,4 @@
+
 class Identification < ActiveRecord::Base
   acts_as_flaggable
   belongs_to :observation
@@ -38,6 +39,7 @@ class Identification < ActiveRecord::Base
     includes(:observation).where("observation.user_id = ?", user)
   }
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
+  scope :for_self, includes(:observation).where("observations.user_id = identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
   scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }

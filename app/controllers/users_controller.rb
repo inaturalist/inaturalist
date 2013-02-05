@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      flash[:notice] = "Welcome to iNaturalist!  Please check for your confirmation email, but feel free to start cruising the site."
+      flash[:notice] = "Welcome to #{CONFIG.site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
       self.current_user = @user
       @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
       redirect_back_or_default(dashboard_path)
@@ -119,16 +119,11 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    unless @user.project_users.blank? #remove any curator id's this user might have made
-      @user.project_users.each do |pu|
-        unless pu.role.nil?
-          Project.delay.update_curator_idents_on_remove_curator(pu.project_id, @user.id)
-        end
-      end
-    end
-    @user.destroy
-    flash[:notice] = "#{@user.login} removed from iNaturalist"
-    redirect_to users_path
+    @user.delay(:priority => USER_PRIORITY).sane_destroy
+    sign_out(@user)
+    flash[:notice] = "#{@user.login} has been removed from #{CONFIG.site_name} " + 
+      "(it may take up to an hour to completely delete all associated content)"
+    redirect_to root_path
   end
   
   # Methods below here are added by iNaturalist

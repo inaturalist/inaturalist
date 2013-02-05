@@ -21,7 +21,7 @@
     <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <% if @observation.description.blank? %>
@@ -612,7 +612,7 @@
       <div id="editlicense" class="dialog" style="display:none">
         <div class="column span-18 verticalmiddle licensechoices">
           <p class="ui description">
-            <%= raw t(:licensing_your_content) %>
+            <%= raw t(:licensing_your_content, :site_name => SITE_NAME) %>
           </p>
           <%= render :partial => 'shared/license_form' %>
         </div>

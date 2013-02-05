@@ -4,23 +4,39 @@ class ProjectUser < ActiveRecord::Base
   belongs_to :user
   auto_subscribes :user, :to => :project
   
-  after_save :check_role
-  before_destroy :prevent_owner_from_leaving
+  after_save :check_role, :remove_updates
+  after_destroy :remove_updates
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
   
+  CURATOR_CHANGE_NOTIFICATION = "curator_change"
   ROLES = %w(curator manager)
   ROLES.each do |role|
     const_set role.upcase, role
     scope role.pluralize, where(:role => role)
   end
 
+  notifies_subscribers_of :project, :on => :save, :notification => CURATOR_CHANGE_NOTIFICATION, 
+    :include_owner => true,
+    # don't bother queuing this if there's no relevant role change
+    :queue_if => Proc.new {|pu| 
+      pu.role_changed? && (ROLES.include?(pu.role) || pu.user_id == pu.project.user_id)
+    },
+    # check to make sure role status hasn't changed since queuing
+    :if => Proc.new {|pu| ROLES.include?(pu.role) || pu.user_id == pu.project.user_id}
+
   def project_observations
     project.project_observations.includes(:observation).where("observations.user_id = ?", user_id).scoped
   end
-  
-  def prevent_owner_from_leaving
-    raise "The owner of a project can't leave the project" if project && project.user_id == user_id
+
+  def remove_updates
+    return true unless role_changed? && role.blank?
+    Update.where(
+      :notifier_type => "ProjectUser", 
+      :notifier_id => id, 
+      :resource_type => "Project", 
+      :resource_id => project_id).destroy_all
+    true
   end
   
   def has_time_zone?

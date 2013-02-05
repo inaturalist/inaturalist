@@ -72,6 +72,13 @@ module MakeHelpers
     o = Observation.make!(:user => pu.user, :taxon => t)
     ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
   end
+
+  def make_place_with_geom(options = {})
+    wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
+    place = Place.make!(options)
+    place.save_geom(MultiPolygon.from_ewkt(wkt))
+    place
+  end
   
   # creating the tree is a bit tricky
   def load_test_taxa

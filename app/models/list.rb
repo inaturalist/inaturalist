@@ -255,12 +255,19 @@ class List < ActiveRecord::Base
     true
   end
   
-  def self.refresh(list, options = {})
-    list = List.find_by_id(list) unless list.is_a?(List)
-    if list.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list #{list} because it doesn't exist."
+  def self.refresh(options = {})
+    lists = options.delete(:lists)
+    lists ||= [options] if options.is_a?(self)
+    lists ||= [find_by_id(options)] unless options.is_a?(Hash)
+    lists ||= self.joins(:listed_taxa).where("listed_taxa.taxon_id IN (?)", options[:taxa]) if options[:taxa]
+
+    if lists.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh lists for #{options.inspect} " + 
+        "because there are no matching lists."
     else
-      list.refresh(options)
+      lists.each do |list|
+        list.refresh(options)
+      end
     end
   end
   

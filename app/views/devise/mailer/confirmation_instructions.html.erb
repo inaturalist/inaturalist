@@ -2,7 +2,7 @@
 <p><%= t(:welcome_comma) %> <%= @resource.login %>!</p>
 
 <p>
-<%= t(:your_inat_account_has_been_activated, :inat => "#{link_to t(:initiative_name), root_url}") %>
+<%= t(:your_inat_account_has_been_activated, :inat => "#{link_to CONFIG.site_name, root_url}") %>
   <%= t(:thanks_for_signing_up) %>
   Please take a second to
   <%= link_to 'confirm your account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>.

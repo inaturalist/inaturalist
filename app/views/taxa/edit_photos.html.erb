@@ -9,7 +9,7 @@
   <div class="tabs">
     <ul>
       <li><%= link_to "<span>From Flickr</span>".html_safe, "#flickr_taxon_photos" %></li>
-      <li><%= link_to "<span>From iNat observations</span>".html_safe, "#inat_obs_taxon_photos" %></li>
+      <li><%= link_to "<span>From #{CONFIG.site_name_short} observations</span>".html_safe, "#inat_obs_taxon_photos" %></li>
       <li><%= link_to "<span>From EOL</span>".html_safe, "#eol_taxon_photos" %></li>
       <li><%= link_to "<span>From Wikimedia Commons</span>".html_safe, "#wikimedia_taxon_photos" %></li>
     </ul>

@@ -36,9 +36,9 @@ class User < ActiveRecord::Base
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
-  has_many  :provider_authorizations, :dependent => :destroy
-  has_one  :flickr_identity, :dependent => :destroy
-  has_one  :picasa_identity, :dependent => :destroy
+  has_many  :provider_authorizations, :dependent => :delete_all
+  has_one  :flickr_identity, :dependent => :delete
+  has_one  :picasa_identity, :dependent => :delete
   has_many :observations, :dependent => :destroy
   
   # Some interesting ways to map self-referential relationships in rails
@@ -54,12 +54,11 @@ class User < ActiveRecord::Base
     :include => [:observation],
     :conditions => "identifications.user_id != observations.user_id AND identifications.current = true"
   has_many :photos, :dependent => :destroy
-  
-  has_many :posts, :dependent => :destroy
-  has_many :journal_posts, :class_name => Post.to_s, :as => :parent
+  has_many :posts #, :dependent => :destroy
+  has_many :journal_posts, :class_name => Post.to_s, :as => :parent, :dependent => :destroy
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
-  has_many :projects, :dependent => :destroy
+  has_many :projects #, :dependent => :nullify
   has_many :project_users, :dependent => :destroy
   has_many :listed_taxa, :dependent => :nullify
   has_many :invites, :dependent => :nullify
@@ -77,8 +76,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   has_subscribers
-  has_many :subscriptions, :dependent => :destroy
-  has_many :updates, :foreign_key => :subscriber_id, :dependent => :destroy
+  has_many :subscriptions, :dependent => :delete_all
+  has_many :updates, :foreign_key => :subscriber_id, :dependent => :delete_all
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name
@@ -127,6 +126,7 @@ class User < ActiveRecord::Base
     order("? ?", sort_by, sort_dir)
   }
   scope :curators, includes(:roles).where("roles.name IN ('curator', 'admin')")
+  scope :admins, includes(:roles).where("roles.name = 'admin'")
   scope :active, where("suspended_at IS NULL")
 
   # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
@@ -397,6 +397,66 @@ class User < ActiveRecord::Base
     
     (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
   end  
+
+  # Destroying a user triggers a giant, slow, costly cascade of deletions that
+  # all occur within a transaction. This method tries to circumvent some of
+  # that madness by assigning communal assets to new users and pre-destroying
+  # some associates
+  def sane_destroy(options = {})
+    start_log_timer "sane_destroy user #{id}"
+    taxon_ids = life_list.taxon_ids
+    project_ids = self.project_ids
+
+    # transition ownership of projects with observations, delete the rest
+    Project.where(:user_id => id).find_each do |p|
+      if p.observations.exists?
+        if manager = p.project_users.managers.where("user_id != ?", id).first
+          p.user = manager.user
+          manager.role_will_change!
+          manager.save
+        else
+          p.user = User.admins.first
+        end
+        p.save
+      else
+        p.destroy
+      end
+    end
+
+    # delete lists without triggering most of the callbacks
+    lists.where("type = 'List'").find_each do |l|
+      l.listed_taxa.find_each do |lt|
+        lt.skip_sync_with_parent = true
+        lt.skip_update_cache_columns = true
+        lt.skip_update_user_life_list_taxa_count = true
+        lt.destroy
+      end
+      l.destroy
+    end
+
+    # delete observations without onerous callbacks
+    observations.find_each do |o|
+      o.skip_refresh_lists = true
+      o.skip_refresh_check_lists = true
+      o.skip_identifications = true
+      o.destroy
+    end
+
+    # delete the user
+    destroy
+
+    # refresh check lists with relevant taxa
+    taxon_ids.in_groups_of(100) do |group|
+      CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh(:taxa => group.compact)
+    end
+
+    # refresh project lists
+    project_ids.in_groups_of(100) do |group|
+      ProjectList.delay(:priority => INTEGRITY_PRIORITY).refresh(:taxa => group.compact)
+    end
+
+    end_log_timer
+  end
   
   def create_default_life_list
     return true if life_list

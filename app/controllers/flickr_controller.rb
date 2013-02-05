@@ -176,7 +176,7 @@ class FlickrController < ApplicationController
   def unlink_flickr_account
     if current_user.flickr_identity
       current_user.flickr_identity.destroy
-      flash[:notice] = "We've dissassociated your Flickr account from your iNaturalist account."
+      flash[:notice] = "We've dissassociated your Flickr account from your #{CONFIG.site_name} account."
       redirect_to :action => 'options'
     else
       flash[:notice] = "Your Flickr account has not been linked before!"

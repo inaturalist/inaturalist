@@ -83,7 +83,7 @@
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
           :label => "Automatically update my content for taxon changes", 
           :label_after => true,
-          :description => t('views.users.edit.taxon_change_desc') %>
+          :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
       </div>
     </div>
     
@@ -91,7 +91,7 @@
       <div id="licenses" class="stacked">
         <h3><%= t(:licensing) %></h3>
         <p class="ui description">
-          <%= t('views.users.edit.licensing_desc_html') %>
+          <%= t('views.users.edit.licensing_desc_html', :site_name => SITE_NAME_SHORT) %>
           <%= link_to_function t(:learn_what_these_licenses_mean), 
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
         </p>

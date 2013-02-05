@@ -115,8 +115,12 @@ module ApplicationHelper
     "#{obj.class.name.underscore}-#{obj.id}"
   end
 
-  def is_me?(user = @selected_user)
-    logged_in? && (user.try(:id) == current_user.id)
+  def is_me?(user = @selected_user, options = {})
+    if respond_to?(:user_signed_in?)
+      logged_in? && (user.try(:id) == current_user.id)
+    else
+      options[:current_user] && (user.try(:id) == options[:current_user].id)
+    end
   end
   
   def is_not_me?(user = @selected_user)
@@ -690,20 +694,27 @@ module ApplicationHelper
       s.html_safe
     when "Project"
       project = resource
-      post = notifier
-      title = if options[:skip_links]
-        project.title
+      if update.notifier_type == "Post"
+        post = notifier
+        title = if options[:skip_links]
+          project.title
+        else
+          link_to(project.title, project_journal_post_url(:project_id => project.id, :id => post.id))
+        end
+        article = if options[:count] && options[:count].to_i == 1
+          "a"
+        else
+          options[:count]
+        end
+        "#{title} wrote #{article} new post#{'s' if options[:count].to_i > 1}".html_safe
       else
-        link_to(project.title, project_journal_post_url(:project_id => project.id, :id => post.id))
+        title = if options[:skip_links]
+          project.title
+        else
+          link_to(project.title, project)
+        end
+        "Curators changed for #{title}".html_safe
       end
-      article = if options[:count] && options[:count].to_i == 1
-        "a"
-      else
-        options[:count]
-      end
-      "#{title} wrote #{article} new post#{'s' if options[:count].to_i > 1}".html_safe
-    # when "Project"
-    #   "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
       "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
     when "Taxon"
