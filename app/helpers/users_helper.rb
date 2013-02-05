@@ -119,7 +119,7 @@ module UsersHelper
   
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
-    if method_exists?(:user_signed_in?) && logged_in? && method_exists?(:current_user) && current_user == user
+    if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user
       capitalize_it ? 'You' : 'you'
     else
       user.login
