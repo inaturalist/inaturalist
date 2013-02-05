@@ -22,6 +22,7 @@ class TaxonLinksController < ApplicationController
           return redirect_to @taxon_link.taxon
         end
       else
+        flash.now[:error] = "Taxon link had errors: #{@taxon_link.errors.full_messages.to_sentence}"
         format.html { render :action => :new }
       end
     end

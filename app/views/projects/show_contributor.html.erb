@@ -22,7 +22,8 @@
     <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2>
-    <%= t(:contributions_from) link_to h(@contributor.user.login), observations_by_login_path(@contributor.user.login) %> to
+    <%= t(:contributions_from) %>
+    <%= link_to h(@contributor.user.login), observations_by_login_path(@contributor.user.login) %> to
     <% if @project.icon.file? -%>
       <%= image_tag @project.icon.url(:span1), :style => "vertical-align: middle" %>
     <% end -%>

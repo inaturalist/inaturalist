@@ -1,5 +1,28 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe TaxonSwap, "destruction" do
+  before(:each) do
+    prepare_swap
+  end
+
+  it "should destroy updates" do
+    Observation.make!(:taxon => @input_taxon)
+    without_delay { @swap.commit }
+    @swap.updates.to_a.should_not be_blank
+    old_id = @swap.id
+    @swap.destroy
+    Update.where(:resource_type => "TaxonSwap", :resource_id => old_id).to_a.should be_blank
+  end
+
+  it "should destroy subscriptions" do
+    s = Subscription.make!(:resource => @swap)
+    @swap.destroy
+    dead_s = Subscription.find_by_id(s.id)
+    Rails.logger.debug "[DEBUG] dead_s: #{dead_s}"
+    dead_s.should be_blank
+  end
+end
+
 describe TaxonSwap, "commit" do
   before(:each) do
     prepare_swap
@@ -191,6 +214,19 @@ describe TaxonSwap, "commit_records" do
     @output_taxon.reload
     @input_taxon.observations_count.should eq(0)
     @output_taxon.observations_count.should eq(3)
+  end
+
+  it "should be copacetic with content with a blank user" do
+    l = CheckList.make!
+    l.update_attributes(:user => nil)
+    l.user.should be_blank
+    lt = ListedTaxon.make!(:taxon => @input_taxon, :list => l)
+    lt.update_attributes(:user => nil)
+    lt.user.should be_blank
+    @swap.commit_records
+    lt.reload
+    @output_taxon.reload
+    lt.taxon_id.should eq(@output_taxon.id)
   end
 end
 

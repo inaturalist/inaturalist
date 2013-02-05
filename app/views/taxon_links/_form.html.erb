@@ -56,14 +56,14 @@
 
 <div class="last column span-8">
   <div id="help_field" class="description field" >
-    <%= t(:if_this_link_will_apply_to_descendant) %>
+    <p class="ui"><%= t(:if_this_link_will_apply_to_descendant) %></p>
     <dl>
       <dt><%= t(:name_llaves) %></dt>
       <dd>
         <%= t(:the_name_of_the_taxon_including_space) %>
         <strong>Example:</strong><br/>
-        <code>http://tolweb.org/[NAME]</code> -> 
-        <code>http://tolweb.org/Homo%20sapiens</code>
+        <code>http://site.com/[NAME]</code> -> 
+        <code>http://site.com/Homo%20sapiens</code>
       </dd><br/>
 
       <dt><%= t(:genus_slash_species) %></dt>
@@ -72,6 +72,22 @@
         <strong>Example:</strong><br/>
         <code>http://site.com/?g=[GENUS]&amp;s=[SPECIES]</code> -> 
         <code>http://site.com/?g=Homo&amp;s=sapiens</code>
+      </dd><br/>
+
+      <dt>[RANK]</dt>
+      <dd>
+        The rank of the taxon, e.g. family, species, etc.<br/><br/>
+        <strong>Example:</strong><br/>
+        <code>http://site.com/[RANK]/[NAME]</code> -> 
+        <code>http://site.com/species/Homo%20sapiens</code>
+      </dd><br/>
+
+      <dt>[NAME_WITH_RANK]</dt>
+      <dd>
+        The name of the taxon with the rank. For infraspecific ranks, rank is inserted after the binomial.<br/><br/>
+        <strong>Example:</strong><br/>
+        <code>http://site.com/[NAME_WITH_RANK]</code> -> 
+        <code>http://site.com/Homo%20sapiens%20ssp.%20inaturalensis</code>
       </dd>
     </dl>
   </div>

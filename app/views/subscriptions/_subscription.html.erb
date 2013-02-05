@@ -14,9 +14,9 @@
     <%= f.hidden_field :resource_type %>
     <%= f.hidden_field :resource_id %>
     <%= f.hidden_field :user_id %>
-    <%= link_to_function "Subscribe", "$(this).parents('form:first').submit()" %>
-    to <%= commas_and resource.class.notifying_associations.keys %>
-    from this <%= resource.class.to_s.underscore.humanize.downcase %>.
+    <%=t :subscribe_to_x_from_this_y_html, 
+      :x => commas_and(resource.class.notifying_associations.keys.map{|k| t(k).downcase}),
+      :y => resource.class.to_s.underscore.humanize.downcase %>
   <% end -%>
 
   <%= form_tag delete_subscription_url(resource.class.to_s, resource.id), 

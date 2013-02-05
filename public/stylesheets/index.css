@@ -892,6 +892,15 @@ form.inline .label {
 .helptip:hover {
   background: url(/images/silk/help.png) no-repeat;
 }
+.helptip.helptiptext {
+  top: 0;
+  width: auto;
+  height: auto;
+  padding-left: 20px;
+  color: #777;
+  cursor: pointer;
+}
+.helptip.helptiptext:hover {color: #36c;}
 
 .flag.resolved {
   text-decoration: line-through;

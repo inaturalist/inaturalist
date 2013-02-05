@@ -33,7 +33,7 @@
             <%= rights @photo %>
             <% if @photo.editable_by?(current_user) -%>
               <span class="button">
-                <%= link_to_function t(:edit_license), "$('#editlicense').dialog({modal:true, width:'auto', title: t(:Edit_license)})" %>
+                <%= link_to_function t(:edit_license), "$('#editlicense').dialog({modal:true, width:'auto', title: I18n.t('edit_license')})" %>
               </span>
               <div id="editlicense" class="dialog" style="display:none">
                 <div class="column span-18 verticalmiddle licensechoices">

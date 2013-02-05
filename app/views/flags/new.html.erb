@@ -11,7 +11,7 @@
 
 <div class="clear readable buttonrow">
   <%= form_for([@object,  @flag]) do |f| %>
-    <%= f.label :reason, raw t(:flag_reason, :record=>"#{@model.name.downcase}") %>
+    <%= f.label :reason, raw(t(:flag_reason, :record => @model.name.downcase)) %>
     <%= f.text_field :flag, :class => 'text' %>
     <label>&rdquo;</label>
     <%= f.hidden_field :user_id, :value=>current_user.id %>    

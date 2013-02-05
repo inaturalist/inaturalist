@@ -26,6 +26,8 @@ class ObservationsController < ApplicationController
   end
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
+  before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
+    :import, :add_from_list, :new, :project]
   before_filter :authenticate_user!, 
                 :except => [:explore,
                             :index,
@@ -40,8 +42,6 @@ class ObservationsController < ApplicationController
   before_filter :load_observation, :only => [:show, :edit, :edit_photos, :update_photos, :destroy, :fields]
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
-    :import, :add_from_list, :new, :project]
   before_filter :curator_required, :only => [:curation]
   before_filter :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
@@ -80,7 +80,8 @@ class ObservationsController < ApplicationController
       @observations = if perform_caching
         cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
         cache_params[:page] ||= 1
-        cache_params[:site_name] = SITE_NAME if INAT_CONFIG['site_only_observations']
+        cache_params[:site_name] = SITE_NAME if CONFIG.site_only_observations
+        cache_params[:bounds] = CONFIG.bounds if CONFIG.bounds
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
         Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
           get_paginated_observations(search_params, find_options).to_a
@@ -860,7 +861,7 @@ class ObservationsController < ApplicationController
       flash[:error] = <<-EOT
         Your CSV had a formatting problem. Try removing any strange
         characters and unclosed quotes, and if the problem persists, please
-        <a href="mailto:#{APP_CONFIG[:help_email]}">email us</a> the file and we'll
+        <a href="mailto:#{CONFIG.help_email}">email us</a> the file and we'll
         figure out the problem.
       EOT
       redirect_to :action => 'import'
@@ -1584,7 +1585,7 @@ class ObservationsController < ApplicationController
       end
     end
     if @observations.blank?
-      @observations = Observation.query(search_params).paginate(find_options)
+      @observations = Observation.query(search_params).includes(:observation_photos => :photo).paginate(find_options)
     end
     @observations
   rescue ThinkingSphinx::ConnectionError
@@ -1749,7 +1750,7 @@ class ObservationsController < ApplicationController
       end
     end
 
-    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+    if CONFIG.site_only_observations && params[:site].blank?
       @observations = @observations.where("observations.uri LIKE ?", "#{root_url}%")
     end
 
@@ -2029,6 +2030,9 @@ class ObservationsController < ApplicationController
       opts[:methods] += [:short_description, :user_login, :iconic_taxon_name]
       opts[:methods].uniq!
       opts[:include] ||= {}
+      opts[:include][:taxon] ||= {
+        :only => [:id, :name, :rank, :ancestry]
+      }
       opts[:include][:iconic_taxon] ||= {:only => [:id, :name, :rank, :rank_level, :ancestry]}
       opts[:include][:user] ||= {:only => :login}
       opts[:include][:photos] ||= {

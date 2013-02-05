@@ -30,6 +30,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ranges_without_geom, :class_name => 'TaxonRange', :select => (TaxonRange.column_names - ['geom']).join(', ')
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
+  has_many :assessments
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -143,6 +144,7 @@ class Taxon < ActiveRecord::Base
     'subsp'           => 'subspecies',
     'trinomial'       => 'subspecies',
     'var'             => 'variety',
+    'fo'              => 'form',
     'unranked'        => nil
   }
   
@@ -308,6 +310,7 @@ class Taxon < ActiveRecord::Base
     includes(:listed_taxa).where("listed_taxa.list_id = ?", list)
   }
   scope :active, where(:is_active => true)
+  scope :inactive, where(:is_active => false)
   
   ICONIC_TAXA = Taxon.sort_by_ancestry(self.iconic_taxa.arrange)
   ICONIC_TAXA_BY_ID = ICONIC_TAXA.index_by(&:id)
@@ -529,6 +532,23 @@ class Taxon < ActiveRecord::Base
   #
   def common_name
     TaxonName.choose_common_name(taxon_names)
+  end
+
+  def name_with_rank
+    if rank_level && rank_level < SPECIES_LEVEL
+      r = case rank
+        when SUBSPECIES then "ssp."
+        when VARIETY then "var."
+        when FORM then "f."
+        else rank
+      end
+      pieces = name.split
+      "#{pieces[0..-2].join(' ')} #{r} #{pieces.last}"
+    elsif species?
+      name
+    else
+      "#{rank.capitalize} #{name}"
+    end
   end
   
   #
@@ -924,11 +944,12 @@ class Taxon < ActiveRecord::Base
   end
   
   def default_photo
-    if taxon_photos.loaded?
+    @default_photo ||= if taxon_photos.loaded?
       taxon_photos.sort_by{|tp| tp.id}.first.try(:photo)
     else
       taxon_photos.first(:include => [:photo], :order => "taxon_photos.id ASC").try(:photo)
     end
+    @default_photo
   end
   
   def self.update_descendants_with_new_ancestry(taxon, child_ancestry_was)
@@ -1185,7 +1206,7 @@ class Taxon < ActiveRecord::Base
             :photo => {
               :methods => [:license_code, :attribution],
               :except => [:original_url, :file_processing, :file_file_size, 
-                :file_content_type, :file_file_name, :mobile]
+                :file_content_type, :file_file_name, :mobile, :metadata]
             }
           }
         }

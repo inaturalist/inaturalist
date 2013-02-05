@@ -83,6 +83,10 @@ class TaxonSwap < TaxonChange
           Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{taxon_range}: " +
             new_taxon_range.errors.full_messages.to_sentence
         end
+        unless new_taxon_range.create_kml_attachment
+          Rails.logger.error "[ERROR #{Time.now}] TaxonChange #{id} failed to duplicate #{taxon_range} attachment: " +
+            new_taxon_range.errors.full_messages.to_sentence
+        end
       end
     end
     

@@ -12,6 +12,7 @@ gem 'aws-sdk'
 gem 'bluecloth'
 gem 'capistrano'
 gem 'chronic'
+gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
 gem 'daemons'
 gem 'daemon-spawn'
 gem 'delayed_job'
@@ -49,6 +50,7 @@ gem 'pg'
 gem 'preferences', :git => 'git://github.com/Titinux/preferences.git'
 gem 'rack-google_analytics'
 gem 'rest-client', :require => 'rest_client'
+gem 'rgeo'
 gem 'right_aws'
 gem 'right_http_connection'
 gem 'rinku', :require => 'rails_rinku'
@@ -57,12 +59,13 @@ gem 'rvm-capistrano'
 gem 'spatial_adapter', :git => 'git://github.com/Empact/spatial_adapter.git' # until fragility updates the gemspec
 gem 'thinking-sphinx', '2.0.10'
 gem 'tlsmail'
+gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
 gem 'trollop'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem "watu_table_builder", :require => "table_builder"
 gem 'will_paginate'
-# gem 'whenever', :require => false, :git => "git://github.com/kueda/whenever.git"
 gem 'whenever', :require => false
+gem 'ya2yaml'
 gem 'ym4r_gm', :git => 'git://github.com/modyo/ym4r_gm.git'
 gem 'xmp'
 
@@ -71,3 +74,4 @@ group :test, :development do
   gem "machinist"
   gem "rspec-rails"
 end
+

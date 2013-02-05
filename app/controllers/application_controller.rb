@@ -14,12 +14,13 @@ class ApplicationController < ActionController::Base
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :user_logging
+  after_filter :user_request_logging
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
   before_filter :set_locale
   
-  PER_PAGES = [10,30,50,100]
-  HEADER_VERSION = 8
+  PER_PAGES = [10,30,50,100,200]
+  HEADER_VERSION = 9
   
   alias :logged_in? :user_signed_in?
   
@@ -154,6 +155,12 @@ class ApplicationController < ActionController::Base
     return true unless logged_in?
     Rails.logger.info "  User: #{current_user.login} #{current_user.id}"
   end
+
+  def user_request_logging
+    msg = "Finished #{request.method} #{request.path} from #{request.ip}"
+    msg += " for user: #{current_user.login} #{current_user.id}" if logged_in?
+    Rails.logger.info msg
+  end
   
   #
   # Return a 404 response with our default 404 page
@@ -267,7 +274,7 @@ class ApplicationController < ActionController::Base
     end
     
     if logged_in?
-      current_user.save
+      current_user.save if current_user.preferences_changed?
       current_user.preferences
     else
       session[:preferences] = prefs
@@ -326,6 +333,16 @@ class ApplicationController < ActionController::Base
     end
     redirect_to url if url
     true
+  end
+
+  # When a user tries to load a page that requires login, we assume they want
+  # to land there after signing up. See RegistrationsController for the
+  # redirect.
+  def authenticate_user!(*args)
+    if request.get? && !logged_in?
+      session[:return_to_for_new_user] = request.fullpath
+    end
+    super
   end
 end
 

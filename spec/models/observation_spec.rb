@@ -346,7 +346,7 @@ describe Observation, "updating" do
     obs.reload
     obs.iconic_taxon.should be_blank
   end
-  
+
   it "should queue refresh jobs for associated project lists if the taxon changed" do
     o = Observation.make!(:taxon => Taxon.make!)
     pu = ProjectUser.make!(:user => o.user)
@@ -367,6 +367,41 @@ describe Observation, "updating" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
     jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.should_not be_blank
+  end
+
+  it "should only queue one job to refresh life lists if taxon changed" do
+    o = Observation.make!(:taxon => Taxon.make!)
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:taxon => Taxon.make!)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /LifeList.*refresh_with_observation/m}.size.should eq(1)
+  end
+
+  it "should only queue one job to refresh project lists if taxon changed" do
+    po = make_project_observation(:taxon => Taxon.make!)
+    o = po.observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:taxon => Taxon.make!)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}.size.should eq(1)
+  end
+
+  it "should only queue one check list refresh job" do
+    o = make_research_grade_observation
+    Delayed::Job.delete_all
+    stamp = Time.now
+    3.times do
+      o.update_attributes(:latitude => o.latitude + 1)
+    end
+    jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
+    # puts jobs.detect{|j| j.handler =~ /\:refresh_project_list\n/}.handler.inspect
+    jobs.select{|j| j.handler =~ /CheckList.*refresh_with_observation/m}.size.should eq(1)
   end
   
   it "should queue refresh job for check lists if the taxon changed" do

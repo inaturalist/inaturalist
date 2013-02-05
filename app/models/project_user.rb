@@ -20,7 +20,7 @@ class ProjectUser < ActiveRecord::Base
   end
   
   def prevent_owner_from_leaving
-    raise "The owner of a project can't leave the project" if project.user_id == user_id
+    raise "The owner of a project can't leave the project" if project && project.user_id == user_id
   end
   
   def has_time_zone?

@@ -67,7 +67,11 @@ class ProjectsController < ApplicationController
         @journal_posts_count = @project.posts.count
         @members_count = @project.project_users.count
         @observed_taxa_count = @project.observed_taxa_count
-        @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
+        if @project.project_type == "observation contest"
+          @top_observers = @project.project_users.all(:order => "observations_count desc, taxa_count desc", :limit => 10, :conditions => "observations_count > 0")
+        else
+          @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
+        end
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
         @project_observations = @project.project_observations.paginate(:page => 1, 
           :include => {
@@ -86,6 +90,8 @@ class ProjectsController < ApplicationController
           end
         end
         
+        @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
+
         if params[:iframe]
           @headless = @footless = true
           render :action => "show_iframe"
@@ -206,8 +212,13 @@ class ProjectsController < ApplicationController
   end
   
   def contributors
-    @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
-    @top_contributors = @project.project_users.all(:order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+    if params[:sort] == "observation+contest"
+      @contributors = @project.project_users.paginate(:page => params[:page], :order => "observations_count DESC, taxa_count DESC", :conditions => "observations_count > 0")
+      @top_contributors = @project.project_users.all(:order => "observations_count DESC, taxa_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+    else
+      @contributors = @project.project_users.paginate(:page => params[:page], :order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0")
+      @top_contributors = @project.project_users.all(:order => "taxa_count DESC, observations_count DESC", :conditions => "taxa_count > 0", :limit => 5)
+    end
     respond_to do |format|
       format.html do
       end
@@ -691,7 +702,7 @@ class ProjectsController < ApplicationController
   
   def search
     if @q = params[:q]
-      @projects = Project.paginate(:page => params[:page], :conditions => ["lower(title) LIKE ?", "%#{@q.downcase}%"])
+      @projects = Project.search(@q, :page => params[:page])
     end
     respond_to do |format|
       format.html

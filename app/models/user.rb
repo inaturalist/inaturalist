@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   # licensing extras
   attr_accessor   :make_observation_licenses_same
   attr_accessor   :make_photo_licenses_same
-  attr_accessor   :preferred_photo_license
-  MASS_ASSIGNABLE_ATTRIBUTES = [:make_observation_licenses_same, :make_photo_licenses_same, :preferred_photo_license]
+  attr_accessible :make_observation_licenses_same, 
+                  :make_photo_licenses_same, 
+                  :preferred_photo_license, 
+                  :preferred_observation_license
   
   preference :project_journal_post_email_notification, :boolean, :default => true
   preference :comment_email_notification, :boolean, :default => true
@@ -75,8 +77,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   has_subscribers
-  has_many :subscriptions
-  has_many :updates, :foreign_key => :subscriber_id
+  has_many :subscriptions, :dependent => :destroy
+  has_many :updates, :foreign_key => :subscriber_id, :dependent => :destroy
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name
@@ -136,7 +138,7 @@ class User < ActiveRecord::Base
   end
   
   def icon_url_provided?
-    !self.icon_url.blank?
+    !self.icon.present? && !self.icon_url.blank?
   end
 
   def active?
@@ -153,8 +155,13 @@ class User < ActiveRecord::Base
 
   def download_remote_icon
     io = open(URI.parse(self.icon_url))
-    self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
-    rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Timeout::timeout(10) do
+      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+    end
+    true
+  rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
+    Rails.logger.error "[ERROR #{Time.now}] Failed to download_remote_icon for #{id}: #{e}"
+    true
   end
 
   def strip_name
@@ -286,14 +293,6 @@ class User < ActiveRecord::Base
     true
   end
   
-  def update_attributes(attributes)
-    MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-      self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-      self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    end
-    super(attributes)
-  end
-  
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
@@ -401,12 +400,12 @@ class User < ActiveRecord::Base
   
   def create_default_life_list
     return true if life_list
-    if existing = lists.includes(:rules).where("list_rules.id IS NULL").first
+    new_life_list = if (existing = self.lists.includes(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
       self.life_list = existing
     else
-      create_life_list(:user => self)
+      LifeList.create(:user => self)
     end
-    save
+    User.update_all(["life_list_id = ?", new_life_list], ["id = ?", self])
     true
   end
   

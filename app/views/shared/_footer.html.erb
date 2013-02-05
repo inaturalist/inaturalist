@@ -2,8 +2,8 @@
   <div class="meta stacked">
     <span class="meta"><%=t :follow_us %></span>
     <%=raw [
-      link_to('Twitter', INAT_CONFIG['twitter'].try(:[], 'url')),
-      link_to('Facebook', INAT_CONFIG['facebook'].try(:[], 'url'))
+      link_to('Twitter', CONFIG.twitter.try(:url)),
+      link_to('Facebook', CONFIG.facebook.try(:url))
     ].join('  <span class="meta">&amp;</span> ') %>
     <span class="meta">|&nbsp; <%= t(:mobile_apps_for) %></span>
     <a href="http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8">iPhone</a>
@@ -14,9 +14,9 @@
   </div>
 
   <div class="meta">
-    <a href="<%= INAT_CONFIG['about_url'] %>"><%=t :about %> <%= SITE_NAME %></a> &nbsp;
-    <a href="<%= INAT_CONFIG['help_url'] %>""><%=t :help %></a> &nbsp;
-    <a href="<%= INAT_CONFIG['feedback_url'] %>"><%=t :feedback %></a> &nbsp;
+    <a href="<%= CONFIG.about_url %>"><%=t :about %> <%= SITE_NAME %></a> &nbsp;
+    <a href="<%= CONFIG.help_url %>""><%=t :help %></a> &nbsp;
+    <a href="<%= CONFIG.feedback_url %>"><%=t :feedback %></a> &nbsp;
     <a href="/terms.html"><%=t :terms_service %></a> &nbsp;
     <a href="/privacy.html"><%=t :privacy%></a> &nbsp;
   </div>

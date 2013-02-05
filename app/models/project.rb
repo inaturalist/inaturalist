@@ -12,9 +12,9 @@ class Project < ActiveRecord::Base
   has_one :custom_project, :dependent => :destroy
   has_many :project_observation_fields, :dependent => :destroy, :inverse_of => :project, :order => "position"
   has_many :observation_fields, :through => :project_observation_fields
-
   has_many :posts, :as => :parent, :dependent => :destroy
-  
+  has_many :assessments, :dependent => :destroy
+    
   before_save :strip_title
   after_create :add_owner_as_project_user, :create_the_project_list
   
@@ -59,10 +59,18 @@ class Project < ActiveRecord::Base
     :default_url => "/attachment_defaults/general/:style.png"
   
   CONTEST_TYPE = 'contest'
-  PROJECT_TYPES = [CONTEST_TYPE]
+  OBS_CONTEST_TYPE = 'observation contest'
+  ASSESSMENT_TYPE = 'assessment'
+  PROJECT_TYPES = [CONTEST_TYPE, OBS_CONTEST_TYPE , ASSESSMENT_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
+
+  define_index do
+    indexes :title
+    indexes :description
+    set_property :delta => :delayed
+  end
   
   def to_s
     "<Project #{id} #{title}>"
@@ -84,7 +92,7 @@ class Project < ActiveRecord::Base
   end
   
   def contest?
-    project_type == CONTEST_TYPE
+     PROJECT_TYPES.include? project_type
   end
   
   def editable_by?(user)
@@ -105,7 +113,7 @@ class Project < ActiveRecord::Base
   end
   
   def icon_url
-    icon.file? ? "#{APP_CONFIG[:site_url]}#{icon.url(:span2)}" : nil
+    icon.file? ? "#{CONFIG.site_url}#{icon.url(:span2)}" : nil
   end
   
   def project_observation_rule_terms
@@ -148,9 +156,9 @@ class Project < ActiveRecord::Base
           :joins => "JOIN listed_taxa ON listed_taxa.list_id = #{project_list.id}", 
           :conditions => "observations.taxon_id = listed_taxa.taxon_id")
       when "identified?"
-        scope = scope.scoped(:conditions => "taxon_id IS NOT NULL")
+        scope = scope.scoped(:conditions => "observations.taxon_id IS NOT NULL")
       when "georeferenced"
-        scope = scope.scoped(:conditions => "geom IS NOT NULL")
+        scope = scope.scoped(:conditions => "observations.geom IS NOT NULL")
       end
     end
     scope

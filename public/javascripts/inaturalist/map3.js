@@ -146,6 +146,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   
 google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
+  if (this.observations[observation.id]) {
+    this.observations[observation.id].setMap(null)
+  }
   delete this.observations[observation.id];
 };
   
@@ -161,9 +164,10 @@ google.maps.Map.prototype.removeObservations = function(observations) {
   var map = this;
   if (typeof(observations) == "undefined") {
     $.each(map.observations, function(k,v) {
-      map.removeMarker(v);
-      delete map.observations[k];
-      delete map.observationBounds;
+      map.removeMarker(v)
+      v.setMap(null)
+      delete map.observations[k]
+      delete map.observationBounds
     });
   } else {
     $.each(observations, function() {

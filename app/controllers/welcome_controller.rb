@@ -18,9 +18,9 @@ class WelcomeController < ApplicationController
         unless fragment_exist?(@observations_cache_key)
           @observations = Observation.has_geo.has_photos.includes(:observation_photos => :photo).
             limit(4).order("observations.id DESC").scoped
-          if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+          if CONFIG.site_only_observations && params[:site].blank?
             @observations = @observations.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
-          elsif (site_bounds = INAT_CONFIG['bounds']) && params[:swlat].blank?
+          elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?
             @observations = @observations.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
           end
         end

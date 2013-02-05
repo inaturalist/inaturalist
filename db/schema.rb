@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102225500) do
+ActiveRecord::Schema.define(:version => 20130131061500) do
 
   create_table "announcements", :force => true do |t|
     t.string   "placement"
@@ -21,6 +21,32 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "assessment_sections", :force => true do |t|
+    t.integer  "assessment_id"
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "assessment_sections", ["assessment_id"], :name => "index_assessment_sections_on_assessment_id"
+  add_index "assessment_sections", ["user_id"], :name => "index_assessment_sections_on_user_id"
+
+  create_table "assessments", :force => true do |t|
+    t.integer  "taxon_id"
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "completed_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "assessments", ["project_id"], :name => "index_assessments_on_project_id"
+  add_index "assessments", ["taxon_id"], :name => "index_assessments_on_taxon_id"
+  add_index "assessments", ["user_id"], :name => "index_assessments_on_user_id"
 
   create_table "colors", :force => true do |t|
     t.string "value"
@@ -415,11 +441,15 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
     t.boolean  "out_of_range"
     t.string   "license"
     t.string   "uri"
+    t.integer  "photos_count",                                                                    :default => 0
+    t.integer  "comments_count",                                                                  :default => 0
   end
 
+  add_index "observations", ["comments_count"], :name => "index_observations_on_comments_count"
   add_index "observations", ["geom"], :name => "index_observations_on_geom", :spatial => true
   add_index "observations", ["observed_on", "time_observed_at"], :name => "index_observations_on_observed_on_and_time_observed_at"
   add_index "observations", ["out_of_range"], :name => "index_observations_on_out_of_range"
+  add_index "observations", ["photos_count"], :name => "index_observations_on_photos_count"
   add_index "observations", ["quality_grade"], :name => "index_observations_on_quality_grade"
   add_index "observations", ["taxon_id", "user_id"], :name => "index_observations_on_taxon_id_and_user_id"
   add_index "observations", ["uri"], :name => "index_observations_on_uri"
@@ -630,6 +660,7 @@ ActiveRecord::Schema.define(:version => 20130102225500) do
     t.datetime "featured_at"
     t.string   "source_url"
     t.string   "tracking_codes"
+    t.boolean  "delta",               :default => false
   end
 
   add_index "projects", ["slug"], :name => "index_projects_on_cached_slug", :unique => true

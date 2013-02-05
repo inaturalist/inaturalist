@@ -254,9 +254,9 @@ module ApplicationHelper
     # Make sure P's don't get nested in P's
     text = text.gsub(/<\\?p>/, "\n\n")
     text = sanitize(text, options)
-    text = simple_format(text, {}, :sanitize => false)
-    text = auto_link(text.html_safe).html_safe
-    
+    text = compact(text, :all_tags => true) if options[:compact]
+    text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
+    text = auto_link(text.html_safe, :sanitize => false).html_safe
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
@@ -299,7 +299,7 @@ module ApplicationHelper
     url = if request
       "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
     else
-      "#{APP_CONFIG[:site_url]}#{user.icon.url(size || :mini)}"
+      "#{CONFIG.site_url}#{user.icon.url(size || :mini)}"
     end
     image_tag(url, options.merge(:style => style))
   end
@@ -322,10 +322,14 @@ module ApplicationHelper
   end
   
   # remove unecessary whitespace btwn divs
-  def compact(&block)
-    content = capture(&block)
-    content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
-    concat content.html_safe
+  def compact(content = nil, options = {}, &block)
+    content = capture(&block) if block_given?
+    if options[:all_tags]
+      content.gsub!(/\>[\n\s]+\</, '><')
+    else
+      content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
+    end
+    block_given? ? concat(content.html_safe) : content.html_safe
   end
   
   def color_pluralize(num, singular)
@@ -440,6 +444,13 @@ module ApplicationHelper
     html = content_tag(:span, '', :class => "#{options[:class]} #{tip_id}_target helptip", :rel => "##{tip_id}")
     html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
     concat html
+  end
+
+  def helptip(text, options = {}, &block)
+    tip_id = "tip_#{serial_id}"
+    html = content_tag(:span, text, :class => "#{options[:class]} #{tip_id}_target helptip helptiptext", :rel => "##{tip_id}")
+    html += content_tag(:div, capture(&block), :id => tip_id, :style => "display:none")
+    html
   end
   
   def month_graph(counts, options = {})
@@ -556,7 +567,7 @@ module ApplicationHelper
       user_name = record.user.login if user_name.blank?
       s = "&copy; #{user_name}"
       if record.license.blank?
-        s += "#{separator}all rights reserved"
+        s += "#{separator}#{t(:all_rights_reserved)}"
       else
         s += separator
         s += content_tag(:span) do
@@ -581,7 +592,7 @@ module ApplicationHelper
         end
 
         if record.copyrighted?
-          s += "#{separator}all rights reserved"
+          s += "#{separator}#{t(:all_rights_reserved)}"
         elsif record.creative_commons?
           s += separator
           code = Photo.license_code_for_number(record.license)
@@ -618,6 +629,8 @@ module ApplicationHelper
       observation_image(resource, options.merge(:size => "square"))
     when "Project"
       image_tag("#{root_url}#{resource.icon.url(:thumb)}", options)
+    when "AssessmentSection"
+      image_tag("#{root_url}#{resource.assessment.project.icon.url(:thumb)}", options)
     when "ListedTaxon"
       image_tag("#{root_url}images/checklist-icon-color-32px.png", options)
     when "Post"
@@ -655,7 +668,7 @@ module ApplicationHelper
       else
         "#{options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource))} added #{options[:count]} observations".html_safe
       end
-    when "Observation", "ListedTaxon", "Post"
+    when "Observation", "ListedTaxon", "Post", "AssessmentSection"
       class_name = update.resource.class.to_s.underscore.humanize.downcase
       resource_link = options[:skip_links] ? class_name : link_to(class_name, url_for_resource_with_host(resource))
 
@@ -735,13 +748,13 @@ module ApplicationHelper
   end
   
   def url_for_resource_with_host(resource)
-    "#{APP_CONFIG[:site_url]}#{url_for(resource)}"
+    "#{CONFIG.site_url}#{url_for(resource)}"
   end
   
   def commas_and(list)
     return list.first.to_s.html_safe if list.size == 1
-    return list.join(' and ').html_safe if list.size == 2
-    "#{list[0..-2].join(', ')}, and #{list.last}".html_safe
+    return list.join(" #{t :and} ").html_safe if list.size == 2
+    "#{list[0..-2].join(', ')}, #{t :and} #{list.last}".html_safe
   end
   
   def update_cached(record, association)

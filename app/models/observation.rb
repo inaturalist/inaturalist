@@ -160,7 +160,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has photos(:id), :as => :has_photos #, :type => :boolean
+    has :photos_count, :as => :has_photos, :type => :integer
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -320,10 +320,7 @@ class Observation < ActiveRecord::Base
   
   scope :has_geo, where("latitude IS NOT NULL AND longitude IS NOT NULL")
   scope :has_id_please, where("id_please IS TRUE")
-  scope :has_photos, 
-    select("DISTINCT observations.*").
-    joins("JOIN observation_photos AS _op ON _op.observation_id = observations.id").
-    where('_op.id IS NOT NULL')
+  scope :has_photos, where("photos_count > 0")
   scope :has_quality_grade, lambda {|quality_grade|
     quality_grade = '' unless QUALITY_GRADES.include?(quality_grade)
     where("quality_grade = ?", quality_grade)
@@ -335,7 +332,7 @@ class Observation < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
     joins(:taxon).where(
-      "observations.taxon_id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
+      "taxa.id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
       taxon
     )
   }
@@ -503,9 +500,9 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if INAT_CONFIG['site_only_observations'] && params[:site].blank?
+    if CONFIG.site_only_observations && params[:site].blank?
       scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
-    elsif (site_bounds = INAT_CONFIG['bounds']) && params[:swlat].blank?
+    elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?
       scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
     end
     
@@ -761,14 +758,19 @@ class Observation < ActiveRecord::Base
     # Don't refresh all the lists if nothing changed
     return true if target_taxa.empty?
     
-    List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
-      :skip_subclasses => true)
-    LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
-     
-    ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
-      :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+    unless Delayed::Job.where("handler LIKE '%''List%refresh_with_observation% #{id}\n%'").exists?
+      List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
+        :skip_subclasses => true)
+    end
+    unless Delayed::Job.where("handler LIKE '%LifeList%refresh_with_observation% #{id}\n%'").exists?
+      LifeList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+    end
+    unless Delayed::Job.where("handler LIKE '%ProjectList%refresh_with_observation% #{id}\n%'").exists?
+      ProjectList.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+        :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at)
+    end
     
     # Reset the instance var so it doesn't linger around
     @old_observation_taxon_id = nil
@@ -780,6 +782,7 @@ class Observation < ActiveRecord::Base
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
+    return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
     CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
@@ -903,7 +906,7 @@ class Observation < ActiveRecord::Base
   end
   
   def num_identifications_by_others
-    identifications.select{|i| i.user_id != user_id}.size
+    num_identification_agreements + num_identification_disagreements
   end
   
   ##### Rules ###############################################################
@@ -983,7 +986,7 @@ class Observation < ActiveRecord::Base
     return unless observation = Observation.find_by_id(id)
     observation.set_quality_grade(:force => true)
     observation.save
-    if observation.quality_grade_changed?
+    if observation.quality_grade_changed? && !Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
       CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
@@ -1412,6 +1415,7 @@ class Observation < ActiveRecord::Base
     return [] unless georeferenced?
     lat = private_latitude || latitude
     lon = private_longitude || longitude
+    acc = private_positional_accuracy || positional_accuracy
     candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area}
 
     # at present we use PostGIS GEOMETRY types, which are a bit stupid about
@@ -1419,7 +1423,7 @@ class Observation < ActiveRecord::Base
     # Converting to the GEOGRAPHY type would solve this, in theory.
     # Unfrotinately this does NOT solve the problem of failing to select 
     # legit geoms that cross the dateline. GEOGRAPHY would solve that too.
-    candidates.select{|p| p.bbox_contains_lat_lng?(lat, lon)}
+    candidates.select{|p| p.bbox_contains_lat_lng_acc?(lat, lon, acc)}
   end
   
   def public_places

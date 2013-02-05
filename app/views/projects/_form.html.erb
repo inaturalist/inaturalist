@@ -150,7 +150,7 @@
   
   <%= f.text_field :title, :required => true %>
   
-  <% f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
+  <%= f.form_field :project_icon, :wrapper => {:class => 'clear'} do %>
     <% if project.icon.file? -%>
       <%= image_tag(project.icon.url(:thumb), :class => "left") %>
       <div>

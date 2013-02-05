@@ -1,4 +1,5 @@
 Inaturalist::Application.routes.draw do
+  
   wiki_root '/pages'
 
   # Riparian routes
@@ -140,12 +141,21 @@ Inaturalist::Application.routes.draw do
   match 'projects/:project_id/journal/:id' => 'posts#show', :as => :project_journal_post
   match 'projects/:project_id/journal/:id/edit' => 'posts#edit', :as => :edit_project_journal_post
   match 'projects/:project_id/journal/archives/:year/:month' => 'posts#archives', :as => :project_journal_archives_by_month, :constraints => { :month => /\d{1,2}/, :year => /\d{1,4}/ }
+
+  resources :assessment_sections, :only => [:show] 
+  resources :assessments, :only => [:new, :create, :show, :edit, :update, :destroy] do
+    resources :assessment_sections, :only => [:new, :create, :show, :edit, :update] 
+  end
+
   resources :projects do
     member do
       post :add_matching, :as => :add_matching_to
       get :preview_matching, :as => :preview_matching_for
     end
+    resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
   end
+
+
   resources :project_assets, :except => [:index, :show]
   resources :project_observations, :only => [:create, :destroy]
   resources :custom_projects, :except => [:index, :show]
@@ -293,6 +303,10 @@ Inaturalist::Application.routes.draw do
   if Rails.env.development?
     mount EmailerPreview => 'mail_view'
   end
+
+  get 'translate' => 'translations#index', :as => :translate_list
+  post 'translate/translate' => 'translations#translate', :as => :translate
+  get 'translate/reload' => 'translations#reload', :as => :translate_reload
   
   match '/:controller(/:action(/:id))'
 end
