@@ -65,7 +65,7 @@
         <%= form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
-            Select photos from your photo stream to convert into iNaturalist
+            Select photos from your photo stream to convert into <%= CONFIG.site_name %>
             observations. We'll fill in the date, time, and location from a
             photo's metadata, and try to look up species names from the tags.
           </div>

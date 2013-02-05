@@ -10,7 +10,7 @@
     <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/>
   <% end %>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" /> 
   <% og_description = h strip_tags(truncate(@project.description, :length => 110)) %>

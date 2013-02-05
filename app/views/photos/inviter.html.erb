@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Invite other photographers to iNaturalist" %>  
+  <%= @title = "Invite other photographers to #{CONFIG.site_name}" %>  
 <%- end -%>
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>

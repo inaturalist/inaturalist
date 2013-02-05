@@ -14,8 +14,8 @@
     Out of range!
     <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
     <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
-      This observation lies outside the range iNat has for this species. This
-      could mean iNat's range is wrong, the ID is wrong, a vagrant occurrence,
+      This observation lies outside the range <%= CONFIG.site_name_short %> has for this species. This
+      could mean <%= CONFIG.site_name_short %>'s range is wrong, the ID is wrong, a vagrant occurrence,
       or a range expansion!
       <%= link_to "View the range", taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
     </div>
