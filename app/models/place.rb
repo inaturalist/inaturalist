@@ -232,7 +232,7 @@ class Place < ActiveRecord::Base
   end
   
   def straddles_date_line?
-    self.swlng > 0 && self.nelng < 0
+    self.swlng.to_f > 0 && self.nelng.to_f < 0
   end
   
   def contains_lat_lng?(lat, lng)

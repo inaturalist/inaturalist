@@ -52,6 +52,7 @@ end
 
 def without_delay
   Delayed::Worker.delay_jobs = false
-  yield
+  r = yield
   Delayed::Worker.delay_jobs = true
+  r
 end

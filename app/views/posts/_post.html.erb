@@ -21,8 +21,12 @@
       <span>DRAFT!</span>
     <% end -%>
     <span class="label">by</span>
-    <%= link_to user_image(post.user), post.user %>
-    <%= link_to(post.user.login, observations_by_login_path(post.user.login)) %>
+    <% if post.user -%>
+      <%= link_to user_image(post.user), post.user %>
+      <%= link_to(post.user.login, observations_by_login_path(post.user.login)) %>
+    <% else %>
+      deleted user
+    <% end -%>
     <% if post.observations.size > 0 -%>
       |
       <span class="count"><%= post.observations.size %></span>
