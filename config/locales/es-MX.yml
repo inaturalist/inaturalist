@@ -5,8 +5,8 @@ es-MX:
   a: a
   a_community_for_naturalist: "Una comunidad para NaturaListas"
   a_default_taxon_name_will_automatically_created: |-
-      Del nombre científico atribuido a este taxón automáticamente se creará un nombre de taxón predeterminado.
-      Cuando hayas salvado el nuevo taxón, podrás añadiro otros nombres (nombres comunes, nombres científicos desactualizados, etc.).
+      Del nombre científico atribuido a esta especie o grupo automáticamente se creará un nombre de especie o grupo predeterminado.
+      Cuando hayas salvado la nueva especie o grupo, podrás añadir otros nombres (nombres comunes, nombres científicos desactualizados, etc.).
   a_few_points_to_make_things_clear: "Algunos puntos para aclarar las cosas"
   a_greasemonkey_script: "Un guión (script) de Greasemonkey"
   able_to_connect_flickr: "¡Excelente! Pudimos enlazar tu cuenta de Flickr."
@@ -6256,7 +6256,7 @@ es-MX:
       (GBIF).
   licensing_your_content_gives_others_legal: "La licencia de tu contenido le da derechos legales a otros para usarlos si cumplen con las condiciones de la licencia. %{site_name} usa tus licencias de contenido de Creative Commons para compartirlo con socios como "
   life!: ¡Vida!
-  life_list_updated_we_also_saved_a: "¡Tu Lista de Vida ha sido actualizada! También guardamos una observación en blanco para esta especie o grupo."
+  life_list_updated_we_also_saved_a: "¡Tu lista de vida ha sido actualizada! También guardamos una observación en blanco para esta especie o grupo."
   life_lists_automatically_fill: "Las listas de vida se construyen automáticamente a medida que vas observando especies y también pueden restringirse a ciertos grupos, por ejemplo, la lista de vida de las aves en la familia de los cuervos (Corvidae)."
   link_or_unlink_your_facebook_account: "Enlaza o desenlaza tu cuenta de Facebook"
   link_or_unlink_your_flickr_account: "Enlaza o desenlaza tu cuenta Flickr"
@@ -6300,7 +6300,8 @@ es-MX:
   localized_species_accounts: "Contenidos de especies"
   location: Ubicación
   location_is_exact: "La ubicación es exacta"
-  locked_taxa_will_not_allow_new: "Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.\n"
+  locked_taxa_will_not_allow_new: |
+      Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.
   log_in: "Empieza la sesión"
   logged_in_as: "Inicia sesión como"
   login_slash_username: "Login / nombre de usuario"
@@ -6510,7 +6511,7 @@ es-MX:
   observed: Observado
   observed_by: "Observado por"
   observed_on: "Observado en"
-  observer: Observador
+  observer: "Autor:"
   observer_short: Observador
   observing: Observando
   occurence_status_describes_how: "El estatus de ocurrencia describe que tan común o raro es una especie o grupo en un área determinada. Ver el DarwinCore  <a href=\"http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus\">para información sobre terminología</a>."
