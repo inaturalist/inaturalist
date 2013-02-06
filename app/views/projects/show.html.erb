@@ -11,8 +11,12 @@
   <% end %>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" /> 
+  <% unless @fb_admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= @fb_admin_ids.join(',') %>"/>
+  <% end -%>
+  <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
+    <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" /> 
+  <% end -%>
   <% og_description = h strip_tags(truncate(@project.description, :length => 110)) %>
   <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
@@ -257,7 +261,9 @@
   <%= truncate_with_more formatted_user_text(@project.description), :length => 400 %>
   
   <% if @custom_project && !@custom_project.side.blank? -%>
-    <%=raw @custom_project.side %>
+    <div class="stacked">
+      <%=raw @custom_project.side %>
+    </div>
   <% end -%>
   
   <div id="fblike" class="stacked">

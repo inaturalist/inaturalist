@@ -110,9 +110,11 @@ base: &base
 
     memcached: 'localhost'
 
-    facebook:
-        app_id: 00000000000
-        app_secret: 09af09af09af09af09af09af09af09af09af09af
+    # facebook:
+    #     app_id: 00000000000
+    #     app_secret: 09af09af09af09af09af09af09af09af09af09af
+    #     # facebook user IDs of people who can admin pages on the site
+    #     admin_ids: [1,2]
 
     twitter:
         key: 09af09af09af09af09af09af09af09af09af09af
