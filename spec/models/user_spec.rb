@@ -303,6 +303,18 @@ describe User do
       jobs.select{|j| j.handler =~ /'CheckList'.*\:refresh/m}.should_not be_blank
     end
 
+    it "should refresh check lists" do
+      t = Taxon.make!
+      without_delay do
+        make_research_grade_observation(:taxon => t, :user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
+      end
+      @place.check_list.listed_taxa.find_by_taxon_id(t.id).should_not be_blank
+      without_delay do
+        @user.sane_destroy
+      end
+      @place.check_list.listed_taxa.find_by_taxon_id(t.id).should be_blank
+    end
+
     it "should queue jobs to refresh project lists" do
       project = without_delay {Project.make!(:user => @user)}
       project.project_list.should_not be_blank
