@@ -172,6 +172,14 @@ class Project < ActiveRecord::Base
   def cached_slug
     slug
   end
+
+  def curators
+    users.where("project_users.role = ?", ProjectUser::CURATOR).scoped
+  end
+
+  def managers
+    users.where("project_users.role = ?", ProjectUser::MANAGER).scoped
+  end
   
   def self.default_json_options
     {

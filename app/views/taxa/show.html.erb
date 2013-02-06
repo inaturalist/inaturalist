@@ -11,8 +11,12 @@
   <% end -%>
   <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
   <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" />
+  <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
+  <% end -%>
+  <% if CONFIG.facebook.app_id -%>
+    <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
+  <% end -%>
   <%-
      description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary(:refresh_if_blank => true)
      og_description = description

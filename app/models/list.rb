@@ -256,19 +256,27 @@ class List < ActiveRecord::Base
   end
   
   def self.refresh(options = {})
+    start = Time.now
+    log_key = "#{name}.refresh #{start}"
+    Rails.logger.info "[INFO #{Time.now}] Starting #{log_key}, options: #{options.inspect}"
     lists = options.delete(:lists)
     lists ||= [options] if options.is_a?(self)
     lists ||= [find_by_id(options)] unless options.is_a?(Hash)
-    lists ||= self.joins(:listed_taxa).where("listed_taxa.taxon_id IN (?)", options[:taxa]) if options[:taxa]
+    if options[:taxa]
+      lists ||= self.joins(:listed_taxa).
+        where("lists.type = ? AND listed_taxa.taxon_id IN (?)", self.name, options[:taxa])
+    end
 
     if lists.blank?
       Rails.logger.error "[ERROR #{Time.now}] Failed to refresh lists for #{options.inspect} " + 
         "because there are no matching lists."
     else
       lists.each do |list|
-        list.refresh(options)
+        Rails.logger.info "[INFO #{Time.now}] #{log_key}, refreshing #{list}"
+        list.delay(:priority => INTEGRITY_PRIORITY).refresh(options)
       end
     end
+    Rails.logger.info "[INFO #{Time.now}] #{log_key}, finished in #{Time.now - start}s"
   end
   
   def self.refresh_with_observation(observation, options = {})

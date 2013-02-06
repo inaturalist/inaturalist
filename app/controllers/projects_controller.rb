@@ -91,6 +91,12 @@ class ProjectsController < ApplicationController
         end
         
         @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
+        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
+          where("provider_authorizations.provider_name = 'facebook'").
+          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
+          map(&:provider_uid)
+        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
+        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
 
         if params[:iframe]
           @headless = @footless = true
