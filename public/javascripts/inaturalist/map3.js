@@ -248,7 +248,10 @@ google.maps.Map.prototype.setPlace = function(place, options) {
   }
   
   if (options.kml && options.kml.length > 0) {
-    var kml = new google.maps.KmlLayer(options.kml, {suppressInfoWindows: true, preserveViewport: true})
+    var kml = new google.maps.KmlLayer(options.kml, {
+      suppressInfoWindows: true, 
+      preserveViewport: options.preserveViewport
+    })
     this.addOverlay(place.name + " boundary", kml)
     if (options.click) {
       google.maps.event.addListener(kml, 'click', options.click)
@@ -776,7 +779,10 @@ google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
 google.maps.Map.prototype.removeOverlay = function(name) {
   if (!this.overlays) { return }
   for (var i=0; i < this.overlays.length; i++) {
-    if (this.overlays[i].name == name) { this.overlays.splice(i) }
+    if (this.overlays[i].name == name) { 
+      this.overlays[i].overlay.setMap(null)
+      this.overlays.splice(i)
+    }
   }
 }
 google.maps.Map.prototype.getOverlay = function(name) {
