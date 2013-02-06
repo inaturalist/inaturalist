@@ -469,7 +469,8 @@ class TaxaController < ApplicationController
       exact_matches << @taxon_names.delete_at(i)
     end
     if exact_matches.blank?
-      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, :conditions => ["lower(name) = ?", @q.to_s.downcase])
+      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, 
+        :conditions => ["lower(taxon_names.name) = ?", @q.to_s.downcase])
     end
     @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
@@ -1065,9 +1066,13 @@ class TaxaController < ApplicationController
     end
     
     @flickr_photos = params[:flickr_photos].map do |flickr_photo_id|
-      fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
-      FlickrPhoto.new_from_flickraw(fp, :user => current_user)
-    end
+      begin
+        fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
+        FlickrPhoto.new_from_flickraw(fp, :user => current_user)
+      rescue FlickRaw::FailedResponse => e
+        nil
+      end
+    end.compact
 
     
     @observations = current_user.observations.all(

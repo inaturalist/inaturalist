@@ -73,6 +73,7 @@ eol_collection_ids.each do |eol_collection_id|
   taxa_removed = []         #in the project_list as a listed_taxa but no longer in the eol collection
   taxa_added = []    #in the eol collection so added to the the project_list as a listed_taxa
   taxa_missing = []  #in the eol collection but not added because it doesn't exist as a taxon in iNat (make manually)
+  taxa_skipped = []
   url = "http://eol.org/api/collections/1.0/#{eol_collection_id}/?per_page=1000"
   puts url
   begin
@@ -186,6 +187,12 @@ eol_collection_ids.each do |eol_collection_id|
       collection_item_dwc_names << list_item
       annotation = node.at('annotation').try(:text)
       puts "\t name: #{list_item}"
+
+      if list_item.downcase =~ /unidentified/
+        puts "\t\tSkipping non-taxon..."
+        taxa_skipped << list_item
+        next
+      end
       
       # Check to see if the list_item is a taxon_name associated with a taxon_id that already has a listed_taxon
       existing = the_list.listed_taxa.first(:include => {:taxon => :taxon_names}, :conditions => [
@@ -204,7 +211,7 @@ eol_collection_ids.each do |eol_collection_id|
         taxon = nil if taxon && taxon.taxon_names.detect{|tn| tn.name == list_item}.blank?
         unless taxon
           begin
-            external_names = Ratatosk.find(list_item)
+            external_names = ratatosk.find(list_item)
           rescue Timeout::Error, StandardError, Exception => exc
             puts "\t\tFailed to import #{taxon}: #{exc.message}"
             taxon = nil
@@ -295,6 +302,12 @@ eol_collection_ids.each do |eol_collection_id|
     puts "\tthe missing taxa are:"
     taxa_missing.each do |t_m|
       puts "\t\t#{t_m}"
+    end
+  end
+  if taxa_skipped.size > 0
+    puts "\tskipped:"
+    taxa_skipped.each do |n|
+      puts "\t\t#{n}"
     end
   end
   puts

@@ -1532,6 +1532,9 @@ class ObservationsController < ApplicationController
       @observed_on = search_params[:on]
       @observed_on_year, @observed_on_month, @observed_on_day = @observed_on.split('-').map{|d| d.to_i}
     end
+    @observed_on_year ||= search_params[:year].to_i unless search_params[:year].blank?
+    @observed_on_month ||= search_params[:month].to_i unless search_params[:month].blank?
+    @observed_on_day ||= search_params[:day].to_i unless search_params[:day].blank?
 
     # observation fields
     ofv_params = search_params.select{|k,v| k =~ /^field\:/}

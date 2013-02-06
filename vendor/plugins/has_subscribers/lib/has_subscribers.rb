@@ -49,6 +49,12 @@ module HasSubscribers
     #   :queue_if determines whether that job gets delayed in the first place. 
     #   Takes the record as its arg.
     # * <tt>:priority</tt> - DJ priority at which to run the notification
+    # * <tt>:include_owner</tt> - Create an update for the user associated
+    #   with the resource, e.g. if a comment generates an update for an
+    #   observation, the owner of the observation should be notified even if
+    #   they're not subscribed.
+    # * <tt>:include_notifier</tt> - Create an update for the person
+    #   associated with the notifying record.
     #
     def notifies_subscribers_of(subscribable_association, options = {})
       unless self.included_modules.include?(HasSubscribers::InstanceMethods)
@@ -171,7 +177,7 @@ module HasSubscribers
         end
         
         subscribable.update_subscriptions.find_each do |subscription|
-          next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_owner]
+          next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_notifier]
           next if subscription.created_at > notifier.updated_at
           next if subscription.has_unviewed_updates_from(notifier)
           
