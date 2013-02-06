@@ -7,6 +7,8 @@ class Place < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :taxon_links, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
+  has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
+    :select => (PlaceGeometry.column_names - ['geom']).join(', ')
   
   before_save :calculate_bbox_area
   after_save :check_default_check_list
@@ -611,6 +613,10 @@ class Place < ActiveRecord::Base
     pt = pt.buffer(acc) if acc.to_f > 0
 
     bbox.contains?(pt)
+  end
+
+  def kml_url
+    FakeView.place_geometry_kml_url(:place => self)
   end
   
   def self.guide_cache_key(id)

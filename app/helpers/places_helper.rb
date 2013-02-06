@@ -84,7 +84,11 @@ module PlacesHelper
 
   def place_geometry_kml_url(options = {})
     place = options[:place] || @place
-    place_geometry = options[:place_geometry] || @place
+    return '' if place.blank?
+    place_geometry = options[:place_geometry]
+    place_geometry ||= place.place_geometry_without_geom if place.association(:place_geometry_without_geom).loaded?
+    place_geometry ||= place.place_geometry if place.association(:place_geometry).loaded?
+    place_geometry ||= PlaceGeometry.without_geom.where(:place_id => place).first
     if place_geometry.blank?
       ''.html_safe
     else

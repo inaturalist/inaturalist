@@ -2,7 +2,7 @@
   <%= f.error_messages %>
   <%= f.text_field :project_id, :class => "text" %>
   <% if f.object.asset.file? -%>
-    <% f.form_field :asset do %>
+    <%= f.form_field :asset do %>
       <%= link_to f.object.asset.url, f.object.asset.url %>
       <%= link_to_function t(:replace_parentesis), 
         "$(this).parents('.field').after('#{f.file_field(:asset)}'); " + 

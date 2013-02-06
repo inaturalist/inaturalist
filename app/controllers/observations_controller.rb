@@ -324,7 +324,7 @@ class ObservationsController < ApplicationController
       end
       if @project
         @project_curators = @project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
-        if @place = @project.rule_place
+        if @place = @project.place
           @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
         end
         @tracking_code = params[:tracking_code] if @project.tracking_code_allowed?(params[:tracking_code])

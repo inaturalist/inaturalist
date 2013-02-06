@@ -84,7 +84,7 @@ class ProjectsController < ApplicationController
         @project_assets = @project.project_assets.all(:limit => 100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
         @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
-        if @place = @project.rule_place
+        if @place = @project.place
           if @project.prefers_place_boundary_visible
             @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
           end
@@ -120,6 +120,13 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project_assets = @project.project_assets.all(:limit => 100)
+    @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
+    if @place = @project.place
+      if @project.prefers_place_boundary_visible
+        @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+      end
+    end
   end
 
   def create

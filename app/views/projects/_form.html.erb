@@ -1,148 +1,19 @@
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css" %>
-  <style type="text/css" media="screen">
-    .title_field,.description_field,.project_type_field{margin-right:20px;}
-    .description_field,
-    .terms_field,
-    .title_field, 
-    .preference_fields, 
-    .project_type_field{float:left;width:465px;}
-    .project_icon_field{float:left;width:225px;}
-    .description_field,.project_type_field{clear:left;}
-    .title_field input{width:390px;}
-    .description_field textarea,.terms_field textarea{width:450px;}
-    #place_q,#taxon_q{width:300px;}
-    .observationrules{clear:left;}
-    .project_observation_fields {list-style: none;margin-left:0;}
-    .new_observation_field .field {width:auto;}
-    li.project_observation_field {position: relative; margin-left:0; padding-left: 20px; cursor: move;}
-    .project_observation_field .title {font-weight:bold;}
-    .project_observation_field .ui-icon {position:absolute; left: 0;top: 0;}
-    .sortabletarget { height: 100px; border: 2px dashed #ccc;}
-  </style>
+  <%= stylesheet_link_tag "jquery/plugins/jquery.autocomplete.css", "projects/form" %>
 <%- end -%>
-<%= javascript_include_tag "observations/observation_fields" %>
 <%- content_for(:extrajs) do -%>
-  <script type="text/javascript" charset="utf-8">
-    function rulify() {
-      $('#new_operand_id').chooser({
-        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json?with_geom=t',
-        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
-        chosen: eval('(' + $('new_operand_id').attr('data-json') + ')'),
-        afterSelect: function(item) {
-          $('#new_operand_type').val("Place")
-        },
-        afterClear: function() {
-          $('#new_operand_type').val('')
-        }
-      })
-      
-      $('#taxon_q').simpleTaxonSelector({
-        taxonIDField: $('#new_operand_id'),
-        afterSelect: function() {
-          $('#new_operand_type').val("Taxon")
-        },
-        afterUnselect: function() {
-          $('#new_operand_type').val('')
-        }
-      })
-      $('#taxon_selector').hide()
-      
-      $('.observationrules .togglelink').click()
-      
-      $('.operator_field select').change(function() {
-        if ($(this).val() == 'observed_in_place?') {
-          $('#place_selector').show()
-        } else {
-          $('#place_selector').hide()
-        }
-        if ($(this).val() == 'in_taxon?') {
-          $('#taxon_selector').show()
-        } else {
-          $('#taxon_selector').hide()
-        }
-      })
-      $('.operator_field select').change()
-    }
-
-    function newProjectObservationField(markup) {
-      var currentField = $('.observation_field_chooser').chooser('selected')
-      if (!currentField || typeof(currentField) == 'undefined') {
-        alert('Please choose a field type')
-        return
-      }
-      if ($('#observation_field_'+currentField.recordId).length > 0) {
-        alert('You already have a field for that type')
-        return
-      }
-      
-      $('.project_observation_fields').append(markup)
-      fieldify({observationField: currentField})
-    }
-
-    function fieldify(options) {
-      options = options || {}
-      $('.project_observation_field').not('.fieldified').each(function() {
-        var lastName = $('.project_observation_field.fieldified:last input').attr('name')
-        if (lastName) {
-          var index = parseInt(lastName.match(/project_observation_fields_attributes\]\[(\d+)\]/)[1]) + 1
-        } else {
-          var index = 0
-        }
-        
-        $(this).addClass('fieldified')
-        var input = $('.ofv_input input.text', this)
-        var currentField = options.observationField || $.parseJSON($(this).attr('data-json'))
-        if (!currentField) return
-        currentField.recordId = currentField.recordId || currentField.id
-        
-        $(this).attr('id', 'observation_field_'+currentField.recordId)
-        $('.title', this).html(currentField.name)
-        if (currentField.allowed_values && currentField.allowed_values.length > 0) {
-          $('.allowed span', this).html(currentField.allowed_values)
-          $('.allowed', this).show()
-        } else {
-          $('.allowed', this).hide()
-        }
-        $('.description', this).html(currentField.description)
-        $('.editlink', this).attr('href', '/observation_fields/'+currentField.id+'/edit')
-        $('input[name*="observation_field_id"]', this).val(currentField.recordId)
-        $('input', this).each(function() {
-          var newName = $(this).attr('name')
-            .replace(
-              /project_observation_fields_attributes\]\[(\d+)\]/, 
-              'project_observation_fields_attributes]['+index+']')
-          $(this).attr('name', newName)
-        })
-      })
-      updateProjectObservationFieldPositions()
-    }
-
-    function updateProjectObservationFieldPositions() {
-      $('.project_observation_fields li').each(function() {
-        $('input[name*="position"]', this).val($('li', $(this).parent()).index(this))
-      })
-    }
-
-    $(document).ready(function() {
-      $('.observation_field_chooser').chooser({
-        collectionUrl: 'http://'+window.location.host + '/observation_fields.json',
-        resourceUrl: 'http://'+window.location.host + '/observation_fields/{{id}}.json',
-        afterSelect: function(item) {
-          $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()
-          $('.observation_field_chooser').chooser('clear')
-        }
-      })
-      $('#createfieldbutton').click(ObservationFields.newObservationFieldButtonHandler)
-      fieldify()
-      $('.project_observation_fields').sortable({
-        placeholder: 'sortabletarget',
-        update: function(event, ui) {
-          updateProjectObservationFieldPositions()
-        }
-      })
-    })
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript">
+    var PROJECT = <%= @project.to_json.html_safe %>,
+        RULE_PLACE = <%= @project.rule_place.to_json.html_safe %>,
+        PLACE = <%= @project.place.to_json(:methods => [:kml_url]).html_safe %>,
+        PLACE_GEOMETRY_KML_URL = <%=raw @place_geometry ? place_geometry_kml_url.inspect : nil.to_json %>,
+        KML_ASSET_URLS = <%= @kml_assets ? @kml_assets.map{|a| root_url.gsub(/\/$/, "") + a.asset.url}.inspect.html_safe : "[]" %>
   </script>
+  <%= javascript_include_tag "observations/observation_fields", 
+                             'inaturalist/map3',
+                             "jquery/plugins/jquery.latLonSelector.js",
+                             "projects/form" %>
 <%- end -%>
 <%- project ||= @project -%>
 <%= form_for project, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
@@ -179,14 +50,36 @@
       :description => 
         "Show the total number of taxa on the project's list alongside " + 
         "the number of taxa observed." %>
-    <%= f.check_box :prefers_place_boundary_visible, 
-      :label => "Show place boundary on map", 
-      :label_after => true,
-      :description => 
-        "If you have an observation rule specifying a place (see below), " + 
-        "you can show the boundary of that place on your project page, if " + 
-        "the place has a boundary." %>
   </div>
+
+  <fieldset class="location">
+    <legend>Location</legend>
+    <p class="description">
+      If your project is about a particular place, set the coordinates by clicking the map or entering them manually.
+    </p>
+    <div class="column span-7">
+      <%= f.text_field :latitude %>
+      <%= f.text_field :longitude %>
+      <%= f.select :map_type, Project::MAP_TYPES %>
+      <%= f.text_field :zoom_level %>
+      <%= f.text_field :place_id, :placeholder => "Start typing place name...", :label => "#{CONFIG.site_name} place" %>
+      <%= f.check_box :prefers_place_boundary_visible, 
+        :label => "Show place boundary on map", 
+        :label_after => true,
+        :description => 
+          "You can show the boundary of the place on your project page if " + 
+          "the place has a boundary." %>
+      <% if @place -%>
+        <%= link_to "View place", @place, :class => "readmore" %>
+      <% end -%>
+    </div>
+    <div class="last column span-16">
+      <div class="stacked">
+        <%= text_field_tag :map_search, "", :placeholder => "Search the map", :class => "text" %>
+      </div>
+      <div id="map"></div>
+    </div>
+  </fieldset>
   
   <!-- <fieldset class="userrules">
     <legend><%= t(:new_user_rules) %></legend>

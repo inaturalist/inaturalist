@@ -7,6 +7,7 @@ class FakeView < ActionView::Base
   # include ActionController::UrlWriter
   include Rails.application.routes.url_helpers
   include ApplicationHelper
+  include PlacesHelper
 
   @@default_url_options = {:host => CONFIG.site_url.sub("http://", '')}
   
