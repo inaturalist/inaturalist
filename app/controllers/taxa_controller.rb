@@ -1065,9 +1065,13 @@ class TaxaController < ApplicationController
     end
     
     @flickr_photos = params[:flickr_photos].map do |flickr_photo_id|
-      fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
-      FlickrPhoto.new_from_flickraw(fp, :user => current_user)
-    end
+      begin
+        fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
+        FlickrPhoto.new_from_flickraw(fp, :user => current_user)
+      rescue FlickRaw::FailedResponse => e
+        nil
+      end
+    end.compact
 
     
     @observations = current_user.observations.all(
