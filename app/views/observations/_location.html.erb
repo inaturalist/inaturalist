@@ -22,9 +22,26 @@
   </strong>
 <% end -%>
 <% unless places.blank? -%>
-  <div>
+  <div class="places">
     <label>Places:</label>
-    <%= places.map{|place| link_to(place.code || place.name, place, :title => place.display_name)}.join(', ').html_safe %>
+    <%- num_hidden = 0 -%>
+    <% compact :all_tags => true do %>
+      <% places.each_with_index do |place,i| %>
+        <%-
+          css_class = if i == 0 || place.user_id.blank?
+            "visible"
+          else
+            num_hidden += 1
+            "hidden"
+          end
+          name = place.code.blank? ? place.name : place.code
+        -%>
+        <span class="<%= css_class %>"><%= ', ' unless i == 0 %><%= link_to(name, place, :title => place.display_name) %></span>
+      <% end -%>
+    <% end -%>
+    <% if num_hidden > 0 -%>
+      <span class="button"><%= link_to_function "More...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == 'More...' ? 'Less' : 'More...')" %></span>
+    <% end -%>
   </div>
 <% end -%>
 <% if show_observation_coordinates?(observation) %>

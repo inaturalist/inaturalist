@@ -326,10 +326,12 @@ module ApplicationHelper
   end
   
   # remove unecessary whitespace btwn divs
-  def compact(content = nil, options = {}, &block)
+  def compact(*args, &block)
+    content = args[0] if args[0].is_a?(String)
+    options = args.last.is_a?(Hash) ? args.last : {}
     content = capture(&block) if block_given?
     if options[:all_tags]
-      content.gsub!(/\>[\n\s]+\</, '><')
+      content.gsub!(/\>[\n\s]+\</m, '><')
     else
       content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
     end
