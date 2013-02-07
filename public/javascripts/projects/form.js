@@ -176,7 +176,7 @@ $(document).ready(function() {
     var place = $('#project_place_id').data('json')
     if (!(place && place.kml_url)) {return}
     if (this.checked) {
-      lyr = new google.maps.KmlLayer(place.kml_url, {preserveViewport: true})
+      lyr = new google.maps.KmlLayer(place.kml_url, {preserveViewport: preserveViewport})
       map.addOverlay("place boundary", lyr)
     } else {
       map.removeOverlay("place boundary")
