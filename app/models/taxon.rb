@@ -31,6 +31,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_photos, :dependent => :destroy
   has_many :photos, :through => :taxon_photos
   has_many :assessments
+  has_many :conservation_statuses, :dependent => :destroy
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -40,6 +41,7 @@ class Taxon < ActiveRecord::Base
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
+  accepts_nested_attributes_for :conservation_statuses, :reject_if => :all_blank, :allow_destroy => true
   
   define_index do
     indexes :name
@@ -908,8 +910,24 @@ class Taxon < ActiveRecord::Base
     IUCN_STATUS_CODES[conservation_status_name]
   end
   
-  def threatened?
-    return false if conservation_status.blank?
+  def threatened?(options = {})
+    # return false if conservation_status.blank?
+    if conservation_status.blank?
+      if options[:place]
+        place_id = options[:place].is_a?(Place) ? options[:place].id : options[:place]
+        cs = if association(:conservation_statuses).loaded?
+          conservation_statuses.detect{|cs| cs.place_id == place_id}
+        else
+          conservation_statuses.where(:place_id => place_id).first
+        end
+        if cs
+          cs.iucn.to_i >= IUCN_NEAR_THREATENED
+        else
+          return false
+        end
+      end
+      return false
+    end
     conservation_status >= IUCN_NEAR_THREATENED
   end
   

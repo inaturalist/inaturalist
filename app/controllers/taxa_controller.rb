@@ -23,10 +23,10 @@ class TaxaController < ApplicationController
     :observation_photos, :range, :schemes, :tip]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
-  
   before_filter :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
+  before_filter :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
   
   GRID_VIEW = "grid"
@@ -128,6 +128,10 @@ class TaxaController < ApplicationController
         if @taxon.name == 'Life' && !@taxon.parent_id
           return redirect_to(:action => 'index')
         end
+
+        @conservation_statuses = @taxon.conservation_statuses.order("place_id")
+        @conservation_status = @conservation_statuses.detect{|cs| cs.place_id.blank?}
+        @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id == CONFIG.place_id} if CONFIG.place_id
         
         @amphibiaweb = amphibiaweb_description?
         @try_amphibiaweb = try_amphibiaweb?
@@ -1418,5 +1422,9 @@ class TaxaController < ApplicationController
     @state_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
     find_options[:conditions][1] = Place::PLACE_TYPE_CODES['Country']
     @country_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+  end
+
+  def load_form_variables
+    @conservation_status_authorities = ConservationStatus.select('DISTINCT authority').where("authority IS NOT NULL").map(&:authority).compact
   end
 end

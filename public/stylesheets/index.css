@@ -131,6 +131,11 @@ input[type="file"]:focus {
 
 input,select,textarea{font-family:"Trebuchet MS",Arial,sans-serif;}
 form .field{margin-bottom:10px;}
+
+.twocolform .field {position:relative; padding-left: 110px;}
+.twocolform .field .label {width: 100px; position:absolute; top:0; left: 0; text-align:right;}
+.twocolform .field.text_field .label {padding-top:0.6em;}
+
 .required{color:deeppink;}
 .label { margin-bottom: 0.2em;}
 form .field .description { margin-bottom: 0.5em;}

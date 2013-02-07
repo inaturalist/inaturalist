@@ -10,7 +10,7 @@
   <% end -%>
 <% end -%>
 <%- upperright = capture do %>
-  <% if listed_taxon.endemic? || listed_taxon.introduced? || taxon.threatened? -%>
+  <% if listed_taxon.endemic? || listed_taxon.introduced? || taxon.threatened?(:place => listed_taxon.place_id) -%>
     <div class="upperright">
       <% if listed_taxon.endemic? || listed_taxon.introduced? -%>
         <%- 
@@ -28,7 +28,7 @@
         </div>
       <% end -%>
       
-      <% if taxon.threatened? -%>
+      <% if taxon.threatened?(:place => listed_taxon.place_id) -%>
         <div class="blob conservation_status <%= taxon.conservation_status_name %>"
             title="<%= taxon.conservation_status_name %>" 
             data-tip="IUCN Red List status: <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"

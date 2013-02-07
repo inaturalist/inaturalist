@@ -1,0 +1,20 @@
+- cs ||= conservation_status || @conservation_status
+- url = cs.url || cs.source.try(:url)
+%div{:class => "conservation_status #{cs.iucn_name} box"}
+  Conservation status:
+  %strong
+    - unless cs.place
+      globally
+    = cs.status_name
+  - if cs.place
+    in
+    \#{link_to cs.place.name, cs.place}
+  %span.small
+    = surround '(', ')' do
+      Source:
+      - if cs.authority.blank?
+        iNaturalist
+      - elsif !url.blank?
+        = link_to cs.authority, url
+      - else
+        = cs.authority
