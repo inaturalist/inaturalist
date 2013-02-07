@@ -245,7 +245,7 @@
           <div id="link_flickr_message">
             You need to have a linked Flickr account to tag your photos.
             <%= link_to "Link your Flickr account with #{CONFIG.site_name}",
-                        {:controller => 'flickr', :action => 'link'},
+                        auth_url_for('flickr'),
                         :class => 'button' %>
           </div>
         <% end %>

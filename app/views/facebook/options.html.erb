@@ -46,9 +46,8 @@
 <div class="column span-10 last">
   <p>
   <% if current_user.facebook_identity %>
-    <%= link_to 'Unlink your Facebook and <%= CONFIG.site_name %> Accounts', 
-      omniauth_disconnect_path('facebook'), :class => 'delete button', 
-      :style=>'font-size:13px;', :method => 'delete' %>
+    <%= link_to "Unlink your Facebook and #{CONFIG.site_name} Accounts", 
+      omniauth_disconnect_path('facebook'), :class => 'delete button', :method => 'delete' %>
   <% else %>
     <%= link_to 'Yes, take me to Facebook!', "/auth/facebook", 
                 :onclick => "$('.facebook-button').toggle();", :class => 'facebook-button default button' %>
