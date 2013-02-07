@@ -73,6 +73,9 @@ es-MX:
         project_type: "Tipo de Proyecto"
         terms: Términos
         title: Título
+      user: 
+        identifications_email_notification: identificaciones
+        invitation_email_notification: "Invitaciones a proyectos"
     errors: 
       format: "%{attribute} %{message}"
       messages: 
@@ -154,7 +157,7 @@ es-MX:
   add_observations!: "¡Agrega observaciones!"
   add_observations_by_checking_off: "Añade observaciones marcando las especies de una lista"
   add_observations_from_list: "Añade observaciones de una lista"
-  add_observations_of_taxa_youve_added: "Añade observaciones de taxa que has incluido en la lista. Bajo desarrollo, todavía estamos solucionando algunos problemas..."
+  add_observations_of_taxa_youve_added: "Añade observaciones de especies que has incluido en la lista. Bajo desarrollo, todavía estamos solucionando algunos problemas..."
   add_observations_project: "Añade observaciones a este proyecto"
   add_one: "¡Añade una!"
   add_photos: "Añade fotos"
@@ -562,7 +565,7 @@ es-MX:
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
   edit: Editar
   edit_a_batch_of_observations: "Edita un grupo de observaciones"
-  edit_account_settings_and_profile: "Edita la configuración de la cuenta  &amp; perfil"
+  edit_account_settings_and_profile: "Edita la configuración de la cuenta y perfil"
   edit_colors: "Edita los colores"
   edit_comment: "Edita tu comentario"
   edit_custom_project_fields: "Añade campos a la medida del proyecto"
@@ -579,7 +582,7 @@ es-MX:
   edit_taxon_range: "Edita la distribución de la especie o grupo"
   edit_the_observation: "Edita la observación"
   edit_this_link: "Edita este enlace"
-  edit_your_account_and_profile: "Edita tu cuenta  &amp; perfil"
+  edit_your_account_and_profile: "Edita tu cuenta y perfil"
   edit_your_identification: "Edita tu identificación"
   edit_your_profile: "Edita tu perfil"
   edited: Editado
@@ -6154,7 +6157,7 @@ es-MX:
   : "Esconde los detalles"
   home: Inicio
   home_faq: "Preguntas frecuentes"
-  i_something_i: <i>Algo...</i>
+  i_something_i: <i>Alguien...</i>
   icon: Ícono
   icon_slash_photo: "Ícono / Foto"
   id_more_in_id_please: "Identifica más en identificación, por favor"
@@ -6295,13 +6298,12 @@ es-MX:
   loading_more_photos: "Cargando más fotos..."
   loading_observations: "Cargando observaciones..."
   loading_tags: "Cargando etiquetas..."
-  loading_taxa_from_your: "Cargando taxa de tus observaciones..."
+  loading_taxa_from_your: "Cargando especies o grupos de tus observaciones..."
   loading_wikipedia_description: "Cargando la descripción de Wikipedia"
   localized_species_accounts: "Contenidos de especies"
   location: Ubicación
   location_is_exact: "La ubicación es exacta"
-  locked_taxa_will_not_allow_new: |
-      Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.
+  locked_taxa_will_not_allow_new: "Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.\n"
   log_in: "Empieza la sesión"
   logged_in_as: "Inicia sesión como"
   login_slash_username: "Login / nombre de usuario"
@@ -6601,7 +6603,7 @@ es-MX:
   private: Privado
   private_description: "Las coordenadas están completamente escondidas de los mapas públicos. Solo tú y los curadores de los proyectos a los que añades observaciones pueden ver las verdaderas coordenadas. Las observaciones con coordenadas privadas serán usadas para verificar las listas de especies de los lugares."
   processing3p: Procesando...
-  profile: Perfil
+  profile: perfil
   project: Proyecto
   project_assets: "Recursos del proyecto"
   project_created_on: "creó este proyecto en %{date}"
@@ -6612,7 +6614,7 @@ es-MX:
   project_journal_posts: "Notas del Diario del proyecto"
   project_list: "Lista del proyecto"
   project_rules: "Reglas del proyecto"
-  projects: Proyectos
+  projects: proyectos
   projects_description: "Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}. Ya sea que a te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club de observadores locales, la forma de hacerlo es con Proyectos."
   projects_you_admin: "Proyectos que administras"
   projects_youve_joined: "Proyectos en los que participas"
@@ -6708,9 +6710,9 @@ es-MX:
   search_for_place_to_import_from_yahoo: "Busca algún lugar en Yahoo para importar"
   search_for_species: "Busca una especie"
   search_list: "Lista de búsqueda"
-  search_obs: "Busca Observaciones"
+  search_obs: "Busca observaciones"
   search_places: "Busca Lugares"
-  search_projects: "Busca Proyectos"
+  search_projects: "Busca proyectos"
   search_results_for: "Busca Resultados de"
   search_taxa: "Busca taxa"
   search_this_taxon: "Busca esta especie o grupo"
@@ -6757,7 +6759,7 @@ es-MX:
   some_agree: "Algunos están de acuerdo"
   some_people: "Algunas personas"
   some_rights_reserved: "Algunos derechos reservados"
-  something: Algo
+  something: Alguien
   something_went_wrong_adding: "Algo incorrecto sucedió al añadir esta especie a tu lista"
   something_went_wrong_updating: "¡Algo incorrecto sucedió al actualizar tu lista!"
   somewhere_on_earth: "En algún lugar del Planeta"
@@ -6897,6 +6899,7 @@ es-MX:
   to: "a "
   to_add_comments: "para añadir comentarios"
   to_add_identifications: "para añadir identificaciones"
+  to_add_ids: "para agregar identificaciones"
   to_include_your_picassa_with_inat: "Para incluir tus fotos de Picasa con tus observaciones de %{site_name}, selecciona el botón a la derecha para enlazar tu dos cuentas. Pasarás a Google, donde te pedirán que autorices esta conexión."
   to_tag_your_flickr_from_here: "para etiquetar tus fotos de Flickr desde aquí sin cortar y pegar"
   to_the_bat_cave: "¡A la baticueva!"
