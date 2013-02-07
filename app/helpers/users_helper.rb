@@ -44,7 +44,7 @@ module UsersHelper
   #   # => <a href="/users/3" title="barmy" class="nickname">Your user page</a>
   #
   def link_to_user(user, options={})
-    raise "Invalid user" unless user
+    return "deleted user" unless user
     options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
     content_text      = options.delete(:content_text)
     content_text    ||= user.send(options.delete(:content_method))
