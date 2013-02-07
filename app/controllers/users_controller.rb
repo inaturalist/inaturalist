@@ -135,6 +135,7 @@ class UsersController < ApplicationController
         @updates += klass.limit(30).
           order("#{klass.table_name}.id DESC").
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
+          where("users.id IS NOT NULL").
           includes(:user)
       end
       hash = {}

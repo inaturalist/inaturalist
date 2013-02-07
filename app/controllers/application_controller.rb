@@ -97,13 +97,13 @@ class ApplicationController < ActionController::Base
     if logged_in? && current_user.flickr_identity
       true
     else
-      redirect_to(:controller => 'flickr', :action => 'link')
+      redirect_to(:controller => 'flickr', :action => 'options')
     end
   end
   
   def photo_identities_required
     return true if logged_in? && !@photo_identities.blank?
-    redirect_to(:controller => 'flickr', :action => 'link')
+    redirect_to(:controller => 'flickr', :action => 'options')
   end
   
   #

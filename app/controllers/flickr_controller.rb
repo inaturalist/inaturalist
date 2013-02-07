@@ -3,17 +3,6 @@ class FlickrController < ApplicationController
   before_filter :ensure_has_no_flickr_identity, :only => ['link']
   before_filter :return_here, :only => [:index, :show, :by_login, :options]
   
-  # This is the endpoint the user visits to link their iNaturalist account to
-  # their Flickr account directly after signup. Luckly we don't have to manage a
-  # whole lot from Flickr, they either have an account or don't, and Flickr
-  # handles the process of creating Flickr accounts and then authorizing the
-  # user.
-  def link
-    perms = params[:perms] || :write
-    token = flickr.get_request_token
-    @flickr_url = flickr.get_authorize_url(token['oauth_token'], :perms => perms)
-  end
-  
   # Finds photos for the logged-in user
   def photos
     f = get_flickraw

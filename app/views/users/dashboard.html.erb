@@ -115,7 +115,7 @@
           <p><%=t :here_are_some_things_you_can_do_in_the_meantime %>:</p>
           <ul class="readable leafylist">
             <% unless current_user.flickr_identity %>
-              <li><%= link_to t(:link_your_flickr_account_with_inat, :site_name => SITE_NAME_SHORT), :controller => 'flickr', :action => 'link' %></li>
+              <li><%= link_to t(:link_your_flickr_account_with_inat, :site_name => SITE_NAME_SHORT), auth_url_for('flickr') %></li>
             <% end %>
             <li><%= link_to t(:browse_your_observations), observations_by_login_path(current_user.login) %></li>
             <li><%= link_to t(:add_new_observations), :controller => 'observations', :action => 'new' %></li>

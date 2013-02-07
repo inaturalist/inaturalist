@@ -38,8 +38,7 @@
   <p>
   <% if current_user.facebook_identity %>
     <%= link_to t(:hate_me_facebook, :site_name => SITE_NAME), 
-      omniauth_disconnect_path('facebook'), :class => 'delete button', 
-      :style=>'font-size:13px;', :method => 'delete' %>
+      omniauth_disconnect_path('facebook'), :class => 'delete button', :method => 'delete' %>
   <% else %>
     <%= link_to t(:take_me_facebook), "/auth/facebook", 
                 :onclick => "$('.facebook-button').toggle();", :class => 'facebook-button default button' %>
