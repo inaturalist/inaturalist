@@ -1,49 +1,45 @@
 $(document).ready(function() {
   $('.species_guess').simpleTaxonSelector();
   $('.observed_on_string').iNatDatepicker();
-  try {
-    var map = iNaturalist.Map.createMap({
-      div: $('#map').get(0),
-      mapTypeId: google.maps.MapTypeId.HYBRID,
-      bounds: BOUNDS
-    })
+  var map = iNaturalist.Map.createMap({
+    div: $('#map').get(0),
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    bounds: BOUNDS
+  })
 
-    var preserveViewport = false
-    if (PROJECT) {
-      preserveViewport = PROJECT.latitude && PROJECT.zoom_level
-      if (PROJECT.latitude) {
-        map.setCenter(new google.maps.LatLng(PROJECT.latitude, PROJECT.longitude));
-      }
-      if (PROJECT.zoom_level) {
-        map.setZoom(PROJECT.zoom_level)
-      }
-      if (PROJECT.map_type) {
-        map.setMapTypeId(PROJECT.map_type)
-      }
+  var preserveViewport = false
+  if (typeof(PROJECT) != 'undefined' && PROJECT) {
+    preserveViewport = PROJECT.latitude && PROJECT.zoom_level
+    if (PROJECT.latitude) {
+      map.setCenter(new google.maps.LatLng(PROJECT.latitude, PROJECT.longitude));
     }
-    if (typeof(PLACE) != 'undefined' && PLACE) {
-      map.setPlace(PLACE, {
-        kml: PLACE_GEOMETRY_KML_URL,
-        preserveViewport: preserveViewport,
-        click: function(e) {
-          $.fn.latLonSelector.handleMapClick(e)
-        }
-      })
-      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
-    } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null && KML_ASSET_URLS.length > 0) {
-      for (var i=0; i < KML_ASSET_URLS.length; i++) {
-        lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport})
-        map.addOverlay('KML Layer', lyr)
-      }
-      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    if (PROJECT.zoom_level) {
+      map.setZoom(PROJECT.zoom_level)
     }
-    $('.place_guess').latLonSelector({
-      mapDiv: $('#map').get(0),
-      map: map
-    })
-  } catch (e) {
-    // maps didn't load
+    if (PROJECT.map_type) {
+      map.setMapTypeId(PROJECT.map_type)
+    }
   }
+  if (typeof(PLACE) != 'undefined' && PLACE) {
+    map.setPlace(PLACE, {
+      kml: PLACE_GEOMETRY_KML_URL,
+      preserveViewport: preserveViewport,
+      click: function(e) {
+        $.fn.latLonSelector.handleMapClick(e)
+      }
+    })
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+  } else if (typeof(KML_ASSET_URLS) != 'undefined' && KML_ASSET_URLS != null && KML_ASSET_URLS.length > 0) {
+    for (var i=0; i < KML_ASSET_URLS.length; i++) {
+      lyr = new google.maps.KmlLayer(KML_ASSET_URLS[i], {preserveViewport: preserveViewport})
+      map.addOverlay('KML Layer', lyr)
+    }
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+  }
+  $('.place_guess').latLonSelector({
+    mapDiv: $('#map').get(0),
+    map: map
+  })
   
   $('#mapcontainer').hover(function() {
     $('#mapcontainer .description').fadeOut()

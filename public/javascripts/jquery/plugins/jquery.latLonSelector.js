@@ -527,7 +527,7 @@
   }
   
   $.fn.latLonSelector.editAccuracy = function() {
-    var options = getCurrentInput().data('latLonSelectorOptions')
+    var options = $(getCurrentInput()).data('latLonSelectorOptions')
     if (options.noAccuracy) {return}
     if (!$.fn.latLonSelector._circle) { 
       $.fn.latLonSelector.setAccuracy(null)
