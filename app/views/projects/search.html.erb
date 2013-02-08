@@ -16,11 +16,12 @@
 <div class="clear buttonrow">
   <%= render :partial => "search_form" %>
   <span class="inter">
-    <%= render(:partial => "shared/page_results", :object => @projects) unless @projects.compact.blank? %> 
+    <%= render(:partial => "shared/page_results", :object => @projects) unless (@projects.blank? || @projects.compact.blank?) %> 
   </span>
 </div>
 
-<% if @projects.blank? -%>
+<% if @q.blank? -%>
+<% elsif @projects.blank? -%>
   <div class="description noresults">
    <%=t :no_matching_projects %>
   </div>

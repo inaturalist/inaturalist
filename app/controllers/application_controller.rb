@@ -44,9 +44,9 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     back_url = session[:return_to] # || request.env['HTTP_REFERER']
     if back_url && ![request.path, request.url].include?(back_url)
-      redirect_to(back_url)
+      redirect_to back_url, :status => :see_other
     else
-      redirect_to default
+      redirect_to default, :status => :see_other
     end
     session[:return_to] = nil
   end
@@ -175,7 +175,7 @@ class ApplicationController < ActionController::Base
   def redirect_to_hell
     flash[:notice] = "You tried to do something you shouldn't, like edit " + 
       "someone else's data without permission.  Don't be evil."
-    redirect_to root_path
+    redirect_to root_path, :status => :see_other
   end
   
   # Caching
