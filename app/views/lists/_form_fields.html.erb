@@ -42,10 +42,14 @@
     <% end -%>
     
     <div id="rankcol" class="column span-12 last">
-      <h3><%=t :rank_restrictions %></h3>
+      <h3>Rank restrictions</h3>
       <%= f.radio_button :rank_rule, "any", :label => t(:allow_any), :label_after => true %>
       <%= f.radio_button :rank_rule, "species?", :label => t(:only_species), :label_after => true %>
       <%= f.radio_button :rank_rule, "species_or_lower?", :label => t(:only_species_and_subspecies), :label_after => true %>
+
+      <h3>Select photos to display</h3>
+      <%= f.radio_button :show_obs_photos, "true", :label => t(:show_observation_photos), :label_after => true %>
+      <%= f.radio_button :show_obs_photos, "false", :label => t(:show_default_taxon_photos), :label_after => true %>
     </div>
   <% end -%>
 </div>
