@@ -138,6 +138,9 @@ class UsersController < ApplicationController
           where("users.id IS NOT NULL").
           includes(:user)
       end
+      @updates.delete_if do |u|
+        (u.is_a?(Post) && u.draft?) || (u.is_a?(Identification) && u.taxon_change_id)
+      end
       hash = {}
       @updates.sort_by(&:created_at).each do |record|
         hash[record.user_id] = record
