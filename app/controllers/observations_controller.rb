@@ -52,6 +52,7 @@ class ObservationsController < ApplicationController
   MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :index, :show]
   before_filter :unmobilized, :except => MOBILIZED
   before_filter :mobilized, :only => MOBILIZED
+  before_filter :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on species_guess"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial"
@@ -71,9 +72,6 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.xml
   def index
-    @update = params[:update] # this is ONLY for RJS calls.  Lame.  Sorry.
-    @prefs = current_preferences
-    
     search_params, find_options = get_search_params(params)
     
     if search_params[:q].blank?
@@ -97,7 +95,6 @@ class ObservationsController < ApplicationController
       
       format.html do
         @iconic_taxa ||= []
-        @view = params[:view] || current_user.try(:preferred_observations_view) || 'map'
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           return render_observations_partial(partial)
         end
@@ -967,7 +964,6 @@ class ObservationsController < ApplicationController
 
   # gets observations by user login
   def by_login
-    @prefs = current_preferences
     search_params, find_options = get_search_params(params)
     search_params.update(:user_id => @selected_user.id)
     if search_params[:q].blank?
@@ -2112,6 +2108,13 @@ class ObservationsController < ApplicationController
       render(:text => '')
     else
       render(:partial => partial, :collection => @observations, :layout => false)
+    end
+  end
+
+  def load_prefs
+    @prefs = current_preferences
+    if request.format && request.format.html?
+      @view = params[:view] || current_user.try(:preferred_observations_view) || 'map'
     end
   end
 end
