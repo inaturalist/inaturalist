@@ -12,7 +12,7 @@ class ListedTaxaController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        if !@list.is_a?(CheckList)
+        if !@list.is_a?(CheckList) && @list.show_obs_photos
           @photo = @listed_taxon.first_observation.photos.first if @listed_taxon.first_observation
           @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
         end

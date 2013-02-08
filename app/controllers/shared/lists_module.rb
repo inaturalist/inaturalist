@@ -63,7 +63,9 @@ module Shared::ListsModule
         @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
         @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?' && lr.operand.is_a?(Taxon)}
 
-        load_listed_taxon_photos
+        if @list.show_obs_photos
+          load_listed_taxon_photos
+        end
         
         if logged_in?
           @current_user_lists = current_user.lists.all(:limit => 100)
