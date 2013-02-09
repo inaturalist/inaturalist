@@ -39,17 +39,16 @@
   
   <%= f.text_area :description, :description => t(:describe_purpose) %>
   <%= f.text_area :terms, :description => t(:terms_new_users) %>
-
-  <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
-    :description => t(:contest_projects_description) %>
   
-  <div class="preference_fields">
+  <div class="clear">
+    <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"}, 
+      :description => t(:contest_projects_description) %>
     <%= f.check_box :prefers_count_from_list, 
-      :label => "Show total listed taxa", 
-      :label_after => true,
-      :description => 
-        "Show the total number of taxa on the project's list alongside " + 
-        "the number of taxa observed." %>
+        :label => "Show total listed taxa", 
+        :label_after => true,
+        :description => 
+          "Show the total number of taxa on the project's list alongside " + 
+          "the number of taxa observed." %>
   </div>
 
   <fieldset class="location">

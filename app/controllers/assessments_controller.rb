@@ -86,9 +86,9 @@ class AssessmentsController < ApplicationController
       end
       format.json do
         @assessments = @project.assessments.page(params[:page]).per_page(100)
-        @assessments = if params[:complete] = 'true'
+        @assessments = if params[:complete] == 'true'
           @assessments.complete
-        elsif params[:complete] = 'false'
+        elsif params[:complete] == 'false'
           @assessments.incomplete
         end
         render :json => @assessments
