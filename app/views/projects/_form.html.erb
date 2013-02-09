@@ -40,16 +40,15 @@
   <%= f.text_area :description, :description => "Describe the purpose of this project." %>
   <%= f.text_area :terms, :description => "Terms new users must agree to before joining this project." %>
   
-  <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"},
-    :description => "'Contest' projects will display a leader board ranking contributors by the number of unique species observed while 'Observation Contest' projects display leader boards ranking contributors by the number of observations" %>
-  
-  <div class="preference_fields">
+  <div class="clear">
+    <%= f.select :project_type, Project::PROJECT_TYPES, {:include_blank => "normal"}, 
+      :description => "'Contest' projects will display a leader board ranking contributors by the number of unique species observed while 'Observation Contest' projects display leader boards ranking contributors by the number of observations" %>
     <%= f.check_box :prefers_count_from_list, 
-      :label => "Show total listed taxa", 
-      :label_after => true,
-      :description => 
-        "Show the total number of taxa on the project's list alongside " + 
-        "the number of taxa observed." %>
+        :label => "Show total listed taxa", 
+        :label_after => true,
+        :description => 
+          "Show the total number of taxa on the project's list alongside " + 
+          "the number of taxa observed." %>
   </div>
 
   <fieldset class="location">
