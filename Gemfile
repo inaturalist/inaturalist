@@ -31,6 +31,7 @@ gem 'nofxx-georuby'
 gem 'haml'
 gem 'htmlentities'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
+gem 'json', "~> 1.7.7"
 gem 'koala'
 gem 'mail_view', :git => 'https://github.com/37signals/mail_view.git'
 gem 'mechanize'

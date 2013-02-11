@@ -182,7 +182,7 @@ GEM
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
-    json (1.7.6)
+    json (1.7.7)
     jwt (0.1.5)
       multi_json (>= 1.0)
     koala (1.6.0)
@@ -207,7 +207,7 @@ GEM
     mime-types (1.19)
     mocha (0.13.1)
       metaclass (~> 0.0.1)
-    multi_json (1.5.0)
+    multi_json (1.5.1)
     multi_xml (0.5.1)
     multipart-post (1.1.5)
     net-http-digest_auth (1.2.1)
@@ -388,6 +388,7 @@ DEPENDENCIES
   haml
   htmlentities
   irwi!
+  json (~> 1.7.7)
   koala
   machinist
   mail_view!
