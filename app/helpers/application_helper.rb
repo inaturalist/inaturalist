@@ -663,8 +663,7 @@ module ApplicationHelper
       @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
     end
     notifier ||= update.notifier
-    if notifier.respond_to?(:user)
-      notifier_user = update_cached(notifier, :user)
+    if notifier.respond_to?(:user) && (notifier_user = update_cached(notifier, :user) || notifier.user)
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
     case update.resource_type
