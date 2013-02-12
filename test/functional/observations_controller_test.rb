@@ -148,6 +148,14 @@ class ObservationsControllerTest < ActionController::TestCase
   end
   # the obs spec tests whether manual obscuring really obscures, so I'm not 
   # too concerned about testing all the other endpoints here
+
+  def test_csv_download_under_1000
+    o = Observation.make!(:species_guess => 'flubbernutter')
+    sign_in o.user
+    get :by_login_all, :login => o.user.login, :format => "csv"
+    assert_response :success
+    assert_match /flubbernutter/, @response.body
+  end
   
   def assert_private_coordinates_obscured(observation)
     assert_response :success
