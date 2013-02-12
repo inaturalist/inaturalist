@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-<%= t(:taxa_all_species) %>
+  <%= t(:taxa_all_species_html) %>
 <% end -%>
 
 <% content_for(:extrajs) do %>
@@ -253,7 +253,7 @@
   <% end %>
 </div>
 
-<%- cache("taxa/index/iconic_taxa", :expires_in => 24.hours) do %>
+<%- cache("taxa/index/iconic_taxa_#{I18n.locale}", :expires_in => 24.hours) do %>
   <div id="iconic_taxa" class="column span-19">
     <% for iconic_taxon in @iconic_taxa %>
     <div id="<%= iconic_taxon.name %>" class="iconic_taxon clear column span-6 <%= cycle('first', '', 'last', :name => 'rowpos') %>">
