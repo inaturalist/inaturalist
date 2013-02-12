@@ -714,6 +714,13 @@ describe Taxon, "single_taxon_for_name" do
     t.name.should eq("Abies magnifica magnifica")
     Taxon.single_taxon_for_name(name).should eq(t)
   end
+
+  it "should not choke on parens" do
+    t = Taxon.make!(:name => "Foo")
+    lambda {
+      Taxon.single_taxon_for_name("(Foo").should eq(t)
+    }.should_not raise_error
+  end
 end
 
 describe Taxon, "update_life_lists" do

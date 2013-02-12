@@ -1153,6 +1153,7 @@ class Taxon < ActiveRecord::Base
   def self.single_taxon_for_name(name, options = {})
     return if PROBLEM_NAMES.include?(name.downcase)
     name = name[/.+\((.+?)\)/, 1] if name =~ /.+\(.+?\)/
+    name = name.gsub(/[\(\)]/, '')
     name = Taxon.remove_rank_from_name(name)
     scope = TaxonName.limit(10).includes(:taxon).
       where("lower(taxon_names.name) = ?", name.strip.gsub(/[\s_]+/, ' ').downcase).scoped
