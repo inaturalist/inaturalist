@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/name_provider_example_groups'
 
 describe Ratatosk::NameProviders::UBioNameProvider do
   it_should_behave_like "a name provider"
-
   before(:all) do
+    load_test_taxa
     @np = Ratatosk::NameProviders::UBioNameProvider.new
   end
 
@@ -28,10 +28,14 @@ describe Ratatosk::NameProviders::UBioNameProvider do
   end
 
   it "should not make identical taxa for Formica francoeuri"
+  it "should work for Rhagastis albomarginatus" do
+    tn = @np.find('Rhagastis albomarginatus')
+    tn.should have_at_least(1).taxon_name_adapter
+  end
 end
 
 describe Ratatosk::NameProviders::UBioTaxonNameAdapter do
-  fixtures :sources
+  # fixtures :sources
   it_should_behave_like "a TaxonName adapter"
 
   before(:each) do
@@ -51,7 +55,7 @@ describe Ratatosk::NameProviders::UBioTaxonNameAdapter do
 end
 
 describe Ratatosk::NameProviders::UBioTaxonAdapter do
-  fixtures :sources
+  # fixtures :sources
   it_should_behave_like "a Taxon adapter"
 
   before(:all) do

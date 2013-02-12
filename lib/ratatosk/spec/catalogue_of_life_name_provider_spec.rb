@@ -5,6 +5,7 @@ describe Ratatosk::NameProviders::ColNameProvider do
   it_should_behave_like "a name provider"
 
   before(:all) do
+    load_test_taxa
     @np = Ratatosk::NameProviders::ColNameProvider.new
   end
 
