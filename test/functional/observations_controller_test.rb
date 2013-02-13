@@ -156,6 +156,13 @@ class ObservationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_match /flubbernutter/, @response.body
   end
+
+  def test_no_user_agent_in_csv
+    o = Observation.make!(:user_agent => 'flubbernutter')
+    get :index, :format => "csv"
+    assert_response :success
+    assert_no_match /flubbernutter/, @response.body
+  end
   
   def assert_private_coordinates_obscured(observation)
     assert_response :success
