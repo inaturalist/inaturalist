@@ -84,8 +84,7 @@ module Ratatosk
 
       def get_lineage_for(taxon)
         # search cbank for this taxon in its many classifications
-        cbankr_results = @service.classificationbank_search(
-          :namebankID => taxon.source_identifier)
+        cbankr_results = @service.classificationbank_search(:namebankID => taxon.source_identifier)
         
         # choose a classification, preferrably a nice and shiny one
         cbank_id = choose_cbank_id(cbankr_results)
@@ -126,8 +125,8 @@ module Ratatosk
       def get_phylum_for(taxon, lineage = nil)
         # Try to avoid calling uBio a billion times using their 
         # taxonomicGroup element
-        if taxon.class != Taxon && (taxaonomic_group = taxon.hxml.at('ubio:taxonomicGroup'))
-          if taxonomic_group_taxon = Taxon.find_by_name(taxaonomic_group.inner_text)
+        if taxonomic_group = taxon.hxml.at('//ubio:taxonomicGroup')
+          if taxonomic_group_taxon = Taxon.find_by_name(taxonomic_group.inner_text)
             return taxonomic_group_taxon if taxonomic_group_taxon.rank == 'phylum'
             return taxonomic_group_taxon.phylum
           end
@@ -135,10 +134,9 @@ module Ratatosk
         
         begin
           lineage ||= get_lineage_for(taxon)
-        rescue NameProviderError
+        rescue NameProviderError => e
           return nil
         end
-        # puts "[DEBUG] lineage for #{taxon}: #{lineage.map(&:name).join(', ')}"
         phylum = lineage.detect{|t| t.rank && t.rank.downcase == 'phylum'}
         phylum ||= lineage.last.phylum
         phylum
@@ -372,7 +370,7 @@ module Ratatosk
       #
       def comname_taxon
         begin
-          taxon_namebank_lsid = @hxml.at('//gla:parent')['resource']
+          taxon_namebank_lsid = @hxml.at('//gla:parent')['resource'] || @hxml.at('//gla:parent')['rdf:resource']
         rescue
           # this is a phenomenally brittle workaround for what seems like an
           # Hpricot bug with selecting certaing empty elements...

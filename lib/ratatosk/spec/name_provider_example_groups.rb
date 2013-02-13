@@ -24,6 +24,7 @@ shared_examples_for "a name provider" do
   end
 
   it "should get 'Chordata' as the phylum for 'Homo sapiens'" do
+    mammalia = Taxon.make!(:name => "Mammalia", :rank => Taxon::ORDER, :parent => @Chordata)
     taxon = @np.find('Homo sapiens').first.taxon
     phylum = @np.get_phylum_for(taxon)
     phylum.should_not be_nil
@@ -31,6 +32,7 @@ shared_examples_for "a name provider" do
   end
 
   it "should get 'Magnoliophyta' as the phylum for 'Quercus agrifolia'" do
+    fagales = Taxon.make!(:name => "Fagales", :rank => Taxon::ORDER, :parent => @Magnoliopsida)
     taxon = @np.find('Quercus agrifolia').first.taxon
     phylum = @np.get_phylum_for(taxon)
     phylum.should_not be_nil

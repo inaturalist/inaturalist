@@ -1023,7 +1023,7 @@ class ObservationsController < ApplicationController
     path_for_csv = "public/observations/#{@selected_user.login}.all.csv"
     if @selected_user.observations.count < 1000
       Observation.generate_csv_for(@selected_user, :path => path_for_csv)
-      render :file => path
+      render :file => path_for_csv
     else
       cache_key = Observation.generate_csv_for_cache_key(@selected_user)
       job_id = Rails.cache.read(cache_key)
@@ -2046,7 +2046,7 @@ class ObservationsController < ApplicationController
   def render_observations_to_csv(options = {})
     first = %w(scientific_name datetime description place_guess latitude longitude tag_list common_name url image_url user_login)
     only = (first + Observation.column_names).uniq
-    except = %w(map_scale timeframe iconic_taxon_id delta geom)
+    except = %w(map_scale timeframe iconic_taxon_id delta geom user_agent)
     unless options[:show_private] == true
       except += %w(private_latitude private_longitude private_positional_accuracy)
     end

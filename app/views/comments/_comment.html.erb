@@ -25,7 +25,7 @@
                         :method => :delete, 
                         :id => "delete_comment_#{comment.id}_button")
           -%>
-          (<%= pieces.join(" | ") %>)
+          (<%=raw pieces.join(" | ") %>)
         </div>
       <%- end -%>
     </div>

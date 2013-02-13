@@ -143,6 +143,21 @@ module MakeHelpers
     end
     @Calypte_anna.update_attributes(:parent => @Calypte)
 
+    unless @Plantae = Taxon.iconic_taxa.find_by_name('Plantae')
+      @Plantae = Taxon.make!(:name => "Plantae", :rank => "kingdom")
+    end
+    @Plantae.update_attributes(:parent => @Life)
+
+    unless @Magnoliophyta = Taxon.iconic_taxa.find_by_name('Magnoliophyta')
+      @Magnoliophyta = Taxon.make!(:name => "Magnoliophyta", :rank => "phylum")
+    end
+    @Magnoliophyta.update_attributes(:parent => @Plantae)
+
+    unless @Magnoliopsida = Taxon.iconic_taxa.find_by_name('Magnoliopsida')
+      @Magnoliopsida = Taxon.make!(:name => "Magnoliopsida", :rank => "class")
+    end
+    @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
+
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
 end
