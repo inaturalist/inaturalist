@@ -59,12 +59,10 @@ class Taxon < ActiveRecord::Base
   
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
-              :capitalize_name,
-              :set_conservation_status_source
+              :capitalize_name
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
-             :handle_after_move,
-             :update_observations_with_conservation_status_change
+             :handle_after_move
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
@@ -381,14 +379,11 @@ class Taxon < ActiveRecord::Base
     delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary if wikipedia_title_changed?
     true
   end
-  
-  def set_conservation_status_source
-    return true unless conservation_status_changed? || !conservation_status.blank?
-    return true unless conservation_status_source.blank?
-    unless self.conservation_status_source = Source.last(:conditions => "title LIKE 'IUCN Red List of Threatened Species%'")
-      self.build_conservation_status_source(:title => 'IUCN Red List of Threatened Species')
-    end
-    true
+
+  def self.set_conservation_status(id)
+    return unless t = Taxon.find_by_id(id)
+    s = t.conservation_statuses.where("place_id IS NULL").map(&:iucn).max
+    Taxon.update_all(["conservation_status = ?", s], ["id = ?", t])
   end
   
   def capitalize_name
@@ -415,17 +410,6 @@ class Taxon < ActiveRecord::Base
     end
     
     self.taxon_names << tn
-    true
-  end
-  
-  def update_observations_with_conservation_status_change
-    return true unless conservation_status_changed?
-    if threatened?
-      Observation.delay.obscure_coordinates_for_observations_of(id)
-    elsif !conservation_status_was.blank? && conservation_status_was >= IUCN_NEAR_THREATENED && 
-        conservation_status_was < IUCN_EXTINCT_IN_THE_WILD
-      Observation.delay.unobscure_coordinates_for_observations_of(id)
-    end
     true
   end
   
@@ -509,6 +493,10 @@ class Taxon < ActiveRecord::Base
   
   def self_and_ancestors
     [ancestors, self].flatten
+  end
+
+  def self_and_ancestor_ids
+    [ancestor_ids, id].flatten
   end
   
   def root?
@@ -911,24 +899,54 @@ class Taxon < ActiveRecord::Base
   end
   
   def threatened?(options = {})
-    # return false if conservation_status.blank?
-    if conservation_status.blank?
-      if options[:place]
-        place_id = options[:place].is_a?(Place) ? options[:place].id : options[:place]
-        cs = if association(:conservation_statuses).loaded?
-          conservation_statuses.detect{|cs| cs.place_id == place_id}
-        else
-          conservation_statuses.where(:place_id => place_id).first
-        end
-        if cs
-          cs.iucn.to_i >= IUCN_NEAR_THREATENED
-        else
-          return false
-        end
-      end
+    return true if globally_threatened?
+    return threatened_in_place?(options[:place]) unless options[:place].blank?
+    return threatened_in_lat_lon?(options[:latitude], options[:longitude]) unless options[:latitude].blank?
+    false
+  end
+
+  def globally_threatened?
+    return conservation_status >= IUCN_NEAR_THREATENED unless conservation_status.blank?
+    if association(:conservation_statuses).loaded?
+      conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn >= IUCN_NEAR_THREATENED}
+    else
+      conservation_statuses.where("place_id IS NULL AND iucn >= ?", IUCN_NEAR_THREATENED).exists?
+    end
+  end
+
+  def threatened_in_place?(place)
+    return false if place.blank?
+    place_id = options[:place].is_a?(Place) ? options[:place].id : options[:place]
+    cs = if association(:conservation_statuses).loaded?
+      conservation_statuses.detect{|cs| cs.place_id == place_id}
+    else
+      conservation_statuses.where(:place_id => place_id).first
+    end
+    if cs
+      cs.iucn.to_i >= IUCN_NEAR_THREATENED
+    else
       return false
     end
-    conservation_status >= IUCN_NEAR_THREATENED
+  end
+
+  def threatened_in_lat_lon?(lat, lon)
+    return false if lat.blank? || lon.blank?
+    log_timer do
+      ConservationStatus.for_taxon(self).for_lat_lon(lat,lon).exists?
+    end
+  end
+
+  def geoprivacy(options = {})
+    global_status = ConservationStatus.where("place_id IS NULL AND taxon_id IN (?)", self_and_ancestor_ids).order("iucn ASC").last
+    return global_status.geoprivacy unless global_status.blank?
+    return nil if (options[:latitude].blank? || options[:longitude].blank?)
+    place_status = ConservationStatus.
+      where("taxon_id IN (?)", self_and_ancestor_ids).
+      for_lat_lon(options[:latitude], options[:longitude]).
+      order("iucn ASC").last
+    return place_status.geoprivacy if place_status
+    return Observation::OBSCURED if conservation_status.to_i >= IUCN_NEAR_THREATENED
+    ancestors.where("conservation_status >= ?", IUCN_NEAR_THREATENED).exists? ? Observation::OBSCURED : nil
   end
   
   def add_to_intersecting_places

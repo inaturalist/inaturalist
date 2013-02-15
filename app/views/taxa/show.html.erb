@@ -732,13 +732,37 @@
           <%= separator %>
           <div id="conservation_statuses">
             <h3>Conservation Summary</h3>
-            <% for cs in @conservation_statuses %>
-              <div class="stacked">
-                <%= render 'conservation_status', :conservation_status => cs %>
-                <% unless cs.description.blank? %><div class="ui"><%= cs.description %></div><% end %>
-                <% unless cs.url.blank? %><em class="ui">More information at <%= link_to cs.url, cs.url %></em><% end %>
-              </div>
-            <% end %>
+            <%- global_statuses = @conservation_statuses.select{|cs| cs.place_id.blank?} -%>
+            <% unless global_statuses.blank? -%>
+              <ul>
+                <li>
+                  <strong>Globally</strong>
+                  <dl>
+                    <% for cs in global_statuses %>
+                        <dt>
+                          <%= render 'conservation_status', :conservation_status => cs, :no_box => true, :hide_prefix => true, :hide_place => true, :description => true %>
+                        </dt>
+                        <dd class="ui">
+                          <%= cs.description unless cs.description.blank? %>
+                        </dd>
+                    <% end %>
+                  </dl>
+                </li>
+              </ul>
+            <% end -%>
+            <%= nested_place_list @conservation_statuses do |place| %>
+              <%= link_to place.display_name, place %>
+              <dl>
+                <% for cs in @conservation_statuses.select{|cs| cs.place_id == place.id} %>
+                  <dt>
+                    <%= render 'conservation_status', :conservation_status => cs, :no_box => true, :hide_prefix => true, :hide_place => true, :description => true %>
+                  </dt>
+                  <dd class="ui">
+                    <%= cs.description unless cs.description.blank? %>
+                  </dd>
+                <% end %>
+              </dl>
+            <% end -%>
           </div>
         <% end -%>
       </div>

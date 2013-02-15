@@ -630,4 +630,12 @@ class Place < ActiveRecord::Base
     options[:except] += [:source_filename, :delta, :bbox_area]
     super(options)
   end
+
+  def self_and_ancestors
+    [ancestors, self].flatten
+  end
+
+  def self_and_ancestor_ids
+    [ancestor_ids, id].flatten
+  end
 end

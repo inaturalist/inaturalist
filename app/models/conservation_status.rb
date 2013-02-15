@@ -4,10 +4,21 @@ class ConservationStatus < ActiveRecord::Base
   belongs_to :place
   belongs_to :source
 
+  after_save :update_observation_geoprivacies
+  after_save :update_taxon_conservation_status
+
   attr_accessible :authority, :description, :geoprivacy, :iucn, :place_id,
     :status, :taxon_id, :url, :user_id, :taxon, :user, :place, :source,
     :source_id
+  attr_accessor :skip_update_observation_geoprivacies
   validates_presence_of :status
+  validates_uniqueness_of :authority, :scope => [:taxon_id, :place_id], :message => "already set for this taxon in that place"
+
+  scope :for_taxon, lambda {|taxon| where(:taxon_id => taxon)}
+  scope :for_lat_lon, lambda {|lat,lon|
+    joins("JOIN place_geometries ON place_geometries.place_id = conservation_statuses.place_id").
+    where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lon, lat)
+  }
 
   ["IUCN Red List", "NatureServe"].each do |authority|
     const_set authority.strip.gsub(/\s+/, '_').underscore.upcase, authority
@@ -19,8 +30,14 @@ class ConservationStatus < ActiveRecord::Base
 
   def status_name
     case authority
-    when NATURE_SERVE then nature_serve_status_name
-    when IUCN_RED_LIST then iucn_name
+    when NATURE_SERVE
+      nature_serve_status_name
+    when IUCN_RED_LIST
+      if iucn == Taxon::IUCN_LEAST_CONCERN
+        "of least concern"
+      else
+        iucn_name
+      end
     else 
       case status.downcase
       when 'se', 'fe', 'le', 'e' then 'endangered'
@@ -38,13 +55,30 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def nature_serve_status_name
-    case status.scan(/\d/).to_a.min.to_i
-    when 1 then "critically imperiled"
-    when 2 then "imperiled"
-    when 3 then "vulnerable"
-    when 4 then "apparently secure"
-    when 5 then "secure"
+    ns_status = status[/T(.)/, 1] || status[1]
+    case ns_status
+    when "X" then "extinct"
+    when "H" then "possibly extinct"
+    when "1" then "critically imperiled"
+    when "2" then "imperiled"
+    when "3" then "vulnerable"
+    when "4" then "apparently secure"
+    when "5" then "secure"
     else status
+    end
+  end
+
+  def update_observation_geoprivacies
+    return true if skip_update_observation_geoprivacies
+    return true if !id_changed? && !geoprivacy_changed?
+    Observation.delay(:priority => USER_INTEGRITY_PRIORITY).
+      reassess_coordinates_for_observations_of(taxon_id, :place => place_id)
+    true
+  end
+
+  def update_taxon_conservation_status
+    unless Delayed::Job.where("handler LIKE '%''Taxon%set_conservation_status% #{taxon_id}\n%'").exists?
+      Taxon.delay(:priority => USER_INTEGRITY_PRIORITY).set_conservation_status(taxon_id)
     end
   end
 end

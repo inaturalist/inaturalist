@@ -971,10 +971,30 @@ form.inline .label {
   *display:inline;
 }
 
+/*.inlineblock.conservation_status .csstatus {padding: 2px 5px; margin-right: 0.5em;}
+.inlineblock.conservation_status.least_concern .csstatus { background:#E6EFC2; color:#529214; }
+.inlineblock.conservation_status.near_threatened .csstatus { background-color: #817134 ; color: #FFF6BF; }
+.inlineblock.conservation_status.vulnerable .csstatus, 
+.inlineblock.conservation_status.endangered .csstatus, 
+.inlineblock.conservation_status.critically_endangered .csstatus { background-color: #D12F19; color: #FBE3E4; }
+.inlineblock.conservation_status.extinct_in_the_wild .csstatus, 
+.inlineblock.conservation_status.extinct .csstatus { background-color: black; color: white; }*/
+.inlineblock.conservation_status.least_concern .csstatus { color:#73AC13;}
+.inlineblock.conservation_status.near_threatened .csstatus,
+.inlineblock.conservation_status.vulnerable .csstatus { color: #817134; }
+.inlineblock.conservation_status.endangered .csstatus, 
+.inlineblock.conservation_status.critically_endangered .csstatus { color: #D12F19; }
+.inlineblock.conservation_status.extinct_in_the_wild .csstatus, 
+.inlineblock.conservation_status.extinct .csstatus { color: black; }
+
 .box.conservation_status { text-align: center; padding: 5px 10px; margin-bottom: 0; }
-.near_threatened { background-color: #817134 ; color: #FFF6BF; }
-.vulnerable, .endangered, .critically_endangered { background-color: #D12F19; color: #FBE3E4; }
-.extinct_in_the_wild, .extinct { background-color: black; color: white; }
+.box.conservation_status.least_concern { background:#E6EFC2; color:#529214; }
+.box.conservation_status.near_threatened,
+.box.conservation_status.vulnerable { background-color: #817134 ; color: #FFF6BF; } 
+.box.conservation_status.endangered, 
+.box.conservation_status.critically_endangered { background-color: #D12F19; color: #FBE3E4; }
+.box.conservation_status.extinct_in_the_wild, 
+.box.conservation_status.extinct { background-color: black; color: white; }
 
 .providerlink, .button.providerlink { padding-left: 28px; background: url(/images/favicon.png) no-repeat 5px 50%; text-align: left;}
 ul .providerlink, ul .button.providerlink { width: 190px; }
@@ -1122,19 +1142,19 @@ table .numeric { text-align: center; }
 .ui-tooltip-success .ui-tooltip-content{background-color:#84A92F;}
 .ui-tooltip-success .ui-tooltip-titlebar{background-color:#84A92F;}
 .ui-tooltip-near_threatened .ui-tooltip-titlebar,
-.ui-tooltip-near_threatened .ui-tooltip-content{border-color:#817134;color:#FFF6BF;}
-.ui-tooltip-near_threatened .ui-tooltip-content{background-color:#817134;}
-.ui-tooltip-near_threatened .ui-tooltip-titlebar{background-color:#817134;}
+.ui-tooltip-near_threatened .ui-tooltip-content,
 .ui-tooltip-vulnerable .ui-tooltip-titlebar,
-.ui-tooltip-vulnerable .ui-tooltip-content,
+.ui-tooltip-vulnerable .ui-tooltip-content {border-color:#817134;color:#FFF6BF;}
+.ui-tooltip-near_threatened .ui-tooltip-content,
+.ui-tooltip-vulnerable .ui-tooltip-content {background-color:#817134;}
+.ui-tooltip-near_threatened .ui-tooltip-titlebar,
+.ui-tooltip-vulnerable .ui-tooltip-titlebar {background-color:#817134;}
 .ui-tooltip-endangered .ui-tooltip-titlebar,
 .ui-tooltip-endangered .ui-tooltip-content,
 .ui-tooltip-critically_endangered .ui-tooltip-titlebar,
 .ui-tooltip-critically_endangered .ui-tooltip-content{border-color:#D12F19;color:#FBE3E4;}
-.ui-tooltip-vulnerable .ui-tooltip-content,
 .ui-tooltip-endangered .ui-tooltip-content,
 .ui-tooltip-critically_endangered .ui-tooltip-content{background-color:#D12F19;}
-.ui-tooltip-vulnerable .ui-tooltip-titlebar,
 .ui-tooltip-endangered .ui-tooltip-titlebar,
 .ui-tooltip-critically_endangered .ui-tooltip-titlebar{background-color:#D12F19;}
 .ui-tooltip-black .ui-tooltip-titlebar,

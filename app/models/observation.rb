@@ -1006,6 +1006,14 @@ class Observation < ActiveRecord::Base
     !private_latitude.blank? || !private_longitude.blank?
   end
   alias :coordinates_obscured :coordinates_obscured?
+
+  def coordinates_private?
+    latitude.blank? && longitude.blank? && private_latitude? && private_longitude?
+  end
+
+  def coordinates_changed?
+    latitude_changed? || longitude_changed? || private_latitude_changed? || private_longitude_changed?
+  end
   
   def geoprivacy_private?
     geoprivacy == PRIVATE
@@ -1048,13 +1056,16 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    obscuring_needed_for_taxon = taxon && 
-      taxon.species_or_lower? && 
-      (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
-
-    if obscuring_needed_for_taxon && georeferenced? && !coordinates_obscured?
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
-    elsif geoprivacy.blank? && !obscuring_needed_for_taxon
+    taxon_geoprivacy = taxon ? taxon.geoprivacy(:latitude => latitude, :longitude => longitude) : nil
+    case taxon_geoprivacy
+    when OBSCURED
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
+    when PRIVATE
+      unless coordinates_private?
+        obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+        self.latitude, self.longitude = [nil, nil]
+      end
+    else
       unobscure_coordinates
     end
     true
@@ -1084,7 +1095,7 @@ class Observation < ActiveRecord::Base
   end
   
   def unobscure_coordinates
-    return unless coordinates_obscured?
+    return unless coordinates_obscured? || coordinates_private?
     return unless geoprivacy.blank?
     self.latitude = private_latitude
     self.longitude = private_longitude
@@ -1096,10 +1107,12 @@ class Observation < ActiveRecord::Base
     Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
   end
   
-  def self.obscure_coordinates_for_observations_of(taxon)
+  def self.obscure_coordinates_for_observations_of(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.find_observations_of(taxon) do |o|
+    scope = Observation.of(taxon).scoped
+    scope = scope.in_place(options[:place]) if options[:place]
+    scope.find_each do |o|
       o.obscure_coordinates
       Observation.update_all({
         :place_guess => o.place_guess,
@@ -1121,6 +1134,21 @@ class Observation < ActiveRecord::Base
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
         :private_longitude => o.private_longitude,
+      }, {:id => o.id})
+    end
+  end
+
+  def self.reassess_coordinates_for_observations_of(taxon, options = {})
+    scope = Observation.of(taxon).includes(:taxon => :conservation_statuses).scoped
+    scope = scope.in_place(options[:place]) if options[:place]
+    scope.find_each do |o|
+      o.obscure_coordinates_for_threatened_taxa
+      next unless o.coordinates_changed?
+      Observation.update_all({
+        :latitude => o.latitude,
+        :longitude => o.longitude,
+        :private_latitude => o.private_latitude,
+        :private_longitude => o.private_longitude
       }, {:id => o.id})
     end
   end
