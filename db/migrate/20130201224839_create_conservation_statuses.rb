@@ -10,7 +10,7 @@ class CreateConservationStatuses < ActiveRecord::Migration
       t.string :url
       t.text :description
       t.string :geoprivacy, :default => "obscured"
-      t.integer :iucn
+      t.integer :iucn, :default => Taxon::IUCN_NEAR_THREATENED
 
       t.timestamps
     end

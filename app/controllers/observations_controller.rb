@@ -258,6 +258,20 @@ class ObservationsController < ApplicationController
         
         @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
         @posts = @observation.posts.published.limit(50)
+
+        if @observation.taxon
+          unless @places.blank?
+            @listed_taxon = ListedTaxon.
+              where("taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places).
+              includes(:place).first
+            @conservation_status = ConservationStatus.
+              where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
+              where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).
+              includes(:place).first
+          end
+          @conservation_status ||= ConservationStatus.where(:taxon_id => @observation.taxon).where("place_id IS NULL").
+            where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
+        end
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,

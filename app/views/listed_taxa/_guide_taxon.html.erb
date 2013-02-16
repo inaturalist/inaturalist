@@ -11,33 +11,7 @@
 <% end -%>
 <%- upperright = capture do %>
   <% if listed_taxon.endemic? || listed_taxon.introduced? || taxon.threatened?(:place => listed_taxon.place_id) -%>
-    <div class="upperright">
-      <% if listed_taxon.endemic? || listed_taxon.introduced? -%>
-        <%- 
-          icon_class = listed_taxon.introduced? ? 'ui-icon-notice' : 'ui-icon-star'
-          tip_class = listed_taxon.introduced? ? 'ui-tooltip-error' : 'ui-tooltip-success'
-        -%>
-        <div class="blob <%= listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore %>" 
-            title="<%= listed_taxon.establishment_means.capitalize %>" 
-            data-tip="<strong><%= listed_taxon.establishment_means.capitalize %>:</strong> <%= ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means] %>"
-            data-tip-style-classes="<%= tip_class %> ui-tooltip-shadow"
-            data-tip-position-at="bottom center">
-          <span class="ui-icon <%= icon_class %>">
-            <%= listed_taxon.introduced? ? 'I' : listed_taxon.establishment_means.chars.to_a[0].upcase %>
-          </span>
-        </div>
-      <% end -%>
-      
-      <% if taxon.threatened?(:place => listed_taxon.place_id) -%>
-        <div class="blob conservation_status <%= taxon.conservation_status_name %>"
-            title="<%= taxon.conservation_status_name %>" 
-            data-tip="IUCN Red List status: <strong><%= taxon.conservation_status_name.humanize %> (<%= taxon.conservation_status_code %>)</strong>"
-            data-tip-style-classes="ui-tooltip-<%= taxon.conservation_status_name %> ui-tooltip-shadow"
-            data-tip-position-at="bottom center">
-          <strong><%= taxon.conservation_status_code %></strong>
-        </div>
-      <% end -%>
-    </div>
+    <%= render 'listed_taxa/taxon_blobs', :taxon => taxon, :listed_taxon => listed_taxon %>
   <% end -%>
   <% if taxon.iucn_extinct? -%>
     <div class="extinct crossout">

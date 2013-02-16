@@ -60,13 +60,15 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to
   })
 
   $.fn.conservationStatus = function() {
-    $('.authority_field input', this).chooser({
-      source: CONSERVATION_STATUS_AUTHORITIES,
-      chosen: $('.authority_field input', this).val()
-    })
-    $('.place_id_field input', this).chooser({
-      collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-      resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item'
+    this.each(function() {
+      $('.authority_field input', this).chooser({
+        source: CONSERVATION_STATUS_AUTHORITIES,
+        chosen: $('.authority_field input', this).val()
+      })
+      $('.place_id_field input', this).chooser({
+        collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
+        resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item'
+      })
     })
   }
   

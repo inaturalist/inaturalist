@@ -39,9 +39,10 @@ describe ConservationStatus, "saving" do
   it "should should set taxon conservation_status" do
     t = Taxon.make!
     t.conservation_status.should be_blank
-    cs = without_delay {ConservationStatus.make!(:taxon => t, :iucn => Taxon::IUCN_ENDANGERED)}
+    cs = without_delay {ConservationStatus.make!(:taxon => t)}
+    cs.iucn.should_not be_blank
     t.reload
-    t.conservation_status.should eq(Taxon::IUCN_ENDANGERED)
+    t.conservation_status.should eq(cs.iucn)
   end
 
   it "should nilify taxon conservation_status if no other global statuses" do

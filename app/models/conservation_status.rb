@@ -11,7 +11,7 @@ class ConservationStatus < ActiveRecord::Base
     :status, :taxon_id, :url, :user_id, :taxon, :user, :place, :source,
     :source_id
   attr_accessor :skip_update_observation_geoprivacies
-  validates_presence_of :status
+  validates_presence_of :status, :iucn
   validates_uniqueness_of :authority, :scope => [:taxon_id, :place_id], :message => "already set for this taxon in that place"
 
   scope :for_taxon, lambda {|taxon| where(:taxon_id => taxon)}
@@ -51,7 +51,15 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def iucn_name
-    Taxon::IUCN_STATUSES[iucn.to_i].to_s.humanize.downcase
+    iucn_status.humanize.downcase
+  end
+
+  def iucn_status
+    Taxon::IUCN_STATUSES[iucn.to_i].to_s
+  end
+
+  def iucn_status_code
+    Taxon::IUCN_STATUS_CODES[Taxon::IUCN_STATUSES[iucn.to_i]]
   end
 
   def nature_serve_status_name
@@ -78,7 +86,8 @@ class ConservationStatus < ActiveRecord::Base
 
   def update_taxon_conservation_status
     unless Delayed::Job.where("handler LIKE '%''Taxon%set_conservation_status% #{taxon_id}\n%'").exists?
-      Taxon.delay(:priority => USER_INTEGRITY_PRIORITY).set_conservation_status(taxon_id)
+      Taxon.set_conservation_status(taxon_id)
     end
+    true
   end
 end
