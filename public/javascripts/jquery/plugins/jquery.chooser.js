@@ -20,8 +20,15 @@
       this.options.chosen = this.options.chosen || $.parseJSON($(this.element).attr('data-chooser-chosen')),
       this.options.source = this.options.source || defaultSources
       var markup = this.setupMarkup()
-      
       this.selectDefault()
+      if (!this.options.collectionUrl && this.options.source.length == 0 || typeof(this.options.source[0]) == 'string') {
+        var that = this
+        $(this.markup.input).blur(function() {
+          if ($(that.markup.input).is(':visible')) {
+            that.selectItem($(that.markup.input).val())
+          }
+        })
+      }
       
       markup.input.autocomplete({
         html: true,
@@ -132,7 +139,9 @@
       var self = this, markup = this.markup
       if (this.options.chosen) {
         var item = this.options.chosen
-        item = self.recordsToItems([item])[0]
+        if (typeof(item) != 'string') {
+          item = self.recordsToItems([item])[0]
+        }
         this.selectItem(item)
       } else if ($(this.element).val() != '' && this.options.resourceUrl) {
         this.selectId($(this.element).val())
@@ -171,14 +180,21 @@
       if (!item) {
         this.clear()
       } else {
-        if (!item.label) {
-          item = this.recordsToItems([item])[0]
+        if (typeof(item) == 'object') {
+          if (!item.label) {
+            item = this.recordsToItems([item])[0]
+          }
+          var itemLabel = item.label || item.html,
+              itemValue = item.recordId || item.value || item.id
+        } else {
+          var itemLabel = item,
+              itemValue = item
         }
         $(this).data('selected', item)
         $(this).data('previous', null)
         $(this.markup.input).hide()
         $(this.markup.choice).width('auto')
-        $(this.markup.choice).html(item.label || item.html).showInlineBlock()
+        $(this.markup.choice).html(itemLabel).showInlineBlock()
         $(this.markup.chooseButton).showInlineBlock()
         $(this.markup.clearButton)
           .height(this.markup.choice.outerHeight()-2)
@@ -188,7 +204,7 @@
           .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
         $('.ui-icon', this.markup.chooseButton)
           .css('margin-top', '-' + Math.round((this.markup.choice.outerHeight() / 2) - 6) + 'px')
-        $(this.markup.originalInput).val(item.recordId || item.value || item.id).change()
+        $(this.markup.originalInput).val(itemValue).change()
       }
       if (!options.blurring && typeof(this.options.afterSelect) == 'function') {
         this.options.afterSelect(item)

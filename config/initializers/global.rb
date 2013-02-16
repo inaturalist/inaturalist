@@ -11,8 +11,9 @@ end
 
 def log_timer(name = nil)
   start_log_timer(name)
-  yield
+  r = yield
   end_log_timer
+  r
 end
 
 class Object

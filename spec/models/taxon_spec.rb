@@ -645,14 +645,6 @@ describe Taxon do
   end
   
   describe "conservation status" do
-    it "should set conervation_status_source to IUCN by default" do
-      taxon = Taxon.make!
-      taxon.conservation_status_source.should be_blank
-      taxon.update_attributes(:conservation_status => Taxon::IUCN_VULNERABLE)
-      taxon.conservation_status_source.should_not be_blank
-      taxon.conservation_status_source.title.should == 'IUCN Red List of Threatened Species'
-    end
-    
     it "should define boolean methods" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_VULNERABLE)
       taxon.should be_iucn_vulnerable
@@ -733,5 +725,16 @@ describe Taxon, "update_life_lists" do
         t.update_life_lists
       end
     }.should change(Delayed::Job, :count).by(1)
+  end
+end
+
+describe Taxon, "threatened?" do
+  it "should work for a place"
+  it "should work for lat/lon" do
+    p = make_place_with_geom
+    cs = ConservationStatus.make!(:place => p)
+    p.contains_lat_lng?(p.latitude, p.longitude).should be_true
+    t = cs.taxon
+    t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be_true
   end
 end

@@ -474,6 +474,28 @@ describe Observation, "updating" do
   
   it "should queue a job to update user lists"
   it "should queue a job to update check lists"
+
+  describe "obscuring for conservation status" do
+    it "should obscure coordinates if taxon has a conservation status in the place observed" do
+      p = make_place_with_geom
+      t = Taxon.make!(:rank => Taxon::SPECIES)
+      cs = ConservationStatus.make!(:place => p, :taxon => t)
+      o = Observation.make!(:latitude => p.latitude, :longitude => p.longitude)
+      o.should_not be_coordinates_obscured
+      o.update_attributes(:taxon => t)
+      o.should be_coordinates_obscured
+    end
+
+    it "should not obscure coordinates if taxon has a conservation status in another place" do
+      p = make_place_with_geom
+      t = Taxon.make!(:rank => Taxon::SPECIES)
+      cs = ConservationStatus.make!(:place => p, :taxon => t)
+      o = Observation.make!(:latitude => -1*p.latitude, :longitude => p.longitude)
+      o.should_not be_coordinates_obscured
+      o.update_attributes(:taxon => t)
+      o.should_not be_coordinates_obscured
+    end
+  end
 end
 
 describe Observation, "destruction" do
@@ -1074,6 +1096,9 @@ describe Observation do
       o.should be_coordinates_obscured
       o.latitude.should be_blank
     end
+
+    it "should unobscure observations matching conservation status in a place"
+    it "should not obscure observations not matching conservation status in a place"
   end
 
   describe "obscure_coordinates_for_threatened_taxa" do
@@ -1084,6 +1109,9 @@ describe Observation do
       o.obscure_coordinates_for_threatened_taxa
       o.should be_coordinates_obscured
     end
+
+    it "should obscure coordinates for observations of taxa with concervation status in place"
+    it "should not obscure coordinates for observations of taxa with concervation status of another place"
   end
   
   describe "geoprivacy" do
@@ -1411,5 +1439,28 @@ describe Observation, "update_for_taxon_change" do
     Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
     old_ident.reload
     old_ident.taxon.should eq(@input_taxon)
+  end
+end
+
+describe Observation, "reassess_coordinates_for_observations_of" do
+  it "should obscure coordinates for observations of threatened taxa" do
+    t = Taxon.make!
+    o = Observation.make!(:taxon => t, :latitude => 1, :longitude => 1)
+    cs = ConservationStatus.make!(:taxon => t)
+    o.should_not be_coordinates_obscured
+    Observation.reassess_coordinates_for_observations_of(t)
+    o.reload
+    o.should be_coordinates_obscured
+  end
+  
+  it "should not unobscure coordinates of obs of unthreatened if geoprivacy is set" do
+    t = Taxon.make!
+    o = Observation.make!(:latitude => 1, :longitude => 1, :geoprivacy => Observation::OBSCURED, :taxon => t)
+    old_lat = o.latitude
+    o.should be_coordinates_obscured
+    Observation.reassess_coordinates_for_observations_of(t)
+    o.reload
+    o.should be_coordinates_obscured
+    o.latitude.should eq(old_lat)
   end
 end

@@ -28,19 +28,17 @@
       return false
     });
 
-  $(document).ready(function(){
-    $('#cocoon-sections').bind('cocoon:after-insert', function(e, inserted_item) {
-          $(inserted_item).css('display', 'none');
-          $(inserted_item).slideDown();
-    });
-    $('#cocoon-sections').bind('cocoon:before-remove', function(e, removed_item) {
-        $(this).data('remove-timeout', 1000);
-        removed_item.slideUp();
-    });
-  });
-
-
-  });
+    $(document).ready(function(){
+      $('#cocoon-sections').bind('cocoon:after-insert', function(e, inserted_item) {
+        $(inserted_item).css('display', 'none')
+        $(inserted_item).slideDown()
+      })
+      $('#cocoon-sections').bind('cocoon:before-remove', function(e, removed_item) {
+        $(this).data('remove-timeout', 1000)
+        removed_item.slideUp()
+      })
+    })
+  })
 </script>
 <% end %>
 

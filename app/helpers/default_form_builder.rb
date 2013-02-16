@@ -27,6 +27,8 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
         css_class = [css_class, 'file'].flatten.uniq.join(' ') if name.to_s == "file_field"
         args << {} unless args.last.is_a?(Hash)
         args.last[:class] = css_class
+        options[:wrapper] ||= {}
+        options[:wrapper][:class] = "#{options[:wrapper][:class]} #{name}".strip
       end
       args.each_with_index do |a,i|
         custom_params.each do |p|
@@ -108,6 +110,8 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     
     content = if options[:label_after]
       "#{content} #{label_content} #{description}"
+    elsif options[:description_after]
+      "#{label_content} #{content} #{description}"
     else
       "#{label_content} #{description} #{content}"
     end

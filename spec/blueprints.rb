@@ -31,6 +31,14 @@ Comment.blueprint do
   body { Faker::Lorem.paragraph }
 end
 
+ConservationStatus.blueprint do
+  user { User.make! }
+  taxon { Taxon.make! }
+  status { "E" }
+  iucn { Taxon::IUCN_ENDANGERED }
+  geoprivacy { Observation::OBSCURED }
+end
+
 Flag.blueprint do
   user { User.make! }
   flag { Faker::Name.name }

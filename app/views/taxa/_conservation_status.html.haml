@@ -1,0 +1,27 @@
+- cs ||= conservation_status || @conservation_status
+- url = cs.url || cs.source.try(:url)
+- no_box ||= false
+- hide_prefix ||= false
+- hide_place ||= false
+%div{:class => "conservation_status #{cs.iucn_name.gsub(' ', '_')} #{no_box ? 'inlineblock' : 'box'}"}
+  - unless hide_prefix
+    Conservation status:
+  %strong.csstatus
+    - if !cs.place && !hide_place
+      globally
+    = cs.status_name
+    - if cs.status_name != cs.status
+      = surround '(',')' do
+        = cs.status
+  - if cs.place && !hide_place
+    in
+    \#{link_to cs.place.display_name, cs.place}
+  %span.small
+    = surround '(', ')' do
+      Source:
+      - if cs.authority.blank?
+        iNaturalist
+      - elsif !url.blank?
+        = link_to cs.authority, url
+      - else
+        = cs.authority
