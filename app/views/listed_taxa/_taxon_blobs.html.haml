@@ -1,7 +1,7 @@
 :ruby
   listed_taxon ||= taxon_blobs || @listed_taxon
   taxon ||= listed_taxon.taxon || @taxon
-  taxon ||= conservation_status.taxon if conservation_status
+  taxon ||= conservation_status.taxon if defined? conservation_status && conservation_status
   conservation_status ||= taxon.threatened_status(:place_id => listed_taxon.place_id) || taxon.threatened_status
   show_place_name ||= false
 .upperright
