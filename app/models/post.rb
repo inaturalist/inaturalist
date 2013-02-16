@@ -48,7 +48,7 @@ class Post < ActiveRecord::Base
   end
   
   def decrement_user_counter_cache
-    self.user.decrement!(:journal_posts_count)
+    user.decrement!(:journal_posts_count) if user
     true
   end
   

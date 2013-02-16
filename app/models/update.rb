@@ -15,6 +15,11 @@ class Update < ActiveRecord::Base
   scope :unviewed, where("viewed_at IS NULL")
   scope :activity, where(:notification => "activity")
   scope :activity_on_my_stuff, where("resource_owner_id = subscriber_id AND notification = 'activity'")
+
+  def to_s
+    "<Update #{id} subscriber: #{subscriber_id} resource_type: #{resource_type} " +
+      "resource_id: #{resource_id} notifier_type: #{notifier_type} notifier_id: #{notifier_id}>"
+  end
   
   def set_resource_owner
     self.resource_owner = resource && resource.respond_to?(:user) ? resource.user : nil

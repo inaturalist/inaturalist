@@ -185,8 +185,11 @@ module HasSubscribers
             next unless options[:if].call(notifier, subscribable, subscription)
           end
 
-          u = Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
+          u = Update.new(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
             :notification => notification)
+          unless u.save
+            Rails.logger.error "[ERROR #{Time.now}] Failed to save #{u}: #{u.errors.full_messages.to_sentence}"
+          end
         end
       }
       
