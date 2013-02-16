@@ -131,6 +131,11 @@ input[type="file"]:focus {
 
 input,select,textarea{font-family:"Trebuchet MS",Arial,sans-serif;}
 form .field{margin-bottom:10px;}
+
+.twocolform .field {position:relative; padding-left: 110px;}
+.twocolform .field .label {width: 100px; position:absolute; top:0; left: 0; text-align:right;}
+.twocolform .field.text_field .label {padding-top:0.6em;}
+
 .required{color:deeppink;}
 .label { margin-bottom: 0.2em;}
 form .field .description { margin-bottom: 0.5em;}
@@ -444,7 +449,8 @@ ul.leafylist li li:first-child {
   background-color: #FFEE91;
 }
 
-.identification.box {padding:0;}
+.identification { position: relative;}
+.identification.box {padding:0; position}
 .identification.box .boxbody {padding:10px 10px 0 10px;}
 .identification.box .boxheader{background-color:#EFEFC7; padding:5px 10px;}
 .identification.quiet.box .boxheader{background-color:#dedede;}
@@ -966,10 +972,39 @@ form.inline .label {
   *display:inline;
 }
 
+/*.inlineblock.conservation_status .csstatus {padding: 2px 5px; margin-right: 0.5em;}
+.inlineblock.conservation_status.least_concern .csstatus { background:#E6EFC2; color:#529214; }
+.inlineblock.conservation_status.near_threatened .csstatus { background-color: #817134 ; color: #FFF6BF; }
+.inlineblock.conservation_status.vulnerable .csstatus, 
+.inlineblock.conservation_status.endangered .csstatus, 
+.inlineblock.conservation_status.critically_endangered .csstatus { background-color: #D12F19; color: #FBE3E4; }
+.inlineblock.conservation_status.extinct_in_the_wild .csstatus, 
+.inlineblock.conservation_status.extinct .csstatus { background-color: black; color: white; }*/
+.inlineblock.conservation_status.least_concern .csstatus { color:#73AC13;}
+.inlineblock.conservation_status.near_threatened .csstatus,
+.inlineblock.conservation_status.vulnerable .csstatus { color: #817134; }
+.inlineblock.conservation_status.endangered .csstatus, 
+.inlineblock.conservation_status.critically_endangered .csstatus { color: #D12F19; }
+.inlineblock.conservation_status.extinct_in_the_wild .csstatus, 
+.inlineblock.conservation_status.extinct .csstatus { color: black; }
+
+.blob.conservation_status,
 .box.conservation_status { text-align: center; padding: 5px 10px; margin-bottom: 0; }
-.near_threatened { background-color: #817134 ; color: #FFF6BF; }
-.vulnerable, .endangered, .critically_endangered { background-color: #D12F19; color: #FBE3E4; }
-.extinct_in_the_wild, .extinct { background-color: black; color: white; }
+.blob.conservation_status.least_concern { background:#84A92F; color:white; }
+.box.conservation_status.least_concern { background:#84A92F; color:#529214; }
+.blob.conservation_status.near_threatened,
+.blob.conservation_status.vulnerable,
+.box.conservation_status.near_threatened,
+.box.conservation_status.vulnerable { background-color: #817134 ; color: #FFF6BF; } 
+.blob.conservation_status.endangered, 
+.blob.conservation_status.critically_endangered,
+.box.conservation_status.endangered, 
+.box.conservation_status.critically_endangered { background-color: #D12F19; color: #FBE3E4; }
+.blob.conservation_status.extinct_in_the_wild, 
+.blob.conservation_status.extinct,
+.box.conservation_status.extinct_in_the_wild, 
+.box.conservation_status.extinct,
+.crossout.extinct { background-color: black; color: white; }
 
 .providerlink, .button.providerlink { padding-left: 28px; background: url(/images/favicon.png) no-repeat 5px 50%; text-align: left;}
 ul .providerlink, ul .button.providerlink { width: 190px; }
@@ -1116,20 +1151,22 @@ table .numeric { text-align: center; }
 .ui-tooltip-success .ui-tooltip-content{border-color:#84A92F;color:#E0EDC3}
 .ui-tooltip-success .ui-tooltip-content{background-color:#84A92F;}
 .ui-tooltip-success .ui-tooltip-titlebar{background-color:#84A92F;}
+.ui-tooltip-least_concern .ui-tooltip-titlebar,
+.ui-tooltip-least_concern .ui-tooltip-content {border-color:#84A92F; background:#84A92F; color:white;}
 .ui-tooltip-near_threatened .ui-tooltip-titlebar,
-.ui-tooltip-near_threatened .ui-tooltip-content{border-color:#817134;color:#FFF6BF;}
-.ui-tooltip-near_threatened .ui-tooltip-content{background-color:#817134;}
-.ui-tooltip-near_threatened .ui-tooltip-titlebar{background-color:#817134;}
+.ui-tooltip-near_threatened .ui-tooltip-content,
 .ui-tooltip-vulnerable .ui-tooltip-titlebar,
-.ui-tooltip-vulnerable .ui-tooltip-content,
+.ui-tooltip-vulnerable .ui-tooltip-content {border-color:#817134;color:#FFF6BF;}
+.ui-tooltip-near_threatened .ui-tooltip-content,
+.ui-tooltip-vulnerable .ui-tooltip-content {background-color:#817134;}
+.ui-tooltip-near_threatened .ui-tooltip-titlebar,
+.ui-tooltip-vulnerable .ui-tooltip-titlebar {background-color:#817134;}
 .ui-tooltip-endangered .ui-tooltip-titlebar,
 .ui-tooltip-endangered .ui-tooltip-content,
 .ui-tooltip-critically_endangered .ui-tooltip-titlebar,
 .ui-tooltip-critically_endangered .ui-tooltip-content{border-color:#D12F19;color:#FBE3E4;}
-.ui-tooltip-vulnerable .ui-tooltip-content,
 .ui-tooltip-endangered .ui-tooltip-content,
 .ui-tooltip-critically_endangered .ui-tooltip-content{background-color:#D12F19;}
-.ui-tooltip-vulnerable .ui-tooltip-titlebar,
 .ui-tooltip-endangered .ui-tooltip-titlebar,
 .ui-tooltip-critically_endangered .ui-tooltip-titlebar{background-color:#D12F19;}
 .ui-tooltip-black .ui-tooltip-titlebar,
@@ -1292,3 +1329,30 @@ ul.plain {list-style:none;margin:0;padding:0}
 .project_invitation .box {margin: 0;}
 .wiki_page_actions {list-style: none;margin:0;}
 .wiki_page_actions li {display:inline; margin-left: 5px;}
+
+.upperright,
+.listed_taxon .upperright {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.upperright .blob,
+.listed_taxon .upperright .blob {
+  padding: 2px 5px;
+  color: white;
+  opacity: 0.7;
+  font-size: smaller;
+  border-radius: 10px;
+  line-height: 1;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}
+.identification:hover .upperright .blob,
+.listed_taxon:hover .upperright .blob { opacity: 1; box-shadow: #222 0 1px 2px; }
+.upperright .blob.endemic {background-color:#84A92F;color:#B7EC3F;}
+.upperright .blob.introduced {background-color:DeepPink;color:pink;}
+.upperright .ui-icon {vertical-align:middle;width:12px;height:12px;top:0;}
+.upperright .ui-icon-star { background-position: -226px -114px; }
+.upperright .ui-icon-notice { background-position: -34px -146px; }
+.upperright .blob.conservation_status {padding: 3px 5px;}
+.upperright .ui-icon {background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png);}

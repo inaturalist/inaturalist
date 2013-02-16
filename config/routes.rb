@@ -1,5 +1,4 @@
 Inaturalist::Application.routes.draw do
-  
   wiki_root '/pages'
 
   # Riparian routes
@@ -299,6 +298,7 @@ Inaturalist::Application.routes.draw do
   resources :taxon_swaps, :controller => :taxon_changes
   resources :taxon_drops, :controller => :taxon_changes
   resources :taxon_stages, :controller => :taxon_changes
+  resources :conservation_statuses, :only => [:autocomplete]
   
   if Rails.env.development?
     mount EmailerPreview => 'mail_view'

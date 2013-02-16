@@ -9996,6 +9996,46 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
+-- Name: conservation_statuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE conservation_statuses (
+    id integer NOT NULL,
+    taxon_id integer,
+    user_id integer,
+    place_id integer,
+    source_id integer,
+    authority character varying(255),
+    status character varying(255),
+    url character varying(255),
+    description text,
+    geoprivacy character varying(255) DEFAULT 'obscured'::character varying,
+    iucn integer DEFAULT 20,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: conservation_statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE conservation_statuses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: conservation_statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE conservation_statuses_id_seq OWNED BY conservation_statuses.id;
+
+
+--
 -- Name: counties_simplified; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -12483,6 +12523,13 @@ ALTER TABLE comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regc
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE counties_simplified_01 ALTER COLUMN id SET DEFAULT nextval('counties_simplified_01_id_seq'::regclass);
 
 
@@ -12944,6 +12991,14 @@ ALTER TABLE ONLY colors
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: conservation_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY conservation_statuses
+    ADD CONSTRAINT conservation_statuses_pkey PRIMARY KEY (id);
 
 
 --
@@ -13511,6 +13566,34 @@ CREATE INDEX index_comments_on_parent_type_and_parent_id ON comments USING btree
 --
 
 CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
+
+
+--
+-- Name: index_conservation_statuses_on_place_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_conservation_statuses_on_place_id ON conservation_statuses USING btree (place_id);
+
+
+--
+-- Name: index_conservation_statuses_on_source_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_conservation_statuses_on_source_id ON conservation_statuses USING btree (source_id);
+
+
+--
+-- Name: index_conservation_statuses_on_taxon_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_conservation_statuses_on_taxon_id ON conservation_statuses USING btree (taxon_id);
+
+
+--
+-- Name: index_conservation_statuses_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_conservation_statuses_on_user_id ON conservation_statuses USING btree (user_id);
 
 
 --
@@ -14780,6 +14863,8 @@ INSERT INTO schema_migrations (version) VALUES ('20130116225224');
 INSERT INTO schema_migrations (version) VALUES ('20130131001533');
 
 INSERT INTO schema_migrations (version) VALUES ('20130131061500');
+
+INSERT INTO schema_migrations (version) VALUES ('20130201224839');
 
 INSERT INTO schema_migrations (version) VALUES ('20130205052838');
 

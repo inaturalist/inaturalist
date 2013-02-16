@@ -23,10 +23,10 @@ class TaxaController < ApplicationController
     :observation_photos, :range, :schemes, :tip]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
-  
   before_filter :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
+  before_filter :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
   
   GRID_VIEW = "grid"
@@ -118,16 +118,22 @@ class TaxaController < ApplicationController
     @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
     
-    if !@taxon.conservation_status.blank? && @taxon.conservation_status > Taxon::IUCN_LEAST_CONCERN
-      @conservation_status_name = @taxon.conservation_status_name
-      @conservation_status_source = @taxon.conservation_status_source
-    end
+    # if !@taxon.conservation_status.blank? && @taxon.conservation_status > Taxon::IUCN_LEAST_CONCERN
+    #   @conservation_status_name = @taxon.conservation_status_name
+    #   @conservation_status_source = @taxon.conservation_status_source
+    # end
     
     respond_to do |format|
       format.html do
         if @taxon.name == 'Life' && !@taxon.parent_id
           return redirect_to(:action => 'index')
         end
+
+        @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
+          cs.place_id.blank? ? [0] : cs.place.self_and_ancestor_ids
+        end
+        @conservation_status = @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
+        @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id == CONFIG.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN} if CONFIG.place_id
         
         @wikipedia = WikipediaService.new
         @amphibiaweb = amphibiaweb_description?
@@ -1419,5 +1425,9 @@ class TaxaController < ApplicationController
     @state_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
     find_options[:conditions][1] = Place::PLACE_TYPE_CODES['Country']
     @country_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+  end
+
+  def load_form_variables
+    @conservation_status_authorities = ConservationStatus.select('DISTINCT authority').where("authority IS NOT NULL").map(&:authority).compact
   end
 end

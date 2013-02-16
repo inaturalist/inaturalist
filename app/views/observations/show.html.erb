@@ -366,9 +366,14 @@
     <h3><%=t :identification_summary %></h3>
     
     <% if @owners_identification %>
-      <div id="owners-identification" class="box">
+      <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
         <%= render :partial => 'identifications/identification',
                    :locals => { :identification => @owners_identification } %>
+        <% if @listed_taxon || @conservation_status -%>
+          <div class="upperright">
+            <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
+          </div>
+        <% end -%>
       </div>
     <% end %>
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">

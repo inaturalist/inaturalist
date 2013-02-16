@@ -1,12 +1,12 @@
 #taxon_photos {
-  border: 1px solid #eee;
   padding: 1em;
+  border: 1px solid #eee;
 }
 .photo {
-  text-align: center;
-  width: 75px;
+  float: left;
   margin-right: 10px;
-  float: left
+  width: 75px;
+  text-align: center;
 }
 
 #parent_name {
@@ -24,10 +24,13 @@ fieldset.column {
 }
 
 .taxon_name_fields {
-  border-bottom: 1px solid #ccc;
   margin-bottom: 1em;
+  border-bottom: 1px solid #ccc;
 }
 
 #summary_refresh_loading {
   display: inline;
 }
+.conservation_status input.text {width: 400px;}
+.conservation_status .description_field input.text,
+.conservation_status .url_field input.text {width: 800px;}
