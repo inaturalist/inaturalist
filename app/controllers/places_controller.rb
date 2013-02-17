@@ -389,7 +389,8 @@ class PlacesController < ApplicationController
   
   def geometry_from_messy_kml(kml)
     geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
-    Nokogiri::XML.fragment(kml).search('Polygon').each_with_index do |hpoly,i|
+    doc = kml =~ /\<kml / ? Nokogiri::XML(kml) : Nokogiri::XML.fragment(kml)
+    doc.search('Polygon').each_with_index do |hpoly,i|
       poly = GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
 
       # make absolutely sure there are no z coordinates. iNat is strictly 2D, 

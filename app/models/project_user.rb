@@ -19,12 +19,15 @@ class ProjectUser < ActiveRecord::Base
   notifies_subscribers_of :project, :on => :save, :notification => CURATOR_CHANGE_NOTIFICATION, 
     :include_notifier => true,
     # don't bother queuing this if there's no relevant role change
-    :queue_if => Proc.new {|pu| 
+    :queue_if => Proc.new {|pu|
       pu.role_changed? && (ROLES.include?(pu.role) || pu.user_id == pu.project.user_id)
     },
     # check to make sure role status hasn't changed since queuing
     :if => Proc.new {|pu| ROLES.include?(pu.role) || pu.user_id == pu.project.user_id}
 
+  def to_s
+    "<ProjectUser #{id} project: #{project_id} user: #{user_id} role: #{role}"
+  end
   def project_observations
     project.project_observations.includes(:observation).where("observations.user_id = ?", user_id).scoped
   end

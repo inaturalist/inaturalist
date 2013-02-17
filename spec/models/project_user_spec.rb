@@ -88,9 +88,10 @@ describe ProjectUser do
     it "should notify project members of new owners" do
       pu = ProjectUser.make!
       p = pu.project
+      new_pu = ProjectUser.make!(:project => p)
       start = Time.now
       without_delay do
-        p.update_attributes(:user => User.make!)
+        p.update_attributes(:user => new_pu.user)
       end
       u = Update.where("created_at >= ?", start).where(:subscriber_id => pu.user_id).first
       u.should_not be_blank

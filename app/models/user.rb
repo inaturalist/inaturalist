@@ -415,7 +415,8 @@ class User < ActiveRecord::Base
           manager.role_will_change!
           manager.save
         else
-          p.user = User.admins.first
+          pu = ProjectUser.create(:user => User.admins.first, :project => p)
+          p.user = pu.user
         end
         p.save
       else
