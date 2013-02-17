@@ -28,6 +28,11 @@ describe Project, "creation" do
     p2.should_not be_valid
     p2.errors[:title].should_not be_blank
   end
+
+  it "should notify the owner that the admin changed" do
+    p = without_delay {Project.make!}
+    Update.where(:resource_type => "Project", :resource_id => p.id, :subscriber_id => p.user_id).first.should be_blank
+  end
 end
 
 describe Project, "destruction" do

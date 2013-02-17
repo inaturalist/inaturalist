@@ -11,7 +11,8 @@ class Post < ActiveRecord::Base
       end
       return (post.parent_type == "Project" && !post.draft? && existing_updates.blank?)
     },
-    :notification => "created_project_post"
+    :notification => "created_project_post",
+    :include_notifier => true
   }
   belongs_to :parent, :polymorphic => true
   belongs_to :user

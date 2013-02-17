@@ -216,11 +216,14 @@ module HasSubscribers
       callback_types << :after_create if options_on.detect{|o| o =~ /create/}
       callback_types << :after_save   if options_on.detect{|o| o =~ /save/}
       callback_method = options[:with] || :notify_subscribers_of
+      attr_accessor :skip_updates
       callback_types.each do |callback_type|
         send callback_type do |record|
+          return true if record.skip_updates
           if options[:queue_if].blank? || options[:queue_if].call(record)
             record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
           end
+          true
         end
       end
     end

@@ -84,9 +84,11 @@ class Project < ActiveRecord::Base
   
   def add_owner_as_project_user
     return true unless user_id_changed?
-    pu = project_users.where(:user_id => user_id).first
-    pu ||= self.project_users.create(:user => user)
-    pu.update_attributes(:role => ProjectUser::MANAGER)
+    if pu = project_users.where(:user_id => user_id).first
+      pu.update_attributes(:role => ProjectUser::MANAGER)
+    else
+      self.project_users.create(:user => user, :role => ProjectUser::MANAGER, :skip_updates => true)
+    end
     true
   end
   

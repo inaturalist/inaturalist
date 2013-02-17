@@ -394,7 +394,10 @@ describe User do
       Update.delete_all
       old_count = Update.count
       start = Time.now
+
+      puts "destroying user"
       without_delay { @user.sane_destroy }
+      p.reload
       new_updates = Update.where("created_at >= ?", start).to_a
       new_updates.size.should eq p.project_users.count
       # new_updates.each{|u| puts "u.subscriber_id: #{u.subscriber_id}, u.notification: #{u.notification}"}
