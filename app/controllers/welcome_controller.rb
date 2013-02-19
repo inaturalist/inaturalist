@@ -24,6 +24,7 @@ class WelcomeController < ApplicationController
             @observations = @observations.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
           end
         end
+        @page = WikiPage.find_by_path(CONFIG.home_page_wiki_path) if CONFIG.home_page_wiki_path
       end
       format.mobile
     end

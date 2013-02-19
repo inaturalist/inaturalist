@@ -448,6 +448,7 @@ if (typeof iNaturalist.Map === 'undefined') this.iNaturalist.Map = {};
 
 // static functions
 iNaturalist.Map.createMap = function(options) {
+  options = options || {}
   options = $.extend({}, {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),

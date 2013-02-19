@@ -506,7 +506,11 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if CONFIG.site_only_observations && params[:site].blank?
+    if !params[:site].blank?
+      uri = params[:site]
+      uri = "http://#{uri}" unless uri =~ /^http\:\/\//
+      scope = scope.where("observations.uri LIKE ?", "#{uri}%")
+    elsif CONFIG.site_only_observations && params[:site].blank?
       scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
     elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?
       scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
