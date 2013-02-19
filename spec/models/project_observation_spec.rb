@@ -23,6 +23,12 @@ describe ProjectObservation, "creation" do
     make_project_observation(:observation => @observation, :project => @project)
     ProjectInvitation.find_by_id(pi.id).should be_blank
   end
+
+  it "should set curator id if observer is a curator" do
+    o = Observation.make!(:user => @project.user, :taxon => Taxon.make!)
+    po = without_delay {make_project_observation(:observation => o, :project => @project)}
+    po.curator_identification_id.should eq(o.owners_identification.id)
+  end
 end
 
 describe ProjectObservation, "destruction" do

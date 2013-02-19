@@ -138,7 +138,7 @@ class TaxonChangesController < ApplicationController
 
   def commit_for_user
     if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
-      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluraize.downcase}"
+      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluralize.downcase}"
       redirect_back_or_default(@taxon_change)
       return
     end
@@ -154,7 +154,7 @@ class TaxonChangesController < ApplicationController
 
   def commit_records
     if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
-      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluraize.downcase}"
+      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluralize.downcase}"
       redirect_back_or_default(@taxon_change)
       return
     end

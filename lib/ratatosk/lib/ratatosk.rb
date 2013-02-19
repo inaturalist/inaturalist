@@ -125,7 +125,7 @@ module Ratatosk
         # puts "[DEBUG] Unique names: #{names.map(&:name).join(', ')}"
         
         names = names.map do |name|
-          if existing_taxon = find_existing_taxon(name.taxon)
+          if name.taxon && name.taxon.new_record? && name.taxon.is_a?(ModelAdapter) && (existing_taxon = find_existing_taxon(name.taxon))
             name.taxon = existing_taxon
           end
           

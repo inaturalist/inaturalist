@@ -9,7 +9,7 @@ class PicasaPhoto < Photo
   
   def user_owns_photo
     if self.user
-      unless native_username == self.user.picasa_identity.picasa_user_id
+      unless self.user.picasa_identity && native_username == self.user.picasa_identity.picasa_user_id
         errors.add(:user, "must own the photo on Picasa.")
       end
     end
