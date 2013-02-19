@@ -405,8 +405,8 @@ class Taxon < ActiveRecord::Base
   
   # Create a taxon name with the same name as this taxon
   def create_matching_taxon_name
-    return if @skip_new_taxon_name
-    return if scientific_name
+    return true if @skip_new_taxon_name
+    return true if scientific_name
     
     taxon_attributes = self.attributes
     taxon_attributes.delete('id')

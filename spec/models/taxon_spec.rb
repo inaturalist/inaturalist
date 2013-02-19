@@ -598,6 +598,29 @@ describe Taxon, "moving" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
+
+  it "should set iconic taxon on observations of descendants" do
+    obs = Observation.make!(:taxon => @Calypte_anna)
+    old_iconic_id = obs.iconic_taxon_id
+    taxon = obs.taxon
+    without_delay do
+      taxon.parent.move_to_child_of(@Amphibia)
+    end
+    obs.reload
+    obs.iconic_taxon.should eq(@Amphibia)
+  end
+
+  it "should set iconic taxon on observations of descendants if grafting for the first time" do
+    parent = Taxon.make!
+    taxon = Taxon.make!(:parent => parent)
+    obs = Observation.make!(:taxon => taxon)
+    obs.iconic_taxon.should be_blank
+    without_delay do
+      parent.move_to_child_of(@Amphibia)
+    end
+    obs.reload
+    obs.iconic_taxon.should eq(@Amphibia)
+  end
   
   it "should not raise an exception if the new parent doesn't exist" do
     taxon = Taxon.make!
