@@ -1565,6 +1565,8 @@ class ObservationsController < ApplicationController
       @ofv_params.delete_if{|k,v| v[:observation_field].blank?}
       search_params[:ofv_params] = @ofv_params
     end
+
+    @site = params[:site] unless params[:site].blank?
     
     @filters_open = 
       !@q.nil? ||

@@ -156,3 +156,21 @@ describe Place, "bbox_contains_lat_lng?" do
   end
 end
 
+describe Place do
+  it "should be editable by curators" do
+    p = Place.make!
+    u = make_curator
+    p.should be_editable_by(u)
+  end
+  it "should be editable by the creator" do
+    u = User.make!
+    p = Place.make!(:user => u)
+    p.should be_editable_by(u)
+  end
+
+  it "should not be editable by non-curators who aren't the creator" do
+    u = User.make!
+    p = Place.make!(:user => User.make!)
+    p.should_not be_editable_by(u)
+  end
+end

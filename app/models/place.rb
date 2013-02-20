@@ -245,8 +245,8 @@ class Place < ActiveRecord::Base
     return false if user.blank?
     return true if user.is_curator?
     return true if self.user_id == user.id
-    return false if %(country state county).include?(place_type_name.to_s.downcase)
-    true
+    return false if %w(country state county).include?(place_type_name.to_s.downcase)
+    false
   end
   
   # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)
