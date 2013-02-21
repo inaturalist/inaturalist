@@ -70,7 +70,6 @@
 
     <div class="column span-16">
       <div class="page-section">
-        <label for="description">Description</label>
         <%= formatted_user_text(@assessment.description, 
           :tags => Post::ALLOWED_TAGS, :attributes => Post::ALLOWED_ATTRIBUTES) %>
         <% if @assessment.completed_at %>
