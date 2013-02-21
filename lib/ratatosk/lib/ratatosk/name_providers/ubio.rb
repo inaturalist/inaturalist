@@ -125,7 +125,7 @@ module Ratatosk
       def get_phylum_for(taxon, lineage = nil)
         # Try to avoid calling uBio a billion times using their 
         # taxonomicGroup element
-        if taxonomic_group = taxon.hxml.at('//ubio:taxonomicGroup')
+        if taxon.respond_to?(:hxml) && (taxonomic_group = taxon.hxml.at('//ubio:taxonomicGroup'))
           if taxonomic_group_taxon = Taxon.find_by_name(taxonomic_group.inner_text)
             return taxonomic_group_taxon if taxonomic_group_taxon.rank == 'phylum'
             return taxonomic_group_taxon.phylum
@@ -263,6 +263,8 @@ module Ratatosk
       alias :taxon_name :adaptee
 
       def initialize(hxml, params = {})
+        raise TaxonNameAdapterError, "XML response cannot be blank" if hxml.blank?
+        raise TaxonNameAdapterError, "XML response has no elements" if hxml.elements.blank?
         @np = params.delete(:np)
         @service = @np.service rescue ::UBioService.new(UBIO_KEY)
         @hxml = hxml
@@ -333,11 +335,14 @@ module Ratatosk
 
       def get_namebank_id
         begin
-          lsid = @hxml.at('//dc:identifier').inner_text
+          lsid = @hxml.at('//dc:identifier').try(:content)
+        rescue Nokogiri::XML::XPath::SyntaxError => e
+          lsid = @hxml.at('identifier').try(:content)
+          puts "@hxml: #{@hxml}"
         rescue NoMethodError
           raise TaxonNameAdapterError, "uBio returned a taxon without an identifier"
         end
-        lsid.split(':')[4] # 4th term should be identifier
+        lsid.split(':')[4] if lsid # 4th term should be identifier
       end
 
       def get_taxon
