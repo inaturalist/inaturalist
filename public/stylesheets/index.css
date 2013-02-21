@@ -996,6 +996,12 @@ form.inline .label {
 .blob.conservation_status.vulnerable,
 .box.conservation_status.near_threatened,
 .box.conservation_status.vulnerable { background-color: #817134 ; color: #FFF6BF; } 
+
+.blob.conservation_status.near_threatened a,
+.blob.conservation_status.vulnerable a,
+.box.conservation_status.near_threatened a,
+.box.conservation_status.vulnerable a { color: #9fc3fe; } 
+
 .blob.conservation_status.endangered, 
 .blob.conservation_status.critically_endangered,
 .box.conservation_status.endangered, 
