@@ -261,6 +261,15 @@ describe Ratatosk, "grafting" do
       }.should change(Flag, :count).by_at_least(1)
     end
   end
+
+  it "should look up import a polynom parent" do
+    Taxon.find_by_name('Sula leucogaster').should be_blank
+    Taxon.find_by_name('Sula').should be_blank
+    taxon = Taxon.make!(:name => "Sula leucogaster", :rank => Taxon::SPECIES)
+    @ratatosk.graft(taxon)
+    taxon.parent.should_not be_blank
+    taxon.parent.name.should eq('Sula')
+  end
 end
 
 describe Ratatosk, "get_graft_point_for" do

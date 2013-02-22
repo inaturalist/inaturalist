@@ -96,12 +96,13 @@ h3 .description {
 
 /* Wikipedia Styles */
 
-#wikipedia_description {
+.wikipedia_description {
   overflow: hidden;
   width: 100%;
 }
 
 .infobox, 
+.infobox_v2,
 table.infobox, 
 .infobox_v2,
 table.infobox_v2,
@@ -131,53 +132,54 @@ table.infobox_v2,
   float: left;
 }
 
-#wikipedia_description h1,
-#wikipedia_description h2,
-#wikipedia_description h3,
-#wikipedia_description h4 {
+.taxon_description h1,
+.taxon_description h2,
+.taxon_description h3,
+.taxon_description h4 {
   border-bottom: 1px solid #eee;
 }
 
-#wikipedia_description h3 {
+.taxon_description h3 {
   line-height: 1.5;
 }
 
-#wikipedia_description .dablink {
+.wikipedia_description .dablink,
+.wikipedia_description .rellink {
   margin: 1em;
   font-style: italic;
 }
 
-#wikipedia_description .editsection {
+.wikipedia_description .editsection {
   display: none;
 }
 
-#wikipedia_description .thumbimage {
+.wikipedia_description .thumbimage {
   margin-bottom: 0.6em;
 }
 
-#wikipedia_description .thumbcaption {
+.wikipedia_description .thumbcaption {
   font-style: italic;
 }
 
-#wikipedia_description .thumbcaption,
-#wikipedia_description .noprint {
+.wikipedia_description .thumbcaption,
+.wikipedia_description .noprint {
   color: #888;
 }
 
-#wikipedia_description .magnify {
+.wikipedia_description .magnify {
   width: auto;
   float: right;
   margin-left: 1em;
 }
 
-#wikipedia_description table,
-#wikipedia_description tr,
-#wikipedia_description td,
-#wikipedia_description th {
+.wikipedia_description table,
+.wikipedia_description tr,
+.wikipedia_description td,
+.wikipedia_description th {
   border: 0 none;
 }
 
-#wikipedia_description th {
+.wikipedia_description th {
   padding: 0.4em;
 }
 
@@ -190,8 +192,7 @@ table.infobox_v2,
   line-height: 0;
 }
 h3 .externallink { font-size: 70%; }
-.taxon_description.wikipedia h3:hover .wikipedia.externallink { display: inline; }
-.taxon_description.amphibiaweb h3:hover .amphibiaweb.externallink { display: inline; }
+.taxon_description h3:hover .externallink { display: inline; }
 #noobservations .readable.description {
   margin-bottom: 0.5em;
 }

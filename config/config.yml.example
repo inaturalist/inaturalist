@@ -70,6 +70,12 @@ base: &base
     # iOS app ID. Used to display header notice about app in mobile views
     # ios_app_id: 421397028
 
+    # Configure taxon description callbacks. taxa/show will try to show
+    # species descriptions from these sources in this order, trying the next
+    # if one fails. You can see all the available describers in
+    # lib/taxon_describers/lib/taxon_describers
+    # taxon_describers: [conabio, wikipediaes, wikipedia, eol]
+
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af

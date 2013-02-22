@@ -321,11 +321,20 @@ module Ratatosk
         name.split[0..-2].join(' ')
       end
       return nil if parent_name.blank?
-      if options[:ancestor]
+      parent = if options[:ancestor]
         Taxon.where(options[:ancestor].descendant_conditions).where("name = ?", parent_name).first
       else
         Taxon.find_by_name(parent_name)
       end
+      if parent.blank?
+        names = find(parent_name)
+        if match = names.detect{|n| n.taxon.name == parent_name}
+          match.save
+          parent = match.taxon
+          parent.graft_silently
+        end
+      end
+      parent
     end
   end # class Ratatosk
 end # module Ratatosk
