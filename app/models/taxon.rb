@@ -66,8 +66,8 @@ class Taxon < ActiveRecord::Base
   
   validates_presence_of :name, :rank
   validates_uniqueness_of :name, 
-                          :scope => [:parent_id, :is_active],
-                          :unless => Proc.new { |taxon| (taxon.parent_id.nil? || !taxon.is_active)},
+                          :scope => [:ancestry, :is_active],
+                          :unless => Proc.new { |taxon| (taxon.ancestry.blank? || !taxon.is_active)},
                           :message => "already used as a child of this " + 
                                       "taxon's parent"
   validates_uniqueness_of :source_identifier,

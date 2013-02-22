@@ -47,77 +47,15 @@
                              "jquery/plugins/inat/photo_selectors.js" %>
 
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap' %>
+  <%= javascript_include_tag 'inaturalist/map3', 'jquery/plugins/inat/taxonmap', 'taxa/show' %>
   
   <script type="text/javascript" charset="utf-8">
+    var TAXON = <%=raw @taxon.to_json %>
     $(document).ready(function() {
-      $('#tabs').tabs()
-      
-      $('#taxon_range_map').taxonMap()
-      window.map = $('#taxon_range_map').data('taxonMap')
-      $('#tabs').bind('tabsshow', function(event, ui) {
-        if (ui.panel.id == "taxon_range") {
-          google.maps.event.trigger(window.map, 'resize')
-          $('#taxon_range_map').taxonMap('fit')
-        }
-      })
-      
-      $('.list_selector_row .addlink')
-        .bind('ajax:beforeSend', function() {
-          $(this).hide()
-          $(this).nextAll('.loading').show()
-        })
-        .bind('ajax:complete', function() {
-          $(this).nextAll('.loading').hide()
-        })
-        .bind('ajax:success', function() {
-          $(this).siblings('.removelink').show()
-          $(this).parents('.list_selector_row').addClass('added')
-        })
-        .bind('ajax:error', function(event, jqXHR, ajaxSettings, thrownError) {
-          $(this).show()
-          var json = eval('(' + jqXHR.responseText + ')')
-          var errorStr = 'Heads up: ' + json.errors
-          alert(errorStr)
-        })
-        
-      $('.list_selector_row .removelink')
-        .bind('ajax:beforeSend', function() {
-          $(this).hide()
-          $(this).nextAll('.loading').show()
-        })
-        .bind('ajax:complete', function() {
-          $(this).nextAll('.loading').hide()
-        })
-        .bind('ajax:success', function() {
-          $(this).siblings('.addlink').show()
-          $(this).parents('.list_selector_row').removeClass('added')
-        })
-        .bind('ajax:error', function(event, jqXHR, ajaxSettings, thrownError) {
-          $(this).show()
-        })
-      
       <% if (!@taxon.species_or_lower? && @photos.size < 24) || @photos.blank? %>
         $('#photos_loading_status').show()
         $('#photos').load('<%= taxon_photos_path(@taxon) %>', function() {
           $('#modal_image_box').jqmAddTrigger('#photos a.modal_image_link')
-        });
-      <% end %>
-      
-      <% if @taxon.auto_description? %>
-        $.ajax({
-          url: '<%= describe_taxon_path(@taxon, :description => params[:description]) %>',
-          method: 'get',
-          beforeSend: function() {
-            $('#description_loading_status').show()
-          },
-          success: function(data, status) {
-            $('#wikipedia_description').html(data);
-          },
-          error: function(request, status, error) {
-            $('#nodescription').show();
-            $('#wikipedia_description .loading').hide();
-          }
         });
       <% end %>
       

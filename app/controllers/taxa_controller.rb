@@ -773,22 +773,24 @@ class TaxaController < ApplicationController
   end
   
   def describe
-    @amphibiaweb = amphibiaweb_description?
-    if @amphibiaweb
-      taxon_names = @taxon.taxon_names.all(
-        :conditions => {:lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 
-        :order => "is_valid, id desc")
-      if @xml = get_amphibiaweb(taxon_names)
-        render :partial => "amphibiaweb"
-        return
-      else
-        @before_wikipedia = '<div class="notice status">AmphibiaWeb didn\'t have info on this taxon, showing Wikipedia instead.</div>' 
+    @describers = if CONFIG.taxon_describers
+      CONFIG.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
+    elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
+      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
+    else
+      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
+    end
+    if @describer = TaxonDescribers.get_describer(params[:from])
+      @description = @describer.describe(@taxon)
+    else
+      @describers.each do |d|
+        @describer = d
+        @description = d.describe(@taxon)
+        break unless @description.blank?
       end
     end
-    
-    
-    @title = @taxon.wikipedia_title.blank? ? @taxon.name : @taxon.wikipedia_title
-    wikipedia
+    @describer_url = @describer.page_url(@taxon)
+    render :partial => "description"
   end
   
   def refresh_wikipedia_summary

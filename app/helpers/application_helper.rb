@@ -789,5 +789,26 @@ module ApplicationHelper
       ofv.value
     end
   end
+
+  def cite(citation)
+    @_citations ||= []
+    citations = [citation].flatten
+    links = citations.map do |c|
+      c = c.citation if c.is_a?(Source)
+      @_citations << c unless @_citations.include?(c)
+      i = @_citations.index(c) + 1
+      link_to(i, "#ref#{i}")
+    end
+    content_tag :sup, links.uniq.sort.join(',').html_safe
+  end
+
+  def references
+    return if @_citations.blank?
+    lis = ""
+    @_citations.each_with_index do |citation, i|
+      lis += content_tag(:li, citation.html_safe, :class => "reference", :id => "ref#{i+1}")
+    end
+    content_tag :ol, lis.html_safe, :class => "references"
+  end
   
 end
