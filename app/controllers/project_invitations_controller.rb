@@ -1,5 +1,6 @@
 class ProjectInvitationsController < ApplicationController
-  
+  before_filter :authenticate_user!
+
   def index
     @project_invitations = ProjectInvitation.all(
       :include => [:observation],
@@ -81,7 +82,7 @@ class ProjectInvitationsController < ApplicationController
 
     if @error
       respond_to do |format|
-        format.html do
+        format.any(:html, :mobile) do
           flash[:error] = @error
           redirect_back_or_default('/')
         end
@@ -92,7 +93,7 @@ class ProjectInvitationsController < ApplicationController
     
     @project_invitation.destroy
     respond_to do |format|
-      format.html do
+      format.any(:html, :mobile) do
         flash[:notice] = "Invitation to the project \"#{@project_invitation.project.title}\" removed"
         redirect_back_or_default('/')
       end

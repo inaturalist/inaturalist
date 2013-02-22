@@ -13,6 +13,10 @@ class ProjectsController < ApplicationController
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
+
+  MOBILIZED = [:join]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -370,6 +374,7 @@ class ProjectsController < ApplicationController
             # just render the default
           end
         end
+        format.mobile
         format.json { render :json => @project }
       end
       return
@@ -537,7 +542,11 @@ class ProjectsController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:error] = error_msg
-          redirect_back_or_default(@project)
+          if error_msg =~ /must belong to a member/
+            redirect_to join_project_path(@project)
+          else
+            redirect_back_or_default(@project)
+          end
         end
         format.json do
           json = {
@@ -785,10 +794,10 @@ class ProjectsController < ApplicationController
   def respond_to_join(options = {})
     error = options[:error]
     notice = options[:notice]
-    dest = options[:dest] || @project
+    dest = options[:dest] || session[:return_to] || @project
     respond_to do |format|
       if error
-        format.html do
+        format.any(:html, :mobile) do
           flash[:error] = error
           redirect_to dest
         end
@@ -797,7 +806,7 @@ class ProjectsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
         end
       else
-        format.html do
+        format.any(:html, :mobile) do
           flash[:notice] = notice
           redirect_to dest
         end

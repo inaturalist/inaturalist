@@ -1,4 +1,5 @@
 - project ||= update_email_curator_change
+- viewing_user = current_user rescue @user
 %table
   - for update in updates
     :ruby
@@ -15,7 +16,7 @@
       %td{:valign => "top"}
         = user_image(user, :size => "thumb", :width => 32, :height => 32)
       %td
-        - if is_me?(user, :current_user => @user)
+        - if is_me?(user, :current_user => viewing_user)
           %strong You
           are now
         - else
@@ -24,16 +25,16 @@
         = role
         for
         = project.title
-        - unless user.description.blank? || is_me?(user, :current_user => @user)
+        - unless user.description.blank? || is_me?(user, :current_user => viewing_user)
           Here's a little about
           = surround '', ': ' do
             = user.login
           %blockquote
             = surround '"', '"' do
               = truncate(strip_tags(user.description), :length => 100)
-        - unless is_me?(user, :current_user => @user)
+        - unless is_me?(user, :current_user => viewing_user)
           %div= link_to "View more about #{user.login}", user, :class => "readmore"
-        - if user.id == @user.id && project.user_id == @user.id
+        - if user.id == viewing_user.id && project.user_id == viewing_user.id
           %p
             %em
               Wondering why you're now
