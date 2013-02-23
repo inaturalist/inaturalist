@@ -22,7 +22,7 @@
   <div class="identification_body">
     <span class="user_and_taxon">
       <% if is_me?(user) %>
-        <strong>Your</strong>
+        <strong><%=t :your %></strong>
       <% else %>
         <%= link_to("#{user.login}'s", person_path(user)) %>
       <% end %>

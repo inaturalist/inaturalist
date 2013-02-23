@@ -149,6 +149,7 @@ en:
   all_photos: All photos
   all_places: "&laquo; All Places"
   all_rights_reserved: all rights reserved
+  all_species: All Species
   all_taxonomic_groups: "&laquo; All Taxonomic Groups"
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
@@ -194,6 +195,7 @@ en:
   are_you_sure_want_join: Are you sure you want to join
   are_you_sure_you_want_sync_this: Are you sure you want to sync this observation's data with this Flickr photo? You will lose changes you've made to this form, but you will be able to revert to your saved copy.
   you_sure_delete_taxon_from_list?: "Are you sure you want to remove %{taxon} from the list?"
+  asc: asc
   aside_from_extraordinary_circumstances: "Aside from extraordinary circumstances, we well never ask you for your password."
   associations: Associations
   at: at
@@ -339,6 +341,7 @@ en:
   connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
   conservation_status: Conservation Status
+  conservation_summary: conservation summary
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   contest_projects_description: "'Contest' projects will display a leader board ranking contributors by the number of unique species observed while 'Observation Contest' projects display leader boards ranking contributors by the number of observations"
   contributions_from: Contributions from
@@ -380,6 +383,7 @@ en:
   date_added: Date added
   date_observed: Date observed
   date_time: Date/Time
+  day: Day
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
   default_photo_license: Default photo license
@@ -391,6 +395,7 @@ en:
   delete_this_name: Delete this name
   delete_user: Delete user
   delete_your_account: Delete your account
+  desc: desc
   descendant_taxa:  descendant taxa
   describe_purpose: Describe the purpose of this project.
   describe_your_interest_in_nature: Describe your interest in nature!
@@ -555,6 +560,7 @@ en:
   grey: grey
   grid: Grid
   guess_description: Guess / Description
+  guide_colors: Guide Colors
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
   hate_me_facebook: "Unlink your Facebook and %{site_name} Accounts"
   hate_me_flickr: "Unlink your Flickr and %{site_name} Accounts"
@@ -625,6 +631,8 @@ en:
   invite: invite
   invite_flickr_photos: "Invite Flickr Photos to %{site_name}"
   invite_more: Invite more
+  invite_photos_to: "Invite photos to %{site_name}"
+  invite_photos_to_raquo_html: "Invite photos to <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Invite someone to %{name}!"
   invite_to_project: Invite to project
   invite_your_friends: invite your friends
@@ -811,6 +819,7 @@ en:
   no_header_row: No header row
   no_license_all_rights_reserved: No license (all rights reserved)
   no_link_flickr: "No, I'd rather not."
+  no_matching_article_from_x: "No matching article from %{x}"
   no_matching_observations: No matching observations.
   no_matching_places: No matching places
   no_matching_projects: No matching projects
@@ -848,7 +857,7 @@ en:
   not_findig_what_you_want: Not finding what you want?
   not_finding_play_you_want?: Not finding the place you want?
   not_finding_what_looking_for: Not finding what you're looking for?
-  not_just_creative_common_licensed_parentesis: (not just Creative Commons-licensed)
+  not_just_creative_commons_licensed: not just Creative Commons-licensed
   not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account &#59;"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account &#59;"
   not_logged_in: Not logged in
@@ -1086,6 +1095,7 @@ en:
   save_photos: Save photos
   save_place: Save place
   saving: "Saving..."
+  scientific_names: Scientific names
   search: Search
   search_all_fields: search all fields
   search_by_name_or_email: Search by name or email
@@ -1152,7 +1162,7 @@ en:
   somewhere_on_earth: somewhere on Earth
   sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
   source: Source
-  source_unknown: "Source &#59; unknown"
+  source_unknown: "Source unknown"
   sources: Sources
   sources_youve_added: Sources you've added
   species: Species
@@ -1203,11 +1213,13 @@ en:
   taxon: Taxon
   taxon_name: Taxon name
   taxon_range: Taxon range
+  taxon_schemes_raquo_html: "Taxon <nobr>schemes &raquo;</nobr>"
   taxon_search: Taxon Search
   taxon_search_results_for: Taxon Search results for 
   taxon_to_delete: Taxon to delete
   taxon_to_keep: Taxon to keep
   taxonomic_changes: Taxonomic changes
+  taxonomic_changes_raquo_html: "Taxonomic <nobr>changes &raquo;</nobr>"
   taxonomic_groups: Taxonomic Groups
   taxonomic_order: Taxonomic Order
   taxonomic_tags_for_flickr: Taxonomic Tags for Flickr
@@ -1245,6 +1257,7 @@ en:
   the_world_is_full_of_interesting_places_short: The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street!
   there_is_no_wikipedia_page_matching: There is no Wikipedia page matching
   there_isnt_wiki_article: "There isn't a Wikipedia article or redirect titled '<i>%{taxon}</i>'.  Perhaps you'd like to"
+  there_isnt_a_wikipedia_article_titled_x_html: "There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?"
   there_were_errors: There were errors.
   there_were_some_problems_saving_this_observation: There were some problems saving this observation
   there_were_some_problems_with: There were some problems with your CSV file.  Please revise the failed rows. Of course the problem could always be on our side. If that is the case, please let us know.
@@ -1426,6 +1439,7 @@ en:
   x_journal_editing: "%{user}'s Journal &middot; Editing"
   x_journal_middot: "%{user}'s Journal &middot;"
   x_journal_new_post: "%{user}'s Journal &middot; New Post"
+  year: Year
   yellow: yellow
   yes: yes
   yes_find_them!: Yes, find them!

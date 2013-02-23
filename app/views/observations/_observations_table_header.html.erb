@@ -1,7 +1,7 @@
 <% display ||= '' %>
 <div class="headerrow" <% unless display.blank? %>style="display: <%= display %>"<% end %>>
   <div class="header icon"><%=t :icon %></div>
-  <div class="header photos"><%=t :Photos %></div>
+  <div class="header photos"><%=t :photos %></div>
   <div class="header species_guess <%= "order_by #{@order}" if @order_by == 'species_guess' %>">
     <% url = params.merge(:order_by => 'species_guess') %>
     <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'species_guess' %>

@@ -16,7 +16,7 @@ module ObservationsHelper
     order_by ||= @order_by
     pairs = ObservationsController::ORDER_BY_FIELDS.map do |f|
       value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
-      [ObservationsController::DISPLAY_ORDER_BY_FIELDS[f], value]
+      [t(ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s.parameterize.underscore), value]
     end
     order_by = 'observations.id' if order_by.blank?
     options_for_select(pairs, order_by)

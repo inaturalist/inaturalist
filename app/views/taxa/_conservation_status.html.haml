@@ -5,7 +5,8 @@
 - hide_place ||= false
 %div{:class => "conservation_status #{cs.iucn_name.gsub(' ', '_')} #{no_box ? 'inlineblock' : 'box'}"}
   - unless hide_prefix
-    Conservation status:
+    =succeed ':' do
+      =t :conservation_status
   %strong.csstatus
     - if !cs.place && !hide_place
       globally
@@ -14,11 +15,12 @@
       = surround '(',')' do
         = cs.status
   - if cs.place && !hide_place
-    in
+    =t :in
     \#{link_to cs.place.display_name, cs.place}
   %span.small
     = surround '(', ')' do
-      Source:
+      = succeed ':' do
+        =t :source
       - if cs.authority.blank?
         iNaturalist
       - elsif !url.blank?

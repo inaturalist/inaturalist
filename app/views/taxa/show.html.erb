@@ -207,7 +207,7 @@
 
 <div id="pageheader" class="last column span-24">
   <span class="breadcrumbs">
-    <%= link_to 'All Species', taxa_path, :class => 'back crumb' %>
+    <%= link_to t(:all_species), taxa_path, :class => 'back crumb' %>
     <% for iconic_taxon in Taxon::ICONIC_TAXA %>
       <%= link_to "&nbsp;".html_safe, iconic_taxon, :class => "iconic_taxon_sprite #{iconic_taxon.name.downcase} #{'selected' if @taxon.iconic_taxon_id == iconic_taxon.id}", 
         :title => Taxon::ICONIC_TAXON_NAMES[iconic_taxon.name] %>
@@ -215,11 +215,11 @@
   </span>
   <div id="meta" class="right description">
     <% if @taxon.source && @taxon.source_url %>
-      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source_url %>
+      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 30)), @taxon.source_url %>
     <% elsif @taxon.source && @taxon.source.url %>
-      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source.url %>
+      <%= t(:source)%>: <%= link_to h(truncate(@taxon.source.title, :length => 30)), @taxon.source.url %>
     <% elsif @taxon.source %>
-      Source: <%= link_to h(truncate(@taxon.source.title, :length => 40)), @taxon.source %>
+      Source: <%= link_to h(truncate(@taxon.source.title, :length => 30)), @taxon.source %>
     <% elsif @taxon.creator %>
       <%= t(:added_by) %> <%= link_to h(@taxon.creator.login), @taxon.creator %>
     <% else %>
@@ -323,7 +323,7 @@
           end
         -%>
         <li>
-          <span class="description"><%= lexicon %></span>
+          <span class="description"><%=t lexicon.parameterize.underscore %></span>
           <ul class="taxon_names">
             <% for taxon_name in taxon_names %>
               <li>
@@ -347,7 +347,7 @@
   <% if @taxon.species_or_lower? -%>
     <div id="colors" class="clear">
       <h3>
-        Guide Colors
+        <%=t :guide_colors %>
         <% if logged_in? -%>
           <% helptip_for :colors do %>
             Color categories for this species, as if you were going to place it
@@ -455,12 +455,12 @@
     <h3><%= t(:extras) %></h3>
     
     <p class="ui">
-      <%= link_to "Taxonomic <nobr>changes &raquo;</nobr>".html_safe, taxon_changes_path(:taxon_id => @taxon),
+      <%= link_to t(:taxonomic_changes_raquo_html), taxon_changes_path(:taxon_id => @taxon),
         "data-tip" => "View the history of this taxon on #{CONFIG.site_name_short}, e.g. splits, merges, etc." %>
     </p>
 
     <p class="ui">
-      <%= link_to "Taxon <nobr>schemes &raquo;</nobr>".html_safe, schemes_for_taxon_path(@taxon), 
+      <%= link_to t(:taxon_schemes_raquo_html), schemes_for_taxon_path(@taxon), 
         "data-tip" => "Schemes are sets of taxa recognized by different authorities." %>
     </p>
     
@@ -631,7 +631,7 @@
         <% end %>
         <% if @taxon_links.size > 4 -%>
           <li style="padding: 0; border: 0;">
-            <% link_to_toggle_menu "More" do %>
+            <% link_to_toggle_menu t(:more) do %>
               <ul>
                 <%- @taxon_links[4..-1].each do |taxon_link| -%>
                   <li class="taxon_link">
@@ -666,7 +666,7 @@
         <% unless @conservation_statuses.blank? -%>
           <%= separator %>
           <div id="conservation_statuses">
-            <h3>Conservation Summary</h3>
+            <h3><%= t(:conservation_summary).titleize %></h3>
             <%- global_statuses = @conservation_statuses.select{|cs| cs.place_id.blank?} -%>
             <% unless global_statuses.blank? -%>
               <ul>
