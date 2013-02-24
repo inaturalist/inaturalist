@@ -54,5 +54,5 @@
     :method => :post, 
     :class => "default button",
     "data-loading-click" => "Joining..." %>
-  <%= link_to t(:cancel), @project, :class => "button" %>
+  <%= link_to t(:cancel), session[:return_to] || @project, :class => "button" %>
 </div>

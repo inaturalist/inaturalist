@@ -719,6 +719,12 @@ describe Taxon, "grafting" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
+
+  it "should set the parent of a species based on the polynom genus" do
+    t = Taxon.make!(:name => "Pseudacris foo", :rank => Taxon::SPECIES)
+    t.graft
+    t.parent.should eq(@Pseudacris)
+  end
 end
 
 describe Taxon, "single_taxon_for_name" do

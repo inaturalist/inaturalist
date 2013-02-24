@@ -188,6 +188,8 @@ class ObservationsController < ApplicationController
     @quality_metrics = @observation.quality_metrics.all(:include => :user)
     if logged_in?
       @user_quality_metrics = @observation.quality_metrics.select{|qm| qm.user_id == current_user.id}
+      @project_invitations = @observation.project_invitations.limit(100).to_a
+      @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
     end
     
     respond_to do |format|
@@ -234,10 +236,6 @@ class ObservationsController < ApplicationController
         
         @project_observations = @observation.project_observations.limit(100).to_a
         @project_observations_by_project_id = @project_observations.index_by(&:project_id)
-        if logged_in?
-          @project_invitations = @observation.project_invitations.limit(100).to_a
-          @project_invitations_by_project_id = @project_invitations.index_by(&:project_id)
-        end
         
         @comments_and_identifications = (@observation.comments.all + 
           @identifications).sort_by{|r| r.created_at}

@@ -58,6 +58,17 @@
   <% end -%>
   
   <%= render :partial => 'identifications/box', :collection => @observation.identifications.sort_by{|ident| ident.id} %>
+
+  <% if !@project_invitations.blank? && (is_me?(current_user) || @project_invitations.map(&:user_id).include?(current_user.try(&:id))) %>
+    <p class="ui description">Invited to the following projects:</p>
+    <% for pi in @project_invitations %>
+      <%= render :partial => 'project_invitations/project_invitation', :object => pi, :locals => {
+        :observation => @observation,
+        :non_remote => true
+      } %>
+    <% end %>
+    <%= link_to "Manage your project invitations", project_invitations_path, :class => "right readmore" %>
+  <% end %>
 <% end -%>
 
 <% unless @observation.description.blank? -%>

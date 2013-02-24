@@ -5,7 +5,7 @@
   <div class="breadcrumbs">
     <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
-  <h2><% t(:are_you_sure_want_join) %><%= h @project.title %>?</h2>
+  <h2><%=t :join %> <%= h @project.title %>?</h2>
 </div>
 
 <%= render 'join' %>
