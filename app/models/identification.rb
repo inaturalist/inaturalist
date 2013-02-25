@@ -128,7 +128,7 @@ class Identification < ActiveRecord::Base
   # Set the project_observation curator_identification_id if the
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
-    return true if self.observation.id.blank?
+    return true if self.observation.blank?
     Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(self)
     true
   end
