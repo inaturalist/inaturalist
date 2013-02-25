@@ -51,8 +51,8 @@ class ProviderAuthorizationsController < ApplicationController
       create_provider_authorization(auth_info)
     end
     
-    if @provider_authorization && (scope = get_session_omniauth_scope)
-      @provider_authorization.update_attribute(:scope, scope.to_s)
+    if @provider_authorization && @provider_authorization.valid? && (scope = get_session_omniauth_scope)
+      @provider_authorization.update_attributes(:scope => scope.to_s)
       session["omniauth_#{request.env['omniauth.strategy'].name}_scope"] = nil
     end
     
@@ -64,7 +64,7 @@ class ProviderAuthorizationsController < ApplicationController
     if session[:invite_params]
       invite_params = session[:invite_params]
       session[:invite_params] = nil
-      if @provider_authorization && @provider_authorization.created_at > 15.minutes.ago
+      if @provider_authorization && @provider_authorization.valid? && @provider_authorization.created_at > 15.minutes.ago
         flash[:notice] = "Welcome to #{CONFIG.site_name}! If these options look good, " + 
           "click \"Save observation\" below and you'll be good to go!"
         invite_params.merge!(:welcome => true)
@@ -98,7 +98,13 @@ class ProviderAuthorizationsController < ApplicationController
     if existing_user
       sign_in(existing_user) unless logged_in?
       @provider_authorization = current_user.add_provider_auth(auth_info)
-      flash[:notice] = "You've successfully linked your #{@provider_authorization.provider.to_s.capitalize} account."
+      if @provider_authorization && @provider_authorization.valid?
+        flash[:notice] = "You've successfully linked your #{@provider_authorization.provider.to_s.capitalize} account."
+      else
+        msg = "There were problems linking your account"
+        msg += ": #{@provider_authorization.errors.full_messages.to_sentence}" if @provider_authorization
+        flash[:error] = msg
+      end
       
     # create a new inat user and link provider to that user
     else
