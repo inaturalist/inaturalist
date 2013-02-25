@@ -222,9 +222,15 @@ class FlickrPhoto < Photo
       r = begin
         Net::HTTP.get_response(URI.parse(p.small_url))
       rescue URI::InvalidURIError
-        Net::HTTP.get_response(URI.parse(p.original_url))
-      rescue URI::InvalidURIError
-        puts "[ERROR] Failed to retrieve #{p.original_url}, skipping..."
+        begin
+          Net::HTTP.get_response(URI.parse(p.original_url))
+        rescue URI::InvalidURIError
+          puts "[ERROR] Failed to retrieve #{p.original_url}, skipping..."
+          skipped += 1
+          next
+        end
+      rescue Timeout::Error
+        puts "[ERROR] Timeout requesting photo, skipping..."
         skipped += 1
         next
       end
