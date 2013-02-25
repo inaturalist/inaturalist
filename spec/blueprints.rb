@@ -160,6 +160,13 @@ ProjectObservationRule.blueprint do
   operator { "identified?" }
 end
 
+ProviderAuthorization.blueprint do
+  user { User.make! }
+  provider_name { 'flickr' }
+  provider_uid { 'xxx@000' }
+  token { 'foo' }
+end
+
 QualityMetric.blueprint do
   user { User.make }
   observation { Observation.make }
