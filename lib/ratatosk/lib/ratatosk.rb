@@ -235,7 +235,18 @@ module Ratatosk
       end
       
       # This basically means the name provider wasn't able to find a lineage
-      return [lineage.first, lineage] if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
+      if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
+        # try retrieving an external parent based on a polynon, e.g. if the
+        # name is Homo sapiens and there's no Homo taxon, try to get Homo from
+        # the NameProvider
+        if parent = polynom_parent(taxon.name, options.merge(:external_parent => true))
+          taxon_phylum = name_provider.get_phylum_for(taxon)
+          if parent.phylum.blank? || taxon_phylum.blank? || parent.phylum.name == taxon_phylum.name
+            return [parent, [taxon]]
+          end
+        end
+        return [lineage.first, lineage]
+      end
       
       # Set the point on the tree to which we will graft, default is root
       get_graft_point_for(lineage)
@@ -326,7 +337,7 @@ module Ratatosk
       else
         Taxon.find_by_name(parent_name)
       end
-      if parent.blank?
+      if parent.blank? && options[:external_parent]
         names = find(parent_name)
         if match = names.detect{|n| n.taxon.name == parent_name}
           match.save

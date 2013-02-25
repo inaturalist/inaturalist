@@ -1,6 +1,13 @@
 module Ratatosk
   module NameProviders
     class UBioNameProvider
+      SOURCE = ::Source.find_by_title("uBio") || ::Source.create(
+        :title => "uBio",
+        :in_text => "uBio",
+        :url => "http://www.ubio.org",
+        :citation => "uBio. <http://www.ubio.org/>."
+      )
+
       attr_accessor :service, :PREFERRED_CLASSIFICATIONS, 
                               :REJECTED_CLASSIFICATIONS
 
@@ -213,7 +220,7 @@ module Ratatosk
         @hxml = hxml
         taxon.name = get_name
         taxon.rank = @hxml.at('//gla:rank').inner_text.downcase rescue nil
-        taxon.source = Source.find_by_title('uBio')
+        taxon.source = UBioNameProvider::SOURCE
         taxon.source_identifier = get_namebank_id
         taxon.source_url = 'http://www.ubio.org/browser/details.php?' +
                            'namebankID=' + taxon.source_identifier
@@ -239,8 +246,8 @@ module Ratatosk
 
       def get_namebank_id
         # CBank and NBank store the namebank LSID in different places
-        if @hxml.at('//rdf:Description')['about'] =~ /classificationbank/
-          lsid = @hxml.at('//ubio:namebankIdentifier')['resource']
+        if @hxml.at('//rdf:Description')['rdf:about'] =~ /classificationbank/
+          lsid = @hxml.at('//ubio:namebankIdentifier')['rdf:resource']
         else
           lsid = @hxml.at('//dc:identifier').inner_text
         end
@@ -270,7 +277,7 @@ module Ratatosk
         @hxml = hxml
         @adaptee = TaxonName.new(params)
         
-        taxon_name.source = Source.find_by_title('uBio')
+        taxon_name.source = UBioNameProvider::SOURCE
         taxon_name.source_identifier = get_namebank_id
         taxon_name.source_url = 'http://www.ubio.org/browser/details.php?namebankID=' + get_namebank_id
         taxon_name.name = get_name
