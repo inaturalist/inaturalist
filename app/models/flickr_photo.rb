@@ -234,7 +234,7 @@ class FlickrPhoto < Photo
         skipped += 1
         next
       end
-      unless r.code_type == Net::HTTPBadRequest
+      unless r.is_a?(Net::HTTPBadRequest) || r.is_a?(Net::HTTPRedirection)
         skipped += 1
         next
       end

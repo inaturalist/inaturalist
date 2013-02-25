@@ -38,7 +38,7 @@ module TaxonDescribers
 
     protected
     def eol_service
-      @eol_service ||= EolService.new
+      @eol_service ||= EolService.new(:timeout => 8)
     end
   end
 end
