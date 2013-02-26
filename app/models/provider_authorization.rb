@@ -20,19 +20,28 @@ class ProviderAuthorization < ActiveRecord::Base
     "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
   ALLOWED_SCOPES = %w(read write)
 
+  def to_s
+    "<ProviderAuthorization #{id} user_id: #{user_id} provider_name: #{provider_name}>"
+  end
+
   def uniqueness_of_authorization_per_user
     existing = if provider_uid =~ /google.com\/accounts/
       ProviderAuthorization.
         where(:user_id => user_id, :provider_name => 'openid').
+        where("id != ?", id).
         where("provider_uid LIKE 'https://www.google.com/accounts%'").
         exists?
     elsif provider_uid =~ /me.yahoo.com/
       ProviderAuthorization.
         where(:user_id => user_id, :provider_name => 'openid').
+        where("id != ?", id).
         where("provider_uid LIKE 'https://me.yahoo.com%'").
         exists?
     else
-      ProviderAuthorization.where(:user_id => user_id, :provider_name => provider_name).exists?
+      ProviderAuthorization.
+        where(:user_id => user_id, :provider_name => provider_name).
+        where("id != ?", id).
+        exists?
     end
     if existing
       errors.add(:user_id, "has already linked an account with #{provider}")
