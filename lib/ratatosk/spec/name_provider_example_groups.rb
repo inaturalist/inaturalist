@@ -26,6 +26,7 @@ shared_examples_for "a name provider" do
   it "should get 'Chordata' as the phylum for 'Homo sapiens'" do
     mammalia = Taxon.make!(:name => "Mammalia", :rank => Taxon::ORDER, :parent => @Chordata)
     taxon = @np.find('Homo sapiens').first.taxon
+    # puts "taxon.hxml: #{taxon.hxml}"
     phylum = @np.get_phylum_for(taxon)
     phylum.should_not be_nil
     phylum.name.should == 'Chordata'
@@ -188,9 +189,10 @@ shared_examples_for "a TaxonName adapter" do
     bad_name = 'Zigadenus fremontii'
     a = @np.find(bad_name)
     taxon_name = a.detect {|n| n.name == bad_name}
+    taxon_name.should_not be_blank
     taxon_name.name.should == bad_name
     # puts "taxon_name.hxml: #{taxon_name.hxml}"
-    taxon_name.is_valid.should be(false)
+    taxon_name.should_not be_is_valid
   end
 
   it "should always set is_valid to true for single sci names" do

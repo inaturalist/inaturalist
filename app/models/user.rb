@@ -346,10 +346,10 @@ class User < ActiveRecord::Base
       u.add_provider_auth(auth_info)
       return u
     end
-    autogen_login = User.suggest_login(
-      auth_info["info"]["nickname"] || 
-      auth_info["info"]["first_name"] || 
-      auth_info["info"]["name"])
+    auth_info_name = auth_info["info"]["nickname"]
+    auth_info_name = auth_info["info"]["first_name"] if auth_info_name.blank?
+    auth_info_name = auth_info["info"]["name"] if auth_info_name.blank?
+    autogen_login = User.suggest_login(auth_info_name)
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
     autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)

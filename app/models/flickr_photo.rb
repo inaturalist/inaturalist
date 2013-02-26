@@ -219,8 +219,22 @@ class FlickrPhoto < Photo
     skipped = 0
     start_time = Time.now
     FlickrPhoto.script_do_in_batches(find_options) do |p|
-      r = Net::HTTP.get_response(URI.parse(p.medium_url))
-      unless r.code_type == Net::HTTPBadRequest
+      r = begin
+        Net::HTTP.get_response(URI.parse(p.small_url))
+      rescue URI::InvalidURIError
+        begin
+          Net::HTTP.get_response(URI.parse(p.original_url))
+        rescue URI::InvalidURIError
+          puts "[ERROR] Failed to retrieve #{p.original_url}, skipping..."
+          skipped += 1
+          next
+        end
+      rescue Timeout::Error
+        puts "[ERROR] Timeout requesting photo, skipping..."
+        skipped += 1
+        next
+      end
+      unless r.is_a?(Net::HTTPBadRequest) || r.is_a?(Net::HTTPRedirection)
         skipped += 1
         next
       end
@@ -228,14 +242,14 @@ class FlickrPhoto < Photo
       if errors.blank?
         updated += 1
       else
-        puts "[DEBUG] #{errors.values.to_sentence}"
+        puts "[ERROR] #{errors.values.to_sentence}"
         if repaired.frozen?
           destroyed += 1 
-          puts "[DEBUG] destroyed #{repaired}"
+          puts "[ERROR] destroyed #{repaired}"
         end
         if errors[:flickr_authorization_missing]
           invalids += 1
-          puts "[DEBUG] authorization missing #{repaired}"
+          puts "[ERROR] authorization missing #{repaired}"
         end
       end
     end

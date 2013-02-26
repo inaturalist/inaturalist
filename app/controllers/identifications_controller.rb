@@ -42,7 +42,7 @@ class IdentificationsController < ApplicationController
   # POST identification_url
   def create
     @identification = Identification.new(params[:identification])
-    if @identification.taxon.nil? and params[:taxa_search_form_taxon_name]
+    if @identification.taxon.blank? && params[:taxa_search_form_taxon_name]
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
     end
@@ -68,7 +68,8 @@ class IdentificationsController < ApplicationController
           if params[:return_to]
             return redirect_to(params[:return_to])
           end
-          redirect_to @identification.observation and return
+          redirect_to @identification.observation || root_url
+          return
         end
         
         format.json do
