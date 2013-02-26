@@ -15,7 +15,7 @@ EOS
   opt :sis_username, "SIS username", :type => :string, :short => "-u"
   opt :sis_password, "SIS password", :type => :string, :short => "-p"
   opt :working_setid, "working set id", :type => :integer, :short => "-w"
-  opt :project_id, "project id", :type => :integer, :short => "-r"
+  opt :project_id, "project id", :type => :string, :short => "-r"
 end
 
 start = Time.now
@@ -42,7 +42,7 @@ unless OPTS.project_id
   exit(0)
 end
 
-unless project = Project.find_by_id(OPTS.project_id)
+unless project = Project.find(OPTS.project_id)
   puts "Can't find the project"
   exit(0)
 end
@@ -165,7 +165,7 @@ end
 if scheme = TaxonScheme.find_by_title("IUCN Red List of Threatened Species. Version 2012.2")
   SCHEME = scheme
 else
-  SCHEME = Scheme.create(
+  SCHEME = TaxonScheme.create(
     :title => "IUCN Red List of Threatened Species. Version 2012.2",
     :description => "IUCN 2012. IUCN Red List of Threatened Species. Version 2012.2. <www.iucnredlist.org>. Downloaded on 13 November 2012.",
     :source_id => SOURCE.id
@@ -175,7 +175,7 @@ end
 if scheme = TaxonScheme.find_by_title("Draft IUCN/SSC Amphibian Specialist Group, 2011")
   DRAFT_SCHEME = scheme
 else
-  DRAFT_SCHEME = Scheme.create(
+  DRAFT_SCHEME = TaxonScheme.create(
     :title => "Draft IUCN/SSC Amphibian Specialist Group, 2011",
     :description => "Unpublished draft IUCN/SSC Amphibian Specialist Group assessments.",
     :source_id => DRAFT_SOURCE.id
@@ -245,7 +245,7 @@ working_set_species.each do |sp| #Loop through the species in the workingset
     if taxon
       unless taxon_scheme_taxon = TaxonSchemeTaxon.first(:conditions => ["id IN (?)", [SCHEME.id, DRAFT_SCHEME.id]])
         tst = TaxonSchemeTaxon.create(
-          :taxon_scheme_id => :DRAFT_SCHEME.id,
+          :taxon_scheme_id => DRAFT_SCHEME.id,
           :taxon_id => taxon.id,
           :source_identifier => iucn_id
         )
@@ -262,34 +262,32 @@ working_set_species.each do |sp| #Loop through the species in the workingset
       assessment = Assessment.new(
         :taxon_id => taxon.id,
         :project_id => project.id,
-        :user_id => 477
+        :user => project.user
       )
       if assessment.save
         puts "\t\t Created assessment for #{taxon.name}"
       else
         puts "\t\t Failed to save assessment: #{assessment.errors.full_messages.to_sentence}"
-        assessment = nil
+        next
       end
     end
-    if assessment
-      assessment_keepers << assessment.id  
-      value = taxon.ancestors.map{|t| t.name}.join("; ")
-      value = value + "; " + taxon.name
-      if assessment_section = AssessmentSection.first(:conditions => {:assessment_id => assessment.id, :title => 'Taxonomy'}) 
-        assessment_section.update_attributes(:body => value)
+    assessment_keepers << assessment.id  
+    value = taxon.ancestors.map{|t| t.name}.join("; ")
+    value = value + "; " + taxon.name
+    if assessment_section = AssessmentSection.first(:conditions => {:assessment_id => assessment.id, :title => 'Taxonomy'}) 
+      assessment_section.update_attributes(:body => value)
+    else
+      assessment_section = AssessmentSection.new(
+        :assessment_id => assessment.id,
+        :user => project.user,
+        :title => 'Taxonomy',
+        :body => value
+      )
+      if assessment_section.save
+        puts "\t\t Created assessment_section for #{assessment.id}"
       else
-        assessment_section = AssessmentSection.new(
-          :assessment_id => assessment.id,
-          :user_id => 477,
-          :title => 'Taxonomy',
-          :body => value
-        )
-        if assessment_section.save
-          puts "\t\t Created assessment_section for #{assessment.id}"
-        else
-          puts "\t\t Failed to save assessment section: #{assessment_section.errors.full_messages.to_sentence}"
-          assessment_section = nil
-        end
+        puts "\t\t Failed to save assessment section: #{assessment_section.errors.full_messages.to_sentence}"
+        assessment_section = nil
       end
     end
     assessment_section_keepers << assessment_section.id if assessment_section
@@ -315,7 +313,7 @@ working_set_species.each do |sp| #Loop through the species in the workingset
             else
               assessment_section = AssessmentSection.new(
                 :assessment_id => assessment.id,
-                :user_id => 477,
+                :user => project.user,
                 :title => header_hash[key],
                 :body => value
               )
@@ -371,42 +369,25 @@ end
 ## Subscribe project curators and managers to assessment_sections and Peru Amphibian observations
 ##
 puts "Subscribing project managers and curators to relevant resources"
-pus = ProjectUser.all(:include => :user, :conditions => ["project_id = ? AND role IN (?)", project.id, ["manager","curator"]])
-pus.each do |pu|
-  unless subscription = Subscription.first(:conditions => { :user_id => pu.user.id, :resource_type => "Place", :taxon_id => 20978 })
-    if subscription = Subscription.create(
-      :user_id => pu.user.id,
-      :resource_type => "Place",
-      :resource_id => 7513,
-      :taxon_id => 20978
+peru = Place.where(:name => "Peru", :place_type => Place::PLACE_TYPE_CODES['Country']).first
+amphibia = Taxon::ICONIC_TAXA_BY_NAME['Amphibia']
+if peru && amphibia
+  project.project_users.where("role IN ('manager', 'curator')").each do |pu|
+    exists = Subscription.where(
+      :user_id => pu.user.id, 
+      :resource_type => "Place", 
+      :resource_id => peru.id, 
+      :taxon_id => amphibia.id).exists?
+    next if exists
+    subscription = Subscription.new(
+      :user_id => pu.user_id,
+      :resource => peru,
+      :taxon => amphibia
     )
-      puts "\t\t created Peru Amphibs subscription for user #{pu.user.id}"
+    if subscription.save
+      puts "\t\t created Peru Amphibs subscription for user #{pu.user.login}"
     else
-      puts "\t\t Failed to create Peru Amphibs subscription for #{pu.user.id}: #{subscription.errors.full_messages.to_sentence}"
-    end
-  end
-end
-AssessmentSection.all(
-  :joins => [:assessment],
-  :conditions => ['assessments.project_id = ?', project.id]
-).each do |as|
-  pus.each do |pu|
-    unless subscription = Subscription.first(
-      :conditions => {
-        :user_id => pu.user.id,
-        :resource_type => "AssessmentSection",
-        :resource_id => as.id
-      }
-    )
-      if subscription = Subscription.create(
-        :user_id => pu.user.id,
-        :resource_type => "AssessmentSection",
-        :resource_id => as.id
-      )
-        puts "\t\t created subscription for user #{pu.user.id} and assessment section #{as.id}"
-      else
-        puts "\t\t Failed to create subscription for #{pu.user.id} and assessment section #{as.id}: #{subscription.errors.full_messages.to_sentence}"
-      end
+      puts "\t\t Failed to create Peru Amphibs subscription for #{pu.user.login}: #{subscription.errors.full_messages.to_sentence}"
     end
   end
 end
