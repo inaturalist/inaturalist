@@ -25,7 +25,7 @@ class EolService
   end
 
   def method_missing(method, *args)
-    request(method, args) 
+    request(method, *args) 
   end
 
   def page(id, params = {})
@@ -42,8 +42,8 @@ class EolService
   end
 
   def get_uri(method, *args)
-    arg = args.first unless args.first.is_a?(Enumerable)
-    params = args.last || {}
+    arg = args.first unless args.first.is_a?(Hash)
+    params = args.detect{|a| a.is_a?(Hash)} || {}
     uri = "http://eol.org/api/#{method}/#{SERVICE_VERSION}"
     uri += "/#{arg}" if arg
     uri += ".xml"

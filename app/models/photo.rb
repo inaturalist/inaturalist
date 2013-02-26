@@ -40,8 +40,8 @@ class Photo < ActiveRecord::Base
     8 => {:code => "GFDL",                    :short => "GFDL",         :name => "GNU Free Documentation License", :url => "http://www.gnu.org/copyleft/fdl.html"}
   }
   LICENSE_NUMBERS = LICENSE_INFO.keys
-  LICENSE_INFO.each do |code, info|
-    const_set info[:code].upcase.gsub(/\-/, '_'), code
+  LICENSE_INFO.each do |number, info|
+    const_set info[:code].upcase.gsub(/\-/, '_'), number
   end
 
   SQUARE = 75

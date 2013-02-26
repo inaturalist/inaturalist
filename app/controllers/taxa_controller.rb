@@ -653,7 +653,7 @@ class TaxaController < ApplicationController
         :conditions => "photos.id IS NOT NULL")
     else
       Observation.search(params[:q], :page => params[:page], 
-      :per_page => per_page, :with => {:has_photos => true, :taxon_id => @taxon.id})
+        :per_page => per_page, :with => {:has_photos => true})
     end
     @photos = observations.map(&:photos).flatten
     render :partial => 'photos/photo_list_form', :locals => {
@@ -1249,7 +1249,7 @@ class TaxaController < ApplicationController
           photos << fp 
         else
           pp = photo_class.get_api_response(photo_id)
-          photos << photo_class.new_from_api_response(pp)
+          photos << photo_class.new_from_api_response(pp) if pp
         end
       end
     end

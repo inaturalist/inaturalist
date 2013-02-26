@@ -48,6 +48,52 @@ $(document).ready(function(){
   if (TAXON.auto_description) {
     getDescription('/taxa/'+TAXON.id+'/description')
   }
+
+  // Set up photo modal dialog
+  $('#edit_photos_dialog').dialog({
+    modal: true, 
+    title: 'Choose photos for this taxon',
+    autoOpen: false,
+    width: 700,
+    open: function( event, ui ) {
+      $('#edit_photos_dialog').loadingShades('Loading...', {cssClass: 'smallloading'})
+      $('#edit_photos_dialog').load('/taxa/'+TAXON.id+'/edit_photos', function() {
+        var photoSelectorOptions = {
+          defaultQuery: TAXON.name,
+          urlParams: {
+            authenticity_token: $('meta[name=csrf-token]').attr('content'),
+            limit: 14
+          },
+          afterQueryPhotos: function(q, wrapper, options) {
+            $(wrapper).imagesLoaded(function() {
+              $('#edit_photos_dialog').centerDialog()
+            })
+          }
+        }
+        $('.tabs', this).tabs({
+          show: function(event, ui) {
+            if ($(ui.panel).attr('id') == 'flickr_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(photoSelectorOptions)
+            } else if ($(ui.panel).attr('id') == 'inat_obs_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(
+                $.extend(true, {}, photoSelectorOptions, {baseURL: '/taxa/'+TAXON.id+'/observation_photos'})
+              )
+            } else if ($(ui.panel).attr('id') == 'eol_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(
+                $.extend(true, {}, photoSelectorOptions, {baseURL: '/eol/photo_fields'})
+              )
+            } else if ($(ui.panel).attr('id') == 'wikimedia_taxon_photos' && !$(ui.panel).hasClass('loaded')) {
+              $('.taxon_photos', ui.panel).photoSelector(
+                $.extend(true, {}, photoSelectorOptions, {taxon_id: TAXON.id, baseURL: '/wikimedia_commons/photo_fields'})
+              )
+            }
+            $(ui.panel).addClass('loaded')
+            $('#edit_photos_dialog').centerDialog()
+          }
+        })
+      })
+    }
+  })
 })
 
 function getDescription(url) {

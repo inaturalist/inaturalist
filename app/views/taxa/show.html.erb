@@ -59,71 +59,7 @@
         });
       <% end %>
       
-      // Set up photo modal dialog
       <% if logged_in? %>
-        $('#edit_photos_dialog').jqm({
-          closeClass: 'close', 
-          ajax: '<%= taxon_path(@taxon) %>/edit_photos',
-          method: 'get',
-          onShow: function(h) {
-            h.w.append($('<div class="loading description">Loading...</div>'));
-            h.w.fadeIn(500);
-            iNaturalist.modalCenter(h.w)
-          },
-          onHide: function(h) {
-            h.w.fadeOut(500,function(){ h.o.remove(); })
-          },
-          onLoad: function(h) {
-            iNaturalist.modalCenter(h.w)
-            $(h.w).find('#flickr_taxon_photos .taxon_photos').photoSelector({
-              defaultQuery: '<%= @taxon.name %>',
-              urlParams: {
-                authenticity_token: $('meta[name=csrf-token]').attr('content'),
-                limit: 15
-              },
-              afterQueryPhotos: function() {
-                iNaturalist.modalCenter(h.w)
-              }
-            });
-            
-            $(h.w).find('#inat_obs_taxon_photos .taxon_photos').photoSelector({
-              baseURL: '<%= taxon_observation_photos_url(@taxon) %>',
-              urlParams: {
-                authenticity_token: $('meta[name=csrf-token]').attr('content'),
-                limit: 15
-              },
-              afterQueryPhotos: function() {
-                iNaturalist.modalCenter(h.w)
-              }
-            });
-
-            $(h.w).find('#eol_taxon_photos .taxon_photos').photoSelector({
-              baseURL: '<%= eol_photo_fields_url %>',
-              urlParams: {
-                taxon_id: '<%= @taxon.id %>',
-                authenticity_token: $('meta[name=csrf-token]').attr('content'),
-                limit: 15
-              },
-              afterQueryPhotos: function() {
-                iNaturalist.modalCenter(h.w)
-              }
-            });
-            
-            $(h.w).find('#wikimedia_taxon_photos .taxon_photos').photoSelector({
-              baseURL: '<%= wikimedia_commons_photo_fields_url %>',
-              urlParams: {
-                taxon_id: '<%= @taxon.id %>',
-                authenticity_token: $('meta[name=csrf-token]').attr('content'),
-                limit: 15
-              },
-              afterQueryPhotos: function() {
-                iNaturalist.modalCenter(h.w)
-              }
-            });
-            $(h.w).find('.tabs').tabs()
-          }
-        });
-      
         <% if @taxon.species_or_lower? -%>
           $('#add_to_place_dialog').jqm({
             closeClass: 'close',
@@ -546,8 +482,8 @@
     </div>
     
     <% if logged_in? %>
-      <%= link_to_function("Edit photos", "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
-      <div id="edit_photos_dialog" class="modalbox dialog" style="display: none"></div>
+      <%= link_to_function("Edit photos", "$('#edit_photos_dialog').dialog('open')", :class => 'readmore') %>
+      <div id="edit_photos_dialog" class="dialog" style="display: none"></div>
     <% end %>
   </div>
 
