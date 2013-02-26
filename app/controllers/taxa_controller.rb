@@ -410,6 +410,7 @@ class TaxaController < ApplicationController
     
     do_external_lookups
 
+    @taxa.compact! unless @taxa.nil?
     unless @taxa.blank?
       # if there's an exact match among the hits, make sure it's first
       if exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
