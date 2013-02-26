@@ -169,7 +169,7 @@ class TaxonChangesController < ApplicationController
       end
       @records = [@record]
     elsif params[:record_ids]
-      @records = current_user.send(@reflection.name).where("id IN (?)", params[:record_ids])
+      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids])
       if @records.blank?
         flash[:error] = "Couldn't find any of those records"
         redirect_back_or_default(@taxon_change)
