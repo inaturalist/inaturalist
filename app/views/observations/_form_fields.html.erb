@@ -33,7 +33,7 @@
         <%= o.error_message_on(:observed_on) %>
         <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
         <div class="small description">
-          e.g. "<%= Date.today.to_s(:long) %>" or "yesterday"
+          e.g. "<%= Time.now.to_s(:db) %>", "yesterday at 4pm"
         </div>
       </div>
       

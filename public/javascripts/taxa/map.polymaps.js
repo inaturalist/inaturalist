@@ -373,8 +373,7 @@ function loadLayers() {
       if ($(this).attr('href') == '#') {
         return
       }
-      parent.location = $(this).attr('href')
-      return false;
+      $(this).attr('target', '_blank')
     })
   }
 }

@@ -4,7 +4,7 @@ class ProjectUser < ActiveRecord::Base
   belongs_to :user
   auto_subscribes :user, :to => :project
   
-  after_save :check_role, :remove_updates
+  after_save :check_role, :remove_updates, :subscribe_to_assessment_sections_later
   after_destroy :remove_updates
   validates_uniqueness_of :user_id, :scope => :project_id, :message => "already a member of this project"
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
@@ -28,6 +28,7 @@ class ProjectUser < ActiveRecord::Base
   def to_s
     "<ProjectUser #{id} project: #{project_id} user: #{user_id} role: #{role}"
   end
+
   def project_observations
     project.project_observations.includes(:observation).where("observations.user_id = ?", user_id).scoped
   end
@@ -40,6 +41,18 @@ class ProjectUser < ActiveRecord::Base
       :resource_type => "Project", 
       :resource_id => project_id).destroy_all
     true
+  end
+
+  def subscribe_to_assessment_sections_later
+    return true unless role_changed? && !role.blank?
+    delay(:priority => USER_INTEGRITY_PRIORITY).subscribe_to_assessment_sections
+    true
+  end
+
+  def subscribe_to_assessment_sections
+    AssessmentSection.includes(:assessment).where("assessments.project_id = ?", project).find_each do |as|
+      Subscription.create(:resource => as, :user => user)
+    end
   end
   
   def has_time_zone?

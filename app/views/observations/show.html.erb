@@ -257,16 +257,14 @@
   <% end %>
   
   <div class="clear column span-16">
-    <% unless @observation.tags.blank? %>
+    <% unless @observation.cached_tag_list.blank? && @observation.taggings.blank? %>
       <div id="tags" class="description">
         <label><%=t :tags %>:</label>
-        <ul>
-          <% @observation.tags.each do |tag| %>
-            <li>
-              <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
-            </li>
-          <% end %>
-        </ul>
+        <% if @observation.cached_tag_list -%>
+          <%=raw @observation.cached_tag_list.split(',').map(&:strip).map {|t| link_to(t, observations_path(:q => t, :search_on => "tags"), :rel => "nofollow") }.join(', ') %>
+        <% else %>
+          <%=raw @observation.taggings.map {|t| link_to(t.tag.name, observations_path(:q => t.tag.name, :search_on => "tags"), :rel => "nofollow") }.join(', ') %>
+        <% end -%>
       </div>
     <% end -%>
 

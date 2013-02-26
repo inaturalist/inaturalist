@@ -1,6 +1,23 @@
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe Flag, "creation" do
+  it "should not allow flags that are too long" do
+    f = Flag.make(
+      :flag => <<-EOT
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      EOT
+    )
+    f.should_not be_valid
+    f.errors[:flag].should_not be_blank
+  end
+end
+
 describe Flag, "update" do
   it "should generate an update for the user" do
     t = Taxon.make!

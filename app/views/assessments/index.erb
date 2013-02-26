@@ -23,7 +23,7 @@
       </div>
     <% else %>
       <% for project_assessment in @uncompleted_assessments %>
-        <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment} %>
+        <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment, :num_sections => 7} %>
       <% end %>
     <% end %>
   <% end %>
@@ -38,7 +38,7 @@
     <% else %>
       <div class="mini observations">
         <% for project_assessment in @completed_assessments %>
-          <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment} %>
+          <%= render :partial => 'projects/project_assessment', :locals => {:assessment => project_assessment, :num_sections => 7} %>
         <% end %>
         <%= will_paginate @completed_assessments %>
       </div>

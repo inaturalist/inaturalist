@@ -1,5 +1,34 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+describe ProjectUser, "creation" do
+  it "should subscribe user to assessment sections if curator" do
+    as = AssessmentSection.make!
+    p = as.assessment.project
+    pu = without_delay do
+      ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)
+    end
+    pu.user.subscriptions.where(:resource_type => "AssessmentSection", :resource_id => as).should_not be_blank
+  end
+
+  it "should subscribe user to assessment sections if manager" do
+    as = AssessmentSection.make!
+    p = as.assessment.project
+    pu = without_delay do
+      ProjectUser.make!(:project => p, :role => ProjectUser::MANAGER)
+    end
+    pu.user.subscriptions.where(:resource_type => "AssessmentSection", :resource_id => as).should_not be_blank
+  end
+
+  it "should not subscribe user to assessment sections if role blank" do
+    as = AssessmentSection.make!
+    p = as.assessment.project
+    pu = without_delay do
+      ProjectUser.make!(:project => p)
+    end
+    pu.user.subscriptions.where(:resource_type => "AssessmentSection", :resource_id => as).should be_blank
+  end
+end
+
 describe ProjectUser do
   describe "update_taxa_counter_cache" do
     it "should set taxa_count to the number of observed species" do

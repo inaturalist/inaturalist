@@ -61,7 +61,11 @@ class CommentsController < ApplicationController
       format.html { respond_to_create }
       format.mobile { respond_to_create }
       format.json do
-        @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        if params[:partial] == "activity_item"
+          @comment.html = view_context.render_in_format(:html, :partial => 'shared/activity_item', :object => @comment)
+        else
+          @comment.html = view_context.render_in_format(:html, :partial => 'comments/comment')
+        end
         render :json => @comment.to_json(:methods => [:html])
       end
     end

@@ -24,6 +24,7 @@ class AssessmentSection < ActiveRecord::Base
 
 	def subscribe_curators_to_section
 	  assessment.project.project_users.curators.each { |u| Subscription.create(:user => u.user, :resource => self) }
+    true
 	end
 
   def display_title
