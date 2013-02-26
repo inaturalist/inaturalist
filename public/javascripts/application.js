@@ -334,6 +334,7 @@ $(document).ready(function() {
     wrapper.find('.comments').show()
     wrapper.find('.noresults').hide()
     wrapper.find('.comments').append(json.html)
+    $('.item .item_content', wrapper).width(function() { return $(this).parent().width() - 58 })
   }).bind('ajax:error', function(xhr, status, error) {
     alert(error)
   })

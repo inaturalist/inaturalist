@@ -70,7 +70,7 @@ textarea.assessment-section-field-body {
   width: 610px;
 }
 .assessment-section-comments {margin-left: 20px; padding-left: 20px; border-left: 2px solid #eee;}
-#new_comment #comment_body {width: 95%;}
+.commentform textarea {width: 95%; height: 100px;}
 .assessment-section {margin-bottom: 20px;}
 .nophoto {padding: 30px; text-align: center;}
 .medium.photo {max-width: 310px;}
