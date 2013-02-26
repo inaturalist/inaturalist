@@ -130,7 +130,6 @@ class Taxon < ActiveRecord::Base
     'division'        => 'phylum',
     'sub-class'       => 'subclass',
     'super-order'     => 'superorder',
-    'infraorder'      => 'suborder',
     'sub-order'       => 'suborder',
     'super-family'    => 'superfamily',
     'sub-family'      => 'subfamily',
