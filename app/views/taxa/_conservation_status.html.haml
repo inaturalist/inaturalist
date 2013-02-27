@@ -10,7 +10,7 @@
     - if !cs.place && !hide_place
       globally
     = cs.status_name
-    - if cs.status_name != cs.status
+    - if cs.status_name !~ /#{cs.status}/
       = surround '(',')' do
         = cs.status
   - if cs.place && !hide_place

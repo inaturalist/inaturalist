@@ -45,7 +45,11 @@ class ConservationStatus < ActiveRecord::Base
       when 'sc' then 'special concern'
       when 'c' then 'candidate'
       else
-        status
+        if description.to_s.size < 50
+          "#{description} (#{status})"
+        else
+          status
+        end
       end
     end
   end
