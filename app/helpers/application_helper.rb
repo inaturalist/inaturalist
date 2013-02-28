@@ -470,7 +470,8 @@ module ApplicationHelper
       count = counts[month.to_s] || 0
       tag_options = {:class => "bar month_#{month}", :style => "height: #{(count.to_f / max * 100).to_i}%"}
       if options[:link]
-        tag_options[:href] = url_for(request.params.merge(:month => month))
+        url_params = options[:link].is_a?(Hash) ? options[:link] : request.params
+        tag_options[:href] = url_for(url_params.merge(:month => month))
       end
       html += content_tag(tag, tag_options) do
         content_tag(:span, count, :class => "count") +
@@ -809,6 +810,26 @@ module ApplicationHelper
       lis += content_tag(:li, citation.html_safe, :class => "reference", :id => "ref#{i+1}")
     end
     content_tag :ol, lis.html_safe, :class => "references"
+  end
+
+  def establishment_blob(listed_taxon, options = {})
+    icon_class = listed_taxon.introduced? ? 'ui-icon-notice' : 'ui-icon-star'
+    tip_class = listed_taxon.introduced? ? 'ui-tooltip-error' : 'ui-tooltip-success'
+    tip = "<strong>#{listed_taxon.establishment_means.capitalize}"
+    tip += " in #{listed_taxon.place.display_name}" if options[:show_place_name] && listed_taxon.place
+    tip += ":</strong> #{ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means]}"
+    blob_attrs = {
+      :class => "blob #{listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore} #{options[:class]}", 
+      "data-tip" => tip, 
+      "data-tip-position-at" => "bottom center", 
+      "data-tip-style-classes" => "#{tip_class} ui-tooltip-shadow", 
+      :title => listed_taxon.establishment_means.capitalize
+    }
+    content_tag :div, blob_attrs do
+      content_tag :span, :class => "inlineblock ui-icon #{icon_class}" do
+        listed_taxon.introduced? ? 'I' : listed_taxon.establishment_means.chars.to_a[0].upcase
+      end
+    end
   end
   
 end

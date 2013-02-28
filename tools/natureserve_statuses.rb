@@ -70,6 +70,8 @@ rescue Timeout::Error => e
 rescue URI::InvalidURIError => e
   puts "  Bad URI (#{genus_url})"
   nil
+rescue OpenURI::HTTPError => e
+  puts "  Error getting #{url}: #{e}"
 end
 
 def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)

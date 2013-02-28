@@ -432,6 +432,11 @@ function autoTip() {
     tipOptions.position = tipOptions.position || {}
     tipOptions.position.at = $(this).attr('data-tip-position-at')
   }
+
+  if ($(this).attr('data-tip-hide-delay')) {
+    tipOptions.hide = tipOptions.hide || {}
+    tipOptions.hide.delay = $(this).attr('data-tip-hide-delay')
+  }
   
   $(this).qtip(tipOptions)
 }
@@ -682,7 +687,11 @@ $.fn.observationsMap = function() {
         mapDiv = $('<div></div>')
     mapDiv.addClass('stacked map')
     mapDiv.width(w)
-    mapDiv.height(h)
+    if ($(this).data('map-height') == 'this') {
+      mapDiv.height($(this).height())
+    } else {
+      mapDiv.height(h)
+    }
     $(this).prepend(mapDiv)
     var map = iNaturalist.Map.createMap({div: mapDiv.get(0)})
     $('.observation', this).each(function() {
@@ -707,7 +716,7 @@ $.fn.observationControls = function(options) {
   var options = options || {}
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
-    var gridButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span></a>').append(I18n.t('grid'))
+    var gridButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>'+I18n.t('grid')+'</label></a>')
     gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
     gridButton.click(function() {
       $(observations).observationsGrid($(this).data('gridSize'))
@@ -716,7 +725,7 @@ $.fn.observationControls = function(options) {
       return false
     })
 
-    var listButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span></a>').append(I18n.t('list'))
+    var listButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>'+I18n.t('list')+'</label></a>')
     listButton.click(function() {
       $(observations).observationsList()
       $(this).siblings().addClass('disabled')
@@ -724,7 +733,7 @@ $.fn.observationControls = function(options) {
       return false
     })
 
-    var mapButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span></a>').append(I18n.t('map'))
+    var mapButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>'+I18n.t('map')+'</label></a>')
     mapButton.click(function() {
       $(observations).observationsMap()
       $(this).siblings().addClass('disabled')

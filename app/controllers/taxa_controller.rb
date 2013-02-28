@@ -134,9 +134,9 @@ class TaxaController < ApplicationController
         end
         @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
-        @wikipedia = WikipediaService.new
-        @amphibiaweb = amphibiaweb_description?
-        @try_amphibiaweb = try_amphibiaweb?
+        if CONFIG.place_id
+          @listed_taxon = @taxon.listed_taxa.where(:place_id => CONFIG.place_id).order("establishment_means").first
+        end
         
         @children = @taxon.children.all(
           :include => :taxon_names, 
@@ -190,7 +190,7 @@ class TaxaController < ApplicationController
         @taxon_links.uniq!{|tl| tl.url}
         @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
 
-        @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
+        @observations = Observation.of(@taxon).recently_added.limit(12)
         
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
