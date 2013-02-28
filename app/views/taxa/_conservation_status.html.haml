@@ -9,7 +9,7 @@
       =t :conservation_status
   %strong.csstatus
     - if !cs.place && !hide_place
-      globally
+      =t :globally
     = cs.status_name.capitalize
     - if cs.status_name !~ /#{cs.status}/
       = surround '(',')' do
@@ -22,7 +22,7 @@
       = succeed ':' do
         =t :source
       - if cs.authority.blank?
-        iNaturalist
+        = SITE_NAME
       - elsif !url.blank?
         = link_to cs.authority, url
       - else

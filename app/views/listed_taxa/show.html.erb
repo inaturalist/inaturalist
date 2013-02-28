@@ -4,7 +4,7 @@
     <%= link_to @taxon do %>
       <%= render :partial => "shared/taxon" %>
     <% end %>
-    <%=t :on %>
+    <%=raw t(:on).downcase %>
     <%= link_to truncate(@list.title, :length => 85), @list %>
   <% end -%>
   <%= strip_tags(@title).html_safe %>

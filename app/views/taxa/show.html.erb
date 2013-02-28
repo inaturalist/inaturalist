@@ -258,11 +258,11 @@
             <div class="monthstats monthstatstip" style="display:none">
               <div class="ui description">
                 <strong><%= @listed_taxon.observations_count %></strong>
-                <%= @listed_taxon.observations_count == 1 ? 'observation' : 'observations' -%>
-                in 
+                <%=raw t(@listed_taxon.observations_count == 1 ? 'observation' : 'observations').downcase -%>
+                <%=t :in %>
                 <%= @listed_taxon.place.name %>,
                 <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
-                research grade
+                <%=raw t(:research_grade).downcase %>
               </div>
               <%- obs_url_params = {
                 :controller => "observations", 
@@ -282,8 +282,8 @@
             </div>
           <% end -%>
           <%= establishment_blob(@listed_taxon, :class => "inlineblock") if @listed_taxon.endemic? || @listed_taxon.invasive? %>
-          <strong><%= (@listed_taxon.establishment_means || "present").capitalize %></strong>
-          <%= @listed_taxon.native? ? 'to' : 'in' %>
+          <strong><%=raw t(@listed_taxon.establishment_means || "present").capitalize %></strong>
+          <%=t @listed_taxon.native? ? 'to' : 'in' %>
           <%= link_to @listed_taxon.place.name, @place %>
           <%= link_to "View details", @listed_taxon, :class => "small" %>
         </div>
