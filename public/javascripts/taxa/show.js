@@ -1,5 +1,16 @@
 $(document).ready(function(){
   $('#tabs').tabs()
+  $('.observationcontrols').observationControls({
+    div: $('#taxon_observations .observations')
+  })
+  $('#photos').imagesLoaded(function() {
+    
+    var h = $(this).height() - 108
+    if (h > $('#observations').height()) {
+      $('#observations').css({'max-height': 'none'})
+      $('#observations').height(h)
+    }
+  })
   
   $('#taxon_range_map').taxonMap()
   window.map = $('#taxon_range_map').data('taxonMap')

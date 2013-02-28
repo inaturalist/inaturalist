@@ -416,7 +416,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def native?
-    NATIVE_EQIVALENTS.include?(establishment_means)
+    NATIVE_EQUIVALENTS.include?(establishment_means)
   end
   
   def endemic?

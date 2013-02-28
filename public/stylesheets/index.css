@@ -141,7 +141,7 @@ form .field{margin-bottom:10px;}
 form .field .description { margin-bottom: 0.5em;}
 .label .fieldWithErrors{display:inline;}
 .stacked{margin-bottom:10px;}
-.unstacked{margin-bottom:0px;}
+.unstacked, .column.unstacked{margin-bottom:0px;}
 .lined {padding-bottom: 10px; margin-bottom:10px; border-bottom: 1px solid #eee;}
 .fieldWithErrors {
   padding: 2px;
@@ -996,7 +996,9 @@ form.inline .label {
 .box.conservation_status.near_threatened a,
 .box.conservation_status.vulnerable a,
 .box.conservation_status.endangered a,
-.box.conservation_status.critically_endangered a { color: #9fc3fe; } 
+.box.conservation_status.critically_endangered a,
+.box.introduced a,
+.box.endemic a { color: #ccdfff; } 
 
 .blob.conservation_status.endangered, 
 .blob.conservation_status.critically_endangered,
@@ -1338,8 +1340,8 @@ ul.plain {list-style:none;margin:0;padding:0}
   top: 5px;
   right: 5px;
 }
-.upperright .blob,
-.listed_taxon .upperright .blob {
+.blob,
+.listed_taxon .blob {
   padding: 2px 5px;
   color: white;
   opacity: 0.7;
@@ -1351,10 +1353,18 @@ ul.plain {list-style:none;margin:0;padding:0}
 }
 .identification:hover .upperright .blob,
 .listed_taxon:hover .upperright .blob { opacity: 1; box-shadow: #222 0 1px 2px; }
-.upperright .blob.endemic {background-color:#84A92F;color:#B7EC3F;}
-.upperright .blob.introduced {background-color:DeepPink;color:pink;}
-.upperright .ui-icon {vertical-align:middle;width:12px;height:12px;top:0;}
-.upperright .ui-icon-star { background-position: -226px -114px; }
-.upperright .ui-icon-notice { background-position: -34px -146px; }
+.endemic, .native {background-color:#84A92F;color:#eaffac;}
+.introduced {background-color:DeepPink;color:#ffd7e8;}
+.blob .ui-icon {vertical-align:middle;width:12px;height:12px;top:0;}
+.blob .ui-icon-star { background-position: -226px -114px; }
+.blob .ui-icon-notice { background-position: -34px -146px; }
+.blob .ui-icon {background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png);}
 .upperright .blob.conservation_status {padding: 3px 5px;}
-.upperright .ui-icon {background-image: url(/images/jquery-ui/ui-icons_222222_256x240.png);}
+
+.ministats.monthstats {border-radius: 10px; padding: 3px 5px;}
+.ministats.monthstats:hover {background-color: #111;}
+.ministats.monthstats .month, 
+.ministats.monthstats .count { display: none;}
+.ministats .monthgraph .bar { background-color: white; min-height: 1px; width: 2px;}
+.ministats .monthgraph { margin: 0; height: 9px;}
+.ministats .monthgraph .month_0 { display:none;}

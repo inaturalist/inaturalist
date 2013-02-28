@@ -6,22 +6,7 @@
   show_place_name ||= false
 .upperright
   - if listed_taxon && (listed_taxon.endemic? || listed_taxon.introduced?)
-    :ruby
-      icon_class = listed_taxon.introduced? ? 'ui-icon-notice' : 'ui-icon-star'
-      tip_class = listed_taxon.introduced? ? 'ui-tooltip-error' : 'ui-tooltip-success'
-      tip = "<strong>#{listed_taxon.establishment_means.capitalize}"
-      tip += " in #{listed_taxon.place.display_name}" if show_place_name && listed_taxon.place
-      tip += ":</strong> #{ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means]}"
-      blob_attrs = {
-        :class => "blob #{listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore}", 
-        "data-tip" => tip, 
-        "data-tip-position-at" => "bottom center", 
-        "data-tip-style-classes" => "#{tip_class} ui-tooltip-shadow", 
-        :title => listed_taxon.establishment_means.capitalize
-      }
-    %div{blob_attrs}
-      %span{:class => "inlineblock ui-icon #{icon_class}"}
-        = listed_taxon.introduced? ? 'I' : listed_taxon.establishment_means.chars.to_a[0].upcase
+    = establishment_blob(listed_taxon, :show_place_name => show_place_name)
   - if cs = conservation_status
     :ruby
       tip = "Conservation status: <strong>#{cs.status_name} #{"(#{cs.status})" if cs.status_name != cs.status}</strong>"

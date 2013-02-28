@@ -9,14 +9,14 @@
   %strong.csstatus
     - if !cs.place && !hide_place
       globally
-    = cs.status_name
+    = cs.status_name.capitalize
     - if cs.status_name !~ /#{cs.status}/
       = surround '(',')' do
         = cs.status
   - if cs.place && !hide_place
     in
     \#{link_to cs.place.display_name, cs.place}
-  %span.small
+  %nobr.small
     = surround '(', ')' do
       Source:
       - if cs.authority.blank?

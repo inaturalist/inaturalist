@@ -235,11 +235,62 @@
   </div>
 <% end %>
 
-<% if @conservation_status %>
-  <div class="column span-24">
-    <%= render 'conservation_status' %>
+<% if @conservation_status || @listed_taxon -%>
+  <div class="column span-24 unstacked">
+    <% if @conservation_status %>
+      <div class="column span-<%= @listed_taxon ? 12 : 24 %>">
+        <%= render 'conservation_status', :hide_prefix => true %>
+      </div>
+    <% end %>
+
+    <% if @listed_taxon -%>
+      <%-
+        css_class = "clear box"
+        css_class += " #{@listed_taxon.establishment_means.parameterize.underscore}" unless @listed_taxon.establishment_means.blank?
+        css_class += @listed_taxon.introduced? ? ' introduced' : ' native'
+      -%>
+      <div class="column span-<%= @conservation_status ? '12 last' : 24 %>">
+        <div id="listed_taxon_blurb" class="<%= css_class %>">
+          <% if (stats = @listed_taxon.observation_month_stats) && !stats.blank? -%>
+            <div class="ministats monthstats right" data-tip="#listed_taxon_blurb .monthstatstip" data-tip-position-at="bottom center" data-tip-hide-delay="300">
+              <%= month_graph(stats) %>
+            </div>
+            <div class="monthstats monthstatstip" style="display:none">
+              <div class="ui description">
+                <strong><%= @listed_taxon.observations_count %></strong>
+                <%= @listed_taxon.observations_count == 1 ? 'observation' : 'observations' -%>
+                in 
+                <%= @listed_taxon.place.name %>,
+                <strong class="count"><%= @listed_taxon.confirmed_observations_count %></strong>
+                research grade
+              </div>
+              <%- obs_url_params = {
+                :controller => "observations", 
+                :action => "index", 
+                :place_id => @listed_taxon.place_id, 
+                :taxon_id => @taxon.id}
+              -%>
+              <div class="observedgraph" style="margin-bottom:40px">
+                <%= month_graph @listed_taxon.observation_month_stats, 
+                  :link => obs_url_params %>
+              </div>
+              <div class="confirmedgraph">
+                <%= month_graph @listed_taxon.confirmed_observation_month_stats, 
+                  :link => obs_url_params.merge(:quality_grade => 'research'),
+                  :max => @listed_taxon.observation_month_stats.values.max %>
+              </div>
+            </div>
+          <% end -%>
+          <%= establishment_blob(@listed_taxon, :class => "inlineblock") if @listed_taxon.endemic? || @listed_taxon.invasive? %>
+          <strong><%= (@listed_taxon.establishment_means || "present").capitalize %></strong>
+          <%= @listed_taxon.native? ? 'to' : 'in' %>
+          <%= link_to @listed_taxon.place.name, @place %>
+          <%= link_to "View details", @listed_taxon, :class => "small" %>
+        </div>
+      </div>
+    <% end -%>
   </div>
-<% end %>
+<% end -%>
 
 <div class="column span-4 aka">
   <h3>
@@ -521,23 +572,27 @@
     </div>
     
     
-    <div id="taxon_observations">
-      <h3>Recent Observations</h3>
-        <% if @observations.blank? -%>
-          <div id="noobservations" class="clear">
-            <div class="readable description">
-              No one's observed
-              <%= render(:partial => 'shared/taxon', :locals => {
-                :taxon => @taxon,
-                :include_article => true
-              }) -%>.
-            </div>
+    <div id="taxon_observations" class="stacked">      
+      <% if @observations.blank? -%>
+        <h3>Recent Observations</h3>
+        <div id="noobservations" class="clear">
+          <div class="readable description">
+            No one's observed
+            <%= render(:partial => 'shared/taxon', :locals => {
+              :taxon => @taxon,
+              :include_article => true
+            }) -%>.
           </div>
-        <% else %>
-          <div id="observations" class="table observations">
-            <%= render :partial => "observations/cached_component", :collection => @observations %>
-          </div>
-        <% end -%>
+        </div>
+      <% else %>
+        <h3>
+          <div class="compact observationcontrols right" style="margin-top: 6px;"></div>
+          Recent Observations
+        </h3>
+        <div id="observations" class="medium observations stacked" data-map-height="this">
+          <%= compact render(:partial => "observations/cached_component", :collection => @observations) %>
+        </div>
+      <% end -%>
       
       <% if logged_in? -%>
         <%= link_to "View all observations", observations_path(:taxon_id => @taxon.id), :class => 'readmore', :rel => "nofollow" %>

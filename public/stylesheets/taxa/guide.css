@@ -48,14 +48,7 @@
 .listed_taxon .upperleft .ui-icon-flag { background-position: -17px -115px; }
 .listed_taxon .confirmobs {background-color:#FFEE91;color:#60542B;}
 .listed_taxon .upperleft span { top: 1px; position: relative;}
-
-
-.listed_taxon .monthstats {position: absolute; left: 5px; bottom: 5px;  border-radius: 10px; padding: 3px 5px;}
-.listed_taxon:hover .monthstats {background-color: #111;}
-.listed_taxon .monthstats .month, .listed_taxon .monthstats .count { display: none;}
-.listed_taxon .monthgraph .bar { background-color: white; min-height: 1px; width: 2px;}
-.listed_taxon .monthgraph { margin: 0; height: 9px;}
-.listed_taxon .monthgraph .month_0 { display:none;}
+.ministats.monthstats {position: absolute; left: 5px; bottom: 5px; }
 .taxa.grid .taxon{vertical-align:baseline;}
 .listed_taxon{vertical-align:top;}
 .unlabeled.taxa.grid .info,

@@ -370,9 +370,7 @@
         <%= render :partial => 'identifications/identification',
                    :locals => { :identification => @owners_identification } %>
         <% if @listed_taxon || @conservation_status -%>
-          <div class="upperright">
-            <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
-          </div>
+          <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
         <% end -%>
       </div>
     <% end %>

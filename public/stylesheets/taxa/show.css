@@ -38,25 +38,6 @@
   padding: 0.25em;
 }
 
-#taxon_observations {
-  margin-bottom: 1em;
-}
-
-#taxon_observations .observations {
-  margin-bottom: 0.5em;
-}
-
-#taxon_observations .observation .icon,
-#taxon_observations .observation .place,
-#taxon_observations .observation .actions {
-  display: none;
-  
-}
-
-#taxon_observations h3 {
-  margin-bottom: 0.2em;
-}
-
 h3 .description {
   font-size: 80%;
 }
@@ -418,3 +399,14 @@ h3 .externallink { font-size: 70%; }
 #conservation_statuses .conservation_status {text-align:left;}
 #conservation_statuses .ui {margin-left: 20px;}
 #conservation_statuses ul dl {margin-bottom: 0px;margin-left: 1.5em;}
+#listed_taxon_blurb { text-align: center; padding: 5px 10px; margin-bottom: 0; }
+.box .blob {margin:0;}
+.box .blob .ui-icon {margin:-2px 0 0 0;}
+
+
+.iconic_taxon_sprite { vertical-align: middle; }    
+.observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
+  width: 133px;
+  height: 133px;
+}
+#observations {max-height: 251px; overflow: scroll;}

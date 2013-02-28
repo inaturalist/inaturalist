@@ -4,7 +4,7 @@
 -%>
 <%- month_stats = capture do %>
   <% if (stats = listed_taxon.observation_month_stats) && !stats.blank? -%>
-    <div class="monthstats">
+    <div class="ministats monthstats">
       <%= month_graph stats %>
     </div>
   <% end -%>
