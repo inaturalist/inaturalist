@@ -8,8 +8,8 @@
     Conservation status:
   %strong.csstatus
     - if !cs.place && !hide_place
-      globally
-    = cs.status_name.capitalize
+      Globally
+    = cs.status_name.titleize
     - if cs.status_name !~ /#{cs.status}/
       = surround '(',')' do
         = cs.status
