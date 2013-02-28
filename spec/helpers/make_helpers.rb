@@ -79,6 +79,12 @@ module MakeHelpers
     place.save_geom(MultiPolygon.from_ewkt(wkt))
     place
   end
+
+  def make_taxon_range_with_geom(options = {})
+    wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
+    tr = TaxonRange.make!(options.merge(:geom => MultiPolygon.from_ewkt(wkt)))
+    tr
+  end
   
   # creating the tree is a bit tricky
   def load_test_taxa

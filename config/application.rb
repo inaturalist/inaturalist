@@ -92,3 +92,6 @@ OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 # force encoding
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8
+
+# make sure we have geojson support
+require 'geo_ruby/geojson'

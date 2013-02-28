@@ -12140,6 +12140,7 @@ CREATE TABLE taxon_ranges (
     geom geometry,
     source_identifier integer,
     range_updated_at timestamp without time zone,
+    url character varying(255),
     CONSTRAINT enforce_dims_geom CHECK ((st_ndims(geom) = 2)),
     CONSTRAINT enforce_geotype_geom CHECK (((geometrytype(geom) = 'MULTIPOLYGON'::text) OR (geom IS NULL))),
     CONSTRAINT enforce_srid_geom CHECK ((st_srid(geom) = (-1)))
@@ -14876,3 +14877,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130208003925');
 INSERT INTO schema_migrations (version) VALUES ('20130208222855');
 
 INSERT INTO schema_migrations (version) VALUES ('20130226064319');
+
+INSERT INTO schema_migrations (version) VALUES ('20130227211137');

@@ -76,6 +76,9 @@ base: &base
     # lib/taxon_describers/lib/taxon_describers
     # taxon_describers: [conabio, wikipediaes, wikipedia, eol]
 
+    # If you'd prefer the default taxon ranges to come from a particular Source, set the source ID here
+    # taxon_range_source_id: 7538
+
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
         REST_AUTH_SITE_KEY: 09af09af09af09af09af09af09af09af09af09af

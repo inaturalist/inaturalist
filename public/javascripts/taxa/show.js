@@ -3,6 +3,25 @@ $(document).ready(function(){
   
   $('#taxon_range_map').taxonMap()
   window.map = $('#taxon_range_map').data('taxonMap')
+  if (ADDITIONAL_RANGES && ADDITIONAL_RANGES.length > 0) {
+    $.each(ADDITIONAL_RANGES, function() {
+      var range = this,
+          lyr = new google.maps.KmlLayer(range.kml_url, {suppressInfoWindows: true, preserveViewport: true})
+
+      if (range.source && range.source.in_text) {
+        var title = "Range from " + range.source.in_text,
+            description = range.description || range.source.citation
+      } else {
+        var title = "Additional range",
+            description = range.description || "Additional range data from an unknown source"
+      }
+      map.addOverlay(title, lyr, {
+        id: 'taxon_range-'+range.id, 
+        hidden: true,
+        description: description
+      })
+    })
+  }
   $('#tabs').bind('tabsshow', function(event, ui) {
     if (ui.panel.id == "taxon_range") {
       google.maps.event.trigger(window.map, 'resize')

@@ -720,8 +720,9 @@ iNaturalist.FullScreenControl = function(map) {
   return controlDiv;
 }
 
-iNaturalist.OverlayControl = function(map) {
-  var controlDiv = document.createElement('DIV')
+iNaturalist.OverlayControl = function(map, options) {
+  options = options || {}
+  var controlDiv = options.div || document.createElement('DIV')
   controlDiv.style.padding = '5px';
   var controlUI = $('<div>Overlays</div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').hide()
@@ -739,7 +740,9 @@ iNaturalist.OverlayControl = function(map) {
       this.addOverlay(map.overlays[i])
     }
   }
-  return controlDiv;
+  if (!options.div) {
+    return controlDiv
+  }
 }
 iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
   var map = this.map,
@@ -769,13 +772,15 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
 google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
   options = options || {}
   this.overlays = this.overlays || []
-  this.overlays.push({
+  var overlayOpts = {
     name: name,
     overlay: overlay,
     id: options.id,
     description: options.description
-  })
+  }
+  this.overlays.push(overlayOpts)
   if (overlay.setMap && !options.hidden) { overlay.setMap(this) }
+  if (this._overlayControl) {this._overlayControl.addOverlay(overlayOpts)};
 }
 google.maps.Map.prototype.removeOverlay = function(name) {
   if (!this.overlays) { return }
