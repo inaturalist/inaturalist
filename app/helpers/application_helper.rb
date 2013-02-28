@@ -233,10 +233,10 @@ module ApplicationHelper
     end
   end
   
-  def modal_image(photo, params = {})
-    size = params[:size]
+  def modal_image(photo, options = {})
+    size = options[:size]
     img_url ||= photo.best_url(size)
-    link_options = params.merge(:rel => photo_path(photo, :partial => 'photo'))
+    link_options = options.merge("data-photo-path" => photo_path(photo, :partial => 'photo'))
     link_options[:class] = "#{link_options[:class]} modal_image_link #{size}".strip
     link_to(
       image_tag(img_url,
@@ -519,7 +519,7 @@ module ApplicationHelper
       body, url, options = args
       if url_for(url) =~ /\?/
         options ||= {}
-        options[:rel] = "nofollow" unless options[:rel].to_s =~ /nofollow/
+        options[:rel] ||= "nofollow" unless options[:rel].to_s =~ /nofollow/
       end
       super(body, url, options)
     else
