@@ -25,25 +25,21 @@ class ProviderAuthorization < ActiveRecord::Base
   end
 
   def uniqueness_of_authorization_per_user
-    existing = if provider_uid =~ /google.com\/accounts/
+    existing_scope = if provider_uid =~ /google.com\/accounts/
       ProviderAuthorization.
-        where(:user_id => user_id, :provider_name => 'openid').
-        where("id != ?", id).
+        where(:provider_name => 'openid').
         where("provider_uid LIKE 'https://www.google.com/accounts%'").
-        exists?
+        scoped
     elsif provider_uid =~ /me.yahoo.com/
       ProviderAuthorization.
-        where(:user_id => user_id, :provider_name => 'openid').
-        where("id != ?", id).
+        where(:provider_name => 'openid').
         where("provider_uid LIKE 'https://me.yahoo.com%'").
-        exists?
+        scoped
     else
-      ProviderAuthorization.
-        where(:user_id => user_id, :provider_name => provider_name).
-        where("id != ?", id).
-        exists?
+      ProviderAuthorization.where(:provider_name => provider_name).scoped
     end
-    if existing
+    existing_scope = existing_scope.where("id != ?", id) if id
+    if existing_scope.where(:user_id => user_id).exists?
       errors.add(:user_id, "has already linked an account with #{provider}")
     end
     true
