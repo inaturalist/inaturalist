@@ -87,10 +87,8 @@
         id: 'gbif-'+options.taxonId, 
         hidden: true,
         description: 
-          ['It may take Google a while ',
-          'to load these data, ',
-          'assuming GBIF has any. ',
-          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">Data URL</a>'].join('<br/>')
+          'It may take Google a while to load these data, assuming GBIF has any. ' + 
+          '<a target="_blank" href="'+options.gbifKmlUrl.replace(/&format=kml/, '')+'">Data URL</a>'
       })
       google.maps.event.addListener(gbifLyr, 'click', function(e) {
         if (!window['kmlInfoWindows']) window['kmlInfoWindows'] = {}
@@ -130,7 +128,9 @@
       fit(elt)
     }
     
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.OverlayControl(map))
+    var overlayControlDiv = document.createElement('DIV')
+    map._overlayControl = new iNaturalist.OverlayControl(map, {div: overlayControlDiv})
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(overlayControlDiv)
     
     $(elt).data('taxonMap', map)
   }

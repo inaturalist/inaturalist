@@ -704,11 +704,8 @@ describe Taxon, "grafting" do
   
   it "should set iconic taxa on descendants" do
     taxon = Taxon.make!(:name => "Craptaculous", :parent => @graftee)
-    puts
-    puts "starting test, created taxon: #{taxon}, ancestry: #{taxon.ancestry}, iconic_taxon_id: #{taxon.iconic_taxon_id.inspect}"
     @graftee.update_attributes(:parent => @Pseudacris)
     taxon.reload
-    puts "taxon.iconic_taxon_id now #{taxon.iconic_taxon_id}, ancestry now #{taxon.ancestry}"
     taxon.iconic_taxon_id.should == @Pseudacris.iconic_taxon_id
   end
   

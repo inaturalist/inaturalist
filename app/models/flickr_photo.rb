@@ -220,15 +220,12 @@ class FlickrPhoto < Photo
     start_time = Time.now
     FlickrPhoto.script_do_in_batches(find_options) do |p|
       r = begin
-        Net::HTTP.get_response(URI.parse(p.small_url))
+        uri = URI.parse(p.square_url)
+        Net::HTTP.new(uri.host).request_head(uri.path)
       rescue URI::InvalidURIError
-        begin
-          Net::HTTP.get_response(URI.parse(p.original_url))
-        rescue URI::InvalidURIError
-          puts "[ERROR] Failed to retrieve #{p.original_url}, skipping..."
-          skipped += 1
-          next
-        end
+        puts "[ERROR] Failed to retrieve #{p.square_url}, skipping..."
+        skipped += 1
+        next
       rescue Timeout::Error
         puts "[ERROR] Timeout requesting photo, skipping..."
         skipped += 1

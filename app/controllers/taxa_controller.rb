@@ -118,11 +118,6 @@ class TaxaController < ApplicationController
     @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
     
-    # if !@taxon.conservation_status.blank? && @taxon.conservation_status > Taxon::IUCN_LEAST_CONCERN
-    #   @conservation_status_name = @taxon.conservation_status_name
-    #   @conservation_status_source = @taxon.conservation_status_source
-    # end
-    
     respond_to do |format|
       format.html do
         if @taxon.name == 'Life' && !@taxon.parent_id
@@ -132,8 +127,12 @@ class TaxaController < ApplicationController
         @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
           cs.place_id.blank? ? [0] : cs.place.self_and_ancestor_ids
         end
-        @conservation_status = @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
-        @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id == CONFIG.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN} if CONFIG.place_id
+        if CONFIG.place_id
+          @conservation_status = @conservation_statuses.detect do |cs|
+            cs.place_id == CONFIG.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+          end
+        end
+        @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
         @wikipedia = WikipediaService.new
         @amphibiaweb = amphibiaweb_description?
@@ -215,7 +214,12 @@ class TaxaController < ApplicationController
           end
         end
         
-        @taxon_range = @taxon.taxon_ranges.without_geom.first
+        @taxon_ranges = @taxon.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
+        @taxon_range = if CONFIG.taxon_range_source_id
+          @taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
+        end
+        @taxon_range ||= @taxon_ranges.detect{|tr| !tr.range.blank?}
+        @additional_ranges = @taxon_ranges - [@taxon_range]
         @taxon_gbif = "#{@taxon.name.gsub(' ','+')}*"
         @show_range = @taxon_range
         @colors = @taxon.colors if @taxon.species_or_lower?
