@@ -283,7 +283,7 @@ working_set_species.each do |sp| #Loop through the species in the workingset
     assessment_keepers << assessment.id  
     
     if sis_assessment = get_assessment(auth_token, assessment_id)
-      for_description = "IUCN RedList Category:" #Start building string to fill in assessment description, in this case a summary of the Assessment
+      for_description = "IUCN Red List Category:" #Start building string to fill in assessment description, in this case a summary of the Assessment
       assessment_date = ""
       sis_assessment.each do |key, value| #loop through the assessment secitons
         if headers.include? key
