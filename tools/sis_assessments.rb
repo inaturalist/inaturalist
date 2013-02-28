@@ -192,7 +192,10 @@ headers = [
   'RedListCategory',
   'RedListCriteria',
   'RedListAssessmentDate',
-  'RedListRationale'
+  'RedListRationale',
+  'TaxonomicNotes',
+  'bibliography',
+  'HabitatDocumentation'
 ]
 
 header_hash = Hash.new
@@ -202,6 +205,9 @@ header_hash['UseTradeDocumentation'] = "Use Trade"
 header_hash['ThreatsDocumentation'] = "Threats"
 header_hash['ConservationActionsDocumentation'] = "Conservation Actions"
 header_hash['RedListRationale'] = "Red List Rationale"
+header_hash['TaxonomicNotes'] = "Taxonomy"
+header_hash['bibliography'] = "Bibliography"
+header_hash['HabitatDocumentation'] = "Habitat"
 
 #Log in to the SIS API
 missing = [] #did we miss any?
@@ -243,12 +249,15 @@ working_set_species.each do |sp| #Loop through the species in the workingset
       end
     end
     if taxon
-      unless taxon_scheme_taxon = TaxonSchemeTaxon.first(:conditions => ["id IN (?)", [SCHEME.id, DRAFT_SCHEME.id]])
-        tst = TaxonSchemeTaxon.create(
+      unless taxon_scheme_taxon = TaxonSchemeTaxon.first(:conditions => ["taxon_id = ? AND taxon_scheme_id IN (?)", taxon.id, [SCHEME.id, DRAFT_SCHEME.id]])
+        tst = TaxonSchemeTaxon.new(
           :taxon_scheme_id => DRAFT_SCHEME.id,
           :taxon_id => taxon.id,
           :source_identifier => iucn_id
         )
+        if tst.save
+          puts "\t\t Successfully added taxon to taxon_scheme"
+        end
       end
     else
       missing << iucn_id
@@ -272,25 +281,6 @@ working_set_species.each do |sp| #Loop through the species in the workingset
       end
     end
     assessment_keepers << assessment.id  
-    value = taxon.ancestors.map{|t| t.name}.join("; ")
-    value = value + "; " + taxon.name
-    if assessment_section = AssessmentSection.first(:conditions => {:assessment_id => assessment.id, :title => 'Taxonomy'}) 
-      assessment_section.update_attributes(:body => value)
-    else
-      assessment_section = AssessmentSection.new(
-        :assessment_id => assessment.id,
-        :user => project.user,
-        :title => 'Taxonomy',
-        :body => value
-      )
-      if assessment_section.save
-        puts "\t\t Created assessment_section for #{assessment.id}"
-      else
-        puts "\t\t Failed to save assessment section: #{assessment_section.errors.full_messages.to_sentence}"
-        assessment_section = nil
-      end
-    end
-    assessment_section_keepers << assessment_section.id if assessment_section
     
     if sis_assessment = get_assessment(auth_token, assessment_id)
       for_description = "IUCN RedList Category:" #Start building string to fill in assessment description, in this case a summary of the Assessment
@@ -307,6 +297,16 @@ working_set_species.each do |sp| #Loop through the species in the workingset
             value = "Section empty" if value.nil?
             if key == "GeographicRangeInformation" #add the map to the assessment section
               value = value + "<iframe width=\"100%\" height=\"500\" src=\"http://www.inaturalist.org/taxa/#{taxon.id}/map#5.00/-8.477/-72.039\"></iframe>" ###
+            end
+            if key == "TaxonomicNotes"
+              value = "<table><tr><td>" + taxon.ancestors[1..-1].map{|t| t.name}.join("</td><td>") + "</td><td>" + taxon.name + "</td></tr></table>Taxonomic notes:  " + value
+            end
+            if key == "bibliography"
+              new_value = "<ul>"
+              value.each do |cit|
+                new_value = new_value + "<li>" + cit["citation"] + "</li>"
+              end
+              value = new_value + "</ul>"
             end
             if assessment_section = AssessmentSection.first(:conditions => {:assessment_id => assessment.id, :title => header_hash[key]}) 
               assessment_section.update_attributes(:body => value)
