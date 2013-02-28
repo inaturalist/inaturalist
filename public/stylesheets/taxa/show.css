@@ -406,7 +406,7 @@ h3 .externallink { font-size: 70%; }
 
 .iconic_taxon_sprite { vertical-align: middle; }    
 .observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
-  width: 133px;
-  height: 133px;
+  width: 127px;
+  height: 127px;
 }
-#observations {max-height: 251px; overflow: scroll;}
+#observations {max-height: 251px; overflow-y: auto;overflow-x: hidden;}
