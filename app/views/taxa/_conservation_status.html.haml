@@ -9,8 +9,8 @@
       =t :conservation_status
   %strong.csstatus
     - if !cs.place && !hide_place
-      =t :globally
-    = cs.status_name.capitalize
+      =raw t(:globally).capitalize
+    = cs.status_name.titleize
     - if cs.status_name !~ /#{cs.status}/
       = surround '(',')' do
         = cs.status
