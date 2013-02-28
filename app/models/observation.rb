@@ -166,7 +166,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has :photos_count, :as => :has_photos, :type => :integer
+    has "photos_count > 0", :as => :has_photos, :type => :boolean
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -182,6 +182,7 @@ class Observation < ActiveRecord::Base
     # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
     has :latitude, :as => :fake_latitude
     has :longitude, :as => :fake_longitude
+    has :photos_count
     has :num_identification_agreements
     has :num_identification_disagreements
     # END HACK
