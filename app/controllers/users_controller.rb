@@ -129,7 +129,8 @@ class UsersController < ApplicationController
   # Methods below here are added by iNaturalist
   
   def index
-    unless fragment_exist?("recently_active")
+    @recently_active_key = "recently_active_#{I18n.locale}_#{SITE_NAME}"
+    unless fragment_exist?(@recently_active_key)
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
         scope = klass.limit(30).
