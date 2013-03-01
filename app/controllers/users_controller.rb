@@ -132,11 +132,13 @@ class UsersController < ApplicationController
     unless fragment_exist?("recently_active")
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
-        @updates += klass.limit(30).
+        scope = klass.limit(30).
           order("#{klass.table_name}.id DESC").
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
           where("users.id IS NOT NULL").
           includes(:user)
+        scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+        @updates += scope.all
       end
       @updates.delete_if do |u|
         (u.is_a?(Post) && u.draft?) || (u.is_a?(Identification) && u.taxon_change_id)
@@ -160,7 +162,9 @@ class UsersController < ApplicationController
 
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?(@curators_key)
-      @curators = User.curators.limit(500).reject(&:is_admin?)
+      @curators = User.curators.limit(500)
+      @curators = @curators.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+      @curators = @curators.reject(&:is_admin?)
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
       @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
@@ -468,6 +472,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
     end
+    scope = scope.where("observations.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
     counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|
@@ -482,6 +487,9 @@ protected
     month = options[:month] || Time.now.month
     date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
     date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
+    site_clause = if CONFIG.site_only_users
+      "AND o.uri LIKE '#{CONFIG.site_url}%'"
+    end
     sql = <<-SQL
       SELECT
         o.user_id,
@@ -495,6 +503,7 @@ protected
           WHERE
             t.rank_level <= 10 AND
               #{date_clause}
+              #{site_clause}
         ) as o
       GROUP BY o.user_id
       ORDER BY count_all desc
@@ -513,7 +522,7 @@ protected
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
     scope = Identification.group("identifications.user_id").
-      joins(:observation).
+      joins(:observation, :user).
       where("identifications.user_id != observations.user_id").
       where("EXTRACT(YEAR FROM identifications.created_at) = ?", year).
       order('count_all desc').
@@ -521,6 +530,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
     end
+    scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
     counts = scope.count.to_a
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|

@@ -501,14 +501,10 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if !params[:site].blank?
+    if !params[:site].blank? && params[:site] != 'any'
       uri = params[:site]
       uri = "http://#{uri}" unless uri =~ /^http\:\/\//
       scope = scope.where("observations.uri LIKE ?", "#{uri}%")
-    elsif CONFIG.site_only_observations && params[:site].blank?
-      scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
-    elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?
-      scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
     end
     
     # return the scope, we can use this for will_paginate calls like:
