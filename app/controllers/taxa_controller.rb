@@ -389,7 +389,10 @@ class TaxaController < ApplicationController
       :with => drill_params, 
       :include => [:taxon_names, :photos],
       :field_weights => {:name => 2},
-      :match_mode => match_mode)
+      :match_mode => match_mode,
+      :order => :observations_count,
+      :sort_mode => :desc
+    )
 
     if @facets[:iconic_taxon_id]
       @faceted_iconic_taxa = Taxon.all(
@@ -658,8 +661,7 @@ class TaxaController < ApplicationController
         :per_page => per_page, :include => [:photos], 
         :conditions => "photos.id IS NOT NULL")
     else
-      Observation.search(params[:q], :page => params[:page], 
-        :per_page => per_page, :with => {:has_photos => true})
+      Observation.search(params[:q], :page => params[:page], :per_page => per_page, :with => {:has_photos => true})
     end
     @photos = observations.map(&:photos).flatten
     render :partial => 'photos/photo_list_form', :locals => {

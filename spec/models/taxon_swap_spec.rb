@@ -205,7 +205,9 @@ describe TaxonSwap, "commit_records" do
   end
 
   it "should set counter caches correctly" do
-    3.times { Observation.make!(:taxon => @input_taxon) }
+    without_delay do
+      3.times { Observation.make!(:taxon => @input_taxon) }
+    end
     @input_taxon.reload
     @input_taxon.observations_count.should eq(3)
     @output_taxon.observations_count.should eq(0)

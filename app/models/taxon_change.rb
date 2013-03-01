@@ -139,7 +139,7 @@ class TaxonChange < ActiveRecord::Base
       Taxon.update_all(
         [
           "observations_count = ?, listed_taxa_count = ?", 
-          Observation.where(:taxon_id => taxon).count, 
+          Observation.of(taxon).count, 
           ListedTaxon.where(:taxon_id => taxon).count
         ],
         ["id = ?", taxon.id]
