@@ -285,7 +285,7 @@
           <strong><%=raw t(@listed_taxon.establishment_means || "present").capitalize %></strong>
           <%=t @listed_taxon.native? ? 'to' : 'in' %>
           <%= link_to @listed_taxon.place.name, @place %>
-          <%= link_to "View details", @listed_taxon, :class => "small" %>
+          <%= link_to t(:view_details), @listed_taxon, :class => "small" %>
         </div>
       </div>
     <% end -%>
@@ -584,7 +584,7 @@
       <% else %>
         <h3>
           <div class="compact observationcontrols right" style="margin-top: 6px;"></div>
-          Recent Observations
+          <%=t :recent_observations %>
         </h3>
         <div id="observations" class="medium observations stacked" data-map-height="this">
           <%= compact render(:partial => "observations/cached_component", :collection => @observations) %>
