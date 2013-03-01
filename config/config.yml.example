@@ -65,7 +65,10 @@ base: &base
     # URL of the observation, which should be unique to each site instance. If
     # your URL is foo.inaturalist.org, then your observations will be fitlered
     # to URIs like http://foo.inaturalist.org/%
-    site_only_observations: false
+    # site_only_observations: true
+
+    # Like site_only_observations except for users. Used in places like /people
+    # site_only_users: true
 
     # iOS app ID. Used to display header notice about app in mobile views
     # ios_app_id: 421397028

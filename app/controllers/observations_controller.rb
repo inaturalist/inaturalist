@@ -73,13 +73,14 @@ class ObservationsController < ApplicationController
   # GET /observations.xml
   def index
     search_params, find_options = get_search_params(params)
+    search_params = site_search_params(search_params)
     
     if search_params[:q].blank?
       @observations = if perform_caching
         cache_params = params.reject{|k,v| %w(controller action format partial).include?(k.to_s)}
         cache_params[:page] ||= 1
-        cache_params[:site_name] = SITE_NAME if CONFIG.site_only_observations
-        cache_params[:bounds] = CONFIG.bounds if CONFIG.bounds
+        cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
+        cache_params[:bounds] ||= CONFIG.bounds if CONFIG.bounds
         cache_key = "obs_index_#{Digest::MD5.hexdigest(cache_params.to_s)}"
         Rails.cache.fetch(cache_key, :expires_in => 5.minutes) do
           get_paginated_observations(search_params, find_options).to_a
@@ -1058,6 +1059,7 @@ class ObservationsController < ApplicationController
     params[:order_by] ||= "created_at"
     params[:order] ||= "desc"
     search_params, find_options = get_search_params(params)
+    search_params = site_search_params(search_params)
     find_options.update(
       :per_page => 10,
       :include => [
@@ -2130,5 +2132,23 @@ class ObservationsController < ApplicationController
     if request.format && request.format.html?
       @view = params[:view] || current_user.try(:preferred_observations_view) || 'map'
     end
+  end
+
+  def site_search_params(search_params = {})
+    if CONFIG.site_only_observations && params[:site].blank?
+      search_params[:site] ||= FakeView.root_url
+      @site ||= search_params[:site]
+    end
+    if (site_bounds = CONFIG.bounds) && params[:swlat].nil?
+      search_params[:nelat] ||= site_bounds['nelat']
+      search_params[:nelng] ||= site_bounds['nelng']
+      search_params[:swlat] ||= site_bounds['swlat']
+      search_params[:swlng] ||= site_bounds['swlng']
+      @nelat ||= site_bounds['nelat']
+      @nelng ||= site_bounds['nelng']
+      @swlat ||= site_bounds['swlat']
+      @swlng ||= site_bounds['swlng']
+    end
+    search_params
   end
 end

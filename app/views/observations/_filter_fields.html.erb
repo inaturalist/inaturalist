@@ -210,9 +210,27 @@
   </div>
 <% end -%>
 
-
+<input type="hidden" name="site" value="<%= @site %>">
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
-<input type="hidden" name="view" id="view_input" value="<%= @view %>"/> <!-- Temporary! Inputs not specific to the filtering don't really belong here... -->
+<input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
 
-<input id="submit_filters_button" type="submit" value="Search" class="default inline button" data-loading-click="Searching..."/>
+<% if CONFIG.site_only_observations -%>
+  <div class="right buttonrow">
+    <div class="inter">
+      <% if @site == "any" -%>
+        You're viewing all observations.
+        <%= link_to "View <strong>#{SITE_NAME}</strong> observations".html_safe, url_for_params(:site => CONFIG.site_url) %>
+      <% else %>
+        You're viewing 
+        <strong><%= SITE_NAME %></strong>
+        observations.
+        <%= link_to "View all observations", url_for_params(:site => "any") %>
+      <% end -%>
+    </div>
+  </div>
+<% end -%>
+
+<div class="inline buttonrow">
+  <input id="submit_filters_button" type="submit" value="Search" class="default inline button" data-loading-click="Searching..."/>
+</div>
