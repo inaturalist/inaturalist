@@ -271,6 +271,23 @@ describe Observation, "creation" do
     o.reload
     o.uri.should eq(uri)
   end
+
+  it "should increment the taxon's counter cache" do
+    t = Taxon.make!
+    t.observations_count.should eq(0)
+    o = without_delay {Observation.make!(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+  end
+
+  it "should increment the taxon's ancestors' counter caches" do
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    p.observations_count.should eq(0)
+    o = without_delay {Observation.make!(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+  end
 end
 
 describe Observation, "updating" do
@@ -496,6 +513,46 @@ describe Observation, "updating" do
       o.should_not be_coordinates_obscured
     end
   end
+
+  it "should increment the taxon's counter cache" do
+    o = Observation.make!
+    t = Taxon.make!
+    t.observations_count.should eq(0)
+    o = without_delay {o.update_attributes(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+  end
+  
+  it "should increment the taxon's ancestors' counter caches" do
+    o = Observation.make!
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    p.observations_count.should eq(0)
+    o = without_delay {o.update_attributes(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+  end
+
+  it "should decrement the taxon's counter cache" do
+    t = Taxon.make!
+    o = without_delay {Observation.make!(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+    o = without_delay {o.update_attributes(:taxon => nil)}
+    t.reload
+    t.observations_count.should eq(0)
+  end
+  
+  it "should decrement the taxon's ancestors' counter caches" do
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    o = without_delay {Observation.make!(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+    o = without_delay {o.update_attributes(:taxon => nil)}
+    p.reload
+    p.observations_count.should eq(0)
+  end
 end
 
 describe Observation, "destruction" do
@@ -534,6 +591,27 @@ describe Observation, "destruction" do
     o = po.observation
     o.destroy
     ProjectObservation.find_by_id(po.id).should be_blank
+  end
+
+  it "should decrement the taxon's counter cache" do
+    t = Taxon.make!
+    o = without_delay{Observation.make!(:taxon => t)}
+    t.reload
+    t.observations_count.should eq(1)
+    o = without_delay {o.destroy}
+    t.reload
+    t.observations_count.should eq(0)
+  end
+  
+  it "should decrement the taxon's ancestors' counter caches" do
+    p = Taxon.make!
+    t = Taxon.make!(:parent => p)
+    o = without_delay {Observation.make!(:taxon => t)}
+    p.reload
+    p.observations_count.should eq(1)
+    o = without_delay {o.destroy}
+    p.reload
+    p.observations_count.should eq(0)
   end
 end
 

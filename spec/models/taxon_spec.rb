@@ -217,7 +217,7 @@ describe Taxon, "set_iconic_taxon_for_observations_of" do
   end
   
   it "should set the iconic taxon for observations of descendant taxa" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     @Calypte_anna.iconic_taxon.name.should == @Aves.name
     obs.iconic_taxon.name.should == @Calypte_anna.iconic_taxon.name
     @Calypte.update_attributes(:iconic_taxon => @Amphibia)
@@ -589,7 +589,7 @@ describe Taxon, "moving" do
   end
   
   it "should queue a job to set iconic taxon on observations of descendants" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     Delayed::Job.delete_all
@@ -600,7 +600,7 @@ describe Taxon, "moving" do
   end
 
   it "should set iconic taxon on observations of descendants" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     without_delay do
@@ -613,7 +613,7 @@ describe Taxon, "moving" do
   it "should set iconic taxon on observations of descendants if grafting for the first time" do
     parent = Taxon.make!
     taxon = Taxon.make!(:parent => parent)
-    obs = Observation.make!(:taxon => taxon)
+    obs = without_delay { Observation.make!(:taxon => taxon) }
     obs.iconic_taxon.should be_blank
     without_delay do
       parent.move_to_child_of(@Amphibia)

@@ -120,7 +120,7 @@ class Observation < ActiveRecord::Base
   ]
   
   belongs_to :user, :counter_cache => true
-  belongs_to :taxon, :counter_cache => true
+  belongs_to :taxon
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
   has_many :observation_photos, :dependent => :destroy, :order => "id asc"
@@ -251,10 +251,11 @@ class Observation < ActiveRecord::Base
              :refresh_check_lists,
              :update_out_of_range_later,
              :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
+             :update_taxon_counter_caches
   after_create :set_uri
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches
   
   ##
   # Named scopes
@@ -338,10 +339,9 @@ class Observation < ActiveRecord::Base
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    joins(:taxon).where(
-      "taxa.id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
-      taxon
-    )
+    c = taxon.descendant_conditions
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
   }
   
   scope :at_or_below_rank, lambda {|rank| 
@@ -1337,6 +1337,15 @@ class Observation < ActiveRecord::Base
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
     Observation.update_all(["license = ?", license], ["user_id = ?", user_id])
+    true
+  end
+
+  def update_taxon_counter_caches
+    return true unless destroyed? || taxon_id_changed?
+    taxon_ids = [taxon_id_was, taxon_id].compact.uniq
+    unless taxon_ids.blank?
+      Taxon.delay(:priority => INTEGRITY_PRIORITY).update_observation_counts(:taxon_ids => taxon_ids)
+    end
     true
   end
   

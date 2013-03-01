@@ -54,6 +54,7 @@ class Taxon < ActiveRecord::Base
     # has listed_taxa(:list_id), :as => :lists, :type => :multi
     has created_at, ancestry
     has "REPLACE(ancestry, '/', ',')", :as => :ancestors, :type => :multi
+    has observations_count
     set_property :delta => :delayed
   end
   
@@ -1277,6 +1278,26 @@ class Taxon < ActiveRecord::Base
         }
       }
     }
+  end
+
+  def self.update_observation_counts(options = {})
+    scope = if options[:ancestor]
+      if taxon = (options[:ancestor].is_a?(Taxon) ? options[:ancestor] : Taxon.find_by_id(options[:ancestor]))
+        taxon.descendants.scoped
+      end
+    elsif options[:taxon_ids]
+      taxa = Taxon.where("id IN (?)", options[:taxon_ids])
+      Taxon.where("id IN (?)", taxa.map(&:self_and_ancestor_ids).flatten.uniq)
+    elsif options[:scope]
+      options[:scope]
+    else
+      Taxon.scoped
+    end
+    return if scope.blank?
+    scope = scope.select("id, ancestry")
+    scope.find_each do |t|
+      Taxon.update_all(["observations_count = ?", Observation.of(t).count], ["id = ?", t.id])
+    end
   end
   
   # /Static #################################################################
