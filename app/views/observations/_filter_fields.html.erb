@@ -96,12 +96,12 @@
 <div class="stacked clear row">
   <div id="place_filter" class="left">
     <div id="place_filter_label" class="label">
-      <strong>Place</strong>
+      <strong><%=t :place %></strong>
     </div>
     <div class="left">
       <div class="buttons">
         <%-
-          opts = {:id => "obs_filter_place_name", :class => "text", :placeholder => "Start typing a place name"}
+          opts = {:id => "obs_filter_place_name", :class => "text", :placeholder => t(:start_typing_place_name)}
           opts["data-json"] = @place.to_json(:methods => [:html]) unless @place.blank?
         -%>
         <%= text_field_tag :place_id, @place.try(:id) || @place_id, opts %>
@@ -146,7 +146,7 @@
     <div class="left">
       <div class="buttons">
         <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text",
-          :placeholder => "Type taxon name and click lookup" %>
+          :placeholder => t(:type_taxon_name_and_click_lookup) %>
         <%-
           alt_attr = if @observations_taxon
             css_class =  [
@@ -219,13 +219,11 @@
   <div class="right buttonrow">
     <div class="inter">
       <% if @site == "any" -%>
-        You're viewing all observations.
-        <%= link_to "View <strong>#{SITE_NAME}</strong> observations".html_safe, url_for_params(:site => CONFIG.site_url) %>
+        <%=t :youre_viewing_all_observations %>.
+        <%= link_to t(:view_site_name_observations_html, :site_name => SITE_NAME), url_for_params(:site => CONFIG.site_url) %>
       <% else %>
-        You're viewing 
-        <strong><%= SITE_NAME %></strong>
-        observations.
-        <%= link_to "View all observations", url_for_params(:site => "any") %>
+        <%=t :youre_viewing_site_name_observations_html, :site_name => SITE_NAME  %>.
+        <%= link_to t(:view_all_observations), url_for_params(:site => "any") %>
       <% end -%>
     </div>
   </div>

@@ -1188,6 +1188,7 @@ en:
   start_one: start one
   start_one_now: Start one now!
   start_typing_field_name: Start typing field name...
+  start_typing_place_name: Start typing place name...
   states: States
   stats: Stats
   stats_title: Site Stats
@@ -1318,6 +1319,7 @@ en:
   type_source_title: "Type source title..."
   type_species_name: "Type species name..."
   type_taxon_name: Type taxon name
+  type_taxon_name_and_click_lookup: Type taxon name and click lookup
   uicn_red_list_status: "IUCN Red List status:"
   unclassified: Unclassified
   unfragted_taxa: Ungrafted Taxa
@@ -1379,6 +1381,7 @@ en:
   view_original_ccD_photo: "View original CC'd photo by %{owner}"
   view_other_taxa: "View other <nobr> %{taxon_name} &raquo; </nobr>"
   view_photos_ranges_observations_more: "View photos, species ranges, %{site_name} observations, and more! We've assembled information from many different sources and combined them for a quick summary of each species in each place."
+  view_site_name_observations_html: "View <strong>%{site_name}</strong> observations"
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this place
   view_terms: View terms
@@ -1507,6 +1510,8 @@ en:
   your_world!: your world!
   youre_following: you're following
   youre_not_following_anyone: You're not following anyone. Following other naturalists will allow you to easily track their latest observations. Go find out what people are
+  youre_viewing_all_observations: You're viewing all observations
+  youre_viewing_site_name_observations_html: "You're viewing <strong>%{site_name}</strong> observations"
   youve_already_added_an_identification: You've already added an identification, and you can only add one
   youve_linked_your_inaturalist_picasa_account: "You've linked your %{site_name} account and your Picasa account. This will allow you to associate your Picasa photos with your %{site_name} observations."
   youve_seen_it_want_to: "You've seen it! Want to"
