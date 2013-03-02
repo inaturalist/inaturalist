@@ -51,3 +51,7 @@ class String
     self
   end
 end
+
+def sanitize_sphinx_query(q)
+  q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
+end

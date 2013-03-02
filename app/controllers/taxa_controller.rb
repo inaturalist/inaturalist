@@ -333,24 +333,9 @@ class TaxaController < ApplicationController
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
   def search
     @q = params[:q] = params[:q].to_s.sanitize_encoding
-    match_mode = :all
     
     # Wrap the query in modifiers to ensure exact matches show first
-    if @q.blank?
-      q = @q
-    else
-      q = sanitize_sphinx_query(@q)
-
-      # for some reason 1-term queries don't return an exact match first if enclosed 
-      # in quotes, so we only use them for multi-term queries
-      q = if q =~ /\s/
-        "\"^#{q}$\" | #{q}"
-      else
-        "^#{q}$ | #{q}"
-      end
-
-      match_mode = :extended
-    end
+    q, match_mode = Taxon.search_query(@q)
     drill_params = {}
     
     if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id].to_i))
