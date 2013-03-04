@@ -174,3 +174,13 @@ describe Place do
     p.should_not be_editable_by(u)
   end
 end
+
+describe Place, "display_name" do
+  it "should be in correct order" do
+    country = Place.make!(:code => "cn", :place_type => Place::PLACE_TYPE_CODES['country'])
+    state = Place.make!(:code => "st", :place_type => Place::PLACE_TYPE_CODES['state'], :parent => country)
+    place = Place.make!(:parent => state)
+    place.parent.should eq(state)
+    place.display_name(:reload => true).should =~ /, #{state.code}, #{country.code}$/
+  end
+end

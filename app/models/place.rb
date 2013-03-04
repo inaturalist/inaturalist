@@ -10,7 +10,7 @@ class Place < ActiveRecord::Base
   has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
     :select => (PlaceGeometry.column_names - ['geom']).join(', ')
   
-  before_save :calculate_bbox_area
+  before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
@@ -24,6 +24,18 @@ class Place < ActiveRecord::Base
   }
 
   preference :check_lists, :boolean, :default => true
+
+  extend FriendlyId
+  friendly_id :name, :use => :history, :reserved_words => PlacesController.action_methods.to_a
+  def normalize_friendly_id(string)
+    super_candidate = super(string)
+    candidate = display_name.to_s.split(',').first.parameterize
+    candidate = super_candidate if candidate.blank? || candidate == super_candidate
+    if Place.where(:slug => candidate).exists? && !display_name.blank?
+      candidate = display_name.parameterize
+    end
+    candidate
+  end
   
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
@@ -190,7 +202,7 @@ class Place < ActiveRecord::Base
   def display_name(options = {})
     return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
-    ancestor_names = self.ancestors.select do |a|
+    ancestor_names = ancestors.reverse.select do |a|
       %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
     end.map do |a|
       a.code.blank? ? a.name : a.code.split('-').last
@@ -207,6 +219,12 @@ class Place < ActiveRecord::Base
     end
     
     new_display_name
+  end
+
+  def set_display_name
+    return true unless ancestry_changed?
+    display_name(:reload => true)
+    true
   end
   
   def wikipedia_name
@@ -273,10 +291,8 @@ class Place < ActiveRecord::Base
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
       ydn_place.ancestors.reverse_each do |ydn_ancestor|
-        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(
-          ydn_ancestor.placetype_code)
-        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, 
-          :ignore_ancestors => true, :parent => ancestors.last)
+        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
+        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor
         place.parent = ancestors.last
       end

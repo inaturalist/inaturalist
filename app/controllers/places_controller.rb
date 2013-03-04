@@ -355,8 +355,14 @@ class PlacesController < ApplicationController
   private
   
   def load_place
-    render_404 unless @place = Place.find_by_id(params[:id], 
-      :include => [:check_list])
+    @place = Place.find(params[:id], :include => [:check_list]) rescue nil
+    if @place.blank?
+      if params[:id].to_i > 0 || params[:id] == "0"
+        return render_404
+      else
+        return redirect_to place_search_path(:q => params[:id])
+      end
+    end
   end
   
   def filter_wikipedia_content
