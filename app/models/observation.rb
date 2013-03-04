@@ -277,7 +277,17 @@ class Observation < ActiveRecord::Base
   end
   
   scope :in_place, lambda {|place|
-    place_id = place.is_a?(Place) ? place.id : place.to_i
+    place_id = if place.is_a?(Place)
+      place.id
+    elsif place.to_i == 0
+      begin
+        Place.find(place).try(&:id)
+      rescue ActiveRecord::RecordNotFound
+        -1
+      end
+    else
+      place.to_i
+    end
     joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
     where(
       "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +

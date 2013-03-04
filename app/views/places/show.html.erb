@@ -124,7 +124,7 @@
         <%= loading "Loading...", :class => "inline" %>
       </div>
     </div>
-    <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place), :class => "readmore" %>
+    <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
   </div>
   
   <div id="abouttab">
