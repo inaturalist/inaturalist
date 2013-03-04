@@ -330,6 +330,7 @@ module ApplicationHelper
     content = args[0] if args[0].is_a?(String)
     options = args.last.is_a?(Hash) ? args.last : {}
     content = capture(&block) if block_given?
+    content ||= ""
     if options[:all_tags]
       content.gsub!(/\>[\n\s]+\</m, '><')
     else
