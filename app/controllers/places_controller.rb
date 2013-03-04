@@ -78,24 +78,6 @@ class PlacesController < ApplicationController
   
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
-    @observations = Observation.all(
-      :joins => ["JOIN place_geometries ON place_geometries.place_id = #{@place.id}"],
-      :conditions => [
-        "((observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))) AND " +
-        "observations.observed_on IS NOT NULL"
-      ],
-      :include => [{:taxon => :taxon_names}],
-      :limit => 100,
-      :order => "observed_on DESC"
-    )
-    # if logged_in?
-    #   scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
-    #   @listed_taxa_count = scope.count
-    #   @current_user_observed_count = scope.count(
-    #     :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
-    #     :conditions => ["ult.list_id = ?", current_user.life_list_id])
-    # end
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
     browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
@@ -374,8 +356,14 @@ class PlacesController < ApplicationController
   private
   
   def load_place
-    render_404 unless @place = Place.find_by_id(params[:id], 
-      :include => [:check_list])
+    @place = Place.find(params[:id], :include => [:check_list]) rescue nil
+    if @place.blank?
+      if params[:id].to_i > 0 || params[:id] == "0"
+        return render_404
+      else
+        return redirect_to place_search_path(:q => params[:id])
+      end
+    end
   end
   
   def filter_wikipedia_content

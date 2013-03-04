@@ -11214,7 +11214,8 @@ CREATE TABLE places (
     delta boolean DEFAULT false,
     user_id integer,
     source_filename character varying(255),
-    ancestry character varying(255)
+    ancestry character varying(255),
+    slug character varying(255)
 );
 
 
@@ -14040,6 +14041,13 @@ CREATE INDEX index_places_on_place_type ON places USING btree (place_type);
 
 
 --
+-- Name: index_places_on_slug; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_places_on_slug ON places USING btree (slug);
+
+
+--
 -- Name: index_places_on_swlat_and_swlng_and_nelat_and_nelng; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -14879,3 +14887,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130208222855');
 INSERT INTO schema_migrations (version) VALUES ('20130226064319');
 
 INSERT INTO schema_migrations (version) VALUES ('20130227211137');
+
+INSERT INTO schema_migrations (version) VALUES ('20130304024311');

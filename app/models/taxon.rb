@@ -1214,6 +1214,23 @@ class Taxon < ActiveRecord::Base
     """
     Taxon.find_by_sql(sql)
   end
+
+  def self.search_query(q)
+    if q.blank?
+      q = q
+      return [q, :all]
+    end
+    q = sanitize_sphinx_query(q)
+
+    # for some reason 1-term queries don't return an exact match first if enclosed 
+    # in quotes, so we only use them for multi-term queries
+    q = if q =~ /\s/
+      "\"^#{q}$\" | #{q}"
+    else
+      "^#{q}$ | #{q}"
+    end
+    [q, :extended]
+  end
   
   def self.single_taxon_for_name(name, options = {})
     return if PROBLEM_NAMES.include?(name.downcase)
@@ -1228,7 +1245,14 @@ class Taxon < ActiveRecord::Base
     taxa = taxon_names.map{|tn| tn.taxon}.compact
     if taxa.blank?
       begin
-        taxa = Taxon.search(name).compact.select{|t| t.taxon_names.detect{|tn| tn.name =~ /#{name}/}}
+        q, match_mode = Taxon.search_query(name)
+        taxa = Taxon.search(q,
+          :include => [:taxon_names, :photos],
+          :field_weights => {:name => 2},
+          :match_mode => match_mode,
+          :order => :observations_count,
+          :sort_mode => :desc
+        ).compact.select{|t| t.taxon_names.detect{|tn| tn.name.downcase =~ /#{name}/}}
       rescue Riddle::ConnectionError => e
         return
       end

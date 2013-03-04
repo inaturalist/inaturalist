@@ -298,10 +298,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def sanitize_sphinx_query(q)
-    q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
-  end
-  
   def remove_header_and_footer_for_apps
     return true unless is_android_app? || is_iphone_app?
     @headless = true
