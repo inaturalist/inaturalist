@@ -118,22 +118,13 @@
   </div><!-- end guidetab -->
   
   <div id="observationstab">
-    <% if @observations.blank? -%>
-      <div class="description noresults">
-        nothing
+    <div class="stacked observationcontrols"></div>
+    <div class="medium observations grid">
+      <div class="nocontent">
+        <%= loading "Loading...", :class => "inline" %>
       </div>
-    <% else %>
-      <div class="stacked observationcontrols"></div>
-      <div class="medium observations grid">
-        <% compact do %>
-          <%= render :partial => "observations/cached_component", :collection => @observations.map{|o| o}.compact %>
-        <% end -%>
-      </div>
-      <script type="text/javascript" charset="utf-8">
-        $('.observationcontrols').observationControls('medium')
-      </script>
-      <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place), :class => "readmore" %>
-    <% end -%>
+    </div>
+    <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place), :class => "readmore" %>
   </div>
   
   <div id="abouttab">
