@@ -1,0 +1,19 @@
+= link_to "&laquo; Back to applications".html_safe, oauth_applications_path, :class => "crumb"
+%h2
+  Application: #{@application.name}
+.ui
+  %h4 Callback url:
+  %p
+    %code#callback_url= @application.redirect_uri
+  %h4 Application Id:
+  %p
+    %code#application_id= @application.uid
+  %h4 Secret:
+  %p
+    %code#secret= @application.secret
+  %h4 Link to authorization code:
+  %p= link_to 'Authorize', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code' )
+  %h3 Actions
+  .inline.buttonrow
+    = link_to 'Edit', edit_oauth_application_path(@application), :class => "inline button"
+    = link_to 'Remove', [:oauth, @application], :method => :delete, :data => { :confirm => "Are you sure?" }, :class => "inline button"

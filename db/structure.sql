@@ -10902,7 +10902,9 @@ CREATE TABLE oauth_applications (
     secret character varying(255) NOT NULL,
     redirect_uri character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    owner_id integer,
+    owner_type character varying(255)
 );
 
 
@@ -14031,6 +14033,13 @@ CREATE UNIQUE INDEX index_oauth_access_tokens_on_token ON oauth_access_tokens US
 
 
 --
+-- Name: index_oauth_applications_on_owner_id_and_owner_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_oauth_applications_on_owner_id_and_owner_type ON oauth_applications USING btree (owner_id, owner_type);
+
+
+--
 -- Name: index_oauth_applications_on_uid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15077,3 +15086,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130227211137');
 INSERT INTO schema_migrations (version) VALUES ('20130301222959');
 
 INSERT INTO schema_migrations (version) VALUES ('20130304024311');
+
+INSERT INTO schema_migrations (version) VALUES ('20130306020925');
