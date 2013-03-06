@@ -1070,6 +1070,31 @@ class Taxon < ActiveRecord::Base
   def all_names
     taxon_names.map(&:name)
   end
+
+  def self.import(name, options = {})
+    ancestor = options.delete(:ancestor)
+    external_names = ratatosk.find(name)
+    return nil if external_names.blank?
+    external_names.each {|en| en.save; en.taxon.graft_silently}
+    external_taxa = external_names.map(&:taxon)
+    taxon = external_taxa.detect do |t| 
+      if ancestor
+        t.name.downcase == name.downcase && t.ancestor_ids.include?(ancestor.id)
+      else
+        t.name.downcase == name.downcase
+      end
+    end
+    taxon
+  end
+
+  def self.import_or_create(name, options = {})
+    taxon = import(name, options)
+    return taxon unless taxon.blank?
+    options.delete(:ancestor)
+    taxon = Taxon.create(options.merge(:name => name))
+    taxon.graft_silently
+    taxon
+  end
   
   # Static ##################################################################
   
