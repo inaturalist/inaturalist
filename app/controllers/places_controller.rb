@@ -296,10 +296,15 @@ class PlacesController < ApplicationController
   def guide
     place_id = params[:id] || params[:place_id] || params[:place]
     @place ||= if place_id.to_i == 0
-      Place.search(place_id).first
+      begin
+        Place.find(place_id)
+      rescue ActiveRecord::RecordNotFound
+        Place.search(place_id).first
+      end
     else
       Place.find_by_id(place_id.to_i)
     end
+    return render_404 unless @place
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     
     show_guide do |scope|
