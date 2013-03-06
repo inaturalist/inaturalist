@@ -12,9 +12,12 @@ class CalendarsController < ApplicationController
     @month  = params[:month] if params[:month].to_i != 0
     @day    = params[:day] if params[:day].to_i != 0
     @date = [@year, @month, @day].compact.join('-')
+    @observations = @selected_user.observations.
+      on(@date).
+      limit(500).
+      order_by("observed_on")
     if @day
-      scope = @selected_user.observations.on(@date).scoped
-      @observations = scope.paginate(:include => [{:taxon => :taxon_names}], :per_page => 500, :page => params[:page])
+      @observations = @observations.includes(:taxon => :taxon_names)
       @taxa = @observations.map{|o| o.taxon}.uniq.compact
       @taxa_count = @taxa.size
       @taxa_by_iconic_taxon_id = @taxa.group_by{|t| t.iconic_taxon_id}
@@ -23,9 +26,6 @@ class CalendarsController < ApplicationController
         [iconic_taxon.id, @taxa_by_iconic_taxon_id[iconic_taxon.id].size]
       end.compact
     else
-      scope = @selected_user.observations.on(@date)
-      @observations = scope.
-        paginate(:page => params[:page], :per_page => 500)
       iconic_counts_conditions = Observation.conditions_for_date("o.observed_on", @date)
       iconic_counts_conditions[0] += " AND o.user_id = ?"
       iconic_counts_conditions << @selected_user
