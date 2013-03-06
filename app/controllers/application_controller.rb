@@ -191,6 +191,33 @@ class ApplicationController < ActionController::Base
       return render_404
     end
   end
+
+  def load_record(options = {})
+    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+    class_name = class_name.to_s.underscore.camelcase
+    klass = Object.const_get(class_name)
+    record = klass.find(params[:id] || params["#{class_name}_id"], options) rescue nil
+    instance_variable_set "@#{class_name.underscore}", record
+    render_404 unless record
+  end
+
+  def require_owner(options = {})
+    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+    class_name = class_name.to_s.underscore.camelcase
+    record = instance_variable_get("@#{class_name.underscore}")
+    unless logged_in? && current_user.id == record.user_id
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to record
+        end
+        format.json do
+          return render :json => {:error => msg}
+        end
+      end
+    end
+  end
   
   # ThinkingSphinx returns a maximum of 50 pages. Anything higher than 
   # that, we want to 404 to avoid a TS error. 

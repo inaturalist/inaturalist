@@ -49,7 +49,7 @@ RSpec.configure do |config|
   end
 
   config.include Devise::TestHelpers, :type => :controller
-
+  config.fixture_path = "#{::Rails.root}/spec/fixtures/"
 end
 
 def without_delay

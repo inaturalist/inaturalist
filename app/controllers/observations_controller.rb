@@ -26,6 +26,7 @@ class ObservationsController < ApplicationController
   end
 
   doorkeeper_for :index, :create, :update, :destroy, :if => lambda { 
+    return false if !session.blank? && !session['warden.user.user.key'].blank?
     @doorkeeper_for_called = true
     request.format && request.format.json?
   }
@@ -290,6 +291,7 @@ class ObservationsController < ApplicationController
       
       format.json do
         render :json => @observation.to_json(
+          :viewer => current_user,
           :methods => [:user_login, :iconic_taxon_name],
           :include => {
             :observation_field_values => {},

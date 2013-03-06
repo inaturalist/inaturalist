@@ -1,5 +1,11 @@
 class ProjectObservationsController < ApplicationController
-  before_filter :authenticate_user!
+  doorkeeper_for :show, :create, :update, :destroy, :if => lambda { 
+    return false if !session.blank? && !session['warden.user.user.key'].blank?
+    @doorkeeper_for_called = true
+    request.format && request.format.json?
+  }
+  before_filter :authenticate_user!, 
+    :unless => lambda { @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible? }
   
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])
