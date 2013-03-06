@@ -66,6 +66,10 @@ module Inaturalist
     config.filter_parameters += [:password, :password_confirmation]
 
     config.active_record.schema_format = :sql
+
+    config.to_prepare do
+      Doorkeeper::ApplicationController.layout "application"
+    end
   end
 
 end

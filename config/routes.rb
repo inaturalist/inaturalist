@@ -1,4 +1,6 @@
 Inaturalist::Application.routes.draw do
+  use_doorkeeper
+
   wiki_root '/pages'
 
   # Riparian routes
@@ -20,6 +22,7 @@ Inaturalist::Application.routes.draw do
   match '/home' => 'users#dashboard', :as => :home
   match '/home.:format' => 'users#dashboard', :as => :formatted_home
   
+  match '/users/edit' => 'users#edit', :as => "edit_user"
   devise_for :users, :controllers => {:sessions => 'users/sessions', :registrations => 'users/registrations'}
   devise_scope :user do
     get "login", :to => "users/sessions#new"

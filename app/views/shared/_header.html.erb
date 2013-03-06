@@ -108,8 +108,8 @@
     <% else %>
     <li id="usernav" style="margin-right:5px;">
       <span class="inter user">
-        <%= link_to user_image(current_user, :size => 'thumb'), user_path(:id => current_user.login) %>
-        <strong class="inlineblock"><%= link_to current_user.login, user_path(:id => current_user.login) %></strong>
+        <%= link_to user_image(current_user, :size => 'thumb'), main_app.person_path(:id => current_user.login) %>
+        <strong class="inlineblock"><%= link_to current_user.login, main_app.person_path(:id => current_user.login) %></strong>
       </span>
     </li>
     <li id="updatesnav" class="subnavwrapper">

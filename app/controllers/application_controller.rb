@@ -116,7 +116,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-
+  # Override Devise implementation so we can set this for oauth2 / doorkeeper requests
+  def current_user
+    cu = super
+    return cu unless cu.blank?
+    return nil unless doorkeeper_token && doorkeeper_token.accessible?
+    @current_user ||= User.find_by_id(doorkeeper_token.resource_owner_id)
+  end
   
   #
   # Grab current user's time zone and set it as the default

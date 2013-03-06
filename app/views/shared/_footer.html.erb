@@ -14,7 +14,7 @@
     <a href="https://market.android.com/details?id=org.inaturalist.android"><img src="/images/android_market.png"></a>
   </div>
 </div>
-<%- if is_mobile_device? && @mobilized -%>
+<%- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized -%>
   <div class="flash notice">
     <%= link_to "Mobile view available", toggle_mobile_path, :id => "mobiletogglelink" %>
   </div>

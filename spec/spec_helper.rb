@@ -48,6 +48,8 @@ RSpec.configure do |config|
     end
   end
 
+  config.include Devise::TestHelpers, :type => :controller
+
 end
 
 def without_delay
