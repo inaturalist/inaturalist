@@ -1298,7 +1298,7 @@ class ObservationsController < ApplicationController
         @place = @places.reverse.detect {|p| p.taxa.self_and_descendants_of(@taxon).exists?}
       end
     end
-    @place ||= Place.find_by_id(params[:place].to_i) || @places.try(:last)
+    @place ||= (Place.find(params[:place_id]) rescue nil) || @places.try(:last)
     @default_taxa = @taxon ? @taxon.ancestors : Taxon::ICONIC_TAXA
     @taxon ||= Taxon::LIFE
     @default_taxa = [@default_taxa, @taxon].flatten.compact

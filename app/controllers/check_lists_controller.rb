@@ -45,7 +45,8 @@ class CheckListsController < ApplicationController
   end
   
   def new
-    unless @place = Place.find_by_id(params[:place_id])
+    @place = Place.find(params[:place_id]) rescue nil
+    unless @place
       flash[:notice] = <<-EOT
         Check lists must belong to a place. To create a new check list, visit
         a place's default check list and click the 'Create a new check list'

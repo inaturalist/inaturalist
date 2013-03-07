@@ -840,6 +840,8 @@ class Taxon < ActiveRecord::Base
         associate.destroy unless associate.valid?
       end
     end
+
+    Taxon.delay(:priority => INTEGRITY_PRIORITY).set_iconic_taxon_for_observations_of(id)
     
     reject.reload
     Rails.logger.info "[INFO] Merged #{reject} into #{self}"

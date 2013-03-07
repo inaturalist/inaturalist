@@ -522,7 +522,7 @@
     <% if logged_in? && @taxon.species_or_lower? && @photos.empty? %>
       <div class="notice">
         <%= t(:this_taxon_has_no_default_photo) %>
-        <%= link_to_function( t(:add_one), "$('#edit_photos_dialog').jqmShow()", :class => 'readmore') %>
+        <%= link_to_function(t(:add_one), "$('#edit_photos_dialog').dialog('open')", :class => 'readmore') %>
       </div>
     <% end %>
     <div id="photos">

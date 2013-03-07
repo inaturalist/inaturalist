@@ -448,7 +448,7 @@ class Observation < ActiveRecord::Base
   }
   
   def self.near_place(place)
-    place = Place.find_by_id(place) unless place.is_a?(Place)
+    place = (Place.find(place) rescue nil) unless place.is_a?(Place)
     if place.swlat
       Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped
     else

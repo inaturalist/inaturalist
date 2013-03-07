@@ -34,7 +34,7 @@ class ListedTaxaController < ApplicationController
       @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id].to_i)
     else
       @list = List.find_by_id(params[:list_id].to_i)
-      @place = Place.find_by_id(params[:place_id].to_i)
+      @place = Place.find(params[:place_id]) rescue nil
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     end
     @list ||= @place.check_list if @place
