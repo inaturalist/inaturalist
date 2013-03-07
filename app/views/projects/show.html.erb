@@ -3,12 +3,11 @@
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
+  <meta property="og:type" content="website"> 
   <meta property="og:title" content="<%= @project.title %>"/> 
-  <% if Rails.env.development? %>
-    <meta property="og:image" content="http://inaturalist.org/<%= @project.icon.url(:span2) %>"/> 
-  <% else %>
-    <meta property="og:image" content="<%= @project.icon.url(:span2) %>"/>
-  <% end %>
+  <% unless @project.icon.blank? -%>
+    <meta property="og:image" content="<%= URI.join(root_url, @project.icon.url(:original)) %>"/> 
+  <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <% unless @fb_admin_ids.blank? -%>
@@ -17,7 +16,7 @@
   <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
     <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" /> 
   <% end -%>
-  <% og_description = h strip_tags(truncate(@project.description, :length => 110)) %>
+  <% og_description = strip_tags(truncate(@project.description.gsub(/\s+/, ' '), :length => 1000)) %>
   <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
 

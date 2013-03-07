@@ -1,7 +1,16 @@
-<% if CONFIG.google_webmaster && !CONFIG.google_webmaster.verification.blank? -%>
-  <%- content_for(:extrahead) do -%>
+<%- content_for(:extrahead) do -%>
+  <% if CONFIG.google_webmaster && !CONFIG.google_webmaster.verification.blank? -%>
     <meta name="google-site-verification" content="<%= CONFIG.google_webmaster.verification %>" />
   <%- end -%>
+  <meta property="og:type" content="website"> 
+  <meta property="og:title" content="<%= SITE_NAME %>"/> 
+  <meta property="og:image" content="<%= image_url CONFIG.logo_icon_square_big %>"/> 
+  <meta property="og:url" content="<%= root_url %>"/> 
+  <meta property="og:site_name" content="<%= SITE_NAME %>"/> 
+  <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
+    <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" /> 
+  <% end -%>
+  <meta property="og:description" content="<%= SITE_NAME %> is a social network for naturalists! Record your observations of plants and animals, share them with friends and researchers, and learn about the natural world."/>
 <% end -%>
 <%- content_for(:extrajs) do -%>
   <!--[if lt IE 8]>
