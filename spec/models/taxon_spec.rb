@@ -569,6 +569,15 @@ describe Taxon, "merging" do
     t1.merge(t2)
     t1.taxon_schemes.size.should eq(1)
   end
+
+  it "should set iconic taxon for observations of reject" do
+    reject = Taxon.make!
+    o = without_delay {Observation.make!(:taxon => reject)}
+    o.iconic_taxon.should be_blank
+    without_delay {@keeper.merge(reject)}
+    o.reload
+    o.iconic_taxon.should eq(@keeper.iconic_taxon)
+  end
 end
 
 describe Taxon, "moving" do
