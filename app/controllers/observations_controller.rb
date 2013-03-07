@@ -25,17 +25,13 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :index, :create, :update, :destroy, :if => lambda { 
-    return false if !session.blank? && !session['warden.user.user.key'].blank?
-    @doorkeeper_for_called = true
-    request.format && request.format.json?
-  }
+  doorkeeper_for :index, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
-                :unless => lambda { @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible? },
+                :unless => lambda { authenticated_with_oauth? },
                 :except => [:explore,
                             :index,
                             :of,

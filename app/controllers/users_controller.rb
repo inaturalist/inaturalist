@@ -1,15 +1,11 @@
 class UsersController < ApplicationController  
-  doorkeeper_for :index, :create, :update, :edit, :if => lambda { 
-    @doorkeeper_for_called = true
-    request.format && request.format.json?
-  }
+  doorkeeper_for :index, :create, :update, :edit, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
-    :unless => lambda { 
-      @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible? },
+    :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
     :show, :update, :relationships, :add_role, :remove_role]
-  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy, :suspend, :unsuspend]
+  before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy, :suspend, :unsuspend]
   before_filter :admin_required, :only => [:curation]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   

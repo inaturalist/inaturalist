@@ -41,7 +41,7 @@ describe ObservationPhotosController, "devise authentication" do
   let(:user) { User.make! }
   let(:observation) { Observation.make!(:user => user)}
   before do
-    sign_in user
+    http_login user
   end
   it_behaves_like "an ObservationPhotosController"
 end

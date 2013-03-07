@@ -63,7 +63,7 @@ end
 describe ObservationsController, "devise authentication" do
   let(:user) { User.make! }
   before do
-    sign_in user
+    http_login(user)
   end
   it_behaves_like "an ObservationsController"
 end

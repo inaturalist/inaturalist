@@ -35,7 +35,7 @@ end
 
 describe ProjectObservationsController, "devise authentication" do
   before do
-    sign_in user
+    http_login user
   end
   it_behaves_like "an ProjectObservationsController"
 end

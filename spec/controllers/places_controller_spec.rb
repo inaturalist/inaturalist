@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe PlacesController do
   describe "create" do
     it "should make a place with no default type" do
-      user = User.make
-      login_as user
+      user = User.make!
+      sign_in user
       lambda {
         post :create, :place => {
           :name => "Pine Island Ridge Natural Area", 

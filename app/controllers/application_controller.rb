@@ -372,6 +372,17 @@ class ApplicationController < ActionController::Base
     end
     super
   end
+
+  def authenticate_with_oauth?
+    return false if !session.blank? && !session['warden.user.user.key'].blank?
+    return false if request.authorization.to_s =~ /^Basic /
+    @doorkeeper_for_called = true
+    request.format && request.format.json?
+  end
+
+  def authenticated_with_oauth?
+    @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins
