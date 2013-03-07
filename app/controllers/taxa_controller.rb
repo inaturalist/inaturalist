@@ -1388,7 +1388,7 @@ class TaxaController < ApplicationController
   
   def load_single_taxon_map_data(taxon)
     @taxon_range = taxon.taxon_ranges.without_geom.first
-    if params[:place_id] && (@place = Place.find_by_id(params[:place_id]))
+    if params[:place_id] && (@place = Place.find(params[:place_id]) rescue nil)
       @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
     end
     @bounds = if @place && (bbox = @place.bounding_box)
