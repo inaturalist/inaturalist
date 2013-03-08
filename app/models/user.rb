@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :encryptor => :restful_authentication_sha1
+  handle_asynchronously :send_devise_notification
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
   attr_accessor :skip_email_validation
