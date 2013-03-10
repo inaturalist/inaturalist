@@ -59,7 +59,9 @@ def without_delay
   r
 end
 
+# http://stackoverflow.com/questions/3768718/rails-rspec-make-tests-to-pass-with-http-basic-authentication
 def http_login(user)
-  request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user.login, "monkey")
+  request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(
+    user.login, "monkey")
 end
 

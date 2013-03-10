@@ -99,3 +99,5 @@ Encoding.default_external = Encoding::UTF_8
 
 # make sure we have geojson support
 require 'geo_ruby/geojson'
+require 'google/api_client'
+

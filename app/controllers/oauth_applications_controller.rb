@@ -1,6 +1,5 @@
 class OauthApplicationsController < ApplicationController
   before_filter :authenticate_user!
-  # before_filter :admin_required, :only => [:index]
   before_filter :load_application, :only => [:show, :edit, :update, :destroy]
   before_filter :require_owner_or_admin, :only => [:edit, :update, :destroy]
   respond_to :html
