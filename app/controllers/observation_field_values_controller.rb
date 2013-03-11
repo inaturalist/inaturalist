@@ -1,5 +1,6 @@
 class ObservationFieldValuesController < ApplicationController
-  before_filter :authenticate_user!
+  doorkeeper_for :show, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
   before_filter :load_observation_field_value, :only => [:update, :destroy]
   
   def create

@@ -142,6 +142,11 @@ class User < ActiveRecord::Base
     !self.icon.present? && !self.icon_url.blank?
   end
 
+  def user_icon_url
+    return nil if icon.blank?
+    "#{FakeView.root_url}#{icon.url}".gsub(/\/\//, '/')
+  end
+
   def active?
     !suspended?
   end

@@ -56,6 +56,12 @@ class ProviderAuthorizationsController < ApplicationController
       @provider_authorization.update_attributes(:scope => scope.to_s)
       session["omniauth_#{request.env['omniauth.strategy'].name}_scope"] = nil
     end
+
+    # if this is a direct oauth bounce sign in, go directly to bounce_back
+    if !session[:oauth_bounce].blank?
+      redirect_to oauth_bounce_back_url
+      return
+    end
     
     if !session[:return_to].blank? && session[:return_to] != login_url
       @landing_path ||= session[:return_to]

@@ -5,8 +5,8 @@ describe ObservationsController do
     it "should not raise an exception if the obs was invalid and an image was submitted"
     
     it "should not raise an exception if no observations passed" do
-      user = User.make
-      login_as user
+      user = User.make!
+      sign_in user
       
       lambda {
         post :create
@@ -14,9 +14,9 @@ describe ObservationsController do
     end
     
     it "should add project observations if auto join project specified" do
-      project = Project.make
-      user = User.make
-      login_as user
+      project = Project.make!
+      user = User.make!
+      sign_in user
       
       project.users.find_by_id(user.id).should be_blank
       post :create, :observation => {:species_guess => "Foo!"}, :project_id => project.id, :accept_terms => true
@@ -25,9 +25,9 @@ describe ObservationsController do
     end
     
     it "should add project observations if auto join project specified and format is json" do
-      project = Project.make
-      user = User.make
-      login_as user
+      project = Project.make!
+      user = User.make!
+      sign_in user
       
       project.users.find_by_id(user.id).should be_blank
       post :create, :format => "json", :observation => {:species_guess => "Foo!"}, :project_id => project.id
@@ -36,11 +36,12 @@ describe ObservationsController do
     end
     
     it "should set taxon from taxon_name param" do
-      user = User.make
-      taxon = Taxon.make
-      login_as user
+      user = User.make!
+      taxon = Taxon.make!
+      sign_in user
       post :create, :observation => {:species_guess => "Foo", :taxon_name => taxon.name}
       obs = user.observations.last
+      obs.should_not be_blank
       obs.species_guess.should == "Foo"
       obs.taxon_id.should == taxon.id
     end
@@ -49,8 +50,8 @@ describe ObservationsController do
   
   describe :update do
     it "should not raise an exception if no observations passed" do
-      user = User.make
-      login_as user
+      user = User.make!
+      sign_in user
       
       lambda {
         post :update
@@ -58,12 +59,12 @@ describe ObservationsController do
     end
     
     it "should use latitude param even if private_latitude set" do
-      taxon = Taxon.make(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
-      observation = Observation.make(:taxon => taxon, :latitude => 38, :longitude => -122)
+      taxon = Taxon.make!(:conservation_status => Taxon::IUCN_ENDANGERED, :rank => "species")
+      observation = Observation.make!(:taxon => taxon, :latitude => 38, :longitude => -122)
       observation.private_longitude.should_not be_blank
       old_latitude = observation.latitude
       old_private_latitude = observation.private_latitude
-      login_as observation.user
+      sign_in observation.user
       post :update, :id => observation.id, :observation => {:latitude => 1}
       observation.reload
       observation.private_longitude.should_not be_blank
@@ -74,8 +75,8 @@ describe ObservationsController do
   
   describe :new_batch_csv do
     it "should work under normal conditions" do
-      user = User.make
-      login_as user
+      user = User.make!
+      sign_in user
       file = File.open(File.dirname(__FILE__) + '/../fixtures/observations.csv')
       
       user.observations.count.should be(0)
@@ -84,8 +85,8 @@ describe ObservationsController do
     end
     
     it "should redirect without a file" do
-      user = User.make
-      login_as user
+      user = User.make!
+      sign_in user
       post :new_batch_csv
       response.should be_redirect
     end
