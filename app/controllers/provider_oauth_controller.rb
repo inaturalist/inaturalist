@@ -12,16 +12,16 @@ class ProviderOauthController < ApplicationController
 
     if access_token
       auth = Doorkeeper::OAuth::TokenResponse.new(access_token)
-      if access_token.application.redirect_uri && access_token.application.redirect_uri != Doorkeeper.configuration.test_redirect_uri
+      if request.format && request.format.json?
+        render :json => auth.body, :status => auth.status
+      else
         uri = URI.parse(access_token.application.redirect_uri)
         uri.query = Rack::Utils.build_query(
           :access_token => auth.token.token,
           :token_type   => auth.token.token_type,
           :expires_in   => auth.token.expires_in
         )
-        redirect_to uri
-      else
-        render :json => auth.body, :status => auth.status
+        redirect_to uri.to_s
       end
     else
       render :status => :unauthorized, :json => { :error => :access_denied }
