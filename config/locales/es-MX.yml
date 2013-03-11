@@ -322,8 +322,7 @@ es-MX:
   cc_by_nc_sa_name: "Atribución - No Comercial Compartir bajo la Misma Licencia"
   cc_by_nd_description: "Esta licencia permite a otros distribuir comercialmente y sin fines comerciales, siempre y cuando te den crédito por la creación original y se use sin modificaciones. "
   cc_by_nd_name: "Atribución - Sin obras derivadas"
-  cc_by_sa_description: |
-      Esta licencia permite a otros mezclar, modificar y desarrollar sobre tu obra, aún comercialmente, siempre y cuando te den crédito por la creación original y den licencia por sus nuevas obras con las mismas condiciones. Todas las obras nuevas basadas en tu obra, llevan la misma licencia, así que cualquier trabajo derivado también permitirá el uso comercial.
+  cc_by_sa_description: "Esta licencia permite a otros mezclar, modificar y desarrollar sobre tu obra, aún comercialmente, siempre y cuando te den crédito por la creación original y den licencia por sus nuevas obras con las mismas condiciones. Todas las obras nuevas basadas en tu obra, llevan la misma licencia, así que cualquier trabajo derivado también permitirá el uso comercial.\n"
   cc_by_sa_name: "Atribución - Compartir bajo la misma licencia"
   cc_used_under_a: "Creative Commons, utilizado bajo una "
   change_icon: "Cambia ícono"
@@ -6520,7 +6519,6 @@ es-MX:
   occurence_status_describes_how: "El estatus de ocurrencia describe que tan común o raro es una especie o grupo en un área determinada. Ver el DarwinCore  <a href=\"http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus\">para información sobre terminología</a>."
   occurrence_status: "Estatus de ocurrencia"
   of_it_and_its_descendants: "de élla y sus descendientes"
-  on: en
   on_edit_date: "sobre %{editdate}"
   on_submit_date: "sobre %{submitdate}"
   on_your_life_list: "en tu lista de vida"
@@ -6917,6 +6915,8 @@ es-MX:
   total_users: "Total de usuarios,"
   tree_browser: "Navegador del árbol"
   tree_browser_raquo: "Navegador del árbol &raquo;"
+  ? "true"
+  : en
   try_adding_species_form: "Intenta añadir algunas especies utilizando la forma en esta página."
   try_wikipedia: "¿Prueba Wikipedia?"
   tue: Mar
@@ -7357,6 +7357,8 @@ es-MX:
   your_world!: "tú país!"
   youre_following: "Estás siguiendo a"
   youre_not_following_anyone: "No estás siguiendo a nadie. Si sigues a otros naturalistas podrás ver fácilmente sus más recientes observaciones. Ve y encuentra que gente está"
+  youre_viewing_all_observations: "Estás viendo todas las observaciones"
+  youre_viewing_site_name_observations_html: "Estás viendo las observaciones de <strong>%{site_name}</strong> "
   youve_already_added_an_identification: "Ya has añadido una identificación y solo puedes añadir una."
   youve_linked_your_inaturalist_picasa_account: "Has enlazado tu cuenta de %{site_name} con tu cuenta de Picasa. Esto te permitirá asociar tus fotos de Picasa con tus observaciones de  %{site_name}."
   youve_seen_it_want_to: "¡Lo has visto! Quieres"
