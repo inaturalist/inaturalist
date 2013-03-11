@@ -10904,7 +10904,8 @@ CREATE TABLE oauth_applications (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
-    owner_type character varying(255)
+    owner_type character varying(255),
+    trusted boolean DEFAULT false
 );
 
 
@@ -15088,3 +15089,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130301222959');
 INSERT INTO schema_migrations (version) VALUES ('20130304024311');
 
 INSERT INTO schema_migrations (version) VALUES ('20130306020925');
+
+INSERT INTO schema_migrations (version) VALUES ('20130311061913');

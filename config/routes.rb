@@ -1,5 +1,7 @@
 Inaturalist::Application.routes.draw do
   match '/oauth/assertion_token' => 'provider_oauth#assertion', :via => :post
+  match '/oauth/bounce_token' => 'provider_oauth#bounce', :as => "oauth_bounce_token"
+  match '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
   use_doorkeeper do
     controllers :applications => 'oauth_applications'
   end

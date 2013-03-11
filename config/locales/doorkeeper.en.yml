@@ -30,6 +30,8 @@ en:
               invalid_uri: 'must be a valid URI.'
               relative_uri: 'must be an absolute URI.'
   doorkeeper:
+    scopes:
+      write: "Create, update, and delete your observations on your behalf"
     errors:
       messages:
         # Common error messages

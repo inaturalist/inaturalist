@@ -1,4 +1,5 @@
 class ProviderOauthController < ApplicationController
+  before_filter :authenticate_user!, :only => [:bounce_back]
   # OAuth2 assertion flow: http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
@@ -13,17 +14,64 @@ class ProviderOauthController < ApplicationController
       auth = Doorkeeper::OAuth::TokenResponse.new(access_token)
       if access_token.application.redirect_uri && access_token.application.redirect_uri != Doorkeeper.configuration.test_redirect_uri
         uri = URI.parse(access_token.redirect_uri)
-        uri.fragment = {
+        uri.query = Rack::Utils.build_query(
           :access_token => auth.token.token,
           :token_type   => auth.token.token_type,
           :expires_in   => auth.token.expires_in
-        }
-        redirect_to authuri
+        )
+        redirect_to uri
       else
         render :json => auth.body, :status => auth.status
       end
     else
       render :status => :unauthorized, :json => { :error => :access_denied }
+    end
+  end
+
+  def bounce
+    render_404 unless ProviderAuthorization::PROVIDERS.include?(params[:provider])
+    # store request params in session
+    session[:oauth_bounce] = {
+      :client_id => params[:client_id],
+      :provider => params[:provider]
+    }
+    if logged_in?
+      redirect_to oauth_bounce_back_url
+    else
+      # redirect to auth url for specified provider
+      redirect_to auth_url_for(params[:provider])
+    end
+  end
+
+  def bounce_back
+    # get original request params form session
+    original_params = session.delete(:oauth_bounce)
+    render_404 unless client = Doorkeeper::Application.find_by_uid(original_params[:client_id])
+
+    # find or create create an auth token
+    access_token = Doorkeeper::AccessToken.
+      where(:application_id => client.id, :resource_owner_id => current_user.id, :revoked_at => nil).
+      order('created_at desc').
+      limit(1).
+      first
+    if client.trusted?
+      access_token ||= Doorkeeper::AccessToken.create!(
+        :application_id    => client.id,
+        :resource_owner_id => current_user.id,
+      )
+    end
+
+    if access_token
+      # redirect to client redirect_uri with token
+      uri = URI.parse(access_token.application.redirect_uri)
+      uri.query = Rack::Utils.build_query(
+        :access_token => access_token.token,
+        :token_type   => access_token.token_type,
+        :expires_in   => access_token.expires_in
+      )
+      redirect_to uri.to_s
+    else
+      redirect_to oauth_authorization_url(:client_id => client.id, :redirect_uri => client.redirect_uri, :response_type => "code")
     end
   end
 
@@ -76,10 +124,12 @@ class ProviderOauthController < ApplicationController
       order('created_at desc').
       limit(1).
       first
-    access_token ||= Doorkeeper::AccessToken.create!(
-      :application_id    => client.id,
-      :resource_owner_id => user.id,
-    )
+    if client.trusted?
+      access_token ||= Doorkeeper::AccessToken.create!(
+        :application_id    => client.id,
+        :resource_owner_id => user.id,
+      )
+    end
     access_token
   end
 
@@ -97,7 +147,6 @@ class ProviderOauthController < ApplicationController
       method = client.discovered_api('oauth2').userinfo.get
       r = gclient.execute!(:api_method => client.discovered_api('oauth2').userinfo.get)
       json = JSON.parse(r.body)
-      Rails.logger.debug "[DEBUG] json: #{json.inspect}"
       uid = json['id']
       user = User.includes(:provider_authorizations).
         where("provider_authorizations.provider_uid = ?", uid).
@@ -128,10 +177,12 @@ class ProviderOauthController < ApplicationController
       order('created_at desc').
       limit(1).
       first
-    access_token ||= Doorkeeper::AccessToken.create!(
-      :application_id    => client.id,
-      :resource_owner_id => user.id,
-    )
+    if client.trusted?
+      access_token ||= Doorkeeper::AccessToken.create!(
+        :application_id    => client.id,
+        :resource_owner_id => user.id,
+      )
+    end
     access_token
   end
 end
