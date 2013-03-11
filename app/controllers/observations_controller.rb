@@ -25,7 +25,7 @@ class ObservationsController < ApplicationController
     by_login
   end
 
-  doorkeeper_for :index, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
