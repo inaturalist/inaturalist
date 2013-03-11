@@ -296,7 +296,7 @@ working_set_species.each do |sp| #Loop through the species in the workingset
           else
             value = "Section empty" if value.nil?
             if key == "GeographicRangeInformation" #add the map to the assessment section
-              value = value + "<iframe width=\"100%\" height=\"500\" src=\"http://www.inaturalist.org/taxa/#{taxon.id}/map#5.00/-8.477/-72.039\"></iframe>" ###
+              value = value + "<iframe width=\"100%\" height=\"500\" src=\"https://amazing-amphibians.herokuapp.com/?taxon_id=#{taxon.id}&height=500&project_id=#{project.id}\"></iframe>" ###
             end
             if key == "TaxonomicNotes"
               value = "<table><tr><td>" + taxon.ancestors[1..-1].map{|t| t.name}.join("</td><td>") + "</td><td>" + taxon.name + "</td></tr></table>Taxonomic notes:  " + value

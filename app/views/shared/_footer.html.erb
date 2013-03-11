@@ -21,7 +21,7 @@
     <a href="/privacy.html"><%=t :privacy%></a> &nbsp;
   </div>
 </div>
-<%- if is_mobile_device? && @mobilized -%>
+<%- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized -%>
   <div class="flash notice">
     <%= link_to t(:mobile_view_available), toggle_mobile_path, :id => "mobiletogglelink" %>
   </div>

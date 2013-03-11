@@ -11,7 +11,7 @@ class ProviderAuthorization < ActiveRecord::Base
   # this record is created
   attr_accessor :auth_info
   
-  PROVIDERS = %w(facebook twitter Flickr Google Yahoo) 
+  PROVIDERS = %w(facebook twitter Flickr Google Yahoo)
   AUTH_URLS = PROVIDERS.inject({}) do |memo, provider|
     memo.update(provider => "/auth/#{provider.downcase}")
   end

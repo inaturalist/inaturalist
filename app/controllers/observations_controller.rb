@@ -24,11 +24,14 @@ class ObservationsController < ApplicationController
     end
     by_login
   end
+
+  doorkeeper_for :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
   before_filter :return_here, :only => [:index, :by_login, :show, :id_please, 
     :import, :add_from_list, :new, :project]
-  before_filter :authenticate_user!, 
+  before_filter :authenticate_user!,
+                :unless => lambda { authenticated_with_oauth? },
                 :except => [:explore,
                             :index,
                             :of,
@@ -284,6 +287,7 @@ class ObservationsController < ApplicationController
       
       format.json do
         render :json => @observation.to_json(
+          :viewer => current_user,
           :methods => [:user_login, :iconic_taxon_name],
           :include => {
             :observation_field_values => {},
@@ -498,7 +502,7 @@ class ObservationsController < ApplicationController
       o
     end
     
-    self.current_user.observations << @observations
+    current_user.observations << @observations
     
     if request.format != :json && !params[:accept_terms] && params[:project_id] && !current_user.project_users.find_by_project_id(params[:project_id])
       flash[:error] = "But we didn't add this observation to the #{Project.find_by_id(params[:project_id]).title} project because you didn't agree to the project terms."
@@ -2025,8 +2029,16 @@ class ObservationsController < ApplicationController
   
   def require_owner
     unless logged_in? && current_user.id == @observation.user_id
-      flash[:error] = "You don't have permission to do that"
-      return redirect_to @observation
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to @observation
+        end
+        format.json do
+          return render :json => {:error => msg}
+        end
+      end
     end
   end
   

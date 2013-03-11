@@ -121,7 +121,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
-
+  # Override Devise implementation so we can set this for oauth2 / doorkeeper requests
+  def current_user
+    cu = super
+    return cu unless cu.blank?
+    return nil unless doorkeeper_token && doorkeeper_token.accessible?
+    @current_user ||= User.find_by_id(doorkeeper_token.resource_owner_id)
+  end
   
   #
   # Grab current user's time zone and set it as the default
@@ -188,6 +194,33 @@ class ApplicationController < ActionController::Base
     @login = params[:login].to_s.downcase
     unless @selected_user = User.first(:conditions => ["lower(login) = ?", @login])
       return render_404
+    end
+  end
+
+  def load_record(options = {})
+    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+    class_name = class_name.to_s.underscore.camelcase
+    klass = Object.const_get(class_name)
+    record = klass.find(params[:id] || params["#{class_name}_id"], options) rescue nil
+    instance_variable_set "@#{class_name.underscore}", record
+    render_404 unless record
+  end
+
+  def require_owner(options = {})
+    class_name = options.delete(:klass) || self.class.name.underscore.split('_')[0..-2].join('_').singularize
+    class_name = class_name.to_s.underscore.camelcase
+    record = instance_variable_get("@#{class_name.underscore}")
+    unless logged_in? && current_user.id == record.user_id
+      msg = "You don't have permission to do that"
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to record
+        end
+        format.json do
+          return render :json => {:error => msg}
+        end
+      end
     end
   end
   
@@ -339,6 +372,17 @@ class ApplicationController < ActionController::Base
       session[:return_to_for_new_user] = request.fullpath
     end
     super
+  end
+
+  def authenticate_with_oauth?
+    return false if !session.blank? && !session['warden.user.user.key'].blank?
+    return false if request.authorization.to_s =~ /^Basic /
+    @doorkeeper_for_called = true
+    request.format && request.format.json?
+  end
+
+  def authenticated_with_oauth?
+    @doorkeeper_for_called && doorkeeper_token && doorkeeper_token.accessible?
   end
 end
 

@@ -42,7 +42,7 @@ module Shared::ListsModule
         case @view
         when TAXONOMIC_VIEW
           @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
-          @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
+          @listed_taxa = @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
           ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
           ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
           taxa_to_arrange = (ancestors + @listed_taxa.map(&:taxon)).sort_by{|t| "#{t.ancestry}/#{t.id}"}
@@ -369,7 +369,7 @@ module Shared::ListsModule
     }
     if params[:taxon] && @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
-      @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"]
+      @find_options[:conditions] = ["(taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", @filter_taxon.id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%"]
       
       # The above condition on a joined table will trigger an eager load, 
       # which won't load all 2nd order associations (e.g. taxon names), so 

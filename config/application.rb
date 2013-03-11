@@ -66,6 +66,10 @@ module Inaturalist
     config.filter_parameters += [:password, :password_confirmation]
 
     config.active_record.schema_format = :sql
+
+    config.to_prepare do
+      Doorkeeper::ApplicationController.layout "application"
+    end
   end
 
 end
@@ -96,3 +100,5 @@ Encoding.default_external = Encoding::UTF_8
 
 # make sure we have geojson support
 require 'geo_ruby/geojson'
+require 'google/api_client'
+

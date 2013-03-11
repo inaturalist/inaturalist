@@ -1,4 +1,11 @@
 Inaturalist::Application.routes.draw do
+  match '/oauth/assertion_token' => 'provider_oauth#assertion', :via => :post
+  match '/oauth/bounce_token' => 'provider_oauth#bounce', :as => "oauth_bounce_token"
+  match '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
+  use_doorkeeper do
+    controllers :applications => 'oauth_applications'
+  end
+
   wiki_root '/pages'
 
   # Riparian routes
@@ -20,6 +27,7 @@ Inaturalist::Application.routes.draw do
   match '/home' => 'users#dashboard', :as => :home
   match '/home.:format' => 'users#dashboard', :as => :formatted_home
   
+  match '/users/edit' => 'users#edit', :as => "generic_edit_user"
   devise_for :users, :controllers => {:sessions => 'users/sessions', :registrations => 'users/registrations'}
   devise_scope :user do
     get "login", :to => "users/sessions#new"

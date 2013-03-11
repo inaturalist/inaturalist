@@ -26,7 +26,7 @@ class ProjectUser < ActiveRecord::Base
     :if => Proc.new {|pu| ROLES.include?(pu.role) || pu.user_id == pu.project.user_id}
 
   def to_s
-    "<ProjectUser #{id} project: #{project_id} user: #{user_id} role: #{role}"
+    "<ProjectUser #{id} project: #{project_id} user: #{user_id} role: #{role}>"
   end
 
   def project_observations
