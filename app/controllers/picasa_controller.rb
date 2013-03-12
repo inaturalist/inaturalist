@@ -195,7 +195,7 @@ class PicasaController < ApplicationController
     user_data = picasa.user(picasa_user_id) 
     albums = []
     unless user_data.nil?
-      user_data.albums.select{|a| a.numphotos > 0}.each do |a|
+      user_data.albums.select{|a| a.numphotos.to_i > 0}.each do |a|
         albums << {
           'aid' => a.id,
           'name' => a.title,
