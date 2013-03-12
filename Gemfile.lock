@@ -30,6 +30,13 @@ GIT
     gdata (1.1.2)
 
 GIT
+  remote: git://github.com/eknoop/xmp.git
+  revision: b07bd072239a84c7b8c2967c3321066477e03a88
+  specs:
+    xmp (0.2.0)
+      nokogiri (~> 1.5.0)
+
+GIT
   remote: git://github.com/kueda/riparian.git
   revision: a459bfe905d9239c96573506e88140c326133d97
   specs:
@@ -378,8 +385,6 @@ GEM
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
     will_paginate (3.0.3)
-    xmp (0.2.0)
-      nokogiri (~> 1.5.0)
     ym4r (0.6.1)
 
 PLATFORMS
@@ -455,5 +460,5 @@ DEPENDENCIES
   watu_table_builder
   whenever
   will_paginate
-  xmp
+  xmp!
   ym4r_gm!
