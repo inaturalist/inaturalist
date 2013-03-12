@@ -181,7 +181,7 @@
         end
       end
 
-      pieces << link_to("Curate user", curate_users_path(:id => @user.id)) if is_admin?
+      pieces << link_to(t(:curate_user), curate_users_path(:id => @user.id)) if is_admin?
     -%>
     <%= pieces.join(" | ").html_safe %>
   </div>
