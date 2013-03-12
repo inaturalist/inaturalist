@@ -500,17 +500,6 @@ class ObservationsController < ApplicationController
     # check for errors
     errors = false
     @observations.each { |obs| errors = true unless obs.valid? }
-    prefs = current_preferences
-    unless errors
-      # post observations to facebook
-      if prefs['share_observations_on_facebook'] && current_user.facebook_identity
-        @observations.each{|obs| current_user.delay(:priority => USER_INTEGRITY_PRIORITY).share_observation_on_facebook(obs) }
-      end
-      # post observations to twitter
-      if prefs['share_observations_on_twitter'] && current_user.twitter_identity
-        @observations.each{|obs| current_user.delay(:priority => USER_INTEGRITY_PRIORITY).share_observation_on_twitter(obs) }
-      end
-    end
     respond_to do |format|
       format.html do
         unless errors

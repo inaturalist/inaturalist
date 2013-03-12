@@ -282,14 +282,6 @@ class User < ActiveRecord::Base
     facebook_identity.try(:token)
   end
 
-  def share_observation_on_facebook(obs)
-    fb_api = self.facebook_api
-    return nil unless fb_api
-    fb_api.put_connections("me", 
-                           "inatdev:observe", 
-                           :observation => obs.url.gsub('localhost:3000','74.207.251.143'))
-  end
-
   # returns a Twitter object to make (authenticated) api calls
   # see twitter gem docs for available methods: https://github.com/sferik/twitter
   def twitter_api
@@ -303,17 +295,6 @@ class User < ActiveRecord::Base
   # returns nil or the twitter ProviderAuthorization
   def twitter_identity
     @twitter_identity ||= has_provider_auth('twitter')
-  end
-
-  def share_observation_on_twitter(obs)
-    twit_api = self.twitter_api
-    return nil unless twit_api
-    obs_image_url = obs.image_url
-    if obs_image_url.nil?
-      twit_api.update(obs.to_share_s)
-    else
-      twit_api.update_with_media(obs.to_share_s, open(obs_image_url))
-    end
   end
   
   def update_observation_licenses
