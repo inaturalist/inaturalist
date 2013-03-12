@@ -346,6 +346,7 @@ GEM
       faraday (~> 0.8.1)
       jwt (>= 0.1.5)
       multi_json (>= 1.0.0)
+    simple_oauth (0.2.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -451,6 +452,7 @@ DEPENDENCIES
   riparian!
   rspec-rails
   rvm-capistrano
+  simple_oauth
   spatial_adapter!
   thinking-sphinx (= 2.0.10)
   tlsmail
