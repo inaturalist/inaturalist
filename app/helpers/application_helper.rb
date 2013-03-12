@@ -519,7 +519,19 @@ module ApplicationHelper
   def link_to(*args, &block)
     unless block_given?
       body, url, options = args
-      if url_for(url) =~ /\?/
+      url_candidate = begin
+        url_for(url)
+      rescue ArgumentError => e
+        raise e unless e.message =~ /invalid byte sequence/
+        if url.is_a?(String)
+          url_for(url_for.encode('UTF-8'))
+        else
+          new_pieces = {}
+          url.each {|k,v| new_pieces[k] = v.encode('UTF-8')}
+          url_for(new_pieces)
+        end
+      end
+      if url_candidate =~ /\?/
         options ||= {}
         options[:rel] ||= "nofollow" unless options[:rel].to_s =~ /nofollow/
       end
@@ -831,6 +843,12 @@ module ApplicationHelper
         listed_taxon.introduced? ? 'I' : listed_taxon.establishment_means.chars.to_a[0].upcase
       end
     end
+  end
+
+  def uri_join(*args)
+    URI.join(*args)
+  rescue URI::InvalidURIError
+    args.join('/').gsub(/\/+/, '/')
   end
   
 end

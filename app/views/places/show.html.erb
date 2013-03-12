@@ -19,8 +19,8 @@
   <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
-  <meta property="og:description" name="description" content='<%= t(:learn_about_the_species_live_in) + "#{@place.display_name}" %>!' /> 
-  <meta property="og:image" content="<%= URI.join(root_url, path_to_image(CONFIG.logo_icon_square_big)) %>"/> 
+  <meta property="og:description" name="description" content='<%= t(:learn_about_the_species_live_in) + "#{@place.display_name}" %>!'/> 
+  <meta property="og:image" content="<%= uri_join(root_url, path_to_image(CONFIG.logo_icon_square_big)) %>"/> 
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
