@@ -35,7 +35,7 @@ class TaxonChangesController < ApplicationController
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
     
     @taxon_changes = scope.page(params[:page]).
-      select("DISTINCT (taxon_changes.id), taxon_changes.*").
+      select("DISTINCT ON (taxon_changes.id) taxon_changes.*").
       includes(:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
       includes(:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
       includes(:source).
