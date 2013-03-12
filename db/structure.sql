@@ -14174,6 +14174,13 @@ CREATE INDEX index_observations_user_datetime ON observations USING btree (user_
 
 
 --
+-- Name: index_photos_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_photos_on_user_id ON photos USING btree (user_id);
+
+
+--
 -- Name: index_picasa_identities_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15091,3 +15098,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130304024311');
 INSERT INTO schema_migrations (version) VALUES ('20130306020925');
 
 INSERT INTO schema_migrations (version) VALUES ('20130311061913');
+
+INSERT INTO schema_migrations (version) VALUES ('20130312070047');
