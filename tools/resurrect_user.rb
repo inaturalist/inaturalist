@@ -105,6 +105,9 @@ puts "\t#{cmd}"
 system cmd
 resurrection_cmds << "psql inaturalist_production -c \"\\copy listed_taxa FROM '#{fname}' WITH CSV\""
 
+# TODO restore subscriptions to user
+# TODO restore identifications on user's observations
+
 cmd = "tar cvzf resurrect_#{user_id}.tgz resurrect_#{user_id}-*"
 puts "Zipping it all up..."
 puts "\t#{cmd}"
