@@ -1,7 +1,12 @@
 class WikiPagesController < ApplicationController
   acts_as_wiki_pages_controller
   def edit_allowed?
-    logged_in? && (current_user.is_curator? || current_user.is_admin?)
+    return false unless logged_in?
+    return true if current_user.is_admin?
+    if CONFIG.home_page_wiki_path && @page.path == CONFIG.home_page_wiki_path
+      return false unless current_user.uri =~ /#{FakeView.root_url}/
+    end
+    current_user.is_curator?
   end
 
   def history_allowed?

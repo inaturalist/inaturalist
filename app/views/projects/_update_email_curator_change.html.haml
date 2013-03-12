@@ -1,0 +1,49 @@
+- project ||= update_email_curator_change
+- viewing_user = current_user rescue @user
+%table
+  - for update in updates
+    :ruby
+      project_user = update.notifier
+      user = project_user.user
+      role = if project_user.user_id == project_user.project.user_id
+        "the <strong>admin</strong>".html_safe
+      elsif project_user.role.to_s =~ /^[aeiou]/
+        "an <strong>#{project_user.role}</strong>".html_safe
+      else
+        "a <strong>#{project_user.role}</strong>".html_safe
+      end
+    %tr
+      %td{:valign => "top"}
+        = user_image(user, :size => "thumb", :width => 32, :height => 32)
+      %td
+        - if is_me?(user, :current_user => viewing_user)
+          %strong You
+          are now
+        - else
+          %strong= user.login
+          is now
+        = role
+        for
+        = project.title
+        - unless user.description.blank? || is_me?(user, :current_user => viewing_user)
+          Here's a little about
+          = surround '', ': ' do
+            = user.login
+          %blockquote
+            = surround '"', '"' do
+              = truncate(strip_tags(user.description), :length => 100)
+        - unless is_me?(user, :current_user => viewing_user)
+          %div= link_to "View more about #{user.login}", user, :class => "readmore"
+        - if user.id == viewing_user.id && project.user_id == viewing_user.id
+          %p
+            %em
+              Wondering why you're now
+              = role
+              for this project? The previous owner probably deleted their account, so
+              = CONFIG.site_name_short
+              assigned you because you're a project manager or a site curator. If you don't want to be the project admin, please contact
+              = link_to CONFIG.help_email, "mailto:#{CONFIG.help_email}"
+%p.ui
+  Just a reminder, project curators can see the private and obscured
+  coordinates of observations you add to this project.
+  

@@ -4,10 +4,9 @@
   <br/>
   <span>We currently support Flickr for image hosting and hope to add other image hosts shortly.</span>
   <br/><br/>
-<%= link_to "You can activate your Flickr account with iNaturalist to add\
+<%= link_to "You can activate your Flickr account with #{CONFIG.site_name} to add\
              photos by clicking on this link.",
-            :controller => 'flickr',
-            :action => 'link' %>
+            auth_url_for('flickr') %>
 </div>
 <% else %>
 <%= 

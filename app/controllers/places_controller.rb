@@ -21,7 +21,7 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place = Place.find_by_id(CONFIG.place_id) unless CONFIG.place_id.blank?
+        place = (Place.find(CONFIG.place_id) rescue nil) unless CONFIG.place_id.blank?
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
         place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
           places = if place
@@ -78,24 +78,6 @@ class PlacesController < ApplicationController
   
   def show
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
-    @observations = Observation.all(
-      :joins => ["JOIN place_geometries ON place_geometries.place_id = #{@place.id}"],
-      :conditions => [
-        "((observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
-        "(observations.private_latitude IS NOT NULL AND ST_Intersects(place_geometries.geom, ST_Point(observations.private_longitude, observations.private_latitude)))) AND " +
-        "observations.observed_on IS NOT NULL"
-      ],
-      :include => [{:taxon => :taxon_names}],
-      :limit => 100,
-      :order => "observed_on DESC"
-    )
-    # if logged_in?
-    #   scope = @place.taxa.of_rank(Taxon::SPECIES).scoped({:select => "DISTINCT ON (ancestry, taxa.id) taxa.*"})
-    #   @listed_taxa_count = scope.count
-    #   @current_user_observed_count = scope.count(
-    #     :joins => "JOIN listed_taxa ult ON ult.taxon_id = listed_taxa.taxon_id", 
-    #     :conditions => ["ult.list_id = ?", current_user.life_list_id])
-    # end
     browsing_taxon_ids = Taxon::ICONIC_TAXA.map{|it| it.ancestor_ids + [it.id]}.flatten.uniq
     browsing_taxa = Taxon.all(:conditions => ["id in (?)", browsing_taxon_ids], :order => "ancestry", :include => [:taxon_names])
     browsing_taxa.delete_if{|t| t.name == "Life"}
@@ -209,7 +191,9 @@ class PlacesController < ApplicationController
   
   def autocomplete
     @q = params[:q] || params[:term] || params[:item]
-    scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").limit(30).scoped
+    scope = Place.where("lower(name) = ? OR lower(display_name) LIKE ?", @q, "#{@q.to_s.downcase}%").
+      includes(:place_geometry_without_geom).
+      limit(30).scoped
     scope = scope.with_geom if params[:with_geom]
     @places = scope.sort_by{|p| p.bbox_area || 0}.reverse
     respond_to do |format|
@@ -220,13 +204,13 @@ class PlacesController < ApplicationController
         @places.each_with_index do |place, i|
           @places[i].html = view_context.render_in_format(:html, :partial => 'places/autocomplete_item.html.erb', :object => place)
         end
-        render :json => @places.to_json(:methods => [:html])
+        render :json => @places.to_json(:methods => [:html, :kml_url])
       end
     end
   end
   
   def merge
-    @merge_target = Place.find_by_id(params[:with].to_i)
+    @merge_target = Place.find(params[:with]) rescue nil
     
     if request.post?
       keepers = params.map do |k,v|
@@ -312,10 +296,15 @@ class PlacesController < ApplicationController
   def guide
     place_id = params[:id] || params[:place_id] || params[:place]
     @place ||= if place_id.to_i == 0
-      Place.search(place_id).first
+      begin
+        Place.find(place_id)
+      rescue ActiveRecord::RecordNotFound
+        Place.search(place_id).first
+      end
     else
       Place.find_by_id(place_id.to_i)
     end
+    return render_404 unless @place
     @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
     
     show_guide do |scope|
@@ -371,8 +360,14 @@ class PlacesController < ApplicationController
   private
   
   def load_place
-    render_404 unless @place = Place.find_by_id(params[:id], 
-      :include => [:check_list])
+    @place = Place.find(params[:id], :include => [:check_list]) rescue nil
+    if @place.blank?
+      if params[:id].to_i > 0 || params[:id] == "0"
+        return render_404
+      else
+        return redirect_to place_search_path(:q => params[:id])
+      end
+    end
   end
   
   def filter_wikipedia_content
@@ -386,7 +381,8 @@ class PlacesController < ApplicationController
   
   def geometry_from_messy_kml(kml)
     geometry = GeoRuby::SimpleFeatures::MultiPolygon.new
-    Nokogiri::XML(kml).search('Polygon').each do |hpoly|
+    doc = kml =~ /\<kml / ? Nokogiri::XML(kml) : Nokogiri::XML.fragment(kml)
+    doc.search('Polygon').each_with_index do |hpoly,i|
       poly = GeoRuby::SimpleFeatures::Geometry.from_kml(hpoly.to_s)
 
       # make absolutely sure there are no z coordinates. iNat is strictly 2D, 

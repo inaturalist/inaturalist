@@ -54,7 +54,7 @@ class NewZealandOrganismsRegister
   end
 
   def method_missing(method, *args)
-    params = *args
+    params = args[0]
     unless params.is_a? Hash and not params.empty?
       raise "NZOR arguments must be a Hash"
     end

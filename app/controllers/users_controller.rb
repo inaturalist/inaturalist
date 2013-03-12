@@ -1,8 +1,11 @@
 class UsersController < ApplicationController  
-  before_filter :authenticate_user!, :except => [:index, :show, :new, :create, :activate, :relationships]
+  doorkeeper_for :index, :create, :update, :edit, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, 
+    :unless => lambda { authenticated_with_oauth? },
+    :except => [:index, :show, :new, :create, :activate, :relationships]
   before_filter :find_user, :only => [:suspend, :unsuspend, :destroy, :purge, 
-    :show, :edit, :update, :relationships, :add_role, :remove_role]
-  before_filter :ensure_user_is_current_user_or_admin, :only => [:edit, :update, :destroy, :suspend, :unsuspend]
+    :show, :update, :relationships, :add_role, :remove_role]
+  before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy, :suspend, :unsuspend]
   before_filter :admin_required, :only => [:curation]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   
@@ -34,7 +37,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      flash[:notice] = "Welcome to iNaturalist!  Please check for your confirmation email, but feel free to start cruising the site."
+      flash[:notice] = "Welcome to #{CONFIG.site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
       self.current_user = @user
       @user.update_attribute(:last_ip, request.env['REMOTE_ADDR'])
       redirect_back_or_default(dashboard_path)
@@ -119,28 +122,30 @@ class UsersController < ApplicationController
   end
   
   def destroy
-    unless @user.project_users.blank? #remove any curator id's this user might have made
-      @user.project_users.each do |pu|
-        unless pu.role.nil?
-          Project.delay.update_curator_idents_on_remove_curator(pu.project_id, @user.id)
-        end
-      end
-    end
-    @user.destroy
-    flash[:notice] = "#{@user.login} removed from iNaturalist"
-    redirect_to users_path
+    @user.delay(:priority => USER_PRIORITY).sane_destroy
+    sign_out(@user)
+    flash[:notice] = "#{@user.login} has been removed from #{CONFIG.site_name} " + 
+      "(it may take up to an hour to completely delete all associated content)"
+    redirect_to root_path
   end
   
   # Methods below here are added by iNaturalist
   
   def index
-    unless fragment_exist?("recently_active")
+    @recently_active_key = "recently_active_#{I18n.locale}_#{SITE_NAME}"
+    unless fragment_exist?(@recently_active_key)
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
-        @updates += klass.limit(30).
+        scope = klass.limit(30).
           order("#{klass.table_name}.id DESC").
           where("#{klass.table_name}.created_at > ?", 1.week.ago).
+          where("users.id IS NOT NULL").
           includes(:user)
+        scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+        @updates += scope.all
+      end
+      @updates.delete_if do |u|
+        (u.is_a?(Post) && u.draft?) || (u.is_a?(Identification) && u.taxon_change_id)
       end
       hash = {}
       @updates.sort_by(&:created_at).each do |record|
@@ -161,7 +166,9 @@ class UsersController < ApplicationController
 
     @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}"
     unless fragment_exist?(@curators_key)
-      @curators = User.curators.limit(500).reject(&:is_admin?)
+      @curators = User.curators.limit(500)
+      @curators = @curators.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
+      @curators = @curators.reject(&:is_admin?)
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
       @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
@@ -291,11 +298,20 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @user = current_user
     respond_to do |format|
       format.html
-      format.json { render :json => @user.to_json(:except => [
-        :crypted_password, :salt, :old_preferences, :activation_code, 
-        :remember_token, :last_ip]) }
+      format.json do
+        render :json => @user.to_json(
+          :except => [
+            :crypted_password, :salt, :old_preferences, :activation_code,
+            :remember_token, :last_ip, :suspended_at, :suspension_reason,
+            :icon_content_type, :icon_file_name, :icon_file_size,
+            :icon_updated_at, :deleted_at, :remember_token_expires_at, :icon_url
+          ],
+          :methods => [:user_icon_url]
+        )
+      end
     end
   end
 
@@ -469,6 +485,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM observed_on) = ?", month)
     end
+    scope = scope.where("observations.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
     counts = scope.count.to_a.sort_by(&:last).reverse[0..4]
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|
@@ -483,6 +500,9 @@ protected
     month = options[:month] || Time.now.month
     date_clause = "EXTRACT(YEAR FROM o.observed_on) = #{year}"
     date_clause += "AND EXTRACT(MONTH FROM o.observed_on) = #{month}" if per == 'month'
+    site_clause = if CONFIG.site_only_users
+      "AND o.uri LIKE '#{CONFIG.site_url}%'"
+    end
     sql = <<-SQL
       SELECT
         o.user_id,
@@ -496,6 +516,7 @@ protected
           WHERE
             t.rank_level <= 10 AND
               #{date_clause}
+              #{site_clause}
         ) as o
       GROUP BY o.user_id
       ORDER BY count_all desc
@@ -514,7 +535,7 @@ protected
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
     scope = Identification.group("identifications.user_id").
-      joins(:observation).
+      joins(:observation, :user).
       where("identifications.user_id != observations.user_id").
       where("EXTRACT(YEAR FROM identifications.created_at) = ?", year).
       order('count_all desc').
@@ -522,6 +543,7 @@ protected
     if per == 'month'
       scope = scope.where("EXTRACT(MONTH FROM identifications.created_at) = ?", month)
     end
+    scope = scope.where("users.uri LIKE ?", "#{CONFIG.site_url}%") if CONFIG.site_only_users
     counts = scope.count.to_a
     users = User.where("id IN (?)", counts.map(&:first))
     counts.inject({}) do |memo, item|

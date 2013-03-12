@@ -121,6 +121,7 @@ class ListedTaxon < ActiveRecord::Base
   
   attr_accessor :skip_sync_with_parent,
                 :skip_update_cache_columns,
+                :skip_update_user_life_list_taxa_count,
                 :force_update_cache_columns,
                 :extra,
                 :html,
@@ -234,10 +235,13 @@ class ListedTaxon < ActiveRecord::Base
   
   # Update the counter cache in users.
   def update_user_life_list_taxa_count
+    return true if skip_update_user_life_list_taxa_count
     l = self.list || @old_list
-    if l && l.user && l.user.life_list_id == self.list_id
-      User.update_all("life_list_taxa_count = #{l.listed_taxa.count}", "id = #{l.user_id}")
-    end
+    return true unless l
+    return true unless l.is_a?(LifeList)
+    return true unless l.user
+    return true unless l.user.life_list_id == self.list_id 
+    User.update_all("life_list_taxa_count = #{l.listed_taxa.count}", "id = #{l.user_id}")
     true
   end
   
@@ -412,7 +416,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def native?
-    NATIVE_EQIVALENTS.include?(establishment_means)
+    NATIVE_EQUIVALENTS.include?(establishment_means)
   end
   
   def endemic?

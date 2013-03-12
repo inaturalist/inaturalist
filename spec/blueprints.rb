@@ -31,6 +31,14 @@ Comment.blueprint do
   body { Faker::Lorem.paragraph }
 end
 
+ConservationStatus.blueprint do
+  user { User.make! }
+  taxon { Taxon.make! }
+  status { "E" }
+  iucn { Taxon::IUCN_ENDANGERED }
+  geoprivacy { Observation::OBSCURED }
+end
+
 Flag.blueprint do
   user { User.make! }
   flag { Faker::Name.name }
@@ -150,6 +158,13 @@ end
 ProjectObservationRule.blueprint do
   ruler { Project.make }
   operator { "identified?" }
+end
+
+ProviderAuthorization.blueprint do
+  user { User.make! }
+  provider_name { 'flickr' }
+  provider_uid { 'xxx@000' }
+  token { 'foo' }
 end
 
 QualityMetric.blueprint do

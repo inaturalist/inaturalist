@@ -1,0 +1,47 @@
+.amphibiaweb
+  .column.span-14
+    - content = capture do
+      - for section in %w(description distribution life_history trends_and_threats relation_to_humans comments)
+        - next if (section_content = doc.at(section).try(:inner_text)).blank?
+        - unless section == 'description'
+          %h3= section.humanize.capitalize
+        = section_content.strip.split('<p>').compact.map{|para| "<p>#{para}</p>"}.join.html_safe
+      - for section in %w(refs)
+        - next if (section_content = doc.at(section).try(:inner_text)).blank?
+        %h3= section.humanize.capitalize
+        = section_content.strip.split('<p>').compact.map{|para| "<p class=\"ui\">#{para}</p>"}.join.html_safe
+    - content = doc.at('lannoo').try(:inner_text) if content.to_s.strip.blank?
+    - if content.to_s.strip.blank?
+      %p.description
+        AmphibiaWeb doesn't have any information about this species.
+    - else
+      = raw content
+  .last.column.span-6
+    .quiet.box
+      %p.ui
+        %a{:href => "http://amphibiaweb.org/cgi-bin/amphib_query?where-scientific_name=#{genus_name}+#{species_name}"}
+          = image_tag 'http://amphibiaweb.org/images/homepage_images/awlogomed.jpg', :style => "width: 48px; vertical-align: middle; margin-right: 5px"
+        %a.readmore{:href => "http://amphibiaweb.org/cgi-bin/amphib_query?where-scientific_name=#{genus_name}+#{species_name}"}
+          View on AmphibiaWeb
+      %h4 AmphibiaWeb Taxonomy
+      %ul.stacked
+        %li.sciname= doc.at(:ordr).try(:inner_text)
+        %li.sciname= doc.at(:family).try(:inner_text)
+        %li.sciname.genus= doc.at(:genus).try(:inner_text)
+        %li.sciname.species
+          = doc.at(:genus).try(:inner_text)
+          = doc.at("species species").try(:inner_text)
+      - submittedby = doc.at('submittedby').try(:inner_text)
+      - submit_date = doc.at('submit_date').try(:inner_text)
+      - editedby = doc.at('editedby').try(:inner_text)
+      - edit_date = doc.at('edit_date').try(:inner_text)
+      - if !submittedby.blank? || !submit_date.blank?
+        %p.ui
+          Submitted
+          \#{"by #{submittedby}" unless submittedby.blank?}
+          \#{"on #{submit_date}" unless submit_date.blank?}
+      - if editedby || edit_date
+        %p.ui
+          Edited
+          \#{"by #{editedby}" unless editedby.blank?}
+          \#{"on #{edit_date}" unless edit_date.blank?}

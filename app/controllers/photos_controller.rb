@@ -189,7 +189,7 @@ class PhotosController < ApplicationController
     url = @photo.taxa.first || @photo.observations.first || '/'
     repaired, errors = @photo.repair
     if repaired.destroyed?
-      flash[:error] = "Photo destroyed b/c it was deleted from the external site or iNat no longer has permission to view it"
+      flash[:error] = "Photo destroyed b/c it was deleted from the external site or #{CONFIG.site_name_short} no longer has permission to view it"
       redirect_to url
     else
       flash[:notice] = "Photo URLs repaired"

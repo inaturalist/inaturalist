@@ -19,7 +19,14 @@ class ProjectObservation < ActiveRecord::Base
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
 
-  after_create :destroy_project_invitations
+  after_create :destroy_project_invitations, :update_curator_identification
+
+  def update_curator_identification
+    return true if observation.new_record?
+    return true if observation.owners_identification.blank?
+    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(observation.owners_identification)
+    true
+  end
 
   def to_s
     "<ProjectObservation project_id: #{project_id}, observation_id: #{observation_id}>"

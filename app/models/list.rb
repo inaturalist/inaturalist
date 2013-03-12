@@ -161,7 +161,7 @@ class List < ActiveRecord::Base
       :include => [:taxon, :user]
     }
     if is_a?(CheckList) && is_default?
-      find_options[:select] = "DISTINCT (taxon_ancestor_ids || '/' || listed_taxa.taxon_id), listed_taxa.*"
+      find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
       find_options[:conditions] = ["place_id = ?", place_id]
     else
       find_options[:conditions] = ["list_id = ?", id]
@@ -255,13 +255,28 @@ class List < ActiveRecord::Base
     true
   end
   
-  def self.refresh(list, options = {})
-    list = List.find_by_id(list) unless list.is_a?(List)
-    if list.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list #{list} because it doesn't exist."
-    else
-      list.refresh(options)
+  def self.refresh(options = {})
+    start = Time.now
+    log_key = "#{name}.refresh #{start}"
+    Rails.logger.info "[INFO #{Time.now}] Starting #{log_key}, options: #{options.inspect}"
+    lists = options.delete(:lists)
+    lists ||= [options] if options.is_a?(self)
+    lists ||= [find_by_id(options)] unless options.is_a?(Hash)
+    if options[:taxa]
+      lists ||= self.joins(:listed_taxa).
+        where("lists.type = ? AND listed_taxa.taxon_id IN (?)", self.name, options[:taxa])
     end
+
+    if lists.blank?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh lists for #{options.inspect} " + 
+        "because there are no matching lists."
+    else
+      lists.each do |list|
+        Rails.logger.info "[INFO #{Time.now}] #{log_key}, refreshing #{list}"
+        list.delay(:priority => INTEGRITY_PRIORITY).refresh(options)
+      end
+    end
+    Rails.logger.info "[INFO #{Time.now}] #{log_key}, finished in #{Time.now - start}s"
   end
   
   def self.refresh_with_observation(observation, options = {})

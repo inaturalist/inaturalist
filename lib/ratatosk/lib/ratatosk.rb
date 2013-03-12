@@ -125,7 +125,7 @@ module Ratatosk
         # puts "[DEBUG] Unique names: #{names.map(&:name).join(', ')}"
         
         names = names.map do |name|
-          if existing_taxon = find_existing_taxon(name.taxon)
+          if name.taxon && name.taxon.new_record? && name.taxon.is_a?(ModelAdapter) && (existing_taxon = find_existing_taxon(name.taxon))
             name.taxon = existing_taxon
           end
           
@@ -235,7 +235,18 @@ module Ratatosk
       end
       
       # This basically means the name provider wasn't able to find a lineage
-      return [lineage.first, lineage] if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
+      if lineage.size == 1 && lineage.first.rank_level < Taxon::RANK_LEVELS['phylum']
+        # try retrieving an external parent based on a polynon, e.g. if the
+        # name is Homo sapiens and there's no Homo taxon, try to get Homo from
+        # the NameProvider
+        if parent = polynom_parent(taxon.name, options.merge(:external_parent => true))
+          taxon_phylum = name_provider.get_phylum_for(taxon)
+          if parent.phylum.blank? || taxon_phylum.blank? || parent.phylum.name == taxon_phylum.name
+            return [parent, [taxon]]
+          end
+        end
+        return [lineage.first, lineage]
+      end
       
       # Set the point on the tree to which we will graft, default is root
       get_graft_point_for(lineage)
@@ -321,11 +332,20 @@ module Ratatosk
         name.split[0..-2].join(' ')
       end
       return nil if parent_name.blank?
-      if options[:ancestor]
+      parent = if options[:ancestor]
         Taxon.where(options[:ancestor].descendant_conditions).where("name = ?", parent_name).first
       else
         Taxon.find_by_name(parent_name)
       end
+      if parent.blank? && options[:external_parent]
+        names = find(parent_name)
+        if match = names.detect{|n| n.taxon.name == parent_name}
+          match.save
+          parent = match.taxon
+          parent.graft_silently
+        end
+      end
+      parent
     end
   end # class Ratatosk
 end # module Ratatosk

@@ -72,6 +72,19 @@ module MakeHelpers
     o = Observation.make!(:user => pu.user, :taxon => t)
     ProjectObservation.make!({:project => pu.project, :observation => o}.merge(options))
   end
+
+  def make_place_with_geom(options = {})
+    wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
+    place = Place.make!(options)
+    place.save_geom(MultiPolygon.from_ewkt(wkt))
+    place
+  end
+
+  def make_taxon_range_with_geom(options = {})
+    wkt = options.delete(:wkt) || options.delete(:ewkt) || "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
+    tr = TaxonRange.make!(options.merge(:geom => MultiPolygon.from_ewkt(wkt)))
+    tr
+  end
   
   # creating the tree is a bit tricky
   def load_test_taxa
@@ -135,6 +148,21 @@ module MakeHelpers
         :lexicon => TaxonName::LEXICONS[:ENGLISH])
     end
     @Calypte_anna.update_attributes(:parent => @Calypte)
+
+    unless @Plantae = Taxon.iconic_taxa.find_by_name('Plantae')
+      @Plantae = Taxon.make!(:name => "Plantae", :rank => "kingdom")
+    end
+    @Plantae.update_attributes(:parent => @Life)
+
+    unless @Magnoliophyta = Taxon.iconic_taxa.find_by_name('Magnoliophyta')
+      @Magnoliophyta = Taxon.make!(:name => "Magnoliophyta", :rank => "phylum")
+    end
+    @Magnoliophyta.update_attributes(:parent => @Plantae)
+
+    unless @Magnoliopsida = Taxon.iconic_taxa.find_by_name('Magnoliopsida')
+      @Magnoliopsida = Taxon.make!(:name => "Magnoliopsida", :rank => "class")
+    end
+    @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
 
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end

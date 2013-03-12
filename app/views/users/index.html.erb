@@ -18,7 +18,7 @@
   <div id="pageheader" class="column span-24">
     <% if logged_in? -%>
       <div class="right inline smallbuttons buttonrow">
-        <%= link_to "Invite someone to iNat!", emailer_invite_path, :class => "inter" %>
+        <%= link_to "Invite someone to #{CONFIG.site_name_short}!", emailer_invite_path, :class => "inter" %>
         <span class="meta inter">or</span>
         <%= form_tag(search_people_path, :method => :get, :class => "last") do %>
           <%= text_field_tag :q, @q, :class => 'text', :placeholder => "Search by name or email", :style => "width: 150px;" %>
@@ -26,11 +26,11 @@
         <% end %>
       </div>
     <% end -%>
-    <h2>The People of iNaturalist</h2>
+    <h2>The People of <%= CONFIG.site_name %></h2>
   </div>
 
   <div id="recent" class="column span-24 stacked">
-    <% cache "recently_active", :expires_in => 5.minutes do %>
+    <% cache @recently_active_key, :expires_in => 5.minutes do %>
       <h3>
         <span class="right meta ui small">
           Updated
@@ -43,8 +43,12 @@
       <% else %>
         <% @updates.compact.each_with_index do |update,i| %>
           <div class="usercol column span-6 <%= 'last' if i % 4 == 3 %>">
-            <%= link_to user_image(update.user, :size => "medium", :class => "userimage"), update.user, 
-              :class => :userimagelink %>
+            <% if update.user -%>
+              <%= link_to user_image(update.user, :size => "medium", :class => "userimage"), update.user, 
+                :class => :userimagelink %>
+            <% else %>
+              <%= link_to image_tag("/attachment_defaults/users/icons/defaults/medium.png", :class => "userimage"), update, :class => "userimagelink" %>
+            <% end -%>
             <div class="blurb">
               <%= link_to_user update.user, :class => "userlink" %>
               <%- case update.class.name -%>
@@ -64,17 +68,28 @@
                 by 
                 <%= link_to char_wrap(h(update.observation.user.login), 50), observations_by_login_path(update.observation.user.login) %>
               <%- when 'Post' %>
-                made a <%= link_to "journal post", journal_post_path(update.user.login, update) %>
+                made a
+                <% if update.parent_type == "User" -%>
+                  <%= link_to "journal post", journal_post_path(update.user.login, update) %>
+                <% else %>
+                  <%= link_to "project post", project_journal_post_path(update.parent, update) %>
+                <% end -%>
               <%- when 'Comment' %>
                 <%- class_name = update.parent.class.name.underscore.humanize.downcase -%>
                 <strong>commented</strong> on
                 <%= class_name =~ /^[aeiou]/i ? 'an' : 'a' %>
                 <% if update.parent.is_a? Post -%>
-                  <%= link_to class_name, journal_post_path(update.parent.user.login, update.parent) %>
+                  <% if update.parent.parent.is_a?(User) -%>
+                    <%= link_to class_name, journal_post_path(update.parent.user.login, update.parent) %>
+                  <% else %>
+                    <%= link_to class_name, project_journal_post_path(update.parent.parent, update.parent) %>
+                  <% end -%>
                 <% else %>
                   <%= link_to class_name, update.parent %>
                 <% end -%>
-                <% if update.parent.user -%>
+                <% if update.parent.is_a?(Post) && update.parent.parent.is_a?(Project) %>
+                  by <%= link_to char_wrap(h(update.parent.parent.title), 50), update.parent.parent %>
+                <% elsif update.parent.user -%>
                   by <%= link_to char_wrap(h(update.parent.user.login), 50), observations_by_login_path(update.parent.user.login) %>
                 <% end -%>
               <% end %>
@@ -127,7 +142,7 @@
 
   <% cache @curators_key, :expires_in => 1.day do %>
     <div id="curators" class="column span-24">
-      <h3>iNat's Noble Curators</h3>
+      <h3><%= CONFIG.site_name_short %>'s Noble Curators</h3>
       <p>These folks kindly volunteer to maintain our taxonomy and deal with other issues.</p>
       <% if !@curators.blank? %>
         <% @curators.each_with_index do |user, i| %>

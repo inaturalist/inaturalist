@@ -1,4 +1,5 @@
 class TaxonRange < ActiveRecord::Base
+  
   belongs_to :taxon
   belongs_to :source
   has_many :listed_taxa, :dependent => :nullify
@@ -31,6 +32,12 @@ class TaxonRange < ActiveRecord::Base
       errors.add(:geom, " must have more than 2 points")
     end
   end
+
+  def kml_url
+    return "#{FakeView.root_url[0..-2]}#{range.url}" unless range.blank?
+    return url if url =~ /kml/
+    nil
+  end
   
   def create_kml_attachment
     return unless geom
@@ -53,6 +60,28 @@ class TaxonRange < ActiveRecord::Base
     file = File.open(tmp_path, "r")
     self.range = file
     self.save
+  end
+  
+  def create_geom_from_kml_attachment
+    return unless File.exists?(self.range.path)
+    tmp_path = File.join(Dir::tmpdir, "#{self.id}_#{Time::now.seconds_since_midnight.round}.geojson")
+    cmd = "ogr2ogr -f GeoJSON #{tmp_path} #{self.range.path}"
+    system cmd
+    open(tmp_path) do |f|
+      if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
+        self.geom = geojsongeom.features.first.geometry
+        if !self.geom.is_a?(MultiPolygon)
+          if self.geom.is_a?(Polygon)
+            self.geom = MultiPolygon.from_polygons([self.geom])
+          else
+            next
+          end
+        end
+        self.save
+      end
+      f.close
+    end
+    File.delete(tmp_path)
   end
   
 end

@@ -35,7 +35,7 @@ class TaxonChangesController < ApplicationController
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
     
     @taxon_changes = scope.page(params[:page]).
-      select("DISTINCT (taxon_changes.id), taxon_changes.*").
+      select("DISTINCT ON (taxon_changes.id) taxon_changes.*").
       includes(:taxon => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
       includes(:taxa => [:taxon_names, :photos, :taxon_ranges_without_geom, :taxon_schemes]).
       includes(:source).
@@ -138,7 +138,7 @@ class TaxonChangesController < ApplicationController
 
   def commit_for_user
     if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
-      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluraize.downcase}"
+      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluralize.downcase}"
       redirect_back_or_default(@taxon_change)
       return
     end
@@ -154,7 +154,7 @@ class TaxonChangesController < ApplicationController
 
   def commit_records
     if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
-      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluraize.downcase}"
+      flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluralize.downcase}"
       redirect_back_or_default(@taxon_change)
       return
     end
@@ -169,7 +169,7 @@ class TaxonChangesController < ApplicationController
       end
       @records = [@record]
     elsif params[:record_ids]
-      @record = current_user.send(@reflection.name).where("id IN (?)", params[:record_ids]).to_a
+      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids])
       if @records.blank?
         flash[:error] = "Couldn't find any of those records"
         redirect_back_or_default(@taxon_change)

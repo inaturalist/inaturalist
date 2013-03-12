@@ -115,8 +115,12 @@ module ApplicationHelper
     "#{obj.class.name.underscore}-#{obj.id}"
   end
 
-  def is_me?(user = @selected_user)
-    logged_in? && (user.try(:id) == current_user.id)
+  def is_me?(user = @selected_user, options = {})
+    if respond_to?(:user_signed_in?)
+      logged_in? && (user.try(:id) == current_user.id)
+    else
+      options[:current_user] && (user.try(:id) == options[:current_user].id)
+    end
   end
   
   def is_not_me?(user = @selected_user)
@@ -229,10 +233,10 @@ module ApplicationHelper
     end
   end
   
-  def modal_image(photo, params = {})
-    size = params[:size]
+  def modal_image(photo, options = {})
+    size = options[:size]
     img_url ||= photo.best_url(size)
-    link_options = params.merge(:rel => photo_path(photo, :partial => 'photo'))
+    link_options = options.merge("data-photo-path" => photo_path(photo, :partial => 'photo'))
     link_options[:class] = "#{link_options[:class]} modal_image_link #{size}".strip
     link_to(
       image_tag(img_url,
@@ -322,10 +326,13 @@ module ApplicationHelper
   end
   
   # remove unecessary whitespace btwn divs
-  def compact(content = nil, options = {}, &block)
+  def compact(*args, &block)
+    content = args[0] if args[0].is_a?(String)
+    options = args.last.is_a?(Hash) ? args.last : {}
     content = capture(&block) if block_given?
+    content ||= ""
     if options[:all_tags]
-      content.gsub!(/\>[\n\s]+\</, '><')
+      content.gsub!(/\>[\n\s]+\</m, '><')
     else
       content.gsub!(/div\>[\n\s]+\<div/, 'div><div')
     end
@@ -464,7 +471,8 @@ module ApplicationHelper
       count = counts[month.to_s] || 0
       tag_options = {:class => "bar month_#{month}", :style => "height: #{(count.to_f / max * 100).to_i}%"}
       if options[:link]
-        tag_options[:href] = url_for(request.params.merge(:month => month))
+        url_params = options[:link].is_a?(Hash) ? options[:link] : request.params
+        tag_options[:href] = url_for(url_params.merge(:month => month))
       end
       html += content_tag(tag, tag_options) do
         content_tag(:span, count, :class => "count") +
@@ -513,7 +521,7 @@ module ApplicationHelper
       body, url, options = args
       if url_for(url) =~ /\?/
         options ||= {}
-        options[:rel] = "nofollow" unless options[:rel].to_s =~ /nofollow/
+        options[:rel] ||= "nofollow" unless options[:rel].to_s =~ /nofollow/
       end
       super(body, url, options)
     else
@@ -657,8 +665,7 @@ module ApplicationHelper
       @update_cache[update.notifier_type.underscore.pluralize.to_sym][update.notifier_id]
     end
     notifier ||= update.notifier
-    if notifier.respond_to?(:user)
-      notifier_user = update_cached(notifier, :user)
+    if notifier.respond_to?(:user) && (notifier_user = update_cached(notifier, :user) || notifier.user)
       notifier_user_link = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user))
     end
     case update.resource_type
@@ -690,20 +697,27 @@ module ApplicationHelper
       s.html_safe
     when "Project"
       project = resource
-      post = notifier
-      title = if options[:skip_links]
-        project.title
+      if update.notifier_type == "Post"
+        post = notifier
+        title = if options[:skip_links]
+          project.title
+        else
+          link_to(project.title, project_journal_post_url(:project_id => project.id, :id => post.id))
+        end
+        article = if options[:count] && options[:count].to_i == 1
+          "a"
+        else
+          options[:count]
+        end
+        "#{title} wrote #{article} new post#{'s' if options[:count].to_i > 1}".html_safe
       else
-        link_to(project.title, project_journal_post_url(:project_id => project.id, :id => post.id))
+        title = if options[:skip_links]
+          project.title
+        else
+          link_to(project.title, project)
+        end
+        "Curators changed for #{title}".html_safe
       end
-      article = if options[:count] && options[:count].to_i == 1
-        "a"
-      else
-        options[:count]
-      end
-      "#{title} wrote #{article} new post#{'s' if options[:count].to_i > 1}".html_safe
-    # when "Project"
-    #   "New activity on \"#{options[:skip_links] ? resource.title : link_to(resource.title, url_for_resource_with_host(resource))}\" by #{update.resource_owner.login}".html_safe
     when "Place"
       "New observations from #{options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource))}".html_safe
     when "Taxon"
@@ -775,6 +789,47 @@ module ApplicationHelper
       end
     else
       ofv.value
+    end
+  end
+
+  def cite(citation)
+    @_citations ||= []
+    citations = [citation].flatten
+    links = citations.map do |c|
+      c = c.citation if c.is_a?(Source)
+      @_citations << c unless @_citations.include?(c)
+      i = @_citations.index(c) + 1
+      link_to(i, "#ref#{i}")
+    end
+    content_tag :sup, links.uniq.sort.join(',').html_safe
+  end
+
+  def references
+    return if @_citations.blank?
+    lis = ""
+    @_citations.each_with_index do |citation, i|
+      lis += content_tag(:li, citation.html_safe, :class => "reference", :id => "ref#{i+1}")
+    end
+    content_tag :ol, lis.html_safe, :class => "references"
+  end
+
+  def establishment_blob(listed_taxon, options = {})
+    icon_class = listed_taxon.introduced? ? 'ui-icon-notice' : 'ui-icon-star'
+    tip_class = listed_taxon.introduced? ? 'ui-tooltip-error' : 'ui-tooltip-success'
+    tip = "<strong>#{listed_taxon.establishment_means.capitalize}"
+    tip += " in #{listed_taxon.place.display_name}" if options[:show_place_name] && listed_taxon.place
+    tip += ":</strong> #{ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means]}"
+    blob_attrs = {
+      :class => "blob #{listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore} #{options[:class]}", 
+      "data-tip" => tip, 
+      "data-tip-position-at" => "bottom center", 
+      "data-tip-style-classes" => "#{tip_class} ui-tooltip-shadow", 
+      :title => listed_taxon.establishment_means.capitalize
+    }
+    content_tag :div, blob_attrs do
+      content_tag :span, :class => "inlineblock ui-icon #{icon_class}" do
+        listed_taxon.introduced? ? 'I' : listed_taxon.establishment_means.chars.to_a[0].upcase
+      end
     end
   end
   

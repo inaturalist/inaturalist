@@ -14,17 +14,34 @@
     Out of range!
     <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
     <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
-      This observation lies outside the range iNat has for this species. This
-      could mean iNat's range is wrong, the ID is wrong, a vagrant occurrence,
+      This observation lies outside the range <%= CONFIG.site_name_short %> has for this species. This
+      could mean <%= CONFIG.site_name_short %>'s range is wrong, the ID is wrong, a vagrant occurrence,
       or a range expansion!
       <%= link_to "View the range", taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
     </div>
   </strong>
 <% end -%>
 <% unless places.blank? -%>
-  <div>
+  <div class="places">
     <label>Places:</label>
-    <%= places.map{|place| link_to(place.code || place.name, place, :title => place.display_name)}.join(', ').html_safe %>
+    <%- num_hidden = 0 -%>
+    <% compact :all_tags => true do %>
+      <% places.each_with_index do |place,i| %>
+        <%-
+          css_class = if i == 0 || place.user_id.blank?
+            "visible"
+          else
+            num_hidden += 1
+            "hidden"
+          end
+          name = place.code.blank? ? place.name : place.code
+        -%>
+        <span class="<%= css_class %>"><%= ', ' unless i == 0 %><%= link_to(name, place, :title => place.display_name) %></span>
+      <% end -%>
+    <% end -%>
+    <% if num_hidden > 0 -%>
+      <span class="button"><%= link_to_function "More...", "$(this).parents('.places').find('.hidden').toggle(); $(this).html($(this).text() == 'More...' ? 'Less' : 'More...')" %></span>
+    <% end -%>
   </div>
 <% end -%>
 <% if show_observation_coordinates?(observation) %>

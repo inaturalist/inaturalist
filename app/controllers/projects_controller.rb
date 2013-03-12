@@ -13,6 +13,10 @@ class ProjectsController < ApplicationController
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
+
+  MOBILIZED = [:join]
+  before_filter :unmobilized, :except => MOBILIZED
+  before_filter :mobilized, :only => MOBILIZED
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -84,13 +88,19 @@ class ProjectsController < ApplicationController
         @project_assets = @project.project_assets.all(:limit => 100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
         @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
-        if @place = @project.rule_place
+        if @place = @project.place
           if @project.prefers_place_boundary_visible
             @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
           end
         end
         
         @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
+        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
+          where("provider_authorizations.provider_name = 'facebook'").
+          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
+          map(&:provider_uid)
+        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
+        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
 
         if params[:iframe]
           @headless = @footless = true
@@ -114,6 +124,13 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project_assets = @project.project_assets.all(:limit => 100)
+    @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
+    if @place = @project.place
+      if @project.prefers_place_boundary_visible
+        @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+      end
+    end
   end
 
   def create
@@ -357,6 +374,7 @@ class ProjectsController < ApplicationController
             # just render the default
           end
         end
+        format.mobile
         format.json { render :json => @project }
       end
       return
@@ -524,7 +542,11 @@ class ProjectsController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:error] = error_msg
-          redirect_back_or_default(@project)
+          if error_msg =~ /must belong to a member/
+            redirect_to join_project_path(@project)
+          else
+            redirect_back_or_default(@project)
+          end
         end
         format.json do
           json = {
@@ -772,10 +794,10 @@ class ProjectsController < ApplicationController
   def respond_to_join(options = {})
     error = options[:error]
     notice = options[:notice]
-    dest = options[:dest] || @project
+    dest = options[:dest] || session[:return_to] || @project
     respond_to do |format|
       if error
-        format.html do
+        format.any(:html, :mobile) do
           flash[:error] = error
           redirect_to dest
         end
@@ -784,7 +806,7 @@ class ProjectsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
         end
       else
-        format.html do
+        format.any(:html, :mobile) do
           flash[:notice] = notice
           redirect_to dest
         end

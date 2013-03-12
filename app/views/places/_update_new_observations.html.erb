@@ -18,7 +18,7 @@
   </div>
   
   <div class="meta">
-    <%= link_to "View more observations", observations_url(:place_id => place) %>
+    <%= link_to "View more observations", observations_url(:place_id => place.id) %>
     from
     <%= link_to place.display_name, place %>
   </div>

@@ -217,7 +217,7 @@ describe Taxon, "set_iconic_taxon_for_observations_of" do
   end
   
   it "should set the iconic taxon for observations of descendant taxa" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     @Calypte_anna.iconic_taxon.name.should == @Aves.name
     obs.iconic_taxon.name.should == @Calypte_anna.iconic_taxon.name
     @Calypte.update_attributes(:iconic_taxon => @Amphibia)
@@ -569,6 +569,15 @@ describe Taxon, "merging" do
     t1.merge(t2)
     t1.taxon_schemes.size.should eq(1)
   end
+
+  it "should set iconic taxon for observations of reject" do
+    reject = Taxon.make!
+    o = without_delay {Observation.make!(:taxon => reject)}
+    o.iconic_taxon.should be_blank
+    without_delay {@keeper.merge(reject)}
+    o.reload
+    o.iconic_taxon.should eq(@keeper.iconic_taxon)
+  end
 end
 
 describe Taxon, "moving" do
@@ -589,7 +598,7 @@ describe Taxon, "moving" do
   end
   
   it "should queue a job to set iconic taxon on observations of descendants" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     Delayed::Job.delete_all
@@ -597,6 +606,29 @@ describe Taxon, "moving" do
     taxon.parent.move_to_child_of(@Amphibia)
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
+  end
+
+  it "should set iconic taxon on observations of descendants" do
+    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
+    old_iconic_id = obs.iconic_taxon_id
+    taxon = obs.taxon
+    without_delay do
+      taxon.parent.move_to_child_of(@Amphibia)
+    end
+    obs.reload
+    obs.iconic_taxon.should eq(@Amphibia)
+  end
+
+  it "should set iconic taxon on observations of descendants if grafting for the first time" do
+    parent = Taxon.make!
+    taxon = Taxon.make!(:parent => parent)
+    obs = without_delay { Observation.make!(:taxon => taxon) }
+    obs.iconic_taxon.should be_blank
+    without_delay do
+      parent.move_to_child_of(@Amphibia)
+    end
+    obs.reload
+    obs.iconic_taxon.should eq(@Amphibia)
   end
   
   it "should not raise an exception if the new parent doesn't exist" do
@@ -645,14 +677,6 @@ describe Taxon do
   end
   
   describe "conservation status" do
-    it "should set conervation_status_source to IUCN by default" do
-      taxon = Taxon.make!
-      taxon.conservation_status_source.should be_blank
-      taxon.update_attributes(:conservation_status => Taxon::IUCN_VULNERABLE)
-      taxon.conservation_status_source.should_not be_blank
-      taxon.conservation_status_source.title.should == 'IUCN Red List of Threatened Species'
-    end
-    
     it "should define boolean methods" do
       taxon = Taxon.make!(:conservation_status => Taxon::IUCN_VULNERABLE)
       taxon.should be_iucn_vulnerable
@@ -689,11 +713,8 @@ describe Taxon, "grafting" do
   
   it "should set iconic taxa on descendants" do
     taxon = Taxon.make!(:name => "Craptaculous", :parent => @graftee)
-    puts
-    puts "starting test, created taxon: #{taxon}, ancestry: #{taxon.ancestry}, iconic_taxon_id: #{taxon.iconic_taxon_id.inspect}"
     @graftee.update_attributes(:parent => @Pseudacris)
     taxon.reload
-    puts "taxon.iconic_taxon_id now #{taxon.iconic_taxon_id}, ancestry now #{taxon.ancestry}"
     taxon.iconic_taxon_id.should == @Pseudacris.iconic_taxon_id
   end
   
@@ -704,6 +725,12 @@ describe Taxon, "grafting" do
     jobs = Delayed::Job.all(:conditions => ["created_at >= ?", stamp])
     jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}.should_not be_blank
   end
+
+  it "should set the parent of a species based on the polynom genus" do
+    t = Taxon.make!(:name => "Pseudacris foo", :rank => Taxon::SPECIES)
+    t.graft
+    t.parent.should eq(@Pseudacris)
+  end
 end
 
 describe Taxon, "single_taxon_for_name" do
@@ -713,6 +740,13 @@ describe Taxon, "single_taxon_for_name" do
     t.should be_variety
     t.name.should eq("Abies magnifica magnifica")
     Taxon.single_taxon_for_name(name).should eq(t)
+  end
+
+  it "should not choke on parens" do
+    t = Taxon.make!(:name => "Foo")
+    lambda {
+      Taxon.single_taxon_for_name("(Foo").should eq(t)
+    }.should_not raise_error
   end
 end
 
@@ -726,5 +760,16 @@ describe Taxon, "update_life_lists" do
         t.update_life_lists
       end
     }.should change(Delayed::Job, :count).by(1)
+  end
+end
+
+describe Taxon, "threatened?" do
+  it "should work for a place"
+  it "should work for lat/lon" do
+    p = make_place_with_geom
+    cs = ConservationStatus.make!(:place => p)
+    p.contains_lat_lng?(p.latitude, p.longitude).should be_true
+    t = cs.taxon
+    t.threatened?(:latitude => p.latitude, :longitude => p.longitude).should be_true
   end
 end

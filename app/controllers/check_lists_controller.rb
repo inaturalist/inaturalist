@@ -26,7 +26,7 @@ class CheckListsController < ApplicationController
         @find_options[:conditions], ["AND place_id = ?", @list.place_id])
       
       # Make sure we don't get duplicate taxa from check lists other than the default
-      @find_options[:select] = "DISTINCT (taxon_ancestor_ids || '/' || listed_taxa.taxon_id), listed_taxa.*"
+      @find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
       
       # Searches must use place_id instead of list_id for default checklists 
       # so we can search items in other checklists for this place
@@ -45,7 +45,8 @@ class CheckListsController < ApplicationController
   end
   
   def new
-    unless @place = Place.find_by_id(params[:place_id])
+    @place = Place.find(params[:place_id]) rescue nil
+    unless @place
       flash[:notice] = <<-EOT
         Check lists must belong to a place. To create a new check list, visit
         a place's default check list and click the 'Create a new check list'

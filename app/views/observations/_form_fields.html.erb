@@ -33,7 +33,7 @@
         <%= o.error_message_on(:observed_on) %>
         <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
         <div class="small description">
-          e.g. "<%= Date.today.to_s(:long) %>" or "yesterday"
+          e.g. "<%= Time.now.to_s(:db) %>", "yesterday at 4pm"
         </div>
       </div>
       
@@ -124,7 +124,7 @@
               end
             else
               observation.photos
-            end
+            end.compact
           -%>
           <%= render :partial => "photos/photo_list_form", :locals => { 
             :photos => photos, 
@@ -149,7 +149,7 @@
           
           <div class="clear buttons">
             <%= link_to "Link your Flickr account",
-              {:controller => 'flickr', :action => 'link'}, :class => "button" %>
+              {:controller => 'flickr', :action => 'options'}, :class => "button" %>
             <%= link_to "Link your Picasa account",
               {:controller => 'picasa', :action => 'options'}, :class => "button" %>
             <%= link_to "Link your Facebook account", "/auth/facebook", :class => "button" %>

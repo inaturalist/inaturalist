@@ -48,10 +48,20 @@ RSpec.configure do |config|
     end
   end
 
+  config.include Devise::TestHelpers, :type => :controller
+  config.fixture_path = "#{::Rails.root}/spec/fixtures/"
 end
 
 def without_delay
   Delayed::Worker.delay_jobs = false
-  yield
+  r = yield
   Delayed::Worker.delay_jobs = true
+  r
 end
+
+# http://stackoverflow.com/questions/3768718/rails-rspec-make-tests-to-pass-with-http-basic-authentication
+def http_login(user)
+  request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(
+    user.login, "monkey")
+end
+

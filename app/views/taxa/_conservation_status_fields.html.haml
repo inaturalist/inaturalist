@@ -1,0 +1,15 @@
+.conservation_status.stacked.lined.nested-fields
+  = f.text_field :status, :description_after => true, 
+    :description => "Status code, rank, etc. If a short code like E or CR exists, please use that, but if not, please use the full status, e.g. endangered or critically endangered.", 
+    :required => true
+  = f.text_field :description, :description_after => true, :description => "Brief description of why this was listed."
+  = f.text_field :authority, :description_after => true, 
+    :description => "Organization that declared this status. You can skip this if *you* want to be listed as the authority.",
+    :placeholder => "Type authority..."
+  = f.text_field :place_id, :description_after => true, 
+    :description => "Place to which this status is restricted.",
+    :placeholder => "Type place name..."
+  = f.text_field :url, :description_after => true, :description => "URL for a page describing this status."
+  = f.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open", :description => "Default geoprivacy for observations of this taxon", :description_after => true
+  = f.select :iucn, Taxon::IUCN_STATUSES_SELECT, :label => "IUCN Equivalent", :description_after => true, :description => "Equivalent IUCN Red List code"
+  = link_to_remove_association "remove conservation status", f

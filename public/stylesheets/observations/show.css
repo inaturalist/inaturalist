@@ -14,13 +14,9 @@
 #where, #map {width: 310px;}
 #observation-description .description{color:#666;}
 #observation-description img{max-width:500px;height:auto;}
-#tags ul{display:inline;list-style:none;padding:0;margin:0;}
-#tags li{display:inline;}
-#tags li:after{content:',';}
-/* This won't work in some browsers until they EMBRACE THE FUTURE!!! */
-#tags li:last-child:after{content:'';}
 .breadcrumbs{float:left;width:auto;}
 #observation-description {margin-top:10px;}
 .observation_field_value .extra {visibility: hidden;}
 .observation_field_value:hover .extra {visibility: visible;}
 .field .observation_photos label {display:block;}
+#where .places .hidden {display:none;}

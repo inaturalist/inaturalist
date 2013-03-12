@@ -1,7 +1,7 @@
 $(document).ready(function() {
   $('#modal_image_box').jqm({
     closeClass: 'close', 
-    ajax: '@rel',
+    ajax: '@data-photo-path',
     trigger: 'a.modal_image_link',
     onShow: function(h) {
       h.w.append($('<div class="loading status">Loading...</div>'));

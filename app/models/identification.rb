@@ -1,3 +1,4 @@
+
 class Identification < ActiveRecord::Base
   acts_as_flaggable
   belongs_to :observation
@@ -38,6 +39,7 @@ class Identification < ActiveRecord::Base
     includes(:observation).where("observation.user_id = ?", user)
   }
   scope :for_others, includes(:observation).where("observations.user_id != identifications.user_id")
+  scope :for_self, includes(:observation).where("observations.user_id = identifications.user_id")
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   scope :of, lambda {|taxon| where("identifications.taxon_id = ?", taxon)}
   scope :on, lambda {|date| where(Identification.conditions_for_date("identifications.created_at", date)) }
@@ -126,7 +128,7 @@ class Identification < ActiveRecord::Base
   # Set the project_observation curator_identification_id if the
   #identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
-    return true if self.observation.id.blank?
+    return true if self.observation.blank?
     Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(self)
     true
   end

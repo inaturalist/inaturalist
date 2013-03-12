@@ -42,7 +42,7 @@ module Shared::ListsModule
         case @view
         when TAXONOMIC_VIEW
           @unclassified = @listed_taxa.select {|lt| !lt.taxon.grafted? }
-          @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
+          @listed_taxa = @listed_taxa.delete_if {|lt| !lt.taxon.grafted? }
           ancestor_ids = @listed_taxa.map{|lt| lt.taxon.ancestor_ids[1..-1]}.flatten.uniq
           ancestors = Taxon.find_all_by_id(ancestor_ids, :include => :taxon_names)
           taxa_to_arrange = (ancestors + @listed_taxa.map(&:taxon)).sort_by{|t| "#{t.ancestry}/#{t.id}"}
@@ -63,7 +63,9 @@ module Shared::ListsModule
         @listed_taxa_editble_by_current_user = @list.listed_taxa_editable_by?(current_user)
         @taxon_rule = @list.rules.detect{|lr| lr.operator == 'in_taxon?' && lr.operand.is_a?(Taxon)}
 
-        load_listed_taxon_photos
+        if @list.show_obs_photos
+          load_listed_taxon_photos
+        end
         
         if logged_in?
           @current_user_lists = current_user.lists.all(:limit => 100)
@@ -367,7 +369,7 @@ module Shared::ListsModule
     }
     if params[:taxon] && @filter_taxon = Taxon.find_by_id(params[:taxon].to_i)
       self_and_ancestor_ids = [@filter_taxon.ancestor_ids, @filter_taxon.id].flatten.join('/')
-      @find_options[:conditions] = ["taxon_ancestor_ids LIKE ?", "#{self_and_ancestor_ids}/%"]
+      @find_options[:conditions] = ["(taxon_id = ? OR taxon_ancestor_ids = ? OR taxon_ancestor_ids LIKE ?)", @filter_taxon.id, self_and_ancestor_ids, "#{self_and_ancestor_ids}/%"]
       
       # The above condition on a joined table will trigger an eager load, 
       # which won't load all 2nd order associations (e.g. taxon names), so 

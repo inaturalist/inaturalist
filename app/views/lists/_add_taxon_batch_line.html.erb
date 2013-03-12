@@ -18,7 +18,7 @@
 -%>
 <%= content_tag :tr, :id => line.parameterize, :class => row_class do %>
   <td><%= line %></td>
-  <td>
+  <td class="ltstatus">
     <% case other.class.to_s when "ListedTaxon" %>
       Added!
     <% when "String" %>

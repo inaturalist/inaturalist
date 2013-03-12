@@ -248,7 +248,10 @@ google.maps.Map.prototype.setPlace = function(place, options) {
   }
   
   if (options.kml && options.kml.length > 0) {
-    var kml = new google.maps.KmlLayer(options.kml, {suppressInfoWindows: true, preserveViewport: true})
+    var kml = new google.maps.KmlLayer(options.kml, {
+      suppressInfoWindows: true, 
+      preserveViewport: options.preserveViewport
+    })
     this.addOverlay(place.name + " boundary", kml)
     if (options.click) {
       google.maps.event.addListener(kml, 'click', options.click)
@@ -445,6 +448,7 @@ if (typeof iNaturalist.Map === 'undefined') this.iNaturalist.Map = {};
 
 // static functions
 iNaturalist.Map.createMap = function(options) {
+  options = options || {}
   options = $.extend({}, {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
@@ -716,8 +720,9 @@ iNaturalist.FullScreenControl = function(map) {
   return controlDiv;
 }
 
-iNaturalist.OverlayControl = function(map) {
-  var controlDiv = document.createElement('DIV')
+iNaturalist.OverlayControl = function(map, options) {
+  options = options || {}
+  var controlDiv = options.div || document.createElement('DIV')
   controlDiv.style.padding = '5px';
   var controlUI = $('<div>Overlays</div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').hide()
@@ -735,7 +740,9 @@ iNaturalist.OverlayControl = function(map) {
       this.addOverlay(map.overlays[i])
     }
   }
-  return controlDiv;
+  if (!options.div) {
+    return controlDiv
+  }
 }
 iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
   var map = this.map,
@@ -765,18 +772,23 @@ iNaturalist.OverlayControl.prototype.addOverlay = function(lyr) {
 google.maps.Map.prototype.addOverlay = function(name, overlay, options) {
   options = options || {}
   this.overlays = this.overlays || []
-  this.overlays.push({
+  var overlayOpts = {
     name: name,
     overlay: overlay,
     id: options.id,
     description: options.description
-  })
+  }
+  this.overlays.push(overlayOpts)
   if (overlay.setMap && !options.hidden) { overlay.setMap(this) }
+  if (this._overlayControl) {this._overlayControl.addOverlay(overlayOpts)};
 }
 google.maps.Map.prototype.removeOverlay = function(name) {
   if (!this.overlays) { return }
   for (var i=0; i < this.overlays.length; i++) {
-    if (this.overlays[i].name == name) { this.overlays.splice(i) }
+    if (this.overlays[i].name == name) { 
+      this.overlays[i].overlay.setMap(null)
+      this.overlays.splice(i)
+    }
   }
 }
 google.maps.Map.prototype.getOverlay = function(name) {

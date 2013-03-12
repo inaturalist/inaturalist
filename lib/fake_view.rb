@@ -7,6 +7,7 @@ class FakeView < ActionView::Base
   # include ActionController::UrlWriter
   include Rails.application.routes.url_helpers
   include ApplicationHelper
+  include PlacesHelper
 
   @@default_url_options = {:host => CONFIG.site_url.sub("http://", '')}
   
@@ -19,9 +20,9 @@ class FakeView < ActionView::Base
     end
   end
 
-  def initialize
+  def initialize(options = {})
     super
-    self.view_paths = [File.join(Rails.root, 'app/views')]
+    self.view_paths = [File.join(Rails.root, 'app/views'), options[:view_paths]].flatten.compact
   end
   
   def self.method_missing(method, *args)

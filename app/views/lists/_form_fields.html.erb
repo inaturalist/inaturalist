@@ -51,6 +51,10 @@
       <%= f.radio_button :rank_rule, "any", :label => "allow any", :label_after => true %>
       <%= f.radio_button :rank_rule, "species?", :label => "only species", :label_after => true %>
       <%= f.radio_button :rank_rule, "species_or_lower?", :label => "only species and subspecies/varieties", :label_after => true %>
+
+      <h3>Select photos to display</h3>
+      <%= f.radio_button :show_obs_photos, "true", :label => "show observation photos", :label_after => true %>
+      <%= f.radio_button :show_obs_photos, "false", :label => "show default taxon photos", :label_after => true %>
     </div>
   <% end -%>
 </div>

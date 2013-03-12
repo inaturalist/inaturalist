@@ -2,7 +2,8 @@
 class ProviderAuthorization < ActiveRecord::Base
   belongs_to  :user
   validates_presence_of :user_id, :provider_uid, :provider_name
-  validates_uniqueness_of :provider_uid, :scope => :provider_name  
+  validates_uniqueness_of :provider_uid, :scope => :provider_name
+  validate :uniqueness_of_authorization_per_user
   after_save :create_photo_identity
   
   # Hash that comes back from the provider through omniauth.  Should be set 
@@ -10,7 +11,7 @@ class ProviderAuthorization < ActiveRecord::Base
   # this record is created
   attr_accessor :auth_info
   
-  PROVIDERS = %w(facebook twitter Flickr Google Yahoo) 
+  PROVIDERS = %w(facebook twitter Flickr Google Yahoo)
   AUTH_URLS = PROVIDERS.inject({}) do |memo, provider|
     memo.update(provider => "/auth/#{provider.downcase}")
   end
@@ -18,6 +19,31 @@ class ProviderAuthorization < ActiveRecord::Base
     "Google" => "/auth/open_id?openid_url=https://www.google.com/accounts/o8/id",
     "Yahoo" => "/auth/open_id?openid_url=https://me.yahoo.com")
   ALLOWED_SCOPES = %w(read write)
+
+  def to_s
+    "<ProviderAuthorization #{id} user_id: #{user_id} provider_name: #{provider_name}>"
+  end
+
+  def uniqueness_of_authorization_per_user
+    existing_scope = if provider_uid =~ /google.com\/accounts/
+      ProviderAuthorization.
+        where(:provider_name => 'openid').
+        where("provider_uid LIKE 'https://www.google.com/accounts%'").
+        scoped
+    elsif provider_uid =~ /me.yahoo.com/
+      ProviderAuthorization.
+        where(:provider_name => 'openid').
+        where("provider_uid LIKE 'https://me.yahoo.com%'").
+        scoped
+    else
+      ProviderAuthorization.where(:provider_name => provider_name).scoped
+    end
+    existing_scope = existing_scope.where("id != ?", id) if id
+    if existing_scope.where(:user_id => user_id).exists?
+      errors.add(:user_id, "has already linked an account with #{provider}")
+    end
+    true
+  end
   
   def provider
     if provider_uid =~ /google.com\/accounts/

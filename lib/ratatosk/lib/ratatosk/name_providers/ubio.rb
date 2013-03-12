@@ -1,6 +1,13 @@
 module Ratatosk
   module NameProviders
     class UBioNameProvider
+      SOURCE = ::Source.find_by_title("uBio") || ::Source.create(
+        :title => "uBio",
+        :in_text => "uBio",
+        :url => "http://www.ubio.org",
+        :citation => "uBio. <http://www.ubio.org/>."
+      )
+
       attr_accessor :service, :PREFERRED_CLASSIFICATIONS, 
                               :REJECTED_CLASSIFICATIONS
 
@@ -84,8 +91,7 @@ module Ratatosk
 
       def get_lineage_for(taxon)
         # search cbank for this taxon in its many classifications
-        cbankr_results = @service.classificationbank_search(
-          :namebankID => taxon.source_identifier)
+        cbankr_results = @service.classificationbank_search(:namebankID => taxon.source_identifier)
         
         # choose a classification, preferrably a nice and shiny one
         cbank_id = choose_cbank_id(cbankr_results)
@@ -126,8 +132,8 @@ module Ratatosk
       def get_phylum_for(taxon, lineage = nil)
         # Try to avoid calling uBio a billion times using their 
         # taxonomicGroup element
-        if taxon.class != Taxon && (taxaonomic_group = taxon.hxml.at('ubio:taxonomicGroup'))
-          if taxonomic_group_taxon = Taxon.find_by_name(taxaonomic_group.inner_text)
+        if taxon.respond_to?(:hxml) && (taxonomic_group = taxon.hxml.at('//ubio:taxonomicGroup'))
+          if taxonomic_group_taxon = Taxon.find_by_name(taxonomic_group.inner_text)
             return taxonomic_group_taxon if taxonomic_group_taxon.rank == 'phylum'
             return taxonomic_group_taxon.phylum
           end
@@ -135,10 +141,9 @@ module Ratatosk
         
         begin
           lineage ||= get_lineage_for(taxon)
-        rescue NameProviderError
+        rescue NameProviderError => e
           return nil
         end
-        # puts "[DEBUG] lineage for #{taxon}: #{lineage.map(&:name).join(', ')}"
         phylum = lineage.detect{|t| t.rank && t.rank.downcase == 'phylum'}
         phylum ||= lineage.last.phylum
         phylum
@@ -215,7 +220,7 @@ module Ratatosk
         @hxml = hxml
         taxon.name = get_name
         taxon.rank = @hxml.at('//gla:rank').inner_text.downcase rescue nil
-        taxon.source = Source.find_by_title('uBio')
+        taxon.source = UBioNameProvider::SOURCE
         taxon.source_identifier = get_namebank_id
         taxon.source_url = 'http://www.ubio.org/browser/details.php?' +
                            'namebankID=' + taxon.source_identifier
@@ -241,8 +246,8 @@ module Ratatosk
 
       def get_namebank_id
         # CBank and NBank store the namebank LSID in different places
-        if @hxml.at('//rdf:Description')['about'] =~ /classificationbank/
-          lsid = @hxml.at('//ubio:namebankIdentifier')['resource']
+        if @hxml.at('//rdf:Description')['rdf:about'] =~ /classificationbank/
+          lsid = @hxml.at('//ubio:namebankIdentifier')['rdf:resource']
         else
           lsid = @hxml.at('//dc:identifier').inner_text
         end
@@ -265,12 +270,14 @@ module Ratatosk
       alias :taxon_name :adaptee
 
       def initialize(hxml, params = {})
+        raise TaxonNameAdapterError, "XML response cannot be blank" if hxml.blank?
+        raise TaxonNameAdapterError, "XML response has no elements" if hxml.elements.blank?
         @np = params.delete(:np)
         @service = @np.service rescue ::UBioService.new(UBIO_KEY)
         @hxml = hxml
         @adaptee = TaxonName.new(params)
         
-        taxon_name.source = Source.find_by_title('uBio')
+        taxon_name.source = UBioNameProvider::SOURCE
         taxon_name.source_identifier = get_namebank_id
         taxon_name.source_url = 'http://www.ubio.org/browser/details.php?namebankID=' + get_namebank_id
         taxon_name.name = get_name
@@ -335,11 +342,14 @@ module Ratatosk
 
       def get_namebank_id
         begin
-          lsid = @hxml.at('//dc:identifier').inner_text
+          lsid = @hxml.at('//dc:identifier').try(:content)
+        rescue Nokogiri::XML::XPath::SyntaxError => e
+          lsid = @hxml.at('identifier').try(:content)
+          puts "@hxml: #{@hxml}"
         rescue NoMethodError
           raise TaxonNameAdapterError, "uBio returned a taxon without an identifier"
         end
-        lsid.split(':')[4] # 4th term should be identifier
+        lsid.split(':')[4] if lsid # 4th term should be identifier
       end
 
       def get_taxon
@@ -372,7 +382,7 @@ module Ratatosk
       #
       def comname_taxon
         begin
-          taxon_namebank_lsid = @hxml.at('//gla:parent')['resource']
+          taxon_namebank_lsid = @hxml.at('//gla:parent')['resource'] || @hxml.at('//gla:parent')['rdf:resource']
         rescue
           # this is a phenomenally brittle workaround for what seems like an
           # Hpricot bug with selecting certaing empty elements...

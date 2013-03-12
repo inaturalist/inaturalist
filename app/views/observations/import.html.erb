@@ -65,7 +65,7 @@
         <%= form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
-            Select photos from your photo stream to convert into iNaturalist
+            Select photos from your photo stream to convert into <%= CONFIG.site_name %>
             observations. We'll fill in the date, time, and location from a
             photo's metadata, and try to look up species names from the tags.
           </div>
@@ -75,7 +75,7 @@
       <% else %>
         <div class="notice">
           You'll need to link
-          <%= link_to('your Flickr account', :controller => 'flickr', :action => 'link') %> or
+          <%= link_to('your Flickr account', :controller => 'flickr', :action => 'options') %> or
           <%= link_to('your Picasa account', :controller => 'picasa', :action => 'options') %>
           before importing photos.
         </div>

@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/name_provider_example_groups'
 
 describe Ratatosk::NameProviders::UBioNameProvider do
   it_should_behave_like "a name provider"
-
   before(:all) do
+    load_test_taxa
     @np = Ratatosk::NameProviders::UBioNameProvider.new
   end
 
@@ -28,10 +28,14 @@ describe Ratatosk::NameProviders::UBioNameProvider do
   end
 
   it "should not make identical taxa for Formica francoeuri"
+  it "should work for Rhagastis albomarginatus" do
+    tn = @np.find('Rhagastis albomarginatus')
+    tn.should have_at_least(1).taxon_name_adapter
+  end
 end
 
 describe Ratatosk::NameProviders::UBioTaxonNameAdapter do
-  fixtures :sources
+  # fixtures :sources
   it_should_behave_like "a TaxonName adapter"
 
   before(:each) do
@@ -51,7 +55,7 @@ describe Ratatosk::NameProviders::UBioTaxonNameAdapter do
 end
 
 describe Ratatosk::NameProviders::UBioTaxonAdapter do
-  fixtures :sources
+  # fixtures :sources
   it_should_behave_like "a Taxon adapter"
 
   before(:all) do
@@ -96,12 +100,12 @@ describe Ratatosk::NameProviders::UBioTaxonAdapter do
     rdf = @np.service.lsid(:namespace => 'classificationbank', :object => 1079025)
     taxon = Ratatosk::NameProviders::UBioTaxonAdapter.new(rdf)
     taxon.source_identifier.should_not be_nil
-    taxon.source_identifier.should_not == '1079025'
+    taxon.source_identifier.should_not eq '1079025'
 
     # this could fail if the classifcationbank -> namebank association is not
     # stable at uBio.  You might want to check
     # http://www.ubio.org/authority/metadata.php?lsid=urn:lsid:ubio.org:classificationbank:1079025
     # for sanity
-    taxon.source_identifier.should == '206752'
+    taxon.source_identifier.should eq '206752'
   end
 end

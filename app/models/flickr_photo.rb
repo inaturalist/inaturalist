@@ -31,7 +31,10 @@ class FlickrPhoto < Photo
   
   def self.get_api_response(native_photo_id, options = {})
     f = options[:user] ? flickraw_for_user(options[:user]) : flickr
-    f.photos.getInfo(:photo_id => native_photo_id)
+    user_id = options[:user].id if options[:user] && options[:user].is_a?(User)
+    Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
+      f.photos.getInfo(:photo_id => native_photo_id)
+    end
   rescue FlickRaw::FailedResponse => e
     raise e unless e.message =~ /Invalid auth token/
     flickr.photos.getInfo(:photo_id => native_photo_id)
@@ -216,8 +219,19 @@ class FlickrPhoto < Photo
     skipped = 0
     start_time = Time.now
     FlickrPhoto.script_do_in_batches(find_options) do |p|
-      r = Net::HTTP.get_response(URI.parse(p.medium_url))
-      unless r.code_type == Net::HTTPBadRequest
+      r = begin
+        uri = URI.parse(p.square_url)
+        Net::HTTP.new(uri.host).request_head(uri.path)
+      rescue URI::InvalidURIError
+        puts "[ERROR] Failed to retrieve #{p.square_url}, skipping..."
+        skipped += 1
+        next
+      rescue Timeout::Error
+        puts "[ERROR] Timeout requesting photo, skipping..."
+        skipped += 1
+        next
+      end
+      unless r.is_a?(Net::HTTPBadRequest) || r.is_a?(Net::HTTPRedirection)
         skipped += 1
         next
       end
@@ -225,14 +239,14 @@ class FlickrPhoto < Photo
       if errors.blank?
         updated += 1
       else
-        puts "[DEBUG] #{errors.values.to_sentence}"
+        puts "[ERROR] #{errors.values.to_sentence}"
         if repaired.frozen?
           destroyed += 1 
-          puts "[DEBUG] destroyed #{repaired}"
+          puts "[ERROR] destroyed #{repaired}"
         end
         if errors[:flickr_authorization_missing]
           invalids += 1
-          puts "[DEBUG] authorization missing #{repaired}"
+          puts "[ERROR] authorization missing #{repaired}"
         end
       end
     end

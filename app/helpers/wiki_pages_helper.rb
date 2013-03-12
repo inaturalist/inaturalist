@@ -5,7 +5,7 @@ module WikiPagesHelper
   end
 
   def wiki_macros(text)
-    wiki_nav(text)
+    wiki_css(wiki_nav(text))
   end
 
   def wiki_nav(text)
@@ -21,6 +21,12 @@ module WikiPagesHelper
       end
       html += "</ul>"
       html
+    end
+  end
+
+  def wiki_css(text)
+    text.gsub(/<style.*?>(.*?)<\/style>/m) do |match|
+      content_for(:extracss) { match.html_safe }
     end
   end
 

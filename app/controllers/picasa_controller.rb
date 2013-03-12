@@ -58,7 +58,7 @@ class PicasaController < ApplicationController
     
     @picasa_identity.save
     
-    flash[:notice] = "Congrats, your iNaturalist and Picasa accounts have been linked!"
+    flash[:notice] = "Congrats, your #{CONFIG.site_name} and Picasa accounts have been linked!"
     if !session[:return_to].blank?
       @landing_path = session[:return_to]
       session[:return_to] = nil
@@ -76,7 +76,7 @@ class PicasaController < ApplicationController
   def unlink
     if current_user.picasa_identity
       current_user.picasa_identity.destroy
-      flash[:notice] = "We've dissassociated your Picasa account from your iNaturalist account."
+      flash[:notice] = "We've dissassociated your Picasa account from your #{CONFIG.site_name} account."
       redirect_to :action => 'options'
     else
       flash[:notice] = "Your Picasa account has not been linked before!"

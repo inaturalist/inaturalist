@@ -30,7 +30,7 @@ class Observation < ActiveRecord::Base
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
-  attr_accessor :skip_refresh_lists, :skip_identifications
+  attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -120,7 +120,7 @@ class Observation < ActiveRecord::Base
   ]
   
   belongs_to :user, :counter_cache => true
-  belongs_to :taxon, :counter_cache => true
+  belongs_to :taxon
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
                             :foreign_key => 'iconic_taxon_id'
   has_many :observation_photos, :dependent => :destroy, :order => "id asc"
@@ -136,7 +136,7 @@ class Observation < ActiveRecord::Base
            :as => :contribution,
            :dependent => :destroy
   has_many :comments, :as => :parent, :dependent => :destroy
-  has_many :identifications, :dependent => :destroy
+  has_many :identifications, :dependent => :delete_all
   has_many :project_observations, :dependent => :destroy
   has_many :project_invitations, :dependent => :destroy
   has_many :projects, :through => :project_observations
@@ -166,7 +166,7 @@ class Observation < ActiveRecord::Base
     # the snappy searches. --KMU 2009-04-4
     # has taxon.self_and_ancestors(:id), :as => :taxon_self_and_ancestors_ids
     
-    has :photos_count, :as => :has_photos, :type => :integer
+    has "photos_count > 0", :as => :has_photos, :type => :boolean
     has :created_at, :sortable => true
     has :observed_on, :sortable => true
     has :iconic_taxon_id
@@ -182,6 +182,7 @@ class Observation < ActiveRecord::Base
     # http://groups.google.com/group/thinking-sphinx/browse_thread/thread/e8397477b201d1e4
     has :latitude, :as => :fake_latitude
     has :longitude, :as => :fake_longitude
+    has :photos_count
     has :num_identification_agreements
     has :num_identification_disagreements
     # END HACK
@@ -251,10 +252,11 @@ class Observation < ActiveRecord::Base
              :update_out_of_range_later,
              :update_default_license,
              :update_all_licenses
+             :update_taxon_counter_caches
   after_create :set_uri,
                :queue_for_sharing
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches
   
   ##
   # Named scopes
@@ -276,7 +278,17 @@ class Observation < ActiveRecord::Base
   end
   
   scope :in_place, lambda {|place|
-    place_id = place.is_a?(Place) ? place.id : place.to_i
+    place_id = if place.is_a?(Place)
+      place.id
+    elsif place.to_i == 0
+      begin
+        Place.find(place).try(&:id)
+      rescue ActiveRecord::RecordNotFound
+        -1
+      end
+    else
+      place.to_i
+    end
     joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
     where(
       "(observations.private_latitude IS NULL AND ST_Intersects(place_geometries.geom, observations.geom)) OR " +
@@ -338,10 +350,9 @@ class Observation < ActiveRecord::Base
   scope :of, lambda { |taxon|
     taxon = Taxon.find_by_id(taxon.to_i) unless taxon.is_a? Taxon
     return where("1 = 2") unless taxon
-    joins(:taxon).where(
-      "taxa.id = ? OR taxa.ancestry LIKE '#{taxon.ancestry}/#{taxon.id}%'", 
-      taxon
-    )
+    c = taxon.descendant_conditions
+    c[0] = "taxa.id = #{taxon.id} OR #{c[0]}"
+    joins(:taxon).where(c)
   }
   
   scope :at_or_below_rank, lambda {|rank| 
@@ -444,7 +455,7 @@ class Observation < ActiveRecord::Base
   }
   
   def self.near_place(place)
-    place = Place.find_by_id(place) unless place.is_a?(Place)
+    place = (Place.find(place) rescue nil) unless place.is_a?(Place)
     if place.swlat
       Observation.in_bounding_box(place.swlat, place.swlng, place.nelat, place.nelng).scoped
     else
@@ -507,10 +518,10 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if CONFIG.site_only_observations && params[:site].blank?
-      scope = scope.where("observations.uri LIKE ?", "#{FakeView.root_url}%")
-    elsif (site_bounds = CONFIG.bounds) && params[:swlat].blank?
-      scope = scope.in_bounding_box(site_bounds['swlat'], site_bounds['swlng'], site_bounds['nelat'], site_bounds['nelng'])
+    if !params[:site].blank? && params[:site] != 'any'
+      uri = params[:site]
+      uri = "http://#{uri}" unless uri =~ /^http\:\/\//
+      scope = scope.where("observations.uri LIKE ?", "#{uri}%")
     end
     
     # return the scope, we can use this for will_paginate calls like:
@@ -757,7 +768,7 @@ class Observation < ActiveRecord::Base
   # then the last_observation should be reset to another observation.
   #
   def refresh_lists
-    return true if @skip_refresh_lists
+    return true if skip_refresh_lists
     return true unless taxon_id_changed?
     
     # Update the observation's current taxon and/or a previous one that was
@@ -769,7 +780,6 @@ class Observation < ActiveRecord::Base
     
     # Don't refresh all the lists if nothing changed
     return true if target_taxa.empty?
-    
     unless Delayed::Job.where("handler LIKE '%''List%refresh_with_observation% #{id}\n%'").exists?
       List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
         :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
@@ -790,6 +800,7 @@ class Observation < ActiveRecord::Base
   end
   
   def refresh_check_lists
+    return true if skip_refresh_check_lists
     refresh_needed = (georeferenced? || was_georeferenced?) && 
       (taxon_id || taxon_id_was) && 
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
@@ -809,7 +820,7 @@ class Observation < ActiveRecord::Base
   # this taxon should have their last_observation reset.
   #
   def refresh_lists_after_destroy
-    return true if @skip_refresh_lists
+    return true if skip_refresh_lists
     return true unless taxon
     List.delay(:priority => USER_INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was => taxon_id_was, :user_id => user_id, :created_at => created_at,
@@ -1012,6 +1023,14 @@ class Observation < ActiveRecord::Base
     !private_latitude.blank? || !private_longitude.blank?
   end
   alias :coordinates_obscured :coordinates_obscured?
+
+  def coordinates_private?
+    latitude.blank? && longitude.blank? && private_latitude? && private_longitude?
+  end
+
+  def coordinates_changed?
+    latitude_changed? || longitude_changed? || private_latitude_changed? || private_longitude_changed?
+  end
   
   def geoprivacy_private?
     geoprivacy == PRIVATE
@@ -1054,13 +1073,16 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates_for_threatened_taxa
-    obscuring_needed_for_taxon = taxon && 
-      taxon.species_or_lower? && 
-      (taxon.threatened? || (taxon.parent && taxon.parent.threatened?))
-
-    if obscuring_needed_for_taxon && georeferenced? && !coordinates_obscured?
-      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
-    elsif geoprivacy.blank? && !obscuring_needed_for_taxon
+    taxon_geoprivacy = taxon ? taxon.geoprivacy(:latitude => latitude, :longitude => longitude) : nil
+    case taxon_geoprivacy
+    when OBSCURED
+      obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA) unless coordinates_obscured?
+    when PRIVATE
+      unless coordinates_private?
+        obscure_coordinates(M_TO_OBSCURE_THREATENED_TAXA)
+        self.latitude, self.longitude = [nil, nil]
+      end
+    else
       unobscure_coordinates
     end
     true
@@ -1090,7 +1112,7 @@ class Observation < ActiveRecord::Base
   end
   
   def unobscure_coordinates
-    return unless coordinates_obscured?
+    return unless coordinates_obscured? || coordinates_private?
     return unless geoprivacy.blank?
     self.latitude = private_latitude
     self.longitude = private_longitude
@@ -1102,10 +1124,12 @@ class Observation < ActiveRecord::Base
     Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id].try(:name)
   end
   
-  def self.obscure_coordinates_for_observations_of(taxon)
+  def self.obscure_coordinates_for_observations_of(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.find_observations_of(taxon) do |o|
+    scope = Observation.of(taxon).scoped
+    scope = scope.in_place(options[:place]) if options[:place]
+    scope.find_each do |o|
       o.obscure_coordinates
       Observation.update_all({
         :place_guess => o.place_guess,
@@ -1127,6 +1151,21 @@ class Observation < ActiveRecord::Base
         :longitude => o.longitude,
         :private_latitude => o.private_latitude,
         :private_longitude => o.private_longitude,
+      }, {:id => o.id})
+    end
+  end
+
+  def self.reassess_coordinates_for_observations_of(taxon, options = {})
+    scope = Observation.of(taxon).includes(:taxon => :conservation_statuses).scoped
+    scope = scope.in_place(options[:place]) if options[:place]
+    scope.find_each do |o|
+      o.obscure_coordinates_for_threatened_taxa
+      next unless o.coordinates_changed?
+      Observation.update_all({
+        :latitude => o.latitude,
+        :longitude => o.longitude,
+        :private_latitude => o.private_latitude,
+        :private_longitude => o.private_longitude
       }, {:id => o.id})
     end
   end
@@ -1310,6 +1349,15 @@ class Observation < ActiveRecord::Base
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
     Observation.update_all(["license = ?", license], ["user_id = ?", user_id])
+    true
+  end
+
+  def update_taxon_counter_caches
+    return true unless destroyed? || taxon_id_changed?
+    taxon_ids = [taxon_id_was, taxon_id].compact.uniq
+    unless taxon_ids.blank?
+      Taxon.delay(:priority => INTEGRITY_PRIORITY).update_observation_counts(:taxon_ids => taxon_ids)
+    end
     true
   end
   

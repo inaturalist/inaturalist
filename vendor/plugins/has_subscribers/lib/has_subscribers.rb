@@ -49,6 +49,12 @@ module HasSubscribers
     #   :queue_if determines whether that job gets delayed in the first place. 
     #   Takes the record as its arg.
     # * <tt>:priority</tt> - DJ priority at which to run the notification
+    # * <tt>:include_owner</tt> - Create an update for the user associated
+    #   with the resource, e.g. if a comment generates an update for an
+    #   observation, the owner of the observation should be notified even if
+    #   they're not subscribed.
+    # * <tt>:include_notifier</tt> - Create an update for the person
+    #   associated with the notifying record.
     #
     def notifies_subscribers_of(subscribable_association, options = {})
       unless self.included_modules.include?(HasSubscribers::InstanceMethods)
@@ -158,28 +164,32 @@ module HasSubscribers
       has_one_reflections     = reflections.select{|k,v| v.macro == :has_one}.map{|k,v| k.to_s}
       
       notification ||= options[:notification] || "create"
-      
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
         if options[:include_owner] && subscribable.respond_to?(:user) && (subscribable == notifier || subscribable.user_id != notifier.user_id)
           owner_subscription = subscribable.update_subscriptions.first(:conditions => {:user_id => subscribable.user_id})
           unless owner_subscription
-            Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
+            u = Update.create(:subscriber => subscribable.user, :resource => subscribable, :notifier => notifier, 
               :notification => notification)
+            unless u.valid?
+            end
           end
         end
         
         subscribable.update_subscriptions.find_each do |subscription|
-          next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id
-          next if subscription.created_at > notifier.created_at
+          next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_notifier]
+          next if subscription.created_at > notifier.updated_at
           next if subscription.has_unviewed_updates_from(notifier)
           
           if options[:if]
             next unless options[:if].call(notifier, subscribable, subscription)
           end
 
-          Update.create(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
+          u = Update.new(:subscriber => subscription.user, :resource => subscribable, :notifier => notifier, 
             :notification => notification)
+          unless u.save
+            Rails.logger.error "[ERROR #{Time.now}] Failed to save #{u}: #{u.errors.full_messages.to_sentence}"
+          end
         end
       }
       
@@ -200,18 +210,20 @@ module HasSubscribers
     end
 
     def create_callback(subscribable_association, options = {})
-      callback_types = case options[:on]
-      when [:update, :create] then [:after_update, :after_create]
-      when :update then :after_update
-      else :after_create
-      end
+      callback_types = []
+      options_on = options[:on] ? [options[:on]].flatten.map(&:to_s) : %w(after_create)
+      callback_types << :after_update if options_on.detect{|o| o =~ /update/}
+      callback_types << :after_create if options_on.detect{|o| o =~ /create/}
+      callback_types << :after_save   if options_on.detect{|o| o =~ /save/}
       callback_method = options[:with] || :notify_subscribers_of
-      callback_types = [callback_types] unless callback_types.is_a?(Array)
+      attr_accessor :skip_updates
       callback_types.each do |callback_type|
         send callback_type do |record|
+          return true if record.skip_updates
           if options[:queue_if].blank? || options[:queue_if].call(record)
             record.delay(:priority => options[:priority]).send(callback_method, subscribable_association)
           end
+          true
         end
       end
     end

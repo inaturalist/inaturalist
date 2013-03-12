@@ -161,6 +161,7 @@
   }
   
   function setup(input, options) {
+    $(input).data('latLonSelectorOptions', options)
     // Give it some class
     $(input).addClass('latLonSelectorInput');
     
@@ -526,6 +527,8 @@
   }
   
   $.fn.latLonSelector.editAccuracy = function() {
+    var options = $(getCurrentInput()).data('latLonSelectorOptions')
+    if (options.noAccuracy) {return}
     if (!$.fn.latLonSelector._circle) { 
       $.fn.latLonSelector.setAccuracy(null)
     }
@@ -567,6 +570,8 @@
   
   $.fn.latLonSelector.setAccuracy = function(accuracy, options) {
     options = options || {}
+    var inputOptions = $(getCurrentInput()).data('latLonSelectorOptions')
+    if (inputOptions.noAccuracy) {return};
     if (!$.fn.latLonSelector._circle) {
       $.fn.latLonSelector._circle = new google.maps.Circle({
         strokeColor: "#882A28",

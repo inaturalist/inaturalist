@@ -23,10 +23,10 @@ class TaxaController < ApplicationController
     :observation_photos, :range, :schemes, :tip]
   before_filter :limit_page_param_for_thinking_sphinx, :only => [:index, 
     :browse, :search]
-  
   before_filter :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
+  before_filter :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos]
   
   GRID_VIEW = "grid"
@@ -113,24 +113,32 @@ class TaxaController < ApplicationController
 
   def show
     if params[:entry] == 'widget'
-      flash[:notice] = "Welcome to iNat! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
+      flash[:notice] = "Welcome to #{CONFIG.site_name_short}! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
     end
     @taxon ||= Taxon.find_by_id(params[:id].to_i, :include => [:taxon_names]) if params[:id]
     return render_404 unless @taxon
-    
-    if !@taxon.conservation_status.blank? && @taxon.conservation_status > Taxon::IUCN_LEAST_CONCERN
-      @conservation_status_name = @taxon.conservation_status_name
-      @conservation_status_source = @taxon.conservation_status_source
-    end
     
     respond_to do |format|
       format.html do
         if @taxon.name == 'Life' && !@taxon.parent_id
           return redirect_to(:action => 'index')
         end
+
+        place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
+        place_id ||= CONFIG.place_id
+        @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
+          cs.place_id.blank? ? [0] : cs.place.self_and_ancestor_ids
+        end
+        if place_id
+          @conservation_status = @conservation_statuses.detect do |cs|
+            cs.place_id == place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
+          end
+        end
+        @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
         
-        @amphibiaweb = amphibiaweb_description?
-        @try_amphibiaweb = try_amphibiaweb?
+        if place_id
+          @listed_taxon = @taxon.listed_taxa.where(:place_id => place_id).order("establishment_means").first
+        end
         
         @children = @taxon.children.all(
           :include => :taxon_names, 
@@ -184,7 +192,7 @@ class TaxaController < ApplicationController
         @taxon_links.uniq!{|tl| tl.url}
         @taxon_links = @taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
 
-        @observations = Observation.of(@taxon).recently_added.all(:limit => 3)
+        @observations = Observation.of(@taxon).recently_added.limit(12)
         
         @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
           @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
@@ -208,7 +216,12 @@ class TaxaController < ApplicationController
           end
         end
         
-        @taxon_range = @taxon.taxon_ranges.without_geom.first
+        @taxon_ranges = @taxon.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
+        @taxon_range = if CONFIG.taxon_range_source_id
+          @taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
+        end
+        @taxon_range ||= @taxon_ranges.detect{|tr| !tr.range.blank?}
+        @additional_ranges = @taxon_ranges - [@taxon_range]
         @taxon_gbif = "#{@taxon.name.gsub(' ','+')}*"
         @show_range = @taxon_range
         @colors = @taxon.colors if @taxon.species_or_lower?
@@ -320,24 +333,9 @@ class TaxaController < ApplicationController
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton&colors=blue,black
   def search
     @q = params[:q] = params[:q].to_s.sanitize_encoding
-    match_mode = :all
     
     # Wrap the query in modifiers to ensure exact matches show first
-    if @q.blank?
-      q = @q
-    else
-      q = sanitize_sphinx_query(@q)
-
-      # for some reason 1-term queries don't return an exact match first if enclosed 
-      # in quotes, so we only use them for multi-term queries
-      q = if q =~ /\s/
-        "\"^#{q}$\" | #{q}"
-      else
-        "^#{q}$ | #{q}"
-      end
-
-      match_mode = :extended
-    end
+    q, match_mode = Taxon.search_query(@q)
     drill_params = {}
     
     if params[:taxon_id] && (@taxon = Taxon.find_by_id(params[:taxon_id].to_i))
@@ -378,7 +376,10 @@ class TaxaController < ApplicationController
       :with => drill_params, 
       :include => [:taxon_names, :photos],
       :field_weights => {:name => 2},
-      :match_mode => match_mode)
+      :match_mode => match_mode,
+      :order => :observations_count,
+      :sort_mode => :desc
+    )
 
     if @facets[:iconic_taxon_id]
       @faceted_iconic_taxa = Taxon.all(
@@ -404,6 +405,7 @@ class TaxaController < ApplicationController
     
     do_external_lookups
 
+    @taxa.compact! unless @taxa.nil?
     unless @taxa.blank?
       # if there's an exact match among the hits, make sure it's first
       if exact_index = @taxa.index{|t| t.all_names.map(&:downcase).include?(params[:q].to_s.downcase)}
@@ -468,7 +470,8 @@ class TaxaController < ApplicationController
       exact_matches << @taxon_names.delete_at(i)
     end
     if exact_matches.blank?
-      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, :conditions => ["lower(name) = ?", @q.to_s.downcase])
+      exact_matches = TaxonName.all(:include => {:taxon => :taxon_names}, 
+        :conditions => ["lower(taxon_names.name) = ?", @q.to_s.downcase])
     end
     @taxon_names = exact_matches + @taxon_names
     @taxa = @taxon_names.map do |taxon_name|
@@ -645,8 +648,7 @@ class TaxaController < ApplicationController
         :per_page => per_page, :include => [:photos], 
         :conditions => "photos.id IS NOT NULL")
     else
-      Observation.search(params[:q], :page => params[:page], 
-      :per_page => per_page, :with => {:has_photos => true, :taxon_id => @taxon.id})
+      Observation.search(params[:q], :page => params[:page], :per_page => per_page, :with => {:has_photos => true})
     end
     @photos = observations.map(&:photos).flatten
     render :partial => 'photos/photo_list_form', :locals => {
@@ -761,27 +763,29 @@ class TaxaController < ApplicationController
     redirect_back_or_default(taxon_path(@taxon))
   rescue Koala::Facebook::APIError => e
     raise e unless e.message =~ /OAuthException/
-    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to iNat."
+    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to #{CONFIG.site_name_short}."
     redirect_back_or_default(taxon_path(@taxon))
   end
   
   def describe
-    @amphibiaweb = amphibiaweb_description?
-    if @amphibiaweb
-      taxon_names = @taxon.taxon_names.all(
-        :conditions => {:lexicon => TaxonName::LEXICONS[:SCIENTIFIC_NAMES]}, 
-        :order => "is_valid, id desc")
-      if @xml = get_amphibiaweb(taxon_names)
-        render :partial => "amphibiaweb"
-        return
-      else
-        @before_wikipedia = '<div class="notice status">AmphibiaWeb didn\'t have info on this taxon, showing Wikipedia instead.</div>' 
+    @describers = if CONFIG.taxon_describers
+      CONFIG.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
+    elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
+      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
+    else
+      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
+    end
+    if @describer = TaxonDescribers.get_describer(params[:from])
+      @description = @describer.describe(@taxon)
+    else
+      @describers.each do |d|
+        @describer = d
+        @description = d.describe(@taxon)
+        break unless @description.blank?
       end
     end
-    
-    
-    @title = @taxon.wikipedia_title.blank? ? @taxon.name : @taxon.wikipedia_title
-    wikipedia
+    @describer_url = @describer.page_url(@taxon)
+    render :partial => "description"
   end
   
   def refresh_wikipedia_summary
@@ -1064,9 +1068,13 @@ class TaxaController < ApplicationController
     end
     
     @flickr_photos = params[:flickr_photos].map do |flickr_photo_id|
-      fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
-      FlickrPhoto.new_from_flickraw(fp, :user => current_user)
-    end
+      begin
+        fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
+        FlickrPhoto.new_from_flickraw(fp, :user => current_user)
+      rescue FlickRaw::FailedResponse => e
+        nil
+      end
+    end.compact
 
     
     @observations = current_user.observations.all(
@@ -1236,7 +1244,7 @@ class TaxaController < ApplicationController
           photos << fp 
         else
           pp = photo_class.get_api_response(photo_id)
-          photos << photo_class.new_from_api_response(pp)
+          photos << photo_class.new_from_api_response(pp) if pp
         end
       end
     end
@@ -1279,7 +1287,7 @@ class TaxaController < ApplicationController
     
     # graft in the background
     @external_taxa.each do |external_taxon|
-      external_taxon.delay.graft_silently unless external_taxon.grafted?
+      external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
     end
     
     @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|
@@ -1302,9 +1310,9 @@ class TaxaController < ApplicationController
     rescue FlickRaw::FailedResponse, FlickRaw::OAuthClient::FailedResponse => e
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
-        flash[:error] = ("iNat can't add tags to your photos until " + 
+        flash[:error] = ("#{CONFIG.site_name_short} can't add tags to your photos until " + 
           "Flickr knows you've given us permission.  " + 
-          "<a href=\"#{auth_url}\">Click here to authorize iNat to add tags</a>.").html_safe
+          "<a href=\"#{auth_url}\">Click here to authorize #{CONFIG.site_name_short} to add tags</a>.").html_safe
       else
         flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
       end
@@ -1380,7 +1388,7 @@ class TaxaController < ApplicationController
   
   def load_single_taxon_map_data(taxon)
     @taxon_range = taxon.taxon_ranges.without_geom.first
-    if params[:place_id] && (@place = Place.find_by_id(params[:place_id]))
+    if params[:place_id] && (@place = Place.find(params[:place_id]) rescue nil)
       @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place.id})
     end
     @bounds = if @place && (bbox = @place.bounding_box)
@@ -1413,5 +1421,9 @@ class TaxaController < ApplicationController
     @state_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
     find_options[:conditions][1] = Place::PLACE_TYPE_CODES['Country']
     @country_listings = taxon.listed_taxa.all(find_options).index_by{|lt| lt.place_id}
+  end
+
+  def load_form_variables
+    @conservation_status_authorities = ConservationStatus.select('DISTINCT authority').where("authority IS NOT NULL").map(&:authority).compact
   end
 end

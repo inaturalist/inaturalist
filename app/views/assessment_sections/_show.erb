@@ -1,6 +1,7 @@
 <div class="assessment-section">
   <h3>
     <a name="<%= section.to_param %>"></a>
+    <a name="<%= section.title.parameterize %>"></a>
     <%= section.title %>
   </h3>
 
@@ -12,42 +13,42 @@
   </div>
 
   <% if params[:preview].blank? # don't show comments for preview %>
-    <div class="assessment-section-comments">
+    <div class="assessment-section-comments comments_wrapper">
       <h4>Comments on <%= section.title %></h4>
       <%- section_comments_count = section.comments.count %>
-      <% if section_comments_count == 0 -%>
-        <div class="stacked meta">No comments yet</div>
-      <% else %>
-        <% if section_comments_count > 3 %>
-          <div class="stacked">
-            <%- remaining = section_comments_count - 3 %>
-            <%= link_to_toggle "Show #{pluralize remaining, 'older comment'}", "##{dom_id(section, 'more_comments')}" %>
-            <div id="<%= dom_id(section, 'more_comments') %>" class="assessment-section-comments-remainder">
-              <% section.comments.sort {|a,b| a.created_at <=> b.created_at }.each_with_index do |comment, index| %>
-                <%= render :partial => 'shared/activity_item', :object => comment if index < (section_comments_count - 3) %>
-              <% end %>
+      <div class="comments">
+        <% if section_comments_count == 0 -%>
+          <div class="stacked meta noresults">No comments yet</div>
+        <% else %>
+          <% if section_comments_count > 3 %>
+            <div class="stacked">
+              <%- remaining = section_comments_count - 3 %>
+              <%= link_to_toggle "Show #{pluralize remaining, 'older comment'}", "##{dom_id(section, 'more_comments')}" %>
+              <div id="<%= dom_id(section, 'more_comments') %>" class="assessment-section-comments-remainder">
+                <% section.comments.sort {|a,b| a.created_at <=> b.created_at }.each_with_index do |comment, index| %>
+                  <%= render :partial => 'shared/activity_item', :object => comment if index < (section_comments_count - 3) %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
-        
-        <div class="assessment-section-comments-teaser">
-          <% section.comments.sort {|a,b| a.created_at <=> b.created_at }[((section_comments_count - 3) < 0 ? 0 : (section_comments_count - 3))..(section_comments_count - 1)].each do |comment| %>
-            <%= render :partial => 'shared/activity_item', :object => comment %>
           <% end %>
-        </div>
-
-      <% end -%>
+          <div class="assessment-section-comments-teaser">
+            <% section.comments.sort {|a,b| a.created_at <=> b.created_at }[((section_comments_count - 3) < 0 ? 0 : (section_comments_count - 3))..(section_comments_count - 1)].each do |comment| %>
+              <%= render :partial => 'shared/activity_item', :object => comment %>
+            <% end %>
+          </div>
+        <% end -%>
+      </div>
 
       <div class="comment_section">
         <a onclick="$(this).parent().find('.new_comment_form').toggle();">
           <span class='ui-icon ui-icon-circle-plus inlineblock'></span>
           Add a Comment
         </a>
-        <%#= link_to_toggle "Add a comment", "##{dom_id(section, 'new_comment')}" %>
         <div id="<%= dom_id(section, 'new_comment') %>" class="new_comment_form" style="display:none;">
           <%= render :partial => 'comments/comment_form', :locals => { 
-            :comment => Comment.new(:parent => section, 
-                                    :user => logged_in? ? current_user : nil)
+            :comment => Comment.new(:parent => section, :user => current_user),
+            :remote => true,
+            :partial => "activity_item"
           } %>
         </div>
       </div>

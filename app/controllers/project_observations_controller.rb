@@ -1,5 +1,6 @@
 class ProjectObservationsController < ApplicationController
-  before_filter :authenticate_user!
+  doorkeeper_for :show, :create, :update, :destroy, :if => lambda { authenticate_with_oauth? }
+  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
   
   def create
     @project_observation = ProjectObservation.new(params[:project_observation])

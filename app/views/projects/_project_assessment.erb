@@ -1,15 +1,14 @@
+<%- num_sections ||= 4 -%>
 <div class="assessment-taxon-listing stacked">
   <%= image_and_content taxon_image(assessment.taxon), :image_size => 75 do %>
     <h3>
       <%= link_to assessment.display_name, project_assessment_path(assessment.project, assessment) %>
-      <%#= render :partial => "shared/taxon", :object => assessment.taxon, :locals => {
-          :link_url => project_assessment_path(assessment.project, assessment)} %>
     </h3>
     <div class="stacked">
-      <% assessment.sections[0..5].each_with_index do |section, i| %>
+      <% assessment.sections[0..num_sections-1].each_with_index do |section, i| %>
         <%= render :partial => 'assessment_sections/listing', :locals => {:section => section, :first => i == 0} %>
       <% end %>
-      <% if assessment.sections.size > 6 -%>
+      <% if assessment.sections.size > 4 -%>
         <span class="assessment-section-list-item inlineblock meta">...</span>
       <% end -%>
     </div>

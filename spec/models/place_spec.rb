@@ -156,3 +156,31 @@ describe Place, "bbox_contains_lat_lng?" do
   end
 end
 
+describe Place do
+  it "should be editable by curators" do
+    p = Place.make!
+    u = make_curator
+    p.should be_editable_by(u)
+  end
+  it "should be editable by the creator" do
+    u = User.make!
+    p = Place.make!(:user => u)
+    p.should be_editable_by(u)
+  end
+
+  it "should not be editable by non-curators who aren't the creator" do
+    u = User.make!
+    p = Place.make!(:user => User.make!)
+    p.should_not be_editable_by(u)
+  end
+end
+
+describe Place, "display_name" do
+  it "should be in correct order" do
+    country = Place.make!(:code => "cn", :place_type => Place::PLACE_TYPE_CODES['country'])
+    state = Place.make!(:code => "st", :place_type => Place::PLACE_TYPE_CODES['state'], :parent => country)
+    place = Place.make!(:parent => state)
+    place.parent.should eq(state)
+    place.display_name(:reload => true).should =~ /, #{state.code}, #{country.code}$/
+  end
+end

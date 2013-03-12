@@ -11,19 +11,19 @@
       <% end -%>
     </p>
     <p>
-      Your iNaturalist account is currently linked to your Facebook account.
+      Your <%= CONFIG.site_name %> account is currently linked to your Facebook account.
     </p>
     <p>
-      Keeping your iNaturalist account linked to your Facebook account allows you to
+      Keeping your <%= CONFIG.site_name %> account linked to your Facebook account allows you to
       add multiple photos to your observations.  Of course, if you ever want
-      iNaturalist and Facebook to break up, we won't stop you, you just won't be
+      <%= CONFIG.site_name %> and Facebook to break up, we won't stop you, you just won't be
       able to add photos. Sometimes this might be for the best, like if you create
-      a new Facebook account that you want to link iNaturalist to.
+      a new Facebook account that you want to link <%= CONFIG.site_name %> to.
     </p>
   <% else -%>
-    <h3>Your iNaturalist account is not linked to your Facebook account :(</h3>
+    <h3>Your <%= CONFIG.site_name %> account is not linked to your Facebook account :(</h3>
     <p class="description">
-      To connect Facebook with iNat, click the link on the right and sign into
+      To connect Facebook with <%= CONFIG.site_name_short %>, click the link on the right and sign into
       Facebook.com. 
     </p>
     <p class="description">
@@ -33,8 +33,8 @@
     </p>
 
     <p class="description">
-      Also, keep in mind that if you log in to iNat via Facebook, we will
-      automatically re-link your iNat and Facebook accounts. Seems reasonable that
+      Also, keep in mind that if you log in to <%= CONFIG.site_name_short %> via Facebook, we will
+      automatically re-link your <%= CONFIG.site_name_short %> and Facebook accounts. Seems reasonable that
       if you use Facebook you'll want to be able to import Facebook photos, right?
     </p>
   <% end -%>
@@ -46,9 +46,8 @@
 <div class="column span-10 last">
   <p>
   <% if current_user.facebook_identity %>
-    <%= link_to 'Unlink your Facebook and iNaturalist Accounts', 
-      omniauth_disconnect_path('facebook'), :class => 'delete button', 
-      :style=>'font-size:13px;', :method => 'delete' %>
+    <%= link_to "Unlink your Facebook and #{CONFIG.site_name} Accounts", 
+      omniauth_disconnect_path('facebook'), :class => 'delete button', :method => 'delete' %>
   <% else %>
     <%= link_to 'Yes, take me to Facebook!', "/auth/facebook", 
                 :onclick => "$('.facebook-button').toggle();", :class => 'facebook-button default button' %>

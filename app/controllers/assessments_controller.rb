@@ -80,15 +80,15 @@ class AssessmentsController < ApplicationController
     @parent_display_name = @project.title
     respond_to do |format|
       format.html do
-        @uncompleted_assessments = Assessment.where(:project_id => @project.id).incomplete
-        @completed_assessments = Assessment.where(:project_id => @project.id).complete.
+        @uncompleted_assessments = Assessment.where(:project_id => @project.id).includes("taxon").order("taxa.name ASC").incomplete
+        @completed_assessments = Assessment.where(:project_id => @project.id).includes("taxon").order("taxa.name ASC").complete.
           paginate(:page => params[:page])
       end
       format.json do
-        @assessments = @project.assessments.page(params[:page]).per_page(100)
-        @assessments = if params[:complete] = 'true'
+        @assessments = @project.assessments.includes("taxon").order("taxa.name ASC").page(params[:page]).per_page(100)
+        @assessments = if params[:complete] == 'true'
           @assessments.complete
-        elsif params[:complete] = 'false'
+        elsif params[:complete] == 'false'
           @assessments.incomplete
         end
         render :json => @assessments

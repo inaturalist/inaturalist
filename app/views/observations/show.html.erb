@@ -23,7 +23,7 @@
   <% end -%>
   <meta property="og:determiner" content="auto" /> 
   <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="inatdev:organism_name" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
@@ -259,16 +259,14 @@
   <% end %>
   
   <div class="clear column span-16">
-    <% unless @observation.tags.blank? %>
+    <% unless @observation.cached_tag_list.blank? && @observation.taggings.blank? %>
       <div id="tags" class="description">
         <label>Tags:</label>
-        <ul>
-          <% @observation.tags.each do |tag| %>
-            <li>
-              <%= link_to h(tag.name), observations_by_login_path(@observation.user.login, :q => h(tag.name), :search_on => "tags") %>
-            </li>
-          <% end %>
-        </ul>
+        <% if @observation.cached_tag_list -%>
+          <%=raw @observation.cached_tag_list.split(',').map(&:strip).map {|t| link_to(t, observations_path(:q => t, :search_on => "tags"), :rel => "nofollow") }.join(', ') %>
+        <% else %>
+          <%=raw @observation.taggings.map {|t| link_to(t.tag.name, observations_path(:q => t.tag.name, :search_on => "tags"), :rel => "nofollow") }.join(', ') %>
+        <% end -%>
       </div>
     <% end -%>
 
@@ -371,9 +369,12 @@
     <h3>Identification Summary</h3>
     
     <% if @owners_identification %>
-      <div id="owners-identification" class="box">
+      <div id="owners-identification" class="box <%= 'withupperright' if @listed_taxon || @conservation_status %>">
         <%= render :partial => 'identifications/identification',
                    :locals => { :identification => @owners_identification } %>
+        <% if @listed_taxon || @conservation_status -%>
+          <%= render "listed_taxa/taxon_blobs", :listed_taxon => @listed_taxon, :taxon => @observation.taxon, :conservation_status => @conservation_status, :show_place_name => true %>
+        <% end -%>
       </div>
     <% end %>
     <div id="identifications-list-<%= @observation.id %>" class="identifications-list">
@@ -618,7 +619,7 @@
         <div class="column span-18 verticalmiddle licensechoices">
           <p class="ui description">
             Licensing your content gives others the legal right to use it if
-            they stick to the terms of the license. iNat uses your Creative
+            they stick to the terms of the license. <%= CONFIG.site_name_short %> uses your Creative
             Commons-licensed content to share with data partners like the 
             <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
             (GBIF).

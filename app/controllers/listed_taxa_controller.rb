@@ -12,7 +12,7 @@ class ListedTaxaController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        if !@list.is_a?(CheckList)
+        if !@list.is_a?(CheckList) && @list.show_obs_photos
           @photo = @listed_taxon.first_observation.photos.first if @listed_taxon.first_observation
           @photo ||= @listed_taxon.last_observation.photos.first if @listed_taxon.last_observation
         end
@@ -34,7 +34,7 @@ class ListedTaxaController < ApplicationController
       @taxon = Taxon.find_by_id(params[:listed_taxon][:taxon_id].to_i)
     else
       @list = List.find_by_id(params[:list_id].to_i)
-      @place = Place.find_by_id(params[:place_id].to_i)
+      @place = Place.find(params[:place_id]) rescue nil
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
     end
     @list ||= @place.check_list if @place
@@ -187,8 +187,14 @@ class ListedTaxaController < ApplicationController
   
   def load_listed_taxon
     unless @listed_taxon = ListedTaxon.find_by_id(params[:id].to_i, :include => [:list, :taxon, :user])
-      flash[:notice] = "That listed taxon doesn't exist."
-      redirect_back_or_default('/')
+      msg = "That listed taxon doesn't exist."
+      respond_to do |format|
+        format.html do
+          flash[:notice] = msg
+          redirect_back_or_default('/')
+        end
+        format.json { render :status => :unprocessable_entity, :json => {:error => msg} }
+      end
       return
     end
     @list = @listed_taxon.list

@@ -19,7 +19,7 @@
     </h3>
     <% unless taxon.is_active? -%>
       <div class="notice box">
-        This taxon is <strong>inactive</strong>. This means iNaturalist's curators have replaced 
+        This taxon is <strong>inactive</strong>. This means <%= CONFIG.site_name %>'s curators have replaced 
         it with a more taxonomically current concept.
         <%= link_to "View taxon changes", taxon_changes_path(:taxon_id => taxon), :class => "readmore" %>
       </div>

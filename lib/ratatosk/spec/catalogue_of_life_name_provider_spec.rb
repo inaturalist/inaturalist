@@ -5,6 +5,7 @@ describe Ratatosk::NameProviders::ColNameProvider do
   it_should_behave_like "a name provider"
 
   before(:all) do
+    load_test_taxa
     @np = Ratatosk::NameProviders::ColNameProvider.new
   end
 
@@ -14,6 +15,34 @@ describe Ratatosk::NameProviders::ColNameProvider do
     t = tn.taxon
     tn.should_not be_is_valid
     t.taxon.name.should == 'Pseudacris crucifer'
+  end
+
+  it "should set the phylum for Periploca ceanothiella to Animalia" do
+    Taxon.find_by_name('Periploca ceanothiella').should be_blank
+    results = @np.find('Periploca ceanothiella')
+    tn = results.first
+    without_delay { tn.save! }
+    tn.taxon.graft
+    t = tn.taxon
+    t.should be_grafted
+    t.phylum.should_not be_blank
+    t.phylum.name.should eq 'Arthropoda'
+  end
+end
+
+describe Ratatosk::NameProviders::ColNameProvider, "get_phylum_for" do
+  before(:all) do
+    load_test_taxa
+    @np = Ratatosk::NameProviders::ColNameProvider.new
+  end
+
+  it "should set the phylum for Periploca ceanothiella to Animalia" do
+    results = @np.find('Periploca ceanothiella')
+    tn = results.first
+    t = tn.taxon
+    phylum = @np.get_phylum_for(t)
+    phylum.should_not be_blank
+    phylum.name.should eq 'Arthropoda'
   end
 end
 

@@ -3,17 +3,6 @@ class FlickrController < ApplicationController
   before_filter :ensure_has_no_flickr_identity, :only => ['link']
   before_filter :return_here, :only => [:index, :show, :by_login, :options]
   
-  # This is the endpoint the user visits to link their iNaturalist account to
-  # their Flickr account directly after signup. Luckly we don't have to manage a
-  # whole lot from Flickr, they either have an account or don't, and Flickr
-  # handles the process of creating Flickr accounts and then authorizing the
-  # user.
-  def link
-    perms = params[:perms] || :write
-    token = flickr.get_request_token
-    @flickr_url = flickr.get_authorize_url(token['oauth_token'], :perms => perms)
-  end
-  
   # Finds photos for the logged-in user
   def photos
     f = get_flickraw
@@ -106,7 +95,7 @@ class FlickrController < ApplicationController
       search_params['per_page'] = params[:limit] ||= 10
       search_params['text'] = params[:q]
       search_params['page'] = params[:page] ||= 1
-      search_params['extras'] = 'date_upload,owner_name,url_sq'
+      search_params['extras'] = 'date_upload,owner_name,url_sq,url_t'
       search_params['sort'] = 'relevance'
       begin
         @photos = @flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
@@ -176,7 +165,7 @@ class FlickrController < ApplicationController
   def unlink_flickr_account
     if current_user.flickr_identity
       current_user.flickr_identity.destroy
-      flash[:notice] = "We've dissassociated your Flickr account from your iNaturalist account."
+      flash[:notice] = "We've dissassociated your Flickr account from your #{CONFIG.site_name} account."
       redirect_to :action => 'options'
     else
       flash[:notice] = "Your Flickr account has not been linked before!"

@@ -16,7 +16,7 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @place.display_name %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
+  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="26558815027" />
   <meta property="og:description" name="description" content="Learn about the species that live in <%= @place.display_name %>!"/> 
@@ -118,22 +118,13 @@
   </div><!-- end guidetab -->
   
   <div id="observationstab">
-    <% if @observations.blank? -%>
-      <div class="description noresults">
-        nothing
+    <div class="stacked observationcontrols"></div>
+    <div class="medium observations grid">
+      <div class="nocontent">
+        <%= loading "Loading...", :class => "inline" %>
       </div>
-    <% else %>
-      <div class="stacked observationcontrols"></div>
-      <div class="medium observations grid">
-        <% compact do %>
-          <%= render :partial => "observations/cached_component", :collection => @observations.map{|o| o}.compact %>
-        <% end -%>
-      </div>
-      <script type="text/javascript" charset="utf-8">
-        $('.observationcontrols').observationControls('medium')
-      </script>
-      <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place), :class => "readmore" %>
-    <% end -%>
+    </div>
+    <%= link_to "View more observations from #{@place.name}", observations_url(:place_id => @place.id), :class => "readmore" %>
   </div>
   
   <div id="abouttab">
@@ -162,7 +153,7 @@
 
 <div class="meta right">
   <% if @place.user -%>
-    Place added to iNat by 
+    Place added to <%= CONFIG.site_name_short %> by 
     <%= link_to user_image(@place.user), @place.user %>
     <%= link_to you_or_login(@place.user), @place.user %>
     on

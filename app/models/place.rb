@@ -7,8 +7,10 @@ class Place < ActiveRecord::Base
   has_many :taxa, :through => :listed_taxa
   has_many :taxon_links, :dependent => :delete_all
   has_one :place_geometry, :dependent => :destroy
+  has_one :place_geometry_without_geom, :class_name => 'PlaceGeometry', 
+    :select => (PlaceGeometry.column_names - ['geom']).join(', ')
   
-  before_save :calculate_bbox_area
+  before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
   
   validates_presence_of :latitude, :longitude
@@ -22,6 +24,18 @@ class Place < ActiveRecord::Base
   }
 
   preference :check_lists, :boolean, :default => true
+
+  extend FriendlyId
+  friendly_id :name, :use => :history, :reserved_words => PlacesController.action_methods.to_a
+  def normalize_friendly_id(string)
+    super_candidate = super(string)
+    candidate = display_name.to_s.split(',').first.parameterize
+    candidate = super_candidate if candidate.blank? || candidate == super_candidate
+    if Place.where(:slug => candidate).exists? && !display_name.blank?
+      candidate = display_name.parameterize
+    end
+    candidate
+  end
   
   # Place to put a GeoPlanet response to avoid re-querying
   attr_accessor :geoplanet_response
@@ -188,7 +202,7 @@ class Place < ActiveRecord::Base
   def display_name(options = {})
     return read_attribute(:display_name) unless read_attribute(:display_name).blank? || options[:reload]
     
-    ancestor_names = self.ancestors.select do |a|
+    ancestor_names = ancestors.reverse.select do |a|
       %w"town state country".include?(PLACE_TYPES[a.place_type].to_s.downcase)
     end.map do |a|
       a.code.blank? ? a.name : a.code.split('-').last
@@ -205,6 +219,12 @@ class Place < ActiveRecord::Base
     end
     
     new_display_name
+  end
+
+  def set_display_name
+    return true unless ancestry_changed?
+    display_name(:reload => true)
+    true
   end
   
   def wikipedia_name
@@ -232,7 +252,7 @@ class Place < ActiveRecord::Base
   end
   
   def straddles_date_line?
-    self.swlng > 0 && self.nelng < 0
+    self.swlng.to_f > 0 && self.nelng.to_f < 0
   end
   
   def contains_lat_lng?(lat, lng)
@@ -243,8 +263,8 @@ class Place < ActiveRecord::Base
     return false if user.blank?
     return true if user.is_curator?
     return true if self.user_id == user.id
-    return false if %(country state county).include?(place_type_name.to_s.downcase)
-    true
+    return false if %w(country state county).include?(place_type_name.to_s.downcase)
+    false
   end
   
   # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)
@@ -261,7 +281,7 @@ class Place < ActiveRecord::Base
     end
     place = Place.new_from_geo_planet(ydn_place)
     if place.valid?
-      place.save
+      place.save!
     else
       Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
       return
@@ -271,10 +291,8 @@ class Place < ActiveRecord::Base
     unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
       ancestors = []
       ydn_place.ancestors.reverse_each do |ydn_ancestor|
-        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(
-          ydn_ancestor.placetype_code)
-        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, 
-          :ignore_ancestors => true, :parent => ancestors.last)
+        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
+        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
         ancestors << ancestor
         place.parent = ancestors.last
       end
@@ -612,6 +630,10 @@ class Place < ActiveRecord::Base
 
     bbox.contains?(pt)
   end
+
+  def kml_url
+    FakeView.place_geometry_kml_url(:place => self)
+  end
   
   def self.guide_cache_key(id)
     "place_guide_#{id}"
@@ -623,5 +645,13 @@ class Place < ActiveRecord::Base
     options[:except] ||= []
     options[:except] += [:source_filename, :delta, :bbox_area]
     super(options)
+  end
+
+  def self_and_ancestors
+    [ancestors, self].flatten
+  end
+
+  def self_and_ancestor_ids
+    [ancestor_ids, id].flatten
   end
 end

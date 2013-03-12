@@ -5,10 +5,17 @@ $(document).ready(function() {
     window.map = iNaturalist.Map.createMap({
       lat: 40.714, 
       lng: -98.262, 
-      zoom: observation.map_scale || 3, 
+      zoom: observation.map_scale || 8, 
       controls: 'small'
     });
-    map.addObservation(observation, {clickable: false, showAccuracy: true});
+    map.addObservation(observation, {clickable: false, showAccuracy: true})
+    if (!observation.map_scale && observation.positional_accuracy) {
+      var c = new google.maps.Circle({
+        center: new google.maps.LatLng(observation.latitude, observation.longitude),
+        radius: observation.positional_accuracy * 10
+      })
+      map.fitBounds(c.getBounds())
+    }
     var center = new google.maps.LatLng(
       observation.private_latitude || observation.latitude, 
       observation.private_longitude || observation.longitude);

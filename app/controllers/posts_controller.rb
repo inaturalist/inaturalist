@@ -23,8 +23,12 @@ class PostsController < ApplicationController
   end
   
   def show
-    if (params[:login].blank? && params[:project_id].blank?)
-      redirect_to journal_post_path(@display_user.login, @post)
+    if params[:login].blank? && params[:project_id].blank?
+      if @post.parent_type == "User"
+        redirect_to journal_post_path(@parent.login, @post)
+      else
+        redirect_to project_journal_post_path(@parent, @post)
+      end
       return
     end
     
