@@ -56,7 +56,7 @@ class TaxonSchemesController < ApplicationController
       scope = TaxonChange.scoped
       scope = scope.taxon(taxon)
       taxon_change = scope.first(
-        :select => "DISTINCT (taxon_changes.id), taxon_changes.*",
+        :select => "DISTINCT ON (taxon_changes.id) taxon_changes.*",
         :conditions => ["type IN ('TaxonDrop') OR type IN ('TaxonStage') OR t1.is_active = ? OR t2.is_active = ?", true, true]
       )
       if taxon_change

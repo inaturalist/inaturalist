@@ -161,7 +161,7 @@ class List < ActiveRecord::Base
       :include => [:taxon, :user]
     }
     if is_a?(CheckList) && is_default?
-      find_options[:select] = "DISTINCT (taxon_ancestor_ids || '/' || listed_taxa.taxon_id), listed_taxa.*"
+      find_options[:select] = "DISTINCT ON (taxon_ancestor_ids || '/' || listed_taxa.taxon_id) listed_taxa.*"
       find_options[:conditions] = ["place_id = ?", place_id]
     else
       find_options[:conditions] = ["list_id = ?", id]
