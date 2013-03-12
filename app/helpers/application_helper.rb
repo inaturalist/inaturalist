@@ -832,5 +832,11 @@ module ApplicationHelper
       end
     end
   end
+
+  def uri_join(*args)
+    URI.join(*args)
+  rescue URI::InvalidURIError
+    args.join('/').gsub(/\/+/, '/')
+  end
   
 end

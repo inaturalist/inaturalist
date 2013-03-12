@@ -6,7 +6,7 @@
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="<%= @project.title %>"/> 
   <% unless @project.icon.blank? -%>
-    <meta property="og:image" content="<%= URI.join(root_url, @project.icon.url(:original)) %>"/> 
+    <meta property="og:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
