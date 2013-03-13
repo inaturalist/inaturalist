@@ -144,8 +144,8 @@ class ProviderOauthController < ApplicationController
       gclient.authorization.client_secret = CONFIG.google.secret
       gclient.authorization.access_token = provider_token
       gclient.authorization.scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
-      method = client.discovered_api('oauth2').userinfo.get
-      r = gclient.execute!(:api_method => client.discovered_api('oauth2').userinfo.get)
+      method = gclient.discovered_api('oauth2').userinfo.get
+      r = gclient.execute!(:api_method => gclient.discovered_api('oauth2').userinfo.get)
       json = JSON.parse(r.body)
       uid = json['id']
       user = User.includes(:provider_authorizations).
@@ -170,6 +170,9 @@ class ProviderOauthController < ApplicationController
         }
         user = User.create_from_omniauth(auth_info)
       end
+    rescue Google::APIClient::ClientError => e
+      Rails.logger.debug "[DEBUG] Failed to make a Google API call: #{e}"
+      nil
     end
     return nil unless user
     access_token = Doorkeeper::AccessToken.

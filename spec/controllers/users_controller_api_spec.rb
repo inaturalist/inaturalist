@@ -7,6 +7,11 @@ shared_examples_for "a signed in UsersController" do
     response.should be_success
     response.body.should =~ /#{user.email}/
   end
+
+  it "should show the dashboard" do
+    get :dashboard
+    response.should be_success
+  end
 end
 
 describe UsersController, "oauth authentication" do
