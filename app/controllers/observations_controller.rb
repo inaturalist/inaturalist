@@ -1277,7 +1277,7 @@ class ObservationsController < ApplicationController
           :observation => [
             :photos,
             :observation_field_values, 
-            :tags,
+            :taggings,
             {:taxon => :taxon_names},
             :user
           ]
@@ -2079,8 +2079,8 @@ class ObservationsController < ApplicationController
   
   def render_observations_to_csv(options = {})
     first = %w(scientific_name datetime description place_guess latitude longitude tag_list common_name url image_url user_login)
-    only = (first + Observation.column_names).uniq
-    except = %w(map_scale timeframe iconic_taxon_id delta geom user_agent)
+    only = (first + Observation::CSV_COLUMNS).uniq
+    except = %w(map_scale timeframe iconic_taxon_id delta geom user_agent cached_tag_list)
     unless options[:show_private] == true
       except += %w(private_latitude private_longitude private_positional_accuracy)
     end
