@@ -1,10 +1,20 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe UsersController, "dashboard" do
+  it "should be accessible when signed in" do
+    user = User.make!
+    sign_in user
+    get :dashboard
+    response.should be_success
+  end
+end
+
 describe UsersController, "delete" do
   it "should be possible for the user" do
-    user = User.make
+    user = User.make!
     sign_in user
-    delete :destroy, :id => user.id
+    without_delay { delete :destroy, :id => user.id }
+    response.should be_redirect
     User.find_by_id(user.id).should be_blank
   end
   
