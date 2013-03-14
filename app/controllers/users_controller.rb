@@ -1,5 +1,5 @@
 class UsersController < ApplicationController  
-  doorkeeper_for :index, :create, :update, :edit, :dashboard, :if => lambda { authenticate_with_oauth? }
+  doorkeeper_for :create, :update, :edit, :dashboard, :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, 
     :unless => lambda { authenticated_with_oauth? },
     :except => [:index, :show, :new, :create, :activate, :relationships]
