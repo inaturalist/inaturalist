@@ -228,12 +228,12 @@ class Update < ActiveRecord::Base
     unless clauses.blank?
       update_ids.compact!
       update_ids.uniq!
-      Update.delete_all([
+      Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all([
         "id < ? AND id NOT IN (?) AND notification = 'activity' AND (#{clauses.join(' OR ')})",
         update_ids.min,
         update_ids
       ])
     end
-    Update.delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 1.year.ago])
+    Update.delay(:priority => USER_INTEGRITY_PRIORITY).delete_all(["subscriber_id = ? AND created_at < ?", subscriber_id, 6.months.ago])
   end
 end

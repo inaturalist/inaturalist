@@ -263,9 +263,9 @@ TaxonSwap.blueprint do
 end
 
 Update.blueprint do
-  subscriber { User.make }
-  resource { Observation.make }
-  notifier { Comment.make(:parent => self.resource) }
+  subscriber { User.make! }
+  resource { Observation.make! }
+  notifier { Comment.make!(:parent => self.resource) }
 end
 
 User.blueprint do

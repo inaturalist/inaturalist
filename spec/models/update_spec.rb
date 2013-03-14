@@ -23,3 +23,22 @@ describe Update, "email_updates_to_user" do
     }.should change(ActionMailer::Base.deliveries, :size).by(1)
   end
 end
+
+describe Update, "user_viewed_updates" do
+  it "should delete updates made over 6 months ago" do
+    old_update = Update.make!(:created_at => 7.months.ago)
+    new_update = Update.make!(:subscriber => old_update.subscriber)
+    without_delay do
+      Update.user_viewed_updates([new_update])
+    end
+    Update.find_by_id(old_update.id).should be_blank
+  end
+  it "should delete activity updates that aren't the last update on the subscribables viewed" do
+    old_update = Update.make!(:notification => "activity")
+    new_update = Update.make!(:notification => "activity", :subscriber => old_update.subscriber, :resource => old_update.resource)
+    without_delay do
+      Update.user_viewed_updates([new_update])
+    end
+    Update.find_by_id(old_update.id).should be_blank
+  end
+end
