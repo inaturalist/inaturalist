@@ -1074,12 +1074,13 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.import(name, options = {})
+    name = name.strip
     ancestor = options.delete(:ancestor)
     external_names = ratatosk.find(name)
     return nil if external_names.blank?
     external_names.each {|en| en.save; en.taxon.graft_silently}
     external_taxa = external_names.map(&:taxon)
-    taxon = external_taxa.detect do |t| 
+    taxon = external_taxa.detect do |t|
       if ancestor
         t.name.downcase == name.downcase && t.ancestor_ids.include?(ancestor.id)
       else
@@ -1272,13 +1273,15 @@ class Taxon < ActiveRecord::Base
     if taxa.blank?
       begin
         q, match_mode = Taxon.search_query(name)
-        taxa = Taxon.search(q,
+        search_results = Taxon.search(q,
           :include => [:taxon_names, :photos],
           :field_weights => {:name => 2},
           :match_mode => match_mode,
           :order => :observations_count,
           :sort_mode => :desc
-        ).compact.select{|t| t.taxon_names.detect{|tn| tn.name.downcase =~ /#{name}/}}
+        ).compact
+        taxa = search_results.select{|t| t.taxon_names.detect{|tn| tn.name.downcase =~ /#{name}/}}
+        taxa = search_results if taxa.blank? && search_results.size == 1
       rescue Riddle::ConnectionError => e
         return
       end
