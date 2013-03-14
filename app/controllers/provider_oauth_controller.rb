@@ -29,7 +29,9 @@ class ProviderOauthController < ApplicationController
   end
 
   def bounce
-    render_404 unless ProviderAuthorization::PROVIDERS.include?(params[:provider])
+    unless ProviderAuthorization::PROVIDERS.include?(params[:provider])
+      return render_404
+    end
     # store request params in session
     session[:oauth_bounce] = {
       :client_id => params[:client_id],
