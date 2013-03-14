@@ -66,31 +66,31 @@ class ProjectsController < ApplicationController
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
-        @observations_count = @current_user.observations.count if @current_user
-        @project_observations_count = @project.project_observations.count
-        @journal_posts_count = @project.posts.count
-        @members_count = @project.project_users.count
+        @observations_count = current_user.observations.count if current_user
         @observed_taxa_count = @project.observed_taxa_count
-        if @project.project_type == "observation contest"
-          @top_observers = @project.project_users.all(:order => "observations_count desc, taxa_count desc", :limit => 10, :conditions => "observations_count > 0")
+        top_observers_scope = @project.project_users.limit(10)
+        @top_observers = if @project.project_type == "observation contest"
+          top_observers_scope.order("observations_count desc, taxa_count desc").where("observations_count > 0")
         else
-          @top_observers = @project.project_users.all(:order => "taxa_count desc, observations_count desc", :limit => 10, :conditions => "taxa_count > 0")
+          top_observers_scope.order("taxa_count desc, observations_count desc").where("taxa_count > 0")
         end
         @project_users = @project.project_users.paginate(:page => 1, :per_page => 5, :include => :user, :order => "id DESC")
+        @members_count = @project_users.total_entries
         @project_observations = @project.project_observations.paginate(:page => 1, 
           :include => {
-            :observation => :iconic_taxon,
+            :observation => [:iconic_taxon, :observation_photos => [:photo]],
             :curator_identification => [:user, :taxon]
-          }, :order => "id DESC")
+          }, :order => "project_observations.id DESC")
+        @project_observations_count = @project_observations.total_entries
         @project_journal_posts = @project.posts.published.order("published_at DESC").limit(4)
         @observations = @project_observations.map(&:observation)
         @custom_project = @project.custom_project
-        @project_assets = @project.project_assets.all(:limit => 100)
+        @project_assets = @project.project_assets.limit(100)
         @logo_image = @project_assets.detect{|pa| pa.asset_file_name =~ /logo\.(png|jpg|jpeg|gif)/}    
         @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.kml$/}
         if @place = @project.place
           if @project.prefers_place_boundary_visible
-            @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
+            @place_geometry = PlaceGeometry.without_geom.where(:place_id => @place).first
           end
         end
         
