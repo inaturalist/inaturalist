@@ -332,12 +332,12 @@ class ObservationsController < ApplicationController
     
     if !params[:project_id].blank?
       @project = if params[:project_id].to_i == 0
-        Project.find(params[:project_id])
+        Project.includes(:project_observation_fields => :observation_field).find(params[:project_id])
       else
-        Project.find_by_id(params[:project_id].to_i)
+        Project.includes(:project_observation_fields => :observation_field).find_by_id(params[:project_id].to_i)
       end
       if @project
-        @project_curators = @project.project_users.all(:conditions => ["role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR]])
+        @project_curators = @project.project_users.where("role IN (?)", [ProjectUser::MANAGER, ProjectUser::CURATOR])
         if @place = @project.place
           @place_geometry = PlaceGeometry.without_geom.first(:conditions => {:place_id => @place})
         end
@@ -391,8 +391,8 @@ class ObservationsController < ApplicationController
     end
     
     @observation_fields = ObservationField.
-      includes(:observation_field_values => {:observation => :user}).
-      where("users.id = ?", current_user).
+      joins(:observation_field_values => :observation).
+      where("observations.user_id = ?", current_user).
       limit(10).
       order("observation_field_values.id DESC")
     
@@ -458,7 +458,7 @@ class ObservationsController < ApplicationController
     sync_picasa_photo if params[:picasa_photo_id]
     sync_local_photo if params[:local_photo_id]
     @observation_fields = ObservationField.
-      includes(:observation_field_values => {:observation => :user}).
+      joins(:observation_field_values => {:observation => :user}).
       where("users.id = ?", current_user).
       limit(10).
       order("observation_field_values.id DESC")
@@ -1277,7 +1277,7 @@ class ObservationsController < ApplicationController
           :observation => [
             :photos,
             :observation_field_values, 
-            :tags,
+            :taggings,
             {:taxon => :taxon_names},
             :user
           ]
@@ -2079,8 +2079,8 @@ class ObservationsController < ApplicationController
   
   def render_observations_to_csv(options = {})
     first = %w(scientific_name datetime description place_guess latitude longitude tag_list common_name url image_url user_login)
-    only = (first + Observation.column_names).uniq
-    except = %w(map_scale timeframe iconic_taxon_id delta geom user_agent)
+    only = (first + Observation::CSV_COLUMNS).uniq
+    except = %w(map_scale timeframe iconic_taxon_id delta geom user_agent cached_tag_list)
     unless options[:show_private] == true
       except += %w(private_latitude private_longitude private_positional_accuracy)
     end
