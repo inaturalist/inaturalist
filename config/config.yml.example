@@ -130,6 +130,7 @@ base: &base
     #     app_secret: 09af09af09af09af09af09af09af09af09af09af
     #     # facebook user IDs of people who can admin pages on the site
     #     admin_ids: [1,2]
+    #     namespace: appname # your facebook app's namespace, used for open graph tags
 
     twitter:
         key: 09af09af09af09af09af09af09af09af09af09af

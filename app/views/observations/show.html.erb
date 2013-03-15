@@ -14,17 +14,31 @@
 <% end -%>
 
 <%- content_for(:extrahead) do -%>
-  <meta property="og:type" content="inatdev:observation" />
-  <meta property="og:title" content="<%= @observation.to_plain_s(:verb => true, :no_time => true) %>"/> 
+  <% if CONFIG.facebook && CONFIG.facebook.namespace -%>
+    <meta property="og:type" content="<%= CONFIG.facebook.namespace %>:observation" />
+    <% if @observation.taxon -%>
+      <meta property="<%= CONFIG.facebook.namespace %>:taxon" content="<%= taxon_url(@observation.taxon) %>" />
+    <% end -%>
+    <% if @observation.observed_on -%>
+      <meta property="<%= CONFIG.facebook.namespace %>:observed_on" content="<%= @observation.datetime.iso8601 %>" />
+    <% end -%>
+    <% unless @observation.place_guess.blank? -%>
+      <meta property="<%= CONFIG.facebook.namespace %>:place_guess" content="<%= @observation.place_guess %>" />
+    <% end -%>
+    <% if @observation.georeferenced? && @observation.geoprivacy.blank? -%>
+      <meta property="<%= CONFIG.facebook.namespace %>:coordinates:latitude"  content="<%= @observation.latitude %>"> 
+      <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
+    <% end -%>
+  <% end -%>
+  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
   <% if !@photos.blank? -%>
     <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
   <% elsif @observation.taxon %>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon) %>"/> 
+    <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon, :size => 200) %>"/> 
   <% end -%>
   <meta property="og:determiner" content="auto" /> 
   <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
   <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
-  <meta property="inatdev:organism_name" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
   <% if @observation.description.blank? %>

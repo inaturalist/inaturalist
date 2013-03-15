@@ -1610,16 +1610,20 @@ class Observation < ActiveRecord::Base
   end
 
   # share this (and any subsequent) observations on facebook
-  def share_on_facebook
-    u = self.user
-    fb_api = u.facebook_api
+  def share_on_facebook(options = {})
+    fb_api = user.facebook_api
     return nil unless fb_api
-    observations_to_share = Observation.where(:user_id => u.id).where(["created_at >= ?", self.created_at])
-    observations_to_share.each{|o|
-      fb_api.put_connections("me", 
-                             "inatdev:observe", 
-                             :observation => o.url)
-    }
+    observations_to_share = if options[:single]
+      [self]
+    else
+      Observation.includes(:taxon).limit(100).
+        where(:user_id => user_id).
+        where("observations.created_at >= ?", self.created_at).
+        where("observations.taxon_id is not null")
+    end
+    observations_to_share.each do |o|
+      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:observe", :observation => FakeView.observation_url(o))
+    end
   end
 
   # share this (and any subsequent) observations on twitter
@@ -1642,6 +1646,7 @@ class Observation < ActiveRecord::Base
   # Share this and any future observations on twitter and/or fb (depending on user preferences)
   def queue_for_sharing
     u = self.user
+    return true unless user.is_admin? # testing
     ["facebook","twitter"].each{|provider_name|
       if u.prefs["share_observations_on_#{provider_name}"] && u.send("#{provider_name}_identity")
         # don't queue up more than one job for the given sharing medium. 

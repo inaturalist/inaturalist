@@ -11652,7 +11652,8 @@ CREATE TABLE provider_authorizations (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    scope character varying(255)
+    scope character varying(255),
+    secret character varying(255)
 );
 
 
@@ -14174,6 +14175,13 @@ CREATE INDEX index_observations_user_datetime ON observations USING btree (user_
 
 
 --
+-- Name: index_photos_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_photos_on_user_id ON photos USING btree (user_id);
+
+
+--
 -- Name: index_picasa_identities_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -15058,6 +15066,8 @@ INSERT INTO schema_migrations (version) VALUES ('20121230210148');
 
 INSERT INTO schema_migrations (version) VALUES ('20130102225500');
 
+INSERT INTO schema_migrations (version) VALUES ('20130103065755');
+
 INSERT INTO schema_migrations (version) VALUES ('20130108182219');
 
 INSERT INTO schema_migrations (version) VALUES ('20130108182802');
@@ -15091,3 +15101,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130304024311');
 INSERT INTO schema_migrations (version) VALUES ('20130306020925');
 
 INSERT INTO schema_migrations (version) VALUES ('20130311061913');
+
+INSERT INTO schema_migrations (version) VALUES ('20130312070047');
