@@ -48,7 +48,8 @@ class ProviderOauthController < ApplicationController
   def bounce_back
     # get original request params form session
     original_params = session.delete(:oauth_bounce)
-    render_404 unless client = Doorkeeper::Application.find_by_uid(original_params[:client_id])
+    return render_404 if original_params.blank?
+    return render_404 unless client = Doorkeeper::Application.find_by_uid(original_params[:client_id])
 
     # find or create create an auth token
     access_token = Doorkeeper::AccessToken.

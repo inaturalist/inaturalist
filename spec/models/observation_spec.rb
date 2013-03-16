@@ -966,19 +966,19 @@ describe Observation do
     end
     
     it "should not be included in json" do
-      observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
       observation.to_json.should_not match(/private_latitude/)
     end
     
     it "should not be included in a json array" do
-      observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
       Observation.make!
       observations = Observation.paginate(:page => 1, :per_page => 2, :order => "id desc")
       observations.to_json.should_not match(/private_latitude/)
     end
 
     it "should not be included in by_login_all csv generated for others" do
-      observation = Observation.make!(:taxon => @taxon, :latitude => 38, :longitude => -122)
+      observation = Observation.make!(:taxon => @taxon, :latitude => 38.1234, :longitude => -122.1234)
       Observation.make!
       path = Observation.generate_csv_for(observation.user)
       txt = open(path).read

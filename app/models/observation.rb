@@ -1177,8 +1177,8 @@ class Observation < ActiveRecord::Base
   # Make sure the observation is not in the future.
   #
   def must_be_in_the_past
-  
-    unless observed_on.nil? || observed_on <= Date.today
+    return true if observed_on.blank?
+    if observed_on > Time.now.in_time_zone(time_zone || user.time_zone).to_date
       errors.add(:observed_on, "can't be in the future")
     end
     true
