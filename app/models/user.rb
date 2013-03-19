@@ -31,9 +31,12 @@ class User < ActiveRecord::Base
   preference :gbif_sharing, :boolean, :default => true
   preference :observation_license, :string
   preference :photo_license, :string
+  preference :share_observations_on_facebook, :boolean, :default => true
+  preference :share_observations_on_twitter, :boolean, :default => true
   preference :automatic_taxonomic_changes, :boolean, :default => true
   preference :observations_view, :string
   
+  SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification project_invitation_email_notification project_journal_post_email_notification)
   
   belongs_to :life_list, :dependent => :destroy
@@ -283,6 +286,21 @@ class User < ActiveRecord::Base
 
   def facebook_token
     facebook_identity.try(:token)
+  end
+
+  # returns a Twitter object to make (authenticated) api calls
+  # see twitter gem docs for available methods: https://github.com/sferik/twitter
+  def twitter_api
+    return nil unless twitter_identity
+    @twitter_api ||= Twitter::Client.new(
+      :oauth_token => twitter_identity.token,
+      :oauth_token_secret => twitter_identity.secret
+    )
+  end
+
+  # returns nil or the twitter ProviderAuthorization
+  def twitter_identity
+    @twitter_identity ||= has_provider_auth('twitter')
   end
   
   def update_observation_licenses
