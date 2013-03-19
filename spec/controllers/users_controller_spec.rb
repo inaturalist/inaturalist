@@ -9,6 +9,14 @@ describe UsersController, "dashboard" do
   end
 end
 
+describe UsersController, "create" do
+  it "should not work" do
+    lambda {
+      post :create, :user => {:login => "foo", :password => "bar", :password_confirmation => "bar"}
+    }.should_not change(User, :count).by(1)
+  end
+end
+
 describe UsersController, "delete" do
   it "should be possible for the user" do
     user = User.make!

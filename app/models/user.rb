@@ -490,7 +490,8 @@ class User < ActiveRecord::Base
 
   def self.default_json_options
     {
-      :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip]
+      :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
+        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at]
     }
   end
 

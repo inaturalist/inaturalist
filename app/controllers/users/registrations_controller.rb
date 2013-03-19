@@ -6,10 +6,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
-        if session[:return_to_for_new_user]
-          redirect_to session[:return_to_for_new_user]
-        else
-          redirect_to home_path
+        respond_with(resource) do |format|
+          format.any(:html, :mobile) do
+            if session[:return_to_for_new_user]
+              redirect_to session[:return_to_for_new_user]
+            else
+              redirect_to home_path
+            end
+          end
+          format.json do
+            render :json => resource.as_json(User.default_json_options)
+          end
         end
         return
       else
@@ -23,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with(resource) do |format|
         format.html { render :new }
         format.mobile { render :new, :status => 422 }
+        format.json { render :json => {:errors => resource.errors.full_messages} }
       end
     end
   end
