@@ -169,7 +169,7 @@ es:
   all_photos: "Todas las fotos"
   all_places: "&laquo; Todos los lugares"
   all_rights_reserved: "todos los derechos reservados"
-  all_species: Todas especies
+  all_species: "Todas especies"
   all_taxonomic_groups: "&laquo; Todos los Grupos Taxonómicos"
   all_your_observations_will_default_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
   all_your_observations_will_default_to_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
@@ -365,7 +365,7 @@ es:
   connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Conectar su cuenta de %{site_name} con cuentas en otros sitios le permitirá ingresar a %{site_name} usando sus credenciales de esos sitios."
   conservation_status: "Estado de conservación"
-  conservation_summary: conservación resumen
+  conservation_summary: "conservación resumen"
   contain_all_descendants?: "¿Esta lista de verificación contiene todos los descendientes de este taxón que se producen aquí?"
   contest_projects_description: "Proyectos 'Concurso' mostrará un cuadro clasificatorio contribuyentes clasificación por el número de especies únicas observadas mientras que los proyectos 'Concurso de Observación' muestra las tablas de líder en la clasificación de los contribuyentes por el número de observaciones"
   contributions_from: "Aportes de"
@@ -618,9 +618,9 @@ es:
   embed_place_widget: "integrar widget de lugar"
   embed_widget_project: "Insertar un widget para este proyecto en su página web"
   end: Final
+  endangered: "en peligro"
   endemic: endémica
   endemic_to_x: "endémica de %{x}"
-  endangered: "en peligro"
   errors: 
     format: "%{attribute} %{message}"
     messages: 
@@ -759,6 +759,7 @@ es:
   grey: gris
   grid: Cuadrícula
   guess_description: "Estimación / Descripción"
+  guide_colors: "Guía de colores"
   hasnt_contributed_any_observations: "no ha aportado ninguna observación a este proyecto."
   hate_me_facebook: "Desvincular sus cuentas de Facebook e %{site_name}"
   hate_me_flickr: "Desvincular sus cuentas de Flickr e %{site_name}"
@@ -1182,8 +1183,7 @@ es:
   occurrence_status: "Estado de ocurrencia"
   october: Octubre
   of_it_and_its_descendants: "de él y sus descendientes"
-  on: en
-  on_: "el"
+  on_: el
   on_edit_date: "el %{editdate}"
   on_submit_date: "el %{submitdate}"
   on_your_life_list: "en su lista de vida"
@@ -1598,7 +1598,7 @@ es:
   type_source_title: "Título del tipo de fuente..."
   type_species_name: "Digitar el nombre de la especie..."
   type_taxon_name: "Digite el nombre del taxón"
-  type_taxon_name_and_click_lookup: Digite el nombre del taxón y click lookup
+  type_taxon_name_and_click_lookup: "Digite el nombre del taxón y click lookup"
   uicn_red_list_status: "Estado de la Lista Roja de UICN"
   unclassified: "Sin clasificar"
   unfragted_taxa: "Taxones sin injertar"
@@ -1931,16 +1931,16 @@ es:
   were_currently_down_for: "Estamos fuera de servicio por"
   what: Qué
   what_color_was_it: "¿De qué color era?"
-  what_did_you_see: "¿Qué fue lo que vio?"
-  what_did_you_see?: "¿Qué vio usted?"
+  what_did_you_see: "¿Qué viste?"
+  what_did_you_see?: "¿Qué viste?"
   what_do_you_think: "¿Qué le parece?"
   what_is_an_observation?: "¿Qué es una observación?"
   what_to_keep: "Qué mantener"
   what_want_to_list?: "¿Qué desea colocar en la lista?"
   when: Cuando
-  when_did_you_see_it?: "¿Cuándo lo vio?"
+  when_did_you_see_it?: "¿Cuándo lo viste?"
   where: Donde
-  where_did_you_see_it: "¿Dónde lo vio?"
+  where_did_you_see_it: "¿Dónde lo viste?"
   where_were_you?: "¿Dónde estaba usted?"
   white: blanco
   widget: Widget
@@ -2055,4 +2055,3 @@ es:
   youve_seen_it_want_to: "¡Lo ha visto¿Desea"
   zoom_to_taxon_name: "Acercar a %{taxonname}"
   zoom_to_x: "Ir a %{x}"
-  
