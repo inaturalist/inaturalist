@@ -3,8 +3,8 @@ class ProviderOauthController < ApplicationController
   # OAuth2 assertion flow: http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
-    grant_type = params[:grant_type] || params[:assertion_type]
-    access_token = case grant_type
+    assertion_type = params[:assertion_type] || params[:grant_type]
+    access_token = case assertion_type
     when /facebook/
       oauth_access_token_from_facebook_token(params[:client_id], params[:assertion])
     when /google/
