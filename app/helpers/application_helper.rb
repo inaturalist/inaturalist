@@ -300,10 +300,10 @@ module ApplicationHelper
   def user_image(user, options = {})
     size = options.delete(:size)
     style = "vertical-align:middle; #{options[:style]}"
-    url = if request
-      "http://#{request.host}#{":#{request.port}" if request.port}#{user.icon.url(size || :mini)}"
+    url = if defined? root_url
+      uri_join(root_url, user.icon.url(size || :mini))
     else
-      "#{CONFIG.site_url}#{user.icon.url(size || :mini)}"
+      url_join(CONFIG.site_url, user.icon.url(size || :mini))
     end
     image_tag(url, options.merge(:style => style))
   end
