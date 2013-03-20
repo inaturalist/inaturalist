@@ -245,9 +245,10 @@ class Observation < ActiveRecord::Base
              :refresh_check_lists,
              :update_out_of_range_later,
              :update_default_license,
-             :update_all_licenses,
+             :update_all_licenses
              :update_taxon_counter_caches
-  after_create :set_uri
+  after_create :set_uri,
+               :queue_for_sharing
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches
   
@@ -551,6 +552,11 @@ class Observation < ActiveRecord::Base
     end
     s += " by #{self.user.try(:login)}" unless options[:no_user]
     s
+  end
+
+  # returns a string for sharing on social media (fb, twitter)
+  def to_share_s
+    return self.to_plain_s({:no_user=>true})
   end
   
   def time_observed_at_utc
@@ -1595,6 +1601,57 @@ class Observation < ActiveRecord::Base
 
   def self.generate_csv_for_cache_key(record, options = {})
     "#{record.class.name.underscore}_#{record.id}"
+  end
+
+  # share this (and any subsequent) observations on facebook
+  def share_on_facebook(options = {})
+    fb_api = user.facebook_api
+    return nil unless fb_api
+    observations_to_share = if options[:single]
+      [self]
+    else
+      Observation.includes(:taxon).limit(100).
+        where(:user_id => user_id).
+        where("observations.created_at >= ?", self.created_at).
+        where("observations.taxon_id is not null")
+    end
+    observations_to_share.each do |o|
+      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:observe", :observation => FakeView.observation_url(o))
+    end
+  end
+
+  # share this (and any subsequent) observations on twitter
+  # if we're sharing more than one observation, this aggregates them into one tweet
+  def share_on_twitter
+    u = self.user
+    twit_api = u.twitter_api
+    return nil unless twit_api
+    observations_to_share = Observation.where(:user_id => u.id).where(["created_at >= ?", self.created_at])
+    observations_to_share_count = observations_to_share.count
+    tweet_text = "I added #{(observations_to_share_count > 1 ? observations_to_share_count.to_s + " observations" : "an observation")} to iNaturalist #{observations_by_login_url(u.login, :host => "inaturalist.org", :t=>Time.now.to_i)}" 
+    obs_image_url = self.image_url
+    if obs_image_url.nil?
+      twit_api.update(tweet_text)
+    else
+      twit_api.update_with_media(tweet_text, open(obs_image_url))
+    end
+  end
+
+  # Share this and any future observations on twitter and/or fb (depending on user preferences)
+  def queue_for_sharing
+    u = self.user
+    return true unless user.is_admin? # testing
+    ["facebook","twitter"].each{|provider_name|
+      if u.prefs["share_observations_on_#{provider_name}"] && u.send("#{provider_name}_identity")
+        # don't queue up more than one job for the given sharing medium. 
+        # when the job is run, it will also share any observations made since this one. 
+        # observation aggregation for twitter happens in share_on_twitter.
+        # fb aggregation happens on their end via open graph aggregations.
+        unless Delayed::Job.exists?(["handler LIKE ? AND handler LIKE ?", "%user_id: #{u.id}%", "%share_on_#{provider_name}%"])
+          self.delay(:priority => USER_INTEGRITY_PRIORITY).send("share_on_#{provider_name}")
+        end
+      end
+    }
   end
   
 end

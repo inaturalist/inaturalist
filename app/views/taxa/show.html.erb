@@ -3,6 +3,9 @@
 <% end -%>
 
 <%- content_for(:extrahead) do -%>
+  <% if CONFIG.facebook -%>
+    <meta property="og:type" content="<%= CONFIG.facebook.namespace %>:taxon"/>
+  <% end -%>
   <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/> 
   <% if @photos.blank? -%>
     <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 

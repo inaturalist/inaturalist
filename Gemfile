@@ -66,6 +66,8 @@ gem 'tlsmail'
 gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
 gem 'trollop'
 gem 'ts-delayed-delta', :require => 'thinking_sphinx/deltas/delayed_delta'
+gem 'simple_oauth'
+gem 'twitter'
 gem "watu_table_builder", :require => "table_builder"
 gem 'will_paginate'
 gem 'whenever', :require => false
