@@ -109,6 +109,7 @@ base: &base
 
     airbrake:
         # https://airbrake.io/
+        # disable: false
         api_key: 09af09af09af09af09af09af09af09af09af09af
 
     tile_servers:
