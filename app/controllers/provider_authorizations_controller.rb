@@ -8,7 +8,7 @@ class ProviderAuthorizationsController < ApplicationController
   end
 
   def failure
-    flash[:notice] = "Hm, that didn't work. Try again or choose another login option."
+    flash[:notice] = params[:message] || "Sorry, that login provider couldn't sign you in."
     redirect_back_or_default login_url
   end
 
