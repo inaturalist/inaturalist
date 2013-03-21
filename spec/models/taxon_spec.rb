@@ -318,6 +318,27 @@ describe Taxon, "unique name" do
   end
 end
 
+describe Taxon, "common_name" do
+  it "should default to English if present" do
+    t = Taxon.make!
+    tn_en = TaxonName.make!(:taxon => t, :name => "Red Devil", :lexicon => TaxonName::LEXICONS[:ENGLISH])
+    tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    tn_un = TaxonName.make!(:taxon => t, :name => "run away!", :lexicon => 'unspecified')
+    t.common_name.should eq(tn_en)
+  end
+  it "should default to unknown if no English" do
+    t = Taxon.make!
+    tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    tn_un = TaxonName.make!(:taxon => t, :name => "run away!", :lexicon => 'unspecified')
+    t.common_name.should eq(tn_un)
+  end
+  it "should default to first common if no English or unknown" do
+    t = Taxon.make!
+    tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
+    t.common_name.should eq(tn_es)
+  end
+end
+
 describe Taxon, "tags_to_taxa" do
   
   before(:each) do

@@ -133,7 +133,7 @@ class FacebookController < ApplicationController
           "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{user.facebook_token}"
       }
     end
-  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+  rescue OpenSSL::SSL::SSLError, Timeout::Error, Errno::ENETUNREACH => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
   end
@@ -142,7 +142,7 @@ class FacebookController < ApplicationController
     return [] unless user.facebook_api
     friends_data = user.facebook_api.get_connections('me','friends').sort_by{|f| f['name']}
     return friends_data
-  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+  rescue OpenSSL::SSL::SSLError, Timeout::Error, Errno::ENETUNREACH => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
   end
@@ -151,7 +151,7 @@ class FacebookController < ApplicationController
     return [] unless user.facebook_api
     groups_data = user.facebook_api.get_connections('me','groups').sort_by{|f| f['name']}
     return groups_data
-  rescue OpenSSL::SSL::SSLError, Timeout::Error => e
+  rescue OpenSSL::SSL::SSLError, Timeout::Error, Errno::ENETUNREACH => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"
     return []
   end

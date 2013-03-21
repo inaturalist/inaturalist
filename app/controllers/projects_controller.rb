@@ -4,9 +4,13 @@ class ProjectsController < ApplicationController
     :expires_in => WIDGET_CACHE_EXPIRATION,
     :cache_path => Proc.new {|c| c.params}, 
     :if => Proc.new {|c| c.request.format == :widget}
+
+  doorkeeper_for :by_login, :join, :leave, :if => lambda { authenticate_with_oauth? }
   
   before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms]
-  before_filter :authenticate_user!, :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
+  before_filter :authenticate_user!, 
+    :unless => lambda { authenticated_with_oauth? },
+    :except => [:index, :show, :search, :map, :contributors, :observed_taxa_count]
   before_filter :load_project, :except => [:create, :index, :search, :new, :by_login, :map, :browse]
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
