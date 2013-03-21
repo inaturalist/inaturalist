@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-shared_examples_for "an ProjectObservationsController" do
+shared_examples_for "a ProjectObservationsController" do
   let(:user) { User.make! }
   let(:observation) { Observation.make!(:user => user) }
   let(:project) { Project.make! }
@@ -30,12 +30,12 @@ describe ProjectObservationsController, "oauth authentication" do
   before do
     controller.stub(:doorkeeper_token) { token }
   end
-  it_behaves_like "an ProjectObservationsController"
+  it_behaves_like "a ProjectObservationsController"
 end
 
 describe ProjectObservationsController, "devise authentication" do
   before do
     http_login user
   end
-  it_behaves_like "an ProjectObservationsController"
+  it_behaves_like "a ProjectObservationsController"
 end
