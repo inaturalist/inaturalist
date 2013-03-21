@@ -106,6 +106,11 @@ es-MX:
         wrong_length: 
           one: "La longitud está equivocada (debe ser un carácter)"
           other: "La longitud está equivocada (deben ser %{count} caracteres)"
+      models: 
+        application: 
+          attributes: 
+            redirect_uri: 
+              fragment_present: "No puede contener un fragmento"
       template: 
         body: "Hubo problemas con los siguientes campos:"
         header: 
@@ -6336,6 +6341,14 @@ es-MX:
   mobile_view_available: "Vista para móvil disponible"
   mollusks: Moluscos
   mon: Lun
+  mongoid: 
+    errors: 
+      models: 
+        application: 
+          attributes: 
+            redirect_uri: 
+              invalid_uri: "Debe ser un URI válido"
+              relative_uri: "Debe ser un URI asboluto"
   month: Mes
   months_ago: "Hace %{text} "
   more: Mas
@@ -6355,6 +6368,7 @@ es-MX:
   name_of_the_place_you: "Nombre del lugar donde se realizó la observación"
   named_based_url_might_change: "El nombre basado en el URL puede cambiar, pero este no."
   names: Nombres
+  native: Nativo
   nav: Nav
   nav_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   near_threatened: "Casi amenazada"
@@ -6513,8 +6527,8 @@ es-MX:
   observed: Observado
   observed_by: "Observado por"
   observed_on: "Observado en"
-  observer: "Autor:"
-  observer_short: Observador
+  observer: Autor
+  observer_short: Autor
   observing: Observando
   occurence_status_describes_how: "El estatus de ocurrencia describe que tan común o raro es una especie o grupo en un área determinada. Ver el DarwinCore  <a href=\"http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus\">para información sobre terminología</a>."
   occurrence_status: "Estatus de ocurrencia"
@@ -6785,6 +6799,7 @@ es-MX:
   start_one: "Empieza uno"
   start_one_now: "¡Empieza uno ahora!"
   start_typing_field_name: "Empieza a escribir el nombre del campo...."
+  start_typing_place_name: "Empieza escribiendo el nombre del lugar"
   states: Estados
   stats: Estadísticas
   stats_title: "Estadísticas del sitio"
@@ -6826,6 +6841,7 @@ es-MX:
   taxon_to_delete: "Borrar la especie o grupo"
   taxon_to_keep: "Mantener la especie o grupo"
   taxonomic_changes: "Cambios taxonómicos"
+  taxonomic_changes_raquo_html: "<nobr>cambios &raquo;</nobr> taxonómicos"
   taxonomic_groups: "Grupos taxonómicos"
   taxonomic_order: "Orden taxonómico"
   taxonomic_tags_for_flickr: "Etiquetas taxonómicas para Flickr"
@@ -6925,6 +6941,7 @@ es-MX:
   type_source_title: "Escribe el título de la fuente..."
   type_species_name: "Escribe el nombre de la especie..."
   type_taxon_name: "Escribe el nombre de la especie o grupo"
+  type_taxon_name_and_click_lookup: "Escribe el nombre de una especie o grupo y selecciona buscar"
   uicn_red_list_status: "Estatus en la Lista Roja de la UICN"
   unclassified: "Sin clasificar"
   unfragted_taxa: "Especie o grupo no injertado"
@@ -6985,6 +7002,7 @@ es-MX:
   view_original_ccD_photo: "Ve la foto original CC de  %{owner}"
   view_other_taxa: "Ver otro <nobr> %{taxon_name} &raquo; </nobr>"
   view_photos_ranges_observations_more: "¡Ve fotos, distribución de especies, observaciones de %{site_name} y mucho más! Hemos reunido información de muchas fuentes distintas y combinadas proporcionan un rápido resumen para cada especie en cada lugar."
+  view_site_name_observations_html: "Ver observaciones de <strong>%{site_name}</strong> "
   view_taxon_page: "Ver la página de la especie o grupo"
   view_taxon_page_for: "Ver la página de la especie o grupo para este lugar"
   view_terms: "Ver condiciones"
@@ -7292,6 +7310,7 @@ es-MX:
   x_species: 
     one: "Una especie"
     other: "%{count} especies"
+  year: año
   yellow: Amarillo
   yes_find_them!: "¡Si encuéntralas!"
   yes_i_want_to_join: "Si, quiero participar"
