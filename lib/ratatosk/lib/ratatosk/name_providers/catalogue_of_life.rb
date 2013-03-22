@@ -5,19 +5,22 @@ module Ratatosk
     #
     class ColNameProvider
       cattr_accessor :source
-      citation = <<-EOT
-        Bisby F., Roskov Y., Culham A., Orrell T., Nicolson D., Paglinawan
-        L., Bailly N., Appeltans W., Kirk P., Bourgoin T., Baillargeon G.,
-        Ouvrard D., eds (2012). Species 2000 & ITIS Catalogue of Life,
-        2012 Annual Checklist. Digital resource at
-        www.catalogueoflife.org/col/. Species 2000: Reading, UK.
-      EOT
-      SOURCE = ::Source.find_by_title("Catalogue of Life: 2012 Annual Checklist") || ::Source.create(
-        :title => "Catalogue of Life: 2012 Annual Checklist",
-        :in_text => "Bisby et al., 2012",
-        :url => "http://www.catalogueoflife.org/annual-checklist/2012",
-        :citation => citation.gsub(/[\s\n]+/m, ' ')
-      )
+      
+      def self.source
+        citation = <<-EOT
+          Bisby F., Roskov Y., Culham A., Orrell T., Nicolson D., Paglinawan
+          L., Bailly N., Appeltans W., Kirk P., Bourgoin T., Baillargeon G.,
+          Ouvrard D., eds (2012). Species 2000 & ITIS Catalogue of Life,
+          2012 Annual Checklist. Digital resource at
+          www.catalogueoflife.org/col/. Species 2000: Reading, UK.
+        EOT
+        ::Source.find_by_title("Catalogue of Life: 2012 Annual Checklist") || ::Source.create(
+          :title => "Catalogue of Life: 2012 Annual Checklist",
+          :in_text => "Bisby et al., 2012",
+          :url => "http://www.catalogueoflife.org/annual-checklist/2012",
+          :citation => citation.gsub(/[\s\n]+/m, ' ')
+        )
+      end
 
       def initialize
         @service = CatalogueOfLife.new(10)
@@ -80,7 +83,7 @@ module Ratatosk
         taxon_name.name = @hxml.at('name').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
-        taxon_name.source = ColNameProvider::SOURCE
+        taxon_name.source = ColNameProvider.source
         taxon_name.source_identifier = @hxml.at('//id').inner_text
         taxon_name.source_url = @hxml.at('url').inner_text
         taxon_name.taxon = taxon
@@ -186,7 +189,7 @@ module Ratatosk
         @hxml = hxml
         @adaptee.name               = @hxml.at('name').inner_text
         @adaptee.rank               = @hxml.at('rank').inner_text.downcase
-        @adaptee.source             = ColNameProvider::SOURCE
+        @adaptee.source             = ColNameProvider.source
         @adaptee.source_identifier  = @hxml.at('id').inner_text
         @adaptee.source_url         = @hxml.at('url').inner_text
         @adaptee.name_provider      = "ColNameProvider"

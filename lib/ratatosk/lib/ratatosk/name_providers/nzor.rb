@@ -68,7 +68,7 @@ module Ratatosk
         taxon_name.name = @hxml.at('PartialName').inner_text
         taxon_name.lexicon = get_lexicon
         taxon_name.is_valid = get_is_valid
-        taxon_name.source = Source.find_by_title('New Zealand Organisms Register')
+        taxon_name.source = Source.find_by_title('New Zealand Organisms Register') rescue nil
         taxon_name.source_identifier = @hxml.at('NameId').inner_text
         taxon_name.source_url = 'http://data.nzor.org.nz/names/' + @hxml.at('NameId').inner_text
         taxon_name.taxon = taxon
@@ -162,7 +162,10 @@ module Ratatosk
       #
       def initialize(hxml, params = {})
         @hxml = hxml
-        existing = Taxon.find(:first, :conditions => {:source_id => Source.find_by_title('New Zealand Organisms Register').id, :source_identifier => @hxml.at('NameId').inner_text})
+        existing = Taxon.where(
+          :source_id => ::Source.find_by_title('New Zealand Organisms Register').id,
+          :source_identifier => @hxml.at('NameId').inner_text
+        ).first rescue nil
         @adaptee = if existing.present?
           existing
         else
@@ -171,7 +174,7 @@ module Ratatosk
 
         @adaptee.name               = @hxml.at('PartialName').inner_text
         @adaptee.rank               = @hxml.at('Rank').inner_text.downcase
-        @adaptee.source             = Source.find_by_title('New Zealand Organisms Register')
+        @adaptee.source             = Source.find_by_title('New Zealand Organisms Register') rescue nil
         @adaptee.source_identifier  = @hxml.at('NameId').inner_text
         @adaptee.source_url         = 'http://data.nzor.org.nz/names/' + @hxml.at('NameId').inner_text
         @adaptee.name_provider      = "NZORNameProvider"
