@@ -30,14 +30,19 @@
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
   <% end -%>
+  <% if CONFIG.twitter && CONFIG.twitter.username -%>
+    <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
+  <% end -%>
   <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
-  <% if !@photos.blank? -%>
-    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
+  <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
+    <meta property="og:image" content="<%= photo.medium_url %>"/> 
+    <meta name="twitter:card" content="photo">
   <% elsif @observation.taxon %>
     <meta property="og:image" content="<%= iconic_taxon_image_url(@observation.taxon, :size => 200) %>"/> 
+    <meta name="twitter:card" content="summary">
   <% end -%>
   <meta property="og:determiner" content="auto" /> 
-  <meta property="og:url" content="<%= observation_url(@observation) %>"/> 
+  <meta property="og:url" content="<%= observation_url(@observation) %>"/>
   <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <meta property="fb:admins" content="611249211,800415373"/>
   <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
@@ -46,6 +51,10 @@
   <% else %>
     <meta property="og:description" content="<%= html_attributize @observation.description %>"/> 
   <% end %>
+
+  <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
   
   <% unless @observation_links.blank? -%>
     <% for ol in @observation_links %>

@@ -132,9 +132,11 @@ base: &base
     #     admin_ids: [1,2]
     #     namespace: appname # your facebook app's namespace, used for open graph tags
 
-    twitter:
-        key: 09af09af09af09af09af09af09af09af09af09af
-        secret: 09af09af09af09af09af09af09af09af09af09af
+    # twitter:
+    #     key: 09af09af09af09af09af09af09af09af09af09af
+    #     secret: 09af09af09af09af09af09af09af09af09af09af
+    #     url: http://twitter.com/your_twitter_username
+    #     username: your_twitter_username
 
     cloudmade:
         key: 09af09af09af09af09af09af09af09af09af09af

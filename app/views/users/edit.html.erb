@@ -59,7 +59,7 @@
       <%= f.text_area(:description, :label => "Tell everyone a little about yourself") %>
     </div>
     <div id="preferencescol" class="column span-9 stacked">
-      <%- if current_user.is_admin? && !current_user.provider_authorizations.blank? %>
+      <%- if !current_user.provider_authorizations.blank? %>
         <h3>Sharing Settings</h3>
         <div id="observationsharingpreferences" class="stacked">
           <label>Automatically share your observations on</label>
