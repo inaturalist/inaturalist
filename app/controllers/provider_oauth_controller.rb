@@ -4,6 +4,10 @@ class ProviderOauthController < ApplicationController
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
     assertion_type = params[:assertion_type] || params[:grant_type]
+    if assertion_type.blank?
+      render :status => :unauthorized, :json => { :error => :access_denied }
+      return
+    end
     access_token = case assertion_type
     when /facebook/
       oauth_access_token_from_facebook_token(params[:client_id], params[:assertion])
