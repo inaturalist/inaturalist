@@ -1629,11 +1629,15 @@ class Observation < ActiveRecord::Base
 
   # share this (and any subsequent) observations on twitter
   # if we're sharing more than one observation, this aggregates them into one tweet
-  def share_on_twitter
+  def share_on_twitter(options = {})
     u = self.user
     twit_api = u.twitter_api
     return nil unless twit_api
-    observations_to_share = Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
+    observations_to_share = if options[:single]
+      [self]
+    else
+      Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
+    end
     observations_to_share_count = observations_to_share.count
     tweet_text = "I added "
     tweet_text += observations_to_share_count > 1 ? "#{observations_to_share_count} observations" : "an observation"
