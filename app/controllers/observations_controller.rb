@@ -274,6 +274,8 @@ class ObservationsController < ApplicationController
           @conservation_status ||= ConservationStatus.where(:taxon_id => @observation.taxon).where("place_id IS NULL").
             where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
         end
+
+        @observer_provider_authorizations = @observation.user.provider_authorizations
         
         if params[:partial]
           return render(:partial => params[:partial], :object => @observation,

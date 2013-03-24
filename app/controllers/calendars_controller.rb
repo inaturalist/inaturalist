@@ -17,7 +17,7 @@ class CalendarsController < ApplicationController
       limit(500).
       order_by("observed_on")
     if @day
-      @observations = @observations.includes(:taxon => :taxon_names)
+      @observations = @observations.includes(:taxon => :taxon_names, :observation_photos => :photo)
       @taxa = @observations.map{|o| o.taxon}.uniq.compact
       @taxa_count = @taxa.size
       @taxa_by_iconic_taxon_id = @taxa.group_by{|t| t.iconic_taxon_id}
@@ -49,12 +49,20 @@ class CalendarsController < ApplicationController
         @selected_user
       ])
       scope = scope.where(Observation.conditions_for_date("observations.observed_on", @date))
-      @place_name_counts = scope.count(
+      place_name_counts = scope.count(
         :from => "observations, places, place_geometries", 
         :group => "(places.display_name || '-' || places.id)")
+      @places = Place.where("id IN (?)", place_name_counts.map{|n,c| n.split('-').last})
+      @place_name_counts = @places.sort_by(&:bbox_area).map do |place|
+        Rails.logger.debug "[DEBUG] place: #{place}"
+        n = "#{place.display_name}-#{place.id}"
+        [n, place_name_counts[n]]
+      end
       @previous = @selected_user.observations.first(:conditions => ["observed_on < ?", @observations.first.observed_on], :order => "observed_on DESC")
       @next = @selected_user.observations.first(:conditions => ["observed_on > ?", @observations.first.observed_on], :order => "observed_on ASC")
     end
+
+    @observer_provider_authorizations = @selected_user.provider_authorizations
   end
   
   def compare

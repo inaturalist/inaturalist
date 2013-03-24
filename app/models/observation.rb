@@ -1382,7 +1382,8 @@ class Observation < ActiveRecord::Base
   include Rails.application.routes.url_helpers
   
   def image_url
-    observation_image_url(self, :size => "medium")
+    url = observation_image_url(self, :size => "medium")
+    url =~ /^http/ ? url : nil
   end
   
   def obs_image_url
@@ -1612,7 +1613,7 @@ class Observation < ActiveRecord::Base
     else
       Observation.includes(:taxon).limit(100).
         where(:user_id => user_id).
-        where("observations.created_at >= ?", self.created_at).
+        where("observations.id >= ?", id).
         where("observations.taxon_id is not null")
     end
     observations_to_share.each do |o|
@@ -1626,21 +1627,28 @@ class Observation < ActiveRecord::Base
     u = self.user
     twit_api = u.twitter_api
     return nil unless twit_api
-    observations_to_share = Observation.where(:user_id => u.id).where(["created_at >= ?", self.created_at])
+    observations_to_share = Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
     observations_to_share_count = observations_to_share.count
-    tweet_text = "I added #{(observations_to_share_count > 1 ? observations_to_share_count.to_s + " observations" : "an observation")} to iNaturalist #{observations_by_login_url(u.login, :host => "inaturalist.org", :t=>Time.now.to_i)}" 
-    obs_image_url = self.image_url
-    if obs_image_url.nil?
-      twit_api.update(tweet_text)
+    tweet_text = "I added "
+    tweet_text += observations_to_share_count > 1 ? "#{observations_to_share_count} observations" : "an observation"
+    url = if observations_to_share_count == 1
+      FakeView.observation_url(self)
     else
-      twit_api.update_with_media(tweet_text, open(obs_image_url))
+      dates = observations_to_share.map(&:observed_on).uniq.compact
+      if dates.size == 1
+        d = dates.first
+        FakeView.calendar_date_url(u.login, d.year, d.month, d.day)
+      else
+        FakeView.observations_by_login_url(u.login)
+      end
     end
+    tweet_text += " to #{SITE_NAME} #{url}"
+    twit_api.update(tweet_text)
   end
 
   # Share this and any future observations on twitter and/or fb (depending on user preferences)
   def queue_for_sharing
     u = self.user
-    return true unless user.is_admin? # testing
     ["facebook","twitter"].each{|provider_name|
       if u.prefs["share_observations_on_#{provider_name}"] && u.send("#{provider_name}_identity")
         # don't queue up more than one job for the given sharing medium. 

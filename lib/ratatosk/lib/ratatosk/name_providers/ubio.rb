@@ -1,12 +1,14 @@
 module Ratatosk
   module NameProviders
     class UBioNameProvider
-      SOURCE = ::Source.find_by_title("uBio") || ::Source.create(
-        :title => "uBio",
-        :in_text => "uBio",
-        :url => "http://www.ubio.org",
-        :citation => "uBio. <http://www.ubio.org/>."
-      )
+      def self.source
+        ::Source.find_by_title("uBio") || ::Source.create(
+          :title => "uBio",
+          :in_text => "uBio",
+          :url => "http://www.ubio.org",
+          :citation => "uBio. <http://www.ubio.org/>."
+        )
+      end
 
       attr_accessor :service, :PREFERRED_CLASSIFICATIONS, 
                               :REJECTED_CLASSIFICATIONS
@@ -220,7 +222,7 @@ module Ratatosk
         @hxml = hxml
         taxon.name = get_name
         taxon.rank = @hxml.at('//gla:rank').inner_text.downcase rescue nil
-        taxon.source = UBioNameProvider::SOURCE
+        taxon.source = UBioNameProvider.source
         taxon.source_identifier = get_namebank_id
         taxon.source_url = 'http://www.ubio.org/browser/details.php?' +
                            'namebankID=' + taxon.source_identifier
@@ -277,7 +279,7 @@ module Ratatosk
         @hxml = hxml
         @adaptee = TaxonName.new(params)
         
-        taxon_name.source = UBioNameProvider::SOURCE
+        taxon_name.source = UBioNameProvider.source
         taxon_name.source_identifier = get_namebank_id
         taxon_name.source_url = 'http://www.ubio.org/browser/details.php?namebankID=' + get_namebank_id
         taxon_name.name = get_name

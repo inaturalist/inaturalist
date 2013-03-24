@@ -26,6 +26,29 @@
   <%= javascript_include_tag 'inaturalist/map3' %>
 <%- end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @title %>">
+  <meta property="og:url" content="<%= uri_join CONFIG.site_url, request.fullpath %>"/>
+  <%-
+    desc = ""
+    unless @iconic_taxon_counts.blank?
+      desc += commas_and(@iconic_taxon_counts.map {|id,c| pluralize(c, default_taxon_name(Taxon::ICONIC_TAXA_BY_ID[id]).singularize.downcase) })
+    end
+    unless @place_name_counts.blank?
+      desc += " from #{commas_and @place_name_counts.uniq{|n,c| c}.map{|n,c| n.split('-').first.split(',').first}}"
+    end
+  -%>
+  <meta property="og:description" content="<%= desc %>">
+  <% if photo_obs = @observations.detect{|o| o.photos_count > 0} -%>
+    <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
+      <meta property="og:image" content="<%= photo.medium_url %>"/> 
+    <% end -%>
+  <% end -%>
+  <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
+    <meta property="twitter:creator:id" content="<%= twitter_pa.provider_uid %>">
+  <% end -%>
+<% end -%>
+
 <div id="pageheader" class="clear">
   <%= render :partial => 'shared/prevnext', :locals => {
     :prev_item => @previous ? @previous.observed_on.strftime('%Y-%m-%d') : nil,
