@@ -63,17 +63,8 @@ class CheckListsController < ApplicationController
   def create
     @check_list = CheckList.new(params[:check_list])
     @check_list.user = current_user
-    
-    # Override taxon choice with iconic taxon choice
-    if params[:iconic_taxon] && (iconic_taxon = Taxon.find_by_id(params[:iconic_taxon][:id].to_i))
-      @check_list.taxon = iconic_taxon
-    end
-    
-    # add rules for all selected taxa
-    if @check_list.taxon_id
-      update_rules(@check_list, {:taxa => [{:taxon_id => @check_list.taxon_id}]})
-    end
-    
+    update_list_rules
+
     respond_to do |format|
       if @check_list.save
         flash[:notice] = 'List was successfully created.'
@@ -91,6 +82,8 @@ class CheckListsController < ApplicationController
   end
   
   def update
+    @check_list = @list
+    update_list_rules
     if @list.update_attributes(params[:check_list])
       flash[:notice] = "Check list updated!"
       return redirect_to @list
@@ -101,6 +94,18 @@ class CheckListsController < ApplicationController
   end
   
   private
+
+  def update_list_rules
+    # Override taxon choice with iconic taxon choice
+    if params[:iconic_taxon] && (iconic_taxon = Taxon.find_by_id(params[:iconic_taxon][:id].to_i))
+      @check_list.taxon = iconic_taxon
+    end
+    
+    # add rules for all selected taxa
+    if @check_list.taxon_id
+      update_rules(@check_list, {:taxa => [{:taxon_id => @check_list.taxon_id}]})
+    end
+  end
   
   def load_list
     @list = CheckList.find_by_id(params[:id].to_i)
