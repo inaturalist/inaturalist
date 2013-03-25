@@ -251,7 +251,7 @@ class Observation < ActiveRecord::Base
              :refresh_check_lists,
              :update_out_of_range_later,
              :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
              :update_taxon_counter_caches
   after_create :set_uri,
                :queue_for_sharing
@@ -1659,7 +1659,7 @@ class Observation < ActiveRecord::Base
   # Share this and any future observations on twitter and/or fb (depending on user preferences)
   def queue_for_sharing
     u = self.user
-    ["facebook","twitter"].each{|provider_name|
+    ["facebook","twitter"].each do |provider_name|
       if u.prefs["share_observations_on_#{provider_name}"] && u.send("#{provider_name}_identity")
         # don't queue up more than one job for the given sharing medium. 
         # when the job is run, it will also share any observations made since this one. 
@@ -1669,7 +1669,8 @@ class Observation < ActiveRecord::Base
           self.delay(:priority => USER_INTEGRITY_PRIORITY).send("share_on_#{provider_name}")
         end
       end
-    }
+    end
+    true
   end
   
 end
