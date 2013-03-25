@@ -151,9 +151,9 @@ class ProviderOauthController < ApplicationController
       gclient.authorization.client_id = CONFIG.google.client_id
       gclient.authorization.client_secret = CONFIG.google.secret
       gclient.authorization.access_token = provider_token
-      gclient.authorization.scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
-      method = gclient.discovered_api('oauth2').userinfo.get
-      r = gclient.execute!(:api_method => gclient.discovered_api('oauth2').userinfo.get)
+      gclient.authorization.scope = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
+      goauth2 = gclient.discovered_api('oauth2')
+      r = gclient.execute(:api_method => goauth2.userinfo.get)
       json = JSON.parse(r.body)
       uid = json['id']
       user = User.includes(:provider_authorizations).
@@ -174,15 +174,31 @@ class ProviderOauthController < ApplicationController
               'Google Plus' => json['link']
             },
             'verified' => json['verified_email']
+          },
+          'credentials' => {
+            'token' => provider_token
           }
         }
+        if auth_info[info]['image'].blank?
+          gplus = gclient.discovered_api('plus')
+          r = gclient.execute(
+            :api_method => gplus.people.get,
+            :parameters => {'collection' => 'public', 'userId' => 'me'}
+          )
+          json = JSON.parse(r.body)
+          auth_info['info']['name'] ||= json['displayName']
+          auth_info['info']['first_name'] ||= json['givenName']
+          auth_info['info']['last_name'] ||= json['familyName']
+          auth_info['info']['image'] ||= json['image'].try(:[], 'url')
+          auth_info['info']['description'] ||= json['aboutMe']
+        end
         user = User.create_from_omniauth(auth_info)
       end
     rescue Google::APIClient::ClientError => e
       Rails.logger.debug "[DEBUG] Failed to make a Google API call: #{e}"
       nil
     end
-    return nil unless user
+    return nil unless user && user.valid?
     access_token = Doorkeeper::AccessToken.
       where(:application_id => client.id, :resource_owner_id => user.id, :revoked_at => nil).
       order('created_at desc').
