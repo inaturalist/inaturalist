@@ -21,8 +21,24 @@ describe CheckList do
     @new_check_list.should_not be_valid
   end
   
-  it "should create a new is_taxon? rule if taxon_id has been set" do
+  it "should create a new in_taxon? rule if taxon_id has been set" do
     @check_list.rules.should_not be_empty
+  end
+
+  it "should replace an is_taxon? rule if taxon_id changed" do
+    t = Taxon.make!
+    cl = CheckList.make!(:taxon => t)
+    cl.rules.detect{|r| r.operator == "in_taxon?"}.operand.should eq(t)
+    t2 = Taxon.make!
+    cl.update_attributes(:taxon => t2)
+    cl.reload
+    cl.rules.detect{|r| r.operator == "in_taxon?"}.operand.should eq(cl.taxon)
+  end
+
+  it "should remove the old is_taxon? rule if taxon_id changed" do
+    r = @check_list.rules.first
+    @check_list.update_attributes(:taxon => Taxon.make!)
+    ListRule.find_by_id(r.id).should be_blank
   end
 end
 

@@ -456,6 +456,7 @@ class ListedTaxon < ActiveRecord::Base
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(guide_taxon_cache_key) #THIS
     ctrl.expire_page("/places/cached_guide/#{place_id}.html")
+    ctrl.expire_page("/places/cached_guide/#{place.slug}.html")
     true
   end
   

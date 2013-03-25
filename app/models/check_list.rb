@@ -7,7 +7,8 @@ class CheckList < List
   accepts_nested_attributes_for :source
   
   before_validation :set_title
-  before_create :set_last_synced_at, :create_taxon_list_rule
+  before_create :set_last_synced_at
+  before_save :update_taxon_list_rule
   # after_save :mark_non_comprehensive_listed_taxa_as_absent
   
   validates_presence_of :place_id
@@ -41,10 +42,13 @@ class CheckList < List
     self.place.check_list_id == self.id
   end
   
-  def create_taxon_list_rule
-    unless taxon.nil? || rules.map{|r| r.operand_id}.include?(taxon_id)
-      self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
-    end
+  def update_taxon_list_rule
+    # unless taxon.nil? || rules.map{|r| r.operand_id}.include?(taxon_id)
+    #   self.rules << ListRule.new(:operand => taxon, :operator => 'in_taxon?')
+    # end
+    return true unless taxon_id_changed?
+    rules.each(&:destroy)
+    rules.build(:operand => taxon, :operator => 'in_taxon?')
     true
   end
   

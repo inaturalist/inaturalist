@@ -245,7 +245,7 @@ class Observation < ActiveRecord::Base
              :refresh_check_lists,
              :update_out_of_range_later,
              :update_default_license,
-             :update_all_licenses
+             :update_all_licenses,
              :update_taxon_counter_caches
   after_create :set_uri,
                :queue_for_sharing
@@ -1623,11 +1623,15 @@ class Observation < ActiveRecord::Base
 
   # share this (and any subsequent) observations on twitter
   # if we're sharing more than one observation, this aggregates them into one tweet
-  def share_on_twitter
+  def share_on_twitter(options = {})
     u = self.user
     twit_api = u.twitter_api
     return nil unless twit_api
-    observations_to_share = Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
+    observations_to_share = if options[:single]
+      [self]
+    else
+      Observation.where(:user_id => u.id).where(["id >= ?", id]).limit(100)
+    end
     observations_to_share_count = observations_to_share.count
     tweet_text = "I added "
     tweet_text += observations_to_share_count > 1 ? "#{observations_to_share_count} observations" : "an observation"
@@ -1649,7 +1653,7 @@ class Observation < ActiveRecord::Base
   # Share this and any future observations on twitter and/or fb (depending on user preferences)
   def queue_for_sharing
     u = self.user
-    ["facebook","twitter"].each{|provider_name|
+    ["facebook","twitter"].each do |provider_name|
       if u.prefs["share_observations_on_#{provider_name}"] && u.send("#{provider_name}_identity")
         # don't queue up more than one job for the given sharing medium. 
         # when the job is run, it will also share any observations made since this one. 
@@ -1659,7 +1663,8 @@ class Observation < ActiveRecord::Base
           self.delay(:priority => USER_INTEGRITY_PRIORITY).send("share_on_#{provider_name}")
         end
       end
-    }
+    end
+    true
   end
   
 end
