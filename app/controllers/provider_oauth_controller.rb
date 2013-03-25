@@ -179,7 +179,7 @@ class ProviderOauthController < ApplicationController
             'token' => provider_token
           }
         }
-        if auth_info[info]['image'].blank?
+        if auth_info['info']['image'].blank?
           gplus = gclient.discovered_api('plus')
           r = gclient.execute(
             :api_method => gplus.people.get,
