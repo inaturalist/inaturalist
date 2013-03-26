@@ -179,7 +179,7 @@ class ProviderOauthController < ApplicationController
             'token' => provider_token
           }
         }
-        if auth_info[info]['image'].blank?
+        if auth_info['info']['image'].blank?
           gplus = gclient.discovered_api('plus')
           r = gclient.execute(
             :api_method => gplus.people.get,
@@ -194,10 +194,12 @@ class ProviderOauthController < ApplicationController
         end
         user = User.create_from_omniauth(auth_info)
       end
+      user
     rescue Google::APIClient::ClientError => e
       Rails.logger.debug "[DEBUG] Failed to make a Google API call: #{e}"
       nil
     end
+
     return nil unless user && user.valid?
     access_token = Doorkeeper::AccessToken.
       where(:application_id => client.id, :resource_owner_id => user.id, :revoked_at => nil).
