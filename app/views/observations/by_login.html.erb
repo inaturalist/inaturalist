@@ -1,5 +1,5 @@
 <% content_for(:title)  do %>
-  <%=t :observations_by_user, :user=> h(@login) %>
+  <%= t :observations_by_user, :user=> h(@login) %>
 <% end %>
 
 <% content_for(:extracss) do %>
@@ -288,7 +288,7 @@
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if is_me?(@selected_user) -%>
-      <%= link_to t(:add_observations_), new_observation_path, 
+      <%= link_to t(:Pon_tus_observaciones_), new_observation_path,
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
       <div id="batchcontrols" style="display: none">
