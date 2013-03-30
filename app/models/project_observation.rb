@@ -19,7 +19,8 @@ class ProjectObservation < ActiveRecord::Base
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
 
-  after_create :destroy_project_invitations, :update_curator_identification
+  after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
+  after_destroy :expire_caches
 
   def update_curator_identification
     return true if observation.new_record?
@@ -61,6 +62,12 @@ class ProjectObservation < ActiveRecord::Base
   
   def update_project_observed_taxa_counter_cache_later
     Project.delay(:priority => USER_INTEGRITY_PRIORITY).update_observed_taxa_count(project_id)
+    true
+  end
+
+  def expire_caches
+    FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
+    true
   end
 
   def destroy_project_invitations

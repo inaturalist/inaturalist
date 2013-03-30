@@ -1,7 +1,6 @@
 #encoding: utf-8
 class ObservationsController < ApplicationController
   caches_page :tile_points
-  caches_page :by_login_all, :if => Proc.new {|c| c.request.format == :csv}
   
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :index, :by_login, :project,
@@ -1039,25 +1038,13 @@ class ObservationsController < ApplicationController
   end
 
   def by_login_all
-    path_for_csv = "public/observations/#{@selected_user.login}.all.csv"
-    if @selected_user.observations.count < 1000
-      Observation.generate_csv_for(@selected_user, :path => path_for_csv)
-      render :file => path_for_csv
-    else
-      cache_key = Observation.generate_csv_for_cache_key(@selected_user)
-      job_id = Rails.cache.read(cache_key)
-      job = Delayed::Job.find_by_id(job_id)
-      if job
-        # Still working
-      else
-        # no job id, no job, let's get this party started
-        Rails.cache.delete(cache_key)
-        job = Observation.delay.generate_csv_for(@selected_user, :path => path_for_csv, :user => current_user)
-        Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
-      end
-      prevent_caching
-      render :status => :accepted, :text => "This file takes a little while to generate.  It should be ready shortly at #{request.url}"
+    if @selected_user.id != current_user.id
+      flash[:error] = "You don't have permission to do that."
+      redirect_back_or_default(root_url)
+      return
     end
+    path_for_csv = private_page_cache_path("observations/#{@selected_user.login}.all.csv")
+    delayed_csv(path_for_csv, @selected_user)
   end
   
   # shows observations in need of an ID
@@ -1271,22 +1258,9 @@ class ObservationsController < ApplicationController
       redirect_to request.env["HTTP_REFERER"] || @project
       return
     end
-    
-    respond_to do |format|
-      format.csv do
-        records = @project.project_observations.includes(
-          {:curator_identification => [:taxon, :user]},
-          :observation => [
-            :photos,
-            :observation_field_values, 
-            :taggings,
-            {:taxon => :taxon_names},
-            :user
-          ]
-        )
-        send_data ProjectObservation.to_csv(records, :user => current_user, :project => @project), :type => :csv
-      end
-    end
+
+    path_for_csv = private_page_cache_path("observations/project/#{@project.slug}.all.csv")
+    delayed_csv(path_for_csv, @project)
   end
   
   def identotron
@@ -2170,5 +2144,29 @@ class ObservationsController < ApplicationController
       @swlng ||= site_bounds['swlng']
     end
     search_params
+  end
+
+  def delayed_csv(path_for_csv, parent, options = {})
+    if parent.observations.count < 50
+      Observation.generate_csv_for(parent, :path => path_for_csv)
+      render :file => path_for_csv
+    else
+      cache_key = Observation.generate_csv_for_cache_key(parent)
+      job_id = Rails.cache.read(cache_key)
+      job = Delayed::Job.find_by_id(job_id)
+      if job
+        # Still working
+      elsif File.exists? path_for_csv
+        render :file => path_for_csv
+        return
+      else
+        # no job id, no job, let's get this party started
+        Rails.cache.delete(cache_key)
+        job = Observation.delay.generate_csv_for(parent, :path => path_for_csv, :user => current_user)
+        Rails.cache.write(cache_key, job.id, :expires_in => 1.hour)
+      end
+      prevent_caching
+      render :status => :accepted, :text => "This file takes a little while to generate. It should be ready shortly at #{request.url}"
+    end
   end
 end
