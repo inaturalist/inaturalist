@@ -188,14 +188,18 @@ class ProjectsController < ApplicationController
   end
   
   def by_login
-    @started = @selected_user.projects.all(:order => "id desc", :limit => 100)
-    @project_users = @selected_user.project_users.paginate(:page => params[:page],
-      :include => [:project, :user],
-      :order => "lower(projects.title)")
-    @projects = @project_users.map{|pu| pu.project}
     respond_to do |format|
-      format.html
+      format.html do
+        @started = @selected_user.projects.all(:order => "id desc", :limit => 100)
+        @project_users = @selected_user.project_users.paginate(:page => params[:page],
+          :include => [:project, :user],
+          :order => "lower(projects.title)")
+        @projects = @project_users.map{|pu| pu.project}
+      end
       format.json do
+        @project_users = @selected_user.project_users.limit(1000).
+          includes({:project => [:project_list, {:project_observation_fields => :observation_field}]}, :user).
+          order("lower(projects.title)")
         project_options = Project.default_json_options.update(
           :include => [
             :project_list, 
