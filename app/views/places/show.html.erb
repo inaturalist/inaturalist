@@ -16,9 +16,9 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @place.display_name %>"/> 
-  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" />
+  <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
+  <% end -%>
   <meta property="og:description" name="description" content="Learn about the species that live in <%= @place.display_name %>!"/> 
   <meta property="og:image" content="<%= uri_join(root_url, path_to_image(CONFIG.logo_icon_square_big)) %>"/> 
 <%- end -%>

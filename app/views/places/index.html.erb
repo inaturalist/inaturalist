@@ -17,9 +17,9 @@
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= CONFIG.site_name %> Places"/> 
   <meta property="og:image" content="<%= image_url('place_preview.jpg') %>"/> 
-  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" />
+  <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
+  <% end -%>
   <meta property="og:description" name="description" content="The world is full of interesting places, each filled with weird and wonderful life forms. Some are on the other side of the world, while others are just down the street! <%= CONFIG.site_name %> Places let you browse life from around the planet.  Start exploring!"/> 
 <%- end -%>
 

@@ -9,12 +9,8 @@
     <meta property="og:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
-  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <% unless @fb_admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= @fb_admin_ids.join(',') %>"/>
-  <% end -%>
-  <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
-    <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" /> 
   <% end -%>
   <% og_description = strip_tags(truncate(@project.description.gsub(/\s+/, ' '), :length => 1000)) %>
   <meta property="og:description" content="<%= og_description %>"/>

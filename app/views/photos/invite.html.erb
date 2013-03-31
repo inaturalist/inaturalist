@@ -32,10 +32,10 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @title %>"/> 
-  <meta property="og:image" content="<%= @img %>"/> 
-  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" /> 
+  <meta property="og:image" content="<%= @img %>"/>
+  <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
+  <% end -%>
   <% og_description = h strip_tags(@description) %>
   <meta property="og:description" content="<%= og_description %>"/>
 <%- end -%>
