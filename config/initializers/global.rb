@@ -55,3 +55,7 @@ end
 def sanitize_sphinx_query(q)
   q.gsub(/[^\w\s\.\'\-]+/, '').gsub(/\-/, '\-')
 end
+
+def private_page_cache_path(path)
+  File.join(Rails.root, 'tmp', 'page_cache', path)
+end

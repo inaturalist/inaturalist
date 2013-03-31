@@ -26,6 +26,15 @@ describe Place, "creation" do
   it "should have no default type" do
     @place.place_type_name.should be_blank
   end
+
+  it "should add observed taxa to the checklist if geom set" do
+    t = Taxon.make!
+    o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
+    p = without_delay do 
+      make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+    end
+    p.check_list.taxa.should include(t)
+  end
 end
 
 describe Place, "updating" do

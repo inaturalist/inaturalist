@@ -77,10 +77,10 @@ describe ObservationsController do
     it "should work under normal conditions" do
       user = User.make!
       sign_in user
-      file = File.open(File.dirname(__FILE__) + '/../fixtures/observations.csv')
+      path = File.dirname(__FILE__) + '/../fixtures/observations.csv'
       
       user.observations.count.should be(0)
-      post :new_batch_csv, :upload => {:datafile => file}
+      post :new_batch_csv, :upload => {:datafile => Rack::Test::UploadedFile.new(path, 'text/csv')}
       assigns[:observations].should_not be_blank
     end
     
@@ -95,6 +95,66 @@ describe ObservationsController do
   describe :import_photos do
     # to test this we need to mock a flickr response
     it "should import photos that are already entered as taxon photos"
+  end
+
+  describe :by_login_all, "page cache" do
+    before do
+      @observation = Observation.make!
+      @user = @observation.user
+      path = observations_by_login_all_path(@user.login, :format => 'csv')
+      FileUtils.rm private_page_cache_path(path), :force => true
+      sign_in @user
+    end
+
+    it "should set after request" do
+      without_delay do
+        get :by_login_all, :login => @user.login, :format => :csv
+      end
+      response.should be_private_page_cached
+    end
+
+    it "should be cleared by new observations" do
+      without_delay do
+        get :by_login_all, :login => @user.login, :format => :csv
+      end
+      response.should be_private_page_cached
+      post :create, :observation => {:species_guess => "foo"}
+      observations_by_login_all_path(@user.login, :format => :csv).should_not be_private_page_cached
+    end
+  end
+
+  describe :project_all, "page cache" do
+    before do
+      @project = Project.make!
+      @user = @project.user
+      @observation = Observation.make!(:user => @user)
+      @project_observation = make_project_observation(:project => @project, :observation => @observation)
+      @observation = @project_observation.observation
+      ActionController::Base.perform_caching = true
+      path = all_project_observations_path(@project, :format => 'csv')
+      FileUtils.rm private_page_cache_path(path), :force => true
+      sign_in @user
+    end
+
+    after do
+      ActionController::Base.perform_caching = false
+    end
+
+    it "should set after request" do
+      without_delay do
+        get :project_all, :id => @project, :format => :csv
+      end
+      response.should be_private_page_cached
+    end
+
+    it "should be cleared by new observations" do
+      without_delay do
+        get :project_all, :id => @project, :format => :csv
+      end
+      response.should be_private_page_cached
+      post :destroy, :id => @observation
+      all_project_observations_path(@project, :format => :csv).should_not be_private_page_cached
+    end
   end
   
 end
