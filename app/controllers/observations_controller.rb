@@ -232,7 +232,7 @@ class ObservationsController < ApplicationController
             :joins => [:project_users], 
             :limit => 1000, 
             :conditions => ["project_users.user_id = ?", current_user]
-          ).sort_by{|p| p.title}
+          ).sort_by{|p| p.title.downcase}
         end
         
         @places = @observation.places
