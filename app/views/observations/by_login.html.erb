@@ -289,10 +289,14 @@
   <div id="tools" class="buttonrow">
     <% if is_me?(@selected_user) -%>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <%= link_to t(:add_observations), new_observation_path,
 =======
       <%= link_to t(:add_observations_), new_observation_path, 
 >>>>>>> parent of f2554ad... change the button add observations
+=======
+      <%= link_to t(:add_observations), new_observation_path,
+>>>>>>> 61cac35ec48c8a618085c831fd3743bd57867c0d
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
       <div id="batchcontrols" style="display: none">
