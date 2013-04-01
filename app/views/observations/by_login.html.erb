@@ -1,5 +1,5 @@
 <% content_for(:title)  do %>
-  <%= t :observations_by_user, :user=> h(@login) %>
+  <%=t :observations_by_user, :user=> h(@login) %>
 <% end %>
 
 <% content_for(:extracss) do %>
@@ -288,7 +288,7 @@
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if is_me?(@selected_user) -%>
-      <%= link_to t(:Pon_tus_observaciones_), new_observation_path,
+      <%= link_to t(:add_observations), new_observation_path,
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
       <div id="batchcontrols" style="display: none">
@@ -352,8 +352,9 @@
   <% if @observations.empty? %>
     <div id="no_obs_message" class="description">
       <%=t :no_matching_observations %>
+      <br><br>
       <% if logged_in? && current_user.login == @login %>
-      <%= link_to 'Add Observations', new_observation_path, 
+      <%= link_to t(:add_observations), new_observation_path,
                   :class => 'default inline button' %>
       <% end %>
     </div>
@@ -362,8 +363,8 @@
     <% if logged_in? -%>
       <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
         <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
-        <%= f.label :per_page %>
-        <%= f.select :per_page, ApplicationController::PER_PAGES, 
+        <%= f.label t(:per_page) %>
+        <%= f.select :per_page, ApplicationController::PER_PAGES,
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
     <% end -%>
@@ -373,10 +374,10 @@
 
 <div id="mapcol" class="column span-7 last stacked">
   <div id="map"></div>
-  <%= link_to_function "Redo search in map area", 
+  <%= link_to_function t(:redo_search_in_map_area),
     "redoSearchInMapArea()", 
     :id => 'redo_search_in_map_area_button',
-    "data-loading-click" => "Loading..." %>
+    "data-loading-click" => t(:loading) %>
 </div>
 
 <div class="last column span-24">
@@ -407,11 +408,11 @@
 
     <% if is_me?(@selected_user) -%>
       <span class="feeds">
-        Downlowd:
+        <%= t :download %>
         <%= link_to "CSV", observations_by_login_all_url(@login, :format => 'csv'), 
           :class => "delayedlink csvlink", 
-          "data-delayed-link-msg" => 
-            "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",
+          "data-delayed-link-msg" =>
+            t(:please_hold_on_while_the_file),
           :rel => "nofollow" %>
       </span>
     <% end -%>
