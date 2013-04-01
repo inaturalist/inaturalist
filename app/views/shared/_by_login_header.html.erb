@@ -1,7 +1,7 @@
 <%-
   model_name ||= controller.class.to_s.underscore.humanize.split.first
   title ||= if is_me?(@selected_user)
-    t(:second_person_possessive_singular, :noun => t(model_name.downcase).titleize)
+    t(:second_person_possessive_singular, :noun => t(model_name.downcase))
   else
     t(:third_person_possessive_singular, :noun => t(model_name.downcase).titleize, :object_phrase => @login)
   end

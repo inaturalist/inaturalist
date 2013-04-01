@@ -158,7 +158,7 @@ es-MX:
   add_obs_from_a_link: "Añade observación de la lista %{link}"
   add_obs_from_a_list: "Añade observaciones de una lista"
   add_observation: "Añade una observación"
-  add_observations: "Añade observaciones"
+  add_observations: "Agregar observaciones"
   add_observations!: "¡Agrega observaciones!"
   add_observations_by_checking_off: "Añade observaciones marcando las especies de una lista"
   add_observations_from_list: "Añade observaciones de una lista"
@@ -564,7 +564,7 @@ es-MX:
   doh_something_went_wrong: "Algo no sucedió bien."
   dont_send_me_email: "¡No me envíen correo electrónico!"
   dont_use_double_quotes: "No uses \"entre comillas\" en ningún lado"
-  download: Descarga
+  download: 'Descargar:'
   download_csv: "Descarga CSV"
   draft: ¡BORRADOR!
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
@@ -6297,7 +6297,7 @@ es-MX:
   lists_are_lists_of_species: "Las listas son listas de especies (u otros taxa), como una lista de vida de todas las aves que hayas visto, o la lista de tus salamandras favoritas. <em>No</em> son listas de observaciones."
   lists_come_in_three: "Las listas pueden ser de tres tipos:"
   load: Carga
-  loading: Cargando
+  loading: "Cargando..."
   loading_flikr_photos: "Cargando fotos de Flickr..."
   loading_full_description_html: "Cargando la descripción completa..."
   loading_more_photos: "Cargando más fotos..."
@@ -6499,7 +6499,7 @@ es-MX:
   observation_rights_html: "Observacion %{rights}"
   observation_rules_description: "Puedes escoger las reglas que determinan que observaciones pueden ser añadidas a este proyecto, y limitarlas a cierto lugar. Note&#58; La limitación de lugares actualmente depende de %{site_name} lugares, y solo puede limitar las observaciones al rectángulo más pequeño que rodea el lugar.\n"
   observation_would_like_some_help: "A %{user} agradecería su ayuda para identificar esto!"
-  observations: Observaciones
+  observations: 'observaciones'
   observations_by_everyone: "Observaciones de todos"
   observations_by_user: "Observaciones de %{user}"
   observations_by_user_on_date: "Observaciones de %{user} el %{date}"
@@ -6734,7 +6734,7 @@ es-MX:
   search_ubio_raquo: "Busca uBio &raquo;"
   search_your_photos: "Busca tus fotos"
   searching: Buscando
-  second_person_possessive_singular: "tú %{noun}"
+  second_person_possessive_singular: "Tus %{noun}"
   see_something_wrong_with_taxon: "¿Ves algo equivocado con esta especie o grupo? Avísales a los curadores ahora."
   seen_it?: "¿Lo han visto?"
   seen_one: "¿Han visto uno?"
@@ -7383,3 +7383,4 @@ es-MX:
   youve_seen_it_want_to: "¡Lo has visto! Quieres"
   zoom_to_taxon_name: "Acercamiento a %{taxonname}"
   zoom_to_x: "Acercamiento a  %{x}"
+  per_page: "Registros por página"
