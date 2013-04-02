@@ -200,7 +200,7 @@ class ProviderOauthController < ApplicationController
       nil
     end
 
-    return nil unless user && user.valid?
+    return nil unless user && user.persisted?
     access_token = Doorkeeper::AccessToken.
       where(:application_id => client.id, :resource_owner_id => user.id, :revoked_at => nil).
       order('created_at desc').
