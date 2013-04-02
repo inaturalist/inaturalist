@@ -15,19 +15,19 @@
     <% end -%>
   </ul>
   <div id="footer_text" class="stacked">
-    <a href="/about">About <%= CONFIG.site_name %></a> &nbsp;
-    <a href="/help">Help</a> &nbsp;
-    <a href="http://groups.google.com/group/inaturalist">Feedback</a> &nbsp;
-    <a href="http://inaturalist.org/terms.html">Terms of Service</a> &nbsp;
-    <a href="http://inaturalist.org/privacy.html">Privacy Policy</a> &nbsp;
+    <a href="<%= CONFIG.about_url %>">About <%= CONFIG.site_name %></a> &nbsp;
+    <a href="<%= CONFIG.help_url %>">Help</a> &nbsp;
+    <a href="<%= CONFIG.feedback_url %>">Feedback</a> &nbsp;
+    <a href="<%= CONFIG.terms_url %>">Terms of Service</a> &nbsp;
+    <a href="<%= CONFIG.privacy_url %>">Privacy Policy</a> &nbsp;
     <p class="description">
       Follow us on
-      <a href="http://twitter.com/inaturalist">Twitter</a> <span class="description">&amp;</span>
-      <a href="http://www.facebook.com/pages/iNaturalistorg/63336575498">Facebook</a> &nbsp;
+      <a href="<%= CONFIG.twitter_url %>">Twitter</a> <span class="description">&amp;</span>
+      <a href="<%= CONFIG.facebook_url %>">Facebook</a> &nbsp;
     </p>
     <p>
-      <a href="http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"><img src="/images/apple_app_store.png"></a> &nbsp;
-      <a href="https://market.android.com/details?id=org.inaturalist.android"><img src="/images/android_market.png"></a>
+      <a href="<%= CONFIG.iphone_app_url %>"><img src="/images/apple_app_store.png"></a> &nbsp;
+      <a href="<%= CONFIG.android_app_url %>"><img src="/images/android_market.png"></a>
     </p>
   </div>
 </div>
