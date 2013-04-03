@@ -1,4 +1,4 @@
-<h1>Listing Taxa</h1>
+<h1><%= t(:listing_taxa) %></h1>
 
 <table>
   <tr>
@@ -12,12 +12,12 @@
   <% for column in Taxon.content_columns %>
     <td><%=h taxon.send(column.name) %></td>
   <% end %>
-    <td><%= link_to 'Show', :action => 'show', :id => taxon %></td>
+    <td><%= link_to t(:show), :action => 'show', :id => taxon %></td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @taxon_pages.current.previous } if @taxon_pages.current.previous %>
-<%= link_to 'Next page', { :page => @taxon_pages.current.next } if @taxon_pages.current.next %> 
+<%= link_to t(:previous_page), { :page => @taxon_pages.current.previous } if @taxon_pages.current.previous %>
+<%= link_to t(:next_page), { :page => @taxon_pages.current.next } if @taxon_pages.current.next %> 
 
 <br />

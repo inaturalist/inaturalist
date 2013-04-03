@@ -1,7 +1,7 @@
 <ul class="listed_taxa taxonomic_view first">
   <% if @unclassified && !@unclassified.empty? -%>
     <li>
-      Unclassified
+      <%=t :unclassified %>
       <ul class="listed_taxa taxonomic_view">
         <% for lt in @unclassified %>
           <li class="clear">

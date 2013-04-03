@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observation calendar for #{@login} in #{@year}" %>
+  <%= @title = t(:observation_calendar_for, :user => @login, :year => @year) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -28,7 +28,7 @@
 </div>
 
 <div class="clear">
-  <% %w(January February March April May June July August September October November December).each_with_index do |month, i| %>
+  <% [:january, :february, :march, :april, :may, :june, :july, :august, :september, :october, :november, :december].each_with_index do |month, i| %>
     <%= render :partial => 'calendar', :locals => {
       :observations => @observations_by_month[i+1], 
       :year => @year, 

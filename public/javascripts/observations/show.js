@@ -200,7 +200,7 @@ $('#add_more_photos_link').live('click', function() {
     })
     dialog.dialog({
       modal: true,
-      title: 'Add photos to this observation',
+      title: I18n.t('add_photos_to_this_observation'),
       width: 760,
       minHeight: 300
     })

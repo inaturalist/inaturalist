@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  Merging <%=h @taxon.name %>
+  <%= t(:merging) %> <%=h @taxon.name %>
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -54,21 +54,19 @@
     <%= link_to "Back to Viewing <i>#{@taxon.name}</i>".html_safe, 
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
-  <h2>Merge <em><%= @taxon.name %></em></h2>
+  <h2><%= t(:merge) %> <em><%= @taxon.name %></em></h2>
   <p class="description">
-    Delete <i><%= @taxon.name %></i> and merge most of its data into another
-    taxon. Use this tool for removing duplicate taxa and outdated synonymous
-    taxa. <strong>BE CAREFUL!</strong> Deleting taxa can be highly destructive.
+    <%= t(:delete_taxon_and_merge_most_data, :taxon => "#{@taxon.name}") %>
   </p>
 </div>
 
 <%= form_tag merge_taxon_path(@taxon), :class => "clear buttons" do %>
   <%= text_field_tag :keeper_name, @taxon.name, :class => "text" %>
   <%= hidden_field_tag :taxon_id, @keeper ? @keeper.id : nil %>
-  <%= submit_tag "Merge", :disabled => true, :class => "default button", 
+  <%= submit_tag t(:merge), :disabled => true, :class => "default button", 
     :id => "submitbutton",
     "data-loading-click" => "Merging...",
-    :confirm => "Are you sure you want to delete #{@taxon.name} (#{@taxon.id}) and move all its associates?" %>
+    :confirm => t(:are_you_sure_delete_taxon_move_associates, :taxonname => "#{@taxon.name}", :taxonid => "#{@taxon.id}") %>
   <%= link_to_function "Make a TaxonSwap instead?", "makeTaxonSwap()", 
     :id => "swapbutton",
     :class => "button disabled" %>

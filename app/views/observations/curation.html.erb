@@ -1,4 +1,4 @@
-<% content_for(:title) do %>Observation Curation<% end %>
+<% content_for(:title) do %><%=t :observation_curation %><% end %>
 <% content_for(:extracss) do -%>
   <style type="text/css" media="screen">
     #tools {
@@ -12,15 +12,15 @@
   </style>
 <% end -%>
 
-<h2>Observations Needing Curation</h2>
+<h2><%=t :observations_needing_curation %></h2>
 
 <table>
   <tr>
-    <th>Created</th>
-    <th>Observation</th>
-    <th>Reason</th>
-    <th>Flagger</th>
-    <th>Actions</th>
+    <th><%=t :created %></th>
+    <th><%=t :observation %></th>
+    <th><%=t :reason %></th>
+    <th><%=t :flagger %></th>
+    <th><%=t :actions %></th>
   </tr>
   <% for flagging in @flags %>
   <tr>
@@ -29,7 +29,7 @@
     <td><%= h flagging.flag %></td>
     <td><%= link_to h(flagging.user.login), person_path(:id=>flagging.user_id) %></td>
     <td class="buttonrow">
-      <%= link_to "Edit the Observation", 
+      <%= link_to t(:edit_the_observation), 
                   edit_observation_path(:id=>flagging.flaggable_id), :class => 'button' %>
       <span class="inter">or</span>
       <%= form_for(flagging, 
@@ -37,7 +37,7 @@
         <%= f.text_field :comment, :class => 'text' %>
         <%= f.hidden_field :resolver_id, :value => current_user.id %>
         <%= f.hidden_field :resolved, :value => true %>
-        <%= f.submit 'Resolve this flag', :class => 'button' %>
+        <%= f.submit t(:resolve_this_flag), :class => 'button' %>
       <% end # form_for %>
       
     </td>

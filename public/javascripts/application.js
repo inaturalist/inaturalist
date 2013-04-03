@@ -716,7 +716,7 @@ $.fn.observationControls = function(options) {
   var options = options || {}
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
-    var gridButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>Grid</label></a>')
+    var gridButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>'+I18n.t('grid')+'</label></a>')
     gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
     gridButton.click(function() {
       $(observations).observationsGrid($(this).data('gridSize'))
@@ -725,7 +725,7 @@ $.fn.observationControls = function(options) {
       return false
     })
 
-    var listButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>List</label></a>')
+    var listButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>'+I18n.t('list')+'</label></a>')
     listButton.click(function() {
       $(observations).observationsList()
       $(this).siblings().addClass('disabled')
@@ -733,7 +733,7 @@ $.fn.observationControls = function(options) {
       return false
     })
 
-    var mapButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>Map</label></a>')
+    var mapButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>'+I18n.t('map')+'</label></a>')
     mapButton.click(function() {
       $(observations).observationsMap()
       $(this).siblings().addClass('disabled')

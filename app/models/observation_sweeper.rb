@@ -43,9 +43,11 @@ class ObservationSweeper < ActionController::Caching::Sweeper
   end
   
   def expire_taxon_caches_for_taxon(t)
-    expire_action(:controller => 'taxa', :action => 'show', :id => t.to_param)
-    expire_action(:controller => 'taxa', :action => 'show', :id => t.id)
-    expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "json")
-    expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "geojson")
+    I18N_SUPPORTED_LOCALES.each do |locale|
+      expire_action(:controller => 'taxa', :action => 'show', :id => t.to_param, :locale => locale)
+      expire_action(:controller => 'taxa', :action => 'show', :id => t.id, :locale => locale)
+      expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "json", :locale => locale)
+      expire_action(:controller => 'observations', :action => 'of', :id => t.id, :format => "geojson", :locale => locale)
+    end
   end
 end

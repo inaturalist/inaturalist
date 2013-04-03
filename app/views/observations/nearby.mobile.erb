@@ -1,6 +1,6 @@
 <%- @user_scalable = 0 -%>
 <%- content_for(:title) do -%>
-  <%= @pagetitle = "Nearby Observations" %>
+  <%= @pagetitle = t(:nearby_observations) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%#= stylesheet_link_tag "observations" %>
@@ -156,8 +156,8 @@
 
   <div id="observations" class="mini observations">
     <div class="loading status">
-      Loading...
+      <%=t :loading %>
     </div>
-    <div id="noobservations" class="meta" style="display: none">No nearby observations.</div>
+    <div id="noobservations" class="meta" style="display: none"><%=t :no_nearby_observations %></div>
   </div>
 </div>

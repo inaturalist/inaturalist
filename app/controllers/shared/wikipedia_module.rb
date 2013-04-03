@@ -2,7 +2,7 @@ module Shared::WikipediaModule
   def wikipedia
     @title ||= params[:id]
     coder = HTMLEntities.new
-    w = WikipediaService.new
+    w = @wikipedia = WikipediaService.new
     @decoded = ""
     begin
       query_results = w.query(
@@ -16,8 +16,8 @@ module Shared::WikipediaModule
         @decoded = coder.decode(parsed)
         @decoded.gsub!('href="//', 'href="http://')
         @decoded.gsub!('src="//', 'src="http://')
-        @decoded.gsub!('href="/', 'href="http://en.wikipedia.org/')
-        @decoded.gsub!('src="/', 'src="http://en.wikipedia.org/')
+        @decoded.gsub!('href="/', 'href="' + w.base_url + '/')
+        @decoded.gsub!('src="/', 'src="' + w.base_url + '/')
         filter_wikipedia_content
       end
     rescue Timeout::Error => e

@@ -8,7 +8,7 @@
                :locals => {:observation => observation} %>
   <% end %>
 <% else %>
-  <% cache(observation.component_cache_key) do %>
+  <% cache(observation.component_cache_key(:locale => I18n.locale)) do %>
     <%= render :partial => 'observations/observation_component', 
                :locals => {:observation => observation} %>
   <% end %>

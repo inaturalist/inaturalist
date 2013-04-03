@@ -15,7 +15,7 @@
 <%- rendered_taxon_name = capture do -%>
   <%= render(:partial => 'shared/taxon', :formats => [:html], :object => listed_taxon.taxon) -%>
 <%- end -%>
-<div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unknown' %> taxon-<%= listed_taxon.taxon.id %>">
+<div id="listed_taxon_<%= listed_taxon.id %>" class="listed_taxon clear <%= listed_taxon.taxon.iconic_taxon.name rescue 'Unkown' %> taxon-<%= listed_taxon.taxon.id %>">
   <div class="column image">
     <%- if photo -%>
       <%= modal_image(photo) %>
@@ -30,14 +30,15 @@
         :remote => true,
         :method => :delete,
         :type => 'text',
-        :confirm => "Are you sure you want to remove #{default_taxon_name(listed_taxon.taxon)} from this list?", 
-        :title => "Remove from list",
+        :confirm => t(:you_sure_delete_taxon_from_list?, :taxon => default_taxon_name(listed_taxon.taxon)), 
+        :title => t(:remove_from_list),
         :class => "description removelink") %>
     <% end -%>
     <div class="seenit">
-      <%= link_to("Add an observation", 
+      <%= link_to(
+        t(:add_an_observation), 
         new_observation_path(:taxon_id => listed_taxon.taxon), 
-        :title => "Add an observation of #{default_taxon_name(listed_taxon.taxon)}",
+        :title => t(:add_an_observation_of, :taxon=> "#{default_taxon_name(listed_taxon.taxon)}"),
         :class => '') %>
     </div>
   </div>
@@ -58,9 +59,9 @@
       <p class="ui clear description">
         <%= truncate txt, :length => 200 %>
         <% if txt.size > 200 -%>
-          <%= link_to "More", listed_taxon, :class => "readmore" %>
+          <%= link_to t(:more), listed_taxon, :class => "readmore" %>
         <% elsif editable -%>
-          <%= link_to "Edit", listed_taxon, :class => "readmore" %>
+          <%= link_to t(:edit), listed_taxon, :class => "readmore" %>
         <% end -%>
       </p>
     <% end -%>
@@ -68,7 +69,7 @@
     <div class="description">
       <% if listed_taxon.last_observation %>
         <span class="observation">
-          Last seen
+         <%=t :last_seen %>
           <a href="<%= observation_url(listed_taxon.last_observation) %>">
             <%= one_line_observation listed_taxon.last_observation, :skip => %w(user taxon) %>
           </a>
@@ -88,7 +89,7 @@
       </nobr>
       
       <% if editable -%>
-        | <%= link_to "Edit", listed_taxon %>
+        | <%= link_to t(:edit), listed_taxon %>
       <% end -%>
     </div>
   </div>

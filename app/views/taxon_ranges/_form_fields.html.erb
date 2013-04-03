@@ -4,7 +4,7 @@
     <% if f.object.range.file? -%>
       <% f.form_field :range do %>
         <%= link_to f.object.range.url, f.object.range.url %>
-        <%= link_to_function "(replace)", 
+        <%= link_to_function t(:replace_parentesis), 
           "$(this).parents('.field').after('#{f.file_field(:range)}'); " + 
           "$(this).parents('.field').hide()", :class => "small" %>
       <% end %>
@@ -18,7 +18,7 @@
 
   <div class="last column span-12">
     <fieldset id="source">
-      <legend>Source</legend>
+      <legend><%= t(:source) %></legend>
       <%= render :partial => 'sources/nested_form_fields', :locals => {:f => f} %>
     </fieldset>
   </div>

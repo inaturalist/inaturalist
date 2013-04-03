@@ -17,7 +17,7 @@
         <div class="stacked">
           <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo) %>
           <div class="meta">
-            Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
+            <%=t :photo %>: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
           </div>
         </div>
         <% for photo in photos[1..4] %>
@@ -29,10 +29,10 @@
     <div class="observationcounts stacked">
       <div class="ui description">
         <strong><%= listed_taxon.observations_count %></strong>
-        <%= listed_taxon.observations_count == 1 ? 'observation' : 'observations' %>
-        from in this place,
+        <%= listed_taxon.observations_count == 1 ? t(:observation) : t(:observations) %>
+        <%=t :from_in_this_place %>,
         <strong class="count"><%= listed_taxon.confirmed_observations_count %></strong>
-        research grade
+        <%=t :research_grade %>
       </div>
       <% unless listed_taxon.observation_month_stats.blank? -%>
         <div class="statsgraphs stacked">
@@ -49,20 +49,20 @@
     
     <% if listed_taxon.first_observation -%>
       <p class="ui description">
-        First confirmed <%= CONFIG.site_name_short %> observation
+        <%=t :first_confirmed_inat_observation, :site_name => SITE_NAME_SHORT %>
         <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
-        by 
+        <%=t :by_ %>
         <%= link_to user_image(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>
         <%= link_to you_or_login(listed_taxon.first_observation.user), listed_taxon.first_observation.user %>,
-        added <%= listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
+        <%=t :added %> <%= listed_taxon.first_observation.created_at.to_date.to_s(:long) %>
       </p>
     <% end -%>
 
     <% if listed_taxon.last_observation -%>
       <p class="ui description">
-        Last confirmed observation
+       <%=t :last_confirmed_observation %>
         <%= link_to one_line_observation(listed_taxon.last_observation, :skip => %w(user taxon)), listed_taxon.last_observation %>
-        by 
+        <%=t :by %>
         <%= link_to user_image(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
         <%= link_to you_or_login(listed_taxon.last_observation.user), listed_taxon.last_observation.user %>
       </p>
@@ -70,27 +70,27 @@
     
     <div class="clear stacked">
       <div id="occurrence">
-        <label>Occurrence status:</label>
+        <label><%=t :occurrence_status %>:</label>
         <%= listed_taxon.occurrence_status || "unknown" %>
-        <%= link_to "edit", listed_taxon, :class => "small" %>
+        <%= link_to t(:edit), listed_taxon, :class => "small" %>
       </div>
 
       <div class="establishment stacked">
-        <label>Establishment means:</label>
+        <label><%=t :establishment_means %>:</label>
         <%= listed_taxon.establishment_means || "unknown" %>
-        <%= link_to "edit", listed_taxon, :class => "small" %>
+        <%= link_to t(:edit), listed_taxon, :class => "small" %>
       </div>
     </div>
     
     <div class="meta stacked">
-      <strong>Source:</strong> <%= citation_for @listed_taxon.citation_object %>
+      <strong><%=t :source %>:</strong> <%= citation_for @listed_taxon.citation_object %>
     </div>
     
     <div>
-      <%= link_to "View taxon page for this #{@place ? 'place' : 'list' }", listed_taxon, :class => "readmore" %>
+      <%= link_to t(:view_taxon_page_for) + (@place ? t(:place) : t(:list)), listed_taxon, :class => "readmore" %>
     </div>
     <div>
-      <%= link_to "View taxon page", taxon, :class => "readmore" %>
+      <%= link_to t(:view_taxon_page), taxon, :class => "readmore" %>
     </div>
     
   </div>
@@ -99,9 +99,9 @@
   <div class="desc">
     <div class="stacked tabs">
       <ul>
-        <li><%= link_to "Info", "##{dom_id(listed_taxon, 'infotab')}" %></li>
-        <li><%= link_to "All photos", "##{dom_id(listed_taxon, 'photostab')}" %></li>
-        <li><%= link_to "Observations", obs_url, :title => dom_id(listed_taxon, 'observationstab') %></li>
+        <li><%= link_to t(:info), "##{dom_id(listed_taxon, 'infotab')}" %></li>
+        <li><%= link_to t(:all_photos), "##{dom_id(listed_taxon, 'photostab')}" %></li>
+        <li><%= link_to t(:observations), obs_url, :title => dom_id(listed_taxon, 'observationstab') %></li>
       </ul>
 
       <div id="<%= dom_id(listed_taxon, 'infotab') %>">
@@ -110,18 +110,18 @@
         <%= content_tag :div, '', map_tag_attrs.merge(:class => "stacked map") %>
         <div class="stacked">
           <%= raw taxon.wikipedia_summary %>
-          <%= link_to "Read the full Wikipedia description", taxon, :class => "readmore" %>
+          <%= link_to t(:read_the_full_wikipedia), taxon, :class => "readmore" %>
         </div>
         <div class="stacked">
-          <h3>Place Notes</h3>
+          <h3><%=t :place_notes %></h3>
           <%= listed_taxon.description %>
           <% if listed_taxon.description.blank? -%>
             <div class="noresults ui description">
-              No one has added any notes for this place.
-              <%= link_to "Add some now", listed_taxon, :class => "readmore" %>
+              <%=t :no_one_has_added_any %>
+              <%= link_to t(:add_some_now), listed_taxon, :class => "readmore" %>
             </div>
           <% else %>
-            <%= link_to "Edit notes", listed_taxon, :class => "readmore" %>
+            <%= link_to t(:edit_notes), listed_taxon, :class => "readmore" %>
           <% end -%>
         </div>
 
@@ -135,7 +135,7 @@
           <div class="inlineblock">
             <%= link_to image_tag(photo.try_methods(:medium_url, :small_url), :class => "medium photo"), photo.becomes(Photo) %>
             <div class="meta">
-              Photo: <%= link_to photo.attribution, native_url_for_photo(photo) %>
+              <%=t :photo %>: <%= link_to photo.attribution, native_url_for_photo(photo) %>
             </div>
           </div>
         <% end %>
@@ -143,7 +143,7 @@
 
       <div id="<%= dom_id(listed_taxon, 'observationstab') %>" class="mini observations">
         <div class="loading status">
-          Loading...
+          <%=t :loading %>
         </div>
       </div>
     </div>

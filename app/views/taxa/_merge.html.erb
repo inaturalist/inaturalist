@@ -27,7 +27,7 @@
     </tr>
     
     <tr>
-      <th>Name</th>
+      <th><%= t(:name) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <%= taxon_image taxon %>
@@ -37,7 +37,7 @@
     </tr>
 
     <tr>
-      <th>Schemes</th>
+      <th><%= t(:schemes) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <% for taxon_scheme in taxon.taxon_schemes %>
@@ -48,7 +48,7 @@
     </tr>
 
     <tr>
-      <th>Sources</th>
+      <th><%= t(:sources) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <%= citation_for taxon.source %>
@@ -57,7 +57,7 @@
     </tr>
     
     <tr>
-      <th>Associations</th>
+      <th><%= t(:associations) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <ul>
@@ -71,7 +71,7 @@
     </tr>
     
     <tr>
-      <th>Photos</th>
+      <th><%= t(:photos) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <% for photo in taxon.photos %>
@@ -82,7 +82,7 @@
     </tr>
     
     <tr>
-      <th>Places</th>
+      <th><%= t(:places) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <ul>
@@ -95,7 +95,7 @@
     </tr>
     
     <tr>
-      <th>All Names</th>
+      <th><%= t(:all_names) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <ul>
@@ -108,7 +108,7 @@
     </tr>
     
     <tr>
-      <th>Classification</th>
+      <th><%= t(:classification) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <%= render :partial => 'classification_list', :object => taxon %>
@@ -117,7 +117,7 @@
     </tr>
     
     <tr>
-      <th>Colors</th>
+      <th><%= t(:colors) %></th>
       <% for taxon in [@keeper, @taxon] %>
         <td>
           <%= taxon.colors.blank? ? "&nbsp;" : taxon.colors.map(&:value).join(', ') %>

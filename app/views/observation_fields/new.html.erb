@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "New observation field" %>
+  <%= @title = t(:new_observation_field) %>
 <%- end -%>
 <div class="pageheader">
   <div class="breadcrumbs">
@@ -10,4 +10,4 @@
 
 <%= render :partial => 'form' %>
 
-<%= link_to 'Cancel', observation_fields_path, :class => "button" %>
+<%= link_to t(:cancel), observation_fields_path, :class => "button" %>

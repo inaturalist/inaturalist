@@ -129,7 +129,7 @@ var ObservationFields = {
   showObservationFieldsDialog: function(options) {
     options = options || {}
     var url = options.url || '/observations/'+window.observation.id+'/fields',
-        title = options.title || 'Observation fields',
+        title = options.title || I18n.t('observation_fields'),
         originalInput = options.originalInput
     var dialog = $('#obsfielddialog')
     if (dialog.length == 0) {

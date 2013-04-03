@@ -80,7 +80,7 @@ module ApplicationHelper
       already_friends = user.friendships.find_by_friend_id(potential_friend.id)
     end
     
-    unfriend_link = link_to "Stop following #{potential_friend.login}", 
+    unfriend_link = link_to t(:stop_following_user, :user => potential_friend.login), 
       url_options.merge(:remove_friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
@@ -90,7 +90,7 @@ module ApplicationHelper
         :class => "unfriend_link",
         :style => already_friends ? "" : "display:none"
       )
-    friend_link = link_to "Follow #{potential_friend.login}", 
+    friend_link = link_to t(:follow_user, :user=> potential_friend.login), 
       url_options.merge(:friend_id => potential_friend.id), 
       html_options.merge(
         :remote => true,
@@ -587,7 +587,7 @@ module ApplicationHelper
       user_name = record.user.login if user_name.blank?
       s = "&copy; #{user_name}"
       if record.license.blank?
-        s += "#{separator}all rights reserved"
+        s += "#{separator}#{t(:all_rights_reserved)}"
       else
         s += separator
         s += content_tag(:span) do
@@ -596,7 +596,7 @@ module ApplicationHelper
           else
             link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) + " "
           end
-          c + link_to("some rights reserved", url_for_license(record.license))
+          c + link_to(t(:some_rights_reserved), url_for_license(record.license))
         end
       end
     elsif record.is_a? Photo
@@ -612,7 +612,7 @@ module ApplicationHelper
         end
 
         if record.copyrighted?
-          s += "#{separator}all rights reserved"
+          s += "#{separator}#{t(:all_rights_reserved)}"
         elsif record.creative_commons?
           s += separator
           code = Photo.license_code_for_number(record.license)
@@ -623,7 +623,7 @@ module ApplicationHelper
             else
               link_to(image_tag("#{code}_small.png"), url) + " "
             end
-            c.html_safe + link_to("some rights reserved", url)
+            c.html_safe + link_to(t(:some_rights_reserved), url)
           end
         end
       end
@@ -779,8 +779,8 @@ module ApplicationHelper
   
   def commas_and(list)
     return list.first.to_s.html_safe if list.size == 1
-    return list.join(' and ').html_safe if list.size == 2
-    "#{list[0..-2].join(', ')}, and #{list.last}".html_safe
+    return list.join(" #{t :and} ").html_safe if list.size == 2
+    "#{list[0..-2].join(', ')}, #{t :and} #{list.last}".html_safe
   end
   
   def update_cached(record, association)

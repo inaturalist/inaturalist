@@ -19,7 +19,7 @@
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
-  <meta property="og:description" name="description" content="Learn about the species that live in <%= @place.display_name %>!"/> 
+  <meta property="og:description" name="description" content='<%= t(:learn_about_the_species_live_in) + "#{@place.display_name}" %>!'/> 
   <meta property="og:image" content="<%= uri_join(root_url, path_to_image(CONFIG.logo_icon_square_big)) %>"/> 
 <%- end -%>
 
@@ -56,12 +56,12 @@
     <%= render :partial => 'places/search_form', :locals => {:q => ''} %>
   </div>
   <div class="breadcrumbs">
-    <strong><%= link_to "Places", places_path, :class => 'crumb' %></strong>
+    <strong><%= link_to t(:places), places_path, :class => 'crumb' %></strong>
     <span class="description">&gt;</span>
     <% @place.ancestors.each do |ancestor| %>
       <%- link_txt = capture do -%>
         <%= ancestor.name %>
-        <span class="small description">(<%= ancestor.place_type_name %>)</span>
+        <span class="small description">(<%=t ancestor.place_type_name %>)</span>
       <%- end -%>
       <%= link_to link_txt, ancestor, :class => 'crumb' %>
       <span class="description">&gt;</span>
@@ -70,7 +70,7 @@
   <div id="map" style="width: 100%; height: 100px"></div>
   <h2>
     <%= link_to h(@place.display_name), @place %>
-    <span class="small description"><%= @place.place_type_name %></span>
+    <span class="small description"><%=t @place.place_type_name %></span>
   </h2>
   <div id="placephotos"></div>
 </div>
@@ -79,15 +79,15 @@
   <div id="metalinks" class="meta right">
     <%-
       pieces = []
-      pieces << link_to("embed place widget", place_widget_path(@place), :rel => "nofollow") if @place.check_list
-      pieces << link_to("edit place", edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
+      pieces << link_to(t(:embed_place_widget), place_widget_path(@place), :rel => "nofollow") if @place.check_list
+      pieces << link_to(t(:edit_place), edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
     -%>
     <%=raw pieces.join(' | ') %>
   </div>
   <ul>
-    <li><a href="#guidetab"><span>Species Guide</span></a></li>
-    <li><a href="#observationstab"><span>Observations</span></a></li>
-    <li><a href="#abouttab"><span>About <%= @place.name %></span></a></li>
+    <li><a href="#guidetab"><span><%=t :species_guide %></span></a></li>
+    <li><a href="#observationstab"><span><%=t :observations %></span></a></li>
+    <li><a href="#abouttab"><span><%=t :about_x, :x => @place.name %></span></a></li>
   </ul>
   
   <div id="guidetab">
@@ -130,20 +130,20 @@
   <div id="abouttab">
     <div class="container">
       <div class="column span-8 append-1">
-        <h3>Flickr Photos</h3>
+        <h3><%= t(:flickr_photos) %></h3>
         <div class="stacked photos">
-          <div class="loading status">Loading Flickr photos...</div>
+          <div class="loading status"><%= t(:loading_flikr_photos) %></div>
         </div>
       </div>
       
-      <%- wikipedia_url = "http://en.wikipedia.org/wiki/#{@place.wikipedia_name}" -%>
+      <%- wikipedia_url = @wikipedia.url_for_title(@place.wikipedia_name) -%>
       <div class="last column span-15">
-        <h3><%= link_to "Wikipedia", wikipedia_url %> Description</h3>
+        <h3><%= link_to "Wikipedia", wikipedia_url %> <%= t(:desription) %></h3>
         <div class="wikipedia_description">
-          <div class="loading status">Loading Wikipedia description...</div>
+          <div class="loading status"> <%= t(:loading_wikipedia_description) %></div>
           <div class="noresults description" style="display:none">
-            There is no Wikipedia page matching "<%= @place.wikipedia_name %>."  Would you like to
-            <%= link_to "start one", wikipedia_url %>?
+            <%= t(:there_is_no_wikipedia_page_matching) + " #{@place.wikipedia_name} "+ t(:would_you_like_to) %>
+            <%= link_to t(:start_one), wikipedia_url %>?
           </div>
         </div>
       </div>
@@ -153,12 +153,12 @@
 
 <div class="meta right">
   <% if @place.user -%>
-    Place added to <%= CONFIG.site_name_short %> by 
+    <%= t(:place_added_to_inat_by, :site_name => SITE_NAME_SHORT) %>
     <%= link_to user_image(@place.user), @place.user %>
     <%= link_to you_or_login(@place.user), @place.user %>
     on
     <%= @place.created_at.to_date.to_s(:long) %>
     |
   <% end -%>
-  <%= link_to "Add a new place", new_place_path, :class => "readmore" %>
+  <%= link_to t(:add_new_place), new_place_path, :class => "readmore" %>
 </div>

@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%=h @parent_display_name %>'s Journal
+  <%=h t(:x_journal, :user => @parent_display_name) %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
@@ -18,12 +18,12 @@
     
     <% if @posts.empty? %>
       <center id="noposts" class="readable description">
-        No posts yet!
+        <%= t(:no_post_yet) %>
         <% if (@parent.is_a?(Project) && @display_project.editable_by?(current_user)) %>
-          <%= link_to "Add one!", new_project_journal_post_path(@parent_slug), 
+          <%= link_to t(:add_one), new_project_journal_post_path(@parent_slug), 
                       :id => "newpostbutton", :class => "default button"%>
         <% elsif logged_in? && current_user.login == @parent_display_name -%>
-          <%= link_to "Add one!", new_journal_post_path(@parent_slug), 
+          <%= link_to t(:add_one), new_journal_post_path(@parent_slug), 
             :class => "default button" %>
         <% end -%>
       </center>
@@ -35,13 +35,13 @@
 <div id="sidecol" class="last column span-7">  
   <% unless @drafts.blank? -%>
     <div class="box">
-      <h3>Drafts</h3>
+      <h3><%= t(:drafts) %></h3>
       <ul>
         <% for post in @drafts %>
           <li>
             <%= link_to h(post.title), edit_journal_post_path(current_user.login, post) %>
             <div class="meta">
-              <span class="label">Created on</span>
+              <span class="label"><%=t(:created_on)%></span>
               <span class="date"><%= post.created_at.to_s(:long) %></span>
             </div>
           </li>

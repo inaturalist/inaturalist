@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%=h @parent_display_name %>'s Journal &middot; Archives for <%= @target_date.strftime('%B %Y') %>
+  <%= t(:x_journal_archives_for_y, :user => @display_user.login) %>  <%= @target_date.strftime('%B %Y') %>
 <%- end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag "posts" %>
@@ -14,15 +14,15 @@
 <%= render :partial => "posts/header", :locals => { :include_breadcrumbs => true } %>
 
 <div id="postscol" class="column span-16 append-1">
-  <h2 class="title">Journal Archives for <%= @target_date.strftime('%B %Y') %></h2>
+  <h2 class="title"><%= t(:journal_archives_for) %> <%= @target_date.strftime('%B %Y') %></h2>
   <div id="postdates" class="posts_by_date">
     <%= render :partial => 'posts_by_date' %>
     
     <% if @posts.empty? %>
       <center id="noposts" class="readable description">
-        No posts yet!
+        <%= t(:no_post_yet) %>
         <% if logged_in? && current_user.login == @display_user.login -%>
-          <%= link_to "Add one!", new_journal_post_path(@display_user.login), 
+          <%= link_to t(:add_one), new_post_path(@display_user.login), 
             :class => "default button" %>
         <% end -%>
       </center>

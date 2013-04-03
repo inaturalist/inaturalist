@@ -5,7 +5,7 @@ class ObservationsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
   caches_action :index, :by_login, :project,
     :expires_in => WIDGET_CACHE_EXPIRATION,
-    :cache_path => Proc.new {|c| c.params}, 
+    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
     :if => Proc.new {|c| 
       c.session.blank? && # make sure they're logged out
       c.request.format && # make sure format corresponds to a known mime type
@@ -13,7 +13,7 @@ class ObservationsController < ApplicationController
       c.request.url.size < 250}
   caches_action :of,
     :expires_in => 1.day,
-    :cache_path => Proc.new {|c| c.params},
+    :cache_path => Proc.new {|c| c.params.merge(:locale => I18n.locale)},
     :if => Proc.new {|c| c.request.format != :html }
   cache_sweeper :observation_sweeper, :only => [:create, :update, :destroy]
   
@@ -871,7 +871,7 @@ class ObservationsController < ApplicationController
         @rows << row
         row_num += 1
         if row_num >= max_rows
-          flash[:notice] = "You have a beehive of observations!<br /> We can only take your first #{max_rows} observations in every CSV"
+          flash[:notice] = t(:too_many_observations_csv, :max_rows => max_rows)
           break
         end
       end

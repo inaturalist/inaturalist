@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  Your Home
+  <%= t(:your_home) %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'identifications', "lists", 'lists/show_listed_taxa', 'dashboard' %>
@@ -88,7 +88,7 @@
 <% end -%>
 
 <div id="pageheader">
-  <h2>Welcome, <%= current_user.login %>!</h2>
+  <h2><%=t :welcome_comma! %> <%= current_user.login %>!</h2>
   <%= render :partial => 'users/subnav', :locals => { :user => current_user } %>
 </div>
 
@@ -105,24 +105,22 @@
         <% if params[:page].blank? -%>
           <p>
             <% if current_user.friendships.count == 0 -%>
-              Your dashboard helps you keep track of what people are doing on iNat.
-              To follow someone's updates, click the <strong>"Follow [name]"</strong>
-              link in the header when viewing their observations or profile.
-              <%= link_to "Find some people to follow", people_path, :class => "readmore" %>
+              <%=t :your_dashboard_helps_you %>
+              <%= link_to t(:find_some_people_to_follow), people_path, :class => "readmore" %>
             <% else %>
-              None of the people you follow have made any updates yet!
+              <%=t :none_of_the_people_you_follow_have_any_updates_yet %>
             <% end -%>
           </p>
 
-          <p>Here are some things you can do in the meantime:</p>
+          <p><%=t :here_are_some_things_you_can_do_in_the_meantime %>:</p>
           <ul class="readable leafylist">
             <% unless current_user.flickr_identity %>
-              <li><%= link_to "Link your Flickr Account to #{CONFIG.site_name}", auth_url_for('flickr') %></li>
+              <li><%= link_to t(:link_your_flickr_account_with_inat, :site_name => SITE_NAME_SHORT), auth_url_for('flickr') %></li>
             <% end %>
-            <li><%= link_to "Browse your observations", observations_by_login_path(current_user.login) %></li>
-            <li><%= link_to "Add new observations", :controller => 'observations', :action => 'new' %></li>
-            <li><%= link_to "Explore everyone's observations", observations_path %></li>
-            <li><%= link_to "Check out your Life List", lists_by_login_path(current_user.login) %></li>
+            <li><%= link_to t(:browse_your_observations), observations_by_login_path(current_user.login) %></li>
+            <li><%= link_to t(:add_new_observations), :controller => 'observations', :action => 'new' %></li>
+            <li><%= link_to t(:explore_everyones_observations), observations_path %></li>
+            <li><%= link_to t(:check_out_your_life_list), lists_by_login_path(current_user.login) %></li>
           </ul>
         <% else %>
           <p class="description">

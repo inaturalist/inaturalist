@@ -10,7 +10,7 @@
 
 <% content_for(:title) do %>
   <% @title = capture do %>
-    Taxonomic changes
+    <%= t(:taxonomic_changes).titleize %>
     <% if @taxon -%>
       for
       <i><%= link_to @taxon.name, taxon_path(@taxon), "data-taxon-id" => @taxon.id %></i>
@@ -59,7 +59,7 @@
 <div class="column span-6">
   <%= form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f| %>
     <fieldset id="change_types" class="">
-      <legend>Change Types</legend>
+      <legend><%=t :change_types %></legend>
       <% %w(split merge swap stage drop).each do |type| %>
         <%= f.check_box type, 
           :wrapper => {:class => "inlineblock"}, 

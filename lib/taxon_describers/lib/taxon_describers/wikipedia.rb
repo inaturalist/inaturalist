@@ -28,7 +28,7 @@ module TaxonDescribers
     end
 
     def wikipedia
-      @wikipedia ||= WikipediaService.new
+      @wikipedia ||= WikipediaService.new(:locale => "en")
     end
 
     def page_url(taxon)

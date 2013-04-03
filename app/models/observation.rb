@@ -58,27 +58,21 @@ class Observation < ActiveRecord::Base
   OBSCURED = "obscured"
   GEOPRIVACIES = [OBSCURED, PRIVATE]
   GEOPRIVACY_DESCRIPTIONS = {
-    nil => "Everyone can see the coordinates unless the taxon is threatened.",
-    OBSCURED => "Public coordinates shown as a random point within " + 
-      "#{M_TO_OBSCURE_THREATENED_TAXA / 1000}KM of the true coordinates. " +
-      "True coordinates are only visible to you and the curators of projects " + 
-      "to which you add the observation.",
-    PRIVATE => "Coordinates completely hidden from public maps, true " + 
-      "coordinates only visible to you and the curators of projects to " + 
-      "which you add the observation. Observations with private " + 
-      "coordinates will still be used to verify place check lists.",
+    nil => :open_description,
+    OBSCURED => :obscured_description, 
+    PRIVATE => :private_description,
   }
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
   QUALITY_GRADES = [CASUAL_GRADE, RESEARCH_GRADE]
   
   LICENSES = [
-    ["CC-BY", "Attribution", "This license lets others distribute, remix, tweak, and build upon your work, even commercially, as long as they credit you for the original creation. This is the most accommodating of licenses offered. Recommended for maximum dissemination and use of licensed materials."],
-    ["CC-BY-NC", "Attribution-NonCommercial", "This license lets others remix, tweak, and build upon your work non-commercially, and although their new works must also acknowledge you and be non-commercial, they don't have to license their derivative works on the same terms."],
-    ["CC-BY-SA", "Attribution-ShareAlike", "This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. All new works based on yours will carry the same license, so any derivatives will also allow commercial use."],
-    ["CC-BY-ND", "Attribution-NoDerivs", "This license allows for redistribution, commercial and non-commercial, as long as it is passed along unchanged and in whole, with credit to you."],
-    ["CC-BY-NC-SA", "Attribution-NonCommercial-ShareAlike", "This license lets others remix, tweak, and build upon your work non-commercially, as long as they credit you and license their new creations under the identical terms."],
-    ["CC-BY-NC-ND", "Attribution-NonCommercial-NoDerivs", "This license is the most restrictive of the six main licenses, only allowing others to download your works and share them with others as long as they credit you, but they can't change them in any way or use them commercially."]
+    ["CC-BY", :cc_by_name, :cc_by_description],
+    ["CC-BY-NC", :cc_by_nc_name, :cc_by_nc_description],
+    ["CC-BY-SA", :cc_by_sa_name, :cc_by_sa_description],
+    ["CC-BY-ND", :cc_by_nd_name, :cc_by_nd_description],
+    ["CC-BY-NC-SA",:cc_by_nc_sa_name, :cc_by_nc_sa_description],
+    ["CC-BY-NC-ND", :cc_by_nc_nd_name, :cc_by_nc_nd_description]
   ]
   LICENSE_CODES = LICENSES.map{|row| row.first}
   LICENSES.each do |code, name, description|

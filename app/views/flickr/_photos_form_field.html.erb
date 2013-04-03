@@ -1,16 +1,15 @@
-<label for="flickr_photo_search_<%= i %>">Did you put any photos on Flickr?</label>
+<label for="flickr_photo_search_<%= i %>"><%=t :did_you_photos_flickr? %></label>
 <% unless current_user.flickr_identity %>
 <div>
   <br/>
-  <span>We currently support Flickr for image hosting and hope to add other image hosts shortly.</span>
+  <span><%=t :we_support_flickr %></span>
   <br/><br/>
-<%= link_to "You can activate your Flickr account with #{CONFIG.site_name} to add\
-             photos by clicking on this link.",
-            auth_url_for('flickr') %>
+  <%= link_to  t(:linked_flickr_howto, :site_name => CONFIG.site_name),
+              auth_url_for('flickr') %>
 </div>
 <% else %>
 <%= 
-  link_to_function("Yes, find them!", nil, :id => "find_photos_link_#{i}", :class => 'button') do |page|
+  link_to_function(t(:yes_find_them!), nil, :id => "find_photos_link_#{i}", :class => 'button') do |page|
     page["find_photos_link_#{i}".to_sym].hide
     page.visual_effect(:appear, "flickr_photos_field_#{i}")
     page << "queryPhotos('', #{i}, $('#flickr_photos_status_#{i}').get(0));"
@@ -20,9 +19,9 @@
   <div class="clear buttonrow">
     <%= text_field_tag "flickr_photo_search_#{i}",
                        "",
-                       :title => "Search your photos",
+                       :title => t(:search_your_photos),
                        :class => "text flickr_photo_search_input" %>
-    <input type="button" class="flickr_search_button" id="flickr_search_button_<%= i %>" value="Search"/>
+    <input type="button" class="flickr_search_button" id="flickr_search_button_<%= i %>" value="<%=t :search %>"/>
   </div>
   <div id="flickr_photos_status_<%= i %>" class="status flickr_photo_status" style="display:none"></div>
   <div id="flickr_photos_<%= i %>" class="flickr_photo_display"></div>

@@ -23,9 +23,16 @@
                                "jquery/plugins/inat/taxon_selectors.js",
                                "jquery/plugins/jquery.timeago.js",
                                "jquery/plugins/jquery.scrollTo-min.js",
+                               "i18n.min",
+                               "translations",
                                'rails',
                                'application', 
                                'inaturalist' %>
+    <script type="text/javascript">
+      I18n.defaultLocale = "en"
+      I18n.locale = "<%= I18n.locale %>"
+      I18n.fallbacks = true
+    </script>
     <%= csrf_meta_tag %>
     <% if CONFIG.twitter && CONFIG.twitter.username -%>
       <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">

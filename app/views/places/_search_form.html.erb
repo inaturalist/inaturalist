@@ -3,7 +3,7 @@
   css_class ||= "clear buttonrow"
 -%>
 <%= form_tag(place_search_path, :method => :get, :class => css_class) do %>
-  <%= label :q, 'Find a place' %>
+  <%= label :q, t(:find_a_place) %>
   <%= text_field_tag :q, q, :class => 'text' %>
-  <%= submit_tag 'Search', :class => 'last default button' %>
+  <%= submit_tag t(:search), :class => 'last default button' %>
 <% end %>

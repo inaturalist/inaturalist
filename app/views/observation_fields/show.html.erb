@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observation field: #{@observation_field.name}" %>
+  <%= @title = t(:observation_field)+": #{@observation_field.name}" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css">
@@ -15,7 +15,7 @@
           <%= link_to 'Edit field', edit_observation_field_path(@observation_field), :class => "ui description" %>
         </span>
       <% end -%>
-      <%= link_to 'Back to observation fields', observation_fields_path, :class => 'back crumb' %>
+      <%= link_to t(:back_to_observation_fields), observation_fields_path, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   </div>
   
@@ -28,7 +28,7 @@
 
 <div class="stacked">
   <div class="meta ui">
-    <b>Datatype:</b>
+    <b><%=t :datatype %>:</b>
     <%=h @observation_field.datatype %>
   </div>
   <% unless @observation_field.allowed_values.blank? -%>
@@ -38,7 +38,7 @@
     </div>
   <% end -%>
   <div class="meta ui">
-    <b>Created by:</b>
+    <b><%=t :created_by %>:</b>
     <%= link_to user_image(@observation_field.user), @observation_field.user %>
     <%= link_to_user @observation_field.user %>
   </div>
@@ -65,7 +65,7 @@
   </div>
 <% end -%>
 <h3>
-  Observations specifying this field
+  <%=t :observations_specifying_this_field %>
   <% if @value != "any" -%>
     with "<%= @value %>"
   <% end -%>
@@ -73,7 +73,7 @@
 
 <% if @observations.blank? -%>
   <div class="meta noresults">
-    No observations yet.
+    <%=t :no_observations_yet %>
   </div>
 <% else %>
   <table width="100%">

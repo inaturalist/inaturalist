@@ -77,9 +77,9 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html do
         if @comment.valid?
-          flash[:notice] = "Your comment was saved."
+          flash[:notice] = t(:your_comment_was_saved)
         else
-          flash[:error] = "We had trouble saving your comment: " +
+          flash[:error] = t(:we_had_trouble_saving_comment) +
             @comment.errors.full_messages.join(', ')
         end
         redirect_to_parent

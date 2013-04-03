@@ -8,7 +8,7 @@
        class="inat-widget-small">
   <% if @observations.size == 0 %>
     <% unless silence == "true" %>
-      <span class="inat-value">No observations</span>
+      <span class="inat-value"><%=t :no_observations %></span>
     <% end %>
   <% end %>
   <% for observation in @observations %>

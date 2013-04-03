@@ -116,11 +116,19 @@ module UsersHelper
       "#{user.login}'s"
     end
   end
+
+  def possessive_noun(user, noun, options = {})
+    if is_me?(user)
+      t(:second_person_possessive_singular, :noun => noun)
+    else
+      t(:third_person_possessive_singular, :noun => noun, :object_phrase => user.login)
+    end
+  end
   
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
     if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user
-      capitalize_it ? 'You' : 'you'
+      capitalize_it ? t(:you).capitalize : t(:you)
     else
       user.login
     end

@@ -1,13 +1,13 @@
-<h2>Reset your password</h2>
+<h2> <%= t(:reset_your_password) %> </h2>
 
 <%= form_for(:user, :builder => DefaultFormBuilder, :url => { :action => 'update_after_forgetting' }) do |f| %>
   <%= f.error_messages %>
 
-  <p>Please enter a new password and confirm it.</p>
+  <p> <%= t(:please_enter_a_new_pass) %> </p>
   
   <%= f.password_field :password, :class => "text" %>
   <%= f.password_field :password_confirmation, :class => "text" %>
   <%= hidden_field_tag :reset_code, params[:reset_code] %>
-  <%= f.submit "Submit", :class => "default button" %>
+  <%= f.submit t(:submit), :class => "default button" %>
   
 <% end %>

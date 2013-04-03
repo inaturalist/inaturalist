@@ -5,7 +5,7 @@
     <%= render :partial => "shared/taxon", :locals => { 
       :taxon => taxon,
       :link_url => taxon } %>
-    doesn't have a default photo yet.
-    <%= link_to "Want to add one?", taxon %>
+    <%= t(:doesnt_have_default_photo) %>
+    <%= link_to t(:want_to_add_one), taxon %>
   </div>
 </div>

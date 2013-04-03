@@ -6,7 +6,7 @@
     <% end %>
     <div class="column span-7">
       <div class="field species_guess_field">
-        <%= o.label :species_guess, "What did you see?" %>
+        <%= o.label :species_guess, t(:what_did_you_see?) %>
         <%= o.text_field(:species_guess, :class => 'species_guess text') %>
         <%-
           alt = if observation.taxon
@@ -18,16 +18,16 @@
         <%= o.hidden_field(:taxon_id, :alt => alt, :rel => (observation.taxon ? taxon_image_url(observation.taxon) : nil)) %>
         <div class="id_please">
           <%= o.check_box(:id_please) %>
-          <%= o.label(:id_please, "ID Please!") %>
+          <%= o.label(:id_please, t(:full_id_please?)) %>
         </div>
       </div>
       
       <div class="field">
-        <%= link_to_function "Browse all species", "$('#taxonchooser').dialog('open')" %>
+        <%= link_to_function t(:browse_all_species), "$('#taxonchooser').dialog('open')" %>
       </div>
       
       <div class="field<%= ' error' if observation.errors[:observed_on] && !observation.errors[:observed_on].empty? %>">
-        <%= o.label :observed_on_string, "When did you see it?" %>
+        <%= o.label :observed_on_string, t(:when_did_you_see_it?) %>
         <%= o.text_field(:observed_on_string, 
                          :class => 'observed_on_string text') %>
         <%= o.error_message_on(:observed_on) %>
@@ -38,14 +38,14 @@
       </div>
       
       <div class="field">
-        <%= o.label(:description, 'Description') %>
+        <%= o.label(:description, t(:description)) %>
         <%= o.text_area(:description, :class => "text") %>
       </div>
       
       <div class="field">
-        <%= o.label :tag_list, "Tags" %>
+        <%= o.label :tag_list, t(:tags) %>
         <span class="small description">
-          Comma-separated, please
+          <%=t :comma_separated_please %>
         </span>
         <% helptip_for "tags" do %>
           Tags are a way to organize your observations. For example, you might
@@ -57,7 +57,7 @@
     </div>
     <div class="column span-9">
       <div class="place_guess_field field">
-        <%= o.label(:place_guess, 'Where were you?') %>
+        <%= o.label(:place_guess, t(:where_were_you?)) %>
         <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => "Name of the place you made the observation") %>
       </div>
       <div id="coordinates_<%= i %>" class="latlonfields status stacked">
@@ -102,8 +102,8 @@
           <p>Changing the geoprivacy alters how other people see the location of your observation.</p>
           <dl>
             <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-              <dt><%= privacy || "open" %></dt>
-              <dd><%= description %></dd>
+              <dt><%= t( privacy ) || t(:open) %></dt>
+              <dd><%= t(description) %></dd>
             <% end %>
           </dl>
         </div>
@@ -112,7 +112,7 @@
     <div class="last column span-8">
       <div class="field">
         <label>
-          Add photos
+          <%=t :add_photos %>
         </label>
         
         <div id="photos_<%= i %>" class="observation_photos">
@@ -141,25 +141,22 @@
           <div class="column-separator"><img src="/images/logo-eee-15px.png"></div>
           
           <p class="ui description">
-            We also support <a href="http://flickr.com">Flickr</a>,
-            <a href="http://picasaweb.google.com">Picasa</a>, and
-            <a href="http://facebook.com">Facebook</a>
-            for image hosting.
+            <%= raw t :we_also_support %>
           </p>
           
           <div class="clear buttons">
-            <%= link_to "Link your Flickr account",
+            <%= link_to t(:link_your_flickr_account),
               {:controller => 'flickr', :action => 'options'}, :class => "button" %>
-            <%= link_to "Link your Picasa account",
+            <%= link_to t(:link_your_picasa_account),
               {:controller => 'picasa', :action => 'options'}, :class => "button" %>
-            <%= link_to "Link your Facebook account", "/auth/facebook", :class => "button" %>
+            <%= link_to t(:link_your_facebook_account), "/auth/facebook", :class => "button" %>
           </div>
 
         <% end %>
         
         <div>
           <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
-            <%= link_to_function "Add taxonomic tags to selected Flickr photos &raquo;".html_safe,
+            <%= link_to_function t(:add_taxonomic_tags_to).html_safe,
               "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
                 "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
               ").join('&');" +
@@ -169,7 +166,7 @@
 
           <% unless observation.photos.empty? || observation.new_record? -%>
             <br/>
-            <%= link_to "Re-order photos &raquo;".html_safe, edit_observation_photos_path(observation) %>
+            <%= link_to t(:re_order_photos).html_safe, edit_observation_photos_path(observation) %>
           <% end -%>
         </div>
       </div>

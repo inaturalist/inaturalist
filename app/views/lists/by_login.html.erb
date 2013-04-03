@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  <%= @title = "#{possessive(@selected_user, :capitalize => @selected_user == current_user)} Lists" %>
+  <%= @title = "#{possessive(@selected_user, :capitalize => @selected_user == current_user)} "+  t(:lists) %>
 <% end -%>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'barchart', 'lists' %>
@@ -51,7 +51,7 @@
 <%- tools = capture do -%>
   <% if logged_in? && current_user == @selected_user %>
     <div id="tools" class="buttonrow">
-      <%= link_to 'New List', new_list_path, :id => 'newlistbutton', :class => 'default button'%>
+      <%= link_to t(:new_list), new_list_path, :id => 'newlistbutton', :class => 'default button'%>
     </div>
   <% end %>
 <% end %>
@@ -65,7 +65,7 @@
           <% cache List.icon_preview_cache_key(list) do %>
             <a href="<%= list_path(list) %>" class="attr photos column span-3 <%= 'empty' if @iconic_taxa_for[list.id].blank? %>">
               <% if @iconic_taxa_for[list.id].blank? %>
-                No taxon images
+                <%=t :no_taxa_listed %>
               <% else %>
                 <% for taxon in @iconic_taxa_for[list.id] %>
                   <%= taxon_image(taxon, :width => 32) %>
@@ -78,7 +78,7 @@
 
             <div class="attr readable description">
               <%= truncate(strip_tags(list.description), :length => 75) %>
-              <%= link_to "View &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
+              <%= link_to "#{t(:view)} &raquo;".html_safe, list_path(list), :style => "white-space: nowrap" %>
             </div>
 
             <div class="barchart">
@@ -93,7 +93,7 @@
             <% if list.is_a?(LifeList) && !list.rules.empty? && list.rules.first.operand.is_a?(Taxon) -%>
               <div class="life_list_taxon description">
                 <%= taxon_image(list.rules.first.operand) %>
-                Life list of
+                <%=t :life_list_of %>
                 <%= render :partial => 'shared/taxon', 
                            :locals => { :taxon => list.rules.first.operand,
                                         :link_url => url_for(list.rules.first.operand) } %>

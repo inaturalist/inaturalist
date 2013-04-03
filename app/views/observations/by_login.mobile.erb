@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = "Observations by #{you_or_login(@selected_user)}" %>
+  <%= @title = t(:observations_by_user, :user=> "#{you_or_login(@selected_user)}") %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "observations" %>

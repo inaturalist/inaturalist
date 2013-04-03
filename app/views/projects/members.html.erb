@@ -36,7 +36,7 @@
 <div id="members" style="margin-bottom: 10px" class="column span-24">
   <% if @project_users.blank? -%>
     <div class="noresults">
-      No members yet.
+      <%= t(:no_members_yet) %>
     </div>
   <% else %>
     <div class="column span-16">

@@ -14,11 +14,11 @@
     <% end -%>
   </div>
   <div class="meta">
-    <span class="label">Posted on</span>
+    <span class="label"><%= t(:posted_on) %></span>
     <% if post.published_at -%>
       <span class="date"><%= post.published_at.to_s(:long) %></span>
     <% else -%>
-      <span>DRAFT!</span>
+      <span><%= t(:draft) %></span>
     <% end -%>
     <span class="label">by</span>
     <% if post.user -%>
@@ -36,6 +36,6 @@
     <span class="count"><%= post.comments.size %></span>
     comments
     |
-    <%= link_to 'Leave a comment', post_url + "#new_comment" %>
+    <%= link_to t(:leave_a_comment), post_url + "#new_comment" %>
   </div>
 </div>

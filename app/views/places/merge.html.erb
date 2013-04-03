@@ -55,10 +55,9 @@
   <div class="breadcrumbs">
     <strong><%= link_to "&laquo; Back to #{@place.name}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
-  <h2>Merging Places</h2>
+  <h2><%= t(:merging_places) %></h2>
   <p class="description">
-    Merge two places together. All species on the checklists will be merged,
-    as well as any geographic data.
+    <%= t(:merge_two_places_together) %>
   </p>
 </div>
 
@@ -69,12 +68,12 @@
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
-      <td><label for="merge_target_name">Find a Place</label></td>
+      <td><label for="merge_target_name"><%= t(:find_a_place) %></label></td>
     </tr>
     <tr>
       <th>&nbsp;</th>
       <th><%= link_to h(@place.name), @place %></th>
-      <th>What to keep</th>
+      <th><%= t(:what_to_keep) %></th>
       <th>
         <input type="text" name="with" value="<%= @merge_target.id if @merge_target %>" id="merge_target_id" placeholder="Type a place name" data-json="<%= @merge_target.to_json(:methods => [:place_type_name]).html_safe %>">
       </th>
@@ -106,7 +105,7 @@
 </table>
 
 <div class="buttonrow">
-  <%= submit_tag 'Merge', :class => 'default button', :confirm => "Are you sure you want to merge these places?  This cannot be undone." %>
-  <%= link_to "Cancel", @place, :class => 'button' %>
+  <%= submit_tag t(:merge), :class => 'default button', :confirm => t(:are_you_sure_merge_these_places) %>
+  <%= link_to t(:cancel), @place, :class => 'button' %>
 </div>
 <% end %>

@@ -3,8 +3,8 @@ class QualityMetric < ActiveRecord::Base
   belongs_to :observation
   
   METRIC_QUESTIONS = {
-    "wild" => "Is the organism wild/naturalized?",
-    "location" => "Does the location seem accurate?"
+    "wild" => :is_the_organism_wild,
+    "location" => :does_the_location_seem_accurate
   }
   METRICS = METRIC_QUESTIONS.keys
   METRICS.each do |metric|

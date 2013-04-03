@@ -1,7 +1,7 @@
 <%- content_for(:title) do -%>
-  Facebook Options
+  <%=t :facebook_options %>
 <%- end -%>
-<h2>Your Facebook Account Information</h2>
+<h2><%=t :facebook_account_information %></h2>
 
 <div class="column span-13">
   <% if current_user.facebook_identity -%>
@@ -11,31 +11,22 @@
       <% end -%>
     </p>
     <p>
-      Your <%= CONFIG.site_name %> account is currently linked to your Facebook account.
+      <%=t :linked_facebook, :site_name => SITE_NAME %>
     </p>
     <p>
-      Keeping your <%= CONFIG.site_name %> account linked to your Facebook account allows you to
-      add multiple photos to your observations.  Of course, if you ever want
-      <%= CONFIG.site_name %> and Facebook to break up, we won't stop you, you just won't be
-      able to add photos. Sometimes this might be for the best, like if you create
-      a new Facebook account that you want to link <%= CONFIG.site_name %> to.
+      <%=t :linked_facebook_description, :site_name => SITE_NAME %>
     </p>
   <% else -%>
-    <h3>Your <%= CONFIG.site_name %> account is not linked to your Facebook account :(</h3>
+    <h3><%=t :not_linked_facebook, :site_name => SITE_NAME_SHORT %></h3>
     <p class="description">
-      To connect Facebook with <%= CONFIG.site_name_short %>, click the link on the right and sign into
-      Facebook.com. 
+      <%=t :linked_facebook_howto, :site_name => SITE_NAME_SHORT %>
     </p>
     <p class="description">
-      We will never ask you for your Facebook password (but Facebook might, check the
-      url that the button sends you and make sure it's Facebook.com). We will also
-      won't change your Facebook data unless you want us to. We're the good guys!
+      <%=t :linked_facebook_password %>
     </p>
 
     <p class="description">
-      Also, keep in mind that if you log in to <%= CONFIG.site_name_short %> via Facebook, we will
-      automatically re-link your <%= CONFIG.site_name_short %> and Facebook accounts. Seems reasonable that
-      if you use Facebook you'll want to be able to import Facebook photos, right?
+      <%=t :linked_facebook_automaticaly, :site_name => SITE_NAME_SHORT %>
     </p>
   <% end -%>
 
@@ -46,13 +37,13 @@
 <div class="column span-10 last">
   <p>
   <% if current_user.facebook_identity %>
-    <%= link_to "Unlink your Facebook and #{CONFIG.site_name} Accounts", 
+    <%= link_to t(:hate_me_facebook, :site_name => SITE_NAME), 
       omniauth_disconnect_path('facebook'), :class => 'delete button', :method => 'delete' %>
   <% else %>
-    <%= link_to 'Yes, take me to Facebook!', "/auth/facebook", 
+    <%= link_to t(:take_me_facebook), "/auth/facebook", 
                 :onclick => "$('.facebook-button').toggle();", :class => 'facebook-button default button' %>
     <div class="facebook-button" style="display:none;">
-      <span class="loading status">Connecting to Facebook...</span>
+      <span class="loading status"><%=t :connecting_to_facebook %></span>
     </div>
   <% end %>
   </p>

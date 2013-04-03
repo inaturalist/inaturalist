@@ -1,7 +1,7 @@
-<%= link_to 'Yes, take me to Flickr!', flickr_url, 
+<%= link_to t(:take_me_flickr!), flickr_url, 
             :id => 'flickr-link-a', :class => 'default button' %>
 <div id="flickr-waiting-alert" style="display:none;">
-  <span class="loading status">Connecting to Flickr...</span>
+  <span class="loading status"> <%=t :connecting_flickr %></span>
 </div>
 <script type="text/javascript" charset="utf-8">
   $('#flickr-link-a').click(function(event){

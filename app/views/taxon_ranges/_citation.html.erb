@@ -1,5 +1,5 @@
 <%- taxon_range ||= citation || @taxon_range -%>
-Taxon range <%= taxon_range.id %> for <%= link_to_taxon taxon_range.taxon, :url_params => {:anchor => "taxon_range"} %>
+<%= t(:taxon_range) %> <%= taxon_range.id %> for <%= link_to_taxon taxon_range.taxon, :url_params => {:anchor => "taxon_range"} %>
 <% if taxon_range.source %>
   <p class="ui">
     <%= taxon_range.source.citation %>

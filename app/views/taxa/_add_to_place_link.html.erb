@@ -14,7 +14,7 @@
   <% end -%>
   <% if listed_taxon -%>
     <% if listed_taxon.removable_by?(current_user) -%>
-      <%= link_to 'remove', listed_taxon_path(listed_taxon), 
+      <%= link_to t(:remove), listed_taxon_path(listed_taxon), 
         :remote => true,
         :method => :delete,
         "data-type" => 'json',
@@ -27,7 +27,7 @@
       <div class="last right pale disabled button">added</div>
     <% end -%>
   <% else %>
-    <%= link_to 'add to checklist', listed_taxa_path,
+    <%= link_to t(:add_to_checklist), listed_taxa_path,
       :remote => true,
       :method => :post,
       "data-type" => 'json',
@@ -35,7 +35,7 @@
       :id => dom_id(place, 'add_link'),
       :class => "last button pale right add_link",
       :style => 'float: right; margin: 0;' %>
-    <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none">Adding...</span>
+    <span id="<%= dom_id place, 'add_status' %>" class="inter status loading right" style="display:none"><%= t(:adding) %></span>
   <% end -%>
 
   <strong><%= link_to place.name, place %></strong>
@@ -46,7 +46,7 @@
 
   <% if listed_taxon -%>
     <div class="small description">
-      Source: <%= citation_for listed_taxon.citation_object %>
+      <%= t(:source) %><%= citation_for listed_taxon.citation_object %>
     </div>
   <% end -%>
 </li>

@@ -28,7 +28,7 @@
   <div class='invite_comment'>
     <label>Add a comment (don't forget to include the {{INVITE_LINK}} placeholder):</label>
     <br />
-    <%= text_area_tag :comment, FacebookPhoto::DEFAULT_INVITE_COMMENT, :class=>'text' %>
+    <%= text_area_tag :comment, t(:default_invite_comment, :site_name => SITE_NAME), :class=>'text' %>
   </div>
   <%= submit_tag("Send invite", :class => 'default button') %>
 <% end -%>

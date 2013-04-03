@@ -2,12 +2,12 @@
   <span class="close corner">&times;</span>
 
   <div class="clear stacked">
-    <h2 class="header">Add a Batch of Taxa</h2>
-    <p class="description">Paste in a bunch of names, 1 per line, and hit the button!</p>
+    <h2 class="header"><%=t :add_a_batch_of_taxa %></h2>
+    <p class="description"><%=t :paste_in_a_bunch_of_names %></p>
     <%= form_tag :action => 'add_taxon_batch', :id => @list do %>
-      <label for="names">Names</label>
+      <label for="names"><%=t :names %></label>
       <%= text_area_tag :names, '', :style => 'width: 580px; height:200px;' %>
-      <%= submit_tag 'Add taxa', :class => 'default button', "data-loading-click" => "Adding..." %>
+      <%= submit_tag t(:add_taxa), :class => 'default button', "data-loading-click" => t(:adding) %>
     <% end %>
   </div>
   

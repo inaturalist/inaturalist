@@ -6,8 +6,8 @@
   end
   source_options = []
   user_sources ||= current_user.sources.all(:limit => 100, :order => "title")
-  source_options << ["Sources you've added", user_sources] unless user_sources.blank?
-  source_options << ["All", Source.all(:limit => 100, :order => "title")]
+  source_options << [  t(:sources_youve_added) , user_sources] unless user_sources.blank?
+  source_options << [  t(:all) , Source.all(:limit => 100, :order => "title")]
   sources = source_options.map(&:last).compact.flatten.map do |src|
     src.html = render(:partial => "sources/chooser", :object => src)
     src
@@ -15,7 +15,7 @@
   label_text ||= nil
   chooser_options = {
     :label => label_text,
-    :placeholder => "Type source title...", 
+    :placeholder => t(:type_source_title), 
     :class => "existing", 
     "data-chooser-default-sources" => sources.to_json(:methods => [:html])
   }
@@ -42,7 +42,7 @@
 <% end -%>
 <%- new_source_fields = capture do %>
   <fieldset>
-    <legend>New Source</legend>
+    <legend><%= t(:new_source) %></legend>
     <%= f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
       <%= s.hidden_field :user_id, :value => current_user.id %>
       <%= s.text_field :title, :description => "e.g. Snakes: The Evolution of Mystery in Nature" %>
@@ -50,7 +50,7 @@
       <%= s.text_field :url, :description => "e.g. http://www.ucpress.edu/book.php?isbn=9780520224872" %>
       <%= s.text_area :citation, :description => "e.g. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print." %>
     <% end %>
-    <%= link_to_function "cancel", 
+    <%= link_to_function t(:cancel), 
       "$(this).parents('.source_nested_form_fields').find('.choicefields').show();" +
       "$(this).parents('fieldset:first').remove(); " %>
   </fieldset>
@@ -60,7 +60,7 @@
   <div class="choicefields">
     <%= f.text_field foreign_key, chooser_options %>
     or 
-    <%= link_to_function "Add new source...", 
+    <%= link_to_function t(:add_new_source), 
         "$(this).parents('.choicefields').after('#{escape_javascript new_source_fields}'); " +
         "$(this).parents('.choicefields').hide();" +
         "$(this).parents('.source_nested_form_fields').find('.existing').chooser('clear')",

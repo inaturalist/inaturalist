@@ -34,8 +34,8 @@
       <% end %>
     <% end -%>
   <% else %>
-    <%= link_to "Sign in", login_path %>
-    or <%= link_to "sign up", signup_path %>
-    to add comments.
+    <%= link_to t(:sign_in), login_path %>
+    <%=t :or %> <%= link_to t(:sign_up), signup_path %>
+    <%=t :to_add_comments %>
   <% end %>
 </div>

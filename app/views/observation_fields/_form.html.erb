@@ -4,6 +4,6 @@
   <%= f.text_field :name, :required => true %>
   <%= f.text_field :description %>
   <%= f.select :datatype, ObservationField::TYPES, :required => true %>
-  <%= f.text_field :allowed_values, :description => "Separate values with a pipe, e.g. \"1-5|6-10|a lot\" or \"yes|no|maybe\"" %>
-  <%= f.submit "Save", :class => "default button", "data-loading-click" => "Saving..." %>
+  <%= f.text_field :allowed_values, :description => t(:separate_values_with_a_pipe) %>
+  <%= f.submit t(:save), :class => "default button", "data-loading-click" => t(:saving) %>
 <% end %>

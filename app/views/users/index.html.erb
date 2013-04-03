@@ -1,5 +1,5 @@
 <% content_for(:title) do %>
-  People
+  <%= t(:people) %>
 <% end %>
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'users' %>
@@ -18,15 +18,15 @@
   <div id="pageheader" class="column span-24">
     <% if logged_in? -%>
       <div class="right inline smallbuttons buttonrow">
-        <%= link_to "Invite someone to #{CONFIG.site_name_short}!", emailer_invite_path, :class => "inter" %>
+        <%= link_to t(:invite_someone_to, :name => SITE_NAME_SHORT), emailer_invite_path, :class => "inter" %>
         <span class="meta inter">or</span>
         <%= form_tag(search_people_path, :method => :get, :class => "last") do %>
-          <%= text_field_tag :q, @q, :class => 'text', :placeholder => "Search by name or email", :style => "width: 150px;" %>
-          <%= submit_tag 'Search', :class => 'last default button' %>
+          <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email), :style => "width: 150px;" %>
+          <%= submit_tag t(:search), :class => 'last default button' %>
         <% end %>
       </div>
     <% end -%>
-    <h2>The People of <%= CONFIG.site_name %></h2>
+    <h2><%= t(:the_people_of_inat, :site_name => SITE_NAME) %></h2>
   </div>
 
   <div id="recent" class="column span-24 stacked">

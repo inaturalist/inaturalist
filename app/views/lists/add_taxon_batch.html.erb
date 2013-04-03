@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= strip_tags(@pagetitle = "Add Taxon Batch to #{link_to(@list.title, @list)}".html_safe) %>
+  <%= strip_tags(@pagetitle = t(:add_taxon_batch_to, :list => link_to(@list.title, @list)).html_safe) %>
 <%- end -%>
 <% content_for(:extracss) do %>
   <%= render :partial => 'lists/show_css' %>
@@ -98,18 +98,18 @@
 
 <div id="pagheader">
   <div class="breadcrumbs">
-    <%= link_to "Back to #{@list.title}", list_path(@list), :class => "back crumb" %>
+    <%= link_to t(:back_to_this, :place=> "#{@list.title}"), list_path(@list), :class => "back crumb" %>
   </div>
   <h2><%= @pagetitle %></h2>
 </div>
 
 <table id="#nametable" border="0">
   <tr>
-    <th class="linecol">Name entered</th>
-    <th class="statuscol">Status</th>
-    <th class="actionscol">Actions</th>
+    <th class="linecol"><%=t :name_entered %></th>
+    <th class="statuscol"><%=t :status %></th>
+    <th class="actionscol"><%=t :actions %></th>
   </tr>
   <%= render :partial => 'lists/add_taxon_batch_line', :collection => @lines_taxa %>
 </table>
 
-<%= link_to "Back to #{@list.title}", list_path(@list), :class => "back crumb" %>
+<%= link_to t(:back_to_this, :place=> "#{@list.title}"), list_path(@list), :class => "back crumb" %>

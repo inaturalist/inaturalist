@@ -32,13 +32,14 @@
       <div class="stacked">
         <%= link_to image_tag(photos[0].try_methods(:medium_url, :large_url, :small_url)), photos[0].becomes(Photo), 
           :class => "zoomable",
-          :title => "Photo #{photos[0].id}, #{photos[0].attribution}" %>
+          :title => t(:photo_photoid_photoattribution, :photoid => "#{photos[0].id}", :photoattribution => "#{photos[0].attribution}") %>
         <div class="meta">
           Photo: <%= link_to photos.first.attribution, native_url_for_photo(photos.first) %>
         </div>
       </div>
       <% for photo in photos[1..4] %>
-        <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => "Photo #{photo.id}, #{photo.attribution}" %>
+        <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => t(:photo_photoid_photoattribution, 
+        :photoid => "#{photo.id}", :photoattribution => "#{photo.attribution}") %>
       <% end %>
     <% end -%>
   </div>

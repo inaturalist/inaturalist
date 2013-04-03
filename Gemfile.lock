@@ -7,6 +7,13 @@ GIT
       activerecord (>= 2.2.2)
 
 GIT
+  remote: git://github.com/JayTeeSF/translate.git
+  revision: 164f9ef6c51ca238c92ae4bb32d098693558f363
+  specs:
+    translate-rails3 (0.2.3)
+      ya2yaml (~> 0.30)
+
+GIT
   remote: git://github.com/Titinux/preferences.git
   revision: b5f1de0ff10ba90c4986eae19da9c09e622d6b6b
   specs:
@@ -205,6 +212,8 @@ GEM
       multi_xml
     httpauth (0.2.0)
     i18n (0.6.1)
+    i18n-js (2.1.2)
+      i18n
     journey (1.0.4)
     json (1.7.7)
     jwt (0.1.5)
@@ -390,6 +399,7 @@ GEM
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
     will_paginate (3.0.3)
+    ya2yaml (0.31)
     ym4r (0.6.1)
 
 PLATFORMS
@@ -426,6 +436,7 @@ DEPENDENCIES
   google-api-client
   haml
   htmlentities
+  i18n-js
   irwi!
   json (~> 1.7.7)
   koala
@@ -461,6 +472,7 @@ DEPENDENCIES
   spatial_adapter!
   thinking-sphinx (= 2.0.10)
   tlsmail
+  translate-rails3!
   trollop
   ts-delayed-delta
   twitter
@@ -468,4 +480,5 @@ DEPENDENCIES
   whenever
   will_paginate
   xmp!
+  ya2yaml
   ym4r_gm!

@@ -88,6 +88,7 @@ FlickRaw.shared_secret = FLICKR_SHARED_SECRET
 
 # General settings
 SITE_NAME = CONFIG.site_name
+SITE_NAME_SHORT = CONFIG.site_name_short || SITE_NAME
 OBSERVATIONS_TILE_SERVER = CONFIG.tile_servers.observations
 
 # apparently we still need this for static maps

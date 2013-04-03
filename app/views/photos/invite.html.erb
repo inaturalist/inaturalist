@@ -1,5 +1,5 @@
 <%-
-  @title = "Add your photo to #{@project ? h(@project.title) : CONFIG.site_name}"
+  @title = <%= t(:add_your_photo_to, :project => "#{@project ? h(@project.title) : CONFIG.site_name}" %>
   @img = if @project && @project.icon.file?
     image_url @project.icon.url(:span2)
   else
@@ -11,17 +11,16 @@
     <%= formatted_user_text @project.description %>
   <% else %>
     <p>
-      <%= CONFIG.site_name %> is an online community for naturalists! By adding your photo,
-      you can help researchers learn more about
+      <%_ t(:inaturalist_is_an_online_community, :site_name => SITE_NAME)
       <% if @taxon -%>
         <% if @taxon.species_or_lower? && @taxon.common_name && @taxon.common_name.to_s !~/'/ -%>
-          the
+          <%= t(:the) %>
         <% end -%>
         <%= render(:partial => "shared/taxon", :object => @taxon, :locals => {:link_url => taxon_url(@taxon)}) %>
       <% else %>
-        this species
+        <%= t(>this_species) %>
       <% end -%>
-      and help the <%= CONFIG.site_name %> community grow.
+      <%= t(:and_help_the_inaturalist_community_grow, :site_name => SITE_NAME) %>
     </p>
   <% end -%>
 <% end %>
@@ -48,5 +47,5 @@
 
 <p>
   <%- url = url_for(params.reject{|k,v| k.to_s == 'test'}.merge(:only_path => false)) -%>
-  <%= link_to "Add your photo", url, :class => "default button" %>
+  <%= link_to t(:add_your_photo), url, :class => "default button" %>
 </p>

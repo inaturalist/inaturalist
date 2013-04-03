@@ -1,9 +1,9 @@
-<h3>About this Project</h3>
+<h3><%= t(:about_this_project) %></h3>
 <div class="description">
   <%= formatted_user_text(@project.description).gsub(/\<a /, '<a target="_blank" ').html_safe %>
 </div>
 
-<h3>Project Curators</h3>
+<h3><%= t(:project_curators) %></h3>
 <div class="clear">
   <% @project_curators.each do |project_curator| %>
     <div class="stacked column span-5">
@@ -19,19 +19,19 @@
   <% end %>
 </div>
 <div class="description">
-  Please be aware that project curators will be able to see any private or obscured locations of observations added to this project.
+  <%= t(:please_be_aware_project_curators) %>
 </div>
 <%= separator %>
 
 <% unless @project.terms.blank? -%>
-  <h3>Terms</h3>
+  <h3><%= t(:terms) %></h3>
   <div class="stacked description">
     <%= formatted_user_text(@project.terms).gsub(/\<a /, '<a target="_blank" ').html_safe %>
   </div>
 <% end -%>
 
 <% unless @project.project_user_rules.blank? -%>
-  <h3>Rules for Becoming a Member</h3>
+  <h3><%= t(:rules_for_becoming_memner) %></h3>
   <ul class="stacked">
     <% for rule in @project.project_user_rules %>
       <li><%= rule.terms %></li>
@@ -40,7 +40,7 @@
 <% end -%>
 
 <% unless @project.project_observation_rules.blank? -%>
-  <h3>Rules for Adding Observations</h3>
+  <h3><%= t(:rules_for_adding_observations) %></h3>
   <ul class="stacked">
     <% for rule in @project.project_observation_rules %>
       <li><%= rule.terms %></li>
@@ -49,10 +49,10 @@
 <% end -%>
 
 <div class="clear buttonrow">
-  <%= link_to "Yes, I want to join", 
+  <%= link_to t(:yes_i_want_to_join), 
     @observation ? join_project_path(@project, :observation_id => @observation.id) : join_project_path(@project), 
     :method => :post, 
     :class => "default button",
     "data-loading-click" => "Joining..." %>
-  <%= link_to "Cancel", session[:return_to] || @project, :class => "button" %>
+  <%= link_to t(:cancel), session[:return_to] || @project, :class => "button" %>
 </div>

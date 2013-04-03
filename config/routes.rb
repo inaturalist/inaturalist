@@ -311,6 +311,10 @@ Inaturalist::Application.routes.draw do
   if Rails.env.development?
     mount EmailerPreview => 'mail_view'
   end
+
+  get 'translate' => 'translations#index', :as => :translate_list
+  post 'translate/translate' => 'translations#translate', :as => :translate
+  get 'translate/reload' => 'translations#reload', :as => :translate_reload
   
   match '/:controller(/:action(/:id))'
 end

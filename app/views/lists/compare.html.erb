@@ -1,5 +1,5 @@
 <% content_for(:title) do -%>
-  Comparing <%= @list.title %> with <%= @with.title %>
+  <%= t(:comparing_listo_to_list, :list1=> "#{@list.title }", :list2 => "#{@with.title}" ) %>
 <% end -%>
 <% content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'lists', 'barchart', 'lists/show' %>
@@ -78,11 +78,11 @@
         var errorStr = $.map(json.errors, function(error, i) {
           return error.join(' ');
         }).join(', ');
-        alert("Something went wrong adding that species to your list: " + 
+        alert(<%=t :something_went_wrong_adding %> +": " + 
           errorStr);
         break;
       default:
-        alert("Something went wrong adding that species to your list!");
+        alert(<%=t :something_went_wrong_adding %> +"!");
         break;
     }
   }
@@ -90,10 +90,10 @@
 <% end -%>
 <div id="pageheader" class="column span-24 last">
   <span class="breadcrumbs">
-    <%= link_to "Back to #{@list.title}", @list, :class => 'back crumb' %>
+    <%= link_to t(:back_to_this, :place=> "#{@list.title}"), @list, :class => 'back crumb' %>
   </span>
   <h2>
-    Comparing <%= link_to(@list.title, @list) %> with 
+    <%=t :comparing %> <%= link_to(@list.title, @list) %> <%=t :with %> 
     <%= link_to(@with.title, @with) %>
   </h2>
 </div>
@@ -104,10 +104,10 @@
       <%= @list.title %>
       <div class="listcontrols">
         <% if @show_list == "left" -%>
-          <strong>only showing taxa from this list</strong>
-          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show, :page]) %>
+          <strong><%=t :only_showing_taxa_from %></strong>
+          <%= link_to t(:show_taxa_from_both), url_for_params(:without => [:show]) %>
         <% else %>
-          <%= link_to "only show taxa from this list", url_for_params(:show => "left", :without => [:page]) %>
+          <%= link_to t(:only_show_taxa_from), url_for_params(:show => "left") %>
         <% end -%>
       </div>
       
@@ -116,10 +116,10 @@
       <%= @with.title %>
       <div class="listcontrols">
         <% if @show_list == "right" -%>
-          <strong>only showing taxa from this list</strong>
-          <%= link_to "(show taxa from both lists again)", url_for_params(:without => [:show, :page]) %>
+          <strong><%=t :only_showing_taxa_from %> </strong>
+          <%= link_to t(:show_taxa_from_both) , url_for_params(:without => [:show, :page]) %>
         <% else %>
-          <%= link_to "only show taxa from this list", url_for_params(:show => "right", :without => [:page]) %>
+          <%= link_to t(:only_show_taxa_from), url_for_params(:show => "right", :without => [:page]) %>
         <% end -%>
       </div>
     </div>
@@ -154,7 +154,7 @@
             </div>
           <% else %>
             <div class="seenit description">
-              Not on this list.
+              <%=t :not_on_this_list %>
             </div>
           <% end -%>
         </div>
@@ -162,7 +162,7 @@
     </div>    
   <% end %>
   <% if @pairs.empty? %>
-    <div class="description nocontent">Looks like neither have any taxa!</div>
+    <div class="description nocontent"><%=t :looks_like_neither_have! %></div>
   <% end %>
   
   <div class="column span-17">

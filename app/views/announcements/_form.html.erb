@@ -6,7 +6,7 @@
   <%= f.text_area :body %>
   
   <div class="actions buttons">
-    <%= f.submit f.object.new_record? ? 'Create' : 'Update', :class => "default button" %>
-    <%= link_to 'Cancel', announcements_path, :class => "button" %>
+    <%= f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button" %>
+    <%= link_to t(:cancel), announcements_path, :class => "button" %>
   </div>
 <% end %>

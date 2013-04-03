@@ -17,7 +17,7 @@
 -%>
 
 <%- content_for(:title) do -%>
-  Identotron
+  <%=t :identotron %>
 <%- end -%>
 
 <%- content_for(:extracss) do -%>
@@ -175,9 +175,9 @@
                   link        = $('<a></a>').attr('href', url).html(content)
               $('#taxa').prepend(
                 $('<div class="success status comprehensive_notice stacked"></div>').append(
-                  "<strong>Comprehensive list: </strong>",
+                  "<strong><%=t :comprehensive_list %>: </strong>",
                   link,
-                  $('<span class="helptip right"></span>').attr('rel', "iNat believes this is a complete listing of this taxon in this place.")
+                  $('<span class="helptip right"></span>').attr('rel', '<%=t :inat_believes_this_is_a_complete_listing, :site_name => SITE_NAME_SHORT %>')
                 )
               )
               buildHelpTips()
@@ -208,7 +208,7 @@
             $('#taxa .headercol').each(function() {
               var taxonId = $(this).parents('.listed_taxon:first').attr('data-taxon-id')
               $(this).prepend(
-                $('<a class="glaucous right button">Add ID</a>')
+                $('<a class="glaucous right button"><%=t :add_id %></a>')
                   .attr('href', '/identifications/agree?observation_id='+observation.id+'&taxon_id=')
                   .attr('data-loading-click', true)
                   .click(loadingClickForLink)
@@ -279,7 +279,7 @@
   </div>
   <% if @observation -%>
     <div class="breadcrumbs">
-      <%= link_to 'Back to observation', @observation, :class => 'back crumb' %>
+      <%= link_to t(:back_to_observation), @observation, :class => 'back crumb' %>
     </div><!-- /#breadcrumbs -->
   <% end -%>
   <h2 class="fadednowrap">Identotron <%= "for #{@observation.to_plain_s}" if @observation %></h2>
@@ -321,10 +321,10 @@
             <% unless photos.blank? -%>
               <div class="stacked">
                 <%= link_to image_tag(photos[0].try_methods(:medium_url, :small_url)), photos[0].becomes(Photo), :class => "zoomable",
-                  :title => "Photo #{photos[0].id}, #{photos[0].attribution}" %>
+                  :title => t(:photo_by_id_attribution, :id=> "#{photos[0].id}", :attribution=> "#{photos[0].attribution}") %>
               </div>
               <% for photo in photos[1..-1] %>
-                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => "Photo #{photo.id}, #{photo.attribution}" %>
+                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable", :title => t(:photo_by_id_attribution, :id=> "#{photos[0].id}", :attribution=> "#{photos[0].attribution}") %>
               <% end %>
             <% end -%>
           </div>

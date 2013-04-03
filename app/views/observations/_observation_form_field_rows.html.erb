@@ -7,7 +7,7 @@
       <% unless observation.errors.empty? %>
         <div class="errorcol last column span-21 prepend-1 append-2">
           <div class="error">
-            <strong>There were some problems saving this observation:</strong>
+            <strong><%=t :there_were_some_problems_saving_this_observation %>:</strong>
             <ul>
               <% for error in observation.errors %>
               <li><%= error %></li>
@@ -26,7 +26,7 @@
         <% if existing_observation_photo -%>
           <div class="clear notice existing_obs_notice">
             <%= image_tag existing_observation_photo.photo.thumb_url %>
-            <strong>Heads up:</strong> this photo is already associated with an
+            <strong><%=t :heads_up %>:</strong> this photo is already associated with an
             <%= link_to "existing observation", existing_observation_photo.observation, :class => "readmore", :target => "_blank" %>
           </div>
         <% end -%>
@@ -49,7 +49,7 @@
           
           <div class="id_please_field">
             <%= o.check_box :id_please %>
-            <%= o.label :id_please, "ID Please!", :class => 'description' %>
+            <%= o.label :id_please, t(:full_id_please?), :class => 'description' %>
           </div>
         </div>
         <div class="column span-7">
@@ -112,7 +112,7 @@
         <div id="detailscol" class="column span-21">
           <div class="clear compactfield field">
             <a href="#" onclick="$('#descriptiontags_<%= i %>').slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
-              Description, Tags, &amp; More
+              <%= raw t(:description_tags_more) %>
             </a>
             <div id="descriptiontags_<%= i %>" style="display: none" class="compactfieldcontent">
               <div class="column span-14">
@@ -156,7 +156,7 @@
         <div class="column span-21">
           <div class="clear compactfield">
             <a href="#" onclick="$(this).next().slideToggle(); $(this).parent().toggleClass('open'); return false;" class="compactfieldlink">
-              Photos
+              <%=t :photos %>
             </a>
             <div id="photos_<%= i %>" style="display: none" class="compactfieldcontent observation_photos photo_list">
               <%= render :partial => "photos/photo_list_form", :locals => { 
@@ -167,9 +167,8 @@
               } %>
             </div>
             <div class="compactfieldcontent" style="display: none">
-              <span>We currently support Flickr for image hosting.</span>
-              <%= link_to "You can activate your Flickr account with " + 
-                          "#{CONFIG.site_name} to add photos by clicking on this link.",
+              <span><%=t :we_currently_support_flickr_for_image_hosting %></span>
+              <%= link_to t(:linked_flickr_hotwo, :site_name => SITE_NAME),
                           auth_url_for('flickr'),
                           :target => "_blank" %>
             </div>

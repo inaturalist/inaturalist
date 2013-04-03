@@ -5,49 +5,49 @@
   end
 %>
 <div id="search_filter" class="row">
-  <label class="label" for="q">Search</label>
-  <input type="text" name="q" value="<%= @q %>" id="q" class="text" placeholder="Enter search terms"/>
+  <label class="label" for="q"><%=t :search %></label>
+  <input type="text" name="q" value="<%= @q %>" id="q" class="text" />
   <select name="search_on" id="search_on">
     option
-    <option value="" class="description">search all fields</option>
-    <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names">species names</option>
-    <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags">tags</option>
-    <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description">description</option>
-    <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place">place name</option>
+    <option value="" class="description"><%=t :search_all_fields %></option>
+    <option <% if @search_on == 'names' %>selected="selected"<% end %> value="names"><%=t :species_name %></option>
+    <option <% if @search_on == 'tags' %>selected="selected"<% end %> value="tags"> <%=t :tags %> </option>
+    <option <% if @search_on == 'description' %>selected="selected"<% end %> value="description"> <%=t :description %> </option>
+    <option <% if @search_on == 'place' %>selected="selected"<% end %> value="place"><%=t :place_name %></option>
   </select>
 </div>
 <div id="attribute_filters" class="row">
-  <strong id="attributes_filters_label" class="label">Filter by</strong>
+  <strong id="attributes_filters_label" class="label"><%=t :filter_by %></strong>
   <fieldset>
     <input type="checkbox" name="has[]" id="with_photos_checkbox" 
            value="photos" <% if @with_photos %>checked="checked"<% end %>/>
-    <label for="with_photos_checkbox">w/ photos only</label>
+    <label for="with_photos_checkbox"><%=t :w_photos_only %></label>
     <input type="checkbox" name="has[]" id="id_please_checkbox" 
            value="id_please" <% if @id_please %>checked="checked"<% end %>/>
-    <label for="id_please_checkbox">ID Please</label>
+    <label for="id_please_checkbox"><%=t :id_please %></label>
     
     <input type="checkbox" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
-    <label for="research_grade_checkbox">Research quality</label>
+    <label for="research_grade_checkbox"><%=t :research_quality %></label>
     
     <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
-    <label for="out_of_range_checkbox">Out of range</label>
+    <label for="out_of_range_checkbox"><%=t :out_of_range %></label>
     
   </fieldset>
   <fieldset>
-    <strong>Identifications</strong>
+    <strong><%=t :identifications %></strong>
     <% for state in %w"any most_agree some_agree most_disagree" %>
       <% if @identifications == state %>
         <%= radio_button_tag :identifications, state, :checked => 'checked' %>
       <% else %>
         <%= radio_button_tag :identifications, state %>
       <% end %>
-      <%= label :identifications, state %>
+      <%= label :identifications, t(state) %>
     <% end %>
   </fieldset>
 </div>
 <div id="iconic_taxon_filters" class="row">
   <div id="iconic_taxon_filters_label" class="label">
-    <strong>Show only</strong>
+    <strong><%=t :show_only %></strong>
   </div>
   <%-
     all_iconic_taxa = Taxon::ICONIC_TAXA
@@ -59,7 +59,7 @@
              id="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'checked="checked"' if selected_taxa.include?(iconic_taxon) %>/>
       <label for="iconic_taxon_<%= iconic_taxon.name.downcase %>_checkbox" <%= 'class="selected"' if selected_taxa.include?(iconic_taxon) %>>
         <%- if iconic_taxon.name == 'Animalia' -%>
-        <span>Other Animals</span>
+        <span><%=t :other_animals %></span>
         <%- else -%>
         <span><%= iconic_taxon.common_name.name rescue iconic_taxon.name %></span><!-- This should really be a common name -->
         <%- end -%>
@@ -72,7 +72,7 @@
            value="unknown" checked="checked"
            id="iconic_taxon_unknown_checkbox" />
     <label for="iconic_taxon_unknown_checkbox" class="selected">
-      <span>Unknown</span>
+      <span><%=t :unknown %></span>
     </label>
   </div>
   <% else %>
@@ -81,27 +81,27 @@
            value="unknown" 
            id="iconic_taxon_unknown_checkbox" />
     <label for="iconic_taxon_unknown_checkbox">
-      <span>Unknown</span>
+      <span><%=t :unknown %></span>
     </label>
   </div>
   <% end %>
 
   <small>
-    Select
-    <%= link_to_function "All", 'selectAllIconicTaxa()' %>,
-    <%= link_to_function "None", 'deSelectAllIconicTaxa()' %>
+    <%=t :select %>
+    <%= link_to_function t(:all), 'selectAllIconicTaxa()' %>,
+    <%= link_to_function t(:none), 'deSelectAllIconicTaxa()' %>
   </small>
 </div>
 
 <div class="stacked clear row">
   <div id="place_filter" class="left">
     <div id="place_filter_label" class="label">
-      <strong>Place</strong>
+      <strong><%=t :place %></strong>
     </div>
     <div class="left">
       <div class="buttons">
         <%-
-          opts = {:id => "obs_filter_place_name", :class => "text", :placeholder => "Start typing a place name"}
+          opts = {:id => "obs_filter_place_name", :class => "text", :placeholder => t(:start_typing_place_name)}
           opts["data-json"] = @place.to_json(:methods => [:html]) unless @place.blank?
         -%>
         <%= text_field_tag :place_id, @place.try(:id) || @place_id, opts %>
@@ -139,14 +139,14 @@
 </div>
 
 <div class="clear row">
-  <div id="taxon_filter" class="left">
+  <div id="taxon_filter"class="left">
     <div id="taxon_filter_label" class="label">
-      <strong>Taxon</strong>
+      <strong><%=t :taxon %></strong>
     </div>
     <div class="left">
       <div class="buttons">
         <%= text_field_tag :taxon_name, @observations_taxon_name || @observations_taxon.try(:name), :id => "obs_filter_taxon_name", :class => "text",
-          :placeholder => "Type taxon name and click lookup" %>
+          :placeholder => t(:type_taxon_name_and_click_lookup) %>
         <%-
           alt_attr = if @observations_taxon
             css_class =  [
@@ -172,22 +172,22 @@
   
   <div id="observed_on_filters" class="left">
     <div id="observed_on_filters_label" class="label">
-      <strong>Observed on</strong>
+      <strong><%=t :observed_on %></strong>
     </div>
     <div class="left">
-      <%= select_tag :year, options_for_select([["Year", nil]] + (1970..Date.today.year).to_a.reverse.map{|n| [n,n]}, :selected => @observed_on_year) %>
-      <%= select_tag :month, options_for_select([["Month", nil]] + (1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_month) %>
-      <%= select_tag :day, options_for_select([["Day", nil]] + (1..31).to_a.map{|n| [n,n]}, :selected => @observed_on_day) %>
+      <%= select_tag :day, options_for_select([[ t(:day), nil]] + (1..31).to_a.map{|n| [n,n]}, :selected => @observed_on_day) %>
+      <%= select_tag :month, options_for_select([[t(:month), nil]] + (1..12).to_a.map{|n| [Date::MONTHNAMES[n],n]}, :selected => @observed_on_month) %>
+      <%= select_tag :year, options_for_select([[t(:year), nil]] + (1970..Date.today.year).to_a.reverse.map{|n| [n,n]}, :selected => @observed_on_year) %>
     </div>
   </div>
   
   <div id="order_filters" class="left">
     <div id="order_filters_label" class="label">
-      <strong>Order</strong>
+      <strong><%=t :order %></strong>
     </div>
     <div class="left">
       <%= select_tag :order_by, observations_order_by_options %>
-      <%= select_tag :order, options_for_select(%w(asc desc), @order) %>
+      <%= select_tag :order, options_for_select(%w(asc desc).map{|o| t(o)}, @order) %>
     </div>
   </div>
 </div>
@@ -219,18 +219,16 @@
   <div class="right buttonrow">
     <div class="inter">
       <% if @site == "any" -%>
-        You're viewing all observations.
-        <%= link_to "View <strong>#{SITE_NAME}</strong> observations".html_safe, url_for_params(:site => CONFIG.site_url) %>
+        <%=t :youre_viewing_all_observations %>.
+        <%= link_to t(:view_site_name_observations_html, :site_name => SITE_NAME), url_for_params(:site => CONFIG.site_url) %>
       <% else %>
-        You're viewing 
-        <strong><%= SITE_NAME %></strong>
-        observations.
-        <%= link_to "View all observations", url_for_params(:site => "any") %>
+        <%=t :youre_viewing_site_name_observations_html, :site_name => SITE_NAME  %>.
+        <%= link_to t(:view_all_observations), url_for_params(:site => "any") %>
       <% end -%>
     </div>
   </div>
 <% end -%>
 
 <div class="inline buttonrow">
-  <input id="submit_filters_button" type="submit" value="Search" class="default inline button" data-loading-click="Searching..."/>
+  <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>
 </div>
