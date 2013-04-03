@@ -117,6 +117,9 @@ class ProviderOauthController < ApplicationController
             },
             'location' => (r['location'] || {})['name'],
             'verified' => r['verified']
+          },
+          'credentials' => {
+            'token' => provider_token
           }
         }
         user = User.create_from_omniauth(auth_info)
