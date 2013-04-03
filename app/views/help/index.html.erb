@@ -17,7 +17,7 @@
     <%= link_to "Getting Started", :action => "getting_started" %> guide to tour some of the site's features. If you have a
     question about the site, please peruse the FAQ below. If you're still
     looking for answers, please 
-    <a href="http://groups.google.com/group/inaturalist" title="iNaturalist | Google Groups">post your question to our Google Group</a>.
+    <a href="<%= CONFIG.feedback_url %>" title="iNaturalist | Google Groups">post your question to our Google Group</a>.
   </p>
   
   <h3>Frequently Asked Questions</h3>
@@ -106,7 +106,7 @@
       <h5><a name="general4">What can I do to help iNaturalist?</a></h5>
       <p>
         You can help iNaturalist by giving us your feedback; join our 
-        <a href="http://groups.google.com/group/inaturalist">Google group</a> 
+        <a href="<%= CONFIG.feedback_url %>">Google group</a> 
         to sign up for usability studies, report bugs, and request new
         features. You can also help iNaturalist by adding your observations
         and helping other community members identify their unidentified
