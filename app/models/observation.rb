@@ -39,6 +39,9 @@ class Observation < ActiveRecord::Base
   # licensing extras
   attr_accessor :make_license_default
   attr_accessor :make_licenses_same
+
+  attr_accessor :twitter_sharing
+  attr_accessor :facebook_sharing
   
   MASS_ASSIGNABLE_ATTRIBUTES = [:make_license_default, :make_licenses_same]
   
@@ -1660,7 +1663,11 @@ class Observation < ActiveRecord::Base
   def queue_for_sharing
     u = self.user
     ["facebook","twitter"].each do |provider_name|
-      if u.prefs["share_observations_on_#{provider_name}"] && u.send("#{provider_name}_identity")
+      explicitly_shared = send("#{provider_name}_sharing") == "1"
+      explicitly_not_shared = send("#{provider_name}_sharing") == "0"
+      implicitly_shared = u.prefs["share_observations_on_#{provider_name}"]
+      user_wants_to_share = explicitly_shared || (implicitly_shared && !explicitly_not_shared)
+      if u.send("#{provider_name}_identity") && user_wants_to_share
         # don't queue up more than one job for the given sharing medium. 
         # when the job is run, it will also share any observations made since this one. 
         # observation aggregation for twitter happens in share_on_twitter.

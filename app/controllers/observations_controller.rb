@@ -400,6 +400,9 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         @observations = [@observation]
+        @sharing_authorizations = current_user.provider_authorizations.select do |pa|
+          pa.provider_name == "facebook" || (pa.provider_name == "twitter" && !pa.secret.blank?)
+        end
       end
       format.json  { render :json => @observation }
     end

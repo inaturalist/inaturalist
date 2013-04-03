@@ -30,7 +30,7 @@
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
   <% end -%>
-  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
+  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
     <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <meta name="twitter:card" content="photo">
