@@ -1626,7 +1626,7 @@ class Observation < ActiveRecord::Base
         where("observations.taxon_id is not null")
     end
     observations_to_share.each do |o|
-      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:observe", :observation => FakeView.observation_url(o))
+      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:record", :observation => FakeView.observation_url(o))
     end
   end
 
