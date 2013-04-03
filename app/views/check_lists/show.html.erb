@@ -2,6 +2,24 @@
   <%= @list.title %>
 <%- end -%>
 
+<%- content_for(:extrahead) do -%>
+  <meta property="og:title" content="<%= @list.title %>"/>
+  <%-
+    og_description = if @list.description.blank?
+      "Check list of species occuring in #{@place.display_name}"
+    else
+      @list.description
+    end
+  -%>
+  <% if @representative_photo -%>
+    <%- og_description += " &mdash; Photo: #{@representative_photo.attribution}" -%>
+    <meta property="og:image" content="<%= @representative_photo.medium_url %>"/> 
+  <% elsif @representative_listed_taxon %>
+    <meta property="og:image" content="<%= taxon_image_url(@representative_listed_taxon.taxon, :size => 'medium') %>"/> 
+  <% end -%>
+  <meta property="og:description" content="<%= html_attributize og_description %>"/> 
+<%- end -%>
+
 <% content_for(:extracss) do %>
   <%= render :partial => 'lists/show_css' %>
   <style type="text/css" media="screen">

@@ -103,6 +103,46 @@
     <%= hidden_field_tag(:project_id, @project.id) if @project %>
     <%= hidden_field_tag(:tracking_code, @tracking_code) if @tracking_code %>
 
+    <% unless @sharing_authorizations.blank? -%>
+      <div id="sharing" class="right inline buttonrow">
+        <label class="inter">Share on</label>
+        <% if fb_pa = @sharing_authorizations.detect{|pa| pa.provider_name == 'facebook'} -%>
+          <span class="inter">
+            <%= fields_for @observation do |f| %>
+              <%= f.check_box :facebook_sharing, :checked => current_user.prefers_share_observations_on_facebook? %>
+            <% end -%>
+            <label for="observation_facebook_sharing">
+              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=facebook.com" %>
+              Facebook
+            </label>
+          </span>
+        <% end -%>
+        <% if tw_pa = @sharing_authorizations.detect{|pa| pa.provider_name == 'twitter'} -%>
+          <span class="inter">
+            <%= fields_for @observation do |f| %>
+              <%= f.check_box :twitter_sharing, :checked => current_user.prefers_share_observations_on_twitter? %>
+            <% end -%>
+            <label for="observation_twitter_sharing">
+              <%= image_tag "http://www.google.com/s2/u/0/favicons?domain=twitter.com" %>
+              Twitter
+            </label>
+          </span>
+        <% end -%>
+        <span class="inter">
+          <%#= link_to "Prefs", edit_user_path(current_user), :class => "small", :target => "_blank" %>
+          <%= helptip "(beta)" do %>
+            We're still testing this so Facebook sharing will only work if
+            you're a site admin or a test user, and Twitter sharing might
+            require you to sign in with your Twitter account, even if you've
+            already linked your account. The way this *will* work is that your
+            observations will get shared on social networks if you leave these
+            boxes checked. You can change your defaults by
+            <%= link_to "editing your account", edit_user_path(current_user), :target => "_blank" %>.
+          <% end -%>
+        </span>
+      </div>
+    <% end -%>
+
     <div class="buttonrow">
       <%= submit_tag(t(:save_observation), :class => 'default button', "data-loading-click" => true) %>
       <%= submit_tag "Save and add another", :class => 'button', :style => "display:none", :id => "add_another_button" %>

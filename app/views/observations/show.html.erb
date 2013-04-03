@@ -30,10 +30,7 @@
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
   <% end -%>
-  <% if CONFIG.twitter && CONFIG.twitter.username -%>
-    <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
-  <% end -%>
-  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
+  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
     <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <meta name="twitter:card" content="photo">
@@ -43,9 +40,9 @@
   <% end -%>
   <meta property="og:determiner" content="auto" /> 
   <meta property="og:url" content="<%= observation_url(@observation) %>"/>
-  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+  <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
+  <% end -%>
   <% if @observation.description.blank? %>
     <meta property="og:description" content="<%= html_attributize @observation.to_plain_s %>"/> 
   <% else %>
@@ -490,7 +487,7 @@
           <div class="quiet box clear inline buttonrow">
             <span class="inter">
               <%= image_tag po.project.icon.url(:mini), :style => "vertical-align: middle" %>
-              <%= link_to truncate(h(po.project.title), :length => (is_me?(@observation.user) || curator_of?(po.project) ? 21 : 31)), po.project %>
+              <%= link_to truncate(po.project.title, :length => (is_me?(@observation.user) || curator_of?(po.project) ? 21 : 31)), po.project %>
             </span>
             <% if is_me?(@observation.user) || curator_of?(po.project) -%>
               <%= link_to "remove", 

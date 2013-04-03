@@ -10,20 +10,16 @@
   <% if @photos.blank? -%>
     <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/> 
   <% else %>
-    <meta property="og:image" content="<%= @photos.first.small_url %>"/> 
+    <meta property="og:image" content="<%= @taxon.default_photo.medium_url %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= taxon_url(@taxon) %>"/> 
-  <meta property="og:site_name" content="<%= CONFIG.site_name %>"/> 
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
-  <% end -%>
-  <% if CONFIG.facebook.app_id -%>
-    <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
   <% end -%>
   <%-
      description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary(:refresh_if_blank => true)
      og_description = description
-     og_description = "(Photo: #{@photos.first.attribution}) #{og_description}" unless @photos.blank?
+     og_description = "#{og_description} (Photo: #{@taxon.default_photo.attribution})" unless @photos.blank?
   -%>
   <meta name="description" content="<%= html_attributize description %>"/>
   <meta property="og:description" content="<%= html_attributize og_description %>"/>

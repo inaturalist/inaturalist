@@ -70,6 +70,14 @@ module Shared::ListsModule
         if logged_in?
           @current_user_lists = current_user.lists.all(:limit => 100)
         end
+
+        if @representative_listed_taxon = @list.listed_taxa.order("listed_taxa.observations_count DESC").includes(:taxon => {:taxon_photos => :photo}).first
+          @representative_photo = if @photos_by_listed_taxon_id && (p = @photos_by_listed_taxon_id[@representative_listed_taxon.id])
+            p
+          else
+            @representative_listed_taxon.taxon.default_photo
+          end
+        end
       end
       
       format.csv do

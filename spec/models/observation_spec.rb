@@ -1542,3 +1542,34 @@ describe Observation, "reassess_coordinates_for_observations_of" do
     o.latitude.should eq(old_lat)
   end
 end
+
+describe Observation, "queue_for_sharing" do
+  it "should queue a job if twitter ProviderAuthorization present" do
+    pa = ProviderAuthorization.make!(:provider_name => "twitter")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"]).should be_blank
+    o = Observation.make!(:user => pa.user)
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"]).should_not be_blank
+  end
+  it "should queue a job if facebook ProviderAuthorization present" do
+    pa = ProviderAuthorization.make!(:provider_name => "facebook")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"]).should be_blank
+    o = Observation.make!(:user => pa.user)
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should_not be_blank
+  end
+  it "should not queue a job if no ProviderAuthorizations present" do
+    o = Observation.make!
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
+  end
+  it "should not queue a twitter job if twitter_sharing is 0" do
+    pa = ProviderAuthorization.make!(:provider_name => "twitter")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_twitter%"]).should be_blank
+    o = Observation.make!(:user => pa.user, :twitter_sharing => "0")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_twitter%"]).should be_blank
+  end
+  it "should not queue a facebook job if facebook_sharing is 0" do
+    pa = ProviderAuthorization.make!(:provider_name => "facebook")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{pa.user_id}\n%share_on_facebook%"]).should be_blank
+    o = Observation.make!(:user => pa.user, :facebook_sharing => "0")
+    Delayed::Job.where(["handler LIKE ?", "%user_id: #{o.user_id}\n%share_on_facebook%"]).should be_blank
+  end
+end

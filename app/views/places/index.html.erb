@@ -17,10 +17,10 @@
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= t(:inaturalist_places, :site_name => SITE_NAME) %>"/> 
   <meta property="og:image" content="<%= image_url('place_preview.jpg') %>"/> 
-  <meta property="og:site_name" content="iNaturalist"/> 
-  <meta property="fb:admins" content="611249211,800415373"/>
-  <meta property="fb:app_id" content="26558815027" />
-  <meta property="og:description" name="description" content=" <%= t(:the_world_is_full_of_interesting_places, :site_name => SITE_NAME) %>" /> 
+  <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
+    <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
+  <% end -%>
+  <meta property="og:description" name="description" content="<%= t(:the_world_is_full_of_interesting_places, :site_name => SITE_NAME) %>"/> 
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>

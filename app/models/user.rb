@@ -197,8 +197,11 @@ class User < ActiveRecord::Base
       :provider_name => auth_info['provider'], 
       :provider_uid => auth_info['uid']
     }
-    unless auth_info["credentials"].nil? # open_id (google, yahoo, etc) doesn't provide a token
-      provider_auth_info.merge!({ :token => (auth_info["credentials"]["token"] || auth_info["credentials"]["secret"]) }) 
+    unless auth_info["credentials"].blank? # open_id (google, yahoo, etc) doesn't provide a token
+      provider_auth_info.merge!(
+        :token => auth_info["credentials"]["token"],
+        :secret => auth_info["credentials"]["secret"]
+      ) 
     end
     pa = self.provider_authorizations.build(provider_auth_info) 
     pa.auth_info = auth_info
