@@ -6338,7 +6338,7 @@ es-MX:
   locked_taxa_will_not_allow_new: "Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.\n"
   log_in: "Empieza la sesión"
   logged_in_as: "Inicia sesión como"
-  login_slash_username: "Registro / nombre de usuario"
+  login_slash_username: "Login / nombre de usuario"
   long: Longitud
   longitude: Longitude
   longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
@@ -6427,7 +6427,7 @@ es-MX:
   new_taxon_range: "Distribución de la nueva especie o grupo"
   new_user_rules: "Nuevas reglas de usuario"
   new_users_week: "Nuevos usuarios / Semana"
-  next: Siguiente
+  next: Siguiente &raquo;
   next_page: "Siguiente página"
   no_activity_in_the_past_week: "No hubo actividad la semana pasada. Es tiempo de "
   no_administrator_knows_your_password: "Ningún administrador de %{sitename} conoce tu nueva contraseña ni ha tenido acceso a ella en ningún momento."
@@ -6825,8 +6825,7 @@ es-MX:
   somewhere_on_earth: "En algún lugar del Planeta"
   sorry_how_about_we_try_repeat: "¡Disculpas! ¿Que tal si intentamos la búsqueda en otras bases de datos de nombres de especies? Si encontramos algo, lo guardaremos para que lo encuentres la próxima vez."
   source: Fuente
-  source_: 'Fuente:'
-  source_of_coordinates: 'Fuente de las coordenadas y la precisión de las medidas, se pone automáticamente.'
+  source_of_coordinates: 'Fuente de las coordenadas y la exactitud de las medidas, se pone automáticamente.'
   source_unknown: "Fuente desconocida"
   sources: Fuentes
   sources_youve_added: "Fuentes que has añadido"

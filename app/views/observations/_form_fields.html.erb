@@ -63,7 +63,7 @@
     </div>
     <div class="column span-9">
       <div class="place_guess_field field">
-        <%= o.label(:place_guess, raw(t(:where_were_you?))) %>
+        <%= o.label(:place_guess, t(:where_were_you?)) %>
         <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => t(:name_of_the_place_you)) %>
       </div>
       <div id="coordinates_<%= i %>" class="latlonfields status stacked">
