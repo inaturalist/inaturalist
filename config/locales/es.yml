@@ -244,7 +244,7 @@ es:
   back_to_shared_taxon: "Regresar a %{sharedtaxon}"
   back_to_taxon: "Regresar a %{defaulttaxon}"
   back_to_this: "Regresar a %{place}"
-  back_to_viewing: "Regresar a ver <i>{taxon}</i>"
+  back_to_viewing: "Regresar a ver <i>%{taxon}</i>"
   back_to_x: "Regresar a %{noun}"
   back_to_x_calendar: "Regrese a calendario de %{user}"
   back_to_x_journal: "Regresar al diario de %{user}"
@@ -507,7 +507,7 @@ es:
   delete_icon?: "¿Eliminar ícono?"
   delete_project: "Eliminar este proyecto"
   delete_selected: "Eliminar seleccionados"
-  delete_taxon_and_merge_most_data: "Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utilice esta herramienta para eliminar taxones duplicados y sinónimos desactualizados. <strong>¡TENGA CUIDADO!</fuerte> Eliminar taxones podría causar mucha destrucción."
+  delete_taxon_and_merge_most_data_html: "Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utilice esta herramienta para eliminar taxones duplicados y sinónimos desactualizados. <strong>¡TENGA CUIDADO!</fuerte> Eliminar taxones podría causar mucha destrucción."
   delete_this_name: "Eliminar este nombre"
   delete_user: "Eliminar usuario"
   delete_your_account: "Eliminar su cuenta"
@@ -565,6 +565,7 @@ es:
       send_paranoid_instructions: "Si tu cuenta existe, recibirás instrucciones para desbloquear tu cuenta en unos minutos"
       unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
   did_not_send_invitations_because: "No les enviamos invitaciones a tus amigos y amigas pues:"
+  did_you_mean: '¿Te refieres a'
   did_you_photos_flickr?: "¿Ha colocado fotos en Flickr?"
   disagree: "en desacuerdo"
   disconnect_provider: "Desconectarse de %{provider}"
@@ -1375,6 +1376,7 @@ es:
   search_catalogue_of_life_raquo: "Búsqueda en el Catalogo de la Vida &raquo;"
   search_creative_commons_photos_on_flickr: "Buscar fotos de Creative Commons en Flickr. Si selecciona alguna, ¡sea tan amable de dejarles un comentario de agradecimiento!"
   search_descendant_taxa_raquo: "Buscar taxones descendientes &raquo;"
+  search_external_name_providers: Buscar proveedores de nombres externos
   search_for_new_taxa: "buscar nuevos taxones"
   search_for_place_to_import_from_yahoo: "Buscar un lugar para importar desde Yahoo."
   search_for_species: "Búsqueda de especies"

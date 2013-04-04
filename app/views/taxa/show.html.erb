@@ -17,7 +17,7 @@
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
   <%-
-     description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary(:refresh_if_blank => true)
+     description = @taxon.wikipedia_summary.blank? ? @taxon.name : @taxon.wikipedia_summary
      og_description = description
      og_description = "#{og_description} (Photo: #{@taxon.default_photo.attribution})" unless @photos.blank?
   -%>

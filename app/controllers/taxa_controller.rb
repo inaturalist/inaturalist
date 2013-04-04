@@ -374,7 +374,7 @@ class TaxaController < ApplicationController
     page = params[:page] ? params[:page].to_i : 1
     @facets = Taxon.facets(q, :page => page, :per_page => per_page,
       :with => drill_params, 
-      :include => [:taxon_names, :photos],
+      :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
       :field_weights => {:name => 2},
       :match_mode => match_mode,
       :order => :observations_count,
@@ -783,6 +783,9 @@ class TaxaController < ApplicationController
         @description = d.describe(@taxon)
         break unless @description.blank?
       end
+    end
+    if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+      @taxon.wikipedia_summary(:refresh_if_blank => true)
     end
     @describer_url = @describer.page_url(@taxon)
     render :partial => "description"

@@ -163,7 +163,7 @@
   
     // Otherwise, display each as an selection option
     else {
-      var message = $('<span>Did you mean</span>');
+      var message = $('<span>'+I18n.t('did_you_mean')+'</span>');
       var list = $('<ul class="matches"></ul>').css({'margin-bottom': '3px'});
       $(taxa).each(function(i, taxon) {
         var chosenTaxonName = $.fn.simpleTaxonSelector.chosenTaxonNameFor(q, taxon)
@@ -189,7 +189,7 @@
       if (options.includeSearchExternal) {
         message.append(
           $('<div></div>').append(
-            $('<a href="#">Search external name providers &raquo;</a>').css({
+            $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
               'font-weight': 'bold'
             }).click(function() {
               $.fn.simpleTaxonSelector.lookup(

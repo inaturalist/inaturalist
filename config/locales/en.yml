@@ -219,12 +219,12 @@ en:
   back_to_observation_fields: Back to observation fields
   back_to_people: Back to people
   back_to_places: Back to places
-  back_to_possessive_user_profile: Back to %{possuser} profile
+  back_to_possessive_user_profile: "Back to %{possuser} profile"
   back_to_projects: Back to projects
   back_to_shared_taxon: "Back to %{sharedtaxon}"
   back_to_taxon: "Back to %{defaulttaxon}"
-  back_to_this: Back to %{place}
-  back_to_viewing: Back to Viewing <i>{taxon}</i>
+  back_to_this: "Back to %{place}"
+  back_to_viewing: "Back to Viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_observations: "Back to %{user}'s observations"
@@ -392,7 +392,7 @@ en:
   delete_icon?: Delete icon?
   delete_project: Delete this project
   delete_selected: Delete Selected
-  delete_taxon_and_merge_most_data: "Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use this tool for removing duplicate taxa and outdated synonymous taxa. <strong>BE CAREFUL!</strong> Deleting taxa can be highly destructive."
+  delete_taxon_and_merge_most_data_html: "Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use this tool for removing duplicate taxa and outdated synonymous taxa. <strong>BE CAREFUL!</strong> Deleting taxa can be highly destructive."
   delete_this_name: Delete this name
   delete_user: Delete user
   delete_your_account: Delete your account
@@ -408,6 +408,7 @@ en:
   destroy: Destroy
   details: Details
   did_not_send_invitations_because: Did not send invites to the following because...
+  did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
@@ -1113,6 +1114,7 @@ en:
   search_catalogue_of_life_raquo: "Search Catalogue of Life &raquo;"
   search_creative_commons_photos_on_flickr: Search Creative Commons photos on Flickr. If you select one, be nice and leave them a thankyou comment!
   search_descendant_taxa_raquo: "Search descendant taxa &raquo;"
+  search_external_name_providers: Search external name providers
   search_for_new_taxa: search for new taxa
   search_for_place_to_import_from_yahoo: Search for a place to import from Yahoo.
   search_for_species: Search for species
