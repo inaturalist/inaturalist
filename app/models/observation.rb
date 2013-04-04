@@ -50,12 +50,13 @@ class Observation < ActiveRecord::Base
   COORDINATE_REGEX = /[^\d\,]*?(#{FLOAT_REGEX})[^\d\,]*?/
   LAT_LON_SEPARATOR_REGEX = /[\,\s]\s*/
   LAT_LON_REGEX = /#{COORDINATE_REGEX}#{LAT_LON_SEPARATOR_REGEX}#{COORDINATE_REGEX}/
-  
+
+  OPEN = "open"
   PRIVATE = "private"
   OBSCURED = "obscured"
   GEOPRIVACIES = [OBSCURED, PRIVATE]
   GEOPRIVACY_DESCRIPTIONS = {
-    nil => :open_description,
+    OPEN => :open_description,
     OBSCURED => :obscured_description, 
     PRIVATE => :private_description,
   }
