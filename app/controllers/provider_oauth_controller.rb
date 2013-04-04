@@ -4,7 +4,8 @@ class ProviderOauthController < ApplicationController
   # Accepts Facebook and Google access tokens and returns an iNat access token
   def assertion
     assertion_type = params[:assertion_type] || params[:grant_type]
-    if assertion_type.blank?
+    client = Doorkeeper::Application.find_by_uid(params[:client_id])
+    if assertion_type.blank? || client.blank?
       render :status => :unauthorized, :json => { :error => :access_denied }
       return
     end
@@ -158,7 +159,10 @@ class ProviderOauthController < ApplicationController
       goauth2 = gclient.discovered_api('oauth2')
       r = gclient.execute(:api_method => goauth2.userinfo.get)
       json = JSON.parse(r.body)
-      uid = json['id']
+      unless uid = json['id']
+        Rails.logger.debug "[DEBUG] Google auth failed: #{json.inspect}"
+        return nil
+      end
       user = User.includes(:provider_authorizations).
         where("provider_authorizations.provider_uid = ?", uid).
         where("provider_authorizations.provider_name = 'google_oauth2'").
