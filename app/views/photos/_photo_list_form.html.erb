@@ -30,7 +30,7 @@
     <%= t(:we_didnt_find_any_photos) %>
   </div>
 <% else %>
-  <h4><%= t(:select_one_or_more_photos) %></h4>
+  <h4><%= t :select_one_or_more_photos %></h4>
   <% photos.each do |photo| %>
     <%- 
       native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id

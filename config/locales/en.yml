@@ -52,8 +52,10 @@ en:
   about_this_map: About This Map
   about_this_project: About this Project
   about_x: "About %{x}"
+  acc: 'Acc (m)'
   accuracy: Accuracy
   accuracy_meters: Accuracy (meters)
+  accuracy_of_the_coordinates: 'Accuracy of the coordinates in meters. You can edit this by click the "edit" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you are sure you were somewhere inside it.'
   acquaintances: acquaintances
   actions: Actions
   activate_user: Activate user
@@ -152,6 +154,7 @@ en:
   all_your_observations_will_default_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   allow_any: allow any
+  allowed_values: Allowed values
   alphabetical_order: Alphabetical Order
   amphibians: amphibians
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb doesn't have any information about this species.
@@ -275,11 +278,13 @@ en:
   cc_by_sa_description: "This license lets others remix, tweak, and build upon your work even for commercial purposes, as long as they credit you and license their new creations under the identical terms. All new works based on yours will carry the same license, so any derivatives will also allow commercial use."
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: "Creative Commons, used under a "
+  change_geoprivacy: 'Change geoprivacy'
   change_icon: Change icon
   change_password: Change Password
   change_types: Change types
   change_visibility_of: Change visibility of spatial coordinates?
   change_your_password: Change Your Password
+  changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_here_to_autoload_photos: Check here to auto-load photos from Flickr. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
   check_it_out: Check it out
@@ -313,6 +318,7 @@ en:
   clear_search: Clear search
   click_on_map_to_draw_shape_around_place: Click on the map to draw a shape around the place
   click_on_the_map_to: Click on the map to place your observation
+  click_the_map: "<strong>Click the map</strong> to add a location."
   click_the_map_to_jump_new_place: Click the map to jump to a new place
   collapse_days: collapse days
   collapse_updates: collapse updates
@@ -418,7 +424,7 @@ en:
   doh_something_went_wrong: D'oh, something went wrong.
   dont_send_me_email: "Don't send me any email!"
   dont_use_double_quotes: Don't use double quotes anywhere else
-  download: Download
+  download: 'Download:'
   download_csv: Download CSV
   draft: DRAFT!
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
@@ -456,8 +462,10 @@ en:
   editing_taxon_name: Editing Taxon Name
   editing_taxon_range: Editing Taxon Range
   editing_this: Editing %{elem}
+  eg: 'e.g. '
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_addresses_to_receive_invites: Email addresses to receive invites
+  embed: 'Embed:'
   embed_a_widget_for_this_taxon_on_website: "Embed a widget for this taxon on your website &raquo;"
   embed_place_widget: embed place widget
   embed_widget_project: Embed a widget for this project on your website
@@ -470,6 +478,7 @@ en:
   everyone_journal_posts: Everyone's Journal Posts
   exact_coordinates_obscured_for: Exact coordinates obscured for public view for threatened species.
   existing_flags: Existing_flags
+  exit_full_screen: "Exit full screen"
   expand_days: expand days
   expand_updates: expand updates
   explore!: explore!
@@ -489,7 +498,12 @@ en:
   featured?: featured?
   feedback: Feedback
   feedback_group: Feedback Group
+  feeds: 'Feeds:'
   feeds_for_current_filters: Feeds for Current Filters
+  field_note: |
+                  <strong>Note:</strong> If you'd like to
+                  create a field, check to see if someone else has already made it to
+                  avoid duplication.
   fields: fields
   fill_out_your_profile: fill out your profile
   filling_out_checklist_for_place: filling out checklists for places you know well
@@ -589,6 +603,7 @@ en:
   here_are_3_examples: Here are 3 examples of well-formed data
   here_are_some_things_you_can_do_meantime: "Here are some things you can do in the meantime:"
   hi: Hi,
+  hide: Hide
   hide details: hide details
   home: Home
   home_faq: FAQ
@@ -681,7 +696,9 @@ en:
   last_confirmed_observation: Last confirmed observation
   last_inat_observation: "Last %{site_name} observation"
   last_seen: Last seen
+  lat: Lat
   latitude: Latitude
+  latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
   learn!: Learn!
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -745,8 +762,9 @@ en:
   log_in: Log In
   logged_in_as: Logged in as
   login_slash_username: Login / username
-  longitude: longitude
+  long: Lon
   longitude: Longitude
+  longitude_in_decimal: 'Longitude in decimal degrees, e.g. -122.123'
   looks_like_neither_have!: Looks like neither have any taxa!
   lookup: Lookup
   lookup: Lookup
@@ -828,7 +846,7 @@ en:
   new_taxon_range: New Taxon Range 
   new_user_rules: New User Rules
   new_users_week: New Users / Week
-  next: Next
+  next: Next &raquo;
   next_page: Next page
   'no': 'No'
   no_activity_in_the_past_week: No activity in the past week.  Time to 
@@ -913,6 +931,11 @@ en:
   observations_by_user: "Observations by %{user}"
   observations_circle_have_their_radii_scaled: Observation circles have their radii scaled proportionally to their positional accuracy. Observations without positional accuracy data are shown at the minimum size.
   observations_confirmed: Observations (confirmed)
+  observations_fields_are: |
+               Observation fields are extra pieces of data associated with an
+               observation, like number of individuals observed, habitat
+               description, or whatever you want! Projects can also specify fields
+               they'd like you to fill out.
   observations_for_project: "Observations for %{project}"
   observations_from: Observations from %{date}
   observations_from_this_place: Observations from this place
@@ -980,6 +1003,7 @@ en:
   person: person
   personal_message: Personal message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
+  per_page: "Per page"
   photo: "Photo %{photoid}, %{photoattribution}"
   photo: Photo
   photo?: Photo?
@@ -1154,6 +1178,7 @@ en:
   select_an_album: Select an album
   select_one_or_more_photos: Select one or more photos
   select_none: Select none
+  select_one_or_more_photos: 'Select one or more photos'
   select_photos_from_your_photo_stream: "Select photos from your photo stream to convert into %{site_name} observations. We'll fill in the date, time, and location from a photo's metadata, and try to look up species names from the tags."
   selected_photos: Selected photos
   selected_taxon: Selected Taxon
@@ -1197,6 +1222,7 @@ en:
   sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
   source: Source
   source_unknown: "Source unknown"
+  source_of_coordinates: 'Source of coordinates and accuracy measure, set automatically.'
   sources: Sources
   sources_youve_added: Sources you've added
   species: Species
@@ -1207,6 +1233,7 @@ en:
   species_search: Species Search
   species_taxon_name: Species / Taxon Name
   species_unknown: Species Unknown
+  src: Src
   start: Start
   start_a_new_list: Start a new list
   start_a_new_project: Start a new project
@@ -1240,6 +1267,7 @@ en:
   sync: Sync?
   table: Table
   tags: Tags
+  tags_are_a_way: 'Tags are a way to organize your observations. For example, you might tag all your tidepool observations "tidepools" to make them easier to find later.'
   tags_like_taxonomy_binomial: Tags like <code>taxonomy:binomial=Pseudacris crucifer</code> are <a href="http://www.flickr.com/help/tags#613430">machine tags</a>.  They help engineers programmatically make sense of your tags, and are required by some Flickr groups like the <a href="http://www.flickr.com/groups/encyclopedia_of_life/">Encyclopedia of Life Images</a> group.
   take_me_facebook: Yes, take me to Facebook!
   take_me_flickr!: Yes, take me to Flickr!
@@ -1344,6 +1372,7 @@ en:
   try_adding_species_form: Try adding some species using the form on this page.
   try_wikipedia: Try Wikipedia?
   tue: Tue
+  type_one: Type one species name per line.
   type_place_name: Type place name
   type_project_name: "Type project name..."
   type_source_title: "Type source title..."
@@ -1455,15 +1484,17 @@ en:
   what: What
   what_color_was_it: What color was it?
   what_did_you_see: What did you see?
-  what_did_you_see?: What did you see?
+  what_did_you_see?: <em>What</em> did you see?
   what_do_you_think: What do you think?
   what_to_keep: What to keep
   what_want_to_list?: What do you want to list? 
   when: When
   when_did_you_see_it?: When did you see it?
+  when_did_you_see_them?: <em>When</em> did you see them?
   where: Where
   where_did_you_see_it: Where did you see it?
-  where_were_you?: Where were you?
+  where_were_they?: Where were they?
+  where_were_you?: <em>Where</em> were you?
   white: white
   widget: Widget
   widget_code: Widget code
@@ -1489,6 +1520,7 @@ en:
   yes_i_want_to_join: Yes, I want to join
   yes_license_my_observations_so_scientists_can_use: Yes, license my observations so scientists can use my data!
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
+  yesterday_at: ', yesterday at 4pm'
   you: you
   you_admin: You Admin
   you_are_over_your_invites_quota: ...you're over your monthly quota of 60 invites
