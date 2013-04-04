@@ -6,7 +6,7 @@
     <% end %>
     <div class="column span-7">
       <div class="field species_guess_field">
-        <%= o.label :species_guess, t(:what_did_you_see?) %>
+        <%= o.label :species_guess, t(:what_did_you_see) %>
         <%= o.text_field(:species_guess, :class => 'species_guess text') %>
         <%-
           alt = if observation.taxon
@@ -33,7 +33,7 @@
         <%= o.error_message_on(:observed_on) %>
         <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
         <div class="small description">
-          e.g. "<%= Time.now.to_s(:db) %>", "yesterday at 4pm"
+            <%= t :eg %> "<%= Time.now.to_s(:db) %>" <%= t :yesterday_at %>
         </div>
       </div>
       
@@ -48,9 +48,7 @@
           <%=t :comma_separated_please %>
         </span>
         <% helptip_for "tags" do %>
-          Tags are a way to organize your observations. For example, you might
-          tag all your tidepool observations "tidepools" to make them easier
-          to find later.
+            <%= t :tags_are_a_way %>
         <% end -%>
         <%= o.text_field :tag_list, :class => "text" %>
       </div>
@@ -58,31 +56,31 @@
     <div class="column span-9">
       <div class="place_guess_field field">
         <%= o.label(:place_guess, t(:where_were_you?)) %>
-        <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => "Name of the place you made the observation") %>
+        <%= o.text_field(:place_guess, :class => 'place_guess text', :placeholder => t(:name_of_the_place_you)) %>
       </div>
       <div id="coordinates_<%= i %>" class="latlonfields status stacked">
-        <%= o.label(:latitude, 'Lat', :class => "inlineblock") %>
-        <%= o.text_field(:latitude, :class => 'latitude text', "data-tip" => "Latitude in decimal degrees, e.g. 38.123") %>
+        <%= o.label(:latitude, t(:lat), :class => "inlineblock") %>
+        <%= o.text_field(:latitude, :class => 'latitude text', "data-tip" => t(:latitude_in_decimals)) %>
         
-        <%= o.label(:longitude, 'Lon', :class => "inlineblock") %>
-        <%= o.text_field(:longitude, :class => 'longitude text', "data-tip" => "Longitude in decimal degrees, e.g. -122.123") %>
+        <%= o.label(:longitude, t(:long), :class => "inlineblock") %>
+        <%= o.text_field(:longitude, :class => 'longitude text', "data-tip" => t(:longitude_in_decimal)) %>
 
         <span class="button">
-          <%= link_to_function("edit", 
+          <%= link_to_function(t(:edit),
             "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); " +
             "$(this).hide(); " + 
             "$(this).next().show(); " + 
             "if ($('#observation_positional_accuracy').val()) {$.fn.latLonSelector.editAccuracy()};" +
             "return false;") %>
-          <%= link_to_function("hide", "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).prev().show(); $.fn.latLonSelector.stopEditAccuracy(); return false;", :style => 'display: none') %>
+          <%= link_to_function(t(:hide), "$('#coordinates_#{i}').toggleClass('status').toggleClass('open'); $(this).hide(); $(this).prev().show(); $.fn.latLonSelector.stopEditAccuracy(); return false;", :style => 'display: none') %>
         </span>
         
         <%= o.hidden_field(:map_scale, :class => 'map_scale') %>
         <%= o.hidden_field(:location_is_exact, :class => 'location_is_exact') %>
         
-        <%= o.label(:positional_accuracy, 'Acc (m)', :class => "inlineblock") %>
-        <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock', "data-tip" => "Accuracy of the coordinates in meters. You can edit this by click the \"edit\" link above or by clicking on the map marker and dragging the handles. Try to make the circle big enough that you're sure you were somewhere inside it.") %>
-        <%= o.label(:positional_accuracy, 'Src', :class => "inlineblock", "data-tip" => "Source of coordinates and accuracy measure, set automatically.") %>
+        <%= o.label(:positional_accuracy, t(:acc), :class => "inlineblock") %>
+        <%= o.text_field(:positional_accuracy, :class => 'positional_accuracy text inlineblock', "data-tip" => t(:accuracy_of_the_coordinates)) %>
+        <%= o.label(:positional_accuracy, t(:src), :class => "inlineblock", "data-tip" => t(:source_of_coordinates)) %>
         <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
         <%= o.hidden_field(:positioning_device, :class => 'positioning_device', :disabled => true) %>
       </div>
@@ -90,19 +88,19 @@
         <div id="map"></div>
         <% if observation.latitude.blank? -%>
           <div class="floating dark description">
-            <strong>Click the map</strong> to add a location.
+            <%=raw t :click_the_map %>
           </div>
         <% end -%>
       </div>
       <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
-        <label for="observations_<%= i %>_geoprivacy">Change geoprivacy</label>
-        <%= o.select :geoprivacy, Observation::GEOPRIVACIES, :include_blank => "open" %>
+        <label for="observations_<%= i %>_geoprivacy"><%= t :change_geoprivacy %></label>
+        <%= o.select :geoprivacy, t(Observation::GEOPRIVACIES), :include_blank => t(:open) %>
         <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
         <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
-          <p>Changing the geoprivacy alters how other people see the location of your observation.</p>
+          <p><%= t :changing_the_geoprivacy %></p>
           <dl>
             <% for privacy, description in Observation::GEOPRIVACY_DESCRIPTIONS %>
-              <dt><%= t( privacy ) || t(:open) %></dt>
+              <dt><%= t(privacy) %></dt>
               <dd><%= t(description) %></dd>
             <% end %>
           </dl>
@@ -203,19 +201,14 @@
 
     <fieldset id="morefields">
       <legend>
-        More fields
+        <%= t :more_fields %>
         <% helptip_for "observation_fields" do %>
           <p>
-            Observation fields are extra pieces of data associated with an
-            observation, like number of individuals observed, habitat
-            description, or whatever you want! Projects can also specify fields
-            they'd like you to fill out.
+            <%= t :observations_fields_are %>
           </p>
 
           <p>
-            <strong>Note:</strong> If you'd like to
-            create a field, check to see if someone else has already made it to
-            avoid duplication.
+            <%=raw t :field_note %>
           </p>
         <% end -%>
       </legend>
