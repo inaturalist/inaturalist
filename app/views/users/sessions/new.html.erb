@@ -13,16 +13,16 @@
   
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :builder => DefaultFormBuilder, :html => {:class => "clear"}) do |f| %>
     <%= f.text_field :email, :label => t(:username_or_email), :class => "text", :tabindex => 1, :autocorrect => "off", :autocapitalize => "off" %>
-    <%= f.password_field :password, :class => "text", :tabindex => 2 %>
+    <%= f.password_field t(:password), :class => "text", :tabindex => 2 %>
 
     <% if devise_mapping.rememberable? -%>
-      <%= f.check_box :remember_me, :label_after => true %>
+      <%= f.check_box :remember_me, :label_after => true, :label => t(:remember_me) %>
     <% end -%>
     
     <div class="clear buttonrow">
       <%= f.submit t(:sing_in_exclamation), :class => "default button" %>
       <span class="small inter ui nobr description" style="line-height: 1.6">
-        or
+        <%= t :or %>
         <%= link_to t(:start_new_account), new_user_path, :class => "readmore" %>
       </span>
     </div>

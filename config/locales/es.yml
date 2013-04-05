@@ -40,8 +40,10 @@ es:
   about_this_project: "Acerca de este Proyecto"
   about_x: "Acerca de %{x}"
   account: Cuenta
+  acc: 'Exactitud (metros)'
   accuracy: Exactitud
   accuracy_meters: "Exactitud (metros)"
+  accuracy_of_the_coordinates: 'Exactitud de las coordenadas en metros. Las puedes cambiar dándole clic en el link "Modificar" o con un clic el punto de tu ubicación en el mapa. Trata de hacer el circulo lo suficientemente grande para asegurar que estabas en algún lugar del área marcada.'
   acquaintances: conocidos
   actions: Acciones
   activate_user: "Activar usuario"
@@ -174,6 +176,7 @@ es:
   all_your_observations_will_default_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
   all_your_observations_will_default_to_this_time_zone: "Todas sus observaciones se harán en esta zona horaria a menos que usted especifique lo contrario."
   allow_any: "permitir alguna"
+  allowed_values: Valores permitidos
   alphabetical_order: "Orden alfabético"
   amphibians: anfibios
   amphibiaweb_doesnt_have_info_about_species: "AmphibiaWeb no tiene ninguna información de esta especie."
@@ -221,6 +224,7 @@ es:
   associations: Asociaciones
   at: en
   at_any_time_change: "en cualquier lugar (<span class=\"button\">change</span>)"
+  atom: Atom
   august: Agosto
   automatic_descriptions_have_been_disabled: "Se han deshabilitado las descripciones automáticas para este taxón."
   automatically_add_to_project: "Agregar a proyecto automáticamente"
@@ -299,11 +303,13 @@ es:
   cc_by_sa_description: "Esta licencia permite a otros entremezclar, ajustar y construir con base en su trabajo, incluso para fines comerciales, siempre y cuando se de crédito y licencia de sus nuevas creaciones, en los términos idénticos. Esta licencia es a menudo comparado con \"copyleft\" licencias de software libre y de código abierto. Todos los nuevos trabajos basados ​​en el suyo portarán la misma licencia, por lo que todos los derivados también permitirá el uso comercial. Esta es la licencia usada por la Wikipedia, y se recomienda para los materiales que podrían beneficiarse de la incorporación de contenidos de Wikipedia y los proyectos de manera similar con licencia."
   cc_by_sa_name: "Atribución-Compartir igual"
   cc_used_under_a: "Creative Commons, usada bajo una"
+  change_geoprivacy: 'Cambiar geoprivacidad'
   change_icon: "Cambiar ícono"
   change_password: "Cambiar su contraseña"
   change_types: "Cambiar tipos"
   change_visibility_of: "¿Camibar la visibilidad de las coordenadas espaciales?"
   change_your_password: "Cambiar su contraseña"
+  changing_the_geoprivacy: 'Cambiar la geoprivacidad modifica el como otras personas ven la localización de tu observación.'
   check_here_to_autoload_description: "Marque aquí para auto cargar la descripción desde Wikipedia. Podría querer desmarcarlo cuando el nombre científico de un taxón también es una palabra no científica o una falta de ortografía común, como \"Parus\"."
   check_here_to_autoload_photos: "Haga clic aquí para auto-cargar fotos desde Flickr. Podría querer desmarcarlo cuando el nombre científico de un taxón también es una palabra no científica o una falta de ortografía común, como \"Parus\"."
   check_it_out: "Échele un vistazo"
@@ -337,6 +343,7 @@ es:
   clear_search: "Limpiar búsqueda"
   click_on_map_to_draw_shape_around_place: "Haga clic en el mapa para dibujar una figura alrededor del lugar"
   click_on_the_map_to: "Haga clic en el mapa para colocar su observación"
+  click_the_map: "<strong>Clic al mapa</strong> para agregar una localización."
   click_the_map_to_jump_new_place: "Haga clic en el mapa para moverse a un lugar nuevo"
   collapse_days: "contraer días"
   collapse_updates: "contraer actualizaciones"
@@ -397,6 +404,7 @@ es:
   curator: Curador
   current_password: "Contraseña actual"
   custom_project_fields: "Campos de proyecto personalizados"
+  csv: CSV
   darr_apply_darr: "&darr; Aplicar &darr;"
   dashboard: Tablero
   data_deficient: "datos insuficientes"
@@ -574,7 +582,7 @@ es:
   doesnt_have_default_photo: "no tiene una foto por defecto todavía."
   doh_something_went_wrong: "Algo salió mal."
   dont_use_double_quotes: "No utilice comillas dobles en ningún otro lugar"
-  download: Descargar
+  download: 'Descargar:'
   download_csv: "Descargar CSV"
   draft: ¡BORRADOR!
   each_place_displays_all_species_inat_knows: "Cada página de lugar muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Usted puede filtrar la especie por grupo taxonómico, color, estado de conservación o búsqueda sencilla."
@@ -612,8 +620,10 @@ es:
   editing_taxon_name: "Modificar nombre del Taxón"
   editing_taxon_range: "Modificar rango de taxón"
   editing_this: "Modificando %{elem}"
+  eg: 'ej. '
   email_addresses_description: "Direcciones de correo separadas por coma, límite 60 cada 30 días."
   email_addresses_to_receive_invites: "Direcciones de correo para recibir invitaciones"
+  embed: 'Insertar:'
   embed_a_widget_for_this_taxon_on_website: "Insertar un widget para este taxón en su sitio web &raquo;"
   embed_place_widget: "integrar widget de lugar"
   embed_widget_project: "Insertar un widget para este proyecto en su página web"
@@ -662,6 +672,7 @@ es:
   everyone_journal_posts: "Articulos en todos los diarios"
   exact_coordinates_obscured_for: "Coordenadas exactas ocultas para visualización pública para especies amenazadas."
   existing_flags: "Marcas existentes"
+  exit_full_screen: "Salir de la pantalla completa"
   expand_days: "expandir días"
   expand_updates: "expandir actualizaciones"
   explore!: ¡Descubra!
@@ -680,7 +691,12 @@ es:
   february: Febrero
   feedback: Retroalimentación
   feedback_group: "Grupo de retroalimentación"
+  feeds: 'Feeds:'
   feeds_for_current_filters: "Fuentes para los filtros actuales"
+  field_note: |
+                    <strong>Nota:</strong> Si vas a crear un campo
+                    checa si alguien mas ya lo creo, para
+                    evitar duplicación.
   fields: campos
   fill_out_your_profile: "completa su perfil"
   filling_out_checklist_for_place: "llenar las listas de verificación de los lugares que usted conoce bien"
@@ -784,6 +800,7 @@ es:
   here_are_some_things_you_can_do_in_the_meantime: "Aquí hay algunas cosas que usted puede hacer mientras tanto"
   here_are_some_things_you_can_do_meantime: "Aquí hay algunas cosas que puede hacer mientras tanto"
   hi: Hola.
+  hide: Ocultar
   hide_details: "ocultar detalles"
   home: Inicio
   home_faq: FAQ
@@ -871,10 +888,13 @@ es:
   june: Junio
   just_added!: "¡Se acaba de agregar!"
   kelp_diatoms_and_allies: "algas, diatomeas, y aliados"
+  kml: KML
   last_confirmed_observation: "Última observación confirmada"
   last_inat_observation: "Última observación %{site_name}"
   last_seen: "Visto por última vez"
+  lat: Latitud
   latitude: Latitud
+  latitude_in_decimals: 'Latitud en grados con decimales, ej. 38.123'
   learn!: ¡Aprenda!
   learn_about_the_species_live_in: "Aprenda sobre las especies que viven en"
   learn_more: "Aprenda más"
@@ -945,7 +965,9 @@ es:
   logged_in_as: "Inició sesión como"
   logged_in_successfuly: "Ha iniciado sesión exitosamente"
   login_slash_username: "Registro / nombre de usuario"
+  long: Longitud
   longitude: Longitud
+  longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
   looks_like_neither_have!: "¡Parece que ninguno tiene taxones!"
   lookup: Buscar
   lookup_noun: Búsqueda
@@ -1026,7 +1048,7 @@ es:
   new_taxon_range: "Nuevo Rango de Taxón"
   new_user_rules: "Nuevas reglas de usuario"
   new_users_week: "Usuarios nuevos / Semana"
-  next: Siguiente
+  next: Siguiente &raquo;
   next_page: "Página siguiente"
   no_activity_in_the_past_week: "No ha habido actividad en la semana anterior. !Es hora de"
   no_administrator_knows_your_password: "Ningún administrador de %{sitename} conoce su nueva contraseña ni ha tenido acceso a ella en ningún momento."
@@ -1143,11 +1165,15 @@ es:
   observation_date: Fecha
   observation_field: "Campo de observación"
   observation_fields: "Campos de observación"
+  observations_fields_are: |
+                 Los campos es información extra asociada a tu
+                 observación, como el número de especies observadas, descripción
+                 del habitad, o lo que quieras comentar.
   observation_fields_are_additional: "Los campos de observación son campos de datos adicionales que se pueden agregar a las observaciones."
   observation_rights_html: "Observación %{rights}"
   observation_rules_description: "Usted puede seleccionar reglas para determinar cuáles observaciones se pueden agregar a este proyecto, como limitar las observaciones a un lugar determinado. Nota&#58; limitar a lugares se basa actualmente en %{site_name} Places y sólo puede limitar las observaciones al rectángulo más pequeño que rodea un lugar."
   observation_would_like_some_help: "¡A %{user} le gustaría un poco de ayuda para identificar esto!"
-  observations: Observaciones
+  observations: observaciones
   observations_by_everyone: "Observaciones de todos"
   observations_by_user: "Observaciones de %{user}"
   observations_by_user_on_date: "Observaciones de %{user} en %{date}"
@@ -1315,7 +1341,7 @@ es:
   recently_resolved: "Resueltos recientemente"
   record!: ¡Comparta!
   red: rojo
-  redo_search_in_map_area: "Rehacer la búsqueda tomando en cuenta solo el área mostrada por el mapa"
+  redo_search_in_map_area: "Vuelve a realizar la búsqueda en el área del mapa"
   refresh: Refrescar
   regenerate_url: "Regenerar URL"
   reload_from_observations: "Volver a cargar sus observaciones"
@@ -1398,6 +1424,7 @@ es:
   select_all: "Seleccionar todo"
   select_an_album: "Seleccionar un álbum"
   select_none: "No seleccionar ninguno"
+  select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_photos_from_your_photo_stream: "Seleccionar fotos de Photostream para convertirlas en observaciones en %{site_name}. Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas."
   selected_taxon: "Grupo o especie seleccionada"
   send: enviada(s)
@@ -1437,6 +1464,7 @@ es:
   somewhere_on_earth: "en algún lugar de la Tierra"
   sorry_how_about_we_try_repeat: "¡Lo sentimos¿Por qué no tratamos de repetir su búsqueda en algunas de nuestras bases de datos o nombres de especies? Si encontramos algo, lo guardaremos para que pueda encontrarlo la próxima vez."
   source: Fuente
+  source_of_coordinates: 'Fuente de las coordenadas y la exactitud de las medidas, se pone automáticamente.'
   source_unknown: "Fuente desconocida"
   sources: Fuentes
   sources_youve_added: "Fuentes que usted ha agregado"
@@ -1448,6 +1476,7 @@ es:
   species_plural: Especies
   species_search: "Búsqueda de especies"
   species_taxon_name: "Especie / Nombre del taxón"
+  src: Fuente
   start: Inicio
   start_a_new_list: "Comenzar una lista nueva"
   start_a_new_project: "Comenzar un proyecto nuevo"
@@ -1484,6 +1513,7 @@ es:
   sync: ¿Sincronizar?
   table: Tabla
   tags: Etiquetas
+  tags_are_a_way: 'Las etiquetas son palabras clave que puedes agregar a tus observaciones para hacerlas más fáciles de encontrar.'
   tags_like_taxonomy_binomial: "Etiquetas como taxonomía <code>binomial=Pseudacris crucifer</code> are <a href=\"http: //www.flickr.com/help/tags#613430\">machine tags</a>.  They help engineers programmatically make sense of your tags, and are required by some Flickr groups like the <a href=\"http: //www.flickr.com/help/tags#613430\">machine tags</a>.  They help engineers programmatically make sense of your tags, and are required by some Flickr groups like the <a href=\"http: //www.flickr.com/groups/encyclopedia_of_life/\">Encyclopedia of Life Images</a> group."
   take_me_facebook: "¡Sí, lléveme a Facebook!"
   take_me_flickr!: "¡Sí, lléveme a Flickr!"
@@ -1594,6 +1624,7 @@ es:
   try_adding_species_form: "Trate de agregar algunas especies usando el formulario en esta página."
   try_wikipedia: "¿Probar con Wikipedia?"
   tue: mar
+  type_one: Por cada línea pon el nombre de una especie.
   type_place_name: "Digite el nombre del lugar"
   type_project_name: "Digite el nombre del proyecto..."
   type_source_title: "Título del tipo de fuente..."
@@ -1933,15 +1964,17 @@ es:
   what: Qué
   what_color_was_it: "¿De qué color era?"
   what_did_you_see: "¿Qué viste?"
-  what_did_you_see?: "¿Qué viste?"
+  what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: "¿Qué le parece?"
   what_is_an_observation?: "¿Qué es una observación?"
   what_to_keep: "Qué mantener"
   what_want_to_list?: "¿Qué desea colocar en la lista?"
   when: Cuando
   when_did_you_see_it?: "¿Cuándo lo viste?"
+  when_did_you_see_them?: <em>¿Cuándo</em> los viste?
   where: Donde
   where_did_you_see_it: "¿Dónde lo viste?"
+  where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: "¿Dónde estaba usted?"
   white: blanco
   widget: Widget
@@ -1987,6 +2020,7 @@ es:
   yes_i_want_to_join: "Sí, deseo unirme"
   yes_license_my_observations_so_scientists_can_use: "¡Sí, hacer una licencia de mis observaciones para que los científicos puedan usar mis datos!"
   yes_show_this_in_the_box: "Sí, muestre esto en la caja grande arriba de los taxones"
+  yesterday_at: ', ayer a las 4pm'
   you: usted
   you_admin: "que usted administra"
   you_are_over_your_invites_quota: "...ya has enviado más de 60 invitaciones este mes."

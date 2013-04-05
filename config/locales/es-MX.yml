@@ -20,8 +20,10 @@ es-MX:
   about_this_map: "Acerca de este mapa"
   about_this_project: "Acerca de este proyecto"
   about_x: "Acerca %{x}"
+  acc: 'Precisión (metros)'
   accuracy: Precisión
   accuracy_meters: "Precisión (metros)"
+  accuracy_of_the_coordinates: 'Precisión de las coordenadas en metros. Las puedes cambiar seleccionando el enlace a "Modificar" o seleccionando el punto de tu ubicación en el mapa. Trata de hacer el círculo lo suficientemente grande para asegurar que estabas en algún lugar del área marcada.'
   acquaintances: Conocidos
   actions: Acciones
   activate_user: "Activa al usuario"
@@ -158,8 +160,8 @@ es-MX:
   add_obs_from_a_link: "Añade observación de la lista %{link}"
   add_obs_from_a_list: "Añade observaciones de una lista"
   add_observation: "Añade una observación"
-  add_observations: "Añade observaciones"
-  add_observations!: "¡Agrega observaciones!"
+  add_observations: "Añadir observaciones"
+  add_observations!: "¡Añade observaciones!"
   add_observations_by_checking_off: "Añade observaciones marcando las especies de una lista"
   add_observations_from_list: "Añade observaciones de una lista"
   add_observations_of_taxa_youve_added: "Añade observaciones de especies que has incluido en la lista. Bajo desarrollo, todavía estamos solucionando algunos problemas..."
@@ -211,6 +213,7 @@ es-MX:
   all_your_observations_will_default_this_time_zone: "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa."
   all_your_observations_will_default_to_this_time_zone: "Todas tus observaciones tendrán esta zona de tiempo a menos que especifiques otra cosa."
   allow_any: "Permite a cualquiera"
+  allowed_values: Valores permitidos
   alphabetical_order: "Orden alfabético"
   amphibians: Anfibios
   amphibiaweb_doesnt_have_info_about_species: "El sitio AmphibiaWeb no tiene información sobre esta especie."
@@ -255,7 +258,7 @@ es-MX:
   associations: Asociaciones
   at: en
   at_any_time_change: "en cualquier tiempo (<span class=\"botón\">cambia</span>)"
-  atom: Átomo
+  atom: Atom
   automatic_descriptions_have_been_disabled: "Las descripciones automáticas para esta especie o grupo han sido desconectadas."
   automatically_add_to_project: "Añade al proyecto automáticamente"
   automatically_id_new: "Automáticamente identifica la nueva observación como"
@@ -330,11 +333,13 @@ es-MX:
   cc_by_sa_description: "Esta licencia permite a otros mezclar, modificar y desarrollar sobre tu obra, aún comercialmente, siempre y cuando te den crédito por la creación original y den licencia por sus nuevas obras con las mismas condiciones. Todas las obras nuevas basadas en tu obra, llevan la misma licencia, así que cualquier trabajo derivado también permitirá el uso comercial.\n"
   cc_by_sa_name: "Atribución - Compartir bajo la misma licencia"
   cc_used_under_a: "Creative Commons, utilizado bajo una "
+  change_geoprivacy: 'Cambiar geoprivacidad'
   change_icon: "Cambia ícono"
   change_password: "Cambia contraseña"
   change_types: "Cambia tipos"
   change_visibility_of: "¿Cambia la visibilidad de las coordenadas espaciales?"
   change_your_password: "Cambia tu contraseña"
+  changing_the_geoprivacy: 'Cambiar la geoprivacidad modifica como otras personas ven la ubicación de tu observación.'
   check_here_to_autoload_description: "Selecciona aquí para cargar la descripción de Wikipedia. Puedes quitar la selección cuando un nombre científico de la especie también es una palabra no científica o un error común de escritura como \"Parus\"."
   check_here_to_autoload_photos: "Selecciona aquí para cargar tus fotos de  Flickr. Puedes quitar la selección cuando el nombre científico de la especie también es una palabra no científica o un error común de escritura como \"Parus\"."
   check_it_out: Revísalo
@@ -368,11 +373,12 @@ es-MX:
   clear_search: "Limpia la búsqueda"
   click_on_map_to_draw_shape_around_place: "Selecciona un lugar en el mapa para dibujar una forma alrededor del lugar"
   click_on_the_map_to: "Selecciona el mapa para poner tu observación"
-  click_the_map_to_jump_new_place: "Haz clic en el mapa para moverte a un lugar nuevo"
+  click_the_map: "<strong>Selecciona el mapa </strong>para añadir una localización."
+  click_the_map_to_jump_new_place: "Selecciona el mapa para moverte a un lugar nuevo"
   collapse_days: "Colapsa los días"
   collapse_updates: "Colapsa las actualizaciones"
   colors: Colores
-  comma_separated_please: "Separados por una coma, por favor"
+  comma_separated_please: "Separadas por una coma, por favor"
   comment_preview: "Vista previa del comentario"
   comments: Comentarios
   comments_and_identifications: "Comentarios e identificaciones"
@@ -564,11 +570,11 @@ es-MX:
   doh_something_went_wrong: "Algo no sucedió bien."
   dont_send_me_email: "¡No me envíen correo electrónico!"
   dont_use_double_quotes: "No uses \"entre comillas\" en ningún lado"
-  download: Descarga
+  download: 'Descargar:'
   download_csv: "Descarga CSV"
   draft: ¡BORRADOR!
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
-  edit: Editar
+  edit: Modificar
   edit_a_batch_of_observations: "Edita un grupo de observaciones"
   edit_account_settings_and_profile: "Edita la configuración de la cuenta y perfil"
   edit_colors: "Edita los colores"
@@ -601,8 +607,10 @@ es-MX:
   editing_taxon_name: "Edita el nombre de la especie o grupo"
   editing_taxon_range: "Edita la distribución de la especie o grupo"
   editing_this: "Editando %{elem}"
+  eg: 'ej. '
   email_addresses_description: "correos electrónicos separados por coma. El límite son 60 cada 30 días."
   email_addresses_to_receive_invites: "Correos electrónicos que recibirán invitación"
+  embed: 'Insertar:'
   embed_a_widget_for_this_taxon_on_website: "Incluye un widget de esta especie o grupo en tu sitio web &raquo;"
   embed_place_widget: "Incluye el widget del lugar"
   embed_widget_project: "Incluye el widget para este proyecto en tu sitio web"
@@ -656,8 +664,9 @@ es-MX:
   establishment_means: "Medio de establecimiento"
   establishment_means_describes_how: "Medios de establecimiento describe como la especie o grupo se estableció en un área. Ve el DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información sobre terminología</a>."
   everyone_journal_posts: "Todas las notas de los Diarios"
-  exact_coordinates_obscured_for: "Las coordenadas exactas están oscurecidas para la vista de especies amenazadas por el público"
+  exact_coordinates_obscured_for: "Las coordenadas exactas están oscurecidas para la vista de especies en riesgo por el público"
   existing_flags: "Advertencias presentes"
+  exit_full_screen: "Salir de la pantalla completa"
   expand_days: "Expande días"
   expand_updates: "Expande fechas"
   explore!: ¡Descubre
@@ -6054,7 +6063,12 @@ es-MX:
   featured?: ¿Destacado?
   feedback: Retroalimentación
   feedback_group: "Grupo de retroalimentación"
+  feeds: 'Feeds:'
   feeds_for_current_filters: "Suministro para los filtros actuales"
+  field_note: |
+                      <strong>Nota:</strong> Si vas a crear un campo
+                      checa si alguien más ya lo creó, para
+                      evitar duplicación.
   fields: Campos
   fill_out_your_profile: "Escribe tu perfil"
   filling_out_checklist_for_place: "Llenando listas de especies para lugares que conoces bien"
@@ -6103,6 +6117,7 @@ es-MX:
   from_in_this_place: "De es"
   from_list: "De la lista"
   full_id_please: "¡Ayuda con la identificación, por favor!"
+  full_id_please?: Ayuda con identificación
   fungi: 
     one: Hongo
     other: Hongos
@@ -6158,6 +6173,7 @@ es-MX:
   here_are_some_things_you_can_do_in_the_meantime: "Algunas cosas que puedes hacer mientras tanto"
   here_are_some_things_you_can_do_meantime: "Algunas cosas que puedes hacer mientras tanto:"
   hi: "Hola,"
+  hide: Ocultar
   ? "hide details"
   : "Esconde los detalles"
   home: Inicio
@@ -6228,7 +6244,7 @@ es-MX:
   is_this_place_a_duplicate: "¿Está duplicado este lugar?"
   it_has: Tiene
   it_instead: "en lugar."
-  its_important_that_you: "Es importante que hagas click"
+  its_important_that_you: "Es importante que selecciones"
   iucn_red_list_status: "estatus en la Lista Roja de UICN"
   january: Enero
   join_and: "Únete y "
@@ -6245,7 +6261,9 @@ es-MX:
   last_confirmed_observation: "Última observación confirmada"
   last_inat_observation: "Última observación %{site_name} "
   last_seen: "Visto por última vez"
+  lat: Latitud
   latitude: Latitud
+  latitude_in_decimals: 'Latitud en grados con decimales, ej. 38.123'
   learn!: ¡Aprende
   learn_about_the_species_live_in: "Aprende sobre las especies que viven en"
   learn_more: "Aprende más"
@@ -6312,7 +6330,9 @@ es-MX:
   log_in: "Empieza la sesión"
   logged_in_as: "Inicia sesión como"
   login_slash_username: "Login / nombre de usuario"
+  long: Longitud
   longitude: Longitude
+  longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
   looks_like_neither_have!: "¡Parece que ninguno tiene taxa!"
   lookup: Busca
   lookup_user_rarr: "Busca usario &rarr,"
@@ -6352,7 +6372,7 @@ es-MX:
   month: Mes
   months_ago: "Hace %{text} "
   more: Mas
-  more_fields: "Mas campos"
+  more_fields: "Más campos"
   more_info: "Más información"
   more_observations: "Más observaciones"
   most_agree: "La mayoría está de acuerdo"
@@ -6365,7 +6385,7 @@ es-MX:
   name: Nombre
   name_entered: "Nombre incluido"
   name_llaves: "[Nombre]"
-  name_of_the_place_you: "Nombre del lugar donde se realizó la observación"
+  name_of_the_place_you: "Lugar donde se realizó la observación"
   named_based_url_might_change: "El nombre basado en el URL puede cambiar, pero este no."
   names: Nombres
   native: Nativo
@@ -6398,7 +6418,7 @@ es-MX:
   new_taxon_range: "Distribución de la nueva especie o grupo"
   new_user_rules: "Nuevas reglas de usuario"
   new_users_week: "Nuevos usuarios / Semana"
-  next: Siguiente
+  next: Siguiente &raquo;
   next_page: "Siguiente página"
   no_activity_in_the_past_week: "No hubo actividad la semana pasada. Es tiempo de "
   no_administrator_knows_your_password: "Ningún administrador de %{sitename} conoce tu nueva contraseña ni ha tenido acceso a ella en ningún momento."
@@ -6495,6 +6515,10 @@ es-MX:
   observation_date: Fecha
   observation_field: "Campo de observación"
   observation_fields: "Campos de observación"
+  observations_fields_are: |
+                 Los campos incluyen información asociada a tu
+                 observación, como el número de especies observadas, descripción
+                 del hábitat, o lo que quieras comentar.
   observation_fields_are_additional: "Los campos de observación son campos de información adicional que pueden añadirse a las observaciones."
   observation_rights_html: "Observacion %{rights}"
   observation_rules_description: "Puedes escoger las reglas que determinan que observaciones pueden ser añadidas a este proyecto, y limitarlas a cierto lugar. Note&#58; La limitación de lugares actualmente depende de %{site_name} lugares, y solo puede limitar las observaciones al rectángulo más pequeño que rodea el lugar.\n"
@@ -6511,7 +6535,7 @@ es-MX:
   observations_from_this_place: "Observaciones de este lugar"
   observations_from_this_project: "Observaciones de este proyecto"
   observations_from_you: "Tus observaciones"
-  observations_have_had_their_coordinates: "Las coordenadas de las observaciones han sido movidas a un punto al azar dentro de %{km} km, ya sea porque la  especie está amenazada o porque el observador quiso oscurecer las coordenadas."
+  observations_have_had_their_coordinates: "Las coordenadas de las observaciones han sido movidas a un punto al azar dentro de %{km} km, ya sea porque la  especie está en riesgo o porque el observador quiso oscurecer las coordenadas."
   observations_it_may_take_a_few: "Observaciones. Puede tomar unos minutos"
   observations_last500: "Observaciones (las últimas 500)"
   observations_map: "Observaciones / Mapa"
@@ -6543,8 +6567,8 @@ es-MX:
   only_showing_taxa_from: "Solamente se muestra taxa de esta lista"
   only_species: "Solo especies"
   only_species_and_subspecies: "Solo especies y subespecies o variedades"
-  open: Abierto
-  open_description: "Todos pueden ver las coordenadas a menos que la especie esté amenazada"
+  open: Abierta
+  open_description: "Todos pueden ver las coordenadas a menos que la especie esté en riesgo"
   optional_columns_note_for_any: "Columnas opcionales (nota: para que cada una de estas columnas sea usada en una observación deben estar presentes en todas)"
   or: o
   or_choose_high_level_taxa: "... o escoge de algún taxa con nivel superior"
@@ -6569,6 +6593,7 @@ es-MX:
   people_agree: "La gente está de acuerdo"
   people_following_user: "Personas siguiendo a %{user}"
   people_user_follows: "Personas que %{user} sigue"
+  per_page: "Registros por página"
   person: Persona
   personal_message: "Mensaje personal"
   personal_message_description: "¡A nadie le gusta recibir correo electrónico de una máquina! ¿Porqué no les explicas a tus amigos porque los estás invitando?"
@@ -6614,7 +6639,7 @@ es-MX:
   previous_page: "Página previa"
   privacy: "Política de privacidad"
   privacy_policy: "Política de privacidad"
-  private: Privado
+  private: Privada
   private_description: "Las coordenadas están completamente escondidas de los mapas públicos. Solo tú y los curadores de los proyectos a los que añades observaciones pueden ver las verdaderas coordenadas. Las observaciones con coordenadas privadas serán usadas para verificar las listas de especies de los lugares."
   processing3p: Procesando...
   profile: perfil
@@ -6629,7 +6654,12 @@ es-MX:
   project_list: "Lista del proyecto"
   project_rules: "Reglas del proyecto"
   projects: Proyectos
-  projects_description: "Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}. Ya sea que a te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club de observadores locales, la forma de hacerlo es con Proyectos."
+  projects_description: |
+                Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}.
+                Ya sea que a te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de
+                las aves de un parque cercano con tu club de observadores locales, la forma de hacerlo es con Proyectos.
+                Revisa los <a href="http://conabio.inaturalist.org/pages/proyectosMexico">proyectos existentes</a> antes de crear uno nuevo.
+
   projects_you_admin: "Proyectos que administras"
   projects_youve_joined: "Proyectos en los que participas"
   protozoans: Protozoarios
@@ -6734,13 +6764,14 @@ es-MX:
   search_ubio_raquo: "Busca uBio &raquo;"
   search_your_photos: "Busca tus fotos"
   searching: Buscando
-  second_person_possessive_singular: "tú %{noun}"
+  second_person_possessive_singular: "Tus %{noun}"
   see_something_wrong_with_taxon: "¿Ves algo equivocado con esta especie o grupo? Avísales a los curadores ahora."
   seen_it?: "¿Lo han visto?"
   seen_one: "¿Han visto uno?"
   select_all: "Selecciona todos"
   select_an_album: "Selecciona un álbum"
   select_none: "No selecciones nada"
+  select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_photos_from_your_photo_stream: "Selecciona fotos de tus álbums para convertirlas en observaciones de  %{site_name}. Nosotros incluiremos la fecha, hora y ubicación de los metadatos de la foto e intentaremos buscar el nombre de las especies a partir de las etiquetas."
   selected_taxon: "Selecciona una especie o grupo"
   send: Envía
@@ -6779,6 +6810,7 @@ es-MX:
   somewhere_on_earth: "En algún lugar del Planeta"
   sorry_how_about_we_try_repeat: "¡Disculpas! ¿Que tal si intentamos la búsqueda en otras bases de datos de nombres de especies? Si encontramos algo, lo guardaremos para que lo encuentres la próxima vez."
   source: Fuente
+  source_of_coordinates: 'Fuente de las coordenadas y la exactitud de las medidas, se pone automáticamente.'
   source_unknown: "Fuente desconocida"
   sources: Fuentes
   sources_youve_added: "Fuentes que has añadido"
@@ -6789,6 +6821,7 @@ es-MX:
   species_name: "Nombres de especie"
   species_search: "Búsqueda de especies"
   species_taxon_name: "Especie / Nombre del grupo"
+  src: Fuente
   start: Empezar
   start_a_new_list: "Empieza una nueva lista"
   start_a_new_project: "Empieza un nuevo proyecto"
@@ -6798,7 +6831,7 @@ es-MX:
   start_new_project: "Empieza un nuevo proyecto"
   start_one: "Empieza uno"
   start_one_now: "¡Empieza uno ahora!"
-  start_typing_field_name: "Empieza a escribir el nombre del campo...."
+  start_typing_field_name: "Nombre del campo...."
   start_typing_place_name: "Empieza escribiendo el nombre del lugar"
   states: Estados
   stats: Estadísticas
@@ -6827,6 +6860,7 @@ es-MX:
   sync: ¿Sincronizar?
   table: Cuadro
   tags: Etiquetas
+  tags_are_a_way: 'Las etiquetas son palabras clave que puedes agregar a tus observaciones para hacerlas más fáciles de encontrar.'
   tags_like_taxonomy_binomial: "Etiquetas como  <code>taxonomy:binomial=Pseudacris crucifer</code> son <a href=\"http://www.flickr.com/help/tags#613430\">etiquetas de máquina</a>. Ayudan a los programadores a entender tus etiquetas y son requeridas por algunos grupos de Flickr como el grupo<a href=\"http://www.flickr.com/groups/encyclopedia_of_life/\">Encyclopedia of Life Images</a>.\n"
   take_me_facebook: "¡Si, llévame a Facebook!"
   take_me_flickr!: "¡Sí, llévame a Flickr!"
@@ -6936,6 +6970,7 @@ es-MX:
   try_adding_species_form: "Intenta añadir algunas especies utilizando la forma en esta página."
   try_wikipedia: "¿Prueba Wikipedia?"
   tue: Mar
+  type_one: Por cada línea pon el nombre de una especie.
   type_place_name: "Escribe el nombre del lugar"
   type_project_name: "Escribe el nombre del proyecto"
   type_source_title: "Escribe el título de la fuente..."
@@ -7052,7 +7087,7 @@ es-MX:
             Las coordenadas son automaticamente oscurecidas para todas las especies que están  "CASI 
             AMENAZADAS" o en una categoría peor de acuerdo a la Lista Roja de la UICN. Algunas especies pueden ser 
             declaradas amenazadas de acuerdo a otras autoridades de conservación, y 
-            algunas pueden ser marcadas como amenazadas por los curadores del sitio  %{site_name}
+            algunas pueden ser marcadas como en riesgo por los curadores del sitio  %{site_name}
             si ellos creen que merecen protección.
         curators_are_inat_users_who_volunteer_to_html: |-
             Los curadores son usuarios de %{site_name} que participan como voluntarios para mantener nuestros
@@ -7222,7 +7257,7 @@ es-MX:
   want_to_add_one: "¿Quieres añadir una?"
   want_to_show_off_some_of_your_favorite_taxa: "¿Quieres presumir tus grupos (taxa) favoritos aquí?"
   we_also_support: |-
-      Tambien tenemos conexión con <a href="http://flickr.com">Flickr</a>, 
+      También tenemos conexión con <a href="http://flickr.com">Flickr</a>,
       <a href="http://picasaweb.google.com">Picasa</a>, y 
       <a href="http://facebook.com">Facebook</a> 
       para tus imágenes.
@@ -7248,14 +7283,16 @@ es-MX:
   what: Qué
   what_color_was_it: "¿De qué color era?"
   what_did_you_see: "¿Qué viste?"
-  what_did_you_see?: "¿Qué viste?"
+  what_did_you_see?: <em>¿Qué</em> viste?
   what_do_you_think: "¿Que piensas?"
   what_to_keep: "Qué mantener"
   what_want_to_list?: "¿Que quieres enlistar?"
   when: Cuándo
   when_did_you_see_it?: "¿Cuándo lo viste?"
+  when_did_you_see_them?: <em>¿Cuándo</em> los viste?
   where: Dónde
   where_did_you_see_it: "¿Dónde lo viste?"
+  where_were_they?: <em>¿Dónde</em> se encontraban?
   where_were_you?: "¿Dónde estabas?"
   white: Blanco
   widget: Widget
@@ -7316,6 +7353,7 @@ es-MX:
   yes_i_want_to_join: "Si, quiero participar"
   yes_license_my_observations_so_scientists_can_use: "Si, ¡doy licencia sobre mis observaciones para que los investigadores puedan utilizar mis datos!"
   yes_show_this_in_the_box: "Si, muestra esto en la caja  grande por arriba de /grupos (taxa)"
+  yesterday_at: ', ayer a las 4 pm'
   you: Tu
   you_admin: "Tu administrador"
   you_are_over_your_invites_quota: "...te pasaste de tu cuota mensual de 60 invitados"

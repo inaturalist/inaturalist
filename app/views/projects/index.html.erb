@@ -21,7 +21,7 @@
 </div>
 
 <p class="description">
-  <%=t :projects_description, :site_name => SITE_NAME_SHORT %>
+  <%=raw t :projects_description, :site_name => SITE_NAME_SHORT %>
 </p>
 
 <% unless @started.blank? -%>

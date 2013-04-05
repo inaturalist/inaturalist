@@ -288,7 +288,7 @@
 <%- tools = capture do -%>
   <div id="tools" class="buttonrow">
     <% if is_me?(@selected_user) -%>
-      <%= link_to t(:add_observations_), new_observation_path, 
+      <%= link_to t(:add_observations), new_observation_path,
                   :id => "newobsbutton", :class => "default button"%>
       <%= link_to_function(t(:batch_edit), "batchEdit()", :id => "batch_edit_button", :class => 'button') %>
       <div id="batchcontrols" style="display: none">
@@ -352,8 +352,9 @@
   <% if @observations.empty? %>
     <div id="no_obs_message" class="description">
       <%=t :no_matching_observations %>
+      <br><br>
       <% if logged_in? && current_user.login == @login %>
-      <%= link_to 'Add Observations', new_observation_path, 
+      <%= link_to t(:add_observations), new_observation_path,
                   :class => 'default inline button' %>
       <% end %>
     </div>
@@ -362,7 +363,7 @@
     <% if logged_in? -%>
       <%= form_for :preferences, :url => url_for, :html => {:style => "float: left", :method => :get} do |f| %>
         <%= hidden_fields_for_params(:without => [:per_page, :page, :preferences]) %>
-        <%= f.label :per_page %>
+        <%= f.label t(:per_page) %>
         <%= f.select :per_page, ApplicationController::PER_PAGES, 
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
@@ -373,7 +374,7 @@
 
 <div id="mapcol" class="column span-7 last stacked">
   <div id="map"></div>
-  <%= link_to_function "Redo search in map area", 
+  <%= link_to_function t(:redo_search_in_map_area),
     "redoSearchInMapArea()", 
     :id => 'redo_search_in_map_area_button',
     "data-loading-click" => "Loading..." %>
@@ -383,13 +384,13 @@
   <div id="feeds" class="small ui description">
     <% if is_me?(@selected_user) -%>
       <span>
-        Embed:
+        <%= t :embed %>
         <%= link_to t(:widget), observations_widget_path %>
       </span>
     <% end -%>
     
     <span class="feeds">
-      Feeds:
+      <%= t :feeds %>
       <%- 
         feed_params = request.query_parameters.reject do |key,value|
           ObservationsController::REJECTED_FEED_PARAMS.include?(key)
@@ -399,16 +400,16 @@
         end
         kml_feed_params[:kml_type] = "network_link"
       -%>
-      <%= link_to("Atom", observations_by_login_feed_path(@login, :format => 'atom', :params => feed_params),
+      <%= link_to("Atom", observations_by_login_feed_path(@login, :format => t(:atom), :params => feed_params),
         :class => 'atomlink') %>
-      <%= link_to("KML",  observations_by_login_feed_path(@login, :format => 'kml', :params => kml_feed_params),
+      <%= link_to("KML",  observations_by_login_feed_path(@login, :format => t(:kml), :params => kml_feed_params),
         :class => 'kmllink') %>
     </span>
 
     <% if is_me?(@selected_user) -%>
       <span class="feeds">
-        Downlowd:
-        <%= link_to "CSV", observations_by_login_all_url(@login, :format => 'csv'), 
+        <%= t :download %>
+        <%= link_to "CSV", observations_by_login_all_url(@login, :format => t(:csv)),
           :class => "delayedlink csvlink", 
           "data-delayed-link-msg" => 
             "Please hold on while the file is generated.  It can take a couple minutes if you have a lot of observations.",
