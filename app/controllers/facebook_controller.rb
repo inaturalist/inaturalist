@@ -1,6 +1,14 @@
 class FacebookController < ApplicationController
   before_filter :return_here, :only => [:options]
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index]
+
+  def index
+    @headless = @footless = true
+    unless params[:by].blank?
+      @selected_user = User.find_by_id(params[:by])
+      @selected_user ||= User.find_by_login(params[:by])
+    end
+  end
 
   # This is the endpoint which allows a user to manager their facebook account
   # settings.  They use this endpoint after they have already gone through the
