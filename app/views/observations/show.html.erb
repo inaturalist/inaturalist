@@ -448,7 +448,8 @@
       </div>
     <% elsif @observation.id_please? %>
       <div id="idplease" class="box stacked">
-        <%= link_to @observation.user.login, @observation.user %> <%=t :_would_like_some_help_identifying_this %>
+        <%= link_to @observation.user.login, @observation.user %>
+        <%=t :would_like_some_help_identifying_this %>
       </div>
     <% end -%>
     
