@@ -6,7 +6,7 @@
   :javascript
     var USER = #{@selected_user.to_json(User.default_json_options)}
     function loadObservations(options) {
-      $('.observations').loadingShades()
+      $('.observations').loadingShades('Loading...', {top: '85px'})
       options = options || {}
       if (!options.by || options.by == null) {
         var url = '/observations?per_page=100&has[]=photos&partial=cached_component'
@@ -14,14 +14,15 @@
         var url = '/observations/'+options.by+'?per_page=100&partial=cached_component'
       }
       $('.observations').load(url, function(data) {
-        var html = data.replace(/[\s\n]+/, ' ')
+        var html = data.replace(/\/div>[\s\n]+?<div/g, '/div><div')
         $(this).html(html)
-        $(this).parent().find('.observationcontrols').observationControls()
+        $('.observationcontrols').observationControls()
       })
     }
 = content_for :extracss do
   :css
     h2 img {margin-bottom: -5px;}
+    .observations {position: relative;}
 .right.buttonrow
   .minor.button
     - if logged_in?

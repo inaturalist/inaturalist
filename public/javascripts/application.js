@@ -500,8 +500,8 @@ $.fn.loadingShades = function(e, options) {
     var status = $('.shades .loading.status', this)
     status.css({
       position: 'absolute', 
-      top: '50%', 
-      left: '50%', 
+      top: options.top || '50%', 
+      left: options.left || '50%', 
       marginTop: (-1 * status.outerHeight() / 2) + 'px',
       marginLeft: (-1 * status.outerWidth() / 2) + 'px'
     })
