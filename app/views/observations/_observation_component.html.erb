@@ -78,7 +78,7 @@ Some notes:
             "data-square-url" => photo.square_url,
             "data-small-url" => photo.small_url,
             "data-medium-url" => photo.medium_url
-          ), observation, :class => 'flickr photo'%>
+          ), observation_url(observation), :class => 'flickr photo'%>
           <% if photos.size > 1 -%>
             <%= link_to t(:photos_size, :amount => photos.size), observation, :class => 'readmore' %>
           <% end -%>
