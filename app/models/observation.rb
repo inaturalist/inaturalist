@@ -1551,6 +1551,21 @@ class Observation < ActiveRecord::Base
       identifications.current.by(user_id).last
     end
   end
+
+  def expire_components
+    Observation.expire_components_for(self)
+  end
+
+  def self.expire_components_for(o)
+    o = Observation.find_by_id(o) unless o.is_a?(Observation)
+    return unless o
+    ctrl = ActionController::Base.new
+    ctrl.expire_fragment(o.component_cache_key)
+    ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
+    I18N_SUPPORTED_LOCALES.each do |locale|
+      ctrl.expire_fragment(o.component_cache_key(:locale => locale))
+    end
+  end
   
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
@@ -1558,12 +1573,10 @@ class Observation < ActiveRecord::Base
     @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
   end
   
-  def self.expire_components_for(taxon)
+  def self.expire_components_for_taxon(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     Observation.of(taxon).find_each do |o|
-      ctrl = ActionController::Base.new
-      ctrl.expire_fragment(o.component_cache_key)
-      ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
+      o.expire_components
     end
   end
 

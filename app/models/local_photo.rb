@@ -42,6 +42,7 @@ class LocalPhoto < Photo
   
   process_in_background :file
   after_post_process :set_urls, :expire_observation_caches
+  after_save :expire_observation_caches
     
   validates_presence_of :user
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
@@ -91,8 +92,7 @@ class LocalPhoto < Photo
   def expire_observation_caches
     ctrl = ActionController::Base.new
     observation_photos.all.each do |op|
-      ctrl.expire_fragment(Observation.component_cache_key(op.observation_id, :for_owner => true))
-      ctrl.expire_fragment(Observation.component_cache_key(op.observation_id))
+      Observation.expire_components_for(op.observation_id)
     end
     true
   rescue => e
