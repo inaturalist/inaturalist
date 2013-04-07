@@ -415,7 +415,9 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.name.toLowerCase() == q.toLowerCase()) {
-        return tn
+        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+          return tn
+        }
       }
     }
 
@@ -423,7 +425,9 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.is_valid && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        return tn
+        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+          return tn
+        }
       }
     }
 
@@ -431,7 +435,9 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        return tn
+        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+          return tn
+        }
       }
     }
 
