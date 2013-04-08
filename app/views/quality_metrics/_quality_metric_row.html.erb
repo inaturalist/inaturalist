@@ -17,9 +17,9 @@
         <tr>
           <td>
             <% if score >= 0.5 -%>
-              <span class="good"><%=t :yes_ %></span>
+              <span class="good"><%=t :yes %></span>
             <% else %>
-              yes
+              <%=t :yes %>
             <% end -%>
           </td>
           <td width="100%">
@@ -32,9 +32,9 @@
         <tr>
           <td>
             <% if score >= 0.5 -%>
-              no
+              <%=t :no %>
             <% else %>
-              <span class="bad">no</span>
+              <span class="bad"><%=t :no %></span>
             <% end -%>
           </td>
           <td>
@@ -55,26 +55,26 @@
         <% if user_quality_metric -%>
           <% if user_quality_metric.agree? -%>
             <strong>
-              yes
+              <%=t :yes %>
               <%= link_to "(x)", observation_quality_path(o, metric), "data-http-method" => "delete", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
             </strong>
             /
-            <%= link_to t(:no__), observation_quality_path(o, metric, :agree => false), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+            <%= link_to t(:no), observation_quality_path(o, metric, :agree => false), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
           <% else %>
-            <%= link_to t(:yes_), observation_quality_path(o, metric), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+            <%= link_to t(:yes), observation_quality_path(o, metric), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
             /
             <strong>
-              no
+              <%= t(:no) %>
               <%= link_to "(x)", observation_quality_path(o, metric), "data-http-method" => "delete", "data-loading-click" => '&nbsp;', :class => "inlineblock status quality_metric_vote_link" %>
             </strong>
           <% end -%>
         <% else %>
           <% if logged_in? -%>
-            <%= link_to t(:yes_), observation_quality_path(o, metric), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
-            <%= link_to t(:no__), observation_quality_path(o, metric, :agree => false), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
+            <%= link_to t(:yes), observation_quality_path(o, metric), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %> /
+            <%= link_to t(:no), observation_quality_path(o, metric, :agree => false), "data-http-method" => "post", "data-loading-click" => "&nbsp;", :class => "inlineblock status quality_metric_vote_link" %>
           <% else %>
-            <%= link_to t(:yes_), login_path, :class => "inlineblock status" %> /
-            <%= link_to t(:no__), login_path, :class => "inlineblock status" %>
+            <%= link_to t(:yes), login_path, :class => "inlineblock status" %> /
+            <%= link_to t(:no), login_path, :class => "inlineblock status" %>
           <% end -%>
         <% end -%>
       </div>
