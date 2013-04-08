@@ -723,7 +723,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def lsid
-    "lsid:inaturalist.org:taxa:#{id}"
+    "lsid:#{URI.parse(CONFIG.site_url).host}:taxa:#{id}"
   end
   
   # Flagged method is called after every add_flag.  This callback method

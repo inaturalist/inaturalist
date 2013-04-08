@@ -47,7 +47,7 @@ class TaxonRange < ActiveRecord::Base
           xml.Placemark {
             xml.name
             xml.description
-            xml.styleUrl "http://www.inaturalist.org/stylesheets/index.kml#taxon_range"
+            xml.styleUrl "#{CONFIG.site_url}/stylesheets/index.kml#taxon_range"
             xml << self.geom.as_kml
           }
         }

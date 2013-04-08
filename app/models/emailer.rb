@@ -11,7 +11,7 @@ class Emailer < ActionMailer::Base
   
   def invite(address, params, current_user) 
     Invite.create(:user => current_user, :invite_address => address)
-    @subject = "#{SUBJECT_PREFIX} #{params[:sender_name]} wants you to join them on iNaturalist" 
+    @subject = "#{SUBJECT_PREFIX} #{params[:sender_name]} wants you to join them on #{CONFIG.site_name}" 
     @personal_message = params[:personal_message]
     @sending_user = params[:sender_name]
     @current_user = current_user

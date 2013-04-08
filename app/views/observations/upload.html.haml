@@ -38,7 +38,7 @@
   %h2= @title
 = form_tag "/observations/photo.json", :multipart => true, :id => "fileupload", :remote => true do
   %p.description
-    Create observations by uploading photos to iNat. When you upload iNat will try to extract GPS coordinates and date/time from the photo.
+    Create observations by uploading photos to #{CONFIG.site_name_short}. When you upload #{CONFIG.site_name_short} will try to extract GPS coordinates and date/time from the photo.
     To get started,
     %em drag and drop photos onto this window
     or
