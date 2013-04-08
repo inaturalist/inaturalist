@@ -161,6 +161,18 @@ class Place < ActiveRecord::Base
     joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").
     where("listed_taxa.taxon_id = ?", taxon_id)
   }
+
+  scope :with_establishment_means, lambda {|establishment_means|
+    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").scoped
+    case establishment_means
+    when ListedTaxon::NATIVE
+      scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
+    when ListedTaxon::INTRODUCED
+      scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS)
+    else
+      scope.where("listed_taxa.establishment_means = ?", establishment_means)
+    end
+  }
   
   scope :place_type, lambda {|place_type|
     place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0

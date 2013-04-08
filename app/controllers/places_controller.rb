@@ -60,6 +60,9 @@ class PlacesController < ApplicationController
           else
             scope = scope.listing_taxon(params[:taxon])
           end
+          if ListedTaxon::ESTABLISHMENT_MEANS.include?(params[:establishment_means])
+            scope = scope.with_establishment_means(params[:establishment_means])
+          end
         end
         per_page = params[:per_page].to_i
         per_page = 200 if per_page > 200
