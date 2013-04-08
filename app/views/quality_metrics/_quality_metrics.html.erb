@@ -13,13 +13,13 @@
           <% if o.community_supported_id? %>
             <span class="good"><%=t :yes %></span>
           <% else %>
-            <%=t :no %>
+            <%=t :no__ %>
           <% end -%>
           <div class="small meta">
-            <%= o.num_identification_agreements == 1 ? t(:n_person_agrees, :amount=>"#{o.num_identification_agreements}") : t(:n_people_agrees, :amount=>"#{o.num_identification_agreements}")  %>
+            <%= o.num_identification_agreements == 1 ? t(:n_person_agrees, :amount => o.num_identification_agreements) : t(:n_people_agrees, :amount=>"#{o.num_identification_agreements}")  %>
           </div>
           <div class="small meta">
-            <%= o.num_identification_disagreements == 1 ? t(:n_person_disagrees, :amount=>"#{o.num_identification_disagreements}") : t(:n_people_disagrees, :amount=>"#{o.num_identification_disagreements}")  %>
+            <%= o.num_identification_disagreements == 1 ? t(:n_person_disagrees, :amount => o.num_identification_disagreements) : t(:n_people_disagrees, :amount=>"#{o.num_identification_disagreements}")  %>
           </div>
         </td>
       </tr>
@@ -27,21 +27,23 @@
       <tr>
         <td><%= t(:observation_date) %></td>
         <td>
-          <%= o.observed_on? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : 'no' %>
+          yes: <%=t :yes_ %>
+          no: <%=t :no__ %>
+          <%= o.observed_on? ? "<span class=\"good\">#{t(:yes_)}</span>".html_safe : t(:no__) %>
         </td>
       </tr>
 
       <tr>
         <td><%= t(:georeferenced) %></td>
         <td>
-          <%= o.georeferenced? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : 'no' %>
+          <%= o.georeferenced? ? "<span class=\"good\">#{t(:yes_)}</span>".html_safe : t(:no__) %>
         </td>
       </tr>
 
       <tr>
         <td> <%= t(:photo) %></td>
         <td>
-          <%= o.photos.exists? ? "<span class=\"good\">#{t(:yes)}</span>".html_safe : 'no' %>
+          <%= o.photos.exists? ? "<span class=\"good\">#{t(:yes_)}</span>".html_safe : t(:no__) %>
         </td>
       </tr>
 
