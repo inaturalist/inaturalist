@@ -55,13 +55,16 @@ class PlacesController < ApplicationController
         unless params[:taxon].blank?
           if !params[:place_type].blank? && params[:place_type].downcase == 'continent'
             country_scope = Place.place_types(['country']).listing_taxon(params[:taxon])
+            if ListedTaxon::ESTABLISHMENT_MEANS.include?(params[:establishment_means])
+              country_scope = country_scope.with_establishment_means(params[:establishment_means])
+            end
             continent_ids = country_scope.select("ancestry").map(&:parent_id)
             scope = scope.where("places.id IN (?)", continent_ids)
           else
             scope = scope.listing_taxon(params[:taxon])
-          end
-          if ListedTaxon::ESTABLISHMENT_MEANS.include?(params[:establishment_means])
-            scope = scope.with_establishment_means(params[:establishment_means])
+            if ListedTaxon::ESTABLISHMENT_MEANS.include?(params[:establishment_means])
+              scope = scope.with_establishment_means(params[:establishment_means])
+            end
           end
         end
         per_page = params[:per_page].to_i
