@@ -10,8 +10,7 @@ class ProjectAssetsController < ApplicationController
     @project_asset = ProjectAsset.new(:project => @project)
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @project_asset }
+      format.html
     end
   end
 
