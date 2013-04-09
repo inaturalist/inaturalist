@@ -87,7 +87,7 @@
     </div>
     
     <div>
-      <%= link_to t(:view_taxon_page_for) + (@place ? t(:place) : t(:list)), listed_taxon, :class => "readmore" %>
+      <%= link_to t(:view_taxon_page_for_this_x, :x => (place ? t(:place) : t(:list)).downcase), listed_taxon, :class => "readmore" %>
     </div>
     <div>
       <%= link_to t(:view_taxon_page), taxon, :class => "readmore" %>
