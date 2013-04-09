@@ -11187,7 +11187,7 @@ CREATE TABLE photos (
     small_url character varying(255),
     medium_url character varying(255),
     large_url character varying(255),
-    original_url character varying(255),
+    original_url character varying(512),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     native_page_url character varying(255),
@@ -15167,3 +15167,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130312070047');
 INSERT INTO schema_migrations (version) VALUES ('20130313192420');
 
 INSERT INTO schema_migrations (version) VALUES ('20130403235431');
+
+INSERT INTO schema_migrations (version) VALUES ('20130409225631');
