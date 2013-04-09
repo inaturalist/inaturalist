@@ -25,9 +25,9 @@ class FacebookController < ApplicationController
     else
       Rails.logger.error "[Error #{Time.now}] Facebook connection failed, error ##{e.type} (#{e}):  #{e.message}"
       Airbrake.notify(e, :request => request, :session => session) # testing
-      flash[:error] = "Ack! Something went horribly wrong, like a giant " + 
+      flash[:error] = "Ack! Something went horribly wrong, like a giant " +
                        "squid ate your Facebook info.  You can contact us at " +
-                       "help@inaturalist.org if you still can't get this " + 
+                       "#{CONFIG.help_email} if you still can't get this " +
                        "working.  Error: #{e.message}"
     end
   end

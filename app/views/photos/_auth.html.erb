@@ -1,7 +1,7 @@
 <%-
   @url_options ||= {}
   msg = if @reauthorization_needed
-    "iNat needs you to authorize more permissions from #{@provider.capitalize} to proceed:"
+    "#{CONFIG.site_name_short} needs you to authorize more permissions from #{@provider.capitalize} to proceed:"
   else
     "First, connect your #{@provider.capitalize} account to #{CONFIG.site_name}:"
   end

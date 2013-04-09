@@ -52,7 +52,7 @@
       <% if flagging.user -%>
         <%= link_to h(flagging.user.login), flagging.user %>
       <% else %>
-        iNat
+        <%= CONFIG.site_name_short %>
       <% end -%>
     </td>
     <td>
