@@ -64,6 +64,23 @@ describe ListedTaxon do
       lt = @user_check_list.listed_taxa.create(:taxon => Taxon.make!, :user => @user)
       lt.source_id.should be(@user_check_list.source_id)
     end
+
+    it "should set establishment_means to native if there is a native listing for a child place" do
+      child_place = Place.make!(:parent => @place)
+      t = Taxon.make!
+      child_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::NATIVE)
+      lt = @check_list.add_taxon(t)
+      lt.establishment_means.should eq(ListedTaxon::NATIVE)
+    end
+
+    it "should set establishment_means to introduced if there is a introduced listing for a parent place" do
+      parent_place = Place.make!
+      place = Place.make!(:parent => parent_place)
+      t = Taxon.make!
+      parent_place.check_list.add_taxon(t, :establishment_means => ListedTaxon::INTRODUCED)
+      lt = place.check_list.add_taxon(t)
+      lt.establishment_means.should eq(ListedTaxon::INTRODUCED)
+    end
   end
   
   describe "check list auto removal" do
@@ -303,5 +320,63 @@ describe ListedTaxon, "validation for comprehensive check lists" do
     # puts "lt2.errors.full_messages: #{lt2.errors.full_messages.to_sentence}" unless lt2.valid?
     lt2.should_not be_valid
     lt2.errors[:occurrence_status_level].should_not be_blank
+  end
+end
+
+describe ListedTaxon, "establishment means propagation" do
+  let(:parent) { Place.make! }
+  let(:place) { Place.make!(:parent => parent) }
+  let(:child) { Place.make!(:parent => place) }
+  let(:taxon) { Taxon.make! }
+  let(:parent_listed_taxon) { parent.check_list.add_taxon(taxon) }
+  let(:place_listed_taxon) { place.check_list.add_taxon(taxon) }
+  let(:child_listed_taxon) { child.check_list.add_taxon(taxon) }
+  it "should bubble up for native" do
+    parent_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
+  end
+
+  it "should bubble up for endemic" do
+    parent_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::ENDEMIC)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
+  end
+
+  it "should not trickle down for native" do
+    child_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should be_blank
+  end
+
+  it "should trickle down for invasive" do
+    child_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INVASIVE)
+    child_listed_taxon.reload
+    child_listed_taxon.establishment_means.should eq(place_listed_taxon.establishment_means)
+  end
+
+  it "should not bubble up for invasive" do
+    parent_listed_taxon.establishment_means.should be_blank
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INVASIVE)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should be_blank
+  end
+
+  it "should not alter previous settings" do
+    parent_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    parent_listed_taxon.reload
+    parent_listed_taxon.establishment_means.should eq(ListedTaxon::INTRODUCED)
+  end
+
+  it "should not alter est means of other taxa" do
+    new_parent_listed_taxon = parent.check_list.add_taxon(Taxon.make!)
+    place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    new_parent_listed_taxon.reload
+    new_parent_listed_taxon.establishment_means.should be_blank
   end
 end

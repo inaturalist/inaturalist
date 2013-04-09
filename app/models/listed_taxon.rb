@@ -31,7 +31,9 @@ class ListedTaxon < ActiveRecord::Base
   before_create :set_updater_id
   before_save :set_user_id
   before_save :set_source_id
+  before_save :set_establishment_means
   after_save :update_cache_columns_for_check_list
+  after_save :propagate_establishment_means
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
@@ -264,12 +266,31 @@ class ListedTaxon < ActiveRecord::Base
     self.place_id = self.list.place_id
     true
   end
+
+  def set_establishment_means
+    return true unless establishment_means.blank?
+    return true if place.blank?
+    if introduced_ancestor_listed_taxon = ListedTaxon.
+        where("place_id IN (?)", place.ancestor_ids).
+        where(:taxon_id => taxon_id).
+        where("establishment_means IN (?)", INTRODUCED_EQUIVALENTS).
+        first
+      self.establishment_means = introduced_ancestor_listed_taxon.establishment_means
+    elsif native_child_listed_taxon = ListedTaxon.joins(:place).
+        where(place.descendant_conditions).
+        where(:taxon_id => taxon_id).
+        where("establishment_means IN (?)", NATIVE_EQUIVALENTS).
+        first
+      self.establishment_means = native_child_listed_taxon.establishment_means
+    end
+    true
+  end
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
     unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
-      list.delay(:priority => INTEGRITY_PRIORITY).sync_with_parent
+      list.delay(:priority => INTEGRITY_PRIORITY).sync_with_parent(:time_since_last_sync => updated_at)
     end
     true
   end
@@ -298,6 +319,32 @@ class ListedTaxon < ActiveRecord::Base
       # this should have already happened in update_cache_columns
     else
       ListedTaxon.delay(:priority => INTEGRITY_PRIORITY).update_cache_columns_for(id)
+    end
+    true
+  end
+
+  def propagate_establishment_means
+    return true unless establishment_means_changed? && !establishment_means.blank?
+    return true unless list.is_a?(CheckList)
+    if native?
+      # bubble up for native equivalents
+      ListedTaxon.update_all(
+        ["establishment_means = ?", establishment_means],
+        ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
+      )
+    else
+      # trickle down for introduced
+      sql = <<-SQL
+        UPDATE listed_taxa
+        SET establishment_means = '#{establishment_means}'
+        FROM places
+        WHERE 
+          listed_taxa.place_id = places.id
+          AND establishment_means IS NULL
+          AND listed_taxa.taxon_id = #{taxon_id}
+          AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
+      SQL
+      ActiveRecord::Base.connection.execute(sql)
     end
     true
   end
