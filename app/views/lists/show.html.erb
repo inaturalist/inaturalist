@@ -122,9 +122,8 @@
           setTimeout("window.location.reload()", 5000);
         </script>
       <% elsif logged_in? && current_user.id == @list.user_id %>
-        <%=t :you_havent_observed_any_species %> to list yet! Try 
-        <%= link_to t(:adding_some_observations), new_observation_path %>
-       <%=t :or_just_adding_species_using %>
+        <%=t :no_species_on_this_list %>
+        <%=t :no_species_on_this_list_for_owner_html, :url => new_observation_url %>
       <% elsif @q %>
         <%=t :no_results_matching %> "<%= @q %>"
       <% else %>

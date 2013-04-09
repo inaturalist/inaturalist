@@ -122,7 +122,7 @@ en:
   add_to_list: Add to list
   add_to_project: Add to project
   add_to_your_life_list: Add to your life list!
-  add_to_your_list: Add to Your List
+  add_to_your_list: Add to your list
   add_your_own_observations_at: "Add your own observations at %{site_name}"
   add_your_photo: Add your photo
   add_your_photo_to: "Add your photo to %{project}"
@@ -132,7 +132,6 @@ en:
   added_on: Added on
   adding: "Adding..."
   adding_observations: Adding observations
-  adding_some_observations: adding some observations
   adding_to_your_life_list: "Adding to your life list..."
   admin: Admin
   admin_tools: Admin Tools
@@ -866,6 +865,10 @@ en:
   no_results_matching: No results matching
   no_species_have_been_listed: No species have been listed for this place yet!
   no_species_on_this_list: No species on this list yet!
+  no_species_on_this_list_for_owner_html: |
+    You can start adding species to this list directly, or if this is a life
+    list, it will automatically be updated with species when you
+    <a href="%{url}" class="nobr">add observations</a>.
   no_summary_has_been_set: No summary has been set.
   no_taxa: No taxa
   no_taxa_listed: No taxa listed
@@ -951,7 +954,6 @@ en:
   or_choose_high_level_taxa: "... or chooose from some high-level taxa"
   or_if_you_dont_want_email: "Or if you just don't want any email..."
   or_invite_your_friends: or invite your friends
-  or_just_adding_species_using: or just adding species using the form on this page.
   or_post_message_to_google_group: "or post a message to our Google Group:"
   or_you_can: "Or you can..."
   orange: orange
@@ -1493,7 +1495,6 @@ en:
   you_havent: You haven't
   you_havent_left_any_comments_recently: You haven't left any comments recently.  Go leave someone a note!
   you_havent_linked_your_inaturalist_picasa_account: "You haven't linked your %{site_name} account and your Picasa account yet"
-  you_havent_observed_any_species: You haven't observed any species to list yet! Try
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_some_observations_first: You need to select some observations first.
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
