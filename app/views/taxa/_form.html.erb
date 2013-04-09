@@ -212,7 +212,7 @@
       pieces << "observations" if @observations_exist
       msg = t(:it_has) 
       msg += t(:descendant_taxa) if @descendants_exist
-      msg += t(:and) + " #{pieces.join(', ')} " + t(:of_it_and_its_descendants) %> unless pieces.empty?
+      msg += t(:and) + " #{pieces.join(', ')} " + t(:of_it_and_its_descendants) unless pieces.empty?
     -%>
     <%= link_to t(:delete), taxon,
                 :method => :delete,
