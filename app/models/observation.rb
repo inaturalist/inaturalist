@@ -912,7 +912,7 @@ class Observation < ActiveRecord::Base
   
   
   def lsid
-    "lsid:inaturalist.org:observations:#{id}"
+    "lsid:#{URI.parse(CONFIG.site_url).host}:observations:#{id}"
   end
   
   def component_cache_key(options = {})

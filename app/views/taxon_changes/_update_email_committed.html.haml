@@ -25,7 +25,7 @@
 = taxon_change.description
 
 %p
-  Taxon changes represent changes to iNaturalist's taxonomy. Most of the time iNat will automatically 
+  Taxon changes represent changes to #{CONFIG.site_name}'s taxonomy. Most of the time #{CONFIG.site_name_short} will automatically
   keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
   to let you know when and how your data is changing.
   - if taxon_change.automatable?
@@ -34,7 +34,7 @@
     - else
       You have some content related to these taxa that you may want to update.
   - else
-    iNat cannot update your content automatically for this change.
+    #{CONFIG.site_name_short} cannot update your content automatically for this change.
 = link_to "View details", taxon_change_url(taxon_change), :class => "readmore"
 - if !taxon_change.automatable? || !user.prefers_automatic_taxonomic_changes?
   &nbsp;

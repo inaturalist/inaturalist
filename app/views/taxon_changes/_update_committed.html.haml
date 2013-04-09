@@ -18,7 +18,7 @@
 
 .stacked
   = helptip "About taxon changes" do
-    Taxon changes represent changes to iNaturalist's taxonomy. Most of the time iNat will automatically 
+    Taxon changes represent changes to #{CONFIG.site_name}'s taxonomy. Most of the time #{CONFIG.site_name_short} will automatically
     keep your content up-to-date when these changes happen (unless you've opted-out), but we still want 
     to let you know when and how your data is changing.
     - if taxon_change.automatable?
@@ -27,11 +27,11 @@
         = surround '', '.' do
           = link_to "alter your taxon change settings", edit_user_path(current_user)
       - else
-        If you'd prefer to have iNat update your content automatically in the future, you can
+        If you'd prefer to have #{CONFIG.site_name_short} update your content automatically in the future, you can
         = surround '', '.' do
           = link_to "alter your taxon change settings", edit_user_path(current_user)
     - else
-      iNat cannot update your content automatically for this change.
+      #{CONFIG.site_name_short} cannot update your content automatically for this change.
 = link_to "View details", taxon_change, :class => "readmore"
 &nbsp;
 = link_to "Update your content", taxon_change_commit_for_user_path(taxon_change), :class => "readmore"
