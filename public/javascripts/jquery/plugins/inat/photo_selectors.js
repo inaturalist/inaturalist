@@ -31,7 +31,7 @@
 //
 (function($){
   $.fn.photoSelector = function(options) {
-    var options = $.extend({}, $.fn.photoSelector.defaults, options);
+    var options = $.extend(true, {}, $.fn.photoSelector.defaults, options);
     
     // Setup each wrapper
     $(this).each(function() {
@@ -480,8 +480,9 @@
   };
   
   $.fn.photoSelector.defaults = {
-    baseURL: '/flickr/photo_fields',
+    baseURL: '/photos/local_photo_fields',
     queryOnLoad: true,
+    defaultSource: 'local',
     formInputCSS: {
       float: 'left',
       'margin-top': 0
