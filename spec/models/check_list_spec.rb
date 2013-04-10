@@ -361,34 +361,3 @@ describe CheckList, "sync_with_parent" do
     end
   end
 end
-
-describe CheckList, "updating to comprehensive" do
-  before(:each) do
-    @parent = Taxon.make!
-    @taxon = Taxon.make!(:parent => @parent)
-    @place = Place.make!
-  end
-  
-  it "should mark listed taxa of descendant taxa from other check lists for this place as absent" do
-    lt = @place.check_list.add_taxon(@taxon)
-    lt.should_not be_absent
-    
-    l = CheckList.make!(:place => @place, :taxon => @parent, :comprehensive => true)
-    lt.reload
-    lt.should be_absent
-  end
-  
-  it "should mark listed taxa of descendant taxa from other check lists for this place as absent if they are on this list" do
-    l = CheckList.make!(:place => @place, :taxon => @parent)
-    l.add_taxon(@taxon)
-    l.taxon_ids.should include(@taxon.id)
-    
-    lt = @place.check_list.add_taxon(@taxon)
-    @place.check_list.taxon_ids.should include(@taxon.id)
-    lt.should_not be_absent
-    
-    l.update_attributes(:comprehensive => true)
-    lt.reload
-    lt.should_not be_absent
-  end
-end

@@ -301,26 +301,6 @@ describe ListedTaxon, "validation for comprehensive check lists" do
     lt = @place.check_list.add_taxon(t, :first_observation => o)
     lt.should be_valid
   end
-  
-  it "should fail if occurence_status changed from absent and there is a comprehensive list of a parent taxon for this place that doesn't contain this taxon" do
-    p1 = Taxon.make!
-    p2 = Taxon.make!(:parent => p1)
-    t1 = Taxon.make!(:parent => p1)
-    t2 = Taxon.make!(:parent => p2)
-    # puts "p1: #{p1.id}, p2: #{p2.id}, t1: #{t1.id}, t2: #{t2.id}"
-    cl1 = CheckList.make!(:place => @place, :taxon => p1)
-    cl2 = CheckList.make!(:place => @place, :taxon => p2)
-    lt1 = cl1.add_taxon(t1)
-    lt2 = cl2.add_taxon(t2)
-    # puts "lt2.errors.full_messages: #{lt2.errors.full_messages.to_sentence}" unless lt2.valid?
-    cl1.update_attributes(:comprehensive => true)
-    lt2.reload
-    lt2.should be_absent
-    lt2.occurrence_status_level = ListedTaxon::PRESENT
-    # puts "lt2.errors.full_messages: #{lt2.errors.full_messages.to_sentence}" unless lt2.valid?
-    lt2.should_not be_valid
-    lt2.errors[:occurrence_status_level].should_not be_blank
-  end
 end
 
 describe ListedTaxon, "establishment means propagation" do

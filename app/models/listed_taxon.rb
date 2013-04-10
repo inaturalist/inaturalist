@@ -114,7 +114,6 @@ class ListedTaxon < ActiveRecord::Base
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
   validate :not_on_a_comprehensive_check_list, :on => :create
   validate :absent_only_if_not_confirming_observations
-  validate :preserve_absense_if_not_on_a_comprehensive_list
   validate :list_rules_pass
   validate :taxon_matches_observation
   validate :check_list_editability
@@ -177,15 +176,6 @@ class ListedTaxon < ActiveRecord::Base
     if first_observation || last_observation
       errors.add(:occurrence_status_level, "can't be absent if there are confirming observations")
     end
-    true
-  end
-  
-  def preserve_absense_if_not_on_a_comprehensive_list
-    return true unless occurrence_status_level_changed?
-    return true if absent?
-    return true unless existing_comprehensive_list
-    return true if existing_comprehensive_listed_taxon
-    errors.add(:occurrence_status_level, "can't be changed from absent if this taxon is not on the comprehensive list of #{existing_comprehensive_list.taxon.name}")
     true
   end
 
