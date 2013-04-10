@@ -1162,8 +1162,8 @@ class TaxaController < ApplicationController
         taxon_names.map{|tn| tn.name.split.join('_')}
       unless acceptable_names.include?(params[:q])
         sciname_candidates = [
-          params[:action].to_s.split.join('_').downcase, 
-          params[:q].to_s.split.join('_').downcase,
+          params[:action].to_s.sanitize_encoding.split.join('_').downcase, 
+          params[:q].to_s.sanitize_encoding.split.join('_').downcase,
           canonical.downcase
         ]
         redirect_target = if sciname_candidates.include?(@taxon.name.split.join('_').downcase)
