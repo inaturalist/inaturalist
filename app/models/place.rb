@@ -18,6 +18,7 @@ class Place < ActiveRecord::Base
     :message => "must be between 2 and 500 characters"
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
   validate :validate_parent_is_not_self
+  validate :validate_name_does_not_start_with_a_number
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -199,6 +200,12 @@ class Place < ActiveRecord::Base
   def validate_parent_is_not_self
     if !id.blank? && id == ancestor_ids.last
       errors.add(:parent_id, "cannot be the same as the place itself")
+    end
+  end
+
+  def validate_name_does_not_start_with_a_number
+    if name.to_i > 0
+      errors.add(:name, "cannot start with a number")
     end
   end
   
