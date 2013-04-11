@@ -5,7 +5,6 @@ class TaxonName < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   validates_presence_of :taxon
-  validates_associated :taxon
   validates_length_of :name, :within => 1..256
   validates_uniqueness_of :name, 
                           :scope => [:lexicon, :taxon_id], 
