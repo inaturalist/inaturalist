@@ -90,6 +90,8 @@ $(document).ready(function(){
       $('#edit_photos_dialog').load('/taxa/'+TAXON.id+'/edit_photos', function() {
         var photoSelectorOptions = {
           defaultQuery: TAXON.name,
+          skipLocal: true,
+          baseURL: '/flickr/photo_fields',
           urlParams: {
             authenticity_token: $('meta[name=csrf-token]').attr('content'),
             limit: 14

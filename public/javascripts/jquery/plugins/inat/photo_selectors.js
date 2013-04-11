@@ -4,6 +4,7 @@
 //   baseURL:       Endpoint to query for photos.  Should accept query string as
 //                  a param called 'q'
 //   urlParams:     Query param hash
+//   skipLocal:     Boolean, whether or not to skip local photo selection. Default is false
 //   queryOnLoad:   Whether or not to query with an empty string on page load. 
 //                  Default is true.
 //   defaultQuery:  Default query to run on load
@@ -137,12 +138,12 @@
 
       // this is called when you change either the source <select> or context <select>
       function updateSource(sourceOptions){
-        $searchWrapper.hide();
-        $searchInput.val('');
-        var newSource = sources[currentSource]; 
-        sourceOptions = (sourceOptions || {});
-        sourceOptions['url'] = (sourceOptions.url || newSource.url);
-        sourceOptions['object_id'] = (sourceOptions.object_id || false);
+        $searchWrapper.hide()
+        $searchInput.val('')
+        var newSource = sources[currentSource]
+        sourceOptions = sourceOptions || {}
+        sourceOptions['url'] = sourceOptions.url || newSource.url
+        sourceOptions['object_id'] = sourceOptions.object_id || false
         if (typeof newSource.$contextWrapper == 'undefined') {
           // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
           //sourceOptions['context'] = newSource.defaultContext;
@@ -354,13 +355,14 @@
       return false;
     });
     
-    $(controls).append($sourceWrapper);
-    $(controls).append($searchWrapper, page, prev, next);
+    $(controls).append($sourceWrapper)
+    if ($sourceWrapper.find('select').length == 0) { $sourceWrapper.hide() }
+    $(controls).append($searchWrapper, page, prev, next)
     $(controls).append($('<div></div>').css({
       height: 0, 
       visibility: 'hidden', 
       clear: 'both'})
-    );
+    )
     
     $(wrapper).append(controls);
     
@@ -410,9 +412,9 @@
       $.fn.photoSelector.defaults, 
       $(wrapper).data('photoSelectorOptions'), 
       options
-    );
-    var params = $.extend({}, options.urlParams, {'q': q});
-    var baseURL = options.baseURL;
+    )
+    var params = $.extend({}, options.urlParams, {'q': q})
+    var baseURL = options.baseURL
     
     // Pull out parents of existing checked inputs
     if (!$(wrapper).data('photoSelectorExisting')) {
