@@ -14252,7 +14252,7 @@ CREATE INDEX index_place_geometries_on_place_id ON place_geometries USING btree 
 -- Name: index_places_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_places_on_ancestry ON places USING btree (ancestry);
+CREATE INDEX index_places_on_ancestry ON places USING btree (ancestry text_pattern_ops);
 
 
 --
@@ -14518,7 +14518,7 @@ CREATE INDEX index_taggings_on_taggable_id_and_taggable_type ON taggings USING b
 -- Name: index_taxa_on_ancestry; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_taxa_on_ancestry ON taxa USING btree (ancestry);
+CREATE INDEX index_taxa_on_ancestry ON taxa USING btree (ancestry text_pattern_ops);
 
 
 --
@@ -15169,3 +15169,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130313192420');
 INSERT INTO schema_migrations (version) VALUES ('20130403235431');
 
 INSERT INTO schema_migrations (version) VALUES ('20130409225631');
+
+INSERT INTO schema_migrations (version) VALUES ('20130411225629');
