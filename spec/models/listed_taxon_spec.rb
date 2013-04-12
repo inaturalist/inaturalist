@@ -360,3 +360,45 @@ describe ListedTaxon, "establishment means propagation" do
     new_parent_listed_taxon.establishment_means.should be_blank
   end
 end
+
+
+describe ListedTaxon, "cache column setting for check lists" do
+  before do
+    without_delay do
+      @place = make_place_with_geom
+      @check_list = @place.check_list
+    end
+  end
+  it "should be queued" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").exists?.should be_true
+  end
+
+  it "should not be queued if there's an existing job" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count.should eq(1)
+    lt.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+    Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count.should eq(1)
+  end
+end
+
+describe ListedTaxon, "parent check list syncing" do
+  before do
+    without_delay do
+      @parent = Place.make!
+      @place = make_place_with_geom(:parent => @parent)
+      @check_list = @place.check_list
+    end
+  end
+  it "should be queued" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?.should be_true
+  end
+
+  it "should not be queued if existing job" do
+    lt = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count.should eq(1)
+    lt2 = ListedTaxon.make!(:list => @check_list)
+    Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count.should eq(1)
+  end
+end
