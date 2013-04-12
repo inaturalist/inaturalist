@@ -299,6 +299,14 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_cache_columns
     return unless taxon_id
+
+    # HACK these queries are killing us for places with very complex
+    # geometries. Until I figure out a better way to do this calculation,
+    # we're using bbox area as a proxy for complexity and setting a cutoff
+    if place && place.bbox_area > 5000
+      return
+    end
+
     self.first_observation_id, self.last_observation_id, self.observations_count, self.observations_month_counts = cache_columns
   end
   
