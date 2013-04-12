@@ -137,8 +137,7 @@
     // If there were no results, give notice and provide external lookup
     // options
     if (taxa.length == 0) {
-      //var status = $('<span>' + I18n.t('no_results_for') + '"' + q + '".<br/></span>');
-        var status = $('<span>' + I18n.t("no_results_for") + q + '<br/></span>');
+      var status = $('<span>' + I18n.t('no_results_for') + '"' + q + '".<br/></span>');
       $(input).focus();
       if (options.includeSearchExternal) {
         $(status).append(
@@ -289,7 +288,7 @@
 
     // Set the status
     $.fn.simpleTaxonSelector.setStatus(wrapper, 'unmatched', 
-      'Species Unknown');
+      I18n.t('species_unknown'));
     
     // Set the image
     $(image).attr('src', '/images/iconic_taxa/unknown-32px.png')
