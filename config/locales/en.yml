@@ -201,6 +201,7 @@ en:
   at: at
   at_any_time_change: at any time (<span class="button">change</span>)
   atom: Atom
+  authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
   automatically_add_to_project: Automatically add to project
   automatically_id_new: Automatically ID the new obs as
@@ -499,10 +500,12 @@ en:
   filters: Filters
   find_a_place: Find a Place
   find_new_place_to_explore: Find a new place to explore!
+  find_photos: Find Photos
   find_places: Find Places
   find_some_people_to_follow: find some people to follow
   find_species: Find Species
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
+  first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
   first_observer: 1st observer
   flag_description: Flag this content to let the curators know something is wrong with it.
@@ -1015,6 +1018,7 @@ en:
   preview_your_message: Preview your message
   previewing: "Previewing..."
   previous: Previous
+  prev: Prev
   previous_page: Previous page
   privacy: Privacy Policy
   privacy_policy: Privacy Policy
@@ -1147,8 +1151,10 @@ en:
   seen_one: Seen one?
   select_all: Select all
   select_an_album: Select an album
+  select_one_or_more_photos: Select one or more photos
   select_none: Select none
   select_photos_from_your_photo_stream: "Select photos from your photo stream to convert into %{site_name} observations. We'll fill in the date, time, and location from a photo's metadata, and try to look up species names from the tags."
+  selected_photos: Selected photos
   selected_taxon: Selected Taxon
   send: send
   send_invite: Send invite
@@ -1158,6 +1164,7 @@ en:
   separate_values_with_a_pipe: Separate values with a pipe, e.g. "1-5|6-10|a lot" or "yes|no|maybe"
   september: September
   set_license: Set license
+  share_on: Share on
   share_your_observation_with_researchers_by: Share your observation with researchers by
   show: Show
   show_default_taxon_photos: show default taxon photos
@@ -1198,6 +1205,7 @@ en:
   species_name: species names
   species_search: Species Search
   species_taxon_name: Species / Taxon Name
+  species_unknown: Species Unknown
   start: Start
   start_a_new_list: Start a new list
   start_a_new_project: Start a new project
@@ -1399,6 +1407,7 @@ en:
   view_on_amphibiaweb: View on AmphibiaWeb
   view_on_flickr: View on Flickr
   view_on_wikipedia: View on Wikipedia
+  view_original: "View original"
   view_original_by: "View original %{by} on %{photo}"
   view_original_ccD_photo: "View original CC'd photo by %{owner}"
   view_other_taxa: "View other <nobr> %{taxon_name} &raquo; </nobr>"
@@ -1518,6 +1527,7 @@ en:
   your_drafts: Your Drafts
   your_flickr_account: your Flickr account
   your_flickr_photos_have_been_tagged: Your Flickr photos have been tagged!
+  your_hard_drive: your hard drive
   your_home: Your Home
   your_identification: Your Identification
   your_inat_account_has_been_activated: "Your %{inat} account has been activated."
@@ -1528,6 +1538,7 @@ en:
   your_picasa_account_info: Your Picasa Account Information
   your_should_recognize: You should recognize some of these photos
   your_site_account_has_been_created: "Your %{site} account has been created."
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} needs you to authorize more permissions from %{provider} to proceed:"
   your_sure_delete_list?: Are you sure you want to delete this list?
   your_sure_delete_taxon_from_list?: "Are you sure you want to remove %{taxon} from this list?"
   your_world!: your world!

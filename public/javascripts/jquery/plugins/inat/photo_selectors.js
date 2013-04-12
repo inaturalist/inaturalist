@@ -88,20 +88,20 @@
     var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
       $.fn.photoSelector.defaults.controlsCSS
     );
-    var $searchInput = $('<input type="text" class="text" placeholder="Search" />').css(
+    var $searchInput = $('<input type="text" class="text" placeholder="'+I18n.t('search')+'" />').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
     $searchInput.attr('name', 'photoSelectorSearchField');
     if (typeof(options.defaultQuery) != 'undefined') {
       $searchInput.val(options.defaultQuery);
     };
-    var $searchButton = $('<a href="#" class="button findbutton">Find Photos</a>').css(
+    var $searchButton = $('<a href="#" class="button findbutton">'+I18n.t('find_photos')+'</a>').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
     var $searchWrapper = $("<span></span>");
     $searchWrapper.append($searchInput).append($searchButton);
     
-    var $sourceWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
+    var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>');
 
     // this branch is for backwards compatibility 
     // options.urls is used by legacy photoSelectors, but is now deprecated. 
@@ -114,7 +114,7 @@
       var urls = options.urls || [];
       if (!options.skipLocal) {
         urls.push({
-          title: "your hard drive",
+          title:  I18n.t('your_hard_drive'),
           url: '/photos/local_photo_fields'
         })
       }
@@ -329,7 +329,7 @@
     
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
-    var prev = $('<a href="#" class="prevlink button">&laquo; Prev</a>').click(function(e) {
+    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum -= 1;
       if (pagenum < 1) pagenum = 1;
@@ -342,7 +342,7 @@
       $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
     });
-    var next = $('<a href="#" class="nextlink button">Next &raquo;</a>').click(function(e) {
+    var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum += 1;
       var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
@@ -423,7 +423,7 @@
     
     // Set loading status
     var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
-    var loading = $('<center><span class="loading status inlineblock">Loading...</span></center>')
+    var loading = $('<center><span class="loading status inlineblock">'+I18n.t('loading')+'...</span></center>')
       .css('margin-top', ($photoSelectorPhotos.height() / 2)-20)
     $photoSelectorPhotos.data('previous-overflow-x', $photoSelectorPhotos.css('overflow-x'));
     $photoSelectorPhotos.data('previous-overflow-y', $photoSelectorPhotos.css('overflow-y'));
@@ -453,7 +453,7 @@
         // Re-insert the checkbox parents
         if (existing && existing.length > 0) {
           $photoSelectorPhotos.children().wrapAll('<div class="photoSelectorResults"></div>')
-          var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>').html("<h4>Selected photos</h4>")
+          var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>').html("<h4>"+I18n.t('selected_photos')+"</h4>")
           selectedPhotosWrapper.append(existing)
           $photoSelectorPhotos.prepend(selectedPhotosWrapper)
         }

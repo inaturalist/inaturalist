@@ -141,7 +141,7 @@
       $(input).focus();
       if (options.includeSearchExternal) {
         $(status).append(
-          $('<a href="#">Search external name providers &raquo;</a>').css({
+          $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
             'font-weight': 'bold'
           }).click(function() {
             $.fn.simpleTaxonSelector.lookup(
@@ -262,7 +262,7 @@
       type: 'GET',
       dataType: 'json',
       beforeSend: function(XMLHttpRequest) {
-        $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', 'Loading...');
+        $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', I18n.t('loading'));
       },
       success: function(data) {
         if (data.status) {
@@ -288,7 +288,7 @@
 
     // Set the status
     $.fn.simpleTaxonSelector.setStatus(wrapper, 'unmatched', 
-      'Species Unknown');
+      I18n.t('species_unknow'));
     
     // Set the image
     $(image).attr('src', '/images/iconic_taxa/unknown-32px.png')

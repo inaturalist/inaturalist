@@ -30,7 +30,7 @@
     <%= t(:we_didnt_find_any_photos) %>
   </div>
 <% else %>
-  <h4>Select one or more photos</h4>
+  <h4><%= t(:select_one_or_more_photos) %></h4>
   <% photos.each do |photo| %>
     <%- 
       native_photo_id = photo.is_a?(Photo) ? photo.native_photo_id : photo.id
@@ -74,7 +74,7 @@
       <label for="<%= input_id %>">
         <%= image_tag(thumb_url, :alt => 'Image') %>
       </label>
-      <span class='small view_photo'><%= link_to("View original", photo.native_page_url, :target=>'_blank') %></span>
+      <span class='small view_photo'><%= link_to(t(:view_original), photo.native_page_url, :target=>'_blank') %></span>
     </div>
   <% end %>
 <% end %>

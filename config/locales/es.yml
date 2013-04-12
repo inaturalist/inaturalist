@@ -221,6 +221,7 @@ es:
   associations: Asociaciones
   at: en
   at_any_time_change: "en cualquier lugar (<span class=\"button\">change</span>)"
+  authorize_permissions_from_provider: "Autorizar permisos de %{provider}"
   august: Agosto
   automatic_descriptions_have_been_disabled: "Se han deshabilitado las descripciones automáticas para este taxón."
   automatically_add_to_project: "Agregar a proyecto automáticamente"
@@ -691,10 +692,12 @@ es:
   filters: Filtros
   find_a_place: "Encontrar un Lugar"
   find_new_place_to_explore: "¡Encontrar un nuevo lugar para explorar!"
+  find_photos: Encontrar Fotos
   find_places: "Encontrar Lugares"
   find_some_people_to_follow: "Encontrar a algunas personas a seguir"
   find_species: "Encontrar especies"
   first_confirmed_inat_observation: "Primera observación %{site_name} confirmada"
+  first_connect_your_provider_account_to_your_site: "Primero, connectar su cuenta %{provider} a %{site_name}:"
   first_inat_observation: "Primera observación %{site_name}"
   first_observer: "Primer observador"
   flag_description: "Marcar este contenido para hacer saber a los curadores que algo no anda bien."
@@ -1403,8 +1406,10 @@ es:
   select: Seleccionar
   select_all: "Seleccionar todo"
   select_an_album: "Seleccionar un álbum"
+  select_one_or_more_photos: "Seleccionar uno o mas fotos"
   select_none: "No seleccionar ninguno"
   select_photos_from_your_photo_stream: "Seleccionar fotos de Photostream para convertirlas en observaciones en %{site_name}. Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas."
+  selected_photos: "Fotos seleccionada"
   selected_taxon: "Grupo o especie seleccionada"
   send: enviada(s)
   send_invite: "Enviar invitación"
@@ -1414,6 +1419,7 @@ es:
   separate_values_with_a_pipe: "Valores separados por barras, por ejemplo \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
   set_license: "Fijar licencia"
+  share_on: "Compartir por"
   share_your_observation_with_researchers_by: "Comparta su observación con investigadores por"
   show: Mostrar
   show_counts: "Mostrar conteos con base en la lista"
@@ -1453,6 +1459,7 @@ es:
   species_name: "Nombres de la especie"
   species_plural: Especies
   species_search: "Búsqueda de especies"
+  species_unknown: Epecies Disconocido
   species_taxon_name: "Especie / Nombre del taxón"
   start: Inicio
   start_a_new_list: "Comenzar una lista nueva"
@@ -1662,6 +1669,7 @@ es:
   view_on_amphibiaweb: "Ver en AmphibiaWeb"
   view_on_flickr: "Ver en Flickr"
   view_on_wikipedia: "Ver en Wikipedia"
+  view_original: "Ver original"
   view_original_by: "Ver original %{by} en %{photo}"
   view_original_ccD_photo: "Ver foto original copiada en Flickr por %{owner}"
   view_other_taxa: "Ver otros <nobr> %{taxon_name} &raquo;</nobr>"
@@ -2042,6 +2050,7 @@ es:
   your_drafts: "Sus borradores"
   your_flickr_account: "su cuenta de Flickr"
   your_flickr_photos_have_been_tagged: "¡Sus fotos de Flickr han sido etiquetadas!"
+  your_hard_drive: "Su disco duro"
   your_home: "Su página de inicio"
   your_identification: "Su identificación"
   your_inat_account_has_been_activated: "Su cuenta %{inat} ha sido activada."
@@ -2052,6 +2061,7 @@ es:
   your_picasa_account_info: "Información de su cuenta Picasa"
   your_should_recognize: "Usted debería reconocer algunas de estas fotos"
   your_site_account_has_been_created: "Su cuenta de %{site} ha sido creada."
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} necesita que autorice más permisos de %{provider} que proceden:"
   your_sure_delete_list?: "¿Está seguro que desea eliminar esta lista?"
   your_sure_delete_taxon_from_list?: "¿Está seguro que desea eliminar %{taxon} de esta lista?"
   your_world!: "Su país"

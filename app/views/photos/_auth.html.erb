@@ -1,15 +1,15 @@
 <%-
   @url_options ||= {}
   msg = if @reauthorization_needed
-    "#{CONFIG.site_name_short} needs you to authorize more permissions from #{@provider.capitalize} to proceed:"
+    t(:your_site_needs_your_to_authorize_more_permissions_from_provider, :provider => @provider.capitalize, :site_name => SITE_NAME_SHORT)
   else
-    "First, connect your #{@provider.capitalize} account to #{CONFIG.site_name}:"
+    t(:first_connect_your_provider_account_to_your_site, :provider => @provider.capitalize, :site_name => SITE_NAME_SHORT)
   end
 
   link_text = if @reauthorization_needed
-    "Authorize permissions from #{@provider.capitalize}"
+    t(:authorize_permissions_from_provider, :provider => @provider.capitalize)
   else
-    "Connect to #{@provider.capitalize}"
+    t(:connect_to_provider, :provider => @provider.capitalize)
   end
 -%>
 <div id="providercol" class="stacked">
@@ -21,7 +21,6 @@
     </li>
   </ul>
   <p class="ui description">
-    Connecting your <%= CONFIG.site_name_short %> account to accounts on other sites will allow you
-    to import photos and login to <%= CONFIG.site_name_short %> using your credentials from those sites.
+    <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => SITE_NAME_SHORT) %>
   </p>
 </div>
