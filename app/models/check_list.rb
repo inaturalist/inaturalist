@@ -256,13 +256,8 @@ class CheckList < List
     unless listed_taxa.blank?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        lt.force_update_cache_columns = true
-        lt.save # sets all observation associates, months stats, etc.
-        unless lt.valid?
-          Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
-        end
-        if lt.auto_removable_from_check_list? && !options[:new]
-          lt.destroy
+        unless Delayed::Job.where("handler LIKE '%CheckList%refresh_listed_taxon% #{lt.id}\n%'").exists?
+          CheckList.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now).refresh_listed_taxon(lt.id, options)
         end
       end
     end
@@ -271,6 +266,19 @@ class CheckList < List
       add_new_listed_taxa(observation.taxon, new_place_ids)
     end
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, finished"
+  end
+
+  def self.refresh_listed_taxon(lt, options = {})
+    lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
+    return unless lt
+    lt.force_update_cache_columns = true
+    lt.save # sets all observation associates, months stats, etc.
+    unless lt.valid?
+      Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
+    end
+    if lt.auto_removable_from_check_list? && !options[:new]
+      lt.destroy
+    end
   end
   
   def self.get_observation_to_refresh(observation)
