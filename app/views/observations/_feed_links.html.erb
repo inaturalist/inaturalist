@@ -1,4 +1,4 @@
-<%=t :feeds_for_current_filters %>:
+<%=t :feeds %>:
 <%- 
   feed_params = params.reject do |key,value|
     ObservationsController::REJECTED_FEED_PARAMS.include?(key)
@@ -8,6 +8,6 @@
   end
   kml_feed_params[:kml_type] = "network_link"
 -%>
-<%= link_to("Atom", url_for(feed_params.merge(:format => 'atom')),    :class => 'atomlink') %>
-<%= link_to("KML",  url_for(kml_feed_params.merge(:format => 'kml')), :class => 'kmllink', :rel => "nofollow") %>
-<%= link_to("CSV",  url_for(feed_params.merge(:format => 'csv')),     :class => 'csvlink', :rel => "nofollow") %>
+<%= link_to(t(:atom), url_for(feed_params.merge(:format => 'atom')),    :class => 'atomlink') %>
+<%= link_to(t(:kml),  url_for(kml_feed_params.merge(:format => 'kml')), :class => 'kmllink', :rel => "nofollow") %>
+<%= link_to(t(:csv),  url_for(feed_params.merge(:format => 'csv')),     :class => 'csvlink', :rel => "nofollow") %>

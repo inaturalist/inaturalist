@@ -1,9 +1,17 @@
 <%= form_for @observation_field, :builder => DefaultFormBuilder do |f| %>
   <%= f.error_messages %>
 
-  <%= f.text_field :name, :required => true %>
-  <%= f.text_field :description %>
-  <%= f.select :datatype, ObservationField::TYPES, :required => true %>
-  <%= f.text_field :allowed_values, :description => t(:separate_values_with_a_pipe) %>
+  <%= f.text_field :name, :required => true, :label => t(:name) %>
+  <%= f.text_field :description, :label => t(:description) %>
+
+    <% h = Hash.new
+       ObservationField::TYPES.keys.each do |k|
+         h[t(ObservationField::TYPES[k])] = k
+       end
+
+    %>
+
+  <%= f.select :datatype, h, :required => true, :label => t(:datatype) %>
+  <%= f.text_field :allowed_values, :description => t(:separate_values_with_a_pipe), :label => t(:allowed_values) %>
   <%= f.submit t(:save), :class => "default button", "data-loading-click" => t(:saving) %>
 <% end %>

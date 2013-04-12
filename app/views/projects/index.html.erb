@@ -67,7 +67,7 @@
   <h3><%= t(:recently_active).titleize %></h3>
   <% if @projects.blank? -%>
     <div class="noresults">
-      No recently active projects yet.
+      <%= t :no_recently_active %>
     </div>
   <% else %>
     <% @projects.each_with_index do |project, i| %>
@@ -83,7 +83,7 @@
   <h3><%= t(:recently_created).titleize %></h3>
   <% if @created.blank? -%>
     <div class="noresults">
-      No projects yet.
+      <%= t :no_projects_yet %>
     </div>
   <% else %>
     <% @created.each_with_index do |project, i| %>

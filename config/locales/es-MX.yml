@@ -188,7 +188,7 @@ es-MX:
   add_your_photo_to: "Añade tu foto al  %{project}"
   added: Añadido
   added_by: "Añadido por"
-  added_identifications_to: "Añade identificaciones a las observaciones de otros."
+  added_identifications_to: "añadido identificaciones a las observaciones de otros."
   added_on: añ
   adding: Añadiendo
   adding_observations: "Añadiendo observaciones"
@@ -318,7 +318,7 @@ es-MX:
   can_you_help_your_friends_id_these: "¿Puedes ayudar a tus amigos a identificar éstas?"
   cancel: Cancelar
   casual: Casual
-  catalogue_of_life: "Catalogue of Life"
+  catalogue_of_life: "Catálogo de la Vida"
   cc_attribution_license: "Licencia de Atribución de Creative Commons"
   cc_by_description: "Esta licencia permite a otros distribuir, mezclar, modificar y desarrollar sobre tu obra, aún comercialmente, siempre y cuando te den crédito por la creación original. Está es la licencia más permisiva de todas. Se recomienda para máxima distribución y uso de los materiales involucrados."
   cc_by_name: Atribución
@@ -349,6 +349,11 @@ es-MX:
   check_lists_for: "Otras listas de comprobación para %{place}"
   check_out_my_observations_at: "Si deseas, puedes ver mis observaciones en"
   check_out_your_life_list: "Revisa tu lista de vida"
+  check_this_box_if: |
+                           Selecciona esta caja si quieres aplicar una
+                           <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
+                           a tus fotos. Puedes escoger una licencia diferente o quitarla
+                           después, pero esta es la mejor licencia para compartir datos con los investigadores.
   checklist: "Lista de especies potenciales"
   checklist_places: "Lista de lugares"
   checklist_places_absent: "Lista de lugares (ausente)"
@@ -441,11 +446,12 @@ es-MX:
   data_quality_assessment: "Evaluación de calidad de los datos"
   datatype: "Tipo de datos"
   date: Fecha
+  date_: Fecha
   date?: ¿Fecha?
   date_added: "Fecha añadida"
   date_observed: "Fecha de la observación"
   date_time: Fecha/Hora
-  datetime: 
+  datetime:
     distance_in_words: 
       about_x_hours: 
         one: "cerca de una hora"
@@ -608,6 +614,7 @@ es-MX:
   editing_taxon_range: "Edita la distribución de la especie o grupo"
   editing_this: "Editando %{elem}"
   eg: 'ej. '
+  email: Correo
   email_addresses_description: "correos electrónicos separados por coma. El límite son 60 cada 30 días."
   email_addresses_to_receive_invites: "Correos electrónicos que recibirán invitación"
   embed: 'Insertar:'
@@ -6110,6 +6117,7 @@ es-MX:
   follow_user: "Sigue a  %{user}"
   follower: seguidor
   following: Siguiendo
+  for: para
   forgot_your_password: "¿Olvidaste tu contraseña?"
   fri: Vie
   from: De
@@ -6186,7 +6194,7 @@ es-MX:
   id_please!: "¡Identificación por favor!"
   identification: Identificación
   identification_summary: "Resumen de identifiaciones"
-  identifications: identificaciones
+  identifications: Identificaciones
   identifications_by: "Las identificaciones por %{user}"
   identotron: Identotrón
   ids_made_for_others: "Identificaciones hechas para otros"
@@ -6247,6 +6255,7 @@ es-MX:
   its_important_that_you: "Es importante que selecciones"
   iucn_red_list_status: "estatus en la Lista Roja de UICN"
   january: Enero
+  join: ¡Únete a
   join_and: "Únete y "
   join_inat: "¡Únete a %{site_name}!"
   join_project: "Únete a este proyecto"
@@ -6315,7 +6324,7 @@ es-MX:
   lists_are_lists_of_species: "Las listas son listas de especies (u otros taxa), como una lista de vida de todas las aves que hayas visto, o la lista de tus salamandras favoritas. <em>No</em> son listas de observaciones."
   lists_come_in_three: "Las listas pueden ser de tres tipos:"
   load: Carga
-  loading: Cargando
+  loading: Cargando...
   loading_flikr_photos: "Cargando fotos de Flickr..."
   loading_full_description_html: "Cargando la descripción completa..."
   loading_more_photos: "Cargando más fotos..."
@@ -6329,7 +6338,7 @@ es-MX:
   locked_taxa_will_not_allow_new: "Las especies o grupos con candado no permitirán añadir a nuevas especies. Asi que si pones candado a Anfibios y alguien intenta importar <i>Rana catesbeiana</i> de un proveedor externo de nombres, la nueva especie será creada pero no podrá ser clasificada como un anfibio. Cuando esto sucede, la nueva especie añadida será señalada para atención de los curadores. Esto solo debe usarse para grupos en donde pensamos que ya tenemos a todos los integrantes. Los curadores pueden cambiar esto editando la identificación del grupo directamente, pero por favor considera combinar nuevas especies con las existentes.\n"
   log_in: "Empieza la sesión"
   logged_in_as: "Inicia sesión como"
-  login_slash_username: "Login / nombre de usuario"
+  login_slash_username: "Registro / nombre de usuario"
   long: Longitud
   longitude: Longitude
   longitude_in_decimal: 'Longitud en grados con decimales, ej. -122.123'
@@ -6454,12 +6463,13 @@ es-MX:
   no_recent_activity: "No hay actividad reciente"
   no_recently_active: "Todavía no hay proyectos activos recientes."
   no_results_found: "No se encontraron resultados"
+  no_results_for: 'Sin resultados para '
   no_results_matching: "No hay resultados que coincidan"
   no_species_have_been_listed: "¡Aún no se hay una lista de especies para este lugar!"
   no_species_on_this_list: "¡Aún no hay especies en esta lista!"
   no_summary_has_been_set: "No se ha incluido un resumen"
   no_taxa: "No hay taxa"
-  no_taxa_listed: "No hay taxa en la lista"
+  no_taxa_listed: "No hay ningún grupo o especie en la lista"
   no_taxa_yet: "¡Aún no hay taxa!"
   no_wikipedia_page_for_taxon: "No hay página de Wikipedia para esta especie o grupo."
   none: Ninguno
@@ -6506,6 +6516,7 @@ es-MX:
           kb: KB
           mb: MB
           tb: TB
+  numeric_: Númerico
   obscured: Oscurecida
   obscured_description: "Las coordenadas públicas se muestran como un punto al azar dentro de 10 km de las coordenadas verdaderas. Las coordenadas verdaderas son visibles para ti y para los curadores de los proyectos a los que añadiste la observación."
   observation: Observación
@@ -6564,6 +6575,7 @@ es-MX:
   only_accepts_taxa: "Solo acepta taxa"
   only_country_state_and_county: "Solamente se presentan país, estado y municipio o equivalente. Has un zoom para ver lugares más pequeños."
   only_files_with_100_rows_at_a_time: "Solamente archivos con 100 líneas a la vez, por favor"
+  only_show_active_taxa: Solo muestra especies activas
   only_showing_taxa_from: "Solamente se muestra taxa de esta lista"
   only_species: "Solo especies"
   only_species_and_subspecies: "Solo especies y subespecies o variedades"
@@ -6586,6 +6598,7 @@ es-MX:
   owner: Propietario
   parent: Padre
   password: Contraseña
+  password_confirmation: 'Confirma tu contraseña'
   paste: Pegar
   paste_in_a_bunch_of_names: "¡Pega un grupo de nombres, uno por línea y aprieta el botón!"
   paste_in_a_comma_separated_list: "Pega una lista de países separados por comas"
@@ -6642,7 +6655,7 @@ es-MX:
   private: Privada
   private_description: "Las coordenadas están completamente escondidas de los mapas públicos. Solo tú y los curadores de los proyectos a los que añades observaciones pueden ver las verdaderas coordenadas. Las observaciones con coordenadas privadas serán usadas para verificar las listas de especies de los lugares."
   processing3p: Procesando...
-  profile: perfil
+  profile: Perfil
   project: Proyecto
   project_assets: "Recursos del proyecto"
   project_created_on: "creó este proyecto en %{date}"
@@ -6747,9 +6760,10 @@ es-MX:
   search_all_fields: "Busca en todos los campos"
   search_by_name_or_email: "Busca por nombre o correo electrónico"
   search_catalogue_of_life: "Busca <a href=\"http://www.catalogueoflife.org\">Catalogue of Life</a>"
-  search_catalogue_of_life_raquo: "Busca Catalogue of Life &raquo;"
+  search_catalogue_of_life_raquo: "Busca en Catálogo de la Vida &raquo;"
   search_creative_commons_photos_on_flickr: "Busca fotos en Flickr con Licencia Creative Commons. Si seleccionas alguna, ¡deja un comentario de agradecimiento!\n"
   search_descendant_taxa_raquo: "Busca en los taxa descendientes &raquo;"
+  search_external: Busca nombres adicionales &raquo;
   search_for_new_taxa: "Busca nuevos taxa"
   search_for_place_to_import_from_yahoo: "Busca algún lugar en Yahoo para importar"
   search_for_species: "Busca una especie"
@@ -6761,7 +6775,7 @@ es-MX:
   search_taxa: "Busca taxa"
   search_this_taxon: "Busca esta especie o grupo"
   search_ubio: "Busca'<a href=\"http://www.ubio.org\">uBio</a>'"
-  search_ubio_raquo: "Busca uBio &raquo;"
+  search_ubio_raquo: "Busca en uBio &raquo;"
   search_your_photos: "Busca tus fotos"
   searching: Buscando
   second_person_possessive_singular: "Tus %{noun}"
@@ -6779,11 +6793,12 @@ es-MX:
   send_invites_to: "Envía invitación a"
   send_the_invites: "Envía las invitaciones"
   sending: Enviando...
-  separate_values_with_a_pipe: "Separa los valores con | , por ejemplo. \"1-5|6-10|muchos\" or \"yes|no|maybe\""
+  separate_values_with_a_pipe: "Separa los valores con | , por ejemplo: \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
   set_license: "Escoge la licencia"
   share_your_observation_with_researchers_by: "Comparte tu observación con investigadores de "
   show: Muestra
+  show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_counts: "Muestra los conteos basados en la lista."
   show_kml: "Muestra KML"
   show_off_your_recent_observations: "¡Muestra tus observaciones recientes en tu propio blog o sitio web!"
@@ -6792,7 +6807,7 @@ es-MX:
   showing_one_to: "Mostrando 1 - "
   shown_publicly_as: "Mostrado públicamente como"
   sign_in: Entra
-  sign_in_with_provider: "Entra con un %{provider}"
+  sign_in_with_provider: "Entra con %{provider}"
   sign_out: "Termina la sesión"
   sign_up: Regístrate
   sign_up!: ¡Regístrate!
@@ -6810,7 +6825,8 @@ es-MX:
   somewhere_on_earth: "En algún lugar del Planeta"
   sorry_how_about_we_try_repeat: "¡Disculpas! ¿Que tal si intentamos la búsqueda en otras bases de datos de nombres de especies? Si encontramos algo, lo guardaremos para que lo encuentres la próxima vez."
   source: Fuente
-  source_of_coordinates: 'Fuente de las coordenadas y la exactitud de las medidas, se pone automáticamente.'
+  source_: 'Fuente:'
+  source_of_coordinates: 'Fuente de las coordenadas y la precisión de las medidas, se pone automáticamente.'
   source_unknown: "Fuente desconocida"
   sources: Fuentes
   sources_youve_added: "Fuentes que has añadido"
@@ -6821,6 +6837,7 @@ es-MX:
   species_name: "Nombres de especie"
   species_search: "Búsqueda de especies"
   species_taxon_name: "Especie / Nombre del grupo"
+  species_unknown: Especies desconocidas
   src: Fuente
   start: Empezar
   start_a_new_list: "Empieza una nueva lista"
@@ -6837,6 +6854,7 @@ es-MX:
   stats: Estadísticas
   stats_title: "Estadísticas del sitio"
   status: Estatus
+  still_no_luck?: ¿Sigues sin encontrarlo?
   still_working_on_classifying_taxon: "Todavía estamos trabajando en clasificar esta especie o grupo. Regresa a checar más tarde"
   stop_editing: "Detén la edición"
   stop_following_user: "No sigas más a %{user}"
@@ -6868,6 +6886,7 @@ es-MX:
   taxa_all_species_html: "Taxa &middot; Todas las especies"
   taxa_needing_curation: "Taxa que necesita revisión"
   taxon: "Especie o grupo"
+  taxon_: Especie o grupo
   taxon_name: "Nombre de la especie o grupo"
   taxon_range: "Distribución de la especie o grupo"
   taxon_search: "Búsqueda de especie o grupo"
@@ -6887,6 +6906,7 @@ es-MX:
   terms_new_users: "Condiciones a las que nuevos usuarios deben estar de acuerdo antes de unirse a este proyecto."
   terms_of_service: "Condiciones de servicio"
   terms_service: "Condiciones de servicio"
+  text_: Texto
   thanks_for_signing_up: "¡Gracias por inscribirte!"
   thanks_for_using: "Gracias por usar"
   that_will_insert_a_link_to: "que insertará un enlace en esta herramienta en cada página de fotos de Flickr"
@@ -6945,6 +6965,7 @@ es-MX:
       long: "%B %d, %A %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+  time_: Tiempo
   titled_favorites_and_the_most_recent_additions: "titulado \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
   to: "a "
   to_add_comments: "para añadir comentarios"
@@ -6977,6 +6998,7 @@ es-MX:
   type_species_name: "Escribe el nombre de la especie..."
   type_taxon_name: "Escribe el nombre de la especie o grupo"
   type_taxon_name_and_click_lookup: "Escribe el nombre de una especie o grupo y selecciona buscar"
+  ubio: uBio
   uicn_red_list_status: "Estatus en la Lista Roja de la UICN"
   unclassified: "Sin clasificar"
   unfragted_taxa: "Especie o grupo no injertado"
@@ -6993,6 +7015,7 @@ es-MX:
   update_photos: "Actualiza fotos"
   updated: Actualizado
   updated_by: "Actualizado por"
+  updated_daily: Actualizado el día de hoy
   upload: Cargar
   upload_a_csv_file_with_observation: "Carga el archivo CSV con los datos de observaciones. SI tienes los datos en una base de datos, esta es probablemente la mejor manera de hacerlo."
   use_this_if_the_url_needs_genus_species_separated: "Usa esto si el URL requiere tener el género y la especie separados de alguna forma. Si el grupo no es una especie o infraespecie, entonces todo lo que este entre [GÉNERO] y [ESPECIE] será reemplazado por el nombre del grupo, así que úsalo cuidadosamente. <br/><br/> <strong>Por ejemplo:</strong><br/>\n"
@@ -7009,7 +7032,7 @@ es-MX:
   using_a_license: "Usando una licencia"
   using_cc_license_makes_easier_use_your_data: "El uso de licencias de <strong>Creative Commons </strong> facilita la utilización de tu información por  los investigadores . Puedes escoger una licencia distinta después de haberte registrado.\n"
   valid_interrogation: ¿Válido?
-  view: Vista
+  view: Ver
   view_all: "Ver todos"
   view_all_members: "Ver a todos los miembros"
   view_all_n: "Ver todos %{n}"
@@ -7250,6 +7273,7 @@ es-MX:
             biodiversidad en el que podrás compartir lo que observas en la 
             naturaleza, aprender de ella e intercambiar información con otros 
             ciudadanos naturalistas.
+  views_: Vistas
   vulnerable: Vulnerable
   w00t_no_ungrafted_taxa: "¡Especie o grupo no injertado!"
   w_photos_only: "Con fotos solamente"
@@ -7293,7 +7317,7 @@ es-MX:
   where: Dónde
   where_did_you_see_it: "¿Dónde lo viste?"
   where_were_they?: <em>¿Dónde</em> se encontraban?
-  where_were_you?: "¿Dónde estabas?"
+  where_were_you?: <em>¿Dónde</em> estabas?
   white: Blanco
   widget: Widget
   widget_code: "Código widget"
@@ -7351,7 +7375,7 @@ es-MX:
   yellow: Amarillo
   yes_find_them!: "¡Si encuéntralas!"
   yes_i_want_to_join: "Si, quiero participar"
-  yes_license_my_observations_so_scientists_can_use: "Si, ¡doy licencia sobre mis observaciones para que los investigadores puedan utilizar mis datos!"
+  yes_license_my_observations_so_scientists_can_use: "Si, ¡doy licencia sobre mis fotos y observaciones para que los investigadores puedan utilizar mis datos!"
   yes_show_this_in_the_box: "Si, muestra esto en la caja  grande por arriba de /grupos (taxa)"
   yesterday_at: ', ayer a las 4 pm'
   you: Tu
