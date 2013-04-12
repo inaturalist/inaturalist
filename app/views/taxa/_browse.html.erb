@@ -11,7 +11,7 @@
     <%= render(:partial => "shared/page_results", :object => @taxa) unless @taxa.nil? %>
 
     <% unless @q.blank? -%>
-       <span class="description">for</span> <em>&ldquo;<%= @q %>&rdquo;</em>
+       <span class="description"><%= t :for %></span> <em>&ldquo;<%= @q %>&rdquo;</em>
     <% end -%>
     
     <% unless @places.blank? %>
@@ -37,7 +37,7 @@
   </div>
   
   <div class="meta inter" style="float: right; margin-right: 0">
-    <%= t(:view_nbsp) %>
+    <%=raw t(:view_nbsp) %>
     <%= link_to t(:grid), url_for_params(:without => "view"), :class => "modal_link #{'selected' if @view == TaxaController::GRID_VIEW}" %>
     <%= link_to t(:list), url_for_params(:view => TaxaController::LIST_VIEW), :class => "modal_link #{'selected' if @view == TaxaController::LIST_VIEW}" %>
   </div>
@@ -176,9 +176,9 @@
   <% end -%>
 
   <% if @is_active == "any" -%>
-    <%= link_to "Only show active taxa", url_for_params(:is_active => true, :without => [:page]) %>
+    <%= link_to t(:only_show_active_taxa), url_for_params(:is_active => true, :without => [:page]) %>
   <% else %>
-    <%= link_to "Show active and inactive taxa", url_for_params(:is_active => "any", :without => [:page]) %>
+    <%= link_to t(:show_active_and_inactive_taxa), url_for_params(:is_active => "any", :without => [:page]) %>
   <% end -%>
 </div>
 
@@ -268,24 +268,24 @@
         <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
           <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
           <label for="q">
-            <%=t (:search) %> <a href="http://www.catalogueoflife.org">Catalogue of Life</a>
+            <%=t (:search) %> <a href="http://www.catalogueoflife.org"><%= t :catalogue_of_life %></a>
           </label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>
           <input type="hidden" name="include_external" value="true"/>
           <input type="hidden" name="external_src" value="col"/>
-          <input type="submit" class="button" value="Search Catalogue of Life &raquo;">
+          <input type="submit" class="button" value="<%=raw t(:search_catalogue_of_life_raquo) %>">
         <% end %>
       </div>
       <div class="column span-6">
         <%= form_tag url_for(), :method => :get, :class => 'clear buttonrow' do %>
           <% if js_link -%><input type="hidden" name="js_link" value="<%= js_link %>" /><% end -%>
-          <label for="q"><%= t(:search)  %> <a href="http://www.ubio.org">uBio</a></label>
+          <label for="q"><%= t(:search)  %> <a href="http://www.ubio.org"><%= t :ubio %></a></label>
           <%= text_field_tag 'q', params[:q], :class => 'text' %>
           <input type="hidden" name="all_names" value="true"/>
           <input type="hidden" name="force_external" value="true"/>
           <input type="hidden" name="external_src" value="ubio"/>
-          <input type="submit" class="button" value="Search uBio &raquo;"/>
+          <input type="submit" class="button" value="<%=raw t :search_ubio_raquo %>"/>
         <% end %>
       </div>
       <% if is_curator? -%>

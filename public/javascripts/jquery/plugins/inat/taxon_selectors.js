@@ -97,7 +97,7 @@
     });
 
     // Insert the status
-    var status = $('<div class="status">Species Unknown</div>');
+    var status = $('<div class="status">' + I18n.t('species_unknown') + '</div>');
     $(status).css(
       $.extend(
         $.fn.simpleTaxonSelector.styles.statuses['default'],
@@ -115,7 +115,7 @@
         if ($(taxon_id).attr('alt') && $(taxon_id).attr('alt') != '') {
           $.fn.simpleTaxonSelector.setStatus(wrapper, 'matched', $(taxon_id).attr('alt'));
         } else {
-          $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', 'Loading...');
+          $.fn.simpleTaxonSelector.setStatus(wrapper, 'loading', I18n.t('loading'));
           jQuery.getJSON('/taxa/'+$(taxon_id).val()+'.json', function(taxon) {
             $.fn.simpleTaxonSelector.selectTaxon(wrapper, taxon, options);
           }); 
@@ -137,7 +137,8 @@
     // If there were no results, give notice and provide external lookup
     // options
     if (taxa.length == 0) {
-      var status = $('<span>No results for "' + q + '".<br/></span>');
+      //var status = $('<span>' + I18n.t('no_results_for') + '"' + q + '".<br/></span>');
+        var status = $('<span>' + I18n.t("no_results_for") + q + '<br/></span>');
       $(input).focus();
       if (options.includeSearchExternal) {
         $(status).append(
@@ -480,7 +481,7 @@
   });
   
   $.fn.simpleTaxonSelector.defaults = {
-    buttonText: 'Lookup',
+    buttonText: I18n.t('lookup'),
     includeSearchExternal: true
   };
 })
