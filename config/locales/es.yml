@@ -677,7 +677,6 @@ es:
         other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
   establishment_means: "Medio de establecimiento"
   establishment_means_describes_how: "El medio de establecimiento describe cómo se estableció el taxón en un área. Ver DarwinCore para <a href=\"http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">más información en terminología</a>."
-  every_species_seen_by: 'Todas las especies vistas por '
   everyone_journal_posts: "Articulos en todos los diarios"
   exact_coordinates_obscured_for: "Coordenadas exactas ocultas para visualización pública para especies amenazadas."
   existing_flags: "Marcas existentes"
@@ -1523,6 +1522,7 @@ es:
   stats: Estadísticas
   stats_title: "Estadísticas del sitio"
   status: Estado
+  still_no_luck?: ¿Sigues sin encontrarlo?
   still_working_on_classifying_taxon: "Todavía trabajamos en la clasificación de este taxón. Vuelva a revisar más adelante."
   stop_editing: "Detener modificación"
   stop_following_user: "Dejar de seguir a %{user}"
@@ -1969,6 +1969,7 @@ es:
             %{image} lo invita a utilizar este portal de información sobre biodiversidad, 
             en el que podrá compartir lo que observa en la naturaleza, aprender de ella e 
             intercambiar información con otros ciudadanos naturalistas.
+  views: Vistas
   vulnerable: vulnerable
   w00t_no_unfragted_taxa: "¡Hurra¡No hay taxones sin injertar!"
   w_photos_only: "con fotos solamente"

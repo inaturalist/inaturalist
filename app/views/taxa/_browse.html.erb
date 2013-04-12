@@ -290,8 +290,8 @@
       </div>
       <% if is_curator? -%>
         <div class="column span-6">
-          <label>Still no luck?</label>
-          <%= link_to "Create a new taxon", new_taxon_path(:name => params[:q]) %>
+          <label><%= t :still_no_luck? %></label>
+          <%= link_to t(:create_new_taxon), new_taxon_path(:name => params[:q]) %>
         </div>
       <% end -%>
     </div>

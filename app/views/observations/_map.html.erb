@@ -112,7 +112,7 @@
     <%= observations_html ? observations_html : render(:partial => 'observations/cached_component', :collection => observations) %>
     <% if @observations.empty? %>
       <p id="noresults" class="readable description">
-        No matching observations!
+        <%= t :no_matching_observations %>
       </p>
     <% end %>
   </div>
