@@ -567,6 +567,7 @@ class TaxaController < ApplicationController
   
   def schemes
     @scheme_taxa = TaxonSchemeTaxon.all(:conditions => {:taxon_id => @taxon.id})
+    respond_to {|format| format.html}
   end
   
   def map

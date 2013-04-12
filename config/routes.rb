@@ -207,7 +207,7 @@ Inaturalist::Application.routes.draw do
     member do
       post 'update_photos', :as => "update_photos_for"
       post 'refresh_wikipedia_summary', :as => "refresh_wikipedia_summary_for"
-      get 'schemes', :as => "schemes_for"
+      get 'schemes', :as => "schemes_for", :constraints => {:format => [:html, :mobile]}
       get 'tip'
     end
     collection do
