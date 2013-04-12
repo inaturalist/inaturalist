@@ -19,7 +19,7 @@
     <% if logged_in? -%>
       <div class="right inline smallbuttons buttonrow">
         <%= link_to t(:invite_someone_to, :name => SITE_NAME_SHORT), emailer_invite_path, :class => "inter" %>
-        <span class="meta inter">or</span>
+        <span class="meta inter"><%= t :or %></span>
         <%= form_tag(search_people_path, :method => :get, :class => "last") do %>
           <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email), :style => "width: 150px;" %>
           <%= submit_tag t(:search), :class => 'last default button' %>
@@ -33,13 +33,13 @@
     <% cache @recently_active_key, :expires_in => 5.minutes do %>
       <h3>
         <span class="right meta ui small">
-          Updated
+          <%= t :updated %>
           <abbr class="date timeago" title="<%= Time.now.getutc.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>
         </span>
-        Recently Active
+        <%= t :recently_active %>
       </h3>
       <% if @updates.blank? %>
-        <div class="noresults meta">No recent activity</div>
+        <div class="noresults meta"><%= t :no_recent_activity %></div>
       <% else %>
         <% @updates.compact.each_with_index do |update,i| %>
           <div class="usercol column span-6 <%= 'last' if i % 4 == 3 %>">
@@ -105,7 +105,7 @@
     <div id="leaderboard" class="stacked column span-24">
       <h3>
         <div class="right small meta ui">
-          Updated daily
+          <%= t :updated_daily %>
           (<abbr class="meta ui stacked date timeago" data-now="<%= Time.now.getutc.iso8601 %>" title="<%= Time.now.getutc.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>)
         </div>
         Leaderboards

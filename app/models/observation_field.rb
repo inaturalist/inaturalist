@@ -19,10 +19,23 @@ class ObservationField < ActiveRecord::Base
   before_validation :strip_description
   before_validation :strip_allowed_values
   validate :allowed_values_has_pipes
-  
+
+  TEXT = I18n.t(:text_)
+  NUMERIC = I18n.t(:numeric_)
+  DATE = I18n.t(:date_)
+  TIME = I18n.t(:time_)
+  TAXON = I18n.t(:taxon_)
+
   # TYPES = %w(text numeric date time datetime location)
-  TYPES = %w(text numeric date time taxon)
-  
+  #TYPES = %w(:_text :_numeric :_date :_time :_taxon)
+  TYPES = {
+    TEXT => 'text',
+    NUMERIC => 'numeric',
+    DATE => 'date',
+    TIME => 'time',
+    TAXON => 'taxon'
+  }
+
   def strip_name
     self.name = name.strip unless name.blank?
     true

@@ -100,7 +100,7 @@
     var $searchWrapper = $("<span></span>");
     $searchWrapper.append($searchInput).append($searchButton);
     
-    var $sourceWrapper = $('<span class="urlselect inter"><strong>Source:</strong> </span>');
+    var $sourceWrapper = $('<span class="urlselect inter"><strong>' + I18n.t('source_') + '</strong> </span>');
 
     // this branch is for backwards compatibility 
     // options.urls is used by legacy photoSelectors, but is now deprecated. 

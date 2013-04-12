@@ -699,7 +699,7 @@ iNaturalist.Map.distanceInMeters = function(lat1, lon1, lat2, lon2) {
 iNaturalist.FullScreenControl = function(map) {
   var controlDiv = document.createElement('DIV'),
       enter = '<span class="ui-icon ui-icon-extlink">Full screen</span>',
-      exit = '<span class="ui-icon ui-icon-arrow-1-sw inlineblock"></span> ' + I18n.translations[I18n.currentLocale()]['exit_full_screen']
+      exit = '<span class="ui-icon ui-icon-arrow-1-sw inlineblock"></span> ' + I18n.t('exit_full_screen')
   controlDiv.style.padding = '5px';
   var controlUI = $('<div></div>').html(enter).addClass('gmapv3control')
   controlDiv.appendChild(controlUI.get(0))
