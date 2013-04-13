@@ -33,10 +33,10 @@
     <% cache @recently_active_key, :expires_in => 5.minutes do %>
       <h3>
         <span class="right meta ui small">
-          Updated
+          <%= t(:updated) %>
           <abbr class="date timeago" title="<%= Time.now.getutc.iso8601 %>"><%= time_ago_in_words(Time.now) %> ago</abbr>
         </span>
-        Recently Active
+        <%= t(:recently_active) %>
       </h3>
       <% if @updates.blank? %>
         <div class="noresults meta">No recent activity</div>
