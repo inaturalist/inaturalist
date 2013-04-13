@@ -288,7 +288,7 @@
 
     // Set the status
     $.fn.simpleTaxonSelector.setStatus(wrapper, 'unmatched', 
-      I18n.t('species_unknow'));
+      I18n.t('species_unknown'));
     
     // Set the image
     $(image).attr('src', '/images/iconic_taxa/unknown-32px.png')
