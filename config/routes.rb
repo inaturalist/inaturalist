@@ -297,7 +297,7 @@ Inaturalist::Application.routes.draw do
     put 'commit_record/:type/:record_id/to/:taxon_id' => 'taxon_changes#commit_records', :as => :commit_record
     put 'commit_records/:type/(to/:taxon_id)' => 'taxon_changes#commit_records', :as => :commit_records
   end
-  resources :taxon_schemes, :only => [:index, :show]
+  resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html, :mobile]}
   match 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   match 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
