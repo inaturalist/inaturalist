@@ -82,7 +82,7 @@ $(document).ready(function(){
   // Set up photo modal dialog
   $('#edit_photos_dialog').dialog({
     modal: true, 
-    title: 'Choose photos for this taxon',
+    title: I18n.t('choose_photos_for_this_taxon'),
     autoOpen: false,
     width: 700,
     open: function( event, ui ) {

@@ -31,7 +31,7 @@
 
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <%= link_to "Invite photos from other sites", photo_inviter_path(:project_id => @project), :class => "right readmore" %>
+    <%= link_to t(:invite_photos_from_other_sites), photo_inviter_path(:project_id => @project), :class => "right readmore" %>
     <strong><%= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   <h2>
