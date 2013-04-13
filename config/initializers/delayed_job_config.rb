@@ -1,3 +1,4 @@
+Delayed::Worker.default_queue_name = "default"
 # # # monkey patch BufferedLogger to allow a custom formatter
 # # class ActiveSupport::BufferedLogger
 # #   def formatter=(formatter)

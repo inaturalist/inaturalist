@@ -475,7 +475,7 @@ class User < ActiveRecord::Base
 
     # refresh check lists with relevant taxa
     taxon_ids.in_groups_of(100) do |group|
-      CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh(:taxa => group.compact)
+      CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
     end
 
     # refresh project lists
