@@ -468,7 +468,7 @@ es:
       - !ruby/symbol day
       - !ruby/symbol month
       - !ruby/symbol year
-  date_: Fecha
+  "date": Fecha
   datetime: 
     distance_in_words: 
       about_x_hours: 
@@ -1174,7 +1174,7 @@ es:
     precision: 
       format: 
         delimiter: ""
-  numeric_: Númerico
+  "numeric": Númerico
   obscured: Difusa
   obscured_description: "Coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas . Las coordenadas reales sólo son visibles para usted y los curadores de los proyectos a la que se agrega la observación."
   observation: observación
@@ -1572,7 +1572,7 @@ es:
   terms_new_users: "Términos que los nuevos usuarios deben aceptar antes de unirse a este proyecto."
   terms_of_service: "Términos del servicio"
   terms_service: "Términos del servicio"
-  text_: Texto
+  "text": Texto
   thanks_for_signing_up: "¡Gracias por registrarse!"
   thanks_for_singin_up: "¡Gracias por registrarte!, Te enviamos un correo con tu código de activación"
   thanks_for_using: "Gracias por usar"
@@ -1632,7 +1632,7 @@ es:
       long: "%d de %B de %Y"
       short: "%d/%m/%Y"
     pm: pm
-  time_: Tiempo
+  "time": Tiempo
   titled_favorites_and_the_most_recent_additions: "titulados \"Favoritos\" y las adiciones más recientes aparecerán en este espacio."
   to_add_comments: "para agregar comentarios."
   to_add_identifications: "a agregar identificaciones."
@@ -1741,7 +1741,8 @@ es:
   view_x_from_x: "Ver %{day_observations} de %{observed_on}"
   view_your_life_lists: "Ver su lista de vida"
   view_your_observations: "Ver sus observaciones"
-  views: 
+  views:
+    views: Vistas 
     help: 
       index: 
         a_check_list_is_html: |
@@ -1969,7 +1970,6 @@ es:
             %{image} lo invita a utilizar este portal de información sobre biodiversidad, 
             en el que podrá compartir lo que observa en la naturaleza, aprender de ella e 
             intercambiar información con otros ciudadanos naturalistas.
-  views: Vistas
   vulnerable: vulnerable
   w00t_no_unfragted_taxa: "¡Hurra¡No hay taxones sin injertar!"
   w_photos_only: "con fotos solamente"

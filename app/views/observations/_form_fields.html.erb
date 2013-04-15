@@ -94,15 +94,7 @@
       </div>
       <div id="geoprivacy_<%= i %>" class="geoprivacyfield">
         <label for="observations_<%= i %>_geoprivacy"><%= t :change_geoprivacy %></label>
-
-        <% h = Hash.new
-           Observation::GEOPRIVACIES.keys.each do |k|
-            h[t(Observation::GEOPRIVACIES[k])] = k
-           end
-
-        %>
-
-        <%= o.select :geoprivacy, h %>
+        <%= o.select :geoprivacy, Observation::GEOPRIVACIES.map{|g| [t(g), g]}, :include_blank => t(:open) %>
         <span class="geoprivacy_tip_target description helptip" rel="#geoprivacy_<%= i %>_tip"></span>
         <div id="geoprivacy_<%= i %>_tip" class="geoprivacy_tip" style="display:none">
           <p><%= t :changing_the_geoprivacy %></p>
