@@ -130,14 +130,20 @@ class TaxonNamesController < ApplicationController
   end
   
   def destroy
-    if @taxon_name.destroy
+    if @taxon_name == @taxon_name.taxon.scientific_name
+      msg = <<-EOT
+        You can't delete the default scientific name of a taxon. You might
+        want to add a new name or create a taxon change instead. See the
+        Curator Guide under Help for tips.
+      EOT
+      flash[:error] = msg
+    elsif @taxon_name.destroy
       flash[:notice] = "Taxon name was deleted."
     else
       flash[:error] = "Something went wrong deleting the taxon name '#{@taxon_name.name}'!"
     end
     respond_to do |format|
       format.html { redirect_to(taxon_path(@taxon_name.taxon)) }
-      format.xml  { head :ok }
     end
   end
   
