@@ -13,6 +13,8 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=raw @conservation_status_authorities.to
   $(document).ready(function() {
     $('#taxon_photos').photoSelector({
       defaultQuery: '<%= @taxon.name %>',
+      baseURL: '/flickr/photo_fields',
+      defaultSource: 'flickr',
       urlParams: {
         authenticity_token: encodeURIComponent(<%= form_authenticity_token.inspect.html_safe %>),
         limit: 16

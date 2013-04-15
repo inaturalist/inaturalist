@@ -1261,9 +1261,9 @@ class TaxaController < ApplicationController
   end
   
   def retrieve_local_photos
-    return [] if params[:local_photos].nil?
+    return [] if params[:local_photos].blank?
     photos = []
-    params[:local_photos].reject {|i| i.empty?}.uniq.each do |photo_id|
+    params[:local_photos].reject {|i| i.blank?}.uniq.each do |photo_id|
       if fp = LocalPhoto.find_by_native_photo_id(photo_id)
         photos << fp 
       end
