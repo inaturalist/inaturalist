@@ -525,8 +525,8 @@ class ObservationsController < ApplicationController
           if params[:commit] == "Save and add another"
             o = @observations.first
             redirect_to :action => 'new', 
-              :latitude => o.latitude, 
-              :longitude => o.longitude, 
+              :latitude => o.coordinates_obscured? ? o.private_latitude : o.latitude, 
+              :longitude => o.coordinates_obscured? ? o.private_longitude : o.longitude, 
               :place_guess => o.place_guess, 
               :observed_on_string => o.observed_on_string,
               :location_is_exact => o.location_is_exact,
