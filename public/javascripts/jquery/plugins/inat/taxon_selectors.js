@@ -410,14 +410,19 @@
     return $(formatted).get(0);
   }
 
+  $.fn.simpleTaxonSelector.taxonNameMatchesLocale = function(taxonName) {
+    if (taxonName.lexicon.toLowerCase() == "scientific names") { return true }
+    if (I18n.locale == 'en' && taxonName.lexicon == 'English') { return true }
+    if (I18n.locale.match(/^es/) && taxonName.lexicon == "Spanish") { return true }
+    return false
+  }
+
   $.fn.simpleTaxonSelector.chosenTaxonNameFor = function(q, taxon) {
     // find exact match
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
-      if (tn && q && tn.name.toLowerCase() == q.toLowerCase()) {
-        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
-          return tn
-        }
+      if (tn && q && tn.name.toLowerCase() == q.toLowerCase() && $.fn.simpleTaxonSelector.taxonNameMatchesLocale(tn)) {
+        return tn
       }
     }
 
@@ -425,7 +430,7 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.is_valid && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+        if ($.fn.simpleTaxonSelector.taxonNameMatchesLocale(tn)) {
           return tn
         }
       }
@@ -434,10 +439,8 @@
     // find match
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
-      if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
-          return tn
-        }
+      if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0 && $.fn.simpleTaxonSelector.taxonNameMatchesLocale(tn)) {
+        return tn
       }
     }
 
