@@ -35,6 +35,12 @@ describe Place, "creation" do
     end
     p.check_list.taxa.should include(t)
   end
+
+  it "should not allow titles that start with numbers" do
+    p = Place.make(:name => "14")
+    p.should_not be_valid
+    p.errors[:name].should_not be_blank
+  end
 end
 
 describe Place, "updating" do

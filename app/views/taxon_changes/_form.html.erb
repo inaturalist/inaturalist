@@ -99,10 +99,12 @@
       <%= label_tag :taxon_name %><br/>
       <%= text_field_tag :taxon_name, taxon_change.taxon ? taxon_change.taxon.name : '', :id => 'taxon_name', :class => 'text' %>
       <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
-      <div class="description">
+      <div class="description stacked">
         This is a more convenient way to find a taxon ID. It's the taxon ID
         that actually gets saved. This search only works for active taxa.
       </div>
+
+      <%= link_to "Create a new taxon", new_taxon_url, :target => "_blank" %>
     </fieldset>
 
     <% if taxon_change.new_record? || taxon_change_type == "TaxonSplit" || taxon_change_type == "TaxonMerge" || taxon_change_type == "TaxonSwap" %>
@@ -154,6 +156,8 @@
         <% end -%>
         <div id="new_taxon_change_taxa"></div>
         <%= link_to_function "Add a taxon", "addTaxonChangeTaxonField('#{escape_javascript(tct_form_fields)}')" %>
+        |
+        <%= link_to "Create a new taxon", new_taxon_url, :target => "_blank" %>
       </fieldset>
     <% end -%>
   </div>

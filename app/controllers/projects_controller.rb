@@ -229,9 +229,10 @@ class ProjectsController < ApplicationController
     @list_count = @project.project_list.listed_taxa.count
     respond_to do |format|
       format.html do
+        render :partial => "projects/observed_taxa_count_widget"
       end
       format.widget do
-        render :js => render_to_string(:partial => "observed_taxa_count_widget.js.erb")
+        render :js => render_to_string(:partial => "projects/observed_taxa_count_widget.js.erb")
       end
     end
   end

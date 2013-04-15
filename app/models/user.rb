@@ -475,7 +475,7 @@ class User < ActiveRecord::Base
 
     # refresh check lists with relevant taxa
     taxon_ids.in_groups_of(100) do |group|
-      CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh(:taxa => group.compact)
+      CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
     end
 
     # refresh project lists
@@ -512,7 +512,7 @@ class User < ActiveRecord::Base
   def self.default_json_options
     {
       :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
-        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at]
+        :suspended_at, :suspension_reason, :state, :deleted_at, :remember_token_expires_at, :email]
     }
   end
 

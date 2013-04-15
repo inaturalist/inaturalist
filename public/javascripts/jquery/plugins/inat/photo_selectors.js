@@ -4,6 +4,7 @@
 //   baseURL:       Endpoint to query for photos.  Should accept query string as
 //                  a param called 'q'
 //   urlParams:     Query param hash
+//   skipLocal:     Boolean, whether or not to skip local photo selection. Default is false
 //   queryOnLoad:   Whether or not to query with an empty string on page load. 
 //                  Default is true.
 //   defaultQuery:  Default query to run on load
@@ -31,7 +32,7 @@
 //
 (function($){
   $.fn.photoSelector = function(options) {
-    var options = $.extend({}, $.fn.photoSelector.defaults, options);
+    var options = $.extend(true, {}, $.fn.photoSelector.defaults, options);
     
     // Setup each wrapper
     $(this).each(function() {
@@ -87,20 +88,20 @@
     var controls = $('<div class="buttonrow photoSelectorControls"></div>').css(
       $.fn.photoSelector.defaults.controlsCSS
     );
-    var $searchInput = $('<input type="text" class="text" placeholder="Search" />').css(
+    var $searchInput = $('<input type="text" class="text" placeholder="'+I18n.t('search')+'" />').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
     $searchInput.attr('name', 'photoSelectorSearchField');
     if (typeof(options.defaultQuery) != 'undefined') {
       $searchInput.val(options.defaultQuery);
     };
-    var $searchButton = $('<a href="#" class="button findbutton">Find Photos</a>').css(
+    var $searchButton = $('<a href="#" class="button findbutton">'+I18n.t('find_photos')+'</a>').css(
       $.fn.photoSelector.defaults.formInputCSS
     );
     var $searchWrapper = $("<span></span>");
     $searchWrapper.append($searchInput).append($searchButton);
     
-    var $sourceWrapper = $('<span class="urlselect inter"><strong>' + I18n.t('source_') + '</strong> </span>');
+    var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>');
 
     // this branch is for backwards compatibility 
     // options.urls is used by legacy photoSelectors, but is now deprecated. 
@@ -113,7 +114,7 @@
       var urls = options.urls || [];
       if (!options.skipLocal) {
         urls.push({
-          title: "your hard drive",
+          title:  I18n.t('your_hard_drive'),
           url: '/photos/local_photo_fields'
         })
       }
@@ -137,12 +138,12 @@
 
       // this is called when you change either the source <select> or context <select>
       function updateSource(sourceOptions){
-        $searchWrapper.hide();
-        $searchInput.val('');
-        var newSource = sources[currentSource]; 
-        sourceOptions = (sourceOptions || {});
-        sourceOptions['url'] = (sourceOptions.url || newSource.url);
-        sourceOptions['object_id'] = (sourceOptions.object_id || false);
+        $searchWrapper.hide()
+        $searchInput.val('')
+        var newSource = sources[currentSource]
+        sourceOptions = sourceOptions || {}
+        sourceOptions['url'] = sourceOptions.url || newSource.url
+        sourceOptions['object_id'] = sourceOptions.object_id || false
         if (typeof newSource.$contextWrapper == 'undefined') {
           // TODO: this is what happens when there isn't a $contextSelect for this source (i.e. only one available context)
           //sourceOptions['context'] = newSource.defaultContext;
@@ -328,7 +329,7 @@
     
     // Append next & prev links
     var page = $('<input class="photoSelectorPage" type="hidden" value="1"/>');
-    var prev = $('<a href="#" class="prevlink button">&laquo; Prev</a>').click(function(e) {
+    var prev = $('<a href="#" class="prevlink button">&laquo; '+I18n.t('prev')+'</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum -= 1;
       if (pagenum < 1) pagenum = 1;
@@ -341,7 +342,7 @@
       $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
     });
-    var next = $('<a href="#" class="nextlink button">Next &raquo;</a>').click(function(e) {
+    var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>').click(function(e) {
       var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
       pagenum += 1;
       var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
@@ -354,13 +355,14 @@
       return false;
     });
     
-    $(controls).append($sourceWrapper);
-    $(controls).append($searchWrapper, page, prev, next);
+    $(controls).append($sourceWrapper)
+    if ($sourceWrapper.find('select').length == 0) { $sourceWrapper.hide() }
+    $(controls).append($searchWrapper, page, prev, next)
     $(controls).append($('<div></div>').css({
       height: 0, 
       visibility: 'hidden', 
       clear: 'both'})
-    );
+    )
     
     $(wrapper).append(controls);
     
@@ -410,9 +412,9 @@
       $.fn.photoSelector.defaults, 
       $(wrapper).data('photoSelectorOptions'), 
       options
-    );
-    var params = $.extend({}, options.urlParams, {'q': q});
-    var baseURL = options.baseURL;
+    )
+    var params = $.extend({}, options.urlParams, {'q': q})
+    var baseURL = options.baseURL
     
     // Pull out parents of existing checked inputs
     if (!$(wrapper).data('photoSelectorExisting')) {
@@ -421,7 +423,7 @@
     
     // Set loading status
     var $photoSelectorPhotos = $(wrapper).find('.photoSelectorPhotos');
-    var loading = $('<center><span class="loading status inlineblock">Loading...</span></center>')
+    var loading = $('<center><span class="loading status inlineblock">'+I18n.t('loading')+'...</span></center>')
       .css('margin-top', ($photoSelectorPhotos.height() / 2)-20)
     $photoSelectorPhotos.data('previous-overflow-x', $photoSelectorPhotos.css('overflow-x'));
     $photoSelectorPhotos.data('previous-overflow-y', $photoSelectorPhotos.css('overflow-y'));
@@ -451,7 +453,7 @@
         // Re-insert the checkbox parents
         if (existing && existing.length > 0) {
           $photoSelectorPhotos.children().wrapAll('<div class="photoSelectorResults"></div>')
-          var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>').html("<h4>Selected photos</h4>")
+          var selectedPhotosWrapper = $('<div class="photoSelectorSelected"></div>').html("<h4>"+I18n.t('selected_photos')+"</h4>")
           selectedPhotosWrapper.append(existing)
           $photoSelectorPhotos.prepend(selectedPhotosWrapper)
         }
@@ -480,8 +482,9 @@
   };
   
   $.fn.photoSelector.defaults = {
-    baseURL: '/flickr/photo_fields',
+    baseURL: '/photos/local_photo_fields',
     queryOnLoad: true,
+    defaultSource: 'local',
     formInputCSS: {
       float: 'left',
       'margin-top': 0

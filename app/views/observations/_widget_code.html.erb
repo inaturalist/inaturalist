@@ -1,6 +1,6 @@
 <%- 
   widget_url ||= @widget_url || observations_by_login_feed_url(current_user.login, :format => "widget", :limit => 5)
-  base_url = Rails.env.production? ? "http://inaturalist.org" : "http://localhost:3000"
+  base_url = CONFIG.site_url
   place ||= @place
   taxon ||= @taxon
   project ||= @project

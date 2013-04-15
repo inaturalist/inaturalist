@@ -1,10 +1,6 @@
 module Shared::SweepersModule
   def expire_observation_components(observation)
-    expire_fragment(observation.component_cache_key)
-    expire_fragment(observation.component_cache_key(:for_owner => true))
-    I18N_SUPPORTED_LOCALES.each do |locale|
-      expire_fragment(observation.component_cache_key, :locale => locale)
-    end
+    observation.expire_components
   end
 
   def expire_listed_taxon(listed_taxon)
@@ -37,7 +33,7 @@ module Shared::SweepersModule
   def expire_taxon(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    Observation.delay(:priority => USER_INTEGRITY_PRIORITY).expire_components_for(taxon.id)
+    Observation.delay(:priority => USER_INTEGRITY_PRIORITY).expire_components_for_taxon(taxon.id)
     expire_listed_taxa(taxon)
     expire_fragment(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo")
     I18N_SUPPORTED_LOCALES.each do |locale|

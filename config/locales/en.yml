@@ -25,7 +25,7 @@ en:
     other: '%{count} identifications'
   x_lists:
     one: '1 list'
-    other: '%{count} list'
+    other: '%{count} lists'
   x_journal_posts:
     one: '1 journal post'
     other: '%{count} journal posts'
@@ -44,7 +44,6 @@ en:
   a_greasemonkey_script: a Greasemonkey script
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
-  about_inaturalist: About {site_name}
   about_life!: about life!
   about_places: About Places
   about_the_cc_licenses: About Creative Commons licenses
@@ -107,7 +106,7 @@ en:
   add_observations_by_checking_off: Add observations by checking off species from a list.
   add_observations_from_list: Add observations from a list
   add_observations_of_taxa_youve_added: "Add observations of taxa you've added to a list.  Under development, still working out the bugs..."
-  add_observations_project: Add obsertions to this project
+  add_observations_project: Add observations to this project
   add_one: Add one!
   add_photos: Add photos
   add_photos_to_this_observation: Add photos to this observation
@@ -124,7 +123,7 @@ en:
   add_to_list: Add to list
   add_to_project: Add to project
   add_to_your_life_list: Add to your life list!
-  add_to_your_list: Add to Your List
+  add_to_your_list: Add to your list
   add_your_own_observations_at: "Add your own observations at %{site_name}"
   add_your_photo: Add your photo
   add_your_photo_to: "Add your photo to %{project}"
@@ -134,7 +133,6 @@ en:
   added_on: Added on
   adding: "Adding..."
   adding_observations: Adding observations
-  adding_some_observations: adding some observations
   adding_to_your_life_list: "Adding to your life list..."
   admin: Admin
   admin_tools: Admin Tools
@@ -205,6 +203,7 @@ en:
   at: at
   at_any_time_change: at any time (<span class="button">change</span>)
   atom: Atom
+  authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
   automatically_add_to_project: Automatically add to project
   automatically_id_new: Automatically ID the new obs as
@@ -222,12 +221,12 @@ en:
   back_to_observation_fields: Back to observation fields
   back_to_people: Back to people
   back_to_places: Back to places
-  back_to_possessive_user_profile: Back to %{possuser} profile
+  back_to_possessive_user_profile: "Back to %{possuser} profile"
   back_to_projects: Back to projects
   back_to_shared_taxon: "Back to %{sharedtaxon}"
   back_to_taxon: "Back to %{defaulttaxon}"
-  back_to_this: Back to %{place}
-  back_to_viewing: Back to Viewing <i>{taxon}</i>
+  back_to_this: "Back to %{place}"
+  back_to_viewing: "Back to Viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
   back_to_x_journal: "Back to %{user}'s journal"
   back_to_x_observations: "Back to %{user}'s observations"
@@ -404,7 +403,7 @@ en:
   delete_icon?: Delete icon?
   delete_project: Delete this project
   delete_selected: Delete Selected
-  delete_taxon_and_merge_most_data: "Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use this tool for removing duplicate taxa and outdated synonymous taxa. <strong>BE CAREFUL!</strong> Deleting taxa can be highly destructive."
+  delete_taxon_and_merge_most_data_html: "Delete <i>%{taxon}</i> and merge most of its data into another taxon. Use this tool for removing duplicate taxa and outdated synonymous taxa. <strong>BE CAREFUL!</strong> Deleting taxa can be highly destructive."
   delete_this_name: Delete this name
   delete_user: Delete user
   delete_your_account: Delete your account
@@ -420,6 +419,7 @@ en:
   destroy: Destroy
   details: Details
   did_not_send_invitations_because: Did not send invites to the following because...
+  did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
   disagree: disagree
   disconnect_provider: "Disconnect %{provider}"
@@ -500,6 +500,7 @@ en:
   false: False
   faq: Frequently Asked Questions
   favorite_taxa: favorite taxa
+  favorites: "Favorites"
   featured: featured
   featured?: featured?
   feedback: Feedback
@@ -519,10 +520,12 @@ en:
   filters: Filters
   find_a_place: Find a Place
   find_new_place_to_explore: Find a new place to explore!
+  find_photos: Find Photos
   find_places: Find Places
   find_some_people_to_follow: find some people to follow
   find_species: Find Species
   first_confirmed_inat_observation: "First confirmed %{site_name} observation"
+  first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
   first_observer: 1st observer
   flag_description: Flag this content to let the curators know something is wrong with it.
@@ -558,6 +561,7 @@ en:
   from_anywhere_change: from anywhere (<span class="button">change</span>)
   from_in_this_place: from in this place
   from_list: From List
+  from_your_site_observations: "From %{site_name} observations"
   full_id_please: ID Please!
   full_id_please!: "ID Please!"
   full_id_please?: "ID Please?"
@@ -588,6 +592,7 @@ en:
   green: green
   grey: grey
   grid: Grid
+  grid_tooltip: Show grid view
   guess_description: Guess / Description
   guide_colors: Guide Colors
   hasnt_contributed_any_observations: hasn't contributed any observations to this project.
@@ -616,6 +621,7 @@ en:
   id_more_in_id_please: ID more in ID Please
   id_please!: ID Please!
   id_please: ID Please
+  id_please_expandable_html: "ID<span class='full'> Please</span>!"
   identification: identification
   identification_summary: Identification Summary
   identifications: Identifications
@@ -663,6 +669,7 @@ en:
   invite: invite
   invite_flickr_photos: "Invite Flickr Photos to %{site_name}"
   invite_more: Invite more
+  invite_photos_from_other_sites: Invite photos from other sites
   invite_photos_to: "Invite photos to %{site_name}"
   invite_photos_to_raquo_html: "Invite photos to <nobr>%{site_name} &raquo;</nobr>"
   invite_someone_to: "Invite someone to %{name}!"
@@ -715,6 +722,8 @@ en:
   life!: Life!
   life_list_updated_we_also_saved_a: Life list updated! We also saved a blank observation of this taxon.
   life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
+  life_list_first: "life list first"
+  life_list_firsts: "life list firsts"
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
   link_or_unlink_your_picasa_account: Link or unlink your Picasa account
@@ -735,6 +744,7 @@ en:
   linked_flickr_password_html: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>We will never store copies of your photos or change your Flickr data (unless you ask us to), ever.</strong> We care too much about birds, bugs and slugs to want to mess with your information!"
   list: List
+  list_tooltip: Show list view
   listed_taxon: Listed taxon
   listing_announcement: Listing announcement
   listing_announcements: Listing announcements
@@ -782,6 +792,7 @@ en:
   mammals: mammals
   manually_create_new_place: Manually Create a New Place
   map: Map
+  map_tooltip: Show map view
   map_for: Map for 
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
   members: Members
@@ -790,6 +801,7 @@ en:
   merge_two_places_together: Merge two places together. All species on the checklists will be merged, as well as any geographic data.
   merging: Merging
   merging_places: Merging Places
+  mixed_licenses: mixed licenses
   mobile_apps_for: Mobile apps for
   mobile_view_available: Mobile view available
   mollusks: mollusks
@@ -845,12 +857,14 @@ en:
   new_users_week: New Users / Week
   next: Next &raquo;
   next_page: Next page
+  'no': 'No'
   no_activity_in_the_past_week: No activity in the past week.  Time to 
   no_administrator_knows_your_password: "No %{sitename} administrator knows your new password or at any point had or has access to your password."
   no_colors_selected: No colors selected.
   no_comments_yet: No comments yet.
   no_countries_added_yet: No countries added yet
   no_creative_commons_flickr_photo: No Creative Commons Flickr Photos Tagged
+  no_creative_commons_flickr_photos_tagged_x: 'No Creative Commons Flickr photos tagged "%{x}"'
   no_facebook_photos: We can't find any photos from Facebook.
   no_flags: No flags this time
   no_header_row: No header row
@@ -884,6 +898,10 @@ en:
   no_results_matching: No results matching
   no_species_have_been_listed: No species have been listed for this place yet!
   no_species_on_this_list: No species on this list yet!
+  no_species_on_this_list_for_owner_html: |
+    You can start adding species to this list directly, or if this is a life
+    list, it will automatically be updated with species when you
+    <a href="%{url}" class="nobr">add observations</a>.
   no_summary_has_been_set: No summary has been set.
   no_taxa: No taxa
   no_taxa_listed: No taxa listed
@@ -976,7 +994,6 @@ en:
   or_choose_high_level_taxa: "... or chooose from some high-level taxa"
   or_if_you_dont_want_email: "Or if you just don't want any email..."
   or_invite_your_friends: or invite your friends
-  or_just_adding_species_using: or just adding species using the form on this page.
   or_post_message_to_google_group: "or post a message to our Google Group:"
   or_you_can: "Or you can..."
   orange: orange
@@ -1003,11 +1020,10 @@ en:
   photo: "Photo %{photoid}, %{photoattribution}"
   photo: Photo
   photo?: Photo?
-  photo_atrribution: "Photo %{attribution}"
+  photo_attribution: "Photo %{attribution}"
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_hosting_accounts: Photo Hosting Accounts
   photo_integration: Photo Integration
-  photo_photoid_photoattribution: "Photo %{photoid}, %{photoattribution}"
   photos: Photos
   photos_size_photos: "%{photos_size} photos "
   picasa_identity: Picasa Identity
@@ -1040,6 +1056,7 @@ en:
   preview_your_message: Preview your message
   previewing: "Previewing..."
   previous: Previous
+  prev: Prev
   previous_page: Previous page
   privacy: Privacy Policy
   privacy_policy: Privacy Policy
@@ -1080,7 +1097,8 @@ en:
   recent_additions: Recent additions
   recent_comments_on_your_stuff: Recent Comments on Your Stuff
   recent_observations: Recent observations
-  recent_observations_by: "Recent Observations by %{login} (Atom)"
+  recent_atom_observations_by: "Recent observations by %{login} (Atom)"
+  recent_observations_by: "Recent observations by %{login}"
   recent_updates: Recent updates
   recently_active: Recently active
   recently_created: Recently created
@@ -1150,7 +1168,7 @@ en:
   search_catalogue_of_life_raquo: "Search Catalogue of Life &raquo;"
   search_creative_commons_photos_on_flickr: Search Creative Commons photos on Flickr. If you select one, be nice and leave them a thankyou comment!
   search_descendant_taxa_raquo: "Search descendant taxa &raquo;"
-  search_external: Search external name providers &raquo;
+  search_external_name_providers: Search external name providers
   search_for_new_taxa: search for new taxa
   search_for_place_to_import_from_yahoo: Search for a place to import from Yahoo.
   search_for_species: Search for species
@@ -1171,9 +1189,11 @@ en:
   seen_one: Seen one?
   select_all: Select all
   select_an_album: Select an album
+  select_one_or_more_photos: Select one or more photos
   select_none: Select none
   select_one_or_more_photos: 'Select one or more photos'
   select_photos_from_your_photo_stream: "Select photos from your photo stream to convert into %{site_name} observations. We'll fill in the date, time, and location from a photo's metadata, and try to look up species names from the tags."
+  selected_photos: Selected photos
   selected_taxon: Selected Taxon
   send: send
   send_invite: Send invite
@@ -1183,10 +1203,11 @@ en:
   separate_values_with_a_pipe: Separate values with a pipe, e.g. "1-5|6-10|a lot" or "yes|no|maybe"
   september: September
   set_license: Set license
+  share_on: Share on
   share_your_observation_with_researchers_by: Share your observation with researchers by
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
-  show_default_taxon_photos: show default taxon photos
+  show_default_taxon_photos: Show default taxon photos
   show_counts: Show counts based on the list.
   show_kml: Show KML
   show_observation_photos: show observation photos
@@ -1350,6 +1371,7 @@ en:
   to: to
   to_add_comments: to add comments
   to_add_identifications: to add identifications
+  to_add_ids: to add IDs
   to_include_your_picassa_with_inat: "To include your Picasa photos with your %{site_name} observations, click the button to the right to link your two accounts. You'll be taken to Google, where you'll be asked to authorize this connection."
   to_tag_your_flickr_from_here: to tag your Flickr photos from here without cutting and pasting.
   to_the_bat_cave: To the Bat Cave!
@@ -1417,7 +1439,7 @@ en:
   view_all_n: "View all %{n}"
   view_all_observations: View all observations
   view_all_photocount_photos: "View all %{photo_count} photos"
-  view_all_photos_tagged_taxon: "View all photos tagged %{taxon} on <nobr>Flickr &raquo;</nobr>"
+  view_all_photos_tagged_taxon_html: 'View all photos tagged "%{taxon}" on <nobr>Flickr &raquo;</nobr>'
   view_all_your_projects: View all your projects
   view_check_list_page: View check list page
   view_details: View details
@@ -1431,17 +1453,20 @@ en:
   view_non_mobile_site: View non-mobile site
   view_observation: View observation
   view_observations: View observations
+  view_observations_by_everyone: View observations by everyone
   view_observations_raquo: "View observations &raquo;"
   view_on_amphibiaweb: View on AmphibiaWeb
   view_on_flickr: View on Flickr
   view_on_wikipedia: View on Wikipedia
+  view_original: "View original"
   view_original_by: "View original %{by} on %{photo}"
   view_original_ccD_photo: "View original CC'd photo by %{owner}"
   view_other_taxa: "View other <nobr> %{taxon_name} &raquo; </nobr>"
   view_photos_ranges_observations_more: "View photos, species ranges, %{site_name} observations, and more! We've assembled information from many different sources and combined them for a quick summary of each species in each place."
   view_site_name_observations_html: "View <strong>%{site_name}</strong> observations"
   view_taxon_page: View taxon page
-  view_taxon_page_for: View taxon page for this place
+  view_taxon_page_for: View taxon page for this
+  view_taxon_page_for_this_x: "View taxon page for this %{x}"
   view_terms: View terms
   view_the: "View the %{action}&#59; %{link}"
   view_the_observation: View the observation
@@ -1498,7 +1523,8 @@ en:
   with: with
   within_inaturalist: "Within %{site_name}"
   wondering_what_to_do_next: Wondering what to do next?  Why not
-  would_you_like_to: . Would you like to
+  would_you_like_to: Would you like to
+  would_like_some_help_identifying_this: would like some help identifying this
   x_admin: "%{login} Admins"
   x_doesnt: "%{login} doesn't"
   x_hasnt: "%{login} hasn't"
@@ -1509,8 +1535,8 @@ en:
   x_journal_new_post: "%{user}'s Journal &middot; New Post"
   year: Year
   yellow: yellow
-  yes: yes
-  yes_find_them!: Yes, find them!
+  "yes": "Yes"
+  yes_find_them!: "Yes, find them!"
   yes_i_want_to_join: Yes, I want to join
   yes_license_my_observations_so_scientists_can_use: Yes, license my photos and observations so scientists can use my data!
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
@@ -1531,7 +1557,6 @@ en:
   you_havent: You haven't
   you_havent_left_any_comments_recently: You haven't left any comments recently.  Go leave someone a note!
   you_havent_linked_your_inaturalist_picasa_account: "You haven't linked your %{site_name} account and your Picasa account yet"
-  you_havent_observed_any_species: You haven't observed any species to list yet! Try
   you_need_to_have_linked_flickr_account: You need to have a linked Flickr account to tag your photos.
   you_need_to_select_some_observations_first: You need to select some observations first.
   you_retain_full_copyright: "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service."
@@ -1555,6 +1580,7 @@ en:
   your_drafts: Your Drafts
   your_flickr_account: your Flickr account
   your_flickr_photos_have_been_tagged: Your Flickr photos have been tagged!
+  your_hard_drive: your hard drive
   your_home: Your Home
   your_identification: Your Identification
   your_inat_account_has_been_activated: "Your %{inat} account has been activated."
@@ -1565,6 +1591,7 @@ en:
   your_picasa_account_info: Your Picasa Account Information
   your_should_recognize: You should recognize some of these photos
   your_site_account_has_been_created: "Your %{site} account has been created."
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} needs you to authorize more permissions from %{provider} to proceed:"
   your_sure_delete_list?: Are you sure you want to delete this list?
   your_sure_delete_taxon_from_list?: "Are you sure you want to remove %{taxon} from this list?"
   your_world!: your world!
@@ -1830,3 +1857,218 @@ en:
         adding_new_places: adding new places
         confirming_identifications: confirming identifications by adding IDs to observations
         filling_out_checklists: filling out checklists for places you know well
+  date:
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    formats:
+      default: '%Y-%m-%d'
+      long: '%B %d, %Y'
+      short: '%b %d'
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    order:
+      - :year
+      - :month
+      - :day
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: about 1 hour
+        other: about %{count} hours
+      about_x_months:
+        one: about 1 month
+        other: about %{count} months
+      about_x_years:
+        one: about 1 year
+        other: about %{count} years
+      almost_x_years:
+        one: almost 1 year
+        other: almost %{count} years
+      half_a_minute: half a minute
+      less_than_x_minutes:
+        one: less than a minute
+        other: less than %{count} minutes
+      less_than_x_seconds:
+        one: less than 1 second
+        other: less than %{count} seconds
+      over_x_years:
+        one: over 1 year
+        other: over %{count} years
+      x_days:
+        one: 1 day
+        other: '%{count} days'
+      x_minutes:
+        one: 1 minute
+        other: '%{count} minutes'
+      x_months:
+        one: 1 month
+        other: '%{count} months'
+      x_seconds:
+        one: 1 second
+        other: '%{count} seconds'
+    prompts:
+      day: Day
+      hour: Hour
+      minute: Minute
+      month: Month
+      second: Seconds
+      year: Year
+  errors: &errors
+    format: '%{attribute} %{message}'
+    messages:
+      accepted: must be accepted
+      blank: can't be blank
+      confirmation: doesn't match confirmation
+      empty: can't be empty
+      equal_to: must be equal to %{count}
+      even: must be even
+      exclusion: is reserved
+      greater_than: must be greater than %{count}
+      greater_than_or_equal_to: must be greater than or equal to %{count}
+      inclusion: is not included in the list
+      invalid: is invalid
+      less_than: must be less than %{count}
+      less_than_or_equal_to: must be less than or equal to %{count}
+      not_a_number: is not a number
+      not_an_integer: must be an integer
+      odd: must be odd
+      record_invalid: 'Validation failed: %{errors}'
+      taken: has already been taken
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+    template:
+      body: 'There were problems with the following fields:'
+      header:
+        one: 1 error prohibited this %{model} from being saved
+        other: '%{count} errors prohibited this %{model} from being saved'
+  helpers:
+    select:
+      prompt: Please select
+    submit:
+      create: Create %{model}
+      submit: Save %{model}
+      update: Update %{model}
+  number:
+    currency:
+      format:
+        delimiter: ','
+        format: '%u%n'
+        precision: 2
+        separator: .
+        significant: false
+        strip_insignificant_zeros: false
+        unit: $
+    format:
+      delimiter: ','
+      precision: 3
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: Billion
+          million: Million
+          quadrillion: Quadrillion
+          thousand: Thousand
+          trillion: Trillion
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ', and '
+      two_words_connector: ' and '
+      words_connector: ', '
+  time:
+    am: am
+    formats:
+      default: '%b. %d, %Y %H:%M:%S %z'
+      long: '%B %d, %Y %H:%M'
+      short: '%d %b %H:%M'
+    pm: pm
+  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      <<: *errors
+  activerecord:
+    errors:
+      <<: *errors
+    attributes:
+      project:
+        title: Title 
+        project_icon: Project icon
+        project_type: Project type
+        prefers_count_from_list: Prefers count from list
+        description: Description
+        terms: Terms
+      flag:
+        reason: Reason
+        flag: Flag

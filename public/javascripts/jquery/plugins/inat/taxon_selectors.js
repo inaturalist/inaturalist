@@ -141,7 +141,7 @@
       $(input).focus();
       if (options.includeSearchExternal) {
         $(status).append(
-          $('<a href="#">' + I18n.t('search_external') + '</a>').css({
+          $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
             'font-weight': 'bold'
           }).click(function() {
             $.fn.simpleTaxonSelector.lookup(
@@ -163,7 +163,7 @@
   
     // Otherwise, display each as an selection option
     else {
-      var message = $('<span>Did you mean</span>');
+      var message = $('<span>'+I18n.t('did_you_mean')+'</span>');
       var list = $('<ul class="matches"></ul>').css({'margin-bottom': '3px'});
       $(taxa).each(function(i, taxon) {
         var chosenTaxonName = $.fn.simpleTaxonSelector.chosenTaxonNameFor(q, taxon)
@@ -189,7 +189,7 @@
       if (options.includeSearchExternal) {
         message.append(
           $('<div></div>').append(
-            $('<a href="#">' + I18n.t('search_external') + '</a>').css({
+            $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
               'font-weight': 'bold'
             }).click(function() {
               $.fn.simpleTaxonSelector.lookup(
@@ -415,7 +415,9 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.name.toLowerCase() == q.toLowerCase()) {
-        return tn
+        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+          return tn
+        }
       }
     }
 
@@ -423,7 +425,9 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.is_valid && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        return tn
+        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+          return tn
+        }
       }
     }
 
@@ -431,7 +435,9 @@
     for (var i = taxon.taxon_names.length - 1; i >= 0; i--) {
       var tn = taxon.taxon_names[i]
       if (tn && q && tn.name.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
-        return tn
+        if ((I18n.locale == 'en' && tn.lexicon == 'English') || (I18n.locale.match(/^es/) && tn.lexicon == "Spanish")) {
+          return tn
+        }
       }
     }
 

@@ -3,7 +3,7 @@ module TaxonDescribers
     def describe(taxon)
       names = [taxon.taxon_names.select{|n| n.is_scientific?}.map(&:name), taxon.name].flatten.uniq
       xml = nil
-      while xml.blank?
+      while xml.blank? && !names.blank?
         xml, genus_name, species_name = data_for_name(names.pop)
       end
       return nil if xml.blank?

@@ -22,7 +22,7 @@ es:
   US_states: "Estados Unidos"
   Variety: Variedad
   _observed_by: ", observado por"
-  _would_like_some_help_identifying_this: "le agradaría tener ayuda identificando esto"
+  would_like_some_help_identifying_this: "le agradaría tener ayuda identificando esto"
   a: una
   a_community_for_naturalist: "Una comunidad para naturalistas"
   a_default_taxon_name_will_automatically_created: "Un nombre por defecto del taxón será creado automáticamente del atributo del nombre científico de este taxón. Cuando haya guardado este taxón, podrá agregar otros nombres aquí (nombres comunes, nombres científicos actualizados, etc.)."
@@ -30,7 +30,6 @@ es:
   a_greasemonkey_script: "un script de Greasemonkey"
   able_to_connect_flickr: "¡Muy bienPudimos vincular su cuenta de Flickr."
   about: "Acerca de"
-  about_inaturalist: "Acerca de %{site_name}"
   about_life!: "Acerca de la vida!"
   about_places: "Acerca de Lugares"
   about_the_cc_licenses: "Acerca de las licencias de Creative Commons"
@@ -224,6 +223,7 @@ es:
   associations: Asociaciones
   at: en
   at_any_time_change: "en cualquier lugar (<span class=\"button\">change</span>)"
+  authorize_permissions_from_provider: "Autorizar permisos de %{provider}"
   atom: Atom
   august: Agosto
   automatic_descriptions_have_been_disabled: "Se han deshabilitado las descripciones automáticas para este taxón."
@@ -248,7 +248,7 @@ es:
   back_to_shared_taxon: "Regresar a %{sharedtaxon}"
   back_to_taxon: "Regresar a %{defaulttaxon}"
   back_to_this: "Regresar a %{place}"
-  back_to_viewing: "Regresar a ver <i>{taxon}</i>"
+  back_to_viewing: "Regresar a ver <i>%{taxon}</i>"
   back_to_x: "Regresar a %{noun}"
   back_to_x_calendar: "Regrese a calendario de %{user}"
   back_to_x_journal: "Regresar al diario de %{user}"
@@ -521,7 +521,7 @@ es:
   delete_icon?: "¿Eliminar ícono?"
   delete_project: "Eliminar este proyecto"
   delete_selected: "Eliminar seleccionados"
-  delete_taxon_and_merge_most_data: "Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utilice esta herramienta para eliminar taxones duplicados y sinónimos desactualizados. <strong>¡TENGA CUIDADO!</fuerte> Eliminar taxones podría causar mucha destrucción."
+  delete_taxon_and_merge_most_data_html: "Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utilice esta herramienta para eliminar taxones duplicados y sinónimos desactualizados. <strong>¡TENGA CUIDADO!</fuerte> Eliminar taxones podría causar mucha destrucción."
   delete_this_name: "Eliminar este nombre"
   delete_user: "Eliminar usuario"
   delete_your_account: "Eliminar su cuenta"
@@ -579,6 +579,7 @@ es:
       send_paranoid_instructions: "Si tu cuenta existe, recibirás instrucciones para desbloquear tu cuenta en unos minutos"
       unlocked: "Tu cuenta ha sido desbloqueada. Inicia sesión para continuar."
   did_not_send_invitations_because: "No les enviamos invitaciones a tus amigos y amigas pues:"
+  did_you_mean: '¿Te refieres a'
   did_you_photos_flickr?: "¿Ha colocado fotos en Flickr?"
   disagree: "en desacuerdo"
   disconnect_provider: "Desconectarse de %{provider}"
@@ -713,10 +714,12 @@ es:
   filters: Filtros
   find_a_place: "Encontrar un Lugar"
   find_new_place_to_explore: "¡Encontrar un nuevo lugar para explorar!"
+  find_photos: Encontrar Fotos
   find_places: "Encontrar Lugares"
   find_some_people_to_follow: "Encontrar a algunas personas a seguir"
   find_species: "Encontrar especies"
   first_confirmed_inat_observation: "Primera observación %{site_name} confirmada"
+  first_connect_your_provider_account_to_your_site: "Primero, connectar su cuenta %{provider} a %{site_name}:"
   first_inat_observation: "Primera observación %{site_name}"
   first_observer: "Primer observador"
   flag_description: "Marcar este contenido para hacer saber a los curadores que algo no anda bien."
@@ -753,6 +756,7 @@ es:
   from_anywhere_change: "de cualquier lugar (<span class=\"button\">change</span>)"
   from_in_this_place: "de este lugar"
   from_list: "De la lista"
+  from_your_site_observations: "Observaciones de %{site_name}"
   full_id_please!: "¡Ayuda con nombre científico!"
   full_id_please?: "¿Ayuda con nombre científico?"
   fungi: 
@@ -859,12 +863,13 @@ es:
   inaturalist_places_are_way_record_what_lives_where: "Lugares %{site_name} es una forma de registrar qué vive dónde. Si usted busca una especie en particular, sabrá dónde buscar. Cada lugar tiene una lista de verificación para regisrar todas las especies que se encuentran allí, para que pueda también ser útil para buscar cosas que usted encontró en sitios particulares."
   info: Información
   insects: insectos
-  inspired_by_the_flickr_group: "Inspirado por el grupo Flickr <a href=\"http://flickr.com/groups/idplease/\">Identificador por favor</a>, este es un lugar para colocar observaciones de cosas que usted no sabe ¡y ayudar a que otras personas identifiquen criaturas misteriosas!"
+  inspired_by_the_flickr_group: "Inspirado por el grupo Flickr <a href='http://flickr.com/groups/idplease/'>Identificador por favor</a>, este es un lugar para colocar observaciones de cosas que usted no sabe ¡y ayudar a que otras personas identifiquen criaturas misteriosas!"
   introduced: introdujo
   invasive: invasoras
   invite: invitar
   invite_flickr_photos: "Invitar las fotos de Flickr a %{site_name}"
   invite_more: "Invitar más gente"
+  invite_photos_from_other_sites: Invitar las fotos de otras sitios
   invite_noun: invitación(es)
   invite_someone_to: "¡Invita a alguien a %{name}!"
   invite_to_project: "Invitar al proyecto"
@@ -1097,6 +1102,10 @@ es:
   no_results_matching: "No hay resultados que concuerden"
   no_species_have_been_listed: "¡No se han enlistado especies para este lugar todavía!"
   no_species_on_this_list: "¡No hay especies en esta lista todavía!"
+  no_species_on_this_list_for_owner_html: |
+    Usted puede empezar a añadir especies a la lista directamente, o si se
+    trata de una lista de la vida, automáticamente se actualizará con las
+    especies cuando se <a href="%{url}" class="nobr">agregan observaciones</a>.
   no_summary_has_been_set: "No se ha hecho un resumen"
   no_taxa: "No hay taxones"
   no_taxa_listed: "No hay taxones enlistados"
@@ -1267,13 +1276,12 @@ es:
   photo: foto
   photo?: ¿foto?
   photo_attribution: "Foto %{attribution}"
-  photo_by_id_attribution: "foto %{id}, %{attribution}"
+  photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_hosting_accounts: "Cuentas de alojamiento de fotos"
   photo_integration: "Integración de fotos"
-  photoid_photoattribution: "Foto %{photoid}, %{photoattribution}"
   photos: Fotos
   photos_next: "Fotos &rarr;"
-  photos_size: "%{amount} fotos"
+  photos_size_photos: "%{photos_size} fotos"
   picasa_identity: "Identidad de Picasa"
   pick_a_username: "Elegir nombre de usuario"
   pink: rosa
@@ -1346,7 +1354,8 @@ es:
   recent_additions: "Registros recientes"
   recent_comments_on_your_stuff: "Comentarios recientes sobre su trabajo"
   recent_observations: "Observaciones recientes"
-  recent_observations_by: "Observaciones recientes por %{login} (Atom)"
+  recent_atom_observations_by: "Observaciones recientes por %{login} (Atom)"
+  recent_observations_by: "Observaciones recientes por %{login}"
   recent_updates: "Actualizaciones recientes"
   recently_active: "Activo recientemente"
   recently_created: "Creados recientemente"
@@ -1414,7 +1423,7 @@ es:
   search_catalogue_of_life_raquo: "Búsqueda en el Catálogo de la Vida &raquo;"
   search_creative_commons_photos_on_flickr: "Buscar fotos de Creative Commons en Flickr. Si selecciona alguna, ¡sea tan amable de dejarles un comentario de agradecimiento!"
   search_descendant_taxa_raquo: "Buscar taxones descendientes &raquo;"
-  search_external: Busca nombres adicionales &raquo;
+  search_external_name_providers: Buscar proveedores de nombres externos
   search_for_new_taxa: "buscar nuevos taxones"
   search_for_place_to_import_from_yahoo: "Buscar un lugar para importar desde Yahoo."
   search_for_species: "Búsqueda de especies"
@@ -1437,9 +1446,11 @@ es:
   select: Seleccionar
   select_all: "Seleccionar todo"
   select_an_album: "Seleccionar un álbum"
+  select_one_or_more_photos: "Seleccionar uno o mas fotos"
   select_none: "No seleccionar ninguno"
   select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_photos_from_your_photo_stream: "Seleccionar fotos de Photostream para convertirlas en observaciones en %{site_name}. Nosotros completaremos la fecha, hora y ubicación de los metadados de una foto y trataremos de buscar nombres de especies de las etiquetas."
+  selected_photos: "Fotos seleccionada"
   selected_taxon: "Grupo o especie seleccionada"
   send: enviada(s)
   send_invite: "Enviar invitación"
@@ -1449,6 +1460,7 @@ es:
   separate_values_with_a_pipe: "Valores separados por barras, por ejemplo \"1-5|6-10|muchos\" o \"sí|no|tal vez\""
   september: Septiembre
   set_license: "Fijar licencia"
+  share_on: "Compartir por"
   share_your_observation_with_researchers_by: "Comparta su observación con investigadores por"
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
@@ -1491,6 +1503,7 @@ es:
   species_name: "Nombres de la especie"
   species_plural: Especies
   species_search: "Búsqueda de especies"
+  species_unknown: Epecies Disconocido
   species_taxon_name: "Especie / Nombre del taxón"
   species_unknown: Especies desconocidas
   src: Fuente
@@ -1542,6 +1555,7 @@ es:
   taxon_: Taxón
   taxon_name: "Nombre del taxón"
   taxon_range: "Rango de taxón"
+  taxon_schemes_raquo_html: "Schemas <nobr>taxinomicos &raquo;</nobr>"
   taxon_search: "Búsqueda de Taxón"
   taxon_search_results_for: "Resultados de búsqueda de Taxón para"
   taxon_to_delete: "Taxón a eliminar"
@@ -1710,6 +1724,7 @@ es:
   view_on_amphibiaweb: "Ver en AmphibiaWeb"
   view_on_flickr: "Ver en Flickr"
   view_on_wikipedia: "Ver en Wikipedia"
+  view_original: "Ver original"
   view_original_by: "Ver original %{by} en %{photo}"
   view_original_ccD_photo: "Ver foto original copiada en Flickr por %{owner}"
   view_other_taxa: "Ver otros <nobr> %{taxon_name} &raquo;</nobr>"
@@ -2094,6 +2109,7 @@ es:
   your_drafts: "Sus borradores"
   your_flickr_account: "su cuenta de Flickr"
   your_flickr_photos_have_been_tagged: "¡Sus fotos de Flickr han sido etiquetadas!"
+  your_hard_drive: "Su disco duro"
   your_home: "Su página de inicio"
   your_identification: "Su identificación"
   your_inat_account_has_been_activated: "Su cuenta %{inat} ha sido activada."
@@ -2104,6 +2120,7 @@ es:
   your_picasa_account_info: "Información de su cuenta Picasa"
   your_should_recognize: "Usted debería reconocer algunas de estas fotos"
   your_site_account_has_been_created: "Su cuenta de %{site} ha sido creada."
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} necesita que autorice más permisos de %{provider} que proceden:"
   your_sure_delete_list?: "¿Está seguro que desea eliminar esta lista?"
   your_sure_delete_taxon_from_list?: "¿Está seguro que desea eliminar %{taxon} de esta lista?"
   your_world!: "Su país"

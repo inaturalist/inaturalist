@@ -31,7 +31,9 @@ class ListedTaxon < ActiveRecord::Base
   before_create :set_updater_id
   before_save :set_user_id
   before_save :set_source_id
+  before_save :set_establishment_means
   after_save :update_cache_columns_for_check_list
+  after_save :propagate_establishment_means
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
@@ -112,7 +114,6 @@ class ListedTaxon < ActiveRecord::Base
   validates_inclusion_of :establishment_means, :in => ESTABLISHMENT_MEANS, :allow_blank => true, :allow_nil => true
   validate :not_on_a_comprehensive_check_list, :on => :create
   validate :absent_only_if_not_confirming_observations
-  validate :preserve_absense_if_not_on_a_comprehensive_list
   validate :list_rules_pass
   validate :taxon_matches_observation
   validate :check_list_editability
@@ -175,15 +176,6 @@ class ListedTaxon < ActiveRecord::Base
     if first_observation || last_observation
       errors.add(:occurrence_status_level, "can't be absent if there are confirming observations")
     end
-    true
-  end
-  
-  def preserve_absense_if_not_on_a_comprehensive_list
-    return true unless occurrence_status_level_changed?
-    return true if absent?
-    return true unless existing_comprehensive_list
-    return true if existing_comprehensive_listed_taxon
-    errors.add(:occurrence_status_level, "can't be changed from absent if this taxon is not on the comprehensive list of #{existing_comprehensive_list.taxon.name}")
     true
   end
 
@@ -264,12 +256,31 @@ class ListedTaxon < ActiveRecord::Base
     self.place_id = self.list.place_id
     true
   end
+
+  def set_establishment_means
+    return true unless establishment_means.blank?
+    return true if place.blank?
+    if introduced_ancestor_listed_taxon = ListedTaxon.
+        where("place_id IN (?)", place.ancestor_ids).
+        where(:taxon_id => taxon_id).
+        where("establishment_means IN (?)", INTRODUCED_EQUIVALENTS).
+        first
+      self.establishment_means = introduced_ancestor_listed_taxon.establishment_means
+    elsif native_child_listed_taxon = ListedTaxon.joins(:place).
+        where(place.descendant_conditions).
+        where(:taxon_id => taxon_id).
+        where("establishment_means IN (?)", NATIVE_EQUIVALENTS).
+        first
+      self.establishment_means = native_child_listed_taxon.establishment_means
+    end
+    true
+  end
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
     return true if @skip_sync_with_parent
-    unless Delayed::Job.exists?(["handler LIKE E'%CheckList;?\n%sync_with_parent%'", list_id])
-      list.delay(:priority => INTEGRITY_PRIORITY).sync_with_parent
+    unless Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{list_id}''\n%sync_with_parent%'").exists?
+      list.delay(:priority => INTEGRITY_PRIORITY).sync_with_parent(:time_since_last_sync => updated_at)
     end
     true
   end
@@ -288,6 +299,14 @@ class ListedTaxon < ActiveRecord::Base
   
   def set_cache_columns
     return unless taxon_id
+
+    # HACK these queries are killing us for places with very complex
+    # geometries. Until I figure out a better way to do this calculation,
+    # we're using bbox area as a proxy for complexity and setting a cutoff
+    if place && place.bbox_area > 5000
+      return
+    end
+
     self.first_observation_id, self.last_observation_id, self.observations_count, self.observations_month_counts = cache_columns
   end
   
@@ -296,8 +315,34 @@ class ListedTaxon < ActiveRecord::Base
     return true unless list.is_a?(CheckList)
     if @force_update_cache_columns
       # this should have already happened in update_cache_columns
+    elsif !Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{id}\n'").exists?
+      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY, :run_at => 1.hour.from_now, :queue => "slow").update_cache_columns_for(id)
+    end
+    true
+  end
+
+  def propagate_establishment_means
+    return true unless establishment_means_changed? && !establishment_means.blank?
+    return true unless list.is_a?(CheckList)
+    if native?
+      # bubble up for native equivalents
+      ListedTaxon.update_all(
+        ["establishment_means = ?", establishment_means],
+        ["taxon_id = ? AND establishment_means IS NULL AND place_id IN (?)", taxon_id, place.ancestor_ids]
+      )
     else
-      ListedTaxon.delay(:priority => INTEGRITY_PRIORITY).update_cache_columns_for(id)
+      # trickle down for introduced
+      sql = <<-SQL
+        UPDATE listed_taxa
+        SET establishment_means = '#{establishment_means}'
+        FROM places
+        WHERE 
+          listed_taxa.place_id = places.id
+          AND establishment_means IS NULL
+          AND listed_taxa.taxon_id = #{taxon_id}
+          AND (places.ancestry LIKE '#{place.ancestry}/%' OR places.ancestry = '#{place.ancestry}')
+      SQL
+      ActiveRecord::Base.connection.execute(sql)
     end
     true
   end

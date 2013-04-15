@@ -500,8 +500,8 @@ $.fn.loadingShades = function(e, options) {
     var status = $('.shades .loading.status', this)
     status.css({
       position: 'absolute', 
-      top: '50%', 
-      left: '50%', 
+      top: options.top || '50%', 
+      left: options.left || '50%', 
       marginTop: (-1 * status.outerHeight() / 2) + 'px',
       marginLeft: (-1 * status.outerWidth() / 2) + 'px'
     })
@@ -716,32 +716,45 @@ $.fn.observationControls = function(options) {
   var options = options || {}
   $(this).each(function() {
     var observations = options.div || $(this).parent().find('.observations')
-    var gridButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>'+I18n.t('grid')+'</label></a>')
-    gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
-    gridButton.click(function() {
-      $(observations).observationsGrid($(this).data('gridSize'))
-      $(this).siblings().addClass('disabled')
-      $(this).removeClass('disabled')
-      return false
-    })
 
-    var listButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>'+I18n.t('list')+'</label></a>')
-    listButton.click(function() {
-      $(observations).observationsList()
-      $(this).siblings().addClass('disabled')
-      $(this).removeClass('disabled')
-      return false
-    })
 
-    var mapButton = $('<a href="#"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>'+I18n.t('map')+'</label></a>')
-    mapButton.click(function() {
-      $(observations).observationsMap()
-      $(this).siblings().addClass('disabled')
-      $(this).removeClass('disabled')
-      return false
-    })
+    var gridButton = $('.gridbutton', this)
+    if (gridButton.length == 0) {
+      gridButton = $('<a href="#" class="gridbutton" title="'+I18n.t('grid_tooltip')+'"><span class="inat-icon ui-icon ui-icon-grid inlineblock">&nbsp;</span><label>'+I18n.t('grid')+'</label></a>')
+      gridButton.data('gridSize', $(observations).hasClass('medium') ? 'medium' : null)
+      gridButton.click(function() {
+        $(observations).observationsGrid($(this).data('gridSize'))
+        $(this).siblings().addClass('disabled')
+        $(this).removeClass('disabled')
+        return false
+      })
+    }
+
+    var listButton = $('.listbutton', this)
+    if (listButton.length == 0) {
+      listButton = $('<a href="#" class="listbutton" title="'+I18n.t('list_tooltip')+'"><span class="inat-icon ui-icon ui-icon-list inlineblock">&nbsp;</span><label>'+I18n.t('list')+'</label></a>')
+      listButton.click(function() {
+        $(observations).observationsList()
+        $(this).siblings().addClass('disabled')
+        $(this).removeClass('disabled')
+        return false
+      })
+    }
+
+    var mapButton = $('.mapbutton', this)
+    if (mapButton.length == 0) {
+      mapButton = $('<a href="#" class="mapbutton" title="'+I18n.t('map_tooltip')+'"><span class="inat-icon ui-icon ui-icon-map inlineblock">&nbsp;</span><label>'+I18n.t('map')+'</label></a>')
+      mapButton.click(function() {
+        $(observations).observationsMap()
+        $(this).siblings().addClass('disabled')
+        $(this).removeClass('disabled')
+        return false
+      })
+    }
     
-    $(this).append(' ', gridButton, listButton, mapButton)
+    if ($(this).children().length == 0) {
+      $(this).append(' ', gridButton, listButton, mapButton)
+    }
 
     if ($(observations).hasClass('grid')) {
       gridButton.click()

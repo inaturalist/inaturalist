@@ -12,6 +12,7 @@ class TaxonChange < ActiveRecord::Base
   after_update :commit_records_later
   
   validates_presence_of :taxon_id
+  validate :uniqueness_of_taxa
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
@@ -189,6 +190,13 @@ class TaxonChange < ActiveRecord::Base
     return true if u.is_curator?
     return true if u.id == user_id
     false
+  end
+
+  def uniqueness_of_taxa
+    taxon_ids = [taxon_id, taxon_change_taxa.map(&:taxon_id)].flatten.compact
+    if taxon_ids.size != taxon_ids.uniq.size
+      errors.add(:base, "input and output taxa must be unique")
+    end
   end
 
 end

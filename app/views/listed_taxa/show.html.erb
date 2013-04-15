@@ -197,7 +197,7 @@
     -%>
     <ul>
       <li><%= link_to content_tag(:span, t(:comments)), '#comments' %></li>
-      <li><%= link_to content_tag(:span, obs_tab_txt), obs_url, :title => t(:observations) %></li>
+      <li><%= link_to content_tag(:span, obs_tab_txt), obs_url, :title => "observations" %></li>
     </ul>
     <div id="comments">
       <%= render :partial => "comments/comments", :object => @listed_taxon %>

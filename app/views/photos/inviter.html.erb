@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = t('.invite_other_photographers_to_inat', :site_name => SITE_NAME) %>  
+  <%= @title = t('views.photos.inviter.invite_other_photographers_to_inat', :site_name => SITE_NAME) %>  
 <%- end -%>
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
@@ -12,19 +12,19 @@
 
 <h2><%= @title %></h2>
 <p class="description">
-  <%=t ".invite_your_friends_description", :site_name => SITE_NAME_SHORT %>
+  <%=t "views.photos.inviter.invite_your_friends_description", :site_name => SITE_NAME_SHORT %>
 </p>
 
 <%= form_tag(url_for, {:method => :post, :class => "photo_inviter_form"}) do %>
   
   <div class='photo_inviter'></div>
-  <label for="taxonchooser"><%=t ".automatically_id_the_new_obs_as" %></label>
+  <label for="taxonchooser"><%=t "views.photos.inviter.automatically_id_the_new_obs_as" %></label>
   <%= text_field_tag :taxon_id, @taxon.try(:id), :class => "chooser text", :id => "taxonchooser", :placeholder => t(:type_species_name) %>
   &nbsp;
-  <label for="taxonchooser"><%=t ".automatically_add_to_project" %></label>
+  <label for="taxonchooser"><%=t "views.photos.inviter.automatically_add_to_project" %></label>
   <%= text_field_tag :project_id, @project.try(:id), :class => "chooser text", :id => "projectchooser", :placeholder => t(:type_project_name) %>
   <div class='invite_comment'>
-    <label><%=t 'add_a_comment' %> (<%=t '.dont_forget_the_invite_link_placeholder' %>):</label>
+    <label><%=t 'add_a_comment' %> (<%=t 'views.photos.inviter.dont_forget_the_invite_link_placeholder' %>):</label>
     <br />
     <%= text_area_tag :comment, t(:default_invite_comment, :site_name => SITE_NAME), :class=>'text' %>
   </div>

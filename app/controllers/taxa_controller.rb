@@ -374,7 +374,7 @@ class TaxaController < ApplicationController
     page = params[:page] ? params[:page].to_i : 1
     @facets = Taxon.facets(q, :page => page, :per_page => per_page,
       :with => drill_params, 
-      :include => [:taxon_names, :photos],
+      :include => [:taxon_names, {:taxon_photos => :photo}, :taxon_descriptions],
       :field_weights => {:name => 2},
       :match_mode => match_mode,
       :order => :observations_count,
@@ -567,6 +567,7 @@ class TaxaController < ApplicationController
   
   def schemes
     @scheme_taxa = TaxonSchemeTaxon.all(:conditions => {:taxon_id => @taxon.id})
+    respond_to {|format| format.html}
   end
   
   def map
@@ -783,6 +784,9 @@ class TaxaController < ApplicationController
         @description = d.describe(@taxon)
         break unless @description.blank?
       end
+    end
+    if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+      @taxon.wikipedia_summary(:refresh_if_blank => true)
     end
     @describer_url = @describer.page_url(@taxon)
     render :partial => "description"
@@ -1159,8 +1163,8 @@ class TaxaController < ApplicationController
         taxon_names.map{|tn| tn.name.split.join('_')}
       unless acceptable_names.include?(params[:q])
         sciname_candidates = [
-          params[:action].to_s.split.join('_').downcase, 
-          params[:q].to_s.split.join('_').downcase,
+          params[:action].to_s.sanitize_encoding.split.join('_').downcase, 
+          params[:q].to_s.sanitize_encoding.split.join('_').downcase,
           canonical.downcase
         ]
         redirect_target = if sciname_candidates.include?(@taxon.name.split.join('_').downcase)

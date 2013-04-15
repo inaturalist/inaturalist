@@ -73,7 +73,7 @@ class FlickrController < ApplicationController
       end
     else
       @friend_id = params[:object_id]
-      @friend_id = nil if @friend_id == 'null'
+      @friend_id = nil if @friend_id == 'null' || @friend_id.blank?
       search_params = {}
       if context == 'user'
         search_params['user_id'] = current_user.flickr_identity.flickr_user_id

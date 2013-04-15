@@ -75,7 +75,7 @@
         This is a
         <% if @list.comprehensive? -%>
           <span class="comprehensive_notice" 
-              data-tip="<strong><%= @list.user || 'iNat' %></strong> believes this is a comprehensive list of <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> in <strong><%= @list.place.name %></strong>">
+              data-tip="<strong><%= @list.user || CONFIG.site_name_short %></strong> believes this is a comprehensive list of <strong><%= taxon.species_or_lower? ? "<i>#{taxon.name}</i>" : taxon.name %></strong> in <strong><%= @list.place.name %></strong>">
             comprehensive</span>
         <% end %>
         check list of

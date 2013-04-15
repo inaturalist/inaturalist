@@ -1,9 +1,10 @@
 <% content_for(:title) do %>
 <%- if @observation.species_guess and @observation.species_guess != '' -%>
-  <%= h @observation.species_guess -%>
+  <%= @observation.species_guess -%>,
 <%- else -%>
-  Something
-<% end %>, observed by 
+  <%=t :something %>
+<% end %>
+<%= t(:observed_by).downcase %>
 <%= @observation.user.login %>
 <%- if @observation.time_observed_at -%>
   at <%=h @observation.time_observed_at.strftime("%I:%M %p %Z") %>
@@ -30,7 +31,8 @@
       <meta property="<%= CONFIG.facebook.namespace %>:coordinates:longitude" content="<%= @observation.longitude %>">
     <% end -%>
   <% end -%>
-  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
+  <meta property="og:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %>"/> 
+  <meta property="twitter:title" content="<%= @observation.species_guess.blank? ? "something" : @observation.species_guess %> observed by <%= @observation.user.try_methods(:name, :login) %>"/> 
   <% if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/} -%>
     <meta property="og:image" content="<%= photo.medium_url %>"/> 
     <meta name="twitter:card" content="photo">
@@ -143,7 +145,9 @@
     <%- elsif @observation.species_guess and @observation.species_guess != '' -%>
       <%= h @observation.species_guess -%>
     <%- else -%>
-      <%=t :something_ %><% end -%><%=t :_observed_by %> 
+      <%=t :something %>,
+    <% end -%>
+    <%= t(:observed_by).downcase %> 
     <%= link_to @observation.user.login, observations_by_login_path(@observation.user.login) %>
     <span class="meta date">
       <%- if @observation.time_observed_at -%>
@@ -225,30 +229,29 @@
           extra_count = 5
           cycle_classes = [""]*(extra_count-1) + ["last"]
         -%>
-        <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => "Photo #{@photos.first.attribution}" %>
+        <%= link_to image_tag(@photos.first.best_url(photo_size)), @photos.first.becomes(Photo), :class => "first zoomable", :title => t(:photo_attribution, :attribution => @photos.first.attribution) %>
         <% for photo in @photos[1..extra_count] -%>
-          <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution=>"#{photo.attribution}") %>
+          <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto #{cycle(*cycle_classes)}", :title => t(:photo_attribution, :attribution => photo.attribution) %>
         <% end -%>
         <% if @photos.size > extra_count+1 -%>
           <div style="clear: both">
-            <%= link_to_toggle "View all #{@observation.photos.size} photos", "#morephotos" %>
+            <%= link_to_toggle t(:view_all_photocount_photos, :photo_count => @observation.photos.size), "#morephotos" %>
             <div id="morephotos" style="display: none">
               <% for photo in @photos[(extra_count+1)..-1] -%>
-                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution=>"#{photo.attribution}") %>
+                <%= link_to image_tag(photo.square_url), photo.becomes(Photo), :class => "zoomable smallphoto", :title => t(:photo_attribution, :attribution => photo.attribution) %>
               <% end -%>
             </div>
           </div>
         <% end -%>
         
         <div class="meta" style="clear:both;">
-          <!-- Photo<%= 's' if @photos.size > 1 %> -->
           <%=t(:photo, :count => @photos.size).capitalize %>
           <% if @photos.map{|p| p.license}.compact.uniq.size <= 1 -%>
             <%= rights @photos.first, :skip_image => true, :separator => " " %>
           <% else %>
             &copy;
             <%= @observation.user.name.blank? ? @observation.user.login : @observation.user.name %>,
-            mixed licenses
+            <%=t :mixed_licenses %>
           <% end -%>
         </div>
 
@@ -445,7 +448,8 @@
       </div>
     <% elsif @observation.id_please? %>
       <div id="idplease" class="box stacked">
-        <%= link_to @observation.user.login, @observation.user %> <%=t :_would_like_some_help_identifying_this %>
+        <%= link_to @observation.user.login, @observation.user %>
+        <%=t :would_like_some_help_identifying_this %>
       </div>
     <% end -%>
     

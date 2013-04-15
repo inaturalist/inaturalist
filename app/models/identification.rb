@@ -210,9 +210,7 @@ class Identification < ActiveRecord::Base
   def self.expire_caches(ident)
     ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
     return unless ident
-    ctrl = ActionController::Base.new
-    ctrl.expire_fragment(ident.observation.component_cache_key(:for_owner => true))
-    ctrl.expire_fragment(ident.observation.component_cache_key)
+    Observation.expire_components_for(ident.observation_id)
   rescue => e
     puts "[DEBUG] Failed to expire caches for #{ident}: #{e}"
     puts e.backtrace.join("\n")

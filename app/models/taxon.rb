@@ -38,6 +38,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
   has_and_belongs_to_many :colors
+  has_many :taxon_descriptions, :dependent => :destroy
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
@@ -722,7 +723,7 @@ class Taxon < ActiveRecord::Base
   end
   
   def lsid
-    "lsid:inaturalist.org:taxa:#{id}"
+    "lsid:#{URI.parse(CONFIG.site_url).host}:taxa:#{id}"
   end
   
   # Flagged method is called after every add_flag.  This callback method
@@ -744,7 +745,14 @@ class Taxon < ActiveRecord::Base
   end
   
   def wikipedia_summary(options = {})
-    sum = read_attribute(:wikipedia_summary)
+    locale = options[:locale] || I18n.locale
+    td = taxon_descriptions.detect{|td| td.locale.to_s == locale.to_s}
+    td ||= taxon_descriptions.detect{|td| td.locale.to_s =~ /^#{locale.to_s.split('-').first}/}
+    sum = if td
+      td.body.to_s[0..500]
+    elsif locale.to_s =~ /^en-?/
+      read_attribute(:wikipedia_summary)
+    end
     if sum && sum.match(/^\d\d\d\d-\d\d-\d\d$/)
       last_try_date = DateTime.parse(sum)
       return nil if last_try_date > 1.week.ago
@@ -755,13 +763,14 @@ class Taxon < ActiveRecord::Base
     end
     
     if !new_record? && options[:refresh_if_blank] && !Delayed::Job.where("handler LIKE '%set_wikipedia_summary%id: ''#{id}''%'").exists?
-      delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary
+      delay(:priority => OPTIONAL_PRIORITY).set_wikipedia_summary(:locale => locale)
     end
     nil
   end
   
-  def set_wikipedia_summary
-    w = WikipediaService.new(:locale => 'en')
+  def set_wikipedia_summary(options = {})
+    locale = options[:locale] || I18n.locale
+    w = WikipediaService.new(:locale => locale)
     summary = query_results = parsed = nil
     begin
       query_results = w.query(
@@ -795,12 +804,20 @@ class Taxon < ActiveRecord::Base
       summary += '...' if pre_trunc > summary
     end
     
-    if summary.blank?
-      Taxon.update_all(["wikipedia_summary = ?", Date.today], ["id = ?", self])
-      return nil
+    if locale.to_s =~ /^en-?/
+      if summary.blank?
+        Taxon.update_all(["wikipedia_summary = ?", Date.today], ["id = ?", self])
+        return nil
+      else
+        Taxon.update_all(["wikipedia_summary = ?", summary], ["id = ?", self])
+      end
+    else
+      td = taxon_descriptions.where(:locale => locale).first
+      td ||= self.taxon_descriptions.build(:locale => locale)
+      if td
+        td.update_attributes(:body => summary)
+      end
     end
-  
-    Taxon.update_all(["wikipedia_summary = ?", summary], ["id = ?", self])
     summary
   end
   

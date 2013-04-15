@@ -55,10 +55,15 @@
     <% end -%>
     <div class="meta">
       <label>Source:</label>
-      <% if taxon_change.source && taxon_change.source.url %>
-         <%= link_to truncate(taxon_change.source.title, :length => 40), taxon_change.source.url %>
-      <% elsif taxon_change.source %>
-        <%= taxon_change.source.title %>
+      <% if taxon_change.source %>
+        <% if taxon_change.source.url %>
+           <%= link_to truncate(taxon_change.source.title, :length => 40), taxon_change.source.url %>
+        <% elsif taxon_change.source %>
+          <%= taxon_change.source.title %>
+        <% end -%>
+        (<%= link_to_dialog "Citation", :title => "Citation for #{taxon_change.class.name.underscore.titleize} #{taxon_change.id}" do %>
+          <%= citation_for taxon_change.source %>
+        <% end -%>)
       <% else %>
         unknown
       <% end %>

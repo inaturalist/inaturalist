@@ -14,7 +14,7 @@
   taxon_class = "clear taxon #{taxon.rank}"
   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
   taxon_class << " #{iconic_taxon.name}" if iconic_taxon
-  taxon_class << (taxon.photos.empty? ? ' noimg' : ' img')
+  taxon_class << (taxon.taxon_photos.blank? ? ' noimg' : ' img')
   taxon_class << " #{extra_class}" if extra_class
   include_full_name ||= false
   taxon_name_str = if include_full_name
@@ -32,7 +32,7 @@
 -%>
 
 <div id="<%= dom_id(taxon) unless no_ids %>" class="<%= taxon_class %>">
-  <div class="image inlineblock taxonimage <%= 'nophoto' if taxon.photos.blank? %>">
+  <div class="image inlineblock taxonimage <%= 'nophoto' if photo.blank? %>">
     <% if link_image -%>
       <% if js_link -%>
         <%= link_to_function taxon_image(taxon, image_options), "handleTaxonClick(event, #{taxon_json})" %>

@@ -5,10 +5,10 @@
   
   <div class="tabs">
     <ul>
-      <li><%= link_to "<span>From Flickr</span>".html_safe, "#flickr_taxon_photos" %></li>
-      <li><%= link_to "<span>From #{CONFIG.site_name_short} observations</span>".html_safe, "#inat_obs_taxon_photos" %></li>
-      <li><%= link_to "<span>From EOL</span>".html_safe, "#eol_taxon_photos" %></li>
-      <li><%= link_to "<span>From Wikimedia Commons</span>".html_safe, "#wikimedia_taxon_photos" %></li>
+      <li><%= link_to "<span>#{t(:from)} Flickr</span>".html_safe, "#flickr_taxon_photos" %></li>
+      <li><%= link_to "<span>#{t(:from_your_site_observations, :site_name => SITE_NAME_SHORT)}</span>".html_safe, "#inat_obs_taxon_photos" %></li>
+      <li><%= link_to "<span>#{t(:from)} EOL</span>".html_safe, "#eol_taxon_photos" %></li>
+      <li><%= link_to "<span>#{t(:from)} Wikimedia Commons</span>".html_safe, "#wikimedia_taxon_photos" %></li>
     </ul>
     
     <div id="wikimedia_taxon_photos">
@@ -19,8 +19,8 @@
             :checked => true } %>
         </div>
         <div class="buttonrow">
-          <%= submit_tag 'Save photos', :class => 'default button' %>
-          <%= link_to_function 'Cancel', 'return false;', :class => 'button close' %>
+          <%= submit_tag t(:save_photos), :class => 'default button' %>
+          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
         </div>
       <% end %>
     </div>
@@ -33,8 +33,8 @@
             :checked => true } %>
         </div>
         <div class="buttonrow">
-          <%= submit_tag 'Save photos', :class => 'default button' %>
-          <%= link_to_function 'Cancel', 'return false;', :class => 'button close' %>
+          <%= submit_tag t(:save_photos), :class => 'default button' %>
+          <%= link_to_function t(:cancel), 'return false;', :class => 'button close' %>
         </div>
       <% end %>
     </div>

@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = t(:photoid_photoattribution, :photoid => "#{@photo.id}", :photoattribution => "#{@photo.attribution}" ) %>
+  <%= @title = t(:photo_by_id_attribution, :id => @photo.id, :attribution => @photo.attribution) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag "taxa" %>

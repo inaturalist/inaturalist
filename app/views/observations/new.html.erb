@@ -105,7 +105,7 @@
 
     <% unless @sharing_authorizations.blank? -%>
       <div id="sharing" class="right inline buttonrow">
-        <label class="inter">Share on</label>
+        <label class="inter"><%= t(:share_on)%></label>
         <% if fb_pa = @sharing_authorizations.detect{|pa| pa.provider_name == 'facebook'} -%>
           <span class="inter">
             <%= fields_for @observation do |f| %>

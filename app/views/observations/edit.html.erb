@@ -52,7 +52,7 @@
     <%= submit_tag(t(:save_observation), :class => 'default button', "data-loading-click" => true) %>
     <%= link_to(t(:cancel), session[:return_to], :class => 'button') %>
     <%= link_to t(:delete), @observation, 
-                :confirm => t(:you_sure_you_want_to_delete_observation?), 
+                :confirm => t(:you_sure_delete_this_observation), 
                 :method => :delete, 
                 :id => "delete_observation_button", 
                 :class => "minor delete button" %>

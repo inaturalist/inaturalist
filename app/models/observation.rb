@@ -804,7 +804,7 @@ class Observation < ActiveRecord::Base
       (quality_grade_changed? || taxon_id_changed? || latitude_changed? || longitude_changed? || observed_on_changed?)
     return true unless refresh_needed
     return true if Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
-    CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(id, :taxon_id => taxon_id, 
+    CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(id, :taxon_id => taxon_id, 
       :taxon_id_was  => taxon_id_changed? ? taxon_id_was : nil,
       :latitude_was  => (latitude_changed? || longitude_changed?) ? latitude_was : nil,
       :longitude_was => (latitude_changed? || longitude_changed?) ? longitude_was : nil,
@@ -913,7 +913,7 @@ class Observation < ActiveRecord::Base
   
   
   def lsid
-    "lsid:inaturalist.org:observations:#{id}"
+    "lsid:#{URI.parse(CONFIG.site_url).host}:observations:#{id}"
   end
   
   def component_cache_key(options = {})
@@ -1008,7 +1008,7 @@ class Observation < ActiveRecord::Base
     observation.set_quality_grade(:force => true)
     observation.save
     if observation.quality_grade_changed? && !Delayed::Job.where("handler LIKE '%CheckList%refresh_with_observation% #{id}\n%'").exists?
-      CheckList.delay(:priority => INTEGRITY_PRIORITY).refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+      CheckList.delay(:priority => INTEGRITY_PRIORITY, :queue => "slow").refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
     end
     observation.quality_grade
   end
@@ -1552,6 +1552,21 @@ class Observation < ActiveRecord::Base
       identifications.current.by(user_id).last
     end
   end
+
+  def expire_components
+    Observation.expire_components_for(self)
+  end
+
+  def self.expire_components_for(o)
+    o = Observation.find_by_id(o) unless o.is_a?(Observation)
+    return unless o
+    ctrl = ActionController::Base.new
+    ctrl.expire_fragment(o.component_cache_key)
+    ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
+    I18N_SUPPORTED_LOCALES.each do |locale|
+      ctrl.expire_fragment(o.component_cache_key(:locale => locale))
+    end
+  end
   
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
@@ -1559,12 +1574,10 @@ class Observation < ActiveRecord::Base
     @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
   end
   
-  def self.expire_components_for(taxon)
+  def self.expire_components_for_taxon(taxon)
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     Observation.of(taxon).find_each do |o|
-      ctrl = ActionController::Base.new
-      ctrl.expire_fragment(o.component_cache_key)
-      ctrl.expire_fragment(o.component_cache_key(:for_owner => true))
+      o.expire_components
     end
   end
 
@@ -1621,7 +1634,7 @@ class Observation < ActiveRecord::Base
         where("observations.taxon_id is not null")
     end
     observations_to_share.each do |o|
-      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:observe", :observation => FakeView.observation_url(o))
+      fb_api.put_connections("me", "#{CONFIG.facebook.namespace}:record", :observation => FakeView.observation_url(o))
     end
   end
 
@@ -1668,7 +1681,7 @@ class Observation < ActiveRecord::Base
         # observation aggregation for twitter happens in share_on_twitter.
         # fb aggregation happens on their end via open graph aggregations.
         unless Delayed::Job.exists?(["handler LIKE ?", "%user_id: #{u.id}\n%share_on_#{provider_name}%"])
-          self.delay(:priority => USER_INTEGRITY_PRIORITY).send("share_on_#{provider_name}")
+          self.delay(:priority => USER_INTEGRITY_PRIORITY, :run_at => 1.minute.from_now).send("share_on_#{provider_name}")
         end
       end
     end

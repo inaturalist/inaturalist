@@ -49,7 +49,7 @@ module UsersHelper
     content_text      = options.delete(:content_text)
     content_text    ||= user.send(options.delete(:content_method))
     options[:title] ||= user.send(options.delete(:title_method))
-    link_to h(content_text), person_path(user.login), options
+    link_to content_text, person_path(user.login), options
   end
 
   #

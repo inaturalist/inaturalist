@@ -1,8 +1,16 @@
-<%= link_to image_tag("http://inaturalist.org/images/logo-bird-200px.png", :align => "right", :border => 0, :alt => t(:welcome_to_inat, :site_name => SITE_NAME), root_url %>
+<%-
+  img_url = if CONFIG.logo_icon_square_big =~ /http/
+    CONFIG.logo_icon_square_big
+  else
+    FakeView.uri_join(root_url, CONFIG.logo_icon_square_big)
+  end
+-%>
+<%= link_to image_tag(img_url, 
+  :align => "right", :border => 0, :alt => t(:welcome_to_inat, :site_name => SITE_NAME)), root_url %>
 <p><%= t(:welcome_comma) %> <%= @resource.login %>!</p>
 
 <p>
-<%= t(:your_inat_account_has_been_activated, :inat => "#{link_to CONFIG.site_name, root_url}") %>
+<%= t(:your_inat_account_has_been_activated, :inat => link_to(CONFIG.site_name, root_url)) %>
   <%= t(:thanks_for_signing_up) %>
   Please take a second to
   <%= link_to 'confirm your account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>.

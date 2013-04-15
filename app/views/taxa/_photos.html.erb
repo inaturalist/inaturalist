@@ -33,10 +33,9 @@
     <% unless photos.empty? %>
       <div class="description"><%= t(:creative_commons_flickr_tagged) %> "<%= taxon.name %>."</div>
       <div>
-        <%= link_to t(:invite_photos_to_site, :site_name => SITE_NAME), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+        <%= link_to t(:invite_photos_to_raquo_html, :site_name => SITE_NAME_SHORT), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
         <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
           <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
-          <nobr>Flickr &raquo;</nobr>
         </a>
       </div>
     <% end %>
@@ -48,7 +47,7 @@
     </h3>
     <%= link_to t(:invite_photos_to_raquo_html, :site_name => SITE_NAME_SHORT), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
     <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
-      <%= t(:view_all_photos_tagged_taxon, :taxon => taxon.name).html_safe %>
+      <%= t(:view_all_photos_tagged_taxon_html, :taxon => taxon.name).html_safe %>
     </a><br/>
     (<%=t :not_just_creative_commons_licensed %>)
   </div>
@@ -71,7 +70,7 @@
       <% end %>
     </div>
     <div class="description">
-      <%= link_to "Invite photos to <nobr>iNat &raquo;</nobr>".html_safe, photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
+      <%= link_to t(:invite_photos_to_raquo_html, :site_name => SITE_NAME_SHORT), photo_inviter_path(:taxon_id => @taxon, :q => @taxon.name), :class => "right" %>
       <a href="http://flickr.com/search/?w=all&q=<%= taxon.name.gsub(' ', '') %>&m=tags">
         <%= t(:view_all_photos_tagged_taxon_html, :taxon => h(taxon.name) ) %>
       </a>

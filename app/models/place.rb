@@ -18,6 +18,7 @@ class Place < ActiveRecord::Base
     :message => "must be between 2 and 500 characters"
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
   validate :validate_parent_is_not_self
+  validate :validate_name_does_not_start_with_a_number
   
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -161,6 +162,18 @@ class Place < ActiveRecord::Base
     joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").
     where("listed_taxa.taxon_id = ?", taxon_id)
   }
+
+  scope :with_establishment_means, lambda {|establishment_means|
+    scope = joins("LEFT OUTER JOIN listed_taxa ON listed_taxa.place_id = places.id").scoped
+    case establishment_means
+    when ListedTaxon::NATIVE
+      scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS)
+    when ListedTaxon::INTRODUCED
+      scope.where("listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS)
+    else
+      scope.where("listed_taxa.establishment_means = ?", establishment_means)
+    end
+  }
   
   scope :place_type, lambda {|place_type|
     place_type = PLACE_TYPE_CODES[place_type] if place_type.is_a?(String) && place_type.to_i == 0
@@ -187,6 +200,12 @@ class Place < ActiveRecord::Base
   def validate_parent_is_not_self
     if !id.blank? && id == ancestor_ids.last
       errors.add(:parent_id, "cannot be the same as the place itself")
+    end
+  end
+
+  def validate_name_does_not_start_with_a_number
+    if name.to_i > 0
+      errors.add(:name, "cannot start with a number")
     end
   end
   

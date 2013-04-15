@@ -56,7 +56,7 @@ class Photo < ActiveRecord::Base
     if user.blank? && (license == COPYRIGHT || license.blank?)
       errors.add(
         :license, 
-        "must be set if the photo wasn't added by an iNat user.")
+        "must be set if the photo wasn't added by an #{CONFIG.site_name_short} user.")
     end
   end
   

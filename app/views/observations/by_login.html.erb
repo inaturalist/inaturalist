@@ -264,7 +264,7 @@
 <% end %>
 
 <% content_for(:extrahead) do %>
-  <link rel="alternate" type="application/atom+xml" title=<%= t(:recent_observations_by, :login=> h(@login) ) %>  href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
+  <link rel="alternate" type="application/atom+xml" title=<%= t(:recent_atom_observations_by, :login => @login ) %>  href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
 <% end %>
 
 <% unless @proj_obs_errors_obs.blank? -%>
