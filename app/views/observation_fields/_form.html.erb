@@ -3,15 +3,7 @@
 
   <%= f.text_field :name, :required => true, :label => t(:name) %>
   <%= f.text_field :description, :label => t(:description) %>
-
-    <% h = Hash.new
-       ObservationField::TYPES.keys.each do |k|
-         h[t(ObservationField::TYPES[k])] = k
-       end
-
-    %>
-
-  <%= f.select :datatype, h, :required => true, :label => t(:datatype) %>
+  <%= f.select :datatype, ObservationField::TYPES.map{|t| [t(t), t]}, :required => true, :label => t(:datatype) %>
   <%= f.text_field :allowed_values, :description => t(:separate_values_with_a_pipe), :label => t(:allowed_values) %>
   <%= f.submit t(:save), :class => "default button", "data-loading-click" => t(:saving) %>
 <% end %>
