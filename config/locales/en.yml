@@ -10,10 +10,10 @@ en:
     participate in the quality assessment above, or describe the inaccuracy
     in a comment.
   we_also_support: |
-    Tambien tenemos conexión con <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, y
+    We also support <a href="http://flickr.com">Flickr</a>,
+    <a href="http://picasaweb.google.com">Picasa</a>, and
     <a href="http://facebook.com">Facebook</a>
-    para tus imágenes.
+    for image hosting.
   a_default_taxon_name_will_automatically_created: |
     A default taxon name will automatically be created from the scientific name attribute of this taxon. 
     When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
@@ -294,6 +294,11 @@ en:
   check_lists_for: "Other Check Lists for %{place}"
   check_out_my_observations_at:  If you want, you can check out my observations at
   check_out_your_life_list: Check out your Life List
+  check_this_box_if: |
+                       Check this box if you want to apply a
+                       <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
+                       to your photos. You can choose a different license or remove the license
+                       later, but this is the best license for sharing with researchers.
   checklist: Checklist
   checklist_places: Checklist places
   checklist_places_absent: Checklist places (absent)
@@ -385,6 +390,7 @@ en:
   data_quality_assessment: Data Quality Assessment
   datatype: Datatype
   date: Date
+  date_: date
   date?: Date?
   date_added: Date added
   date_observed: Date observed
@@ -461,6 +467,7 @@ en:
   editing_taxon_range: Editing Taxon Range
   editing_this: Editing %{elem}
   eg: 'e.g. '
+  email: Email
   email_addresses_description: Comma-separated email addresses, limit 60 every 30 days.
   email_addresses_to_receive_invites: Email addresses to receive invites
   embed: 'Embed:'
@@ -542,6 +549,7 @@ en:
   follow_user: "Follow %{user}"
   follower: follower
   following: following
+  for: for
   forgot_your_password: Forgot your password?
   fri: Fri
   from: From
@@ -672,6 +680,7 @@ en:
   its_important_that_you:  It's important that you click
   iucn_red_list_status: IUCN Red List status
   january: January
+  join: Join
   join_and: Join and
   join_inat: Join %{site_name}!
   join_project: Join this project
@@ -868,6 +877,7 @@ en:
   no_recent_activity: No recent activity
   no_recently_active: No recently active projects yet.
   no_results_found: No results found
+  no_results_for: 'No results for '
   no_results_matching: No results matching
   no_species_have_been_listed: No species have been listed for this place yet!
   no_species_on_this_list: No species on this list yet!
@@ -889,6 +899,7 @@ en:
   not_on_this_list: Not on this list.
   not_seeing_what_looking_for: Not Seeing What You're Looking For?
   not_yet: Not yet
+  numeric_: numeric
   noun_by_you: "%{noun} by you"
   obscured: Obscured
   obscured_description: "Public coordinates shown as a random point within 10KM of the true coordinates. True coordinates are only visible to you and the curators of projects to which you add the observation."
@@ -951,6 +962,7 @@ en:
   only_accepts_taxa: only accepts taxa
   only_country_state_and_county: "Only country, state, and county equivalent places shown for now. Zoom in to see smaller places."
   only_files_with_100_rows_at_a_time: Only files with 100 rows at a time, please
+  only_show_active_taxa: Only show active taxa
   only_showing_taxa_from: only showing taxa from this list
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
@@ -973,6 +985,7 @@ en:
   owner: Owner
   parent: Parent
   password: Password
+  password_confirmation: 'Password confirmation'
   paste: Paste
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
   paste_in_a_comma_separated_list: Paste in a comma-separated list of countries
@@ -1134,6 +1147,7 @@ en:
   search_catalogue_of_life_raquo: "Search Catalogue of Life &raquo;"
   search_creative_commons_photos_on_flickr: Search Creative Commons photos on Flickr. If you select one, be nice and leave them a thankyou comment!
   search_descendant_taxa_raquo: "Search descendant taxa &raquo;"
+  search_external: Search external name providers &raquo;
   search_for_new_taxa: search for new taxa
   search_for_place_to_import_from_yahoo: Search for a place to import from Yahoo.
   search_for_species: Search for species
@@ -1168,6 +1182,7 @@ en:
   set_license: Set license
   share_your_observation_with_researchers_by: Share your observation with researchers by
   show: Show
+  show_active_and_inactive_taxa: Show active and inactive taxa
   show_counts: Show counts based on the list.
   show_kml: Show KML
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
@@ -1194,6 +1209,7 @@ en:
   somewhere_on_earth: somewhere on Earth
   sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
   source: Source
+  source_: 'Source:'
   source_unknown: "Source unknown"
   source_of_coordinates: 'Source of coordinates and accuracy measure, set automatically.'
   sources: Sources
@@ -1205,6 +1221,7 @@ en:
   species_name: species names
   species_search: Species Search
   species_taxon_name: Species / Taxon Name
+  species_unknown: Species Unknown
   src: Src
   start: Start
   start_a_new_list: Start a new list
@@ -1221,6 +1238,7 @@ en:
   stats: Stats
   stats_title: Site Stats
   status: Status
+  still_no_luck?: Still no luck?
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
@@ -1247,6 +1265,7 @@ en:
   taxa_all_species_html: "Taxa &middot; All Species"
   taxa_needing_curation: Taxa Needing Curation
   taxon: Taxon
+  taxon_: taxon
   taxon_name: Taxon name
   taxon_range: Taxon range
   taxon_schemes_raquo_html: "Taxon <nobr>schemes &raquo;</nobr>"
@@ -1267,6 +1286,7 @@ en:
   terms_new_users: Terms new users must agree to before joining this project.
   terms_of_service: Terms of Service
   terms_service: Terms of Service
+  text_: text
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
@@ -1320,6 +1340,7 @@ en:
   this_will_update_all_last_observations: This will update all last observations and add new taxa from 
   those_are_the_basics_of: Those are the basics of adding observations! There are plent of other things you can do, like searching and filtering your observations or editing them as a batch, but they should be pretty self-explanatory.
   thu: Thu
+  time_: time
   titled_favorites_and_the_most_recent_additions: titled "Favorites" and the most recent additions will appear in this space.
   to: to
   to_add_comments: to add comments
@@ -1350,6 +1371,7 @@ en:
   type_species_name: "Type species name..."
   type_taxon_name: Type taxon name
   type_taxon_name_and_click_lookup: Type taxon name and click lookup
+  ubio: uBio
   uicn_red_list_status: "IUCN Red List status:"
   unclassified: Unclassified
   unfragted_taxa: Ungrafted Taxa
@@ -1366,6 +1388,7 @@ en:
   update_photos: Update photos
   updated: Updated
   updated_by: Updated by
+  updated_daily: Updated daily
   upload: Upload
   upload_a_csv_file_with_observation: Upload a CSV file with observation data. If you have your data in a spreadsheet or database, this is probably the way to go.
   US_states: US States
@@ -1423,7 +1446,7 @@ en:
   view_x_from_x: "View %{day_observations} from %{observed_on}"
   view_your_life_list: View your life list
   view_your_observations: View your observations
-  views: Vistas
+  views_: Views
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: w00t!  No ungrafted taxa!
   w_photos_only: w/ photos only
@@ -1485,7 +1508,7 @@ en:
   yes: yes
   yes_find_them!: Yes, find them!
   yes_i_want_to_join: Yes, I want to join
-  yes_license_my_observations_so_scientists_can_use: Yes, license my observations so scientists can use my data!
+  yes_license_my_observations_so_scientists_can_use: Yes, license my photos and observations so scientists can use my data!
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday_at: ', yesterday at 4pm'
   you: you

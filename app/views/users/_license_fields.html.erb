@@ -11,13 +11,10 @@
 
 <input type="checkbox" id="license_all" checked="checked"/>
 <span class="label">
-  <label for="license_all">Yes, license my photos and observations so scientists can use my data!</label>
+  <label for="license_all"><%= t :yes_license_my_observations_so_scientists_can_use %></label>
 </span>
 <div class="stacked description">
-  Check this box if you want to apply a
-  <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-  to your photos. You can choose a different license or remove the license
-  later, but this is the best license for sharing with researchers.
+  <%=raw t :check_this_box_if %>
 </div>
 <div class="license_fields" style="display:none;">
   <%= builder.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY_NC,

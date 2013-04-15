@@ -49,7 +49,7 @@ $(document).ready(function() {
   $('body').append(
     $('<div id="taxonchooser" class="clear dialog"></div>').append(
       $('<div id="taxon_browser" class="clear"></div>').append(
-        $('<div class="loading status">Loading...</div>')
+        $('<div class="loading status">' + I18n.t('loading') + '</div>')
       )
     ).hide()
   )
@@ -58,7 +58,7 @@ $(document).ready(function() {
     autoOpen: false,
     width: $(window).width() * 0.8,
     height: $(window).height() * 0.8,
-    title: 'Browse all species',
+    title: I18n.t('browse_all_species'),
     modal:true,
     minWidth:1000,
     open: function(event, ui) {

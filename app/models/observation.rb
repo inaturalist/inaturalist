@@ -57,11 +57,11 @@ class Observation < ActiveRecord::Base
   OPEN = "open"
   PRIVATE = "private"
   OBSCURED = "obscured"
-  GEOPRIVACIES = [OBSCURED, PRIVATE]
+  GEOPRIVACIES = {OPEN => :open, OBSCURED => :obscured, PRIVATE => :private}
   GEOPRIVACY_DESCRIPTIONS = {
     OPEN => :open_description,
     OBSCURED => :obscured_description, 
-    PRIVATE => :private_description,
+    PRIVATE => :private_description
   }
   CASUAL_GRADE = "casual"
   RESEARCH_GRADE = "research"
