@@ -107,7 +107,7 @@ class WikimediaCommonsPhoto < Photo
     photo.native_photo_id = file_name
 
     license = api_response.search('.licensetpl_short').inner_text
-    photo.license = if (license.downcase.include? "public domain") || (license.downcase.include? "pd")
+    photo.license = if (license.downcase.include? "public domain") || (license.downcase.include? "pd") || (license.downcase.include? "cc0")
       Photo::PD
     elsif license.downcase.include? "cc-by-nc-sa"
       Photo::CC_BY_NC_SA
